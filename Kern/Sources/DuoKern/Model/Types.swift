@@ -33,11 +33,13 @@ public struct Card: Codable, Sendable, Identifiable, Equatable {
     public var note: String?
     /// For phrases: ids of the word cards this phrase composes. Empty for words.
     public var componentIDs: [String]
+    /// Position in the curated seed (import order); drives automatic introduction order.
+    public var seedIndex: Int
 
     public init(id: String, kind: CardKind, pair: LanguagePair, area: String,
                 german: String, article: String? = nil, plural: String? = nil,
                 emoji: String? = nil, translation: String, note: String? = nil,
-                componentIDs: [String] = []) {
+                componentIDs: [String] = [], seedIndex: Int = 0) {
         self.id = id
         self.kind = kind
         self.pair = pair
@@ -49,6 +51,7 @@ public struct Card: Codable, Sendable, Identifiable, Equatable {
         self.translation = translation
         self.note = note
         self.componentIDs = componentIDs
+        self.seedIndex = seedIndex
     }
 }
 

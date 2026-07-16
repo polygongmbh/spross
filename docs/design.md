@@ -148,3 +148,5 @@ der=blue / die=pink-red / das=green (text carries meaning, color reinforces — 
 
 Couple mode, accounts/sync, listening/writing steps, watch app (Phase 2.5+ — but keep Kern
 watch-ready: no UIKit imports, session composer can emit micro-sessions).
+
+- Note: the daily new-card budget (`newIntroduced`) is day-keyed only — shared across directions by design.

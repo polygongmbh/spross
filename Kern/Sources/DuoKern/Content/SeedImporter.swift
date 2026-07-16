@@ -55,6 +55,11 @@ public enum SeedImporter {
 
             cards.append(contentsOf: areaCards)
         }
+        // seedIndex = position in the curated file (areas in file order,
+        // nouns → verbs → phrases within an area); drives introduction order.
+        for i in cards.indices {
+            cards[i].seedIndex = i
+        }
         return cards
     }
 
