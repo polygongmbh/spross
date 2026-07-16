@@ -84,6 +84,7 @@ public struct ReviewLogEntry: Codable, Sendable, Equatable {
 }
 
 /// Scheduling for one card in one direction. A card active in both directions has two of these.
+/// Invariant: `phase == .new` ⟺ `memory == nil` ⟺ `due == nil`.
 public struct CardScheduling: Codable, Sendable, Equatable {
     public var cardID: String
     public var direction: Direction
@@ -91,17 +92,35 @@ public struct CardScheduling: Codable, Sendable, Equatable {
     public var memory: MemoryState?
     public var due: Date?
     public var addedAt: Date
+    public var lapses: Int
+    public var suspended: Bool
     public var log: [ReviewLogEntry]
 
     public init(cardID: String, direction: Direction, phase: CardPhase = .new,
-                memory: MemoryState? = nil, due: Date? = nil, addedAt: Date, log: [ReviewLogEntry] = []) {
+                memory: MemoryState? = nil, due: Date? = nil, addedAt: Date,
+                lapses: Int = 0, suspended: Bool = false, log: [ReviewLogEntry] = []) {
         self.cardID = cardID
         self.direction = direction
         self.phase = phase
         self.memory = memory
         self.due = due
         self.addedAt = addedAt
+        self.lapses = lapses
+        self.suspended = suspended
         self.log = log
+    }
+}
+
+/// Per-day aggregate appended at session end; the only input to streak & Fortschritt.
+public struct DayStats: Codable, Sendable, Equatable {
+    public var reviews: Int
+    public var introduced: Int
+    public var activeCount: Int
+
+    public init(reviews: Int = 0, introduced: Int = 0, activeCount: Int = 0) {
+        self.reviews = reviews
+        self.introduced = introduced
+        self.activeCount = activeCount
     }
 }
 
@@ -128,7 +147,7 @@ public struct BoxConfig: Codable, Sendable, Equatable {
     }
 }
 
-/// The single persisted aggregate.
+/// The persisted aggregate for ONE language pair (one document per pair).
 public struct BoxState: Codable, Sendable, Equatable {
     public var config: BoxConfig
     /// All cards known to the box (imported seed), keyed by id.
@@ -137,17 +156,21 @@ public struct BoxState: Codable, Sendable, Equatable {
     public var scheduling: [String: CardScheduling]
     /// User-enqueued card ids waiting to enter (priority queue, front first).
     public var enqueued: [String]
-    /// ISO date (yyyy-MM-dd) → number of new cards introduced that day.
+    /// Day key (yyyy-MM-dd) → number of new cards introduced that day. Pruned to trailing 60 days.
     public var newIntroduced: [String: Int]
+    /// Day key → session aggregates. Appended at session end.
+    public var dailyStats: [String: DayStats]
 
     public init(config: BoxConfig, cards: [String: Card] = [:],
                 scheduling: [String: CardScheduling] = [:],
-                enqueued: [String] = [], newIntroduced: [String: Int] = [:]) {
+                enqueued: [String] = [], newIntroduced: [String: Int] = [:],
+                dailyStats: [String: DayStats] = [:]) {
         self.config = config
         self.cards = cards
         self.scheduling = scheduling
         self.enqueued = enqueued
         self.newIntroduced = newIntroduced
+        self.dailyStats = dailyStats
     }
 
     public static func schedulingKey(cardID: String, direction: Direction) -> String {
