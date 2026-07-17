@@ -28,7 +28,9 @@ struct AnswerInputView: View {
     var body: some View {
         VStack(spacing: DL.Space.m) {
             inputField
-            if case .revealed(let answer) = feedback {
+            // why: when "Aufdecken" fills the field with the answer, the field
+            // already shows it — the panel below would just duplicate it.
+            if case .revealed(let answer) = feedback, text != answer {
                 revealPanel(answer: answer)
                     .transition(.opacity.combined(with: .move(edge: .top)))
             }

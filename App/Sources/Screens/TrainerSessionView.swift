@@ -235,6 +235,9 @@ struct TrainerSessionView: View {
                 Button {
                     if inputEmpty {
                         DLSound.reveal()
+                        // why: fill the field with the answer instead of
+                        // leaving an empty box beside the reveal panel.
+                        input = current.display
                         withAnimation { feedback = .revealed(correctAnswer: current.display) }
                     } else {
                         submit()
