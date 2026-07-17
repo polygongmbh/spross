@@ -22,6 +22,7 @@ struct HeuteView: View {
                               title: "Deine Box ist noch leer",
                               message: "Schau im Box-Tab vorbei: Stell „Neue Karten pro Tag“ ein oder pack einen Bereich direkt hinein.")
                 }
+                TrainerHubView(model: model)
             }
             .padding(DL.Space.xl)
         }

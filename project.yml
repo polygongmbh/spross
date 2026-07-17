@@ -52,6 +52,9 @@ targets:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     settings:
       base:
+        # why: extension bundle ids must be prefixed by the host app's id,
+        # or simctl/App Store installs fail with "Mismatched bundle IDs".
+        PRODUCT_BUNDLE_IDENTIFIER: dev.tj.DuoLernen.Widgets
         CURRENT_PROJECT_VERSION: 1
         MARKETING_VERSION: 0.2.0
         SWIFT_VERSION: "6.0"
