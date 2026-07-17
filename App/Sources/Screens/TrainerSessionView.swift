@@ -43,6 +43,10 @@ struct TrainerSessionView: View {
     @State private var bestStreak = 0
     /// Per-task results for the segmented progress bar.
     @State private var outcomes: [SessionOutcome] = []
+    /// Adaptive difficulty (numbers: digit count). Two rights in a row at a
+    /// level ramp up; one miss steps down.
+    @State private var level = 1
+    @State private var winsAtLevel = 0
     @State private var showingSummary = false
     @State private var input = ""
     @State private var feedback: AnswerInputView.Feedback = .neutral
@@ -63,7 +67,7 @@ struct TrainerSessionView: View {
 
     init(mode: Mode) {
         self.mode = mode
-        _tasks = State(initialValue: [Self.sampleTask(mode: mode, avoiding: nil)])
+        _tasks = State(initialValue: [Self.sampleTask(mode: mode, level: 1, avoiding: nil)])
     }
 
     private var language: TrainerLanguage { mode.language }
@@ -76,9 +80,11 @@ struct TrainerSessionView: View {
                 // why: endless run — position == total keeps the scaffold's
                 // "n/n" counter honest (n tasks incl. the current one) and
                 // the bar fills toward full as the run grows, never breaks.
+                // Counter = "correct/answered" (an endless run has no total).
                 SessionScaffold(position: doneCount + 1,
                                 total: doneCount + 1,
                                 outcomes: outcomes,
+                                counter: "\(outcomes.filter { $0 != .wrong }.count)/\(doneCount)",
                                 onClose: { closeRun() }) {
                     drillContent
                 }
@@ -126,21 +132,21 @@ struct TrainerSessionView: View {
 
     // MARK: - Task sampling (lazy, endless)
 
-    /// One fresh random task; a prompt never repeats back-to-back
-    /// (resample once when the draw equals the previous prompt).
-    private static func sampleTask(mode: Mode, avoiding previousPrompt: String?) -> TrainerTask {
+    /// One fresh random task at the current difficulty level; a prompt never
+    /// repeats back-to-back (resample once when it equals the previous one).
+    private static func sampleTask(mode: Mode, level: Int, avoiding previousPrompt: String?) -> TrainerTask {
         var rng = SystemRandomNumberGenerator()
-        var task = sampleTask(mode: mode, using: &rng)
+        var task = sampleTask(mode: mode, level: level, using: &rng)
         if task.prompt == previousPrompt {
-            task = sampleTask(mode: mode, using: &rng)
+            task = sampleTask(mode: mode, level: level, using: &rng)
         }
         return task
     }
 
-    private static func sampleTask(mode: Mode, using rng: inout SystemRandomNumberGenerator) -> TrainerTask {
+    private static func sampleTask(mode: Mode, level: Int, using rng: inout SystemRandomNumberGenerator) -> TrainerTask {
         switch mode {
         case .slots(let kind, let language):
-            return Trainer.sample(kind: kind, language: language, using: &rng)
+            return Trainer.sample(kind: kind, language: language, level: level, using: &rng)
         case .phrases(let pair, let reverse):
             let templates = PhraseTemplates.templates(pair: pair)
             let template = templates[Int(rng.next() % UInt64(templates.count))]
@@ -148,6 +154,11 @@ struct TrainerSessionView: View {
                 ? PhraseSlots.reverseSample(template: template, using: &rng)
                 : PhraseSlots.sample(template: template, using: &rng)
         }
+    }
+
+    private var maxLevel: Int {
+        if case .slots(let kind, _) = mode { return Trainer.maxLevel(kind: kind) }
+        return 1
     }
 
     private var current: TrainerTask { tasks[index] }
@@ -192,7 +203,11 @@ struct TrainerSessionView: View {
     }
 
     private var streakText: String {
-        var text = "🔥 \(streak) in Folge"
+        var text = ""
+        if case .slots(let kind, _) = mode, maxLevel > 1 {
+            text += kind == .numbers ? "🔢 \(level) \(level == 1 ? "Stelle" : "Stellen") · " : "Stufe \(level) · "
+        }
+        text += "🔥 \(streak) in Folge"
         if bestStreak > streak { text += " · Rekord \(bestStreak)" }
         return text
     }
@@ -247,19 +262,18 @@ struct TrainerSessionView: View {
                     EmptyView()
                 }
             case .revealed:
-                HStack(spacing: DL.Space.m) {
-                    Button("Wusste ich") { advance(correct: true, segment: .tough) }
-                        .buttonStyle(DLSoftButtonStyle(color: .dlTeal))
-                    Button {
-                        advance(correct: false)
-                    } label: {
-                        Text("Weiter")
-                            .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(DLPrimaryButtonStyle())
-                    // why: Enter advances when revealed (hardware keyboards).
-                    .keyboardShortcut(.defaultAction)
+                // why: no "Wusste ich" here — drills are generated, so
+                // self-reporting after seeing the answer proves nothing;
+                // revealed simply counts as a miss and moves on.
+                Button {
+                    advance(correct: false)
+                } label: {
+                    Text("Weiter")
+                        .frame(maxWidth: .infinity)
                 }
+                .buttonStyle(DLPrimaryButtonStyle())
+                // why: Enter advances when revealed (hardware keyboards).
+                .keyboardShortcut(.defaultAction)
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
@@ -319,12 +333,21 @@ struct TrainerSessionView: View {
         if correct {
             streak += 1
             bestStreak = max(bestStreak, streak)
+            // Ramp: two consecutive rights at a level earn the next one.
+            winsAtLevel += 1
+            if winsAtLevel >= 2, level < maxLevel {
+                level += 1
+                winsAtLevel = 0
+            }
         } else {
             streak = 0
+            // A miss steps difficulty down one notch.
+            level = max(1, level - 1)
+            winsAtLevel = 0
         }
         outcomes.append(segment ?? (correct ? .right : .wrong))
         doneCount += 1
-        tasks.append(Self.sampleTask(mode: mode, avoiding: current.prompt))
+        tasks.append(Self.sampleTask(mode: mode, level: level, avoiding: current.prompt))
         // why: reset in the SAME transaction as the index switch — the next
         // prompt must never render one frame with the old revealed answer.
         input = ""

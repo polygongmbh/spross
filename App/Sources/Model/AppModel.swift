@@ -200,6 +200,22 @@ final class AppModel {
         mutate { $0 = BoxEngine.setSuspended(state: $0, cardID: cardID, suspended: suspended) }
     }
 
+    /// Destructive fresh start: re-bootstrap this pair's box from the current
+    /// seed, keeping the user's config (direction, budget, mixed mode).
+    func resetBox() async {
+        guard let old = box else { return }
+        do {
+            let cards = try Self.loadSeedCards(pair: old.config.pair)
+            let fresh = BoxEngine.bootstrap(cards: cards, config: old.config)
+            box = fresh
+            try await store.saveNow(fresh)
+            refreshStats()
+            pushWatchSnapshot()
+        } catch {
+            loadErrorMessage = "Zurücksetzen fehlgeschlagen. (\(error.localizedDescription))"
+        }
+    }
+
     // MARK: - Box queries
 
     /// Area keys ordered by their German display name.

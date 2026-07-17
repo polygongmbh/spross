@@ -26,6 +26,8 @@ struct SessionScaffold<Content: View>: View {
     /// segment per answer (green right / amber tough / brick wrong) with
     /// the unanswered remainder neutral.
     var outcomes: [SessionOutcome] = []
+    /// Overrides the "position/total" counter (endless drills show "right/done").
+    var counter: String?
     var onClose: () -> Void = {}
     @ViewBuilder var content: Content
 
@@ -86,7 +88,7 @@ struct SessionScaffold<Content: View>: View {
                 ? "Karte \(position) von \(total)"
                 : "\(outcomes.filter { $0 == .right }.count) richtig, \(outcomes.filter { $0 == .tough }.count) schwer, \(outcomes.filter { $0 == .wrong }.count) daneben")
 
-            Text("\(position)/\(total)")
+            Text(counter ?? "\(position)/\(total)")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
                 .monospacedDigit()

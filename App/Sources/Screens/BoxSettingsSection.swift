@@ -7,6 +7,8 @@ import DuoKern
 struct BoxSettingsSection: View {
     let model: AppModel
 
+    @State private var confirmingReset = false
+
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
             Text("Einstellungen")
@@ -19,6 +21,8 @@ struct BoxSettingsSection: View {
                 directionRow
                 Divider().overlay(Color.dlSeparator)
                 newPerDayRow
+                Divider().overlay(Color.dlSeparator)
+                resetRow
             }
             .padding(DL.Space.l)
             .background(
@@ -92,6 +96,32 @@ struct BoxSettingsSection: View {
                 }
             }
             Text("So schnell wächst deine Box — nur solange der Stoff sitzt.")
+                .font(DL.Fonts.caption)
+                .foregroundStyle(Color.dlTextSecondary)
+        }
+    }
+
+    /// Fresh start with the CURRENT seed content (early testers' boxes carry
+    /// pre-basics ordering; a reset re-bootstraps from today's seed).
+    private var resetRow: some View {
+        VStack(alignment: .leading, spacing: DL.Space.s) {
+            Button(role: .destructive) {
+                confirmingReset = true
+            } label: {
+                Text("Box zurücksetzen …")
+                    .font(DL.Fonts.headline)
+            }
+            .confirmationDialog(
+                "Alle Lernfortschritte für \(pair.flag) \(pair.targetName) löschen und neu mit den ersten Wörtern beginnen?",
+                isPresented: $confirmingReset,
+                titleVisibility: .visible
+            ) {
+                Button("Zurücksetzen", role: .destructive) {
+                    Task { await model.resetBox() }
+                }
+                Button("Abbrechen", role: .cancel) {}
+            }
+            Text("Löscht Fortschritt und Verlauf dieser Box — die Inhalte bleiben.")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }

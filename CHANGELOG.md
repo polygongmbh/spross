@@ -1,13 +1,7 @@
 # Changelog
 
-## 0.6.0 — 2026-07-17
+## 0.7.0 — 2026-07-17
 
-- **Single-screen app**: the tab bar is gone. Heute is the whole app —
-  session card, training, and a condensed Fortschritt section (14-day
-  activity, active cards, retention) in one scroll; the Box opens via
-  the 📦 button top right (or straight from the empty-box card).
-- **Session card stats**: a due-count ring (fills as you review through
-  the day) and your 🔥 streak now sit right on the "Los geht's!" card.
 - **Answer-colored progress bar**: sessions and drills fill the top bar
   one segment per answer — green right, amber tough (hard rating or typo),
   brick wrong; the rest stays neutral until answered.
@@ -17,6 +11,25 @@
   Gesundheit, Arbeit & Beruf — every pack generated, translated, and
   adversarially language-verified before merge. Existing boxes absorb the
   new areas automatically on next launch.
+- **Adaptive drills**: number/year/clock drills start easy and ramp —
+  numbers begin single-digit, two rights in a row add a digit, a miss
+  removes one (the level shows next to the streak: "🔢 3 Stellen · 🔥 5");
+  years widen from recent decades to the full historic range, the clock
+  from full hours to all five-minute forms.
+- **Drill counter reads "richtig/gesamt"** instead of the useless n/n,
+  and the pointless "Wusste ich" button is gone from generated drills
+  (revealed counts as a miss — the answer was on screen).
+- **Box zurücksetzen** in settings: fresh start from the current seed
+  (early testers get the new "Die ersten Wörter" ordering), config kept.
+
+## 0.6.0 — 2026-07-17
+
+- **Single-screen app**: the tab bar is gone. Heute is the whole app —
+  session card, training, and a condensed Fortschritt section (14-day
+  activity, active cards, retention) in one scroll; the Box opens via
+  the 📦 button top right (or straight from the empty-box card).
+- **Session card stats**: a due-count ring (fills as you review through
+  the day) and your 🔥 streak now sit right on the "Los geht's!" card.
 
 ## 0.5.0 — 2026-07-17
 
