@@ -2,8 +2,10 @@ import SwiftUI
 import DuoKern
 
 /// Full-screen session. Both directions offer typing first; "Aufdecken"
-/// without typing falls back to four-button self-grading (de→target only
-/// reaches .easy this way). Presented as a full-screen cover.
+/// without typing falls back to four-button self-grading. The direction a
+/// card is SHOWN in is asked per card (`presentationDirection`) so mixed
+/// mode can alternate; rating semantics are direction-independent.
+/// Presented as a full-screen cover.
 struct SessionView: View {
     @Bindable var model: AppModel
 
@@ -102,7 +104,7 @@ struct SessionView: View {
                         plural: card.plural,
                         translation: card.translation,
                         note: card.note,
-                        mode: mode,
+                        mode: mode(for: card),
                         revealed: cardRevealed,
                         compact: true,
                         hideEmojiUntilRevealed: hideEmoji(for: card)
@@ -127,8 +129,11 @@ struct SessionView: View {
         }
     }
 
-    private var mode: VocabCardView.Mode {
-        model.box?.config.direction == .targetToDe ? .production : .recognition
+    /// Per-card presentation direction (alternates with mixed directions):
+    /// `.targetToDe` → production (target prompt, German typed),
+    /// `.deToTarget` → recognition (German prompt, target typed).
+    private func mode(for card: Card) -> VocabCardView.Mode {
+        model.presentationDirection(for: card.id) == .targetToDe ? .production : .recognition
     }
 
     private var cardRevealed: Bool {
@@ -169,7 +174,7 @@ struct SessionView: View {
                 .keyboardShortcut(.defaultAction)
                 .animation(.easeOut(duration: 0.15), value: inputEmpty)
             case .correct:
-                // Auto-advances after ~800 ms (design §Review UX).
+                // Auto-advances after ~1.2 s (design §Review UX).
                 EmptyView()
             case .revealed:
                 HStack(spacing: DL.Space.m) {
@@ -197,23 +202,27 @@ struct SessionView: View {
     }
 
     private func inputPlaceholder(_ card: Card) -> String {
-        mode == .production ? "Auf Deutsch …"
+        mode(for: card) == .production ? "Auf Deutsch …"
             : (card.pair == .deSw ? "Auf Swahili …" : "Auf Ukrainisch …")
     }
 
     private func submit(_ card: Card) {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard feedback == .neutral, !trimmed.isEmpty else { return }
+        let mode = mode(for: card)
         let expected = mode == .production ? card.german : card.translation
-        if AnswerNormalizer.matches(input: trimmed, expected: expected) {
+        switch AnswerNormalizer.evaluate(input: trimmed, expected: expected) {
+        case .exact, .typo:
+            // Typos count as correct; the revealed card shows the proper
+            // spelling during the auto-advance window (never punishing).
             feedback = .correct
             DLSound.correct()
             autoAdvance = Task {
-                try? await Task.sleep(for: .milliseconds(800))
+                try? await Task.sleep(for: .milliseconds(1200))
                 guard !Task.isCancelled else { return }
                 rate(.good)
             }
-        } else {
+        case .wrong:
             let answer = mode == .production ? card.germanWithArticle : card.translation
             feedback = .revealed(correctAnswer: answer)
             DLSound.wrong()

@@ -1,8 +1,9 @@
 import SwiftUI
 import DuoKern
 
-/// Settings block at the bottom of the Box tab: language pair, direction,
-/// daily new-card budget. All values persist inside `BoxState.config`.
+/// Settings block at the bottom of the Box tab: language pair, which
+/// language is being learned (+ mixed-direction toggle), daily new-card
+/// budget. All values persist inside `BoxState.config`.
 struct BoxSettingsSection: View {
     let model: AppModel
 
@@ -51,19 +52,26 @@ struct BoxSettingsSection: View {
         }
     }
 
+    /// "Ich lerne": which language the user is acquiring. `.deToTarget`
+    /// = learning the target language, `.targetToDe` = learning German.
     private var directionRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("Richtung")
+            Text("Ich lerne")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            Picker("Richtung", selection: directionBinding) {
-                Text("DE → \(pair.targetShort)").tag(Direction.deToTarget)
-                Text("\(pair.targetShort) → DE").tag(Direction.targetToDe)
+            Picker("Ich lerne", selection: directionBinding) {
+                Text(pair.targetName).tag(Direction.deToTarget)
+                Text("Deutsch").tag(Direction.targetToDe)
             }
             .pickerStyle(.segmented)
-            Text(directionBinding.wrappedValue == .deToTarget
-                 ? "Erkennen: Du siehst Deutsch und bewertest dich selbst."
-                 : "Tippen: Du schreibst das deutsche Wort.")
+            Toggle(isOn: mixedDirectionsBinding) {
+                Text("Beide Richtungen üben")
+                    .font(DL.Fonts.headline)
+                    .foregroundStyle(Color.dlTextPrimary)
+            }
+            .tint(Color.dlAccent)
+            .padding(.top, DL.Space.s)
+            Text("Empfohlen — beide Übersetzungsrichtungen festigen die Vokabel.")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }
@@ -102,6 +110,13 @@ struct BoxSettingsSection: View {
         Binding(
             get: { model.box?.config.direction ?? .deToTarget },
             set: { model.setDirection($0) }
+        )
+    }
+
+    private var mixedDirectionsBinding: Binding<Bool> {
+        Binding(
+            get: { model.box?.config.mixedDirections ?? true },
+            set: { model.setMixedDirections($0) }
         )
     }
 

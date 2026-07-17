@@ -61,12 +61,17 @@ final class AppModel {
     func start() async {
         startWatchBridge()
         var pairOverride: LanguagePair?
+        var directionOverride: Direction?
         #if DEBUG
         // UI-test hooks: `-uitest-pair de-sw` skips onboarding with that pair,
+        // `-uitest-direction targetToDe` forces the learning direction,
         // `-uitest-autostart 1` opens the session immediately after launch.
         let defaults = UserDefaults.standard
         if let raw = defaults.string(forKey: "uitest-pair") {
             pairOverride = LanguagePair(rawValue: raw)
+        }
+        if let raw = defaults.string(forKey: "uitest-direction") {
+            directionOverride = Direction(rawValue: raw)
         }
         autostartSession = defaults.bool(forKey: "uitest-autostart")
         uitestTab = defaults.string(forKey: "uitest-tab")
@@ -78,7 +83,7 @@ final class AppModel {
             phase = .onboarding
             return
         }
-        await activate(pair: pair)
+        await activate(pair: pair, direction: directionOverride)
         if autostartSession, sessionAvailable {
             startSession()
         }
@@ -155,6 +160,17 @@ final class AppModel {
         mutate { $0.config.direction = direction }
     }
 
+    func setMixedDirections(_ enabled: Bool) {
+        mutate { $0.config.mixedDirections = enabled }
+    }
+
+    /// Which direction to SHOW for this card's next review (alternates
+    /// per review when `mixedDirections`, else the configured direction).
+    func presentationDirection(for cardID: String) -> Direction {
+        guard let box else { return .deToTarget }
+        return BoxEngine.presentationDirection(state: box, cardID: cardID)
+    }
+
     func setNewPerDay(_ count: Int) {
         mutate { $0.config.newPerDay = max(0, min(20, count)) }
     }
@@ -183,7 +199,12 @@ final class AppModel {
 
     /// Area keys ordered by their German display name.
     var areaNames: [String] {
-        (stats?.areas.map(\.name) ?? []).sorted {
+        #if DEBUG
+        // UI-test hook: `-uitest-noareas 1` hides the area sections so the
+        // Box tab's settings block is reachable without scrolling.
+        if UserDefaults.standard.bool(forKey: "uitest-noareas") { return [] }
+        #endif
+        return (stats?.areas.map(\.name) ?? []).sorted {
             AreaInfo.info(for: $0).name.localizedCompare(AreaInfo.info(for: $1).name) == .orderedAscending
         }
     }

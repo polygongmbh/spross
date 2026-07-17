@@ -1,20 +1,26 @@
 import SwiftUI
 import DuoKern
 
-/// A stateless 10-task slot drill (numbers / years / clock). Same interaction
-/// grammar as SessionView — type first, "Aufdecken" as fallback — but NO
-/// FSRS/BoxEngine involvement: right or wrong only moves the round score.
+/// A stateless ENDLESS slot drill (numbers / years / clock / sentences).
+/// Same interaction grammar as SessionView — type first, "Aufdecken" as
+/// fallback — but NO FSRS/BoxEngine involvement: right or wrong only moves
+/// the in-run streak. Tasks are generated lazily; the run ends only when
+/// the user closes it (X → summary).
 struct TrainerSessionView: View {
-    /// What a round drills: bare slot values, or full sentences composed
-    /// from verified phrase templates + slot values.
+    /// What a run drills: bare slot values, or full sentences composed
+    /// from verified phrase templates + slot values. `reverse` sentences
+    /// show the target sentence and expect typed German (for learners
+    /// of German).
     enum Mode {
         case slots(TrainerKind, TrainerLanguage)
-        case phrases(LanguagePair)
+        case phrases(LanguagePair, reverse: Bool)
 
+        /// The language answers are typed in (reverse phrases → German).
         var language: TrainerLanguage {
             switch self {
             case .slots(_, let language): return language
-            case .phrases(let pair): return pair == .deSw ? .swahili : .ukrainian
+            case .phrases(let pair, let reverse):
+                return reverse ? .german : (pair == .deSw ? .swahili : .ukrainian)
             }
         }
 
@@ -30,14 +36,17 @@ struct TrainerSessionView: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    private static let roundLength = 10
-
     @State private var tasks: [TrainerTask]
     @State private var index = 0
-    @State private var correctCount = 0
-    @State private var finished = false
+    @State private var doneCount = 0
+    @State private var streak = 0
+    @State private var bestStreak = 0
+    @State private var showingSummary = false
     @State private var input = ""
     @State private var feedback: AnswerInputView.Feedback = .neutral
+    /// Set when the answer was accepted with a small typo — the proper
+    /// spelling is shown during the auto-advance window.
+    @State private var typoCorrection: String?
     @State private var autoAdvance: Task<Void, Never>?
     @FocusState private var answerFocused: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -46,59 +55,95 @@ struct TrainerSessionView: View {
         self.init(mode: .slots(kind, language))
     }
 
-    init(phrases pair: LanguagePair) {
-        self.init(mode: .phrases(pair))
+    init(phrases pair: LanguagePair, reverse: Bool = false) {
+        self.init(mode: .phrases(pair, reverse: reverse))
     }
 
     init(mode: Mode) {
         self.mode = mode
-        _tasks = State(initialValue: Self.makeRound(mode: mode))
+        _tasks = State(initialValue: [Self.sampleTask(mode: mode, avoiding: nil)])
     }
 
     private var language: TrainerLanguage { mode.language }
 
     var body: some View {
         Group {
-            if finished {
-                completion
+            if showingSummary {
+                summary
             } else {
-                SessionScaffold(position: index + 1,
-                                total: Self.roundLength,
-                                onClose: { dismiss() }) {
+                // why: endless run — position == total keeps the scaffold's
+                // "n/n" counter honest (n tasks incl. the current one) and
+                // the bar fills toward full as the run grows, never breaks.
+                SessionScaffold(position: doneCount + 1,
+                                total: doneCount + 1,
+                                onClose: { closeRun() }) {
                     drillContent
                 }
             }
         }
         .onAppear { answerFocused = true }
         .onChange(of: index) { _, _ in answerFocused = true }
+        .onChange(of: showingSummary) { _, summarizing in
+            if !summarizing { answerFocused = true }
+        }
         .onDisappear { autoAdvance?.cancel() }
+        #if DEBUG
+        // UI-test hooks: `-uitest-input xyz` prefills the answer field,
+        // `-uitest-submit 1` submits it after 0.6 s,
+        // `-uitest-streak N` presets a running streak for screenshots.
+        .onAppear {
+            let defaults = UserDefaults.standard
+            if let prefill = defaults.string(forKey: "uitest-input") {
+                input = prefill
+            }
+            if defaults.bool(forKey: "uitest-submit") {
+                Task { @MainActor in
+                    try? await Task.sleep(for: .milliseconds(600))
+                    submit()
+                }
+            }
+            let preset = defaults.integer(forKey: "uitest-streak")
+            if preset > 0 {
+                streak = preset
+                bestStreak = max(preset, 12)
+                doneCount = preset + 6
+            }
+            // `-uitest-summary 1` jumps straight to the close-summary state.
+            if defaults.bool(forKey: "uitest-summary") {
+                showingSummary = true
+            }
+            // `-uitest-typo 1` renders the accepted-with-typo state.
+            if defaults.bool(forKey: "uitest-typo") {
+                feedback = .correct
+                typoCorrection = current.display
+            }
+        }
+        #endif
     }
 
-    // MARK: - Round sampling
+    // MARK: - Task sampling (lazy, endless)
 
-    /// Fresh random round; a prompt never repeats back-to-back
+    /// One fresh random task; a prompt never repeats back-to-back
     /// (resample once when the draw equals the previous prompt).
-    private static func makeRound(mode: Mode) -> [TrainerTask] {
+    private static func sampleTask(mode: Mode, avoiding previousPrompt: String?) -> TrainerTask {
         var rng = SystemRandomNumberGenerator()
-        var round: [TrainerTask] = []
-        for _ in 0..<roundLength {
-            var task = sampleTask(mode: mode, using: &rng)
-            if task.prompt == round.last?.prompt {
-                task = sampleTask(mode: mode, using: &rng)
-            }
-            round.append(task)
+        var task = sampleTask(mode: mode, using: &rng)
+        if task.prompt == previousPrompt {
+            task = sampleTask(mode: mode, using: &rng)
         }
-        return round
+        return task
     }
 
     private static func sampleTask(mode: Mode, using rng: inout SystemRandomNumberGenerator) -> TrainerTask {
         switch mode {
         case .slots(let kind, let language):
             return Trainer.sample(kind: kind, language: language, using: &rng)
-        case .phrases(let pair):
+        case .phrases(let pair, let reverse):
             let templates = PhraseTemplates.templates(pair: pair)
             let template = templates[Int(rng.next() % UInt64(templates.count))]
-            return PhraseSlots.sample(template: template, using: &rng)
+            return reverse
+                ? PhraseSlots.reverseSample(template: template, using: &rng)
+                : PhraseSlots.sample(template: template, using: &rng)
         }
     }
 
@@ -114,8 +159,9 @@ struct TrainerSessionView: View {
     private var drillContent: some View {
         ScrollView {
             VStack(spacing: DL.Space.m) {
+                streakLine
                 // ZStack so outgoing and incoming prompt overlap during the
-                // flip; .id gives each round position its own view identity.
+                // flip; .id gives each run position its own view identity.
                 ZStack {
                     TrainerPromptCard(task: current, sentence: isPhrases)
                         .id(index)
@@ -127,6 +173,25 @@ struct TrainerSessionView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollDismissesKeyboard(.never)
+    }
+
+    /// Compact in-run score: current streak, plus the run record once it
+    /// exceeds the current streak.
+    private var streakLine: some View {
+        Text(streakText)
+            .font(DL.Fonts.caption)
+            .foregroundStyle(streak > 0 ? Color.dlAccent : Color.dlTextSecondary)
+            .monospacedDigit()
+            .frame(maxWidth: .infinity)
+            .animation(.easeOut(duration: 0.2), value: streak)
+            .accessibilityLabel("Serie: \(streak) in Folge" +
+                                (bestStreak > streak ? ", Rekord \(bestStreak)" : ""))
+    }
+
+    private var streakText: String {
+        var text = "🔥 \(streak) in Folge"
+        if bestStreak > streak { text += " · Rekord \(bestStreak)" }
+        return text
     }
 
     private var controls: some View {
@@ -165,8 +230,19 @@ struct TrainerSessionView: View {
                 .keyboardShortcut(.defaultAction)
                 .animation(.easeOut(duration: 0.15), value: inputEmpty)
             case .correct:
-                // Auto-advances after ~800 ms (design §Review UX).
-                EmptyView()
+                // Auto-advances after ~1.2 s (design §Review UX). A typo
+                // still counts — show the proper spelling while it lasts.
+                if let typoCorrection {
+                    Text("richtig — geschrieben: \(typoCorrection)")
+                        .font(DL.Fonts.caption)
+                        .italic()
+                        .foregroundStyle(Color.dlTextSecondary)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity)
+                        .transition(.opacity)
+                } else {
+                    EmptyView()
+                }
             case .revealed:
                 HStack(spacing: DL.Space.m) {
                     Button("Wusste ich") { advance(correct: true) }
@@ -186,7 +262,7 @@ struct TrainerSessionView: View {
         .animation(.easeOut(duration: 0.25), value: feedback)
     }
 
-    // MARK: - Grading (round score only, no FSRS)
+    // MARK: - Grading (run streak only, no FSRS)
 
     private var inputEmpty: Bool {
         input.trimmingCharacters(in: .whitespaces).isEmpty
@@ -195,64 +271,100 @@ struct TrainerSessionView: View {
     private func submit() {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard feedback == .neutral, !trimmed.isEmpty else { return }
-        // Any accepted variant counts as correct.
-        if current.accepted.contains(where: { AnswerNormalizer.matches(input: trimmed, expected: $0) }) {
+        switch bestMatch(for: trimmed) {
+        case .exact, .typo:
             feedback = .correct
             DLSound.correct()
             autoAdvance = Task {
-                try? await Task.sleep(for: .milliseconds(800))
+                try? await Task.sleep(for: .milliseconds(1200))
                 guard !Task.isCancelled else { return }
                 advance(correct: true)
             }
-        } else {
+        case .wrong:
             feedback = .revealed(correctAnswer: current.display)
             DLSound.wrong()
         }
     }
 
+    /// Best evaluation across all accepted variants; a typo only counts
+    /// when no variant matches exactly. Sets `typoCorrection` (shown with
+    /// the canonical display form, not the normalized comparison form).
+    private func bestMatch(for trimmed: String) -> AnswerNormalizer.Match {
+        var best = AnswerNormalizer.Match.wrong
+        for variant in current.accepted {
+            switch AnswerNormalizer.evaluate(input: trimmed, expected: variant) {
+            case .exact:
+                typoCorrection = nil
+                return .exact
+            case .typo(let corrected):
+                if best == .wrong { best = .typo(corrected: corrected) }
+            case .wrong:
+                break
+            }
+        }
+        if case .typo = best { typoCorrection = current.display }
+        return best
+    }
+
+    /// A correct answer extends the streak, a wrong one resets it
+    /// (the run record stays). The next task is generated on demand.
     private func advance(correct: Bool) {
         autoAdvance?.cancel()
-        if correct { correctCount += 1 }
+        if correct {
+            streak += 1
+            bestStreak = max(bestStreak, streak)
+        } else {
+            streak = 0
+        }
+        doneCount += 1
+        tasks.append(Self.sampleTask(mode: mode, avoiding: current.prompt))
         // why: reset in the SAME transaction as the index switch — the next
         // prompt must never render one frame with the old revealed answer.
         input = ""
         feedback = .neutral
+        typoCorrection = nil
         withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip) {
-            if index + 1 >= Self.roundLength {
-                finished = true
-            } else {
-                index += 1
-            }
+            index += 1
         }
     }
 
-    private func restart() {
+    // MARK: - Close → summary
+
+    /// X during a run: count a pending correct answer, then show the
+    /// summary. An untouched run (nothing answered) just closes.
+    private func closeRun() {
         autoAdvance?.cancel()
-        tasks = Self.makeRound(mode: mode)
-        index = 0
-        correctCount = 0
-        input = ""
-        feedback = .neutral
-        finished = false
+        if feedback == .correct {
+            advance(correct: true)
+        }
+        guard doneCount > 0 else {
+            dismiss()
+            return
+        }
+        answerFocused = false
+        withAnimation(.easeOut(duration: 0.2)) { showingSummary = true }
     }
 
-    // MARK: - Round completion
-
-    private var completion: some View {
+    private var summary: some View {
         VStack(spacing: DL.Space.xl) {
             Spacer()
-            Text(scoreEmoji)
+            Text(summaryEmoji)
                 .font(.system(size: 72))
                 .accessibilityHidden(true)
-            Text("\(correctCount) von \(Self.roundLength) 🎯")
+            Text("\(doneCount) Aufgaben 🎯")
                 .font(DL.Fonts.hero)
+                .foregroundStyle(Color.dlTextPrimary)
+            Text("Beste Serie: 🔥 \(bestStreak) in Folge")
+                .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextPrimary)
             Text("\(mode.title) · \(language.trainerName)")
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
             Spacer()
-            Button("Nochmal") { restart() }
-                .buttonStyle(DLSoftButtonStyle())
+            Button("Weiter üben") {
+                withAnimation(.easeOut(duration: 0.2)) { showingSummary = false }
+            }
+            .buttonStyle(DLSoftButtonStyle())
             Button {
                 dismiss()
             } label: {
@@ -266,11 +378,11 @@ struct TrainerSessionView: View {
         .background(Color.dlBackground.ignoresSafeArea())
     }
 
-    private var scoreEmoji: String {
-        switch correctCount {
-        case Self.roundLength: return "🏆"
-        case 7...: return "🎉"
-        case 4...: return "💪"
+    private var summaryEmoji: String {
+        switch bestStreak {
+        case 10...: return "🏆"
+        case 5...: return "🎉"
+        case 2...: return "💪"
         default: return "🌱"
         }
     }
@@ -323,6 +435,10 @@ private struct TrainerPromptCard: View {
 
 #Preview("Numbers · Swahili") {
     TrainerSessionView(kind: .numbers, language: .swahili)
+}
+
+#Preview("Phrases · reverse (typed German)") {
+    TrainerSessionView(phrases: .deUk, reverse: true)
 }
 
 #Preview("Clock · German · dark") {

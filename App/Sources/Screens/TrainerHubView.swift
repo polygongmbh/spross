@@ -2,13 +2,12 @@ import SwiftUI
 import DuoKern
 
 /// Compact "Training" card on the Heute screen: three slot drills
-/// (Zahlen / Jahreszahlen / Uhrzeit) plus a small language toggle.
+/// (Zahlen / Jahreszahlen / Uhrzeit) plus the sentence drill. The drill
+/// language is always the language being learned (no toggle).
 /// Trainers are stateless — they never touch BoxState or FSRS.
 struct TrainerHubView: View {
     let model: AppModel
 
-    /// nil = follow the box's direction (the language being produced).
-    @State private var selectedLanguage: TrainerLanguage?
     @State private var activeDrill: Drill?
 
     private struct Drill: Identifiable {
@@ -20,9 +19,9 @@ struct TrainerHubView: View {
             id = "\(kind.rawValue)-\(language.rawValue)"
         }
 
-        init(phrases pair: LanguagePair) {
-            mode = .phrases(pair)
-            id = "phrases-\(pair.rawValue)"
+        init(phrases pair: LanguagePair, reverse: Bool) {
+            mode = .phrases(pair, reverse: reverse)
+            id = "phrases-\(pair.rawValue)-\(reverse)"
         }
     }
 
@@ -35,30 +34,16 @@ struct TrainerHubView: View {
         .fullScreenCover(item: $activeDrill) { drill in
             TrainerSessionView(mode: drill.mode)
         }
-        #if DEBUG
-        // UI-test hook: `-uitest-trainer numbers|years|clock` opens that drill.
-        .onAppear {
-            if activeDrill == nil,
-               let raw = UserDefaults.standard.string(forKey: "uitest-trainer"),
-               let kind = TrainerKind(rawValue: raw) {
-                activeDrill = Drill(kind: kind, language: effectiveLanguage)
-            }
-        }
-        #endif
     }
 
     // MARK: - Card
 
     private func card(_ config: BoxConfig) -> some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
-            HStack(alignment: .firstTextBaseline) {
-                Text("Training")
-                    .font(DL.Fonts.title)
-                    .foregroundStyle(Color.dlTextPrimary)
-                Spacer(minLength: DL.Space.m)
-                languageToggle(config)
-            }
-            Text("Zehn schnelle Aufgaben — zählt nicht in deine Box.")
+            Text("Training")
+                .font(DL.Fonts.title)
+                .foregroundStyle(Color.dlTextPrimary)
+            Text("Auf \(effectiveLanguage.trainerName) · zählt nicht in deine Box.")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
             HStack(spacing: DL.Space.m) {
@@ -75,6 +60,21 @@ struct TrainerHubView: View {
                 .fill(Color.dlSurface)
         )
         .dlCardShadow()
+        #if DEBUG
+        // UI-test hook: `-uitest-trainer numbers|years|clock|phrases` opens
+        // that drill (in the learned language, like the chips). Attached
+        // HERE because the card only appears once the box config is loaded.
+        .onAppear {
+            guard activeDrill == nil,
+                  let raw = UserDefaults.standard.string(forKey: "uitest-trainer") else { return }
+            if let kind = TrainerKind(rawValue: raw) {
+                activeDrill = Drill(kind: kind, language: effectiveLanguage)
+            } else if raw == "phrases" {
+                activeDrill = Drill(phrases: config.pair,
+                                    reverse: config.direction == .targetToDe)
+            }
+        }
+        #endif
     }
 
     private func drillChip(_ kind: TrainerKind) -> some View {
@@ -104,11 +104,12 @@ struct TrainerHubView: View {
     }
 
     /// Sentence drill: composes phrase templates with slot values.
-    /// Always DE → target for the box's pair (the language toggle
-    /// doesn't apply — there are no target→DE templates).
+    /// Learners of German get the REVERSE drill (target sentence shown,
+    /// German typed) — like all drills, it runs in the learned language.
     private func phraseChip(_ config: BoxConfig) -> some View {
         Button {
-            activeDrill = Drill(phrases: config.pair)
+            activeDrill = Drill(phrases: config.pair,
+                                reverse: config.direction == .targetToDe)
         } label: {
             VStack(spacing: DL.Space.s) {
                 Text("💬")
@@ -132,43 +133,12 @@ struct TrainerHubView: View {
         .accessibilityLabel("Sätze üben")
     }
 
-    // MARK: - Language toggle
+    // MARK: - Drill language
 
-    private func languageToggle(_ config: BoxConfig) -> some View {
-        HStack(spacing: DL.Space.xs) {
-            ForEach(languageOptions(config), id: \.rawValue) { language in
-                let active = language == effectiveLanguage
-                Button {
-                    selectedLanguage = language
-                } label: {
-                    Text(language.trainerName)
-                        .font(DL.Fonts.caption)
-                        .foregroundStyle(active ? Color.dlAccent : Color.dlTextSecondary)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.7)
-                        .padding(.horizontal, DL.Space.m)
-                        .frame(minHeight: 44)
-                        .background(
-                            Capsule().fill(active ? Color.dlAccent.opacity(0.14) : .clear)
-                        )
-                }
-                .buttonStyle(.plain)
-            }
-        }
-        .background(Capsule().strokeBorder(Color.dlSeparator, lineWidth: 1))
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel("Trainingssprache")
-    }
-
-    /// Target language first (it's the one being learned), German second.
-    private func languageOptions(_ config: BoxConfig) -> [TrainerLanguage] {
-        [Self.targetLanguage(config.pair), .german]
-    }
-
+    /// Always the language being learned: `.deToTarget` → the pair's
+    /// target language, `.targetToDe` → German.
     private var effectiveLanguage: TrainerLanguage {
-        if let selectedLanguage { return selectedLanguage }
         guard let config = model.box?.config else { return .german }
-        // Default = the language the user currently produces answers in.
         return config.direction == .deToTarget
             ? Self.targetLanguage(config.pair)
             : .german
