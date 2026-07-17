@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.7.1 — 2026-07-17
+
+- **New words show the learned language first**: the very first exposure of a
+  card always displays the unknown word and asks for the known one — you
+  can't recall a word you've never seen. Mixing continues from there.
+- **Glosses are hints now**: annotations that had leaked into answer strings
+  ("kuitwa · wörtl. „gerufen werden“", "(Pl. maombi)", "(nur Pl.)", "(m.!)")
+  moved into reveal-notes on 48 entries — they no longer clutter the prompt
+  and no longer break typed-answer matching; genuine synonyms
+  (мишка, термін, візит …) became accepted answer variants instead.
+- Settings footer shows the app version and a "Feedback senden" button
+  (mail to lang@polygon.gmbh).
+
 ## 0.7.0 — 2026-07-17
 
 - **Answer-colored progress bar**: sessions and drills fill the top bar
