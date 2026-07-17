@@ -46,6 +46,7 @@ targets:
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
         GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Spross
         TARGETED_DEVICE_FAMILY: "1"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
   DuoLernenWidgets:
@@ -62,7 +63,7 @@ targets:
     info:
       path: Widgets/Info.plist
       properties:
-        CFBundleDisplayName: DuoLernen
+        CFBundleDisplayName: Spross
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     settings:
@@ -97,7 +98,7 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_WKApplication: YES
         INFOPLIST_KEY_WKCompanionAppBundleIdentifier: dev.tj.DuoLernen
-        INFOPLIST_KEY_CFBundleDisplayName: DuoLernen
+        INFOPLIST_KEY_CFBundleDisplayName: Spross
         TARGETED_DEVICE_FAMILY: "4"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
   DuoLernenWatchWidgets:
@@ -116,7 +117,7 @@ targets:
     info:
       path: WatchWidgets/Info.plist
       properties:
-        CFBundleDisplayName: DuoLernen
+        CFBundleDisplayName: Spross
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     settings:
