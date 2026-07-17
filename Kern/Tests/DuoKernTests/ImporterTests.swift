@@ -29,10 +29,12 @@ final class ImporterTests: XCTestCase {
             let nouns = cards.filter { $0.kind == .noun }.count
             let verbs = cards.filter { $0.kind == .verb }.count
             let phrases = cards.filter { $0.kind == .phrase }.count
+            // 3 survival phrases moved from the school area into the basics
+            // starter pack (2026-07-17) — 64 → 61 until basics merges in.
             XCTAssertEqual(nouns, 96, "\(name) noun count")
             XCTAssertEqual(verbs, 73, "\(name) verb count")
-            XCTAssertEqual(phrases, 64, "\(name) phrase count")
-            XCTAssertEqual(cards.count, 233, "\(name) total count")
+            XCTAssertEqual(phrases, 61, "\(name) phrase count")
+            XCTAssertEqual(cards.count, 230, "\(name) total count")
         }
     }
 
@@ -113,8 +115,8 @@ final class ImporterTests: XCTestCase {
     func testLinkReport() throws {
         let cards = try SeedImporter.importSeed(json: try fixtureData("vocab-de-sw"))
         let report = SeedImporter.linkReport(cards: cards)
-        XCTAssertEqual(report.phrases, 64)
-        XCTAssertGreaterThanOrEqual(report.linked, 30)
+        XCTAssertEqual(report.phrases, 61)
+        XCTAssertGreaterThanOrEqual(report.linked, 29)
         XCTAssertGreaterThan(report.avgComponents, 0)
     }
 
@@ -122,7 +124,7 @@ final class ImporterTests: XCTestCase {
 
     func testLoadAllFromDirectory() throws {
         let cards = try SeedContent.loadAll(from: try fixtureDirectory())
-        XCTAssertEqual(cards.count, 233 * 2)
+        XCTAssertEqual(cards.count, 230 * 2)
         let ids = cards.map(\.id)
         XCTAssertEqual(Set(ids).count, ids.count, "duplicate ids across pairs")
         let pairs = Set(cards.map(\.pair))

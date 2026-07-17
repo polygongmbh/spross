@@ -18,6 +18,8 @@ struct PhraseVocabAuditTests {
         ],
         .deUk: [
             "нас",   // Personalpronomen „uns“ («у нас є» = wir haben)
+            "повторіть", // „wiederholen Sie“ — grounded in the basics starter pack
+                         // (phrase moved out of the school area 2026-07-17)
             "євро",  // internationale Währung, unveränderlich
         ],
     ]
