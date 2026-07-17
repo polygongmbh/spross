@@ -39,6 +39,8 @@ final class AppModel {
     var sessionQueue: [String] = []
     var sessionTotal = 0
     var sessionAnswered = 0
+    /// Answers already folded into dailyStats (partial folds on backgrounding).
+    var sessionFolded = 0
     var sessionEnded = true
     private(set) var autostartSession = false
     /// DEBUG hook: `-uitest-tab box|fortschritt` opens that tab after launch.
@@ -233,8 +235,10 @@ final class AppModel {
         stats = box.map { BoxEngine.statistics(state: $0, now: Date(), calendar: calendar) }
     }
 
-    /// Scene went to background → flush immediately.
+    /// Scene went to background → fold any mid-session reviews into dailyStats
+    /// (an evicted app must not lose them), then flush immediately.
     func persistNow() {
+        foldPartialSession()
         guard let box else { return }
         Task { [store] in try? await store.saveNow(box) }
     }

@@ -14,9 +14,11 @@ enum AnswerNormalizer {
     /// Canonical comparison form of a typed or expected answer.
     static func normalize(_ raw: String) -> String {
         let lowered = raw.lowercased()
-        // Punctuation → space, so "Guten Morgen!" and "Guten Morgen" collapse
-        // to the same form and hyphens don't block a match.
-        let cleaned = String(lowered.map { character in
+        // Intra-word joiners vanish outright so "E-Mail"/"Email" and
+        // "geht's"/"gehts" converge; other punctuation → space so
+        // "Guten Morgen!" and "Guten Morgen" collapse to the same form.
+        let joinersRemoved = lowered.filter { $0 != "-" && $0 != "'" && $0 != "’" }
+        let cleaned = String(joinersRemoved.map { character in
             character.isLetter || character.isNumber || character.isWhitespace ? character : " "
         })
         var words = cleaned.split(whereSeparator: \.isWhitespace).map(String.init)

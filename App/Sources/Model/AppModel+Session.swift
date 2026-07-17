@@ -34,6 +34,7 @@ extension AppModel {
         sessionQueue = plan.reviews + plan.unlockedPhrases + plan.newWords
         sessionTotal = sessionQueue.count
         sessionAnswered = 0
+        sessionFolded = 0
         sessionEnded = false
         advanceSession(now: now)
         sessionPresented = true
@@ -101,25 +102,40 @@ extension AppModel {
     }
 
     /// Fold today's counters into dailyStats exactly once per session.
+    /// Only the not-yet-folded delta is booked (`foldPartialSession` may have
+    /// already folded earlier answers when the app was backgrounded).
     func finishSession(now: Date = Date()) {
         guard !sessionEnded, let current = box else { return }
         sessionEnded = true
-        let next = BoxEngine.endSession(state: current, reviewsDone: sessionAnswered,
+        let next = BoxEngine.endSession(state: current,
+                                        reviewsDone: sessionAnswered - sessionFolded,
                                         now: now, calendar: calendar)
+        sessionFolded = sessionAnswered
         box = next
         persist(next, immediate: true)
         refreshStats()
     }
 
+    /// Backgrounding mid-session: fold answered-so-far into dailyStats so an
+    /// evicted app never loses demonstrated reviews (streak stays honest).
+    /// Kern's endSession accumulates `reviews`, so later folds add deltas only.
+    func foldPartialSession(now: Date = Date()) {
+        guard !sessionEnded, sessionAnswered > sessionFolded, let current = box else { return }
+        box = BoxEngine.endSession(state: current,
+                                   reviewsDone: sessionAnswered - sessionFolded,
+                                   now: now, calendar: calendar)
+        sessionFolded = sessionAnswered
+    }
+
     /// Close button or "Fertig" on the completion view.
+    /// Leaves sessionStep/queue intact — the fullScreenCover is still animating
+    /// out and must keep showing its content; startSession resets everything.
     func closeSession() {
         if !sessionEnded, sessionAnswered > 0 {
             finishSession()
         }
         sessionEnded = true
         sessionPresented = false
-        sessionStep = nil
-        sessionQueue = []
         refreshStats()
     }
 
