@@ -48,6 +48,12 @@ struct TrainerSessionView: View {
     @State private var level = 1
     @State private var winsAtLevel = 0
     @State private var showingSummary = false
+    /// Digit counts already introduced with a place-value hint — each length
+    /// is hinted only the first time it appears.
+    @State private var seenDigitCounts: Set<Int> = []
+    /// The learner tapped "?" for the tens reference on this task: it stays
+    /// visible and marks the answer amber (no level progress).
+    @State private var hintUsed = false
     @State private var input = ""
     @State private var feedback: AnswerInputView.Feedback = .neutral
     /// Set when the answer was accepted with a small typo — the proper
@@ -170,6 +176,25 @@ struct TrainerSessionView: View {
         return false
     }
 
+    private var isNumbers: Bool {
+        if case .slots(.numbers, _) = mode { return true }
+        return false
+    }
+
+    /// Digit count of the current numeric prompt (nil outside the numbers drill).
+    private var currentDigits: Int? { isNumbers ? current.prompt.count : nil }
+
+    /// Place word shown the first time a new number length appears.
+    private var placeValueHint: String? {
+        guard let digits = currentDigits, !seenDigitCounts.contains(digits) else { return nil }
+        return Trainer.placeValueHint(digits: digits, language: language)
+    }
+
+    /// Tens look-up for the current drill (Swahili numbers only).
+    private var tensReference: [String]? {
+        isNumbers ? Trainer.tensReference(language: language) : nil
+    }
+
     private var drillContent: some View {
         ScrollView {
             VStack(spacing: DL.Space.m) {
@@ -180,6 +205,10 @@ struct TrainerSessionView: View {
                     TrainerPromptCard(task: current, sentence: isPhrases)
                         .id(index)
                         .transition(reduceMotion ? .opacity : .dlCardFlip)
+                }
+                if let placeValueHint {
+                    hintPill(icon: "textformat.123", text: "Neue Stelle: \(placeValueHint)")
+                        .transition(.opacity)
                 }
                 controls
             }
@@ -231,25 +260,38 @@ struct TrainerSessionView: View {
             }
             switch feedback {
             case .neutral:
-                // ONE primary action: empty input reveals, typed input checks.
-                Button {
-                    if inputEmpty {
-                        DLSound.reveal()
-                        // why: fill the field with the answer instead of
-                        // leaving an empty box beside the reveal panel.
-                        input = current.display
-                        withAnimation { feedback = .revealed(correctAnswer: current.display) }
-                    } else {
-                        submit()
+                VStack(spacing: DL.Space.s) {
+                    // ONE primary action: empty input reveals, typed input checks.
+                    Button {
+                        if inputEmpty {
+                            DLSound.reveal()
+                            // why: fill the field with the answer instead of
+                            // leaving an empty box beside the reveal panel.
+                            input = current.display
+                            withAnimation { feedback = .revealed(correctAnswer: current.display) }
+                        } else {
+                            submit()
+                        }
+                    } label: {
+                        Text(inputEmpty ? "Aufdecken" : "Prüfen")
+                            .frame(maxWidth: .infinity)
+                            .contentTransition(.opacity)
                     }
-                } label: {
-                    Text(inputEmpty ? "Aufdecken" : "Prüfen")
-                        .frame(maxWidth: .infinity)
-                        .contentTransition(.opacity)
+                    .buttonStyle(DLPrimaryButtonStyle())
+                    .keyboardShortcut(.defaultAction)
+                    .animation(.easeOut(duration: 0.15), value: inputEmpty)
+                    // "?" tens reference — using it marks the answer amber.
+                    if tensReference != nil, !hintUsed {
+                        Button {
+                            withAnimation { hintUsed = true }
+                        } label: {
+                            Label("Zehner nachschlagen", systemImage: "questionmark.circle")
+                                .font(DL.Fonts.caption)
+                        }
+                        .buttonStyle(.plain)
+                        .foregroundStyle(Color.dlTextSecondary)
+                    }
                 }
-                .buttonStyle(DLPrimaryButtonStyle())
-                .keyboardShortcut(.defaultAction)
-                .animation(.easeOut(duration: 0.15), value: inputEmpty)
             case .correct:
                 // A clean answer auto-advances after ~1.2 s (design §Review
                 // UX). A typo pauses here — show the proper spelling and wait
@@ -289,8 +331,49 @@ struct TrainerSessionView: View {
                 // why: Enter advances when revealed (hardware keyboards).
                 .keyboardShortcut(.defaultAction)
             }
+            if let visibleReference {
+                referenceCard(visibleReference)
+                    .transition(.opacity)
+            }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
+    }
+
+    /// Tens look-up shown once the learner taps "?" or after a wrong answer.
+    private var visibleReference: [String]? {
+        guard let tensReference else { return nil }
+        let afterWrong = { if case .revealed = feedback { return true }; return false }()
+        return (hintUsed || afterWrong) ? tensReference : nil
+    }
+
+    private func hintPill(icon: String, text: String) -> some View {
+        Label(text, systemImage: icon)
+            .font(DL.Fonts.caption)
+            .foregroundStyle(Color.dlAccent)
+            .padding(.horizontal, DL.Space.m)
+            .padding(.vertical, DL.Space.s)
+            .background(
+                Capsule().fill(Color.dlSurfaceTint)
+            )
+    }
+
+    private func referenceCard(_ entries: [String]) -> some View {
+        VStack(alignment: .leading, spacing: DL.Space.xs) {
+            Text("Zehner")
+                .font(DL.Fonts.caption)
+                .foregroundStyle(Color.dlTextSecondary)
+                .textCase(.uppercase)
+            Text(entries.joined(separator: " · "))
+                .font(DL.Fonts.subheadline)
+                .foregroundStyle(Color.dlTextPrimary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(DL.Space.l)
+        .background(
+            RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
+                .fill(Color.dlSurfaceTint)
+        )
     }
 
     // MARK: - Grading (run streak only, no FSRS)
@@ -307,10 +390,12 @@ struct TrainerSessionView: View {
         case .exact:
             feedback = .correct
             DLSound.correct()
+            // A hint-assisted answer stays amber (no level progress).
+            let segment: SessionOutcome = hintUsed ? .tough : .right
             autoAdvance = Task {
                 try? await Task.sleep(for: .milliseconds(1200))
                 guard !Task.isCancelled else { return }
-                advance(correct: true, segment: .right)
+                advance(correct: true, segment: segment)
             }
         case .typo:
             // why: don't auto-advance on a typo — pause (keeping the typed
@@ -348,6 +433,8 @@ struct TrainerSessionView: View {
     /// (the run record stays). The next task is generated on demand.
     private func advance(correct: Bool, segment: SessionOutcome? = nil) {
         autoAdvance?.cancel()
+        // Mark this length as introduced so its place-value hint shows once.
+        if let currentDigits { seenDigitCounts.insert(currentDigits) }
         if correct {
             streak += 1
             bestStreak = max(bestStreak, streak)
@@ -374,6 +461,7 @@ struct TrainerSessionView: View {
         input = ""
         feedback = .neutral
         typoCorrection = nil
+        hintUsed = false
         withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip) {
             index += 1
         }
