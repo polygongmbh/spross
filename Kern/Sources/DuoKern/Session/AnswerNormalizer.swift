@@ -1,18 +1,14 @@
 import Foundation
 
-/// Pure answer normalization for typed production answers
-/// (design.md §Review UX rules): lowercase, trim, strip punctuation,
+/// Pure answer normalization for typed answers (design.md §Review UX rules):
+/// lowercase, trim, drop intra-word joiners, strip other punctuation,
 /// collapse whitespace, strip a leading German article.
-///
-/// NOTE: this is pure domain logic and should move into DuoKern
-/// (e.g. `Kern/Session/AnswerNormalizer.swift`) in a follow-up —
-/// it lives here only because Kern is frozen during this integration wave.
-enum AnswerNormalizer {
+public enum AnswerNormalizer {
 
     private static let leadingArticles: Set<String> = ["der", "die", "das", "ein", "eine"]
 
     /// Canonical comparison form of a typed or expected answer.
-    static func normalize(_ raw: String) -> String {
+    public static func normalize(_ raw: String) -> String {
         let lowered = raw.lowercased()
         // Intra-word joiners vanish outright so "E-Mail"/"Email" and
         // "geht's"/"gehts" converge; other punctuation → space so
@@ -30,9 +26,14 @@ enum AnswerNormalizer {
         return words.joined(separator: " ")
     }
 
-    /// True when the typed input means the expected answer.
-    static func matches(input: String, expected: String) -> Bool {
+    /// True when the typed input means the expected answer. Seed translations
+    /// may list alternatives separated by "/" ("полиця / стелаж") — any
+    /// alternative counts as correct.
+    public static func matches(input: String, expected: String) -> Bool {
         let normalizedInput = normalize(input)
-        return !normalizedInput.isEmpty && normalizedInput == normalize(expected)
+        guard !normalizedInput.isEmpty else { return false }
+        return expected.split(separator: "/").contains { variant in
+            normalizedInput == normalize(String(variant))
+        }
     }
 }

@@ -1,8 +1,9 @@
 import SwiftUI
 import DuoKern
 
-/// Full-screen session: recognition (reveal + self-grade) for de→target,
-/// typed production for target→de. Presented as a full-screen cover.
+/// Full-screen session. Both directions offer typing first; "Aufdecken"
+/// without typing falls back to four-button self-grading (de→target only
+/// reaches .easy this way). Presented as a full-screen cover.
 struct SessionView: View {
     @Bindable var model: AppModel
 
@@ -88,37 +89,24 @@ struct SessionView: View {
     }
 
     private var cardRevealed: Bool {
-        mode == .recognition ? revealed : feedback != .neutral
+        revealed || feedback != .neutral
     }
 
-    @ViewBuilder
+    /// Both directions offer typing first (recall beats recognition);
+    /// "Aufdecken" stays available for self-grading without typing.
     private func controls(_ card: Card) -> some View {
-        if mode == .recognition {
-            if revealed {
-                RatingButtonsView { model.answerCurrent(kernRating($0)) }
-            } else {
-                Button {
-                    withAnimation { revealed = true }
-                } label: {
-                    Text("Aufdecken")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(DLPrimaryButtonStyle())
-                .keyboardShortcut(.defaultAction)
-            }
-        } else {
-            productionControls(card)
-        }
-    }
-
-    private func productionControls(_ card: Card) -> some View {
         VStack(spacing: DL.Space.m) {
-            AnswerInputView(text: $input,
-                            feedback: feedback,
-                            placeholder: "Auf Deutsch …") {
-                submit(card)
+            if !(revealed && feedback == .neutral) {
+                AnswerInputView(text: $input,
+                                feedback: feedback,
+                                placeholder: inputPlaceholder(card)) {
+                    submit(card)
+                }
             }
             switch feedback {
+            case .neutral where revealed:
+                // Revealed without typing → honest self-grade, four ratings.
+                RatingButtonsView { model.answerCurrent(kernRating($0)) }
             case .neutral:
                 Button {
                     submit(card)
@@ -128,6 +116,11 @@ struct SessionView: View {
                 }
                 .buttonStyle(DLPrimaryButtonStyle())
                 .disabled(input.trimmingCharacters(in: .whitespaces).isEmpty)
+                .keyboardShortcut(.defaultAction)
+                Button("Aufdecken") {
+                    withAnimation { revealed = true }
+                }
+                .buttonStyle(DLSoftButtonStyle())
             case .correct:
                 // Auto-advances after ~800 ms (design §Review UX).
                 EmptyView()
@@ -152,10 +145,16 @@ struct SessionView: View {
 
     // MARK: - Grading
 
+    private func inputPlaceholder(_ card: Card) -> String {
+        mode == .production ? "Auf Deutsch …"
+            : (card.pair == .deSw ? "Auf Swahili …" : "Auf Ukrainisch …")
+    }
+
     private func submit(_ card: Card) {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard feedback == .neutral, !trimmed.isEmpty else { return }
-        if AnswerNormalizer.matches(input: trimmed, expected: card.german) {
+        let expected = mode == .production ? card.german : card.translation
+        if AnswerNormalizer.matches(input: trimmed, expected: expected) {
             feedback = .correct
             autoAdvance = Task {
                 try? await Task.sleep(for: .milliseconds(800))
@@ -163,7 +162,8 @@ struct SessionView: View {
                 rate(.good)
             }
         } else {
-            feedback = .revealed(correctAnswer: card.germanWithArticle)
+            let answer = mode == .production ? card.germanWithArticle : card.translation
+            feedback = .revealed(correctAnswer: answer)
         }
     }
 

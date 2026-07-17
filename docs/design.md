@@ -105,14 +105,21 @@ A session is composed, never configured:
    is the session done. Failed cards thus cycle back naturally.
 3. **Every answer event is an FSRS review** — retries and learning steps go through the
    FSRS-5 short-term path with real elapsed time; nothing is "UI-only".
-4. Typed-production answer → Rating mapping (v1): wrong → `.again`,
-   correct after reveal → `.hard`, correct → `.good`; `.easy` is unreachable in typed mode.
-   Recognition mode shows the four rating buttons directly.
+4. Typed answer → Rating mapping (v1): wrong → `.again`,
+   correct after reveal → `.hard`, correct → `.good`; `.easy` is unreachable via typing.
+   Revealing without typing falls back to four-button self-grading (both directions).
+5. **Extra round** (`composeExtraSession`): always available on demand —
+   due cards, then explicitly enqueued new cards (these bypass the daily budget
+   and health gate at answer time; user agency), then review-ahead by soonest due,
+   capped at `sessionCap`. Automatic seed-order cards never enter an extra round;
+   introductions still count into `newIntroduced`, so tomorrow's automatic budget sees them.
 
 ## Review UX rules (App) — carried over from prototype refinement, treat as spec
 
-- Typed answer, not flip-and-self-grade, for `.targetToDe` production;
-  recognition (reveal + self-grade Again/Hard/Good/Easy) for `.deToTarget` in v1.
+- Typing first in BOTH directions (recall beats recognition): input field + "Prüfen",
+  with "Aufdecken" as the no-typing fallback that self-grades via Again/Hard/Good/Easy.
+  Typed grading compares against the German side (production) or the translation
+  (recognition; seed alternatives separated by "/" all count as correct).
 - Answer normalization before comparison: lowercase, trim, strip leading article
   (de: der/die/das/ein/eine; en-style "the/to" not needed), strip punctuation, collapse whitespace.
 - Wrong answer reveals **inline** — the card stays visually stable, never flips or jumps.

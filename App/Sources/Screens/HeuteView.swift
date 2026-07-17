@@ -108,6 +108,12 @@ struct HeuteView: View {
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)
+            // User agency: another round is always available — soonest-due
+            // cards reviewed ahead, plus anything freshly packed into the box.
+            Button("Extra-Runde üben") {
+                model.startExtraSession()
+            }
+            .buttonStyle(DLSoftButtonStyle())
         }
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity)

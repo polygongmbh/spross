@@ -31,6 +31,20 @@ extension AppModel {
         guard let box else { return }
         let now = Date()
         let plan = BoxEngine.composeSession(state: box, now: now, calendar: calendar)
+        begin(plan, now: now)
+    }
+
+    /// On-demand extra round: due + enqueued (budget-bypassing) + review-ahead.
+    /// Never empty while the box has active cards — user agency over the gate.
+    func startExtraSession() {
+        guard let box else { return }
+        let now = Date()
+        let plan = BoxEngine.composeExtraSession(state: box, now: now, calendar: calendar)
+        guard !plan.isEmpty else { return }
+        begin(plan, now: now)
+    }
+
+    private func begin(_ plan: SessionPlan, now: Date) {
         sessionQueue = plan.reviews + plan.unlockedPhrases + plan.newWords
         sessionTotal = sessionQueue.count
         sessionAnswered = 0
@@ -144,15 +158,6 @@ extension AppModel {
     /// Learning/relearning steps due within the pause horizon, soonest first.
     private func upcomingLearningSchedulings(now: Date) -> [CardScheduling] {
         guard let box else { return [] }
-        let horizon = now.addingTimeInterval(Self.pauseHorizon)
-        return box.scheduling.values
-            .filter { sched in
-                sched.direction == box.config.direction
-                    && !sched.suspended
-                    && (sched.phase == .learning || sched.phase == .relearning)
-                    && sched.due.map { $0 > now && $0 <= horizon } == true
-                    && box.cards[sched.cardID] != nil
-            }
-            .sorted { ($0.due ?? now, $0.cardID) < ($1.due ?? now, $1.cardID) }
+        return BoxEngine.upcomingSteps(state: box, now: now, within: Self.pauseHorizon)
     }
 }
