@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.8.1 — 2026-07-18
+
+- **Large home-screen widget**: the widget now offers a 4×4 size that fills the
+  space with a stats header (streak · fällig · retrievability) above a rotating
+  list of five attention-worthy words, instead of a single card on a mostly
+  empty tile.
+- **Word above the lock-screen clock**: a new inline lock-screen widget shows
+  one rotating word next to the time.
+
 ## 0.8.0 — 2026-07-18
 
 - **Typos pause for review**: a slightly misspelled answer no longer flashes
