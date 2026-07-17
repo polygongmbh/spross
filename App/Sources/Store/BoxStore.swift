@@ -8,10 +8,19 @@ actor BoxStore {
     private let directory: URL
     private var pendingSave: Task<Void, Never>?
 
-    init(directory: URL? = nil) {
-        self.directory = directory
+    /// App-Group container so the widget can read the box; falls back to
+    /// Documents when the group is unavailable (e.g. unit tests).
+    static let appGroup = "group.dev.tj.duolernen"
+
+    static func defaultDirectory() -> URL {
+        let base = FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: appGroup)
             ?? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                .appendingPathComponent("box", isDirectory: true)
+        return base.appendingPathComponent("box", isDirectory: true)
+    }
+
+    init(directory: URL? = nil) {
+        self.directory = directory ?? Self.defaultDirectory()
     }
 
     private func fileURL(for pair: LanguagePair) -> URL {

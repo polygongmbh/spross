@@ -1,5 +1,6 @@
 import Foundation
 import DuoKern
+import WidgetKit
 
 // Session flow: composed plan → card queue → drain loop → completion.
 //
@@ -128,6 +129,9 @@ extension AppModel {
         box = next
         persist(next, immediate: true)
         refreshStats()
+        // why: the box just changed materially — the widget's word rotation
+        // should reflect fresh learning immediately, not at timeline end.
+        WidgetCenter.shared.reloadTimelines(ofKind: "WordWidget")
     }
 
     /// Backgrounding mid-session: fold answered-so-far into dailyStats so an

@@ -17,13 +17,43 @@ targets:
         buildPhase: resources
     dependencies:
       - package: DuoKern
+      - target: DuoLernenWidgets
+        embed: true
+    entitlements:
+      path: App/DuoLernen.entitlements
+      properties:
+        com.apple.security.application-groups: [group.dev.tj.duolernen]
     settings:
       base:
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
         GENERATE_INFOPLIST_FILE: YES
         CURRENT_PROJECT_VERSION: 1
-        MARKETING_VERSION: 0.1.0
+        MARKETING_VERSION: 0.2.0
+        SWIFT_VERSION: "6.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+  DuoLernenWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - Widgets/Sources
+    dependencies:
+      - package: DuoKern
+    entitlements:
+      path: Widgets/DuoLernenWidgets.entitlements
+      properties:
+        com.apple.security.application-groups: [group.dev.tj.duolernen]
+    info:
+      path: Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: DuoLernen
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 0.2.0
         SWIFT_VERSION: "6.0"
         TARGETED_DEVICE_FAMILY: "1"
         CODE_SIGN_STYLE: Automatic
