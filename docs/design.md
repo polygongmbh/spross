@@ -128,9 +128,11 @@ A session is composed, never configured:
   the plural line appears only for learners OF German (it's noise otherwise).
 - Typo tolerance: ~10% of letters (Damerau-Levenshtein, min word length 5, minimum 1 edit
   from 5 letters up) — diacritic slips like "Kuhlschrank" ride the same rule.
-  A typo still counts as correct; the reveal shows the proper spelling.
-- Correct answers auto-advance after ~1.2 s (long enough to read the confirmed answer);
-  Enter advances when revealed.
+  A typo still counts as correct, but does NOT auto-advance: the typed text stays visible
+  with the proper spelling and a "Weiter" tap, so the learner reviews the slip.
+- A clean (exact) correct answer auto-advances after ~1.2 s (long enough to read the
+  confirmed answer); Enter advances when revealed.
+- "Aufdecken" fills the answer field with the correct answer (no empty box left beside it).
 - Never punishing: no red flashes, streak survives one missed day.
 
 ## App structure (SwiftUI, single screen)
