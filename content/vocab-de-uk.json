@@ -61,7 +61,8 @@
     },
     {
      "de": "danken",
-     "uk": "дякувати · verwandt mit „danken“!"
+     "uk": "дякувати",
+     "note": "verwandt mit „danken“!"
     }
    ],
    "phrases": [
@@ -370,7 +371,7 @@
      "article": "die",
      "de": "Pflanze",
      "plural": "Pl. -n",
-     "uk": "рослина (вазон)"
+     "uk": "рослина / вазон"
     },
     {
      "emoji": "🪟",
@@ -686,7 +687,7 @@
      "article": "die",
      "de": "Maus",
      "plural": "Pl. die Mäuse",
-     "uk": "миша (мишка)"
+     "uk": "миша / мишка"
     },
     {
      "emoji": "🔌",
@@ -700,7 +701,8 @@
      "article": "der",
      "de": "Kopfhörer",
      "plural": "Pl. –",
-     "uk": "навушники (nur Pl.)"
+     "uk": "навушники",
+     "note": "nur Plural"
     },
     {
      "emoji": "✏️",
@@ -895,7 +897,8 @@
      "article": "die",
      "de": "Hose",
      "plural": "Pl. -n",
-     "uk": "штани (nur Pl.)"
+     "uk": "штани",
+     "note": "nur Plural"
     },
     {
      "emoji": "👕",
@@ -992,14 +995,15 @@
      "article": "der",
      "de": "Flur",
      "plural": "Pl. -e",
-     "uk": "коридор (передпокій)"
+     "uk": "коридор / передпокій"
     },
     {
      "emoji": "🚪",
      "article": "die",
      "de": "Tür",
      "plural": "Pl. -en",
-     "uk": "двері (nur Pl.!)"
+     "uk": "двері",
+     "note": "nur Plural!"
     },
     {
      "emoji": "🔑",
@@ -1062,7 +1066,8 @@
      "article": "die",
      "de": "Treppe",
      "plural": "Pl. -n",
-     "uk": "сходи (nur Pl.!)"
+     "uk": "сходи",
+     "note": "nur Plural!"
     },
     {
      "emoji": "🎒",
@@ -1445,7 +1450,8 @@
     },
     {
      "de": "sich melden",
-     "uk": "піднімати руку · wörtl. „die Hand heben“"
+     "uk": "піднімати руку",
+     "note": "wörtl. „die Hand heben“"
     }
    ],
    "phrases": [
@@ -1483,14 +1489,14 @@
      "article": "das",
      "de": "Amt",
      "plural": "Pl. die Ämter",
-     "uk": "установа (відомство)"
+     "uk": "установа / відомство"
     },
     {
      "emoji": "📄",
      "article": "das",
      "de": "Formular",
      "plural": "Pl. -e",
-     "uk": "бланк (формуляр)"
+     "uk": "бланк / формуляр"
     },
     {
      "emoji": "📝",
@@ -1539,14 +1545,15 @@
      "article": "die",
      "de": "Frist",
      "plural": "Pl. -en",
-     "uk": "строк (термін)"
+     "uk": "строк / термін"
     },
     {
      "emoji": "🏠",
      "article": "die",
      "de": "Anmeldung",
      "plural": "Pl. -en",
-     "uk": "реєстрація (місця проживання)"
+     "uk": "реєстрація",
+     "note": "gemeint: Wohnsitzanmeldung — voll «реєстрація місця проживання»"
     },
     {
      "emoji": "📂",
@@ -1575,7 +1582,8 @@
     },
     {
      "de": "einreichen",
-     "uk": "подавати (документи)"
+     "uk": "подавати",
+     "note": "typisch mit Objekt: «подавати документи» = Dokumente einreichen"
     },
     {
      "de": "verlängern",
@@ -1591,7 +1599,8 @@
     },
     {
      "de": "ablaufen",
-     "uk": "закінчуватися (про строк)"
+     "uk": "закінчуватися",
+     "note": "hier: eine Frist läuft ab — «строк закінчується»"
     }
    ],
    "phrases": [
@@ -1651,35 +1660,37 @@
      "article": "die",
      "de": "Praxis",
      "plural": "Pl. die Praxen",
-     "uk": "лікарський кабінет (практика)"
+     "uk": "лікарський кабінет",
+     "note": "auch «практика» (v. a. Privatpraxis)"
     },
     {
      "emoji": "📅",
      "article": "der",
      "de": "Termin",
      "plural": "Pl. -e",
-     "uk": "запис на прийом (візит)"
+     "uk": "запис на прийом / візит"
     },
     {
      "emoji": "🤕",
      "article": "der",
      "de": "Schmerz",
      "plural": "Pl. -en",
-     "uk": "біль (m.!)"
+     "uk": "біль",
+     "note": "Achtung: «біль» ist maskulin!"
     },
     {
      "emoji": "🌡️",
      "article": "das",
      "de": "Fieber",
      "plural": "Pl. – (selten)",
-     "uk": "температура (гарячка)"
+     "uk": "температура / гарячка"
     },
     {
      "emoji": "💊",
      "article": "die",
      "de": "Tablette",
      "plural": "Pl. -n",
-     "uk": "таблетка (пігулка)"
+     "uk": "таблетка / пігулка"
     },
     {
      "emoji": "📃",
@@ -1739,11 +1750,13 @@
     },
     {
      "de": "verschreiben",
-     "uk": "виписувати (ліки)"
+     "uk": "виписувати",
+     "note": "typisch: «виписувати ліки» = Medikamente verschreiben"
     },
     {
      "de": "einnehmen",
-     "uk": "приймати (ліки)"
+     "uk": "приймати",
+     "note": "typisch: «приймати ліки» = Medikamente einnehmen"
     },
     {
      "de": "abholen",
@@ -1751,7 +1764,7 @@
     },
     {
      "de": "sich krankmelden",
-     "uk": "повідомляти, що захворів (іти на лікарняний)"
+     "uk": "повідомляти, що захворів / іти на лікарняний"
     },
     {
      "de": "sich ausruhen",
@@ -1832,7 +1845,7 @@
      "article": "der",
      "de": "Vertrag",
      "plural": "Pl. die Verträge",
-     "uk": "договір (контракт)"
+     "uk": "договір / контракт"
     },
     {
      "emoji": "💶",
@@ -1853,7 +1866,7 @@
      "article": "der",
      "de": "Chef",
      "plural": "Pl. -s · ♀ die Chefin",
-     "uk": "шеф (керівник / керівниця)"
+     "uk": "шеф / керівник / керівниця"
     },
     {
      "emoji": "🕗",
@@ -1874,13 +1887,14 @@
      "article": "die",
      "de": "Firma",
      "plural": "Pl. die Firmen",
-     "uk": "фірма (компанія)"
+     "uk": "фірма / компанія"
     }
    ],
    "verbs": [
     {
      "de": "sich bewerben",
-     "uk": "подаватися (на роботу)"
+     "uk": "подаватися",
+     "note": "mit «на»: подаватися на роботу = sich um eine Stelle bewerben"
     },
     {
      "de": "sich vorstellen",
@@ -1896,7 +1910,7 @@
     },
     {
      "de": "aufhören",
-     "uk": "закінчувати (переставати)"
+     "uk": "закінчувати / переставати"
     },
     {
      "de": "kündigen",

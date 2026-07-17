@@ -21,14 +21,16 @@
      "article": "das",
      "de": "Wort",
      "plural": "Pl. die Wörter",
-     "sw": "neno (Pl. maneno)"
+     "sw": "neno",
+     "note": "Pl. maneno"
     },
     {
      "emoji": "📛",
      "article": "der",
      "de": "Name",
      "plural": "Pl. -n",
-     "sw": "jina (Pl. majina)"
+     "sw": "jina",
+     "note": "Pl. majina"
     },
     {
      "emoji": "🆘",
@@ -41,7 +43,8 @@
    "verbs": [
     {
      "de": "heißen",
-     "sw": "kuitwa · wörtl. „gerufen werden“"
+     "sw": "kuitwa",
+     "note": "wörtl. „gerufen werden“"
     },
     {
      "de": "kommen (aus)",
@@ -1001,7 +1004,8 @@
      "article": "der",
      "de": "Flur",
      "plural": "Pl. -e",
-     "sw": "ukumbi (Pl. kumbi)"
+     "sw": "ukumbi",
+     "note": "Pl. kumbi"
     },
     {
      "emoji": "🚪",
@@ -1015,7 +1019,8 @@
      "article": "der",
      "de": "Schlüssel",
      "plural": "Pl. –",
-     "sw": "ufunguo (Pl. funguo)"
+     "sw": "ufunguo",
+     "note": "Pl. funguo"
     },
     {
      "emoji": "🧥",
@@ -1220,7 +1225,8 @@
      "article": "die",
      "de": "Blume",
      "plural": "Pl. -n",
-     "sw": "ua (Pl. maua)"
+     "sw": "ua",
+     "note": "Pl. maua"
     },
     {
      "emoji": "🏞️",
@@ -1402,21 +1408,24 @@
      "article": "die",
      "de": "Pause",
      "plural": "Pl. -n",
-     "sw": "pumziko (Pl. mapumziko)"
+     "sw": "pumziko",
+     "note": "Pl. mapumziko"
     },
     {
      "emoji": "❓",
      "article": "die",
      "de": "Frage",
      "plural": "Pl. -n",
-     "sw": "swali (Pl. maswali)"
+     "sw": "swali",
+     "note": "Pl. maswali"
     },
     {
      "emoji": "✅",
      "article": "die",
      "de": "Antwort",
      "plural": "Pl. -en",
-     "sw": "jibu (Pl. majibu)"
+     "sw": "jibu",
+     "note": "Pl. majibu"
     }
    ],
    "verbs": [
@@ -1450,11 +1459,13 @@
     },
     {
      "de": "üben",
-     "sw": "kufanya mazoezi · wörtl. „Übungen machen“"
+     "sw": "kufanya mazoezi",
+     "note": "wörtl. „Übungen machen“"
     },
     {
      "de": "sich melden",
-     "sw": "kuinua mkono · wörtl. „die Hand heben“"
+     "sw": "kuinua mkono",
+     "note": "wörtl. „die Hand heben“"
     }
    ],
    "phrases": [
@@ -1507,7 +1518,8 @@
      "article": "der",
      "de": "Antrag",
      "plural": "Pl. die Anträge",
-     "sw": "ombi (Pl. maombi)"
+     "sw": "ombi",
+     "note": "Pl. maombi"
     },
     {
      "emoji": "🪪",
@@ -1542,7 +1554,8 @@
      "article": "der",
      "de": "Sachbearbeiter",
      "plural": "Pl. – · ♀ die Sachbearbeiterin",
-     "sw": "afisa (Pl. maafisa)"
+     "sw": "afisa",
+     "note": "Pl. maafisa"
     },
     {
      "emoji": "⏳",
@@ -1597,7 +1610,8 @@
     },
     {
      "de": "kopieren",
-     "sw": "kupiga fotokopi · wörtl. „eine Kopie schlagen“ — wie kupiga simu"
+     "sw": "kupiga fotokopi",
+     "note": "wörtl. „eine Kopie schlagen“ — wie kupiga simu"
     },
     {
      "de": "ablaufen",
@@ -1655,7 +1669,8 @@
      "article": "der",
      "de": "Arzt",
      "plural": "Pl. die Ärzte · ♀ die Ärztin",
-     "sw": "daktari (Pl. madaktari)"
+     "sw": "daktari",
+     "note": "Pl. madaktari"
     },
     {
      "emoji": "🏥",
@@ -1676,7 +1691,8 @@
      "article": "der",
      "de": "Schmerz",
      "plural": "Pl. -en",
-     "sw": "maumivu (nur Pl.)"
+     "sw": "maumivu",
+     "note": "nur Plural"
     },
     {
      "emoji": "🌡️",
@@ -1732,7 +1748,8 @@
      "article": "die",
      "de": "Erkältung",
      "plural": "Pl. -en",
-     "sw": "mafua (nur Pl.)"
+     "sw": "mafua",
+     "note": "nur Plural"
     }
    ],
    "verbs": [
@@ -1750,7 +1767,8 @@
     },
     {
      "de": "verschreiben",
-     "sw": "kuandika dawa · wörtl. „Medizin schreiben“"
+     "sw": "kuandika dawa",
+     "note": "wörtl. „Medizin schreiben“"
     },
     {
      "de": "einnehmen",
@@ -1833,7 +1851,8 @@
      "article": "die",
      "de": "Bewerbung",
      "plural": "Pl. -en",
-     "sw": "maombi ya kazi (formal Pl.; Sg. ombi la kazi)"
+     "sw": "maombi ya kazi",
+     "note": "formal Plural — Sg. ombi la kazi"
     },
     {
      "emoji": "📜",
@@ -1903,7 +1922,8 @@
     },
     {
      "de": "verdienen",
-     "sw": "kuchuma pesa · wörtl. „Geld pflücken“"
+     "sw": "kuchuma pesa",
+     "note": "wörtl. „Geld pflücken“"
     },
     {
      "de": "anfangen",
