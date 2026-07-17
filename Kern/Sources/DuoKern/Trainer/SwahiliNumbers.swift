@@ -3,6 +3,13 @@ enum SwahiliNumbers {
     static let ones = ["", "moja", "mbili", "tatu", "nne", "tano", "sita", "saba", "nane", "tisa"]
     private static let tens = ["", "kumi", "ishirini", "thelathini", "arobaini", "hamsini", "sitini", "sabini", "themanini", "tisini"]
 
+    /// The tens as a labelled reference ("10 kumi" … "90 tisini") — Swahili
+    /// tens are the least guessable part of the system, so the drill offers
+    /// them as a look-up.
+    static var tensReference: [String] {
+        (1...9).map { "\($0)0 \(tens[$0])" }
+    }
+
     /// 0...9_999_999_999; larger values fall back to digits.
     static func cardinal(_ n: Int) -> String {
         if n == 0 { return "sifuri" }
