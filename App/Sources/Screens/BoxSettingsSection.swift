@@ -40,9 +40,10 @@ struct BoxSettingsSection: View {
     private static let feedbackAddress = "lang@polygon.gmbh"
 
     private var versionText: String {
+        // why: the build number is always 1 here — showing "(1)" reads odd;
+        // the marketing version alone identifies feedback mails fine.
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
-        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"
-        return "DuoLernen v\(version) (\(build))"
+        return "DuoLernen v\(version)"
     }
 
     private var aboutFooter: some View {
