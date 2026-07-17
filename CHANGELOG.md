@@ -8,6 +8,15 @@
   the 📦 button top right (or straight from the empty-box card).
 - **Session card stats**: a due-count ring (fills as you review through
   the day) and your 🔥 streak now sit right on the "Los geht's!" card.
+- **Answer-colored progress bar**: sessions and drills fill the top bar
+  one segment per answer — green right, amber tough (hard rating or typo),
+  brick wrong; the rest stays neutral until answered.
+- **All content packs integrated** (343 cards per pair, up from 230):
+  "Die ersten Wörter" opens the box (survival kit incl. the phrases moved
+  from the school area), then the rooms, then Amt & Behörde, Arzt &
+  Gesundheit, Arbeit & Beruf — every pack generated, translated, and
+  adversarially language-verified before merge. Existing boxes absorb the
+  new areas automatically on next launch.
 
 ## 0.5.0 — 2026-07-17
 
