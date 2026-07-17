@@ -128,12 +128,18 @@ struct AreaChip: View {
                     .foregroundStyle(Color.dlTextSecondary)
             }
             GeometryReader { geo in
-                HStack(spacing: 2) {
-                    Capsule()
-                        .fill(Color.dlSuccess)
-                        .frame(width: geo.size.width * CGFloat(sitting) / CGFloat(total))
-                    Capsule()
-                        .fill(Color.dlAmber)
+                if sitting + learning == 0 {
+                    // why: a fresh area has nothing sitting or learning — a full
+                    // amber bar would read as "everything learning"; show neutral.
+                    Capsule().fill(Color.dlSeparator)
+                } else {
+                    HStack(spacing: 2) {
+                        Capsule()
+                            .fill(Color.dlSuccess)
+                            .frame(width: geo.size.width * CGFloat(sitting) / CGFloat(total))
+                        Capsule()
+                            .fill(Color.dlAmber)
+                    }
                 }
             }
             .frame(height: 6)
