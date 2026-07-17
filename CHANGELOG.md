@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.3.0 — 2026-07-17
+
+- **Training drills** on the Heute screen: Zahlen, Jahreszahlen, and Uhrzeit as
+  quick 10-task typed rounds in German, Swahili (incl. the saa system with a
+  German gloss explaining the −6-hour shift), and Ukrainian — language toggle
+  defaults to what you're learning. Drills are stateless: they never touch the
+  box or scheduling. Ported from the web prototype's refined generators
+  (golden-verified against the original code; fixed its "einsundzwanzig" bug);
+  Ukrainian is new and passed a dedicated language review (no Russisms,
+  common typed variants like «чверть по другій» accepted).
+- **"Wort des Moments" widget** (home + lock screen): a word from your box
+  every 15 minutes, biased toward cards that need attention, with due-count
+  badge and article colors; refreshes after every session.
+
 ## 0.2.0 — 2026-07-17
 
 - **Type before revealing** in both directions: recognition mode now offers an
