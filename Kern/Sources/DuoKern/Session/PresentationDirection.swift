@@ -2,15 +2,19 @@ import Foundation
 
 extension BoxEngine {
 
-    /// Which direction to SHOW for this card's next review. With
-    /// `mixedDirections` the direction alternates per review, offset by a
-    /// stable per-card hash so a session isn't all-one-way; the very first
-    /// exposure of roughly half the cards is still the learner's primary
-    /// direction. Memory state stays shared (canonical `config.direction` key).
+    /// Which direction to SHOW for this card's next review.
+    ///
+    /// FIRST exposure always displays the language being learned (the unknown
+    /// word is shown, the known one produced) — you can't recall a word you've
+    /// never seen. Learner identity is `config.direction`, so first exposure
+    /// presents its OPPOSITE; this holds even with `mixedDirections` off.
+    /// Afterwards, mixed mode alternates per review with a stable per-card
+    /// offset. Memory state stays shared (canonical `config.direction` key).
     public static func presentationDirection(state: BoxState, cardID: String) -> Direction {
-        guard state.config.mixedDirections else { return state.config.direction }
         let key = BoxState.schedulingKey(cardID: cardID, direction: state.config.direction)
         let reviews = state.scheduling[key]?.log.count ?? 0
+        guard reviews > 0 else { return opposite(of: state.config.direction) }
+        guard state.config.mixedDirections else { return state.config.direction }
         let flip = (reviews + Int(stableHash(cardID) % 2)) % 2 == 1
         return flip ? opposite(of: state.config.direction) : state.config.direction
     }

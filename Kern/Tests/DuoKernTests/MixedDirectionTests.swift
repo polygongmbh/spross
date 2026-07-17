@@ -16,24 +16,31 @@ import Testing
         return BoxEngine.bootstrap(cards: cards, config: config)
     }
 
-    @Test func fixedModeAlwaysPrimaryDirection() {
-        let state = makeState(mixed: false)
-        for i in 0..<6 {
-            #expect(BoxEngine.presentationDirection(state: state, cardID: "c\(i)") == .deToTarget)
+    @Test func firstExposureAlwaysShowsTheLearnedLanguage() {
+        // Learner identity .deToTarget → first exposure presents .targetToDe
+        // (target word shown, known German produced) — in BOTH modes.
+        for mixed in [true, false] {
+            let state = makeState(mixed: mixed)
+            for i in 0..<6 {
+                #expect(BoxEngine.presentationDirection(state: state, cardID: "c\(i)") == .targetToDe)
+            }
         }
     }
 
-    @Test func mixedModeAlternatesPerReviewAndVariesPerCard() {
-        var state = makeState(mixed: true)
-        let before = BoxEngine.presentationDirection(state: state, cardID: "c0")
+    @Test func fixedModeUsesPrimaryDirectionAfterFirstReview() {
+        var state = makeState(mixed: false)
         state = BoxEngine.answer(state: state, cardID: "c0", rating: .good, now: day0, calendar: calendar)
-        let after = BoxEngine.presentationDirection(state: state, cardID: "c0")
-        #expect(before != after) // one review flips the presentation
+        #expect(BoxEngine.presentationDirection(state: state, cardID: "c0") == .deToTarget)
+    }
 
-        // Across cards, first exposures are not all one-way (hash offset).
-        let fresh = makeState(mixed: true)
-        let firsts = Set((0..<6).map { BoxEngine.presentationDirection(state: fresh, cardID: "c\($0)") })
-        #expect(firsts.count == 2)
+    @Test func mixedModeAlternatesAfterFirstExposure() {
+        var state = makeState(mixed: true)
+        state = BoxEngine.answer(state: state, cardID: "c0", rating: .good, now: day0, calendar: calendar)
+        let first = BoxEngine.presentationDirection(state: state, cardID: "c0")
+        state = BoxEngine.answer(state: state, cardID: "c0", rating: .good,
+                                 now: day0.addingTimeInterval(700), calendar: calendar)
+        let second = BoxEngine.presentationDirection(state: state, cardID: "c0")
+        #expect(first != second) // alternation continues past the first exposure
     }
 
     @Test func deterministicAcrossCalls() {
