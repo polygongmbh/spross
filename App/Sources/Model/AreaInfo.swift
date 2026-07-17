@@ -25,7 +25,15 @@ struct AreaInfo {
 }
 
 extension LanguagePair {
-    /// German name of the target language.
+    /// Name of the base language (the pair's non-target side; German for every
+    /// current pair, switched here so future pairs can differ).
+    var baseName: String {
+        switch self {
+        case .deSw, .deUk: return "Deutsch"
+        }
+    }
+
+    /// Name of the target language.
     var targetName: String {
         switch self {
         case .deSw: return "Swahili"

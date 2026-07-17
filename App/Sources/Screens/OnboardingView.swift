@@ -1,44 +1,52 @@
 import SwiftUI
 import DuoKern
 
-/// Tiny first-launch sheet: pick the language pair and direction.
+/// Tiny first-launch sheet: pick which two languages, and which one you
+/// already speak (that decides the drill/review direction).
 struct OnboardingView: View {
     let model: AppModel
 
     @State private var pair: LanguagePair = .deSw
-    @State private var direction: Direction = .deToTarget
+    /// Whether the learner already speaks the pair's base language (then they
+    /// learn the target); otherwise the base language is the one being learned.
+    @State private var knowsBase = true
     @State private var starting = false
+
+    /// Which side you already speak sets the review/drill direction.
+    private var direction: Direction { knowsBase ? .deToTarget : .targetToDe }
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: DL.Space.xl) {
+            VStack(alignment: .leading, spacing: DL.Space.l) {
                 header
                 pairSection
-                directionSection
+                knownSection
                 startButton
             }
-            .padding(DL.Space.xl)
+            .padding(DL.Space.l)
         }
         .scrollBounceBehavior(.basedOnSize)
         .background(Color.dlBackground.ignoresSafeArea())
     }
 
     private var header: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: DL.Space.xs) {
             Text("👋")
-                .font(.system(size: 56))
+                .font(.system(size: 44))
             Text("Willkommen bei DuoLernen")
-                .font(DL.Fonts.hero)
+                .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("Deine Box wächst mit dir: jeden Tag ein paar neue Karten, und Sätze schalten sich frei, sobald ihre Wörter sitzen.")
-                .font(DL.Fonts.body)
+            Text("Deine Box wächst mit dir — jeden Tag ein paar neue Karten.")
+                .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
         }
     }
 
+    // MARK: - Which two languages
+
     private var pairSection: some View {
-        VStack(alignment: .leading, spacing: DL.Space.m) {
-            Text("Welche Sprache lernst du?")
+        VStack(alignment: .leading, spacing: DL.Space.s) {
+            Text("Welches Sprachpaar?")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
             HStack(spacing: DL.Space.m) {
@@ -54,53 +62,50 @@ struct OnboardingView: View {
         return Button {
             pair = candidate
         } label: {
-            VStack(spacing: DL.Space.s) {
+            HStack(spacing: DL.Space.s) {
                 Text(candidate.flag)
-                    .font(.system(size: 40))
-                Text(candidate.targetName)
-                    .font(DL.Fonts.headline)
+                    .font(.system(size: 28))
+                Text("\(candidate.baseName) · \(candidate.targetName)")
+                    .font(DL.Fonts.subheadline)
                     .foregroundStyle(Color.dlTextPrimary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
             }
             .frame(maxWidth: .infinity)
-            .padding(DL.Space.l)
-            .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(selected ? Color.dlSurfaceTint : Color.dlSurface)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .strokeBorder(selected ? Color.dlAccent : Color.dlSeparator,
-                                  lineWidth: selected ? 2 : 1)
-            )
+            .padding(.vertical, DL.Space.m)
+            .padding(.horizontal, DL.Space.s)
+            .background(selectionBackground(selected))
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(selected ? .isSelected : [])
     }
 
-    private var directionSection: some View {
-        VStack(alignment: .leading, spacing: DL.Space.m) {
-            Text("Wie herum?")
+    // MARK: - Which language you already speak
+
+    private var knownSection: some View {
+        VStack(alignment: .leading, spacing: DL.Space.s) {
+            Text("Welche Sprache kannst du schon?")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            directionRow(.deToTarget,
-                         title: "Deutsch → \(pair.targetName)",
-                         subtitle: "Du siehst das deutsche Wort und bewertest dich selbst.")
-            directionRow(.targetToDe,
-                         title: "\(pair.targetName) → Deutsch",
-                         subtitle: "Du tippst das deutsche Wort — die Königsdisziplin.")
+            knownRow(base: true,
+                     title: pair.baseName,
+                     subtitle: "Du lernst \(pair.targetName).")
+            knownRow(base: false,
+                     title: pair.targetName,
+                     subtitle: "Du lernst \(pair.baseName).")
         }
     }
 
-    private func directionRow(_ candidate: Direction, title: String, subtitle: String) -> some View {
-        let selected = direction == candidate
+    private func knownRow(base: Bool, title: String, subtitle: String) -> some View {
+        let selected = knowsBase == base
         return Button {
-            direction = candidate
+            knowsBase = base
         } label: {
             HStack(spacing: DL.Space.m) {
                 Image(systemName: selected ? "checkmark.circle.fill" : "circle")
                     .font(.title3)
                     .foregroundStyle(selected ? Color.dlAccent : Color.dlTextSecondary)
-                VStack(alignment: .leading, spacing: DL.Space.xs) {
+                VStack(alignment: .leading, spacing: 2) {
                     Text(title)
                         .font(DL.Fonts.headline)
                         .foregroundStyle(Color.dlTextPrimary)
@@ -110,19 +115,21 @@ struct OnboardingView: View {
                 }
                 Spacer(minLength: 0)
             }
-            .padding(DL.Space.l)
-            .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(selected ? Color.dlSurfaceTint : Color.dlSurface)
-            )
+            .padding(DL.Space.m)
+            .background(selectionBackground(selected))
+        }
+        .buttonStyle(.plain)
+        .accessibilityAddTraits(selected ? .isSelected : [])
+    }
+
+    private func selectionBackground(_ selected: Bool) -> some View {
+        RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
+            .fill(selected ? Color.dlSurfaceTint : Color.dlSurface)
             .overlay(
                 RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
                     .strokeBorder(selected ? Color.dlAccent : Color.dlSeparator,
                                   lineWidth: selected ? 2 : 1)
             )
-        }
-        .buttonStyle(.plain)
-        .accessibilityAddTraits(selected ? .isSelected : [])
     }
 
     private var startButton: some View {
