@@ -24,9 +24,15 @@ struct VocabCardView: View {
     let note: String?
     var mode: Mode = .recognition
     var revealed: Bool = false
+    /// Session style: tighter card so card + input + button + keyboard
+    /// all fit on screen without scrolling. Previews keep the big card.
+    var compact: Bool = false
+    /// Review-phase cards ("sticking" cards) must not leak the emoji hint
+    /// during the prompt — a neutral "?" holds its place until reveal.
+    var hideEmojiUntilRevealed: Bool = false
 
     var body: some View {
-        VStack(spacing: DL.Space.l) {
+        VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
             emojiIllustration
             promptSection
             revealSection
@@ -34,9 +40,11 @@ struct VocabCardView: View {
                 .accessibilityHidden(!revealed)
             Spacer(minLength: 0)
         }
-        .padding(DL.Space.xl)
+        .padding(compact ? DL.Space.l : DL.Space.xl)
         .frame(maxWidth: .infinity)
-        .frame(minHeight: 380, alignment: .top)
+        // why: compact must leave room for input + primary button above the
+        // keyboard on a 874 pt screen — no scrolling during review.
+        .frame(minHeight: compact ? 240 : 380, alignment: .top)
         .background(
             RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
                 .fill(Color.dlSurface)
@@ -51,12 +59,24 @@ struct VocabCardView: View {
 
     // MARK: Pieces
 
+    private var emojiHidden: Bool {
+        hideEmojiUntilRevealed && !revealed
+    }
+
     private var emojiIllustration: some View {
-        Text(emoji)
-            .font(.system(size: 76))
-            .padding(DL.Space.l)
-            .background(Circle().fill(Color.dlSurfaceTint))
-            .accessibilityHidden(true) // why: decorative; the headword carries the content
+        ZStack {
+            Text(emoji)
+                .font(.system(size: compact ? 40 : 76))
+                .opacity(emojiHidden ? 0 : 1)
+            // Same footprint as the emoji — the card never jumps on reveal.
+            Text("?")
+                .font(.system(size: compact ? 28 : 52, weight: .bold, design: .rounded))
+                .foregroundStyle(Color.dlTextSecondary.opacity(0.55))
+                .opacity(emojiHidden ? 1 : 0)
+        }
+        .padding(compact ? DL.Space.s + 2 : DL.Space.l)
+        .background(Circle().fill(Color.dlSurfaceTint))
+        .accessibilityHidden(true) // why: decorative; the headword carries the content
     }
 
     @ViewBuilder
@@ -93,7 +113,7 @@ struct VocabCardView: View {
                 ArticleBadge(article: article)
             }
             Text(headword)
-                .font(DL.Fonts.hero)
+                .font(compact ? DL.Fonts.title : DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)
                 .minimumScaleFactor(0.6)
@@ -107,11 +127,50 @@ struct VocabCardView: View {
 
     private var translationBlock: some View {
         Text(translation)
-            .font(mode == .production ? DL.Fonts.hero : DL.Fonts.title)
+            .font(mode == .production && !compact ? DL.Fonts.hero : DL.Fonts.title)
             .foregroundStyle(mode == .production ? Color.dlTextPrimary : Color.dlAccent)
             .multilineTextAlignment(.center)
             .minimumScaleFactor(0.6)
     }
+}
+
+// MARK: - Card flip transition
+//
+// Quick horizontal 3D flip BETWEEN cards (~0.3 s). Within a card the reveal
+// stays a fade — the flip only ever marks the switch to the next card.
+
+struct CardFlipEffect: ViewModifier, @MainActor Animatable {
+    var angle: Double
+
+    var animatableData: Double {
+        get { angle }
+        set { angle = newValue }
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .rotation3DEffect(.degrees(angle), axis: (x: 0, y: 1, z: 0), perspective: 0.4)
+            // why: hide the mirrored "backface" at ±90° so the outgoing and
+            // incoming card each show only their front half of the flip.
+            .opacity(abs(angle) >= 90 ? 0 : 1)
+    }
+}
+
+extension AnyTransition {
+    /// Insertion flips in from the right, removal flips out to the left.
+    @MainActor static var dlCardFlip: AnyTransition {
+        .asymmetric(
+            insertion: .modifier(active: CardFlipEffect(angle: 90),
+                                 identity: CardFlipEffect(angle: 0)),
+            removal: .modifier(active: CardFlipEffect(angle: -90),
+                               identity: CardFlipEffect(angle: 0))
+        )
+    }
+}
+
+extension Animation {
+    /// The one animation used for the between-cards flip.
+    static let dlCardFlip = Animation.easeInOut(duration: 0.3)
 }
 
 // MARK: - ArticleBadge
@@ -160,6 +219,38 @@ struct ArticleBadge: View {
         mode: .recognition,
         revealed: true
     )
+    .padding(DL.Space.xl)
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .background(Color.dlBackground)
+}
+
+#Preview("Compact · review phase (emoji hidden)") {
+    VStack(spacing: DL.Space.l) {
+        VocabCardView(
+            emoji: "🥄",
+            article: "der",
+            headword: "Löffel",
+            plural: "die Löffel",
+            translation: "kijiko",
+            note: nil,
+            mode: .recognition,
+            revealed: false,
+            compact: true,
+            hideEmojiUntilRevealed: true
+        )
+        VocabCardView(
+            emoji: "🥄",
+            article: "der",
+            headword: "Löffel",
+            plural: "die Löffel",
+            translation: "kijiko",
+            note: nil,
+            mode: .recognition,
+            revealed: true,
+            compact: true,
+            hideEmojiUntilRevealed: true
+        )
+    }
     .padding(DL.Space.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(Color.dlBackground)

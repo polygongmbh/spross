@@ -39,6 +39,8 @@ struct TrainerSessionView: View {
     @State private var input = ""
     @State private var feedback: AnswerInputView.Feedback = .neutral
     @State private var autoAdvance: Task<Void, Never>?
+    @FocusState private var answerFocused: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     init(kind: TrainerKind, language: TrainerLanguage) {
         self.init(mode: .slots(kind, language))
@@ -67,6 +69,8 @@ struct TrainerSessionView: View {
                 }
             }
         }
+        .onAppear { answerFocused = true }
+        .onChange(of: index) { _, _ in answerFocused = true }
         .onDisappear { autoAdvance?.cancel() }
     }
 
@@ -109,21 +113,28 @@ struct TrainerSessionView: View {
 
     private var drillContent: some View {
         ScrollView {
-            VStack(spacing: DL.Space.xl) {
-                TrainerPromptCard(task: current, sentence: isPhrases)
+            VStack(spacing: DL.Space.m) {
+                // ZStack so outgoing and incoming prompt overlap during the
+                // flip; .id gives each round position its own view identity.
+                ZStack {
+                    TrainerPromptCard(task: current, sentence: isPhrases)
+                        .id(index)
+                        .transition(reduceMotion ? .opacity : .dlCardFlip)
+                }
                 controls
             }
-            .padding(.top, DL.Space.s)
             .padding(.bottom, DL.Space.l)
         }
         .scrollBounceBehavior(.basedOnSize)
+        .scrollDismissesKeyboard(.never)
     }
 
     private var controls: some View {
         VStack(spacing: DL.Space.m) {
             AnswerInputView(text: $input,
                             feedback: feedback,
-                            placeholder: "Auf \(language.trainerName) …") {
+                            placeholder: "Auf \(language.trainerName) …",
+                            focus: $answerFocused) {
                 submit()
             }
             if case .revealed = feedback, let gloss = current.gloss {
@@ -137,19 +148,22 @@ struct TrainerSessionView: View {
             }
             switch feedback {
             case .neutral:
+                // ONE primary action: empty input reveals, typed input checks.
                 Button {
-                    submit()
+                    if inputEmpty {
+                        DLSound.reveal()
+                        withAnimation { feedback = .revealed(correctAnswer: current.display) }
+                    } else {
+                        submit()
+                    }
                 } label: {
-                    Text("Prüfen")
+                    Text(inputEmpty ? "Aufdecken" : "Prüfen")
                         .frame(maxWidth: .infinity)
+                        .contentTransition(.opacity)
                 }
                 .buttonStyle(DLPrimaryButtonStyle())
-                .disabled(input.trimmingCharacters(in: .whitespaces).isEmpty)
                 .keyboardShortcut(.defaultAction)
-                Button("Aufdecken") {
-                    withAnimation { feedback = .revealed(correctAnswer: current.display) }
-                }
-                .buttonStyle(DLSoftButtonStyle())
+                .animation(.easeOut(duration: 0.15), value: inputEmpty)
             case .correct:
                 // Auto-advances after ~800 ms (design §Review UX).
                 EmptyView()
@@ -174,12 +188,17 @@ struct TrainerSessionView: View {
 
     // MARK: - Grading (round score only, no FSRS)
 
+    private var inputEmpty: Bool {
+        input.trimmingCharacters(in: .whitespaces).isEmpty
+    }
+
     private func submit() {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard feedback == .neutral, !trimmed.isEmpty else { return }
         // Any accepted variant counts as correct.
         if current.accepted.contains(where: { AnswerNormalizer.matches(input: trimmed, expected: $0) }) {
             feedback = .correct
+            DLSound.correct()
             autoAdvance = Task {
                 try? await Task.sleep(for: .milliseconds(800))
                 guard !Task.isCancelled else { return }
@@ -187,18 +206,23 @@ struct TrainerSessionView: View {
             }
         } else {
             feedback = .revealed(correctAnswer: current.display)
+            DLSound.wrong()
         }
     }
 
     private func advance(correct: Bool) {
         autoAdvance?.cancel()
         if correct { correctCount += 1 }
+        // why: reset in the SAME transaction as the index switch — the next
+        // prompt must never render one frame with the old revealed answer.
         input = ""
         feedback = .neutral
-        if index + 1 >= Self.roundLength {
-            finished = true
-        } else {
-            index += 1
+        withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip) {
+            if index + 1 >= Self.roundLength {
+                finished = true
+            } else {
+                index += 1
+            }
         }
     }
 
@@ -261,10 +285,10 @@ private struct TrainerPromptCard: View {
     var sentence = false
 
     var body: some View {
-        VStack(spacing: DL.Space.l) {
+        VStack(spacing: DL.Space.m) {
             Text(sentence ? "💬" : task.kind.trainerEmoji)
-                .font(.system(size: 44))
-                .padding(DL.Space.m)
+                .font(.system(size: 36))
+                .padding(DL.Space.s + 2)
                 .background(Circle().fill(Color.dlSurfaceTint))
                 .accessibilityHidden(true)
             Text("\(sentence ? "Satz" : task.kind.trainerPromptLabel) · auf \(task.language.trainerName)")
@@ -272,16 +296,17 @@ private struct TrainerPromptCard: View {
                 .foregroundStyle(Color.dlTextSecondary)
                 .textCase(.uppercase)
             Text(task.prompt)
-                .font(.system(size: sentence ? 28 : 64, weight: .bold, design: .rounded))
+                .font(.system(size: sentence ? 28 : 56, weight: .bold, design: .rounded))
                 .monospacedDigit()
                 .foregroundStyle(Color.dlTextPrimary)
                 .lineLimit(sentence ? 4 : 1)
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.center)
         }
-        .padding(DL.Space.xl)
+        .padding(DL.Space.l)
         .frame(maxWidth: .infinity)
-        .frame(minHeight: 240)
+        // why: compact enough that prompt + input + button clear the keyboard.
+        .frame(minHeight: 185)
         .background(
             RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
                 .fill(Color.dlSurface)

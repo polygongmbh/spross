@@ -11,6 +11,10 @@ struct SessionView: View {
     @State private var feedback: AnswerInputView.Feedback = .neutral
     @State private var revealed = false
     @State private var autoAdvance: Task<Void, Never>?
+    /// Owned here (not in AnswerInputView) so the keyboard is up the moment
+    /// a card appears and stays up across cards.
+    @FocusState private var answerFocused: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         Group {
@@ -28,16 +32,38 @@ struct SessionView: View {
             }
         }
         .onChange(of: currentCardID) { _, _ in
+            // why: safety net only — rate() already resets BEFORE the switch
+            // so the next card can never render one frame still revealed.
             resetCardState()
+            answerFocused = true
+        }
+        .onAppear {
+            answerFocused = true
         }
         .onDisappear {
             autoAdvance?.cancel()
         }
         #if DEBUG
-        // UI-test hook: `-uitest-reveal 1` shows the first card revealed.
+        // UI-test hooks: `-uitest-reveal 1` shows the first card revealed,
+        // `-uitest-input xyz` prefills the answer field,
+        // `-uitest-submit 1` submits the prefilled answer after 0.6 s,
+        // `-uitest-sound 1` plays each feedback sound with a console probe.
         .onAppear {
-            if UserDefaults.standard.bool(forKey: "uitest-reveal") {
+            let defaults = UserDefaults.standard
+            if defaults.bool(forKey: "uitest-reveal") {
                 revealed = true
+            }
+            if let prefill = defaults.string(forKey: "uitest-input") {
+                input = prefill
+            }
+            if defaults.bool(forKey: "uitest-submit") {
+                Task { @MainActor in
+                    try? await Task.sleep(for: .milliseconds(600))
+                    if let card = model.currentCard { submit(card) }
+                }
+            }
+            if defaults.bool(forKey: "uitest-sound") {
+                DLSound.uitestProbe()
             }
         }
         #endif
@@ -65,23 +91,40 @@ struct SessionView: View {
 
     private func cardContent(_ card: Card) -> some View {
         ScrollView {
-            VStack(spacing: DL.Space.xl) {
-                VocabCardView(
-                    emoji: card.displayEmoji,
-                    article: card.article,
-                    headword: card.german,
-                    plural: card.plural,
-                    translation: card.translation,
-                    note: card.note,
-                    mode: mode,
-                    revealed: cardRevealed
-                )
+            VStack(spacing: DL.Space.m) {
+                // ZStack so outgoing and incoming card overlap during the flip
+                // instead of stacking; .id gives each card its own identity.
+                ZStack {
+                    VocabCardView(
+                        emoji: card.displayEmoji,
+                        article: card.article,
+                        headword: card.german,
+                        plural: card.plural,
+                        translation: card.translation,
+                        note: card.note,
+                        mode: mode,
+                        revealed: cardRevealed,
+                        compact: true,
+                        hideEmojiUntilRevealed: hideEmoji(for: card)
+                    )
+                    .id(card.id)
+                    .transition(reduceMotion ? .opacity : .dlCardFlip)
+                }
                 controls(card)
             }
-            .padding(.top, DL.Space.s)
             .padding(.bottom, DL.Space.l)
         }
         .scrollBounceBehavior(.basedOnSize)
+        .scrollDismissesKeyboard(.never)
+    }
+
+    /// Review/relearning cards "stick" — the emoji would give the answer away,
+    /// so it stays hidden until reveal. New/learning cards keep the hint.
+    private func hideEmoji(for card: Card) -> Bool {
+        switch model.scheduling(for: card.id)?.phase {
+        case .review, .relearning: return true
+        default: return false
+        }
     }
 
     private var mode: VocabCardView.Mode {
@@ -99,28 +142,32 @@ struct SessionView: View {
             if !(revealed && feedback == .neutral) {
                 AnswerInputView(text: $input,
                                 feedback: feedback,
-                                placeholder: inputPlaceholder(card)) {
+                                placeholder: inputPlaceholder(card),
+                                focus: $answerFocused) {
                     submit(card)
                 }
             }
             switch feedback {
             case .neutral where revealed:
                 // Revealed without typing → honest self-grade, four ratings.
-                RatingButtonsView { model.answerCurrent(kernRating($0)) }
+                RatingButtonsView { rate(kernRating($0)) }
             case .neutral:
+                // ONE primary action: empty input reveals, typed input checks.
                 Button {
-                    submit(card)
+                    if inputEmpty {
+                        DLSound.reveal()
+                        withAnimation { revealed = true }
+                    } else {
+                        submit(card)
+                    }
                 } label: {
-                    Text("Prüfen")
+                    Text(inputEmpty ? "Aufdecken" : "Prüfen")
                         .frame(maxWidth: .infinity)
+                        .contentTransition(.opacity)
                 }
                 .buttonStyle(DLPrimaryButtonStyle())
-                .disabled(input.trimmingCharacters(in: .whitespaces).isEmpty)
                 .keyboardShortcut(.defaultAction)
-                Button("Aufdecken") {
-                    withAnimation { revealed = true }
-                }
-                .buttonStyle(DLSoftButtonStyle())
+                .animation(.easeOut(duration: 0.15), value: inputEmpty)
             case .correct:
                 // Auto-advances after ~800 ms (design §Review UX).
                 EmptyView()
@@ -145,6 +192,10 @@ struct SessionView: View {
 
     // MARK: - Grading
 
+    private var inputEmpty: Bool {
+        input.trimmingCharacters(in: .whitespaces).isEmpty
+    }
+
     private func inputPlaceholder(_ card: Card) -> String {
         mode == .production ? "Auf Deutsch …"
             : (card.pair == .deSw ? "Auf Swahili …" : "Auf Ukrainisch …")
@@ -156,6 +207,7 @@ struct SessionView: View {
         let expected = mode == .production ? card.german : card.translation
         if AnswerNormalizer.matches(input: trimmed, expected: expected) {
             feedback = .correct
+            DLSound.correct()
             autoAdvance = Task {
                 try? await Task.sleep(for: .milliseconds(800))
                 guard !Task.isCancelled else { return }
@@ -164,12 +216,18 @@ struct SessionView: View {
         } else {
             let answer = mode == .production ? card.germanWithArticle : card.translation
             feedback = .revealed(correctAnswer: answer)
+            DLSound.wrong()
         }
     }
 
     private func rate(_ rating: Rating) {
         autoAdvance?.cancel()
-        model.answerCurrent(rating)
+        // why: reset BEFORE the card switch, in the same transaction — the
+        // next card must never render one frame with the old revealed state.
+        resetCardState()
+        withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip) {
+            model.answerCurrent(rating)
+        }
     }
 
     private func resetCardState() {

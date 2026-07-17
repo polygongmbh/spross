@@ -18,9 +18,12 @@ struct AnswerInputView: View {
     @Binding var text: String
     var feedback: Feedback = .neutral
     var placeholder: String = "Antwort eingeben …"
+    /// Session views own focus so the keyboard is up the moment a card
+    /// appears; standalone use falls back to the internal focus state.
+    var focus: FocusState<Bool>.Binding?
     var onSubmit: () -> Void = {}
 
-    @FocusState private var focused: Bool
+    @FocusState private var fallbackFocus: Bool
 
     var body: some View {
         VStack(spacing: DL.Space.m) {
@@ -43,9 +46,12 @@ struct AnswerInputView: View {
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .submitLabel(.done)
-                .focused($focused)
+                .focused(focus ?? $fallbackFocus)
                 .onSubmit(onSubmit)
-                .disabled(feedback != .neutral) // why: after grading, Enter/tap advances the session instead
+                // why: on wrong answers Enter/tap must advance the session
+                // instead; on correct the field stays enabled so the keyboard
+                // does not bounce during the 800 ms auto-advance.
+                .disabled(isRevealed)
             statusIcon
         }
         .padding(.horizontal, DL.Space.l)
@@ -80,6 +86,11 @@ struct AnswerInputView: View {
                 .foregroundStyle(Color.dlAmber)
                 .accessibilityLabel("Aufgelöst")
         }
+    }
+
+    private var isRevealed: Bool {
+        if case .revealed = feedback { return true }
+        return false
     }
 
     private var borderColor: Color {
