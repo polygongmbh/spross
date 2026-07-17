@@ -1,4 +1,5 @@
 import Foundation
+import DuoKern
 
 /// Instantiates a `PhraseTemplate` into a `TrainerTask` by composing with
 /// the Trainer slot generators: German prompt gets the digits, target

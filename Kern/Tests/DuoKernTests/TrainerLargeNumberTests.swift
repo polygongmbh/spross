@@ -1,5 +1,6 @@
 import Testing
 @testable import DuoKern
+@testable import DuoKernTrainer
 
 /// Hand-picked assertions for millions and billions (beyond the golden
 /// fixture, which stops at 999 999). Canonical forms verified against

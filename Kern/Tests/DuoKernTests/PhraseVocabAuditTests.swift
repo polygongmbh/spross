@@ -1,6 +1,7 @@
 import Foundation
 import Testing
 @testable import DuoKern
+@testable import DuoKernTrainer
 
 /// Template vocab audit: every non-slot content word in each targetTemplate
 /// (and every counted-noun form) must be VERIFIED vocabulary — verbatim in

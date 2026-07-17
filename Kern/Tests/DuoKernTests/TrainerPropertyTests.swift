@@ -1,5 +1,6 @@
 import Testing
 @testable import DuoKern
+@testable import DuoKernTrainer
 
 /// Deterministic SplitMix64 (local copy; the one in FSRSPropertyTests is private).
 private struct SplitMix64: RandomNumberGenerator {

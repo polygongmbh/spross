@@ -1,5 +1,6 @@
 import Testing
 @testable import DuoKern
+@testable import DuoKernTrainer
 
 /// Hand-picked Ukrainian assertions (new content, not in the prototype).
 /// Expected strings are documented here for external verification;

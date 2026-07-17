@@ -1,3 +1,5 @@
+import DuoKern
+
 /// Curated slot templates per pair. Every non-slot content word on the
 /// target side is verified against the seed vocab (audited by
 /// PhraseVocabAuditTests); only documented function words go beyond it.

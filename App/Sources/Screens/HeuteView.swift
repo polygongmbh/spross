@@ -1,5 +1,6 @@
 import SwiftUI
 import DuoKern
+import DuoKernTrainer
 
 /// The north star screen: one glance = what to do right now.
 struct HeuteView: View {

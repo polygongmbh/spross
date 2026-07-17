@@ -1,5 +1,6 @@
 import Testing
 @testable import DuoKern
+@testable import DuoKernTrainer
 
 @Suite struct TrainerLevelTests {
     private struct SplitMix: RandomNumberGenerator {

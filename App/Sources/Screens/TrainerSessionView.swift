@@ -1,5 +1,6 @@
 import SwiftUI
 import DuoKern
+import DuoKernTrainer
 
 /// A stateless ENDLESS slot drill (numbers / years / clock / sentences).
 /// Same interaction grammar as SessionView — type first, "Aufdecken" as

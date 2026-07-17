@@ -1,5 +1,6 @@
 import SwiftUI
 import DuoKern
+import DuoKernTrainer
 
 /// Compact "Training" card on the Heute screen: three slot drills
 /// (Zahlen / Jahreszahlen / Uhrzeit) plus the sentence drill. The drill

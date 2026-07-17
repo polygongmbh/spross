@@ -1,6 +1,7 @@
 import Foundation
 import Testing
 @testable import DuoKern
+@testable import DuoKernTrainer
 
 @Suite struct MixedDirectionTests {
     let calendar = Calendar(identifier: .gregorian)

@@ -29,6 +29,9 @@ targets:
         buildPhase: resources
     dependencies:
       - package: DuoKern
+        product: DuoKern
+      - package: DuoKern
+        product: DuoKernTrainer
       - target: DuoLernenWidgets
         embed: true
       - target: DuoLernenWatch

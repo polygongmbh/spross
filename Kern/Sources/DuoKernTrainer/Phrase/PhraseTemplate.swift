@@ -1,3 +1,5 @@
+import DuoKern
+
 /// Slot-template model for generated phrases (design.md Phase 3 tail):
 /// a curated sentence frame whose single `{slot}` is filled with a
 /// Trainer-generated value — digits on the German prompt side,
