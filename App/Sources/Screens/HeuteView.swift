@@ -51,9 +51,7 @@ struct HeuteView: View {
 
     private var sessionCard: some View {
         VStack(spacing: DL.Space.l) {
-            Text("✨")
-                .font(.system(size: 56))
-                .accessibilityHidden(true)
+            sessionStats
             Text("Deine Sitzung ist gepackt")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
@@ -79,9 +77,37 @@ struct HeuteView: View {
         .dlCardShadow()
     }
 
+    /// Due reviews only — new cards are announced in the summary text instead.
+    private var dueRemaining: Int {
+        max(model.todayPlan.reviews.count, model.dueNowCount)
+    }
+
+    /// Ring + flame hero; either hides when it has nothing to say
+    /// (all-new-card plan → no ring, streak 0 → no flame).
+    @ViewBuilder
+    private var sessionStats: some View {
+        let streak = model.stats?.streak ?? 0
+        if dueRemaining == 0 && streak == 0 {
+            Text("✨")
+                .font(.system(size: 56))
+                .accessibilityHidden(true)
+        } else {
+            HStack(spacing: DL.Space.l) {
+                if dueRemaining > 0 {
+                    DueCountRing(remaining: dueRemaining,
+                                 total: dueRemaining + model.reviewsDoneToday,
+                                 size: 80)
+                }
+                if streak > 0 {
+                    StreakFlameView(days: streak)
+                }
+            }
+        }
+    }
+
     private var sessionSummary: String {
         let plan = model.todayPlan
-        let due = max(plan.reviews.count, model.dueNowCount)
+        let due = dueRemaining
         let fresh = plan.unlockedPhrases.count + plan.newWords.count
         var parts: [String] = []
         if due > 0 {

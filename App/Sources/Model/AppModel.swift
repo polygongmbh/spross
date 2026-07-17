@@ -247,6 +247,12 @@ final class AppModel {
         }
     }
 
+    /// Answer events already folded into today's dailyStats (includes retries).
+    var reviewsDoneToday: Int {
+        guard let box else { return 0 }
+        return box.dailyStats[dayKey(Date())]?.reviews ?? 0
+    }
+
     /// Must format identically to Kern's day key (yyyy-MM-dd, caller calendar).
     private func dayKey(_ date: Date) -> String {
         let parts = calendar.dateComponents([.year, .month, .day],
