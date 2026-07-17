@@ -12,6 +12,7 @@ enum UkrainianClock {
     private static let ordinalNominative = ["", "перша", "друга", "третя", "четверта", "п'ята", "шоста", "сьома", "восьма", "дев'ята", "десята", "одинадцята", "дванадцята"]
     private static let ordinalAccusative = ["", "першу", "другу", "третю", "четверту", "п'яту", "шосту", "сьому", "восьму", "дев'яту", "десяту", "одинадцяту", "дванадцяту"]
     private static let ordinalLocative = ["", "першій", "другій", "третій", "четвертій", "п'ятій", "шостій", "сьомій", "восьмій", "дев'ятій", "десятій", "одинадцятій", "дванадцятій"]
+    private static let ordinalGenitive = ["", "першої", "другої", "третьої", "четвертої", "п'ятої", "шостої", "сьомої", "восьмої", "дев'ятої", "десятої", "одинадцятої", "дванадцятої"]
 
     private static func hourIndex(_ h: Int) -> Int {
         let h12 = h % 12
@@ -30,17 +31,21 @@ enum UkrainianClock {
             return (display, [display, ordinalNominative[cur]], nil)
         case 15:
             let display = "чверть на \(ordinalAccusative[next])"
-            let variant = "п'ятнадцять по \(ordinalLocative[cur])"
-            return (display, [display, variant, digital(cur, minuteWord)],
+            // Variants confirmed equally common by the language review.
+            let variants = ["п'ятнадцять по \(ordinalLocative[cur])",
+                            "чверть по \(ordinalLocative[cur])"]
+            return (display, [display] + variants + [digital(cur, minuteWord)],
                     "«чверть на …» zählt zur kommenden Stunde (wie „Viertel drei“)")
         case 30:
             let display = "пів на \(ordinalAccusative[next])"
-            return (display, [display, digital(cur, minuteWord)],
+            let variant = "пів \(ordinalGenitive[next])"
+            return (display, [display, variant, digital(cur, minuteWord)],
                     "«пів на …» zählt zur kommenden Stunde (wie deutsches „halb drei“)")
         case 45:
             let display = "за чверть \(ordinalNominative[next])"
-            let variant = "за п'ятнадцять \(ordinalNominative[next])"
-            return (display, [display, variant, digital(cur, minuteWord)],
+            let variants = ["за п'ятнадцять \(ordinalNominative[next])",
+                            "за чверть до \(ordinalGenitive[next])"]
+            return (display, [display] + variants + [digital(cur, minuteWord)],
                     "«за чверть …» = Viertel vor der kommenden Stunde")
         default:
             let display = digital(cur, minuteWord)
