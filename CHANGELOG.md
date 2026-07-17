@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.0 — 2026-07-17
+
+- **Type before revealing** in both directions: recognition mode now offers an
+  answer field first (checked against the translation; "/"-separated
+  alternatives all count); "Aufdecken" remains as the self-grading fallback.
+- **Extra-Runde**: an on-demand practice round from the done screen — anything
+  due, everything you explicitly packed into the box (bypassing the daily
+  budget), and soonest-due cards reviewed ahead. Never empty while the box has cards.
+- Hyphen/apostrophe-insensitive answer matching ("E-Mail" = "Email").
+- Interrupted sessions no longer lose reviews from the streak/statistics
+  when iOS evicts the app.
+
 ## 0.1.0 — 2026-07-17
 
 First working version, built end-to-end:
