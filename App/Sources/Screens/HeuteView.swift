@@ -4,6 +4,7 @@ import DuoKern
 /// The north star screen: one glance = what to do right now.
 struct HeuteView: View {
     let model: AppModel
+    var openBox: () -> Void = {}
 
     var body: some View {
         ScrollView {
@@ -20,9 +21,11 @@ struct HeuteView: View {
                 } else {
                     stateCard(emoji: "📦",
                               title: "Deine Box ist noch leer",
-                              message: "Schau im Box-Tab vorbei: Stell „Neue Karten pro Tag“ ein oder pack einen Bereich direkt hinein.")
+                              message: "Stell „Neue Karten pro Tag“ ein oder pack einen Bereich direkt hinein.",
+                              action: ("Zur Box", openBox))
                 }
                 TrainerHubView(model: model)
+                FortschrittSection(model: model)
             }
             .padding(DL.Space.xl)
         }
@@ -161,7 +164,8 @@ struct HeuteView: View {
 
     // MARK: - Generic state card (error / empty box)
 
-    private func stateCard(emoji: String, title: String, message: String) -> some View {
+    private func stateCard(emoji: String, title: String, message: String,
+                           action: (label: String, run: () -> Void)? = nil) -> some View {
         VStack(spacing: DL.Space.l) {
             Text(emoji)
                 .font(.system(size: 56))
@@ -174,6 +178,10 @@ struct HeuteView: View {
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)
+            if let action {
+                Button(action.label, action: action.run)
+                    .buttonStyle(DLSoftButtonStyle())
+            }
         }
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity)

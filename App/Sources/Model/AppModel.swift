@@ -43,8 +43,8 @@ final class AppModel {
     var sessionFolded = 0
     var sessionEnded = true
     private(set) var autostartSession = false
-    /// DEBUG hook: `-uitest-tab box|fortschritt` opens that tab after launch.
-    private(set) var uitestTab: String?
+    /// DEBUG hook: `-uitest-screen box` pushes the Box screen after launch.
+    private(set) var uitestScreen: String?
 
     let store: BoxStore
     let calendar = Calendar.current
@@ -74,7 +74,7 @@ final class AppModel {
             directionOverride = Direction(rawValue: raw)
         }
         autostartSession = defaults.bool(forKey: "uitest-autostart")
-        uitestTab = defaults.string(forKey: "uitest-tab")
+        uitestScreen = defaults.string(forKey: "uitest-screen")
         #endif
 
         let stored = UserDefaults.standard.string(forKey: Self.selectedPairKey)

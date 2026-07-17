@@ -1,22 +1,18 @@
 import SwiftUI
 
-/// Three tabs (Heute / Box / Fortschritt), onboarding sheet on first launch,
-/// full-screen session cover.
+/// Single-screen app: Heute is the root, the Box pushes via the 📦 toolbar
+/// icon. Onboarding sheet on first launch, full-screen session cover.
 struct RootView: View {
     @Bindable var model: AppModel
 
-    private enum Tab: String {
-        case heute, box, fortschritt
-    }
-
-    @State private var selection: Tab = .heute
+    @State private var boxPresented = false
 
     var body: some View {
         Group {
             if model.phase == .loading {
                 loading
             } else {
-                tabs
+                home
             }
         }
         .sheet(isPresented: onboardingPresented) {
@@ -28,23 +24,29 @@ struct RootView: View {
         }
         .task {
             await model.start()
-            if let tab = model.uitestTab.flatMap(Tab.init(rawValue:)) {
-                selection = tab
+            if model.uitestScreen == "box" {
+                boxPresented = true
             }
         }
     }
 
-    private var tabs: some View {
-        TabView(selection: $selection) {
-            HeuteView(model: model)
-                .tabItem { Label("Heute", systemImage: "sun.max.fill") }
-                .tag(Tab.heute)
-            BoxView(model: model)
-                .tabItem { Label("Box", systemImage: "shippingbox.fill") }
-                .tag(Tab.box)
-            FortschrittView(model: model)
-                .tabItem { Label("Fortschritt", systemImage: "chart.bar.xaxis") }
-                .tag(Tab.fortschritt)
+    private var home: some View {
+        NavigationStack {
+            HeuteView(model: model, openBox: { boxPresented = true })
+                .navigationDestination(isPresented: $boxPresented) {
+                    BoxView(model: model)
+                }
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            boxPresented = true
+                        } label: {
+                            Image(systemName: "shippingbox.fill")
+                        }
+                        .accessibilityLabel("Box")
+                    }
+                }
+                .toolbarBackground(.hidden, for: .navigationBar)
         }
         .tint(.dlAccent)
     }
