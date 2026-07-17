@@ -12,6 +12,9 @@ struct SessionView: View {
     @State private var input = ""
     @State private var feedback: AnswerInputView.Feedback = .neutral
     @State private var revealed = false
+    /// Set when the answer was accepted with a small typo — the proper
+    /// spelling is shown and the card waits for a tap so the slip is seen.
+    @State private var typoCorrection: String?
     @State private var autoAdvance: Task<Void, Never>?
     /// Owned here (not in AnswerInputView) so the keyboard is up the moment
     /// a card appears and stays up across cards.
@@ -187,8 +190,29 @@ struct SessionView: View {
                 .keyboardShortcut(.defaultAction)
                 .animation(.easeOut(duration: 0.15), value: inputEmpty)
             case .correct:
-                // Auto-advances after ~1.2 s (design §Review UX).
-                EmptyView()
+                // A clean answer auto-advances after ~1.2 s (design §Review
+                // UX). A typo pauses here — show the proper spelling and wait
+                // for a tap so the slip is reviewed.
+                if let typoCorrection {
+                    VStack(spacing: DL.Space.m) {
+                        Text("Fast! Richtig geschrieben: \(typoCorrection)")
+                            .font(DL.Fonts.caption)
+                            .italic()
+                            .foregroundStyle(Color.dlTextSecondary)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
+                        Button {
+                            rate(.good)
+                        } label: {
+                            Text("Weiter")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(DLPrimaryButtonStyle())
+                        .keyboardShortcut(.defaultAction)
+                    }
+                } else {
+                    EmptyView()
+                }
             case .revealed:
                 HStack(spacing: DL.Space.m) {
                     // Correct after reveal → .hard (design §Session 4).
@@ -229,9 +253,7 @@ struct SessionView: View {
         let prefix = (mode == .recognition && card.pair == .deSw && card.kind == .verb)
             ? "ku" : nil
         switch AnswerNormalizer.evaluate(input: trimmed, expected: expected, optionalPrefix: prefix) {
-        case .exact, .typo:
-            // Typos count as correct; the revealed card shows the proper
-            // spelling during the auto-advance window (never punishing).
+        case .exact:
             feedback = .correct
             DLSound.correct()
             autoAdvance = Task {
@@ -239,6 +261,13 @@ struct SessionView: View {
                 guard !Task.isCancelled else { return }
                 rate(.good)
             }
+        case .typo:
+            // why: don't auto-advance on a typo — pause (keeping the typed
+            // text visible) so the learner reviews the slip. Still counts as
+            // correct once they tap on.
+            feedback = .correct
+            DLSound.correct()
+            typoCorrection = mode == .production ? card.germanWithArticle : card.translation
         case .wrong:
             let answer = mode == .production ? card.germanWithArticle : card.translation
             feedback = .revealed(correctAnswer: answer)
@@ -261,6 +290,7 @@ struct SessionView: View {
         input = ""
         feedback = .neutral
         revealed = false
+        typoCorrection = nil
     }
 
     /// Design's RatingButtonsView has its own local Rating (no DuoKern dep);

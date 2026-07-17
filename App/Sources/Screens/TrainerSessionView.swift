@@ -251,16 +251,27 @@ struct TrainerSessionView: View {
                 .keyboardShortcut(.defaultAction)
                 .animation(.easeOut(duration: 0.15), value: inputEmpty)
             case .correct:
-                // Auto-advances after ~1.2 s (design §Review UX). A typo
-                // still counts — show the proper spelling while it lasts.
+                // A clean answer auto-advances after ~1.2 s (design §Review
+                // UX). A typo pauses here — show the proper spelling and wait
+                // for a tap so the learner reviews the slip.
                 if let typoCorrection {
-                    Text("richtig — geschrieben: \(typoCorrection)")
-                        .font(DL.Fonts.caption)
-                        .italic()
-                        .foregroundStyle(Color.dlTextSecondary)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity)
-                        .transition(.opacity)
+                    VStack(spacing: DL.Space.m) {
+                        Text("Fast! Richtig geschrieben: \(typoCorrection)")
+                            .font(DL.Fonts.caption)
+                            .italic()
+                            .foregroundStyle(Color.dlTextSecondary)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
+                        Button {
+                            advance(correct: true, segment: .tough)
+                        } label: {
+                            Text("Weiter")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(DLPrimaryButtonStyle())
+                        .keyboardShortcut(.defaultAction)
+                    }
+                    .transition(.opacity)
                 } else {
                     EmptyView()
                 }
@@ -293,16 +304,20 @@ struct TrainerSessionView: View {
         guard feedback == .neutral, !trimmed.isEmpty else { return }
         let match = bestMatch(for: trimmed)
         switch match {
-        case .exact, .typo:
+        case .exact:
             feedback = .correct
             DLSound.correct()
-            // Typos count as correct but color the bar amber ("tough").
-            let segment: SessionOutcome = { if case .typo = match { return .tough }; return .right }()
             autoAdvance = Task {
                 try? await Task.sleep(for: .milliseconds(1200))
                 guard !Task.isCancelled else { return }
-                advance(correct: true, segment: segment)
+                advance(correct: true, segment: .right)
             }
+        case .typo:
+            // why: don't auto-advance on a typo — pause (keeping the typed
+            // text visible) so the learner can review the slip. Still counts
+            // as correct, but amber and no level progress.
+            feedback = .correct
+            DLSound.correct()
         case .wrong:
             feedback = .revealed(correctAnswer: current.display)
             DLSound.wrong()
@@ -336,11 +351,14 @@ struct TrainerSessionView: View {
         if correct {
             streak += 1
             bestStreak = max(bestStreak, streak)
-            // Ramp: two consecutive rights at a level earn the next one.
-            winsAtLevel += 1
-            if winsAtLevel >= 2, level < maxLevel {
-                level += 1
-                winsAtLevel = 0
+            // Ramp: two clean rights at a level earn the next one. A typo or
+            // hint-assisted answer (amber) never counts toward it.
+            if segment != .tough {
+                winsAtLevel += 1
+                if winsAtLevel >= 2, level < maxLevel {
+                    level += 1
+                    winsAtLevel = 0
+                }
             }
         } else {
             streak = 0
