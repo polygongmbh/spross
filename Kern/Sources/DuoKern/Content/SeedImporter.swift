@@ -25,7 +25,7 @@ public enum SeedImporter {
                     id: cardID(pair: file.pair, area: area.area, kind: .noun, german: noun.de),
                     kind: .noun, pair: pair, area: area.area,
                     german: noun.de, article: noun.article, plural: strippedPlural(noun.plural),
-                    emoji: noun.emoji, translation: translation
+                    emoji: noun.emoji, translation: translation, note: noun.note
                 ))
             }
 
@@ -36,7 +36,7 @@ public enum SeedImporter {
                 areaCards.append(Card(
                     id: cardID(pair: file.pair, area: area.area, kind: .verb, german: verb.de),
                     kind: .verb, pair: pair, area: area.area,
-                    german: verb.de, translation: translation
+                    german: verb.de, translation: translation, note: verb.note
                 ))
             }
 

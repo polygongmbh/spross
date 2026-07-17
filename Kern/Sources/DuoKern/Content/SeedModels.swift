@@ -38,6 +38,7 @@ struct SeedNoun: Decodable {
     let plural: String?
     let sw: String?
     let uk: String?
+    let note: String?
 
     /// The sw/uk key is generic across files — a given seed file only ever
     /// populates one of the two, so trying both resolves it.
@@ -48,6 +49,7 @@ struct SeedVerb: Decodable {
     let de: String
     let sw: String?
     let uk: String?
+    let note: String?
 
     var translation: String? { sw ?? uk }
 }
