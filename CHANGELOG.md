@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.0 — 2026-07-17
+
+- **Single-screen app**: the tab bar is gone. Heute is the whole app —
+  session card, training, and a condensed Fortschritt section (14-day
+  activity, active cards, retention) in one scroll; the Box opens via
+  the 📦 button top right (or straight from the empty-box card).
+- **Session card stats**: a due-count ring (fills as you review through
+  the day) and your 🔥 streak now sit right on the "Los geht's!" card.
+
 ## 0.5.0 — 2026-07-17
 
 - **Mixed-direction practice** (on by default): each card keeps ONE memory
