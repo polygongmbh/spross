@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.0 — 2026-07-17
+
+- **Apple Watch companion**: micro-review sessions on the wrist (reveal +
+  four-button grading; the phone reschedules with real answer timestamps via
+  WatchConnectivity) and a "Wort des Moments" complication
+  (rectangular/circular/corner, 15-minute rotation).
+- **Photos-watch-face renderer** (`tools/FaceGen`): renders up to 24
+  attention-ranked card images with the top zone kept clear for the watch
+  clock — drop into an album, set as Photos face, new word every wrist raise
+  (see `docs/facegen.md`).
+- **Sätze drill**: sentence rounds composing verified phrase templates with
+  generated numbers/years/times ("Der Zug fährt um 20:00 Uhr ab." →
+  *treni inaondoka saa mbili usiku*). All templates passed a dedicated
+  language review; Ukrainian counting templates deliberately reject feminine
+  numeral variants before masculine nouns — that agreement is the lesson.
+
 ## 0.3.0 — 2026-07-17
 
 - **Training drills** on the Heute screen: Zahlen, Jahreszahlen, and Uhrzeit as
