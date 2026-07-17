@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.3 — 2026-07-17
+
+- Swahili verbs count as correct without the ku- prefix ("pika" = "kupika");
+  the reveal still shows the full infinitive.
+
 ## 0.7.2 — 2026-07-17
 
 - **Tighter cards**: "der Kühlschrank" as one line with the article inline in
