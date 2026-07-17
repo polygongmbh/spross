@@ -1,3 +1,5 @@
+import Foundation
+
 /// Instantiates a `PhraseTemplate` into a `TrainerTask` by composing with
 /// the Trainer slot generators: German prompt gets the digits, target
 /// display gets the canonical words, accepted gets one full sentence per
@@ -42,6 +44,47 @@ public enum PhraseSlots {
         // so counted-noun agreement can reuse the sampled value exactly.
         let value = template.slotKind == .clock ? nil : Int(slot.prompt)
         return compose(template: template, slot: slot, value: value)
+    }
+
+    // MARK: - Reverse (target sentence shown, German typed)
+
+    /// Reverse drill for learners of German: prompt is the TARGET sentence in
+    /// words ("У мене є двадцять один зошит."), the answer is the German
+    /// sentence with the value in digits ("Ich habe 21 Hefte." / "… um 20:00
+    /// Uhr …"). Digits keep typing fast; clock answers accept both zero-padded
+    /// and bare-hour digital forms.
+    public static func reverseInstantiate(template: PhraseTemplate, hour: Int, minute: Int) -> TrainerTask {
+        let forward = instantiate(template: template, hour: hour, minute: minute)
+        let padded = String(format: "%02d:%02d", hour, minute)
+        let bare = String(format: "%d:%02d", hour, minute)
+        var accepted = [template.deTemplate.replacingOccurrences(of: PhraseTemplate.slotMarker, with: padded)]
+        if bare != padded {
+            accepted.append(template.deTemplate.replacingOccurrences(of: PhraseTemplate.slotMarker, with: bare))
+        }
+        return TrainerTask(kind: template.slotKind, language: .german,
+                           prompt: forward.display, accepted: accepted,
+                           display: accepted[0], gloss: forward.gloss)
+    }
+
+    public static func reverseInstantiate(template: PhraseTemplate, value: Int) -> TrainerTask {
+        let forward = instantiate(template: template, value: value)
+        let german = template.deTemplate.replacingOccurrences(of: PhraseTemplate.slotMarker, with: String(value))
+        return TrainerTask(kind: template.slotKind, language: .german,
+                           prompt: forward.display, accepted: [german],
+                           display: german, gloss: forward.gloss)
+    }
+
+    public static func reverseSample(template: PhraseTemplate,
+                                     using rng: inout some RandomNumberGenerator) -> TrainerTask {
+        let forward = sample(template: template, using: &rng)
+        if template.slotKind == .clock {
+            let parts = forward.prompt.components(separatedBy: CharacterSet.decimalDigits.inverted)
+                .filter { !$0.isEmpty }.compactMap { Int($0) }
+            return reverseInstantiate(template: template, hour: parts.count > 1 ? parts[parts.count - 2] : 0,
+                                      minute: parts.last ?? 0)
+        }
+        let digits = forward.prompt.filter(\.isNumber)
+        return reverseInstantiate(template: template, value: Int(digits) ?? 0)
     }
 
     // MARK: - Composition

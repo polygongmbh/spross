@@ -136,10 +136,17 @@ public struct BoxConfig: Codable, Sendable, Equatable {
     public var desiredRetention: Double
     /// Minimum stability (days) of all components before a phrase unlocks.
     public var phraseUnlockStability: Double
+    /// Mixed practice: one shared memory state per card; each review's
+    /// PRESENTATION direction alternates deterministically (both translation
+    /// directions help the vocab sit). `direction` remains the learner
+    /// identity ("I am learning the target language" vs "…German") and the
+    /// canonical scheduling key.
+    public var mixedDirections: Bool
 
     public init(pair: LanguagePair, direction: Direction = .deToTarget,
                 newPerDay: Int = 5, dueSoftCap: Int = 30, sessionCap: Int = 30,
-                desiredRetention: Double = 0.9, phraseUnlockStability: Double = 3.0) {
+                desiredRetention: Double = 0.9, phraseUnlockStability: Double = 3.0,
+                mixedDirections: Bool = true) {
         self.pair = pair
         self.direction = direction
         self.newPerDay = newPerDay
@@ -147,6 +154,25 @@ public struct BoxConfig: Codable, Sendable, Equatable {
         self.sessionCap = sessionCap
         self.desiredRetention = desiredRetention
         self.phraseUnlockStability = phraseUnlockStability
+        self.mixedDirections = mixedDirections
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case pair, direction, newPerDay, dueSoftCap, sessionCap,
+             desiredRetention, phraseUnlockStability, mixedDirections
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        pair = try c.decode(LanguagePair.self, forKey: .pair)
+        direction = try c.decode(Direction.self, forKey: .direction)
+        newPerDay = try c.decode(Int.self, forKey: .newPerDay)
+        dueSoftCap = try c.decode(Int.self, forKey: .dueSoftCap)
+        sessionCap = try c.decode(Int.self, forKey: .sessionCap)
+        desiredRetention = try c.decode(Double.self, forKey: .desiredRetention)
+        phraseUnlockStability = try c.decode(Double.self, forKey: .phraseUnlockStability)
+        // why: pre-0.5 store documents lack this key — default on, not decode-fail.
+        mixedDirections = try c.decodeIfPresent(Bool.self, forKey: .mixedDirections) ?? true
     }
 }
 
