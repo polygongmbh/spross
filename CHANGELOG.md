@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.5.0 — 2026-07-17
+
+- **Mixed-direction practice** (on by default): each card keeps ONE memory
+  state; the direction you're quizzed in alternates per review — translating
+  both ways helps the vocab sit. Settings now say what they mean:
+  "Ich lerne: Swahili/Deutsch" + "Beide Richtungen üben" toggle
+  (the misleading Erkennen/Tippen labels are gone).
+- **Typo tolerance**: ~10% of letters (min word length 5); "Kuhlschrank"
+  counts, and the proper spelling is shown when you were close.
+- **Review feel**: keyboard up instantly with everything visible above it,
+  compact card, flip transition between cards (no more answer spoilers),
+  soft sounds + haptics for correct/wrong/reveal, one morphing
+  Aufdecken/Prüfen button, emoji hidden while querying cards that already sit,
+  and a calmer 1.2 s pause on correct answers.
+- **Endless drills**: trainers run as long as you want with 🔥 streak +
+  best-of-run instead of fixed ten; drills always run in the language you're
+  learning (toggle removed); the Sätze drill reverses for German learners
+  (target sentence shown, German typed).
+- **Content**: new verified packs under review in `data/packs/` — Basics
+  ("Die ersten Wörter" survival kit, now home of Langsamer!/Wiederholen/
+  Verstehen, moved out of the school area), Amt, Arzt, Arbeit.
+
 ## 0.4.0 — 2026-07-17
 
 - **Apple Watch companion**: micro-review sessions on the wrist (reveal +
