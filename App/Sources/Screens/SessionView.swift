@@ -224,7 +224,11 @@ struct SessionView: View {
         guard feedback == .neutral, !trimmed.isEmpty else { return }
         let mode = mode(for: card)
         let expected = mode == .production ? card.german : card.translation
-        switch AnswerNormalizer.evaluate(input: trimmed, expected: expected) {
+        // Swahili verbs: the ku- infinitive marker may be dropped when typing
+        // the Swahili side ("pika" counts for "kupika").
+        let prefix = (mode == .recognition && card.pair == .deSw && card.kind == .verb)
+            ? "ku" : nil
+        switch AnswerNormalizer.evaluate(input: trimmed, expected: expected, optionalPrefix: prefix) {
         case .exact, .typo:
             // Typos count as correct; the revealed card shows the proper
             // spelling during the auto-advance window (never punishing).

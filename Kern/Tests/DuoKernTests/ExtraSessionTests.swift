@@ -92,6 +92,18 @@ import Testing
         #expect(AnswerNormalizer.matches(input: "Kühlschrank", expected: "der Kühlschrank"))
     }
 
+    @Test func swahiliVerbPrefixIsOptional() {
+        #expect(AnswerNormalizer.evaluate(input: "pika", expected: "kupika", optionalPrefix: "ku") == .exact)
+        #expect(AnswerNormalizer.evaluate(input: "kupika", expected: "kupika", optionalPrefix: "ku") == .exact)
+        // Typo tolerance applies to the bare stem too; reveal shows the full form.
+        #expect(AnswerNormalizer.evaluate(input: "fanya mazoezi", expected: "kufanya mazoezi", optionalPrefix: "ku")
+                == .exact)
+        // Without the prefix option nothing changes (German "kuscheln" ≠ "scheln").
+        #expect(AnswerNormalizer.evaluate(input: "pika", expected: "kupika") == .wrong)
+        // Prefix never applies when the target doesn't start with it.
+        #expect(AnswerNormalizer.evaluate(input: "ahani", expected: "samahani", optionalPrefix: "ku") == .wrong)
+    }
+
     @Test func typoToleranceScalesWithLength() {
         // ~10% of letters, minimum word length 5; transposition = 1 edit.
         #expect(AnswerNormalizer.evaluate(input: "Kuhlschrank", expected: "Kühlschrank")

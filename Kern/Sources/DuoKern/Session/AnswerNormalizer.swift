@@ -41,16 +41,28 @@ public enum AnswerNormalizer {
         case wrong
     }
 
-    public static func evaluate(input: String, expected: String) -> Match {
+    /// `optionalPrefix`: a citation-form marker the learner may drop —
+    /// Swahili verb cards pass "ku" so "pika" matches "kupika". Only applied
+    /// where the caller knows it's linguistically right (never German).
+    public static func evaluate(input: String, expected: String,
+                                optionalPrefix: String? = nil) -> Match {
         let normalizedInput = normalize(input)
         guard !normalizedInput.isEmpty else { return .wrong }
         var best: Match = .wrong
         for variant in expected.split(separator: "/") {
             let target = normalize(String(variant))
-            if normalizedInput == target { return .exact }
-            let letters = target.filter { !$0.isWhitespace }.count
-            if damerauLevenshtein(normalizedInput, target) <= allowedTypos(letters: letters) {
-                best = .typo(corrected: target)
+            var targets = [target]
+            if let optionalPrefix, target.hasPrefix(optionalPrefix),
+               target.count > optionalPrefix.count {
+                targets.append(String(target.dropFirst(optionalPrefix.count)))
+            }
+            for candidate in targets {
+                if normalizedInput == candidate { return .exact }
+                let letters = candidate.filter { !$0.isWhitespace }.count
+                if damerauLevenshtein(normalizedInput, candidate) <= allowedTypos(letters: letters) {
+                    // Reveal always shows the full citation form.
+                    best = .typo(corrected: target)
+                }
             }
         }
         return best
