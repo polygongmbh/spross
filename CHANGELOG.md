@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.2 — 2026-07-17
+
+- **Tighter cards**: "der Kühlschrank" as one line with the article inline in
+  its color; the German plural line appears only when you're learning German;
+  the answer no longer reserves empty space — the card grows on reveal.
+- Settings version reads "v0.7.2" without the build-number parentheses.
+
 ## 0.7.1 — 2026-07-17
 
 - **New words show the learned language first**: the very first exposure of a
