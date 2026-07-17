@@ -90,6 +90,19 @@ import Testing
         #expect(AnswerNormalizer.matches(input: "полиця", expected: "полиця / стелаж"))
         #expect(!AnswerNormalizer.matches(input: "", expected: "полиця / стелаж"))
         #expect(AnswerNormalizer.matches(input: "Kühlschrank", expected: "der Kühlschrank"))
-        #expect(!AnswerNormalizer.matches(input: "Kuhlschrank", expected: "Kühlschrank")) // no diacritic tolerance (spec)
+    }
+
+    @Test func typoToleranceScalesWithLength() {
+        // ~10% of letters, minimum word length 5; transposition = 1 edit.
+        #expect(AnswerNormalizer.evaluate(input: "Kuhlschrank", expected: "Kühlschrank")
+                == .typo(corrected: "kühlschrank")) // diacritic slip rides the rule
+        #expect(AnswerNormalizer.evaluate(input: "Spulmaschine", expected: "die Spülmaschine")
+                == .typo(corrected: "spülmaschine"))
+        #expect(AnswerNormalizer.evaluate(input: "firji", expected: "friji")
+                == .typo(corrected: "friji")) // adjacent transposition, 5 letters
+        #expect(AnswerNormalizer.evaluate(input: "kula", expected: "kile") == .wrong) // short words: exact only
+        #expect(AnswerNormalizer.evaluate(input: "kula", expected: "kula") == .exact)
+        // Two errors in a medium word stay wrong (tolerance 1 up to 19 letters).
+        #expect(AnswerNormalizer.evaluate(input: "Spolmascine", expected: "Spülmaschine") == .wrong)
     }
 }

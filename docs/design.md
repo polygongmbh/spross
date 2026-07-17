@@ -123,7 +123,11 @@ A session is composed, never configured:
 - Answer normalization before comparison: lowercase, trim, strip leading article
   (de: der/die/das/ein/eine; en-style "the/to" not needed), strip punctuation, collapse whitespace.
 - Wrong answer reveals **inline** — the card stays visually stable, never flips or jumps.
-- Correct answers auto-advance after ~800 ms; Enter advances when revealed.
+- Typo tolerance: ~10% of letters (Damerau-Levenshtein, min word length 5, minimum 1 edit
+  from 5 letters up) — diacritic slips like "Kuhlschrank" ride the same rule.
+  A typo still counts as correct; the reveal shows the proper spelling.
+- Correct answers auto-advance after ~1.2 s (long enough to read the confirmed answer);
+  Enter advances when revealed.
 - Never punishing: no red flashes, streak survives one missed day.
 
 ## App structure (SwiftUI, three tabs)

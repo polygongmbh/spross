@@ -28,12 +28,59 @@ public enum AnswerNormalizer {
 
     /// True when the typed input means the expected answer. Seed translations
     /// may list alternatives separated by "/" ("полиця / стелаж") — any
-    /// alternative counts as correct.
+    /// alternative counts as correct. Small typos are tolerated (see
+    /// `allowedTypos`); diacritic slips like "Kuhlschrank" ride the same rule.
     public static func matches(input: String, expected: String) -> Bool {
+        evaluate(input: input, expected: expected) != .wrong
+    }
+
+    public enum Match: Equatable {
+        case exact
+        /// Accepted with a small typo; carries the correct normalized form.
+        case typo(corrected: String)
+        case wrong
+    }
+
+    public static func evaluate(input: String, expected: String) -> Match {
         let normalizedInput = normalize(input)
-        guard !normalizedInput.isEmpty else { return false }
-        return expected.split(separator: "/").contains { variant in
-            normalizedInput == normalize(String(variant))
+        guard !normalizedInput.isEmpty else { return .wrong }
+        var best: Match = .wrong
+        for variant in expected.split(separator: "/") {
+            let target = normalize(String(variant))
+            if normalizedInput == target { return .exact }
+            let letters = target.filter { !$0.isWhitespace }.count
+            if damerauLevenshtein(normalizedInput, target) <= allowedTypos(letters: letters) {
+                best = .typo(corrected: target)
+            }
         }
+        return best
+    }
+
+    /// ~10% of letters, but never for very short words (a 1-edit slip on
+    /// "kula" is usually a different word, not a typo).
+    static func allowedTypos(letters: Int) -> Int {
+        guard letters >= 5 else { return 0 }
+        return max(1, letters / 10)
+    }
+
+    /// Optimal-string-alignment distance (Damerau-Levenshtein: insert,
+    /// delete, substitute, and adjacent transposition each cost 1).
+    static func damerauLevenshtein(_ a: String, _ b: String) -> Int {
+        let s = Array(a), t = Array(b)
+        if s.isEmpty { return t.count }
+        if t.isEmpty { return s.count }
+        var d = [[Int]](repeating: [Int](repeating: 0, count: t.count + 1), count: s.count + 1)
+        for i in 0...s.count { d[i][0] = i }
+        for j in 0...t.count { d[0][j] = j }
+        for i in 1...s.count {
+            for j in 1...t.count {
+                let cost = s[i - 1] == t[j - 1] ? 0 : 1
+                d[i][j] = min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost)
+                if i > 1, j > 1, s[i - 1] == t[j - 2], s[i - 2] == t[j - 1] {
+                    d[i][j] = min(d[i][j], d[i - 2][j - 2] + 1)
+                }
+            }
+        }
+        return d[s.count][t.count]
     }
 }
