@@ -6,8 +6,13 @@ public enum PhraseSlots {
 
     /// Clock templates. Minutes are rounded by `Trainer.clock` (nearest 5);
     /// the German prompt shows the rounded digital time ("… um 14:35 Uhr …").
+    /// Swahili templates only accept minutes ≤ 30: the >30 countdown form
+    /// ("saa tatu imebakia dakika …") is a standalone predicate and produces
+    /// run-ons when embedded (language-review finding).
     public static func instantiate(template: PhraseTemplate, hour: Int, minute: Int) -> TrainerTask {
         precondition(template.slotKind == .clock, "hour/minute instantiation requires a .clock template")
+        precondition(template.pair != .deSw || minute <= 30,
+                     "Swahili phrase templates embed only minutes 0...30")
         let slot = Trainer.clock(hour: hour, minute: minute, language: template.targetLanguage)
         return compose(template: template, slot: slot, value: nil)
     }
@@ -26,6 +31,12 @@ public enum PhraseSlots {
     /// clock any hour in 5-minute steps).
     public static func sample(template: PhraseTemplate,
                               using rng: inout some RandomNumberGenerator) -> TrainerTask {
+        if template.slotKind == .clock, template.pair == .deSw {
+            // Swahili embeds only minutes 0...30 (see instantiate).
+            let hour = Int(rng.next() % 24)
+            let minute = Int(rng.next() % 7) * 5
+            return instantiate(template: template, hour: hour, minute: minute)
+        }
         let slot = Trainer.sample(kind: template.slotKind, language: template.targetLanguage, using: &rng)
         // why: slot.prompt is the Trainer's numeric contract ("347"/"1978"),
         // so counted-noun agreement can reuse the sampled value exactly.
@@ -49,6 +60,11 @@ public enum PhraseSlots {
         let display = fillTarget(template.targetTemplate, slotWords: slot.display, countWord: countWord)
         var accepted: [String] = []
         for variant in slot.accepted {
+            // Feminine numeral before a masculine counted noun would accept
+            // the exact agreement error these templates train — drop it.
+            if template.masculineSlot,
+               let last = variant.split(separator: " ").last,
+               last == "одна" || last == "дві" { continue }
             let sentence = fillTarget(template.targetTemplate, slotWords: variant, countWord: countWord)
             if !accepted.contains(sentence) { accepted.append(sentence) }
         }

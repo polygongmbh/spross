@@ -47,9 +47,11 @@ struct PhraseSlotTests {
     @Test func swahiliYearSince() {
         let task = PhraseSlots.instantiate(template: template("sw-year-seit"), value: 2000)
         #expect(task.prompt == "Ich lerne seit 2000 Deutsch.")
-        #expect(task.display == "Ninajifunza Kijerumani tangu elfu mbili.")
+        // "tangu mwaka …" — bare cardinal after tangu doesn't read as a year
+        // (language-review fix).
+        #expect(task.display == "Ninajifunza Kijerumani tangu mwaka elfu mbili.")
         #expect(task.kind == .years)
-        #expect(task.gloss == "Jahreszahl als Kardinalzahl gelesen")
+        #expect(task.gloss == "Jahreszahl als Kardinalzahl gelesen — mwaka = Jahr")
     }
 
     // MARK: - Hand-picked exact instantiations (de-uk)
@@ -81,7 +83,20 @@ struct PhraseSlotTests {
         let task = PhraseSlots.instantiate(template: template("uk-num-preis"), value: 21)
         #expect(task.prompt == "Das kostet 21 Euro.")
         #expect(task.display == "Це двадцять один євро.")
-        #expect(task.accepted == ["Це двадцять один євро.", "Це двадцять одна євро."])
+        // Feminine "двадцять одна" must NOT be accepted before євро
+        // (language-review fix: masculineSlot filter).
+        #expect(task.accepted == ["Це двадцять один євро."])
+    }
+
+    @Test func masculineSlotFilterKeepsThousandsButDropsFeminineLastWord() {
+        let hefte = template("uk-num-hefte")
+        let t1000 = PhraseSlots.instantiate(template: hefte, value: 1000)
+        // "одна тисяча" (feminine multiplier mid-value) and bare "тисяча"
+        // stay accepted — only variants ENDING in одна/дві are dropped.
+        #expect(t1000.accepted.contains("У мене є одна тисяча зошитів."))
+        #expect(t1000.accepted.contains("У мене є тисяча зошитів."))
+        let t21 = PhraseSlots.instantiate(template: hefte, value: 21)
+        #expect(t21.accepted == ["У мене є двадцять один зошит."])
     }
 
     @Test func ukrainianCountedNounAgreement() {
@@ -131,8 +146,12 @@ struct PhraseSlotTests {
         for template in PhraseTemplates.all {
             switch template.slotKind {
             case .clock:
+                // Swahili embeds only minutes 0...30 (>30 countdown form is
+                // a standalone predicate — language-review fix).
+                let minutes = template.pair == .deSw
+                    ? [0, 15, 20, 25, 30] : [0, 15, 20, 30, 35, 45, 55]
                 for h in [0, 6, 9, 13, 14, 20, 23] {
-                    for m in [0, 15, 20, 30, 35, 45, 55] {
+                    for m in minutes {
                         let slot = Trainer.clock(hour: h, minute: m, language: template.targetLanguage)
                         let task = PhraseSlots.instantiate(template: template, hour: h, minute: m)
                         verifyVariantCoverage(template: template, slot: slot, task: task, value: nil)
@@ -169,10 +188,16 @@ struct PhraseSlotTests {
 
     private func verifyVariantCoverage(template: PhraseTemplate, slot: TrainerTask,
                                        task: TrainerTask, value: Int?) {
-        #expect(task.accepted.count == slot.accepted.count,
-                "\(template.id): sentence per variant (\(slot.accepted))")
+        // masculineSlot templates drop feminine-final variants by design.
+        let expectedVariants = slot.accepted.filter { variant in
+            guard template.masculineSlot, let last = variant.split(separator: " ").last
+            else { return true }
+            return last != "одна" && last != "дві"
+        }
+        #expect(task.accepted.count == expectedVariants.count,
+                "\(template.id): sentence per variant (\(expectedVariants))")
         #expect(Set(task.accepted).count == task.accepted.count, "\(template.id): duplicates")
-        for variant in slot.accepted {
+        for variant in expectedVariants {
             let sentence = render(template, variant: variant, value: value)
             #expect(task.accepted.filter { $0 == sentence }.count == 1,
                     "\(template.id): variant „\(variant)“ missing/duplicated in \(task.accepted)")
@@ -189,15 +214,22 @@ struct PhraseSlotTests {
             var b = SplitMix64(state: 0xC0FFEE)
             for _ in 0..<50 {
                 let sampled = PhraseSlots.sample(template: template, using: &a)
-                // Reconstruct via the underlying Trainer sample + instantiate.
-                let slot = Trainer.sample(kind: template.slotKind,
-                                          language: template.targetLanguage, using: &b)
+                // Reconstruct with the same-seeded RNG draws.
                 let expected: TrainerTask
-                if template.slotKind == .clock {
+                if template.slotKind == .clock, template.pair == .deSw {
+                    // Mirrors PhraseSlots.sample's restricted Swahili draw.
+                    let hour = Int(b.next() % 24)
+                    let minute = Int(b.next() % 7) * 5
+                    expected = PhraseSlots.instantiate(template: template, hour: hour, minute: minute)
+                } else if template.slotKind == .clock {
+                    let slot = Trainer.sample(kind: .clock,
+                                              language: template.targetLanguage, using: &b)
                     let parts = slot.prompt.split(separator: ":").compactMap { Int($0) }
                     expected = PhraseSlots.instantiate(template: template,
                                                        hour: parts[0], minute: parts[1])
                 } else {
+                    let slot = Trainer.sample(kind: template.slotKind,
+                                              language: template.targetLanguage, using: &b)
                     expected = PhraseSlots.instantiate(template: template, value: Int(slot.prompt)!)
                 }
                 #expect(sampled == expected, "\(template.id)")

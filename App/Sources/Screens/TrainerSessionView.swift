@@ -5,8 +5,28 @@ import DuoKern
 /// grammar as SessionView — type first, "Aufdecken" as fallback — but NO
 /// FSRS/BoxEngine involvement: right or wrong only moves the round score.
 struct TrainerSessionView: View {
-    let kind: TrainerKind
-    let language: TrainerLanguage
+    /// What a round drills: bare slot values, or full sentences composed
+    /// from verified phrase templates + slot values.
+    enum Mode {
+        case slots(TrainerKind, TrainerLanguage)
+        case phrases(LanguagePair)
+
+        var language: TrainerLanguage {
+            switch self {
+            case .slots(_, let language): return language
+            case .phrases(let pair): return pair == .deSw ? .swahili : .ukrainian
+            }
+        }
+
+        var title: String {
+            switch self {
+            case .slots(let kind, _): return kind.trainerTitle
+            case .phrases: return "Sätze"
+            }
+        }
+    }
+
+    let mode: Mode
 
     @Environment(\.dismiss) private var dismiss
 
@@ -21,10 +41,19 @@ struct TrainerSessionView: View {
     @State private var autoAdvance: Task<Void, Never>?
 
     init(kind: TrainerKind, language: TrainerLanguage) {
-        self.kind = kind
-        self.language = language
-        _tasks = State(initialValue: Self.makeRound(kind: kind, language: language))
+        self.init(mode: .slots(kind, language))
     }
+
+    init(phrases pair: LanguagePair) {
+        self.init(mode: .phrases(pair))
+    }
+
+    init(mode: Mode) {
+        self.mode = mode
+        _tasks = State(initialValue: Self.makeRound(mode: mode))
+    }
+
+    private var language: TrainerLanguage { mode.language }
 
     var body: some View {
         Group {
@@ -45,27 +74,43 @@ struct TrainerSessionView: View {
 
     /// Fresh random round; a prompt never repeats back-to-back
     /// (resample once when the draw equals the previous prompt).
-    private static func makeRound(kind: TrainerKind, language: TrainerLanguage) -> [TrainerTask] {
+    private static func makeRound(mode: Mode) -> [TrainerTask] {
         var rng = SystemRandomNumberGenerator()
         var round: [TrainerTask] = []
         for _ in 0..<roundLength {
-            var task = Trainer.sample(kind: kind, language: language, using: &rng)
+            var task = sampleTask(mode: mode, using: &rng)
             if task.prompt == round.last?.prompt {
-                task = Trainer.sample(kind: kind, language: language, using: &rng)
+                task = sampleTask(mode: mode, using: &rng)
             }
             round.append(task)
         }
         return round
     }
 
+    private static func sampleTask(mode: Mode, using rng: inout SystemRandomNumberGenerator) -> TrainerTask {
+        switch mode {
+        case .slots(let kind, let language):
+            return Trainer.sample(kind: kind, language: language, using: &rng)
+        case .phrases(let pair):
+            let templates = PhraseTemplates.templates(pair: pair)
+            let template = templates[Int(rng.next() % UInt64(templates.count))]
+            return PhraseSlots.sample(template: template, using: &rng)
+        }
+    }
+
     private var current: TrainerTask { tasks[index] }
 
     // MARK: - Drill content
 
+    private var isPhrases: Bool {
+        if case .phrases = mode { return true }
+        return false
+    }
+
     private var drillContent: some View {
         ScrollView {
             VStack(spacing: DL.Space.xl) {
-                TrainerPromptCard(task: current)
+                TrainerPromptCard(task: current, sentence: isPhrases)
                 controls
             }
             .padding(.top, DL.Space.s)
@@ -159,7 +204,7 @@ struct TrainerSessionView: View {
 
     private func restart() {
         autoAdvance?.cancel()
-        tasks = Self.makeRound(kind: kind, language: language)
+        tasks = Self.makeRound(mode: mode)
         index = 0
         correctCount = 0
         input = ""
@@ -178,7 +223,7 @@ struct TrainerSessionView: View {
             Text("\(correctCount) von \(Self.roundLength) 🎯")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("\(kind.trainerTitle) · \(language.trainerName)")
+            Text("\(mode.title) · \(language.trainerName)")
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
             Spacer()
@@ -213,24 +258,26 @@ struct TrainerSessionView: View {
 /// tabular-digit prompt ("347", "1978", "14:35").
 private struct TrainerPromptCard: View {
     let task: TrainerTask
+    var sentence = false
 
     var body: some View {
         VStack(spacing: DL.Space.l) {
-            Text(task.kind.trainerEmoji)
+            Text(sentence ? "💬" : task.kind.trainerEmoji)
                 .font(.system(size: 44))
                 .padding(DL.Space.m)
                 .background(Circle().fill(Color.dlSurfaceTint))
                 .accessibilityHidden(true)
-            Text("\(task.kind.trainerPromptLabel) · auf \(task.language.trainerName)")
+            Text("\(sentence ? "Satz" : task.kind.trainerPromptLabel) · auf \(task.language.trainerName)")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
                 .textCase(.uppercase)
             Text(task.prompt)
-                .font(.system(size: 64, weight: .bold, design: .rounded))
+                .font(.system(size: sentence ? 28 : 64, weight: .bold, design: .rounded))
                 .monospacedDigit()
                 .foregroundStyle(Color.dlTextPrimary)
-                .lineLimit(1)
+                .lineLimit(sentence ? 4 : 1)
                 .minimumScaleFactor(0.5)
+                .multilineTextAlignment(.center)
         }
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity)

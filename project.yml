@@ -3,6 +3,7 @@ options:
   bundleIdPrefix: dev.tj
   deploymentTarget:
     iOS: "17.0"
+    watchOS: "10.0"
 packages:
   DuoKern:
     path: Kern
@@ -12,12 +13,15 @@ targets:
     platform: iOS
     sources:
       - App/Sources
+      - Shared/Sources
       - path: content
         type: folder
         buildPhase: resources
     dependencies:
       - package: DuoKern
       - target: DuoLernenWidgets
+        embed: true
+      - target: DuoLernenWatch
         embed: true
     entitlements:
       path: App/DuoLernen.entitlements
@@ -29,7 +33,7 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
         GENERATE_INFOPLIST_FILE: YES
         CURRENT_PROJECT_VERSION: 1
-        MARKETING_VERSION: 0.2.0
+        MARKETING_VERSION: 0.3.0
         SWIFT_VERSION: "6.0"
         TARGETED_DEVICE_FAMILY: "1"
         CODE_SIGN_STYLE: Automatic
@@ -56,7 +60,65 @@ targets:
         # or simctl/App Store installs fail with "Mismatched bundle IDs".
         PRODUCT_BUNDLE_IDENTIFIER: dev.tj.DuoLernen.Widgets
         CURRENT_PROJECT_VERSION: 1
-        MARKETING_VERSION: 0.2.0
+        MARKETING_VERSION: 0.3.0
         SWIFT_VERSION: "6.0"
         TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+  DuoLernenWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "10.0"
+    sources:
+      - Watch/Sources
+      - Shared/Sources
+      - path: Watch/Fixtures
+        buildPhase: resources
+    dependencies:
+      - package: DuoKern
+      - target: DuoLernenWatchWidgets
+        embed: true
+    entitlements:
+      path: Watch/DuoLernenWatch.entitlements
+      properties:
+        com.apple.security.application-groups: [group.dev.tj.duolernen]
+    settings:
+      base:
+        # why: watch-app bundle id must be "<ios-app-id>.watchkitapp" and the
+        # companion key must point back, or the iOS embed is rejected.
+        PRODUCT_BUNDLE_IDENTIFIER: dev.tj.DuoLernen.watchkitapp
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_WKApplication: YES
+        INFOPLIST_KEY_WKCompanionAppBundleIdentifier: dev.tj.DuoLernen
+        INFOPLIST_KEY_CFBundleDisplayName: DuoLernen
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 0.3.0
+        SWIFT_VERSION: "6.0"
+        TARGETED_DEVICE_FAMILY: "4"
+        CODE_SIGN_STYLE: Automatic
+  DuoLernenWatchWidgets:
+    type: app-extension
+    platform: watchOS
+    deploymentTarget: "10.0"
+    sources:
+      - WatchWidgets/Sources
+      - Shared/Sources
+    dependencies:
+      - package: DuoKern
+    entitlements:
+      path: WatchWidgets/DuoLernenWatchWidgets.entitlements
+      properties:
+        com.apple.security.application-groups: [group.dev.tj.duolernen]
+    info:
+      path: WatchWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: DuoLernen
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.tj.DuoLernen.watchkitapp.Widgets
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 0.3.0
+        SWIFT_VERSION: "6.0"
+        TARGETED_DEVICE_FAMILY: "4"
         CODE_SIGN_STYLE: Automatic

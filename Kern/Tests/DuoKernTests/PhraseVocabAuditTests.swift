@@ -14,6 +14,7 @@ struct PhraseVocabAuditTests {
             "tuna",  // tu-na „wir haben“: Subjektpräfix tu- + Possessiv-na (Funktionskonstruktion)
             "tangu", // Präposition „seit“
             "euro",  // internationale Währung, „Euro“ auf beiden Seiten
+            "mwaka", // „Jahr“ — Kopfnomen der Jahresangabe (tangu mwaka …)
         ],
         .deUk: [
             "нас",   // Personalpronomen „uns“ («у нас є» = wir haben)

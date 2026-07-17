@@ -12,9 +12,18 @@ struct TrainerHubView: View {
     @State private var activeDrill: Drill?
 
     private struct Drill: Identifiable {
-        let kind: TrainerKind
-        let language: TrainerLanguage
-        var id: String { "\(kind.rawValue)-\(language.rawValue)" }
+        let mode: TrainerSessionView.Mode
+        let id: String
+
+        init(kind: TrainerKind, language: TrainerLanguage) {
+            mode = .slots(kind, language)
+            id = "\(kind.rawValue)-\(language.rawValue)"
+        }
+
+        init(phrases pair: LanguagePair) {
+            mode = .phrases(pair)
+            id = "phrases-\(pair.rawValue)"
+        }
     }
 
     var body: some View {
@@ -24,7 +33,7 @@ struct TrainerHubView: View {
             }
         }
         .fullScreenCover(item: $activeDrill) { drill in
-            TrainerSessionView(kind: drill.kind, language: drill.language)
+            TrainerSessionView(mode: drill.mode)
         }
         #if DEBUG
         // UI-test hook: `-uitest-trainer numbers|years|clock` opens that drill.
@@ -56,6 +65,7 @@ struct TrainerHubView: View {
                 ForEach(TrainerKind.allCases, id: \.rawValue) { kind in
                     drillChip(kind)
                 }
+                phraseChip(config)
             }
         }
         .padding(DL.Space.xl)
@@ -91,6 +101,35 @@ struct TrainerHubView: View {
         }
         .buttonStyle(TrainerChipButtonStyle())
         .accessibilityLabel("\(kind.trainerTitle) üben, auf \(effectiveLanguage.trainerName)")
+    }
+
+    /// Sentence drill: composes phrase templates with slot values.
+    /// Always DE → target for the box's pair (the language toggle
+    /// doesn't apply — there are no target→DE templates).
+    private func phraseChip(_ config: BoxConfig) -> some View {
+        Button {
+            activeDrill = Drill(phrases: config.pair)
+        } label: {
+            VStack(spacing: DL.Space.s) {
+                Text("💬")
+                    .font(.system(size: 30))
+                    .accessibilityHidden(true)
+                Text("Sätze")
+                    .font(DL.Fonts.caption)
+                    .foregroundStyle(Color.dlTextPrimary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+            }
+            .frame(maxWidth: .infinity, minHeight: 72)
+            .padding(.vertical, DL.Space.s)
+            .padding(.horizontal, DL.Space.xs)
+            .background(
+                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
+                    .fill(Color.dlSurfaceTint)
+            )
+        }
+        .buttonStyle(TrainerChipButtonStyle())
+        .accessibilityLabel("Sätze üben")
     }
 
     // MARK: - Language toggle

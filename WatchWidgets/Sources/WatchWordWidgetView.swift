@@ -1,0 +1,71 @@
+import WidgetKit
+import SwiftUI
+
+/// Complication faces: rectangular = article-colored word + translation;
+/// circular/corner = emoji + due count.
+struct WatchWordWidgetView: View {
+    @Environment(\.widgetFamily) private var family
+    let entry: WatchWordEntry
+
+    var body: some View {
+        switch family {
+        case .accessoryRectangular:
+            rectangular
+        case .accessoryCorner:
+            corner
+        default:
+            circular
+        }
+    }
+
+    private var rectangular: some View {
+        VStack(alignment: .leading, spacing: 1) {
+            HStack(spacing: 4) {
+                Text(entry.emoji)
+                if let article = entry.article {
+                    Text(article)
+                        .foregroundStyle(articleColor(article))
+                }
+                Text(entry.german)
+                    .foregroundStyle(entry.article.map(articleColor) ?? .white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+            }
+            .font(.system(.headline, design: .rounded, weight: .bold))
+            Text(entry.translation)
+                .font(.system(.footnote, design: .rounded))
+                .foregroundStyle(.secondary)
+                .lineLimit(2)
+                .minimumScaleFactor(0.7)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var circular: some View {
+        VStack(spacing: 0) {
+            Text(entry.emoji)
+                .font(.system(size: 20))
+            Text("\(entry.dueCount)")
+                .font(.system(.caption2, design: .rounded, weight: .bold))
+        }
+    }
+
+    private var corner: some View {
+        Text(entry.emoji)
+            .font(.system(size: 24))
+            .widgetLabel {
+                Text(entry.dueCount > 0 ? "\(entry.dueCount) fällig" : "Alles sitzt")
+                    .font(.system(.caption2, design: .rounded))
+            }
+    }
+
+    /// Article colors, dark variants of the phone palette (Theme.swift).
+    private func articleColor(_ article: String) -> Color {
+        switch article.lowercased() {
+        case "der": return Color(red: 0x74 / 255.0, green: 0xC0 / 255.0, blue: 0xFC / 255.0)
+        case "die": return Color(red: 0xF7 / 255.0, green: 0x83 / 255.0, blue: 0xAC / 255.0)
+        case "das": return Color(red: 0x69 / 255.0, green: 0xDB / 255.0, blue: 0x7C / 255.0)
+        default: return .white
+        }
+    }
+}

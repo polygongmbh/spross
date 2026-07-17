@@ -1,0 +1,86 @@
+{
+  "pair": "de-sw",
+  "direction": "deToTarget",
+  "generated": "2026-07-01T12:00:00Z",
+  "answeredCardIDs": [],
+  "cards": [
+    {
+      "id": "fixture-kuehlschrank",
+      "german": "Kühlschrank",
+      "article": "der",
+      "plural": "Pl. die Kühlschränke",
+      "emoji": "🧊",
+      "translation": "friji"
+    },
+    {
+      "id": "fixture-spuelmaschine",
+      "german": "Spülmaschine",
+      "article": "die",
+      "plural": "Pl. -n",
+      "emoji": "💦",
+      "translation": "mashine ya kuosha vyombo"
+    },
+    {
+      "id": "fixture-messer",
+      "german": "Messer",
+      "article": "das",
+      "plural": "Pl. –",
+      "emoji": "🔪",
+      "translation": "kisu"
+    },
+    {
+      "id": "fixture-sofa",
+      "german": "Sofa",
+      "article": "das",
+      "plural": "Pl. -s",
+      "emoji": "🛋️",
+      "translation": "kochi",
+      "note": "kochi kommt vom englischen \"couch\""
+    },
+    {
+      "id": "fixture-fernseher",
+      "german": "Fernseher",
+      "article": "der",
+      "plural": "Pl. –",
+      "emoji": "📺",
+      "translation": "televisheni / runinga"
+    }
+  ],
+  "scheduling": [
+    {
+      "cardID": "fixture-kuehlschrank",
+      "direction": "deToTarget",
+      "phase": "learning",
+      "due": "2026-01-01T08:00:00Z",
+      "stability": 0.4
+    },
+    {
+      "cardID": "fixture-spuelmaschine",
+      "direction": "deToTarget",
+      "phase": "review",
+      "due": "2026-01-02T08:00:00Z",
+      "stability": 4.2
+    },
+    {
+      "cardID": "fixture-messer",
+      "direction": "deToTarget",
+      "phase": "review",
+      "due": "2026-01-03T08:00:00Z",
+      "stability": 7.9
+    },
+    {
+      "cardID": "fixture-sofa",
+      "direction": "deToTarget",
+      "phase": "relearning",
+      "due": "2026-01-01T09:00:00Z",
+      "stability": 1.1
+    },
+    {
+      "cardID": "fixture-fernseher",
+      "direction": "deToTarget",
+      "phase": "review",
+      "due": "2099-01-01T08:00:00Z",
+      "stability": 21.0
+    }
+  ]
+}

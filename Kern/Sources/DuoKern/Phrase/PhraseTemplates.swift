@@ -66,9 +66,11 @@ public enum PhraseTemplates {
               slotKind: .numbers),
         .init(id: "sw-year-seit", pair: .deSw,
               deTemplate: "Ich lerne seit {slot} Deutsch.",
-              targetTemplate: "Ninajifunza Kijerumani tangu {slot}.",
+              // "tangu mwaka …" — a bare cardinal after tangu doesn't read
+              // as a year (language-review finding).
+              targetTemplate: "Ninajifunza Kijerumani tangu mwaka {slot}.",
               slotKind: .years,
-              gloss: "Jahreszahl als Kardinalzahl gelesen"),
+              gloss: "Jahreszahl als Kardinalzahl gelesen — mwaka = Jahr"),
         .init(id: "sw-year-schreiben", pair: .deSw,
               deTemplate: "Schreib bitte die Jahreszahl: {slot}.",
               targetTemplate: "Andika, tafadhali: {slot}.",
@@ -99,7 +101,8 @@ public enum PhraseTemplates {
               deTemplate: "Das kostet {slot} Euro.",
               targetTemplate: "Це {slot} євро.",
               slotKind: .numbers,
-              gloss: "wörtl.: „Das sind … Euro.“ — євро ist unveränderlich"),
+              gloss: "wörtl.: „Das sind … Euro.“ — євро ist unveränderlich",
+              masculineSlot: true),
         .init(id: "uk-num-hefte", pair: .deUk,
               deTemplate: "Ich habe {slot} Hefte.",
               targetTemplate: "У мене є {slot} {count}.",

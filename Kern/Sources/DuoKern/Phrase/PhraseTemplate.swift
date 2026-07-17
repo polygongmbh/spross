@@ -42,9 +42,15 @@ public struct PhraseTemplate: Sendable, Equatable, Identifiable {
     /// Present only on `.numbers` templates whose target noun must agree
     /// with the numeral (Ukrainian). `targetTemplate` then contains `{count}`.
     public var countForms: CountForms?
+    /// Ukrainian templates counting a masculine/indeclinable noun: feminine
+    /// numeral variants (одна/дві) must NOT be accepted — these templates
+    /// exist to train exactly that agreement (language-review finding).
+    /// Implied for all `countForms` templates.
+    public var masculineSlot: Bool
 
     public init(id: String, pair: LanguagePair, deTemplate: String, targetTemplate: String,
-                slotKind: TrainerKind, gloss: String? = nil, countForms: CountForms? = nil) {
+                slotKind: TrainerKind, gloss: String? = nil, countForms: CountForms? = nil,
+                masculineSlot: Bool = false) {
         self.id = id
         self.pair = pair
         self.deTemplate = deTemplate
@@ -52,6 +58,7 @@ public struct PhraseTemplate: Sendable, Equatable, Identifiable {
         self.slotKind = slotKind
         self.gloss = gloss
         self.countForms = countForms
+        self.masculineSlot = masculineSlot || countForms != nil
     }
 
     public var targetLanguage: TrainerLanguage {

@@ -48,6 +48,8 @@ final class AppModel {
 
     let store: BoxStore
     let calendar = Calendar.current
+    /// Watch sync bridge (PhoneConnectivity.swift): snapshot down, events up.
+    let watchBridge = PhoneConnectivity()
     private static let selectedPairKey = "selectedPair"
 
     init(store: BoxStore = BoxStore()) {
@@ -57,6 +59,7 @@ final class AppModel {
     // MARK: - Launch
 
     func start() async {
+        startWatchBridge()
         var pairOverride: LanguagePair?
         #if DEBUG
         // UI-test hooks: `-uitest-pair de-sw` skips onboarding with that pair,
@@ -103,6 +106,7 @@ final class AppModel {
             UserDefaults.standard.set(pair.rawValue, forKey: Self.selectedPairKey)
             loadErrorMessage = nil
             refreshStats()
+            pushWatchSnapshot()
             phase = .ready
         } catch {
             loadErrorMessage = "Die Inhalte konnten nicht geladen werden. (\(error.localizedDescription))"
@@ -240,10 +244,14 @@ final class AppModel {
     func persistNow() {
         foldPartialSession()
         guard let box else { return }
+        pushWatchSnapshot() // app background → refresh the watch (sync spec)
         Task { [store] in try? await store.saveNow(box) }
     }
 
     func persist(_ state: BoxState, immediate: Bool = false) {
+        // why: every save path also refreshes the watch snapshot, so config
+        // changes and session end (immediate saves) reach the watch promptly.
+        if immediate { pushWatchSnapshot() }
         Task { [store] in
             if immediate {
                 try? await store.saveNow(state)
