@@ -1,7 +1,161 @@
 {
  "pair": "de-sw",
- "source": "sprachposter session 2026-07",
+ "source": "sprachposter session 2026-07 + basics/amt/arzt/arbeit packs (2026-07-17, verified)",
  "areas": [
+  {
+   "area": "basics",
+   "title": {
+    "de": "Die ersten Wörter",
+    "sw": "Maneno ya kwanza · tuanze!"
+   },
+   "nouns": [
+    {
+     "emoji": "🗣️",
+     "article": "die",
+     "de": "Sprache",
+     "plural": "Pl. -n",
+     "sw": "lugha"
+    },
+    {
+     "emoji": "💬",
+     "article": "das",
+     "de": "Wort",
+     "plural": "Pl. die Wörter",
+     "sw": "neno (Pl. maneno)"
+    },
+    {
+     "emoji": "📛",
+     "article": "der",
+     "de": "Name",
+     "plural": "Pl. -n",
+     "sw": "jina (Pl. majina)"
+    },
+    {
+     "emoji": "🆘",
+     "article": "die",
+     "de": "Hilfe",
+     "plural": "Pl. -n (selten)",
+     "sw": "msaada"
+    }
+   ],
+   "verbs": [
+    {
+     "de": "heißen",
+     "sw": "kuitwa · wörtl. „gerufen werden“"
+    },
+    {
+     "de": "kommen (aus)",
+     "sw": "kutoka"
+    },
+    {
+     "de": "sagen",
+     "sw": "kusema"
+    },
+    {
+     "de": "wissen",
+     "sw": "kujua"
+    },
+    {
+     "de": "brauchen",
+     "sw": "kuhitaji"
+    },
+    {
+     "de": "danken",
+     "sw": "kushukuru"
+    }
+   ],
+   "phrases": [
+    {
+     "de": "Hallo! / Guten Tag!",
+     "sw": "Hujambo! / Habari!",
+     "note": "„Hujambo?“ wörtl. „Hast du kein Problem?“ — Antwort: „Sijambo!“"
+    },
+    {
+     "de": "Danke schön!",
+     "sw": "Asante sana!",
+     "note": "wörtl. „Danke sehr!“"
+    },
+    {
+     "de": "Bitte!",
+     "sw": "Tafadhali! / Karibu!",
+     "note": "tafadhali = „bitte“ beim Bitten · karibu = „bitte sehr!“ beim Geben — wörtl. „Komm näher!“, auch „Willkommen!“"
+    },
+    {
+     "de": "Entschuldigung!",
+     "sw": "Samahani!"
+    },
+    {
+     "de": "Ja. / Nein.",
+     "sw": "Ndiyo. / Hapana."
+    },
+    {
+     "de": "Wie heißen Sie? — Ich heiße …",
+     "sw": "Unaitwa nani? — Naitwa …",
+     "note": "wörtl. „Du wirst wer genannt? — Ich werde … genannt.“ — kuitwa in Frage UND Antwort"
+    },
+    {
+     "de": "Woher kommen Sie?",
+     "sw": "Unatoka wapi?"
+    },
+    {
+     "de": "Sprechen Sie Englisch?",
+     "sw": "Unazungumza Kiingereza?",
+     "note": "Ki- = Sprach-Präfix: Kiingereza, Kijerumani, Kiswahili"
+    },
+    {
+     "de": "Ich spreche nur ein bisschen Deutsch.",
+     "sw": "Ninazungumza Kijerumani kidogo tu."
+    },
+    {
+     "de": "Ich weiß nicht.",
+     "sw": "Sijui.",
+     "note": "wieder si-: najua „ich weiß“ → sijui"
+    },
+    {
+     "de": "Wie bitte?",
+     "sw": "Samahani, naomba urudie.",
+     "note": "naomba = „ich bitte (darum)“ — das höfliche Allzweckwort"
+    },
+    {
+     "de": "Ich brauche Hilfe.",
+     "sw": "Nahitaji msaada."
+    },
+    {
+     "de": "Alles gut.",
+     "sw": "Hakuna shida.",
+     "note": "wörtl. „Es gibt kein Problem.“ — wie das berühmte „hakuna matata“"
+    },
+    {
+     "de": "Auf Wiedersehen! / Tschüss!",
+     "sw": "Kwaheri!",
+     "note": "wörtl. „Mit Glück/Segen!“ (kwa heri) · zu mehreren: Kwaherini!"
+    },
+    {
+     "de": "Wie nennt man das?",
+     "sw": "Hii inaitwaje?",
+     "note": "wörtl. „Dies wird-genannt-wie?“ — -je am Verbende = „wie?“; wieder kuitwa!"
+    },
+    {
+     "de": "Wie geht es Ihnen? — Danke, gut.",
+     "sw": "Habari yako? — Nzuri, asante!",
+     "note": "wörtl. „Deine Neuigkeiten? — Gut, danke!“ — die Antwort ist fast immer nzuri"
+    },
+    {
+     "de": "Können Sie das bitte wiederholen?",
+     "sw": "Unaweza kurudia, tafadhali?"
+    },
+    {
+     "de": "Ich verstehe (nicht).",
+     "sw": "Naelewa. / Sielewi.",
+     "note": "si- ersetzt nina- und die Endung wechselt -a → -i: naelewa → sielewi"
+    },
+    {
+     "de": "Langsamer, bitte!",
+     "sw": "Polepole, tafadhali!",
+     "note": "polepole (ein Wort) = „schön langsam“ — die Verdopplung von pole (sachte)"
+    }
+   ]
+  },
   {
    "area": "kitchen",
    "title": {
@@ -1324,6 +1478,494 @@
      "de": "Du schaffst das bestimmt!",
      "sw": "Hakika utaweza!",
      "note": "wörtl. „Sicher, du wirst können!“"
+    }
+   ]
+  },
+  {
+   "area": "amt",
+   "title": {
+    "de": "Das Amt & die Behörde",
+    "sw": "Ofisini · subiri zamu yako!"
+   },
+   "nouns": [
+    {
+     "emoji": "🏛️",
+     "article": "das",
+     "de": "Amt",
+     "plural": "Pl. die Ämter",
+     "sw": "ofisi ya serikali"
+    },
+    {
+     "emoji": "📄",
+     "article": "das",
+     "de": "Formular",
+     "plural": "Pl. -e",
+     "sw": "fomu"
+    },
+    {
+     "emoji": "📝",
+     "article": "der",
+     "de": "Antrag",
+     "plural": "Pl. die Anträge",
+     "sw": "ombi (Pl. maombi)"
+    },
+    {
+     "emoji": "🪪",
+     "article": "der",
+     "de": "Ausweis",
+     "plural": "Pl. -e",
+     "sw": "kitambulisho"
+    },
+    {
+     "emoji": "🛂",
+     "article": "der",
+     "de": "Aufenthaltstitel",
+     "plural": "Pl. –",
+     "sw": "kibali cha ukaaji"
+    },
+    {
+     "emoji": "✍️",
+     "article": "die",
+     "de": "Unterschrift",
+     "plural": "Pl. -en",
+     "sw": "sahihi"
+    },
+    {
+     "emoji": "🎫",
+     "article": "die",
+     "de": "Wartenummer",
+     "plural": "Pl. -n",
+     "sw": "namba ya foleni"
+    },
+    {
+     "emoji": "🧑‍💼",
+     "article": "der",
+     "de": "Sachbearbeiter",
+     "plural": "Pl. – · ♀ die Sachbearbeiterin",
+     "sw": "afisa (Pl. maafisa)"
+    },
+    {
+     "emoji": "⏳",
+     "article": "die",
+     "de": "Frist",
+     "plural": "Pl. -en",
+     "sw": "tarehe ya mwisho"
+    },
+    {
+     "emoji": "🏠",
+     "article": "die",
+     "de": "Anmeldung",
+     "plural": "Pl. -en",
+     "sw": "usajili wa makazi"
+    },
+    {
+     "emoji": "📂",
+     "article": "die",
+     "de": "Unterlagen",
+     "plural": "nur Plural",
+     "sw": "nyaraka"
+    }
+   ],
+   "verbs": [
+    {
+     "de": "ausfüllen",
+     "sw": "kujaza fomu"
+    },
+    {
+     "de": "unterschreiben",
+     "sw": "kutia sahihi"
+    },
+    {
+     "de": "beantragen",
+     "sw": "kuomba"
+    },
+    {
+     "de": "abgeben",
+     "sw": "kukabidhi"
+    },
+    {
+     "de": "einreichen",
+     "sw": "kuwasilisha"
+    },
+    {
+     "de": "verlängern",
+     "sw": "kuhuisha"
+    },
+    {
+     "de": "mitbringen",
+     "sw": "kuleta"
+    },
+    {
+     "de": "kopieren",
+     "sw": "kupiga fotokopi · wörtl. „eine Kopie schlagen“ — wie kupiga simu"
+    },
+    {
+     "de": "ablaufen",
+     "sw": "kuisha muda wake"
+    }
+   ],
+   "phrases": [
+    {
+     "de": "Wo muss ich unterschreiben?",
+     "sw": "Nitie sahihi wapi?"
+    },
+    {
+     "de": "Ich möchte meinen Aufenthaltstitel verlängern.",
+     "sw": "Ningependa kuhuisha kibali changu cha ukaaji.",
+     "note": "kuhuisha = erneuern, wörtl. „wiederbeleben“ (-hai = lebendig)"
+    },
+    {
+     "de": "Bitte füllen Sie das Formular vollständig aus.",
+     "sw": "Tafadhali jaza fomu kikamilifu."
+    },
+    {
+     "de": "Ziehen Sie bitte zuerst eine Wartenummer!",
+     "sw": "Tafadhali chukua namba ya foleni kwanza!",
+     "note": "foleni (Warteschlange) kommt vom englischen „fall in line“!"
+    },
+    {
+     "de": "Ich brauche für den Antrag einen Dolmetscher.",
+     "sw": "Nahitaji mkalimani kwa ajili ya maombi yangu."
+    },
+    {
+     "de": "Haben Sie alle Unterlagen dabei?",
+     "sw": "Je, umeleta nyaraka zote?"
+    },
+    {
+     "de": "Der Bescheid kommt per Post.",
+     "sw": "Barua ya uamuzi itakuja kwa posta.",
+     "note": "wörtl. „Brief der Entscheidung“ — so umschreibt man den deutschen „Bescheid“"
+    },
+    {
+     "de": "Wann läuft mein Ausweis ab?",
+     "sw": "Kitambulisho changu kinaisha lini?",
+     "note": "wörtl. „Wann endet mein Ausweis?“ — ablaufen = kuisha (enden)"
+    }
+   ]
+  },
+  {
+   "area": "arzt",
+   "title": {
+    "de": "Der Arzt & die Gesundheit",
+    "sw": "Kwa daktari · afya njema!"
+   },
+   "nouns": [
+    {
+     "emoji": "🧑‍⚕️",
+     "article": "der",
+     "de": "Arzt",
+     "plural": "Pl. die Ärzte · ♀ die Ärztin",
+     "sw": "daktari (Pl. madaktari)"
+    },
+    {
+     "emoji": "🏥",
+     "article": "die",
+     "de": "Praxis",
+     "plural": "Pl. die Praxen",
+     "sw": "kliniki"
+    },
+    {
+     "emoji": "📅",
+     "article": "der",
+     "de": "Termin",
+     "plural": "Pl. -e",
+     "sw": "miadi"
+    },
+    {
+     "emoji": "🤕",
+     "article": "der",
+     "de": "Schmerz",
+     "plural": "Pl. -en",
+     "sw": "maumivu (nur Pl.)"
+    },
+    {
+     "emoji": "🌡️",
+     "article": "das",
+     "de": "Fieber",
+     "plural": "Pl. – (selten)",
+     "sw": "homa"
+    },
+    {
+     "emoji": "💊",
+     "article": "die",
+     "de": "Tablette",
+     "plural": "Pl. -n",
+     "sw": "kidonge"
+    },
+    {
+     "emoji": "📃",
+     "article": "das",
+     "de": "Rezept",
+     "plural": "Pl. -e",
+     "sw": "cheti cha dawa"
+    },
+    {
+     "emoji": "⚕️",
+     "article": "die",
+     "de": "Apotheke",
+     "plural": "Pl. -n",
+     "sw": "duka la dawa"
+    },
+    {
+     "emoji": "💳",
+     "article": "die",
+     "de": "Versichertenkarte",
+     "plural": "Pl. -n",
+     "sw": "kadi ya bima ya afya"
+    },
+    {
+     "emoji": "🛡️",
+     "article": "die",
+     "de": "Krankenkasse",
+     "plural": "Pl. -n",
+     "sw": "mfuko wa bima ya afya"
+    },
+    {
+     "emoji": "😷",
+     "article": "der",
+     "de": "Husten",
+     "plural": "Pl. – (selten)",
+     "sw": "kikohozi"
+    },
+    {
+     "emoji": "🤧",
+     "article": "die",
+     "de": "Erkältung",
+     "plural": "Pl. -en",
+     "sw": "mafua (nur Pl.)"
+    }
+   ],
+   "verbs": [
+    {
+     "de": "wehtun",
+     "sw": "kuuma"
+    },
+    {
+     "de": "husten",
+     "sw": "kukohoa"
+    },
+    {
+     "de": "untersuchen",
+     "sw": "kupima"
+    },
+    {
+     "de": "verschreiben",
+     "sw": "kuandika dawa · wörtl. „Medizin schreiben“"
+    },
+    {
+     "de": "einnehmen",
+     "sw": "kunywa dawa"
+    },
+    {
+     "de": "abholen",
+     "sw": "kuchukua"
+    },
+    {
+     "de": "sich krankmelden",
+     "sw": "kutoa taarifa ya ugonjwa"
+    },
+    {
+     "de": "sich ausruhen",
+     "sw": "kupumzika"
+    },
+    {
+     "de": "absagen",
+     "sw": "kughairi"
+    }
+   ],
+   "phrases": [
+    {
+     "de": "Ich habe um zehn Uhr einen Termin in der Praxis.",
+     "sw": "Nina miadi kwenye kliniki saa nne asubuhi.",
+     "note": "saa nne = wörtl. „vierte Stunde“! Die Swahili-Uhr startet um 6 Uhr morgens: 10 Uhr = saa 4"
+    },
+    {
+     "de": "Mein Hals tut sehr weh.",
+     "sw": "Koo linaniuma sana.",
+     "note": "wörtl. „Die Kehle schmerzt mich sehr“ — der Körperteil ist das Subjekt!"
+    },
+    {
+     "de": "Ich habe seit gestern Fieber.",
+     "sw": "Nina homa tangu jana."
+    },
+    {
+     "de": "Bitte nehmen Sie die Tabletten zweimal täglich ein.",
+     "sw": "Tafadhali kunywa vidonge mara mbili kwa siku.",
+     "note": "wörtl. „Trinken Sie die Tabletten …“ — Medizin wird auf Swahili getrunken, auch Tabletten!"
+    },
+    {
+     "de": "Gute Besserung!",
+     "sw": "Pole! Upone haraka!",
+     "note": "pole = Mitgefühls-Wort ohne deutsches Gegenstück; upone haraka wörtl. „mögest du schnell heilen“"
+    },
+    {
+     "de": "Mit dem Rezept gehen Sie zur Apotheke.",
+     "sw": "Nenda na cheti cha dawa hadi duka la dawa.",
+     "note": "wörtl. „Geh mit dem Medizin-Zettel zum Medizin-Laden“ — dawa steckt in beiden!"
+    },
+    {
+     "de": "Zeigen Sie mir bitte Ihre Versichertenkarte.",
+     "sw": "Tafadhali nionyeshe kadi yako ya bima ya afya."
+    },
+    {
+     "de": "Ich muss den Termin leider absagen.",
+     "sw": "Samahani, lazima nighairi miadi.",
+     "note": "miadi sieht aus wie ein Plural (mi-), ist aber Einzahl — arabisches Lehnwort"
+    }
+   ]
+  },
+  {
+   "area": "arbeit",
+   "title": {
+    "de": "Die Arbeit & der Beruf",
+    "sw": "Kazini · tuchape kazi!"
+   },
+   "nouns": [
+    {
+     "emoji": "💼",
+     "article": "die",
+     "de": "Arbeit",
+     "plural": "Pl. -en",
+     "sw": "kazi"
+    },
+    {
+     "emoji": "📩",
+     "article": "die",
+     "de": "Bewerbung",
+     "plural": "Pl. -en",
+     "sw": "maombi ya kazi (formal Pl.; Sg. ombi la kazi)"
+    },
+    {
+     "emoji": "📜",
+     "article": "der",
+     "de": "Lebenslauf",
+     "plural": "Pl. die Lebensläufe",
+     "sw": "wasifu"
+    },
+    {
+     "emoji": "📑",
+     "article": "der",
+     "de": "Vertrag",
+     "plural": "Pl. die Verträge",
+     "sw": "mkataba"
+    },
+    {
+     "emoji": "💶",
+     "article": "das",
+     "de": "Gehalt",
+     "plural": "Pl. die Gehälter",
+     "sw": "mshahara"
+    },
+    {
+     "emoji": "👥",
+     "article": "der",
+     "de": "Kollege",
+     "plural": "Pl. -n · ♀ die Kollegin",
+     "sw": "mfanyakazi mwenza"
+    },
+    {
+     "emoji": "👔",
+     "article": "der",
+     "de": "Chef",
+     "plural": "Pl. -s · ♀ die Chefin",
+     "sw": "bosi"
+    },
+    {
+     "emoji": "🕗",
+     "article": "die",
+     "de": "Schicht",
+     "plural": "Pl. -en",
+     "sw": "zamu"
+    },
+    {
+     "emoji": "🏖️",
+     "article": "der",
+     "de": "Urlaub",
+     "plural": "Pl. -e",
+     "sw": "likizo"
+    },
+    {
+     "emoji": "🏢",
+     "article": "die",
+     "de": "Firma",
+     "plural": "Pl. die Firmen",
+     "sw": "kampuni"
+    }
+   ],
+   "verbs": [
+    {
+     "de": "sich bewerben",
+     "sw": "kuomba kazi"
+    },
+    {
+     "de": "sich vorstellen",
+     "sw": "kujitambulisha"
+    },
+    {
+     "de": "verdienen",
+     "sw": "kuchuma pesa · wörtl. „Geld pflücken“"
+    },
+    {
+     "de": "anfangen",
+     "sw": "kuanza"
+    },
+    {
+     "de": "aufhören",
+     "sw": "kuacha"
+    },
+    {
+     "de": "kündigen",
+     "sw": "kuacha kazi"
+    },
+    {
+     "de": "einstellen",
+     "sw": "kuajiri"
+    },
+    {
+     "de": "helfen",
+     "sw": "kusaidia"
+    },
+    {
+     "de": "Überstunden machen",
+     "sw": "kufanya saa za ziada"
+    }
+   ],
+   "phrases": [
+    {
+     "de": "Morgen stelle ich mich bei der Firma vor.",
+     "sw": "Kesho nitajitambulisha kwenye kampuni.",
+     "note": "kujitambulisha, kitambulisho (Ausweis) und kutambua (erkennen) sind eine Wortfamilie"
+    },
+    {
+     "de": "Meine Schicht fängt heute um sechs Uhr an.",
+     "sw": "Leo zamu yangu inaanza saa kumi na mbili asubuhi.",
+     "note": "6 Uhr morgens = saa 12 (saa kumi na mbili) — Sonnenaufgang, Start der Swahili-Stunde!"
+    },
+    {
+     "de": "Ich schicke Ihnen die Krankmeldung sofort.",
+     "sw": "Nitakutumia cheti cha daktari mara moja.",
+     "note": "wörtl. „Zettel vom Arzt“ — krankmelden heißt in Ostafrika: das Attest schicken"
+    },
+    {
+     "de": "Schönen Feierabend!",
+     "sw": "Pumzika vizuri baada ya kazi!",
+     "note": "„Feierabend“ gibt es auf Swahili nicht — man wünscht: „Ruh dich nach der Arbeit gut aus!“"
+    },
+    {
+     "de": "Können Sie mir kurz helfen?",
+     "sw": "Unaweza kunisaidia kidogo?"
+    },
+    {
+     "de": "Ich möchte nächste Woche Urlaub nehmen.",
+     "sw": "Ningependa kuchukua likizo wiki ijayo."
+    },
+    {
+     "de": "Lesen Sie den Vertrag genau durch!",
+     "sw": "Soma mkataba kwa makini!"
+    },
+    {
+     "de": "Wie hoch ist das Gehalt?",
+     "sw": "Mshahara ni kiasi gani?"
     }
    ]
   }

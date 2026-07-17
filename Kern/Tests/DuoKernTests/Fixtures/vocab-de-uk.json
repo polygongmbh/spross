@@ -1,7 +1,155 @@
 {
  "pair": "de-uk",
- "source": "sprachposter session 2026-07",
+ "source": "sprachposter session 2026-07 + basics/amt/arzt/arbeit packs (2026-07-17, verified)",
  "areas": [
+  {
+   "area": "basics",
+   "title": {
+    "de": "Die ersten Wörter",
+    "uk": "Перші слова · почнімо!"
+   },
+   "nouns": [
+    {
+     "emoji": "🗣️",
+     "article": "die",
+     "de": "Sprache",
+     "plural": "Pl. -n",
+     "uk": "мова"
+    },
+    {
+     "emoji": "💬",
+     "article": "das",
+     "de": "Wort",
+     "plural": "Pl. die Wörter",
+     "uk": "слово"
+    },
+    {
+     "emoji": "📛",
+     "article": "der",
+     "de": "Name",
+     "plural": "Pl. -n",
+     "uk": "ім'я"
+    },
+    {
+     "emoji": "🆘",
+     "article": "die",
+     "de": "Hilfe",
+     "plural": "Pl. -n (selten)",
+     "uk": "допомога"
+    }
+   ],
+   "verbs": [
+    {
+     "de": "heißen",
+     "uk": "називатися"
+    },
+    {
+     "de": "kommen (aus)",
+     "uk": "бути родом з"
+    },
+    {
+     "de": "sagen",
+     "uk": "казати"
+    },
+    {
+     "de": "wissen",
+     "uk": "знати"
+    },
+    {
+     "de": "brauchen",
+     "uk": "потребувати"
+    },
+    {
+     "de": "danken",
+     "uk": "дякувати · verwandt mit „danken“!"
+    }
+   ],
+   "phrases": [
+    {
+     "de": "Hallo! / Guten Tag!",
+     "uk": "Привіт! / Добрий день!",
+     "note": "Привіт nur informell unter Bekannten — im Amt oder beim Arzt: Добрий день!"
+    },
+    {
+     "de": "Danke schön!",
+     "uk": "Дуже дякую!"
+    },
+    {
+     "de": "Bitte!",
+     "uk": "Будь ласка!",
+     "note": "ein Wort für „bitte“ und „gern geschehen“ — wörtl. „sei so freundlich“"
+    },
+    {
+     "de": "Entschuldigung!",
+     "uk": "Вибачте!"
+    },
+    {
+     "de": "Ja. / Nein.",
+     "uk": "Так. / Ні."
+    },
+    {
+     "de": "Wie heißen Sie? — Ich heiße …",
+     "uk": "Як вас звуть? — Мене звуть …",
+     "note": "wörtl. „Wie Sie rufen? — Mich rufen …“ — ganz ohne „heißen“"
+    },
+    {
+     "de": "Woher kommen Sie?",
+     "uk": "Звідки ви?",
+     "note": "wörtl. „Woher Sie?“ — „sind“ fällt einfach weg"
+    },
+    {
+     "de": "Sprechen Sie Englisch?",
+     "uk": "Ви розмовляєте англійською?"
+    },
+    {
+     "de": "Ich spreche nur ein bisschen Deutsch.",
+     "uk": "Я лише трохи розмовляю німецькою."
+    },
+    {
+     "de": "Ich weiß nicht.",
+     "uk": "Я не знаю."
+    },
+    {
+     "de": "Wie bitte?",
+     "uk": "Перепрошую?",
+     "note": "auch als „Entschuldigung!“ nutzbar — wörtl. „ich bitte nochmals“"
+    },
+    {
+     "de": "Ich brauche Hilfe.",
+     "uk": "Мені потрібна допомога.",
+     "note": "wörtl. „Mir (ist) Hilfe nötig.“"
+    },
+    {
+     "de": "Alles gut.",
+     "uk": "Все гаразд."
+    },
+    {
+     "de": "Auf Wiedersehen! / Tschüss!",
+     "uk": "До побачення! / Бувай!",
+     "note": "Бувай! wörtl. „Bleib (gesund)!“"
+    },
+    {
+     "de": "Wie nennt man das?",
+     "uk": "Як це називається?"
+    },
+    {
+     "de": "Wie geht es Ihnen? — Danke, gut.",
+     "uk": "Як у вас справи? — Дякую, добре!"
+    },
+    {
+     "de": "Können Sie das bitte wiederholen?",
+     "uk": "Повторіть, будь ласка."
+    },
+    {
+     "de": "Ich verstehe (nicht).",
+     "uk": "Я (не) розумію."
+    },
+    {
+     "de": "Langsamer, bitte!",
+     "uk": "Повільніше, будь ласка!"
+    }
+   ]
+  },
   {
    "area": "kitchen",
    "title": {
@@ -1320,6 +1468,488 @@
     {
      "de": "Du schaffst das bestimmt!",
      "uk": "Ти точно впораєшся!"
+    }
+   ]
+  },
+  {
+   "area": "amt",
+   "title": {
+    "de": "Das Amt & die Behörde",
+    "uk": "В установі · крок за кроком!"
+   },
+   "nouns": [
+    {
+     "emoji": "🏛️",
+     "article": "das",
+     "de": "Amt",
+     "plural": "Pl. die Ämter",
+     "uk": "установа (відомство)"
+    },
+    {
+     "emoji": "📄",
+     "article": "das",
+     "de": "Formular",
+     "plural": "Pl. -e",
+     "uk": "бланк (формуляр)"
+    },
+    {
+     "emoji": "📝",
+     "article": "der",
+     "de": "Antrag",
+     "plural": "Pl. die Anträge",
+     "uk": "заява"
+    },
+    {
+     "emoji": "🪪",
+     "article": "der",
+     "de": "Ausweis",
+     "plural": "Pl. -e",
+     "uk": "посвідчення особи"
+    },
+    {
+     "emoji": "🛂",
+     "article": "der",
+     "de": "Aufenthaltstitel",
+     "plural": "Pl. –",
+     "uk": "посвідка на проживання"
+    },
+    {
+     "emoji": "✍️",
+     "article": "die",
+     "de": "Unterschrift",
+     "plural": "Pl. -en",
+     "uk": "підпис"
+    },
+    {
+     "emoji": "🎫",
+     "article": "die",
+     "de": "Wartenummer",
+     "plural": "Pl. -n",
+     "uk": "номерок у черзі"
+    },
+    {
+     "emoji": "🧑‍💼",
+     "article": "der",
+     "de": "Sachbearbeiter",
+     "plural": "Pl. – · ♀ die Sachbearbeiterin",
+     "uk": "працівник / працівниця, що веде справу"
+    },
+    {
+     "emoji": "⏳",
+     "article": "die",
+     "de": "Frist",
+     "plural": "Pl. -en",
+     "uk": "строк (термін)"
+    },
+    {
+     "emoji": "🏠",
+     "article": "die",
+     "de": "Anmeldung",
+     "plural": "Pl. -en",
+     "uk": "реєстрація (місця проживання)"
+    },
+    {
+     "emoji": "📂",
+     "article": "die",
+     "de": "Unterlagen",
+     "plural": "nur Plural",
+     "uk": "документи"
+    }
+   ],
+   "verbs": [
+    {
+     "de": "ausfüllen",
+     "uk": "заповнювати"
+    },
+    {
+     "de": "unterschreiben",
+     "uk": "підписувати"
+    },
+    {
+     "de": "beantragen",
+     "uk": "подавати заяву"
+    },
+    {
+     "de": "abgeben",
+     "uk": "здавати"
+    },
+    {
+     "de": "einreichen",
+     "uk": "подавати (документи)"
+    },
+    {
+     "de": "verlängern",
+     "uk": "продовжувати"
+    },
+    {
+     "de": "mitbringen",
+     "uk": "брати з собою"
+    },
+    {
+     "de": "kopieren",
+     "uk": "копіювати"
+    },
+    {
+     "de": "ablaufen",
+     "uk": "закінчуватися (про строк)"
+    }
+   ],
+   "phrases": [
+    {
+     "de": "Wo muss ich unterschreiben?",
+     "uk": "Де мені підписати?"
+    },
+    {
+     "de": "Ich möchte meinen Aufenthaltstitel verlängern.",
+     "uk": "Я хочу продовжити посвідку на проживання."
+    },
+    {
+     "de": "Bitte füllen Sie das Formular vollständig aus.",
+     "uk": "Заповніть, будь ласка, бланк повністю."
+    },
+    {
+     "de": "Ziehen Sie bitte zuerst eine Wartenummer!",
+     "uk": "Спочатку візьміть, будь ласка, номерок у черзі!",
+     "note": "wörtl. „Nehmen Sie zuerst ein Nümmerchen!“ — nicht „ziehen“"
+    },
+    {
+     "de": "Ich brauche für den Antrag einen Dolmetscher.",
+     "uk": "Для заяви мені потрібен перекладач."
+    },
+    {
+     "de": "Haben Sie alle Unterlagen dabei?",
+     "uk": "У вас із собою всі документи?",
+     "note": "wörtl. „Bei Ihnen alle Dokumente mit?“ — kein „haben“"
+    },
+    {
+     "de": "Der Bescheid kommt per Post.",
+     "uk": "Рішення надійде поштою."
+    },
+    {
+     "de": "Wann läuft mein Ausweis ab?",
+     "uk": "Коли закінчується строк дії мого посвідчення?",
+     "note": "wörtl. „Wann endet die Gültigkeitsdauer …?“ — «строк дії» = Gültigkeitsdauer"
+    }
+   ]
+  },
+  {
+   "area": "arzt",
+   "title": {
+    "de": "Der Arzt & die Gesundheit",
+    "uk": "У лікаря · будьте здорові!"
+   },
+   "nouns": [
+    {
+     "emoji": "🧑‍⚕️",
+     "article": "der",
+     "de": "Arzt",
+     "plural": "Pl. die Ärzte · ♀ die Ärztin",
+     "uk": "лікар / лікарка"
+    },
+    {
+     "emoji": "🏥",
+     "article": "die",
+     "de": "Praxis",
+     "plural": "Pl. die Praxen",
+     "uk": "лікарський кабінет (практика)"
+    },
+    {
+     "emoji": "📅",
+     "article": "der",
+     "de": "Termin",
+     "plural": "Pl. -e",
+     "uk": "запис на прийом (візит)"
+    },
+    {
+     "emoji": "🤕",
+     "article": "der",
+     "de": "Schmerz",
+     "plural": "Pl. -en",
+     "uk": "біль (m.!)"
+    },
+    {
+     "emoji": "🌡️",
+     "article": "das",
+     "de": "Fieber",
+     "plural": "Pl. – (selten)",
+     "uk": "температура (гарячка)"
+    },
+    {
+     "emoji": "💊",
+     "article": "die",
+     "de": "Tablette",
+     "plural": "Pl. -n",
+     "uk": "таблетка (пігулка)"
+    },
+    {
+     "emoji": "📃",
+     "article": "das",
+     "de": "Rezept",
+     "plural": "Pl. -e",
+     "uk": "рецепт"
+    },
+    {
+     "emoji": "⚕️",
+     "article": "die",
+     "de": "Apotheke",
+     "plural": "Pl. -n",
+     "uk": "аптека"
+    },
+    {
+     "emoji": "💳",
+     "article": "die",
+     "de": "Versichertenkarte",
+     "plural": "Pl. -n",
+     "uk": "картка медичного страхування"
+    },
+    {
+     "emoji": "🛡️",
+     "article": "die",
+     "de": "Krankenkasse",
+     "plural": "Pl. -n",
+     "uk": "лікарняна каса"
+    },
+    {
+     "emoji": "😷",
+     "article": "der",
+     "de": "Husten",
+     "plural": "Pl. – (selten)",
+     "uk": "кашель"
+    },
+    {
+     "emoji": "🤧",
+     "article": "die",
+     "de": "Erkältung",
+     "plural": "Pl. -en",
+     "uk": "застуда"
+    }
+   ],
+   "verbs": [
+    {
+     "de": "wehtun",
+     "uk": "боліти"
+    },
+    {
+     "de": "husten",
+     "uk": "кашляти"
+    },
+    {
+     "de": "untersuchen",
+     "uk": "обстежувати"
+    },
+    {
+     "de": "verschreiben",
+     "uk": "виписувати (ліки)"
+    },
+    {
+     "de": "einnehmen",
+     "uk": "приймати (ліки)"
+    },
+    {
+     "de": "abholen",
+     "uk": "забирати"
+    },
+    {
+     "de": "sich krankmelden",
+     "uk": "повідомляти, що захворів (іти на лікарняний)"
+    },
+    {
+     "de": "sich ausruhen",
+     "uk": "відпочивати"
+    },
+    {
+     "de": "absagen",
+     "uk": "скасовувати"
+    }
+   ],
+   "phrases": [
+    {
+     "de": "Ich habe um zehn Uhr einen Termin in der Praxis.",
+     "uk": "О десятій годині я записаний (записана) до лікаря.",
+     "note": "wörtl. „Um zehn bin ich beim Arzt eingeschrieben.“ — «запис», nicht „термін“!"
+    },
+    {
+     "de": "Mein Hals tut sehr weh.",
+     "uk": "У мене дуже болить горло."
+    },
+    {
+     "de": "Ich habe seit gestern Fieber.",
+     "uk": "У мене з учора температура."
+    },
+    {
+     "de": "Bitte nehmen Sie die Tabletten zweimal täglich ein.",
+     "uk": "Приймайте, будь ласка, таблетки двічі на день."
+    },
+    {
+     "de": "Gute Besserung!",
+     "uk": "Швидкого одужання!",
+     "note": "wörtl. „(Ich wünsche) schnelle Genesung!“"
+    },
+    {
+     "de": "Mit dem Rezept gehen Sie zur Apotheke.",
+     "uk": "З рецептом ідіть до аптеки."
+    },
+    {
+     "de": "Zeigen Sie mir bitte Ihre Versichertenkarte.",
+     "uk": "Покажіть мені, будь ласка, вашу картку страхування."
+    },
+    {
+     "de": "Ich muss den Termin leider absagen.",
+     "uk": "На жаль, я мушу скасувати візит."
+    }
+   ]
+  },
+  {
+   "area": "arbeit",
+   "title": {
+    "de": "Die Arbeit & der Beruf",
+    "uk": "На роботі · успіхів!"
+   },
+   "nouns": [
+    {
+     "emoji": "💼",
+     "article": "die",
+     "de": "Arbeit",
+     "plural": "Pl. -en",
+     "uk": "робота"
+    },
+    {
+     "emoji": "📩",
+     "article": "die",
+     "de": "Bewerbung",
+     "plural": "Pl. -en",
+     "uk": "заявка на роботу"
+    },
+    {
+     "emoji": "📜",
+     "article": "der",
+     "de": "Lebenslauf",
+     "plural": "Pl. die Lebensläufe",
+     "uk": "резюме"
+    },
+    {
+     "emoji": "📑",
+     "article": "der",
+     "de": "Vertrag",
+     "plural": "Pl. die Verträge",
+     "uk": "договір (контракт)"
+    },
+    {
+     "emoji": "💶",
+     "article": "das",
+     "de": "Gehalt",
+     "plural": "Pl. die Gehälter",
+     "uk": "зарплата"
+    },
+    {
+     "emoji": "👥",
+     "article": "der",
+     "de": "Kollege",
+     "plural": "Pl. -n · ♀ die Kollegin",
+     "uk": "колега"
+    },
+    {
+     "emoji": "👔",
+     "article": "der",
+     "de": "Chef",
+     "plural": "Pl. -s · ♀ die Chefin",
+     "uk": "шеф (керівник / керівниця)"
+    },
+    {
+     "emoji": "🕗",
+     "article": "die",
+     "de": "Schicht",
+     "plural": "Pl. -en",
+     "uk": "зміна"
+    },
+    {
+     "emoji": "🏖️",
+     "article": "der",
+     "de": "Urlaub",
+     "plural": "Pl. -e",
+     "uk": "відпустка"
+    },
+    {
+     "emoji": "🏢",
+     "article": "die",
+     "de": "Firma",
+     "plural": "Pl. die Firmen",
+     "uk": "фірма (компанія)"
+    }
+   ],
+   "verbs": [
+    {
+     "de": "sich bewerben",
+     "uk": "подаватися (на роботу)"
+    },
+    {
+     "de": "sich vorstellen",
+     "uk": "представлятися"
+    },
+    {
+     "de": "verdienen",
+     "uk": "заробляти"
+    },
+    {
+     "de": "anfangen",
+     "uk": "починати"
+    },
+    {
+     "de": "aufhören",
+     "uk": "закінчувати (переставати)"
+    },
+    {
+     "de": "kündigen",
+     "uk": "звільнятися / звільняти"
+    },
+    {
+     "de": "einstellen",
+     "uk": "наймати на роботу"
+    },
+    {
+     "de": "helfen",
+     "uk": "допомагати"
+    },
+    {
+     "de": "Überstunden machen",
+     "uk": "працювати понаднормово"
+    }
+   ],
+   "phrases": [
+    {
+     "de": "Morgen stelle ich mich bei der Firma vor.",
+     "uk": "Завтра я йду на співбесіду у фірму.",
+     "note": "wörtl. „Morgen gehe ich zum Vorstellungsgespräch in die Firma.“"
+    },
+    {
+     "de": "Meine Schicht fängt heute um sechs Uhr an.",
+     "uk": "Моя зміна сьогодні починається о шостій."
+    },
+    {
+     "de": "Ich schicke Ihnen die Krankmeldung sofort.",
+     "uk": "Я одразу надішлю вам лікарняний."
+    },
+    {
+     "de": "Schönen Feierabend!",
+     "uk": "Гарного вечора після роботи!",
+     "note": "wörtl. „Schönen Abend nach der Arbeit!“ — kein eigenes Wort für „Feierabend“"
+    },
+    {
+     "de": "Können Sie mir kurz helfen?",
+     "uk": "Можете мені на хвилинку допомогти?",
+     "note": "wörtl. „für ein Minütchen helfen“"
+    },
+    {
+     "de": "Ich möchte nächste Woche Urlaub nehmen.",
+     "uk": "Наступного тижня я хочу взяти відпустку."
+    },
+    {
+     "de": "Lesen Sie den Vertrag genau durch!",
+     "uk": "Уважно прочитайте договір!"
+    },
+    {
+     "de": "Wie hoch ist das Gehalt?",
+     "uk": "Яка зарплата?"
     }
    ]
   }

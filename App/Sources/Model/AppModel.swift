@@ -98,7 +98,10 @@ final class AppModel {
         do {
             var state: BoxState
             if let loaded = try await store.load(pair: pair) {
-                state = loaded
+                // why: content updates ship new areas/cards — an existing box
+                // must absorb them (bootstrap only runs once per pair).
+                state = BoxEngine.reconcileSeed(state: loaded,
+                                                seed: try Self.loadSeedCards(pair: pair))
             } else {
                 let cards = try Self.loadSeedCards(pair: pair)
                 state = BoxEngine.bootstrap(cards: cards, config: BoxConfig(pair: pair))
