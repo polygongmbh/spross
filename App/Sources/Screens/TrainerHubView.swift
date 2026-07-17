@@ -8,6 +8,10 @@ import DuoKern
 struct TrainerHubView: View {
     let model: AppModel
 
+    /// Standalone drills offered on the card — years is intentionally absent
+    /// (redundant with numbers), though it still backs phrase slots.
+    private static let drillKinds: [TrainerKind] = [.numbers, .clock]
+
     @State private var activeDrill: Drill?
 
     private struct Drill: Identifiable {
@@ -47,7 +51,10 @@ struct TrainerHubView: View {
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
             HStack(spacing: DL.Space.m) {
-                ForEach(TrainerKind.allCases, id: \.rawValue) { kind in
+                // why: years drill dropped — it's covered by the numbers drill
+                // (identical reading in Swahili/Ukrainian). Years live on only
+                // as a phrase slot.
+                ForEach(Self.drillKinds, id: \.rawValue) { kind in
                     drillChip(kind)
                 }
                 phraseChip(config)
