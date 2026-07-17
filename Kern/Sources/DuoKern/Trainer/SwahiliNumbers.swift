@@ -29,7 +29,9 @@ enum SwahiliNumbers {
         }
         if n < 1_000_000 { return scale(n, unit: 1000, word: "elfu") }
         if n < 1_000_000_000 { return scale(n, unit: 1_000_000, word: "milioni") }
-        if n <= 9_999_999_999 { return scale(n, unit: 1_000_000_000, word: "bilioni") }
+        // Guard on the billions count, not a 10-digit literal — Int is 32-bit
+        // on watchOS.
+        if n / 1_000_000_000 <= 9 { return scale(n, unit: 1_000_000_000, word: "bilioni") }
         return String(n)
     }
 

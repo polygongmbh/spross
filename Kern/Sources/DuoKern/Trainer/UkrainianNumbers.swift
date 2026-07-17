@@ -51,7 +51,9 @@ enum UkrainianNumbers {
     private static func compose(_ n: Int, feminineUnits: Bool) -> String {
         if n == 0 { return "нуль" }
         if n < 1000 { return subThousand(n, feminine: feminineUnits).joined(separator: " ") }
-        guard n <= 9_999_999_999 else { return String(n) }
+        // Guard on the billions count, not a 10-digit literal — Int is 32-bit
+        // on watchOS.
+        guard n / 1_000_000_000 <= 9 else { return String(n) }
         var words: [String] = []
         var rest = n
         // Millions/billions count with MASCULINE multipliers (один мільйон,

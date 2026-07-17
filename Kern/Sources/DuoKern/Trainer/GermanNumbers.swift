@@ -31,11 +31,12 @@ enum GermanNumbers {
             return rest == 0 ? tWord : tWord + cardinal(rest)
         }
         // Millions and above are written as separate words in German
-        // ("eine Million", "zwei Millionen dreihunderttausend").
-        guard n <= 9_999_999_999 else { return String(n) }
+        // ("eine Million", "zwei Millionen dreihunderttausend"). Guard on the
+        // billions count, not a 10-digit literal — Int is 32-bit on watchOS.
+        let billions = n / 1_000_000_000
+        guard billions <= 9 else { return String(n) }
         var parts: [String] = []
-        var rest = n
-        let billions = rest / 1_000_000_000; rest %= 1_000_000_000
+        var rest = n % 1_000_000_000
         if billions > 0 { parts.append(scaleWord(billions, one: "eine Milliarde", many: "Milliarden")) }
         let millions = rest / 1_000_000; rest %= 1_000_000
         if millions > 0 { parts.append(scaleWord(millions, one: "eine Million", many: "Millionen")) }
