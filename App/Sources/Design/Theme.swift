@@ -92,6 +92,9 @@ extension Color {
     static let dlTeal = Color(light: 0x0C8599, dark: 0x3BC9DB)
     static let dlSuccess = Color(light: 0x2F9E44, dark: 0x8CE99A)
     static let dlAmber = Color(light: 0xE8890C, dark: 0xFFC078)    // warm "reveal", never red
+    // why: progress segments show wrong answers on explicit user request —
+    // a muted brick, only in the aggregate bar, never as card feedback.
+    static let dlWrong = Color(light: 0xB0413E, dark: 0xE8756F)
 
     // Article colors (poster palette).
     static let dlDer = Color(light: 0x1971C2, dark: 0x74C0FC)

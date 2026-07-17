@@ -5,10 +5,27 @@ import SwiftUI
 // Session container chrome: close button + session progress bar on top,
 // arbitrary content below. Pure chrome — knows nothing about cards.
 
+/// One answered item in a session/drill, for the segmented progress bar.
+enum SessionOutcome: Equatable {
+    case right, tough, wrong
+
+    var color: Color {
+        switch self {
+        case .right: return .dlSuccess
+        case .tough: return .dlAmber
+        case .wrong: return .dlWrong
+        }
+    }
+}
+
 struct SessionScaffold<Content: View>: View {
     /// 1-based position of the current card in the composed session.
     let position: Int
     let total: Int
+    /// Answered items in order; when non-empty the bar renders one colored
+    /// segment per answer (green right / amber tough / brick wrong) with
+    /// the unanswered remainder neutral.
+    var outcomes: [SessionOutcome] = []
     var onClose: () -> Void = {}
     @ViewBuilder var content: Content
 
@@ -39,17 +56,35 @@ struct SessionScaffold<Content: View>: View {
             .accessibilityLabel("Sitzung beenden")
 
             GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    Capsule().fill(Color.dlSeparator)
-                    Capsule()
-                        .fill(Color.dlAccent)
-                        .frame(width: max(geo.size.width * fraction, 10))
+                if outcomes.isEmpty {
+                    ZStack(alignment: .leading) {
+                        Capsule().fill(Color.dlSeparator)
+                        Capsule()
+                            .fill(Color.dlAccent)
+                            .frame(width: max(geo.size.width * fraction, 10))
+                    }
+                } else {
+                    let slots = max(total, outcomes.count)
+                    HStack(spacing: slots > 40 ? 0.5 : 1) {
+                        ForEach(Array(outcomes.enumerated()), id: \.offset) { _, outcome in
+                            Rectangle().fill(outcome.color)
+                        }
+                        if outcomes.count < slots {
+                            Rectangle()
+                                .fill(Color.dlSeparator)
+                                .frame(width: geo.size.width * CGFloat(slots - outcomes.count) / CGFloat(slots))
+                        }
+                    }
+                    .clipShape(Capsule())
                 }
             }
             .frame(height: 10)
+            .animation(.easeOut(duration: 0.3), value: outcomes.count)
             .animation(.easeOut(duration: 0.3), value: fraction)
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel("Karte \(position) von \(total)")
+            .accessibilityLabel(outcomes.isEmpty
+                ? "Karte \(position) von \(total)"
+                : "\(outcomes.filter { $0 == .right }.count) richtig, \(outcomes.filter { $0 == .tough }.count) schwer, \(outcomes.filter { $0 == .wrong }.count) daneben")
 
             Text("\(position)/\(total)")
                 .font(DL.Fonts.caption)

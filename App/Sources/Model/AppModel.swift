@@ -39,6 +39,8 @@ final class AppModel {
     var sessionQueue: [String] = []
     var sessionTotal = 0
     var sessionAnswered = 0
+    /// Ratings in answer order, feeding the segmented progress bar.
+    var sessionRatings: [Rating] = []
     /// Answers already folded into dailyStats (partial folds on backgrounding).
     var sessionFolded = 0
     var sessionEnded = true

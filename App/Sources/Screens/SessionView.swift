@@ -28,6 +28,7 @@ struct SessionView: View {
             } else {
                 SessionScaffold(position: model.sessionPosition,
                                 total: max(model.sessionTotal, 1),
+                                outcomes: model.sessionRatings.map(outcome(for:)),
                                 onClose: { model.closeSession() }) {
                     scaffoldContent
                 }
@@ -74,6 +75,15 @@ struct SessionView: View {
     private var currentCardID: String? {
         if case .card(let id)? = model.sessionStep { return id }
         return nil
+    }
+
+    /// Bar segments: good/easy green, hard amber, again brick.
+    private func outcome(for rating: Rating) -> SessionOutcome {
+        switch rating {
+        case .again: return .wrong
+        case .hard: return .tough
+        case .good, .easy: return .right
+        }
     }
 
     @ViewBuilder

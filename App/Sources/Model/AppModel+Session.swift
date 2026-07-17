@@ -50,6 +50,7 @@ extension AppModel {
         sessionTotal = sessionQueue.count
         sessionAnswered = 0
         sessionFolded = 0
+        sessionRatings = []
         sessionEnded = false
         advanceSession(now: now)
         sessionPresented = true
@@ -62,6 +63,7 @@ extension AppModel {
         let next = BoxEngine.answer(state: current, cardID: id, rating: rating,
                                     now: now, calendar: calendar)
         box = next
+        sessionRatings.append(rating)
         sessionAnswered += 1
         if !sessionQueue.isEmpty {
             sessionQueue.removeFirst()

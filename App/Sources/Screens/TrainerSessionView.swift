@@ -41,6 +41,8 @@ struct TrainerSessionView: View {
     @State private var doneCount = 0
     @State private var streak = 0
     @State private var bestStreak = 0
+    /// Per-task results for the segmented progress bar.
+    @State private var outcomes: [SessionOutcome] = []
     @State private var showingSummary = false
     @State private var input = ""
     @State private var feedback: AnswerInputView.Feedback = .neutral
@@ -76,6 +78,7 @@ struct TrainerSessionView: View {
                 // the bar fills toward full as the run grows, never breaks.
                 SessionScaffold(position: doneCount + 1,
                                 total: doneCount + 1,
+                                outcomes: outcomes,
                                 onClose: { closeRun() }) {
                     drillContent
                 }
@@ -245,7 +248,7 @@ struct TrainerSessionView: View {
                 }
             case .revealed:
                 HStack(spacing: DL.Space.m) {
-                    Button("Wusste ich") { advance(correct: true) }
+                    Button("Wusste ich") { advance(correct: true, segment: .tough) }
                         .buttonStyle(DLSoftButtonStyle(color: .dlTeal))
                     Button {
                         advance(correct: false)
@@ -271,14 +274,17 @@ struct TrainerSessionView: View {
     private func submit() {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard feedback == .neutral, !trimmed.isEmpty else { return }
-        switch bestMatch(for: trimmed) {
+        let match = bestMatch(for: trimmed)
+        switch match {
         case .exact, .typo:
             feedback = .correct
             DLSound.correct()
+            // Typos count as correct but color the bar amber ("tough").
+            let segment: SessionOutcome = { if case .typo = match { return .tough }; return .right }()
             autoAdvance = Task {
                 try? await Task.sleep(for: .milliseconds(1200))
                 guard !Task.isCancelled else { return }
-                advance(correct: true)
+                advance(correct: true, segment: segment)
             }
         case .wrong:
             feedback = .revealed(correctAnswer: current.display)
@@ -308,7 +314,7 @@ struct TrainerSessionView: View {
 
     /// A correct answer extends the streak, a wrong one resets it
     /// (the run record stays). The next task is generated on demand.
-    private func advance(correct: Bool) {
+    private func advance(correct: Bool, segment: SessionOutcome? = nil) {
         autoAdvance?.cancel()
         if correct {
             streak += 1
@@ -316,6 +322,7 @@ struct TrainerSessionView: View {
         } else {
             streak = 0
         }
+        outcomes.append(segment ?? (correct ? .right : .wrong))
         doneCount += 1
         tasks.append(Self.sampleTask(mode: mode, avoiding: current.prompt))
         // why: reset in the SAME transaction as the index switch — the next
