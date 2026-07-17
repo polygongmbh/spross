@@ -26,6 +26,15 @@ enum SwahiliNumbers {
         return String(n)
     }
 
+    /// Accepted spellings for the drill: the canonical reading plus one with
+    /// the "na" connectors dropped ("mia tatu sitini tano"), which speakers
+    /// routinely omit in longer numbers.
+    static func acceptedVariants(_ n: Int) -> [String] {
+        let canonical = cardinal(n)
+        let naless = canonical.replacingOccurrences(of: " na ", with: " ")
+        return naless == canonical ? [canonical] : [canonical, naless]
+    }
+
     /// "elfu moja / milioni mbili / bilioni tatu [na rest]": one scale word,
     /// "moja" for a bare 1, else the cardinal of the multiplier, rest joined
     /// with "na".

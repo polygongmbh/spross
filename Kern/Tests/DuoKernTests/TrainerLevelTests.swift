@@ -23,6 +23,31 @@ import Testing
         }
     }
 
+    @Test func numberSamplingBiasesZeros() {
+        var rng = SplitMix(state: 11)
+        var zeros = 0, total = 0
+        for _ in 0..<400 {
+            let prompt = Trainer.sample(kind: .numbers, language: .german, level: 5, using: &rng).prompt
+            for d in prompt.dropFirst() { total += 1; if d == "0" { zeros += 1 } }
+        }
+        // ~40% expected; assert clearly above the 10% a uniform draw would give.
+        #expect(Double(zeros) / Double(total) > 0.25)
+    }
+
+    @Test func swahiliDrillAcceptsNaLessForm() {
+        var rng = SplitMix(state: 7)
+        var sawConnector = false
+        for _ in 0..<300 {
+            let task = Trainer.sample(kind: .numbers, language: .swahili, level: 3, using: &rng)
+            if task.accepted.count == 2 {
+                sawConnector = true
+                #expect(task.accepted[1] == task.accepted[0].replacingOccurrences(of: " na ", with: " "))
+            }
+            #expect(task.accepted.contains(task.display))
+        }
+        #expect(sawConnector, "expected some multi-part Swahili numbers with a na-less variant")
+    }
+
     @Test func clockLevelsRestrictMinutes() {
         var rng = SplitMix(state: 2)
         for _ in 0..<80 {

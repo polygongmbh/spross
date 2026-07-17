@@ -21,9 +21,13 @@ extension Trainer {
         let l = max(1, min(level, maxLevel(kind: kind)))
         switch kind {
         case .numbers:
-            let lower = l == 1 ? 0 : pow10(l - 1)
-            let upper = pow10(l) - 1
-            return number(draw(lower...upper, &rng), language: language)
+            var task = number(drawNumber(digits: l, &rng), language: language)
+            // why: speakers routinely drop "na" in longer Swahili numbers,
+            // so the drill accepts the connector-less spelling too.
+            if language == .swahili {
+                task.accepted = SwahiliNumbers.acceptedVariants(Int(task.prompt) ?? 0)
+            }
+            return task
         case .years:
             let range: ClosedRange<Int>
             switch l {
@@ -46,10 +50,18 @@ extension Trainer {
         }
     }
 
-    private static func pow10(_ n: Int) -> Int {
-        var result = 1
-        for _ in 0..<n { result *= 10 }
-        return result
+    /// Level-sized number with zeros biased to ~40% on the non-leading
+    /// digits, so the drill favours rounder values (less tedious than
+    /// typing arbitrary long numbers). The leading digit stays 1–9 so the
+    /// value keeps exactly `digits` digits.
+    private static func drawNumber(digits: Int, _ rng: inout some RandomNumberGenerator) -> Int {
+        guard digits > 1 else { return draw(0...9, &rng) }
+        var value = draw(1...9, &rng)
+        for _ in 1..<digits {
+            let d = rng.next() % 10 < 4 ? 0 : Int(1 + rng.next() % 9)
+            value = value * 10 + d
+        }
+        return value
     }
 
     private static func draw(_ range: ClosedRange<Int>, _ rng: inout some RandomNumberGenerator) -> Int {
