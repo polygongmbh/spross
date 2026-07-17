@@ -2,9 +2,9 @@ import SwiftUI
 
 // MARK: - VocabCardView
 //
-// The hero review card. Hard spec rule: the card stays VISUALLY STABLE
-// between prompt and revealed states — the reveal section is ALWAYS laid
-// out (reserved space) and only fades in, so nothing ever flips or jumps.
+// The hero review card. The prompt is COMPACT (no space reserved for the
+// answer); the reveal expands the card downward, animated — existing
+// content never moves or flips, growth is strictly below it.
 
 struct VocabCardView: View {
 
@@ -30,21 +30,21 @@ struct VocabCardView: View {
     /// Review-phase cards ("sticking" cards) must not leak the emoji hint
     /// during the prompt — a neutral "?" holds its place until reveal.
     var hideEmojiUntilRevealed: Bool = false
+    /// German plural line: only learners OF GERMAN need it ("die Wörter"
+    /// is noise when German is your known language).
+    var showPlural: Bool = true
 
     var body: some View {
         VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
             emojiIllustration
             promptSection
-            revealSection
-                .opacity(revealed ? 1 : 0)
-                .accessibilityHidden(!revealed)
-            Spacer(minLength: 0)
+            if revealed {
+                revealSection
+                    .transition(.opacity.combined(with: .move(edge: .top)))
+            }
         }
         .padding(compact ? DL.Space.l : DL.Space.xl)
         .frame(maxWidth: .infinity)
-        // why: compact must leave room for input + primary button above the
-        // keyboard on a 874 pt screen — no scrolling during review.
-        .frame(minHeight: compact ? 240 : 380, alignment: .top)
         .background(
             RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
                 .fill(Color.dlSurface)
@@ -107,22 +107,30 @@ struct VocabCardView: View {
         }
     }
 
+    /// "der Kühlschrank" as ONE line — article inline in its color before
+    /// the word (poster style), plural as a small line only when wanted.
     private var germanBlock: some View {
-        VStack(spacing: DL.Space.s) {
-            if let article {
-                ArticleBadge(article: article)
-            }
-            Text(headword)
-                .font(compact ? DL.Fonts.title : DL.Fonts.hero)
-                .foregroundStyle(Color.dlTextPrimary)
+        VStack(spacing: DL.Space.xs) {
+            germanLine
                 .multilineTextAlignment(.center)
                 .minimumScaleFactor(0.6)
-            if let plural {
+            if showPlural, let plural {
                 Text(plural)
                     .font(DL.Fonts.subheadline)
                     .foregroundStyle(Color.dlTextSecondary)
             }
         }
+    }
+
+    private var germanLine: Text {
+        let word = Text(headword)
+            .font(compact ? DL.Fonts.title : DL.Fonts.hero)
+            .foregroundStyle(Color.dlTextPrimary)
+        guard let article else { return word }
+        return Text("\(article) ")
+            .font(compact ? DL.Fonts.title : DL.Fonts.hero)
+            .foregroundStyle(DL.articleColor(article))
+            + word
     }
 
     private var translationBlock: some View {

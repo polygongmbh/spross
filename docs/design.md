@@ -122,7 +122,10 @@ A session is composed, never configured:
   (recognition; seed alternatives separated by "/" all count as correct).
 - Answer normalization before comparison: lowercase, trim, strip leading article
   (de: der/die/das/ein/eine; en-style "the/to" not needed), strip punctuation, collapse whitespace.
-- Wrong answer reveals **inline** — the card stays visually stable, never flips or jumps.
+- Wrong answer reveals **inline**, expanding the card DOWNWARD (animated) —
+  existing content never moves or flips; no space is reserved pre-reveal.
+- German side renders as ONE line, article inline in its color ("der Kühlschrank");
+  the plural line appears only for learners OF German (it's noise otherwise).
 - Typo tolerance: ~10% of letters (Damerau-Levenshtein, min word length 5, minimum 1 edit
   from 5 letters up) — diacritic slips like "Kuhlschrank" ride the same rule.
   A typo still counts as correct; the reveal shows the proper spelling.

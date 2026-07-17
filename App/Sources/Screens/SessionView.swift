@@ -117,7 +117,10 @@ struct SessionView: View {
                         mode: mode(for: card),
                         revealed: cardRevealed,
                         compact: true,
-                        hideEmojiUntilRevealed: hideEmoji(for: card)
+                        hideEmojiUntilRevealed: hideEmoji(for: card),
+                        // why: German plurals only matter to learners OF
+                        // German; for target-language learners they're noise.
+                        showPlural: model.box?.config.direction == .targetToDe
                     )
                     .id(card.id)
                     .transition(reduceMotion ? .opacity : .dlCardFlip)
