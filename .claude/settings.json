@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_response.filePath // .tool_input.file_path' | { read -r f; case \"$f\" in *project.yml) cd /Users/tj/IT/duolernen/app && xcodegen generate ;; esac; } 2>&1",
+            "statusMessage": "Regenerating Xcode project (project.yml changed)..."
+          }
+        ]
+      }
+    ]
+  }
+}

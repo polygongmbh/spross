@@ -7,7 +7,7 @@ enum GermanNumbers {
     private static let teens = ["zehn", "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn"]
     private static let tens = ["", "", "zwanzig", "dreißig", "vierzig", "fünfzig", "sechzig", "siebzig", "achtzig", "neunzig"]
 
-    /// 0...999_999; larger values fall back to digits.
+    /// 0...9_999_999_999; larger values fall back to digits.
     static func cardinal(_ n: Int) -> String {
         if n == 0 { return "null" }
         if n < 10 { return ones[n] }
@@ -30,7 +30,23 @@ enum GermanNumbers {
             let tWord = t == 1 ? "eintausend" : cardinal(t) + "tausend"
             return rest == 0 ? tWord : tWord + cardinal(rest)
         }
-        return String(n)
+        // Millions and above are written as separate words in German
+        // ("eine Million", "zwei Millionen dreihunderttausend").
+        guard n <= 9_999_999_999 else { return String(n) }
+        var parts: [String] = []
+        var rest = n
+        let billions = rest / 1_000_000_000; rest %= 1_000_000_000
+        if billions > 0 { parts.append(scaleWord(billions, one: "eine Milliarde", many: "Milliarden")) }
+        let millions = rest / 1_000_000; rest %= 1_000_000
+        if millions > 0 { parts.append(scaleWord(millions, one: "eine Million", many: "Millionen")) }
+        if rest > 0 { parts.append(cardinal(rest)) }
+        return parts.joined(separator: " ")
+    }
+
+    /// "eine Million" / "zwei Millionen" style: singular gets the "eine"
+    /// form, everything else counts with the cardinal + plural scale word.
+    private static func scaleWord(_ count: Int, one: String, many: String) -> String {
+        count == 1 ? one : cardinal(count) + " " + many
     }
 
     /// "neunzehnhundertachtundsiebzig" style for years like 1978.

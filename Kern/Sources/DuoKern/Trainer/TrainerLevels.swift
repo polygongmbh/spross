@@ -4,14 +4,14 @@ extension Trainer {
     /// ramps up after consecutive successes and steps down on a miss.
     public static func maxLevel(kind: TrainerKind) -> Int {
         switch kind {
-        case .numbers: return 6   // level == digit count
+        case .numbers: return 10  // level == digit count (up to billions)
         case .years: return 3
         case .clock: return 4
         }
     }
 
     /// Level semantics:
-    /// - numbers: level = digit count (1 → 0–9 … 6 → 100000–999999).
+    /// - numbers: level = digit count (1 → 0–9 … 10 → 1000000000–9999999999).
     /// - years: 1 recent decades (1990–2029), 2 modern century (1900–2099),
     ///   3 full historic range (1100–2099, German hundred-style variants).
     /// - clock: 1 full hours, 2 quarters, 3 five-minute steps up to :30,

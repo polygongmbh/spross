@@ -31,26 +31,47 @@ enum UkrainianNumbers {
         return words
     }
 
-    /// тисяча/тисячі/тисяч agreement for a multiplier `t` (1...999).
-    private static func thousandWord(_ t: Int) -> String {
+    /// Slavic count agreement for a multiplier `t`: form for a bare 1,
+    /// forms for 2–4, else the "many" (genitive plural) form; the 11–14
+    /// exception always takes the "many" form.
+    private static func agree(_ t: Int, one: String, few: String, many: String) -> String {
         let lastTwo = t % 100
-        if (11...14).contains(lastTwo) { return "тисяч" }
+        if (11...14).contains(lastTwo) { return many }
         switch t % 10 {
-        case 1: return "тисяча"
-        case 2, 3, 4: return "тисячі"
-        default: return "тисяч"
+        case 1: return one
+        case 2, 3, 4: return few
+        default: return many
         }
+    }
+
+    private static func thousandWord(_ t: Int) -> String {
+        agree(t, one: "тисяча", few: "тисячі", many: "тисяч")
     }
 
     private static func compose(_ n: Int, feminineUnits: Bool) -> String {
         if n == 0 { return "нуль" }
         if n < 1000 { return subThousand(n, feminine: feminineUnits).joined(separator: " ") }
-        guard n < 1_000_000 else { return String(n) }
-        let t = n / 1000
-        let rest = n % 1000
-        // why: multiplier before тисяча is always feminine (одна тисяча, дві тисячі)
-        var words = subThousand(t, feminine: true)
-        words.append(thousandWord(t))
+        guard n <= 9_999_999_999 else { return String(n) }
+        var words: [String] = []
+        var rest = n
+        // Millions/billions count with MASCULINE multipliers (один мільйон,
+        // два мільйони); only тисяча takes the feminine multiplier.
+        let billions = rest / 1_000_000_000; rest %= 1_000_000_000
+        if billions > 0 {
+            words.append(contentsOf: subThousand(billions, feminine: false))
+            words.append(agree(billions, one: "мільярд", few: "мільярди", many: "мільярдів"))
+        }
+        let millions = rest / 1_000_000; rest %= 1_000_000
+        if millions > 0 {
+            words.append(contentsOf: subThousand(millions, feminine: false))
+            words.append(agree(millions, one: "мільйон", few: "мільйони", many: "мільйонів"))
+        }
+        let thousands = rest / 1000; rest %= 1000
+        if thousands > 0 {
+            // why: multiplier before тисяча is always feminine (одна тисяча, дві тисячі)
+            words.append(contentsOf: subThousand(thousands, feminine: true))
+            words.append(thousandWord(thousands))
+        }
         if rest > 0 {
             words.append(contentsOf: subThousand(rest, feminine: feminineUnits))
         }

@@ -3,7 +3,7 @@ enum SwahiliNumbers {
     static let ones = ["", "moja", "mbili", "tatu", "nne", "tano", "sita", "saba", "nane", "tisa"]
     private static let tens = ["", "kumi", "ishirini", "thelathini", "arobaini", "hamsini", "sitini", "sabini", "themanini", "tisini"]
 
-    /// 0...999_999; larger values fall back to digits.
+    /// 0...9_999_999_999; larger values fall back to digits.
     static func cardinal(_ n: Int) -> String {
         if n == 0 { return "sifuri" }
         if n < 10 { return ones[n] }
@@ -20,12 +20,19 @@ enum SwahiliNumbers {
             let hWord = h == 1 ? "mia moja" : "mia \(ones[h])"
             return rest == 0 ? hWord : "\(hWord) na \(cardinal(rest))"
         }
-        if n < 1_000_000 {
-            let t = n / 1000
-            let rest = n % 1000
-            let tWord = t == 1 ? "elfu moja" : "elfu \(cardinal(t))"
-            return rest == 0 ? tWord : "\(tWord) na \(cardinal(rest))"
-        }
+        if n < 1_000_000 { return scale(n, unit: 1000, word: "elfu") }
+        if n < 1_000_000_000 { return scale(n, unit: 1_000_000, word: "milioni") }
+        if n <= 9_999_999_999 { return scale(n, unit: 1_000_000_000, word: "bilioni") }
         return String(n)
+    }
+
+    /// "elfu moja / milioni mbili / bilioni tatu [na rest]": one scale word,
+    /// "moja" for a bare 1, else the cardinal of the multiplier, rest joined
+    /// with "na".
+    private static func scale(_ n: Int, unit: Int, word: String) -> String {
+        let t = n / unit
+        let rest = n % unit
+        let tWord = t == 1 ? "\(word) moja" : "\(word) \(cardinal(t))"
+        return rest == 0 ? tWord : "\(tWord) na \(cardinal(rest))"
     }
 }

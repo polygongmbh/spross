@@ -15,7 +15,7 @@ import Testing
 
     @Test func numberLevelIsDigitCount() {
         var rng = SplitMix(state: 1)
-        for level in 1...6 {
+        for level in 1...10 {
             for _ in 0..<50 {
                 let task = Trainer.sample(kind: .numbers, language: .german, level: level, using: &rng)
                 #expect(task.prompt.count == level, Comment(rawValue: "level \(level): \(task.prompt)"))
@@ -49,6 +49,6 @@ import Testing
         let low = Trainer.sample(kind: .numbers, language: .german, level: -3, using: &rng)
         #expect(low.prompt.count == 1)
         let high = Trainer.sample(kind: .numbers, language: .german, level: 99, using: &rng)
-        #expect(high.prompt.count == 6)
+        #expect(high.prompt.count == 10)
     }
 }
