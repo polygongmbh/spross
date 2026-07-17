@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.8.0 — 2026-07-18
+
+- **Typos pause for review**: a slightly misspelled answer no longer flashes
+  past — your text stays on screen with the correct spelling and a "Weiter"
+  tap, so you can see the slip. A clean answer still auto-advances.
+- **"Aufdecken" fills the answer field** with the answer instead of leaving an
+  empty box beside it; a wrong guess keeps your text with the correction below.
+- **Numbers drill goes big**: all three languages now read up to billions
+  (milioni/bilioni · Million/Milliarde · мільйон/мільярд), and the drill
+  favours rounder numbers (more zeros) so long ones are less tedious to type.
+  Swahili answers may drop the "na" ("mia tatu sitini tano").
+- **Numbers drill hints**: reaching a new length shows its place word once
+  (tausend / elfu / …); the Swahili drill adds a "?" tens look-up
+  (10 kumi … 90 tisini) that also appears after a wrong answer. A typo or a
+  looked-up answer counts amber and doesn't advance the level.
+- **Years drill removed** — it read identically to plain numbers; years live
+  on inside sentence drills.
+
 ## 0.7.3 — 2026-07-17
 
 - Swahili verbs count as correct without the ku- prefix ("pika" = "kupika");
