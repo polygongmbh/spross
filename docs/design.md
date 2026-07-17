@@ -91,7 +91,7 @@ The box grows only while material sits:
    incremented when the card is first *rated*, not when composed. Composition selects
    candidates purely functionally (same inputs → same candidates).
 7. **Leeches**: `lapses ≥ 8` → auto-suspend. Suspended cards are excluded from due counts,
-   relearning share, and sessions; surfaced in the Box tab for manual revive.
+   relearning share, and sessions; surfaced in the Box screen for manual revive.
 
 ## Session composer (Kern/Session)
 
@@ -130,11 +130,13 @@ A session is composed, never configured:
   Enter advances when revealed.
 - Never punishing: no red flashes, streak survives one missed day.
 
-## App structure (SwiftUI, three tabs)
+## App structure (SwiftUI, single screen)
 
-- **Heute**: the composed session (or "done for today" + tiny preview of tomorrow).
-- **Box**: browse areas/cards, see phase/stability, add topic packs or single words, pair/direction settings.
-- **Fortschritt**: active card count over time, retention estimate, streak, per-area sitting/learning split.
+- **Heute** is the only root screen, top to bottom:
+  session card (due-count ring + streak flame, or "done for today" + tiny preview of tomorrow),
+  trainer hub, condensed Fortschritt section (14-day activity strip, active card count, retention estimate).
+- **Box** (pushed via the 📦 toolbar icon): browse areas/cards, see phase/stability,
+  add topic packs or single words, pair/direction settings; suspended cards surface here.
 
 Design language: warm, card-centric, emoji as illustration (from seed data), article color coding
 der=blue / die=pink-red / das=green (text carries meaning, color reinforces — colorblind-safe).
