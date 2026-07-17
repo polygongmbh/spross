@@ -6,3 +6,4 @@ xcuserdata/
 *.xcresult
 .dd/
 .ddw/
+.project-nowatch.yml
