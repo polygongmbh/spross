@@ -30,7 +30,42 @@ struct BoxSettingsSection: View {
                     .fill(Color.dlSurface)
             )
             .dlCardShadow()
+
+            aboutFooter
         }
+    }
+
+    // MARK: About / feedback
+
+    private static let feedbackAddress = "lang@polygon.gmbh"
+
+    private var versionText: String {
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"
+        return "DuoLernen v\(version) (\(build))"
+    }
+
+    private var aboutFooter: some View {
+        VStack(spacing: DL.Space.s) {
+            Text(versionText)
+                .font(DL.Fonts.caption)
+                .foregroundStyle(Color.dlTextSecondary)
+                .monospacedDigit()
+            if let url = feedbackURL {
+                Link(destination: url) {
+                    Label("Feedback senden", systemImage: "envelope")
+                        .font(DL.Fonts.subheadline)
+                        .foregroundStyle(Color.dlAccent)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.top, DL.Space.m)
+    }
+
+    private var feedbackURL: URL? {
+        let subject = versionText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        return URL(string: "mailto:\(Self.feedbackAddress)?subject=\(subject)")
     }
 
     private var pair: LanguagePair {
