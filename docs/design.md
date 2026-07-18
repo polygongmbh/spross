@@ -17,7 +17,7 @@ Two layers, strict dependency direction (App → Kern):
 Kern/    Swift package "DuoKern" — pure logic, zero UI/IO deps, fully unit-tested
   FSRS/     scheduler (FSRS-5 port)
   Model/    domain types (Types.swift, owned by root, changes require coordination)
-  Content/  seed JSON importer + phrase→word linking
+  Content/  catalog importer (CatalogImporter) + phrase→word linking
   Box/      growth engine (what enters the box, when)
   Session/  session composer (what today's session contains)
 App/     SwiftUI iOS app — views, persistence (file-backed store actor), app lifecycle
@@ -148,13 +148,27 @@ der=blue / die=pink-red / das=green (text carries meaning, color reinforces — 
 
 ## Content pipeline
 
-- Seed JSONs in `content/` (copied from project `data/`, schema documented in
-  `../../docs/sprachposter-learnings.md`).
-- Importer parses areas → Cards; phrase componentIDs resolved by normalized lemma matching
-  of area words inside the phrase text (naive contains-match on normalized forms is acceptable v1;
-  unresolved components = phrase depends only on resolved ones; log unresolved count).
-- Importer is deterministic: same JSON → same card IDs (stable slug of pair+area+kind+headword).
-  IDs never contain `|` (scheduling keys are `id|direction`); importer asserts this.
+- The app reads the language-agnostic **content catalog** (`../../data/catalog/`,
+  schema in `../../docs/content-format.md`): shared word concepts + per-language
+  realizations + pair-authored phrases. `catalog/` in this repo is a relative
+  **symlink** to that single master, so content edits sync with no copy step;
+  xcodebuild's folder-reference copy materializes the real files into the `.app`.
+  Consequence: this repo references `../data/catalog` and is **no longer
+  standalone-cloneable** — deliberate (local-iteration-first; revisit if a
+  remote/CI appears).
+- `CatalogImporter` (`Kern/…/Content`) reconstructs `[Card]` for a pair from the
+  catalog, applying `pairOverrides` for pair-tuned German, `"Pl. "`-stripping,
+  and `"/"`-joined translation variants. phrase componentIDs are resolved by
+  normalized lemma matching of area words inside the phrase text (naive
+  contains-match; unresolved components = phrase depends only on resolved ones).
+- Importer is deterministic: same catalog → same card IDs (stable slug of
+  pair+area+kind+headword). IDs never contain `|` (scheduling keys are
+  `id|direction`).
+- The **legacy per-pair seed format** (`vocab-de-<lang>.json`) is retired to test
+  fixtures only. `SeedImporter` survives solely so the parity gate
+  (`CatalogParityTests`) proves `CatalogImporter` reproduces its exact output —
+  same ids/order/fields — on the frozen legacy fixtures, guaranteeing scheduling
+  history survives the migration untouched.
 
 ## Testing & gates
 
