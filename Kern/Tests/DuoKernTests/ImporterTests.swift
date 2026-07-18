@@ -1,64 +1,73 @@
 import XCTest
 import DuoKern
 
+/// Behaviour of the live importer (`CatalogImporter`, reading the content
+/// catalog). The legacy `SeedImporter` is exercised only by the parity gate
+/// (CatalogParityTests); everything the app relies on is pinned here.
 final class ImporterTests: XCTestCase {
 
     // MARK: - Fixture loading
 
-    private func fixtureData(_ name: String) throws -> Data {
-        guard let url = Bundle.module.url(forResource: name, withExtension: "json", subdirectory: "Fixtures") else {
-            XCTFail("Missing fixture \(name).json")
-            return Data()
-        }
-        return try Data(contentsOf: url)
-    }
-
-    private func fixtureDirectory() throws -> URL {
-        guard let url = Bundle.module.url(forResource: "vocab-de-sw", withExtension: "json", subdirectory: "Fixtures") else {
-            XCTFail("Missing fixtures directory")
+    private func catalogDirectory() throws -> URL {
+        guard let url = Bundle.module.url(
+            forResource: "concepts", withExtension: "json",
+            subdirectory: "Fixtures/catalog") else {
+            XCTFail("Missing Fixtures/catalog")
             return URL(fileURLWithPath: "/dev/null")
         }
         return url.deletingLastPathComponent()
     }
 
+    private func cards(_ pair: LanguagePair) throws -> [Card] {
+        try CatalogImporter.importCatalog(directory: try catalogDirectory(), pair: pair)
+    }
+
     // MARK: - Counts
 
     func testCardCountsPerPair() throws {
-        for name in ["vocab-de-sw", "vocab-de-uk"] {
-            let cards = try SeedImporter.importSeed(json: try fixtureData(name))
+        for pair in LanguagePair.allCases {
+            let cards = try cards(pair)
             let nouns = cards.filter { $0.kind == .noun }.count
             let verbs = cards.filter { $0.kind == .verb }.count
             let phrases = cards.filter { $0.kind == .phrase }.count
-            // Full seed incl. basics + amt/arzt/arbeit packs (merged 2026-07-17).
-            XCTAssertEqual(nouns, 133, "\(name) noun count")
-            XCTAssertEqual(verbs, 105, "\(name) verb count")
-            XCTAssertEqual(phrases, 105, "\(name) phrase count")
-            XCTAssertEqual(cards.count, 343, "\(name) total count")
+            // Full catalog incl. basics + amt/arzt/arbeit packs.
+            XCTAssertEqual(nouns, 133, "\(pair) noun count")
+            XCTAssertEqual(verbs, 105, "\(pair) verb count")
+            XCTAssertEqual(phrases, 105, "\(pair) phrase count")
+            XCTAssertEqual(cards.count, 343, "\(pair) total count")
         }
     }
 
     // MARK: - Determinism & uniqueness
 
     func testDeterministicIDs() throws {
-        let data = try fixtureData("vocab-de-sw")
-        let first = try SeedImporter.importSeed(json: data).map(\.id)
-        let second = try SeedImporter.importSeed(json: data).map(\.id)
+        let first = try cards(.deSw).map(\.id)
+        let second = try cards(.deSw).map(\.id)
         XCTAssertEqual(first, second)
     }
 
     func testNoDuplicateIDs() throws {
-        for name in ["vocab-de-sw", "vocab-de-uk"] {
-            let cards = try SeedImporter.importSeed(json: try fixtureData(name))
-            let ids = cards.map(\.id)
-            XCTAssertEqual(Set(ids).count, ids.count, "\(name) has duplicate ids")
+        for pair in LanguagePair.allCases {
+            let ids = try cards(pair).map(\.id)
+            XCTAssertEqual(Set(ids).count, ids.count, "\(pair) has duplicate ids")
         }
+    }
+
+    /// The card id (and displayed German) derive from the PAIR-SPECIFIC German:
+    /// the shared "Fleisch grillen" for de-sw, the de-uk override "grillen" for
+    /// de-uk. Pinned so a change to the override scheme can never silently
+    /// re-key a card and orphan its scheduling history.
+    func testPinnedPairOverrideIDs() throws {
+        let sw = try cards(.deSw).first { $0.id == "de-sw-outside-verb-fleisch-grillen" }
+        XCTAssertEqual(sw?.german, "Fleisch grillen")
+        let uk = try cards(.deUk).first { $0.id == "de-uk-outside-verb-grillen" }
+        XCTAssertEqual(uk?.german, "grillen")
     }
 
     // MARK: - Field shape
 
     func testArticlesOnlyOnNouns() throws {
-        let cards = try SeedImporter.importSeed(json: try fixtureData("vocab-de-sw"))
-        for card in cards {
+        for card in try cards(.deSw) {
             if card.kind == .noun {
                 XCTAssertNotNil(card.article, "noun \(card.german) missing article")
             } else {
@@ -70,14 +79,12 @@ final class ImporterTests: XCTestCase {
     // MARK: - Phrase → word linking
 
     /// Two kitchen phrases ("Das schmeckt so lecker!", "Kannst du bitte den
-    /// Tisch decken?") use no word that exists anywhere in the seed vocab at
-    /// all ("schmecken"/"decken"/"Tisch" are absent even outside kitchen —
-    /// "Tisch" only ever appears as "Esstisch"/"Schreibtisch"/"Nachttisch" in
-    /// other areas), so same-area headword matching cannot link them no
-    /// matter how the matcher is tuned. Flagged in the importer's final
-    /// report as a content gap rather than silently asserted away.
+    /// Tisch decken?") use no word that exists anywhere in the vocab at all
+    /// ("schmecken"/"decken"/"Tisch" are absent even outside kitchen), so
+    /// same-area headword matching cannot link them. Flagged as a content gap
+    /// rather than silently asserted away.
     func testKitchenPhrasesLinkAtLeastOneComponent() throws {
-        let cards = try SeedImporter.importSeed(json: try fixtureData("vocab-de-sw"))
+        let cards = try cards(.deSw)
         let kitchenPhrases = cards.filter { $0.area == "kitchen" && $0.kind == .phrase }
         XCTAssertEqual(kitchenPhrases.count, 8)
 
@@ -92,15 +99,15 @@ final class ImporterTests: XCTestCase {
     }
 
     func testKochenReisPhraseLinksToKochenVerb() throws {
-        let cards = try SeedImporter.importSeed(json: try fixtureData("vocab-de-sw"))
+        let cards = try cards(.deSw)
         guard let phrase = cards.first(where: { $0.kind == .phrase && $0.german == "Kochst du heute Reis?" }) else {
-            XCTFail("fixture missing 'Kochst du heute Reis?'")
+            XCTFail("catalog missing 'Kochst du heute Reis?'")
             return
         }
         guard let kochen = cards.first(where: {
             $0.kind == .verb && $0.area == phrase.area && $0.german == "kochen"
         }) else {
-            XCTFail("fixture missing 'kochen' verb in \(phrase.area)")
+            XCTFail("catalog missing 'kochen' verb in \(phrase.area)")
             return
         }
         XCTAssertTrue(
@@ -112,21 +119,19 @@ final class ImporterTests: XCTestCase {
     // MARK: - Diagnostics
 
     func testLinkReport() throws {
-        let cards = try SeedImporter.importSeed(json: try fixtureData("vocab-de-sw"))
-        let report = SeedImporter.linkReport(cards: cards)
+        let report = SeedImporter.linkReport(cards: try cards(.deSw))
         XCTAssertEqual(report.phrases, 105)
         XCTAssertGreaterThanOrEqual(report.linked, 29)
         XCTAssertGreaterThan(report.avgComponents, 0)
     }
 
-    // MARK: - SeedContent
+    // MARK: - Loading both pairs
 
-    func testLoadAllFromDirectory() throws {
-        let cards = try SeedContent.loadAll(from: try fixtureDirectory())
-        XCTAssertEqual(cards.count, 343 * 2)
-        let ids = cards.map(\.id)
+    func testLoadBothPairsFromCatalog() throws {
+        let all = try LanguagePair.allCases.flatMap { try cards($0) }
+        XCTAssertEqual(all.count, 343 * 2)
+        let ids = all.map(\.id)
         XCTAssertEqual(Set(ids).count, ids.count, "duplicate ids across pairs")
-        let pairs = Set(cards.map(\.pair))
-        XCTAssertEqual(pairs, [.deSw, .deUk])
+        XCTAssertEqual(Set(all.map(\.pair)), [.deSw, .deUk])
     }
 }

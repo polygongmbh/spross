@@ -1,6 +1,12 @@
 import Foundation
 
-/// Imports `Card`s from raw seed vocabulary JSON (see `content/vocab-*.json`).
+/// DEPRECATED — the legacy per-pair seed format (`vocab-de-<lang>.json`) is
+/// retired. The app now reads the language-agnostic catalog via
+/// `CatalogImporter`. This importer is kept SOLELY so the parity gate
+/// (`CatalogParityTests`) can prove `CatalogImporter` reproduces its output on
+/// the frozen legacy fixtures; do not add new callers. `linkReport` and the
+/// `cardID`/`strippedPlural` helpers are the live, format-neutral parts still
+/// shared with `CatalogImporter`.
 public enum SeedImporter {
 
     /// Decodes one seed JSON file into cards, with deterministic IDs and
