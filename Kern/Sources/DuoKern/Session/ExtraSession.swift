@@ -36,9 +36,30 @@ extension BoxEngine {
                            newWords: Array(enqueuedNew.prefix(cap)))
     }
 
+    /// Endless practice refill: whatever needs repeating plus new cards, so a
+    /// round keeps flowing "as long as the user likes". Contents:
+    /// 1. Due now (oldest first).
+    /// 2. Learning/relearning steps coming due within `horizon`, pulled ahead so
+    ///    just-introduced cards don't stall the flow (elapsed stays real → honest
+    ///    FSRS, just a small early nudge).
+    /// 3. New cards within the load-based pool budget + health gate — as the pool
+    ///    drains and cards graduate, more flow in.
+    /// Capped at `sessionCap`. Empty only when there is genuinely nothing to do.
+    public static func composeEndless(state: BoxState, now: Date, within horizon: TimeInterval) -> SessionPlan {
+        let cap = state.config.sessionCap
+        let due = dueSchedulings(state, now: now).map(\.cardID)
+        let ahead = upcomingSteps(state: state, now: now, within: horizon).map(\.cardID)
+        let reviews = Array((due + ahead).prefix(cap))
+
+        let budget = gatedNewBudget(state, now: now)
+        let capacity = max(0, cap - reviews.count)
+        let (phrases, words) = newCandidates(state, budget: budget, capacity: capacity)
+        return SessionPlan(reviews: reviews, unlockedPhrases: phrases, newWords: words)
+    }
+
     /// Learning/relearning steps coming due within `horizon` (exclusive of
-    /// already-due), soonest first — the app's pause state reads this instead
-    /// of raw scheduling (current direction, suspended excluded).
+    /// already-due), soonest first — endless refill pulls these ahead
+    /// (current direction, suspended excluded).
     public static func upcomingSteps(state: BoxState, now: Date, within horizon: TimeInterval) -> [CardScheduling] {
         let limit = now.addingTimeInterval(horizon)
         return state.scheduling.values

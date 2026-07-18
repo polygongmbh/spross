@@ -24,10 +24,13 @@ struct SessionView: View {
     var body: some View {
         Group {
             if model.sessionStep == .completed {
-                SessionCompletionView(reviewCount: model.sessionAnswered,
-                                      streakDays: model.stats?.streak ?? 0) {
-                    model.closeSession()
-                }
+                SessionCompletionView(newCount: model.sessionNew,
+                                      graduatedCount: model.sessionGraduated,
+                                      reviewCount: model.sessionReviews,
+                                      streakDays: model.stats?.streak ?? 0,
+                                      canPracticeMore: model.canPracticeMore,
+                                      onPractice: { model.continueEndless() },
+                                      onDone: { model.closeSession() })
             } else {
                 SessionScaffold(position: model.sessionPosition,
                                 total: max(model.sessionTotal, 1),
@@ -93,8 +96,6 @@ struct SessionView: View {
     private var scaffoldContent: some View {
         if let card = model.currentCard {
             cardContent(card)
-        } else if case .pause(let until)? = model.sessionStep {
-            PauseView(until: until, model: model)
         } else {
             ProgressView()
                 .tint(.dlAccent)
@@ -309,43 +310,3 @@ struct SessionView: View {
     }
 }
 
-// MARK: - PauseView
-
-/// "Kurze Pause": learning steps come due within minutes; count down to the
-/// next one (or continue early).
-private struct PauseView: View {
-    let until: Date
-    let model: AppModel
-
-    @State private var now = Date()
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
-    var body: some View {
-        VStack(spacing: DL.Space.xl) {
-            Spacer()
-            Text("☕️")
-                .font(.system(size: 72))
-                .accessibilityHidden(true)
-            Text("Kurze Pause")
-                .font(DL.Fonts.hero)
-                .foregroundStyle(Color.dlTextPrimary)
-            Text("Frisch Gelerntes braucht einen Moment zum Setzen.\nIn \(remainingText) geht's weiter.")
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextSecondary)
-                .multilineTextAlignment(.center)
-            Button("Jetzt weitermachen") { model.skipPause() }
-                .buttonStyle(DLSoftButtonStyle())
-            Spacer()
-        }
-        .frame(maxWidth: .infinity)
-        .onReceive(timer) { date in
-            now = date
-            model.resumePauseIfDue(now: date)
-        }
-    }
-
-    private var remainingText: String {
-        let seconds = max(0, Int(until.timeIntervalSince(now).rounded(.up)))
-        return String(format: "%d:%02d", seconds / 60, seconds % 60)
-    }
-}

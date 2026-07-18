@@ -103,8 +103,12 @@ struct SessionScaffold<Content: View>: View {
 // (staggered springs), no confetti dependency.
 
 struct SessionCompletionView: View {
+    var newCount: Int = 0
+    var graduatedCount: Int = 0
     let reviewCount: Int
     let streakDays: Int
+    var canPracticeMore: Bool = false
+    var onPractice: () -> Void = {}
     var onDone: () -> Void = {}
 
     @State private var burst = false
@@ -114,6 +118,15 @@ struct SessionCompletionView: View {
         ("💪", -30, 96), ("🌟", -170, 60), ("🎈", -10, 60),
     ]
 
+    /// "3 neu · 2 gefestigt · 8 wiederholt" — only the non-zero parts.
+    private var summaryText: String {
+        var parts: [String] = []
+        if newCount > 0 { parts.append("\(newCount) neu") }
+        if graduatedCount > 0 { parts.append("\(graduatedCount) gefestigt") }
+        if reviewCount > 0 { parts.append("\(reviewCount) wiederholt") }
+        return parts.isEmpty ? "Alles erledigt" : parts.joined(separator: " · ")
+    }
+
     var body: some View {
         VStack(spacing: DL.Space.xl) {
             Spacer()
@@ -121,14 +134,26 @@ struct SessionCompletionView: View {
             Text("Geschafft!")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("\(reviewCount) Karten wiederholt")
+            Text(summaryText)
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
+                .multilineTextAlignment(.center)
             StreakFlameView(days: streakDays)
             Spacer()
-            Button("Fertig", action: onDone)
-                .buttonStyle(DLPrimaryButtonStyle())
-                .frame(maxWidth: .infinity)
+            VStack(spacing: DL.Space.m) {
+                if canPracticeMore {
+                    Button("Weiter üben", action: onPractice)
+                        .buttonStyle(DLPrimaryButtonStyle())
+                        .frame(maxWidth: .infinity)
+                    Button("Fertig", action: onDone)
+                        .buttonStyle(DLSoftButtonStyle())
+                        .frame(maxWidth: .infinity)
+                } else {
+                    Button("Fertig", action: onDone)
+                        .buttonStyle(DLPrimaryButtonStyle())
+                        .frame(maxWidth: .infinity)
+                }
+            }
         }
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -111,8 +111,8 @@ A session is composed, never configured:
    reserved so a full due queue can't starve growth (automatic OR user-enqueued); unlocked
    phrases fill reserved slots first, then new cards per the box engine.
 2. **Drain loop**: after the composed queue empties, keep pulling any card with
-   `due <= now` (learning/relearning steps land here) until none remain — only then
-   is the session done. Failed cards thus cycle back naturally.
+   `due <= now` (learning/relearning steps land here) until none remain — then the
+   session ends with a summary (no mid-session pause). Failed cards cycle back naturally.
 3. **Every answer event is an FSRS review** — retries and learning steps go through the
    FSRS-5 short-term path with real elapsed time; nothing is "UI-only".
 4. Typed answer → Rating mapping (v1): wrong → `.again`,
@@ -122,6 +122,11 @@ A session is composed, never configured:
    due cards, then explicitly enqueued new cards (these bypass the pool budget
    and health gate at answer time; user agency), then review-ahead by soonest due,
    capped at `sessionCap`. Automatic seed-order cards never enter an extra round.
+6. **Session end**: a summary ("x neu · x gefestigt · x wiederholt") with confetti and the
+   streak. From there the user goes Home or "Weiter üben" → **endless mode**
+   (`composeEndless`): refills with due cards + soon-due learning steps (pulled ahead within a
+   ~30-min horizon so it doesn't stall) + new cards (respecting the pool + health gate), looping
+   until the user stops or nothing remains.
 
 ## Review UX rules (App) — carried over from prototype refinement, treat as spec
 

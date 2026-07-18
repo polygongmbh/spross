@@ -4,17 +4,16 @@ import WidgetKit
 
 // Session flow: composed plan → card queue → drain loop → completion.
 //
-// Drain-pause choice (documented per task spec): when the composed queue is
-// empty and nothing is due *right now*, but learning/relearning steps come due
-// within the next 15 minutes, the session shows a lightweight "Kurze Pause"
-// state with a countdown (plus a "Jetzt weitermachen" button that pulls those
-// cards early). Only when no such step is pending does the session end.
+// When the composed queue empties and nothing is due right now, the session
+// ends with a summary (no mid-session pause). From the summary the user can
+// keep going in endless mode, which pulls due cards, soon-due learning steps,
+// and new cards (respecting the pool) until they stop.
 
 extension AppModel {
 
-    /// How far ahead the pause state waits for learning steps (covers the
-    /// 10-minute good-step) before the session simply ends.
-    private static let pauseHorizon: TimeInterval = 15 * 60
+    /// Endless mode pulls learning steps coming due within this window ahead,
+    /// so practice keeps flowing instead of stalling on the 10-minute step.
+    private static let endlessHorizon: TimeInterval = 30 * 60
 
     var currentCard: Card? {
         guard case .card(let id)? = sessionStep else { return nil }
@@ -51,6 +50,10 @@ extension AppModel {
         sessionAnswered = 0
         sessionFolded = 0
         sessionRatings = []
+        sessionNew = 0
+        sessionGraduated = 0
+        sessionReviews = 0
+        sessionEndless = false
         sessionEnded = false
         advanceSession(now: now)
         sessionPresented = true
@@ -60,9 +63,11 @@ extension AppModel {
     func answerCurrent(_ rating: Rating) {
         guard case .card(let id)? = sessionStep, let current = box else { return }
         let now = Date()
+        let beforePhase = scheduling(for: id)?.phase
         let next = BoxEngine.answer(state: current, cardID: id, rating: rating,
                                     now: now, calendar: calendar)
         box = next
+        tallySummary(before: beforePhase, after: scheduling(for: id)?.phase)
         sessionRatings.append(rating)
         sessionAnswered += 1
         if !sessionQueue.isEmpty {
@@ -72,7 +77,19 @@ extension AppModel {
         advanceSession(now: now)
     }
 
-    /// Next step: composed queue → drain loop (`dueNow`) → pause → done.
+    /// Bucket each answer for the end summary: first-ever answer = new,
+    /// learning/relearning → review = graduated ("gefestigt"), else a review rep.
+    private func tallySummary(before: CardPhase?, after: CardPhase?) {
+        if before == nil {
+            sessionNew += 1
+        } else if (before == .learning || before == .relearning) && after == .review {
+            sessionGraduated += 1
+        } else {
+            sessionReviews += 1
+        }
+    }
+
+    /// Next step: composed queue → drain loop (`dueNow`) → endless refill → done.
     func advanceSession(now: Date = Date()) {
         guard let box else {
             sessionStep = .completed
@@ -89,33 +106,40 @@ extension AppModel {
             sessionStep = .card(due[0])
             return
         }
-        if let nextDue = upcomingLearningSchedulings(now: now).first?.due {
-            sessionStep = .pause(until: nextDue)
+        // Endless: refill with due + soon-due steps + new cards until dry.
+        if sessionEndless, enqueueEndlessBatch(from: box, now: now) {
             return
         }
         finishSession(now: now)
         sessionStep = .completed
     }
 
-    /// Countdown tick: resume once the pause target is due.
-    func resumePauseIfDue(now: Date = Date()) {
-        guard case .pause(let until)? = sessionStep, now >= until else { return }
-        advanceSession(now: now)
+    /// "Weiter üben": switch the finished session into endless mode and pull the
+    /// first refill batch. No-op (stays on the summary) if nothing is available.
+    func continueEndless() {
+        guard let box else { return }
+        let now = Date()
+        sessionEndless = true
+        guard enqueueEndlessBatch(from: box, now: now) else { return }
+        sessionEnded = false // re-open so finishSession books the new delta
     }
 
-    /// "Jetzt weitermachen": pull the pending learning steps early.
-    /// Elapsed time at answer stays real, so FSRS input is still honest.
-    func skipPause() {
-        guard case .pause? = sessionStep else { return }
-        let now = Date()
-        let upcoming = upcomingLearningSchedulings(now: now).map(\.cardID)
-        guard !upcoming.isEmpty else {
-            advanceSession(now: now)
-            return
-        }
-        sessionQueue = upcoming
-        sessionTotal += upcoming.count
-        sessionStep = .card(upcoming[0])
+    /// Whether an endless refill would yield anything right now (drives the
+    /// "Weiter üben" button's presence on the summary).
+    var canPracticeMore: Bool {
+        guard let box else { return false }
+        return !BoxEngine.composeEndless(state: box, now: Date(), within: Self.endlessHorizon).isEmpty
+    }
+
+    /// Pull the next endless batch onto the queue; returns false if dry.
+    private func enqueueEndlessBatch(from box: BoxState, now: Date) -> Bool {
+        let plan = BoxEngine.composeEndless(state: box, now: now, within: Self.endlessHorizon)
+        let more = plan.reviews + plan.unlockedPhrases + plan.newWords
+        guard !more.isEmpty else { return false }
+        sessionQueue = more
+        sessionTotal += more.count
+        sessionStep = .card(more[0])
+        return true
     }
 
     /// Fold today's counters into dailyStats exactly once per session.
@@ -155,15 +179,8 @@ extension AppModel {
             finishSession()
         }
         sessionEnded = true
+        sessionEndless = false
         sessionPresented = false
         refreshStats()
-    }
-
-    // MARK: - Helpers
-
-    /// Learning/relearning steps due within the pause horizon, soonest first.
-    private func upcomingLearningSchedulings(now: Date) -> [CardScheduling] {
-        guard let box else { return [] }
-        return BoxEngine.upcomingSteps(state: box, now: now, within: Self.pauseHorizon)
     }
 }

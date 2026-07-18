@@ -6,8 +6,6 @@ import DuoKern
 enum SessionStep: Equatable {
     /// Show this card (by id).
     case card(String)
-    /// Learning steps land in the near future: short breather with countdown.
-    case pause(until: Date)
     case completed
 }
 
@@ -43,6 +41,14 @@ final class AppModel {
     var sessionRatings: [Rating] = []
     /// Answers already folded into dailyStats (partial folds on backgrounding).
     var sessionFolded = 0
+    /// End-of-session summary tallies (design §Session): new cards started,
+    /// cards graduated to review ("gefestigt"), and review answers.
+    var sessionNew = 0
+    var sessionGraduated = 0
+    var sessionReviews = 0
+    /// Endless practice: on completion the user can keep pulling due + new
+    /// cards until they stop, instead of ending the round.
+    var sessionEndless = false
     var sessionEnded = true
     private(set) var autostartSession = false
     /// DEBUG hook: `-uitest-screen box` pushes the Box screen after launch.

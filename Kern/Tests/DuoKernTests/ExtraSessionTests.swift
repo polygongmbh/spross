@@ -76,6 +76,22 @@ import Testing
         let alreadyDue = BoxEngine.upcomingSteps(state: state, now: day0.addingTimeInterval(700), within: 900)
         #expect(alreadyDue.isEmpty) // due now is the drain loop's job, not upcoming
     }
+
+    @Test func endlessRefillPullsAheadLearningStepsAndNewCards() {
+        var config = BoxConfig(pair: .deSw)
+        config.maxLearning = 3
+        var state = BoxEngine.bootstrap(cards: (0..<5).map(word), config: config)
+        state = BoxEngine.enqueue(state: state, cardIDs: ["w0"])
+        // w0 → learning, its step due in 10 min.
+        state = BoxEngine.answer(state: state, cardID: "w0", rating: .good, now: day0, calendar: calendar)
+
+        // 1 min in: w0's step isn't due yet, but endless pulls it ahead…
+        let t = day0.addingTimeInterval(60)
+        let plan = BoxEngine.composeEndless(state: state, now: t, within: 30 * 60)
+        #expect(plan.reviews.contains("w0"))
+        // …and new cards keep flowing while the pool has room (3 − 1 learning = 2).
+        #expect(plan.newWords == ["w1", "w2"])
+    }
 }
 
 @Suite struct AnswerNormalizerTests {
