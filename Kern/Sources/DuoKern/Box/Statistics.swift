@@ -6,8 +6,9 @@ public struct BoxStatistics: Sendable, Equatable {
     public var activeCount: Int
     public var dueCount: Int
     public var suspendedCount: Int
-    /// New-card introductions still possible today; 0 if the health gate is closed.
-    public var newBudgetRemainingToday: Int
+    /// Free slots in the learning pool (new cards that can enter now); 0 if the
+    /// health gate is closed.
+    public var newSlotsAvailable: Int
     /// Consecutive days with reviews > 0; one missed day is forgiven.
     public var streak: Int
     /// Mean FSRS retrievability over active review-phase cards; nil if none.
@@ -15,12 +16,12 @@ public struct BoxStatistics: Sendable, Equatable {
     public var areas: [AreaStatistics]
 
     public init(activeCount: Int, dueCount: Int, suspendedCount: Int,
-                newBudgetRemainingToday: Int, streak: Int,
+                newSlotsAvailable: Int, streak: Int,
                 averageRetrievability: Double?, areas: [AreaStatistics]) {
         self.activeCount = activeCount
         self.dueCount = dueCount
         self.suspendedCount = suspendedCount
-        self.newBudgetRemainingToday = newBudgetRemainingToday
+        self.newSlotsAvailable = newSlotsAvailable
         self.streak = streak
         self.averageRetrievability = averageRetrievability
         self.areas = areas
@@ -62,7 +63,7 @@ extension BoxEngine {
             activeCount: active.count,
             dueCount: dueCount,
             suspendedCount: suspendedCount,
-            newBudgetRemainingToday: gatedNewBudget(state, now: now, calendar: calendar),
+            newSlotsAvailable: gatedNewBudget(state, now: now),
             streak: streak(state.dailyStats, now: now, calendar: calendar),
             averageRetrievability: averageRetrievability(active, config: state.config, now: now),
             areas: areaStatistics(state)

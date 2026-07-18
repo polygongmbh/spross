@@ -42,10 +42,15 @@ struct SessionComposerTests {
         #expect(BoxEngine.dueNow(state: tied, now: now) == ["w01", "w02"])
     }
 
-    @Test("no reservation when budget is exhausted: reviews fill the whole sessionCap")
+    @Test("no reservation without new work: reviews fill the whole sessionCap")
     func noReservationWithoutBudget() {
-        var state = backloggedState()
-        state.newIntroduced[Box.dayKey(now)] = 5 // today's budget spent
+        // maxLearning 0 → no growth budget and no enqueued cards → no reserve.
+        var state = Box.state(cards: (1...50).map { Box.word($0) }, Box.config(maxLearning: 0))
+        for n in 1...40 {
+            let id = String(format: "w%02d", n)
+            Box.inject(&state, Box.sched(id, due: now.addingTimeInterval(-Double(n) * 3_600),
+                                         lastReview: now.addingTimeInterval(-10 * 86_400)))
+        }
         let plan = BoxEngine.composeSession(state: state, now: now, calendar: cal)
         #expect(plan.reviews.count == 30)
         #expect(plan.newWords.isEmpty)
@@ -55,7 +60,7 @@ struct SessionComposerTests {
     @Test("new cards never exceed remaining session capacity")
     func newCappedBySessionCapacity() {
         var state = Box.state(cards: (1...40).map { Box.word($0) },
-                              Box.config(newPerDay: 20, sessionCap: 30))
+                              Box.config(maxLearning: 20, sessionCap: 30))
         for n in 1...28 {
             let id = String(format: "w%02d", n)
             Box.inject(&state, Box.sched(id, due: now.addingTimeInterval(-Double(n) * 60),
@@ -82,7 +87,7 @@ struct SessionComposerTests {
 
     @Test("drain loop scenario: failed cards cycle back until nothing is due")
     func drainLoop() {
-        var state = Box.state(cards: [Box.word(1), Box.word(2)], Box.config(newPerDay: 2))
+        var state = Box.state(cards: [Box.word(1), Box.word(2)], Box.config(maxLearning: 2))
         var t = now
 
         // Introduce both; w01 fails, w02 passes

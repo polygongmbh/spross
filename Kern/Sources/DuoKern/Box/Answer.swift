@@ -31,11 +31,12 @@ extension BoxEngine {
 
     private static func introduce(state: BoxState, cardID: String, key: String, rating: Rating,
                                   fsrs: FSRS, now: Date, calendar: Calendar) -> BoxState {
-        // why: budget is re-checked at answer time so a plan composed yesterday
-        // can't over-introduce after midnight; over-budget answers are no-ops.
-        // Explicitly enqueued cards bypass the budget (user agency): an extra
-        // round the user asked for must never silently drop answers.
-        guard newBudgetRemaining(state, now: now, calendar: calendar) > 0
+        // why: the learning-pool budget is re-checked at answer time so a plan
+        // can't over-fill the pool — each introduction moves a card into
+        // `.learning`, shrinking the remaining budget (self-limiting). Explicitly
+        // enqueued cards bypass it (user agency): a round the user asked for must
+        // never silently drop answers.
+        guard learningPoolBudget(state) > 0
                 || state.enqueued.contains(cardID) else { return state }
 
         let memory = fsrs.initialState(rating: rating)

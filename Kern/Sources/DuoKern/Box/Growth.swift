@@ -58,17 +58,17 @@ extension BoxEngine {
         return true
     }
 
-    /// Raw daily budget left (ignores the health gate).
-    static func newBudgetRemaining(_ state: BoxState, now: Date, calendar: Calendar) -> Int {
-        let introduced = state.newIntroduced[dayKey(for: now, calendar: calendar)] ?? 0
-        return max(0, state.config.newPerDay - introduced)
+    /// Load-based budget: free slots in the learning pool, ignoring the health
+    /// gate. Growth tops the `.learning` pool back up to `maxLearning` — so a
+    /// day where cards graduate frees room for more, and a full pool adds none.
+    static func learningPoolBudget(_ state: BoxState) -> Int {
+        let learning = activeSchedulings(state).filter { $0.phase == .learning }.count
+        return max(0, state.config.maxLearning - learning)
     }
 
     /// Budget after the health gate: 0 when the gate is closed.
-    static func gatedNewBudget(_ state: BoxState, now: Date, calendar: Calendar) -> Int {
-        healthGateOpen(state, now: now)
-            ? newBudgetRemaining(state, now: now, calendar: calendar)
-            : 0
+    static func gatedNewBudget(_ state: BoxState, now: Date) -> Int {
+        healthGateOpen(state, now: now) ? learningPoolBudget(state) : 0
     }
 
     // MARK: - Phrase unlock (design §Box 3)
@@ -113,30 +113,54 @@ extension BoxEngine {
 
     // MARK: - New-card candidates
 
-    /// Candidate selection within `budget` introductions:
-    /// unlocked phrases first, then enqueued ids (queue order), then seed order.
-    /// Locked phrases (components not yet stable) never enter, even enqueued.
-    static func newCandidates(_ state: BoxState, budget: Int) -> (unlockedPhrases: [String], newWords: [String]) {
-        guard budget > 0 else { return ([], []) }
+    /// Enqueued ids that could actually enter now: unscheduled, and — for
+    /// phrases with components — unlocked. User agency: these BYPASS the budget.
+    static func enqueuedEligible(_ state: BoxState) -> [String] {
+        state.enqueued.filter { id in
+            guard let card = state.cards[id], scheduling(state, id) == nil else { return false }
+            return card.kind != .phrase || card.componentIDs.isEmpty || isPhraseUnlocked(state, card)
+        }
+    }
+
+    /// Candidate selection, bounded by `capacity` total introductions:
+    /// 1. Enqueued eligible ids (queue order) — the user asked for them, so they
+    ///    bypass `budget` (matching `answer()` and the extra round).
+    /// 2. Automatic growth within `budget`: unlocked phrases (fast path), then
+    ///    seed-order words. Locked phrases never enter, even enqueued.
+    static func newCandidates(_ state: BoxState, budget: Int, capacity: Int)
+        -> (unlockedPhrases: [String], newWords: [String]) {
+        guard capacity > 0 else { return ([], []) }
 
         let unscheduled = state.cards.values.filter { scheduling(state, $0.id) == nil }
-        let unlockedIDs = seedOrdered(unscheduled.filter { isPhraseUnlocked(state, $0) }).map(\.id)
-        let phrases = Array(unlockedIDs.prefix(budget))
+        var taken = Set<String>()
+        var slots = capacity
 
-        var taken = Set(phrases)
+        // 1. Enqueued — bypass the budget, bounded only by session capacity.
         var words: [String] = []
-        var remaining = budget - phrases.count
-        let byID = Dictionary(uniqueKeysWithValues: unscheduled.map { ($0.id, $0) })
+        for id in enqueuedEligible(state) where slots > 0 {
+            guard !taken.contains(id) else { continue }
+            words.append(id)
+            taken.insert(id)
+            slots -= 1
+        }
 
-        for id in state.enqueued + seedOrdered(unscheduled).map(\.id) {
-            guard remaining > 0 else { break }
-            guard let card = byID[id], !taken.contains(id) else { continue }
+        // 2. Automatic growth within the (load-based) budget.
+        var autoRemaining = min(budget, slots)
+        let phrases = Array(
+            seedOrdered(unscheduled.filter { !taken.contains($0.id) && isPhraseUnlocked(state, $0) })
+                .map(\.id).prefix(autoRemaining))
+        phrases.forEach { taken.insert($0) }
+        autoRemaining -= phrases.count
+
+        for card in seedOrdered(unscheduled) {
+            guard autoRemaining > 0 else { break }
+            guard !taken.contains(card.id) else { continue }
             if card.kind == .phrase, !card.componentIDs.isEmpty, !isPhraseUnlocked(state, card) {
                 continue // locked phrase: waits for its components
             }
-            words.append(id)
-            taken.insert(id)
-            remaining -= 1
+            words.append(card.id)
+            taken.insert(card.id)
+            autoRemaining -= 1
         }
         return (phrases, words)
     }

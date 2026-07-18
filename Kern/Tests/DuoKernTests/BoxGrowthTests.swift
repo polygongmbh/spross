@@ -7,9 +7,9 @@ struct BoxGrowthTests {
     let cal = Box.calendar
     let now = Box.day1
 
-    @Test("day-one bootstrap: empty box introduces up to newPerDay despite 0 active cards")
+    @Test("day-one bootstrap: empty box fills the learning pool despite 0 active cards")
     func dayOneBootstrap() {
-        let state = Box.state(cards: (1...10).map { Box.word($0) })
+        let state = Box.state(cards: (1...10).map { Box.word($0) }, Box.config(maxLearning: 5))
         let plan = BoxEngine.composeSession(state: state, now: now, calendar: cal)
         #expect(plan.reviews.isEmpty)
         #expect(plan.unlockedPhrases.isEmpty)
@@ -35,7 +35,7 @@ struct BoxGrowthTests {
         #expect(plan.newWords.isEmpty)
         #expect(plan.unlockedPhrases.isEmpty)
         let stats = BoxEngine.statistics(state: state, now: now, calendar: cal)
-        #expect(stats.newBudgetRemainingToday == 0)
+        #expect(stats.newSlotsAvailable == 0)
 
         // Drop to 1 of 10 (10%) → gate open again
         var healthy = state
@@ -75,23 +75,40 @@ struct BoxGrowthTests {
         #expect(plan.reviews.count == 30)
     }
 
-    @Test("budget survives recomposition: compose, answer some, recompose")
+    @Test("pool budget tracks the learning load: compose, answer some, recompose")
     func budgetAcrossRecomposition() {
-        var state = Box.state(cards: (1...10).map { Box.word($0) })
+        var state = Box.state(cards: (1...10).map { Box.word($0) }, Box.config(maxLearning: 5))
         let plan = BoxEngine.composeSession(state: state, now: now, calendar: cal)
         #expect(plan.newWords.count == 5)
 
+        // Answering .good moves each card into .learning, filling the pool.
         for id in plan.newWords.prefix(3) {
             state = BoxEngine.answer(state: state, cardID: id, rating: .good, now: now, calendar: cal)
         }
         let plan2 = BoxEngine.composeSession(state: state, now: now, calendar: cal)
-        #expect(plan2.newWords == ["w04", "w05"]) // 5 − 3 introduced = 2 left
+        #expect(plan2.newWords == ["w04", "w05"]) // 5 pool − 3 learning = 2 free
 
         for id in plan2.newWords {
             state = BoxEngine.answer(state: state, cardID: id, rating: .good, now: now, calendar: cal)
         }
         let plan3 = BoxEngine.composeSession(state: state, now: now, calendar: cal)
-        #expect(plan3.newWords.isEmpty) // budget exhausted
+        #expect(plan3.newWords.isEmpty) // pool full (5 in .learning)
+    }
+
+    @Test("pool refills as learning cards graduate to review")
+    func poolRefillsOnGraduation() {
+        var state = Box.state(cards: (1...10).map { Box.word($0) }, Box.config(maxLearning: 3))
+        // Fill the pool: 3 cards into .learning.
+        for id in ["w01", "w02", "w03"] {
+            state = BoxEngine.answer(state: state, cardID: id, rating: .good, now: now, calendar: cal)
+        }
+        #expect(BoxEngine.composeSession(state: state, now: now, calendar: cal).newWords.isEmpty)
+
+        // Graduate w01 (answer its learning step .good → .review) frees one slot.
+        let step = now.addingTimeInterval(700)
+        state = BoxEngine.answer(state: state, cardID: "w01", rating: .good, now: step, calendar: cal)
+        let refilled = BoxEngine.composeSession(state: state, now: step, calendar: cal)
+        #expect(refilled.newWords == ["w04"]) // one graduated → one new pulled in
     }
 
     @Test("introduction at first answer: composing without answering burns no budget")
@@ -106,36 +123,52 @@ struct BoxGrowthTests {
         #expect(current.scheduling.isEmpty)
     }
 
-    @Test("budget re-checked defensively at answer time; over-budget answer is a no-op")
+    @Test("pool budget re-checked defensively at answer time; a full pool blocks introduction")
     func budgetDefensiveAtAnswer() {
-        var state = Box.state(cards: (1...5).map { Box.word($0) }, Box.config(newPerDay: 2))
+        var state = Box.state(cards: (1...5).map { Box.word($0) }, Box.config(maxLearning: 2))
         state = BoxEngine.answer(state: state, cardID: "w01", rating: .good, now: now, calendar: cal)
         state = BoxEngine.answer(state: state, cardID: "w02", rating: .good, now: now, calendar: cal)
+        // Pool full (2 in .learning) → introducing a third is a no-op.
         let blocked = BoxEngine.answer(state: state, cardID: "w03", rating: .good, now: now, calendar: cal)
         #expect(blocked == state)
-        #expect(blocked.newIntroduced[Box.dayKey(now)] == 2)
+        #expect(blocked.scheduling.count == 2)
 
-        // …but the same answer succeeds after midnight (new day, fresh budget)
-        let nextDay = Box.date(2026, 7, 2, 0, 5)
-        let after = BoxEngine.answer(state: state, cardID: "w03", rating: .good, now: nextDay, calendar: cal)
-        #expect(after.newIntroduced[Box.dayKey(nextDay)] == 1)
-        #expect(after.scheduling.count == 3)
+        // Graduate w01 → a slot frees → the same answer now succeeds.
+        let step = now.addingTimeInterval(700)
+        var freed = BoxEngine.answer(state: state, cardID: "w01", rating: .good, now: step, calendar: cal)
+        freed = BoxEngine.answer(state: freed, cardID: "w03", rating: .good, now: step, calendar: cal)
+        #expect(freed.scheduling.count == 3)
     }
 
-    @Test("enqueued ids take priority over seed order; phrase enqueue pulls missing components first")
+    @Test("enqueued ids lead and bypass the budget; phrase enqueue pulls missing components first")
     func enqueuePriority() {
-        var state = Box.state(cards: (1...10).map { Box.word($0) })
+        var state = Box.state(cards: (1...10).map { Box.word($0) }, Box.config(maxLearning: 5))
         state = BoxEngine.enqueue(state: state, cardIDs: ["w07"])
         let plan = BoxEngine.composeSession(state: state, now: now, calendar: cal)
-        #expect(plan.newWords == ["w07", "w01", "w02", "w03", "w04"])
+        // w07 bypasses the pool budget (5), so 1 enqueued + 5 automatic = 6.
+        #expect(plan.newWords == ["w07", "w01", "w02", "w03", "w04", "w05"])
 
         var withPhrase = Box.state(cards: (1...6).map { Box.word($0) }
-            + [Box.phrase("p1", components: ["w05", "w06"])])
+            + [Box.phrase("p1", components: ["w05", "w06"])], Box.config(maxLearning: 5))
         withPhrase = BoxEngine.enqueue(state: withPhrase, cardIDs: ["p1"])
         #expect(withPhrase.enqueued == ["w05", "w06", "p1"])
         let plan2 = BoxEngine.composeSession(state: withPhrase, now: now, calendar: cal)
         // locked phrase never enters, even enqueued; its components lead
-        #expect(plan2.newWords == ["w05", "w06", "w01", "w02", "w03"])
+        #expect(plan2.newWords == ["w05", "w06", "w01", "w02", "w03", "w04"])
+    }
+
+    @Test("enqueued cards surface even when the learning pool is full — adding always works")
+    func enqueuedSurfacesWithFullPool() {
+        var state = Box.state(cards: (1...10).map { Box.word($0) }, Box.config(maxLearning: 2))
+        // Fill the pool: 2 cards into .learning → automatic budget is 0.
+        state = BoxEngine.answer(state: state, cardID: "w01", rating: .good, now: now, calendar: cal)
+        state = BoxEngine.answer(state: state, cardID: "w02", rating: .good, now: now, calendar: cal)
+        #expect(BoxEngine.composeSession(state: state, now: now, calendar: cal).newWords.isEmpty)
+
+        // "Pack in die Box" → the packed card appears next session despite the full pool.
+        state = BoxEngine.enqueue(state: state, cardIDs: ["w08"])
+        let plan = BoxEngine.composeSession(state: state, now: now, calendar: cal)
+        #expect(plan.newWords == ["w08"])
     }
 
     @Test("answering an enqueued card removes it from the queue")

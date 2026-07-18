@@ -97,7 +97,7 @@ struct PhraseUnlockTests {
         let cards = try SeedImporter.importSeed(json: Data(contentsOf: url))
         let phrase = try #require(cards.first { $0.kind == .phrase && !$0.componentIDs.isEmpty })
 
-        var state = BoxEngine.bootstrap(cards: cards, config: Box.config(newPerDay: 20))
+        var state = BoxEngine.bootstrap(cards: cards, config: Box.config(maxLearning: 20))
         let future = now.addingTimeInterval(10 * 86_400)
         for componentID in phrase.componentIDs {
             Box.inject(&state, Box.sched(componentID, stability: 5, due: future, lastReview: now))

@@ -29,9 +29,9 @@ enum Box {
              german: id, translation: id, componentIDs: components)
     }
 
-    static func config(newPerDay: Int = 5, dueSoftCap: Int = 30, sessionCap: Int = 30,
+    static func config(maxLearning: Int = 8, dueSoftCap: Int = 30, sessionCap: Int = 30,
                        direction: Direction = .deToTarget) -> BoxConfig {
-        BoxConfig(pair: .deSw, direction: direction, newPerDay: newPerDay,
+        BoxConfig(pair: .deSw, direction: direction, maxLearning: maxLearning,
                   dueSoftCap: dueSoftCap, sessionCap: sessionCap)
     }
 

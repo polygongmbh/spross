@@ -56,7 +56,7 @@ import Testing
     @Test func oldStoreDocumentsDecodeWithMixedDefaultOn() throws {
         // A pre-mixedDirections config JSON must decode (key absent → true).
         let legacy = """
-        {"pair":"de-sw","direction":"deToTarget","newPerDay":5,"dueSoftCap":30,
+        {"pair":"de-sw","direction":"deToTarget","maxLearning":8,"dueSoftCap":30,
          "sessionCap":30,"desiredRetention":0.9,"phraseUnlockStability":3.0}
         """
         let config = try JSONDecoder().decode(BoxConfig.self, from: Data(legacy.utf8))

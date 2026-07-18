@@ -20,11 +20,8 @@ extension BoxEngine {
         let due = dueSchedulings(state, now: now).map(\.cardID)
 
         let scheduledKeys = Set(due)
-        let enqueuedNew = state.enqueued.filter { id in
-            guard let card = state.cards[id], scheduling(state, id) == nil else { return false }
-            // Locked phrases wait for their components even when enqueued.
-            return card.kind != .phrase || card.componentIDs.isEmpty || isPhraseUnlocked(state, card)
-        }
+        // Enqueued unscheduled cards (locked phrases wait) — bypass the budget.
+        let enqueuedNew = enqueuedEligible(state)
 
         let remaining = max(0, cap - due.count - enqueuedNew.count)
         // Review-ahead: soonest-due active cards not already in the round.

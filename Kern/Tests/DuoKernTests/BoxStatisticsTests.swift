@@ -104,7 +104,7 @@ struct BoxStatisticsTests {
         #expect(stats.activeCount == 2)
         #expect(stats.dueCount == 1)
         #expect(stats.suspendedCount == 1)
-        #expect(stats.newBudgetRemainingToday == 5)
+        #expect(stats.newSlotsAvailable == 8) // empty learning pool, default maxLearning
         let avg = try #require(stats.averageRetrievability)
         #expect(avg > 0 && avg <= 1)
     }

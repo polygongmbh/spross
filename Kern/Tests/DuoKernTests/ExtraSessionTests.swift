@@ -32,27 +32,28 @@ import Testing
         #expect(extra.reviews.count == 8)
     }
 
-    @Test func enqueuedNewCardsAppearAndBypassExhaustedBudget() {
+    @Test func enqueuedNewCardsBypassFullPoolInBothRounds() {
         var config = BoxConfig(pair: .deSw)
-        config.newPerDay = 2
-        var state = boxWithActive(2, of: 4, config: config) // budget for the day used up
+        config.maxLearning = 0 // no automatic growth budget
+        var state = boxWithActive(2, of: 4, config: config)
         state = BoxEngine.enqueue(state: state, cardIDs: ["w2", "w3"])
-        // Regular compose offers nothing new (budget exhausted)…
-        let plan = BoxEngine.composeSession(state: state, now: day0.addingTimeInterval(600), calendar: calendar)
-        #expect(plan.newWords.isEmpty)
-        // …but the extra round carries the explicit enqueues,
-        let extra = BoxEngine.composeExtraSession(state: state, now: day0.addingTimeInterval(600), calendar: calendar)
+        let t = day0.addingTimeInterval(600)
+        // Regular compose now surfaces enqueued cards despite 0 automatic budget…
+        let plan = BoxEngine.composeSession(state: state, now: t, calendar: calendar)
+        #expect(plan.newWords == ["w2", "w3"])
+        // …and so does the extra round.
+        let extra = BoxEngine.composeExtraSession(state: state, now: t, calendar: calendar)
         #expect(extra.newWords == ["w2", "w3"])
         // and answering them actually introduces (budget bypass for enqueued).
         let after = BoxEngine.answer(state: state, cardID: "w2", rating: .good,
-                                     now: day0.addingTimeInterval(700), calendar: calendar)
+                                     now: t.addingTimeInterval(100), calendar: calendar)
         #expect(after.scheduling[BoxState.schedulingKey(cardID: "w2", direction: .deToTarget)] != nil)
         #expect(after.enqueued == ["w3"])
     }
 
-    @Test func nonEnqueuedIntroductionStillNoOpsWhenBudgetExhausted() {
+    @Test func nonEnqueuedIntroductionStillNoOpsWhenPoolFull() {
         var config = BoxConfig(pair: .deSw)
-        config.newPerDay = 1
+        config.maxLearning = 1
         let state = boxWithActive(1, config: config)
         let after = BoxEngine.answer(state: state, cardID: "w0", rating: .good,
                                      now: day0, calendar: calendar) // w0 already scheduled → review, fine

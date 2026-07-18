@@ -130,7 +130,10 @@ public struct DayStats: Codable, Sendable, Equatable {
 public struct BoxConfig: Codable, Sendable, Equatable {
     public var pair: LanguagePair
     public var direction: Direction
-    public var newPerDay: Int
+    /// Target size of the "still being learned" pool (cards in `.learning`).
+    /// New cards are introduced to top the pool back up to this — growth is
+    /// load-based, not a per-day cap. `dueSoftCap` is the day-over-day governor.
+    public var maxLearning: Int
     public var dueSoftCap: Int
     public var sessionCap: Int
     public var desiredRetention: Double
@@ -144,12 +147,12 @@ public struct BoxConfig: Codable, Sendable, Equatable {
     public var mixedDirections: Bool
 
     public init(pair: LanguagePair, direction: Direction = .deToTarget,
-                newPerDay: Int = 5, dueSoftCap: Int = 30, sessionCap: Int = 30,
+                maxLearning: Int = 8, dueSoftCap: Int = 30, sessionCap: Int = 30,
                 desiredRetention: Double = 0.9, phraseUnlockStability: Double = 3.0,
                 mixedDirections: Bool = true) {
         self.pair = pair
         self.direction = direction
-        self.newPerDay = newPerDay
+        self.maxLearning = maxLearning
         self.dueSoftCap = dueSoftCap
         self.sessionCap = sessionCap
         self.desiredRetention = desiredRetention
@@ -158,7 +161,7 @@ public struct BoxConfig: Codable, Sendable, Equatable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case pair, direction, newPerDay, dueSoftCap, sessionCap,
+        case pair, direction, maxLearning, dueSoftCap, sessionCap,
              desiredRetention, phraseUnlockStability, mixedDirections
     }
 
@@ -166,7 +169,9 @@ public struct BoxConfig: Codable, Sendable, Equatable {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         pair = try c.decode(LanguagePair.self, forKey: .pair)
         direction = try c.decode(Direction.self, forKey: .direction)
-        newPerDay = try c.decode(Int.self, forKey: .newPerDay)
+        // why: field renamed from the retired per-day cap; a dev box saved before
+        // the rename lacks the key — default rather than decode-fail.
+        maxLearning = try c.decodeIfPresent(Int.self, forKey: .maxLearning) ?? 8
         dueSoftCap = try c.decode(Int.self, forKey: .dueSoftCap)
         sessionCap = try c.decode(Int.self, forKey: .sessionCap)
         desiredRetention = try c.decode(Double.self, forKey: .desiredRetention)

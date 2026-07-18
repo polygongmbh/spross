@@ -24,21 +24,22 @@ extension BoxEngine {
 
     /// Compose today's session. Pure: same inputs → same plan.
     ///
-    /// Reviews are capped at `sessionCap − min(newBudgetRemaining, 5)` —
-    /// slots are reserved so a full due queue can't starve growth
-    /// (design §Session 1). New candidates are only *proposed* here;
-    /// introduction happens at first answer (design §Box 6).
+    /// Up to 5 slots are reserved so a full due queue can't starve growth — for
+    /// automatic new cards (load-based budget) OR enqueued cards the user packed
+    /// (design §Session 1). New candidates are only *proposed* here; introduction
+    /// happens at first answer (design §Box 6).
     public static func composeSession(state: BoxState, now: Date, calendar: Calendar) -> SessionPlan {
         let dueIDs = dueSchedulings(state, now: now).map(\.cardID)
-        let budget = gatedNewBudget(state, now: now, calendar: calendar)
+        let budget = gatedNewBudget(state, now: now)
 
-        let reviewCap = max(0, state.config.sessionCap - min(budget, 5))
+        // Reserve growth headroom whenever there is any new work — budgeted
+        // automatic cards or user-enqueued ones (the latter bypass the budget).
+        let growthReserve = min(max(budget, enqueuedEligible(state).count), 5)
+        let reviewCap = max(0, state.config.sessionCap - growthReserve)
         let reviews = Array(dueIDs.prefix(reviewCap))
 
-        // New introductions fill the remaining session capacity, never more
-        // than the daily budget — unlocked phrases first, then words.
-        let allowance = min(budget, max(0, state.config.sessionCap - reviews.count))
-        let (phrases, words) = newCandidates(state, budget: allowance)
+        let capacity = max(0, state.config.sessionCap - reviews.count)
+        let (phrases, words) = newCandidates(state, budget: budget, capacity: capacity)
 
         return SessionPlan(reviews: reviews, unlockedPhrases: phrases, newWords: words)
     }
