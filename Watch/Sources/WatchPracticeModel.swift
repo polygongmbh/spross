@@ -46,8 +46,11 @@ final class WatchPracticeModel {
         streak = correct ? streak + 1 : 0
         // why: soft haptic only — never the punishing `.failure`/`.retry`.
         WKInterfaceDevice.current().play(correct ? .success : .click)
+        // why: linger longer on a wrong pick so the revealed correct answer
+        // has time to register before the next question.
+        let delay = correct ? 900 : 2000
         autoAdvance = Task { @MainActor in
-            try? await Task.sleep(for: .milliseconds(900))
+            try? await Task.sleep(for: .milliseconds(delay))
             guard !Task.isCancelled else { return }
             advance()
         }
