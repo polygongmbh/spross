@@ -31,8 +31,8 @@ final class ImporterTests: XCTestCase {
             let phrases = cards.filter { $0.kind == .phrase }.count
             // Full seed incl. basics + amt/arzt/arbeit packs (merged 2026-07-17).
             XCTAssertEqual(nouns, 133, "\(name) noun count")
-            XCTAssertEqual(verbs, 106, "\(name) verb count")
-            XCTAssertEqual(phrases, 104, "\(name) phrase count")
+            XCTAssertEqual(verbs, 105, "\(name) verb count")
+            XCTAssertEqual(phrases, 105, "\(name) phrase count")
             XCTAssertEqual(cards.count, 343, "\(name) total count")
         }
     }

@@ -47,10 +47,6 @@
      "note": "wörtl. „gerufen werden“"
     },
     {
-     "de": "kommen (aus)",
-     "sw": "kutoka"
-    },
-    {
      "de": "sagen",
      "sw": "kusema"
     },
@@ -148,8 +144,12 @@
      "sw": "Unaweza kurudia, tafadhali?"
     },
     {
-     "de": "Ich verstehe (nicht).",
-     "sw": "Naelewa. / Sielewi.",
+     "de": "Ich verstehe.",
+     "sw": "Naelewa."
+    },
+    {
+     "de": "Ich verstehe nicht.",
+     "sw": "Sielewi.",
      "note": "si- ersetzt nina- und die Endung wechselt -a → -i: naelewa → sielewi"
     },
     {

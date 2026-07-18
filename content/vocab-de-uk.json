@@ -44,10 +44,6 @@
      "uk": "називатися"
     },
     {
-     "de": "kommen (aus)",
-     "uk": "бути родом з"
-    },
-    {
      "de": "sagen",
      "uk": "казати"
     },
@@ -142,8 +138,12 @@
      "uk": "Повторіть, будь ласка."
     },
     {
-     "de": "Ich verstehe (nicht).",
-     "uk": "Я (не) розумію."
+     "de": "Ich verstehe.",
+     "uk": "Я розумію."
+    },
+    {
+     "de": "Ich verstehe nicht.",
+     "uk": "Я не розумію."
     },
     {
      "de": "Langsamer, bitte!",
