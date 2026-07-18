@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.1 — 2026-07-18
+
+- **Watch practice polish**: the four answer tiles sit in a 2×2 grid (no more
+  scrolling), the prompt word is bigger, a wrong pick lingers so the correct
+  answer registers, and the app version shows on the watch home screen.
+
 ## 0.9.0 — 2026-07-18
 
 - **Practice on the watch ("Üben")**: a tap-based multiple-choice drill over the
