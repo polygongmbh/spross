@@ -15,6 +15,8 @@ final class WatchModel {
 
     // MARK: Review-loop state
     var reviewPresented = false
+    /// "Üben" practice sheet (pure-local multiple choice; no FSRS).
+    var practicePresented = false
     private(set) var queue: [String] = []
     private(set) var currentID: String?
     var revealed = false
@@ -30,14 +32,18 @@ final class WatchModel {
         #if DEBUG
         // UI-test hooks: `-uitest-snapshot` loads the bundled fixture instead
         // of stored/synced state; `-uitest-autostart` opens the review loop,
-        // `-uitest-reveal` also flips the first card (screenshot verification
-        // without a paired phone — simctl cannot tap).
+        // `-uitest-reveal` also flips the first card; `-uitest-practice` opens
+        // the Üben practice sheet (screenshot verification without a paired
+        // phone — simctl cannot tap).
         let arguments = ProcessInfo.processInfo.arguments
         if arguments.contains("-uitest-snapshot") {
             snapshot = Self.loadFixture()
             if arguments.contains("-uitest-autostart") {
                 startReview()
                 revealed = arguments.contains("-uitest-reveal")
+            }
+            if arguments.contains("-uitest-practice") {
+                practicePresented = true
             }
             return
         }
@@ -86,6 +92,18 @@ final class WatchModel {
 
     var currentCard: WatchSnapshot.Card? {
         currentID.flatMap { snapshot?.card(id: $0) }
+    }
+
+    // MARK: - Practice ("Üben")
+
+    /// Enough introduced vocab to build a multiple-choice question.
+    var canPractice: Bool { (snapshot?.cards.count ?? 0) >= 2 }
+
+    /// A fresh pure-local practice run over the current snapshot, or nil when
+    /// there isn't enough vocab yet.
+    func makePracticeModel() -> WatchPracticeModel? {
+        guard let snapshot, snapshot.cards.count >= 2 else { return nil }
+        return WatchPracticeModel(snapshot: snapshot)
     }
 
     // MARK: - Review loop
