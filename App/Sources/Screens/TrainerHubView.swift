@@ -48,7 +48,7 @@ struct TrainerHubView: View {
             Text("Training")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("Auf \(effectiveLanguage.trainerName) · zählt nicht in deine Box.")
+            Text("Auf \(effectiveLanguage.trainerName) · zählt nicht für deine Box.")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
             HStack(spacing: DL.Space.m) {

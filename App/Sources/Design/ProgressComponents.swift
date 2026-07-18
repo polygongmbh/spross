@@ -107,9 +107,9 @@ struct DueCountRing: View {
 struct AreaChip: View {
     let emoji: String
     let name: String
-    /// Cards in review phase ("sitzen").
+    /// Cards in review phase ("gefestigt").
     let sitting: Int
-    /// Cards still in learning/relearning ("lernen").
+    /// Cards still in learning/relearning ("frisch").
     let learning: Int
 
     private var total: Int { max(sitting + learning, 1) }
@@ -123,7 +123,7 @@ struct AreaChip: View {
                     .foregroundStyle(Color.dlTextPrimary)
                     .lineLimit(1)
                 Spacer(minLength: DL.Space.s)
-                Text("\(sitting) sitzen · \(learning) lernen")
+                Text("\(sitting) gefestigt · \(learning) frisch")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
             }

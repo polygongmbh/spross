@@ -64,8 +64,8 @@ private struct BoxAreaSection: View {
     private func phraseRow(_ stats: AreaStatistics?) -> some View {
         if let stats, stats.phrasesLocked + stats.phrasesUnlocked > 0 {
             HStack(spacing: DL.Space.l) {
-                Label("\(stats.phrasesUnlocked) Sätze frei", systemImage: "lock.open.fill")
-                Label("\(stats.phrasesLocked) warten", systemImage: "lock.fill")
+                Label("\(stats.phrasesUnlocked) Sätze freigeschaltet", systemImage: "lock.open.fill")
+                Label("\(stats.phrasesLocked) gesperrt", systemImage: "lock.fill")
                 Spacer(minLength: 0)
             }
             .font(DL.Fonts.caption)

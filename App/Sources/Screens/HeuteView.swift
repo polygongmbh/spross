@@ -56,7 +56,7 @@ struct HeuteView: View {
     private var sessionCard: some View {
         VStack(spacing: DL.Space.l) {
             sessionStats
-            Text("Deine Sitzung ist gepackt")
+            Text("Deine Sitzung ist startklar")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)
@@ -130,7 +130,7 @@ struct HeuteView: View {
             Text("🎉")
                 .font(.system(size: 56))
                 .accessibilityHidden(true)
-            Text("Alles sitzt für heute")
+            Text("Für heute geschafft")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)
