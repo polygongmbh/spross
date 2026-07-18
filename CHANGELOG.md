@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.10.0 — 2026-07-18
+
+- **New cards flow with your pace, not the calendar**: instead of a fixed "X per
+  day", the box keeps a pool of cards you're actively learning topped up — clear
+  them and more come in, so you can take on dozens in a day when you feel
+  adventurous, or none on a quiet one. Set the pool size (default 8) under
+  "Karten gleichzeitig im Lernen".
+- **"Pack in die Box" now always works**: cards you explicitly add show up in your
+  very next session, even when the learning pool is full.
+
 ## 0.9.1 — 2026-07-18
 
 - **Watch practice polish**: the four answer tiles sit in a 2×2 grid (no more
