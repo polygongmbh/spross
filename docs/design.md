@@ -70,9 +70,14 @@ App/     SwiftUI iOS app — views, persistence (file-backed store actor), app l
 
 The box grows only while material sits:
 
-1. Daily new-card budget: default 5/day (configurable 0–20). Unlocked phrases CONSUME this
-   budget (they are new cards), ordered ahead of new words; at most `newPerDay` introductions
-   of any kind per day.
+1. Load-based new-card budget (NOT a per-day cap): growth tops the *learning pool* — cards
+   currently in `.learning` phase, scoped to `config.direction` — back up to `maxLearning`
+   (default 8, configurable 0–30). `learningPoolBudget = max(0, maxLearning − learningCount)`.
+   A card leaves the pool by graduating to `.review`, which frees a slot, so an active learner
+   can take on many new cards a day while a quiet day adds none. Because `.learning` cards
+   graduate within a session, the pool sits near-empty at most session starts — so the health
+   gate's `dueSoftCap` backlog check (2a) is the effective day-over-day governor. `newIntroduced`
+   is retained for history/stats (DayStats, streak) only; it no longer limits growth.
 2. Health gate: introduce new cards only if
    (a) projected post-session backlog `dueCount − min(dueCount, sessionCap) < dueSoftCap`
    (evaluated at composition time), and
@@ -83,9 +88,13 @@ The box grows only while material sits:
    `phraseUnlockStability` (default 3 days). A component with no scheduling, or suspended,
    counts as not-stable. Phrases with ZERO resolved components follow normal seed order —
    never the unlock fast path.
-4. User agency: user can enqueue a topic pack or a single word ("add to box") —
-   enqueued items respect the health gate but take priority over automatic ordering.
-   Enqueuing a phrase's area auto-prioritizes its missing component words.
+4. User agency: user can enqueue a topic pack or a single word ("add to box"). Enqueued,
+   unscheduled, unlocked cards **bypass the pool budget AND the health gate, and lead the
+   new-card list** in the normal composed session (and the extra round) — consistent with
+   `answer()`, which only gates introduction on budget-or-enqueued. The user asked for them, so
+   packing an area reliably surfaces it next session, bounded only by `sessionCap`. Locked
+   phrases still wait for their components. Enqueuing a phrase's area auto-prioritizes its
+   missing component words.
 5. Automatic ordering within an area: nouns/verbs by seed order, then phrases by unlock.
 6. **Introduction = first answer**: `CardScheduling` is created and `newIntroduced[day]`
    incremented when the card is first *rated*, not when composed. Composition selects
@@ -97,9 +106,10 @@ The box grows only while material sits:
 
 A session is composed, never configured:
 
-1. Due reviews (oldest due first), capped at `sessionCap − min(newBudgetRemaining, 5)` —
-   slots are reserved so a full due queue can't starve growth; unlocked phrases fill
-   reserved slots first, then new cards per the box engine.
+1. Due reviews (oldest due first), capped at `sessionCap − growthReserve`, where
+   `growthReserve = min(max(learningPoolBudget, enqueuedEligibleCount), 5)` — up to 5 slots are
+   reserved so a full due queue can't starve growth (automatic OR user-enqueued); unlocked
+   phrases fill reserved slots first, then new cards per the box engine.
 2. **Drain loop**: after the composed queue empties, keep pulling any card with
    `due <= now` (learning/relearning steps land here) until none remain — only then
    is the session done. Failed cards thus cycle back naturally.
@@ -109,10 +119,9 @@ A session is composed, never configured:
    correct after reveal → `.hard`, correct → `.good`; `.easy` is unreachable via typing.
    Revealing without typing falls back to four-button self-grading (both directions).
 5. **Extra round** (`composeExtraSession`): always available on demand —
-   due cards, then explicitly enqueued new cards (these bypass the daily budget
+   due cards, then explicitly enqueued new cards (these bypass the pool budget
    and health gate at answer time; user agency), then review-ahead by soonest due,
-   capped at `sessionCap`. Automatic seed-order cards never enter an extra round;
-   introductions still count into `newIntroduced`, so tomorrow's automatic budget sees them.
+   capped at `sessionCap`. Automatic seed-order cards never enter an extra round.
 
 ## Review UX rules (App) — carried over from prototype refinement, treat as spec
 
@@ -181,4 +190,5 @@ der=blue / die=pink-red / das=green (text carries meaning, color reinforces — 
 Couple mode, accounts/sync, listening/writing steps, watch app (Phase 2.5+ — but keep Kern
 watch-ready: no UIKit imports, session composer can emit micro-sessions).
 
-- Note: the daily new-card budget (`newIntroduced`) is day-keyed only — shared across directions by design.
+- Note: the new-card budget is load-based (learning-pool occupancy), scoped per `config.direction`.
+  `newIntroduced` remains only as a day-keyed history counter for stats/streak, not a growth limiter.
