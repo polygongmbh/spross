@@ -6,6 +6,22 @@ import Foundation
 public enum AnswerNormalizer {
 
     private static let leadingArticles: Set<String> = ["der", "die", "das", "ein", "eine"]
+    /// A stray leading word this short (letters only) is treated as a mistyped
+    /// article / particle rather than part of the answer (design §Review UX).
+    static let maxLeadingSlipLength = 4
+
+    /// The leading German article a raw answer starts with (only when more
+    /// content follows), else nil. Mirrors `normalize`'s stripping step.
+    static func leadingArticle(_ raw: String) -> String? {
+        let lowered = raw.lowercased()
+        let joinersRemoved = lowered.filter { $0 != "-" && $0 != "'" && $0 != "’" }
+        let cleaned = String(joinersRemoved.map { character in
+            character.isLetter || character.isNumber || character.isWhitespace ? character : " "
+        })
+        let words = cleaned.split(whereSeparator: \.isWhitespace).map(String.init)
+        guard let first = words.first, leadingArticles.contains(first), words.count > 1 else { return nil }
+        return first
+    }
 
     /// Canonical comparison form of a typed or expected answer.
     public static func normalize(_ raw: String) -> String {
@@ -44,11 +60,22 @@ public enum AnswerNormalizer {
     /// `optionalPrefix`: a citation-form marker the learner may drop —
     /// Swahili verb cards pass "ku" so "pika" matches "kupika". Only applied
     /// where the caller knows it's linguistically right (never German).
+    ///
+    /// A right word preceded by the wrong little word is a slip, not a failure:
+    ///  - `expectedArticle` (German production): a *present* leading article that
+    ///    disagrees ("das Tisch" for "der Tisch") demotes an exact match to `.typo`.
+    ///    A *missing* article stays fully correct.
+    ///  - Any language: an unrecognized short leading word (≤ `maxLeadingSlipLength`
+    ///    letters, e.g. a mistyped "dee Tisch") that, once dropped, makes the rest
+    ///    match is treated as `.typo` rather than `.wrong`.
+    /// `.typo` still counts as correct; the learner just sees the citation form.
     public static func evaluate(input: String, expected: String,
-                                optionalPrefix: String? = nil) -> Match {
+                                optionalPrefix: String? = nil,
+                                expectedArticle: String? = nil) -> Match {
         let normalizedInput = normalize(input)
         guard !normalizedInput.isEmpty else { return .wrong }
         var best: Match = .wrong
+        var bestTarget: String?
         for variant in expected.split(separator: "/") {
             let target = normalize(String(variant))
             var targets = [target]
@@ -57,11 +84,36 @@ public enum AnswerNormalizer {
                 targets.append(String(target.dropFirst(optionalPrefix.count)))
             }
             for candidate in targets {
-                if normalizedInput == candidate { return .exact }
+                if normalizedInput == candidate {
+                    best = .exact; bestTarget = target; break
+                }
                 let letters = candidate.filter { !$0.isWhitespace }.count
                 if damerauLevenshtein(normalizedInput, candidate) <= allowedTypos(letters: letters) {
                     // Reveal always shows the full citation form.
-                    best = .typo(corrected: target)
+                    best = .typo(corrected: target); bestTarget = target
+                }
+            }
+            if case .exact = best { break }
+        }
+        // (B) A recognized-but-wrong leading article demotes an exact match to a typo.
+        if best == .exact, let expectedArticle,
+           let typed = leadingArticle(input), typed != expectedArticle.lowercased() {
+            best = .typo(corrected: bestTarget ?? normalizedInput)
+        }
+        // (C) A stray/mistyped short leading word (any language): drop it and, if
+        // the remainder matches, count the slip as a typo instead of a failure.
+        if best == .wrong {
+            let tokens = input.split(whereSeparator: \.isWhitespace)
+            if tokens.count >= 2, let first = tokens.first,
+               first.count <= maxLeadingSlipLength, first.allSatisfy(\.isLetter) {
+                let remainder = tokens.dropFirst().joined(separator: " ")
+                switch evaluate(input: remainder, expected: expected, optionalPrefix: optionalPrefix) {
+                case .exact:
+                    best = .typo(corrected: normalize(String(expected.split(separator: "/").first ?? "")))
+                case .typo(let corrected):
+                    best = .typo(corrected: corrected)
+                case .wrong:
+                    break
                 }
             }
         }

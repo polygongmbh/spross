@@ -252,7 +252,11 @@ struct SessionView: View {
         // the Swahili side ("pika" counts for "kupika").
         let prefix = (mode == .recognition && card.pair == .deSw && card.kind == .verb)
             ? "ku" : nil
-        switch AnswerNormalizer.evaluate(input: trimmed, expected: expected, optionalPrefix: prefix) {
+        // why: when typing German, a wrong/mistyped article is a slip (typo),
+        // not a word failure — the gender still gets shown via the citation form.
+        let expectedArticle = mode == .production ? card.article : nil
+        switch AnswerNormalizer.evaluate(input: trimmed, expected: expected,
+                                         optionalPrefix: prefix, expectedArticle: expectedArticle) {
         case .exact:
             feedback = .correct
             DLSound.correct()

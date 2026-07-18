@@ -118,4 +118,31 @@ import Testing
         // Two errors in a medium word stay wrong (tolerance 1 up to 19 letters).
         #expect(AnswerNormalizer.evaluate(input: "Spolmascine", expected: "Spülmaschine") == .wrong)
     }
+
+    // MARK: - Article & stray-leading-word rule (design §Review UX)
+
+    @Test func wrongArticleCountsAsTypoNotFailure() {
+        // Right word, wrong recognized article → typo (still counts).
+        if case .typo = AnswerNormalizer.evaluate(input: "das Tisch", expected: "Tisch", expectedArticle: "der") {
+        } else { Issue.record("wrong article should be a typo") }
+        // Correct article → clean exact; missing article → still exact.
+        #expect(AnswerNormalizer.evaluate(input: "der Tisch", expected: "Tisch", expectedArticle: "der") == .exact)
+        #expect(AnswerNormalizer.evaluate(input: "Tisch", expected: "Tisch", expectedArticle: "der") == .exact)
+        // No expected article → article never checked.
+        #expect(AnswerNormalizer.evaluate(input: "das Tisch", expected: "Tisch") == .exact)
+    }
+
+    @Test func mistypedLeadingArticleIsTypoInAnyLanguage() {
+        // "dee" isn't a real article, so normalize won't strip it — the stray
+        // short leading word rule recovers it as a typo rather than a failure.
+        if case .typo = AnswerNormalizer.evaluate(input: "dee Tisch", expected: "Tisch", expectedArticle: "der") {
+        } else { Issue.record("mistyped article should be a typo") }
+        // Works without any article context too (generalization).
+        if case .typo = AnswerNormalizer.evaluate(input: "el nyumba", expected: "nyumba") {
+        } else { Issue.record("stray short leading word should be a typo") }
+        // A long stray leading word is not silently forgiven.
+        #expect(AnswerNormalizer.evaluate(input: "großes nyumba", expected: "nyumba") == .wrong)
+        // Never strips the only word.
+        #expect(AnswerNormalizer.evaluate(input: "dee", expected: "nyumba") == .wrong)
+    }
 }

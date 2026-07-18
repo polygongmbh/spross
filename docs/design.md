@@ -131,6 +131,11 @@ A session is composed, never configured:
   (recognition; seed alternatives separated by "/" all count as correct).
 - Answer normalization before comparison: lowercase, trim, strip leading article
   (de: der/die/das/ein/eine; en-style "the/to" not needed), strip punctuation, collapse whitespace.
+- A wrong little word before a right word is a slip, not a failure (both count as a typo):
+  when typing German, a *present* leading article that disagrees with the card's gender
+  ("das Tisch" for "der Tisch") demotes an otherwise-exact answer to a typo; in any language, an
+  unrecognized short leading word (≤4 letters, e.g. a mistyped "dee Tisch") that — once dropped —
+  makes the rest match counts as a typo. A *missing* article stays fully correct.
 - Wrong answer reveals **inline**, expanding the card DOWNWARD (animated) —
   existing content never moves or flips; no space is reserved pre-reveal.
 - German side renders as ONE line, article inline in its color ("der Kühlschrank");
