@@ -19,12 +19,13 @@ enum DLSound {
 
     static func correct() {
         AudioServicesPlaySystemSound(correctID)
-        UINotificationFeedbackGenerator().notificationOccurred(.success)
     }
 
     static func wrong() {
         AudioServicesPlaySystemSound(wrongID)
-        UINotificationFeedbackGenerator().notificationOccurred(.error)
+        // why: a single light tap on a wrong answer only — a gentle wake-up
+        // cue, not the punishing `.error` buzz; correct answers stay haptic-free.
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
     }
 
     static func reveal() {

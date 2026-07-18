@@ -52,8 +52,9 @@ final class WatchPracticeModel {
         selectedIndex = index
         let correct = index == question.correctIndex
         streak = correct ? streak + 1 : 0
-        // why: soft haptic only — never the punishing `.failure`/`.retry`.
-        WKInterfaceDevice.current().play(correct ? .success : .click)
+        // why: a light tap on a wrong pick only — a gentle wake-up cue, not the
+        // punishing `.failure`/`.retry`; correct picks stay haptic-free.
+        if !correct { WKInterfaceDevice.current().play(.click) }
         // why: linger longer on a wrong pick so the revealed correct answer
         // has time to register before the next question.
         let delay = correct ? 900 : 2000
