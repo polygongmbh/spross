@@ -1,0 +1,3498 @@
+{
+ "basics/noun/sprache": {
+  "text": "Sprache",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "basics/noun/wort": {
+  "text": "Wort",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. die Wörter"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "basics/noun/name": {
+  "text": "Name",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "basics/noun/hilfe": {
+  "text": "Hilfe",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n (selten)"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "basics/verb/heissen": {
+  "text": "heißen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "basics/verb/sagen": {
+  "text": "sagen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "basics/verb/wissen": {
+  "text": "wissen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "basics/verb/brauchen": {
+  "text": "brauchen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "basics/verb/danken": {
+  "text": "danken",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "kitchen/noun/kuehlschrank": {
+  "text": "Kühlschrank",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Kühlschränke"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/noun/herd": {
+  "text": "Herd",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Herde"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/noun/backofen": {
+  "text": "Backofen",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Backöfen"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/noun/spuelmaschine": {
+  "text": "Spülmaschine",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/noun/hunger": {
+  "text": "Hunger",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "nur Singular"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/noun/durst": {
+  "text": "Durst",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "nur Singular"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/noun/topf": {
+  "text": "Topf",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Töpfe"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/noun/pfanne": {
+  "text": "Pfanne",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/noun/messer": {
+  "text": "Messer",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/noun/loeffel": {
+  "text": "Löffel",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/noun/gabel": {
+  "text": "Gabel",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/noun/teller": {
+  "text": "Teller",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/verb/kochen": {
+  "text": "kochen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/verb/backen": {
+  "text": "backen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/verb/schneiden": {
+  "text": "schneiden",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/verb/spuelen": {
+  "text": "spülen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/verb/probieren": {
+  "text": "probieren",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/verb/braten": {
+  "text": "braten",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/verb/aufwaermen": {
+  "text": "aufwärmen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/verb/umruehren": {
+  "text": "umrühren",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "kitchen/verb/muell-rausbringen": {
+  "text": "Müll rausbringen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/noun/sofa": {
+  "text": "Sofa",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. -s"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/noun/esstisch": {
+  "text": "Esstisch",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/noun/stuhl": {
+  "text": "Stuhl",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Stühle"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/noun/fernseher": {
+  "text": "Fernseher",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/noun/fernbedienung": {
+  "text": "Fernbedienung",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/noun/regal": {
+  "text": "Regal",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/noun/pflanze": {
+  "text": "Pflanze",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/noun/fenster": {
+  "text": "Fenster",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/noun/vorhang": {
+  "text": "Vorhang",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Vorhänge"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/noun/teppich": {
+  "text": "Teppich",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/noun/lampe": {
+  "text": "Lampe",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/noun/bild": {
+  "text": "Bild",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. -er"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/verb/essen": {
+  "text": "essen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/verb/fernsehen": {
+  "text": "fernsehen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/verb/lesen": {
+  "text": "lesen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/verb/sich-entspannen": {
+  "text": "sich entspannen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/verb/aufraeumen": {
+  "text": "aufräumen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/verb/musik-hoeren": {
+  "text": "Musik hören",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/verb/giessen": {
+  "text": "gießen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/verb/spielen": {
+  "text": "spielen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "living/verb/reden": {
+  "text": "reden",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/noun/waschmaschine": {
+  "text": "Waschmaschine",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/noun/waesche": {
+  "text": "Wäsche",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n (selten)"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/noun/toilette": {
+  "text": "Toilette",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/noun/dusche": {
+  "text": "Dusche",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/noun/waschbecken": {
+  "text": "Waschbecken",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/noun/spiegel": {
+  "text": "Spiegel",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/noun/zahnbuerste": {
+  "text": "Zahnbürste",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/noun/zahnpasta": {
+  "text": "Zahnpasta",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. die Zahnpasten"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/noun/handtuch": {
+  "text": "Handtuch",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. die Handtücher"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/noun/seife": {
+  "text": "Seife",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/noun/shampoo": {
+  "text": "Shampoo",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. -s"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/noun/foehn": {
+  "text": "Föhn",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/verb/duschen": {
+  "text": "duschen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/verb/waesche-waschen": {
+  "text": "Wäsche waschen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/verb/zaehne-putzen": {
+  "text": "Zähne putzen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/verb/abtrocknen": {
+  "text": "abtrocknen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/verb/aufhaengen": {
+  "text": "aufhängen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/verb/putzen": {
+  "text": "putzen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/verb/rasieren": {
+  "text": "rasieren",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/verb/kaemmen": {
+  "text": "kämmen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bath/verb/eincremen": {
+  "text": "eincremen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/noun/schreibtisch": {
+  "text": "Schreibtisch",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/noun/laptop": {
+  "text": "Laptop",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -s"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/noun/tastatur": {
+  "text": "Tastatur",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/noun/bildschirm": {
+  "text": "Bildschirm",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/noun/maus": {
+  "text": "Maus",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. die Mäuse"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/noun/kabel": {
+  "text": "Kabel",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/noun/kopfhoerer": {
+  "text": "Kopfhörer",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/noun/stift": {
+  "text": "Stift",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/noun/notizbuch": {
+  "text": "Notizbuch",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. die Notizbücher"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/noun/drucker": {
+  "text": "Drucker",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/noun/steckdose": {
+  "text": "Steckdose",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/noun/buerostuhl": {
+  "text": "Bürostuhl",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Bürostühle"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/verb/arbeiten": {
+  "text": "arbeiten",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/verb/tippen": {
+  "text": "tippen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/verb/drucken": {
+  "text": "drucken",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/verb/speichern": {
+  "text": "speichern",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/verb/pause-machen": {
+  "text": "Pause machen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/verb/schreiben": {
+  "text": "schreiben",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/verb/anrufen": {
+  "text": "anrufen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/verb/loeschen": {
+  "text": "löschen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "desk/verb/lernen": {
+  "text": "lernen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/noun/bett": {
+  "text": "Bett",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/noun/matratze": {
+  "text": "Matratze",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/noun/kissen": {
+  "text": "Kissen",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/noun/decke": {
+  "text": "Decke",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/noun/bettwaesche": {
+  "text": "Bettwäsche",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "nur Singular"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/noun/kleiderschrank": {
+  "text": "Kleiderschrank",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Kleiderschränke"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/noun/wecker": {
+  "text": "Wecker",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/noun/nachttisch": {
+  "text": "Nachttisch",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/noun/schlafanzug": {
+  "text": "Schlafanzug",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Schlafanzüge"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/noun/socke": {
+  "text": "Socke",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/noun/hose": {
+  "text": "Hose",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/noun/t-shirt": {
+  "text": "T-Shirt",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. -s"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/verb/schlafen": {
+  "text": "schlafen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/verb/aufwachen": {
+  "text": "aufwachen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/verb/traeumen": {
+  "text": "träumen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/verb/aufstehen": {
+  "text": "aufstehen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/verb/sich-anziehen": {
+  "text": "sich anziehen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/verb/sich-ausziehen": {
+  "text": "sich ausziehen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/verb/kuscheln": {
+  "text": "kuscheln",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/verb/gaehnen": {
+  "text": "gähnen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "bedroom/verb/schnarchen": {
+  "text": "schnarchen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/noun/flur": {
+  "text": "Flur",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/noun/tuer": {
+  "text": "Tür",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/noun/schluessel": {
+  "text": "Schlüssel",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/noun/jacke": {
+  "text": "Jacke",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/noun/mantel": {
+  "text": "Mantel",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Mäntel"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/noun/schuhregal": {
+  "text": "Schuhregal",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/noun/regenschirm": {
+  "text": "Regenschirm",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/noun/muetze": {
+  "text": "Mütze",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/noun/briefkasten": {
+  "text": "Briefkasten",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Briefkästen"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/noun/klingel": {
+  "text": "Klingel",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/noun/treppe": {
+  "text": "Treppe",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/noun/tasche": {
+  "text": "Tasche",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/verb/abschliessen": {
+  "text": "abschließen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/verb/klingeln": {
+  "text": "klingeln",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/verb/schuhe-ausziehen": {
+  "text": "Schuhe ausziehen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/verb/losgehen": {
+  "text": "losgehen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/verb/aufschliessen": {
+  "text": "aufschließen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/verb/anziehen": {
+  "text": "anziehen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/verb/warten": {
+  "text": "warten",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/verb/ankommen": {
+  "text": "ankommen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/verb/begruessen": {
+  "text": "begrüßen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "hall/verb/sich-verabschieden": {
+  "text": "sich verabschieden",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/noun/strasse": {
+  "text": "Straße",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/noun/ampel": {
+  "text": "Ampel",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/noun/fahrrad": {
+  "text": "Fahrrad",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. die Fahrräder"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/noun/bus": {
+  "text": "Bus",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -se"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/noun/haltestelle": {
+  "text": "Haltestelle",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/noun/zug": {
+  "text": "Zug",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Züge"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/noun/baum": {
+  "text": "Baum",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Bäume"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/noun/blume": {
+  "text": "Blume",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/noun/park": {
+  "text": "Park",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -s"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/noun/sonne": {
+  "text": "Sonne",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n (selten)"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/noun/regen": {
+  "text": "Regen",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. – (selten)"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/noun/wetter": {
+  "text": "Wetter",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. – (selten)"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/verb/spazieren-gehen": {
+  "text": "spazieren gehen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/verb/rad-fahren": {
+  "text": "Rad fahren",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/verb/einkaufen": {
+  "text": "einkaufen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/verb/den-bus-nehmen": {
+  "text": "den Bus nehmen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/verb/joggen": {
+  "text": "joggen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/verb/fleisch-grillen": {
+  "text": "Fleisch grillen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  },
+  "pairOverrides": {
+   "de-uk": "grillen"
+  }
+ },
+ "outside/verb/sich-sonnen": {
+  "text": "sich sonnen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/verb/pflanzen": {
+  "text": "pflanzen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "outside/verb/abfahren": {
+  "text": "abfahren",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/noun/schule": {
+  "text": "Schule",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/noun/klassenzimmer": {
+  "text": "Klassenzimmer",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/noun/integrationskurs": {
+  "text": "Integrationskurs",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/noun/lehrer": {
+  "text": "Lehrer",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "♀ die Lehrerin"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/noun/tafel": {
+  "text": "Tafel",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/noun/woerterbuch": {
+  "text": "Wörterbuch",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. die Wörterbücher"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/noun/heft": {
+  "text": "Heft",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/noun/hausaufgabe": {
+  "text": "Hausaufgabe",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/noun/pruefung": {
+  "text": "Prüfung",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/noun/pause": {
+  "text": "Pause",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/noun/frage": {
+  "text": "Frage",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/noun/antwort": {
+  "text": "Antwort",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/verb/sprechen": {
+  "text": "sprechen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/verb/verstehen": {
+  "text": "verstehen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/verb/fragen": {
+  "text": "fragen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/verb/antworten": {
+  "text": "antworten",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/verb/wiederholen": {
+  "text": "wiederholen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/verb/uebersetzen": {
+  "text": "übersetzen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/verb/bestehen": {
+  "text": "bestehen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/verb/ueben": {
+  "text": "üben",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "school/verb/sich-melden": {
+  "text": "sich melden",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ "amt/noun/amt": {
+  "text": "Amt",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. die Ämter"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/noun/formular": {
+  "text": "Formular",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/noun/antrag": {
+  "text": "Antrag",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Anträge"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/noun/ausweis": {
+  "text": "Ausweis",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/noun/aufenthaltstitel": {
+  "text": "Aufenthaltstitel",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. –"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/noun/unterschrift": {
+  "text": "Unterschrift",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/noun/wartenummer": {
+  "text": "Wartenummer",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/noun/sachbearbeiter": {
+  "text": "Sachbearbeiter",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. – · ♀ die Sachbearbeiterin"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/noun/frist": {
+  "text": "Frist",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/noun/anmeldung": {
+  "text": "Anmeldung",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/noun/unterlagen": {
+  "text": "Unterlagen",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "nur Plural"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/verb/ausfuellen": {
+  "text": "ausfüllen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/verb/unterschreiben": {
+  "text": "unterschreiben",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/verb/beantragen": {
+  "text": "beantragen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/verb/abgeben": {
+  "text": "abgeben",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/verb/einreichen": {
+  "text": "einreichen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/verb/verlaengern": {
+  "text": "verlängern",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/verb/mitbringen": {
+  "text": "mitbringen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/verb/kopieren": {
+  "text": "kopieren",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "amt/verb/ablaufen": {
+  "text": "ablaufen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/noun/arzt": {
+  "text": "Arzt",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Ärzte · ♀ die Ärztin"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/noun/praxis": {
+  "text": "Praxis",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. die Praxen"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/noun/termin": {
+  "text": "Termin",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/noun/schmerz": {
+  "text": "Schmerz",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/noun/fieber": {
+  "text": "Fieber",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. – (selten)"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/noun/tablette": {
+  "text": "Tablette",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/noun/rezept": {
+  "text": "Rezept",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/noun/apotheke": {
+  "text": "Apotheke",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/noun/versichertenkarte": {
+  "text": "Versichertenkarte",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/noun/krankenkasse": {
+  "text": "Krankenkasse",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -n"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/noun/husten": {
+  "text": "Husten",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. – (selten)"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/noun/erkaeltung": {
+  "text": "Erkältung",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/verb/wehtun": {
+  "text": "wehtun",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/verb/husten": {
+  "text": "husten",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/verb/untersuchen": {
+  "text": "untersuchen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/verb/verschreiben": {
+  "text": "verschreiben",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/verb/einnehmen": {
+  "text": "einnehmen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/verb/abholen": {
+  "text": "abholen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/verb/sich-krankmelden": {
+  "text": "sich krankmelden",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/verb/sich-ausruhen": {
+  "text": "sich ausruhen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arzt/verb/absagen": {
+  "text": "absagen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/noun/arbeit": {
+  "text": "Arbeit",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/noun/bewerbung": {
+  "text": "Bewerbung",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/noun/lebenslauf": {
+  "text": "Lebenslauf",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Lebensläufe"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/noun/vertrag": {
+  "text": "Vertrag",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. die Verträge"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/noun/gehalt": {
+  "text": "Gehalt",
+  "variants": [],
+  "grammar": {
+   "gender": "das",
+   "plural": "Pl. die Gehälter"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/noun/kollege": {
+  "text": "Kollege",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -n · ♀ die Kollegin"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/noun/chef": {
+  "text": "Chef",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -s · ♀ die Chefin"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/noun/schicht": {
+  "text": "Schicht",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. -en"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/noun/urlaub": {
+  "text": "Urlaub",
+  "variants": [],
+  "grammar": {
+   "gender": "der",
+   "plural": "Pl. -e"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/noun/firma": {
+  "text": "Firma",
+  "variants": [],
+  "grammar": {
+   "gender": "die",
+   "plural": "Pl. die Firmen"
+  },
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/verb/sich-bewerben": {
+  "text": "sich bewerben",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/verb/sich-vorstellen": {
+  "text": "sich vorstellen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/verb/verdienen": {
+  "text": "verdienen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/verb/anfangen": {
+  "text": "anfangen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/verb/aufhoeren": {
+  "text": "aufhören",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/verb/kuendigen": {
+  "text": "kündigen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/verb/einstellen": {
+  "text": "einstellen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/verb/helfen": {
+  "text": "helfen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ "arbeit/verb/ueberstunden-machen": {
+  "text": "Überstunden machen",
+  "variants": [],
+  "grammar": {},
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ }
+}

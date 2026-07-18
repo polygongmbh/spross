@@ -1,0 +1,98 @@
+[
+ {
+  "area": "basics",
+  "titles": {
+   "de": "Die ersten Wörter",
+   "sw": "Maneno ya kwanza · tuanze!",
+   "uk": "Перші слова · почнімо!"
+  }
+ },
+ {
+  "area": "kitchen",
+  "titles": {
+   "de": "Die Küche",
+   "sw": "Jikoni · karibu chakula kitamu!",
+   "uk": "На кухні · смачного!"
+  }
+ },
+ {
+  "area": "living",
+  "titles": {
+   "de": "Das Wohnzimmer",
+   "sw": "Sebuleni · mahali pa kupumzika",
+   "uk": "У вітальні · час відпочити"
+  }
+ },
+ {
+  "area": "bath",
+  "titles": {
+   "de": "Das Badezimmer",
+   "sw": "Bafuni · safi kabisa!",
+   "uk": "У ванній · чистота!"
+  }
+ },
+ {
+  "area": "desk",
+  "titles": {
+   "de": "Der Schreibtisch",
+   "sw": "Mahali pa kazi · kazi njema!",
+   "uk": "Робоче місце · до роботи!"
+  }
+ },
+ {
+  "area": "bedroom",
+  "titles": {
+   "de": "Das Schlafzimmer",
+   "sw": "Chumbani · lala salama",
+   "uk": "У спальні · солодких снів"
+  }
+ },
+ {
+  "area": "hall",
+  "titles": {
+   "de": "Der Flur & der Eingang",
+   "sw": "Mlangoni · karibu nyumbani!",
+   "uk": "У передпокої · ласкаво просимо!"
+  }
+ },
+ {
+  "area": "outside",
+  "titles": {
+   "de": "Draußen & unterwegs",
+   "sw": "Nje · twende zetu!",
+   "uk": "Надворі · ходімо гуляти!"
+  }
+ },
+ {
+  "area": "school",
+  "titles": {
+   "de": "Die Schule & der Sprachkurs",
+   "sw": "Darasani · tujifunze pamoja!",
+   "uk": "У школі · вчимося разом!"
+  }
+ },
+ {
+  "area": "amt",
+  "titles": {
+   "de": "Das Amt & die Behörde",
+   "sw": "Ofisini · subiri zamu yako!",
+   "uk": "В установі · крок за кроком!"
+  }
+ },
+ {
+  "area": "arzt",
+  "titles": {
+   "de": "Der Arzt & die Gesundheit",
+   "sw": "Kwa daktari · afya njema!",
+   "uk": "У лікаря · будьте здорові!"
+  }
+ },
+ {
+  "area": "arbeit",
+  "titles": {
+   "de": "Die Arbeit & der Beruf",
+   "sw": "Kazini · tuchape kazi!",
+   "uk": "На роботі · успіхів!"
+  }
+ }
+]

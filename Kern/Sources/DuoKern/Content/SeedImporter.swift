@@ -80,7 +80,8 @@ public enum SeedImporter {
 
     /// Strips the "Pl. " prefix where present ("Pl. die Kühlschränke" → "die
     /// Kühlschränke"); other forms ("nur Singular", "♀ die Lehrerin") pass through raw.
-    private static func strippedPlural(_ raw: String?) -> String? {
+    /// Shared with `CatalogImporter` so both reconstruct plurals identically.
+    static func strippedPlural(_ raw: String?) -> String? {
         guard let raw else { return nil }
         if raw.hasPrefix("Pl. ") {
             return String(raw.dropFirst(4))
