@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.9.0 — 2026-07-18
+
+- **Practice on the watch ("Üben")**: a tap-based multiple-choice drill over the
+  vocab you're learning, right on the wrist — pick the matching translation from
+  a few tiles, instant green/amber feedback, endless with a streak. Pure
+  practice; it never touches your box.
+- **Leaner watch app**: the number/clock/sentence drill generators no longer
+  ship to the watch — they moved into a separate module the watch doesn't link.
+
 ## 0.8.1 — 2026-07-18
 
 - **Large home-screen widget**: the widget now offers a 4×4 size that fills the
