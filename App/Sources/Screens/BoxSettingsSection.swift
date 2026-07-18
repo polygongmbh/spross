@@ -20,7 +20,7 @@ struct BoxSettingsSection: View {
                 Divider().overlay(Color.dlSeparator)
                 directionRow
                 Divider().overlay(Color.dlSeparator)
-                newPerDayRow
+                maxLearningRow
                 Divider().overlay(Color.dlSeparator)
                 resetRow
             }
@@ -117,21 +117,21 @@ struct BoxSettingsSection: View {
         }
     }
 
-    private var newPerDayRow: some View {
+    private var maxLearningRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Stepper(value: newPerDayBinding, in: 0...20) {
+            Stepper(value: maxLearningBinding, in: 0...30) {
                 HStack {
-                    Text("Neue Karten pro Tag")
+                    Text("Karten gleichzeitig im Lernen")
                         .font(DL.Fonts.headline)
                         .foregroundStyle(Color.dlTextPrimary)
                     Spacer()
-                    Text("\(newPerDayBinding.wrappedValue)")
+                    Text("\(maxLearningBinding.wrappedValue)")
                         .font(DL.Fonts.statValue)
                         .foregroundStyle(Color.dlAccent)
                         .monospacedDigit()
                 }
             }
-            Text("So schnell wächst deine Box — nur solange der Stoff sitzt.")
+            Text("So viele neue Karten übst du parallel — neue kommen nach, sobald welche sitzen.")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }
@@ -186,10 +186,10 @@ struct BoxSettingsSection: View {
         )
     }
 
-    private var newPerDayBinding: Binding<Int> {
+    private var maxLearningBinding: Binding<Int> {
         Binding(
-            get: { model.box?.config.newPerDay ?? 5 },
-            set: { model.setNewPerDay($0) }
+            get: { model.box?.config.maxLearning ?? 8 },
+            set: { model.setMaxLearning($0) }
         )
     }
 }

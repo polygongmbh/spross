@@ -178,8 +178,8 @@ final class AppModel {
         return BoxEngine.presentationDirection(state: box, cardID: cardID)
     }
 
-    func setNewPerDay(_ count: Int) {
-        mutate { $0.config.newPerDay = max(0, min(20, count)) }
+    func setMaxLearning(_ count: Int) {
+        mutate { $0.config.maxLearning = max(0, min(30, count)) }
     }
 
     func switchPair(_ pair: LanguagePair) {

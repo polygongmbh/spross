@@ -22,7 +22,7 @@ struct HeuteView: View {
                 } else {
                     stateCard(emoji: "📦",
                               title: "Deine Box ist noch leer",
-                              message: "Stell „Neue Karten pro Tag“ ein oder pack einen Bereich direkt hinein.",
+                              message: "Pack einen Bereich direkt hinein oder stell ein, wie viele Karten du gleichzeitig lernst.",
                               action: ("Zur Box", openBox))
                 }
                 TrainerHubView(model: model)
