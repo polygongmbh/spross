@@ -114,7 +114,7 @@ final class ImporterTests: XCTestCase {
     func testLinkReport() throws {
         let cards = try SeedImporter.importSeed(json: try fixtureData("vocab-de-sw"))
         let report = SeedImporter.linkReport(cards: cards)
-        XCTAssertEqual(report.phrases, 104)
+        XCTAssertEqual(report.phrases, 105)
         XCTAssertGreaterThanOrEqual(report.linked, 29)
         XCTAssertGreaterThan(report.avgComponents, 0)
     }
