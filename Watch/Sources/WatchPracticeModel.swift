@@ -35,6 +35,14 @@ final class WatchPracticeModel {
                                                        avoiding: nil, using: &rng)
         previousCardID = question?.promptCardID
         selectedIndex = nil
+        #if DEBUG
+        // `-uitest-streak N` presets the streak for screenshot verification.
+        let args = ProcessInfo.processInfo.arguments
+        if let i = args.firstIndex(of: "-uitest-streak"), i + 1 < args.count,
+           let n = Int(args[i + 1]) {
+            streak = n
+        }
+        #endif
     }
 
     /// Lock the tapped option, score it, and schedule the flip to the next

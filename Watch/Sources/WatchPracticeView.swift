@@ -29,13 +29,18 @@ struct WatchPracticeView: View {
                                   GridItem(.flexible(), spacing: 6)]
 
     private func quiz(_ question: WatchPracticeQuestion) -> some View {
-        VStack(spacing: 6) {
-            if model.streak > 0 {
-                Text("🔥 \(model.streak)")
-                    .font(.system(.footnote, design: .rounded, weight: .bold))
-                    .foregroundStyle(Color.wlAccent)
-            }
+        VStack(spacing: 8) {
+            // why: streak floats at the word's trailing edge (same line) so it
+            // costs no vertical space; the word stays centered.
             prompt(question.promptCard)
+                .frame(maxWidth: .infinity)
+                .overlay(alignment: .trailing) {
+                    if model.streak > 0 {
+                        Text("🔥\(model.streak)")
+                            .font(.system(.caption, design: .rounded, weight: .bold))
+                            .foregroundStyle(Color.wlAccent)
+                    }
+                }
             // why: 2×2 grid instead of a tall list — the whole round fits on
             // screen without scrolling.
             LazyVGrid(columns: Self.columns, spacing: 6) {
