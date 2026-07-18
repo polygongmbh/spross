@@ -124,14 +124,16 @@ final class AppModel {
         }
     }
 
-    /// The Xcode project bundles the repo's content/ folder as a folder
-    /// reference; seed files resolve inside it via Bundle.main.
+    /// The Xcode project bundles the repo's catalog/ folder (a symlink to the
+    /// single master data/catalog/) as a folder reference; the catalog files
+    /// resolve inside it via Bundle.main. `CatalogImporter` reconstructs the
+    /// same cards the retired legacy seeds produced (see the parity gate).
     static func loadSeedCards(pair: LanguagePair) throws -> [Card] {
-        guard let directory = Bundle.main.url(forResource: "content", withExtension: nil) else {
+        guard let directory = Bundle.main.url(forResource: "catalog", withExtension: nil) else {
             throw CocoaError(.fileNoSuchFile,
-                             userInfo: [NSLocalizedDescriptionKey: "content/ fehlt im App-Bundle"])
+                             userInfo: [NSLocalizedDescriptionKey: "catalog/ fehlt im App-Bundle"])
         }
-        return try SeedContent.loadAll(from: directory).filter { $0.pair == pair }
+        return try CatalogImporter.importCatalog(directory: directory, pair: pair)
     }
 
     // MARK: - Heute-derived values

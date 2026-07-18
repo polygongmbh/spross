@@ -25,7 +25,7 @@ targets:
       - App/Sources
       - App/Resources
       - Shared/Sources
-      - path: content
+      - path: catalog
         type: folder
         buildPhase: resources
     dependencies:
