@@ -28,9 +28,24 @@ struct WatchPracticeView: View {
     private static let columns = [GridItem(.flexible(), spacing: 6),
                                   GridItem(.flexible(), spacing: 6)]
 
+    /// Longest prompt (incl. article) that still leaves room for the inline
+    /// streak; longer words simply drop it rather than shrink or collide.
+    private static let streakPromptLimit = 12
+
     private func quiz(_ question: WatchPracticeQuestion) -> some View {
         VStack(spacing: 8) {
+            // why: streak floats at the word's trailing edge (costs no vertical
+            // space, so the word stays big) and is hidden for long words where
+            // it would collide.
             prompt(question.promptCard)
+                .frame(maxWidth: .infinity)
+                .overlay(alignment: .trailing) {
+                    if model.streak > 0, promptLength(question.promptCard) <= Self.streakPromptLimit {
+                        Text("🔥\(model.streak)")
+                            .font(.system(.caption, design: .rounded, weight: .bold))
+                            .foregroundStyle(Color.wlAccent)
+                    }
+                }
             // why: 2×2 grid instead of a tall list — the whole round fits on
             // screen without scrolling.
             LazyVGrid(columns: Self.columns, spacing: 6) {
@@ -41,15 +56,12 @@ struct WatchPracticeView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 2)
-        // why: streak sits in its own strip at the very top (below the system
-        // ✕/clock) so it never collides with a long prompt word.
-        .safeAreaInset(edge: .top) {
-            if model.streak > 0 {
-                Text("🔥\(model.streak)")
-                    .font(.system(.caption, design: .rounded, weight: .bold))
-                    .foregroundStyle(Color.wlAccent)
-            }
-        }
+    }
+
+    /// Character count of the prompt as shown (translation, or article + noun).
+    private func promptLength(_ card: WatchSnapshot.Card) -> Int {
+        if model.direction == .targetToDe { return card.translation.count }
+        return [card.article, card.german].compactMap { $0 }.joined(separator: " ").count
     }
 
     // No emoji here (deliberately) — its room goes to a bigger prompt word.
