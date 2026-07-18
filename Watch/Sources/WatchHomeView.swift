@@ -28,6 +28,18 @@ struct WatchHomeView: View {
                     .onAppear { if practice == nil { practice = run } }
             }
         }
+        // Small version tag along the bottom edge of the landing screen.
+        .overlay(alignment: .bottom) {
+            if !appVersion.isEmpty {
+                Text("v\(appVersion)")
+                    .font(.system(.caption2, design: .rounded))
+                    .foregroundStyle(Color.wlTextSecondary.opacity(0.6))
+            }
+        }
+    }
+
+    private var appVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     }
 
     private func startPractice() {

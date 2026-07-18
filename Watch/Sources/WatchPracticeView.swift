@@ -32,46 +32,46 @@ struct WatchPracticeView: View {
 
     // MARK: - Quiz
 
+    private static let columns = [GridItem(.flexible(), spacing: 6),
+                                  GridItem(.flexible(), spacing: 6)]
+
     private func quiz(_ question: WatchPracticeQuestion) -> some View {
-        ScrollView {
-            VStack(spacing: 6) {
-                if model.streak > 0 {
-                    Text("🔥 \(model.streak)")
-                        .font(.system(.footnote, design: .rounded, weight: .bold))
-                        .foregroundStyle(Color.wlAccent)
-                }
-                prompt(question.promptCard)
-                VStack(spacing: 6) {
-                    ForEach(Array(question.options.enumerated()), id: \.offset) { index, option in
-                        optionButton(index, option)
-                    }
-                }
-                .padding(.top, 2)
-                Button("Beenden") { finish() }
-                    .buttonStyle(.plain)
-                    .font(.system(.caption2, design: .rounded))
-                    .foregroundStyle(Color.wlTextSecondary)
-                    .padding(.top, 4)
+        VStack(spacing: 6) {
+            if model.streak > 0 {
+                Text("🔥 \(model.streak)")
+                    .font(.system(.footnote, design: .rounded, weight: .bold))
+                    .foregroundStyle(Color.wlAccent)
             }
-            .frame(maxWidth: .infinity)
+            prompt(question.promptCard)
+            // why: 2×2 grid instead of a tall list — the whole round fits on
+            // screen without scrolling.
+            LazyVGrid(columns: Self.columns, spacing: 6) {
+                ForEach(Array(question.options.enumerated()), id: \.offset) { index, option in
+                    optionButton(index, option)
+                }
+            }
+            Button("Beenden") { finish() }
+                .buttonStyle(.plain)
+                .font(.system(.caption2, design: .rounded))
+                .foregroundStyle(Color.wlTextSecondary)
+                .padding(.top, 2)
         }
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 2)
     }
 
+    // No emoji here (deliberately) — it costs vertical room the options need.
     private func prompt(_ card: WatchSnapshot.Card) -> some View {
-        VStack(spacing: 2) {
-            Text(card.emoji ?? "🗂️")
-                .font(.system(size: 34))
-            Group {
-                if model.direction == .targetToDe {
-                    Text(card.translation)
-                } else {
-                    germanText(card)
-                }
+        Group {
+            if model.direction == .targetToDe {
+                Text(card.translation)
+            } else {
+                germanText(card)
             }
-            .font(.system(.title3, design: .rounded, weight: .bold))
-            .minimumScaleFactor(0.6)
-            .multilineTextAlignment(.center)
         }
+        .font(.system(.title3, design: .rounded, weight: .bold))
+        .minimumScaleFactor(0.6)
+        .multilineTextAlignment(.center)
     }
 
     /// German side: "der Kühlschrank" with the article-colored noun.
@@ -86,10 +86,10 @@ struct WatchPracticeView: View {
             model.choose(index)   // guarded against double-taps in the model
         } label: {
             Text(option)
-                .font(.system(.body, design: .rounded, weight: .semibold))
-                .minimumScaleFactor(0.6)
-                .lineLimit(2)
-                .frame(maxWidth: .infinity)
+                .font(.system(.footnote, design: .rounded, weight: .semibold))
+                .minimumScaleFactor(0.5)
+                .lineLimit(3)
+                .frame(maxWidth: .infinity, minHeight: 44)
         }
         .buttonStyle(.borderedProminent)
         .tint(tint(for: index))
