@@ -18,10 +18,6 @@ final class WatchPracticeModel {
     /// The tapped option index; non-nil freezes the tiles into feedback state.
     private(set) var selectedIndex: Int?
     private(set) var streak = 0
-    private(set) var bestStreak = 0
-    private(set) var answeredCount = 0
-    private(set) var correctCount = 0
-    var showingSummary = false
 
     private var previousCardID: String?
     private var rng = SystemRandomNumberGenerator()
@@ -33,8 +29,6 @@ final class WatchPracticeModel {
     }
 
     var hasEnoughVocab: Bool { cards.count >= 2 }
-    var feedbackVisible: Bool { selectedIndex != nil }
-    func isCorrect(_ index: Int) -> Bool { index == question?.correctIndex }
 
     func start() {
         question = WatchPracticeGenerator.makeQuestion(cards: cards, direction: direction,
@@ -49,14 +43,7 @@ final class WatchPracticeModel {
         guard selectedIndex == nil, let question else { return }
         selectedIndex = index
         let correct = index == question.correctIndex
-        answeredCount += 1
-        if correct {
-            correctCount += 1
-            streak += 1
-            bestStreak = max(bestStreak, streak)
-        } else {
-            streak = 0
-        }
+        streak = correct ? streak + 1 : 0
         // why: soft haptic only — never the punishing `.failure`/`.retry`.
         WKInterfaceDevice.current().play(correct ? .success : .click)
         autoAdvance = Task { @MainActor in

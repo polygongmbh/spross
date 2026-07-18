@@ -28,8 +28,9 @@ struct WatchHomeView: View {
                     .onAppear { if practice == nil { practice = run } }
             }
         }
-        // Small version tag along the bottom edge of the landing screen.
-        .overlay(alignment: .bottom) {
+        // Small version tag reserving its own strip at the bottom, so the
+        // centered content never overlaps it.
+        .safeAreaInset(edge: .bottom) {
             if !appVersion.isEmpty {
                 Text("v\(appVersion)")
                     .font(.system(.caption2, design: .rounded))
@@ -49,12 +50,14 @@ struct WatchHomeView: View {
 
     private var dueState: some View {
         VStack(spacing: 8) {
-            Text("\(model.dueCount)")
-                .font(.system(.largeTitle, design: .rounded, weight: .bold))
-                .foregroundStyle(Color.wlAccent)
-            Text("fällig")
-                .font(.system(.headline, design: .rounded))
-                .foregroundStyle(Color.wlTextSecondary)
+            HStack(alignment: .firstTextBaseline, spacing: 5) {
+                Text("\(model.dueCount)")
+                    .font(.system(.largeTitle, design: .rounded, weight: .bold))
+                    .foregroundStyle(Color.wlAccent)
+                Text("fällig")
+                    .font(.system(.headline, design: .rounded))
+                    .foregroundStyle(Color.wlTextSecondary)
+            }
             Button {
                 model.startReview()
             } label: {

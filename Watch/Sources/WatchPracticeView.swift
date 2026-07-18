@@ -1,31 +1,24 @@
 import SwiftUI
 import DuoKern
 
-/// Endless multiple-choice practice ("Üben"): emoji + prompt word, tap the
-/// matching translation. Instant feedback (green right / amber wrong — never
-/// red), then auto-advance. Pure local practice — no FSRS, nothing sent to the
-/// phone. Mirrors WatchReviewView's look (ScrollView + rounded system fonts,
-/// article-colored German side).
+/// Endless multiple-choice practice ("Üben"): prompt word, tap the matching
+/// translation in a 2×2 grid. Instant feedback (green right / amber wrong —
+/// never red), then auto-advance. Pure local practice — no FSRS, nothing sent
+/// to the phone. Dismissed via the sheet's system close control.
 struct WatchPracticeView: View {
     @Bindable var model: WatchPracticeModel
     let onClose: () -> Void
 
     var body: some View {
         Group {
-            if !model.hasEnoughVocab {
-                notEnough
-            } else if model.showingSummary {
-                summary
-            } else if let question = model.question {
+            if let question = model.question {
                 quiz(question)
             } else {
                 notEnough
             }
         }
         .onAppear {
-            if model.hasEnoughVocab, model.question == nil, !model.showingSummary {
-                model.start()
-            }
+            if model.hasEnoughVocab, model.question == nil { model.start() }
         }
         .onDisappear { model.end() }
     }
@@ -50,17 +43,12 @@ struct WatchPracticeView: View {
                     optionButton(index, option)
                 }
             }
-            Button("Beenden") { finish() }
-                .buttonStyle(.plain)
-                .font(.system(.caption2, design: .rounded))
-                .foregroundStyle(Color.wlTextSecondary)
-                .padding(.top, 2)
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 2)
     }
 
-    // No emoji here (deliberately) — it costs vertical room the options need.
+    // No emoji here (deliberately) — its room goes to a bigger prompt word.
     private func prompt(_ card: WatchSnapshot.Card) -> some View {
         Group {
             if model.direction == .targetToDe {
@@ -69,7 +57,7 @@ struct WatchPracticeView: View {
                 germanText(card)
             }
         }
-        .font(.system(.title3, design: .rounded, weight: .bold))
+        .font(.system(.title2, design: .rounded, weight: .bold))
         .minimumScaleFactor(0.6)
         .multilineTextAlignment(.center)
     }
@@ -109,30 +97,6 @@ struct WatchPracticeView: View {
         guard let selected = model.selectedIndex else { return .white }
         if index == model.question?.correctIndex || index == selected { return .black }
         return .wlTextSecondary
-    }
-
-    private func finish() {
-        model.end()
-        if model.answeredCount > 0 { model.showingSummary = true } else { onClose() }
-    }
-
-    // MARK: - Summary / fallback
-
-    private var summary: some View {
-        VStack(spacing: 8) {
-            Text("Geübt 🎯")
-                .font(.system(.title3, design: .rounded, weight: .bold))
-            Text("\(model.correctCount)/\(model.answeredCount) richtig")
-                .font(.system(.footnote, design: .rounded))
-                .foregroundStyle(Color.wlTextSecondary)
-            Text("Beste Serie: 🔥 \(model.bestStreak)")
-                .font(.system(.footnote, design: .rounded))
-                .foregroundStyle(Color.wlTextSecondary)
-            Button("Schließen") { onClose() }
-                .font(.system(.headline, design: .rounded))
-                .padding(.top, 4)
-        }
-        .multilineTextAlignment(.center)
     }
 
     private var notEnough: some View {
