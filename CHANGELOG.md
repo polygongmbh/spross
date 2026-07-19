@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.12.0 — 2026-07-19
+
+- **The app speaks your language**: the interface now shows in the language you
+  already know, not always German — so if you're *learning* German, the whole UI
+  is in English instead of a language you can't yet read. (German and English for
+  now; Swahili and Ukrainian interfaces to follow.)
+- **A little immersion**: the main "start" and "continue" buttons show the word in
+  the language you're learning beneath the familiar one — e.g. "Let's go! / Los
+  geht's!" while learning German.
+
 ## 0.11.0 — 2026-07-19
 
 - **A wrong article is a slip, not a miss**: typing the wrong (or mistyped) article —
