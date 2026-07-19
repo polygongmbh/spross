@@ -112,7 +112,7 @@ struct SessionView: View {
                 // instead of stacking; .id gives each card its own identity.
                 ZStack {
                     VocabCardView(
-                        emoji: card.displayEmoji,
+                        emoji: supportEmoji(for: card),
                         article: card.article,
                         headword: card.german,
                         plural: card.plural,
@@ -121,7 +121,6 @@ struct SessionView: View {
                         mode: mode(for: card),
                         revealed: cardRevealed,
                         compact: true,
-                        hideEmojiUntilRevealed: hideEmoji(for: card),
                         // why: German plurals only matter to learners OF
                         // German; for target-language learners they're noise.
                         showPlural: model.box?.config.direction == .targetToDe
@@ -137,12 +136,13 @@ struct SessionView: View {
         .scrollDismissesKeyboard(.never)
     }
 
-    /// Review/relearning cards "stick" — the emoji would give the answer away,
-    /// so it stays hidden until reveal. New/learning cards keep the hint.
-    private func hideEmoji(for card: Card) -> Bool {
+    /// Light support only while a word is still landing: new/learning cards
+    /// show their emoji; once a card "sticks" (review/relearning) the emoji
+    /// would give the answer away, so it's dropped entirely.
+    private func supportEmoji(for card: Card) -> String? {
         switch model.scheduling(for: card.id)?.phase {
-        case .review, .relearning: return true
-        default: return false
+        case .review, .relearning: return nil
+        default: return card.emoji
         }
     }
 

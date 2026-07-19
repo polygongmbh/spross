@@ -58,13 +58,14 @@ extension LanguagePair {
 }
 
 extension Card {
-    /// Emoji illustration with warm per-kind fallbacks (verbs and phrases
-    /// have no emoji in the seed).
+    /// Leading list marker: the seed emoji when present, else a neutral
+    /// per-kind category glyph (verbs/phrases carry no seed emoji). Used only
+    /// for row rhythm in lists — the card face shows the seed emoji or nothing.
     var displayEmoji: String {
         if let emoji, !emoji.isEmpty { return emoji }
         switch kind {
         case .noun: return "🧩"
-        case .verb: return "🏃"
+        case .verb: return "⚡"
         case .phrase: return "💬"
         }
     }

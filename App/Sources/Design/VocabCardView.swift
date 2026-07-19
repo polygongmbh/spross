@@ -15,7 +15,9 @@ struct VocabCardView: View {
         case production
     }
 
-    let emoji: String
+    /// Per-word illustration; nil for verbs/phrases with no seed emoji —
+    /// the card then drops the circle and centers on the word itself.
+    let emoji: String?
     let article: String?
     let headword: String
     let plural: String?
@@ -27,16 +29,15 @@ struct VocabCardView: View {
     /// Session style: tighter card so card + input + button + keyboard
     /// all fit on screen without scrolling. Previews keep the big card.
     var compact: Bool = false
-    /// Review-phase cards ("sticking" cards) must not leak the emoji hint
-    /// during the prompt — a neutral "?" holds its place until reveal.
-    var hideEmojiUntilRevealed: Bool = false
     /// German plural line: only learners OF GERMAN need it ("die Wörter"
     /// is noise when German is your known language).
     var showPlural: Bool = true
 
     var body: some View {
         VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
-            emojiIllustration
+            if let emoji, !emoji.isEmpty {
+                emojiIllustration(emoji)
+            }
             promptSection
             if revealed {
                 revealSection
@@ -59,24 +60,12 @@ struct VocabCardView: View {
 
     // MARK: Pieces
 
-    private var emojiHidden: Bool {
-        hideEmojiUntilRevealed && !revealed
-    }
-
-    private var emojiIllustration: some View {
-        ZStack {
-            Text(emoji)
-                .font(.system(size: compact ? 40 : 76))
-                .opacity(emojiHidden ? 0 : 1)
-            // Same footprint as the emoji — the card never jumps on reveal.
-            Text("?")
-                .font(.system(size: compact ? 28 : 52, weight: .bold, design: .rounded))
-                .foregroundStyle(Color.dlTextSecondary.opacity(0.55))
-                .opacity(emojiHidden ? 1 : 0)
-        }
-        .padding(compact ? DL.Space.s + 2 : DL.Space.l)
-        .background(Circle().fill(Color.dlSurfaceTint))
-        .accessibilityHidden(true) // why: decorative; the headword carries the content
+    private func emojiIllustration(_ emoji: String) -> some View {
+        Text(emoji)
+            .font(.system(size: compact ? 40 : 76))
+            .padding(compact ? DL.Space.s + 2 : DL.Space.l)
+            .background(Circle().fill(Color.dlSurfaceTint))
+            .accessibilityHidden(true) // why: decorative; the headword carries the content
     }
 
     @ViewBuilder
@@ -232,8 +221,9 @@ struct ArticleBadge: View {
     .background(Color.dlBackground)
 }
 
-#Preview("Compact · review phase (emoji hidden)") {
+#Preview("Compact · with vs. without emoji") {
     VStack(spacing: DL.Space.l) {
+        // Not-yet-sticking word: emoji as light support.
         VocabCardView(
             emoji: "🥄",
             article: "der",
@@ -243,20 +233,19 @@ struct ArticleBadge: View {
             note: nil,
             mode: .recognition,
             revealed: false,
-            compact: true,
-            hideEmojiUntilRevealed: true
+            compact: true
         )
+        // Sticking word (or a verb/phrase): no circle, word-focused.
         VocabCardView(
-            emoji: "🥄",
-            article: "der",
-            headword: "Löffel",
-            plural: "die Löffel",
-            translation: "kijiko",
+            emoji: nil,
+            article: nil,
+            headword: "rennen",
+            plural: nil,
+            translation: "kukimbia",
             note: nil,
             mode: .recognition,
-            revealed: true,
-            compact: true,
-            hideEmojiUntilRevealed: true
+            revealed: false,
+            compact: true
         )
     }
     .padding(DL.Space.xl)
