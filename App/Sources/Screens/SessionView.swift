@@ -205,8 +205,7 @@ struct SessionView: View {
                         Button {
                             rate(.good)
                         } label: {
-                            Text("Weiter")
-                                .frame(maxWidth: .infinity)
+                            DLActionLabel(key: "Weiter", targetLocale: model.targetChromeLocale)
                         }
                         .buttonStyle(DLPrimaryButtonStyle())
                         .keyboardShortcut(.defaultAction)
@@ -222,8 +221,7 @@ struct SessionView: View {
                     Button {
                         rate(.again)
                     } label: {
-                        Text("Weiter")
-                            .frame(maxWidth: .infinity)
+                        DLActionLabel(key: "Weiter", targetLocale: model.targetChromeLocale)
                     }
                     .buttonStyle(DLPrimaryButtonStyle())
                     // why: Enter advances when revealed (hardware keyboards).

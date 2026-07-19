@@ -189,6 +189,16 @@ final class AppModel {
             : Locale(identifier: "en")
     }
 
+    /// Immersion: the language being LEARNED, but only when we have chrome for
+    /// it — so an action button can show its word in the target language as a
+    /// subtitle. Today only German qualifies (learning German); Swahili/Ukrainian
+    /// action words await a verified content sweep, so German natives learning
+    /// them get no subtitle yet. nil = no immersion subtitle.
+    var targetChromeLocale: Locale? {
+        guard let config = box?.config else { return nil }
+        return config.direction == .targetToDe ? Locale(identifier: "de") : nil
+    }
+
     // MARK: - Config (persisted inside BoxState.config)
 
     func setDirection(_ direction: Direction) {

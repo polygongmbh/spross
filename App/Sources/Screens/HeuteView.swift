@@ -69,8 +69,7 @@ struct HeuteView: View {
             Button {
                 model.startSession()
             } label: {
-                Text("Los geht's!")
-                    .frame(maxWidth: .infinity)
+                DLActionLabel(key: "Los geht's!", targetLocale: model.targetChromeLocale)
             }
             .buttonStyle(DLPrimaryButtonStyle())
         }
