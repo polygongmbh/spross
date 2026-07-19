@@ -1,0 +1,1325 @@
+[
+ {
+  "id": "basics/noun/sprache",
+  "kind": "noun",
+  "area": "basics",
+  "emoji": "🗣️"
+ },
+ {
+  "id": "basics/noun/wort",
+  "kind": "noun",
+  "area": "basics",
+  "emoji": "💬"
+ },
+ {
+  "id": "basics/noun/name",
+  "kind": "noun",
+  "area": "basics",
+  "emoji": "🏷️"
+ },
+ {
+  "id": "basics/noun/hilfe",
+  "kind": "noun",
+  "area": "basics",
+  "emoji": "🤲"
+ },
+ {
+  "id": "basics/verb/heissen",
+  "kind": "verb",
+  "area": "basics"
+ },
+ {
+  "id": "basics/verb/sagen",
+  "kind": "verb",
+  "area": "basics"
+ },
+ {
+  "id": "basics/verb/wissen",
+  "kind": "verb",
+  "area": "basics"
+ },
+ {
+  "id": "basics/verb/brauchen",
+  "kind": "verb",
+  "area": "basics"
+ },
+ {
+  "id": "basics/verb/danken",
+  "kind": "verb",
+  "area": "basics"
+ },
+ {
+  "id": "kitchen/noun/kuehlschrank",
+  "kind": "noun",
+  "area": "kitchen",
+  "emoji": "🧊"
+ },
+ {
+  "id": "kitchen/noun/herd",
+  "kind": "noun",
+  "area": "kitchen",
+  "emoji": "♨️"
+ },
+ {
+  "id": "kitchen/noun/backofen",
+  "kind": "noun",
+  "area": "kitchen",
+  "emoji": "🥧"
+ },
+ {
+  "id": "kitchen/noun/spuelmaschine",
+  "kind": "noun",
+  "area": "kitchen",
+  "emoji": "💦"
+ },
+ {
+  "id": "kitchen/noun/hunger",
+  "kind": "noun",
+  "area": "kitchen",
+  "emoji": "🤤"
+ },
+ {
+  "id": "kitchen/noun/durst",
+  "kind": "noun",
+  "area": "kitchen",
+  "emoji": "🥤"
+ },
+ {
+  "id": "kitchen/noun/topf",
+  "kind": "noun",
+  "area": "kitchen",
+  "emoji": "🫕"
+ },
+ {
+  "id": "kitchen/noun/pfanne",
+  "kind": "noun",
+  "area": "kitchen",
+  "emoji": "🍳"
+ },
+ {
+  "id": "kitchen/noun/messer",
+  "kind": "noun",
+  "area": "kitchen",
+  "emoji": "🔪"
+ },
+ {
+  "id": "kitchen/noun/loeffel",
+  "kind": "noun",
+  "area": "kitchen",
+  "emoji": "🥄"
+ },
+ {
+  "id": "kitchen/noun/gabel",
+  "kind": "noun",
+  "area": "kitchen",
+  "emoji": "🍴"
+ },
+ {
+  "id": "kitchen/noun/teller",
+  "kind": "noun",
+  "area": "kitchen",
+  "emoji": "🍽️"
+ },
+ {
+  "id": "kitchen/verb/kochen",
+  "kind": "verb",
+  "area": "kitchen"
+ },
+ {
+  "id": "kitchen/verb/backen",
+  "kind": "verb",
+  "area": "kitchen"
+ },
+ {
+  "id": "kitchen/verb/schneiden",
+  "kind": "verb",
+  "area": "kitchen"
+ },
+ {
+  "id": "kitchen/verb/spuelen",
+  "kind": "verb",
+  "area": "kitchen"
+ },
+ {
+  "id": "kitchen/verb/probieren",
+  "kind": "verb",
+  "area": "kitchen"
+ },
+ {
+  "id": "kitchen/verb/braten",
+  "kind": "verb",
+  "area": "kitchen"
+ },
+ {
+  "id": "kitchen/verb/aufwaermen",
+  "kind": "verb",
+  "area": "kitchen"
+ },
+ {
+  "id": "kitchen/verb/umruehren",
+  "kind": "verb",
+  "area": "kitchen"
+ },
+ {
+  "id": "kitchen/verb/muell-rausbringen",
+  "kind": "verb",
+  "area": "kitchen"
+ },
+ {
+  "id": "living/noun/sofa",
+  "kind": "noun",
+  "area": "living",
+  "emoji": "🛋️"
+ },
+ {
+  "id": "living/noun/esstisch",
+  "kind": "noun",
+  "area": "living",
+  "emoji": "🍽️"
+ },
+ {
+  "id": "living/noun/stuhl",
+  "kind": "noun",
+  "area": "living",
+  "emoji": "🪑"
+ },
+ {
+  "id": "living/noun/fernseher",
+  "kind": "noun",
+  "area": "living",
+  "emoji": "📺"
+ },
+ {
+  "id": "living/noun/fernbedienung",
+  "kind": "noun",
+  "area": "living",
+  "emoji": "🎮"
+ },
+ {
+  "id": "living/noun/regal",
+  "kind": "noun",
+  "area": "living",
+  "emoji": "📚"
+ },
+ {
+  "id": "living/noun/pflanze",
+  "kind": "noun",
+  "area": "living",
+  "emoji": "🪴"
+ },
+ {
+  "id": "living/noun/fenster",
+  "kind": "noun",
+  "area": "living",
+  "emoji": "🪟"
+ },
+ {
+  "id": "living/noun/vorhang",
+  "kind": "noun",
+  "area": "living",
+  "emoji": "🎭"
+ },
+ {
+  "id": "living/noun/teppich",
+  "kind": "noun",
+  "area": "living",
+  "emoji": "🧶"
+ },
+ {
+  "id": "living/noun/lampe",
+  "kind": "noun",
+  "area": "living",
+  "emoji": "💡"
+ },
+ {
+  "id": "living/noun/bild",
+  "kind": "noun",
+  "area": "living",
+  "emoji": "🖼️"
+ },
+ {
+  "id": "living/verb/essen",
+  "kind": "verb",
+  "area": "living"
+ },
+ {
+  "id": "living/verb/fernsehen",
+  "kind": "verb",
+  "area": "living"
+ },
+ {
+  "id": "living/verb/lesen",
+  "kind": "verb",
+  "area": "living"
+ },
+ {
+  "id": "living/verb/sich-entspannen",
+  "kind": "verb",
+  "area": "living"
+ },
+ {
+  "id": "living/verb/aufraeumen",
+  "kind": "verb",
+  "area": "living"
+ },
+ {
+  "id": "living/verb/musik-hoeren",
+  "kind": "verb",
+  "area": "living"
+ },
+ {
+  "id": "living/verb/giessen",
+  "kind": "verb",
+  "area": "living"
+ },
+ {
+  "id": "living/verb/spielen",
+  "kind": "verb",
+  "area": "living"
+ },
+ {
+  "id": "living/verb/reden",
+  "kind": "verb",
+  "area": "living"
+ },
+ {
+  "id": "bath/noun/waschmaschine",
+  "kind": "noun",
+  "area": "bath",
+  "emoji": "🌀"
+ },
+ {
+  "id": "bath/noun/waesche",
+  "kind": "noun",
+  "area": "bath",
+  "emoji": "🧺"
+ },
+ {
+  "id": "bath/noun/toilette",
+  "kind": "noun",
+  "area": "bath",
+  "emoji": "🚽"
+ },
+ {
+  "id": "bath/noun/dusche",
+  "kind": "noun",
+  "area": "bath",
+  "emoji": "🚿"
+ },
+ {
+  "id": "bath/noun/waschbecken",
+  "kind": "noun",
+  "area": "bath",
+  "emoji": "💧"
+ },
+ {
+  "id": "bath/noun/spiegel",
+  "kind": "noun",
+  "area": "bath",
+  "emoji": "🪞"
+ },
+ {
+  "id": "bath/noun/zahnbuerste",
+  "kind": "noun",
+  "area": "bath",
+  "emoji": "🪥"
+ },
+ {
+  "id": "bath/noun/zahnpasta",
+  "kind": "noun",
+  "area": "bath",
+  "emoji": "🦷"
+ },
+ {
+  "id": "bath/noun/handtuch",
+  "kind": "noun",
+  "area": "bath",
+  "emoji": "🧖"
+ },
+ {
+  "id": "bath/noun/seife",
+  "kind": "noun",
+  "area": "bath",
+  "emoji": "🧼"
+ },
+ {
+  "id": "bath/noun/shampoo",
+  "kind": "noun",
+  "area": "bath",
+  "emoji": "🧴"
+ },
+ {
+  "id": "bath/noun/foehn",
+  "kind": "noun",
+  "area": "bath",
+  "emoji": "💨"
+ },
+ {
+  "id": "bath/verb/duschen",
+  "kind": "verb",
+  "area": "bath"
+ },
+ {
+  "id": "bath/verb/waesche-waschen",
+  "kind": "verb",
+  "area": "bath"
+ },
+ {
+  "id": "bath/verb/zaehne-putzen",
+  "kind": "verb",
+  "area": "bath"
+ },
+ {
+  "id": "bath/verb/abtrocknen",
+  "kind": "verb",
+  "area": "bath"
+ },
+ {
+  "id": "bath/verb/aufhaengen",
+  "kind": "verb",
+  "area": "bath"
+ },
+ {
+  "id": "bath/verb/putzen",
+  "kind": "verb",
+  "area": "bath"
+ },
+ {
+  "id": "bath/verb/rasieren",
+  "kind": "verb",
+  "area": "bath"
+ },
+ {
+  "id": "bath/verb/kaemmen",
+  "kind": "verb",
+  "area": "bath"
+ },
+ {
+  "id": "bath/verb/eincremen",
+  "kind": "verb",
+  "area": "bath"
+ },
+ {
+  "id": "desk/noun/schreibtisch",
+  "kind": "noun",
+  "area": "desk",
+  "emoji": "🗄️"
+ },
+ {
+  "id": "desk/noun/laptop",
+  "kind": "noun",
+  "area": "desk",
+  "emoji": "💻"
+ },
+ {
+  "id": "desk/noun/tastatur",
+  "kind": "noun",
+  "area": "desk",
+  "emoji": "⌨️"
+ },
+ {
+  "id": "desk/noun/bildschirm",
+  "kind": "noun",
+  "area": "desk",
+  "emoji": "🖥️"
+ },
+ {
+  "id": "desk/noun/maus",
+  "kind": "noun",
+  "area": "desk",
+  "emoji": "🖱️"
+ },
+ {
+  "id": "desk/noun/kabel",
+  "kind": "noun",
+  "area": "desk",
+  "emoji": "⚡"
+ },
+ {
+  "id": "desk/noun/kopfhoerer",
+  "kind": "noun",
+  "area": "desk",
+  "emoji": "🎧"
+ },
+ {
+  "id": "desk/noun/stift",
+  "kind": "noun",
+  "area": "desk",
+  "emoji": "✏️"
+ },
+ {
+  "id": "desk/noun/notizbuch",
+  "kind": "noun",
+  "area": "desk",
+  "emoji": "📓"
+ },
+ {
+  "id": "desk/noun/drucker",
+  "kind": "noun",
+  "area": "desk",
+  "emoji": "🖨️"
+ },
+ {
+  "id": "desk/noun/steckdose",
+  "kind": "noun",
+  "area": "desk",
+  "emoji": "🔌"
+ },
+ {
+  "id": "desk/noun/buerostuhl",
+  "kind": "noun",
+  "area": "desk",
+  "emoji": "💺"
+ },
+ {
+  "id": "desk/verb/arbeiten",
+  "kind": "verb",
+  "area": "desk"
+ },
+ {
+  "id": "desk/verb/tippen",
+  "kind": "verb",
+  "area": "desk"
+ },
+ {
+  "id": "desk/verb/drucken",
+  "kind": "verb",
+  "area": "desk"
+ },
+ {
+  "id": "desk/verb/speichern",
+  "kind": "verb",
+  "area": "desk"
+ },
+ {
+  "id": "desk/verb/pause-machen",
+  "kind": "verb",
+  "area": "desk"
+ },
+ {
+  "id": "desk/verb/schreiben",
+  "kind": "verb",
+  "area": "desk"
+ },
+ {
+  "id": "desk/verb/anrufen",
+  "kind": "verb",
+  "area": "desk"
+ },
+ {
+  "id": "desk/verb/loeschen",
+  "kind": "verb",
+  "area": "desk"
+ },
+ {
+  "id": "desk/verb/lernen",
+  "kind": "verb",
+  "area": "desk"
+ },
+ {
+  "id": "bedroom/noun/bett",
+  "kind": "noun",
+  "area": "bedroom",
+  "emoji": "🛏️"
+ },
+ {
+  "id": "bedroom/noun/matratze",
+  "kind": "noun",
+  "area": "bedroom",
+  "emoji": "🛌"
+ },
+ {
+  "id": "bedroom/noun/kissen",
+  "kind": "noun",
+  "area": "bedroom",
+  "emoji": "💤"
+ },
+ {
+  "id": "bedroom/noun/decke",
+  "kind": "noun",
+  "area": "bedroom",
+  "emoji": "☁️"
+ },
+ {
+  "id": "bedroom/noun/bettwaesche",
+  "kind": "noun",
+  "area": "bedroom",
+  "emoji": "🧺"
+ },
+ {
+  "id": "bedroom/noun/kleiderschrank",
+  "kind": "noun",
+  "area": "bedroom",
+  "emoji": "👗"
+ },
+ {
+  "id": "bedroom/noun/wecker",
+  "kind": "noun",
+  "area": "bedroom",
+  "emoji": "⏰"
+ },
+ {
+  "id": "bedroom/noun/nachttisch",
+  "kind": "noun",
+  "area": "bedroom",
+  "emoji": "🕯️"
+ },
+ {
+  "id": "bedroom/noun/schlafanzug",
+  "kind": "noun",
+  "area": "bedroom",
+  "emoji": "🩳"
+ },
+ {
+  "id": "bedroom/noun/socke",
+  "kind": "noun",
+  "area": "bedroom",
+  "emoji": "🧦"
+ },
+ {
+  "id": "bedroom/noun/hose",
+  "kind": "noun",
+  "area": "bedroom",
+  "emoji": "👖"
+ },
+ {
+  "id": "bedroom/noun/t-shirt",
+  "kind": "noun",
+  "area": "bedroom",
+  "emoji": "👕"
+ },
+ {
+  "id": "bedroom/verb/schlafen",
+  "kind": "verb",
+  "area": "bedroom"
+ },
+ {
+  "id": "bedroom/verb/aufwachen",
+  "kind": "verb",
+  "area": "bedroom"
+ },
+ {
+  "id": "bedroom/verb/traeumen",
+  "kind": "verb",
+  "area": "bedroom"
+ },
+ {
+  "id": "bedroom/verb/aufstehen",
+  "kind": "verb",
+  "area": "bedroom"
+ },
+ {
+  "id": "bedroom/verb/sich-anziehen",
+  "kind": "verb",
+  "area": "bedroom"
+ },
+ {
+  "id": "bedroom/verb/sich-ausziehen",
+  "kind": "verb",
+  "area": "bedroom"
+ },
+ {
+  "id": "bedroom/verb/kuscheln",
+  "kind": "verb",
+  "area": "bedroom"
+ },
+ {
+  "id": "bedroom/verb/gaehnen",
+  "kind": "verb",
+  "area": "bedroom"
+ },
+ {
+  "id": "bedroom/verb/schnarchen",
+  "kind": "verb",
+  "area": "bedroom"
+ },
+ {
+  "id": "hall/noun/flur",
+  "kind": "noun",
+  "area": "hall",
+  "emoji": "🚶"
+ },
+ {
+  "id": "hall/noun/tuer",
+  "kind": "noun",
+  "area": "hall",
+  "emoji": "🚪"
+ },
+ {
+  "id": "hall/noun/schluessel",
+  "kind": "noun",
+  "area": "hall",
+  "emoji": "🔑"
+ },
+ {
+  "id": "hall/noun/jacke",
+  "kind": "noun",
+  "area": "hall",
+  "emoji": "🧥"
+ },
+ {
+  "id": "hall/noun/mantel",
+  "kind": "noun",
+  "area": "hall",
+  "emoji": "🥼"
+ },
+ {
+  "id": "hall/noun/schuhregal",
+  "kind": "noun",
+  "area": "hall",
+  "emoji": "👞"
+ },
+ {
+  "id": "hall/noun/regenschirm",
+  "kind": "noun",
+  "area": "hall",
+  "emoji": "☂️"
+ },
+ {
+  "id": "hall/noun/muetze",
+  "kind": "noun",
+  "area": "hall",
+  "emoji": "🧢"
+ },
+ {
+  "id": "hall/noun/briefkasten",
+  "kind": "noun",
+  "area": "hall",
+  "emoji": "📬"
+ },
+ {
+  "id": "hall/noun/klingel",
+  "kind": "noun",
+  "area": "hall",
+  "emoji": "🔔"
+ },
+ {
+  "id": "hall/noun/treppe",
+  "kind": "noun",
+  "area": "hall",
+  "emoji": "🪜"
+ },
+ {
+  "id": "hall/noun/tasche",
+  "kind": "noun",
+  "area": "hall",
+  "emoji": "🎒"
+ },
+ {
+  "id": "hall/verb/abschliessen",
+  "kind": "verb",
+  "area": "hall"
+ },
+ {
+  "id": "hall/verb/klingeln",
+  "kind": "verb",
+  "area": "hall"
+ },
+ {
+  "id": "hall/verb/schuhe-ausziehen",
+  "kind": "verb",
+  "area": "hall"
+ },
+ {
+  "id": "hall/verb/losgehen",
+  "kind": "verb",
+  "area": "hall"
+ },
+ {
+  "id": "hall/verb/aufschliessen",
+  "kind": "verb",
+  "area": "hall"
+ },
+ {
+  "id": "hall/verb/anziehen",
+  "kind": "verb",
+  "area": "hall"
+ },
+ {
+  "id": "hall/verb/warten",
+  "kind": "verb",
+  "area": "hall"
+ },
+ {
+  "id": "hall/verb/ankommen",
+  "kind": "verb",
+  "area": "hall"
+ },
+ {
+  "id": "hall/verb/begruessen",
+  "kind": "verb",
+  "area": "hall"
+ },
+ {
+  "id": "hall/verb/sich-verabschieden",
+  "kind": "verb",
+  "area": "hall"
+ },
+ {
+  "id": "outside/noun/strasse",
+  "kind": "noun",
+  "area": "outside",
+  "emoji": "🛣️"
+ },
+ {
+  "id": "outside/noun/ampel",
+  "kind": "noun",
+  "area": "outside",
+  "emoji": "🚦"
+ },
+ {
+  "id": "outside/noun/fahrrad",
+  "kind": "noun",
+  "area": "outside",
+  "emoji": "🚲"
+ },
+ {
+  "id": "outside/noun/bus",
+  "kind": "noun",
+  "area": "outside",
+  "emoji": "🚌"
+ },
+ {
+  "id": "outside/noun/haltestelle",
+  "kind": "noun",
+  "area": "outside",
+  "emoji": "🚏"
+ },
+ {
+  "id": "outside/noun/zug",
+  "kind": "noun",
+  "area": "outside",
+  "emoji": "🚆"
+ },
+ {
+  "id": "outside/noun/baum",
+  "kind": "noun",
+  "area": "outside",
+  "emoji": "🌳"
+ },
+ {
+  "id": "outside/noun/blume",
+  "kind": "noun",
+  "area": "outside",
+  "emoji": "🌸"
+ },
+ {
+  "id": "outside/noun/park",
+  "kind": "noun",
+  "area": "outside",
+  "emoji": "🏞️"
+ },
+ {
+  "id": "outside/noun/sonne",
+  "kind": "noun",
+  "area": "outside",
+  "emoji": "☀️"
+ },
+ {
+  "id": "outside/noun/regen",
+  "kind": "noun",
+  "area": "outside",
+  "emoji": "🌧️"
+ },
+ {
+  "id": "outside/noun/wetter",
+  "kind": "noun",
+  "area": "outside",
+  "emoji": "🌤️"
+ },
+ {
+  "id": "outside/verb/spazieren-gehen",
+  "kind": "verb",
+  "area": "outside"
+ },
+ {
+  "id": "outside/verb/rad-fahren",
+  "kind": "verb",
+  "area": "outside"
+ },
+ {
+  "id": "outside/verb/einkaufen",
+  "kind": "verb",
+  "area": "outside"
+ },
+ {
+  "id": "outside/verb/den-bus-nehmen",
+  "kind": "verb",
+  "area": "outside"
+ },
+ {
+  "id": "outside/verb/joggen",
+  "kind": "verb",
+  "area": "outside"
+ },
+ {
+  "id": "outside/verb/fleisch-grillen",
+  "kind": "verb",
+  "area": "outside"
+ },
+ {
+  "id": "outside/verb/sich-sonnen",
+  "kind": "verb",
+  "area": "outside"
+ },
+ {
+  "id": "outside/verb/pflanzen",
+  "kind": "verb",
+  "area": "outside"
+ },
+ {
+  "id": "outside/verb/abfahren",
+  "kind": "verb",
+  "area": "outside"
+ },
+ {
+  "id": "school/noun/schule",
+  "kind": "noun",
+  "area": "school",
+  "emoji": "🏫"
+ },
+ {
+  "id": "school/noun/klassenzimmer",
+  "kind": "noun",
+  "area": "school",
+  "emoji": "🎓"
+ },
+ {
+  "id": "school/noun/integrationskurs",
+  "kind": "noun",
+  "area": "school",
+  "emoji": "🤝"
+ },
+ {
+  "id": "school/noun/lehrer",
+  "kind": "noun",
+  "area": "school",
+  "emoji": "🧑‍🏫"
+ },
+ {
+  "id": "school/noun/tafel",
+  "kind": "noun",
+  "area": "school",
+  "emoji": "📝"
+ },
+ {
+  "id": "school/noun/woerterbuch",
+  "kind": "noun",
+  "area": "school",
+  "emoji": "📖"
+ },
+ {
+  "id": "school/noun/heft",
+  "kind": "noun",
+  "area": "school",
+  "emoji": "📒"
+ },
+ {
+  "id": "school/noun/hausaufgabe",
+  "kind": "noun",
+  "area": "school",
+  "emoji": "✍️"
+ },
+ {
+  "id": "school/noun/pruefung",
+  "kind": "noun",
+  "area": "school",
+  "emoji": "📋"
+ },
+ {
+  "id": "school/noun/pause",
+  "kind": "noun",
+  "area": "school",
+  "emoji": "☕"
+ },
+ {
+  "id": "school/noun/frage",
+  "kind": "noun",
+  "area": "school",
+  "emoji": "❓"
+ },
+ {
+  "id": "school/noun/antwort",
+  "kind": "noun",
+  "area": "school",
+  "emoji": "✅"
+ },
+ {
+  "id": "school/verb/sprechen",
+  "kind": "verb",
+  "area": "school"
+ },
+ {
+  "id": "school/verb/verstehen",
+  "kind": "verb",
+  "area": "school"
+ },
+ {
+  "id": "school/verb/fragen",
+  "kind": "verb",
+  "area": "school"
+ },
+ {
+  "id": "school/verb/antworten",
+  "kind": "verb",
+  "area": "school"
+ },
+ {
+  "id": "school/verb/wiederholen",
+  "kind": "verb",
+  "area": "school"
+ },
+ {
+  "id": "school/verb/uebersetzen",
+  "kind": "verb",
+  "area": "school"
+ },
+ {
+  "id": "school/verb/bestehen",
+  "kind": "verb",
+  "area": "school"
+ },
+ {
+  "id": "school/verb/ueben",
+  "kind": "verb",
+  "area": "school"
+ },
+ {
+  "id": "school/verb/sich-melden",
+  "kind": "verb",
+  "area": "school"
+ },
+ {
+  "id": "amt/noun/amt",
+  "kind": "noun",
+  "area": "amt",
+  "emoji": "🏛️"
+ },
+ {
+  "id": "amt/noun/formular",
+  "kind": "noun",
+  "area": "amt",
+  "emoji": "📄"
+ },
+ {
+  "id": "amt/noun/antrag",
+  "kind": "noun",
+  "area": "amt",
+  "emoji": "📝"
+ },
+ {
+  "id": "amt/noun/ausweis",
+  "kind": "noun",
+  "area": "amt",
+  "emoji": "🪪"
+ },
+ {
+  "id": "amt/noun/aufenthaltstitel",
+  "kind": "noun",
+  "area": "amt",
+  "emoji": "🛂"
+ },
+ {
+  "id": "amt/noun/unterschrift",
+  "kind": "noun",
+  "area": "amt",
+  "emoji": "✍️"
+ },
+ {
+  "id": "amt/noun/wartenummer",
+  "kind": "noun",
+  "area": "amt",
+  "emoji": "🎫"
+ },
+ {
+  "id": "amt/noun/sachbearbeiter",
+  "kind": "noun",
+  "area": "amt",
+  "emoji": "🧑‍💼"
+ },
+ {
+  "id": "amt/noun/frist",
+  "kind": "noun",
+  "area": "amt",
+  "emoji": "⏳"
+ },
+ {
+  "id": "amt/noun/anmeldung",
+  "kind": "noun",
+  "area": "amt",
+  "emoji": "🏠"
+ },
+ {
+  "id": "amt/noun/unterlagen",
+  "kind": "noun",
+  "area": "amt",
+  "emoji": "📂"
+ },
+ {
+  "id": "amt/verb/ausfuellen",
+  "kind": "verb",
+  "area": "amt"
+ },
+ {
+  "id": "amt/verb/unterschreiben",
+  "kind": "verb",
+  "area": "amt"
+ },
+ {
+  "id": "amt/verb/beantragen",
+  "kind": "verb",
+  "area": "amt"
+ },
+ {
+  "id": "amt/verb/abgeben",
+  "kind": "verb",
+  "area": "amt"
+ },
+ {
+  "id": "amt/verb/einreichen",
+  "kind": "verb",
+  "area": "amt"
+ },
+ {
+  "id": "amt/verb/verlaengern",
+  "kind": "verb",
+  "area": "amt"
+ },
+ {
+  "id": "amt/verb/mitbringen",
+  "kind": "verb",
+  "area": "amt"
+ },
+ {
+  "id": "amt/verb/kopieren",
+  "kind": "verb",
+  "area": "amt"
+ },
+ {
+  "id": "amt/verb/ablaufen",
+  "kind": "verb",
+  "area": "amt"
+ },
+ {
+  "id": "arzt/noun/arzt",
+  "kind": "noun",
+  "area": "arzt",
+  "emoji": "🧑‍⚕️"
+ },
+ {
+  "id": "arzt/noun/praxis",
+  "kind": "noun",
+  "area": "arzt",
+  "emoji": "🏥"
+ },
+ {
+  "id": "arzt/noun/termin",
+  "kind": "noun",
+  "area": "arzt",
+  "emoji": "📅"
+ },
+ {
+  "id": "arzt/noun/schmerz",
+  "kind": "noun",
+  "area": "arzt",
+  "emoji": "🤕"
+ },
+ {
+  "id": "arzt/noun/fieber",
+  "kind": "noun",
+  "area": "arzt",
+  "emoji": "🌡️"
+ },
+ {
+  "id": "arzt/noun/tablette",
+  "kind": "noun",
+  "area": "arzt",
+  "emoji": "💊"
+ },
+ {
+  "id": "arzt/noun/rezept",
+  "kind": "noun",
+  "area": "arzt",
+  "emoji": "📃"
+ },
+ {
+  "id": "arzt/noun/apotheke",
+  "kind": "noun",
+  "area": "arzt",
+  "emoji": "⚕️"
+ },
+ {
+  "id": "arzt/noun/versichertenkarte",
+  "kind": "noun",
+  "area": "arzt",
+  "emoji": "💳"
+ },
+ {
+  "id": "arzt/noun/krankenkasse",
+  "kind": "noun",
+  "area": "arzt",
+  "emoji": "🛡️"
+ },
+ {
+  "id": "arzt/noun/husten",
+  "kind": "noun",
+  "area": "arzt",
+  "emoji": "😷"
+ },
+ {
+  "id": "arzt/noun/erkaeltung",
+  "kind": "noun",
+  "area": "arzt",
+  "emoji": "🤧"
+ },
+ {
+  "id": "arzt/verb/wehtun",
+  "kind": "verb",
+  "area": "arzt"
+ },
+ {
+  "id": "arzt/verb/husten",
+  "kind": "verb",
+  "area": "arzt"
+ },
+ {
+  "id": "arzt/verb/untersuchen",
+  "kind": "verb",
+  "area": "arzt"
+ },
+ {
+  "id": "arzt/verb/verschreiben",
+  "kind": "verb",
+  "area": "arzt"
+ },
+ {
+  "id": "arzt/verb/einnehmen",
+  "kind": "verb",
+  "area": "arzt"
+ },
+ {
+  "id": "arzt/verb/abholen",
+  "kind": "verb",
+  "area": "arzt"
+ },
+ {
+  "id": "arzt/verb/sich-krankmelden",
+  "kind": "verb",
+  "area": "arzt"
+ },
+ {
+  "id": "arzt/verb/sich-ausruhen",
+  "kind": "verb",
+  "area": "arzt"
+ },
+ {
+  "id": "arzt/verb/absagen",
+  "kind": "verb",
+  "area": "arzt"
+ },
+ {
+  "id": "arbeit/noun/arbeit",
+  "kind": "noun",
+  "area": "arbeit",
+  "emoji": "💼"
+ },
+ {
+  "id": "arbeit/noun/bewerbung",
+  "kind": "noun",
+  "area": "arbeit",
+  "emoji": "📩"
+ },
+ {
+  "id": "arbeit/noun/lebenslauf",
+  "kind": "noun",
+  "area": "arbeit",
+  "emoji": "📜"
+ },
+ {
+  "id": "arbeit/noun/vertrag",
+  "kind": "noun",
+  "area": "arbeit",
+  "emoji": "📑"
+ },
+ {
+  "id": "arbeit/noun/gehalt",
+  "kind": "noun",
+  "area": "arbeit",
+  "emoji": "💶"
+ },
+ {
+  "id": "arbeit/noun/kollege",
+  "kind": "noun",
+  "area": "arbeit",
+  "emoji": "👥"
+ },
+ {
+  "id": "arbeit/noun/chef",
+  "kind": "noun",
+  "area": "arbeit",
+  "emoji": "👔"
+ },
+ {
+  "id": "arbeit/noun/schicht",
+  "kind": "noun",
+  "area": "arbeit",
+  "emoji": "🕗"
+ },
+ {
+  "id": "arbeit/noun/urlaub",
+  "kind": "noun",
+  "area": "arbeit",
+  "emoji": "🏖️"
+ },
+ {
+  "id": "arbeit/noun/firma",
+  "kind": "noun",
+  "area": "arbeit",
+  "emoji": "🏢"
+ },
+ {
+  "id": "arbeit/verb/sich-bewerben",
+  "kind": "verb",
+  "area": "arbeit"
+ },
+ {
+  "id": "arbeit/verb/sich-vorstellen",
+  "kind": "verb",
+  "area": "arbeit"
+ },
+ {
+  "id": "arbeit/verb/verdienen",
+  "kind": "verb",
+  "area": "arbeit"
+ },
+ {
+  "id": "arbeit/verb/anfangen",
+  "kind": "verb",
+  "area": "arbeit"
+ },
+ {
+  "id": "arbeit/verb/aufhoeren",
+  "kind": "verb",
+  "area": "arbeit"
+ },
+ {
+  "id": "arbeit/verb/kuendigen",
+  "kind": "verb",
+  "area": "arbeit"
+ },
+ {
+  "id": "arbeit/verb/einstellen",
+  "kind": "verb",
+  "area": "arbeit"
+ },
+ {
+  "id": "arbeit/verb/helfen",
+  "kind": "verb",
+  "area": "arbeit"
+ },
+ {
+  "id": "arbeit/verb/ueberstunden-machen",
+  "kind": "verb",
+  "area": "arbeit"
+ }
+]

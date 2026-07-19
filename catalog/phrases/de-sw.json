@@ -1,0 +1,1624 @@
+[
+ {
+  "id": "basics/phrase/hallo",
+  "area": "basics",
+  "de": "Hallo!",
+  "target": "Hujambo!",
+  "targetVariants": [],
+  "notes": {
+   "de": "„Hujambo?“ wörtl. „Hast du kein Problem?“ — Antwort: „Sijambo!“"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/guten-tag",
+  "area": "basics",
+  "de": "Guten Tag!",
+  "target": "Habari!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/danke-schoen",
+  "area": "basics",
+  "de": "Danke schön!",
+  "target": "Asante sana!",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Danke sehr!“"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/bitte",
+  "area": "basics",
+  "de": "Bitte!",
+  "target": "Tafadhali!",
+  "targetVariants": [
+   "Karibu!"
+  ],
+  "notes": {
+   "de": "tafadhali = „bitte“ beim Bitten · karibu = „bitte sehr!“ beim Geben — wörtl. „Komm näher!“, auch „Willkommen!“"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/entschuldigung",
+  "area": "basics",
+  "de": "Entschuldigung!",
+  "target": "Samahani!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/ja",
+  "area": "basics",
+  "de": "Ja.",
+  "target": "Ndiyo.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/nein",
+  "area": "basics",
+  "de": "Nein.",
+  "target": "Hapana.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/wie-heissen-sie",
+  "area": "basics",
+  "de": "Wie heißen Sie? / Wie heißt du?",
+  "target": "Unaitwa nani?",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Du wirst wer genannt?“"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/ich-heisse",
+  "area": "basics",
+  "de": "Ich heiße …",
+  "target": "Naitwa …",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Ich werde … genannt.“"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/woher-kommen-sie",
+  "area": "basics",
+  "de": "Woher kommen Sie? / Woher kommst du?",
+  "target": "Unatoka wapi?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/sprechen-sie-englisch",
+  "area": "basics",
+  "de": "Sprechen Sie Englisch? / Sprichst du Englisch?",
+  "target": "Unazungumza Kiingereza?",
+  "targetVariants": [],
+  "notes": {
+   "de": "Ki- = Sprach-Präfix: Kiingereza, Kijerumani, Kiswahili"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/ich-spreche-nur-ein-bisschen-deutsch",
+  "area": "basics",
+  "de": "Ich spreche nur ein bisschen Deutsch.",
+  "target": "Ninazungumza Kijerumani kidogo tu.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/ich-weiss-nicht",
+  "area": "basics",
+  "de": "Ich weiß nicht.",
+  "target": "Sijui.",
+  "targetVariants": [],
+  "notes": {
+   "de": "wieder si-: najua „ich weiß“ → sijui"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/wie-bitte",
+  "area": "basics",
+  "de": "Wie bitte?",
+  "target": "Samahani, naomba urudie.",
+  "targetVariants": [],
+  "notes": {
+   "de": "naomba = „ich bitte (darum)“ — das höfliche Allzweckwort"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/ich-brauche-hilfe",
+  "area": "basics",
+  "de": "Ich brauche Hilfe.",
+  "target": "Nahitaji msaada.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/alles-gut",
+  "area": "basics",
+  "de": "Alles gut.",
+  "target": "Hakuna shida.",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Es gibt kein Problem.“ — wie das berühmte „hakuna matata“"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/auf-wiedersehen",
+  "area": "basics",
+  "de": "Auf Wiedersehen!",
+  "target": "Kwaheri!",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Mit Glück/Segen!“ (kwa heri) · zu mehreren: Kwaherini!"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/wie-nennt-man-das",
+  "area": "basics",
+  "de": "Wie nennt man das?",
+  "target": "Hii inaitwaje?",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Dies wird-genannt-wie?“ — -je am Verbende = „wie?“; wieder kuitwa!"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/wie-geht-es-ihnen",
+  "area": "basics",
+  "de": "Wie geht es Ihnen? / Wie geht es dir?",
+  "target": "Habari yako?",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Deine Neuigkeiten?“"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/koennen-sie-das-bitte-wiederholen",
+  "area": "basics",
+  "de": "Können Sie das bitte wiederholen? / Kannst du das bitte wiederholen?",
+  "target": "Unaweza kurudia, tafadhali?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/ich-verstehe",
+  "area": "basics",
+  "de": "Ich verstehe.",
+  "target": "Naelewa.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/ich-verstehe-nicht",
+  "area": "basics",
+  "de": "Ich verstehe nicht.",
+  "target": "Sielewi.",
+  "targetVariants": [],
+  "notes": {
+   "de": "si- ersetzt nina- und die Endung wechselt -a → -i: naelewa → sielewi"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "basics/phrase/langsamer-bitte",
+  "area": "basics",
+  "de": "Langsamer, bitte!",
+  "target": "Polepole, tafadhali!",
+  "targetVariants": [],
+  "notes": {
+   "de": "polepole (ein Wort) = „schön langsam“ — die Verdopplung von pole (sachte)"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "kitchen/phrase/vorsicht-das-messer-ist-scharf",
+  "area": "kitchen",
+  "de": "Vorsicht, das Messer ist scharf!",
+  "target": "Angalia, kisu ni kikali!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "kitchen/phrase/das-schmeckt-so-lecker",
+  "area": "kitchen",
+  "de": "Das schmeckt so lecker!",
+  "target": "Hii ni tamu sana!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "kitchen/phrase/kochst-du-heute-reis",
+  "area": "kitchen",
+  "de": "Kochst du heute Reis?",
+  "target": "Unapika wali leo?",
+  "targetVariants": [],
+  "notes": {
+   "de": "Reis = mpunga (geerntet) → mchele (roh) → wali (gekocht)!"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "kitchen/phrase/der-topf-steht-noch-auf-dem-herd",
+  "area": "kitchen",
+  "de": "Der Topf steht noch auf dem Herd.",
+  "target": "Sufuria bado iko jikoni.",
+  "targetVariants": [],
+  "notes": {
+   "de": "jikoni = auf dem Herd / in der Küche"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "kitchen/phrase/spuel-bitte-das-geschirr-im-spuelbecken",
+  "area": "kitchen",
+  "de": "Spül bitte das Geschirr im Spülbecken!",
+  "target": "Osha vyombo sinkini, tafadhali!",
+  "targetVariants": [],
+  "notes": {
+   "de": "-ni am Ende = in/im/am: sinki → sinkini"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "kitchen/phrase/der-kuehlschrank-ist-leer",
+  "area": "kitchen",
+  "de": "Der Kühlschrank ist leer.",
+  "target": "Friji iko tupu.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "kitchen/phrase/kannst-du-bitte-den-tisch-decken",
+  "area": "kitchen",
+  "de": "Kannst du bitte den Tisch decken?",
+  "target": "Unaweza kuandaa meza, tafadhali?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "kitchen/phrase/das-wasser-kocht-es-ist-sehr-heiss",
+  "area": "kitchen",
+  "de": "Das Wasser kocht — es ist sehr heiß!",
+  "target": "Maji yanachemka — ni moto sana!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "living/phrase/das-essen-ist-fertig",
+  "area": "living",
+  "de": "Das Essen ist fertig!",
+  "target": "Chakula kiko tayari!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "living/phrase/mach-bitte-den-fernseher-an",
+  "area": "living",
+  "de": "Mach bitte den Fernseher an.",
+  "target": "Tafadhali washa televisheni.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "living/phrase/komm-setz-dich-zu-mir",
+  "area": "living",
+  "de": "Komm, setz dich zu mir!",
+  "target": "Njoo, keti karibu nami!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "living/phrase/wollen-wir-einen-film-schauen",
+  "area": "living",
+  "de": "Wollen wir einen Film schauen?",
+  "target": "Tutazame filamu?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "living/phrase/lass-uns-das-bild-aufhaengen",
+  "area": "living",
+  "de": "Lass uns das Bild aufhängen!",
+  "target": "Tutundike picha ukutani!",
+  "targetVariants": [],
+  "notes": {
+   "de": "ukutani = an der Wand"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "living/phrase/die-vorhaenge-haengen-vor-dem-fenster",
+  "area": "living",
+  "de": "Die Vorhänge hängen vor dem Fenster.",
+  "target": "Mapazia yananing'inia mbele ya dirisha.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "living/phrase/kannst-du-das-licht-ausmachen",
+  "area": "living",
+  "de": "Kannst du das Licht ausmachen?",
+  "target": "Unaweza kuzima taa?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "living/phrase/mach-bitte-das-fenster-auf-frische-luft",
+  "area": "living",
+  "de": "Mach bitte das Fenster auf — frische Luft!",
+  "target": "Fungua dirisha, tafadhali — hewa safi!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bath/phrase/ich-gehe-kurz-duschen",
+  "area": "bath",
+  "de": "Ich gehe kurz duschen.",
+  "target": "Naenda kuoga kidogo.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bath/phrase/das-bad-ist-besetzt",
+  "area": "bath",
+  "de": "Das Bad ist besetzt!",
+  "target": "Bafu inatumika!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bath/phrase/die-waesche-ist-fertig",
+  "area": "bath",
+  "de": "Die Wäsche ist fertig.",
+  "target": "Nguo ziko tayari.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bath/phrase/wo-ist-mein-handtuch",
+  "area": "bath",
+  "de": "Wo ist mein Handtuch?",
+  "target": "Taulo langu liko wapi?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bath/phrase/kannst-du-die-waesche-draussen-aufhaengen",
+  "area": "bath",
+  "de": "Kannst du die Wäsche draußen aufhängen?",
+  "target": "Unaweza kuanika nguo nje?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bath/phrase/vergiss-nicht-zaehne-zu-putzen",
+  "area": "bath",
+  "de": "Vergiss nicht, Zähne zu putzen!",
+  "target": "Usisahau kupiga mswaki!",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „… die Zahnbürste zu schlagen!“"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bath/phrase/wasch-dir-die-haende-gruendlich",
+  "area": "bath",
+  "de": "Wasch dir die Hände gründlich.",
+  "target": "Nawa mikono vizuri.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bath/phrase/das-wasser-ist-kalt",
+  "area": "bath",
+  "de": "Das Wasser ist kalt!",
+  "target": "Maji ni baridi!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "desk/phrase/ich-bin-in-einem-meeting",
+  "area": "desk",
+  "de": "Ich bin in einem Meeting.",
+  "target": "Niko kwenye mkutano.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "desk/phrase/nicht-stoeren-bitte",
+  "area": "desk",
+  "de": "Nicht stören, bitte!",
+  "target": "Usinisumbue, tafadhali!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "desk/phrase/der-laptop-laedt-nicht-mehr",
+  "area": "desk",
+  "de": "Der Laptop lädt nicht mehr.",
+  "target": "Laptop haichaji tena.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "desk/phrase/das-wlan-ist-komplett-weg",
+  "area": "desk",
+  "de": "Das WLAN ist komplett weg.",
+  "target": "Intaneti imekatika kabisa.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "desk/phrase/kaffeepause",
+  "area": "desk",
+  "de": "Kaffeepause?",
+  "target": "Mapumziko ya kahawa?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "desk/phrase/ich-habe-viel-zu-tun",
+  "area": "desk",
+  "de": "Ich habe viel zu tun.",
+  "target": "Nina kazi nyingi.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "desk/phrase/feierabend",
+  "area": "desk",
+  "de": "Feierabend!",
+  "target": "Kazi imeisha kwa leo!",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Die Arbeit ist für heute zu Ende.“"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "desk/phrase/schick-mir-bitte-die-e-mail",
+  "area": "desk",
+  "de": "Schick mir bitte die E-Mail.",
+  "target": "Tafadhali nitumie barua pepe.",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „… den Geisterbrief“ — pepe = Geist!"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bedroom/phrase/gute-nacht-schlaf-gut",
+  "area": "bedroom",
+  "de": "Gute Nacht, schlaf gut!",
+  "target": "Usiku mwema, lala salama!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bedroom/phrase/guten-morgen-mein-schatz",
+  "area": "bedroom",
+  "de": "Guten Morgen, mein Schatz!",
+  "target": "Habari za asubuhi, mpenzi wangu!",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Nachrichten des Morgens, mein Liebling!“"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bedroom/phrase/ich-bin-muede",
+  "area": "bedroom",
+  "de": "Ich bin müde.",
+  "target": "Nimechoka.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bedroom/phrase/traeum-was-schoenes",
+  "area": "bedroom",
+  "de": "Träum was Schönes!",
+  "target": "Ndoto njema!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bedroom/phrase/hast-du-den-wecker-gestellt",
+  "area": "bedroom",
+  "de": "Hast du den Wecker gestellt?",
+  "target": "Umeweka alamu?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bedroom/phrase/fuenf-minuten-noch",
+  "area": "bedroom",
+  "de": "Fünf Minuten noch …",
+  "target": "Dakika tano zaidi …",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bedroom/phrase/mach-bitte-das-licht-aus",
+  "area": "bedroom",
+  "de": "Mach bitte das Licht aus.",
+  "target": "Tafadhali zima taa.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "bedroom/phrase/ich-liebe-dich",
+  "area": "bedroom",
+  "de": "Ich liebe dich.“ ♥",
+  "target": "Nakupenda.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "hall/phrase/hast-du-die-schluessel",
+  "area": "hall",
+  "de": "Hast du die Schlüssel?",
+  "target": "Unazo funguo?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "hall/phrase/ich-bin-gleich-zurueck",
+  "area": "hall",
+  "de": "Ich bin gleich zurück!",
+  "target": "Narudi sasa hivi!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "hall/phrase/zieh-die-schuhe-bitte-hier-aus",
+  "area": "hall",
+  "de": "Zieh die Schuhe bitte hier aus.",
+  "target": "Tafadhali vua viatu hapa.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "hall/phrase/beeil-dich-wir-sind-spaet-dran",
+  "area": "hall",
+  "de": "Beeil dich, wir sind spät dran!",
+  "target": "Fanya haraka, tumechelewa!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "hall/phrase/bis-spaeter",
+  "area": "hall",
+  "de": "Bis später!",
+  "target": "Tutaonana baadaye!",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Wir werden uns später sehen!“"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "hall/phrase/willkommen-zu-hause",
+  "area": "hall",
+  "de": "Willkommen zu Hause!",
+  "target": "Karibu nyumbani!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "hall/phrase/es-hat-ploetzlich-geklingelt",
+  "area": "hall",
+  "de": "Es hat plötzlich geklingelt.",
+  "target": "Kengele imelia ghafla.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "hall/phrase/vergiss-deine-jacke-nicht",
+  "area": "hall",
+  "de": "Vergiss deine Jacke nicht!",
+  "target": "Usisahau jaketi lako!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "outside/phrase/wie-ist-das-wetter-heute",
+  "area": "outside",
+  "de": "Wie ist das Wetter heute?",
+  "target": "Hali ya hewa ikoje leo?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "outside/phrase/nimm-immer-einen-regenschirm-mit",
+  "area": "outside",
+  "de": "Nimm immer einen Regenschirm mit!",
+  "target": "Chukua mwavuli daima!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "outside/phrase/es-regnet",
+  "area": "outside",
+  "de": "Es regnet.",
+  "target": "Mvua inanyesha.",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Der Regen regnet herab.“"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "outside/phrase/die-sonne-scheint",
+  "area": "outside",
+  "de": "Die Sonne scheint!",
+  "target": "Jua linawaka!",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Die Sonne brennt.“"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "outside/phrase/wollen-wir-zusammen-spazieren-gehen",
+  "area": "outside",
+  "de": "Wollen wir zusammen spazieren gehen?",
+  "target": "Twende kutembea pamoja?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "outside/phrase/der-bus-kommt-gleich",
+  "area": "outside",
+  "de": "Der Bus kommt gleich.",
+  "target": "Basi linakuja sasa hivi.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "outside/phrase/wann-faehrt-der-zug-ab",
+  "area": "outside",
+  "de": "Wann fährt der Zug ab?",
+  "target": "Treni inaondoka saa ngapi?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "outside/phrase/was-fuer-ein-schoener-tag",
+  "area": "outside",
+  "de": "Was für ein schöner Tag!",
+  "target": "Siku nzuri kama nini!",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Ein guter Tag — wie sehr!“"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "school/phrase/ich-habe-eine-frage",
+  "area": "school",
+  "de": "Ich habe eine Frage.",
+  "target": "Nina swali.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "school/phrase/was-bedeutet-dieses-wort",
+  "area": "school",
+  "de": "Was bedeutet dieses Wort?",
+  "target": "Neno hili lina maana gani?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "school/phrase/wie-sagt-man-das-auf-deutsch",
+  "area": "school",
+  "de": "Wie sagt man das auf Deutsch?",
+  "target": "Unasemaje kwa Kijerumani?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "school/phrase/ich-lerne-deutsch",
+  "area": "school",
+  "de": "Ich lerne Deutsch.",
+  "target": "Ninajifunza Kijerumani.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "school/phrase/du-schaffst-das-bestimmt",
+  "area": "school",
+  "de": "Du schaffst das bestimmt!",
+  "target": "Hakika utaweza!",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Sicher, du wirst können!“"
+  },
+  "review": {
+   "status": "native",
+   "source": "sprachposter-2026-07",
+   "date": "2026-07-11"
+  }
+ },
+ {
+  "id": "amt/phrase/wo-muss-ich-unterschreiben",
+  "area": "amt",
+  "de": "Wo muss ich unterschreiben?",
+  "target": "Nitie sahihi wapi?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "amt/phrase/ich-moechte-meinen-aufenthaltstitel-verlaengern",
+  "area": "amt",
+  "de": "Ich möchte meinen Aufenthaltstitel verlängern.",
+  "target": "Ningependa kuhuisha kibali changu cha ukaaji.",
+  "targetVariants": [],
+  "notes": {
+   "de": "kuhuisha = erneuern, wörtl. „wiederbeleben“ (-hai = lebendig)"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "amt/phrase/bitte-fuellen-sie-das-formular-vollstaendig-aus",
+  "area": "amt",
+  "de": "Bitte füllen Sie das Formular vollständig aus. / Bitte fülle das Formular vollständig aus.",
+  "target": "Tafadhali jaza fomu kikamilifu.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "amt/phrase/ziehen-sie-bitte-zuerst-eine-wartenummer",
+  "area": "amt",
+  "de": "Ziehen Sie bitte zuerst eine Wartenummer! / Zieh bitte zuerst eine Wartenummer!",
+  "target": "Tafadhali chukua namba ya foleni kwanza!",
+  "targetVariants": [],
+  "notes": {
+   "de": "foleni (Warteschlange) kommt vom englischen „fall in line“!"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "amt/phrase/ich-brauche-fuer-den-antrag-einen-dolmetscher",
+  "area": "amt",
+  "de": "Ich brauche für den Antrag einen Dolmetscher.",
+  "target": "Nahitaji mkalimani kwa ajili ya maombi yangu.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "amt/phrase/haben-sie-alle-unterlagen-dabei",
+  "area": "amt",
+  "de": "Haben Sie alle Unterlagen dabei? / Hast du alle Unterlagen dabei?",
+  "target": "Je, umeleta nyaraka zote?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "amt/phrase/der-bescheid-kommt-per-post",
+  "area": "amt",
+  "de": "Der Bescheid kommt per Post.",
+  "target": "Barua ya uamuzi itakuja kwa posta.",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Brief der Entscheidung“ — so umschreibt man den deutschen „Bescheid“"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "amt/phrase/wann-laeuft-mein-ausweis-ab",
+  "area": "amt",
+  "de": "Wann läuft mein Ausweis ab?",
+  "target": "Kitambulisho changu kinaisha lini?",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Wann endet mein Ausweis?“ — ablaufen = kuisha (enden)"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arzt/phrase/ich-habe-um-zehn-uhr-einen-termin-in-der-praxis",
+  "area": "arzt",
+  "de": "Ich habe um zehn Uhr einen Termin in der Praxis.",
+  "target": "Nina miadi kwenye kliniki saa nne asubuhi.",
+  "targetVariants": [],
+  "notes": {
+   "de": "saa nne = wörtl. „vierte Stunde“! Die Swahili-Uhr startet um 6 Uhr morgens: 10 Uhr = saa 4"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arzt/phrase/mein-hals-tut-sehr-weh",
+  "area": "arzt",
+  "de": "Mein Hals tut sehr weh.",
+  "target": "Koo linaniuma sana.",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Die Kehle schmerzt mich sehr“ — der Körperteil ist das Subjekt!"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arzt/phrase/ich-habe-seit-gestern-fieber",
+  "area": "arzt",
+  "de": "Ich habe seit gestern Fieber.",
+  "target": "Nina homa tangu jana.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arzt/phrase/bitte-nehmen-sie-die-tabletten-zweimal-taeglich-ein",
+  "area": "arzt",
+  "de": "Bitte nehmen Sie die Tabletten zweimal täglich ein. / Bitte nimm die Tabletten zweimal täglich ein.",
+  "target": "Tafadhali kunywa vidonge mara mbili kwa siku.",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Trinken Sie die Tabletten …“ — Medizin wird auf Swahili getrunken, auch Tabletten!"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arzt/phrase/gute-besserung",
+  "area": "arzt",
+  "de": "Gute Besserung!",
+  "target": "Pole! Upone haraka!",
+  "targetVariants": [],
+  "notes": {
+   "de": "pole = Mitgefühls-Wort ohne deutsches Gegenstück; upone haraka wörtl. „mögest du schnell heilen“"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arzt/phrase/mit-dem-rezept-gehen-sie-zur-apotheke",
+  "area": "arzt",
+  "de": "Mit dem Rezept gehen Sie zur Apotheke. / Mit dem Rezept gehst du zur Apotheke.",
+  "target": "Nenda na cheti cha dawa hadi duka la dawa.",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Geh mit dem Medizin-Zettel zum Medizin-Laden“ — dawa steckt in beiden!"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arzt/phrase/zeigen-sie-mir-bitte-ihre-versichertenkarte",
+  "area": "arzt",
+  "de": "Zeigen Sie mir bitte Ihre Versichertenkarte. / Zeig mir bitte deine Versichertenkarte.",
+  "target": "Tafadhali nionyeshe kadi yako ya bima ya afya.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arzt/phrase/ich-muss-den-termin-leider-absagen",
+  "area": "arzt",
+  "de": "Ich muss den Termin leider absagen.",
+  "target": "Samahani, lazima nighairi miadi.",
+  "targetVariants": [],
+  "notes": {
+   "de": "miadi sieht aus wie ein Plural (mi-), ist aber Einzahl — arabisches Lehnwort"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arbeit/phrase/morgen-stelle-ich-mich-bei-der-firma-vor",
+  "area": "arbeit",
+  "de": "Morgen stelle ich mich bei der Firma vor.",
+  "target": "Kesho nitajitambulisha kwenye kampuni.",
+  "targetVariants": [],
+  "notes": {
+   "de": "kujitambulisha, kitambulisho (Ausweis) und kutambua (erkennen) sind eine Wortfamilie"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arbeit/phrase/meine-schicht-faengt-heute-um-sechs-uhr-an",
+  "area": "arbeit",
+  "de": "Meine Schicht fängt heute um sechs Uhr an.",
+  "target": "Leo zamu yangu inaanza saa kumi na mbili asubuhi.",
+  "targetVariants": [],
+  "notes": {
+   "de": "6 Uhr morgens = saa 12 (saa kumi na mbili) — Sonnenaufgang, Start der Swahili-Stunde!"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arbeit/phrase/ich-schicke-ihnen-die-krankmeldung-sofort",
+  "area": "arbeit",
+  "de": "Ich schicke Ihnen die Krankmeldung sofort. / Ich schicke dir die Krankmeldung sofort.",
+  "target": "Nitakutumia cheti cha daktari mara moja.",
+  "targetVariants": [],
+  "notes": {
+   "de": "wörtl. „Zettel vom Arzt“ — krankmelden heißt in Ostafrika: das Attest schicken"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arbeit/phrase/schoenen-feierabend",
+  "area": "arbeit",
+  "de": "Schönen Feierabend!",
+  "target": "Pumzika vizuri baada ya kazi!",
+  "targetVariants": [],
+  "notes": {
+   "de": "„Feierabend“ gibt es auf Swahili nicht — man wünscht: „Ruh dich nach der Arbeit gut aus!“"
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arbeit/phrase/koennen-sie-mir-kurz-helfen",
+  "area": "arbeit",
+  "de": "Können Sie mir kurz helfen? / Kannst du mir kurz helfen?",
+  "target": "Unaweza kunisaidia kidogo?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arbeit/phrase/ich-moechte-naechste-woche-urlaub-nehmen",
+  "area": "arbeit",
+  "de": "Ich möchte nächste Woche Urlaub nehmen.",
+  "target": "Ningependa kuchukua likizo wiki ijayo.",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arbeit/phrase/lesen-sie-den-vertrag-genau-durch",
+  "area": "arbeit",
+  "de": "Lesen Sie den Vertrag genau durch! / Lies den Vertrag genau durch!",
+  "target": "Soma mkataba kwa makini!",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ },
+ {
+  "id": "arbeit/phrase/wie-hoch-ist-das-gehalt",
+  "area": "arbeit",
+  "de": "Wie hoch ist das Gehalt?",
+  "target": "Mshahara ni kiasi gani?",
+  "targetVariants": [],
+  "notes": {
+   "de": null
+  },
+  "review": {
+   "status": "reviewed",
+   "source": "agent-pipeline-2026-07-17",
+   "date": "2026-07-17"
+  }
+ }
+]
