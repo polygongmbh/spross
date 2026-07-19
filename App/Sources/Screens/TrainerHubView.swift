@@ -9,6 +9,8 @@ import DuoKernTrainer
 struct TrainerHubView: View {
     let model: AppModel
 
+    @Environment(\.locale) private var locale
+
     /// Standalone drills offered on the card — years is intentionally absent
     /// (redundant with numbers), though it still backs phrase slots.
     private static let drillKinds: [TrainerKind] = [.numbers, .clock]
@@ -38,6 +40,7 @@ struct TrainerHubView: View {
         }
         .fullScreenCover(item: $activeDrill) { drill in
             TrainerSessionView(mode: drill.mode)
+                .environment(\.locale, model.knownLocale)
         }
     }
 
@@ -48,7 +51,7 @@ struct TrainerHubView: View {
             Text("Training")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("Auf \(effectiveLanguage.trainerName) · zählt nicht für deine Box.")
+            Text("Auf \(effectiveLanguage.displayName(in: locale)) · zählt nicht für deine Box.")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
             HStack(spacing: DL.Space.m) {
@@ -93,7 +96,7 @@ struct TrainerHubView: View {
                 Text(kind.trainerEmoji)
                     .font(.system(size: 30))
                     .accessibilityHidden(true)
-                Text(kind.trainerTitle)
+                Text(kind.trainerTitleKey)
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextPrimary)
                     .lineLimit(1)
@@ -108,7 +111,7 @@ struct TrainerHubView: View {
             )
         }
         .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel("\(kind.trainerTitle) üben, auf \(effectiveLanguage.trainerName)")
+        .accessibilityLabel(Text(kind.trainerTitleKey) + Text(" üben, auf \(effectiveLanguage.displayName(in: locale))"))
     }
 
     /// Sentence drill: composes phrase templates with slot values.
@@ -186,8 +189,26 @@ extension TrainerKind {
         }
     }
 
+    /// Localized display key for the drill title (German source = catalog key).
+    var trainerTitleKey: LocalizedStringKey {
+        switch self {
+        case .numbers: return "Zahlen"
+        case .years: return "Jahreszahlen"
+        case .clock: return "Uhrzeit"
+        }
+    }
+
     /// Singular caption on the prompt card ("Zahl · auf Swahili").
     var trainerPromptLabel: String {
+        switch self {
+        case .numbers: return "Zahl"
+        case .years: return "Jahreszahl"
+        case .clock: return "Uhrzeit"
+        }
+    }
+
+    /// Localized display key for the singular prompt caption.
+    var trainerPromptLabelKey: LocalizedStringKey {
         switch self {
         case .numbers: return "Zahl"
         case .years: return "Jahreszahl"
@@ -203,5 +224,25 @@ extension TrainerLanguage {
         case .swahili: return "Swahili"
         case .ukrainian: return "Ukrainisch"
         }
+    }
+
+    /// Language name in the UI locale: English chrome shows "German"/"Swahili"
+    /// even though `trainerName` stays German (it drives the content input
+    /// placeholder, which must not be localized). Falls back to the German key.
+    func displayName(in locale: Locale) -> String {
+        DLChrome.string(trainerName, locale: locale)
+    }
+}
+
+/// Resolves a catalog key against a specific UI-language bundle. Needed for
+/// runtime strings interpolated as `%@` arguments (e.g. a language name),
+/// where SwiftUI's environment locale — which only drives `Text` /
+/// `LocalizedStringKey` — can't reach.
+enum DLChrome {
+    static func string(_ key: String, locale: Locale) -> String {
+        let code = locale.language.languageCode?.identifier ?? "de"
+        guard let path = Bundle.main.path(forResource: code, ofType: "lproj"),
+              let bundle = Bundle(path: path) else { return key }
+        return bundle.localizedString(forKey: key, value: key, table: nil)
     }
 }

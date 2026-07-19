@@ -1,6 +1,10 @@
 name: DuoLernen
 options:
   bundleIdPrefix: dev.tj
+  # why: the String Catalog (App/Sources/Resources/Localizable.xcstrings) is
+  # authored with German as the development language; UI chrome renders in the
+  # user's KNOWN language (de, or en until sw/uk UIs are authored).
+  developmentLanguage: de
   deploymentTarget:
     iOS: "17.0"
     watchOS: "10.0"

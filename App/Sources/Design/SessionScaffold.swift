@@ -36,6 +36,17 @@ struct SessionScaffold<Content: View>: View {
         return Double(position - 1) / Double(total)
     }
 
+    /// `Text` (not a String) so it localizes via the environment locale.
+    private var progressAccessibility: Text {
+        if outcomes.isEmpty {
+            return Text("Karte \(position) von \(total)")
+        }
+        let right = outcomes.filter { $0 == .right }.count
+        let tough = outcomes.filter { $0 == .tough }.count
+        let wrong = outcomes.filter { $0 == .wrong }.count
+        return Text("\(right) richtig, \(tough) schwer, \(wrong) daneben")
+    }
+
     var body: some View {
         VStack(spacing: DL.Space.l) {
             topBar
@@ -84,9 +95,7 @@ struct SessionScaffold<Content: View>: View {
             .animation(.easeOut(duration: 0.3), value: outcomes.count)
             .animation(.easeOut(duration: 0.3), value: fraction)
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel(outcomes.isEmpty
-                ? "Karte \(position) von \(total)"
-                : "\(outcomes.filter { $0 == .right }.count) richtig, \(outcomes.filter { $0 == .tough }.count) schwer, \(outcomes.filter { $0 == .wrong }.count) daneben")
+            .accessibilityLabel(progressAccessibility)
 
             Text(counter ?? "\(position)/\(total)")
                 .font(DL.Fonts.caption)
@@ -118,13 +127,16 @@ struct SessionCompletionView: View {
         ("💪", -30, 96), ("🌟", -170, 60), ("🎈", -10, 60),
     ]
 
-    /// "3 neu · 2 gefestigt · 8 wiederholt" — only the non-zero parts.
-    private var summaryText: String {
-        var parts: [String] = []
-        if newCount > 0 { parts.append("\(newCount) neu") }
-        if graduatedCount > 0 { parts.append("\(graduatedCount) gefestigt") }
-        if reviewCount > 0 { parts.append("\(reviewCount) wiederholt") }
-        return parts.isEmpty ? "Alles erledigt" : parts.joined(separator: " · ")
+    /// "3 neu · 2 gefestigt · 8 wiederholt" — only the non-zero parts. Built
+    /// as `Text` so each part localizes via the environment locale.
+    private var summaryText: Text {
+        var parts: [Text] = []
+        if newCount > 0 { parts.append(Text("\(newCount) neu")) }
+        if graduatedCount > 0 { parts.append(Text("\(graduatedCount) gefestigt")) }
+        if reviewCount > 0 { parts.append(Text("\(reviewCount) wiederholt")) }
+        guard var result = parts.first else { return Text("Alles erledigt") }
+        for part in parts.dropFirst() { result = result + Text(" · ") + part }
+        return result
     }
 
     var body: some View {
@@ -134,7 +146,7 @@ struct SessionCompletionView: View {
             Text("Geschafft!")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text(summaryText)
+            summaryText
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)

@@ -6,6 +6,8 @@ struct ActivityStripView: View {
     /// Trailing days, oldest first (see `AppModel.last14Days()`).
     let days: [(day: Date, reviews: Int)]
 
+    @Environment(\.locale) private var locale
+
     var body: some View {
         let maxReviews = max(days.map(\.reviews).max() ?? 1, 1)
 
@@ -30,6 +32,11 @@ struct ActivityStripView: View {
         .accessibilityLabel(activityLabel(days))
     }
 
+    private func activityLabel(_ days: [(day: Date, reviews: Int)]) -> Text {
+        let activeDays = days.filter { $0.reviews > 0 }.count
+        return Text("Aktivität der letzten 14 Tage: an \(activeDays) Tagen gelernt")
+    }
+
     private func dayBar(_ entry: (day: Date, reviews: Int), maxReviews: Int) -> some View {
         let fraction = Double(entry.reviews) / Double(maxReviews)
         return VStack(spacing: DL.Space.xs) {
@@ -45,14 +52,9 @@ struct ActivityStripView: View {
     }
 
     private func weekdayLetter(_ date: Date) -> String {
-        let formatter = Date.FormatStyle(locale: Locale(identifier: "de_DE"))
+        let formatter = Date.FormatStyle(locale: locale)
             .weekday(.narrow)
         return date.formatted(formatter)
-    }
-
-    private func activityLabel(_ days: [(day: Date, reviews: Int)]) -> String {
-        let activeDays = days.filter { $0.reviews > 0 }.count
-        return "Aktivität der letzten 14 Tage: an \(activeDays) Tagen gelernt"
     }
 }
 

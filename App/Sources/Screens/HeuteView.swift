@@ -7,6 +7,8 @@ struct HeuteView: View {
     let model: AppModel
     var openBox: () -> Void = {}
 
+    @Environment(\.locale) private var locale
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: DL.Space.xl) {
@@ -14,7 +16,7 @@ struct HeuteView: View {
                 if let message = model.loadErrorMessage {
                     stateCard(emoji: "🫤",
                               title: "Ups",
-                              message: message)
+                              message: Text(message))
                 } else if model.sessionAvailable {
                     sessionCard
                 } else if (model.stats?.activeCount ?? 0) > 0 {
@@ -22,7 +24,7 @@ struct HeuteView: View {
                 } else {
                     stateCard(emoji: "📦",
                               title: "Deine Box ist noch leer",
-                              message: "Pack einen Bereich direkt hinein oder stell ein, wie viele Karten du gleichzeitig lernst.",
+                              message: Text("Pack einen Bereich direkt hinein oder stell ein, wie viele Karten du gleichzeitig lernst."),
                               action: ("Zur Box", openBox))
                 }
                 TrainerHubView(model: model)
@@ -39,7 +41,7 @@ struct HeuteView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
             Text(Date().formatted(
-                Date.FormatStyle(locale: Locale(identifier: "de_DE"))
+                Date.FormatStyle(locale: locale)
                     .weekday(.wide).day().month(.wide)
             ))
             .font(DL.Fonts.caption)
@@ -60,7 +62,7 @@ struct HeuteView: View {
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)
-            Text(sessionSummary)
+            sessionSummary
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)
@@ -109,18 +111,24 @@ struct HeuteView: View {
         }
     }
 
-    private var sessionSummary: String {
+    /// Built as `Text` (not a joined String) so each part localizes via the
+    /// environment locale with catalog plural handling.
+    private var sessionSummary: Text {
         let plan = model.todayPlan
         let due = dueRemaining
         let fresh = plan.unlockedPhrases.count + plan.newWords.count
-        var parts: [String] = []
+        var parts: [Text] = []
         if due > 0 {
-            parts.append(due == 1 ? "1 Wiederholung" : "\(due) Wiederholungen")
+            parts.append(Text("\(due) Wiederholungen"))
         }
         if fresh > 0 {
-            parts.append(fresh == 1 ? "1 neue Karte" : "\(fresh) neue Karten")
+            parts.append(Text("\(fresh) neue Karten"))
         }
-        return parts.isEmpty ? "Ein paar Karten warten auf dich." : parts.joined(separator: " · ")
+        guard var result = parts.first else {
+            return Text("Ein paar Karten warten auf dich.")
+        }
+        for part in parts.dropFirst() { result = result + Text(" · ") + part }
+        return result
     }
 
     // MARK: - Done for today
@@ -135,7 +143,7 @@ struct HeuteView: View {
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)
             StreakFlameView(days: model.stats?.streak ?? 0)
-            Text(tomorrowText)
+            tomorrowText
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)
@@ -155,18 +163,16 @@ struct HeuteView: View {
         .dlCardShadow()
     }
 
-    private var tomorrowText: String {
-        switch model.tomorrowDueCount {
-        case 0: return "Morgen gibt es frische Karten. Bis dann! 👋"
-        case 1: return "Morgen wartet 1 Karte auf dich."
-        case let n: return "Morgen warten \(n) Karten auf dich."
-        }
+    private var tomorrowText: Text {
+        model.tomorrowDueCount == 0
+            ? Text("Morgen gibt es frische Karten. Bis dann! 👋")
+            : Text("Morgen warten \(model.tomorrowDueCount) Karten auf dich.")
     }
 
     // MARK: - Generic state card (error / empty box)
 
-    private func stateCard(emoji: String, title: String, message: String,
-                           action: (label: String, run: () -> Void)? = nil) -> some View {
+    private func stateCard(emoji: String, title: LocalizedStringKey, message: Text,
+                           action: (label: LocalizedStringKey, run: () -> Void)? = nil) -> some View {
         VStack(spacing: DL.Space.l) {
             Text(emoji)
                 .font(.system(size: 56))
@@ -175,7 +181,7 @@ struct HeuteView: View {
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)
-            Text(message)
+            message
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)

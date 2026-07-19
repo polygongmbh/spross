@@ -25,16 +25,16 @@ struct BoxView: View {
             Text("Die Box")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text(subtitle)
+            subtitle
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
         }
     }
 
-    private var subtitle: String {
+    private var subtitle: Text {
         let active = model.stats?.activeCount ?? 0
         let total = model.box?.cards.count ?? 0
-        return "\(active) von \(total) Karten in Arbeit"
+        return Text("\(active) von \(total) Karten in Arbeit")
     }
 }
 

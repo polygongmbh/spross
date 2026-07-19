@@ -26,7 +26,7 @@ struct StreakFlameView: View {
         .padding(.vertical, DL.Space.m)
         .background(Color.dlSurfaceTint, in: Capsule())
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("Serie: \(days) \(days == 1 ? "Tag" : "Tage")")
+        .accessibilityLabel(Text("Serie: \(days) Tage"))
     }
 }
 
@@ -35,7 +35,7 @@ struct StreakFlameView: View {
 struct BoxStatTile: View {
     let emoji: String
     let value: String
-    let label: String
+    let label: LocalizedStringKey
 
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
@@ -97,7 +97,7 @@ struct DueCountRing: View {
         .frame(width: size, height: size)
         .animation(.easeOut(duration: 0.4), value: fraction)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(remaining) von \(total) Karten fällig")
+        .accessibilityLabel(Text("\(remaining) von \(total) Karten fällig"))
     }
 }
 
@@ -162,7 +162,7 @@ struct PhaseBadge: View {
     enum Phase: CaseIterable {
         case new, learning, review, relearning
 
-        var label: String {
+        var label: LocalizedStringKey {
             switch self {
             case .new: return "Neu"
             case .learning: return "Lernt"

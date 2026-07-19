@@ -31,6 +31,14 @@ struct TrainerSessionView: View {
             case .phrases: return "Sätze"
             }
         }
+
+        /// Localized display key for the run title (German source = catalog key).
+        var titleKey: LocalizedStringKey {
+            switch self {
+            case .slots(let kind, _): return kind.trainerTitleKey
+            case .phrases: return "Sätze"
+            }
+        }
     }
 
     let mode: Mode
@@ -63,6 +71,7 @@ struct TrainerSessionView: View {
     @State private var autoAdvance: Task<Void, Never>?
     @FocusState private var answerFocused: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.locale) private var locale
 
     init(kind: TrainerKind, language: TrainerLanguage) {
         self.init(mode: .slots(kind, language))
@@ -222,24 +231,33 @@ struct TrainerSessionView: View {
     /// Compact in-run score: current streak, plus the run record once it
     /// exceeds the current streak.
     private var streakLine: some View {
-        Text(streakText)
+        streakText
             .font(DL.Fonts.caption)
             .foregroundStyle(streak > 0 ? Color.dlAccent : Color.dlTextSecondary)
             .monospacedDigit()
             .frame(maxWidth: .infinity)
             .animation(.easeOut(duration: 0.2), value: streak)
-            .accessibilityLabel("Serie: \(streak) in Folge" +
-                                (bestStreak > streak ? ", Rekord \(bestStreak)" : ""))
+            .accessibilityLabel(streakAccessibility)
     }
 
-    private var streakText: String {
-        var text = ""
+    /// Composed as `Text` (not a joined String) so each part localizes via the
+    /// environment locale with catalog plural handling.
+    private var streakText: Text {
+        var parts: [Text] = []
         if case .slots(let kind, _) = mode, maxLevel > 1 {
-            text += kind == .numbers ? "🔢 \(level) \(level == 1 ? "Stelle" : "Stellen") · " : "Stufe \(level) · "
+            parts.append(kind == .numbers ? Text("🔢 \(level) Stellen") : Text("Stufe \(level)"))
         }
-        text += "🔥 \(streak) in Folge"
-        if bestStreak > streak { text += " · Rekord \(bestStreak)" }
-        return text
+        parts.append(Text("🔥 \(streak) in Folge"))
+        if bestStreak > streak { parts.append(Text("Rekord \(bestStreak)")) }
+        var result = parts[0]
+        for part in parts.dropFirst() { result = result + Text(" · ") + part }
+        return result
+    }
+
+    private var streakAccessibility: Text {
+        var result = Text("Serie: \(streak) in Folge")
+        if bestStreak > streak { result = result + Text(", Rekord \(bestStreak)") }
+        return result
     }
 
     private var controls: some View {
@@ -347,7 +365,7 @@ struct TrainerSessionView: View {
         return (hintUsed || afterWrong) ? tensReference : nil
     }
 
-    private func hintPill(icon: String, text: String) -> some View {
+    private func hintPill(icon: String, text: LocalizedStringKey) -> some View {
         Label(text, systemImage: icon)
             .font(DL.Fonts.caption)
             .foregroundStyle(Color.dlAccent)
@@ -497,7 +515,7 @@ struct TrainerSessionView: View {
             Text("Beste Serie: 🔥 \(bestStreak) in Folge")
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("\(mode.title) · \(language.trainerName)")
+            (Text(mode.titleKey) + Text(" · \(language.displayName(in: locale))"))
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
             Spacer()
@@ -536,6 +554,8 @@ private struct TrainerPromptCard: View {
     let task: TrainerTask
     var sentence = false
 
+    @Environment(\.locale) private var locale
+
     var body: some View {
         VStack(spacing: DL.Space.m) {
             Text(sentence ? "💬" : task.kind.trainerEmoji)
@@ -543,7 +563,8 @@ private struct TrainerPromptCard: View {
                 .padding(DL.Space.s + 2)
                 .background(Circle().fill(Color.dlSurfaceTint))
                 .accessibilityHidden(true)
-            Text("\(sentence ? "Satz" : task.kind.trainerPromptLabel) · auf \(task.language.trainerName)")
+            ((sentence ? Text("Satz") : Text(task.kind.trainerPromptLabelKey))
+                + Text(" · auf \(task.language.displayName(in: locale))"))
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
                 .textCase(.uppercase)

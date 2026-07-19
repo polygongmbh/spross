@@ -1,0 +1,876 @@
+{
+  "sourceLanguage" : "de",
+  "strings" : {
+    " · auf %@" : {
+      "comment" : "Trainer prompt-card subtitle: '<label> · in <language>'",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : " · in %@" }
+        }
+      }
+    },
+    " üben, auf %@" : {
+      "comment" : "Trainer drill accessibility suffix",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : " practice, in %@" }
+        }
+      }
+    },
+    ", Rekord %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : ", record %lld" }
+        }
+      }
+    },
+    "%lld Aufgaben 🎯" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld Aufgabe 🎯" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld Aufgaben 🎯" } }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld task 🎯" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld tasks 🎯" } }
+            }
+          }
+        }
+      }
+    },
+    "%lld gefestigt" : {
+      "comment" : "Session summary: cards graduated to review",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "%lld consolidated" }
+        }
+      }
+    },
+    "%lld gesperrt" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "%lld locked" }
+        }
+      }
+    },
+    "%lld neu" : {
+      "comment" : "Session summary: new cards started",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "%lld new" }
+        }
+      }
+    },
+    "%lld wiederholt" : {
+      "comment" : "Session summary: review answers",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "%lld reviewed" }
+        }
+      }
+    },
+    "%lld Karten anzeigen" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld Karte anzeigen" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld Karten anzeigen" } }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "Show %lld card" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "Show %lld cards" } }
+            }
+          }
+        }
+      }
+    },
+    "%lld neue Karten" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld neue Karte" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld neue Karten" } }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld new card" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld new cards" } }
+            }
+          }
+        }
+      }
+    },
+    "%lld richtig, %lld schwer, %lld daneben" : {
+      "comment" : "Session progress-bar accessibility summary",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "%lld correct, %lld hard, %lld wrong" }
+        }
+      }
+    },
+    "%lld Sätze freigeschaltet" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld Satz freigeschaltet" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld Sätze freigeschaltet" } }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld sentence unlocked" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld sentences unlocked" } }
+            }
+          }
+        }
+      }
+    },
+    "%lld von %lld Karten in Arbeit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "%lld of %lld cards in progress" }
+        }
+      }
+    },
+    "%lld Wiederholungen" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld Wiederholung" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld Wiederholungen" } }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld review" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld reviews" } }
+            }
+          }
+        }
+      }
+    },
+    "🔢 %lld Stellen" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "🔢 %lld Stelle" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "🔢 %lld Stellen" } }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "🔢 %lld digit" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "🔢 %lld digits" } }
+            }
+          }
+        }
+      }
+    },
+    "🔥 %lld in Folge" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "🔥 %lld in a row" }
+        }
+      }
+    },
+    "Abbrechen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Cancel" }
+        }
+      }
+    },
+    "Alle Lernfortschritte für %@ %@ löschen und neu mit den ersten Wörtern beginnen?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Delete all learning progress for %@ %@ and start over with the first words?" }
+        }
+      }
+    },
+    "Alles eingepackt" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "All packed" }
+        }
+      }
+    },
+    "Alles erledigt" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "All done" }
+        }
+      }
+    },
+    "Aufdecken" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Reveal" }
+        }
+      }
+    },
+    "Auf %@ · zählt nicht für deine Box." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "In %@ · doesn't count toward your box." }
+        }
+      }
+    },
+    "Beide Richtungen üben" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Practice both directions" }
+        }
+      }
+    },
+    "Beste Serie: 🔥 %lld in Folge" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Best streak: 🔥 %lld in a row" }
+        }
+      }
+    },
+    "Box" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Box" }
+        }
+      }
+    },
+    "Box zurücksetzen …" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Reset box …" }
+        }
+      }
+    },
+    "Deine Box ist noch leer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Your box is still empty" }
+        }
+      }
+    },
+    "Deine Box wächst mit dir — jeden Tag ein paar neue Karten." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Your box grows with you — a few new cards every day." }
+        }
+      }
+    },
+    "Deine Sitzung ist startklar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Your session is ready" }
+        }
+      }
+    },
+    "Deutsch" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "German" }
+        }
+      }
+    },
+    "Die Box" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "The box" }
+        }
+      }
+    },
+    "Du lernst %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "You're learning %@." }
+        }
+      }
+    },
+    "Ein paar Karten warten auf dich." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "A few cards are waiting for you." }
+        }
+      }
+    },
+    "Einstellungen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Settings" }
+        }
+      }
+    },
+    "Empfohlen — beide Übersetzungsrichtungen festigen die Vokabel." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Recommended — practicing both directions cements the word." }
+        }
+      }
+    },
+    "Extra-Runde üben" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Practice an extra round" }
+        }
+      }
+    },
+    "Fast! Richtig geschrieben: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Almost! Correct spelling: %@" }
+        }
+      }
+    },
+    "Feedback senden" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Send feedback" }
+        }
+      }
+    },
+    "Fertig" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Done" }
+        }
+      }
+    },
+    "Für heute geschafft" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Done for today" }
+        }
+      }
+    },
+    "Geschafft!" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "All done!" }
+        }
+      }
+    },
+    "Heute" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Today" }
+        }
+      }
+    },
+    "Ich lerne" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "I'm learning" }
+        }
+      }
+    },
+    "Jahreszahl" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Year" }
+        }
+      }
+    },
+    "Jahreszahlen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Years" }
+        }
+      }
+    },
+    "Jede Sprache hat ihre eigene Box." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Each language has its own box." }
+        }
+      }
+    },
+    "Karte %lld von %lld" : {
+      "comment" : "Session progress-bar accessibility (single-track)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Card %lld of %lld" }
+        }
+      }
+    },
+    "Karten ausblenden" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Hide cards" }
+        }
+      }
+    },
+    "Karten gleichzeitig im Lernen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Cards being learned at once" }
+        }
+      }
+    },
+    "Löscht Fortschritt und Verlauf dieser Box — die Inhalte bleiben." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Deletes this box's progress and history — the content stays." }
+        }
+      }
+    },
+    "Los geht's!" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Let's go!" }
+        }
+      }
+    },
+    "Morgen gibt es frische Karten. Bis dann! 👋" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Fresh cards tomorrow. See you then! 👋" }
+        }
+      }
+    },
+    "Morgen warten %lld Karten auf dich." : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "Morgen wartet %lld Karte auf dich." } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "Morgen warten %lld Karten auf dich." } }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld card is waiting for you tomorrow." } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld cards are waiting for you tomorrow." } }
+            }
+          }
+        }
+      }
+    },
+    "Neue Stelle: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "New place: %@" }
+        }
+      }
+    },
+    "Pack einen Bereich direkt hinein oder stell ein, wie viele Karten du gleichzeitig lernst." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Add an area directly, or set how many cards you learn at a time." }
+        }
+      }
+    },
+    "Pack in die Box (%lld)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Add to box (%lld)" }
+        }
+      }
+    },
+    "Pausiert" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Paused" }
+        }
+      }
+    },
+    "Prüfen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Check" }
+        }
+      }
+    },
+    "Rekord %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Record %lld" }
+        }
+      }
+    },
+    "Satz" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Sentence" }
+        }
+      }
+    },
+    "Sätze" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Sentences" }
+        }
+      }
+    },
+    "Sätze üben" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Practice sentences" }
+        }
+      }
+    },
+    "Serie: %lld in Folge" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Streak: %lld in a row" }
+        }
+      }
+    },
+    "Sitzung beenden" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "End session" }
+        }
+      }
+    },
+    "So viele neue Karten übst du parallel — neue kommen nach, sobald welche sitzen." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "That many new cards at a time — more arrive as soon as some stick." }
+        }
+      }
+    },
+    "Sprache" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Language" }
+        }
+      }
+    },
+    "Stufe %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Level %lld" }
+        }
+      }
+    },
+    "Training" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Training" }
+        }
+      }
+    },
+    "Uhrzeit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Time" }
+        }
+      }
+    },
+    "Ups" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Oops" }
+        }
+      }
+    },
+    "Wecken" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Wake" }
+        }
+      }
+    },
+    "Weiter" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Next" }
+        }
+      }
+    },
+    "Weiter üben" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Keep practicing" }
+        }
+      }
+    },
+    "Welche Sprache kannst du schon?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Which language do you already speak?" }
+        }
+      }
+    },
+    "Welches Sprachpaar?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Which language pair?" }
+        }
+      }
+    },
+    "Willkommen bei DuoLernen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Welcome to DuoLernen" }
+        }
+      }
+    },
+    "Wusste ich doch" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "I knew it" }
+        }
+      }
+    },
+    "Zahl" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Number" }
+        }
+      }
+    },
+    "Zahlen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Numbers" }
+        }
+      }
+    },
+    "Zehner" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Tens" }
+        }
+      }
+    },
+    "Zehner nachschlagen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Look up tens" }
+        }
+      }
+    },
+    "Zur Box" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Go to box" }
+        }
+      }
+    },
+    "Zurücksetzen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Reset" }
+        }
+      }
+    },
+    "%lld gefestigt · %lld frisch" : {
+      "comment" : "AreaChip split: cards in review vs learning",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "%lld consolidated · %lld fresh" }
+        }
+      }
+    },
+    "%lld von %lld Karten fällig" : {
+      "comment" : "DueCountRing accessibility",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "%lld of %lld cards due" }
+        }
+      }
+    },
+    "Aktive Karten" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Active cards" }
+        }
+      }
+    },
+    "Aktivität der letzten 14 Tage: an %lld Tagen gelernt" : {
+      "comment" : "ActivityStripView accessibility",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "Aktivität der letzten 14 Tage: an %lld Tag gelernt" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "Aktivität der letzten 14 Tage: an %lld Tagen gelernt" } }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "Activity over the last 14 days: learned on %lld day" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "Activity over the last 14 days: learned on %lld days" } }
+            }
+          }
+        }
+      }
+    },
+    "Behalten" : {
+      "comment" : "Retention stat tile",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Retained" }
+        }
+      }
+    },
+    "Einfach" : {
+      "comment" : "Rating: easy",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Easy" }
+        }
+      }
+    },
+    "fällig" : {
+      "comment" : "DueCountRing caption",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "due" }
+        }
+      }
+    },
+    "Fortschritt" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Progress" }
+        }
+      }
+    },
+    "Gut" : {
+      "comment" : "Rating: good",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Good" }
+        }
+      }
+    },
+    "Lernt" : {
+      "comment" : "PhaseBadge: learning",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Learning" }
+        }
+      }
+    },
+    "Letzte 14 Tage" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Last 14 days" }
+        }
+      }
+    },
+    "Neu" : {
+      "comment" : "PhaseBadge: new",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "New" }
+        }
+      }
+    },
+    "Nochmal" : {
+      "comment" : "Rating: again",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Again" }
+        }
+      }
+    },
+    "Schwer" : {
+      "comment" : "Rating: hard",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Hard" }
+        }
+      }
+    },
+    "Serie: %lld Tage" : {
+      "comment" : "StreakFlameView accessibility",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "Serie: %lld Tag" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "Serie: %lld Tage" } }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "Streak: %lld day" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "Streak: %lld days" } }
+            }
+          }
+        }
+      }
+    },
+    "Sitzt" : {
+      "comment" : "PhaseBadge: review (solid)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Solid" }
+        }
+      }
+    },
+    "Swahili" : {
+      "comment" : "Language name (chrome display)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Swahili" }
+        }
+      }
+    },
+    "Tag" : {
+      "comment" : "Streak unit, singular",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "day" }
+        }
+      }
+    },
+    "Tage" : {
+      "comment" : "Streak unit, plural",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "days" }
+        }
+      }
+    },
+    "Ukrainisch" : {
+      "comment" : "Language name (chrome display)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Ukrainian" }
+        }
+      }
+    },
+    "Wackelt" : {
+      "comment" : "PhaseBadge: relearning (shaky)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Shaky" }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

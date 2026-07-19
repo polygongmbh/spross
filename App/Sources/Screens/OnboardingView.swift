@@ -96,7 +96,7 @@ struct OnboardingView: View {
         }
     }
 
-    private func knownRow(base: Bool, title: String, subtitle: String) -> some View {
+    private func knownRow(base: Bool, title: String, subtitle: LocalizedStringKey) -> some View {
         let selected = knowsBase == base
         return Button {
             knowsBase = base

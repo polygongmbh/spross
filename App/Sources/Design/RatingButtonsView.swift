@@ -12,7 +12,7 @@ struct RatingButtonsView: View {
     enum Rating: CaseIterable {
         case again, hard, good, easy
 
-        var label: String {
+        var label: LocalizedStringKey {
             switch self {
             case .again: return "Nochmal"
             case .hard: return "Schwer"

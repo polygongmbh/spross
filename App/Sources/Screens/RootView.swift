@@ -15,12 +15,18 @@ struct RootView: View {
                 home
             }
         }
+        // why: render chrome in the user's KNOWN language (German learners see
+        // English) — SwiftUI resolves every Text/LocalizedStringKey against it.
+        .environment(\.locale, model.knownLocale)
         .sheet(isPresented: onboardingPresented) {
             OnboardingView(model: model)
                 .interactiveDismissDisabled()
+                // why: no box yet → follow the device (de or en).
+                .environment(\.locale, AppModel.onboardingChromeLocale)
         }
         .fullScreenCover(isPresented: $model.sessionPresented) {
             SessionView(model: model)
+                .environment(\.locale, model.knownLocale)
         }
         .task {
             await model.start()

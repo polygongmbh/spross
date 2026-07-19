@@ -167,6 +167,28 @@ final class AppModel {
         return BoxEngine.dueNow(state: box, now: end).count
     }
 
+    // MARK: - UI-chrome locale
+
+    /// Locale for UI chrome, derived from the box's KNOWN language:
+    /// `.deToTarget` → the user knows German → `de`;
+    /// `.targetToDe` → the user knows the target (sw/uk) → `en` as a lingua
+    /// franca until verified Swahili/Ukrainian UIs exist. Falls back to the
+    /// device locale before a box is loaded (onboarding).
+    var knownLocale: Locale {
+        guard let config = box?.config else { return Self.onboardingChromeLocale }
+        return config.direction == .deToTarget
+            ? Locale(identifier: "de")
+            : Locale(identifier: "en")
+    }
+
+    /// Before any box exists there is no known language yet — follow the
+    /// device, mapped to the two shipped UI languages (German or English).
+    static var onboardingChromeLocale: Locale {
+        Locale.current.language.languageCode?.identifier == "de"
+            ? Locale(identifier: "de")
+            : Locale(identifier: "en")
+    }
+
     // MARK: - Config (persisted inside BoxState.config)
 
     func setDirection(_ direction: Direction) {
