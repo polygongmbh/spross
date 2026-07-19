@@ -65,32 +65,23 @@ import Testing
         #expect(blocked.scheduling[BoxState.schedulingKey(cardID: "w1", direction: .deToTarget)] == nil)
     }
 
-    @Test func upcomingStepsFindsLearningStepWithinHorizonOnly() {
-        var state = BoxEngine.bootstrap(cards: [word(0)], config: BoxConfig(pair: .deSw))
-        state = BoxEngine.answer(state: state, cardID: "w0", rating: .good, now: day0, calendar: calendar)
-        // .good on a new card → learning step due in 10 min.
-        let soon = BoxEngine.upcomingSteps(state: state, now: day0, within: 15 * 60)
-        #expect(soon.map(\.cardID) == ["w0"])
-        let tooShort = BoxEngine.upcomingSteps(state: state, now: day0, within: 60)
-        #expect(tooShort.isEmpty)
-        let alreadyDue = BoxEngine.upcomingSteps(state: state, now: day0.addingTimeInterval(700), within: 900)
-        #expect(alreadyDue.isEmpty) // due now is the drain loop's job, not upcoming
-    }
-
-    @Test func endlessRefillPullsAheadLearningStepsAndNewCards() {
+    @Test func endlessGivesDueCardsAndNewButNeverPullsAhead() {
         var config = BoxConfig(pair: .deSw)
         config.maxLearning = 3
         var state = BoxEngine.bootstrap(cards: (0..<5).map(word), config: config)
         state = BoxEngine.enqueue(state: state, cardIDs: ["w0"])
-        // w0 → learning, its step due in 10 min.
+        // w0 → learning, its next step is due in 10 min (not now).
         state = BoxEngine.answer(state: state, cardID: "w0", rating: .good, now: day0, calendar: calendar)
 
-        // 1 min in: w0's step isn't due yet, but endless pulls it ahead…
-        let t = day0.addingTimeInterval(60)
-        let plan = BoxEngine.composeEndless(state: state, now: t, within: 30 * 60)
-        #expect(plan.reviews.contains("w0"))
-        // …and new cards keep flowing while the pool has room (3 − 1 learning = 2).
-        #expect(plan.newWords == ["w1", "w2"])
+        // 1 min in: w0 is NOT due yet, so endless must not re-show it…
+        let soon = BoxEngine.composeEndless(state: state, now: day0.addingTimeInterval(60))
+        #expect(!soon.reviews.contains("w0"))
+        // …it just keeps introducing new cards while the pool has room (3 − 1 = 2).
+        #expect(soon.newWords == ["w1", "w2"])
+
+        // Once w0's step is genuinely due, it comes back as a review.
+        let later = BoxEngine.composeEndless(state: state, now: day0.addingTimeInterval(700))
+        #expect(later.reviews == ["w0"])
     }
 }
 

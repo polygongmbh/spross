@@ -38,38 +38,19 @@ extension BoxEngine {
 
     /// Endless practice refill: whatever needs repeating plus new cards, so a
     /// round keeps flowing "as long as the user likes". Contents:
-    /// 1. Due now (oldest first).
-    /// 2. Learning/relearning steps coming due within `horizon`, pulled ahead so
-    ///    just-introduced cards don't stall the flow (elapsed stays real → honest
-    ///    FSRS, just a small early nudge).
-    /// 3. New cards within the load-based pool budget + health gate — as the pool
+    /// 1. Cards genuinely DUE now (oldest first) — whatever needs repeating.
+    /// 2. New cards within the load-based pool budget + health gate — as the pool
     ///    drains and cards graduate, more flow in.
-    /// Capped at `sessionCap`. Empty only when there is genuinely nothing to do.
-    public static func composeEndless(state: BoxState, now: Date, within horizon: TimeInterval) -> SessionPlan {
+    /// Nothing is pulled ahead of its due time: a card just answered won't
+    /// reappear until FSRS actually schedules it (spacing is preserved). Capped
+    /// at `sessionCap`; empty when nothing is due and the pool is full — that is
+    /// the correct answer, "come back later".
+    public static func composeEndless(state: BoxState, now: Date) -> SessionPlan {
         let cap = state.config.sessionCap
-        let due = dueSchedulings(state, now: now).map(\.cardID)
-        let ahead = upcomingSteps(state: state, now: now, within: horizon).map(\.cardID)
-        let reviews = Array((due + ahead).prefix(cap))
-
+        let due = Array(dueSchedulings(state, now: now).map(\.cardID).prefix(cap))
         let budget = gatedNewBudget(state, now: now)
-        let capacity = max(0, cap - reviews.count)
+        let capacity = max(0, cap - due.count)
         let (phrases, words) = newCandidates(state, budget: budget, capacity: capacity)
-        return SessionPlan(reviews: reviews, unlockedPhrases: phrases, newWords: words)
-    }
-
-    /// Learning/relearning steps coming due within `horizon` (exclusive of
-    /// already-due), soonest first — endless refill pulls these ahead
-    /// (current direction, suspended excluded).
-    public static func upcomingSteps(state: BoxState, now: Date, within horizon: TimeInterval) -> [CardScheduling] {
-        let limit = now.addingTimeInterval(horizon)
-        return state.scheduling.values
-            .filter { sched in
-                sched.direction == state.config.direction
-                    && !sched.suspended
-                    && (sched.phase == .learning || sched.phase == .relearning)
-                    && sched.due.map { $0 > now && $0 <= limit } == true
-                    && state.cards[sched.cardID] != nil
-            }
-            .sorted { ($0.due ?? now, $0.cardID) < ($1.due ?? now, $1.cardID) }
+        return SessionPlan(reviews: due, unlockedPhrases: phrases, newWords: words)
     }
 }

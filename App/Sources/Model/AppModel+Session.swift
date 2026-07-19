@@ -6,14 +6,11 @@ import WidgetKit
 //
 // When the composed queue empties and nothing is due right now, the session
 // ends with a summary (no mid-session pause). From the summary the user can
-// keep going in endless mode, which pulls due cards, soon-due learning steps,
-// and new cards (respecting the pool) until they stop.
+// keep going in endless mode, which pulls whatever is genuinely due plus new
+// cards (respecting the pool) until they stop — nothing pulled ahead of its
+// due time, so a card just answered doesn't immediately reappear.
 
 extension AppModel {
-
-    /// Endless mode pulls learning steps coming due within this window ahead,
-    /// so practice keeps flowing instead of stalling on the 10-minute step.
-    private static let endlessHorizon: TimeInterval = 30 * 60
 
     var currentCard: Card? {
         guard case .card(let id)? = sessionStep else { return nil }
@@ -128,12 +125,12 @@ extension AppModel {
     /// "Weiter üben" button's presence on the summary).
     var canPracticeMore: Bool {
         guard let box else { return false }
-        return !BoxEngine.composeEndless(state: box, now: Date(), within: Self.endlessHorizon).isEmpty
+        return !BoxEngine.composeEndless(state: box, now: Date()).isEmpty
     }
 
     /// Pull the next endless batch onto the queue; returns false if dry.
     private func enqueueEndlessBatch(from box: BoxState, now: Date) -> Bool {
-        let plan = BoxEngine.composeEndless(state: box, now: now, within: Self.endlessHorizon)
+        let plan = BoxEngine.composeEndless(state: box, now: now)
         let more = plan.reviews + plan.unlockedPhrases + plan.newWords
         guard !more.isEmpty else { return false }
         sessionQueue = more

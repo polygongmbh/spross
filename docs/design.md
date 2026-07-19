@@ -124,9 +124,10 @@ A session is composed, never configured:
    capped at `sessionCap`. Automatic seed-order cards never enter an extra round.
 6. **Session end**: a summary ("x neu · x gefestigt · x wiederholt") with confetti and the
    streak. From there the user goes Home or "Weiter üben" → **endless mode**
-   (`composeEndless`): refills with due cards + soon-due learning steps (pulled ahead within a
-   ~30-min horizon so it doesn't stall) + new cards (respecting the pool + health gate), looping
-   until the user stops or nothing remains.
+   (`composeEndless`): refills with cards that are genuinely due + new cards (respecting the
+   pool + health gate), looping until the user stops or nothing remains. Nothing is pulled ahead
+   of its due time — a card just answered does not reappear until FSRS reschedules it, so spacing
+   is preserved; endless emptying (nothing due, pool full) is the correct "come back later".
 
 ## Review UX rules (App) — carried over from prototype refinement, treat as spec
 
