@@ -68,6 +68,10 @@ targets:
       path: Widgets/Info.plist
       properties:
         CFBundleDisplayName: Spross
+        # why: extensions must match the host app's version or the build warns
+        # and App Store rejects; inherit from the shared base settings.
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     settings:
@@ -122,6 +126,10 @@ targets:
       path: WatchWidgets/Info.plist
       properties:
         CFBundleDisplayName: Spross
+        # why: extensions must match the host app's version or the build warns
+        # and App Store rejects; inherit from the shared base settings.
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     settings:
