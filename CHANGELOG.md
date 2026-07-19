@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.11.0 — 2026-07-19
+
+- **A wrong article is a slip, not a miss**: typing the wrong (or mistyped) article —
+  "das Tisch" for "der Tisch", or a fat-fingered "dee Tisch" — now counts as a typo,
+  so you still get credit and see the correct form, instead of failing the card.
+- **Nicer finish, keep-going option**: sessions no longer interrupt with a "Kurze
+  Pause" countdown. Instead each session ends on a summary (how many new · settled ·
+  repeated) with confetti, and a "Weiter üben" button that keeps pulling due and new
+  cards for as long as you like.
+
 ## 0.10.0 — 2026-07-18
 
 - **New cards flow with your pace, not the calendar**: instead of a fixed "X per
