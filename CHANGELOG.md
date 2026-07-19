@@ -1,13 +1,16 @@
 # Changelog
 
+## 0.12.3 — 2026-07-19
+
+- **Fuller small & medium widgets**: the 2×2 and 4×2 widgets no longer sit
+  half-empty — the small tile gains a streak/retention footer and the medium
+  now shows three words under a stats header (streak · fällig · retrievability).
+
 ## 0.12.2 — 2026-07-19
 
 - **German clock accepts "um zehn"**: full-hour answers now count whether you
   write "zehn Uhr", "punkt zehn", or the colloquial "um zehn". The reveal hint
   lists every accepted wording ("auch: … oder …") instead of a regional label.
-- **Fuller small & medium widgets**: the 2×2 and 4×2 widgets no longer sit
-  half-empty — the small tile gains a streak/retention footer and the medium
-  now shows three words under a stats header (streak · fällig · retrievability).
 
 ## 0.12.1 — 2026-07-19
 
