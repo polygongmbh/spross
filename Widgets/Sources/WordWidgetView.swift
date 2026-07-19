@@ -18,9 +18,9 @@ struct WordWidgetView: View {
     }
 
     private var small: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            HStack {
-                Text(entry.emoji).font(.title2)
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(alignment: .top) {
+                Text(entry.emoji).font(.system(size: 40))
                 Spacer()
                 if entry.dueCount > 0 {
                     Text("\(entry.dueCount)")
@@ -31,37 +31,44 @@ struct WordWidgetView: View {
                 }
             }
             Spacer(minLength: 0)
-            germanLine(font: .headline)
+            germanLine(font: .title3.bold())
             Text(entry.translation)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
+            Divider()
+            statsFooter
         }
     }
 
     private var medium: some View {
-        HStack(spacing: 14) {
-            Text(entry.emoji)
-                .font(.system(size: 44))
-            VStack(alignment: .leading, spacing: 3) {
-                germanLine(font: .title3.bold())
-                Text(entry.translation)
-                    .font(.body)
-                    .foregroundStyle(.secondary)
-            }
-            Spacer()
-            if entry.dueCount > 0 {
-                VStack {
-                    Text("\(entry.dueCount)")
-                        .font(.headline)
-                        .foregroundStyle(.orange)
-                    Text("fällig")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+        VStack(alignment: .leading, spacing: 7) {
+            statsHeader
+            Divider()
+            VStack(alignment: .leading, spacing: 7) {
+                ForEach(Array(entry.words.prefix(3).enumerated()), id: \.offset) { _, word in
+                    wordRow(word)
                 }
             }
+            Spacer(minLength: 0)
         }
+    }
+
+    /// Compact streak · retrievability line for the bottom of the small tile.
+    private var statsFooter: some View {
+        HStack(spacing: 8) {
+            if entry.streak > 0 {
+                Label("\(entry.streak)", systemImage: "flame.fill")
+                    .foregroundStyle(.orange)
+            }
+            Spacer()
+            if let retrievability = entry.retrievability {
+                Text("\(Int((retrievability * 100).rounded())) %")
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .font(.caption2.weight(.semibold))
     }
 
     private var large: some View {
