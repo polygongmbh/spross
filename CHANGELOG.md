@@ -5,6 +5,10 @@
 - **Fuller small & medium widgets**: the 2×2 and 4×2 widgets no longer sit
   half-empty — the small tile gains a streak/retention footer and the medium
   now shows three words under a stats header (streak · fällig · retrievability).
+- **Widgets surface new words too**: the rotation now leads with just-lapsed
+  cards, then previews words you've queued (or are about to meet) before their
+  first study, then your weakest ones — so the widget primes upcoming vocab
+  instead of only recycling words you already know.
 
 ## 0.12.2 — 2026-07-19
 

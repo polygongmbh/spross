@@ -81,7 +81,7 @@ struct WordProvider: TimelineProvider {
     /// rotating window of `listSize` cards plus box stats.
     private func timelineEntries(from start: Date) -> [WordEntry] {
         guard let state = WidgetBoxReader.loadState() else { return [.placeholder] }
-        let cards = WidgetBoxReader.exposureCards(state: state, now: start, limit: 24)
+        let cards = BoxEngine.exposureCards(state: state, now: start, limit: 24)
         guard !cards.isEmpty else { return [.placeholder] }
         let words = cards.map {
             WidgetWord(emoji: $0.emoji ?? "🗂️", article: $0.article,
@@ -119,22 +119,5 @@ enum WidgetBoxReader {
 
     private static func modDate(_ url: URL) -> Date? {
         try? url.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
-    }
-
-    /// Attention-worthy cards: learning/relearning first, then review cards by
-    /// lowest stability; falls back to any active card. Deterministic order.
-    static func exposureCards(state: BoxState, now: Date, limit: Int) -> [Card] {
-        let direction = state.config.direction
-        let active = state.scheduling.values
-            .filter { $0.direction == direction && !$0.suspended && $0.memory != nil }
-        let ranked = active.sorted { a, b in
-            let aLearning = a.phase == .learning || a.phase == .relearning
-            let bLearning = b.phase == .learning || b.phase == .relearning
-            if aLearning != bLearning { return aLearning }
-            let aStab = a.memory?.stability ?? 0
-            let bStab = b.memory?.stability ?? 0
-            return (aStab, a.cardID) < (bStab, b.cardID)
-        }
-        return ranked.prefix(limit).compactMap { state.cards[$0.cardID] }
     }
 }
