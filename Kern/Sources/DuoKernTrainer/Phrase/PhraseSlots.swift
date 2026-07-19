@@ -37,7 +37,7 @@ public enum PhraseSlots {
         if template.slotKind == .clock, template.pair == .deSw {
             // Swahili embeds only minutes 0...30 (see instantiate).
             let hour = Int(rng.next() % 24)
-            let minute = Int(rng.next() % 7) * 5
+            let minute = Int(rng.next() % 31)
             return instantiate(template: template, hour: hour, minute: minute)
         }
         let slot = Trainer.sample(kind: template.slotKind, language: template.targetLanguage, using: &rng)

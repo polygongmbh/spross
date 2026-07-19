@@ -19,7 +19,7 @@ enum UkrainianClock {
         return h12 == 0 ? 12 : h12
     }
 
-    /// `minutes` must be a multiple of 5 (the trainer rounds beforehand).
+    /// Non-round minutes fall back to a digital reading ("друга сімнадцять").
     static func task(hours: Int, minutes: Int) -> (display: String, accepted: [String], gloss: String?) {
         let cur = hourIndex(hours)
         let next = hourIndex(hours + 1)

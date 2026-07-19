@@ -15,7 +15,7 @@ extension Trainer {
     /// - years: 1 recent decades (1990–2029), 2 modern century (1900–2099),
     ///   3 full historic range (1100–2099, German hundred-style variants).
     /// - clock: 1 full hours, 2 quarters, 3 five-minute steps up to :30,
-    ///   4 all five-minute steps (incl. the >30 to-the-hour forms).
+    ///   4 any minute (incl. the >30 to-the-hour forms).
     public static func sample(kind: TrainerKind, language: TrainerLanguage, level: Int,
                               using rng: inout some RandomNumberGenerator) -> TrainerTask {
         let l = max(1, min(level, maxLevel(kind: kind)))
@@ -37,16 +37,15 @@ extension Trainer {
             }
             return year(draw(range, &rng), language: language)
         case .clock:
-            let minutes: [Int]
-            switch l {
-            case 1: minutes = [0]
-            case 2: minutes = [0, 15, 30, 45]
-            case 3: minutes = [0, 5, 10, 15, 20, 25, 30]
-            default: minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
-            }
             let hour = draw(0...23, &rng)
-            return clock(hour: hour, minute: minutes[draw(0...(minutes.count - 1), &rng)],
-                         language: language)
+            let minute: Int
+            switch l {
+            case 1: minute = 0
+            case 2: minute = [0, 15, 30, 45][draw(0...3, &rng)]
+            case 3: minute = draw(0...30, &rng)
+            default: minute = draw(0...59, &rng)
+            }
+            return clock(hour: hour, minute: minute, language: language)
         }
     }
 

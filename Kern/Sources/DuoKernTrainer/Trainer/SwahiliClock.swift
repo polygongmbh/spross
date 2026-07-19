@@ -21,20 +21,8 @@ enum SwahiliClock {
         }
     }
 
-    private static func minuteWord(_ m: Int) -> String {
-        switch m {
-        case 15: return "kumi na tano"
-        case 30: return "thelathini (nusu)"
-        case 5: return "tano"
-        case 10: return "kumi"
-        case 20: return "ishirini"
-        case 25: return "ishirini na tano"
-        default: return String(m)
-        }
-    }
-
     /// Canonical display string, with the primary day period appended.
-    /// `minutes` must be a multiple of 5 (the trainer rounds beforehand).
+    /// Any minute is spelled out (`SwahiliNumbers.cardinal`).
     static func time(hours: Int, minutes: Int) -> String {
         core(hours: hours, minutes: minutes) + " " + periods(hours: hours)[0]
     }
@@ -55,7 +43,7 @@ enum SwahiliClock {
 
         if minutes == 0 { return "Saa \(hWord)" }
         if minutes == 30 { return "Saa \(hWord) na nusu" }
-        if minutes < 30 { return "Saa \(hWord) na dakika \(minuteWord(minutes))" }
-        return "Saa \(nextWord) kasoro dakika \(minuteWord(60 - minutes))"
+        if minutes < 30 { return "Saa \(hWord) na dakika \(SwahiliNumbers.cardinal(minutes))" }
+        return "Saa \(nextWord) kasoro dakika \(SwahiliNumbers.cardinal(60 - minutes))"
     }
 }

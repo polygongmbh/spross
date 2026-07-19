@@ -79,11 +79,22 @@ struct TrainerPropertyTests {
         }
     }
 
-    @Test func clockMinutesRoundToNearestFive() {
-        #expect(Trainer.clock(hour: 9, minute: 58, language: .german).prompt == "10:00")
-        #expect(Trainer.clock(hour: 23, minute: 58, language: .german).prompt == "00:00")
-        #expect(Trainer.clock(hour: 9, minute: 3, language: .german).prompt == "09:05")
-        #expect(Trainer.clock(hour: 9, minute: 2, language: .german).prompt == "09:00")
-        #expect(Trainer.clock(hour: 9, minute: 12, language: .german).prompt == "09:10")
+    @Test func clockMinutesArePassedThroughExactly() {
+        #expect(Trainer.clock(hour: 9, minute: 58, language: .german).prompt == "09:58")
+        #expect(Trainer.clock(hour: 23, minute: 58, language: .german).prompt == "23:58")
+        #expect(Trainer.clock(hour: 9, minute: 3, language: .german).prompt == "09:03")
+        #expect(Trainer.clock(hour: 9, minute: 0, language: .german).prompt == "09:00")
+        #expect(Trainer.clock(hour: 9, minute: 12, language: .german).prompt == "09:12")
+    }
+
+    @Test func nonRoundMinutesReadOutInEveryLanguage() {
+        // 08:17 — a minute the old 5-step rounding never produced.
+        #expect(Trainer.clock(hour: 8, minute: 17, language: .swahili).display
+                == "Saa mbili na dakika kumi na saba asubuhi")
+        for language in TrainerLanguage.allCases {
+            let task = Trainer.clock(hour: 8, minute: 17, language: language)
+            #expect(task.prompt == "08:17")
+            #expect(task.accepted.contains(task.display))
+        }
     }
 }

@@ -48,12 +48,11 @@ public enum Trainer {
                            accepted: accepted, display: display, gloss: nil)
     }
 
-    /// `minute` is rounded to the nearest 5 (carrying into the next hour at 60).
+    /// `hour`/`minute` are normalized into range; minute is taken exactly
+    /// (any 0...59 — the language clocks spell or read out non-round minutes).
     public static func clock(hour: Int, minute: Int, language: TrainerLanguage) -> TrainerTask {
-        var h = ((hour % 24) + 24) % 24
-        var m = ((minute % 60) + 60) % 60
-        m = ((m + 2) / 5) * 5
-        if m == 60 { m = 0; h = (h + 1) % 24 }
+        let h = ((hour % 24) + 24) % 24
+        let m = ((minute % 60) + 60) % 60
         let prompt = String(format: "%02d:%02d", h, m)
 
         let display: String
@@ -77,7 +76,7 @@ public enum Trainer {
     /// Biases ported from the prototype: numbers favor 2–3 digits
     /// (mid-session band of its progressive difficulty), years cluster
     /// around 1950–2050 with rarer historic outliers, clock uses any
-    /// hour with 5-minute steps.
+    /// hour and any minute.
     public static func sample(kind: TrainerKind, language: TrainerLanguage,
                               using rng: inout some RandomNumberGenerator) -> TrainerTask {
         switch kind {
@@ -97,7 +96,7 @@ public enum Trainer {
             return year(y, language: language)
         case .clock:
             let h = Int.random(in: 0...23, using: &rng)
-            let m = Int.random(in: 0...11, using: &rng) * 5
+            let m = Int.random(in: 0...59, using: &rng)
             return clock(hour: h, minute: m, language: language)
         }
     }

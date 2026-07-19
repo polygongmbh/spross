@@ -9,7 +9,7 @@ enum GermanClock {
         var regional: String
     }
 
-    /// `minutes` must be a multiple of 5 (the trainer rounds beforehand).
+    /// Non-round minutes fall back to a digital reading ("drei Uhr 17").
     static func conversational(hours: Int, minutes: Int) -> Conversational {
         let h12 = hours % 12
         let nextH = (h12 + 1) % 12

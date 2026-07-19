@@ -222,7 +222,7 @@ struct PhraseSlotTests {
                 if template.slotKind == .clock, template.pair == .deSw {
                     // Mirrors PhraseSlots.sample's restricted Swahili draw.
                     let hour = Int(b.next() % 24)
-                    let minute = Int(b.next() % 7) * 5
+                    let minute = Int(b.next() % 31)
                     expected = PhraseSlots.instantiate(template: template, hour: hour, minute: minute)
                 } else if template.slotKind == .clock {
                     let slot = Trainer.sample(kind: .clock,
