@@ -1,7 +1,7 @@
 import Foundation
 
 /// Pure answer normalization for typed answers (design.md §Review UX rules):
-/// lowercase, trim, drop intra-word joiners, strip other punctuation,
+/// lowercase, fold ß→ss, trim, drop intra-word joiners, strip other punctuation,
 /// collapse whitespace, strip a leading German article.
 public enum AnswerNormalizer {
 
@@ -10,22 +10,14 @@ public enum AnswerNormalizer {
     /// article / particle rather than part of the answer (design §Review UX).
     static let maxLeadingSlipLength = 4
 
-    /// The leading German article a raw answer starts with (only when more
-    /// content follows), else nil. Mirrors `normalize`'s stripping step.
-    static func leadingArticle(_ raw: String) -> String? {
-        let lowered = raw.lowercased()
-        let joinersRemoved = lowered.filter { $0 != "-" && $0 != "'" && $0 != "’" }
-        let cleaned = String(joinersRemoved.map { character in
-            character.isLetter || character.isNumber || character.isWhitespace ? character : " "
-        })
-        let words = cleaned.split(whereSeparator: \.isWhitespace).map(String.init)
-        guard let first = words.first, leadingArticles.contains(first), words.count > 1 else { return nil }
-        return first
-    }
-
-    /// Canonical comparison form of a typed or expected answer.
-    public static func normalize(_ raw: String) -> String {
-        let lowered = raw.lowercased()
+    /// The one tokenization pass both `normalize` and `leadingArticle` share, so
+    /// they can never disagree on where words begin: lowercase, fold ß→ss, drop
+    /// intra-word joiners, turn other punctuation into a space, split on space.
+    private static func tokenize(_ raw: String) -> [String] {
+        // ß → "ss" so "heißen"/"heissen" and "Straße"/"Strasse" converge
+        // regardless of the typo budget (ß→ss is 2 edits — too far for short
+        // words); umlaut base-letters get the same leniency via typo tolerance.
+        let lowered = raw.lowercased().replacingOccurrences(of: "ß", with: "ss")
         // Intra-word joiners vanish outright so "E-Mail"/"Email" and
         // "geht's"/"gehts" converge; other punctuation → space so
         // "Guten Morgen!" and "Guten Morgen" collapse to the same form.
@@ -33,7 +25,20 @@ public enum AnswerNormalizer {
         let cleaned = String(joinersRemoved.map { character in
             character.isLetter || character.isNumber || character.isWhitespace ? character : " "
         })
-        var words = cleaned.split(whereSeparator: \.isWhitespace).map(String.init)
+        return cleaned.split(whereSeparator: \.isWhitespace).map(String.init)
+    }
+
+    /// The leading German article a raw answer starts with (only when more
+    /// content follows), else nil — the article `normalize` would strip.
+    static func leadingArticle(_ raw: String) -> String? {
+        let words = tokenize(raw)
+        guard let first = words.first, leadingArticles.contains(first), words.count > 1 else { return nil }
+        return first
+    }
+
+    /// Canonical comparison form of a typed or expected answer.
+    public static func normalize(_ raw: String) -> String {
+        var words = tokenize(raw)
         // Strip a leading article only when more content follows —
         // typing just "die" must never match "die Spülmaschine".
         if let first = words.first, leadingArticles.contains(first), words.count > 1 {

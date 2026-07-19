@@ -126,6 +126,17 @@ import Testing
         #expect(AnswerNormalizer.evaluate(input: "Spolmascine", expected: "Spülmaschine") == .wrong)
     }
 
+    @Test func esszettFoldsToDoubleS() {
+        // ß ≡ ss on both sides, independent of the typo budget (ß→ss is 2 edits,
+        // which would blow the budget on short words like "weiß").
+        #expect(AnswerNormalizer.normalize("Straße") == "strasse")
+        #expect(AnswerNormalizer.normalize("Fußball") == AnswerNormalizer.normalize("Fussball"))
+        #expect(AnswerNormalizer.evaluate(input: "heissen", expected: "heißen") == .exact)
+        #expect(AnswerNormalizer.evaluate(input: "heißen", expected: "heissen") == .exact)
+        #expect(AnswerNormalizer.evaluate(input: "weiss", expected: "weiß") == .exact)
+        #expect(AnswerNormalizer.matches(input: "Strasse", expected: "Straße"))
+    }
+
     // MARK: - Article & stray-leading-word rule (design §Review UX)
 
     @Test func wrongArticleCountsAsTypoNotFailure() {
