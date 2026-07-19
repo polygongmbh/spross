@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.12.1 — 2026-07-19
+
+- **Swahili clock is less picky about the time of day**: the day-period word
+  (asubuhi/mchana/jioni/usiku) is now optional, so the time alone counts as
+  correct. "mchana" (afternoon) now starts at noon rather than 10, and the
+  fuzzy mchana↔jioni boundary in the late afternoon accepts either word.
+
 ## 0.12.0 — 2026-07-19
 
 - **The app speaks your language**: the interface now shows in the language you
