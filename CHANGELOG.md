@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.12.2 — 2026-07-19
+
+- **German clock accepts "um zehn"**: full-hour answers now count whether you
+  write "zehn Uhr", "punkt zehn", or the colloquial "um zehn". The reveal hint
+  lists every accepted wording ("auch: … oder …") instead of a regional label.
+
 ## 0.12.1 — 2026-07-19
 
 - **Swahili clock is less picky about the time of day**: the day-period word
