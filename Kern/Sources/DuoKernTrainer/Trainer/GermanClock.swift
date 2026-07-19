@@ -44,7 +44,10 @@ enum GermanClock {
         let c = conversational(hours: hours, minutes: minutes)
         var accepted = [c.standard]
         if c.regional != c.standard { accepted.append(c.regional) }
-        let gloss = c.regional != c.standard ? "Regional (z. B. Oberfranken): \(c.regional)" : nil
+        // Colloquial "um zehn" reads a full hour the same as "zehn Uhr" / "punkt zehn".
+        if minutes == 0, c.standard.hasSuffix("Uhr") { accepted.append("um \(hourWords[hours % 12])") }
+        let alternatives = accepted.dropFirst()
+        let gloss = alternatives.isEmpty ? nil : "auch: \(alternatives.joined(separator: " oder "))"
         return (c.standard, accepted, gloss)
     }
 }

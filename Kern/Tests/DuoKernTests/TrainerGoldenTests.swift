@@ -80,6 +80,10 @@ struct TrainerGoldenTests {
             #expect(task.display == expected.standard, "t=\(key)")
             var accepted = [expected.standard]
             if expected.regional != expected.standard { accepted.append(expected.regional) }
+            // Round hours also accept colloquial "um zehn" (regional is "punkt <hour>").
+            if m == 0, expected.standard.hasSuffix("Uhr") {
+                accepted.append("um " + expected.regional.replacingOccurrences(of: "punkt ", with: ""))
+            }
             #expect(task.accepted == accepted, "t=\(key)")
         }
     }
