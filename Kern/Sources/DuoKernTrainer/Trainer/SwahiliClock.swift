@@ -1,6 +1,6 @@
 /// Swahili saa-system clock times, ported from the prototype `ClockTrainer.tsx`.
 /// Saa hour = western hour shifted by 6; day periods asubuhi/mchana/jioni/usiku;
-/// "na nusu" for half past, "imebakia dakika ..." counting down past the half hour.
+/// "na nusu" for half past, "kasoro dakika ..." counting down past the half hour.
 enum SwahiliClock {
     private static let hourWords = ["kumi na mbili", "moja", "mbili", "tatu", "nne", "tano", "sita", "saba", "nane", "tisa", "kumi", "kumi na moja", "kumi na mbili"]
 
@@ -56,6 +56,6 @@ enum SwahiliClock {
         if minutes == 0 { return "Saa \(hWord)" }
         if minutes == 30 { return "Saa \(hWord) na nusu" }
         if minutes < 30 { return "Saa \(hWord) na dakika \(minuteWord(minutes))" }
-        return "Saa \(nextWord) imebakia dakika \(minuteWord(60 - minutes))"
+        return "Saa \(nextWord) kasoro dakika \(minuteWord(60 - minutes))"
     }
 }

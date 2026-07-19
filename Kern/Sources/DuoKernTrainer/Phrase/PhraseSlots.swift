@@ -10,8 +10,8 @@ public enum PhraseSlots {
     /// Clock templates. Minutes are rounded by `Trainer.clock` (nearest 5);
     /// the German prompt shows the rounded digital time ("… um 14:35 Uhr …").
     /// Swahili templates only accept minutes ≤ 30: the >30 countdown form
-    /// ("saa tatu imebakia dakika …") is a standalone predicate and produces
-    /// run-ons when embedded (language-review finding).
+    /// ("saa tatu kasoro dakika …") reads awkwardly when embedded
+    /// (language-review finding).
     public static func instantiate(template: PhraseTemplate, hour: Int, minute: Int) -> TrainerTask {
         precondition(template.slotKind == .clock, "hour/minute instantiation requires a .clock template")
         precondition(template.pair != .deSw || minute <= 30,
