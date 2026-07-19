@@ -31,7 +31,7 @@ struct OnboardingView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
-            Text("👋")
+            Text(verbatim: "👋")
                 .font(.system(size: 44))
             Text("Willkommen bei DuoLernen")
                 .font(DL.Fonts.title)
@@ -65,7 +65,7 @@ struct OnboardingView: View {
             HStack(spacing: DL.Space.s) {
                 Text(candidate.flag)
                     .font(.system(size: 28))
-                Text("\(candidate.baseName) · \(candidate.targetName)")
+                Text.joined(Text(verbatim: candidate.baseName), Text(verbatim: candidate.targetName))
                     .font(DL.Fonts.subheadline)
                     .foregroundStyle(Color.dlTextPrimary)
                     .lineLimit(1)

@@ -123,7 +123,7 @@ struct TrainerHubView: View {
                                 reverse: config.direction == .targetToDe)
         } label: {
             VStack(spacing: DL.Space.s) {
-                Text("💬")
+                Text(verbatim: "💬")
                     .font(.system(size: 30))
                     .accessibilityHidden(true)
                 Text("Sätze")

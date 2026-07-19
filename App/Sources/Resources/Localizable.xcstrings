@@ -1,11 +1,11 @@
 {
   "sourceLanguage" : "de",
   "strings" : {
-    " · auf %@" : {
-      "comment" : "Trainer prompt-card subtitle: '<label> · in <language>'",
+    "auf %@" : {
+      "comment" : "Trainer prompt-card subtitle language suffix, e.g. 'in English'",
       "localizations" : {
         "en" : {
-          "stringUnit" : { "state" : "translated", "value" : " · in %@" }
+          "stringUnit" : { "state" : "translated", "value" : "in %@" }
         }
       }
     },

@@ -249,9 +249,7 @@ struct TrainerSessionView: View {
         }
         parts.append(Text("🔥 \(streak) in Folge"))
         if bestStreak > streak { parts.append(Text("Rekord \(bestStreak)")) }
-        var result = parts[0]
-        for part in parts.dropFirst() { result = result + Text(" · ") + part }
-        return result
+        return parts.joined() ?? Text(verbatim: "")
     }
 
     private var streakAccessibility: Text {
@@ -515,7 +513,7 @@ struct TrainerSessionView: View {
             Text("Beste Serie: 🔥 \(bestStreak) in Folge")
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextPrimary)
-            (Text(mode.titleKey) + Text(" · \(language.displayName(in: locale))"))
+            Text.joined(Text(mode.titleKey), Text(verbatim: language.displayName(in: locale)))
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
             Spacer()
@@ -563,8 +561,8 @@ private struct TrainerPromptCard: View {
                 .padding(DL.Space.s + 2)
                 .background(Circle().fill(Color.dlSurfaceTint))
                 .accessibilityHidden(true)
-            ((sentence ? Text("Satz") : Text(task.kind.trainerPromptLabelKey))
-                + Text(" · auf \(task.language.displayName(in: locale))"))
+            Text.joined(sentence ? Text("Satz") : Text(task.kind.trainerPromptLabelKey),
+                        Text("auf \(task.language.displayName(in: locale))"))
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
                 .textCase(.uppercase)

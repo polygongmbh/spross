@@ -134,9 +134,7 @@ struct SessionCompletionView: View {
         if newCount > 0 { parts.append(Text("\(newCount) neu")) }
         if graduatedCount > 0 { parts.append(Text("\(graduatedCount) gefestigt")) }
         if reviewCount > 0 { parts.append(Text("\(reviewCount) wiederholt")) }
-        guard var result = parts.first else { return Text("Alles erledigt") }
-        for part in parts.dropFirst() { result = result + Text(" · ") + part }
-        return result
+        return parts.joined() ?? Text("Alles erledigt")
     }
 
     var body: some View {
@@ -191,7 +189,7 @@ struct SessionCompletionView: View {
                         value: burst
                     )
             }
-            Text("🎉")
+            Text(verbatim: "🎉")
                 .font(.system(size: 88))
                 .scaleEffect(burst ? 1 : 0.4)
                 .animation(.spring(response: 0.5, dampingFraction: 0.55), value: burst)

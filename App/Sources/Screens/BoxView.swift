@@ -137,7 +137,7 @@ private struct BoxCardRow: View {
             }
             Spacer(minLength: DL.Space.s)
             if sched?.suspended == true {
-                Text("💤")
+                Text(verbatim: "💤")
                     .accessibilityLabel("Pausiert")
                 Button("Wecken") {
                     model.setSuspended(cardID: card.id, suspended: false)

@@ -93,7 +93,7 @@ struct HeuteView: View {
     private var sessionStats: some View {
         let streak = model.stats?.streak ?? 0
         if dueRemaining == 0 && streak == 0 {
-            Text("✨")
+            Text(verbatim: "✨")
                 .font(.system(size: 56))
                 .accessibilityHidden(true)
         } else {
@@ -123,18 +123,14 @@ struct HeuteView: View {
         if fresh > 0 {
             parts.append(Text("\(fresh) neue Karten"))
         }
-        guard var result = parts.first else {
-            return Text("Ein paar Karten warten auf dich.")
-        }
-        for part in parts.dropFirst() { result = result + Text(" · ") + part }
-        return result
+        return parts.joined() ?? Text("Ein paar Karten warten auf dich.")
     }
 
     // MARK: - Done for today
 
     private var doneCard: some View {
         VStack(spacing: DL.Space.l) {
-            Text("🎉")
+            Text(verbatim: "🎉")
                 .font(.system(size: 56))
                 .accessibilityHidden(true)
             Text("Für heute geschafft")

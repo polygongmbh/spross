@@ -12,7 +12,7 @@ struct StreakFlameView: View {
 
     var body: some View {
         HStack(spacing: DL.Space.s) {
-            Text("🔥")
+            Text(verbatim: "🔥")
                 .font(.title2)
                 .accessibilityHidden(true)
             Text("\(days)")
