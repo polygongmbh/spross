@@ -64,7 +64,7 @@ public enum Trainer {
             (display, accepted, gloss) = GermanClock.task(hours: h, minutes: m)
         case .swahili:
             display = SwahiliClock.time(hours: h, minutes: m)
-            accepted = [display]
+            accepted = SwahiliClock.accepted(hours: h, minutes: m)
             gloss = SwahiliClock.gloss
         case .ukrainian:
             (display, accepted, gloss) = UkrainianClock.task(hours: h, minutes: m)

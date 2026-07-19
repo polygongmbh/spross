@@ -26,7 +26,9 @@ struct PhraseSlotTests {
         let task = PhraseSlots.instantiate(template: template("sw-clock-zug"), hour: 20, minute: 0)
         #expect(task.prompt == "Der Zug fährt um 20:00 Uhr ab.")
         #expect(task.display == "Treni inaondoka saa mbili usiku.")
-        #expect(task.accepted == ["Treni inaondoka saa mbili usiku."])
+        // Day period is optional, so the period-less reading is accepted too.
+        #expect(task.accepted == ["Treni inaondoka saa mbili.",
+                                  "Treni inaondoka saa mbili usiku."])
         #expect(task.kind == .clock && task.language == .swahili)
         #expect(task.gloss == SwahiliClock.gloss)
     }

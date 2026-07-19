@@ -91,7 +91,11 @@ struct TrainerGoldenTests {
             let (h, m) = try Self.parseClock(key)
             let task = Trainer.clock(hour: h, minute: m, language: .swahili)
             #expect(task.display == expected, "t=\(key)")
-            #expect(task.accepted == [expected], "t=\(key)")
+            // Period is optional: the bare reading (no day period) and the
+            // canonical display are both accepted; overlap hours add a second.
+            let base = String(expected.split(separator: " ").dropLast().joined(separator: " "))
+            #expect(task.accepted.first == base, "t=\(key)")
+            #expect(task.accepted.contains(expected), "t=\(key)")
             #expect(task.gloss?.contains("Saa") == true)
         }
     }
