@@ -177,8 +177,7 @@ der=blue / die=pink-red / das=green (text carries meaning, color reinforces — 
   standalone-cloneable** — deliberate (local-iteration-first; revisit if a
   remote/CI appears).
 - `CatalogImporter` (`Kern/…/Content`) reconstructs `[Card]` for a pair from the
-  catalog, applying `pairOverrides` for pair-tuned German, `"Pl. "`-stripping,
-  and `"/"`-joined translation variants. phrase componentIDs are resolved by
+  catalog, applying `"Pl. "`-stripping and `"/"`-joined translation variants. phrase componentIDs are resolved by
   normalized lemma matching of area words inside the phrase text (naive
   contains-match; unresolved components = phrase depends only on resolved ones).
 - Importer is deterministic: same catalog → same card IDs (stable slug of

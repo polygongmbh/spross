@@ -53,13 +53,12 @@ final class ImporterTests: XCTestCase {
         }
     }
 
-    /// The card id (and displayed German) derive from the PAIR-SPECIFIC German:
-    /// the shared "Fleisch grillen" for de-sw, the de-uk override "grillen" for
-    /// de-uk. Pinned so a change to the override scheme can never silently
-    /// re-key a card and orphan its scheduling history.
-    func testPinnedPairOverrideIDs() throws {
-        let sw = try cards(.deSw).first { $0.id == "de-sw-outside-verb-fleisch-grillen" }
-        XCTAssertEqual(sw?.german, "Fleisch grillen")
+    /// The shared German realization drives every pair identically: both
+    /// pairs get "grillen" (id derives from the German string). Pinned so the
+    /// card id can't silently re-key and orphan its scheduling history.
+    func testPinnedSharedRealizationIDs() throws {
+        let sw = try cards(.deSw).first { $0.id == "de-sw-outside-verb-grillen" }
+        XCTAssertEqual(sw?.german, "grillen")
         let uk = try cards(.deUk).first { $0.id == "de-uk-outside-verb-grillen" }
         XCTAssertEqual(uk?.german, "grillen")
     }

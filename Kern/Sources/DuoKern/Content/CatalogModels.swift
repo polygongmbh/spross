@@ -44,9 +44,6 @@ struct CatalogRealization: Decodable {
     let variants: [String]
     let grammar: CatalogGrammar?
     let notes: CatalogNotes
-    /// Rare pair-tuned German (e.g. de-uk "grillen" vs the shared "Fleisch
-    /// grillen"), keyed "de-<lang>". Only present on de realizations.
-    let pairOverrides: [String: String]?
 }
 
 /// One pair-authored phrase entry (`phrases/de-<lang>.json`, ordered per area).

@@ -33,9 +33,7 @@ public enum CatalogImporter {
                 guard let tr = targetReal[concept.id] else {
                     throw CatalogImportError.missingRealization(concept: concept.id, lang: lang)
                 }
-                // Pair-tuned German wins where present (never for de-sw, since
-                // the shared German is authored from the sw side).
-                let german = de.pairOverrides?["de-\(lang)"] ?? de.text
+                let german = de.text
                 let translation = joined(tr.text, tr.variants)
                 switch concept.kind {
                 case .noun:

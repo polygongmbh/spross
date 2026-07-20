@@ -2252,8 +2252,8 @@
    "date": "2026-07-11"
   }
  },
- "outside/verb/fleisch-grillen": {
-  "text": "Fleisch grillen",
+ "outside/verb/grillen": {
+  "text": "grillen",
   "variants": [],
   "grammar": {},
   "notes": {
@@ -2263,9 +2263,6 @@
    "status": "native",
    "source": "sprachposter-2026-07",
    "date": "2026-07-11"
-  },
-  "pairOverrides": {
-   "de-uk": "grillen"
   }
  },
  "outside/verb/sich-sonnen": {
