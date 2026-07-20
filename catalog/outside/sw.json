@@ -1,0 +1,95 @@
+{
+ "title": "Nje · twende zetu!",
+ "words": {
+  "street": {
+   "text": "barabara"
+  },
+  "traffic-light": {
+   "text": "taa ya barabarani"
+  },
+  "bicycle": {
+   "text": "baiskeli"
+  },
+  "bus": {
+   "text": "basi"
+  },
+  "bus-stop": {
+   "text": "kituo cha basi"
+  },
+  "train": {
+   "text": "treni"
+  },
+  "tree": {
+   "text": "mti"
+  },
+  "flower": {
+   "text": "ua",
+   "grammar": {
+    "plural": "maua"
+   }
+  },
+  "park": {
+   "text": "bustani"
+  },
+  "sun": {
+   "text": "jua"
+  },
+  "rain": {
+   "text": "mvua"
+  },
+  "weather": {
+   "text": "hali ya hewa"
+  },
+  "go-for-walk": {
+   "text": "kutembea"
+  },
+  "ride-bike": {
+   "text": "kuendesha baiskeli"
+  },
+  "shop": {
+   "text": "kwenda madukani"
+  },
+  "take-bus": {
+   "text": "kupanda basi"
+  },
+  "jog": {
+   "text": "kukimbia"
+  },
+  "barbecue": {
+   "text": "kuchoma"
+  },
+  "sunbathe": {
+   "text": "kuota jua"
+  },
+  "plant": {
+   "text": "kupanda mimea"
+  },
+  "depart": {
+   "text": "kuondoka"
+  },
+  "hows-the-weather-today": {
+   "text": "Hali ya hewa ikoje leo?"
+  },
+  "always-take-an-umbrella": {
+   "text": "Chukua mwavuli daima!"
+  },
+  "its-raining": {
+   "text": "Mvua inanyesha."
+  },
+  "the-sun-is-shining": {
+   "text": "Jua linawaka!"
+  },
+  "shall-we-take-a-walk-together": {
+   "text": "Twende kutembea pamoja?"
+  },
+  "the-bus-is-coming-soon": {
+   "text": "Basi linakuja sasa hivi."
+  },
+  "when-does-the-train-leave": {
+   "text": "Treni inaondoka saa ngapi?"
+  },
+  "what-a-beautiful-day": {
+   "text": "Siku nzuri kama nini!"
+  }
+ }
+}

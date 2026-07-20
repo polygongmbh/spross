@@ -1,0 +1,104 @@
+{
+ "title": "Mlangoni · karibu nyumbani!",
+ "words": {
+  "hallway": {
+   "text": "ukumbi",
+   "grammar": {
+    "plural": "kumbi"
+   }
+  },
+  "door": {
+   "text": "mlango"
+  },
+  "key": {
+   "text": "ufunguo",
+   "grammar": {
+    "plural": "funguo"
+   }
+  },
+  "jacket": {
+   "text": "jaketi"
+  },
+  "coat": {
+   "text": "koti"
+  },
+  "shoe-rack": {
+   "text": "rafu ya viatu"
+  },
+  "umbrella": {
+   "text": "mwavuli"
+  },
+  "hat": {
+   "text": "kofia"
+  },
+  "mailbox": {
+   "text": "sanduku la barua"
+  },
+  "doorbell": {
+   "text": "kengele"
+  },
+  "stairs": {
+   "text": "ngazi"
+  },
+  "bag": {
+   "text": "begi",
+   "variants": [
+    "mfuko"
+   ]
+  },
+  "lock": {
+   "text": "kufunga kwa ufunguo"
+  },
+  "ring": {
+   "text": "kupiga kengele"
+  },
+  "take-off-shoes": {
+   "text": "kuvua viatu"
+  },
+  "set-off": {
+   "text": "kuondoka"
+  },
+  "unlock": {
+   "text": "kufungua"
+  },
+  "put-on": {
+   "text": "kuvaa"
+  },
+  "wait": {
+   "text": "kusubiri"
+  },
+  "arrive": {
+   "text": "kufika"
+  },
+  "greet": {
+   "text": "kusalimia"
+  },
+  "say-goodbye": {
+   "text": "kuaga"
+  },
+  "do-you-have-the-keys": {
+   "text": "Unazo funguo?"
+  },
+  "ill-be-right-back": {
+   "text": "Narudi sasa hivi!"
+  },
+  "take-off-your-shoes-here": {
+   "text": "Tafadhali vua viatu hapa."
+  },
+  "hurry-were-late": {
+   "text": "Fanya haraka, tumechelewa!"
+  },
+  "see-you-later": {
+   "text": "Tutaonana baadaye!"
+  },
+  "welcome-home": {
+   "text": "Karibu nyumbani!"
+  },
+  "the-doorbell-suddenly-rang": {
+   "text": "Kengele imelia ghafla."
+  },
+  "dont-forget-your-jacket": {
+   "text": "Usisahau jaketi lako!"
+  }
+ }
+}

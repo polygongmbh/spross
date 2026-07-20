@@ -1,0 +1,98 @@
+{
+ "title": "У спальні · солодких снів",
+ "words": {
+  "bed": {
+   "text": "ліжко"
+  },
+  "mattress": {
+   "text": "матрац"
+  },
+  "pillow": {
+   "text": "подушка"
+  },
+  "blanket": {
+   "text": "ковдра"
+  },
+  "bedding": {
+   "text": "постільна білизна"
+  },
+  "wardrobe": {
+   "text": "шафа для одягу"
+  },
+  "alarm-clock": {
+   "text": "будильник"
+  },
+  "nightstand": {
+   "text": "тумбочка"
+  },
+  "pyjamas": {
+   "text": "піжама"
+  },
+  "sock": {
+   "text": "шкарпетка"
+  },
+  "trousers": {
+   "text": "штани",
+   "grammar": {
+    "pluralOnly": true
+   }
+  },
+  "t-shirt": {
+   "text": "футболка"
+  },
+  "sleep": {
+   "text": "спати"
+  },
+  "wake-up": {
+   "text": "прокидатися"
+  },
+  "dream": {
+   "text": "бачити сни"
+  },
+  "get-up": {
+   "text": "вставати"
+  },
+  "get-dressed": {
+   "text": "одягатися"
+  },
+  "get-undressed": {
+   "text": "роздягатися"
+  },
+  "cuddle": {
+   "text": "обійматися"
+  },
+  "yawn": {
+   "text": "позіхати"
+  },
+  "snore": {
+   "text": "хропіти"
+  },
+  "good-night-sleep-well": {
+   "text": "Добраніч, спи солодко!"
+  },
+  "good-morning-my-love": {
+   "text": "Доброго ранку, сонечко!"
+  },
+  "im-tired": {
+   "text": "Я втомився (втомилася)."
+  },
+  "sweet-dreams": {
+   "text": "Хай насняться гарні сни!"
+  },
+  "did-you-set-the-alarm": {
+   "text": "Ти завів",
+   "variants": [
+    "завела будильник?"
+   ]
+  },
+  "five-more-minutes": {
+   "text": "Ще п'ять хвилин…"
+  },
+  "turn-off-the-light": {
+   "text": "Вимкни, будь ласка, світло."
+  },
+  "i-love-you": {
+   "text": "Я тебе кохаю."
+  }
+ }
+}

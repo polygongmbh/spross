@@ -1,0 +1,140 @@
+{
+ "title": "Das Wohnzimmer",
+ "words": {
+  "sofa": {
+   "text": "Sofa",
+   "grammar": {
+    "gender": "das",
+    "plural": "-s"
+   }
+  },
+  "dining-table": {
+   "text": "Esstisch",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "chair": {
+   "text": "Stuhl",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Stühle"
+   }
+  },
+  "tv": {
+   "text": "Fernseher",
+   "grammar": {
+    "gender": "der",
+    "plural": "–"
+   }
+  },
+  "remote": {
+   "text": "Fernbedienung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "shelf": {
+   "text": "Regal",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "plant": {
+   "text": "Pflanze",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "window": {
+   "text": "Fenster",
+   "grammar": {
+    "gender": "das",
+    "plural": "–"
+   }
+  },
+  "curtain": {
+   "text": "Vorhang",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Vorhänge"
+   }
+  },
+  "carpet": {
+   "text": "Teppich",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "lamp": {
+   "text": "Lampe",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "picture": {
+   "text": "Bild",
+   "grammar": {
+    "gender": "das",
+    "plural": "-er"
+   }
+  },
+  "eat": {
+   "text": "essen"
+  },
+  "watch-tv": {
+   "text": "fernsehen"
+  },
+  "read": {
+   "text": "lesen"
+  },
+  "relax": {
+   "text": "sich entspannen"
+  },
+  "tidy-up": {
+   "text": "aufräumen"
+  },
+  "listen-to-music": {
+   "text": "Musik hören"
+  },
+  "water-plants": {
+   "text": "gießen"
+  },
+  "play": {
+   "text": "spielen"
+  },
+  "talk": {
+   "text": "reden"
+  },
+  "the-food-is-ready": {
+   "text": "Das Essen ist fertig!"
+  },
+  "turn-on-the-tv": {
+   "text": "Mach bitte den Fernseher an."
+  },
+  "come-sit-with-me": {
+   "text": "Komm, setz dich zu mir!"
+  },
+  "shall-we-watch-a-movie": {
+   "text": "Wollen wir einen Film schauen?"
+  },
+  "lets-hang-the-picture": {
+   "text": "Lass uns das Bild aufhängen!"
+  },
+  "the-curtains-hang-over-the-window": {
+   "text": "Die Vorhänge hängen vor dem Fenster."
+  },
+  "can-you-turn-off-the-light": {
+   "text": "Kannst du das Licht ausmachen?"
+  },
+  "open-the-window-fresh-air": {
+   "text": "Mach bitte das Fenster auf — frische Luft!"
+  }
+ }
+}

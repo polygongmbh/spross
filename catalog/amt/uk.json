@@ -1,0 +1,110 @@
+{
+ "title": "В установі · крок за кроком!",
+ "words": {
+  "office": {
+   "text": "установа",
+   "variants": [
+    "відомство"
+   ]
+  },
+  "form": {
+   "text": "бланк",
+   "variants": [
+    "формуляр"
+   ]
+  },
+  "application": {
+   "text": "заява"
+  },
+  "id-card": {
+   "text": "посвідчення особи"
+  },
+  "residence-permit": {
+   "text": "посвідка на проживання"
+  },
+  "signature": {
+   "text": "підпис"
+  },
+  "ticket-number": {
+   "text": "номерок у черзі"
+  },
+  "case-worker": {
+   "text": "працівник",
+   "variants": [
+    "працівниця, що веде справу"
+   ]
+  },
+  "deadline": {
+   "text": "строк",
+   "variants": [
+    "термін"
+   ]
+  },
+  "registration": {
+   "text": "реєстрація",
+   "notes": {
+    "de": "gemeint: Wohnsitzanmeldung — voll «реєстрація місця проживання»"
+   }
+  },
+  "documents": {
+   "text": "документи"
+  },
+  "fill-in": {
+   "text": "заповнювати"
+  },
+  "sign": {
+   "text": "підписувати"
+  },
+  "apply-for": {
+   "text": "подавати заяву"
+  },
+  "submit": {
+   "text": "здавати"
+  },
+  "hand-in": {
+   "text": "подавати",
+   "notes": {
+    "de": "typisch mit Objekt: «подавати документи» = Dokumente einreichen"
+   }
+  },
+  "extend": {
+   "text": "продовжувати"
+  },
+  "bring": {
+   "text": "брати з собою"
+  },
+  "copy": {
+   "text": "копіювати"
+  },
+  "expire": {
+   "text": "закінчуватися",
+   "notes": {
+    "de": "hier: eine Frist läuft ab — «строк закінчується»"
+   }
+  },
+  "where-do-i-sign": {
+   "text": "Де мені підписати?"
+  },
+  "i-want-to-extend-my-residence-permit": {
+   "text": "Я хочу продовжити посвідку на проживання."
+  },
+  "please-fill-out-the-form-completely": {
+   "text": "Заповніть, будь ласка, бланк повністю."
+  },
+  "take-a-queue-number-first": {
+   "text": "Спочатку візьміть, будь ласка, номерок у черзі!"
+  },
+  "i-need-an-interpreter-for-the-application": {
+   "text": "Для заяви мені потрібен перекладач."
+  },
+  "do-you-have-all-the-documents": {
+   "text": "У вас із собою всі документи?"
+  },
+  "the-decision-comes-by-mail": {
+   "text": "Рішення надійде поштою."
+  },
+  "when-does-my-id-expire": {
+   "text": "Коли закінчується строк дії мого посвідчення?"
+  }
+ }
+}

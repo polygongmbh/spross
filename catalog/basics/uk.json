@@ -1,0 +1,116 @@
+{
+ "title": "Перші слова · почнімо!",
+ "words": {
+  "language": {
+   "text": "мова"
+  },
+  "word": {
+   "text": "слово"
+  },
+  "name": {
+   "text": "ім'я"
+  },
+  "help": {
+   "text": "допомога"
+  },
+  "be-called": {
+   "text": "називатися"
+  },
+  "say": {
+   "text": "казати"
+  },
+  "know": {
+   "text": "знати"
+  },
+  "need": {
+   "text": "потребувати"
+  },
+  "thank": {
+   "text": "дякувати"
+  },
+  "hello": {
+   "text": "Привіт!",
+   "notes": {
+    "de": "nur informell unter Bekannten"
+   }
+  },
+  "good-day": {
+   "text": "Добрий день!",
+   "notes": {
+    "de": "förmlich — im Amt oder beim Arzt"
+   }
+  },
+  "thank-you": {
+   "text": "Дуже дякую!"
+  },
+  "please": {
+   "text": "Будь ласка!",
+   "notes": {
+    "de": "ein Wort für „bitte“ und „gern geschehen“ — wörtl. „sei so freundlich“"
+   }
+  },
+  "excuse-me": {
+   "text": "Вибачте!"
+  },
+  "yes": {
+   "text": "Так."
+  },
+  "no": {
+   "text": "Ні."
+  },
+  "whats-your-name": {
+   "text": "Як вас звуть?"
+  },
+  "my-name-is": {
+   "text": "Мене звуть …"
+  },
+  "where-are-you-from": {
+   "text": "Звідки ви?"
+  },
+  "do-you-speak-english": {
+   "text": "Ви розмовляєте англійською?"
+  },
+  "i-speak-a-little-german": {
+   "text": "Я лише трохи розмовляю німецькою."
+  },
+  "i-dont-know": {
+   "text": "Я не знаю."
+  },
+  "pardon": {
+   "text": "Перепрошую?",
+   "notes": {
+    "de": "auch als „Entschuldigung!“ nutzbar — wörtl. „ich bitte nochmals“"
+   }
+  },
+  "i-need-help": {
+   "text": "Мені потрібна допомога."
+  },
+  "all-good": {
+   "text": "Все гаразд."
+  },
+  "goodbye": {
+   "text": "До побачення!"
+  },
+  "what-is-this-called": {
+   "text": "Як це називається?"
+  },
+  "how-are-you": {
+   "text": "Як у вас справи?"
+  },
+  "can-you-repeat-that": {
+   "text": "Повторіть, будь ласка."
+  },
+  "i-understand": {
+   "text": "Я розумію."
+  },
+  "i-dont-understand": {
+   "text": "Я не розумію."
+  },
+  "slower-please": {
+   "text": "Повільніше, будь ласка!"
+  },
+  "bye": {
+   "text": "Бувай!"
+  }
+ }
+}

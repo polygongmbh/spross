@@ -1,0 +1,134 @@
+[
+ {
+  "slug": "fridge",
+  "kind": "noun",
+  "emoji": "🧊"
+ },
+ {
+  "slug": "stove",
+  "kind": "noun",
+  "emoji": "♨️"
+ },
+ {
+  "slug": "oven",
+  "kind": "noun",
+  "emoji": "🥧"
+ },
+ {
+  "slug": "dishwasher",
+  "kind": "noun",
+  "emoji": "💦"
+ },
+ {
+  "slug": "hunger",
+  "kind": "noun",
+  "emoji": "🤤"
+ },
+ {
+  "slug": "thirst",
+  "kind": "noun",
+  "emoji": "🥤"
+ },
+ {
+  "slug": "pot",
+  "kind": "noun",
+  "emoji": "🫕"
+ },
+ {
+  "slug": "pan",
+  "kind": "noun",
+  "emoji": "🍳"
+ },
+ {
+  "slug": "knife",
+  "kind": "noun",
+  "emoji": "🔪"
+ },
+ {
+  "slug": "spoon",
+  "kind": "noun",
+  "emoji": "🥄"
+ },
+ {
+  "slug": "fork",
+  "kind": "noun",
+  "emoji": "🍴"
+ },
+ {
+  "slug": "plate",
+  "kind": "noun",
+  "emoji": "🍽️"
+ },
+ {
+  "slug": "cook",
+  "kind": "verb"
+ },
+ {
+  "slug": "bake",
+  "kind": "verb"
+ },
+ {
+  "slug": "cut",
+  "kind": "verb"
+ },
+ {
+  "slug": "wash-up",
+  "kind": "verb"
+ },
+ {
+  "slug": "taste",
+  "kind": "verb"
+ },
+ {
+  "slug": "fry",
+  "kind": "verb"
+ },
+ {
+  "slug": "reheat",
+  "kind": "verb"
+ },
+ {
+  "slug": "stir",
+  "kind": "verb"
+ },
+ {
+  "slug": "take-out-trash",
+  "kind": "verb"
+ },
+ {
+  "slug": "careful-the-knife-is-sharp",
+  "kind": "phrase"
+ },
+ {
+  "slug": "this-tastes-so-good",
+  "kind": "phrase"
+ },
+ {
+  "slug": "are-you-cooking-rice-today",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-pot-is-still-on-the-stove",
+  "kind": "phrase"
+ },
+ {
+  "slug": "wash-the-dishes-in-the-sink",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-fridge-is-empty",
+  "kind": "phrase"
+ },
+ {
+  "slug": "can-you-set-the-table",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-water-is-boiling-hot",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-big-pot-is-on-the-stove",
+  "kind": "phrase"
+ }
+]

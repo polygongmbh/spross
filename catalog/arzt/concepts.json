@@ -1,0 +1,130 @@
+[
+ {
+  "slug": "doctor",
+  "kind": "noun",
+  "emoji": "🧑‍⚕️"
+ },
+ {
+  "slug": "practice",
+  "kind": "noun",
+  "emoji": "🏥"
+ },
+ {
+  "slug": "appointment",
+  "kind": "noun",
+  "emoji": "📅"
+ },
+ {
+  "slug": "pain",
+  "kind": "noun",
+  "emoji": "🤕"
+ },
+ {
+  "slug": "fever",
+  "kind": "noun",
+  "emoji": "🌡️"
+ },
+ {
+  "slug": "pill",
+  "kind": "noun",
+  "emoji": "💊"
+ },
+ {
+  "slug": "prescription",
+  "kind": "noun",
+  "emoji": "📃"
+ },
+ {
+  "slug": "pharmacy",
+  "kind": "noun",
+  "emoji": "⚕️"
+ },
+ {
+  "slug": "insurance-card",
+  "kind": "noun",
+  "emoji": "💳"
+ },
+ {
+  "slug": "health-insurance",
+  "kind": "noun",
+  "emoji": "🛡️"
+ },
+ {
+  "slug": "cough",
+  "kind": "noun",
+  "emoji": "😷"
+ },
+ {
+  "slug": "cold",
+  "kind": "noun",
+  "emoji": "🤧"
+ },
+ {
+  "slug": "hurt",
+  "kind": "verb"
+ },
+ {
+  "slug": "to-cough",
+  "kind": "verb"
+ },
+ {
+  "slug": "examine",
+  "kind": "verb"
+ },
+ {
+  "slug": "prescribe",
+  "kind": "verb"
+ },
+ {
+  "slug": "take-medicine",
+  "kind": "verb"
+ },
+ {
+  "slug": "pick-up",
+  "kind": "verb"
+ },
+ {
+  "slug": "call-in-sick",
+  "kind": "verb"
+ },
+ {
+  "slug": "rest",
+  "kind": "verb"
+ },
+ {
+  "slug": "cancel",
+  "kind": "verb"
+ },
+ {
+  "slug": "i-have-an-appointment-at-ten",
+  "kind": "phrase"
+ },
+ {
+  "slug": "my-throat-hurts-a-lot",
+  "kind": "phrase"
+ },
+ {
+  "slug": "ive-had-a-fever-since-yesterday",
+  "kind": "phrase"
+ },
+ {
+  "slug": "take-the-pills-twice-daily",
+  "kind": "phrase"
+ },
+ {
+  "slug": "get-well-soon",
+  "kind": "phrase"
+ },
+ {
+  "slug": "take-the-prescription-to-the-pharmacy",
+  "kind": "phrase"
+ },
+ {
+  "slug": "show-me-your-insurance-card",
+  "kind": "phrase"
+ },
+ {
+  "slug": "i-have-to-cancel-the-appointment",
+  "kind": "phrase"
+ }
+]

@@ -1,0 +1,126 @@
+{
+ "title": "Die Arbeit & der Beruf",
+ "words": {
+  "work": {
+   "text": "Arbeit",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "job-application": {
+   "text": "Bewerbung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "cv": {
+   "text": "Lebenslauf",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Lebensläufe"
+   }
+  },
+  "contract": {
+   "text": "Vertrag",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Verträge"
+   }
+  },
+  "salary": {
+   "text": "Gehalt",
+   "grammar": {
+    "gender": "das",
+    "plural": "die Gehälter"
+   }
+  },
+  "colleague": {
+   "text": "Kollege",
+   "grammar": {
+    "gender": "der",
+    "plural": "-n · ♀ die Kollegin"
+   }
+  },
+  "boss": {
+   "text": "Chef",
+   "grammar": {
+    "gender": "der",
+    "plural": "-s · ♀ die Chefin"
+   }
+  },
+  "shift": {
+   "text": "Schicht",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "holiday": {
+   "text": "Urlaub",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "company": {
+   "text": "Firma",
+   "grammar": {
+    "gender": "die",
+    "plural": "die Firmen"
+   }
+  },
+  "apply": {
+   "text": "sich bewerben"
+  },
+  "introduce-oneself": {
+   "text": "sich vorstellen"
+  },
+  "earn": {
+   "text": "verdienen"
+  },
+  "start": {
+   "text": "anfangen"
+  },
+  "stop": {
+   "text": "aufhören"
+  },
+  "quit": {
+   "text": "kündigen"
+  },
+  "hire": {
+   "text": "einstellen"
+  },
+  "help": {
+   "text": "helfen"
+  },
+  "work-overtime": {
+   "text": "Überstunden machen"
+  },
+  "tomorrow-i-have-a-job-interview": {
+   "text": "Morgen stelle ich mich bei der Firma vor."
+  },
+  "my-shift-starts-at-six": {
+   "text": "Meine Schicht fängt heute um sechs Uhr an."
+  },
+  "ill-send-the-sick-note-right-away": {
+   "text": "Ich schicke Ihnen die Krankmeldung sofort. / Ich schicke dir die Krankmeldung sofort."
+  },
+  "have-a-nice-evening-off": {
+   "text": "Schönen Feierabend!"
+  },
+  "can-you-help-me-briefly": {
+   "text": "Können Sie mir kurz helfen? / Kannst du mir kurz helfen?"
+  },
+  "i-want-vacation-next-week": {
+   "text": "Ich möchte nächste Woche Urlaub nehmen."
+  },
+  "read-the-contract-carefully": {
+   "text": "Lesen Sie den Vertrag genau durch! / Lies den Vertrag genau durch!"
+  },
+  "whats-the-salary": {
+   "text": "Wie hoch ist das Gehalt?"
+  }
+ }
+}

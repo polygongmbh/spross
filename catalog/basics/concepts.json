@@ -1,0 +1,138 @@
+[
+ {
+  "slug": "language",
+  "kind": "noun",
+  "emoji": "🗣️"
+ },
+ {
+  "slug": "word",
+  "kind": "noun",
+  "emoji": "💬"
+ },
+ {
+  "slug": "name",
+  "kind": "noun",
+  "emoji": "🏷️"
+ },
+ {
+  "slug": "help",
+  "kind": "noun",
+  "emoji": "🤲"
+ },
+ {
+  "slug": "be-called",
+  "kind": "verb"
+ },
+ {
+  "slug": "say",
+  "kind": "verb"
+ },
+ {
+  "slug": "know",
+  "kind": "verb"
+ },
+ {
+  "slug": "need",
+  "kind": "verb"
+ },
+ {
+  "slug": "thank",
+  "kind": "verb"
+ },
+ {
+  "slug": "hello",
+  "kind": "phrase"
+ },
+ {
+  "slug": "good-day",
+  "kind": "phrase"
+ },
+ {
+  "slug": "thank-you",
+  "kind": "phrase"
+ },
+ {
+  "slug": "please",
+  "kind": "phrase"
+ },
+ {
+  "slug": "excuse-me",
+  "kind": "phrase"
+ },
+ {
+  "slug": "yes",
+  "kind": "phrase"
+ },
+ {
+  "slug": "no",
+  "kind": "phrase"
+ },
+ {
+  "slug": "whats-your-name",
+  "kind": "phrase"
+ },
+ {
+  "slug": "my-name-is",
+  "kind": "phrase"
+ },
+ {
+  "slug": "where-are-you-from",
+  "kind": "phrase"
+ },
+ {
+  "slug": "do-you-speak-english",
+  "kind": "phrase"
+ },
+ {
+  "slug": "i-speak-a-little-german",
+  "kind": "phrase"
+ },
+ {
+  "slug": "i-dont-know",
+  "kind": "phrase"
+ },
+ {
+  "slug": "pardon",
+  "kind": "phrase"
+ },
+ {
+  "slug": "i-need-help",
+  "kind": "phrase"
+ },
+ {
+  "slug": "all-good",
+  "kind": "phrase"
+ },
+ {
+  "slug": "goodbye",
+  "kind": "phrase"
+ },
+ {
+  "slug": "what-is-this-called",
+  "kind": "phrase"
+ },
+ {
+  "slug": "how-are-you",
+  "kind": "phrase"
+ },
+ {
+  "slug": "can-you-repeat-that",
+  "kind": "phrase"
+ },
+ {
+  "slug": "i-understand",
+  "kind": "phrase"
+ },
+ {
+  "slug": "i-dont-understand",
+  "kind": "phrase"
+ },
+ {
+  "slug": "slower-please",
+  "kind": "phrase"
+ },
+ {
+  "slug": "bye",
+  "kind": "phrase"
+ }
+]

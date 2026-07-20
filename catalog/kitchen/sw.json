@@ -1,0 +1,101 @@
+{
+ "title": "Jikoni · karibu chakula kitamu!",
+ "words": {
+  "fridge": {
+   "text": "friji"
+  },
+  "stove": {
+   "text": "jiko"
+  },
+  "oven": {
+   "text": "oveni"
+  },
+  "dishwasher": {
+   "text": "mashine ya kuosha vyombo"
+  },
+  "hunger": {
+   "text": "njaa"
+  },
+  "thirst": {
+   "text": "kiu"
+  },
+  "pot": {
+   "text": "sufuria"
+  },
+  "pan": {
+   "text": "kikaango"
+  },
+  "knife": {
+   "text": "kisu"
+  },
+  "spoon": {
+   "text": "kijiko"
+  },
+  "fork": {
+   "text": "uma"
+  },
+  "plate": {
+   "text": "sahani"
+  },
+  "cook": {
+   "text": "kupika"
+  },
+  "bake": {
+   "text": "kuoka"
+  },
+  "cut": {
+   "text": "kukata"
+  },
+  "wash-up": {
+   "text": "kuosha vyombo"
+  },
+  "taste": {
+   "text": "kuonja"
+  },
+  "fry": {
+   "text": "kukaanga"
+  },
+  "reheat": {
+   "text": "kupasha moto"
+  },
+  "stir": {
+   "text": "kukoroga"
+  },
+  "take-out-trash": {
+   "text": "kutupa taka"
+  },
+  "careful-the-knife-is-sharp": {
+   "text": "Angalia, kisu ni kikali!"
+  },
+  "this-tastes-so-good": {
+   "text": "Hii ni tamu sana!"
+  },
+  "are-you-cooking-rice-today": {
+   "text": "Unapika wali leo?",
+   "notes": {
+    "de": "Reis = mpunga (geerntet) → mchele (roh) → wali (gekocht)!"
+   }
+  },
+  "the-pot-is-still-on-the-stove": {
+   "text": "Sufuria bado iko jikoni.",
+   "notes": {
+    "de": "jikoni = auf dem Herd / in der Küche"
+   }
+  },
+  "wash-the-dishes-in-the-sink": {
+   "text": "Osha vyombo sinkini, tafadhali!",
+   "notes": {
+    "de": "-ni am Ende = in/im/am: sinki → sinkini"
+   }
+  },
+  "the-fridge-is-empty": {
+   "text": "Friji iko tupu."
+  },
+  "can-you-set-the-table": {
+   "text": "Unaweza kuandaa meza, tafadhali?"
+  },
+  "the-water-is-boiling-hot": {
+   "text": "Maji yanachemka — ni moto sana!"
+  }
+ }
+}

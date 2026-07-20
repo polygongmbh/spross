@@ -1,0 +1,138 @@
+[
+ {
+  "slug": "desk",
+  "kind": "noun",
+  "emoji": "🗄️"
+ },
+ {
+  "slug": "laptop",
+  "kind": "noun",
+  "emoji": "💻"
+ },
+ {
+  "slug": "keyboard",
+  "kind": "noun",
+  "emoji": "⌨️"
+ },
+ {
+  "slug": "screen",
+  "kind": "noun",
+  "emoji": "🖥️"
+ },
+ {
+  "slug": "mouse",
+  "kind": "noun",
+  "emoji": "🖱️"
+ },
+ {
+  "slug": "cable",
+  "kind": "noun",
+  "emoji": "⚡"
+ },
+ {
+  "slug": "headphones",
+  "kind": "noun",
+  "emoji": "🎧"
+ },
+ {
+  "slug": "pen",
+  "kind": "noun",
+  "emoji": "✏️"
+ },
+ {
+  "slug": "notebook",
+  "kind": "noun",
+  "emoji": "📓"
+ },
+ {
+  "slug": "printer",
+  "kind": "noun",
+  "emoji": "🖨️"
+ },
+ {
+  "slug": "socket",
+  "kind": "noun",
+  "emoji": "🔌"
+ },
+ {
+  "slug": "office-chair",
+  "kind": "noun",
+  "emoji": "💺"
+ },
+ {
+  "slug": "work",
+  "kind": "verb"
+ },
+ {
+  "slug": "type",
+  "kind": "verb"
+ },
+ {
+  "slug": "print",
+  "kind": "verb"
+ },
+ {
+  "slug": "save",
+  "kind": "verb"
+ },
+ {
+  "slug": "take-break",
+  "kind": "verb"
+ },
+ {
+  "slug": "write",
+  "kind": "verb"
+ },
+ {
+  "slug": "call",
+  "kind": "verb"
+ },
+ {
+  "slug": "delete",
+  "kind": "verb"
+ },
+ {
+  "slug": "study",
+  "kind": "verb"
+ },
+ {
+  "slug": "im-in-a-meeting",
+  "kind": "phrase"
+ },
+ {
+  "slug": "do-not-disturb",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-laptop-wont-charge-anymore",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-wifi-is-completely-gone",
+  "kind": "phrase"
+ },
+ {
+  "slug": "coffee-break",
+  "kind": "phrase"
+ },
+ {
+  "slug": "i-have-a-lot-to-do",
+  "kind": "phrase"
+ },
+ {
+  "slug": "end-of-workday",
+  "kind": "phrase"
+ },
+ {
+  "slug": "send-me-the-email",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-laptop-wont-charge-at-all",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-wifi-suddenly-dropped",
+  "kind": "phrase"
+ }
+]

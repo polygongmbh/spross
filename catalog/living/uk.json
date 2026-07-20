@@ -1,0 +1,98 @@
+{
+ "title": "У вітальні · час відпочити",
+ "words": {
+  "sofa": {
+   "text": "диван"
+  },
+  "dining-table": {
+   "text": "обідній стіл"
+  },
+  "chair": {
+   "text": "стілець"
+  },
+  "tv": {
+   "text": "телевізор"
+  },
+  "remote": {
+   "text": "пульт"
+  },
+  "shelf": {
+   "text": "полиця",
+   "variants": [
+    "стелаж"
+   ]
+  },
+  "plant": {
+   "text": "рослина",
+   "variants": [
+    "вазон"
+   ]
+  },
+  "window": {
+   "text": "вікно"
+  },
+  "curtain": {
+   "text": "штора"
+  },
+  "carpet": {
+   "text": "килим"
+  },
+  "lamp": {
+   "text": "лампа"
+  },
+  "picture": {
+   "text": "картина"
+  },
+  "eat": {
+   "text": "їсти"
+  },
+  "watch-tv": {
+   "text": "дивитися телевізор"
+  },
+  "read": {
+   "text": "читати"
+  },
+  "relax": {
+   "text": "відпочивати"
+  },
+  "tidy-up": {
+   "text": "прибирати"
+  },
+  "listen-to-music": {
+   "text": "слухати музику"
+  },
+  "water-plants": {
+   "text": "поливати"
+  },
+  "play": {
+   "text": "грати"
+  },
+  "talk": {
+   "text": "розмовляти"
+  },
+  "the-food-is-ready": {
+   "text": "Їжа готова!"
+  },
+  "turn-on-the-tv": {
+   "text": "Увімкни, будь ласка, телевізор."
+  },
+  "come-sit-with-me": {
+   "text": "Ходи сюди, сідай поруч зі мною!"
+  },
+  "shall-we-watch-a-movie": {
+   "text": "Може, подивимося фільм?"
+  },
+  "lets-hang-the-picture": {
+   "text": "Повісимо картину!"
+  },
+  "the-curtains-hang-over-the-window": {
+   "text": "Штори висять перед вікном."
+  },
+  "can-you-turn-off-the-light": {
+   "text": "Можеш вимкнути світло?"
+  },
+  "open-the-window-fresh-air": {
+   "text": "Відчини, будь ласка, вікно — свіже повітря!"
+  }
+ }
+}

@@ -1,0 +1,130 @@
+[
+ {
+  "slug": "bed",
+  "kind": "noun",
+  "emoji": "🛏️"
+ },
+ {
+  "slug": "mattress",
+  "kind": "noun",
+  "emoji": "🛌"
+ },
+ {
+  "slug": "pillow",
+  "kind": "noun",
+  "emoji": "💤"
+ },
+ {
+  "slug": "blanket",
+  "kind": "noun",
+  "emoji": "☁️"
+ },
+ {
+  "slug": "bedding",
+  "kind": "noun",
+  "emoji": "🧺"
+ },
+ {
+  "slug": "wardrobe",
+  "kind": "noun",
+  "emoji": "👗"
+ },
+ {
+  "slug": "alarm-clock",
+  "kind": "noun",
+  "emoji": "⏰"
+ },
+ {
+  "slug": "nightstand",
+  "kind": "noun",
+  "emoji": "🕯️"
+ },
+ {
+  "slug": "pyjamas",
+  "kind": "noun",
+  "emoji": "🩳"
+ },
+ {
+  "slug": "sock",
+  "kind": "noun",
+  "emoji": "🧦"
+ },
+ {
+  "slug": "trousers",
+  "kind": "noun",
+  "emoji": "👖"
+ },
+ {
+  "slug": "t-shirt",
+  "kind": "noun",
+  "emoji": "👕"
+ },
+ {
+  "slug": "sleep",
+  "kind": "verb"
+ },
+ {
+  "slug": "wake-up",
+  "kind": "verb"
+ },
+ {
+  "slug": "dream",
+  "kind": "verb"
+ },
+ {
+  "slug": "get-up",
+  "kind": "verb"
+ },
+ {
+  "slug": "get-dressed",
+  "kind": "verb"
+ },
+ {
+  "slug": "get-undressed",
+  "kind": "verb"
+ },
+ {
+  "slug": "cuddle",
+  "kind": "verb"
+ },
+ {
+  "slug": "yawn",
+  "kind": "verb"
+ },
+ {
+  "slug": "snore",
+  "kind": "verb"
+ },
+ {
+  "slug": "good-night-sleep-well",
+  "kind": "phrase"
+ },
+ {
+  "slug": "good-morning-my-love",
+  "kind": "phrase"
+ },
+ {
+  "slug": "im-tired",
+  "kind": "phrase"
+ },
+ {
+  "slug": "sweet-dreams",
+  "kind": "phrase"
+ },
+ {
+  "slug": "did-you-set-the-alarm",
+  "kind": "phrase"
+ },
+ {
+  "slug": "five-more-minutes",
+  "kind": "phrase"
+ },
+ {
+  "slug": "turn-off-the-light",
+  "kind": "phrase"
+ },
+ {
+  "slug": "i-love-you",
+  "kind": "phrase"
+ }
+]

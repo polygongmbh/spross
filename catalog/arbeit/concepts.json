@@ -1,0 +1,120 @@
+[
+ {
+  "slug": "work",
+  "kind": "noun",
+  "emoji": "💼"
+ },
+ {
+  "slug": "job-application",
+  "kind": "noun",
+  "emoji": "📩"
+ },
+ {
+  "slug": "cv",
+  "kind": "noun",
+  "emoji": "📜"
+ },
+ {
+  "slug": "contract",
+  "kind": "noun",
+  "emoji": "📑"
+ },
+ {
+  "slug": "salary",
+  "kind": "noun",
+  "emoji": "💶"
+ },
+ {
+  "slug": "colleague",
+  "kind": "noun",
+  "emoji": "👥"
+ },
+ {
+  "slug": "boss",
+  "kind": "noun",
+  "emoji": "👔"
+ },
+ {
+  "slug": "shift",
+  "kind": "noun",
+  "emoji": "🕗"
+ },
+ {
+  "slug": "holiday",
+  "kind": "noun",
+  "emoji": "🏖️"
+ },
+ {
+  "slug": "company",
+  "kind": "noun",
+  "emoji": "🏢"
+ },
+ {
+  "slug": "apply",
+  "kind": "verb"
+ },
+ {
+  "slug": "introduce-oneself",
+  "kind": "verb"
+ },
+ {
+  "slug": "earn",
+  "kind": "verb"
+ },
+ {
+  "slug": "start",
+  "kind": "verb"
+ },
+ {
+  "slug": "stop",
+  "kind": "verb"
+ },
+ {
+  "slug": "quit",
+  "kind": "verb"
+ },
+ {
+  "slug": "hire",
+  "kind": "verb"
+ },
+ {
+  "slug": "help",
+  "kind": "verb"
+ },
+ {
+  "slug": "work-overtime",
+  "kind": "verb"
+ },
+ {
+  "slug": "tomorrow-i-have-a-job-interview",
+  "kind": "phrase"
+ },
+ {
+  "slug": "my-shift-starts-at-six",
+  "kind": "phrase"
+ },
+ {
+  "slug": "ill-send-the-sick-note-right-away",
+  "kind": "phrase"
+ },
+ {
+  "slug": "have-a-nice-evening-off",
+  "kind": "phrase"
+ },
+ {
+  "slug": "can-you-help-me-briefly",
+  "kind": "phrase"
+ },
+ {
+  "slug": "i-want-vacation-next-week",
+  "kind": "phrase"
+ },
+ {
+  "slug": "read-the-contract-carefully",
+  "kind": "phrase"
+ },
+ {
+  "slug": "whats-the-salary",
+  "kind": "phrase"
+ }
+]

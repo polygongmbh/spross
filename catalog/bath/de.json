@@ -1,0 +1,143 @@
+{
+ "title": "Das Badezimmer",
+ "words": {
+  "washing-machine": {
+   "text": "Waschmaschine",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "laundry": {
+   "text": "Wäsche",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "toilet": {
+   "text": "Toilette",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "shower": {
+   "text": "Dusche",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "sink": {
+   "text": "Waschbecken",
+   "grammar": {
+    "gender": "das",
+    "plural": "–"
+   }
+  },
+  "mirror": {
+   "text": "Spiegel",
+   "grammar": {
+    "gender": "der",
+    "plural": "–"
+   }
+  },
+  "toothbrush": {
+   "text": "Zahnbürste",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "toothpaste": {
+   "text": "Zahnpasta",
+   "grammar": {
+    "gender": "die",
+    "plural": "die Zahnpasten"
+   }
+  },
+  "towel": {
+   "text": "Handtuch",
+   "grammar": {
+    "gender": "das",
+    "plural": "die Handtücher"
+   }
+  },
+  "soap": {
+   "text": "Seife",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "shampoo": {
+   "text": "Shampoo",
+   "grammar": {
+    "gender": "das",
+    "plural": "-s"
+   }
+  },
+  "hairdryer": {
+   "text": "Föhn",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "take-shower": {
+   "text": "duschen"
+  },
+  "do-laundry": {
+   "text": "Wäsche waschen"
+  },
+  "brush-teeth": {
+   "text": "Zähne putzen"
+  },
+  "dry-off": {
+   "text": "abtrocknen"
+  },
+  "hang-up": {
+   "text": "aufhängen"
+  },
+  "clean": {
+   "text": "putzen"
+  },
+  "shave": {
+   "text": "rasieren"
+  },
+  "comb": {
+   "text": "kämmen"
+  },
+  "apply-lotion": {
+   "text": "eincremen"
+  },
+  "im-taking-a-quick-shower": {
+   "text": "Ich gehe kurz duschen."
+  },
+  "the-bathroom-is-occupied": {
+   "text": "Das Bad ist besetzt!"
+  },
+  "the-laundry-is-done": {
+   "text": "Die Wäsche ist fertig."
+  },
+  "wheres-my-towel": {
+   "text": "Wo ist mein Handtuch?"
+  },
+  "can-you-hang-the-laundry-outside": {
+   "text": "Kannst du die Wäsche draußen aufhängen?"
+  },
+  "dont-forget-to-brush-teeth": {
+   "text": "Vergiss nicht, Zähne zu putzen!"
+  },
+  "wash-your-hands-thoroughly": {
+   "text": "Wasch dir die Hände gründlich."
+  },
+  "the-water-is-cold": {
+   "text": "Das Wasser ist kalt!"
+  },
+  "can-you-hang-the-laundry-here": {
+   "text": "Kannst du die Wäsche hier aufhängen?"
+  }
+ }
+}

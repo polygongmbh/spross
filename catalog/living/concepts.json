@@ -1,0 +1,130 @@
+[
+ {
+  "slug": "sofa",
+  "kind": "noun",
+  "emoji": "🛋️"
+ },
+ {
+  "slug": "dining-table",
+  "kind": "noun",
+  "emoji": "🍽️"
+ },
+ {
+  "slug": "chair",
+  "kind": "noun",
+  "emoji": "🪑"
+ },
+ {
+  "slug": "tv",
+  "kind": "noun",
+  "emoji": "📺"
+ },
+ {
+  "slug": "remote",
+  "kind": "noun",
+  "emoji": "🎮"
+ },
+ {
+  "slug": "shelf",
+  "kind": "noun",
+  "emoji": "📚"
+ },
+ {
+  "slug": "plant",
+  "kind": "noun",
+  "emoji": "🪴"
+ },
+ {
+  "slug": "window",
+  "kind": "noun",
+  "emoji": "🪟"
+ },
+ {
+  "slug": "curtain",
+  "kind": "noun",
+  "emoji": "🎭"
+ },
+ {
+  "slug": "carpet",
+  "kind": "noun",
+  "emoji": "🧶"
+ },
+ {
+  "slug": "lamp",
+  "kind": "noun",
+  "emoji": "💡"
+ },
+ {
+  "slug": "picture",
+  "kind": "noun",
+  "emoji": "🖼️"
+ },
+ {
+  "slug": "eat",
+  "kind": "verb"
+ },
+ {
+  "slug": "watch-tv",
+  "kind": "verb"
+ },
+ {
+  "slug": "read",
+  "kind": "verb"
+ },
+ {
+  "slug": "relax",
+  "kind": "verb"
+ },
+ {
+  "slug": "tidy-up",
+  "kind": "verb"
+ },
+ {
+  "slug": "listen-to-music",
+  "kind": "verb"
+ },
+ {
+  "slug": "water-plants",
+  "kind": "verb"
+ },
+ {
+  "slug": "play",
+  "kind": "verb"
+ },
+ {
+  "slug": "talk",
+  "kind": "verb"
+ },
+ {
+  "slug": "the-food-is-ready",
+  "kind": "phrase"
+ },
+ {
+  "slug": "turn-on-the-tv",
+  "kind": "phrase"
+ },
+ {
+  "slug": "come-sit-with-me",
+  "kind": "phrase"
+ },
+ {
+  "slug": "shall-we-watch-a-movie",
+  "kind": "phrase"
+ },
+ {
+  "slug": "lets-hang-the-picture",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-curtains-hang-over-the-window",
+  "kind": "phrase"
+ },
+ {
+  "slug": "can-you-turn-off-the-light",
+  "kind": "phrase"
+ },
+ {
+  "slug": "open-the-window-fresh-air",
+  "kind": "phrase"
+ }
+]

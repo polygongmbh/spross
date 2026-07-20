@@ -1,0 +1,149 @@
+{
+ "title": "Der Flur & der Eingang",
+ "words": {
+  "hallway": {
+   "text": "Flur",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "door": {
+   "text": "Tür",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "key": {
+   "text": "Schlüssel",
+   "grammar": {
+    "gender": "der",
+    "plural": "–"
+   }
+  },
+  "jacket": {
+   "text": "Jacke",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "coat": {
+   "text": "Mantel",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Mäntel"
+   }
+  },
+  "shoe-rack": {
+   "text": "Schuhregal",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "umbrella": {
+   "text": "Regenschirm",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "hat": {
+   "text": "Mütze",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "mailbox": {
+   "text": "Briefkasten",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Briefkästen"
+   }
+  },
+  "doorbell": {
+   "text": "Klingel",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "stairs": {
+   "text": "Treppe",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "bag": {
+   "text": "Tasche",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "lock": {
+   "text": "abschließen"
+  },
+  "ring": {
+   "text": "klingeln"
+  },
+  "take-off-shoes": {
+   "text": "Schuhe ausziehen"
+  },
+  "set-off": {
+   "text": "losgehen"
+  },
+  "unlock": {
+   "text": "aufschließen"
+  },
+  "put-on": {
+   "text": "anziehen"
+  },
+  "wait": {
+   "text": "warten"
+  },
+  "arrive": {
+   "text": "ankommen"
+  },
+  "greet": {
+   "text": "begrüßen"
+  },
+  "say-goodbye": {
+   "text": "sich verabschieden"
+  },
+  "do-you-have-the-keys": {
+   "text": "Hast du die Schlüssel?"
+  },
+  "ill-be-right-back": {
+   "text": "Ich bin gleich zurück!"
+  },
+  "take-off-your-shoes-here": {
+   "text": "Zieh die Schuhe bitte hier aus."
+  },
+  "hurry-were-late": {
+   "text": "Beeil dich, wir sind spät dran!"
+  },
+  "see-you-later": {
+   "text": "Bis später!"
+  },
+  "welcome-home": {
+   "text": "Willkommen zu Hause!"
+  },
+  "the-doorbell-suddenly-rang": {
+   "text": "Es hat plötzlich geklingelt."
+  },
+  "dont-forget-your-jacket": {
+   "text": "Vergiss deine Jacke nicht!"
+  },
+  "take-off-your-shoes-at-the-door": {
+   "text": "Zieh die Schuhe bitte an der Tür aus."
+  },
+  "the-doorbell-just-rang": {
+   "text": "Es hat gerade eben geklingelt."
+  }
+ }
+}

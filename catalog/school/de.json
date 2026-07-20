@@ -1,0 +1,131 @@
+{
+ "title": "Die Schule & der Sprachkurs",
+ "words": {
+  "school": {
+   "text": "Schule",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "classroom": {
+   "text": "Klassenzimmer",
+   "grammar": {
+    "gender": "das",
+    "plural": "–"
+   }
+  },
+  "integration-course": {
+   "text": "Integrationskurs",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "teacher": {
+   "text": "Lehrer",
+   "grammar": {
+    "gender": "der",
+    "plural": "♀ die Lehrerin"
+   }
+  },
+  "board": {
+   "text": "Tafel",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "dictionary": {
+   "text": "Wörterbuch",
+   "grammar": {
+    "gender": "das",
+    "plural": "die Wörterbücher"
+   }
+  },
+  "exercise-book": {
+   "text": "Heft",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "homework": {
+   "text": "Hausaufgabe",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "exam": {
+   "text": "Prüfung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "break": {
+   "text": "Pause",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "question": {
+   "text": "Frage",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "answer": {
+   "text": "Antwort",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "speak": {
+   "text": "sprechen"
+  },
+  "understand": {
+   "text": "verstehen"
+  },
+  "ask": {
+   "text": "fragen"
+  },
+  "reply": {
+   "text": "antworten"
+  },
+  "repeat": {
+   "text": "wiederholen"
+  },
+  "translate": {
+   "text": "übersetzen"
+  },
+  "pass-exam": {
+   "text": "bestehen"
+  },
+  "practise": {
+   "text": "üben"
+  },
+  "raise-hand": {
+   "text": "sich melden"
+  },
+  "i-have-a-question": {
+   "text": "Ich habe eine Frage."
+  },
+  "what-does-this-word-mean": {
+   "text": "Was bedeutet dieses Wort?"
+  },
+  "how-do-you-say-this-in-german": {
+   "text": "Wie sagt man das auf Deutsch?"
+  },
+  "im-learning-german": {
+   "text": "Ich lerne Deutsch."
+  },
+  "you-can-do-it": {
+   "text": "Du schaffst das bestimmt!"
+  }
+ }
+}

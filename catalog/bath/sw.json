@@ -1,0 +1,92 @@
+{
+ "title": "Bafuni · safi kabisa!",
+ "words": {
+  "washing-machine": {
+   "text": "mashine ya kufulia"
+  },
+  "laundry": {
+   "text": "nguo za kufua"
+  },
+  "toilet": {
+   "text": "choo"
+  },
+  "shower": {
+   "text": "shawa"
+  },
+  "sink": {
+   "text": "sinki la kunawa"
+  },
+  "mirror": {
+   "text": "kioo"
+  },
+  "toothbrush": {
+   "text": "mswaki"
+  },
+  "toothpaste": {
+   "text": "dawa ya meno"
+  },
+  "towel": {
+   "text": "taulo"
+  },
+  "soap": {
+   "text": "sabuni"
+  },
+  "shampoo": {
+   "text": "shampuu"
+  },
+  "hairdryer": {
+   "text": "kikausha nywele"
+  },
+  "take-shower": {
+   "text": "kuoga"
+  },
+  "do-laundry": {
+   "text": "kufua nguo"
+  },
+  "brush-teeth": {
+   "text": "kupiga mswaki"
+  },
+  "dry-off": {
+   "text": "kujikausha"
+  },
+  "hang-up": {
+   "text": "kuanika"
+  },
+  "clean": {
+   "text": "kusafisha"
+  },
+  "shave": {
+   "text": "kunyoa"
+  },
+  "comb": {
+   "text": "kuchana"
+  },
+  "apply-lotion": {
+   "text": "kujipaka mafuta"
+  },
+  "im-taking-a-quick-shower": {
+   "text": "Naenda kuoga kidogo."
+  },
+  "the-bathroom-is-occupied": {
+   "text": "Bafu inatumika!"
+  },
+  "the-laundry-is-done": {
+   "text": "Nguo ziko tayari."
+  },
+  "wheres-my-towel": {
+   "text": "Taulo langu liko wapi?"
+  },
+  "can-you-hang-the-laundry-outside": {
+   "text": "Unaweza kuanika nguo nje?"
+  },
+  "dont-forget-to-brush-teeth": {
+   "text": "Usisahau kupiga mswaki!"
+  },
+  "wash-your-hands-thoroughly": {
+   "text": "Nawa mikono vizuri."
+  },
+  "the-water-is-cold": {
+   "text": "Maji ni baridi!"
+  }
+ }
+}

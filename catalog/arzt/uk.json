@@ -1,0 +1,119 @@
+{
+ "title": "У лікаря · будьте здорові!",
+ "words": {
+  "doctor": {
+   "text": "лікар",
+   "variants": [
+    "лікарка"
+   ]
+  },
+  "practice": {
+   "text": "лікарський кабінет",
+   "notes": {
+    "de": "auch «практика» (v. a. Privatpraxis)"
+   }
+  },
+  "appointment": {
+   "text": "запис на прийом",
+   "variants": [
+    "візит"
+   ]
+  },
+  "pain": {
+   "text": "біль",
+   "notes": {
+    "de": "Achtung: «біль» ist maskulin!"
+   }
+  },
+  "fever": {
+   "text": "температура",
+   "variants": [
+    "гарячка"
+   ]
+  },
+  "pill": {
+   "text": "таблетка",
+   "variants": [
+    "пігулка"
+   ]
+  },
+  "prescription": {
+   "text": "рецепт"
+  },
+  "pharmacy": {
+   "text": "аптека"
+  },
+  "insurance-card": {
+   "text": "картка медичного страхування"
+  },
+  "health-insurance": {
+   "text": "лікарняна каса"
+  },
+  "cough": {
+   "text": "кашель"
+  },
+  "cold": {
+   "text": "застуда"
+  },
+  "hurt": {
+   "text": "боліти"
+  },
+  "to-cough": {
+   "text": "кашляти"
+  },
+  "examine": {
+   "text": "обстежувати"
+  },
+  "prescribe": {
+   "text": "виписувати",
+   "notes": {
+    "de": "typisch: «виписувати ліки» = Medikamente verschreiben"
+   }
+  },
+  "take-medicine": {
+   "text": "приймати",
+   "notes": {
+    "de": "typisch: «приймати ліки» = Medikamente einnehmen"
+   }
+  },
+  "pick-up": {
+   "text": "забирати"
+  },
+  "call-in-sick": {
+   "text": "повідомляти, що захворів",
+   "variants": [
+    "іти на лікарняний"
+   ]
+  },
+  "rest": {
+   "text": "відпочивати"
+  },
+  "cancel": {
+   "text": "скасовувати"
+  },
+  "i-have-an-appointment-at-ten": {
+   "text": "О десятій годині я записаний (записана) до лікаря."
+  },
+  "my-throat-hurts-a-lot": {
+   "text": "У мене дуже болить горло."
+  },
+  "ive-had-a-fever-since-yesterday": {
+   "text": "У мене з учора температура."
+  },
+  "take-the-pills-twice-daily": {
+   "text": "Приймайте, будь ласка, таблетки двічі на день."
+  },
+  "get-well-soon": {
+   "text": "Швидкого одужання!"
+  },
+  "take-the-prescription-to-the-pharmacy": {
+   "text": "З рецептом ідіть до аптеки."
+  },
+  "show-me-your-insurance-card": {
+   "text": "Покажіть мені, будь ласка, вашу картку страхування."
+  },
+  "i-have-to-cancel-the-appointment": {
+   "text": "На жаль, я мушу скасувати візит."
+  }
+ }
+}

@@ -1,0 +1,118 @@
+[
+ {
+  "slug": "school",
+  "kind": "noun",
+  "emoji": "🏫"
+ },
+ {
+  "slug": "classroom",
+  "kind": "noun",
+  "emoji": "🎓"
+ },
+ {
+  "slug": "integration-course",
+  "kind": "noun",
+  "emoji": "🤝"
+ },
+ {
+  "slug": "teacher",
+  "kind": "noun",
+  "emoji": "🧑‍🏫"
+ },
+ {
+  "slug": "board",
+  "kind": "noun",
+  "emoji": "📝"
+ },
+ {
+  "slug": "dictionary",
+  "kind": "noun",
+  "emoji": "📖"
+ },
+ {
+  "slug": "exercise-book",
+  "kind": "noun",
+  "emoji": "📒"
+ },
+ {
+  "slug": "homework",
+  "kind": "noun",
+  "emoji": "✍️"
+ },
+ {
+  "slug": "exam",
+  "kind": "noun",
+  "emoji": "📋"
+ },
+ {
+  "slug": "break",
+  "kind": "noun",
+  "emoji": "☕"
+ },
+ {
+  "slug": "question",
+  "kind": "noun",
+  "emoji": "❓"
+ },
+ {
+  "slug": "answer",
+  "kind": "noun",
+  "emoji": "✅"
+ },
+ {
+  "slug": "speak",
+  "kind": "verb"
+ },
+ {
+  "slug": "understand",
+  "kind": "verb"
+ },
+ {
+  "slug": "ask",
+  "kind": "verb"
+ },
+ {
+  "slug": "reply",
+  "kind": "verb"
+ },
+ {
+  "slug": "repeat",
+  "kind": "verb"
+ },
+ {
+  "slug": "translate",
+  "kind": "verb"
+ },
+ {
+  "slug": "pass-exam",
+  "kind": "verb"
+ },
+ {
+  "slug": "practise",
+  "kind": "verb"
+ },
+ {
+  "slug": "raise-hand",
+  "kind": "verb"
+ },
+ {
+  "slug": "i-have-a-question",
+  "kind": "phrase"
+ },
+ {
+  "slug": "what-does-this-word-mean",
+  "kind": "phrase"
+ },
+ {
+  "slug": "how-do-you-say-this-in-german",
+  "kind": "phrase"
+ },
+ {
+  "slug": "im-learning-german",
+  "kind": "phrase"
+ },
+ {
+  "slug": "you-can-do-it",
+  "kind": "phrase"
+ }
+]

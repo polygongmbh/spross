@@ -1,0 +1,120 @@
+{
+ "title": "Die ersten Wörter",
+ "words": {
+  "language": {
+   "text": "Sprache",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "word": {
+   "text": "Wort",
+   "grammar": {
+    "gender": "das",
+    "plural": "die Wörter"
+   }
+  },
+  "name": {
+   "text": "Name",
+   "grammar": {
+    "gender": "der",
+    "plural": "-n"
+   }
+  },
+  "help": {
+   "text": "Hilfe",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "be-called": {
+   "text": "heißen"
+  },
+  "say": {
+   "text": "sagen"
+  },
+  "know": {
+   "text": "wissen"
+  },
+  "need": {
+   "text": "brauchen"
+  },
+  "thank": {
+   "text": "danken"
+  },
+  "hello": {
+   "text": "Hallo!"
+  },
+  "good-day": {
+   "text": "Guten Tag!"
+  },
+  "thank-you": {
+   "text": "Danke schön!"
+  },
+  "please": {
+   "text": "Bitte!"
+  },
+  "excuse-me": {
+   "text": "Entschuldigung!"
+  },
+  "yes": {
+   "text": "Ja."
+  },
+  "no": {
+   "text": "Nein."
+  },
+  "whats-your-name": {
+   "text": "Wie heißen Sie? / Wie heißt du?"
+  },
+  "my-name-is": {
+   "text": "Ich heiße …"
+  },
+  "where-are-you-from": {
+   "text": "Woher kommen Sie? / Woher kommst du?"
+  },
+  "do-you-speak-english": {
+   "text": "Sprechen Sie Englisch? / Sprichst du Englisch?"
+  },
+  "i-speak-a-little-german": {
+   "text": "Ich spreche nur ein bisschen Deutsch."
+  },
+  "i-dont-know": {
+   "text": "Ich weiß nicht."
+  },
+  "pardon": {
+   "text": "Wie bitte?"
+  },
+  "i-need-help": {
+   "text": "Ich brauche Hilfe."
+  },
+  "all-good": {
+   "text": "Alles gut."
+  },
+  "goodbye": {
+   "text": "Auf Wiedersehen!"
+  },
+  "what-is-this-called": {
+   "text": "Wie nennt man das?"
+  },
+  "how-are-you": {
+   "text": "Wie geht es Ihnen? / Wie geht es dir?"
+  },
+  "can-you-repeat-that": {
+   "text": "Können Sie das bitte wiederholen? / Kannst du das bitte wiederholen?"
+  },
+  "i-understand": {
+   "text": "Ich verstehe."
+  },
+  "i-dont-understand": {
+   "text": "Ich verstehe nicht."
+  },
+  "slower-please": {
+   "text": "Langsamer, bitte!"
+  },
+  "bye": {
+   "text": "Tschüss!"
+  }
+ }
+}

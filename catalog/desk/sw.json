@@ -1,0 +1,95 @@
+{
+ "title": "Mahali pa kazi · kazi njema!",
+ "words": {
+  "desk": {
+   "text": "meza ya kazi"
+  },
+  "laptop": {
+   "text": "kompyuta mpakato"
+  },
+  "keyboard": {
+   "text": "kibodi"
+  },
+  "screen": {
+   "text": "skrini"
+  },
+  "mouse": {
+   "text": "kipanya"
+  },
+  "cable": {
+   "text": "kebo",
+   "variants": [
+    "waya"
+   ]
+  },
+  "headphones": {
+   "text": "hedfoni"
+  },
+  "pen": {
+   "text": "kalamu"
+  },
+  "notebook": {
+   "text": "daftari"
+  },
+  "printer": {
+   "text": "printa"
+  },
+  "socket": {
+   "text": "soketi"
+  },
+  "office-chair": {
+   "text": "kiti cha ofisi"
+  },
+  "work": {
+   "text": "kufanya kazi"
+  },
+  "type": {
+   "text": "kuchapa"
+  },
+  "print": {
+   "text": "kuchapisha"
+  },
+  "save": {
+   "text": "kuhifadhi"
+  },
+  "take-break": {
+   "text": "kupumzika"
+  },
+  "write": {
+   "text": "kuandika"
+  },
+  "call": {
+   "text": "kupiga simu"
+  },
+  "delete": {
+   "text": "kufuta"
+  },
+  "study": {
+   "text": "kujifunza"
+  },
+  "im-in-a-meeting": {
+   "text": "Niko kwenye mkutano."
+  },
+  "do-not-disturb": {
+   "text": "Usinisumbue, tafadhali!"
+  },
+  "the-laptop-wont-charge-anymore": {
+   "text": "Laptop haichaji tena."
+  },
+  "the-wifi-is-completely-gone": {
+   "text": "Intaneti imekatika kabisa."
+  },
+  "coffee-break": {
+   "text": "Mapumziko ya kahawa?"
+  },
+  "i-have-a-lot-to-do": {
+   "text": "Nina kazi nyingi."
+  },
+  "end-of-workday": {
+   "text": "Kazi imeisha kwa leo!"
+  },
+  "send-me-the-email": {
+   "text": "Tafadhali nitumie barua pepe."
+  }
+ }
+}

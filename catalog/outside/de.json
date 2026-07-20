@@ -1,0 +1,146 @@
+{
+ "title": "Draußen & unterwegs",
+ "words": {
+  "street": {
+   "text": "Straße",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "traffic-light": {
+   "text": "Ampel",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "bicycle": {
+   "text": "Fahrrad",
+   "grammar": {
+    "gender": "das",
+    "plural": "die Fahrräder"
+   }
+  },
+  "bus": {
+   "text": "Bus",
+   "grammar": {
+    "gender": "der",
+    "plural": "-se"
+   }
+  },
+  "bus-stop": {
+   "text": "Haltestelle",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "train": {
+   "text": "Zug",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Züge"
+   }
+  },
+  "tree": {
+   "text": "Baum",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Bäume"
+   }
+  },
+  "flower": {
+   "text": "Blume",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "park": {
+   "text": "Park",
+   "grammar": {
+    "gender": "der",
+    "plural": "-s"
+   }
+  },
+  "sun": {
+   "text": "Sonne",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "rain": {
+   "text": "Regen",
+   "grammar": {
+    "gender": "der",
+    "plural": "–"
+   }
+  },
+  "weather": {
+   "text": "Wetter",
+   "grammar": {
+    "gender": "das",
+    "plural": "–"
+   }
+  },
+  "go-for-walk": {
+   "text": "spazieren gehen"
+  },
+  "ride-bike": {
+   "text": "Rad fahren"
+  },
+  "shop": {
+   "text": "einkaufen"
+  },
+  "take-bus": {
+   "text": "den Bus nehmen"
+  },
+  "jog": {
+   "text": "joggen"
+  },
+  "barbecue": {
+   "text": "grillen"
+  },
+  "sunbathe": {
+   "text": "sich sonnen"
+  },
+  "plant": {
+   "text": "pflanzen"
+  },
+  "depart": {
+   "text": "abfahren"
+  },
+  "hows-the-weather-today": {
+   "text": "Wie ist das Wetter heute?"
+  },
+  "always-take-an-umbrella": {
+   "text": "Nimm immer einen Regenschirm mit!"
+  },
+  "its-raining": {
+   "text": "Es regnet."
+  },
+  "the-sun-is-shining": {
+   "text": "Die Sonne scheint!"
+  },
+  "shall-we-take-a-walk-together": {
+   "text": "Wollen wir zusammen spazieren gehen?"
+  },
+  "the-bus-is-coming-soon": {
+   "text": "Der Bus kommt gleich."
+  },
+  "when-does-the-train-leave": {
+   "text": "Wann fährt der Zug ab?"
+  },
+  "what-a-beautiful-day": {
+   "text": "Was für ein schöner Tag!"
+  },
+  "definitely-take-an-umbrella": {
+   "text": "Nimm unbedingt einen Regenschirm mit!"
+  },
+  "shall-we-take-a-walk": {
+   "text": "Wollen wir spazieren gehen?"
+  }
+ }
+}

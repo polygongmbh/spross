@@ -1,0 +1,125 @@
+[
+ {
+  "slug": "office",
+  "kind": "noun",
+  "emoji": "🏛️"
+ },
+ {
+  "slug": "form",
+  "kind": "noun",
+  "emoji": "📄"
+ },
+ {
+  "slug": "application",
+  "kind": "noun",
+  "emoji": "📝"
+ },
+ {
+  "slug": "id-card",
+  "kind": "noun",
+  "emoji": "🪪"
+ },
+ {
+  "slug": "residence-permit",
+  "kind": "noun",
+  "emoji": "🛂"
+ },
+ {
+  "slug": "signature",
+  "kind": "noun",
+  "emoji": "✍️"
+ },
+ {
+  "slug": "ticket-number",
+  "kind": "noun",
+  "emoji": "🎫"
+ },
+ {
+  "slug": "case-worker",
+  "kind": "noun",
+  "emoji": "🧑‍💼"
+ },
+ {
+  "slug": "deadline",
+  "kind": "noun",
+  "emoji": "⏳"
+ },
+ {
+  "slug": "registration",
+  "kind": "noun",
+  "emoji": "🏠"
+ },
+ {
+  "slug": "documents",
+  "kind": "noun",
+  "emoji": "📂"
+ },
+ {
+  "slug": "fill-in",
+  "kind": "verb"
+ },
+ {
+  "slug": "sign",
+  "kind": "verb"
+ },
+ {
+  "slug": "apply-for",
+  "kind": "verb"
+ },
+ {
+  "slug": "submit",
+  "kind": "verb"
+ },
+ {
+  "slug": "hand-in",
+  "kind": "verb"
+ },
+ {
+  "slug": "extend",
+  "kind": "verb"
+ },
+ {
+  "slug": "bring",
+  "kind": "verb"
+ },
+ {
+  "slug": "copy",
+  "kind": "verb"
+ },
+ {
+  "slug": "expire",
+  "kind": "verb"
+ },
+ {
+  "slug": "where-do-i-sign",
+  "kind": "phrase"
+ },
+ {
+  "slug": "i-want-to-extend-my-residence-permit",
+  "kind": "phrase"
+ },
+ {
+  "slug": "please-fill-out-the-form-completely",
+  "kind": "phrase"
+ },
+ {
+  "slug": "take-a-queue-number-first",
+  "kind": "phrase"
+ },
+ {
+  "slug": "i-need-an-interpreter-for-the-application",
+  "kind": "phrase"
+ },
+ {
+  "slug": "do-you-have-all-the-documents",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-decision-comes-by-mail",
+  "kind": "phrase"
+ },
+ {
+  "slug": "when-does-my-id-expire",
+  "kind": "phrase"
+ }
+]

@@ -1,0 +1,92 @@
+{
+ "title": "Darasani · tujifunze pamoja!",
+ "words": {
+  "school": {
+   "text": "shule"
+  },
+  "classroom": {
+   "text": "darasa"
+  },
+  "integration-course": {
+   "text": "kozi ya lugha na kuzoea jamii"
+  },
+  "teacher": {
+   "text": "mwalimu"
+  },
+  "board": {
+   "text": "ubao"
+  },
+  "dictionary": {
+   "text": "kamusi"
+  },
+  "exercise-book": {
+   "text": "daftari"
+  },
+  "homework": {
+   "text": "kazi ya nyumbani"
+  },
+  "exam": {
+   "text": "mtihani"
+  },
+  "break": {
+   "text": "pumziko",
+   "grammar": {
+    "plural": "mapumziko"
+   }
+  },
+  "question": {
+   "text": "swali",
+   "grammar": {
+    "plural": "maswali"
+   }
+  },
+  "answer": {
+   "text": "jibu",
+   "grammar": {
+    "plural": "majibu"
+   }
+  },
+  "speak": {
+   "text": "kuzungumza"
+  },
+  "understand": {
+   "text": "kuelewa"
+  },
+  "ask": {
+   "text": "kuuliza"
+  },
+  "reply": {
+   "text": "kujibu"
+  },
+  "repeat": {
+   "text": "kurudia"
+  },
+  "translate": {
+   "text": "kutafsiri"
+  },
+  "pass-exam": {
+   "text": "kufaulu"
+  },
+  "practise": {
+   "text": "kufanya mazoezi"
+  },
+  "raise-hand": {
+   "text": "kuinua mkono"
+  },
+  "i-have-a-question": {
+   "text": "Nina swali."
+  },
+  "what-does-this-word-mean": {
+   "text": "Neno hili lina maana gani?"
+  },
+  "how-do-you-say-this-in-german": {
+   "text": "Unasemaje kwa Kijerumani?"
+  },
+  "im-learning-german": {
+   "text": "Ninajifunza Kijerumani."
+  },
+  "you-can-do-it": {
+   "text": "Hakika utaweza!"
+  }
+ }
+}

@@ -1,0 +1,110 @@
+{
+ "title": "Kwa daktari · afya njema!",
+ "words": {
+  "doctor": {
+   "text": "daktari",
+   "grammar": {
+    "plural": "madaktari"
+   }
+  },
+  "practice": {
+   "text": "kliniki"
+  },
+  "appointment": {
+   "text": "miadi"
+  },
+  "pain": {
+   "text": "maumivu",
+   "grammar": {
+    "pluralOnly": true
+   }
+  },
+  "fever": {
+   "text": "homa"
+  },
+  "pill": {
+   "text": "kidonge"
+  },
+  "prescription": {
+   "text": "cheti cha dawa"
+  },
+  "pharmacy": {
+   "text": "duka la dawa"
+  },
+  "insurance-card": {
+   "text": "kadi ya bima ya afya"
+  },
+  "health-insurance": {
+   "text": "mfuko wa bima ya afya"
+  },
+  "cough": {
+   "text": "kikohozi"
+  },
+  "cold": {
+   "text": "mafua",
+   "grammar": {
+    "pluralOnly": true
+   }
+  },
+  "hurt": {
+   "text": "kuuma"
+  },
+  "to-cough": {
+   "text": "kukohoa"
+  },
+  "examine": {
+   "text": "kupima"
+  },
+  "prescribe": {
+   "text": "kuandika dawa"
+  },
+  "take-medicine": {
+   "text": "kunywa dawa"
+  },
+  "pick-up": {
+   "text": "kuchukua"
+  },
+  "call-in-sick": {
+   "text": "kutoa taarifa ya ugonjwa"
+  },
+  "rest": {
+   "text": "kupumzika"
+  },
+  "cancel": {
+   "text": "kughairi"
+  },
+  "i-have-an-appointment-at-ten": {
+   "text": "Nina miadi kwenye kliniki saa nne asubuhi.",
+   "notes": {
+    "de": "saa nne = wörtl. „vierte Stunde“! Die Swahili-Uhr startet um 6 Uhr morgens: 10 Uhr = saa 4"
+   }
+  },
+  "my-throat-hurts-a-lot": {
+   "text": "Koo linaniuma sana."
+  },
+  "ive-had-a-fever-since-yesterday": {
+   "text": "Nina homa tangu jana."
+  },
+  "take-the-pills-twice-daily": {
+   "text": "Tafadhali kunywa vidonge mara mbili kwa siku."
+  },
+  "get-well-soon": {
+   "text": "Pole! Upone haraka!",
+   "notes": {
+    "de": "pole = Mitgefühls-Wort ohne deutsches Gegenstück; upone haraka wörtl. „mögest du schnell heilen“"
+   }
+  },
+  "take-the-prescription-to-the-pharmacy": {
+   "text": "Nenda na cheti cha dawa hadi duka la dawa."
+  },
+  "show-me-your-insurance-card": {
+   "text": "Tafadhali nionyeshe kadi yako ya bima ya afya."
+  },
+  "i-have-to-cancel-the-appointment": {
+   "text": "Samahani, lazima nighairi miadi.",
+   "notes": {
+    "de": "miadi sieht aus wie ein Plural (mi-), ist aber Einzahl — arabisches Lehnwort"
+   }
+  }
+ }
+}

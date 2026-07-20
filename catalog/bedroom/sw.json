@@ -1,0 +1,92 @@
+{
+ "title": "Chumbani · lala salama",
+ "words": {
+  "bed": {
+   "text": "kitanda"
+  },
+  "mattress": {
+   "text": "godoro"
+  },
+  "pillow": {
+   "text": "mto"
+  },
+  "blanket": {
+   "text": "blanketi"
+  },
+  "bedding": {
+   "text": "shuka na foronya"
+  },
+  "wardrobe": {
+   "text": "kabati la nguo"
+  },
+  "alarm-clock": {
+   "text": "saa ya kengele"
+  },
+  "nightstand": {
+   "text": "meza ya kando"
+  },
+  "pyjamas": {
+   "text": "nguo za kulala"
+  },
+  "sock": {
+   "text": "soksi"
+  },
+  "trousers": {
+   "text": "suruali"
+  },
+  "t-shirt": {
+   "text": "fulana"
+  },
+  "sleep": {
+   "text": "kulala"
+  },
+  "wake-up": {
+   "text": "kuamka"
+  },
+  "dream": {
+   "text": "kuota"
+  },
+  "get-up": {
+   "text": "kuinuka"
+  },
+  "get-dressed": {
+   "text": "kuvaa"
+  },
+  "get-undressed": {
+   "text": "kuvua nguo"
+  },
+  "cuddle": {
+   "text": "kukumbatiana"
+  },
+  "yawn": {
+   "text": "kupiga miayo"
+  },
+  "snore": {
+   "text": "kukoroma"
+  },
+  "good-night-sleep-well": {
+   "text": "Usiku mwema, lala salama!"
+  },
+  "good-morning-my-love": {
+   "text": "Habari za asubuhi, mpenzi wangu!"
+  },
+  "im-tired": {
+   "text": "Nimechoka."
+  },
+  "sweet-dreams": {
+   "text": "Ndoto njema!"
+  },
+  "did-you-set-the-alarm": {
+   "text": "Umeweka alamu?"
+  },
+  "five-more-minutes": {
+   "text": "Dakika tano zaidi …"
+  },
+  "turn-off-the-light": {
+   "text": "Tafadhali zima taa."
+  },
+  "i-love-you": {
+   "text": "Nakupenda."
+  }
+ }
+}

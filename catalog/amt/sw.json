@@ -1,0 +1,101 @@
+{
+ "title": "Ofisini · subiri zamu yako!",
+ "words": {
+  "office": {
+   "text": "ofisi ya serikali"
+  },
+  "form": {
+   "text": "fomu"
+  },
+  "application": {
+   "text": "ombi",
+   "grammar": {
+    "plural": "maombi"
+   }
+  },
+  "id-card": {
+   "text": "kitambulisho"
+  },
+  "residence-permit": {
+   "text": "kibali cha ukaaji"
+  },
+  "signature": {
+   "text": "sahihi"
+  },
+  "ticket-number": {
+   "text": "namba ya foleni"
+  },
+  "case-worker": {
+   "text": "afisa",
+   "grammar": {
+    "plural": "maafisa"
+   }
+  },
+  "deadline": {
+   "text": "tarehe ya mwisho"
+  },
+  "registration": {
+   "text": "usajili wa makazi"
+  },
+  "documents": {
+   "text": "nyaraka"
+  },
+  "fill-in": {
+   "text": "kujaza fomu"
+  },
+  "sign": {
+   "text": "kutia sahihi"
+  },
+  "apply-for": {
+   "text": "kuomba"
+  },
+  "submit": {
+   "text": "kukabidhi"
+  },
+  "hand-in": {
+   "text": "kuwasilisha"
+  },
+  "extend": {
+   "text": "kuhuisha"
+  },
+  "bring": {
+   "text": "kuleta"
+  },
+  "copy": {
+   "text": "kupiga fotokopi"
+  },
+  "expire": {
+   "text": "kuisha muda wake"
+  },
+  "where-do-i-sign": {
+   "text": "Nitie sahihi wapi?"
+  },
+  "i-want-to-extend-my-residence-permit": {
+   "text": "Ningependa kuhuisha kibali changu cha ukaaji.",
+   "notes": {
+    "de": "kuhuisha = erneuern, wörtl. „wiederbeleben“ (-hai = lebendig)"
+   }
+  },
+  "please-fill-out-the-form-completely": {
+   "text": "Tafadhali jaza fomu kikamilifu."
+  },
+  "take-a-queue-number-first": {
+   "text": "Tafadhali chukua namba ya foleni kwanza!",
+   "notes": {
+    "de": "foleni (Warteschlange) kommt vom englischen „fall in line“!"
+   }
+  },
+  "i-need-an-interpreter-for-the-application": {
+   "text": "Nahitaji mkalimani kwa ajili ya maombi yangu."
+  },
+  "do-you-have-all-the-documents": {
+   "text": "Je, umeleta nyaraka zote?"
+  },
+  "the-decision-comes-by-mail": {
+   "text": "Barua ya uamuzi itakuja kwa posta."
+  },
+  "when-does-my-id-expire": {
+   "text": "Kitambulisho changu kinaisha lini?"
+  }
+ }
+}

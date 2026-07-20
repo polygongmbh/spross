@@ -1,0 +1,98 @@
+{
+ "title": "Kazini · tuchape kazi!",
+ "words": {
+  "work": {
+   "text": "kazi"
+  },
+  "job-application": {
+   "text": "maombi ya kazi",
+   "notes": {
+    "de": "formal Plural — Sg. ombi la kazi"
+   }
+  },
+  "cv": {
+   "text": "wasifu"
+  },
+  "contract": {
+   "text": "mkataba"
+  },
+  "salary": {
+   "text": "mshahara"
+  },
+  "colleague": {
+   "text": "mfanyakazi mwenza"
+  },
+  "boss": {
+   "text": "bosi"
+  },
+  "shift": {
+   "text": "zamu"
+  },
+  "holiday": {
+   "text": "likizo"
+  },
+  "company": {
+   "text": "kampuni"
+  },
+  "apply": {
+   "text": "kuomba kazi"
+  },
+  "introduce-oneself": {
+   "text": "kujitambulisha"
+  },
+  "earn": {
+   "text": "kuchuma pesa"
+  },
+  "start": {
+   "text": "kuanza"
+  },
+  "stop": {
+   "text": "kuacha"
+  },
+  "quit": {
+   "text": "kuacha kazi"
+  },
+  "hire": {
+   "text": "kuajiri"
+  },
+  "help": {
+   "text": "kusaidia"
+  },
+  "work-overtime": {
+   "text": "kufanya saa za ziada"
+  },
+  "tomorrow-i-have-a-job-interview": {
+   "text": "Kesho nitajitambulisha kwenye kampuni.",
+   "notes": {
+    "de": "kujitambulisha, kitambulisho (Ausweis) und kutambua (erkennen) sind eine Wortfamilie"
+   }
+  },
+  "my-shift-starts-at-six": {
+   "text": "Leo zamu yangu inaanza saa kumi na mbili asubuhi.",
+   "notes": {
+    "de": "6 Uhr morgens = saa 12 (saa kumi na mbili) — Sonnenaufgang, Start der Swahili-Stunde!"
+   }
+  },
+  "ill-send-the-sick-note-right-away": {
+   "text": "Nitakutumia cheti cha daktari mara moja."
+  },
+  "have-a-nice-evening-off": {
+   "text": "Pumzika vizuri baada ya kazi!",
+   "notes": {
+    "de": "„Feierabend“ gibt es auf Swahili nicht — man wünscht: „Ruh dich nach der Arbeit gut aus!“"
+   }
+  },
+  "can-you-help-me-briefly": {
+   "text": "Unaweza kunisaidia kidogo?"
+  },
+  "i-want-vacation-next-week": {
+   "text": "Ningependa kuchukua likizo wiki ijayo."
+  },
+  "read-the-contract-carefully": {
+   "text": "Soma mkataba kwa makini!"
+  },
+  "whats-the-salary": {
+   "text": "Mshahara ni kiasi gani?"
+  }
+ }
+}

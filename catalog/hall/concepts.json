@@ -1,0 +1,142 @@
+[
+ {
+  "slug": "hallway",
+  "kind": "noun",
+  "emoji": "🚶"
+ },
+ {
+  "slug": "door",
+  "kind": "noun",
+  "emoji": "🚪"
+ },
+ {
+  "slug": "key",
+  "kind": "noun",
+  "emoji": "🔑"
+ },
+ {
+  "slug": "jacket",
+  "kind": "noun",
+  "emoji": "🧥"
+ },
+ {
+  "slug": "coat",
+  "kind": "noun",
+  "emoji": "🥼"
+ },
+ {
+  "slug": "shoe-rack",
+  "kind": "noun",
+  "emoji": "👞"
+ },
+ {
+  "slug": "umbrella",
+  "kind": "noun",
+  "emoji": "☂️"
+ },
+ {
+  "slug": "hat",
+  "kind": "noun",
+  "emoji": "🧢"
+ },
+ {
+  "slug": "mailbox",
+  "kind": "noun",
+  "emoji": "📬"
+ },
+ {
+  "slug": "doorbell",
+  "kind": "noun",
+  "emoji": "🔔"
+ },
+ {
+  "slug": "stairs",
+  "kind": "noun",
+  "emoji": "🪜"
+ },
+ {
+  "slug": "bag",
+  "kind": "noun",
+  "emoji": "🎒"
+ },
+ {
+  "slug": "lock",
+  "kind": "verb"
+ },
+ {
+  "slug": "ring",
+  "kind": "verb"
+ },
+ {
+  "slug": "take-off-shoes",
+  "kind": "verb"
+ },
+ {
+  "slug": "set-off",
+  "kind": "verb"
+ },
+ {
+  "slug": "unlock",
+  "kind": "verb"
+ },
+ {
+  "slug": "put-on",
+  "kind": "verb"
+ },
+ {
+  "slug": "wait",
+  "kind": "verb"
+ },
+ {
+  "slug": "arrive",
+  "kind": "verb"
+ },
+ {
+  "slug": "greet",
+  "kind": "verb"
+ },
+ {
+  "slug": "say-goodbye",
+  "kind": "verb"
+ },
+ {
+  "slug": "do-you-have-the-keys",
+  "kind": "phrase"
+ },
+ {
+  "slug": "ill-be-right-back",
+  "kind": "phrase"
+ },
+ {
+  "slug": "take-off-your-shoes-here",
+  "kind": "phrase"
+ },
+ {
+  "slug": "hurry-were-late",
+  "kind": "phrase"
+ },
+ {
+  "slug": "see-you-later",
+  "kind": "phrase"
+ },
+ {
+  "slug": "welcome-home",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-doorbell-suddenly-rang",
+  "kind": "phrase"
+ },
+ {
+  "slug": "dont-forget-your-jacket",
+  "kind": "phrase"
+ },
+ {
+  "slug": "take-off-your-shoes-at-the-door",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-doorbell-just-rang",
+  "kind": "phrase"
+ }
+]

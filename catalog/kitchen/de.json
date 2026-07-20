@@ -1,0 +1,143 @@
+{
+ "title": "Die Küche",
+ "words": {
+  "fridge": {
+   "text": "Kühlschrank",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Kühlschränke"
+   }
+  },
+  "stove": {
+   "text": "Herd",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Herde"
+   }
+  },
+  "oven": {
+   "text": "Backofen",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Backöfen"
+   }
+  },
+  "dishwasher": {
+   "text": "Spülmaschine",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "hunger": {
+   "text": "Hunger",
+   "grammar": {
+    "gender": "der",
+    "plural": "nur Singular"
+   }
+  },
+  "thirst": {
+   "text": "Durst",
+   "grammar": {
+    "gender": "der",
+    "plural": "nur Singular"
+   }
+  },
+  "pot": {
+   "text": "Topf",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Töpfe"
+   }
+  },
+  "pan": {
+   "text": "Pfanne",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "knife": {
+   "text": "Messer",
+   "grammar": {
+    "gender": "das",
+    "plural": "–"
+   }
+  },
+  "spoon": {
+   "text": "Löffel",
+   "grammar": {
+    "gender": "der",
+    "plural": "–"
+   }
+  },
+  "fork": {
+   "text": "Gabel",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "plate": {
+   "text": "Teller",
+   "grammar": {
+    "gender": "der",
+    "plural": "–"
+   }
+  },
+  "cook": {
+   "text": "kochen"
+  },
+  "bake": {
+   "text": "backen"
+  },
+  "cut": {
+   "text": "schneiden"
+  },
+  "wash-up": {
+   "text": "spülen"
+  },
+  "taste": {
+   "text": "probieren"
+  },
+  "fry": {
+   "text": "braten"
+  },
+  "reheat": {
+   "text": "aufwärmen"
+  },
+  "stir": {
+   "text": "umrühren"
+  },
+  "take-out-trash": {
+   "text": "Müll rausbringen"
+  },
+  "careful-the-knife-is-sharp": {
+   "text": "Vorsicht, das Messer ist scharf!"
+  },
+  "this-tastes-so-good": {
+   "text": "Das schmeckt so lecker!"
+  },
+  "are-you-cooking-rice-today": {
+   "text": "Kochst du heute Reis?"
+  },
+  "the-pot-is-still-on-the-stove": {
+   "text": "Der Topf steht noch auf dem Herd."
+  },
+  "wash-the-dishes-in-the-sink": {
+   "text": "Spül bitte das Geschirr im Spülbecken!"
+  },
+  "the-fridge-is-empty": {
+   "text": "Der Kühlschrank ist leer."
+  },
+  "can-you-set-the-table": {
+   "text": "Kannst du bitte den Tisch decken?"
+  },
+  "the-water-is-boiling-hot": {
+   "text": "Das Wasser kocht — es ist sehr heiß!"
+  },
+  "the-big-pot-is-on-the-stove": {
+   "text": "Der große Topf steht auf dem Herd."
+  }
+ }
+}

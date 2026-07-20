@@ -1,0 +1,92 @@
+{
+ "title": "Надворі · ходімо гуляти!",
+ "words": {
+  "street": {
+   "text": "вулиця"
+  },
+  "traffic-light": {
+   "text": "світлофор"
+  },
+  "bicycle": {
+   "text": "велосипед"
+  },
+  "bus": {
+   "text": "автобус"
+  },
+  "bus-stop": {
+   "text": "зупинка"
+  },
+  "train": {
+   "text": "поїзд"
+  },
+  "tree": {
+   "text": "дерево"
+  },
+  "flower": {
+   "text": "квітка"
+  },
+  "park": {
+   "text": "парк"
+  },
+  "sun": {
+   "text": "сонце"
+  },
+  "rain": {
+   "text": "дощ"
+  },
+  "weather": {
+   "text": "погода"
+  },
+  "go-for-walk": {
+   "text": "гуляти"
+  },
+  "ride-bike": {
+   "text": "їздити на велосипеді"
+  },
+  "shop": {
+   "text": "ходити за покупками"
+  },
+  "take-bus": {
+   "text": "їхати автобусом"
+  },
+  "jog": {
+   "text": "бігати"
+  },
+  "barbecue": {
+   "text": "смажити на грилі"
+  },
+  "sunbathe": {
+   "text": "засмагати"
+  },
+  "plant": {
+   "text": "садити"
+  },
+  "depart": {
+   "text": "від'їжджати"
+  },
+  "hows-the-weather-today": {
+   "text": "Яка сьогодні погода?"
+  },
+  "its-raining": {
+   "text": "Йде дощ."
+  },
+  "the-sun-is-shining": {
+   "text": "Світить сонце!"
+  },
+  "the-bus-is-coming-soon": {
+   "text": "Автобус зараз приїде."
+  },
+  "when-does-the-train-leave": {
+   "text": "Коли вирушає поїзд?"
+  },
+  "what-a-beautiful-day": {
+   "text": "Який гарний день!"
+  },
+  "definitely-take-an-umbrella": {
+   "text": "Обов'язково візьми парасольку!"
+  },
+  "shall-we-take-a-walk": {
+   "text": "Може, підемо гуляти?"
+  }
+ }
+}

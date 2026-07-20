@@ -1,0 +1,86 @@
+{
+ "title": "У школі · вчимося разом!",
+ "words": {
+  "school": {
+   "text": "школа"
+  },
+  "classroom": {
+   "text": "клас"
+  },
+  "integration-course": {
+   "text": "курс мови та адаптації"
+  },
+  "teacher": {
+   "text": "вчитель",
+   "variants": [
+    "вчителька"
+   ]
+  },
+  "board": {
+   "text": "дошка"
+  },
+  "dictionary": {
+   "text": "словник"
+  },
+  "exercise-book": {
+   "text": "зошит"
+  },
+  "homework": {
+   "text": "домашнє завдання"
+  },
+  "exam": {
+   "text": "іспит"
+  },
+  "break": {
+   "text": "перерва"
+  },
+  "question": {
+   "text": "запитання"
+  },
+  "answer": {
+   "text": "відповідь"
+  },
+  "speak": {
+   "text": "говорити"
+  },
+  "understand": {
+   "text": "розуміти"
+  },
+  "ask": {
+   "text": "питати"
+  },
+  "reply": {
+   "text": "відповідати"
+  },
+  "repeat": {
+   "text": "повторювати"
+  },
+  "translate": {
+   "text": "перекладати"
+  },
+  "pass-exam": {
+   "text": "скласти іспит"
+  },
+  "practise": {
+   "text": "вправлятися"
+  },
+  "raise-hand": {
+   "text": "піднімати руку"
+  },
+  "i-have-a-question": {
+   "text": "У мене є запитання."
+  },
+  "what-does-this-word-mean": {
+   "text": "Що означає це слово?"
+  },
+  "how-do-you-say-this-in-german": {
+   "text": "Як це сказати німецькою?"
+  },
+  "im-learning-german": {
+   "text": "Я вчу німецьку."
+  },
+  "you-can-do-it": {
+   "text": "Ти точно впораєшся!"
+  }
+ }
+}

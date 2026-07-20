@@ -1,0 +1,134 @@
+[
+ {
+  "slug": "washing-machine",
+  "kind": "noun",
+  "emoji": "🌀"
+ },
+ {
+  "slug": "laundry",
+  "kind": "noun",
+  "emoji": "🧺"
+ },
+ {
+  "slug": "toilet",
+  "kind": "noun",
+  "emoji": "🚽"
+ },
+ {
+  "slug": "shower",
+  "kind": "noun",
+  "emoji": "🚿"
+ },
+ {
+  "slug": "sink",
+  "kind": "noun",
+  "emoji": "💧"
+ },
+ {
+  "slug": "mirror",
+  "kind": "noun",
+  "emoji": "🪞"
+ },
+ {
+  "slug": "toothbrush",
+  "kind": "noun",
+  "emoji": "🪥"
+ },
+ {
+  "slug": "toothpaste",
+  "kind": "noun",
+  "emoji": "🦷"
+ },
+ {
+  "slug": "towel",
+  "kind": "noun",
+  "emoji": "🧖"
+ },
+ {
+  "slug": "soap",
+  "kind": "noun",
+  "emoji": "🧼"
+ },
+ {
+  "slug": "shampoo",
+  "kind": "noun",
+  "emoji": "🧴"
+ },
+ {
+  "slug": "hairdryer",
+  "kind": "noun",
+  "emoji": "💨"
+ },
+ {
+  "slug": "take-shower",
+  "kind": "verb"
+ },
+ {
+  "slug": "do-laundry",
+  "kind": "verb"
+ },
+ {
+  "slug": "brush-teeth",
+  "kind": "verb"
+ },
+ {
+  "slug": "dry-off",
+  "kind": "verb"
+ },
+ {
+  "slug": "hang-up",
+  "kind": "verb"
+ },
+ {
+  "slug": "clean",
+  "kind": "verb"
+ },
+ {
+  "slug": "shave",
+  "kind": "verb"
+ },
+ {
+  "slug": "comb",
+  "kind": "verb"
+ },
+ {
+  "slug": "apply-lotion",
+  "kind": "verb"
+ },
+ {
+  "slug": "im-taking-a-quick-shower",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-bathroom-is-occupied",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-laundry-is-done",
+  "kind": "phrase"
+ },
+ {
+  "slug": "wheres-my-towel",
+  "kind": "phrase"
+ },
+ {
+  "slug": "can-you-hang-the-laundry-outside",
+  "kind": "phrase"
+ },
+ {
+  "slug": "dont-forget-to-brush-teeth",
+  "kind": "phrase"
+ },
+ {
+  "slug": "wash-your-hands-thoroughly",
+  "kind": "phrase"
+ },
+ {
+  "slug": "the-water-is-cold",
+  "kind": "phrase"
+ },
+ {
+  "slug": "can-you-hang-the-laundry-here",
+  "kind": "phrase"
+ }
+]

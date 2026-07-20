@@ -1,0 +1,98 @@
+{
+ "title": "Sebuleni · mahali pa kupumzika",
+ "words": {
+  "sofa": {
+   "text": "kochi"
+  },
+  "dining-table": {
+   "text": "meza ya kulia"
+  },
+  "chair": {
+   "text": "kiti"
+  },
+  "tv": {
+   "text": "televisheni",
+   "variants": [
+    "runinga"
+   ]
+  },
+  "remote": {
+   "text": "rimoti"
+  },
+  "shelf": {
+   "text": "rafu"
+  },
+  "plant": {
+   "text": "mmea"
+  },
+  "window": {
+   "text": "dirisha"
+  },
+  "curtain": {
+   "text": "pazia"
+  },
+  "carpet": {
+   "text": "zulia"
+  },
+  "lamp": {
+   "text": "taa"
+  },
+  "picture": {
+   "text": "picha"
+  },
+  "eat": {
+   "text": "kula"
+  },
+  "watch-tv": {
+   "text": "kutazama TV"
+  },
+  "read": {
+   "text": "kusoma"
+  },
+  "relax": {
+   "text": "kupumzika"
+  },
+  "tidy-up": {
+   "text": "kupanga vitu"
+  },
+  "listen-to-music": {
+   "text": "kusikiliza muziki"
+  },
+  "water-plants": {
+   "text": "kumwagilia"
+  },
+  "play": {
+   "text": "kucheza"
+  },
+  "talk": {
+   "text": "kuongea"
+  },
+  "the-food-is-ready": {
+   "text": "Chakula kiko tayari!"
+  },
+  "turn-on-the-tv": {
+   "text": "Tafadhali washa televisheni."
+  },
+  "come-sit-with-me": {
+   "text": "Njoo, keti karibu nami!"
+  },
+  "shall-we-watch-a-movie": {
+   "text": "Tutazame filamu?"
+  },
+  "lets-hang-the-picture": {
+   "text": "Tutundike picha ukutani!",
+   "notes": {
+    "de": "ukutani = an der Wand"
+   }
+  },
+  "the-curtains-hang-over-the-window": {
+   "text": "Mapazia yananing'inia mbele ya dirisha."
+  },
+  "can-you-turn-off-the-light": {
+   "text": "Unaweza kuzima taa?"
+  },
+  "open-the-window-fresh-air": {
+   "text": "Fungua dirisha, tafadhali — hewa safi!"
+  }
+ }
+}

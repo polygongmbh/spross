@@ -1,0 +1,104 @@
+{
+ "title": "У передпокої · ласкаво просимо!",
+ "words": {
+  "hallway": {
+   "text": "коридор",
+   "variants": [
+    "передпокій"
+   ]
+  },
+  "door": {
+   "text": "двері",
+   "grammar": {
+    "pluralOnly": true
+   }
+  },
+  "key": {
+   "text": "ключ"
+  },
+  "jacket": {
+   "text": "куртка"
+  },
+  "coat": {
+   "text": "пальто"
+  },
+  "shoe-rack": {
+   "text": "полиця для взуття"
+  },
+  "umbrella": {
+   "text": "парасолька"
+  },
+  "hat": {
+   "text": "шапка"
+  },
+  "mailbox": {
+   "text": "поштова скринька"
+  },
+  "doorbell": {
+   "text": "дзвінок"
+  },
+  "stairs": {
+   "text": "сходи",
+   "grammar": {
+    "pluralOnly": true
+   }
+  },
+  "bag": {
+   "text": "сумка"
+  },
+  "lock": {
+   "text": "замикати на ключ"
+  },
+  "ring": {
+   "text": "дзвонити у двері"
+  },
+  "take-off-shoes": {
+   "text": "роззуватися"
+  },
+  "set-off": {
+   "text": "виходити"
+  },
+  "unlock": {
+   "text": "відмикати"
+  },
+  "put-on": {
+   "text": "одягати"
+  },
+  "wait": {
+   "text": "чекати"
+  },
+  "arrive": {
+   "text": "приходити"
+  },
+  "greet": {
+   "text": "вітатися"
+  },
+  "say-goodbye": {
+   "text": "прощатися"
+  },
+  "do-you-have-the-keys": {
+   "text": "Ти взяв(-ла) ключі?"
+  },
+  "ill-be-right-back": {
+   "text": "Я скоро повернуся!"
+  },
+  "hurry-were-late": {
+   "text": "Поквапся, ми запізнюємось!"
+  },
+  "see-you-later": {
+   "text": "До зустрічі!"
+  },
+  "welcome-home": {
+   "text": "З поверненням!"
+  },
+  "dont-forget-your-jacket": {
+   "text": "Не забудь куртку!"
+  },
+  "take-off-your-shoes-at-the-door": {
+   "text": "Роззуйся біля дверей, будь ласка."
+  },
+  "the-doorbell-just-rang": {
+   "text": "Щойно подзвонили у двері."
+  }
+ }
+}

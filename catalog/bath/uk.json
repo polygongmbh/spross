@@ -1,0 +1,98 @@
+{
+ "title": "У ванній · чистота!",
+ "words": {
+  "washing-machine": {
+   "text": "пральна машина"
+  },
+  "laundry": {
+   "text": "білизна",
+   "variants": [
+    "прання"
+   ]
+  },
+  "toilet": {
+   "text": "туалет"
+  },
+  "shower": {
+   "text": "душ"
+  },
+  "sink": {
+   "text": "умивальник"
+  },
+  "mirror": {
+   "text": "дзеркало"
+  },
+  "toothbrush": {
+   "text": "зубна щітка"
+  },
+  "toothpaste": {
+   "text": "зубна паста"
+  },
+  "towel": {
+   "text": "рушник"
+  },
+  "soap": {
+   "text": "мило"
+  },
+  "shampoo": {
+   "text": "шампунь"
+  },
+  "hairdryer": {
+   "text": "фен"
+  },
+  "take-shower": {
+   "text": "приймати душ"
+  },
+  "do-laundry": {
+   "text": "прати"
+  },
+  "brush-teeth": {
+   "text": "чистити зуби"
+  },
+  "dry-off": {
+   "text": "витиратися"
+  },
+  "hang-up": {
+   "text": "розвішувати"
+  },
+  "clean": {
+   "text": "мити",
+   "variants": [
+    "чистити"
+   ]
+  },
+  "shave": {
+   "text": "голитися"
+  },
+  "comb": {
+   "text": "розчісуватися"
+  },
+  "apply-lotion": {
+   "text": "наносити крем"
+  },
+  "im-taking-a-quick-shower": {
+   "text": "Я швиденько в душ."
+  },
+  "the-bathroom-is-occupied": {
+   "text": "У ванній зайнято!"
+  },
+  "the-laundry-is-done": {
+   "text": "Прання готове."
+  },
+  "wheres-my-towel": {
+   "text": "Де мій рушник?"
+  },
+  "dont-forget-to-brush-teeth": {
+   "text": "Не забудь почистити зуби!"
+  },
+  "wash-your-hands-thoroughly": {
+   "text": "Ретельно помий руки."
+  },
+  "the-water-is-cold": {
+   "text": "Вода холодна!"
+  },
+  "can-you-hang-the-laundry-here": {
+   "text": "Можеш розвісити білизну тут?"
+  }
+ }
+}

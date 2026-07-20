@@ -1,0 +1,140 @@
+{
+ "title": "Das Schlafzimmer",
+ "words": {
+  "bed": {
+   "text": "Bett",
+   "grammar": {
+    "gender": "das",
+    "plural": "-en"
+   }
+  },
+  "mattress": {
+   "text": "Matratze",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "pillow": {
+   "text": "Kissen",
+   "grammar": {
+    "gender": "das",
+    "plural": "–"
+   }
+  },
+  "blanket": {
+   "text": "Decke",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "bedding": {
+   "text": "Bettwäsche",
+   "grammar": {
+    "gender": "die",
+    "plural": "nur Singular"
+   }
+  },
+  "wardrobe": {
+   "text": "Kleiderschrank",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Kleiderschränke"
+   }
+  },
+  "alarm-clock": {
+   "text": "Wecker",
+   "grammar": {
+    "gender": "der",
+    "plural": "–"
+   }
+  },
+  "nightstand": {
+   "text": "Nachttisch",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "pyjamas": {
+   "text": "Schlafanzug",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Schlafanzüge"
+   }
+  },
+  "sock": {
+   "text": "Socke",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "trousers": {
+   "text": "Hose",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "t-shirt": {
+   "text": "T-Shirt",
+   "grammar": {
+    "gender": "das",
+    "plural": "-s"
+   }
+  },
+  "sleep": {
+   "text": "schlafen"
+  },
+  "wake-up": {
+   "text": "aufwachen"
+  },
+  "dream": {
+   "text": "träumen"
+  },
+  "get-up": {
+   "text": "aufstehen"
+  },
+  "get-dressed": {
+   "text": "sich anziehen"
+  },
+  "get-undressed": {
+   "text": "sich ausziehen"
+  },
+  "cuddle": {
+   "text": "kuscheln"
+  },
+  "yawn": {
+   "text": "gähnen"
+  },
+  "snore": {
+   "text": "schnarchen"
+  },
+  "good-night-sleep-well": {
+   "text": "Gute Nacht, schlaf gut!"
+  },
+  "good-morning-my-love": {
+   "text": "Guten Morgen, mein Schatz!"
+  },
+  "im-tired": {
+   "text": "Ich bin müde."
+  },
+  "sweet-dreams": {
+   "text": "Träum was Schönes!"
+  },
+  "did-you-set-the-alarm": {
+   "text": "Hast du den Wecker gestellt?"
+  },
+  "five-more-minutes": {
+   "text": "Fünf Minuten noch …"
+  },
+  "turn-off-the-light": {
+   "text": "Mach bitte das Licht aus."
+  },
+  "i-love-you": {
+   "text": "Ich liebe dich.“ ♥"
+  }
+ }
+}

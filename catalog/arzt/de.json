@@ -1,0 +1,140 @@
+{
+ "title": "Der Arzt & die Gesundheit",
+ "words": {
+  "doctor": {
+   "text": "Arzt",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Ärzte · ♀ die Ärztin"
+   }
+  },
+  "practice": {
+   "text": "Praxis",
+   "grammar": {
+    "gender": "die",
+    "plural": "die Praxen"
+   }
+  },
+  "appointment": {
+   "text": "Termin",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "pain": {
+   "text": "Schmerz",
+   "grammar": {
+    "gender": "der",
+    "plural": "-en"
+   }
+  },
+  "fever": {
+   "text": "Fieber",
+   "grammar": {
+    "gender": "das",
+    "plural": "–"
+   }
+  },
+  "pill": {
+   "text": "Tablette",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "prescription": {
+   "text": "Rezept",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "pharmacy": {
+   "text": "Apotheke",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "insurance-card": {
+   "text": "Versichertenkarte",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "health-insurance": {
+   "text": "Krankenkasse",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "cough": {
+   "text": "Husten",
+   "grammar": {
+    "gender": "der",
+    "plural": "–"
+   }
+  },
+  "cold": {
+   "text": "Erkältung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "hurt": {
+   "text": "wehtun"
+  },
+  "to-cough": {
+   "text": "husten"
+  },
+  "examine": {
+   "text": "untersuchen"
+  },
+  "prescribe": {
+   "text": "verschreiben"
+  },
+  "take-medicine": {
+   "text": "einnehmen"
+  },
+  "pick-up": {
+   "text": "abholen"
+  },
+  "call-in-sick": {
+   "text": "sich krankmelden"
+  },
+  "rest": {
+   "text": "sich ausruhen"
+  },
+  "cancel": {
+   "text": "absagen"
+  },
+  "i-have-an-appointment-at-ten": {
+   "text": "Ich habe um zehn Uhr einen Termin in der Praxis."
+  },
+  "my-throat-hurts-a-lot": {
+   "text": "Mein Hals tut sehr weh."
+  },
+  "ive-had-a-fever-since-yesterday": {
+   "text": "Ich habe seit gestern Fieber."
+  },
+  "take-the-pills-twice-daily": {
+   "text": "Bitte nehmen Sie die Tabletten zweimal täglich ein. / Bitte nimm die Tabletten zweimal täglich ein."
+  },
+  "get-well-soon": {
+   "text": "Gute Besserung!"
+  },
+  "take-the-prescription-to-the-pharmacy": {
+   "text": "Mit dem Rezept gehen Sie zur Apotheke. / Mit dem Rezept gehst du zur Apotheke."
+  },
+  "show-me-your-insurance-card": {
+   "text": "Zeigen Sie mir bitte Ihre Versichertenkarte. / Zeig mir bitte deine Versichertenkarte."
+  },
+  "i-have-to-cancel-the-appointment": {
+   "text": "Ich muss den Termin leider absagen."
+  }
+ }
+}

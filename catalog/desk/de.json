@@ -1,0 +1,146 @@
+{
+ "title": "Der Schreibtisch",
+ "words": {
+  "desk": {
+   "text": "Schreibtisch",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "laptop": {
+   "text": "Laptop",
+   "grammar": {
+    "gender": "der",
+    "plural": "-s"
+   }
+  },
+  "keyboard": {
+   "text": "Tastatur",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "screen": {
+   "text": "Bildschirm",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "mouse": {
+   "text": "Maus",
+   "grammar": {
+    "gender": "die",
+    "plural": "die Mäuse"
+   }
+  },
+  "cable": {
+   "text": "Kabel",
+   "grammar": {
+    "gender": "das",
+    "plural": "–"
+   }
+  },
+  "headphones": {
+   "text": "Kopfhörer",
+   "grammar": {
+    "gender": "der",
+    "plural": "–"
+   }
+  },
+  "pen": {
+   "text": "Stift",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "notebook": {
+   "text": "Notizbuch",
+   "grammar": {
+    "gender": "das",
+    "plural": "die Notizbücher"
+   }
+  },
+  "printer": {
+   "text": "Drucker",
+   "grammar": {
+    "gender": "der",
+    "plural": "–"
+   }
+  },
+  "socket": {
+   "text": "Steckdose",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "office-chair": {
+   "text": "Bürostuhl",
+   "grammar": {
+    "gender": "der",
+    "plural": "die Bürostühle"
+   }
+  },
+  "work": {
+   "text": "arbeiten"
+  },
+  "type": {
+   "text": "tippen"
+  },
+  "print": {
+   "text": "drucken"
+  },
+  "save": {
+   "text": "speichern"
+  },
+  "take-break": {
+   "text": "Pause machen"
+  },
+  "write": {
+   "text": "schreiben"
+  },
+  "call": {
+   "text": "anrufen"
+  },
+  "delete": {
+   "text": "löschen"
+  },
+  "study": {
+   "text": "lernen"
+  },
+  "im-in-a-meeting": {
+   "text": "Ich bin in einem Meeting."
+  },
+  "do-not-disturb": {
+   "text": "Nicht stören, bitte!"
+  },
+  "the-laptop-wont-charge-anymore": {
+   "text": "Der Laptop lädt nicht mehr."
+  },
+  "the-wifi-is-completely-gone": {
+   "text": "Das WLAN ist komplett weg."
+  },
+  "coffee-break": {
+   "text": "Kaffeepause?"
+  },
+  "i-have-a-lot-to-do": {
+   "text": "Ich habe viel zu tun."
+  },
+  "end-of-workday": {
+   "text": "Feierabend!"
+  },
+  "send-me-the-email": {
+   "text": "Schick mir bitte die E-Mail."
+  },
+  "the-laptop-wont-charge-at-all": {
+   "text": "Der Laptop lädt überhaupt nicht."
+  },
+  "the-wifi-suddenly-dropped": {
+   "text": "Das WLAN ist plötzlich weg."
+  }
+ }
+}

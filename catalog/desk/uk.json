@@ -1,0 +1,98 @@
+{
+ "title": "Робоче місце · до роботи!",
+ "words": {
+  "desk": {
+   "text": "письмовий стіл"
+  },
+  "laptop": {
+   "text": "ноутбук"
+  },
+  "keyboard": {
+   "text": "клавіатура"
+  },
+  "screen": {
+   "text": "монітор"
+  },
+  "mouse": {
+   "text": "миша",
+   "variants": [
+    "мишка"
+   ]
+  },
+  "cable": {
+   "text": "кабель"
+  },
+  "headphones": {
+   "text": "навушники",
+   "grammar": {
+    "pluralOnly": true
+   }
+  },
+  "pen": {
+   "text": "ручка"
+  },
+  "notebook": {
+   "text": "блокнот"
+  },
+  "printer": {
+   "text": "принтер"
+  },
+  "socket": {
+   "text": "розетка"
+  },
+  "office-chair": {
+   "text": "офісне крісло"
+  },
+  "work": {
+   "text": "працювати"
+  },
+  "type": {
+   "text": "друкувати"
+  },
+  "print": {
+   "text": "роздруковувати"
+  },
+  "save": {
+   "text": "зберігати"
+  },
+  "take-break": {
+   "text": "робити перерву"
+  },
+  "write": {
+   "text": "писати"
+  },
+  "call": {
+   "text": "телефонувати"
+  },
+  "delete": {
+   "text": "видаляти"
+  },
+  "study": {
+   "text": "вчитися"
+  },
+  "im-in-a-meeting": {
+   "text": "У мене зустріч."
+  },
+  "do-not-disturb": {
+   "text": "Не заважай, будь ласка!"
+  },
+  "coffee-break": {
+   "text": "Перерва на каву?"
+  },
+  "i-have-a-lot-to-do": {
+   "text": "У мене багато роботи."
+  },
+  "end-of-workday": {
+   "text": "На сьогодні все!"
+  },
+  "send-me-the-email": {
+   "text": "Надішли мені, будь ласка, імейл."
+  },
+  "the-laptop-wont-charge-at-all": {
+   "text": "Ноутбук взагалі не заряджається."
+  },
+  "the-wifi-suddenly-dropped": {
+   "text": "Раптово зник інтернет."
+  }
+ }
+}
