@@ -183,11 +183,9 @@ der=blue / die=pink-red / das=green (text carries meaning, color reinforces — 
 - Importer is deterministic: same catalog → same card IDs (stable slug of
   pair+area+kind+headword). IDs never contain `|` (scheduling keys are
   `id|direction`).
-- The **legacy per-pair seed format** (`vocab-de-<lang>.json`) is retired to test
-  fixtures only. `SeedImporter` survives solely so the parity gate
-  (`CatalogParityTests`) proves `CatalogImporter` reproduces its exact output —
-  same ids/order/fields — on the frozen legacy fixtures, guaranteeing scheduling
-  history survives the migration untouched.
+- The **legacy per-pair seed format** (`vocab-de-<lang>.json`) and its importer
+  are gone; `CatalogImporter` is the single import path. The `vocab-de-*.json`
+  files survive only as raw test fixtures for `PhraseVocabAuditTests`' word-coverage audit.
 
 ## Testing & gates
 

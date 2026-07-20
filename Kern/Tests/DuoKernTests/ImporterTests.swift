@@ -2,8 +2,7 @@ import XCTest
 import DuoKern
 
 /// Behaviour of the live importer (`CatalogImporter`, reading the content
-/// catalog). The legacy `SeedImporter` is exercised only by the parity gate
-/// (CatalogParityTests); everything the app relies on is pinned here.
+/// catalog) — everything the app relies on is pinned here.
 final class ImporterTests: XCTestCase {
 
     // MARK: - Fixture loading
@@ -118,7 +117,7 @@ final class ImporterTests: XCTestCase {
     // MARK: - Diagnostics
 
     func testLinkReport() throws {
-        let report = SeedImporter.linkReport(cards: try cards(.deSw))
+        let report = CatalogImporter.linkReport(cards: try cards(.deSw))
         XCTAssertEqual(report.phrases, 105)
         XCTAssertGreaterThanOrEqual(report.linked, 29)
         XCTAssertGreaterThan(report.avgComponents, 0)

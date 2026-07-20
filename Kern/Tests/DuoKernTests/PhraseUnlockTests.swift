@@ -92,9 +92,10 @@ struct PhraseUnlockTests {
 
     @Test("real importer output: fixture phrase unlocks once its components are stable")
     func fixtureImportUnlock() throws {
-        let url = try #require(Bundle.module.url(forResource: "vocab-de-sw", withExtension: "json",
-                                                 subdirectory: "Fixtures"))
-        let cards = try SeedImporter.importSeed(json: Data(contentsOf: url))
+        let conceptsURL = try #require(Bundle.module.url(forResource: "concepts", withExtension: "json",
+                                                         subdirectory: "Fixtures/catalog"))
+        let cards = try CatalogImporter.importCatalog(directory: conceptsURL.deletingLastPathComponent(),
+                                                      pair: .deSw)
         let phrase = try #require(cards.first { $0.kind == .phrase && !$0.componentIDs.isEmpty })
 
         var state = BoxEngine.bootstrap(cards: cards, config: Box.config(maxLearning: 20))
