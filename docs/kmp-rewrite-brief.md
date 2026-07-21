@@ -15,16 +15,49 @@ and committed as **catalog v2**. This brief is the handoff.
 - **Reference (don't preserve) the Swift core** as the behavioral spec:
   - `Kern/Sources/DuoKern/Model/Types.swift` — the model you're porting.
   - `Kern/Sources/DuoKern/Content/CatalogImporter.swift` + `CatalogModels.swift` — the
-    v1 importer. **Its input shape is obsolete; its OUTPUT (`[Card]`) is your target.**
-  - `Kern/Sources/DuoKern/FSRS/` — the scheduler. Port faithfully.
+    v1 importer. **Its input shape is obsolete; its output is a CHECKLIST of what a card
+    needs — but the `Card` struct itself is de-centric v1 legacy. Redesign it, don't
+    reproduce it (see "Card: redesign, don't preserve").**
+  - `Kern/Sources/DuoKern/FSRS/` — **legacy FSRS-5. Do NOT port** — implement FSRS-6 fresh (see below).
   - `Kern/Tests/DuoKernTests/` — especially `Fixtures/trainer-golden.json`.
 
-## The one hard contract: FSRS golden vectors
+## FSRS: implement FSRS-6 fresh (not a port)
 
-Everything else is free (beta, no live data — ids/encoding/schema carry no
-preservation guarantee). **The scheduler is not.** FSRS-5 is golden-vector tested
-against ts-fsrs v4.7.1. Port `trainer-golden.json` (and `FSRSTests`, `FSRSPropertyTests`)
-as KMP tests and keep them green. That is the definition of "the port is correct."
+Decision (2026-07-21): **migrate to FSRS-6**; do not port the Swift FSRS-5 scheduler.
+The Swift `FSRS/` is legacy — grown FSRS-5 values with a *fixed* decay. FSRS-6 makes
+the forgetting-curve decay a learnable parameter, so the rewrite is the moment to do
+the scheduler fresh rather than carry FSRS-5 forward. This deliberately trims the port:
+the FSRS-5 tests below stop being the spec.
+
+- **21 weights** (w0–w20), vs FSRS-5's 19. `w20` = decay, default **0.2**, range 0.1–0.8
+  (FSRS-5 used a fixed decay of 0.5). Treat decay as a real parameter from the start.
+- **Golden vectors are re-pinned by *copying*, not self-generating.** The FSRS-5
+  `FSRSTests` / `FSRSPropertyTests` values are obsolete — drop them. Copy the reference's
+  own **published, version-tagged FSRS-6 test vectors** verbatim (ts-fsrs's FSRS-6 test
+  suite or py-fsrs), pinning the exact reference version as the old brief pinned
+  ts-fsrs v4.7.1. Copied = maximum provenance: the numbers are the maintainers' asserted
+  outputs, not something our harness could mis-feed. Green against them *is* "the
+  scheduler is correct." Only self-generate to fill a gap the reference doesn't publish —
+  and then commit the harness + pinned version, as an explicitly lower-authority tier.
+- **Don't fabricate a 0.8 golden vector.** Retention enters FSRS only in the interval
+  formula; once the copied vectors pin that formula and the stabilities, feeding 0.8 just
+  substitutes a constant into an already-verified function — no conformance value, lost
+  provenance. Product-path assurance at 0.8 goes in the **normal test tier**: a plain,
+  self-computed, clearly-labeled behavioral test (card at DR 0.8 schedules ~N days), never
+  dignified as a reference golden vector.
+- **`trainer-golden.json` is unrelated — port it faithfully.** It is number-spelling
+  content (`67 → "siebenundsechzig"`), not the scheduler; the FSRS-6 switch does not
+  touch it. It stays a hard contract.
+- **Desired retention — two defaults, don't conflate.** Engine reference default 0.9
+  (the golden-vector anchor). Product `BoxConfig.desiredRetention` default **0.8** — a
+  deliberate breadth/fluency default (maximizes total recallable vocabulary, accepting
+  that some words won't stick and get parked as leeches), not a port artifact. No slider.
+- **Hand-roll the scheduler, not the optimizer.** The scheduler is ~200 lines of pure
+  math — implement it in `commonMain`. A JVM FSRS library can't compile to Kotlin/Native,
+  so a runtime dependency would break the shared core; the reference impls stay *oracles*,
+  not deps. Weight *optimization* (fitting w0–w20 from review logs) is the hard part —
+  keep it out of the core, behind a clean "weights in" boundary; offload to `fsrs-rs`
+  offline/server-side if/when wanted. Not needed at current scale (ship default weights).
 
 Also preserve these behavioral invariants (see design.md):
 - `phase == .new  ⟺  memory == nil  ⟺  due == nil`.
@@ -48,16 +81,36 @@ the de-specific `Card` fields (`german`, `article`) only populate when de is a s
 generalize the current de-centric `LanguagePair`/field naming as you add en-bearing
 pairs (en↔de, en↔sw, …). Which pairs to ship is an app decision, not the parser's.
 
+### Card: redesign, don't preserve
+
+The v1 `Card` (`Types.swift:22`) is denormalized and German-anchored — treat it as a
+checklist of what the engine consumes, then design a clean, **language-symmetric** card.
+Legacy to drop:
+- `german` + `translation` — hard-codes German-on-one-side; cannot represent `en↔sw`,
+  `sw↔uk`, or en-bearing pairs. Carry **two realizations by side/role**, each a
+  `{text, variants, grammar, note}` mirroring the format, and let `Direction` pick which
+  is prompt vs. answer.
+- `article` + `plural` — German-only grammar flattened to two strings; drops sw/en/uk
+  `plural` and the `"="`/`"only"` sentinels. Keep `grammar` structured, per side.
+- `note: String?` — loses the explanation-language keying and which realization it
+  explains (and v1 also swallowed `variants` into a joined string). Keep the `notes` map
+  on its realization; keep `variants` as a real list.
+- `pair: LanguagePair` (de-sw | de-uk enum) — generalize to any ordered language pair.
+
+Keep the clean concept-level parts: `id` (`area/slug`), `kind`, `area`, `emoji`,
+`seedIndex`, and `components` (was `componentIDs`).
+
 **Field shapes: see `catalog/README.md`** — it is authoritative for the concept spine,
-realization fields, grammar keys, and `notes`. Don't re-derive them here. What the
-README doesn't say is how they land on `Card`; only the non-obvious mappings:
+realization fields, grammar keys, and `notes`. Don't re-derive them here. The mappings
+below are source → the information a card needs (land it on your redesigned model):
 
 - `id` = `area/slug` (kind no longer in the id). Scheduling key stays `id|direction`.
-- `article` ← de `grammar.gender`; `plural` ← `grammar.plural` — already bare, the v1
-  `strippedPlural` hack is gone. Two `plural` sentinels need rendering, not literal
-  display: `"="` → "= Pl." (plural identical to singular), `"only"` → pluralia tantum.
-- `translation` ← `<target>.json` text (+ `variants` joined as v1 did);
-  `note` ← the target realization's `notes.de` (nil if absent).
+- **each side's realization** ← that language's `<lang>.json` entry, carried whole:
+  `text`, `variants` (a real list, not joined into text), structured `grammar`, `notes`
+  map. de `grammar` has `gender`+`plural`; the v1 `strippedPlural` hack is gone. Two
+  `plural` sentinels need rendering, not literal display: `"="` → "= Pl." (identical to
+  singular), `"only"` → "nur Pl." (pluralia tantum). Notes are keyed by explanation
+  language and stay on the realization they explain (nil if absent).
 - **Verb-prefix grading:** read `catalog/languages.json`. A language's
   `optionalVerbPrefixes` is an ARRAY of infinitive citation markers (en `["to "]`, sw
   `["ku","kw"]`), each **optional on input** for `kind == verb`: a leading occurrence of any listed prefix
@@ -87,7 +140,8 @@ README doesn't say is how they land on `Card`; only the non-obvious mappings:
 1. **Model** (`Types.swift` → Kotlin). Fixes the coordination point everything depends on.
 2. **Parser** (v2 → `[Card]`). Leaf module; fixture-test against a couple of areas by
    hand-checking a handful of cards. This is the first thing to get right.
-3. **FSRS** — port + golden vectors green.
+3. **FSRS** — implement **FSRS-6** fresh; golden vectors regenerated from an FSRS-6
+   reference and green (see the "FSRS" section). Do not port the FSRS-5 tests.
 4. **Box** (budgets, health gate, phrase unlock, leeches) then **Session** (composer, drain).
 5. Wire the app to the KMP core; retire the Swift `CatalogImporter`.
 
