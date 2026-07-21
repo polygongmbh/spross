@@ -52,8 +52,7 @@
   "case-worker": {
    "text": "Sachbearbeiter",
    "grammar": {
-    "gender": "der",
-    "feminine": "Sachbearbeiterin"
+    "gender": "der"
    }
   },
   "deadline": {
@@ -73,8 +72,7 @@
   "documents": {
    "text": "Unterlagen",
    "grammar": {
-    "gender": "die",
-    "pluralOnly": true
+    "gender": "die"
    }
   },
   "fill-in": {

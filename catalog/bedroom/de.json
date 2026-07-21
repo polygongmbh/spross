@@ -31,8 +31,7 @@
   "bedding": {
    "text": "Bettwäsche",
    "grammar": {
-    "gender": "die",
-    "singularOnly": true
+    "gender": "die"
    }
   },
   "wardrobe": {

@@ -32,10 +32,7 @@
    "text": "шкарпетка"
   },
   "trousers": {
-   "text": "штани",
-   "grammar": {
-    "pluralOnly": true
-   }
+   "text": "штани"
   },
   "t-shirt": {
    "text": "футболка"

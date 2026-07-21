@@ -14,10 +14,7 @@
    "text": "miadi"
   },
   "pain": {
-   "text": "maumivu",
-   "grammar": {
-    "pluralOnly": true
-   }
+   "text": "maumivu"
   },
   "fever": {
    "text": "homa"
@@ -41,10 +38,7 @@
    "text": "kikohozi"
   },
   "cold": {
-   "text": "mafua",
-   "grammar": {
-    "pluralOnly": true
-   }
+   "text": "mafua"
   },
   "hurt": {
    "text": "kuuma"

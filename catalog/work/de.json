@@ -40,16 +40,14 @@
    "text": "Kollege",
    "grammar": {
     "gender": "der",
-    "plural": "-n",
-    "feminine": "Kollegin"
+    "plural": "-n"
    }
   },
   "boss": {
    "text": "Chef",
    "grammar": {
     "gender": "der",
-    "plural": "-s",
-    "feminine": "Chefin"
+    "plural": "-s"
    }
   },
   "shift": {

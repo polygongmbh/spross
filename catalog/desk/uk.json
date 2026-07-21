@@ -23,10 +23,7 @@
    "text": "кабель"
   },
   "headphones": {
-   "text": "навушники",
-   "grammar": {
-    "pluralOnly": true
-   }
+   "text": "навушники"
   },
   "pen": {
    "text": "ручка"

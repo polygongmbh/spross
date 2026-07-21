@@ -46,9 +46,9 @@
    "uk": "Установи та робота"
   },
   "areas": [
-   "amt",
-   "arzt",
-   "arbeit"
+   "admin",
+   "health",
+   "work"
   ]
  }
 ]

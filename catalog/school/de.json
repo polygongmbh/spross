@@ -24,8 +24,7 @@
   "teacher": {
    "text": "Lehrer",
    "grammar": {
-    "gender": "der",
-    "feminine": "Lehrerin"
+    "gender": "der"
    }
   },
   "board": {

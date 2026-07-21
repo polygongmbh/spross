@@ -5,8 +5,7 @@
    "text": "Arzt",
    "grammar": {
     "gender": "der",
-    "plural": "Ärzte",
-    "feminine": "Ärztin"
+    "plural": "Ärzte"
    }
   },
   "practice": {

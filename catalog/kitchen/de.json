@@ -32,15 +32,13 @@
   "hunger": {
    "text": "Hunger",
    "grammar": {
-    "gender": "der",
-    "singularOnly": true
+    "gender": "der"
    }
   },
   "thirst": {
    "text": "Durst",
    "grammar": {
-    "gender": "der",
-    "singularOnly": true
+    "gender": "der"
    }
   },
   "pot": {
