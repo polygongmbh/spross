@@ -11,8 +11,7 @@
   "classroom": {
    "text": "Klassenzimmer",
    "grammar": {
-    "gender": "das",
-    "plural": "–"
+    "gender": "das"
    }
   },
   "integration-course": {
@@ -26,7 +25,7 @@
    "text": "Lehrer",
    "grammar": {
     "gender": "der",
-    "plural": "♀ die Lehrerin"
+    "feminine": "Lehrerin"
    }
   },
   "board": {
@@ -40,7 +39,7 @@
    "text": "Wörterbuch",
    "grammar": {
     "gender": "das",
-    "plural": "die Wörterbücher"
+    "plural": "Wörterbücher"
    }
   },
   "exercise-book": {

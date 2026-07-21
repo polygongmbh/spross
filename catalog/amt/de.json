@@ -5,7 +5,7 @@
    "text": "Amt",
    "grammar": {
     "gender": "das",
-    "plural": "die Ämter"
+    "plural": "Ämter"
    }
   },
   "form": {
@@ -19,7 +19,7 @@
    "text": "Antrag",
    "grammar": {
     "gender": "der",
-    "plural": "die Anträge"
+    "plural": "Anträge"
    }
   },
   "id-card": {
@@ -32,8 +32,7 @@
   "residence-permit": {
    "text": "Aufenthaltstitel",
    "grammar": {
-    "gender": "der",
-    "plural": "–"
+    "gender": "der"
    }
   },
   "signature": {
@@ -54,7 +53,7 @@
    "text": "Sachbearbeiter",
    "grammar": {
     "gender": "der",
-    "plural": "– · ♀ die Sachbearbeiterin"
+    "feminine": "Sachbearbeiterin"
    }
   },
   "deadline": {
@@ -75,7 +74,7 @@
    "text": "Unterlagen",
    "grammar": {
     "gender": "die",
-    "plural": "nur Plural"
+    "pluralOnly": true
    }
   },
   "fill-in": {

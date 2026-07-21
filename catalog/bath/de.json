@@ -32,15 +32,13 @@
   "sink": {
    "text": "Waschbecken",
    "grammar": {
-    "gender": "das",
-    "plural": "–"
+    "gender": "das"
    }
   },
   "mirror": {
    "text": "Spiegel",
    "grammar": {
-    "gender": "der",
-    "plural": "–"
+    "gender": "der"
    }
   },
   "toothbrush": {
@@ -54,14 +52,14 @@
    "text": "Zahnpasta",
    "grammar": {
     "gender": "die",
-    "plural": "die Zahnpasten"
+    "plural": "Zahnpasten"
    }
   },
   "towel": {
    "text": "Handtuch",
    "grammar": {
     "gender": "das",
-    "plural": "die Handtücher"
+    "plural": "Handtücher"
    }
   },
   "soap": {

@@ -50,7 +50,7 @@ Per-card field mapping from v2:
 | `area`          | folder name |
 | `german`        | `de.json` `words[slug].text` |
 | `article`       | `de.json` `grammar.gender` (nil for non-nouns) |
-| `plural`        | `grammar.plural` — **already bare** (no `"Pl."`, no `(selten)`); no stripping needed |
+| `plural`        | `grammar.plural` — **already bare** (no `"Pl."`/`"die"`, no `(selten)`); no stripping needed. de grammar may also carry `pluralOnly`/`singularOnly`/`feminine` (♀ form) — surface as you see fit |
 | `emoji`         | concept `emoji` (nouns only) |
 | `translation`   | `<target>.json` `words[slug].text`, `variants` joined as before |
 | `note`          | `<target>.json` `words[slug].notes.de` (the learner-facing gloss; nil if absent) |

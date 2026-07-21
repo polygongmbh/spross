@@ -18,8 +18,7 @@
   "pillow": {
    "text": "Kissen",
    "grammar": {
-    "gender": "das",
-    "plural": "–"
+    "gender": "das"
    }
   },
   "blanket": {
@@ -33,21 +32,20 @@
    "text": "Bettwäsche",
    "grammar": {
     "gender": "die",
-    "plural": "nur Singular"
+    "singularOnly": true
    }
   },
   "wardrobe": {
    "text": "Kleiderschrank",
    "grammar": {
     "gender": "der",
-    "plural": "die Kleiderschränke"
+    "plural": "Kleiderschränke"
    }
   },
   "alarm-clock": {
    "text": "Wecker",
    "grammar": {
-    "gender": "der",
-    "plural": "–"
+    "gender": "der"
    }
   },
   "nightstand": {
@@ -61,7 +59,7 @@
    "text": "Schlafanzug",
    "grammar": {
     "gender": "der",
-    "plural": "die Schlafanzüge"
+    "plural": "Schlafanzüge"
    }
   },
   "sock": {

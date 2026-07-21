@@ -5,21 +5,21 @@
    "text": "Kühlschrank",
    "grammar": {
     "gender": "der",
-    "plural": "die Kühlschränke"
+    "plural": "Kühlschränke"
    }
   },
   "stove": {
    "text": "Herd",
    "grammar": {
     "gender": "der",
-    "plural": "die Herde"
+    "plural": "Herde"
    }
   },
   "oven": {
    "text": "Backofen",
    "grammar": {
     "gender": "der",
-    "plural": "die Backöfen"
+    "plural": "Backöfen"
    }
   },
   "dishwasher": {
@@ -33,21 +33,21 @@
    "text": "Hunger",
    "grammar": {
     "gender": "der",
-    "plural": "nur Singular"
+    "singularOnly": true
    }
   },
   "thirst": {
    "text": "Durst",
    "grammar": {
     "gender": "der",
-    "plural": "nur Singular"
+    "singularOnly": true
    }
   },
   "pot": {
    "text": "Topf",
    "grammar": {
     "gender": "der",
-    "plural": "die Töpfe"
+    "plural": "Töpfe"
    }
   },
   "pan": {
@@ -60,15 +60,13 @@
   "knife": {
    "text": "Messer",
    "grammar": {
-    "gender": "das",
-    "plural": "–"
+    "gender": "das"
    }
   },
   "spoon": {
    "text": "Löffel",
    "grammar": {
-    "gender": "der",
-    "plural": "–"
+    "gender": "der"
    }
   },
   "fork": {
@@ -81,8 +79,7 @@
   "plate": {
    "text": "Teller",
    "grammar": {
-    "gender": "der",
-    "plural": "–"
+    "gender": "der"
    }
   },
   "cook": {

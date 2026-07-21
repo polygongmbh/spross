@@ -18,8 +18,7 @@
   "key": {
    "text": "Schlüssel",
    "grammar": {
-    "gender": "der",
-    "plural": "–"
+    "gender": "der"
    }
   },
   "jacket": {
@@ -33,7 +32,7 @@
    "text": "Mantel",
    "grammar": {
     "gender": "der",
-    "plural": "die Mäntel"
+    "plural": "Mäntel"
    }
   },
   "shoe-rack": {
@@ -61,7 +60,7 @@
    "text": "Briefkasten",
    "grammar": {
     "gender": "der",
-    "plural": "die Briefkästen"
+    "plural": "Briefkästen"
    }
   },
   "doorbell": {

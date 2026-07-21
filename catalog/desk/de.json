@@ -33,21 +33,19 @@
    "text": "Maus",
    "grammar": {
     "gender": "die",
-    "plural": "die Mäuse"
+    "plural": "Mäuse"
    }
   },
   "cable": {
    "text": "Kabel",
    "grammar": {
-    "gender": "das",
-    "plural": "–"
+    "gender": "das"
    }
   },
   "headphones": {
    "text": "Kopfhörer",
    "grammar": {
-    "gender": "der",
-    "plural": "–"
+    "gender": "der"
    }
   },
   "pen": {
@@ -61,14 +59,13 @@
    "text": "Notizbuch",
    "grammar": {
     "gender": "das",
-    "plural": "die Notizbücher"
+    "plural": "Notizbücher"
    }
   },
   "printer": {
    "text": "Drucker",
    "grammar": {
-    "gender": "der",
-    "plural": "–"
+    "gender": "der"
    }
   },
   "socket": {
@@ -82,7 +79,7 @@
    "text": "Bürostuhl",
    "grammar": {
     "gender": "der",
-    "plural": "die Bürostühle"
+    "plural": "Bürostühle"
    }
   },
   "work": {

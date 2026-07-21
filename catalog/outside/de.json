@@ -19,7 +19,7 @@
    "text": "Fahrrad",
    "grammar": {
     "gender": "das",
-    "plural": "die Fahrräder"
+    "plural": "Fahrräder"
    }
   },
   "bus": {
@@ -40,14 +40,14 @@
    "text": "Zug",
    "grammar": {
     "gender": "der",
-    "plural": "die Züge"
+    "plural": "Züge"
    }
   },
   "tree": {
    "text": "Baum",
    "grammar": {
     "gender": "der",
-    "plural": "die Bäume"
+    "plural": "Bäume"
    }
   },
   "flower": {
@@ -74,15 +74,13 @@
   "rain": {
    "text": "Regen",
    "grammar": {
-    "gender": "der",
-    "plural": "–"
+    "gender": "der"
    }
   },
   "weather": {
    "text": "Wetter",
    "grammar": {
-    "gender": "das",
-    "plural": "–"
+    "gender": "das"
    }
   },
   "go-for-walk": {

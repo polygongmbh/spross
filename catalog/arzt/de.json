@@ -5,14 +5,15 @@
    "text": "Arzt",
    "grammar": {
     "gender": "der",
-    "plural": "die Ärzte · ♀ die Ärztin"
+    "plural": "Ärzte",
+    "feminine": "Ärztin"
    }
   },
   "practice": {
    "text": "Praxis",
    "grammar": {
     "gender": "die",
-    "plural": "die Praxen"
+    "plural": "Praxen"
    }
   },
   "appointment": {
@@ -32,8 +33,7 @@
   "fever": {
    "text": "Fieber",
    "grammar": {
-    "gender": "das",
-    "plural": "–"
+    "gender": "das"
    }
   },
   "pill": {
@@ -74,8 +74,7 @@
   "cough": {
    "text": "Husten",
    "grammar": {
-    "gender": "der",
-    "plural": "–"
+    "gender": "der"
    }
   },
   "cold": {

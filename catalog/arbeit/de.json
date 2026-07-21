@@ -19,35 +19,37 @@
    "text": "Lebenslauf",
    "grammar": {
     "gender": "der",
-    "plural": "die Lebensläufe"
+    "plural": "Lebensläufe"
    }
   },
   "contract": {
    "text": "Vertrag",
    "grammar": {
     "gender": "der",
-    "plural": "die Verträge"
+    "plural": "Verträge"
    }
   },
   "salary": {
    "text": "Gehalt",
    "grammar": {
     "gender": "das",
-    "plural": "die Gehälter"
+    "plural": "Gehälter"
    }
   },
   "colleague": {
    "text": "Kollege",
    "grammar": {
     "gender": "der",
-    "plural": "-n · ♀ die Kollegin"
+    "plural": "-n",
+    "feminine": "Kollegin"
    }
   },
   "boss": {
    "text": "Chef",
    "grammar": {
     "gender": "der",
-    "plural": "-s · ♀ die Chefin"
+    "plural": "-s",
+    "feminine": "Chefin"
    }
   },
   "shift": {
@@ -68,7 +70,7 @@
    "text": "Firma",
    "grammar": {
     "gender": "die",
-    "plural": "die Firmen"
+    "plural": "Firmen"
    }
   },
   "apply": {
