@@ -201,6 +201,58 @@ class BoxAnswerTests {
         assertEquals(AnswerStatus.DroppedPoolFull, dropped.status)
     }
 
+    // Eligibility lag is re-checked at answer time: plans outlive phase changes
+    // (they recompose only on joinStamp staleness), so composition-only enforcement
+    // is insufficient.
+    @Test
+    fun recognizeIntroductionRefusedWhileProduceStillLearning() {
+        var state = Box.state(listOf(Box.word(1)))
+        state = Box.answered(state, Box.produce("w01"), Rating.Good, now) // Learning
+        val blocked = BoxEngine.answer(state, Box.recognize("w01", "t1"), Rating.Good, now, Box.TZ)
+        assertEquals(AnswerStatus.DroppedIneligible, blocked.status)
+        assertEquals(state, blocked.state)
+
+        // Graduation lifts the lag: the very same answer then applies.
+        val step = Box.plusSeconds(now, 700)
+        var graduated = Box.answered(state, Box.produce("w01"), Rating.Good, step)
+        graduated = Box.answered(graduated, Box.recognize("w01", "t1"), Rating.Good, step)
+        assertEquals(2, graduated.scheduling.size)
+    }
+
+    @Test
+    fun recognizeIntroductionRefusedWhenProduceMissingOrSuspendedLeech() {
+        var state = Box.state(listOf(Box.word(1)))
+        val missing = BoxEngine.answer(state, Box.recognize("w01", "t1"), Rating.Good, now, Box.TZ)
+        assertEquals(AnswerStatus.DroppedIneligible, missing.status)
+        assertEquals(state, missing.state)
+
+        // A suspended Review leech blocks recognize at answer time too — the
+        // composition-level block must not be defeatable by a stale plan.
+        state = Box.inject(
+            state,
+            Box.sched(
+                "w01",
+                dueMillis = Box.plusDays(now, 5.0),
+                lastReviewMillis = Box.plusDays(now, -1.0),
+                lapses = 8,
+                suspended = true,
+            ),
+        )
+        val blocked = BoxEngine.answer(state, Box.recognize("w01", "t1"), Rating.Good, now, Box.TZ)
+        assertEquals(AnswerStatus.DroppedIneligible, blocked.status)
+        assertEquals(state, blocked.state)
+    }
+
+    @Test
+    fun lockedPhraseIntroductionRefusedAtAnswerTime() {
+        val state = Box.state(
+            listOf(Box.word(1), Box.word(2), Box.phrase("p1", components = listOf("w01", "w02"))),
+        )
+        val blocked = BoxEngine.answer(state, Box.produce("p1"), Rating.Good, now, Box.TZ)
+        assertEquals(AnswerStatus.DroppedIneligible, blocked.status)
+        assertEquals(state, blocked.state)
+    }
+
     @Test
     fun onlyProduceIntroductionCountsConceptAndDequeues() {
         var state = Box.state(listOf(Box.word(1)))

@@ -35,6 +35,12 @@ enum class AnswerStatus {
     StaleUnit,
     /** Introduction refused: the learning pool is full (defensive re-check). */
     DroppedPoolFull,
+    /**
+     * Introduction refused: the unit is not introducible under the current state
+     * (recognize eligibility lag, phrase unlock) — defensive re-check; plans outlive
+     * phase changes.
+     */
+    DroppedIneligible,
 }
 
 /** Result of [BoxEngine.answer]: the (possibly unchanged) state plus what happened. */

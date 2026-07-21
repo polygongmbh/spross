@@ -66,8 +66,11 @@ object BoxEngine {
     /**
      * Apply one answer to a unit. Introduction = the unit's first answer: creates its
      * schedule, and on a PRODUCE intro counts the concept introduced and dequeues it.
-     * Review-phase Again answers count lapses; 8 lapses auto-suspend the unit (leech).
-     * Non-joining or unknown keys are a defined no-op ([AnswerStatus.StaleUnit]).
+     * Introductions re-check eligibility and the concept budget at answer time
+     * ([AnswerStatus.DroppedIneligible] / [AnswerStatus.DroppedPoolFull]) — plans
+     * outlive phase changes. Review-phase Again answers count lapses; 8 lapses
+     * auto-suspend the unit (leech). Non-joining or unknown keys are a defined no-op
+     * ([AnswerStatus.StaleUnit]).
      */
     fun answer(
         state: BoxState,

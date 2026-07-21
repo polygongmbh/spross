@@ -10,6 +10,7 @@ import net.spross.kern.fsrs.SchedulerOutcome
 import net.spross.kern.fsrs.SchedulerState
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.CardPhase
+import net.spross.kern.model.ExerciseUnit
 import net.spross.kern.model.ExerciseUnits
 import net.spross.kern.model.Rating
 import net.spross.kern.model.ReviewLogEntry
@@ -40,9 +41,8 @@ internal object Answering {
     ): AnswerOutcome {
         val parsed = UnitKey.parse(unitKey) ?: return AnswerOutcome(state, AnswerStatus.StaleUnit)
         val card = state.cards[parsed.cardId] ?: return AnswerOutcome(state, AnswerStatus.StaleUnit)
-        if (ExerciseUnits.of(card).none { it.key == unitKey }) {
-            return AnswerOutcome(state, AnswerStatus.StaleUnit)
-        }
+        val unit = ExerciseUnits.of(card).firstOrNull { it.key == unitKey }
+            ?: return AnswerOutcome(state, AnswerStatus.StaleUnit)
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         val scheduler = FsrsScheduler(state.config.fsrsParameters())
         val existing = state.scheduling[unitKey]
@@ -53,14 +53,17 @@ internal object Answering {
                 AnswerStatus.Applied,
             )
         } else {
-            introduce(state, parsed, existing, rating, scheduler, now, nowEpochMillis, tzId)
+            introduce(state, unit, parsed, existing, rating, scheduler, now, nowEpochMillis, tzId)
         }
     }
 
-    // why: the concept budget is re-checked at answer time (plans may straddle midnight);
-    // units of concepts already in flight ride free — they don't grow the pool.
+    // why: eligibility and the concept budget are re-checked at answer time (plans
+    // outlive phase changes and may straddle midnight) — composition-only enforcement
+    // would let recognize units free-ride in before their produce unit graduates.
+    // Units of concepts already in flight ride free — they don't grow the pool.
     private fun introduce(
         state: BoxState,
+        unit: ExerciseUnit,
         parsed: UnitKey,
         existing: UnitScheduling?,
         rating: Rating,
@@ -69,6 +72,9 @@ internal object Answering {
         nowEpochMillis: Long,
         tzId: String,
     ): AnswerOutcome {
+        if (!Growth.isIntroducible(state, unit)) {
+            return AnswerOutcome(state, AnswerStatus.DroppedIneligible)
+        }
         val inFlight = parsed.cardId in Inventory.conceptsInFlight(state)
         if (!inFlight && Growth.learningPoolBudget(state) <= 0) {
             return AnswerOutcome(state, AnswerStatus.DroppedPoolFull)
