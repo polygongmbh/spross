@@ -92,18 +92,26 @@ internal object Growth {
      * open, unlocked phrases enter next, then seed-order units (recognize backfill of
      * graduated material naturally leads new produce — lower seed index). `capacityUnits`
      * caps the total in units.
+     *
+     * Plan composition passes [excludedCards] (cards already holding a plan slot) and
+     * `onePerCard = true` so each accepted unit claims its card — the composer's
+     * at-most-one-unit-per-card rule with capacity backfilling; the raw growth diet
+     * (default) may propose sibling forms together.
      */
     fun newCandidates(
         state: BoxState,
         conceptBudget: Int,
         gateOpen: Boolean,
         capacityUnits: Int,
+        excludedCards: Set<String> = emptySet(),
+        onePerCard: Boolean = false,
     ): NewCandidates {
         var capacity = capacityUnits
         var conceptSlots = conceptBudget
         if (capacity <= 0) return NewCandidates.empty
 
         val inFlight = Inventory.conceptsInFlight(state).toMutableSet()
+        val takenCards = excludedCards.toMutableSet()
         val takenKeys = mutableSetOf<String>()
         val unlockedPhrases = mutableListOf<String>()
         val newUnits = mutableListOf<String>()
@@ -112,9 +120,10 @@ internal object Growth {
         for (id in enqueuedEligible(state)) {
             if (capacity <= 0 || conceptSlots <= 0) break
             val key = UnitKey.produce(id).encoded
-            if (key in takenKeys) continue
+            if (key in takenKeys || id in takenCards) continue
             newUnits += key
             takenKeys += key
+            if (onePerCard) takenCards += id
             inFlight += id
             conceptSlots -= 1
             capacity -= 1
@@ -128,9 +137,10 @@ internal object Growth {
             if (capacity <= 0 || conceptSlots <= 0) break
             if (unit.role != Role.Produce || unit.card.kind != CardKind.Phrase) continue
             if (unit.card.components.isEmpty() || unit.key in takenKeys) continue
-            if (!isPhraseUnlocked(state, unit.card)) continue
+            if (unit.card.id in takenCards || !isPhraseUnlocked(state, unit.card)) continue
             unlockedPhrases += unit.key
             takenKeys += unit.key
+            if (onePerCard) takenCards += unit.card.id
             inFlight += unit.card.id
             conceptSlots -= 1
             capacity -= 1
@@ -139,11 +149,13 @@ internal object Growth {
         // 2b. Automatic seed-order growth (locked phrases wait for their components).
         for (unit in unscheduled) {
             if (capacity <= 0) break
-            if (unit.key in takenKeys || !isIntroducible(state, unit)) continue
+            if (unit.key in takenKeys || unit.card.id in takenCards) continue
+            if (!isIntroducible(state, unit)) continue
             val ridesFree = unit.card.id in inFlight
             if (!ridesFree && conceptSlots <= 0) continue
             newUnits += unit.key
             takenKeys += unit.key
+            if (onePerCard) takenCards += unit.card.id
             if (!ridesFree) {
                 inFlight += unit.card.id
                 conceptSlots -= 1

@@ -1,0 +1,202 @@
+package net.spross.kern.session
+
+import net.spross.kern.model.Card
+import net.spross.kern.model.CardKind
+import net.spross.kern.model.LanguageInfo
+import net.spross.kern.model.nfcNormalized
+
+/** Grading verdict for a typed produce answer. */
+sealed interface Match {
+    data object Exact : Match
+
+    /** Accepted with a small slip; carries the full normalized citation form. */
+    data class Typo(val corrected: String) : Match
+
+    data object Wrong : Match
+}
+
+/**
+ * Typed-answer grading for PRODUCE units, configured per ANSWER language (the
+ * profile's target) from `languages.json` — recognize units are self-graded and
+ * never pass through here.
+ *
+ * Pipeline (contract §6, both sides symmetric): NFC, lowercase, ß→ss, delete the
+ * joiners `-'’`, other punctuation → space (incl. `…—`), collapse whitespace →
+ * ONE leading listed article of the answer language is optional → iff the card is
+ * a verb, any listed citation prefix (en `"to "`, sw `ku`/`kw`) is optional →
+ * Damerau-Levenshtein (OSA) typo budget. Accepted forms = target
+ * `text ∪ synonyms ∪ variants`.
+ */
+class AnswerNormalizer(answerLanguage: LanguageInfo) {
+
+    private val articles: Set<String> = answerLanguage.articles.map { it.lowercase() }.toSet()
+    private val verbPrefixes: List<String> = answerLanguage.optionalVerbPrefixes
+        .map(::normalizedPrefix)
+        .filter { it.isNotEmpty() }
+
+    /**
+     * Canonical comparison form. A leading listed article is stripped only when more
+     * words follow — typing just "die" must never match "die Spülmaschine".
+     */
+    fun normalize(raw: String): String {
+        var words = tokenize(raw)
+        if (words.size > 1 && words.first() in articles) words = words.subList(1, words.size)
+        return words.joinToString(" ")
+    }
+
+    /** True when the typed input means the card's target answer. */
+    fun matches(input: String, card: Card): Boolean = evaluate(input, card) != Match.Wrong
+
+    /**
+     * Grade [input] against every accepted target form. Verb-prefix leniency applies
+     * iff `kind == verb`; the article-mismatch demotion applies iff the target's
+     * grammar carries `gender` (a PRESENT leading article that disagrees is a typo,
+     * a missing one stays exact). A stray unrecognized short leading word that,
+     * once dropped, makes the rest match is a typo, not a failure.
+     */
+    fun evaluate(input: String, card: Card): Match {
+        val accepted = listOf(card.target.text) + card.target.synonyms + card.target.variants
+        val prefixes = if (card.kind == CardKind.Verb) verbPrefixes else emptyList()
+        val expectedArticle = card.target.grammar["gender"]?.lowercase()
+        return evaluate(input, accepted, prefixes, expectedArticle)
+    }
+
+    private fun evaluate(
+        input: String,
+        accepted: List<String>,
+        prefixes: List<String>,
+        expectedArticle: String?,
+    ): Match {
+        val normalizedInput = normalize(input)
+        if (normalizedInput.isEmpty()) return Match.Wrong
+        val inputVariants = prefixVariants(normalizedInput, prefixes)
+
+        var best: Match = Match.Wrong
+        var bestTarget: String? = null
+        for (form in accepted) {
+            val target = normalize(form)
+            if (target.isEmpty()) continue
+            val candidates = prefixVariants(target, prefixes)
+            if (candidates.any { it in inputVariants }) {
+                best = Match.Exact
+                bestTarget = target
+                break
+            }
+            for (candidate in candidates) {
+                val letters = candidate.count { it != ' ' }
+                if (inputVariants.any { damerauLevenshtein(it, candidate) <= allowedTypos(letters) }) {
+                    // Reveal always shows the full citation form.
+                    best = Match.Typo(corrected = target)
+                    bestTarget = target
+                }
+            }
+        }
+
+        if (best == Match.Exact && expectedArticle != null) {
+            val typed = leadingArticle(input)
+            if (typed != null && typed != expectedArticle) {
+                best = Match.Typo(corrected = bestTarget ?: normalizedInput)
+            }
+        }
+        if (best == Match.Wrong) {
+            best = strayLeadingWordRecovery(input, accepted, prefixes)
+        }
+        return best
+    }
+
+    /** Drop a short all-letter leading word and regrade; a match after the drop is a typo. */
+    private fun strayLeadingWordRecovery(
+        input: String,
+        accepted: List<String>,
+        prefixes: List<String>,
+    ): Match {
+        val tokens = input.split(whitespaceRun).filter { it.isNotEmpty() }
+        val first = tokens.firstOrNull() ?: return Match.Wrong
+        if (tokens.size < 2 || first.length > MAX_LEADING_SLIP_LENGTH) return Match.Wrong
+        if (!first.all { it.isLetter() }) return Match.Wrong
+        val remainder = tokens.drop(1).joinToString(" ")
+        return when (val regraded = evaluate(remainder, accepted, prefixes, expectedArticle = null)) {
+            Match.Exact -> Match.Typo(corrected = normalize(accepted.first()))
+            is Match.Typo -> regraded
+            Match.Wrong -> Match.Wrong
+        }
+    }
+
+    /** The listed leading article a raw answer starts with (only when more words follow). */
+    private fun leadingArticle(raw: String): String? {
+        val words = tokenize(raw)
+        return words.firstOrNull()?.takeIf { it in articles && words.size > 1 }
+    }
+
+    /** The form plus, per matching prefix, the form with that leading prefix dropped. */
+    private fun prefixVariants(normalized: String, prefixes: List<String>): List<String> {
+        val variants = mutableListOf(normalized)
+        for (prefix in prefixes) {
+            if (normalized.length > prefix.length && normalized.startsWith(prefix)) {
+                variants += normalized.substring(prefix.length)
+            }
+        }
+        return variants
+    }
+
+    private fun tokenize(raw: String): List<String> =
+        cleaned(raw).split(' ').filter { it.isNotEmpty() }
+
+    /**
+     * The one character pass everything shares, so tokenization can never disagree:
+     * NFC, lowercase, ß→ss (2 edits — too far for short words' typo budget), joiners
+     * `-'’` deleted outright ("E-Mail"/"Email", "geht's"/"gehts"), every other
+     * non-alphanumeric — punctuation incl. `…—`, and whitespace — becomes a space.
+     */
+    private fun cleaned(raw: String): String {
+        val lowered = nfcNormalized(raw).lowercase().replace("ß", "ss")
+        val out = StringBuilder(lowered.length)
+        for (ch in lowered) {
+            when {
+                ch == '-' || ch == '\'' || ch == '’' -> {}
+                ch.isLetter() || ch.isDigit() -> out.append(ch)
+                else -> out.append(' ')
+            }
+        }
+        return out.toString()
+    }
+
+    /** Prefix in comparison shape, space-preserving: en `"to "` keeps its trailing space. */
+    private fun normalizedPrefix(raw: String): String =
+        cleaned(raw).replace(whitespaceRun, " ")
+
+    private companion object {
+        /**
+         * A stray leading word this short (letters only) is treated as a mistyped
+         * article/particle rather than part of the answer.
+         */
+        const val MAX_LEADING_SLIP_LENGTH = 4
+
+        val whitespaceRun = Regex("\\s+")
+
+        /** ~10 % of letters, but never for very short words (v1 formula). */
+        fun allowedTypos(letters: Int): Int = if (letters < 5) 0 else maxOf(1, letters / 10)
+
+        /**
+         * Optimal-string-alignment Damerau-Levenshtein: insert, delete, substitute,
+         * and adjacent transposition each cost 1.
+         */
+        fun damerauLevenshtein(a: String, b: String): Int {
+            if (a.isEmpty()) return b.length
+            if (b.isEmpty()) return a.length
+            val d = Array(a.length + 1) { IntArray(b.length + 1) }
+            for (i in 0..a.length) d[i][0] = i
+            for (j in 0..b.length) d[0][j] = j
+            for (i in 1..a.length) {
+                for (j in 1..b.length) {
+                    val cost = if (a[i - 1] == b[j - 1]) 0 else 1
+                    d[i][j] = minOf(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost)
+                    if (i > 1 && j > 1 && a[i - 1] == b[j - 2] && a[i - 2] == b[j - 1]) {
+                        d[i][j] = minOf(d[i][j], d[i - 2][j - 2] + 1)
+                    }
+                }
+            }
+            return d[a.length][b.length]
+        }
+    }
+}
