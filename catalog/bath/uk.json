@@ -6,7 +6,7 @@
   },
   "laundry": {
    "text": "білизна",
-   "variants": [
+   "alsoAccept": [
     "прання"
    ]
   },
@@ -57,7 +57,7 @@
   },
   "clean": {
    "text": "мити",
-   "variants": [
+   "alsoAccept": [
     "чистити"
    ]
   },

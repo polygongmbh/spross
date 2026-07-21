@@ -3,13 +3,13 @@
  "words": {
   "office": {
    "text": "установа",
-   "variants": [
+   "alsoAccept": [
     "відомство"
    ]
   },
   "form": {
    "text": "бланк",
-   "variants": [
+   "alsoAccept": [
     "формуляр"
    ]
   },
@@ -29,17 +29,14 @@
    "text": "номерок у черзі"
   },
   "case-worker": {
-   "text": "працівник",
-   "variants": [
-    "працівниця, що веде справу"
-   ]
+   "text": "працівник"
   },
   "case-worker-f": {
    "text": "працівниця"
   },
   "deadline": {
    "text": "строк",
-   "variants": [
+   "alsoAccept": [
     "термін"
    ]
   },

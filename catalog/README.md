@@ -101,7 +101,12 @@ differ from the slug — verb `cook` → `"to cook"`, phrase `the-fridge-is-empt
 ```
 Realization fields — only `text` is required:
 - `text` — the canonical answer/display form, nothing else (no embedded glosses/labels).
-- `variants` — additional accepted answers (array; omit if none).
+- `alsoAccept` — additional answers that grade as correct (array; omit if none).
+  ONLY genuine free-alternation equivalents of `text` — true synonyms (uk `office`
+  установа/відомство), spelling/inflection variants, or both grammatical genders of a
+  phrase (uk `Ти завів/завела …?`). NOT a home for distinct learnable items: feminine
+  forms belong to `feminineOf` concepts, and different-meaning words belong to their own
+  concept — neither goes here.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
   labels, no `(selten)` qualifier), one fact per key: de `gender` + `plural`,
   sw `plural`, en `plural` (irregular/pluralia-tantum only — regular +s is omitted),

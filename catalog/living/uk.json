@@ -18,13 +18,13 @@
   },
   "shelf": {
    "text": "полиця",
-   "variants": [
+   "alsoAccept": [
     "стелаж"
    ]
   },
   "plant": {
    "text": "рослина",
-   "variants": [
+   "alsoAccept": [
     "вазон"
    ]
   },

@@ -2,10 +2,7 @@
  "title": "У лікаря · будьте здорові!",
  "words": {
   "doctor": {
-   "text": "лікар",
-   "variants": [
-    "лікарка"
-   ]
+   "text": "лікар"
   },
   "doctor-f": {
    "text": "лікарка"
@@ -18,7 +15,7 @@
   },
   "appointment": {
    "text": "запис на прийом",
-   "variants": [
+   "alsoAccept": [
     "візит"
    ]
   },
@@ -30,13 +27,13 @@
   },
   "fever": {
    "text": "температура",
-   "variants": [
+   "alsoAccept": [
     "гарячка"
    ]
   },
   "pill": {
    "text": "таблетка",
-   "variants": [
+   "alsoAccept": [
     "пігулка"
    ]
   },
@@ -84,7 +81,7 @@
   },
   "call-in-sick": {
    "text": "повідомляти, що захворів",
-   "variants": [
+   "alsoAccept": [
     "іти на лікарняний"
    ]
   },

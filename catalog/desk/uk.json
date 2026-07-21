@@ -15,7 +15,7 @@
   },
   "mouse": {
    "text": "миша",
-   "variants": [
+   "alsoAccept": [
     "мишка"
    ]
   },

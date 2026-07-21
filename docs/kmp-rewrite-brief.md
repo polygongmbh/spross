@@ -88,13 +88,13 @@ checklist of what the engine consumes, then design a clean, **language-symmetric
 Legacy to drop:
 - `german` + `translation` — hard-codes German-on-one-side; cannot represent `en↔sw`,
   `sw↔uk`, or en-bearing pairs. Carry **two realizations by side/role**, each a
-  `{text, variants, grammar, note}` mirroring the format, and let `Direction` pick which
+  `{text, alsoAccept, grammar, note}` mirroring the format, and let `Direction` pick which
   is prompt vs. answer.
 - `article` + `plural` — German-only grammar flattened to two strings; drops sw/en/uk
   `plural` and the `"="`/`"only"` sentinels. Keep `grammar` structured, per side.
 - `note: String?` — loses the explanation-language keying and which realization it
-  explains (and v1 also swallowed `variants` into a joined string). Keep the `notes` map
-  on its realization; keep `variants` as a real list.
+  explains (and v1 also swallowed accepted alternatives into a joined string). Keep the
+  `notes` map on its realization; keep `alsoAccept` as a real list.
 - `pair: LanguagePair` (de-sw | de-uk enum) — generalize to any ordered language pair.
 
 Keep the clean concept-level parts: `id` (`area/slug`), `kind`, `area`, `emoji`,
@@ -106,7 +106,7 @@ below are source → the information a card needs (land it on your redesigned mo
 
 - `id` = `area/slug` (kind no longer in the id). Scheduling key stays `id|direction`.
 - **each side's realization** ← that language's `<lang>.json` entry, carried whole:
-  `text`, `variants` (a real list, not joined into text), structured `grammar`, `notes`
+  `text`, `alsoAccept` (a real list, not joined into text), structured `grammar`, `notes`
   map. de `grammar` has `gender`+`plural`; the v1 `strippedPlural` hack is gone. Two
   `plural` sentinels need rendering, not literal display: `"="` → "= Pl." (identical to
   singular), `"only"` → "nur Pl." (pluralia tantum). Notes are keyed by explanation
