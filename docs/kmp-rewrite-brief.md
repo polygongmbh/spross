@@ -59,11 +59,11 @@ README doesn't say is how they land on `Card`; only the non-obvious mappings:
 - `translation` ← `<target>.json` text (+ `variants` joined as v1 did);
   `note` ← the target realization's `notes.de` (nil if absent).
 - **Verb-prefix grading:** read `catalog/languages.json`. A language's `verbPrefix`
-  (en `"to "`, sw `"ku"`) is the infinitive citation marker and is **optional on
-  input** for `kind == verb`: normalize expected + typed answer by stripping a leading
-  `verbPrefix` before comparing, so `cook`==`to cook`, `pika`==`kupika`. Display keeps
-  the full form. Edge: sw `ku-` coalesces before a vowel (`ku+enda → kwenda`) — strip
-  `ku`/`kw` leniently (or such a verb carries a `variants` entry).
+  is an ARRAY of infinitive citation markers (en `["to "]`, sw `["ku","kw"]`), each
+  **optional on input** for `kind == verb`: a leading occurrence of any listed prefix
+  is stripped before comparing, so `cook`==`to cook`, `pika`==`kupika`, `enda`==`kwenda`.
+  Display keeps the full form. Over-listing is safe — every verb is an infinitive, so
+  stripping only ever yields the stem.
 - `componentIDs` ← the phrase concept's **`components` list** (authored slugs, same
   area) — **read them, don't re-derive**. The fragile v1 `PhraseLinker` matcher is
   retired. Empty list = no unlock gate.

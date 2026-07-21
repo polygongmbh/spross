@@ -1,6 +1,6 @@
 {
  "de": { "name": "Deutsch" },
- "en": { "name": "English", "verbPrefix": "to " },
- "sw": { "name": "Kiswahili", "verbPrefix": "ku" },
+ "en": { "name": "English", "verbPrefix": ["to "] },
+ "sw": { "name": "Kiswahili", "verbPrefix": ["ku", "kw"] },
  "uk": { "name": "Українська" }
 }

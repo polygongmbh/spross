@@ -56,16 +56,18 @@ is a runtime/user-preference concern; the content only supplies the default.
 
 **`languages.json`** — per-language metadata, keyed by lang code:
 ```json
-{ "en": { "name": "English", "verbPrefix": "to " },
-  "sw": { "name": "Kiswahili", "verbPrefix": "ku" } }
+{ "en": { "name": "English", "verbPrefix": ["to "] },
+  "sw": { "name": "Kiswahili", "verbPrefix": ["ku", "kw"] } }
 ```
 - `name` — display name of the language.
-- `verbPrefix` — the infinitive citation prefix on this language's verb realizations
-  (en `"to cook"`, sw `"kupika"`). It is **optional when grading input**: the answer
-  matches with or without it (`cook` == `to cook`, `pika` == `kupika`), while display
-  keeps the full citation form. Omit for languages with no such prefix (de `-en`
-  suffix, uk `-ти` suffix). Edge: sw `ku-` coalesces before a vowel (`ku+enda →
-  kwenda`), so the grader should strip a leading `ku`/`kw` leniently.
+- `verbPrefix` — array of infinitive citation prefixes on this language's verb
+  realizations (en `"to cook"`, sw `"kupika"`/`"kwenda"`). A leading occurrence of ANY
+  listed prefix is **optional when grading input**: the answer matches with or without
+  it (`cook` == `to cook`, `pika` == `kupika`, `enda` == `kwenda`), while display keeps
+  the full citation form. Swahili lists both `ku` and its pre-vowel coalesced form `kw`
+  (`ku+enda → kwenda`). Omit for languages with no such prefix (de `-en` suffix, uk `-ти`
+  suffix). Harmless to over-list: every verb is stored in infinitive form, so stripping
+  a listed prefix only ever yields the same stem.
 
 **`<area>/concepts.json`** — ordered, language-neutral. Order across all kinds IS
 seed/introduction order (phrases follow their area's words):
