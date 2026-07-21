@@ -1,0 +1,53 @@
+package net.spross.kern.catalog
+
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+
+internal fun parseError(path: String, message: String): Nothing =
+    throw CatalogFormatException("$path: $message")
+
+internal fun parseJson(path: String, text: String): JsonElement =
+    try {
+        Json.parseToJsonElement(text)
+    } catch (e: Exception) {
+        parseError(path, "invalid JSON (${e.message})")
+    }
+
+internal fun JsonElement.obj(path: String, context: String): JsonObject =
+    this as? JsonObject ?: parseError(path, "$context: expected an object")
+
+internal fun JsonElement.arr(path: String, context: String): JsonArray =
+    this as? JsonArray ?: parseError(path, "$context: expected an array")
+
+/** Exact string content — never trimmed (en `"to "` must survive parsing). */
+internal fun JsonElement.str(path: String, context: String): String {
+    val primitive = this as? JsonPrimitive
+    if (primitive == null || !primitive.isString) parseError(path, "$context: expected a string")
+    return primitive.content
+}
+
+internal fun JsonObject.requireString(path: String, context: String, key: String): String {
+    val value = this[key] ?: parseError(path, "$context: missing \"$key\"")
+    return value.str(path, "$context.$key")
+}
+
+internal fun JsonObject.optionalString(path: String, context: String, key: String): String? =
+    this[key]?.str(path, "$context.$key")
+
+internal fun JsonObject.stringList(path: String, context: String, key: String): List<String> =
+    this[key]?.arr(path, "$context.$key")?.mapIndexed { i, el ->
+        el.str(path, "$context.$key[$i]")
+    } ?: emptyList()
+
+internal fun JsonObject.stringMap(path: String, context: String, key: String): Map<String, String> =
+    this[key]?.obj(path, "$context.$key")?.mapValues { (k, v) ->
+        v.str(path, "$context.$key.$k")
+    } ?: emptyMap()
+
+internal fun JsonObject.rejectUnknownKeys(path: String, context: String, known: Set<String>) {
+    val unknown = keys - known
+    if (unknown.isNotEmpty()) parseError(path, "$context: unknown keys $unknown")
+}

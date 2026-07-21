@@ -1,0 +1,154 @@
+package net.spross.kern.catalog
+
+import kotlinx.serialization.json.JsonObject
+import net.spross.kern.model.CardKind
+import net.spross.kern.model.Language
+import net.spross.kern.model.LanguageInfo
+
+/** Wraps a [CatalogSource], folding every read into an FNV-1a 64 fingerprint. */
+internal class FingerprintingSource(private val delegate: CatalogSource) {
+    private var hash: ULong = 0xcbf29ce484222325uL
+
+    fun read(path: String): String? {
+        val text = delegate.read(path) ?: return null
+        fold(path)
+        fold(text)
+        return text
+    }
+
+    fun require(path: String): String = read(path) ?: parseError(path, "missing required file")
+
+    private fun fold(text: String) {
+        for (byte in text.encodeToByteArray()) {
+            hash = hash xor byte.toUByte().toULong()
+            hash *= 0x100000001b3uL
+        }
+        hash = hash xor 0xffuL // why: separates path/content segments so moves can't alias
+        hash *= 0x100000001b3uL
+    }
+
+    fun fingerprint(): String = hash.toString(16).padStart(16, '0')
+}
+
+internal object CatalogParser {
+
+    fun parseAreasManifest(path: String, text: String): List<AreaGroup> {
+        val groups = parseJson(path, text).arr(path, "root").mapIndexed { i, el ->
+            val o = el.obj(path, "groups[$i]")
+            o.rejectUnknownKeys(path, "groups[$i]", setOf("group", "titles", "areas"))
+            val id = o.requireString(path, "groups[$i]", "group")
+            val areas = o.stringList(path, "groups[$i]", "areas")
+            if (areas.isEmpty()) parseError(path, "groups[$i] ($id): empty areas")
+            AreaGroup(id, o.stringMap(path, "groups[$i]", "titles"), areas)
+        }
+        val allAreas = groups.flatMap { it.areas }
+        if (allAreas.size != allAreas.toSet().size) parseError(path, "duplicate area across groups")
+        return groups
+    }
+
+    fun parseLanguages(path: String, text: String): Map<Language, LanguageInfo> {
+        val root = parseJson(path, text).obj(path, "root")
+        return root.entries.associate { (code, el) ->
+            val o = el.obj(path, code)
+            o.rejectUnknownKeys(path, code, setOf("name", "optionalVerbPrefixes", "articles"))
+            val name = o.requireString(path, code, "name")
+            if (name.isBlank()) parseError(path, "$code: blank name")
+            code to LanguageInfo(
+                code = code,
+                name = name,
+                optionalVerbPrefixes = o.stringList(path, code, "optionalVerbPrefixes"),
+                articles = o.stringList(path, code, "articles"),
+            )
+        }
+    }
+
+    fun parseConcepts(area: String, path: String, text: String, firstSeedIndex: Int): List<CatalogConcept> {
+        val concepts = parseJson(path, text).arr(path, "root").mapIndexed { i, el ->
+            val o = el.obj(path, "[$i]")
+            o.rejectUnknownKeys(
+                path, "[$i]",
+                setOf("slug", "kind", "emoji", "components", "feminineOf", "variantOf"),
+            )
+            val slug = o.requireString(path, "[$i]", "slug")
+            if (slug.isEmpty() || '|' in slug || '/' in slug) parseError(path, "[$i]: bad slug \"$slug\"")
+            val kind = when (val raw = o.requireString(path, slug, "kind")) {
+                "noun" -> CardKind.Noun
+                "verb" -> CardKind.Verb
+                "phrase" -> CardKind.Phrase
+                else -> parseError(path, "$slug: unknown kind \"$raw\"")
+            }
+            if (kind != CardKind.Phrase && "components" in o.keys) {
+                parseError(path, "$slug: components on a ${kind.name.lowercase()}")
+            }
+            if (kind != CardKind.Phrase && "variantOf" in o.keys) parseError(path, "$slug: variantOf on a non-phrase")
+            if (kind != CardKind.Noun && "feminineOf" in o.keys) parseError(path, "$slug: feminineOf on a non-noun")
+            CatalogConcept(
+                area = area,
+                slug = slug,
+                kind = kind,
+                emoji = o.optionalString(path, slug, "emoji"),
+                components = o.stringList(path, slug, "components"),
+                feminineOf = o.optionalString(path, slug, "feminineOf"),
+                variantOf = o.optionalString(path, slug, "variantOf"),
+                seedIndex = firstSeedIndex + i,
+            )
+        }
+        val slugs = concepts.map { it.slug }
+        if (slugs.size != slugs.toSet().size) parseError(path, "duplicate slug within area")
+        validateReferences(path, concepts)
+        return concepts
+    }
+
+    private fun validateReferences(path: String, concepts: List<CatalogConcept>) {
+        val bySlug = concepts.associateBy { it.slug }
+        for (c in concepts) {
+            for (component in c.components) {
+                val target = bySlug[component] ?: parseError(path, "${c.slug}: unresolved component \"$component\"")
+                if (target.kind == CardKind.Phrase) parseError(path, "${c.slug}: component \"$component\" is a phrase")
+            }
+            c.feminineOf?.let { base ->
+                val target = bySlug[base] ?: parseError(path, "${c.slug}: unresolved feminineOf \"$base\"")
+                if (target.kind != CardKind.Noun || target.slug == c.slug || target.feminineOf != null) {
+                    parseError(path, "${c.slug}: feminineOf must reference a plain same-area noun")
+                }
+            }
+            c.variantOf?.let { base ->
+                val target = bySlug[base] ?: parseError(path, "${c.slug}: unresolved variantOf \"$base\"")
+                if (target.kind != CardKind.Phrase || target.slug == c.slug || target.variantOf != null) {
+                    parseError(path, "${c.slug}: variantOf must reference a plain same-area phrase")
+                }
+            }
+        }
+    }
+
+    /** Returns (title, slug → realization); validates slugs against the area's concepts. */
+    fun parseAreaLanguageFile(
+        path: String,
+        text: String,
+        conceptSlugs: Set<String>,
+    ): Pair<String, Map<String, RawRealization>> {
+        val root = parseJson(path, text).obj(path, "root")
+        root.rejectUnknownKeys(path, "root", setOf("title", "words"))
+        val title = root.requireString(path, "root", "title")
+        if (title.isBlank()) parseError(path, "blank title")
+        val wordsObj = root["words"]?.obj(path, "words") ?: parseError(path, "missing \"words\"")
+        val words = wordsObj.entries.associate { (slug, el) ->
+            if (slug !in conceptSlugs) parseError(path, "realization for unknown slug \"$slug\"")
+            slug to parseRealization(path, slug, el.obj(path, slug))
+        }
+        return title to words
+    }
+
+    private fun parseRealization(path: String, slug: String, o: JsonObject): RawRealization {
+        o.rejectUnknownKeys(path, slug, setOf("text", "synonyms", "variants", "grammar", "notes"))
+        val text = o.requireString(path, slug, "text")
+        if (text.isBlank()) parseError(path, "$slug: blank text")
+        return RawRealization(
+            text = text,
+            synonyms = o.stringList(path, slug, "synonyms"),
+            variants = o.stringList(path, slug, "variants"),
+            grammar = o.stringMap(path, slug, "grammar"),
+            notes = o.stringMap(path, slug, "notes"),
+        )
+    }
+}
