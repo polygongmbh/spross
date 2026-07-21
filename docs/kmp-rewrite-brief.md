@@ -47,13 +47,19 @@ README doesn't say is how they land on `Card`; only the non-obvious mappings:
 
 - `id` = `area/slug` (kind no longer in the id). Scheduling key stays `id|direction`.
 - `article` ← de `grammar.gender`; `plural` ← `grammar.plural` — already bare, the v1
-  `strippedPlural` hack is gone. Grammar is minimal now (de `gender`+`plural`, sw
-  `plural`, uk none); no `pluralOnly`/`singularOnly`/`feminine`.
+  `strippedPlural` hack is gone. Two `plural` sentinels need rendering, not literal
+  display: `"="` → "= Pl." (plural identical to singular), `"only"` → pluralia tantum.
 - `translation` ← `<target>.json` text (+ `variants` joined as v1 did);
   `note` ← the target realization's `notes.de` (nil if absent).
 - `componentIDs` ← the phrase concept's **`components` list** (authored slugs, same
   area) — **read them, don't re-derive**. The fragile v1 `PhraseLinker` matcher is
   retired. Empty list = no unlock gate.
+- **`feminineOf` (nouns):** a concept with `feminineOf` is the feminine sibling of its
+  base. It only has a realization in gender-distinguishing languages, so by the
+  join+skip coverage rule it becomes its own `Card` **only in pairs where the target
+  has the form** (e.g. de↔uk `Lehrerin`↔`вчителька`). Where the target lacks it (all
+  de↔sw; uk epicene cases), the sibling produces no card — instead render a **♀ marker
+  on the base card** using the backlink, so the base word reads as covering both.
 - `seedIndex` = global introduction order, flattened from `areas.json` (group order →
   area order) then each `concepts.json` position (words then phrases).
 
