@@ -1,0 +1,68 @@
+{
+  "purpose": "FSRS-6 reference golden vectors for SprossKern KMP scheduler (copied-tier, maximum provenance)",
+  "retrieved": "2026-07-21",
+  "references": [
+    {
+      "name": "ts-fsrs",
+      "repo": "https://github.com/open-spaced-repetition/ts-fsrs",
+      "release_tag": "v5.4.1",
+      "commit_sha": "bfc0a1960dfde4b4627ae4f4c8757b9211314963",
+      "npm_package_version": "5.4.1 (packages/fsrs/package.json)",
+      "algorithm_version": "FSRS-6.0 (constant.ts: FSRSVersion 'using FSRS-6.0')",
+      "license": "MIT (Copyright (c) 2026 Open Spaced Repetition)",
+      "tarball": "ts-fsrs-v5.4.1.tar.gz",
+      "tarball_sha256": "59f9a47e2a1442bdb102368bbfd05356cc55fca7a1a8465b9852f32712a4bfcb",
+      "source_tree": "ts-fsrs-5.4.1/",
+      "key_files": {
+        "fsrs6_golden_suite": "packages/fsrs/__tests__/FSRS-6.test.ts",
+        "unit_formula_vectors": "packages/fsrs/__tests__/algorithm.test.ts",
+        "long_term_vectors_fsrs5_migrated": "packages/fsrs/__tests__/impl/long-term_scheduler.test.ts",
+        "learning_steps_policy": "packages/fsrs/__tests__/strategies/learning-steps.test.ts",
+        "elapsed_days_regressions": "packages/fsrs/__tests__/fixed/calc-elapsed-days.test.ts",
+        "defaults_and_clamps": "packages/fsrs/src/constant.ts",
+        "migration_fsrs5_to_6": "packages/fsrs/src/default.ts (migrateParameters: 19w -> +[0.0, 0.5])",
+        "scheduler_math": "packages/fsrs/src/algorithm.ts",
+        "fuzz_and_day_diff": "packages/fsrs/src/help.ts"
+      }
+    },
+    {
+      "name": "py-fsrs",
+      "repo": "https://github.com/open-spaced-repetition/py-fsrs",
+      "release_tag": "v6.3.1",
+      "commit_sha": "3abe686e9c058d3f3c00bbeb92e68b71211b2b31",
+      "pypi_package_version": "6.3.1 (pyproject.toml)",
+      "algorithm_version": "FSRS-6 (21 parameters, DECAY = -parameters[20])",
+      "license": "MIT (Copyright (c) 2022 Open Spaced Repetition)",
+      "tarball": "py-fsrs-v6.3.1.tar.gz",
+      "tarball_sha256": "b5cbb3651debced8164f0aa84000d896ac9663d88ad7b2e7016fb04481619dbf",
+      "source_tree": "py-fsrs-6.3.1/",
+      "key_files": {
+        "golden_suite": "tests/test_basic.py",
+        "scheduler_math_and_defaults": "fsrs/scheduler.py"
+      }
+    },
+    {
+      "name": "fsrs-rs (cross-check only, not downloaded)",
+      "repo": "https://github.com/open-spaced-repetition/fsrs-rs",
+      "note": "src/inference.rs DEFAULT_PARAMETERS [f32;21] identical to both references; src/model.rs stability_short_term masks sinc>=1.0 for rating >= 2 (Hard included), matching ts-fsrs"
+    }
+  ],
+  "default_parameters_fsrs6": [
+    0.212, 1.2931, 2.3065, 8.2956, 6.4133, 0.8334, 3.0194, 0.001, 1.8722,
+    0.1666, 0.796, 1.4835, 0.0614, 0.2629, 1.6483, 0.6014, 1.8729, 0.5425,
+    0.0912, 0.0658, 0.1542
+  ],
+  "default_decay_w20": 0.1542,
+  "decay_range": [0.1, 0.8],
+  "note_on_brief": "kmp-rewrite-brief.md says w20 default 0.2; all three references pin 0.1542. 0.2 was an early FSRS-6 announcement value; correct the brief.",
+  "other_defaults": {
+    "desired_retention": 0.9,
+    "maximum_interval_days": 36500,
+    "learning_steps": ["1m", "10m"],
+    "relearning_steps": ["10m"],
+    "S_MIN": 0.001,
+    "S_MAX": 36500.0,
+    "INIT_S_MAX": 100.0,
+    "fuzz_default": "ts-fsrs: false, py-fsrs: true (py golden tests pass enable_fuzzing=False)"
+  }
+}
