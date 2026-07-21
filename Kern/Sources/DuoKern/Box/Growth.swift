@@ -122,20 +122,26 @@ extension BoxEngine {
         }
     }
 
-    /// Candidate selection, bounded by `capacity` total introductions:
-    /// 1. Enqueued eligible ids (queue order) — the user asked for them, so they
-    ///    bypass `budget` (matching `answer()` and the extra round).
-    /// 2. Automatic growth within `budget`: unlocked phrases (fast path), then
-    ///    seed-order words. Locked phrases never enter, even enqueued.
-    static func newCandidates(_ state: BoxState, budget: Int, capacity: Int)
+    /// Candidate selection. Total introductions never exceed
+    /// `min(loadBudget, capacity)` — the load throttle intersected with the
+    /// remaining session capacity.
+    /// 1. Enqueued eligible ids (queue order) LEAD and bypass the health gate,
+    ///    but still respect `loadBudget`: packing an area enrolls it and drips
+    ///    in at the pool rate, it does not dump the whole pack at once.
+    /// 2. Automatic growth within `autoBudget` (0 when the health gate is
+    ///    closed): unlocked phrases (fast path), then seed-order words, filling
+    ///    whatever load budget the enqueued cards left. Locked phrases never
+    ///    enter, even enqueued.
+    static func newCandidates(_ state: BoxState, loadBudget: Int, autoBudget: Int, capacity: Int)
         -> (unlockedPhrases: [String], newWords: [String]) {
-        guard capacity > 0 else { return ([], []) }
+        let totalNew = min(loadBudget, capacity)
+        guard totalNew > 0 else { return ([], []) }
 
         let unscheduled = state.cards.values.filter { scheduling(state, $0.id) == nil }
         var taken = Set<String>()
-        var slots = capacity
+        var slots = totalNew
 
-        // 1. Enqueued — bypass the budget, bounded only by session capacity.
+        // 1. Enqueued lead — within the load throttle, bypassing the health gate.
         var words: [String] = []
         for id in enqueuedEligible(state) where slots > 0 {
             guard !taken.contains(id) else { continue }
@@ -144,8 +150,8 @@ extension BoxEngine {
             slots -= 1
         }
 
-        // 2. Automatic growth within the (load-based) budget.
-        var autoRemaining = min(budget, slots)
+        // 2. Automatic growth — only within the health-gated budget.
+        var autoRemaining = min(autoBudget, slots)
         let phrases = Array(
             seedOrdered(unscheduled.filter { !taken.contains($0.id) && isPhraseUnlocked(state, $0) })
                 .map(\.id).prefix(autoRemaining))

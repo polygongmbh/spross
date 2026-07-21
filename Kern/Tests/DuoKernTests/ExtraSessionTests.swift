@@ -32,23 +32,28 @@ import Testing
         #expect(extra.reviews.count == 8)
     }
 
-    @Test func enqueuedNewCardsBypassFullPoolInBothRounds() {
+    @Test func enqueuedNewCardsRespectPoolBudgetInBothRounds() {
         var config = BoxConfig(pair: .deSw)
-        config.maxLearning = 0 // no automatic growth budget
-        var state = boxWithActive(2, of: 4, config: config)
-        state = BoxEngine.enqueue(state: state, cardIDs: ["w2", "w3"])
+        config.maxLearning = 2 // pool budget of 2 — enqueued lead, but within it
+        var state = boxWithActive(0, of: 6, config: config)
+        state = BoxEngine.enqueue(state: state, cardIDs: ["w2", "w3", "w4"])
         let t = day0.addingTimeInterval(600)
-        // Regular compose now surfaces enqueued cards despite 0 automatic budget…
+        // Both rounds surface enqueued cards, but only up to the pool budget (2).
         let plan = BoxEngine.composeSession(state: state, now: t, calendar: calendar)
         #expect(plan.newWords == ["w2", "w3"])
-        // …and so does the extra round.
         let extra = BoxEngine.composeExtraSession(state: state, now: t, calendar: calendar)
         #expect(extra.newWords == ["w2", "w3"])
-        // and answering them actually introduces (budget bypass for enqueued).
-        let after = BoxEngine.answer(state: state, cardID: "w2", rating: .good,
+        // Answering introduces within budget; a filled pool then defers the rest.
+        var after = BoxEngine.answer(state: state, cardID: "w2", rating: .good,
                                      now: t.addingTimeInterval(100), calendar: calendar)
-        #expect(after.scheduling[BoxState.schedulingKey(cardID: "w2", direction: .deToTarget)] != nil)
-        #expect(after.enqueued == ["w3"])
+        after = BoxEngine.answer(state: after, cardID: "w3", rating: .good,
+                                 now: t.addingTimeInterval(200), calendar: calendar)
+        #expect(after.enqueued == ["w4"])
+        // Pool now full (2 in .learning) → w4 stays queued, not introduced.
+        let blocked = BoxEngine.answer(state: after, cardID: "w4", rating: .good,
+                                       now: t.addingTimeInterval(300), calendar: calendar)
+        #expect(blocked.scheduling[BoxState.schedulingKey(cardID: "w4", direction: .deToTarget)] == nil)
+        #expect(blocked.enqueued == ["w4"])
     }
 
     @Test func nonEnqueuedIntroductionStillNoOpsWhenPoolFull() {

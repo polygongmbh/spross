@@ -33,11 +33,11 @@ extension BoxEngine {
                                   fsrs: FSRS, now: Date, calendar: Calendar) -> BoxState {
         // why: the learning-pool budget is re-checked at answer time so a plan
         // can't over-fill the pool — each introduction moves a card into
-        // `.learning`, shrinking the remaining budget (self-limiting). Explicitly
-        // enqueued cards bypass it (user agency): a round the user asked for must
-        // never silently drop answers.
-        guard learningPoolBudget(state) > 0
-                || state.enqueued.contains(cardID) else { return state }
+        // `.learning`, shrinking the remaining budget (self-limiting). Enqueued
+        // cards lead composition but respect this same load throttle, so one
+        // budget check governs both — composition never proposes a card beyond
+        // the budget, so this only fires defensively (e.g. straddling midnight).
+        guard learningPoolBudget(state) > 0 else { return state }
 
         let memory = fsrs.initialState(rating: rating)
         let phase = fsrs.nextPhase(current: .new, rating: rating)

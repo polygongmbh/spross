@@ -6,9 +6,10 @@ extension BoxEngine {
     /// whenever I want, especially after adding vocabulary"). Contents:
     ///
     /// 1. Anything actually due now.
-    /// 2. Explicitly enqueued unscheduled cards — these BYPASS the daily new
-    ///    budget and health gate (the user just asked for them; `answer()`
-    ///    honors the bypass for enqueued ids). Locked phrases still wait.
+    /// 2. Explicitly enqueued unscheduled cards — these lead and bypass the
+    ///    health gate, but respect the load throttle (`learningPoolBudget`), so
+    ///    an extra round enrolls a pack rather than dumping it. Locked phrases
+    ///    still wait.
     /// 3. Review-ahead: active non-suspended cards by soonest due, so the
     ///    round is never empty while the box has cards. Early reviews are
     ///    honest FSRS reviews (short elapsed → small stability gain).
@@ -20,8 +21,9 @@ extension BoxEngine {
         let due = dueSchedulings(state, now: now).map(\.cardID)
 
         let scheduledKeys = Set(due)
-        // Enqueued unscheduled cards (locked phrases wait) — bypass the budget.
-        let enqueuedNew = enqueuedEligible(state)
+        // Enqueued unscheduled cards (locked phrases wait) — lead, within the
+        // load throttle so the round enrolls a pack instead of dumping it.
+        let enqueuedNew = Array(enqueuedEligible(state).prefix(learningPoolBudget(state)))
 
         let remaining = max(0, cap - due.count - enqueuedNew.count)
         // Review-ahead: soonest-due active cards not already in the round.
@@ -33,7 +35,7 @@ extension BoxEngine {
 
         return SessionPlan(reviews: Array((due + ahead).prefix(cap)),
                            unlockedPhrases: [],
-                           newWords: Array(enqueuedNew.prefix(cap)))
+                           newWords: enqueuedNew)
     }
 
     /// Endless practice refill: whatever needs repeating plus new cards, so a
@@ -48,9 +50,10 @@ extension BoxEngine {
     public static func composeEndless(state: BoxState, now: Date) -> SessionPlan {
         let cap = state.config.sessionCap
         let due = Array(dueSchedulings(state, now: now).map(\.cardID).prefix(cap))
-        let budget = gatedNewBudget(state, now: now)
+        let loadBudget = learningPoolBudget(state)
+        let autoBudget = gatedNewBudget(state, now: now)
         let capacity = max(0, cap - due.count)
-        let (phrases, words) = newCandidates(state, budget: budget, capacity: capacity)
+        let (phrases, words) = newCandidates(state, loadBudget: loadBudget, autoBudget: autoBudget, capacity: capacity)
         return SessionPlan(reviews: due, unlockedPhrases: phrases, newWords: words)
     }
 }

@@ -19,9 +19,9 @@ public enum BoxEngine {
     /// Append ids to the user priority queue.
     /// Enqueuing a phrase auto-prioritizes its missing (unscheduled) component
     /// words ahead of it (design §Box 4). Already-scheduled or unknown ids are
-    /// skipped; duplicates are dropped. The health gate is applied where it
-    /// belongs — at composition/introduction time — so enqueued cards never
-    /// bypass it.
+    /// skipped; duplicates are dropped. Enqueued cards lead composition and
+    /// bypass the health gate, but respect the load throttle (`maxLearning`):
+    /// a pack enrolls and drips in at the pool rate, it is not dumped at once.
     public static func enqueue(state: BoxState, cardIDs: [String]) -> BoxState {
         var next = state
         var queued = Set(next.enqueued)

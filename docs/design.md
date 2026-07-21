@@ -89,12 +89,14 @@ The box grows only while material sits:
    counts as not-stable. Phrases with ZERO resolved components follow normal seed order —
    never the unlock fast path.
 4. User agency: user can enqueue a topic pack or a single word ("add to box"). Enqueued,
-   unscheduled, unlocked cards **bypass the pool budget AND the health gate, and lead the
-   new-card list** in the normal composed session (and the extra round) — consistent with
-   `answer()`, which only gates introduction on budget-or-enqueued. The user asked for them, so
-   packing an area reliably surfaces it next session, bounded only by `sessionCap`. Locked
-   phrases still wait for their components. Enqueuing a phrase's area auto-prioritizes its
-   missing component words.
+   unscheduled, unlocked cards **lead the new-card list and bypass the health gate, but
+   respect the load throttle (`learningPoolBudget`)** — in the normal composed session and the
+   extra round. Packing an area *enrolls* it: the pack drips in at the pool rate (≤ `maxLearning`
+   per session, ahead of automatic growth), not all at once, so a whole group can't dump dozens
+   of new cards into one sitting. A full pool defers the rest until a slot frees. `answer()`
+   gates introduction on that same `learningPoolBudget > 0` for both enqueued and automatic
+   cards. Locked phrases still wait for their components; enqueuing a phrase's area
+   auto-prioritizes its missing component words.
 5. Automatic ordering within an area: nouns/verbs by seed order, then phrases by unlock.
 6. **Introduction = first answer**: `CardScheduling` is created and `newIntroduced[day]`
    incremented when the card is first *rated*, not when composed. Composition selects
@@ -107,9 +109,11 @@ The box grows only while material sits:
 A session is composed, never configured:
 
 1. Due reviews (oldest due first), capped at `sessionCap − growthReserve`, where
-   `growthReserve = min(max(learningPoolBudget, enqueuedEligibleCount), 5)` — up to 5 slots are
-   reserved so a full due queue can't starve growth (automatic OR user-enqueued); unlocked
-   phrases fill reserved slots first, then new cards per the box engine.
+   `growthReserve = min(max(autoBudget, min(enqueuedEligibleCount, loadBudget)), 5)` — up to 5
+   slots are reserved so a full due queue can't starve new work that will actually appear
+   (health-gated automatic cards, or enqueued cards within the throttle); a closed gate with
+   nothing packed reserves none. Unlocked phrases fill reserved slots first, then new cards per
+   the box engine.
 2. **Drain loop**: after the composed queue empties, keep pulling any card with
    `due <= now` (learning/relearning steps land here) until none remain — then the
    session ends with a summary (no mid-session pause). Failed cards cycle back naturally.
@@ -119,9 +123,9 @@ A session is composed, never configured:
    correct after reveal → `.hard`, correct → `.good`; `.easy` is unreachable via typing.
    Revealing without typing falls back to four-button self-grading (both directions).
 5. **Extra round** (`composeExtraSession`): always available on demand —
-   due cards, then explicitly enqueued new cards (these bypass the pool budget
-   and health gate at answer time; user agency), then review-ahead by soonest due,
-   capped at `sessionCap`. Automatic seed-order cards never enter an extra round.
+   due cards, then explicitly enqueued new cards (leading, within `learningPoolBudget` so a
+   pack enrolls rather than dumps; they bypass the health gate), then review-ahead by soonest
+   due, capped at `sessionCap`. Automatic seed-order cards never enter an extra round.
 6. **Session end**: a summary ("x neu · x gefestigt · x wiederholt") with confetti and the
    streak. From there the user goes Home or "Weiter üben" → **endless mode**
    (`composeEndless`): refills with cards that are genuinely due + new cards (respecting the

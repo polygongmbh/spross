@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Adding a group no longer floods a session**: packing a whole area into the
+  box now enrolls it — its words drip in at the normal learning-pool rate (a
+  handful per session, ahead of automatic growth) instead of dumping dozens of
+  new cards into one sitting. The rest wait their turn until you've absorbed
+  what's already in flight.
+
 ## 0.12.4 — 2026-07-19
 
 - **Widgets surface new words too**: the rotation now leads with just-lapsed

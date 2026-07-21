@@ -24,22 +24,25 @@ extension BoxEngine {
 
     /// Compose today's session. Pure: same inputs → same plan.
     ///
-    /// Up to 5 slots are reserved so a full due queue can't starve growth — for
-    /// automatic new cards (load-based budget) OR enqueued cards the user packed
-    /// (design §Session 1). New candidates are only *proposed* here; introduction
-    /// happens at first answer (design §Box 6).
+    /// Up to 5 slots are reserved so a full due queue can't starve growth
+    /// (design §Session 1). New candidates — enqueued (leading) and automatic —
+    /// share the load-based `loadBudget`; they are only *proposed* here,
+    /// introduction happens at first answer (design §Box 6).
     public static func composeSession(state: BoxState, now: Date, calendar: Calendar) -> SessionPlan {
         let dueIDs = dueSchedulings(state, now: now).map(\.cardID)
-        let budget = gatedNewBudget(state, now: now)
+        let loadBudget = learningPoolBudget(state)
+        let autoBudget = gatedNewBudget(state, now: now)
 
-        // Reserve growth headroom whenever there is any new work — budgeted
-        // automatic cards or user-enqueued ones (the latter bypass the budget).
-        let growthReserve = min(max(budget, enqueuedEligible(state).count), 5)
+        // Reserve growth headroom only for new work that will actually appear:
+        // automatic cards (health-gated) or enqueued ones (within the throttle).
+        // A closed gate with nothing packed reserves nothing.
+        let enqueuedReady = min(enqueuedEligible(state).count, loadBudget)
+        let growthReserve = min(max(autoBudget, enqueuedReady), 5)
         let reviewCap = max(0, state.config.sessionCap - growthReserve)
         let reviews = Array(dueIDs.prefix(reviewCap))
 
         let capacity = max(0, state.config.sessionCap - reviews.count)
-        let (phrases, words) = newCandidates(state, budget: budget, capacity: capacity)
+        let (phrases, words) = newCandidates(state, loadBudget: loadBudget, autoBudget: autoBudget, capacity: capacity)
 
         return SessionPlan(reviews: reviews, unlockedPhrases: phrases, newWords: words)
     }

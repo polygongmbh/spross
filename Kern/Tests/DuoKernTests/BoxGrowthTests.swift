@@ -140,35 +140,37 @@ struct BoxGrowthTests {
         #expect(freed.scheduling.count == 3)
     }
 
-    @Test("enqueued ids lead and bypass the budget; phrase enqueue pulls missing components first")
+    @Test("enqueued ids lead within the pool budget; phrase enqueue pulls missing components first")
     func enqueuePriority() {
         var state = Box.state(cards: (1...10).map { Box.word($0) }, Box.config(maxLearning: 5))
         state = BoxEngine.enqueue(state: state, cardIDs: ["w07"])
         let plan = BoxEngine.composeSession(state: state, now: now, calendar: cal)
-        // w07 bypasses the pool budget (5), so 1 enqueued + 5 automatic = 6.
-        #expect(plan.newWords == ["w07", "w01", "w02", "w03", "w04", "w05"])
+        // w07 leads but shares the pool budget (5): 1 enqueued + 4 automatic = 5.
+        #expect(plan.newWords == ["w07", "w01", "w02", "w03", "w04"])
 
         var withPhrase = Box.state(cards: (1...6).map { Box.word($0) }
             + [Box.phrase("p1", components: ["w05", "w06"])], Box.config(maxLearning: 5))
         withPhrase = BoxEngine.enqueue(state: withPhrase, cardIDs: ["p1"])
         #expect(withPhrase.enqueued == ["w05", "w06", "p1"])
         let plan2 = BoxEngine.composeSession(state: withPhrase, now: now, calendar: cal)
-        // locked phrase never enters, even enqueued; its components lead
-        #expect(plan2.newWords == ["w05", "w06", "w01", "w02", "w03", "w04"])
+        // locked phrase never enters, even enqueued; its components lead, then
+        // automatic fills the rest of the pool budget (2 enqueued + 3 automatic).
+        #expect(plan2.newWords == ["w05", "w06", "w01", "w02", "w03"])
     }
 
-    @Test("enqueued cards surface even when the learning pool is full — adding always works")
-    func enqueuedSurfacesWithFullPool() {
+    @Test("enqueued cards respect the load throttle: a full pool defers a pack, it is not dumped")
+    func enqueuedRespectsLoadThrottle() {
         var state = Box.state(cards: (1...10).map { Box.word($0) }, Box.config(maxLearning: 2))
-        // Fill the pool: 2 cards into .learning → automatic budget is 0.
-        state = BoxEngine.answer(state: state, cardID: "w01", rating: .good, now: now, calendar: cal)
-        state = BoxEngine.answer(state: state, cardID: "w02", rating: .good, now: now, calendar: cal)
-        #expect(BoxEngine.composeSession(state: state, now: now, calendar: cal).newWords.isEmpty)
-
-        // "Pack in die Box" → the packed card appears next session despite the full pool.
-        state = BoxEngine.enqueue(state: state, cardIDs: ["w08"])
+        // Pack three cards, but the pool budget is only 2 → at most 2 surface.
+        state = BoxEngine.enqueue(state: state, cardIDs: ["w06", "w07", "w08"])
         let plan = BoxEngine.composeSession(state: state, now: now, calendar: cal)
-        #expect(plan.newWords == ["w08"])
+        #expect(plan.newWords == ["w06", "w07"]) // drips in at pool rate, not all three
+
+        // Fill the pool by answering them → next session defers the rest.
+        state = BoxEngine.answer(state: state, cardID: "w06", rating: .good, now: now, calendar: cal)
+        state = BoxEngine.answer(state: state, cardID: "w07", rating: .good, now: now, calendar: cal)
+        #expect(BoxEngine.composeSession(state: state, now: now, calendar: cal).newWords.isEmpty)
+        #expect(state.enqueued == ["w08"]) // still waiting for a slot
     }
 
     @Test("answering an enqueued card removes it from the queue")
