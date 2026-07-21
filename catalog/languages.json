@@ -1,0 +1,6 @@
+{
+ "de": { "name": "Deutsch" },
+ "en": { "name": "English", "verbPrefix": "to " },
+ "sw": { "name": "Kiswahili", "verbPrefix": "ku" },
+ "uk": { "name": "Українська" }
+}
