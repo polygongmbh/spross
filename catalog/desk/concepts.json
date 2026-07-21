@@ -97,42 +97,56 @@
  },
  {
   "slug": "im-in-a-meeting",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "do-not-disturb",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "the-laptop-wont-charge-anymore",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "laptop"
+  ]
  },
  {
   "slug": "the-wifi-is-completely-gone",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "coffee-break",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "i-have-a-lot-to-do",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "end-of-workday",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "send-me-the-email",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "the-laptop-wont-charge-at-all",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "laptop"
+  ]
  },
  {
   "slug": "the-wifi-suddenly-dropped",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  }
 ]

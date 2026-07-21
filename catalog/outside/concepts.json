@@ -97,42 +97,65 @@
  },
  {
   "slug": "hows-the-weather-today",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "weather"
+  ]
  },
  {
   "slug": "always-take-an-umbrella",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "its-raining",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "the-sun-is-shining",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "sun"
+  ]
  },
  {
   "slug": "shall-we-take-a-walk-together",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "go-for-walk"
+  ]
  },
  {
   "slug": "the-bus-is-coming-soon",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "bus"
+  ]
  },
  {
   "slug": "when-does-the-train-leave",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "train",
+   "depart"
+  ]
  },
  {
   "slug": "what-a-beautiful-day",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "definitely-take-an-umbrella",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "shall-we-take-a-walk",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "go-for-walk"
+  ]
  }
 ]

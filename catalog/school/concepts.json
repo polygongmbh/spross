@@ -97,22 +97,29 @@
  },
  {
   "slug": "i-have-a-question",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "question"
+  ]
  },
  {
   "slug": "what-does-this-word-mean",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "how-do-you-say-this-in-german",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "im-learning-german",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "you-can-do-it",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  }
 ]

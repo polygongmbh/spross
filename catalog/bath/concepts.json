@@ -97,38 +97,61 @@
  },
  {
   "slug": "im-taking-a-quick-shower",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "take-shower"
+  ]
  },
  {
   "slug": "the-bathroom-is-occupied",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "the-laundry-is-done",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "laundry"
+  ]
  },
  {
   "slug": "wheres-my-towel",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "towel"
+  ]
  },
  {
   "slug": "can-you-hang-the-laundry-outside",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "laundry",
+   "hang-up"
+  ]
  },
  {
   "slug": "dont-forget-to-brush-teeth",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "brush-teeth"
+  ]
  },
  {
   "slug": "wash-your-hands-thoroughly",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "the-water-is-cold",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "can-you-hang-the-laundry-here",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "laundry",
+   "hang-up"
+  ]
  }
 ]

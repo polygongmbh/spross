@@ -97,34 +97,60 @@
  },
  {
   "slug": "i-have-an-appointment-at-ten",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "appointment",
+   "practice"
+  ]
  },
  {
   "slug": "my-throat-hurts-a-lot",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "hurt"
+  ]
  },
  {
   "slug": "ive-had-a-fever-since-yesterday",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "fever"
+  ]
  },
  {
   "slug": "take-the-pills-twice-daily",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "pill",
+   "take-medicine"
+  ]
  },
  {
   "slug": "get-well-soon",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "take-the-prescription-to-the-pharmacy",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "prescription",
+   "pharmacy"
+  ]
  },
  {
   "slug": "show-me-your-insurance-card",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "insurance-card"
+  ]
  },
  {
   "slug": "i-have-to-cancel-the-appointment",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "appointment",
+   "cancel"
+  ]
  }
 ]

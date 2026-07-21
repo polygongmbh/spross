@@ -92,34 +92,59 @@
  },
  {
   "slug": "where-do-i-sign",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "sign"
+  ]
  },
  {
   "slug": "i-want-to-extend-my-residence-permit",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "residence-permit",
+   "extend"
+  ]
  },
  {
   "slug": "please-fill-out-the-form-completely",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "fill-in",
+   "form"
+  ]
  },
  {
   "slug": "take-a-queue-number-first",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "ticket-number"
+  ]
  },
  {
   "slug": "i-need-an-interpreter-for-the-application",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "application"
+  ]
  },
  {
   "slug": "do-you-have-all-the-documents",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "documents"
+  ]
  },
  {
   "slug": "the-decision-comes-by-mail",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "when-does-my-id-expire",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "id-card",
+   "expire"
+  ]
  }
 ]

@@ -97,34 +97,48 @@
  },
  {
   "slug": "good-night-sleep-well",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "sleep"
+  ]
  },
  {
   "slug": "good-morning-my-love",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "im-tired",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "sweet-dreams",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "dream"
+  ]
  },
  {
   "slug": "did-you-set-the-alarm",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "alarm-clock"
+  ]
  },
  {
   "slug": "five-more-minutes",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "turn-off-the-light",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "i-love-you",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  }
 ]

@@ -97,38 +97,63 @@
  },
  {
   "slug": "careful-the-knife-is-sharp",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "knife"
+  ]
  },
  {
   "slug": "this-tastes-so-good",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "are-you-cooking-rice-today",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "cook"
+  ]
  },
  {
   "slug": "the-pot-is-still-on-the-stove",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "pot",
+   "stove"
+  ]
  },
  {
   "slug": "wash-the-dishes-in-the-sink",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "wash-up"
+  ]
  },
  {
   "slug": "the-fridge-is-empty",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "fridge"
+  ]
  },
  {
   "slug": "can-you-set-the-table",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "the-water-is-boiling-hot",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "cook"
+  ]
  },
  {
   "slug": "the-big-pot-is-on-the-stove",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "pot",
+   "stove"
+  ]
  }
 ]

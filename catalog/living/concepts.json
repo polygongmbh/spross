@@ -97,34 +97,53 @@
  },
  {
   "slug": "the-food-is-ready",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "eat"
+  ]
  },
  {
   "slug": "turn-on-the-tv",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "tv"
+  ]
  },
  {
   "slug": "come-sit-with-me",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "shall-we-watch-a-movie",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "lets-hang-the-picture",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "picture"
+  ]
  },
  {
   "slug": "the-curtains-hang-over-the-window",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "curtain",
+   "window"
+  ]
  },
  {
   "slug": "can-you-turn-off-the-light",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "open-the-window-fresh-air",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "window"
+  ]
  }
 ]

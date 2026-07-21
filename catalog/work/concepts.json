@@ -87,34 +87,56 @@
  },
  {
   "slug": "tomorrow-i-have-a-job-interview",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "introduce-oneself",
+   "company"
+  ]
  },
  {
   "slug": "my-shift-starts-at-six",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "shift",
+   "start"
+  ]
  },
  {
   "slug": "ill-send-the-sick-note-right-away",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "have-a-nice-evening-off",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "can-you-help-me-briefly",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "help"
+  ]
  },
  {
   "slug": "i-want-vacation-next-week",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "holiday"
+  ]
  },
  {
   "slug": "read-the-contract-carefully",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "contract"
+  ]
  },
  {
   "slug": "whats-the-salary",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "salary"
+  ]
  }
 ]

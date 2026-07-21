@@ -41,98 +41,133 @@
  },
  {
   "slug": "hello",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "good-day",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "thank-you",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "thank"
+  ]
  },
  {
   "slug": "please",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "excuse-me",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "yes",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "no",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "whats-your-name",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "be-called"
+  ]
  },
  {
   "slug": "my-name-is",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "be-called"
+  ]
  },
  {
   "slug": "where-are-you-from",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "do-you-speak-english",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "i-speak-a-little-german",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "i-dont-know",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "know"
+  ]
  },
  {
   "slug": "pardon",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "i-need-help",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": [
+   "need",
+   "help"
+  ]
  },
  {
   "slug": "all-good",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "goodbye",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "what-is-this-called",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "how-are-you",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "can-you-repeat-that",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "i-understand",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "i-dont-understand",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "slower-please",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  },
  {
   "slug": "bye",
-  "kind": "phrase"
+  "kind": "phrase",
+  "components": []
  }
 ]
