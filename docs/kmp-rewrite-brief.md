@@ -88,13 +88,13 @@ checklist of what the engine consumes, then design a clean, **language-symmetric
 Legacy to drop:
 - `german` + `translation` — hard-codes German-on-one-side; cannot represent `en↔sw`,
   `sw↔uk`, or en-bearing pairs. Carry **two realizations by side/role**, each a
-  `{text, alsoAccept, grammar, note}` mirroring the format, and let `Direction` pick which
+  `{text, synonyms, grammar, note}` mirroring the format, and let `Direction` pick which
   is prompt vs. answer.
 - `article` + `plural` — German-only grammar flattened to two strings; drops sw/en/uk
   `plural` and the `"="`/`"only"` sentinels. Keep `grammar` structured, per side.
 - `note: String?` — loses the explanation-language keying and which realization it
   explains (and v1 also swallowed accepted alternatives into a joined string). Keep the
-  `notes` map on its realization; keep `alsoAccept` as a real list.
+  `notes` map on its realization; keep `synonyms` as a real list.
 - `pair: LanguagePair` (de-sw | de-uk enum) — generalize to any ordered language pair.
 
 Keep the clean concept-level parts: `id` (`area/slug`), `kind`, `area`, `emoji`,
@@ -104,9 +104,21 @@ Keep the clean concept-level parts: `id` (`area/slug`), `kind`, `area`, `emoji`,
 realization fields, grammar keys, and `notes`. Don't re-derive them here. The mappings
 below are source → the information a card needs (land it on your redesigned model):
 
-- `id` = `area/slug` (kind no longer in the id). Scheduling key stays `id|direction`.
+- `id` = `area/slug` (kind no longer in the id). Scheduling key is `id|direction`,
+  extended to `id|direction|form` for synonym recognition (below).
+- **`synonyms` — direction-asymmetric scheduling.** A realization's `synonyms` are
+  equivalent surface forms of ONE concept (true synonyms, spelling, phrase gender-agreement
+  forms — NOT distinct concepts). They grade differently by direction:
+  - **Producing INTO this language** (answer side): one card, accept `text` ∪ `synonyms`;
+    a single schedule. (Producing only ever requires one correct form.)
+  - **Recognizing FROM this language** (prompt side): one card **per form** (`text` and
+    each synonym), each **scheduled separately** — recognizing установа→Amt is different
+    knowledge from відомство→Amt. Extend the scheduling key with the form. Trivial forms
+    (a phrase's other gender) just become easy recognition cards; harmless.
+  This is intentional (full model), not accept-list-only. It does NOT apply to
+  `feminineOf` (those are separate concepts) — synonyms stay one concept, many forms.
 - **each side's realization** ← that language's `<lang>.json` entry, carried whole:
-  `text`, `alsoAccept` (a real list, not joined into text), structured `grammar`, `notes`
+  `text`, `synonyms` (a real list, not joined into text), structured `grammar`, `notes`
   map. de `grammar` has `gender`+`plural`; the v1 `strippedPlural` hack is gone. Two
   `plural` sentinels need rendering, not literal display: `"="` → "= Pl." (identical to
   singular), `"only"` → "nur Pl." (pluralia tantum). Notes are keyed by explanation

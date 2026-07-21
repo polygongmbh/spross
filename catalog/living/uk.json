@@ -18,13 +18,13 @@
   },
   "shelf": {
    "text": "полиця",
-   "alsoAccept": [
+   "synonyms": [
     "стелаж"
    ]
   },
   "plant": {
    "text": "рослина",
-   "alsoAccept": [
+   "synonyms": [
     "вазон"
    ]
   },

@@ -12,7 +12,7 @@
   },
   "contract": {
    "text": "договір",
-   "alsoAccept": [
+   "synonyms": [
     "контракт"
    ]
   },
@@ -24,7 +24,7 @@
   },
   "boss": {
    "text": "шеф",
-   "alsoAccept": [
+   "synonyms": [
     "керівник"
    ]
   },
@@ -36,7 +36,7 @@
   },
   "company": {
    "text": "фірма",
-   "alsoAccept": [
+   "synonyms": [
     "компанія"
    ]
   },
@@ -57,7 +57,7 @@
   },
   "stop": {
    "text": "закінчувати",
-   "alsoAccept": [
+   "synonyms": [
     "переставати"
    ]
   },

@@ -6,7 +6,7 @@
   },
   "laundry": {
    "text": "білизна",
-   "alsoAccept": [
+   "synonyms": [
     "прання"
    ]
   },
@@ -57,7 +57,7 @@
   },
   "clean": {
    "text": "мити",
-   "alsoAccept": [
+   "synonyms": [
     "чистити"
    ]
   },

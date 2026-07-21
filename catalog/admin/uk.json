@@ -3,13 +3,13 @@
  "words": {
   "office": {
    "text": "установа",
-   "alsoAccept": [
+   "synonyms": [
     "відомство"
    ]
   },
   "form": {
    "text": "бланк",
-   "alsoAccept": [
+   "synonyms": [
     "формуляр"
    ]
   },
@@ -36,7 +36,7 @@
   },
   "deadline": {
    "text": "строк",
-   "alsoAccept": [
+   "synonyms": [
     "термін"
    ]
   },

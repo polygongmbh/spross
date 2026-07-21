@@ -101,12 +101,15 @@ differ from the slug — verb `cook` → `"to cook"`, phrase `the-fridge-is-empt
 ```
 Realization fields — only `text` is required:
 - `text` — the canonical answer/display form, nothing else (no embedded glosses/labels).
-- `alsoAccept` — additional answers that grade as correct (array; omit if none).
-  ONLY genuine free-alternation equivalents of `text` — true synonyms (uk `office`
-  установа/відомство), spelling/inflection variants, or both grammatical genders of a
-  phrase (uk `Ти завів/завела …?`). NOT a home for distinct learnable items: feminine
-  forms belong to `feminineOf` concepts, and different-meaning words belong to their own
-  concept — neither goes here.
+- `synonyms` — equivalent surface forms of the SAME concept that also grade as correct
+  (array; omit if none). Genuine free-alternation equivalents of `text` only: true
+  synonyms (uk `office` установа/відомство), spelling/inflection variants, or both
+  gender-agreement forms of a phrase (uk `Ти завів/завела …?` — verb agreeing with the
+  subject; not a special phrase feature, just two accepted forms). NOT a home for
+  distinct learnable items: feminine nouns belong to `feminineOf` concepts, and
+  different-meaning words belong to their own concept — neither goes here.
+  Grading is direction-asymmetric (see the KMP brief): accept-any when producing this
+  language, but each form is scheduled separately when recognizing FROM it.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
   labels, no `(selten)` qualifier), one fact per key: de `gender` + `plural`,
   sw `plural`, en `plural` (irregular/pluralia-tantum only — regular +s is omitted),

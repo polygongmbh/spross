@@ -15,7 +15,7 @@
   },
   "appointment": {
    "text": "запис на прийом",
-   "alsoAccept": [
+   "synonyms": [
     "візит"
    ]
   },
@@ -27,13 +27,13 @@
   },
   "fever": {
    "text": "температура",
-   "alsoAccept": [
+   "synonyms": [
     "гарячка"
    ]
   },
   "pill": {
    "text": "таблетка",
-   "alsoAccept": [
+   "synonyms": [
     "пігулка"
    ]
   },
@@ -81,7 +81,7 @@
   },
   "call-in-sick": {
    "text": "повідомляти, що захворів",
-   "alsoAccept": [
+   "synonyms": [
     "іти на лікарняний"
    ]
   },

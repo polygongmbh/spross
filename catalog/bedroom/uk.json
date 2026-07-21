@@ -81,7 +81,7 @@
   },
   "did-you-set-the-alarm": {
    "text": "Ти завів будильник?",
-   "alsoAccept": [
+   "synonyms": [
     "Ти завела будильник?"
    ]
   },
