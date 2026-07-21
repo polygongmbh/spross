@@ -12,7 +12,7 @@
   },
   "contract": {
    "text": "договір",
-   "synonyms": [
+   "variants": [
     "контракт"
    ]
   },
@@ -36,7 +36,7 @@
   },
   "company": {
    "text": "фірма",
-   "synonyms": [
+   "variants": [
     "компанія"
    ]
   },

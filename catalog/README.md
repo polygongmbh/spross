@@ -1,4 +1,4 @@
-# Content catalog format (v2)
+# Content catalog format (v2.1)
 
 Language-agnostic content in this directory, organised **one folder per area**.
 Designed for reuse (any language pair is a runtime join of shared parts),
@@ -56,10 +56,14 @@ is a runtime/user-preference concern; the content only supplies the default.
 
 **`languages.json`** — per-language metadata, keyed by lang code:
 ```json
-{ "en": { "name": "English", "optionalVerbPrefixes": ["to "] },
+{ "en": { "name": "English", "optionalVerbPrefixes": ["to "], "articles": ["the", "a", "an"] },
   "sw": { "name": "Kiswahili", "optionalVerbPrefixes": ["ku", "kw"] } }
 ```
 - `name` — display name of the language.
+- `articles` — the language's articles (de `der/die/das/ein/eine`, en `the/a/an`).
+  ONE leading listed article is optional when grading input in this language;
+  it also drives article coloring in the UI.
+  Omit for articleless languages (sw, uk).
 - `optionalVerbPrefixes` — array of infinitive citation prefixes on this language's
   verb realizations (en `"to cook"`, sw `"kupika"`/`"kwenda"`). A leading occurrence of
   ANY listed prefix is **optional when grading input**: the answer matches with or
@@ -90,6 +94,12 @@ differ from the slug — verb `cook` → `"to cook"`, phrase `the-fridge-is-empt
   genderless; NOT uk for epicene nouns like колега). It may carry its own female-specific `emoji`
   where one exists (`👩‍🏫`), else none. How this drives per-direction card emission and
   the ♀ prompt marker is engine behavior — see the KMP brief (`../docs/kmp-rewrite-brief.md`).
+- `variantOf` (phrases only) — marks this concept as a near-duplicate twin of
+  `<base-slug>` in the same area: distinct realizations in some languages but
+  near-identical in others (both twins realize to almost the same English sentence).
+  **Join rule**: the engine skips a `variantOf` concept whenever its base also joins
+  the current profile, so no learner studies two near-identical sentences as two
+  concepts; where only the twin is realized, it joins normally.
 
 **`<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json
@@ -101,15 +111,20 @@ differ from the slug — verb `cook` → `"to cook"`, phrase `the-fridge-is-empt
 ```
 Realization fields — only `text` is required:
 - `text` — the canonical answer/display form, nothing else (no embedded glosses/labels).
-- `synonyms` — equivalent surface forms of the SAME concept that also grade as correct
-  (array; omit if none). Genuine free-alternation equivalents of `text` only: true
-  synonyms (uk `office` установа/відомство), spelling/inflection variants, or both
-  gender-agreement forms of a phrase (uk `Ти завів/завела …?` — verb agreeing with the
-  subject; not a special phrase feature, just two accepted forms). NOT a home for
-  distinct learnable items: feminine nouns belong to `feminineOf` concepts, and
-  different-meaning words belong to their own concept — neither goes here.
-  Grading is direction-asymmetric (see the KMP brief): accept-any when producing this
-  language, but each form is scheduled separately when recognizing FROM it.
+- `synonyms` — DISTINCT-KNOWLEDGE alternates of `text` (array; omit if none):
+  genuinely different lexemes for the same concept that a learner must recognize
+  on their own (uk `office` установа/відомство, uk `boss` шеф/керівник).
+  Each entry is **schedule-worthy**: it grades as correct when producing this
+  language AND gets its own recognize unit when learning FROM it.
+  NOT a home for distinct learnable items: feminine nouns belong to `feminineOf`
+  concepts, and different-meaning words belong to their own concept.
+- `variants` — ACCEPTED surface forms of the SAME knowledge (array; omit if none):
+  alternate renderings a learner already knows if they know `text` — register pairs
+  (de Sie-form in `text`, du-form here), gender-agreement forms of a phrase
+  (uk `Ти завів/завела …?`), diminutives (uk миша/мишка), internationalism spellings
+  (uk договір/контракт). **Accept-only, never scheduled**: they grade as correct on
+  produce and rotate as display alternates of the canonical recognize unit,
+  but never become their own unit.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
   labels, no `(selten)` qualifier), one fact per key: de `gender` + `plural`,
   sw `plural`, en `plural` (irregular/pluralia-tantum only — regular +s is omitted),

@@ -66,16 +66,25 @@
    "text": "Nein."
   },
   "whats-your-name": {
-   "text": "Wie heißen Sie? / Wie heißt du?"
+   "text": "Wie heißen Sie?",
+   "variants": [
+    "Wie heißt du?"
+   ]
   },
   "my-name-is": {
    "text": "Ich heiße …"
   },
   "where-are-you-from": {
-   "text": "Woher kommen Sie? / Woher kommst du?"
+   "text": "Woher kommen Sie?",
+   "variants": [
+    "Woher kommst du?"
+   ]
   },
   "do-you-speak-english": {
-   "text": "Sprechen Sie Englisch? / Sprichst du Englisch?"
+   "text": "Sprechen Sie Englisch?",
+   "variants": [
+    "Sprichst du Englisch?"
+   ]
   },
   "i-speak-a-little-german": {
    "text": "Ich spreche nur ein bisschen Deutsch."
@@ -99,10 +108,16 @@
    "text": "Wie nennt man das?"
   },
   "how-are-you": {
-   "text": "Wie geht es Ihnen? / Wie geht es dir?"
+   "text": "Wie geht es Ihnen?",
+   "variants": [
+    "Wie geht es dir?"
+   ]
   },
   "can-you-repeat-that": {
-   "text": "Können Sie das bitte wiederholen? / Kannst du das bitte wiederholen?"
+   "text": "Können Sie das bitte wiederholen?",
+   "variants": [
+    "Kannst du das bitte wiederholen?"
+   ]
   },
   "i-understand": {
    "text": "Ich verstehe."

@@ -119,16 +119,25 @@
    "text": "Ich möchte meinen Aufenthaltstitel verlängern."
   },
   "please-fill-out-the-form-completely": {
-   "text": "Bitte füllen Sie das Formular vollständig aus. / Bitte fülle das Formular vollständig aus."
+   "text": "Bitte füllen Sie das Formular vollständig aus.",
+   "variants": [
+    "Bitte fülle das Formular vollständig aus."
+   ]
   },
   "take-a-queue-number-first": {
-   "text": "Ziehen Sie bitte zuerst eine Wartenummer! / Zieh bitte zuerst eine Wartenummer!"
+   "text": "Ziehen Sie bitte zuerst eine Wartenummer!",
+   "variants": [
+    "Zieh bitte zuerst eine Wartenummer!"
+   ]
   },
   "i-need-an-interpreter-for-the-application": {
    "text": "Ich brauche für den Antrag einen Dolmetscher."
   },
   "do-you-have-all-the-documents": {
-   "text": "Haben Sie alle Unterlagen dabei? / Hast du alle Unterlagen dabei?"
+   "text": "Haben Sie alle Unterlagen dabei?",
+   "variants": [
+    "Hast du alle Unterlagen dabei?"
+   ]
   },
   "the-decision-comes-by-mail": {
    "text": "Der Bescheid kommt per Post."

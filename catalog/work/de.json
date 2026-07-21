@@ -119,19 +119,28 @@
    "text": "Meine Schicht fängt heute um sechs Uhr an."
   },
   "ill-send-the-sick-note-right-away": {
-   "text": "Ich schicke Ihnen die Krankmeldung sofort. / Ich schicke dir die Krankmeldung sofort."
+   "text": "Ich schicke Ihnen die Krankmeldung sofort.",
+   "variants": [
+    "Ich schicke dir die Krankmeldung sofort."
+   ]
   },
   "have-a-nice-evening-off": {
    "text": "Schönen Feierabend!"
   },
   "can-you-help-me-briefly": {
-   "text": "Können Sie mir kurz helfen? / Kannst du mir kurz helfen?"
+   "text": "Können Sie mir kurz helfen?",
+   "variants": [
+    "Kannst du mir kurz helfen?"
+   ]
   },
   "i-want-vacation-next-week": {
    "text": "Ich möchte nächste Woche Urlaub nehmen."
   },
   "read-the-contract-carefully": {
-   "text": "Lesen Sie den Vertrag genau durch! / Lies den Vertrag genau durch!"
+   "text": "Lesen Sie den Vertrag genau durch!",
+   "variants": [
+    "Lies den Vertrag genau durch!"
+   ]
   },
   "whats-the-salary": {
    "text": "Wie hoch ist das Gehalt?"

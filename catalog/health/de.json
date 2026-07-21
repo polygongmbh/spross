@@ -127,16 +127,25 @@
    "text": "Ich habe seit gestern Fieber."
   },
   "take-the-pills-twice-daily": {
-   "text": "Bitte nehmen Sie die Tabletten zweimal täglich ein. / Bitte nimm die Tabletten zweimal täglich ein."
+   "text": "Bitte nehmen Sie die Tabletten zweimal täglich ein.",
+   "variants": [
+    "Bitte nimm die Tabletten zweimal täglich ein."
+   ]
   },
   "get-well-soon": {
    "text": "Gute Besserung!"
   },
   "take-the-prescription-to-the-pharmacy": {
-   "text": "Mit dem Rezept gehen Sie zur Apotheke. / Mit dem Rezept gehst du zur Apotheke."
+   "text": "Mit dem Rezept gehen Sie zur Apotheke.",
+   "variants": [
+    "Mit dem Rezept gehst du zur Apotheke."
+   ]
   },
   "show-me-your-insurance-card": {
-   "text": "Zeigen Sie mir bitte Ihre Versichertenkarte. / Zeig mir bitte deine Versichertenkarte."
+   "text": "Zeigen Sie mir bitte Ihre Versichertenkarte.",
+   "variants": [
+    "Zeig mir bitte deine Versichertenkarte."
+   ]
   },
   "i-have-to-cancel-the-appointment": {
    "text": "Ich muss den Termin leider absagen."

@@ -1,6 +1,6 @@
 {
- "de": { "name": "Deutsch" },
- "en": { "name": "English", "optionalVerbPrefixes": ["to "] },
+ "de": { "name": "Deutsch", "articles": ["der", "die", "das", "ein", "eine"] },
+ "en": { "name": "English", "optionalVerbPrefixes": ["to "], "articles": ["the", "a", "an"] },
  "sw": { "name": "Kiswahili", "optionalVerbPrefixes": ["ku", "kw"] },
  "uk": { "name": "Українська" }
 }
