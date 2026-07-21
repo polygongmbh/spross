@@ -10,7 +10,7 @@ and committed as **catalog v2**. This brief is the handoff.
   that branch; `main` still has v1. The Swift build is intentionally red there (its
   importer expects v1). Plan is: structure + core rewrite land **together, green**,
   then merge — so do your work on top of `content-catalog-v2`.
-- **Read `data/README.md`** — the authoritative v2 format spec.
+- **Read `catalog/README.md`** — the authoritative v2 format spec (lives with the data).
 - **Read `app/docs/design.md`** — box growth, phrase unlock, session semantics. Unchanged.
 - **Reference (don't preserve) the Swift core** as the behavioral spec:
   - `Kern/Sources/DuoKern/Model/Types.swift` — the model you're porting.
@@ -48,7 +48,7 @@ the de-specific `Card` fields (`german`, `article`) only populate when de is a s
 generalize the current de-centric `LanguagePair`/field naming as you add en-bearing
 pairs (en↔de, en↔sw, …). Which pairs to ship is an app decision, not the parser's.
 
-**Field shapes: see `data/README.md`** — it is authoritative for the concept spine,
+**Field shapes: see `catalog/README.md`** — it is authoritative for the concept spine,
 realization fields, grammar keys, and `notes`. Don't re-derive them here. What the
 README doesn't say is how they land on `Card`; only the non-obvious mappings:
 
