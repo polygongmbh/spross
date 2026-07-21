@@ -1,0 +1,98 @@
+{
+ "title": "Outside & about",
+ "words": {
+  "street": {
+   "text": "street"
+  },
+  "traffic-light": {
+   "text": "traffic light"
+  },
+  "bicycle": {
+   "text": "bicycle"
+  },
+  "bus": {
+   "text": "bus"
+  },
+  "bus-stop": {
+   "text": "bus stop"
+  },
+  "train": {
+   "text": "train"
+  },
+  "tree": {
+   "text": "tree"
+  },
+  "flower": {
+   "text": "flower"
+  },
+  "park": {
+   "text": "park"
+  },
+  "sun": {
+   "text": "sun"
+  },
+  "rain": {
+   "text": "rain"
+  },
+  "weather": {
+   "text": "weather"
+  },
+  "go-for-walk": {
+   "text": "to go for a walk"
+  },
+  "ride-bike": {
+   "text": "to ride a bike"
+  },
+  "shop": {
+   "text": "to go shopping"
+  },
+  "take-bus": {
+   "text": "to take the bus"
+  },
+  "jog": {
+   "text": "to jog"
+  },
+  "barbecue": {
+   "text": "to barbecue"
+  },
+  "sunbathe": {
+   "text": "to sunbathe"
+  },
+  "plant": {
+   "text": "to plant"
+  },
+  "depart": {
+   "text": "to depart"
+  },
+  "hows-the-weather-today": {
+   "text": "How's the weather today?"
+  },
+  "always-take-an-umbrella": {
+   "text": "Always take an umbrella with you!"
+  },
+  "its-raining": {
+   "text": "It's raining."
+  },
+  "the-sun-is-shining": {
+   "text": "The sun is shining!"
+  },
+  "shall-we-take-a-walk-together": {
+   "text": "Shall we go for a walk together?"
+  },
+  "the-bus-is-coming-soon": {
+   "text": "The bus is coming soon."
+  },
+  "when-does-the-train-leave": {
+   "text": "When does the train leave?"
+  },
+  "what-a-beautiful-day": {
+   "text": "What a beautiful day!"
+  },
+  "definitely-take-an-umbrella": {
+   "text": "Be sure to take an umbrella with you!"
+  },
+  "shall-we-take-a-walk": {
+   "text": "Shall we go for a walk?"
+  }
+ }
+}

@@ -41,6 +41,13 @@ return the pair's `[Card]`. A **pair is a join**: for `de-sw`, walk each area's
 `sw.json` realization as `translation`. **A slug missing from the target language is
 skipped** — that is the coverage model (pair-specific phrases fall out naturally).
 
+Content languages are now **de, en, sw, uk** (each `<area>/<lang>.json`). en is a full
+content language but genderless (like sw): no `-f` feminine realizations, `plural` only
+for irregular/pluralia-tantum. Any pair is still just a join of two `<lang>.json` files;
+the de-specific `Card` fields (`german`, `article`) only populate when de is a side, so
+generalize the current de-centric `LanguagePair`/field naming as you add en-bearing
+pairs (en↔de, en↔sw, …). Which pairs to ship is an app decision, not the parser's.
+
 **Field shapes: see `data/README.md`** — it is authoritative for the concept spine,
 realization fields, grammar keys, and `notes`. Don't re-derive them here. What the
 README doesn't say is how they land on `Card`; only the non-obvious mappings:

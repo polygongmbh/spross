@@ -1,0 +1,86 @@
+{
+ "title": "School & language class",
+ "words": {
+  "school": {
+   "text": "school"
+  },
+  "classroom": {
+   "text": "classroom"
+  },
+  "integration-course": {
+   "text": "integration course"
+  },
+  "teacher": {
+   "text": "teacher"
+  },
+  "board": {
+   "text": "board"
+  },
+  "dictionary": {
+   "text": "dictionary",
+   "grammar": {
+    "plural": "dictionaries"
+   }
+  },
+  "exercise-book": {
+   "text": "exercise book"
+  },
+  "homework": {
+   "text": "homework"
+  },
+  "exam": {
+   "text": "exam"
+  },
+  "break": {
+   "text": "break"
+  },
+  "question": {
+   "text": "question"
+  },
+  "answer": {
+   "text": "answer"
+  },
+  "speak": {
+   "text": "to speak"
+  },
+  "understand": {
+   "text": "to understand"
+  },
+  "ask": {
+   "text": "to ask"
+  },
+  "reply": {
+   "text": "to reply"
+  },
+  "repeat": {
+   "text": "to repeat"
+  },
+  "translate": {
+   "text": "to translate"
+  },
+  "pass-exam": {
+   "text": "to pass the exam"
+  },
+  "practise": {
+   "text": "to practise"
+  },
+  "raise-hand": {
+   "text": "to raise your hand"
+  },
+  "i-have-a-question": {
+   "text": "I have a question."
+  },
+  "what-does-this-word-mean": {
+   "text": "What does this word mean?"
+  },
+  "how-do-you-say-this-in-german": {
+   "text": "How do you say this in German?"
+  },
+  "im-learning-german": {
+   "text": "I'm learning German."
+  },
+  "you-can-do-it": {
+   "text": "You can do it!"
+  }
+ }
+}

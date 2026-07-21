@@ -1,0 +1,92 @@
+{
+ "title": "Work & profession",
+ "words": {
+  "work": {
+   "text": "work"
+  },
+  "job-application": {
+   "text": "job application"
+  },
+  "cv": {
+   "text": "cv"
+  },
+  "contract": {
+   "text": "contract"
+  },
+  "salary": {
+   "text": "salary"
+  },
+  "colleague": {
+   "text": "colleague"
+  },
+  "boss": {
+   "text": "boss",
+   "grammar": {
+    "plural": "bosses"
+   }
+  },
+  "shift": {
+   "text": "shift"
+  },
+  "holiday": {
+   "text": "holiday"
+  },
+  "company": {
+   "text": "company",
+   "grammar": {
+    "plural": "companies"
+   }
+  },
+  "apply": {
+   "text": "to apply"
+  },
+  "introduce-oneself": {
+   "text": "to introduce oneself"
+  },
+  "earn": {
+   "text": "to earn"
+  },
+  "start": {
+   "text": "to start"
+  },
+  "stop": {
+   "text": "to stop"
+  },
+  "quit": {
+   "text": "to quit"
+  },
+  "hire": {
+   "text": "to hire"
+  },
+  "help": {
+   "text": "to help"
+  },
+  "work-overtime": {
+   "text": "to work overtime"
+  },
+  "tomorrow-i-have-a-job-interview": {
+   "text": "Tomorrow I have a job interview at the company."
+  },
+  "my-shift-starts-at-six": {
+   "text": "My shift starts at six today."
+  },
+  "ill-send-the-sick-note-right-away": {
+   "text": "I'll send you the sick note right away."
+  },
+  "have-a-nice-evening-off": {
+   "text": "Have a nice evening off!"
+  },
+  "can-you-help-me-briefly": {
+   "text": "Can you help me briefly?"
+  },
+  "i-want-vacation-next-week": {
+   "text": "I want to take vacation next week."
+  },
+  "read-the-contract-carefully": {
+   "text": "Read the contract carefully."
+  },
+  "whats-the-salary": {
+   "text": "What's the salary?"
+  }
+ }
+}

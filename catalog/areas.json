@@ -2,6 +2,7 @@
  {
   "group": "start",
   "titles": {
+   "en": "First steps",
    "de": "Erste Schritte",
    "sw": "Hatua za kwanza",
    "uk": "Перші кроки"
@@ -13,6 +14,7 @@
  {
   "group": "home",
   "titles": {
+   "en": "At home",
    "de": "Zuhause",
    "sw": "Nyumbani",
    "uk": "Вдома"
@@ -29,6 +31,7 @@
  {
   "group": "everyday",
   "titles": {
+   "en": "Everyday life",
    "de": "Alltag & unterwegs",
    "sw": "Maisha ya kila siku",
    "uk": "Щоденне життя"
@@ -41,6 +44,7 @@
  {
   "group": "official",
   "titles": {
+   "en": "Offices & work",
    "de": "Ämter & Beruf",
    "sw": "Ofisi na kazi",
    "uk": "Установи та робота"

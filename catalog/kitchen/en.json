@@ -1,0 +1,98 @@
+{
+ "title": "The kitchen",
+ "words": {
+  "fridge": {
+   "text": "fridge"
+  },
+  "stove": {
+   "text": "stove"
+  },
+  "oven": {
+   "text": "oven"
+  },
+  "dishwasher": {
+   "text": "dishwasher"
+  },
+  "hunger": {
+   "text": "hunger"
+  },
+  "thirst": {
+   "text": "thirst"
+  },
+  "pot": {
+   "text": "pot"
+  },
+  "pan": {
+   "text": "pan"
+  },
+  "knife": {
+   "text": "knife",
+   "grammar": {
+    "plural": "knives"
+   }
+  },
+  "spoon": {
+   "text": "spoon"
+  },
+  "fork": {
+   "text": "fork"
+  },
+  "plate": {
+   "text": "plate"
+  },
+  "cook": {
+   "text": "to cook"
+  },
+  "bake": {
+   "text": "to bake"
+  },
+  "cut": {
+   "text": "to cut"
+  },
+  "wash-up": {
+   "text": "to wash up"
+  },
+  "taste": {
+   "text": "to taste"
+  },
+  "fry": {
+   "text": "to fry"
+  },
+  "reheat": {
+   "text": "to reheat"
+  },
+  "stir": {
+   "text": "to stir"
+  },
+  "take-out-trash": {
+   "text": "to take out the trash"
+  },
+  "careful-the-knife-is-sharp": {
+   "text": "Careful, the knife is sharp!"
+  },
+  "this-tastes-so-good": {
+   "text": "This tastes so good!"
+  },
+  "are-you-cooking-rice-today": {
+   "text": "Are you cooking rice today?"
+  },
+  "the-pot-is-still-on-the-stove": {
+   "text": "The pot is still on the stove."
+  },
+  "wash-the-dishes-in-the-sink": {
+   "text": "Please wash the dishes in the sink!"
+  },
+  "the-fridge-is-empty": {
+   "text": "The fridge is empty."
+  },
+  "can-you-set-the-table": {
+   "text": "Can you set the table, please?"
+  },
+  "the-water-is-boiling-hot": {
+   "text": "The water is boiling — it's very hot!"
+  },
+  "the-big-pot-is-on-the-stove": {
+   "text": "The big pot is on the stove."
+  }
+ }
+}

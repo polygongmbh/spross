@@ -1,0 +1,104 @@
+{
+ "title": "First words",
+ "words": {
+  "language": {
+   "text": "language"
+  },
+  "word": {
+   "text": "word"
+  },
+  "name": {
+   "text": "name"
+  },
+  "help": {
+   "text": "help"
+  },
+  "be-called": {
+   "text": "to be called"
+  },
+  "say": {
+   "text": "to say"
+  },
+  "know": {
+   "text": "to know"
+  },
+  "need": {
+   "text": "to need"
+  },
+  "thank": {
+   "text": "to thank"
+  },
+  "hello": {
+   "text": "Hello!"
+  },
+  "good-day": {
+   "text": "Good day!"
+  },
+  "thank-you": {
+   "text": "Thank you very much!"
+  },
+  "please": {
+   "text": "Please!"
+  },
+  "excuse-me": {
+   "text": "Excuse me!"
+  },
+  "yes": {
+   "text": "Yes."
+  },
+  "no": {
+   "text": "No."
+  },
+  "whats-your-name": {
+   "text": "What is your name?"
+  },
+  "my-name-is": {
+   "text": "My name is …"
+  },
+  "where-are-you-from": {
+   "text": "Where are you from?"
+  },
+  "do-you-speak-english": {
+   "text": "Do you speak English?"
+  },
+  "i-speak-a-little-german": {
+   "text": "I only speak a little German."
+  },
+  "i-dont-know": {
+   "text": "I don't know."
+  },
+  "pardon": {
+   "text": "Pardon?"
+  },
+  "i-need-help": {
+   "text": "I need help."
+  },
+  "all-good": {
+   "text": "All good."
+  },
+  "goodbye": {
+   "text": "Goodbye!"
+  },
+  "what-is-this-called": {
+   "text": "What is this called?"
+  },
+  "how-are-you": {
+   "text": "How are you?"
+  },
+  "can-you-repeat-that": {
+   "text": "Can you repeat that, please?"
+  },
+  "i-understand": {
+   "text": "I understand."
+  },
+  "i-dont-understand": {
+   "text": "I don't understand."
+  },
+  "slower-please": {
+   "text": "Slower, please!"
+  },
+  "bye": {
+   "text": "Bye!"
+  }
+ }
+}

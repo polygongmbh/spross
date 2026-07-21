@@ -1,0 +1,104 @@
+{
+ "title": "The hallway & entrance",
+ "words": {
+  "hallway": {
+   "text": "hallway"
+  },
+  "door": {
+   "text": "door"
+  },
+  "key": {
+   "text": "key"
+  },
+  "jacket": {
+   "text": "jacket"
+  },
+  "coat": {
+   "text": "coat"
+  },
+  "shoe-rack": {
+   "text": "shoe rack"
+  },
+  "umbrella": {
+   "text": "umbrella"
+  },
+  "hat": {
+   "text": "hat"
+  },
+  "mailbox": {
+   "text": "mailbox"
+  },
+  "doorbell": {
+   "text": "doorbell"
+  },
+  "stairs": {
+   "text": "stairs",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "bag": {
+   "text": "bag"
+  },
+  "lock": {
+   "text": "to lock"
+  },
+  "ring": {
+   "text": "to ring"
+  },
+  "take-off-shoes": {
+   "text": "to take off your shoes"
+  },
+  "set-off": {
+   "text": "to set off"
+  },
+  "unlock": {
+   "text": "to unlock"
+  },
+  "put-on": {
+   "text": "to put on"
+  },
+  "wait": {
+   "text": "to wait"
+  },
+  "arrive": {
+   "text": "to arrive"
+  },
+  "greet": {
+   "text": "to greet"
+  },
+  "say-goodbye": {
+   "text": "to say goodbye"
+  },
+  "do-you-have-the-keys": {
+   "text": "Do you have the keys?"
+  },
+  "ill-be-right-back": {
+   "text": "I'll be right back!"
+  },
+  "take-off-your-shoes-here": {
+   "text": "Please take off your shoes here."
+  },
+  "hurry-were-late": {
+   "text": "Hurry up, we're late!"
+  },
+  "see-you-later": {
+   "text": "See you later!"
+  },
+  "welcome-home": {
+   "text": "Welcome home!"
+  },
+  "the-doorbell-suddenly-rang": {
+   "text": "The doorbell suddenly rang."
+  },
+  "dont-forget-your-jacket": {
+   "text": "Don't forget your jacket!"
+  },
+  "take-off-your-shoes-at-the-door": {
+   "text": "Please take off your shoes at the door."
+  },
+  "the-doorbell-just-rang": {
+   "text": "The doorbell just rang."
+  }
+ }
+}

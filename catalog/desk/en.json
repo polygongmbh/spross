@@ -1,0 +1,104 @@
+{
+ "title": "The desk",
+ "words": {
+  "desk": {
+   "text": "desk"
+  },
+  "laptop": {
+   "text": "laptop"
+  },
+  "keyboard": {
+   "text": "keyboard"
+  },
+  "screen": {
+   "text": "screen"
+  },
+  "mouse": {
+   "text": "mouse",
+   "grammar": {
+    "plural": "mice"
+   }
+  },
+  "cable": {
+   "text": "cable"
+  },
+  "headphones": {
+   "text": "headphones",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "pen": {
+   "text": "pen"
+  },
+  "notebook": {
+   "text": "notebook"
+  },
+  "printer": {
+   "text": "printer"
+  },
+  "socket": {
+   "text": "socket"
+  },
+  "office-chair": {
+   "text": "office chair"
+  },
+  "work": {
+   "text": "to work"
+  },
+  "type": {
+   "text": "to type"
+  },
+  "print": {
+   "text": "to print"
+  },
+  "save": {
+   "text": "to save"
+  },
+  "take-break": {
+   "text": "to take a break"
+  },
+  "write": {
+   "text": "to write"
+  },
+  "call": {
+   "text": "to call"
+  },
+  "delete": {
+   "text": "to delete"
+  },
+  "study": {
+   "text": "to study"
+  },
+  "im-in-a-meeting": {
+   "text": "I'm in a meeting."
+  },
+  "do-not-disturb": {
+   "text": "Do not disturb, please!"
+  },
+  "the-laptop-wont-charge-anymore": {
+   "text": "The laptop won't charge anymore."
+  },
+  "the-wifi-is-completely-gone": {
+   "text": "The wifi is completely gone."
+  },
+  "coffee-break": {
+   "text": "Coffee break?"
+  },
+  "i-have-a-lot-to-do": {
+   "text": "I have a lot to do."
+  },
+  "end-of-workday": {
+   "text": "Time to call it a day!"
+  },
+  "send-me-the-email": {
+   "text": "Please send me the email."
+  },
+  "the-laptop-wont-charge-at-all": {
+   "text": "The laptop won't charge at all."
+  },
+  "the-wifi-suddenly-dropped": {
+   "text": "The wifi suddenly dropped."
+  }
+ }
+}

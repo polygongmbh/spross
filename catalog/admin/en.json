@@ -1,0 +1,92 @@
+{
+ "title": "The public office",
+ "words": {
+  "office": {
+   "text": "public office"
+  },
+  "form": {
+   "text": "form"
+  },
+  "application": {
+   "text": "application"
+  },
+  "id-card": {
+   "text": "id card"
+  },
+  "residence-permit": {
+   "text": "residence permit"
+  },
+  "signature": {
+   "text": "signature"
+  },
+  "ticket-number": {
+   "text": "queue number"
+  },
+  "case-worker": {
+   "text": "case worker"
+  },
+  "deadline": {
+   "text": "deadline"
+  },
+  "registration": {
+   "text": "registration"
+  },
+  "documents": {
+   "text": "documents",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "fill-in": {
+   "text": "to fill in"
+  },
+  "sign": {
+   "text": "to sign"
+  },
+  "apply-for": {
+   "text": "to apply for"
+  },
+  "submit": {
+   "text": "to submit"
+  },
+  "hand-in": {
+   "text": "to hand in"
+  },
+  "extend": {
+   "text": "to extend"
+  },
+  "bring": {
+   "text": "to bring"
+  },
+  "copy": {
+   "text": "to copy"
+  },
+  "expire": {
+   "text": "to expire"
+  },
+  "where-do-i-sign": {
+   "text": "Where do I sign?"
+  },
+  "i-want-to-extend-my-residence-permit": {
+   "text": "I want to extend my residence permit."
+  },
+  "please-fill-out-the-form-completely": {
+   "text": "Please fill out the form completely."
+  },
+  "take-a-queue-number-first": {
+   "text": "Please take a queue number first."
+  },
+  "i-need-an-interpreter-for-the-application": {
+   "text": "I need an interpreter for the application."
+  },
+  "do-you-have-all-the-documents": {
+   "text": "Do you have all the documents with you?"
+  },
+  "the-decision-comes-by-mail": {
+   "text": "The decision comes by mail."
+  },
+  "when-does-my-id-expire": {
+   "text": "When does my id card expire?"
+  }
+ }
+}

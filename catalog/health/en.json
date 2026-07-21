@@ -1,0 +1,95 @@
+{
+ "title": "The doctor & health",
+ "words": {
+  "doctor": {
+   "text": "doctor"
+  },
+  "practice": {
+   "text": "doctor's office"
+  },
+  "appointment": {
+   "text": "appointment"
+  },
+  "pain": {
+   "text": "pain"
+  },
+  "fever": {
+   "text": "fever"
+  },
+  "pill": {
+   "text": "pill"
+  },
+  "prescription": {
+   "text": "prescription"
+  },
+  "pharmacy": {
+   "text": "pharmacy",
+   "grammar": {
+    "plural": "pharmacies"
+   }
+  },
+  "insurance-card": {
+   "text": "insurance card"
+  },
+  "health-insurance": {
+   "text": "health insurance"
+  },
+  "cough": {
+   "text": "cough"
+  },
+  "cold": {
+   "text": "cold"
+  },
+  "hurt": {
+   "text": "to hurt"
+  },
+  "to-cough": {
+   "text": "to cough"
+  },
+  "examine": {
+   "text": "to examine"
+  },
+  "prescribe": {
+   "text": "to prescribe"
+  },
+  "take-medicine": {
+   "text": "to take medicine"
+  },
+  "pick-up": {
+   "text": "to pick up"
+  },
+  "call-in-sick": {
+   "text": "to call in sick"
+  },
+  "rest": {
+   "text": "to rest"
+  },
+  "cancel": {
+   "text": "to cancel"
+  },
+  "i-have-an-appointment-at-ten": {
+   "text": "I have an appointment at ten at the doctor's office."
+  },
+  "my-throat-hurts-a-lot": {
+   "text": "My throat hurts a lot."
+  },
+  "ive-had-a-fever-since-yesterday": {
+   "text": "I've had a fever since yesterday."
+  },
+  "take-the-pills-twice-daily": {
+   "text": "Please take the pills twice daily."
+  },
+  "get-well-soon": {
+   "text": "Get well soon!"
+  },
+  "take-the-prescription-to-the-pharmacy": {
+   "text": "Take the prescription to the pharmacy."
+  },
+  "show-me-your-insurance-card": {
+   "text": "Please show me your insurance card."
+  },
+  "i-have-to-cancel-the-appointment": {
+   "text": "I have to cancel the appointment."
+  }
+ }
+}

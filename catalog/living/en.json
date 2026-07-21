@@ -1,0 +1,95 @@
+{
+ "title": "The living room",
+ "words": {
+  "sofa": {
+   "text": "sofa"
+  },
+  "dining-table": {
+   "text": "dining table"
+  },
+  "chair": {
+   "text": "chair"
+  },
+  "tv": {
+   "text": "television"
+  },
+  "remote": {
+   "text": "remote control"
+  },
+  "shelf": {
+   "text": "shelf",
+   "grammar": {
+    "plural": "shelves"
+   }
+  },
+  "plant": {
+   "text": "plant"
+  },
+  "window": {
+   "text": "window"
+  },
+  "curtain": {
+   "text": "curtain"
+  },
+  "carpet": {
+   "text": "carpet"
+  },
+  "lamp": {
+   "text": "lamp"
+  },
+  "picture": {
+   "text": "picture"
+  },
+  "eat": {
+   "text": "to eat"
+  },
+  "watch-tv": {
+   "text": "to watch TV"
+  },
+  "read": {
+   "text": "to read"
+  },
+  "relax": {
+   "text": "to relax"
+  },
+  "tidy-up": {
+   "text": "to tidy up"
+  },
+  "listen-to-music": {
+   "text": "to listen to music"
+  },
+  "water-plants": {
+   "text": "to water the plants"
+  },
+  "play": {
+   "text": "to play"
+  },
+  "talk": {
+   "text": "to talk"
+  },
+  "the-food-is-ready": {
+   "text": "The food is ready!"
+  },
+  "turn-on-the-tv": {
+   "text": "Please turn on the TV."
+  },
+  "come-sit-with-me": {
+   "text": "Come, sit with me!"
+  },
+  "shall-we-watch-a-movie": {
+   "text": "Shall we watch a movie?"
+  },
+  "lets-hang-the-picture": {
+   "text": "Let's hang the picture!"
+  },
+  "the-curtains-hang-over-the-window": {
+   "text": "The curtains hang over the window."
+  },
+  "can-you-turn-off-the-light": {
+   "text": "Can you turn off the light?"
+  },
+  "open-the-window-fresh-air": {
+   "text": "Please open the window — fresh air!"
+  }
+ }
+}

@@ -1,0 +1,95 @@
+{
+ "title": "The bathroom",
+ "words": {
+  "washing-machine": {
+   "text": "washing machine"
+  },
+  "laundry": {
+   "text": "laundry"
+  },
+  "toilet": {
+   "text": "toilet"
+  },
+  "shower": {
+   "text": "shower"
+  },
+  "sink": {
+   "text": "sink"
+  },
+  "mirror": {
+   "text": "mirror"
+  },
+  "toothbrush": {
+   "text": "toothbrush"
+  },
+  "toothpaste": {
+   "text": "toothpaste"
+  },
+  "towel": {
+   "text": "towel"
+  },
+  "soap": {
+   "text": "soap"
+  },
+  "shampoo": {
+   "text": "shampoo"
+  },
+  "hairdryer": {
+   "text": "hairdryer"
+  },
+  "take-shower": {
+   "text": "to take a shower"
+  },
+  "do-laundry": {
+   "text": "to do the laundry"
+  },
+  "brush-teeth": {
+   "text": "to brush your teeth"
+  },
+  "dry-off": {
+   "text": "to dry off"
+  },
+  "hang-up": {
+   "text": "to hang up"
+  },
+  "clean": {
+   "text": "to clean"
+  },
+  "shave": {
+   "text": "to shave"
+  },
+  "comb": {
+   "text": "to comb"
+  },
+  "apply-lotion": {
+   "text": "to apply lotion"
+  },
+  "im-taking-a-quick-shower": {
+   "text": "I'm taking a quick shower."
+  },
+  "the-bathroom-is-occupied": {
+   "text": "The bathroom is occupied!"
+  },
+  "the-laundry-is-done": {
+   "text": "The laundry is done."
+  },
+  "wheres-my-towel": {
+   "text": "Where's my towel?"
+  },
+  "can-you-hang-the-laundry-outside": {
+   "text": "Can you hang the laundry outside?"
+  },
+  "dont-forget-to-brush-teeth": {
+   "text": "Don't forget to brush your teeth!"
+  },
+  "wash-your-hands-thoroughly": {
+   "text": "Wash your hands thoroughly."
+  },
+  "the-water-is-cold": {
+   "text": "The water is cold!"
+  },
+  "can-you-hang-the-laundry-here": {
+   "text": "Can you hang the laundry here?"
+  }
+ }
+}
