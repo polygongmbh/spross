@@ -36,6 +36,8 @@ data class UnitScheduling(
     val form: String? = null,
     val addedAt: Instant,
     val phase: CardPhase = CardPhase.New,
+    /** Step position within Learning/Relearning steps; null in New/Review. */
+    val stepIndex: Int? = null,
     val memory: MemoryState? = null,
     val due: Instant? = null,
     val lapses: Int = 0,
