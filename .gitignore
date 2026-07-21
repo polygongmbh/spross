@@ -7,3 +7,8 @@ xcuserdata/
 .dd/
 .ddw/
 .project-nowatch.yml
+build/
+.gradle/
+.kotlin/
+local.properties
+kmp/kern/build/
