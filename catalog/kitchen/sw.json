@@ -77,16 +77,10 @@
    }
   },
   "the-pot-is-still-on-the-stove": {
-   "text": "Sufuria bado iko jikoni.",
-   "notes": {
-    "de": "jikoni = auf dem Herd / in der Küche"
-   }
+   "text": "Sufuria bado iko jikoni."
   },
   "wash-the-dishes-in-the-sink": {
-   "text": "Osha vyombo sinkini, tafadhali!",
-   "notes": {
-    "de": "-ni am Ende = in/im/am: sinki → sinkini"
-   }
+   "text": "Osha vyombo sinkini, tafadhali!"
   },
   "the-fridge-is-empty": {
    "text": "Friji iko tupu."

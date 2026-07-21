@@ -44,10 +44,7 @@
    "text": "Дуже дякую!"
   },
   "please": {
-   "text": "Будь ласка!",
-   "notes": {
-    "de": "ein Wort für „bitte“ und „gern geschehen“ — wörtl. „sei so freundlich“"
-   }
+   "text": "Будь ласка!"
   },
   "excuse-me": {
    "text": "Вибачте!"
@@ -77,10 +74,7 @@
    "text": "Я не знаю."
   },
   "pardon": {
-   "text": "Перепрошую?",
-   "notes": {
-    "de": "auch als „Entschuldigung!“ nutzbar — wörtl. „ich bitte nochmals“"
-   }
+   "text": "Перепрошую?"
   },
   "i-need-help": {
    "text": "Мені потрібна допомога."

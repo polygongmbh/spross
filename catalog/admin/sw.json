@@ -71,19 +71,13 @@
    "text": "Nitie sahihi wapi?"
   },
   "i-want-to-extend-my-residence-permit": {
-   "text": "Ningependa kuhuisha kibali changu cha ukaaji.",
-   "notes": {
-    "de": "kuhuisha = erneuern, wörtl. „wiederbeleben“ (-hai = lebendig)"
-   }
+   "text": "Ningependa kuhuisha kibali changu cha ukaaji."
   },
   "please-fill-out-the-form-completely": {
    "text": "Tafadhali jaza fomu kikamilifu."
   },
   "take-a-queue-number-first": {
-   "text": "Tafadhali chukua namba ya foleni kwanza!",
-   "notes": {
-    "de": "foleni (Warteschlange) kommt vom englischen „fall in line“!"
-   }
+   "text": "Tafadhali chukua namba ya foleni kwanza!"
   },
   "i-need-an-interpreter-for-the-application": {
    "text": "Nahitaji mkalimani kwa ajili ya maombi yangu."

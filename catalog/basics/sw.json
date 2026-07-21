@@ -37,7 +37,7 @@
   "hello": {
    "text": "Hujambo!",
    "notes": {
-    "de": "„Hujambo?“ wörtl. „Hast du kein Problem?“ — Antwort: „Sijambo!“"
+    "de": "Antwort: „Sijambo!“"
    }
   },
   "good-day": {
@@ -47,10 +47,7 @@
    "text": "Asante sana!"
   },
   "please": {
-   "text": "Tafadhali!",
-   "notes": {
-    "de": "tafadhali = „bitte“ beim Bitten · karibu = „bitte sehr!“ beim Geben — wörtl. „Komm näher!“, auch „Willkommen!“"
-   }
+   "text": "Tafadhali!"
   },
   "excuse-me": {
    "text": "Samahani!"
@@ -80,10 +77,7 @@
    "text": "Sijui."
   },
   "pardon": {
-   "text": "Samahani, naomba urudie.",
-   "notes": {
-    "de": "naomba = „ich bitte (darum)“ — das höfliche Allzweckwort"
-   }
+   "text": "Samahani, naomba urudie."
   },
   "i-need-help": {
    "text": "Nahitaji msaada."
@@ -110,10 +104,7 @@
    "text": "Sielewi."
   },
   "slower-please": {
-   "text": "Polepole, tafadhali!",
-   "notes": {
-    "de": "polepole (ein Wort) = „schön langsam“ — die Verdopplung von pole (sachte)"
-   }
+   "text": "Polepole, tafadhali!"
   }
  }
 }
