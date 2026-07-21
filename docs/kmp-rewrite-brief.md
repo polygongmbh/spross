@@ -41,28 +41,21 @@ return the pair's `[Card]`. A **pair is a join**: for `de-sw`, walk each area's
 `sw.json` realization as `translation`. **A slug missing from the target language is
 skipped** — that is the coverage model (pair-specific phrases fall out naturally).
 
-Per-card field mapping from v2:
+**Field shapes: see `data/README.md`** — it is authoritative for the concept spine,
+realization fields, grammar keys, and `notes`. Don't re-derive them here. What the
+README doesn't say is how they land on `Card`; only the non-obvious mappings:
 
-| Card field      | v2 source |
-|-----------------|-----------|
-| `id`            | `area/slug` (kind no longer in the id). Scheduling key is `id\|direction`. |
-| `kind`          | concept `kind` (`noun`/`verb`/`phrase`) |
-| `area`          | folder name |
-| `german`        | `de.json` `words[slug].text` |
-| `article`       | `de.json` `grammar.gender` (nil for non-nouns) |
-| `plural`        | `grammar.plural` — **already bare** (no `"Pl."`/`"die"`, no `(selten)`); no stripping needed. de grammar may also carry `pluralOnly`/`singularOnly`/`feminine` (♀ form) — surface as you see fit |
-| `emoji`         | concept `emoji` (nouns only) |
-| `translation`   | `<target>.json` `words[slug].text`, `variants` joined as before |
-| `note`          | `<target>.json` `words[slug].notes.de` (the learner-facing gloss; nil if absent) |
-| `componentIDs`  | phrase→word links: compute as v1 did (match phrase tokens to word slugs in the pair) |
-| `seedIndex`     | global introduction order: `areas.json` group order → area order → `concepts.json` position |
-
-Notes:
-- `seedIndex` now has an explicit source of truth — `areas.json` orders groups then
-  areas, and each `concepts.json` orders concepts (words then phrases). Flatten that.
-- v2 grammar values are structured and bare; the v1 `strippedPlural` hack is gone.
-- `notes` is keyed by explanation language (`de` only today) — see README for why the
-  key is load-bearing. For now read `notes.de`.
+- `id` = `area/slug` (kind no longer in the id). Scheduling key stays `id|direction`.
+- `article` ← de `grammar.gender`; `plural` ← `grammar.plural` — already bare, the v1
+  `strippedPlural` hack is gone. Grammar is minimal now (de `gender`+`plural`, sw
+  `plural`, uk none); no `pluralOnly`/`singularOnly`/`feminine`.
+- `translation` ← `<target>.json` text (+ `variants` joined as v1 did);
+  `note` ← the target realization's `notes.de` (nil if absent).
+- `componentIDs` ← the phrase concept's **`components` list** (authored slugs, same
+  area) — **read them, don't re-derive**. The fragile v1 `PhraseLinker` matcher is
+  retired. Empty list = no unlock gate.
+- `seedIndex` = global introduction order, flattened from `areas.json` (group order →
+  area order) then each `concepts.json` position (words then phrases).
 
 ## Suggested build order
 
@@ -76,6 +69,11 @@ Notes:
 ## Open decisions (yours to make)
 
 - Exact `id` string (`area/slug` proposed; anything stable works — no parity needed).
-- Whether `componentIDs` linking stays token-matching or moves to an explicit
-  `components` field in `concepts.json` (cleaner, but a format change — coordinate if so).
 - KMP module/package layout and where the app consumes it from.
+
+## Pending content change (heads-up, not blocking)
+
+Phrases are still poster-dense (many words per sentence) and are slated for a
+**deconstruction pass** into simpler combine-only sentences. That will change the
+phrase set and re-seed each phrase's `components`. Structure/field shapes won't
+change — but don't hard-code the current phrase inventory.
