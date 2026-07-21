@@ -43,11 +43,25 @@
     "plural": "-n"
    }
   },
+  "colleague-f": {
+   "text": "Kollegin",
+   "grammar": {
+    "gender": "die",
+    "plural": "-nen"
+   }
+  },
   "boss": {
    "text": "Chef",
    "grammar": {
     "gender": "der",
     "plural": "-s"
+   }
+  },
+  "boss-f": {
+   "text": "Chefin",
+   "grammar": {
+    "gender": "die",
+    "plural": "-nen"
    }
   },
   "shift": {

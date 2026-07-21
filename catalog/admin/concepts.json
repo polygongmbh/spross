@@ -40,6 +40,12 @@
   "emoji": "🧑‍💼"
  },
  {
+  "slug": "case-worker-f",
+  "kind": "noun",
+  "emoji": "👩‍💼",
+  "feminineOf": "case-worker"
+ },
+ {
   "slug": "deadline",
   "kind": "noun",
   "emoji": "⏳"

@@ -11,7 +11,8 @@
   "classroom": {
    "text": "Klassenzimmer",
    "grammar": {
-    "gender": "das"
+    "gender": "das",
+    "plural": "="
    }
   },
   "integration-course": {
@@ -25,6 +26,13 @@
    "text": "Lehrer",
    "grammar": {
     "gender": "der"
+   }
+  },
+  "teacher-f": {
+   "text": "Lehrerin",
+   "grammar": {
+    "gender": "die",
+    "plural": "-nen"
    }
   },
   "board": {

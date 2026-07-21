@@ -32,7 +32,8 @@
   "residence-permit": {
    "text": "Aufenthaltstitel",
    "grammar": {
-    "gender": "der"
+    "gender": "der",
+    "plural": "="
    }
   },
   "signature": {
@@ -52,7 +53,15 @@
   "case-worker": {
    "text": "Sachbearbeiter",
    "grammar": {
-    "gender": "der"
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "case-worker-f": {
+   "text": "Sachbearbeiterin",
+   "grammar": {
+    "gender": "die",
+    "plural": "-nen"
    }
   },
   "deadline": {
@@ -72,7 +81,8 @@
   "documents": {
    "text": "Unterlagen",
    "grammar": {
-    "gender": "die"
+    "gender": "die",
+    "plural": "only"
    }
   },
   "fill-in": {

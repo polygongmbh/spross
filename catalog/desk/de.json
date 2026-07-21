@@ -39,13 +39,15 @@
   "cable": {
    "text": "Kabel",
    "grammar": {
-    "gender": "das"
+    "gender": "das",
+    "plural": "="
    }
   },
   "headphones": {
    "text": "Kopfhörer",
    "grammar": {
-    "gender": "der"
+    "gender": "der",
+    "plural": "="
    }
   },
   "pen": {
@@ -65,7 +67,8 @@
   "printer": {
    "text": "Drucker",
    "grammar": {
-    "gender": "der"
+    "gender": "der",
+    "plural": "="
    }
   },
   "socket": {

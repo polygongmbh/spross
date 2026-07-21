@@ -18,7 +18,8 @@
   "key": {
    "text": "Schlüssel",
    "grammar": {
-    "gender": "der"
+    "gender": "der",
+    "plural": "="
    }
   },
   "jacket": {

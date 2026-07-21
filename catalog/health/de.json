@@ -8,6 +8,13 @@
     "plural": "Ärzte"
    }
   },
+  "doctor-f": {
+   "text": "Ärztin",
+   "grammar": {
+    "gender": "die",
+    "plural": "-nen"
+   }
+  },
   "practice": {
    "text": "Praxis",
    "grammar": {

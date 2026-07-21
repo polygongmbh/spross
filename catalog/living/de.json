@@ -25,7 +25,8 @@
   "tv": {
    "text": "Fernseher",
    "grammar": {
-    "gender": "der"
+    "gender": "der",
+    "plural": "="
    }
   },
   "remote": {
@@ -52,7 +53,8 @@
   "window": {
    "text": "Fenster",
    "grammar": {
-    "gender": "das"
+    "gender": "das",
+    "plural": "="
    }
   },
   "curtain": {

@@ -32,13 +32,15 @@
   "sink": {
    "text": "Waschbecken",
    "grammar": {
-    "gender": "das"
+    "gender": "das",
+    "plural": "="
    }
   },
   "mirror": {
    "text": "Spiegel",
    "grammar": {
-    "gender": "der"
+    "gender": "der",
+    "plural": "="
    }
   },
   "toothbrush": {

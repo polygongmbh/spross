@@ -20,6 +20,12 @@
   "emoji": "🧑‍🏫"
  },
  {
+  "slug": "teacher-f",
+  "kind": "noun",
+  "emoji": "👩‍🏫",
+  "feminineOf": "teacher"
+ },
+ {
   "slug": "board",
   "kind": "noun",
   "emoji": "📝"

@@ -58,13 +58,15 @@
   "knife": {
    "text": "Messer",
    "grammar": {
-    "gender": "das"
+    "gender": "das",
+    "plural": "="
    }
   },
   "spoon": {
    "text": "Löffel",
    "grammar": {
-    "gender": "der"
+    "gender": "der",
+    "plural": "="
    }
   },
   "fork": {
@@ -77,7 +79,8 @@
   "plate": {
    "text": "Teller",
    "grammar": {
-    "gender": "der"
+    "gender": "der",
+    "plural": "="
    }
   },
   "cook": {

@@ -30,9 +30,21 @@
   "emoji": "👥"
  },
  {
+  "slug": "colleague-f",
+  "kind": "noun",
+  "emoji": "👩‍💼",
+  "feminineOf": "colleague"
+ },
+ {
   "slug": "boss",
   "kind": "noun",
   "emoji": "👔"
+ },
+ {
+  "slug": "boss-f",
+  "kind": "noun",
+  "emoji": "👩‍💼",
+  "feminineOf": "boss"
  },
  {
   "slug": "shift",

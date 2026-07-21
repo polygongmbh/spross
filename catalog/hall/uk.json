@@ -8,7 +8,10 @@
    ]
   },
   "door": {
-   "text": "двері"
+   "text": "двері",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "key": {
    "text": "ключ"
@@ -35,7 +38,10 @@
    "text": "дзвінок"
   },
   "stairs": {
-   "text": "сходи"
+   "text": "сходи",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "bag": {
    "text": "сумка"

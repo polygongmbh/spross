@@ -5,6 +5,12 @@
   "emoji": "🧑‍⚕️"
  },
  {
+  "slug": "doctor-f",
+  "kind": "noun",
+  "emoji": "👩‍⚕️",
+  "feminineOf": "doctor"
+ },
+ {
   "slug": "practice",
   "kind": "noun",
   "emoji": "🏥"
