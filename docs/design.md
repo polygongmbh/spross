@@ -1,8 +1,11 @@
-# DuoLernen — v1 design
+# Spross — app design (v2)
 
 The product thesis and phase plan live in `../../docs/roadmap.md` (repo-external, project-level).
-This doc is the build contract for v1: architecture, module APIs, and behavioral rules.
-The Lovable prototype and its brief are inspiration only; this is a fresh base.
+This doc is the build contract for the APP layer: screens, review UX, profile, persistence wiring.
+The engine (scheduling, growth, sessions, grading, snapshots) is owned by `kern-design.md` —
+link, don't restate.
+Product frame: any source (known) / target (learning) language pair from the catalog;
+no user-facing direction concept; progress tracked per target language.
 
 ## North star
 
@@ -11,196 +14,133 @@ The app composes the work; the user never browses for what to study.
 
 ## Architecture
 
-Two layers, strict dependency direction (App → Kern):
+Strict dependency direction (App → SprossKern, never the reverse):
 
 ```
-Kern/    Swift package "DuoKern" — pure logic, zero UI/IO deps, fully unit-tested
-  FSRS/     scheduler (FSRS-5 port)
-  Model/    domain types (Types.swift, owned by root, changes require coordination)
-  Content/  catalog importer (CatalogImporter) + phrase→word linking
-  Box/      growth engine (what enters the box, when)
-  Session/  session composer (what today's session contains)
-App/     SwiftUI iOS app — views, persistence (file-backed store actor), app lifecycle
+kmp/kern   SprossKern — Kotlin Multiplatform engine (contract: kern-design.md)
+App/       SwiftUI iOS app — views, observable AppModel, file-backed store actor
+Shared/ Watch/ Widgets/ WatchWidgets/   decode-only Swift snapshot surfaces
 ```
 
-- Kern is platform-agnostic (`swift test` on macOS is the fast gate).
-- **Time discipline**: Kern never calls `Date()`/`Calendar.current`. Every engine API takes
-  `now: Date` and `calendar: Calendar` from the caller. Day key = `calendar.startOfDay(for: now)`
-  formatted `yyyy-MM-dd` in that calendar. A card is due iff `due <= now`.
-- Persistence is a file-backed JSON store actor in App (atomic write,
-  **one `BoxState` document per LanguagePair**, path keyed by pair).
-  Save cadence: debounced after answers (≥5 s), at session end, and on scene-background.
-  No SwiftData/CoreData in v1 — testability and zero migration pain beat ORM comfort. // why: personal-scale data (<10k cards) loads in ms; swapping later is behind StoreProtocol.
-- Swift 6 strict concurrency; all Kern types Sendable.
+- ONLY the app target links the Kotlin framework;
+  watch/widget targets are pure Swift over phone-built snapshots (see below).
+- `App/Sources/KernBridge.swift` is the boundary file:
+  `Date ↔ epochMillis`, `tzId`, `Identifiable`/`Equatable` conformances, `Int32` bridging.
+- **Time discipline**: the engine never reads the clock —
+  every call passes `nowEpochMillis` + `tzId` (kern-design §7).
+- Persistence: `BoxStore` actor, **one JSON document per TARGET language**
+  (`box-<target>.json`) in App Group `group.net.spross.app`,
+  encoded/decoded by the kern store facade (schema: kern-design §7).
+  Atomic writes; save debounced ≥ 5 s after answers,
+  immediate at session end, config mutations, and scene-background
+  (which also folds partial session stats and pushes snapshots).
+- Swift 6 strict concurrency.
 
-## Domain model (Model/Types.swift — already written, build against it)
+## Profile & onboarding
 
-- `Card`: id, kind (noun/verb/phrase), German side (headword, article?, plural?, emoji?),
-  a single translation string (the card's pair determines the language), optional note (literal gloss),
-  area, componentIDs (phrase → word cards).
-- `CardScheduling`: phase (new/learning/review/relearning), MemoryState (stability, difficulty),
-  due date, lapses, suspended flag, review log. Attached per-direction (forward/reverse are independent).
-  Invariant: `phase == .new ⟺ memory == nil ⟺ due == nil`.
-- `LanguagePair`: `de-sw`, `de-uk`. Direction: `.deToTarget` / `.targetToDe` — card model is direction-agnostic.
-- `BoxState`: the persisted aggregate for ONE pair — cards, scheduling, config, `dailyStats`.
-  All engine computations are scoped to `config.direction`'s scheduling entries.
-  Direction switch: cards reviewed in the old direction re-enter the new direction
-  through the normal new-card budget (it *is* new learning); old-direction state is kept untouched.
-  `newIntroduced` is pruned to the trailing 60 days; `dailyStats` (reviews, introduced, active count)
-  is appended at session end and is the only input to streak/Fortschritt (never scan logs at render).
+- Profile = (source, target) catalog languages;
+  targets come from `Catalog.availableTargets(source)` (≥ 50 joinable concepts);
+  both pickers show concept counts ("… Begriffe").
+- Default source = device language when covered, else en.
+- UI chrome renders in the KNOWN language when chrome exists (de/en today), otherwise en;
+  the immersion subtitle (learned word beneath the main button label)
+  appears only when chrome exists for the target.
+- **Switching source keeps every schedule** (scheduling keys are card ids — kern-design §3);
+  the settings picker says so.
+- Area titles come from the catalog per source language; the emoji map stays app-side.
 
-## FSRS module (Kern/FSRS)
+## Presentation model in the UI
 
-- Port **FSRS-5** from the open-spaced-repetition algorithm spec (fetch the official
-  algorithm wiki + a reference implementation, e.g. ts-fsrs or py-fsrs, for golden test vectors).
-- API: `struct FSRS` — `initialState(rating:) -> MemoryState` (first review, w₀–w₅ path),
-  `nextState(state:elapsedDays:rating:) -> MemoryState` (elapsed < 1 day takes the short-term path),
-  `retrievability(state:elapsedDays:) -> Double`, `nextIntervalDays(stability:desiredRetention:) -> Double`,
-  `nextPhase(current:rating:) -> CardPhase`.
-- First answer of a `.new` card calls `initialState`; all later answers call `nextState` with
-  `elapsedDays` computed from the last log entry's date (never from `due`).
-- Default parameters = published FSRS-5 defaults; desired retention default 0.9.
-  Changing `desiredRetention` (or any config) applies at each card's next review — no bulk re-dating.
-- Learning steps for new cards (e.g. 1 min, 10 min) handled by the scheduler's short-term memory
-  path per the spec; no separate hand-rolled learning queue.
-- Tests: golden vectors from the reference implementation (fetched, not invented),
-  plus property tests (stability monotonicity on Good, difficulty bounds, retrievability ∈ (0,1]).
+Roles, synonym rotation, and the emoji matrix are engine rules (kern-design §3);
+the app renders them:
 
-## Box engine (Kern/Box) — the growth rules
+- One FSRS schedule per card; the role of each review comes from the engine
+  (`presentationRole`), alternating produce/recognize.
+- **PRODUCE**: typed answer in the target language; placeholder "In ⟨target⟩ …";
+  grading via the kern answer normalizer
+  (articles optional, verb prefixes optional, typo budget, article-mismatch = typo).
+  "Aufdecken" remains the no-typing fallback that self-grades.
+- **RECOGNIZE**: reveal + self-grade ONLY (Again/Hard/Good/Easy) — no input field.
+  The prompt shows the engine's rotated form;
+  the reveal shows the source meaning plus the full synonym family ("auch: …").
+- First exposure is ALWAYS recognition WITH emoji (teaching moment);
+  emoji visibility elsewhere follows the engine matrix.
+- ♀ is a labeled badge, never graded.
+- Card rendering: article inline in its color and the plural line on the TARGET side only;
+  suffix plurals dictionary-style ("Lehrerin, -nen") with localized sentinel strings;
+  prompt/answer styling is role-based (prompt neutral, reveal accent), not per-language.
 
-The box grows only while material sits:
+## Review UX rules (carried from v1 refinement, treat as spec)
 
-1. Load-based new-card budget (NOT a per-day cap): growth tops the *learning pool* — cards
-   currently in `.learning` phase, scoped to `config.direction` — back up to `maxLearning`
-   (default 8, configurable 0–30). `learningPoolBudget = max(0, maxLearning − learningCount)`.
-   A card leaves the pool by graduating to `.review`, which frees a slot, so an active learner
-   can take on many new cards a day while a quiet day adds none. Because `.learning` cards
-   graduate within a session, the pool sits near-empty at most session starts — so the health
-   gate's `dueSoftCap` backlog check (2a) is the effective day-over-day governor. `newIntroduced`
-   is retained for history/stats (DayStats, streak) only; it no longer limits growth.
-2. Health gate: introduce new cards only if
-   (a) projected post-session backlog `dueCount − min(dueCount, sessionCap) < dueSoftCap`
-   (evaluated at composition time), and
-   (b) share of active (non-suspended) cards in relearning < 20% — this sub-gate applies
-   only once active count ≥ 10 (else it passes; day-one bootstrap).
-3. **Phrase unlock** (evaluated per `config.direction`): a phrase becomes eligible only when
-   ALL its componentIDs have scheduling in `.review` phase with stability ≥
-   `phraseUnlockStability` (default 3 days). A component with no scheduling, or suspended,
-   counts as not-stable. Phrases with ZERO resolved components follow normal seed order —
-   never the unlock fast path.
-4. User agency: user can enqueue a topic pack or a single word ("add to box"). Enqueued,
-   unscheduled, unlocked cards **lead the new-card list and bypass the health gate, but
-   respect the load throttle (`learningPoolBudget`)** — in the normal composed session and the
-   extra round. Packing an area *enrolls* it: the pack drips in at the pool rate (≤ `maxLearning`
-   per session, ahead of automatic growth), not all at once, so a whole group can't dump dozens
-   of new cards into one sitting. A full pool defers the rest until a slot frees. `answer()`
-   gates introduction on that same `learningPoolBudget > 0` for both enqueued and automatic
-   cards. Locked phrases still wait for their components; enqueuing a phrase's area
-   auto-prioritizes its missing component words.
-5. Automatic ordering within an area: nouns/verbs by seed order, then phrases by unlock.
-6. **Introduction = first answer**: `CardScheduling` is created and `newIntroduced[day]`
-   incremented when the card is first *rated*, not when composed. Composition selects
-   candidates purely functionally (same inputs → same candidates).
-7. **Leeches**: `lapses ≥ 8` → auto-suspend. Suspended cards are excluded from due counts,
-   relearning share, and sessions; surfaced in the Box screen for manual revive.
+- Wrong answer reveals **inline**, expanding the card DOWNWARD (animated);
+  no space is reserved pre-reveal.
+- A typo counts as correct but does NOT auto-advance:
+  the typed text stays visible with the proper spelling and a "Weiter" tap.
+- A clean correct answer auto-advances after ~1.2 s; Enter advances when revealed.
+- "Aufdecken" fills the answer field with the correct answer.
+- Answer-colored progress bar: one segment per answer — green right, amber tough, brick wrong.
+- Never punishing: no red flashes; streak survives one missed day.
 
-## Session composer (Kern/Session)
+## Counts & sessions
 
-A session is composed, never configured:
+- Every user-facing count (due ring, "x neu", active cards, widget stats) is
+  **concept-denominated** — one schedule per card makes cards ≡ concepts (kern-design §4).
+- Sessions are composed, never configured:
+  plan from `BoxEngine`, drain loop, extra round, endless mode — semantics in kern-design §6.
+  Session end = summary ("x neu · x gefestigt · x wiederholt") with confetti and streak;
+  "Weiter üben" → endless.
+- A lapsed review card returns after 10 minutes — typically next session;
+  the drain loop does not wait for it (kern-design §5).
 
-1. Due reviews (oldest due first), capped at `sessionCap − growthReserve`, where
-   `growthReserve = min(max(autoBudget, min(enqueuedEligibleCount, loadBudget)), 5)` — up to 5
-   slots are reserved so a full due queue can't starve new work that will actually appear
-   (health-gated automatic cards, or enqueued cards within the throttle); a closed gate with
-   nothing packed reserves none. Unlocked phrases fill reserved slots first, then new cards per
-   the box engine.
-2. **Drain loop**: after the composed queue empties, keep pulling any card with
-   `due <= now` (learning/relearning steps land here) until none remain — then the
-   session ends with a summary (no mid-session pause). Failed cards cycle back naturally.
-3. **Every answer event is an FSRS review** — retries and learning steps go through the
-   FSRS-5 short-term path with real elapsed time; nothing is "UI-only".
-4. Typed answer → Rating mapping (v1): wrong → `.again`,
-   correct after reveal → `.hard`, correct → `.good`; `.easy` is unreachable via typing.
-   Revealing without typing falls back to four-button self-grading (both directions).
-5. **Extra round** (`composeExtraSession`): always available on demand —
-   due cards, then explicitly enqueued new cards (leading, within `learningPoolBudget` so a
-   pack enrolls rather than dumps; they bypass the health gate), then review-ahead by soonest
-   due, capped at `sessionCap`. Automatic seed-order cards never enter an extra round.
-6. **Session end**: a summary ("x neu · x gefestigt · x wiederholt") with confetti and the
-   streak. From there the user goes Home or "Weiter üben" → **endless mode**
-   (`composeEndless`): refills with cards that are genuinely due + new cards (respecting the
-   pool + health gate), looping until the user stops or nothing remains. Nothing is pulled ahead
-   of its due time — a card just answered does not reappear until FSRS reschedules it, so spacing
-   is preserved; endless emptying (nothing due, pool full) is the correct "come back later".
+## App structure (single screen)
 
-## Review UX rules (App) — carried over from prototype refinement, treat as spec
+- **Heute** is the only root screen:
+  session card (due-count ring + streak flame, or done state),
+  trainer hub, condensed Fortschritt section (14-day strip, active count, retention).
+- **Box** (pushed via the 📦 toolbar icon): browse areas/cards —
+  rows lead with the TARGET realization; phase/stability, pack-into-box,
+  suspended cards surface for revive; settings
+  (source/target pickers, learning-pool size, reset, `feedback@spross.net` + version footer).
+- **Trainers**: registry-driven from kern — de/sw/uk authored,
+  the hub hides languages with no content (en trainer unauthored).
+  Slot drills are stateless; phrase templates are keyed (source, target),
+  reverse mode when target == de.
 
-- Typing first in BOTH directions (recall beats recognition): input field + "Prüfen",
-  with "Aufdecken" as the no-typing fallback that self-grades via Again/Hard/Good/Easy.
-  Typed grading compares against the German side (production) or the translation
-  (recognition; seed alternatives separated by "/" all count as correct).
-- Answer normalization before comparison: lowercase, trim, strip leading article
-  (de: der/die/das/ein/eine; en-style "the/to" not needed), strip punctuation, collapse whitespace.
-- A wrong little word before a right word is a slip, not a failure (both count as a typo):
-  when typing German, a *present* leading article that disagrees with the card's gender
-  ("das Tisch" for "der Tisch") demotes an otherwise-exact answer to a typo; in any language, an
-  unrecognized short leading word (≤4 letters, e.g. a mistyped "dee Tisch") that — once dropped —
-  makes the rest match counts as a typo. A *missing* article stays fully correct.
-- Wrong answer reveals **inline**, expanding the card DOWNWARD (animated) —
-  existing content never moves or flips; no space is reserved pre-reveal.
-- German side renders as ONE line, article inline in its color ("der Kühlschrank");
-  the plural line appears only for learners OF German (it's noise otherwise).
-- Typo tolerance: ~10% of letters (Damerau-Levenshtein, min word length 5, minimum 1 edit
-  from 5 letters up) — diacritic slips like "Kuhlschrank" ride the same rule.
-  A typo still counts as correct, but does NOT auto-advance: the typed text stays visible
-  with the proper spelling and a "Weiter" tap, so the learner reviews the slip.
-- A clean (exact) correct answer auto-advances after ~1.2 s (long enough to read the
-  confirmed answer); Enter advances when revealed.
-- "Aufdecken" fills the answer field with the correct answer (no empty box left beside it).
-- Never punishing: no red flashes, streak survives one missed day.
+Design language: warm, card-centric, emoji as illustration, article color coding
+der=blue / die=pink-red / das=green — degrades to neutral for languages without
+gendered articles.
 
-## App structure (SwiftUI, single screen)
+## Watch & widgets (decode-only)
 
-- **Heute** is the only root screen, top to bottom:
-  session card (due-count ring + streak flame, or "done for today" + tiny preview of tomorrow),
-  trainer hub, condensed Fortschritt section (14-day activity strip, active card count, retention estimate).
-- **Box** (pushed via the 📦 toolbar icon): browse areas/cards, see phase/stability,
-  add topic packs or single words, pair/direction settings; suspended cards surface here.
-
-Design language: warm, card-centric, emoji as illustration (from seed data), article color coding
-der=blue / die=pink-red / das=green (text carries meaning, color reinforces — colorblind-safe).
+- The phone precomputes **WatchSnapshot v2**
+  (both sides pre-resolved per card, `nextRole` + `promptForm` baked in,
+  due-first ranking, ≤ 60 entries) and **WidgetSnapshot** on every persist;
+  wire formats in kern-design §7.
+- Watch: flip + self-grade both roles (the watch never types);
+  answers return as events, the phone reschedules with real timestamps and re-pushes.
+- iOS widget: pure Swift decode; the retrievability power curve is duplicated
+  Swift-side with the w20 constant (documented duplication).
 
 ## Content pipeline
 
-- The app reads the language-agnostic **content catalog** (`../../data/catalog/`,
-  schema in `../../docs/content-format.md`): shared word concepts + per-language
-  realizations + pair-authored phrases. `catalog/` in this repo is a relative
-  **symlink** to that single master, so content edits sync with no copy step;
-  xcodebuild's folder-reference copy materializes the real files into the `.app`.
-  Consequence: this repo references `../data/catalog` and is **no longer
-  standalone-cloneable** — deliberate (local-iteration-first; revisit if a
-  remote/CI appears).
-- `CatalogImporter` (`Kern/…/Content`) reconstructs `[Card]` for a pair from the
-  catalog, applying `"Pl. "`-stripping and `"/"`-joined translation variants. phrase componentIDs are resolved by
-  normalized lemma matching of area words inside the phrase text (naive
-  contains-match; unresolved components = phrase depends only on resolved ones).
-- Importer is deterministic: same catalog → same card IDs (stable slug of
-  pair+area+kind+headword). IDs never contain `|` (scheduling keys are
-  `id|direction`).
-- The **legacy per-pair seed format** (`vocab-de-<lang>.json`) and its importer
-  are gone; `CatalogImporter` is the single import path. The `vocab-de-*.json`
-  files survive only as raw test fixtures for `PhraseVocabAuditTests`' word-coverage audit.
+- `catalog/` is the in-repo master (v2 format, spec in `catalog/README.md`):
+  shared word concepts + per-language realizations + pair-authored phrases;
+  bundled as a folder resource.
+  Cards derive at load from the (source, target) join and are never persisted (kern-design §2).
+- `CatalogLintTest` guards format rules on every kern test run.
+- Content changes go through verification sweeps before shipping
+  (`../../docs/sprachposter-learnings.md`).
+  Current size: 356 concepts; joins de-sw 346, de-uk 350, de-en 351.
 
 ## Testing & gates
 
-- `cd Kern && swift test` — must be green before every commit.
-- App builds via XcodeGen (`project.yml`) + `xcodebuild -scheme DuoLernen -destination 'iPhone 17 Pro' build`.
-- Behavior-level tests: box growth scenarios, session composition, importer round-trip, FSRS vectors.
+- `./gradlew :kern:jvmTest` — must be green before every commit.
+- App builds via XcodeGen (`project.yml`) +
+  `xcodebuild -scheme Spross -destination 'iPhone 17 Pro' build`;
+  a Release archive smoke check guards the framework linkage.
+- Behavioral engine tests live in kern (inventory: kern-design §10).
 
-## Not in v1
+## Not yet
 
-Couple mode, accounts/sync, listening/writing steps, watch app (Phase 2.5+ — but keep Kern
-watch-ready: no UIKit imports, session composer can emit micro-sessions).
-
-- Note: the new-card budget is load-based (learning-pool occupancy), scoped per `config.direction`.
-  `newIntroduced` remains only as a day-keyed history counter for stats/streak, not a growth limiter.
+Couple mode, accounts/sync, Android app (engine jvm-ready, wiring pending),
+sw/uk UI chrome (sources fall back to en), en trainer content.

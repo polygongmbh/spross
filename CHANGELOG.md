@@ -2,6 +2,28 @@
 
 ## Unreleased
 
+- **DuoLernen is now Spross** (`net.spross.app`): new name, new app/widget/watch
+  identities, feedback address `feedback@spross.net`. Card ids and stored boxes
+  start fresh — existing test installs begin at an empty box (pre-production).
+- **Learn any language pair**: pick the language you *know* and the language you
+  *learn* from the catalog (Deutsch · English · Kiswahili · Українська) — German
+  is no longer hardwired as one side. Pickers show how many concepts each
+  choice offers, and switching your known language keeps all learning progress.
+- **Alternating practice, self-graded recognition**: each word keeps one memory;
+  reviews alternate between typing the word in the language you learn and
+  reading it + self-grading your comprehension (Again/Hard/Good/Easy) — typed
+  recognition is gone. The very first encounter always *shows* the new word
+  with its emoji as a teaching moment, and the second review always asks you to
+  produce it. Synonyms take turns as recognition prompts ("auch: …" on reveal),
+  and phrases now alternate too.
+- **FSRS-6 scheduling**: the scheduler moved a generation forward (forgetting-curve
+  decay is now a real parameter), verified against the reference
+  implementations' own test vectors. A failed review card returns after
+  10 minutes — usually next session — instead of looping inside the current one.
+- **Catalog v2.1 unifications**: near-duplicate phrase twins merged into one card
+  each, Sie-form phrases accept the du-form silently, and Ukrainian
+  near-synonyms are accepted silently instead of shown as alternates
+  (356 concepts; 346–351 cards per pair).
 - **Adding a group no longer floods a session**: packing a whole area into the
   box now enrolls it — its words drip in at the normal learning-pool rate (a
   handful per session, ahead of automatic growth) instead of dumping dozens of
