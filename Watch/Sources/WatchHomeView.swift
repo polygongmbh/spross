@@ -107,7 +107,7 @@ struct WatchHomeView: View {
         VStack(spacing: 8) {
             Text("📲")
                 .font(.system(size: 36))
-            Text("Öffne DuoLernen auf dem iPhone, um zu starten.")
+            Text("Öffne Spross auf dem iPhone, um zu starten.")
                 .font(.system(.footnote, design: .rounded))
                 .foregroundStyle(Color.wlTextSecondary)
                 .multilineTextAlignment(.center)

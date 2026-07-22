@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct DuoLernenWatchApp: App {
+struct SprossWatchApp: App {
     @State private var model = WatchModel()
 
     var body: some Scene {

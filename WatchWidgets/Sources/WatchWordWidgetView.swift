@@ -1,7 +1,7 @@
 import WidgetKit
 import SwiftUI
 
-/// Complication faces: rectangular = article-colored word + translation;
+/// Complication faces: rectangular = tinted target word + source meaning;
 /// circular/corner = emoji + due count.
 struct WatchWordWidgetView: View {
     @Environment(\.widgetFamily) private var family
@@ -22,17 +22,17 @@ struct WatchWordWidgetView: View {
         VStack(alignment: .leading, spacing: 1) {
             HStack(spacing: 4) {
                 Text(entry.emoji)
-                if let article = entry.article {
-                    Text(article)
-                        .foregroundStyle(articleColor(article))
+                if let tint = entry.tint {
+                    Text(tint)
+                        .foregroundStyle(tintColor(tint))
                 }
-                Text(entry.german)
-                    .foregroundStyle(entry.article.map(articleColor) ?? .white)
+                Text(entry.word)
+                    .foregroundStyle(entry.tint.map(tintColor) ?? .white)
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
             }
             .font(.system(.headline, design: .rounded, weight: .bold))
-            Text(entry.translation)
+            Text(entry.meaning)
                 .font(.system(.footnote, design: .rounded))
                 .foregroundStyle(.secondary)
                 .lineLimit(2)
@@ -59,9 +59,9 @@ struct WatchWordWidgetView: View {
             }
     }
 
-    /// Article colors, dark variants of the phone palette (Theme.swift).
-    private func articleColor(_ article: String) -> Color {
-        switch article.lowercased() {
+    /// Article-tint colors, dark variants of the phone palette (Theme.swift).
+    private func tintColor(_ tint: String) -> Color {
+        switch tint.lowercased() {
         case "der": return Color(red: 0x74 / 255.0, green: 0xC0 / 255.0, blue: 0xFC / 255.0)
         case "die": return Color(red: 0xF7 / 255.0, green: 0x83 / 255.0, blue: 0xAC / 255.0)
         case "das": return Color(red: 0x69 / 255.0, green: 0xDB / 255.0, blue: 0x7C / 255.0)

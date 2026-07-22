@@ -71,7 +71,7 @@ extension AppModel {
 
     /// UserDefaults key holding recently applied event UUIDs
     /// (transferUserInfo may deliver duplicates).
-    private static let appliedEventIDsKey = "watch-applied-event-ids"
+    private static let appliedEventIDsKey = "spross-watch-applied-event-ids"
     private static let appliedEventIDsCap = 1000
 
     /// Wire the bridge to this model and activate the session (call once at launch).
@@ -87,7 +87,17 @@ extension AppModel {
         guard let box else { return }
         let json = WatchSnapshotBuilder.shared.build(state: box,
                                                      nowEpochMillis: Date().epochMillis)
-        watchBridge.push(snapshotJSON: json)
+        watchBridge.push(snapshotJSON: Self.stampTarget(box.joinStamp.target, onto: json))
+    }
+
+    /// Kern's builder JSON is profile-agnostic; stamp the TARGET language so
+    /// the watch can label its one mirrored box. Falls back to the raw JSON
+    /// if the round-trip ever fails (the watch decodes `target` leniently).
+    static func stampTarget(_ target: String, onto json: String) -> String {
+        guard var snapshot = try? WatchSnapshot.decode(Data(json.utf8)) else { return json }
+        snapshot.target = target
+        guard let data = try? snapshot.encoded() else { return json }
+        return String(decoding: data, as: UTF8.self)
     }
 
     /// Apply queued watch answers ON RECEIPT, oldest first, with `now` =
@@ -101,7 +111,7 @@ extension AppModel {
 
         let fresh = events
             .filter { !appliedSet.contains($0.id.uuidString) }
-            .sorted { ($0.date, $0.cardID) < ($1.date, $1.cardID) }
+            .sorted { ($0.date, $0.cardId) < ($1.date, $1.cardId) }
         guard !fresh.isEmpty else { return }
 
         var appliedCount: Int32 = 0
@@ -109,7 +119,7 @@ extension AppModel {
             // why: stale ids (profile/catalog drift) are a defined engine
             // no-op — the event is still marked seen so it never re-queues.
             if let rating = Rating(value: event.rating) {
-                let outcome = BoxEngine.shared.answer(state: state, cardId: event.cardID,
+                let outcome = BoxEngine.shared.answer(state: state, cardId: event.cardId,
                                                       rating: rating,
                                                       nowEpochMillis: event.date.epochMillis,
                                                       tzId: currentTzId())

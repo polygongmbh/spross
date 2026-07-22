@@ -8,13 +8,13 @@ import Foundation
 /// elapsed time stays honest.
 struct WatchAnswerEvent: Sendable, Equatable {
     var id: UUID
-    var cardID: String
+    var cardId: String
     var rating: Int
     var date: Date
 
-    init(id: UUID = UUID(), cardID: String, rating: Int, date: Date) {
+    init(id: UUID = UUID(), cardId: String, rating: Int, date: Date) {
         self.id = id
-        self.cardID = cardID
+        self.cardId = cardId
         self.rating = rating
         self.date = date
     }
@@ -24,14 +24,14 @@ struct WatchAnswerEvent: Sendable, Equatable {
     enum Key {
         static let events = "answerEvents"
         static let id = "id"
-        static let cardID = "cardID"
+        static let cardId = "cardId"
         static let rating = "rating"
         static let date = "date"
     }
 
     var userInfoEntry: [String: Any] {
         [Key.id: id.uuidString,
-         Key.cardID: cardID,
+         Key.cardId: cardId,
          Key.rating: rating,
          Key.date: date]
     }
@@ -46,10 +46,10 @@ struct WatchAnswerEvent: Sendable, Equatable {
         return entries.compactMap { entry in
             guard let idString = entry[Key.id] as? String,
                   let id = UUID(uuidString: idString),
-                  let cardID = entry[Key.cardID] as? String,
+                  let cardId = entry[Key.cardId] as? String,
                   let rating = entry[Key.rating] as? Int, (1...4).contains(rating),
                   let date = entry[Key.date] as? Date else { return nil }
-            return WatchAnswerEvent(id: id, cardID: cardID, rating: rating, date: date)
+            return WatchAnswerEvent(id: id, cardId: cardId, rating: rating, date: date)
         }
     }
 }

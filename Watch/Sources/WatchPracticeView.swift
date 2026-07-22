@@ -1,10 +1,10 @@
 import SwiftUI
-import DuoKern
 
-/// Endless multiple-choice practice ("Üben"): prompt word, tap the matching
-/// translation in a 2×2 grid. Instant feedback (green right / amber wrong —
-/// never red), then auto-advance. Pure local practice — no FSRS, nothing sent
-/// to the phone. Dismissed via the sheet's system close control.
+/// Endless multiple-choice practice ("Üben"): target-side prompt word, tap
+/// the matching source meaning in a 2×2 grid. Instant feedback (green right /
+/// amber wrong — never red), then auto-advance. Pure local practice — no
+/// FSRS, nothing sent to the phone. Dismissed via the sheet's system close
+/// control.
 struct WatchPracticeView: View {
     @Bindable var model: WatchPracticeModel
     let onClose: () -> Void
@@ -37,10 +37,10 @@ struct WatchPracticeView: View {
             // why: streak floats at the word's trailing edge (costs no vertical
             // space, so the word stays big) and is hidden for long words where
             // it would collide.
-            prompt(question.promptCard)
+            prompt(question.promptEntry)
                 .frame(maxWidth: .infinity)
                 .overlay(alignment: .trailing) {
-                    if model.streak > 0, promptLength(question.promptCard) <= Self.streakPromptLimit {
+                    if model.streak > 0, promptLength(question.promptEntry) <= Self.streakPromptLimit {
                         Text("🔥\(model.streak)")
                             .font(.system(.caption, design: .rounded, weight: .bold))
                             .foregroundStyle(Color.wlAccent)
@@ -58,31 +58,26 @@ struct WatchPracticeView: View {
         .padding(.horizontal, 2)
     }
 
-    /// Character count of the prompt as shown (translation, or article + noun).
-    private func promptLength(_ card: WatchSnapshot.Card) -> Int {
-        if model.direction == .targetToDe { return card.translation.count }
-        return [card.article, card.german].compactMap { $0 }.joined(separator: " ").count
+    /// Character count of the prompt as shown (article tint word + target text).
+    private func promptLength(_ entry: WatchSnapshot.Entry) -> Int {
+        [entry.articleTint, entry.targetText].compactMap { $0 }
+            .joined(separator: " ").count
     }
 
     // No emoji here (deliberately) — its room goes to a bigger prompt word.
-    private func prompt(_ card: WatchSnapshot.Card) -> some View {
-        Group {
-            if model.direction == .targetToDe {
-                Text(card.translation)
-            } else {
-                germanText(card)
-            }
-        }
-        .font(.system(.title2, design: .rounded, weight: .bold))
-        .minimumScaleFactor(0.6)
-        .multilineTextAlignment(.center)
+    private func prompt(_ entry: WatchSnapshot.Entry) -> some View {
+        targetText(entry)
+            .font(.system(.title2, design: .rounded, weight: .bold))
+            .minimumScaleFactor(0.6)
+            .multilineTextAlignment(.center)
     }
 
-    /// German side: "der Kühlschrank" with the article-colored noun.
-    private func germanText(_ card: WatchSnapshot.Card) -> Text {
-        let word = Text(card.german).foregroundStyle(WL.articleColor(card.article))
-        guard let article = card.article else { return word }
-        return Text("\(article) ").foregroundStyle(Color.wlTextSecondary) + word
+    /// Target side, e.g. "die Kellnerin" — articleTint string drives both the
+    /// article word and its color; genderless targets render plain.
+    private func targetText(_ entry: WatchSnapshot.Entry) -> Text {
+        guard let tint = entry.articleTint else { return Text(entry.targetText) }
+        return Text("\(tint) ").foregroundStyle(Color.wlTextSecondary)
+            + Text(entry.targetText).foregroundStyle(WL.articleColor(tint))
     }
 
     private func optionButton(_ index: Int, _ option: String) -> some View {

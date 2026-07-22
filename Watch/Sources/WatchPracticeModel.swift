@@ -1,7 +1,6 @@
 import Foundation
 import Observation
 import WatchKit
-import DuoKern
 
 /// Endless multiple-choice practice over the on-watch vocab. PURE PRACTICE:
 /// deliberately holds none of `WatchModel`'s phone-sync dependencies
@@ -11,8 +10,7 @@ import DuoKern
 @Observable
 final class WatchPracticeModel {
 
-    private let cards: [WatchSnapshot.Card]
-    let direction: Direction
+    private let entries: [WatchSnapshot.Entry]
 
     private(set) var question: WatchPracticeQuestion?
     /// The tapped option index; non-nil freezes the tiles into feedback state.
@@ -24,14 +22,13 @@ final class WatchPracticeModel {
     private var autoAdvance: Task<Void, Never>?
 
     init(snapshot: WatchSnapshot) {
-        self.cards = snapshot.cards
-        self.direction = snapshot.direction
+        self.entries = snapshot.entries
     }
 
-    var hasEnoughVocab: Bool { cards.count >= 2 }
+    var hasEnoughVocab: Bool { entries.count >= 2 }
 
     func start() {
-        question = WatchPracticeGenerator.makeQuestion(cards: cards, direction: direction,
+        question = WatchPracticeGenerator.makeQuestion(entries: entries,
                                                        avoiding: nil, using: &rng)
         previousCardID = question?.promptCardID
         selectedIndex = nil
@@ -67,7 +64,7 @@ final class WatchPracticeModel {
 
     func advance() {
         autoAdvance?.cancel()
-        question = WatchPracticeGenerator.makeQuestion(cards: cards, direction: direction,
+        question = WatchPracticeGenerator.makeQuestion(entries: entries,
                                                        avoiding: previousCardID, using: &rng)
         previousCardID = question?.promptCardID ?? previousCardID
         selectedIndex = nil

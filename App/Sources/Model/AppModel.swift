@@ -173,6 +173,7 @@ final class AppModel {
             }
             box = state
             try await store.saveNow(json: StoreCodec.shared.encode(state: state), target: target)
+            await store.saveWidgetSnapshot(json: widgetSnapshotJSON(for: state))
             UserDefaults.standard.set(source, forKey: Self.sourceLanguageKey)
             UserDefaults.standard.set(target, forKey: Self.targetLanguageKey)
             loadErrorMessage = nil
@@ -266,8 +267,12 @@ final class AppModel {
         guard let box else { return }
         pushWatchSnapshot() // app background → refresh the watch (sync spec)
         let json = StoreCodec.shared.encode(state: box)
+        let widgetJSON = widgetSnapshotJSON(for: box)
         let target = box.joinStamp.target
-        Task { [store] in try? await store.saveNow(json: json, target: target) }
+        Task { [store] in
+            try? await store.saveNow(json: json, target: target)
+            await store.saveWidgetSnapshot(json: widgetJSON)
+        }
     }
 
     func persist(_ state: BoxState, immediate: Bool = false) {
@@ -275,6 +280,7 @@ final class AppModel {
         // changes and session end (immediate saves) reach the watch promptly.
         if immediate { pushWatchSnapshot() }
         let json = StoreCodec.shared.encode(state: state)
+        let widgetJSON = widgetSnapshotJSON(for: state)
         let target = state.joinStamp.target
         Task { [store] in
             if immediate {
@@ -282,7 +288,17 @@ final class AppModel {
             } else {
                 await store.save(json: json, target: target)
             }
+            // why: the decode-only widget renders from this precomputed file
+            // (contract §7) — refresh it on every persist, never debounced.
+            await store.saveWidgetSnapshot(json: widgetJSON)
         }
+    }
+
+    /// Non-private so AppModel+Queries' reset flow can rewrite the snapshot.
+    func widgetSnapshotJSON(for state: BoxState) -> String {
+        WidgetSnapshotBuilder.shared.build(
+            state: state, nowEpochMillis: Date().epochMillis,
+            exposureLimit: WidgetSnapshotBuilder.shared.DEFAULT_EXPOSURE_LIMIT)
     }
 
     /// Apply a change to the box, persist immediately, refresh statistics.

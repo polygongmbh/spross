@@ -2,7 +2,7 @@ import WidgetKit
 import SwiftUI
 
 /// Widget rendering. Self-contained styling (the app's design tokens live in
-/// the app target); article colors mirror Theme.swift.
+/// the app target); article-tint colors mirror Theme.swift.
 struct WordWidgetView: View {
     let entry: WordEntry
     @Environment(\.widgetFamily) private var family
@@ -31,8 +31,8 @@ struct WordWidgetView: View {
                 }
             }
             Spacer(minLength: 0)
-            germanLine(font: .title3.bold())
-            Text(entry.translation)
+            wordLine(font: .title3.bold())
+            Text(entry.meaning)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
@@ -107,9 +107,9 @@ struct WordWidgetView: View {
     private func wordRow(_ word: WidgetWord) -> some View {
         HStack(spacing: 10) {
             Text(word.emoji).font(.title3)
-            germanLine(for: word, font: .body.weight(.semibold))
+            wordLine(for: word, font: .body.weight(.semibold))
             Spacer(minLength: 6)
-            Text(word.translation)
+            Text(word.meaning)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
@@ -119,36 +119,38 @@ struct WordWidgetView: View {
 
     private var lockScreen: some View {
         VStack(alignment: .leading, spacing: 1) {
-            germanLine(font: .headline)
-            Text(entry.translation)
+            wordLine(font: .headline)
+            Text(entry.meaning)
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
     }
 
-    /// Single tint-only line for above the clock; no color or translation.
+    /// Single tint-only line for above the clock; no color or meaning.
     private var inline: some View {
-        Text("\(entry.emoji) \(entry.article.map { "\($0) " } ?? "")\(entry.german)")
+        Text("\(entry.emoji) \(entry.tint.map { "\($0) " } ?? "")\(entry.word)")
     }
 
-    private func germanLine(font: Font) -> some View {
-        germanLine(for: entry.primary, font: font)
+    private func wordLine(font: Font) -> some View {
+        wordLine(for: entry.primary, font: font)
     }
 
-    private func germanLine(for word: WidgetWord, font: Font) -> some View {
-        (articleText(word.article) + Text(word.german))
+    /// Target word with the article word prefixed and colored when the
+    /// snapshot carries an `articleTint`; genderless targets render plain.
+    private func wordLine(for word: WidgetWord, font: Font) -> some View {
+        (articleText(word.tint) + Text(word.word))
             .font(font)
             .lineLimit(1)
             .minimumScaleFactor(0.6)
     }
 
-    private func articleText(_ article: String?) -> Text {
-        guard let article else { return Text("") }
-        return Text("\(article) ").foregroundStyle(articleColor(article))
+    private func articleText(_ tint: String?) -> Text {
+        guard let tint else { return Text("") }
+        return Text("\(tint) ").foregroundStyle(tintColor(tint))
     }
 
-    private func articleColor(_ article: String) -> Color {
-        switch article {
+    private func tintColor(_ tint: String) -> Color {
+        switch tint {
         case "der": Color(red: 0.10, green: 0.44, blue: 0.76)
         case "die": Color(red: 0.76, green: 0.15, blue: 0.36)
         case "das": Color(red: 0.12, green: 0.48, blue: 0.20)

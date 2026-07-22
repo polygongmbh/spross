@@ -27,26 +27,32 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
         var promptForm: String
 
         var id: String { cardId }
+
+        var isRecognize: Bool { nextRole == "recognize" }
     }
 
     var schemaVersion: Int
     /// Epoch milliseconds of the build.
     var generated: Int64
     var entries: [Entry]
+    /// TARGET language the mirrored box belongs to. Kern's builder JSON is
+    /// profile-agnostic; the phone stamps this before pushing.
+    var target: String = ""
     /// Card ids the watch already answered against THIS snapshot (queued as
     /// events, removed from the local due list). Absent in phone-built JSON.
-    var answeredCardIds: [String] = []
+    var answeredCardIDs: [String] = []
 
     private enum CodingKeys: String, CodingKey {
-        case schemaVersion, generated, entries, answeredCardIds
+        case schemaVersion, generated, entries, target, answeredCardIDs
     }
 
     init(schemaVersion: Int, generated: Int64, entries: [Entry],
-         answeredCardIds: [String] = []) {
+         target: String = "", answeredCardIDs: [String] = []) {
         self.schemaVersion = schemaVersion
         self.generated = generated
         self.entries = entries
-        self.answeredCardIds = answeredCardIds
+        self.target = target
+        self.answeredCardIDs = answeredCardIDs
     }
 
     init(from decoder: Decoder) throws {
@@ -54,17 +60,29 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
         schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         generated = try container.decode(Int64.self, forKey: .generated)
         entries = try container.decode([Entry].self, forKey: .entries)
-        answeredCardIds = try container.decodeIfPresent([String].self,
-                                                        forKey: .answeredCardIds) ?? []
+        target = try container.decodeIfPresent(String.self, forKey: .target) ?? ""
+        answeredCardIDs = try container.decodeIfPresent([String].self,
+                                                        forKey: .answeredCardIDs) ?? []
     }
 
     // MARK: - Queries (watch side)
 
+    func entry(id: String) -> Entry? {
+        entries.first { $0.cardId == id }
+    }
+
     /// Due entries (`due <= now`), phone-ranked order, minus locally answered.
     func dueEntries(now: Date) -> [Entry] {
-        let answered = Set(answeredCardIds)
+        let answered = Set(answeredCardIDs)
         let nowMillis = Int64(now.timeIntervalSince1970 * 1000)
         return entries.filter { $0.due <= nowMillis && !answered.contains($0.cardId) }
+    }
+
+    /// Entries due by tomorrow evening (mirrors the phone's tomorrow count).
+    func tomorrowDueCount(now: Date, calendar: Calendar) -> Int {
+        guard let end = calendar.date(byAdding: .day, value: 2,
+                                      to: calendar.startOfDay(for: now)) else { return 0 }
+        return dueEntries(now: end).count
     }
 
     /// Attention-worthy entries for the complication: the phone already ranks

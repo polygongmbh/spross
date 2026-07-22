@@ -52,4 +52,13 @@ actor BoxStore {
         try Data(json.utf8).write(to: tmp, options: .atomic)
         _ = try FileManager.default.replaceItemAt(fileURL(target: target), withItemAt: tmp)
     }
+
+    /// Kern `WidgetSnapshotBuilder` JSON for the decode-only iOS widget —
+    /// written next to the box documents on every persist, always immediately
+    /// (derived data; a stale box file cannot corrupt it).
+    func saveWidgetSnapshot(json: String) {
+        try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        try? Data(json.utf8).write(to: directory.appendingPathComponent("widget-snapshot.json"),
+                                   options: .atomic)
+    }
 }

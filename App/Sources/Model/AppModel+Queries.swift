@@ -91,6 +91,7 @@ extension AppModel {
         do {
             try await store.saveNow(json: StoreCodec.shared.encode(state: fresh),
                                     target: fresh.joinStamp.target)
+            await store.saveWidgetSnapshot(json: widgetSnapshotJSON(for: fresh))
             refreshStats()
             pushWatchSnapshot()
         } catch {

@@ -1,7 +1,6 @@
 import Foundation
 import Observation
 import WidgetKit
-import DuoKern
 
 /// Watch app state: holds the latest phone snapshot, drains its due list in
 /// a micro-review loop, and queues answer events back to the phone.
@@ -73,8 +72,9 @@ final class WatchModel {
         if reviewPresented {
             // why: mid-review the visible queue must not resurrect cards the
             // user just rated (their events may not be applied phone-side yet).
-            queue = queue.filter { id in incoming.dueCardIDs(now: Date()).contains(id) }
-            if currentID != nil, let id = currentID, incoming.card(id: id) == nil {
+            let due = Set(incoming.dueEntries(now: Date()).map(\.cardId))
+            queue = queue.filter { due.contains($0) }
+            if let id = currentID, incoming.entry(id: id) == nil {
                 advance()
             }
         }
@@ -83,26 +83,26 @@ final class WatchModel {
     // MARK: - Derived
 
     var dueCount: Int {
-        snapshot?.dueCardIDs(now: Date()).count ?? 0
+        snapshot?.dueEntries(now: Date()).count ?? 0
     }
 
     var tomorrowDueCount: Int {
         snapshot?.tomorrowDueCount(now: Date(), calendar: calendar) ?? 0
     }
 
-    var currentCard: WatchSnapshot.Card? {
-        currentID.flatMap { snapshot?.card(id: $0) }
+    var currentEntry: WatchSnapshot.Entry? {
+        currentID.flatMap { snapshot?.entry(id: $0) }
     }
 
     // MARK: - Practice ("Üben")
 
-    /// Enough introduced vocab to build a multiple-choice question.
-    var canPractice: Bool { (snapshot?.cards.count ?? 0) >= 2 }
+    /// Enough on-watch vocab to build a multiple-choice question.
+    var canPractice: Bool { (snapshot?.entries.count ?? 0) >= 2 }
 
     /// A fresh pure-local practice run over the current snapshot, or nil when
     /// there isn't enough vocab yet.
     func makePracticeModel() -> WatchPracticeModel? {
-        guard let snapshot, snapshot.cards.count >= 2 else { return nil }
+        guard let snapshot, snapshot.entries.count >= 2 else { return nil }
         return WatchPracticeModel(snapshot: snapshot)
     }
 
@@ -110,7 +110,7 @@ final class WatchModel {
 
     func startReview() {
         guard let snapshot else { return }
-        queue = snapshot.dueCardIDs(now: Date())
+        queue = snapshot.dueEntries(now: Date()).map(\.cardId)
         reviewTotal = queue.count
         answeredCount = 0
         revealed = false
@@ -118,11 +118,12 @@ final class WatchModel {
         reviewPresented = true
     }
 
-    /// Rate the current card: queue the event to the phone, mark it answered
-    /// locally (drops out of the due list), persist, advance.
-    func rate(_ rating: Rating) {
+    /// Self-grade the current card (rating raw 1–4): queue the event to the
+    /// phone, mark it answered locally (drops out of the due list), persist,
+    /// advance. Both roles are graded this way — the watch never types.
+    func rate(_ rating: Int) {
         guard let id = currentID, var snap = snapshot else { return }
-        connectivity.send(WatchAnswerEvent(cardID: id, rating: rating, date: Date()))
+        connectivity.send(WatchAnswerEvent(cardId: id, rating: rating, date: Date()))
         snap.answeredCardIDs.append(id)
         snapshot = snap
         WatchSnapshotStore.save(snap)

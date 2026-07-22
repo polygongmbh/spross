@@ -1,20 +1,20 @@
 import SwiftUI
-import DuoKern
 
-/// Micro-review loop: front (emoji + prompt word) → "Aufdecken" →
-/// back (answer + plural + note) → 2×2 rating grid → next card.
-/// Direction-aware: deToTarget prompts German, targetToDe prompts the
-/// target word; the German side always wears its article color.
+/// Micro-review loop, role-driven (no direction concept):
+/// recognize — prompt the rotated target form, flip reveals the source
+/// meaning (+ ♀ badge); produce — prompt the source meaning (+ ♀ badge),
+/// flip reveals the target family. Both roles are SELF-GRADED via the 2×2
+/// rating grid — the watch never types.
 struct WatchReviewView: View {
     @Bindable var model: WatchModel
 
     var body: some View {
-        if let card = model.currentCard {
+        if let entry = model.currentEntry {
             ScrollView {
                 VStack(spacing: 6) {
-                    front(card)
+                    front(entry)
                     if model.revealed {
-                        back(card)
+                        back(entry)
                         ratingGrid
                     } else {
                         Button {
@@ -39,55 +39,43 @@ struct WatchReviewView: View {
 
     // MARK: - Card faces
 
-    private func front(_ card: WatchSnapshot.Card) -> some View {
+    private func front(_ entry: WatchSnapshot.Entry) -> some View {
         VStack(spacing: 2) {
-            Text(card.emoji ?? "🗂️")
-                .font(.system(size: 34))
-            promptText(card)
-                .font(.system(.title3, design: .rounded, weight: .bold))
-                .minimumScaleFactor(0.6)
-                .multilineTextAlignment(.center)
+            // Emoji is pre-gated by the phone (policy) — no fallback glyph:
+            // absence means "hidden on purpose".
+            if let emoji = entry.emoji {
+                Text(emoji)
+                    .font(.system(size: 34))
+            }
+            Group {
+                if entry.isRecognize {
+                    targetLine(entry, form: entry.promptForm)
+                } else {
+                    sourceLine(entry)
+                }
+            }
+            .font(.system(.title3, design: .rounded, weight: .bold))
+            .minimumScaleFactor(0.6)
+            .multilineTextAlignment(.center)
         }
     }
 
     @ViewBuilder
-    private func promptText(_ card: WatchSnapshot.Card) -> some View {
-        if model.snapshot?.direction == .targetToDe {
-            Text(card.translation)
-        } else {
-            germanText(card)
-        }
-    }
-
-    /// German side: "der Kühlschrank" with the article-colored word.
-    private func germanText(_ card: WatchSnapshot.Card) -> Text {
-        let word = Text(card.german)
-            .foregroundStyle(WL.articleColor(card.article))
-        guard let article = card.article else { return word }
-        return Text("\(article) ")
-            .foregroundStyle(Color.wlTextSecondary) + word
-    }
-
-    @ViewBuilder
-    private func back(_ card: WatchSnapshot.Card) -> some View {
+    private func back(_ entry: WatchSnapshot.Entry) -> some View {
         VStack(spacing: 2) {
             Group {
-                if model.snapshot?.direction == .targetToDe {
-                    germanText(card)
+                if entry.isRecognize {
+                    sourceLine(entry)
                 } else {
-                    Text(card.translation)
+                    targetLine(entry, form: entry.targetText)
                 }
             }
             .font(.system(.body, design: .rounded, weight: .semibold))
             .multilineTextAlignment(.center)
 
-            if let plural = card.plural {
-                Text(plural)
-                    .font(.system(.caption2, design: .rounded))
-                    .foregroundStyle(Color.wlTextSecondary)
-            }
-            if let note = card.note {
-                Text(note)
+            // Produce reveal shows the rest of the accepted family ("auch: …").
+            if !entry.isRecognize, entry.accepted.count > 1 {
+                Text("auch: \(entry.accepted.dropFirst().joined(separator: " / "))")
                     .font(.system(.caption2, design: .rounded))
                     .foregroundStyle(Color.wlTextSecondary)
                     .multilineTextAlignment(.center)
@@ -95,23 +83,40 @@ struct WatchReviewView: View {
         }
     }
 
-    // MARK: - Rating
+    /// Source meaning; ♀ is a labeled badge, never part of the word.
+    private func sourceLine(_ entry: WatchSnapshot.Entry) -> Text {
+        let word = Text(entry.sourceText)
+        guard entry.femMarker else { return word }
+        return word + Text(" ♀").foregroundStyle(Color.wlDie)
+    }
+
+    /// Target-side form; the article word + tint render only for the
+    /// canonical text (a rotated synonym may carry a different gender).
+    private func targetLine(_ entry: WatchSnapshot.Entry, form: String) -> Text {
+        guard let tint = entry.articleTint, form == entry.targetText else {
+            return Text(form)
+        }
+        return Text("\(tint) ").foregroundStyle(Color.wlTextSecondary)
+            + Text(form).foregroundStyle(WL.articleColor(tint))
+    }
+
+    // MARK: - Rating (FSRS raw values 1–4)
 
     private var ratingGrid: some View {
         Grid(horizontalSpacing: 4, verticalSpacing: 4) {
             GridRow {
-                ratingButton("Nochmal", .again, .wlAmber)
-                ratingButton("Schwer", .hard, .wlTeal)
+                ratingButton("Nochmal", 1, .wlAmber)
+                ratingButton("Schwer", 2, .wlTeal)
             }
             GridRow {
-                ratingButton("Gut", .good, .wlSuccess)
-                ratingButton("Einfach", .easy, .wlDer)
+                ratingButton("Gut", 3, .wlSuccess)
+                ratingButton("Einfach", 4, .wlDer)
             }
         }
         .padding(.top, 4)
     }
 
-    private func ratingButton(_ label: String, _ rating: Rating, _ color: Color) -> some View {
+    private func ratingButton(_ label: String, _ rating: Int, _ color: Color) -> some View {
         Button {
             model.rate(rating)
         } label: {

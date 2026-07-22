@@ -1,16 +1,16 @@
 import WidgetKit
 import SwiftUI
-import DuoKern
 
 @main
-struct DuoLernenWidgets: WidgetBundle {
+struct SprossWidgets: WidgetBundle {
     var body: some Widget {
         WordWidget()
     }
 }
 
 /// Passive exposure: a rotating word from the box, fresh every 15 minutes.
-/// Prefers cards that need attention (learning phase, low stability, due soon).
+/// Decode-only Swift over the app-written `WidgetSnapshot` (no engine link);
+/// the phone pre-ranks attention-worthy cards on every persist.
 struct WordWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: "SprossWordWidget", provider: WordProvider()) { entry in
@@ -24,12 +24,15 @@ struct WordWidget: Widget {
     }
 }
 
-/// A single vocab card projected into the widget (no DuoKern types in the view).
+/// A single vocab card projected into the widget (no snapshot types in the view).
 struct WidgetWord {
     let emoji: String
-    let article: String?
-    let german: String
-    let translation: String
+    /// Article tint ("der"/"die"/"das") — doubles as the rendered article word.
+    let tint: String?
+    /// TARGET-side text (exposure surfaces always show the learned language).
+    let word: String
+    /// Source meaning (♀ marker pre-baked by the phone).
+    let meaning: String
 }
 
 struct WordEntry: TimelineEntry {
@@ -44,19 +47,19 @@ struct WordEntry: TimelineEntry {
 
     // Convenience accessors for the compact families.
     var emoji: String { primary.emoji }
-    var article: String? { primary.article }
-    var german: String { primary.german }
-    var translation: String { primary.translation }
+    var tint: String? { primary.tint }
+    var word: String { primary.word }
+    var meaning: String { primary.meaning }
 
     static let placeholder = WordEntry(
         date: .now,
-        primary: WidgetWord(emoji: "🧊", article: "der", german: "Kühlschrank", translation: "friji"),
+        primary: WidgetWord(emoji: "🧊", tint: nil, word: "friji", meaning: "Kühlschrank"),
         words: [
-            WidgetWord(emoji: "🧊", article: "der", german: "Kühlschrank", translation: "friji"),
-            WidgetWord(emoji: "🍞", article: "das", german: "Brot", translation: "mkate"),
-            WidgetWord(emoji: "💧", article: "das", german: "Wasser", translation: "maji"),
-            WidgetWord(emoji: "🌙", article: "der", german: "Mond", translation: "mwezi"),
-            WidgetWord(emoji: "🏠", article: "das", german: "Haus", translation: "nyumba"),
+            WidgetWord(emoji: "🧊", tint: nil, word: "friji", meaning: "Kühlschrank"),
+            WidgetWord(emoji: "🍞", tint: nil, word: "mkate", meaning: "Brot"),
+            WidgetWord(emoji: "💧", tint: nil, word: "maji", meaning: "Wasser"),
+            WidgetWord(emoji: "🌙", tint: nil, word: "mwezi", meaning: "Mond"),
+            WidgetWord(emoji: "🏠", tint: nil, word: "nyumba", meaning: "Haus"),
         ],
         dueCount: 0, streak: 3, retrievability: 0.9)
 }
@@ -80,44 +83,24 @@ struct WordProvider: TimelineProvider {
     /// The compact families see one rotating card; the large family sees a
     /// rotating window of `listSize` cards plus box stats.
     private func timelineEntries(from start: Date) -> [WordEntry] {
-        guard let state = WidgetBoxReader.loadState() else { return [.placeholder] }
-        let cards = BoxEngine.exposureCards(state: state, now: start, limit: 24)
-        guard !cards.isEmpty else { return [.placeholder] }
-        let words = cards.map {
-            WidgetWord(emoji: $0.emoji ?? "🗂️", article: $0.article,
-                       german: $0.german, translation: $0.translation)
+        guard let snapshot = WidgetSnapshotReader.load(),
+              !snapshot.entries.isEmpty else { return [.placeholder] }
+        let words = snapshot.entries.map {
+            WidgetWord(emoji: $0.emoji ?? "🗂️", tint: $0.articleTint,
+                       word: $0.text, meaning: $0.sourceText)
         }
-        let stats = BoxEngine.statistics(state: state, now: start, calendar: .current)
+        let dueCount = snapshot.dueCount(now: start)
+        let streak = snapshot.streak(now: start)
+        let retrievability = snapshot.averageRetrievability(now: start)
         return (0..<24).map { slot in
             // Rotate a window of `listSize` words; primary is the window head.
             let window = (0..<Self.listSize).map { words[(slot + $0) % words.count] }
             return WordEntry(date: start.addingTimeInterval(Double(slot) * 15 * 60),
                              primary: window[0],
                              words: window,
-                             dueCount: stats.dueCount,
-                             streak: stats.streak,
-                             retrievability: stats.averageRetrievability)
+                             dueCount: dueCount,
+                             streak: streak,
+                             retrievability: retrievability)
         }
-    }
-}
-
-enum WidgetBoxReader {
-    /// Most recently modified box document in the shared App-Group container.
-    static func loadState() -> BoxState? {
-        guard let container = FileManager.default
-            .containerURL(forSecurityApplicationGroupIdentifier: "group.net.spross.app") else { return nil }
-        let dir = container.appendingPathComponent("box", isDirectory: true)
-        let files = (try? FileManager.default.contentsOfDirectory(
-            at: dir, includingPropertiesForKeys: [.contentModificationDateKey]))?
-            .filter { $0.lastPathComponent.hasPrefix("box-") && $0.pathExtension == "json" }
-            .sorted { (modDate($0) ?? .distantPast) > (modDate($1) ?? .distantPast) }
-        guard let newest = files?.first, let data = try? Data(contentsOf: newest) else { return nil }
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        return try? decoder.decode(BoxState.self, from: data)
-    }
-
-    private static func modDate(_ url: URL) -> Date? {
-        try? url.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
     }
 }
