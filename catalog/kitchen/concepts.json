@@ -147,14 +147,5 @@
   "components": [
    "cook"
   ]
- },
- {
-  "slug": "the-big-pot-is-on-the-stove",
-  "kind": "phrase",
-  "variantOf": "the-pot-is-still-on-the-stove",
-  "components": [
-   "pot",
-   "stove"
-  ]
  }
 ]

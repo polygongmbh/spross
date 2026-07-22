@@ -88,11 +88,11 @@
   "send-me-the-email": {
    "text": "Надішли мені, будь ласка, імейл."
   },
-  "the-laptop-wont-charge-at-all": {
-   "text": "Ноутбук взагалі не заряджається."
+  "the-laptop-wont-charge-anymore": {
+   "text": "Ноутбук більше не заряджається."
   },
-  "the-wifi-suddenly-dropped": {
-   "text": "Раптово зник інтернет."
+  "the-wifi-is-completely-gone": {
+   "text": "Інтернет повністю зник."
   }
  }
 }

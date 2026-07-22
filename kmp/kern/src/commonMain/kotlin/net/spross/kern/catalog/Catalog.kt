@@ -27,7 +27,7 @@ class Catalog internal constructor(
      * Emits one [Card] per joinable concept, in catalog order. A concept joins iff the
      * TARGET realizes it AND a source prompt exists: its source realization, else
      * (feminineOf only) the base concept's source realization with `promptFeminineMarker`;
-     * skipped when neither exists. A `variantOf` concept is skipped when its base also joins.
+     * skipped when neither exists.
      */
     fun join(source: Language, target: Language): List<Card> {
         require(source != target) { "source == target ($source)" }
@@ -46,8 +46,6 @@ class Catalog internal constructor(
 
             for (concept in area.concepts) {
                 if (!joins(concept)) continue
-                val variantBase = concept.variantOf?.let { area.conceptsBySlug.getValue(it) }
-                if (variantBase != null && joins(variantBase)) continue
                 val ownSource = sourceWords[concept.slug]
                 val promptRaw = ownSource ?: sourceWords.getValue(concept.feminineOf!!)
                 cards += Card(

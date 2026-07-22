@@ -17,7 +17,7 @@ class RealCatalogJoinTest {
 
     @Test
     fun joinCountsMatchCoverageMatrix() {
-        // 360 concepts total; sparse coverage + variant-twin collapse per target.
+        // 356 concepts total; sparse per-language coverage decides each target's count.
         assertEquals(346, catalog.join("de", "sw").size)
         assertEquals(350, catalog.join("de", "uk").size)
         assertEquals(351, catalog.join("de", "en").size)
@@ -78,13 +78,14 @@ class RealCatalogJoinTest {
     }
 
     @Test
-    fun potVariantTwinCollapsesPerTargetCoverage() {
-        val toEn = catalog.join("de", "en").map { it.id }
-        assertTrue("kitchen/the-pot-is-still-on-the-stove" in toEn)
-        assertFalse("kitchen/the-big-pot-is-on-the-stove" in toEn)
-        val toUk = catalog.join("de", "uk").map { it.id }
-        assertTrue("kitchen/the-big-pot-is-on-the-stove" in toUk)
-        assertFalse("kitchen/the-pot-is-still-on-the-stove" in toUk)
+    fun unifiedPotPhraseJoinsEveryTargetUnderOneSlug() {
+        // Former variantOf twin: the uk realization now lives on the base slug.
+        val id = "kitchen/the-pot-is-still-on-the-stove"
+        assertEquals("The pot is still on the stove.", catalog.join("de", "en").byId(id).target.text)
+        assertEquals("Каструля ще стоїть на плиті.", catalog.join("de", "uk").byId(id).target.text)
+        for (target in listOf("en", "uk")) {
+            assertFalse(catalog.join("de", target).any { it.id == "kitchen/the-big-pot-is-on-the-stove" })
+        }
     }
 
     @Test

@@ -43,22 +43,6 @@ class CatalogFixtureTest {
         assertTrue(catalog.join("de", "sw").none { it.id == "alpha/waiter-f" })
     }
 
-    // -- variantOf ---------------------------------------------------------------------
-
-    @Test
-    fun variantTwinSkippedWhenBaseJoins() {
-        val ids = catalog.join("de", "en").map { it.id }
-        assertTrue("alpha/the-mouse-runs" in ids)
-        assertFalse("alpha/the-mouse-sprints" in ids)
-    }
-
-    @Test
-    fun variantTwinJoinsWhenBaseDoesNotJoin() {
-        val ids = catalog.join("de", "uk").map { it.id }
-        assertTrue("alpha/the-mouse-sprints" in ids)
-        assertFalse("alpha/the-mouse-runs" in ids)
-    }
-
     // -- coverage skips ----------------------------------------------------------------
 
     @Test

@@ -26,7 +26,6 @@ internal data class CatalogConcept(
     /** Same-area word slugs (phrases only). */
     val components: List<String>,
     val feminineOf: String?,
-    val variantOf: String?,
     /** Global catalog position across groups → areas → concepts. */
     val seedIndex: Int,
 ) {

@@ -6,8 +6,8 @@ internal class MapCatalogSource(private val files: Map<String, String>) : Catalo
 
 /**
  * Inline fixture catalog exercising the join rules: feminine base-fallback + skip,
- * variantOf skip/non-skip, Sie/du variants, sparse coverage, "to " prefix, missing
- * language files (beta has no sw/en), seedIndex flattening across two groups, and
+ * Sie/du variants, sparse coverage, "to " prefix, missing language files
+ * (beta has no sw/en), seedIndex flattening across two groups, and
  * decomposed-Unicode forms (gamma/de door).
  */
 internal object Fixture {
@@ -38,8 +38,7 @@ internal object Fixture {
              { "slug": "mouse", "kind": "noun", "emoji": "🐭" },
              { "slug": "hello", "kind": "phrase", "components": [] },
              { "slug": "the-mouse-runs", "kind": "phrase", "components": ["mouse", "cook"] },
-             { "slug": "the-mouse-sprints", "kind": "phrase", "variantOf": "the-mouse-runs",
-               "components": ["mouse", "cook"] }
+             { "slug": "the-mouse-sprints", "kind": "phrase", "components": ["mouse", "cook"] }
             ]
         """.trimIndent(),
         "alpha/de.json" to """

@@ -136,19 +136,5 @@
   "slug": "send-me-the-email",
   "kind": "phrase",
   "components": []
- },
- {
-  "slug": "the-laptop-wont-charge-at-all",
-  "kind": "phrase",
-  "variantOf": "the-laptop-wont-charge-anymore",
-  "components": [
-   "laptop"
-  ]
- },
- {
-  "slug": "the-wifi-suddenly-dropped",
-  "kind": "phrase",
-  "variantOf": "the-wifi-is-completely-gone",
-  "components": []
  }
 ]

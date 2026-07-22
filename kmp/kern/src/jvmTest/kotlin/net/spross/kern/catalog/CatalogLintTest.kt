@@ -110,9 +110,6 @@ class CatalogLintTest {
                 concept.feminineOf?.let {
                     assertEquals(CardKind.Noun, area.conceptsBySlug[it]?.kind, "${concept.id}: bad feminineOf")
                 }
-                concept.variantOf?.let {
-                    assertEquals(CardKind.Phrase, area.conceptsBySlug[it]?.kind, "${concept.id}: bad variantOf")
-                }
             }
         }
     }

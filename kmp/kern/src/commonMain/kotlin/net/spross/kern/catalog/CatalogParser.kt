@@ -65,10 +65,7 @@ internal object CatalogParser {
     fun parseConcepts(area: String, path: String, text: String, firstSeedIndex: Int): List<CatalogConcept> {
         val concepts = parseJson(path, text).arr(path, "root").mapIndexed { i, el ->
             val o = el.obj(path, "[$i]")
-            o.rejectUnknownKeys(
-                path, "[$i]",
-                setOf("slug", "kind", "emoji", "components", "feminineOf", "variantOf"),
-            )
+            o.rejectUnknownKeys(path, "[$i]", setOf("slug", "kind", "emoji", "components", "feminineOf"))
             val slug = o.requireString(path, "[$i]", "slug")
             if (slug.isEmpty() || '|' in slug || '/' in slug) parseError(path, "[$i]: bad slug \"$slug\"")
             val kind = when (val raw = o.requireString(path, slug, "kind")) {
@@ -80,7 +77,6 @@ internal object CatalogParser {
             if (kind != CardKind.Phrase && "components" in o.keys) {
                 parseError(path, "$slug: components on a ${kind.name.lowercase()}")
             }
-            if (kind != CardKind.Phrase && "variantOf" in o.keys) parseError(path, "$slug: variantOf on a non-phrase")
             if (kind != CardKind.Noun && "feminineOf" in o.keys) parseError(path, "$slug: feminineOf on a non-noun")
             CatalogConcept(
                 area = area,
@@ -89,7 +85,6 @@ internal object CatalogParser {
                 emoji = o.optionalString(path, slug, "emoji"),
                 components = o.stringList(path, slug, "components"),
                 feminineOf = o.optionalString(path, slug, "feminineOf"),
-                variantOf = o.optionalString(path, slug, "variantOf"),
                 seedIndex = firstSeedIndex + i,
             )
         }
@@ -110,12 +105,6 @@ internal object CatalogParser {
                 val target = bySlug[base] ?: parseError(path, "${c.slug}: unresolved feminineOf \"$base\"")
                 if (target.kind != CardKind.Noun || target.slug == c.slug || target.feminineOf != null) {
                     parseError(path, "${c.slug}: feminineOf must reference a plain same-area noun")
-                }
-            }
-            c.variantOf?.let { base ->
-                val target = bySlug[base] ?: parseError(path, "${c.slug}: unresolved variantOf \"$base\"")
-                if (target.kind != CardKind.Phrase || target.slug == c.slug || target.variantOf != null) {
-                    parseError(path, "${c.slug}: variantOf must reference a plain same-area phrase")
                 }
             }
         }

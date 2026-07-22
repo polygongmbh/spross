@@ -94,12 +94,6 @@ differ from the slug — verb `cook` → `"to cook"`, phrase `the-fridge-is-empt
   genderless; NOT uk for epicene nouns like колега). It may carry its own female-specific `emoji`
   where one exists (`👩‍🏫`), else none. How this drives per-direction card emission and
   the ♀ prompt marker is engine behavior — see the KMP brief (`../docs/kmp-rewrite-brief.md`).
-- `variantOf` (phrases only) — marks this concept as a near-duplicate twin of
-  `<base-slug>` in the same area: distinct realizations in some languages but
-  near-identical in others (both twins realize to almost the same English sentence).
-  **Join rule**: the engine skips a `variantOf` concept whenever its base also joins
-  the current profile, so no learner studies two near-identical sentences as two
-  concepts; where only the twin is realized, it joins normally.
 
 **`<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json

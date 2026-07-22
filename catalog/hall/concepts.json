@@ -154,13 +154,5 @@
    "take-off-shoes",
    "door"
   ]
- },
- {
-  "slug": "the-doorbell-just-rang",
-  "kind": "phrase",
-  "variantOf": "the-doorbell-suddenly-rang",
-  "components": [
-   "ring"
-  ]
  }
 ]
