@@ -9,7 +9,7 @@ import net.spross.kern.model.CardPhase
 
 class WatchSnapshotBuilderTests {
 
-    // fnv1a64("wf") is EVEN: next role is recognize at odd log counts, produce at even.
+    // fnv1a64("wf") is EVEN: recognize at count 0 and odd counts ≥ 3; produce at 1 and even.
     private val fem = Snap.card(
         "wf", 1, emoji = "👩", sourceText = "Kellner", targetText = "Kellnerin",
         synonyms = listOf("Serviererin"), variants = listOf("Bedienung"),
@@ -50,14 +50,14 @@ class WatchSnapshotBuilderTests {
             state,
             Box.sched(
                 "wf", phase = CardPhase.Learning, stability = 0.5,
-                dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = 1,
+                dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = 3,
             ),
         )
         val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single()
 
         assertEquals("recognize", entry.nextRole)
         assertNull(entry.emoji) // never on recognition measurement: it depicts the answer
-        assertEquals("Kellnerin", entry.promptForm) // count 1 → canonical form
+        assertEquals("Serviererin", entry.promptForm) // count 3 rotation → the synonym
         assertTrue(entry.accepted.isNotEmpty()) // reveal shows the full family
     }
 

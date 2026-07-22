@@ -39,16 +39,25 @@ class PresentationTest {
     }
 
     @Test
+    fun secondReviewIsAlwaysProduction() {
+        // Ruling 2026-07-22: after the teaching first exposure, the card returns
+        // as production — for BOTH hash parities.
+        for (id in listOf("w01", "w02", "kitchen/fridge", "alpha/mouse", "тест")) {
+            assertEquals(produce, presentationRole(id, 1), "card: $id")
+        }
+    }
+
+    @Test
     fun rolesAlternateByReviewParityWithPerCardHashOffset() {
         // w01 (hash odd): recognition at even counts — a clean R/P alternation.
         assertEquals(
             listOf(recognize, produce, recognize, produce, recognize, produce),
             (0..5).map { presentationRole("w01", it) },
         )
-        // w02 (hash even): the parity rule recognizes at odd counts; count 0 is
-        // forced recognition on top (the learner cannot produce an unseen word).
+        // w02 (hash even): count 0 forced recognition, count 1 forced production;
+        // from count 2 the parity rule recognizes at odd counts.
         assertEquals(
-            listOf(recognize, recognize, produce, recognize, produce, recognize),
+            listOf(recognize, produce, produce, recognize, produce, recognize),
             (0..5).map { presentationRole("w02", it) },
         )
     }

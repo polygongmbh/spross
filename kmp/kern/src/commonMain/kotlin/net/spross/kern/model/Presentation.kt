@@ -17,12 +17,15 @@ enum class PresentationRole {
  *
  * FIRST exposure (count 0) is ALWAYS recognition — the learner cannot produce a
  * word never seen; the target is shown with emoji as a teaching moment, flipped,
- * and self-graded. Thereafter roles alternate per review with a stable per-card
- * phase offset (v1's mixedDirections parity, hash bit-exact) so the box does not
- * flip in sync.
+ * and self-graded. The SECOND review (count 1) is ALWAYS production — the word
+ * has been seen once, now attempt it (ruling 2026-07-22: "returns the same
+ * session as production"). Thereafter roles alternate per review with a stable
+ * per-card phase offset (v1's mixedDirections parity, hash bit-exact) so the
+ * box does not flip in sync.
  */
 fun presentationRole(cardId: String, reviewCount: Int): PresentationRole {
     if (reviewCount == 0) return PresentationRole.Recognize
+    if (reviewCount == 1) return PresentationRole.Produce
     val flip = (reviewCount + (fnv1a64(cardId) % 2uL).toInt()) % 2 == 1
     return if (flip) PresentationRole.Recognize else PresentationRole.Produce
 }

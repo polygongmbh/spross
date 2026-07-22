@@ -79,10 +79,10 @@ no config flag, no user-facing direction anywhere.
   - First exposure (`count == 0`) is ALWAYS recognition — the learner cannot produce a
     word never seen; the target is shown WITH emoji as a teaching moment, flipped,
     self-graded. An honest Again lands in the 1 m learning step and returns the same
-    session; the count-1 role follows the parity rule below — production for hash-odd
-    ids, a second recognition for hash-even ones.
-    (Matches v1's `presentationDirection` first-exposure rule.)
-  - Thereafter role = parity(`count` + FNV-1a-64(cardId)):
+    session. (Matches v1's `presentationDirection` first-exposure rule.)
+  - The second review (`count == 1`) is ALWAYS production — seen once, now attempt it
+    (ruling 2026-07-22: "returns the same session as production", both hash parities).
+  - From `count == 2` role = parity(`count` + FNV-1a-64(cardId)):
     FNV-1a 64-bit over UTF-8, offset `0xcbf29ce484222325`, prime `0x100000001b3` —
     bit-exact v1 port; the per-card phase offset keeps the box from flipping in sync.
 - **Synonym rotation** on recognition prompts: the prompted form cycles deterministically
