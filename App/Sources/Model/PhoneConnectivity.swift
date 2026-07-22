@@ -122,7 +122,7 @@ extension AppModel {
         box = state
         persist(state, immediate: true)
         refreshStats()
-        WidgetCenter.shared.reloadTimelines(ofKind: "WordWidget")
+        WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
         pushWatchSnapshot()
     }
 }

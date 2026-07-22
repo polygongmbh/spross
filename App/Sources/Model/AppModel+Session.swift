@@ -154,7 +154,7 @@ extension AppModel {
         refreshStats()
         // why: the box just changed materially — the widget's word rotation
         // should reflect fresh learning immediately, not at timeline end.
-        WidgetCenter.shared.reloadTimelines(ofKind: "WordWidget")
+        WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
     }
 
     /// Backgrounding mid-session: fold answered-so-far into dailyStats so an

@@ -12,7 +12,7 @@ struct DuoLernenWatchWidgets: WidgetBundle {
 /// attention-worthy cards from the phone snapshot, fresh every 15 minutes.
 struct WatchWordWidget: Widget {
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: "WatchWordWidget", provider: WatchWordProvider()) { entry in
+        StaticConfiguration(kind: "SprossWatchWordWidget", provider: WatchWordProvider()) { entry in
             WatchWordWidgetView(entry: entry)
                 .containerBackground(.black, for: .widget)
         }

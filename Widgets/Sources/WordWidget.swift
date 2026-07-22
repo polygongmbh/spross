@@ -13,7 +13,7 @@ struct DuoLernenWidgets: WidgetBundle {
 /// Prefers cards that need attention (learning phase, low stability, due soon).
 struct WordWidget: Widget {
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: "WordWidget", provider: WordProvider()) { entry in
+        StaticConfiguration(kind: "SprossWordWidget", provider: WordProvider()) { entry in
             WordWidgetView(entry: entry)
                 .containerBackground(Color(.systemBackground), for: .widget)
         }
@@ -105,7 +105,7 @@ enum WidgetBoxReader {
     /// Most recently modified box document in the shared App-Group container.
     static func loadState() -> BoxState? {
         guard let container = FileManager.default
-            .containerURL(forSecurityApplicationGroupIdentifier: "group.dev.tj.duolernen") else { return nil }
+            .containerURL(forSecurityApplicationGroupIdentifier: "group.net.spross.app") else { return nil }
         let dir = container.appendingPathComponent("box", isDirectory: true)
         let files = (try? FileManager.default.contentsOfDirectory(
             at: dir, includingPropertiesForKeys: [.contentModificationDateKey]))?

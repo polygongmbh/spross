@@ -1,7 +1,7 @@
 #!/bin/sh
-# Build DuoLernen in Release and install it on all paired physical devices.
-#   iPhones (Mars, Pluto) → DuoLernen.app      (Release-iphoneos)
-#   Apple Watch (Ruby)    → DuoLernenWatch.app (Release-watchos)
+# Build Spross in Release and install it on all paired physical devices.
+#   iPhones (Mars, Pluto) → Spross.app      (Release-iphoneos)
+#   Apple Watch (Ruby)    → SprossWatch.app (Release-watchos)
 # One scheme build produces both products; devices are matched by name, so the
 # script keeps working if a device is re-paired and its UUID changes.
 #
@@ -13,15 +13,15 @@
 set -eu
 cd "$(dirname "$0")/.."
 
-SCHEME="DuoLernen"
+SCHEME="Spross"
 CONFIG="Release"
-BUNDLE_ID="dev.tj.DuoLernen"
-DERIVED="${TMPDIR:-/tmp}/duolernen-deploy"
-IPHONES="Mars Pluto"   # get DuoLernen.app (opened with --launch)
-WATCHES="Ruby"         # gets DuoLernenWatch.app (install only)
+BUNDLE_ID="net.spross.app"
+DERIVED="${TMPDIR:-/tmp}/spross-deploy"
+IPHONES="Mars Pluto"   # get Spross.app (opened with --launch)
+WATCHES="Ruby"         # gets SprossWatch.app (install only)
 
-IOS_APP="$DERIVED/Build/Products/$CONFIG-iphoneos/DuoLernen.app"
-WATCH_APP="$DERIVED/Build/Products/$CONFIG-watchos/DuoLernenWatch.app"
+IOS_APP="$DERIVED/Build/Products/$CONFIG-iphoneos/Spross.app"
+WATCH_APP="$DERIVED/Build/Products/$CONFIG-watchos/SprossWatch.app"
 
 DO_BUILD=1; DRY=0; LAUNCH=0
 for arg in "$@"; do
@@ -68,7 +68,7 @@ install_app() {  # name  app_path  launch(0|1)
 if [ "$DO_BUILD" -eq 1 ] && [ "$DRY" -eq 0 ]; then
   mkdir -p "$DERIVED"
   echo "Building $SCHEME ($CONFIG) for device…"
-  if ! xcodebuild -project DuoLernen.xcodeproj -scheme "$SCHEME" -configuration "$CONFIG" \
+  if ! xcodebuild -project Spross.xcodeproj -scheme "$SCHEME" -configuration "$CONFIG" \
         -destination 'generic/platform=iOS' -derivedDataPath "$DERIVED" \
         -allowProvisioningUpdates build >"$DERIVED/build.log" 2>&1; then
     echo "Build FAILED — last lines of $DERIVED/build.log:"
@@ -84,9 +84,9 @@ fi
 
 if [ -d "$IOS_APP" ]; then
   VERSION="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$IOS_APP/Info.plist" 2>/dev/null || echo '?')"
-  echo "DuoLernen $VERSION →"
+  echo "Spross $VERSION →"
 else
-  echo "DuoLernen (dry run) →"
+  echo "Spross (dry run) →"
 fi
 
 for d in $IPHONES; do install_app "$d" "$IOS_APP" "$LAUNCH"; done
