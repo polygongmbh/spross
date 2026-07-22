@@ -1,12 +1,13 @@
 import Foundation
 import WatchConnectivity
 import WidgetKit
-import DuoKern
+import SprossKern
 
-/// Phone side of the watch sync ("snapshot down, events up", see
-/// Shared/Sources/WatchSnapshot.swift). Owns the WCSession; AppModel calls
-/// `push(snapshot:)` on save/finish and receives decoded answer events on
-/// the main actor.
+/// Phone side of the watch sync ("snapshot down, events up"). The snapshot
+/// is the Kern `WatchSnapshotBuilder` v2 JSON (both sides pre-resolved, the
+/// watch stays pure Swift). Owns the WCSession; AppModel calls
+/// `push(snapshotJSON:)` on save/finish and receives decoded answer events
+/// on the main actor.
 final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable {
 
     /// Snapshots at/over this size go through transferFile instead of
@@ -26,12 +27,12 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
 
     /// Push the latest snapshot. `updateApplicationContext` replaces any
     /// pending one, so frequent pushes cost nothing extra.
-    func push(_ snapshot: WatchSnapshot) {
+    func push(snapshotJSON: String) {
         guard WCSession.isSupported() else { return }
         let session = WCSession.default
         guard session.activationState == .activated, session.isPaired,
               session.isWatchAppInstalled else { return }
-        guard let data = try? snapshot.encoded() else { return }
+        let data = Data(snapshotJSON.utf8)
         if data.count < Self.contextByteLimit {
             try? session.updateApplicationContext([WatchSyncKey.snapshot: data])
         } else {
@@ -84,12 +85,14 @@ extension AppModel {
     /// Build + push the current box as a watch snapshot (no-op without a box).
     func pushWatchSnapshot() {
         guard let box else { return }
-        watchBridge.push(WatchSnapshot.make(from: box, now: Date()))
+        let json = WatchSnapshotBuilder.shared.build(state: box,
+                                                     nowEpochMillis: Date().epochMillis)
+        watchBridge.push(snapshotJSON: json)
     }
 
-    /// Apply queued watch answers ON RECEIPT, oldest first, with `now:` =
-    /// each event's date; then book them into dailyStats, persist, and
-    /// refresh widgets + the watch snapshot.
+    /// Apply queued watch answers ON RECEIPT, oldest first, with `now` =
+    /// each event's date (FSRS elapsed time stays honest); then book them
+    /// into dailyStats, persist, and refresh widgets + the watch snapshot.
     func applyWatchAnswers(_ events: [WatchAnswerEvent]) {
         guard var state = box else { return }
         let defaults = UserDefaults.standard
@@ -101,18 +104,29 @@ extension AppModel {
             .sorted { ($0.date, $0.cardID) < ($1.date, $1.cardID) }
         guard !fresh.isEmpty else { return }
 
+        var appliedCount: Int32 = 0
         for event in fresh {
-            state = BoxEngine.answer(state: state, cardID: event.cardID,
-                                     rating: event.rating, now: event.date,
-                                     calendar: calendar)
+            // why: stale ids (profile/catalog drift) are a defined engine
+            // no-op — the event is still marked seen so it never re-queues.
+            if let rating = Rating(value: event.rating) {
+                let outcome = BoxEngine.shared.answer(state: state, cardId: event.cardID,
+                                                      rating: rating,
+                                                      nowEpochMillis: event.date.epochMillis,
+                                                      tzId: currentTzId())
+                state = outcome.state
+                if outcome.status == .applied { appliedCount += 1 }
+            }
             applied.append(event.id.uuidString)
             appliedSet.insert(event.id.uuidString)
         }
         // why: watch reviews must reach dailyStats (streak/Fortschritt read
         // only dailyStats); endSession accumulates, so deltas are safe.
-        let latest = fresh.map(\.date).max() ?? Date()
-        state = BoxEngine.endSession(state: state, reviewsDone: fresh.count,
-                                     now: latest, calendar: calendar)
+        if appliedCount > 0 {
+            let latest = fresh.map(\.date).max() ?? Date()
+            state = BoxEngine.shared.endSession(state: state, reviewsDone: appliedCount,
+                                                nowEpochMillis: latest.epochMillis,
+                                                tzId: currentTzId())
+        }
 
         if applied.count > Self.appliedEventIDsCap {
             applied.removeFirst(applied.count - Self.appliedEventIDsCap)

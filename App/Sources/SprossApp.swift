@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct DuoLernenApp: App {
+struct SprossApp: App {
     @State private var model = AppModel()
     @Environment(\.scenePhase) private var scenePhase
 
@@ -10,9 +10,13 @@ struct DuoLernenApp: App {
             RootView(model: model)
                 .onChange(of: scenePhase) { _, phase in
                     // why: leaving the app flushes the debounced save so no
-                    // answered review is ever lost (design.md save cadence).
+                    // answered review is ever lost (design.md save cadence);
+                    // returning re-checks the join stamp (source/catalog may
+                    // have moved) and refreshes time-derived stats.
                     if phase == .background {
                         model.persistNow()
+                    } else if phase == .active {
+                        model.handleForeground()
                     }
                 }
         }

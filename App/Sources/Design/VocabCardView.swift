@@ -5,40 +5,53 @@ import SwiftUI
 // The hero review card. The prompt is COMPACT (no space reserved for the
 // answer); the reveal expands the card downward, animated — existing
 // content never moves or flips, growth is strictly below it.
+//
+// Language-symmetric: the card renders a PROMPT side and an ANSWER side —
+// which language plays which role is the caller's business (alternating
+// presentation). Styling keys off ROLE, never language: the prompt is
+// neutral, the reveal pops in accent.
 
 struct VocabCardView: View {
 
-    enum Mode {
-        /// German shown first (de→target recognition): reveal shows the translation.
-        case recognition
-        /// Translation shown first (target→de production): reveal shows the German side.
-        case production
+    /// One face of the card, pre-resolved by the caller. `article` renders
+    /// inline in its color before the word (poster style); `plural` and
+    /// `alternates` are small secondary lines; `femMarker` adds the labeled
+    /// ♀ badge (never graded).
+    struct Side {
+        var text: String
+        var article: String?
+        var plural: String?
+        var alternates: String?
+        var femMarker: Bool = false
+
+        init(text: String, article: String? = nil, plural: String? = nil,
+             alternates: String? = nil, femMarker: Bool = false) {
+            self.text = text
+            self.article = article
+            self.plural = plural
+            self.alternates = alternates
+            self.femMarker = femMarker
+        }
     }
 
     /// Per-word illustration; nil for verbs/phrases with no seed emoji —
     /// the card then drops the circle and centers on the word itself.
     let emoji: String?
-    let article: String?
-    let headword: String
-    let plural: String?
-    let translation: String
+    let prompt: Side
+    let answer: Side
     /// Optional literal gloss ("wörtlich: …"), shown only post-reveal.
     let note: String?
-    var mode: Mode = .recognition
     var revealed: Bool = false
     /// Session style: tighter card so card + input + button + keyboard
     /// all fit on screen without scrolling. Previews keep the big card.
     var compact: Bool = false
-    /// German plural line: only learners OF GERMAN need it ("die Wörter"
-    /// is noise when German is your known language).
-    var showPlural: Bool = true
 
     var body: some View {
         VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
             if let emoji, !emoji.isEmpty {
                 emojiIllustration(emoji)
             }
-            promptSection
+            sideBlock(prompt, emphasized: false)
             if revealed {
                 revealSection
                     .transition(.opacity.combined(with: .move(edge: .top)))
@@ -69,23 +82,12 @@ struct VocabCardView: View {
     }
 
     @ViewBuilder
-    private var promptSection: some View {
-        switch mode {
-        case .recognition: germanBlock
-        case .production: translationBlock
-        }
-    }
-
-    @ViewBuilder
     private var revealSection: some View {
         VStack(spacing: DL.Space.m) {
             RoundedRectangle(cornerRadius: 1)
                 .fill(Color.dlSeparator)
                 .frame(width: 44, height: 2)
-            switch mode {
-            case .recognition: translationBlock
-            case .production: germanBlock
-            }
+            sideBlock(answer, emphasized: true)
             if let note {
                 Text(note)
                     .font(DL.Fonts.caption)
@@ -97,37 +99,69 @@ struct VocabCardView: View {
     }
 
     /// "der Kühlschrank" as ONE line — article inline in its color before
-    /// the word (poster style), plural as a small line only when wanted.
-    private var germanBlock: some View {
+    /// the word (poster style), plural/alternates as small lines below.
+    /// `emphasized` marks the REVEAL side (the answer pops in accent); it has
+    /// nothing to do with which language this is — either side can be either
+    /// role depending on the card's presentation role.
+    private func sideBlock(_ side: Side, emphasized: Bool) -> some View {
         VStack(spacing: DL.Space.xs) {
-            germanLine
+            headline(side, emphasized: emphasized)
                 .multilineTextAlignment(.center)
-                .minimumScaleFactor(0.6)
-            if showPlural, let plural {
+                // why: a gentle floor keeps a long answer the same size as a
+                // short one (it wraps rather than shrinking); the factor is only
+                // overflow insurance for the rare word too long to wrap.
+                .minimumScaleFactor(0.85)
+            if let plural = side.plural {
                 Text(plural)
                     .font(DL.Fonts.subheadline)
                     .foregroundStyle(Color.dlTextSecondary)
             }
+            if let alternates = side.alternates {
+                Text(alternates)
+                    .font(DL.Fonts.caption)
+                    .foregroundStyle(Color.dlTextSecondary)
+                    .multilineTextAlignment(.center)
+            }
         }
     }
 
-    private var germanLine: Text {
-        let word = Text(headword)
+    @ViewBuilder
+    private func headline(_ side: Side, emphasized: Bool) -> some View {
+        if side.femMarker {
+            HStack(spacing: DL.Space.s) {
+                headlineText(side, emphasized: emphasized)
+                FeminineBadge()
+            }
+        } else {
+            headlineText(side, emphasized: emphasized)
+        }
+    }
+
+    /// Both sides use the same font so a word never changes size just
+    /// because the card flipped role.
+    private func headlineText(_ side: Side, emphasized: Bool) -> Text {
+        let word = Text(side.text)
             .font(compact ? DL.Fonts.title : DL.Fonts.hero)
-            .foregroundStyle(Color.dlTextPrimary)
-        guard let article else { return word }
+            .foregroundStyle(emphasized ? Color.dlAccent : Color.dlTextPrimary)
+        guard let article = side.article else { return word }
         return Text("\(article) ")
             .font(compact ? DL.Fonts.title : DL.Fonts.hero)
             .foregroundStyle(DL.articleColor(article))
             + word
     }
+}
 
-    private var translationBlock: some View {
-        Text(translation)
-            .font(mode == .production && !compact ? DL.Fonts.hero : DL.Fonts.title)
-            .foregroundStyle(mode == .production ? Color.dlTextPrimary : Color.dlAccent)
-            .multilineTextAlignment(.center)
-            .minimumScaleFactor(0.6)
+/// Labeled ♀ badge — marks a feminine-sibling prompt/answer; decorative
+/// grammar cue, never part of grading.
+struct FeminineBadge: View {
+    var body: some View {
+        Text(verbatim: "♀")
+            .font(DL.Fonts.badge)
+            .foregroundStyle(Color.dlDie)
+            .padding(.horizontal, DL.Space.s)
+            .padding(.vertical, DL.Space.xs)
+            .background(Color.dlDie.opacity(0.14), in: Capsule())
+            .accessibilityLabel("Weibliche Form")
     }
 }
 
@@ -189,15 +223,12 @@ struct ArticleBadge: View {
 
 // MARK: - Previews
 
-#Preview("Recognition · prompt") {
+#Preview("Recognize · prompt") {
     VocabCardView(
         emoji: "🧊",
-        article: "der",
-        headword: "Kühlschrank",
-        plural: "die Kühlschränke",
-        translation: "friji",
+        prompt: .init(text: "friji"),
+        answer: .init(text: "Kühlschrank", article: "der", plural: "Kühlschränke"),
         note: nil,
-        mode: .recognition,
         revealed: false
     )
     .padding(DL.Space.xl)
@@ -205,15 +236,12 @@ struct ArticleBadge: View {
     .background(Color.dlBackground)
 }
 
-#Preview("Recognition · revealed") {
+#Preview("Recognize · revealed") {
     VocabCardView(
         emoji: "🍳",
-        article: "die",
-        headword: "Pfanne",
-        plural: "die Pfannen",
-        translation: "kikaango",
+        prompt: .init(text: "kikaango"),
+        answer: .init(text: "Pfanne", article: "die", plural: "Pfanne, -n"),
         note: "wörtlich: kleines Bratgefäß",
-        mode: .recognition,
         revealed: true
     )
     .padding(DL.Space.xl)
@@ -226,24 +254,18 @@ struct ArticleBadge: View {
         // Not-yet-sticking word: emoji as light support.
         VocabCardView(
             emoji: "🥄",
-            article: "der",
-            headword: "Löffel",
-            plural: "die Löffel",
-            translation: "kijiko",
+            prompt: .init(text: "Löffel", article: "der", plural: "Löffel"),
+            answer: .init(text: "kijiko"),
             note: nil,
-            mode: .recognition,
             revealed: false,
             compact: true
         )
         // Sticking word (or a verb/phrase): no circle, word-focused.
         VocabCardView(
             emoji: nil,
-            article: nil,
-            headword: "rennen",
-            plural: nil,
-            translation: "kukimbia",
+            prompt: .init(text: "rennen"),
+            answer: .init(text: "kukimbia"),
             note: nil,
-            mode: .recognition,
             revealed: false,
             compact: true
         )
@@ -253,15 +275,12 @@ struct ArticleBadge: View {
     .background(Color.dlBackground)
 }
 
-#Preview("Production · revealed · dark") {
+#Preview("Produce · revealed · dark") {
     VocabCardView(
         emoji: "🔪",
-        article: "das",
-        headword: "Messer",
-        plural: "die Messer",
-        translation: "kisu",
+        prompt: .init(text: "Messer"),
+        answer: .init(text: "kisu", alternates: "auch: chombo"),
         note: nil,
-        mode: .production,
         revealed: true
     )
     .padding(DL.Space.xl)

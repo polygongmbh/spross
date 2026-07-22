@@ -1,9 +1,10 @@
 import Foundation
-import DuoKern
 
-/// File-backed persistence for `BoxState` — one JSON document per language pair.
-/// Atomic writes; debounced saves per design.md (≥5 s after answers, immediate at
-/// session end / scene background via `saveNow`).
+/// File-backed persistence for the box document — one JSON document per
+/// TARGET language (`box-<target>.json`), encoded/decoded by the Kern
+/// `StoreCodec` on the caller's side; this actor only moves strings to disk.
+/// Atomic writes; debounced saves per design.md (≥5 s after answers,
+/// immediate at session end / scene background via `saveNow`).
 actor BoxStore {
     private let directory: URL
     private var pendingSave: Task<Void, Never>?
@@ -23,39 +24,32 @@ actor BoxStore {
         self.directory = directory ?? Self.defaultDirectory()
     }
 
-    private func fileURL(for pair: LanguagePair) -> URL {
-        directory.appendingPathComponent("box-\(pair.rawValue).json")
+    private func fileURL(target: String) -> URL {
+        directory.appendingPathComponent("box-\(target).json")
     }
 
-    func load(pair: LanguagePair) throws -> BoxState? {
-        let url = fileURL(for: pair)
+    func load(target: String) throws -> String? {
+        let url = fileURL(target: target)
         guard FileManager.default.fileExists(atPath: url.path) else { return nil }
-        let data = try Data(contentsOf: url)
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        return try decoder.decode(BoxState.self, from: data)
+        return try String(contentsOf: url, encoding: .utf8)
     }
 
     /// Debounced save: coalesces bursts of answers into one write ≥5 s later.
-    func save(_ state: BoxState) {
+    func save(json: String, target: String) {
         pendingSave?.cancel()
         pendingSave = Task { [weak self] in
             try? await Task.sleep(for: .seconds(5))
             guard !Task.isCancelled else { return }
-            try? await self?.saveNow(state)
+            try? await self?.saveNow(json: json, target: target)
         }
     }
 
-    func saveNow(_ state: BoxState) throws {
+    func saveNow(json: String, target: String) throws {
         pendingSave?.cancel()
         pendingSave = nil
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        encoder.outputFormatting = [.sortedKeys]
-        let data = try encoder.encode(state)
-        let tmp = directory.appendingPathComponent(".box-\(state.config.pair.rawValue).tmp")
-        try data.write(to: tmp, options: .atomic)
-        _ = try FileManager.default.replaceItemAt(fileURL(for: state.config.pair), withItemAt: tmp)
+        let tmp = directory.appendingPathComponent(".box-\(target).tmp")
+        try Data(json.utf8).write(to: tmp, options: .atomic)
+        _ = try FileManager.default.replaceItemAt(fileURL(target: target), withItemAt: tmp)
     }
 }

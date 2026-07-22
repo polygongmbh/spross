@@ -1,6 +1,5 @@
 import SwiftUI
-import DuoKern
-import DuoKernTrainer
+import SprossKern
 
 /// The north star screen: one glance = what to do right now.
 struct HeuteView: View {
@@ -19,7 +18,7 @@ struct HeuteView: View {
                               message: Text(message))
                 } else if model.sessionAvailable {
                     sessionCard
-                } else if (model.stats?.activeCount ?? 0) > 0 {
+                } else if (model.stats?.activeCards ?? 0) > 0 {
                     doneCard
                 } else {
                     stateCard(emoji: "📦",
@@ -84,14 +83,14 @@ struct HeuteView: View {
 
     /// Due reviews only — new cards are announced in the summary text instead.
     private var dueRemaining: Int {
-        max(model.todayPlan.reviews.count, model.dueNowCount)
+        max(model.todayPlan?.reviews.count ?? 0, model.dueNowCount)
     }
 
     /// Ring + flame hero; either hides when it has nothing to say
     /// (all-new-card plan → no ring, streak 0 → no flame).
     @ViewBuilder
     private var sessionStats: some View {
-        let streak = model.stats?.streak ?? 0
+        let streak = model.stats?.streakDays ?? 0
         if dueRemaining == 0 && streak == 0 {
             Text(verbatim: "✨")
                 .font(.system(size: 56))
@@ -115,7 +114,7 @@ struct HeuteView: View {
     private var sessionSummary: Text {
         let plan = model.todayPlan
         let due = dueRemaining
-        let fresh = plan.unlockedPhrases.count + plan.newWords.count
+        let fresh = (plan?.unlockedPhrases.count ?? 0) + (plan?.newCards.count ?? 0)
         var parts: [Text] = []
         if due > 0 {
             parts.append(Text("\(due) Wiederholungen"))
@@ -137,7 +136,7 @@ struct HeuteView: View {
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)
-            StreakFlameView(days: model.stats?.streak ?? 0)
+            StreakFlameView(days: model.stats?.streakDays ?? 0)
             tomorrowText
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)

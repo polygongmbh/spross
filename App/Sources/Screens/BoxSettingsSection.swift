@@ -1,13 +1,15 @@
 import SwiftUI
-import DuoKern
+import SprossKern
 
-/// Settings block at the bottom of the Box tab: language pair, which
-/// language is being learned (+ mixed-direction toggle), daily new-card
-/// budget. All values persist inside `BoxState.config`.
+/// Settings block at the bottom of the Box tab: known language (source),
+/// learning language (target, one box each), daily new-card budget, reset.
+/// The profile persists in UserDefaults + the box document; the budget in
+/// `BoxState.config`.
 struct BoxSettingsSection: View {
     let model: AppModel
 
     @State private var confirmingReset = false
+    @Environment(\.locale) private var locale
 
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
@@ -16,9 +18,9 @@ struct BoxSettingsSection: View {
                 .foregroundStyle(Color.dlTextPrimary)
 
             VStack(alignment: .leading, spacing: DL.Space.l) {
-                pairRow
+                sourceRow
                 Divider().overlay(Color.dlSeparator)
-                directionRow
+                targetRow
                 Divider().overlay(Color.dlSeparator)
                 maxLearningRow
                 Divider().overlay(Color.dlSeparator)
@@ -37,13 +39,13 @@ struct BoxSettingsSection: View {
 
     // MARK: About / feedback
 
-    private static let feedbackAddress = "lang@polygon.gmbh"
+    private static let feedbackAddress = "feedback@spross.net"
 
     private var versionText: String {
         // why: the build number is always 1 here — showing "(1)" reads odd;
         // the marketing version alone identifies feedback mails fine.
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
-        return "DuoLernen v\(version)"
+        return "Spross v\(version)"
     }
 
     private var aboutFooter: some View {
@@ -69,49 +71,44 @@ struct BoxSettingsSection: View {
         return URL(string: "mailto:\(Self.feedbackAddress)?subject=\(subject)")
     }
 
-    private var pair: LanguagePair {
-        model.box?.config.pair ?? .deSw
+    private func languageName(_ code: String) -> String {
+        LanguageNames.display(code, locale: locale, catalog: model.catalog)
     }
 
     // MARK: Rows
 
-    private var pairRow: some View {
+    /// "Ich spreche": the known language. Switching re-joins in place —
+    /// schedules are keyed by card id, so all progress survives.
+    private var sourceRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("Sprache")
+            Text("Ich spreche")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            Picker("Sprache", selection: pairBinding) {
-                ForEach(LanguagePair.allCases, id: \.self) { candidate in
-                    Text("\(candidate.flag) \(candidate.targetName)").tag(candidate)
+            Picker("Ich spreche", selection: sourceBinding) {
+                ForEach(availableSources, id: \.self) { candidate in
+                    Text(verbatim: languageName(candidate)).tag(candidate)
                 }
             }
             .pickerStyle(.segmented)
-            Text("Jede Sprache hat ihre eigene Box.")
+            Text("Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten.")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }
     }
 
-    /// "Ich lerne": which language the user is acquiring. `.deToTarget`
-    /// = learning the target language, `.targetToDe` = learning German.
-    private var directionRow: some View {
+    /// "Ich lerne": the target language — one box per target.
+    private var targetRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
             Text("Ich lerne")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            Picker("Ich lerne", selection: directionBinding) {
-                Text(pair.targetName).tag(Direction.deToTarget)
-                Text("Deutsch").tag(Direction.targetToDe)
+            Picker("Ich lerne", selection: targetBinding) {
+                ForEach(availableTargets) { candidate in
+                    Text(verbatim: languageName(candidate.code)).tag(candidate.code)
+                }
             }
             .pickerStyle(.segmented)
-            Toggle(isOn: mixedDirectionsBinding) {
-                Text("Beide Richtungen üben")
-                    .font(DL.Fonts.headline)
-                    .foregroundStyle(Color.dlTextPrimary)
-            }
-            .tint(Color.dlAccent)
-            .padding(.top, DL.Space.s)
-            Text("Empfohlen — beide Übersetzungsrichtungen festigen die Vokabel.")
+            Text("Jede Sprache hat ihre eigene Box.")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }
@@ -137,8 +134,7 @@ struct BoxSettingsSection: View {
         }
     }
 
-    /// Fresh start with the CURRENT seed content (early testers' boxes carry
-    /// pre-basics ordering; a reset re-bootstraps from today's seed).
+    /// Fresh start with the CURRENT catalog content.
     private var resetRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
             Button(role: .destructive) {
@@ -148,7 +144,7 @@ struct BoxSettingsSection: View {
                     .font(DL.Fonts.headline)
             }
             .confirmationDialog(
-                "Alle Lernfortschritte für \(pair.flag) \(pair.targetName) löschen und neu mit den ersten Wörtern beginnen?",
+                "Alle Lernfortschritte für \(targetName) löschen und neu mit den ersten Wörtern beginnen?",
                 isPresented: $confirmingReset,
                 titleVisibility: .visible
             ) {
@@ -163,32 +159,41 @@ struct BoxSettingsSection: View {
         }
     }
 
-    // MARK: Bindings
+    // MARK: Choices & bindings
 
-    private var pairBinding: Binding<LanguagePair> {
+    private var targetName: String {
+        model.targetLanguage.map(languageName) ?? "?"
+    }
+
+    /// Sources that can learn the CURRENT target (the pair must stay valid).
+    private var availableSources: [String] {
+        guard let catalog = model.catalog, let target = model.targetLanguage else { return [] }
+        return model.coveredSources(catalog).filter { source in
+            catalog.availableTargets(source: source).contains { $0.code == target }
+        }
+    }
+
+    private var availableTargets: [AvailableTarget] {
+        model.catalog?.availableTargets(source: model.sourceLanguage) ?? []
+    }
+
+    private var sourceBinding: Binding<String> {
         Binding(
-            get: { model.box?.config.pair ?? .deSw },
-            set: { model.switchPair($0) }
+            get: { model.sourceLanguage },
+            set: { model.switchSource($0) }
         )
     }
 
-    private var directionBinding: Binding<Direction> {
+    private var targetBinding: Binding<String> {
         Binding(
-            get: { model.box?.config.direction ?? .deToTarget },
-            set: { model.setDirection($0) }
-        )
-    }
-
-    private var mixedDirectionsBinding: Binding<Bool> {
-        Binding(
-            get: { model.box?.config.mixedDirections ?? true },
-            set: { model.setMixedDirections($0) }
+            get: { model.targetLanguage ?? "" },
+            set: { model.switchTarget($0) }
         )
     }
 
     private var maxLearningBinding: Binding<Int> {
         Binding(
-            get: { model.box?.config.maxLearning ?? 8 },
+            get: { Int(model.box?.config.maxLearning ?? 8) },
             set: { model.setMaxLearning($0) }
         )
     }

@@ -1,26 +1,41 @@
 import SwiftUI
-import DuoKern
+import SprossKern
 
-/// Tiny first-launch sheet: pick which two languages, and which one you
-/// already speak (that decides the drill/review direction).
+/// Tiny first-launch sheet: pick the language you already speak (source)
+/// and the one you want to learn (target, with its concept count).
+/// Coverage-driven: sources are languages with at least one learnable
+/// target; targets come from `Catalog.availableTargets` (≥ 50 concepts).
 struct OnboardingView: View {
     let model: AppModel
 
-    @State private var pair: LanguagePair = .deSw
-    /// Whether the learner already speaks the pair's base language (then they
-    /// learn the target); otherwise the base language is the one being learned.
-    @State private var knowsBase = true
+    @State private var source: String
+    @State private var target: String?
     @State private var starting = false
+    @Environment(\.locale) private var locale
 
-    /// Which side you already speak sets the review/drill direction.
-    private var direction: Direction { knowsBase ? .deToTarget : .targetToDe }
+    init(model: AppModel) {
+        self.model = model
+        let covered = model.catalog.map { model.coveredSources($0) } ?? []
+        let source = AppModel.defaultSource(covered: covered)
+        _source = State(initialValue: source)
+        _target = State(initialValue: model.catalog?
+            .availableTargets(source: source).first?.code)
+    }
+
+    private var sources: [String] {
+        model.catalog.map { model.coveredSources($0) } ?? []
+    }
+
+    private var targets: [AvailableTarget] {
+        model.catalog?.availableTargets(source: source) ?? []
+    }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: DL.Space.l) {
                 header
-                pairSection
-                knownSection
+                sourceSection
+                targetSection
                 startButton
             }
             .padding(DL.Space.l)
@@ -33,7 +48,7 @@ struct OnboardingView: View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
             Text(verbatim: "👋")
                 .font(.system(size: 44))
-            Text("Willkommen bei DuoLernen")
+            Text("Willkommen bei Spross")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
             Text("Deine Box wächst mit dir — jeden Tag ein paar neue Karten.")
@@ -42,76 +57,67 @@ struct OnboardingView: View {
         }
     }
 
-    // MARK: - Which two languages
+    private func languageName(_ code: String) -> String {
+        LanguageNames.display(code, locale: locale, catalog: model.catalog)
+    }
 
-    private var pairSection: some View {
+    // MARK: - Which language you already speak
+
+    private var sourceSection: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("Welches Sprachpaar?")
+            Text("Welche Sprache sprichst du?")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            HStack(spacing: DL.Space.m) {
-                ForEach(LanguagePair.allCases, id: \.self) { candidate in
-                    pairTile(candidate)
+            ForEach(sources, id: \.self) { candidate in
+                selectionRow(title: Text(verbatim: languageName(candidate)),
+                             caption: nil,
+                             selected: source == candidate) {
+                    source = candidate
+                    // why: the target list is source-dependent — keep the pick
+                    // valid (source == target can never be offered).
+                    if !targets.contains(where: { $0.code == target }) {
+                        target = targets.first?.code
+                    }
                 }
             }
         }
     }
 
-    private func pairTile(_ candidate: LanguagePair) -> some View {
-        let selected = pair == candidate
-        return Button {
-            pair = candidate
-        } label: {
-            HStack(spacing: DL.Space.s) {
-                Text(candidate.flag)
-                    .font(.system(size: 28))
-                Text.joined(Text(verbatim: candidate.baseName), Text(verbatim: candidate.targetName))
-                    .font(DL.Fonts.subheadline)
-                    .foregroundStyle(Color.dlTextPrimary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, DL.Space.m)
-            .padding(.horizontal, DL.Space.s)
-            .background(selectionBackground(selected))
-        }
-        .buttonStyle(.plain)
-        .accessibilityAddTraits(selected ? .isSelected : [])
-    }
+    // MARK: - Which language you want to learn
 
-    // MARK: - Which language you already speak
-
-    private var knownSection: some View {
+    private var targetSection: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("Welche Sprache kannst du schon?")
+            Text("Welche Sprache lernst du?")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            knownRow(base: true,
-                     title: pair.baseName,
-                     subtitle: "Du lernst \(pair.targetName).")
-            knownRow(base: false,
-                     title: pair.targetName,
-                     subtitle: "Du lernst \(pair.baseName).")
+            ForEach(targets) { candidate in
+                // why: String interpolation on purpose — count keys are `%@`
+                // in the catalog (the `%lld` twins are being retired).
+                selectionRow(title: Text(verbatim: languageName(candidate.code)),
+                             caption: Text("\(String(candidate.conceptCount)) Begriffe"),
+                             selected: target == candidate.code) {
+                    target = candidate.code
+                }
+            }
         }
     }
 
-    private func knownRow(base: Bool, title: String, subtitle: LocalizedStringKey) -> some View {
-        let selected = knowsBase == base
-        return Button {
-            knowsBase = base
-        } label: {
+    private func selectionRow(title: Text, caption: Text?, selected: Bool,
+                              action: @escaping () -> Void) -> some View {
+        Button(action: action) {
             HStack(spacing: DL.Space.m) {
                 Image(systemName: selected ? "checkmark.circle.fill" : "circle")
                     .font(.title3)
                     .foregroundStyle(selected ? Color.dlAccent : Color.dlTextSecondary)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
+                    title
                         .font(DL.Fonts.headline)
                         .foregroundStyle(Color.dlTextPrimary)
-                    Text(subtitle)
-                        .font(DL.Fonts.caption)
-                        .foregroundStyle(Color.dlTextSecondary)
+                    if let caption {
+                        caption
+                            .font(DL.Fonts.caption)
+                            .foregroundStyle(Color.dlTextSecondary)
+                    }
                 }
                 Spacer(minLength: 0)
             }
@@ -134,10 +140,10 @@ struct OnboardingView: View {
 
     private var startButton: some View {
         Button {
-            guard !starting else { return }
+            guard !starting, let target else { return }
             starting = true
             Task {
-                await model.completeOnboarding(pair: pair, direction: direction)
+                await model.completeOnboarding(source: source, target: target)
             }
         } label: {
             Group {
@@ -150,6 +156,7 @@ struct OnboardingView: View {
             .frame(maxWidth: .infinity)
         }
         .buttonStyle(DLPrimaryButtonStyle())
+        .disabled(target == nil)
         .padding(.top, DL.Space.l)
     }
 }

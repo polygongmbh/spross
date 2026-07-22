@@ -15,7 +15,7 @@ struct FortschrittSection: View {
             ActivityStripView(days: model.last14Days())
             HStack(spacing: DL.Space.m) {
                 BoxStatTile(emoji: "📦",
-                            value: "\(model.stats?.activeCount ?? 0)",
+                            value: "\(model.stats?.activeCards ?? 0)",
                             label: "Aktive Karten")
                 BoxStatTile(emoji: "🎯",
                             value: retentionText,
@@ -25,7 +25,7 @@ struct FortschrittSection: View {
     }
 
     private var retentionText: String {
-        guard let retrievability = model.stats?.averageRetrievability else { return "–" }
+        guard let retrievability = model.stats?.retrievability else { return "–" }
         return "\(Int((retrievability * 100).rounded())) %"
     }
 }

@@ -1,59 +1,46 @@
 import Foundation
-import DuoKern
+import SwiftUI
+import SprossKern
 
-/// Display metadata for the seed's area keys. The seed JSON carries localized
-/// area titles, but the importer keeps only the key — this maps keys to warm
-/// German labels plus an emoji illustration. Unknown keys degrade gracefully.
-struct AreaInfo {
-    let name: String
-    let emoji: String
-
-    static func info(for key: String) -> AreaInfo {
-        infos[key] ?? AreaInfo(name: key.capitalized, emoji: "📦")
+/// Display metadata for the catalog's area keys: titles come from the
+/// catalog per source language (`AppModel.areaTitle`); the emoji
+/// illustration is app-curated here. Unknown keys degrade gracefully.
+enum AreaInfo {
+    static func emoji(for key: String) -> String {
+        emojis[key] ?? "📦"
     }
 
-    private static let infos: [String: AreaInfo] = [
-        "kitchen": AreaInfo(name: "Küche", emoji: "🍳"),
-        "living": AreaInfo(name: "Wohnzimmer", emoji: "🛋️"),
-        "bath": AreaInfo(name: "Bad", emoji: "🛁"),
-        "desk": AreaInfo(name: "Schreibtisch", emoji: "✏️"),
-        "bedroom": AreaInfo(name: "Schlafzimmer", emoji: "🛏️"),
-        "hall": AreaInfo(name: "Flur", emoji: "🚪"),
-        "outside": AreaInfo(name: "Draußen", emoji: "🌳"),
-        "school": AreaInfo(name: "Schule", emoji: "🎒"),
+    private static let emojis: [String: String] = [
+        "basics": "👋",
+        "kitchen": "🍳",
+        "living": "🛋️",
+        "bath": "🛁",
+        "desk": "✏️",
+        "bedroom": "🛏️",
+        "hall": "🚪",
+        "outside": "🌳",
+        "school": "🎒",
+        "work": "💼",
+        "health": "🩺",
+        "admin": "🗂️",
     ]
 }
 
-extension LanguagePair {
-    /// Name of the base language (the pair's non-target side; German for every
-    /// current pair, switched here so future pairs can differ).
-    var baseName: String {
-        switch self {
-        case .deSw, .deUk: return "Deutsch"
-        }
-    }
+/// Language display names for chrome: localized exonym when a chrome string
+/// exists (de/en catalogs), else the language's own name from languages.json.
+enum LanguageNames {
+    private static let chromeKeys: [String: String] = [
+        "de": "Deutsch",
+        "en": "Englisch",
+        "sw": "Swahili",
+        "uk": "Ukrainisch",
+    ]
 
-    /// Name of the target language.
-    var targetName: String {
-        switch self {
-        case .deSw: return "Swahili"
-        case .deUk: return "Ukrainisch"
+    static func display(_ code: String, locale: Locale, catalog: Catalog?) -> String {
+        if let key = chromeKeys[code] {
+            return DLChrome.string(key, locale: locale)
         }
-    }
-
-    var flag: String {
-        switch self {
-        case .deSw: return "🇹🇿"
-        case .deUk: return "🇺🇦"
-        }
-    }
-
-    /// Short code of the target language for compact pickers ("SW", "UK").
-    var targetShort: String {
-        switch self {
-        case .deSw: return "SW"
-        case .deUk: return "UK"
-        }
+        return catalog?.languages[code]?.name ?? code.uppercased()
     }
 }
 
@@ -69,10 +56,44 @@ extension Card {
         case .phrase: return "💬"
         }
     }
+}
 
-    /// "der Kühlschrank" — headword with its article where present.
-    var germanWithArticle: String {
-        if let article { return "\(article) \(german)" }
-        return german
+/// Target-side grammar rendering (contract §2): article and plural lines
+/// render only for the TARGET realization; suffix plurals dictionary-style,
+/// sentinel values via localized chrome strings.
+enum CardDisplay {
+
+    /// The realization's article for inline coloring (de `gender` carries the
+    /// article itself: "der"/"die"/"das").
+    static func article(of realization: Realization) -> String? {
+        realization.grammar["gender"]
+    }
+
+    /// "der Kühlschrank" — citation form with its article where present.
+    static func citation(of realization: Realization) -> String {
+        guard let article = article(of: realization) else { return realization.text }
+        return "\(article) \(realization.text)"
+    }
+
+    /// Dictionary-style plural line: suffix → "Lehrerin, -nen"; "=" → "= Pl.";
+    /// "only" → "nur Pl."; full form shown as-is.
+    static func plural(of realization: Realization, locale: Locale) -> String? {
+        guard let raw = realization.grammar["plural"], !raw.isEmpty else { return nil }
+        switch raw {
+        case "=": return DLChrome.string("= Pl.", locale: locale)
+        case "only": return DLChrome.string("nur Pl.", locale: locale)
+        default:
+            return raw.hasPrefix("-") ? "\(realization.text), \(raw)" : raw
+        }
+    }
+
+    /// "auch: Amt / Verwaltung" — the realization's remaining family beyond
+    /// `shown`, for reveal display. Variants stay silent (grading only).
+    static func alternates(of realization: Realization, shown: String,
+                           locale: Locale) -> String? {
+        let family = ([realization.text] + realization.synonyms).filter { $0 != shown }
+        guard !family.isEmpty else { return nil }
+        return String(format: DLChrome.string("auch: %@", locale: locale),
+                      family.joined(separator: " / "))
     }
 }

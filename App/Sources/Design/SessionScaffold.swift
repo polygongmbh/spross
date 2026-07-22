@@ -206,12 +206,9 @@ struct SessionCompletionView: View {
         VStack(spacing: DL.Space.xl) {
             VocabCardView(
                 emoji: "🥄",
-                article: "der",
-                headword: "Löffel",
-                plural: "die Löffel",
-                translation: "kijiko",
+                prompt: .init(text: "kijiko"),
+                answer: .init(text: "Löffel", article: "der", plural: "Löffel"),
                 note: nil,
-                mode: .recognition,
                 revealed: true
             )
             RatingButtonsView { _ in }

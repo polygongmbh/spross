@@ -1,11 +1,12 @@
 import SwiftUI
-import DuoKern
+import SprossKern
 
-/// Full-screen session. Both directions offer typing first; "Aufdecken"
-/// without typing falls back to four-button self-grading. The direction a
-/// card is SHOWN in is asked per card (`presentationDirection`) so mixed
-/// mode can alternate; rating semantics are direction-independent.
-/// Presented as a full-screen cover.
+/// Full-screen session. The role a card is SHOWN in comes from Kern per
+/// card + log count (one schedule, alternating presentation):
+/// PRODUCE prompts the source side and grades typed target input
+/// ("Aufdecken" without typing falls back to four-button self-grading);
+/// RECOGNIZE prompts one rotated target form and is reveal + self-grade
+/// only — never typed. Presented as a full-screen cover.
 struct SessionView: View {
     @Bindable var model: AppModel
 
@@ -20,6 +21,7 @@ struct SessionView: View {
     /// a card appears and stays up across cards.
     @FocusState private var answerFocused: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.locale) private var locale
 
     var body: some View {
         Group {
@@ -27,7 +29,7 @@ struct SessionView: View {
                 SessionCompletionView(newCount: model.sessionNew,
                                       graduatedCount: model.sessionGraduated,
                                       reviewCount: model.sessionReviews,
-                                      streakDays: model.stats?.streak ?? 0,
+                                      streakDays: model.stats?.streakDays ?? 0,
                                       canPracticeMore: model.canPracticeMore,
                                       onPractice: { model.continueEndless() },
                                       onDone: { model.closeSession() })
@@ -106,29 +108,24 @@ struct SessionView: View {
     // MARK: - Card + controls
 
     private func cardContent(_ card: Card) -> some View {
-        ScrollView {
+        let role = model.presentationRole(for: card.id)
+        return ScrollView {
             VStack(spacing: DL.Space.m) {
                 // ZStack so outgoing and incoming card overlap during the flip
                 // instead of stacking; .id gives each card its own identity.
                 ZStack {
                     VocabCardView(
-                        emoji: supportEmoji(for: card),
-                        article: card.article,
-                        headword: card.german,
-                        plural: card.plural,
-                        translation: card.translation,
-                        note: card.note,
-                        mode: mode(for: card),
+                        emoji: model.emojiVisible(for: card) ? card.emoji : nil,
+                        prompt: promptSide(card, role: role),
+                        answer: answerSide(card, role: role),
+                        note: card.target.note ?? card.source.note,
                         revealed: cardRevealed,
-                        compact: true,
-                        // why: German plurals only matter to learners OF
-                        // German; for target-language learners they're noise.
-                        showPlural: model.box?.config.direction == .targetToDe
+                        compact: true
                     )
                     .id(card.id)
                     .transition(reduceMotion ? .opacity : .dlCardFlip)
                 }
-                controls(card)
+                controls(card, role: role)
             }
             .padding(.bottom, DL.Space.l)
         }
@@ -136,35 +133,84 @@ struct SessionView: View {
         .scrollDismissesKeyboard(.never)
     }
 
-    /// Light support only while a word is still landing: new/learning cards
-    /// show their emoji; once a card "sticks" (review/relearning) the emoji
-    /// would give the answer away, so it's dropped entirely.
-    private func supportEmoji(for card: Card) -> String? {
-        switch model.scheduling(for: card.id)?.phase {
-        case .review, .relearning: return nil
-        default: return card.emoji
+    /// Grammar (article coloring, plural) renders TARGET-side only; on
+    /// recognition it decorates the prompt only when the canonical form is
+    /// the one prompted (synonym rotations carry no citation grammar).
+    private func promptSide(_ card: Card, role: PresentationRole) -> VocabCardView.Side {
+        switch role {
+        case .produce:
+            return .init(text: card.source.text, femMarker: card.promptFeminineMarker)
+        case .recognize:
+            let form = model.promptForm(for: card)
+            let canonical = form == card.target.text
+            return .init(text: form,
+                         article: canonical ? CardDisplay.article(of: card.target) : nil,
+                         plural: canonical ? CardDisplay.plural(of: card.target, locale: locale) : nil)
         }
     }
 
-    /// Per-card presentation direction (alternates with mixed directions):
-    /// `.targetToDe` → production (target prompt, German typed),
-    /// `.deToTarget` → recognition (German prompt, target typed).
-    private func mode(for card: Card) -> VocabCardView.Mode {
-        model.presentationDirection(for: card.id) == .targetToDe ? .production : .recognition
+    /// The reveal always shows the full family: produce reveals the target
+    /// citation + synonyms; recognize reveals the source meaning (synonyms
+    /// joined informatively) + the remaining target forms as "auch: …".
+    private func answerSide(_ card: Card, role: PresentationRole) -> VocabCardView.Side {
+        switch role {
+        case .produce:
+            return .init(text: card.target.text,
+                         article: CardDisplay.article(of: card.target),
+                         plural: CardDisplay.plural(of: card.target, locale: locale),
+                         alternates: CardDisplay.alternates(of: card.target,
+                                                            shown: card.target.text,
+                                                            locale: locale))
+        case .recognize:
+            let meaning = ([card.source.text] + card.source.synonyms).joined(separator: " / ")
+            return .init(text: meaning,
+                         alternates: CardDisplay.alternates(of: card.target,
+                                                            shown: model.promptForm(for: card),
+                                                            locale: locale),
+                         femMarker: card.promptFeminineMarker)
+        }
     }
 
     private var cardRevealed: Bool {
         revealed || feedback != .neutral
     }
 
-    /// Both directions offer typing first (recall beats recognition);
-    /// "Aufdecken" stays available for self-grading without typing.
-    private func controls(_ card: Card) -> some View {
+    @ViewBuilder
+    private func controls(_ card: Card, role: PresentationRole) -> some View {
+        switch role {
+        case .recognize: recognizeControls
+        case .produce: produceControls(card)
+        }
+    }
+
+    /// Comprehension check: reveal, then honest four-button self-grade —
+    /// never typed, so no schedule is ever graded against a language it
+    /// wasn't learned with.
+    @ViewBuilder
+    private var recognizeControls: some View {
+        if revealed {
+            RatingButtonsView { rate(kernRating($0)) }
+        } else {
+            Button {
+                DLSound.reveal()
+                withAnimation { revealed = true }
+            } label: {
+                Text("Aufdecken")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(DLPrimaryButtonStyle())
+            .keyboardShortcut(.defaultAction)
+        }
+    }
+
+    /// Typing first (recall beats recognition); "Aufdecken" stays available
+    /// for self-grading without typing.
+    private func produceControls(_ card: Card) -> some View {
         VStack(spacing: DL.Space.m) {
             if !(revealed && feedback == .neutral) {
                 AnswerInputView(text: $input,
                                 feedback: feedback,
-                                placeholder: inputPlaceholder(card),
+                                placeholder: inputPlaceholder,
                                 focus: $answerFocused) {
                     submit(card)
                 }
@@ -231,31 +277,25 @@ struct SessionView: View {
         }
     }
 
-    // MARK: - Grading
+    // MARK: - Grading (produce only — recognize is button self-grade)
 
     private var inputEmpty: Bool {
         input.trimmingCharacters(in: .whitespaces).isEmpty
     }
 
-    private func inputPlaceholder(_ card: Card) -> String {
-        mode(for: card) == .production ? "Auf Deutsch …"
-            : (card.pair == .deSw ? "Auf Swahili …" : "Auf Ukrainisch …")
+    private var inputPlaceholder: String {
+        guard let target = model.targetLanguage else { return "" }
+        let name = LanguageNames.display(target, locale: locale, catalog: model.catalog)
+        return String(format: DLChrome.string("Auf %@ …", locale: locale), name)
     }
 
     private func submit(_ card: Card) {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard feedback == .neutral, !trimmed.isEmpty else { return }
-        let mode = mode(for: card)
-        let expected = mode == .production ? card.german : card.translation
-        // Swahili verbs: the ku- infinitive marker may be dropped when typing
-        // the Swahili side ("pika" counts for "kupika").
-        let prefix = (mode == .recognition && card.pair == .deSw && card.kind == .verb)
-            ? "ku" : nil
-        // why: when typing German, a wrong/mistyped article is a slip (typo),
-        // not a word failure — the gender still gets shown via the citation form.
-        let expectedArticle = mode == .production ? card.article : nil
-        switch AnswerNormalizer.evaluate(input: trimmed, expected: expected,
-                                         optionalPrefix: prefix, expectedArticle: expectedArticle) {
+        guard feedback == .neutral, !trimmed.isEmpty,
+              let normalizer = model.answerNormalizer else { return }
+        // Kern normalizer: accepted forms = target text ∪ synonyms ∪ variants,
+        // article-optional, verb-prefix-optional, article-mismatch → typo.
+        switch onEnum(of: normalizer.evaluate(input: trimmed, card: card)) {
         case .exact:
             feedback = .correct
             DLSound.correct()
@@ -264,16 +304,15 @@ struct SessionView: View {
                 guard !Task.isCancelled else { return }
                 rate(.good)
             }
-        case .typo:
+        case .typo(let typo):
             // why: don't auto-advance on a typo — pause (keeping the typed
             // text visible) so the learner reviews the slip. Still counts as
             // correct once they tap on.
             feedback = .correct
             DLSound.correct()
-            typoCorrection = mode == .production ? card.germanWithArticle : card.translation
+            typoCorrection = typo.corrected
         case .wrong:
-            let answer = mode == .production ? card.germanWithArticle : card.translation
-            feedback = .revealed(correctAnswer: answer)
+            feedback = .revealed(correctAnswer: CardDisplay.citation(of: card.target))
             DLSound.wrong()
         }
     }
@@ -296,7 +335,7 @@ struct SessionView: View {
         typoCorrection = nil
     }
 
-    /// Design's RatingButtonsView has its own local Rating (no DuoKern dep);
+    /// Design's RatingButtonsView has its own local Rating (no Kern dep);
     /// map it to the domain rating at the boundary.
     private func kernRating(_ rating: RatingButtonsView.Rating) -> Rating {
         switch rating {
@@ -307,4 +346,3 @@ struct SessionView: View {
         }
     }
 }
-

@@ -1,5 +1,5 @@
 import SwiftUI
-import DuoKern
+import SprossKern
 
 /// Browse the box: areas with their stats, per-area "Pack in die Box",
 /// card lists with phase badges, and the settings block.
@@ -32,7 +32,7 @@ struct BoxView: View {
     }
 
     private var subtitle: Text {
-        let active = model.stats?.activeCount ?? 0
+        let active = model.stats?.activeCards ?? 0
         let total = model.box?.cards.count ?? 0
         return Text("\(active) von \(total) Karten in Arbeit")
     }
@@ -47,25 +47,25 @@ private struct BoxAreaSection: View {
     @State private var expanded = false
 
     var body: some View {
-        let info = AreaInfo.info(for: area)
         let stats = model.areaStats(area)
-        let sitting = stats?.sitting ?? 0
-        let learning = max(0, (stats?.active ?? 0) - sitting)
+        let sitting = stats?.sittingCards ?? 0
+        let learning = max(0, (stats?.activeCards ?? 0) - sitting)
 
         VStack(alignment: .leading, spacing: DL.Space.m) {
-            AreaChip(emoji: info.emoji, name: info.name, sitting: sitting, learning: learning)
+            AreaChip(emoji: AreaInfo.emoji(for: area), name: model.areaTitle(area),
+                     sitting: sitting, learning: learning)
             phraseRow(stats)
             packButton
-            cardList(info: info)
+            cardList
         }
     }
 
     @ViewBuilder
     private func phraseRow(_ stats: AreaStatistics?) -> some View {
-        if let stats, stats.phrasesLocked + stats.phrasesUnlocked > 0 {
+        if let stats, stats.lockedPhrases + stats.unlockedPhrases > 0 {
             HStack(spacing: DL.Space.l) {
-                Label("\(stats.phrasesUnlocked) Sätze freigeschaltet", systemImage: "lock.open.fill")
-                Label("\(stats.phrasesLocked) gesperrt", systemImage: "lock.fill")
+                Label("\(stats.unlockedPhrases) Sätze freigeschaltet", systemImage: "lock.open.fill")
+                Label("\(stats.lockedPhrases) gesperrt", systemImage: "lock.fill")
                 Spacer(minLength: 0)
             }
             .font(DL.Fonts.caption)
@@ -93,7 +93,7 @@ private struct BoxAreaSection: View {
         }
     }
 
-    private func cardList(info: AreaInfo) -> some View {
+    private var cardList: some View {
         let cards = model.cards(inArea: area)
         return DisclosureGroup(isExpanded: $expanded) {
             VStack(spacing: DL.Space.xs) {
@@ -126,11 +126,12 @@ private struct BoxCardRow: View {
                 .font(.title3)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
-                Text(card.germanWithArticle)
+                // Exposure surfaces render the TARGET side first (contract §6).
+                Text(CardDisplay.citation(of: card.target))
                     .font(DL.Fonts.body)
                     .foregroundStyle(Color.dlTextPrimary)
                     .lineLimit(1)
-                Text(card.translation)
+                Text(card.source.text)
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                     .lineLimit(1)
@@ -161,7 +162,7 @@ private struct BoxCardRow: View {
 
     private func badgePhase(_ sched: CardScheduling?) -> PhaseBadge.Phase {
         switch sched?.phase {
-        case nil, .new?: return .new
+        case nil, .theNew?: return .new
         case .learning?: return .learning
         case .review?: return .review
         case .relearning?: return .relearning

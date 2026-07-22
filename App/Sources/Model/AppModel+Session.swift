@@ -1,14 +1,15 @@
 import Foundation
-import DuoKern
+import SprossKern
 import WidgetKit
 
 // Session flow: composed plan → card queue → drain loop → completion.
 //
+// Composition is role-agnostic (plans carry card ids); whether a card is
+// produced or recognized is resolved at render time from its log count.
 // When the composed queue empties and nothing is due right now, the session
 // ends with a summary (no mid-session pause). From the summary the user can
 // keep going in endless mode, which pulls whatever is genuinely due plus new
-// cards (respecting the pool) until they stop — nothing pulled ahead of its
-// due time, so a card just answered doesn't immediately reappear.
+// cards (respecting the pool) until they stop.
 
 extension AppModel {
 
@@ -27,7 +28,8 @@ extension AppModel {
     func startSession() {
         guard let box else { return }
         let now = Date()
-        let plan = BoxEngine.composeSession(state: box, now: now, calendar: calendar)
+        let plan = SessionComposer.shared.composeSession(state: box,
+                                                         nowEpochMillis: now.epochMillis)
         begin(plan, now: now)
     }
 
@@ -36,13 +38,14 @@ extension AppModel {
     func startExtraSession() {
         guard let box else { return }
         let now = Date()
-        let plan = BoxEngine.composeExtraSession(state: box, now: now, calendar: calendar)
+        let plan = SessionComposer.shared.composeExtraSession(state: box,
+                                                              nowEpochMillis: now.epochMillis)
         guard !plan.isEmpty else { return }
         begin(plan, now: now)
     }
 
     private func begin(_ plan: SessionPlan, now: Date) {
-        sessionQueue = plan.reviews + plan.unlockedPhrases + plan.newWords
+        sessionQueue = plan.reviews + plan.unlockedPhrases + plan.newCards
         sessionTotal = sessionQueue.count
         sessionAnswered = 0
         sessionFolded = 0
@@ -52,8 +55,23 @@ extension AppModel {
         sessionReviews = 0
         sessionEndless = false
         sessionEnded = false
+        sessionJoinStamp = plan.joinStamp
         advanceSession(now: now)
         sessionPresented = true
+    }
+
+    /// The box's join moved under a running session (source switch, catalog
+    /// update) → recompose against the live join; stale ids would no-op.
+    func recomposeSessionIfStale() {
+        guard sessionPresented, !sessionEnded, let box,
+              let stamp = sessionJoinStamp, stamp != box.joinStamp else { return }
+        let now = Date()
+        let plan = SessionComposer.shared.composeSession(state: box,
+                                                         nowEpochMillis: now.epochMillis)
+        sessionQueue = plan.reviews + plan.unlockedPhrases + plan.newCards
+        sessionTotal = sessionAnswered + sessionQueue.count
+        sessionJoinStamp = plan.joinStamp
+        advanceSession(now: now)
     }
 
     /// Apply one answer (every answer event is an FSRS review), then advance.
@@ -61,16 +79,23 @@ extension AppModel {
         guard case .card(let id)? = sessionStep, let current = box else { return }
         let now = Date()
         let beforePhase = scheduling(for: id)?.phase
-        let next = BoxEngine.answer(state: current, cardID: id, rating: rating,
-                                    now: now, calendar: calendar)
-        box = next
-        tallySummary(before: beforePhase, after: scheduling(for: id)?.phase)
-        sessionRatings.append(rating)
-        sessionAnswered += 1
+        let outcome = BoxEngine.shared.answer(state: current, cardId: id, rating: rating,
+                                              nowEpochMillis: now.epochMillis,
+                                              tzId: currentTzId())
+        box = outcome.state
+        if outcome.status == .applied {
+            tallySummary(before: beforePhase, after: scheduling(for: id)?.phase)
+            sessionRatings.append(rating)
+            sessionAnswered += 1
+        } else {
+            // Stale/dropped answers leave the run silently — shrink the total
+            // so the progress counter stays honest.
+            sessionTotal = max(1, sessionTotal - 1)
+        }
         if !sessionQueue.isEmpty {
             sessionQueue.removeFirst()
         }
-        persist(next) // debounced (≥5 s) per design.md save cadence
+        persist(outcome.state) // debounced (≥5 s) per design.md save cadence
         advanceSession(now: now)
     }
 
@@ -96,7 +121,7 @@ extension AppModel {
             sessionStep = .card(nextID)
             return
         }
-        let due = BoxEngine.dueNow(state: box, now: now)
+        let due = BoxEngine.shared.dueNow(state: box, nowEpochMillis: now.epochMillis)
         if !due.isEmpty {
             sessionQueue = due
             sessionTotal += due.count
@@ -125,13 +150,15 @@ extension AppModel {
     /// "Weiter üben" button's presence on the summary).
     var canPracticeMore: Bool {
         guard let box else { return false }
-        return !BoxEngine.composeEndless(state: box, now: Date()).isEmpty
+        return !SessionComposer.shared.composeEndless(state: box,
+                                                      nowEpochMillis: Date().epochMillis).isEmpty
     }
 
     /// Pull the next endless batch onto the queue; returns false if dry.
     private func enqueueEndlessBatch(from box: BoxState, now: Date) -> Bool {
-        let plan = BoxEngine.composeEndless(state: box, now: now)
-        let more = plan.reviews + plan.unlockedPhrases + plan.newWords
+        let plan = SessionComposer.shared.composeEndless(state: box,
+                                                         nowEpochMillis: now.epochMillis)
+        let more = plan.reviews + plan.unlockedPhrases + plan.newCards
         guard !more.isEmpty else { return false }
         sessionQueue = more
         sessionTotal += more.count
@@ -145,9 +172,10 @@ extension AppModel {
     func finishSession(now: Date = Date()) {
         guard !sessionEnded, let current = box else { return }
         sessionEnded = true
-        let next = BoxEngine.endSession(state: current,
-                                        reviewsDone: sessionAnswered - sessionFolded,
-                                        now: now, calendar: calendar)
+        let next = BoxEngine.shared.endSession(state: current,
+                                               reviewsDone: Int32(sessionAnswered - sessionFolded),
+                                               nowEpochMillis: now.epochMillis,
+                                               tzId: currentTzId())
         sessionFolded = sessionAnswered
         box = next
         persist(next, immediate: true)
@@ -162,9 +190,10 @@ extension AppModel {
     /// Kern's endSession accumulates `reviews`, so later folds add deltas only.
     func foldPartialSession(now: Date = Date()) {
         guard !sessionEnded, sessionAnswered > sessionFolded, let current = box else { return }
-        box = BoxEngine.endSession(state: current,
-                                   reviewsDone: sessionAnswered - sessionFolded,
-                                   now: now, calendar: calendar)
+        box = BoxEngine.shared.endSession(state: current,
+                                          reviewsDone: Int32(sessionAnswered - sessionFolded),
+                                          nowEpochMillis: now.epochMillis,
+                                          tzId: currentTzId())
         sessionFolded = sessionAnswered
     }
 

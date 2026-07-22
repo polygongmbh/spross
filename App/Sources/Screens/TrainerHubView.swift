@@ -1,11 +1,12 @@
 import SwiftUI
-import DuoKern
-import DuoKernTrainer
+import SprossKern
 
-/// Compact "Training" card on the Heute screen: three slot drills
-/// (Zahlen / Jahreszahlen / Uhrzeit) plus the sentence drill. The drill
-/// language is always the language being learned (no toggle).
-/// Trainers are stateless — they never touch BoxState or FSRS.
+/// Compact "Training" card on the Heute screen: slot drills (Zahlen /
+/// Uhrzeit) plus the sentence drill. Offerings are registry-driven: slot
+/// drills appear only when Kern's trainer supports the learned language,
+/// the sentence drill only when (source, target) templates exist — an
+/// unauthored language (e.g. en) hides its sections, an empty card hides
+/// entirely. Trainers are stateless — they never touch BoxState or FSRS.
 struct TrainerHubView: View {
     let model: AppModel
 
@@ -21,47 +22,73 @@ struct TrainerHubView: View {
         let mode: TrainerSessionView.Mode
         let id: String
 
-        init(kind: TrainerKind, language: TrainerLanguage) {
+        init(kind: TrainerKind, language: String) {
             mode = .slots(kind, language)
-            id = "\(kind.rawValue)-\(language.rawValue)"
+            id = "\(kind.name)-\(language)"
         }
 
-        init(phrases pair: LanguagePair, reverse: Bool) {
-            mode = .phrases(pair, reverse: reverse)
-            id = "phrases-\(pair.rawValue)-\(reverse)"
+        init(phrases source: String, target: String, reverse: Bool) {
+            mode = .phrases(source: source, target: target, reverse: reverse)
+            id = "phrases-\(source)-\(target)-\(reverse)"
         }
+    }
+
+    /// The language being learned — every drill runs in it.
+    private var drillLanguage: String? { model.targetLanguage }
+
+    private var slotsAvailable: Bool {
+        drillLanguage.map { Trainer.shared.supports(language: $0) } ?? false
+    }
+
+    /// Sentence templates are keyed (source, target); learners OF German get
+    /// the reverse drill over the (de, source) templates.
+    private var phraseKey: (source: String, target: String, reverse: Bool)? {
+        guard let target = drillLanguage else { return nil }
+        let key = target == "de"
+            ? (source: "de", target: model.sourceLanguage, reverse: true)
+            : (source: model.sourceLanguage, target: target, reverse: false)
+        let templates = PhraseTemplates.shared.templates(source: key.source, target: key.target)
+        return templates.isEmpty ? nil : key
     }
 
     var body: some View {
         Group {
-            if let config = model.box?.config {
-                card(config)
+            if slotsAvailable || phraseKey != nil {
+                card
             }
         }
         .fullScreenCover(item: $activeDrill) { drill in
-            TrainerSessionView(mode: drill.mode)
+            TrainerSessionView(mode: drill.mode, normalizer: normalizer(for: drill.mode))
                 .environment(\.locale, model.knownLocale)
         }
     }
 
+    private func normalizer(for mode: TrainerSessionView.Mode) -> AnswerNormalizer? {
+        model.languageInfo(mode.typedLanguage).map(AnswerNormalizer.init(answerLanguage:))
+    }
+
     // MARK: - Card
 
-    private func card(_ config: BoxConfig) -> some View {
+    private var card: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
             Text("Training")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("Auf \(effectiveLanguage.displayName(in: locale)) · zählt nicht für deine Box.")
+            Text("Auf \(languageName(drillLanguage ?? "")) · zählt nicht für deine Box.")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
             HStack(spacing: DL.Space.m) {
                 // why: years drill dropped — it's covered by the numbers drill
                 // (identical reading in Swahili/Ukrainian). Years live on only
                 // as a phrase slot.
-                ForEach(Self.drillKinds, id: \.rawValue) { kind in
-                    drillChip(kind)
+                if slotsAvailable {
+                    ForEach(Self.drillKinds, id: \.self) { kind in
+                        drillChip(kind)
+                    }
                 }
-                phraseChip(config)
+                if phraseKey != nil {
+                    phraseChip
+                }
             }
         }
         .padding(DL.Space.xl)
@@ -74,89 +101,65 @@ struct TrainerHubView: View {
         #if DEBUG
         // UI-test hook: `-uitest-trainer numbers|years|clock|phrases` opens
         // that drill (in the learned language, like the chips). Attached
-        // HERE because the card only appears once the box config is loaded.
+        // HERE because the card only appears once the box is loaded.
         .onAppear {
             guard activeDrill == nil,
                   let raw = UserDefaults.standard.string(forKey: "uitest-trainer") else { return }
-            if let kind = TrainerKind(rawValue: raw) {
-                activeDrill = Drill(kind: kind, language: effectiveLanguage)
-            } else if raw == "phrases" {
-                activeDrill = Drill(phrases: config.pair,
-                                    reverse: config.direction == .targetToDe)
+            let kinds: [String: TrainerKind] = ["numbers": .numbers, "years": .years, "clock": .clock]
+            if let kind = kinds[raw], let language = drillLanguage {
+                activeDrill = Drill(kind: kind, language: language)
+            } else if raw == "phrases", let key = phraseKey {
+                activeDrill = Drill(phrases: key.source, target: key.target, reverse: key.reverse)
             }
         }
         #endif
     }
 
+    private func languageName(_ code: String) -> String {
+        LanguageNames.display(code, locale: locale, catalog: model.catalog)
+    }
+
     private func drillChip(_ kind: TrainerKind) -> some View {
         Button {
-            activeDrill = Drill(kind: kind, language: effectiveLanguage)
+            guard let language = drillLanguage else { return }
+            activeDrill = Drill(kind: kind, language: language)
         } label: {
-            VStack(spacing: DL.Space.s) {
-                Text(kind.trainerEmoji)
-                    .font(.system(size: 30))
-                    .accessibilityHidden(true)
-                Text(kind.trainerTitleKey)
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextPrimary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
-            }
-            .frame(maxWidth: .infinity, minHeight: 72)
-            .padding(.vertical, DL.Space.s)
-            .padding(.horizontal, DL.Space.xs)
-            .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurfaceTint)
-            )
+            chipLabel(emoji: kind.trainerEmoji, title: Text(kind.trainerTitleKey))
         }
         .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel(Text(kind.trainerTitleKey) + Text(" üben, auf \(effectiveLanguage.displayName(in: locale))"))
+        .accessibilityLabel(Text(kind.trainerTitleKey) + Text(" üben, auf \(languageName(drillLanguage ?? ""))"))
     }
 
     /// Sentence drill: composes phrase templates with slot values.
-    /// Learners of German get the REVERSE drill (target sentence shown,
-    /// German typed) — like all drills, it runs in the learned language.
-    private func phraseChip(_ config: BoxConfig) -> some View {
+    private var phraseChip: some View {
         Button {
-            activeDrill = Drill(phrases: config.pair,
-                                reverse: config.direction == .targetToDe)
+            guard let key = phraseKey else { return }
+            activeDrill = Drill(phrases: key.source, target: key.target, reverse: key.reverse)
         } label: {
-            VStack(spacing: DL.Space.s) {
-                Text(verbatim: "💬")
-                    .font(.system(size: 30))
-                    .accessibilityHidden(true)
-                Text("Sätze")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextPrimary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
-            }
-            .frame(maxWidth: .infinity, minHeight: 72)
-            .padding(.vertical, DL.Space.s)
-            .padding(.horizontal, DL.Space.xs)
-            .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurfaceTint)
-            )
+            chipLabel(emoji: "💬", title: Text("Sätze"))
         }
         .buttonStyle(TrainerChipButtonStyle())
         .accessibilityLabel("Sätze üben")
     }
 
-    // MARK: - Drill language
-
-    /// Always the language being learned: `.deToTarget` → the pair's
-    /// target language, `.targetToDe` → German.
-    private var effectiveLanguage: TrainerLanguage {
-        guard let config = model.box?.config else { return .german }
-        return config.direction == .deToTarget
-            ? Self.targetLanguage(config.pair)
-            : .german
-    }
-
-    private static func targetLanguage(_ pair: LanguagePair) -> TrainerLanguage {
-        pair == .deSw ? .swahili : .ukrainian
+    private func chipLabel(emoji: String, title: Text) -> some View {
+        VStack(spacing: DL.Space.s) {
+            Text(emoji)
+                .font(.system(size: 30))
+                .accessibilityHidden(true)
+            title
+                .font(DL.Fonts.caption)
+                .foregroundStyle(Color.dlTextPrimary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
+        }
+        .frame(maxWidth: .infinity, minHeight: 72)
+        .padding(.vertical, DL.Space.s)
+        .padding(.horizontal, DL.Space.xs)
+        .background(
+            RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
+                .fill(Color.dlSurfaceTint)
+        )
     }
 }
 
@@ -181,14 +184,6 @@ extension TrainerKind {
         }
     }
 
-    var trainerTitle: String {
-        switch self {
-        case .numbers: return "Zahlen"
-        case .years: return "Jahreszahlen"
-        case .clock: return "Uhrzeit"
-        }
-    }
-
     /// Localized display key for the drill title (German source = catalog key).
     var trainerTitleKey: LocalizedStringKey {
         switch self {
@@ -198,39 +193,13 @@ extension TrainerKind {
         }
     }
 
-    /// Singular caption on the prompt card ("Zahl · auf Swahili").
-    var trainerPromptLabel: String {
-        switch self {
-        case .numbers: return "Zahl"
-        case .years: return "Jahreszahl"
-        case .clock: return "Uhrzeit"
-        }
-    }
-
-    /// Localized display key for the singular prompt caption.
+    /// Localized display key for the singular prompt caption ("Zahl · auf …").
     var trainerPromptLabelKey: LocalizedStringKey {
         switch self {
         case .numbers: return "Zahl"
         case .years: return "Jahreszahl"
         case .clock: return "Uhrzeit"
         }
-    }
-}
-
-extension TrainerLanguage {
-    var trainerName: String {
-        switch self {
-        case .german: return "Deutsch"
-        case .swahili: return "Swahili"
-        case .ukrainian: return "Ukrainisch"
-        }
-    }
-
-    /// Language name in the UI locale: English chrome shows "German"/"Swahili"
-    /// even though `trainerName` stays German (it drives the content input
-    /// placeholder, which must not be localized). Falls back to the German key.
-    func displayName(in locale: Locale) -> String {
-        DLChrome.string(trainerName, locale: locale)
     }
 }
 

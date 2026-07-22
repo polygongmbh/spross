@@ -1,6 +1,5 @@
 import SwiftUI
-import DuoKern
-import DuoKernTrainer
+import SprossKern
 
 /// A stateless ENDLESS slot drill (numbers / years / clock / sentences).
 /// Same interaction grammar as SessionView — type first, "Aufdecken" as
@@ -9,26 +8,19 @@ import DuoKernTrainer
 /// the user closes it (X → summary).
 struct TrainerSessionView: View {
     /// What a run drills: bare slot values, or full sentences composed
-    /// from verified phrase templates + slot values. `reverse` sentences
-    /// show the target sentence and expect typed German (for learners
-    /// of German).
+    /// from verified phrase templates + slot values. Languages are catalog
+    /// codes; `reverse` sentences show the target sentence and expect the
+    /// template's source language typed (for learners of German).
     enum Mode {
-        case slots(TrainerKind, TrainerLanguage)
-        case phrases(LanguagePair, reverse: Bool)
+        case slots(TrainerKind, String)
+        case phrases(source: String, target: String, reverse: Bool)
 
-        /// The language answers are typed in (reverse phrases → German).
-        var language: TrainerLanguage {
+        /// The language answers are typed in.
+        var typedLanguage: String {
             switch self {
             case .slots(_, let language): return language
-            case .phrases(let pair, let reverse):
-                return reverse ? .german : (pair == .deSw ? .swahili : .ukrainian)
-            }
-        }
-
-        var title: String {
-            switch self {
-            case .slots(let kind, _): return kind.trainerTitle
-            case .phrases: return "Sätze"
+            case .phrases(let source, let target, let reverse):
+                return reverse ? source : target
             }
         }
 
@@ -42,6 +34,9 @@ struct TrainerSessionView: View {
     }
 
     let mode: Mode
+    /// Kern grader for the typed language; nil (previews) falls back to a
+    /// plain case/punctuation-insensitive comparison.
+    var normalizer: AnswerNormalizer?
 
     @Environment(\.dismiss) private var dismiss
 
@@ -73,20 +68,21 @@ struct TrainerSessionView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.locale) private var locale
 
-    init(kind: TrainerKind, language: TrainerLanguage) {
+    init(kind: TrainerKind, language: String) {
         self.init(mode: .slots(kind, language))
     }
 
-    init(phrases pair: LanguagePair, reverse: Bool = false) {
-        self.init(mode: .phrases(pair, reverse: reverse))
-    }
-
-    init(mode: Mode) {
+    init(mode: Mode, normalizer: AnswerNormalizer? = nil) {
         self.mode = mode
+        self.normalizer = normalizer
         _tasks = State(initialValue: [Self.sampleTask(mode: mode, level: 1, avoiding: nil)])
     }
 
-    private var language: TrainerLanguage { mode.language }
+    private var language: String { mode.typedLanguage }
+
+    private func languageName(_ code: String) -> String {
+        LanguageNames.display(code, locale: locale, catalog: nil)
+    }
 
     var body: some View {
         Group {
@@ -151,29 +147,30 @@ struct TrainerSessionView: View {
     /// One fresh random task at the current difficulty level; a prompt never
     /// repeats back-to-back (resample once when it equals the previous one).
     private static func sampleTask(mode: Mode, level: Int, avoiding previousPrompt: String?) -> TrainerTask {
-        var rng = SystemRandomNumberGenerator()
-        var task = sampleTask(mode: mode, level: level, using: &rng)
+        var task = sampleOnce(mode: mode, level: level)
         if task.prompt == previousPrompt {
-            task = sampleTask(mode: mode, level: level, using: &rng)
+            task = sampleOnce(mode: mode, level: level)
         }
         return task
     }
 
-    private static func sampleTask(mode: Mode, level: Int, using rng: inout SystemRandomNumberGenerator) -> TrainerTask {
+    private static func sampleOnce(mode: Mode, level: Int) -> TrainerTask {
+        let rng = KotlinRandom.companion
         switch mode {
         case .slots(let kind, let language):
-            return Trainer.sample(kind: kind, language: language, level: level, using: &rng)
-        case .phrases(let pair, let reverse):
-            let templates = PhraseTemplates.templates(pair: pair)
-            let template = templates[Int(rng.next() % UInt64(templates.count))]
+            return Trainer.shared.sample(kind: kind, language: language,
+                                         level: Int32(level), rng: rng)
+        case .phrases(let source, let target, let reverse):
+            let templates = PhraseTemplates.shared.templates(source: source, target: target)
+            let template = templates[Int.random(in: 0..<templates.count)]
             return reverse
-                ? PhraseSlots.reverseSample(template: template, using: &rng)
-                : PhraseSlots.sample(template: template, using: &rng)
+                ? PhraseSlots.shared.reverseSample(template: template, rng: rng)
+                : PhraseSlots.shared.sample(template: template, rng: rng)
         }
     }
 
     private var maxLevel: Int {
-        if case .slots(let kind, _) = mode { return Trainer.maxLevel(kind: kind) }
+        if case .slots(let kind, _) = mode { return Int(Trainer.shared.maxLevel(kind: kind)) }
         return 1
     }
 
@@ -197,12 +194,12 @@ struct TrainerSessionView: View {
     /// Place word shown the first time a new number length appears.
     private var placeValueHint: String? {
         guard let digits = currentDigits, !seenDigitCounts.contains(digits) else { return nil }
-        return Trainer.placeValueHint(digits: digits, language: language)
+        return Trainer.shared.placeValueHint(digits: Int32(digits), language: language)
     }
 
     /// Tens look-up for the current drill (Swahili numbers only).
     private var tensReference: [String]? {
-        isNumbers ? Trainer.tensReference(language: language) : nil
+        isNumbers ? Trainer.shared.tensReference(language: language) : nil
     }
 
     private var drillContent: some View {
@@ -262,7 +259,8 @@ struct TrainerSessionView: View {
         VStack(spacing: DL.Space.m) {
             AnswerInputView(text: $input,
                             feedback: feedback,
-                            placeholder: "Auf \(language.trainerName) …",
+                            placeholder: String(format: DLChrome.string("Auf %@ …", locale: locale),
+                                                languageName(language)),
                             focus: $answerFocused) {
                 submit()
             }
@@ -310,9 +308,8 @@ struct TrainerSessionView: View {
                     }
                 }
             case .correct:
-                // A clean answer auto-advances after ~1.2 s (design §Review
-                // UX). A typo pauses here — show the proper spelling and wait
-                // for a tap so the learner reviews the slip.
+                // A clean answer auto-advances after ~1.2 s. A typo pauses —
+                // show the proper spelling and wait for a tap.
                 if let typoCorrection {
                     VStack(spacing: DL.Space.m) {
                         Text("Fast! Richtig geschrieben: \(typoCorrection)")
@@ -402,9 +399,7 @@ struct TrainerSessionView: View {
     private func submit() {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard feedback == .neutral, !trimmed.isEmpty else { return }
-        let match = bestMatch(for: trimmed)
-        switch match {
-        case .exact:
+        if isCorrect(trimmed) {
             feedback = .correct
             DLSound.correct()
             // A hint-assisted answer stays amber (no level progress).
@@ -414,36 +409,25 @@ struct TrainerSessionView: View {
                 guard !Task.isCancelled else { return }
                 advance(correct: true, segment: segment)
             }
-        case .typo:
-            // why: don't auto-advance on a typo — pause (keeping the typed
-            // text visible) so the learner can review the slip. Still counts
-            // as correct, but amber and no level progress.
-            feedback = .correct
-            DLSound.correct()
-        case .wrong:
+        } else {
             feedback = .revealed(correctAnswer: current.display)
             DLSound.wrong()
         }
     }
 
-    /// Best evaluation across all accepted variants; a typo only counts
-    /// when no variant matches exactly. Sets `typoCorrection` (shown with
-    /// the canonical display form, not the normalized comparison form).
-    private func bestMatch(for trimmed: String) -> AnswerNormalizer.Match {
-        var best = AnswerNormalizer.Match.wrong
-        for variant in current.accepted {
-            switch AnswerNormalizer.evaluate(input: trimmed, expected: variant) {
-            case .exact:
-                typoCorrection = nil
-                return .exact
-            case .typo(let corrected):
-                if best == .wrong { best = .typo(corrected: corrected) }
-            case .wrong:
-                break
-            }
-        }
-        if case .typo = best { typoCorrection = current.display }
-        return best
+    /// Normalize-insensitive comparison against every accepted variant,
+    /// through the Kern normalizer when present.
+    private func isCorrect(_ trimmed: String) -> Bool {
+        let typed = normalized(trimmed)
+        return current.accepted.contains { normalized($0) == typed }
+    }
+
+    private func normalized(_ raw: String) -> String {
+        if let normalizer { return normalizer.normalize(raw: raw) }
+        return raw.lowercased()
+            .components(separatedBy: CharacterSet.alphanumerics.inverted)
+            .filter { !$0.isEmpty }
+            .joined(separator: " ")
     }
 
     /// A correct answer extends the streak, a wrong one resets it
@@ -513,7 +497,7 @@ struct TrainerSessionView: View {
             Text("Beste Serie: 🔥 \(bestStreak) in Folge")
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text.joined(Text(mode.titleKey), Text(verbatim: language.displayName(in: locale)))
+            Text.joined(Text(mode.titleKey), Text(verbatim: languageName(language)))
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
             Spacer()
@@ -562,7 +546,7 @@ private struct TrainerPromptCard: View {
                 .background(Circle().fill(Color.dlSurfaceTint))
                 .accessibilityHidden(true)
             Text.joined(sentence ? Text("Satz") : Text(task.kind.trainerPromptLabelKey),
-                        Text("auf \(task.language.displayName(in: locale))"))
+                        Text("auf \(LanguageNames.display(task.language, locale: locale, catalog: nil))"))
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
                 .textCase(.uppercase)
@@ -593,14 +577,14 @@ private struct TrainerPromptCard: View {
 // MARK: - Previews
 
 #Preview("Numbers · Swahili") {
-    TrainerSessionView(kind: .numbers, language: .swahili)
+    TrainerSessionView(kind: .numbers, language: "sw")
 }
 
 #Preview("Phrases · reverse (typed German)") {
-    TrainerSessionView(phrases: .deUk, reverse: true)
+    TrainerSessionView(mode: .phrases(source: "de", target: "uk", reverse: true))
 }
 
 #Preview("Clock · German · dark") {
-    TrainerSessionView(kind: .clock, language: .german)
+    TrainerSessionView(kind: .clock, language: "de")
         .preferredColorScheme(.dark)
 }
