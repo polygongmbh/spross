@@ -10,18 +10,20 @@ import SprossKern
 struct SessionView: View {
     @Bindable var model: AppModel
 
-    @State private var input = ""
-    @State private var feedback: AnswerInputView.Feedback = .neutral
-    @State private var revealed = false
+    // why: internal, not private — SessionView+Produce.swift (file-size
+    // split) drives the same card state from its extension.
+    @State var input = ""
+    @State var feedback: AnswerInputView.Feedback = .neutral
+    @State var revealed = false
     /// Set when the answer was accepted with a small typo — the proper
     /// spelling is shown and the card waits for a tap so the slip is seen.
-    @State private var typoCorrection: String?
-    @State private var autoAdvance: Task<Void, Never>?
+    @State var typoCorrection: String?
+    @State var autoAdvance: Task<Void, Never>?
     /// Owned here (not in AnswerInputView) so the keyboard is up the moment
     /// a card appears and stays up across cards.
-    @FocusState private var answerFocused: Bool
+    @FocusState var answerFocused: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @Environment(\.locale) private var locale
+    @Environment(\.locale) var locale
 
     var body: some View {
         Group {
@@ -203,121 +205,9 @@ struct SessionView: View {
         }
     }
 
-    /// Typing first (recall beats recognition); "Aufdecken" stays available
-    /// for self-grading without typing.
-    private func produceControls(_ card: Card) -> some View {
-        VStack(spacing: DL.Space.m) {
-            if !(revealed && feedback == .neutral) {
-                AnswerInputView(text: $input,
-                                feedback: feedback,
-                                placeholder: inputPlaceholder,
-                                focus: $answerFocused) {
-                    submit(card)
-                }
-            }
-            switch feedback {
-            case .neutral where revealed:
-                // Revealed without typing → honest self-grade, four ratings.
-                RatingButtonsView { rate(kernRating($0)) }
-            case .neutral:
-                // ONE primary action: empty input reveals, typed input checks.
-                Button {
-                    if inputEmpty {
-                        DLSound.reveal()
-                        withAnimation { revealed = true }
-                    } else {
-                        submit(card)
-                    }
-                } label: {
-                    Text(inputEmpty ? "Aufdecken" : "Prüfen")
-                        .frame(maxWidth: .infinity)
-                        .contentTransition(.opacity)
-                }
-                .buttonStyle(DLPrimaryButtonStyle())
-                .keyboardShortcut(.defaultAction)
-                .animation(.easeOut(duration: 0.15), value: inputEmpty)
-            case .correct:
-                // A clean answer auto-advances after ~1.2 s (design §Review
-                // UX). A typo pauses here — show the proper spelling and wait
-                // for a tap so the slip is reviewed.
-                if let typoCorrection {
-                    VStack(spacing: DL.Space.m) {
-                        Text("Fast! Richtig geschrieben: \(typoCorrection)")
-                            .font(DL.Fonts.caption)
-                            .italic()
-                            .foregroundStyle(Color.dlTextSecondary)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
-                        Button {
-                            rate(.good)
-                        } label: {
-                            DLActionLabel(key: "Weiter", targetLocale: model.targetChromeLocale)
-                        }
-                        .buttonStyle(DLPrimaryButtonStyle())
-                        .keyboardShortcut(.defaultAction)
-                    }
-                } else {
-                    EmptyView()
-                }
-            case .revealed:
-                HStack(spacing: DL.Space.m) {
-                    // Correct after reveal → .hard (design §Session 4).
-                    Button("Wusste ich doch") { rate(.hard) }
-                        .buttonStyle(DLSoftButtonStyle(color: .dlTeal))
-                    Button {
-                        rate(.again)
-                    } label: {
-                        DLActionLabel(key: "Weiter", targetLocale: model.targetChromeLocale)
-                    }
-                    .buttonStyle(DLPrimaryButtonStyle())
-                    // why: Enter advances when revealed (hardware keyboards).
-                    .keyboardShortcut(.defaultAction)
-                }
-            }
-        }
-    }
+    // Produce controls + typed grading live in SessionView+Produce.swift.
 
-    // MARK: - Grading (produce only — recognize is button self-grade)
-
-    private var inputEmpty: Bool {
-        input.trimmingCharacters(in: .whitespaces).isEmpty
-    }
-
-    private var inputPlaceholder: String {
-        guard let target = model.targetLanguage else { return "" }
-        let name = LanguageNames.display(target, locale: locale, catalog: model.catalog)
-        return String(format: DLChrome.string("Auf %@ …", locale: locale), name)
-    }
-
-    private func submit(_ card: Card) {
-        let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard feedback == .neutral, !trimmed.isEmpty,
-              let normalizer = model.answerNormalizer else { return }
-        // Kern normalizer: accepted forms = target text ∪ synonyms ∪ variants,
-        // article-optional, verb-prefix-optional, article-mismatch → typo.
-        switch onEnum(of: normalizer.evaluate(input: trimmed, card: card)) {
-        case .exact:
-            feedback = .correct
-            DLSound.correct()
-            autoAdvance = Task {
-                try? await Task.sleep(for: .milliseconds(1200))
-                guard !Task.isCancelled else { return }
-                rate(.good)
-            }
-        case .typo(let typo):
-            // why: don't auto-advance on a typo — pause (keeping the typed
-            // text visible) so the learner reviews the slip. Still counts as
-            // correct once they tap on.
-            feedback = .correct
-            DLSound.correct()
-            typoCorrection = typo.corrected
-        case .wrong:
-            feedback = .revealed(correctAnswer: CardDisplay.citation(of: card.target))
-            DLSound.wrong()
-        }
-    }
-
-    private func rate(_ rating: Rating) {
+    func rate(_ rating: Rating) {
         autoAdvance?.cancel()
         // why: reset BEFORE the card switch, in the same transaction — the
         // next card must never render one frame with the old revealed state.
@@ -337,7 +227,7 @@ struct SessionView: View {
 
     /// Design's RatingButtonsView has its own local Rating (no Kern dep);
     /// map it to the domain rating at the boundary.
-    private func kernRating(_ rating: RatingButtonsView.Rating) -> Rating {
+    func kernRating(_ rating: RatingButtonsView.Rating) -> Rating {
         switch rating {
         case .again: return .again
         case .hard: return .hard
