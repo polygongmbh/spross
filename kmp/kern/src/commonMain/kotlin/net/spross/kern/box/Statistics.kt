@@ -8,34 +8,33 @@ import kotlinx.datetime.minus
 import net.spross.kern.fsrs.Fsrs
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
+import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.DayStats
-import net.spross.kern.model.UnitKey
-import net.spross.kern.model.UnitScheduling
 
-/** Aggregates for progress UI. All headline counts are CONCEPT-denominated. */
+/** Aggregates for progress UI. All counts are in cards. */
 data class BoxStatistics(
-    /** Concepts with at least one active (scheduled, non-suspended) unit. */
+    /** Cards with an active (scheduled, non-suspended) schedule. */
     val activeCount: Int,
-    /** Concepts with at least one active unit due now. */
+    /** Active cards due now. */
     val dueCount: Int,
-    /** Concepts whose scheduled units are ALL suspended (fully out of rotation). */
+    /** Cards whose schedule is suspended (out of rotation). */
     val suspendedCount: Int,
-    /** Concepts that could enter the pool now; 0 when the health gate is closed. */
+    /** Cards that could enter the pool now; 0 when the health gate is closed. */
     val newSlotsAvailable: Int,
     /** Consecutive days with reviews > 0; one missed day is forgiven. */
     val streak: Int,
-    /** Mean FSRS retrievability over active review-phase UNITS; null if none. */
+    /** Mean FSRS retrievability over active review-phase cards; null if none. */
     val averageRetrievability: Double?,
     val areas: List<AreaStatistics>,
 )
 
 data class AreaStatistics(
     val name: String,
-    /** Concepts in the area (any status). */
+    /** Cards in the area (any status). */
     val total: Int,
-    /** Concepts with at least one active unit. */
+    /** Cards with an active schedule. */
     val active: Int,
-    /** Concepts whose produce unit sits in Review with stability >= unlock threshold. */
+    /** Cards sitting in Review with stability >= unlock threshold. */
     val sitting: Int,
     /** Component phrases still waiting for their components to stabilize. */
     val phrasesLocked: Int,
@@ -48,16 +47,10 @@ internal object Statistics {
     fun statistics(state: BoxState, nowEpochMillis: Long, tzId: String): BoxStatistics {
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         val active = Inventory.active(state)
-        val suspendedConcepts = Inventory.scheduled(state)
-            .groupBy { it.cardId }
-            .count { (_, units) -> units.all { it.suspended } }
         return BoxStatistics(
-            activeCount = active.mapTo(mutableSetOf()) { it.cardId }.size,
-            dueCount = active
-                .filter { it.due != null && it.due <= now }
-                .mapTo(mutableSetOf()) { it.cardId }
-                .size,
-            suspendedCount = suspendedConcepts,
+            activeCount = active.size,
+            dueCount = active.count { it.due != null && it.due <= now },
+            suspendedCount = Inventory.scheduled(state).count { it.suspended },
             newSlotsAvailable = Growth.gatedNewBudget(state, nowEpochMillis),
             streak = streak(state.dailyStats, nowEpochMillis, tzId),
             averageRetrievability = averageRetrievability(state, active, now),
@@ -88,10 +81,10 @@ internal object Statistics {
         return count
     }
 
-    /** Elapsed measured from each unit's last review (last log entry date). */
+    /** Elapsed measured from each card's last review (last log entry date). */
     private fun averageRetrievability(
         state: BoxState,
-        active: List<UnitScheduling>,
+        active: List<CardScheduling>,
         now: Instant,
     ): Double? {
         val review = active.filter { it.phase == CardPhase.Review && it.memory != null }
@@ -116,15 +109,15 @@ internal object Statistics {
                 var unlocked = 0
                 for (card in cards) {
                     if (card.id in activeCards) active += 1
-                    val produce = state.scheduling[UnitKey.produce(card.id).encoded]
-                    if (produce != null && !produce.suspended &&
-                        produce.phase == CardPhase.Review &&
-                        (produce.memory?.stability ?: 0.0) >= state.config.phraseUnlockStability
+                    val sched = state.scheduling[card.id]
+                    if (sched != null && !sched.suspended &&
+                        sched.phase == CardPhase.Review &&
+                        (sched.memory?.stability ?: 0.0) >= state.config.phraseUnlockStability
                     ) {
                         sitting += 1
                     }
                     if (card.kind == CardKind.Phrase) {
-                        val open = produce != null || card.components.isEmpty() ||
+                        val open = sched != null || card.components.isEmpty() ||
                             Growth.isPhraseUnlocked(state, card)
                         if (open) unlocked += 1 else locked += 1
                     }

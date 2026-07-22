@@ -7,14 +7,13 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.DayStats
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
-import net.spross.kern.model.UnitKey
 
 /**
  * The growing-box engine: pure functions over [BoxState].
  *
  * Time discipline: every API takes `nowEpochMillis`/`tzId` from the caller —
  * nothing in here ever reads a clock or the device calendar.
- * Denomination: growth is counted in CONCEPTS, workload (due/session caps) in UNITS.
+ * One schedule per card; every count is denominated in CARDS.
  */
 object BoxEngine {
 
@@ -31,58 +30,57 @@ object BoxEngine {
         state.copy(cards = cards.associateBy { it.id }, joinStamp = joinStamp)
 
     /**
-     * Append CONCEPT ids to the user priority queue. Enqueuing a phrase auto-prepends
-     * its missing (produce-unscheduled) components ahead of it. Unknown/non-joining ids,
-     * already-scheduled concepts, and duplicates are skipped. Enqueued concepts lead
+     * Append card ids to the user priority queue. Enqueuing a phrase auto-prepends
+     * its missing (unscheduled) components ahead of it. Unknown/non-joining ids,
+     * already-scheduled cards, and duplicates are skipped. Enqueued cards lead
      * composition and bypass the health gate, but respect the load throttle: a pack
      * enrolls and drips in at the pool rate, it is not dumped at once.
      */
-    fun enqueue(state: BoxState, conceptIds: List<String>): BoxState {
+    fun enqueue(state: BoxState, cardIds: List<String>): BoxState {
         val queued = state.enqueued.toMutableList()
         val seen = state.enqueued.toMutableSet()
 
         fun append(id: String) {
             if (id in seen || state.cards[id] == null) return
-            if (state.scheduling[UnitKey.produce(id).encoded] != null) return
+            if (state.scheduling[id] != null) return
             queued += id
             seen += id
         }
 
-        for (id in conceptIds) {
+        for (id in cardIds) {
             state.cards[id]?.components?.forEach(::append)
             append(id)
         }
         return state.copy(enqueued = queued)
     }
 
-    /** Suspend or revive ONE unit; no-op when the key has no schedule. */
-    fun setSuspended(state: BoxState, unitKey: String, suspended: Boolean): BoxState {
-        val sched = state.scheduling[unitKey] ?: return state
+    /** Suspend or revive ONE card; no-op when the id has no schedule. */
+    fun setSuspended(state: BoxState, cardId: String, suspended: Boolean): BoxState {
+        val sched = state.scheduling[cardId] ?: return state
         return state.copy(
-            scheduling = state.scheduling + (unitKey to sched.copy(suspended = suspended)),
+            scheduling = state.scheduling + (cardId to sched.copy(suspended = suspended)),
         )
     }
 
     /**
-     * Apply one answer to a unit. Introduction = the unit's first answer: creates its
-     * schedule, and on a PRODUCE intro counts the concept introduced and dequeues it.
-     * Introductions re-check eligibility and the concept budget at answer time
-     * ([AnswerStatus.DroppedIneligible] / [AnswerStatus.DroppedPoolFull]) — plans
-     * outlive phase changes. Review-phase Again answers count lapses; 8 lapses
-     * auto-suspend the unit (leech). Non-joining or unknown keys are a defined no-op
-     * ([AnswerStatus.StaleUnit]).
+     * Apply one answer to a card. Introduction = the card's first answer: creates its
+     * schedule, counts it introduced, and dequeues it. Introductions re-check
+     * eligibility and the pool budget at answer time ([AnswerStatus.DroppedIneligible]
+     * / [AnswerStatus.DroppedPoolFull]) — plans outlive phase changes. Review-phase
+     * Again answers count lapses; 8 lapses auto-suspend the card (leech). Non-joining
+     * or unknown ids are a defined no-op ([AnswerStatus.StaleCard]).
      */
     fun answer(
         state: BoxState,
-        unitKey: String,
+        cardId: String,
         rating: Rating,
         nowEpochMillis: Long,
         tzId: String,
-    ): AnswerOutcome = Answering.answer(state, unitKey, rating, nowEpochMillis, tzId)
+    ): AnswerOutcome = Answering.answer(state, cardId, rating, nowEpochMillis, tzId)
 
     /**
-     * Fold the session into `dailyStats` (reviews accumulate in UNITS; introduced and
-     * activeCount are CONCEPTS) and prune `newIntroduced` to the trailing 60 days.
+     * Fold the session into `dailyStats` and prune `newIntroduced` to the trailing
+     * 60 days.
      */
     fun endSession(state: BoxState, reviewsDone: Int, nowEpochMillis: Long, tzId: String): BoxState {
         val day = dayKey(nowEpochMillis, tzId)
@@ -90,7 +88,7 @@ object BoxEngine {
         val folded = DayStats(
             reviews = previous.reviews + reviewsDone,
             introduced = state.newIntroduced[day] ?: 0,
-            activeCount = Inventory.activeConceptCount(state),
+            activeCount = Inventory.active(state).size,
         )
         // why: yyyy-MM-dd keys compare chronologically as strings, so pruning is a
         // plain string comparison.
@@ -101,9 +99,9 @@ object BoxEngine {
         )
     }
 
-    /** Joined, active unit keys due at `now`, oldest first — the drain-loop feed. */
+    /** Joined, active card ids due at `now`, oldest first — the drain-loop feed. */
     fun dueNow(state: BoxState, nowEpochMillis: Long): List<String> =
-        Inventory.due(state, nowEpochMillis).map { it.key }
+        Inventory.due(state, nowEpochMillis).map { it.cardId }
 
     fun statistics(state: BoxState, nowEpochMillis: Long, tzId: String): BoxStatistics =
         Statistics.statistics(state, nowEpochMillis, tzId)

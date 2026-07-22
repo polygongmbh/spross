@@ -1,7 +1,7 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.model.CardKind
-import net.spross.kern.model.UnitKey
+import net.spross.kern.model.nfcNormalized
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -74,11 +74,13 @@ class CatalogLintTest {
         }
     }
 
+    // Rotation prompts cycle through text + synonyms — forms must stay distinct
+    // under NFC (composed vs decomposed spellings of the same word would collide).
     @Test
-    fun recognizeFormKeysDistinctPerRealization() {
+    fun rotationFormsDistinctPerRealization() {
         forEachRealization { area, lang, slug, raw ->
-            val keys = (listOf(raw.text) + raw.synonyms).map { UnitKey.formKey(it) }
-            assertEquals(keys.toSet().size, keys.size, "$area/$lang.json $slug: colliding form keys")
+            val forms = (listOf(raw.text) + raw.synonyms).map { nfcNormalized(it).trim() }
+            assertEquals(forms.toSet().size, forms.size, "$area/$lang.json $slug: colliding forms")
         }
     }
 

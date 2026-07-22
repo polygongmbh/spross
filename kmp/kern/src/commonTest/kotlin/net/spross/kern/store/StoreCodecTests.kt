@@ -6,7 +6,6 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.model.CardPhase
-import net.spross.kern.model.Role
 
 class StoreCodecTests {
 
@@ -59,39 +58,38 @@ class StoreCodecTests {
 
     @Test
     fun nullFieldsAreOmitted() {
-        // Review-phase units carry stepIndex = null; produce units carry form = null.
+        // Review-phase cards carry stepIndex = null; New would carry null memory/due.
         assertFalse("null" in StoreCodec.encode(state))
     }
 
     // Decode validation (hand-built minimal documents)
 
     private fun doc(scheduling: String = "", schemaVersion: Int = 1, source: String = "de"): String =
-        """{"config":{"desiredRetention":0.8,"dueSoftCap":60,"learningStepsSeconds":[60,600],""" +
+        """{"config":{"desiredRetention":0.8,"dueSoftCap":30,"learningStepsSeconds":[60,600],""" +
             """"maxLearning":8,"maximumIntervalDays":365,"phraseUnlockStability":2.0,""" +
-            """"relearningStepsSeconds":[60],"sessionCap":30},"dailyStats":{},"enqueued":[],""" +
+            """"relearningStepsSeconds":[600],"sessionCap":30},"dailyStats":{},"enqueued":[],""" +
             """"newIntroduced":{},"scheduling":{$scheduling},"schemaVersion":$schemaVersion,""" +
             """"source":"$source","target":"uk"}"""
 
-    private fun unit(
-        key: String = "w1|produce",
+    private fun entry(
+        key: String = "w1",
         cardId: String = "w1",
-        role: String = "produce",
         phase: String = "review",
         due: String = ""","due":"2026-07-02T12:00:00Z"""",
         memory: String = ""","memory":{"difficulty":5.0,"stability":3.0}""",
     ): String =
         """"$key":{"addedAt":"2026-07-01T12:00:00Z","cardId":"$cardId"$due,"lapses":0,""" +
             """"log":[{"date":"2026-07-01T12:00:00Z","elapsedDays":0.0,"rating":3}]""" +
-            """$memory,"phase":"$phase","role":"$role","suspended":false}"""
+            """$memory,"phase":"$phase","suspended":false}"""
 
     @Test
     fun decodeAcceptsMinimalDocument() {
-        val decoded = StoreCodec.decode(doc(unit()))
-        val sched = decoded.scheduling.getValue("w1|produce")
+        val decoded = StoreCodec.decode(doc(entry()))
+        val sched = decoded.scheduling.getValue("w1")
         assertEquals("w1", sched.cardId)
-        assertEquals(Role.Produce, sched.role)
         assertEquals(CardPhase.Review, sched.phase)
         assertEquals(3.0, sched.memory?.stability)
+        assertEquals(1, sched.reviewCount)
     }
 
     @Test
@@ -112,21 +110,22 @@ class StoreCodecTests {
     @Test
     fun decodeRejectsMismatchedSchedulingKey() {
         assertFailsWith<StoreFormatException> {
-            StoreCodec.decode(doc(unit(key = "w2|produce", cardId = "w1")))
+            StoreCodec.decode(doc(entry(key = "w2", cardId = "w1")))
         }
     }
 
     @Test
-    fun decodeRejectsUnknownRole() {
+    fun decodeRejectsPipeInCardId() {
+        // v1-era unit keys ("id|produce") are not valid card ids.
         assertFailsWith<StoreFormatException> {
-            StoreCodec.decode(doc(unit(role = "translate")))
+            StoreCodec.decode(doc(entry(key = "w1|produce", cardId = "w1|produce")))
         }
     }
 
     @Test
     fun decodeRejectsUnknownPhase() {
         assertFailsWith<StoreFormatException> {
-            StoreCodec.decode(doc(unit(phase = "later")))
+            StoreCodec.decode(doc(entry(phase = "later")))
         }
     }
 
@@ -134,14 +133,14 @@ class StoreCodecTests {
     fun decodeRejectsInvariantViolation() {
         // Review phase but no due date: phase == New ⟺ memory == null ⟺ due == null.
         assertFailsWith<StoreFormatException> {
-            StoreCodec.decode(doc(unit(due = "")))
+            StoreCodec.decode(doc(entry(due = "")))
         }
     }
 
     @Test
     fun decodeRejectsInvalidInstant() {
         assertFailsWith<StoreFormatException> {
-            StoreCodec.decode(doc(unit(due = ""","due":"yesterday"""")))
+            StoreCodec.decode(doc(entry(due = ""","due":"yesterday"""")))
         }
     }
 }

@@ -1,0 +1,64 @@
+package net.spross.kern.model
+
+/**
+ * How a card's next review is PRESENTED. Both roles feed the single FSRS
+ * schedule — presentation never touches scheduling state.
+ */
+enum class PresentationRole {
+    /** Source prompt → typed target answer. */
+    Produce,
+
+    /** Target prompt → flip + self-grade (never typed). */
+    Recognize,
+}
+
+/**
+ * Role of a card's next review, resolved at render time from the review-log count.
+ *
+ * FIRST exposure (count 0) is ALWAYS recognition — the learner cannot produce a
+ * word never seen; the target is shown with emoji as a teaching moment, flipped,
+ * and self-graded. Thereafter roles alternate per review with a stable per-card
+ * phase offset (v1's mixedDirections parity, hash bit-exact) so the box does not
+ * flip in sync.
+ */
+fun presentationRole(cardId: String, reviewCount: Int): PresentationRole {
+    if (reviewCount == 0) return PresentationRole.Recognize
+    val flip = (reviewCount + (fnv1a64(cardId) % 2uL).toInt()) % 2 == 1
+    return if (flip) PresentationRole.Recognize else PresentationRole.Produce
+}
+
+/**
+ * The target form to PROMPT on a recognition review: rotates deterministically
+ * through canonical text + synonyms at zero extra scheduling cost. First
+ * exposure always prompts the canonical text; afterwards the index advances
+ * once per recognition review (recognition happens every other review, so
+ * `reviewCount / 2` is parity-independent), offset per card by the id hash.
+ * Variants never rotate (accept/display-only). Produce prompts ignore this.
+ */
+fun recognitionPromptForm(card: Card, reviewCount: Int): String {
+    val forms = listOf(card.target.text) + card.target.synonyms
+    if (forms.size == 1 || reviewCount == 0) return forms.first()
+    val offset = (fnv1a64(card.id) % forms.size.toULong()).toInt()
+    return forms[(reviewCount / 2 + offset) % forms.size]
+}
+
+/**
+ * Emoji policy: visible iff (first exposure) OR (role == Produce && phase ==
+ * Learning). Hidden on recognition measurement reviews (it depicts the answer)
+ * and from Review/Relearning on (v1's hide-after-learning rule).
+ */
+fun emojiVisible(role: PresentationRole, phase: CardPhase, reviewCount: Int): Boolean =
+    reviewCount == 0 || (role == PresentationRole.Produce && phase == CardPhase.Learning)
+
+/**
+ * FNV-1a 64-bit over UTF-8 — bit-exact port of v1's `BoxEngine.stableHash`
+ * (deterministic across platforms sharing state; never a runtime-seeded hash).
+ */
+internal fun fnv1a64(text: String): ULong {
+    var hash = 0xcbf29ce484222325uL
+    for (byte in text.encodeToByteArray()) {
+        hash = hash xor byte.toUByte().toULong()
+        hash *= 0x100000001b3uL
+    }
+    return hash
+}

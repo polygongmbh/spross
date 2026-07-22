@@ -2,9 +2,9 @@ package net.spross.kern.box
 
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
+import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.DayStats
 import net.spross.kern.model.JoinStamp
-import net.spross.kern.model.UnitScheduling
 
 /**
  * In-memory box aggregate for one TARGET language under the current (source, target) join.
@@ -18,11 +18,11 @@ data class BoxState(
     val cards: Map<String, Card>,
     /** Identifies the join this state was built against; plans carry it for staleness. */
     val joinStamp: JoinStamp,
-    /** Raw unit schedules keyed by encoded unit key — join-independent. */
-    val scheduling: Map<String, UnitScheduling> = emptyMap(),
-    /** User priority queue of CONCEPT ids, front first. */
+    /** ONE schedule per card, keyed by card id — join-independent. */
+    val scheduling: Map<String, CardScheduling> = emptyMap(),
+    /** User priority queue of card ids, front first. */
     val enqueued: List<String> = emptyList(),
-    /** dayKey → concepts introduced (produce intros); pruned to trailing 60 days. */
+    /** dayKey → cards introduced; pruned to trailing 60 days. */
     val newIntroduced: Map<String, Int> = emptyMap(),
     /** dayKey → aggregates; never pruned. */
     val dailyStats: Map<String, DayStats> = emptyMap(),
@@ -31,14 +31,13 @@ data class BoxState(
 enum class AnswerStatus {
     /** The answer was recorded as an FSRS review (or an introduction). */
     Applied,
-    /** Unknown or non-joining unit key — a defined no-op the UI skips past. */
-    StaleUnit,
+    /** Unknown or non-joining card id — a defined no-op the UI skips past. */
+    StaleCard,
     /** Introduction refused: the learning pool is full (defensive re-check). */
     DroppedPoolFull,
     /**
-     * Introduction refused: the unit is not introducible under the current state
-     * (recognize eligibility lag, phrase unlock) — defensive re-check; plans outlive
-     * phase changes.
+     * Introduction refused: the card is not introducible under the current state
+     * (locked phrase) — defensive re-check; plans outlive phase changes.
      */
     DroppedIneligible,
 }

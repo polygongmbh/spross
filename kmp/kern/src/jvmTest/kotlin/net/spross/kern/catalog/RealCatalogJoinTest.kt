@@ -2,7 +2,6 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
-import net.spross.kern.model.ExerciseUnits
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -75,7 +74,6 @@ class RealCatalogJoinTest {
             val card = cards.byId(id)
             assertEquals(CardKind.Phrase, card.kind)
             assertEquals(emptyList(), card.components)
-            assertEquals(1, ExerciseUnits.of(card).size)
         }
     }
 
@@ -98,17 +96,16 @@ class RealCatalogJoinTest {
     }
 
     @Test
-    fun ukSynonymsExpandVariantsDoNot() {
+    fun ukSynonymsRotateVariantsStaySilent() {
         val cards = catalog.join("de", "uk")
-        assertEquals(
-            listOf("work/boss|produce", "work/boss|recognize|шеф", "work/boss|recognize|керівник"),
-            ExerciseUnits.of(cards.byId("work/boss")).map { it.key },
-        )
-        // договір carries variant контракт — accepted in grading, never scheduled.
-        assertEquals(
-            listOf("work/contract|produce", "work/contract|recognize|договір"),
-            ExerciseUnits.of(cards.byId("work/contract")).map { it.key },
-        )
+        // Synonyms join the recognition-prompt rotation; variants are grading-only.
+        val boss = cards.byId("work/boss")
+        assertEquals("шеф", boss.target.text)
+        assertEquals(listOf("керівник"), boss.target.synonyms)
+        val contract = cards.byId("work/contract")
+        assertEquals("договір", contract.target.text)
+        assertTrue(contract.target.synonyms.isEmpty())
+        assertEquals(listOf("контракт"), contract.target.variants)
     }
 
     @Test

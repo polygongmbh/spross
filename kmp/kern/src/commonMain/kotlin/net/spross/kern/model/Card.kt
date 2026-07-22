@@ -7,9 +7,9 @@ data class Realization(
     val lang: Language,
     /** Canonical answer/display form. */
     val text: String,
-    /** Distinct-knowledge alternates — schedule-worthy, each gets its own recognize unit. */
+    /** Distinct-knowledge alternates — rotate through recognition prompts, all accepted. */
     val synonyms: List<String> = emptyList(),
-    /** Accepted surface forms of the same knowledge — grading/display only, never scheduled. */
+    /** Accepted surface forms of the same knowledge — grading/display only, never prompted. */
     val variants: List<String> = emptyList(),
     /** Language-specific bare facts (de `gender`/`plural`, …). */
     val grammar: Map<String, String> = emptyMap(),

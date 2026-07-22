@@ -10,11 +10,11 @@ import net.spross.kern.store.StoreJson
 import net.spross.kern.store.dayStatsDto
 
 /**
- * Phone-side builder of the iOS widget snapshot (contract §7). The widget extension is
+ * Phone-side builder of the iOS widget snapshot. The widget extension is
  * decode-only Swift (no catalog in its bundle, tight memory cap), so everything it
  * renders is pre-resolved here on every persist; only `dueCount(now)`,
  * `averageRetrievability(now)`, and the streak walk run at render time, fed by
- * [WidgetUnitDto]/dailyStats.
+ * [WidgetCardDto]/dailyStats.
  */
 object WidgetSnapshotBuilder {
     const val SCHEMA_VERSION: Int = 1
@@ -42,10 +42,10 @@ object WidgetSnapshotBuilder {
                 articleTint = articleTint(card),
             )
         }
-        val units = Inventory.active(state).mapNotNull { sched ->
+        val cards = Inventory.active(state).mapNotNull { sched ->
             val memory = sched.memory ?: return@mapNotNull null
             val due = sched.due ?: return@mapNotNull null
-            WidgetUnitDto(
+            WidgetCardDto(
                 cardId = sched.cardId,
                 due = due.toEpochMilliseconds(),
                 stability = memory.stability,
@@ -58,7 +58,7 @@ object WidgetSnapshotBuilder {
         return WidgetSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             entries = entries,
-            units = units,
+            cards = cards,
             dailyStats = tailKeys.associateWith { dayStatsDto(state.dailyStats.getValue(it)) },
         )
     }
@@ -68,10 +68,10 @@ object WidgetSnapshotBuilder {
 @Serializable
 internal data class WidgetSnapshotDoc(
     val schemaVersion: Int,
-    /** Pre-resolved exposure rows, deduped by card, most attention-worthy first. */
+    /** Pre-resolved exposure rows, most attention-worthy first. */
     val entries: List<WidgetEntryDto>,
-    /** Every active unit — render-time dueCount/averageRetrievability inputs. */
-    val units: List<WidgetUnitDto>,
+    /** Every active card schedule — render-time dueCount/averageRetrievability inputs. */
+    val cards: List<WidgetCardDto>,
     /** Trailing [WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS] day keys. */
     val dailyStats: Map<String, DayStatsDto>,
 )
@@ -87,12 +87,12 @@ internal data class WidgetEntryDto(
 )
 
 /**
- * One active unit. `dueCount(now)` = distinct [cardId] with `due <= now` (concept
- * denomination); retrievability averages the FSRS power curve over [review] units
- * with elapsed = now − [lastReview].
+ * One active card schedule. `dueCount(now)` = cards with `due <= now`;
+ * retrievability averages the FSRS power curve over [review] cards with
+ * elapsed = now − [lastReview].
  */
 @Serializable
-internal data class WidgetUnitDto(
+internal data class WidgetCardDto(
     val cardId: String,
     val due: Long,
     val stability: Double,

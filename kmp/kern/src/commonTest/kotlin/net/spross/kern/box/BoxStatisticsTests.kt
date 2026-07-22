@@ -8,9 +8,8 @@ import kotlin.test.assertTrue
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.DayStats
 import net.spross.kern.model.Rating
-import net.spross.kern.model.Role
 
-/** Statistics: streak forgiveness, session end fold + prune, concept denomination. */
+/** Statistics: streak forgiveness, session end fold + prune, headline counts. */
 class BoxStatisticsTests {
     private val now = Box.day1
 
@@ -45,7 +44,7 @@ class BoxStatisticsTests {
     @Test
     fun endSessionFoldsDayStatsAndPrunesNewIntroduced() {
         var state = Box.state((1..3).map { Box.word(it) })
-        state = Box.answered(state, Box.produce("w01"), Rating.Easy, now)
+        state = Box.answered(state, "w01", Rating.Easy, now)
         state = state.copy(
             newIntroduced = state.newIntroduced +
                 mapOf("2026-01-01" to 4, "2026-06-30" to 2), // stale vs yesterday
@@ -76,38 +75,6 @@ class BoxStatisticsTests {
         assertEquals(8, stats.newSlotsAvailable) // empty learning pool, default maxLearning
         val avg = assertNotNull(stats.averageRetrievability)
         assertTrue(avg > 0 && avg <= 1)
-    }
-
-    // Denomination: headline counts are per CONCEPT even with several scheduled units.
-    @Test
-    fun headlineCountsAreConceptDenominated() {
-        val base = Box.state(listOf(Box.word(1, synonyms = listOf("s1"))))
-        var state = Box.inject(base, Box.sched("w01", dueMillis = now - 60_000, lastReviewMillis = now))
-        state = Box.inject(
-            state,
-            Box.sched("w01", role = Role.Recognize, form = "t1", phase = CardPhase.Learning, dueMillis = now - 30_000, lastReviewMillis = now),
-        )
-        state = Box.inject(
-            state,
-            Box.sched("w01", role = Role.Recognize, form = "s1", dueMillis = Box.plusDays(now, 1.0), lastReviewMillis = now),
-        )
-
-        val stats = BoxEngine.statistics(state, now, Box.TZ)
-        assertEquals(1, stats.activeCount)
-        assertEquals(1, stats.dueCount)
-        assertEquals(0, stats.suspendedCount)
-
-        // Partially suspended → still active, not suspended-counted.
-        val partial = BoxEngine.setSuspended(state, Box.produce("w01"), true)
-        assertEquals(1, BoxEngine.statistics(partial, now, Box.TZ).activeCount)
-        assertEquals(0, BoxEngine.statistics(partial, now, Box.TZ).suspendedCount)
-
-        // All units suspended → fully out of rotation.
-        var full = partial
-        full = BoxEngine.setSuspended(full, Box.recognize("w01", "t1"), true)
-        full = BoxEngine.setSuspended(full, Box.recognize("w01", "s1"), true)
-        assertEquals(0, BoxEngine.statistics(full, now, Box.TZ).activeCount)
-        assertEquals(1, BoxEngine.statistics(full, now, Box.TZ).suspendedCount)
     }
 
     @Test

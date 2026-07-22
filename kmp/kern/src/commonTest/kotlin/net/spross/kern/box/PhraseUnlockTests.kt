@@ -6,7 +6,7 @@ import kotlin.test.assertTrue
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Rating
 
-/** Phrase unlock fast path — gate on component `id|produce` schedules, by key. */
+/** Phrase unlock fast path — gate on component schedules, raw by card id. */
 class PhraseUnlockTests {
     private val now = Box.day1
 
@@ -24,36 +24,32 @@ class PhraseUnlockTests {
         // Locked while components are unscheduled: the phrase is never proposed.
         val plan1 = Box.candidates(state)
         assertTrue(plan1.unlockedPhrases.isEmpty())
-        assertEquals(listOf("w01", "w02", "w03").map(Box::produce), plan1.newUnits)
+        assertEquals(listOf("w01", "w02", "w03"), plan1.newCards)
 
         // Easy graduates straight to Review with stability 8.2956 ≥ 2.0.
-        state = Box.answered(state, Box.produce("w01"), Rating.Easy, now)
+        state = Box.answered(state, "w01", Rating.Easy, now)
 
         // One stable component is not enough — ALL must be stable.
         assertTrue(Box.candidates(state).unlockedPhrases.isEmpty())
 
-        state = Box.answered(state, Box.produce("w02"), Rating.Easy, now)
+        state = Box.answered(state, "w02", Rating.Easy, now)
         val plan3 = Box.candidates(state)
-        assertEquals(listOf(Box.produce("p1")), plan3.unlockedPhrases)
-        // The unlocked phrase consumes the concept budget ahead of seed-order growth
-        // (recognize backfill of the graduated components follows).
-        assertEquals(
-            listOf(Box.recognize("w01", "t1"), Box.recognize("w02", "t2"), Box.produce("w03")),
-            plan3.newUnits,
-        )
+        assertEquals(listOf("p1"), plan3.unlockedPhrases)
+        // The unlocked phrase consumes the pool budget ahead of seed-order growth.
+        assertEquals(listOf("w03"), plan3.newCards)
     }
 
     @Test
     fun suspendedComponentBlocksUnlock() {
         var state = seeded()
-        state = Box.answered(state, Box.produce("w01"), Rating.Easy, now)
-        state = Box.answered(state, Box.produce("w02"), Rating.Easy, now)
-        state = BoxEngine.setSuspended(state, Box.produce("w01"), true)
+        state = Box.answered(state, "w01", Rating.Easy, now)
+        state = Box.answered(state, "w02", Rating.Easy, now)
+        state = BoxEngine.setSuspended(state, "w01", true)
         assertTrue(Box.candidates(state).unlockedPhrases.isEmpty())
 
         // Reviving the component restores eligibility.
-        state = BoxEngine.setSuspended(state, Box.produce("w01"), false)
-        assertEquals(listOf(Box.produce("p1")), Box.candidates(state).unlockedPhrases)
+        state = BoxEngine.setSuspended(state, "w01", false)
+        assertEquals(listOf("p1"), Box.candidates(state).unlockedPhrases)
     }
 
     @Test
@@ -66,7 +62,7 @@ class PhraseUnlockTests {
 
         // FSRS-6 recalibrated threshold: 2.0 unlocks.
         state = Box.inject(state, Box.sched("w02", stability = 2.0, dueMillis = future, lastReviewMillis = now))
-        assertEquals(listOf(Box.produce("p1")), Box.candidates(state).unlockedPhrases)
+        assertEquals(listOf("p1"), Box.candidates(state).unlockedPhrases)
     }
 
     @Test
@@ -91,9 +87,6 @@ class PhraseUnlockTests {
         )
         val plan = Box.candidates(state)
         assertTrue(plan.unlockedPhrases.isEmpty())
-        assertEquals(
-            listOf(Box.produce("w01"), Box.produce("w02"), Box.produce("p-empty")),
-            plan.newUnits,
-        )
+        assertEquals(listOf("w01", "w02", "p-empty"), plan.newCards)
     }
 }

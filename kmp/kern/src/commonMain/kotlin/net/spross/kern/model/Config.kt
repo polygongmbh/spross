@@ -1,30 +1,30 @@
 package net.spross.kern.model
 
 /**
- * Product box configuration. Denomination:
- * [maxLearning] counts CONCEPTS; [sessionCap]/[dueSoftCap] count UNITS (answer events).
+ * Product box configuration — v1 calibration (one schedule per card, so every
+ * count is denominated in CARDS).
  */
 data class BoxConfig(
-    /** Target size of the learning pool, in concepts with any unit in learning. */
+    /** Target size of the learning pool, in cards in Learning phase. */
     val maxLearning: Int = 8,
-    /** Session size in units. */
+    /** Session size in cards. */
     val sessionCap: Int = 30,
-    /** Backlog health threshold in units (≈ v1's 30-card backlog in concept terms). */
-    val dueSoftCap: Int = 60,
+    /** Backlog health threshold in cards. */
+    val dueSoftCap: Int = 30,
     val desiredRetention: Double = 0.8,
     val maximumIntervalDays: Int = 365,
     /** Days of component stability required before a phrase unlocks (FSRS-6 recalibrated). */
     val phraseUnlockStability: Double = 2.0,
-    /** Learning steps in seconds. */
+    /** Learning steps in seconds (FSRS-6 reference default). */
     val learningStepsSeconds: List<Long> = listOf(60L, 600L),
-    /** Relearning steps in seconds — [60] preserves v1's in-session retry. */
-    val relearningStepsSeconds: List<Long> = listOf(60L),
+    /**
+     * Relearning steps in seconds — FSRS-6 reference default; no in-session
+     * lapse retry (breadth ruling 2026-07-22).
+     */
+    val relearningStepsSeconds: List<Long> = listOf(600L),
 )
 
-/**
- * Per-day aggregates. reviews = answer events (units); introduced = concepts
- * (produce introductions); activeCount = concepts.
- */
+/** Per-day aggregates; every count is in cards (reviews = answer events). */
 data class DayStats(
     val reviews: Int = 0,
     val introduced: Int = 0,

@@ -2,8 +2,6 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
-import net.spross.kern.model.ExerciseUnits
-import net.spross.kern.model.Role
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -132,54 +130,14 @@ class CatalogFixtureTest {
         assertEquals(emptyList(), catalog.join("de", "sw").byId("alpha/hello").components)
     }
 
-    // -- unit expansion ----------------------------------------------------------------
+    // -- rotation forms ----------------------------------------------------------------
 
     @Test
-    fun phrasesNeverGetRecognizeUnits() {
-        val units = ExerciseUnits.of(catalog.join("sw", "de").byId("alpha/the-mouse-runs"))
-        assertEquals(listOf(Role.Produce), units.map { it.role })
-        assertEquals("alpha/the-mouse-runs|produce", units.single().key)
-    }
-
-    @Test
-    fun synonymsExpandToOwnRecognizeUnitsVariantsDoNot() {
-        val units = ExerciseUnits.of(catalog.join("de", "uk").byId("alpha/mouse"))
-        assertEquals(
-            listOf(
-                "alpha/mouse|produce",
-                "alpha/mouse|recognize|миша",
-                "alpha/mouse|recognize|мишеня",
-            ),
-            units.map { it.key },
-        )
-        assertEquals(listOf(0, 0, 1), units.map { it.formIndex })
-    }
-
-    @Test
-    fun recognizeFormKeysAreNfcNormalizedAndCollapsed() {
-        val units = ExerciseUnits.of(catalog.join("sw", "de").byId("gamma/door"))
-        // Catalog text is decomposed u+combining-diaeresis; keys must be precomposed NFC.
-        assertEquals("gamma/door|recognize|Tür", units[1].key)
-        assertEquals("gamma/door|recognize|die Türe", units[2].key)
-    }
-
-    @Test
-    fun unitOrderPinsSeedCardRoleForm() {
-        val units = catalog.join("de", "uk").flatMap { ExerciseUnits.of(it) }
-        val sorted = units.shuffled().sortedWith(ExerciseUnits.order)
-        assertEquals(units.map { it.key }, sorted.map { it.key })
-        // produce leads its card's recognize units; cards follow seed order.
-        assertEquals(
-            listOf(
-                "alpha/waiter|produce", "alpha/waiter|recognize|офіціант",
-                "alpha/waiter-f|produce", "alpha/waiter-f|recognize|офіціантка",
-                "alpha/mouse|produce", "alpha/mouse|recognize|миша", "alpha/mouse|recognize|мишеня",
-                "alpha/the-mouse-sprints|produce",
-                "beta/royal-f|produce", "beta/royal-f|recognize|княгиня",
-                "gamma/door|produce", "gamma/door|recognize|двері",
-            ),
-            sorted.map { it.key },
-        )
+    fun synonymsJoinTheRotationVariantsDoNot() {
+        val mouse = catalog.join("de", "uk").byId("alpha/mouse")
+        assertEquals("миша", mouse.target.text)
+        assertEquals(listOf("мишеня"), mouse.target.synonyms)
+        assertEquals(listOf("мишка"), mouse.target.variants) // grading/display only
     }
 
     // -- catalog surface ---------------------------------------------------------------

@@ -53,7 +53,7 @@ class DayKeyTests {
     fun introductionAndSessionFoldUseCallerZone() {
         var state = Box.state(listOf(Box.word(1)))
         val lateUtc = Box.millis(2026, 7, 1, 23, 30) // already July 2 in Kiritimati
-        val outcome = BoxEngine.answer(state, Box.produce("w01"), Rating.Good, lateUtc, "Pacific/Kiritimati")
+        val outcome = BoxEngine.answer(state, "w01", Rating.Good, lateUtc, "Pacific/Kiritimati")
         assertEquals(AnswerStatus.Applied, outcome.status)
         state = outcome.state
         assertEquals(1, state.newIntroduced["2026-07-02"])

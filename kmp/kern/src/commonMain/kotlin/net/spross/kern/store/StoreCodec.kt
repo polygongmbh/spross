@@ -8,10 +8,10 @@ import kotlinx.serialization.json.JsonObject
 import net.spross.kern.box.BoxState
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
+import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.DayStats
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Language
-import net.spross.kern.model.UnitScheduling
 
 /** A persisted box document could not be decoded (corruption or schema drift). */
 class StoreFormatException(message: String) : Exception(message)
@@ -25,7 +25,7 @@ data class DecodedBox(
     val target: Language,
     val source: Language,
     val config: BoxConfig,
-    val scheduling: Map<String, UnitScheduling>,
+    val scheduling: Map<String, CardScheduling>,
     val enqueued: List<String>,
     val newIntroduced: Map<String, Int>,
     val dailyStats: Map<String, DayStats>,
@@ -45,7 +45,7 @@ data class DecodedBox(
 /**
  * The narrow public store facade (contract §7): one JSON document per TARGET language.
  * Encoding is deterministic — sorted keys, ISO-8601 UTC dates — so identical states
- * produce identical bytes; decoding validates schema version, unit-key derivation,
+ * produce identical bytes; decoding validates schema version, card-id keys,
  * and the phase/memory/due invariant.
  */
 object StoreCodec {

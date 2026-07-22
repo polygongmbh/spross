@@ -8,14 +8,12 @@ import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
+import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.MemoryState
 import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
 import net.spross.kern.model.ReviewLogEntry
-import net.spross.kern.model.Role
-import net.spross.kern.model.UnitKey
-import net.spross.kern.model.UnitScheduling
 
 /** Shared builders for box-engine scenario tests — fixed UTC clock, hand-built joins. */
 internal object Box {
@@ -37,12 +35,13 @@ internal object Box {
         area: String = "area1",
         kind: CardKind = CardKind.Noun,
         synonyms: List<String> = emptyList(),
+        variants: List<String> = emptyList(),
     ): Card = Card(
         id = "w" + n.toString().padStart(2, '0'),
         kind = kind, area = area, emoji = null, seedIndex = n,
         components = emptyList(), feminineOf = null,
         source = Realization(lang = "de", text = "g$n"),
-        target = Realization(lang = "sw", text = "t$n", synonyms = synonyms),
+        target = Realization(lang = "sw", text = "t$n", synonyms = synonyms, variants = variants),
         promptFeminineMarker = false,
     )
 
@@ -59,7 +58,7 @@ internal object Box {
         promptFeminineMarker = false,
     )
 
-    fun config(maxLearning: Int = 8, dueSoftCap: Int = 60, sessionCap: Int = 30): BoxConfig =
+    fun config(maxLearning: Int = 8, dueSoftCap: Int = 30, sessionCap: Int = 30): BoxConfig =
         BoxConfig(maxLearning = maxLearning, dueSoftCap = dueSoftCap, sessionCap = sessionCap)
 
     val stamp = JoinStamp("de", "sw", "fixture")
@@ -67,22 +66,19 @@ internal object Box {
     fun state(cards: List<Card>, config: BoxConfig = config()): BoxState =
         BoxEngine.bootstrap(cards, config, stamp)
 
-    fun produce(id: String): String = UnitKey.produce(id).encoded
-    fun recognize(id: String, form: String): String = UnitKey.recognize(id, form).encoded
-
-    /** Hand-crafted schedule entry for scenario setup (produce by default). */
+    /** Hand-crafted schedule entry for scenario setup (Review phase by default). */
     fun sched(
         cardId: String,
-        role: Role = Role.Produce,
-        form: String? = null,
         phase: CardPhase = CardPhase.Review,
         stability: Double = 10.0,
         dueMillis: Long,
         lastReviewMillis: Long,
         lapses: Int = 0,
         suspended: Boolean = false,
-    ): UnitScheduling = UnitScheduling(
-        cardId = cardId, role = role, form = form,
+        /** Review-log length — presentation-role input ([net.spross.kern.model.presentationRole]). */
+        logCount: Int = 1,
+    ): CardScheduling = CardScheduling(
+        cardId = cardId,
         addedAt = instant(lastReviewMillis),
         phase = phase,
         stepIndex = if (phase == CardPhase.Learning || phase == CardPhase.Relearning) 0 else null,
@@ -90,17 +86,17 @@ internal object Box {
         due = instant(dueMillis),
         lapses = lapses,
         suspended = suspended,
-        log = listOf(ReviewLogEntry(instant(lastReviewMillis), Rating.Good, 1.0)),
+        log = List(logCount) { ReviewLogEntry(instant(lastReviewMillis), Rating.Good, 1.0) },
     )
 
-    fun inject(state: BoxState, entry: UnitScheduling): BoxState =
-        state.copy(scheduling = state.scheduling + (entry.key to entry))
+    fun inject(state: BoxState, entry: CardScheduling): BoxState =
+        state.copy(scheduling = state.scheduling + (entry.cardId to entry))
 
     /** Answer asserting the outcome applied. */
-    fun answered(state: BoxState, unitKey: String, rating: Rating, nowMillis: Long): BoxState {
-        val outcome = BoxEngine.answer(state, unitKey, rating, nowMillis, TZ)
+    fun answered(state: BoxState, cardId: String, rating: Rating, nowMillis: Long): BoxState {
+        val outcome = BoxEngine.answer(state, cardId, rating, nowMillis, TZ)
         check(outcome.status == AnswerStatus.Applied) {
-            "expected Applied for $unitKey, got ${outcome.status}"
+            "expected Applied for $cardId, got ${outcome.status}"
         }
         return outcome.state
     }
@@ -112,8 +108,8 @@ internal object Box {
         capacity: Int = state.config.sessionCap,
     ): NewCandidates = Growth.newCandidates(
         state,
-        conceptBudget = Growth.learningPoolBudget(state),
+        budget = Growth.learningPoolBudget(state),
         gateOpen = Growth.healthGateOpen(state, nowMillis),
-        capacityUnits = capacity,
+        capacity = capacity,
     )
 }

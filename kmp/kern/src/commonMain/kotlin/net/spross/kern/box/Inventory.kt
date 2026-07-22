@@ -1,52 +1,45 @@
 package net.spross.kern.box
 
 import kotlin.time.Instant
+import net.spross.kern.model.Card
 import net.spross.kern.model.CardPhase
-import net.spross.kern.model.ExerciseUnit
-import net.spross.kern.model.ExerciseUnits
-import net.spross.kern.model.UnitScheduling
+import net.spross.kern.model.CardScheduling
 
 /**
- * Join-filtered unit inventory. Composition, dueNow, statistics, and exposure all read
+ * Join-filtered card inventory. Composition, dueNow, statistics, and exposure all read
  * through here; only the phrase-unlock gate and `answer()` history reads touch
- * `state.scheduling` raw by key.
+ * `state.scheduling` raw by card id.
  */
 internal object Inventory {
 
-    /** Every exercise unit of the current join, in pinned unit order. */
-    fun joinedUnits(state: BoxState): List<ExerciseUnit> =
-        state.cards.values.flatMap(ExerciseUnits::of).sortedWith(ExerciseUnits.order)
+    /** Pinned card order — map iteration order never leaks. */
+    val seedOrder: Comparator<Card> = compareBy({ it.seedIndex }, { it.id })
 
-    fun joinedUnitKeys(state: BoxState): Set<String> =
-        state.cards.values.flatMap(ExerciseUnits::of).mapTo(mutableSetOf()) { it.key }
+    /** Every card of the current join, in seed order. */
+    fun joinedCards(state: BoxState): List<Card> =
+        state.cards.values.sortedWith(seedOrder)
 
-    /** Schedules whose unit exists under the current join, sorted by key (deterministic). */
-    fun scheduled(state: BoxState): List<UnitScheduling> {
-        val joined = joinedUnitKeys(state)
-        return state.scheduling.entries
-            .filter { it.key in joined }
+    /** Schedules whose card exists under the current join, sorted by id (deterministic). */
+    fun scheduled(state: BoxState): List<CardScheduling> =
+        state.scheduling.entries
+            .filter { it.key in state.cards }
             .sortedBy { it.key }
             .map { it.value }
-    }
 
-    fun active(state: BoxState): List<UnitScheduling> =
+    fun active(state: BoxState): List<CardScheduling> =
         scheduled(state).filter { !it.suspended }
 
-    /** Active units with `due <= now`, oldest first, ties broken by unit key. */
-    fun due(state: BoxState, nowEpochMillis: Long): List<UnitScheduling> {
+    /** Active cards with `due <= now`, oldest first, ties broken by card id. */
+    fun due(state: BoxState, nowEpochMillis: Long): List<CardScheduling> {
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         return active(state)
             .filter { it.due != null && it.due <= now }
-            .sortedWith(compareBy({ it.due }, { it.key }))
+            .sortedWith(compareBy({ it.due }, { it.cardId }))
     }
 
-    /** Concepts holding a learning-pool slot: any joined active unit in Learning phase. */
-    fun conceptsInFlight(state: BoxState): Set<String> =
+    /** Cards holding a learning-pool slot: joined, active, Learning phase. */
+    fun cardsInLearning(state: BoxState): Set<String> =
         active(state)
             .filter { it.phase == CardPhase.Learning }
             .mapTo(mutableSetOf()) { it.cardId }
-
-    /** Concepts with at least one active unit — the user-facing "active" denomination. */
-    fun activeConceptCount(state: BoxState): Int =
-        active(state).mapTo(mutableSetOf()) { it.cardId }.size
 }

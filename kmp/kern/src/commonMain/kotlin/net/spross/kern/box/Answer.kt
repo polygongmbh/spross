@@ -9,14 +9,11 @@ import net.spross.kern.fsrs.FsrsScheduler
 import net.spross.kern.fsrs.SchedulerOutcome
 import net.spross.kern.fsrs.SchedulerState
 import net.spross.kern.model.BoxConfig
+import net.spross.kern.model.Card
 import net.spross.kern.model.CardPhase
-import net.spross.kern.model.ExerciseUnit
-import net.spross.kern.model.ExerciseUnits
+import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.Rating
 import net.spross.kern.model.ReviewLogEntry
-import net.spross.kern.model.Role
-import net.spross.kern.model.UnitKey
-import net.spross.kern.model.UnitScheduling
 
 internal const val LEECH_LAPSE_THRESHOLD = 8
 
@@ -28,81 +25,70 @@ internal fun BoxConfig.fsrsParameters(): FsrsParameters = FsrsParameters(
     relearningStepsSeconds = relearningStepsSeconds,
 )
 
-// Answering: every answer event is an FSRS review; introduction = first answer of a UNIT.
+// Answering: every answer event is an FSRS review — production and recognition
+// presentations feed the same schedule. Introduction = the card's first answer.
 
 internal object Answering {
 
     fun answer(
         state: BoxState,
-        unitKey: String,
+        cardId: String,
         rating: Rating,
         nowEpochMillis: Long,
         tzId: String,
     ): AnswerOutcome {
-        val parsed = UnitKey.parse(unitKey) ?: return AnswerOutcome(state, AnswerStatus.StaleUnit)
-        val card = state.cards[parsed.cardId] ?: return AnswerOutcome(state, AnswerStatus.StaleUnit)
-        val unit = ExerciseUnits.of(card).firstOrNull { it.key == unitKey }
-            ?: return AnswerOutcome(state, AnswerStatus.StaleUnit)
+        val card = state.cards[cardId] ?: return AnswerOutcome(state, AnswerStatus.StaleCard)
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         val scheduler = FsrsScheduler(state.config.fsrsParameters())
-        val existing = state.scheduling[unitKey]
+        val existing = state.scheduling[cardId]
         return if (existing?.memory != null) {
             val next = reviewed(existing, rating, scheduler, now)
             AnswerOutcome(
-                state.copy(scheduling = state.scheduling + (unitKey to next)),
+                state.copy(scheduling = state.scheduling + (cardId to next)),
                 AnswerStatus.Applied,
             )
         } else {
-            introduce(state, unit, parsed, existing, rating, scheduler, now, nowEpochMillis, tzId)
+            introduce(state, card, existing, rating, scheduler, now, nowEpochMillis, tzId)
         }
     }
 
-    // why: eligibility and the concept budget are re-checked at answer time (plans
-    // outlive phase changes and may straddle midnight) — composition-only enforcement
-    // would let recognize units free-ride in before their produce unit graduates.
-    // Units of concepts already in flight ride free — they don't grow the pool.
+    // why: eligibility and the pool budget are re-checked at answer time (plans
+    // outlive phase changes and may straddle midnight) — composition-only
+    // enforcement would let a stale plan introduce a still-locked phrase.
     private fun introduce(
         state: BoxState,
-        unit: ExerciseUnit,
-        parsed: UnitKey,
-        existing: UnitScheduling?,
+        card: Card,
+        existing: CardScheduling?,
         rating: Rating,
         scheduler: FsrsScheduler,
         now: Instant,
         nowEpochMillis: Long,
         tzId: String,
     ): AnswerOutcome {
-        if (!Growth.isIntroducible(state, unit)) {
+        if (!Growth.isIntroducible(state, card)) {
             return AnswerOutcome(state, AnswerStatus.DroppedIneligible)
         }
-        val inFlight = parsed.cardId in Inventory.conceptsInFlight(state)
-        if (!inFlight && Growth.learningPoolBudget(state) <= 0) {
+        if (Growth.learningPoolBudget(state) <= 0) {
             return AnswerOutcome(state, AnswerStatus.DroppedPoolFull)
         }
         val outcome = scheduler.review(SchedulerState(), 0.0, rating)
-        val base = existing ?: UnitScheduling(
-            cardId = parsed.cardId, role = parsed.role, form = parsed.form, addedAt = now,
-        )
+        val base = existing ?: CardScheduling(cardId = card.id, addedAt = now)
         val sched = applied(base, outcome, rating, now, elapsedDays = 0.0)
-        var next = state.copy(scheduling = state.scheduling + (sched.key to sched))
-        if (parsed.role == Role.Produce) {
-            // A concept counts introduced (and dequeues) at its PRODUCE introduction only.
-            val day = dayKey(nowEpochMillis, tzId)
-            val introducedToday = (next.newIntroduced[day] ?: 0) + 1
-            next = next.copy(
-                newIntroduced = next.newIntroduced + (day to introducedToday),
-                enqueued = next.enqueued.filter { it != parsed.cardId },
-            )
-        }
+        val day = dayKey(nowEpochMillis, tzId)
+        val next = state.copy(
+            scheduling = state.scheduling + (card.id to sched),
+            newIntroduced = state.newIntroduced + (day to (state.newIntroduced[day] ?: 0) + 1),
+            enqueued = state.enqueued.filter { it != card.id },
+        )
         return AnswerOutcome(next, AnswerStatus.Applied)
     }
 
     private fun reviewed(
-        existing: UnitScheduling,
+        existing: CardScheduling,
         rating: Rating,
         scheduler: FsrsScheduler,
         now: Instant,
-    ): UnitScheduling {
+    ): CardScheduling {
         // why: elapsed comes from the last answer, never from `due` — overdue reviews
         // must credit the real elapsed time.
         val last = existing.log.lastOrNull()?.date ?: existing.addedAt
@@ -120,12 +106,12 @@ internal object Answering {
     }
 
     private fun applied(
-        base: UnitScheduling,
+        base: CardScheduling,
         outcome: SchedulerOutcome,
         rating: Rating,
         now: Instant,
         elapsedDays: Double,
-    ): UnitScheduling = base.copy(
+    ): CardScheduling = base.copy(
         phase = outcome.phase,
         stepIndex = outcome.stepIndex,
         memory = outcome.memory,

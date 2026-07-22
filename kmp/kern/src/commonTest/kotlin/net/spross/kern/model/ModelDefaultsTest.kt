@@ -2,6 +2,7 @@ package net.spross.kern.model
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -13,12 +14,13 @@ class ModelDefaultsTest {
         val config = BoxConfig()
         assertEquals(8, config.maxLearning)
         assertEquals(30, config.sessionCap)
-        assertEquals(60, config.dueSoftCap)
+        assertEquals(30, config.dueSoftCap)
         assertEquals(0.8, config.desiredRetention)
         assertEquals(365, config.maximumIntervalDays)
         assertEquals(2.0, config.phraseUnlockStability)
+        // FSRS-6 reference step defaults — no in-session lapse retry.
         assertEquals(listOf(60L, 600L), config.learningStepsSeconds)
-        assertEquals(listOf(60L), config.relearningStepsSeconds)
+        assertEquals(listOf(600L), config.relearningStepsSeconds)
     }
 
     @Test
@@ -32,32 +34,33 @@ class ModelDefaultsTest {
     }
 
     @Test
-    fun roleRanksPinProduceFirst() {
-        assertEquals(0, Role.Produce.rank)
-        assertEquals(1, Role.Recognize.rank)
-        assertEquals("produce", Role.Produce.keySegment)
-        assertEquals("recognize", Role.Recognize.keySegment)
-    }
-
-    @Test
     fun newSchedulingDefaultsHoldInvariant() {
-        val s = UnitScheduling(
-            cardId = "a/b", role = Role.Produce, addedAt = Instant.fromEpochMilliseconds(0),
-        )
+        val s = CardScheduling(cardId = "a/b", addedAt = Instant.fromEpochMilliseconds(0))
         assertEquals(CardPhase.New, s.phase)
         assertNull(s.memory)
         assertNull(s.due)
         assertEquals(0, s.lapses)
         assertFalse(s.suspended)
         assertTrue(s.log.isEmpty())
+        assertEquals(0, s.reviewCount)
+    }
+
+    @Test
+    fun schedulingRejectsInvalidCardIds() {
+        val addedAt = Instant.fromEpochMilliseconds(0)
+        assertFailsWith<IllegalArgumentException> { CardScheduling(cardId = "", addedAt = addedAt) }
+        // Card ids never contain '|' (v1 reserved it for scheduling keys).
+        assertFailsWith<IllegalArgumentException> {
+            CardScheduling(cardId = "a|produce", addedAt = addedAt)
+        }
     }
 
     @Test
     fun sessionPlanIsEmpty() {
         val stamp = JoinStamp("de", "sw", "0")
         assertTrue(SessionPlan(emptyList(), emptyList(), emptyList(), stamp).isEmpty)
-        assertFalse(SessionPlan(listOf("a|produce"), emptyList(), emptyList(), stamp).isEmpty)
-        assertFalse(SessionPlan(emptyList(), listOf("a|produce"), emptyList(), stamp).isEmpty)
-        assertFalse(SessionPlan(emptyList(), emptyList(), listOf("a|produce"), stamp).isEmpty)
+        assertFalse(SessionPlan(listOf("a/b"), emptyList(), emptyList(), stamp).isEmpty)
+        assertFalse(SessionPlan(emptyList(), listOf("a/b"), emptyList(), stamp).isEmpty)
+        assertFalse(SessionPlan(emptyList(), emptyList(), listOf("a/b"), stamp).isEmpty)
     }
 }

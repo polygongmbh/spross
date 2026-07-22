@@ -10,7 +10,7 @@ import net.spross.kern.model.Rating
 /**
  * Join-filter inventory: schedules and enqueued entries of non-joining cards turn
  * inert on a source switch — never pruned — and revive on switch-back. The phrase
- * unlock gate reads component schedules by key, so phrases stay unlocked.
+ * unlock gate reads component schedules by card id, so phrases stay unlocked.
  */
 class SourceSwitchTests {
     private val now = Box.day1
@@ -35,43 +35,43 @@ class SourceSwitchTests {
     fun nonJoiningSchedulesTurnInertAndReviveOnSwitchBack() {
         val de = studied()
         assertEquals(2, BoxEngine.statistics(de, now, Box.TZ).activeCount)
-        assertEquals(listOf(Box.produce("w01"), Box.produce("w02")), BoxEngine.dueNow(de, now))
+        assertEquals(listOf("w01", "w02"), BoxEngine.dueNow(de, now))
 
         val en = BoxEngine.rejoin(de, enJoin, enStamp)
         assertEquals(enStamp, en.joinStamp)
         assertEquals(1, BoxEngine.statistics(en, now, Box.TZ).activeCount)
-        assertEquals(listOf(Box.produce("w01")), BoxEngine.dueNow(en, now))
+        assertEquals(listOf("w01"), BoxEngine.dueNow(en, now))
         assertFalse(BoxEngine.exposureCards(en, now, limit = 10).any { it.id == "w02" })
         // Inert, not pruned: the raw schedule survives untouched.
         assertEquals(de.scheduling, en.scheduling)
 
         val back = BoxEngine.rejoin(en, deJoin, Box.stamp)
         assertEquals(2, BoxEngine.statistics(back, now, Box.TZ).activeCount)
-        assertEquals(listOf(Box.produce("w01"), Box.produce("w02")), BoxEngine.dueNow(back, now))
+        assertEquals(listOf("w01", "w02"), BoxEngine.dueNow(back, now))
     }
 
     @Test
-    fun answerOnNonJoiningKeyIsStaleNoop() {
+    fun answerOnNonJoiningIdIsStaleNoop() {
         val en = BoxEngine.rejoin(studied(), enJoin, enStamp)
-        val outcome = BoxEngine.answer(en, Box.produce("w02"), Rating.Good, now, Box.TZ)
-        assertEquals(AnswerStatus.StaleUnit, outcome.status)
+        val outcome = BoxEngine.answer(en, "w02", Rating.Good, now, Box.TZ)
+        assertEquals(AnswerStatus.StaleCard, outcome.status)
         assertEquals(en, outcome.state)
 
-        // Back under the de join the very same key applies again.
+        // Back under the de join the very same id applies again.
         val back = BoxEngine.rejoin(en, deJoin, Box.stamp)
-        val applied = BoxEngine.answer(back, Box.produce("w02"), Rating.Good, now, Box.TZ)
+        val applied = BoxEngine.answer(back, "w02", Rating.Good, now, Box.TZ)
         assertEquals(AnswerStatus.Applied, applied.status)
     }
 
     @Test
     fun phrasesStayUnlockedAcrossSourceSwitch() {
         val de = studied() // w01 + w02 in Review at stability 10 ≥ 2.0
-        assertEquals(listOf(Box.produce("p1")), Box.candidates(de).unlockedPhrases)
+        assertEquals(listOf("p1"), Box.candidates(de).unlockedPhrases)
 
-        // Under en, component w02 does not join — but the gate reads its produce
-        // schedule BY KEY, so p1 stays unlocked.
+        // Under en, component w02 does not join — but the gate reads its schedule
+        // BY CARD ID, so p1 stays unlocked.
         val en = BoxEngine.rejoin(de, enJoin, enStamp)
-        assertEquals(listOf(Box.produce("p1")), Box.candidates(en).unlockedPhrases)
+        assertEquals(listOf("p1"), Box.candidates(en).unlockedPhrases)
     }
 
     @Test
@@ -82,9 +82,9 @@ class SourceSwitchTests {
 
         val en = BoxEngine.rejoin(de, enJoin, enStamp)
         assertEquals(listOf("w02"), en.enqueued) // kept, just not eligible
-        assertFalse(Box.produce("w02") in Box.candidates(en).newUnits)
+        assertFalse("w02" in Box.candidates(en).newCards)
 
         val back = BoxEngine.rejoin(en, deJoin, Box.stamp)
-        assertTrue(Box.candidates(back).newUnits.first() == Box.produce("w02"))
+        assertTrue(Box.candidates(back).newCards.first() == "w02")
     }
 }

@@ -25,15 +25,13 @@ data class ReviewLogEntry(
 )
 
 /**
- * One scheduling unit (one exercise of one card).
+ * ONE schedule per card (user ruling 2026-07-22): production and recognition
+ * reviews alternate as PRESENTATIONS of the same memory — see [presentationRole].
+ * Keyed by [cardId] in every scheduling map.
  * Invariant: `phase == New ⟺ memory == null ⟺ due == null`.
- * cardId/role/form are explicit; the map key is derived ([key]) and validated on decode.
  */
-data class UnitScheduling(
+data class CardScheduling(
     val cardId: String,
-    val role: Role,
-    /** Normalized form key; present iff recognize. */
-    val form: String? = null,
     val addedAt: Instant,
     val phase: CardPhase = CardPhase.New,
     /** Step position within Learning/Relearning steps; null in New/Review. */
@@ -45,5 +43,10 @@ data class UnitScheduling(
     /** Appended on EVERY answer, including same-day retries. */
     val log: List<ReviewLogEntry> = emptyList(),
 ) {
-    val key: String get() = UnitKey(cardId, role, form).encoded
+    init {
+        require(cardId.isNotEmpty() && '|' !in cardId) { "invalid cardId: $cardId" }
+    }
+
+    /** Presentation input: [presentationRole] of the NEXT review reads this count. */
+    val reviewCount: Int get() = log.size
 }

@@ -6,10 +6,10 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 import net.spross.kern.model.CardPhase
-import net.spross.kern.model.Role
 
 class WatchSnapshotBuilderTests {
 
+    // fnv1a64("wf") is EVEN: next role is recognize at odd log counts, produce at even.
     private val fem = Snap.card(
         "wf", 1, emoji = "👩", sourceText = "Kellner", targetText = "Kellnerin",
         synonyms = listOf("Serviererin"), variants = listOf("Bedienung"),
@@ -17,27 +17,48 @@ class WatchSnapshotBuilderTests {
     )
 
     @Test
-    fun produceEntryIsFullyPreResolved() {
+    fun entryCarriesBothSidesWithNextRoleResolvedFromLogCount() {
         val due = Box.plusSeconds(Box.day1, 600)
         var state = Snap.state(listOf(fem))
         state = Box.inject(
             state,
             Box.sched(
                 "wf", phase = CardPhase.Learning, stability = 1.5,
-                dueMillis = due, lastReviewMillis = Box.day1,
+                dueMillis = due, lastReviewMillis = Box.day1, logCount = 2,
             ),
         )
-        val doc = WatchSnapshotBuilder.doc(state, Box.day1)
-        val entry = doc.entries.single()
+        val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single()
 
-        assertEquals("wf|produce", entry.unitKey)
-        assertEquals("Kellner ♀", entry.prompt)
-        assertEquals("Kellnerin", entry.answer)
+        assertEquals("wf", entry.cardId)
+        assertEquals("Kellner", entry.sourceText) // bare — femMarker carries the badge
+        assertEquals(true, entry.femMarker)
+        assertEquals("Kellnerin", entry.targetText)
         assertEquals(listOf("Kellnerin", "Serviererin", "Bedienung"), entry.accepted)
-        assertEquals("👩", entry.emoji)
+        assertEquals("produce", entry.nextRole)
+        assertEquals("👩", entry.emoji) // produce + learning → visible
         assertEquals("die", entry.articleTint)
         assertEquals(due, entry.due)
         assertEquals(1.5, entry.stability)
+        // Rotation at count 2: index (2/2 + hash%2forms) % 2 = 1 → the synonym.
+        assertEquals("Serviererin", entry.promptForm)
+    }
+
+    @Test
+    fun recognizeEntryHidesEmojiAndPromptsTheRotatedForm() {
+        var state = Snap.state(listOf(fem))
+        state = Box.inject(
+            state,
+            Box.sched(
+                "wf", phase = CardPhase.Learning, stability = 0.5,
+                dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = 1,
+            ),
+        )
+        val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single()
+
+        assertEquals("recognize", entry.nextRole)
+        assertNull(entry.emoji) // never on recognition measurement: it depicts the answer
+        assertEquals("Kellnerin", entry.promptForm) // count 1 → canonical form
+        assertTrue(entry.accepted.isNotEmpty()) // reveal shows the full family
     }
 
     @Test
@@ -45,72 +66,62 @@ class WatchSnapshotBuilderTests {
         var state = Snap.state(listOf(fem))
         state = Box.inject(
             state,
-            Box.sched("wf", phase = CardPhase.Review, dueMillis = Box.day1, lastReviewMillis = Box.day1),
-        )
-        assertNull(WatchSnapshotBuilder.doc(state, Box.day1).entries.single().emoji)
-    }
-
-    @Test
-    fun recognizeEntryRevealsDecoratedSourceAndTakesNoTyping() {
-        var state = Snap.state(listOf(fem))
-        state = Box.inject(
-            state,
-            Box.sched(
-                "wf", role = Role.Recognize, form = "Kellnerin", phase = CardPhase.Learning,
-                stability = 0.5, dueMillis = Box.day1, lastReviewMillis = Box.day1,
-            ),
+            Box.sched("wf", phase = CardPhase.Review, dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = 2),
         )
         val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single()
-
-        assertEquals(Box.recognize("wf", "Kellnerin"), entry.unitKey)
-        assertEquals("Kellnerin", entry.prompt)
-        assertEquals("Kellner ♀", entry.answer)
-        assertTrue(entry.accepted.isEmpty())
+        assertEquals("produce", entry.nextRole)
         assertNull(entry.emoji)
-        assertEquals("die", entry.articleTint)
     }
 
+    // Verifier finding: due-first ranking — a currently-due card outranks any
+    // non-due one regardless of its exposure tier.
     @Test
-    fun entriesDedupeByCardKeepingTheWeakestUnit() {
-        val card = Snap.card("wd", 1, synonyms = listOf("syn"))
-        var state = Snap.state(listOf(card))
-        state = Box.inject(
-            state,
-            Box.sched("wd", stability = 10.0, dueMillis = Box.day1, lastReviewMillis = Box.day1),
-        )
+    fun dueCardsOutrankNonDueOnesAcrossTiers() {
+        var state = Snap.state(listOf(Snap.card("w01", 1), Snap.card("w02", 2)))
         state = Box.inject(
             state,
             Box.sched(
-                "wd", role = Role.Recognize, form = "syn", phase = CardPhase.Relearning,
-                stability = 1.0, dueMillis = Box.day1, lastReviewMillis = Box.day1,
+                "w01", phase = CardPhase.Learning, stability = 0.5,
+                dueMillis = Box.plusSeconds(Box.day1, 600), lastReviewMillis = Box.day1,
             ),
         )
-        val doc = WatchSnapshotBuilder.doc(state, Box.day1)
-        assertEquals(listOf(Box.recognize("wd", "syn")), doc.entries.map { it.unitKey })
+        state = Box.inject(
+            state,
+            Box.sched("w02", phase = CardPhase.Review, stability = 9.0, dueMillis = Box.day1, lastReviewMillis = Box.day1),
+        )
+        // Learning (tier 2) would beat Review (tier 3), but only w02 is due NOW.
+        val ids = WatchSnapshotBuilder.doc(state, Box.day1).entries.map { it.cardId }
+        assertEquals(listOf("w02", "w01"), ids)
     }
 
     @Test
-    fun entriesAreCappedAt60ByExposureRank() {
+    fun capNeverEvictsDueCardsForNonDueOnes() {
         val cards = (1..65).map { Box.word(it) }
         var state = Snap.state(cards)
-        for (n in 1..65) {
+        for (n in 1..3) { // non-due learning cards — lower tier, must not crowd due out
             state = Box.inject(
                 state,
                 Box.sched(
-                    cards[n - 1].id, stability = n.toDouble(),
-                    dueMillis = Box.day1, lastReviewMillis = Box.day1,
+                    cards[n - 1].id, phase = CardPhase.Learning, stability = 0.5,
+                    dueMillis = Box.plusSeconds(Box.day1, 600), lastReviewMillis = Box.day1,
                 ),
+            )
+        }
+        for (n in 4..65) { // 62 due review cards
+            state = Box.inject(
+                state,
+                Box.sched(cards[n - 1].id, stability = n.toDouble(), dueMillis = Box.day1, lastReviewMillis = Box.day1),
             )
         }
         val doc = WatchSnapshotBuilder.doc(state, Box.day1)
 
         assertEquals(60, doc.entries.size)
-        assertEquals("w01|produce", doc.entries.first().unitKey)
-        assertTrue(doc.entries.none { it.unitKey >= "w61|produce" })
+        // All 60 slots go to due cards (weakest stability first); none to w01–w03.
+        assertEquals((4..63).map { "w" + it.toString().padStart(2, '0') }, doc.entries.map { it.cardId })
     }
 
     @Test
-    fun suspendedAndNonJoiningUnitsAreExcluded() {
+    fun suspendedAndNonJoiningCardsAreExcluded() {
         var state = Snap.state(listOf(fem))
         state = Box.inject(
             state,

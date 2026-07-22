@@ -5,16 +5,15 @@ import kotlinx.serialization.Serializable
 import net.spross.kern.box.BoxState
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.CardPhase
+import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.DayStats
 import net.spross.kern.model.MemoryState
 import net.spross.kern.model.Rating
 import net.spross.kern.model.ReviewLogEntry
-import net.spross.kern.model.Role
-import net.spross.kern.model.UnitKey
-import net.spross.kern.model.UnitScheduling
 
 /**
  * Persisted aggregate for one TARGET language (`box-<target>.json`), schema version 1.
+ * Scheduling is keyed by CARD ID — one schedule per card.
  * Every serializable type in this file stays internal — the public door is [StoreCodec];
  * a public @Serializable class would flood the ObjC header with serialization internals.
  */
@@ -24,7 +23,7 @@ internal data class BoxDocument(
     val target: String,
     val source: String,
     val config: ConfigDto,
-    val scheduling: Map<String, UnitDto>,
+    val scheduling: Map<String, CardDto>,
     val enqueued: List<String>,
     val newIntroduced: Map<String, Int>,
     val dailyStats: Map<String, DayStatsDto>,
@@ -43,10 +42,8 @@ internal data class ConfigDto(
 )
 
 @Serializable
-internal data class UnitDto(
+internal data class CardDto(
     val cardId: String,
-    val role: String,
-    val form: String? = null,
     @Serializable(with = IsoInstantSerializer::class) val addedAt: Instant,
     val phase: String,
     val stepIndex: Int? = null,
@@ -77,7 +74,7 @@ internal fun boxDocument(state: BoxState): BoxDocument = BoxDocument(
     target = state.joinStamp.target,
     source = state.joinStamp.source,
     config = configDto(state.config),
-    scheduling = state.scheduling.mapValues { unitDto(it.value) },
+    scheduling = state.scheduling.mapValues { cardDto(it.value) },
     enqueued = state.enqueued,
     newIntroduced = state.newIntroduced,
     dailyStats = state.dailyStats.mapValues { dayStatsDto(it.value) },
@@ -94,10 +91,8 @@ private fun configDto(config: BoxConfig): ConfigDto = ConfigDto(
     relearningStepsSeconds = config.relearningStepsSeconds,
 )
 
-private fun unitDto(sched: UnitScheduling): UnitDto = UnitDto(
+private fun cardDto(sched: CardScheduling): CardDto = CardDto(
     cardId = sched.cardId,
-    role = sched.role.keySegment,
-    form = sched.form,
     addedAt = sched.addedAt,
     phase = phaseName(sched.phase),
     stepIndex = sched.stepIndex,
@@ -151,11 +146,9 @@ private fun ConfigDto.toDomain(): BoxConfig = BoxConfig(
     relearningStepsSeconds = relearningStepsSeconds,
 )
 
-private fun UnitDto.toDomain(key: String): UnitScheduling {
-    val parsedRole = when (role) {
-        Role.Produce.keySegment -> Role.Produce
-        Role.Recognize.keySegment -> Role.Recognize
-        else -> fail("scheduling entry $key: unknown role \"$role\"")
+private fun CardDto.toDomain(key: String): CardScheduling {
+    if (cardId != key) {
+        fail("scheduling key \"$key\" does not match its entry (\"$cardId\")")
     }
     val parsedPhase = when (phase) {
         "new" -> CardPhase.New
@@ -164,38 +157,32 @@ private fun UnitDto.toDomain(key: String): UnitScheduling {
         "relearning" -> CardPhase.Relearning
         else -> fail("scheduling entry $key: unknown phase \"$phase\"")
     }
-    val unitKey = try {
-        UnitKey(cardId, parsedRole, form)
-    } catch (e: IllegalArgumentException) {
-        fail("scheduling entry $key: ${e.message}")
-    }
-    if (unitKey.encoded != key) {
-        fail("scheduling key \"$key\" does not match its entry (\"${unitKey.encoded}\")")
-    }
     val isNew = parsedPhase == CardPhase.New
     if (isNew != (memory == null) || isNew != (due == null)) {
         fail("scheduling entry $key violates the phase/memory/due invariant")
     }
-    return UnitScheduling(
-        cardId = cardId,
-        role = parsedRole,
-        form = form,
-        addedAt = addedAt,
-        phase = parsedPhase,
-        stepIndex = stepIndex,
-        memory = memory?.let { MemoryState(stability = it.stability, difficulty = it.difficulty) },
-        due = due,
-        lapses = lapses,
-        suspended = suspended,
-        log = log.map { entry ->
-            ReviewLogEntry(
-                date = entry.date,
-                rating = Rating.entries.firstOrNull { it.value == entry.rating }
-                    ?: fail("scheduling entry $key: unknown rating ${entry.rating}"),
-                elapsedDays = entry.elapsedDays,
-            )
-        },
-    )
+    return try {
+        CardScheduling(
+            cardId = cardId,
+            addedAt = addedAt,
+            phase = parsedPhase,
+            stepIndex = stepIndex,
+            memory = memory?.let { MemoryState(stability = it.stability, difficulty = it.difficulty) },
+            due = due,
+            lapses = lapses,
+            suspended = suspended,
+            log = log.map { entry ->
+                ReviewLogEntry(
+                    date = entry.date,
+                    rating = Rating.entries.firstOrNull { it.value == entry.rating }
+                        ?: fail("scheduling entry $key: unknown rating ${entry.rating}"),
+                    elapsedDays = entry.elapsedDays,
+                )
+            },
+        )
+    } catch (e: IllegalArgumentException) {
+        fail("scheduling entry $key: ${e.message}")
+    }
 }
 
 private fun DayStatsDto.toDomain(): DayStats =

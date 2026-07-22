@@ -12,7 +12,6 @@ import net.spross.kern.box.Box
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.DayStats
-import net.spross.kern.model.Role
 
 class WidgetSnapshotBuilderTests {
 
@@ -47,23 +46,7 @@ class WidgetSnapshotBuilderTests {
     }
 
     @Test
-    fun entriesAreDedupedByCard() {
-        val card = Snap.card("wd", 1, synonyms = listOf("syn"))
-        var state = Snap.state(listOf(card))
-        state = Box.inject(state, Box.sched("wd", dueMillis = Box.day1, lastReviewMillis = Box.day1))
-        state = Box.inject(
-            state,
-            Box.sched(
-                "wd", role = Role.Recognize, form = "syn", phase = CardPhase.Relearning,
-                stability = 0.5, dueMillis = Box.day1, lastReviewMillis = Box.day1,
-            ),
-        )
-        val doc = WidgetSnapshotBuilder.doc(state, Box.day1, exposureLimit = 10)
-        assertEquals(1, doc.entries.count { it.cardId == "wd" })
-    }
-
-    @Test
-    fun unitsCarryMillisAndReviewFlag() {
+    fun cardsCarryMillisAndReviewFlag() {
         val due = Box.plusDays(Box.day1, 2.0)
         val lastReview = Box.plusSeconds(Box.day1, -3600)
         var state = Snap.state(listOf(fem, gendered))
@@ -76,18 +59,18 @@ class WidgetSnapshotBuilderTests {
             ),
         )
         val doc = WidgetSnapshotBuilder.doc(state, Box.day1, exposureLimit = 10)
-        val byCard = doc.units.associateBy { it.cardId }
+        val byCard = doc.cards.associateBy { it.cardId }
 
-        val reviewUnit = byCard.getValue("wf")
-        assertEquals(due, reviewUnit.due)
-        assertEquals(lastReview, reviewUnit.lastReview)
-        assertEquals(4.5, reviewUnit.stability)
-        assertTrue(reviewUnit.review)
+        val reviewCard = byCard.getValue("wf")
+        assertEquals(due, reviewCard.due)
+        assertEquals(lastReview, reviewCard.lastReview)
+        assertEquals(4.5, reviewCard.stability)
+        assertTrue(reviewCard.review)
         assertFalse(byCard.getValue("wg").review)
     }
 
     @Test
-    fun suspendedAndNonJoiningUnitsAreExcluded() {
+    fun suspendedAndNonJoiningCardsAreExcluded() {
         var state = Snap.state(listOf(fem))
         state = Box.inject(
             state,
@@ -95,7 +78,7 @@ class WidgetSnapshotBuilderTests {
         )
         state = Box.inject(state, Box.sched("zz", dueMillis = Box.day1, lastReviewMillis = Box.day1))
         val doc = WidgetSnapshotBuilder.doc(state, Box.day1, exposureLimit = 10)
-        assertTrue(doc.units.isEmpty())
+        assertTrue(doc.cards.isEmpty())
     }
 
     @Test
@@ -129,6 +112,6 @@ class WidgetSnapshotBuilderTests {
             WidgetSnapshotBuilder.build(state, Box.day1),
             WidgetSnapshotBuilder.build(reversed, Box.day1),
         )
-        assertTrue(WidgetSnapshotBuilder.build(state, Box.day1).startsWith("{\"dailyStats\":"))
+        assertTrue(WidgetSnapshotBuilder.build(state, Box.day1).startsWith("{\"cards\":"))
     }
 }

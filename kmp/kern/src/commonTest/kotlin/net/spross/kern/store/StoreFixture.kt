@@ -12,8 +12,8 @@ import net.spross.kern.model.Realization
 
 /**
  * Deterministic, feature-dense box for codec round-trip tests and the pinned golden
- * document: produce + recognize schedules (Cyrillic form key), learning and review
- * phases, an enqueued phrase, a folded day, and non-ASCII text on both sides.
+ * document: learning and review phases, an enqueued phrase, a folded day, and
+ * non-ASCII text on both sides.
  */
 internal object StoreFixture {
 
@@ -44,20 +44,14 @@ internal object StoreFixture {
 
     val stamp = JoinStamp("de", "uk", "store-fixture")
 
-    /** Real engine answers (learning → review, recognize intro), a queue, one folded day. */
+    /** Real engine answers (learning → review, a lapse-free retry), a queue, one folded day. */
     fun state(): BoxState {
         var s = BoxEngine.bootstrap(cards, BoxConfig(), stamp)
-        val fridge = Box.produce("kueche/kuehlschrank")
+        val fridge = "kueche/kuehlschrank"
         s = Box.answered(s, fridge, Rating.Good, Box.day1)
         s = Box.answered(s, fridge, Rating.Good, Box.plusSeconds(Box.day1, 600))
-        s = Box.answered(s, Box.produce("kueche/kochen"), Rating.Again, Box.day1)
-        s = Box.answered(
-            s,
-            Box.recognize("kueche/kuehlschrank", "холодильник"),
-            Rating.Easy,
-            Box.plusSeconds(Box.day1, 700),
-        )
+        s = Box.answered(s, "kueche/kochen", Rating.Again, Box.day1)
         s = BoxEngine.enqueue(s, listOf("kueche/der-kuehlschrank-ist-leer"))
-        return BoxEngine.endSession(s, reviewsDone = 4, Box.plusSeconds(Box.day1, 3600), Box.TZ)
+        return BoxEngine.endSession(s, reviewsDone = 3, Box.plusSeconds(Box.day1, 3600), Box.TZ)
     }
 }
