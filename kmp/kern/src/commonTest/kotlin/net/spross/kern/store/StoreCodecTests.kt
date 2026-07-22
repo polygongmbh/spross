@@ -1,0 +1,147 @@
+package net.spross.kern.store
+
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
+import net.spross.kern.model.CardPhase
+import net.spross.kern.model.Role
+
+class StoreCodecTests {
+
+    private val state = StoreFixture.state()
+
+    // Round trip
+
+    @Test
+    fun roundTripPreservesAggregate() {
+        val decoded = StoreCodec.decode(StoreCodec.encode(state))
+        assertEquals("uk", decoded.target)
+        assertEquals("de", decoded.source)
+        assertEquals(state.config, decoded.config)
+        assertEquals(state.scheduling, decoded.scheduling)
+        assertEquals(state.enqueued, decoded.enqueued)
+        assertEquals(state.newIntroduced, decoded.newIntroduced)
+        assertEquals(state.dailyStats, decoded.dailyStats)
+    }
+
+    @Test
+    fun joinRebuildsBoxState() {
+        val decoded = StoreCodec.decode(StoreCodec.encode(state))
+        assertEquals(state, decoded.join(StoreFixture.cards, StoreFixture.stamp))
+    }
+
+    @Test
+    fun encodeIsByteStableAcrossRoundTrip() {
+        val first = StoreCodec.encode(state)
+        val second = StoreCodec.encode(
+            StoreCodec.decode(first).join(StoreFixture.cards, StoreFixture.stamp),
+        )
+        assertEquals(first, second)
+    }
+
+    @Test
+    fun encodeIsInsertionOrderIndependent() {
+        val reversed = state.copy(
+            scheduling = state.scheduling.entries.reversed().associate { it.key to it.value },
+            dailyStats = state.dailyStats.entries.reversed().associate { it.key to it.value },
+        )
+        assertEquals(StoreCodec.encode(state), StoreCodec.encode(reversed))
+    }
+
+    @Test
+    fun datesEncodeAsIsoUtcStrings() {
+        val encoded = StoreCodec.encode(state)
+        assertTrue("\"addedAt\":\"2026-07-01T12:00:00Z\"" in encoded, encoded)
+        assertTrue("\"date\":\"2026-07-01T12:10:00Z\"" in encoded, encoded)
+    }
+
+    @Test
+    fun nullFieldsAreOmitted() {
+        // Review-phase units carry stepIndex = null; produce units carry form = null.
+        assertFalse("null" in StoreCodec.encode(state))
+    }
+
+    // Decode validation (hand-built minimal documents)
+
+    private fun doc(scheduling: String = "", schemaVersion: Int = 1, source: String = "de"): String =
+        """{"config":{"desiredRetention":0.8,"dueSoftCap":60,"learningStepsSeconds":[60,600],""" +
+            """"maxLearning":8,"maximumIntervalDays":365,"phraseUnlockStability":2.0,""" +
+            """"relearningStepsSeconds":[60],"sessionCap":30},"dailyStats":{},"enqueued":[],""" +
+            """"newIntroduced":{},"scheduling":{$scheduling},"schemaVersion":$schemaVersion,""" +
+            """"source":"$source","target":"uk"}"""
+
+    private fun unit(
+        key: String = "w1|produce",
+        cardId: String = "w1",
+        role: String = "produce",
+        phase: String = "review",
+        due: String = ""","due":"2026-07-02T12:00:00Z"""",
+        memory: String = ""","memory":{"difficulty":5.0,"stability":3.0}""",
+    ): String =
+        """"$key":{"addedAt":"2026-07-01T12:00:00Z","cardId":"$cardId"$due,"lapses":0,""" +
+            """"log":[{"date":"2026-07-01T12:00:00Z","elapsedDays":0.0,"rating":3}]""" +
+            """$memory,"phase":"$phase","role":"$role","suspended":false}"""
+
+    @Test
+    fun decodeAcceptsMinimalDocument() {
+        val decoded = StoreCodec.decode(doc(unit()))
+        val sched = decoded.scheduling.getValue("w1|produce")
+        assertEquals("w1", sched.cardId)
+        assertEquals(Role.Produce, sched.role)
+        assertEquals(CardPhase.Review, sched.phase)
+        assertEquals(3.0, sched.memory?.stability)
+    }
+
+    @Test
+    fun decodeRejectsMalformedJson() {
+        assertFailsWith<StoreFormatException> { StoreCodec.decode("not json") }
+    }
+
+    @Test
+    fun decodeRejectsWrongSchemaVersion() {
+        assertFailsWith<StoreFormatException> { StoreCodec.decode(doc(schemaVersion = 2)) }
+    }
+
+    @Test
+    fun decodeRejectsSameSourceAndTarget() {
+        assertFailsWith<StoreFormatException> { StoreCodec.decode(doc(source = "uk")) }
+    }
+
+    @Test
+    fun decodeRejectsMismatchedSchedulingKey() {
+        assertFailsWith<StoreFormatException> {
+            StoreCodec.decode(doc(unit(key = "w2|produce", cardId = "w1")))
+        }
+    }
+
+    @Test
+    fun decodeRejectsUnknownRole() {
+        assertFailsWith<StoreFormatException> {
+            StoreCodec.decode(doc(unit(role = "translate")))
+        }
+    }
+
+    @Test
+    fun decodeRejectsUnknownPhase() {
+        assertFailsWith<StoreFormatException> {
+            StoreCodec.decode(doc(unit(phase = "later")))
+        }
+    }
+
+    @Test
+    fun decodeRejectsInvariantViolation() {
+        // Review phase but no due date: phase == New ⟺ memory == null ⟺ due == null.
+        assertFailsWith<StoreFormatException> {
+            StoreCodec.decode(doc(unit(due = "")))
+        }
+    }
+
+    @Test
+    fun decodeRejectsInvalidInstant() {
+        assertFailsWith<StoreFormatException> {
+            StoreCodec.decode(doc(unit(due = ""","due":"yesterday"""")))
+        }
+    }
+}
