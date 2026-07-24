@@ -244,7 +244,10 @@ day-key `yyyy-MM-dd`) with:
 - Trainer: single `:kern` module, `Long` cardinals everywhere (Kotlin `Int` is 32-bit on
   all platforms — v1's arm64_32 fix generalizes). Trainer registry: de/sw/uk authored,
   en absent → hub hides gracefully. Phrase templates keyed (source, target); reverse mode
-  when target == de. Android later: AGP + `google()` repo + minSdk-26-or-desugaring noted.
+  when target == de. Android: landed — `androidLibrary` KMP target
+  (`com.android.kotlin.multiplatform.library`, AGP 9.3.0, compileSdk 36 / minSdk 26),
+  androidMain NFC actual mirrors jvmMain; `:android` consumes the same facades.
+  Gate: `./gradlew :kern:compileAndroidMain`.
 
 ## 10. Testing & gates
 

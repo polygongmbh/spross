@@ -3,7 +3,8 @@
 A personal "growing box" vocabulary app:
 pick the language you know (source) and the one you learn (target)
 from the in-repo catalog (Deutsch · English · Kiswahili · Українська).
-Native iOS (SwiftUI, iOS 17+) + watchOS companion, fully offline.
+Native iOS (SwiftUI, iOS 17+) + watchOS companion, fully offline,
+plus an Android core-loop app (Jetpack Compose) on the same engine.
 
 The box only grows while your material sits:
 new cards enter on a load-based budget behind a health gate,
@@ -24,6 +25,8 @@ and self-graded recognition of the same schedule.
   The only target that links the Kotlin framework.
 - `Shared/`, `Watch/`, `Widgets/`, `WatchWidgets/` — decode-only Swift surfaces
   reading phone-built snapshots; no Kotlin linkage.
+- `android/` — Jetpack Compose app (core loop: onboarding, Heute, sessions)
+  on the same engine; catalog bundled by a Gradle sync task.
 - `catalog/` — the content catalog, in-repo: shared word concepts +
   per-language realizations + pair-authored phrases.
   Format spec: `catalog/README.md`. Bundled as a folder resource.
@@ -39,6 +42,13 @@ xcodebuild -project Spross.xcodeproj -scheme Spross \
 ```
 
 Tests (the fast gate): `./gradlew :kern:jvmTest`
+
+Android (no Mac needed — see `RUNBOOK-linux.md`):
+
+```sh
+./gradlew :android:assembleDebug     # APK: android/build/outputs/apk/debug/android-debug.apk
+./gradlew :android:testDebugUnitTest :kern:compileAndroidMain   # android gates
+```
 
 Framework mechanism: the app target's pre-build phase runs `scripts/build-kern.sh`,
 which maps `$CONFIGURATION`/`$SDK_NAME` to the matching Gradle

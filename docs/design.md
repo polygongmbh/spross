@@ -20,6 +20,7 @@ Strict dependency direction (App → SprossKern, never the reverse):
 kmp/kern   SprossKern — Kotlin Multiplatform engine (contract: kern-design.md)
 App/       SwiftUI iOS app — views, observable AppModel, file-backed store actor
 Shared/ Watch/ Widgets/ WatchWidgets/   decode-only Swift snapshot surfaces
+android/   Jetpack Compose app — core loop on the same engine (§ Android below)
 ```
 
 - ONLY the app target links the Kotlin framework;
@@ -110,6 +111,21 @@ Design language: warm, card-centric, emoji as illustration, article color coding
 der=blue / die=pink-red / das=green — degrades to neutral for languages without
 gendered articles.
 
+## Android companion (core loop)
+
+`android/` renders THIS contract with Compose — same engine facades,
+same review UX rules; deltas only where the platform differs:
+
+- Catalog: bundled as APK assets by a per-variant Gradle sync task from `catalog/`
+  (single-source rule); read through an `AssetManager`-backed `CatalogSource`.
+- Store: `box-<target>.json` in the app-private files dir (no App Group);
+  persisted after every answer (atomic temp-then-rename, non-cancellable write)
+  instead of iOS's debounce.
+- Typed produce grading maps Exact → Good, Typo → Hard, Wrong → Again;
+  "Aufdecken" self-grades — identical to the intent above.
+- Not ported yet: Box browse, trainers, widget, 14-day strip, confetti/haptics;
+  settings = language switch only.
+
 ## Watch & widgets (decode-only)
 
 - The phone precomputes **WatchSnapshot v2**
@@ -142,5 +158,6 @@ gendered articles.
 
 ## Not yet
 
-Couple mode, accounts/sync, Android app (engine jvm-ready, wiring pending),
+Couple mode, accounts/sync, Android beyond the core loop
+(Box browse / trainers / widget — see § Android companion),
 sw/uk UI chrome (sources fall back to en), en trainer content.

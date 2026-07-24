@@ -29,6 +29,12 @@
   handful per session, ahead of automatic growth) instead of dumping dozens of
   new cards into one sitting. The rest wait their turn until you've absorbed
   what's already in flight.
+- **Spross runs on Android** (first cut): the growing box arrives as a native
+  Jetpack Compose app on the same SprossKern engine and in-repo catalog —
+  language pickers with concept counts, Heute, alternating sessions (typed
+  production with the same typo tolerance, reveal + self-grade recognition),
+  extra round and endless practice. Box browsing, trainers, and a widget
+  remain iOS-only for now.
 
 ## 0.12.4 — 2026-07-19
 
