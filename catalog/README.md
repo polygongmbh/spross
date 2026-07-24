@@ -56,10 +56,16 @@ is a runtime/user-preference concern; the content only supplies the default.
 
 **`languages.json`** — per-language metadata, keyed by lang code:
 ```json
-{ "en": { "name": "English", "optionalVerbPrefixes": ["to "], "articles": ["the", "a", "an"] },
-  "sw": { "name": "Kiswahili", "optionalVerbPrefixes": ["ku", "kw"] } }
+{ "en": { "name": "English", "englishName": "English", "flag": "🇬🇧",
+          "optionalVerbPrefixes": ["to "], "articles": ["the", "a", "an"] },
+  "sw": { "name": "Kiswahili", "englishName": "Swahili", "flag": "🇹🇿",
+          "optionalVerbPrefixes": ["ku", "kw"] } }
 ```
-- `name` — display name of the language.
+- `name` — the language's own name for itself ("Deutsch", "Українська");
+  language pickers use this so speakers always recognize their language.
+- `englishName` — English exonym ("German", "Ukrainian"). Required, non-empty.
+- `flag` — exactly ONE emoji flag sequence for chrome/badges
+  (sw uses 🇹🇿 Tanzania, the v1 choice).
 - `articles` — the language's articles (de `der/die/das/ein/eine`, en `the/a/an`).
   ONE leading listed article is optional when grading input in this language;
   it also drives article coloring in the UI.

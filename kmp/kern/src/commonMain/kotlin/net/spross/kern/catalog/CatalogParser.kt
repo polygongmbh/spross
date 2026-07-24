@@ -50,15 +50,29 @@ internal object CatalogParser {
         val root = parseJson(path, text).obj(path, "root")
         return root.entries.associate { (code, el) ->
             val o = el.obj(path, code)
-            o.rejectUnknownKeys(path, code, setOf("name", "optionalVerbPrefixes", "articles"))
+            o.rejectUnknownKeys(path, code, setOf("name", "englishName", "flag", "optionalVerbPrefixes", "articles"))
             val name = o.requireString(path, code, "name")
             if (name.isBlank()) parseError(path, "$code: blank name")
+            val englishName = o.requireString(path, code, "englishName")
+            if (englishName.isBlank()) parseError(path, "$code: blank englishName")
+            val flag = o.requireString(path, code, "flag")
+            if (!isEmojiFlagSequence(flag)) parseError(path, "$code: flag must be one emoji flag sequence")
             code to LanguageInfo(
                 code = code,
                 name = name,
+                englishName = englishName,
+                flag = flag,
                 optionalVerbPrefixes = o.stringList(path, code, "optionalVerbPrefixes"),
                 articles = o.stringList(path, code, "articles"),
             )
+        }
+    }
+
+    /** Exactly two regional-indicator code points (each a surrogate pair in UTF-16). */
+    private fun isEmojiFlagSequence(s: String): Boolean {
+        if (s.length != 4) return false
+        return (0..2 step 2).all { i ->
+            s[i] == '\uD83C' && s[i + 1] in '\uDDE6'..'\uDDFF'
         }
     }
 

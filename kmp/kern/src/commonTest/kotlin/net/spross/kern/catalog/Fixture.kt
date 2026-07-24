@@ -24,10 +24,13 @@ internal object Fixture {
         """.trimIndent(),
         "languages.json" to """
             {
-             "de": { "name": "Deutsch", "articles": ["der", "die", "das", "ein", "eine"] },
-             "en": { "name": "English", "optionalVerbPrefixes": ["to "], "articles": ["the", "a", "an"] },
-             "sw": { "name": "Kiswahili", "optionalVerbPrefixes": ["ku", "kw"] },
-             "uk": { "name": "Українська" }
+             "de": { "name": "Deutsch", "englishName": "German", "flag": "🇩🇪",
+                     "articles": ["der", "die", "das", "ein", "eine"] },
+             "en": { "name": "English", "englishName": "English", "flag": "🇬🇧",
+                     "optionalVerbPrefixes": ["to "], "articles": ["the", "a", "an"] },
+             "sw": { "name": "Kiswahili", "englishName": "Swahili", "flag": "🇹🇿",
+                     "optionalVerbPrefixes": ["ku", "kw"] },
+             "uk": { "name": "Українська", "englishName": "Ukrainian", "flag": "🇺🇦" }
             }
         """.trimIndent(),
         "alpha/concepts.json" to """

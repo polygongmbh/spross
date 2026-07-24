@@ -85,6 +85,19 @@ class CatalogLintTest {
     }
 
     @Test
+    fun languageMetadataWellFormed() {
+        for ((code, info) in catalog.languages) {
+            assertTrue(info.englishName.isNotBlank(), "$code: blank englishName")
+            val codePoints = info.flag.codePoints().toArray()
+            assertEquals(2, codePoints.size, "$code: flag \"${info.flag}\" is not one flag sequence")
+            assertTrue(
+                codePoints.all { it in 0x1F1E6..0x1F1FF },
+                "$code: flag \"${info.flag}\" contains a non-regional-indicator",
+            )
+        }
+    }
+
+    @Test
     fun emojiWellFormed() {
         for (area in catalog.areas) {
             for (concept in area.concepts) {

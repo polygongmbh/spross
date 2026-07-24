@@ -6,7 +6,12 @@ typealias Language = String
 /** Per-language metadata from `catalog/languages.json`. */
 data class LanguageInfo(
     val code: Language,
+    /** The language's own name for itself ("Deutsch", "Українська") — pickers use this. */
     val name: String,
+    /** English exonym ("German", "Ukrainian"). */
+    val englishName: String,
+    /** Exactly one emoji flag sequence (sw uses 🇹🇿, the v1 choice). */
+    val flag: String,
     /**
      * Infinitive citation prefixes (en `"to "`, sw `"ku"`/`"kw"`).
      * A leading occurrence of any entry is optional when grading verb input.
