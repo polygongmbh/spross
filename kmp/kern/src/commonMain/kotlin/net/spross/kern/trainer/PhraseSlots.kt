@@ -71,15 +71,8 @@ object PhraseSlots {
     }
 
     /** Leveled minute set ∩ template constraint (see [sample]). */
-    private fun drawMinute(template: PhraseTemplate, level: Int, rng: Random): Int {
-        val cap = if (template.target == "sw") 30 else 59
-        return when (level.coerceIn(1, Trainer.maxLevel(TrainerKind.Clock))) {
-            1 -> 0
-            2 -> intArrayOf(0, 15, 30, 45).filter { it <= cap }.let { it[rng.nextInt(it.size)] }
-            3 -> rng.nextInt(31)
-            else -> rng.nextInt(cap + 1)
-        }
-    }
+    private fun drawMinute(template: PhraseTemplate, level: Int, rng: Random): Int =
+        Trainer.clockMinute(level, cap = if (template.target == "sw") 30 else 59, rng)
 
     // Reverse (target sentence shown, source language typed)
 

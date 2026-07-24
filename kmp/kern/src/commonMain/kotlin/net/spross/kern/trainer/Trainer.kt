@@ -123,18 +123,24 @@ object Trainer {
                 }
                 year(y, language)
             }
-            TrainerKind.Clock -> {
-                val hour = rng.nextInt(24)
-                val minute = when (l) {
-                    1 -> 0
-                    2 -> intArrayOf(0, 15, 30, 45)[rng.nextInt(4)]
-                    3 -> rng.nextInt(31)
-                    else -> rng.nextInt(60)
-                }
-                clock(hour, minute, language)
-            }
+            TrainerKind.Clock -> clock(rng.nextInt(24), clockMinute(l, cap = 59, rng), language)
         }
     }
+
+    /**
+     * Leveled minute draw, shared by the plain clock drill (cap = 59) and
+     * phrase slots whose template constrains the minute (Swahili embeds only
+     * 0..30). With cap = 59 every level's draw is identical to the
+     * unconstrained table (level 2 keeps all four quarters → nextInt(4);
+     * level 4 → nextInt(60)).
+     */
+    internal fun clockMinute(level: Int, cap: Int, rng: Random): Int =
+        when (level.coerceIn(1, maxLevel(TrainerKind.Clock))) {
+            1 -> 0
+            2 -> intArrayOf(0, 15, 30, 45).filter { it <= cap }.let { it[rng.nextInt(it.size)] }
+            3 -> rng.nextInt(31)
+            else -> rng.nextInt(cap + 1)
+        }
 
     /**
      * Highest place-value word for a number of the given digit count, shown

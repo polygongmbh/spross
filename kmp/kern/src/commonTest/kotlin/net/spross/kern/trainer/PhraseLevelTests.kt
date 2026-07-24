@@ -96,17 +96,11 @@ class PhraseLevelTests {
                 val b = Random(0xBEEF + level)
                 repeat(30) {
                     val sampled = PhraseSlots.sample(template, level, a)
-                    // Independent re-statement of the leveled draw spec.
+                    // Cross-check against the shared Trainer draw machinery.
                     val expected = if (template.slotKind == TrainerKind.Clock) {
                         val hour = b.nextInt(24)
                         val cap = if (template.target == "sw") 30 else 59
-                        val minute = when (level) {
-                            1 -> 0
-                            2 -> intArrayOf(0, 15, 30, 45).filter { it <= cap }
-                                .let { it[b.nextInt(it.size)] }
-                            3 -> b.nextInt(31)
-                            else -> b.nextInt(cap + 1)
-                        }
+                        val minute = Trainer.clockMinute(level, cap, b)
                         PhraseSlots.instantiate(template, hour = hour, minute = minute)
                     } else {
                         val slot = Trainer.sample(template.slotKind, template.target, level, b)
