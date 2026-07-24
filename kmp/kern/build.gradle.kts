@@ -4,12 +4,19 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.skie)
+    alias(libs.plugins.android.kmp.library)
 }
 
 kotlin {
     jvmToolchain(17)
 
     jvm()
+
+    androidLibrary {
+        namespace = "net.spross.kern"
+        compileSdk = 36
+        minSdk = 26
+    }
 
     val xcf = XCFramework("SprossKern")
     listOf(
