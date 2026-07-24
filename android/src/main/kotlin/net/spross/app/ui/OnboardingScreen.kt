@@ -20,24 +20,49 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
+import net.spross.app.Chrome
+import net.spross.app.LanguagePicker
 import net.spross.app.Screen
 
+/**
+ * First-launch (and "change languages") picker — iOS OnboardingView parity:
+ * chrome is ENGLISH (it renders before the user's language is known), rows
+ * are "🇩🇪 German", and neither side hides the other's pick — choosing it
+ * swaps the two selections ([LanguagePicker]).
+ */
 @Composable
 fun OnboardingScreen(model: AppModel) {
     val catalog = model.catalog ?: return
-    val chrome = model.chrome
+    val chrome = remember { Chrome.forSource("en") }
     val editing = (model.screen as? Screen.Onboarding)?.editing == true
-    var source by rememberSaveable {
-        mutableStateOf(model.box?.joinStamp?.source ?: model.defaultSource(catalog))
+    val initialSource = model.box?.joinStamp?.source ?: model.defaultSource(catalog)
+    var source by rememberSaveable { mutableStateOf(initialSource) }
+    var target by rememberSaveable {
+        mutableStateOf(
+            model.box?.joinStamp?.target
+                ?: catalog.availableTargets(initialSource).firstOrNull()?.code
+        )
     }
-    var target by rememberSaveable { mutableStateOf(model.box?.joinStamp?.target) }
-    val targets = catalog.availableTargets(source)
+    val choices = remember(catalog, source, target) {
+        LanguagePicker.targetChoices(
+            LanguagePicker.Selection(source, target),
+            catalog::availableTargets,
+        )
+    }
+
+    fun apply(sel: LanguagePicker.Selection) {
+        source = sel.source
+        target = sel.target
+    }
+
+    fun label(code: String) = LanguagePicker.rowLabel(code, catalog.languages[code])
 
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp),
@@ -49,34 +74,41 @@ fun OnboardingScreen(model: AppModel) {
         Text(chrome.iSpeak, style = MaterialTheme.typography.titleMedium)
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             model.coveredSources(catalog).forEach { code ->
-                val name = catalog.languages[code]?.name ?: code
                 if (code == source) {
                     Button(onClick = {}, contentPadding = ButtonDefaults.TextButtonContentPadding) {
-                        Text(name, maxLines = 1)
+                        Text(label(code), maxLines = 1)
                     }
                 } else {
                     OutlinedButton(
                         onClick = {
-                            source = code
-                            target = null
+                            apply(
+                                LanguagePicker.pickSource(
+                                    LanguagePicker.Selection(source, target),
+                                    code,
+                                    catalog::availableTargets,
+                                )
+                            )
                         },
                         contentPadding = ButtonDefaults.TextButtonContentPadding,
                     ) {
-                        Text(name, maxLines = 1)
+                        Text(label(code), maxLines = 1)
                     }
                 }
             }
         }
 
         Text(chrome.iLearn, style = MaterialTheme.typography.titleMedium)
-        targets.forEach { option ->
+        choices.forEach { option ->
+            val pick = {
+                apply(LanguagePicker.pickTarget(LanguagePicker.Selection(source, target), option.code))
+            }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                RadioButton(selected = target == option.code, onClick = { target = option.code })
+                RadioButton(selected = target == option.code, onClick = pick)
                 Column {
-                    Text(option.name, style = MaterialTheme.typography.bodyLarge)
+                    Text(label(option.code), style = MaterialTheme.typography.bodyLarge)
                     Text(
                         "${option.conceptCount} ${chrome.conceptsSuffix}",
                         style = MaterialTheme.typography.bodySmall,
