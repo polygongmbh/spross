@@ -68,8 +68,8 @@ extension TrainerSessionView {
     /// environment locale with catalog plural handling.
     private var streakText: Text {
         var parts: [Text] = []
-        if case .slots(let kind, _) = mode, maxLevel > 1 {
-            parts.append(kind == .numbers ? Text("🔢 \(level) Stellen") : Text("Stufe \(level)"))
+        if maxLevel > 1 {
+            parts.append(isNumbers ? Text("🔢 \(level) Stellen") : Text("Stufe \(level)"))
         }
         parts.append(Text("🔥 \(streak) in Folge"))
         if bestStreak > streak { parts.append(Text("Rekord \(bestStreak)")) }

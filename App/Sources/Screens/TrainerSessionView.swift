@@ -67,7 +67,8 @@ struct TrainerSessionView: View {
     /// Set when the answer was accepted with a small typo — the proper
     /// spelling is shown during the auto-advance window.
     @State var typoCorrection: String?
-    @State private var autoAdvance: Task<Void, Never>?
+    // why: internal, not private — the +Grading extension cancels/schedules it.
+    @State var autoAdvance: Task<Void, Never>?
     @FocusState var answerFocused: Bool
     @Environment(\.accessibilityReduceMotion) var reduceMotion
     @Environment(\.locale) var locale
@@ -167,54 +168,30 @@ struct TrainerSessionView: View {
         case .phrases(let source, let target, let reverse):
             let templates = PhraseTemplates.shared.templates(source: source, target: target)
             let template = templates[Int.random(in: 0..<templates.count)]
+            // Leveled slot values — same ramp semantics as the plain drills;
+            // Kern clamps the level to each template's own slot kind.
             return reverse
-                ? PhraseSlots.shared.reverseSample(template: template, rng: rng)
-                : PhraseSlots.shared.sample(template: template, rng: rng)
+                ? PhraseSlots.shared.reverseSample(template: template, level: Int32(level), rng: rng)
+                : PhraseSlots.shared.sample(template: template, level: Int32(level), rng: rng)
         }
     }
 
+    /// Ramp ceiling: slot drills per kind; the sentence drill ramps to the
+    /// highest ceiling among its templates' slot kinds.
     var maxLevel: Int {
-        if case .slots(let kind, _) = mode { return Int(Trainer.shared.maxLevel(kind: kind)) }
-        return 1
+        switch mode {
+        case .slots(let kind, _):
+            return Int(Trainer.shared.maxLevel(kind: kind))
+        case .phrases(let source, let target, _):
+            return PhraseTemplates.shared.templates(source: source, target: target)
+                .map { Int(Trainer.shared.maxLevel(kind: $0.slotKind)) }
+                .max() ?? 1
+        }
     }
 
     var current: TrainerTask { tasks[index] }
 
-    // MARK: - Grading (run streak only, no FSRS)
-
-    func submit() {
-        let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard feedback == .neutral, !trimmed.isEmpty else { return }
-        if isCorrect(trimmed) {
-            feedback = .correct
-            DLSound.correct()
-            // A hint-assisted answer stays amber (no level progress).
-            let segment: SessionOutcome = hintUsed ? .tough : .right
-            autoAdvance = Task {
-                try? await Task.sleep(for: .milliseconds(1200))
-                guard !Task.isCancelled else { return }
-                advance(correct: true, segment: segment)
-            }
-        } else {
-            feedback = .revealed(correctAnswer: current.display)
-            DLSound.wrong()
-        }
-    }
-
-    /// Normalize-insensitive comparison against every accepted variant,
-    /// through the Kern normalizer when present.
-    private func isCorrect(_ trimmed: String) -> Bool {
-        let typed = normalized(trimmed)
-        return current.accepted.contains { normalized($0) == typed }
-    }
-
-    private func normalized(_ raw: String) -> String {
-        if let normalizer { return normalizer.normalize(raw: raw) }
-        return raw.lowercased()
-            .components(separatedBy: CharacterSet.alphanumerics.inverted)
-            .filter { !$0.isEmpty }
-            .joined(separator: " ")
-    }
+    // Grading lives in TrainerSessionView+Grading.swift (file-size split).
 
     /// A correct answer extends the streak, a wrong one resets it
     /// (the run record stays). The next task is generated on demand.
