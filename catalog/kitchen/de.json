@@ -128,6 +128,9 @@
   "wash-the-dishes-in-the-sink": {
    "text": "Spül bitte das Geschirr im Spülbecken!"
   },
+  "wash-the-dishes": {
+   "text": "Geschirr spülen"
+  },
   "the-fridge-is-empty": {
    "text": "Der Kühlschrank ist leer."
   },

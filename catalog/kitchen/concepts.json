@@ -130,6 +130,13 @@
   ]
  },
  {
+  "slug": "wash-the-dishes",
+  "kind": "phrase",
+  "components": [
+   "wash-up"
+  ]
+ },
+ {
   "slug": "the-fridge-is-empty",
   "kind": "phrase",
   "components": [

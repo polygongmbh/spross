@@ -47,7 +47,7 @@
    "text": "різати"
   },
   "wash-up": {
-   "text": "мити посуд"
+   "text": "мити"
   },
   "taste": {
    "text": "куштувати"
@@ -78,6 +78,9 @@
   },
   "wash-the-dishes-in-the-sink": {
    "text": "Помий, будь ласка, посуд у мийці!"
+  },
+  "wash-the-dishes": {
+   "text": "мити посуд"
   },
   "the-fridge-is-empty": {
    "text": "Холодильник порожній."

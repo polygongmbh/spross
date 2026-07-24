@@ -47,7 +47,7 @@
    "text": "kukata"
   },
   "wash-up": {
-   "text": "kuosha vyombo"
+   "text": "kuosha"
   },
   "taste": {
    "text": "kuonja"
@@ -81,6 +81,9 @@
   },
   "wash-the-dishes-in-the-sink": {
    "text": "Osha vyombo sinkini, tafadhali!"
+  },
+  "wash-the-dishes": {
+   "text": "kuosha vyombo"
   },
   "the-fridge-is-empty": {
    "text": "Friji iko tupu."

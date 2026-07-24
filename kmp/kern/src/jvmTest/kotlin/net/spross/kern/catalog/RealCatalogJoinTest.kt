@@ -17,17 +17,17 @@ class RealCatalogJoinTest {
 
     @Test
     fun joinCountsMatchCoverageMatrix() {
-        // 356 concepts total; sparse per-language coverage decides each target's count.
-        assertEquals(346, catalog.join("de", "sw").size)
-        assertEquals(350, catalog.join("de", "uk").size)
-        assertEquals(351, catalog.join("de", "en").size)
+        // 357 concepts total; sparse per-language coverage decides each target's count.
+        assertEquals(347, catalog.join("de", "sw").size)
+        assertEquals(351, catalog.join("de", "uk").size)
+        assertEquals(352, catalog.join("de", "en").size)
     }
 
     @Test
     fun availableTargetsFromGermanCarryConceptCounts() {
         val targets = catalog.availableTargets("de")
         assertEquals(listOf("en", "sw", "uk"), targets.map { it.code })
-        assertEquals(listOf(351, 346, 350), targets.map { it.conceptCount })
+        assertEquals(listOf(352, 347, 351), targets.map { it.conceptCount })
         assertEquals("Kiswahili", targets.first { it.code == "sw" }.name)
     }
 

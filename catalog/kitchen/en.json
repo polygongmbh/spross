@@ -50,7 +50,7 @@
    "text": "to cut"
   },
   "wash-up": {
-   "text": "to wash up"
+   "text": "to wash"
   },
   "taste": {
    "text": "to taste"
@@ -81,6 +81,9 @@
   },
   "wash-the-dishes-in-the-sink": {
    "text": "Please wash the dishes in the sink!"
+  },
+  "wash-the-dishes": {
+   "text": "to wash the dishes"
   },
   "the-fridge-is-empty": {
    "text": "The fridge is empty."
