@@ -18,3 +18,4 @@ dependencyResolutionManagement {
 include(":kern")
 // why: root-level kern/ would case-collide with Swift Kern/ on APFS — module lives under kmp/.
 project(":kern").projectDir = file("kmp/kern")
+include(":android")

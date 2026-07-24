@@ -6,13 +6,26 @@ kotlinx-serialization = "1.11.0"
 kotlinx-datetime = "0.8.0"
 # AGP 9.3.0 = newest stable line compatible with Gradle 9.6.1 / Kotlin 2.4.0.
 agp = "9.3.0"
+compose-bom = "2026.06.01"
+activity-compose = "1.13.0"
+# lifecycle 2.11 requires compileSdk 37; 2.10 is the newest line for our SDK 36 pin.
+lifecycle = "2.10.0"
 
 [libraries]
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
+lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 skie = { id = "co.touchlab.skie", version.ref = "skie" }
 android-kmp-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+# no kotlin-android entry: AGP 9 built-in Kotlin owns the android compilation
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

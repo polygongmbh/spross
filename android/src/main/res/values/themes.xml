@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Compose draws everything; the platform theme only styles the window. -->
+    <style name="Theme.Spross" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/spross_window_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>
