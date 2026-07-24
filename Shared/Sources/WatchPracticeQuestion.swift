@@ -1,8 +1,9 @@
 import Foundation
 
-/// One generated multiple-choice question for the watch "Üben" practice mode.
+/// One generated multiple-choice question for the watch practice loop.
 /// Pure value type — no scheduling, no FSRS. `correctIndex` points into the
-/// already-shuffled `options`.
+/// already-shuffled `options`. The view renders `promptEntry` role-aware
+/// (see `WatchPracticeGenerator`).
 struct WatchPracticeQuestion: Equatable {
     let promptCardID: String
     let promptEntry: WatchSnapshot.Entry
@@ -10,58 +11,63 @@ struct WatchPracticeQuestion: Equatable {
     let correctIndex: Int
 }
 
-/// Builds practice questions from the on-watch vocab. Both sides arrive
-/// pre-resolved in the snapshot (no direction concept): the prompt is the
-/// TARGET side, the matched answer the SOURCE meaning.
+/// Builds a question for a FIXED prompt card (the queued card being drained),
+/// role-aware: the option side matches the phone-scheduled `nextRole`, so a
+/// recognition tap grades the same direction the phone expects.
+/// - recognize: prompt the target `promptForm`, match the SOURCE meaning.
+/// - produce:   prompt the SOURCE meaning, match the TARGET word.
 enum WatchPracticeGenerator {
 
-    /// The prompt shown to the learner.
-    static func promptText(for entry: WatchSnapshot.Entry) -> String {
-        entry.targetText
-    }
-
-    /// The text the learner must MATCH (the known-language meaning).
+    /// The text the learner must MATCH for this entry's role (the option side).
     static func answerText(for entry: WatchSnapshot.Entry) -> String {
-        entry.sourceText
+        entry.isRecognize ? entry.sourceText : entry.targetText
     }
 
-    /// A practice question, or `nil` when the deck has fewer than two distinct
-    /// answers (caller shows the "learn on the iPhone first" fallback).
-    /// Up to four options; distractors are deduped case-insensitively against
-    /// the correct answer and each other. `avoiding` keeps the same prompt
-    /// card from repeating back-to-back.
-    static func makeQuestion(entries: [WatchSnapshot.Entry],
-                             avoiding previousCardID: String?,
+    /// A question, or `nil` when the pool holds no distinct distractor.
+    /// Up to four options; distractors are deduped case-insensitively and
+    /// ranked by SHAPE similarity to the answer (character length + number of
+    /// space/hyphen parts) so option length can't give the answer away, then
+    /// lightly shuffled within the closest handful.
+    static func makeQuestion(promptEntry prompt: WatchSnapshot.Entry,
+                             pool: [WatchSnapshot.Entry],
                              using rng: inout some RandomNumberGenerator) -> WatchPracticeQuestion? {
-        guard entries.count >= 2 else { return nil }
-
-        // why: don't repeat the previous prompt card — resample once (cheap,
-        // matches the phone drill's single-resample behaviour).
-        var prompt = entries.randomElement(using: &rng)!
-        if prompt.cardId == previousCardID {
-            prompt = entries.randomElement(using: &rng)!
-        }
-
         let correct = answerText(for: prompt)
         let correctKey = correct.lowercased()
 
-        // Distractors from every OTHER entry's answer text, unique and distinct
-        // from the correct answer (case-insensitive).
+        // Distractor candidates from every OTHER entry's answer text (same
+        // role side), unique and distinct from the correct answer.
         var seen: Set<String> = [correctKey]
-        var pool: [String] = []
-        for entry in entries where entry.cardId != prompt.cardId {
+        var candidates: [String] = []
+        for entry in pool where entry.cardId != prompt.cardId {
             let candidate = answerText(for: entry)
-            let key = candidate.lowercased()
-            if seen.insert(key).inserted { pool.append(candidate) }
+            if seen.insert(candidate.lowercased()).inserted { candidates.append(candidate) }
         }
-        pool.shuffle(using: &rng)
+        guard !candidates.isEmpty else { return nil }  // deck of identical answers
 
-        var options = Array(pool.prefix(3)) + [correct]
-        guard options.count >= 2 else { return nil }  // deck of identical answers
+        // why: a lone long / multi-part option is a visual tell — keep the
+        // three distractors close to the answer's shape, then jitter within
+        // the closest six so it isn't deterministic.
+        var shortlist = candidates
+            .sorted { shapeDistance($0, to: correct) < shapeDistance($1, to: correct) }
+            .prefix(6)
+            .map { $0 }
+        shortlist.shuffle(using: &rng)
+
+        var options = Array(shortlist.prefix(3)) + [correct]
         options.shuffle(using: &rng)
-
         let correctIndex = options.firstIndex(of: correct)!
         return WatchPracticeQuestion(promptCardID: prompt.cardId, promptEntry: prompt,
                                      options: options, correctIndex: correctIndex)
+    }
+
+    /// Shape distance: character-length gap plus a heavy penalty when the
+    /// number of space/hyphen-separated parts differs (keeps multi-part words
+    /// together so a compound isn't obvious among single words).
+    static func shapeDistance(_ a: String, to b: String) -> Int {
+        abs(a.count - b.count) + abs(partCount(a) - partCount(b)) * 6
+    }
+
+    private static func partCount(_ s: String) -> Int {
+        s.split(whereSeparator: { $0 == " " || $0 == "-" }).count
     }
 }

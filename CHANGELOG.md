@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Watch: one multiple-choice practice that counts.** The separate "Start"
+  (flip + self-grade) and "Üben" (throwaway quiz) modes are now a single tap-the-
+  answer loop that feeds your schedule: it drains what's due, then keeps going by
+  reviewing ahead. Faster correct answers score higher (a snappy tap counts as
+  Easy, a hesitant one as Hard), and the wrong-answer options are kept similar in
+  length so you can't guess by shape.
 - **DuoLernen is now Spross** (`net.spross.app`): new name, new app/widget/watch
   identities, feedback address `feedback@spross.net`. Card ids and stored boxes
   start fresh — existing test installs begin at an empty box (pre-production).

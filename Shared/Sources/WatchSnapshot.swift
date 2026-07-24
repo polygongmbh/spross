@@ -78,6 +78,16 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
         return entries.filter { $0.due <= nowMillis && !answered.contains($0.cardId) }
     }
 
+    /// Not-yet-due entries, soonest-due first, minus locally answered — the
+    /// session continues into these once the due list drains (review-ahead).
+    func reviewAheadEntries(now: Date) -> [Entry] {
+        let answered = Set(answeredCardIDs)
+        let nowMillis = Int64(now.timeIntervalSince1970 * 1000)
+        return entries
+            .filter { $0.due > nowMillis && !answered.contains($0.cardId) }
+            .sorted { $0.due < $1.due }
+    }
+
     /// Entries due by tomorrow evening (mirrors the phone's tomorrow count).
     func tomorrowDueCount(now: Date, calendar: Calendar) -> Int {
         guard let end = calendar.date(byAdding: .day, value: 2,

@@ -1,26 +1,34 @@
 import Foundation
 import Observation
 import WidgetKit
+import WatchKit
 
-/// Watch app state: holds the latest phone snapshot, drains its due list in
-/// a micro-review loop, and queues answer events back to the phone.
-/// No watch-local FSRS — the phone reschedules; a rated card simply leaves
-/// the local due list until the next snapshot arrives.
+/// Watch app state: holds the latest phone snapshot and drains it as ONE
+/// graded multiple-choice session — due cards first, then review-ahead. Each
+/// tap is scored from correctness + response time (`WatchGrading`) and queued
+/// to the phone as an FSRS review. No watch-local FSRS — the phone reschedules;
+/// an answered card simply leaves the local due list until the next snapshot.
 @MainActor
 @Observable
 final class WatchModel {
 
     private(set) var snapshot: WatchSnapshot?
 
-    // MARK: Review-loop state
-    var reviewPresented = false
-    /// "Üben" practice sheet (pure-local multiple choice; no FSRS).
-    var practicePresented = false
+    // MARK: Session state (one graded multiple-choice loop)
+    var sessionPresented = false
     private(set) var queue: [String] = []
     private(set) var currentID: String?
-    var revealed = false
+    private(set) var currentQuestion: WatchPracticeQuestion?
+    /// The tapped option index; non-nil freezes the tiles into feedback state.
+    private(set) var selectedIndex: Int?
+    private(set) var streak = 0
     private(set) var answeredCount = 0
     private(set) var reviewTotal = 0
+
+    /// When the current question became visible — the response-time clock.
+    private var questionShownAt = Date()
+    private var rng = SystemRandomNumberGenerator()
+    private var autoAdvance: Task<Void, Never>?
 
     let connectivity = WatchConnectivityClient()
     let calendar = Calendar.current
@@ -30,19 +38,19 @@ final class WatchModel {
     func start() {
         #if DEBUG
         // UI-test hooks: `-uitest-snapshot` loads the bundled fixture instead
-        // of stored/synced state; `-uitest-autostart` opens the review loop,
-        // `-uitest-reveal` also flips the first card; `-uitest-practice` opens
-        // the Üben practice sheet (screenshot verification without a paired
-        // phone — simctl cannot tap).
+        // of stored/synced state; `-uitest-autostart` (or the legacy
+        // `-uitest-practice`) opens the quiz; `-uitest-streak N` presets the
+        // streak (screenshot verification without a paired phone — simctl
+        // cannot tap).
         let arguments = ProcessInfo.processInfo.arguments
         if arguments.contains("-uitest-snapshot") {
             snapshot = Self.loadFixture()
-            if arguments.contains("-uitest-autostart") {
-                startReview()
-                revealed = arguments.contains("-uitest-reveal")
-            }
-            if arguments.contains("-uitest-practice") {
-                practicePresented = true
+            if arguments.contains("-uitest-autostart") || arguments.contains("-uitest-practice") {
+                startSession()
+                if let i = arguments.firstIndex(of: "-uitest-streak"), i + 1 < arguments.count,
+                   let n = Int(arguments[i + 1]) {
+                    streak = n
+                }
             }
             return
         }
@@ -69,12 +77,13 @@ final class WatchModel {
         snapshot = incoming
         WatchSnapshotStore.save(incoming)
         WidgetCenter.shared.reloadAllTimelines()
-        if reviewPresented {
-            // why: mid-review the visible queue must not resurrect cards the
-            // user just rated (their events may not be applied phone-side yet).
-            let due = Set(incoming.dueEntries(now: Date()).map(\.cardId))
-            queue = queue.filter { due.contains($0) }
-            if let id = currentID, incoming.entry(id: id) == nil {
+        if sessionPresented {
+            // why: mid-session the queue must not resurrect cards the user just
+            // answered (their events may not be applied phone-side yet).
+            let answered = Set(incoming.answeredCardIDs)
+            let present = Set(incoming.entries.map(\.cardId))
+            queue = queue.filter { present.contains($0) && !answered.contains($0) }
+            if let id = currentID, !present.contains(id) {
                 advance()
             }
         }
@@ -94,59 +103,91 @@ final class WatchModel {
         currentID.flatMap { snapshot?.entry(id: $0) }
     }
 
-    // MARK: - Practice ("Üben")
-
-    /// Enough on-watch vocab to build a multiple-choice question.
-    var canPractice: Bool { (snapshot?.entries.count ?? 0) >= 2 }
-
-    /// A fresh pure-local practice run over the current snapshot, or nil when
-    /// there isn't enough vocab yet.
-    func makePracticeModel() -> WatchPracticeModel? {
-        guard let snapshot, snapshot.entries.count >= 2 else { return nil }
-        return WatchPracticeModel(snapshot: snapshot)
+    /// Enough on-watch vocab to build a multiple-choice question AND something
+    /// to answer (due now or reviewable ahead).
+    var canStart: Bool {
+        guard let snapshot, snapshot.entries.count >= 2 else { return false }
+        return dueCount > 0 || !snapshot.reviewAheadEntries(now: Date()).isEmpty
     }
 
-    // MARK: - Review loop
+    // MARK: - Session
 
-    func startReview() {
-        guard let snapshot else { return }
-        queue = snapshot.dueEntries(now: Date()).map(\.cardId)
-        reviewTotal = queue.count
+    func startSession() {
+        guard let snapshot, snapshot.entries.count >= 2 else { return }
+        let due = snapshot.dueEntries(now: Date()).map(\.cardId)
+        let ahead = snapshot.reviewAheadEntries(now: Date()).map(\.cardId)
+        queue = due + ahead
+        // Title denominator tracks the due portion; a pure review-ahead session
+        // (nothing due) falls back to the whole queue so it isn't "N/0".
+        reviewTotal = due.isEmpty ? queue.count : due.count
         answeredCount = 0
-        revealed = false
+        streak = 0
         currentID = queue.first
-        reviewPresented = true
+        makeQuestionForCurrent()
+        sessionPresented = true
     }
 
-    /// Self-grade the current card (rating raw 1–4): queue the event to the
-    /// phone, mark it answered locally (drops out of the due list), persist,
-    /// advance. Both roles are graded this way — the watch never types.
-    func rate(_ rating: Int) {
-        guard let id = currentID, var snap = snapshot else { return }
+    /// Score the tapped option from correctness + response time, queue the
+    /// FSRS review to the phone, drop the card locally, then flip to the next
+    /// question. A second tap while feedback shows is ignored.
+    func choose(_ index: Int) {
+        guard selectedIndex == nil, let question = currentQuestion,
+              let id = currentID, var snap = snapshot else { return }
+        selectedIndex = index
+        let correct = index == question.correctIndex
+        streak = correct ? streak + 1 : 0
+        // why: a light tap on a wrong pick only — a gentle wake-up cue, not the
+        // punishing `.failure`/`.retry`; correct picks stay haptic-free.
+        if !correct { WKInterfaceDevice.current().play(.click) }
+
+        let elapsedMs = Int(Date().timeIntervalSince(questionShownAt) * 1000)
+        let optionChars = question.options.joined().count
+        let rating = WatchGrading.rating(correct: correct, elapsedMs: elapsedMs,
+                                         optionChars: optionChars)
+
         connectivity.send(WatchAnswerEvent(cardId: id, rating: rating, date: Date()))
         snap.answeredCardIDs.append(id)
         snapshot = snap
         WatchSnapshotStore.save(snap)
         WidgetCenter.shared.reloadAllTimelines()
         answeredCount += 1
-        advance()
+
+        // why: linger longer on a wrong pick so the green-highlighted correct
+        // tile has time to register before the next question.
+        let delay = correct ? 900 : 2000
+        autoAdvance = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .milliseconds(delay))
+            guard !Task.isCancelled else { return }
+            self?.advance()
+        }
     }
 
-    func reveal() {
-        revealed = true
-    }
-
-    func endReview() {
-        reviewPresented = false
+    func endSession() {
+        autoAdvance?.cancel()
+        sessionPresented = false
         currentID = nil
+        currentQuestion = nil
         queue = []
     }
 
     private func advance() {
-        revealed = false
+        autoAdvance?.cancel()
         if let id = currentID, let index = queue.firstIndex(of: id) {
             queue.remove(at: index)
         }
         currentID = queue.first
+        makeQuestionForCurrent()
+    }
+
+    /// Build the question for the current card and (re)start the response clock.
+    private func makeQuestionForCurrent() {
+        selectedIndex = nil
+        guard let entry = currentEntry, let snapshot else {
+            currentQuestion = nil
+            return
+        }
+        currentQuestion = WatchPracticeGenerator.makeQuestion(
+            promptEntry: entry, pool: snapshot.entries, using: &rng)
+        questionShownAt = Date()
     }
 }

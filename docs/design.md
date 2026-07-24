@@ -132,8 +132,17 @@ same review UX rules; deltas only where the platform differs:
   (both sides pre-resolved per card, `nextRole` + `promptForm` baked in,
   due-first ranking, ≤ 60 entries) and **WidgetSnapshot** on every persist;
   wire formats in kern-design §7.
-- Watch: flip + self-grade both roles (the watch never types);
-  answers return as events, the phone reschedules with real timestamps and re-pushes.
+- Watch: one graded **multiple-choice** loop (the watch never types) — role-aware
+  per card (recognize → tap the source meaning; produce → tap the target word),
+  distractors ranked by shape (length + part-count) so option length can't give
+  the answer away. Drains due cards, then review-ahead by soonest-due.
+  No self-grading: correctness + **response time** derive the FSRS rating —
+  wrong → Again, correct → Easy (very fast) / Good (fast) / Hard (slow), with a
+  length-scaled "fast" budget (`WatchGrading`). Recognition on a keyboard-less
+  device is a deliberate concession to the phone's recall-first rule; the latency
+  curve compensates, and Easy stays reachable on purpose (breadth of exposure
+  over perfect single-word retention). Answers return as events; the phone
+  reschedules with real timestamps and re-pushes.
 - iOS widget: pure Swift decode; the retrievability power curve is duplicated
   Swift-side with the w20 constant (documented duplication).
 

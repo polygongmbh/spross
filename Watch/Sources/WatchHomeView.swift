@@ -1,13 +1,9 @@
 import SwiftUI
 
-/// The one watch screen: "N fällig" + Start, or the all-done state.
-/// The review loop itself lives in a sheet (full screen on watchOS).
+/// The one watch screen: "N fällig" + Start, or the all-done state. The single
+/// graded multiple-choice session lives in a sheet (full screen on watchOS).
 struct WatchHomeView: View {
     @Bindable var model: WatchModel
-
-    /// Current practice run — built on tap (or lazily inside the sheet for the
-    /// -uitest-practice force-open path).
-    @State private var practice: WatchPracticeModel?
 
     var body: some View {
         Group {
@@ -16,17 +12,11 @@ struct WatchHomeView: View {
             } else if model.dueCount > 0 {
                 dueState
             } else {
-                doneState
+                restState
             }
         }
-        .sheet(isPresented: $model.reviewPresented) {
-            WatchReviewView(model: model)
-        }
-        .sheet(isPresented: $model.practicePresented) {
-            if let run = practice ?? model.makePracticeModel() {
-                WatchPracticeView(model: run) { model.practicePresented = false }
-                    .onAppear { if practice == nil { practice = run } }
-            }
+        .sheet(isPresented: $model.sessionPresented) {
+            WatchQuizView(model: model)
         }
         // Small version tag reserving its own strip at the bottom, so the
         // centered content never overlaps it.
@@ -43,11 +33,6 @@ struct WatchHomeView: View {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     }
 
-    private func startPractice() {
-        practice = model.makePracticeModel()
-        model.practicePresented = practice != nil
-    }
-
     private var dueState: some View {
         VStack(spacing: 8) {
             HStack(alignment: .firstTextBaseline, spacing: 5) {
@@ -58,29 +43,21 @@ struct WatchHomeView: View {
                     .font(.system(.headline, design: .rounded))
                     .foregroundStyle(Color.wlTextSecondary)
             }
-            Button {
-                model.startReview()
-            } label: {
-                Text("Start")
-                    .font(.system(.headline, design: .rounded, weight: .bold))
-                    .foregroundStyle(.black)
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(Color.wlAccent)
-            .padding(.top, 6)
-            if model.canPractice {
-                Button { startPractice() } label: {
-                    Text("Üben")
-                        .font(.system(.footnote, design: .rounded, weight: .semibold))
-                        .foregroundStyle(Color.wlAccent)
+            if model.canStart {
+                Button { model.startSession() } label: {
+                    Text("Start")
+                        .font(.system(.headline, design: .rounded, weight: .bold))
+                        .foregroundStyle(.black)
                 }
-                .buttonStyle(.bordered)
-                .tint(Color.wlAccent.opacity(0.5))
+                .buttonStyle(.borderedProminent)
+                .tint(Color.wlAccent)
+                .padding(.top, 6)
             }
         }
     }
 
-    private var doneState: some View {
+    /// Nothing due — offer review-ahead practice when there is vocab to review.
+    private var restState: some View {
         VStack(spacing: 8) {
             Text("Alles sitzt 🎉")
                 .font(.system(.title3, design: .rounded, weight: .bold))
@@ -89,8 +66,8 @@ struct WatchHomeView: View {
                  : "Morgen: frei")
                 .font(.system(.footnote, design: .rounded))
                 .foregroundStyle(Color.wlTextSecondary)
-            if model.canPractice {
-                Button { startPractice() } label: {
+            if model.canStart {
+                Button { model.startSession() } label: {
                     Text("Üben")
                         .font(.system(.headline, design: .rounded, weight: .bold))
                         .foregroundStyle(.black)
