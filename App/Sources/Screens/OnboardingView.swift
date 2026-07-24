@@ -58,7 +58,7 @@ struct OnboardingView: View {
     }
 
     private func languageName(_ code: String) -> String {
-        LanguageNames.display(code, locale: locale, catalog: model.catalog)
+        LanguageNames.native(code, catalog: model.catalog)
     }
 
     // MARK: - Which language you already speak

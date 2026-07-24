@@ -42,6 +42,13 @@ enum LanguageNames {
         }
         return catalog?.languages[code]?.name ?? code.uppercased()
     }
+
+    /// Language PICKERS use the language's own name (languages.json): a speaker
+    /// must recognize their language regardless of chrome locale ("Українська",
+    /// never "Ukrainisch"). Sentence chrome keeps `display`.
+    static func native(_ code: String, catalog: Catalog?) -> String {
+        catalog?.languages[code]?.name ?? code.uppercased()
+    }
 }
 
 extension Card {
