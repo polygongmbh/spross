@@ -35,22 +35,50 @@ object PhraseSlots {
     }
 
     /**
-     * Deterministic sampling with the Trainer's ported biases
-     * (numbers 10–9999 weighted to 2–3 digits, years around 1950–2050,
-     * clock any hour and minute — Swahili restricted to minutes 0..30).
+     * Full-difficulty sampling with the Trainer's ported biases
+     * (numbers 10–9999 weighted to 2–3 digits, years around 1950–2050).
+     * Clock is the leveled sampler at max level: any hour and minute,
+     * intersected with the template constraint (Swahili minutes 0..30).
      */
     fun sample(template: PhraseTemplate, rng: Random): TrainerTask {
-        if (template.slotKind == TrainerKind.Clock && template.target == "sw") {
-            // Swahili embeds only minutes 0..30 (see instantiate).
-            val hour = rng.nextInt(24)
-            val minute = rng.nextInt(31)
-            return instantiate(template, hour, minute)
+        if (template.slotKind == TrainerKind.Clock) {
+            return sample(template, Trainer.maxLevel(TrainerKind.Clock), rng)
         }
         val slot = Trainer.sample(template.slotKind, template.target, rng)
         // why: slot.prompt is the Trainer's numeric contract ("347"/"1978"),
         // so counted-noun agreement can reuse the sampled value exactly.
-        val value = if (template.slotKind == TrainerKind.Clock) null else slot.prompt.toLong()
-        return compose(template, slot, value)
+        return compose(template, slot, slot.prompt.toLong())
+    }
+
+    /**
+     * Level-aware sampling for the gentle sentence-drill ramp: the slot value
+     * is drawn with the SAME level semantics as the plain drills (numbers:
+     * level = digit count; years: recent decades → historic range; clock:
+     * full hours → any minute — see the leveled [Trainer.sample]), then
+     * instantiated, so accepted sentences stay identical to [instantiate].
+     * Clock templates intersect the level's minute set with the template
+     * constraint (Swahili embeds only minutes 0..30, so level 2 quarters
+     * become {0, 15, 30} and level 4 caps at :30).
+     */
+    fun sample(template: PhraseTemplate, level: Int, rng: Random): TrainerTask {
+        if (template.slotKind == TrainerKind.Clock) {
+            return instantiate(template, rng.nextInt(24), drawMinute(template, level, rng))
+        }
+        val slot = Trainer.sample(template.slotKind, template.target, level, rng)
+        // why: slot.prompt is the Trainer's numeric contract ("347"/"1978"),
+        // so counted-noun agreement can reuse the sampled value exactly.
+        return instantiate(template, value = slot.prompt.toLong())
+    }
+
+    /** Leveled minute set ∩ template constraint (see [sample]). */
+    private fun drawMinute(template: PhraseTemplate, level: Int, rng: Random): Int {
+        val cap = if (template.target == "sw") 30 else 59
+        return when (level.coerceIn(1, Trainer.maxLevel(TrainerKind.Clock))) {
+            1 -> 0
+            2 -> intArrayOf(0, 15, 30, 45).filter { it <= cap }.let { it[rng.nextInt(it.size)] }
+            3 -> rng.nextInt(31)
+            else -> rng.nextInt(cap + 1)
+        }
     }
 
     // Reverse (target sentence shown, source language typed)
@@ -87,8 +115,14 @@ object PhraseSlots {
         )
     }
 
-    fun reverseSample(template: PhraseTemplate, rng: Random): TrainerTask {
-        val forward = sample(template, rng)
+    fun reverseSample(template: PhraseTemplate, rng: Random): TrainerTask =
+        reverseOf(template, sample(template, rng))
+
+    /** Level-aware reverse drill — same value ramp as the leveled [sample]. */
+    fun reverseSample(template: PhraseTemplate, level: Int, rng: Random): TrainerTask =
+        reverseOf(template, sample(template, level, rng))
+
+    private fun reverseOf(template: PhraseTemplate, forward: TrainerTask): TrainerTask {
         if (template.slotKind == TrainerKind.Clock) {
             val parts = Regex("""\d+""").findAll(forward.prompt).map { it.value.toInt() }.toList()
             val hour = if (parts.size > 1) parts[parts.size - 2] else 0
