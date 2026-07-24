@@ -200,7 +200,8 @@ day-key `yyyy-MM-dd`) with:
   sides pre-resolved: `{cardId, sourceText, targetText, accepted[], emoji?, articleTint?,
   femMarker, due, stability, nextRole, promptForm}` + `schemaVersion`.
   The phone resolves `nextRole` and the rotated `promptForm` from the log count at build
-  time; the watch presents accordingly (flip + self-grade both roles; the watch never
+  time; the watch presents accordingly (one response-time-graded multiple-choice loop —
+  correctness + latency derive the rating, see design.md §Watch; the watch never
   types) and `emoji` is pre-gated by the §3 matrix.
   Ranking is **due-first** (a due card is never evicted by a non-due lower tier), then
   exposure tiers, capped at 60 entries (the ~60 KB `updateApplicationContext` limit).
@@ -244,7 +245,11 @@ day-key `yyyy-MM-dd`) with:
 - Trainer: single `:kern` module, `Long` cardinals everywhere (Kotlin `Int` is 32-bit on
   all platforms — v1's arm64_32 fix generalizes). Trainer registry: de/sw/uk authored,
   en absent → hub hides gracefully. Phrase templates keyed (source, target); reverse mode
-  when target == de. Android: landed — `androidLibrary` KMP target
+  when target == de.
+  German clock ACCEPTS 24-hour readings ("achtzehn Uhr fünfunddreißig", "null/vierundzwanzig
+  Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.
+  `PhraseSlots` samples level-aware — same per-kind ramp tables as the plain drills
+  (a template's slot kind clamps the level); unleveled call = ceiling. Android: landed — `androidLibrary` KMP target
   (`com.android.kotlin.multiplatform.library`, AGP 9.3.0, compileSdk 36 / minSdk 26),
   androidMain NFC actual mirrors jvmMain; `:android` consumes the same facades.
   Gate: `./gradlew :kern:compileAndroidMain`.

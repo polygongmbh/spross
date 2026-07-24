@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+- **Language pickers speak for themselves**: onboarding is English (it shows before
+  your language is known), and every language choice reads "🇩🇪 German" — flag plus
+  English name. Nothing is greyed out anymore: picking the language on the other
+  side simply swaps "I speak" and "I'm learning" (progress survives, as always).
+- **Extra rounds bring new words**: the extra round after finishing your day now
+  prefers fresh composition — everything due plus NEW vocabulary within your
+  learning-pool budget — and only repeats ahead of schedule when nothing new fits.
+- **The Box is grouped**: areas sit under their catalog groups (Start, Zuhause,
+  Alltag, Amt …) instead of one long list — far less scrolling to find a target.
+- **Drills forgive typos and accept real time-telling**: number/clock/sentence
+  drills grade with the same small-typo budget as reviews (never bridging two
+  different numbers), and the German clock accepts full 24-hour answers like
+  "achtzehn Uhr fünfunddreißig" alongside colloquial forms.
+- **Sentence drills start gentle**: slot values ramp from short-and-easy upward
+  with the same two-wins-up mechanics as the other drills, instead of opening
+  with mouthfuls.
 - **Watch: one multiple-choice practice that counts.** The separate "Start"
   (flip + self-grade) and "Üben" (throwaway quiz) modes are now a single tap-the-
   answer loop that feeds your schedule: it drains what's due, then keeps going by

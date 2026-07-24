@@ -41,7 +41,13 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
 
 - Profile = (source, target) catalog languages;
   targets come from `Catalog.availableTargets(source)` (≥ 50 joinable concepts);
-  both pickers show concept counts ("… Begriffe").
+  both pickers show concept counts ("… terms").
+- Onboarding chrome is ENGLISH (it renders before the user's language is known);
+  language picker rows everywhere are "⟨flag⟩ ⟨englishName⟩" from languages.json
+  ("🇩🇪 German") — one neutral form on both sides.
+- Neither picker excludes the other side's language:
+  choosing the language the other side holds SWAPS the pair
+  (target list offers the current source with the swapped pair's count).
 - Default source = device language when covered, else en.
 - UI chrome renders in the KNOWN language when chrome exists (de/en today), otherwise en;
   the immersion subtitle (learned word beneath the main button label)
@@ -88,6 +94,9 @@ the app renders them:
   **concept-denominated** — one schedule per card makes cards ≡ concepts (kern-design §4).
 - Sessions are composed, never configured:
   plan from `BoxEngine`, drain loop, extra round, endless mode — semantics in kern-design §6.
+  The done-card extra round composes endless-FIRST (due + NEW vocab within budget/gate),
+  falling back to review-ahead when endless is empty,
+  so it renders in every done state with active cards.
   Session end = summary ("x neu · x gefestigt · x wiederholt") with confetti and streak;
   "Weiter üben" → endless.
 - A lapsed review card returns after 10 minutes — typically next session;
@@ -99,13 +108,21 @@ the app renders them:
   session card (due-count ring + streak flame, or done state),
   trainer hub, condensed Fortschritt section (14-day strip, active count, retention).
 - **Box** (pushed via the 📦 toolbar icon): browse areas/cards —
+  areas grouped under their areas.json groups
+  (source-language titles, en fallback, manifest order; empty groups drop out);
   rows lead with the TARGET realization; phase/stability, pack-into-box,
   suspended cards surface for revive; settings
-  (source/target pickers, learning-pool size, reset, `feedback@spross.net` + version footer).
+  (source/target pickers with flag + English name — picking the other side swaps —
+  learning-pool size, reset, `feedback@spross.net` + version footer).
 - **Trainers**: registry-driven from kern — de/sw/uk authored,
   the hub hides languages with no content (en trainer unauthored).
   Slot drills are stateless; phrase templates are keyed (source, target),
   reverse mode when target == de.
+  Drill answers grade through the kern normalizer against every accepted variant
+  (same typo budget as reviews; accepted-with-typo pauses with the proper spelling;
+  articles/verb-prefix leniency stay off).
+  All drills ramp: two-wins-up / one-miss-down levels,
+  the sentence drill drawing leveled slot values (kern-design §9).
 
 Design language: warm, card-centric, emoji as illustration, article color coding
 der=blue / die=pink-red / das=green — degrades to neutral for languages without
