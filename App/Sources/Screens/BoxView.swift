@@ -10,14 +10,27 @@ struct BoxView: View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
                 header
-                ForEach(model.areaNames, id: \.self) { area in
-                    BoxAreaSection(model: model, area: area)
+                // Areas grouped under their areas.json groups, manifest order.
+                ForEach(model.areaGroupSections) { group in
+                    groupHeader(group.title)
+                    ForEach(group.areas, id: \.self) { area in
+                        BoxAreaSection(model: model, area: area)
+                    }
                 }
                 BoxSettingsSection(model: model)
             }
             .padding(DL.Space.xl)
         }
         .background(Color.dlBackground.ignoresSafeArea())
+    }
+
+    /// Plain section header (kicker idiom: uppercased caption, secondary).
+    private func groupHeader(_ title: String) -> some View {
+        Text(title)
+            .font(DL.Fonts.caption)
+            .foregroundStyle(Color.dlTextSecondary)
+            .textCase(.uppercase)
+            .padding(.top, DL.Space.s)
     }
 
     private var header: some View {

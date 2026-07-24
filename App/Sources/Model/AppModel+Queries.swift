@@ -118,6 +118,27 @@ extension AppModel {
         catalog?.areaTitle(area: area, lang: sourceLanguage) ?? area.capitalized
     }
 
+    /// One Box browser section: an areas.json group with its present areas.
+    struct AreaGroupSection: Identifiable {
+        let id: String
+        let title: String
+        let areas: [String]
+    }
+
+    /// Manifest-ordered groups (title in the SOURCE language, en fallback),
+    /// filtered to the areas actually present in this profile's box —
+    /// mirrors `areaNames` (incl. its uitest hook); empty groups drop out.
+    var areaGroupSections: [AreaGroupSection] {
+        guard let catalog else { return [] }
+        let present = Set(areaNames)
+        return catalog.groups.compactMap { group in
+            let areas = group.areas.filter(present.contains)
+            guard !areas.isEmpty else { return nil }
+            let title = group.titles[sourceLanguage] ?? group.titles["en"] ?? group.id.capitalized
+            return AreaGroupSection(id: group.id, title: title, areas: areas)
+        }
+    }
+
     func areaStats(_ name: String) -> AreaStatistics? {
         stats?.areas.first { $0.name == name }
     }
