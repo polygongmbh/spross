@@ -43,11 +43,18 @@ enum LanguageNames {
         return catalog?.languages[code]?.name ?? code.uppercased()
     }
 
-    /// Language PICKERS use the language's own name (languages.json): a speaker
-    /// must recognize their language regardless of chrome locale ("Українська",
-    /// never "Ukrainisch"). Sentence chrome keeps `display`.
+    /// Sentence chrome outside pickers ("Alle Lernfortschritte für …"):
+    /// the language's own name from languages.json.
     static func native(_ code: String, catalog: Catalog?) -> String {
         catalog?.languages[code]?.name ?? code.uppercased()
+    }
+
+    /// Language PICKER rows: "🇩🇪 German" — flag + English exonym from
+    /// languages.json. English on purpose: pickers render before (onboarding)
+    /// or independent of the chrome locale, one neutral form everywhere.
+    static func pickerRow(_ code: String, catalog: Catalog?) -> String {
+        guard let info = catalog?.languages[code] else { return code.uppercased() }
+        return "\(info.flag) \(info.englishName)"
     }
 }
 

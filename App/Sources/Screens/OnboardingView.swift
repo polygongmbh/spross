@@ -5,6 +5,8 @@ import SprossKern
 /// and the one you want to learn (target, with its concept count).
 /// Coverage-driven: sources are languages with at least one learnable
 /// target; targets come from `Catalog.availableTargets` (≥ 50 concepts).
+/// Chrome is ENGLISH — it renders before the user's language is known.
+/// Neither side hides the other's pick: choosing it swaps the selections.
 struct OnboardingView: View {
     let model: AppModel
 
@@ -48,33 +50,44 @@ struct OnboardingView: View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
             Text(verbatim: "👋")
                 .font(.system(size: 44))
-            Text("Willkommen bei Spross")
+            Text("Welcome to Spross")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("Deine Box wächst mit dir — jeden Tag ein paar neue Karten.")
+            Text("Your box grows with you — a few new cards every day.")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
         }
     }
 
     private func languageName(_ code: String) -> String {
-        LanguageNames.native(code, catalog: model.catalog)
+        LanguageNames.pickerRow(code, catalog: model.catalog)
+    }
+
+    /// Tapping the language the other side holds exchanges the two selections.
+    private func swapSelections() {
+        guard let oldTarget = target else { return }
+        target = source
+        source = oldTarget
     }
 
     // MARK: - Which language you already speak
 
     private var sourceSection: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("Welche Sprache sprichst du?")
+            Text("Which language do you speak?")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
             ForEach(sources, id: \.self) { candidate in
                 selectionRow(title: Text(verbatim: languageName(candidate)),
                              caption: nil,
                              selected: source == candidate) {
+                    if candidate == target {
+                        swapSelections()
+                        return
+                    }
                     source = candidate
-                    // why: the target list is source-dependent — keep the pick
-                    // valid (source == target can never be offered).
+                    // why: the target list is source-dependent — keep the
+                    // pick valid under the new source.
                     if !targets.contains(where: { $0.code == target }) {
                         target = targets.first?.code
                     }
@@ -85,18 +98,40 @@ struct OnboardingView: View {
 
     // MARK: - Which language you want to learn
 
+    /// Learnable targets PLUS the current source — picking it swaps the pair
+    /// (its count is the swapped pair's, which is symmetric).
+    private struct TargetChoice: Identifiable {
+        let code: String
+        let conceptCount: Int
+        var id: String { code }
+    }
+
+    private var targetChoices: [TargetChoice] {
+        var choices = targets.map { TargetChoice(code: $0.code, conceptCount: Int($0.conceptCount)) }
+        if let target,
+           let swapped = model.catalog?.availableTargets(source: target)
+               .first(where: { $0.code == source }) {
+            choices.append(TargetChoice(code: source, conceptCount: Int(swapped.conceptCount)))
+        }
+        return choices.sorted { $0.code < $1.code }
+    }
+
     private var targetSection: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("Welche Sprache lernst du?")
+            Text("Which language are you learning?")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            ForEach(targets) { candidate in
+            ForEach(targetChoices) { candidate in
                 // why: String interpolation on purpose — count keys are `%@`
                 // in the catalog (the `%lld` twins are being retired).
                 selectionRow(title: Text(verbatim: languageName(candidate.code)),
-                             caption: Text("\(String(candidate.conceptCount)) Begriffe"),
+                             caption: Text("\(String(candidate.conceptCount)) terms"),
                              selected: target == candidate.code) {
-                    target = candidate.code
+                    if candidate.code == source {
+                        swapSelections()
+                    } else {
+                        target = candidate.code
+                    }
                 }
             }
         }
@@ -150,7 +185,7 @@ struct OnboardingView: View {
                 if starting {
                     ProgressView().tint(.white)
                 } else {
-                    Text("Los geht's!")
+                    Text("Let's go!")
                 }
             }
             .frame(maxWidth: .infinity)

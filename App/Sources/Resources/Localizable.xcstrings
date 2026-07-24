@@ -1,45 +1,6 @@
 {
   "sourceLanguage" : "de",
   "strings" : {
-    "%@ Begriffe" : {
-
-    },
-    "= Pl." : {
-
-    },
-    "Alle Lernfortschritte für %@ löschen und neu mit den ersten Wörtern beginnen?" : {
-
-    },
-    "Auf %@ …" : {
-
-    },
-    "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten." : {
-
-    },
-    "Englisch" : {
-
-    },
-    "Ich spreche" : {
-
-    },
-    "Weibliche Form" : {
-
-    },
-    "Welche Sprache lernst du?" : {
-
-    },
-    "Welche Sprache sprichst du?" : {
-
-    },
-    "Willkommen bei Spross" : {
-
-    },
-    "auch: %@" : {
-
-    },
-    "nur Pl." : {
-
-    },
     " üben, auf %@" : {
       "comment" : "Trainer drill accessibility suffix",
       "localizations" : {
@@ -71,17 +32,10 @@
     "%@ " : {
 
     },
-    "%@ %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ %2$@"
-          }
-        }
-      }
-    },
     "%@ Aufgaben 🎯" : {
+
+    },
+    "%@ Begriffe" : {
 
     },
     "%@ gefestigt" : {
@@ -112,6 +66,9 @@
           }
         }
       }
+    },
+    "%@ terms" : {
+
     },
     "%@ von %@ Karten fällig" : {
       "localizations" : {
@@ -620,7 +577,6 @@
       }
     },
     "Aufdecken" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -643,6 +599,7 @@
       }
     },
     "Beide Richtungen üben" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -651,6 +608,9 @@
           }
         }
       }
+    },
+    "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten." : {
+
     },
     "Beste Serie: 🔥 %@ in Folge" : {
 
@@ -719,6 +679,7 @@
       }
     },
     "Deutsch" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -782,6 +743,7 @@
       }
     },
     "Empfohlen — beide Übersetzungsrichtungen festigen die Vokabel." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -896,6 +858,12 @@
         }
       }
     },
+    "I speak" : {
+
+    },
+    "I'm learning" : {
+
+    },
     "Ich lerne" : {
       "localizations" : {
         "en" : {
@@ -905,6 +873,9 @@
           }
         }
       }
+    },
+    "Ich spreche" : {
+
     },
     "Jahreszahl" : {
       "extractionState" : "stale",
@@ -992,6 +963,9 @@
           }
         }
       }
+    },
+    "Let's go!" : {
+
     },
     "Letzte 14 Tage" : {
       "localizations" : {
@@ -1308,6 +1282,7 @@
       }
     },
     "Sprache" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1456,6 +1431,7 @@
       }
     },
     "Welche Sprache kannst du schon?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1465,7 +1441,14 @@
         }
       }
     },
+    "Welche Sprache lernst du?" : {
+
+    },
+    "Welche Sprache sprichst du?" : {
+
+    },
     "Welches Sprachpaar?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1475,7 +1458,17 @@
         }
       }
     },
+    "Welcome to Spross" : {
+
+    },
+    "Which language are you learning?" : {
+
+    },
+    "Which language do you speak?" : {
+
+    },
     "Willkommen bei DuoLernen" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1484,6 +1477,9 @@
           }
         }
       }
+    },
+    "Willkommen bei Spross" : {
+
     },
     "Wusste ich doch" : {
       "extractionState" : "stale",
@@ -1495,6 +1491,9 @@
           }
         }
       }
+    },
+    "Your box grows with you — a few new cards every day." : {
+
     },
     "Zahl" : {
       "extractionState" : "stale",

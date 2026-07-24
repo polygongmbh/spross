@@ -71,22 +71,25 @@ struct BoxSettingsSection: View {
         return URL(string: "mailto:\(Self.feedbackAddress)?subject=\(subject)")
     }
 
-    private func languageName(_ code: String) -> String {
-        LanguageNames.native(code, catalog: model.catalog)
+    /// Picker rows are "🇩🇪 German" — one neutral English form on both sides,
+    /// matching onboarding; sentence chrome (reset dialog) stays native.
+    private func pickerName(_ code: String) -> String {
+        LanguageNames.pickerRow(code, catalog: model.catalog)
     }
 
     // MARK: Rows
 
-    /// "Ich spreche": the known language. Switching re-joins in place —
-    /// schedules are keyed by card id, so all progress survives.
+    /// "I speak": the known language. Switching re-joins in place —
+    /// schedules are keyed by card id, so all progress survives. Picking the
+    /// language currently being LEARNED swaps the pair.
     private var sourceRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("Ich spreche")
+            Text("I speak")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            Picker("Ich spreche", selection: sourceBinding) {
-                ForEach(availableSources, id: \.self) { candidate in
-                    Text(verbatim: languageName(candidate)).tag(candidate)
+            Picker("I speak", selection: sourceBinding) {
+                ForEach(sourceChoices, id: \.self) { candidate in
+                    Text(verbatim: pickerName(candidate)).tag(candidate)
                 }
             }
             .pickerStyle(.segmented)
@@ -96,15 +99,16 @@ struct BoxSettingsSection: View {
         }
     }
 
-    /// "Ich lerne": the target language — one box per target.
+    /// "I'm learning": the target language — one box per target. Picking the
+    /// language currently SPOKEN swaps the pair.
     private var targetRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("Ich lerne")
+            Text("I'm learning")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            Picker("Ich lerne", selection: targetBinding) {
-                ForEach(availableTargets) { candidate in
-                    Text(verbatim: languageName(candidate.code)).tag(candidate.code)
+            Picker("I'm learning", selection: targetBinding) {
+                ForEach(targetChoices, id: \.self) { candidate in
+                    Text(verbatim: pickerName(candidate)).tag(candidate)
                 }
             }
             .pickerStyle(.segmented)
@@ -162,32 +166,45 @@ struct BoxSettingsSection: View {
     // MARK: Choices & bindings
 
     private var targetName: String {
-        model.targetLanguage.map(languageName) ?? "?"
+        model.targetLanguage.map { LanguageNames.native($0, catalog: model.catalog) } ?? "?"
     }
 
-    /// Sources that can learn the CURRENT target (the pair must stay valid).
-    private var availableSources: [String] {
-        guard let catalog = model.catalog, let target = model.targetLanguage else { return [] }
-        return model.coveredSources(catalog).filter { source in
-            catalog.availableTargets(source: source).contains { $0.code == target }
-        }
+    /// ALL covered sources — including the current target: picking it swaps.
+    private var sourceChoices: [String] {
+        model.catalog.map { model.coveredSources($0) } ?? []
     }
 
-    private var availableTargets: [AvailableTarget] {
-        model.catalog?.availableTargets(source: model.sourceLanguage) ?? []
+    /// Learnable targets from the current source PLUS the source itself —
+    /// picking the language you speak swaps the pair (mirrors onboarding).
+    private var targetChoices: [String] {
+        let targets = model.catalog?.availableTargets(source: model.sourceLanguage)
+            .map(\.code) ?? []
+        return (targets + [model.sourceLanguage]).sorted()
     }
 
     private var sourceBinding: Binding<String> {
         Binding(
             get: { model.sourceLanguage },
-            set: { model.switchSource($0) }
+            set: { candidate in
+                if candidate == model.targetLanguage {
+                    model.swapLanguages()
+                } else {
+                    model.switchSource(candidate)
+                }
+            }
         )
     }
 
     private var targetBinding: Binding<String> {
         Binding(
             get: { model.targetLanguage ?? "" },
-            set: { model.switchTarget($0) }
+            set: { candidate in
+                if candidate == model.sourceLanguage {
+                    model.swapLanguages()
+                } else {
+                    model.switchTarget(candidate)
+                }
+            }
         )
     }
 

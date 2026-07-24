@@ -210,6 +210,17 @@ final class AppModel {
         Task { await activate(source: source, target: newTarget) }
     }
 
+    /// Picking the OTHER side's language swaps the pair. Both boxes survive:
+    /// the current target's box is already persisted on disk, and `activate`
+    /// loads (or bootstraps) the new target's box re-joined under the new
+    /// source — schedules are per-target documents keyed by card id.
+    func swapLanguages() {
+        guard let stamp = box?.joinStamp else { return }
+        // why: stamp.source != stamp.target always holds, so the swapped pair
+        // keeps the invariant and `activate` accepts it.
+        Task { await activate(source: stamp.target, target: stamp.source) }
+    }
+
     /// Scene became active: the box file may predate a catalog/profile change.
     func handleForeground() {
         recomposeSessionIfStale()
