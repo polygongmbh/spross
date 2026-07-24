@@ -114,7 +114,10 @@
    "text": "Vorsicht, das Messer ist scharf!"
   },
   "this-tastes-so-good": {
-   "text": "Das schmeckt so lecker!"
+   "text": "Das schmeckt so lecker!",
+   "variants": [
+    "Das ist sehr lecker!"
+   ]
   },
   "are-you-cooking-rice-today": {
    "text": "Kochst du heute Reis?"
