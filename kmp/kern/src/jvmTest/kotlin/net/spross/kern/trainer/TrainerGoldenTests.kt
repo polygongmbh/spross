@@ -88,13 +88,23 @@ class TrainerGoldenTests {
             val task = Trainer.clock(h, m, "de")
             assertEquals(key, task.prompt)
             assertEquals(expected.standard, task.display, "t=$key")
-            val accepted = mutableListOf(expected.standard)
-            if (expected.regional != expected.standard) accepted += expected.regional
+            val golden = mutableListOf(expected.standard)
+            if (expected.regional != expected.standard) golden += expected.regional
             // Round hours also accept colloquial "um zehn" (regional is "punkt <hour>").
             if (m == 0 && expected.standard.endsWith("Uhr")) {
-                accepted += "um " + expected.regional.removePrefix("punkt ")
+                golden += "um " + expected.regional.removePrefix("punkt ")
             }
-            assertEquals(accepted, task.accepted, "t=$key")
+            // Golden values lead the accepted list unchanged; the documented
+            // accepted-only additions follow: the formal 24-hour reading
+            // ("achtzehn Uhr fünfunddreißig"), plus "vierundzwanzig Uhr" at 0:00.
+            assertEquals(golden, task.accepted.take(golden.size), "t=$key")
+            val h24 = GermanNumbers.cardinal(h.toLong()) + " Uhr" +
+                (if (m == 0) "" else " " + GermanNumbers.cardinal(m.toLong()))
+            val additions = buildList {
+                if (h24 !in golden) add(h24)
+                if (h == 0 && m == 0) add("vierundzwanzig Uhr")
+            }
+            assertEquals(additions, task.accepted.drop(golden.size), "t=$key")
         }
     }
 

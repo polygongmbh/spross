@@ -45,8 +45,23 @@ internal object GermanClock {
         if (c.regional != c.standard) accepted += c.regional
         // Colloquial "um zehn" reads a full hour the same as "zehn Uhr" / "punkt zehn".
         if (minutes == 0 && c.standard.endsWith("Uhr")) accepted += "um ${hourWords[hours % 12]}"
+        for (reading in twentyFourHour(hours, minutes)) {
+            if (reading !in accepted) accepted += reading
+        }
         val alternatives = accepted.drop(1)
         val gloss = if (alternatives.isEmpty()) null else "auch: ${alternatives.joinToString(" oder ")}"
         return ClockReading(c.standard, accepted, gloss)
+    }
+
+    /**
+     * Formal 24-hour readings, accepted alongside the 12-hour display:
+     * "achtzehn Uhr", "achtzehn Uhr fünfunddreißig"; 0:00 reads "null Uhr"
+     * and, equivalently, "vierundzwanzig Uhr".
+     */
+    private fun twentyFourHour(hours: Int, minutes: Int): List<String> {
+        val minuteSuffix = if (minutes == 0) "" else " " + GermanNumbers.cardinal(minutes.toLong())
+        val readings = mutableListOf(GermanNumbers.cardinal(hours.toLong()) + " Uhr" + minuteSuffix)
+        if (hours == 0 && minutes == 0) readings += "vierundzwanzig Uhr"
+        return readings
     }
 }
