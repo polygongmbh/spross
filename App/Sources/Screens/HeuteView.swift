@@ -141,12 +141,16 @@ struct HeuteView: View {
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)
-            // User agency: another round is always available — soonest-due
-            // cards reviewed ahead, plus anything freshly packed into the box.
-            Button("Extra-Runde üben") {
-                model.startExtraSession()
+            // User agency: an extra round is endless-style when that has
+            // content (due + NEW vocab within budget/health gate), else
+            // review-ahead — so it renders in every done state with active
+            // cards; hidden only when even the fallback is empty.
+            if model.canPracticeExtra {
+                Button("Extra-Runde üben") {
+                    model.startExtraSession()
+                }
+                .buttonStyle(DLSoftButtonStyle())
             }
-            .buttonStyle(DLSoftButtonStyle())
         }
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity)
