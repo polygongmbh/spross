@@ -9,6 +9,8 @@
 - **Extra rounds bring new words**: the extra round after finishing your day now
   prefers fresh composition — everything due plus NEW vocabulary within your
   learning-pool budget — and only repeats ahead of schedule when nothing new fits.
+  "Weiter üben" follows the same rule: due first, then new — it never pulls
+  tomorrow's reviews forward.
 - **The Box is grouped**: areas sit under their catalog groups (Start, Zuhause,
   Alltag, Amt …) instead of one long list — far less scrolling to find a target.
 - **Drills forgive typos and accept real time-telling**: number/clock/sentence
@@ -42,6 +44,11 @@
   decay is now a real parameter), verified against the reference
   implementations' own test vectors. A failed review card returns after
   10 minutes — usually next session — instead of looping inside the current one.
+- **Feminine forms are real cards**: profession words come in both forms —
+  the feminine sibling prompts with a ♀ badge (answering the base word is a
+  typo, not a miss), and plural forms read dictionary-style ("Lehrerin, -nen").
+- **"ss" counts for "ß"**: typing Strasse for Straße is accepted — helpful on
+  keyboards without the sharp s.
 - **Catalog v2.1 unifications**: near-duplicate phrase twins merged into one card
   each, Sie-form phrases accept the du-form silently, and Ukrainian
   near-synonyms are accepted silently instead of shown as alternates
