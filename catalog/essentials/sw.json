@@ -49,6 +49,15 @@
     "plural": "watu"
    }
   },
+  "human": {
+   "text": "binadamu",
+   "grammar": {
+    "plural": "="
+   },
+   "notes": {
+    "de": "binadamu = Mensch als Gattungswesen · mtu = einzelne Person."
+   }
+  },
   "friend": {
    "text": "rafiki",
    "grammar": {

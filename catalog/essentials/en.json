@@ -28,6 +28,9 @@
     "plural": "people"
    }
   },
+  "human": {
+   "text": "human being"
+  },
   "friend": {
    "text": "friend"
   },

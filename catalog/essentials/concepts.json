@@ -40,6 +40,11 @@
   "emoji": "👤"
  },
  {
+  "slug": "human",
+  "kind": "noun",
+  "emoji": "🧑"
+ },
+ {
   "slug": "friend",
   "kind": "noun",
   "emoji": "🫂"

@@ -49,6 +49,13 @@
    }
   },
   "person": {
+   "text": "Person",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "human": {
    "text": "Mensch",
    "grammar": {
     "gender": "der",
