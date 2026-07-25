@@ -60,6 +60,12 @@ class Catalog internal constructor(
                         .filter { it in targetWords }
                         .map { "${area.name}/$it" },
                     feminineOf = concept.feminineOf?.let { "${area.name}/$it" },
+                    // why: grading needs the base concept's TARGET texts (answer side)
+                    // to demote a base-word answer — absent when the target never
+                    // realizes the base, and the demotion simply has nothing to match.
+                    baseAccepted = concept.feminineOf?.let { base ->
+                        targetWords[base]?.let { listOf(it.text) + it.synonyms + it.variants }
+                    }.orEmpty(),
                     source = realize(source, promptRaw, source),
                     target = realize(target, targetWords.getValue(concept.slug), source),
                     promptFeminineMarker = ownSource == null,

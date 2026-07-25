@@ -42,6 +42,12 @@ data class Card(
     val components: List<String>,
     /** Base concept's card id when this is a feminine sibling concept. */
     val feminineOf: String?,
+    /**
+     * TARGET-side accepted texts (`text ∪ synonyms ∪ variants`) of the base concept,
+     * resolved at join time — non-empty only on feminine cards whose base the target
+     * realizes. Grading demotes a base-word answer to typo, not failure (§3).
+     */
+    val baseAccepted: List<String> = emptyList(),
     /** Known-language side (the prompt on produce). */
     val source: Realization,
     /** Learning-language side (the answer on produce, the prompt on recognize). */

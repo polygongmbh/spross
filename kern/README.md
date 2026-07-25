@@ -32,6 +32,7 @@ data class Card(              // data class: Swift sees value equality (SwiftUI 
   val seedIndex: Int,
   val components: List<String>,
   val feminineOf: String?,
+  val baseAccepted: List<String>, // base concept's TARGET texts (feminine cards only, else empty)
   val source: Realization,    // known-language side
   val target: Realization,    // learning-language side
   val promptFeminineMarker: Boolean,
@@ -50,6 +51,8 @@ data class Realization(
   source realization, else (feminineOf only) the base concept's source realization with
   `promptFeminineMarker = true`; if the base's source realization is also absent, skip.
   Non-feminine concepts without a source realization are skipped.
+  A feminine card additionally carries `baseAccepted` — the base concept's TARGET-side
+  `text ∪ synonyms ∪ variants` — empty when the target never realizes the base.
 - **Notes**: selected by SOURCE language at join time, no cross-language fallback
   (a de note never surfaces for an en-source user; non-de sources are note-less until authored).
 - **Grammar display is target-side only**: plural line and article coloring render only for
@@ -97,7 +100,8 @@ no config flag, no user-facing direction anywhere.
   and from Review/Relearning on (v1's hide-after-learning rule).
 - **♀** is a labeled badge, never graded: the production prompt shows source base + badge;
   the recognition reveal decorates the source answer with the badge.
-  A base-word answer typed on a feminine produce card grades as typo, not failure.
+  A base-word answer typed on a feminine produce card grades as typo, not failure
+  (graded against `Card.baseAccepted`; corrected shows the feminine canonical text).
 - Composition is **role-agnostic** — plans carry card ids; the role of each entry is
   resolved at render from the card's log count.
 - Scheduling keys are source-agnostic → **switching source preserves every schedule**.

@@ -75,7 +75,15 @@ class AnswerNormalizer(
         val accepted = listOf(card.target.text) + card.target.synonyms + card.target.variants
         val prefixes = if (card.kind == CardKind.Verb) verbPrefixes else emptyList()
         val expectedArticle = card.target.grammar["gender"]?.lowercase()
-        return evaluate(input, accepted, prefixes, expectedArticle)
+        val result = evaluate(input, accepted, prefixes, expectedArticle)
+        // Base-word answer on a feminine card grades as typo, not failure (§3):
+        // anything the BASE concept would accept demotes to the feminine correction.
+        if (result == Match.Wrong && card.baseAccepted.isNotEmpty() &&
+            evaluate(input, card.baseAccepted, prefixes, expectedArticle = null) != Match.Wrong
+        ) {
+            return Match.Typo(corrected = card.target.text)
+        }
+        return result
     }
 
     private fun evaluate(

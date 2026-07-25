@@ -128,6 +128,32 @@ class AnswerNormalizerTests {
     }
 
     @Test
+    fun baseWordOnFeminineCardGradesAsTypoWithFeminineCorrection() {
+        val waiterF = joined(swToDe, "alpha/waiter-f") // ♀-marker join; base target "Kellner"
+        assertEquals(listOf("Kellner"), waiterF.baseAccepted)
+        assertEquals(Match.Exact, de.evaluate("Kellnerin", waiterF))
+        assertEquals(Match.Typo("Kellnerin"), de.evaluate("Kellner", waiterF))
+        assertEquals(Match.Typo("Kellnerin"), de.evaluate("der Kellner", waiterF))
+        assertEquals(Match.Typo("Kellnerin"), de.evaluate("Kelner", waiterF)) // base typo still demotes
+        assertEquals(Match.Wrong, de.evaluate("Tisch", waiterF))
+        // The audited real-catalog shape: base word distance 2 from feminine, budget 1.
+        val waiterFUk = joined(deToUk, "alpha/waiter-f")
+        assertEquals(Match.Typo("офіціантка"), uk.evaluate("офіціант", waiterFUk))
+        assertEquals(Match.Exact, uk.evaluate("офіціантка", waiterFUk))
+    }
+
+    @Test
+    fun nonFeminineCardsAndTargetlessBasesCarryNoBaseForms() {
+        val waiter = joined(swToDe, "alpha/waiter")
+        assertTrue(waiter.baseAccepted.isEmpty())
+        assertEquals(Match.Wrong, de.evaluate("Kellnerin", waiter)) // unchanged: no reverse demotion
+        // uk never realizes beta/royal — the feminine card has nothing to demote against.
+        val royalF = joined(deToUk, "beta/royal-f")
+        assertTrue(royalF.baseAccepted.isEmpty())
+        assertEquals(Match.Wrong, uk.evaluate("князь", royalF))
+    }
+
+    @Test
     fun strayShortLeadingWordIsTypoNotFailure() {
         val panya = joined(deToSw, "alpha/mouse") // "panya"
         assertEquals(Match.Typo("panya"), sw.evaluate("el panya", panya))
