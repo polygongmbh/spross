@@ -25,6 +25,13 @@ class Catalog internal constructor(
         areas.firstOrNull { it.name == area }?.titles?.get(lang)
 
     /**
+     * The area's illustrative emoji from `areas.json` — language-neutral, so unlike
+     * [areaTitle] it takes no language. Null only for an area the manifest never lists.
+     */
+    fun areaEmoji(area: String): String? =
+        groups.firstNotNullOfOrNull { it.areaEmojis[area] }
+
+    /**
      * Emits one [Card] per joinable concept, in catalog order. A concept joins iff the
      * TARGET realizes it AND a source prompt exists: its source realization, else
      * (feminineOf only) the base concept's source realization with `promptFeminineMarker`;

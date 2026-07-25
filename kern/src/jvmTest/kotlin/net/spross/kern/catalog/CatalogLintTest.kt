@@ -147,6 +147,23 @@ class CatalogLintTest {
         }
     }
 
+    /**
+     * The area icon is catalog-owned display metadata, and the apps fall back to a
+     * placeholder for an area they cannot resolve — so a manifest entry missing its emoji
+     * would degrade silently in the UI instead of failing anywhere. Relational, never a
+     * count: every area the manifest lists must carry a well-formed emoji, by construction.
+     */
+    @Test
+    fun everyAreaHasAWellFormedEmoji() {
+        for (area in catalog.areaNames) {
+            val emoji = catalog.areaEmoji(area)
+            assertTrue(emoji != null, "$area: no emoji in areas.json")
+            assertTrue(emoji.isNotBlank(), "$area: blank emoji")
+            assertTrue(emoji.length <= 12, "$area: oversized emoji \"$emoji\"")
+            assertTrue(emoji.all { it.code >= 0x2000 }, "$area: non-emoji character in \"$emoji\"")
+        }
+    }
+
     @Test
     fun conceptReferencesResolveSameArea() {
         for (area in catalog.areas) {

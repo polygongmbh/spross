@@ -134,6 +134,12 @@ class CatalogFixtureTest {
     }
 
     @Test
+    fun areaEmojiIsLanguageNeutralAndNullForUnknownAreas() {
+        assertEquals("🌀", catalog.areaEmoji("gamma"))
+        assertNull(catalog.areaEmoji("delta"))
+    }
+
+    @Test
     fun fingerprintIsDeterministicAndContentSensitive() {
         assertEquals(Fixture.catalog().fingerprint, catalog.fingerprint)
         val mutated = Fixture.files.toMutableMap()

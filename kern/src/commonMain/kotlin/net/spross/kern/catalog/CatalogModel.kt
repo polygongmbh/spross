@@ -7,7 +7,13 @@ import net.spross.kern.model.Language
 data class AreaGroup(
     val id: String,
     val titles: Map<Language, String>,
+    /** Area names in manifest order — the default progression within this group. */
     val areas: List<String>,
+    /**
+     * area → illustrative emoji, language-neutral display metadata owned by the manifest.
+     * Total over [areas]: the parser requires an emoji on every entry.
+     */
+    val areaEmojis: Map<String, String>,
 )
 
 /** A target language a source can learn, with its joinable concept count. */

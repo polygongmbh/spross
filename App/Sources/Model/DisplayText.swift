@@ -2,32 +2,6 @@ import Foundation
 import SwiftUI
 import SprossKern
 
-/// Display metadata for the catalog's area keys: titles come from the
-/// catalog per source language (`AppModel.areaTitle`); the emoji
-/// illustration is app-curated here. Unknown keys degrade gracefully.
-enum AreaInfo {
-    static func emoji(for key: String) -> String {
-        emojis[key] ?? "📦"
-    }
-
-    private static let emojis: [String: String] = [
-        "basics": "👋",
-        "essentials": "⭐",
-        "kitchen": "🍳",
-        "living": "🛋️",
-        "bath": "🛁",
-        "desk": "✏️",
-        "bedroom": "🛏️",
-        "hall": "🚪",
-        "outside": "🌳",
-        "school": "🎒",
-        "work": "💼",
-        "health": "🩺",
-        "admin": "🗂️",
-        "organization": "🗒️",
-    ]
-}
-
 /// Language display names for chrome: localized exonym when a chrome string
 /// exists (de/en catalogs), else the language's own name from languages.json.
 enum LanguageNames {

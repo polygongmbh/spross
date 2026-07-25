@@ -118,6 +118,12 @@ extension AppModel {
         catalog?.areaTitle(area: area, lang: sourceLanguage) ?? area.capitalized
     }
 
+    /// Area icon, catalog-provided and language-neutral (`areas.json`).
+    /// Falls back to a neutral box for a key the catalog does not list.
+    func areaEmoji(_ area: String) -> String {
+        catalog?.areaEmoji(area: area) ?? "📦"
+    }
+
     /// One Box browser section: an areas.json group with its present areas.
     struct AreaGroupSection: Identifiable {
         let id: String

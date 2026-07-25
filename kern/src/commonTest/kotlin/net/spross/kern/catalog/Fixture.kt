@@ -17,9 +17,9 @@ internal object Fixture {
         "areas.json" to """
             [
              { "group": "start", "titles": { "de": "Start", "en": "Start", "sw": "Mwanzo", "uk": "Старт" },
-               "areas": ["alpha"] },
+               "areas": [{ "area": "alpha", "emoji": "🅰️" }] },
              { "group": "more", "titles": { "de": "Mehr", "en": "More", "sw": "Zaidi", "uk": "Більше" },
-               "areas": ["beta", "gamma"] }
+               "areas": [{ "area": "beta", "emoji": "🅱️" }, { "area": "gamma", "emoji": "🌀" }] }
             ]
         """.trimIndent(),
         "languages.json" to """

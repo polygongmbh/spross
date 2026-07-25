@@ -254,6 +254,15 @@ day-key `yyyy-MM-dd`) with:
 ## 8. Catalog schema additions (same-series migration)
 
 - `languages.json`: `articles` (§1).
+- `areas.json`: a group's `areas` is an array of **objects** (`{ "area", "emoji" }`),
+  no longer bare strings. The emoji is language-neutral display metadata,
+  so the catalog now owns the area icon that was a hardcoded map in the iOS app
+  and both apps read the same one.
+  The parser rejects unknown keys and validates the emoji with the concept-emoji rule
+  (non-blank, ≤ 12 chars, every char ≥ U+2000), so a new area cannot ship without one.
+  `AreaGroup.areas: [String]` is unchanged — the ordered names every consumer flat-maps;
+  the emoji rides alongside in `AreaGroup.areaEmojis: [String: String]` and is read via
+  `Catalog.areaEmoji(area) -> String?`, the language-neutral sibling of `areaTitle`.
 - Realization: `variants: [String]` next to `synonyms` — a **display/accept distinction
   only**, never a scheduling one (§3): synonyms rotate as recognition prompt forms and
   show on reveal; variants are accepted silently and never prompted. Migration:
@@ -263,7 +272,7 @@ day-key `yyyy-MM-dd`) with:
 - `catalog/README.md` updated; **CatalogLintTest** (permanent, on the real catalog) enforces:
   parse/shape/order rules, slug charset (no `|`), seedIndex uniqueness, synonyms ≠ text,
   no duplicate synonym/variant entries, no `" / "` in text, components resolve same-area,
-  feminineOf resolves, emoji well-formed.
+  feminineOf resolves, concept emoji well-formed, every manifest area carries an emoji.
 - **Homonym gates** (no schema field — the area label is the disambiguator, §2/§3).
   Lint owns what the engine cannot fix, runtime tolerates the rest:
   - `noPromptCollisionWithinAnArea` — a display-identical prompt inside ONE area is a hard

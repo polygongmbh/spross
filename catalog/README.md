@@ -58,14 +58,23 @@ Reviewing a language is per area: `<area>/<lang>.json` is the contribution/revie
 ## Schemas
 
 **`areas.json`** — the ordering + grouping manifest (the ONE place cross-area
-structure and group display titles live; area titles live in the area's own files):
+structure, group display titles, and per-area language-neutral metadata live;
+area titles live in the area's own files):
 ```json
 [ { "group": "home",
-    "titles": { "de": "Zuhause", "sw": "Nyumbani", "uk": "Вдома" },
-    "areas": ["kitchen", "living", "bath", "bedroom", "desk", "hall"] } ]
+    "titles": { "en": "At home", "de": "Zuhause", "sw": "Nyumbani", "uk": "Вдома" },
+    "areas": [ { "area": "kitchen", "emoji": "🍳" },
+               { "area": "living",  "emoji": "🛋️" } ] } ]
 ```
 Default global order = groups top-to-bottom, areas as listed. "Pull one area ahead"
 is a runtime/user-preference concern; the content only supplies the default.
+- `titles` — the group heading, keyed by reader language; required for every declared language.
+- `area` — the folder name; globally unique across groups.
+- `emoji` — the area's illustrative icon. **Language-neutral display metadata owned by the
+  catalog**, exactly as concept `emoji` is, so both apps show the same icon instead of each
+  carrying its own map (it used to be a hardcoded Swift dictionary, which meant area icons
+  existed on iOS only). Required and validated at parse time by the same rule as concept
+  emoji — adding an area therefore fails the gate rather than silently losing its icon.
 
 **`languages.json`** — per-language metadata, keyed by lang code:
 ```json

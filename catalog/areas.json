@@ -8,8 +8,14 @@
    "uk": "Перші кроки"
   },
   "areas": [
-   "basics",
-   "essentials"
+   {
+    "area": "basics",
+    "emoji": "👋"
+   },
+   {
+    "area": "essentials",
+    "emoji": "⭐"
+   }
   ]
  },
  {
@@ -21,12 +27,30 @@
    "uk": "Вдома"
   },
   "areas": [
-   "kitchen",
-   "living",
-   "bath",
-   "bedroom",
-   "desk",
-   "hall"
+   {
+    "area": "kitchen",
+    "emoji": "🍳"
+   },
+   {
+    "area": "living",
+    "emoji": "🛋️"
+   },
+   {
+    "area": "bath",
+    "emoji": "🛁"
+   },
+   {
+    "area": "bedroom",
+    "emoji": "🛏️"
+   },
+   {
+    "area": "desk",
+    "emoji": "✏️"
+   },
+   {
+    "area": "hall",
+    "emoji": "🚪"
+   }
   ]
  },
  {
@@ -38,8 +62,14 @@
    "uk": "Щоденне життя"
   },
   "areas": [
-   "outside",
-   "school"
+   {
+    "area": "outside",
+    "emoji": "🌳"
+   },
+   {
+    "area": "school",
+    "emoji": "🎒"
+   }
   ]
  },
  {
@@ -51,10 +81,22 @@
    "uk": "Установи та робота"
   },
   "areas": [
-   "organization",
-   "admin",
-   "health",
-   "work"
+   {
+    "area": "organization",
+    "emoji": "🗒️"
+   },
+   {
+    "area": "admin",
+    "emoji": "🗂️"
+   },
+   {
+    "area": "health",
+    "emoji": "🩺"
+   },
+   {
+    "area": "work",
+    "emoji": "💼"
+   }
   ]
  }
 ]

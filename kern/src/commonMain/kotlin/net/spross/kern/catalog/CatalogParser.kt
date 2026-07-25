@@ -37,14 +37,30 @@ internal object CatalogParser {
             val o = el.obj(path, "groups[$i]")
             o.rejectUnknownKeys(path, "groups[$i]", setOf("group", "titles", "areas"))
             val id = o.requireString(path, "groups[$i]", "group")
-            val areas = o.stringList(path, "groups[$i]", "areas")
-            if (areas.isEmpty()) parseError(path, "groups[$i] ($id): empty areas")
-            AreaGroup(id, o.stringMap(path, "groups[$i]", "titles"), areas)
+            val entries = o["areas"]?.arr(path, "groups[$i].areas").orEmpty()
+            if (entries.isEmpty()) parseError(path, "groups[$i] ($id): empty areas")
+            val areas = mutableListOf<String>()
+            val emojis = mutableMapOf<String, String>()
+            entries.forEachIndexed { j, entry ->
+                val context = "groups[$i].areas[$j]"
+                val ao = entry.obj(path, context)
+                ao.rejectUnknownKeys(path, context, setOf("area", "emoji"))
+                val area = ao.requireString(path, context, "area")
+                val emoji = ao.requireString(path, context, "emoji")
+                if (!isWellFormedEmoji(emoji)) parseError(path, "$context ($area): bad emoji \"$emoji\"")
+                areas += area
+                emojis[area] = emoji
+            }
+            AreaGroup(id, o.stringMap(path, "groups[$i]", "titles"), areas, emojis)
         }
         val allAreas = groups.flatMap { it.areas }
         if (allAreas.size != allAreas.toSet().size) parseError(path, "duplicate area across groups")
         return groups
     }
+
+    /** Same shape rule the catalog lint applies to concept emoji (`CatalogLintTest`). */
+    private fun isWellFormedEmoji(s: String): Boolean =
+        s.isNotBlank() && s.length <= 12 && s.all { it.code >= 0x2000 }
 
     fun parseLanguages(path: String, text: String): Map<Language, LanguageInfo> {
         val root = parseJson(path, text).obj(path, "root")
