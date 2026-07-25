@@ -96,8 +96,10 @@ extension TrainerSessionView {
                 submit()
             }
             if case .revealed = feedback, let gloss = current.gloss {
+                // why: post-reveal text is read, not glanced at — same size as
+                // the vocab card's gloss so the two drills stay consistent.
                 Text(gloss)
-                    .font(DL.Fonts.caption)
+                    .font(DL.Fonts.subheadline)
                     .italic()
                     .foregroundStyle(Color.dlTextSecondary)
                     .multilineTextAlignment(.center)
@@ -144,7 +146,7 @@ extension TrainerSessionView {
                 if let typoCorrection {
                     VStack(spacing: DL.Space.m) {
                         Text("session.typoCorrection \(typoCorrection)")
-                            .font(DL.Fonts.caption)
+                            .font(DL.Fonts.subheadline)
                             .italic()
                             .foregroundStyle(Color.dlTextSecondary)
                             .multilineTextAlignment(.center)

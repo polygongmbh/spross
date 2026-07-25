@@ -43,8 +43,10 @@ extension SessionView {
                 // for a tap so the slip is reviewed.
                 if let typoCorrection {
                     VStack(spacing: DL.Space.m) {
+                        // why: the proper spelling is the point of this pause —
+                        // it has to be as readable as the reveal's own lines.
                         Text("session.typoCorrection \(typoCorrection)")
-                            .font(DL.Fonts.caption)
+                            .font(DL.Fonts.subheadline)
                             .italic()
                             .foregroundStyle(Color.dlTextSecondary)
                             .multilineTextAlignment(.center)

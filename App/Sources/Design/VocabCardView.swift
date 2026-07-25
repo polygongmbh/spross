@@ -94,8 +94,10 @@ struct VocabCardView: View {
                 .frame(width: 44, height: 2)
             sideBlock(answer, emphasized: true)
             if let note {
+                // why: subheadline, not caption — post-reveal lines are meant to
+                // be read, and 12 pt secondary text is where legibility broke.
                 Text(note)
-                    .font(DL.Fonts.caption)
+                    .font(DL.Fonts.subheadline)
                     .italic()
                     .foregroundStyle(Color.dlTextSecondary)
                     .multilineTextAlignment(.center)
@@ -130,8 +132,10 @@ struct VocabCardView: View {
                     .foregroundStyle(Color.dlTextSecondary)
             }
             if let alternates = side.alternates {
+                // why: matches the plural line — both belong to the reveal, so
+                // neither shrinks below the size the learner has to read.
                 Text(alternates)
-                    .font(DL.Fonts.caption)
+                    .font(DL.Fonts.subheadline)
                     .foregroundStyle(Color.dlTextSecondary)
                     .multilineTextAlignment(.center)
             }
