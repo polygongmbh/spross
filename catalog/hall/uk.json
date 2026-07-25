@@ -61,8 +61,8 @@
   "unlock": {
    "text": "відмикати"
   },
-  "put-on": {
-   "text": "одягати"
+  "get-dressed": {
+   "text": "одягатися"
   },
   "arrive": {
    "text": "прибувати"
@@ -126,6 +126,9 @@
   },
   "the-doorbell-suddenly-rang": {
    "text": "Раптом подзвонили у двері."
+  },
+  "put-on-the-jacket": {
+   "text": "одягати куртку"
   }
  }
 }

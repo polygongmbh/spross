@@ -103,21 +103,6 @@
   ]
  },
  {
-  "slug": "where-are-you-from",
-  "kind": "phrase",
-  "components": []
- },
- {
-  "slug": "do-you-speak-english",
-  "kind": "phrase",
-  "components": []
- },
- {
-  "slug": "i-speak-a-little-german",
-  "kind": "phrase",
-  "components": []
- },
- {
   "slug": "i-dont-know",
   "kind": "phrase",
   "components": [
@@ -154,26 +139,6 @@
  },
  {
   "slug": "how-are-you",
-  "kind": "phrase",
-  "components": []
- },
- {
-  "slug": "can-you-repeat-that",
-  "kind": "phrase",
-  "components": []
- },
- {
-  "slug": "i-understand",
-  "kind": "phrase",
-  "components": []
- },
- {
-  "slug": "i-dont-understand",
-  "kind": "phrase",
-  "components": []
- },
- {
-  "slug": "slower",
   "kind": "phrase",
   "components": []
  },

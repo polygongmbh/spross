@@ -13,12 +13,6 @@
     "de": "auch «практика» (v. a. Privatpraxis)"
    }
   },
-  "appointment": {
-   "text": "запис на прийом",
-   "synonyms": [
-    "візит"
-   ]
-  },
   "pain": {
    "text": "біль",
    "notes": {
@@ -88,9 +82,6 @@
   "rest": {
    "text": "відпочивати"
   },
-  "cancel": {
-   "text": "скасовувати"
-  },
   "head": {
    "text": "голова"
   },
@@ -144,9 +135,6 @@
   },
   "show-me-your-insurance-card": {
    "text": "Покажіть мені вашу картку страхування."
-  },
-  "i-have-to-cancel-the-appointment": {
-   "text": "Я мушу скасувати візит."
   }
  }
 }

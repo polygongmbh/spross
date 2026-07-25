@@ -51,6 +51,7 @@
    "uk": "Установи та робота"
   },
   "areas": [
+   "organization",
    "admin",
    "health",
    "work"

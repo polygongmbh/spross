@@ -10,9 +10,6 @@
   "practice": {
    "text": "kliniki"
   },
-  "appointment": {
-   "text": "miadi"
-  },
   "pain": {
    "text": "maumivu"
   },
@@ -63,9 +60,6 @@
   },
   "rest": {
    "text": "kupumzika"
-  },
-  "cancel": {
-   "text": "kughairi"
   },
   "head": {
    "text": "kichwa",
@@ -144,12 +138,6 @@
   },
   "show-me-your-insurance-card": {
    "text": "Nionyeshe kadi yako ya bima ya afya."
-  },
-  "i-have-to-cancel-the-appointment": {
-   "text": "Lazima nighairi miadi.",
-   "notes": {
-    "de": "miadi sieht aus wie ein Plural (mi-), ist aber Einzahl — arabisches Lehnwort"
-   }
   }
  }
 }

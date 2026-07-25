@@ -151,6 +151,18 @@
   "kind": "verb"
  },
  {
+  "slug": "repeat",
+  "kind": "verb"
+ },
+ {
+  "slug": "slow",
+  "kind": "adjective"
+ },
+ {
+  "slug": "fast",
+  "kind": "adjective"
+ },
+ {
   "slug": "how-much-does-this-cost",
   "kind": "phrase",
   "components": [
@@ -198,6 +210,55 @@
   "kind": "phrase",
   "components": [
    "eat"
+  ]
+ },
+ {
+  "slug": "i-understand",
+  "kind": "phrase",
+  "components": [
+   "understand"
+  ]
+ },
+ {
+  "slug": "i-dont-understand",
+  "kind": "phrase",
+  "components": [
+   "understand"
+  ]
+ },
+ {
+  "slug": "do-you-speak-english",
+  "kind": "phrase",
+  "components": [
+   "speak"
+  ]
+ },
+ {
+  "slug": "i-speak-a-little-german",
+  "kind": "phrase",
+  "components": [
+   "speak"
+  ]
+ },
+ {
+  "slug": "where-are-you-from",
+  "kind": "phrase",
+  "components": [
+   "come"
+  ]
+ },
+ {
+  "slug": "can-you-repeat-that",
+  "kind": "phrase",
+  "components": [
+   "repeat"
+  ]
+ },
+ {
+  "slug": "slower",
+  "kind": "phrase",
+  "components": [
+   "slow"
   ]
  }
 ]

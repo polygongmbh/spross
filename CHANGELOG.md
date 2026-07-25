@@ -28,6 +28,17 @@
   ("the officer handling your case") instead of the bare `afisa`, which only means
   "official". Two Ukrainian verbs were sharpened where one word was doing two jobs
   (putzen → чистити, ankommen → прибувати).
+- **A "Termine & Organisation" area** now opens the Ämter & Beruf group, so the
+  vocabulary every office and doctor's visit needs — Termin, Frist, Öffnungszeiten,
+  Bestätigung, vereinbaren, verschieben, absagen, pünktlich — arrives before the
+  areas that assume it, instead of hiding inside the doctor's area.
+- **Phrases now wait for their words**: sentences like "Ich verstehe." and
+  "Können Sie das wiederholen?" used to be introduced before you had ever met
+  *verstehen* or *wiederholen*, because a phrase can only wait for words in its own
+  area. They now sit with those words and unlock from them. The first words area
+  keeps the greetings and politeness formulas.
+- **"anziehen" is one word again**, not two: a single *sich anziehen* card in the
+  hallway, with "die Jacke anziehen" as a phrase that unlocks from it and the jacket.
 
 ## 1.0.0 — 2026-07-25
 

@@ -22,13 +22,6 @@
     "plural": "Praxen"
    }
   },
-  "appointment": {
-   "text": "Termin",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
   "pain": {
    "text": "Schmerz",
    "grammar": {
@@ -113,9 +106,6 @@
   },
   "rest": {
    "text": "sich ausruhen"
-  },
-  "cancel": {
-   "text": "absagen"
   },
   "head": {
    "text": "Kopf",
@@ -214,9 +204,6 @@
    "variants": [
     "Zeig mir bitte deine Versichertenkarte."
    ]
-  },
-  "i-have-to-cancel-the-appointment": {
-   "text": "Ich muss den Termin absagen."
   }
  }
 }

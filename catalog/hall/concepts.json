@@ -80,7 +80,7 @@
   "kind": "verb"
  },
  {
-  "slug": "put-on",
+  "slug": "get-dressed",
   "kind": "verb"
  },
  {
@@ -187,6 +187,14 @@
   "slug": "dont-forget-your-jacket",
   "kind": "phrase",
   "components": [
+   "jacket"
+  ]
+ },
+ {
+  "slug": "put-on-the-jacket",
+  "kind": "phrase",
+  "components": [
+   "get-dressed",
    "jacket"
   ]
  }

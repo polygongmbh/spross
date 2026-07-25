@@ -64,13 +64,6 @@
     "plural": "-nen"
    }
   },
-  "deadline": {
-   "text": "Frist",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
   "registration": {
    "text": "Anmeldung",
    "grammar": {

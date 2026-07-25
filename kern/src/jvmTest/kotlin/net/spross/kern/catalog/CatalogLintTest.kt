@@ -25,7 +25,7 @@ class CatalogLintTest {
 
     @Test
     fun catalogParsesClean() {
-        assertEquals(13, catalog.areaNames.size)
+        assertEquals(14, catalog.areaNames.size)
         assertEquals(setOf("de", "en", "sw", "uk"), catalog.languages.keys)
         assertTrue(catalog.groups.isNotEmpty())
     }
@@ -231,7 +231,6 @@ class CatalogLintTest {
                 "sw kuchukua: essentials/take, health/pick-up",
                 "sw kuondoka: hall/set-off, outside/depart",
                 "sw kupumzika: desk/take-break, health/rest, living/relax",
-                "sw kuvaa: bedroom/get-dressed, hall/put-on",
                 // Reviewed 2026-07-25: the textbook homonym, and the only entry here that
                 // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
                 // not one word covering two German ones. Same treatment either way.

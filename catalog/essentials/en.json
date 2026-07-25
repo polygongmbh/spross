@@ -106,6 +106,15 @@
   "wait": {
    "text": "to wait"
   },
+  "repeat": {
+   "text": "to repeat"
+  },
+  "slow": {
+   "text": "slow"
+  },
+  "fast": {
+   "text": "fast"
+  },
   "how-much-does-this-cost": {
    "text": "How much does this cost?"
   },
@@ -126,6 +135,27 @@
   },
   "the-food-is-ready": {
    "text": "The food is ready!"
+  },
+  "i-understand": {
+   "text": "I understand."
+  },
+  "i-dont-understand": {
+   "text": "I don't understand."
+  },
+  "do-you-speak-english": {
+   "text": "Do you speak English?"
+  },
+  "i-speak-a-little-german": {
+   "text": "I only speak a little German."
+  },
+  "where-are-you-from": {
+   "text": "Where are you from?"
+  },
+  "can-you-repeat-that": {
+   "text": "Can you repeat that?"
+  },
+  "slower": {
+   "text": "Slower!"
   }
  }
 }

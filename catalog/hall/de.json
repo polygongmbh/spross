@@ -100,8 +100,8 @@
   "unlock": {
    "text": "aufschließen"
   },
-  "put-on": {
-   "text": "anziehen"
+  "get-dressed": {
+   "text": "sich anziehen"
   },
   "arrive": {
    "text": "ankommen"
@@ -199,6 +199,9 @@
   },
   "dont-forget-your-jacket": {
    "text": "Vergiss deine Jacke nicht!"
+  },
+  "put-on-the-jacket": {
+   "text": "die Jacke anziehen"
   }
  }
 }

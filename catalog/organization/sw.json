@@ -1,0 +1,77 @@
+{
+ "title": "Miadi na mipango · jipange!",
+ "words": {
+  "appointment": {
+   "text": "miadi",
+   "grammar": {
+    "plural": "="
+   },
+   "notes": {
+    "de": "miadi sieht aus wie ein Plural (mi-), ist aber Einzahl — arabisches Lehnwort"
+   }
+  },
+  "date": {
+   "text": "tarehe",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "opening-hours": {
+   "text": "saa za kufungua"
+  },
+  "deadline": {
+   "text": "tarehe ya mwisho"
+  },
+  "confirmation": {
+   "text": "uthibitisho"
+  },
+  "plan": {
+   "text": "mpango",
+   "grammar": {
+    "plural": "mipango"
+   }
+  },
+  "waiting-time": {
+   "text": "muda wa kusubiri"
+  },
+  "arrange": {
+   "text": "kupanga"
+  },
+  "confirm": {
+   "text": "kuthibitisha"
+  },
+  "cancel": {
+   "text": "kughairi"
+  },
+  "postpone": {
+   "text": "kuahirisha"
+  },
+  "register": {
+   "text": "kujiandikisha"
+  },
+  "be-late": {
+   "text": "kuchelewa"
+  },
+  "punctual": {
+   "text": "kwa wakati"
+  },
+  "urgent": {
+   "text": "wa haraka"
+  },
+  "i-would-like-an-appointment": {
+   "text": "Ningependa kupanga miadi."
+  },
+  "i-have-to-cancel-the-appointment": {
+   "text": "Lazima nighairi miadi."
+  },
+  "the-deadline-is-tomorrow": {
+   "text": "Tarehe ya mwisho ni kesho."
+  },
+  "when-are-the-opening-hours": {
+   "text": "Mnafungua saa ngapi?"
+  },
+  "can-we-postpone-the-appointment": {
+   "text": "Tunaweza kuahirisha miadi?"
+  }
+ }
+}

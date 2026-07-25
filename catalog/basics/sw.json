@@ -73,15 +73,6 @@
   "my-name-is": {
    "text": "Naitwa …"
   },
-  "where-are-you-from": {
-   "text": "Unatoka wapi?"
-  },
-  "do-you-speak-english": {
-   "text": "Unazungumza Kiingereza?"
-  },
-  "i-speak-a-little-german": {
-   "text": "Ninazungumza Kijerumani kidogo tu."
-  },
   "i-dont-know": {
    "text": "Sijui."
   },
@@ -102,18 +93,6 @@
   },
   "how-are-you": {
    "text": "Habari yako?"
-  },
-  "can-you-repeat-that": {
-   "text": "Unaweza kurudia?"
-  },
-  "i-understand": {
-   "text": "Naelewa."
-  },
-  "i-dont-understand": {
-   "text": "Sielewi."
-  },
-  "slower": {
-   "text": "Polepole!"
   }
  }
 }

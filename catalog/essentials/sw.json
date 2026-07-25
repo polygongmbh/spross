@@ -148,6 +148,21 @@
   "wait": {
    "text": "kusubiri"
   },
+  "repeat": {
+   "text": "kurudia"
+  },
+  "slow": {
+   "text": "polepole",
+   "notes": {
+    "de": "unveränderlich — kein Klassenpräfix: anaenda polepole."
+   }
+  },
+  "fast": {
+   "text": "haraka",
+   "notes": {
+    "de": "unveränderlich · attributiv mit -a: gari la haraka."
+   }
+  },
   "how-much-does-this-cost": {
    "text": "Hii ni bei gani?"
   },
@@ -171,6 +186,27 @@
   },
   "the-food-is-ready": {
    "text": "Chakula kiko tayari!"
+  },
+  "i-understand": {
+   "text": "Naelewa."
+  },
+  "i-dont-understand": {
+   "text": "Sielewi."
+  },
+  "do-you-speak-english": {
+   "text": "Unazungumza Kiingereza?"
+  },
+  "i-speak-a-little-german": {
+   "text": "Ninazungumza Kijerumani kidogo tu."
+  },
+  "where-are-you-from": {
+   "text": "Unatoka wapi?"
+  },
+  "can-you-repeat-that": {
+   "text": "Unaweza kurudia?"
+  },
+  "slower": {
+   "text": "Polepole!"
   }
  }
 }

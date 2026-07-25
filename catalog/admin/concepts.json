@@ -46,11 +46,6 @@
   "feminineOf": "case-worker"
  },
  {
-  "slug": "deadline",
-  "kind": "noun",
-  "emoji": "⏳"
- },
- {
   "slug": "registration",
   "kind": "noun",
   "emoji": "🏠"

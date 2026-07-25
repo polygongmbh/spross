@@ -7,9 +7,6 @@
   "practice": {
    "text": "doctor's office"
   },
-  "appointment": {
-   "text": "appointment"
-  },
   "pain": {
    "text": "pain"
   },
@@ -63,9 +60,6 @@
   },
   "rest": {
    "text": "to rest"
-  },
-  "cancel": {
-   "text": "to cancel"
   },
   "head": {
    "text": "head"
@@ -123,9 +117,6 @@
   },
   "show-me-your-insurance-card": {
    "text": "Show me your insurance card."
-  },
-  "i-have-to-cancel-the-appointment": {
-   "text": "I have to cancel the appointment."
   }
  }
 }

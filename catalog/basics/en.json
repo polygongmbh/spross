@@ -64,15 +64,6 @@
   "my-name-is": {
    "text": "My name is …"
   },
-  "where-are-you-from": {
-   "text": "Where are you from?"
-  },
-  "do-you-speak-english": {
-   "text": "Do you speak English?"
-  },
-  "i-speak-a-little-german": {
-   "text": "I only speak a little German."
-  },
   "i-dont-know": {
    "text": "I don't know."
   },
@@ -93,18 +84,6 @@
   },
   "how-are-you": {
    "text": "How are you?"
-  },
-  "can-you-repeat-that": {
-   "text": "Can you repeat that?"
-  },
-  "i-understand": {
-   "text": "I understand."
-  },
-  "i-dont-understand": {
-   "text": "I don't understand."
-  },
-  "slower": {
-   "text": "Slower!"
   },
   "bye": {
    "text": "Bye!"

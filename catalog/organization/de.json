@@ -1,0 +1,93 @@
+{
+ "title": "Termine & Organisation",
+ "words": {
+  "appointment": {
+   "text": "Termin",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "date": {
+   "text": "Datum",
+   "grammar": {
+    "gender": "das",
+    "plural": "Daten"
+   }
+  },
+  "opening-hours": {
+   "text": "Öffnungszeiten",
+   "grammar": {
+    "gender": "die",
+    "plural": "only"
+   }
+  },
+  "deadline": {
+   "text": "Frist",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "confirmation": {
+   "text": "Bestätigung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "plan": {
+   "text": "Plan",
+   "grammar": {
+    "gender": "der",
+    "plural": "Pläne"
+   }
+  },
+  "waiting-time": {
+   "text": "Wartezeit",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "arrange": {
+   "text": "vereinbaren"
+  },
+  "confirm": {
+   "text": "bestätigen"
+  },
+  "cancel": {
+   "text": "absagen"
+  },
+  "postpone": {
+   "text": "verschieben"
+  },
+  "register": {
+   "text": "anmelden"
+  },
+  "be-late": {
+   "text": "sich verspäten"
+  },
+  "punctual": {
+   "text": "pünktlich"
+  },
+  "urgent": {
+   "text": "dringend"
+  },
+  "i-would-like-an-appointment": {
+   "text": "Ich möchte einen Termin."
+  },
+  "i-have-to-cancel-the-appointment": {
+   "text": "Ich muss den Termin absagen."
+  },
+  "the-deadline-is-tomorrow": {
+   "text": "Die Frist ist morgen."
+  },
+  "when-are-the-opening-hours": {
+   "text": "Wann sind die Öffnungszeiten?"
+  },
+  "can-we-postpone-the-appointment": {
+   "text": "Können wir den Termin verschieben?"
+  }
+ }
+}

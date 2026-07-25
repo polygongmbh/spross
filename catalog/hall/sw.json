@@ -61,7 +61,7 @@
   "unlock": {
    "text": "kufungua"
   },
-  "put-on": {
+  "get-dressed": {
    "text": "kuvaa"
   },
   "arrive": {
@@ -147,6 +147,9 @@
   },
   "dont-forget-your-jacket": {
    "text": "Usisahau jaketi lako!"
+  },
+  "put-on-the-jacket": {
+   "text": "kuvaa jaketi"
   }
  }
 }

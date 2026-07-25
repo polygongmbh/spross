@@ -55,8 +55,8 @@
   "unlock": {
    "text": "to unlock"
   },
-  "put-on": {
-   "text": "to put on"
+  "get-dressed": {
+   "text": "to get dressed"
   },
   "arrive": {
    "text": "to arrive"
@@ -120,6 +120,9 @@
   },
   "dont-forget-your-jacket": {
    "text": "Don't forget your jacket!"
+  },
+  "put-on-the-jacket": {
+   "text": "to put on the jacket"
   }
  }
 }

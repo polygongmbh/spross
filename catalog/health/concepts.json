@@ -16,11 +16,6 @@
   "emoji": "🏥"
  },
  {
-  "slug": "appointment",
-  "kind": "noun",
-  "emoji": "📅"
- },
- {
   "slug": "pain",
   "kind": "noun",
   "emoji": "🤕"
@@ -98,10 +93,6 @@
   "kind": "verb"
  },
  {
-  "slug": "cancel",
-  "kind": "verb"
- },
- {
   "slug": "head",
   "kind": "noun",
   "emoji": "🧠"
@@ -158,7 +149,6 @@
   "slug": "i-have-an-appointment-at-ten",
   "kind": "phrase",
   "components": [
-   "appointment",
    "practice"
   ]
  },
@@ -202,14 +192,6 @@
   "kind": "phrase",
   "components": [
    "insurance-card"
-  ]
- },
- {
-  "slug": "i-have-to-cancel-the-appointment",
-  "kind": "phrase",
-  "components": [
-   "appointment",
-   "cancel"
   ]
  }
 ]

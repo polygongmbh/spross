@@ -139,6 +139,21 @@
   "wait": {
    "text": "чекати"
   },
+  "repeat": {
+   "text": "повторювати"
+  },
+  "slow": {
+   "text": "повільний",
+   "variants": [
+    "повільно"
+   ]
+  },
+  "fast": {
+   "text": "швидкий",
+   "variants": [
+    "швидко"
+   ]
+  },
   "how-much-does-this-cost": {
    "text": "Скільки це коштує?"
   },
@@ -162,6 +177,27 @@
   },
   "the-food-is-ready": {
    "text": "Їжа готова!"
+  },
+  "i-understand": {
+   "text": "Я розумію."
+  },
+  "i-dont-understand": {
+   "text": "Я не розумію."
+  },
+  "do-you-speak-english": {
+   "text": "Ви розмовляєте англійською?"
+  },
+  "i-speak-a-little-german": {
+   "text": "Я лише трохи розмовляю німецькою."
+  },
+  "where-are-you-from": {
+   "text": "Звідки ви?"
+  },
+  "can-you-repeat-that": {
+   "text": "Повторіть."
+  },
+  "slower": {
+   "text": "Повільніше!"
   }
  }
 }

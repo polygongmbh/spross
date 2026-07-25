@@ -1,0 +1,74 @@
+{
+ "title": "Записи та терміни · усе за планом!",
+ "words": {
+  "appointment": {
+   "text": "запис на прийом",
+   "synonyms": [
+    "візит"
+   ]
+  },
+  "date": {
+   "text": "дата"
+  },
+  "opening-hours": {
+   "text": "години роботи",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "deadline": {
+   "text": "строк",
+   "synonyms": [
+    "термін"
+   ]
+  },
+  "confirmation": {
+   "text": "підтвердження"
+  },
+  "plan": {
+   "text": "план"
+  },
+  "waiting-time": {
+   "text": "час очікування"
+  },
+  "arrange": {
+   "text": "домовлятися"
+  },
+  "confirm": {
+   "text": "підтверджувати"
+  },
+  "cancel": {
+   "text": "скасовувати"
+  },
+  "postpone": {
+   "text": "переносити"
+  },
+  "register": {
+   "text": "реєструватися"
+  },
+  "be-late": {
+   "text": "запізнюватися"
+  },
+  "punctual": {
+   "text": "пунктуальний"
+  },
+  "urgent": {
+   "text": "терміновий"
+  },
+  "i-would-like-an-appointment": {
+   "text": "Я хочу записатися на прийом."
+  },
+  "i-have-to-cancel-the-appointment": {
+   "text": "Я мушу скасувати візит."
+  },
+  "the-deadline-is-tomorrow": {
+   "text": "Строк закінчується завтра."
+  },
+  "when-are-the-opening-hours": {
+   "text": "Які години роботи?"
+  },
+  "can-we-postpone-the-appointment": {
+   "text": "Чи можемо перенести візит?"
+  }
+ }
+}

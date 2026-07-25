@@ -70,15 +70,6 @@
   "my-name-is": {
    "text": "Мене звуть …"
   },
-  "where-are-you-from": {
-   "text": "Звідки ви?"
-  },
-  "do-you-speak-english": {
-   "text": "Ви розмовляєте англійською?"
-  },
-  "i-speak-a-little-german": {
-   "text": "Я лише трохи розмовляю німецькою."
-  },
   "i-dont-know": {
    "text": "Я не знаю."
   },
@@ -99,18 +90,6 @@
   },
   "how-are-you": {
    "text": "Як у вас справи?"
-  },
-  "can-you-repeat-that": {
-   "text": "Повторіть."
-  },
-  "i-understand": {
-   "text": "Я розумію."
-  },
-  "i-dont-understand": {
-   "text": "Я не розумію."
-  },
-  "slower": {
-   "text": "Повільніше!"
   },
   "bye": {
    "text": "Бувай!"

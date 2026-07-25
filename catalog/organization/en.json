@@ -1,0 +1,68 @@
+{
+ "title": "Appointments & deadlines",
+ "words": {
+  "appointment": {
+   "text": "appointment"
+  },
+  "date": {
+   "text": "date"
+  },
+  "opening-hours": {
+   "text": "opening hours",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "deadline": {
+   "text": "deadline"
+  },
+  "confirmation": {
+   "text": "confirmation"
+  },
+  "plan": {
+   "text": "plan"
+  },
+  "waiting-time": {
+   "text": "waiting time"
+  },
+  "arrange": {
+   "text": "to arrange"
+  },
+  "confirm": {
+   "text": "to confirm"
+  },
+  "cancel": {
+   "text": "to cancel"
+  },
+  "postpone": {
+   "text": "to postpone"
+  },
+  "register": {
+   "text": "to register"
+  },
+  "be-late": {
+   "text": "to be late"
+  },
+  "punctual": {
+   "text": "punctual"
+  },
+  "urgent": {
+   "text": "urgent"
+  },
+  "i-would-like-an-appointment": {
+   "text": "I would like an appointment."
+  },
+  "i-have-to-cancel-the-appointment": {
+   "text": "I have to cancel the appointment."
+  },
+  "the-deadline-is-tomorrow": {
+   "text": "The deadline is tomorrow."
+  },
+  "when-are-the-opening-hours": {
+   "text": "When are the opening hours?"
+  },
+  "can-we-postpone-the-appointment": {
+   "text": "Can we postpone the appointment?"
+  }
+ }
+}

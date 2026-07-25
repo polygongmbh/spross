@@ -1,0 +1,106 @@
+[
+ {
+  "slug": "appointment",
+  "kind": "noun",
+  "emoji": "📅"
+ },
+ {
+  "slug": "date",
+  "kind": "noun",
+  "emoji": "📆"
+ },
+ {
+  "slug": "opening-hours",
+  "kind": "noun",
+  "emoji": "🕘"
+ },
+ {
+  "slug": "deadline",
+  "kind": "noun",
+  "emoji": "⏳"
+ },
+ {
+  "slug": "confirmation",
+  "kind": "noun",
+  "emoji": "☑️"
+ },
+ {
+  "slug": "plan",
+  "kind": "noun",
+  "emoji": "📋"
+ },
+ {
+  "slug": "waiting-time",
+  "kind": "noun",
+  "emoji": "⌛"
+ },
+ {
+  "slug": "arrange",
+  "kind": "verb"
+ },
+ {
+  "slug": "confirm",
+  "kind": "verb"
+ },
+ {
+  "slug": "cancel",
+  "kind": "verb"
+ },
+ {
+  "slug": "postpone",
+  "kind": "verb"
+ },
+ {
+  "slug": "register",
+  "kind": "verb"
+ },
+ {
+  "slug": "be-late",
+  "kind": "verb"
+ },
+ {
+  "slug": "punctual",
+  "kind": "adjective"
+ },
+ {
+  "slug": "urgent",
+  "kind": "adjective"
+ },
+ {
+  "slug": "i-would-like-an-appointment",
+  "kind": "phrase",
+  "components": [
+   "appointment"
+  ]
+ },
+ {
+  "slug": "i-have-to-cancel-the-appointment",
+  "kind": "phrase",
+  "components": [
+   "appointment",
+   "cancel"
+  ]
+ },
+ {
+  "slug": "the-deadline-is-tomorrow",
+  "kind": "phrase",
+  "components": [
+   "deadline"
+  ]
+ },
+ {
+  "slug": "when-are-the-opening-hours",
+  "kind": "phrase",
+  "components": [
+   "opening-hours"
+  ]
+ },
+ {
+  "slug": "can-we-postpone-the-appointment",
+  "kind": "phrase",
+  "components": [
+   "appointment",
+   "postpone"
+  ]
+ }
+]

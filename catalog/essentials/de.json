@@ -144,6 +144,15 @@
   "wait": {
    "text": "warten"
   },
+  "repeat": {
+   "text": "wiederholen"
+  },
+  "slow": {
+   "text": "langsam"
+  },
+  "fast": {
+   "text": "schnell"
+  },
   "how-much-does-this-cost": {
    "text": "Wie viel kostet das?"
   },
@@ -167,6 +176,36 @@
   },
   "the-food-is-ready": {
    "text": "Das Essen ist fertig!"
+  },
+  "i-understand": {
+   "text": "Ich verstehe."
+  },
+  "i-dont-understand": {
+   "text": "Ich verstehe nicht."
+  },
+  "do-you-speak-english": {
+   "text": "Sprechen Sie Englisch?",
+   "variants": [
+    "Sprichst du Englisch?"
+   ]
+  },
+  "i-speak-a-little-german": {
+   "text": "Ich spreche nur ein bisschen Deutsch."
+  },
+  "where-are-you-from": {
+   "text": "Woher kommen Sie?",
+   "variants": [
+    "Woher kommst du?"
+   ]
+  },
+  "can-you-repeat-that": {
+   "text": "Können Sie das wiederholen?",
+   "variants": [
+    "Kannst du das bitte wiederholen?"
+   ]
+  },
+  "slower": {
+   "text": "Langsamer!"
   }
  }
 }
