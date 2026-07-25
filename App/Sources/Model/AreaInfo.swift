@@ -12,6 +12,7 @@ enum AreaInfo {
 
     private static let emojis: [String: String] = [
         "basics": "👋",
+        "essentials": "⭐",
         "kitchen": "🍳",
         "living": "🛋️",
         "bath": "🛁",
@@ -23,6 +24,7 @@ enum AreaInfo {
         "work": "💼",
         "health": "🩺",
         "admin": "🗂️",
+        "organization": "🗒️",
     ]
 }
 
