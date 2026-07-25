@@ -36,14 +36,28 @@ sealed interface Match {
  * choice itself pass false: [normalize] keeps the leading article, and a form
  * only matches when the typed leading article equals the form's authored one —
  * a wrong or missing article grades [Match.Wrong], never typo-bridges.
+ *
+ * [maxTypoBudget] (default null = the v1 formula untouched) clamps the typo
+ * budget for trainer/drill grading — drills pass 1, which never bridges two
+ * distinct German number words (guard sweep in TrainerTypoBridgeGuardTests;
+ * audited exceptions sw nne↔nane and uk дев'ять↔десять sit one edit apart and
+ * are gated there explicitly). With a cap set, digit-bearing accepted forms
+ * grade exact-only: distinct digit renderings ("21"/"29", "18:05"/"18:06")
+ * sit one edit apart at any sentence length, so no positive budget is safe
+ * for them.
  */
 class AnswerNormalizer(
     answerLanguage: LanguageInfo,
     private val articleLeniency: Boolean,
+    private val maxTypoBudget: Int?,
 ) {
 
-    /** Lenient vocab-review default; explicit secondary init keeps the ObjC/Swift signature. */
-    constructor(answerLanguage: LanguageInfo) : this(answerLanguage, articleLeniency = true)
+    /** Lenient vocab-review default; explicit secondary inits keep the ObjC/Swift signatures. */
+    constructor(answerLanguage: LanguageInfo) :
+        this(answerLanguage, articleLeniency = true, maxTypoBudget = null)
+
+    constructor(answerLanguage: LanguageInfo, articleLeniency: Boolean) :
+        this(answerLanguage, articleLeniency, maxTypoBudget = null)
 
     private val articles: Set<String> = answerLanguage.articles.map { it.lowercase() }.toSet()
     private val verbPrefixes: List<String> = answerLanguage.optionalVerbPrefixes
@@ -113,8 +127,7 @@ class AnswerNormalizer(
                 break
             }
             for (candidate in candidates) {
-                val letters = candidate.count { it != ' ' }
-                if (inputVariants.any { damerauLevenshtein(it, candidate) <= allowedTypos(letters) }) {
+                if (inputVariants.any { damerauLevenshtein(it, candidate) <= typoBudget(candidate) }) {
                     // Reveal always shows the catalog spelling of the matched form.
                     best = Match.Typo(corrected = form)
                     bestForm = form
@@ -150,6 +163,17 @@ class AnswerNormalizer(
             is Match.Typo -> regraded
             Match.Wrong -> Match.Wrong
         }
+    }
+
+    /** The v1 length formula, clamped by [maxTypoBudget]; capped digit forms get none. */
+    private fun typoBudget(candidate: String): Int {
+        val base = allowedTypos(candidate.count { it != ' ' })
+        val cap = maxTypoBudget ?: return base
+        // why: "21"/"29" and "18:05"/"18:06" are one substitution apart however
+        // long the sentence frame — a capped (drill) normalizer therefore takes
+        // digit-bearing forms exact-only while word forms keep up to [cap] slips.
+        if (candidate.any { it.isDigit() }) return 0
+        return minOf(base, cap)
     }
 
     /** The listed leading article a raw answer starts with (only when more words follow). */

@@ -192,6 +192,35 @@ class AnswerNormalizerTests {
     }
 
     @Test
+    fun drillTypoBudgetCapNeverBridgesNumbersOrDigits() {
+        val drill = AnswerNormalizer(
+            catalog.languages.getValue("de"),
+            articleLeniency = false,
+            maxTypoBudget = 1,
+        )
+        val base = card("de", "Ich habe 29 Hefte.", kind = CardKind.Phrase)
+        val hefte = base.copy(target = base.target.copy(variants = listOf("Ich habe neunundzwanzig Hefte.")))
+        assertEquals(Match.Exact, drill.evaluate("Ich habe 29 Hefte.", hefte))
+        assertEquals(Match.Exact, drill.evaluate("Ich habe neunundzwanzig Hefte.", hefte))
+        // One digit off is one edit however long the frame — digit forms grade exact-only.
+        assertEquals(Match.Wrong, drill.evaluate("Ich habe 21 Hefte.", hefte))
+        assertEquals(Match.Wrong, drill.evaluate("Ich habe einundzwanzig Hefte.", hefte))
+        assertEquals(
+            Match.Wrong,
+            drill.evaluate("Der Zug fährt um 18:06 Uhr ab.", card("de", "Der Zug fährt um 18:05 Uhr ab.", kind = CardKind.Phrase)),
+        )
+        // A slip inside a WORD form keeps the capped budget.
+        assertEquals(
+            Match.Typo("Ich habe neunundzwanzig Hefte."),
+            drill.evaluate("Ich habe neunundzwanzik Hefte.", hefte),
+        )
+        // Long word numbers sit 2 edits apart: capped Wrong; the vocab default budget is untouched.
+        val number = card("de", "einhundertneunundzwanzig")
+        assertEquals(Match.Wrong, drill.evaluate("einhunderteinundzwanzig", number))
+        assertEquals(Match.Typo("einhundertneunundzwanzig"), de.evaluate("einhunderteinundzwanzig", number))
+    }
+
+    @Test
     fun decomposedUnicodeAndArticleInsideSynonymConverge() {
         val door = joined(swToDe, "gamma/door") // NFD "Tür", synonym "die  Türe"
         assertEquals(Match.Exact, de.evaluate("Tür", door))

@@ -13,7 +13,7 @@ data class FsrsParameters(
     val maximumIntervalDays: Int = 36500,
     /** Learning steps in seconds (reference `[1m, 10m]`). */
     val learningStepsSeconds: List<Long> = listOf(60L, 600L),
-    /** Relearning steps in seconds (reference `[10m]`; product uses `[1m]`). */
+    /** Relearning steps in seconds (reference `[10m]`; product keeps `[10m]` — model/Config.kt). */
     val relearningStepsSeconds: List<Long> = listOf(600L),
 ) {
     init {

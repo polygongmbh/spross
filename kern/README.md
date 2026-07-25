@@ -182,6 +182,15 @@ day-key `yyyy-MM-dd`) with:
   and only matches a form whose leading article equals the typed one —
   wrong or missing article grades Wrong (never typo-bridged);
   the one-arg init stays the lenient vocab-review default (both inits in the ObjC header).
+  The typo budget is likewise constructor-clamped for drill grading:
+  `AnswerNormalizer(language, articleLeniency, maxTypoBudget = 1)` caps the v1 formula
+  and grades digit-bearing accepted forms exact-only
+  ("21"/"29", "18:05"/"18:06" sit one edit apart at any sentence length);
+  the cardinal sweep (TrainerTypoBridgeGuardTests) proves budget 1 never bridges
+  two distinct German 0–999 cardinals;
+  audited exceptions within one edit — sw `nne`↔`nane` (4↔8, incl. tens compounds)
+  and uk `дев'ять`↔`десять` (9↔10) — are gated explicitly in the sweep.
+  Vocab reviews (`maxTypoBudget = null`, the default) keep the v1 budget untouched.
 
 ## 7. Store & snapshots
 
