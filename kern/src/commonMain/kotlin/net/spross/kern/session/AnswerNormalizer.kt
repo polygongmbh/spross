@@ -9,7 +9,11 @@ import net.spross.kern.model.nfcNormalized
 sealed interface Match {
     data object Exact : Match
 
-    /** Accepted with a small slip; carries the full normalized citation form. */
+    /**
+     * Accepted with a small slip; carries the accepted form as authored in the
+     * catalog (proper spelling for the UI's correction display, not the
+     * lowercased/stripped comparison form).
+     */
     data class Typo(val corrected: String) : Match
 
     data object Wrong : Match
@@ -72,22 +76,22 @@ class AnswerNormalizer(answerLanguage: LanguageInfo) {
         val inputVariants = prefixVariants(normalizedInput, prefixes)
 
         var best: Match = Match.Wrong
-        var bestTarget: String? = null
+        var bestForm: String? = null
         for (form in accepted) {
             val target = normalize(form)
             if (target.isEmpty()) continue
             val candidates = prefixVariants(target, prefixes)
             if (candidates.any { it in inputVariants }) {
                 best = Match.Exact
-                bestTarget = target
+                bestForm = form
                 break
             }
             for (candidate in candidates) {
                 val letters = candidate.count { it != ' ' }
                 if (inputVariants.any { damerauLevenshtein(it, candidate) <= allowedTypos(letters) }) {
-                    // Reveal always shows the full citation form.
-                    best = Match.Typo(corrected = target)
-                    bestTarget = target
+                    // Reveal always shows the catalog spelling of the matched form.
+                    best = Match.Typo(corrected = form)
+                    bestForm = form
                 }
             }
         }
@@ -95,7 +99,7 @@ class AnswerNormalizer(answerLanguage: LanguageInfo) {
         if (best == Match.Exact && expectedArticle != null) {
             val typed = leadingArticle(input)
             if (typed != null && typed != expectedArticle) {
-                best = Match.Typo(corrected = bestTarget ?: normalizedInput)
+                best = Match.Typo(corrected = bestForm ?: normalizedInput)
             }
         }
         if (best == Match.Wrong) {
@@ -116,7 +120,7 @@ class AnswerNormalizer(answerLanguage: LanguageInfo) {
         if (!first.all { it.isLetter() }) return Match.Wrong
         val remainder = tokens.drop(1).joinToString(" ")
         return when (val regraded = evaluate(remainder, accepted, prefixes, expectedArticle = null)) {
-            Match.Exact -> Match.Typo(corrected = normalize(accepted.first()))
+            Match.Exact -> Match.Typo(corrected = accepted.first())
             is Match.Typo -> regraded
             Match.Wrong -> Match.Wrong
         }

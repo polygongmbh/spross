@@ -99,9 +99,10 @@ class AnswerNormalizerTests {
     @Test
     fun typoToleranceScalesWithLength() {
         val kuehlschrank = card("de", "Kühlschrank", grammar = mapOf("gender" to "der"))
-        assertEquals(Match.Typo("kühlschrank"), de.evaluate("Kuhlschrank", kuehlschrank))
+        // corrected carries the catalog spelling, never the lowercased comparison form
+        assertEquals(Match.Typo("Kühlschrank"), de.evaluate("Kuhlschrank", kuehlschrank))
         val spuelmaschine = card("de", "Spülmaschine", grammar = mapOf("gender" to "die"))
-        assertEquals(Match.Typo("spülmaschine"), de.evaluate("Spulmaschine", spuelmaschine))
+        assertEquals(Match.Typo("Spülmaschine"), de.evaluate("Spulmaschine", spuelmaschine))
         assertEquals(Match.Wrong, de.evaluate("Spolmascine", spuelmaschine)) // 2 edits > budget 1
         assertEquals(Match.Typo("friji"), sw.evaluate("firji", card("sw", "friji"))) // transposition
         assertEquals(Match.Wrong, sw.evaluate("kula", card("sw", "kile"))) // short words: exact only
@@ -120,8 +121,8 @@ class AnswerNormalizerTests {
         val waiter = joined(swToDe, "alpha/waiter") // "Kellner", gender "der"
         assertEquals(Match.Exact, de.evaluate("der Kellner", waiter))
         assertEquals(Match.Exact, de.evaluate("Kellner", waiter)) // missing article stays exact
-        assertEquals(Match.Typo("kellner"), de.evaluate("die Kellner", waiter))
-        assertEquals(Match.Typo("kellner"), de.evaluate("dee Kellner", waiter)) // stray-word rescue
+        assertEquals(Match.Typo("Kellner"), de.evaluate("die Kellner", waiter))
+        assertEquals(Match.Typo("Kellner"), de.evaluate("dee Kellner", waiter)) // stray-word rescue
         // No gender in the grammar → the article is never checked.
         assertEquals(Match.Exact, de.evaluate("das Tisch", card("de", "Tisch")))
     }
