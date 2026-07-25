@@ -279,14 +279,6 @@ class CatalogLintTest {
             .toSortedSet()
         assertEquals(
             sortedSetOf(
-                // Reviewed 2026-07-25: each is a merge Swahili genuinely makes and no
-                // attested word splits — `chukua` covers nehmen AND abholen, `ondoka`
-                // covers losgehen AND abfahren (the vehicle sense is in this catalog's
-                // own "Treni inaondoka saa ngapi?"), and no verb but `kupumzika` names
-                // taking a break. Sharpening any of them would invent a distinction.
-                "sw kuchukua: essentials/take, health/pick-up",
-                "sw kuondoka: hall/set-off, outside/depart",
-                "sw kupumzika: desk/take-break, health/rest",
                 // Reviewed 2026-07-25: the textbook homonym, and the only entry here that
                 // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
                 // not one word covering two German ones. Same treatment either way.

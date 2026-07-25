@@ -50,6 +50,11 @@
 - **Fewer cards teaching the same thing**: "sich entspannen" and "sich ausruhen"
   were two cards for one idea and one Swahili word — now one. The school exercise
   book is "daftari la mazoezi", no longer sharing "daftari" with the desk notebook.
+- **Two cards never ask the same question**: where Swahili had one word for two
+  German ones, the narrower card now says which one it means in every language —
+  *Medikamente abholen* is `kuchukua dawa`, *losgehen* is `kuondoka nyumbani`,
+  *Pause machen* is `kupumzika kazini`. Only "mto" (pillow and river) is still
+  one word for two things, which is simply what the word means.
 
 ## 1.0.0 — 2026-07-25
 
