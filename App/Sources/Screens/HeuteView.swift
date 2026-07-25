@@ -12,10 +12,10 @@ struct HeuteView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: DL.Space.xl) {
                 header
-                if let message = model.loadErrorMessage {
+                if let failure = model.loadFailure {
                     stateCard(emoji: "🫤",
                               title: "Ups",
-                              message: Text(message))
+                              message: failure.text)
                 } else if model.sessionAvailable {
                     sessionCard
                 } else if (model.stats?.activeCards ?? 0) > 0 {
@@ -195,5 +195,22 @@ struct HeuteView: View {
                 .fill(Color.dlSurface)
         )
         .dlCardShadow()
+    }
+}
+
+extension LoadFailure {
+    /// Error chrome as `Text`, so it resolves against the environment locale
+    /// like every other string. The system `reason` stays as the OS wrote it.
+    var text: Text {
+        switch self {
+        case .catalogMissing:
+            return Text("Die Inhalte konnten nicht geladen werden. (catalog fehlt im App-Bundle)")
+        case .unknownProfile(let source, let target):
+            return Text("Unbekanntes Sprachprofil (\(source) → \(target)).")
+        case .contentUnavailable(let reason):
+            return Text("Die Inhalte konnten nicht geladen werden. (\(reason))")
+        case .resetFailed(let reason):
+            return Text("Zurücksetzen fehlgeschlagen. (\(reason))")
+        }
     }
 }

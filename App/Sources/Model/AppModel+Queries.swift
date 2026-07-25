@@ -95,7 +95,7 @@ extension AppModel {
             refreshStats()
             pushWatchSnapshot()
         } catch {
-            loadErrorMessage = "Zurücksetzen fehlgeschlagen. (\(error.localizedDescription))"
+            loadFailure = .resetFailed(reason: error.localizedDescription)
         }
     }
 

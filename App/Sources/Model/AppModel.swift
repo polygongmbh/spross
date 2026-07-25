@@ -9,6 +9,20 @@ enum SessionStep: Equatable {
     case completed
 }
 
+/// A failure worth showing as error chrome on Heute. The model names the
+/// case only — the view localizes it (`HeuteView`), so the message follows
+/// the known-language chrome locale like every other string.
+enum LoadFailure: Equatable {
+    /// The bundled catalog folder is missing from the app bundle.
+    case catalogMissing
+    /// The stored/requested (source, target) pair is not in the catalog.
+    case unknownProfile(source: String, target: String)
+    /// Box load or bootstrap threw; carries the system error description.
+    case contentUnavailable(reason: String)
+    /// Destructive reset threw; carries the system error description.
+    case resetFailed(reason: String)
+}
+
 /// The observable app model: owns the `BoxState` of the selected profile
 /// (source = known language, target = learning language), persistence,
 /// statistics, and the running session.
@@ -30,7 +44,7 @@ final class AppModel {
     var box: BoxState?
     private(set) var stats: BoxStatistics?
     /// Settable internally only so AppModel+Queries can report reset failures.
-    var loadErrorMessage: String?
+    var loadFailure: LoadFailure?
     private(set) var catalog: Catalog?
 
     // MARK: Session state (mutated in AppModel+Session)
@@ -116,7 +130,7 @@ final class AppModel {
         #endif
 
         guard let catalog = loadCatalog() else {
-            loadErrorMessage = "Die Inhalte konnten nicht geladen werden. (catalog fehlt im App-Bundle)"
+            loadFailure = .catalogMissing
             phase = .ready
             return
         }
@@ -153,7 +167,7 @@ final class AppModel {
     func activate(source: String, target: String) async {
         guard let catalog, catalog.languages[source] != nil,
               catalog.languages[target] != nil, source != target else {
-            loadErrorMessage = "Unbekanntes Sprachprofil (\(source) → \(target))."
+            loadFailure = .unknownProfile(source: source, target: target)
             phase = .ready
             return
         }
@@ -176,13 +190,13 @@ final class AppModel {
             await store.saveWidgetSnapshot(json: widgetSnapshotJSON(for: state))
             UserDefaults.standard.set(source, forKey: Self.sourceLanguageKey)
             UserDefaults.standard.set(target, forKey: Self.targetLanguageKey)
-            loadErrorMessage = nil
+            loadFailure = nil
             refreshStats()
             pushWatchSnapshot()
             recomposeSessionIfStale()
             phase = .ready
         } catch {
-            loadErrorMessage = "Die Inhalte konnten nicht geladen werden. (\(error.localizedDescription))"
+            loadFailure = .contentUnavailable(reason: error.localizedDescription)
             phase = .ready
         }
     }
