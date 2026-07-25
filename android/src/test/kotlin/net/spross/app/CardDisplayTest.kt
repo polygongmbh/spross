@@ -31,9 +31,9 @@ class CardDisplayTest {
     }
 
     @Test
-    fun suffixPluralRendersDictionaryStyle() {
+    fun suffixPluralResolvesAgainstTheWord() {
         assertEquals(
-            "die Lehrerin, -nen",
+            "Pl. die Lehrerinnen",
             CardDisplay.pluralLine(realization("die Lehrerin", plural = "-nen"), chrome),
         )
     }
@@ -41,7 +41,7 @@ class CardDisplayTest {
     @Test
     fun fullWordPluralGetsPrefix() {
         assertEquals(
-            "Pl.: die Häuser",
+            "Pl. die Häuser",
             CardDisplay.pluralLine(realization("das Haus", plural = "die Häuser"), chrome),
         )
     }

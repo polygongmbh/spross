@@ -207,7 +207,7 @@ struct SessionCompletionView: View {
             VocabCardView(
                 emoji: "🥄",
                 prompt: .init(text: "kijiko"),
-                answer: .init(text: "Löffel", article: "der", plural: "Löffel"),
+                answer: .init(text: "Löffel", article: "der", plural: "Pl. Löffel"),
                 note: nil,
                 revealed: true
             )

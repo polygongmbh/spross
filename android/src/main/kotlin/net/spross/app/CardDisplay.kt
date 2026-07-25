@@ -9,16 +9,16 @@ object CardDisplay {
     fun gender(realization: Realization): String? = realization.grammar["gender"]
 
     /**
-     * Dictionary-style plural line for the TARGET side only:
-     * "-nen" → "Lehrerin, -nen"; "=" / "only" sentinels via chrome strings;
-     * a full plural word gets the localized "Pl.: " prefix.
+     * Labelled plural line for the TARGET side only: every real form carries the
+     * localized "Pl. " prefix, with a suffix resolved against the word
+     * ("-nen" → "Pl. Lehrerinnen"); "=" / "only" sentinels via chrome strings.
      */
     fun pluralLine(realization: Realization, chrome: Chrome): String? {
         val plural = realization.grammar["plural"] ?: return null
         return when {
             plural == "=" -> chrome.pluralEquals
             plural == "only" -> chrome.pluralOnly
-            plural.startsWith("-") -> "${realization.text}, $plural"
+            plural.startsWith("-") -> chrome.pluralPrefix + realization.text + plural.drop(1)
             else -> chrome.pluralPrefix + plural
         }
     }

@@ -77,15 +77,17 @@ enum CardDisplay {
         return "\(article) \(realization.text)"
     }
 
-    /// Dictionary-style plural line: suffix → "Lehrerin, -nen"; "=" → "= Pl.";
-    /// "only" → "nur Pl."; full form shown as-is.
+    /// Labelled plural line: every real form gets the "Pl." label, with suffixes
+    /// resolved against the word ("-nen" → "Pl. Lehrerinnen") rather than shown
+    /// dictionary-style; "=" → "= Pl.", "only" → "nur Pl.".
     static func plural(of realization: Realization, locale: Locale) -> String? {
         guard let raw = realization.grammar["plural"], !raw.isEmpty else { return nil }
         switch raw {
         case "=": return DLChrome.string("= Pl.", locale: locale)
         case "only": return DLChrome.string("nur Pl.", locale: locale)
         default:
-            return raw.hasPrefix("-") ? "\(realization.text), \(raw)" : raw
+            let form = raw.hasPrefix("-") ? realization.text + raw.dropFirst() : raw
+            return String(format: DLChrome.string("Pl. %@", locale: locale), form)
         }
     }
 

@@ -71,8 +71,9 @@ data class Realization(
   (a de note never surfaces for an en-source user; non-de sources are note-less until authored).
 - **Grammar display is target-side only**: plural line and article coloring render only for
   the target realization (v1's "plural only for learners OF German", generalized).
-  Suffix plurals render dictionary-style "Lehrerin, -nen"; sentinels "=" → "= Pl.",
-  "only" → "nur Pl." via localized chrome strings, not hardcoded German.
+  Every real plural carries the "Pl. " label, suffixes resolved against the word
+  ("-nen" → "Pl. Lehrerinnen"); sentinels "=" → "= Pl.", "only" → "nur Pl."
+  via localized chrome strings, not hardcoded German.
 
 ## 3. One schedule per card, alternating presentation   (user ruling 2026-07-22)
 

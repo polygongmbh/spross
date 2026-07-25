@@ -75,7 +75,7 @@ data class Chrome(
             finish = "Fertig",
             pluralEquals = "= Pl.",
             pluralOnly = "nur Pl.",
-            pluralPrefix = "Pl.: ",
+            pluralPrefix = "Pl. ",
         )
 
         private val EN = Chrome(
@@ -111,7 +111,7 @@ data class Chrome(
             finish = "Finish",
             pluralEquals = "= pl.",
             pluralOnly = "pl. only",
-            pluralPrefix = "pl.: ",
+            pluralPrefix = "pl. ",
         )
     }
 }

@@ -240,7 +240,7 @@ struct ArticleBadge: View {
     VocabCardView(
         emoji: "🧊",
         prompt: .init(text: "friji"),
-        answer: .init(text: "Kühlschrank", article: "der", plural: "Kühlschränke"),
+        answer: .init(text: "Kühlschrank", article: "der", plural: "Pl. Kühlschränke"),
         note: nil,
         revealed: false
     )
@@ -253,7 +253,7 @@ struct ArticleBadge: View {
     VocabCardView(
         emoji: "🍳",
         prompt: .init(text: "kikaango"),
-        answer: .init(text: "Pfanne", article: "die", plural: "Pfanne, -n"),
+        answer: .init(text: "Pfanne", article: "die", plural: "Pl. Pfannen"),
         note: "wörtlich: kleines Bratgefäß",
         revealed: true
     )
@@ -267,7 +267,7 @@ struct ArticleBadge: View {
         // Not-yet-sticking word: emoji as light support.
         VocabCardView(
             emoji: "🥄",
-            prompt: .init(text: "Löffel", article: "der", plural: "Löffel"),
+            prompt: .init(text: "Löffel", article: "der", plural: "Pl. Löffel"),
             answer: .init(text: "kijiko"),
             note: nil,
             revealed: false,
