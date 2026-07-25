@@ -109,6 +109,9 @@
   "wheres-my-towel": {
    "text": "Де мій рушник?"
   },
+  "can-you-hang-the-laundry": {
+   "text": "Можеш розвісити білизну?"
+  },
   "dont-forget-to-brush-teeth": {
    "text": "Не забудь почистити зуби!"
   },
@@ -117,9 +120,6 @@
   },
   "the-water-is-cold": {
    "text": "Вода холодна!"
-  },
-  "can-you-hang-the-laundry": {
-   "text": "Можеш розвісити білизну?"
   }
  }
 }

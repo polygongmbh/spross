@@ -103,11 +103,17 @@
   "hows-the-weather-today": {
    "text": "Яка сьогодні погода?"
   },
+  "take-an-umbrella": {
+   "text": "Візьми парасольку!"
+  },
   "its-raining": {
    "text": "Йде дощ."
   },
   "the-sun-is-shining": {
    "text": "Світить сонце!"
+  },
+  "shall-we-take-a-walk": {
+   "text": "Може, підемо гуляти?"
   },
   "the-bus-is-coming-soon": {
    "text": "Автобус зараз приїде."
@@ -117,12 +123,6 @@
   },
   "what-a-beautiful-day": {
    "text": "Який гарний день!"
-  },
-  "take-an-umbrella": {
-   "text": "Візьми парасольку!"
-  },
-  "shall-we-take-a-walk": {
-   "text": "Може, підемо гуляти?"
   }
  }
 }

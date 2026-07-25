@@ -43,6 +43,9 @@
   from *Vorsicht*), and the longest sentences lost the words that carried no meaning.
   Ukrainian phrases that spelled both gender endings into the answer
   ("Я втомився (втомилася).") now accept either but ask you to type only one.
+- **Fewer cards teaching the same thing**: "sich entspannen" and "sich ausruhen"
+  were two cards for one idea and one Swahili word — now one. The school exercise
+  book is "daftari la mazoezi", no longer sharing "daftari" with the desk notebook.
 
 ## 1.0.0 — 2026-07-25
 

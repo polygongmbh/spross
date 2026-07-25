@@ -109,6 +109,12 @@
   "do-not-disturb": {
    "text": "Не заважай!"
   },
+  "the-laptop-wont-charge-anymore": {
+   "text": "Ноутбук більше не заряджається."
+  },
+  "the-wifi-is-gone": {
+   "text": "Інтернет зник."
+  },
   "coffee-break": {
    "text": "Перерва на каву?"
   },
@@ -120,12 +126,6 @@
   },
   "send-me-the-email": {
    "text": "Надішли мені імейл."
-  },
-  "the-laptop-wont-charge-anymore": {
-   "text": "Ноутбук більше не заряджається."
-  },
-  "the-wifi-is-gone": {
-   "text": "Інтернет зник."
   }
  }
 }
