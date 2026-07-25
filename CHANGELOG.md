@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **The reveal's small print can actually be read**: the plural, the "auch: …" alternates,
+  the literal gloss and the spelling shown after a typo were set too small and too faint
+  to take in — they are now sized and coloured to be read, not squinted at.
+  The palette moved with them: paper and ink re-grounded on the growing box,
+  ocean and forest alongside the clay, and every colour the app puts on screen
+  now carries enough contrast to be legible in both light and dark.
+
 - **A new word asks before it teaches**: the first time a word comes up it now waits
   behind "Aufdecken" like any other card — with its picture as the cue — so a word you
   already know can be recalled instead of just shown to you.

@@ -42,6 +42,9 @@ One line per item, with a file or context pointer, filed under the section it be
 
 - Android not yet ported: Box browse, trainers, widget, 14-day strip, confetti/haptics
   (`design.md` § Android companion).
+- Android carries its own unrelated palette (`android/.../ui/Theme.kt`) that never went
+  through the contrast pass — it predates the ocean/forest re-cut and shares no values
+  with `Design/Theme.swift`.
 
 ## Verification gaps
 

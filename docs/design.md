@@ -124,8 +124,16 @@ the app renders them:
   the sentence drill drawing leveled slot values (kern README §9).
 
 Design language: warm, card-centric, emoji as illustration, article color coding
-der=blue / die=pink-red / das=green — degrades to neutral for languages without
+der=blue / die=berry / das=green — degrades to neutral for languages without
 gendered articles.
+
+Palette: stone-and-moss paper, clay headline, ocean and forest as the secondaries
+(growing-box theme). Every pairing clears WCAG AA in both schemes — 4.5:1 for text,
+3:1 for controls — under two rules the token file states and enforces by construction:
+accents are cut at ink strength (readable on their own 14 % wash, the tightest case
+they face), and text drawn ON an accent fill uses `dlOnColor`, never `.white`.
+Values live in `App/Sources/Design/Theme.swift`; decorative hairlines are exempt
+and say so there.
 
 ## Android companion (core loop)
 
