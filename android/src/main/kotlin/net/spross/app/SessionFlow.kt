@@ -12,6 +12,17 @@ import net.spross.kern.session.SessionComposer
 enum class AnswerTone { Right, Tough, Wrong }
 
 /**
+ * On-demand extra round: endless composition FIRST (due + new vocab within the
+ * pool budget and health gate); when that is empty, fall back to kern's
+ * review-ahead extra round — mirrors iOS (design.md "Counts & sessions").
+ */
+fun extraSessionPlan(state: BoxState, nowEpochMillis: Long): SessionPlan {
+    val endless = SessionComposer.composeEndless(state, nowEpochMillis)
+    if (!endless.isEmpty) return endless
+    return SessionComposer.composeExtraSession(state, nowEpochMillis)
+}
+
+/**
  * Pure session drain loop over the kern facades (no Android imports):
  * queue = reviews + unlockedPhrases + newCards; on empty pull dueNow;
  * on empty + endless refill via composeEndless; else finished (kern README §6).

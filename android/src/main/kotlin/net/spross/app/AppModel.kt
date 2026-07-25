@@ -147,7 +147,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     fun startExtraSession() {
         val state = box ?: return
-        begin(SessionComposer.composeExtraSession(state, now()))
+        // begin() no-ops on an empty plan — the tap only does nothing when
+        // BOTH compositions are empty (box without active cards).
+        begin(extraSessionPlan(state, now()))
     }
 
     private fun begin(plan: SessionPlan) {

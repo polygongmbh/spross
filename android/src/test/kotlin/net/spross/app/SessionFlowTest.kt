@@ -96,6 +96,31 @@ class SessionFlowTest {
     }
 
     @Test
+    fun extraRoundPrefersEndlessComposition() {
+        val cards = listOf(card("a", 0), card("b", 1), card("c", 2))
+        val state = BoxEngine.bootstrap(cards, BoxConfig(), JoinStamp("de", "sw", "fp"))
+        // Fresh box: endless offers new vocab within the pool budget, while the
+        // review-ahead extra round would be empty (no active cards yet).
+        val plan = extraSessionPlan(state, now)
+        assertFalse(plan.isEmpty)
+        assertTrue(plan.newCards.isNotEmpty())
+    }
+
+    @Test
+    fun extraRoundFallsBackToReviewAheadWhenEndlessIsEmpty() {
+        // Drain day one: all cards sit in learning steps (due minutes later),
+        // pool budget spent — endless is legitimately empty right now.
+        val flow = freshFlow()
+        while (!flow.isFinished) flow.answer(Rating.Good, now, tz)
+        val ended = flow.finish(now, tz)
+        assertTrue(SessionComposer.composeEndless(ended, now).isEmpty)
+
+        val plan = extraSessionPlan(ended, now)
+        assertFalse(plan.isEmpty)
+        assertTrue(plan.reviews.isNotEmpty()) // review-ahead: soonest-due first
+    }
+
+    @Test
     fun progressGrowsWithAnswers() {
         val flow = freshFlow()
         assertEquals(0f, flow.progress())
