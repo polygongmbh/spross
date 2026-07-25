@@ -64,10 +64,12 @@ struct TrainerHubView: View {
     }
 
     private func normalizer(for mode: TrainerSessionView.Mode) -> AnswerNormalizer? {
-        // why: drills grade strictly — a wrong or missing article is never
-        // silently forgiven (design.md §Trainers), unlike vocab produce.
+        // why: drills grade strictly — no article forgiveness, typo budget
+        // capped at 1, digits exact-only (design.md §Trainers) — unlike the
+        // lenient vocab-produce default.
         model.languageInfo(mode.typedLanguage)
-            .map { AnswerNormalizer(answerLanguage: $0, articleLeniency: false) }
+            .map { AnswerNormalizer(answerLanguage: $0, articleLeniency: false,
+                                    maxTypoBudget: KotlinInt(int: 1)) }
     }
 
     // MARK: - Card

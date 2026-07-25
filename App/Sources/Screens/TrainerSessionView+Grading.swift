@@ -41,10 +41,10 @@ extension TrainerSessionView {
     }
 
     /// Kern-graded against EVERY accepted variant, best result wins
-    /// (exact > typo > wrong) — the same Damerau-Levenshtein typo budget as
-    /// vocab reviews. The budget only ever ACCEPTS a near-miss of an accepted
-    /// form; it never converts one number into another (distinct number words
-    /// sit ≥ 2 edits apart where the budget is 1, short words get budget 0).
+    /// (exact > typo > wrong). Drills cap the typo budget at 1 and digit
+    /// forms grade exact-only, so a slip is forgiven but no German number
+    /// can ever pass for another (kern's pairwise guard proves it; sw/uk
+    /// carry gated near-twin pairs — see docs/backlog.md).
     private func grade(_ trimmed: String) -> Grade {
         guard let normalizer else {
             // Previews: plain case/punctuation-insensitive comparison.
@@ -62,9 +62,10 @@ extension TrainerSessionView {
         }
     }
 
-    /// The accepted variants wrapped as a synthetic card for Kern's evaluate:
-    /// a non-verb kind and empty grammar keep the article and verb-prefix
-    /// options OFF — drills get exactly the typo budget, nothing more.
+    /// The accepted variants wrapped as a synthetic card for Kern's evaluate.
+    /// Strictness comes from the normalizer construction (articleLeniency
+    /// false, budget cap 1 — TrainerHubView); the non-verb kind keeps the
+    /// verb-prefix option off and empty baseAccepted skips feminine demotion.
     private func gradingCard() -> Card {
         let accepted = current.accepted
         let side = Realization(lang: language,
@@ -75,7 +76,8 @@ extension TrainerSessionView {
                                note: nil)
         return Card(id: "drill", kind: .noun, area: "drill", emoji: nil,
                     seedIndex: 0, components: [], feminineOf: nil,
-                    source: side, target: side, promptFeminineMarker: false)
+                    baseAccepted: [], source: side, target: side,
+                    promptFeminineMarker: false, promptAmbiguous: false)
     }
 
     private func fallbackNormalized(_ raw: String) -> String {
