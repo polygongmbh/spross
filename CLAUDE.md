@@ -83,4 +83,5 @@ Kern modules under `kern/src/commonMain/kotlin/net/spross/kern/`:
 
 - Decisions, rationale, and major turning points live in `docs/`, not inline; this file points.
 - **One fact, one home**: each topic owned by exactly one doc; narrative docs (history, status, plans) link into it, never restate it.
+- Out-of-scope discoveries go to `docs/backlog.md` (one-liners with pointers); prune on fix.
 - **Delete plan docs once shipped** — don't leave a stale third copy.

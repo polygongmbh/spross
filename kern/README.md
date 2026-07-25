@@ -310,11 +310,3 @@ day-key `yyyy-MM-dd`) with:
   reconcile upsert half, the `"/"`-join↔split grading contract,
   v1 immersion subtitle for chrome-less targets (kept for de/en),
   Swift DuoKern + FSRS-5 vectors + DuoKernTrainer product split, watch Kotlin linkage.
-
-## Open items
-
-- The 4 adapted uk twin realizations
-  (kitchen pot-on-stove, hall doorbell-rang, desk laptop-charge, desk wifi-gone)
-  are LLM-adapted on a native-authored foundation — pending a native-verification sweep.
-- Watch snapshot entry cap 60: due-first ranking keeps due cards on-watch,
-  but revisit the cap if the active box outgrows it.
