@@ -14,7 +14,7 @@ enum class AnswerTone { Right, Tough, Wrong }
 /**
  * Pure session drain loop over the kern facades (no Android imports):
  * queue = reviews + unlockedPhrases + newCards; on empty pull dueNow;
- * on empty + endless refill via composeEndless; else finished (kern-design §6).
+ * on empty + endless refill via composeEndless; else finished (kern README §6).
  */
 class SessionFlow(initial: BoxState, plan: SessionPlan) {
 

@@ -3,7 +3,7 @@
 A personal spaced-repetition "growing box" app:
 FSRS-6-scheduled vocab that only grows while material sits, phrases unlock from their component words.
 Native iOS (SwiftUI) app "Spross" in `app/` with a Kotlin Multiplatform core (SprossKern);
-read `app/docs/design.md` (app layer) and `app/docs/kern-design.md` (engine) before changing any behavior.
+read `app/docs/design.md` (app layer) and `app/kern/README.md` (engine contract) before changing any behavior.
 Originally German-focused; any catalog language pair (source = known, target = learning; de/en/sw/uk) works now.
 Focus is on breadth of exposure to the language for maximum fluency with minimum effort, not perfect retention for single words.
 

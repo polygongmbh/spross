@@ -2,7 +2,7 @@
 
 The product thesis and phase plan live in `../../docs/roadmap.md` (repo-external, project-level).
 This doc is the build contract for the APP layer: screens, review UX, profile, persistence wiring.
-The engine (scheduling, growth, sessions, grading, snapshots) is owned by `kern-design.md` —
+The engine (scheduling, growth, sessions, grading, snapshots) is owned by `../kern/README.md` (the kern contract) —
 link, don't restate.
 Product frame: any source (known) / target (learning) language pair from the catalog;
 no user-facing direction concept; progress tracked per target language.
@@ -17,7 +17,7 @@ The app composes the work; the user never browses for what to study.
 Strict dependency direction (App → SprossKern, never the reverse):
 
 ```
-kern   SprossKern — Kotlin Multiplatform engine (contract: kern-design.md)
+kern   SprossKern — Kotlin Multiplatform engine (contract: kern/README.md)
 App/       SwiftUI iOS app — views, observable AppModel, file-backed store actor
 Shared/ Watch/ Widgets/ WatchWidgets/   decode-only Swift snapshot surfaces
 android/   Jetpack Compose app — core loop on the same engine (§ Android below)
@@ -28,10 +28,10 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
 - `App/Sources/KernBridge.swift` is the boundary file:
   `Date ↔ epochMillis`, `tzId`, `Identifiable`/`Equatable` conformances, `Int32` bridging.
 - **Time discipline**: the engine never reads the clock —
-  every call passes `nowEpochMillis` + `tzId` (kern-design §7).
+  every call passes `nowEpochMillis` + `tzId` (kern README §7).
 - Persistence: `BoxStore` actor, **one JSON document per TARGET language**
   (`box-<target>.json`) in App Group `group.net.spross.app`,
-  encoded/decoded by the kern store facade (schema: kern-design §7).
+  encoded/decoded by the kern store facade (schema: kern README §7).
   Atomic writes; save debounced ≥ 5 s after answers,
   immediate at session end, config mutations, and scene-background
   (which also folds partial session stats and pushes snapshots).
@@ -52,13 +52,13 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
 - UI chrome renders in the KNOWN language when chrome exists (de/en today), otherwise en;
   the immersion subtitle (learned word beneath the main button label)
   appears only when chrome exists for the target.
-- **Switching source keeps every schedule** (scheduling keys are card ids — kern-design §3);
+- **Switching source keeps every schedule** (scheduling keys are card ids — kern README §3);
   the settings picker says so.
 - Area titles come from the catalog per source language; the emoji map stays app-side.
 
 ## Presentation model in the UI
 
-Roles, synonym rotation, and the emoji matrix are engine rules (kern-design §3);
+Roles, synonym rotation, and the emoji matrix are engine rules (kern README §3);
 the app renders them:
 
 - One FSRS schedule per card; the role of each review comes from the engine
@@ -91,16 +91,16 @@ the app renders them:
 ## Counts & sessions
 
 - Every user-facing count (due ring, "x neu", active cards, widget stats) is
-  **concept-denominated** — one schedule per card makes cards ≡ concepts (kern-design §4).
+  **concept-denominated** — one schedule per card makes cards ≡ concepts (kern README §4).
 - Sessions are composed, never configured:
-  plan from `BoxEngine`, drain loop, extra round, endless mode — semantics in kern-design §6.
+  plan from `BoxEngine`, drain loop, extra round, endless mode — semantics in kern README §6.
   The done-card extra round composes endless-FIRST (due + NEW vocab within budget/gate),
   falling back to review-ahead when endless is empty,
   so it renders in every done state with active cards.
   Session end = summary ("x neu · x gefestigt · x wiederholt") with confetti and streak;
   "Weiter üben" → endless.
 - A lapsed review card returns after 10 minutes — typically next session;
-  the drain loop does not wait for it (kern-design §5).
+  the drain loop does not wait for it (kern README §5).
 
 ## App structure (single screen)
 
@@ -122,7 +122,7 @@ the app renders them:
   (same typo budget as reviews; accepted-with-typo pauses with the proper spelling;
   articles/verb-prefix leniency stay off).
   All drills ramp: two-wins-up / one-miss-down levels,
-  the sentence drill drawing leveled slot values (kern-design §9).
+  the sentence drill drawing leveled slot values (kern README §9).
 
 Design language: warm, card-centric, emoji as illustration, article color coding
 der=blue / die=pink-red / das=green — degrades to neutral for languages without
@@ -148,7 +148,7 @@ same review UX rules; deltas only where the platform differs:
 - The phone precomputes **WatchSnapshot v2**
   (both sides pre-resolved per card, `nextRole` + `promptForm` baked in,
   due-first ranking, ≤ 60 entries) and **WidgetSnapshot** on every persist;
-  wire formats in kern-design §7.
+  wire formats in kern README §7.
 - Watch: one graded **multiple-choice** loop (the watch never types) — role-aware
   per card (recognize → tap the source meaning; produce → tap the target word),
   distractors ranked by shape (length + part-count) so option length can't give
@@ -168,7 +168,7 @@ same review UX rules; deltas only where the platform differs:
 - `catalog/` is the in-repo master (v2 format, spec in `catalog/README.md`):
   shared word concepts + per-language realizations + pair-authored phrases;
   bundled as a folder resource.
-  Cards derive at load from the (source, target) join and are never persisted (kern-design §2).
+  Cards derive at load from the (source, target) join and are never persisted (kern README §2).
 - `CatalogLintTest` guards format rules on every kern test run.
 - Content changes go through verification sweeps before shipping
   (`../../docs/sprachposter-learnings.md`).
@@ -180,7 +180,7 @@ same review UX rules; deltas only where the platform differs:
 - App builds via XcodeGen (`project.yml`) +
   `xcodebuild -scheme Spross -destination 'iPhone 17 Pro' build`;
   a Release archive smoke check guards the framework linkage.
-- Behavioral engine tests live in kern (inventory: kern-design §10).
+- Behavioral engine tests live in kern (inventory: kern README §10).
 
 ## Not yet
 

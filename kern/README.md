@@ -1,10 +1,10 @@
-# SprossKern — KMP core design (v2 engine contract)
+# SprossKern — engine contract
 
-The implementation contract for the Kotlin Multiplatform core replacing Swift DuoKern.
-Supersedes `kmp-rewrite-brief.md` where they conflict (deviations were adversarially reviewed);
-the 2026-07-22 presentation-model rulings are folded in below and
-supersede this doc's earlier per-unit §3/§4.
-App-layer UX rules stay in `design.md`; this doc owns the engine.
+The standing contract for the Kotlin Multiplatform core (`:kern`):
+scheduling, growth, sessions, grading, snapshots.
+Grew out of the 2026-07 KMP rewrite (per-unit deviations were adversarially reviewed;
+the 2026-07-22 presentation-model rulings are folded into §3/§4).
+App-layer UX rules stay in `../docs/design.md`; this doc owns the engine.
 Product frame (overrides v1 where they conflict):
 any source (known) / target (learning) language pair from the catalog;
 no user-facing direction concept;
@@ -200,9 +200,8 @@ day-key `yyyy-MM-dd`) with:
   sides pre-resolved: `{cardId, sourceText, targetText, accepted[], emoji?, articleTint?,
   femMarker, due, stability, nextRole, promptForm}` + `schemaVersion`.
   The phone resolves `nextRole` and the rotated `promptForm` from the log count at build
-  time; the watch presents accordingly (one response-time-graded multiple-choice loop —
-  correctness + latency derive the rating, see design.md §Watch; the watch never
-  types) and `emoji` is pre-gated by the §3 matrix.
+  time; presentation is the app layer's (`../docs/design.md` §Watch & widgets)
+  and `emoji` is pre-gated by the §3 matrix.
   Ranking is **due-first** (a due card is never evicted by a non-due lower tier), then
   exposure tiers, capped at 60 entries (the ~60 KB `updateApplicationContext` limit).
   `make` lives phone-side; watch stays pure Swift.
@@ -287,7 +286,7 @@ day-key `yyyy-MM-dd`) with:
   v1 immersion subtitle for chrome-less targets (kept for de/en),
   Swift DuoKern + FSRS-5 vectors + DuoKernTrainer product split, watch Kotlin linkage.
 
-## Open items (2026-07-22)
+## Open items
 
 - The 4 adapted uk twin realizations
   (kitchen pot-on-stove, hall doorbell-rang, desk laptop-charge, desk wifi-gone)
