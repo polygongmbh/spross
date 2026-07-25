@@ -12,8 +12,7 @@
   Card ids change once more to make that possible,
   so existing boxes start fresh — as at the 1.0.0 rename (pre-production).
 
-- **Half again as much to learn**: the catalog grew from 358 to 506 concepts.
-  Every area gained the everyday words it was missing —
+- **Half again as much to learn**: every area gained the everyday words it was missing —
   the kitchen finally has food in it (Brot, Milch, Kaffee, Ei, Käse, Reis, Tasse),
   the doctor's area has the body parts you need to say what hurts,
   and the office areas cover Pass, Bescheid, Gebühr, Beruf, Steuer and Kündigung.
