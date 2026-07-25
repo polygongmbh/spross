@@ -39,30 +39,23 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
 ## Profile & onboarding
 
 - Profile = (source, target) catalog languages;
-  targets come from `Catalog.availableTargets(source)` (joinability threshold: kern README §1);
-  both pickers show concept counts ("… terms").
-- Onboarding chrome follows the language being PICKED, so the greeting is already
-  in the user's language: the device language seeds the source pick (see default below),
-  and each later tap re-renders the sheet in that pick — en for a source without chrome.
-  `OnboardingView` owns that locale itself; the root's `knownLocale` covers everything after.
-- Language picker rows everywhere are "⟨flag⟩ ⟨englishName⟩" from languages.json
-  ("🇩🇪 German") — one neutral form on both sides, independent of the chrome language.
-- Neither picker excludes the other side's language:
-  choosing the language the other side holds SWAPS the pair
-  (target list offers the current source with the swapped pair's count).
+  targets come from `Catalog.availableTargets(source)` (joinability threshold: kern README §1).
 - Default source = device language when covered, else en.
-- UI chrome renders in the KNOWN language when chrome exists (de/en today), otherwise en;
-  the immersion subtitle (learned word beneath the main button label)
-  appears only when chrome exists for the target.
-- Chrome strings are SYMBOLIC catalog keys (`settings.source.title`, `a11y.dueOfTotal`),
-  never source text in either language: editing copy then never detaches a translation,
-  and a new chrome language is purely additive in `Localizable.xcstrings`.
-  Arguments stay in the key (`Text("heute.session.reviews \(due)")` → `heute.session.reviews %lld`)
-  so resolution keeps running through `Text`/`LocalizedStringKey` against the environment locale;
-  `String(localized:)` and `NSLocalizedString` would read the device language instead.
-  Error chrome follows the same path: `AppModel` reports a `LoadFailure` case,
-  `HeuteView` turns it into `Text` (only the OS `reason` stays as the system wrote it).
-- The settings source picker says switching keeps all progress (kern README §3).
+  Either picker may hold the other side's language — picking it swaps the pair.
+- Picker rows carry the flag, the language's own name, and the English exonym
+  ("🇺🇦 Українська · Ukrainian"): a flag beside an unreadable script is easy to
+  mistake for a neighbouring language. The settings segmented control is too
+  narrow for both and keeps the exonym alone.
+- UI chrome renders in the KNOWN language when chrome exists (de/en today), otherwise en.
+  Onboarding follows the source being PICKED — device language first, re-rendering on
+  each tap — so the greeting is already in the user's language.
+- Chrome strings are SYMBOLIC catalog keys (`settings.source.title`), never source
+  text in either language: copy edits then never detach a translation, and a new
+  chrome language is additive in `Localizable.xcstrings`.
+  Arguments stay in the key (`heute.session.reviews %lld`) so resolution keeps running
+  through `LocalizedStringKey` against the environment locale — `String(localized:)`
+  would read the device language instead. Errors take the same path:
+  `AppModel` reports a `LoadFailure` case, the view turns it into `Text`.
 - Area titles come from the catalog per source language; the emoji map stays app-side.
 
 ## Presentation model in the UI
@@ -79,15 +72,14 @@ the app renders them:
   The prompt shows the engine's rotated form;
   the reveal shows the source meaning plus the full synonym family ("auch: …").
 - Emoji visibility (first-exposure teaching moment included) follows the engine matrix.
-- Ambiguous prompts carry an **area label** as a small secondary line ABOVE the headword
-  (engine-flagged via `Card.promptAmbiguous`): a target language sometimes merges two
-  concepts German keeps apart (sw `kuvaa` = anziehen + sich anziehen), leaving a produce
-  prompt with two valid answers. Produce only — a recognition prompt never gets it, because
-  a cue precise enough to disambiguate would reveal the answer. Never graded.
+- Ambiguous prompts (engine-flagged `Card.promptAmbiguous`, i.e. the target merges two
+  source concepts) carry an **area label** above the headword. Produce only — on a
+  recognition prompt a cue precise enough to disambiguate would reveal the answer.
+  Never graded.
 - Card rendering: grammar display (target-side plural line, inline article color) per kern README §2;
   prompt/answer styling is role-based (prompt neutral, reveal accent), not per-language.
 
-## Review UX rules (carried from v1 refinement, treat as spec)
+## Review UX rules (spec)
 
 - Wrong answer reveals **inline**, expanding the card DOWNWARD (animated);
   no space is reserved pre-reveal.
@@ -104,11 +96,7 @@ the app renders them:
   **concept-denominated** (kern README §4).
 - Sessions are composed, never configured:
   plan from `BoxEngine`, drain loop, extra round, endless mode — semantics in kern README §6.
-  The done-card extra round composes endless-FIRST (due + NEW vocab within budget/gate),
-  falling back to review-ahead when endless is empty,
-  so it renders in every done state with active cards.
-  Session end = summary ("x neu · x gefestigt · x wiederholt") with confetti and streak;
-  "Weiter üben" → endless.
+  Session end = summary with confetti and streak.
 
 ## App structure (single screen)
 
@@ -119,9 +107,7 @@ the app renders them:
   areas grouped under their areas.json groups
   (source-language titles, en fallback, manifest order; empty groups drop out);
   rows lead with the TARGET realization; phase/stability, pack-into-box,
-  suspended cards surface for revive; settings
-  (source/target pickers with flag + English name — picking the other side swaps —
-  learning-pool size, reset, `feedback@spross.net` + version footer).
+  suspended cards surface for revive; settings (profile, learning-pool size, reset).
 - **Trainers**: registry-driven from kern (registry + templates: kern README §9) —
   the hub hides languages with no trainer content (en unauthored).
   Slot drills are stateless.
@@ -153,17 +139,12 @@ same review UX rules; deltas only where the platform differs:
 
 - The phone precomputes **WatchSnapshot v2** and **WidgetSnapshot** on every persist;
   wire formats, ranking, and caps in kern README §7.
-- Watch: one graded **multiple-choice** loop (the watch never types) — role-aware
-  per card (recognize → tap the source meaning; produce → tap the target word),
-  distractors ranked by shape (length + part-count) so option length can't give
-  the answer away. Drains due cards, then review-ahead by soonest-due.
-  No self-grading: correctness + **response time** derive the FSRS rating —
-  wrong → Again, correct → Easy (very fast) / Good (fast) / Hard (slow), with a
-  length-scaled "fast" budget (`WatchGrading`). Recognition on a keyboard-less
-  device is a deliberate concession to the phone's recall-first rule; the latency
-  curve compensates, and Easy stays reachable on purpose (breadth of exposure
-  over perfect single-word retention). Answers return as events; the phone
-  reschedules with real timestamps and re-pushes.
+- Watch: one graded **multiple-choice** loop (the watch never types), role-aware per card;
+  distractors are shape-ranked so option length can't give the answer away.
+  No self-grading — correctness + response time derive the FSRS rating (`WatchGrading`).
+  Multiple choice on a keyboard-less device is a deliberate concession to the phone's
+  recall-first rule, with the latency curve compensating.
+  Answers return as events; the phone reschedules with real timestamps and re-pushes.
 - iOS widget: pure Swift decode (the documented power-curve duplication: kern README §7).
 
 ## Content pipeline
@@ -174,7 +155,6 @@ same review UX rules; deltas only where the platform differs:
 - `CatalogLintTest` guards format rules on every kern test run.
 - Content changes go through verification sweeps before shipping
   (`../../docs/sprachposter-learnings.md`).
-  Current size: 356 concepts; joins de-sw 346, de-uk 350, de-en 351.
 
 ## Testing & gates
 
