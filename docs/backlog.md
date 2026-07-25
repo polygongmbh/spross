@@ -12,6 +12,10 @@ One line per item, with a file or context pointer, filed under the section it be
   (method: `../../docs/sprachposter-learnings.md`).
 - Phrase→component auto-linking gaps: ~half of phrases carry no `components`
   (naive matcher — `catalog/README.md` § concepts.json).
+- Swahili plurals authored for only 71 of 246 nouns:
+  the ki-/vi- and m-/mi- classes are largely unmarked
+  (`kiti`→viti, `kisu`→visu, `mlango`→milango, `mti`→miti in `catalog/*/sw.json`),
+  so the card shows no plural line where the class change is the whole lesson.
 
 ## Engine & scheduling
 
@@ -29,6 +33,10 @@ One line per item, with a file or context pointer, filed under the section it be
 - No plural rules in `Localizable.xcstrings`: counted strings read "1 Stellen",
   "1 Wiederholungen" in German and English alike.
   Symbolic keys make per-language plural variations a catalog-only change now.
+- iOS grammar chrome never reaches the string catalog: `DLChrome` looks up the
+  German literals "= Pl.", "nur Pl.", "Pl. %@", "auch: %@" (`App/Sources/Model/DisplayText.swift`),
+  none of which are keys in `Localizable.xcstrings`, so every UI language falls back
+  to the German label — Android already has an English set (`android/.../Chrome.kt`).
 - Watch, widget, and complication chrome is hardcoded German with no string catalog
   (`Watch/Sources/WatchHomeView.swift`, `Widgets/Sources/WordWidgetView.swift`,
   `WatchWidgets/Sources/WatchWordWidgetView.swift`) —
