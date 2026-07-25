@@ -17,9 +17,14 @@ class PhraseSlotTests {
         val task = PhraseSlots.instantiate(template("sw-clock-zug"), hour = 20, minute = 0)
         assertEquals("Der Zug fährt um 20:00 Uhr ab.", task.prompt)
         assertEquals("Treni inaondoka saa mbili usiku.", task.display)
-        // Day period is optional, so the period-less reading is accepted too.
+        // Day period is optional, so the period-less reading is accepted too;
+        // the digital time is always accepted alongside the word readings.
         assertEquals(
-            listOf("Treni inaondoka saa mbili.", "Treni inaondoka saa mbili usiku."),
+            listOf(
+                "Treni inaondoka saa mbili.",
+                "Treni inaondoka saa mbili usiku.",
+                "Treni inaondoka 20:00.",
+            ),
             task.accepted,
         )
         assertTrue(task.kind == TrainerKind.Clock && task.language == "sw")
@@ -38,7 +43,15 @@ class PhraseSlotTests {
         val task = PhraseSlots.instantiate(template("sw-num-teller"), value = 347L)
         assertEquals("Wir haben 347 Teller.", task.prompt)
         assertEquals("Tuna sahani mia tatu na arobaini na saba.", task.display)
-        assertEquals(listOf("Tuna sahani mia tatu na arobaini na saba."), task.accepted)
+        // "na"-less drill spelling and the digit form are accepted too.
+        assertEquals(
+            listOf(
+                "Tuna sahani mia tatu na arobaini na saba.",
+                "Tuna sahani mia tatu arobaini saba.",
+                "Tuna sahani 347.",
+            ),
+            task.accepted,
+        )
         assertEquals(TrainerKind.Numbers, task.kind)
     }
 
@@ -60,7 +73,7 @@ class PhraseSlotTests {
         val task = PhraseSlots.instantiate(template("uk-clock-jetzt"), hour = 14, minute = 0)
         assertEquals("Es ist jetzt 14:00 Uhr.", task.prompt)
         assertEquals("Зараз друга година.", task.display)
-        assertEquals(listOf("Зараз друга година.", "Зараз друга."), task.accepted)
+        assertEquals(listOf("Зараз друга година.", "Зараз друга.", "Зараз 14:00."), task.accepted)
         assertTrue(task.kind == TrainerKind.Clock && task.language == "uk")
     }
 
@@ -88,7 +101,7 @@ class PhraseSlotTests {
         assertEquals("Це двадцять один євро.", task.display)
         // Feminine "двадцять одна" must NOT be accepted before євро
         // (language-review fix: masculineSlot filter).
-        assertEquals(listOf("Це двадцять один євро."), task.accepted)
+        assertEquals(listOf("Це двадцять один євро.", "Це 21 євро."), task.accepted)
     }
 
     @Test
@@ -100,7 +113,7 @@ class PhraseSlotTests {
         assertTrue("У мене є одна тисяча зошитів." in t1000.accepted)
         assertTrue("У мене є тисяча зошитів." in t1000.accepted)
         val t21 = PhraseSlots.instantiate(hefte, value = 21L)
-        assertEquals(listOf("У мене є двадцять один зошит."), t21.accepted)
+        assertEquals(listOf("У мене є двадцять один зошит.", "У мене є 21 зошит."), t21.accepted)
     }
 
     @Test
@@ -170,7 +183,7 @@ class PhraseSlotTests {
                 TrainerKind.Numbers, TrainerKind.Years -> {
                     for (v in listOf(1L, 2L, 5L, 11L, 21L, 22L, 25L, 100L, 347L, 1000L, 1978L, 2026L)) {
                         val slot = if (template.slotKind == TrainerKind.Numbers) {
-                            Trainer.number(v, template.target)
+                            Trainer.drillNumber(v, template.target)
                         } else {
                             Trainer.year(v, template.target)
                         }
@@ -209,11 +222,21 @@ class PhraseSlotTests {
         value: Long?,
     ) {
         // masculineNumeralOnly templates drop feminine-final variants by design.
-        val expectedVariants = slot.accepted.filter { variant ->
+        val written = slot.accepted.filter { variant ->
             if (!template.masculineNumeralOnly) return@filter true
             val last = variant.substringAfterLast(' ')
             last != "одна" && last != "дві"
         }
+        // The digit rendering(s) are accepted after the word variants
+        // (clock: zero-padded and bare-hour digital time).
+        val digits = if (template.slotKind == TrainerKind.Clock) {
+            val bare = slot.prompt.substringBefore(':').toInt().toString() +
+                ":" + slot.prompt.substringAfter(':')
+            listOf(slot.prompt, bare).distinct()
+        } else {
+            listOf(slot.prompt)
+        }
+        val expectedVariants = written + digits
         assertEquals(expectedVariants.size, task.accepted.size, "${template.id}: sentence per variant ($expectedVariants)")
         assertEquals(task.accepted.size, task.accepted.toSet().size, "${template.id}: duplicates")
         for (variant in expectedVariants) {

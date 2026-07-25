@@ -19,7 +19,8 @@ class PhraseReverseTests {
         val task = PhraseSlots.reverseInstantiate(template("uk-num-hefte"), value = 21L)
         assertEquals("У мене є двадцять один зошит.", task.prompt)
         assertEquals("Ich habe 21 Hefte.", task.display)
-        assertEquals(listOf("Ich habe 21 Hefte."), task.accepted)
+        // Digits stay canonical; the written-out German cardinal is accepted too.
+        assertEquals(listOf("Ich habe 21 Hefte.", "Ich habe einundzwanzig Hefte."), task.accepted)
         assertEquals("de", task.language)
     }
 

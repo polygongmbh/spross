@@ -42,6 +42,16 @@ object Trainer {
         return TrainerTask(TrainerKind.Numbers, language, n.toString(), accepted, accepted[0])
     }
 
+    /**
+     * [number] with the looser drill accepted set
+     * ([TrainerLanguagePack.drillNumber]: sw adds the "na"-less spelling) —
+     * shared by the level drills and the phrase slots.
+     */
+    internal fun drillNumber(n: Long, language: Language): TrainerTask {
+        val accepted = pack(language).drillNumber(n)
+        return TrainerTask(TrainerKind.Numbers, language, n.toString(), accepted, accepted[0])
+    }
+
     /** de: hundred-style variants; sw/uk: plain number reading. */
     fun year(y: Long, language: Language): TrainerTask {
         val reading = pack(language).year(y)
@@ -110,11 +120,7 @@ object Trainer {
     fun sample(kind: TrainerKind, language: Language, level: Int, rng: Random): TrainerTask {
         val l = level.coerceIn(1, maxLevel(kind))
         return when (kind) {
-            TrainerKind.Numbers -> {
-                val n = drawNumber(l, rng)
-                // why: level drills accept looser spellings (sw drops "na" connectors)
-                number(n, language).copy(accepted = pack(language).drillNumber(n))
-            }
+            TrainerKind.Numbers -> drillNumber(drawNumber(l, rng), language)
             TrainerKind.Years -> {
                 val y = when (l) {
                     1 -> rng.nextLong(1990, 2030)
