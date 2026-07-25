@@ -100,6 +100,54 @@
   "kind": "adjective"
  },
  {
+  "slug": "car",
+  "kind": "noun",
+  "emoji": "🚗"
+ },
+ {
+  "slug": "taxi",
+  "kind": "noun",
+  "emoji": "🚕"
+ },
+ {
+  "slug": "train-station",
+  "kind": "noun",
+  "emoji": "🚉"
+ },
+ {
+  "slug": "ticket",
+  "kind": "noun",
+  "emoji": "🎟️"
+ },
+ {
+  "slug": "way",
+  "kind": "noun",
+  "emoji": "🚶"
+ },
+ {
+  "slug": "market",
+  "kind": "noun",
+  "emoji": "🛒"
+ },
+ {
+  "slug": "snow",
+  "kind": "noun",
+  "emoji": "❄️"
+ },
+ {
+  "slug": "wind",
+  "kind": "noun",
+  "emoji": "💨"
+ },
+ {
+  "slug": "left",
+  "kind": "adjective"
+ },
+ {
+  "slug": "right",
+  "kind": "adjective"
+ },
+ {
   "slug": "hows-the-weather-today",
   "kind": "phrase",
   "components": [

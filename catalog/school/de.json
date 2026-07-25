@@ -91,12 +91,6 @@
     "plural": "-en"
    }
   },
-  "speak": {
-   "text": "sprechen"
-  },
-  "understand": {
-   "text": "verstehen"
-  },
   "ask": {
    "text": "fragen"
   },
@@ -117,6 +111,67 @@
   },
   "raise-hand": {
    "text": "sich melden"
+  },
+  "pupil": {
+   "text": "Schüler",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "pupil-f": {
+   "text": "Schülerin",
+   "grammar": {
+    "gender": "die",
+    "plural": "-nen"
+   }
+  },
+  "course": {
+   "text": "Kurs",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "lesson": {
+   "text": "Unterricht",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "course-book": {
+   "text": "Kursbuch",
+   "grammar": {
+    "gender": "das",
+    "plural": "Kursbücher"
+   }
+  },
+  "page": {
+   "text": "Seite",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "sentence": {
+   "text": "Satz",
+   "grammar": {
+    "gender": "der",
+    "plural": "Sätze"
+   }
+  },
+  "grade": {
+   "text": "Note",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "correct": {
+   "text": "korrigieren"
+  },
+  "learn-by-heart": {
+   "text": "auswendig lernen"
   },
   "i-have-a-question": {
    "text": "Ich habe eine Frage."

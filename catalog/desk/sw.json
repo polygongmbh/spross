@@ -67,6 +67,51 @@
   "study": {
    "text": "kujifunza"
   },
+  "phone": {
+   "text": "simu",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "email": {
+   "text": "barua pepe"
+  },
+  "paper": {
+   "text": "karatasi",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "folder": {
+   "text": "folda",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "password": {
+   "text": "nenosiri"
+  },
+  "internet": {
+   "text": "intaneti"
+  },
+  "charger": {
+   "text": "chaja",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "calendar": {
+   "text": "kalenda",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "important": {
+   "text": "muhimu"
+  },
+  "ready": {
+   "text": "tayari"
+  },
   "im-in-a-meeting": {
    "text": "Niko kwenye mkutano."
   },

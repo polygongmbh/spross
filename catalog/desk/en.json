@@ -70,6 +70,36 @@
   "study": {
    "text": "to study"
   },
+  "phone": {
+   "text": "phone"
+  },
+  "email": {
+   "text": "email"
+  },
+  "paper": {
+   "text": "paper"
+  },
+  "folder": {
+   "text": "folder"
+  },
+  "password": {
+   "text": "password"
+  },
+  "internet": {
+   "text": "internet"
+  },
+  "charger": {
+   "text": "charger"
+  },
+  "calendar": {
+   "text": "calendar"
+  },
+  "important": {
+   "text": "important"
+  },
+  "ready": {
+   "text": "ready"
+  },
   "im-in-a-meeting": {
    "text": "I'm in a meeting."
   },

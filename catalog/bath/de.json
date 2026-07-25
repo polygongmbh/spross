@@ -112,6 +112,71 @@
   "apply-lotion": {
    "text": "eincremen"
   },
+  "bathtub": {
+   "text": "Badewanne",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "toilet-paper": {
+   "text": "Toilettenpapier",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "razor": {
+   "text": "Rasierer",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "sponge": {
+   "text": "Schwamm",
+   "grammar": {
+    "gender": "der",
+    "plural": "Schwämme"
+   }
+  },
+  "hair": {
+   "text": "Haar",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "cream": {
+   "text": "Creme",
+   "grammar": {
+    "gender": "die",
+    "plural": "-s"
+   }
+  },
+  "tap": {
+   "text": "Wasserhahn",
+   "grammar": {
+    "gender": "der",
+    "plural": "Wasserhähne"
+   }
+  },
+  "bin": {
+   "text": "Mülleimer",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "bucket": {
+   "text": "Eimer",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "dirty": {
+   "text": "schmutzig"
+  },
   "im-taking-a-quick-shower": {
    "text": "Ich gehe kurz duschen."
   },

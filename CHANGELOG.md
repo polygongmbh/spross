@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+- **Half again as much to learn**: the catalog grew from 358 to 506 concepts.
+  Every area gained the everyday words it was missing —
+  the kitchen finally has food in it (Brot, Milch, Kaffee, Ei, Käse, Reis, Tasse),
+  the doctor's area has the body parts you need to say what hurts,
+  and the office areas cover Pass, Bescheid, Gebühr, Beruf, Steuer and Kündigung.
+- **A new "Das Wichtigste im Alltag" area** opens right after the first words:
+  the bedrock vocabulary the greetings pack only implied —
+  Geld, Wasser, Zeit, Tag, gehen, kommen, haben, trinken, kaufen, bezahlen,
+  gut/schlecht, groß/klein, heute/morgen — plus essen, sprechen, verstehen and warten,
+  which used to sit in whichever room happened to mention them.
+- **Sachbearbeiter is now a Sachbearbeiter in Swahili**: `afisa mhusika`
+  ("the officer handling your case") instead of the bare `afisa`, which only means
+  "official". Two Ukrainian verbs were sharpened where one word was doing two jobs
+  (putzen → чистити, ankommen → прибувати).
+
 ## 1.0.0 — 2026-07-25
 
 - **Language pickers speak for themselves**: onboarding is English (it shows before

@@ -1,0 +1,172 @@
+{
+ "title": "Das Wichtigste im Alltag",
+ "words": {
+  "money": {
+   "text": "Geld",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "water": {
+   "text": "Wasser",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "time": {
+   "text": "Zeit",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "day": {
+   "text": "Tag",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "week": {
+   "text": "Woche",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "hour": {
+   "text": "Stunde",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "house": {
+   "text": "Haus",
+   "grammar": {
+    "gender": "das",
+    "plural": "Häuser"
+   }
+  },
+  "person": {
+   "text": "Mensch",
+   "grammar": {
+    "gender": "der",
+    "plural": "-en"
+   }
+  },
+  "friend": {
+   "text": "Freund",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "friend-f": {
+   "text": "Freundin",
+   "grammar": {
+    "gender": "die",
+    "plural": "-nen"
+   }
+  },
+  "go": {
+   "text": "gehen"
+  },
+  "come": {
+   "text": "kommen"
+  },
+  "have": {
+   "text": "haben"
+  },
+  "drink": {
+   "text": "trinken"
+  },
+  "buy": {
+   "text": "kaufen"
+  },
+  "give": {
+   "text": "geben"
+  },
+  "take": {
+   "text": "nehmen"
+  },
+  "see": {
+   "text": "sehen"
+  },
+  "make": {
+   "text": "machen"
+  },
+  "pay": {
+   "text": "bezahlen"
+  },
+  "live": {
+   "text": "wohnen"
+  },
+  "good": {
+   "text": "gut"
+  },
+  "bad": {
+   "text": "schlecht"
+  },
+  "big": {
+   "text": "groß"
+  },
+  "small": {
+   "text": "klein"
+  },
+  "much": {
+   "text": "viel"
+  },
+  "now": {
+   "text": "jetzt"
+  },
+  "today": {
+   "text": "heute"
+  },
+  "tomorrow": {
+   "text": "morgen"
+  },
+  "new": {
+   "text": "neu"
+  },
+  "old": {
+   "text": "alt"
+  },
+  "eat": {
+   "text": "essen"
+  },
+  "speak": {
+   "text": "sprechen"
+  },
+  "understand": {
+   "text": "verstehen"
+  },
+  "wait": {
+   "text": "warten"
+  },
+  "how-much-does-this-cost": {
+   "text": "Wie viel kostet das?"
+  },
+  "that-is-too-expensive": {
+   "text": "Das ist zu teuer."
+  },
+  "i-have-no-money": {
+   "text": "Ich habe kein Geld."
+  },
+  "i-have-no-time": {
+   "text": "Ich habe keine Zeit."
+  },
+  "do-you-have-water": {
+   "text": "Haben Sie Wasser?",
+   "variants": [
+    "Hast du Wasser?"
+   ]
+  },
+  "i-live-here": {
+   "text": "Ich wohne hier."
+  },
+  "the-food-is-ready": {
+   "text": "Das Essen ist fertig!"
+  }
+ }
+}

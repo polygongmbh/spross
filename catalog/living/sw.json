@@ -40,9 +40,6 @@
   "picture": {
    "text": "picha"
   },
-  "eat": {
-   "text": "kula"
-  },
   "watch-tv": {
    "text": "kutazama TV"
   },
@@ -67,8 +64,50 @@
   "talk": {
    "text": "kuongea"
   },
-  "the-food-is-ready": {
-   "text": "Chakula kiko tayari!"
+  "room": {
+   "text": "chumba",
+   "grammar": {
+    "plural": "vyumba"
+   }
+  },
+  "newspaper": {
+   "text": "gazeti",
+   "grammar": {
+    "plural": "magazeti"
+   }
+  },
+  "light": {
+   "text": "mwanga"
+  },
+  "music": {
+   "text": "muziki"
+  },
+  "wall": {
+   "text": "ukuta",
+   "grammar": {
+    "plural": "kuta"
+   }
+  },
+  "movie": {
+   "text": "filamu",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "evening": {
+   "text": "jioni",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "sit": {
+   "text": "kukaa"
+  },
+  "laugh": {
+   "text": "kucheka"
+  },
+  "quiet": {
+   "text": "kimya"
   },
   "turn-on-the-tv": {
    "text": "Washa televisheni."

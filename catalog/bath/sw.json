@@ -64,6 +64,54 @@
   "apply-lotion": {
    "text": "kujipaka mafuta"
   },
+  "bathtub": {
+   "text": "bafu",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "toilet-paper": {
+   "text": "karatasi ya choo"
+  },
+  "razor": {
+   "text": "wembe",
+   "grammar": {
+    "plural": "nyembe"
+   }
+  },
+  "sponge": {
+   "text": "sifongo",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "hair": {
+   "text": "nywele"
+  },
+  "cream": {
+   "text": "krimu",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "tap": {
+   "text": "mfereji",
+   "grammar": {
+    "plural": "mifereji"
+   }
+  },
+  "bin": {
+   "text": "pipa la taka"
+  },
+  "bucket": {
+   "text": "ndoo",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "dirty": {
+   "text": "chafu"
+  },
   "im-taking-a-quick-shower": {
    "text": "Naenda kuoga kidogo."
   },

@@ -67,6 +67,42 @@
   "cancel": {
    "text": "to cancel"
   },
+  "head": {
+   "text": "head"
+  },
+  "throat": {
+   "text": "throat"
+  },
+  "stomach": {
+   "text": "stomach"
+  },
+  "back": {
+   "text": "back"
+  },
+  "ear": {
+   "text": "ear"
+  },
+  "blood": {
+   "text": "blood"
+  },
+  "hospital": {
+   "text": "hospital"
+  },
+  "emergency": {
+   "text": "emergency",
+   "grammar": {
+    "plural": "emergencies"
+   }
+  },
+  "sick-note": {
+   "text": "sick note"
+  },
+  "sick": {
+   "text": "sick"
+  },
+  "feel": {
+   "text": "to feel"
+  },
   "i-have-an-appointment-at-ten": {
    "text": "I have an appointment at ten at the doctor's office."
   },

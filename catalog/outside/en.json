@@ -67,6 +67,36 @@
   "outdoors": {
    "text": "outside"
   },
+  "car": {
+   "text": "car"
+  },
+  "taxi": {
+   "text": "taxi"
+  },
+  "train-station": {
+   "text": "train station"
+  },
+  "ticket": {
+   "text": "ticket"
+  },
+  "way": {
+   "text": "way"
+  },
+  "market": {
+   "text": "market"
+  },
+  "snow": {
+   "text": "snow"
+  },
+  "wind": {
+   "text": "wind"
+  },
+  "left": {
+   "text": "left"
+  },
+  "right": {
+   "text": "right"
+  },
   "hows-the-weather-today": {
    "text": "How's the weather today?"
   },

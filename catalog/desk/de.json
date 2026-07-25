@@ -112,6 +112,67 @@
   "study": {
    "text": "lernen"
   },
+  "phone": {
+   "text": "Handy",
+   "grammar": {
+    "gender": "das",
+    "plural": "-s"
+   }
+  },
+  "email": {
+   "text": "E-Mail",
+   "grammar": {
+    "gender": "die",
+    "plural": "-s"
+   }
+  },
+  "paper": {
+   "text": "Papier",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "folder": {
+   "text": "Ordner",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "password": {
+   "text": "Passwort",
+   "grammar": {
+    "gender": "das",
+    "plural": "Passwörter"
+   }
+  },
+  "internet": {
+   "text": "Internet",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "charger": {
+   "text": "Ladekabel",
+   "grammar": {
+    "gender": "das",
+    "plural": "="
+   }
+  },
+  "calendar": {
+   "text": "Kalender",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "important": {
+   "text": "wichtig"
+  },
+  "ready": {
+   "text": "fertig"
+  },
   "im-in-a-meeting": {
    "text": "Ich bin in einem Meeting."
   },

@@ -70,6 +70,36 @@
   "careful": {
    "text": "careful"
   },
+  "bread": {
+   "text": "bread"
+  },
+  "milk": {
+   "text": "milk"
+  },
+  "coffee": {
+   "text": "coffee"
+  },
+  "tea": {
+   "text": "tea"
+  },
+  "egg": {
+   "text": "egg"
+  },
+  "cheese": {
+   "text": "cheese"
+  },
+  "salt": {
+   "text": "salt"
+  },
+  "sugar": {
+   "text": "sugar"
+  },
+  "rice": {
+   "text": "rice"
+  },
+  "cup": {
+   "text": "cup"
+  },
   "the-knife-is-sharp": {
    "text": "The knife is sharp!"
   },

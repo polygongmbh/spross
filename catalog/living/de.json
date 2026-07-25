@@ -85,9 +85,6 @@
     "plural": "-er"
    }
   },
-  "eat": {
-   "text": "essen"
-  },
   "watch-tv": {
    "text": "fernsehen"
   },
@@ -112,8 +109,62 @@
   "talk": {
    "text": "reden"
   },
-  "the-food-is-ready": {
-   "text": "Das Essen ist fertig!"
+  "room": {
+   "text": "Zimmer",
+   "grammar": {
+    "gender": "das",
+    "plural": "="
+   }
+  },
+  "newspaper": {
+   "text": "Zeitung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "light": {
+   "text": "Licht",
+   "grammar": {
+    "gender": "das",
+    "plural": "-er"
+   }
+  },
+  "music": {
+   "text": "Musik",
+   "grammar": {
+    "gender": "die"
+   }
+  },
+  "wall": {
+   "text": "Wand",
+   "grammar": {
+    "gender": "die",
+    "plural": "Wände"
+   }
+  },
+  "movie": {
+   "text": "Film",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "evening": {
+   "text": "Abend",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "sit": {
+   "text": "sitzen"
+  },
+  "laugh": {
+   "text": "lachen"
+  },
+  "quiet": {
+   "text": "leise"
   },
   "turn-on-the-tv": {
    "text": "Mach den Fernseher an."

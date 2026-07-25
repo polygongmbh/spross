@@ -1,0 +1,203 @@
+[
+ {
+  "slug": "money",
+  "kind": "noun",
+  "emoji": "💰"
+ },
+ {
+  "slug": "water",
+  "kind": "noun",
+  "emoji": "🌊"
+ },
+ {
+  "slug": "time",
+  "kind": "noun",
+  "emoji": "⌚"
+ },
+ {
+  "slug": "day",
+  "kind": "noun",
+  "emoji": "📆"
+ },
+ {
+  "slug": "week",
+  "kind": "noun",
+  "emoji": "🗓️"
+ },
+ {
+  "slug": "hour",
+  "kind": "noun",
+  "emoji": "⏱️"
+ },
+ {
+  "slug": "house",
+  "kind": "noun",
+  "emoji": "🏡"
+ },
+ {
+  "slug": "person",
+  "kind": "noun",
+  "emoji": "👤"
+ },
+ {
+  "slug": "friend",
+  "kind": "noun",
+  "emoji": "🫂"
+ },
+ {
+  "slug": "friend-f",
+  "kind": "noun",
+  "emoji": "👭",
+  "feminineOf": "friend"
+ },
+ {
+  "slug": "go",
+  "kind": "verb"
+ },
+ {
+  "slug": "come",
+  "kind": "verb"
+ },
+ {
+  "slug": "have",
+  "kind": "verb"
+ },
+ {
+  "slug": "drink",
+  "kind": "verb"
+ },
+ {
+  "slug": "buy",
+  "kind": "verb"
+ },
+ {
+  "slug": "give",
+  "kind": "verb"
+ },
+ {
+  "slug": "take",
+  "kind": "verb"
+ },
+ {
+  "slug": "see",
+  "kind": "verb"
+ },
+ {
+  "slug": "make",
+  "kind": "verb"
+ },
+ {
+  "slug": "pay",
+  "kind": "verb"
+ },
+ {
+  "slug": "live",
+  "kind": "verb"
+ },
+ {
+  "slug": "good",
+  "kind": "adjective"
+ },
+ {
+  "slug": "bad",
+  "kind": "adjective"
+ },
+ {
+  "slug": "big",
+  "kind": "adjective"
+ },
+ {
+  "slug": "small",
+  "kind": "adjective"
+ },
+ {
+  "slug": "much",
+  "kind": "adjective"
+ },
+ {
+  "slug": "now",
+  "kind": "adjective"
+ },
+ {
+  "slug": "today",
+  "kind": "adjective"
+ },
+ {
+  "slug": "tomorrow",
+  "kind": "adjective"
+ },
+ {
+  "slug": "new",
+  "kind": "adjective"
+ },
+ {
+  "slug": "old",
+  "kind": "adjective"
+ },
+ {
+  "slug": "eat",
+  "kind": "verb"
+ },
+ {
+  "slug": "speak",
+  "kind": "verb"
+ },
+ {
+  "slug": "understand",
+  "kind": "verb"
+ },
+ {
+  "slug": "wait",
+  "kind": "verb"
+ },
+ {
+  "slug": "how-much-does-this-cost",
+  "kind": "phrase",
+  "components": [
+   "much"
+  ]
+ },
+ {
+  "slug": "that-is-too-expensive",
+  "kind": "phrase",
+  "components": []
+ },
+ {
+  "slug": "i-have-no-money",
+  "kind": "phrase",
+  "components": [
+   "money",
+   "have"
+  ]
+ },
+ {
+  "slug": "i-have-no-time",
+  "kind": "phrase",
+  "components": [
+   "time",
+   "have"
+  ]
+ },
+ {
+  "slug": "do-you-have-water",
+  "kind": "phrase",
+  "components": [
+   "have",
+   "water"
+  ]
+ },
+ {
+  "slug": "i-live-here",
+  "kind": "phrase",
+  "components": [
+   "live"
+  ]
+ },
+ {
+  "slug": "the-food-is-ready",
+  "kind": "phrase",
+  "components": [
+   "eat"
+  ]
+ }
+]

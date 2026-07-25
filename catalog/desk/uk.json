@@ -70,6 +70,39 @@
   "study": {
    "text": "вчитися"
   },
+  "phone": {
+   "text": "телефон"
+  },
+  "email": {
+   "text": "імейл",
+   "synonyms": [
+    "електронна пошта"
+   ]
+  },
+  "paper": {
+   "text": "папір"
+  },
+  "folder": {
+   "text": "папка"
+  },
+  "password": {
+   "text": "пароль"
+  },
+  "internet": {
+   "text": "інтернет"
+  },
+  "charger": {
+   "text": "зарядка"
+  },
+  "calendar": {
+   "text": "календар"
+  },
+  "important": {
+   "text": "важливий"
+  },
+  "ready": {
+   "text": "готовий"
+  },
   "im-in-a-meeting": {
    "text": "У мене зустріч."
   },

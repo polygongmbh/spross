@@ -1,0 +1,176 @@
+{
+ "title": "Mambo muhimu · kila siku!",
+ "words": {
+  "money": {
+   "text": "pesa"
+  },
+  "water": {
+   "text": "maji"
+  },
+  "time": {
+   "text": "wakati",
+   "synonyms": [
+    "muda"
+   ],
+   "grammar": {
+    "plural": "nyakati"
+   },
+   "notes": {
+    "de": "wakati = Zeit allgemein · muda = Zeitspanne: „Sina muda“ = Ich habe keine Zeit."
+   }
+  },
+  "day": {
+   "text": "siku",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "week": {
+   "text": "wiki",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "hour": {
+   "text": "saa",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "house": {
+   "text": "nyumba",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "person": {
+   "text": "mtu",
+   "grammar": {
+    "plural": "watu"
+   }
+  },
+  "friend": {
+   "text": "rafiki",
+   "grammar": {
+    "plural": "marafiki"
+   }
+  },
+  "go": {
+   "text": "kwenda"
+  },
+  "come": {
+   "text": "kuja"
+  },
+  "have": {
+   "text": "kuwa na",
+   "notes": {
+    "de": "Präsens ohne „kuwa“: nina, una, ana … · verneint: sina = ich habe nicht."
+   }
+  },
+  "drink": {
+   "text": "kunywa"
+  },
+  "buy": {
+   "text": "kununua"
+  },
+  "give": {
+   "text": "kupa",
+   "notes": {
+    "de": "Braucht ein Objekt-Infix: kunipa = mir geben, kumpa = ihm/ihr geben."
+   }
+  },
+  "take": {
+   "text": "kuchukua"
+  },
+  "see": {
+   "text": "kuona"
+  },
+  "make": {
+   "text": "kufanya"
+  },
+  "pay": {
+   "text": "kulipa"
+  },
+  "live": {
+   "text": "kuishi"
+  },
+  "good": {
+   "text": "-zuri",
+   "notes": {
+    "de": "Adjektive bekommen die Vorsilbe der Nomenklasse: mtu mzuri, kitu kizuri, nyumba nzuri."
+   }
+  },
+  "bad": {
+   "text": "-baya"
+  },
+  "big": {
+   "text": "-kubwa"
+  },
+  "small": {
+   "text": "-dogo"
+  },
+  "much": {
+   "text": "-ingi",
+   "notes": {
+    "de": "Vorsilbe verschmilzt: watu wengi, maji mengi, pesa nyingi."
+   }
+  },
+  "now": {
+   "text": "sasa"
+  },
+  "today": {
+   "text": "leo"
+  },
+  "tomorrow": {
+   "text": "kesho"
+  },
+  "new": {
+   "text": "-pya"
+  },
+  "old": {
+   "text": "-zee",
+   "synonyms": [
+    "kuukuu"
+   ],
+   "notes": {
+    "de": "-zee bei Menschen: mtu mzee · kuukuu bei Sachen: gari kuukuu."
+   }
+  },
+  "eat": {
+   "text": "kula"
+  },
+  "speak": {
+   "text": "kuzungumza"
+  },
+  "understand": {
+   "text": "kuelewa"
+  },
+  "wait": {
+   "text": "kusubiri"
+  },
+  "how-much-does-this-cost": {
+   "text": "Hii ni bei gani?"
+  },
+  "that-is-too-expensive": {
+   "text": "Hii ni ghali sana.",
+   "variants": [
+    "Hii ni ghali mno."
+   ]
+  },
+  "i-have-no-money": {
+   "text": "Sina pesa."
+  },
+  "i-have-no-time": {
+   "text": "Sina muda."
+  },
+  "do-you-have-water": {
+   "text": "Una maji?"
+  },
+  "i-live-here": {
+   "text": "Ninaishi hapa."
+  },
+  "the-food-is-ready": {
+   "text": "Chakula kiko tayari!"
+  }
+ }
+}

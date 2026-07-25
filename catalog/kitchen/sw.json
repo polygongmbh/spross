@@ -67,6 +67,57 @@
   "careful": {
    "text": "angalia"
   },
+  "bread": {
+   "text": "mkate",
+   "grammar": {
+    "plural": "mikate"
+   }
+  },
+  "milk": {
+   "text": "maziwa"
+  },
+  "coffee": {
+   "text": "kahawa"
+  },
+  "tea": {
+   "text": "chai",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "egg": {
+   "text": "yai",
+   "grammar": {
+    "plural": "mayai"
+   }
+  },
+  "cheese": {
+   "text": "jibini",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "salt": {
+   "text": "chumvi"
+  },
+  "sugar": {
+   "text": "sukari",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "rice": {
+   "text": "mchele",
+   "notes": {
+    "de": "mchele = roher Reis · wali = gekochter Reis"
+   }
+  },
+  "cup": {
+   "text": "kikombe",
+   "grammar": {
+    "plural": "vikombe"
+   }
+  },
   "the-knife-is-sharp": {
    "text": "Kisu ni kikali!"
   },

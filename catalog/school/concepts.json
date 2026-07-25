@@ -66,14 +66,6 @@
   "emoji": "✅"
  },
  {
-  "slug": "speak",
-  "kind": "verb"
- },
- {
-  "slug": "understand",
-  "kind": "verb"
- },
- {
   "slug": "ask",
   "kind": "verb"
  },
@@ -99,6 +91,55 @@
  },
  {
   "slug": "raise-hand",
+  "kind": "verb"
+ },
+ {
+  "slug": "pupil",
+  "kind": "noun",
+  "emoji": "🧑‍🎓"
+ },
+ {
+  "slug": "pupil-f",
+  "kind": "noun",
+  "emoji": "👩‍🎓",
+  "feminineOf": "pupil"
+ },
+ {
+  "slug": "course",
+  "kind": "noun",
+  "emoji": "📚"
+ },
+ {
+  "slug": "lesson",
+  "kind": "noun",
+  "emoji": "🎒"
+ },
+ {
+  "slug": "course-book",
+  "kind": "noun",
+  "emoji": "📕"
+ },
+ {
+  "slug": "page",
+  "kind": "noun",
+  "emoji": "📄"
+ },
+ {
+  "slug": "sentence",
+  "kind": "noun",
+  "emoji": "💬"
+ },
+ {
+  "slug": "grade",
+  "kind": "noun",
+  "emoji": "💯"
+ },
+ {
+  "slug": "correct",
+  "kind": "verb"
+ },
+ {
+  "slug": "learn-by-heart",
   "kind": "verb"
  },
  {

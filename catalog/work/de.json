@@ -112,6 +112,70 @@
   "work-overtime": {
    "text": "Überstunden machen"
   },
+  "profession": {
+   "text": "Beruf",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "interview": {
+   "text": "Vorstellungsgespräch",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "working-hours": {
+   "text": "Arbeitszeit",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "full-time": {
+   "text": "Vollzeit",
+   "grammar": {
+    "gender": "die"
+   }
+  },
+  "part-time": {
+   "text": "Teilzeit",
+   "grammar": {
+    "gender": "die"
+   }
+  },
+  "tax": {
+   "text": "Steuer",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "work-permit": {
+   "text": "Arbeitserlaubnis",
+   "grammar": {
+    "gender": "die",
+    "plural": "-se"
+   }
+  },
+  "training": {
+   "text": "Ausbildung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "notice": {
+   "text": "Kündigung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "punctual": {
+   "text": "pünktlich"
+  },
   "tomorrow-i-have-a-job-interview": {
    "text": "Morgen stelle ich mich bei der Firma vor."
   },

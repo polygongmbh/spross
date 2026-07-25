@@ -26,9 +26,16 @@
    "text": "namba ya foleni"
   },
   "case-worker": {
-   "text": "afisa",
+   "text": "afisa mhusika",
+   "variants": [
+    "ofisa mhusika",
+    "afisa husika"
+   ],
    "grammar": {
-    "plural": "maafisa"
+    "plural": "maafisa wahusika"
+   },
+   "notes": {
+    "de": "„afisa“ allein heißt nur „Beamter“ — erst „mhusika“ macht daraus den zuständigen Bearbeiter."
    }
   },
   "deadline": {
@@ -66,6 +73,39 @@
   },
   "expire": {
    "text": "kuisha muda wake"
+  },
+  "passport": {
+   "text": "pasipoti"
+  },
+  "address": {
+   "text": "anwani"
+  },
+  "certificate": {
+   "text": "cheti",
+   "grammar": {
+    "plural": "vyeti"
+   }
+  },
+  "birth-certificate": {
+   "text": "cheti cha kuzaliwa"
+  },
+  "notification": {
+   "text": "barua ya uamuzi"
+  },
+  "fee": {
+   "text": "ada"
+  },
+  "office-hours": {
+   "text": "saa za huduma"
+  },
+  "waiting-room": {
+   "text": "chumba cha kusubiri"
+  },
+  "reject": {
+   "text": "kukataa"
+  },
+  "approve": {
+   "text": "kuidhinisha"
   },
   "where-do-i-sign": {
    "text": "Nitie sahihi wapi?"

@@ -58,9 +58,6 @@
   "put-on": {
    "text": "to put on"
   },
-  "wait": {
-   "text": "to wait"
-  },
   "arrive": {
    "text": "to arrive"
   },
@@ -69,6 +66,36 @@
   },
   "say-goodbye": {
    "text": "to say goodbye"
+  },
+  "shoe": {
+   "text": "shoe"
+  },
+  "apartment": {
+   "text": "apartment"
+  },
+  "neighbour": {
+   "text": "neighbour"
+  },
+  "guest": {
+   "text": "guest"
+  },
+  "wallet": {
+   "text": "wallet"
+  },
+  "glove": {
+   "text": "glove"
+  },
+  "letter": {
+   "text": "letter"
+  },
+  "knock": {
+   "text": "to knock"
+  },
+  "enter": {
+   "text": "to come in"
+  },
+  "inside": {
+   "text": "inside"
   },
   "do-you-have-the-keys": {
    "text": "Do you have the keys?"

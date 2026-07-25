@@ -67,6 +67,57 @@
   "cancel": {
    "text": "kughairi"
   },
+  "head": {
+   "text": "kichwa",
+   "grammar": {
+    "plural": "vichwa"
+   }
+  },
+  "throat": {
+   "text": "koo",
+   "grammar": {
+    "plural": "makoo"
+   }
+  },
+  "stomach": {
+   "text": "tumbo",
+   "grammar": {
+    "plural": "matumbo"
+   }
+  },
+  "back": {
+   "text": "mgongo",
+   "grammar": {
+    "plural": "migongo"
+   }
+  },
+  "ear": {
+   "text": "sikio",
+   "grammar": {
+    "plural": "masikio"
+   }
+  },
+  "blood": {
+   "text": "damu"
+  },
+  "hospital": {
+   "text": "hospitali",
+   "grammar": {
+    "plural": "mahospitali"
+   }
+  },
+  "emergency": {
+   "text": "dharura"
+  },
+  "sick-note": {
+   "text": "cheti cha daktari"
+  },
+  "sick": {
+   "text": "mgonjwa"
+  },
+  "feel": {
+   "text": "kujisikia"
+  },
   "i-have-an-appointment-at-ten": {
    "text": "Nina miadi kwenye kliniki saa nne asubuhi.",
    "notes": {

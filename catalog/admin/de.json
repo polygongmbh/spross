@@ -112,6 +112,68 @@
   "expire": {
    "text": "ablaufen"
   },
+  "passport": {
+   "text": "Pass",
+   "grammar": {
+    "gender": "der",
+    "plural": "Pässe"
+   }
+  },
+  "address": {
+   "text": "Adresse",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "certificate": {
+   "text": "Bescheinigung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "birth-certificate": {
+   "text": "Geburtsurkunde",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "notification": {
+   "text": "Bescheid",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "fee": {
+   "text": "Gebühr",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "office-hours": {
+   "text": "Sprechstunde",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "waiting-room": {
+   "text": "Wartezimmer",
+   "grammar": {
+    "gender": "das",
+    "plural": "="
+   }
+  },
+  "reject": {
+   "text": "ablehnen"
+  },
+  "approve": {
+   "text": "genehmigen"
+  },
   "where-do-i-sign": {
    "text": "Wo muss ich unterschreiben?"
   },

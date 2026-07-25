@@ -64,6 +64,42 @@
   "expire": {
    "text": "to expire"
   },
+  "passport": {
+   "text": "passport"
+  },
+  "address": {
+   "text": "address",
+   "grammar": {
+    "plural": "addresses"
+   }
+  },
+  "certificate": {
+   "text": "certificate"
+  },
+  "birth-certificate": {
+   "text": "birth certificate"
+  },
+  "notification": {
+   "text": "official decision"
+  },
+  "fee": {
+   "text": "fee"
+  },
+  "office-hours": {
+   "text": "office hours",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "waiting-room": {
+   "text": "waiting room"
+  },
+  "reject": {
+   "text": "to reject"
+  },
+  "approve": {
+   "text": "to approve"
+  },
   "where-do-i-sign": {
    "text": "Where do I sign?"
   },

@@ -1,0 +1,167 @@
+{
+ "title": "Найважливіше · щодня!",
+ "words": {
+  "money": {
+   "text": "гроші",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "water": {
+   "text": "вода"
+  },
+  "time": {
+   "text": "час"
+  },
+  "day": {
+   "text": "день"
+  },
+  "week": {
+   "text": "тиждень"
+  },
+  "hour": {
+   "text": "година"
+  },
+  "house": {
+   "text": "будинок",
+   "synonyms": [
+    "дім"
+   ],
+   "notes": {
+    "de": "будинок = das Gebäude · дім = Heim, Zuhause."
+   }
+  },
+  "person": {
+   "text": "людина"
+  },
+  "friend": {
+   "text": "друг"
+  },
+  "friend-f": {
+   "text": "подруга"
+  },
+  "go": {
+   "text": "йти",
+   "variants": [
+    "іти"
+   ],
+   "notes": {
+    "de": "zu Fuß — mit Fahrzeug: їхати."
+   }
+  },
+  "come": {
+   "text": "приходити",
+   "notes": {
+    "de": "zu Fuß — mit Fahrzeug: приїжджати."
+   }
+  },
+  "have": {
+   "text": "мати"
+  },
+  "drink": {
+   "text": "пити"
+  },
+  "buy": {
+   "text": "купувати"
+  },
+  "give": {
+   "text": "давати"
+  },
+  "take": {
+   "text": "брати"
+  },
+  "see": {
+   "text": "бачити"
+  },
+  "make": {
+   "text": "робити"
+  },
+  "pay": {
+   "text": "платити"
+  },
+  "live": {
+   "text": "жити",
+   "synonyms": [
+    "мешкати"
+   ],
+   "notes": {
+    "de": "жити = leben und wohnen (Alltag) · мешкати = wohnen, amtlich."
+   }
+  },
+  "good": {
+   "text": "добрий",
+   "variants": [
+    "добре"
+   ]
+  },
+  "bad": {
+   "text": "поганий",
+   "variants": [
+    "погано"
+   ]
+  },
+  "big": {
+   "text": "великий"
+  },
+  "small": {
+   "text": "малий",
+   "variants": [
+    "маленький"
+   ]
+  },
+  "much": {
+   "text": "багато"
+  },
+  "now": {
+   "text": "зараз"
+  },
+  "today": {
+   "text": "сьогодні"
+  },
+  "tomorrow": {
+   "text": "завтра"
+  },
+  "new": {
+   "text": "новий"
+  },
+  "old": {
+   "text": "старий"
+  },
+  "eat": {
+   "text": "їсти"
+  },
+  "speak": {
+   "text": "говорити"
+  },
+  "understand": {
+   "text": "розуміти"
+  },
+  "wait": {
+   "text": "чекати"
+  },
+  "how-much-does-this-cost": {
+   "text": "Скільки це коштує?"
+  },
+  "that-is-too-expensive": {
+   "text": "Це занадто дорого."
+  },
+  "i-have-no-money": {
+   "text": "У мене немає грошей."
+  },
+  "i-have-no-time": {
+   "text": "У мене немає часу."
+  },
+  "do-you-have-water": {
+   "text": "У вас є вода?",
+   "variants": [
+    "У тебе є вода?"
+   ]
+  },
+  "i-live-here": {
+   "text": "Я живу тут."
+  },
+  "the-food-is-ready": {
+   "text": "Їжа готова!"
+  }
+ }
+}

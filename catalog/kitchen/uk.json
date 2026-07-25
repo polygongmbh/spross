@@ -67,6 +67,36 @@
   "careful": {
    "text": "обережно"
   },
+  "bread": {
+   "text": "хліб"
+  },
+  "milk": {
+   "text": "молоко"
+  },
+  "coffee": {
+   "text": "кава"
+  },
+  "tea": {
+   "text": "чай"
+  },
+  "egg": {
+   "text": "яйце"
+  },
+  "cheese": {
+   "text": "сир"
+  },
+  "salt": {
+   "text": "сіль"
+  },
+  "sugar": {
+   "text": "цукор"
+  },
+  "rice": {
+   "text": "рис"
+  },
+  "cup": {
+   "text": "чашка"
+  },
   "the-knife-is-sharp": {
    "text": "Ніж гострий!"
   },

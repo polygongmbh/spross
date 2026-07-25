@@ -96,6 +96,54 @@
   "kind": "verb"
  },
  {
+  "slug": "clothes",
+  "kind": "noun",
+  "emoji": "👚"
+ },
+ {
+  "slug": "shirt",
+  "kind": "noun",
+  "emoji": "👔"
+ },
+ {
+  "slug": "dress",
+  "kind": "noun",
+  "emoji": "👗"
+ },
+ {
+  "slug": "sweater",
+  "kind": "noun",
+  "emoji": "🧥"
+ },
+ {
+  "slug": "underwear",
+  "kind": "noun",
+  "emoji": "🩲"
+ },
+ {
+  "slug": "belt",
+  "kind": "noun",
+  "emoji": "🪢"
+ },
+ {
+  "slug": "night",
+  "kind": "noun",
+  "emoji": "🌙"
+ },
+ {
+  "slug": "morning",
+  "kind": "noun",
+  "emoji": "🌅"
+ },
+ {
+  "slug": "make-bed",
+  "kind": "verb"
+ },
+ {
+  "slug": "soft",
+  "kind": "adjective"
+ },
+ {
   "slug": "good-night-sleep-well",
   "kind": "phrase",
   "components": [

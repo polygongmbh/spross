@@ -61,6 +61,39 @@
   "work-overtime": {
    "text": "kufanya saa za ziada"
   },
+  "profession": {
+   "text": "taaluma",
+   "notes": {
+    "de": "taaluma = Beruf/Fachgebiet; nach dem Beruf fragt man aber meist mit «kazi»"
+   }
+  },
+  "interview": {
+   "text": "mahojiano ya kazi"
+  },
+  "working-hours": {
+   "text": "saa za kazi"
+  },
+  "full-time": {
+   "text": "kazi ya muda wote"
+  },
+  "part-time": {
+   "text": "kazi ya muda"
+  },
+  "tax": {
+   "text": "kodi"
+  },
+  "work-permit": {
+   "text": "kibali cha kazi"
+  },
+  "training": {
+   "text": "mafunzo ya kazi"
+  },
+  "notice": {
+   "text": "notisi ya kuacha kazi"
+  },
+  "punctual": {
+   "text": "kwa wakati"
+  },
   "tomorrow-i-have-a-job-interview": {
    "text": "Kesho nitajitambulisha kwenye kampuni."
   },

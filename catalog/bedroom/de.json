@@ -111,6 +111,66 @@
   "snore": {
    "text": "schnarchen"
   },
+  "clothes": {
+   "text": "Kleidung",
+   "grammar": {
+    "gender": "die"
+   }
+  },
+  "shirt": {
+   "text": "Hemd",
+   "grammar": {
+    "gender": "das",
+    "plural": "-en"
+   }
+  },
+  "dress": {
+   "text": "Kleid",
+   "grammar": {
+    "gender": "das",
+    "plural": "-er"
+   }
+  },
+  "sweater": {
+   "text": "Pullover",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "underwear": {
+   "text": "Unterwäsche",
+   "grammar": {
+    "gender": "die"
+   }
+  },
+  "belt": {
+   "text": "Gürtel",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "night": {
+   "text": "Nacht",
+   "grammar": {
+    "gender": "die",
+    "plural": "Nächte"
+   }
+  },
+  "morning": {
+   "text": "Morgen",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "make-bed": {
+   "text": "Bett machen"
+  },
+  "soft": {
+   "text": "weich"
+  },
   "good-night-sleep-well": {
    "text": "Gute Nacht, schlaf gut!"
   },
@@ -133,7 +193,7 @@
    "text": "Mach das Licht aus."
   },
   "i-love-you": {
-   "text": "Ich liebe dich.“ ♥"
+   "text": "Ich liebe dich."
   }
  }
 }

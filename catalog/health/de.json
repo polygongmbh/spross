@@ -117,6 +117,74 @@
   "cancel": {
    "text": "absagen"
   },
+  "head": {
+   "text": "Kopf",
+   "grammar": {
+    "gender": "der",
+    "plural": "Köpfe"
+   }
+  },
+  "throat": {
+   "text": "Hals",
+   "grammar": {
+    "gender": "der",
+    "plural": "Hälse"
+   }
+  },
+  "stomach": {
+   "text": "Bauch",
+   "grammar": {
+    "gender": "der",
+    "plural": "Bäuche"
+   }
+  },
+  "back": {
+   "text": "Rücken",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "ear": {
+   "text": "Ohr",
+   "grammar": {
+    "gender": "das",
+    "plural": "-en"
+   }
+  },
+  "blood": {
+   "text": "Blut",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "hospital": {
+   "text": "Krankenhaus",
+   "grammar": {
+    "gender": "das",
+    "plural": "Krankenhäuser"
+   }
+  },
+  "emergency": {
+   "text": "Notfall",
+   "grammar": {
+    "gender": "der",
+    "plural": "Notfälle"
+   }
+  },
+  "sick-note": {
+   "text": "Krankmeldung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "sick": {
+   "text": "krank"
+  },
+  "feel": {
+   "text": "sich fühlen"
+  },
   "i-have-an-appointment-at-ten": {
    "text": "Ich habe um zehn Uhr einen Termin in der Praxis."
   },

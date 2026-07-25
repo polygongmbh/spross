@@ -84,10 +84,6 @@
   "kind": "verb"
  },
  {
-  "slug": "wait",
-  "kind": "verb"
- },
- {
   "slug": "arrive",
   "kind": "verb"
  },
@@ -98,6 +94,53 @@
  {
   "slug": "say-goodbye",
   "kind": "verb"
+ },
+ {
+  "slug": "shoe",
+  "kind": "noun",
+  "emoji": "👟"
+ },
+ {
+  "slug": "apartment",
+  "kind": "noun",
+  "emoji": "🏢"
+ },
+ {
+  "slug": "neighbour",
+  "kind": "noun",
+  "emoji": "🧑‍🤝‍🧑"
+ },
+ {
+  "slug": "guest",
+  "kind": "noun",
+  "emoji": "🧑"
+ },
+ {
+  "slug": "wallet",
+  "kind": "noun",
+  "emoji": "👛"
+ },
+ {
+  "slug": "glove",
+  "kind": "noun",
+  "emoji": "🧤"
+ },
+ {
+  "slug": "letter",
+  "kind": "noun",
+  "emoji": "📨"
+ },
+ {
+  "slug": "knock",
+  "kind": "verb"
+ },
+ {
+  "slug": "enter",
+  "kind": "verb"
+ },
+ {
+  "slug": "inside",
+  "kind": "adjective"
  },
  {
   "slug": "do-you-have-the-keys",

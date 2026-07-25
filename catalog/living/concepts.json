@@ -60,10 +60,6 @@
   "emoji": "🖼️"
  },
  {
-  "slug": "eat",
-  "kind": "verb"
- },
- {
   "slug": "watch-tv",
   "kind": "verb"
  },
@@ -96,11 +92,51 @@
   "kind": "verb"
  },
  {
-  "slug": "the-food-is-ready",
-  "kind": "phrase",
-  "components": [
-   "eat"
-  ]
+  "slug": "room",
+  "kind": "noun",
+  "emoji": "🏠"
+ },
+ {
+  "slug": "newspaper",
+  "kind": "noun",
+  "emoji": "📰"
+ },
+ {
+  "slug": "light",
+  "kind": "noun",
+  "emoji": "🔆"
+ },
+ {
+  "slug": "music",
+  "kind": "noun",
+  "emoji": "🎵"
+ },
+ {
+  "slug": "wall",
+  "kind": "noun",
+  "emoji": "🧱"
+ },
+ {
+  "slug": "movie",
+  "kind": "noun",
+  "emoji": "🎬"
+ },
+ {
+  "slug": "evening",
+  "kind": "noun",
+  "emoji": "🌆"
+ },
+ {
+  "slug": "sit",
+  "kind": "verb"
+ },
+ {
+  "slug": "laugh",
+  "kind": "verb"
+ },
+ {
+  "slug": "quiet",
+  "kind": "adjective"
  },
  {
   "slug": "turn-on-the-tv",

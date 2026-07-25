@@ -96,6 +96,55 @@
   "kind": "verb"
  },
  {
+  "slug": "profession",
+  "kind": "noun",
+  "emoji": "🧑‍🔧"
+ },
+ {
+  "slug": "interview",
+  "kind": "noun",
+  "emoji": "🤝"
+ },
+ {
+  "slug": "working-hours",
+  "kind": "noun",
+  "emoji": "⏰"
+ },
+ {
+  "slug": "full-time",
+  "kind": "noun",
+  "emoji": "🕒"
+ },
+ {
+  "slug": "part-time",
+  "kind": "noun",
+  "emoji": "🕐"
+ },
+ {
+  "slug": "tax",
+  "kind": "noun",
+  "emoji": "🧮"
+ },
+ {
+  "slug": "work-permit",
+  "kind": "noun",
+  "emoji": "📗"
+ },
+ {
+  "slug": "training",
+  "kind": "noun",
+  "emoji": "🛠️"
+ },
+ {
+  "slug": "notice",
+  "kind": "noun",
+  "emoji": "📤"
+ },
+ {
+  "slug": "punctual",
+  "kind": "adjective"
+ },
+ {
   "slug": "tomorrow-i-have-a-job-interview",
   "kind": "phrase",
   "components": [

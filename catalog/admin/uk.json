@@ -82,6 +82,39 @@
     "de": "hier: eine Frist läuft ab — «строк закінчується»"
    }
   },
+  "passport": {
+   "text": "паспорт"
+  },
+  "address": {
+   "text": "адреса"
+  },
+  "certificate": {
+   "text": "довідка"
+  },
+  "birth-certificate": {
+   "text": "свідоцтво про народження"
+  },
+  "notification": {
+   "text": "рішення"
+  },
+  "fee": {
+   "text": "збір"
+  },
+  "office-hours": {
+   "text": "години прийому",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "waiting-room": {
+   "text": "зала очікування"
+  },
+  "reject": {
+   "text": "відхиляти"
+  },
+  "approve": {
+   "text": "схвалювати"
+  },
   "where-do-i-sign": {
    "text": "Де мені підписати?"
   },

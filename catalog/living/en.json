@@ -40,9 +40,6 @@
   "picture": {
    "text": "picture"
   },
-  "eat": {
-   "text": "to eat"
-  },
   "watch-tv": {
    "text": "to watch TV"
   },
@@ -67,8 +64,35 @@
   "talk": {
    "text": "to talk"
   },
-  "the-food-is-ready": {
-   "text": "The food is ready!"
+  "room": {
+   "text": "room"
+  },
+  "newspaper": {
+   "text": "newspaper"
+  },
+  "light": {
+   "text": "light"
+  },
+  "music": {
+   "text": "music"
+  },
+  "wall": {
+   "text": "wall"
+  },
+  "movie": {
+   "text": "movie"
+  },
+  "evening": {
+   "text": "evening"
+  },
+  "sit": {
+   "text": "to sit"
+  },
+  "laugh": {
+   "text": "to laugh"
+  },
+  "quiet": {
+   "text": "quiet"
   },
   "turn-on-the-tv": {
    "text": "Turn on the TV."

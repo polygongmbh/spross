@@ -25,7 +25,7 @@ class CatalogLintTest {
 
     @Test
     fun catalogParsesClean() {
-        assertEquals(12, catalog.areaNames.size)
+        assertEquals(13, catalog.areaNames.size)
         assertEquals(setOf("de", "en", "sw", "uk"), catalog.languages.keys)
         assertTrue(catalog.groups.isNotEmpty())
     }

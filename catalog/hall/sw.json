@@ -64,9 +64,6 @@
   "put-on": {
    "text": "kuvaa"
   },
-  "wait": {
-   "text": "kusubiri"
-  },
   "arrive": {
    "text": "kufika"
   },
@@ -75,6 +72,57 @@
   },
   "say-goodbye": {
    "text": "kuaga"
+  },
+  "shoe": {
+   "text": "kiatu",
+   "grammar": {
+    "plural": "viatu"
+   }
+  },
+  "apartment": {
+   "text": "fleti",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "neighbour": {
+   "text": "jirani",
+   "grammar": {
+    "plural": "majirani"
+   }
+  },
+  "guest": {
+   "text": "mgeni",
+   "grammar": {
+    "plural": "wageni"
+   }
+  },
+  "wallet": {
+   "text": "pochi",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "glove": {
+   "text": "glavu",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "letter": {
+   "text": "barua",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "knock": {
+   "text": "kugonga mlango"
+  },
+  "enter": {
+   "text": "kuingia"
+  },
+  "inside": {
+   "text": "ndani"
   },
   "do-you-have-the-keys": {
    "text": "Unazo funguo?"

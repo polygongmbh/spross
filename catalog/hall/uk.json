@@ -64,17 +64,44 @@
   "put-on": {
    "text": "одягати"
   },
-  "wait": {
-   "text": "чекати"
-  },
   "arrive": {
-   "text": "приходити"
+   "text": "прибувати"
   },
   "greet": {
    "text": "вітатися"
   },
   "say-goodbye": {
    "text": "прощатися"
+  },
+  "shoe": {
+   "text": "черевик"
+  },
+  "apartment": {
+   "text": "квартира"
+  },
+  "neighbour": {
+   "text": "сусід"
+  },
+  "guest": {
+   "text": "гість"
+  },
+  "wallet": {
+   "text": "гаманець"
+  },
+  "glove": {
+   "text": "рукавичка"
+  },
+  "letter": {
+   "text": "лист"
+  },
+  "knock": {
+   "text": "стукати"
+  },
+  "enter": {
+   "text": "заходити"
+  },
+  "inside": {
+   "text": "всередині"
   },
   "do-you-have-the-keys": {
    "text": "Ти взяв(-ла) ключі?"

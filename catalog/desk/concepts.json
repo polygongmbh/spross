@@ -96,6 +96,54 @@
   "kind": "verb"
  },
  {
+  "slug": "phone",
+  "kind": "noun",
+  "emoji": "📱"
+ },
+ {
+  "slug": "email",
+  "kind": "noun",
+  "emoji": "✉️"
+ },
+ {
+  "slug": "paper",
+  "kind": "noun",
+  "emoji": "📄"
+ },
+ {
+  "slug": "folder",
+  "kind": "noun",
+  "emoji": "📁"
+ },
+ {
+  "slug": "password",
+  "kind": "noun",
+  "emoji": "🔒"
+ },
+ {
+  "slug": "internet",
+  "kind": "noun",
+  "emoji": "🌐"
+ },
+ {
+  "slug": "charger",
+  "kind": "noun",
+  "emoji": "🔋"
+ },
+ {
+  "slug": "calendar",
+  "kind": "noun",
+  "emoji": "📅"
+ },
+ {
+  "slug": "important",
+  "kind": "adjective"
+ },
+ {
+  "slug": "ready",
+  "kind": "adjective"
+ },
+ {
   "slug": "im-in-a-meeting",
   "kind": "phrase",
   "components": []

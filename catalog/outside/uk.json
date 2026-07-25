@@ -67,6 +67,36 @@
   "outdoors": {
    "text": "надворі"
   },
+  "car": {
+   "text": "машина"
+  },
+  "taxi": {
+   "text": "таксі"
+  },
+  "train-station": {
+   "text": "вокзал"
+  },
+  "ticket": {
+   "text": "квиток"
+  },
+  "way": {
+   "text": "дорога"
+  },
+  "market": {
+   "text": "ринок"
+  },
+  "snow": {
+   "text": "сніг"
+  },
+  "wind": {
+   "text": "вітер"
+  },
+  "left": {
+   "text": "ліворуч"
+  },
+  "right": {
+   "text": "праворуч"
+  },
   "hows-the-weather-today": {
    "text": "Яка сьогодні погода?"
   },

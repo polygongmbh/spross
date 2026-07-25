@@ -46,12 +46,6 @@
     "plural": "majibu"
    }
   },
-  "speak": {
-   "text": "kuzungumza"
-  },
-  "understand": {
-   "text": "kuelewa"
-  },
   "ask": {
    "text": "kuuliza"
   },
@@ -72,6 +66,42 @@
   },
   "raise-hand": {
    "text": "kuinua mkono"
+  },
+  "pupil": {
+   "text": "mwanafunzi",
+   "grammar": {
+    "plural": "wanafunzi"
+   }
+  },
+  "course": {
+   "text": "kozi"
+  },
+  "lesson": {
+   "text": "somo",
+   "grammar": {
+    "plural": "masomo"
+   }
+  },
+  "course-book": {
+   "text": "kitabu cha kozi"
+  },
+  "page": {
+   "text": "ukurasa",
+   "grammar": {
+    "plural": "kurasa"
+   }
+  },
+  "sentence": {
+   "text": "sentensi"
+  },
+  "grade": {
+   "text": "alama"
+  },
+  "correct": {
+   "text": "kusahihisha"
+  },
+  "learn-by-heart": {
+   "text": "kukariri"
   },
   "i-have-a-question": {
    "text": "Nina swali."

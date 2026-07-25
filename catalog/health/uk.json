@@ -91,6 +91,39 @@
   "cancel": {
    "text": "скасовувати"
   },
+  "head": {
+   "text": "голова"
+  },
+  "throat": {
+   "text": "горло"
+  },
+  "stomach": {
+   "text": "живіт"
+  },
+  "back": {
+   "text": "спина"
+  },
+  "ear": {
+   "text": "вухо"
+  },
+  "blood": {
+   "text": "кров"
+  },
+  "hospital": {
+   "text": "лікарня"
+  },
+  "emergency": {
+   "text": "екстрений випадок"
+  },
+  "sick-note": {
+   "text": "лікарняний"
+  },
+  "sick": {
+   "text": "хворий"
+  },
+  "feel": {
+   "text": "почуватися"
+  },
   "i-have-an-appointment-at-ten": {
    "text": "О десятій годині я записаний (записана) до лікаря."
   },

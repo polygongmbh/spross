@@ -67,6 +67,36 @@
   "snore": {
    "text": "хропіти"
   },
+  "clothes": {
+   "text": "одяг"
+  },
+  "shirt": {
+   "text": "сорочка"
+  },
+  "dress": {
+   "text": "сукня"
+  },
+  "sweater": {
+   "text": "светр"
+  },
+  "underwear": {
+   "text": "спідня білизна"
+  },
+  "belt": {
+   "text": "ремінь"
+  },
+  "night": {
+   "text": "ніч"
+  },
+  "morning": {
+   "text": "ранок"
+  },
+  "make-bed": {
+   "text": "застеляти ліжко"
+  },
+  "soft": {
+   "text": "м'який"
+  },
   "good-night-sleep-well": {
    "text": "Добраніч, спи солодко!"
   },

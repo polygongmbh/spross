@@ -73,6 +73,36 @@
   "work-overtime": {
    "text": "працювати понаднормово"
   },
+  "profession": {
+   "text": "професія"
+  },
+  "interview": {
+   "text": "співбесіда"
+  },
+  "working-hours": {
+   "text": "робочий час"
+  },
+  "full-time": {
+   "text": "повна зайнятість"
+  },
+  "part-time": {
+   "text": "часткова зайнятість"
+  },
+  "tax": {
+   "text": "податок"
+  },
+  "work-permit": {
+   "text": "дозвіл на роботу"
+  },
+  "training": {
+   "text": "професійне навчання"
+  },
+  "notice": {
+   "text": "звільнення"
+  },
+  "punctual": {
+   "text": "пунктуальний"
+  },
   "tomorrow-i-have-a-job-interview": {
    "text": "Завтра я йду на співбесіду у фірму."
   },

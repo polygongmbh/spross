@@ -56,10 +56,7 @@
    "text": "розвішувати"
   },
   "clean": {
-   "text": "мити",
-   "synonyms": [
-    "чистити"
-   ]
+   "text": "чистити"
   },
   "shave": {
    "text": "голитися"
@@ -69,6 +66,36 @@
   },
   "apply-lotion": {
    "text": "наносити крем"
+  },
+  "bathtub": {
+   "text": "ванна"
+  },
+  "toilet-paper": {
+   "text": "туалетний папір"
+  },
+  "razor": {
+   "text": "бритва"
+  },
+  "sponge": {
+   "text": "губка"
+  },
+  "hair": {
+   "text": "волосся"
+  },
+  "cream": {
+   "text": "крем"
+  },
+  "tap": {
+   "text": "кран"
+  },
+  "bin": {
+   "text": "смітник"
+  },
+  "bucket": {
+   "text": "відро"
+  },
+  "dirty": {
+   "text": "брудний"
   },
   "im-taking-a-quick-shower": {
    "text": "Я швиденько в душ."

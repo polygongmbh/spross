@@ -113,6 +113,67 @@
   "outdoors": {
    "text": "draußen"
   },
+  "car": {
+   "text": "Auto",
+   "grammar": {
+    "gender": "das",
+    "plural": "-s"
+   }
+  },
+  "taxi": {
+   "text": "Taxi",
+   "grammar": {
+    "gender": "das",
+    "plural": "-s"
+   }
+  },
+  "train-station": {
+   "text": "Bahnhof",
+   "grammar": {
+    "gender": "der",
+    "plural": "Bahnhöfe"
+   }
+  },
+  "ticket": {
+   "text": "Fahrkarte",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "way": {
+   "text": "Weg",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "market": {
+   "text": "Markt",
+   "grammar": {
+    "gender": "der",
+    "plural": "Märkte"
+   }
+  },
+  "snow": {
+   "text": "Schnee",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "wind": {
+   "text": "Wind",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "left": {
+   "text": "links"
+  },
+  "right": {
+   "text": "rechts"
+  },
   "hows-the-weather-today": {
    "text": "Wie ist das Wetter heute?"
   },

@@ -103,9 +103,6 @@
   "put-on": {
    "text": "anziehen"
   },
-  "wait": {
-   "text": "warten"
-  },
   "arrive": {
    "text": "ankommen"
   },
@@ -114,6 +111,70 @@
   },
   "say-goodbye": {
    "text": "sich verabschieden"
+  },
+  "shoe": {
+   "text": "Schuh",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "apartment": {
+   "text": "Wohnung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "neighbour": {
+   "text": "Nachbar",
+   "grammar": {
+    "gender": "der",
+    "plural": "-n"
+   }
+  },
+  "guest": {
+   "text": "Gast",
+   "grammar": {
+    "gender": "der",
+    "plural": "Gäste"
+   }
+  },
+  "wallet": {
+   "text": "Geldbeutel",
+   "variants": [
+    "Portemonnaie"
+   ],
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "glove": {
+   "text": "Handschuh",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "letter": {
+   "text": "Brief",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "knock": {
+   "text": "klopfen"
+  },
+  "enter": {
+   "text": "hereinkommen",
+   "variants": [
+    "reinkommen"
+   ]
+  },
+  "inside": {
+   "text": "drinnen"
   },
   "do-you-have-the-keys": {
    "text": "Hast du die Schlüssel?"

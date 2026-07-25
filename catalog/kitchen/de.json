@@ -113,6 +113,72 @@
   "careful": {
    "text": "Vorsicht"
   },
+  "bread": {
+   "text": "Brot",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "milk": {
+   "text": "Milch",
+   "grammar": {
+    "gender": "die"
+   }
+  },
+  "coffee": {
+   "text": "Kaffee",
+   "grammar": {
+    "gender": "der",
+    "plural": "-s"
+   }
+  },
+  "tea": {
+   "text": "Tee",
+   "grammar": {
+    "gender": "der",
+    "plural": "-s"
+   }
+  },
+  "egg": {
+   "text": "Ei",
+   "grammar": {
+    "gender": "das",
+    "plural": "-er"
+   }
+  },
+  "cheese": {
+   "text": "Käse",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "salt": {
+   "text": "Salz",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "sugar": {
+   "text": "Zucker",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "rice": {
+   "text": "Reis",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "cup": {
+   "text": "Tasse",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
   "the-knife-is-sharp": {
    "text": "Das Messer ist scharf!"
   },

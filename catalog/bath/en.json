@@ -64,6 +64,36 @@
   "apply-lotion": {
    "text": "to apply lotion"
   },
+  "bathtub": {
+   "text": "bathtub"
+  },
+  "toilet-paper": {
+   "text": "toilet paper"
+  },
+  "razor": {
+   "text": "razor"
+  },
+  "sponge": {
+   "text": "sponge"
+  },
+  "hair": {
+   "text": "hair"
+  },
+  "cream": {
+   "text": "cream"
+  },
+  "tap": {
+   "text": "tap"
+  },
+  "bin": {
+   "text": "bin"
+  },
+  "bucket": {
+   "text": "bucket"
+  },
+  "dirty": {
+   "text": "dirty"
+  },
   "im-taking-a-quick-shower": {
    "text": "I'm taking a quick shower."
   },

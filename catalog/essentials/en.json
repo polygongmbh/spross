@@ -1,0 +1,131 @@
+{
+ "title": "Everyday essentials",
+ "words": {
+  "money": {
+   "text": "money"
+  },
+  "water": {
+   "text": "water"
+  },
+  "time": {
+   "text": "time"
+  },
+  "day": {
+   "text": "day"
+  },
+  "week": {
+   "text": "week"
+  },
+  "hour": {
+   "text": "hour"
+  },
+  "house": {
+   "text": "house"
+  },
+  "person": {
+   "text": "person",
+   "grammar": {
+    "plural": "people"
+   }
+  },
+  "friend": {
+   "text": "friend"
+  },
+  "go": {
+   "text": "to go"
+  },
+  "come": {
+   "text": "to come"
+  },
+  "have": {
+   "text": "to have"
+  },
+  "drink": {
+   "text": "to drink"
+  },
+  "buy": {
+   "text": "to buy"
+  },
+  "give": {
+   "text": "to give"
+  },
+  "take": {
+   "text": "to take"
+  },
+  "see": {
+   "text": "to see"
+  },
+  "make": {
+   "text": "to make"
+  },
+  "pay": {
+   "text": "to pay"
+  },
+  "live": {
+   "text": "to live"
+  },
+  "good": {
+   "text": "good"
+  },
+  "bad": {
+   "text": "bad"
+  },
+  "big": {
+   "text": "big"
+  },
+  "small": {
+   "text": "small"
+  },
+  "much": {
+   "text": "much"
+  },
+  "now": {
+   "text": "now"
+  },
+  "today": {
+   "text": "today"
+  },
+  "tomorrow": {
+   "text": "tomorrow"
+  },
+  "new": {
+   "text": "new"
+  },
+  "old": {
+   "text": "old"
+  },
+  "eat": {
+   "text": "to eat"
+  },
+  "speak": {
+   "text": "to speak"
+  },
+  "understand": {
+   "text": "to understand"
+  },
+  "wait": {
+   "text": "to wait"
+  },
+  "how-much-does-this-cost": {
+   "text": "How much does this cost?"
+  },
+  "that-is-too-expensive": {
+   "text": "That is too expensive."
+  },
+  "i-have-no-money": {
+   "text": "I have no money."
+  },
+  "i-have-no-time": {
+   "text": "I have no time."
+  },
+  "do-you-have-water": {
+   "text": "Do you have water?"
+  },
+  "i-live-here": {
+   "text": "I live here."
+  },
+  "the-food-is-ready": {
+   "text": "The food is ready!"
+  }
+ }
+}

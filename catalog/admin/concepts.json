@@ -97,6 +97,54 @@
   "kind": "verb"
  },
  {
+  "slug": "passport",
+  "kind": "noun",
+  "emoji": "📘"
+ },
+ {
+  "slug": "address",
+  "kind": "noun",
+  "emoji": "📍"
+ },
+ {
+  "slug": "certificate",
+  "kind": "noun",
+  "emoji": "📜"
+ },
+ {
+  "slug": "birth-certificate",
+  "kind": "noun",
+  "emoji": "👶"
+ },
+ {
+  "slug": "notification",
+  "kind": "noun",
+  "emoji": "✉️"
+ },
+ {
+  "slug": "fee",
+  "kind": "noun",
+  "emoji": "💸"
+ },
+ {
+  "slug": "office-hours",
+  "kind": "noun",
+  "emoji": "🕰️"
+ },
+ {
+  "slug": "waiting-room",
+  "kind": "noun",
+  "emoji": "🪑"
+ },
+ {
+  "slug": "reject",
+  "kind": "verb"
+ },
+ {
+  "slug": "approve",
+  "kind": "verb"
+ },
+ {
   "slug": "where-do-i-sign",
   "kind": "phrase",
   "components": [

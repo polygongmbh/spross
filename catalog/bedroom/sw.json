@@ -64,6 +64,54 @@
   "snore": {
    "text": "kukoroma"
   },
+  "clothes": {
+   "text": "nguo",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "shirt": {
+   "text": "shati",
+   "grammar": {
+    "plural": "mashati"
+   }
+  },
+  "dress": {
+   "text": "gauni",
+   "grammar": {
+    "plural": "magauni"
+   }
+  },
+  "sweater": {
+   "text": "sweta",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "underwear": {
+   "text": "nguo za ndani"
+  },
+  "belt": {
+   "text": "mkanda",
+   "grammar": {
+    "plural": "mikanda"
+   }
+  },
+  "night": {
+   "text": "usiku"
+  },
+  "morning": {
+   "text": "asubuhi",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "make-bed": {
+   "text": "kutandika kitanda"
+  },
+  "soft": {
+   "text": "laini"
+  },
   "good-night-sleep-well": {
    "text": "Usiku mwema, lala salama!"
   },

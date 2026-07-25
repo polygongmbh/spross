@@ -70,6 +70,39 @@
   "snore": {
    "text": "to snore"
   },
+  "clothes": {
+   "text": "clothes",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "shirt": {
+   "text": "shirt"
+  },
+  "dress": {
+   "text": "dress"
+  },
+  "sweater": {
+   "text": "sweater"
+  },
+  "underwear": {
+   "text": "underwear"
+  },
+  "belt": {
+   "text": "belt"
+  },
+  "night": {
+   "text": "night"
+  },
+  "morning": {
+   "text": "morning"
+  },
+  "make-bed": {
+   "text": "to make the bed"
+  },
+  "soft": {
+   "text": "soft"
+  },
   "good-night-sleep-well": {
    "text": "Good night, sleep well!"
   },

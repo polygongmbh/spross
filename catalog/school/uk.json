@@ -40,12 +40,6 @@
   "answer": {
    "text": "відповідь"
   },
-  "speak": {
-   "text": "говорити"
-  },
-  "understand": {
-   "text": "розуміти"
-  },
   "ask": {
    "text": "питати"
   },
@@ -66,6 +60,36 @@
   },
   "raise-hand": {
    "text": "піднімати руку"
+  },
+  "pupil": {
+   "text": "учень"
+  },
+  "pupil-f": {
+   "text": "учениця"
+  },
+  "course": {
+   "text": "курс"
+  },
+  "lesson": {
+   "text": "урок"
+  },
+  "course-book": {
+   "text": "підручник"
+  },
+  "page": {
+   "text": "сторінка"
+  },
+  "sentence": {
+   "text": "речення"
+  },
+  "grade": {
+   "text": "оцінка"
+  },
+  "correct": {
+   "text": "виправляти"
+  },
+  "learn-by-heart": {
+   "text": "вчити напам'ять"
   },
   "i-have-a-question": {
    "text": "У мене є запитання."

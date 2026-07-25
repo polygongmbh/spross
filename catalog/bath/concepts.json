@@ -96,6 +96,55 @@
   "kind": "verb"
  },
  {
+  "slug": "bathtub",
+  "kind": "noun",
+  "emoji": "🛁"
+ },
+ {
+  "slug": "toilet-paper",
+  "kind": "noun",
+  "emoji": "🧻"
+ },
+ {
+  "slug": "razor",
+  "kind": "noun",
+  "emoji": "🪒"
+ },
+ {
+  "slug": "sponge",
+  "kind": "noun",
+  "emoji": "🧽"
+ },
+ {
+  "slug": "hair",
+  "kind": "noun",
+  "emoji": "💇"
+ },
+ {
+  "slug": "cream",
+  "kind": "noun",
+  "emoji": "🧴"
+ },
+ {
+  "slug": "tap",
+  "kind": "noun",
+  "emoji": "🚰"
+ },
+ {
+  "slug": "bin",
+  "kind": "noun",
+  "emoji": "🗑️"
+ },
+ {
+  "slug": "bucket",
+  "kind": "noun",
+  "emoji": "🪣"
+ },
+ {
+  "slug": "dirty",
+  "kind": "adjective"
+ },
+ {
   "slug": "im-taking-a-quick-shower",
   "kind": "phrase",
   "components": [

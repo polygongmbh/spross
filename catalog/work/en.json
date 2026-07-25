@@ -64,6 +64,42 @@
   "work-overtime": {
    "text": "to work overtime"
   },
+  "profession": {
+   "text": "profession"
+  },
+  "interview": {
+   "text": "job interview"
+  },
+  "working-hours": {
+   "text": "working hours",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "full-time": {
+   "text": "full-time"
+  },
+  "part-time": {
+   "text": "part-time"
+  },
+  "tax": {
+   "text": "tax",
+   "grammar": {
+    "plural": "taxes"
+   }
+  },
+  "work-permit": {
+   "text": "work permit"
+  },
+  "training": {
+   "text": "vocational training"
+  },
+  "notice": {
+   "text": "notice of termination"
+  },
+  "punctual": {
+   "text": "punctual"
+  },
   "tomorrow-i-have-a-job-interview": {
    "text": "Tomorrow I have a job interview at the company."
   },

@@ -40,12 +40,6 @@
   "answer": {
    "text": "answer"
   },
-  "speak": {
-   "text": "to speak"
-  },
-  "understand": {
-   "text": "to understand"
-  },
   "ask": {
    "text": "to ask"
   },
@@ -66,6 +60,33 @@
   },
   "raise-hand": {
    "text": "to raise your hand"
+  },
+  "pupil": {
+   "text": "pupil"
+  },
+  "course": {
+   "text": "course"
+  },
+  "lesson": {
+   "text": "lesson"
+  },
+  "course-book": {
+   "text": "course book"
+  },
+  "page": {
+   "text": "page"
+  },
+  "sentence": {
+   "text": "sentence"
+  },
+  "grade": {
+   "text": "grade"
+  },
+  "correct": {
+   "text": "to correct"
+  },
+  "learn-by-heart": {
+   "text": "to learn by heart"
   },
   "i-have-a-question": {
    "text": "I have a question."
