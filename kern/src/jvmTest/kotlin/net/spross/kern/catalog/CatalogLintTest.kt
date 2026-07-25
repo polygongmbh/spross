@@ -2,6 +2,7 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.nfcNormalized
+import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -25,9 +26,26 @@ class CatalogLintTest {
 
     @Test
     fun catalogParsesClean() {
-        assertEquals(14, catalog.areaNames.size)
         assertEquals(setOf("de", "en", "sw", "uk"), catalog.languages.keys)
         assertTrue(catalog.groups.isNotEmpty())
+        assertTrue(catalog.areaNames.isNotEmpty())
+    }
+
+    /**
+     * Areas are enumerated from `areas.json` ALONE, so a folder that exists but is not
+     * listed there is silently ignored — the one catalog mistake the parser cannot catch
+     * (the reverse, a listed area with no files, already hard-fails on the missing read).
+     * Relational on purpose: a pinned area count would only measure how recently someone
+     * bumped it, and adding content must never require editing a number in this file.
+     */
+    @Test
+    fun everyAreaFolderIsRegisteredInTheManifest() {
+        val onDisk = RealCatalog.root.listFiles().orEmpty()
+            .filter { it.isDirectory && File(it, "concepts.json").isFile }
+            .map { it.name }
+            .toSortedSet()
+        assertTrue(onDisk.isNotEmpty(), "no area folders found under ${RealCatalog.root}")
+        assertEquals(onDisk, catalog.areaNames.toSortedSet())
     }
 
     @Test
