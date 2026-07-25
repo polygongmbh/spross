@@ -74,13 +74,13 @@
    "text": "I'm in a meeting."
   },
   "do-not-disturb": {
-   "text": "Do not disturb, please!"
+   "text": "Do not disturb!"
   },
   "the-laptop-wont-charge-anymore": {
    "text": "The laptop won't charge anymore."
   },
-  "the-wifi-is-completely-gone": {
-   "text": "The wifi is completely gone."
+  "the-wifi-is-gone": {
+   "text": "The wifi is gone."
   },
   "coffee-break": {
    "text": "Coffee break?"
@@ -92,7 +92,7 @@
    "text": "Time to call it a day!"
   },
   "send-me-the-email": {
-   "text": "Please send me the email."
+   "text": "Send me the email."
   }
  }
 }

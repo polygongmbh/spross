@@ -116,13 +116,13 @@
    "text": "Ich bin in einem Meeting."
   },
   "do-not-disturb": {
-   "text": "Nicht stören, bitte!"
+   "text": "Nicht stören!"
   },
   "the-laptop-wont-charge-anymore": {
    "text": "Der Laptop lädt nicht mehr."
   },
-  "the-wifi-is-completely-gone": {
-   "text": "Das WLAN ist komplett weg."
+  "the-wifi-is-gone": {
+   "text": "Das WLAN ist weg."
   },
   "coffee-break": {
    "text": "Kaffeepause?"
@@ -134,7 +134,7 @@
    "text": "Feierabend!"
   },
   "send-me-the-email": {
-   "text": "Schick mir bitte die E-Mail."
+   "text": "Schick mir die E-Mail."
   }
  }
 }

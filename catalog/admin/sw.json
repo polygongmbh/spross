@@ -73,11 +73,11 @@
   "i-want-to-extend-my-residence-permit": {
    "text": "Ningependa kuhuisha kibali changu cha ukaaji."
   },
-  "please-fill-out-the-form-completely": {
-   "text": "Tafadhali jaza fomu kikamilifu."
+  "fill-out-the-form": {
+   "text": "Jaza fomu."
   },
-  "take-a-queue-number-first": {
-   "text": "Tafadhali chukua namba ya foleni kwanza!"
+  "take-a-queue-number": {
+   "text": "Chukua namba ya foleni!"
   },
   "i-need-an-interpreter-for-the-application": {
    "text": "Nahitaji mkalimani kwa ajili ya maombi yangu."

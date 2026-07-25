@@ -112,7 +112,7 @@
   ]
  },
  {
-  "slug": "please-fill-out-the-form-completely",
+  "slug": "fill-out-the-form",
   "kind": "phrase",
   "components": [
    "fill-in",
@@ -120,7 +120,7 @@
   ]
  },
  {
-  "slug": "take-a-queue-number-first",
+  "slug": "take-a-queue-number",
   "kind": "phrase",
   "components": [
    "ticket-number"

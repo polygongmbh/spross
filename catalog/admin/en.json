@@ -70,11 +70,11 @@
   "i-want-to-extend-my-residence-permit": {
    "text": "I want to extend my residence permit."
   },
-  "please-fill-out-the-form-completely": {
-   "text": "Please fill out the form completely."
+  "fill-out-the-form": {
+   "text": "Fill out the form."
   },
-  "take-a-queue-number-first": {
-   "text": "Please take a queue number first."
+  "take-a-queue-number": {
+   "text": "Take a queue number."
   },
   "i-need-an-interpreter-for-the-application": {
    "text": "I need an interpreter for the application."

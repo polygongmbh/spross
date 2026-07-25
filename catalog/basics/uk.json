@@ -101,7 +101,7 @@
    "text": "Як у вас справи?"
   },
   "can-you-repeat-that": {
-   "text": "Повторіть, будь ласка."
+   "text": "Повторіть."
   },
   "i-understand": {
    "text": "Я розумію."
@@ -109,8 +109,8 @@
   "i-dont-understand": {
    "text": "Я не розумію."
   },
-  "slower-please": {
-   "text": "Повільніше, будь ласка!"
+  "slower": {
+   "text": "Повільніше!"
   },
   "bye": {
    "text": "Бувай!"

@@ -104,7 +104,7 @@
    "text": "Habari yako?"
   },
   "can-you-repeat-that": {
-   "text": "Unaweza kurudia, tafadhali?"
+   "text": "Unaweza kurudia?"
   },
   "i-understand": {
    "text": "Naelewa."
@@ -112,8 +112,8 @@
   "i-dont-understand": {
    "text": "Sielewi."
   },
-  "slower-please": {
-   "text": "Polepole, tafadhali!"
+  "slower": {
+   "text": "Polepole!"
   }
  }
 }

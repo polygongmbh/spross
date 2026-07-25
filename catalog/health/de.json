@@ -127,7 +127,7 @@
    "text": "Ich habe seit gestern Fieber."
   },
   "take-the-pills-twice-daily": {
-   "text": "Bitte nehmen Sie die Tabletten zweimal täglich ein.",
+   "text": "Nehmen Sie die Tabletten zweimal täglich ein.",
    "variants": [
     "Bitte nimm die Tabletten zweimal täglich ein."
    ]
@@ -142,7 +142,7 @@
    ]
   },
   "show-me-your-insurance-card": {
-   "text": "Zeigen Sie mir bitte Ihre Versichertenkarte.",
+   "text": "Zeigen Sie mir Ihre Versichertenkarte.",
    "variants": [
     "Zeig mir bitte deine Versichertenkarte."
    ]

@@ -71,7 +71,7 @@
    "text": "The food is ready!"
   },
   "turn-on-the-tv": {
-   "text": "Please turn on the TV."
+   "text": "Turn on the TV."
   },
   "come-sit-with-me": {
    "text": "Come, sit with me!"
@@ -89,7 +89,7 @@
    "text": "Can you turn off the light?"
   },
   "open-the-window-fresh-air": {
-   "text": "Please open the window — fresh air!"
+   "text": "Open the window — fresh air!"
   }
  }
 }

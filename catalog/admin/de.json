@@ -118,14 +118,14 @@
   "i-want-to-extend-my-residence-permit": {
    "text": "Ich möchte meinen Aufenthaltstitel verlängern."
   },
-  "please-fill-out-the-form-completely": {
-   "text": "Bitte füllen Sie das Formular vollständig aus.",
+  "fill-out-the-form": {
+   "text": "Füllen Sie das Formular aus.",
    "variants": [
     "Bitte fülle das Formular vollständig aus."
    ]
   },
-  "take-a-queue-number-first": {
-   "text": "Ziehen Sie bitte zuerst eine Wartenummer!",
+  "take-a-queue-number": {
+   "text": "Ziehen Sie eine Wartenummer!",
    "variants": [
     "Zieh bitte zuerst eine Wartenummer!"
    ]

@@ -74,7 +74,7 @@
    "text": "У мене зустріч."
   },
   "do-not-disturb": {
-   "text": "Не заважай, будь ласка!"
+   "text": "Не заважай!"
   },
   "coffee-break": {
    "text": "Перерва на каву?"
@@ -86,13 +86,13 @@
    "text": "На сьогодні все!"
   },
   "send-me-the-email": {
-   "text": "Надішли мені, будь ласка, імейл."
+   "text": "Надішли мені імейл."
   },
   "the-laptop-wont-charge-anymore": {
    "text": "Ноутбук більше не заряджається."
   },
-  "the-wifi-is-completely-gone": {
-   "text": "Інтернет повністю зник."
+  "the-wifi-is-gone": {
+   "text": "Інтернет зник."
   }
  }
 }

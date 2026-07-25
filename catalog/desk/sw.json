@@ -71,13 +71,13 @@
    "text": "Niko kwenye mkutano."
   },
   "do-not-disturb": {
-   "text": "Usinisumbue, tafadhali!"
+   "text": "Usinisumbue!"
   },
   "the-laptop-wont-charge-anymore": {
    "text": "Laptop haichaji tena."
   },
-  "the-wifi-is-completely-gone": {
-   "text": "Intaneti imekatika kabisa."
+  "the-wifi-is-gone": {
+   "text": "Intaneti imekatika."
   },
   "coffee-break": {
    "text": "Mapumziko ya kahawa?"
@@ -89,7 +89,7 @@
    "text": "Kazi imeisha kwa leo!"
   },
   "send-me-the-email": {
-   "text": "Tafadhali nitumie barua pepe."
+   "text": "Nitumie barua pepe."
   }
  }
 }

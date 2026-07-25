@@ -88,11 +88,11 @@
   "i-want-to-extend-my-residence-permit": {
    "text": "Я хочу продовжити посвідку на проживання."
   },
-  "please-fill-out-the-form-completely": {
-   "text": "Заповніть, будь ласка, бланк повністю."
+  "fill-out-the-form": {
+   "text": "Заповніть бланк."
   },
-  "take-a-queue-number-first": {
-   "text": "Спочатку візьміть, будь ласка, номерок у черзі!"
+  "take-a-queue-number": {
+   "text": "Візьміть номерок у черзі!"
   },
   "i-need-an-interpreter-for-the-application": {
    "text": "Для заяви мені потрібен перекладач."

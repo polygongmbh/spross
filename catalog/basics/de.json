@@ -123,7 +123,7 @@
    ]
   },
   "can-you-repeat-that": {
-   "text": "Können Sie das bitte wiederholen?",
+   "text": "Können Sie das wiederholen?",
    "variants": [
     "Kannst du das bitte wiederholen?"
    ]
@@ -134,8 +134,8 @@
   "i-dont-understand": {
    "text": "Ich verstehe nicht."
   },
-  "slower-please": {
-   "text": "Langsamer, bitte!"
+  "slower": {
+   "text": "Langsamer!"
   },
   "bye": {
    "text": "Tschüss!"

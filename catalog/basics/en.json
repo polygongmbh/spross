@@ -95,7 +95,7 @@
    "text": "How are you?"
   },
   "can-you-repeat-that": {
-   "text": "Can you repeat that, please?"
+   "text": "Can you repeat that?"
   },
   "i-understand": {
    "text": "I understand."
@@ -103,8 +103,8 @@
   "i-dont-understand": {
    "text": "I don't understand."
   },
-  "slower-please": {
-   "text": "Slower, please!"
+  "slower": {
+   "text": "Slower!"
   },
   "bye": {
    "text": "Bye!"

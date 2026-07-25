@@ -136,8 +136,8 @@
   "i-want-vacation-next-week": {
    "text": "Ich möchte nächste Woche Urlaub nehmen."
   },
-  "read-the-contract-carefully": {
-   "text": "Lesen Sie den Vertrag genau durch!",
+  "read-the-contract": {
+   "text": "Lesen Sie den Vertrag durch!",
    "variants": [
     "Lies den Vertrag genau durch!"
    ]
