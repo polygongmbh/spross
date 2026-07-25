@@ -5,14 +5,16 @@
 - **Language pickers speak for themselves**: onboarding is English (it shows before
   your language is known), and every language choice reads "🇩🇪 German" — flag plus
   English name. Nothing is greyed out anymore: picking the language on the other
-  side simply swaps "I speak" and "I'm learning" (progress survives, as always).
+  side simply swaps "I speak" and "I'm learning" — each direction keeps its own
+  box, so nothing is ever lost.
 - **Extra rounds bring new words**: the extra round after finishing your day now
   prefers fresh composition — everything due plus NEW vocabulary within your
   learning-pool budget — and only repeats ahead of schedule when nothing new fits.
   "Weiter üben" follows the same rule: due first, then new — it never pulls
   tomorrow's reviews forward.
-- **The Box is grouped**: areas sit under their catalog groups (Start, Zuhause,
-  Alltag, Amt …) instead of one long list — far less scrolling to find a target.
+- **The Box is grouped**: areas sit under their catalog groups (Erste Schritte,
+  Zuhause, Alltag & unterwegs, Ämter & Beruf) instead of one long list — far
+  less scrolling to find a target.
 - **Drills forgive typos and accept real time-telling**: number/clock/sentence
   drills grade with the same small-typo budget as reviews (never bridging two
   different numbers), and the German clock accepts full 24-hour answers like
@@ -33,8 +35,9 @@
   start fresh — existing test installs begin at an empty box (pre-production).
 - **Learn any language pair**: pick the language you *know* and the language you
   *learn* from the catalog (Deutsch · English · Kiswahili · Українська) — German
-  is no longer hardwired as one side. Pickers show how many concepts each
-  choice offers, and switching your known language keeps all learning progress.
+  is no longer hardwired as one side. The target picker shows how many terms
+  each choice offers, and switching your known language keeps all learning
+  progress.
 - **Alternating practice, self-graded recognition**: each word keeps one memory;
   reviews alternate between typing the word in the language you learn and
   reading it + self-grading your comprehension (Again/Hard/Good/Easy) — typed
@@ -46,15 +49,19 @@
   decay is now a real parameter), verified against the reference
   implementations' own test vectors. A failed review card returns after
   10 minutes — usually next session — instead of looping inside the current one.
-- **Feminine forms are real cards**: profession words come in both forms —
-  the feminine sibling prompts with a ♀ badge (answering the base word is a
-  typo, not a miss), and plural forms read dictionary-style ("Lehrerin, -nen").
+- **Feminine forms are real cards** (where authored — Ukrainian professions
+  today): the feminine sibling prompts with a ♀ badge for non-German sources
+  (answering the base word is a typo, not a miss), and plural forms read
+  dictionary-style ("Lehrerin, -nen").
 - **"ss" counts for "ß"**: typing Strasse for Straße is accepted — helpful on
   keyboards without the sharp s.
 - **Catalog v2.1 unifications**: near-duplicate phrase twins merged into one card
   each, Sie-form phrases accept the du-form silently, and Ukrainian
-  near-synonyms are accepted silently instead of shown as alternates
-  (356 concepts; 346–351 cards per pair).
+  near-synonyms are accepted silently instead of shown as alternates. Since
+  then the catalog kept moving: single words split out of phrases, filler
+  adverbs and embedded politeness trimmed, and a new ADJECTIVE kind for words
+  that are neither noun nor verb (draußen, immer …) — 358 concepts,
+  352–356 cards per German-source pair at release.
 - **Adding a group no longer floods a session**: packing a whole area into the
   box now enrolls it — its words drip in at the normal learning-pool rate (a
   handful per session, ahead of automatic growth) instead of dumping dozens of
