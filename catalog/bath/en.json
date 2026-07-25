@@ -20,7 +20,10 @@
    "text": "mirror"
   },
   "toothbrush": {
-   "text": "toothbrush"
+   "text": "toothbrush",
+   "grammar": {
+    "plural": "toothbrushes"
+   }
   },
   "toothpaste": {
    "text": "toothpaste"

@@ -2,40 +2,76 @@
  "title": "Bafuni · safi kabisa!",
  "words": {
   "washing-machine": {
-   "text": "mashine ya kufulia"
+   "text": "mashine ya kufulia",
+   "grammar": {
+    "plural": "mashine za kufulia"
+   }
   },
   "laundry": {
-   "text": "nguo za kufua"
+   "text": "nguo za kufua",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "toilet": {
-   "text": "choo"
+   "text": "choo",
+   "grammar": {
+    "plural": "vyoo"
+   }
   },
   "shower": {
-   "text": "shawa"
+   "text": "shawa",
+   "grammar": {
+    "plural": "="
+   }
   },
   "sink": {
-   "text": "sinki la kunawa"
+   "text": "sinki la kunawa",
+   "grammar": {
+    "plural": "masinki ya kunawa"
+   }
   },
   "mirror": {
-   "text": "kioo"
+   "text": "kioo",
+   "grammar": {
+    "plural": "vioo"
+   }
   },
   "toothbrush": {
-   "text": "mswaki"
+   "text": "mswaki",
+   "grammar": {
+    "plural": "miswaki"
+   }
   },
   "toothpaste": {
-   "text": "dawa ya meno"
+   "text": "dawa ya meno",
+   "grammar": {
+    "plural": "dawa za meno"
+   }
   },
   "towel": {
-   "text": "taulo"
+   "text": "taulo",
+   "grammar": {
+    "plural": "="
+   }
   },
   "soap": {
-   "text": "sabuni"
+   "text": "sabuni",
+   "grammar": {
+    "plural": "="
+   }
   },
   "shampoo": {
-   "text": "shampuu"
+   "text": "shampuu",
+   "grammar": {
+    "plural": "="
+   }
   },
   "hairdryer": {
-   "text": "kikausha nywele"
+   "text": "kikausha nywele",
+   "grammar": {
+    "plural": "vikausha nywele"
+   }
   },
   "take-shower": {
    "text": "kuoga"
@@ -86,7 +122,10 @@
    }
   },
   "hair": {
-   "text": "nywele"
+   "text": "nywele",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "cream": {
    "text": "krimu",
@@ -101,7 +140,10 @@
    }
   },
   "bin": {
-   "text": "pipa la taka"
+   "text": "pipa la taka",
+   "grammar": {
+    "plural": "mapipa ya taka"
+   }
   },
   "bucket": {
    "text": "ndoo",

@@ -2,7 +2,10 @@
  "title": "Maneno ya kwanza · tuanze!",
  "words": {
   "language": {
-   "text": "lugha"
+   "text": "lugha",
+   "grammar": {
+    "plural": "="
+   }
   },
   "word": {
    "text": "neno",
@@ -17,7 +20,10 @@
    }
   },
   "help": {
-   "text": "msaada"
+   "text": "msaada",
+   "grammar": {
+    "plural": "misaada"
+   }
   },
   "be-called": {
    "text": "kuitwa"

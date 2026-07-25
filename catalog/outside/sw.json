@@ -2,25 +2,46 @@
  "title": "Nje · twende zetu!",
  "words": {
   "street": {
-   "text": "barabara"
+   "text": "barabara",
+   "grammar": {
+    "plural": "="
+   }
   },
   "traffic-light": {
-   "text": "taa ya barabarani"
+   "text": "taa ya barabarani",
+   "grammar": {
+    "plural": "taa za barabarani"
+   }
   },
   "bicycle": {
-   "text": "baiskeli"
+   "text": "baiskeli",
+   "grammar": {
+    "plural": "="
+   }
   },
   "bus": {
-   "text": "basi"
+   "text": "basi",
+   "grammar": {
+    "plural": "mabasi"
+   }
   },
   "bus-stop": {
-   "text": "kituo cha basi"
+   "text": "kituo cha basi",
+   "grammar": {
+    "plural": "vituo vya basi"
+   }
   },
   "train": {
-   "text": "treni"
+   "text": "treni",
+   "grammar": {
+    "plural": "="
+   }
   },
   "tree": {
-   "text": "mti"
+   "text": "mti",
+   "grammar": {
+    "plural": "miti"
+   }
   },
   "flower": {
    "text": "ua",
@@ -29,7 +50,10 @@
    }
   },
   "park": {
-   "text": "bustani"
+   "text": "bustani",
+   "grammar": {
+    "plural": "="
+   }
   },
   "sun": {
    "text": "jua"
@@ -77,16 +101,28 @@
    }
   },
   "taxi": {
-   "text": "teksi"
+   "text": "teksi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "train-station": {
-   "text": "stesheni ya treni"
+   "text": "stesheni ya treni",
+   "grammar": {
+    "plural": "stesheni za treni"
+   }
   },
   "ticket": {
-   "text": "tiketi"
+   "text": "tiketi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "way": {
-   "text": "njia"
+   "text": "njia",
+   "grammar": {
+    "plural": "="
+   }
   },
   "market": {
    "text": "soko",

@@ -11,7 +11,10 @@
    "text": "bicycle"
   },
   "bus": {
-   "text": "bus"
+   "text": "bus",
+   "grammar": {
+    "plural": "buses"
+   }
   },
   "bus-stop": {
    "text": "bus stop"

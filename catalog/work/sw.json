@@ -2,10 +2,16 @@
  "title": "Kazini · tuchape kazi!",
  "words": {
   "work": {
-   "text": "kazi"
+   "text": "kazi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "job-application": {
    "text": "maombi ya kazi",
+   "grammar": {
+    "plural": "only"
+   },
    "notes": {
     "de": "formal Plural — Sg. ombi la kazi"
    }
@@ -14,25 +20,46 @@
    "text": "wasifu"
   },
   "contract": {
-   "text": "mkataba"
+   "text": "mkataba",
+   "grammar": {
+    "plural": "mikataba"
+   }
   },
   "salary": {
-   "text": "mshahara"
+   "text": "mshahara",
+   "grammar": {
+    "plural": "mishahara"
+   }
   },
   "colleague": {
-   "text": "mfanyakazi mwenza"
+   "text": "mfanyakazi mwenza",
+   "grammar": {
+    "plural": "wafanyakazi wenza"
+   }
   },
   "boss": {
-   "text": "bosi"
+   "text": "bosi",
+   "grammar": {
+    "plural": "mabosi"
+   }
   },
   "shift": {
-   "text": "zamu"
+   "text": "zamu",
+   "grammar": {
+    "plural": "="
+   }
   },
   "holiday": {
-   "text": "likizo"
+   "text": "likizo",
+   "grammar": {
+    "plural": "="
+   }
   },
   "company": {
-   "text": "kampuni"
+   "text": "kampuni",
+   "grammar": {
+    "plural": "="
+   }
   },
   "apply": {
    "text": "kuomba kazi"
@@ -63,15 +90,24 @@
   },
   "profession": {
    "text": "taaluma",
+   "grammar": {
+    "plural": "="
+   },
    "notes": {
     "de": "taaluma = Beruf/Fachgebiet; nach dem Beruf fragt man aber meist mit «kazi»"
    }
   },
   "interview": {
-   "text": "mahojiano ya kazi"
+   "text": "mahojiano ya kazi",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "working-hours": {
-   "text": "saa za kazi"
+   "text": "saa za kazi",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "full-time": {
    "text": "kazi ya muda wote"
@@ -80,16 +116,28 @@
    "text": "kazi ya muda"
   },
   "tax": {
-   "text": "kodi"
+   "text": "kodi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "work-permit": {
-   "text": "kibali cha kazi"
+   "text": "kibali cha kazi",
+   "grammar": {
+    "plural": "vibali vya kazi"
+   }
   },
   "training": {
-   "text": "mafunzo ya kazi"
+   "text": "mafunzo ya kazi",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "notice": {
-   "text": "notisi ya kuacha kazi"
+   "text": "notisi ya kuacha kazi",
+   "grammar": {
+    "plural": "notisi za kuacha kazi"
+   }
   },
   "tomorrow-i-have-a-job-interview": {
    "text": "Kesho nitajitambulisha kwenye kampuni."

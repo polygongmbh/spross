@@ -17,10 +17,16 @@
    }
   },
   "opening-hours": {
-   "text": "saa za kufungua"
+   "text": "saa za kufungua",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "deadline": {
-   "text": "tarehe ya mwisho"
+   "text": "tarehe ya mwisho",
+   "grammar": {
+    "plural": "tarehe za mwisho"
+   }
   },
   "confirmation": {
    "text": "uthibitisho"

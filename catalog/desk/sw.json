@@ -2,43 +2,79 @@
  "title": "Mahali pa kazi · kazi njema!",
  "words": {
   "desk": {
-   "text": "meza ya kazi"
+   "text": "meza ya kazi",
+   "grammar": {
+    "plural": "meza za kazi"
+   }
   },
   "laptop": {
-   "text": "kompyuta mpakato"
+   "text": "kompyuta mpakato",
+   "grammar": {
+    "plural": "="
+   }
   },
   "keyboard": {
-   "text": "kibodi"
+   "text": "kibodi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "screen": {
-   "text": "skrini"
+   "text": "skrini",
+   "grammar": {
+    "plural": "="
+   }
   },
   "mouse": {
-   "text": "kipanya"
+   "text": "kipanya",
+   "grammar": {
+    "plural": "vipanya"
+   }
   },
   "cable": {
    "text": "kebo",
    "synonyms": [
     "waya"
-   ]
+   ],
+   "grammar": {
+    "plural": "="
+   }
   },
   "headphones": {
-   "text": "hedfoni"
+   "text": "hedfoni",
+   "grammar": {
+    "plural": "="
+   }
   },
   "pen": {
-   "text": "kalamu"
+   "text": "kalamu",
+   "grammar": {
+    "plural": "="
+   }
   },
   "notebook": {
-   "text": "daftari"
+   "text": "daftari",
+   "grammar": {
+    "plural": "madaftari"
+   }
   },
   "printer": {
-   "text": "printa"
+   "text": "printa",
+   "grammar": {
+    "plural": "="
+   }
   },
   "socket": {
-   "text": "soketi"
+   "text": "soketi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "office-chair": {
-   "text": "kiti cha ofisi"
+   "text": "kiti cha ofisi",
+   "grammar": {
+    "plural": "viti vya ofisi"
+   }
   },
   "to-work": {
    "text": "kufanya kazi"
@@ -74,7 +110,10 @@
    }
   },
   "email": {
-   "text": "barua pepe"
+   "text": "barua pepe",
+   "grammar": {
+    "plural": "="
+   }
   },
   "paper": {
    "text": "karatasi",
@@ -89,7 +128,10 @@
    }
   },
   "password": {
-   "text": "nenosiri"
+   "text": "nenosiri",
+   "grammar": {
+    "plural": "manenosiri"
+   }
   },
   "internet": {
    "text": "intaneti"

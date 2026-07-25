@@ -2,40 +2,73 @@
  "title": "Chumbani · lala salama",
  "words": {
   "bed": {
-   "text": "kitanda"
+   "text": "kitanda",
+   "grammar": {
+    "plural": "vitanda"
+   }
   },
   "mattress": {
-   "text": "godoro"
+   "text": "godoro",
+   "grammar": {
+    "plural": "magodoro"
+   }
   },
   "pillow": {
-   "text": "mto"
+   "text": "mto",
+   "grammar": {
+    "plural": "mito"
+   }
   },
   "blanket": {
-   "text": "blanketi"
+   "text": "blanketi",
+   "grammar": {
+    "plural": "mablanketi"
+   }
   },
   "bedding": {
    "text": "shuka na foronya"
   },
   "wardrobe": {
-   "text": "kabati la nguo"
+   "text": "kabati la nguo",
+   "grammar": {
+    "plural": "makabati ya nguo"
+   }
   },
   "alarm-clock": {
-   "text": "saa ya kengele"
+   "text": "saa ya kengele",
+   "grammar": {
+    "plural": "saa za kengele"
+   }
   },
   "nightstand": {
-   "text": "meza ya kando"
+   "text": "meza ya kando",
+   "grammar": {
+    "plural": "meza za kando"
+   }
   },
   "pyjamas": {
-   "text": "nguo za kulala"
+   "text": "nguo za kulala",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "sock": {
-   "text": "soksi"
+   "text": "soksi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "trousers": {
-   "text": "suruali"
+   "text": "suruali",
+   "grammar": {
+    "plural": "="
+   }
   },
   "t-shirt": {
-   "text": "fulana"
+   "text": "fulana",
+   "grammar": {
+    "plural": "="
+   }
   },
   "sleep": {
    "text": "kulala"
@@ -86,7 +119,10 @@
    }
   },
   "underwear": {
-   "text": "nguo za ndani"
+   "text": "nguo za ndani",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "belt": {
    "text": "mkanda",
@@ -95,7 +131,10 @@
    }
   },
   "night": {
-   "text": "usiku"
+   "text": "usiku",
+   "grammar": {
+    "plural": "="
+   }
   },
   "morning": {
    "text": "asubuhi",

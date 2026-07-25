@@ -12,6 +12,12 @@
   Card ids change once more to make that possible,
   so existing boxes start fresh — as at the 1.0.0 rename (pre-production).
 
+- **Swahili nouns teach their class**: nearly every noun now carries its plural —
+  kiti/viti, mlango/milango, kisu/visu, mwalimu/walimu — where a handful used to,
+  so the card gives you the form you need to say "two chairs" instead of leaving you
+  to guess which class the word belongs to. Words that only exist in the plural
+  (maji, maumivu, nguo za kulala) say so.
+
 - **Half again as much to learn**: every area gained the everyday words it was missing —
   the kitchen finally has food in it (Brot, Milch, Kaffee, Ei, Käse, Reis, Tasse),
   the doctor's area has the body parts you need to say what hurts,

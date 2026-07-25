@@ -2,10 +2,16 @@
  "title": "Ofisini · subiri zamu yako!",
  "words": {
   "office": {
-   "text": "ofisi ya serikali"
+   "text": "ofisi ya serikali",
+   "grammar": {
+    "plural": "ofisi za serikali"
+   }
   },
   "form": {
-   "text": "fomu"
+   "text": "fomu",
+   "grammar": {
+    "plural": "="
+   }
   },
   "application": {
    "text": "ombi",
@@ -14,16 +20,28 @@
    }
   },
   "id-card": {
-   "text": "kitambulisho"
+   "text": "kitambulisho",
+   "grammar": {
+    "plural": "vitambulisho"
+   }
   },
   "residence-permit": {
-   "text": "kibali cha ukaaji"
+   "text": "kibali cha ukaaji",
+   "grammar": {
+    "plural": "vibali vya ukaaji"
+   }
   },
   "signature": {
-   "text": "sahihi"
+   "text": "sahihi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "ticket-number": {
-   "text": "namba ya foleni"
+   "text": "namba ya foleni",
+   "grammar": {
+    "plural": "namba za foleni"
+   }
   },
   "case-worker": {
    "text": "afisa mhusika",
@@ -42,7 +60,10 @@
    "text": "usajili wa makazi"
   },
   "documents": {
-   "text": "nyaraka"
+   "text": "nyaraka",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "fill-in": {
    "text": "kujaza fomu"
@@ -75,10 +96,16 @@
    "text": "kuisha muda wake"
   },
   "passport": {
-   "text": "pasipoti"
+   "text": "pasipoti",
+   "grammar": {
+    "plural": "="
+   }
   },
   "address": {
-   "text": "anwani"
+   "text": "anwani",
+   "grammar": {
+    "plural": "="
+   }
   },
   "certificate": {
    "text": "cheti",
@@ -87,19 +114,34 @@
    }
   },
   "birth-certificate": {
-   "text": "cheti cha kuzaliwa"
+   "text": "cheti cha kuzaliwa",
+   "grammar": {
+    "plural": "vyeti vya kuzaliwa"
+   }
   },
   "notification": {
-   "text": "barua ya uamuzi"
+   "text": "barua ya uamuzi",
+   "grammar": {
+    "plural": "barua za uamuzi"
+   }
   },
   "fee": {
-   "text": "ada"
+   "text": "ada",
+   "grammar": {
+    "plural": "="
+   }
   },
   "office-hours": {
-   "text": "saa za huduma"
+   "text": "saa za huduma",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "waiting-room": {
-   "text": "chumba cha kusubiri"
+   "text": "chumba cha kusubiri",
+   "grammar": {
+    "plural": "vyumba vya kusubiri"
+   }
   },
   "reject": {
    "text": "kukataa"

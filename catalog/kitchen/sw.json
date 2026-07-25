@@ -2,16 +2,28 @@
  "title": "Jikoni · karibu chakula kitamu!",
  "words": {
   "fridge": {
-   "text": "friji"
+   "text": "friji",
+   "grammar": {
+    "plural": "="
+   }
   },
   "stove": {
-   "text": "jiko"
+   "text": "jiko",
+   "grammar": {
+    "plural": "majiko"
+   }
   },
   "oven": {
-   "text": "oveni"
+   "text": "oveni",
+   "grammar": {
+    "plural": "="
+   }
   },
   "dishwasher": {
-   "text": "mashine ya kuosha vyombo"
+   "text": "mashine ya kuosha vyombo",
+   "grammar": {
+    "plural": "mashine za kuosha vyombo"
+   }
   },
   "hunger": {
    "text": "njaa"
@@ -20,22 +32,40 @@
    "text": "kiu"
   },
   "pot": {
-   "text": "sufuria"
+   "text": "sufuria",
+   "grammar": {
+    "plural": "="
+   }
   },
   "pan": {
-   "text": "kikaango"
+   "text": "kikaango",
+   "grammar": {
+    "plural": "vikaango"
+   }
   },
   "knife": {
-   "text": "kisu"
+   "text": "kisu",
+   "grammar": {
+    "plural": "visu"
+   }
   },
   "spoon": {
-   "text": "kijiko"
+   "text": "kijiko",
+   "grammar": {
+    "plural": "vijiko"
+   }
   },
   "fork": {
-   "text": "uma"
+   "text": "uma",
+   "grammar": {
+    "plural": "nyuma"
+   }
   },
   "plate": {
-   "text": "sahani"
+   "text": "sahani",
+   "grammar": {
+    "plural": "="
+   }
   },
   "cook": {
    "text": "kupika"
@@ -74,7 +104,10 @@
    }
   },
   "milk": {
-   "text": "maziwa"
+   "text": "maziwa",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "coffee": {
    "text": "kahawa"

@@ -8,34 +8,61 @@
    }
   },
   "practice": {
-   "text": "kliniki"
+   "text": "kliniki",
+   "grammar": {
+    "plural": "="
+   }
   },
   "pain": {
-   "text": "maumivu"
+   "text": "maumivu",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "fever": {
    "text": "homa"
   },
   "pill": {
-   "text": "kidonge"
+   "text": "kidonge",
+   "grammar": {
+    "plural": "vidonge"
+   }
   },
   "prescription": {
-   "text": "cheti cha dawa"
+   "text": "cheti cha dawa",
+   "grammar": {
+    "plural": "vyeti vya dawa"
+   }
   },
   "pharmacy": {
-   "text": "duka la dawa"
+   "text": "duka la dawa",
+   "grammar": {
+    "plural": "maduka ya dawa"
+   }
   },
   "insurance-card": {
-   "text": "kadi ya bima ya afya"
+   "text": "kadi ya bima ya afya",
+   "grammar": {
+    "plural": "kadi za bima ya afya"
+   }
   },
   "health-insurance": {
-   "text": "mfuko wa bima ya afya"
+   "text": "mfuko wa bima ya afya",
+   "grammar": {
+    "plural": "mifuko ya bima ya afya"
+   }
   },
   "cough": {
-   "text": "kikohozi"
+   "text": "kikohozi",
+   "grammar": {
+    "plural": "vikohozi"
+   }
   },
   "cold": {
-   "text": "mafua"
+   "text": "mafua",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "hurt": {
    "text": "kuuma"
@@ -98,10 +125,16 @@
    }
   },
   "emergency": {
-   "text": "dharura"
+   "text": "dharura",
+   "grammar": {
+    "plural": "="
+   }
   },
   "sick-note": {
-   "text": "cheti cha daktari"
+   "text": "cheti cha daktari",
+   "grammar": {
+    "plural": "vyeti vya daktari"
+   }
   },
   "sick": {
    "text": "mgonjwa"

@@ -25,7 +25,8 @@
   "teacher": {
    "text": "Lehrer",
    "grammar": {
-    "gender": "der"
+    "gender": "der",
+    "plural": "="
    }
   },
   "teacher-f": {

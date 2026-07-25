@@ -2,43 +2,79 @@
  "title": "Sebuleni · mahali pa kupumzika",
  "words": {
   "sofa": {
-   "text": "kochi"
+   "text": "kochi",
+   "grammar": {
+    "plural": "makochi"
+   }
   },
   "dining-table": {
-   "text": "meza ya kulia"
+   "text": "meza ya kulia",
+   "grammar": {
+    "plural": "meza za kulia"
+   }
   },
   "chair": {
-   "text": "kiti"
+   "text": "kiti",
+   "grammar": {
+    "plural": "viti"
+   }
   },
   "tv": {
    "text": "televisheni",
    "synonyms": [
     "runinga"
-   ]
+   ],
+   "grammar": {
+    "plural": "="
+   }
   },
   "remote": {
-   "text": "rimoti"
+   "text": "rimoti",
+   "grammar": {
+    "plural": "="
+   }
   },
   "shelf": {
-   "text": "rafu"
+   "text": "rafu",
+   "grammar": {
+    "plural": "="
+   }
   },
   "plant": {
-   "text": "mmea"
+   "text": "mmea",
+   "grammar": {
+    "plural": "mimea"
+   }
   },
   "window": {
-   "text": "dirisha"
+   "text": "dirisha",
+   "grammar": {
+    "plural": "madirisha"
+   }
   },
   "curtain": {
-   "text": "pazia"
+   "text": "pazia",
+   "grammar": {
+    "plural": "mapazia"
+   }
   },
   "carpet": {
-   "text": "zulia"
+   "text": "zulia",
+   "grammar": {
+    "plural": "mazulia"
+   }
   },
   "lamp": {
-   "text": "taa"
+   "text": "taa",
+   "grammar": {
+    "plural": "="
+   }
   },
   "picture": {
-   "text": "picha"
+   "text": "picha",
+   "grammar": {
+    "plural": "="
+   }
   },
   "watch-tv": {
    "text": "kutazama TV"
@@ -74,7 +110,10 @@
    }
   },
   "light": {
-   "text": "mwanga"
+   "text": "mwanga",
+   "grammar": {
+    "plural": "mianga"
+   }
   },
   "music": {
    "text": "muziki"

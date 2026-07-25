@@ -14,7 +14,10 @@
    "text": "contract"
   },
   "salary": {
-   "text": "salary"
+   "text": "salary",
+   "grammar": {
+    "plural": "salaries"
+   }
   },
   "colleague": {
    "text": "colleague"

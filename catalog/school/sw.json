@@ -2,31 +2,58 @@
  "title": "Darasani · tujifunze pamoja!",
  "words": {
   "school": {
-   "text": "shule"
+   "text": "shule",
+   "grammar": {
+    "plural": "="
+   }
   },
   "classroom": {
-   "text": "darasa"
+   "text": "darasa",
+   "grammar": {
+    "plural": "madarasa"
+   }
   },
   "integration-course": {
-   "text": "kozi ya lugha na kuzoea jamii"
+   "text": "kozi ya lugha na kuzoea jamii",
+   "grammar": {
+    "plural": "kozi za lugha na kuzoea jamii"
+   }
   },
   "teacher": {
-   "text": "mwalimu"
+   "text": "mwalimu",
+   "grammar": {
+    "plural": "walimu"
+   }
   },
   "board": {
-   "text": "ubao"
+   "text": "ubao",
+   "grammar": {
+    "plural": "mbao"
+   }
   },
   "dictionary": {
-   "text": "kamusi"
+   "text": "kamusi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "exercise-book": {
-   "text": "daftari la mazoezi"
+   "text": "daftari la mazoezi",
+   "grammar": {
+    "plural": "madaftari ya mazoezi"
+   }
   },
   "homework": {
-   "text": "kazi ya nyumbani"
+   "text": "kazi ya nyumbani",
+   "grammar": {
+    "plural": "kazi za nyumbani"
+   }
   },
   "exam": {
-   "text": "mtihani"
+   "text": "mtihani",
+   "grammar": {
+    "plural": "mitihani"
+   }
   },
   "break": {
    "text": "pumziko",
@@ -71,7 +98,10 @@
    }
   },
   "course": {
-   "text": "kozi"
+   "text": "kozi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "lesson": {
    "text": "somo",
@@ -80,7 +110,10 @@
    }
   },
   "course-book": {
-   "text": "kitabu cha kozi"
+   "text": "kitabu cha kozi",
+   "grammar": {
+    "plural": "vitabu vya kozi"
+   }
   },
   "page": {
    "text": "ukurasa",
@@ -89,10 +122,16 @@
    }
   },
   "sentence": {
-   "text": "sentensi"
+   "text": "sentensi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "grade": {
-   "text": "alama"
+   "text": "alama",
+   "grammar": {
+    "plural": "="
+   }
   },
   "correct": {
    "text": "kusahihisha"

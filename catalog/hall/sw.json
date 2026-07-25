@@ -8,7 +8,10 @@
    }
   },
   "door": {
-   "text": "mlango"
+   "text": "mlango",
+   "grammar": {
+    "plural": "milango"
+   }
   },
   "key": {
    "text": "ufunguo",
@@ -17,34 +20,61 @@
    }
   },
   "jacket": {
-   "text": "jaketi"
+   "text": "jaketi",
+   "grammar": {
+    "plural": "majaketi"
+   }
   },
   "coat": {
-   "text": "koti"
+   "text": "koti",
+   "grammar": {
+    "plural": "makoti"
+   }
   },
   "shoe-rack": {
-   "text": "rafu ya viatu"
+   "text": "rafu ya viatu",
+   "grammar": {
+    "plural": "rafu za viatu"
+   }
   },
   "umbrella": {
-   "text": "mwavuli"
+   "text": "mwavuli",
+   "grammar": {
+    "plural": "miavuli"
+   }
   },
   "hat": {
-   "text": "kofia"
+   "text": "kofia",
+   "grammar": {
+    "plural": "="
+   }
   },
   "mailbox": {
-   "text": "sanduku la barua"
+   "text": "sanduku la barua",
+   "grammar": {
+    "plural": "masanduku ya barua"
+   }
   },
   "doorbell": {
-   "text": "kengele"
+   "text": "kengele",
+   "grammar": {
+    "plural": "="
+   }
   },
   "stairs": {
-   "text": "ngazi"
+   "text": "ngazi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "bag": {
    "text": "begi",
    "synonyms": [
     "mfuko"
-   ]
+   ],
+   "grammar": {
+    "plural": "mabegi"
+   }
   },
   "lock": {
    "text": "kufunga kwa ufunguo"

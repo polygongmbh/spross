@@ -5,7 +5,10 @@
    "text": "bed"
   },
   "mattress": {
-   "text": "mattress"
+   "text": "mattress",
+   "grammar": {
+    "plural": "mattresses"
+   }
   },
   "pillow": {
    "text": "pillow"
@@ -77,7 +80,10 @@
    "text": "shirt"
   },
   "dress": {
-   "text": "dress"
+   "text": "dress",
+   "grammar": {
+    "plural": "dresses"
+   }
   },
   "sweater": {
    "text": "sweater"

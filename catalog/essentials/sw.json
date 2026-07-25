@@ -5,7 +5,10 @@
    "text": "pesa"
   },
   "water": {
-   "text": "maji"
+   "text": "maji",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "time": {
    "text": "wakati",

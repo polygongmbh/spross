@@ -41,7 +41,10 @@
    }
   },
   "documents": {
-   "text": "документи"
+   "text": "документи",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "fill-in": {
    "text": "заповнювати"
