@@ -16,8 +16,9 @@
   Zuhause, Alltag & unterwegs, Ämter & Beruf) instead of one long list — far
   less scrolling to find a target.
 - **Drills forgive typos and accept real time-telling**: number/clock/sentence
-  drills grade with the same small-typo budget as reviews (never bridging two
-  different numbers), and the German clock accepts full 24-hour answers like
+  drills forgive a single-letter slip — digits must be exact, and a proven
+  guard keeps any German number from passing for another — and the German
+  clock accepts full 24-hour answers like
   "achtzehn Uhr fünfunddreißig" alongside colloquial forms. Sentence drills
   take numbers and times written out OR as digits in both directions —
   "um achtzehn Uhr fünfunddreißig" counts just like "um 18:35 Uhr".
