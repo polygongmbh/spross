@@ -247,6 +247,8 @@ day-key `yyyy-MM-dd`) with:
   when target == de.
   German clock ACCEPTS 24-hour readings ("achtzehn Uhr fünfunddreißig", "null/vierundzwanzig
   Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.
+  An hour word directly before "Uhr" apocopates: "ein Uhr", never "eins Uhr";
+  bare "eins" stays ("punkt eins", "um eins", "halb eins").
   `PhraseSlots` samples level-aware — same per-kind ramp tables as the plain drills
   (a template's slot kind clamps the level); unleveled call = ceiling. Android: landed — `androidLibrary` KMP target
   (`com.android.kotlin.multiplatform.library`, AGP 9.3.0, compileSdk 36 / minSdk 26),

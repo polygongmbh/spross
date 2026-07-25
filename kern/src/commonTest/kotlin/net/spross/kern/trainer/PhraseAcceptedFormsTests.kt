@@ -51,6 +51,15 @@ class PhraseAcceptedFormsTests {
     }
 
     @Test
+    fun reverseClockOneOClockComposesApocopatedEinUhr() {
+        val zug = PhraseSlots.reverseInstantiate(template("sw-clock-zug"), hour = 13, minute = 0)
+        assertTrue("Der Zug fährt um ein Uhr ab." in zug.accepted)
+        assertTrue("Der Zug fährt um eins ab." in zug.accepted)
+        assertTrue("Der Zug fährt um dreizehn Uhr ab." in zug.accepted)
+        assertFalse(zug.accepted.any { "eins Uhr" in it }, "wrong 'eins Uhr' in ${zug.accepted}")
+    }
+
+    @Test
     fun reverseNumberAndYearAcceptWrittenForms() {
         val price = PhraseSlots.reverseInstantiate(template("uk-num-preis"), value = 21L)
         assertEquals(

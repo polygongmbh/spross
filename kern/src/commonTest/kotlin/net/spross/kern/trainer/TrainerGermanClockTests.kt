@@ -2,6 +2,7 @@ package net.spross.kern.trainer
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
@@ -64,6 +65,36 @@ class TrainerGermanClockTests {
         assertEquals("sechs Uhr", task.display)
         assertEquals(task.accepted.size, task.accepted.toSet().size, "duplicates in ${task.accepted}")
         assertAccepts(task, "sechs uhr")
+    }
+
+    @Test
+    fun oneOClockApocopatesTheHourWordBeforeUhr() {
+        val task = clock(1, 0)
+        assertEquals("ein Uhr", task.display)
+        assertAccepts(task, "ein uhr")
+        // Bare "eins" (no "Uhr" following) keeps its full form.
+        assertAccepts(task, "punkt eins")
+        assertAccepts(task, "um eins")
+        assertFalse(task.accepted.any { it.lowercase() == "eins uhr" }, "wrong 'eins Uhr' in ${task.accepted}")
+    }
+
+    @Test
+    fun thirteenOClockAcceptsDreizehnUhrNextToEinUhr() {
+        val task = clock(13, 0)
+        assertEquals("ein Uhr", task.display)
+        assertAccepts(task, "ein uhr")
+        assertAccepts(task, "dreizehn uhr")
+        assertFalse(task.accepted.any { it.lowercase() == "eins uhr" }, "wrong 'eins Uhr' in ${task.accepted}")
+    }
+
+    @Test
+    fun fivePastOneKeepsBareEinsButReads24HourEinUhrFuenf() {
+        val task = clock(1, 5)
+        assertEquals("fünf nach eins", task.display)
+        assertAccepts(task, "ein uhr fünf")
+        val nonRound = clock(13, 17)
+        assertEquals("ein Uhr 17", nonRound.display)
+        assertAccepts(nonRound, "dreizehn uhr siebzehn")
     }
 
     @Test

@@ -10,6 +10,12 @@ internal object GermanClock {
 
     private data class Conversational(val standard: String, val regional: String)
 
+    /**
+     * Directly before "Uhr" German apocopates "eins" to "ein" ("ein Uhr fünf");
+     * the bare hour word stays "eins" ("punkt eins", "um eins", "halb eins").
+     */
+    private fun beforeUhr(hourWord: String) = if (hourWord == "eins") "ein" else hourWord
+
     /** Non-round minutes fall back to a digital reading ("drei Uhr 17"). */
     private fun conversational(hours: Int, minutes: Int): Conversational {
         val h12 = hours % 12
@@ -21,7 +27,7 @@ internal object GermanClock {
         if (hours == 12 && minutes == 0) return Conversational("Mittag", "Mittag")
 
         return when (minutes) {
-            0 -> Conversational("$hWord Uhr", "punkt $hWord")
+            0 -> Conversational("${beforeUhr(hWord)} Uhr", "punkt $hWord")
             5 -> same("fünf nach $hWord")
             10 -> same("zehn nach $hWord")
             15 -> Conversational("Viertel nach $hWord", "Viertel $nextWord")
@@ -33,7 +39,7 @@ internal object GermanClock {
             45 -> Conversational("Viertel vor $nextWord", "Dreiviertel $nextWord")
             50 -> same("zehn vor $nextWord")
             55 -> same("fünf vor $nextWord")
-            else -> same("$hWord Uhr $minutes")
+            else -> same("${beforeUhr(hWord)} Uhr $minutes")
         }
     }
 
@@ -60,7 +66,7 @@ internal object GermanClock {
      */
     private fun twentyFourHour(hours: Int, minutes: Int): List<String> {
         val minuteSuffix = if (minutes == 0) "" else " " + GermanNumbers.cardinal(minutes.toLong())
-        val readings = mutableListOf(GermanNumbers.cardinal(hours.toLong()) + " Uhr" + minuteSuffix)
+        val readings = mutableListOf(beforeUhr(GermanNumbers.cardinal(hours.toLong())) + " Uhr" + minuteSuffix)
         if (hours == 0 && minutes == 0) readings += "vierundzwanzig Uhr"
         return readings
     }
