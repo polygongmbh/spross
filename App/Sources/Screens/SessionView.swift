@@ -174,7 +174,15 @@ struct SessionView: View {
     }
 
     private var cardRevealed: Bool {
-        revealed || feedback != .neutral
+        revealed || feedback != .neutral || currentIsFirstExposure
+    }
+
+    /// Contract §3 teaching moment: the very first exposure (log count 0)
+    /// renders pre-flipped WITH emoji — the learner self-grades a word they
+    /// are SHOWN, never quizzed on one they have never seen.
+    private var currentIsFirstExposure: Bool {
+        guard let card = model.currentCard else { return false }
+        return (model.scheduling(for: card.id)?.reviewCount ?? 0) == 0
     }
 
     @ViewBuilder
@@ -190,7 +198,7 @@ struct SessionView: View {
     /// wasn't learned with.
     @ViewBuilder
     private var recognizeControls: some View {
-        if revealed {
+        if revealed || currentIsFirstExposure {
             RatingButtonsView { rate(kernRating($0)) }
         } else {
             Button {
