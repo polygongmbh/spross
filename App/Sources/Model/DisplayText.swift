@@ -6,10 +6,10 @@ import SprossKern
 /// exists (de/en catalogs), else the language's own name from languages.json.
 enum LanguageNames {
     private static let chromeKeys: [String: String] = [
-        "de": "Deutsch",
-        "en": "Englisch",
-        "sw": "Swahili",
-        "uk": "Ukrainisch",
+        "de": "lang.de",
+        "en": "lang.en",
+        "sw": "lang.sw",
+        "uk": "lang.uk",
     ]
 
     static func display(_ code: String, locale: Locale, catalog: Catalog?) -> String {
@@ -83,11 +83,11 @@ enum CardDisplay {
     static func plural(of realization: Realization, locale: Locale) -> String? {
         guard let raw = realization.grammar["plural"], !raw.isEmpty else { return nil }
         switch raw {
-        case "=": return DLChrome.string("= Pl.", locale: locale)
-        case "only": return DLChrome.string("nur Pl.", locale: locale)
+        case "=": return DLChrome.string("grammar.plural.equals", locale: locale)
+        case "only": return DLChrome.string("grammar.plural.only", locale: locale)
         default:
             let form = raw.hasPrefix("-") ? realization.text + raw.dropFirst() : raw
-            return String(format: DLChrome.string("Pl. %@", locale: locale), form)
+            return String(format: DLChrome.string("grammar.plural %@", locale: locale), form)
         }
     }
 
@@ -97,7 +97,7 @@ enum CardDisplay {
                            locale: Locale) -> String? {
         let family = ([realization.text] + realization.synonyms).filter { $0 != shown }
         guard !family.isEmpty else { return nil }
-        return String(format: DLChrome.string("auch: %@", locale: locale),
+        return String(format: DLChrome.string("grammar.also %@", locale: locale),
                       family.joined(separator: " / "))
     }
 }

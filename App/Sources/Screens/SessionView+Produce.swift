@@ -87,7 +87,7 @@ extension SessionView {
     private var inputPlaceholder: String {
         guard let target = model.targetLanguage else { return "" }
         let name = LanguageNames.display(target, locale: locale, catalog: model.catalog)
-        return String(format: DLChrome.string("Auf %@ …", locale: locale), name)
+        return String(format: DLChrome.string("session.answer.placeholder %@", locale: locale), name)
     }
 
     func submit(_ card: Card) {

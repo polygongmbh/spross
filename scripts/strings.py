@@ -26,8 +26,15 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'App/Sources/Resources/Localizable.xcstrings')
 LANGUAGES = ('de', 'en')
-# Passed to DLActionLabel(key:) as a String, so no extractor can see it.
-UNEXTRACTABLE = {'heute.session.start'}
+# Looked up at runtime through DLChrome/DLActionLabel as a plain String
+# (a chrome string in the TARGET language cannot go through the environment
+# locale), so no extractor can see them.
+UNEXTRACTABLE = {
+    'heute.session.start',
+    'grammar.plural.equals', 'grammar.plural.only', 'grammar.plural %@',
+    'grammar.also %@', 'session.answer.placeholder %@',
+    'lang.de', 'lang.en', 'lang.sw', 'lang.uk',
+}
 
 
 def compiler_keys():

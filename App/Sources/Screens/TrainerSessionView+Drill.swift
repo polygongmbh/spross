@@ -90,7 +90,7 @@ extension TrainerSessionView {
         VStack(spacing: DL.Space.m) {
             AnswerInputView(text: $input,
                             feedback: feedback,
-                            placeholder: String(format: DLChrome.string("Auf %@ …", locale: locale),
+                            placeholder: String(format: DLChrome.string("session.answer.placeholder %@", locale: locale),
                                                 languageName(language)),
                             focus: $answerFocused) {
                 submit()
