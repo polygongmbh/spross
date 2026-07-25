@@ -49,7 +49,7 @@ scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodeg
 ## Architecture
 
 Inner → outer, App depends on the kern (SprossKern framework), never the reverse.
-Kern modules under `kmp/kern/src/commonMain/kotlin/net/spross/kern/`:
+Kern modules under `kern/src/commonMain/kotlin/net/spross/kern/`:
 
 - `model` — domain types; `Card` derives from the catalog join, never persisted.
 - `catalog` — catalog v2 parser + (source, target) join, deterministic card ids.

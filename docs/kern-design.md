@@ -224,7 +224,7 @@ day-key `yyyy-MM-dd`) with:
 ## 9. KMP project & Apple integration
 
 - Gradle root `app/` (wrapper committed; `.gitignore` += `build/`, `.gradle/`, `.kotlin/`,
-  `local.properties`); module `:kern` at **`app/kmp/kern`** (`kern/` at root is the same
+  `local.properties`); module `:kern` at **`app/kern`** (`kern/` at root is the same
   APFS inode as Swift `Kern/` — never create it). Package `net.spross.kern`
   (+ `.trainer`). Pins (probe-proven, Xcode 26.6): Kotlin **2.4.0** (SKIE 0.10.13's ceiling —
   bump only as a pair; comment in the version catalog), serialization 1.11.0,

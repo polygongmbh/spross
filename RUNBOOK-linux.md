@@ -58,7 +58,7 @@ Min Android 8.0 (API 26).
 ## Notes & limits
 
 - The Kotlin targets `iosArm64`/`iosSimulatorArm64` (and the SKIE plugin)
-  are declared in `kmp/kern` but their tasks are Mac-only —
+  are declared in `kern` but their tasks are Mac-only —
   do not invoke `linkDebugFramework*`/`assemble*XCFramework` tasks on Linux.
   Normal configuration and all tasks above work without them.
 - First build downloads Gradle + dependencies (~2–3 GB into `~/.gradle`);

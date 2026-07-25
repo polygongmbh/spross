@@ -1,7 +1,7 @@
 #!/bin/sh
 # Xcode pre-build phase: build the SprossKern static framework slice matching
 # the active configuration + SDK, then stage it at the configuration-neutral
-# path FRAMEWORK_SEARCH_PATHS points to (kmp/kern/build/xcode/<config>/).
+# path FRAMEWORK_SEARCH_PATHS points to (kern/build/xcode/<config>/).
 # Idempotent — Gradle skips up-to-date links, rsync only syncs deltas.
 # Runnable outside Xcode:
 #   CONFIGURATION=Debug SDK_NAME=iphonesimulator scripts/build-kern.sh
@@ -36,11 +36,11 @@ if ! ./gradlew ":kern:${LINK}${SLICE}"; then
   exit 1
 fi
 
-SRC="kmp/kern/build/bin/${BINDIR}/${BIN}/SprossKern.framework"
+SRC="kern/build/bin/${BINDIR}/${BIN}/SprossKern.framework"
 if [ ! -d "$SRC" ]; then
   echo "error: build-kern.sh: expected framework missing at $SRC" >&2
   exit 1
 fi
-DEST="kmp/kern/build/xcode/${CONFIGURATION}"
+DEST="kern/build/xcode/${CONFIGURATION}"
 mkdir -p "$DEST"
 rsync -a --delete "$SRC" "$DEST/"

@@ -15,7 +15,7 @@ and self-graded recognition of the same schedule.
 
 ## Structure
 
-- `kmp/kern/` — **SprossKern**, the Kotlin Multiplatform core (`net.spross.kern`):
+- `kern/` — **SprossKern**, the Kotlin Multiplatform core (`net.spross.kern`):
   domain model, catalog join, FSRS-6, box engine, session composer,
   answer normalizer, trainers, snapshot builders, store facade.
   Pure logic, time injected (`nowEpochMillis`/`tzId`), fully unit-tested.
@@ -53,5 +53,5 @@ Android (no Mac needed — see `RUNBOOK-linux.md`):
 Framework mechanism: the app target's pre-build phase runs `scripts/build-kern.sh`,
 which maps `$CONFIGURATION`/`$SDK_NAME` to the matching Gradle
 `linkDebug|ReleaseFramework<slice>` task and stages `SprossKern.framework`
-at `kmp/kern/build/xcode/<config>/`, where `FRAMEWORK_SEARCH_PATHS` points.
+at `kern/build/xcode/<config>/`, where `FRAMEWORK_SEARCH_PATHS` points.
 After adding/removing Swift source files: `xcodegen generate`.

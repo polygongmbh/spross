@@ -17,7 +17,7 @@ The app composes the work; the user never browses for what to study.
 Strict dependency direction (App → SprossKern, never the reverse):
 
 ```
-kmp/kern   SprossKern — Kotlin Multiplatform engine (contract: kern-design.md)
+kern   SprossKern — Kotlin Multiplatform engine (contract: kern-design.md)
 App/       SwiftUI iOS app — views, observable AppModel, file-backed store actor
 Shared/ Watch/ Widgets/ WatchWidgets/   decode-only Swift snapshot surfaces
 android/   Jetpack Compose app — core loop on the same engine (§ Android below)

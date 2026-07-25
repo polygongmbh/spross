@@ -51,7 +51,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: net.spross.app
         FRAMEWORK_SEARCH_PATHS:
           - "$(inherited)"
-          - "$(SRCROOT)/kmp/kern/build/xcode/$(CONFIGURATION)"
+          - "$(SRCROOT)/kern/build/xcode/$(CONFIGURATION)"
         OTHER_LDFLAGS: "$(inherited) -framework SprossKern"
         # why: the pre-build phase runs Gradle, which writes outside
         # Xcode-declared outputs; user-script sandboxing would kill it.
