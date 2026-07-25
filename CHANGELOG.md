@@ -7,9 +7,6 @@
   instead of coming back as if you had never seen it.
   Card ids change once more to make that possible,
   so existing boxes start fresh — as at the 1.0.0 rename (pre-production).
-- **Language choices name themselves twice**: onboarding rows read
-  "🇺🇦 Українська · Ukrainian" — the language's own name plus the English one,
-  so a script you can't read is never just a flag to guess at.
 - **The welcome screen greets you in your own language**: onboarding opens in the
   device language instead of always in English, and switches live as you pick the
   language you speak — so the first thing you read is already the right one.
