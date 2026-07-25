@@ -15,7 +15,16 @@ xcodegen generate            # after adding/removing app source files
 xcodebuild -project Spross.xcodeproj -scheme Spross \
   -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build   # app build gate
 scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodegen
+scripts/strings.py --fix     # clear the stale flags Xcode writes into the String Catalog
 ```
+
+`extractionState: "stale"` in `Localizable.xcstrings` is cosmetic —
+Xcode's index-based extractor misses keys the compiler finds
+(computed `LocalizedStringKey` properties, our own `LocalizedStringKey` parameters,
+`Label`/`accessibilityLabel`), and flagged keys still compile into every `.lproj`.
+Clear the flags rather than deleting the keys.
+`scripts/strings.py --built` diffs the catalog against what the compiler emitted —
+the check that catches real drift — after a build with `SWIFT_EMIT_LOC_STRINGS=YES`.
 
 ## Commit & release rules
 
