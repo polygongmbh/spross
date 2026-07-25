@@ -71,10 +71,10 @@ struct BoxSettingsSection: View {
         return URL(string: "mailto:\(Self.feedbackAddress)?subject=\(subject)")
     }
 
-    /// Picker rows are "🇩🇪 German" — one neutral English form on both sides,
-    /// matching onboarding; sentence chrome (reset dialog) stays native.
+    /// Segmented rows are "🇩🇪 German" — the compact form; four options share
+    /// one line here. Sentence chrome (reset dialog) stays native.
     private func pickerName(_ code: String) -> String {
-        LanguageNames.pickerRow(code, catalog: model.catalog)
+        LanguageNames.pickerSegment(code, catalog: model.catalog)
     }
 
     // MARK: Rows

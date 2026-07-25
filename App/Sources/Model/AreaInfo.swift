@@ -49,10 +49,20 @@ enum LanguageNames {
         catalog?.languages[code]?.name ?? code.uppercased()
     }
 
-    /// Language PICKER rows: "🇩🇪 German" — flag + English exonym from
-    /// languages.json. English on purpose: pickers render before (onboarding)
-    /// or independent of the chrome locale, one neutral form everywhere.
+    /// Language PICKER rows: "🇺🇦 Українська · Ukrainian" — flag, the language's
+    /// own name, and the English exonym. Both, because a flag beside a script
+    /// you cannot read is easy to mistake for a neighbouring language; the
+    /// exonym is what makes the row identifiable either way. Collapsed to one
+    /// name when the two are identical ("🇬🇧 English").
     static func pickerRow(_ code: String, catalog: Catalog?) -> String {
+        guard let info = catalog?.languages[code] else { return code.uppercased() }
+        guard info.name != info.englishName else { return "\(info.flag) \(info.name)" }
+        return "\(info.flag) \(info.name) · \(info.englishName)"
+    }
+
+    /// Compact form for the settings segmented control, where four options share
+    /// one line and both names would truncate: flag + English exonym only.
+    static func pickerSegment(_ code: String, catalog: Catalog?) -> String {
         guard let info = catalog?.languages[code] else { return code.uppercased() }
         return "\(info.flag) \(info.englishName)"
     }
