@@ -19,10 +19,10 @@ struct RootView: View {
         // English) — SwiftUI resolves every Text/LocalizedStringKey against it.
         .environment(\.locale, model.knownLocale)
         .sheet(isPresented: onboardingPresented) {
+            // why: onboarding sets its own locale from the language being
+            // picked, so it re-renders as the user changes the pick.
             OnboardingView(model: model)
                 .interactiveDismissDisabled()
-                // why: no box yet → follow the device (de or en).
-                .environment(\.locale, AppModel.onboardingChromeLocale)
         }
         .fullScreenCover(isPresented: $model.sessionPresented) {
             SessionView(model: model)

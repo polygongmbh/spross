@@ -7,6 +7,9 @@
   instead of coming back as if you had never seen it.
   Card ids change once more to make that possible,
   so existing boxes start fresh — as at the 1.0.0 rename (pre-production).
+- **The welcome screen greets you in your own language**: onboarding opens in the
+  device language instead of always in English, and switches live as you pick the
+  language you speak — so the first thing you read is already the right one.
 - **The app speaks English end to end now**: settings no longer mix an English
   heading with a German explanation under it, and the trainer, session and box
   screens have their last untranslated corners filled in.

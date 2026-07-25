@@ -41,9 +41,12 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
 - Profile = (source, target) catalog languages;
   targets come from `Catalog.availableTargets(source)` (joinability threshold: kern README §1);
   both pickers show concept counts ("… terms").
-- Onboarding chrome is ENGLISH (it renders before the user's language is known);
-  language picker rows everywhere are "⟨flag⟩ ⟨englishName⟩" from languages.json
-  ("🇩🇪 German") — one neutral form on both sides.
+- Onboarding chrome follows the language being PICKED, so the greeting is already
+  in the user's language: the device language seeds the source pick (see default below),
+  and each later tap re-renders the sheet in that pick — en for a source without chrome.
+  `OnboardingView` owns that locale itself; the root's `knownLocale` covers everything after.
+- Language picker rows everywhere are "⟨flag⟩ ⟨englishName⟩" from languages.json
+  ("🇩🇪 German") — one neutral form on both sides, independent of the chrome language.
 - Neither picker excludes the other side's language:
   choosing the language the other side holds SWAPS the pair
   (target list offers the current source with the swapped pair's count).

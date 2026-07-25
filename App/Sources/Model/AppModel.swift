@@ -245,19 +245,15 @@ final class AppModel {
 
     /// Locale for UI chrome, derived from the profile's KNOWN language when
     /// chrome exists for it (de/en); other sources read English until their
-    /// UIs are authored. Falls back to the device before a box is loaded.
-    var knownLocale: Locale {
-        guard box != nil else { return Self.onboardingChromeLocale }
-        let source = sourceLanguage
-        return Locale(identifier: Self.chromeLanguages.contains(source) ? source : "en")
-    }
+    /// UIs are authored.
+    var knownLocale: Locale { Self.chromeLocale(source: sourceLanguage) }
 
-    /// Before any box exists there is no known language yet — follow the
-    /// device, mapped to the two shipped UI languages (German or English).
-    static var onboardingChromeLocale: Locale {
-        Locale.current.language.languageCode?.identifier == "de"
-            ? Locale(identifier: "de")
-            : Locale(identifier: "en")
+    /// The chrome language for a known language. Onboarding uses it too —
+    /// with no box yet, `sourceLanguage` is the device language (when the
+    /// catalog covers it), so the very first screen greets in it and then
+    /// follows whatever the user picks.
+    static func chromeLocale(source: String) -> Locale {
+        Locale(identifier: chromeLanguages.contains(source) ? source : "en")
     }
 
     /// Immersion: the language being LEARNED, but only when we have chrome for

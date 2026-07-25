@@ -5,7 +5,9 @@ import SprossKern
 /// and the one you want to learn (target, with its concept count).
 /// Coverage-driven: sources are languages with at least one learnable
 /// target; targets come from `Catalog.availableTargets` (≥ 50 concepts).
-/// Chrome is ENGLISH — it renders before the user's language is known.
+/// Chrome speaks the language being picked: the device language greets first
+/// (it seeds the source pick), and every later tap re-renders in that pick —
+/// English for a source we have no chrome for yet.
 /// Neither side hides the other's pick: choosing it swaps the selections.
 struct OnboardingView: View {
     let model: AppModel
@@ -43,16 +45,17 @@ struct OnboardingView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .background(Color.dlBackground.ignoresSafeArea())
+        .environment(\.locale, AppModel.chromeLocale(source: source))
     }
 
     private var header: some View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
             Text(verbatim: "👋")
                 .font(.system(size: 44))
-            Text(verbatim: "Welcome to Spross")
+            Text("onboarding.welcome")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text(verbatim: "Your box grows with you — a few new cards every day.")
+            Text("onboarding.subtitle")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
         }
@@ -73,7 +76,7 @@ struct OnboardingView: View {
 
     private var sourceSection: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text(verbatim: "Which language do you speak?")
+            Text("onboarding.source.question")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
             ForEach(sources, id: \.self) { candidate in
@@ -117,12 +120,12 @@ struct OnboardingView: View {
 
     private var targetSection: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text(verbatim: "Which language are you learning?")
+            Text("onboarding.target.question")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
             ForEach(targetChoices) { candidate in
                 selectionRow(title: Text(verbatim: languageName(candidate.code)),
-                             caption: Text(verbatim: "\(candidate.conceptCount) terms"),
+                             caption: Text("onboarding.termsCount \(candidate.conceptCount)"),
                              selected: target == candidate.code) {
                     if candidate.code == source {
                         swapSelections()
@@ -182,7 +185,7 @@ struct OnboardingView: View {
                 if starting {
                     ProgressView().tint(.white)
                 } else {
-                    Text(verbatim: "Let's go!")
+                    Text("onboarding.start")
                 }
             }
             .frame(maxWidth: .infinity)
