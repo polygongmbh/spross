@@ -12,6 +12,11 @@
   Geld, Wasser, Zeit, Tag, gehen, kommen, haben, trinken, kaufen, bezahlen,
   gut/schlecht, groß/klein, heute/morgen — plus essen, sprechen, verstehen and warten,
   which used to sit in whichever room happened to mention them.
+- **No more unanswerable prompts**: when a word you are learning covers two German
+  words at once — Swahili `kuvaa` is both "anziehen" and "sich anziehen" —
+  the prompt now shows which area it belongs to, so there is one right answer instead
+  of two. Only when you type the answer; a flip-and-check card never gets the hint,
+  since it would give the answer away.
 - **Sachbearbeiter is now a Sachbearbeiter in Swahili**: `afisa mhusika`
   ("the officer handling your case") instead of the bare `afisa`, which only means
   "official". Two Ukrainian verbs were sharpened where one word was doing two jobs

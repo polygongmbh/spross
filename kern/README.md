@@ -36,6 +36,7 @@ data class Card(              // data class: Swift sees value equality (SwiftUI 
   val source: Realization,    // known-language side
   val target: Realization,    // learning-language side
   val promptFeminineMarker: Boolean,
+  val promptAmbiguous: Boolean, // another card shows the IDENTICAL produce prompt
 )
 data class Realization(
   val lang: String, val text: String,
@@ -53,6 +54,14 @@ data class Realization(
   Non-feminine concepts without a source realization are skipped.
   A feminine card additionally carries `baseAccepted` — the base concept's TARGET-side
   `text ∪ synonyms ∪ variants` — empty when the target never realizes the base.
+- **Homonyms / target-language merges**: after emitting, the join counts cards per
+  *displayed* prompt key — NFC-normalized `source.text` plus the ♀ state — and sets
+  `promptAmbiguous` on every member of a key shared by >1 card. Keying on what the learner
+  SEES means citation conventions (de noun capitals, en `"to "`, sw `ku-`) correctly keep
+  noun/verb homographs apart (`Husten`/`husten`, `jua`/`kujua`), and a ♀ sibling is already
+  disambiguated by its badge. The residue is real: Swahili merges pairs German splits
+  (`kuvaa` = anziehen + sich anziehen, `kupumzika` = 3 concepts), so an sw-source learner
+  gets prompts no cue in the answer language could resolve. Produce-side only — see §3.
 - **Notes**: selected by SOURCE language at join time, no cross-language fallback
   (a de note never surfaces for an en-source user; non-de sources are note-less until authored).
 - **Grammar display is target-side only**: plural line and article coloring render only for
@@ -73,11 +82,20 @@ no config flag, no user-facing direction anywhere.
   Accepted: target `text ∪ synonyms ∪ variants`, article-optional (target articles),
   verb-prefix-optional (`kind == verb` only).
   Synonyms show on reveal as alternates ("auch: відомство"); variants stay silent.
+  When `promptAmbiguous`, the prompt carries the card's **area label** as a secondary
+  context line ("Im Bad", "Jikoni") — free of leakage because it is in the PROMPT language
+  while the answer is in the other, and it is the retrieval cue the learner actually has
+  (the box teaches per area). Generalizes the ♀-badge pattern; never graded.
 - **RECOGNIZE**: prompt = one target form, **reveal + self-grade** (Again/Hard/Good/Easy —
   never typed; comprehension check, and self-grading means no schedule is ever graded
   against a language it wasn't learned with).
   Phrases alternate too — self-graded sentence recognition is legitimate comprehension
   practice; only TYPED phrase recognition was absurd.
+  **Never carries the `promptAmbiguous` area cue**: here the prompt is the target form, so
+  any cue strong enough to identify the concept would reveal the answer — the same reason
+  the emoji matrix hides the emoji on recognition measurement reviews. Nothing is lost:
+  recognition is self-graded, so a learner who thinks "sich entspannen", reveals
+  "sich ausruhen" and taps Good is doing exactly what self-grading is for.
 - **Role resolution** is a pure render-time function of `(cardId, log.count)`:
   - First exposure (`count == 0`) is ALWAYS recognition — the learner cannot produce a
     word never seen; the target is shown WITH emoji as a teaching moment, flipped,
@@ -238,6 +256,19 @@ day-key `yyyy-MM-dd`) with:
   parse/shape/order rules, slug charset (no `|`), seedIndex uniqueness, synonyms ≠ text,
   no duplicate synonym/variant entries, no `" / "` in text, components resolve same-area,
   feminineOf resolves, emoji well-formed.
+- **Homonym gates** (no schema field — the area label is the disambiguator, §2/§3).
+  Lint owns what the engine cannot fix, runtime tolerates the rest:
+  - `noPromptCollisionWithinAnArea` — a display-identical prompt inside ONE area is a hard
+    error: the area cue would be identical, so the prompt stays unanswerable. Fix in content.
+  - `noConceptPairCollidesInTwoLanguages` — the same pair colliding in two languages means
+    one meaning authored twice; unify (the `variantOf` ruling). Caveat when it fires: check
+    it is not simply two languages independently merging a distinction de/en do draw —
+    `relax`/`rest` collided in sw AND uk while de (sich entspannen/sich ausruhen) and en
+    keep them apart, so the fix was a precise uk realization, not a deletion.
+  - `crossAreaPromptCollisionsAreKnown` — pins the tolerated cross-area set, so adding
+    `outside/river` next to `bedroom/pillow` (both sw `mto`) fails the gate instead of
+    silently minting an ambiguous prompt. Comparison is case-SENSITIVE: `Husten`/`husten`
+    is a real visual distinction and must stay legal.
 
 ## 9. KMP project & Apple integration
 
@@ -305,6 +336,17 @@ day-key `yyyy-MM-dd`) with:
 - In-session lapse retry (breadth ruling 2026-07-22: relearning = reference `[10m]`).
 - `variantOf` (user ruling 2026-07-22: the 4 near-duplicate phrase twins were unified
   instead — base slug keeps an adapted realization; schema field deleted everywhere).
+- Homonym disambiguation as **content**: a per-realization `sense`/`gloss` string and a
+  concept-level `homonymOf`/`disambiguator` link. Both rejected — the area label already
+  carries it for free, in every language, lint-guaranteed to exist; `sense` would be a new
+  authored field for ~9 entries, and `homonymOf` encodes at concept level a fact that is
+  per-language (`kupumzika` is ambiguous in sw only) and rots as languages are added.
+  Also rejected: emoji-as-cue (12 of 13 colliding concepts are verbs, which carry no emoji,
+  and the matrix deliberately hides emoji exactly where the ambiguity bites), cluster-wide
+  grading leniency (accepting any cluster member teaches away the distinction the learner
+  is there to acquire; if a same-area cluster ever proves unfixable, revisit as `Typo`,
+  never `Exact`), and suppressing/deferring a cluster member (breaks composition
+  determinism to hide a content problem, and the collision returns once both are learned).
 - `Direction`, `mixedDirections` as a flag (alternation is the only mode), `LanguagePair`,
   `id|direction` keys, per-pair store docs, slugified de-centric card ids, persisted Cards,
   reconcile upsert half, the `"/"`-join↔split grading contract,

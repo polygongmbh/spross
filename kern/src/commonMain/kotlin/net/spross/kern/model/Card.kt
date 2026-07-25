@@ -54,4 +54,13 @@ data class Card(
     val target: Realization,
     /** True when the prompt is the base concept's source realization + ♀ badge. */
     val promptFeminineMarker: Boolean,
+    /**
+     * True when another emitted card carries an IDENTICAL produce prompt — a
+     * target-language merge (sw `kuvaa` = anziehen AND sich anziehen) or a source
+     * homonym. The UI adds this card's area label as a non-leaking disambiguating
+     * cue, generalizing the ♀-badge pattern. PRODUCE only: on recognize any cue
+     * strong enough to identify the concept would reveal the answer, and
+     * self-grading absorbs the residue (§3).
+     */
+    val promptAmbiguous: Boolean = false,
 )

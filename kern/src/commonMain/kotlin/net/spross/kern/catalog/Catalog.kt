@@ -4,6 +4,7 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.Language
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Realization
+import net.spross.kern.model.nfcNormalized
 
 /**
  * The parsed content catalog. Cards are a runtime [join] per (source, target) profile —
@@ -72,8 +73,16 @@ class Catalog internal constructor(
                 )
             }
         }
-        return cards
+        // why: a produce prompt two cards share is unanswerable without a cue, so flag
+        // it once per join and let the UI add the area label. Keyed on what the learner
+        // SEES — citation conventions (de noun capitals, en "to ", sw ku-) keep
+        // noun/verb homographs apart, and a ♀ sibling is disambiguated by its badge.
+        val promptCounts = cards.groupingBy(::promptKey).eachCount()
+        return cards.map { it.copy(promptAmbiguous = promptCounts.getValue(promptKey(it)) > 1) }
     }
+
+    private fun promptKey(card: Card): String =
+        nfcNormalized(card.source.text).trim() + if (card.promptFeminineMarker) "♀" else ""
 
     /** Targets learnable from [source]: every other language with ≥ 50 joinable concepts. */
     fun availableTargets(source: Language): List<AvailableTarget> {

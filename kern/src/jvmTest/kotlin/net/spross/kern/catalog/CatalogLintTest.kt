@@ -160,6 +160,83 @@ class CatalogLintTest {
         }
     }
 
+    /**
+     * Prompt forms as the learner SEES them — text plus synonyms (both rotate as prompts),
+     * NFC-folded. Case-SENSITIVE on purpose: `Husten`/`husten` and `jua`/`kujua` are real
+     * visual distinctions that keep noun/verb homographs unambiguous.
+     */
+    private fun promptForms(raw: RawRealization): List<String> =
+        (listOf(raw.text) + raw.synonyms).map { nfcNormalized(it).trim() }
+
+    /** (lang, form) → concept ids sharing it, keeping only the genuine collisions. */
+    private fun collisionClusters(): Map<Pair<String, String>, List<String>> {
+        val byForm = mutableMapOf<Pair<String, String>, MutableList<String>>()
+        forEachRealization { area, lang, slug, raw ->
+            for (form in promptForms(raw)) {
+                byForm.getOrPut(lang to form) { mutableListOf() } += "$area/$slug"
+            }
+        }
+        return byForm.filterValues { it.size > 1 }
+    }
+
+    /**
+     * A display-identical prompt INSIDE one area is unfixable at runtime: the engine's
+     * disambiguator is the area label, which would be identical. Repick the word.
+     */
+    @Test
+    fun noPromptCollisionWithinAnArea() {
+        for ((key, ids) in collisionClusters()) {
+            val (lang, form) = key
+            val perArea = ids.groupBy { it.substringBefore('/') }.filterValues { it.size > 1 }
+            assertTrue(perArea.isEmpty(), "$lang \"$form\": same-area collision ${perArea.values}")
+        }
+    }
+
+    /**
+     * One concept PAIR colliding in two languages is one meaning authored twice — unify it
+     * (the `variantOf` ruling). Exception, when this fires: if de/en genuinely distinguish
+     * the two and only both targets merge them, fix the imprecise realization instead
+     * (uk relax/rest was `відпочивати` twice while de keeps entspannen/ausruhen apart).
+     */
+    @Test
+    fun noConceptPairCollidesInTwoLanguages() {
+        val langsByPair = mutableMapOf<Pair<String, String>, MutableSet<String>>()
+        for ((key, ids) in collisionClusters()) {
+            val sorted = ids.sorted()
+            for (i in sorted.indices) {
+                for (j in i + 1 until sorted.size) {
+                    langsByPair.getOrPut(sorted[i] to sorted[j]) { mutableSetOf() } += key.first
+                }
+            }
+        }
+        val duplicated = langsByPair.filterValues { it.size > 1 }
+        assertTrue(duplicated.isEmpty(), "same meaning authored twice: $duplicated")
+    }
+
+    /**
+     * Cross-area, single-language collisions are legitimate target-language merges (Swahili
+     * has one word where German has two) — tolerated at runtime, where the join sets
+     * `promptAmbiguous` and the UI adds the area label to the produce prompt. Pinned so a
+     * NEW one (adding `outside/river` beside `bedroom/pillow`, both sw `mto`) fails here
+     * instead of silently shipping an unanswerable prompt.
+     */
+    @Test
+    fun crossAreaPromptCollisionsAreKnown() {
+        val actual = collisionClusters()
+            .map { (key, ids) -> "${key.first} ${key.second}: ${ids.sorted().joinToString(", ")}" }
+            .toSortedSet()
+        assertEquals(
+            sortedSetOf(
+                "sw daftari: desk/notebook, school/exercise-book",
+                "sw kuchukua: essentials/take, health/pick-up",
+                "sw kuondoka: hall/set-off, outside/depart",
+                "sw kupumzika: desk/take-break, health/rest, living/relax",
+                "sw kuvaa: bedroom/get-dressed, hall/put-on",
+            ),
+            actual,
+        )
+    }
+
     @Test
     fun grammarValuesAreBareAndTrimmed() {
         forEachRealization { area, lang, slug, raw ->

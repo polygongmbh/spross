@@ -23,6 +23,19 @@ Edit content HERE and it is what the apps bundle on their next build.
   simply never appears in pairs involving that language. This is how pair-specific
   phrases work: "Fleisch grillen" is a concept with `de` + `sw` realizations and no
   `uk`, so it shows up in de↔sw only — no separate pair files needed.
+- **Homonyms & target-language merges.** Slugs are unique only *within* an area, so one
+  realization text may legitimately serve two concepts in two areas — usually because the
+  target language merges a distinction the source draws (sw `kuvaa` = `anziehen` AND
+  `sich anziehen`; sw `kupumzika` covers three concepts). There is **no disambiguation
+  field**: the **area** is the disambiguator, and the engine renders the area label on an
+  ambiguous *produce* prompt only — never on recognize, where any cue strong enough to
+  identify the concept would reveal the answer. Two rules are lint-enforced: a
+  display-identical prompt **within one area** is an error (the area cue would be identical
+  — repick the word), and the same concept pair colliding in **two languages** means one
+  meaning was authored twice → unify it. Exception to the second: if de/en genuinely
+  distinguish the two and only both targets merge them, fix the imprecise realization
+  instead of deleting a concept. Tolerated cross-area collisions are pinned by a test, so
+  minting a new one has to be a conscious decision.
 
 ## Layout
 
@@ -116,6 +129,8 @@ differ from the slug — verb `cook` → `"to cook"`, phrase `the-fridge-is-empt
 ```
 Realization fields — only `text` is required:
 - `text` — the canonical answer/display form, nothing else (no embedded glosses/labels).
+  Never bracket a disambiguator into it (`"mto (Kissen)"`) — everything in `text` has to be
+  typed. Homonyms are handled by the area rule above, not inside the string.
 - `synonyms` — DISTINCT-KNOWLEDGE alternates of `text` (array; omit if none):
   genuinely different lexemes for the same concept that a learner must recognize
   on their own (uk `office` установа/відомство, uk `boss` шеф/керівник).
@@ -158,6 +173,12 @@ Realization fields — only `text` is required:
   `pluralOnly` folded into `plural: "only"`; `feminine` promoted from a grammar
   hint to proper `feminineOf` sibling concepts.
 - German area keys (`amt`/`arzt`/`arbeit` → `admin`/`health`/`work`).
+- A homonym disambiguation field — per-realization `sense`/`gloss` or concept-level
+  `homonymOf`. The area label already disambiguates for free, in every language, and lint
+  guarantees it exists; `sense` would be new authored content for a handful of entries, and
+  `homonymOf` would encode at concept level a fact that is per-language (`kupumzika` is
+  ambiguous in sw only) and rots as languages are added. Same reasoning that deleted
+  `variantOf`. See the homonym rule above and kern README §2/§3.
 
 ## Legacy
 

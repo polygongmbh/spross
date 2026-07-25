@@ -22,14 +22,19 @@ struct VocabCardView: View {
         var article: String?
         var plural: String?
         var alternates: String?
+        /// Disambiguating label ABOVE the headword — the area, set only on an ambiguous
+        /// PRODUCE prompt (`Card.promptAmbiguous`). Never on a reveal or a recognition
+        /// prompt, where a cue that identifies the concept would give the answer away.
+        var context: String?
         var femMarker: Bool = false
 
         init(text: String, article: String? = nil, plural: String? = nil,
-             alternates: String? = nil, femMarker: Bool = false) {
+             alternates: String? = nil, context: String? = nil, femMarker: Bool = false) {
             self.text = text
             self.article = article
             self.plural = plural
             self.alternates = alternates
+            self.context = context
             self.femMarker = femMarker
         }
     }
@@ -105,6 +110,14 @@ struct VocabCardView: View {
     /// role depending on the card's presentation role.
     private func sideBlock(_ side: Side, emphasized: Bool) -> some View {
         VStack(spacing: DL.Space.xs) {
+            // why: ABOVE the headword, so it reads as a label on the prompt and never
+            // sits in the plural/alternates region that belongs to the reveal.
+            if let context = side.context {
+                Text(context)
+                    .font(DL.Fonts.caption)
+                    .foregroundStyle(Color.dlTextSecondary)
+                    .multilineTextAlignment(.center)
+            }
             headline(side, emphasized: emphasized)
                 .multilineTextAlignment(.center)
                 // why: a gentle floor keeps a long answer the same size as a

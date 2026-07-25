@@ -141,14 +141,29 @@ struct SessionView: View {
     private func promptSide(_ card: Card, role: PresentationRole) -> VocabCardView.Side {
         switch role {
         case .produce:
-            return .init(text: card.source.text, femMarker: card.promptFeminineMarker)
+            return .init(text: card.source.text,
+                         context: card.promptAmbiguous ? areaCue(card.area) : nil,
+                         femMarker: card.promptFeminineMarker)
         case .recognize:
+            // why: deliberately NO context cue here — the prompt is the target form, so
+            // any cue precise enough to disambiguate would reveal the answer (same
+            // reasoning as the emoji matrix). Self-grading absorbs the ambiguity.
             let form = model.promptForm(for: card)
             let canonical = form == card.target.text
             return .init(text: form,
                          article: canonical ? CardDisplay.article(of: card.target) : nil,
                          plural: canonical ? CardDisplay.plural(of: card.target, locale: locale) : nil)
         }
+    }
+
+    /// Area label as a disambiguating cue, in the source language (`areaTitle` already
+    /// resolves there). Titles carry a "·" flavour tail ("Jikoni · karibu chakula
+    /// kitamu!") — only the head is a label, so the tail is dropped.
+    private func areaCue(_ area: String) -> String {
+        model.areaTitle(area)
+            .split(separator: "·", maxSplits: 1)
+            .first
+            .map { $0.trimmingCharacters(in: .whitespaces) } ?? model.areaTitle(area)
     }
 
     /// The reveal always shows the full family: produce reveals the target

@@ -68,6 +68,11 @@ the app renders them:
   The prompt shows the engine's rotated form;
   the reveal shows the source meaning plus the full synonym family ("auch: …").
 - Emoji visibility (first-exposure teaching moment included) follows the engine matrix.
+- Ambiguous prompts carry an **area label** as a small secondary line ABOVE the headword
+  (engine-flagged via `Card.promptAmbiguous`): a target language sometimes merges two
+  concepts German keeps apart (sw `kuvaa` = anziehen + sich anziehen), leaving a produce
+  prompt with two valid answers. Produce only — a recognition prompt never gets it, because
+  a cue precise enough to disambiguate would reveal the answer. Never graded.
 - Card rendering: grammar display (target-side plural line, inline article color) per kern README §2;
   prompt/answer styling is role-based (prompt neutral, reveal accent), not per-language.
 
