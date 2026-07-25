@@ -22,9 +22,11 @@ struct WatchHomeView: View {
         // centered content never overlaps it.
         .safeAreaInset(edge: .bottom) {
             if !appVersion.isEmpty {
+                // why: no opacity — at 60 % the tag drops to ~4:1 on black;
+                // caption2 already makes it read as secondary.
                 Text("v\(appVersion)")
                     .font(.system(.caption2, design: .rounded))
-                    .foregroundStyle(Color.wlTextSecondary.opacity(0.6))
+                    .foregroundStyle(Color.wlTextSecondary)
             }
         }
     }

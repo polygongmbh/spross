@@ -227,7 +227,7 @@ struct ArticleBadge: View {
     var body: some View {
         Text(article)
             .font(DL.Fonts.badge)
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.dlOnColor)
             .padding(.horizontal, DL.Space.m)
             .padding(.vertical, DL.Space.xs + 2)
             .background(DL.articleColor(article), in: Capsule())

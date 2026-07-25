@@ -97,7 +97,9 @@ struct AnswerInputView: View {
 
     private var borderColor: Color {
         switch feedback {
-        case .neutral: return .dlSeparator
+        // why: the field's edge is a control boundary, not a decorative
+        // hairline — the softer dlSeparator hides it against the surface.
+        case .neutral: return .dlBorderStrong
         case .correct: return .dlSuccess
         case .revealed: return .dlAmber
         }

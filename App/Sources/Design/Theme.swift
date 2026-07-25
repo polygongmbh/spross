@@ -3,10 +3,20 @@ import UIKit
 
 // MARK: - DuoLernen design tokens
 //
-// Warm, playful, card-centric — palette derived from the Sprachposter pages
-// (cream paper, terracotta headers, peach tiles, colored article pills).
-// Zero dependencies, no asset catalog: every color adapts to light/dark
-// through dynamic UIColor providers.
+// Warm, playful, card-centric — poster-derived, re-grounded on the growing-box
+// theme: stone-and-moss paper, clay headline, ocean and forest as the
+// secondaries. Zero dependencies, no asset catalog: every color adapts to
+// light/dark through dynamic UIColor providers.
+//
+// Every pairing below clears WCAG AA — 4.5:1 for text, 3:1 for controls —
+// in BOTH schemes. Two rules keep it that way:
+//
+// 1. Accents are cut at INK strength, not fill strength. The light-mode
+//    values are dark enough to read as text on paper AND on their own 14 %
+//    wash (the tinted-pill pattern), which is the tightest constraint;
+//    a saturated fill of the same value still reads as its hue.
+// 2. Text drawn ON an accent fill uses `dlOnColor`, never `.white` — dark
+//    mode's accents are pastels, where white sinks to ~1.8:1.
 
 enum DL {
 
@@ -77,29 +87,36 @@ extension Color {
         })
     }
 
-    // Surfaces — warm cream, never plain white/gray.
-    static let dlBackground = Color(light: 0xFAF3E8, dark: 0x201A15)
-    static let dlSurface = Color(light: 0xFFFBF5, dark: 0x2B241D)
-    static let dlSurfaceTint = Color(light: 0xFBEDDC, dark: 0x33291F)
-    static let dlSeparator = Color(light: 0xE7D9C6, dark: 0x3E362C)
+    // Surfaces — stone paper with a moss cast, never plain white/gray.
+    static let dlBackground = Color(light: 0xF2F1EA, dark: 0x121714)
+    static let dlSurface = Color(light: 0xFBFBF6, dark: 0x1C231E)
+    static let dlSurfaceTint = Color(light: 0xE5E8DE, dark: 0x27302A)
+    /// Decorative hairline — card edges, the reveal divider, the ring groove.
+    /// Deliberately below 3:1: the card's fill and shadow carry its boundary.
+    static let dlSeparator = Color(light: 0xD3D6CA, dark: 0x3A443D)
+    /// A line that must be SEEN — the answer field's edge is a control
+    /// boundary, so it owes 3:1 where the decorative hairline does not.
+    static let dlBorderStrong = Color(light: 0x868D7C, dark: 0x707C72)
 
-    // Text — warm browns instead of pure black/gray.
-    static let dlTextPrimary = Color(light: 0x3D2C23, dark: 0xF2E7D8)
-    static let dlTextSecondary = Color(light: 0x8A7767, dark: 0xA79883)
+    // Text — deep forest ink instead of pure black/gray.
+    static let dlTextPrimary = Color(light: 0x1E2620, dark: 0xE9F0EA)
+    static let dlTextSecondary = Color(light: 0x4F584E, dark: 0xADBBAF)
+    /// Text/glyphs drawn ON a saturated accent fill (buttons, article pills).
+    static let dlOnColor = Color(light: 0xFBFBF6, dark: 0x121714)
 
-    // Accents.
-    static let dlAccent = Color(light: 0xE8590C, dark: 0xFF9A62)   // terracotta
-    static let dlTeal = Color(light: 0x0C8599, dark: 0x3BC9DB)
-    static let dlSuccess = Color(light: 0x2F9E44, dark: 0x8CE99A)
-    static let dlAmber = Color(light: 0xE8890C, dark: 0xFFC078)    // warm "reveal", never red
+    // Accents — ink strength (see the header note).
+    static let dlAccent = Color(light: 0xA23B0B, dark: 0xFF9A6B)   // clay
+    static let dlTeal = Color(light: 0x0D566E, dark: 0x6FCFE8)     // ocean
+    static let dlSuccess = Color(light: 0x256232, dark: 0x8AE39B)  // forest
+    static let dlAmber = Color(light: 0x87510A, dark: 0xF2C078)    // ochre "reveal", never red
     // why: progress segments show wrong answers on explicit user request —
     // a muted brick, only in the aggregate bar, never as card feedback.
-    static let dlWrong = Color(light: 0xB0413E, dark: 0xE8756F)
+    static let dlWrong = Color(light: 0x99322E, dark: 0xF08D86)
 
     // Article colors (poster palette).
-    static let dlDer = Color(light: 0x1971C2, dark: 0x74C0FC)
-    static let dlDie = Color(light: 0xC2255C, dark: 0xF783AC)
-    static let dlDas = Color(light: 0x1E7A32, dark: 0x69DB7C)
+    static let dlDer = Color(light: 0x134E85, dark: 0x90CBFF)
+    static let dlDie = Color(light: 0x9A2050, dark: 0xFF9EC0)
+    static let dlDas = Color(light: 0x18602C, dark: 0x6FDC85)
 }
 
 // MARK: - Shared modifiers & button styles
@@ -118,7 +135,7 @@ struct DLPrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(DL.Fonts.headline)
-            .foregroundStyle(Color(light: 0xFFFFFF, dark: 0x201A15))
+            .foregroundStyle(Color.dlOnColor)
             .padding(.vertical, DL.Space.l)
             .padding(.horizontal, DL.Space.xl)
             .frame(minHeight: 52)
@@ -160,7 +177,7 @@ struct DLSoftButtonStyle: ButtonStyle {
                 ForEach(["der", "die", "das"], id: \.self) { article in
                     Text(article)
                         .font(DL.Fonts.badge)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.dlOnColor)
                         .padding(.horizontal, DL.Space.m)
                         .padding(.vertical, DL.Space.xs + 2)
                         .background(DL.articleColor(article), in: Capsule())

@@ -10,15 +10,15 @@ extension Color {
                   blue: Double(hex & 0xFF) / 255)
     }
 
-    static let wlAccent = Color(watchHex: 0xFF9A62)   // terracotta
-    static let wlAmber = Color(watchHex: 0xFFC078)    // "again" — warm, never red
-    static let wlTeal = Color(watchHex: 0x3BC9DB)
-    static let wlSuccess = Color(watchHex: 0x8CE99A)
-    static let wlTextSecondary = Color(watchHex: 0xA79883)
+    static let wlAccent = Color(watchHex: 0xFF9A6B)   // clay
+    static let wlAmber = Color(watchHex: 0xF2C078)    // ochre "again" — warm, never red
+    static let wlTeal = Color(watchHex: 0x6FCFE8)     // ocean
+    static let wlSuccess = Color(watchHex: 0x8AE39B)  // forest
+    static let wlTextSecondary = Color(watchHex: 0xADBBAF)
 
-    static let wlDer = Color(watchHex: 0x74C0FC)
-    static let wlDie = Color(watchHex: 0xF783AC)
-    static let wlDas = Color(watchHex: 0x69DB7C)
+    static let wlDer = Color(watchHex: 0x90CBFF)
+    static let wlDie = Color(watchHex: 0xFF9EC0)
+    static let wlDas = Color(watchHex: 0x6FDC85)
 }
 
 enum WL {
