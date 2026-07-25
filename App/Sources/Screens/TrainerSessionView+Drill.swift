@@ -41,7 +41,7 @@ extension TrainerSessionView {
                         .transition(reduceMotion ? .opacity : .dlCardFlip)
                 }
                 if let placeValueHint {
-                    hintPill(icon: "textformat.123", text: "Neue Stelle: \(placeValueHint)")
+                    hintPill(icon: "textformat.123", text: "trainer.newPlace \(placeValueHint)")
                         .transition(.opacity)
                 }
                 controls
@@ -69,16 +69,16 @@ extension TrainerSessionView {
     private var streakText: Text {
         var parts: [Text] = []
         if maxLevel > 1 {
-            parts.append(isNumbers ? Text("🔢 \(level) Stellen") : Text("Stufe \(level)"))
+            parts.append(isNumbers ? Text("trainer.digits \(level)") : Text("trainer.level \(level)"))
         }
-        parts.append(Text("🔥 \(streak) in Folge"))
-        if bestStreak > streak { parts.append(Text("Rekord \(bestStreak)")) }
+        parts.append(Text("trainer.streak \(streak)"))
+        if bestStreak > streak { parts.append(Text("trainer.record \(bestStreak)")) }
         return parts.joined() ?? Text(verbatim: "")
     }
 
     private var streakAccessibility: Text {
-        var result = Text("Serie: \(streak) in Folge")
-        if bestStreak > streak { result = result + Text(", Rekord \(bestStreak)") }
+        var result = Text("a11y.streakInARow \(streak)")
+        if bestStreak > streak { result = result + Text("a11y.recordSuffix \(bestStreak)") }
         return result
     }
 
@@ -119,7 +119,7 @@ extension TrainerSessionView {
                             submit()
                         }
                     } label: {
-                        Text(inputEmpty ? "Aufdecken" : "Prüfen")
+                        Text(inputEmpty ? "session.reveal" : "common.check")
                             .frame(maxWidth: .infinity)
                             .contentTransition(.opacity)
                     }
@@ -131,7 +131,7 @@ extension TrainerSessionView {
                         Button {
                             withAnimation { hintUsed = true }
                         } label: {
-                            Label("Zehner nachschlagen", systemImage: "questionmark.circle")
+                            Label("trainer.tensLookup", systemImage: "questionmark.circle")
                                 .font(DL.Fonts.caption)
                         }
                         .buttonStyle(.plain)
@@ -143,7 +143,7 @@ extension TrainerSessionView {
                 // show the proper spelling and wait for a tap.
                 if let typoCorrection {
                     VStack(spacing: DL.Space.m) {
-                        Text("Fast! Richtig geschrieben: \(typoCorrection)")
+                        Text("session.typoCorrection \(typoCorrection)")
                             .font(DL.Fonts.caption)
                             .italic()
                             .foregroundStyle(Color.dlTextSecondary)
@@ -152,7 +152,7 @@ extension TrainerSessionView {
                         Button {
                             advance(correct: true, segment: .tough)
                         } label: {
-                            Text("Weiter")
+                            Text("common.next")
                                 .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(DLPrimaryButtonStyle())
@@ -169,7 +169,7 @@ extension TrainerSessionView {
                 Button {
                     advance(correct: false)
                 } label: {
-                    Text("Weiter")
+                    Text("common.next")
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(DLPrimaryButtonStyle())
@@ -204,7 +204,7 @@ extension TrainerSessionView {
 
     private func referenceCard(_ entries: [String]) -> some View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
-            Text("Zehner")
+            Text("trainer.tens")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
                 .textCase(.uppercase)
@@ -229,24 +229,24 @@ extension TrainerSessionView {
             Text(summaryEmoji)
                 .font(.system(size: 72))
                 .accessibilityHidden(true)
-            Text("\(doneCount) Aufgaben 🎯")
+            Text("trainer.tasksDone \(doneCount)")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("Beste Serie: 🔥 \(bestStreak) in Folge")
+            Text("trainer.bestStreak \(bestStreak)")
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextPrimary)
             Text.joined(Text(mode.titleKey), Text(verbatim: languageName(language)))
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
             Spacer()
-            Button("Weiter üben") {
+            Button("session.finished.keepPracticing") {
                 withAnimation(.easeOut(duration: 0.2)) { showingSummary = false }
             }
             .buttonStyle(DLSoftButtonStyle())
             Button {
                 dismiss()
             } label: {
-                Text("Fertig")
+                Text("common.done")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(DLPrimaryButtonStyle())

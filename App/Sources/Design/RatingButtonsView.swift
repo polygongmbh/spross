@@ -14,10 +14,10 @@ struct RatingButtonsView: View {
 
         var label: LocalizedStringKey {
             switch self {
-            case .again: return "Nochmal"
-            case .hard: return "Schwer"
-            case .good: return "Gut"
-            case .easy: return "Einfach"
+            case .again: return "rating.again"
+            case .hard: return "rating.hard"
+            case .good: return "rating.good"
+            case .easy: return "rating.easy"
             }
         }
 

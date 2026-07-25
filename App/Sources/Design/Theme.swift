@@ -152,7 +152,7 @@ struct DLSoftButtonStyle: ButtonStyle {
 #Preview("Palette") {
     ScrollView {
         VStack(alignment: .leading, spacing: DL.Space.l) {
-            Text("DuoLernen Tokens")
+            Text("preview.tokens")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
 
@@ -176,9 +176,9 @@ struct DLSoftButtonStyle: ButtonStyle {
                 swatch("Surface Tint", .dlSurfaceTint)
             }
 
-            Button("Weiter") {}
+            Button("common.next") {}
                 .buttonStyle(DLPrimaryButtonStyle())
-            Button("Überspringen") {}
+            Button("preview.skip") {}
                 .buttonStyle(DLSoftButtonStyle(color: .dlTeal))
         }
         .padding(DL.Space.xl)

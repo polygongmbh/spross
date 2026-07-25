@@ -35,7 +35,7 @@ struct BoxView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
-            Text("Die Box")
+            Text("box.title")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
             subtitle
@@ -47,7 +47,7 @@ struct BoxView: View {
     private var subtitle: Text {
         let active = model.stats?.activeCards ?? 0
         let total = model.box?.cards.count ?? 0
-        return Text("\(active) von \(total) Karten in Arbeit")
+        return Text("box.cardsInProgress \(active) \(total)")
     }
 }
 
@@ -77,8 +77,8 @@ private struct BoxAreaSection: View {
     private func phraseRow(_ stats: AreaStatistics?) -> some View {
         if let stats, stats.lockedPhrases + stats.unlockedPhrases > 0 {
             HStack(spacing: DL.Space.l) {
-                Label("\(stats.unlockedPhrases) Sätze freigeschaltet", systemImage: "lock.open.fill")
-                Label("\(stats.lockedPhrases) gesperrt", systemImage: "lock.fill")
+                Label("box.phrasesUnlocked \(stats.unlockedPhrases)", systemImage: "lock.open.fill")
+                Label("box.phrasesLocked \(stats.lockedPhrases)", systemImage: "lock.fill")
                 Spacer(minLength: 0)
             }
             .font(DL.Fonts.caption)
@@ -94,12 +94,12 @@ private struct BoxAreaSection: View {
             Button {
                 model.enqueueArea(area)
             } label: {
-                Label("Pack in die Box (\(count))", systemImage: "plus.circle.fill")
+                Label("box.enqueue \(count)", systemImage: "plus.circle.fill")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(DLSoftButtonStyle())
         } else {
-            Label("Alles eingepackt", systemImage: "checkmark.circle.fill")
+            Label("box.enqueueDone", systemImage: "checkmark.circle.fill")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlSuccess)
                 .padding(.horizontal, DL.Space.xs)
@@ -116,7 +116,7 @@ private struct BoxAreaSection: View {
             }
             .padding(.top, DL.Space.s)
         } label: {
-            Text(expanded ? "Karten ausblenden" : "\(cards.count) Karten anzeigen")
+            Text(expanded ? "box.hideCards" : "box.showCards \(cards.count)")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTeal)
         }
@@ -152,8 +152,8 @@ private struct BoxCardRow: View {
             Spacer(minLength: DL.Space.s)
             if sched?.suspended == true {
                 Text(verbatim: "💤")
-                    .accessibilityLabel("Pausiert")
-                Button("Wecken") {
+                    .accessibilityLabel("box.suspended")
+                Button("box.wake") {
                     model.setSuspended(cardID: card.id, suspended: false)
                 }
                 .font(DL.Fonts.caption)

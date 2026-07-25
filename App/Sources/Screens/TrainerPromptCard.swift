@@ -16,8 +16,8 @@ struct TrainerPromptCard: View {
                 .padding(DL.Space.s + 2)
                 .background(Circle().fill(Color.dlSurfaceTint))
                 .accessibilityHidden(true)
-            Text.joined(sentence ? Text("Satz") : Text(task.kind.trainerPromptLabelKey),
-                        Text("auf \(LanguageNames.display(task.language, locale: locale, catalog: nil))"))
+            Text.joined(sentence ? Text("trainer.prompt.sentence") : Text(task.kind.trainerPromptLabelKey),
+                        Text("trainer.prompt.inLanguage \(LanguageNames.display(task.language, locale: locale, catalog: nil))"))
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
                 .textCase(.uppercase)

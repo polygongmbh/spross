@@ -5,7 +5,7 @@ import SwiftUI
 /// resolves against the environment locale; the subtitle is looked up in
 /// `targetLocale` and hidden when it would just repeat the primary.
 ///
-/// `key` is the German catalog key (also its source text). `targetLocale` is
+/// `key` is a catalog key (`heute.session.start`). `targetLocale` is
 /// `AppModel.targetChromeLocale` — nil for learners whose target language has
 /// no chrome yet, which simply hides the subtitle.
 struct DLActionLabel: View {

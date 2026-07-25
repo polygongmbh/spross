@@ -30,7 +30,7 @@ extension SessionView {
                         submit(card)
                     }
                 } label: {
-                    Text(inputEmpty ? "Aufdecken" : "Prüfen")
+                    Text(inputEmpty ? "session.reveal" : "common.check")
                         .frame(maxWidth: .infinity)
                         .contentTransition(.opacity)
                 }
@@ -43,7 +43,7 @@ extension SessionView {
                 // for a tap so the slip is reviewed.
                 if let typoCorrection {
                     VStack(spacing: DL.Space.m) {
-                        Text("Fast! Richtig geschrieben: \(typoCorrection)")
+                        Text("session.typoCorrection \(typoCorrection)")
                             .font(DL.Fonts.caption)
                             .italic()
                             .foregroundStyle(Color.dlTextSecondary)
@@ -52,7 +52,7 @@ extension SessionView {
                         Button {
                             rate(.good)
                         } label: {
-                            DLActionLabel(key: "Weiter", targetLocale: model.targetChromeLocale)
+                            DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
                         }
                         .buttonStyle(DLPrimaryButtonStyle())
                         .keyboardShortcut(.defaultAction)
@@ -63,12 +63,12 @@ extension SessionView {
             case .revealed:
                 HStack(spacing: DL.Space.m) {
                     // Correct after reveal → .hard (design §Session 4).
-                    Button("Wusste ich doch") { rate(.hard) }
+                    Button("session.knewIt") { rate(.hard) }
                         .buttonStyle(DLSoftButtonStyle(color: .dlTeal))
                     Button {
                         rate(.again)
                     } label: {
-                        DLActionLabel(key: "Weiter", targetLocale: model.targetChromeLocale)
+                        DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
                     }
                     .buttonStyle(DLPrimaryButtonStyle())
                     // why: Enter advances when revealed (hardware keyboards).

@@ -76,10 +76,10 @@ struct TrainerHubView: View {
 
     private var card: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
-            Text("Training")
+            Text("trainer.title")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("Auf \(languageName(drillLanguage ?? "")) · zählt nicht für deine Box.")
+            Text("trainer.subtitle \(languageName(drillLanguage ?? ""))")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
             HStack(spacing: DL.Space.m) {
@@ -132,7 +132,8 @@ struct TrainerHubView: View {
             chipLabel(emoji: kind.trainerEmoji, title: Text(kind.trainerTitleKey))
         }
         .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel(Text(kind.trainerTitleKey) + Text(" üben, auf \(languageName(drillLanguage ?? ""))"))
+        .accessibilityLabel(Text(kind.trainerTitleKey)
+            + Text("a11y.practiceSuffix \(languageName(drillLanguage ?? ""))"))
     }
 
     /// Sentence drill: composes phrase templates with slot values.
@@ -141,10 +142,10 @@ struct TrainerHubView: View {
             guard let key = phraseKey else { return }
             activeDrill = Drill(phrases: key.source, target: key.target, reverse: key.reverse)
         } label: {
-            chipLabel(emoji: "💬", title: Text("Sätze"))
+            chipLabel(emoji: "💬", title: Text("trainer.phrases"))
         }
         .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel("Sätze üben")
+        .accessibilityLabel("a11y.practicePhrases")
     }
 
     private func chipLabel(emoji: String, title: Text) -> some View {
@@ -189,21 +190,21 @@ extension TrainerKind {
         }
     }
 
-    /// Localized display key for the drill title (German source = catalog key).
+    /// Catalog key for the drill title.
     var trainerTitleKey: LocalizedStringKey {
         switch self {
-        case .numbers: return "Zahlen"
-        case .years: return "Jahreszahlen"
-        case .clock: return "Uhrzeit"
+        case .numbers: return "trainer.numbers"
+        case .years: return "trainer.years"
+        case .clock: return "trainer.clock"
         }
     }
 
     /// Localized display key for the singular prompt caption ("Zahl · auf …").
     var trainerPromptLabelKey: LocalizedStringKey {
         switch self {
-        case .numbers: return "Zahl"
-        case .years: return "Jahreszahl"
-        case .clock: return "Uhrzeit"
+        case .numbers: return "trainer.prompt.number"
+        case .years: return "trainer.prompt.year"
+        case .clock: return "trainer.clock"
         }
     }
 }

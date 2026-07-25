@@ -9,17 +9,17 @@ struct FortschrittSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.m) {
-            Text("Fortschritt")
+            Text("progress.title")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
             ActivityStripView(days: model.last14Days())
             HStack(spacing: DL.Space.m) {
                 BoxStatTile(emoji: "📦",
                             value: "\(model.stats?.activeCards ?? 0)",
-                            label: "Aktive Karten")
+                            label: "progress.activeCards")
                 BoxStatTile(emoji: "🎯",
                             value: retentionText,
-                            label: "Behalten")
+                            label: "progress.retention")
             }
         }
     }

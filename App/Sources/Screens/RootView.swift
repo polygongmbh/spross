@@ -49,7 +49,7 @@ struct RootView: View {
                         } label: {
                             Image(systemName: "shippingbox.fill")
                         }
-                        .accessibilityLabel("Box")
+                        .accessibilityLabel("nav.box")
                     }
                 }
                 .toolbarBackground(.hidden, for: .navigationBar)
@@ -59,7 +59,7 @@ struct RootView: View {
 
     private var loading: some View {
         VStack(spacing: DL.Space.l) {
-            Text("📦")
+            Text(verbatim: "📦")
                 .font(.system(size: 56))
             ProgressView()
                 .tint(.dlAccent)

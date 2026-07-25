@@ -18,7 +18,7 @@ struct StreakFlameView: View {
             Text("\(days)")
                 .font(DL.Fonts.statValue)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text(days == 1 ? "Tag" : "Tage")
+            Text(days == 1 ? "common.dayOne" : "common.dayMany")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
         }
@@ -26,7 +26,7 @@ struct StreakFlameView: View {
         .padding(.vertical, DL.Space.m)
         .background(Color.dlSurfaceTint, in: Capsule())
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(Text("Serie: \(days) Tage"))
+        .accessibilityLabel(Text("a11y.streakDays \(days)"))
     }
 }
 
@@ -88,7 +88,7 @@ struct DueCountRing: View {
                     .font(DL.Fonts.statValue)
                     .foregroundStyle(Color.dlTextPrimary)
                     .minimumScaleFactor(0.6)
-                Text("fällig")
+                Text("progress.due")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
             }
@@ -97,7 +97,7 @@ struct DueCountRing: View {
         .frame(width: size, height: size)
         .animation(.easeOut(duration: 0.4), value: fraction)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("\(remaining) von \(total) Karten fällig"))
+        .accessibilityLabel(Text("a11y.dueOfTotal \(remaining) \(total)"))
     }
 }
 
@@ -123,7 +123,7 @@ struct AreaChip: View {
                     .foregroundStyle(Color.dlTextPrimary)
                     .lineLimit(1)
                 Spacer(minLength: DL.Space.s)
-                Text("\(sitting) gefestigt · \(learning) frisch")
+                Text("progress.consolidatedFresh \(sitting) \(learning)")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
             }
@@ -164,10 +164,10 @@ struct PhaseBadge: View {
 
         var label: LocalizedStringKey {
             switch self {
-            case .new: return "Neu"
-            case .learning: return "Lernt"
-            case .review: return "Sitzt"
-            case .relearning: return "Wackelt"
+            case .new: return "phase.new"
+            case .learning: return "phase.learning"
+            case .review: return "phase.review"
+            case .relearning: return "phase.relearning"
             }
         }
 
@@ -203,8 +203,8 @@ struct PhaseBadge: View {
                 DueCountRing(remaining: 7, total: 20)
             }
             HStack(spacing: DL.Space.m) {
-                BoxStatTile(emoji: "📦", value: "132", label: "Karten im Kasten")
-                BoxStatTile(emoji: "🎯", value: "91 %", label: "Behalten")
+                BoxStatTile(emoji: "📦", value: "132", label: "progress.cardsInBox")
+                BoxStatTile(emoji: "🎯", value: "91 %", label: "progress.retention")
             }
             AreaChip(emoji: "🍳", name: "Küche", sitting: 18, learning: 6)
             AreaChip(emoji: "🛁", name: "Bad", sitting: 4, learning: 9)

@@ -28,11 +28,11 @@ struct TrainerSessionView: View {
             }
         }
 
-        /// Localized display key for the run title (German source = catalog key).
+        /// Catalog key for the run title.
         var titleKey: LocalizedStringKey {
             switch self {
             case .slots(let kind, _): return kind.trainerTitleKey
-            case .phrases: return "Sätze"
+            case .phrases: return "trainer.phrases"
             }
         }
     }

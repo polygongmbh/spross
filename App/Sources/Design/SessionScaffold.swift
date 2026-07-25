@@ -39,12 +39,12 @@ struct SessionScaffold<Content: View>: View {
     /// `Text` (not a String) so it localizes via the environment locale.
     private var progressAccessibility: Text {
         if outcomes.isEmpty {
-            return Text("Karte \(position) von \(total)")
+            return Text("session.cardPosition \(position) \(total)")
         }
         let right = outcomes.filter { $0 == .right }.count
         let tough = outcomes.filter { $0 == .tough }.count
         let wrong = outcomes.filter { $0 == .wrong }.count
-        return Text("\(right) richtig, \(tough) schwer, \(wrong) daneben")
+        return Text("a11y.sessionTally \(right) \(tough) \(wrong)")
     }
 
     var body: some View {
@@ -66,7 +66,7 @@ struct SessionScaffold<Content: View>: View {
                     .frame(width: 44, height: 44)
                     .background(Circle().fill(Color.dlSurfaceTint))
             }
-            .accessibilityLabel("Sitzung beenden")
+            .accessibilityLabel("a11y.endSession")
 
             GeometryReader { geo in
                 if outcomes.isEmpty {
@@ -131,17 +131,17 @@ struct SessionCompletionView: View {
     /// as `Text` so each part localizes via the environment locale.
     private var summaryText: Text {
         var parts: [Text] = []
-        if newCount > 0 { parts.append(Text("\(newCount) neu")) }
-        if graduatedCount > 0 { parts.append(Text("\(graduatedCount) gefestigt")) }
-        if reviewCount > 0 { parts.append(Text("\(reviewCount) wiederholt")) }
-        return parts.joined() ?? Text("Alles erledigt")
+        if newCount > 0 { parts.append(Text("session.summary.new \(newCount)")) }
+        if graduatedCount > 0 { parts.append(Text("session.summary.consolidated \(graduatedCount)")) }
+        if reviewCount > 0 { parts.append(Text("session.summary.reviewed \(reviewCount)")) }
+        return parts.joined() ?? Text("session.summary.allDone")
     }
 
     var body: some View {
         VStack(spacing: DL.Space.xl) {
             Spacer()
             burstHero
-            Text("Geschafft!")
+            Text("session.finished.title")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
             summaryText
@@ -152,14 +152,14 @@ struct SessionCompletionView: View {
             Spacer()
             VStack(spacing: DL.Space.m) {
                 if canPracticeMore {
-                    Button("Weiter üben", action: onPractice)
+                    Button("session.finished.keepPracticing", action: onPractice)
                         .buttonStyle(DLPrimaryButtonStyle())
                         .frame(maxWidth: .infinity)
-                    Button("Fertig", action: onDone)
+                    Button("common.done", action: onDone)
                         .buttonStyle(DLSoftButtonStyle())
                         .frame(maxWidth: .infinity)
                 } else {
-                    Button("Fertig", action: onDone)
+                    Button("common.done", action: onDone)
                         .buttonStyle(DLPrimaryButtonStyle())
                         .frame(maxWidth: .infinity)
                 }
@@ -195,7 +195,7 @@ struct SessionCompletionView: View {
                 .animation(.spring(response: 0.5, dampingFraction: 0.55), value: burst)
         }
         .frame(height: 180)
-        .accessibilityHidden(true) // why: purely celebratory; "Geschafft!" below carries the message
+        .accessibilityHidden(true) // why: purely celebratory; "session.finished.title" below carries the message
     }
 }
 

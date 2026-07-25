@@ -81,12 +81,12 @@ struct AnswerInputView: View {
             Image(systemName: "checkmark.circle.fill")
                 .font(.title3)
                 .foregroundStyle(Color.dlSuccess)
-                .accessibilityLabel("Richtig")
+                .accessibilityLabel("a11y.correct")
         case .revealed:
             Image(systemName: "lightbulb.fill")
                 .font(.title3)
                 .foregroundStyle(Color.dlAmber)
-                .accessibilityLabel("Aufgelöst")
+                .accessibilityLabel("a11y.revealed")
         }
     }
 
@@ -111,7 +111,7 @@ struct AnswerInputView: View {
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(Color.dlAmber)
             VStack(alignment: .leading, spacing: DL.Space.xs) {
-                Text("Richtige Antwort")
+                Text("session.correctAnswer")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                 Text(answer)

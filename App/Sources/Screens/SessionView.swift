@@ -220,7 +220,7 @@ struct SessionView: View {
                 DLSound.reveal()
                 withAnimation { revealed = true }
             } label: {
-                Text("Aufdecken")
+                Text("session.reveal")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(DLPrimaryButtonStyle())

@@ -12,7 +12,7 @@ struct ActivityStripView: View {
         let maxReviews = max(days.map(\.reviews).max() ?? 1, 1)
 
         VStack(alignment: .leading, spacing: DL.Space.m) {
-            Text("Letzte 14 Tage")
+            Text("progress.last14Days")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
             HStack(alignment: .bottom, spacing: DL.Space.xs + 2) {
@@ -34,7 +34,7 @@ struct ActivityStripView: View {
 
     private func activityLabel(_ days: [(day: Date, reviews: Int)]) -> Text {
         let activeDays = days.filter { $0.reviews > 0 }.count
-        return Text("Aktivität der letzten 14 Tage: an \(activeDays) Tagen gelernt")
+        return Text("a11y.activity14Days \(activeDays)")
     }
 
     private func dayBar(_ entry: (day: Date, reviews: Int), maxReviews: Int) -> some View {

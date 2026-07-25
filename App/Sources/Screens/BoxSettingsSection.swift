@@ -13,7 +13,7 @@ struct BoxSettingsSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
-            Text("Einstellungen")
+            Text("settings.title")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
 
@@ -56,7 +56,7 @@ struct BoxSettingsSection: View {
                 .monospacedDigit()
             if let url = feedbackURL {
                 Link(destination: url) {
-                    Label("Feedback senden", systemImage: "envelope")
+                    Label("settings.feedback", systemImage: "envelope")
                         .font(DL.Fonts.subheadline)
                         .foregroundStyle(Color.dlAccent)
                 }
@@ -79,40 +79,40 @@ struct BoxSettingsSection: View {
 
     // MARK: Rows
 
-    /// "Ich spreche": the known language. Switching re-joins in place —
+    /// The known language ("I speak"). Switching re-joins in place —
     /// schedules are keyed by card id, so all progress survives. Picking the
     /// language currently being LEARNED swaps the pair.
     private var sourceRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("Ich spreche")
+            Text("settings.source.title")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            Picker("Ich spreche", selection: sourceBinding) {
+            Picker("settings.source.title", selection: sourceBinding) {
                 ForEach(sourceChoices, id: \.self) { candidate in
                     Text(verbatim: pickerName(candidate)).tag(candidate)
                 }
             }
             .pickerStyle(.segmented)
-            Text("Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten.")
+            Text("settings.source.hint")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }
     }
 
-    /// "Ich lerne": the target language — one box per target. Picking the
+    /// The target language ("I'm learning") — one box per target. Picking the
     /// language currently SPOKEN swaps the pair.
     private var targetRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("Ich lerne")
+            Text("settings.target.title")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            Picker("Ich lerne", selection: targetBinding) {
+            Picker("settings.target.title", selection: targetBinding) {
                 ForEach(targetChoices, id: \.self) { candidate in
                     Text(verbatim: pickerName(candidate)).tag(candidate)
                 }
             }
             .pickerStyle(.segmented)
-            Text("Jede Sprache hat ihre eigene Box.")
+            Text("settings.target.hint")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }
@@ -122,7 +122,7 @@ struct BoxSettingsSection: View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
             Stepper(value: maxLearningBinding, in: 0...30) {
                 HStack {
-                    Text("Karten gleichzeitig im Lernen")
+                    Text("settings.maxLearning.title")
                         .font(DL.Fonts.headline)
                         .foregroundStyle(Color.dlTextPrimary)
                     Spacer()
@@ -132,7 +132,7 @@ struct BoxSettingsSection: View {
                         .monospacedDigit()
                 }
             }
-            Text("So viele neue Karten übst du parallel — neue kommen nach, sobald welche sitzen.")
+            Text("settings.maxLearning.hint")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }
@@ -144,20 +144,20 @@ struct BoxSettingsSection: View {
             Button(role: .destructive) {
                 confirmingReset = true
             } label: {
-                Text("Box zurücksetzen …")
+                Text("settings.reset.button")
                     .font(DL.Fonts.headline)
             }
             .confirmationDialog(
-                "Alle Lernfortschritte für \(targetName) löschen und neu mit den ersten Wörtern beginnen?",
+                "settings.reset.confirm \(targetName)",
                 isPresented: $confirmingReset,
                 titleVisibility: .visible
             ) {
-                Button("Zurücksetzen", role: .destructive) {
+                Button("common.reset", role: .destructive) {
                     Task { await model.resetBox() }
                 }
-                Button("Abbrechen", role: .cancel) {}
+                Button("common.cancel", role: .cancel) {}
             }
-            Text("Löscht Fortschritt und Verlauf dieser Box — die Inhalte bleiben.")
+            Text("settings.reset.hint")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }

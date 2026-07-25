@@ -14,7 +14,7 @@ struct HeuteView: View {
                 header
                 if let failure = model.loadFailure {
                     stateCard(emoji: "🫤",
-                              title: "Ups",
+                              title: "error.title",
                               message: failure.text)
                 } else if model.sessionAvailable {
                     sessionCard
@@ -22,9 +22,9 @@ struct HeuteView: View {
                     doneCard
                 } else {
                     stateCard(emoji: "📦",
-                              title: "Deine Box ist noch leer",
-                              message: Text("Pack einen Bereich direkt hinein oder stell ein, wie viele Karten du gleichzeitig lernst."),
-                              action: ("Zur Box", openBox))
+                              title: "heute.empty.title",
+                              message: Text("heute.empty.message"),
+                              action: ("heute.empty.action", openBox))
                 }
                 TrainerHubView(model: model)
                 FortschrittSection(model: model)
@@ -46,7 +46,7 @@ struct HeuteView: View {
             .font(DL.Fonts.caption)
             .foregroundStyle(Color.dlTextSecondary)
             .textCase(.uppercase)
-            Text("Heute")
+            Text("heute.title")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
         }
@@ -57,7 +57,7 @@ struct HeuteView: View {
     private var sessionCard: some View {
         VStack(spacing: DL.Space.l) {
             sessionStats
-            Text("Deine Sitzung ist startklar")
+            Text("heute.session.ready")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)
@@ -68,7 +68,7 @@ struct HeuteView: View {
             Button {
                 model.startSession()
             } label: {
-                DLActionLabel(key: "Los geht's!", targetLocale: model.targetChromeLocale)
+                DLActionLabel(key: "heute.session.start", targetLocale: model.targetChromeLocale)
             }
             .buttonStyle(DLPrimaryButtonStyle())
         }
@@ -117,12 +117,12 @@ struct HeuteView: View {
         let fresh = (plan?.unlockedPhrases.count ?? 0) + (plan?.newCards.count ?? 0)
         var parts: [Text] = []
         if due > 0 {
-            parts.append(Text("\(due) Wiederholungen"))
+            parts.append(Text("heute.session.reviews \(due)"))
         }
         if fresh > 0 {
-            parts.append(Text("\(fresh) neue Karten"))
+            parts.append(Text("heute.session.newCards \(fresh)"))
         }
-        return parts.joined() ?? Text("Ein paar Karten warten auf dich.")
+        return parts.joined() ?? Text("heute.session.someCards")
     }
 
     // MARK: - Done for today
@@ -132,7 +132,7 @@ struct HeuteView: View {
             Text(verbatim: "🎉")
                 .font(.system(size: 56))
                 .accessibilityHidden(true)
-            Text("Für heute geschafft")
+            Text("heute.done.title")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)
@@ -146,7 +146,7 @@ struct HeuteView: View {
             // review-ahead — so it renders in every done state with active
             // cards; hidden only when even the fallback is empty.
             if model.canPracticeExtra {
-                Button("Extra-Runde üben") {
+                Button("heute.done.extraRound") {
                     model.startExtraSession()
                 }
                 .buttonStyle(DLSoftButtonStyle())
@@ -163,8 +163,8 @@ struct HeuteView: View {
 
     private var tomorrowText: Text {
         model.tomorrowDueCount == 0
-            ? Text("Morgen gibt es frische Karten. Bis dann! 👋")
-            : Text("Morgen warten \(model.tomorrowDueCount) Karten auf dich.")
+            ? Text("heute.done.tomorrowFresh")
+            : Text("heute.done.tomorrowDue \(model.tomorrowDueCount)")
     }
 
     // MARK: - Generic state card (error / empty box)
@@ -204,13 +204,13 @@ extension LoadFailure {
     var text: Text {
         switch self {
         case .catalogMissing:
-            return Text("Die Inhalte konnten nicht geladen werden. (catalog fehlt im App-Bundle)")
+            return Text("error.catalogMissing")
         case .unknownProfile(let source, let target):
-            return Text("Unbekanntes Sprachprofil (\(source) → \(target)).")
+            return Text("error.unknownProfile \(source) \(target)")
         case .contentUnavailable(let reason):
-            return Text("Die Inhalte konnten nicht geladen werden. (\(reason))")
+            return Text("error.contentUnavailable \(reason)")
         case .resetFailed(let reason):
-            return Text("Zurücksetzen fehlgeschlagen. (\(reason))")
+            return Text("error.resetFailed \(reason)")
         }
     }
 }

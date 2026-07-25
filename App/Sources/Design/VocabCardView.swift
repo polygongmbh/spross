@@ -174,7 +174,7 @@ struct FeminineBadge: View {
             .padding(.horizontal, DL.Space.s)
             .padding(.vertical, DL.Space.xs)
             .background(Color.dlDie.opacity(0.14), in: Capsule())
-            .accessibilityLabel("Weibliche Form")
+            .accessibilityLabel("a11y.feminineForm")
     }
 }
 
