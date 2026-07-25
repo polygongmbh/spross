@@ -3,8 +3,8 @@ import Foundation
 /// Decode-only mirror of Kern's `WidgetSnapshotBuilder` JSON, written by the
 /// app on every persist. The widget extension links no Kotlin (no catalog in
 /// its bundle, tight extension memory cap) — everything it renders is
-/// pre-resolved phone-side; only `dueCount(now:)`, `averageRetrievability(now:)`
-/// and the streak walk run here at render time.
+/// pre-resolved phone-side; only `dueCount(now:)` and the streak walk run here
+/// at render time.
 struct WidgetSnapshot: Codable {
 
     /// One pre-resolved exposure row (TARGET-side text; ♀ baked into
@@ -17,16 +17,11 @@ struct WidgetSnapshot: Codable {
         var articleTint: String?
     }
 
-    /// One active card schedule — render-time stat input.
+    /// One active card schedule — the render-time due-count input.
     struct CardInfo: Codable {
         var cardId: String
         /// Epoch milliseconds.
         var due: Int64
-        var stability: Double
-        /// Epoch milliseconds of the last review (or the card's add date).
-        var lastReview: Int64
-        /// Whether the card sits in the Review phase (retrievability input).
-        var review: Bool
     }
 
     struct Day: Codable {
@@ -38,6 +33,9 @@ struct WidgetSnapshot: Codable {
     var schemaVersion: Int
     var entries: [Entry]
     var cards: [CardInfo]
+    /// Active cards settled at or above the phrase-unlock stability; resolved
+    /// phone-side because, unlike due dates, it does not move with the clock.
+    var sittingCount: Int
     /// Trailing ~70 days, keyed by ISO `yyyy-MM-dd`.
     var dailyStats: [String: Day]
 
@@ -46,29 +44,6 @@ struct WidgetSnapshot: Codable {
     func dueCount(now: Date) -> Int {
         let nowMillis = Int64(now.timeIntervalSince1970 * 1000)
         return cards.filter { $0.due <= nowMillis }.count
-    }
-
-    /// FSRS-6 trainable decay default (`w20`). DELIBERATE duplication of the
-    /// Kern constant (kern/README.md §7): the widget cannot link the engine,
-    /// so the retrievability power curve is re-implemented here verbatim.
-    static let w20 = 0.1542
-
-    /// Mean FSRS retrievability over Review-phase cards, elapsed measured
-    /// from each card's last review — mirrors Kern `Statistics`/`Fsrs`:
-    /// R(t, S) = (1 + factor · t / S)^(−w20), factor = 0.9^(−1/w20) − 1,
-    /// S floored at 0.001, t at 0. Nil when no card is in Review yet.
-    func averageRetrievability(now: Date) -> Double? {
-        let review = cards.filter(\.review)
-        guard !review.isEmpty else { return nil }
-        let decay = -Self.w20
-        let factor = pow(0.9, 1.0 / decay) - 1.0
-        let nowMillis = Double(now.timeIntervalSince1970 * 1000)
-        let sum = review.reduce(0.0) { acc, card in
-            let elapsedDays = max(0.0, (nowMillis - Double(card.lastReview)) / 86_400_000)
-            let s = max(card.stability, 0.001)
-            return acc + pow(1.0 + factor * elapsedDays / s, decay)
-        }
-        return sum / Double(review.count)
     }
 
     /// Streak walk — DELIBERATE duplication of Kern `Statistics.streak`
@@ -118,7 +93,7 @@ enum WidgetSnapshotReader {
             .appendingPathComponent("widget-snapshot.json")
         guard let data = try? Data(contentsOf: url),
               let snapshot = try? JSONDecoder().decode(WidgetSnapshot.self, from: data),
-              snapshot.schemaVersion == 1 else { return nil }
+              snapshot.schemaVersion == 2 else { return nil }
         return snapshot
     }
 }

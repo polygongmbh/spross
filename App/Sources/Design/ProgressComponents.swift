@@ -203,8 +203,8 @@ struct PhaseBadge: View {
                 DueCountRing(remaining: 7, total: 20)
             }
             HStack(spacing: DL.Space.m) {
-                BoxStatTile(emoji: "📦", value: "132", label: "progress.cardsInBox")
-                BoxStatTile(emoji: "🎯", value: "91 %", label: "progress.retention")
+                BoxStatTile(emoji: "🌳", value: "84", label: "progress.consolidated")
+                BoxStatTile(emoji: "🌱", value: "48", label: "progress.fresh")
             }
             AreaChip(emoji: "🍳", name: "Küche", sitting: 18, learning: 6)
             AreaChip(emoji: "🛁", name: "Bad", sitting: 4, learning: 9)

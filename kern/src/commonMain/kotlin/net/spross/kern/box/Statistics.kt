@@ -1,11 +1,8 @@
 package net.spross.kern.box
 
-import kotlin.math.max
-import kotlin.time.DurationUnit
 import kotlin.time.Instant
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.minus
-import net.spross.kern.fsrs.Fsrs
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
@@ -15,6 +12,8 @@ import net.spross.kern.model.DayStats
 data class BoxStatistics(
     /** Cards with an active (scheduled, non-suspended) schedule. */
     val activeCount: Int,
+    /** Active cards that have settled (see [Statistics.isSitting]); the rest are still fresh. */
+    val sittingCount: Int,
     /** Active cards due now. */
     val dueCount: Int,
     /** Cards whose schedule is suspended (out of rotation). */
@@ -23,8 +22,6 @@ data class BoxStatistics(
     val newSlotsAvailable: Int,
     /** Consecutive days with reviews > 0; one missed day is forgiven. */
     val streak: Int,
-    /** Mean FSRS retrievability over active review-phase cards; null if none. */
-    val averageRetrievability: Double?,
     val areas: List<AreaStatistics>,
 )
 
@@ -34,7 +31,7 @@ data class AreaStatistics(
     val total: Int,
     /** Cards with an active schedule. */
     val active: Int,
-    /** Cards sitting in Review with stability >= unlock threshold. */
+    /** Cards in the area that have settled (see [Statistics.isSitting]). */
     val sitting: Int,
     /** Component phrases still waiting for their components to stabilize. */
     val phrasesLocked: Int,
@@ -49,14 +46,23 @@ internal object Statistics {
         val active = Inventory.active(state)
         return BoxStatistics(
             activeCount = active.size,
+            sittingCount = active.count { isSitting(state, it) },
             dueCount = active.count { it.due != null && it.due <= now },
             suspendedCount = Inventory.scheduled(state).count { it.suspended },
             newSlotsAvailable = Growth.gatedNewBudget(state, nowEpochMillis),
             streak = streak(state.dailyStats, nowEpochMillis, tzId),
-            averageRetrievability = averageRetrievability(state, active, now),
             areas = areaStatistics(state),
         )
     }
+
+    /**
+     * A card has settled once it sits in Review at or above the phrase-unlock
+     * stability — the same threshold that lets its phrases in, so "sitting" is a
+     * milestone the learner can act on, not a cosmetic band.
+     */
+    fun isSitting(state: BoxState, sched: CardScheduling): Boolean =
+        sched.phase == CardPhase.Review &&
+            (sched.memory?.stability ?: 0.0) >= state.config.phraseUnlockStability
 
     /**
      * Walk back from today. Today without reviews neither breaks the streak nor consumes
@@ -81,23 +87,6 @@ internal object Statistics {
         return count
     }
 
-    /** Elapsed measured from each card's last review (last log entry date). */
-    private fun averageRetrievability(
-        state: BoxState,
-        active: List<CardScheduling>,
-        now: Instant,
-    ): Double? {
-        val review = active.filter { it.phase == CardPhase.Review && it.memory != null }
-        if (review.isEmpty()) return null
-        val fsrs = Fsrs(state.config.fsrsParameters())
-        val sum = review.sumOf { sched ->
-            val last = sched.log.lastOrNull()?.date ?: sched.addedAt
-            val elapsed = max(0.0, (now - last).toDouble(DurationUnit.DAYS))
-            fsrs.retrievability(elapsed, sched.memory!!.stability)
-        }
-        return sum / review.size
-    }
-
     private fun areaStatistics(state: BoxState): List<AreaStatistics> {
         val activeCards = Inventory.active(state).mapTo(mutableSetOf()) { it.cardId }
         return state.cards.values.groupBy { it.area }.entries
@@ -110,12 +99,7 @@ internal object Statistics {
                 for (card in cards) {
                     if (card.id in activeCards) active += 1
                     val sched = state.scheduling[card.id]
-                    if (sched != null && !sched.suspended &&
-                        sched.phase == CardPhase.Review &&
-                        (sched.memory?.stability ?: 0.0) >= state.config.phraseUnlockStability
-                    ) {
-                        sitting += 1
-                    }
+                    if (sched != null && !sched.suspended && isSitting(state, sched)) sitting += 1
                     if (card.kind == CardKind.Phrase) {
                         val open = sched != null || card.components.isEmpty() ||
                             Growth.isPhraseUnlocked(state, card)

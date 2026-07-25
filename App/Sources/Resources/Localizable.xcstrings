@@ -961,34 +961,18 @@
         }
       }
     },
-    "progress.activeCards" : {
+    "progress.consolidated" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktive Karten"
+            "value" : "Gefestigt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Active cards"
-          }
-        }
-      }
-    },
-    "progress.cardsInBox" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Karten im Kasten"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cards in the box"
+            "value" : "Consolidated"
           }
         }
       }
@@ -1025,6 +1009,22 @@
         }
       }
     },
+    "progress.fresh" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frisch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fresh"
+          }
+        }
+      }
+    },
     "progress.last14Days" : {
       "localizations" : {
         "de" : {
@@ -1037,22 +1037,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Last 14 days"
-          }
-        }
-      }
-    },
-    "progress.retention" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Behalten"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Retained"
           }
         }
       }

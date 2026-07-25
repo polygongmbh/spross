@@ -46,7 +46,7 @@ class WidgetSnapshotBuilderTests {
     }
 
     @Test
-    fun cardsCarryMillisAndReviewFlag() {
+    fun cardsCarryDueMillisAndTheSettledCountIsResolvedPhoneSide() {
         val due = Box.plusDays(Box.day1, 2.0)
         val lastReview = Box.plusSeconds(Box.day1, -3600)
         var state = Snap.state(listOf(fem, gendered))
@@ -61,12 +61,9 @@ class WidgetSnapshotBuilderTests {
         val doc = WidgetSnapshotBuilder.doc(state, Box.day1, exposureLimit = 10)
         val byCard = doc.cards.associateBy { it.cardId }
 
-        val reviewCard = byCard.getValue("wf")
-        assertEquals(due, reviewCard.due)
-        assertEquals(lastReview, reviewCard.lastReview)
-        assertEquals(4.5, reviewCard.stability)
-        assertTrue(reviewCard.review)
-        assertFalse(byCard.getValue("wg").review)
+        assertEquals(due, byCard.getValue("wf").due)
+        assertEquals(Box.day1, byCard.getValue("wg").due)
+        assertEquals(1, doc.sittingCount) // wg is still learning
     }
 
     @Test
@@ -99,7 +96,7 @@ class WidgetSnapshotBuilderTests {
 
     @Test
     fun schemaVersionIsPinned() {
-        assertEquals(1, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, 5).schemaVersion)
+        assertEquals(2, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, 5).schemaVersion)
     }
 
     @Test

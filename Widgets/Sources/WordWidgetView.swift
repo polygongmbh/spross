@@ -55,7 +55,7 @@ struct WordWidgetView: View {
         }
     }
 
-    /// Compact streak · retrievability line for the bottom of the small tile.
+    /// Compact streak · gefestigt line for the bottom of the small tile.
     private var statsFooter: some View {
         HStack(spacing: 8) {
             if entry.streak > 0 {
@@ -63,9 +63,9 @@ struct WordWidgetView: View {
                     .foregroundStyle(.orange)
             }
             Spacer()
-            if let retrievability = entry.retrievability {
-                Text("\(Int((retrievability * 100).rounded())) %")
-                    .foregroundStyle(.secondary)
+            if entry.sitting > 0 {
+                Label("\(entry.sitting)", systemImage: "leaf.fill")
+                    .foregroundStyle(.green)
             }
         }
         .font(.caption2.weight(.semibold))
@@ -84,7 +84,7 @@ struct WordWidgetView: View {
         }
     }
 
-    /// 🔥 streak · N fällig · retrievability — glanceable box health.
+    /// 🔥 streak · N fällig · N gefestigt — glanceable box growth.
     private var statsHeader: some View {
         HStack(spacing: 12) {
             if entry.streak > 0 {
@@ -96,9 +96,9 @@ struct WordWidgetView: View {
                     .foregroundStyle(.orange)
             }
             Spacer()
-            if let retrievability = entry.retrievability {
-                Text("\(Int((retrievability * 100).rounded())) %")
-                    .foregroundStyle(.secondary)
+            if entry.sitting > 0 {
+                Label("\(entry.sitting) gefestigt", systemImage: "leaf.fill")
+                    .foregroundStyle(.green)
             }
         }
         .font(.caption.weight(.semibold))

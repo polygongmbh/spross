@@ -59,7 +59,9 @@ extension BoxStatistics {
     var dueCards: Int { Int(dueCount) }
     var suspendedCards: Int { Int(suspendedCount) }
     var streakDays: Int { Int(streak) }
-    var retrievability: Double? { averageRetrievability?.doubleValue }
+    var sittingCards: Int { Int(sittingCount) }
+    /// Active cards not settled yet — the fresh half of the Fortschritt split.
+    var freshCards: Int { max(0, activeCards - sittingCards) }
 }
 
 extension AreaStatistics {

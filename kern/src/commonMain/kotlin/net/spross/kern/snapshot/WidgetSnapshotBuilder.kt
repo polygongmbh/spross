@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.Inventory
-import net.spross.kern.model.CardPhase
+import net.spross.kern.box.Statistics
 import net.spross.kern.store.DayStatsDto
 import net.spross.kern.store.StoreJson
 import net.spross.kern.store.dayStatsDto
@@ -12,12 +12,11 @@ import net.spross.kern.store.dayStatsDto
 /**
  * Phone-side builder of the iOS widget snapshot. The widget extension is
  * decode-only Swift (no catalog in its bundle, tight memory cap), so everything it
- * renders is pre-resolved here on every persist; only `dueCount(now)`,
- * `averageRetrievability(now)`, and the streak walk run at render time, fed by
- * [WidgetCardDto]/dailyStats.
+ * renders is pre-resolved here on every persist; only `dueCount(now)` and the
+ * streak walk run at render time, fed by [WidgetCardDto]/dailyStats.
  */
 object WidgetSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 1
+    const val SCHEMA_VERSION: Int = 2
 
     /** ~10 weeks of day keys — enough history for the widget's streak walk. */
     const val DAILY_STATS_TAIL_DAYS: Int = 70
@@ -42,16 +41,10 @@ object WidgetSnapshotBuilder {
                 articleTint = articleTint(card),
             )
         }
-        val cards = Inventory.active(state).mapNotNull { sched ->
-            val memory = sched.memory ?: return@mapNotNull null
+        val active = Inventory.active(state)
+        val cards = active.mapNotNull { sched ->
             val due = sched.due ?: return@mapNotNull null
-            WidgetCardDto(
-                cardId = sched.cardId,
-                due = due.toEpochMilliseconds(),
-                stability = memory.stability,
-                lastReview = (sched.log.lastOrNull()?.date ?: sched.addedAt).toEpochMilliseconds(),
-                review = sched.phase == CardPhase.Review,
-            )
+            WidgetCardDto(cardId = sched.cardId, due = due.toEpochMilliseconds())
         }
         // why: yyyy-MM-dd keys sort chronologically as strings — the tail is a plain sort.
         val tailKeys = state.dailyStats.keys.sorted().takeLast(DAILY_STATS_TAIL_DAYS)
@@ -59,6 +52,7 @@ object WidgetSnapshotBuilder {
             schemaVersion = SCHEMA_VERSION,
             entries = entries,
             cards = cards,
+            sittingCount = active.count { Statistics.isSitting(state, it) },
             dailyStats = tailKeys.associateWith { dayStatsDto(state.dailyStats.getValue(it)) },
         )
     }
@@ -70,8 +64,10 @@ internal data class WidgetSnapshotDoc(
     val schemaVersion: Int,
     /** Pre-resolved exposure rows, most attention-worthy first. */
     val entries: List<WidgetEntryDto>,
-    /** Every active card schedule — render-time dueCount/averageRetrievability inputs. */
+    /** Every active card's due date — the render-time dueCount input. */
     val cards: List<WidgetCardDto>,
+    /** Active cards that have settled; time-independent, so it is resolved here. */
+    val sittingCount: Int,
     /** Trailing [WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS] day keys. */
     val dailyStats: Map<String, DayStatsDto>,
 )
@@ -86,16 +82,9 @@ internal data class WidgetEntryDto(
     val articleTint: String? = null,
 )
 
-/**
- * One active card schedule. `dueCount(now)` = cards with `due <= now`;
- * retrievability averages the FSRS power curve over [review] cards with
- * elapsed = now − [lastReview].
- */
+/** One active card schedule: `dueCount(now)` = cards with `due <= now`. */
 @Serializable
 internal data class WidgetCardDto(
     val cardId: String,
     val due: Long,
-    val stability: Double,
-    val lastReview: Long,
-    val review: Boolean,
 )

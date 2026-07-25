@@ -2,9 +2,7 @@ package net.spross.kern.box
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 import kotlin.test.assertNull
-import kotlin.test.assertTrue
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.DayStats
 import net.spross.kern.model.Rating
@@ -73,8 +71,22 @@ class BoxStatisticsTests {
         assertEquals(1, stats.dueCount)
         assertEquals(1, stats.suspendedCount)
         assertEquals(8, stats.newSlotsAvailable) // empty learning pool, default maxLearning
-        val avg = assertNotNull(stats.averageRetrievability)
-        assertTrue(avg > 0 && avg <= 1)
+    }
+
+    @Test
+    fun sittingCountsOnlyReviewCardsAtOrAboveTheUnlockThreshold() {
+        var state = Box.state((1..3).map { Box.word(it) })
+        state = Box.inject(state, Box.sched("w01", stability = 2.0, dueMillis = now, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w02", stability = 1.9, dueMillis = now, lastReviewMillis = now))
+        state = Box.inject(
+            state,
+            // Stable enough, but still stepping through Learning — not settled.
+            Box.sched("w03", phase = CardPhase.Learning, stability = 9.0, dueMillis = now, lastReviewMillis = now),
+        )
+
+        val stats = BoxEngine.statistics(state, now, Box.TZ)
+        assertEquals(3, stats.activeCount)
+        assertEquals(1, stats.sittingCount)
     }
 
     @Test

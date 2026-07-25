@@ -1,8 +1,9 @@
 import SwiftUI
 
 /// Condensed progress section at the bottom of Heute: 14-day activity strip
-/// plus active-card count and retention. Streak lives on the session/done
-/// cards; due count on the session ring; suspended cards surface in the Box.
+/// plus the settled/fresh split of the active cards (the two sum to the active
+/// count the Box header spells out). Streak lives on the session/done cards;
+/// due count on the session ring; suspended cards surface in the Box.
 /// Everything renders from `BoxStatistics` and `dailyStats` — never from logs.
 struct FortschrittSection: View {
     let model: AppModel
@@ -14,18 +15,13 @@ struct FortschrittSection: View {
                 .foregroundStyle(Color.dlTextPrimary)
             ActivityStripView(days: model.last14Days())
             HStack(spacing: DL.Space.m) {
-                BoxStatTile(emoji: "📦",
-                            value: "\(model.stats?.activeCards ?? 0)",
-                            label: "progress.activeCards")
-                BoxStatTile(emoji: "🎯",
-                            value: retentionText,
-                            label: "progress.retention")
+                BoxStatTile(emoji: "🌳",
+                            value: "\(model.stats?.sittingCards ?? 0)",
+                            label: "progress.consolidated")
+                BoxStatTile(emoji: "🌱",
+                            value: "\(model.stats?.freshCards ?? 0)",
+                            label: "progress.fresh")
             }
         }
-    }
-
-    private var retentionText: String {
-        guard let retrievability = model.stats?.retrievability else { return "–" }
-        return "\(Int((retrievability * 100).rounded())) %"
     }
 }

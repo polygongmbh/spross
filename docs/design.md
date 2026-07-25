@@ -109,7 +109,7 @@ the app renders them:
 
 - **Heute** is the only root screen:
   session card (due-count ring + streak flame, or done state),
-  trainer hub, condensed Fortschritt section (14-day strip, active count, retention).
+  trainer hub, condensed Fortschritt section (14-day strip, gefestigt/frisch split).
 - **Box** (pushed via the 📦 toolbar icon): browse areas/cards —
   areas grouped under their areas.json groups
   (source-language titles, en fallback, manifest order; empty groups drop out);
@@ -152,7 +152,8 @@ same review UX rules; deltas only where the platform differs:
   Multiple choice on a keyboard-less device is a deliberate concession to the phone's
   recall-first rule, with the latency curve compensating.
   Answers return as events; the phone reschedules with real timestamps and re-pushes.
-- iOS widget: pure Swift decode (the documented power-curve duplication: kern README §7).
+- iOS widget: pure Swift decode; only the due count and the streak walk run at
+  render time, everything clock-independent is pre-resolved phone-side (kern README §7).
 
 ## Content pipeline
 

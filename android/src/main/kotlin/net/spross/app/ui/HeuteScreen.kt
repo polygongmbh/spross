@@ -54,11 +54,9 @@ fun HeuteScreen(model: AppModel) {
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Stat("${stats.dueCount}", chrome.dueLabel)
-                    Stat("${stats.activeCount}", chrome.activeLabel)
+                    Stat("${stats.sittingCount}", chrome.settledLabel)
+                    Stat("${stats.activeCount - stats.sittingCount}", chrome.freshLabel)
                     Stat("🔥 ${stats.streak}", "Streak")
-                    stats.averageRetrievability?.let {
-                        Stat("${(it * 100).toInt()} %", chrome.retentionLabel)
-                    }
                 }
             }
         }

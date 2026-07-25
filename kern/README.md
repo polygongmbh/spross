@@ -236,10 +236,9 @@ day-key `yyyy-MM-dd`) with:
 - **WidgetSnapshot** (NEW): the phone precomputes on every persist; the iOS widget is
   decode-only Swift (an extension cannot run the join: no catalog in its bundle, ~30 MB
   memory cap vs 33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
-  entries (target-side text, emoji, article tint), per-card `{due, stability,
-  lastReview, review}` for render-time `dueCount(now)`/`averageRetrievability(now)`
-  (the average runs over `review`-phase cards; retrievability
-  power curve duplicated in Swift with the w20 constant, documented), dailyStats tail
+  entries (target-side text, emoji, article tint), per-card `{due}` for render-time
+  `dueCount(now)`, the settled-card count (`sittingCount`, resolved phone-side —
+  it does not move with the clock), dailyStats tail
   (~70 days) for the streak walk, `schemaVersion`. Built by a KMP `SnapshotBuilder`,
   written by the app.
 - **WatchSnapshot v2**: direction/pair/`german` are gone — one entry per CARD with BOTH
