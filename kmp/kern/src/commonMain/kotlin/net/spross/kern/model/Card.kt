@@ -1,6 +1,12 @@
 package net.spross.kern.model
 
-enum class CardKind { Noun, Verb, Phrase }
+/**
+ * `Adjective` is the catch-all for non-noun, non-verb single words —
+ * adjectives, adverbs, and interjections (`draußen`, `immer`, `Vorsicht`).
+ * Engine-wise it is a plain word: introducible on its own, never phrase-gated,
+ * never verb-prefix-stripped.
+ */
+enum class CardKind { Noun, Verb, Adjective, Phrase }
 
 /** One concept rendered in one language, as joined for a concrete (source, target) profile. */
 data class Realization(

@@ -85,6 +85,7 @@ internal object CatalogParser {
             val kind = when (val raw = o.requireString(path, slug, "kind")) {
                 "noun" -> CardKind.Noun
                 "verb" -> CardKind.Verb
+                "adjective" -> CardKind.Adjective
                 "phrase" -> CardKind.Phrase
                 else -> parseError(path, "$slug: unknown kind \"$raw\"")
             }

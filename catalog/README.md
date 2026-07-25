@@ -14,8 +14,9 @@ Edit content HERE and it is what the apps bundle on their next build.
 
 ## The key modeling decision: everything is a concept
 
-- A **concept** is language-neutral: a `slug`, a `kind` (`noun` | `verb` | `phrase`),
-  and (for words) an `emoji`. Nouns, verbs, and phrases live in one ordered list.
+- A **concept** is language-neutral: a `slug`, a `kind`
+  (`noun` | `verb` | `adjective` | `phrase`), and (for words) an `emoji`.
+  Words and phrases live in one ordered list.
 - A **realization** is one concept rendered in one language (`text` + grammar + notes).
 - A **pair** (de↔sw, de↔uk, later sw↔uk) is a **runtime join** on slug — never stored.
   The German side is authored once and shared across every pair that teaches German.
@@ -84,6 +85,7 @@ seed/introduction order (phrases follow their area's words):
 ```json
 [ { "slug": "fridge",  "kind": "noun", "emoji": "🧊" },
   { "slug": "cook",    "kind": "verb" },
+  { "slug": "careful", "kind": "adjective" },
   { "slug": "teacher-f", "kind": "noun", "emoji": "👩‍🏫", "feminineOf": "teacher" },
   { "slug": "the-fridge-is-empty", "kind": "phrase", "components": ["fridge"] } ]
 ```
@@ -94,6 +96,10 @@ differ from the slug — verb `cook` → `"to cook"`, phrase `the-fridge-is-empt
 `"The fridge is empty."`).
 - `components` (phrases only) — same-area word slugs the phrase is built from;
   the box gates a phrase's unlock on those words being learned. Empty = no gate.
+- `adjective` is the catch-all for single words that are neither noun nor verb:
+  adjectives, adverbs, and interjections (`draußen`, `immer`, `Vorsicht`).
+  Prefer splitting such a word out of a phrase over inflating the phrase:
+  short phrases keep typing manageable and let the word be recalled on its own.
 - `feminineOf` (nouns only) — marks this concept as the feminine form of `<base-slug>`.
   It carries the distinct `de` form always, and a realization only where that language
   grammatically distinguishes the feminine (uk `вчителька`; NOT sw or en, which are
