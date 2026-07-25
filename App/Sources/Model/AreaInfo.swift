@@ -67,6 +67,7 @@ extension Card {
         switch kind {
         case .noun: return "🧩"
         case .verb: return "⚡"
+        case .adjective: return "✨"
         case .phrase: return "💬"
         }
     }
