@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.0 — 2026-07-25
+
 - **Language pickers speak for themselves**: onboarding is English (it shows before
   your language is known), and every language choice reads "🇩🇪 German" — flag plus
   English name. Nothing is greyed out anymore: picking the language on the other
