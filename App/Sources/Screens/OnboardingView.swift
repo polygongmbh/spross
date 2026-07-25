@@ -13,7 +13,6 @@ struct OnboardingView: View {
     @State private var source: String
     @State private var target: String?
     @State private var starting = false
-    @Environment(\.locale) private var locale
 
     init(model: AppModel) {
         self.model = model
@@ -50,10 +49,10 @@ struct OnboardingView: View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
             Text(verbatim: "👋")
                 .font(.system(size: 44))
-            Text("Welcome to Spross")
+            Text(verbatim: "Welcome to Spross")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("Your box grows with you — a few new cards every day.")
+            Text(verbatim: "Your box grows with you — a few new cards every day.")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
         }
@@ -74,7 +73,7 @@ struct OnboardingView: View {
 
     private var sourceSection: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("Which language do you speak?")
+            Text(verbatim: "Which language do you speak?")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
             ForEach(sources, id: \.self) { candidate in
@@ -118,14 +117,12 @@ struct OnboardingView: View {
 
     private var targetSection: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("Which language are you learning?")
+            Text(verbatim: "Which language are you learning?")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
             ForEach(targetChoices) { candidate in
-                // why: String interpolation on purpose — count keys are `%@`
-                // in the catalog (the `%lld` twins are being retired).
                 selectionRow(title: Text(verbatim: languageName(candidate.code)),
-                             caption: Text("\(String(candidate.conceptCount)) terms"),
+                             caption: Text(verbatim: "\(candidate.conceptCount) terms"),
                              selected: target == candidate.code) {
                     if candidate.code == source {
                         swapSelections()
@@ -185,7 +182,7 @@ struct OnboardingView: View {
                 if starting {
                     ProgressView().tint(.white)
                 } else {
-                    Text("Let's go!")
+                    Text(verbatim: "Let's go!")
                 }
             }
             .frame(maxWidth: .infinity)
