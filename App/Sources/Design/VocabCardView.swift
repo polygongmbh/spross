@@ -157,7 +157,7 @@ struct VocabCardView: View {
             .font(compact ? DL.Fonts.title : DL.Fonts.hero)
             .foregroundStyle(emphasized ? Color.dlAccent : Color.dlTextPrimary)
         guard let article = side.article else { return word }
-        return Text("\(article) ")
+        return Text(verbatim: "\(article) ")
             .font(compact ? DL.Fonts.title : DL.Fonts.hero)
             .foregroundStyle(DL.articleColor(article))
             + word

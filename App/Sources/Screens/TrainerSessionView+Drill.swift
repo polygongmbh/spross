@@ -69,16 +69,16 @@ extension TrainerSessionView {
     private var streakText: Text {
         var parts: [Text] = []
         if maxLevel > 1 {
-            parts.append(isNumbers ? Text("trainer.digits \(level)") : Text("trainer.level \(level)"))
+            parts.append(isNumbers ? Text("trainer.digits \(level.formatted())") : Text("trainer.level \(level.formatted())"))
         }
-        parts.append(Text("trainer.streak \(streak)"))
-        if bestStreak > streak { parts.append(Text("trainer.record \(bestStreak)")) }
+        parts.append(Text("trainer.streak \(streak.formatted())"))
+        if bestStreak > streak { parts.append(Text("trainer.record \(bestStreak.formatted())")) }
         return parts.joined() ?? Text(verbatim: "")
     }
 
     private var streakAccessibility: Text {
-        var result = Text("a11y.streakInARow \(streak)")
-        if bestStreak > streak { result = result + Text("a11y.recordSuffix \(bestStreak)") }
+        var result = Text("a11y.streakInARow \(streak.formatted())")
+        if bestStreak > streak { result = result + Text("a11y.recordSuffix \(bestStreak.formatted())") }
         return result
     }
 
@@ -229,10 +229,10 @@ extension TrainerSessionView {
             Text(summaryEmoji)
                 .font(.system(size: 72))
                 .accessibilityHidden(true)
-            Text("trainer.tasksDone \(doneCount)")
+            Text("trainer.tasksDone \(doneCount.formatted())")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("trainer.bestStreak \(bestStreak)")
+            Text("trainer.bestStreak \(bestStreak.formatted())")
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextPrimary)
             Text.joined(Text(mode.titleKey), Text(verbatim: languageName(language)))

@@ -117,10 +117,10 @@ struct HeuteView: View {
         let fresh = (plan?.unlockedPhrases.count ?? 0) + (plan?.newCards.count ?? 0)
         var parts: [Text] = []
         if due > 0 {
-            parts.append(Text("heute.session.reviews \(due)"))
+            parts.append(Text("heute.session.reviews \(due.formatted())"))
         }
         if fresh > 0 {
-            parts.append(Text("heute.session.newCards \(fresh)"))
+            parts.append(Text("heute.session.newCards \(fresh.formatted())"))
         }
         return parts.joined() ?? Text("heute.session.someCards")
     }
@@ -164,7 +164,7 @@ struct HeuteView: View {
     private var tomorrowText: Text {
         model.tomorrowDueCount == 0
             ? Text("heute.done.tomorrowFresh")
-            : Text("heute.done.tomorrowDue \(model.tomorrowDueCount)")
+            : Text("heute.done.tomorrowDue \(model.tomorrowDueCount.formatted())")
     }
 
     // MARK: - Generic state card (error / empty box)

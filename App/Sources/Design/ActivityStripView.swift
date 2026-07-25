@@ -34,7 +34,7 @@ struct ActivityStripView: View {
 
     private func activityLabel(_ days: [(day: Date, reviews: Int)]) -> Text {
         let activeDays = days.filter { $0.reviews > 0 }.count
-        return Text("a11y.activity14Days \(activeDays)")
+        return Text("a11y.activity14Days \(activeDays.formatted())")
     }
 
     private func dayBar(_ entry: (day: Date, reviews: Int), maxReviews: Int) -> some View {

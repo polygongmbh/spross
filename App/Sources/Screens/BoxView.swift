@@ -47,7 +47,7 @@ struct BoxView: View {
     private var subtitle: Text {
         let active = model.stats?.activeCards ?? 0
         let total = model.box?.cards.count ?? 0
-        return Text("box.cardsInProgress \(active) \(total)")
+        return Text("box.cardsInProgress \(active.formatted()) \(total.formatted())")
     }
 }
 
@@ -77,8 +77,8 @@ private struct BoxAreaSection: View {
     private func phraseRow(_ stats: AreaStatistics?) -> some View {
         if let stats, stats.lockedPhrases + stats.unlockedPhrases > 0 {
             HStack(spacing: DL.Space.l) {
-                Label("box.phrasesUnlocked \(stats.unlockedPhrases)", systemImage: "lock.open.fill")
-                Label("box.phrasesLocked \(stats.lockedPhrases)", systemImage: "lock.fill")
+                Label("box.phrasesUnlocked \(stats.unlockedPhrases.formatted())", systemImage: "lock.open.fill")
+                Label("box.phrasesLocked \(stats.lockedPhrases.formatted())", systemImage: "lock.fill")
                 Spacer(minLength: 0)
             }
             .font(DL.Fonts.caption)
@@ -94,7 +94,7 @@ private struct BoxAreaSection: View {
             Button {
                 model.enqueueArea(area)
             } label: {
-                Label("box.enqueue \(count)", systemImage: "plus.circle.fill")
+                Label("box.enqueue \(count.formatted())", systemImage: "plus.circle.fill")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(DLSoftButtonStyle())
@@ -116,7 +116,7 @@ private struct BoxAreaSection: View {
             }
             .padding(.top, DL.Space.s)
         } label: {
-            Text(expanded ? "box.hideCards" : "box.showCards \(cards.count)")
+            Text(expanded ? "box.hideCards" : "box.showCards \(cards.count.formatted())")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTeal)
         }

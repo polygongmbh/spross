@@ -125,7 +125,7 @@ struct OnboardingView: View {
                 .foregroundStyle(Color.dlTextPrimary)
             ForEach(targetChoices) { candidate in
                 selectionRow(title: Text(verbatim: languageName(candidate.code)),
-                             caption: Text("onboarding.termsCount \(candidate.conceptCount)"),
+                             caption: Text("onboarding.termsCount \(candidate.conceptCount.formatted())"),
                              selected: target == candidate.code) {
                     if candidate.code == source {
                         swapSelections()

@@ -15,7 +15,7 @@ struct StreakFlameView: View {
             Text(verbatim: "🔥")
                 .font(.title2)
                 .accessibilityHidden(true)
-            Text("\(days)")
+            Text(days.formatted())
                 .font(DL.Fonts.statValue)
                 .foregroundStyle(Color.dlTextPrimary)
             Text(days == 1 ? "common.dayOne" : "common.dayMany")
@@ -26,7 +26,7 @@ struct StreakFlameView: View {
         .padding(.vertical, DL.Space.m)
         .background(Color.dlSurfaceTint, in: Capsule())
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(Text("a11y.streakDays \(days)"))
+        .accessibilityLabel(Text("a11y.streakDays \(days.formatted())"))
     }
 }
 
@@ -84,7 +84,7 @@ struct DueCountRing: View {
                 .stroke(Color.dlAccent, style: StrokeStyle(lineWidth: 8, lineCap: .round))
                 .rotationEffect(.degrees(-90))
             VStack(spacing: 0) {
-                Text("\(remaining)")
+                Text(remaining.formatted())
                     .font(DL.Fonts.statValue)
                     .foregroundStyle(Color.dlTextPrimary)
                     .minimumScaleFactor(0.6)
@@ -97,7 +97,7 @@ struct DueCountRing: View {
         .frame(width: size, height: size)
         .animation(.easeOut(duration: 0.4), value: fraction)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("a11y.dueOfTotal \(remaining) \(total)"))
+        .accessibilityLabel(Text("a11y.dueOfTotal \(remaining.formatted()) \(total.formatted())"))
     }
 }
 
@@ -123,7 +123,7 @@ struct AreaChip: View {
                     .foregroundStyle(Color.dlTextPrimary)
                     .lineLimit(1)
                 Spacer(minLength: DL.Space.s)
-                Text("progress.consolidatedFresh \(sitting) \(learning)")
+                Text("progress.consolidatedFresh \(sitting.formatted()) \(learning.formatted())")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
             }

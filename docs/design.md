@@ -52,10 +52,14 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
 - Chrome strings are SYMBOLIC catalog keys (`settings.source.title`), never source
   text in either language: copy edits then never detach a translation, and a new
   chrome language is additive in `Localizable.xcstrings`.
-  Arguments stay in the key (`heute.session.reviews %lld`) so resolution keeps running
+  Arguments stay in the key (`heute.session.reviews %@`) so resolution keeps running
   through `LocalizedStringKey` against the environment locale — `String(localized:)`
-  would read the device language instead. Errors take the same path:
-  `AppModel` reports a `LoadFailure` case, the view turns it into `Text`.
+  would read the device language instead. They are pre-formatted at the call site
+  (`\(due.formatted())`, never a bare `\(due)`): Xcode's index-based extractor writes
+  `%@` for every argument, so an Int interpolation — `%lld` to the compiler — leaves the
+  two disagreeing, and opening the project rewrites the catalog with dead twins.
+  Errors take the same path: `AppModel` reports a `LoadFailure` case, the view
+  turns it into `Text`.
 - Area titles come from the catalog per source language; the emoji map stays app-side.
 
 ## Presentation model in the UI

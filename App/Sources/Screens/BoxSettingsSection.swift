@@ -136,7 +136,7 @@ struct BoxSettingsSection: View {
                         .font(DL.Fonts.headline)
                         .foregroundStyle(Color.dlTextPrimary)
                     Spacer()
-                    Text("\(maxLearningBinding.wrappedValue)")
+                    Text(maxLearningBinding.wrappedValue.formatted())
                         .font(DL.Fonts.statValue)
                         .foregroundStyle(Color.dlAccent)
                         .monospacedDigit()

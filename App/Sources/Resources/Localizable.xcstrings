@@ -1,20 +1,18 @@
 {
   "sourceLanguage" : "de",
   "strings" : {
-    "%@ " : {},
-    "%lld" : {},
-    "a11y.activity14Days %lld" : {
+    "a11y.activity14Days %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktivität der letzten 14 Tage: an %lld Tagen gelernt"
+            "value" : "Aktivität der letzten 14 Tage: an %@ Tagen gelernt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Activity over the last 14 days: practiced on %lld days"
+            "value" : "Activity over the last 14 days: practiced on %@ days"
           }
         }
       }
@@ -35,18 +33,18 @@
         }
       }
     },
-    "a11y.dueOfTotal %lld %lld" : {
+    "a11y.dueOfTotal %@ %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld von %lld Karten fällig"
+            "value" : "%@ von %@ Karten fällig"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld of %2$lld cards due"
+            "value" : "%1$@ of %2$@ cards due"
           }
         }
       }
@@ -115,18 +113,18 @@
         }
       }
     },
-    "a11y.recordSuffix %lld" : {
+    "a11y.recordSuffix %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ", Rekord %lld"
+            "value" : ", Rekord %@"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ", record %lld"
+            "value" : ", record %@"
           }
         }
       }
@@ -147,82 +145,82 @@
         }
       }
     },
-    "a11y.sessionTally %lld %lld %lld" : {
+    "a11y.sessionTally %@ %@ %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld richtig, %lld schwer, %lld daneben"
+            "value" : "%@ richtig, %@ schwer, %@ daneben"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld correct, %2$lld hard, %3$lld wrong"
+            "value" : "%1$@ correct, %2$@ hard, %3$@ wrong"
           }
         }
       }
     },
-    "a11y.streakDays %lld" : {
+    "a11y.streakDays %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Serie: %lld Tage"
+            "value" : "Serie: %@ Tage"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Streak: %lld days"
+            "value" : "Streak: %@ days"
           }
         }
       }
     },
-    "a11y.streakInARow %lld" : {
+    "a11y.streakInARow %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Serie: %lld in Folge"
+            "value" : "Serie: %@ in Folge"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Streak: %lld in a row"
+            "value" : "Streak: %@ in a row"
           }
         }
       }
     },
-    "box.cardsInProgress %lld %lld" : {
+    "box.cardsInProgress %@ %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld von %lld Karten in Arbeit"
+            "value" : "%@ von %@ Karten in Arbeit"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld of %2$lld cards in progress"
+            "value" : "%1$@ of %2$@ cards in progress"
           }
         }
       }
     },
-    "box.enqueue %lld" : {
+    "box.enqueue %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pack in die Box (%lld)"
+            "value" : "Pack in die Box (%@)"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add to box (%lld)"
+            "value" : "Add to box (%@)"
           }
         }
       }
@@ -259,50 +257,50 @@
         }
       }
     },
-    "box.phrasesLocked %lld" : {
+    "box.phrasesLocked %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld gesperrt"
+            "value" : "%@ gesperrt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld locked"
+            "value" : "%@ locked"
           }
         }
       }
     },
-    "box.phrasesUnlocked %lld" : {
+    "box.phrasesUnlocked %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld Sätze freigeschaltet"
+            "value" : "%@ Sätze freigeschaltet"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld sentences unlocked"
+            "value" : "%@ sentences unlocked"
           }
         }
       }
     },
-    "box.showCards %lld" : {
+    "box.showCards %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld Karten anzeigen"
+            "value" : "%@ Karten anzeigen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Show %lld cards"
+            "value" : "Show %@ cards"
           }
         }
       }
@@ -579,18 +577,18 @@
         }
       }
     },
-    "heute.done.tomorrowDue %lld" : {
+    "heute.done.tomorrowDue %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Morgen warten %lld Karten auf dich."
+            "value" : "Morgen warten %@ Karten auf dich."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld cards will be waiting for you tomorrow."
+            "value" : "%@ cards will be waiting for you tomorrow."
           }
         }
       }
@@ -659,18 +657,18 @@
         }
       }
     },
-    "heute.session.newCards %lld" : {
+    "heute.session.newCards %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld neue Karten"
+            "value" : "%@ neue Karten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld new cards"
+            "value" : "%@ new cards"
           }
         }
       }
@@ -691,18 +689,18 @@
         }
       }
     },
-    "heute.session.reviews %lld" : {
+    "heute.session.reviews %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld Wiederholungen"
+            "value" : "%@ Wiederholungen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld reviews"
+            "value" : "%@ reviews"
           }
         }
       }
@@ -835,18 +833,18 @@
         }
       }
     },
-    "onboarding.termsCount %lld" : {
+    "onboarding.termsCount %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld Begriffe"
+            "value" : "%@ Begriffe"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld terms"
+            "value" : "%@ terms"
           }
         }
       }
@@ -995,18 +993,18 @@
         }
       }
     },
-    "progress.consolidatedFresh %lld %lld" : {
+    "progress.consolidatedFresh %@ %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld gefestigt · %lld frisch"
+            "value" : "%@ gefestigt · %@ frisch"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld consolidated · %2$lld fresh"
+            "value" : "%1$@ consolidated · %2$@ fresh"
           }
         }
       }
@@ -1139,18 +1137,18 @@
         }
       }
     },
-    "session.cardPosition %lld %lld" : {
+    "session.cardPosition %@ %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Karte %lld von %lld"
+            "value" : "Karte %@ von %@"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Card %1$lld of %2$lld"
+            "value" : "Card %1$@ of %2$@"
           }
         }
       }
@@ -1251,50 +1249,50 @@
         }
       }
     },
-    "session.summary.consolidated %lld" : {
+    "session.summary.consolidated %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld gefestigt"
+            "value" : "%@ gefestigt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld consolidated"
+            "value" : "%@ consolidated"
           }
         }
       }
     },
-    "session.summary.new %lld" : {
+    "session.summary.new %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld neu"
+            "value" : "%@ neu"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld new"
+            "value" : "%@ new"
           }
         }
       }
     },
-    "session.summary.reviewed %lld" : {
+    "session.summary.reviewed %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld wiederholt"
+            "value" : "%@ wiederholt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld reviewed"
+            "value" : "%@ reviewed"
           }
         }
       }
@@ -1475,18 +1473,18 @@
         }
       }
     },
-    "trainer.bestStreak %lld" : {
+    "trainer.bestStreak %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beste Serie: 🔥 %lld in Folge"
+            "value" : "Beste Serie: 🔥 %@ in Folge"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Best streak: 🔥 %lld in a row"
+            "value" : "Best streak: 🔥 %@ in a row"
           }
         }
       }
@@ -1507,34 +1505,34 @@
         }
       }
     },
-    "trainer.digits %lld" : {
+    "trainer.digits %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🔢 %lld Stellen"
+            "value" : "🔢 %@ Stellen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🔢 %lld digits"
+            "value" : "🔢 %@ digits"
           }
         }
       }
     },
-    "trainer.level %lld" : {
+    "trainer.level %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stufe %lld"
+            "value" : "Stufe %@"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Level %lld"
+            "value" : "Level %@"
           }
         }
       }
@@ -1651,34 +1649,34 @@
         }
       }
     },
-    "trainer.record %lld" : {
+    "trainer.record %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rekord %lld"
+            "value" : "Rekord %@"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Record %lld"
+            "value" : "Record %@"
           }
         }
       }
     },
-    "trainer.streak %lld" : {
+    "trainer.streak %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🔥 %lld in Folge"
+            "value" : "🔥 %@ in Folge"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🔥 %lld in a row"
+            "value" : "🔥 %@ in a row"
           }
         }
       }
@@ -1699,18 +1697,18 @@
         }
       }
     },
-    "trainer.tasksDone %lld" : {
+    "trainer.tasksDone %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld Aufgaben 🎯"
+            "value" : "%@ Aufgaben 🎯"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld tasks 🎯"
+            "value" : "%@ tasks 🎯"
           }
         }
       }

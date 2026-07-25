@@ -39,12 +39,12 @@ struct SessionScaffold<Content: View>: View {
     /// `Text` (not a String) so it localizes via the environment locale.
     private var progressAccessibility: Text {
         if outcomes.isEmpty {
-            return Text("session.cardPosition \(position) \(total)")
+            return Text("session.cardPosition \(position.formatted()) \(total.formatted())")
         }
         let right = outcomes.filter { $0 == .right }.count
         let tough = outcomes.filter { $0 == .tough }.count
         let wrong = outcomes.filter { $0 == .wrong }.count
-        return Text("a11y.sessionTally \(right) \(tough) \(wrong)")
+        return Text("a11y.sessionTally \(right.formatted()) \(tough.formatted()) \(wrong.formatted())")
     }
 
     var body: some View {
@@ -131,9 +131,9 @@ struct SessionCompletionView: View {
     /// as `Text` so each part localizes via the environment locale.
     private var summaryText: Text {
         var parts: [Text] = []
-        if newCount > 0 { parts.append(Text("session.summary.new \(newCount)")) }
-        if graduatedCount > 0 { parts.append(Text("session.summary.consolidated \(graduatedCount)")) }
-        if reviewCount > 0 { parts.append(Text("session.summary.reviewed \(reviewCount)")) }
+        if newCount > 0 { parts.append(Text("session.summary.new \(newCount.formatted())")) }
+        if graduatedCount > 0 { parts.append(Text("session.summary.consolidated \(graduatedCount.formatted())")) }
+        if reviewCount > 0 { parts.append(Text("session.summary.reviewed \(reviewCount.formatted())")) }
         return parts.joined() ?? Text("session.summary.allDone")
     }
 
