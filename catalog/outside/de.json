@@ -168,6 +168,13 @@
     "plural": "-e"
    }
   },
+  "river": {
+   "text": "Fluss",
+   "grammar": {
+    "gender": "der",
+    "plural": "Flüsse"
+   }
+  },
   "left": {
    "text": "links"
   },

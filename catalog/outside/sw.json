@@ -103,6 +103,12 @@
     "plural": "pepo"
    }
   },
+  "river": {
+   "text": "mto",
+   "grammar": {
+    "plural": "mito"
+   }
+  },
   "left": {
    "text": "kushoto"
   },
