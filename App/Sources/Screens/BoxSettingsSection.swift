@@ -18,9 +18,7 @@ struct BoxSettingsSection: View {
                 .foregroundStyle(Color.dlTextPrimary)
 
             VStack(alignment: .leading, spacing: DL.Space.l) {
-                sourceRow
-                Divider().overlay(Color.dlSeparator)
-                targetRow
+                profileRow
                 Divider().overlay(Color.dlSeparator)
                 maxLearningRow
                 Divider().overlay(Color.dlSeparator)
@@ -71,51 +69,63 @@ struct BoxSettingsSection: View {
         return URL(string: "mailto:\(Self.feedbackAddress)?subject=\(subject)")
     }
 
-    /// Segmented rows are "🇩🇪 German" — the compact form; four options share
-    /// one line here. Sentence chrome (reset dialog) stays native.
-    private func pickerName(_ code: String) -> String {
-        LanguageNames.pickerSegment(code, catalog: model.catalog)
-    }
-
     // MARK: Rows
 
-    /// The known language ("I speak"). Switching re-joins in place —
-    /// schedules are keyed by card id, so all progress survives. Picking the
-    /// language currently being LEARNED swaps the pair.
-    private var sourceRow: some View {
+    /// The pair, side by side. Both menus list every covered language, so
+    /// picking the one the OTHER side holds swaps them; switching the known
+    /// language re-joins in place (schedules are keyed by card id, so all
+    /// progress survives), and each target keeps its own box.
+    private var profileRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("settings.source.title")
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
-            Picker("settings.source.title", selection: sourceBinding) {
-                ForEach(sourceChoices, id: \.self) { candidate in
-                    Text(verbatim: pickerName(candidate)).tag(candidate)
-                }
+            HStack(alignment: .top, spacing: DL.Space.l) {
+                languageMenu(title: "settings.source.title",
+                             selection: sourceBinding, choices: sourceChoices)
+                languageMenu(title: "settings.target.title",
+                             selection: targetBinding, choices: targetChoices)
             }
-            .pickerStyle(.segmented)
-            Text("settings.source.hint")
+            Text("settings.profile.hint")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }
     }
 
-    /// The target language ("I'm learning") — one box per target. Picking the
-    /// language currently SPOKEN swaps the pair.
-    private var targetRow: some View {
+    /// A dropdown per side. The collapsed label carries the English exonym
+    /// alone — it has half a row to live in — while the menu itself has room
+    /// for "🇺🇦 Українська · Ukrainian".
+    private func languageMenu(title: LocalizedStringKey, selection: Binding<String>,
+                              choices: [String]) -> some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("settings.target.title")
+            Text(title)
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            Picker("settings.target.title", selection: targetBinding) {
-                ForEach(targetChoices, id: \.self) { candidate in
-                    Text(verbatim: pickerName(candidate)).tag(candidate)
+            Menu {
+                Picker(title, selection: selection) {
+                    ForEach(choices, id: \.self) { candidate in
+                        Text(verbatim: LanguageNames.pickerRow(candidate, catalog: model.catalog))
+                            .tag(candidate)
+                    }
                 }
+            } label: {
+                HStack(spacing: DL.Space.xs) {
+                    Text(verbatim: LanguageNames.pickerLabel(selection.wrappedValue,
+                                                             catalog: model.catalog))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                    Spacer(minLength: 0)
+                    Image(systemName: "chevron.up.chevron.down")
+                        .font(.caption2)
+                }
+                .foregroundStyle(Color.dlTextPrimary)
+                .padding(.vertical, DL.Space.s)
+                .padding(.horizontal, DL.Space.m)
+                .background(
+                    RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
+                        .fill(Color.dlSurfaceTint)
+                )
             }
-            .pickerStyle(.segmented)
-            Text("settings.target.hint")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+            .accessibilityLabel(Text(title))
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var maxLearningRow: some View {

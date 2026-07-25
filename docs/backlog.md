@@ -26,6 +26,11 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## Localization
 
+- Xcode rewrites `Localizable.xcstrings` behind the build: its index-based extractor
+  reads `Text("key \(count)")` as `%@` where the compiler emits `%lld`,
+  so opening the project adds dead `%@` twins and marks the live keys stale.
+  Interpolating pre-formatted strings would make both agree — until then,
+  diff the catalog against the compiler's `.stringsdata` before committing it.
 - No plural rules in `Localizable.xcstrings`: counted strings read "1 Stellen",
   "1 Wiederholungen" in German and English alike.
   Symbolic keys make per-language plural variations a catalog-only change now.

@@ -44,8 +44,8 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
   Either picker may hold the other side's language — picking it swaps the pair.
 - Picker rows carry the flag, the language's own name, and the English exonym
   ("🇺🇦 Українська · Ukrainian"): a flag beside an unreadable script is easy to
-  mistake for a neighbouring language. The settings segmented control is too
-  narrow for both and keeps the exonym alone.
+  mistake for a neighbouring language. Settings shows the pair as two dropdowns
+  side by side; only their collapsed labels shorten to the exonym alone.
 - UI chrome renders in the KNOWN language when chrome exists (de/en today), otherwise en.
   Onboarding follows the source being PICKED — device language first, re-rendering on
   each tap — so the greeting is already in the user's language.

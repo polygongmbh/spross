@@ -60,9 +60,10 @@ enum LanguageNames {
         return "\(info.flag) \(info.name) · \(info.englishName)"
     }
 
-    /// Compact form for the settings segmented control, where four options share
-    /// one line and both names would truncate: flag + English exonym only.
-    static func pickerSegment(_ code: String, catalog: Catalog?) -> String {
+    /// Collapsed form for a dropdown's own label, which has half a row to live
+    /// in: flag + English exonym, the shorter of the two names and the one that
+    /// stays identifiable to everyone.
+    static func pickerLabel(_ code: String, catalog: Catalog?) -> String {
         guard let info = catalog?.languages[code] else { return code.uppercased() }
         return "\(info.flag) \(info.englishName)"
     }

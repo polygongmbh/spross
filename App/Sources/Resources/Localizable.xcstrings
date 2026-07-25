@@ -1363,6 +1363,22 @@
         }
       }
     },
+    "settings.profile.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten; jede gelernte Sprache hat ihre eigene Box."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switching the language you speak keeps all your progress; each language you learn has its own box."
+          }
+        }
+      }
+    },
     "settings.reset.button" : {
       "localizations" : {
         "de" : {
@@ -1411,22 +1427,6 @@
         }
       }
     },
-    "settings.source.hint" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Switching the language you speak keeps all your progress."
-          }
-        }
-      }
-    },
     "settings.source.title" : {
       "localizations" : {
         "de" : {
@@ -1439,22 +1439,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "I speak"
-          }
-        }
-      }
-    },
-    "settings.target.hint" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jede Sprache hat ihre eigene Box."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Each language has its own box."
           }
         }
       }
