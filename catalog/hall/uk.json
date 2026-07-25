@@ -104,10 +104,16 @@
    "text": "всередині"
   },
   "do-you-have-the-keys": {
-   "text": "Ти взяв(-ла) ключі?"
+   "text": "Ти взяв ключі?",
+   "variants": [
+    "Ти взяла ключі?"
+   ]
   },
   "ill-be-right-back": {
    "text": "Я скоро повернуся!"
+  },
+  "take-off-your-shoes": {
+   "text": "Роззуйся."
   },
   "hurry-were-late": {
    "text": "Поквапся, ми запізнюємось!"
@@ -118,14 +124,11 @@
   "welcome-home": {
    "text": "З поверненням!"
   },
-  "dont-forget-your-jacket": {
-   "text": "Не забудь куртку!"
-  },
-  "take-off-your-shoes": {
-   "text": "Роззуйся."
-  },
   "the-doorbell-suddenly-rang": {
    "text": "Раптом подзвонили у двері."
+  },
+  "dont-forget-your-jacket": {
+   "text": "Не забудь куртку!"
   },
   "put-on-the-jacket": {
    "text": "одягати куртку"

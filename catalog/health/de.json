@@ -175,9 +175,6 @@
   "feel": {
    "text": "sich fühlen"
   },
-  "i-have-an-appointment-at-ten": {
-   "text": "Ich habe um zehn Uhr einen Termin in der Praxis."
-  },
   "my-throat-hurts-a-lot": {
    "text": "Mein Hals tut sehr weh."
   },
@@ -204,6 +201,9 @@
    "variants": [
     "Zeig mir bitte deine Versichertenkarte."
    ]
+  },
+  "the-practice-is-closed": {
+   "text": "Die Praxis ist geschlossen."
   }
  }
 }

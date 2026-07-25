@@ -88,6 +88,9 @@
   },
   "can-we-postpone-the-appointment": {
    "text": "Können wir den Termin verschieben?"
+  },
+  "i-have-an-appointment-at-ten": {
+   "text": "Ich habe um zehn Uhr einen Termin."
   }
  }
 }

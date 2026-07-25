@@ -109,6 +109,9 @@
     "de": "варити = im Wasser kochen · готувати = zubereiten"
    }
   },
+  "the-pot-is-still-on-the-stove": {
+   "text": "Каструля ще стоїть на плиті."
+  },
   "wash-the-dishes-in-the-sink": {
    "text": "Помий посуд у мийці!"
   },
@@ -122,10 +125,10 @@
    "text": "Можеш накрити на стіл?"
   },
   "the-water-is-boiling-hot": {
-   "text": "Вода кипить — дуже гаряча!"
+   "text": "Вода кипить."
   },
-  "the-pot-is-still-on-the-stove": {
-   "text": "Каструля ще стоїть на плиті."
+  "careful-very-hot": {
+   "text": "Обережно, дуже гаряче!"
   }
  }
 }

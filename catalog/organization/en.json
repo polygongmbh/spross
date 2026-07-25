@@ -63,6 +63,9 @@
   },
   "can-we-postpone-the-appointment": {
    "text": "Can we postpone the appointment?"
+  },
+  "i-have-an-appointment-at-ten": {
+   "text": "I have an appointment at ten."
   }
  }
 }

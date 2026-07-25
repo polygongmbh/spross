@@ -146,13 +146,6 @@
   "kind": "verb"
  },
  {
-  "slug": "i-have-an-appointment-at-ten",
-  "kind": "phrase",
-  "components": [
-   "practice"
-  ]
- },
- {
   "slug": "my-throat-hurts-a-lot",
   "kind": "phrase",
   "components": [
@@ -192,6 +185,13 @@
   "kind": "phrase",
   "components": [
    "insurance-card"
+  ]
+ },
+ {
+  "slug": "the-practice-is-closed",
+  "kind": "phrase",
+  "components": [
+   "practice"
   ]
  }
 ]

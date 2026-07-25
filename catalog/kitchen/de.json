@@ -207,7 +207,10 @@
    "text": "Kannst du den Tisch decken?"
   },
   "the-water-is-boiling-hot": {
-   "text": "Das Wasser kocht — es ist sehr heiß!"
+   "text": "Das Wasser kocht."
+  },
+  "careful-very-hot": {
+   "text": "Vorsicht, sehr heiß!"
   }
  }
 }

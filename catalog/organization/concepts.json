@@ -102,5 +102,12 @@
    "appointment",
    "postpone"
   ]
+ },
+ {
+  "slug": "i-have-an-appointment-at-ten",
+  "kind": "phrase",
+  "components": [
+   "appointment"
+  ]
  }
 ]

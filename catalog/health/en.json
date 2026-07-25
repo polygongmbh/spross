@@ -97,9 +97,6 @@
   "feel": {
    "text": "to feel"
   },
-  "i-have-an-appointment-at-ten": {
-   "text": "I have an appointment at ten at the doctor's office."
-  },
   "my-throat-hurts-a-lot": {
    "text": "My throat hurts a lot."
   },
@@ -117,6 +114,9 @@
   },
   "show-me-your-insurance-card": {
    "text": "Show me your insurance card."
+  },
+  "the-practice-is-closed": {
+   "text": "The doctor's office is closed."
   }
  }
 }

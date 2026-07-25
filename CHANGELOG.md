@@ -47,6 +47,11 @@
   keeps the greetings and politeness formulas.
 - **"anziehen" is one word again**, not two: a single *sich anziehen* card in the
   hallway, with "die Jacke anziehen" as a phrase that unlocks from it and the jacket.
+- **Shorter sentences to type**: no card crams two statements into one answer any more
+  ("Das Wasser kocht — es ist sehr heiß!" is now two cards, the warning half unlocking
+  from *Vorsicht*), and the longest sentences lost the words that carried no meaning.
+  Ukrainian phrases that spelled both gender endings into the answer
+  ("Я втомився (втомилася).") now accept either but ask you to type only one.
 
 ## 1.0.0 — 2026-07-25
 

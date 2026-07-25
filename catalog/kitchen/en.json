@@ -125,7 +125,10 @@
    "text": "Can you set the table?"
   },
   "the-water-is-boiling-hot": {
-   "text": "The water is boiling — it's very hot!"
+   "text": "The water is boiling."
+  },
+  "careful-very-hot": {
+   "text": "Careful, very hot!"
   }
  }
 }

@@ -209,5 +209,12 @@
   "components": [
    "cook"
   ]
+ },
+ {
+  "slug": "careful-very-hot",
+  "kind": "phrase",
+  "components": [
+   "careful"
+  ]
  }
 ]
