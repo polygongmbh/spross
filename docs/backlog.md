@@ -7,6 +7,9 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## Content & catalog
 
+- uk plural sweep unverified by a native speaker: the irregular forms authored in
+  `catalog/*/uk.json` (stem alternations, fleeting vowels, agreeing phrases) are
+  LLM-authored — the substantivized `лікарняні` and the phrase plurals most of all.
 - uk native-verification sweep pending for the 4 LLM-adapted twin realizations —
   kitchen pot-on-stove, hall doorbell-rang, desk laptop-charge, desk wifi-gone
   (method: `../../docs/sprachposter-learnings.md`).
