@@ -76,6 +76,10 @@
   "kind": "verb"
  },
  {
+  "slug": "pick-up",
+  "kind": "verb"
+ },
+ {
   "slug": "extend",
   "kind": "verb"
  },

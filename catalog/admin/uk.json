@@ -61,6 +61,9 @@
     "de": "typisch mit Objekt: «подавати документи» = Dokumente einreichen"
    }
   },
+  "pick-up": {
+   "text": "забирати посвідчення"
+  },
   "extend": {
    "text": "продовжувати"
   },

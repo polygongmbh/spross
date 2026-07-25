@@ -55,6 +55,9 @@
   *Medikamente abholen* is `kuchukua dawa`, *losgehen* is `kuondoka nyumbani`,
   *Pause machen* is `kupumzika kazini`. Only "mto" (pillow and river) is still
   one word for two things, which is simply what the word means.
+  "abholen" moved to the office area as *den Ausweis abholen*, where collecting a
+  document is the counterpart to handing one in — the doctor's area no longer has
+  four ways to say "medicine".
 
 ## 1.0.0 — 2026-07-25
 
