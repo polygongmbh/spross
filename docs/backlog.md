@@ -12,10 +12,6 @@ One line per item, with a file or context pointer, filed under the section it be
   (method: `../../docs/sprachposter-learnings.md`).
 - Phrase→component auto-linking gaps: ~half of phrases carry no `components`
   (naive matcher — `catalog/README.md` § concepts.json).
-- Swahili plurals authored for only 71 of 246 nouns:
-  the ki-/vi- and m-/mi- classes are largely unmarked
-  (`kiti`→viti, `kisu`→visu, `mlango`→milango, `mti`→miti in `catalog/*/sw.json`),
-  so the card shows no plural line where the class change is the whole lesson.
 
 ## Engine & scheduling
 
