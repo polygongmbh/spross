@@ -151,6 +151,21 @@ class AnswerNormalizerTests {
     }
 
     @Test
+    fun articleLeniencyOffRequiresTheAuthoredArticle() {
+        val strict = AnswerNormalizer(catalog.languages.getValue("de"), articleLeniency = false)
+        val zug = card("de", "der Zug") // synthetic drill card: no gender grammar
+        assertEquals(Match.Exact, strict.evaluate("der Zug", zug))
+        assertEquals(Match.Wrong, strict.evaluate("die zug", zug)) // wrong article
+        assertEquals(Match.Wrong, strict.evaluate("das zug", zug)) // wrong article
+        assertEquals(Match.Wrong, strict.evaluate("zug", zug)) // missing article
+        // A matching article keeps the typo budget on the rest.
+        assertEquals(Match.Typo("der Zug"), strict.evaluate("der Zuk", zug))
+        // Strict normalize keeps the article; the lenient default still strips it.
+        assertEquals("der zug", strict.normalize("Der Zug!"))
+        assertEquals("zug", de.normalize("Der Zug!"))
+    }
+
+    @Test
     fun decomposedUnicodeAndArticleInsideSynonymConverge() {
         val door = joined(swToDe, "gamma/door") // NFD "Tür", synonym "die  Türe"
         assertEquals(Match.Exact, de.evaluate("Tür", door))

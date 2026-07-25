@@ -30,8 +30,20 @@ sealed interface Match {
  * a verb, any listed citation prefix (en `"to "`, sw `ku`/`kw`) is optional →
  * Damerau-Levenshtein (OSA) typo budget. Accepted forms = target
  * `text ∪ synonyms ∪ variants`.
+ *
+ * [articleLeniency] (the one-arg constructor's default, true) is that
+ * optional-article contract for vocab reviews. Drill callers grading article
+ * choice itself pass false: [normalize] keeps the leading article, and a form
+ * only matches when the typed leading article equals the form's authored one —
+ * a wrong or missing article grades [Match.Wrong], never typo-bridges.
  */
-class AnswerNormalizer(answerLanguage: LanguageInfo) {
+class AnswerNormalizer(
+    answerLanguage: LanguageInfo,
+    private val articleLeniency: Boolean,
+) {
+
+    /** Lenient vocab-review default; explicit secondary init keeps the ObjC/Swift signature. */
+    constructor(answerLanguage: LanguageInfo) : this(answerLanguage, articleLeniency = true)
 
     private val articles: Set<String> = answerLanguage.articles.map { it.lowercase() }.toSet()
     private val verbPrefixes: List<String> = answerLanguage.optionalVerbPrefixes
@@ -39,12 +51,13 @@ class AnswerNormalizer(answerLanguage: LanguageInfo) {
         .filter { it.isNotEmpty() }
 
     /**
-     * Canonical comparison form. A leading listed article is stripped only when more
-     * words follow — typing just "die" must never match "die Spülmaschine".
+     * Canonical comparison form. Under [articleLeniency] a leading listed article is
+     * stripped, and only when more words follow — typing just "die" must never match
+     * "die Spülmaschine"; with leniency off the article stays part of the form.
      */
     fun normalize(raw: String): String {
         var words = tokenize(raw)
-        if (words.size > 1 && words.first() in articles) words = words.subList(1, words.size)
+        if (articleLeniency && words.size > 1 && words.first() in articles) words = words.subList(1, words.size)
         return words.joinToString(" ")
     }
 
@@ -74,10 +87,15 @@ class AnswerNormalizer(answerLanguage: LanguageInfo) {
         val normalizedInput = normalize(input)
         if (normalizedInput.isEmpty()) return Match.Wrong
         val inputVariants = prefixVariants(normalizedInput, prefixes)
+        val inputArticle = if (articleLeniency) null else leadingArticle(input)
 
         var best: Match = Match.Wrong
         var bestForm: String? = null
         for (form in accepted) {
+            // why: with leniency off a wrong or missing leading article must
+            // grade Wrong — the form is out entirely, so the typo budget can
+            // never bridge "die zug" to "der Zug".
+            if (!articleLeniency && leadingArticle(form) != inputArticle) continue
             val target = normalize(form)
             if (target.isEmpty()) continue
             val candidates = prefixVariants(target, prefixes)

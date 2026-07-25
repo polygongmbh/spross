@@ -173,6 +173,11 @@ day-key `yyyy-MM-dd`) with:
   the same way, space-preserving — en `"to "`) optional on both sides → Damerau-Levenshtein
   typo budget (v1 formula) → article-mismatch-demotes-to-typo only when the expected
   answer's grammar carries `gender`; stray-short-leading-word rule unchanged.
+  Article leniency is constructor-opt-out for drill grading:
+  `AnswerNormalizer(language, articleLeniency = false)` keeps the article in `normalize`
+  and only matches a form whose leading article equals the typed one —
+  wrong or missing article grades Wrong (never typo-bridged);
+  the one-arg init stays the lenient vocab-review default (both inits in the ObjC header).
 
 ## 7. Store & snapshots
 
