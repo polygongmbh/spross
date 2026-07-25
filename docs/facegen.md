@@ -1,7 +1,7 @@
 # facegen — vocabulary cards for the Apple Watch Photos face
 
 `tools/FaceGen` is a macOS command-line tool
-that renders DuoLernen vocabulary cards as poster-style PNG images,
+that renders Spross vocabulary cards as poster-style PNG images,
 sized for the Apple Watch **Photos watch face**.
 
 ## Why the Photos face

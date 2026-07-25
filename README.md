@@ -19,7 +19,7 @@ and self-graded recognition of the same schedule.
   domain model, catalog join, FSRS-6, box engine, session composer,
   answer normalizer, trainers, snapshot builders, store facade.
   Pure logic, time injected (`nowEpochMillis`/`tzId`), fully unit-tested.
-  Engine contract: `docs/kern-design.md`.
+  Engine contract: `kern/README.md`.
 - `App/` — SwiftUI app: design system (poster-derived theme), file-backed store
   (one document per target language), screens (Heute / Box / Fortschritt).
   The only target that links the Kotlin framework.

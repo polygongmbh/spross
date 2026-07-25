@@ -49,7 +49,7 @@ struct WidgetSnapshot: Codable {
     }
 
     /// FSRS-6 trainable decay default (`w20`). DELIBERATE duplication of the
-    /// Kern constant (kern-design.md §7): the widget cannot link the engine,
+    /// Kern constant (kern/README.md §7): the widget cannot link the engine,
     /// so the retrievability power curve is re-implemented here verbatim.
     static let w20 = 0.1542
 
@@ -72,7 +72,7 @@ struct WidgetSnapshot: Codable {
     }
 
     /// Streak walk — DELIBERATE duplication of Kern `Statistics.streak`
-    /// (kern-design.md §7). Walk back from today: today without reviews
+    /// (kern/README.md §7). Walk back from today: today without reviews
     /// neither breaks the streak nor consumes forgiveness (the day isn't
     /// over); afterwards exactly ONE 0-review day is forgiven, the next miss
     /// ends the streak. Forgiven days do not increment the count.

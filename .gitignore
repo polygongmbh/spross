@@ -11,4 +11,3 @@ build/
 .gradle/
 .kotlin/
 local.properties
-kmp/kern/build/

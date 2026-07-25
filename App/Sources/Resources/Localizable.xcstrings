@@ -1467,17 +1467,6 @@
     "Which language do you speak?" : {
 
     },
-    "Willkommen bei DuoLernen" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Welcome to DuoLernen"
-          }
-        }
-      }
-    },
     "Willkommen bei Spross" : {
 
     },

@@ -52,7 +52,7 @@ struct AnswerInputView: View {
                 .onSubmit(onSubmit)
                 // why: on wrong answers Enter/tap must advance the session
                 // instead; on correct the field stays enabled so the keyboard
-                // does not bounce during the 800 ms auto-advance.
+                // does not bounce during the 1.2 s auto-advance.
                 .disabled(isRevealed)
             statusIcon
         }

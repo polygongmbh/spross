@@ -105,7 +105,7 @@ differ from the slug — verb `cook` → `"to cook"`, phrase `the-fridge-is-empt
   grammatically distinguishes the feminine (uk `вчителька`; NOT sw or en, which are
   genderless; NOT uk for epicene nouns like колега). It may carry its own female-specific `emoji`
   where one exists (`👩‍🏫`), else none. How this drives per-direction card emission and
-  the ♀ prompt marker is engine behavior — see the KMP brief (`../docs/kmp-rewrite-brief.md`).
+  the ♀ prompt marker is engine behavior — see the engine contract (`../kern/README.md` §2/§3).
 
 **`<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json
