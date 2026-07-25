@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+## 1.1.0 — 2026-07-25
+
+- **The progress line counts what has taken root**: Heute, the widget and the Android
+  stats row drop the retention percentage — a prediction of the scheduler's own making,
+  which sat in the same narrow band whatever you did — for the gefestigt/frisch split.
+  A word counts as gefestigt once it sits firmly enough to let its phrases in,
+  the same milestone the area chips already mark, and struggling words now count
+  in the picture instead of falling out of it.
+
+- **Onboarding speaks your language**: the first-run sheet used to be English on the
+  grounds that your language was not known yet — but it is: your device language
+  already picks your side of the pair. The sheet now opens in that language and
+  follows every tap you make.
+
 - **The reveal's small print can actually be read**: the plural, the "auch: …" alternates,
   the literal gloss and the spelling shown after a typo were set too small and too faint
   to take in — they are now sized and coloured to be read, not squinted at.
@@ -24,6 +38,17 @@
   so the card gives you the form you need to say "two chairs" instead of leaving you
   to guess which class the word belongs to. Words that only exist in the plural
   (maji, maumivu, nguo za kulala) say so.
+
+- **Ukrainian shows the plurals you could not have guessed**: ніж → ножі, день → дні,
+  людина → люди, and the і/о alternation running through договір, вечір, папір —
+  every form the regular declension does not hand you is now written out,
+  including the words that never change and the ones where the adjective has to
+  move with the noun (письмовий стіл → письмові столи). Regular plurals stay
+  unwritten, the way a bare "+s" does in English.
+
+- **Every plural says that it is one**: plurals now read as the finished word behind
+  a "Pl." label — "Pl. watu" under mtu, "Pl. Lehrerinnen" instead of the
+  dictionary-style "Lehrerin, -nen" you had to assemble in your head.
 
 - **Half again as much to learn**: every area gained the everyday words it was missing —
   the kitchen finally has food in it (Brot, Milch, Kaffee, Ei, Käse, Reis, Tasse),
