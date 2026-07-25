@@ -64,8 +64,11 @@
   "take-out-trash": {
    "text": "виносити сміття"
   },
-  "careful-the-knife-is-sharp": {
-   "text": "Обережно, ніж гострий!"
+  "careful": {
+   "text": "обережно"
+  },
+  "the-knife-is-sharp": {
+   "text": "Ніж гострий!"
   },
   "this-tastes-so-good": {
    "text": "Це так смачно!"

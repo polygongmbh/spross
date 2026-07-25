@@ -64,11 +64,14 @@
   "depart": {
    "text": "to depart"
   },
+  "outdoors": {
+   "text": "outside"
+  },
   "hows-the-weather-today": {
    "text": "How's the weather today?"
   },
-  "always-take-an-umbrella": {
-   "text": "Always take an umbrella with you!"
+  "take-an-umbrella": {
+   "text": "Take an umbrella with you!"
   },
   "its-raining": {
    "text": "It's raining."
@@ -76,8 +79,8 @@
   "the-sun-is-shining": {
    "text": "The sun is shining!"
   },
-  "shall-we-take-a-walk-together": {
-   "text": "Shall we go for a walk together?"
+  "shall-we-take-a-walk": {
+   "text": "Shall we go for a walk?"
   },
   "the-bus-is-coming-soon": {
    "text": "The bus is coming soon."
@@ -87,12 +90,6 @@
   },
   "what-a-beautiful-day": {
    "text": "What a beautiful day!"
-  },
-  "definitely-take-an-umbrella": {
-   "text": "Be sure to take an umbrella with you!"
-  },
-  "shall-we-take-a-walk": {
-   "text": "Shall we go for a walk?"
   }
  }
 }

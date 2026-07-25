@@ -76,8 +76,8 @@
   "ill-be-right-back": {
    "text": "I'll be right back!"
   },
-  "take-off-your-shoes-here": {
-   "text": "Please take off your shoes here."
+  "take-off-your-shoes": {
+   "text": "Take off your shoes."
   },
   "hurry-were-late": {
    "text": "Hurry up, we're late!"
@@ -93,9 +93,6 @@
   },
   "dont-forget-your-jacket": {
    "text": "Don't forget your jacket!"
-  },
-  "take-off-your-shoes-at-the-door": {
-   "text": "Please take off your shoes at the door."
   }
  }
 }

@@ -122,7 +122,7 @@
   ]
  },
  {
-  "slug": "can-you-hang-the-laundry-outside",
+  "slug": "can-you-hang-the-laundry",
   "kind": "phrase",
   "components": [
    "laundry",
@@ -145,13 +145,5 @@
   "slug": "the-water-is-cold",
   "kind": "phrase",
   "components": []
- },
- {
-  "slug": "can-you-hang-the-laundry-here",
-  "kind": "phrase",
-  "components": [
-   "laundry",
-   "hang-up"
-  ]
  }
 ]

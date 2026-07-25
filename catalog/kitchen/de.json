@@ -110,8 +110,11 @@
   "take-out-trash": {
    "text": "Müll rausbringen"
   },
-  "careful-the-knife-is-sharp": {
-   "text": "Vorsicht, das Messer ist scharf!"
+  "careful": {
+   "text": "Vorsicht"
+  },
+  "the-knife-is-sharp": {
+   "text": "Das Messer ist scharf!"
   },
   "this-tastes-so-good": {
    "text": "Das schmeckt so lecker!",

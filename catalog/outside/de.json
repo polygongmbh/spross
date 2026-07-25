@@ -110,11 +110,14 @@
   "depart": {
    "text": "abfahren"
   },
+  "outdoors": {
+   "text": "draußen"
+  },
   "hows-the-weather-today": {
    "text": "Wie ist das Wetter heute?"
   },
-  "always-take-an-umbrella": {
-   "text": "Nimm immer einen Regenschirm mit!"
+  "take-an-umbrella": {
+   "text": "Nimm einen Regenschirm mit!"
   },
   "its-raining": {
    "text": "Es regnet."
@@ -122,8 +125,8 @@
   "the-sun-is-shining": {
    "text": "Die Sonne scheint!"
   },
-  "shall-we-take-a-walk-together": {
-   "text": "Wollen wir zusammen spazieren gehen?"
+  "shall-we-take-a-walk": {
+   "text": "Wollen wir spazieren gehen?"
   },
   "the-bus-is-coming-soon": {
    "text": "Der Bus kommt gleich."
@@ -133,12 +136,6 @@
   },
   "what-a-beautiful-day": {
    "text": "Was für ein schöner Tag!"
-  },
-  "definitely-take-an-umbrella": {
-   "text": "Nimm unbedingt einen Regenschirm mit!"
-  },
-  "shall-we-take-a-walk": {
-   "text": "Wollen wir spazieren gehen?"
   }
  }
 }

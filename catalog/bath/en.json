@@ -76,8 +76,8 @@
   "wheres-my-towel": {
    "text": "Where's my towel?"
   },
-  "can-you-hang-the-laundry-outside": {
-   "text": "Can you hang the laundry outside?"
+  "can-you-hang-the-laundry": {
+   "text": "Can you hang the laundry?"
   },
   "dont-forget-to-brush-teeth": {
    "text": "Don't forget to brush your teeth!"
@@ -87,9 +87,6 @@
   },
   "the-water-is-cold": {
    "text": "The water is cold!"
-  },
-  "can-you-hang-the-laundry-here": {
-   "text": "Can you hang the laundry here?"
   }
  }
 }

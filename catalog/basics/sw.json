@@ -34,6 +34,15 @@
   "thank": {
    "text": "kushukuru"
   },
+  "here": {
+   "text": "hapa"
+  },
+  "always": {
+   "text": "daima"
+  },
+  "together": {
+   "text": "pamoja"
+  },
   "hello": {
    "text": "Hujambo!",
    "notes": {
@@ -77,7 +86,7 @@
    "text": "Sijui."
   },
   "pardon": {
-   "text": "Samahani, naomba urudie."
+   "text": "Naomba urudie."
   },
   "i-need-help": {
    "text": "Nahitaji msaada."

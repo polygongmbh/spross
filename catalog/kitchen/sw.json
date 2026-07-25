@@ -64,8 +64,11 @@
   "take-out-trash": {
    "text": "kutupa taka"
   },
-  "careful-the-knife-is-sharp": {
-   "text": "Angalia, kisu ni kikali!"
+  "careful": {
+   "text": "angalia"
+  },
+  "the-knife-is-sharp": {
+   "text": "Kisu ni kikali!"
   },
   "this-tastes-so-good": {
    "text": "Hii ni tamu sana!"

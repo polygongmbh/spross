@@ -67,11 +67,14 @@
   "depart": {
    "text": "kuondoka"
   },
+  "outdoors": {
+   "text": "nje"
+  },
   "hows-the-weather-today": {
    "text": "Hali ya hewa ikoje leo?"
   },
-  "always-take-an-umbrella": {
-   "text": "Chukua mwavuli daima!"
+  "take-an-umbrella": {
+   "text": "Chukua mwavuli!"
   },
   "its-raining": {
    "text": "Mvua inanyesha."
@@ -79,8 +82,8 @@
   "the-sun-is-shining": {
    "text": "Jua linawaka!"
   },
-  "shall-we-take-a-walk-together": {
-   "text": "Twende kutembea pamoja?"
+  "shall-we-take-a-walk": {
+   "text": "Twende kutembea?"
   },
   "the-bus-is-coming-soon": {
    "text": "Basi linakuja sasa hivi."

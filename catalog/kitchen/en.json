@@ -67,8 +67,11 @@
   "take-out-trash": {
    "text": "to take out the trash"
   },
-  "careful-the-knife-is-sharp": {
-   "text": "Careful, the knife is sharp!"
+  "careful": {
+   "text": "careful"
+  },
+  "the-knife-is-sharp": {
+   "text": "The knife is sharp!"
   },
   "this-tastes-so-good": {
    "text": "This tastes so good!"

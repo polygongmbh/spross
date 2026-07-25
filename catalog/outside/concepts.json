@@ -96,6 +96,10 @@
   "kind": "verb"
  },
  {
+  "slug": "outdoors",
+  "kind": "adjective"
+ },
+ {
   "slug": "hows-the-weather-today",
   "kind": "phrase",
   "components": [
@@ -103,7 +107,7 @@
   ]
  },
  {
-  "slug": "always-take-an-umbrella",
+  "slug": "take-an-umbrella",
   "kind": "phrase",
   "components": []
  },
@@ -120,7 +124,7 @@
   ]
  },
  {
-  "slug": "shall-we-take-a-walk-together",
+  "slug": "shall-we-take-a-walk",
   "kind": "phrase",
   "components": [
    "go-for-walk"
@@ -145,17 +149,5 @@
   "slug": "what-a-beautiful-day",
   "kind": "phrase",
   "components": []
- },
- {
-  "slug": "definitely-take-an-umbrella",
-  "kind": "phrase",
-  "components": []
- },
- {
-  "slug": "shall-we-take-a-walk",
-  "kind": "phrase",
-  "components": [
-   "go-for-walk"
-  ]
  }
 ]

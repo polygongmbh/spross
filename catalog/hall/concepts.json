@@ -112,7 +112,7 @@
   "components": []
  },
  {
-  "slug": "take-off-your-shoes-here",
+  "slug": "take-off-your-shoes",
   "kind": "phrase",
   "components": [
    "take-off-shoes"
@@ -145,14 +145,6 @@
   "kind": "phrase",
   "components": [
    "jacket"
-  ]
- },
- {
-  "slug": "take-off-your-shoes-at-the-door",
-  "kind": "phrase",
-  "components": [
-   "take-off-shoes",
-   "door"
   ]
  }
 ]

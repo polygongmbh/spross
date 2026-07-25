@@ -121,8 +121,8 @@
   "ill-be-right-back": {
    "text": "Ich bin gleich zurück!"
   },
-  "take-off-your-shoes-here": {
-   "text": "Zieh die Schuhe bitte hier aus."
+  "take-off-your-shoes": {
+   "text": "Zieh die Schuhe aus."
   },
   "hurry-were-late": {
    "text": "Beeil dich, wir sind spät dran!"
@@ -138,9 +138,6 @@
   },
   "dont-forget-your-jacket": {
    "text": "Vergiss deine Jacke nicht!"
-  },
-  "take-off-your-shoes-at-the-door": {
-   "text": "Zieh die Schuhe bitte an der Tür aus."
   }
  }
 }

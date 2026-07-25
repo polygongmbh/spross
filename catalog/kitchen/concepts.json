@@ -96,10 +96,15 @@
   "kind": "verb"
  },
  {
-  "slug": "careful-the-knife-is-sharp",
+  "slug": "careful",
+  "kind": "adjective"
+ },
+ {
+  "slug": "the-knife-is-sharp",
   "kind": "phrase",
   "components": [
-   "knife"
+   "knife",
+   "careful"
   ]
  },
  {

@@ -124,8 +124,8 @@
   "wheres-my-towel": {
    "text": "Wo ist mein Handtuch?"
   },
-  "can-you-hang-the-laundry-outside": {
-   "text": "Kannst du die Wäsche draußen aufhängen?"
+  "can-you-hang-the-laundry": {
+   "text": "Kannst du die Wäsche aufhängen?"
   },
   "dont-forget-to-brush-teeth": {
    "text": "Vergiss nicht, Zähne zu putzen!"
@@ -135,9 +135,6 @@
   },
   "the-water-is-cold": {
    "text": "Das Wasser ist kalt!"
-  },
-  "can-you-hang-the-laundry-here": {
-   "text": "Kannst du die Wäsche hier aufhängen?"
   }
  }
 }

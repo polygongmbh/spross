@@ -64,6 +64,9 @@
   "depart": {
    "text": "від'їжджати"
   },
+  "outdoors": {
+   "text": "надворі"
+  },
   "hows-the-weather-today": {
    "text": "Яка сьогодні погода?"
   },
@@ -82,8 +85,8 @@
   "what-a-beautiful-day": {
    "text": "Який гарний день!"
   },
-  "definitely-take-an-umbrella": {
-   "text": "Обов'язково візьми парасольку!"
+  "take-an-umbrella": {
+   "text": "Візьми парасольку!"
   },
   "shall-we-take-a-walk": {
    "text": "Може, підемо гуляти?"
