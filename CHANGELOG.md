@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Reorganising the content no longer costs you progress**:
+  a word that moves to another area keeps everything you have learned about it,
+  instead of coming back as if you had never seen it.
+  Card ids change once more to make that possible,
+  so existing boxes start fresh — as at the 1.0.0 rename (pre-production).
 - **The app speaks English end to end now**: settings no longer mix an English
   heading with a German explanation under it, and the trainer, session and box
   screens have their last untranslated corners filled in.

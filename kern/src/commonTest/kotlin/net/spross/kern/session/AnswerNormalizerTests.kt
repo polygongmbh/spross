@@ -55,7 +55,7 @@ class AnswerNormalizerTests {
 
     @Test
     fun acceptedSetSpansTextSynonymsAndVariants() {
-        val mouse = joined(deToUk, "alpha/mouse") // "миша" + synonym "мишеня" + variant "мишка"
+        val mouse = joined(deToUk, "mouse") // "миша" + synonym "мишеня" + variant "мишка"
         assertTrue(uk.matches("миша", mouse))
         assertTrue(uk.matches("мишеня", mouse))
         assertTrue(uk.matches("мишка", mouse)) // variant: never scheduled, still accepted
@@ -64,14 +64,14 @@ class AnswerNormalizerTests {
 
     @Test
     fun sieAndDuVariantsBothAccepted() {
-        val phrase = joined(swToDe, "alpha/the-mouse-runs")
+        val phrase = joined(swToDe, "the-mouse-runs")
         assertEquals(Match.Exact, de.evaluate("Sehen Sie die Maus?", phrase))
         assertEquals(Match.Exact, de.evaluate("Siehst du die Maus?", phrase))
     }
 
     @Test
     fun verbPrefixOptionalOnBothSides() {
-        val cook = joined(deToSw, "alpha/cook") // "kupika"
+        val cook = joined(deToSw, "cook") // "kupika"
         assertEquals(Match.Exact, sw.evaluate("pika", cook))
         assertEquals(Match.Exact, sw.evaluate("kupika", cook))
         // Symmetric: a prefix-less catalog form still accepts prefixed input.
@@ -84,7 +84,7 @@ class AnswerNormalizerTests {
 
     @Test
     fun englishToPrefixIsOptionalAndSpacePreserving() {
-        val cook = joined(deToEn, "alpha/cook") // "to cook"
+        val cook = joined(deToEn, "cook") // "to cook"
         assertEquals(Match.Exact, en.evaluate("cook", cook))
         assertEquals(Match.Exact, en.evaluate("to cook", cook))
     }
@@ -118,7 +118,7 @@ class AnswerNormalizerTests {
 
     @Test
     fun articleMismatchDemotesToTypoOnlyWithGenderGrammar() {
-        val waiter = joined(swToDe, "alpha/waiter") // "Kellner", gender "der"
+        val waiter = joined(swToDe, "waiter") // "Kellner", gender "der"
         assertEquals(Match.Exact, de.evaluate("der Kellner", waiter))
         assertEquals(Match.Exact, de.evaluate("Kellner", waiter)) // missing article stays exact
         assertEquals(Match.Typo("Kellner"), de.evaluate("die Kellner", waiter))
@@ -129,7 +129,7 @@ class AnswerNormalizerTests {
 
     @Test
     fun baseWordOnFeminineCardGradesAsTypoWithFeminineCorrection() {
-        val waiterF = joined(swToDe, "alpha/waiter-f") // ♀-marker join; base target "Kellner"
+        val waiterF = joined(swToDe, "waiter-f") // ♀-marker join; base target "Kellner"
         assertEquals(listOf("Kellner"), waiterF.baseAccepted)
         assertEquals(Match.Exact, de.evaluate("Kellnerin", waiterF))
         assertEquals(Match.Typo("Kellnerin"), de.evaluate("Kellner", waiterF))
@@ -137,25 +137,25 @@ class AnswerNormalizerTests {
         assertEquals(Match.Typo("Kellnerin"), de.evaluate("Kelner", waiterF)) // base typo still demotes
         assertEquals(Match.Wrong, de.evaluate("Tisch", waiterF))
         // The audited real-catalog shape: base word distance 2 from feminine, budget 1.
-        val waiterFUk = joined(deToUk, "alpha/waiter-f")
+        val waiterFUk = joined(deToUk, "waiter-f")
         assertEquals(Match.Typo("офіціантка"), uk.evaluate("офіціант", waiterFUk))
         assertEquals(Match.Exact, uk.evaluate("офіціантка", waiterFUk))
     }
 
     @Test
     fun nonFeminineCardsAndTargetlessBasesCarryNoBaseForms() {
-        val waiter = joined(swToDe, "alpha/waiter")
+        val waiter = joined(swToDe, "waiter")
         assertTrue(waiter.baseAccepted.isEmpty())
         assertEquals(Match.Wrong, de.evaluate("Kellnerin", waiter)) // unchanged: no reverse demotion
         // uk never realizes beta/royal — the feminine card has nothing to demote against.
-        val royalF = joined(deToUk, "beta/royal-f")
+        val royalF = joined(deToUk, "royal-f")
         assertTrue(royalF.baseAccepted.isEmpty())
         assertEquals(Match.Wrong, uk.evaluate("князь", royalF))
     }
 
     @Test
     fun strayShortLeadingWordIsTypoNotFailure() {
-        val panya = joined(deToSw, "alpha/mouse") // "panya"
+        val panya = joined(deToSw, "mouse") // "panya"
         assertEquals(Match.Typo("panya"), sw.evaluate("el panya", panya))
         assertEquals(Match.Wrong, sw.evaluate("großes panya", panya)) // long stray word: not forgiven
         assertEquals(Match.Wrong, sw.evaluate("dee", card("sw", "nyumba"))) // never strips the only word
@@ -222,7 +222,7 @@ class AnswerNormalizerTests {
 
     @Test
     fun decomposedUnicodeAndArticleInsideSynonymConverge() {
-        val door = joined(swToDe, "gamma/door") // NFD "Tür", synonym "die  Türe"
+        val door = joined(swToDe, "door") // NFD "Tür", synonym "die  Türe"
         assertEquals(Match.Exact, de.evaluate("Tür", door))
         assertEquals(Match.Exact, de.evaluate("die Türe", door))
     }

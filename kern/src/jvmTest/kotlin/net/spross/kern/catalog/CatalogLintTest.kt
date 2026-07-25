@@ -58,6 +58,23 @@ class CatalogLintTest {
         }
     }
 
+    /**
+     * The slug IS the card id, so two areas sharing one would fuse two concepts into a
+     * single FSRS schedule. The parser only guarantees uniqueness within an area; this is
+     * the global upgrade, and it is what lets a concept move between areas without
+     * resetting progress (`catalog/README.md`).
+     */
+    @Test
+    fun slugsAreGloballyUnique() {
+        val areasBySlug = mutableMapOf<String, MutableList<String>>()
+        for (area in catalog.areas) {
+            for (concept in area.concepts) areasBySlug.getOrPut(concept.slug) { mutableListOf() } += area.name
+        }
+        for ((slug, areas) in areasBySlug) {
+            assertEquals(1, areas.size, "slug \"$slug\" is claimed by ${areas.sorted()}")
+        }
+    }
+
     @Test
     fun seedIndexUniqueAndStrictlyIncreasing() {
         val indices = catalog.areas.flatMap { it.concepts }.map { it.seedIndex }

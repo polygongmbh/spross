@@ -23,8 +23,8 @@ Edit content HERE and it is what the apps bundle on their next build.
   simply never appears in pairs involving that language. This is how pair-specific
   phrases work: "Fleisch grillen" is a concept with `de` + `sw` realizations and no
   `uk`, so it shows up in de↔sw only — no separate pair files needed.
-- **Homonyms & target-language merges.** Slugs are unique only *within* an area, so one
-  realization text may legitimately serve two concepts in two areas — usually because the
+- **Homonyms & target-language merges.** Slugs are unique, but realization *texts* are not:
+  one text may legitimately serve two concepts in two areas — usually because the
   target language merges a distinction the source draws (sw `kuvaa` = `anziehen` AND
   `sich anziehen`; sw `kupumzika` covers three concepts). There is **no disambiguation
   field**: the **area** is the disambiguator, and the engine renders the area label on an
@@ -101,11 +101,10 @@ seed/introduction order (phrases follow their area's words):
   { "slug": "teacher-f", "kind": "noun", "emoji": "👩‍🏫", "feminineOf": "teacher" },
   { "slug": "the-fridge-is-empty", "kind": "phrase", "components": ["fridge"] } ]
 ```
-Slugs are readable English lemmas, unique **within their area** (the join key is
-`area/slug`). English doubles as the keying language AND a content language: the
-slug is the identity, `en.json` carries the English realization (display text may
-differ from the slug — verb `cook` → `"to cook"`, phrase `the-fridge-is-empty` →
-`"The fridge is empty."`).
+Slugs are readable English lemmas, **globally unique across every area** (lint-enforced).
+English doubles as the keying language AND a content language: the slug is the identity,
+`en.json` carries the English realization (display text may differ from the slug —
+verb `cook` → `"to cook"`, phrase `the-fridge-is-empty` → `"The fridge is empty."`).
 - `components` (phrases only) — same-area word slugs the phrase is built from;
   the box gates a phrase's unlock on those words being learned. Empty = no gate.
 - `adjective` is the catch-all for single words that are neither noun nor verb:
@@ -118,6 +117,18 @@ differ from the slug — verb `cook` → `"to cook"`, phrase `the-fridge-is-empt
   genderless; NOT uk for epicene nouns like колега). It may carry its own female-specific `emoji`
   where one exists (`👩‍🏫`), else none. How this drives per-direction card emission and
   the ♀ prompt marker is engine behavior — see the engine contract (`../kern/README.md` §2/§3).
+
+**The slug IS the card id.** The engine keys each learner's schedule by it,
+and neither the area nor the `kind` appears in that key —
+which is exactly what makes both free to change:
+a concept can move to another area or be reclassified without resetting anyone's progress.
+Global uniqueness is what makes that safe:
+two areas claiming one slug would fuse two concepts into a single schedule,
+so a genuine repeat is disambiguated by qualifying the slug
+(the noun keeps `help`/`plant`/`work`, the verb becomes `to-help`/`to-plant`/`to-work`).
+The price is that **renaming a slug is a breaking act**:
+it orphans the schedule and the word returns as new,
+so rename deliberately, never just to polish a lemma.
 
 **`<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json

@@ -66,7 +66,7 @@ class RealCatalogJoinTest {
 
     @Test
     fun pinnedFridgeCardCarriesGrammar() {
-        val fridge = catalog.join("de", "sw").byId("kitchen/fridge")
+        val fridge = catalog.join("de", "sw").byId("fridge")
         assertEquals(CardKind.Noun, fridge.kind)
         assertEquals("🧊", fridge.emoji)
         assertEquals("Kühlschrank", fridge.source.text)
@@ -77,17 +77,17 @@ class RealCatalogJoinTest {
 
     @Test
     fun teacherFeminineJoinsFromSwSourceViaBaseFallback() {
-        val teacherF = catalog.join("sw", "uk").byId("school/teacher-f")
+        val teacherF = catalog.join("sw", "uk").byId("teacher-f")
         assertTrue(teacherF.promptFeminineMarker)
         assertEquals("mwalimu", teacherF.source.text)
         assertEquals("вчителька", teacherF.target.text)
-        assertEquals("school/teacher", teacherF.feminineOf)
+        assertEquals("teacher", teacherF.feminineOf)
     }
 
     @Test
     fun teacherFeminineSkippedForSwTargetButDistinctFromDeSource() {
-        assertTrue(catalog.join("de", "sw").none { it.id == "school/teacher-f" })
-        val fromDe = catalog.join("de", "uk").byId("school/teacher-f")
+        assertTrue(catalog.join("de", "sw").none { it.id == "teacher-f" })
+        val fromDe = catalog.join("de", "uk").byId("teacher-f")
         assertFalse(fromDe.promptFeminineMarker)
         assertEquals("Lehrerin", fromDe.source.text)
     }
@@ -95,7 +95,7 @@ class RealCatalogJoinTest {
     @Test
     fun basicsGreetingsArePhrasesWithoutComponents() {
         val cards = catalog.join("de", "sw")
-        for (id in listOf("basics/hello", "basics/good-day")) {
+        for (id in listOf("hello", "good-day")) {
             val card = cards.byId(id)
             assertEquals(CardKind.Phrase, card.kind)
             assertEquals(emptyList(), card.components)
@@ -105,17 +105,17 @@ class RealCatalogJoinTest {
     @Test
     fun unifiedPotPhraseJoinsEveryTargetUnderOneSlug() {
         // Former variantOf twin: the uk realization now lives on the base slug.
-        val id = "kitchen/the-pot-is-still-on-the-stove"
+        val id = "the-pot-is-still-on-the-stove"
         assertEquals("The pot is still on the stove.", catalog.join("de", "en").byId(id).target.text)
         assertEquals("Каструля ще стоїть на плиті.", catalog.join("de", "uk").byId(id).target.text)
         for (target in listOf("en", "uk")) {
-            assertFalse(catalog.join("de", target).any { it.id == "kitchen/the-big-pot-is-on-the-stove" })
+            assertFalse(catalog.join("de", target).any { it.id == "the-big-pot-is-on-the-stove" })
         }
     }
 
     @Test
     fun riceNoteSurfacesOnlyForGermanSources() {
-        val id = "kitchen/are-you-cooking-rice-today"
+        val id = "are-you-cooking-rice-today"
         val fromDe = catalog.join("de", "sw").byId(id)
         assertEquals("Reis = mpunga (geerntet) → mchele (roh) → wali (gekocht)!", fromDe.target.note)
         assertNull(catalog.join("en", "sw").byId(id).target.note)
@@ -125,10 +125,10 @@ class RealCatalogJoinTest {
     fun ukSynonymsRotateVariantsStaySilent() {
         val cards = catalog.join("de", "uk")
         // Synonyms join the recognition-prompt rotation; variants are grading-only.
-        val boss = cards.byId("work/boss")
+        val boss = cards.byId("boss")
         assertEquals("шеф", boss.target.text)
         assertEquals(listOf("керівник"), boss.target.synonyms)
-        val contract = cards.byId("work/contract")
+        val contract = cards.byId("contract")
         assertEquals("договір", contract.target.text)
         assertTrue(contract.target.synonyms.isEmpty())
         assertEquals(listOf("контракт"), contract.target.variants)

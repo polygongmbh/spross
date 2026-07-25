@@ -28,7 +28,10 @@ data class Realization(
  * Derived at load from the catalog join — never persisted.
  */
 data class Card(
-    /** `"area/slug"` — concept identity; never contains `|`. */
+    /**
+     * The concept's catalog slug — globally unique, never contains `|` or `/`.
+     * Area-independent on purpose: reclassifying a concept keeps its schedule.
+     */
     val id: String,
     val kind: CardKind,
     val area: String,
@@ -36,7 +39,7 @@ data class Card(
     /** Global catalog position (groups → areas → concepts), join-independent. */
     val seedIndex: Int,
     /**
-     * Phrase component card ids (`"area/slug"`), already filtered to components the
+     * Phrase component card ids (slugs), already filtered to components the
      * TARGET realizes — the unlock gate reads them as-is.
      */
     val components: List<String>,

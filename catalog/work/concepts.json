@@ -88,7 +88,7 @@
   "kind": "verb"
  },
  {
-  "slug": "help",
+  "slug": "to-help",
   "kind": "verb"
  },
  {
@@ -170,7 +170,7 @@
   "slug": "can-you-help-me-briefly",
   "kind": "phrase",
   "components": [
-   "help"
+   "to-help"
   ]
  },
  {

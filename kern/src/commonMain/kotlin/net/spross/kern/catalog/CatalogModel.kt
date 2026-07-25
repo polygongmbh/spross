@@ -29,7 +29,12 @@ internal data class CatalogConcept(
     /** Global catalog position across groups → areas → concepts. */
     val seedIndex: Int,
 ) {
-    val id: String get() = "$area/$slug"
+    /**
+     * Card identity — the bare slug, globally unique across areas (lint-enforced).
+     * Area and [kind] stay free to change: moving a concept to another area keeps its
+     * FSRS schedule, which is keyed by this id.
+     */
+    val id: String get() = slug
 }
 
 /** One realization as authored, before profile selection. */

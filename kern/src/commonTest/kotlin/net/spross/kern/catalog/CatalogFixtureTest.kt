@@ -18,16 +18,16 @@ class CatalogFixtureTest {
 
     @Test
     fun feminineFallsBackToBaseSourceRealizationWithMarker() {
-        val card = catalog.join("sw", "uk").byId("alpha/waiter-f")
+        val card = catalog.join("sw", "uk").byId("waiter-f")
         assertTrue(card.promptFeminineMarker)
         assertEquals("mhudumu", card.source.text)
         assertEquals("офіціантка", card.target.text)
-        assertEquals("alpha/waiter", card.feminineOf)
+        assertEquals("waiter", card.feminineOf)
     }
 
     @Test
     fun feminineUsesOwnSourceRealizationWithoutMarker() {
-        val card = catalog.join("de", "uk").byId("alpha/waiter-f")
+        val card = catalog.join("de", "uk").byId("waiter-f")
         assertFalse(card.promptFeminineMarker)
         assertEquals("Kellnerin", card.source.text)
     }
@@ -35,12 +35,12 @@ class CatalogFixtureTest {
     @Test
     fun feminineSkippedWhenBaseSourceRealizationAlsoMissing() {
         // beta has no sw file: neither royal-f nor base royal realize in the source.
-        assertTrue(catalog.join("sw", "uk").none { it.id == "beta/royal-f" })
+        assertTrue(catalog.join("sw", "uk").none { it.id == "royal-f" })
     }
 
     @Test
     fun feminineSkippedWhenTargetDoesNotRealizeIt() {
-        assertTrue(catalog.join("de", "sw").none { it.id == "alpha/waiter-f" })
+        assertTrue(catalog.join("de", "sw").none { it.id == "waiter-f" })
     }
 
     // -- coverage skips ----------------------------------------------------------------
@@ -48,20 +48,14 @@ class CatalogFixtureTest {
     @Test
     fun sparseTargetCoverageSkipsConcepts() {
         val ids = catalog.join("de", "uk").map { it.id }
-        assertEquals(
-            listOf(
-                "alpha/waiter", "alpha/waiter-f", "alpha/mouse",
-                "alpha/the-mouse-sprints", "beta/royal-f", "gamma/door",
-            ),
-            ids,
-        )
+        assertEquals(listOf("waiter", "waiter-f", "mouse", "the-mouse-sprints", "royal-f", "door"), ids)
     }
 
     @Test
     fun nonFeminineConceptWithoutSourceRealizationSkipped() {
         // sw realizes cook but source uk does not — no prompt, no card.
         assertEquals(
-            listOf("alpha/waiter", "alpha/mouse", "gamma/door"),
+            listOf("waiter", "mouse", "door"),
             catalog.join("uk", "sw").map { it.id },
         )
     }
@@ -71,23 +65,23 @@ class CatalogFixtureTest {
     @Test
     fun enToPrefixSurvivesParsing() {
         assertEquals(listOf("to "), catalog.languages.getValue("en").optionalVerbPrefixes)
-        assertEquals("to cook", catalog.join("de", "en").byId("alpha/cook").target.text)
+        assertEquals("to cook", catalog.join("de", "en").byId("cook").target.text)
     }
 
     @Test
     fun seedIndexFlattensGroupsAreasConcepts() {
         val cards = catalog.join("de", "uk")
-        assertEquals(0, cards.byId("alpha/waiter").seedIndex)
-        assertEquals(1, cards.byId("alpha/waiter-f").seedIndex)
-        assertEquals(3, cards.byId("alpha/mouse").seedIndex)
-        assertEquals(6, cards.byId("alpha/the-mouse-sprints").seedIndex)
-        assertEquals(8, cards.byId("beta/royal-f").seedIndex)
-        assertEquals(10, cards.byId("gamma/door").seedIndex)
+        assertEquals(0, cards.byId("waiter").seedIndex)
+        assertEquals(1, cards.byId("waiter-f").seedIndex)
+        assertEquals(3, cards.byId("mouse").seedIndex)
+        assertEquals(6, cards.byId("the-mouse-sprints").seedIndex)
+        assertEquals(8, cards.byId("royal-f").seedIndex)
+        assertEquals(10, cards.byId("door").seedIndex)
     }
 
     @Test
     fun sieDuVariantsLandInVariantsNotSynonyms() {
-        val card = catalog.join("sw", "de").byId("alpha/the-mouse-runs")
+        val card = catalog.join("sw", "de").byId("the-mouse-runs")
         assertEquals("Sehen Sie die Maus?", card.target.text)
         assertEquals(listOf("Siehst du die Maus?"), card.target.variants)
         assertTrue(card.target.synonyms.isEmpty())
@@ -95,30 +89,30 @@ class CatalogFixtureTest {
 
     @Test
     fun notesSelectedBySourceLanguageOnly() {
-        val deSourced = catalog.join("de", "uk").byId("alpha/the-mouse-sprints")
+        val deSourced = catalog.join("de", "uk").byId("the-mouse-sprints")
         assertEquals("Nur im Fixture.", deSourced.target.note)
-        val enSourced = catalog.join("en", "uk").byId("alpha/the-mouse-sprints")
+        val enSourced = catalog.join("en", "uk").byId("the-mouse-sprints")
         assertNull(enSourced.target.note)
     }
 
     @Test
-    fun componentsFilteredToTargetRealizedAndAreaQualified() {
+    fun componentsFilteredToTargetRealized() {
         // uk realizes mouse but not cook: the joined twin keeps only the mouse component.
-        val card = catalog.join("de", "uk").byId("alpha/the-mouse-sprints")
-        assertEquals(listOf("alpha/mouse"), card.components)
+        val card = catalog.join("de", "uk").byId("the-mouse-sprints")
+        assertEquals(listOf("mouse"), card.components)
         assertEquals(CardKind.Phrase, card.kind)
     }
 
     @Test
     fun greetingPhraseHasNoComponents() {
-        assertEquals(emptyList(), catalog.join("de", "sw").byId("alpha/hello").components)
+        assertEquals(emptyList(), catalog.join("de", "sw").byId("hello").components)
     }
 
     // -- rotation forms ----------------------------------------------------------------
 
     @Test
     fun synonymsJoinTheRotationVariantsDoNot() {
-        val mouse = catalog.join("de", "uk").byId("alpha/mouse")
+        val mouse = catalog.join("de", "uk").byId("mouse")
         assertEquals("миша", mouse.target.text)
         assertEquals(listOf("мишеня"), mouse.target.synonyms)
         assertEquals(listOf("мишка"), mouse.target.variants) // grading/display only

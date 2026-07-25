@@ -25,7 +25,7 @@ progress tracked per target language;
 
 ```kotlin
 data class Card(              // data class: Swift sees value equality (SwiftUI diffing)
-  val id: String,             // "area/slug" — concept identity; never contains '|'
+  val id: String,             // the concept's catalog slug — never contains '|' or '/'
   val kind: CardKind,         // noun | verb | adjective | phrase
   val area: String,
   val emoji: String?,
@@ -48,6 +48,11 @@ data class Realization(
 ```
 
 - Cards derive at load from the catalog join; **never persisted**.
+- **Identity is the slug alone** — globally unique across areas, lint-enforced
+  (`catalog/README.md`). `area` and `kind` are presentation metadata the content may
+  restructure freely: moving or reclassifying a concept keeps its schedule, because the
+  id it is keyed by never mentions either. `components` and `feminineOf` are card ids
+  (bare slugs) for the same reason.
 - **Join rule**: emit iff TARGET realizes the concept AND a source prompt exists:
   source realization, else (feminineOf only) the base concept's source realization with
   `promptFeminineMarker = true`; if the base's source realization is also absent, skip.

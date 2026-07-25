@@ -57,10 +57,8 @@ class Catalog internal constructor(
                     seedIndex = concept.seedIndex,
                     // why: components without a target realization can never be studied —
                     // filtering here keeps the phrase-unlock gate a plain all-components check.
-                    components = concept.components
-                        .filter { it in targetWords }
-                        .map { "${area.name}/$it" },
-                    feminineOf = concept.feminineOf?.let { "${area.name}/$it" },
+                    components = concept.components.filter { it in targetWords },
+                    feminineOf = concept.feminineOf,
                     // why: grading needs the base concept's TARGET texts (answer side)
                     // to demote a base-word answer — absent when the target never
                     // realizes the base, and the demotion simply has nothing to match.
