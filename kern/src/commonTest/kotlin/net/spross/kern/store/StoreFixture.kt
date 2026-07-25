@@ -19,23 +19,23 @@ internal object StoreFixture {
 
     val cards: List<Card> = listOf(
         Card(
-            id = "kueche/kuehlschrank", kind = CardKind.Noun, area = "kueche",
+            id = "fixture-noun", kind = CardKind.Noun, area = "fixture-area",
             emoji = "🧊", seedIndex = 0, components = emptyList(), feminineOf = null,
             source = Realization("de", "Kühlschrank", grammar = mapOf("gender" to "der")),
             target = Realization("uk", "холодильник", synonyms = listOf("рефрижератор")),
             promptFeminineMarker = false,
         ),
         Card(
-            id = "kueche/kochen", kind = CardKind.Verb, area = "kueche",
+            id = "fixture-verb", kind = CardKind.Verb, area = "fixture-area",
             emoji = null, seedIndex = 1, components = emptyList(), feminineOf = null,
             source = Realization("de", "kochen"),
             target = Realization("uk", "готувати", variants = listOf("варити")),
             promptFeminineMarker = false,
         ),
         Card(
-            id = "kueche/der-kuehlschrank-ist-leer", kind = CardKind.Phrase, area = "kueche",
+            id = "fixture-phrase", kind = CardKind.Phrase, area = "fixture-area",
             emoji = null, seedIndex = 2,
-            components = listOf("kueche/kuehlschrank", "kueche/kochen"), feminineOf = null,
+            components = listOf("fixture-noun", "fixture-verb"), feminineOf = null,
             source = Realization("de", "Der Kühlschrank ist leer."),
             target = Realization("uk", "Холодильник порожній."),
             promptFeminineMarker = false,
@@ -47,11 +47,11 @@ internal object StoreFixture {
     /** Real engine answers (learning → review, a lapse-free retry), a queue, one folded day. */
     fun state(): BoxState {
         var s = BoxEngine.bootstrap(cards, BoxConfig(), stamp)
-        val fridge = "kueche/kuehlschrank"
+        val fridge = "fixture-noun"
         s = Box.answered(s, fridge, Rating.Good, Box.day1)
         s = Box.answered(s, fridge, Rating.Good, Box.plusSeconds(Box.day1, 600))
-        s = Box.answered(s, "kueche/kochen", Rating.Again, Box.day1)
-        s = BoxEngine.enqueue(s, listOf("kueche/der-kuehlschrank-ist-leer"))
+        s = Box.answered(s, "fixture-verb", Rating.Again, Box.day1)
+        s = BoxEngine.enqueue(s, listOf("fixture-phrase"))
         return BoxEngine.endSession(s, reviewsDone = 3, Box.plusSeconds(Box.day1, 3600), Box.TZ)
     }
 }
