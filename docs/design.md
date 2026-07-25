@@ -51,6 +51,11 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
 - UI chrome renders in the KNOWN language when chrome exists (de/en today), otherwise en;
   the immersion subtitle (learned word beneath the main button label)
   appears only when chrome exists for the target.
+- Every chrome string is a GERMAN catalog key (`developmentLanguage: de`) with an en
+  translation in `Localizable.xcstrings` — never an English literal in Swift,
+  which would leave German users with a mixed-language screen.
+  Error chrome follows the same path: `AppModel` reports a `LoadFailure` case,
+  `HeuteView` turns it into `Text` (only the OS `reason` stays as the system wrote it).
 - The settings source picker says switching keeps all progress (kern README §3).
 - Area titles come from the catalog per source language; the emoji map stays app-side.
 

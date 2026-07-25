@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **The app speaks English end to end now**: settings no longer mix an English
+  heading with a German explanation under it, and the trainer, session and box
+  screens have their last untranslated corners filled in.
+- **Error messages are no longer German-only**: when the content can't be loaded,
+  a language pair is unknown, or a reset fails, the message arrives in the
+  language the rest of the app is speaking.
+
 - **Half again as much to learn**: the catalog grew from 358 to 506 concepts.
   Every area gained the everyday words it was missing —
   the kitchen finally has food in it (Brot, Milch, Kaffee, Ei, Käse, Reis, Tasse),

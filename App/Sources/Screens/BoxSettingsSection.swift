@@ -79,15 +79,15 @@ struct BoxSettingsSection: View {
 
     // MARK: Rows
 
-    /// "I speak": the known language. Switching re-joins in place —
+    /// "Ich spreche": the known language. Switching re-joins in place —
     /// schedules are keyed by card id, so all progress survives. Picking the
     /// language currently being LEARNED swaps the pair.
     private var sourceRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("I speak")
+            Text("Ich spreche")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            Picker("I speak", selection: sourceBinding) {
+            Picker("Ich spreche", selection: sourceBinding) {
                 ForEach(sourceChoices, id: \.self) { candidate in
                     Text(verbatim: pickerName(candidate)).tag(candidate)
                 }
@@ -99,14 +99,14 @@ struct BoxSettingsSection: View {
         }
     }
 
-    /// "I'm learning": the target language — one box per target. Picking the
+    /// "Ich lerne": the target language — one box per target. Picking the
     /// language currently SPOKEN swaps the pair.
     private var targetRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("I'm learning")
+            Text("Ich lerne")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            Picker("I'm learning", selection: targetBinding) {
+            Picker("Ich lerne", selection: targetBinding) {
                 ForEach(targetChoices, id: \.self) { candidate in
                     Text(verbatim: pickerName(candidate)).tag(candidate)
                 }
