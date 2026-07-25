@@ -238,7 +238,9 @@ struct TrainerSessionView: View {
     private func closeRun() {
         autoAdvance?.cancel()
         if feedback == .correct {
-            advance(correct: true)
+            // why: a pending typo pause books amber, same as answering —
+            // closing must not upgrade it to a clean win (level ramp).
+            advance(correct: true, segment: typoCorrection != nil ? .tough : nil)
         }
         guard doneCount > 0 else {
             dismiss()
