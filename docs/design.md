@@ -27,11 +27,10 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
   watch/widget targets are pure Swift over phone-built snapshots (see below).
 - `App/Sources/KernBridge.swift` is the boundary file:
   `Date ↔ epochMillis`, `tzId`, `Identifiable`/`Equatable` conformances, `Int32` bridging.
-- **Time discipline**: the engine never reads the clock —
-  every call passes `nowEpochMillis` + `tzId` (kern README §7).
-- Persistence: `BoxStore` actor, **one JSON document per TARGET language**
-  (`box-<target>.json`) in App Group `group.net.spross.app`,
-  encoded/decoded by the kern store facade (schema: kern README §7).
+- **Time discipline**: every kern call passes `nowEpochMillis` + `tzId`
+  (the boundary contract: kern README §7).
+- Persistence: `BoxStore` actor over the kern store facade
+  (document-per-target layout + schema: kern README §7).
   Atomic writes; save debounced ≥ 5 s after answers,
   immediate at session end, config mutations, and scene-background
   (which also folds partial session stats and pushes snapshots).
@@ -40,7 +39,7 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
 ## Profile & onboarding
 
 - Profile = (source, target) catalog languages;
-  targets come from `Catalog.availableTargets(source)` (≥ 50 joinable concepts);
+  targets come from `Catalog.availableTargets(source)` (joinability threshold: kern README §1);
   both pickers show concept counts ("… terms").
 - Onboarding chrome is ENGLISH (it renders before the user's language is known);
   language picker rows everywhere are "⟨flag⟩ ⟨englishName⟩" from languages.json
@@ -52,8 +51,7 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
 - UI chrome renders in the KNOWN language when chrome exists (de/en today), otherwise en;
   the immersion subtitle (learned word beneath the main button label)
   appears only when chrome exists for the target.
-- **Switching source keeps every schedule** (scheduling keys are card ids — kern README §3);
-  the settings picker says so.
+- The settings source picker says switching keeps all progress (kern README §3).
 - Area titles come from the catalog per source language; the emoji map stays app-side.
 
 ## Presentation model in the UI
@@ -61,20 +59,16 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
 Roles, synonym rotation, and the emoji matrix are engine rules (kern README §3);
 the app renders them:
 
-- One FSRS schedule per card; the role of each review comes from the engine
-  (`presentationRole`), alternating produce/recognize.
+- The role of each review comes from the engine (`presentationRole`),
+  alternating produce/recognize.
 - **PRODUCE**: typed answer in the target language; placeholder "In ⟨target⟩ …";
-  grading via the kern answer normalizer
-  (articles optional, verb prefixes optional, typo budget, article-mismatch = typo).
+  grading via the kern answer normalizer (contract: kern README §6).
   "Aufdecken" remains the no-typing fallback that self-grades.
 - **RECOGNIZE**: reveal + self-grade ONLY (Again/Hard/Good/Easy) — no input field.
   The prompt shows the engine's rotated form;
   the reveal shows the source meaning plus the full synonym family ("auch: …").
-- First exposure is ALWAYS recognition WITH emoji (teaching moment);
-  emoji visibility elsewhere follows the engine matrix.
-- ♀ is a labeled badge, never graded.
-- Card rendering: article inline in its color and the plural line on the TARGET side only;
-  suffix plurals dictionary-style ("Lehrerin, -nen") with localized sentinel strings;
+- Emoji visibility (first-exposure teaching moment included) follows the engine matrix.
+- Card rendering: grammar display (target-side plural line, inline article color) per kern README §2;
   prompt/answer styling is role-based (prompt neutral, reveal accent), not per-language.
 
 ## Review UX rules (carried from v1 refinement, treat as spec)
@@ -91,7 +85,7 @@ the app renders them:
 ## Counts & sessions
 
 - Every user-facing count (due ring, "x neu", active cards, widget stats) is
-  **concept-denominated** — one schedule per card makes cards ≡ concepts (kern README §4).
+  **concept-denominated** (kern README §4).
 - Sessions are composed, never configured:
   plan from `BoxEngine`, drain loop, extra round, endless mode — semantics in kern README §6.
   The done-card extra round composes endless-FIRST (due + NEW vocab within budget/gate),
@@ -99,8 +93,6 @@ the app renders them:
   so it renders in every done state with active cards.
   Session end = summary ("x neu · x gefestigt · x wiederholt") with confetti and streak;
   "Weiter üben" → endless.
-- A lapsed review card returns after 10 minutes — typically next session;
-  the drain loop does not wait for it (kern README §5).
 
 ## App structure (single screen)
 
@@ -114,13 +106,11 @@ the app renders them:
   suspended cards surface for revive; settings
   (source/target pickers with flag + English name — picking the other side swaps —
   learning-pool size, reset, `feedback@spross.net` + version footer).
-- **Trainers**: registry-driven from kern — de/sw/uk authored,
-  the hub hides languages with no content (en trainer unauthored).
-  Slot drills are stateless; phrase templates are keyed (source, target),
-  reverse mode when target == de.
-  Drill answers grade through the kern normalizer against every accepted variant
-  (same typo budget as reviews; accepted-with-typo pauses with the proper spelling;
-  articles/verb-prefix leniency stay off).
+- **Trainers**: registry-driven from kern (registry + templates: kern README §9) —
+  the hub hides languages with no trainer content (en unauthored).
+  Slot drills are stateless.
+  Drill answers grade through the kern normalizer in strict drill mode (kern README §6);
+  accepted-with-typo pauses with the proper spelling.
   All drills ramp: two-wins-up / one-miss-down levels,
   the sentence drill drawing leveled slot values (kern README §9).
 
@@ -145,10 +135,8 @@ same review UX rules; deltas only where the platform differs:
 
 ## Watch & widgets (decode-only)
 
-- The phone precomputes **WatchSnapshot v2**
-  (both sides pre-resolved per card, `nextRole` + `promptForm` baked in,
-  due-first ranking, ≤ 60 entries) and **WidgetSnapshot** on every persist;
-  wire formats in kern README §7.
+- The phone precomputes **WatchSnapshot v2** and **WidgetSnapshot** on every persist;
+  wire formats, ranking, and caps in kern README §7.
 - Watch: one graded **multiple-choice** loop (the watch never types) — role-aware
   per card (recognize → tap the source meaning; produce → tap the target word),
   distractors ranked by shape (length + part-count) so option length can't give
@@ -160,15 +148,13 @@ same review UX rules; deltas only where the platform differs:
   curve compensates, and Easy stays reachable on purpose (breadth of exposure
   over perfect single-word retention). Answers return as events; the phone
   reschedules with real timestamps and re-pushes.
-- iOS widget: pure Swift decode; the retrievability power curve is duplicated
-  Swift-side with the w20 constant (documented duplication).
+- iOS widget: pure Swift decode (the documented power-curve duplication: kern README §7).
 
 ## Content pipeline
 
-- `catalog/` is the in-repo master (v2 format, spec in `catalog/README.md`):
-  shared word concepts + per-language realizations + pair-authored phrases;
-  bundled as a folder resource.
-  Cards derive at load from the (source, target) join and are never persisted (kern README §2).
+- `catalog/` is the in-repo master (v2 format, spec in `catalog/README.md`),
+  bundled as a folder resource;
+  the app derives cards from the (source, target) join at load (kern README §2).
 - `CatalogLintTest` guards format rules on every kern test run.
 - Content changes go through verification sweeps before shipping
   (`../../docs/sprachposter-learnings.md`).
@@ -176,11 +162,8 @@ same review UX rules; deltas only where the platform differs:
 
 ## Testing & gates
 
-- `./gradlew :kern:jvmTest` — must be green before every commit.
-- App builds via XcodeGen (`project.yml`) +
-  `xcodebuild -scheme Spross -destination 'iPhone 17 Pro' build`;
-  a Release archive smoke check guards the framework linkage.
-- Behavioral engine tests live in kern (inventory: kern README §10).
+Commands and gates: `../CLAUDE.md` § Commands;
+engine gates and the behavioral test inventory: kern README §§9–10.
 
 ## Not yet
 

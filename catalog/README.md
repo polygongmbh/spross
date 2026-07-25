@@ -8,9 +8,8 @@ crowdsourced per-language contribution, and a slow default learning progression.
 Edit content HERE and it is what the apps bundle on their next build.
 
 > **Beta — no live user data.** Ids, slugs, and encoding carry no
-> preservation guarantee; they are free to change. The only behavioural
-> contract is the FSRS-5 scheduler (golden-vector tested). A core/parser
-> rewrite needs scheduling parity only, not byte or id parity.
+> preservation guarantee; they are free to change
+> (the pre-production invariant: `../CLAUDE.md` § Invariants).
 
 ## The key modeling decision: everything is a concept
 

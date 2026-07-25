@@ -14,19 +14,19 @@ progress tracked per target language;
 ## 1. Languages & profile
 
 - `Language` = string code from `catalog/languages.json` — open set, no enum.
-- `LanguageInfo(code, name, optionalVerbPrefixes: List<String>, articles: List<String>)`.
-  `articles` is a NEW languages.json field (de `["der","die","das","ein","eine"]`,
-  en `["the","a","an"]`; absent sw/uk) — replaces v1's hardcoded German article list.
+- `LanguageInfo(code, name, englishName, flag, optionalVerbPrefixes, articles)` —
+  per-language metadata from `catalog/languages.json` (field semantics: `catalog/README.md`);
+  `articles` replaces v1's hardcoded German article list.
 - Profile = (source, target), source ≠ target.
-  `Catalog.availableTargets(source)` requires ≥ 50 joinable concepts;
-  pickers show concept counts; default source = device language when covered, else en.
+  `Catalog.availableTargets(source)` requires ≥ 50 joinable concepts.
+  (Picker display and the device-language default are app rules — `../docs/design.md`.)
 
 ## 2. Card — derived, language-symmetric
 
 ```kotlin
 data class Card(              // data class: Swift sees value equality (SwiftUI diffing)
   val id: String,             // "area/slug" — concept identity; never contains '|'
-  val kind: CardKind,         // noun | verb | phrase
+  val kind: CardKind,         // noun | verb | adjective | phrase
   val area: String,
   val emoji: String?,
   val seedIndex: Int,
@@ -210,7 +210,8 @@ day-key `yyyy-MM-dd`) with:
   decode-only Swift (an extension cannot run the join: no catalog in its bundle, ~30 MB
   memory cap vs 33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
   entries (target-side text, emoji, article tint), per-card `{due, stability,
-  lastReview}` for render-time `dueCount(now)`/`averageRetrievability(now)` (retrievability
+  lastReview, review}` for render-time `dueCount(now)`/`averageRetrievability(now)`
+  (the average runs over `review`-phase cards; retrievability
   power curve duplicated in Swift with the w20 constant, documented), dailyStats tail
   (~70 days) for the streak walk, `schemaVersion`. Built by a KMP `SnapshotBuilder`,
   written by the app.
@@ -261,14 +262,18 @@ day-key `yyyy-MM-dd`) with:
   conformances; Kotlin `Int` surfaces as `Int32` — bridge there, not at call sites.
 - Trainer: single `:kern` module, `Long` cardinals everywhere (Kotlin `Int` is 32-bit on
   all platforms — v1's arm64_32 fix generalizes). Trainer registry: de/sw/uk authored,
-  en absent → hub hides gracefully. Phrase templates keyed (source, target); reverse mode
-  when target == de.
+  en absent (the hub's handling of that is an app rule — `../docs/design.md`).
+  Phrase templates keyed (source, target); reverse mode when target == de.
   German clock ACCEPTS 24-hour readings ("achtzehn Uhr fünfunddreißig", "null/vierundzwanzig
   Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.
   An hour word directly before "Uhr" apocopates: "ein Uhr", never "eins Uhr";
   bare "eins" stays ("punkt eins", "um eins", "halb eins").
   `PhraseSlots` samples level-aware — same per-kind ramp tables as the plain drills
-  (a template's slot kind clamps the level); unleveled call = ceiling. Android: landed — `androidLibrary` KMP target
+  (a template's slot kind clamps the level).
+  The unleveled `sample` overload keeps the prototype's biased full-difficulty draws
+  (numbers favor 2–3 digits, years cluster 1950–2050);
+  only Clock's unleveled draw coincides with the leveled ceiling.
+  Android: landed — `androidLibrary` KMP target
   (`com.android.kotlin.multiplatform.library`, AGP 9.3.0, compileSdk 36 / minSdk 26),
   androidMain NFC actual mirrors jvmMain; `:android` consumes the same facades.
   Gate: `./gradlew :kern:compileAndroidMain`.

@@ -27,9 +27,8 @@ and self-graded recognition of the same schedule.
   reading phone-built snapshots; no Kotlin linkage.
 - `android/` — Jetpack Compose app (core loop: onboarding, Heute, sessions)
   on the same engine; catalog bundled by a Gradle sync task.
-- `catalog/` — the content catalog, in-repo: shared word concepts +
-  per-language realizations + pair-authored phrases.
-  Format spec: `catalog/README.md`. Bundled as a folder resource.
+- `catalog/` — the in-repo content catalog (format spec: `catalog/README.md`);
+  bundled as a folder resource.
 - `docs/design.md` — the app-layer build contract; read before changing behavior.
 
 ## Build
@@ -43,15 +42,8 @@ xcodebuild -project Spross.xcodeproj -scheme Spross \
 
 Tests (the fast gate): `./gradlew :kern:jvmTest`
 
-Android (no Mac needed — see `RUNBOOK-linux.md`):
+Android builds Mac-free — commands, SDK setup, and install steps: `RUNBOOK-linux.md`.
 
-```sh
-./gradlew :android:assembleDebug     # APK: android/build/outputs/apk/debug/android-debug.apk
-./gradlew :android:testDebugUnitTest :kern:compileAndroidMain   # android gates
-```
-
-Framework mechanism: the app target's pre-build phase runs `scripts/build-kern.sh`,
-which maps `$CONFIGURATION`/`$SDK_NAME` to the matching Gradle
-`linkDebug|ReleaseFramework<slice>` task and stages `SprossKern.framework`
-at `kern/build/xcode/<config>/`, where `FRAMEWORK_SEARCH_PATHS` points.
+Framework mechanism: a pre-build phase stages `SprossKern.framework`
+via `scripts/build-kern.sh` (integration detail: `kern/README.md` §9).
 After adding/removing Swift source files: `xcodegen generate`.
