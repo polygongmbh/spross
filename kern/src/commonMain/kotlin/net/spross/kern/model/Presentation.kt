@@ -16,8 +16,10 @@ enum class PresentationRole {
  * Role of a card's next review, resolved at render time from the review-log count.
  *
  * FIRST exposure (count 0) is ALWAYS recognition — the learner cannot produce a
- * word never seen; the target is shown with emoji as a teaching moment, flipped,
- * and self-graded. The SECOND review (count 1) is ALWAYS production — the word
+ * word never seen; the target is prompted first with its emoji as the cue (a
+ * learner who already knows it gets the moment to recall), and the reveal
+ * teaches the meaning, self-graded.
+ * The SECOND review (count 1) is ALWAYS production — the word
  * has been seen once, now attempt it (ruling 2026-07-22: "returns the same
  * session as production"). Thereafter roles alternate per review with a stable
  * per-card phase offset (v1's mixedDirections parity, hash bit-exact) so the
@@ -48,7 +50,9 @@ fun recognitionPromptForm(card: Card, reviewCount: Int): String {
 /**
  * Emoji policy: visible iff (first exposure) OR (role == Produce && phase ==
  * Learning). Hidden on recognition measurement reviews (it depicts the answer)
- * and from Review/Relearning on (v1's hide-after-learning rule).
+ * and from Review/Relearning on (v1's hide-after-learning rule). The first
+ * exposure is the one recognition prompt that carries it, deliberately: it is
+ * the cue that makes a first recall attempt possible at all.
  */
 fun emojiVisible(role: PresentationRole, phase: CardPhase, reviewCount: Int): Boolean =
     reviewCount == 0 || (role == PresentationRole.Produce && phase == CardPhase.Learning)

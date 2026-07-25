@@ -75,7 +75,10 @@ the app renders them:
 - **RECOGNIZE**: reveal + self-grade ONLY (Again/Hard/Good/Easy) — no input field.
   The prompt shows the engine's rotated form;
   the reveal shows the source meaning plus the full synonym family ("auch: …").
-- Emoji visibility (first-exposure teaching moment included) follows the engine matrix.
+  The first exposure is no exception: the word is prompted before it is taught,
+  so a learner who already knows it gets the moment to recall it —
+  with the emoji above it as the cue (engine matrix; the only recognition prompt that has one).
+- Emoji visibility follows the engine matrix.
 - Ambiguous prompts (engine-flagged `Card.promptAmbiguous`, i.e. the target merges two
   source concepts) carry an **area label** above the headword. Produce only — on a
   recognition prompt a cue precise enough to disambiguate would reveal the answer.

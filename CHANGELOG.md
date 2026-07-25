@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **A new word asks before it teaches**: the first time a word comes up it now waits
+  behind "Aufdecken" like any other card — with its picture as the cue — so a word you
+  already know can be recalled instead of just shown to you.
+
 - **Reorganising the content no longer costs you progress**:
   a word that moves to another area keeps everything you have learned about it,
   instead of coming back as if you had never seen it.

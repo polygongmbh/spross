@@ -52,7 +52,9 @@ fun SessionScreen(model: AppModel) {
 private fun RecognizeCard(model: AppModel, ui: SessionUi) {
     val card = ui.card ?: return
     val chrome = model.chrome
-    var revealed by remember(card.id) { mutableStateOf(ui.firstExposure) }
+    // The first exposure prompts before it teaches too — a learner who already
+    // knows the word gets the moment to recall it (contract §3).
+    var revealed by remember(card.id) { mutableStateOf(false) }
 
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),

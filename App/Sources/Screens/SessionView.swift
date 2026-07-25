@@ -189,15 +189,7 @@ struct SessionView: View {
     }
 
     private var cardRevealed: Bool {
-        revealed || feedback != .neutral || currentIsFirstExposure
-    }
-
-    /// Contract §3 teaching moment: the very first exposure (log count 0)
-    /// renders pre-flipped WITH emoji — the learner self-grades a word they
-    /// are SHOWN, never quizzed on one they have never seen.
-    private var currentIsFirstExposure: Bool {
-        guard let card = model.currentCard else { return false }
-        return (model.scheduling(for: card.id)?.reviewCount ?? 0) == 0
+        revealed || feedback != .neutral
     }
 
     @ViewBuilder
@@ -210,10 +202,12 @@ struct SessionView: View {
 
     /// Comprehension check: reveal, then honest four-button self-grade —
     /// never typed, so no schedule is ever graded against a language it
-    /// wasn't learned with.
+    /// wasn't learned with. The very first exposure takes this path too: the
+    /// word is prompted before it is taught, so a learner who already knows it
+    /// gets the moment to recall it (contract §3).
     @ViewBuilder
     private var recognizeControls: some View {
-        if revealed || currentIsFirstExposure {
+        if revealed {
             RatingButtonsView { rate(kernRating($0)) }
         } else {
             Button {

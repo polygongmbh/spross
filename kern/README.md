@@ -103,7 +103,8 @@ no config flag, no user-facing direction anywhere.
   "sich ausruhen" and taps Good is doing exactly what self-grading is for.
 - **Role resolution** is a pure render-time function of `(cardId, log.count)`:
   - First exposure (`count == 0`) is ALWAYS recognition — the learner cannot produce a
-    word never seen; the target is shown WITH emoji as a teaching moment, flipped,
+    word never seen; the target is PROMPTED first (a learner who already knows it deserves
+    the moment to recall it) WITH its emoji as the cue, and the reveal teaches the meaning,
     self-graded. An honest Again lands in the 1 m learning step and returns the same
     session. (Matches v1's `presentationDirection` first-exposure rule.)
   - The second review (`count == 1`) is ALWAYS production — seen once, now attempt it
@@ -121,6 +122,8 @@ no config flag, no user-facing direction anywhere.
 - **Emoji matrix**: visible iff (first exposure) OR (role == Produce ∧ phase == Learning);
   hidden on recognition measurement reviews (`count > 0` — it depicts the answer)
   and from Review/Relearning on (v1's hide-after-learning rule).
+  The first exposure is the one recognition prompt that carries it, deliberately:
+  it is the cue that makes a first recall attempt possible at all.
 - **♀** is a labeled badge, never graded: the production prompt shows source base + badge;
   the recognition reveal decorates the source answer with the badge.
   A base-word answer typed on a feminine produce card grades as typo, not failure

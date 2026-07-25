@@ -44,7 +44,6 @@ data class SessionUi(
     val role: PresentationRole?,
     val promptForm: String?,       // rotated recognition prompt
     val showEmoji: Boolean,
-    val firstExposure: Boolean,
     val segments: List<AnswerTone>,
     val remaining: Int,
     val progress: Float,
@@ -190,7 +189,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         val ui = if (card == null) {
             SessionUi(
                 card = null, role = null, promptForm = null,
-                showEmoji = false, firstExposure = false,
+                showEmoji = false,
                 segments = active.segments.toList(), remaining = 0, progress = 1f,
                 introduced = active.introduced, strengthened = active.strengthened,
                 reviewed = active.answered,
@@ -204,7 +203,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 promptForm = recognitionPromptForm(card, count),
                 showEmoji = card.emoji != null &&
                     emojiVisible(role, active.phase(card.id), count),
-                firstExposure = count == 0,
                 segments = active.segments.toList(),
                 remaining = active.remaining,
                 progress = active.progress(),
