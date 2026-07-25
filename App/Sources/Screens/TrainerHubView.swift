@@ -64,7 +64,10 @@ struct TrainerHubView: View {
     }
 
     private func normalizer(for mode: TrainerSessionView.Mode) -> AnswerNormalizer? {
-        model.languageInfo(mode.typedLanguage).map(AnswerNormalizer.init(answerLanguage:))
+        // why: drills grade strictly — a wrong or missing article is never
+        // silently forgiven (design.md §Trainers), unlike vocab produce.
+        model.languageInfo(mode.typedLanguage)
+            .map { AnswerNormalizer(answerLanguage: $0, articleLeniency: false) }
     }
 
     // MARK: - Card
