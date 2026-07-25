@@ -92,7 +92,7 @@ data class Chrome(
             chooseTitle = "What do you want to learn?",
             iSpeak = "I speak",
             iLearn = "I learn",
-            conceptsSuffix = "concepts",
+            conceptsSuffix = "terms",
             letsGo = "Let's go",
             backLabel = "Back",
             check = "Check",
