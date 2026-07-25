@@ -15,19 +15,44 @@ class RealCatalogJoinTest {
     private fun List<Card>.byId(id: String): Card =
         firstOrNull { it.id == id } ?: throw AssertionError("card $id not joined")
 
+    /**
+     * The join RULE, asserted relationally: a concept emits a card iff the target
+     * realizes it and the source realizes either it or — for a feminine — its base.
+     * Deriving the expectation from the catalog keeps this green across ordinary
+     * content edits while still catching join regressions (dropped feminine
+     * fallback, duplicates, wrong seed order). Pinned totals would only ever
+     * measure how recently someone bumped them.
+     */
     @Test
-    fun joinCountsMatchCoverageMatrix() {
-        // 357 concepts total; sparse per-language coverage decides each target's count.
-        assertEquals(347, catalog.join("de", "sw").size)
-        assertEquals(351, catalog.join("de", "uk").size)
-        assertEquals(352, catalog.join("de", "en").size)
+    fun joinEmitsExactlyTheConceptsBothLanguagesRealize() {
+        for (target in listOf("en", "sw", "uk")) {
+            val expected = catalog.areas.flatMap { area ->
+                val sourceWords = area.realizations["de"].orEmpty()
+                val targetWords = area.realizations[target].orEmpty()
+                area.concepts
+                    .filter { it.slug in targetWords }
+                    .filter { it.slug in sourceWords || it.feminineOf?.let { b -> b in sourceWords } == true }
+                    .map { it.id }
+            }
+            assertEquals(expected, catalog.join("de", target).map { it.id }, "de→$target join")
+        }
+    }
+
+    /** Catastrophe guard: a loose floor, deliberately NOT a pinned per-pair count. */
+    @Test
+    fun everyGermanPairJoinsSubstantialCoverage() {
+        for (target in listOf("en", "sw", "uk")) {
+            val size = catalog.join("de", target).size
+            assertTrue(size > 300, "de→$target joined only $size cards")
+        }
     }
 
     @Test
     fun availableTargetsFromGermanCarryConceptCounts() {
         val targets = catalog.availableTargets("de")
         assertEquals(listOf("en", "sw", "uk"), targets.map { it.code })
-        assertEquals(listOf(352, 347, 351), targets.map { it.conceptCount })
+        // Agreement with the join, not magic numbers.
+        assertEquals(targets.map { catalog.join("de", it.code).size }, targets.map { it.conceptCount })
         assertEquals("Kiswahili", targets.first { it.code == "sw" }.name)
     }
 
