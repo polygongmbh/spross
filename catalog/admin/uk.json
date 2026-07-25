@@ -17,16 +17,25 @@
    "text": "заява"
   },
   "id-card": {
-   "text": "посвідчення особи"
+   "text": "посвідчення особи",
+   "grammar": {
+    "plural": "="
+   }
   },
   "residence-permit": {
-   "text": "посвідка на проживання"
+   "text": "посвідка на проживання",
+   "grammar": {
+    "plural": "посвідки на проживання"
+   }
   },
   "signature": {
    "text": "підпис"
   },
   "ticket-number": {
-   "text": "номерок у черзі"
+   "text": "номерок у черзі",
+   "grammar": {
+    "plural": "номерки у черзі"
+   }
   },
   "case-worker": {
    "text": "працівник"
@@ -92,13 +101,22 @@
    "text": "довідка"
   },
   "birth-certificate": {
-   "text": "свідоцтво про народження"
+   "text": "свідоцтво про народження",
+   "grammar": {
+    "plural": "свідоцтва про народження"
+   }
   },
   "notification": {
-   "text": "рішення"
+   "text": "рішення",
+   "grammar": {
+    "plural": "="
+   }
   },
   "fee": {
-   "text": "збір"
+   "text": "збір",
+   "grammar": {
+    "plural": "збори"
+   }
   },
   "office-hours": {
    "text": "години прийому",
@@ -107,7 +125,10 @@
    }
   },
   "waiting-room": {
-   "text": "зала очікування"
+   "text": "зала очікування",
+   "grammar": {
+    "plural": "зали очікування"
+   }
   },
   "reject": {
    "text": "відхиляти"

@@ -167,12 +167,21 @@ Realization fields — only `text` is required:
   but never become their own unit.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
   labels, no `(selten)` qualifier), one fact per key: de `gender` + `plural`,
-  sw `plural`, en `plural` (irregular/pluralia-tantum only — regular +s is omitted),
-  uk `plural` (only for pluralia tantum). No gender outside de. Omit if empty.
+  sw `plural`, en `plural`, uk `plural`. No gender outside de. Omit if empty.
   `plural` is a bare full form (`"Wörter"`), a suffix (`"-n"`, `"-nen"`),
   `"="` (identical to the singular → render `"= Pl."`), or
   `"only"` (pluralia tantum, no singular → render `"nur Pl."`).
   True uncountables (Regen, Hunger) simply omit `plural`.
+  **How much to author is per language**, and the test is always the same: write it
+  down when the learner could not derive it.
+  de and sw author every countable noun — German plurals are unpredictable by class,
+  and a Swahili plural IS the noun class (`kiti`→`viti`, `mlango`→`milango`),
+  the single most load-bearing fact about the word.
+  en and uk author only what the regular pattern does not give: en beyond a bare +s
+  (`knife`→`knives`, `bus`→`buses`), uk beyond swapping the ending —
+  stem alternations (`ніж`→`ножі`), fleeting vowels (`день`→`дні`),
+  suppletives (`людина`→`люди`), indeclinables and `-ння` neuters (`"="`),
+  and phrases whose other words have to agree (`письмовий стіл`→`письмові столи`).
 - `notes` — keyed by EXPLANATION language (today only `de`). A note lives on the
   realization it explains and is selected by the reader's base language, so the
   key is load-bearing the moment a language is taught to more than one audience

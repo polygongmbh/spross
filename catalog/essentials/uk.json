@@ -14,10 +14,16 @@
    "text": "час"
   },
   "day": {
-   "text": "день"
+   "text": "день",
+   "grammar": {
+    "plural": "дні"
+   }
   },
   "week": {
-   "text": "тиждень"
+   "text": "тиждень",
+   "grammar": {
+    "plural": "тижні"
+   }
   },
   "hour": {
    "text": "година"
@@ -27,15 +33,24 @@
    "synonyms": [
     "дім"
    ],
+   "grammar": {
+    "plural": "будинки"
+   },
    "notes": {
     "de": "будинок = das Gebäude · дім = Heim, Zuhause."
    }
   },
   "person": {
-   "text": "людина"
+   "text": "людина",
+   "grammar": {
+    "plural": "люди"
+   }
   },
   "friend": {
-   "text": "друг"
+   "text": "друг",
+   "grammar": {
+    "plural": "друзі"
+   }
   },
   "friend-f": {
    "text": "подруга"

@@ -9,12 +9,18 @@
   },
   "practice": {
    "text": "лікарський кабінет",
+   "grammar": {
+    "plural": "лікарські кабінети"
+   },
    "notes": {
     "de": "auch «практика» (v. a. Privatpraxis)"
    }
   },
   "pain": {
    "text": "біль",
+   "grammar": {
+    "plural": "болі"
+   },
    "notes": {
     "de": "Achtung: «біль» ist maskulin!"
    }
@@ -38,10 +44,16 @@
    "text": "аптека"
   },
   "insurance-card": {
-   "text": "картка медичного страхування"
+   "text": "картка медичного страхування",
+   "grammar": {
+    "plural": "картки медичного страхування"
+   }
   },
   "health-insurance": {
-   "text": "лікарняна каса"
+   "text": "лікарняна каса",
+   "grammar": {
+    "plural": "лікарняні каси"
+   }
   },
   "cough": {
    "text": "кашель"
@@ -86,7 +98,10 @@
    "text": "горло"
   },
   "stomach": {
-   "text": "живіт"
+   "text": "живіт",
+   "grammar": {
+    "plural": "животи"
+   }
   },
   "back": {
    "text": "спина"
@@ -101,10 +116,16 @@
    "text": "лікарня"
   },
   "emergency": {
-   "text": "екстрений випадок"
+   "text": "екстрений випадок",
+   "grammar": {
+    "plural": "екстрені випадки"
+   }
   },
   "sick-note": {
-   "text": "лікарняний"
+   "text": "лікарняний",
+   "grammar": {
+    "plural": "лікарняні"
+   }
   },
   "sick": {
    "text": "хворий"

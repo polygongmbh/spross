@@ -71,25 +71,37 @@
    "text": "машина"
   },
   "taxi": {
-   "text": "таксі"
+   "text": "таксі",
+   "grammar": {
+    "plural": "="
+   }
   },
   "train-station": {
    "text": "вокзал"
   },
   "ticket": {
-   "text": "квиток"
+   "text": "квиток",
+   "grammar": {
+    "plural": "квитки"
+   }
   },
   "way": {
    "text": "дорога"
   },
   "market": {
-   "text": "ринок"
+   "text": "ринок",
+   "grammar": {
+    "plural": "ринки"
+   }
   },
   "snow": {
    "text": "сніг"
   },
   "wind": {
-   "text": "вітер"
+   "text": "вітер",
+   "grammar": {
+    "plural": "вітри"
+   }
   },
   "river": {
    "text": "річка"

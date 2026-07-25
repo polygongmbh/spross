@@ -5,16 +5,25 @@
    "text": "робота"
   },
   "job-application": {
-   "text": "заявка на роботу"
+   "text": "заявка на роботу",
+   "grammar": {
+    "plural": "заявки на роботу"
+   }
   },
   "cv": {
-   "text": "резюме"
+   "text": "резюме",
+   "grammar": {
+    "plural": "="
+   }
   },
   "contract": {
    "text": "договір",
    "variants": [
     "контракт"
-   ]
+   ],
+   "grammar": {
+    "plural": "договори"
+   }
   },
   "salary": {
    "text": "зарплата"
@@ -89,16 +98,25 @@
    "text": "часткова зайнятість"
   },
   "tax": {
-   "text": "податок"
+   "text": "податок",
+   "grammar": {
+    "plural": "податки"
+   }
   },
   "work-permit": {
-   "text": "дозвіл на роботу"
+   "text": "дозвіл на роботу",
+   "grammar": {
+    "plural": "дозволи на роботу"
+   }
   },
   "training": {
    "text": "професійне навчання"
   },
   "notice": {
-   "text": "звільнення"
+   "text": "звільнення",
+   "grammar": {
+    "plural": "="
+   }
   },
   "tomorrow-i-have-a-job-interview": {
    "text": "Завтра я йду на співбесіду у фірму."

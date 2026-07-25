@@ -2,7 +2,10 @@
  "title": "У ванній · чистота!",
  "words": {
   "washing-machine": {
-   "text": "пральна машина"
+   "text": "пральна машина",
+   "grammar": {
+    "plural": "пральні машини"
+   }
   },
   "laundry": {
    "text": "білизна",
@@ -23,10 +26,16 @@
    "text": "дзеркало"
   },
   "toothbrush": {
-   "text": "зубна щітка"
+   "text": "зубна щітка",
+   "grammar": {
+    "plural": "зубні щітки"
+   }
   },
   "toothpaste": {
-   "text": "зубна паста"
+   "text": "зубна паста",
+   "grammar": {
+    "plural": "зубні пасти"
+   }
   },
   "towel": {
    "text": "рушник"
