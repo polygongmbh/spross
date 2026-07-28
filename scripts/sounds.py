@@ -57,10 +57,34 @@ DECAY_SPREAD = 0.75  # partial n decays n**SPREAD times faster than the fundamen
                      # whole note is what makes additive synthesis sound electronic.
 INHARMONICITY = 4e-4  # real strings/bars are slightly stretched, never exact
                       # integer multiples — exact ratios beat too perfectly
+DETUNE = 0.0016      # a hair of per-partial drift, so the stack beats slowly
+                     # instead of locking into one motionless timbre
+
+# A body resonance, fixed in Hz and NOT moving with the note. This is what makes
+# a glide sound played rather than swept: on any real instrument the box, bar or
+# bore resonates at frequencies of its own, so partials brighten and dim as the
+# pitch slides them through the peak. A synthesizer's portamento carries its
+# timbre along unchanged — that invariance is the giveaway.
+BODY_HZ = 1150.0
+BODY_GAIN = 0.9      # boost at the peak
+BODY_OCTAVES = 0.55  # width, in natural-log units of frequency ratio
+
+# Contact noise. Nothing is set in motion silently: a mallet, a pluck or a
+# breath puts a burst of inharmonic energy in before the tone settles. It is
+# nearly inaudible on its own and the strongest single "not a synth" cue there is.
+NOISE_GAIN = 0.10
+NOISE_TAU = 0.008    # s — gone before the note has properly started
+NOISE_DAMP = 0.40    # one-pole lowpass on the burst; undamped it is just hiss
+
 # Each sound scales the partials by its own `bright`; the fundamental never
 # moves, so turning brightness down rounds a sound off instead of muffling it.
 HARMONICS = tuple(
-    (n * (1 + INHARMONICITY * (n * n - 1)), n ** -ROLLOFF, float(n ** DECAY_SPREAD))
+    (n * (1 + INHARMONICITY * (n * n - 1) + DETUNE * math.sin(n * 2.399)),
+     n ** -ROLLOFF,
+     float(n ** DECAY_SPREAD),
+     # partials starting in lockstep give the onset an electronic spike; spread
+     # them by the golden angle so the waveform starts messy, as a real one does
+     (n * 0.6180339887 % 1.0) * 2 * math.pi)
     for n in range(1, PARTIALS + 1)
 )
 
@@ -102,10 +126,10 @@ def voice(start_hz, end_hz, glide, length, tau, attack_s, bright):
     """One note: harmonic stack, gliding start→end, under a soft-attack,
     exponential-decay envelope. Phase is integrated sample by sample — the
     naive sin(2πft) with a moving f would smear the pitch it claims to play."""
-    partials = tuple((mult, amp if n == 0 else amp * bright, spread / tau)
-                     for n, (mult, amp, spread) in enumerate(HARMONICS))
+    partials = [[mult, amp if n == 0 else amp * bright, spread / tau, phase0]
+                for n, (mult, amp, spread, phase0) in enumerate(HARMONICS)]
     out = []
-    phase = 0.0
+    rng, noise = int(start_hz) * 7919 + 12345, 0.0   # fixed seed: same file every run
     for i in range(int(length * SAMPLE_RATE)):
         t = i / SAMPLE_RATE
         # Accelerating glide: half the glide time covers an eighth of the
@@ -125,10 +149,21 @@ def voice(start_hz, end_hz, glide, length, tau, attack_s, bright):
         # own clock, so the note starts bright and darkens instead of holding
         # one frozen colour to the end.
         attack = 1.0 if t >= attack_s else 0.5 - 0.5 * math.cos(math.pi * t / attack_s)
-        sample = sum(amp * math.exp(-t * rate) * math.sin(phase * mult)
-                     for mult, amp, rate in partials)
+        sample = 0.0
+        for partial in partials:
+            mult, amp, rate, phase = partial
+            f = freq * mult
+            # the fixed body peak, evaluated at where this partial IS right now
+            tilt = math.log(f / BODY_HZ) / BODY_OCTAVES
+            body = 1.0 + BODY_GAIN * math.exp(-0.5 * tilt * tilt)
+            sample += amp * body * math.exp(-t * rate) * math.sin(phase)
+            partial[3] = phase + 2 * math.pi * f / SAMPLE_RATE
+        burst = math.exp(-t / NOISE_TAU)
+        if burst > 0.002:
+            rng = (rng * 1103515245 + 12345) & 0x7FFFFFFF
+            noise += ((rng / 0x3FFFFFFF) - 1.0 - noise) * NOISE_DAMP
+            sample += noise * NOISE_GAIN * burst
         out.append(sample * attack)
-        phase += 2 * math.pi * freq / SAMPLE_RATE
     return out
 
 
