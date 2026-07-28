@@ -6,6 +6,13 @@
   target words side by side — the wrong-language tiles were unpickable noise
   and gave the answer away. Every tile now sits on the side the prompt asks for.
 
+- **The app stops buzzing at every answer**: the feedback sounds were iOS system sounds,
+  which drag the alert vibration along with them — so a right answer shook the phone
+  just like a wrong one, and silencing it meant giving up alert haptics everywhere else.
+  The sounds are the app's own now, warmer and pitched to say what happened:
+  a rising pair for correct, a falling pair for wrong, a quiet tick on reveal.
+  The one tap left is the light one on a wrong answer.
+
 ## 1.1.0 — 2026-07-25
 
 - **The progress line counts what has taken root**: Heute, the widget and the Android

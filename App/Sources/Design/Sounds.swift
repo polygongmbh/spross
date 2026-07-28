@@ -3,49 +3,76 @@ import UIKit
 
 // MARK: - DLSound
 //
-// Tiny feedback layer for the review loop: one soft system sound plus a
-// matching haptic per event. System sounds follow the ring/silent switch
-// by default (deliberately no AVAudioSession override) — the haptic still
-// carries the feedback when the phone is muted.
+// Tiny feedback layer for the review loop: one soft sound per event, and a
+// haptic on a wrong answer only.
+//
+// The sounds are bundled files rather than Apple's built-in UISounds ids
+// (1053/1054/1057 and friends). Those ids carry the system alert haptic with
+// them on Taptic iPhones — it follows Sounds & Haptics › Haptics and there is
+// no per-call opt-out, so a correct answer buzzed even though nothing here
+// asked it to. Custom sounds never do that, which puts every vibration in
+// this file back under our control.
+//
+// System sounds still follow the ring/silent switch (deliberately no
+// AVAudioSession override), so a muted phone stays muted.
 
 enum DLSound {
 
-    /// SIMToolkitPositiveACK — short, friendly rising double-tone.
-    private static let correctID: SystemSoundID = 1054
-    /// SIMToolkitNegativeACK — soft low tone, informative rather than punishing.
-    private static let wrongID: SystemSoundID = 1053
-    /// Tink — tiny neutral tap for revealing the answer.
-    private static let revealID: SystemSoundID = 1057
+    /// Ascending major third — the positive confirmation people already know.
+    private static let correctID = load("correct")
+    /// Descending minor third: down, but consonant — informative, not punishing.
+    private static let wrongID = load("wrong")
+    /// One neutral note; revealing an answer is not a verdict.
+    private static let revealID = load("reveal")
 
     static func correct() {
-        AudioServicesPlaySystemSound(correctID)
+        play(correctID)
     }
 
     static func wrong() {
-        AudioServicesPlaySystemSound(wrongID)
-        // why: a single light tap on a wrong answer only — a gentle wake-up
-        // cue, not the punishing `.error` buzz; correct answers stay haptic-free.
+        play(wrongID)
+        // why: the only haptic in the app — a single light tap on a wrong
+        // answer as a gentle wake-up cue, never on reveal or on a correct one.
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
     }
 
     static func reveal() {
-        AudioServicesPlaySystemSound(revealID)
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        play(revealID)
+    }
+
+    /// Registers a bundled sound once; `nil` (a missing resource) plays nothing.
+    private static func load(_ name: String) -> SystemSoundID? {
+        guard let url = Bundle.main.url(forResource: name, withExtension: "wav")
+        else { return nil }
+        var id: SystemSoundID = 0
+        guard AudioServicesCreateSystemSoundID(url as CFURL, &id) == kAudioServicesNoError
+        else { return nil }
+        return id
+    }
+
+    private static func play(_ id: SystemSoundID?) {
+        guard let id else { return }
+        AudioServicesPlaySystemSound(id)
     }
 
     #if DEBUG
     /// UI-test hook (`-uitest-sound 1`): plays each sound staggered with a
     /// completion probe. A firing completion means the system resolved the
-    /// sound id and played it through — the audibility proxy in the simulator.
+    /// sound id and played it through — the audibility proxy in the simulator,
+    /// and the check that the files actually made it into the bundle.
     static func uitestProbe() {
-        let probes: [(String, SystemSoundID)] =
+        let probes: [(String, SystemSoundID?)] =
             [("correct", correctID), ("wrong", wrongID), ("reveal", revealID)]
         for (index, probe) in probes.enumerated() {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.8) {
+                guard let id = probe.1 else {
+                    print("DLSound probe: \(probe.0) MISSING from the bundle")
+                    return
+                }
                 // why: AudioToolbox calls the completion on its own queue —
                 // the closure must not assume main-actor isolation.
-                AudioServicesPlaySystemSoundWithCompletion(probe.1) { @Sendable in
-                    print("DLSound probe: \(probe.0) (id \(probe.1)) played to completion")
+                AudioServicesPlaySystemSoundWithCompletion(id) { @Sendable in
+                    print("DLSound probe: \(probe.0) (id \(id)) played to completion")
                 }
             }
         }
