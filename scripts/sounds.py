@@ -70,9 +70,12 @@ B4 = 493.88
 # struck while the first still rings, so they overlap into an interval instead
 # of arriving as two separate events.
 SOUNDS = {
-    'correct': dict(tau=0.070, attack=0.010, bright=1.00, level=1.00, notes=[
-        (E5,         0.000, 0.22, 1.00),
-        (G_SHARP5,   0.075, 0.22, 1.00),
+    # the most-heard of the three that carries a verdict, so the least present
+    # of them: quieter, rounder and shorter than the sound of getting it wrong,
+    # which is rarer and has to be noticed
+    'correct': dict(tau=0.060, attack=0.010, bright=0.78, level=0.72, notes=[
+        (E5,         0.000, 0.19, 1.00),
+        (G_SHARP5,   0.070, 0.19, 1.00),
     ]),
     # quieter than correct on purpose — this is the one that must not punish
     'wrong': dict(tau=0.090, attack=0.012, bright=1.00, level=0.90, notes=[
