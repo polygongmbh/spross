@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **The answer is said once**: a missed word appeared twice — small under the word you were
+  asked about, and again in a panel under the input box — and a word you had typed correctly
+  was still shown back to you as if you had not. The card now opens only when you did not
+  produce the word, and a typo's proper spelling stays where you were already looking:
+  right next to what you typed.
+
 - **Watch options all speak one language**: a question could offer meanings and
   target words side by side — the wrong-language tiles were unpickable noise
   and gave the answer away. Every tile now sits on the side the prompt asks for.

@@ -90,8 +90,13 @@ the app renders them:
 
 - Wrong answer reveals **inline**, expanding the card DOWNWARD (animated);
   no space is reserved pre-reveal.
+- **The answer is never on screen twice.** The card expands only when the word was
+  not produced — a wrong answer or "Aufdecken";
+  anything graded correct leaves the card closed and is narrated at the input field,
+  where the learner's own attempt already stands.
 - A typo counts as correct but does NOT auto-advance:
-  the typed text stays visible with the proper spelling and a "Weiter" tap.
+  the typed text stays visible with the proper spelling and a "Weiter" tap —
+  that correction line is the only place the spelling shows.
 - A clean correct answer auto-advances after ~1.2 s; Enter advances when revealed.
 - "Aufdecken" fills the answer field with the correct answer.
 - Answer-colored progress bar: one segment per answer — green right, amber tough, brick wrong.

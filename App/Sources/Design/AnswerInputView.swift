@@ -4,8 +4,9 @@ import SwiftUI
 //
 // Typed-answer field with inline feedback. Spec rules:
 // - correct  → subtle green glow + checkmark, never loud
-// - wrong    → the correct answer appears inline BELOW the input,
-//              warm amber accent, NO red flash — never punishing.
+// - wrong    → warm amber accent, NO red flash — never punishing, and the
+//              correct answer appears inline BELOW the input for callers whose
+//              prompt card never shows it (`showsRevealPanel`).
 
 struct AnswerInputView: View {
 
@@ -18,6 +19,9 @@ struct AnswerInputView: View {
     @Binding var text: String
     var feedback: Feedback = .neutral
     var placeholder: String = "Antwort eingeben …"
+    /// The panel below the field is for prompts whose card never shows the
+    /// answer; a card that reveals owns the answer instead.
+    var showsRevealPanel: Bool = true
     /// Session views own focus so the keyboard is up the moment a card
     /// appears; standalone use falls back to the internal focus state.
     var focus: FocusState<Bool>.Binding?
@@ -30,7 +34,7 @@ struct AnswerInputView: View {
             inputField
             // why: when "Aufdecken" fills the field with the answer, the field
             // already shows it — the panel below would just duplicate it.
-            if case .revealed(let answer) = feedback, text != answer {
+            if showsRevealPanel, case .revealed(let answer) = feedback, text != answer {
                 revealPanel(answer: answer)
                     .transition(.opacity.combined(with: .move(edge: .top)))
             }

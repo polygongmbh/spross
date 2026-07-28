@@ -12,6 +12,10 @@ extension SessionView {
                 AnswerInputView(text: $input,
                                 feedback: feedback,
                                 placeholder: inputPlaceholder,
+                                // why: the card's reveal already carries the
+                                // answer with its article color, plural and
+                                // alternates — the panel repeated it.
+                                showsRevealPanel: false,
                                 focus: $answerFocused) {
                     submit(card)
                 }
