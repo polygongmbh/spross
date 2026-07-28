@@ -1345,6 +1345,22 @@
         }
       }
     },
+    "session.otherWord %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übrigens: %1$@ heißt „%2$@“"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By the way: %1$@ means “%2$@”"
+          }
+        }
+      }
+    },
     "session.reveal" : {
       "localizations" : {
         "de" : {

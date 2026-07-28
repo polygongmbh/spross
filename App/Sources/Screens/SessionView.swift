@@ -18,6 +18,10 @@ struct SessionView: View {
     /// Set when the answer was accepted with a small typo — the proper
     /// spelling is shown and the card waits for a tap so the slip is seen.
     @State var typoCorrection: String?
+    /// Set when the typed answer is a word the catalog owns elsewhere: the
+    /// reveal names it, so a near-miss teaches the other word instead of
+    /// only failing (kufunga vs kufungua).
+    @State var otherWord: MatchOtherWord?
     @State var autoAdvance: Task<Void, Never>?
     /// Owned here (not in AnswerInputView) so the keyboard is up the moment
     /// a card appears and stays up across cards.
@@ -245,6 +249,7 @@ struct SessionView: View {
         feedback = .neutral
         revealed = false
         typoCorrection = nil
+        otherWord = nil
     }
 
     /// Design's RatingButtonsView has its own local Rating (no Kern dep);

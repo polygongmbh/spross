@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **A near-miss now tells you which word you actually wrote**: typing *kufunga* for
+  *kufungua* was forgiven as a slip of the pen, so the two words you most need told apart
+  taught each other. A word the catalog knows elsewhere is now taken as that word: the
+  answer is revealed, and the line under the box names what you wrote and what it means.
+
 - **The answer is said once**: a missed word appeared twice — small under the word you were
   asked about, and again in a panel under the input box — and a word you had typed correctly
   was still shown back to you as if you had not. The card now opens only when you did not

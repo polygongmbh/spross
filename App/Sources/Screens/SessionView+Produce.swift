@@ -67,18 +67,30 @@ extension SessionView {
                     EmptyView()
                 }
             case .revealed:
-                HStack(spacing: DL.Space.m) {
-                    // Correct after reveal → .hard (design §Session 4).
-                    Button("session.knewIt") { rate(.hard) }
-                        .buttonStyle(DLSoftButtonStyle(color: .dlTeal))
-                    Button {
-                        rate(.again)
-                    } label: {
-                        DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
+                VStack(spacing: DL.Space.m) {
+                    if let otherWord {
+                        // why: same line as the typo correction — both explain
+                        // what became of the answer, so they read alike.
+                        Text("session.otherWord \(otherWord.word) \(otherWord.meanings.joined(separator: ", "))")
+                            .font(DL.Fonts.subheadline)
+                            .italic()
+                            .foregroundStyle(Color.dlTextSecondary)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(DLPrimaryButtonStyle())
-                    // why: Enter advances when revealed (hardware keyboards).
-                    .keyboardShortcut(.defaultAction)
+                    HStack(spacing: DL.Space.m) {
+                        // Correct after reveal → .hard (design §Session 4).
+                        Button("session.knewIt") { rate(.hard) }
+                            .buttonStyle(DLSoftButtonStyle(color: .dlTeal))
+                        Button {
+                            rate(.again)
+                        } label: {
+                            DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
+                        }
+                        .buttonStyle(DLPrimaryButtonStyle())
+                        // why: Enter advances when revealed (hardware keyboards).
+                        .keyboardShortcut(.defaultAction)
+                    }
                 }
             }
         }
@@ -99,10 +111,11 @@ extension SessionView {
     func submit(_ card: Card) {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard feedback == .neutral, !trimmed.isEmpty,
-              let normalizer = model.answerNormalizer else { return }
+              let grader = model.produceGrader else { return }
         // Kern normalizer: accepted forms = target text ∪ synonyms ∪ variants,
-        // article-optional, verb-prefix-optional, article-mismatch → typo.
-        switch onEnum(of: normalizer.evaluate(input: trimmed, card: card)) {
+        // article-optional, verb-prefix-optional, article-mismatch → typo;
+        // a form another concept owns is that word, not a slip of this one.
+        switch onEnum(of: grader.grade(input: trimmed, card: card)) {
         case .exact:
             feedback = .correct
             DLSound.correct()
@@ -118,6 +131,12 @@ extension SessionView {
             feedback = .correct
             DLSound.correct()
             typoCorrection = typo.corrected
+        case .otherWord(let other):
+            // why: the typed word is taken — no typo credit (kufunga is not a
+            // slip of kufungua), and the reveal says what they did write.
+            feedback = .revealed(correctAnswer: CardDisplay.citation(of: card.target))
+            otherWord = other
+            DLSound.wrong()
         case .wrong:
             feedback = .revealed(correctAnswer: CardDisplay.citation(of: card.target))
             DLSound.wrong()

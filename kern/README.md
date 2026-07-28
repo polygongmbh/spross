@@ -218,6 +218,19 @@ day-key `yyyy-MM-dd`) with:
   audited exceptions within one edit — sw `nne`↔`nane` (4↔8, incl. tens compounds)
   and uk `дев'ять`↔`десять` (9↔10) — are gated explicitly in the sweep.
   Vocab reviews (`maxTypoBudget = null`, the default) keep the v1 budget untouched.
+- **Catalog-wide produce grading** — `CatalogAnswerGrader(normalizer, cards)`, the app's
+  produce path. One card at a time the normalizer cannot tell a slip from a different word,
+  so another concept's answer lands inside this card's typo budget:
+  sw `kufunga` (abschließen) ↔ `kufungua` (aufschließen), en `to pay` ↔ `to say`.
+  A form the join already accepts **exactly** elsewhere is that word, not a slip of this one:
+  it grades `Match.OtherWord(word, meanings)` — no typo credit, and the reveal can name what
+  was written (`meanings` = the source words of every owning concept, seed order).
+  Exact on the prompted card always wins, so a form two concepts share stays correct;
+  the feminine base leniency (§3) is left to its own demotion; and dropping a citation
+  prefix off the INPUT reaches verb owners only (a noun never owns `kupika`).
+  Only the collision is catalog-wide — nothing else about "wrong" widens.
+  `RealCatalogGradingTest` sweeps every near pair of every de→{en,sw,uk} join:
+  no catalog word grades as a forgiven slip of another.
 
 ## 7. Store & snapshots
 

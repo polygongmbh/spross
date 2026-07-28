@@ -97,6 +97,10 @@ the app renders them:
 - A typo counts as correct but does NOT auto-advance:
   the typed text stays visible with the proper spelling and a "Weiter" tap —
   that correction line is the only place the spelling shows.
+- A wrong answer that IS another word of the catalog **names it** under the field
+  ("Übrigens: … heißt …", styled like the typo correction — both explain what became
+  of the answer). Such a word never earns typo credit (kern README §6), so two words
+  a learner needs told apart can never grade each other correct.
 - A clean correct answer auto-advances after ~1.2 s; Enter advances when revealed.
 - "Aufdecken" fills the answer field with the correct answer.
 - Answer-colored progress bar: one segment per answer — green right, amber tough, brick wrong.

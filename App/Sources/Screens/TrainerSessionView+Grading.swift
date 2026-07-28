@@ -57,7 +57,9 @@ extension TrainerSessionView {
             return .exact
         case .typo(let typo):
             return .typo(typo.corrected)
-        case .wrong:
+        // Drills grade against one synthetic card, never the catalog join —
+        // the other-word verdict cannot arise here.
+        case .otherWord, .wrong:
             return .wrong
         }
     }

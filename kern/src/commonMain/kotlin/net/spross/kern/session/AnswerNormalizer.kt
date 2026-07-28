@@ -16,6 +16,14 @@ sealed interface Match {
      */
     data class Typo(val corrected: String) : Match
 
+    /**
+     * The typed answer IS a different concept's word in the answer language —
+     * a miss, but a nameable one: [word] as the catalog spells it, [meanings]
+     * the source-side words of every concept that owns it (seed order).
+     * Only [CatalogAnswerGrader] produces this; a bare normalizer sees one card.
+     */
+    data class OtherWord(val word: String, val meanings: List<String>) : Match
+
     data object Wrong : Match
 }
 
@@ -77,6 +85,18 @@ class AnswerNormalizer(
 
     /** True when the typed input means the card's target answer. */
     fun matches(input: String, card: Card): Boolean = evaluate(input, card) != Match.Wrong
+
+    /**
+     * Every comparison form [raw] can take: the normalized shape first, then —
+     * under [verbLeniency] — the same shape with each listed citation prefix
+     * dropped. [CatalogAnswerGrader] builds and probes its catalog-wide index
+     * through this, so the index can never disagree with [evaluate]'s exact test.
+     */
+    internal fun comparisonForms(raw: String, verbLeniency: Boolean): List<String> {
+        val normalized = normalize(raw)
+        if (normalized.isEmpty()) return emptyList()
+        return prefixVariants(normalized, if (verbLeniency) verbPrefixes else emptyList())
+    }
 
     /**
      * Grade [input] against every accepted target form. Verb-prefix leniency applies
@@ -161,7 +181,8 @@ class AnswerNormalizer(
         return when (val regraded = evaluate(remainder, accepted, prefixes, expectedArticle = null)) {
             Match.Exact -> Match.Typo(corrected = accepted.first())
             is Match.Typo -> regraded
-            Match.Wrong -> Match.Wrong
+            // One card at a time there is no catalog to name — that is the grader's verdict.
+            is Match.OtherWord, Match.Wrong -> Match.Wrong
         }
     }
 

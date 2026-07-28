@@ -65,6 +65,15 @@ extension AppModel {
         return AnswerNormalizer(answerLanguage: info)
     }
 
+    /// The same grading with the whole join in view: a form the catalog owns
+    /// elsewhere is that word, never a typo of this card's answer (kern §6).
+    /// Built per grading pass — one pass over the join's accepted forms, and
+    /// only ever on a submit tap.
+    var produceGrader: CatalogAnswerGrader? {
+        guard let normalizer = answerNormalizer, let box else { return nil }
+        return CatalogAnswerGrader(normalizer: normalizer, cards: Array(box.cards.values))
+    }
+
     // MARK: - Box actions
 
     /// "Pack in die Box": enqueue the area's unscheduled cards in seed order.
