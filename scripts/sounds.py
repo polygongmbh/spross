@@ -9,8 +9,8 @@ per call. Bundled files play silent to the touch, so the sounds are ours to
 author — see App/Sources/Design/Sounds.swift.
 
 Design grammar, from how the space already trains people:
-  correct — ASCENDING perfect fifth; the standard positive confirmation
-            (Duolingo's chime, Apple Pay's approval tone) taken wider.
+  correct — ASCENDING major third; the standard positive confirmation
+            (Duolingo's chime, Apple Pay's approval tone).
   wrong   — DESCENDING minor third; direction says "down" while the interval
             stays consonant, so it reads as mild "aw" and not as a buzzer.
   reveal  — one neutral note, no direction: revealing is not a verdict.
@@ -25,9 +25,9 @@ it. Two notes also read as deliberate where a glide slides past unnoticed.
 Low profile is the point. These play many times per session, often in public,
 and a wrong answer is the productive event in retrieval practice — not a
 failure to punish. So no dissonance on wrong (the textbook error intervals,
-tritone and minor second, are harsh on purpose), and nothing up in the bright
-register that gets grating on repeat. Direction and register carry the
-meaning; loudness and harshness do not have to.
+tritone and minor second, are harsh on purpose), nothing loud, and nothing
+that outstays the moment — length is what turns a chime into a doorbell.
+Direction and register carry the meaning; loudness and harshness do not.
 
 Floor on how deep it can go: phone speakers roll off below ~250 Hz, where the
 fundamental survives only through its harmonics. E4 (330) is about the bottom.
@@ -46,52 +46,22 @@ SAMPLE_RATE = 44100
 PEAK = 0.26          # headroom: these play over the ring/silent switch, not loud
 END_FADE = 0.005     # s — no click when the tail is truncated by the buffer
 
-# What separates a struck instrument from a beep is not the harmonic recipe but
-# what the recipe DOES over time. Three physical facts, and each one is audible:
-PARTIALS = 9         # a beep is a sine; a played note has a stack
-ROLLOFF = 1.7        # amplitude ~ 1/n**ROLLOFF — higher is mellower
-DECAY_SPREAD = 0.75  # partial n decays n**SPREAD times faster than the fundamental,
-                     # so the tone darkens as it rings, the way struck things do.
-                     # This is the single strongest cue; a spectrum frozen for the
-                     # whole note is what makes additive synthesis sound electronic.
-INHARMONICITY = 4e-4  # real strings/bars are slightly stretched, never exact
-                      # integer multiples — exact ratios beat too perfectly
-DETUNE = 0.0016      # a hair of per-partial drift, so the stack beats slowly
-                     # instead of locking into one motionless timbre
+# Odd harmonics falling ~1/n² (triangle-like: soft, bodied, no saw/square buzz),
+# plus a touch of 2nd harmonic for warmth. (multiple, amplitude). Each sound
+# scales these by its own `bright`; the fundamental never moves, so turning
+# brightness down rounds a sound off instead of muffling it.
+HARMONICS = ((1, 1.0), (2, 0.12), (3, -1 / 9), (5, 1 / 25), (7, -1 / 49))
 
-# A body resonance, fixed in Hz and NOT transposed with the note. Every real
-# instrument has a box, bar or bore that resonates at frequencies of its own,
-# so the same object struck high sounds different from the same object struck
-# low. Transposing one timbre across the keyboard is the sampler's tell, and
-# with two notes a fifth apart it would be audible.
-BODY_HZ = 1150.0
-BODY_GAIN = 0.9      # boost at the peak
-BODY_OCTAVES = 0.55  # width, in natural-log units of frequency ratio
+DECAY_SPREAD = 0.65  # partial n rings off n**SPREAD times faster than the
+                     # fundamental, so the tone darkens as it decays. This is
+                     # what keeps a two-note chime off the front door: a doorbell
+                     # is a long ring that holds ONE bright colour to the end.
 
-# Contact noise. Nothing is set in motion silently: a mallet, a pluck or a
-# breath puts a burst of inharmonic energy in before the tone settles. It is
-# nearly inaudible on its own and the strongest single "not a synth" cue there is.
-NOISE_GAIN = 0.10
-NOISE_TAU = 0.008    # s — gone before the note has properly started
-NOISE_DAMP = 0.40    # one-pole lowpass on the burst; undamped it is just hiss
-
-# Each sound scales the partials by its own `bright`; the fundamental never
-# moves, so turning brightness down rounds a sound off instead of muffling it.
-HARMONICS = tuple(
-    (n * (1 + INHARMONICITY * (n * n - 1) + DETUNE * math.sin(n * 2.399)),
-     n ** -ROLLOFF,
-     float(n ** DECAY_SPREAD),
-     # partials starting in lockstep give the onset an electronic spike; spread
-     # them by the golden angle so the waveform starts messy, as a real one does
-     (n * 0.6180339887 % 1.0) * 2 * math.pi)
-    for n in range(1, PARTIALS + 1)
-)
-
-# Equal temperament, A4 = 440. The bottom of the usable range is ~E4: phone
-# speakers roll off below ~250 Hz, where only the harmonics still carry.
-A4, E5 = 440.00, 659.26         # ascending perfect fifth — wide enough to read
-F_SHARP4, D4 = 369.99, 293.66   # descending minor third — lands under correct's start
-G4 = 392.00
+# Equal temperament, A4 = 440. Nothing goes below ~E4 — phone speakers roll off
+# under ~250 Hz, where the fundamental survives only through its harmonics.
+E5, G_SHARP5 = 659.26, 830.61   # ascending major third
+G4, E4 = 392.00, 329.63         # descending minor third
+B4 = 493.88
 
 # `level` is the finished peak relative to PEAK, applied after each sound is
 # normalized on its own — two overlapping notes sum to a taller waveform than
@@ -100,19 +70,19 @@ G4 = 392.00
 # struck while the first still rings, so they overlap into an interval instead
 # of arriving as two separate events.
 SOUNDS = {
-    'correct': dict(tau=0.125, attack=0.012, bright=1.00, level=1.00, notes=[
-        (A4,         0.000, 0.28, 1.00),
-        (E5,         0.090, 0.28, 0.95),
+    'correct': dict(tau=0.070, attack=0.010, bright=1.00, level=1.00, notes=[
+        (E5,         0.000, 0.22, 1.00),
+        (G_SHARP5,   0.075, 0.22, 1.00),
     ]),
     # quieter than correct on purpose — this is the one that must not punish
-    'wrong': dict(tau=0.100, attack=0.016, bright=0.90, level=0.90, notes=[
-        (F_SHARP4,   0.000, 0.28, 1.00),
-        (D4,         0.090, 0.28, 1.00),
+    'wrong': dict(tau=0.090, attack=0.012, bright=1.00, level=0.90, notes=[
+        (G4,         0.000, 0.26, 0.95),
+        (E4,         0.100, 0.26, 0.95),
     ]),
-    # heard most often of the three, so the roundest and the quietest: slow
-    # attack, partials pulled right down, and short enough to stay out of the way
-    'reveal': dict(tau=0.045, attack=0.022, bright=0.25, level=0.30, notes=[
-        (G4,         0.000, 0.13, 1.00),
+    # heard most often of the three, so the roundest and the quietest: slower
+    # attack, partials pulled down, short enough to stay out of the way
+    'reveal': dict(tau=0.036, attack=0.018, bright=0.45, level=0.35, notes=[
+        (B4,         0.000, 0.11, 1.00),
     ]),
 }
 
@@ -121,30 +91,18 @@ def voice(freq, length, tau, attack_s, bright):
     """One struck note: a harmonic stack under a soft-attack, exponential-decay
     envelope, each partial ringing off on its own clock so the tone darkens as
     it goes. Pitch is fixed for the note's life, as it is on anything struck."""
-    partials = []
-    for n, (mult, amp, spread, phase0) in enumerate(HARMONICS):
-        f = freq * mult
-        # the fixed body peak: where this partial falls against the resonance
-        # decides its weight, so a high note is coloured differently from a low
-        # one — the same bar sounds different struck at different places
-        tilt = math.log(f / BODY_HZ) / BODY_OCTAVES
-        body = 1.0 + BODY_GAIN * math.exp(-0.5 * tilt * tilt)
-        partials.append(((amp if n == 0 else amp * bright) * body,
-                         spread / tau, phase0, 2 * math.pi * f / SAMPLE_RATE))
+    partials = [(amp if mult == 1 else amp * bright,
+                 mult ** DECAY_SPREAD / tau,
+                 2 * math.pi * freq * mult / SAMPLE_RATE)
+                for mult, amp in HARMONICS]
     out = []
-    rng, noise = int(freq) * 7919 + 12345, 0.0   # fixed seed: same file every run
     for i in range(int(length * SAMPLE_RATE)):
         t = i / SAMPLE_RATE
         # raised cosine in, exponential out — the ring-off is what reads as
         # marimba rather than as a cut-off beep
         attack = 1.0 if t >= attack_s else 0.5 - 0.5 * math.cos(math.pi * t / attack_s)
-        sample = sum(amp * math.exp(-t * rate) * math.sin(phase0 + step * i)
-                     for amp, rate, phase0, step in partials)
-        burst = math.exp(-t / NOISE_TAU)
-        if burst > 0.002:
-            rng = (rng * 1103515245 + 12345) & 0x7FFFFFFF
-            noise += ((rng / 0x3FFFFFFF) - 1.0 - noise) * NOISE_DAMP
-            sample += noise * NOISE_GAIN * burst
+        sample = sum(amp * math.exp(-t * rate) * math.sin(step * i)
+                     for amp, rate, step in partials)
         out.append(sample * attack)
     return out
 
