@@ -241,9 +241,14 @@ day-key `yyyy-MM-dd`) with:
   it does not move with the clock), dailyStats tail
   (~70 days) for the streak walk, `schemaVersion`. Built by a KMP `SnapshotBuilder`,
   written by the app.
-- **WatchSnapshot v2**: direction/pair/`german` are gone — one entry per CARD with BOTH
+- **WatchSnapshot v3**: direction/pair/`german` are gone — one entry per CARD with BOTH
   sides pre-resolved: `{cardId, sourceText, targetText, accepted[], emoji?, articleTint?,
-  femMarker, due, stability, nextRole, promptForm}` + `schemaVersion`.
+  femMarker, due, stability, nextRole, promptForm, distractors[]}` + `schemaVersion`.
+  `distractors` (v3) are the multiple-choice tiles for that entry, picked by
+  `session/MultipleChoice` from the other entries read on THIS entry's option side —
+  so the watch only shuffles and cannot put the two languages in one question.
+  Shape-ranked (length gap + a heavy part-count penalty), up to six per entry,
+  omitted when the box has nothing else to offer.
   The phone resolves `nextRole` and the rotated `promptForm` from the log count at build
   time; presentation is the app layer's (`../docs/design.md` §Watch & widgets)
   and `emoji` is pre-gated by the §3 matrix.

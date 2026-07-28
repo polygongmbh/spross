@@ -11,70 +11,38 @@ struct WatchPracticeQuestion: Equatable {
     let correctIndex: Int
 }
 
-/// Builds a question for a FIXED prompt card (the queued card being drained),
-/// role-aware: the option side matches the phone-scheduled `nextRole`, so a
-/// recognition tap grades the same direction the phone expects.
+/// Assembles the question for a FIXED prompt card (the queued card being
+/// drained). WHICH words may stand next to the answer is decided on the phone
+/// (kern `MultipleChoice`, shipped per entry as `distractors`) — the watch only
+/// picks three of them and shuffles, so every tile sits on one side by
+/// construction:
 /// - recognize: prompt the target `promptForm`, match the SOURCE meaning.
 /// - produce:   prompt the SOURCE meaning, match the TARGET word.
 enum WatchPracticeGenerator {
 
+    /// Tiles per question: the answer plus three distractors.
+    static let optionCount = 4
+
     /// The text the learner must MATCH for this entry's role (the option side).
     static func answerText(for entry: WatchSnapshot.Entry) -> String {
-        optionText(of: entry, recognize: entry.isRecognize)
+        entry.isRecognize ? entry.sourceText : entry.targetText
     }
 
-    /// The option-side text of `entry` read in a GIVEN role — every option in a
-    /// question must sit on the same side as the prompt, whatever role the pool
-    /// entry itself is scheduled for, or the tiles mix the two languages.
-    static func optionText(of entry: WatchSnapshot.Entry, recognize: Bool) -> String {
-        recognize ? entry.sourceText : entry.targetText
-    }
-
-    /// A question, or `nil` when the pool holds no distinct distractor.
-    /// Up to four options; distractors are deduped case-insensitively and
-    /// ranked by SHAPE similarity to the answer (character length + number of
-    /// space/hyphen parts) so option length can't give the answer away, then
-    /// lightly shuffled within the closest handful.
+    /// A question, or `nil` when the phone shipped no distractor for the entry
+    /// (a lone card, or a pre-v3 snapshot).
     static func makeQuestion(promptEntry prompt: WatchSnapshot.Entry,
-                             pool: [WatchSnapshot.Entry],
                              using rng: inout some RandomNumberGenerator) -> WatchPracticeQuestion? {
-        let correct = answerText(for: prompt)
-        let correctKey = correct.lowercased()
-
-        // Distractor candidates from every OTHER entry, read on the PROMPT's
-        // option side, unique and distinct from the correct answer.
-        var seen: Set<String> = [correctKey]
-        var candidates: [String] = []
-        for entry in pool where entry.cardId != prompt.cardId {
-            let candidate = optionText(of: entry, recognize: prompt.isRecognize)
-            if seen.insert(candidate.lowercased()).inserted { candidates.append(candidate) }
-        }
-        guard !candidates.isEmpty else { return nil }  // deck of identical answers
-
-        // why: a lone long / multi-part option is a visual tell — keep the
-        // three distractors close to the answer's shape, then jitter within
-        // the closest six so it isn't deterministic.
-        var shortlist = candidates
-            .sorted { shapeDistance($0, to: correct) < shapeDistance($1, to: correct) }
-            .prefix(6)
-            .map { $0 }
+        var shortlist = prompt.distractors ?? []
+        guard !shortlist.isEmpty else { return nil }
+        // why: the phone ranks a handful by shape — jitter within it so the
+        // same card doesn't always draw the same three tiles.
         shortlist.shuffle(using: &rng)
 
-        var options = Array(shortlist.prefix(3)) + [correct]
+        let correct = answerText(for: prompt)
+        var options = Array(shortlist.prefix(optionCount - 1)) + [correct]
         options.shuffle(using: &rng)
         let correctIndex = options.firstIndex(of: correct)!
         return WatchPracticeQuestion(promptCardID: prompt.cardId, promptEntry: prompt,
                                      options: options, correctIndex: correctIndex)
-    }
-
-    /// Shape distance: character-length gap plus a heavy penalty when the
-    /// number of space/hyphen-separated parts differs (keeps multi-part words
-    /// together so a compound isn't obvious among single words).
-    static func shapeDistance(_ a: String, to b: String) -> Int {
-        abs(a.count - b.count) + abs(partCount(a) - partCount(b)) * 6
-    }
-
-    private static func partCount(_ s: String) -> Int {
-        s.split(whereSeparator: { $0 == " " || $0 == "-" }).count
     }
 }

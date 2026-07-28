@@ -25,6 +25,10 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
         var stability: Double
         var nextRole: String
         var promptForm: String
+        /// Phone-ranked wrong options for THIS entry's role, already on the
+        /// side the question asks for (kern `MultipleChoice`). Absent in
+        /// pre-v3 snapshots and empty for a box with nothing else to offer.
+        var distractors: [String]?
 
         var id: String { cardId }
 

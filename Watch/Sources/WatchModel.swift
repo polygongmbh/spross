@@ -182,12 +182,11 @@ final class WatchModel {
     /// Build the question for the current card and (re)start the response clock.
     private func makeQuestionForCurrent() {
         selectedIndex = nil
-        guard let entry = currentEntry, let snapshot else {
+        guard let entry = currentEntry else {
             currentQuestion = nil
             return
         }
-        currentQuestion = WatchPracticeGenerator.makeQuestion(
-            promptEntry: entry, pool: snapshot.entries, using: &rng)
+        currentQuestion = WatchPracticeGenerator.makeQuestion(promptEntry: entry, using: &rng)
         questionShownAt = Date()
     }
 }

@@ -11,20 +11,24 @@ import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.emojiVisible
 import net.spross.kern.model.presentationRole
 import net.spross.kern.model.recognitionPromptForm
+import net.spross.kern.session.MultipleChoice
 import net.spross.kern.store.StoreJson
 
 /**
- * Phone-side builder of the watch application-context snapshot, v2:
+ * Phone-side builder of the watch application-context snapshot, v3:
  * one entry per CARD with BOTH sides pre-resolved, so the watch stays pure
  * Swift and never joins. [WatchEntryDto.nextRole]/[WatchEntryDto.promptForm]
  * are resolved from the log count at build time; the watch presents
  * accordingly (flip + self-grade both roles; the watch never types).
+ * [WatchEntryDto.distractors] ships the multiple-choice tiles already ranked
+ * and already on the entry's own option side, so the watch only shuffles.
  * Capped at [ENTRY_CAP] to stay under the ~60 KB `updateApplicationContext`
  * limit.
  */
 object WatchSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 2
+    const val SCHEMA_VERSION: Int = 3
     const val ENTRY_CAP: Int = 60
+    private const val RECOGNIZE = "recognize"
 
     fun build(state: BoxState, nowEpochMillis: Long): String =
         StoreJson.encodeSorted(WatchSnapshotDoc.serializer(), doc(state, nowEpochMillis))
@@ -52,7 +56,7 @@ object WatchSnapshotBuilder {
         return WatchSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             generated = nowEpochMillis,
-            entries = entries,
+            entries = entries.map { it.copy(distractors = distractors(it, entries)) },
         )
     }
 
@@ -62,6 +66,21 @@ object WatchSnapshotBuilder {
         val order: Double,
         val sched: CardScheduling,
     )
+
+    /**
+     * The multiple-choice tiles for [entry], drawn from the other snapshot
+     * entries read on ENTRY's option side — never on their own, or the watch
+     * would offer source meanings and target words in the same question.
+     */
+    private fun distractors(entry: WatchEntryDto, pool: List<WatchEntryDto>): List<String> =
+        MultipleChoice.distractors(
+            answer = optionText(entry, entry.nextRole),
+            candidates = pool.filter { it.cardId != entry.cardId }.map { optionText(it, entry.nextRole) },
+        )
+
+    /** [dto]'s text on the side a question in [role] asks the learner to pick. */
+    private fun optionText(dto: WatchEntryDto, role: String): String =
+        if (role == RECOGNIZE) dto.sourceText else dto.targetText
 
     private fun entry(sched: CardScheduling, card: Card): WatchEntryDto {
         val reviewCount = sched.reviewCount
@@ -98,7 +117,9 @@ internal data class WatchSnapshotDoc(
  * (+ labeled ♀ badge when [femMarker]), reveal the target family. "recognize":
  * prompt [promptForm] (the rotated target form), reveal [sourceText] decorated.
  * [emoji] is pre-gated by the emoji policy; [accepted] lists the full target
- * family for reveal display (the watch never types).
+ * family for reveal display (the watch never types). [distractors] are the
+ * ranked wrong options for THIS entry's role — the watch picks three and
+ * shuffles them with the answer.
  */
 @Serializable
 internal data class WatchEntryDto(
@@ -113,4 +134,5 @@ internal data class WatchEntryDto(
     val stability: Double,
     val nextRole: String,
     val promptForm: String,
+    val distractors: List<String> = emptyList(),
 )

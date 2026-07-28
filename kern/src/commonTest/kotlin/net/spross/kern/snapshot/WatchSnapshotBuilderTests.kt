@@ -2,6 +2,7 @@ package net.spross.kern.snapshot
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
@@ -131,10 +132,59 @@ class WatchSnapshotBuilderTests {
         assertTrue(WatchSnapshotBuilder.doc(state, Box.day1).entries.isEmpty())
     }
 
+    // The watch shuffles what it is given, so a distractor read on the
+    // CANDIDATE's role instead of the entry's would put source meanings and
+    // target words in the same question.
+    @Test
+    fun distractorsSitOnTheEntrysOwnOptionSide() {
+        val cards = (1..6).map { Snap.card("w0$it", it, sourceText = "de-$it", targetText = "sw-$it") }
+        var state = Snap.state(cards)
+        for ((index, card) in cards.withIndex()) {
+            state = Box.inject(
+                state,
+                Box.sched(
+                    card.id, stability = (index + 1).toDouble(),
+                    dueMillis = Box.day1, lastReviewMillis = Box.day1,
+                    // Alternating log counts → a mix of produce and recognize entries.
+                    logCount = index,
+                ),
+            )
+        }
+        val entries = WatchSnapshotBuilder.doc(state, Box.day1).entries
+        assertTrue(entries.any { it.nextRole == "produce" } && entries.any { it.nextRole == "recognize" })
+
+        for (entry in entries) {
+            val prefix = if (entry.nextRole == "recognize") "de-" else "sw-"
+            assertTrue(
+                entry.distractors.isNotEmpty() && entry.distractors.all { it.startsWith(prefix) },
+                "${entry.nextRole} entry ${entry.cardId} got ${entry.distractors}",
+            )
+            assertFalse(entry.distractors.contains(if (prefix == "de-") entry.sourceText else entry.targetText))
+        }
+    }
+
+    // why: the JSON flavor omits defaults, so an empty shortlist drops out of
+    // the wire (the watch reads it as absent) but a real one must be there.
+    @Test
+    fun distractorsReachTheWire() {
+        var state = Snap.state(listOf(Snap.card("w01", 1), Snap.card("w02", 2)))
+        for (id in listOf("w01", "w02")) {
+            state = Box.inject(state, Box.sched(id, dueMillis = Box.day1, lastReviewMillis = Box.day1))
+        }
+        assertTrue(WatchSnapshotBuilder.build(state, Box.day1).contains("\"distractors\":["))
+    }
+
+    @Test
+    fun aLoneCardHasNoDistractorsToOffer() {
+        var state = Snap.state(listOf(fem))
+        state = Box.inject(state, Box.sched("wf", dueMillis = Box.day1, lastReviewMillis = Box.day1))
+        assertTrue(WatchSnapshotBuilder.doc(state, Box.day1).entries.single().distractors.isEmpty())
+    }
+
     @Test
     fun schemaVersionAndGeneratedArePinned() {
         val doc = WatchSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1)
-        assertEquals(2, doc.schemaVersion)
+        assertEquals(3, doc.schemaVersion)
         assertEquals(Box.day1, doc.generated)
     }
 

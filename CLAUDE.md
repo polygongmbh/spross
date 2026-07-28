@@ -64,7 +64,7 @@ Kern modules under `kern/src/commonMain/kotlin/net/spross/kern/`:
 - `catalog` — catalog v2 parser + (source, target) join, deterministic card ids.
 - `fsrs` — FSRS-6 scheduler (golden vectors copied from ts-fsrs v5.4.1 / py-fsrs v6.3.1).
 - `box` — growth engine: budgets, health gate, phrase unlock, leeches (`BoxEngine` facade).
-- `session` — session composer + drain loop + answer normalizer.
+- `session` — session composer + drain loop + answer normalizer + multiple-choice options.
 - `trainer` — number/clock/phrase drills (de/sw/uk authored).
 - `snapshot` / `store` — watch/widget snapshot builders + persisted-document facade.
 - `App/Sources/Design` — kern-free SwiftUI component library (poster-derived theme).
