@@ -1,15 +1,8 @@
 # Content catalog format (v2.1)
 
-Language-agnostic content in this directory, organised **one folder per area**.
+Language learning content organised **one folder per area**.
 Designed for reuse (any language pair is a runtime join of shared parts),
 crowdsourced per-language contribution, and a slow default learning progression.
-
-**THIS DIRECTORY IS CANONICAL**: both apps read `catalog/` directly.
-Edit content HERE and it is what the apps bundle on their next build.
-
-> **Beta — no live user data.** Ids, slugs, and encoding carry no
-> preservation guarantee; they are free to change
-> (the pre-production invariant: `../CLAUDE.md` § Invariants).
 
 ## The key modeling decision: everything is a concept
 
@@ -21,12 +14,14 @@ Edit content HERE and it is what the apps bundle on their next build.
   The German side is authored once and shared across every pair that teaches German.
 - **Coverage may be non-uniform.** A concept without a realization in some language
   simply never appears in pairs involving that language. This is how pair-specific
-  phrases work: "Fleisch grillen" is a concept with `de` + `sw` realizations and no
-  `uk`, so it shows up in de↔sw only — no separate pair files needed.
+  content works: `relax` is a concept with `de`, `en` and `uk` realizations and no `sw`,
+  so it never shows up in a pair that teaches Swahili — no separate pair files needed.
+  It is also the honest way out when a language has no word worth teaching yet:
+  drop the realization rather than ship a coinage.
 - **Homonyms & target-language merges.** Slugs are unique, but realization *texts* are not:
   one text may legitimately serve two concepts in two areas — usually because the
-  target language merges a distinction the source draws (sw `kuvaa` = `anziehen` AND
-  `sich anziehen`; sw `kupumzika` covers three concepts). There is **no disambiguation
+  target language merges a distinction the source draws (sw `kuacha` = `verlassen` AND
+  `aufhören`, and with an object `kuacha kazi` = `kündigen`). There is **no disambiguation
   field**: the **area** is the disambiguator, and the engine renders the area label on an
   ambiguous *produce* prompt only — never on recognize, where any cue strong enough to
   identify the concept would reveal the answer. Two rules are lint-enforced: a
@@ -167,18 +162,19 @@ Realization fields — only `text` is required:
   but never become their own unit.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
   labels, no `(selten)` qualifier), one fact per key: de `gender` + `plural`,
-  sw `plural`, en `plural`, uk `plural`. No gender outside de. Omit if empty.
+  sw `plural`, en `plural`, uk `plural`. Omit if empty.
   `plural` is a bare full form (`"Wörter"`), a suffix (`"-n"`, `"-nen"`),
   `"="` (identical to the singular → render `"= Pl."`), or
   `"only"` (pluralia tantum, no singular → render `"nur Pl."`).
   True uncountables (Regen, Hunger) simply omit `plural`.
-  **How much to author is per language**, and the test is always the same: write it
-  down when the learner could not derive it.
+  **How much to author is per language**, and the test is always the same:
+  write it down when the learner could not derive it.
   de and sw author every countable noun — German plurals are unpredictable by class,
   and a Swahili plural IS the noun class (`kiti`→`viti`, `mlango`→`milango`),
   the single most load-bearing fact about the word.
-  en and uk author only what the regular pattern does not give: en beyond a bare +s
-  (`knife`→`knives`, `bus`→`buses`), uk beyond swapping the ending —
+  en and uk author only what the regular pattern does not give:
+  en beyond a bare +s (`knife`→`knives`, `bus`→`buses`),
+  uk beyond swapping the ending —
   stem alternations (`ніж`→`ножі`), fleeting vowels (`день`→`дні`),
   suppletives (`людина`→`люди`), indeclinables and `-ння` neuters (`"="`),
   and phrases whose other words have to agree (`письмовий стіл`→`письмові столи`).
@@ -189,6 +185,39 @@ Realization fields — only `text` is required:
   Keep a note only if it changes what the learner would say or do; pure etymology
   ("wörtl. …") is cut. Load-bearing teaching (e.g. which word for "rice") is
   destined to become first-class training content, not a permanent note.
+
+## What earns a slot, and how it is worded
+
+Two content rules that cut across every language file.
+
+**Every slot has to buy fluency.** A concept is worth a card when knowing it
+lets the learner say more; charm is not a qualification.
+`sweet-dreams` was cut on this test — the bedroom already teaches
+`good-night-sleep-well`, which covers the same moment with more useful words,
+so the second phrase only bought a warm feeling.
+Redundancy is the usual symptom: when two entries serve one situation,
+keep the one whose words go furthest elsewhere.
+
+**A realization mirrors the concept, not the translator's instinct.**
+Every word in one language's text should have a visible counterpart in the others' —
+that mapping is how a learner works out which word did what,
+and it is worth re-cutting the source phrase to keep
+(„Das WLAN ist weg" became „Das Internet ist weg" so `intaneti` had something to answer to;
+„zu teuer" is `ghali mno`, not `ghali sana`, which is „sehr teuer").
+The replaced wording moves to `variants` so nobody's typed answer stops grading.
+Where a language genuinely has no equivalent —
+a greeting formula, `Feierabend`, the Swahili clock — a `notes` entry carries the gap.
+
+The same rule decides **baked-in objects**: a verb carries its object in EVERY
+language or in none. Swahili often cannot go bare, because one verb covers several
+German ones (`kupanda` = besteigen/einsteigen/pflanzen), and then the object is
+authored across the board — `Blumen pflanzen` / `to plant flowers` / `kupanda maua` /
+`садити квіти`, never `pflanzen` answered by `kupanda mimea`. The exception is a
+**merge**, where the target really has one word for two source concepts and the object
+is what tells them apart (`kuacha` verlassen vs `kuacha kazi` kündigen,
+`kuomba` beantragen vs `kuomba kazi` sich bewerben): there the object is a
+disambiguator, it is carried by the merged language alone, and the homonym rule above
+governs it.
 
 ## What v2 dropped from v1
 
@@ -205,12 +234,12 @@ Realization fields — only `text` is required:
 - A homonym disambiguation field — per-realization `sense`/`gloss` or concept-level
   `homonymOf`. The area label already disambiguates for free, in every language, and lint
   guarantees it exists; `sense` would be new authored content for a handful of entries, and
-  `homonymOf` would encode at concept level a fact that is per-language (`kupumzika` is
+  `homonymOf` would encode at concept level a fact that is per-language (`kuacha` is
   ambiguous in sw only) and rots as languages are added. Same reasoning that deleted
   `variantOf`. See the homonym rule above and kern README §2/§3.
 
 ## Legacy
 
-The project-level `data/generated/` (`vocab-de-*.json`, `catalog.py`) is a frozen
-reference snapshot of the retired v1 per-pair format; not read by the apps, not
-maintained.
+The project-level `../data/generated/` (`vocab-de-*.json`, `catalog.py`) is a frozen
+reference snapshot of the retired v1 per-pair format;
+not read by the apps, not maintained.
