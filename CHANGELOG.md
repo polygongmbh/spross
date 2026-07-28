@@ -9,9 +9,9 @@
 - **The app stops buzzing at every answer**: the feedback sounds were iOS system sounds,
   which drag the alert vibration along with them — so a right answer shook the phone
   just like a wrong one, and silencing it meant giving up alert haptics everywhere else.
-  The sounds are the app's own now, warmer and pitched to say what happened:
-  a rising pair for correct, a falling pair for wrong, a quiet tick on reveal.
-  The one tap left is the light one on a wrong answer.
+  The sounds are the app's own now — deeper, softer and shaped to stay in the background,
+  since you hear them all session long: a gentle rise for correct, a fall for wrong,
+  a quiet tick on reveal. The one tap left is the light one on a wrong answer.
 
 ## 1.1.0 — 2026-07-25
 
