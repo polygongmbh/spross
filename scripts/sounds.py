@@ -47,11 +47,22 @@ PEAK = 0.26          # headroom: these play over the ring/silent switch, not lou
 END_FADE = 0.005     # s — no click when the tail is truncated by the buffer
 GLIDE_CURVE = 3.0    # >1 accelerates into the target; 1.0 is a flat linear sweep
 
-# Mostly fundamental, with quiet partials for body: enough to carry on a phone
-# speaker, far short of a full triangle's edge. (multiple, amplitude). Each
-# sound scales the partials by its own `bright` — the fundamental never moves,
-# so turning brightness down rounds a sound off instead of muffling it.
-HARMONICS = ((1, 1.0), (2, 0.10), (3, -1 / 12), (5, 1 / 40))
+# What separates a struck instrument from a beep is not the harmonic recipe but
+# what the recipe DOES over time. Three physical facts, and each one is audible:
+PARTIALS = 9         # a beep is a sine; a played note has a stack
+ROLLOFF = 1.7        # amplitude ~ 1/n**ROLLOFF — higher is mellower
+DECAY_SPREAD = 0.75  # partial n decays n**SPREAD times faster than the fundamental,
+                     # so the tone darkens as it rings, the way struck things do.
+                     # This is the single strongest cue; a spectrum frozen for the
+                     # whole note is what makes additive synthesis sound electronic.
+INHARMONICITY = 4e-4  # real strings/bars are slightly stretched, never exact
+                      # integer multiples — exact ratios beat too perfectly
+# Each sound scales the partials by its own `bright`; the fundamental never
+# moves, so turning brightness down rounds a sound off instead of muffling it.
+HARMONICS = tuple(
+    (n * (1 + INHARMONICITY * (n * n - 1)), n ** -ROLLOFF, float(n ** DECAY_SPREAD))
+    for n in range(1, PARTIALS + 1)
+)
 
 # Equal temperament, A4 = 440. The bottom of the usable range is ~E4: phone
 # speakers roll off below ~250 Hz, where only the harmonics still carry.
@@ -91,8 +102,8 @@ def voice(start_hz, end_hz, glide, length, tau, attack_s, bright):
     """One note: harmonic stack, gliding start→end, under a soft-attack,
     exponential-decay envelope. Phase is integrated sample by sample — the
     naive sin(2πft) with a moving f would smear the pitch it claims to play."""
-    partials = tuple((mult, amp if mult == 1 else amp * bright)
-                     for mult, amp in HARMONICS)
+    partials = tuple((mult, amp if n == 0 else amp * bright, spread / tau)
+                     for n, (mult, amp, spread) in enumerate(HARMONICS))
     out = []
     phase = 0.0
     for i in range(int(length * SAMPLE_RATE)):
@@ -110,11 +121,13 @@ def voice(start_hz, end_hz, glide, length, tau, attack_s, bright):
             x = (t / glide) ** GLIDE_CURVE
             freq = start_hz * (end_hz / start_hz) ** x
         # raised cosine in, exponential out — the ring-off is what reads as
-        # marimba rather than as a cut-off beep
+        # marimba rather than as a cut-off beep. Each partial rings off on its
+        # own clock, so the note starts bright and darkens instead of holding
+        # one frozen colour to the end.
         attack = 1.0 if t >= attack_s else 0.5 - 0.5 * math.cos(math.pi * t / attack_s)
-        env = attack * math.exp(-t / tau)
-        sample = sum(amp * math.sin(phase * mult) for mult, amp in partials)
-        out.append(sample * env)
+        sample = sum(amp * math.exp(-t * rate) * math.sin(phase * mult)
+                     for mult, amp, rate in partials)
+        out.append(sample * attack)
         phase += 2 * math.pi * freq / SAMPLE_RATE
     return out
 
