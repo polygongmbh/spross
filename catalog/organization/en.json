@@ -49,8 +49,8 @@
   "urgent": {
    "text": "urgent"
   },
-  "i-would-like-an-appointment": {
-   "text": "I would like an appointment."
+  "i-would-like-to-arrange-an-appointment": {
+   "text": "I would like to arrange an appointment."
   },
   "i-have-to-cancel-the-appointment": {
    "text": "I have to cancel the appointment."
@@ -58,8 +58,8 @@
   "the-deadline-is-tomorrow": {
    "text": "The deadline is tomorrow."
   },
-  "when-are-the-opening-hours": {
-   "text": "When are the opening hours?"
+  "what-are-the-opening-hours": {
+   "text": "What are the opening hours?"
   },
   "can-we-postpone-the-appointment": {
    "text": "Can we postpone the appointment?"

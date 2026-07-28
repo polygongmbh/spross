@@ -60,7 +60,10 @@
    "text": "Guten Tag!"
   },
   "thank-you": {
-   "text": "Danke schön!"
+   "text": "Vielen Dank!",
+   "variants": [
+    "Danke schön!"
+   ]
   },
   "please": {
    "text": "Bitte!"

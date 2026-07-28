@@ -77,7 +77,7 @@
    }
   },
   "watch-tv": {
-   "text": "kutazama TV"
+   "text": "kutazama televisheni"
   },
   "read": {
    "text": "kusoma"
@@ -89,7 +89,7 @@
    "text": "kusikiliza muziki"
   },
   "water-plants": {
-   "text": "kumwagilia"
+   "text": "kumwagilia mimea"
   },
   "play": {
    "text": "kucheza"
@@ -149,7 +149,7 @@
    "text": "Washa televisheni."
   },
   "come-sit-with-me": {
-   "text": "Njoo, keti karibu nami!"
+   "text": "Njoo, kaa karibu nami!"
   },
   "shall-we-watch-a-movie": {
    "text": "Tutazame filamu?"
@@ -159,9 +159,6 @@
   },
   "the-curtains-hang-over-the-window": {
    "text": "Mapazia yananing'inia mbele ya dirisha."
-  },
-  "can-you-turn-off-the-light": {
-   "text": "Unaweza kuzima taa?"
   },
   "open-the-window-fresh-air": {
    "text": "Fungua dirisha."

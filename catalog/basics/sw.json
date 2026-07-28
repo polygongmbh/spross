@@ -56,7 +56,10 @@
    }
   },
   "good-day": {
-   "text": "Habari!"
+   "text": "Habari!",
+   "notes": {
+    "de": "habari = Neuigkeit — die Allzweck-Begrüßung; Antwort: „Nzuri!“"
+   }
   },
   "thank-you": {
    "text": "Asante sana!"
@@ -74,7 +77,10 @@
    "text": "Hapana."
   },
   "whats-your-name": {
-   "text": "Unaitwa nani?"
+   "text": "Unaitwaje?",
+   "variants": [
+    "Unaitwa nani?"
+   ]
   },
   "my-name-is": {
    "text": "Naitwa …"

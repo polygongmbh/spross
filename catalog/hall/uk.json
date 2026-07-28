@@ -65,7 +65,7 @@
    "text": "дзвонити у двері"
   },
   "take-off-shoes": {
-   "text": "роззуватися"
+   "text": "знімати взуття"
   },
   "set-off": {
    "text": "виходити з дому"
@@ -109,8 +109,8 @@
   "letter": {
    "text": "лист"
   },
-  "knock": {
-   "text": "стукати"
+  "knock-on-door": {
+   "text": "стукати у двері"
   },
   "enter": {
    "text": "заходити"
@@ -119,16 +119,10 @@
    "text": "всередині"
   },
   "do-you-have-the-keys": {
-   "text": "Ти взяв ключі?",
-   "variants": [
-    "Ти взяла ключі?"
-   ]
+   "text": "У тебе є ключі?"
   },
   "ill-be-right-back": {
    "text": "Я скоро повернуся!"
-  },
-  "take-off-your-shoes": {
-   "text": "Роззуйся."
   },
   "hurry-were-late": {
    "text": "Поквапся, ми запізнюємось!"
@@ -140,13 +134,19 @@
    "text": "З поверненням!"
   },
   "the-doorbell-suddenly-rang": {
-   "text": "Раптом подзвонили у двері."
+   "text": "Раптом задзвонив дзвінок."
   },
   "dont-forget-your-jacket": {
    "text": "Не забудь куртку!"
   },
   "put-on-the-jacket": {
    "text": "одягати куртку"
+  },
+  "take-off-your-shoes": {
+   "text": "Зніми своє взуття.",
+   "variants": [
+    "Роззуйся."
+   ]
   }
  }
 }

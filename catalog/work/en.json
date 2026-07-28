@@ -52,8 +52,8 @@
   "start": {
    "text": "to start"
   },
-  "stop": {
-   "text": "to stop"
+  "leave": {
+   "text": "to leave"
   },
   "quit": {
    "text": "to quit"
@@ -101,7 +101,7 @@
    "text": "notice of termination"
   },
   "tomorrow-i-have-a-job-interview": {
-   "text": "Tomorrow I have an interview at the company."
+   "text": "Tomorrow I will introduce myself at the company."
   },
   "my-shift-starts-at-six": {
    "text": "My shift starts at six."
@@ -116,10 +116,10 @@
    "text": "Can you help me briefly?"
   },
   "i-want-vacation-next-week": {
-   "text": "I want to take vacation next week."
+   "text": "I would like to take vacation next week."
   },
   "read-the-contract": {
-   "text": "Read the contract."
+   "text": "Read the contract!"
   },
   "whats-the-salary": {
    "text": "What's the salary?"

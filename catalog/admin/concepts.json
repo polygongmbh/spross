@@ -92,10 +92,6 @@
   "kind": "verb"
  },
  {
-  "slug": "expire",
-  "kind": "verb"
- },
- {
   "slug": "passport",
   "kind": "noun",
   "emoji": "📘"
@@ -181,7 +177,7 @@
   ]
  },
  {
-  "slug": "do-you-have-all-the-documents",
+  "slug": "did-you-bring-all-the-documents",
   "kind": "phrase",
   "components": [
    "documents"
@@ -196,8 +192,7 @@
   "slug": "when-does-my-id-expire",
   "kind": "phrase",
   "components": [
-   "id-card",
-   "expire"
+   "id-card"
   ]
  }
 ]

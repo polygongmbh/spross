@@ -52,8 +52,8 @@
   "dry-off": {
    "text": "to dry off"
   },
-  "hang-up": {
-   "text": "to hang up"
+  "hang-up-laundry": {
+   "text": "to hang up the laundry"
   },
   "clean": {
    "text": "to clean"
@@ -61,8 +61,8 @@
   "shave": {
    "text": "to shave"
   },
-  "comb": {
-   "text": "to comb"
+  "comb-hair": {
+   "text": "to comb your hair"
   },
   "apply-lotion": {
    "text": "to apply lotion"
@@ -98,7 +98,7 @@
    "text": "dirty"
   },
   "im-taking-a-quick-shower": {
-   "text": "I'm taking a quick shower."
+   "text": "I'm going for a quick shower."
   },
   "the-bathroom-is-occupied": {
    "text": "The bathroom is occupied!"

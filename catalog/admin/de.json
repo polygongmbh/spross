@@ -105,9 +105,6 @@
   "copy": {
    "text": "kopieren"
   },
-  "expire": {
-   "text": "ablaufen"
-  },
   "passport": {
    "text": "Pass",
    "grammar": {
@@ -191,10 +188,10 @@
   "i-need-an-interpreter-for-the-application": {
    "text": "Ich brauche für den Antrag einen Dolmetscher."
   },
-  "do-you-have-all-the-documents": {
-   "text": "Haben Sie alle Unterlagen dabei?",
+  "did-you-bring-all-the-documents": {
+   "text": "Haben Sie alle Unterlagen mitgebracht?",
    "variants": [
-    "Hast du alle Unterlagen dabei?"
+    "Hast du alle Unterlagen mitgebracht?"
    ]
   },
   "the-decision-comes-by-mail": {

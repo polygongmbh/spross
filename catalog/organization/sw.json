@@ -62,9 +62,9 @@
    "text": "kwa wakati"
   },
   "urgent": {
-   "text": "wa haraka"
+   "text": "-a haraka"
   },
-  "i-would-like-an-appointment": {
+  "i-would-like-to-arrange-an-appointment": {
    "text": "Ningependa kupanga miadi."
   },
   "i-have-to-cancel-the-appointment": {
@@ -73,8 +73,11 @@
   "the-deadline-is-tomorrow": {
    "text": "Tarehe ya mwisho ni kesho."
   },
-  "when-are-the-opening-hours": {
-   "text": "Mnafungua saa ngapi?"
+  "what-are-the-opening-hours": {
+   "text": "Saa za kufungua ni zipi?",
+   "variants": [
+    "Mnafungua saa ngapi?"
+   ]
   },
   "can-we-postpone-the-appointment": {
    "text": "Tunaweza kuahirisha miadi?"

@@ -65,7 +65,7 @@
    "text": "слухати музику"
   },
   "water-plants": {
-   "text": "поливати"
+   "text": "поливати рослини"
   },
   "play": {
    "text": "грати"
@@ -120,9 +120,6 @@
   },
   "the-curtains-hang-over-the-window": {
    "text": "Штори висять перед вікном."
-  },
-  "can-you-turn-off-the-light": {
-   "text": "Можеш вимкнути світло?"
   },
   "open-the-window-fresh-air": {
    "text": "Відчини вікно."

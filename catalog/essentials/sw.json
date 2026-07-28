@@ -160,8 +160,8 @@
   "wait": {
    "text": "kusubiri"
   },
-  "repeat": {
-   "text": "kurudia"
+  "repeat-word": {
+   "text": "kurudia neno"
   },
   "slow": {
    "text": "polepole",
@@ -179,9 +179,9 @@
    "text": "Hii ni bei gani?"
   },
   "that-is-too-expensive": {
-   "text": "Hii ni ghali sana.",
+   "text": "Hii ni ghali mno.",
    "variants": [
-    "Hii ni ghali mno."
+    "Hii ni ghali sana."
    ]
   },
   "i-have-no-money": {
@@ -218,7 +218,7 @@
    "text": "Unaweza kurudia?"
   },
   "slower": {
-   "text": "Polepole!"
+   "text": "Polepole zaidi!"
   }
  }
 }

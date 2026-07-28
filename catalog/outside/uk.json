@@ -52,14 +52,14 @@
   "jog": {
    "text": "бігати"
   },
-  "barbecue": {
-   "text": "смажити на грилі"
+  "grill-meat": {
+   "text": "смажити м'ясо на грилі"
   },
   "sunbathe": {
    "text": "засмагати"
   },
-  "to-plant": {
-   "text": "садити"
+  "plant-flowers": {
+   "text": "садити квіти"
   },
   "depart": {
    "text": "від'їжджати"

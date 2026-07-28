@@ -164,8 +164,8 @@
     "plural": "-e"
    }
   },
-  "knock": {
-   "text": "klopfen"
+  "knock-on-door": {
+   "text": "an die Tür klopfen"
   },
   "enter": {
    "text": "hereinkommen",
@@ -182,9 +182,6 @@
   "ill-be-right-back": {
    "text": "Ich bin gleich zurück!"
   },
-  "take-off-your-shoes": {
-   "text": "Zieh die Schuhe aus."
-  },
   "hurry-were-late": {
    "text": "Beeil dich, wir sind spät dran!"
   },
@@ -195,13 +192,19 @@
    "text": "Willkommen zu Hause!"
   },
   "the-doorbell-suddenly-rang": {
-   "text": "Es hat plötzlich geklingelt."
+   "text": "Die Klingel hat plötzlich geläutet.",
+   "variants": [
+    "Es hat plötzlich geklingelt."
+   ]
   },
   "dont-forget-your-jacket": {
    "text": "Vergiss deine Jacke nicht!"
   },
   "put-on-the-jacket": {
    "text": "die Jacke anziehen"
+  },
+  "take-off-your-shoes": {
+   "text": "Zieh deine Schuhe aus."
   }
  }
 }

@@ -92,8 +92,8 @@
   "cut": {
    "text": "schneiden"
   },
-  "wash-up": {
-   "text": "spülen"
+  "wash-the-dishes": {
+   "text": "Geschirr spülen"
   },
   "taste": {
    "text": "probieren"
@@ -182,10 +182,10 @@
   "the-knife-is-sharp": {
    "text": "Das Messer ist scharf!"
   },
-  "this-tastes-so-good": {
-   "text": "Das schmeckt so lecker!",
+  "this-is-very-tasty": {
+   "text": "Das ist sehr lecker!",
    "variants": [
-    "Das ist sehr lecker!"
+    "Das schmeckt so lecker!"
    ]
   },
   "are-you-cooking-rice-today": {
@@ -196,9 +196,6 @@
   },
   "wash-the-dishes-in-the-sink": {
    "text": "Spül das Geschirr im Spülbecken!"
-  },
-  "wash-the-dishes": {
-   "text": "Geschirr spülen"
   },
   "the-fridge-is-empty": {
    "text": "Der Kühlschrank ist leer."

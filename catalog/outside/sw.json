@@ -79,14 +79,14 @@
   "jog": {
    "text": "kukimbia"
   },
-  "barbecue": {
-   "text": "kuchoma"
+  "grill-meat": {
+   "text": "kuchoma nyama"
   },
   "sunbathe": {
    "text": "kuota jua"
   },
-  "to-plant": {
-   "text": "kupanda mimea"
+  "plant-flowers": {
+   "text": "kupanda maua"
   },
   "depart": {
    "text": "kuondoka"
@@ -161,7 +161,7 @@
    "text": "Mvua inanyesha."
   },
   "the-sun-is-shining": {
-   "text": "Jua linawaka!"
+   "text": "Jua linang'aa!"
   },
   "shall-we-take-a-walk": {
    "text": "Twende kutembea?"
@@ -170,7 +170,7 @@
    "text": "Basi linakuja sasa hivi."
   },
   "when-does-the-train-leave": {
-   "text": "Treni inaondoka saa ngapi?"
+   "text": "Treni inaondoka lini?"
   },
   "what-a-beautiful-day": {
    "text": "Siku nzuri kama nini!"

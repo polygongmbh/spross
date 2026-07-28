@@ -63,7 +63,7 @@
    "text": "verschieben"
   },
   "register": {
-   "text": "anmelden"
+   "text": "sich anmelden"
   },
   "be-late": {
    "text": "sich verspäten"
@@ -74,8 +74,8 @@
   "urgent": {
    "text": "dringend"
   },
-  "i-would-like-an-appointment": {
-   "text": "Ich möchte einen Termin."
+  "i-would-like-to-arrange-an-appointment": {
+   "text": "Ich möchte einen Termin vereinbaren."
   },
   "i-have-to-cancel-the-appointment": {
    "text": "Ich muss den Termin absagen."
@@ -83,8 +83,8 @@
   "the-deadline-is-tomorrow": {
    "text": "Die Frist ist morgen."
   },
-  "when-are-the-opening-hours": {
-   "text": "Wann sind die Öffnungszeiten?"
+  "what-are-the-opening-hours": {
+   "text": "Wie sind die Öffnungszeiten?"
   },
   "can-we-postpone-the-appointment": {
    "text": "Können wir den Termin verschieben?"

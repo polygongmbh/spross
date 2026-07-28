@@ -55,14 +55,14 @@
   "jog": {
    "text": "to jog"
   },
-  "barbecue": {
-   "text": "to barbecue"
+  "grill-meat": {
+   "text": "to grill meat"
   },
   "sunbathe": {
    "text": "to sunbathe"
   },
-  "to-plant": {
-   "text": "to plant"
+  "plant-flowers": {
+   "text": "to plant flowers"
   },
   "depart": {
    "text": "to depart"
@@ -107,7 +107,10 @@
    "text": "How's the weather today?"
   },
   "take-an-umbrella": {
-   "text": "Take an umbrella with you!"
+   "text": "Take an umbrella!",
+   "variants": [
+    "Take an umbrella with you!"
+   ]
   },
   "its-raining": {
    "text": "It's raining."

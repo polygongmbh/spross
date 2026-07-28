@@ -49,8 +49,8 @@
   "cut": {
    "text": "to cut"
   },
-  "wash-up": {
-   "text": "to wash"
+  "wash-the-dishes": {
+   "text": "to do the dishes"
   },
   "taste": {
    "text": "to taste"
@@ -103,8 +103,11 @@
   "the-knife-is-sharp": {
    "text": "The knife is sharp!"
   },
-  "this-tastes-so-good": {
-   "text": "This tastes so good!"
+  "this-is-very-tasty": {
+   "text": "This is very tasty!",
+   "variants": [
+    "This tastes so good!"
+   ]
   },
   "are-you-cooking-rice-today": {
    "text": "Are you cooking rice today?"
@@ -114,9 +117,6 @@
   },
   "wash-the-dishes-in-the-sink": {
    "text": "Wash the dishes in the sink!"
-  },
-  "wash-the-dishes": {
-   "text": "to wash the dishes"
   },
   "the-fridge-is-empty": {
    "text": "The fridge is empty."

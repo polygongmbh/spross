@@ -1,12 +1,6 @@
 {
  "title": "Mlangoni · karibu nyumbani!",
  "words": {
-  "hallway": {
-   "text": "ukumbi",
-   "grammar": {
-    "plural": "kumbi"
-   }
-  },
   "door": {
    "text": "mlango",
    "grammar": {
@@ -77,7 +71,7 @@
    }
   },
   "lock": {
-   "text": "kufunga kwa ufunguo"
+   "text": "kufunga"
   },
   "ring": {
    "text": "kupiga kengele"
@@ -145,7 +139,7 @@
     "plural": "="
    }
   },
-  "knock": {
+  "knock-on-door": {
    "text": "kugonga mlango"
   },
   "enter": {
@@ -159,9 +153,6 @@
   },
   "ill-be-right-back": {
    "text": "Narudi sasa hivi!"
-  },
-  "take-off-your-shoes": {
-   "text": "Vua viatu."
   },
   "hurry-were-late": {
    "text": "Fanya haraka, tumechelewa!"
@@ -180,6 +171,9 @@
   },
   "put-on-the-jacket": {
    "text": "kuvaa jaketi"
+  },
+  "take-off-your-shoes": {
+   "text": "Vua viatu vyako."
   }
  }
 }

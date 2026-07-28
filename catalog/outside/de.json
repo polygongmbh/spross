@@ -98,14 +98,14 @@
   "jog": {
    "text": "joggen"
   },
-  "barbecue": {
-   "text": "grillen"
+  "grill-meat": {
+   "text": "Fleisch grillen"
   },
   "sunbathe": {
    "text": "sich sonnen"
   },
-  "to-plant": {
-   "text": "pflanzen"
+  "plant-flowers": {
+   "text": "Blumen pflanzen"
   },
   "depart": {
    "text": "abfahren"
@@ -185,7 +185,10 @@
    "text": "Wie ist das Wetter heute?"
   },
   "take-an-umbrella": {
-   "text": "Nimm einen Regenschirm mit!"
+   "text": "Nimm einen Regenschirm!",
+   "variants": [
+    "Nimm einen Regenschirm mit!"
+   ]
   },
   "its-raining": {
    "text": "Es regnet."

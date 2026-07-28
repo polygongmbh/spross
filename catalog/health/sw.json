@@ -28,12 +28,6 @@
     "plural": "vidonge"
    }
   },
-  "prescription": {
-   "text": "cheti cha dawa",
-   "grammar": {
-    "plural": "vyeti vya dawa"
-   }
-  },
   "pharmacy": {
    "text": "duka la dawa",
    "grammar": {
@@ -70,10 +64,7 @@
   "to-cough": {
    "text": "kukohoa"
   },
-  "examine": {
-   "text": "kupima"
-  },
-  "prescribe": {
+  "prescribe-medicine": {
    "text": "kuandika dawa"
   },
   "take-medicine": {
@@ -152,7 +143,10 @@
    "text": "Kunywa vidonge mara mbili kwa siku."
   },
   "get-well-soon": {
-   "text": "Pole! Upone haraka!",
+   "text": "Upone haraka!",
+   "variants": [
+    "Pole! Upone haraka!"
+   ],
    "notes": {
     "de": "pole = Mitgefühls-Wort ohne direktes deutsches Gegenstück"
    }

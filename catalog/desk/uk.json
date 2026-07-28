@@ -113,22 +113,22 @@
    "text": "готовий"
   },
   "im-in-a-meeting": {
-   "text": "У мене зустріч."
+   "text": "Я на зустрічі."
   },
-  "do-not-disturb": {
-   "text": "Не заважай!"
+  "dont-disturb-me": {
+   "text": "Не заважай мені!"
   },
   "the-laptop-wont-charge-anymore": {
    "text": "Ноутбук більше не заряджається."
   },
-  "the-wifi-is-gone": {
+  "the-internet-is-gone": {
    "text": "Інтернет зник."
   },
   "coffee-break": {
    "text": "Перерва на каву?"
   },
   "i-have-a-lot-to-do": {
-   "text": "У мене багато роботи."
+   "text": "У мене багато справ."
   },
   "end-of-workday": {
    "text": "На сьогодні все!"

@@ -176,14 +176,20 @@
   "im-in-a-meeting": {
    "text": "Ich bin in einem Meeting."
   },
-  "do-not-disturb": {
-   "text": "Nicht stören!"
+  "dont-disturb-me": {
+   "text": "Stör mich nicht!",
+   "variants": [
+    "Nicht stören!"
+   ]
   },
   "the-laptop-wont-charge-anymore": {
    "text": "Der Laptop lädt nicht mehr."
   },
-  "the-wifi-is-gone": {
-   "text": "Das WLAN ist weg."
+  "the-internet-is-gone": {
+   "text": "Das Internet ist weg.",
+   "variants": [
+    "Das WLAN ist weg."
+   ]
   },
   "coffee-break": {
    "text": "Kaffeepause?"

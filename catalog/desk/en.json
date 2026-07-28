@@ -103,14 +103,17 @@
   "im-in-a-meeting": {
    "text": "I'm in a meeting."
   },
-  "do-not-disturb": {
-   "text": "Do not disturb!"
+  "dont-disturb-me": {
+   "text": "Don't disturb me!"
   },
   "the-laptop-wont-charge-anymore": {
    "text": "The laptop won't charge anymore."
   },
-  "the-wifi-is-gone": {
-   "text": "The wifi is gone."
+  "the-internet-is-gone": {
+   "text": "The internet is gone.",
+   "variants": [
+    "The wifi is gone."
+   ]
   },
   "coffee-break": {
    "text": "Coffee break?"

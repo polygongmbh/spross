@@ -56,9 +56,6 @@
     "de": "„afisa“ allein heißt nur „Beamter“ — erst „mhusika“ macht daraus den zuständigen Bearbeiter."
    }
   },
-  "registration": {
-   "text": "usajili wa makazi"
-  },
   "documents": {
    "text": "nyaraka",
    "grammar": {
@@ -66,7 +63,7 @@
    }
   },
   "fill-in": {
-   "text": "kujaza fomu"
+   "text": "kujaza"
   },
   "sign": {
    "text": "kutia sahihi"
@@ -83,17 +80,8 @@
   "pick-up": {
    "text": "kuchukua kitambulisho"
   },
-  "extend": {
-   "text": "kuhuisha"
-  },
   "bring": {
    "text": "kuleta"
-  },
-  "copy": {
-   "text": "kupiga fotokopi"
-  },
-  "expire": {
-   "text": "kuisha muda wake"
   },
   "passport": {
    "text": "pasipoti",
@@ -162,10 +150,10 @@
    "text": "Chukua namba ya foleni!"
   },
   "i-need-an-interpreter-for-the-application": {
-   "text": "Nahitaji mkalimani kwa ombi langu."
+   "text": "Nahitaji mkalimani kwa ombi."
   },
-  "do-you-have-all-the-documents": {
-   "text": "Je, umeleta nyaraka zote?"
+  "did-you-bring-all-the-documents": {
+   "text": "Umeleta nyaraka zote?"
   },
   "the-decision-comes-by-mail": {
    "text": "Barua ya uamuzi itakuja kwa posta."

@@ -109,8 +109,8 @@
   "wait": {
    "text": "to wait"
   },
-  "repeat": {
-   "text": "to repeat"
+  "repeat-word": {
+   "text": "to repeat the word"
   },
   "slow": {
    "text": "slow"

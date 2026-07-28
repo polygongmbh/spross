@@ -101,7 +101,7 @@
    "text": "Musik hören"
   },
   "water-plants": {
-   "text": "gießen"
+   "text": "die Pflanzen gießen"
   },
   "play": {
    "text": "spielen"
@@ -180,9 +180,6 @@
   },
   "the-curtains-hang-over-the-window": {
    "text": "Die Vorhänge hängen vor dem Fenster."
-  },
-  "can-you-turn-off-the-light": {
-   "text": "Kannst du das Licht ausmachen?"
   },
   "open-the-window-fresh-air": {
    "text": "Mach das Fenster auf."

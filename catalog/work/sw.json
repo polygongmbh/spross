@@ -67,14 +67,14 @@
   "introduce-oneself": {
    "text": "kujitambulisha"
   },
-  "earn": {
-   "text": "kuchuma pesa"
-  },
   "start": {
    "text": "kuanza"
   },
-  "stop": {
-   "text": "kuacha"
+  "leave": {
+   "text": "kuacha",
+   "notes": {
+    "de": "kuacha = verlassen · auch aufhören (mit etwas) · kuacha kazi = kündigen"
+   }
   },
   "quit": {
    "text": "kuacha kazi"

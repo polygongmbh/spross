@@ -156,7 +156,7 @@
   "kind": "verb"
  },
  {
-  "slug": "repeat",
+  "slug": "repeat-word",
   "kind": "verb"
  },
  {
@@ -256,7 +256,7 @@
   "slug": "can-you-repeat-that",
   "kind": "phrase",
   "components": [
-   "repeat"
+   "repeat-word"
   ]
  },
  {

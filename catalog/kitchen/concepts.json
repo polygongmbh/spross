@@ -72,7 +72,7 @@
   "kind": "verb"
  },
  {
-  "slug": "wash-up",
+  "slug": "wash-the-dishes",
   "kind": "verb"
  },
  {
@@ -158,7 +158,7 @@
   ]
  },
  {
-  "slug": "this-tastes-so-good",
+  "slug": "this-is-very-tasty",
   "kind": "phrase",
   "components": []
  },
@@ -181,14 +181,7 @@
   "slug": "wash-the-dishes-in-the-sink",
   "kind": "phrase",
   "components": [
-   "wash-up"
-  ]
- },
- {
-  "slug": "wash-the-dishes",
-  "kind": "phrase",
-  "components": [
-   "wash-up"
+   "wash-the-dishes"
   ]
  },
  {

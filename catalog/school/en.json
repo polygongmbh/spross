@@ -7,9 +7,6 @@
   "classroom": {
    "text": "classroom"
   },
-  "integration-course": {
-   "text": "integration course"
-  },
   "teacher": {
    "text": "teacher"
   },
@@ -98,7 +95,7 @@
    "text": "I'm learning German."
   },
   "you-can-do-it": {
-   "text": "You can do it!"
+   "text": "You can definitely do it!"
   }
  }
 }

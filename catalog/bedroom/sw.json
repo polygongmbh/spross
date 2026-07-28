@@ -26,7 +26,10 @@
    }
   },
   "bedding": {
-   "text": "shuka na foronya"
+   "text": "matandiko",
+   "grammar": {
+    "plural": "only"
+   }
   },
   "wardrobe": {
    "text": "kabati la nguo",
@@ -77,7 +80,7 @@
    "text": "kuamka"
   },
   "dream": {
-   "text": "kuota"
+   "text": "kuota ndoto"
   },
   "get-up": {
    "text": "kuinuka"
@@ -157,11 +160,8 @@
   "im-tired": {
    "text": "Nimechoka."
   },
-  "sweet-dreams": {
-   "text": "Ndoto njema!"
-  },
   "did-you-set-the-alarm": {
-   "text": "Umeweka alamu?"
+   "text": "Umeweka saa ya kengele?"
   },
   "five-more-minutes": {
    "text": "Dakika tano zaidi …"

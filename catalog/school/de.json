@@ -15,13 +15,6 @@
     "plural": "="
    }
   },
-  "integration-course": {
-   "text": "Integrationskurs",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
   "teacher": {
    "text": "Lehrer",
    "grammar": {
@@ -102,13 +95,16 @@
    "text": "übersetzen"
   },
   "pass-exam": {
-   "text": "bestehen"
+   "text": "die Prüfung bestehen"
   },
   "practise": {
    "text": "üben"
   },
   "raise-hand": {
-   "text": "sich melden"
+   "text": "die Hand heben",
+   "variants": [
+    "sich melden"
+   ]
   },
   "pupil": {
    "text": "Schüler",

@@ -92,11 +92,11 @@
   "examine": {
    "text": "untersuchen"
   },
-  "prescribe": {
-   "text": "verschreiben"
+  "prescribe-medicine": {
+   "text": "Medikamente verschreiben"
   },
   "take-medicine": {
-   "text": "einnehmen"
+   "text": "Medikamente einnehmen"
   },
   "call-in-sick": {
    "text": "sich krankmelden"

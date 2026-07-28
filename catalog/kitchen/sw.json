@@ -76,8 +76,8 @@
   "cut": {
    "text": "kukata"
   },
-  "wash-up": {
-   "text": "kuosha"
+  "wash-the-dishes": {
+   "text": "kuosha vyombo"
   },
   "taste": {
    "text": "kuonja"
@@ -154,7 +154,7 @@
   "the-knife-is-sharp": {
    "text": "Kisu ni kikali!"
   },
-  "this-tastes-so-good": {
+  "this-is-very-tasty": {
    "text": "Hii ni tamu sana!"
   },
   "are-you-cooking-rice-today": {
@@ -164,13 +164,10 @@
    }
   },
   "the-pot-is-still-on-the-stove": {
-   "text": "Sufuria bado iko jikoni."
+   "text": "Sufuria bado iko juu ya jiko."
   },
   "wash-the-dishes-in-the-sink": {
    "text": "Osha vyombo sinkini!"
-  },
-  "wash-the-dishes": {
-   "text": "kuosha vyombo"
   },
   "the-fridge-is-empty": {
    "text": "Friji iko tupu."
@@ -182,7 +179,10 @@
    "text": "Maji yanachemka."
   },
   "careful-very-hot": {
-   "text": "Angalia, ni moto sana!"
+   "text": "Angalia, moto sana!",
+   "variants": [
+    "Angalia, ni moto sana!"
+   ]
   }
  }
 }

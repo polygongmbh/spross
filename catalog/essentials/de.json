@@ -151,8 +151,8 @@
   "wait": {
    "text": "warten"
   },
-  "repeat": {
-   "text": "wiederholen"
+  "repeat-word": {
+   "text": "das Wort wiederholen"
   },
   "slow": {
    "text": "langsam"

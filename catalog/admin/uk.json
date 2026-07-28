@@ -85,12 +85,6 @@
   "copy": {
    "text": "копіювати"
   },
-  "expire": {
-   "text": "закінчуватися",
-   "notes": {
-    "de": "hier: eine Frist läuft ab — «строк закінчується»"
-   }
-  },
   "passport": {
    "text": "паспорт"
   },
@@ -151,8 +145,8 @@
   "i-need-an-interpreter-for-the-application": {
    "text": "Для заяви мені потрібен перекладач."
   },
-  "do-you-have-all-the-documents": {
-   "text": "У вас із собою всі документи?"
+  "did-you-bring-all-the-documents": {
+   "text": "Ви принесли всі документи?"
   },
   "the-decision-comes-by-mail": {
    "text": "Рішення надійде поштою."

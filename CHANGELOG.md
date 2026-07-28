@@ -8,6 +8,12 @@
   produce the word, and a typo's proper spelling stays where you were already looking:
   right next to what you typed.
 
+- **Swahili answers now line up word for word with the prompt**: cards taught the right
+  meaning through the wrong words — „zu teuer" answered with *ghali sana* (sehr teuer),
+  „pflanzen" with *kupanda mimea* — so you could not see which word did what.
+  Each word in the answer now has a counterpart in the prompt, in every language;
+  what you already type stays accepted.
+
 - **Watch options all speak one language**: a question could offer meanings and
   target words side by side — the wrong-language tiles were unpickable noise
   and gave the answer away. Every tile now sits on the side the prompt asks for.

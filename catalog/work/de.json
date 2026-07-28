@@ -97,8 +97,8 @@
   "start": {
    "text": "anfangen"
   },
-  "stop": {
-   "text": "aufhören"
+  "leave": {
+   "text": "verlassen"
   },
   "quit": {
    "text": "kündigen"

@@ -79,9 +79,6 @@
   "to-work": {
    "text": "kufanya kazi"
   },
-  "type": {
-   "text": "kuchapa"
-  },
   "print": {
    "text": "kuchapisha"
   },
@@ -157,23 +154,26 @@
   "im-in-a-meeting": {
    "text": "Niko kwenye mkutano."
   },
-  "do-not-disturb": {
+  "dont-disturb-me": {
    "text": "Usinisumbue!"
   },
   "the-laptop-wont-charge-anymore": {
-   "text": "Laptop haichaji tena."
+   "text": "Kompyuta mpakato haichaji tena."
   },
-  "the-wifi-is-gone": {
+  "the-internet-is-gone": {
    "text": "Intaneti imekatika."
   },
   "coffee-break": {
-   "text": "Mapumziko ya kahawa?"
+   "text": "Pumziko la kahawa?"
   },
   "i-have-a-lot-to-do": {
-   "text": "Nina kazi nyingi."
+   "text": "Nina mengi ya kufanya."
   },
   "end-of-workday": {
-   "text": "Kazi imeisha kwa leo!"
+   "text": "Kazi imeisha kwa leo!",
+   "notes": {
+    "de": "„Feierabend“ gibt es auf Swahili nicht — man sagt: „Die Arbeit ist für heute zu Ende!“"
+   }
   },
   "send-me-the-email": {
    "text": "Nitumie barua pepe."

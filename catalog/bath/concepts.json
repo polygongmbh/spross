@@ -76,7 +76,7 @@
   "kind": "verb"
  },
  {
-  "slug": "hang-up",
+  "slug": "hang-up-laundry",
   "kind": "verb"
  },
  {
@@ -88,7 +88,7 @@
   "kind": "verb"
  },
  {
-  "slug": "comb",
+  "slug": "comb-hair",
   "kind": "verb"
  },
  {
@@ -175,7 +175,7 @@
   "kind": "phrase",
   "components": [
    "laundry",
-   "hang-up"
+   "hang-up-laundry"
   ]
  },
  {

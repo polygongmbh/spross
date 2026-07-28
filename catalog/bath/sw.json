@@ -85,26 +85,20 @@
   "dry-off": {
    "text": "kujikausha"
   },
-  "hang-up": {
-   "text": "kuanika"
+  "hang-up-laundry": {
+   "text": "kuanika nguo"
   },
   "clean": {
    "text": "kusafisha"
   },
   "shave": {
-   "text": "kunyoa"
+   "text": "kujinyoa"
   },
-  "comb": {
-   "text": "kuchana"
+  "comb-hair": {
+   "text": "kuchana nywele"
   },
   "apply-lotion": {
    "text": "kujipaka mafuta"
-  },
-  "bathtub": {
-   "text": "bafu",
-   "grammar": {
-    "plural": "="
-   }
   },
   "toilet-paper": {
    "text": "karatasi ya choo"
@@ -134,9 +128,9 @@
    }
   },
   "tap": {
-   "text": "mfereji",
+   "text": "bomba la maji",
    "grammar": {
-    "plural": "mifereji"
+    "plural": "mabomba ya maji"
    }
   },
   "bin": {

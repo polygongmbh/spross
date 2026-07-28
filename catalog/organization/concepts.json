@@ -67,7 +67,7 @@
   "kind": "adjective"
  },
  {
-  "slug": "i-would-like-an-appointment",
+  "slug": "i-would-like-to-arrange-an-appointment",
   "kind": "phrase",
   "components": [
    "appointment"
@@ -89,7 +89,7 @@
   ]
  },
  {
-  "slug": "when-are-the-opening-hours",
+  "slug": "what-are-the-opening-hours",
   "kind": "phrase",
   "components": [
    "opening-hours"

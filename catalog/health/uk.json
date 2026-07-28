@@ -70,17 +70,11 @@
   "examine": {
    "text": "обстежувати"
   },
-  "prescribe": {
-   "text": "виписувати",
-   "notes": {
-    "de": "typisch: «виписувати ліки» = Medikamente verschreiben"
-   }
+  "prescribe-medicine": {
+   "text": "виписувати ліки"
   },
   "take-medicine": {
-   "text": "приймати",
-   "notes": {
-    "de": "typisch: «приймати ліки» = Medikamente einnehmen"
-   }
+   "text": "приймати ліки"
   },
   "call-in-sick": {
    "text": "повідомляти, що захворів",
@@ -149,7 +143,7 @@
    "text": "З рецептом ідіть до аптеки."
   },
   "show-me-your-insurance-card": {
-   "text": "Покажіть мені вашу картку страхування."
+   "text": "Покажіть мені вашу картку медичного страхування."
   },
   "the-practice-is-closed": {
    "text": "Лікарський кабінет зачинений."

@@ -149,7 +149,7 @@
   "components": []
  },
  {
-  "slug": "do-not-disturb",
+  "slug": "dont-disturb-me",
   "kind": "phrase",
   "components": []
  },
@@ -161,7 +161,7 @@
   ]
  },
  {
-  "slug": "the-wifi-is-gone",
+  "slug": "the-internet-is-gone",
   "kind": "phrase",
   "components": []
  },

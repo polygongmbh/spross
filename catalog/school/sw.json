@@ -13,12 +13,6 @@
     "plural": "madarasa"
    }
   },
-  "integration-course": {
-   "text": "kozi ya lugha na kuzoea jamii",
-   "grammar": {
-    "plural": "kozi za lugha na kuzoea jamii"
-   }
-  },
   "teacher": {
    "text": "mwalimu",
    "grammar": {
@@ -83,7 +77,7 @@
    "text": "kutafsiri"
   },
   "pass-exam": {
-   "text": "kufaulu"
+   "text": "kufaulu mtihani"
   },
   "practise": {
    "text": "kufanya mazoezi"
@@ -146,7 +140,7 @@
    "text": "Neno hili lina maana gani?"
   },
   "how-do-you-say-this-in-german": {
-   "text": "Unasemaje kwa Kijerumani?"
+   "text": "Hii inasemwaje kwa Kijerumani?"
   },
   "im-learning-german": {
    "text": "Ninajifunza Kijerumani."
