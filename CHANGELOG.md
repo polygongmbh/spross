@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **Watch options all speak one language**: a question could offer meanings and
+  target words side by side — the wrong-language tiles were unpickable noise
+  and gave the answer away. Every tile now sits on the side the prompt asks for.
+
 ## 1.1.0 — 2026-07-25
 
 - **The progress line counts what has taken root**: Heute, the widget and the Android

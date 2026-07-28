@@ -20,7 +20,14 @@ enum WatchPracticeGenerator {
 
     /// The text the learner must MATCH for this entry's role (the option side).
     static func answerText(for entry: WatchSnapshot.Entry) -> String {
-        entry.isRecognize ? entry.sourceText : entry.targetText
+        optionText(of: entry, recognize: entry.isRecognize)
+    }
+
+    /// The option-side text of `entry` read in a GIVEN role — every option in a
+    /// question must sit on the same side as the prompt, whatever role the pool
+    /// entry itself is scheduled for, or the tiles mix the two languages.
+    static func optionText(of entry: WatchSnapshot.Entry, recognize: Bool) -> String {
+        recognize ? entry.sourceText : entry.targetText
     }
 
     /// A question, or `nil` when the pool holds no distinct distractor.
@@ -34,12 +41,12 @@ enum WatchPracticeGenerator {
         let correct = answerText(for: prompt)
         let correctKey = correct.lowercased()
 
-        // Distractor candidates from every OTHER entry's answer text (same
-        // role side), unique and distinct from the correct answer.
+        // Distractor candidates from every OTHER entry, read on the PROMPT's
+        // option side, unique and distinct from the correct answer.
         var seen: Set<String> = [correctKey]
         var candidates: [String] = []
         for entry in pool where entry.cardId != prompt.cardId {
-            let candidate = answerText(for: entry)
+            let candidate = optionText(of: entry, recognize: prompt.isRecognize)
             if seen.insert(candidate.lowercased()).inserted { candidates.append(candidate) }
         }
         guard !candidates.isEmpty else { return nil }  // deck of identical answers
