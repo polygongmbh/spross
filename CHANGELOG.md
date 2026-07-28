@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0 — 2026-07-29
+
 - **A near-miss now tells you which word you actually wrote**: typing *kufunga* for
   *kufungua* was forgiven as a slip of the pen, so the two words you most need told apart
   taught each other. A word the catalog knows elsewhere is now taken as that word: the
