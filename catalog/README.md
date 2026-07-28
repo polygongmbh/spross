@@ -192,6 +192,11 @@ Two content rules that cut across every language file.
 
 **Every slot has to buy fluency.** A concept is worth a card when knowing it
 lets the learner say more; charm is not a qualification.
+Length is judged on the **target** side, never the source: German compounds what
+Swahili spells out as a genitive chain (Rezept → `cheti cha dawa`,
+Apotheke → `duka la dawa`), so a sentence that reads normal in the prompt can
+triple in the answer the learner actually types. The median phrase is three
+words; `take-the-prescription-to-the-pharmacy` reached nine and was cut.
 `sweet-dreams` was cut on this test — the bedroom already teaches
 `good-night-sleep-well`, which covers the same moment with more useful words,
 so the second phrase only bought a warm feeling.

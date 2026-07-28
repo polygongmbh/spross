@@ -169,14 +169,6 @@
   "components": []
  },
  {
-  "slug": "take-the-prescription-to-the-pharmacy",
-  "kind": "phrase",
-  "components": [
-   "prescription",
-   "pharmacy"
-  ]
- },
- {
   "slug": "show-me-your-insurance-card",
   "kind": "phrase",
   "components": [

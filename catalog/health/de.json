@@ -187,12 +187,6 @@
   "get-well-soon": {
    "text": "Gute Besserung!"
   },
-  "take-the-prescription-to-the-pharmacy": {
-   "text": "Mit dem Rezept gehen Sie zur Apotheke.",
-   "variants": [
-    "Mit dem Rezept gehst du zur Apotheke."
-   ]
-  },
   "show-me-your-insurance-card": {
    "text": "Zeigen Sie mir Ihre Versichertenkarte.",
    "variants": [
