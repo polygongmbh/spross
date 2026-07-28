@@ -54,30 +54,33 @@ HARMONICS = ((1, 1.0), (2, 0.10), (3, -1 / 12), (5, 1 / 40))
 
 # Equal temperament, A4 = 440. The bottom of the usable range is ~E4: phone
 # speakers roll off below ~250 Hz, where only the harmonics still carry.
-G4, B4 = 392.00, 493.88         # ascending major third
+A4, C_SHARP5 = 440.00, 554.37   # ascending major third
 F_SHARP4, D4 = 369.99, 293.66   # descending minor third — lands under correct's start
+G4 = 392.00
 
 # `level` is the finished peak relative to PEAK, applied after each sound is
 # normalized on its own — two overlapping notes sum to a taller waveform than
 # one, and without this the wrong answer would come out the loudest of the three.
 # Notes are (from Hz, to Hz, glide s, start s, length s, gain-within-this-sound).
 SOUNDS = {
-    # one eased glide, not two struck notes: a single soft attack registers
-    # without announcing itself
-    'correct': dict(tau=0.105, attack=0.014, bright=1.00, level=1.00, notes=[
-        (G4, B4,             0.100, 0.000, 0.32, 1.00),
+    # a scoop, not a slow sweep: the glide has to finish well inside the decay
+    # or the pitch is still moving through the loudest part and the sound never
+    # ARRIVES anywhere — that missing arrival is what reads as unsatisfying.
+    # Short glide, then it rings on the target note.
+    'correct': dict(tau=0.085, attack=0.012, bright=1.00, level=1.00, notes=[
+        (A4, C_SHARP5,       0.045, 0.000, 0.26, 1.00),
     ]),
     # two distinct notes here — a wrong answer is the one event worth being
     # unambiguous about, and two articulated pitches read as deliberate where
     # a glide can slide past unnoticed. Quieter than correct on purpose.
-    'wrong': dict(tau=0.135, attack=0.016, bright=0.90, level=0.90, notes=[
-        (F_SHARP4, F_SHARP4, 0.000, 0.000, 0.34, 1.00),
-        (D4, D4,             0.000, 0.110, 0.34, 1.00),
+    'wrong': dict(tau=0.100, attack=0.016, bright=0.90, level=0.90, notes=[
+        (F_SHARP4, F_SHARP4, 0.000, 0.000, 0.28, 1.00),
+        (D4, D4,             0.000, 0.090, 0.28, 1.00),
     ]),
-    # heard most often of the three, so the roundest: slow attack and the
-    # partials pulled right down, or it turns into a pointy little beep
-    'reveal': dict(tau=0.075, attack=0.030, bright=0.35, level=0.45, notes=[
-        (G4, G4,             0.000, 0.000, 0.20, 1.00),
+    # heard most often of the three, so the roundest and the quietest: slow
+    # attack, partials pulled right down, and short enough to stay out of the way
+    'reveal': dict(tau=0.045, attack=0.022, bright=0.25, level=0.30, notes=[
+        (G4, G4,             0.000, 0.000, 0.13, 1.00),
     ]),
 }
 
