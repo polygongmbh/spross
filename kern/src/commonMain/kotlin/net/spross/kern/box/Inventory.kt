@@ -4,6 +4,7 @@ import kotlin.time.Instant
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
+import net.spross.kern.model.fnv1a64
 
 /**
  * Join-filtered card inventory. Composition, dueNow, statistics, and exposure all read
@@ -29,13 +30,40 @@ internal object Inventory {
     fun active(state: BoxState): List<CardScheduling> =
         scheduled(state).filter { !it.suspended }
 
-    /** Active cards with `due <= now`, oldest first, ties broken by card id. */
+    /** Active cards with `due <= now`, oldest DAY first, shuffled within the day. */
     fun due(state: BoxState, nowEpochMillis: Long): List<CardScheduling> {
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         return active(state)
             .filter { it.due != null && it.due <= now }
-            .sortedWith(compareBy({ it.due }, { it.cardId }))
+            .sortedWith(dueOrder)
     }
+
+    private const val MILLIS_PER_DAY = 86_400_000L
+
+    private fun dueEpochDay(entry: CardScheduling): Long =
+        entry.due!!.toEpochMilliseconds() / MILLIS_PER_DAY
+
+    /**
+     * Backlog fairness at DAY granularity, de-correlated inside the day.
+     * Cards introduced together are answered seconds apart, so a timestamp sort
+     * keeps them adjacent for the life of the box and the learner answers from
+     * sequence ("the one after *young*") instead of from memory. Hashing the id
+     * with the card's OWN due day reshuffles each bucket — and reshuffles it
+     * differently from one day to the next, since the day feeds the hash —
+     * while staying pure: no clock read, no randomness. The trailing id keeps
+     * the order total under a hash collision.
+     *
+     * The id is folded to its own hash BEFORE the day re-hashes it: FNV-1a
+     * barely avalanches the last bytes it consumes, so hashing day and raw id
+     * concatenated leaves whichever part trails poorly mixed — a trailing day
+     * yields the same order every day, a trailing id keeps seed neighbours
+     * adjacent within the day. Both halves must arrive well spread.
+     */
+    private val dueOrder: Comparator<CardScheduling> = compareBy(
+        { dueEpochDay(it) },
+        { fnv1a64("${dueEpochDay(it)}:${fnv1a64(it.cardId)}") },
+        { it.cardId },
+    )
 
     /** Cards holding a learning-pool slot: joined, active, Learning phase. */
     fun cardsInLearning(state: BoxState): Set<String> =

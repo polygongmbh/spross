@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Words you learned together stop arriving together**: cards introduced in one sitting kept
+  near-identical due times, so they came back side by side in every session afterwards — and
+  since the catalog teaches related ideas next to each other, *jung* was answered by knowing
+  it comes right before *alt*. Reviews still take the oldest overdue day first, but within a
+  day the order is reshuffled, and reshuffled differently each day.
+
 ## 2.0.0 — 2026-07-29
 
 - **A near-miss now tells you which word you actually wrote**: typing *kufunga* for

@@ -185,6 +185,14 @@ day-key `yyyy-MM-dd`) with:
   source-independent, so a source switch can never re-lock phrases. Components with no
   TARGET realization are excluded from the gate (v1 unresolved-component semantics).
   Gate: review phase, not suspended, stability ≥ 2.0.
+- **Due order is day-bucketed, then shuffled**: reviews drain oldest overdue DAY first
+  (backlog fairness), but inside a day the order is `fnv1a64("<dueEpochDay>:<fnv1a64(cardId)>")`,
+  card id last as the collision tie-break.
+  A plain timestamp sort kept cards introduced together — seed neighbours, so often related
+  concepts — adjacent for the life of the box, and the learner answered from sequence.
+  Seeding the hash with the card's OWN due day keeps the function pure (no clock read) while
+  reshuffling the bucket differently from one day to the next.
+  Introduction order is untouched: new cards still arrive in seed order.
 - **Join filter inventory**: composition, dueNow, dueCount, statistics, exposure operate on
   cards that join the current profile; the unlock check and `answer()` history reads
   operate on raw schedules by id. Non-joining schedules and enqueued entries are kept

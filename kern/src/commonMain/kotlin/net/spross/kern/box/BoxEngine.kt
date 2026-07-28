@@ -99,7 +99,7 @@ object BoxEngine {
         )
     }
 
-    /** Joined, active card ids due at `now`, oldest first — the drain-loop feed. */
+    /** Joined, active card ids due at `now`, oldest day first — the drain-loop feed. */
     fun dueNow(state: BoxState, nowEpochMillis: Long): List<String> =
         Inventory.due(state, nowEpochMillis).map { it.cardId }
 

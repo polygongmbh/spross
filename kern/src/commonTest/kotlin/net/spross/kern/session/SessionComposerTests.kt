@@ -38,20 +38,18 @@ class SessionComposerTests {
         assertEquals((41..45).map { "w$it" }, plan.newCards)
     }
 
+    /**
+     * Whole overdue DAYS are drained in order; the shuffle inside a day is
+     * [net.spross.kern.box.DueOrderTests]' subject, so this pins the buckets.
+     */
     @Test
-    fun reviewsAreOldestDueFirstTieById() {
+    fun reviewsDrainTheOldestDueDayFirst() {
+        // 40 dues span three days back from noon: w37..w40, then w13..w36, then w01..w12.
         val plan = SessionComposer.composeSession(backloggedState(), now)
-        assertEquals(
-            (0 until 25).map { "w" + (40 - it).toString().padStart(2, '0') },
-            plan.reviews,
-        )
-
-        var tied = Box.state(listOf(Box.word(1), Box.word(2)))
-        val due = now - 3_600_000L
-        val past = Box.plusDays(now, -1.0)
-        tied = Box.inject(tied, Box.sched("w02", dueMillis = due, lastReviewMillis = past))
-        tied = Box.inject(tied, Box.sched("w01", dueMillis = due, lastReviewMillis = past))
-        assertEquals(listOf("w01", "w02"), BoxEngine.dueNow(tied, now))
+        assertEquals(setOf("w37", "w38", "w39", "w40"), plan.reviews.take(4).toSet())
+        val secondDay = (13..36).map { "w$it" }.toSet()
+        assertTrue(plan.reviews.drop(4).all { it in secondDay })
+        assertEquals(25, plan.reviews.size)
     }
 
     @Test
