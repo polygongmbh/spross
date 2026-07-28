@@ -60,8 +60,7 @@ DECAY_SPREAD = 0.65  # partial n rings off n**SPREAD times faster than the
 # Equal temperament, A4 = 440. Nothing goes below ~E4 — phone speakers roll off
 # under ~250 Hz, where the fundamental survives only through its harmonics.
 E5, G_SHARP5 = 659.26, 830.61   # ascending major third
-G4, E4 = 392.00, 329.63         # descending minor third
-B4 = 493.88
+G4, E4 = 392.00, 329.63         # descending minor third — G4 doubles as the tick
 
 # `level` is the finished peak relative to PEAK, applied after each sound is
 # normalized on its own — two overlapping notes sum to a taller waveform than
@@ -77,15 +76,16 @@ SOUNDS = {
         (E5,         0.000, 0.19, 1.00),
         (G_SHARP5,   0.070, 0.19, 1.00),
     ]),
-    # quieter than correct on purpose — this is the one that must not punish
-    'wrong': dict(tau=0.090, attack=0.012, bright=1.00, level=0.90, notes=[
+    # keeps more edge than the other two: it is the rarest of the three and the
+    # one that has to register without being looked at
+    'wrong': dict(tau=0.090, attack=0.012, bright=0.55, level=0.90, notes=[
         (G4,         0.000, 0.26, 0.95),
         (E4,         0.100, 0.26, 0.95),
     ]),
-    # heard most often of the three, so the roundest and the quietest: slower
-    # attack, partials pulled down, short enough to stay out of the way
-    'reveal': dict(tau=0.036, attack=0.018, bright=0.45, level=0.35, notes=[
-        (B4,         0.000, 0.11, 1.00),
+    # plays on every card whatever the outcome, so the least of everything:
+    # quietest, roundest, shortest, and low enough not to pierce
+    'reveal': dict(tau=0.036, attack=0.018, bright=0.10, level=0.30, notes=[
+        (G4,         0.000, 0.11, 1.00),
     ]),
 }
 
