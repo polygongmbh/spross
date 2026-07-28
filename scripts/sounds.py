@@ -9,28 +9,28 @@ per call. Bundled files play silent to the touch, so the sounds are ours to
 author — see App/Sources/Design/Sounds.swift.
 
 Design grammar, from how the space already trains people:
-  correct — ASCENDING major third; the standard positive confirmation
-            (Duolingo's chime, Apple Pay's approval tone).
+  correct — ASCENDING perfect fifth; the standard positive confirmation
+            (Duolingo's chime, Apple Pay's approval tone) taken wider.
   wrong   — DESCENDING minor third; direction says "down" while the interval
             stays consonant, so it reads as mild "aw" and not as a buzzer.
   reveal  — one neutral note, no direction: revealing is not a verdict.
 
+Every interval is two STRUCK notes, never a glide between them. A glide was
+tried at length and always sounded synthetic, for a reason no amount of
+tuning could reach: struck and plucked things cannot bend pitch — a bar or a
+string fixes its pitch the instant it is excited — so a percussive attack
+that then slides describes no object that has ever existed, and the ear knows
+it. Two notes also read as deliberate where a glide slides past unnoticed.
+
 Low profile is the point. These play many times per session, often in public,
 and a wrong answer is the productive event in retrieval practice — not a
 failure to punish. So no dissonance on wrong (the textbook error intervals,
-tritone and minor second, are harsh on purpose), nothing up in the bright
-register that gets grating on repeat, and the interval is a GLIDE rather than
-two struck notes: one soft attack instead of two, so it registers without
-announcing itself. Direction and register carry the meaning; loudness and
-harshness do not have to.
+tritone and minor second, are harsh on purpose), and nothing up in the bright
+register that gets grating on repeat. Direction and register carry the
+meaning; loudness and harshness do not have to.
 
 Floor on how deep it can go: phone speakers roll off below ~250 Hz, where the
 fundamental survives only through its harmonics. E4 (330) is about the bottom.
-
-Warmth is timbre and envelope, not the interval. A near-pure tone with an
-instant onset is what makes a sound read as "beep": hence a triangle-ish
-spectrum (kept mild — fewer, quieter partials than a real triangle), a soft
-attack, and an exponential ring-off.
 
 Everything below is meant to be re-tuned by ear — edit, re-run, afplay.
 """
@@ -45,7 +45,6 @@ OUT_DIR = os.path.join(ROOT, 'App/Resources/Sounds')
 SAMPLE_RATE = 44100
 PEAK = 0.26          # headroom: these play over the ring/silent switch, not loud
 END_FADE = 0.005     # s — no click when the tail is truncated by the buffer
-GLIDE_CURVE = 3.0    # >1 accelerates into the target; 1.0 is a flat linear sweep
 
 # What separates a struck instrument from a beep is not the harmonic recipe but
 # what the recipe DOES over time. Three physical facts, and each one is audible:
@@ -60,11 +59,11 @@ INHARMONICITY = 4e-4  # real strings/bars are slightly stretched, never exact
 DETUNE = 0.0016      # a hair of per-partial drift, so the stack beats slowly
                      # instead of locking into one motionless timbre
 
-# A body resonance, fixed in Hz and NOT moving with the note. This is what makes
-# a glide sound played rather than swept: on any real instrument the box, bar or
-# bore resonates at frequencies of its own, so partials brighten and dim as the
-# pitch slides them through the peak. A synthesizer's portamento carries its
-# timbre along unchanged — that invariance is the giveaway.
+# A body resonance, fixed in Hz and NOT transposed with the note. Every real
+# instrument has a box, bar or bore that resonates at frequencies of its own,
+# so the same object struck high sounds different from the same object struck
+# low. Transposing one timbre across the keyboard is the sampler's tell, and
+# with two notes a fifth apart it would be audible.
 BODY_HZ = 1150.0
 BODY_GAIN = 0.9      # boost at the peak
 BODY_OCTAVES = 0.55  # width, in natural-log units of frequency ratio
@@ -97,67 +96,50 @@ G4 = 392.00
 # `level` is the finished peak relative to PEAK, applied after each sound is
 # normalized on its own — two overlapping notes sum to a taller waveform than
 # one, and without this the wrong answer would come out the loudest of the three.
-# Notes are (from Hz, to Hz, glide s, start s, length s, gain-within-this-sound).
+# Notes are (Hz, start s, length s, gain-within-this-sound); the second note is
+# struck while the first still rings, so they overlap into an interval instead
+# of arriving as two separate events.
 SOUNDS = {
-    # The glide must still finish well inside the decay — while the pitch is
-    # moving the sound has not ARRIVED anywhere, and a glide that is still
-    # travelling through its loudest part is the unsatisfying kind. Hence a
-    # wide interval read slowly at first, then a rush onto the target with
-    # most of the ring left to land in.
     'correct': dict(tau=0.125, attack=0.012, bright=1.00, level=1.00, notes=[
-        (A4, E5,             0.115, 0.000, 0.31, 1.00),
+        (A4,         0.000, 0.28, 1.00),
+        (E5,         0.090, 0.28, 0.95),
     ]),
-    # two distinct notes here — a wrong answer is the one event worth being
-    # unambiguous about, and two articulated pitches read as deliberate where
-    # a glide can slide past unnoticed. Quieter than correct on purpose.
+    # quieter than correct on purpose — this is the one that must not punish
     'wrong': dict(tau=0.100, attack=0.016, bright=0.90, level=0.90, notes=[
-        (F_SHARP4, F_SHARP4, 0.000, 0.000, 0.28, 1.00),
-        (D4, D4,             0.000, 0.090, 0.28, 1.00),
+        (F_SHARP4,   0.000, 0.28, 1.00),
+        (D4,         0.090, 0.28, 1.00),
     ]),
     # heard most often of the three, so the roundest and the quietest: slow
     # attack, partials pulled right down, and short enough to stay out of the way
     'reveal': dict(tau=0.045, attack=0.022, bright=0.25, level=0.30, notes=[
-        (G4, G4,             0.000, 0.000, 0.13, 1.00),
+        (G4,         0.000, 0.13, 1.00),
     ]),
 }
 
 
-def voice(start_hz, end_hz, glide, length, tau, attack_s, bright):
-    """One note: harmonic stack, gliding start→end, under a soft-attack,
-    exponential-decay envelope. Phase is integrated sample by sample — the
-    naive sin(2πft) with a moving f would smear the pitch it claims to play."""
-    partials = [[mult, amp if n == 0 else amp * bright, spread / tau, phase0]
-                for n, (mult, amp, spread, phase0) in enumerate(HARMONICS)]
+def voice(freq, length, tau, attack_s, bright):
+    """One struck note: a harmonic stack under a soft-attack, exponential-decay
+    envelope, each partial ringing off on its own clock so the tone darkens as
+    it goes. Pitch is fixed for the note's life, as it is on anything struck."""
+    partials = []
+    for n, (mult, amp, spread, phase0) in enumerate(HARMONICS):
+        f = freq * mult
+        # the fixed body peak: where this partial falls against the resonance
+        # decides its weight, so a high note is coloured differently from a low
+        # one — the same bar sounds different struck at different places
+        tilt = math.log(f / BODY_HZ) / BODY_OCTAVES
+        body = 1.0 + BODY_GAIN * math.exp(-0.5 * tilt * tilt)
+        partials.append(((amp if n == 0 else amp * bright) * body,
+                         spread / tau, phase0, 2 * math.pi * f / SAMPLE_RATE))
     out = []
-    rng, noise = int(start_hz) * 7919 + 12345, 0.0   # fixed seed: same file every run
+    rng, noise = int(freq) * 7919 + 12345, 0.0   # fixed seed: same file every run
     for i in range(int(length * SAMPLE_RATE)):
         t = i / SAMPLE_RATE
-        # Accelerating glide: half the glide time covers an eighth of the
-        # distance, so the departure note is held long enough to be heard and
-        # the interval reads as an interval — then it rushes into the target,
-        # arriving at full speed, which is what makes the landing feel like one.
-        # (Smoothstep would ease OUT instead and dissolve the arrival; a linear
-        # ramp just sounds mechanical.) Interpolated in semitones, not Hz —
-        # pitch is logarithmic, and a linear Hz sweep drags at the bottom.
-        if glide <= 0 or t >= glide:
-            freq = end_hz
-        else:
-            x = (t / glide) ** GLIDE_CURVE
-            freq = start_hz * (end_hz / start_hz) ** x
         # raised cosine in, exponential out — the ring-off is what reads as
-        # marimba rather than as a cut-off beep. Each partial rings off on its
-        # own clock, so the note starts bright and darkens instead of holding
-        # one frozen colour to the end.
+        # marimba rather than as a cut-off beep
         attack = 1.0 if t >= attack_s else 0.5 - 0.5 * math.cos(math.pi * t / attack_s)
-        sample = 0.0
-        for partial in partials:
-            mult, amp, rate, phase = partial
-            f = freq * mult
-            # the fixed body peak, evaluated at where this partial IS right now
-            tilt = math.log(f / BODY_HZ) / BODY_OCTAVES
-            body = 1.0 + BODY_GAIN * math.exp(-0.5 * tilt * tilt)
-            sample += amp * body * math.exp(-t * rate) * math.sin(phase)
-            partial[3] = phase + 2 * math.pi * f / SAMPLE_RATE
+        sample = sum(amp * math.exp(-t * rate) * math.sin(phase0 + step * i)
+                     for amp, rate, phase0, step in partials)
         burst = math.exp(-t / NOISE_TAU)
         if burst > 0.002:
             rng = (rng * 1103515245 + 12345) & 0x7FFFFFFF
@@ -168,12 +150,11 @@ def voice(start_hz, end_hz, glide, length, tau, attack_s, bright):
 
 
 def render(tau, attack_s, bright, notes):
-    total = max(int((start + length) * SAMPLE_RATE) for *_, start, length, _ in notes)
+    total = max(int((start + length) * SAMPLE_RATE) for _, start, length, _ in notes)
     buf = [0.0] * total
-    for start_hz, end_hz, glide, start, length, gain in notes:
+    for freq, start, length, gain in notes:
         offset = int(start * SAMPLE_RATE)
-        for i, sample in enumerate(
-                voice(start_hz, end_hz, glide, length, tau, attack_s, bright)):
+        for i, sample in enumerate(voice(freq, length, tau, attack_s, bright)):
             buf[offset + i] += sample * gain
     fade = int(END_FADE * SAMPLE_RATE)
     for i in range(min(fade, total)):
