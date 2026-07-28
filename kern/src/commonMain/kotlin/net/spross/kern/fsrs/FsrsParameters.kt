@@ -15,6 +15,19 @@ data class FsrsParameters(
     val learningStepsSeconds: List<Long> = listOf(60L, 600L),
     /** Relearning steps in seconds (reference `[10m]`; product keeps `[10m]` — model/Config.kt). */
     val relearningStepsSeconds: List<Long> = listOf(600L),
+    /**
+     * Granularity a graduated interval is rounded to. Whole days by default —
+     * the reference day-bucket convention the golden vectors are pinned to;
+     * the product schedules continuously (1 s) so a 5.4-day interval is not
+     * rounded down to 5.
+     */
+    val intervalGranularitySeconds: Long = 86_400L,
+    /**
+     * Floor for a graduated interval. One day by default: bringing a card back
+     * inside the same day is what a learning step is for, not what a schedule
+     * that already graduated should ask for.
+     */
+    val minimumIntervalSeconds: Long = 86_400L,
 ) {
     init {
         require(w.size == WEIGHT_COUNT) { "FSRS-6 needs $WEIGHT_COUNT weights, got ${w.size}" }
@@ -24,6 +37,8 @@ data class FsrsParameters(
         require(maximumIntervalDays >= 1) { "maximumIntervalDays must be >= 1" }
         require(learningStepsSeconds.all { it > 0 }) { "learning steps must be positive" }
         require(relearningStepsSeconds.all { it > 0 }) { "relearning steps must be positive" }
+        require(intervalGranularitySeconds >= 1) { "interval granularity must be >= 1 s" }
+        require(minimumIntervalSeconds >= 1) { "minimum interval must be >= 1 s" }
     }
 
     companion object {

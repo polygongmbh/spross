@@ -59,18 +59,29 @@ class Fsrs(val parameters: FsrsParameters = FsrsParameters()) {
     }
 
     /**
-     * I(rd, S) = S / factor · (rd^(1/decay) − 1), rounded half-up to whole days
-     * then clamped to `[1, maximumIntervalDays]`. Equals round(S) at rd = 0.9.
+     * I(rd, S) = S / factor · (rd^(1/decay) − 1), in fractional days and
+     * unclamped — the interval the model actually asks for. Equals S at
+     * rd = 0.9. [FsrsScheduler] quantizes and clamps it per parameters.
+     */
+    fun intervalRawDays(
+        stability: Double,
+        desiredRetention: Double = parameters.desiredRetention,
+    ): Double {
+        require(desiredRetention > 0.0 && desiredRetention <= 1.0) {
+            "desiredRetention must be in (0, 1]"
+        }
+        return stability / factor * (desiredRetention.pow(1.0 / decay) - 1.0)
+    }
+
+    /**
+     * [intervalRawDays] rounded half-up to whole days, then clamped to
+     * `[1, maximumIntervalDays]` — the reference day-bucket convention.
      */
     fun intervalDays(
         stability: Double,
         desiredRetention: Double = parameters.desiredRetention,
     ): Int {
-        require(desiredRetention > 0.0 && desiredRetention <= 1.0) {
-            "desiredRetention must be in (0, 1]"
-        }
-        val raw = stability / factor * (desiredRetention.pow(1.0 / decay) - 1.0)
-        val rounded = floor(raw + 0.5)
+        val rounded = floor(intervalRawDays(stability, desiredRetention) + 0.5)
         return min(max(rounded, 1.0), parameters.maximumIntervalDays.toDouble()).toInt()
     }
 

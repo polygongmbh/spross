@@ -20,7 +20,11 @@ data class SchedulerOutcome(
     val memory: MemoryState,
     /** Whole-day interval; 0 while the unit sits in (re)learning steps. */
     val intervalDays: Int,
-    /** Seconds until due: the step delay, or `intervalDays * 86_400`. */
+    /**
+     * Seconds until due: the step delay while in (re)learning, else the
+     * graduated interval quantized to `intervalGranularitySeconds` — which
+     * equals `intervalDays * 86_400` only at the reference day granularity.
+     */
     val intervalSeconds: Long,
 )
 
@@ -117,14 +121,23 @@ class FsrsScheduler(val parameters: FsrsParameters = FsrsParameters()) {
         intervalSeconds = seconds,
     )
 
+    // why: the model asks for a fractional interval; whole-day rounding is the
+    // reference bucket convention, not part of FSRS. Granularity and floor are
+    // parameters so the product can schedule continuously while the golden
+    // vectors keep their day multiples.
     private fun graduate(memory: MemoryState): SchedulerOutcome {
-        val days = algorithm.intervalDays(memory.stability)
+        val granularity = parameters.intervalGranularitySeconds
+        val rawSeconds = algorithm.intervalRawDays(memory.stability) * 86_400.0
+        val maxSeconds = parameters.maximumIntervalDays * 86_400L
+        val seconds = ((rawSeconds / granularity).roundToLong() * granularity)
+            .coerceAtLeast(parameters.minimumIntervalSeconds)
+            .coerceAtMost(maxSeconds)
         return SchedulerOutcome(
             phase = CardPhase.Review,
             stepIndex = null,
             memory = memory,
-            intervalDays = days,
-            intervalSeconds = days * 86_400L,
+            intervalDays = algorithm.intervalDays(memory.stability),
+            intervalSeconds = seconds,
         )
     }
 }
