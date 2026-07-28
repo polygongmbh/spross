@@ -118,6 +118,28 @@ class CatalogFixtureTest {
         assertEquals(listOf("мишка"), mouse.target.variants) // grading/display only
     }
 
+    // -- grammar -----------------------------------------------------------------------
+
+    /**
+     * Authored `grammar` reaches both sides of the card, per language and unmerged.
+     * Pinned against the FIXTURE on purpose: the real catalog's grammar is content
+     * an editor may legitimately change (a Swahili plural landing on a noun is not
+     * a join regression), so the real-catalog side is guarded by lint on the values
+     * instead — see CatalogLintTest.grammarValuesAreBareAndTrimmed.
+     */
+    @Test
+    fun grammarRidesThroughPerSide() {
+        val door = catalog.join("de", "uk").byId("door")
+        assertEquals(mapOf("gender" to "die", "plural" to "-en"), door.source.grammar)
+        assertEquals(mapOf("plural" to "only"), door.target.grammar)
+    }
+
+    /** A verb: absent `grammar` is the correct authoring, and lands as empty, never null. */
+    @Test
+    fun realizationWithoutGrammarGetsAnEmptyMap() {
+        assertTrue(catalog.join("de", "sw").byId("cook").target.grammar.isEmpty())
+    }
+
     // -- catalog surface ---------------------------------------------------------------
 
     @Test

@@ -8,7 +8,12 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-/** Spot checks of the runtime join against the real catalog (coverage as of catalog v2.1). */
+/**
+ * Join RULES spot-checked against the real catalog. Expectations are derived from the
+ * catalog or exercised through a representative entry — never pinned field values, which
+ * would measure content rather than code. Exact values belong in [CatalogFixtureTest],
+ * which owns its fixture; content validity in [CatalogLintTest]. README §10.
+ */
 class RealCatalogJoinTest {
     private val catalog get() = RealCatalog.catalog
 
@@ -62,17 +67,6 @@ class RealCatalogJoinTest {
             val codes = catalog.availableTargets(source).map { it.code }
             assertEquals((catalog.languages.keys - source).sorted(), codes.sorted())
         }
-    }
-
-    @Test
-    fun pinnedFridgeCardCarriesGrammar() {
-        val fridge = catalog.join("de", "sw").byId("fridge")
-        assertEquals(CardKind.Noun, fridge.kind)
-        assertEquals("🧊", fridge.emoji)
-        assertEquals("Kühlschrank", fridge.source.text)
-        assertEquals(mapOf("gender" to "der", "plural" to "Kühlschränke"), fridge.source.grammar)
-        assertEquals("friji", fridge.target.text)
-        assertTrue(fridge.target.grammar.isEmpty())
     }
 
     @Test

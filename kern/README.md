@@ -361,6 +361,17 @@ day-key `yyyy-MM-dd`) with:
   (needs a further Good), graduation intervals from FSRS-6 S0, day-one introduces 8 cards;
   direction-scoped statistics tests are obsolete; v1 MixedDirectionTests port as
   bit-exact `presentationRole` FNV vectors; everything else behavioral ports 1:1.
+- **Catalog tests split three ways, by who owns the expectation.**
+  `CatalogFixtureTest` (commonTest, synthetic `Fixture.kt`) pins exact values —
+  the test owns its input, so parser/join plumbing is asserted there.
+  `CatalogLintTest` (jvmTest, real catalog) validates content *rules* without pinning values.
+  `RealCatalogJoinTest` (jvmTest, real catalog) keeps only join *rules*,
+  each derived from the catalog or exercised through a representative entry.
+  Never pin real-catalog field values or totals:
+  an ordinary authoring edit (a Swahili plural landing on `friji`)
+  then reads as a join regression, and the assertion measures content, not code.
+  A test that restates the mapping it asserts — comparing `RawRealization` to `Realization`
+  field by field — is a change-detector for a copy function, not coverage.
 - New suites: CatalogLintTest (§8), parser fixtures (feminine ♀ fallback, Sie/du variants,
   sparse coverage, en "to "/sw ku-kw prefixes, notes selection),
   first-exposure-always-recognition + emoji-policy matrix + synonym-rotation coverage,
