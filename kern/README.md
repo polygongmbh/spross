@@ -247,8 +247,14 @@ day-key `yyyy-MM-dd`) with:
   `distractors` (v3) are the multiple-choice tiles for that entry, picked by
   `session/MultipleChoice` from the other entries read on THIS entry's option side —
   so the watch only shuffles and cannot put the two languages in one question.
-  Shape-ranked (length gap + a heavy part-count penalty), up to six per entry,
+  Shape-ranked (length gap + a heavy part-count penalty), up to ten per entry,
   omitted when the box has nothing else to offer.
+  The shortlist is the variety knob: three of the ten reach a question, so the
+  same card keeps offering the same handful until the next push.
+  It is also the first thing to cut if the snapshot ever crowds the ~60 KB cap —
+  a full 60-entry de→sw snapshot measures ~18 KB, ~7 KB of it distractors;
+  shipping card ids instead of texts would recover most of that, at the price of
+  making the watch resolve the option side again (the v2 bug's home).
   The phone resolves `nextRole` and the rotated `promptForm` from the log count at build
   time; presentation is the app layer's (`../docs/design.md` §Watch & widgets)
   and `emoji` is pre-gated by the §3 matrix.

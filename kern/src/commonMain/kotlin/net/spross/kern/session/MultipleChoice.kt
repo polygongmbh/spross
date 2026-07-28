@@ -16,8 +16,15 @@ object MultipleChoice {
     /** Tiles per question: the answer plus three distractors. */
     const val OPTION_COUNT: Int = 4
 
-    /** Ranked distractors kept per question, so the pick isn't deterministic. */
-    const val SHORTLIST: Int = 6
+    /**
+     * Ranked distractors kept per question, so the tiles vary between rounds:
+     * the caller picks three of these, and a snapshot that ships the shortlist
+     * offers the same handful until the next push.
+     *
+     * Sized for variety, not for the wire — trim it first if the watch snapshot
+     * ever crowds its size cap (kern README §7).
+     */
+    const val SHORTLIST: Int = 10
 
     /** How much a differing part count outweighs a differing length. */
     private const val PART_PENALTY: Int = 6
