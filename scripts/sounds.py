@@ -44,36 +44,50 @@ OUT_DIR = os.path.join(ROOT, 'App/Resources/Sounds')
 
 SAMPLE_RATE = 44100
 PEAK = 0.26          # headroom: these play over the ring/silent switch, not loud
-ATTACK = 0.014       # s — long enough to kill the onset click, short enough to feel instant
 END_FADE = 0.005     # s — no click when the tail is truncated by the buffer
 
 # Mostly fundamental, with quiet partials for body: enough to carry on a phone
-# speaker, far short of a full triangle's edge. (multiple, amplitude).
+# speaker, far short of a full triangle's edge. (multiple, amplitude). Each
+# sound scales the partials by its own `bright` — the fundamental never moves,
+# so turning brightness down rounds a sound off instead of muffling it.
 HARMONICS = ((1, 1.0), (2, 0.10), (3, -1 / 12), (5, 1 / 40))
 
-# Equal temperament, A4 = 440. Everything sits just above the phone-speaker floor.
-E4, G_SHARP4 = 329.63, 415.30   # ascending major third
+# Equal temperament, A4 = 440. The bottom of the usable range is ~E4: phone
+# speakers roll off below ~250 Hz, where only the harmonics still carry.
+G4, B4 = 392.00, 493.88         # ascending major third
 F_SHARP4, D4 = 369.99, 293.66   # descending minor third — lands under correct's start
-A4 = 440.00
 
-# name: (decay time constant in s, [(from Hz, to Hz, glide s, start s, length s, gain), ...])
+# `level` is the finished peak relative to PEAK, applied after each sound is
+# normalized on its own — two overlapping notes sum to a taller waveform than
+# one, and without this the wrong answer would come out the loudest of the three.
+# Notes are (from Hz, to Hz, glide s, start s, length s, gain-within-this-sound).
 SOUNDS = {
-    'correct': (0.110, [
-        (E4, G_SHARP4,   0.100, 0.000, 0.32, 1.00),
+    # one eased glide, not two struck notes: a single soft attack registers
+    # without announcing itself
+    'correct': dict(tau=0.105, attack=0.014, bright=1.00, level=1.00, notes=[
+        (G4, B4,             0.100, 0.000, 0.32, 1.00),
     ]),
-    'wrong': (0.140, [
-        (F_SHARP4, D4,   0.130, 0.000, 0.40, 0.95),
+    # two distinct notes here — a wrong answer is the one event worth being
+    # unambiguous about, and two articulated pitches read as deliberate where
+    # a glide can slide past unnoticed. Quieter than correct on purpose.
+    'wrong': dict(tau=0.135, attack=0.016, bright=0.90, level=0.90, notes=[
+        (F_SHARP4, F_SHARP4, 0.000, 0.000, 0.34, 1.00),
+        (D4, D4,             0.000, 0.110, 0.34, 1.00),
     ]),
-    'reveal': (0.050, [
-        (A4, A4,         0.000, 0.000, 0.15, 0.50),
+    # heard most often of the three, so the roundest: slow attack and the
+    # partials pulled right down, or it turns into a pointy little beep
+    'reveal': dict(tau=0.075, attack=0.030, bright=0.35, level=0.45, notes=[
+        (G4, G4,             0.000, 0.000, 0.20, 1.00),
     ]),
 }
 
 
-def voice(start_hz, end_hz, glide, length, tau):
+def voice(start_hz, end_hz, glide, length, tau, attack_s, bright):
     """One note: harmonic stack, gliding start→end, under a soft-attack,
     exponential-decay envelope. Phase is integrated sample by sample — the
     naive sin(2πft) with a moving f would smear the pitch it claims to play."""
+    partials = tuple((mult, amp if mult == 1 else amp * bright)
+                     for mult, amp in HARMONICS)
     out = []
     phase = 0.0
     for i in range(int(length * SAMPLE_RATE)):
@@ -86,20 +100,21 @@ def voice(start_hz, end_hz, glide, length, tau):
             freq = start_hz + (end_hz - start_hz) * x * x * (3 - 2 * x)
         # raised cosine in, exponential out — the ring-off is what reads as
         # marimba rather than as a cut-off beep
-        attack = 1.0 if t >= ATTACK else 0.5 - 0.5 * math.cos(math.pi * t / ATTACK)
+        attack = 1.0 if t >= attack_s else 0.5 - 0.5 * math.cos(math.pi * t / attack_s)
         env = attack * math.exp(-t / tau)
-        sample = sum(amp * math.sin(phase * mult) for mult, amp in HARMONICS)
+        sample = sum(amp * math.sin(phase * mult) for mult, amp in partials)
         out.append(sample * env)
         phase += 2 * math.pi * freq / SAMPLE_RATE
     return out
 
 
-def render(tau, notes):
+def render(tau, attack_s, bright, notes):
     total = max(int((start + length) * SAMPLE_RATE) for *_, start, length, _ in notes)
     buf = [0.0] * total
     for start_hz, end_hz, glide, start, length, gain in notes:
         offset = int(start * SAMPLE_RATE)
-        for i, sample in enumerate(voice(start_hz, end_hz, glide, length, tau)):
+        for i, sample in enumerate(
+                voice(start_hz, end_hz, glide, length, tau, attack_s, bright)):
             buf[offset + i] += sample * gain
     fade = int(END_FADE * SAMPLE_RATE)
     for i in range(min(fade, total)):
@@ -121,16 +136,13 @@ def write_wav(path, buf, scale):
 
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
-    rendered = {name: render(tau, notes) for name, (tau, notes) in SOUNDS.items()}
-    # why: one shared scale factor across all three files — normalizing each on
-    # its own peak would drag the quiet reveal tick up to chime volume.
-    loudest = max(max(abs(s) for s in buf) for buf in rendered.values())
-    scale = PEAK / loudest
-    for name, buf in rendered.items():
+    for name, spec in SOUNDS.items():
+        buf = render(spec['tau'], spec['attack'], spec['bright'], spec['notes'])
+        scale = PEAK * spec['level'] / max(abs(s) for s in buf)
         path = os.path.join(OUT_DIR, name + '.wav')
         write_wav(path, buf, scale)
-        peak = max(abs(s) for s in buf) * scale
-        print(f'{name}.wav  {len(buf) / SAMPLE_RATE:.3f}s  peak {peak:.2f}')
+        print(f'{name}.wav  {len(buf) / SAMPLE_RATE:.3f}s  '
+              f'peak {PEAK * spec["level"]:.2f}')
 
 
 if __name__ == '__main__':
