@@ -45,6 +45,7 @@ OUT_DIR = os.path.join(ROOT, 'App/Resources/Sounds')
 SAMPLE_RATE = 44100
 PEAK = 0.26          # headroom: these play over the ring/silent switch, not loud
 END_FADE = 0.005     # s — no click when the tail is truncated by the buffer
+GLIDE_CURVE = 3.0    # >1 accelerates into the target; 1.0 is a flat linear sweep
 
 # Mostly fundamental, with quiet partials for body: enough to carry on a phone
 # speaker, far short of a full triangle's edge. (multiple, amplitude). Each
@@ -54,7 +55,7 @@ HARMONICS = ((1, 1.0), (2, 0.10), (3, -1 / 12), (5, 1 / 40))
 
 # Equal temperament, A4 = 440. The bottom of the usable range is ~E4: phone
 # speakers roll off below ~250 Hz, where only the harmonics still carry.
-A4, C_SHARP5 = 440.00, 554.37   # ascending major third
+A4, E5 = 440.00, 659.26         # ascending perfect fifth — wide enough to read
 F_SHARP4, D4 = 369.99, 293.66   # descending minor third — lands under correct's start
 G4 = 392.00
 
@@ -63,12 +64,13 @@ G4 = 392.00
 # one, and without this the wrong answer would come out the loudest of the three.
 # Notes are (from Hz, to Hz, glide s, start s, length s, gain-within-this-sound).
 SOUNDS = {
-    # a scoop, not a slow sweep: the glide has to finish well inside the decay
-    # or the pitch is still moving through the loudest part and the sound never
-    # ARRIVES anywhere — that missing arrival is what reads as unsatisfying.
-    # Short glide, then it rings on the target note.
-    'correct': dict(tau=0.085, attack=0.012, bright=1.00, level=1.00, notes=[
-        (A4, C_SHARP5,       0.045, 0.000, 0.26, 1.00),
+    # The glide must still finish well inside the decay — while the pitch is
+    # moving the sound has not ARRIVED anywhere, and a glide that is still
+    # travelling through its loudest part is the unsatisfying kind. Hence a
+    # wide interval read slowly at first, then a rush onto the target with
+    # most of the ring left to land in.
+    'correct': dict(tau=0.125, attack=0.012, bright=1.00, level=1.00, notes=[
+        (A4, E5,             0.115, 0.000, 0.31, 1.00),
     ]),
     # two distinct notes here — a wrong answer is the one event worth being
     # unambiguous about, and two articulated pitches read as deliberate where
@@ -95,12 +97,18 @@ def voice(start_hz, end_hz, glide, length, tau, attack_s, bright):
     phase = 0.0
     for i in range(int(length * SAMPLE_RATE)):
         t = i / SAMPLE_RATE
-        # smoothstep so the glide eases in and out; a linear ramp sounds mechanical
+        # Accelerating glide: half the glide time covers an eighth of the
+        # distance, so the departure note is held long enough to be heard and
+        # the interval reads as an interval — then it rushes into the target,
+        # arriving at full speed, which is what makes the landing feel like one.
+        # (Smoothstep would ease OUT instead and dissolve the arrival; a linear
+        # ramp just sounds mechanical.) Interpolated in semitones, not Hz —
+        # pitch is logarithmic, and a linear Hz sweep drags at the bottom.
         if glide <= 0 or t >= glide:
             freq = end_hz
         else:
-            x = t / glide
-            freq = start_hz + (end_hz - start_hz) * x * x * (3 - 2 * x)
+            x = (t / glide) ** GLIDE_CURVE
+            freq = start_hz * (end_hz / start_hz) ** x
         # raised cosine in, exponential out — the ring-off is what reads as
         # marimba rather than as a cut-off beep
         attack = 1.0 if t >= attack_s else 0.5 - 0.5 * math.cos(math.pi * t / attack_s)
