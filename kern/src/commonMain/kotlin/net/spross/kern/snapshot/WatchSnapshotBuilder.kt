@@ -9,6 +9,7 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.EmojiCue
+import net.spross.kern.model.Language
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
@@ -32,10 +33,26 @@ object WatchSnapshotBuilder {
     const val ENTRY_CAP: Int = 60
     private const val RECOGNIZE = "recognize"
 
-    fun build(state: BoxState, nowEpochMillis: Long): String =
-        StoreJson.encodeSorted(WatchSnapshotDoc.serializer(), doc(state, nowEpochMillis))
+    fun build(
+        state: BoxState,
+        nowEpochMillis: Long,
+        citationPrefixes: Map<Language, List<String>> = emptyMap(),
+    ): String =
+        StoreJson.encodeSorted(
+            WatchSnapshotDoc.serializer(),
+            doc(state, nowEpochMillis, citationPrefixes),
+        )
 
-    internal fun doc(state: BoxState, nowEpochMillis: Long): WatchSnapshotDoc {
+    /**
+     * [citationPrefixes] are `languages.json`'s `optionalVerbPrefixes` per language —
+     * only [MultipleChoice.optionForm] reads them, and an empty map simply leaves every
+     * verb in its citation form.
+     */
+    internal fun doc(
+        state: BoxState,
+        nowEpochMillis: Long,
+        citationPrefixes: Map<Language, List<String>> = emptyMap(),
+    ): WatchSnapshotDoc {
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         val ranked = Inventory.active(state).mapNotNull { sched ->
             val memory = sched.memory ?: return@mapNotNull null
@@ -55,10 +72,15 @@ object WatchSnapshotBuilder {
             .sortedWith(compareBy({ !it.isDue }, { it.tier }, { it.order }, { it.sched.cardId }))
             .take(ENTRY_CAP)
             .map { entry(it.sched, state.cards.getValue(it.sched.cardId), Statistics.isSettled(state, it.sched)) }
+        // why: options are drawn from every card the learner has met, not just the
+        // capped entries — the cap is a wire budget, and a pool that small leaves a
+        // question no same-class company to keep. Unscheduled cards stay out: a word
+        // first met as somebody else's wrong answer is no longer new when it arrives.
+        val pool = ranked.map { state.cards.getValue(it.sched.cardId) }
         return WatchSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             generated = nowEpochMillis,
-            entries = entries.map { it.copy(distractors = distractors(it, entries)) },
+            entries = entries.map { offer(it, state, pool, citationPrefixes) },
         )
     }
 
@@ -70,18 +92,45 @@ object WatchSnapshotBuilder {
     )
 
     /**
-     * The multiple-choice tiles for [entry], drawn from the other snapshot
-     * entries read on ENTRY's option side — never on their own, or the watch
-     * would offer source meanings and target words in the same question.
+     * [entry] with its multiple-choice options resolved: the wrong ones ranked out
+     * of [pool], and its own [WatchEntryDto.optionForm] whenever the form it is
+     * offered in differs from the form it is taught in. Every option is read on
+     * ENTRY's side — never on its own, or the watch would offer source meanings
+     * and target words in the same question.
      */
-    private fun distractors(entry: WatchEntryDto, pool: List<WatchEntryDto>): List<String> =
-        MultipleChoice.distractors(
-            answer = optionText(entry, entry.nextRole),
-            candidates = pool.filter { it.cardId != entry.cardId }.map { optionText(it, entry.nextRole) },
+    private fun offer(
+        entry: WatchEntryDto,
+        state: BoxState,
+        pool: List<Card>,
+        citationPrefixes: Map<Language, List<String>>,
+    ): WatchEntryDto {
+        val role = entry.nextRole
+        val answer = option(state.cards.getValue(entry.cardId), role, citationPrefixes)
+        return entry.copy(
+            optionForm = answer.text.takeIf { it != sideText(entry, role) },
+            distractors = MultipleChoice.distractors(
+                answer = answer,
+                candidates = pool.filter { it.id != entry.cardId }.map { option(it, role, citationPrefixes) },
+            ),
         )
+    }
 
-    /** [dto]'s text on the side a question in [role] asks the learner to pick. */
-    private fun optionText(dto: WatchEntryDto, role: String): String =
+    /** [card] as it can be offered for a question in [role]. */
+    private fun option(
+        card: Card,
+        role: String,
+        citationPrefixes: Map<Language, List<String>>,
+    ): MultipleChoice.Option {
+        val side = if (role == RECOGNIZE) card.source else card.target
+        return MultipleChoice.Option(
+            text = MultipleChoice.optionForm(side.text, card.kind, citationPrefixes[side.lang].orEmpty()),
+            kind = card.kind,
+            area = card.area,
+        )
+    }
+
+    /** [dto]'s taught text on the side a question in [role] asks the learner to pick. */
+    private fun sideText(dto: WatchEntryDto, role: String): String =
         if (role == RECOGNIZE) dto.sourceText else dto.targetText
 
     private fun entry(sched: CardScheduling, card: Card, settled: Boolean): WatchEntryDto {
@@ -126,7 +175,7 @@ internal data class WatchSnapshotDoc(
  * [emoji] is pre-gated by the emoji policy; [accepted] lists the full target
  * family for reveal display (the watch never types). [distractors] are the
  * ranked wrong options for THIS entry's role — the watch picks three and
- * shuffles them with the answer.
+ * shuffles them with the answer, which it reads off [optionForm].
  */
 @Serializable
 internal data class WatchEntryDto(
@@ -142,4 +191,10 @@ internal data class WatchEntryDto(
     val nextRole: String,
     val promptForm: String,
     val distractors: List<String> = emptyList(),
+    /**
+     * This entry's own option, when it is offered in a different form than it is
+     * taught in ([MultipleChoice.optionForm]) — absent whenever the two agree, which
+     * is every card but a bound stem and a verb. The reveal keeps the taught form.
+     */
+    val optionForm: String? = null,
 )

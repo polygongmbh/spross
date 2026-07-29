@@ -6,6 +6,8 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
+import net.spross.kern.model.Card
+import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
 
 class WatchSnapshotBuilderTests {
@@ -180,6 +182,74 @@ class WatchSnapshotBuilderTests {
         state = Box.inject(state, Box.sched("wf", dueMillis = Box.day1, lastReviewMillis = Box.day1))
         assertTrue(WatchSnapshotBuilder.doc(state, Box.day1).entries.single().distractors.isEmpty())
     }
+
+    // why: ENTRY_CAP is a wire budget, not a statement about which words may stand
+    // next to an answer — off-cap cards are the only ones sharing the probe's area
+    // here, so seeing them proves the option pool outlives the cap.
+    @Test
+    fun optionsComeFromEveryLearnedCardNotOnlyTheCappedEntries() {
+        val probe = Snap.card("probe", 0, area = "kitchen", targetText = "sw-probe")
+        val filler = (1..WatchSnapshotBuilder.ENTRY_CAP).map {
+            Snap.card("f$it", it, area = "hall", targetText = "sw-f$it")
+        }
+        val offCap = (1..3).map { Snap.card("x$it", 100 + it, area = "kitchen", targetText = "sw-x$it") }
+        var state = Snap.state(listOf(probe) + filler + offCap)
+        state = Box.inject(state, Box.sched("probe", stability = 0.5, dueMillis = Box.day1, lastReviewMillis = Box.day1))
+        for (card in filler) {
+            state = Box.inject(
+                state,
+                Box.sched(card.id, stability = 1.0, dueMillis = Box.day1, lastReviewMillis = Box.day1),
+            )
+        }
+        for (card in offCap) {
+            state = Box.inject(
+                state,
+                Box.sched(card.id, stability = 99.0, dueMillis = Box.day1, lastReviewMillis = Box.day1),
+            )
+        }
+        val entries = WatchSnapshotBuilder.doc(state, Box.day1).entries
+        assertEquals(WatchSnapshotBuilder.ENTRY_CAP, entries.size)
+        assertFalse(entries.any { it.cardId.startsWith("x") })
+        val offered = entries.single { it.cardId == "probe" }.distractors
+        assertEquals(setOf("sw-x1", "sw-x2", "sw-x3"), offered.take(3).toSet())
+    }
+
+    @Test
+    fun aBoundStemIsOfferedWithoutItsDashAndStillTaughtWithIt() {
+        val state = scheduled(
+            Snap.card("good", 1, kind = CardKind.Adjective, targetText = "-zuri"),
+            Snap.card("bad", 2, kind = CardKind.Adjective, targetText = "-baya"),
+        )
+        val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single { it.cardId == "good" }
+        assertEquals("produce", entry.nextRole)
+        assertEquals("zuri", entry.optionForm)
+        assertEquals("-zuri", entry.targetText)
+        assertEquals(listOf("baya"), entry.distractors)
+    }
+
+    @Test
+    fun aVerbIsOfferedWithoutTheCitationPrefixTheLanguageDeclares() {
+        val state = scheduled(
+            Snap.card("cook", 1, kind = CardKind.Verb, targetText = "kupika"),
+            Snap.card("eat", 2, kind = CardKind.Verb, targetText = "kula"),
+        )
+        val doc = WatchSnapshotBuilder.doc(state, Box.day1, mapOf("sw" to listOf("ku", "kw")))
+        val entry = doc.entries.single { it.cardId == "cook" }
+        assertEquals("pika", entry.optionForm)
+        assertEquals(listOf("la"), entry.distractors)
+    }
+
+    @Test
+    fun aWordOfferedAsItIsTaughtShipsNoOptionForm() {
+        val state = scheduled(Snap.card("w01", 1), Snap.card("w02", 2))
+        val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single { it.cardId == "w01" }
+        assertNull(entry.optionForm)
+    }
+
+    private fun scheduled(vararg cards: Card) =
+        cards.fold(Snap.state(cards.toList())) { state, card ->
+            Box.inject(state, Box.sched(card.id, dueMillis = Box.day1, lastReviewMillis = Box.day1))
+        }
 
     @Test
     fun schemaVersionAndGeneratedArePinned() {

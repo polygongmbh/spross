@@ -15,6 +15,7 @@ internal object Snap {
         id: String,
         seed: Int,
         kind: CardKind = CardKind.Noun,
+        area: String = "area1",
         emoji: String? = null,
         sourceText: String = "s-$id",
         targetText: String = "t-$id",
@@ -23,7 +24,7 @@ internal object Snap {
         gender: String? = null,
         feminineMarker: Boolean = false,
     ): Card = Card(
-        id = id, kind = kind, area = "area1", emoji = emoji, seedIndex = seed,
+        id = id, kind = kind, area = area, emoji = emoji, seedIndex = seed,
         components = emptyList(), feminineOf = null,
         source = Realization("de", sourceText),
         target = Realization(

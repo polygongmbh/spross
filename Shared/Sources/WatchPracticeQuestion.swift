@@ -23,9 +23,11 @@ enum WatchPracticeGenerator {
     /// Tiles per question: the answer plus three distractors.
     static let optionCount = 4
 
-    /// The text the learner must MATCH for this entry's role (the option side).
+    /// The text the learner must MATCH for this entry's role (the option side),
+    /// in the form the phone offers it: `optionForm` where a word would otherwise
+    /// be told apart from its company by a class marker rather than by meaning.
     static func answerText(for entry: WatchSnapshot.Entry) -> String {
-        entry.isRecognize ? entry.sourceText : entry.targetText
+        entry.optionForm ?? (entry.isRecognize ? entry.sourceText : entry.targetText)
     }
 
     /// A question, or `nil` when the phone shipped no distractor for the entry

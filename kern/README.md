@@ -328,12 +328,25 @@ day-key `yyyy-MM-dd`) with:
   written by the app.
 - **WatchSnapshot v3**: direction/pair/`german` are gone — one entry per CARD with BOTH
   sides pre-resolved: `{cardId, sourceText, targetText, accepted[], emoji?, articleTint?,
-  femMarker, due, stability, nextRole, promptForm, distractors[]}` + `schemaVersion`.
+  femMarker, due, stability, nextRole, promptForm, distractors[], optionForm?}` + `schemaVersion`.
   `distractors` (v3) are the multiple-choice tiles for that entry, picked by
-  `session/MultipleChoice` from the other entries read on THIS entry's option side —
+  `session/MultipleChoice` and read on THIS entry's option side —
   so the watch only shuffles and cannot put the two languages in one question.
-  Shape-ranked (length gap + a heavy part-count penalty), up to ten per entry,
-  omitted when the box has nothing else to offer.
+  Nothing but MEANING may separate the answer from its company, and three rules keep it so:
+  same word class first (a lone verb among nouns is answerable off its `ku` alone),
+  then same area (four kitchen words test the kitchen),
+  then shape (length gap + a heavy part-count penalty).
+  The pool is every SCHEDULED card, not the capped entry list — the cap is a wire budget,
+  and a pool that small leaves a question no same-class company to keep;
+  unscheduled cards stay out, since a word first met as somebody else's wrong answer
+  is no longer new when it arrives. Up to ten per entry, omitted when the box has
+  nothing else to offer.
+  Where a class marker survives the ranking anyway, the writing gives it up:
+  `optionForm` is the entry's own option with a bound stem's dash and a verb's
+  citation prefix dropped (`-zuri` → `zuri`, `kupika` → `pika`), absent when it would
+  equal the taught form, which the reveal shows either way.
+  The prefixes come from `languages.json` via the builder's `citationPrefixes` —
+  an empty map simply leaves every verb whole.
   The shortlist is the variety knob: three of the ten reach a question, so the
   same card keeps offering the same handful until the next push.
   It is also the first thing to cut if the snapshot ever crowds the ~60 KB cap —

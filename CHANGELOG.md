@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- **The watch quiz stops handing you the answer**: a tile could be picked without knowing
+  the word at all — the only verb among nouns wore Swahili's *ku-*, the only adjective a
+  bound stem's dash, and both stood out on sight. The options were also drawn from the
+  handful of cards the last push happened to carry, so there was rarely anything close
+  enough to stand beside the answer.
+  They now come from everything you have learned, are picked from the same word class and,
+  where it can, the same area — and where a class still shows in the writing, it comes off
+  every tile alike, while the reveal goes on teaching the full form.
+  Telling four kitchen verbs apart is a question about meaning; telling one verb from three
+  nouns never was.
+
 - **A slip of the finger stops costing you the word**: forgiveness used to begin at five letters
   and stretch to one slip per ten, so *kila* for *kile* was a flat failure
   and a whole sentence had to come out nearly perfect to count.

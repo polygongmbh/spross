@@ -190,8 +190,9 @@ same review UX rules; deltas only where the platform differs:
   wire formats, ranking, and caps in kern README §7.
 - Watch: one graded **multiple-choice** loop (the watch never types), role-aware per card;
   the tiles are picked in kern (`session/MultipleChoice`) and shipped per entry,
-  shape-ranked so option length can't give the answer away and all on the side the
-  prompt asks for — the watch only shuffles, so it can't mix the two languages.
+  ranked so nothing but meaning tells the answer from its company — word class,
+  then area, then shape — and all on the side the prompt asks for;
+  the watch only shuffles, so it can't mix the two languages.
   No self-grading — correctness + response time derive the FSRS rating (`WatchGrading`).
   Multiple choice on a keyboard-less device is a deliberate concession to the phone's
   recall-first rule, with the latency curve compensating.

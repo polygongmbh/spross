@@ -85,8 +85,12 @@ extension AppModel {
     /// Build + push the current box as a watch snapshot (no-op without a box).
     func pushWatchSnapshot() {
         guard let box else { return }
+        // why: the builder shortens a verb to its stem on the option side, and only
+        // languages.json knows which prefix that is (sw "ku"/"kw", en "to ").
+        let citationPrefixes = (catalog?.languages ?? [:]).mapValues { $0.optionalVerbPrefixes }
         let json = WatchSnapshotBuilder.shared.build(state: box,
-                                                     nowEpochMillis: Date().epochMillis)
+                                                     nowEpochMillis: Date().epochMillis,
+                                                     citationPrefixes: citationPrefixes)
         watchBridge.push(snapshotJSON: Self.stampTarget(box.joinStamp.target, onto: json))
     }
 
