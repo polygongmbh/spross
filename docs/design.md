@@ -34,6 +34,11 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
   Atomic writes; save debounced ≥ 5 s after answers,
   immediate at session end, config mutations, and scene-background
   (which also folds partial session stats and pushes snapshots).
+  **Calibration is re-applied from the build on every load**
+  (`BoxState.withProductCalibration`): learning steps, retention and caps are
+  decisions the app version makes, so a box written months ago must not go on
+  answering to the numbers that shipped with it. `maxUnsettled` is the exception
+  and survives — it is the one figure the learner sets themselves.
 - Swift 6 strict concurrency.
 
 ## Profile & onboarding

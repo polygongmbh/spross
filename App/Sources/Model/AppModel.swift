@@ -181,6 +181,7 @@ final class AppModel {
                 // stored box re-joins under ANY source with progress intact.
                 state = try StoreCodec.shared.decode(json: json)
                     .join(cards: cards, joinStamp: stamp)
+                    .withProductCalibration()
             } else {
                 state = BoxEngine.shared.bootstrap(cards: cards, config: .product(),
                                                    joinStamp: stamp)

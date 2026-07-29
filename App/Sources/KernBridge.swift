@@ -110,4 +110,13 @@ extension BoxState {
                scheduling: scheduling, enqueued: enqueued,
                newIntroduced: newIntroduced, dailyStats: dailyStats)
     }
+
+    /// Calibration belongs to the app build, not to the stored document: steps,
+    /// retention and caps are decisions this version makes, and a box written
+    /// months ago would otherwise keep answering to the numbers that shipped the
+    /// day it was created. Only `maxUnsettled` survives the refresh — it is the
+    /// one figure the learner sets themselves (Box settings).
+    func withProductCalibration() -> BoxState {
+        with(config: .product().with(maxUnsettled: Int(config.maxUnsettled)))
+    }
 }
