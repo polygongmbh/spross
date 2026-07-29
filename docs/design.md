@@ -58,6 +58,12 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
   (`\(due.formatted())`, never a bare `\(due)`): Xcode's index-based extractor writes
   `%@` for every argument, so an Int interpolation — `%lld` to the compiler — leaves the
   two disagreeing, and opening the project rewrites the catalog with dead twins.
+  `extractionState: "stale"` on a key is cosmetic — the same index-based extractor misses
+  keys the compiler finds (computed `LocalizedStringKey` properties, our own
+  `LocalizedStringKey` parameters, `Label`/`accessibilityLabel`), and flagged keys still
+  compile into every `.lproj`: clear the flags (`scripts/strings.py --fix`), never the keys.
+  `scripts/strings.py --built` diffs the catalog against what the compiler actually emitted
+  (after a build with `SWIFT_EMIT_LOC_STRINGS=YES`) — the check that catches real drift.
   Errors take the same path: `AppModel` reports a `LoadFailure` case, the view
   turns it into `Text`.
 - Area titles and area emoji both come from the catalog (kern README §8);

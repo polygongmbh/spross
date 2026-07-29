@@ -18,14 +18,6 @@ scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodeg
 scripts/strings.py --fix     # clear the stale flags Xcode writes into the String Catalog
 ```
 
-`extractionState: "stale"` in `Localizable.xcstrings` is cosmetic —
-Xcode's index-based extractor misses keys the compiler finds
-(computed `LocalizedStringKey` properties, our own `LocalizedStringKey` parameters,
-`Label`/`accessibilityLabel`), and flagged keys still compile into every `.lproj`.
-Clear the flags rather than deleting the keys.
-`scripts/strings.py --built` diffs the catalog against what the compiler emitted —
-the check that catches real drift — after a build with `SWIFT_EMIT_LOC_STRINGS=YES`.
-
 ## Commit & release rules
 
 - **Commit incrementally and atomically** —
@@ -52,7 +44,7 @@ the check that catches real drift — after a build with `SWIFT_EMIT_LOC_STRINGS
 ## Working with subagents & tools
 
 - Offload open-ended research and large implementations to subagents rather than crowding one session;
-  hand each the full spec + the relevant `docs/` pointer (`app/docs/design.md` for app work).
+  hand each the full spec + the relevant `docs/` pointer.
 - For "where does X live" questions, prefer a code-graph tool over growing Architecture below.
 - Large mechanical refactors go through a codemod, not hand edits — write it, run it, review the diff.
 
@@ -63,7 +55,7 @@ Kern modules under `kern/src/commonMain/kotlin/net/spross/kern/`:
 
 - `model` — domain types; `Card` derives from the catalog join, never persisted.
 - `catalog` — catalog v2 parser + (source, target) join, deterministic card ids.
-- `fsrs` — FSRS-6 scheduler (golden vectors copied from ts-fsrs v5.4.1 / py-fsrs v6.3.1).
+- `fsrs` — FSRS-6 scheduler, pinned to reference golden vectors.
 - `box` — growth engine: budgets, health gate, phrase unlock, leeches (`BoxEngine` facade).
 - `session` — session composer + drain loop + answer normalizer + multiple-choice options.
 - `trainer` — number/clock/phrase drills (de/sw/uk authored).
@@ -75,17 +67,14 @@ Kern modules under `kern/src/commonMain/kotlin/net/spross/kern/`:
 
 ## Invariants
 
-> **Pre-production — no live user data yet.** Byte-exact JSON encoding and
-> scheduling-history continuity are NOT constraints: a format or language
-> migration (e.g. a KMP engine port) needs only *behavioral* (golden-vector)
-> parity, and the schema/ids are free to be cleaned up on the way through.
-> The id/encoding notes below are current design, not data-preservation vows.
+> **Pre-production — no live user data.** Byte-exact encoding and scheduling-history
+> continuity are not constraints; migrations need only behavioral (golden-vector) parity.
+> The notes below are current design, not data-preservation vows.
 
 - `phase == new ⟺ memory == null ⟺ due == null` on a card's scheduling.
 - **Introduction = first answer**, never at composition — budget accounting relies on this.
-- **One FSRS schedule per card**, keyed by card id (ids never contain `|`):
-  production and recognition are alternating presentations of the same memory,
-  and every answer event is an FSRS review — nothing is UI-only.
+- **One FSRS schedule per card**, keyed by card id (ids never contain `|`) —
+  production and recognition are presentations of it; every answer is a review, nothing UI-only.
 - Seed content changes go through verification sweeps before shipping (`docs/sprachposter-learnings.md`).
 - The kern takes `nowEpochMillis` + `tzId` as parameters, never reads the clock (keeps it pure/testable).
 
