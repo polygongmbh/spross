@@ -2,19 +2,32 @@ import SwiftUI
 
 // MARK: - RatingButtonsView
 //
-// Again/Hard/Good/Easy row for recognition mode. German labels.
+// Self-grade pad for recognition mode. German labels.
 // Colorblind-safe: every rating has a distinct icon AND label —
-// color only grades the row, it never carries the meaning alone.
-// No red anywhere ("never punishing"): Again is warm terracotta.
+// color only grades the pad, it never carries the meaning alone.
+// No red anywhere ("never punishing"): Unbekannt is warm terracotta.
+//
+//     Einfach   Schwer
+//     Gut       Unbekannt
+//
+// Right column = the word resisted, left = it came; quality rises upward.
+// The two opposite verdicts therefore sit diagonally, so confusing them is
+// the hardest slip to make. Unbekannt holds the bottom-right corner, where
+// a thumb already rests: it is the common answer at first exposure, and the
+// cheapest mistake to undo — the word returns within minutes, where a stray
+// Einfach hides it for weeks.
 
 struct RatingButtonsView: View {
 
+    /// Cases keep the FSRS names the kern grades with; the labels speak the
+    /// learner's language instead — "Nochmal" was a promise about the schedule,
+    /// and it read as a lie on a word being met for the very first time.
     enum Rating: CaseIterable {
         case again, hard, good, easy
 
         var label: LocalizedStringKey {
             switch self {
-            case .again: return "rating.again"
+            case .again: return "rating.unknown"
             case .hard: return "rating.hard"
             case .good: return "rating.good"
             case .easy: return "rating.easy"
@@ -23,7 +36,7 @@ struct RatingButtonsView: View {
 
         var icon: String {
             switch self {
-            case .again: return "arrow.counterclockwise"
+            case .again: return "questionmark"
             case .hard: return "tortoise.fill"
             case .good: return "checkmark"
             case .easy: return "sparkles"
@@ -42,15 +55,22 @@ struct RatingButtonsView: View {
 
     var onRate: (Rating) -> Void
 
+    // Written out rather than looped so the source reads as the pad it draws.
     var body: some View {
-        HStack(spacing: DL.Space.s) {
-            ForEach(Rating.allCases, id: \.self) { rating in
-                RatingButton(rating: rating) { onRate(rating) }
+        Grid(horizontalSpacing: DL.Space.s, verticalSpacing: DL.Space.s) {
+            GridRow {
+                button(.easy)
+                button(.hard)
+            }
+            GridRow {
+                button(.good)
+                button(.again)
             }
         }
-        // why: four-up row would clip at the largest accessibility sizes;
-        // capped so labels stay legible while still honoring larger type.
-        .dynamicTypeSize(...DynamicTypeSize.accessibility1)
+    }
+
+    private func button(_ rating: Rating) -> some View {
+        RatingButton(rating: rating) { onRate(rating) }
     }
 }
 
@@ -65,10 +85,17 @@ private struct RatingButton: View {
             VStack(spacing: DL.Space.xs + 2) {
                 Image(systemName: rating.icon)
                     .font(.body.weight(.bold))
+                    // why: the glyphs differ in height (a tortoise is taller than
+                    // a checkmark), which pushed the labels of a pair off each
+                    // other's line once they sat side by side in the pad.
+                    .frame(height: 22)
                 Text(rating.label)
                     .font(DL.Fonts.caption)
-                    .lineLimit(1)
+                    // why: two-up leaves room the four-up row never had, so the
+                    // longest label wraps instead of forcing a dynamic-type cap.
+                    .lineLimit(2)
                     .minimumScaleFactor(0.7)
+                    .multilineTextAlignment(.center)
             }
             .foregroundStyle(rating.color)
             .frame(maxWidth: .infinity)
@@ -98,7 +125,7 @@ private struct PressableStyle: ButtonStyle {
 
 // MARK: - Previews
 
-#Preview("Rating row") {
+#Preview("Rating pad") {
     VStack {
         Spacer()
         RatingButtonsView { _ in }
@@ -108,7 +135,7 @@ private struct PressableStyle: ButtonStyle {
     .background(Color.dlBackground)
 }
 
-#Preview("Rating row · dark") {
+#Preview("Rating pad · dark") {
     VStack {
         Spacer()
         RatingButtonsView { _ in }

@@ -35,6 +35,16 @@
   words you answer on sight cost it nothing, so an easy day keeps the way open, while a pile
   of shaky ones narrows new material to a trickle instead of shutting it off.
 
+- **Self-grading sits under your thumb and says what you mean**: the grades used to span the
+  screen in one row, so the two answers a fresh word actually calls for — no idea, or knew it —
+  sat at opposite ends, and the honest one was the longest reach.
+  They now form a square with quality rising up and to the left, leaving the corner a thumb
+  already rests on to the answer you give most; the opposite verdicts end up diagonally apart,
+  where confusing them is hardest.
+  That corner used to read "Nochmal", a promise about the schedule that was plainly untrue the
+  first time a word was ever shown — it now reads "Unbekannt", which is about the word and
+  stays true whether you are meeting it or have just lost it.
+
 ## 2.0.0 — 2026-07-29
 
 - **A near-miss now tells you which word you actually wrote**: typing *kufunga* for
