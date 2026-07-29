@@ -53,6 +53,10 @@
   couple of minutes on — which is the next sitting or a practice run, not the tail of the
   one you were already finishing; reviews still take the oldest overdue day first, but
   within a day their order is reshuffled, differently each day.
+  The session you are in holds still while you do it: the count you started with is the
+  count you finish, where anything falling due mid-sitting used to be slipped into the
+  queue and push the end away from you. It is still waiting on the summary, under
+  "Weiter üben", where taking more on is your decision.
   The picture comes back with it: hidden outright once a word was under way, it was missing
   from exactly the reviews where a word gets matched on novelty instead of meaning, and it
   now rides the reveal wherever it cannot be shown before.

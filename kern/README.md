@@ -181,14 +181,14 @@ cards; `DayStats.reviews` = answer events.
   **The product runs ONE learning step, `[2m]`** (`relearning [10m]` unchanged).
   Two minute-scale steps put a missed word back in front of the learner half a dozen cards
   later, where it passes on being recognised as "that new one" rather than on the
-  source↔target pair having bound. The single step is set to OUTLAST a short sitting on
-  purpose: the drain only refills when the queue empties, so a shorter step would push the
-  finish line back after the learner had already counted the cards left. The retry belongs
-  to the next sitting or an endless run — by role resolution (§3) it is the typed production
-  attempt, the first real recall. Past that FSRS decides. (User ruling 2026-07-29; `3m` was
-  tried first and outlasted the day's practice altogether.)
+  source↔target pair having bound. What keeps the retry out of THIS sitting is the run
+  boundary, not the clock — a composed session never refills (§6) — so the step only has to
+  be short enough that the word is there for the next one: a follow-up sitting or "Weiter
+  üben", either of which is minutes away. By role resolution (§3) that retry is the typed
+  production attempt, the first real recall. Past that FSRS decides. (User ruling
+  2026-07-29; `3m` was tried first and outlasted the day's practice altogether.)
   **No in-session lapse retry** (breadth ruling 2026-07-22): a lapsed review card returns
-  after 10 m, typically next session; the drain loop does not wait for it.
+  after 10 m, typically next session; the run it lapsed in does not wait for it.
   Graduation follows the reference machine (one step later than v1's hand-rolled steps —
   accepted, tested against the pinned minute tables).
 - **Graduated intervals are continuous in the product.** `Fsrs.intervalRawDays` is the
@@ -218,7 +218,7 @@ cards; `DayStats.reviews` = answer events.
 ## 6. Box / Session semantics (deltas from the v1 port map)
 
 Everything in the engine scout map ports 1:1 (budgets, health gate, growth-reserve formula,
-introduction = first answer, silent answer drop, drain, extra round, endless, exposure tiers,
+introduction = first answer, silent answer drop, extra round, endless, exposure tiers,
 statistics, streak forgiveness, endSession fold + 60-day prune, deterministic orderings,
 day-key `yyyy-MM-dd`) with:
 - **Introduction is the card's first answer** (v1 semantics; the unit-era eligibility lag
@@ -253,6 +253,12 @@ day-key `yyyy-MM-dd`) with:
   Seeding the hash with the card's OWN due day keeps the function pure (no clock read) while
   reshuffling the bucket differently from one day to the next.
   Introduction order is untouched: new cards still arrive in seed order.
+- **A composed session never refills** (user ruling 2026-07-29): the plan IS the run.
+  Cards falling due while the learner sits there — a learning step maturing, most often —
+  used to be drained straight in, so the count they were counting down to moved away from
+  them mid-sitting. Nothing joins a run under way now; the work is still due, and endless
+  practice (`composeEndless`, explicitly asked for from the summary) is where it lands.
+  `dueNow` therefore feeds counts, rings and fresh pulls only.
 - **Join filter inventory**: composition, dueNow, dueCount, statistics, exposure operate on
   cards that join the current profile; the unlock check and `answer()` history reads
   operate on raw schedules by id. Non-joining schedules and enqueued entries are kept

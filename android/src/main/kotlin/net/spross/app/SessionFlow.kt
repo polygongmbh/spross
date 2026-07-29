@@ -23,9 +23,10 @@ fun extraSessionPlan(state: BoxState, nowEpochMillis: Long): SessionPlan {
 }
 
 /**
- * Pure session drain loop over the kern facades (no Android imports):
- * queue = reviews + unlockedPhrases + newCards; on empty pull dueNow;
- * on empty + endless refill via composeEndless; else finished (kern README §6).
+ * Pure session runner over the kern facades (no Android imports):
+ * queue = reviews + unlockedPhrases + newCards, and that IS the run — nothing
+ * joins a session already under way, so the count on screen holds. On empty:
+ * refill via composeEndless if endless was asked for, else finished (kern README §6).
  */
 class SessionFlow(initial: BoxState, plan: SessionPlan) {
 
@@ -82,7 +83,7 @@ class SessionFlow(initial: BoxState, plan: SessionPlan) {
         refill(nowEpochMillis)
     }
 
-    /** answered / total; the denominator grows when the drain pulls more work. */
+    /** answered / total; the denominator only moves once endless pulls a batch. */
     fun progress(): Float {
         val total = answered + queue.size
         return if (total == 0) 1f else answered.toFloat() / total
@@ -95,8 +96,7 @@ class SessionFlow(initial: BoxState, plan: SessionPlan) {
 
     private fun refill(nowEpochMillis: Long) {
         if (queue.isNotEmpty()) return
-        queue.addAll(BoxEngine.dueNow(box, nowEpochMillis))
-        if (queue.isEmpty() && endless) {
+        if (endless) {
             val extra = SessionComposer.composeEndless(box, nowEpochMillis)
             queue.addAll(extra.reviews + extra.unlockedPhrases + extra.newCards)
         }

@@ -44,7 +44,7 @@ class SessionFlowTest {
     }
 
     @Test
-    fun dayOneSessionIntroducesAndDrains() {
+    fun dayOneSessionIntroducesAndFinishes() {
         val flow = freshFlow()
         assertFalse(flow.isFinished)
 
@@ -64,13 +64,34 @@ class SessionFlowTest {
         assertEquals(listOf(AnswerTone.Right, AnswerTone.Wrong), flow.segments)
 
         assertEquals(AnswerStatus.Applied, flow.answer(Rating.Good, now, tz))
-        // learning-step cards are due minutes later, not at `now` — the drain ends.
+        // the plan is the whole run — three cards in, three cards out.
         assertTrue(flow.isFinished)
         assertNull(flow.currentCardId)
         assertEquals(3, flow.introduced)
 
         val ended = flow.finish(now, tz)
         assertEquals(3, ended.newIntroduced.values.sum())
+    }
+
+    // The count on screen is a promise: a word whose learning step matures while the
+    // learner is still sitting there does NOT join the run and push the finish line
+    // back. It waits for the summary, where "Weiter üben" takes it on purpose.
+    @Test
+    fun aCardComingDueMidRunDoesNotJoinIt() {
+        val flow = freshFlow()
+        flow.answer(Rating.Again, now, tz) // due again 2 minutes on
+
+        val late = now + 3 * 60_000 // by here that step has long matured
+        flow.answer(Rating.Good, late, tz)
+        flow.answer(Rating.Good, late, tz)
+
+        assertTrue(flow.isFinished)
+        assertEquals(3, flow.answered)
+
+        // …and it is genuinely there for the asking, not lost.
+        flow.continueEndless(late)
+        assertFalse(flow.isFinished)
+        assertNotNull(flow.currentCardId)
     }
 
     @Test

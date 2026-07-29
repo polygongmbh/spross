@@ -2,14 +2,14 @@ import Foundation
 import SprossKern
 import WidgetKit
 
-// Session flow: composed plan → card queue → drain loop → completion.
+// Session flow: composed plan → card queue → completion.
 //
 // Composition is role-agnostic (plans carry card ids); whether a card is
 // produced or recognized is resolved at render time from its log count.
-// When the composed queue empties and nothing is due right now, the session
-// ends with a summary (no mid-session pause). From the summary the user can
-// keep going in endless mode, which pulls whatever is genuinely due plus new
-// cards (respecting the pool) until they stop.
+// THE COMPOSED PLAN IS THE WHOLE RUN: the count on screen is a promise, so
+// nothing joins a session already under way — work that comes due while the
+// learner is sitting there waits for the summary, where "Weiter üben" pulls it
+// in on purpose. Only endless mode refills, and only once it has been asked for.
 
 extension AppModel {
 
@@ -18,7 +18,7 @@ extension AppModel {
         return box?.cards[id]
     }
 
-    /// 1-based position in (composed plan + drained cards so far).
+    /// 1-based position in the composed plan — fixed for the run.
     var sessionPosition: Int {
         min(sessionAnswered + 1, max(sessionTotal, 1))
     }
@@ -128,7 +128,12 @@ extension AppModel {
         }
     }
 
-    /// Next step: composed queue → drain loop (`dueNow`) → endless refill → done.
+    /// Next step: composed queue → endless refill (only once asked for) → done.
+    ///
+    /// why: no mid-run drain. Cards coming due while the learner sits there used to
+    /// be pulled straight in, so "12/30" quietly became "12/37" and the finish line
+    /// moved away from someone already counting down to it. They are still due —
+    /// the summary offers them under "Weiter üben".
     func advanceSession(now: Date = Date()) {
         guard let box else {
             sessionStep = .completed
@@ -138,14 +143,6 @@ extension AppModel {
             sessionStep = .card(nextID)
             return
         }
-        let due = BoxEngine.shared.dueNow(state: box, nowEpochMillis: now.epochMillis)
-        if !due.isEmpty {
-            sessionQueue = due
-            sessionTotal += due.count
-            sessionStep = .card(due[0])
-            return
-        }
-        // Endless: refill with due + soon-due steps + new cards until dry.
         if sessionEndless, enqueueEndlessBatch(from: box, now: now) {
             return
         }

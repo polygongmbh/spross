@@ -155,7 +155,11 @@ the app renders them:
 - Every user-facing count (due ring, "x neu", active cards, widget stats) is
   **concept-denominated** (kern README §4).
 - Sessions are composed, never configured:
-  plan from `BoxEngine`, drain loop, extra round, endless mode — semantics in kern README §6.
+  plan from `BoxEngine`, extra round, endless mode — semantics in kern README §6.
+  **The plan is the whole run**: the "12/30" on screen is a promise, so nothing joins a
+  session already under way — a word whose learning step matures mid-sitting waits for the
+  summary rather than pushing the finish line back. "Weiter üben" is where it comes in,
+  and only there does the denominator move.
   Session end = summary with confetti and streak;
   its "gefestigt" tally counts words that crossed into settled during the run
   (kern README §5), not a phase edge — with one learning step a word reaches Review while
