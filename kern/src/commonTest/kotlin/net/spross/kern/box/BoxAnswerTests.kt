@@ -28,21 +28,22 @@ class BoxAnswerTests {
         assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 600)).isEmpty())
     }
 
-    // A word you missed comes back after the one step — late enough that the rest
-    // of the session sits in between, so the retry is recall and not recognition.
+    // A word you missed comes back after the one step — past the end of a short
+    // sitting, so the retry is a fresh recall and not the tail of the same run.
     @Test
-    fun againOnNewSchedulesTheSingleThreeMinuteStep() {
+    fun againOnNewSchedulesTheSingleTwoMinuteStep() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.answered(state, "w01", Rating.Again, now)
         val sched = state.scheduling.getValue("w01")
         assertEquals(CardPhase.Learning, sched.phase)
         assertEquals(0, sched.stepIndex)
-        assertEquals(Box.instant(now) + 180.seconds, sched.due)
+        assertEquals(Box.instant(now) + 120.seconds, sched.due)
         assertEquals(0, sched.lapses) // lapses only count for review-phase cards
 
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 179)).isEmpty())
-        assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, 180)))
+        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 119)).isEmpty())
+        assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, 120)))
     }
+
 
     // With a single step, the retry either graduates the word or repeats the step —
     // there is no second minute-scale rung to climb.
@@ -50,7 +51,7 @@ class BoxAnswerTests {
     fun againThenGoodGraduatesOffTheStep() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.answered(state, "w01", Rating.Again, now)
-        val retry = Box.plusSeconds(now, 180)
+        val retry = Box.plusSeconds(now, 120)
         state = Box.answered(state, "w01", Rating.Good, retry)
 
         val sched = state.scheduling.getValue("w01")
@@ -62,29 +63,29 @@ class BoxAnswerTests {
     }
 
     // Hard holds on the step too, at the whole-minute blend ts-fsrs pins: a single
-    // step is stretched x1.5, so 3 min rounds to 5. It does NOT graduate — only
+    // step is stretched x1.5, so 2 min rounds to 3. It does NOT graduate — only
     // Good and Easy leave the step on a first answer.
     @Test
-    fun hardOnNewHoldsTheStepAtFiveMinutes() {
+    fun hardOnNewHoldsTheStepAtThreeMinutes() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.answered(state, "w01", Rating.Hard, now)
         val sched = state.scheduling.getValue("w01")
         assertEquals(CardPhase.Learning, sched.phase)
         assertEquals(0, sched.stepIndex)
-        assertEquals(Box.instant(now) + 300.seconds, sched.due)
+        assertEquals(Box.instant(now) + 180.seconds, sched.due)
     }
 
     @Test
     fun againOnTheStepRepeatsIt() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.answered(state, "w01", Rating.Again, now)
-        val retry = Box.plusSeconds(now, 180)
+        val retry = Box.plusSeconds(now, 120)
         state = Box.answered(state, "w01", Rating.Again, retry)
 
         val sched = state.scheduling.getValue("w01")
         assertEquals(CardPhase.Learning, sched.phase)
         assertEquals(0, sched.stepIndex)
-        assertEquals(Box.instant(retry) + 180.seconds, sched.due)
+        assertEquals(Box.instant(retry) + 120.seconds, sched.due)
     }
 
     @Test

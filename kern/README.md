@@ -178,13 +178,15 @@ cards; `DayStats.reviews` = answer events.
   vectors are excluded from the port.
 - Steps are config; the ENGINE defaults stay the reference pair (`learning [1m, 10m]`,
   `relearning [10m]`) so the golden vectors run verbatim.
-  **The product runs ONE learning step, `[3m]`** (`relearning [10m]` unchanged).
+  **The product runs ONE learning step, `[2m]`** (`relearning [10m]` unchanged).
   Two minute-scale steps put a missed word back in front of the learner half a dozen cards
   later, where it passes on being recognised as "that new one" rather than on the
-  source↔target pair having bound. With one step the retry lands after everything else in
-  the session — the drain loop only refills when the queue empties — or next sitting if the
-  session is nearly over, and by role resolution (§3) it is the typed production attempt,
-  the first real recall. Past that FSRS decides.
+  source↔target pair having bound. The single step is set to OUTLAST a short sitting on
+  purpose: the drain only refills when the queue empties, so a shorter step would push the
+  finish line back after the learner had already counted the cards left. The retry belongs
+  to the next sitting or an endless run — by role resolution (§3) it is the typed production
+  attempt, the first real recall. Past that FSRS decides. (User ruling 2026-07-29; `3m` was
+  tried first and outlasted the day's practice altogether.)
   **No in-session lapse retry** (breadth ruling 2026-07-22): a lapsed review card returns
   after 10 m, typically next session; the drain loop does not wait for it.
   Graduation follows the reference machine (one step later than v1's hand-rolled steps —
@@ -479,8 +481,8 @@ day-key `yyyy-MM-dd`) with:
   finding stands) and the phrase-recognition exclusion (phrases alternate, self-graded).
 - In-session lapse retry (breadth ruling 2026-07-22: relearning = reference `[10m]`).
 - Two minute-scale learning steps (the reference `[1m, 10m]`): a retry that lands a handful
-  of cards later is answered on novelty, not on the pair — the product runs one `[3m]` step
-  and lets the session's own length do the spacing (§5).
+  of cards later is answered on novelty, not on the pair — the product runs one `[2m]` step,
+  which outlasts a short sitting, so the retry starts the next one (§5).
 - The relearning-share sub-gate (< 20 % of active, once active ≥ 10): relearning cards are
   unsettled by definition, so the load the new-word budget already reads subsumes it (§6);
   the health gate keeps backlog, which is a different axis.

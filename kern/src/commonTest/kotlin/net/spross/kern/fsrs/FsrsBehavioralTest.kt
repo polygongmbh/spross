@@ -9,7 +9,7 @@ import net.spross.kern.model.Rating
 
 /**
  * Behavioral expectations under the PRODUCT configuration (retention 0.8,
- * maximum interval 365, learning [3m], relearning [10m], continuous intervals).
+ * maximum interval 365, learning [2m], relearning [10m], continuous intervals).
  * Self-computed, NOT reference vectors — they pin contract choices, not upstream
  * numerics. Keep in step with `model/Config.kt`.
  */
@@ -18,7 +18,7 @@ class FsrsBehavioralTest {
     private val productParameters = FsrsParameters(
         desiredRetention = 0.8,
         maximumIntervalDays = 365,
-        learningStepsSeconds = listOf(180L),
+        learningStepsSeconds = listOf(120L),
         relearningStepsSeconds = listOf(600L),
         intervalGranularitySeconds = 1L,
     )

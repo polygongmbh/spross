@@ -87,14 +87,14 @@ class SessionFlowTest {
     @Test
     fun endlessPullsMissedCardsBackOnceTheStepMatures() {
         val flow = freshFlow()
-        // Missed words take the one 3-minute step; words answered on sight go to
+        // Missed words take the one 2-minute step; words answered on sight go to
         // day scale and do not come back at all.
         while (!flow.isFinished) flow.answer(Rating.Again, now, tz)
 
         flow.continueEndless(now + 60_000)
         assertTrue(flow.isFinished) // 1 min in: the step has not matured
 
-        flow.continueEndless(now + 4 * 60_000)
+        flow.continueEndless(now + 3 * 60_000)
         assertFalse(flow.isFinished)
         assertNotNull(flow.currentCardId)
     }

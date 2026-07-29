@@ -26,12 +26,13 @@ data class BoxConfig(
      */
     val settledStability: Double = 2.0,
     /**
-     * ONE learning step: a word you miss comes back at the END of the session,
-     * after everything else, as the first real recall attempt — not six cards
-     * later, where it is recognised as "that new one" rather than recalled.
-     * Beyond that FSRS decides (reference default was `[1m, 10m]`).
+     * ONE learning step, deliberately longer than the sitting that earned it: the
+     * retry belongs to the NEXT sitting or an endless run, not to the tail of this
+     * one, where it would push the finish line back after the learner had already
+     * counted the cards left. Two minutes clears a short sitting without pushing
+     * the word out of the day (reference default was `[1m, 10m]`).
      */
-    val learningStepsSeconds: List<Long> = listOf(180L),
+    val learningStepsSeconds: List<Long> = listOf(120L),
     /**
      * Relearning steps in seconds — FSRS-6 reference default; no in-session
      * lapse retry (breadth ruling 2026-07-22).

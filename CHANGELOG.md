@@ -46,9 +46,10 @@
   rather than on the word and its meaning having bound — and since words learned in one
   sitting kept near-identical due times, they arrived side by side in every session
   afterwards, so *jung* was answered by knowing it comes right before *alt*.
-  A missed word is now written out once, with the answer in front of you, and then waits
-  until the end of the session; reviews still take the oldest overdue day first, but within
-  a day their order is reshuffled, differently each day.
+  A missed word is now written out once, with the answer in front of you, and comes back a
+  couple of minutes on — which is the next sitting or a practice run, not the tail of the
+  one you were already finishing; reviews still take the oldest overdue day first, but
+  within a day their order is reshuffled, differently each day.
   The picture comes back with it: hidden outright once a word was under way, it was missing
   from exactly the reviews where a word gets matched on novelty instead of meaning, and it
   now rides the reveal wherever it cannot be shown before.
