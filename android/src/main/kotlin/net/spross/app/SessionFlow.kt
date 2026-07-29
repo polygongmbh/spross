@@ -53,6 +53,9 @@ class SessionFlow(initial: BoxState, plan: SessionPlan) {
 
     fun phase(cardId: String): CardPhase = box.scheduling[cardId]?.phase ?: CardPhase.New
 
+    /** Has this word settled? Unscheduled cards certainly have not. */
+    fun isSettled(cardId: String): Boolean = BoxEngine.isSettled(box, cardId)
+
     fun answer(rating: Rating, nowEpochMillis: Long, tzId: String): AnswerStatus? {
         val id = currentCardId ?: return null
         val wasNew = phase(id) == CardPhase.New

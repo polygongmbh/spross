@@ -45,12 +45,18 @@ extension AppModel {
                                     reviewCount: scheduling(for: cardID)?.reviewCount ?? 0)
     }
 
-    /// Emoji policy: first exposure, or produce-while-learning (contract §3).
-    func emojiVisible(for card: Card) -> Bool {
-        let sched = scheduling(for: card.id)
-        return SprossKern.emojiVisible(role: presentationRole(for: card.id),
-                                       phase: sched?.phase ?? .theNew,
-                                       reviewCount: sched?.reviewCount ?? 0)
+    /// Whether this card has settled — the engine's one "has it landed" answer.
+    func isSettled(_ cardID: String) -> Bool {
+        guard let box else { return false }
+        return BoxEngine.shared.isSettled(state: box, cardId: cardID)
+    }
+
+    /// Which face carries the picture: the prompt only where it cannot give the
+    /// answer away, otherwise the reveal (contract §3).
+    func emojiPlacement(for card: Card) -> EmojiPlacement {
+        SprossKern.emojiPlacement(role: presentationRole(for: card.id),
+                                  settled: isSettled(card.id),
+                                  reviewCount: scheduling(for: card.id)?.reviewCount ?? 0)
     }
 
     /// The rotated target form to prompt on a recognition review.

@@ -4,11 +4,13 @@ import kotlin.time.Instant
 import kotlinx.serialization.Serializable
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.Inventory
+import net.spross.kern.box.Statistics
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
+import net.spross.kern.model.EmojiPlacement
 import net.spross.kern.model.PresentationRole
-import net.spross.kern.model.emojiVisible
+import net.spross.kern.model.emojiPlacement
 import net.spross.kern.model.presentationRole
 import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.session.MultipleChoice
@@ -52,7 +54,7 @@ object WatchSnapshotBuilder {
         val entries = ranked
             .sortedWith(compareBy({ !it.isDue }, { it.tier }, { it.order }, { it.sched.cardId }))
             .take(ENTRY_CAP)
-            .map { entry(it.sched, state.cards.getValue(it.sched.cardId)) }
+            .map { entry(it.sched, state.cards.getValue(it.sched.cardId), Statistics.isSettled(state, it.sched)) }
         return WatchSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             generated = nowEpochMillis,
@@ -82,7 +84,7 @@ object WatchSnapshotBuilder {
     private fun optionText(dto: WatchEntryDto, role: String): String =
         if (role == RECOGNIZE) dto.sourceText else dto.targetText
 
-    private fun entry(sched: CardScheduling, card: Card): WatchEntryDto {
+    private fun entry(sched: CardScheduling, card: Card, settled: Boolean): WatchEntryDto {
         val reviewCount = sched.reviewCount
         val nextRole = presentationRole(card.id, reviewCount)
         return WatchEntryDto(
@@ -90,7 +92,11 @@ object WatchSnapshotBuilder {
             sourceText = card.source.text,
             targetText = card.target.text,
             accepted = listOf(card.target.text) + card.target.synonyms + card.target.variants,
-            emoji = card.emoji?.takeIf { emojiVisible(nextRole, sched.phase, reviewCount) },
+            // why: the watch quiz has no reveal face to hang a picture on, so it only
+            // ever carries the prompt-side emoji.
+            emoji = card.emoji?.takeIf {
+                emojiPlacement(nextRole, settled, reviewCount) == EmojiPlacement.Prompt
+            },
             articleTint = articleTint(card),
             femMarker = card.promptFeminineMarker,
             due = sched.due!!.toEpochMilliseconds(),

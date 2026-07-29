@@ -109,16 +109,22 @@ class PresentationTest {
     // -- emoji policy ------------------------------------------------------------------
 
     @Test
-    fun emojiMatrixFirstExposureOrProduceLearningOnly() {
-        // First exposure: visible (teaching moment — recognition WITH emoji).
-        assertTrue(emojiVisible(recognize, CardPhase.New, reviewCount = 0))
-        // Produce while learning: visible (v1 rule).
-        assertTrue(emojiVisible(produce, CardPhase.Learning, reviewCount = 1))
-        // Recognition measurement reviews: hidden — the emoji depicts the answer.
-        assertFalse(emojiVisible(recognize, CardPhase.Learning, reviewCount = 1))
-        assertFalse(emojiVisible(recognize, CardPhase.Review, reviewCount = 4))
-        // From Review/Relearning on: hidden for produce too.
-        assertFalse(emojiVisible(produce, CardPhase.Review, reviewCount = 4))
-        assertFalse(emojiVisible(produce, CardPhase.Relearning, reviewCount = 6))
+    fun emojiRidesThePromptOnlyWhereItCannotGiveTheAnswerAway() {
+        // First exposure: on the prompt — the cue that makes a first attempt possible.
+        assertEquals(EmojiPlacement.Prompt, emojiPlacement(recognize, settled = false, reviewCount = 0))
+        // Produce while the word is still landing: the source prompt already names
+        // the concept, so the picture adds support without leaking anything.
+        assertEquals(EmojiPlacement.Prompt, emojiPlacement(produce, settled = false, reviewCount = 1))
+    }
+
+    @Test
+    fun emojiRidesTheRevealEverywhereElse() {
+        // Recognition measurement reviews: the picture depicts the answer, so it
+        // waits for the reveal rather than disappearing.
+        assertEquals(EmojiPlacement.Reveal, emojiPlacement(recognize, settled = false, reviewCount = 1))
+        assertEquals(EmojiPlacement.Reveal, emojiPlacement(recognize, settled = true, reviewCount = 4))
+        // Settled words get no prompt support in either role — but still bind on reveal.
+        assertEquals(EmojiPlacement.Reveal, emojiPlacement(produce, settled = true, reviewCount = 4))
+        assertEquals(EmojiPlacement.Reveal, emojiPlacement(produce, settled = true, reviewCount = 6))
     }
 }

@@ -47,15 +47,33 @@ fun recognitionPromptForm(card: Card, reviewCount: Int): String {
     return forms[(reviewCount / 2 + offset) % forms.size]
 }
 
+/** Which face of the card carries the picture. */
+enum class EmojiPlacement {
+    /** Above the prompt, before the reveal — only where it cannot give the answer away. */
+    Prompt,
+
+    /** With the revealed answer, where nothing is left to give away. */
+    Reveal,
+}
+
 /**
- * Emoji policy: visible iff (first exposure) OR (role == Produce && phase ==
- * Learning). Hidden on recognition measurement reviews (it depicts the answer)
- * and from Review/Relearning on (v1's hide-after-learning rule). The first
- * exposure is the one recognition prompt that carries it, deliberately: it is
- * the cue that makes a first recall attempt possible at all.
+ * Emoji policy. It rides the PROMPT iff (first exposure) OR (role == Produce &&
+ * the word has not settled) — the two places it supports recall without
+ * revealing it, since a produce prompt already names the concept in the source
+ * language. Everywhere else it rides the REVEAL, in every phase: once the answer
+ * is out the picture can leak nothing, and binding it to the meaning is exactly
+ * what a word still being recognised by novelty needs.
  */
-fun emojiVisible(role: PresentationRole, phase: CardPhase, reviewCount: Int): Boolean =
-    reviewCount == 0 || (role == PresentationRole.Produce && phase == CardPhase.Learning)
+fun emojiPlacement(
+    role: PresentationRole,
+    settled: Boolean,
+    reviewCount: Int,
+): EmojiPlacement =
+    if (reviewCount == 0 || (role == PresentationRole.Produce && !settled)) {
+        EmojiPlacement.Prompt
+    } else {
+        EmojiPlacement.Reveal
+    }
 
 /**
  * FNV-1a 64-bit over UTF-8 — bit-exact port of v1's `BoxEngine.stableHash`

@@ -121,7 +121,8 @@ struct SessionView: View {
                 // instead of stacking; .id gives each card its own identity.
                 ZStack {
                     VocabCardView(
-                        emoji: model.emojiVisible(for: card) ? card.emoji : nil,
+                        emoji: card.emoji,
+                        emojiSide: model.emojiPlacement(for: card) == .prompt ? .prompt : .reveal,
                         prompt: promptSide(card, role: role),
                         answer: answerSide(card, role: role),
                         note: card.target.note ?? card.source.note,

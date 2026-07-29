@@ -39,9 +39,14 @@ struct VocabCardView: View {
         }
     }
 
+    /// Which face the picture rides on. Prompt keeps the pre-reveal cue; reveal
+    /// binds it to the answer without moving anything above it.
+    enum EmojiSide { case prompt, reveal }
+
     /// Per-word illustration; nil for verbs/phrases with no seed emoji —
     /// the card then drops the circle and centers on the word itself.
     let emoji: String?
+    var emojiSide: EmojiSide = .prompt
     let prompt: Side
     let answer: Side
     /// Optional literal gloss ("wörtlich: …"), shown only post-reveal.
@@ -53,7 +58,7 @@ struct VocabCardView: View {
 
     var body: some View {
         VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
-            if let emoji, !emoji.isEmpty {
+            if let emoji, !emoji.isEmpty, emojiSide == .prompt {
                 emojiIllustration(emoji)
             }
             sideBlock(prompt, emphasized: false)
@@ -92,6 +97,11 @@ struct VocabCardView: View {
             RoundedRectangle(cornerRadius: 1)
                 .fill(Color.dlSeparator)
                 .frame(width: 44, height: 2)
+            // why: BELOW the divider, never above the prompt — the reveal grows the
+            // card downward and existing content must not shift under it.
+            if let emoji, !emoji.isEmpty, emojiSide == .reveal {
+                emojiIllustration(emoji)
+            }
             sideBlock(answer, emphasized: true)
             if let note {
                 // why: subheadline, not caption — post-reveal lines are meant to
@@ -256,6 +266,7 @@ struct ArticleBadge: View {
 #Preview("Recognize · revealed") {
     VocabCardView(
         emoji: "🍳",
+        emojiSide: .reveal,
         prompt: .init(text: "kikaango"),
         answer: .init(text: "Pfanne", article: "die", plural: "Pl. Pfannen"),
         note: "wörtlich: kleines Bratgefäß",

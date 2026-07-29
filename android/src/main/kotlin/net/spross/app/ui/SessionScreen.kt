@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.CardDisplay
 import net.spross.app.SessionUi
+import net.spross.kern.model.EmojiPlacement
 import net.spross.kern.model.PresentationRole
 
 @Composable
@@ -61,7 +62,7 @@ private fun RecognizeCard(model: AppModel, ui: SessionUi) {
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Spacer(Modifier.height(24.dp))
-        if (ui.showEmoji) {
+        if (ui.emojiPlacement == EmojiPlacement.Prompt) {
             Text(card.emoji.orEmpty(), fontSize = 64.sp)
         }
         Text(
@@ -75,6 +76,9 @@ private fun RecognizeCard(model: AppModel, ui: SessionUi) {
             }
         } else {
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                if (ui.emojiPlacement == EmojiPlacement.Reveal) {
+                    Text(card.emoji.orEmpty(), fontSize = 64.sp)
+                }
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(card.source.text, style = MaterialTheme.typography.headlineMedium)
                     if (card.promptFeminineMarker) {
