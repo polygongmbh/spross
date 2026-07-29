@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **The watch says where you are in one number, and the due cards now end**: a counter and a
+  streak competed for the same run, and the counter could not be trusted — it stopped at the
+  last due card while the quiz kept handing out more. The cards that are due are a run with a
+  finish line: the counter reaches it, a short burst says how many you did, and the watch
+  takes you back to the start screen by itself, where practising on is one tap away.
+  Practice keeps going as long as you do, and counts how many you have got right in a row
+  instead — the flame no longer crowds the word it sat next to.
+
 - **The watch quiz stops handing you the answer**: a tile could be picked without knowing
   the word at all — the only verb among nouns wore Swahili's *ku-*, the only adjective a
   bound stem's dash, and both stood out on sight. The options were also drawn from the
