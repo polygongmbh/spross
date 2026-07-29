@@ -56,13 +56,16 @@ internal object Statistics {
     }
 
     /**
-     * A card has settled once it sits in Review at or above the phrase-unlock
-     * stability — the same threshold that lets its phrases in, so "sitting" is a
-     * milestone the learner can act on, not a cosmetic band.
+     * A card has settled once it sits in Review at or above [BoxConfig.sittingStability].
+     * THE predicate for "has this word landed": it gates phrase unlock
+     * ([Growth.isComponentStable]), splits sitting from fresh in the progress UI,
+     * and decides which presentation supports a word still on its way in. A card
+     * that just lapsed is back in Relearning, so it stops sitting — which is the
+     * point: it needs the support again.
      */
     fun isSitting(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&
-            (sched.memory?.stability ?: 0.0) >= state.config.phraseUnlockStability
+            (sched.memory?.stability ?: 0.0) >= state.config.sittingStability
 
     /**
      * Walk back from today. Today without reviews neither breaks the streak nor consumes

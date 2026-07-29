@@ -36,7 +36,9 @@ internal data class ConfigDto(
     val dueSoftCap: Int,
     val desiredRetention: Double,
     val maximumIntervalDays: Int,
-    val phraseUnlockStability: Double,
+    // why: defaulted so a document written before the rename still decodes —
+    // the value is a calibration constant, not user data worth a migration.
+    val sittingStability: Double = 2.0,
     val learningStepsSeconds: List<Long>,
     val relearningStepsSeconds: List<Long>,
 )
@@ -86,7 +88,7 @@ private fun configDto(config: BoxConfig): ConfigDto = ConfigDto(
     dueSoftCap = config.dueSoftCap,
     desiredRetention = config.desiredRetention,
     maximumIntervalDays = config.maximumIntervalDays,
-    phraseUnlockStability = config.phraseUnlockStability,
+    sittingStability = config.sittingStability,
     learningStepsSeconds = config.learningStepsSeconds,
     relearningStepsSeconds = config.relearningStepsSeconds,
 )
@@ -141,7 +143,7 @@ private fun ConfigDto.toDomain(): BoxConfig = BoxConfig(
     dueSoftCap = dueSoftCap,
     desiredRetention = desiredRetention,
     maximumIntervalDays = maximumIntervalDays,
-    phraseUnlockStability = phraseUnlockStability,
+    sittingStability = sittingStability,
     learningStepsSeconds = learningStepsSeconds,
     relearningStepsSeconds = relearningStepsSeconds,
 )

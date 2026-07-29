@@ -87,7 +87,7 @@ extension BoxConfig {
                   dueSoftCap: 30,
                   desiredRetention: 0.8,
                   maximumIntervalDays: 365,
-                  phraseUnlockStability: 2.0,
+                  sittingStability: 2.0,
                   learningStepsSeconds: [KotlinLong(longLong: 60), KotlinLong(longLong: 600)],
                   relearningStepsSeconds: [KotlinLong(longLong: 600)])
     }
@@ -98,7 +98,7 @@ extension BoxConfig {
                dueSoftCap: dueSoftCap,
                desiredRetention: desiredRetention,
                maximumIntervalDays: maximumIntervalDays,
-               phraseUnlockStability: phraseUnlockStability,
+               sittingStability: sittingStability,
                learningStepsSeconds: learningStepsSeconds,
                relearningStepsSeconds: relearningStepsSeconds)
     }

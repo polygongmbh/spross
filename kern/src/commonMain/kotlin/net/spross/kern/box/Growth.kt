@@ -49,8 +49,7 @@ internal object Growth {
     // source-independent, so a source switch can never re-lock a phrase.
     fun isComponentStable(state: BoxState, componentId: String): Boolean {
         val sched = state.scheduling[componentId] ?: return false
-        if (sched.suspended || sched.phase != CardPhase.Review) return false
-        return (sched.memory?.stability ?: 0.0) >= state.config.phraseUnlockStability
+        return !sched.suspended && Statistics.isSitting(state, sched)
     }
 
     /** Zero-component phrases never take the fast path (they follow seed order). */

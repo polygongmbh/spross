@@ -106,6 +106,15 @@ object BoxEngine {
     fun statistics(state: BoxState, nowEpochMillis: Long, tzId: String): BoxStatistics =
         Statistics.statistics(state, nowEpochMillis, tzId)
 
+    /**
+     * Has this card sat down? See [Statistics.isSitting] — the one threshold
+     * behind phrase unlock, the sitting/fresh split, and the presentation
+     * support a word gets while it is still landing. Unknown ids read as false:
+     * a card with no schedule has certainly not landed.
+     */
+    fun isSitting(state: BoxState, cardId: String): Boolean =
+        state.scheduling[cardId]?.let { Statistics.isSitting(state, it) } ?: false
+
     /** See [Exposure.exposureCards]; `nowEpochMillis` reserved for future due-weighting. */
     fun exposureCards(state: BoxState, nowEpochMillis: Long, limit: Int): List<Card> =
         Exposure.exposureCards(state, limit)

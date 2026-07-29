@@ -13,8 +13,14 @@ data class BoxConfig(
     val dueSoftCap: Int = 30,
     val desiredRetention: Double = 0.8,
     val maximumIntervalDays: Int = 365,
-    /** Days of component stability required before a phrase unlocks (FSRS-6 recalibrated). */
-    val phraseUnlockStability: Double = 2.0,
+    /**
+     * Days of stability at which a card has SAT DOWN — the single threshold
+     * behind every "has this word landed yet" question: the phrase-unlock gate,
+     * the sitting/fresh split in the progress UI, and the presentation rules
+     * that support a word only while it is still landing (see
+     * [net.spross.kern.box.Statistics.isSitting]). FSRS-6 recalibrated.
+     */
+    val sittingStability: Double = 2.0,
     /** Learning steps in seconds (FSRS-6 reference default). */
     val learningStepsSeconds: List<Long> = listOf(60L, 600L),
     /**
