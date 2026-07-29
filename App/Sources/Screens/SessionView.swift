@@ -18,6 +18,11 @@ struct SessionView: View {
     /// Set when the answer was accepted with a small typo — the proper
     /// spelling is shown and the card waits for a tap so the slip is seen.
     @State var typoCorrection: String?
+    /// The rating a missed word already earned, held while it is written out
+    /// (SessionView+Copy.swift). Non-nil ⇒ the copy step owns the controls.
+    @State var copyPending: Rating?
+    @State var copyInput = ""
+    @State var copyMissed = false
     /// Set when the typed answer is a word the catalog owns elsewhere: the
     /// reveal names it, so a near-miss teaches the other word instead of
     /// only failing (kufunga vs kufungua).
@@ -204,9 +209,13 @@ struct SessionView: View {
 
     @ViewBuilder
     private func controls(_ card: Card, role: PresentationRole) -> some View {
-        switch role {
-        case .recognize: recognizeControls
-        case .produce: produceControls(card)
+        if copyPending != nil {
+            copyControls(card)
+        } else {
+            switch role {
+            case .recognize: recognizeControls
+            case .produce: produceControls(card)
+            }
         }
     }
 
@@ -236,6 +245,16 @@ struct SessionView: View {
 
     func rate(_ rating: Rating) {
         autoAdvance?.cancel()
+        // why: a missed word is written out once before the session moves on; the
+        // rating is held, not changed, and applied when the copy is done.
+        if copyPending == nil, wantsCopyStep(rating, card: model.currentCard) {
+            copyPending = rating
+            copyInput = ""
+            copyMissed = false
+            withAnimation { revealed = true }
+            answerFocused = true
+            return
+        }
         // why: reset BEFORE the card switch, in the same transaction — the
         // next card must never render one frame with the old revealed state.
         resetCardState()

@@ -1281,6 +1281,38 @@
         }
       }
     },
+    "session.copy.placeholder %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einmal auf %@ abschreiben …"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Write it once in %@ …"
+          }
+        }
+      }
+    },
+    "session.copyMismatch": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch nicht ganz — das Wort steht oben."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not quite — the word is right above."
+          }
+        }
+      }
+    },
     "session.correctAnswer": {
       "localizations": {
         "de": {
@@ -1373,6 +1405,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reveal"
+          }
+        }
+      }
+    },
+    "session.skipCopy": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überspringen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skip"
           }
         }
       }
