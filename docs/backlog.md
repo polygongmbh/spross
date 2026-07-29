@@ -22,8 +22,8 @@ One line per item, with a file or context pointer, filed under the section it be
   but revisit the cap if the active box outgrows it (kern README §7).
 - sw/uk number near-twins gated in `TrainerTypoBridgeGuardTests`
   (sw `nne`↔`nane` incl. tens compounds; uk `дев'ять`↔`десять`):
-  at drill typo budget 1 one can pass for the other —
-  product call pending (budget 0 for sw/uk number drills vs accept).
+  at the drill's one-slip-per-word budget one can pass for the other —
+  product call pending (no slips at all for sw/uk number drills vs accept).
 - FSRS parameter optimization from review logs —
   enabled by the full per-card logs, unbuilt (kern README §5).
 - Watch multiple-choice distractors rank on `shapeDistance` alone

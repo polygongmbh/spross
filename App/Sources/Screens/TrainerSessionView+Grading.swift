@@ -41,8 +41,8 @@ extension TrainerSessionView {
     }
 
     /// Kern-graded against EVERY accepted variant, best result wins
-    /// (exact > typo > wrong). Drills cap the typo budget at 1 and digit
-    /// forms grade exact-only, so a slip is forgiven but no German number
+    /// (exact > typo > wrong). Drills grade word by word — one slip per word,
+    /// none inside a digit — so a sentence may fumble while no German number
     /// can ever pass for another (kern's pairwise guard proves it; sw/uk
     /// carry gated near-twin pairs — see docs/backlog.md).
     private func grade(_ trimmed: String) -> Grade {
@@ -66,7 +66,7 @@ extension TrainerSessionView {
 
     /// The accepted variants wrapped as a synthetic card for Kern's evaluate.
     /// Strictness comes from the normalizer construction (articleLeniency
-    /// false, budget cap 1 — TrainerHubView); the non-verb kind keeps the
+    /// false, one slip per word — TrainerHubView); the non-verb kind keeps the
     /// verb-prefix option off and empty baseAccepted skips feminine demotion.
     private func gradingCard() -> Card {
         let accepted = current.accepted

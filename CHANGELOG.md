@@ -18,9 +18,11 @@
   and a whole sentence had to come out nearly perfect to count.
   Short words now forgive a slip from four letters on, longer answers one per six letters,
   and the reveal still shows the spelling you missed.
+  The drills come along: a sentence used to be allowed one slip in total, so a fumble in
+  *Ich habe* cost you the number you had got right — each word now carries its own.
   Nothing loosens where it would teach the wrong thing:
   writing a word the catalog teaches elsewhere is still named as that word rather than forgiven,
-  and the number drills stay as strict as they were.
+  a number still has to be spelled right to count, and a digit still has to be exact.
 
 - **Swahili adjectives accept the form you actually hear**: they are taught as bare stems
   (*-zuri*, *-ingi*) because the prefix belongs to the noun's class, so *nzuri* — the form

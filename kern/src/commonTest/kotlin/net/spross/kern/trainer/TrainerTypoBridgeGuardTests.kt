@@ -1,22 +1,29 @@
 package net.spross.kern.trainer
 
-import kotlin.math.abs
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import net.spross.kern.catalog.Fixture
+import net.spross.kern.model.Card
+import net.spross.kern.model.CardKind
+import net.spross.kern.model.Realization
+import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.Match
 
 /**
- * Guard for the drill-grading claim "the typo budget never bridges two
- * distinct numbers": a pairwise OSA Damerau-Levenshtein sweep over the
- * cardinal generators, on the grading comparison shape (lowercase, ß→ss,
- * joiners `-'’` dropped), asserting no two distinct number WORDS sit within
- * distance 1 — so the capped drill budget (AnswerNormalizer maxTypoBudget = 1)
- * never accepts one number for another. Digit renderings ("21"/"29") ARE one
- * edit apart at any length; the capped normalizer therefore grades
- * digit-bearing forms exact-only (behavior pinned in AnswerNormalizerTests).
+ * Guard for the drill-grading claim "the typo budget never bridges two distinct
+ * numbers": a pairwise sweep over the cardinal generators asking the REAL drill
+ * normalizer (articleLeniency = false, maxTyposPerWord = 1) to grade each number
+ * as an answer to every other, asserting it says Wrong. Grading the actual
+ * verdict rather than a distance is what makes the sweep hold for the word-wise
+ * budget, where a multi-word number ("kumi na nne") may fumble once per word and
+ * global distance no longer bounds what is accepted.
  *
- * AUDITED EXCEPTIONS the sweep found and gates explicitly — budget 1 CAN
- * bridge these word pairs, so a capped drill still accepts one for the other:
+ * Digit renderings ("21"/"29") ARE one edit apart; a word carrying a digit
+ * therefore grades exact-only (behavior pinned in AnswerNormalizerTests).
+ *
+ * AUDITED EXCEPTIONS the sweep found and gates explicitly — one slip DOES bridge
+ * these word pairs, so a drill still accepts one for the other:
  * - sw `nne` (4) ↔ `nane` (8), one insertion — and every tens compound
  *   ("kumi na nne" ↔ "kumi na nane", …: 10 pairs over 0..99);
  * - uk `дев'ять` (9) ↔ `десять` (10), one substitution once the apostrophe
@@ -26,42 +33,53 @@ import kotlin.test.assertTrue
  */
 class TrainerTypoBridgeGuardTests {
 
+    private val catalog = Fixture.catalog()
+
     @Test
-    fun germanCardinals0To999NeverWithinOneEdit() {
-        assertEquals(emptyList(), sweep((0L..999L).map { GermanNumbers.cardinal(it) }))
+    fun germanCardinals0To999NeverBridge() {
+        assertEquals(emptyList(), sweep("de", (0L..999L).map { GermanNumbers.cardinal(it) }))
     }
 
     @Test
     fun ukrainianCardinals0To99BridgeOnlyTheKnownNineTenPair() {
-        val known = sweep((0L..99L).map { UkrainianNumbers.cardinal(it) })
+        val known = sweep("uk", (0L..99L).map { UkrainianNumbers.cardinal(it) })
         assertEquals(listOf("\"дев'ять\" ↔ \"десять\""), known)
     }
 
     @Test
     fun swahiliCardinals0To99BridgeOnlyTheKnownFourEightPairs() {
-        val known = sweep((0L..99L).map { SwahiliNumbers.cardinal(it) })
+        val known = sweep("sw", (0L..99L).map { SwahiliNumbers.cardinal(it) })
         assertEquals(10, known.size, "expected the ten nne ↔ nane pairs, got $known")
         assertTrue(known.all { "nne" in it && "nane" in it }, "unexpected pair in $known")
     }
 
     /**
-     * All within-one-edit pairs; fails on any pair beyond the audited allowlist,
-     * returns the allowlisted ones it found. Distance ≥ length delta, so only
-     * near-length pairs need the full OSA.
+     * Every pair the drill normalizer accepts one for the other; fails on any pair
+     * beyond the audited allowlist, returns the allowlisted ones it found. The
+     * word-wise budget spends at most one slip per word, so only pairs within that
+     * many edits need grading — the cheap distance filter keeps the sweep O(n²)
+     * in comparisons rather than in full gradings.
      */
-    private fun sweep(words: List<String>): List<String> {
+    private fun sweep(language: String, words: List<String>): List<String> {
+        val normalizer = AnswerNormalizer(
+            catalog.languages.getValue(language),
+            articleLeniency = false,
+            maxTyposPerWord = 1,
+        )
         val shapes = words.map(::comparisonShape)
         val offenders = mutableListOf<String>()
         val known = mutableListOf<String>()
         for (i in shapes.indices) {
             for (j in i + 1 until shapes.size) {
-                if (abs(shapes[i].length - shapes[j].length) > 1) continue
-                if (osa(shapes[i], shapes[j]) > 1) continue
+                val reach = maxOf(wordCount(shapes[i]), wordCount(shapes[j]))
+                if (kotlin.math.abs(shapes[i].length - shapes[j].length) > reach) continue
+                if (osa(shapes[i], shapes[j]) > reach) continue
+                if (normalizer.evaluate(words[i], card(language, words[j])) == Match.Wrong) continue
                 val pair = "\"${words[i]}\" ↔ \"${words[j]}\""
                 if (isKnownBridge(shapes[i], shapes[j])) known += pair else offenders += pair
             }
         }
-        assertTrue(offenders.isEmpty(), "number words within one edit beyond the allowlist: $offenders")
+        assertTrue(offenders.isEmpty(), "numbers a drill accepts for one another: $offenders")
         return known
     }
 
@@ -73,6 +91,18 @@ class TrainerTypoBridgeGuardTests {
     /** The AnswerNormalizer comparison shape of a generated word. */
     private fun comparisonShape(word: String): String =
         word.lowercase().replace("ß", "ss").filterNot { it in "-'’" }
+
+    private fun wordCount(shape: String): Int = shape.split(' ').count { it.isNotEmpty() }
+
+    /** The synthetic one-answer card drills grade against (TrainerSessionView+Grading). */
+    private fun card(language: String, text: String): Card {
+        val side = Realization(lang = language, text = text)
+        return Card(
+            id = "drill", kind = CardKind.Noun, area = "drill", emoji = null, seedIndex = 0,
+            components = emptyList(), feminineOf = null,
+            source = side, target = side, promptFeminineMarker = false,
+        )
+    }
 
     /** Optimal-string-alignment Damerau-Levenshtein (same algorithm grading uses). */
     private fun osa(a: String, b: String): Int {

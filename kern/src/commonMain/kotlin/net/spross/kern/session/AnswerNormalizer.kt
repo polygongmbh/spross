@@ -45,27 +45,29 @@ sealed interface Match {
  * only matches when the typed leading article equals the form's authored one —
  * a wrong or missing article grades [Match.Wrong], never typo-bridges.
  *
- * [maxTypoBudget] (default null = the length formula untouched) clamps the typo
- * budget for trainer/drill grading — drills pass 1, which never bridges two
- * distinct German number words (guard sweep in TrainerTypoBridgeGuardTests;
- * audited exceptions sw nne↔nane and uk дев'ять↔десять sit one edit apart and
- * are gated there explicitly). With a cap set, digit-bearing accepted forms
- * grade exact-only: distinct digit renderings ("21"/"29", "18:05"/"18:06")
- * sit one edit apart at any sentence length, so no positive budget is safe
- * for them.
+ * [maxTyposPerWord] (default null = one budget for the whole form) switches
+ * grading to the WORD-WISE rule trainer drills need — drills pass 1. What a
+ * drill must never do is accept one number for another, and that danger lives
+ * inside the number, not across the sentence around it: distinct cardinals sit
+ * ≥ 2 edits apart (guard sweep in TrainerTypoBridgeGuardTests; audited
+ * exceptions sw nne↔nane and uk дев'ять↔десять sit one apart and are gated
+ * there explicitly), so capping each word at one slip keeps them apart while
+ * the sentence as a whole may fumble once per word. A word carrying a digit
+ * still grades exact-only: distinct digit renderings ("21"/"29", "18:05" →
+ * "18" "05") sit one edit apart, so no positive budget is safe for them.
  */
 class AnswerNormalizer(
     answerLanguage: LanguageInfo,
     private val articleLeniency: Boolean,
-    private val maxTypoBudget: Int?,
+    private val maxTyposPerWord: Int?,
 ) {
 
     /** Lenient vocab-review default; explicit secondary inits keep the ObjC/Swift signatures. */
     constructor(answerLanguage: LanguageInfo) :
-        this(answerLanguage, articleLeniency = true, maxTypoBudget = null)
+        this(answerLanguage, articleLeniency = true, maxTyposPerWord = null)
 
     constructor(answerLanguage: LanguageInfo, articleLeniency: Boolean) :
-        this(answerLanguage, articleLeniency, maxTypoBudget = null)
+        this(answerLanguage, articleLeniency, maxTyposPerWord = null)
 
     private val articles: Set<String> = answerLanguage.articles.map { it.lowercase() }.toSet()
     private val verbPrefixes: List<String> = answerLanguage.optionalVerbPrefixes
@@ -147,7 +149,7 @@ class AnswerNormalizer(
                 break
             }
             for (candidate in candidates) {
-                if (inputVariants.any { damerauLevenshtein(it, candidate) <= typoBudget(candidate) }) {
+                if (inputVariants.any { withinBudget(it, candidate) }) {
                     // Reveal always shows the catalog spelling of the matched form.
                     best = Match.Typo(corrected = form)
                     bestForm = form
@@ -186,15 +188,32 @@ class AnswerNormalizer(
         }
     }
 
-    /** The length formula, clamped by [maxTypoBudget]; capped digit forms get none. */
-    private fun typoBudget(candidate: String): Int {
-        val base = allowedTypos(candidate.count { it != ' ' })
-        val cap = maxTypoBudget ?: return base
-        // why: "21"/"29" and "18:05"/"18:06" are one substitution apart however
-        // long the sentence frame — a capped (drill) normalizer therefore takes
-        // digit-bearing forms exact-only while word forms keep up to [cap] slips.
-        if (candidate.any { it.isDigit() }) return 0
-        return minOf(base, cap)
+    /**
+     * Is [input] within the slips [candidate] forgives? One budget over the whole
+     * form for vocab reviews; word by word once [maxTyposPerWord] is set.
+     */
+    private fun withinBudget(input: String, candidate: String): Boolean {
+        val cap = maxTyposPerWord
+            ?: return damerauLevenshtein(input, candidate) <= allowedTypos(candidate.count { it != ' ' })
+        val typed = input.split(' ')
+        val expected = candidate.split(' ')
+        // why: word-wise grading needs words to line up — a dropped or added one
+        // falls back to the whole-form rule, so drills forgive everything they
+        // forgave before, digit-bearing forms exact-only included.
+        if (typed.size != expected.size) {
+            if (candidate.any { it.isDigit() }) return false
+            val budget = minOf(allowedTypos(candidate.count { it != ' ' }), cap)
+            return damerauLevenshtein(input, candidate) <= budget
+        }
+        return expected.indices.all { i ->
+            damerauLevenshtein(typed[i], expected[i]) <= wordBudget(expected[i], cap)
+        }
+    }
+
+    /** One word's slips: none at all for a digit, else the length formula under [cap]. */
+    private fun wordBudget(word: String, cap: Int): Int {
+        if (word.any { it.isDigit() }) return 0
+        return minOf(allowedTypos(word.length), cap)
     }
 
     /** The listed leading article a raw answer starts with (only when more words follow). */

@@ -281,15 +281,20 @@ day-key `yyyy-MM-dd`) with:
   and only matches a form whose leading article equals the typed one —
   wrong or missing article grades Wrong (never typo-bridged);
   the one-arg init stays the lenient vocab-review default (both inits in the ObjC header).
-  The typo budget is likewise constructor-clamped for drill grading:
-  `AnswerNormalizer(language, articleLeniency, maxTypoBudget = 1)` caps the length formula
-  and grades digit-bearing accepted forms exact-only
-  ("21"/"29", "18:05"/"18:06" sit one edit apart at any sentence length);
-  the cardinal sweep (TrainerTypoBridgeGuardTests) proves budget 1 never bridges
-  two distinct German 0–999 cardinals;
-  audited exceptions within one edit — sw `nne`↔`nane` (4↔8, incl. tens compounds)
+  The budget is likewise constructor-switched for drill grading:
+  `AnswerNormalizer(language, articleLeniency, maxTyposPerWord = 1)` grades **word by word** —
+  each word forgives one slip, a word carrying a digit forgives none
+  ("21"/"29", "18:05" → "18" "05" sit one edit apart),
+  and a typed answer with a different word COUNT falls back to the whole-form rule.
+  What a drill must never accept is one number for another, and that danger lives inside
+  the number rather than across the sentence around it:
+  distinct cardinals sit ≥ 2 edits apart, so a per-word cap of 1 keeps them apart
+  while the frame ("Ich habe … Hefte.") may fumble once per word.
+  The cardinal sweep (TrainerTypoBridgeGuardTests) grades every 0–999 German pair
+  through the real drill normalizer and proves none is accepted for another;
+  audited exceptions — sw `nne`↔`nane` (4↔8, incl. tens compounds)
   and uk `дев'ять`↔`десять` (9↔10) — are gated explicitly in the sweep.
-  Vocab reviews (`maxTypoBudget = null`, the default) keep the length budget untouched.
+  Vocab reviews (`maxTyposPerWord = null`, the default) keep one budget over the whole form.
 - **Catalog-wide produce grading** — `CatalogAnswerGrader(normalizer, cards)`, the app's
   produce path. One card at a time the normalizer cannot tell a slip from a different word,
   so another concept's answer lands inside this card's typo budget:
