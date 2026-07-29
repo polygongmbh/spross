@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 2.1.1 — 2026-07-29
+
+- **A box from an earlier version opens again**: 2.1.0 renamed two settings inside the
+  stored box and then refused to read any box still using the old names — the app came up
+  on "Ups" with nothing in it. Nothing was lost: every word, its memory and its due date
+  sat untouched in the file the whole time, and they are back. A setting the app no longer
+  recognises is now passed over rather than taken as the box being unreadable.
+
 ## 2.1.0 — 2026-07-29
 
 - **The watch says where you are in one number, and the due cards now end**: a counter and a
