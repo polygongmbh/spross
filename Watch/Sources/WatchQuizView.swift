@@ -123,15 +123,6 @@ struct WatchQuizView: View {
     // MARK: - Completion
 
     private var completion: some View {
-        VStack(spacing: 8) {
-            Text("Fertig 🎉")
-                .font(.system(.title3, design: .rounded, weight: .bold))
-            Text("\(model.answeredCount) Karten geübt")
-                .font(.system(.footnote, design: .rounded))
-                .foregroundStyle(Color.wlTextSecondary)
-            Button("Schließen") { model.endSession() }
-                .font(.system(.headline, design: .rounded))
-                .padding(.top, 4)
-        }
+        WatchCelebrationView(answered: model.answeredCount) { model.endSession() }
     }
 }
