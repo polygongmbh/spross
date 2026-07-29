@@ -61,6 +61,19 @@ class BoxAnswerTests {
         assertTrue(sched.log.last().elapsedDays > 0)
     }
 
+    // Hard holds on the step too, at the whole-minute blend ts-fsrs pins: a single
+    // step is stretched x1.5, so 3 min rounds to 5. It does NOT graduate — only
+    // Good and Easy leave the step on a first answer.
+    @Test
+    fun hardOnNewHoldsTheStepAtFiveMinutes() {
+        var state = Box.state(listOf(Box.word(1)))
+        state = Box.answered(state, "w01", Rating.Hard, now)
+        val sched = state.scheduling.getValue("w01")
+        assertEquals(CardPhase.Learning, sched.phase)
+        assertEquals(0, sched.stepIndex)
+        assertEquals(Box.instant(now) + 300.seconds, sched.due)
+    }
+
     @Test
     fun againOnTheStepRepeatsIt() {
         var state = Box.state(listOf(Box.word(1)))
