@@ -23,6 +23,9 @@ internal fun BoxConfig.fsrsParameters(): FsrsParameters = FsrsParameters(
     maximumIntervalDays = maximumIntervalDays,
     learningStepsSeconds = learningStepsSeconds,
     relearningStepsSeconds = relearningStepsSeconds,
+    // why: the product schedules continuously — whole-day rounding is the
+    // reference bucket convention, and a day is already the floor.
+    intervalGranularitySeconds = 1L,
 )
 
 // Answering: every answer event is an FSRS review — production and recognition

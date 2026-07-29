@@ -89,34 +89,30 @@ class SessionComposerTests {
     }
 
     @Test
-    fun drainLoopScenarioFailedCardsCycleUntilNothingDue() {
+    fun drainLoopScenarioAMissedWordReturnsOnceThenLeaves() {
         var state = Box.state(listOf(Box.word(1), Box.word(2)), Box.config(maxUnsettled = 2))
 
-        // Introduce both; w01 fails, w02 passes (learning steps [1m, 10m]).
+        // Introduce both; w01 is missed, w02 is known on sight.
         state = Box.answered(state, "w01", Rating.Again, now)
         state = Box.answered(state, "w02", Rating.Good, now)
 
-        // 1 min later only w01's again-step is due; failing again re-queues it.
-        var t = Box.plusSeconds(now, 60)
+        // w01 comes back once the step matures, late enough for a session to sit
+        // in between; w02 went straight to day scale and never re-enters the drain.
+        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 179)).isEmpty())
+        var t = Box.plusSeconds(now, 180)
         assertEquals(listOf("w01"), BoxEngine.dueNow(state, t))
+        assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, 600)))
+
+        // Missing it again repeats the same step; it does not shorten.
         state = Box.answered(state, "w01", Rating.Again, t)
+        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 359)).isEmpty())
 
-        // Its next 1-min step comes back at t+120; Good advances it to the 10-min step.
-        t = Box.plusSeconds(now, 120)
+        t = Box.plusSeconds(now, 360)
         assertEquals(listOf("w01"), BoxEngine.dueNow(state, t))
-        state = Box.answered(state, "w01", Rating.Good, t)
 
-        // 10 min after intro w02's step is due; Good graduates it out of the drain.
-        t = Box.plusSeconds(now, 600)
-        assertEquals(listOf("w02"), BoxEngine.dueNow(state, t))
-        state = Box.answered(state, "w02", Rating.Good, t)
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 660)).isEmpty())
-
-        // w01's 10-min step lands at intro+720; graduating it empties the drain for good.
-        t = Box.plusSeconds(now, 720)
-        assertEquals(listOf("w01"), BoxEngine.dueNow(state, t))
+        // A Good takes it off the step and out of the drain for the day.
         state = Box.answered(state, "w01", Rating.Good, t)
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 780)).isEmpty())
+        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 86_400)).isEmpty())
     }
 
     @Test

@@ -95,37 +95,42 @@ class BoxGrowthTests {
     }
 
     @Test
-    fun budgetTracksLearningLoadAcrossRecomposition() {
+    fun budgetTracksLoadAcrossRecomposition() {
         var state = Box.state((1..10).map { Box.word(it) }, Box.config(maxUnsettled = 5))
         val plan = Box.candidates(state)
         assertEquals(5, plan.newCards.size)
 
+        // Words answered on sight settle at once and cost the budget nothing.
         for (id in plan.newCards.take(3)) {
             state = Box.answered(state, id, Rating.Good, now)
         }
-        assertEquals(listOf("w04", "w05"), Box.candidates(state).newCards)
+        assertEquals(0, Growth.unsettledLoad(state))
+        assertEquals(5, Growth.newBudget(state))
 
-        for (id in Box.candidates(state).newCards) {
-            state = Box.answered(state, id, Rating.Good, now)
+        // The ones that miss are what loads the box.
+        for (id in plan.newCards.drop(3)) {
+            state = Box.answered(state, id, Rating.Again, now)
         }
-        // At the cap the trickle keeps flowing rather than stopping dead.
-        assertEquals(Growth.TRICKLE_CARDS, Box.candidates(state).newCards.size)
+        assertEquals(2, Growth.unsettledLoad(state))
+        assertEquals(3, Growth.newBudget(state))
     }
 
     @Test
     fun budgetRecoversAsWordsSettle() {
         var state = Box.state((1..14).map { Box.word(it) }, Box.config(maxUnsettled = 10))
         for (n in 1..9) {
-            state = Box.answered(state, "w0$n", Rating.Good, now)
+            state = Box.answered(state, "w0$n", Rating.Again, now)
         }
         // 9 words still on their way in → down to the trickle.
         assertEquals(9, Growth.unsettledLoad(state))
         assertEquals(Growth.TRICKLE_CARDS, Growth.newBudget(state))
 
-        // Their second Good settles them, and the budget opens back up.
-        val step = Box.plusSeconds(now, 700)
+        // Three of them stabilise over the following days; the budget opens back up.
         for (n in 1..3) {
-            state = Box.answered(state, "w0$n", Rating.Good, step)
+            state = Box.inject(
+                state,
+                Box.sched("w0$n", stability = 9.0, dueMillis = Box.plusDays(now, 5.0), lastReviewMillis = now),
+            )
         }
         assertEquals(6, Growth.unsettledLoad(state))
         assertEquals(4, Growth.newBudget(state))

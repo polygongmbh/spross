@@ -25,8 +25,13 @@ data class BoxConfig(
      * [net.spross.kern.box.Statistics.isSettled]). FSRS-6 recalibrated.
      */
     val settledStability: Double = 2.0,
-    /** Learning steps in seconds (FSRS-6 reference default). */
-    val learningStepsSeconds: List<Long> = listOf(60L, 600L),
+    /**
+     * ONE learning step: a word you miss comes back at the END of the session,
+     * after everything else, as the first real recall attempt — not six cards
+     * later, where it is recognised as "that new one" rather than recalled.
+     * Beyond that FSRS decides (reference default was `[1m, 10m]`).
+     */
+    val learningStepsSeconds: List<Long> = listOf(180L),
     /**
      * Relearning steps in seconds — FSRS-6 reference default; no in-session
      * lapse retry (breadth ruling 2026-07-22).

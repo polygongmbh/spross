@@ -3,6 +3,7 @@ package net.spross.kern.box
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.seconds
@@ -13,60 +14,64 @@ import net.spross.kern.model.Rating
 class BoxAnswerTests {
     private val now = Box.day1
 
+    // A word you already knew skips the step entirely: FSRS takes it straight to
+    // day scale (S0(Good) = 2.3065 → ~7.6 d at retention 0.8).
     @Test
-    fun goodOnNewSchedulesTenMinuteStep() {
+    fun goodOnNewGraduatesStraightToDayScale() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.answered(state, "w01", Rating.Good, now)
 
         val sched = state.scheduling.getValue("w01")
-        assertEquals(CardPhase.Learning, sched.phase)
-        assertEquals(1, sched.stepIndex)
-        assertEquals(Box.instant(now) + 600.seconds, sched.due)
-
-        assertTrue(BoxEngine.dueNow(state, now).isEmpty())
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 599)).isEmpty())
-        assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, 600)))
+        assertEquals(CardPhase.Review, sched.phase)
+        assertNull(sched.stepIndex)
+        assertTrue(sched.due!! >= Box.instant(now) + 1.days)
+        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 600)).isEmpty())
     }
 
+    // A word you missed comes back after the one step — late enough that the rest
+    // of the session sits in between, so the retry is recall and not recognition.
     @Test
-    fun againOnNewSchedulesOneMinuteStep() {
+    fun againOnNewSchedulesTheSingleThreeMinuteStep() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.answered(state, "w01", Rating.Again, now)
         val sched = state.scheduling.getValue("w01")
         assertEquals(CardPhase.Learning, sched.phase)
         assertEquals(0, sched.stepIndex)
-        assertEquals(Box.instant(now) + 60.seconds, sched.due)
+        assertEquals(Box.instant(now) + 180.seconds, sched.due)
         assertEquals(0, sched.lapses) // lapses only count for review-phase cards
+
+        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 179)).isEmpty())
+        assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, 180)))
     }
 
-    // FSRS-6 adaptation: Again resets to step 0, so a following Good lands on the
-    // 10-minute step instead of graduating (one step later than v1's hand-rolled steps).
+    // With a single step, the retry either graduates the word or repeats the step —
+    // there is no second minute-scale rung to climb.
     @Test
-    fun againThenGoodDoesNotGraduate() {
+    fun againThenGoodGraduatesOffTheStep() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.answered(state, "w01", Rating.Again, now)
-        state = Box.answered(state, "w01", Rating.Good, Box.plusSeconds(now, 60))
-        val sched = state.scheduling.getValue("w01")
-        assertEquals(CardPhase.Learning, sched.phase)
-        assertEquals(1, sched.stepIndex)
-        assertEquals(Box.instant(Box.plusSeconds(now, 60)) + 600.seconds, sched.due)
-
-        val graduated = Box.answered(state, "w01", Rating.Good, Box.plusSeconds(now, 660))
-        assertEquals(CardPhase.Review, graduated.scheduling.getValue("w01").phase)
-    }
-
-    @Test
-    fun goodOnLastLearningStepGraduatesToReview() {
-        var state = Box.state(listOf(Box.word(1)))
-        state = Box.answered(state, "w01", Rating.Good, now)
-        val later = Box.plusSeconds(now, 600)
-        state = Box.answered(state, "w01", Rating.Good, later)
+        val retry = Box.plusSeconds(now, 180)
+        state = Box.answered(state, "w01", Rating.Good, retry)
 
         val sched = state.scheduling.getValue("w01")
         assertEquals(CardPhase.Review, sched.phase)
-        assertTrue(sched.due!! >= Box.instant(later) + 1.days)
+        assertNull(sched.stepIndex)
+        assertTrue(sched.due!! >= Box.instant(retry) + 1.days)
         assertEquals(2, sched.log.size)
         assertTrue(sched.log.last().elapsedDays > 0)
+    }
+
+    @Test
+    fun againOnTheStepRepeatsIt() {
+        var state = Box.state(listOf(Box.word(1)))
+        state = Box.answered(state, "w01", Rating.Again, now)
+        val retry = Box.plusSeconds(now, 180)
+        state = Box.answered(state, "w01", Rating.Again, retry)
+
+        val sched = state.scheduling.getValue("w01")
+        assertEquals(CardPhase.Learning, sched.phase)
+        assertEquals(0, sched.stepIndex)
+        assertEquals(Box.instant(retry) + 180.seconds, sched.due)
     }
 
     @Test

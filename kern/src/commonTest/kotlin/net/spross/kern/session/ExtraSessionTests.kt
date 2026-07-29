@@ -66,8 +66,8 @@ class ExtraSessionTests {
     fun endlessGivesDueAndNewButNeverPullsAhead() {
         var state = Box.state((1..5).map { Box.word(it) }, Box.config(maxUnsettled = 3))
         state = BoxEngine.enqueue(state, listOf("w01"))
-        // w01 → learning; its next step is due in 10 min (not now).
-        state = Box.answered(state, "w01", Rating.Good, day0)
+        // w01 missed → one 3-minute step, then FSRS.
+        state = Box.answered(state, "w01", Rating.Again, day0)
 
         // 1 min in: w01 is NOT due yet, so endless must not re-show it …
         val soon = SessionComposer.composeEndless(state, Box.plusSeconds(day0, 60))
@@ -76,7 +76,7 @@ class ExtraSessionTests {
         assertEquals(listOf("w02", "w03"), soon.newCards)
 
         // Once w01's step is genuinely due, it comes back as a review.
-        val later = SessionComposer.composeEndless(state, Box.plusSeconds(day0, 700))
+        val later = SessionComposer.composeEndless(state, Box.plusSeconds(day0, 200))
         assertEquals(listOf("w01"), later.reviews)
     }
 }

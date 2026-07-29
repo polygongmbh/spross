@@ -75,7 +75,7 @@ class SessionFlowTest {
 
     @Test
     fun endlessWithNothingAvailableStaysFinished() {
-        // 3 cards all in learning steps: nothing due, no growth budget left.
+        // 3 cards, all answered on sight → day-scale intervals, nothing left today.
         val flow = freshFlow()
         while (!flow.isFinished) flow.answer(Rating.Good, now, tz)
 
@@ -85,12 +85,16 @@ class SessionFlowTest {
     }
 
     @Test
-    fun endlessPullsLearningCardsOnceDue() {
+    fun endlessPullsMissedCardsBackOnceTheStepMatures() {
         val flow = freshFlow()
-        while (!flow.isFinished) flow.answer(Rating.Good, now, tz)
+        // Missed words take the one 3-minute step; words answered on sight go to
+        // day scale and do not come back at all.
+        while (!flow.isFinished) flow.answer(Rating.Again, now, tz)
 
-        // learning step [1m, 10m]: quarter of an hour later everything is due again
-        flow.continueEndless(now + 15 * 60_000)
+        flow.continueEndless(now + 60_000)
+        assertTrue(flow.isFinished) // 1 min in: the step has not matured
+
+        flow.continueEndless(now + 4 * 60_000)
         assertFalse(flow.isFinished)
         assertNotNull(flow.currentCardId)
     }
