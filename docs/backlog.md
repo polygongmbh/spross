@@ -26,10 +26,16 @@ One line per item, with a file or context pointer, filed under the section it be
   product call pending (no slips at all for sw/uk number drills vs accept).
 - FSRS parameter optimization from review logs —
   enabled by the full per-card logs, unbuilt (kern README §5).
-- Watch multiple-choice distractors rank on `shapeDistance` alone
+- Watch multiple-choice distractors carry no novelty or recency criterion
   (`kern/src/commonMain/kotlin/net/spross/kern/session/MultipleChoice.kt`):
-  no novelty or recency criterion, so the newest entry can still be the odd one out —
-  the same class of problem the phone's due-order reshuffle fixed, on another surface.
+  word class, area and shape rank them now, but the newest entry can still be the odd
+  one out — the same class of problem the phone's due-order reshuffle fixed,
+  on another surface.
+- `WatchEntryDto.accepted` ships every entry's full target family and no watch surface
+  reads it (`Shared/Sources/WatchSnapshot.swift`): its doc calls it reveal display,
+  but the quiz has no such reveal. Either the watch grows the phone's "auch: …" line,
+  or the field leaves the wire, where it is a fair slice of the ~60 KB budget
+  (kern README §7).
 - Rating labels carry more weight on a first exposure now that Good sends a word about a week
   out (kern README §5) — the button wording deserves a look
   (`App/Sources/Design/RatingButtonsView.swift`).

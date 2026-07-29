@@ -146,20 +146,28 @@ Realization fields — only `text` is required:
 - `text` — the canonical answer/display form, nothing else (no embedded glosses/labels).
   Never bracket a disambiguator into it (`"mto (Kissen)"`) — everything in `text` has to be
   typed. Homonyms are handled by the area rule above, not inside the string.
+  A form that only ever appears bound carries its leading dash (sw `-zuri`, which takes the
+  noun's class prefix): it is the citation convention, grading ignores the dash, and the
+  engine takes it off again wherever the dash alone would identify the answer among plain
+  words (kern README §7). The agreement forms themselves go in `variants`.
 - `synonyms` — DISTINCT-KNOWLEDGE alternates of `text` (array; omit if none):
   genuinely different lexemes for the same concept that a learner must recognize
   on their own (uk `office` установа/відомство, uk `boss` шеф/керівник).
-  Each entry is **schedule-worthy**: it grades as correct when producing this
-  language AND gets its own recognize unit when learning FROM it.
+  Each entry is **prompt-worthy**: it grades as correct when producing this language,
+  and takes its turn as the recognize prompt when learning FROM it — on the concept's
+  one schedule, never as a unit of its own (kern README §3).
   NOT a home for distinct learnable items: feminine nouns belong to `feminineOf`
   concepts, and different-meaning words belong to their own concept.
 - `variants` — ACCEPTED surface forms of the SAME knowledge (array; omit if none):
   alternate renderings a learner already knows if they know `text` — register pairs
   (de Sie-form in `text`, du-form here), gender-agreement forms of a phrase
   (uk `Ти завів/завела …?`), diminutives (uk миша/мишка), internationalism spellings
-  (uk договір/контракт). **Accept-only, never scheduled**: they grade as correct on
-  produce and rotate as display alternates of the canonical recognize unit,
-  but never become their own unit.
+  (uk договір/контракт), and the noun-class agreement forms of a Swahili adjective
+  stem (`-zuri` → nzuri/mzuri/kizuri/wazuri), which is what a learner meets in the wild.
+  **Accept-only, never scheduled and never shown**: they grade as correct on produce,
+  and that is the whole of it — `text` is the form prompted on recognize and the form the
+  reveal teaches, and `synonyms` are what rotate beside it.
+  Author them for reach, not for display: a form that deserves to be seen is a synonym.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
   labels, no `(selten)` qualifier), one fact per key: de `gender` + `plural`,
   sw `plural`, en `plural`, uk `plural`. Omit if empty.
