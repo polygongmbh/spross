@@ -255,6 +255,15 @@ struct SessionView: View {
             answerFocused = true
             return
         }
+        commit(rating)
+    }
+
+    /// Hand the answer to the engine and flip to the next card. Separate from
+    /// `rate` so the copy step can finish through it WITHOUT re-entering the
+    /// copy check — going back through `rate` would divert the same Again
+    /// forever, since the word is still unsettled at that point.
+    func commit(_ rating: Rating) {
+        autoAdvance?.cancel()
         // why: reset BEFORE the card switch, in the same transaction — the
         // next card must never render one frame with the old revealed state.
         resetCardState()
@@ -270,6 +279,9 @@ struct SessionView: View {
         revealed = false
         typoCorrection = nil
         otherWord = nil
+        copyPending = nil
+        copyInput = ""
+        copyMissed = false
     }
 
     /// Design's RatingButtonsView has its own local Rating (no Kern dep);

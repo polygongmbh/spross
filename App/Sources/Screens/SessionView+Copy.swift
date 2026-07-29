@@ -79,11 +79,12 @@ extension SessionView {
         }
     }
 
-    /// Hand the already-chosen rating to the engine and move on.
+    /// Hand the already-chosen rating to the engine and move on. Goes straight
+    /// to `commit`, never back through `rate` — the word is still unsettled here,
+    /// so `rate` would divert the same Again into the copy step again.
     func applyPendingRating() {
         guard let rating = copyPending else { return }
-        copyPending = nil
-        rate(rating)
+        commit(rating)
     }
 
     /// Whether this card's miss should ask for the word to be written out.
