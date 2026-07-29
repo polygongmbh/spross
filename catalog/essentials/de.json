@@ -217,8 +217,11 @@
   "a-good-friend": {
    "text": "ein guter Freund"
   },
-  "an-old-person": {
-   "text": "eine alte Person"
+  "old-people": {
+   "text": "alte Leute",
+   "variants": [
+    "alte Menschen"
+   ]
   },
   "a-new-day": {
    "text": "ein neuer Tag"

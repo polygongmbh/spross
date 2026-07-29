@@ -282,11 +282,8 @@
     "plural": "marafiki wazuri"
    }
   },
-  "an-old-person": {
-   "text": "mtu mzee",
-   "grammar": {
-    "plural": "watu wazee"
-   }
+  "old-people": {
+   "text": "watu wazee"
   },
   "a-new-day": {
    "text": "siku mpya",
