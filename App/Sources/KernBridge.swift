@@ -59,15 +59,15 @@ extension BoxStatistics {
     var dueCards: Int { Int(dueCount) }
     var suspendedCards: Int { Int(suspendedCount) }
     var streakDays: Int { Int(streak) }
-    var sittingCards: Int { Int(sittingCount) }
+    var settledCards: Int { Int(settledCount) }
     /// Active cards not settled yet — the fresh half of the Fortschritt split.
-    var freshCards: Int { max(0, activeCards - sittingCards) }
+    var freshCards: Int { max(0, activeCards - settledCards) }
 }
 
 extension AreaStatistics {
     var totalCards: Int { Int(total) }
     var activeCards: Int { Int(active) }
-    var sittingCards: Int { Int(sitting) }
+    var settledCards: Int { Int(settled) }
     var lockedPhrases: Int { Int(phrasesLocked) }
     var unlockedPhrases: Int { Int(phrasesUnlocked) }
 }
@@ -87,7 +87,7 @@ extension BoxConfig {
                   dueSoftCap: 30,
                   desiredRetention: 0.8,
                   maximumIntervalDays: 365,
-                  sittingStability: 2.0,
+                  settledStability: 2.0,
                   learningStepsSeconds: [KotlinLong(longLong: 60), KotlinLong(longLong: 600)],
                   relearningStepsSeconds: [KotlinLong(longLong: 600)])
     }
@@ -98,7 +98,7 @@ extension BoxConfig {
                dueSoftCap: dueSoftCap,
                desiredRetention: desiredRetention,
                maximumIntervalDays: maximumIntervalDays,
-               sittingStability: sittingStability,
+               settledStability: settledStability,
                learningStepsSeconds: learningStepsSeconds,
                relearningStepsSeconds: relearningStepsSeconds)
     }

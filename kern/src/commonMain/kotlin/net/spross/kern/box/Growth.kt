@@ -39,7 +39,7 @@ internal object Growth {
 
     /** Active cards that have not sat down yet — the words actually in flight. */
     fun unsettledLoad(state: BoxState): Int =
-        Inventory.active(state).count { !Statistics.isSitting(state, it) }
+        Inventory.active(state).count { !Statistics.isSettled(state, it) }
 
     /**
      * Room for new words, ignoring the health gate. Measured against how much of
@@ -64,7 +64,7 @@ internal object Growth {
     // source-independent, so a source switch can never re-lock a phrase.
     fun isComponentStable(state: BoxState, componentId: String): Boolean {
         val sched = state.scheduling[componentId] ?: return false
-        return !sched.suspended && Statistics.isSitting(state, sched)
+        return !sched.suspended && Statistics.isSettled(state, sched)
     }
 
     /** Zero-component phrases never take the fast path (they follow seed order). */

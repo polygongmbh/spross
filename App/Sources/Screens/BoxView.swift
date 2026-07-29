@@ -61,12 +61,12 @@ private struct BoxAreaSection: View {
 
     var body: some View {
         let stats = model.areaStats(area)
-        let sitting = stats?.sittingCards ?? 0
-        let learning = max(0, (stats?.activeCards ?? 0) - sitting)
+        let settled = stats?.settledCards ?? 0
+        let learning = max(0, (stats?.activeCards ?? 0) - settled)
 
         VStack(alignment: .leading, spacing: DL.Space.m) {
             AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
-                     sitting: sitting, learning: learning)
+                     settled: settled, learning: learning)
             phraseRow(stats)
             packButton
             cardList

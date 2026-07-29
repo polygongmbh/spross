@@ -63,8 +63,8 @@ struct WordWidgetView: View {
                     .foregroundStyle(.orange)
             }
             Spacer()
-            if entry.sitting > 0 {
-                Label("\(entry.sitting)", systemImage: "leaf.fill")
+            if entry.settled > 0 {
+                Label("\(entry.settled)", systemImage: "leaf.fill")
                     .foregroundStyle(.green)
             }
         }
@@ -96,8 +96,8 @@ struct WordWidgetView: View {
                     .foregroundStyle(.orange)
             }
             Spacer()
-            if entry.sitting > 0 {
-                Label("\(entry.sitting) gefestigt", systemImage: "leaf.fill")
+            if entry.settled > 0 {
+                Label("\(entry.settled) gefestigt", systemImage: "leaf.fill")
                     .foregroundStyle(.green)
             }
         }

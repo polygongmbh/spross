@@ -103,16 +103,16 @@ struct DueCountRing: View {
 
 // MARK: AreaChip
 
-/// Per-area chip: emoji + name + sitting/learning split bar with counts.
+/// Per-area chip: emoji + name + settled/learning split bar with counts.
 struct AreaChip: View {
     let emoji: String
     let name: String
     /// Cards in review phase ("gefestigt").
-    let sitting: Int
+    let settled: Int
     /// Cards still in learning/relearning ("frisch").
     let learning: Int
 
-    private var total: Int { max(sitting + learning, 1) }
+    private var total: Int { max(settled + learning, 1) }
 
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
@@ -123,20 +123,20 @@ struct AreaChip: View {
                     .foregroundStyle(Color.dlTextPrimary)
                     .lineLimit(1)
                 Spacer(minLength: DL.Space.s)
-                Text("progress.consolidatedFresh \(sitting.formatted()) \(learning.formatted())")
+                Text("progress.consolidatedFresh \(settled.formatted()) \(learning.formatted())")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
             }
             GeometryReader { geo in
-                if sitting + learning == 0 {
-                    // why: a fresh area has nothing sitting or learning — a full
+                if settled + learning == 0 {
+                    // why: a fresh area has nothing settled or learning — a full
                     // amber bar would read as "everything learning"; show neutral.
                     Capsule().fill(Color.dlSeparator)
                 } else {
                     HStack(spacing: 2) {
                         Capsule()
                             .fill(Color.dlSuccess)
-                            .frame(width: geo.size.width * CGFloat(sitting) / CGFloat(total))
+                            .frame(width: geo.size.width * CGFloat(settled) / CGFloat(total))
                         Capsule()
                             .fill(Color.dlAmber)
                     }
@@ -206,8 +206,8 @@ struct PhaseBadge: View {
                 BoxStatTile(emoji: "🌳", value: "84", label: "progress.consolidated")
                 BoxStatTile(emoji: "🌱", value: "48", label: "progress.fresh")
             }
-            AreaChip(emoji: "🍳", name: "Küche", sitting: 18, learning: 6)
-            AreaChip(emoji: "🛁", name: "Bad", sitting: 4, learning: 9)
+            AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6)
+            AreaChip(emoji: "🛁", name: "Bad", settled: 4, learning: 9)
             HStack(spacing: DL.Space.s) {
                 ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }
             }
@@ -223,7 +223,7 @@ struct PhaseBadge: View {
             StreakFlameView(days: 3)
             DueCountRing(remaining: 0, total: 15)
         }
-        AreaChip(emoji: "🍳", name: "Küche", sitting: 18, learning: 6)
+        AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6)
         HStack(spacing: DL.Space.s) {
             ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }
         }

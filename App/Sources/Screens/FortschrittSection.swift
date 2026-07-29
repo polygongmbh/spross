@@ -16,7 +16,7 @@ struct FortschrittSection: View {
             ActivityStripView(days: model.last14Days())
             HStack(spacing: DL.Space.m) {
                 BoxStatTile(emoji: "🌳",
-                            value: "\(model.stats?.sittingCards ?? 0)",
+                            value: "\(model.stats?.settledCards ?? 0)",
                             label: "progress.consolidated")
                 BoxStatTile(emoji: "🌱",
                             value: "\(model.stats?.freshCards ?? 0)",

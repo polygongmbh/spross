@@ -12,8 +12,8 @@ import net.spross.kern.model.DayStats
 data class BoxStatistics(
     /** Cards with an active (scheduled, non-suspended) schedule. */
     val activeCount: Int,
-    /** Active cards that have settled (see [Statistics.isSitting]); the rest are still fresh. */
-    val sittingCount: Int,
+    /** Active cards that have settled (see [Statistics.isSettled]); the rest are still fresh. */
+    val settledCount: Int,
     /** Active cards due now. */
     val dueCount: Int,
     /** Cards whose schedule is suspended (out of rotation). */
@@ -31,8 +31,8 @@ data class AreaStatistics(
     val total: Int,
     /** Cards with an active schedule. */
     val active: Int,
-    /** Cards in the area that have settled (see [Statistics.isSitting]). */
-    val sitting: Int,
+    /** Cards in the area that have settled (see [Statistics.isSettled]). */
+    val settled: Int,
     /** Component phrases still waiting for their components to stabilize. */
     val phrasesLocked: Int,
     /** Phrases already introduced, component-free, or with all components stable. */
@@ -46,7 +46,7 @@ internal object Statistics {
         val active = Inventory.active(state)
         return BoxStatistics(
             activeCount = active.size,
-            sittingCount = active.count { isSitting(state, it) },
+            settledCount = active.count { isSettled(state, it) },
             dueCount = active.count { it.due != null && it.due <= now },
             suspendedCount = Inventory.scheduled(state).count { it.suspended },
             newSlotsAvailable = Growth.gatedNewBudget(state, nowEpochMillis),
@@ -56,16 +56,16 @@ internal object Statistics {
     }
 
     /**
-     * A card has settled once it sits in Review at or above [BoxConfig.sittingStability].
+     * A card has settled once it sits in Review at or above [BoxConfig.settledStability].
      * THE predicate for "has this word landed": it gates phrase unlock
-     * ([Growth.isComponentStable]), splits sitting from fresh in the progress UI,
+     * ([Growth.isComponentStable]), splits settled from fresh in the progress UI,
      * and decides which presentation supports a word still on its way in. A card
-     * that just lapsed is back in Relearning, so it stops sitting — which is the
+     * that just lapsed is back in Relearning, so it stops being settled — which is the
      * point: it needs the support again.
      */
-    fun isSitting(state: BoxState, sched: CardScheduling): Boolean =
+    fun isSettled(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&
-            (sched.memory?.stability ?: 0.0) >= state.config.sittingStability
+            (sched.memory?.stability ?: 0.0) >= state.config.settledStability
 
     /**
      * Walk back from today. Today without reviews neither breaks the streak nor consumes
@@ -96,20 +96,20 @@ internal object Statistics {
             .sortedBy { it.key }
             .map { (area, cards) ->
                 var active = 0
-                var sitting = 0
+                var settled = 0
                 var locked = 0
                 var unlocked = 0
                 for (card in cards) {
                     if (card.id in activeCards) active += 1
                     val sched = state.scheduling[card.id]
-                    if (sched != null && !sched.suspended && isSitting(state, sched)) sitting += 1
+                    if (sched != null && !sched.suspended && isSettled(state, sched)) settled += 1
                     if (card.kind == CardKind.Phrase) {
                         val open = sched != null || card.components.isEmpty() ||
                             Growth.isPhraseUnlocked(state, card)
                         if (open) unlocked += 1 else locked += 1
                     }
                 }
-                AreaStatistics(area, cards.size, active, sitting, locked, unlocked)
+                AreaStatistics(area, cards.size, active, settled, locked, unlocked)
             }
     }
 }

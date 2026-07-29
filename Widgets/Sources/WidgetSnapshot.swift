@@ -35,7 +35,7 @@ struct WidgetSnapshot: Codable {
     var cards: [CardInfo]
     /// Active cards settled at or above the phrase-unlock stability; resolved
     /// phone-side because, unlike due dates, it does not move with the clock.
-    var sittingCount: Int
+    var settledCount: Int
     /// Trailing ~70 days, keyed by ISO `yyyy-MM-dd`.
     var dailyStats: [String: Day]
 

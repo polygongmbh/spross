@@ -18,13 +18,13 @@ data class BoxConfig(
     val desiredRetention: Double = 0.8,
     val maximumIntervalDays: Int = 365,
     /**
-     * Days of stability at which a card has SAT DOWN — the single threshold
+     * Days of stability at which a card has SETTLED — the single threshold
      * behind every "has this word landed yet" question: the phrase-unlock gate,
-     * the sitting/fresh split in the progress UI, and the presentation rules
+     * the settled/fresh split in the progress UI, and the presentation rules
      * that support a word only while it is still landing (see
-     * [net.spross.kern.box.Statistics.isSitting]). FSRS-6 recalibrated.
+     * [net.spross.kern.box.Statistics.isSettled]). FSRS-6 recalibrated.
      */
-    val sittingStability: Double = 2.0,
+    val settledStability: Double = 2.0,
     /** Learning steps in seconds (FSRS-6 reference default). */
     val learningStepsSeconds: List<Long> = listOf(60L, 600L),
     /**

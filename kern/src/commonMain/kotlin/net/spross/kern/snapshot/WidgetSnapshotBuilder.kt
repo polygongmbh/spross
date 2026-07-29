@@ -52,7 +52,7 @@ object WidgetSnapshotBuilder {
             schemaVersion = SCHEMA_VERSION,
             entries = entries,
             cards = cards,
-            sittingCount = active.count { Statistics.isSitting(state, it) },
+            settledCount = active.count { Statistics.isSettled(state, it) },
             dailyStats = tailKeys.associateWith { dayStatsDto(state.dailyStats.getValue(it)) },
         )
     }
@@ -67,7 +67,7 @@ internal data class WidgetSnapshotDoc(
     /** Every active card's due date — the render-time dueCount input. */
     val cards: List<WidgetCardDto>,
     /** Active cards that have settled; time-independent, so it is resolved here. */
-    val sittingCount: Int,
+    val settledCount: Int,
     /** Trailing [WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS] day keys. */
     val dailyStats: Map<String, DayStatsDto>,
 )

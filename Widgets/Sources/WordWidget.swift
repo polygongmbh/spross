@@ -44,7 +44,7 @@ struct WordEntry: TimelineEntry {
     let dueCount: Int
     let streak: Int
     /// Active cards that have settled — the box's growth, not a retention score.
-    let sitting: Int
+    let settled: Int
 
     // Convenience accessors for the compact families.
     var emoji: String { primary.emoji }
@@ -62,7 +62,7 @@ struct WordEntry: TimelineEntry {
             WidgetWord(emoji: "🌙", tint: nil, word: "mwezi", meaning: "Mond"),
             WidgetWord(emoji: "🏠", tint: nil, word: "nyumba", meaning: "Haus"),
         ],
-        dueCount: 0, streak: 3, sitting: 12)
+        dueCount: 0, streak: 3, settled: 12)
 }
 
 struct WordProvider: TimelineProvider {
@@ -100,7 +100,7 @@ struct WordProvider: TimelineProvider {
                              words: window,
                              dueCount: dueCount,
                              streak: streak,
-                             sitting: snapshot.sittingCount)
+                             settled: snapshot.settledCount)
         }
     }
 }

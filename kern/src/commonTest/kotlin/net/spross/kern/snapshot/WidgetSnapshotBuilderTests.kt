@@ -63,7 +63,7 @@ class WidgetSnapshotBuilderTests {
 
         assertEquals(due, byCard.getValue("wf").due)
         assertEquals(Box.day1, byCard.getValue("wg").due)
-        assertEquals(1, doc.sittingCount) // wg is still learning
+        assertEquals(1, doc.settledCount) // wg has not settled
     }
 
     @Test

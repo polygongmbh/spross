@@ -54,8 +54,8 @@ fun HeuteScreen(model: AppModel) {
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Stat("${stats.dueCount}", chrome.dueLabel)
-                    Stat("${stats.sittingCount}", chrome.settledLabel)
-                    Stat("${stats.activeCount - stats.sittingCount}", chrome.freshLabel)
+                    Stat("${stats.settledCount}", chrome.settledLabel)
+                    Stat("${stats.activeCount - stats.settledCount}", chrome.freshLabel)
                     Stat("🔥 ${stats.streak}", "Streak")
                 }
             }

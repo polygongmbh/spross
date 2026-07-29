@@ -258,7 +258,7 @@ day-key `yyyy-MM-dd`) with:
   decode-only Swift (an extension cannot run the join: no catalog in its bundle, ~30 MB
   memory cap vs 33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
   entries (target-side text, emoji, article tint), per-card `{due}` for render-time
-  `dueCount(now)`, the settled-card count (`sittingCount`, resolved phone-side —
+  `dueCount(now)`, the settled-card count (`settledCount`, resolved phone-side —
   it does not move with the clock), dailyStats tail
   (~70 days) for the streak walk, `schemaVersion`. Built by a KMP `SnapshotBuilder`,
   written by the app.

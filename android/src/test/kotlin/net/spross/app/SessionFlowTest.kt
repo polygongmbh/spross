@@ -75,7 +75,7 @@ class SessionFlowTest {
 
     @Test
     fun endlessWithNothingAvailableStaysFinished() {
-        // 3 cards all sitting in learning steps: nothing due, no growth budget left.
+        // 3 cards all in learning steps: nothing due, no growth budget left.
         val flow = freshFlow()
         while (!flow.isFinished) flow.answer(Rating.Good, now, tz)
 
