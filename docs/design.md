@@ -128,8 +128,11 @@ the app renders them:
   Encoding only, never a grade: the rating the self-grade buttons already chose is held and
   applied unchanged, so self-grading still owns the schedule.
   Only Again takes the path — Easy/Good/Hard advance straight away, so a word already known
-  still costs one tap — the copy is checked by the same typo-tolerant normalizer as a real
-  answer (kern README §6), and skipping is always one tap away.
+  still costs one tap. There is **no confirm button**: the word finishing IS the action,
+  so the card flips a beat (~0.45 s) after it stands complete, and nothing but the field
+  and a small "Überspringen" is on screen. That completion check is EXACT, unlike Return,
+  which still accepts a near miss (kern README §6) — the typo budget would fire a letter
+  early and snatch the card away mid-word.
 - A clean correct answer auto-advances after ~1.2 s; Enter advances when revealed.
 - "Aufdecken" fills the answer field with the correct answer.
 - Answer-colored progress bar: one segment per answer — green right, amber tough, brick wrong.

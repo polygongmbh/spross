@@ -30,6 +30,9 @@ extension SessionView {
                             focus: $answerFocused) {
                 submitCopy(card)
             }
+            // why: the word finishing IS the action — there is nothing to confirm
+            // when the answer is already on screen, so no button asks for a tap.
+            .onChange(of: copyInput) { _, _ in advanceWhenWritten(card) }
             if copyMissed {
                 // why: never punishing — the answer is already on the card, so this
                 // is a nudge to look again, not a verdict.
@@ -39,20 +42,34 @@ extension SessionView {
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity)
             }
-            Button {
-                submitCopy(card)
-            } label: {
-                DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
-            }
-            .buttonStyle(DLPrimaryButtonStyle())
-            .keyboardShortcut(.defaultAction)
-            .disabled(copyInput.trimmingCharacters(in: .whitespaces).isEmpty)
-
             // why: always reachable — a step you cannot leave is a trap, and the
             // rating is already decided, so skipping costs the schedule nothing.
             Button("session.skipCopy") { applyPendingRating() }
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
+        }
+    }
+
+    /// Advance once the word stands written. Deliberately EXACT, unlike the Return
+    /// path: the typo budget would fire a letter early ("lugh" is one edit from
+    /// "lugha"), snatching the card away mid-word.
+    ///
+    /// why: a beat before the flip — the card leaving on the same frame as the last
+    /// keystroke reads as a glitch rather than as having finished. Re-armed on every
+    /// keystroke, so typing past the word calls the flip off instead of racing it.
+    private func advanceWhenWritten(_ card: Card) {
+        autoAdvance?.cancel()
+        let trimmed = copyInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard copyPending != nil, !trimmed.isEmpty,
+              let normalizer = model.answerNormalizer,
+              case .exact = onEnum(of: normalizer.evaluate(input: trimmed, card: card))
+        else { return }
+        if copyMissed { withAnimation { copyMissed = false } }
+        DLSound.correct()
+        autoAdvance = Task {
+            try? await Task.sleep(for: .milliseconds(450))
+            guard !Task.isCancelled else { return }
+            applyPendingRating()
         }
     }
 
