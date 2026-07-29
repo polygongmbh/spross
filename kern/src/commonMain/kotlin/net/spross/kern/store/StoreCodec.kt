@@ -68,7 +68,10 @@ object StoreCodec {
 /** Shared JSON flavor for the store document and both snapshot documents. */
 internal object StoreJson {
     // why: omitted nulls keep documents compact and mirror v1's Swift Codable output.
-    val json: Json = Json { explicitNulls = false }
+    // why: a key this build no longer knows is dropped rather than failing the whole
+    // document — defaulting a renamed key only covers its ABSENCE, so without this a
+    // box written before the rename still carries the old key and refuses to load.
+    val json: Json = Json { explicitNulls = false; ignoreUnknownKeys = true }
 
     /** Deterministic bytes: every JSON object's keys are sorted before writing. */
     fun <T> encodeSorted(strategy: SerializationStrategy<T>, value: T): String =

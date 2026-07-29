@@ -92,6 +92,27 @@ class StoreCodecTests {
         assertEquals(1, sched.reviewCount)
     }
 
+    /**
+     * A box written by 2.0.0 carries `maxLearning` and `phraseUnlockStability`, both
+     * renamed since. Keys this build no longer knows are dropped instead of failing
+     * the document, and the renamed settings fall back to the build's calibration.
+     */
+    @Test
+    fun decodeDropsKeysRenamedSinceTheDocumentWasWritten() {
+        val legacy =
+            """{"config":{"desiredRetention":0.8,"dueSoftCap":30,""" +
+                """"learningStepsSeconds":[60,600],"maxLearning":9,"maximumIntervalDays":365,""" +
+                """"phraseUnlockStability":2.0,"relearningStepsSeconds":[600],"sessionCap":30},""" +
+                """"dailyStats":{},"enqueued":[],"newIntroduced":{},""" +
+                """"scheduling":{${entry()}},"schemaVersion":1,"source":"de","target":"uk"}"""
+
+        val decoded = StoreCodec.decode(legacy)
+
+        assertEquals(20, decoded.config.maxUnsettled)
+        assertEquals(2.0, decoded.config.settledStability)
+        assertEquals("w1", decoded.scheduling.getValue("w1").cardId)
+    }
+
     @Test
     fun decodeRejectsMalformedJson() {
         assertFailsWith<StoreFormatException> { StoreCodec.decode("not json") }

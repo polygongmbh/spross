@@ -36,8 +36,9 @@ internal data class ConfigDto(
     val dueSoftCap: Int,
     val desiredRetention: Double,
     val maximumIntervalDays: Int,
-    // why: defaulted so a document written before the rename still decodes —
-    // the value is a calibration constant, not user data worth a migration.
+    // why: defaulted so a document written before the rename supplies a value at all;
+    // the old key it was renamed from is dropped by ignoreUnknownKeys. Both are
+    // calibration constants the build re-applies on load, not user data worth migrating.
     val settledStability: Double = 2.0,
     val learningStepsSeconds: List<Long>,
     val relearningStepsSeconds: List<Long>,
