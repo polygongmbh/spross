@@ -2,20 +2,19 @@ import SwiftUI
 
 // MARK: - RatingButtonsView
 //
-// Self-grade pad for recognition mode. German labels.
+// Self-grade pad for recognition mode.
 // Colorblind-safe: every rating has a distinct icon AND label —
 // color only grades the pad, it never carries the meaning alone.
-// No red anywhere ("never punishing"): Unbekannt is warm terracotta.
+// No red anywhere ("never punishing"): Again is warm terracotta.
 //
-//     Einfach   Schwer
-//     Gut       Unbekannt
+//     Good   Again
+//     Easy   Hard
 //
-// Right column = the word resisted, left = it came; quality rises upward.
-// The two opposite verdicts therefore sit diagonally, so confusing them is
-// the hardest slip to make. Unbekannt holds the bottom-right corner, where
-// a thumb already rests: it is the common answer at first exposure, and the
-// cheapest mistake to undo — the word returns within minutes, where a stray
-// Einfach hides it for weeks.
+// Right column = the word resisted, left = it came. Again holds the top-right
+// corner, the one a thumb falls on: it is the answer a first exposure calls
+// for, and the cheapest mistake to undo — the word returns within minutes,
+// where a stray Easy hides it for weeks. Easy therefore sits diagonally
+// opposite, so confusing the two extremes is the hardest slip to make.
 
 struct RatingButtonsView: View {
 
@@ -59,12 +58,12 @@ struct RatingButtonsView: View {
     var body: some View {
         Grid(horizontalSpacing: DL.Space.s, verticalSpacing: DL.Space.s) {
             GridRow {
-                button(.easy)
-                button(.hard)
-            }
-            GridRow {
                 button(.good)
                 button(.again)
+            }
+            GridRow {
+                button(.easy)
+                button(.hard)
             }
         }
     }

@@ -51,9 +51,9 @@
 - **Self-grading sits under your thumb and says what you mean**: the grades used to span the
   screen in one row, so the two answers a fresh word actually calls for — no idea, or knew it —
   sat at opposite ends, and the honest one was the longest reach.
-  They now form a square with quality rising up and to the left, leaving the corner a thumb
-  already rests on to the answer you give most; the opposite verdicts end up diagonally apart,
-  where confusing them is hardest.
+  They now form a square, with the answer a new word calls for in the top-right corner your
+  thumb falls on; the two opposite verdicts end up diagonally apart, where confusing them is
+  hardest, and a slip onto the wrong one costs you minutes rather than weeks.
   That corner used to read "Nochmal", a promise about the schedule that was plainly untrue the
   first time a word was ever shown — it now reads "Unbekannt", which is about the word and
   stays true whether you are meeting it or have just lost it.

@@ -79,12 +79,13 @@ the app renders them:
 - **PRODUCE**: typed answer in the target language; placeholder "In ⟨target⟩ …";
   grading via the kern answer normalizer (contract: kern README §6).
   "Aufdecken" remains the no-typing fallback that self-grades.
-- **RECOGNIZE**: reveal + self-grade ONLY (Unbekannt/Schwer/Gut/Einfach) — no input field.
-  The four sit in a 2×2 pad, not a row: quality rises up and to the left, which puts the two
-  opposite verdicts diagonally apart and leaves the bottom-right corner — under a resting
-  thumb — to Unbekannt, the common answer at first exposure and the cheapest one to undo.
-  The label says what the learner knows, not what the scheduler will do;
-  the FSRS rating behind it is still Again (kern README §5).
+- **RECOGNIZE**: reveal + self-grade ONLY (Again/Hard/Good/Easy) — no input field.
+  The four sit in a 2×2 pad, not a row: the right column is what resisted the learner,
+  the left what came, and Again takes the top-right corner a thumb falls on —
+  the answer a first exposure calls for, and the cheapest one to undo.
+  Easy sits diagonally opposite, so confusing the two extremes is the hardest slip to make.
+  Again's label names what the learner knows rather than what the scheduler will do
+  (`rating.unknown`); the FSRS rating behind it is unchanged (kern README §5).
   The prompt shows the engine's rotated form;
   the reveal shows the source meaning plus the full synonym family ("auch: …").
   The first exposure is no exception: the word is prompted before it is taught,
