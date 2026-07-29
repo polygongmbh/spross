@@ -63,11 +63,13 @@ struct WatchHomeView: View {
         VStack(spacing: 8) {
             Text("Alles sitzt 🎉")
                 .font(.system(.title3, design: .rounded, weight: .bold))
-            Text(model.tomorrowDueCount > 0
-                 ? "Morgen: \(model.tomorrowDueCount) fällig"
-                 : "Morgen: frei")
-                .font(.system(.footnote, design: .rounded))
-                .foregroundStyle(Color.wlTextSecondary)
+            // A day with nothing waiting says so by staying silent — "Morgen:
+            // frei" was a line that told the reader nothing they could act on.
+            if model.tomorrowDueCount > 0 {
+                Text("Morgen: \(model.tomorrowDueCount) fällig")
+                    .font(.system(.footnote, design: .rounded))
+                    .foregroundStyle(Color.wlTextSecondary)
+            }
             if model.canPractice {
                 Button { model.startPractice() } label: {
                     Text("Üben")

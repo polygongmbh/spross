@@ -137,12 +137,11 @@ final class WatchModel {
         begin(.session)
     }
 
-    /// Free practice: not-yet-due cards first (soonest first), then recycling —
-    /// no total, so the streak carries the progress indicator instead.
+    /// Free practice: the shakiest words first, lap after lap — no total, so the
+    /// streak carries the progress indicator instead.
     func startPractice() {
-        guard let snapshot, hasPool else { return }
-        let ahead = snapshot.reviewAheadEntries(now: Date()).map(\.cardId)
-        queue = ahead.isEmpty ? shuffledPool(avoiding: nil) : ahead
+        guard hasPool else { return }
+        queue = practiceLap(avoiding: nil)
         sessionTotal = 0
         begin(.practice)
     }
@@ -210,7 +209,7 @@ final class WatchModel {
         // why: practice has no end — a drained queue starts another lap over the
         // whole snapshot, so the run only stops when the user leaves.
         if queue.isEmpty, run == .practice {
-            queue = shuffledPool(avoiding: previous)
+            queue = practiceLap(avoiding: previous)
             // The snapshot emptied under a running lap — nothing left to ask.
             guard !queue.isEmpty else { return endSession() }
         }
@@ -218,14 +217,20 @@ final class WatchModel {
         makeQuestionForCurrent()
     }
 
-    /// The whole snapshot in fresh order for the next practice lap. `avoiding`
-    /// is the card just answered — rotated off the head so no card asks twice
-    /// in a row across the lap edge.
-    private func shuffledPool(avoiding previous: String?) -> [String] {
+    /// One practice lap over the whole snapshot, least stable first — practice
+    /// is for the words least likely to hold, not for whatever comes up. The
+    /// jitter is multiplicative and narrow, so it only reorders words of similar
+    /// standing and can never lift a settled word over a shaky one.
+    /// `avoiding` is the card just answered — rotated off the head so no card
+    /// asks twice in a row across the lap edge.
+    private func practiceLap(avoiding previous: String?) -> [String] {
         guard let snapshot else { return [] }
-        var ids = snapshot.entries.map(\.cardId).shuffled(using: &rng)
+        var ids = snapshot.entries
+            .map { (id: $0.cardId, order: $0.stability * Double.random(in: 0.8...1.25, using: &rng)) }
+            .sorted { $0.order < $1.order }
+            .map(\.id)
         if ids.count > 1, ids.first == previous {
-            ids.append(ids.removeFirst())
+            ids.swapAt(0, 1)
         }
         return ids
     }

@@ -210,8 +210,9 @@ same review UX rules; deltas only where the platform differs:
 - Two watch runs, one progress indicator each, in the title slot:
   the **due batch** is exactly the cards due now — a counter that reaches its end,
   then a brief burst with the tally and back to the start screen on its own;
-  **free practice** takes the not-yet-due cards and recycles the snapshot after them,
-  so it has no total to count and carries the answer streak instead.
+  **free practice** goes by how well a word is holding — least stable first, lap after lap,
+  jittered only narrowly enough to reorder words of similar standing — so it has no total
+  to count and carries the answer streak instead.
   Practice has no end screen: a run the learner ends when they like has nothing to celebrate.
 - iOS widget: pure Swift decode; only the due count and the streak walk run at
   render time, everything clock-independent is pre-resolved phone-side (kern README §7).

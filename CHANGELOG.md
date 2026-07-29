@@ -9,6 +9,8 @@
   takes you back to the start screen by itself, where practising on is one tap away.
   Practice keeps going as long as you do, and counts how many you have got right in a row
   instead — the flame no longer crowds the word it sat next to.
+  It also starts where you are weakest: the words holding least firmly come first, rather
+  than whichever card happened to be nearest its next review.
 
 - **The watch quiz stops handing you the answer**: a tile could be picked without knowing
   the word at all — the only verb among nouns wore Swahili's *ku-*, the only adjective a
