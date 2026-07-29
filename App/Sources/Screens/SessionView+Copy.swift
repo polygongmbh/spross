@@ -25,7 +25,7 @@ extension SessionView {
     func copyControls(_ card: Card) -> some View {
         VStack(spacing: DL.Space.m) {
             AnswerInputView(text: $copyInput,
-                            feedback: .neutral,
+                            feedback: copyFeedback,
                             placeholder: copyPlaceholder,
                             focus: $answerFocused) {
                 submitCopy(card)
@@ -50,27 +50,31 @@ extension SessionView {
         }
     }
 
-    /// Advance once the word stands written. Deliberately EXACT, unlike the Return
-    /// path: the typo budget would fire a letter early ("lugh" is one edit from
-    /// "lugha"), snatching the card away mid-word.
+    /// Advance once the word stands written, and say so while it does: the field
+    /// goes green with a checkmark the moment the letters line up, every time —
+    /// on the first run and on each retry after a miss.
     ///
-    /// why: a beat before the flip — the card leaving on the same frame as the last
-    /// keystroke reads as a glitch rather than as having finished. Re-armed on every
-    /// keystroke, so typing past the word calls the flip off instead of racing it.
+    /// Deliberately EXACT, unlike the Return path: the typo budget would fire a
+    /// letter early ("lugh" is one edit from "lugha"), snatching the card away
+    /// mid-word. Backing out of a finished word takes the green with it.
     private func advanceWhenWritten(_ card: Card) {
         autoAdvance?.cancel()
         let trimmed = copyInput.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard copyPending != nil, !trimmed.isEmpty,
-              let normalizer = model.answerNormalizer,
-              case .exact = onEnum(of: normalizer.evaluate(input: trimmed, card: card))
-        else { return }
-        if copyMissed { withAnimation { copyMissed = false } }
-        DLSound.correct()
-        autoAdvance = Task {
-            try? await Task.sleep(for: .milliseconds(450))
-            guard !Task.isCancelled else { return }
-            applyPendingRating()
+        let written = copyPending != nil && !trimmed.isEmpty
+            && model.answerNormalizer.map { normalizer in
+                if case .exact = onEnum(of: normalizer.evaluate(input: trimmed, card: card)) {
+                    return true
+                }
+                return false
+            } == true
+        guard written else {
+            withAnimation { copyFeedback = .neutral }
+            return
         }
+        if copyMissed { withAnimation { copyMissed = false } }
+        if copyFeedback != .correct { DLSound.correct() }
+        withAnimation { copyFeedback = .correct }
+        armFinishedTyping { applyPendingRating() }
     }
 
     private var copyPlaceholder: String {

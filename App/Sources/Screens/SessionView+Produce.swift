@@ -19,6 +19,9 @@ extension SessionView {
                                 focus: $answerFocused) {
                     submit(card)
                 }
+                // why: writing the word out is the answer — the same rule the copy
+                // step runs on, so a word you know never asks for a confirming tap.
+                .onChange(of: input) { _, _ in approveWhenTyped(card) }
             }
             switch feedback {
             case .neutral where revealed:
@@ -106,6 +109,33 @@ extension SessionView {
         guard let target = model.targetLanguage else { return "" }
         let name = LanguageNames.display(target, locale: locale, catalog: model.catalog)
         return String(format: DLChrome.string("session.answer.placeholder %@", locale: locale), name)
+    }
+
+    /// Take a word typed out exactly right as the answer, without a "Prüfen" tap:
+    /// the field turns green with its checkmark and the card flips a beat later.
+    ///
+    /// EXACT only, where Return still forgives a typo — the typo budget would fire
+    /// a letter early and grade the word before it was finished, and a real typo
+    /// has to pause on its correction anyway. Backing out of a finished word takes
+    /// the green with it, so typing past the answer never commits it.
+    private func approveWhenTyped(_ card: Card) {
+        guard copyPending == nil, !revealed, typoCorrection == nil else { return }
+        if case .revealed = feedback { return } // already graded; the field is locked
+        autoAdvance?.cancel()
+        let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty, isExactAnswer(trimmed, card: card) else {
+            if feedback == .correct { withAnimation { feedback = .neutral } }
+            return
+        }
+        if feedback != .correct { DLSound.correct() }
+        withAnimation { feedback = .correct }
+        armFinishedTyping { rate(.good) }
+    }
+
+    private func isExactAnswer(_ text: String, card: Card) -> Bool {
+        guard let grader = model.produceGrader else { return false }
+        if case .exact = onEnum(of: grader.grade(input: text, card: card)) { return true }
+        return false
     }
 
     func submit(_ card: Card) {

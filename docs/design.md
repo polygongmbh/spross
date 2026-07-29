@@ -135,10 +135,17 @@ the app renders them:
   Only Again takes the path — Easy/Good/Hard advance straight away, so a word already known
   still costs one tap. There is **no confirm button**: the word finishing IS the action,
   so the card flips a beat (~0.45 s) after it stands complete, and nothing but the field
-  and a small "Überspringen" is on screen. That completion check is EXACT, unlike Return,
-  which still accepts a near miss (kern README §6) — the typo budget would fire a letter
-  early and snatch the card away mid-word.
-- A clean correct answer auto-advances after ~1.2 s; Enter advances when revealed.
+  and a small "Überspringen" is on screen.
+- **Finishing the word IS the answer**, in the copy step and in typed production alike:
+  the field turns green with its checkmark the moment the letters line up — every time,
+  so a retry after a miss confirms itself the same way the first run does — and the card
+  flips a beat later. Backing out of a finished word takes the green with it, so typing
+  past the answer never commits it.
+  That completion check is EXACT, unlike Return, which still accepts a near miss
+  (kern README §6): the typo budget would fire a letter early and snatch the card away
+  mid-word, and a real typo has to pause on its correction anyway.
+- Submitting by hand still works: Return or "Prüfen" grades typo-tolerantly, a clean
+  correct answer auto-advances after ~1.2 s, and Enter advances when revealed.
 - "Aufdecken" fills the answer field with the correct answer.
 - Answer-colored progress bar: one segment per answer — green right, amber tough, brick wrong.
 - Never punishing: no red flashes; streak survives one missed day.

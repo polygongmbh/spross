@@ -60,6 +60,17 @@
   words you answer on sight cost it nothing, so an easy day keeps the way open, while a pile
   of shaky ones narrows new material to a trickle instead of shutting it off.
 
+- **Writing the word out is the answer**: a word typed correctly still asked for a
+  "Prüfen" tap before anything happened, and the copy step after a missed word gave no
+  sign at all that what you had written was right — you typed the last letter into the
+  same grey box you started in.
+  The field now says so itself: it goes green with a checkmark the moment the letters
+  line up, and the card moves on a beat later, with no button in the way. It answers the
+  same way every time you write the word, so a retry after a miss reads exactly like a
+  first attempt getting it right.
+  Only an exactly written word confirms itself; a near miss still waits for "Prüfen" and
+  pauses on its correct spelling, which is the part worth reading.
+
 - **Self-grading sits under your thumb and says what you mean**: the grades used to span the
   screen in one row, so the two answers a fresh word actually calls for — no idea, or knew it —
   sat at opposite ends, and the honest one was the longest reach.

@@ -23,6 +23,9 @@ struct SessionView: View {
     @State var copyPending: Rating?
     @State var copyInput = ""
     @State var copyMissed = false
+    /// The copy field's own feedback — green edge + checkmark the moment the
+    /// word stands written, re-judged on every keystroke.
+    @State var copyFeedback: AnswerInputView.Feedback = .neutral
     /// Set when the typed answer is a word the catalog owns elsewhere: the
     /// reveal names it, so a near-miss teaches the other word instead of
     /// only failing (kufunga vs kufungua).
@@ -251,6 +254,7 @@ struct SessionView: View {
             copyPending = rating
             copyInput = ""
             copyMissed = false
+            copyFeedback = .neutral
             withAnimation { revealed = true }
             answerFocused = true
             return
@@ -282,6 +286,22 @@ struct SessionView: View {
         copyPending = nil
         copyInput = ""
         copyMissed = false
+        copyFeedback = .neutral
+    }
+
+    /// A beat between the last letter and the card leaving, shared by every
+    /// path where finishing the word IS the action (typing an answer,
+    /// writing a missed word out).
+    ///
+    /// why: a flip on the same frame as the final keystroke reads as a glitch
+    /// rather than as having finished. Re-armed on every keystroke, so typing
+    /// past the word calls the flip off instead of racing it.
+    func armFinishedTyping(_ action: @escaping @MainActor () -> Void) {
+        autoAdvance = Task {
+            try? await Task.sleep(for: .milliseconds(450))
+            guard !Task.isCancelled else { return }
+            action()
+        }
     }
 
     /// Design's RatingButtonsView has its own local Rating (no Kern dep);
