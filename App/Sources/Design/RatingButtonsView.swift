@@ -7,14 +7,17 @@ import SwiftUI
 // color only grades the pad, it never carries the meaning alone.
 // No red anywhere ("never punishing"): Again is warm terracotta.
 //
-//     Good   Again
-//     Easy   Hard
+//     Hard   Again
+//     Easy   Good
 //
-// Right column = the word resisted, left = it came. Again holds the top-right
-// corner, the one a thumb falls on: it is the answer a first exposure calls
-// for, and the cheapest mistake to undo — the word returns within minutes,
-// where a stray Easy hides it for weeks. Easy therefore sits diagonally
-// opposite, so confusing the two extremes is the hardest slip to make.
+// The right column is the plain verdict — did the word come or not — and the
+// left column qualifies each: barely, or instantly. Rows read the same way
+// across: the word resisted on top, it came underneath.
+// That puts the pair a session is mostly made of, Again and Good, in the
+// right column a thumb falls on, reachable without crossing the screen, and
+// leaves the qualifiers a deliberate reach. Again and Easy still land
+// diagonally opposite, so confusing the two extremes is the hardest slip to
+// make — a stray Again costs minutes, a stray Easy hides the word for weeks.
 
 struct RatingButtonsView: View {
 
@@ -58,12 +61,12 @@ struct RatingButtonsView: View {
     var body: some View {
         Grid(horizontalSpacing: DL.Space.s, verticalSpacing: DL.Space.s) {
             GridRow {
-                button(.good)
+                button(.hard)
                 button(.again)
             }
             GridRow {
                 button(.easy)
-                button(.hard)
+                button(.good)
             }
         }
     }

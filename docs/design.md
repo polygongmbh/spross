@@ -85,10 +85,10 @@ the app renders them:
   grading via the kern answer normalizer (contract: kern README §6).
   "Aufdecken" remains the no-typing fallback that self-grades.
 - **RECOGNIZE**: reveal + self-grade ONLY (Again/Hard/Good/Easy) — no input field.
-  The four sit in a 2×2 pad, not a row: the right column is what resisted the learner,
-  the left what came, and Again takes the top-right corner a thumb falls on —
-  the answer a first exposure calls for, and the cheapest one to undo.
-  Easy sits diagonally opposite, so confusing the two extremes is the hardest slip to make.
+  The four sit in a 2×2 pad, not a row: the right column is the plain verdict (Again, Good)
+  and the left qualifies it (Hard, Easy), while rows split what resisted the learner from what
+  came. The pair a session is mostly made of therefore shares the right column a thumb falls
+  on, and Again and Easy land diagonally opposite, where confusing them is hardest.
   Again's label names what the learner knows rather than what the scheduler will do
   (`rating.unknown`); the FSRS rating behind it is unchanged (kern README §5).
   The prompt shows the engine's rotated form;
@@ -170,6 +170,14 @@ the app renders them:
 - **Heute** is the only root screen:
   session card (due-count ring + streak flame, or done state),
   trainer hub, condensed Fortschritt section (14-day strip, gefestigt/frisch split).
+  The card names which of three shapes the plan has, never one word for all of them:
+  reviews due, a fresh set with nothing due, or nothing due at all.
+  The ring counts the reviews THIS run takes (the cap), and due cards held back
+  for the next round are named rather than silently dropped from the number.
+  A trickle-only plan (nothing due, growth throttled to `Growth.TRICKLE_CARDS`)
+  is not the day's work: it sits behind the extra-round button, which says what is in it.
+  "Done for today" is claimed only once reviews were actually done today —
+  otherwise the state is "nothing due right now".
 - **Box** (pushed via the 📦 toolbar icon): browse areas/cards —
   areas grouped under their areas.json groups
   (source-language titles, en fallback, manifest order; empty groups drop out);
