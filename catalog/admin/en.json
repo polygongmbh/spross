@@ -11,9 +11,9 @@
    "text": "application"
   },
   "id-card": {
-   "text": "identity card",
+   "text": "ID card",
    "variants": [
-    "ID card"
+    "identity card"
    ]
   },
   "residence-permit": {
@@ -53,9 +53,9 @@
    "text": "to hand in"
   },
   "pick-up": {
-   "text": "to pick up the identity card",
+   "text": "to pick up the ID card",
    "variants": [
-    "to pick up the ID card"
+    "to pick up the identity card"
    ]
   },
   "extend": {
@@ -125,9 +125,9 @@
    "text": "The decision comes by mail."
   },
   "when-does-my-id-expire": {
-   "text": "When does my identity card expire?",
+   "text": "When does my ID card expire?",
    "variants": [
-    "When does my ID card expire?"
+    "When does my identity card expire?"
    ]
   }
  }
