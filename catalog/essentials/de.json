@@ -213,6 +213,27 @@
   },
   "slower": {
    "text": "Langsamer!"
+  },
+  "a-good-friend": {
+   "text": "ein guter Freund"
+  },
+  "an-old-person": {
+   "text": "eine alte Person"
+  },
+  "a-new-day": {
+   "text": "ein neuer Tag"
+  },
+  "the-house-is-big": {
+   "text": "Das Haus ist groß."
+  },
+  "a-lot-of-water": {
+   "text": "viel Wasser"
+  },
+  "a-lot-of-money": {
+   "text": "viel Geld"
+  },
+  "many-friends": {
+   "text": "viele Freunde"
   }
  }
 }

@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **Swahili adjectives accept the form you actually hear**: they are taught as bare stems
+  (*-zuri*, *-ingi*) because the prefix belongs to the noun's class, so *nzuri* — the form
+  on every sign and in every conversation — used to be marked wrong.
+  Every class form now counts as correct, and short phrases put the agreement into practice:
+  *rafiki mzuri* against its plural *marafiki wazuri*, and the shape-shifting
+  *maji mengi* · *pesa nyingi* · *marafiki wengi*.
+  *dringend* left the Swahili side rather than go on being answered with *-a haraka*,
+  which is "fast, express".
+
 - **A word you miss comes back where you can actually recall it**: it used to return a minute
   later, a handful of cards along, and got through on being recognised as "that new one"
   rather than on the word and its meaning having bound — and since words learned in one

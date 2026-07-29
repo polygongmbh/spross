@@ -265,5 +265,61 @@
   "components": [
    "slow"
   ]
+ },
+ {
+  "slug": "a-good-friend",
+  "kind": "phrase",
+  "components": [
+   "friend",
+   "good"
+  ]
+ },
+ {
+  "slug": "an-old-person",
+  "kind": "phrase",
+  "components": [
+   "person",
+   "old"
+  ]
+ },
+ {
+  "slug": "a-new-day",
+  "kind": "phrase",
+  "components": [
+   "day",
+   "new"
+  ]
+ },
+ {
+  "slug": "the-house-is-big",
+  "kind": "phrase",
+  "components": [
+   "house",
+   "big"
+  ]
+ },
+ {
+  "slug": "a-lot-of-water",
+  "kind": "phrase",
+  "components": [
+   "water",
+   "much"
+  ]
+ },
+ {
+  "slug": "a-lot-of-money",
+  "kind": "phrase",
+  "components": [
+   "money",
+   "much"
+  ]
+ },
+ {
+  "slug": "many-friends",
+  "kind": "phrase",
+  "components": [
+   "friend",
+   "much"
+  ]
  }
 ]

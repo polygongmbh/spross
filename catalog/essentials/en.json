@@ -159,6 +159,27 @@
   },
   "slower": {
    "text": "Slower!"
+  },
+  "a-good-friend": {
+   "text": "a good friend"
+  },
+  "an-old-person": {
+   "text": "an old person"
+  },
+  "a-new-day": {
+   "text": "a new day"
+  },
+  "the-house-is-big": {
+   "text": "The house is big."
+  },
+  "a-lot-of-water": {
+   "text": "a lot of water"
+  },
+  "a-lot-of-money": {
+   "text": "a lot of money"
+  },
+  "many-friends": {
+   "text": "many friends"
   }
  }
 }

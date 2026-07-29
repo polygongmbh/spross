@@ -108,21 +108,64 @@
   },
   "good": {
    "text": "-zuri",
+   "variants": [
+    "nzuri",
+    "mzuri",
+    "wazuri",
+    "kizuri",
+    "vizuri",
+    "mazuri",
+    "mizuri"
+   ],
    "notes": {
     "de": "Adjektive bekommen die Vorsilbe der Nomenklasse: mtu mzuri, kitu kizuri, nyumba nzuri."
    }
   },
   "bad": {
-   "text": "-baya"
+   "text": "-baya",
+   "variants": [
+    "mbaya",
+    "wabaya",
+    "kibaya",
+    "vibaya",
+    "mabaya",
+    "mibaya"
+   ]
   },
   "big": {
-   "text": "-kubwa"
+   "text": "-kubwa",
+   "variants": [
+    "mkubwa",
+    "wakubwa",
+    "kikubwa",
+    "vikubwa",
+    "makubwa",
+    "mikubwa"
+   ]
   },
   "small": {
-   "text": "-dogo"
+   "text": "-dogo",
+   "variants": [
+    "ndogo",
+    "mdogo",
+    "wadogo",
+    "kidogo",
+    "vidogo",
+    "madogo",
+    "midogo"
+   ]
   },
   "much": {
    "text": "-ingi",
+   "variants": [
+    "nyingi",
+    "wengi",
+    "mengi",
+    "vingi",
+    "mingi",
+    "mwingi",
+    "kingi"
+   ],
    "notes": {
     "de": "Vorsilbe verschmilzt: watu wengi, maji mengi, pesa nyingi."
    }
@@ -137,12 +180,25 @@
    "text": "kesho"
   },
   "new": {
-   "text": "-pya"
+   "text": "-pya",
+   "variants": [
+    "mpya",
+    "wapya",
+    "jipya",
+    "kipya",
+    "vipya",
+    "mapya",
+    "mipya"
+   ]
   },
   "old": {
    "text": "-zee",
    "synonyms": [
     "kuukuu"
+   ],
+   "variants": [
+    "mzee",
+    "wazee"
    ],
    "notes": {
     "de": "-zee bei Menschen: mtu mzee · kuukuu bei Sachen: gari kuukuu."
@@ -219,6 +275,36 @@
   },
   "slower": {
    "text": "Polepole zaidi!"
+  },
+  "a-good-friend": {
+   "text": "rafiki mzuri",
+   "grammar": {
+    "plural": "marafiki wazuri"
+   }
+  },
+  "an-old-person": {
+   "text": "mtu mzee",
+   "grammar": {
+    "plural": "watu wazee"
+   }
+  },
+  "a-new-day": {
+   "text": "siku mpya",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "the-house-is-big": {
+   "text": "Nyumba ni kubwa."
+  },
+  "a-lot-of-water": {
+   "text": "maji mengi"
+  },
+  "a-lot-of-money": {
+   "text": "pesa nyingi"
+  },
+  "many-friends": {
+   "text": "marafiki wengi"
   }
  }
 }

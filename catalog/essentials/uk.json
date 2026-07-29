@@ -216,6 +216,30 @@
   },
   "slower": {
    "text": "Повільніше!"
+  },
+  "a-good-friend": {
+   "text": "добрий друг",
+   "variants": [
+    "хороший друг"
+   ]
+  },
+  "an-old-person": {
+   "text": "стара людина"
+  },
+  "a-new-day": {
+   "text": "новий день"
+  },
+  "the-house-is-big": {
+   "text": "Будинок великий."
+  },
+  "a-lot-of-water": {
+   "text": "багато води"
+  },
+  "a-lot-of-money": {
+   "text": "багато грошей"
+  },
+  "many-friends": {
+   "text": "багато друзів"
   }
  }
 }
