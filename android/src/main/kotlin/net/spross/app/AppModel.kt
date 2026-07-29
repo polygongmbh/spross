@@ -24,8 +24,8 @@ import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.Rating
 import net.spross.kern.model.SessionPlan
-import net.spross.kern.model.EmojiPlacement
-import net.spross.kern.model.emojiPlacement
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
 import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.session.AnswerNormalizer
@@ -46,7 +46,7 @@ data class SessionUi(
     val role: PresentationRole?,
     val promptForm: String?,       // rotated recognition prompt
     /** Which face carries the picture; null when the word has none. */
-    val emojiPlacement: EmojiPlacement?,
+    val emojiCue: EmojiCue?,
     val segments: List<AnswerTone>,
     val remaining: Int,
     val progress: Float,
@@ -204,7 +204,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         val ui = if (card == null) {
             SessionUi(
                 card = null, role = null, promptForm = null,
-                emojiPlacement = null,
+                emojiCue = null,
                 segments = active.segments.toList(), remaining = 0, progress = 1f,
                 introduced = active.introduced, strengthened = active.strengthened,
                 reviewed = active.answered,
@@ -216,8 +216,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 card = card,
                 role = role,
                 promptForm = recognitionPromptForm(card, count),
-                emojiPlacement = card.emoji?.let {
-                    emojiPlacement(role, active.isSettled(card.id), count)
+                emojiCue = card.emoji?.let {
+                    emojiCue(role, active.isSettled(card.id), count)
                 },
                 segments = active.segments.toList(),
                 remaining = active.remaining,

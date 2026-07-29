@@ -121,12 +121,12 @@ no config flag, no user-facing direction anywhere.
   Every form gets prompted at zero extra scheduling cost.
   Reveal always shows the full family; the source-side reveal may show source synonyms
   informatively ("Amt / Verwaltung").
-- **Emoji placement**: `emojiPlacement(role, settled, reviewCount)` answers which FACE
-  carries the picture, never whether it appears at all.
-  **Prompt** iff (first exposure) OR (role == Produce ∧ the word has not settled, §5) —
+- **Emoji cue**: `emojiCue(role, settled, reviewCount)` answers WHEN the picture appears,
+  never whether it appears at all and never where (that is the renderer's, and it is fixed).
+  **Upfront** iff (first exposure) OR (role == Produce ∧ the word has not settled, §5) —
   the two places it supports recall without giving the answer away, since a produce prompt
   already names the concept in the source language;
-  **Reveal** everywhere else, in every phase.
+  **OnReveal** everywhere else, in every phase.
   The first exposure is the one recognition prompt that carries it, deliberately:
   it is the cue that makes a first recall attempt possible at all.
   Hiding it outright once a word was learned took it away from exactly the reviews where a
@@ -430,7 +430,7 @@ day-key `yyyy-MM-dd`) with:
   field by field — is a change-detector for a copy function, not coverage.
 - New suites: CatalogLintTest (§8), parser fixtures (feminine ♀ fallback, Sie/du variants,
   sparse coverage, en "to "/sw ku-kw prefixes, notes selection),
-  first-exposure-always-recognition + emoji-placement policy + synonym-rotation coverage,
+  first-exposure-always-recognition + emoji-cue policy + synonym-rotation coverage,
   join-inertness + source-switch round-trip (schedules + enqueued revive; phrases stay
   unlocked), stale-card answer no-op, FSRS-6 golden vectors + properties,
   DST/non-Gregorian day-key vectors, snapshot builders.

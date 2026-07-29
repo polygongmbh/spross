@@ -39,14 +39,14 @@ struct VocabCardView: View {
         }
     }
 
-    /// Which face the picture rides on. Prompt keeps the pre-reveal cue; reveal
-    /// binds it to the answer without moving anything above it.
-    enum EmojiSide { case prompt, reveal }
+    /// WHEN the picture appears. Its place never changes, so `onReveal` fades it
+    /// into a slot that was already there — nothing on the card moves either way.
+    enum EmojiCue { case upfront, onReveal }
 
     /// Per-word illustration; nil for verbs/phrases with no seed emoji —
-    /// the card then drops the circle and centers on the word itself.
+    /// the card then drops the slot and centers on the word itself.
     let emoji: String?
-    var emojiSide: EmojiSide = .prompt
+    var emojiCue: EmojiCue = .upfront
     let prompt: Side
     let answer: Side
     /// Optional literal gloss ("wörtlich: …"), shown only post-reveal.
@@ -58,10 +58,7 @@ struct VocabCardView: View {
 
     var body: some View {
         VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
-            if let emoji, !emoji.isEmpty, emojiSide == .prompt {
-                emojiIllustration(emoji)
-            }
-            sideBlock(prompt, emphasized: false)
+            promptRow
             if revealed {
                 revealSection
                     .transition(.opacity.combined(with: .move(edge: .top)))
@@ -83,10 +80,34 @@ struct VocabCardView: View {
 
     // MARK: Pieces
 
+    /// The picture sits BESIDE the word, never above it: vertical space is the
+    /// scarce axis (card + input + button + keyboard share one screen), and a
+    /// fixed side slot means the reveal can fade it in without moving a thing.
+    /// The slot is mirrored on the trailing edge so the word stays centred.
+    private var promptRow: some View {
+        HStack(spacing: DL.Space.m) {
+            if hasEmoji {
+                emojiIllustration(emoji ?? "")
+                    .opacity(emojiCue == .upfront || revealed ? 1 : 0)
+            }
+            sideBlock(prompt, emphasized: false)
+                .frame(maxWidth: .infinity)
+            if hasEmoji {
+                Color.clear.frame(width: emojiDiameter, height: 1)
+            }
+        }
+    }
+
+    private var hasEmoji: Bool {
+        !(emoji ?? "").isEmpty
+    }
+
+    private var emojiDiameter: CGFloat { compact ? 52 : 96 }
+
     private func emojiIllustration(_ emoji: String) -> some View {
         Text(emoji)
-            .font(.system(size: compact ? 40 : 76))
-            .padding(compact ? DL.Space.s + 2 : DL.Space.l)
+            .font(.system(size: compact ? 28 : 52))
+            .frame(width: emojiDiameter, height: emojiDiameter)
             .background(Circle().fill(Color.dlSurfaceTint))
             .accessibilityHidden(true) // why: decorative; the headword carries the content
     }
@@ -97,11 +118,6 @@ struct VocabCardView: View {
             RoundedRectangle(cornerRadius: 1)
                 .fill(Color.dlSeparator)
                 .frame(width: 44, height: 2)
-            // why: BELOW the divider, never above the prompt — the reveal grows the
-            // card downward and existing content must not shift under it.
-            if let emoji, !emoji.isEmpty, emojiSide == .reveal {
-                emojiIllustration(emoji)
-            }
             sideBlock(answer, emphasized: true)
             if let note {
                 // why: subheadline, not caption — post-reveal lines are meant to
@@ -266,7 +282,7 @@ struct ArticleBadge: View {
 #Preview("Recognize · revealed") {
     VocabCardView(
         emoji: "🍳",
-        emojiSide: .reveal,
+        emojiCue: .onReveal,
         prompt: .init(text: "kikaango"),
         answer: .init(text: "Pfanne", article: "die", plural: "Pl. Pfannen"),
         note: "wörtlich: kleines Bratgefäß",

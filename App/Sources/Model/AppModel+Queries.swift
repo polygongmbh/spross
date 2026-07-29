@@ -53,8 +53,8 @@ extension AppModel {
 
     /// Which face carries the picture: the prompt only where it cannot give the
     /// answer away, otherwise the reveal (contract §3).
-    func emojiPlacement(for card: Card) -> EmojiPlacement {
-        SprossKern.emojiPlacement(role: presentationRole(for: card.id),
+    func emojiCue(for card: Card) -> EmojiCue {
+        SprossKern.emojiCue(role: presentationRole(for: card.id),
                                   settled: isSettled(card.id),
                                   reviewCount: scheduling(for: card.id)?.reviewCount ?? 0)
     }

@@ -78,11 +78,14 @@ the app renders them:
   the reveal shows the source meaning plus the full synonym family ("auch: …").
   The first exposure is no exception: the word is prompted before it is taught,
   so a learner who already knows it gets the moment to recall it —
-  with the emoji above it as the cue
-  (engine placement rule; the only recognition prompt that carries one).
-- Emoji placement follows the engine: prompt side above the headword, reveal side
-  **below the divider** — the reveal only ever grows the card downward,
-  so nothing already on screen may shift under it.
+  with the emoji beside it as the cue
+  (engine cue rule; the only recognition prompt that carries one from the start).
+- The emoji sits in a fixed slot **beside the headword**, never above it:
+  vertical space is the scarce axis (card + input + button + keyboard share one screen).
+  The slot is reserved for the card's whole life and mirrored on the trailing edge,
+  so the word stays centred and an `onReveal` picture fades in without moving anything —
+  a stronger guarantee than the reveal's grow-downward rule, not an exception to it.
+  Cards without an emoji (verbs, phrases) drop both slots and centre on the word.
 - Ambiguous prompts (engine-flagged `Card.promptAmbiguous`, i.e. the target merges two
   source concepts) carry an **area label** above the headword. Produce only — on a
   recognition prompt a cue precise enough to disambiguate would reveal the answer.

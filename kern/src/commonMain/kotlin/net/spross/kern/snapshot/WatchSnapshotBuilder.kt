@@ -8,9 +8,9 @@ import net.spross.kern.box.Statistics
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
-import net.spross.kern.model.EmojiPlacement
+import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.PresentationRole
-import net.spross.kern.model.emojiPlacement
+import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
 import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.session.MultipleChoice
@@ -95,7 +95,7 @@ object WatchSnapshotBuilder {
             // why: the watch quiz has no reveal face to hang a picture on, so it only
             // ever carries the prompt-side emoji.
             emoji = card.emoji?.takeIf {
-                emojiPlacement(nextRole, settled, reviewCount) == EmojiPlacement.Prompt
+                emojiCue(nextRole, settled, reviewCount) == EmojiCue.Upfront
             },
             articleTint = articleTint(card),
             femMarker = card.promptFeminineMarker,

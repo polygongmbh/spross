@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.SessionUi
-import net.spross.kern.model.EmojiPlacement
+import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.Rating
 import net.spross.kern.session.Match
 
@@ -77,7 +77,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Spacer(Modifier.height(24.dp))
-        if (ui.emojiPlacement == EmojiPlacement.Prompt) {
+        if (ui.emojiCue == EmojiCue.Upfront) {
             Text(card.emoji.orEmpty(), fontSize = 64.sp)
         }
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -128,7 +128,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                 }
             }
             ProduceMode.Correct -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                if (ui.emojiPlacement == EmojiPlacement.Reveal) {
+                if (ui.emojiCue == EmojiCue.OnReveal) {
                     Text(card.emoji.orEmpty(), fontSize = 64.sp)
                 }
                 Text(

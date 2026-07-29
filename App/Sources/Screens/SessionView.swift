@@ -127,7 +127,7 @@ struct SessionView: View {
                 ZStack {
                     VocabCardView(
                         emoji: card.emoji,
-                        emojiSide: model.emojiPlacement(for: card) == .prompt ? .prompt : .reveal,
+                        emojiCue: model.emojiCue(for: card) == .upfront ? .upfront : .onReveal,
                         prompt: promptSide(card, role: role),
                         answer: answerSide(card, role: role),
                         note: card.target.note ?? card.source.note,

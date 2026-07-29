@@ -47,32 +47,32 @@ fun recognitionPromptForm(card: Card, reviewCount: Int): String {
     return forms[(reviewCount / 2 + offset) % forms.size]
 }
 
-/** Which face of the card carries the picture. */
-enum class EmojiPlacement {
-    /** Above the prompt, before the reveal — only where it cannot give the answer away. */
-    Prompt,
+/** WHEN the picture is shown. Where it sits is the renderer's business and never moves. */
+enum class EmojiCue {
+    /** From the start — only where it cannot give the answer away. */
+    Upfront,
 
-    /** With the revealed answer, where nothing is left to give away. */
-    Reveal,
+    /** Held back until the reveal, where nothing is left to give away. */
+    OnReveal,
 }
 
 /**
- * Emoji policy. It rides the PROMPT iff (first exposure) OR (role == Produce &&
- * the word has not settled) — the two places it supports recall without
- * revealing it, since a produce prompt already names the concept in the source
- * language. Everywhere else it rides the REVEAL, in every phase: once the answer
- * is out the picture can leak nothing, and binding it to the meaning is exactly
- * what a word still being recognised by novelty needs.
+ * Emoji policy. The picture is there from the START iff (first exposure) OR
+ * (role == Produce && the word has not settled) — the two places it supports
+ * recall without revealing it, since a produce prompt already names the concept
+ * in the source language. Everywhere else it waits for the reveal, in every
+ * phase: once the answer is out the picture can leak nothing, and binding it to
+ * the meaning is exactly what a word still being recognised by novelty needs.
  */
-fun emojiPlacement(
+fun emojiCue(
     role: PresentationRole,
     settled: Boolean,
     reviewCount: Int,
-): EmojiPlacement =
+): EmojiCue =
     if (reviewCount == 0 || (role == PresentationRole.Produce && !settled)) {
-        EmojiPlacement.Prompt
+        EmojiCue.Upfront
     } else {
-        EmojiPlacement.Reveal
+        EmojiCue.OnReveal
     }
 
 /**
