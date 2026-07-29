@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.1.0 — 2026-07-29
+
 - **The watch says where you are in one number, and the due cards now end**: a counter and a
   streak competed for the same run, and the counter could not be trusted — it stopped at the
   last due card while the quiz kept handing out more. The cards that are due are a run with a
