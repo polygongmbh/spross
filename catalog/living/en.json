@@ -11,7 +11,10 @@
    "text": "chair"
   },
   "tv": {
-   "text": "television"
+   "text": "television",
+   "variants": [
+    "TV"
+   ]
   },
   "remote": {
    "text": "remote control"
@@ -41,7 +44,10 @@
    "text": "picture"
   },
   "watch-tv": {
-   "text": "to watch TV"
+   "text": "to watch television",
+   "variants": [
+    "to watch TV"
+   ]
   },
   "read": {
    "text": "to read"
@@ -95,7 +101,10 @@
    "text": "quiet"
   },
   "turn-on-the-tv": {
-   "text": "Turn on the TV."
+   "text": "Turn on the television.",
+   "variants": [
+    "Turn on the TV."
+   ]
   },
   "come-sit-with-me": {
    "text": "Come, sit with me!"

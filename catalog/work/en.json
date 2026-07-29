@@ -8,7 +8,11 @@
    "text": "job application"
   },
   "cv": {
-   "text": "cv"
+   "text": "curriculum vitae",
+   "variants": [
+    "CV",
+    "resume"
+   ]
   },
   "contract": {
    "text": "contract"

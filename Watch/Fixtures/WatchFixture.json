@@ -19,7 +19,7 @@
       "accepted": ["Spülmaschine"],
       "articleTint": "die",
       "cardId": "fixture-spuelmaschine",
-      "distractors": ["fridge", "waiter", "sofa", "TV"],
+      "distractors": ["fridge", "waiter", "sofa", "television"],
       "due": 1767258000000,
       "femMarker": false,
       "nextRole": "recognize",
@@ -64,7 +64,7 @@
       "femMarker": false,
       "nextRole": "recognize",
       "promptForm": "Fernseher",
-      "sourceText": "TV",
+      "sourceText": "television",
       "stability": 21.0,
       "targetText": "Fernseher"
     }
