@@ -37,6 +37,8 @@ private sealed interface ProduceMode {
     data object Correct : ProduceMode
     data class Typo(val corrected: String) : ProduceMode
     data object Wrong : ProduceMode
+    /** Wrong, but the typed form is another concept's word — the reveal names it. */
+    data class OtherWord(val word: String, val meanings: List<String>) : ProduceMode
     data object SelfGrade : ProduceMode
 }
 
@@ -50,9 +52,12 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
 
     fun check() {
         if (input.isBlank()) return
-        mode = when (val match = model.normalizer?.evaluate(input, card) ?: return) {
+        // why: the catalog grader, not the bare normalizer — a form another
+        // concept owns is that word, not a forgiven slip of this one (kern §6).
+        mode = when (val match = model.produceGrader?.grade(input, card) ?: return) {
             is Match.Exact -> ProduceMode.Correct
             is Match.Typo -> ProduceMode.Typo(match.corrected)
+            is Match.OtherWord -> ProduceMode.OtherWord(match.word, match.meanings)
             is Match.Wrong -> ProduceMode.Wrong
         }
     }
@@ -95,7 +100,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                 when (mode) {
                     ProduceMode.Idle -> check()
                     is ProduceMode.Typo -> model.answerCurrent(Rating.Hard)
-                    ProduceMode.Wrong -> model.answerCurrent(Rating.Again)
+                    ProduceMode.Wrong, is ProduceMode.OtherWord -> model.answerCurrent(Rating.Again)
                     else -> Unit
                 }
             }),
@@ -132,6 +137,21 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                 TargetReveal(card.target, chrome)
                 Button(
                     onClick = { model.answerCurrent(Rating.Hard) },
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Text(chrome.next)
+                }
+            }
+            is ProduceMode.OtherWord -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                // why: same slot as the typo note — both say what became of the answer.
+                Text(
+                    chrome.otherWordNote.format(current.word, current.meanings.joinToString(", ")),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                TargetReveal(card.target, chrome)
+                Button(
+                    onClick = { model.answerCurrent(Rating.Again) },
                     modifier = Modifier.fillMaxWidth(),
                 ) {
                     Text(chrome.next)

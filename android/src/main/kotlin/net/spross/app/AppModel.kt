@@ -28,6 +28,7 @@ import net.spross.kern.model.emojiVisible
 import net.spross.kern.model.presentationRole
 import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.SessionComposer
 import net.spross.kern.store.StoreCodec
 import net.spross.kern.store.StoreFormatException
@@ -74,6 +75,18 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
     var normalizer: AnswerNormalizer? = null
         private set
+
+    /**
+     * Produce grading with the whole join in view: a form the catalog owns
+     * elsewhere is that word, never a typo of this card's answer (kern §6).
+     * Built per grading pass — one pass over the join, only on a check tap.
+     */
+    val produceGrader: CatalogAnswerGrader?
+        get() {
+            val norm = normalizer ?: return null
+            val state = box ?: return null
+            return CatalogAnswerGrader(norm, state.cards.values.toList())
+        }
 
     private fun now(): Long = System.currentTimeMillis()
     private fun tz(): String = TimeZone.getDefault().id

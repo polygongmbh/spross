@@ -26,6 +26,7 @@ data class Chrome(
     val next: String,
     val alsoPrefix: String,
     val typoNote: String,
+    val otherWordNote: String,     // %1$s = the word typed, %2$s = what it means
     val answerPlaceholder: String, // %s = target language name
     val again: String,
     val hard: String,
@@ -64,6 +65,7 @@ data class Chrome(
             next = "Weiter",
             alsoPrefix = "auch:",
             typoNote = "Kleiner Tippfehler – zählt!",
+            otherWordNote = "Übrigens: %1\$s heißt „%2\$s“",
             answerPlaceholder = "In %s …",
             again = "Nochmal",
             hard = "Schwer",
@@ -100,6 +102,7 @@ data class Chrome(
             next = "Next",
             alsoPrefix = "also:",
             typoNote = "Small typo – still counts!",
+            otherWordNote = "By the way: %1\$s means “%2\$s”",
             answerPlaceholder = "In %s …",
             again = "Again",
             hard = "Hard",
