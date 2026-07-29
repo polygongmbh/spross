@@ -60,11 +60,12 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
   two disagreeing, and opening the project rewrites the catalog with dead twins.
   Errors take the same path: `AppModel` reports a `LoadFailure` case, the view
   turns it into `Text`.
-- Area titles come from the catalog per source language; the emoji map stays app-side.
+- Area titles and area emoji both come from the catalog (kern README §8);
+  the app only picks the title for the source language and carries no emoji map of its own.
 
 ## Presentation model in the UI
 
-Roles, synonym rotation, and the emoji matrix are engine rules (kern README §3);
+Roles, synonym rotation, and emoji placement are engine rules (kern README §3);
 the app renders them:
 
 - The role of each review comes from the engine (`presentationRole`),
@@ -77,8 +78,11 @@ the app renders them:
   the reveal shows the source meaning plus the full synonym family ("auch: …").
   The first exposure is no exception: the word is prompted before it is taught,
   so a learner who already knows it gets the moment to recall it —
-  with the emoji above it as the cue (engine matrix; the only recognition prompt that has one).
-- Emoji visibility follows the engine matrix.
+  with the emoji above it as the cue
+  (engine placement rule; the only recognition prompt that carries one).
+- Emoji placement follows the engine: prompt side above the headword, reveal side
+  **below the divider** — the reveal only ever grows the card downward,
+  so nothing already on screen may shift under it.
 - Ambiguous prompts (engine-flagged `Card.promptAmbiguous`, i.e. the target merges two
   source concepts) carry an **area label** above the headword. Produce only — on a
   recognition prompt a cue precise enough to disambiguate would reveal the answer.
@@ -101,6 +105,16 @@ the app renders them:
   ("Übrigens: … heißt …", styled like the typo correction — both explain what became
   of the answer). Such a word never earns typo credit (kern README §6), so two words
   a learner needs told apart can never grade each other correct.
+- **A missed word is written out once before the session moves on.**
+  A reveal followed by a single tap gives a word almost no encoding, which is how it comes
+  back later and passes on being "that new one";
+  missing a word that has not settled (kern README §5) asks for it to be typed, with the
+  answer in view.
+  Encoding only, never a grade: the rating the self-grade buttons already chose is held and
+  applied unchanged, so self-grading still owns the schedule.
+  Only Again takes the path — Easy/Good/Hard advance straight away, so a word already known
+  still costs one tap — the copy is checked by the same typo-tolerant normalizer as a real
+  answer (kern README §6), and skipping is always one tap away.
 - A clean correct answer auto-advances after ~1.2 s; Enter advances when revealed.
 - "Aufdecken" fills the answer field with the correct answer.
 - Answer-colored progress bar: one segment per answer — green right, amber tough, brick wrong.
@@ -112,7 +126,10 @@ the app renders them:
   **concept-denominated** (kern README §4).
 - Sessions are composed, never configured:
   plan from `BoxEngine`, drain loop, extra round, endless mode — semantics in kern README §6.
-  Session end = summary with confetti and streak.
+  Session end = summary with confetti and streak;
+  its "gefestigt" tally counts words that crossed into settled during the run
+  (kern README §5), not a phase edge — with one learning step a word reaches Review while
+  its stability is still tiny.
 
 ## App structure (single screen)
 
@@ -123,7 +140,7 @@ the app renders them:
   areas grouped under their areas.json groups
   (source-language titles, en fallback, manifest order; empty groups drop out);
   rows lead with the TARGET realization; phase/stability, pack-into-box,
-  suspended cards surface for revive; settings (profile, learning-pool size, reset).
+  suspended cards surface for revive; settings (profile, unsettled cap, reset).
 - **Trainers**: registry-driven from kern (registry + templates: kern README §9) —
   the hub hides languages with no trainer content (en unauthored).
   Slot drills are stateless.
@@ -156,8 +173,8 @@ same review UX rules; deltas only where the platform differs:
   instead of iOS's debounce.
 - Typed produce grading maps Exact → Good, Typo → Hard, Wrong → Again;
   "Aufdecken" self-grades — identical to the intent above.
-- Not ported yet: Box browse, trainers, widget, 14-day strip, confetti/haptics;
-  settings = language switch only.
+- Not ported yet: Box browse, trainers, widget, 14-day strip, confetti/haptics,
+  the write-it-out step; settings = language switch only.
 
 ## Watch & widgets (decode-only)
 

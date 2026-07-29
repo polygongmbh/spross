@@ -2,11 +2,20 @@
 
 ## Unreleased
 
-- **Words you learned together stop arriving together**: cards introduced in one sitting kept
-  near-identical due times, so they came back side by side in every session afterwards — and
-  since the catalog teaches related ideas next to each other, *jung* was answered by knowing
-  it comes right before *alt*. Reviews still take the oldest overdue day first, but within a
-  day the order is reshuffled, and reshuffled differently each day.
+- **A word you miss comes back where you can actually recall it**: it used to return a minute
+  later, a handful of cards along, and got through on being recognised as "that new one"
+  rather than on the word and its meaning having bound — and since words learned in one
+  sitting kept near-identical due times, they arrived side by side in every session
+  afterwards, so *jung* was answered by knowing it comes right before *alt*.
+  A missed word is now written out once, with the answer in front of you, and then waits
+  until the end of the session; reviews still take the oldest overdue day first, but within
+  a day their order is reshuffled, differently each day.
+  The picture comes back with it: hidden outright once a word was under way, it was missing
+  from exactly the reviews where a word gets matched on novelty instead of meaning, and it
+  now rides the reveal wherever it cannot be shown before.
+  The box also grows on how loaded it really is rather than on how many words were started —
+  words you answer on sight cost it nothing, so an easy day keeps the way open, while a pile
+  of shaky ones narrows new material to a trickle instead of shutting it off.
 
 ## 2.0.0 — 2026-07-29
 

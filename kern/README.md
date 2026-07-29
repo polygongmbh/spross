@@ -99,15 +99,16 @@ no config flag, no user-facing direction anywhere.
   practice; only TYPED phrase recognition was absurd.
   **Never carries the `promptAmbiguous` area cue**: here the prompt is the target form, so
   any cue strong enough to identify the concept would reveal the answer — the same reason
-  the emoji matrix hides the emoji on recognition measurement reviews. Nothing is lost:
+  the emoji leaves the recognition PROMPT past the first exposure. Nothing is lost:
   recognition is self-graded, so a learner who thinks "sich entspannen", reveals
   "sich ausruhen" and taps Good is doing exactly what self-grading is for.
 - **Role resolution** is a pure render-time function of `(cardId, log.count)`:
   - First exposure (`count == 0`) is ALWAYS recognition — the learner cannot produce a
     word never seen; the target is PROMPTED first (a learner who already knows it deserves
     the moment to recall it) WITH its emoji as the cue, and the reveal teaches the meaning,
-    self-graded. An honest Again lands in the 1 m learning step and returns the same
-    session. (Matches v1's `presentationDirection` first-exposure rule.)
+    self-graded. An honest Again lands in the single learning step (§5), so the word returns
+    at the END of the session — as the typed production attempt below.
+    (Matches v1's `presentationDirection` first-exposure rule.)
   - The second review (`count == 1`) is ALWAYS production — seen once, now attempt it
     (ruling 2026-07-22: "returns the same session as production", both hash parities).
   - From `count == 2` role = parity(`count` + FNV-1a-64(cardId)):
@@ -120,11 +121,18 @@ no config flag, no user-facing direction anywhere.
   Every form gets prompted at zero extra scheduling cost.
   Reveal always shows the full family; the source-side reveal may show source synonyms
   informatively ("Amt / Verwaltung").
-- **Emoji matrix**: visible iff (first exposure) OR (role == Produce ∧ phase == Learning);
-  hidden on recognition measurement reviews (`count > 0` — it depicts the answer)
-  and from Review/Relearning on (v1's hide-after-learning rule).
+- **Emoji placement**: `emojiPlacement(role, settled, reviewCount)` answers which FACE
+  carries the picture, never whether it appears at all.
+  **Prompt** iff (first exposure) OR (role == Produce ∧ the word has not settled, §5) —
+  the two places it supports recall without giving the answer away, since a produce prompt
+  already names the concept in the source language;
+  **Reveal** everywhere else, in every phase.
   The first exposure is the one recognition prompt that carries it, deliberately:
   it is the cue that makes a first recall attempt possible at all.
+  Hiding it outright once a word was learned took it away from exactly the reviews where a
+  word is still matched on novelty rather than on meaning; once the answer is out there is
+  nothing left to leak, and binding the picture to the meaning is what those reviews need.
+  Settledness, not the FSRS phase, is what "still landing" means here.
 - **♀** is a labeled badge, never graded: the production prompt shows source base + badge;
   the recognition reveal decorates the source answer with the badge.
   A base-word answer typed on a feminine produce card grades as typo, not failure
@@ -139,10 +147,10 @@ v1 calibration restored (one schedule per card ⇒ one review touches one card):
 
 | Quantity | Default (all in cards) |
 |---|---|
-| `maxLearning` (cards in Learning phase) | 8 |
+| `maxUnsettled` (active cards that have not settled — §6) | 20 |
 | `sessionCap` / `dueSoftCap` | 30 / 30 |
 | `growthReserve` | ≤ 5 |
-| Relearning-share gate | < 20 % of active, once active ≥ 10 |
+| `Growth.TRICKLE_CARDS` (the floor under the new-word budget) | 2 |
 
 Every user-facing count (due ring, "x neu", active, widget) and `DayStats` field is in
 cards; `DayStats.reviews` = answer events.
@@ -156,17 +164,40 @@ cards; `DayStats.reviews` = answer events.
 - `elapsedDays` = fractional `max(0, (now − lastLog)/86400)`; short-term path < 1.0.
   Copied vectors all review exactly at due where conventions agree; ts-only real-timestamp
   vectors are excluded from the port.
-- Steps are config; **product config = reference defaults**: `learning [1m, 10m]`,
-  `relearning [10m]` — golden vectors run verbatim.
+- Steps are config; the ENGINE defaults stay the reference pair (`learning [1m, 10m]`,
+  `relearning [10m]`) so the golden vectors run verbatim.
+  **The product runs ONE learning step, `[3m]`** (`relearning [10m]` unchanged).
+  Two minute-scale steps put a missed word back in front of the learner half a dozen cards
+  later, where it passes on being recognised as "that new one" rather than on the
+  source↔target pair having bound. With one step the retry lands after everything else in
+  the session — the drain loop only refills when the queue empties — or next sitting if the
+  session is nearly over, and by role resolution (§3) it is the typed production attempt,
+  the first real recall. Past that FSRS decides.
   **No in-session lapse retry** (breadth ruling 2026-07-22): a lapsed review card returns
   after 10 m, typically next session; the drain loop does not wait for it.
   Graduation follows the reference machine (one step later than v1's hand-rolled steps —
   accepted, tested against the pinned minute tables).
+- **Graduated intervals are continuous in the product.** `Fsrs.intervalRawDays` is the
+  fractional interval the model asks for; `FsrsScheduler.graduate` quantizes it to
+  `intervalGranularitySeconds` and floors it at `minimumIntervalSeconds`.
+  Both default to 86_400 s — whole-day rounding is the reference bucket convention, not part
+  of FSRS, and the default keeps the golden vectors on their exact day multiples.
+  The product sets granularity to 1 s, so a 7.6-day interval is scheduled at 7.6 days.
+  The one-day FLOOR is deliberate and stays: bringing a card back inside the same day is
+  what a learning step is for, not what an already-graduated schedule should ask.
 - Desired retention: engine default 0.9 (vector anchor); product `BoxConfig` 0.8, no slider.
   Product maximum interval 365.
 - Leech: lapse counted iff `phase == review && rating == again`; 8 → auto-suspend (per card).
-- **`phraseUnlockStability` = 2.0** (recalibrated: FSRS-6 S0(Good) = 2.3065 crosses at
-  graduation like v1's FSRS-5 3.0 did; S0(Hard) 1.29 doesn't).
+- **`settledStability` = 2.0 days** — THE predicate for "has this word landed"
+  (`Statistics.isSettled`, facade `BoxEngine.isSettled(state, cardId)`): it gates phrase
+  unlock (§6), splits settled from fresh in the progress UI, and picks which support a word
+  gets while it is still on its way in (§3).
+  Settled means Review phase AND stability ≥ the threshold, so a lapse un-settles a card —
+  the point: it needs the support again.
+  Recalibrated for FSRS-6: at retention 0.8 the interval is 3.316 × stability, so
+  S0(Good) = 2.3065 crosses at graduation the way v1's FSRS-5 3.0 did (≈ 7.6 days out,
+  Easy ≈ 27.5) while S0(Hard) = 1.2931 does not — a word answered Good on sight settles on
+  its first answer.
 - Golden vectors copied verbatim from the pinned releases with PROVENANCE (repo/tag/SHA);
   FSRS-6 property tests re-express the v1 property suite. Weight optimization stays out.
 
@@ -178,13 +209,28 @@ statistics, streak forgiveness, endSession fold + 60-day prune, deterministic or
 day-key `yyyy-MM-dd`) with:
 - **Introduction is the card's first answer** (v1 semantics; the unit-era eligibility lag
   and one-per-plan rules are gone with the unit model). `enqueued` holds card ids;
-  enqueued cards lead composition, bypass the health gate, respect the pool throttle,
+  enqueued cards lead composition, bypass the health gate, respect the new-word budget,
   and dequeue at introduction.
   Zero-component phrases follow seed order, never the unlock fast path (v1 rule restated).
+- **The new-word budget measures unsettled LOAD, not headcount**:
+  `Growth.newBudget = max(TRICKLE_CARDS, maxUnsettled − unsettledLoad)`, where
+  `unsettledLoad` counts active cards that have not settled (§5).
+  The old learning pool counted cards in the Learning phase, which measured how many cards
+  were started rather than how much was in flight: eight words the learner already knew
+  filled it exactly as eight that would not stick.
+  Words answered on sight settle at once and now cost the budget nothing, so easy material
+  keeps the way open, while a pile at low stability closes growth down to a trickle rather
+  than dead — a session with nothing new in it is a grind on the very words that are not
+  landing.
+  `maxUnsettled = 0` is the one way to stop growth entirely: it reads as the learner saying
+  "stop", and the trickle must not talk over that.
+- **Health gate = backlog only**: projected post-session backlog stays under `dueSoftCap`.
+  Time debt is a different axis from load; how much material is unsettled is the budget's
+  job, and `gatedNewBudget` is 0 while the gate is shut.
 - **Phrase unlock** reads each component's schedule **by card id** — join- and
   source-independent, so a source switch can never re-lock phrases. Components with no
   TARGET realization are excluded from the gate (v1 unresolved-component semantics).
-  Gate: review phase, not suspended, stability ≥ 2.0.
+  Gate: not suspended, and settled (§5) — the predicate, never a restated threshold.
 - **Due order is day-bucketed, then shuffled**: reviews drain oldest overdue DAY first
   (backlog fairness), but inside a day the order is `fnv1a64("<dueEpochDay>:<fnv1a64(cardId)>")`,
   card id last as the collision tie-break.
@@ -278,7 +324,8 @@ day-key `yyyy-MM-dd`) with:
   making the watch resolve the option side again (the v2 bug's home).
   The phone resolves `nextRole` and the rotated `promptForm` from the log count at build
   time; presentation is the app layer's (`../docs/design.md` §Watch & widgets)
-  and `emoji` is pre-gated by the §3 matrix.
+  and `emoji` is pre-gated to the PROMPT side by §3 — the watch quiz has no reveal face to
+  hang a picture on, so a reveal-side emoji is simply omitted from the entry.
   Ranking is **due-first** (a due card is never evicted by a non-due lower tier), then
   exposure tiers, capped at 60 entries (the ~60 KB `updateApplicationContext` limit).
   `make` lives phone-side; watch stays pure Swift.
@@ -365,8 +412,9 @@ day-key `yyyy-MM-dd`) with:
   simulator run-through. Release archive smoke.
 - Ported suites per the engine scout inventory, with the **FSRS-6 adaptation table**:
   relearning entry = reference 10 m (no in-session retry — drain assertions adapted),
-  learning Hard = 6m at step0 / ×1.5 single-step, new+Again+Good does not graduate
-  (needs a further Good), graduation intervals from FSRS-6 S0, day-one introduces 8 cards;
+  learning Hard = 6m at step0 / ×1.5 single-step, new+Again+Good needs a further Good under
+  the reference two-step config (the product's single step graduates it),
+  graduation intervals from FSRS-6 S0, day one introduces up to the unsettled cap;
   direction-scoped statistics tests are obsolete; v1 MixedDirectionTests port as
   bit-exact `presentationRole` FNV vectors; everything else behavioral ports 1:1.
 - **Catalog tests split three ways, by who owns the expectation.**
@@ -382,7 +430,7 @@ day-key `yyyy-MM-dd`) with:
   field by field — is a change-detector for a copy function, not coverage.
 - New suites: CatalogLintTest (§8), parser fixtures (feminine ♀ fallback, Sie/du variants,
   sparse coverage, en "to "/sw ku-kw prefixes, notes selection),
-  first-exposure-always-recognition + emoji-policy matrix + synonym-rotation coverage,
+  first-exposure-always-recognition + emoji-placement policy + synonym-rotation coverage,
   join-inertness + source-switch round-trip (schedules + enqueued revive; phrases stay
   unlocked), stale-card answer no-op, FSRS-6 golden vectors + properties,
   DST/non-Gregorian day-key vectors, snapshot builders.
@@ -394,6 +442,14 @@ day-key `yyyy-MM-dd`) with:
 - Typed recognition (user ruling 2026-07-22: self-grade only — the panel's paraphrase
   finding stands) and the phrase-recognition exclusion (phrases alternate, self-graded).
 - In-session lapse retry (breadth ruling 2026-07-22: relearning = reference `[10m]`).
+- Two minute-scale learning steps (the reference `[1m, 10m]`): a retry that lands a handful
+  of cards later is answered on novelty, not on the pair — the product runs one `[3m]` step
+  and lets the session's own length do the spacing (§5).
+- The relearning-share sub-gate (< 20 % of active, once active ≥ 10): relearning cards are
+  unsettled by definition, so the load the new-word budget already reads subsumes it (§6);
+  the health gate keeps backlog, which is a different axis.
+- `AnswerStatus.DroppedPoolFull`: the budget never reaches zero on its own, so the
+  answer-time re-check could not fire (`maxUnsettled = 0` refuses at composition).
 - `variantOf` (user ruling 2026-07-22: the 4 near-duplicate phrase twins were unified
   instead — base slug keeps an adapted realization; schema field deleted everywhere).
 - Homonym disambiguation as **content**: a per-realization `sense`/`gloss` string and a
@@ -401,8 +457,8 @@ day-key `yyyy-MM-dd`) with:
   carries it for free, in every language, lint-guaranteed to exist; `sense` would be a new
   authored field for ~9 entries, and `homonymOf` encodes at concept level a fact that is
   per-language (`kupumzika` is ambiguous in sw only) and rots as languages are added.
-  Also rejected: emoji-as-cue (12 of 13 colliding concepts are verbs, which carry no emoji,
-  and the matrix deliberately hides emoji exactly where the ambiguity bites), cluster-wide
+  Also rejected: emoji-as-cue (12 of 13 colliding concepts are verbs, which carry no emoji
+  at all, so the cue is absent exactly where the ambiguity bites), cluster-wide
   grading leniency (accepting any cluster member teaches away the distinction the learner
   is there to acquire; if a same-area cluster ever proves unfixable, revisit as `Typo`,
   never `Exact`), and suppressing/deferring a cluster member (breaks composition

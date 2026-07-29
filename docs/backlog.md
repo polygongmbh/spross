@@ -26,6 +26,13 @@ One line per item, with a file or context pointer, filed under the section it be
   product call pending (budget 0 for sw/uk number drills vs accept).
 - FSRS parameter optimization from review logs —
   enabled by the full per-card logs, unbuilt (kern README §5).
+- Watch multiple-choice distractors rank on `shapeDistance` alone
+  (`kern/src/commonMain/kotlin/net/spross/kern/session/MultipleChoice.kt`):
+  no novelty or recency criterion, so the newest entry can still be the odd one out —
+  the same class of problem the phone's due-order reshuffle fixed, on another surface.
+- Rating labels carry more weight on a first exposure now that Good sends a word about a week
+  out (kern README §5) — the button wording deserves a look
+  (`App/Sources/Design/RatingButtonsView.swift`).
 
 ## Localization
 
