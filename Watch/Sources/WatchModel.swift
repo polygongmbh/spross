@@ -3,19 +3,27 @@ import Observation
 import WidgetKit
 import WatchKit
 
-/// Watch app state: holds the latest phone snapshot and drains it as ONE
-/// graded multiple-choice session — due cards first, then review-ahead. Each
-/// tap is scored from correctness + response time (`WatchGrading`) and queued
-/// to the phone as an FSRS review. No watch-local FSRS — the phone reschedules;
-/// an answered card simply leaves the local due list until the next snapshot.
+/// Watch app state: holds the latest phone snapshot and drains it as a graded
+/// multiple-choice run. Each tap is scored from correctness + response time
+/// (`WatchGrading`) and queued to the phone as an FSRS review. No watch-local
+/// FSRS — the phone reschedules; an answered card simply leaves the local due
+/// list until the next snapshot.
+///
+/// Two runs, one progress indicator each (`WatchRun`): the due batch counts to
+/// an end, free practice recycles and counts the answer streak.
 @MainActor
 @Observable
 final class WatchModel {
 
+    /// Which run is on screen — the due batch (finite, ends in a celebration)
+    /// or free practice (recycles until the user leaves).
+    enum WatchRun { case session, practice }
+
     private(set) var snapshot: WatchSnapshot?
 
-    // MARK: Session state (one graded multiple-choice loop)
+    // MARK: Run state (one graded multiple-choice loop)
     var sessionPresented = false
+    private(set) var run: WatchRun = .session
     private(set) var queue: [String] = []
     private(set) var currentID: String?
     private(set) var currentQuestion: WatchPracticeQuestion?
@@ -23,7 +31,8 @@ final class WatchModel {
     private(set) var selectedIndex: Int?
     private(set) var streak = 0
     private(set) var answeredCount = 0
-    private(set) var reviewTotal = 0
+    /// Cards the due batch set out to answer — the counter's denominator.
+    private(set) var sessionTotal = 0
 
     /// When the current question became visible — the response-time clock.
     private var questionShownAt = Date()
@@ -38,19 +47,21 @@ final class WatchModel {
     func start() {
         #if DEBUG
         // UI-test hooks: `-uitest-snapshot` loads the bundled fixture instead
-        // of stored/synced state; `-uitest-autostart` (or the legacy
-        // `-uitest-practice`) opens the quiz; `-uitest-streak N` presets the
+        // of stored/synced state; `-uitest-autostart` opens the due batch and
+        // `-uitest-practice` free practice; `-uitest-streak N` presets the
         // streak (screenshot verification without a paired phone — simctl
         // cannot tap).
         let arguments = ProcessInfo.processInfo.arguments
         if arguments.contains("-uitest-snapshot") {
             snapshot = Self.loadFixture()
-            if arguments.contains("-uitest-autostart") || arguments.contains("-uitest-practice") {
+            if arguments.contains("-uitest-autostart") {
                 startSession()
-                if let i = arguments.firstIndex(of: "-uitest-streak"), i + 1 < arguments.count,
-                   let n = Int(arguments[i + 1]) {
-                    streak = n
-                }
+            } else if arguments.contains("-uitest-practice") {
+                startPractice()
+            }
+            if sessionPresented, let i = arguments.firstIndex(of: "-uitest-streak"),
+               i + 1 < arguments.count, let n = Int(arguments[i + 1]) {
+                streak = n
             }
             return
         }
@@ -80,7 +91,8 @@ final class WatchModel {
         if sessionPresented {
             // why: mid-session the queue must not resurrect cards the user just
             // answered (their events may not be applied phone-side yet).
-            let answered = Set(incoming.answeredCardIDs)
+            // Practice is exempt: replaying answered cards is what it does.
+            let answered = run == .session ? Set(incoming.answeredCardIDs) : []
             let present = Set(incoming.entries.map(\.cardId))
             queue = queue.filter { present.contains($0) && !answered.contains($0) }
             if let id = currentID, !present.contains(id) {
@@ -103,23 +115,40 @@ final class WatchModel {
         currentID.flatMap { snapshot?.entry(id: $0) }
     }
 
-    /// Enough on-watch vocab to build a multiple-choice question AND something
-    /// to answer (due now or reviewable ahead).
-    var canStart: Bool {
-        guard let snapshot, snapshot.entries.count >= 2 else { return false }
-        return dueCount > 0 || !snapshot.reviewAheadEntries(now: Date()).isEmpty
+    /// Enough on-watch vocab to build a multiple-choice question — the floor
+    /// under both runs.
+    private var hasPool: Bool { (snapshot?.entries.count ?? 0) >= 2 }
+
+    /// A due batch to work through.
+    var canStart: Bool { hasPool && dueCount > 0 }
+
+    /// Free practice needs no due card — it draws on the whole snapshot.
+    var canPractice: Bool { hasPool }
+
+    // MARK: - Runs
+
+    /// The due batch: exactly the cards due now, so its counter names a goal
+    /// that can be reached. Review-ahead is free practice's job, not this run's.
+    func startSession() {
+        guard let snapshot, hasPool else { return }
+        queue = snapshot.dueEntries(now: Date()).map(\.cardId)
+        guard !queue.isEmpty else { return }
+        sessionTotal = queue.count
+        begin(.session)
     }
 
-    // MARK: - Session
-
-    func startSession() {
-        guard let snapshot, snapshot.entries.count >= 2 else { return }
-        let due = snapshot.dueEntries(now: Date()).map(\.cardId)
+    /// Free practice: not-yet-due cards first (soonest first), then recycling —
+    /// no total, so the streak carries the progress indicator instead.
+    func startPractice() {
+        guard let snapshot, hasPool else { return }
         let ahead = snapshot.reviewAheadEntries(now: Date()).map(\.cardId)
-        queue = due + ahead
-        // Title denominator tracks the due portion; a pure review-ahead session
-        // (nothing due) falls back to the whole queue so it isn't "N/0".
-        reviewTotal = due.isEmpty ? queue.count : due.count
+        queue = ahead.isEmpty ? shuffledPool(avoiding: nil) : ahead
+        sessionTotal = 0
+        begin(.practice)
+    }
+
+    private func begin(_ run: WatchRun) {
+        self.run = run
         answeredCount = 0
         streak = 0
         currentID = queue.first
@@ -146,7 +175,9 @@ final class WatchModel {
                                          optionChars: optionChars)
 
         connectivity.send(WatchAnswerEvent(cardId: id, rating: rating, date: Date()))
-        snap.answeredCardIDs.append(id)
+        // Every answer is an FSRS review, second lap included; the local list is
+        // a set of ids the due count must skip, so a repeat adds nothing to it.
+        if !snap.answeredCardIDs.contains(id) { snap.answeredCardIDs.append(id) }
         snapshot = snap
         WatchSnapshotStore.save(snap)
         WidgetCenter.shared.reloadAllTimelines()
@@ -172,11 +203,31 @@ final class WatchModel {
 
     private func advance() {
         autoAdvance?.cancel()
-        if let id = currentID, let index = queue.firstIndex(of: id) {
+        let previous = currentID
+        if let id = previous, let index = queue.firstIndex(of: id) {
             queue.remove(at: index)
+        }
+        // why: practice has no end — a drained queue starts another lap over the
+        // whole snapshot, so the run only stops when the user leaves.
+        if queue.isEmpty, run == .practice {
+            queue = shuffledPool(avoiding: previous)
+            // The snapshot emptied under a running lap — nothing left to ask.
+            guard !queue.isEmpty else { return endSession() }
         }
         currentID = queue.first
         makeQuestionForCurrent()
+    }
+
+    /// The whole snapshot in fresh order for the next practice lap. `avoiding`
+    /// is the card just answered — rotated off the head so no card asks twice
+    /// in a row across the lap edge.
+    private func shuffledPool(avoiding previous: String?) -> [String] {
+        guard let snapshot else { return [] }
+        var ids = snapshot.entries.map(\.cardId).shuffled(using: &rng)
+        if ids.count > 1, ids.first == previous {
+            ids.append(ids.removeFirst())
+        }
+        return ids
     }
 
     /// Build the question for the current card and (re)start the response clock.

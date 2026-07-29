@@ -4,6 +4,8 @@ import SwiftUI
 /// the due queue, then review-ahead. Correctness + response time derive the
 /// FSRS rating (`WatchGrading`) — no self-grading. Instant feedback (green
 /// right / amber wrong — never red), then auto-advance.
+/// One progress indicator, in the title: the due batch counts to its end,
+/// free practice shows the answer streak (having no total to count toward).
 /// - recognize: prompt the target `promptForm` (article-tinted), tap the
 ///   matching source meaning.
 /// - produce:   prompt the source meaning (+ ♀ badge), tap the target word.
@@ -14,10 +16,21 @@ struct WatchQuizView: View {
         Group {
             if let question = model.currentQuestion {
                 quiz(question)
-                    .navigationTitle("\(min(model.answeredCount + 1, max(model.reviewTotal, 1)))/\(model.reviewTotal)")
+                    .navigationTitle(progressTitle)
             } else {
                 completion
             }
+        }
+    }
+
+    /// The one indicator: "3/12" in the due batch, "🔥3" in practice — and a
+    /// bare flame at streak 0, because a "🔥0" after a miss reads as a scolding.
+    private var progressTitle: String {
+        switch model.run {
+        case .session:
+            return "\(min(model.answeredCount + 1, max(model.sessionTotal, 1)))/\(model.sessionTotal)"
+        case .practice:
+            return model.streak > 0 ? "🔥\(model.streak)" : "🔥"
         }
     }
 
@@ -26,24 +39,10 @@ struct WatchQuizView: View {
     private static let columns = [GridItem(.flexible(), spacing: 6),
                                   GridItem(.flexible(), spacing: 6)]
 
-    /// Longest prompt that still leaves room for the inline streak; longer
-    /// words simply drop it rather than shrink or collide.
-    private static let streakPromptLimit = 12
-
     private func quiz(_ question: WatchPracticeQuestion) -> some View {
         VStack(spacing: 8) {
-            // why: streak floats at the word's trailing edge (costs no vertical
-            // space, so the word stays big) and is hidden for long words where
-            // it would collide.
             prompt(question.promptEntry)
                 .frame(maxWidth: .infinity)
-                .overlay(alignment: .trailing) {
-                    if model.streak > 0, promptLength(question.promptEntry) <= Self.streakPromptLimit {
-                        Text("🔥\(model.streak)")
-                            .font(.system(.caption, design: .rounded, weight: .bold))
-                            .foregroundStyle(Color.wlAccent)
-                    }
-                }
             // why: 2×2 grid instead of a tall list — the whole round fits on
             // screen without scrolling.
             LazyVGrid(columns: Self.columns, spacing: 6) {
@@ -86,15 +85,6 @@ struct WatchQuizView: View {
         }
         return Text("\(tint) ").foregroundStyle(Color.wlTextSecondary)
             + Text(form).foregroundStyle(WL.articleColor(tint))
-    }
-
-    /// Character count of the prompt as shown, per role.
-    private func promptLength(_ entry: WatchSnapshot.Entry) -> Int {
-        if entry.isRecognize {
-            return [entry.articleTint, entry.promptForm].compactMap { $0 }
-                .joined(separator: " ").count
-        }
-        return entry.sourceText.count + (entry.femMarker ? 2 : 0)
     }
 
     // MARK: - Options

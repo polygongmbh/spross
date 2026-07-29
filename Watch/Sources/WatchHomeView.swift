@@ -58,7 +58,7 @@ struct WatchHomeView: View {
         }
     }
 
-    /// Nothing due — offer review-ahead practice when there is vocab to review.
+    /// Nothing due — offer free practice, which recycles the whole snapshot.
     private var restState: some View {
         VStack(spacing: 8) {
             Text("Alles sitzt 🎉")
@@ -68,8 +68,8 @@ struct WatchHomeView: View {
                  : "Morgen: frei")
                 .font(.system(.footnote, design: .rounded))
                 .foregroundStyle(Color.wlTextSecondary)
-            if model.canStart {
-                Button { model.startSession() } label: {
+            if model.canPractice {
+                Button { model.startPractice() } label: {
                     Text("Üben")
                         .font(.system(.headline, design: .rounded, weight: .bold))
                         .foregroundStyle(.black)
