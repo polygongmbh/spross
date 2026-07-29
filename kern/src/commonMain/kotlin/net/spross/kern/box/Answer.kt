@@ -52,9 +52,10 @@ internal object Answering {
         }
     }
 
-    // why: eligibility and the pool budget are re-checked at answer time (plans
-    // outlive phase changes and may straddle midnight) — composition-only
-    // enforcement would let a stale plan introduce a still-locked phrase.
+    // why: eligibility is re-checked at answer time (plans outlive phase changes
+    // and may straddle midnight) — composition-only enforcement would let a
+    // stale plan introduce a still-locked phrase. There is no budget re-check:
+    // the new-word budget is a soft figure that never reaches zero (Growth.newBudget).
     private fun introduce(
         state: BoxState,
         card: Card,
@@ -67,9 +68,6 @@ internal object Answering {
     ): AnswerOutcome {
         if (!Growth.isIntroducible(state, card)) {
             return AnswerOutcome(state, AnswerStatus.DroppedIneligible)
-        }
-        if (Growth.learningPoolBudget(state) <= 0) {
-            return AnswerOutcome(state, AnswerStatus.DroppedPoolFull)
         }
         val outcome = scheduler.review(SchedulerState(), 0.0, rating)
         val base = existing ?: CardScheduling(cardId = card.id, addedAt = now)

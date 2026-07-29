@@ -13,8 +13,8 @@ class SessionComposerTests {
     private val now = Box.day1
 
     /** 40 review-phase cards with staggered past dues + 10 untouched words. */
-    private fun backloggedState(maxLearning: Int = 8): BoxState {
-        var state = Box.state((1..50).map { Box.word(it) }, Box.config(maxLearning = maxLearning))
+    private fun backloggedState(maxUnsettled: Int = 8): BoxState {
+        var state = Box.state((1..50).map { Box.word(it) }, Box.config(maxUnsettled = maxUnsettled))
         for (n in 1..40) {
             val id = "w" + n.toString().padStart(2, '0')
             state = Box.inject(
@@ -54,8 +54,8 @@ class SessionComposerTests {
 
     @Test
     fun noReservationWithoutNewWork() {
-        // maxLearning 0 → no growth budget and nothing enqueued → reviews fill the cap.
-        val plan = SessionComposer.composeSession(backloggedState(maxLearning = 0), now)
+        // cap 0 → growth switched off entirely and nothing enqueued → reviews fill the cap.
+        val plan = SessionComposer.composeSession(backloggedState(maxUnsettled = 0), now)
         assertEquals(30, plan.reviews.size)
         assertTrue(plan.newCards.isEmpty())
         assertTrue(plan.unlockedPhrases.isEmpty())
@@ -63,7 +63,7 @@ class SessionComposerTests {
 
     @Test
     fun newCardsNeverExceedRemainingSessionCapacity() {
-        var state = Box.state((1..40).map { Box.word(it) }, Box.config(maxLearning = 20))
+        var state = Box.state((1..40).map { Box.word(it) }, Box.config(maxUnsettled = 20))
         for (n in 1..28) {
             val id = "w" + n.toString().padStart(2, '0')
             state = Box.inject(
@@ -90,7 +90,7 @@ class SessionComposerTests {
 
     @Test
     fun drainLoopScenarioFailedCardsCycleUntilNothingDue() {
-        var state = Box.state(listOf(Box.word(1), Box.word(2)), Box.config(maxLearning = 2))
+        var state = Box.state(listOf(Box.word(1), Box.word(2)), Box.config(maxUnsettled = 2))
 
         // Introduce both; w01 fails, w02 passes (learning steps [1m, 10m]).
         state = Box.answered(state, "w01", Rating.Again, now)

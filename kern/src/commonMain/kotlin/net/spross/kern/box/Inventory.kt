@@ -64,10 +64,4 @@ internal object Inventory {
         { fnv1a64("${dueEpochDay(it)}:${fnv1a64(it.cardId)}") },
         { it.cardId },
     )
-
-    /** Cards holding a learning-pool slot: joined, active, Learning phase. */
-    fun cardsInLearning(state: BoxState): Set<String> =
-        active(state)
-            .filter { it.phase == CardPhase.Learning }
-            .mapTo(mutableSetOf()) { it.cardId }
 }

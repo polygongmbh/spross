@@ -66,7 +66,7 @@ class StoreCodecTests {
 
     private fun doc(scheduling: String = "", schemaVersion: Int = 1, source: String = "de"): String =
         """{"config":{"desiredRetention":0.8,"dueSoftCap":30,"learningStepsSeconds":[60,600],""" +
-            """"maxLearning":8,"maximumIntervalDays":365,""" +
+            """"maximumIntervalDays":365,""" +
             """"relearningStepsSeconds":[600],"sessionCap":30},"dailyStats":{},"enqueued":[],""" +
             """"newIntroduced":{},"scheduling":{$scheduling},"schemaVersion":$schemaVersion,""" +
             """"source":"$source","target":"uk"}"""

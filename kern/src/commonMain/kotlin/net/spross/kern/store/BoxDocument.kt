@@ -31,7 +31,7 @@ internal data class BoxDocument(
 
 @Serializable
 internal data class ConfigDto(
-    val maxLearning: Int,
+    val maxUnsettled: Int = 20,
     val sessionCap: Int,
     val dueSoftCap: Int,
     val desiredRetention: Double,
@@ -83,7 +83,7 @@ internal fun boxDocument(state: BoxState): BoxDocument = BoxDocument(
 )
 
 private fun configDto(config: BoxConfig): ConfigDto = ConfigDto(
-    maxLearning = config.maxLearning,
+    maxUnsettled = config.maxUnsettled,
     sessionCap = config.sessionCap,
     dueSoftCap = config.dueSoftCap,
     desiredRetention = config.desiredRetention,
@@ -138,7 +138,7 @@ internal fun BoxDocument.toDecoded(): DecodedBox {
 }
 
 private fun ConfigDto.toDomain(): BoxConfig = BoxConfig(
-    maxLearning = maxLearning,
+    maxUnsettled = maxUnsettled,
     sessionCap = sessionCap,
     dueSoftCap = dueSoftCap,
     desiredRetention = desiredRetention,

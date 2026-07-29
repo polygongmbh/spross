@@ -18,7 +18,7 @@ data class BoxStatistics(
     val dueCount: Int,
     /** Cards whose schedule is suspended (out of rotation). */
     val suspendedCount: Int,
-    /** Cards that could enter the pool now; 0 when the health gate is closed. */
+    /** New words that could enter now; 0 when the health gate is closed. */
     val newSlotsAvailable: Int,
     /** Consecutive days with reviews > 0; one missed day is forgiven. */
     val streak: Int,

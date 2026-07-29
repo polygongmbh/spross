@@ -12,7 +12,7 @@ class ModelDefaultsTest {
     @Test
     fun boxConfigProductDefaults() {
         val config = BoxConfig()
-        assertEquals(8, config.maxLearning)
+        assertEquals(20, config.maxUnsettled)
         assertEquals(30, config.sessionCap)
         assertEquals(30, config.dueSoftCap)
         assertEquals(0.8, config.desiredRetention)

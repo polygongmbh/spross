@@ -6,23 +6,27 @@ import kotlin.test.assertTrue
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Rating
 
-/** Growth: pool budget, health gate, enqueue — everything denominated in cards. */
+/** Growth: new-word budget, health gate, enqueue — everything denominated in cards. */
 class BoxGrowthTests {
     private val now = Box.day1
 
     @Test
-    fun dayOneBootstrapFillsThePool() {
-        val state = Box.state((1..10).map { Box.word(it) }, Box.config(maxLearning = 5))
+    fun dayOneBootstrapSpendsTheWholeBudget() {
+        val state = Box.state((1..10).map { Box.word(it) }, Box.config(maxUnsettled = 5))
         val plan = Box.candidates(state)
         assertTrue(plan.unlockedPhrases.isEmpty())
         assertEquals((1..5).map { "w0$it" }, plan.newCards)
     }
 
-    // v1 calibration restored: day one introduces 8 cards under the default config
-    // (synonyms rotate presentations, they never multiply schedules).
+    // The cap counts what has NOT settled, so a day of words you already knew
+    // costs the box nothing and the way stays open — the point of measuring
+    // load rather than headcount.
     @Test
-    fun dayOneIntroducesEightCards() {
-        var state = Box.state((1..20).map { Box.word(it, synonyms = listOf("s$it")) })
+    fun dayOneIntroducesUpToTheUnsettledCap() {
+        var state = Box.state(
+            (1..20).map { Box.word(it, synonyms = listOf("s$it")) },
+            Box.config(maxUnsettled = 8),
+        )
         val plan = Box.candidates(state)
         assertEquals((1..8).map { "w0$it" }, plan.newCards)
 
@@ -31,51 +35,48 @@ class BoxGrowthTests {
         }
         assertEquals(8, state.newIntroduced["2026-07-01"])
         assertEquals(8, BoxEngine.statistics(state, now, Box.TZ).activeCount)
-        val ninth = BoxEngine.answer(state, "w09", Rating.Good, now, Box.TZ)
-        assertEquals(AnswerStatus.DroppedPoolFull, ninth.status)
     }
 
     @Test
-    fun relearningShareGateBlocksAtTwentyPercentOfActiveCards() {
-        var state = Box.state((1..12).map { Box.word(it) })
+    fun settledWordsDoNotConsumeTheBudget() {
+        var state = Box.state((1..12).map { Box.word(it) }, Box.config(maxUnsettled = 4))
+        val past = Box.plusDays(now, -10.0)
         val future = Box.plusDays(now, 5.0)
-        val past = Box.plusDays(now, -1.0)
-        for (n in 1..8) {
-            state = Box.inject(state, Box.sched("w0$n", dueMillis = future, lastReviewMillis = past))
-        }
-        for (n in 9..10) {
+        for (n in 1..6) {
             state = Box.inject(
                 state,
-                Box.sched("w" + n.toString().padStart(2, '0'), phase = CardPhase.Relearning, dueMillis = future, lastReviewMillis = past),
+                Box.sched("w0$n", stability = 9.0, dueMillis = future, lastReviewMillis = past),
             )
         }
-        // 2 of 10 active cards relearning = 20% → gate closed
-        val blocked = Box.candidates(state)
-        assertTrue(blocked.newCards.isEmpty())
-        assertTrue(blocked.unlockedPhrases.isEmpty())
-        assertEquals(0, BoxEngine.statistics(state, now, Box.TZ).newSlotsAvailable)
-
-        // Drop to 2 of 11 (18%) → gate open; seed-order growth resumes.
-        val healed = Box.inject(state, Box.sched("w11", dueMillis = future, lastReviewMillis = past))
-        assertEquals(listOf("w12"), Box.candidates(healed).newCards)
+        assertEquals(0, Growth.unsettledLoad(state))
+        assertEquals(4, Growth.newBudget(state))
     }
 
+    // Relearning cards are unsettled by definition, so a box full of them throttles
+    // growth on its own — what the old relearning-share sub-gate approximated.
     @Test
-    fun relearningSubGatePassesBelowTenActiveCards() {
-        var state = Box.state((1..8).map { Box.word(it) })
-        val future = Box.plusDays(now, 5.0)
+    fun unsettledWordsCloseGrowthDownToTheTrickle() {
+        var state = Box.state((1..12).map { Box.word(it) }, Box.config(maxUnsettled = 8))
         val past = Box.plusDays(now, -1.0)
-        for (n in 1..2) {
+        val future = Box.plusDays(now, 5.0)
+        for (n in 1..3) {
             state = Box.inject(
                 state,
                 Box.sched("w0$n", phase = CardPhase.Relearning, dueMillis = future, lastReviewMillis = past),
             )
         }
-        for (n in 3..5) {
-            state = Box.inject(state, Box.sched("w0$n", dueMillis = future, lastReviewMillis = past))
+        assertEquals(3, Growth.unsettledLoad(state))
+        assertEquals(5, Growth.newBudget(state))
+
+        for (n in 4..8) {
+            state = Box.inject(
+                state,
+                Box.sched("w0$n", phase = CardPhase.Relearning, dueMillis = future, lastReviewMillis = past),
+            )
         }
-        // 2 of 5 relearning = 40%, but < 10 active cards → still introduces.
-        assertEquals((6..8).map { "w0$it" }, Box.candidates(state).newCards)
+        // At the cap growth never stops dead: a trickle keeps every session varied.
+        assertEquals(Growth.TRICKLE_CARDS, Growth.newBudget(state))
+        assertEquals(Growth.TRICKLE_CARDS, Box.candidates(state).newCards.size)
     }
 
     @Test
@@ -95,7 +96,7 @@ class BoxGrowthTests {
 
     @Test
     fun budgetTracksLearningLoadAcrossRecomposition() {
-        var state = Box.state((1..10).map { Box.word(it) }, Box.config(maxLearning = 5))
+        var state = Box.state((1..10).map { Box.word(it) }, Box.config(maxUnsettled = 5))
         val plan = Box.candidates(state)
         assertEquals(5, plan.newCards.size)
 
@@ -107,21 +108,27 @@ class BoxGrowthTests {
         for (id in Box.candidates(state).newCards) {
             state = Box.answered(state, id, Rating.Good, now)
         }
-        assertTrue(Box.candidates(state).newCards.isEmpty()) // pool full: 5 cards in learning
+        // At the cap the trickle keeps flowing rather than stopping dead.
+        assertEquals(Growth.TRICKLE_CARDS, Box.candidates(state).newCards.size)
     }
 
     @Test
-    fun poolRefillsOnGraduation() {
-        var state = Box.state((1..10).map { Box.word(it) }, Box.config(maxLearning = 3))
-        for (n in 1..3) {
+    fun budgetRecoversAsWordsSettle() {
+        var state = Box.state((1..14).map { Box.word(it) }, Box.config(maxUnsettled = 10))
+        for (n in 1..9) {
             state = Box.answered(state, "w0$n", Rating.Good, now)
         }
-        assertTrue(Box.candidates(state).newCards.isEmpty())
+        // 9 words still on their way in → down to the trickle.
+        assertEquals(9, Growth.unsettledLoad(state))
+        assertEquals(Growth.TRICKLE_CARDS, Growth.newBudget(state))
 
-        // Graduating w01 frees a slot; the next seed-order card fills it.
+        // Their second Good settles them, and the budget opens back up.
         val step = Box.plusSeconds(now, 700)
-        state = Box.answered(state, "w01", Rating.Good, step)
-        assertEquals(listOf("w04"), Box.candidates(state, nowMillis = step).newCards)
+        for (n in 1..3) {
+            state = Box.answered(state, "w0$n", Rating.Good, step)
+        }
+        assertEquals(6, Growth.unsettledLoad(state))
+        assertEquals(4, Growth.newBudget(state))
     }
 
     @Test
@@ -135,7 +142,7 @@ class BoxGrowthTests {
 
     @Test
     fun enqueuedLeadWithinBudgetAndPhrasePullsComponentsFirst() {
-        var state = Box.state((1..10).map { Box.word(it) }, Box.config(maxLearning = 5))
+        var state = Box.state((1..10).map { Box.word(it) }, Box.config(maxUnsettled = 5))
         state = BoxEngine.enqueue(state, listOf("w07"))
         assertEquals(
             listOf("w07", "w01", "w02", "w03", "w04"),
@@ -144,12 +151,12 @@ class BoxGrowthTests {
 
         var withPhrase = Box.state(
             (1..6).map { Box.word(it) } + Box.phrase("p1", components = listOf("w05", "w06")),
-            Box.config(maxLearning = 5),
+            Box.config(maxUnsettled = 5),
         )
         withPhrase = BoxEngine.enqueue(withPhrase, listOf("p1"))
         assertEquals(listOf("w05", "w06", "p1"), withPhrase.enqueued)
         // Locked phrase never enters, even enqueued; components lead, then automatic
-        // growth fills the rest of the pool budget.
+        // growth fills the rest of the budget.
         assertEquals(
             listOf("w05", "w06", "w01", "w02", "w03"),
             Box.candidates(withPhrase).newCards,
@@ -158,14 +165,15 @@ class BoxGrowthTests {
 
     @Test
     fun enqueuedRespectLoadThrottlePackDripsIn() {
-        var state = Box.state((1..10).map { Box.word(it) }, Box.config(maxLearning = 2))
+        var state = Box.state((1..10).map { Box.word(it) }, Box.config(maxUnsettled = 2))
         state = BoxEngine.enqueue(state, listOf("w06", "w07", "w08"))
         assertEquals(listOf("w06", "w07"), Box.candidates(state).newCards)
 
         state = Box.answered(state, "w06", Rating.Good, now)
         state = Box.answered(state, "w07", Rating.Good, now)
-        assertTrue(Box.candidates(state).newCards.isEmpty())
-        assertEquals(listOf("w08"), state.enqueued) // still waiting for a slot
+        // At the cap the pack keeps dripping at the trickle rate, w08 first.
+        assertEquals(listOf("w08"), state.enqueued)
+        assertEquals("w08", Box.candidates(state).newCards.first())
     }
 
     @Test

@@ -82,7 +82,7 @@ extension BoxConfig {
     /// Product calibration (contract §4/§5) — Kotlin default arguments don't
     /// cross the ObjC boundary, so the values are restated once, here.
     static func product() -> BoxConfig {
-        BoxConfig(maxLearning: 8,
+        BoxConfig(maxUnsettled: 20,
                   sessionCap: 30,
                   dueSoftCap: 30,
                   desiredRetention: 0.8,
@@ -92,8 +92,8 @@ extension BoxConfig {
                   relearningStepsSeconds: [KotlinLong(longLong: 600)])
     }
 
-    func with(maxLearning: Int) -> BoxConfig {
-        doCopy(maxLearning: Int32(maxLearning),
+    func with(maxUnsettled: Int) -> BoxConfig {
+        doCopy(maxUnsettled: Int32(maxUnsettled),
                sessionCap: sessionCap,
                dueSoftCap: dueSoftCap,
                desiredRetention: desiredRetention,

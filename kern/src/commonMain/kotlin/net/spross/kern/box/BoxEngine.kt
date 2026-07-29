@@ -34,7 +34,7 @@ object BoxEngine {
      * its missing (unscheduled) components ahead of it. Unknown/non-joining ids,
      * already-scheduled cards, and duplicates are skipped. Enqueued cards lead
      * composition and bypass the health gate, but respect the load throttle: a pack
-     * enrolls and drips in at the pool rate, it is not dumped at once.
+     * enrolls and drips in at the growth rate, it is not dumped at once.
      */
     fun enqueue(state: BoxState, cardIds: List<String>): BoxState {
         val queued = state.enqueued.toMutableList()
@@ -65,8 +65,8 @@ object BoxEngine {
     /**
      * Apply one answer to a card. Introduction = the card's first answer: creates its
      * schedule, counts it introduced, and dequeues it. Introductions re-check
-     * eligibility and the pool budget at answer time ([AnswerStatus.DroppedIneligible]
-     * / [AnswerStatus.DroppedPoolFull]) — plans outlive phase changes. Review-phase
+     * eligibility at answer time ([AnswerStatus.DroppedIneligible]) — plans
+     * outlive phase changes. Review-phase
      * Again answers count lapses; 8 lapses auto-suspend the card (leech). Non-joining
      * or unknown ids are a defined no-op ([AnswerStatus.StaleCard]).
      */

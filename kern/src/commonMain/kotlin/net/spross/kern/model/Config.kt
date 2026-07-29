@@ -5,8 +5,12 @@ package net.spross.kern.model
  * count is denominated in CARDS).
  */
 data class BoxConfig(
-    /** Target size of the learning pool, in cards in Learning phase. */
-    val maxLearning: Int = 8,
+    /**
+     * How many words may be in flight at once, in cards that have not sat down
+     * (see [net.spross.kern.box.Growth.newBudget]). Words answered on sight
+     * settle immediately and never count against it.
+     */
+    val maxUnsettled: Int = 20,
     /** Session size in cards. */
     val sessionCap: Int = 30,
     /** Backlog health threshold in cards. */

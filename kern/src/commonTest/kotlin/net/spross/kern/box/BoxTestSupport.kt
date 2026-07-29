@@ -58,8 +58,8 @@ internal object Box {
         promptFeminineMarker = false,
     )
 
-    fun config(maxLearning: Int = 8, dueSoftCap: Int = 30, sessionCap: Int = 30): BoxConfig =
-        BoxConfig(maxLearning = maxLearning, dueSoftCap = dueSoftCap, sessionCap = sessionCap)
+    fun config(maxUnsettled: Int = 20, dueSoftCap: Int = 30, sessionCap: Int = 30): BoxConfig =
+        BoxConfig(maxUnsettled = maxUnsettled, dueSoftCap = dueSoftCap, sessionCap = sessionCap)
 
     val stamp = JoinStamp("de", "sw", "fixture")
 
@@ -108,7 +108,7 @@ internal object Box {
         capacity: Int = state.config.sessionCap,
     ): NewCandidates = Growth.newCandidates(
         state,
-        budget = Growth.learningPoolBudget(state),
+        budget = Growth.newBudget(state),
         gateOpen = Growth.healthGateOpen(state, nowMillis),
         capacity = capacity,
     )

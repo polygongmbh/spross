@@ -267,9 +267,9 @@ final class AppModel {
 
     // MARK: - Config (persisted inside BoxState.config)
 
-    func setMaxLearning(_ count: Int) {
-        let clamped = max(0, min(30, count))
-        mutate { $0 = $0.with(config: $0.config.with(maxLearning: clamped)) }
+    func setMaxUnsettled(_ count: Int) {
+        let clamped = max(0, min(60, count))
+        mutate { $0 = $0.with(config: $0.config.with(maxUnsettled: clamped)) }
     }
 
     // MARK: - Persistence & stats

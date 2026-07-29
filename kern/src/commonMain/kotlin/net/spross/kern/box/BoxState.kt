@@ -33,8 +33,6 @@ enum class AnswerStatus {
     Applied,
     /** Unknown or non-joining card id — a defined no-op the UI skips past. */
     StaleCard,
-    /** Introduction refused: the learning pool is full (defensive re-check). */
-    DroppedPoolFull,
     /**
      * Introduction refused: the card is not introducible under the current state
      * (locked phrase) — defensive re-check; plans outlive phase changes.

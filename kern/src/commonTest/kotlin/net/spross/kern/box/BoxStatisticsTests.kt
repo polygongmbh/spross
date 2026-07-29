@@ -70,7 +70,7 @@ class BoxStatisticsTests {
         assertEquals(2, stats.activeCount)
         assertEquals(1, stats.dueCount)
         assertEquals(1, stats.suspendedCount)
-        assertEquals(8, stats.newSlotsAvailable) // empty learning pool, default maxLearning
+        assertEquals(20, stats.newSlotsAvailable) // nothing unsettled, default cap
     }
 
     @Test

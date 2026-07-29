@@ -23,18 +23,18 @@ object SessionComposer {
     /**
      * Today's plan: due cards oldest-first (ties by id), review slots capped at
      * `sessionCap − growthReserve`, then new candidates fill the remaining capacity —
-     * enqueued cards lead (health-gate bypass, pool-throttled), unlocked phrases
+     * enqueued cards lead (health-gate bypass, budget-throttled), unlocked phrases
      * next, then seed-order cards.
      */
     fun composeSession(state: BoxState, nowEpochMillis: Long): SessionPlan {
         val cap = state.config.sessionCap
         val due = Inventory.due(state, nowEpochMillis)
-        val loadBudget = Growth.learningPoolBudget(state)
+        val loadBudget = Growth.newBudget(state)
         val gateOpen = Growth.healthGateOpen(state, nowEpochMillis)
         val autoBudget = if (gateOpen) loadBudget else 0
 
         // Reserve headroom only for new work that will actually appear: automatic
-        // cards (health-gated) or enqueued ones (within the pool throttle).
+        // cards (health-gated) or enqueued ones (within the new-word budget).
         // A closed gate with nothing packed reserves nothing.
         val enqueuedReady = min(Growth.enqueuedEligible(state).size, loadBudget)
         val growthReserve = min(max(autoBudget, enqueuedReady), GROWTH_RESERVE_CARDS)
@@ -56,7 +56,7 @@ object SessionComposer {
 
     /**
      * On-demand extra round (user agency): everything due, then enqueued cards
-     * within the pool budget (health-gate bypass), then review-ahead by soonest due so
+     * within the new-word budget (health-gate bypass), then review-ahead by soonest due so
      * the round is never empty while the box holds active cards — early reviews are
      * honest FSRS reviews (short elapsed → small stability gain). NO automatic
      * seed-order growth: unrequested growth stays governed by the daily budget and
@@ -66,7 +66,7 @@ object SessionComposer {
         val cap = state.config.sessionCap
         val due = Inventory.due(state, nowEpochMillis)
         val enqueuedNew = Growth.enqueuedEligible(state)
-            .take(Growth.learningPoolBudget(state))
+            .take(Growth.newBudget(state))
 
         val dueCards = due.mapTo(mutableSetOf()) { it.cardId }
         val remaining = max(0, cap - due.size - enqueuedNew.size)
@@ -85,7 +85,7 @@ object SessionComposer {
 
     /**
      * Endless-practice refill: due cards (oldest first) plus new candidates within the
-     * pool budget and health gate. Nothing is ever pulled ahead of its due time —
+     * new-word budget and health gate. Nothing is ever pulled ahead of its due time —
      * spacing is preserved, and an empty plan legitimately means "come back later".
      */
     fun composeEndless(state: BoxState, nowEpochMillis: Long): SessionPlan {
@@ -93,7 +93,7 @@ object SessionComposer {
         val due = Inventory.due(state, nowEpochMillis).take(cap)
         val candidates = Growth.newCandidates(
             state,
-            budget = Growth.learningPoolBudget(state),
+            budget = Growth.newBudget(state),
             gateOpen = Growth.healthGateOpen(state, nowEpochMillis),
             capacity = max(0, cap - due.size),
         )

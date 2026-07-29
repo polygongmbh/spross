@@ -177,24 +177,6 @@ class BoxAnswerTests {
     }
 
     @Test
-    fun introductionDropsWhenPoolFullAndAppliesAfterGraduation() {
-        var state = Box.state((1..5).map { Box.word(it) }, Box.config(maxLearning = 2))
-        state = Box.answered(state, "w01", Rating.Good, now)
-        state = Box.answered(state, "w02", Rating.Good, now)
-
-        val blocked = BoxEngine.answer(state, "w03", Rating.Good, now, Box.TZ)
-        assertEquals(AnswerStatus.DroppedPoolFull, blocked.status)
-        assertEquals(state, blocked.state)
-        assertEquals(2, blocked.state.scheduling.size)
-
-        // Graduate w01 → a pool slot frees → the same answer now succeeds.
-        val step = Box.plusSeconds(now, 700)
-        var freed = Box.answered(state, "w01", Rating.Good, step)
-        freed = Box.answered(freed, "w03", Rating.Good, step)
-        assertEquals(3, freed.scheduling.size)
-    }
-
-    @Test
     fun lockedPhraseIntroductionRefusedAtAnswerTime() {
         val state = Box.state(
             listOf(Box.word(1), Box.word(2), Box.phrase("p1", components = listOf("w01", "w02"))),

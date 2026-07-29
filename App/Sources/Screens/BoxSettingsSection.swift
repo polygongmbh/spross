@@ -20,7 +20,7 @@ struct BoxSettingsSection: View {
             VStack(alignment: .leading, spacing: DL.Space.l) {
                 profileRow
                 Divider().overlay(Color.dlSeparator)
-                maxLearningRow
+                maxUnsettledRow
                 Divider().overlay(Color.dlSeparator)
                 resetRow
             }
@@ -128,21 +128,21 @@ struct BoxSettingsSection: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private var maxLearningRow: some View {
+    private var maxUnsettledRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Stepper(value: maxLearningBinding, in: 0...30) {
+            Stepper(value: maxUnsettledBinding, in: 0...60) {
                 HStack {
-                    Text("settings.maxLearning.title")
+                    Text("settings.maxUnsettled.title")
                         .font(DL.Fonts.headline)
                         .foregroundStyle(Color.dlTextPrimary)
                     Spacer()
-                    Text(maxLearningBinding.wrappedValue.formatted())
+                    Text(maxUnsettledBinding.wrappedValue.formatted())
                         .font(DL.Fonts.statValue)
                         .foregroundStyle(Color.dlAccent)
                         .monospacedDigit()
                 }
             }
-            Text("settings.maxLearning.hint")
+            Text("settings.maxUnsettled.hint")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }
@@ -218,10 +218,10 @@ struct BoxSettingsSection: View {
         )
     }
 
-    private var maxLearningBinding: Binding<Int> {
+    private var maxUnsettledBinding: Binding<Int> {
         Binding(
-            get: { Int(model.box?.config.maxLearning ?? 8) },
-            set: { model.setMaxLearning($0) }
+            get: { Int(model.box?.config.maxUnsettled ?? 20) },
+            set: { model.setMaxUnsettled($0) }
         )
     }
 }

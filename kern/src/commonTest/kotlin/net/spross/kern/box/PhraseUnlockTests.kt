@@ -35,7 +35,7 @@ class PhraseUnlockTests {
         state = Box.answered(state, "w02", Rating.Easy, now)
         val plan3 = Box.candidates(state)
         assertEquals(listOf("p1"), plan3.unlockedPhrases)
-        // The unlocked phrase consumes the pool budget ahead of seed-order growth.
+        // The unlocked phrase consumes the new-word budget ahead of seed-order growth.
         assertEquals(listOf("w03"), plan3.newCards)
     }
 
