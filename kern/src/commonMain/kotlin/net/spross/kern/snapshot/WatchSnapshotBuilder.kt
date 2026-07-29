@@ -92,8 +92,9 @@ object WatchSnapshotBuilder {
             sourceText = card.source.text,
             targetText = card.target.text,
             accepted = listOf(card.target.text) + card.target.synonyms + card.target.variants,
-            // why: the watch quiz has no reveal face to hang a picture on, so it only
-            // ever carries the prompt-side emoji.
+            // why: the snapshot is answered in one shot, so a picture held back for a
+            // reveal has no honest moment to appear and could only leak the answer —
+            // it is withheld from the wire rather than trusted to the reader.
             emoji = card.emoji?.takeIf {
                 emojiCue(nextRole, settled, reviewCount) == EmojiCue.Upfront
             },

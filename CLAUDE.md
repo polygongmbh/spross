@@ -47,6 +47,8 @@ the check that catches real drift — after a build with `SWIFT_EMIT_LOC_STRINGS
   side-effectful effects get a one-line `// why:` (trigger + observable result).
 - **Semantic linebreaks** in Markdown/docs: one clause per line.
 - Tests: behavior over implementation detail; extract pure logic so it's testable without the framework.
+- **Engine APIs name the rule, never the rendering** — no screen positions in kern types
+  (`EmojiCue { Upfront, OnReveal }`, not `EmojiPlacement { Prompt, Reveal }`); see `kern/README.md`.
 
 ## Working with subagents & tools
 

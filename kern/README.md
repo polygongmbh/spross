@@ -11,6 +11,18 @@ no user-facing direction concept;
 progress tracked per target language;
 `net.spross.app` / Spross branding; pre-production — no data-format preservation.
 
+**Engine APIs name the rule, never the rendering.**
+A kern type or function says what may be shown and why, never where it lands on screen:
+`EmojiCue { Upfront, OnReveal }` (the leakage rule), not `EmojiPlacement { Prompt, Reveal }`
+(the face it happened to sit on in one layout).
+The engine's answer has to outlive any particular screen — a placement-named API goes on
+compiling while silently lying the moment the app moves the element, and drags a rename
+through kern, both apps, the snapshots and the docs for what was an app-side layout change.
+Screen positions, sizes, and which face of a card something rides on are `docs/design.md`'s.
+The same test applies to snapshot fields: withholding data because shipping it could leak
+the answer is policy and belongs here; withholding it because a surface has nowhere to
+draw it is rendering and does not.
+
 ## 1. Languages & profile
 
 - `Language` = string code from `catalog/languages.json` — open set, no enum.
@@ -256,22 +268,28 @@ day-key `yyyy-MM-dd`) with:
   `…—`, collapse whitespace) → ONE leading listed article of the answer language optional
   on both sides → iff `kind == verb`: any listed `optionalVerbPrefixes` entry (normalized
   the same way, space-preserving — en `"to "`) optional on both sides → Damerau-Levenshtein
-  typo budget (v1 formula) → article-mismatch-demotes-to-typo only when the expected
+  typo budget → article-mismatch-demotes-to-typo only when the expected
   answer's grammar carries `gender`; stray-short-leading-word rule unchanged.
+  **Typo budget**: one slip per six letters (spaces excluded), floor 1,
+  and zero below four letters — wider than v1's `<5 → 0, one per ten` at both ends.
+  Leniency is safe to the extent the catalog can disprove it:
+  `CatalogAnswerGrader` withdraws the credit wherever the typed form is really
+  another concept's word, so a wider budget buys forgiveness for genuine slips
+  without ever forgiving a confusion the catalog teaches apart.
   Article leniency is constructor-opt-out for drill grading:
   `AnswerNormalizer(language, articleLeniency = false)` keeps the article in `normalize`
   and only matches a form whose leading article equals the typed one —
   wrong or missing article grades Wrong (never typo-bridged);
   the one-arg init stays the lenient vocab-review default (both inits in the ObjC header).
   The typo budget is likewise constructor-clamped for drill grading:
-  `AnswerNormalizer(language, articleLeniency, maxTypoBudget = 1)` caps the v1 formula
+  `AnswerNormalizer(language, articleLeniency, maxTypoBudget = 1)` caps the length formula
   and grades digit-bearing accepted forms exact-only
   ("21"/"29", "18:05"/"18:06" sit one edit apart at any sentence length);
   the cardinal sweep (TrainerTypoBridgeGuardTests) proves budget 1 never bridges
   two distinct German 0–999 cardinals;
   audited exceptions within one edit — sw `nne`↔`nane` (4↔8, incl. tens compounds)
   and uk `дев'ять`↔`десять` (9↔10) — are gated explicitly in the sweep.
-  Vocab reviews (`maxTypoBudget = null`, the default) keep the v1 budget untouched.
+  Vocab reviews (`maxTypoBudget = null`, the default) keep the length budget untouched.
 - **Catalog-wide produce grading** — `CatalogAnswerGrader(normalizer, cards)`, the app's
   produce path. One card at a time the normalizer cannot tell a slip from a different word,
   so another concept's answer lands inside this card's typo budget:
