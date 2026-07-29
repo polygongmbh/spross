@@ -45,7 +45,7 @@ sealed interface Match {
  * only matches when the typed leading article equals the form's authored one —
  * a wrong or missing article grades [Match.Wrong], never typo-bridges.
  *
- * [maxTypoBudget] (default null = the v1 formula untouched) clamps the typo
+ * [maxTypoBudget] (default null = the length formula untouched) clamps the typo
  * budget for trainer/drill grading — drills pass 1, which never bridges two
  * distinct German number words (guard sweep in TrainerTypoBridgeGuardTests;
  * audited exceptions sw nne↔nane and uk дев'ять↔десять sit one edit apart and
@@ -186,7 +186,7 @@ class AnswerNormalizer(
         }
     }
 
-    /** The v1 length formula, clamped by [maxTypoBudget]; capped digit forms get none. */
+    /** The length formula, clamped by [maxTypoBudget]; capped digit forms get none. */
     private fun typoBudget(candidate: String): Int {
         val base = allowedTypos(candidate.count { it != ' ' })
         val cap = maxTypoBudget ?: return base
@@ -249,8 +249,21 @@ class AnswerNormalizer(
 
         val whitespaceRun = Regex("\\s+")
 
-        /** ~10 % of letters, but never for very short words (v1 formula). */
-        fun allowedTypos(letters: Int): Int = if (letters < 5) 0 else maxOf(1, letters / 10)
+        /**
+         * ~⅙ of letters, but never for words under [MIN_TYPO_LENGTH].
+         * Wider than v1's `<5 → 0, /10` on both ends: a four-letter word now
+         * forgives one slip and a long phrase forgives a slip per six letters,
+         * because [CatalogAnswerGrader] withdraws the credit again wherever the
+         * typed form is really another concept's word (RealCatalogGradingTest
+         * sweeps the shipping catalog for exactly that).
+         */
+        fun allowedTypos(letters: Int): Int =
+            if (letters < MIN_TYPO_LENGTH) 0 else maxOf(1, letters / TYPO_LETTERS_PER_SLIP)
+
+        /** Below this many letters an answer is graded exact-only. */
+        const val MIN_TYPO_LENGTH = 4
+
+        const val TYPO_LETTERS_PER_SLIP = 6
 
         /**
          * Optimal-string-alignment Damerau-Levenshtein: insert, delete, substitute,

@@ -103,10 +103,17 @@ class AnswerNormalizerTests {
         assertEquals(Match.Typo("Kühlschrank"), de.evaluate("Kuhlschrank", kuehlschrank))
         val spuelmaschine = card("de", "Spülmaschine", grammar = mapOf("gender" to "die"))
         assertEquals(Match.Typo("Spülmaschine"), de.evaluate("Spulmaschine", spuelmaschine))
-        assertEquals(Match.Wrong, de.evaluate("Spolmascine", spuelmaschine)) // 2 edits > budget 1
+        assertEquals(Match.Typo("Spülmaschine"), de.evaluate("Spolmascine", spuelmaschine)) // 12 letters: 2 slips
+        assertEquals(Match.Wrong, de.evaluate("Spolmascina", spuelmaschine)) // 3 edits > budget 2
         assertEquals(Match.Typo("friji"), sw.evaluate("firji", card("sw", "friji"))) // transposition
-        assertEquals(Match.Wrong, sw.evaluate("kula", card("sw", "kile"))) // short words: exact only
+        // Four letters is the shortest that forgives anything; three is exact-only.
+        assertEquals(Match.Typo("kile"), sw.evaluate("kila", card("sw", "kile")))
+        assertEquals(Match.Wrong, sw.evaluate("kula", card("sw", "kile"))) // 2 edits > budget 1
+        assertEquals(Match.Wrong, sw.evaluate("mto", card("sw", "mtu")))
         assertEquals(Match.Exact, sw.evaluate("kula", card("sw", "kula")))
+        // A long phrase forgives a slip per six letters, not per ten.
+        val leer = card("de", "Der Kühlschrank ist leer.", kind = CardKind.Phrase)
+        assertEquals(Match.Typo("Der Kühlschrank ist leer."), de.evaluate("Der Külschrenk ist ler.", leer))
     }
 
     @Test

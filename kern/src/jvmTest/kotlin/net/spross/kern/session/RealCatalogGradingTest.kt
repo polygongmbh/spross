@@ -74,11 +74,11 @@ class RealCatalogGradingTest {
             ?: throw AssertionError("no de→sw card answers \"$text\"")
 
     /**
-     * Within reach of any typo budget the formula can hand out (~10 % of letters),
+     * Within reach of any typo budget the formula can hand out (~⅙ of letters),
      * so the sweep grades only the pairs that could bridge — with a margin.
      */
     private fun near(a: String, b: String): Boolean {
-        val budget = maxOf(1, maxOf(a.length, b.length) / 10) + 1
+        val budget = maxOf(1, maxOf(a.length, b.length) / 6) + 1
         if (kotlin.math.abs(a.length - b.length) > budget) return false
         return distance(a, b, budget) <= budget
     }

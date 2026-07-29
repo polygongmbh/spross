@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **A slip of the finger stops costing you the word**: forgiveness used to begin at five letters
+  and stretch to one slip per ten, so *kila* for *kile* was a flat failure
+  and a whole sentence had to come out nearly perfect to count.
+  Short words now forgive a slip from four letters on, longer answers one per six letters,
+  and the reveal still shows the spelling you missed.
+  Nothing loosens where it would teach the wrong thing:
+  writing a word the catalog teaches elsewhere is still named as that word rather than forgiven,
+  and the number drills stay as strict as they were.
+
 - **Swahili adjectives accept the form you actually hear**: they are taught as bare stems
   (*-zuri*, *-ingi*) because the prefix belongs to the noun's class, so *nzuri* — the form
   on every sign and in every conversation — used to be marked wrong.
