@@ -22,7 +22,10 @@ scripts/strings.py --fix     # clear the stale flags Xcode writes into the Strin
 
 - **Commit incrementally and atomically** —
   one cohesive change per commit, never bundle unrelated changes or defer commits into one late batch.
+- **Commit as you go, unasked**: unrelated uncommitted work in the tree is never a reason to hold yours back.
 - **Every commit green**: tests + app build clean at each commit, not just at session end.
+  Green means YOUR commit's tree — with other work in flight, scope the gate to what you touched,
+  and read another party's red as theirs, not as a blocker.
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `test:`, `docs:`, `build:`) with scopes
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
 - **`CHANGELOG.md` is curated, not per-commit**:
@@ -31,6 +34,7 @@ scripts/strings.py --fix     # clear the stale flags Xcode writes into the Strin
   At bump time, rename `## Unreleased` to `## <version> — <date>` and open a fresh empty `## Unreleased` above it.
 - Other parties may change files or commit while you work, do not mind unless their edits conflict with yours.
   Stage only your changes for commits ideally using pathspecs and check before touching history.
+  A file you share with in-flight work gets only your hunks staged, never theirs carried along.
 
 ## Code standards
 
