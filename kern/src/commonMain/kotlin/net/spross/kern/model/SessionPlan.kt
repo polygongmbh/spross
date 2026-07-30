@@ -13,11 +13,25 @@ data class JoinStamp(
  * from the card's log count ([presentationRole]).
  */
 data class SessionPlan(
+    /** Cards whose due time has passed. */
     val reviews: List<String>,
+    /** Not yet due, pulled forward — either asked for, or to fill a short round out. */
+    val ahead: List<String>,
     val unlockedPhrases: List<String>,
     val newCards: List<String>,
     val joinStamp: JoinStamp,
 ) {
+    /** The run, in order: due work first, warm-ups next, unseen words last. */
+    val queue: List<String>
+        get() = reviews + ahead + unlockedPhrases + newCards
+
     val isEmpty: Boolean
-        get() = reviews.isEmpty() && unlockedPhrases.isEmpty() && newCards.isEmpty()
+        get() = queue.isEmpty()
+
+    val cardCount: Int
+        get() = reviews.size + ahead.size + unlockedPhrases.size + newCards.size
+
+    /** Entries the learner has never answered — unlocked phrases plus seed-order words. */
+    val freshCount: Int
+        get() = unlockedPhrases.size + newCards.size
 }

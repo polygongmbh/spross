@@ -58,9 +58,27 @@ class ModelDefaultsTest {
     @Test
     fun sessionPlanIsEmpty() {
         val stamp = JoinStamp("de", "sw", "0")
-        assertTrue(SessionPlan(emptyList(), emptyList(), emptyList(), stamp).isEmpty)
-        assertFalse(SessionPlan(listOf("a/b"), emptyList(), emptyList(), stamp).isEmpty)
-        assertFalse(SessionPlan(emptyList(), listOf("a/b"), emptyList(), stamp).isEmpty)
-        assertFalse(SessionPlan(emptyList(), emptyList(), listOf("a/b"), stamp).isEmpty)
+        val none = SessionPlan(emptyList(), emptyList(), emptyList(), emptyList(), stamp)
+        assertTrue(none.isEmpty)
+        assertTrue(none.queue.isEmpty())
+        assertFalse(none.copy(reviews = listOf("a/b")).isEmpty)
+        assertFalse(none.copy(ahead = listOf("a/b")).isEmpty)
+        assertFalse(none.copy(unlockedPhrases = listOf("a/b")).isEmpty)
+        assertFalse(none.copy(newCards = listOf("a/b")).isEmpty)
+    }
+
+    /** The queue IS the run: due work leads, warm-ups follow, unseen words land last. */
+    @Test
+    fun sessionPlanQueueOrder() {
+        val plan = SessionPlan(
+            reviews = listOf("r"),
+            ahead = listOf("a"),
+            unlockedPhrases = listOf("p"),
+            newCards = listOf("n"),
+            joinStamp = JoinStamp("de", "sw", "0"),
+        )
+        assertEquals(listOf("r", "a", "p", "n"), plan.queue)
+        assertEquals(4, plan.cardCount)
+        assertEquals(2, plan.freshCount)
     }
 }

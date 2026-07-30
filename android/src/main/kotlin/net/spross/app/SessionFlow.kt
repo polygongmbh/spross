@@ -24,15 +24,15 @@ fun extraSessionPlan(state: BoxState, nowEpochMillis: Long): SessionPlan {
 
 /**
  * Pure session runner over the kern facades (no Android imports):
- * queue = reviews + unlockedPhrases + newCards, and that IS the run — nothing
- * joins a session already under way, so the count on screen holds. On empty:
+ * the plan's queue IS the run (`SessionPlan.queue`) — nothing joins a session
+ * already under way, so the count on screen holds. On empty:
  * refill via composeEndless if endless was asked for, else finished (kern README §6).
  */
 class SessionFlow(initial: BoxState, plan: SessionPlan) {
 
     var box: BoxState = initial
         private set
-    private val queue = ArrayDeque(plan.reviews + plan.unlockedPhrases + plan.newCards)
+    private val queue = ArrayDeque(plan.queue)
     private var endless = false
     private var finished = queue.isEmpty()
 
@@ -98,7 +98,7 @@ class SessionFlow(initial: BoxState, plan: SessionPlan) {
         if (queue.isNotEmpty()) return
         if (endless) {
             val extra = SessionComposer.composeEndless(box, nowEpochMillis)
-            queue.addAll(extra.reviews + extra.unlockedPhrases + extra.newCards)
+            queue.addAll(extra.queue)
         }
         if (queue.isEmpty()) finished = true
     }

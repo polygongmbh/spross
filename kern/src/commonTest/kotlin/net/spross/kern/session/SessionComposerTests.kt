@@ -121,4 +121,60 @@ class SessionComposerTests {
         assertTrue(plan.isEmpty)
         assertEquals(Box.stamp, plan.joinStamp)
     }
+
+    /** A loaded box with nothing due: growth is down to the trickle, so is the plan. */
+    private fun loadedNothingDueState(actives: Int = 10, maxUnsettled: Int = 8): BoxState {
+        var state = Box.state((1..30).map { Box.word(it) }, Box.config(maxUnsettled = maxUnsettled))
+        for (n in 1..actives) {
+            val id = "w" + n.toString().padStart(2, '0')
+            state = Box.inject(
+                state,
+                Box.sched(
+                    id,
+                    stability = 0.5, // below settledStability → still unsettled
+                    dueMillis = Box.plusDays(now, n.toDouble()),
+                    lastReviewMillis = Box.plusDays(now, -1.0),
+                ),
+            )
+        }
+        return state
+    }
+
+    @Test
+    fun aShortRoundIsFilledOutWithReviewsPulledForward() {
+        // Nothing due, growth throttled to the trickle → 2 new words is not a round.
+        val plan = SessionComposer.composeSession(loadedNothingDueState(), now)
+        assertTrue(plan.reviews.isEmpty())
+        assertEquals(2, plan.freshCount)
+        assertEquals(SessionComposer.SESSION_FLOOR_CARDS, plan.cardCount)
+        // Soonest due first, and the run leads with them.
+        assertEquals(listOf("w01", "w02", "w03", "w04"), plan.ahead)
+        assertEquals(plan.ahead + plan.unlockedPhrases + plan.newCards, plan.queue)
+    }
+
+    @Test
+    fun theFloorTakesWhatTheBoxHasAndNeverInventsWork() {
+        // A full box with only 3 active cards to pull forward: 2 new + 3 ahead is
+        // all there is, and the round stays short rather than reaching for more.
+        val plan = SessionComposer.composeSession(
+            loadedNothingDueState(actives = 3, maxUnsettled = 2),
+            now,
+        )
+        assertEquals(2, plan.freshCount)
+        assertEquals(3, plan.ahead.size)
+        assertEquals(5, plan.cardCount)
+        // An empty box stays empty: "come back later" is a real answer.
+        val nothing = SessionComposer.composeSession(Box.state(emptyList()), now)
+        assertTrue(nothing.isEmpty)
+        assertTrue(nothing.ahead.isEmpty())
+    }
+
+    @Test
+    fun aRoundThatAlreadyClearsTheFloorPullsNothingForward() {
+        assertTrue(SessionComposer.composeSession(backloggedState(), now).ahead.isEmpty())
+        // Fresh box: nothing due, but the full budget of new words is a round in itself.
+        val fresh = SessionComposer.composeSession(Box.state((1..30).map { Box.word(it) }), now)
+        assertEquals(20, fresh.freshCount)
+        assertTrue(fresh.ahead.isEmpty())
+    }
 }

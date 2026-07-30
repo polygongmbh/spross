@@ -21,10 +21,19 @@ object SessionComposer {
     private const val GROWTH_RESERVE_CARDS = 5
 
     /**
+     * A round shorter than this is not worth sitting down for.
+     * A loaded box throttles growth to [Growth.TRICKLE_CARDS],
+     * and two cards presented as the day's work read as the app having nothing to offer —
+     * so a short round is filled out with reviews pulled forward instead.
+     */
+    const val SESSION_FLOOR_CARDS: Int = 6
+
+    /**
      * Today's plan: due cards oldest-first (ties by id), review slots capped at
      * `sessionCap − growthReserve`, then new candidates fill the remaining capacity —
      * enqueued cards lead (health-gate bypass, budget-throttled), unlocked phrases
-     * next, then seed-order cards.
+     * next, then seed-order cards. A short round is filled out to
+     * [SESSION_FLOOR_CARDS] (see [withFloor]).
      */
     fun composeSession(state: BoxState, nowEpochMillis: Long): SessionPlan {
         val cap = state.config.sessionCap
@@ -46,12 +55,39 @@ object SessionComposer {
             gateOpen = gateOpen,
             capacity = max(0, cap - reviews.size),
         )
-        return SessionPlan(
-            reviews = reviews.map { it.cardId },
-            unlockedPhrases = candidates.unlockedPhrases,
-            newCards = candidates.newCards,
-            joinStamp = state.joinStamp,
+        return withFloor(
+            state,
+            SessionPlan(
+                reviews = reviews.map { it.cardId },
+                ahead = emptyList(),
+                unlockedPhrases = candidates.unlockedPhrases,
+                newCards = candidates.newCards,
+                joinStamp = state.joinStamp,
+            ),
+            nowEpochMillis,
         )
+    }
+
+    /**
+     * Fill a short round out with reviews pulled forward, soonest due first —
+     * honest FSRS reviews (short elapsed → small stability gain), never new words:
+     * a box small enough to fall under the floor is usually a box whose growth is throttled
+     * on purpose, and the floor must not talk over that.
+     *
+     * An EMPTY plan stays empty.
+     * "Nothing right now, come back later" is a real answer,
+     * and manufacturing a round out of a box that has nothing due
+     * would erase the spacing the whole engine exists to keep.
+     */
+    private fun withFloor(state: BoxState, plan: SessionPlan, nowEpochMillis: Long): SessionPlan {
+        val target = min(SESSION_FLOOR_CARDS, state.config.sessionCap)
+        if (plan.isEmpty || plan.cardCount >= target) return plan
+        val taken = plan.queue.toSet()
+        val ahead = Inventory.active(state)
+            .filter { it.due != null && it.cardId !in taken }
+            .sortedWith(compareBy({ it.due }, { it.cardId }))
+            .take(target - plan.cardCount)
+        return plan.copy(ahead = ahead.map { it.cardId })
     }
 
     /**
@@ -64,7 +100,7 @@ object SessionComposer {
      */
     fun composeExtraSession(state: BoxState, nowEpochMillis: Long): SessionPlan {
         val cap = state.config.sessionCap
-        val due = Inventory.due(state, nowEpochMillis)
+        val due = Inventory.due(state, nowEpochMillis).take(cap)
         val enqueuedNew = Growth.enqueuedEligible(state)
             .take(Growth.newBudget(state))
 
@@ -76,7 +112,8 @@ object SessionComposer {
             .take(remaining)
 
         return SessionPlan(
-            reviews = (due + ahead).take(cap).map { it.cardId },
+            reviews = due.map { it.cardId },
+            ahead = ahead.map { it.cardId },
             unlockedPhrases = emptyList(),
             newCards = enqueuedNew,
             joinStamp = state.joinStamp,
@@ -99,6 +136,7 @@ object SessionComposer {
         )
         return SessionPlan(
             reviews = due.map { it.cardId },
+            ahead = emptyList(),
             unlockedPhrases = candidates.unlockedPhrases,
             newCards = candidates.newCards,
             joinStamp = state.joinStamp,

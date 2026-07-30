@@ -36,7 +36,9 @@ class ExtraSessionTests {
         val later = Box.plusSeconds(day0, 3_600)
         val extra = SessionComposer.composeExtraSession(state, later)
         assertFalse(extra.isEmpty)
-        assertEquals(8, extra.reviews.size)
+        // Nothing is due, so every card is named for what it is: pulled forward.
+        assertTrue(extra.reviews.isEmpty())
+        assertEquals(8, extra.ahead.size)
         // No automatic seed growth — untouched seed words stay out of an extra round.
         assertTrue(extra.newCards.isEmpty())
         assertTrue(extra.unlockedPhrases.isEmpty())

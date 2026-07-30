@@ -142,7 +142,9 @@ class SessionFlowTest {
 
         val plan = extraSessionPlan(ended, now)
         assertFalse(plan.isEmpty)
-        assertTrue(plan.reviews.isNotEmpty()) // review-ahead: soonest-due first
+        // Nothing is due, so the round is named for what it is: pulled forward, soonest first.
+        assertTrue(plan.reviews.isEmpty())
+        assertTrue(plan.ahead.isNotEmpty())
     }
 
     @Test

@@ -163,6 +163,7 @@ v1 calibration restored (one schedule per card ⇒ one review touches one card):
 | `sessionCap` / `dueSoftCap` | 30 / 30 |
 | `growthReserve` | ≤ 5 |
 | `Growth.TRICKLE_CARDS` (the floor under the new-word budget) | 2 |
+| `SessionComposer.SESSION_FLOOR_CARDS` (a round worth sitting down for — §6) | 6 |
 
 Every user-facing count (due ring, "x neu", active, widget) and `DayStats` field is in
 cards; `DayStats.reviews` = answer events.
@@ -253,6 +254,18 @@ day-key `yyyy-MM-dd`) with:
   Seeding the hash with the card's OWN due day keeps the function pure (no clock read) while
   reshuffling the bucket differently from one day to the next.
   Introduction order is untouched: new cards still arrive in seed order.
+- **A plan names each part for what it is**: `reviews` (due), `ahead` (not due, pulled
+  forward), `unlockedPhrases` and `newCards` (never answered).
+  `SessionPlan.queue` is the run in order — due work, then warm-ups, then unseen words —
+  and callers build their queue from it rather than concatenating the lists themselves.
+- **A round shorter than `SESSION_FLOOR_CARDS` is filled out** (user ruling 2026-07-30):
+  a loaded box throttles growth to `TRICKLE_CARDS`, and a couple of new words offered as
+  the day's work reads as the app having nothing to give.
+  `composeSession` tops such a round up with reviews pulled forward, soonest due first —
+  honest FSRS reviews, never extra new words, because the budget that made the round small
+  is the one thing the floor must not talk over.
+  An EMPTY plan stays empty: "nothing right now" is a real answer, and inventing a round
+  out of a box with nothing due would erase the spacing the engine exists to keep.
 - **A composed session never refills** (user ruling 2026-07-29): the plan IS the run.
   Cards falling due while the learner sits there — a learning step maturing, most often —
   used to be drained straight in, so the count they were counting down to moved away from

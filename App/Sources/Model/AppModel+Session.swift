@@ -56,7 +56,7 @@ extension AppModel {
     }
 
     private func begin(_ plan: SessionPlan, now: Date) {
-        sessionQueue = plan.reviews + plan.unlockedPhrases + plan.newCards
+        sessionQueue = plan.queue
         sessionTotal = sessionQueue.count
         sessionAnswered = 0
         sessionFolded = 0
@@ -79,7 +79,7 @@ extension AppModel {
         let now = Date()
         let plan = SessionComposer.shared.composeSession(state: box,
                                                          nowEpochMillis: now.epochMillis)
-        sessionQueue = plan.reviews + plan.unlockedPhrases + plan.newCards
+        sessionQueue = plan.queue
         sessionTotal = sessionAnswered + sessionQueue.count
         sessionJoinStamp = plan.joinStamp
         advanceSession(now: now)
@@ -181,7 +181,7 @@ extension AppModel {
     private func enqueueEndlessBatch(from box: BoxState, now: Date) -> Bool {
         let plan = SessionComposer.shared.composeEndless(state: box,
                                                          nowEpochMillis: now.epochMillis)
-        let more = plan.reviews + plan.unlockedPhrases + plan.newCards
+        let more = plan.queue
         guard !more.isEmpty else { return false }
         sessionQueue = more
         sessionTotal += more.count
