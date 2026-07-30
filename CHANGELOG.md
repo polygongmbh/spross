@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **The start screen tells you what the round really is**: it used to call everything "your
+  session", count the whole due pile even though a sitting has always been capped, and now
+  and then offer a couple of new words as if that were the day's work. It now says whether
+  the round is led by cards that are due or is an offer of new words, promises only the
+  number it will really hand you, and says how many due cards it is keeping back for the
+  next round. A round that would have come out too short is filled out with cards coming up
+  soon — named as such, and never by handing you more new words than your box has room for.
+  "Done for today" is only said once you have actually done something today.
+
 ## 2.1.1 — 2026-07-29
 
 - **A box from an earlier version opens again**: 2.1.0 renamed two settings inside the

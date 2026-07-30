@@ -9,6 +9,7 @@ struct HeuteView: View {
     @Environment(\.locale) private var locale
 
     var body: some View {
+        let offer = model.heuteOffer
         ScrollView {
             VStack(alignment: .leading, spacing: DL.Space.xl) {
                 header
@@ -16,8 +17,8 @@ struct HeuteView: View {
                     stateCard(emoji: "🫤",
                               title: "error.title",
                               message: failure.text)
-                } else if model.sessionAvailable {
-                    sessionCard
+                } else if offer.kind != .nothing {
+                    sessionCard(offer)
                 } else if (model.stats?.activeCards ?? 0) > 0 {
                     doneCard
                 } else {
@@ -54,17 +55,25 @@ struct HeuteView: View {
 
     // MARK: - Session available
 
-    private var sessionCard: some View {
+    private func sessionCard(_ offer: AppModel.HeuteOffer) -> some View {
         VStack(spacing: DL.Space.l) {
-            sessionStats
-            Text("heute.session.ready")
+            sessionStats(offer)
+            Text(offer.kind == .reviews ? "heute.session.reviewsReady" : "heute.session.freshReady")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)
-            sessionSummary
+            sessionSummary(offer)
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)
+            if offer.dueHeldBack > 0 {
+                // The cap is a promise, not a loss: name the rest so a backlog
+                // never looks like cards that vanished.
+                Text("heute.session.heldBack \(offer.dueHeldBack.formatted())")
+                    .font(DL.Fonts.caption)
+                    .foregroundStyle(Color.dlTextSecondary)
+                    .multilineTextAlignment(.center)
+            }
             Button {
                 model.startSession()
             } label: {
@@ -81,25 +90,22 @@ struct HeuteView: View {
         .dlCardShadow()
     }
 
-    /// Due reviews only — new cards are announced in the summary text instead.
-    private var dueRemaining: Int {
-        max(model.todayPlan?.reviews.count ?? 0, model.dueNowCount)
-    }
-
     /// Ring + flame hero; either hides when it has nothing to say
     /// (all-new-card plan → no ring, streak 0 → no flame).
+    /// The ring counts the reviews THIS round takes, not the whole due pile —
+    /// the run is capped, and a number the round won't honour would be a broken promise.
     @ViewBuilder
-    private var sessionStats: some View {
+    private func sessionStats(_ offer: AppModel.HeuteOffer) -> some View {
         let streak = model.stats?.streakDays ?? 0
-        if dueRemaining == 0 && streak == 0 {
+        if offer.sessionReviews == 0 && streak == 0 {
             Text(verbatim: "✨")
                 .font(.system(size: 56))
                 .accessibilityHidden(true)
         } else {
             HStack(spacing: DL.Space.l) {
-                if dueRemaining > 0 {
-                    DueCountRing(remaining: dueRemaining,
-                                 total: dueRemaining + model.reviewsDoneToday,
+                if offer.sessionReviews > 0 {
+                    DueCountRing(remaining: offer.sessionReviews,
+                                 total: offer.sessionReviews + model.reviewsDoneToday,
                                  size: 80)
                 }
                 if streak > 0 {
@@ -109,30 +115,35 @@ struct HeuteView: View {
         }
     }
 
-    /// Built as `Text` (not a joined String) so each part localizes via the
-    /// environment locale with catalog plural handling.
-    private var sessionSummary: Text {
-        let plan = model.todayPlan
-        let due = dueRemaining
-        let fresh = (plan?.unlockedPhrases.count ?? 0) + (plan?.newCards.count ?? 0)
+    /// Built as `Text` (not a joined String) so each part localizes
+    /// via the environment locale with catalog plural handling.
+    /// Every part of the round is named for what it is — due, pulled forward, or never seen.
+    private func sessionSummary(_ offer: AppModel.HeuteOffer) -> Text {
         var parts: [Text] = []
-        if due > 0 {
-            parts.append(Text("heute.session.reviews \(due.formatted())"))
+        if offer.sessionReviews > 0 {
+            parts.append(Text("heute.session.reviews \(offer.sessionReviews.formatted())"))
         }
-        if fresh > 0 {
-            parts.append(Text("heute.session.newCards \(fresh.formatted())"))
+        if offer.freshCount > 0 {
+            parts.append(Text("heute.session.newCards \(offer.freshCount.formatted())"))
+        }
+        if offer.aheadCount > 0 {
+            parts.append(Text("heute.session.ahead \(offer.aheadCount.formatted())"))
         }
         return parts.joined() ?? Text("heute.session.someCards")
     }
 
-    // MARK: - Done for today
+    // MARK: - Nothing due (done for today / caught up)
 
+    /// "Done" only once the day has actually been worked;
+    /// otherwise nothing is due right now, which is a different message
+    /// and must not claim a finish the learner never made.
     private var doneCard: some View {
-        VStack(spacing: DL.Space.l) {
-            Text(verbatim: "🎉")
+        let worked = model.reviewsDoneToday > 0
+        return VStack(spacing: DL.Space.l) {
+            Text(verbatim: worked ? "🎉" : "🌱")
                 .font(.system(size: 56))
                 .accessibilityHidden(true)
-            Text("heute.done.title")
+            Text(worked ? "heute.done.title" : "heute.caughtUp.title")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)

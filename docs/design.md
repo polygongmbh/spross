@@ -170,12 +170,15 @@ the app renders them:
 - **Heute** is the only root screen:
   session card (due-count ring + streak flame, or done state),
   trainer hub, condensed Fortschritt section (14-day strip, gefestigt/frisch split).
-  The card names which of three shapes the plan has, never one word for all of them:
-  reviews due, a fresh set with nothing due, or nothing due at all.
-  The ring counts the reviews THIS run takes (the cap), and due cards held back
-  for the next round are named rather than silently dropped from the number.
-  A trickle-only plan (nothing due, growth throttled to `Growth.TRICKLE_CARDS`)
-  is not the day's work: it sits behind the extra-round button, which says what is in it.
+  The card names what the round is led by rather than calling everything "a session":
+  due work, or an offer of new words when nothing is due.
+  Copy for the second is an OFFER, never a summons —
+  the words are on the table, they are not waiting on the learner.
+  Each part of the round is named for what it is (due · new · pulled forward),
+  the ring counts the reviews THIS run takes (the cap, not the pile),
+  and due cards the cap holds back are named rather than dropped from the number.
+  A short round never reaches the screen as two cards: the kern fills it out
+  (`SESSION_FLOOR_CARDS`, kern README §6) and the summary says what it pulled forward.
   "Done for today" is claimed only once reviews were actually done today —
   otherwise the state is "nothing due right now".
 - **Box** (pushed via the 📦 toolbar icon): browse areas/cards —

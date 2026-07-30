@@ -24,6 +24,45 @@ extension AppModel {
         !(todayPlan?.isEmpty ?? true) || dueNowCount > 0
     }
 
+    /// What today's plan is led by.
+    /// Due work and an offer of new words read very differently to a learner,
+    /// so Heute names which one it is instead of calling both "a session".
+    enum SessionOffer {
+        /// Cards are due — the round leads with them.
+        case reviews
+        /// Nothing due; the round is an offer of new words (kern fills it out).
+        case freshSet
+        case nothing
+    }
+
+    /// One composition, everything Heute needs from it —
+    /// `todayPlan` recomposes on every access,
+    /// so the screen takes this snapshot once per render.
+    struct HeuteOffer {
+        let kind: SessionOffer
+        /// Reviews this round actually takes (capped), not the whole backlog.
+        let sessionReviews: Int
+        /// Due cards the session cap holds back for a later round.
+        let dueHeldBack: Int
+        /// Cards pulled forward to fill a short round out (kern's session floor).
+        let aheadCount: Int
+        let freshCount: Int
+    }
+
+    var heuteOffer: HeuteOffer {
+        guard let plan = todayPlan else {
+            return HeuteOffer(kind: .nothing, sessionReviews: 0,
+                              dueHeldBack: 0, aheadCount: 0, freshCount: 0)
+        }
+        let reviews = plan.reviews.count
+        let kind: SessionOffer = reviews > 0 ? .reviews : (plan.isEmpty ? .nothing : .freshSet)
+        return HeuteOffer(kind: kind,
+                          sessionReviews: reviews,
+                          dueHeldBack: max(0, dueNowCount - reviews),
+                          aheadCount: plan.ahead.count,
+                          freshCount: Int(plan.freshCount))
+    }
+
     /// Cards that will be due by tomorrow evening (preview on the done state).
     var tomorrowDueCount: Int {
         guard let box,

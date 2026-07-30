@@ -609,6 +609,22 @@
         }
       }
     },
+    "heute.caughtUp.title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gerade ist nichts fällig"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing is due right now"
+          }
+        }
+      }
+    },
     "heute.done.extraRound": {
       "localizations": {
         "de": {
@@ -646,13 +662,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Morgen warten %@ Karten auf dich."
+            "value": "Morgen sind %@ Karten dran."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ cards will be waiting for you tomorrow."
+            "value": "Tomorrow %@ cards come up."
           }
         }
       }
@@ -721,6 +737,54 @@
         }
       }
     },
+    "heute.session.ahead %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ vorgezogene Karten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ cards pulled forward"
+          }
+        }
+      }
+    },
+    "heute.session.freshReady": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lust auf neue Wörter?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up for some new words?"
+          }
+        }
+      }
+    },
+    "heute.session.heldBack %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ weitere fällige Karten hebst du dir für die nächste Runde auf."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're keeping %@ more due cards for the next round."
+          }
+        }
+      }
+    },
     "heute.session.newCards %@": {
       "localizations": {
         "de": {
@@ -737,22 +801,6 @@
         }
       }
     },
-    "heute.session.ready": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Deine Sitzung ist startklar"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your session is ready"
-          }
-        }
-      }
-    },
     "heute.session.reviews %@": {
       "localizations": {
         "de": {
@@ -765,6 +813,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ reviews"
+          }
+        }
+      }
+    },
+    "heute.session.reviewsReady": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Wiederholungen sind startklar"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your reviews are ready"
           }
         }
       }
