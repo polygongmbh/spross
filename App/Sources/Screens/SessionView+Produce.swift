@@ -25,13 +25,14 @@ extension SessionView {
             }
             switch feedback {
             case .neutral where revealed:
-                // Revealed without typing → honest self-grade, four ratings.
-                RatingButtonsView { rate(kernRating($0)) }
+                // Revealed without typing → honest self-grade.
+                RatingButtonsView { rate(gradedRating($0)) }
             case .neutral:
                 // ONE primary action: empty input reveals, typed input checks.
                 Button {
                     if inputEmpty {
                         DLSound.reveal()
+                        markRecallEnded()
                         withAnimation { revealed = true }
                     } else {
                         submit(card)

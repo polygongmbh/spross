@@ -94,15 +94,19 @@
   Only an exactly written word confirms itself; a near miss still waits for "Prüfen" and
   pauses on its correct spelling, which is the part worth reading.
 
-- **Self-grading sits under your thumb and says what you mean**: the grades used to span the
-  screen in one row, so the two answers a fresh word actually calls for — no idea, or knew it —
-  sat at opposite ends, and the honest one was the longest reach.
-  They now form a square, with the answer a new word calls for in the top-right corner your
-  thumb falls on; the two opposite verdicts end up diagonally apart, where confusing them is
-  hardest, and a slip onto the wrong one costs you minutes rather than weeks.
-  That corner used to read "Nochmal", a promise about the schedule that was plainly untrue the
-  first time a word was ever shown — it now reads "Unbekannt", which is about the word and
-  stays true whether you are meeting it or have just lost it.
+- **Grading yourself is one question again, and the clock answers the rest**: four grades
+  spanned the screen, and picking between "Gut" and "Einfach" meant rating your own memory on
+  a scale nobody can honestly feel — while the fastest way through a session was to call
+  everything easy and watch the words disappear for weeks.
+  You now say only what you actually know — Gut, Schwer, Unbekannt — and how quickly the word
+  came decides the rest: one that arrived before you had time to hunt for it is treated as
+  effortless, one you had to dig for is not. Longer prompts get the reading time they need,
+  and the clock can only ever be kind — pausing, or putting the phone down mid-word, never
+  costs you anything. What you say is never overruled: a word you answered fast but know was
+  shaky stays shaky the moment you say so.
+  "Nochmal" is gone with it — a promise about the schedule that was plainly untrue the first
+  time a word was ever shown. It reads "Unbekannt" now, which is about the word, and stays
+  true whether you are meeting it or have just lost it.
 
 ## 2.0.0 — 2026-07-29
 

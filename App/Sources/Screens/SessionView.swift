@@ -4,7 +4,7 @@ import SprossKern
 /// Full-screen session. The role a card is SHOWN in comes from Kern per
 /// card + log count (one schedule, alternating presentation):
 /// PRODUCE prompts the source side and grades typed target input
-/// ("Aufdecken" without typing falls back to four-button self-grading);
+/// ("Aufdecken" without typing falls back to self-grading);
 /// RECOGNIZE prompts one rotated target form and is reveal + self-grade
 /// only — never typed. Presented as a full-screen cover.
 struct SessionView: View {
@@ -23,6 +23,12 @@ struct SessionView: View {
     @State var copyPending: Rating?
     @State var copyInput = ""
     @State var copyMissed = false
+    /// When the current prompt went on screen, and how long the learner spent
+    /// on it before asking to see the answer. That span is the recall attempt;
+    /// the time spent picking a button afterwards is thumb travel, so it is
+    /// deliberately not part of it (`SelfGrading`).
+    @State var promptShownAt: Date?
+    @State var recallMs: Int64 = 0
     /// The copy field's own feedback — green edge + checkmark the moment the
     /// word stands written, re-judged on every keystroke.
     @State var copyFeedback: AnswerInputView.Feedback = .neutral
@@ -64,6 +70,7 @@ struct SessionView: View {
         }
         .onAppear {
             answerFocused = true
+            promptShownAt = Date()
         }
         .onDisappear {
             autoAdvance?.cancel()
@@ -222,7 +229,7 @@ struct SessionView: View {
         }
     }
 
-    /// Comprehension check: reveal, then honest four-button self-grade —
+    /// Comprehension check: reveal, then honest self-grade —
     /// never typed, so no schedule is ever graded against a language it
     /// wasn't learned with. The very first exposure takes this path too: the
     /// word is prompted before it is taught, so a learner who already knows it
@@ -230,10 +237,11 @@ struct SessionView: View {
     @ViewBuilder
     private var recognizeControls: some View {
         if revealed {
-            RatingButtonsView { rate(kernRating($0)) }
+            RatingButtonsView { rate(gradedRating($0)) }
         } else {
             Button {
                 DLSound.reveal()
+                markRecallEnded()
                 withAnimation { revealed = true }
             } label: {
                 Text("session.reveal")
@@ -287,6 +295,10 @@ struct SessionView: View {
         copyInput = ""
         copyMissed = false
         copyFeedback = .neutral
+        // why: called in the same transaction as the card switch, so the recall
+        // clock starts with the prompt the learner is about to see.
+        promptShownAt = Date()
+        recallMs = 0
     }
 
     /// A beat between the last letter and the card leaving, shared by every
@@ -304,14 +316,35 @@ struct SessionView: View {
         }
     }
 
-    /// Design's RatingButtonsView has its own local Rating (no Kern dep);
-    /// map it to the domain rating at the boundary.
-    func kernRating(_ rating: RatingButtonsView.Rating) -> Rating {
-        switch rating {
-        case .again: return .again
-        case .hard: return .hard
-        case .good: return .good
-        case .easy: return .easy
+    /// Close the recall attempt: the prompt has been on screen since
+    /// `promptShownAt`, and the learner has just asked to see the answer.
+    func markRecallEnded() {
+        guard let promptShownAt else { return }
+        recallMs = Int64(Date().timeIntervalSince(promptShownAt) * 1000)
+    }
+
+    /// The buttons report what the learner knows; the engine turns that plus
+    /// the recall time into an FSRS rating (rule: kern `SelfGrading`).
+    func gradedRating(_ outcome: SessionOutcome) -> Rating {
+        SelfGrading.shared.rating(verdict: verdict(outcome),
+                                  elapsedMs: recallMs,
+                                  promptChars: Int32(promptChars))
+    }
+
+    private func verdict(_ outcome: SessionOutcome) -> SelfGrading.Verdict {
+        switch outcome {
+        case .right: return .knew
+        case .tough: return .tough
+        case .wrong: return .unknown
         }
+    }
+
+    /// What the learner had to read before recall could start — the prompted
+    /// form on recognition, the source word on a produce card that was revealed.
+    private var promptChars: Int {
+        guard let card = model.currentCard else { return 0 }
+        return model.presentationRole(for: card.id) == .recognize
+            ? model.promptForm(for: card).count
+            : card.source.text.count
     }
 }

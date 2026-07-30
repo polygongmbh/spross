@@ -2,117 +2,92 @@ import SwiftUI
 
 // MARK: - RatingButtonsView
 //
-// Self-grade pad for recognition mode.
-// Colorblind-safe: every rating has a distinct icon AND label —
-// color only grades the pad, it never carries the meaning alone.
-// No red anywhere ("never punishing"): Again is warm terracotta.
+// Self-grade row for recognition mode.
 //
-//     Hard   Again
-//     Easy   Good
+//     Gut   Schwer   Unbekannt
 //
-// The right column is the plain verdict — did the word come or not — and the
-// left column qualifies each: barely, or instantly. Rows read the same way
-// across: the word resisted on top, it came underneath.
-// That puts the pair a session is mostly made of, Again and Good, in the
-// right column a thumb falls on, reachable without crossing the screen, and
-// leaves the qualifiers a deliberate reach. Again and Easy still land
-// diagonally opposite, so confusing the two extremes is the hardest slip to
-// make — a stray Again costs minutes, a stray Easy hides the word for weeks.
+// Three buttons, not four: the learner says whether the word came, and the
+// clock behind them decides whether one that came, came instantly (the rule
+// and its reasoning: kern `SelfGrading`). Nobody can pick their way to a long
+// interval — Easy is earned by answering fast.
+//
+// Ordered best to worst, so Unbekannt ends up under a resting thumb and the
+// two opposite verdicts are kept apart by Schwer between them.
+//
+// They emit `SessionOutcome`, the same three the progress bar draws, in the
+// same three colors — the button you press is the segment you get.
+// Colorblind-safe: every one carries a distinct icon AND label, so color
+// never has to be read on its own.
 
 struct RatingButtonsView: View {
 
-    /// Cases keep the FSRS names the kern grades with; the labels speak the
-    /// learner's language instead — "Nochmal" was a promise about the schedule,
-    /// and it read as a lie on a word being met for the very first time.
-    enum Rating: CaseIterable {
-        case again, hard, good, easy
+    var onGrade: (SessionOutcome) -> Void
 
-        var label: LocalizedStringKey {
-            switch self {
-            case .again: return "rating.unknown"
-            case .hard: return "rating.hard"
-            case .good: return "rating.good"
-            case .easy: return "rating.easy"
-            }
-        }
-
-        var icon: String {
-            switch self {
-            case .again: return "questionmark"
-            case .hard: return "tortoise.fill"
-            case .good: return "checkmark"
-            case .easy: return "sparkles"
-            }
-        }
-
-        var color: Color {
-            switch self {
-            case .again: return .dlAccent
-            case .hard: return .dlAmber
-            case .good: return .dlSuccess
-            case .easy: return .dlTeal
-            }
-        }
-    }
-
-    var onRate: (Rating) -> Void
-
-    // Written out rather than looped so the source reads as the pad it draws.
     var body: some View {
-        Grid(horizontalSpacing: DL.Space.s, verticalSpacing: DL.Space.s) {
-            GridRow {
-                button(.hard)
-                button(.again)
-            }
-            GridRow {
-                button(.easy)
-                button(.good)
-            }
+        HStack(spacing: DL.Space.s) {
+            button(.right)
+            button(.tough)
+            button(.wrong)
         }
     }
 
-    private func button(_ rating: Rating) -> some View {
-        RatingButton(rating: rating) { onRate(rating) }
+    private func button(_ outcome: SessionOutcome) -> some View {
+        GradeButton(outcome: outcome) { onGrade(outcome) }
     }
 }
 
-// MARK: - Single button
+// MARK: - Button face
 
-private struct RatingButton: View {
-    let rating: RatingButtonsView.Rating
+private extension SessionOutcome {
+    var label: LocalizedStringKey {
+        switch self {
+        case .right: return "rating.good"
+        case .tough: return "rating.hard"
+        case .wrong: return "rating.unknown"
+        }
+    }
+
+    var icon: String {
+        switch self {
+        case .right: return "checkmark"
+        case .tough: return "circle.fill"
+        case .wrong: return "xmark"
+        }
+    }
+}
+
+private struct GradeButton: View {
+    let outcome: SessionOutcome
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
             VStack(spacing: DL.Space.xs + 2) {
-                Image(systemName: rating.icon)
+                Image(systemName: outcome.icon)
                     .font(.body.weight(.bold))
-                    // why: the glyphs differ in height (a tortoise is taller than
-                    // a checkmark), which pushed the labels of a pair off each
-                    // other's line once they sat side by side in the pad.
+                    // why: the glyphs differ in height, which pushed the labels
+                    // of neighbouring buttons off each other's line.
                     .frame(height: 22)
-                Text(rating.label)
+                Text(outcome.label)
                     .font(DL.Fonts.caption)
-                    // why: two-up leaves room the four-up row never had, so the
-                    // longest label wraps instead of forcing a dynamic-type cap.
                     .lineLimit(2)
                     .minimumScaleFactor(0.7)
                     .multilineTextAlignment(.center)
             }
-            .foregroundStyle(rating.color)
+            .foregroundStyle(outcome.color)
             .frame(maxWidth: .infinity)
             .frame(minHeight: 60)
             .background(
                 RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                    .fill(rating.color.opacity(0.14))
+                    .fill(outcome.color.opacity(0.14))
             )
             .overlay(
                 RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                    .strokeBorder(rating.color.opacity(0.35), lineWidth: 1)
+                    .strokeBorder(outcome.color.opacity(0.35), lineWidth: 1)
             )
         }
         .buttonStyle(PressableStyle())
-        .accessibilityLabel(rating.label)
+        .accessibilityLabel(outcome.label)
     }
 }
 
@@ -127,7 +102,7 @@ private struct PressableStyle: ButtonStyle {
 
 // MARK: - Previews
 
-#Preview("Rating pad") {
+#Preview("Rating row") {
     VStack {
         Spacer()
         RatingButtonsView { _ in }
@@ -137,7 +112,7 @@ private struct PressableStyle: ButtonStyle {
     .background(Color.dlBackground)
 }
 
-#Preview("Rating pad · dark") {
+#Preview("Rating row · dark") {
     VStack {
         Spacer()
         RatingButtonsView { _ in }

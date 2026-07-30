@@ -84,13 +84,20 @@ the app renders them:
 - **PRODUCE**: typed answer in the target language; placeholder "In ⟨target⟩ …";
   grading via the kern answer normalizer (contract: kern README §6).
   "Aufdecken" remains the no-typing fallback that self-grades.
-- **RECOGNIZE**: reveal + self-grade ONLY (Again/Hard/Good/Easy) — no input field.
-  The four sit in a 2×2 pad, not a row: the right column is the plain verdict (Again, Good)
-  and the left qualifies it (Hard, Easy), while rows split what resisted the learner from what
-  came. The pair a session is mostly made of therefore shares the right column a thumb falls
-  on, and Again and Easy land diagonally opposite, where confusing them is hardest.
-  Again's label names what the learner knows rather than what the scheduler will do
-  (`rating.unknown`); the FSRS rating behind it is unchanged (kern README §5).
+- **RECOGNIZE**: reveal + self-grade ONLY — no input field.
+  The learner reports one of three outcomes and the engine turns that plus how long the
+  recall took into the FSRS rating (`SelfGrading`, kern README §6): the verdict is never
+  overruled, and the clock only decides whether a word that DID come, came instantly.
+  Easy is therefore not a button — it is earned by answering fast, which is what keeps a
+  long interval from being something a learner can simply tap for.
+  The three run best to worst, so the miss ends up under a resting thumb and the two
+  opposite verdicts are kept apart by the middle one.
+  They are `SessionOutcome`, the same three the progress bar draws and in the same colors —
+  the button pressed is the segment it produces.
+  Labels name what the learner knows rather than what the scheduler will do
+  (`rating.unknown` for the miss).
+  The recall clock runs from the prompt appearing to "Aufdecken", never past it:
+  the time spent choosing a button is thumb travel, not memory.
   The prompt shows the engine's rotated form;
   the reveal shows the source meaning plus the full synonym family ("auch: …").
   The first exposure is no exception: the word is prompted before it is taught,
@@ -148,7 +155,10 @@ the app renders them:
   correct answer auto-advances after ~1.2 s, and Enter advances when revealed.
 - "Aufdecken" fills the answer field with the correct answer.
 - Answer-colored progress bar: one segment per answer — green right, amber tough, brick wrong.
-- Never punishing: no red flashes; streak survives one missed day.
+- Feedback informs, it does not alarm: a miss is stated where the learner is already
+  looking, never flashed across the screen, and the streak survives one missed day.
+  Not a ban on any particular colour — the self-grade row and the progress bar both
+  mark a miss in brick, which reads as a mark, not as a reprimand.
 
 ## Counts & sessions
 

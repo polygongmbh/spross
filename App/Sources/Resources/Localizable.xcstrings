@@ -614,13 +614,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gerade ist nichts fällig"
+            "value": "Gerade ist nichts dran"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nothing is due right now"
+            "value": "Nothing's due right now"
           }
         }
       }
@@ -630,13 +630,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Extra-Runde üben"
+            "value": "Noch eine Runde?"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Practice an extra round"
+            "value": "One more round?"
           }
         }
       }
@@ -662,13 +662,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Morgen sind %@ Karten dran."
+            "value": "Morgen kannst du %@ Karten wiederholen."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tomorrow %@ cards come up."
+            "value": "Tomorrow you can review %@ cards."
           }
         }
       }
@@ -742,13 +742,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ vorgezogene Karten"
+            "value": "%@ Karten vorgezogen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ cards pulled forward"
+            "value": "%@ pulled forward"
           }
         }
       }
@@ -774,13 +774,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ weitere fällige Karten hebst du dir für die nächste Runde auf."
+            "value": "%@ weitere Karten warten noch auf dich."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "You're keeping %@ more due cards for the next round."
+            "value": "%@ more cards are still waiting for you."
           }
         }
       }
@@ -822,13 +822,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine Wiederholungen sind startklar"
+            "value": "Deine Runde ist startklar"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your reviews are ready"
+            "value": "Your round is ready"
           }
         }
       }
@@ -838,13 +838,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ein paar Karten warten auf dich."
+            "value": "Ein paar Karten für dich."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "A few cards are waiting for you."
+            "value": "A few cards for you."
           }
         }
       }
@@ -1245,22 +1245,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Progress"
-          }
-        }
-      }
-    },
-    "rating.easy": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Einfach"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Easy"
           }
         }
       }
