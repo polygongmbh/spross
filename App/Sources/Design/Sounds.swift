@@ -20,7 +20,7 @@ enum DLSound {
 
     /// Ascending major third — the positive confirmation people already know.
     private static let correctID = load("correct")
-    /// Descending minor third: down, but consonant — informative, not punishing.
+    /// Descending minor third: down, but consonant.
     private static let wrongID = load("wrong")
     /// One neutral note; revealing an answer is not a verdict.
     private static let revealID = load("reveal")

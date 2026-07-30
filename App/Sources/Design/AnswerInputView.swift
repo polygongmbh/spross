@@ -3,11 +3,10 @@ import SwiftUI
 // MARK: - AnswerInputView
 //
 // Typed-answer field with inline feedback. Spec rules:
-// - correct  → subtle green glow + checkmark, never loud
-// - wrong    → warm amber accent rather than a flash across the whole field:
-//              at this size the colour is the loudest thing on screen, and the
-//              correct answer appears inline BELOW the input for callers whose
-//              prompt card never shows it (`showsRevealPanel`).
+// - correct  → subtle green glow + checkmark
+// - wrong    → warm amber accent, and the correct answer appears inline BELOW
+//              the input for callers whose prompt card never shows it
+//              (`showsRevealPanel`).
 
 struct AnswerInputView: View {
 

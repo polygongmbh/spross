@@ -155,8 +155,7 @@ the app renders them:
   correct answer auto-advances after ~1.2 s, and Enter advances when revealed.
 - "Aufdecken" fills the answer field with the correct answer.
 - Answer-colored progress bar: one segment per answer — green right, amber tough, brick wrong.
-- A miss is stated where the learner is already looking, never flashed across the screen;
-  the streak survives one missed day.
+- A miss is stated where the learner is already looking; the streak survives one missed day.
 
 ## Counts & sessions
 

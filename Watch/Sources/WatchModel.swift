@@ -164,8 +164,8 @@ final class WatchModel {
         selectedIndex = index
         let correct = index == question.correctIndex
         streak = correct ? streak + 1 : 0
-        // why: a light tap on a wrong pick only — a gentle wake-up cue, not the
-        // punishing `.failure`/`.retry`; correct picks stay haptic-free.
+        // why: a light tap on a wrong pick only — `.click` rather than
+        // `.failure`/`.retry`; correct picks stay haptic-free.
         if !correct { WKInterfaceDevice.current().play(.click) }
 
         let elapsedMs = Int(Date().timeIntervalSince(questionShownAt) * 1000)
