@@ -218,17 +218,21 @@ cards; `DayStats.reviews` = answer events.
 
 ## 6. Box / Session semantics (deltas from the v1 port map)
 
-- **Self-grading takes a verdict and a clock** (`SelfGrading`): the learner reports
-  Unknown / Tough / Knew, and only a Knew that arrived inside the instant budget
-  (`base + perChar × prompt length`, so a phrase gets the reading time it needs) becomes Easy
-  rather than Good. The verdict is never overruled — a fast answer the learner knows was
-  shaky stays Hard, a slow one they knew stays a pass — because only the learner can tell a
-  solid recall from a lucky one, or a pause for thought from an interruption.
-  Easy is thus earned, never chosen, which takes away the standing incentive to grade a
-  session shorter than it was; and since the clock can only ever upgrade, no upper cut-off is
-  needed for a learner who walks away mid-card.
-  The elapsed span is the recall attempt (prompt shown → answer asked for), not the time
-  spent choosing afterwards.
+- **Self-grading takes a verdict and a clock** (`SelfGrading`):
+  the learner reports Unknown / Tough / Knew,
+  and only a Knew that arrived inside the instant budget
+  (`base + perChar × prompt length`, so a phrase gets the reading time it needs)
+  becomes Easy rather than Good.
+  The verdict is never overruled — a fast answer the learner knows was shaky stays Hard,
+  a slow one they knew stays a pass —
+  because only the learner can tell a solid recall from a lucky one,
+  or a pause for thought from an interruption.
+  Easy is thus earned rather than chosen,
+  which takes away the standing incentive to grade a session shorter than it was;
+  and since the clock can only ever upgrade,
+  a learner who walks away mid-card needs no cut-off to protect them.
+  The elapsed span is the recall attempt (prompt shown → answer asked for),
+  not the time spent choosing afterwards.
 
 Everything in the engine scout map ports 1:1 (budgets, health gate, growth-reserve formula,
 introduction = first answer, silent answer drop, extra round, endless, exposure tiers,

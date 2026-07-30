@@ -34,8 +34,7 @@ extension SessionView {
             // when the answer is already on screen, so no button asks for a tap.
             .onChange(of: copyInput) { _, _ in advanceWhenWritten(card) }
             if copyMissed {
-                // why: the answer is already on the card, so this nudges a
-                // second look at it.
+                // why: the answer is already on the card, so this points back to it.
                 Text("session.copyMismatch")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
