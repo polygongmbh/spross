@@ -79,7 +79,7 @@ struct TrainerHubView: View {
             Text("trainer.title")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("trainer.subtitle \(languageName(drillLanguage ?? ""))")
+            Text("trainer.subtitle")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
             HStack(spacing: DL.Space.m) {
