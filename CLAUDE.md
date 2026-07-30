@@ -14,6 +14,7 @@ Focus is on breadth of exposure to the language for maximum fluency with minimum
 xcodegen generate            # after adding/removing app source files
 xcodebuild -project Spross.xcodeproj -scheme Spross \
   -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build   # app build gate
+scripts/run-sim.sh           # build + install + launch on the simulator (--shot, --clean, -- <launch args>)
 scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodegen
 scripts/strings.py --fix     # clear the stale flags Xcode writes into the String Catalog
 ```

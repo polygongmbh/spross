@@ -42,6 +42,24 @@ xcodebuild -project Spross.xcodeproj -scheme Spross \
 
 Tests (the fast gate): `./gradlew :kern:jvmTest`
 
+## Run it
+
+```sh
+scripts/run-sim.sh                        # build, install, launch on iPhone 17 Pro
+scripts/run-sim.sh --no-build             # reinstall the last build
+scripts/run-sim.sh --clean                # uninstall first, so onboarding runs
+scripts/run-sim.sh --device 'iPhone 16'   # another simulator, by name
+scripts/run-sim.sh --shot /tmp/heute.png  # screenshot once it has drawn
+scripts/run-sim.sh -- -uitest-source de -uitest-target sw   # skip onboarding
+```
+
+Arguments after `--` reach the app: `-uitest-source`/`-uitest-target` pick a
+language pair, `-uitest-screen box` opens the Box, `-uitest-autostart 1` starts
+the session, `-uitest-trainer numbers|years|clock|phrases` opens a drill
+(DEBUG only, read in `AppModel.start()`).
+
+Physical devices: `scripts/deploy-devices.sh`.
+
 Android builds Mac-free — commands, SDK setup, and install steps: `RUNBOOK-linux.md`.
 
 Framework mechanism: a pre-build phase stages `SprossKern.framework`
