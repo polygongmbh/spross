@@ -51,6 +51,7 @@ struct SessionView: View {
                                       reviewCount: model.sessionReviews,
                                       streakDays: model.stats?.streakDays ?? 0,
                                       canPracticeMore: model.canPracticeMore,
+                                      restSuggested: model.today?.recallStrained ?? false,
                                       onPractice: { model.continueEndless() },
                                       onDone: { model.closeSession() })
             } else {

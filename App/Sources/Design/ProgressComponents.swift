@@ -36,6 +36,9 @@ struct BoxStatTile: View {
     let emoji: String
     let value: String
     let label: LocalizedStringKey
+    /// Today's movement on this figure — the part that turns a standing total
+    /// into a sense of progress. Omitted when the day has not moved it.
+    var delta: LocalizedStringKey?
 
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
@@ -49,6 +52,11 @@ struct BoxStatTile: View {
             Text(label)
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
+            if let delta {
+                Text(delta)
+                    .font(DL.Fonts.caption)
+                    .foregroundStyle(Color.dlAccent)
+            }
         }
         .padding(DL.Space.l)
         .frame(maxWidth: .infinity, alignment: .leading)

@@ -186,8 +186,17 @@ the app renders them:
   and due cards the cap holds back are named rather than dropped from the number.
   A short round never reaches the screen as two cards: the kern fills it out
   (`SESSION_FLOOR_CARDS`, kern README §6) and the summary says what it pulled forward.
-  "Done for today" is claimed only once reviews were actually done today —
-  otherwise the state is "nothing due right now".
+  A day the learner has not answered anything in never shows a closed box either —
+  the same rule hands it a round — so "nothing due right now" is now the
+  unreachable fallback, kept only so a state that should not occur cannot
+  congratulate someone for a day they never worked.
+  The done state carries the day's own gain (reviews · new · settled, from
+  `TodayReport`), and the Fortschritt tiles carry today's movement under the
+  standing totals: totals say where the box stands, deltas say that today moved it.
+- **Practising on is offered, never pushed, on a day going badly**: when
+  `TodayReport.recallStrained` holds, the session summary says so and the emphasis
+  flips — stopping becomes the primary button and "Weiter üben" the quiet one.
+  Nothing is taken away; a learner who wants another round still has it one tap on.
 - **Box** (pushed via the 📦 toolbar icon): browse areas/cards —
   areas grouped under their areas.json groups
   (source-language titles, en fallback, manifest order; empty groups drop out);

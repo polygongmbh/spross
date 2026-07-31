@@ -117,6 +117,10 @@ struct SessionCompletionView: View {
     let reviewCount: Int
     let streakDays: Int
     var canPracticeMore: Bool = false
+    /// Today's recall has fallen far below what the box schedules for
+    /// (`TodayReport.recallStrained`). Practising on is still offered — it just
+    /// stops being the emphasised choice, and the screen says why.
+    var restSuggested: Bool = false
     var onPractice: () -> Void = {}
     var onDone: () -> Void = {}
 
@@ -137,6 +141,22 @@ struct SessionCompletionView: View {
         return parts.joined() ?? Text("session.summary.allDone")
     }
 
+    /// One of the two exit buttons; only which one carries the emphasis changes.
+    @ViewBuilder
+    private func choice(_ key: LocalizedStringKey,
+                        emphasised: Bool,
+                        action: @escaping () -> Void) -> some View {
+        if emphasised {
+            Button(key, action: action)
+                .buttonStyle(DLPrimaryButtonStyle())
+                .frame(maxWidth: .infinity)
+        } else {
+            Button(key, action: action)
+                .buttonStyle(DLSoftButtonStyle())
+                .frame(maxWidth: .infinity)
+        }
+    }
+
     var body: some View {
         VStack(spacing: DL.Space.xl) {
             Spacer()
@@ -149,19 +169,22 @@ struct SessionCompletionView: View {
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)
             StreakFlameView(days: streakDays)
+            if restSuggested {
+                Text("session.finished.restHint")
+                    .font(DL.Fonts.caption)
+                    .foregroundStyle(Color.dlTextSecondary)
+                    .multilineTextAlignment(.center)
+            }
             Spacer()
             VStack(spacing: DL.Space.m) {
                 if canPracticeMore {
-                    Button("session.finished.keepPracticing", action: onPractice)
-                        .buttonStyle(DLPrimaryButtonStyle())
-                        .frame(maxWidth: .infinity)
-                    Button("common.done", action: onDone)
-                        .buttonStyle(DLSoftButtonStyle())
-                        .frame(maxWidth: .infinity)
+                    // why: a day going badly flips the emphasis — stopping becomes the
+                    // offered choice, practising on stays available but unpushed.
+                    choice("session.finished.keepPracticing",
+                           emphasised: !restSuggested, action: onPractice)
+                    choice("common.done", emphasised: restSuggested, action: onDone)
                 } else {
-                    Button("common.done", action: onDone)
-                        .buttonStyle(DLPrimaryButtonStyle())
-                        .frame(maxWidth: .infinity)
+                    choice("common.done", emphasised: true, action: onDone)
                 }
             }
         }

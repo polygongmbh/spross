@@ -11,6 +11,17 @@
   soon — named as such, and never by handing you more new words than your box has room for.
   "Done for today" is only said once you have actually done something today.
 
+- **There is always a round to do, and you can see what the day bought you**: a day you had
+  not touched yet could open on an empty box telling you to come back later, which is the
+  one day it should not — nothing due now means a round of what is coming up next instead,
+  and only a day you have already worked is allowed to be finished. What you did that day
+  is on the finish screen: how much you answered, how many words you met for the first time,
+  and how many finally sat down. The progress tiles carry the same movement under their
+  totals, so the numbers show the day shifting them rather than just standing there.
+  And when a day is clearly not going in — far more slipping than the box plans for — the
+  finish screen says so and quietly stops pushing you onward; practising more is still
+  right there, it just is not the button leaning on you any more.
+
 ## 2.1.1 — 2026-07-29
 
 - **A box from an earlier version opens again**: 2.1.0 renamed two settings inside the

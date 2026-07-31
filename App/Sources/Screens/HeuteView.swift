@@ -138,7 +138,8 @@ struct HeuteView: View {
     /// otherwise nothing is due right now, which is a different message
     /// and must not claim a finish the learner never made.
     private var doneCard: some View {
-        let worked = model.reviewsDoneToday > 0
+        let today = model.today
+        let worked = (today?.reviews ?? 0) > 0
         return VStack(spacing: DL.Space.l) {
             Text(verbatim: worked ? "🎉" : "🌱")
                 .font(.system(size: 56))
@@ -147,6 +148,13 @@ struct HeuteView: View {
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)
+            if let today, worked {
+                // What the day actually bought, not just that it happened.
+                todayTally(today)
+                    .font(DL.Fonts.body)
+                    .foregroundStyle(Color.dlTextSecondary)
+                    .multilineTextAlignment(.center)
+            }
             StreakFlameView(days: model.stats?.streakDays ?? 0)
             tomorrowText
                 .font(DL.Fonts.body)
@@ -170,6 +178,20 @@ struct HeuteView: View {
                 .fill(Color.dlSurface)
         )
         .dlCardShadow()
+    }
+
+    /// "24 Wiederholungen · 3 neue Karten · 2 gefestigt" — the day's gain, not just
+    /// that it happened. Settled crossings lead nothing: they are the rarest part
+    /// and the one worth reading last.
+    private func todayTally(_ report: TodayReport) -> Text {
+        var parts: [Text] = [Text("heute.session.reviews \(Int(report.reviews).formatted())")]
+        if report.introduced > 0 {
+            parts.append(Text("heute.session.newCards \(Int(report.introduced).formatted())"))
+        }
+        if report.settled > 0 {
+            parts.append(Text("heute.done.settled \(Int(report.settled).formatted())"))
+        }
+        return parts.joined() ?? Text("heute.session.someCards")
     }
 
     private var tomorrowText: Text {

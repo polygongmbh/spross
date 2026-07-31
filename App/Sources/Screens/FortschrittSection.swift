@@ -16,13 +16,22 @@ struct FortschrittSection: View {
             ActivityStripView(days: model.last14Days(),
                               streakDays: model.stats?.streakDays ?? 0)
             HStack(spacing: DL.Space.m) {
+                // Standing totals with today's movement under them: the totals say
+                // where the box stands, the deltas say that today moved it.
                 BoxStatTile(emoji: "🌳",
                             value: "\(model.stats?.settledCards ?? 0)",
-                            label: "progress.consolidated")
+                            label: "progress.consolidated",
+                            delta: delta(Int(model.today?.settled ?? 0)))
                 BoxStatTile(emoji: "🌱",
                             value: "\(model.stats?.freshCards ?? 0)",
-                            label: "progress.fresh")
+                            label: "progress.fresh",
+                            delta: delta(Int(model.today?.introduced ?? 0)))
             }
         }
+    }
+
+    /// "+3 heute", or nothing at all on a figure the day has not moved.
+    private func delta(_ count: Int) -> LocalizedStringKey? {
+        count > 0 ? "progress.today \(count.formatted())" : nil
     }
 }
