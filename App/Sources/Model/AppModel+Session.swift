@@ -170,6 +170,14 @@ extension AppModel {
                                                       nowEpochMillis: Date().epochMillis).isEmpty
     }
 
+    /// The day streak standing at its all-time best (`BoxStatistics.longestStreak`),
+    /// which the finish screen names. A first day is not a record worth announcing —
+    /// every box has one, and nothing has been held on to yet.
+    var streakIsRecord: Bool {
+        guard let stats else { return false }
+        return stats.streakDays >= 2 && stats.streakDays == stats.longestStreakDays
+    }
+
     /// Whether `startExtraSession` would yield anything (drives the done
     /// card's "Extra-Runde üben" button). Unlike `canPracticeMore`, this
     /// includes the review-ahead fallback, so it holds in every done state

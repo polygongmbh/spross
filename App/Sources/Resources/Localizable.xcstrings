@@ -1625,6 +1625,22 @@
         }
       }
     },
+    "session.finished.streakRecord": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein längster Lauf!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your longest run yet!"
+          }
+        }
+      }
+    },
     "session.finished.title": {
       "localizations": {
         "de": {

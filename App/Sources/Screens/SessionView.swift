@@ -52,6 +52,7 @@ struct SessionView: View {
                                       graduatedCount: model.sessionGraduated,
                                       reviewCount: model.sessionReviews,
                                       streakDays: model.stats?.streakDays ?? 0,
+                                      streakIsRecord: model.streakIsRecord,
                                       canPracticeMore: model.canPracticeMore,
                                       restSuggested: model.today?.recallStrained ?? false,
                                       onPractice: { model.continueEndless() },
