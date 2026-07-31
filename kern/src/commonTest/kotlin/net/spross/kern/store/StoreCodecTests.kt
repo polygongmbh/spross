@@ -110,6 +110,7 @@ class StoreCodecTests {
 
         assertEquals(20, decoded.config.maxUnsettled)
         assertEquals(2.0, decoded.config.settledStability)
+        assertEquals(6.0, decoded.config.consolidatedStability)
         assertEquals("w1", decoded.scheduling.getValue("w1").cardId)
     }
 

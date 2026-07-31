@@ -50,7 +50,7 @@ class WidgetSnapshotBuilderTests {
         val due = Box.plusDays(Box.day1, 2.0)
         val lastReview = Box.plusSeconds(Box.day1, -3600)
         var state = Snap.state(listOf(fem, gendered))
-        state = Box.inject(state, Box.sched("wf", stability = 4.5, dueMillis = due, lastReviewMillis = lastReview))
+        state = Box.inject(state, Box.sched("wf", stability = 6.5, dueMillis = due, lastReviewMillis = lastReview))
         state = Box.inject(
             state,
             Box.sched(

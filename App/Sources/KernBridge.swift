@@ -88,6 +88,7 @@ extension BoxConfig {
                   desiredRetention: 0.8,
                   maximumIntervalDays: 365,
                   settledStability: 2.0,
+                  consolidatedStability: 6.0,
                   learningStepsSeconds: [KotlinLong(longLong: 120)],
                   relearningStepsSeconds: [KotlinLong(longLong: 600)])
     }
@@ -99,6 +100,7 @@ extension BoxConfig {
                desiredRetention: desiredRetention,
                maximumIntervalDays: maximumIntervalDays,
                settledStability: settledStability,
+               consolidatedStability: consolidatedStability,
                learningStepsSeconds: learningStepsSeconds,
                relearningStepsSeconds: relearningStepsSeconds)
     }

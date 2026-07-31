@@ -14,6 +14,13 @@
   down until you tapped in manually. It now stays up for the whole session — only the field
   underneath it changes — so typing is always one keystroke away, never an extra tap.
 
+- **A word stays "fresh" until it has actually proven itself**: the progress tiles used to
+  call a word "settled" the moment a single Good answer graduated it, so the fresh/settled
+  split and the day's "+N" deltas could disagree with each other — a "+20 fresh today" figure
+  could outnumber the fresh words the box actually had. Words known on sight (Easy) still
+  settle immediately; a merely-Good first answer now stays fresh until a second successful
+  review proves it, and phrase unlock waits for the same bar. Growth pacing is unaffected.
+
 - **The finish screen's confetti burst no longer doubles up**: one of the small orbiting
   emoji was the same party-popper as the big one in the middle. Tapping anywhere on the
   finish screen — except the buttons — now replays the burst.

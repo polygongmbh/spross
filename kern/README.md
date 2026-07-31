@@ -204,16 +204,20 @@ cards; `DayStats.reviews` = answer events.
 - Desired retention: engine default 0.9 (vector anchor); product `BoxConfig` 0.8, no slider.
   Product maximum interval 365.
 - Leech: lapse counted iff `phase == review && rating == again`; 8 → auto-suspend (per card).
-- **`settledStability` = 2.0 days** — THE predicate for "has this word landed"
-  (`Statistics.isSettled`, facade `BoxEngine.isSettled(state, cardId)`): it gates phrase
-  unlock (§6), splits settled from fresh in the progress UI, and picks which support a word
-  gets while it is still on its way in (§3).
-  Settled means Review phase AND stability ≥ the threshold, so a lapse un-settles a card —
-  the point: it needs the support again.
+- **Two "has this word landed" thresholds**, both Review phase AND stability ≥ the
+  threshold, so a lapse un-lands a card either way — the point: it needs the support again.
+  - `settledStability` = 2.0 days (`Statistics.isSettled`, facade
+    `BoxEngine.isSettled(state, cardId)`) gates the new-word budget (§6) and picks which
+    support a word gets while it is still on its way in (§3).
+  - `consolidatedStability` = 6.0 days (`Statistics.isConsolidated`, facade
+    `BoxEngine.isConsolidated(state, cardId)`) gates phrase unlock (§6) and splits settled
+    from fresh in the progress UI — set strictly between S0(Good) and S0(Easy) so a single
+    Good answer no longer reads as "landed" while a single Easy still does.
   Recalibrated for FSRS-6: at retention 0.8 the interval is 3.316 × stability, so
-  S0(Good) = 2.3065 crosses at graduation the way v1's FSRS-5 3.0 did (≈ 7.6 days out,
-  Easy ≈ 27.5) while S0(Hard) = 1.2931 does not — a word answered Good on sight settles on
-  its first answer.
+  S0(Good) = 2.3065 crosses `settledStability` at graduation the way v1's FSRS-5 3.0 did
+  (≈ 7.6 days out, Easy ≈ 27.5) while S0(Hard) = 1.2931 does not — a word answered Good on
+  sight settles (budget/presentation) but does not consolidate (stats/unlock) on its first
+  answer; S0(Easy) = 8.2956 clears both.
 - Golden vectors copied verbatim from the pinned releases with PROVENANCE (repo/tag/SHA);
   FSRS-6 property tests re-express the v1 property suite. Weight optimization stays out.
 
