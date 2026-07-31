@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.3.0 — 2026-07-31
+
 - **A missed produce answer now asks you to fix it, not to judge it**: getting a word wrong
   used to reveal the answer and hand you two buttons — "I knew it" or "Next" — asking you to
   self-report something the app could just watch for. Now the field stays open, trimmed back
