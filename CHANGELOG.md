@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Missing a day no longer takes back the days before it**: the flame forgave a missed
+  day, but only one — the next miss, however many weeks later, quietly withdrew that
+  forgiveness too and dropped the count back to the days since the earlier gap. Showing up
+  now restores the grace: any single missed day is bridged, and only two misses in a row
+  put the flame out. A bridged day still earns nothing, so the number pauses for a day
+  rather than dying.
+
 - **Your best is remembered, and it is what gets celebrated**: the day streak was a number
   that went up, with no way of telling the best week you have ever had from an ordinary
   Tuesday — and a drill's "best run" was forgotten the moment you closed it. A streak

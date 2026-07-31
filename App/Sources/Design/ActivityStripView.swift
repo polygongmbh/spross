@@ -74,27 +74,28 @@ struct ActivityStripView: View {
     // MARK: - Runs
 
     /// Which columns the *current* streak covers: walk back from today, and — like
-    /// `Statistics.streak` — bridge exactly one missed day before the run ends.
-    /// Today with nothing done yet neither breaks it nor spends the forgiveness.
-    /// The rule only ever spans earned days: a forgiven gap counts when it sits
+    /// `Statistics.streak` — bridge a missed day, ending the run on two in a row.
+    /// Today with nothing done yet is not a miss at all.
+    /// The rule only ever spans earned days: a bridged gap counts when it sits
     /// between two of them, never as a tail reaching past the oldest one.
     private var streakIndices: Set<Int> {
         guard streakDays > 0, !days.isEmpty else { return [] }
         var covered: Set<Int> = []
         var oldestEarned = days.count
-        var forgivenessLeft = 1
+        var previousWasMiss = false
         var index = days.count - 1
         while index >= 0 {
             if days[index].reviews > 0 {
                 covered.insert(index)
                 oldestEarned = index
+                previousWasMiss = false
             } else if index == days.count - 1 {
-                // today isn't over — skip it without spending forgiveness
-            } else if forgivenessLeft > 0 {
-                forgivenessLeft -= 1
-                covered.insert(index)
-            } else {
+                // today isn't over — skip it without counting a miss
+            } else if previousWasMiss {
                 break
+            } else {
+                previousWasMiss = true
+                covered.insert(index)
             }
             index -= 1
         }

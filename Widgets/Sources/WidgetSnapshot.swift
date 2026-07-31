@@ -47,23 +47,24 @@ struct WidgetSnapshot: Codable {
     }
 
     /// Streak walk — DELIBERATE duplication of Kern `Statistics.streak`
-    /// (kern/README.md §7). Walk back from today: today without reviews
-    /// neither breaks the streak nor consumes forgiveness (the day isn't
-    /// over); afterwards exactly ONE 0-review day is forgiven, the next miss
-    /// ends the streak. Forgiven days do not increment the count.
+    /// (kern/README.md §7). Walk back from today: a missed day is bridged,
+    /// two in a row end the run, and a bridged day does not increment the
+    /// count. Today without reviews is not a miss at all (the day isn't over).
     func streak(now: Date, timeZone: TimeZone = .current) -> Int {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = timeZone
         var count = 0
-        var forgivenessLeft = 1
+        var previousWasMiss = false
         var day = calendar.startOfDay(for: now)
         var isToday = true
         while true {
             let reviews = dailyStats[Self.dayKey(day, calendar: calendar)]?.reviews ?? 0
             if reviews > 0 {
                 count += 1
+                previousWasMiss = false
             } else if !isToday {
-                if forgivenessLeft > 0 { forgivenessLeft -= 1 } else { break }
+                if previousWasMiss { break }
+                previousWasMiss = true
             }
             isToday = false
             guard let previous = calendar.date(byAdding: .day, value: -1, to: day)

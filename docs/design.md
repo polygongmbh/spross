@@ -120,7 +120,7 @@ never the shape of the app.
   it is there — typing never costs a tap first.
 - Progress bar: one segment per answer, colored by its outcome.
 - A miss is stated where the learner is already looking;
-  the streak survives one missed day.
+  the streak survives a missed day, but not two in a row.
 
 ## Counts & sessions
 
