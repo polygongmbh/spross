@@ -19,14 +19,32 @@ struct SessionCompletionView: View {
     var onPractice: () -> Void = {}
     var onDone: () -> Void = {}
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var burst = false
-    /// Bumped on every replay; ConfettiView reseeds its field from it.
+    /// Set once and left set: it drives the endless sway, which is a
+    /// repeatForever animation and so needs exactly one change to start.
+    @State private var swaying = false
+    /// Bumped on every replay; ConfettiView adds a wave per value.
     @State private var celebration = 0
 
+    /// The ring around the popper — one sign per idea (hands, star, sparkle,
+    /// arm, sprout, balloon), so no two read as the same thing at a glance.
     private static let pieces: [(emoji: String, angle: Double, distance: CGFloat)] = [
-        ("⭐️", -150, 96), ("🙌", -110, 118), ("✨", -70, 118),
-        ("💪", -30, 96), ("🌟", -170, 60), ("🎈", -10, 60),
+        ("⭐️", -140, 100), ("🙌", -104, 120), ("✨", -64, 118),
+        ("💪", -28, 100), ("🌱", -174, 64), ("🎈", -6, 64),
     ]
+
+    /// Every piece rocks on its own clock and through its own angle — one
+    /// shared period would read as a single rigid object rocking, which is
+    /// the opposite of six light things hanging in the air.
+    private static func swayAngle(_ index: Int) -> Double { 5 + Double(index % 3) * 2 }
+    private static func swayPeriod(_ index: Int) -> Double { 2.1 + Double(index) * 0.27 }
+
+    /// Nothing on this screen has to move for it to be read, so the endless
+    /// part of the celebration is the first thing Reduce Motion drops.
+    private func sway(period: Double) -> Animation? {
+        reduceMotion ? nil : .easeInOut(duration: period).repeatForever(autoreverses: true)
+    }
 
     /// "3 neu · 2 gefestigt · 8 wiederholt" — only the non-zero parts. Built
     /// as `Text` so each part localizes via the environment locale.
@@ -80,6 +98,7 @@ struct SessionCompletionView: View {
         .onTapGesture(perform: replay)
         .onAppear {
             burst = true
+            swaying = true
             DLSound.cheer()
         }
     }
@@ -115,12 +134,18 @@ struct SessionCompletionView: View {
                         .delay(0.15 + Double(index) * 0.06),
                         value: burst
                     )
+                    .rotationEffect(.degrees(swaying ? Self.swayAngle(index) : -Self.swayAngle(index)))
+                    .animation(sway(period: Self.swayPeriod(index)), value: swaying)
             }
             Text(verbatim: "🎉")
                 .font(.system(size: 88))
                 .scaleEffect(burst ? 1 : 0.4)
                 .rotationEffect(.degrees(burst ? 0 : -25))
                 .animation(.spring(response: 0.5, dampingFraction: 0.5), value: burst)
+                // why: the popper carries the least of it — a big shape rocking
+                // as far as a small one reads as the screen itself tilting.
+                .rotationEffect(.degrees(swaying ? 3 : -3))
+                .animation(sway(period: 3.7), value: swaying)
         }
         .frame(height: 180)
         .accessibilityHidden(true) // why: purely celebratory; "session.finished.title" below carries the message
