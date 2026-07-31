@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **A word stays "fresh" until it has actually proven itself**: the progress tiles used to
+  call a word "settled" the moment a single Good answer graduated it, so the fresh/settled
+  split and the day's "+N" deltas could disagree with each other — a "+20 fresh today" figure
+  could outnumber the fresh words the box actually had. Words known on sight (Easy) still
+  settle immediately; a merely-Good first answer now stays fresh until a second successful
+  review proves it, and phrase unlock waits for the same bar. Growth pacing is unaffected.
+
 ## 2.2.0 — 2026-07-31
 
 - **The start screen tells you what the round really is**: it used to call everything "your

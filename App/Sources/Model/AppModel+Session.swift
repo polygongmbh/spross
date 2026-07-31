@@ -91,14 +91,14 @@ extension AppModel {
     func answerCurrent(_ rating: Rating) {
         guard case .card(let id)? = sessionStep, let current = box else { return }
         let now = Date()
-        let wasSettled = isSettled(id)
+        let wasConsolidated = isConsolidated(id)
         let outcome = BoxEngine.shared.answer(state: current, cardId: id, rating: rating,
                                               nowEpochMillis: now.epochMillis,
                                               tzId: currentTzId())
         box = outcome.state
         if outcome.status == .applied {
             tallySummary(firstAnswer: scheduling(for: id)?.reviewCount == 1,
-                         wasSettled: wasSettled, isSettled: isSettled(id))
+                         wasConsolidated: wasConsolidated, isConsolidated: isConsolidated(id))
             sessionRatings.append(rating)
             sessionAnswered += 1
         } else {
@@ -120,10 +120,10 @@ extension AppModel {
     /// reaches Review on its first pass while its stability is still tiny, so the
     /// phase edge would have called that settled and the summary would have said
     /// "gefestigt" about a word that had barely landed.
-    private func tallySummary(firstAnswer: Bool, wasSettled: Bool, isSettled: Bool) {
+    private func tallySummary(firstAnswer: Bool, wasConsolidated: Bool, isConsolidated: Bool) {
         if firstAnswer {
             sessionNew += 1
-        } else if !wasSettled && isSettled {
+        } else if !wasConsolidated && isConsolidated {
             sessionGraduated += 1
         } else {
             sessionReviews += 1
