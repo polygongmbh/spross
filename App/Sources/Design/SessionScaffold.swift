@@ -106,6 +106,37 @@ struct SessionScaffold<Content: View>: View {
     }
 }
 
+// MARK: - SessionExitButtons
+//
+// The pair every finished round exits through — the session summary and a
+// drill's alike, so the two screens never disagree about which way out is
+// the default one.
+
+struct SessionExitButtons: View {
+    var onDone: () -> Void
+    /// Left out when there is nothing more to practise.
+    var onPractice: (() -> Void)?
+
+    var body: some View {
+        VStack(spacing: DL.Space.m) {
+            // why: the round that was planned is done — stopping takes the
+            // full-width primary, and going on is offered at its own smaller
+            // size below rather than as a second slab.
+            Button(action: onDone) {
+                Text("common.done").frame(maxWidth: .infinity)
+            }
+            .buttonStyle(DLPrimaryButtonStyle())
+            if let onPractice {
+                Button("session.finished.keepPracticing", action: onPractice)
+                    .buttonStyle(DLSoftButtonStyle())
+            }
+        }
+        // why: a celebration ending flush against the bottom edge reads as a
+        // form to dismiss; the pair sits off it instead.
+        .padding(.bottom, DL.Space.xl)
+    }
+}
+
 // MARK: - Previews
 
 #Preview("Session chrome") {

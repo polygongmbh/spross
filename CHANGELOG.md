@@ -14,7 +14,8 @@
   under your thumb, so stopping — the thing the finished round has earned — was the
   choice you had to reach past. Confetti now falls across the whole screen with a cheer
   to match, "Fertig" is the button waiting for your thumb, and practising on sits quietly
-  below it for the days you want it. Tapping anywhere still replays the whole thing.
+  below it for the days you want it — on a finished drill just as on a finished round.
+  Tapping anywhere still replays the whole thing.
 
 - **The answer field is focused whenever it is there**: the last release tried to hold the
   keyboard up for a whole session, which iOS undoes the moment the field is out of sight —

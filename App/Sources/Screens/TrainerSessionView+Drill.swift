@@ -241,17 +241,10 @@ extension TrainerSessionView {
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
             Spacer()
-            Button("session.finished.keepPracticing") {
-                withAnimation(.easeOut(duration: 0.2)) { showingSummary = false }
-            }
-            .buttonStyle(DLSoftButtonStyle())
-            Button {
-                dismiss()
-            } label: {
-                Text("common.done")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(DLPrimaryButtonStyle())
+            SessionExitButtons(
+                onDone: { dismiss() },
+                onPractice: { withAnimation(.easeOut(duration: 0.2)) { showingSummary = false } }
+            )
         }
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

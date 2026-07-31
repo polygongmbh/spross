@@ -197,6 +197,10 @@ never the shape of the app.
 - **Stopping is the default at the end of a round**: the round that was planned is done,
   so "Fertig" is the primary button and "Weiter üben" the quiet one below it — an earned
   break needs no arguing for, and a learner who wants another round still has it one tap on.
+  Going on is offered at its own smaller size rather than as a second slab, and the pair
+  sits off the bottom edge: a celebration flush against it reads as a form to dismiss.
+  One component (`SessionExitButtons`) carries all of that, so the session summary and a
+  drill's cannot drift apart on which way out is the default.
   When `TodayReport.recallStrained` holds, the summary additionally says why stopping is
   the better call.
 - **Box** (pushed via the 📦 toolbar icon): browse areas/cards —

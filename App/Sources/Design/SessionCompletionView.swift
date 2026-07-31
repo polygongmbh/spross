@@ -75,20 +75,8 @@ struct SessionCompletionView: View {
                     .multilineTextAlignment(.center)
             }
             Spacer()
-            VStack(spacing: DL.Space.m) {
-                // why: the day's work is done — stopping is the default choice,
-                // and practising on is the one that has to be reached for.
-                Button(action: onDone) {
-                    Text("common.done").frame(maxWidth: .infinity)
-                }
-                .buttonStyle(DLPrimaryButtonStyle())
-                if canPracticeMore {
-                    Button(action: onPractice) {
-                        Text("session.finished.keepPracticing").frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(DLSoftButtonStyle())
-                }
-            }
+            SessionExitButtons(onDone: onDone,
+                               onPractice: canPracticeMore ? onPractice : nil)
         }
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
