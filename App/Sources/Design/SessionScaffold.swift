@@ -127,7 +127,7 @@ struct SessionCompletionView: View {
     @State private var burst = false
 
     private static let pieces: [(emoji: String, angle: Double, distance: CGFloat)] = [
-        ("⭐️", -150, 96), ("🎉", -110, 118), ("✨", -70, 118),
+        ("⭐️", -150, 96), ("🙌", -110, 118), ("✨", -70, 118),
         ("💪", -30, 96), ("🌟", -170, 60), ("🎈", -10, 60),
     ]
 
@@ -191,7 +191,18 @@ struct SessionCompletionView: View {
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.dlBackground.ignoresSafeArea())
+        .contentShape(Rectangle())
+        .onTapGesture(perform: replayBurst)
         .onAppear { burst = true }
+    }
+
+    /// Snaps the burst back to rest with no animation, then re-triggers it
+    /// on the next runloop turn so the spring actually replays.
+    private func replayBurst() {
+        var reset = Transaction()
+        reset.disablesAnimations = true
+        withTransaction(reset) { burst = false }
+        DispatchQueue.main.async { burst = true }
     }
 
     private var burstHero: some View {

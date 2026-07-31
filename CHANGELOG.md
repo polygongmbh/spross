@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **The finish screen's confetti burst no longer doubles up**: one of the small orbiting
+  emoji was the same party-popper as the big one in the middle. Tapping anywhere on the
+  finish screen — except the buttons — now replays the burst.
+
 ## 2.2.0 — 2026-07-31
 
 - **The start screen tells you what the round really is**: it used to call everything "your
