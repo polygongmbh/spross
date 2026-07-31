@@ -38,7 +38,11 @@ struct SessionView: View {
     @State var otherWord: MatchOtherWord?
     @State var autoAdvance: Task<Void, Never>?
     /// Owned here (not in AnswerInputView) so the keyboard is up the moment
-    /// a card appears and stays up across cards.
+    /// a card appears and stays up across cards. `answerField` keeps the
+    /// same view mounted (just visually collapsed) through every state that
+    /// has nothing to type into, recognize included — a view that gets torn
+    /// down and rebuilt can lose a focus request racing that rebuild, which
+    /// is what made a reappearing field sometimes not autofocus.
     @FocusState var answerFocused: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.locale) var locale
@@ -218,14 +222,21 @@ struct SessionView: View {
         return revealed
     }
 
+    /// The answer field is mounted here unconditionally — for both roles —
+    /// and just visually collapses when there is nothing to type into
+    /// (`answerField`), so the same view (and its focus) survives every
+    /// transition instead of being swapped in and out.
     @ViewBuilder
     private func controls(_ card: Card, role: PresentationRole) -> some View {
         if copyPending != nil {
             copyControls(card)
         } else {
-            switch role {
-            case .recognize: recognizeControls
-            case .produce: produceControls(card)
+            VStack(spacing: 0) {
+                answerField(card, role: role)
+                switch role {
+                case .recognize: recognizeControls
+                case .produce: produceButtons(card)
+                }
             }
         }
     }
@@ -265,6 +276,8 @@ struct SessionView: View {
             copyMissed = false
             copyFeedback = .neutral
             withAnimation { revealed = true }
+            // why: a genuine field swap — copyControls mounts its own
+            // AnswerInputView, so focus needs to be re-asserted onto it.
             answerFocused = true
             return
         }

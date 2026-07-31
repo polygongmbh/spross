@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+- **A missed produce answer now asks you to fix it, not to judge it**: getting a word wrong
+  used to reveal the answer and hand you two buttons — "I knew it" or "Next" — asking you to
+  self-report something the app could just watch for. Now the field stays open, trimmed back
+  to the whole words you already had right, so you retype only the part that slipped while
+  the answer sits right there on the card. Finishing it counts as Hard rather than a blind
+  Again; giving up still works with the same small "Skip" the write-it-out step already had.
+
+- **The keyboard stops flickering away between cards**: switching between a self-grade tap
+  and a typed field could leave the next field not actually focused, so the keyboard stayed
+  down until you tapped in manually. It now stays up for the whole session — only the field
+  underneath it changes — so typing is always one keystroke away, never an extra tap.
+
 - **The finish screen's confetti burst no longer doubles up**: one of the small orbiting
   emoji was the same party-popper as the big one in the middle. Tapping anywhere on the
   finish screen — except the buttons — now replays the burst.

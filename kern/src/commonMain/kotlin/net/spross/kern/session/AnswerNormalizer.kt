@@ -89,6 +89,25 @@ class AnswerNormalizer(
     fun matches(input: String, card: Card): Boolean = evaluate(input, card) != Match.Wrong
 
     /**
+     * How many leading whole words of [input] already match [answer], word by
+     * word, each within its own typo budget — a miss reveals [answer], and a
+     * retry only needs to fix the word where the slip actually started rather
+     * than retyping the words that were already right.
+     */
+    fun matchingPrefixWordCount(input: String, answer: String): Int {
+        val typed = input.trim().split(whitespaceRun).filter { it.isNotEmpty() }
+        val expected = answer.trim().split(whitespaceRun).filter { it.isNotEmpty() }
+        var count = 0
+        while (count < typed.size && count < expected.size) {
+            val a = cleaned(typed[count]).trim()
+            val b = cleaned(expected[count]).trim()
+            if (b.isEmpty() || damerauLevenshtein(a, b) > wordBudget(b, Int.MAX_VALUE)) break
+            count++
+        }
+        return count
+    }
+
+    /**
      * Every comparison form [raw] can take: the normalized shape first, then —
      * under [verbLeniency] — the same shape with each listed citation prefix
      * dropped. [CatalogAnswerGrader] builds and probes its catalog-wide index

@@ -241,4 +241,20 @@ class AnswerNormalizerTests {
         assertEquals(Match.Exact, de.evaluate("Tür", door))
         assertEquals(Match.Exact, de.evaluate("die Türe", door))
     }
+
+    @Test
+    fun matchingPrefixWordCountKeepsWholeWordsAlreadyRight() {
+        // First word right, second wrong → keep one.
+        assertEquals(1, de.matchingPrefixWordCount("Der Gefrierschrank", "Der Kühlschrank"))
+        // A forgivable slip inside a kept word still counts as matching.
+        assertEquals(2, de.matchingPrefixWordCount("Der Kuhlschrank", "Der Kühlschrank"))
+        // Nothing matches → nothing kept.
+        assertEquals(0, de.matchingPrefixWordCount("Tisch", "Der Kühlschrank"))
+        // Typed more words than the answer has → capped at the answer's length.
+        assertEquals(2, de.matchingPrefixWordCount("Der Kühlschrank ist leer", "Der Kühlschrank"))
+        // Typed fewer words than the answer → capped at what was typed.
+        assertEquals(1, de.matchingPrefixWordCount("Der", "Der Kühlschrank"))
+        // Empty input matches nothing.
+        assertEquals(0, de.matchingPrefixWordCount("", "Der Kühlschrank"))
+    }
 }

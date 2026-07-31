@@ -25,6 +25,10 @@ struct AnswerInputView: View {
     /// Session views own focus so the keyboard is up the moment a card
     /// appears; standalone use falls back to the internal focus state.
     var focus: FocusState<Bool>.Binding?
+    /// Overrides the feedback-driven disable (`.revealed` locks by default) —
+    /// a produce miss keeps the field open so the learner can retype the
+    /// word they just saw revealed.
+    var locked: Bool?
     var onSubmit: () -> Void = {}
 
     @FocusState private var fallbackFocus: Bool
@@ -57,7 +61,7 @@ struct AnswerInputView: View {
                 // why: on wrong answers Enter/tap must advance the session
                 // instead; on correct the field stays enabled so the keyboard
                 // does not bounce during the 1.2 s auto-advance.
-                .disabled(isRevealed)
+                .disabled(locked ?? isRevealed)
             statusIcon
         }
         .padding(.horizontal, DL.Space.l)
