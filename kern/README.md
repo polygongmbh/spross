@@ -31,7 +31,7 @@ draw it is rendering and does not.
   `articles` replaces v1's hardcoded German article list.
 - Profile = (source, target), source ≠ target.
   `Catalog.availableTargets(source)` requires ≥ 50 joinable concepts.
-  (Picker display and the device-language default are app rules — `../docs/design.md`.)
+  (Picker display and the device-language default are app rules.)
 
 ## 2. Card — derived, language-symmetric
 
@@ -427,7 +427,7 @@ day-key `yyyy-MM-dd`) with:
   shipping card ids instead of texts would recover most of that, at the price of
   making the watch resolve the option side again (the v2 bug's home).
   The phone resolves `nextRole` and the rotated `promptForm` from the log count at build
-  time; presentation is the app layer's (`../docs/design.md` §Watch & widgets)
+  time; presentation is the app layer's
   and `emoji` is pre-gated to the PROMPT side by §3 — the watch quiz has no reveal face to
   hang a picture on, so a reveal-side emoji is simply omitted from the entry.
   Ranking is **due-first** (a due card is never evicted by a non-due lower tier), then
@@ -493,7 +493,7 @@ day-key `yyyy-MM-dd`) with:
   conformances; Kotlin `Int` surfaces as `Int32` — bridge there, not at call sites.
 - Trainer: single `:kern` module, `Long` cardinals everywhere (Kotlin `Int` is 32-bit on
   all platforms — v1's arm64_32 fix generalizes). Trainer registry: de/sw/uk authored,
-  en absent (the hub's handling of that is an app rule — `../docs/design.md`).
+  en absent (the hub's handling of that is an app rule).
   Phrase templates keyed (source, target); reverse mode when target == de.
   German clock ACCEPTS 24-hour readings ("achtzehn Uhr fünfunddreißig", "null/vierundzwanzig
   Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.

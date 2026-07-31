@@ -3,8 +3,8 @@ import Foundation
 /// File-backed persistence for the box document — one JSON document per
 /// TARGET language (`box-<target>.json`), encoded/decoded by the Kern
 /// `StoreCodec` on the caller's side; this actor only moves strings to disk.
-/// Atomic writes; debounced saves per design.md (≥5 s after answers,
-/// immediate at session end / scene background via `saveNow`).
+/// Atomic writes, and the save cadence lives here: debounced ≥5 s after
+/// answers, immediate at session end and scene background (`saveNow`).
 actor BoxStore {
     private let directory: URL
     private var pendingSave: Task<Void, Never>?

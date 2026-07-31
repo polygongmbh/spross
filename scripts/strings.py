@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 """Keep Localizable.xcstrings honest against the compiler.
 
+How a chrome key must be written, so the catalog stays honest in the first place:
+resolution runs through LocalizedStringKey against the environment locale, so a key
+keeps its arguments ("heute.session.reviews %@") and is never resolved with
+String(localized:), which would read the DEVICE language instead. A %@ argument is
+pre-formatted at the call site — `\\(due.formatted())`, never a bare `\\(due)`, which
+the extractor writes as %@ while the compiler emits %lld, leaving the project to
+rewrite the catalog with dead twins. A key whose wording turns on the number takes a
+counted %lld instead, and then owes every plural category (see plural_problems).
+
 Xcode's index-based extractor is weaker than the compiler's: it cannot see a
 LocalizedStringKey returned from a computed property, passed to one of our own
 LocalizedStringKey parameters, or wrapped in Label/accessibilityLabel. Keys it

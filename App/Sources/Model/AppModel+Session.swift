@@ -109,7 +109,7 @@ extension AppModel {
         if !sessionQueue.isEmpty {
             sessionQueue.removeFirst()
         }
-        persist(outcome.state) // debounced (≥5 s) per design.md save cadence
+        persist(outcome.state) // debounced — `BoxStore` owns the cadence
         advanceSession(now: now)
     }
 
