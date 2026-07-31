@@ -113,13 +113,21 @@ object BoxEngine {
         todayReport(state, nowEpochMillis, tzId)
 
     /**
-     * Has this card settled? See [Statistics.isSettled] — the one threshold
-     * behind phrase unlock, the settled/fresh split, and the presentation
-     * support a word gets while it is still landing. Unknown ids read as false:
-     * a card with no schedule has certainly not landed.
+     * Has this card settled? See [Statistics.isSettled] — the fast threshold
+     * behind budget pacing and the presentation support a word gets while it is
+     * still landing. Unknown ids read as false: a card with no schedule has
+     * certainly not landed.
      */
     fun isSettled(state: BoxState, cardId: String): Boolean =
         state.scheduling[cardId]?.let { Statistics.isSettled(state, it) } ?: false
+
+    /**
+     * Has this card genuinely consolidated? See [Statistics.isConsolidated] —
+     * the stricter threshold behind the fresh/settled stats split and phrase
+     * unlock. Unknown ids read as false.
+     */
+    fun isConsolidated(state: BoxState, cardId: String): Boolean =
+        state.scheduling[cardId]?.let { Statistics.isConsolidated(state, it) } ?: false
 
     /** See [Exposure.exposureCards]; `nowEpochMillis` reserved for future due-weighting. */
     fun exposureCards(state: BoxState, nowEpochMillis: Long, limit: Int): List<Card> =

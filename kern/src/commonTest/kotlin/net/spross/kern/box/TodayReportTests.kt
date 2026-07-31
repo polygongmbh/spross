@@ -26,8 +26,9 @@ class TodayReportTests {
         assertEquals(3, today.reviews)
         assertEquals(3, today.introduced)
         assertEquals(1, today.missed)
-        // Good on sight settles at once; the missed word is still on its way in.
-        assertEquals(2, today.settled)
+        // A single Good answer no longer consolidates on sight (only Easy does) —
+        // none of today's words have proven themselves yet.
+        assertEquals(0, today.settled)
     }
 
     /** Yesterday's work belongs to yesterday — the day boundary is the caller's zone. */
@@ -77,13 +78,21 @@ class TodayReportTests {
     @Test
     fun aWordCountsOnTheDayItCrossesAndNotAgain() {
         var state = boxOf(2)
-        state = Box.answered(state, "w01", Rating.Good, now) // introduced + settled at once
-        assertEquals(1, BoxEngine.today(state, now, Box.TZ).settled)
+        // A single Good graduates to Review (stability 2.3065) but doesn't consolidate yet.
+        state = Box.answered(state, "w01", Rating.Good, now)
+        assertEquals(0, BoxEngine.today(state, now, Box.TZ).settled)
 
+        // A second success, well after the natural interval, pushes stability past the
+        // consolidated bar — that is the day the crossing is booked.
         val later = Box.plusDays(now, 30.0)
         state = Box.answered(state, "w01", Rating.Good, later)
-        assertTrue(BoxEngine.isSettled(state, "w01"))
-        assertEquals(0, BoxEngine.today(state, later, Box.TZ).settled)
+        assertTrue(BoxEngine.isConsolidated(state, "w01"))
+        assertEquals(1, BoxEngine.today(state, later, Box.TZ).settled)
+
+        // Already consolidated — reviewing it again does not cross a second time.
+        val evenLater = Box.plusDays(later, 30.0)
+        state = Box.answered(state, "w01", Rating.Good, evenLater)
+        assertEquals(0, BoxEngine.today(state, evenLater, Box.TZ).settled)
     }
 
     /** A word on its way in crosses the moment its stability reaches the threshold. */
@@ -94,14 +103,14 @@ class TodayReportTests {
             state,
             Box.sched(
                 "w01",
-                stability = 1.5, // under settledStability 2.0 — still on its way in
+                stability = 1.5, // under consolidatedStability 6.0 — still on its way in
                 dueMillis = now,
-                lastReviewMillis = Box.plusDays(now, -2.0),
+                lastReviewMillis = Box.plusDays(now, -10.0),
             ),
         )
-        assertFalse(BoxEngine.isSettled(state, "w01"))
+        assertFalse(BoxEngine.isConsolidated(state, "w01"))
         state = Box.answered(state, "w01", Rating.Good, now)
-        assertTrue(BoxEngine.isSettled(state, "w01"))
+        assertTrue(BoxEngine.isConsolidated(state, "w01"))
         assertEquals(1, BoxEngine.today(state, now, Box.TZ).settled)
     }
 }

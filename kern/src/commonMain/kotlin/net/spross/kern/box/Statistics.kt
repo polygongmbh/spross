@@ -12,7 +12,7 @@ import net.spross.kern.model.DayStats
 data class BoxStatistics(
     /** Cards with an active (scheduled, non-suspended) schedule. */
     val activeCount: Int,
-    /** Active cards that have settled (see [Statistics.isSettled]); the rest are still fresh. */
+    /** Active cards that have consolidated (see [Statistics.isConsolidated]); the rest are still fresh. */
     val settledCount: Int,
     /** Active cards due now. */
     val dueCount: Int,
@@ -31,7 +31,7 @@ data class AreaStatistics(
     val total: Int,
     /** Cards with an active schedule. */
     val active: Int,
-    /** Cards in the area that have settled (see [Statistics.isSettled]). */
+    /** Cards in the area that have consolidated (see [Statistics.isConsolidated]). */
     val settled: Int,
     /** Component phrases still waiting for their components to stabilize. */
     val phrasesLocked: Int,
@@ -46,7 +46,7 @@ internal object Statistics {
         val active = Inventory.active(state)
         return BoxStatistics(
             activeCount = active.size,
-            settledCount = active.count { isSettled(state, it) },
+            settledCount = active.count { isConsolidated(state, it) },
             dueCount = active.count { it.due != null && it.due <= now },
             suspendedCount = Inventory.scheduled(state).count { it.suspended },
             newSlotsAvailable = Growth.gatedNewBudget(state, nowEpochMillis),
@@ -66,6 +66,16 @@ internal object Statistics {
     fun isSettled(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&
             (sched.memory?.stability ?: 0.0) >= state.config.settledStability
+
+    /**
+     * The stricter "really landed" bar: Review phase at or above
+     * [BoxConfig.consolidatedStability]. Feeds the fresh/settled stats split, the
+     * session-summary tally, and phrase unlock — never budget pacing or in-session
+     * presentation support, which stay on the faster [isSettled].
+     */
+    fun isConsolidated(state: BoxState, sched: CardScheduling): Boolean =
+        sched.phase == CardPhase.Review &&
+            (sched.memory?.stability ?: 0.0) >= state.config.consolidatedStability
 
     /**
      * Walk back from today. Today without reviews neither breaks the streak nor consumes
@@ -102,7 +112,7 @@ internal object Statistics {
                 for (card in cards) {
                     if (card.id in activeCards) active += 1
                     val sched = state.scheduling[card.id]
-                    if (sched != null && !sched.suspended && isSettled(state, sched)) settled += 1
+                    if (sched != null && !sched.suspended && isConsolidated(state, sched)) settled += 1
                     if (card.kind == CardKind.Phrase) {
                         val open = sched != null || card.components.isEmpty() ||
                             Growth.isPhraseUnlocked(state, card)

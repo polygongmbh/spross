@@ -45,13 +45,13 @@ internal object Answering {
         val scheduler = FsrsScheduler(state.config.fsrsParameters())
         val existing = state.scheduling[cardId]
         return if (existing?.memory != null) {
-            val wasSettled = Statistics.isSettled(state, existing)
+            val wasConsolidated = Statistics.isConsolidated(state, existing)
             val next = reviewed(existing, rating, scheduler, now)
             AnswerOutcome(
                 state.copy(
                     scheduling = state.scheduling + (cardId to next),
                     settledCrossed = state.settledCrossed.bookIf(
-                        !wasSettled && Statistics.isSettled(state, next),
+                        !wasConsolidated && Statistics.isConsolidated(state, next),
                         dayKey(nowEpochMillis, tzId),
                     ),
                 ),
@@ -86,9 +86,9 @@ internal object Answering {
         val next = state.copy(
             scheduling = state.scheduling + (card.id to sched),
             newIntroduced = state.newIntroduced + (day to (state.newIntroduced[day] ?: 0) + 1),
-            // A word known on sight sits down the moment it arrives — introduced and
-            // settled on the same answer, and the day's report says both.
-            settledCrossed = state.settledCrossed.bookIf(Statistics.isSettled(state, sched), day),
+            // A word known on sight (Easy) consolidates the moment it arrives —
+            // introduced and settled on the same answer, and the day's report says both.
+            settledCrossed = state.settledCrossed.bookIf(Statistics.isConsolidated(state, sched), day),
             enqueued = state.enqueued.filter { it != card.id },
         )
         return AnswerOutcome(next, AnswerStatus.Applied)

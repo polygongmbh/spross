@@ -43,6 +43,9 @@ internal data class ConfigDto(
     // the old key it was renamed from is dropped by ignoreUnknownKeys. Both are
     // calibration constants the build re-applies on load, not user data worth migrating.
     val settledStability: Double = 2.0,
+    // why: same defaulting rationale as settledStability — a document written before
+    // this stricter bar existed still decodes, re-applying the build's calibration.
+    val consolidatedStability: Double = 6.0,
     val learningStepsSeconds: List<Long>,
     val relearningStepsSeconds: List<Long>,
 )
@@ -99,6 +102,7 @@ private fun configDto(config: BoxConfig): ConfigDto = ConfigDto(
     desiredRetention = config.desiredRetention,
     maximumIntervalDays = config.maximumIntervalDays,
     settledStability = config.settledStability,
+    consolidatedStability = config.consolidatedStability,
     learningStepsSeconds = config.learningStepsSeconds,
     relearningStepsSeconds = config.relearningStepsSeconds,
 )
@@ -160,6 +164,7 @@ private fun ConfigDto.toDomain(): BoxConfig = BoxConfig(
     desiredRetention = desiredRetention,
     maximumIntervalDays = maximumIntervalDays,
     settledStability = settledStability,
+    consolidatedStability = consolidatedStability,
     learningStepsSeconds = learningStepsSeconds,
     relearningStepsSeconds = relearningStepsSeconds,
 )

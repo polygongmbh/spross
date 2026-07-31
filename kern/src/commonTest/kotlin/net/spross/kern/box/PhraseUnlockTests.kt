@@ -26,7 +26,7 @@ class PhraseUnlockTests {
         assertTrue(plan1.unlockedPhrases.isEmpty())
         assertEquals(listOf("w01", "w02", "w03"), plan1.newCards)
 
-        // Easy graduates straight to Review with stability 8.2956 ≥ 2.0.
+        // Easy graduates straight to Review with stability 8.2956 ≥ 6.0 (consolidated bar).
         state = Box.answered(state, "w01", Rating.Easy, now)
 
         // One stable component is not enough — ALL must be stable.
@@ -57,11 +57,11 @@ class PhraseUnlockTests {
         var state = seeded()
         val future = Box.plusDays(now, 5.0)
         state = Box.inject(state, Box.sched("w01", stability = 10.0, dueMillis = future, lastReviewMillis = now))
-        state = Box.inject(state, Box.sched("w02", stability = 1.9, dueMillis = future, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w02", stability = 5.9, dueMillis = future, lastReviewMillis = now))
         assertTrue(Box.candidates(state).unlockedPhrases.isEmpty())
 
-        // FSRS-6 recalibrated threshold: 2.0 unlocks.
-        state = Box.inject(state, Box.sched("w02", stability = 2.0, dueMillis = future, lastReviewMillis = now))
+        // Phrase unlock uses the stricter consolidated bar: 6.0 unlocks.
+        state = Box.inject(state, Box.sched("w02", stability = 6.0, dueMillis = future, lastReviewMillis = now))
         assertEquals(listOf("p1"), Box.candidates(state).unlockedPhrases)
     }
 
