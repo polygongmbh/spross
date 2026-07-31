@@ -117,17 +117,20 @@ struct HeuteView: View {
 
     /// Built as `Text` (not a joined String) so each part localizes
     /// via the environment locale with catalog plural handling.
-    /// Every part of the round is named for what it is — due, pulled forward, or never seen.
+    /// Words already met and words never seen read differently, so those stay apart —
+    /// but a pulled-forward card is the same act of recalling as a due one,
+    /// so it counts into the repetitions instead of standing as its own pile.
+    /// Only when it carries the round alone does it get named: Auffrischer.
     private func sessionSummary(_ offer: AppModel.HeuteOffer) -> Text {
         var parts: [Text] = []
         if offer.sessionReviews > 0 {
-            parts.append(Text("heute.session.reviews \(offer.sessionReviews.formatted())"))
+            let repetitions = offer.sessionReviews + offer.aheadCount
+            parts.append(Text("heute.session.reviews \(repetitions.formatted())"))
+        } else if offer.aheadCount > 0 {
+            parts.append(Text("heute.session.ahead \(offer.aheadCount.formatted())"))
         }
         if offer.freshCount > 0 {
             parts.append(Text("heute.session.newCards \(offer.freshCount.formatted())"))
-        }
-        if offer.aheadCount > 0 {
-            parts.append(Text("heute.session.ahead \(offer.aheadCount.formatted())"))
         }
         return parts.joined() ?? Text("heute.session.someCards")
     }

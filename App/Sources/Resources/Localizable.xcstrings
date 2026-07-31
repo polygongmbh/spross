@@ -758,13 +758,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ Karten vorgezogen"
+            "value": "%@ Auffrischer"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ pulled forward"
+            "value": "%@ refreshers"
           }
         }
       }
