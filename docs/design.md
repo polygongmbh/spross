@@ -74,6 +74,14 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
 Roles, synonym rotation, and emoji placement are engine rules (kern README §3);
 the app renders them:
 
+**Practice means typing.** Writing the word is the recall the box is scheduling, so that
+is what a card asks for. Revealing is the way out of it, for the three cases where typing
+is not the question: a word met for the first time (with the emoji as its cue), a target
+form to be recognized rather than produced, and a learner who does not want to type right
+now — one hand on the phone is reason enough.
+The grade buttons live on that path only; they are the way back to the deck,
+never the shape of the app.
+
 - The role of each review comes from the engine (`presentationRole`),
   alternating produce/recognize.
 - **PRODUCE**: typed answer in the target language; placeholder "In ⟨target⟩ …";
@@ -83,11 +91,6 @@ the app renders them:
   The learner reports one of three outcomes,
   and the engine turns that plus how long the recall took into the FSRS rating
   (`SelfGrading`, kern README §6) — so Easy is earned by answering fast rather than picked.
-  The three run best to worst,
-  so the miss ends up under a resting thumb
-  and the two opposite verdicts are kept apart by the middle one.
-  They are `SessionOutcome`, the same three the progress bar draws and in the same colors:
-  the button pressed is the segment it produces.
   Labels name what the learner knows rather than what the scheduler will do
   (`rating.unknown` for the miss).
   The recall clock runs from the prompt appearing to "Aufdecken";
@@ -163,7 +166,7 @@ the app renders them:
 
 ## Counts & sessions
 
-- Every user-facing count (due ring, "x neu", active cards, widget stats) is
+- Every user-facing count (due, "x neu", active cards, widget stats) is
   **concept-denominated** (kern README §4).
 - Sessions are composed, never configured:
   plan from `BoxEngine`, extra round, endless mode — semantics in kern README §6.
@@ -171,8 +174,7 @@ the app renders them:
   session already under way — a word whose learning step matures mid-sitting waits for the
   summary rather than pushing the finish line back. "Weiter üben" is where it comes in,
   and only there does the denominator move.
-  Session end = summary with falling confetti, an emoji burst, the cheer, and the streak
-  (tap anywhere to replay all three);
+  Session end = a summary that celebrates, carrying the streak;
   its "gefestigt" tally counts words that crossed into settled during the run
   (kern README §5), not a phase edge — with one learning step a word reaches Review while
   its stability is still tiny.
@@ -187,23 +189,16 @@ the app renders them:
   Copy for the second is an OFFER, never a summons —
   the words are on the table, they are not waiting on the learner.
   Each part of the round is named for what it is (due · new · pulled forward),
-  the counts describe the reviews THIS run takes (the cap, not the pile),
-  and due cards the cap holds back are named rather than dropped from the number.
-  No progress ring — a growing box sets no daily quota for an arc to fill.
-  A short round never reaches the screen as two cards: the kern fills it out
-  (`SESSION_FLOOR_CARDS`, kern README §6) and the summary says what it pulled forward.
-  A day the learner has not answered anything in never shows a closed box either —
-  the same rule hands it a round — so "nothing due right now" is now the
-  unreachable fallback, kept only so a state that should not occur cannot
-  congratulate someone for a day they never worked.
-  The done state carries the day's own gain (reviews · new · settled, from
-  `TodayReport`), and the Fortschritt tiles carry today's movement under the
+  and what the card promises is what the round will really hand over — the cap it will
+  take, never the pile behind it.
+  A day the learner has not worked is never called done.
+  The done state and the Fortschritt tiles carry the day's own movement under the
   standing totals: totals say where the box stands, deltas say that today moved it.
 - **Stopping is the default at the end of a round**: the round that was planned is done,
   so "Fertig" is the primary button and "Weiter üben" the quiet one below it — an earned
   break needs no arguing for, and a learner who wants another round still has it one tap on.
   When `TodayReport.recallStrained` holds, the summary additionally says why stopping is
-  the better call; nothing is taken away either way.
+  the better call.
 - **Box** (pushed via the 📦 toolbar icon): browse areas/cards —
   areas grouped under their areas.json groups
   (source-language titles, en fallback, manifest order; empty groups drop out);
