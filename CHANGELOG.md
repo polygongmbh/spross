@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.4.0 — 2026-07-31
+
 - **Missing a day no longer takes back the days before it**: the flame forgave a missed
   day, but only one — the next miss, however many weeks later, quietly withdrew that
   forgiveness too and dropped the count back to the days since the earlier gap. Showing up
