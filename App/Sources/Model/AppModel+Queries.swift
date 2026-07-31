@@ -248,10 +248,4 @@ extension AppModel {
             return (day, box.dailyStats[isoDayKey(for: day)]?.reviewCount ?? 0)
         }
     }
-
-    /// Answer events already folded into today's dailyStats (includes retries).
-    var reviewsDoneToday: Int {
-        guard let box else { return 0 }
-        return box.dailyStats[isoDayKey(for: Date())]?.reviewCount ?? 0
-    }
 }

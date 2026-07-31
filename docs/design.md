@@ -161,17 +161,19 @@ the app renders them:
   correct answer auto-advances after ~1.2 s, and Enter gives up (Again) once revealed —
   the retry field itself, not a button, is what confirms a completed retype.
 - "Aufdecken" fills the answer field with the correct answer.
-- **The keyboard never toggles during a session — only the field under it does.**
-  A conditionally-mounted `AnswerInputView` gets torn down and rebuilt across
-  role/state transitions (produce ⇄ recognize, "Aufdecken" hiding produce's own
-  field), and a focus request racing that rebuild could land on a view that no
-  longer exists — that was the flakiness behind a field sometimes not
-  autofocusing. One answer field is mounted for a card's whole life regardless
-  of role, and just visually collapses (zero height, invisible, not hit-testable)
-  through every fieldless step (recognize's reveal + self-grade, produce's blank
-  reveal) instead of unmounting — so a field reappearing never has to bring the
-  keyboard back with it, only take over what's already up.
-  The keyboard drops normally once the session completes.
+- **A field on screen is always a focused field; the keyboard follows it.**
+  Keeping the keyboard up across fieldless steps was tried and does not work:
+  iOS drops it for a field that is hidden, however it is hidden, so a field
+  collapsed to zero height bought a keyboard that came and went on its own
+  schedule and a focus request that could land on nothing.
+  A field is now mounted only where there is something to type — produce before
+  its blank self-grade, and the write-it-out step — and **each field claims focus
+  from its own `.onAppear`**, never from the action that opened it: a request
+  made in the frame before the field exists is simply dropped, which is what
+  left "Unbekannt" opening the write-it-out step with the keyboard down.
+  `focusAnswerField()` re-asserts once a frame later for mounts that race a card
+  transition, and the card switch calls it for a field carried over unchanged
+  from the previous card (no remount ⇒ no `.onAppear`).
 - Answer-colored progress bar: one segment per answer — green right, amber tough, brick wrong.
 - A miss is stated where the learner is already looking;
   the streak survives one missed day.
@@ -194,15 +196,18 @@ the app renders them:
 ## App structure (single screen)
 
 - **Heute** is the only root screen:
-  session card (due-count ring + streak flame, or done state),
+  session card (streak flame + the round's counts, or done state),
   trainer hub, condensed Fortschritt section (14-day strip, gefestigt/frisch split).
   The card names what the round is led by rather than calling everything "a session":
   due work, or an offer of new words when nothing is due.
   Copy for the second is an OFFER, never a summons —
   the words are on the table, they are not waiting on the learner.
   Each part of the round is named for what it is (due · new · pulled forward),
-  the ring counts the reviews THIS run takes (the cap, not the pile),
+  the counts describe the reviews THIS run takes (the cap, not the pile),
   and due cards the cap holds back are named rather than dropped from the number.
+  No progress ring: a growing box sets no daily quota, so an arc can only divide
+  work done by work still queued — both climb through the day, leaving it near-full
+  from the second round on and fullest exactly when a capped backlog is worst.
   A short round never reaches the screen as two cards: the kern fills it out
   (`SESSION_FLOOR_CARDS`, kern README §6) and the summary says what it pulled forward.
   A day the learner has not answered anything in never shows a closed box either —

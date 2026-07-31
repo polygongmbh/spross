@@ -57,7 +57,7 @@ struct HeuteView: View {
 
     private func sessionCard(_ offer: AppModel.HeuteOffer) -> some View {
         VStack(spacing: DL.Space.l) {
-            sessionStats(offer)
+            sessionStats
             Text(offer.kind == .reviews ? "heute.session.reviewsReady" : "heute.session.freshReady")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
@@ -90,28 +90,21 @@ struct HeuteView: View {
         .dlCardShadow()
     }
 
-    /// Ring + flame hero; either hides when it has nothing to say
-    /// (all-new-card plan → no ring, streak 0 → no flame).
-    /// The ring counts the reviews THIS round takes, not the whole due pile —
-    /// the run is capped, and a number the round won't honour would be a broken promise.
+    /// Flame hero, or a sprout when there is no streak to show.
+    ///
+    /// No progress ring here: a growing box sets no daily quota, so any arc has to
+    /// divide work done by work still queued — and both climb through the day, which
+    /// leaves the ring near-full from the second round on and fullest exactly when a
+    /// capped backlog is worst. The counts below say it without the false comfort.
     @ViewBuilder
-    private func sessionStats(_ offer: AppModel.HeuteOffer) -> some View {
+    private var sessionStats: some View {
         let streak = model.stats?.streakDays ?? 0
-        if offer.sessionReviews == 0 && streak == 0 {
+        if streak > 0 {
+            StreakFlameView(days: streak)
+        } else {
             Text(verbatim: "✨")
                 .font(.system(size: 56))
                 .accessibilityHidden(true)
-        } else {
-            HStack(spacing: DL.Space.l) {
-                if offer.sessionReviews > 0 {
-                    DueCountRing(remaining: offer.sessionReviews,
-                                 total: offer.sessionReviews + model.reviewsDoneToday,
-                                 size: 80)
-                }
-                if streak > 0 {
-                    StreakFlameView(days: streak)
-                }
-            }
         }
     }
 
