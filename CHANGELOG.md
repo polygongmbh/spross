@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.2.0 — 2026-07-31
+
 - **The start screen tells you what the round really is**: it used to call everything "your
   session", count the whole due pile even though a sitting has always been capped, and now
   and then offer a couple of new words as if that were the day's work. It now says whether
