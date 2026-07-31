@@ -24,6 +24,8 @@ enum DLSound {
     private static let wrongID = load("wrong")
     /// One neutral note; revealing an answer is not a verdict.
     private static let revealID = load("reveal")
+    /// The correct interval carried on up to the octave — the finish screen only.
+    private static let cheerID = load("cheer")
 
     static func correct() {
         play(correctID)
@@ -38,6 +40,10 @@ enum DLSound {
 
     static func reveal() {
         play(revealID)
+    }
+
+    static func cheer() {
+        play(cheerID)
     }
 
     /// Registers a bundled sound once; `nil` (a missing resource) plays nothing.
@@ -62,9 +68,10 @@ enum DLSound {
     /// and the check that the files actually made it into the bundle.
     static func uitestProbe() {
         let probes: [(String, SystemSoundID?)] =
-            [("correct", correctID), ("wrong", wrongID), ("reveal", revealID)]
+            [("correct", correctID), ("wrong", wrongID), ("reveal", revealID),
+             ("cheer", cheerID)]
         for (index, probe) in probes.enumerated() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.8) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 1.4) {
                 guard let id = probe.1 else {
                     print("DLSound probe: \(probe.0) MISSING from the bundle")
                     return

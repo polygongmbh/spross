@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Synthesize the three review-loop feedback sounds.
+"""Synthesize the review-loop feedback sounds and the finish-screen cheer.
 
     scripts/sounds.py            # (re)write App/Resources/Sounds/*.wav
 
@@ -14,6 +14,12 @@ Design grammar, from how the space already trains people:
   wrong   — DESCENDING minor third; direction says "down" while the interval
             stays consonant, so it reads as mild "aw" and not as a buzzer.
   reveal  — one neutral note, no direction: revealing is not a verdict.
+  cheer   — the same ascending major third, carried on up through the triad to
+            the octave: the finish is the correct sound arriving somewhere.
+
+The cheer is the one exception to everything the paragraph below asks for. It
+plays once a day, at the end, with nothing after it to interrupt — so it may
+ring longer and brighter than the three that punctuate a session.
 
 Every interval is two STRUCK notes, never a glide between them. A glide was
 tried at length and always sounded synthetic, for a reason no amount of
@@ -61,6 +67,7 @@ DECAY_SPREAD = 0.65  # partial n rings off n**SPREAD times faster than the
 # under ~250 Hz, where the fundamental survives only through its harmonics.
 E5, G_SHARP5 = 659.26, 830.61   # ascending major third
 G4, E4 = 392.00, 329.63         # descending minor third — G4 doubles as the tick
+B5, E6 = 987.77, 1318.51        # the cheer carries E–G# on up: triad, then octave
 
 # `level` is the finished peak relative to PEAK, applied after each sound is
 # normalized on its own — two overlapping notes sum to a taller waveform than
@@ -86,6 +93,16 @@ SOUNDS = {
     # quietest, roundest, shortest, and low enough not to pierce
     'reveal': dict(tau=0.036, attack=0.018, bright=0.10, level=0.30, notes=[
         (G4,         0.000, 0.11, 1.00),
+    ]),
+    # heard once, at the end: the correct interval kept climbing, with a long
+    # ring-off under it. The strikes accelerate (85, 75, 65 ms apart) so it
+    # arrives rather than marches, and the last two notes ring twice as long as
+    # the run-up — that held octave is the "landed" part.
+    'cheer': dict(tau=0.150, attack=0.008, bright=0.22, level=1.00, notes=[
+        (E5,         0.000, 0.40, 0.70),
+        (G_SHARP5,   0.085, 0.45, 0.80),
+        (B5,         0.160, 0.90, 0.90),
+        (E6,         0.225, 0.95, 1.00),
     ]),
 }
 
