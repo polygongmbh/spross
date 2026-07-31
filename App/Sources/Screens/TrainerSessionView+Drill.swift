@@ -69,7 +69,7 @@ extension TrainerSessionView {
     private var streakText: Text {
         var parts: [Text] = []
         if maxLevel > 1 {
-            parts.append(isNumbers ? Text("trainer.digits \(level.formatted())") : Text("trainer.level \(level.formatted())"))
+            parts.append(isNumbers ? Text("trainer.digits \(level)") : Text("trainer.level \(level.formatted())"))
         }
         parts.append(Text("trainer.streak \(streak.formatted())"))
         if bestStreak > streak { parts.append(Text("trainer.record \(bestStreak.formatted())")) }
@@ -231,7 +231,7 @@ extension TrainerSessionView {
             Text(summaryEmoji)
                 .font(.system(size: 72))
                 .accessibilityHidden(true)
-            Text("trainer.tasksDone \(doneCount.formatted())")
+            Text("trainer.tasksDone \(doneCount)")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
             Text("trainer.bestStreak \(bestStreak.formatted())")

@@ -17,6 +17,11 @@
   below it for the days you want it — on a finished drill just as on a finished round.
   Tapping anywhere still replays the whole thing.
 
+- **The app counts in your language now**: every counted line spoke as if there were always
+  more than one — "1 Wiederholungen", "1 Stellen", "1 Aufgaben" — a small wrongness in the
+  places you read most, and one that got louder the closer you were to done. Counted text
+  now takes the form the number asks for, in German and English alike.
+
 - **The answer field is focused whenever it is there**: the last release tried to hold the
   keyboard up for a whole session, which iOS undoes the moment the field is out of sight —
   so it came and went between cards on its own, and answering "Unbekannt" could open the

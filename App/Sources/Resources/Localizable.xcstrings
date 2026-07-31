@@ -1,18 +1,42 @@
 {
   "sourceLanguage": "de",
   "strings": {
-    "a11y.activity14Days %@": {
+    "a11y.activity14Days %lld": {
       "localizations": {
         "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aktivität der letzten 14 Tage: an %@ Tagen gelernt"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Aktivität der letzten 14 Tage: an %lld Tag gelernt"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Aktivität der letzten 14 Tage: an %lld Tagen gelernt"
+                }
+              }
+            }
           }
         },
         "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Activity over the last 14 days: practiced on %@ days"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Activity over the last 14 days: practiced on %lld day"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Activity over the last 14 days: practiced on %lld days"
+                }
+              }
+            }
           }
         }
       }
@@ -145,18 +169,42 @@
         }
       }
     },
-    "a11y.streakDays %@": {
+    "a11y.streakDays %lld": {
       "localizations": {
         "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Serie: %@ Tage"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Serie: %lld Tag"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Serie: %lld Tage"
+                }
+              }
+            }
           }
         },
         "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Streak: %@ days"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Streak: %lld day"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Streak: %lld days"
+                }
+              }
+            }
           }
         }
       }
@@ -257,34 +305,82 @@
         }
       }
     },
-    "box.phrasesUnlocked %@": {
+    "box.phrasesUnlocked %lld": {
       "localizations": {
         "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ Sätze freigeschaltet"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Satz freigeschaltet"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Sätze freigeschaltet"
+                }
+              }
+            }
           }
         },
         "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ sentences unlocked"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld sentence unlocked"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld sentences unlocked"
+                }
+              }
+            }
           }
         }
       }
     },
-    "box.showCards %@": {
+    "box.showCards %lld": {
       "localizations": {
         "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ Karten anzeigen"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Karte anzeigen"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Karten anzeigen"
+                }
+              }
+            }
           }
         },
         "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Show %@ cards"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Show %lld card"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Show %lld cards"
+                }
+              }
+            }
           }
         }
       }
@@ -657,18 +753,42 @@
         }
       }
     },
-    "heute.done.tomorrowDue %@": {
+    "heute.done.tomorrowDue %lld": {
       "localizations": {
         "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Morgen kannst du %@ Karten wiederholen."
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Morgen kannst du %lld Karte wiederholen."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Morgen kannst du %lld Karten wiederholen."
+                }
+              }
+            }
           }
         },
         "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tomorrow you can review %@ cards."
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Tomorrow you can review %lld card."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Tomorrow you can review %lld cards."
+                }
+              }
+            }
           }
         }
       }
@@ -737,18 +857,42 @@
         }
       }
     },
-    "heute.session.ahead %@": {
+    "heute.session.ahead %lld": {
       "localizations": {
         "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ Auffrischer"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Auffrischer"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Auffrischer"
+                }
+              }
+            }
           }
         },
         "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ refreshers"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld refresher"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld refreshers"
+                }
+              }
+            }
           }
         }
       }
@@ -769,50 +913,122 @@
         }
       }
     },
-    "heute.session.heldBack %@": {
+    "heute.session.heldBack %lld": {
       "localizations": {
         "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ weitere Karten warten noch auf dich."
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld weitere Karte wartet noch auf dich."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld weitere Karten warten noch auf dich."
+                }
+              }
+            }
           }
         },
         "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ more cards are still waiting for you."
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld more card is still waiting for you."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld more cards are still waiting for you."
+                }
+              }
+            }
           }
         }
       }
     },
-    "heute.session.newCards %@": {
+    "heute.session.newCards %lld": {
       "localizations": {
         "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ Frischlinge"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Frischling"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Frischlinge"
+                }
+              }
+            }
           }
         },
         "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ newbies"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld newbie"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld newbies"
+                }
+              }
+            }
           }
         }
       }
     },
-    "heute.session.reviews %@": {
+    "heute.session.reviews %lld": {
       "localizations": {
         "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ Wiederholungen"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Wiederholung"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Wiederholungen"
+                }
+              }
+            }
           }
         },
         "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ reviews"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld review"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld reviews"
+                }
+              }
+            }
           }
         }
       }
@@ -1745,18 +1961,42 @@
         }
       }
     },
-    "trainer.digits %@": {
+    "trainer.digits %lld": {
       "localizations": {
         "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🔢 %@ Stellen"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "🔢 %lld Stelle"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "🔢 %lld Stellen"
+                }
+              }
+            }
           }
         },
         "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🔢 %@ digits"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "🔢 %lld digit"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "🔢 %lld digits"
+                }
+              }
+            }
           }
         }
       }
@@ -1937,18 +2177,42 @@
         }
       }
     },
-    "trainer.tasksDone %@": {
+    "trainer.tasksDone %lld": {
       "localizations": {
         "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ Aufgaben 🎯"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Aufgabe 🎯"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Aufgaben 🎯"
+                }
+              }
+            }
           }
         },
         "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ tasks 🎯"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld task 🎯"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld tasks 🎯"
+                }
+              }
+            }
           }
         }
       }

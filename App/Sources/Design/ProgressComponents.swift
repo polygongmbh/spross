@@ -18,6 +18,9 @@ struct StreakFlameView: View {
             Text(days.formatted())
                 .font(DL.Fonts.statValue)
                 .foregroundStyle(Color.dlTextPrimary)
+            // why: the number carries the big type, so the unit stands alone —
+            // and a string that does not name its count cannot be plural-varied
+            // (the compiler refuses it), which is what these two keys are for.
             Text(days == 1 ? "common.dayOne" : "common.dayMany")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
@@ -26,7 +29,7 @@ struct StreakFlameView: View {
         .padding(.vertical, DL.Space.m)
         .background(Color.dlSurfaceTint, in: Capsule())
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(Text("a11y.streakDays \(days.formatted())"))
+        .accessibilityLabel(Text("a11y.streakDays \(days)"))
     }
 }
 

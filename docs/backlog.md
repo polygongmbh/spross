@@ -51,9 +51,6 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## Localization
 
-- No plural rules in `Localizable.xcstrings`: counted strings read "1 Stellen",
-  "1 Wiederholungen" in German and English alike.
-  Symbolic keys make per-language plural variations a catalog-only change now.
 - Watch, widget, and complication chrome is hardcoded German with no string catalog
   (`Watch/Sources/WatchHomeView.swift`, `Widgets/Sources/WordWidgetView.swift`,
   `WatchWidgets/Sources/WatchWordWidgetView.swift`) —

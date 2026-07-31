@@ -69,7 +69,7 @@ struct HeuteView: View {
             if offer.dueHeldBack > 0 {
                 // The cap is a promise, not a loss: name the rest so a backlog
                 // never looks like cards that vanished.
-                Text("heute.session.heldBack \(offer.dueHeldBack.formatted())")
+                Text("heute.session.heldBack \(offer.dueHeldBack)")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                     .multilineTextAlignment(.center)
@@ -118,12 +118,12 @@ struct HeuteView: View {
         var parts: [Text] = []
         if offer.sessionReviews > 0 {
             let repetitions = offer.sessionReviews + offer.aheadCount
-            parts.append(Text("heute.session.reviews \(repetitions.formatted())"))
+            parts.append(Text("heute.session.reviews \(repetitions)"))
         } else if offer.aheadCount > 0 {
-            parts.append(Text("heute.session.ahead \(offer.aheadCount.formatted())"))
+            parts.append(Text("heute.session.ahead \(offer.aheadCount)"))
         }
         if offer.freshCount > 0 {
-            parts.append(Text("heute.session.newCards \(offer.freshCount.formatted())"))
+            parts.append(Text("heute.session.newCards \(offer.freshCount)"))
         }
         return parts.joined() ?? Text("heute.session.someCards")
     }
@@ -180,9 +180,9 @@ struct HeuteView: View {
     /// that it happened. Settled crossings lead nothing: they are the rarest part
     /// and the one worth reading last.
     private func todayTally(_ report: TodayReport) -> Text {
-        var parts: [Text] = [Text("heute.session.reviews \(Int(report.reviews).formatted())")]
+        var parts: [Text] = [Text("heute.session.reviews \(Int(report.reviews))")]
         if report.introduced > 0 {
-            parts.append(Text("heute.session.newCards \(Int(report.introduced).formatted())"))
+            parts.append(Text("heute.session.newCards \(Int(report.introduced))"))
         }
         if report.settled > 0 {
             parts.append(Text("heute.done.settled \(Int(report.settled).formatted())"))
@@ -193,7 +193,7 @@ struct HeuteView: View {
     private var tomorrowText: Text {
         model.tomorrowDueCount == 0
             ? Text("heute.done.tomorrowFresh")
-            : Text("heute.done.tomorrowDue \(model.tomorrowDueCount.formatted())")
+            : Text("heute.done.tomorrowDue \(model.tomorrowDueCount)")
     }
 
     // MARK: - Generic state card (error / empty box)

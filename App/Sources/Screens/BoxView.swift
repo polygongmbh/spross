@@ -77,7 +77,7 @@ private struct BoxAreaSection: View {
     private func phraseRow(_ stats: AreaStatistics?) -> some View {
         if let stats, stats.lockedPhrases + stats.unlockedPhrases > 0 {
             HStack(spacing: DL.Space.l) {
-                Label("box.phrasesUnlocked \(stats.unlockedPhrases.formatted())", systemImage: "lock.open.fill")
+                Label("box.phrasesUnlocked \(stats.unlockedPhrases)", systemImage: "lock.open.fill")
                 Label("box.phrasesLocked \(stats.lockedPhrases.formatted())", systemImage: "lock.fill")
                 Spacer(minLength: 0)
             }
@@ -116,7 +116,7 @@ private struct BoxAreaSection: View {
             }
             .padding(.top, DL.Space.s)
         } label: {
-            Text(expanded ? "box.hideCards" : "box.showCards \(cards.count.formatted())")
+            Text(expanded ? "box.hideCards" : "box.showCards \(cards.count)")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTeal)
         }

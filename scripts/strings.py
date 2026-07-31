@@ -16,8 +16,12 @@ LocalizedStringKey parameters, or wrapped in Label/accessibilityLabel. Keys it
 misses get flagged `extractionState: "stale"` — cosmetic (they still compile
 into every .lproj) but it churns the file on every index.
 
+A plural has to NAME its number: the compiler refuses a variation whose text does not
+carry the specifier, so a unit label standing apart from the figure it counts
+("🔥 5 · Tage", two Texts for two type sizes) takes a key per form instead.
+
     scripts/strings.py            # report
-    scripts/strings.py --fix      # drop the stale flags, sort, rewrite
+    scripts/strings.py --fix      # drop the stale flags and %@ twins, sort, rewrite
 
 Pass --built to also diff the catalog against the keys the compiler actually
 emitted, which is the check that catches REAL drift. Needs a build first:
@@ -35,6 +39,10 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'App/Sources/Resources/Localizable.xcstrings')
 LANGUAGES = ('de', 'en')
+# CLDR plural categories per chrome language. Both are one/other today; a
+# language with more (uk: one/few/many/other) brings its own list, and every
+# counted key then owes that language each of them.
+CATEGORIES = {'de': ('one', 'other'), 'en': ('one', 'other')}
 # Looked up at runtime through DLChrome/DLActionLabel as a plain String
 # (a chrome string in the TARGET language cannot go through the environment
 # locale), so no extractor can see them.
@@ -61,6 +69,20 @@ def compiler_keys():
     return keys
 
 
+def plural_problems(key, lang, localization):
+    """A counted key (`… %lld`) owes every category its language uses, and a
+    plain one must not carry variations — a `%@` argument is a formatted
+    string at runtime, so nothing could select a category from it."""
+    variations = localization.get('variations', {}).get('plural')
+    if '%lld' not in key:
+        return ['%s (%s): plural variations on a key with no counted argument'
+                % (key, lang)] if variations else []
+    if not variations:
+        return ['%s (%s): counted key without plural variations' % (key, lang)]
+    missing = sorted(set(CATEGORIES[lang]) - set(variations))
+    return ['%s (%s): plural is missing "%s"' % (key, lang, '", "'.join(missing))] if missing else []
+
+
 def main():
     fix = '--fix' in sys.argv
     catalog = json.load(open(CATALOG))
@@ -71,11 +93,23 @@ def main():
     for key in stale:
         del strings[key]['extractionState']
 
+    # why: the index extractor writes %@ for every argument, so each counted key
+    # comes back as a %@ twin the moment the project is opened. The twin is dead
+    # weight — the compiler emits %lld — and taking it out is part of --fix.
+    twins = sorted(k for k in strings if k.replace('%@', '%lld') in strings and '%@' in k)
+    for key in twins:
+        if fix:
+            del strings[key]
+        else:
+            problems.append('%s: dead %%@ twin of a counted key' % key)
+
     for key, entry in sorted(strings.items()):
         got = entry.get('localizations', {})
         missing = [lang for lang in LANGUAGES if lang not in got]
         if missing:
             problems.append('%s: no %s translation' % (key, '/'.join(missing)))
+        for lang in sorted(set(LANGUAGES) & set(got)):
+            problems += plural_problems(key, lang, got[lang])
 
     if '--built' in sys.argv:
         emitted = compiler_keys()
