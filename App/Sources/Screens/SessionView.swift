@@ -38,17 +38,12 @@ struct SessionView: View {
     @State var otherWord: MatchOtherWord?
     @State var autoAdvance: Task<Void, Never>?
     /// Owned here (not in AnswerInputView) so the keyboard is up the moment
-    /// a card appears and stays up across cards.
+    /// a card appears and stays up across cards. `answerField` keeps the
+    /// same view mounted (just visually collapsed) through every state that
+    /// has nothing to type into, recognize included — a view that gets torn
+    /// down and rebuilt can lose a focus request racing that rebuild, which
+    /// is what made a reappearing field sometimes not autofocus.
     @FocusState var answerFocused: Bool
-    /// A stable, always-mounted focus target for the moments a card shows no
-    /// typed field at all — recognize never types, and produce's blank
-    /// "Aufdecken" hides its own field too. Losing focus to nothing there is
-    /// what made the NEXT field's autofocus flaky: a real `AnswerInputView`
-    /// gets torn down and rebuilt across those transitions, so a focus
-    /// request racing that rebuild could land on a view that no longer
-    /// exists. This view never unmounts mid-session, so the keyboard itself
-    /// never drops — only which field sits under it changes.
-    @FocusState private var keyboardAnchorFocused: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.locale) var locale
 
@@ -70,20 +65,16 @@ struct SessionView: View {
                                 onClose: { model.closeSession() }) {
                     scaffoldContent
                 }
-                // why: mounted only while a card step is showing, so the
-                // keyboard drops normally once the session completes —
-                // keyboardAnchor just keeps it up card-to-card in between.
-                .background(keyboardAnchor)
             }
         }
         .onChange(of: currentCardID) { _, _ in
             // why: safety net only — rate() already resets BEFORE the switch
             // so the next card can never render one frame still revealed.
             resetCardState()
-            focusCurrentField()
+            answerFocused = true
         }
         .onAppear {
-            focusCurrentField()
+            answerFocused = true
             promptShownAt = Date()
         }
         .onDisappear {
@@ -118,36 +109,6 @@ struct SessionView: View {
     private var currentCardID: String? {
         if case .card(let id)? = model.sessionStep { return id }
         return nil
-    }
-
-    /// Invisible, always-mounted focus target — see `keyboardAnchorFocused`.
-    private var keyboardAnchor: some View {
-        TextField("", text: .constant(""))
-            .focused($keyboardAnchorFocused)
-            .frame(width: 0, height: 0)
-            .opacity(0)
-            .accessibilityHidden(true)
-            .allowsHitTesting(false)
-    }
-
-    /// True while the current card shows no typed field at all: recognize
-    /// never types, and produce's blank "Aufdecken" self-grade hides its
-    /// own field too (the copy step always has one, hence the guard).
-    var currentCardIsFieldless: Bool {
-        guard let card = model.currentCard else { return true }
-        if model.presentationRole(for: card.id) == .recognize { return true }
-        return copyPending == nil && revealed && feedback == .neutral
-    }
-
-    /// Focus whatever the current step actually shows — the visible answer
-    /// field, or the keyboard anchor when there is none — so the keyboard
-    /// itself never has to drop and come back, only the field under it does.
-    func focusCurrentField() {
-        if currentCardIsFieldless {
-            keyboardAnchorFocused = true
-        } else {
-            answerFocused = true
-        }
     }
 
     /// Bar segments: good/easy green, hard amber, again brick.
@@ -261,14 +222,21 @@ struct SessionView: View {
         return revealed
     }
 
+    /// The answer field is mounted here unconditionally — for both roles —
+    /// and just visually collapses when there is nothing to type into
+    /// (`answerField`), so the same view (and its focus) survives every
+    /// transition instead of being swapped in and out.
     @ViewBuilder
     private func controls(_ card: Card, role: PresentationRole) -> some View {
         if copyPending != nil {
             copyControls(card)
         } else {
-            switch role {
-            case .recognize: recognizeControls
-            case .produce: produceControls(card)
+            VStack(spacing: 0) {
+                answerField(card, role: role)
+                switch role {
+                case .recognize: recognizeControls
+                case .produce: produceButtons(card)
+                }
             }
         }
     }
@@ -287,7 +255,6 @@ struct SessionView: View {
                 DLSound.reveal()
                 markRecallEnded()
                 withAnimation { revealed = true }
-                focusCurrentField()
             } label: {
                 Text("session.reveal")
                     .frame(maxWidth: .infinity)
@@ -309,7 +276,9 @@ struct SessionView: View {
             copyMissed = false
             copyFeedback = .neutral
             withAnimation { revealed = true }
-            focusCurrentField()
+            // why: a genuine field swap — copyControls mounts its own
+            // AnswerInputView, so focus needs to be re-asserted onto it.
+            answerFocused = true
             return
         }
         commit(rating)
