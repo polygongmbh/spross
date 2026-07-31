@@ -188,7 +188,8 @@ the app renders them:
   session already under way — a word whose learning step matures mid-sitting waits for the
   summary rather than pushing the finish line back. "Weiter üben" is where it comes in,
   and only there does the denominator move.
-  Session end = summary with confetti and streak;
+  Session end = summary with falling confetti, an emoji burst, the cheer, and the streak
+  (tap anywhere to replay all three);
   its "gefestigt" tally counts words that crossed into settled during the run
   (kern README §5), not a phase edge — with one learning step a word reaches Review while
   its stability is still tiny.
@@ -217,10 +218,11 @@ the app renders them:
   The done state carries the day's own gain (reviews · new · settled, from
   `TodayReport`), and the Fortschritt tiles carry today's movement under the
   standing totals: totals say where the box stands, deltas say that today moved it.
-- **Practising on is offered, never pushed, on a day going badly**: when
-  `TodayReport.recallStrained` holds, the session summary says so and the emphasis
-  flips — stopping becomes the primary button and "Weiter üben" the quiet one.
-  Nothing is taken away; a learner who wants another round still has it one tap on.
+- **Stopping is the default at the end of a round**: the round that was planned is done,
+  so "Fertig" is the primary button and "Weiter üben" the quiet one below it — an earned
+  break needs no arguing for, and a learner who wants another round still has it one tap on.
+  When `TodayReport.recallStrained` holds, the summary additionally says why stopping is
+  the better call; nothing is taken away either way.
 - **Box** (pushed via the 📦 toolbar icon): browse areas/cards —
   areas grouped under their areas.json groups
   (source-language titles, en fallback, manifest order; empty groups drop out);

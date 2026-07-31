@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Finishing a round is worth a proper celebration, and the break is the default**:
+  the end screen used to nudge a few emoji outwards in silence and put "Weiter üben"
+  under your thumb, so stopping — the thing the finished round has earned — was the
+  choice you had to reach past. Confetti now falls across the whole screen with a cheer
+  to match, "Fertig" is the button waiting for your thumb, and practising on sits quietly
+  below it for the days you want it. Tapping anywhere still replays the whole thing.
+
 - **The answer field is focused whenever it is there**: the last release tried to hold the
   keyboard up for a whole session, which iOS undoes the moment the field is out of sight —
   so it came and went between cards on its own, and answering "Unbekannt" could open the
