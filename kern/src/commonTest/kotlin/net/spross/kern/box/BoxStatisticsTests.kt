@@ -40,6 +40,29 @@ class BoxStatisticsTests {
     }
 
     @Test
+    fun longestStreakSurvivesTheRunThatBrokeIt() {
+        // 1,2,3 · gap · gap · 6,7 — the early run is the record, today's is 2 long.
+        val stats = BoxEngine.statistics(statsState(listOf(1, 2, 3, 6, 7)), Box.millis(2026, 7, 7), Box.TZ)
+        assertEquals(2, stats.streak)
+        assertEquals(3, stats.longestStreak)
+    }
+
+    @Test
+    fun longestStreakBridgesAForgivenDayLikeTheWalkBack() {
+        val stats = BoxEngine.statistics(statsState(listOf(1, 2, 4)), Box.millis(2026, 7, 4), Box.TZ)
+        assertEquals(3, stats.streak)
+        assertEquals(3, stats.longestStreak) // the run today IS the record
+    }
+
+    @Test
+    fun longestStreakIsNeverEndedByAnUnfinishedToday() {
+        val stats = BoxEngine.statistics(statsState(listOf(1, 2, 3)), Box.millis(2026, 7, 4), Box.TZ)
+        assertEquals(3, stats.streak)
+        assertEquals(3, stats.longestStreak)
+        assertEquals(0, BoxEngine.statistics(statsState(emptyList()), now, Box.TZ).longestStreak)
+    }
+
+    @Test
     fun endSessionFoldsDayStatsAndPrunesNewIntroduced() {
         var state = Box.state((1..3).map { Box.word(it) })
         state = Box.answered(state, "w01", Rating.Easy, now)

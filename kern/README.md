@@ -244,6 +244,10 @@ Everything in the engine scout map ports 1:1 (budgets, health gate, growth-reser
 introduction = first answer, silent answer drop, extra round, endless, exposure tiers,
 statistics, streak forgiveness, endSession fold + 60-day prune, deterministic orderings,
 day-key `yyyy-MM-dd`) with:
+- **`BoxStatistics.longestStreak`**: the longest run ever held, under the same forgiveness
+  rule the current streak walks back with, over the whole (never pruned) `dailyStats`.
+  An unfinished today can extend a run but never end one, so it is always ≥ `streak` —
+  equality is what says today's run IS the record.
 - **Introduction is the card's first answer** (v1 semantics; the unit-era eligibility lag
   and one-per-plan rules are gone with the unit model). `enqueued` holds card ids;
   enqueued cards lead composition, bypass the health gate, respect the new-word budget,

@@ -2,7 +2,9 @@ package net.spross.kern.box
 
 import kotlin.time.Instant
 import kotlinx.datetime.DateTimeUnit
+import kotlinx.datetime.LocalDate
 import kotlinx.datetime.minus
+import kotlinx.datetime.plus
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
@@ -22,6 +24,8 @@ data class BoxStatistics(
     val newSlotsAvailable: Int,
     /** Consecutive days with reviews > 0; one missed day is forgiven. */
     val streak: Int,
+    /** The longest such run the box has ever held; equals [streak] when today's run is it. */
+    val longestStreak: Int,
     val areas: List<AreaStatistics>,
 )
 
@@ -51,6 +55,7 @@ internal object Statistics {
             suspendedCount = Inventory.scheduled(state).count { it.suspended },
             newSlotsAvailable = Growth.gatedNewBudget(state, nowEpochMillis),
             streak = streak(state.dailyStats, nowEpochMillis, tzId),
+            longestStreak = longestStreak(state.dailyStats, nowEpochMillis, tzId),
             areas = areaStatistics(state),
         )
     }
@@ -98,6 +103,40 @@ internal object Statistics {
             day = day.minus(1, DateTimeUnit.DAY)
         }
         return count
+    }
+
+    /**
+     * The longest run the box has ever held, under the same rule [streak] walks back
+     * with: one 0-review day inside a run is bridged and does not count, a second in a
+     * row ends it, and each fresh run is forgiven once again. `dailyStats` is never
+     * pruned, so this reaches back to the first day the box was used.
+     *
+     * Today can extend a run but never end one — the day is not over — which is what
+     * keeps a record set today standing while it is still being added to, and keeps
+     * this ≥ [streak] at all times.
+     */
+    fun longestStreak(dailyStats: Map<String, DayStats>, nowEpochMillis: Long, tzId: String): Int {
+        val today = localDate(nowEpochMillis, tzId)
+        var day = dailyStats.keys.minOrNull()?.let { LocalDate.parse(it) } ?: return 0
+        var best = 0
+        var run = 0
+        var forgivenessLeft = 1
+        while (day <= today) {
+            val reviews = dailyStats[day.toString()]?.reviews ?: 0
+            if (reviews > 0) {
+                run += 1
+                if (run > best) best = run
+            } else if (day != today) {
+                if (forgivenessLeft > 0) {
+                    forgivenessLeft -= 1
+                } else {
+                    run = 0
+                    forgivenessLeft = 1
+                }
+            }
+            day = day.plus(1, DateTimeUnit.DAY)
+        }
+        return best
     }
 
     private fun areaStatistics(state: BoxState): List<AreaStatistics> {
