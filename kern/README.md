@@ -344,6 +344,10 @@ day-key `yyyy-MM-dd`) with:
   audited exceptions — sw `nne`↔`nane` (4↔8, incl. tens compounds)
   and uk `дев'ять`↔`десять` (9↔10) — are gated explicitly in the sweep.
   Vocab reviews (`maxTyposPerWord = null`, the default) keep one budget over the whole form.
+  `matchingPrefixWordCount(input, answer)` is a UI-only sibling of `evaluate` — how many
+  leading whole words already match, each within its own single-word budget — so a miss's
+  retry field can keep the words already right and drop only the wrong tail; it never
+  feeds a rating, only what the retry field starts from.
 - **Catalog-wide produce grading** — `CatalogAnswerGrader(normalizer, cards)`, the app's
   produce path. One card at a time the normalizer cannot tell a slip from a different word,
   so another concept's answer lands inside this card's typo budget:

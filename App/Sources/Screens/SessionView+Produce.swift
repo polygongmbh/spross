@@ -16,8 +16,18 @@ extension SessionView {
                                 // answer with its article color, plural and
                                 // alternates — the panel repeated it.
                                 showsRevealPanel: false,
-                                focus: $answerFocused) {
-                    submit(card)
+                                focus: $answerFocused,
+                                // why: a miss stays editable so the retype
+                                // below (primeRetry) can be finished in place.
+                                locked: false) {
+                    // why: Enter used to hit the "Next" button's default
+                    // action once revealed — a hardware keyboard still needs
+                    // a way to give up without finishing the retype.
+                    if case .revealed = feedback {
+                        rate(.again)
+                    } else {
+                        submit(card)
+                    }
                 }
                 // why: writing the word out is the answer — the same rule the copy
                 // step runs on, so a word you know never asks for a confirming tap.
@@ -71,6 +81,11 @@ extension SessionView {
                     EmptyView()
                 }
             case .revealed:
+                // A miss reveals the answer on the card and primes this field
+                // to the whole-word prefix that was already right
+                // (`primeRetry`) — finishing the retype IS the self-grade:
+                // completing it types .hard through `approveRetry`, and
+                // giving up here grades an honest .again.
                 VStack(spacing: DL.Space.m) {
                     if let otherWord {
                         // why: same line as the typo correction — both explain
@@ -82,19 +97,11 @@ extension SessionView {
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity)
                     }
-                    HStack(spacing: DL.Space.m) {
-                        // Correct after reveal → .hard (design §Session 4).
-                        Button("session.knewIt") { rate(.hard) }
-                            .buttonStyle(DLSoftButtonStyle(color: .dlTeal))
-                        Button {
-                            rate(.again)
-                        } label: {
-                            DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
-                        }
-                        .buttonStyle(DLPrimaryButtonStyle())
-                        // why: Enter advances when revealed (hardware keyboards).
-                        .keyboardShortcut(.defaultAction)
-                    }
+                    // why: always reachable — a step you cannot leave is a
+                    // trap, same as the copy step's own skip.
+                    Button("session.skipCopy") { rate(.again) }
+                        .font(DL.Fonts.caption)
+                        .foregroundStyle(Color.dlTextSecondary)
                 }
             }
         }
@@ -121,7 +128,10 @@ extension SessionView {
     /// the green with it, so typing past the answer never commits it.
     private func approveWhenTyped(_ card: Card) {
         guard copyPending == nil, !revealed, typoCorrection == nil else { return }
-        if case .revealed = feedback { return } // already graded; the field is locked
+        if case .revealed = feedback {
+            approveRetry(card)
+            return
+        }
         autoAdvance?.cancel()
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty, isExactAnswer(trimmed, card: card) else {
@@ -131,6 +141,30 @@ extension SessionView {
         if feedback != .correct { DLSound.correct() }
         withAnimation { feedback = .correct }
         armFinishedTyping { rate(.good) }
+    }
+
+    /// Finishing the retype after a miss is the self-grade: reaching the
+    /// exact answer counts as recalled-with-help, so it grades .hard rather
+    /// than the blind .again a bare "give up" would.
+    private func approveRetry(_ card: Card) {
+        let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty, isExactAnswer(trimmed, card: card) else { return }
+        autoAdvance?.cancel()
+        DLSound.correct()
+        armFinishedTyping { rate(.hard) }
+    }
+
+    /// After a miss reveals the answer, keep the whole words [input] already
+    /// had right and drop only the wrong tail — full words, per kern's
+    /// [AnswerNormalizer.matchingPrefixWordCount] — so the retry above picks
+    /// up where the slip started instead of from scratch.
+    private func primeRetry(_ card: Card) {
+        guard let normalizer = model.answerNormalizer else { return }
+        let words = input.split(separator: " ", omittingEmptySubsequences: true).map(String.init)
+        let count = Int(normalizer.matchingPrefixWordCount(input: input, answer: card.target.text))
+        let kept = words.prefix(count).joined(separator: " ")
+        input = kept.isEmpty ? "" : kept + " "
+        answerFocused = true
     }
 
     private func isExactAnswer(_ text: String, card: Card) -> Bool {
@@ -168,9 +202,11 @@ extension SessionView {
             feedback = .revealed(correctAnswer: CardDisplay.citation(of: card.target))
             otherWord = other
             DLSound.wrong()
+            primeRetry(card)
         case .wrong:
             feedback = .revealed(correctAnswer: CardDisplay.citation(of: card.target))
             DLSound.wrong()
+            primeRetry(card)
         }
     }
 }

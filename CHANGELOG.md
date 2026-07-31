@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **A missed produce answer now asks you to fix it, not to judge it**: getting a word wrong
+  used to reveal the answer and hand you two buttons — "I knew it" or "Next" — asking you to
+  self-report something the app could just watch for. Now the field stays open, trimmed back
+  to the whole words you already had right, so you retype only the part that slipped while
+  the answer sits right there on the card. Finishing it counts as Hard rather than a blind
+  Again; giving up still works with the same small "Skip" the write-it-out step already had.
+
 ## 2.2.0 — 2026-07-31
 
 - **The start screen tells you what the round really is**: it used to call everything "your

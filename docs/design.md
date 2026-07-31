@@ -131,6 +131,13 @@ the app renders them:
   ("Übrigens: … heißt …", styled like the typo correction — both explain what became
   of the answer). Such a word never earns typo credit (kern README §6), so two words
   a learner needs told apart can never grade each other correct.
+- **A produce miss keeps the field open for a retry, not a self-grade tap.**
+  Reveal trims the field to the whole words already right — kern
+  `AnswerNormalizer.matchingPrefixWordCount` — dropping only the wrong tail, so the
+  learner finishes the word against the answer standing on the card rather than
+  retyping what was already correct. Completing it exactly grades **Hard** (recalled
+  with the answer in view, not a clean Good); a small "Überspringen", the same escape
+  hatch as the copy step below, gives up honestly as **Again**.
 - **A missed word is written out once before the session moves on.**
   A reveal followed by a single tap gives a word almost no encoding, which is how it comes
   back later and passes on being "that new one";
@@ -151,7 +158,8 @@ the app renders them:
   (kern README §6): the typo budget would fire a letter early and snatch the card away
   mid-word, and a real typo has to pause on its correction anyway.
 - Submitting by hand still works: Return or "Prüfen" grades typo-tolerantly, a clean
-  correct answer auto-advances after ~1.2 s, and Enter advances when revealed.
+  correct answer auto-advances after ~1.2 s, and Enter gives up (Again) once revealed —
+  the retry field itself, not a button, is what confirms a completed retype.
 - "Aufdecken" fills the answer field with the correct answer.
 - Answer-colored progress bar: one segment per answer — green right, amber tough, brick wrong.
 - A miss is stated where the learner is already looking;
