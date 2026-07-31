@@ -2049,6 +2049,22 @@
         }
       }
     },
+    "trainer.newRecord": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neuer Rekord!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New record!"
+          }
+        }
+      }
+    },
     "trainer.numbers": {
       "localizations": {
         "de": {

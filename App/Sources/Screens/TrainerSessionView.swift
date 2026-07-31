@@ -35,6 +35,17 @@ struct TrainerSessionView: View {
             case .phrases: return "trainer.phrases"
             }
         }
+
+        /// Identity a record is kept under (`TrainerRecords`): what is drilled,
+        /// in which language, and in which direction — a sentence run typed in
+        /// German is not the same feat as the same templates typed in Swahili.
+        var recordKey: String {
+            switch self {
+            case .slots(let kind, let language): return "\(kind.name).\(language)"
+            case .phrases(let source, let target, let reverse):
+                return reverse ? "phrases.\(target)-\(source)" : "phrases.\(source)-\(target)"
+            }
+        }
     }
 
     let mode: Mode
@@ -49,6 +60,9 @@ struct TrainerSessionView: View {
     @State var doneCount = 0
     @State var streak = 0
     @State var bestStreak = 0
+    /// This run beat the drill's standing record (`TrainerRecords`), booked
+    /// once when the summary opens — the summary's confetti and its record line.
+    @State var newRecord = false
     /// Per-task results for the segmented progress bar.
     @State private var outcomes: [SessionOutcome] = []
     /// Adaptive difficulty (numbers: digit count). Two rights in a row at a
@@ -134,8 +148,12 @@ struct TrainerSessionView: View {
                 bestStreak = max(preset, 12)
                 doneCount = preset + 6
             }
-            // `-uitest-summary 1` jumps straight to the close-summary state.
+            // `-uitest-summary 1` jumps straight to the close-summary state;
+            // add `-uitest-record 1` to drop the stored record first, so the
+            // run books one and the summary shows its record state.
             if defaults.bool(forKey: "uitest-summary") {
+                if defaults.bool(forKey: "uitest-record") { TrainerRecords.clear(mode.recordKey) }
+                newRecord = TrainerRecords.record(bestStreak, for: mode.recordKey)
                 showingSummary = true
             }
             // `-uitest-typo 1` renders the accepted-with-typo state.
@@ -247,6 +265,10 @@ struct TrainerSessionView: View {
             return
         }
         answerFocused = false
+        newRecord = TrainerRecords.record(bestStreak, for: mode.recordKey)
+        // why: the cheer marks the record, not the end of a run — closing a
+        // drill is a dozen-times-an-evening event and owes no fanfare.
+        if newRecord { DLSound.cheer() }
         withAnimation(.easeOut(duration: 0.2)) { showingSummary = true }
     }
 }

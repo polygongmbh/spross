@@ -230,13 +230,21 @@ extension TrainerSessionView {
             Spacer()
             Text(summaryEmoji)
                 .font(.system(size: 72))
+                .dlSway(angle: 4, period: 3.4)
                 .accessibilityHidden(true)
             Text("trainer.tasksDone \(doneCount)")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("trainer.bestStreak \(bestStreak.formatted())")
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextPrimary)
+            VStack(spacing: DL.Space.s) {
+                Text("trainer.bestStreak \(bestStreak.formatted())")
+                    .font(DL.Fonts.body)
+                    .foregroundStyle(Color.dlTextPrimary)
+                if newRecord {
+                    Text("trainer.newRecord")
+                        .font(DL.Fonts.headline)
+                        .foregroundStyle(Color.dlAccent)
+                }
+            }
             Text.joined(Text(mode.titleKey), Text(verbatim: languageName(language)))
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
@@ -249,6 +257,12 @@ extension TrainerSessionView {
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.dlBackground.ignoresSafeArea())
+        // why: confetti is what a record costs — a drill can be closed a dozen
+        // times an evening, and a screen that celebrates every close celebrates
+        // nothing. The run itself always sways; only the record rains.
+        .overlay {
+            if newRecord { ConfettiView().ignoresSafeArea() }
+        }
     }
 
     private var summaryEmoji: String {
