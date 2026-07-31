@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Your best is remembered, and it is what gets celebrated**: the day streak was a number
+  that went up, with no way of telling the best week you have ever had from an ordinary
+  Tuesday — and a drill's "best run" was forgotten the moment you closed it. A streak
+  standing at its longest ever is now named as that on the finish screen, and a drill run
+  that beats its own record says so and is the one thing that brings out the confetti and
+  the cheer there. Closing a drill on an ordinary run stays quiet, as it should.
+
 - **A round no longer opens with a wall of unseen words**: on a box with nothing in flight —
   a fresh start, or a day after everything had settled — the whole new-word budget was let
   into a single plan, so a round could hand you close to twenty words you had never met.

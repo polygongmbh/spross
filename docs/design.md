@@ -131,6 +131,12 @@ never the shape of the app.
   session already under way — a word maturing mid-sitting waits for the summary rather
   than pushing the finish line back. Practising on is where it comes in.
   Session end is a summary that celebrates, carrying the streak and what the run settled.
+- **A record is named, a number is only counted.** A day streak standing at its longest
+  ever (`BoxStatistics.longestStreak`) says so on the finish screen; a drill run that beats
+  its own stored best says so too, and is the only thing in a drill that earns confetti and
+  the cheer — a drill can be closed a dozen times an evening, and a screen that celebrates
+  every close celebrates nothing. Drill records live outside the box: a run touches no card,
+  so it is not box state.
 
 ## App structure (single screen)
 
