@@ -183,7 +183,7 @@ struct HeuteView: View {
         .dlCardShadow()
     }
 
-    /// "24 Wiederholungen · 3 neue Karten · 2 gefestigt" — the day's gain, not just
+    /// "24 Wiederholungen · 3 Frischlinge · 2 gefestigt" — the day's gain, not just
     /// that it happened. Settled crossings lead nothing: they are the rarest part
     /// and the one worth reading last.
     private func todayTally(_ report: TodayReport) -> Text {

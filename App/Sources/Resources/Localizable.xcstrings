@@ -806,13 +806,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ neue Karten"
+            "value": "%@ Frischlinge"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ new cards"
+            "value": "%@ newbies"
           }
         }
       }
