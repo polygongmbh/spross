@@ -161,6 +161,15 @@ the app renders them:
   correct answer auto-advances after ~1.2 s, and Enter gives up (Again) once revealed —
   the retry field itself, not a button, is what confirms a completed retype.
 - "Aufdecken" fills the answer field with the correct answer.
+- **The keyboard never toggles during a session — only the field under it does.**
+  A visible `AnswerInputView` gets torn down and rebuilt across role/state
+  transitions (produce ⇄ recognize, "Aufdecken" hiding produce's own field), and a
+  focus request racing that rebuild could land on a view that no longer exists —
+  that was the flakiness behind a field sometimes not autofocusing. A hidden,
+  always-mounted focus anchor holds the keyboard up through every fieldless step
+  (recognize's reveal + self-grade, produce's blank reveal) so a field reappearing
+  never has to bring the keyboard back with it, only take over what's already up.
+  The keyboard drops normally once the session completes.
 - Answer-colored progress bar: one segment per answer — green right, amber tough, brick wrong.
 - A miss is stated where the learner is already looking;
   the streak survives one missed day.

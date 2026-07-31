@@ -9,6 +9,11 @@
   the answer sits right there on the card. Finishing it counts as Hard rather than a blind
   Again; giving up still works with the same small "Skip" the write-it-out step already had.
 
+- **The keyboard stops flickering away between cards**: switching between a self-grade tap
+  and a typed field could leave the next field not actually focused, so the keyboard stayed
+  down until you tapped in manually. It now stays up for the whole session — only the field
+  underneath it changes — so typing is always one keystroke away, never an extra tap.
+
 ## 2.2.0 — 2026-07-31
 
 - **The start screen tells you what the round really is**: it used to call everything "your

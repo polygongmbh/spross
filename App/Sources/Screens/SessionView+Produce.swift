@@ -8,7 +8,7 @@ extension SessionView {
     /// for self-grading without typing.
     func produceControls(_ card: Card) -> some View {
         VStack(spacing: DL.Space.m) {
-            if !(revealed && feedback == .neutral) {
+            if !currentCardIsFieldless {
                 AnswerInputView(text: $input,
                                 feedback: feedback,
                                 placeholder: inputPlaceholder,
@@ -44,6 +44,10 @@ extension SessionView {
                         DLSound.reveal()
                         markRecallEnded()
                         withAnimation { revealed = true }
+                        // why: the field above just hid itself — reclaim
+                        // focus onto the keyboard anchor so the keyboard
+                        // stays up instead of dropping.
+                        focusCurrentField()
                     } else {
                         submit(card)
                     }
@@ -164,7 +168,7 @@ extension SessionView {
         let count = Int(normalizer.matchingPrefixWordCount(input: input, answer: card.target.text))
         let kept = words.prefix(count).joined(separator: " ")
         input = kept.isEmpty ? "" : kept + " "
-        answerFocused = true
+        focusCurrentField()
     }
 
     private func isExactAnswer(_ text: String, card: Card) -> Bool {
