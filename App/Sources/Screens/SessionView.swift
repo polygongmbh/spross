@@ -37,13 +37,11 @@ struct SessionView: View {
     /// only failing (kufunga vs kufungua).
     @State var otherWord: MatchOtherWord?
     @State var autoAdvance: Task<Void, Never>?
-    /// Owned here (not in AnswerInputView) so the keyboard is up the moment
-    /// a card appears and stays up across cards. `answerField` keeps the
-    /// same view mounted (just visually collapsed) through every state that
-    /// has nothing to type into, recognize included — a view that gets torn
-    /// down and rebuilt can lose a focus request racing that rebuild, which
-    /// is what made a reappearing field sometimes not autofocus.
+    /// Owned here (not in AnswerInputView) so whichever field is on screen —
+    /// the answer field or the copy step's — takes focus the moment it
+    /// mounts. Only ever one of them is mounted at a time.
     @FocusState var answerFocused: Bool
+    @State var focusRetry: Task<Void, Never>?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.locale) var locale
 
@@ -71,14 +69,16 @@ struct SessionView: View {
             // why: safety net only — rate() already resets BEFORE the switch
             // so the next card can never render one frame still revealed.
             resetCardState()
-            answerFocused = true
+            // why: a field carried over from the previous card is not
+            // re-mounted, so nothing else would re-assert focus for it.
+            focusAnswerField()
         }
         .onAppear {
-            answerFocused = true
             promptShownAt = Date()
         }
         .onDisappear {
             autoAdvance?.cancel()
+            focusRetry?.cancel()
         }
         #if DEBUG
         // UI-test hooks: `-uitest-reveal 1` shows the first card revealed,
@@ -222,22 +222,39 @@ struct SessionView: View {
         return revealed
     }
 
-    /// The answer field is mounted here unconditionally — for both roles —
-    /// and just visually collapses when there is nothing to type into
-    /// (`answerField`), so the same view (and its focus) survives every
-    /// transition instead of being swapped in and out.
+    /// A field is on screen only where there is something to type: produce
+    /// before its blank self-grade, and the copy step. Recognize is never
+    /// typed, so it shows none — iOS drops the keyboard for a hidden field
+    /// anyway, so pretending otherwise only cost reliable focus.
     @ViewBuilder
     private func controls(_ card: Card, role: PresentationRole) -> some View {
         if copyPending != nil {
             copyControls(card)
         } else {
             VStack(spacing: 0) {
-                answerField(card, role: role)
+                if role == .produce, !produceFieldHidden {
+                    answerField(card)
+                }
                 switch role {
                 case .recognize: recognizeControls
                 case .produce: produceButtons(card)
                 }
             }
+        }
+    }
+
+    /// Ask the field that is (or is about to be) on screen for focus. The
+    /// immediate request covers a field already mounted; the retry covers one
+    /// mounting in the same frame — a request that arrives before its field
+    /// exists is simply dropped, which is what left the keyboard down after
+    /// "Unbekannt" opened the write-it-out step.
+    func focusAnswerField() {
+        answerFocused = true
+        focusRetry?.cancel()
+        focusRetry = Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(120))
+            guard !Task.isCancelled else { return }
+            answerFocused = true
         }
     }
 
@@ -276,9 +293,8 @@ struct SessionView: View {
             copyMissed = false
             copyFeedback = .neutral
             withAnimation { revealed = true }
-            // why: a genuine field swap — copyControls mounts its own
-            // AnswerInputView, so focus needs to be re-asserted onto it.
-            answerFocused = true
+            // why: copyControls mounts its own field and claims focus from
+            // its .onAppear — asserting it here would land before it exists.
             return
         }
         commit(rating)

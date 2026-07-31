@@ -4,18 +4,12 @@ import SprossKern
 /// PRODUCE half of SessionView: typing-first controls and Kern-normalized
 /// grading. State lives on SessionView; split out purely for file size.
 extension SessionView {
-    /// The one typed-answer field for a card's whole life — mounted for
-    /// BOTH roles (`controls(_:role:)` places it above the role switch) and
-    /// every produce sub-state, just visually collapsed rather than removed
-    /// when there is nothing to type into (`fieldHidden`). The same view
-    /// staying mounted throughout is what keeps focus reliable: a view that
-    /// gets torn down and rebuilt can lose a focus request racing the
-    /// rebuild, which is what made a reappearing field sometimes not
-    /// autofocus. Recognize never reads `input` (self-graded, never typed),
-    /// so it's harmless for the field to sit there quietly collapsed.
-    func answerField(_ card: Card, role: PresentationRole) -> some View {
-        let hidden = fieldHidden(role: role)
-        return AnswerInputView(text: $input,
+    /// The typed-answer field, mounted only while there is something to type
+    /// into. It asks for focus from its own `.onAppear` (`focusAnswerField`):
+    /// a request made before the field is on screen lands on nothing, so the
+    /// field claiming focus for itself is the only ordering that holds.
+    func answerField(_ card: Card) -> some View {
+        AnswerInputView(text: $input,
                         feedback: feedback,
                         placeholder: inputPlaceholder,
                         // why: the card's reveal already carries the
@@ -23,11 +17,9 @@ extension SessionView {
                         // alternates — the panel repeated it.
                         showsRevealPanel: false,
                         focus: $answerFocused,
-                        // why: a disabled field can't hold keyboard focus,
-                        // which would defeat the point of keeping it
-                        // mounted through the hidden states.
+                        // why: a miss keeps typing — the retype IS the
+                        // answer, so the field must not lock on reveal.
                         locked: false) {
-            guard role == .produce else { return }
             // why: Enter used to hit the "Next" button's default
             // action once revealed — a hardware keyboard still needs
             // a way to give up without finishing the retype.
@@ -39,22 +31,15 @@ extension SessionView {
         }
         // why: writing the word out is the answer — the same rule the copy
         // step runs on, so a word you know never asks for a confirming tap.
-        .onChange(of: input) { _, _ in
-            guard role == .produce else { return }
-            approveWhenTyped(card)
-        }
-        .frame(height: hidden ? 0 : nil)
-        .padding(.bottom, hidden ? 0 : DL.Space.m)
-        .opacity(hidden ? 0 : 1)
-        .clipped()
-        .allowsHitTesting(!hidden)
-        .accessibilityHidden(hidden)
+        .onChange(of: input) { _, _ in approveWhenTyped(card) }
+        .padding(.bottom, DL.Space.m)
+        .onAppear { focusAnswerField() }
     }
 
-    /// True while there is nothing to type into: recognize never types, and
-    /// produce's blank "Aufdecken" self-grade hides its own field too.
-    private func fieldHidden(role: PresentationRole) -> Bool {
-        role == .recognize || (revealed && feedback == .neutral)
+    /// True while produce has nothing to type into: the blank "Aufdecken"
+    /// self-grade hides its own field and hands over the rating buttons.
+    var produceFieldHidden: Bool {
+        revealed && feedback == .neutral
     }
 
     /// Typing first (recall beats recognition); "Aufdecken" stays available

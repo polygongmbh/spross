@@ -33,6 +33,9 @@ extension SessionView {
             // why: the word finishing IS the action — there is nothing to confirm
             // when the answer is already on screen, so no button asks for a tap.
             .onChange(of: copyInput) { _, _ in advanceWhenWritten(card) }
+            // why: this field replaces the one the rating buttons sat under, so
+            // it has to claim focus itself — the tap that opened it fired first.
+            .onAppear { focusAnswerField() }
             if copyMissed {
                 // why: the answer is already on the card, so this points back to it.
                 Text("session.copyMismatch")

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **The answer field is focused whenever it is there**: the last release tried to hold the
+  keyboard up for a whole session, which iOS undoes the moment the field is out of sight —
+  so it came and went between cards on its own, and answering "Unbekannt" could open the
+  write-it-out step with the keyboard down. The keyboard now simply follows the field:
+  wherever there is something to type, the cursor is already in it.
+
 ## 2.3.0 — 2026-07-31
 
 - **A missed produce answer now asks you to fix it, not to judge it**: getting a word wrong
