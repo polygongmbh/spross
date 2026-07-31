@@ -43,25 +43,31 @@ struct ConfettiView: View {
     private var life: Double { emission + 3.2 }
 
     var body: some View {
-        Group {
-            if !waves.isEmpty {
-                TimelineView(.animation) { timeline in
-                    Canvas { context, size in
-                        for wave in waves {
-                            var layer = context
-                            let elapsed = timeline.date.timeIntervalSince(wave.start)
-                            // why: the tail fade catches whatever is still airborne
-                            // when a wave retires, so nothing pops out mid-screen.
-                            layer.opacity = min(1, max(0, (life - elapsed) / 1.0))
-                            draw(&layer, size: size, elapsed: elapsed, wave: wave.id)
+        // why: an invisible but REAL view underneath, not a bare `if`. Before a
+        // wave exists there is nothing to draw, and an empty container dropped
+        // into an already-visible screen does not reliably get its onAppear —
+        // which is how a celebration that starts later than its screen (a drill
+        // record) ended up silent while the same view worked on arrival.
+        Color.clear
+            .overlay {
+                if !waves.isEmpty {
+                    TimelineView(.animation) { timeline in
+                        Canvas { context, size in
+                            for wave in waves {
+                                var layer = context
+                                let elapsed = timeline.date.timeIntervalSince(wave.start)
+                                // why: the tail fade catches whatever is still airborne
+                                // when a wave retires, so nothing pops out mid-screen.
+                                layer.opacity = min(1, max(0, (life - elapsed) / 1.0))
+                                draw(&layer, size: size, elapsed: elapsed, wave: wave.id)
+                            }
                         }
                     }
                 }
             }
-        }
-        .allowsHitTesting(false)
-        .onAppear(perform: launch)
-        .onChange(of: run) { _, _ in launch() }
+            .allowsHitTesting(false)
+            .onAppear(perform: launch)
+            .onChange(of: run) { _, _ in launch() }
     }
 
     /// Adds a wave and arms its retirement — without that the TimelineView
