@@ -59,16 +59,11 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
   chrome language is additive in `Localizable.xcstrings`.
   Arguments stay in the key (`heute.session.reviews %@`) so resolution keeps running
   through `LocalizedStringKey` against the environment locale — `String(localized:)`
-  would read the device language instead. They are pre-formatted at the call site
-  (`\(due.formatted())`, never a bare `\(due)`): Xcode's index-based extractor writes
-  `%@` for every argument, so an Int interpolation — `%lld` to the compiler — leaves the
-  two disagreeing, and opening the project rewrites the catalog with dead twins.
-  `extractionState: "stale"` on a key is cosmetic — the same index-based extractor misses
-  keys the compiler finds (computed `LocalizedStringKey` properties, our own
-  `LocalizedStringKey` parameters, `Label`/`accessibilityLabel`), and flagged keys still
-  compile into every `.lproj`: clear the flags (`scripts/strings.py --fix`), never the keys.
-  `scripts/strings.py --built` diffs the catalog against what the compiler actually emitted
-  (after a build with `SWIFT_EMIT_LOC_STRINGS=YES`) — the check that catches real drift.
+  would read the device language instead — and are pre-formatted at the call site
+  (`\(due.formatted())`, never a bare `\(due)`), so a number never reaches the catalog
+  as a second format specifier.
+  Catalog hygiene (stale flags, drift against the compiler) belongs to `scripts/strings.py`,
+  which states the rules it enforces.
   Errors take the same path: `AppModel` reports a `LoadFailure` case, the view
   turns it into `Text`.
 - Area titles and area emoji both come from the catalog (kern README §8);
@@ -160,20 +155,8 @@ the app renders them:
 - Submitting by hand still works: Return or "Prüfen" grades typo-tolerantly, a clean
   correct answer auto-advances after ~1.2 s, and Enter gives up (Again) once revealed —
   the retry field itself, not a button, is what confirms a completed retype.
-- "Aufdecken" fills the answer field with the correct answer.
-- **A field on screen is always a focused field; the keyboard follows it.**
-  Keeping the keyboard up across fieldless steps was tried and does not work:
-  iOS drops it for a field that is hidden, however it is hidden, so a field
-  collapsed to zero height bought a keyboard that came and went on its own
-  schedule and a focus request that could land on nothing.
-  A field is now mounted only where there is something to type — produce before
-  its blank self-grade, and the write-it-out step — and **each field claims focus
-  from its own `.onAppear`**, never from the action that opened it: a request
-  made in the frame before the field exists is simply dropped, which is what
-  left "Unbekannt" opening the write-it-out step with the keyboard down.
-  `focusAnswerField()` re-asserts once a frame later for mounts that race a card
-  transition, and the card switch calls it for a field carried over unchanged
-  from the previous card (no remount ⇒ no `.onAppear`).
+- A field is on screen only where there is something to type, and is focused the moment
+  it is there — typing never costs a tap first.
 - Answer-colored progress bar: one segment per answer — green right, amber tough, brick wrong.
 - A miss is stated where the learner is already looking;
   the streak survives one missed day.
@@ -206,9 +189,7 @@ the app renders them:
   Each part of the round is named for what it is (due · new · pulled forward),
   the counts describe the reviews THIS run takes (the cap, not the pile),
   and due cards the cap holds back are named rather than dropped from the number.
-  No progress ring: a growing box sets no daily quota, so an arc can only divide
-  work done by work still queued — both climb through the day, leaving it near-full
-  from the second round on and fullest exactly when a capped backlog is worst.
+  No progress ring — a growing box sets no daily quota for an arc to fill.
   A short round never reaches the screen as two cards: the kern fills it out
   (`SESSION_FLOOR_CARDS`, kern README §6) and the summary says what it pulled forward.
   A day the learner has not answered anything in never shows a closed box either —
