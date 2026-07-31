@@ -22,7 +22,7 @@ data class BoxStatistics(
     val suspendedCount: Int,
     /** New words that could enter now; 0 when the health gate is closed. */
     val newSlotsAvailable: Int,
-    /** Consecutive days with reviews > 0; one missed day is forgiven. */
+    /** Days with reviews > 0; a missed day is bridged, two in a row end the run. */
     val streak: Int,
     /** The longest such run the box has ever held; equals [streak] when today's run is it. */
     val longestStreak: Int,
@@ -83,21 +83,27 @@ internal object Statistics {
             (sched.memory?.stability ?: 0.0) >= state.config.consolidatedStability
 
     /**
-     * Walk back from today. Today without reviews neither breaks the streak nor consumes
-     * forgiveness (the day isn't over); afterwards exactly ONE 0-review day is forgiven,
-     * the next miss ends the streak. Forgiven days do not increment the count.
+     * Walk back from today: a missed day is bridged, two in a row end the run. Forgiveness
+     * is a property of the neighbourhood, not a budget — showing up restores it, so a
+     * second miss weeks later never takes back the days built before the first. A bridged
+     * day does not increment the count: the streak stalls for a day instead of dying.
+     *
+     * Today without reviews is not a miss at all (the day isn't over) — it neither breaks
+     * the run nor pairs with an empty yesterday.
      */
     fun streak(dailyStats: Map<String, DayStats>, nowEpochMillis: Long, tzId: String): Int {
         var count = 0
-        var forgivenessLeft = 1
+        var previousWasMiss = false
         var day = localDate(nowEpochMillis, tzId)
         var isToday = true
         while (true) {
             val reviews = dailyStats[day.toString()]?.reviews ?: 0
             if (reviews > 0) {
                 count += 1
+                previousWasMiss = false
             } else if (!isToday) {
-                if (forgivenessLeft > 0) forgivenessLeft -= 1 else break
+                if (previousWasMiss) break
+                previousWasMiss = true
             }
             isToday = false
             day = day.minus(1, DateTimeUnit.DAY)
@@ -107,9 +113,9 @@ internal object Statistics {
 
     /**
      * The longest run the box has ever held, under the same rule [streak] walks back
-     * with: one 0-review day inside a run is bridged and does not count, a second in a
-     * row ends it, and each fresh run is forgiven once again. `dailyStats` is never
-     * pruned, so this reaches back to the first day the box was used.
+     * with: a 0-review day inside a run is bridged and does not count, two in a row end
+     * it. `dailyStats` is never pruned, so this reaches back to the first day the box
+     * was used.
      *
      * Today can extend a run but never end one — the day is not over — which is what
      * keeps a record set today standing while it is still being added to, and keeps
@@ -120,19 +126,15 @@ internal object Statistics {
         var day = dailyStats.keys.minOrNull()?.let { LocalDate.parse(it) } ?: return 0
         var best = 0
         var run = 0
-        var forgivenessLeft = 1
+        var previousWasMiss = false
         while (day <= today) {
             val reviews = dailyStats[day.toString()]?.reviews ?: 0
             if (reviews > 0) {
                 run += 1
                 if (run > best) best = run
+                previousWasMiss = false
             } else if (day != today) {
-                if (forgivenessLeft > 0) {
-                    forgivenessLeft -= 1
-                } else {
-                    run = 0
-                    forgivenessLeft = 1
-                }
+                if (previousWasMiss) run = 0 else previousWasMiss = true
             }
             day = day.plus(1, DateTimeUnit.DAY)
         }

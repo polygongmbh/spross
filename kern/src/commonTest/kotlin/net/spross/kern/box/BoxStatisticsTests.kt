@@ -7,7 +7,7 @@ import net.spross.kern.model.CardPhase
 import net.spross.kern.model.DayStats
 import net.spross.kern.model.Rating
 
-/** Statistics: streak forgiveness, session end fold + prune, headline counts. */
+/** Statistics: streak bridging, session end fold + prune, headline counts. */
 class BoxStatisticsTests {
     private val now = Box.day1
 
@@ -33,9 +33,19 @@ class BoxStatisticsTests {
     }
 
     @Test
-    fun streakTodayInProgressNeitherBreaksNorConsumesForgiveness() {
+    fun streakBridgesEveryIsolatedMiss() {
+        // A second miss never takes back the days built before the first.
+        val days = listOf(1, 2, 3, 4, 5, 7, 8, 9, 11, 12)
+        val stats = BoxEngine.statistics(statsState(days), Box.millis(2026, 7, 12), Box.TZ)
+        assertEquals(10, stats.streak)
+    }
+
+    @Test
+    fun streakTodayInProgressIsNoMissAtAll() {
         val stats = BoxEngine.statistics(statsState(listOf(2, 3, 4)), Box.millis(2026, 7, 5), Box.TZ)
         assertEquals(3, stats.streak)
+        // An empty today does not pair with an empty yesterday — the day isn't over.
+        assertEquals(3, BoxEngine.statistics(statsState(listOf(1, 2, 3)), Box.millis(2026, 7, 5), Box.TZ).streak)
         assertEquals(0, BoxEngine.statistics(statsState(emptyList()), now, Box.TZ).streak)
     }
 
@@ -45,6 +55,13 @@ class BoxStatisticsTests {
         val stats = BoxEngine.statistics(statsState(listOf(1, 2, 3, 6, 7)), Box.millis(2026, 7, 7), Box.TZ)
         assertEquals(2, stats.streak)
         assertEquals(3, stats.longestStreak)
+    }
+
+    @Test
+    fun longestStreakBridgesEveryIsolatedMiss() {
+        val days = listOf(1, 2, 3, 4, 5, 7, 8, 9, 11, 12)
+        val stats = BoxEngine.statistics(statsState(days), Box.millis(2026, 7, 12), Box.TZ)
+        assertEquals(10, stats.longestStreak) // the run today IS the record
     }
 
     @Test
