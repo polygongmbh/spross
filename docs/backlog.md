@@ -39,6 +39,15 @@ One line per item, with a file or context pointer, filed under the section it be
 - Rating labels carry more weight on a first exposure now that Good sends a word about a week
   out (kern README §5) — the button wording deserves a look
   (`App/Sources/Design/RatingButtonsView.swift`).
+- Automatic growth walks seed order, so a round's new words are seed neighbours and often the
+  same semantic field (`Growth.newCandidates` step 2b) — the L2 literature on semantic
+  clustering says a same-field batch is the harder batch, and batch composition looks like a
+  cheaper win than batch size. A field-spreading pick would keep introduction fair without
+  touching the budget.
+- `dueSoftCap` (30) has no anchor in the learner's actual throughput: the health gate's
+  mechanism — throttle introduction, never hide reviews — matches practitioner consensus,
+  but the threshold would be truer as a multiple of what a day really answers
+  (`Growth.healthGateOpen`, kern README §6).
 
 ## Localization
 
