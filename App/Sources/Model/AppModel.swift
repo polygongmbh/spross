@@ -71,7 +71,8 @@ final class AppModel {
     /// box's stamp (source switch, catalog update) forces a recompose.
     var sessionJoinStamp: JoinStamp?
     private(set) var autostartSession = false
-    /// DEBUG hook: `-uitest-screen box` pushes the Box screen after launch.
+    /// DEBUG hook: `-uitest-screen box` pushes the Box screen after launch,
+    /// `finish` jumps a fresh session to its finish screen.
     private(set) var uitestScreen: String?
 
     let store: BoxStore
@@ -148,6 +149,14 @@ final class AppModel {
         if autostartSession, sessionAvailable {
             startSession()
         }
+        #if DEBUG
+        // UI-test hook: `-uitest-screen finish` opens a session and jumps
+        // straight to its finish screen (confetti/cheer/exit buttons).
+        if uitestScreen == "finish", sessionAvailable {
+            startSession()
+            sessionStep = .completed
+        }
+        #endif
     }
 
     /// The Xcode project bundles the repo's catalog/ folder as a folder
