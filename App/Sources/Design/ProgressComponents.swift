@@ -69,46 +69,6 @@ struct BoxStatTile: View {
     }
 }
 
-// MARK: DueCountRing
-
-struct DueCountRing: View {
-    /// Cards still due right now.
-    let remaining: Int
-    /// Total cards in today's session (done + remaining).
-    let total: Int
-    var size: CGFloat = 96
-
-    private var fraction: Double {
-        guard total > 0 else { return 1 }
-        return Double(total - remaining) / Double(total)
-    }
-
-    var body: some View {
-        ZStack {
-            Circle()
-                .stroke(Color.dlSeparator, lineWidth: 8)
-            Circle()
-                .trim(from: 0, to: fraction)
-                .stroke(Color.dlAccent, style: StrokeStyle(lineWidth: 8, lineCap: .round))
-                .rotationEffect(.degrees(-90))
-            VStack(spacing: 0) {
-                Text(remaining.formatted())
-                    .font(DL.Fonts.statValue)
-                    .foregroundStyle(Color.dlTextPrimary)
-                    .minimumScaleFactor(0.6)
-                Text("progress.due")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
-            }
-            .padding(DL.Space.s)
-        }
-        .frame(width: size, height: size)
-        .animation(.easeOut(duration: 0.4), value: fraction)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("a11y.dueOfTotal \(remaining.formatted()) \(total.formatted())"))
-    }
-}
-
 // MARK: AreaChip
 
 /// Per-area chip: emoji + name + settled/learning split bar with counts.
@@ -206,10 +166,7 @@ struct PhaseBadge: View {
 #Preview("Progress pieces") {
     ScrollView {
         VStack(alignment: .leading, spacing: DL.Space.xl) {
-            HStack(spacing: DL.Space.l) {
-                StreakFlameView(days: 12)
-                DueCountRing(remaining: 7, total: 20)
-            }
+            StreakFlameView(days: 12)
             HStack(spacing: DL.Space.m) {
                 BoxStatTile(emoji: "🌳", value: "84", label: "progress.consolidated")
                 BoxStatTile(emoji: "🌱", value: "48", label: "progress.fresh")
@@ -227,10 +184,7 @@ struct PhaseBadge: View {
 
 #Preview("Progress pieces · dark") {
     VStack(alignment: .leading, spacing: DL.Space.xl) {
-        HStack(spacing: DL.Space.l) {
-            StreakFlameView(days: 3)
-            DueCountRing(remaining: 0, total: 15)
-        }
+        StreakFlameView(days: 3)
         AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6)
         HStack(spacing: DL.Space.s) {
             ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }
