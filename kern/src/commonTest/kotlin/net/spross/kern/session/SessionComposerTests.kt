@@ -6,6 +6,7 @@ import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.Growth
 import net.spross.kern.model.Rating
 
 /** Session composition: caps, ordering, growth reserve, determinism. */
@@ -148,7 +149,7 @@ class SessionComposerTests {
         assertEquals(2, plan.freshCount)
         assertEquals(SessionComposer.SESSION_FLOOR_CARDS, plan.cardCount)
         // Soonest due first, and the run leads with them.
-        assertEquals(listOf("w01", "w02", "w03", "w04"), plan.ahead)
+        assertEquals(listOf("w01", "w02", "w03", "w04", "w05"), plan.ahead)
         assertEquals(plan.ahead + plan.unlockedPhrases + plan.newCards, plan.queue)
     }
 
@@ -197,9 +198,35 @@ class SessionComposerTests {
     @Test
     fun aRoundThatAlreadyClearsTheFloorPullsNothingForward() {
         assertTrue(SessionComposer.composeSession(backloggedState(), now, Box.TZ).ahead.isEmpty())
-        // Fresh box: nothing due, but the full budget of new words is a round in itself.
+        // Fresh box: nothing due, but a round's worth of new words is a round in itself.
         val fresh = SessionComposer.composeSession(Box.state((1..30).map { Box.word(it) }), now, Box.TZ)
-        assertEquals(20, fresh.freshCount)
+        assertEquals(SessionComposer.NEW_CARDS_PER_ROUND, fresh.freshCount)
         assertTrue(fresh.ahead.isEmpty())
+    }
+
+    /**
+     * The load budget opens to `maxUnsettled` on a box with nothing in flight;
+     * the round cap is what keeps that from arriving as one wall of first sights.
+     */
+    @Test
+    fun growthNeverExceedsARoundsWorthOfNewCards() {
+        val restedBox = Box.state((1..40).map { Box.word(it) }, Box.config(maxUnsettled = 20))
+        assertEquals(20, Growth.newBudget(restedBox))
+        assertEquals(
+            SessionComposer.NEW_CARDS_PER_ROUND,
+            SessionComposer.composeSession(restedBox, now, Box.TZ).freshCount,
+        )
+        assertEquals(
+            SessionComposer.NEW_CARDS_PER_ROUND,
+            SessionComposer.composeEndless(restedBox, now).freshCount,
+        )
+        // Enqueued cards lead composition, but the round holds them to the same size.
+        val packed = restedBox.copy(
+            enqueued = (1..12).map { "w" + it.toString().padStart(2, '0') },
+        )
+        assertEquals(
+            SessionComposer.NEW_CARDS_PER_ROUND,
+            SessionComposer.composeExtraSession(packed, now).freshCount,
+        )
     }
 }

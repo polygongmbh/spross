@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **A round no longer opens with a wall of unseen words**: on a box with nothing in flight —
+  a fresh start, or a day after everything had settled — the whole new-word budget was let
+  into a single plan, so a round could hand you close to twenty words you had never met.
+  A round now offers at most a round's worth of first sights and keeps the rest for the next
+  one; nothing is taken away, it simply arrives at a pace you can meet. The shortest round
+  the box will sit you down for grew by one card.
+
 - **Finishing a round is worth a proper celebration, and the break is the default**:
   the end screen used to nudge a few emoji outwards in silence and put "Weiter üben"
   under your thumb, so stopping — the thing the finished round has earned — was the

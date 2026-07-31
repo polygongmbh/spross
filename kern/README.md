@@ -163,7 +163,8 @@ v1 calibration restored (one schedule per card ⇒ one review touches one card):
 | `sessionCap` / `dueSoftCap` | 30 / 30 |
 | `growthReserve` | ≤ 5 |
 | `Growth.TRICKLE_CARDS` (the floor under the new-word budget) | 2 |
-| `SessionComposer.SESSION_FLOOR_CARDS` (a round worth sitting down for — §6) | 6 |
+| `SessionComposer.SESSION_FLOOR_CARDS` (a round worth sitting down for — §6) | 7 |
+| `SessionComposer.NEW_CARDS_PER_ROUND` (first sights one round may offer — §6) | 7 |
 | `TodayReport.MIN_ANSWERS_FOR_RECALL` / `RECALL_STRAIN_MARGIN` (§6) | 10 / 0.2 |
 
 Every user-facing count (due ring, "x neu", active, widget) and `DayStats` field is in
@@ -260,6 +261,16 @@ day-key `yyyy-MM-dd`) with:
   landing.
   `maxUnsettled = 0` is the one way to stop growth entirely: it reads as the learner saying
   "stop", and the trickle must not talk over that.
+- **A round offers at most `NEW_CARDS_PER_ROUND` first sights** (user ruling 2026-07-31):
+  the budget measures how much may be *in flight*, and a box with nothing in flight opens it
+  to nearly `maxUnsettled` — a rested learner was handed twenty unseen words in one plan,
+  which reads as a wall rather than an offer.
+  The ceiling is a round's worth, the size `SESSION_FLOOR_CARDS` measures a round to be,
+  and it applies to every composed round (today's, endless, the extra round) including
+  enqueued cards, since a packed queue overloads exactly the same way.
+  Nothing is withdrawn, only deferred: what the budget still allows is offered again next round.
+  `growthReserve` (≤ 5) is unchanged — it reserves slots against a full due queue,
+  it does not cap growth.
 - **Health gate = backlog only**: projected post-session backlog stays under `dueSoftCap`.
   Time debt is a different axis from load; how much material is unsettled is the budget's
   job, and `gatedNewBudget` is 0 while the gate is shut.

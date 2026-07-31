@@ -27,7 +27,21 @@ object SessionComposer {
      * and two cards presented as the day's work read as the app having nothing to offer —
      * so a short round is filled out with reviews pulled forward instead.
      */
-    const val SESSION_FLOOR_CARDS: Int = 6
+    const val SESSION_FLOOR_CARDS: Int = 7
+
+    /**
+     * A round introduces at most this many unseen cards — a round's worth of first
+     * sights, the same size as [SESSION_FLOOR_CARDS] measures a round to be.
+     * The new-word budget answers "how much may be in flight", and on a settled box
+     * it opens nearly to `maxUnsettled`: a rested learner would be handed twenty
+     * first sights at once, which reads as a wall rather than an offer.
+     * The rest is not withdrawn, only deferred — the next round offers it again.
+     */
+    const val NEW_CARDS_PER_ROUND: Int = 7
+
+    /** The new-word budget as one round may spend it: load room, ceilinged at [NEW_CARDS_PER_ROUND]. */
+    private fun roundBudget(state: BoxState): Int =
+        min(Growth.newBudget(state), NEW_CARDS_PER_ROUND)
 
     /**
      * Today's plan: due cards oldest-first (ties by id), review slots capped at
@@ -39,7 +53,7 @@ object SessionComposer {
     fun composeSession(state: BoxState, nowEpochMillis: Long, tzId: String): SessionPlan {
         val cap = state.config.sessionCap
         val due = Inventory.due(state, nowEpochMillis)
-        val loadBudget = Growth.newBudget(state)
+        val loadBudget = roundBudget(state)
         val gateOpen = Growth.healthGateOpen(state, nowEpochMillis)
         val autoBudget = if (gateOpen) loadBudget else 0
 
@@ -114,7 +128,7 @@ object SessionComposer {
         val cap = state.config.sessionCap
         val due = Inventory.due(state, nowEpochMillis).take(cap)
         val enqueuedNew = Growth.enqueuedEligible(state)
-            .take(Growth.newBudget(state))
+            .take(roundBudget(state))
 
         val dueCards = due.mapTo(mutableSetOf()) { it.cardId }
         val remaining = max(0, cap - due.size - enqueuedNew.size)
@@ -142,7 +156,7 @@ object SessionComposer {
         val due = Inventory.due(state, nowEpochMillis).take(cap)
         val candidates = Growth.newCandidates(
             state,
-            budget = Growth.newBudget(state),
+            budget = roundBudget(state),
             gateOpen = Growth.healthGateOpen(state, nowEpochMillis),
             capacity = max(0, cap - due.size),
         )
