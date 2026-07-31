@@ -29,7 +29,8 @@ extension AppModel {
         guard let box else { return }
         let now = Date()
         let plan = SessionComposer.shared.composeSession(state: box,
-                                                         nowEpochMillis: now.epochMillis)
+                                                         nowEpochMillis: now.epochMillis,
+                                                         tzId: currentTzId())
         begin(plan, now: now)
     }
 
@@ -78,7 +79,8 @@ extension AppModel {
               let stamp = sessionJoinStamp, stamp != box.joinStamp else { return }
         let now = Date()
         let plan = SessionComposer.shared.composeSession(state: box,
-                                                         nowEpochMillis: now.epochMillis)
+                                                         nowEpochMillis: now.epochMillis,
+                                                         tzId: currentTzId())
         sessionQueue = plan.queue
         sessionTotal = sessionAnswered + sessionQueue.count
         sessionJoinStamp = plan.joinStamp

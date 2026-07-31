@@ -88,6 +88,7 @@ object BoxEngine {
         val folded = DayStats(
             reviews = previous.reviews + reviewsDone,
             introduced = state.newIntroduced[day] ?: 0,
+            settled = state.settledCrossed[day] ?: 0,
             activeCount = Inventory.active(state).size,
         )
         // why: yyyy-MM-dd keys compare chronologically as strings, so pruning is a
@@ -96,6 +97,7 @@ object BoxEngine {
         return state.copy(
             dailyStats = state.dailyStats + (day to folded),
             newIntroduced = state.newIntroduced.filterKeys { it >= cutoff },
+            settledCrossed = state.settledCrossed.filterKeys { it >= cutoff },
         )
     }
 
@@ -105,6 +107,10 @@ object BoxEngine {
 
     fun statistics(state: BoxState, nowEpochMillis: Long, tzId: String): BoxStatistics =
         Statistics.statistics(state, nowEpochMillis, tzId)
+
+    /** What the learner did today, live from the logs and the day counters. */
+    fun today(state: BoxState, nowEpochMillis: Long, tzId: String): TodayReport =
+        todayReport(state, nowEpochMillis, tzId)
 
     /**
      * Has this card settled? See [Statistics.isSettled] — the one threshold

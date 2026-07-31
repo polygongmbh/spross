@@ -156,7 +156,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     fun startSession() {
         val state = box ?: return
-        begin(SessionComposer.composeSession(state, now()))
+        begin(SessionComposer.composeSession(state, now(), tz()))
     }
 
     fun startExtraSession() {
@@ -233,7 +233,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     private fun refreshStats() {
         val state = box ?: return
         stats = BoxEngine.statistics(state, now(), tz())
-        sessionAvailable = !SessionComposer.composeSession(state, now()).isEmpty
+        sessionAvailable = !SessionComposer.composeSession(state, now(), tz()).isEmpty
     }
 
     // why: every answer persists (small doc, IO thread) — process death mid-session

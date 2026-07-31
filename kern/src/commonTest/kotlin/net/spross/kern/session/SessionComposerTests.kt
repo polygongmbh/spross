@@ -32,7 +32,7 @@ class SessionComposerTests {
     @Test
     fun slotReservationForGrowth() {
         // 40 due cards, sessionCap 30 → 25 reviews + 5 reserved growth slots.
-        val plan = SessionComposer.composeSession(backloggedState(), now)
+        val plan = SessionComposer.composeSession(backloggedState(), now, Box.TZ)
         assertEquals(25, plan.reviews.size)
         assertEquals(5, plan.unlockedPhrases.size + plan.newCards.size)
         assertEquals((41..45).map { "w$it" }, plan.newCards)
@@ -45,7 +45,7 @@ class SessionComposerTests {
     @Test
     fun reviewsDrainTheOldestDueDayFirst() {
         // 40 dues span three days back from noon: w37..w40, then w13..w36, then w01..w12.
-        val plan = SessionComposer.composeSession(backloggedState(), now)
+        val plan = SessionComposer.composeSession(backloggedState(), now, Box.TZ)
         assertEquals(setOf("w37", "w38", "w39", "w40"), plan.reviews.take(4).toSet())
         val secondDay = (13..36).map { "w$it" }.toSet()
         assertTrue(plan.reviews.drop(4).all { it in secondDay })
@@ -55,7 +55,7 @@ class SessionComposerTests {
     @Test
     fun noReservationWithoutNewWork() {
         // cap 0 → growth switched off entirely and nothing enqueued → reviews fill the cap.
-        val plan = SessionComposer.composeSession(backloggedState(maxUnsettled = 0), now)
+        val plan = SessionComposer.composeSession(backloggedState(maxUnsettled = 0), now, Box.TZ)
         assertEquals(30, plan.reviews.size)
         assertTrue(plan.newCards.isEmpty())
         assertTrue(plan.unlockedPhrases.isEmpty())
@@ -71,7 +71,7 @@ class SessionComposerTests {
                 Box.sched(id, dueMillis = now - n * 60_000L, lastReviewMillis = Box.plusDays(now, -5.0)),
             )
         }
-        val plan = SessionComposer.composeSession(state, now)
+        val plan = SessionComposer.composeSession(state, now, Box.TZ)
         // reviewCap = 30 − min(20, 5) = 25 → 25 reviews; 5 card slots remain for new.
         assertEquals(25, plan.reviews.size)
         assertEquals(5, plan.newCards.size)
@@ -80,9 +80,9 @@ class SessionComposerTests {
     @Test
     fun determinismRegardlessOfInputOrder() {
         val cards = (1..30).map { Box.word(it, area = if (it % 2 == 0) "b" else "a") }
-        val plan1 = SessionComposer.composeSession(Box.state(cards), now)
-        val plan2 = SessionComposer.composeSession(Box.state(cards), now)
-        val plan3 = SessionComposer.composeSession(Box.state(cards.shuffled()), now)
+        val plan1 = SessionComposer.composeSession(Box.state(cards), now, Box.TZ)
+        val plan2 = SessionComposer.composeSession(Box.state(cards), now, Box.TZ)
+        val plan3 = SessionComposer.composeSession(Box.state(cards.shuffled()), now, Box.TZ)
         assertEquals(plan1, plan2)
         assertEquals(plan1, plan3)
         assertEquals(Box.stamp, plan1.joinStamp)
@@ -117,7 +117,7 @@ class SessionComposerTests {
 
     @Test
     fun isEmptyReflectsAnAllEmptyPlan() {
-        val plan = SessionComposer.composeSession(Box.state(emptyList()), now)
+        val plan = SessionComposer.composeSession(Box.state(emptyList()), now, Box.TZ)
         assertTrue(plan.isEmpty)
         assertEquals(Box.stamp, plan.joinStamp)
     }
@@ -143,7 +143,7 @@ class SessionComposerTests {
     @Test
     fun aShortRoundIsFilledOutWithReviewsPulledForward() {
         // Nothing due, growth throttled to the trickle → 2 new words is not a round.
-        val plan = SessionComposer.composeSession(loadedNothingDueState(), now)
+        val plan = SessionComposer.composeSession(loadedNothingDueState(), now, Box.TZ)
         assertTrue(plan.reviews.isEmpty())
         assertEquals(2, plan.freshCount)
         assertEquals(SessionComposer.SESSION_FLOOR_CARDS, plan.cardCount)
@@ -159,21 +159,46 @@ class SessionComposerTests {
         val plan = SessionComposer.composeSession(
             loadedNothingDueState(actives = 3, maxUnsettled = 2),
             now,
+            Box.TZ,
         )
         assertEquals(2, plan.freshCount)
         assertEquals(3, plan.ahead.size)
         assertEquals(5, plan.cardCount)
         // An empty box stays empty: "come back later" is a real answer.
-        val nothing = SessionComposer.composeSession(Box.state(emptyList()), now)
+        val nothing = SessionComposer.composeSession(Box.state(emptyList()), now, Box.TZ)
         assertTrue(nothing.isEmpty)
         assertTrue(nothing.ahead.isEmpty())
     }
 
+    /**
+     * A day with no reps in it is the one thing the box does not let pass quietly:
+     * nothing due and nothing done means a round pulled forward, not a closed box.
+     */
+    @Test
+    fun aDayWithNoRepsYetAlwaysGetsARound() {
+        // maxUnsettled 0 → growth off, so an untouched day has literally nothing to offer.
+        val state = loadedNothingDueState(maxUnsettled = 0)
+        val plan = SessionComposer.composeSession(state, now, Box.TZ)
+        assertTrue(plan.reviews.isEmpty())
+        assertEquals(0, plan.freshCount)
+        assertEquals(SessionComposer.SESSION_FLOOR_CARDS, plan.ahead.size)
+    }
+
+    @Test
+    fun onceTheDayHasBeenWorkedAnEmptyPlanStaysEmpty() {
+        val state = loadedNothingDueState(maxUnsettled = 0)
+        val worked = BoxEngine.endSession(state, reviewsDone = 4, nowEpochMillis = now, tzId = Box.TZ)
+        assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
+        // …and the next day opens with a round again.
+        val tomorrow = Box.plusDays(now, 1.0)
+        assertTrue(SessionComposer.composeSession(worked, tomorrow, Box.TZ).ahead.isNotEmpty())
+    }
+
     @Test
     fun aRoundThatAlreadyClearsTheFloorPullsNothingForward() {
-        assertTrue(SessionComposer.composeSession(backloggedState(), now).ahead.isEmpty())
+        assertTrue(SessionComposer.composeSession(backloggedState(), now, Box.TZ).ahead.isEmpty())
         // Fresh box: nothing due, but the full budget of new words is a round in itself.
-        val fresh = SessionComposer.composeSession(Box.state((1..30).map { Box.word(it) }), now)
+        val fresh = SessionComposer.composeSession(Box.state((1..30).map { Box.word(it) }), now, Box.TZ)
         assertEquals(20, fresh.freshCount)
         assertTrue(fresh.ahead.isEmpty())
     }

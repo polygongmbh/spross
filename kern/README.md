@@ -164,6 +164,7 @@ v1 calibration restored (one schedule per card ⇒ one review touches one card):
 | `growthReserve` | ≤ 5 |
 | `Growth.TRICKLE_CARDS` (the floor under the new-word budget) | 2 |
 | `SessionComposer.SESSION_FLOOR_CARDS` (a round worth sitting down for — §6) | 6 |
+| `TodayReport.MIN_ANSWERS_FOR_RECALL` / `RECALL_STRAIN_MARGIN` (§6) | 10 / 0.2 |
 
 Every user-facing count (due ring, "x neu", active, widget) and `DayStats` field is in
 cards; `DayStats.reviews` = answer events.
@@ -280,8 +281,19 @@ day-key `yyyy-MM-dd`) with:
   `composeSession` tops such a round up with reviews pulled forward, soonest due first —
   honest FSRS reviews, never extra new words, because the budget that made the round small
   is the one thing the floor must not talk over.
-  An EMPTY plan stays empty: "nothing right now" is a real answer, and inventing a round
-  out of a box with nothing due would erase the spacing the engine exists to keep.
+  An empty plan is filled out too, but ONLY while the day has no reps in it yet
+  (user ruling 2026-07-30): a learner who has answered nothing today should always find a
+  round to do, so nothing due plus nothing done is a round pulled forward, not a closed box.
+  Once the day HAS been worked, an empty plan stays empty — re-filling it would make every
+  visit a treadmill and erase the spacing the engine exists to keep. `composeSession`
+  therefore takes `tzId`: "today" is a local-calendar question.
+- **`TodayReport`** (`BoxEngine.today`) is the day's own report: reviews and misses read
+  live from the review logs (so the numbers hold mid-session), introductions and settled
+  crossings from the day counters the engine books at answer time (`newIntroduced`,
+  `settledCrossed`, both folded into `DayStats` at `endSession` and pruned together).
+  `recall` is null below `MIN_ANSWERS_FOR_RECALL` — a handful of answers cannot carry a
+  ratio — and `recallStrained` names the rule "today is going badly", not the remedy:
+  what a surface does with it is the app's call.
 - **A composed session never refills** (user ruling 2026-07-29): the plan IS the run.
   Cards falling due while the learner sits there — a learning step maturing, most often —
   used to be drained straight in, so the count they were counting down to moved away from

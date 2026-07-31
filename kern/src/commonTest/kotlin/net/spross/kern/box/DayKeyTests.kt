@@ -59,7 +59,10 @@ class DayKeyTests {
         assertEquals(1, state.newIntroduced["2026-07-02"])
 
         state = BoxEngine.endSession(state, reviewsDone = 1, nowEpochMillis = lateUtc, tzId = "Pacific/Kiritimati")
-        assertEquals(DayStats(reviews = 1, introduced = 1, activeCount = 1), state.dailyStats["2026-07-02"])
+        assertEquals(
+            DayStats(reviews = 1, introduced = 1, settled = 1, activeCount = 1),
+            state.dailyStats["2026-07-02"],
+        )
     }
 
     @Test

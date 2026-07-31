@@ -26,6 +26,9 @@ internal data class BoxDocument(
     val scheduling: Map<String, CardDto>,
     val enqueued: List<String>,
     val newIntroduced: Map<String, Int>,
+    // why: defaulted so a document written before the counter existed still decodes —
+    // an absent day simply has no crossings recorded.
+    val settledCrossed: Map<String, Int> = emptyMap(),
     val dailyStats: Map<String, DayStatsDto>,
 )
 
@@ -68,7 +71,12 @@ internal data class LogEntryDto(
 )
 
 @Serializable
-internal data class DayStatsDto(val reviews: Int, val introduced: Int, val activeCount: Int)
+internal data class DayStatsDto(
+    val reviews: Int,
+    val introduced: Int,
+    val settled: Int = 0,
+    val activeCount: Int,
+)
 
 // Encoding (state → document)
 
@@ -80,6 +88,7 @@ internal fun boxDocument(state: BoxState): BoxDocument = BoxDocument(
     scheduling = state.scheduling.mapValues { cardDto(it.value) },
     enqueued = state.enqueued,
     newIntroduced = state.newIntroduced,
+    settledCrossed = state.settledCrossed,
     dailyStats = state.dailyStats.mapValues { dayStatsDto(it.value) },
 )
 
@@ -107,7 +116,12 @@ private fun cardDto(sched: CardScheduling): CardDto = CardDto(
 )
 
 internal fun dayStatsDto(stats: DayStats): DayStatsDto =
-    DayStatsDto(reviews = stats.reviews, introduced = stats.introduced, activeCount = stats.activeCount)
+    DayStatsDto(
+        reviews = stats.reviews,
+        introduced = stats.introduced,
+        settled = stats.settled,
+        activeCount = stats.activeCount,
+    )
 
 private fun phaseName(phase: CardPhase): String = when (phase) {
     CardPhase.New -> "new"
@@ -134,6 +148,7 @@ internal fun BoxDocument.toDecoded(): DecodedBox {
         scheduling = scheduling.entries.associate { (key, dto) -> key to dto.toDomain(key) },
         enqueued = enqueued,
         newIntroduced = newIntroduced,
+        settledCrossed = settledCrossed,
         dailyStats = dailyStats.mapValues { it.value.toDomain() },
     )
 }
@@ -189,4 +204,4 @@ private fun CardDto.toDomain(key: String): CardScheduling {
 }
 
 private fun DayStatsDto.toDomain(): DayStats =
-    DayStats(reviews = reviews, introduced = introduced, activeCount = activeCount)
+    DayStats(reviews = reviews, introduced = introduced, settled = settled, activeCount = activeCount)

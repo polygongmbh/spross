@@ -39,7 +39,7 @@ class SessionFlowTest {
     private fun freshFlow(): SessionFlow {
         val cards = listOf(card("a", 0), card("b", 1), card("c", 2))
         val state = BoxEngine.bootstrap(cards, BoxConfig(), JoinStamp("de", "sw", "fp"))
-        val plan = SessionComposer.composeSession(state, now)
+        val plan = SessionComposer.composeSession(state, now, tz)
         return SessionFlow(state, plan)
     }
 

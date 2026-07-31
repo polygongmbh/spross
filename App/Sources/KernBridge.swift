@@ -108,7 +108,8 @@ extension BoxState {
     func with(config: BoxConfig) -> BoxState {
         doCopy(config: config, cards: cards, joinStamp: joinStamp,
                scheduling: scheduling, enqueued: enqueued,
-               newIntroduced: newIntroduced, dailyStats: dailyStats)
+               newIntroduced: newIntroduced, settledCrossed: settledCrossed,
+               dailyStats: dailyStats)
     }
 
     /// Calibration belongs to the app build, not to the stored document: steps,

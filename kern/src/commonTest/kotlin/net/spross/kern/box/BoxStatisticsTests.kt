@@ -49,7 +49,11 @@ class BoxStatisticsTests {
         )
 
         state = BoxEngine.endSession(state, reviewsDone = 7, nowEpochMillis = now, tzId = Box.TZ)
-        assertEquals(DayStats(reviews = 7, introduced = 1, activeCount = 1), state.dailyStats["2026-07-01"])
+        // settled = 1: the word was answered on sight, so it sat down the day it arrived.
+        assertEquals(
+            DayStats(reviews = 7, introduced = 1, settled = 1, activeCount = 1),
+            state.dailyStats["2026-07-01"],
+        )
         assertNull(state.newIntroduced["2026-01-01"]) // > 60 days back, pruned
         assertEquals(2, state.newIntroduced["2026-06-30"])
         assertEquals(1, state.newIntroduced["2026-07-01"])

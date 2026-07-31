@@ -5,6 +5,7 @@ import kotlin.math.min
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.Growth
 import net.spross.kern.box.Inventory
+import net.spross.kern.box.dayKey
 import net.spross.kern.model.SessionPlan
 
 /**
@@ -35,7 +36,7 @@ object SessionComposer {
      * next, then seed-order cards. A short round is filled out to
      * [SESSION_FLOOR_CARDS] (see [withFloor]).
      */
-    fun composeSession(state: BoxState, nowEpochMillis: Long): SessionPlan {
+    fun composeSession(state: BoxState, nowEpochMillis: Long, tzId: String): SessionPlan {
         val cap = state.config.sessionCap
         val due = Inventory.due(state, nowEpochMillis)
         val loadBudget = Growth.newBudget(state)
@@ -65,6 +66,7 @@ object SessionComposer {
                 joinStamp = state.joinStamp,
             ),
             nowEpochMillis,
+            tzId,
         )
     }
 
@@ -74,14 +76,24 @@ object SessionComposer {
      * a box small enough to fall under the floor is usually a box whose growth is throttled
      * on purpose, and the floor must not talk over that.
      *
-     * An EMPTY plan stays empty.
-     * "Nothing right now, come back later" is a real answer,
-     * and manufacturing a round out of a box that has nothing due
-     * would erase the spacing the whole engine exists to keep.
+     * A day with no reps in it yet is filled out even from EMPTY (user ruling 2026-07-30):
+     * a learner who has not answered anything today should always find a round to do,
+     * so nothing due plus nothing done is a round pulled forward, not a closed box.
+     * Once the day HAS been worked, an empty plan stays empty —
+     * "nothing more right now" is a real answer,
+     * and re-filling it would turn every visit into a treadmill
+     * and erase the spacing the whole engine exists to keep.
      */
-    private fun withFloor(state: BoxState, plan: SessionPlan, nowEpochMillis: Long): SessionPlan {
+    private fun withFloor(
+        state: BoxState,
+        plan: SessionPlan,
+        nowEpochMillis: Long,
+        tzId: String,
+    ): SessionPlan {
         val target = min(SESSION_FLOOR_CARDS, state.config.sessionCap)
-        if (plan.isEmpty || plan.cardCount >= target) return plan
+        val workedToday = (state.dailyStats[dayKey(nowEpochMillis, tzId)]?.reviews ?: 0) > 0
+        if (plan.isEmpty && workedToday) return plan
+        if (plan.cardCount >= target) return plan
         val taken = plan.queue.toSet()
         val ahead = Inventory.active(state)
             .filter { it.due != null && it.cardId !in taken }

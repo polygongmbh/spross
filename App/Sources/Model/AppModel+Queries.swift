@@ -12,7 +12,8 @@ extension AppModel {
     var todayPlan: SessionPlan? {
         guard let box else { return nil }
         return SessionComposer.shared.composeSession(state: box,
-                                                     nowEpochMillis: Date().epochMillis)
+                                                     nowEpochMillis: Date().epochMillis,
+                                                     tzId: currentTzId())
     }
 
     var dueNowCount: Int {
@@ -61,6 +62,15 @@ extension AppModel {
                           dueHeldBack: max(0, dueNowCount - reviews),
                           aheadCount: plan.ahead.count,
                           freshCount: Int(plan.freshCount))
+    }
+
+    /// What the learner did today — reviews, first meetings, words that settled,
+    /// and whether today's recall has fallen far enough to suggest stopping.
+    var today: TodayReport? {
+        guard let box else { return nil }
+        return BoxEngine.shared.today(state: box,
+                                      nowEpochMillis: Date().epochMillis,
+                                      tzId: currentTzId())
     }
 
     /// Cards that will be due by tomorrow evening (preview on the done state).

@@ -44,5 +44,7 @@ data class BoxConfig(
 data class DayStats(
     val reviews: Int = 0,
     val introduced: Int = 0,
+    /** Cards that crossed into settled that day — the day's real gain. */
+    val settled: Int = 0,
     val activeCount: Int = 0,
 )

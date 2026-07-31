@@ -45,9 +45,16 @@ internal object Answering {
         val scheduler = FsrsScheduler(state.config.fsrsParameters())
         val existing = state.scheduling[cardId]
         return if (existing?.memory != null) {
+            val wasSettled = Statistics.isSettled(state, existing)
             val next = reviewed(existing, rating, scheduler, now)
             AnswerOutcome(
-                state.copy(scheduling = state.scheduling + (cardId to next)),
+                state.copy(
+                    scheduling = state.scheduling + (cardId to next),
+                    settledCrossed = state.settledCrossed.bookIf(
+                        !wasSettled && Statistics.isSettled(state, next),
+                        dayKey(nowEpochMillis, tzId),
+                    ),
+                ),
                 AnswerStatus.Applied,
             )
         } else {
@@ -79,10 +86,17 @@ internal object Answering {
         val next = state.copy(
             scheduling = state.scheduling + (card.id to sched),
             newIntroduced = state.newIntroduced + (day to (state.newIntroduced[day] ?: 0) + 1),
+            // A word known on sight sits down the moment it arrives — introduced and
+            // settled on the same answer, and the day's report says both.
+            settledCrossed = state.settledCrossed.bookIf(Statistics.isSettled(state, sched), day),
             enqueued = state.enqueued.filter { it != card.id },
         )
         return AnswerOutcome(next, AnswerStatus.Applied)
     }
+
+    /** One more on [day] when [happened], else the map untouched. */
+    private fun Map<String, Int>.bookIf(happened: Boolean, day: String): Map<String, Int> =
+        if (happened) this + (day to (this[day] ?: 0) + 1) else this
 
     private fun reviewed(
         existing: CardScheduling,

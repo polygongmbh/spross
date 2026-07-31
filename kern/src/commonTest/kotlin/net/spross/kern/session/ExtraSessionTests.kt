@@ -51,7 +51,7 @@ class ExtraSessionTests {
         val t = Box.plusSeconds(day0, 600)
 
         // Both round types surface enqueued cards, but only up to the new-word budget.
-        val plan = SessionComposer.composeSession(state, t)
+        val plan = SessionComposer.composeSession(state, t, Box.TZ)
         assertEquals(listOf("w03", "w04"), plan.newCards)
         val extra = SessionComposer.composeExtraSession(state, t)
         assertEquals(listOf("w03", "w04"), extra.newCards)
@@ -61,7 +61,7 @@ class ExtraSessionTests {
         after = Box.answered(after, "w04", Rating.Good, Box.plusSeconds(t, 200))
         assertEquals(listOf("w05"), after.enqueued)
         // The pack leads; the trickle brings a seed-order word along for variety.
-        assertEquals(listOf("w05", "w01"), SessionComposer.composeSession(after, t).newCards)
+        assertEquals(listOf("w05", "w01"), SessionComposer.composeSession(after, t, Box.TZ).newCards)
     }
 
     @Test
