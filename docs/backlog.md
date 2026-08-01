@@ -34,11 +34,17 @@ One line per item, with a file or context pointer, filed under the section it be
 - Rating labels carry more weight on a first exposure now that Good sends a word about a week
   out (kern README §5) — the button wording deserves a look
   (`App/Sources/Design/RatingButtonsView.swift`).
-- Automatic growth walks seed order, so a round's new words are seed neighbours and often the
-  same semantic field (`Growth.newCandidates` step 2b) — the L2 literature on semantic
-  clustering says a same-field batch is the harder batch, and batch composition looks like a
-  cheaper win than batch size. A field-spreading pick would keep introduction fair without
-  touching the budget.
+- Automatic growth walks seed order, so a round's first sights are seed neighbours
+  (`Growth.newCandidates` step 2b) — and seed order inside an area is written in co-hyponym
+  runs (kitchen: four appliances, then six utensils, then the cooking verbs), so a
+  `NEW_CARDS_PER_ROUND` round lands inside ONE run. The interference finding is about
+  semantic SETS — same word class, same category, mutually substitutable (spoon/fork/knife) —
+  and it is an INTRODUCTION effect: the words are too alike to tell apart while the
+  form–meaning bond is still forming. The area itself is a THEMATIC set (mixed classes, one
+  scene), which the same literature finds neutral-to-helpful, so the fix spreads WITHIN the
+  area — across word class and sub-cluster — and never across areas. Review is unaffected:
+  once bound, contrasting near-neighbours is the useful case, and the catalog already
+  teaches those apart (`promptAmbiguous`, `CatalogAnswerGrader.OtherWord`).
 - `dueSoftCap` (30) has no anchor in the learner's actual throughput: the health gate's
   mechanism — throttle introduction, never hide reviews — matches practitioner consensus,
   but the threshold would be truer as a multiple of what a day really answers
