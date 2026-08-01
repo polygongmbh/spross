@@ -13,6 +13,7 @@ struct TrainerHubView: View {
     let model: AppModel
 
     @Environment(\.locale) private var locale
+    @Environment(\.scenePhase) private var scenePhase
 
     /// Standalone drills offered on the card — years is intentionally absent
     /// (redundant with numbers), though it still backs phrase slots.
@@ -21,6 +22,9 @@ struct TrainerHubView: View {
     // why: internal, not private — TrainerHubView+Letters.swift (file-size
     // split) reads the same three, and drives this state from its extension.
     @State var destination: HubDestination?
+    /// What the letter drill can ask on THIS device — rebuilt on every
+    /// foreground (TrainerHubView+Letters.swift), never decided once.
+    @State var letterDrill: LetterDrillAvailability?
 
     /// The language being learned — every drill runs in it.
     var drillLanguage: String? { model.targetLanguage }
@@ -46,11 +50,24 @@ struct TrainerHubView: View {
                 card
             }
         }
+        .onAppear { refreshLetterDrill() }
+        // why: a voice installed in Settings while the app slept must bring
+        // the chip back on the next foreground, not on the next launch. On
+        // becoming ACTIVE, not on willEnterForeground: the speaker drops its
+        // cached voice table on that notification, and this has to read the
+        // table after it was dropped rather than the stale one.
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { refreshLetterDrill() }
+        }
         .fullScreenCover(item: drillDestination) { destination in
-            if let mode = destination.drillMode {
-                TrainerSessionView(mode: mode, normalizer: normalizer(for: mode))
-                    .environment(\.locale, model.knownLocale)
+            Group {
+                if let mode = destination.drillMode {
+                    TrainerSessionView(mode: mode, normalizer: normalizer(for: mode))
+                } else if let language = destination.lettersLanguage {
+                    LetterDrillView(model: model, language: language)
+                }
             }
+            .environment(\.locale, model.knownLocale)
         }
         .sheet(item: sheetDestination) { destination in
             if let language = destination.sheetLanguage {
@@ -82,7 +99,7 @@ struct TrainerHubView: View {
             // why: gated as a whole — a language with an alphabet and no drills
             // (the moment such a file lands) would otherwise open an empty row
             // of chips above the Alphabet row.
-            if slotsAvailable || phraseKey != nil {
+            if slotsAvailable || phraseKey != nil || letterDrillAvailable {
                 HStack(spacing: DL.Space.m) {
                     // why: years drill dropped — it's covered by the numbers
                     // drill (identical reading in Swahili/Ukrainian). Years
@@ -94,6 +111,9 @@ struct TrainerHubView: View {
                     }
                     if phraseKey != nil {
                         phraseChip
+                    }
+                    if letterDrillAvailable {
+                        lettersChip
                     }
                 }
             }
@@ -121,7 +141,9 @@ struct TrainerHubView: View {
         #endif
     }
 
-    private func languageName(_ code: String) -> String {
+    // why: internal, not private — the letters chip in TrainerHubView+Letters
+    // labels itself the same way the drill chips do.
+    func languageName(_ code: String) -> String {
         LanguageNames.display(code, locale: locale, catalog: model.catalog)
     }
 
@@ -149,7 +171,8 @@ struct TrainerHubView: View {
         .accessibilityLabel("a11y.practicePhrases")
     }
 
-    private func chipLabel(emoji: String, title: Text) -> some View {
+    /// One chip's face — shared with the letters chip next door.
+    func chipLabel(emoji: String, title: Text) -> some View {
         VStack(spacing: DL.Space.s) {
             Text(emoji)
                 .font(.system(size: 30))

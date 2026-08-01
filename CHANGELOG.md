@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+- **Buchstaben kannst du jetzt am Klang erkennen**: neben Zahlen, Uhrzeit und Sätzen steht
+  im Training "Buchstaben" — eine Übung, die nichts zeigt und alles vorspricht. Du hörst
+  einen Buchstabennamen und tippst den Buchstaben an: erst unter vieren, die nichts
+  miteinander zu tun haben, dann unter solchen, die sich ähnlich sehen oder gleich klingen,
+  später schreibst du ihn selbst. Für Ukrainisch sprechen echte Aufnahmen, sonst die Stimme
+  des Geräts. Bei dem, was man erst im Wort auseinanderhält — ß und ss, ei und ie, die drei
+  ch —, hörst du ein Wort und füllst die Lücke: ＿eife. Und wer genug Wörter gefestigt hat,
+  bekommt am Ende Diktat: Wort hören, Wort schreiben, sonst nichts. Die Übung steigt mit
+  dir: je mehr du schon sicher kannst, desto weiter oben fängt sie an und desto kürzer sind
+  ihre Stufen. Für deine Kartei zählt nichts davon — geübt wird hier ohne Folgen für den
+  Termin deiner Wörter.
+
 - **Das Alphabet der Sprache, die du lernst, liegt jetzt im Training bereit**: unter den
   Übungen öffnet "Alphabet" eine Tafel mit jeder Zeile, die es zu wissen gibt — Buchstabe
   groß und klein, sein Name, seine Lautschrift, wann er wie klingt, und ein Beispielwort

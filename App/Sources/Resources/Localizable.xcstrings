@@ -89,6 +89,22 @@
         }
       }
     },
+    "a11y.letterChoice %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buchstabe %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letter %@"
+          }
+        }
+      }
+    },
     "a11y.off" : {
       "localizations" : {
         "de" : {
@@ -197,6 +213,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ", record %@"
+          }
+        }
+      }
+    },
+    "a11y.replayPrompt" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch einmal anhören"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play it again"
           }
         }
       }
@@ -1361,6 +1393,118 @@
         }
       }
     },
+    "letters.audioOff" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ton ist aus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sound is off"
+          }
+        }
+      }
+    },
+    "letters.dictation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schreib, was du hörst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write what you hear"
+          }
+        }
+      }
+    },
+    "letters.enableSound" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ton einschalten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn sound on"
+          }
+        }
+      }
+    },
+    "letters.hear" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcher Buchstabe ist das?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which letter is this?"
+          }
+        }
+      }
+    },
+    "letters.heardInstead %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gehört war: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You heard: %@"
+          }
+        }
+      }
+    },
+    "letters.silentSwitchHint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nichts zu hören? Prüfe den Stummschalter."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't hear anything? Check the silent switch."
+          }
+        }
+      }
+    },
+    "letters.spell" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was fehlt im Wort?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What's missing in the word?"
+          }
+        }
+      }
+    },
     "nav.box" : {
       "localizations" : {
         "de" : {
@@ -2277,6 +2421,22 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "trainer.letters" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buchstaben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letters"
           }
         }
       }
