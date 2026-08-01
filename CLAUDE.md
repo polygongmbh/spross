@@ -30,7 +30,9 @@ scripts/strings.py --fix     # clear the stale flags Xcode writes into the Strin
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `test:`, `docs:`, `build:`) with scopes
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
 - **`CHANGELOG.md` is curated, not per-commit**:
-  user-observable deltas only, grouped by version.
+  user-observable deltas only, grouped by version, written in ENGLISH
+  (quoted UI labels stay in the language the UI shows; the 3.0.0 notes were
+  drafted in German by mistake and had to be translated at release).
   New entries always land under the top `## Unreleased` heading.
   At bump time, rename `## Unreleased` to `## <version> — <date>` and open a fresh empty `## Unreleased` above it.
 - Other parties may change files or commit while you work, do not mind unless their edits conflict with yours.
