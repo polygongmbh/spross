@@ -286,10 +286,14 @@ day-key `yyyy-MM-dd`) with:
   two or three cards offered as the day's work reads as the app having nothing to give, so
   `composeSession` tops such a round up with reviews pulled forward, soonest due first —
   honest FSRS reviews, never extra new words, which are capped per round on purpose.
-- **A quiet day is built, not found** (user ruling 2026-08-01): with nothing due, half the
-  floor is held for cards coming due inside tomorrow and new words take the rest.
+- **A quiet day is built, not found** (user ruling 2026-08-01): with nothing due, at most half
+  the floor is held for cards coming due inside tomorrow and new words take the rest.
   Pulling tomorrow's card forward costs almost no spacing; one due in three weeks burns real
   spacing, which is why the reservation counts only that horizon.
+  **The pull-aheads supplement the new words, they never lead**: their job is to keep a quiet
+  round from being all-new, so the share is capped at half rather than balanced toward recall.
+  A round of first sights with a few known words mixed through is the intended shape of a
+  caught-up box, and Heute names it as an offer of new words accordingly.
   Nothing due tomorrow also means nothing was recently missed — then the round is new words
   alone. Reaching past tomorrow happens only when there is nothing new left, so an exhausted
   catalog still opens a round instead of an empty screen.
