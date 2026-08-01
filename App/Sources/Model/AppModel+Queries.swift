@@ -62,7 +62,7 @@ extension AppModel {
             let bucket: String
             switch kind {
             case .reviews: bucket = "reviewsReady"
-            case .warmUp: bucket = freshCount > 0 ? "warmUpFresh" : "warmUpReady"
+            case .warmUp: bucket = "warmUpReady"
             case .freshSet, .nothing: bucket = "freshReady"
             }
             return "heute.session.\(bucket).\(variant(outOf: 3))"

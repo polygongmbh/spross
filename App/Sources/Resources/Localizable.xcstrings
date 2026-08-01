@@ -1145,54 +1145,6 @@
         }
       }
     },
-    "heute.session.warmUpFresh.0" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auffrischen, plus ein paar Frischlinge"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A refresher, plus a few newbies"
-          }
-        }
-      }
-    },
-    "heute.session.warmUpFresh.1" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bekanntes und ein bisschen Neues"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Familiar words and a little new"
-          }
-        }
-      }
-    },
-    "heute.session.warmUpFresh.2" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ein Wiedersehen, Frischlinge dabei"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A reunion, with newbies along"
-          }
-        }
-      }
-    },
     "heute.session.warmUpReady.0" : {
       "localizations" : {
         "de" : {
