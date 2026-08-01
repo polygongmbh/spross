@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
@@ -124,8 +125,11 @@ private fun ReadAloudRow(model: AppModel) {
                 checked = !muted,
                 onCheckedChange = { model.pronouncer.muted = !it },
                 // why: one stable label, the state as its VALUE — the same rule the
-                // top bar's switch follows.
+                // top bar's switch follows. The label is set HERE, not left to the
+                // row's text: that text is a sibling node, so without this TalkBack
+                // would announce a switch with no name at all.
                 modifier = Modifier.semantics {
+                    contentDescription = chrome.audioToggle
                     stateDescription = if (muted) chrome.stateOff else chrome.stateOn
                 },
             )
