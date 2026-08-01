@@ -50,6 +50,25 @@ data class Chrome(
     val creditsRecordings: String, // %d = how many files the speaker contributed
     val creditsUnmodified: String,
     val creditsCommons: String,
+    val trainingTitle: String,
+    val lettersTitle: String,
+    val lettersHear: String,       // the question a letter-name prompt asks
+    val lettersSpell: String,      // …and the one a gap word asks
+    val lettersDictation: String,
+    val letterChoice: String,      // %s = the glyph — a tile's spoken name
+    val replayPrompt: String,      // the replay button's name
+    val promptInLanguage: String,  // %s = target language name
+    val level: String,             // %d
+    val streak: String,            // %d
+    val typoCorrection: String,    // %s = the spelling the learner missed
+    val heardInstead: String,      // %s = the form that actually played
+    val audioOff: String,
+    val enableSound: String,
+    val tasksDone: String,         // %d
+    val bestStreak: String,        // %d
+    val answerCorrect: String,     // an answered tile's state, never colour alone
+    val answerWrong: String,
+    val correctAnswer: String,     // %s = what it was, on a miss or a reveal
 ) {
     companion object {
         fun forSource(source: String): Chrome = if (source == "de") DE else EN
@@ -101,6 +120,25 @@ data class Chrome(
             creditsRecordings = "%d Aufnahmen",
             creditsUnmodified = "Aufnahmen unverändert übernommen",
             creditsCommons = "Aufnahmen von Wikimedia Commons",
+            trainingTitle = "Training",
+            lettersTitle = "Buchstaben",
+            lettersHear = "Welcher Buchstabe ist das?",
+            lettersSpell = "Was fehlt im Wort?",
+            lettersDictation = "Schreib, was du hörst",
+            letterChoice = "Buchstabe %s",
+            replayPrompt = "Noch einmal anhören",
+            promptInLanguage = "auf %s",
+            level = "Stufe %d",
+            streak = "🔥 %d in Folge",
+            typoCorrection = "Fast! Richtig geschrieben: %s",
+            heardInstead = "Gehört war: %s",
+            audioOff = "Ton ist aus",
+            enableSound = "Ton einschalten",
+            tasksDone = "%d Aufgaben 🎯",
+            bestStreak = "Beste Serie: 🔥 %d in Folge",
+            answerCorrect = "Richtig",
+            answerWrong = "Falsch",
+            correctAnswer = "Richtig: %s",
         )
 
         private val EN = Chrome(
@@ -150,6 +188,25 @@ data class Chrome(
             creditsRecordings = "%d recordings",
             creditsUnmodified = "Recordings shipped unmodified",
             creditsCommons = "Recordings from Wikimedia Commons",
+            trainingTitle = "Training",
+            lettersTitle = "Letters",
+            lettersHear = "Which letter is this?",
+            lettersSpell = "What's missing in the word?",
+            lettersDictation = "Write what you hear",
+            letterChoice = "Letter %s",
+            replayPrompt = "Play it again",
+            promptInLanguage = "in %s",
+            level = "Level %d",
+            streak = "🔥 %d in a row",
+            typoCorrection = "Almost! Correct spelling: %s",
+            heardInstead = "You heard: %s",
+            audioOff = "Sound is off",
+            enableSound = "Turn sound on",
+            tasksDone = "%d tasks 🎯",
+            bestStreak = "Best streak: 🔥 %d in a row",
+            answerCorrect = "Correct",
+            answerWrong = "Wrong",
+            correctAnswer = "Correct: %s",
         )
     }
 }

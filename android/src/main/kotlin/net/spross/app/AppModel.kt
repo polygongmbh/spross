@@ -44,6 +44,7 @@ sealed interface Screen {
     data object Heute : Screen
     data object Session : Screen
     data object About : Screen
+    data object LetterDrill : Screen
 }
 
 data class SessionUi(
@@ -147,6 +148,18 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun closeAbout() {
+        screen = Screen.Heute
+    }
+
+    /** The letters drill; what it can ask is `letterDrillAvailable`, which gates the chip. */
+    fun startLetterDrill() {
+        screen = Screen.LetterDrill
+    }
+
+    fun closeLetterDrill() {
+        // why: nothing may keep talking into Heute — the drill's own screen stops
+        // playback as it leaves, and this is the door it leaves by.
+        pronouncer.stop()
         screen = Screen.Heute
     }
 

@@ -67,7 +67,7 @@ fun SessionScreen(model: AppModel) {
  * matter, and the media volume is the switch for everything.
  */
 @Composable
-private fun ReadAloudSwitch(model: AppModel) {
+fun ReadAloudSwitch(model: AppModel) {
     val chrome = model.chrome
     val muted = model.pronouncer.muted
     Box(
