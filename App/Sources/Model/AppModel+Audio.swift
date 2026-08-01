@@ -23,4 +23,11 @@ extension AppModel {
         guard let path, let directory = catalogDirectory else { return nil }
         return directory.appending(path: path)
     }
+
+    /// WHEN this card's target form may be said out loud — Kern's rule,
+    /// consumed rather than re-derived: both apps switch on this one cue
+    /// instead of each testing the role in its own way.
+    func pronunciationCue(for card: Card) -> PronunciationCue {
+        SprossKern.pronunciationCue(role: presentationRole(for: card.id))
+    }
 }

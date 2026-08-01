@@ -28,6 +28,8 @@ struct SessionScaffold<Content: View>: View {
     var outcomes: [SessionOutcome] = []
     /// Overrides the "position/total" counter (endless drills show "right/done").
     var counter: String?
+    /// Opt-in: only runs that read words aloud show the switch for it.
+    var showsMuteButton: Bool = false
     var onClose: () -> Void = {}
     @ViewBuilder var content: Content
 
@@ -102,7 +104,40 @@ struct SessionScaffold<Content: View>: View {
                 .foregroundStyle(Color.dlTextSecondary)
                 .monospacedDigit()
                 .accessibilityHidden(true)
+
+            if showsMuteButton { readAloudButton }
         }
+    }
+
+    /// Constant chrome, so it costs the card below it not one point of layout —
+    /// which is why the switch lives up here and not on the card itself.
+    ///
+    /// It governs the SPOKEN WORDS only. The feedback chimes are DLSound's and
+    /// deliberately stay outside its scope (they follow the ring/silent switch
+    /// already); a global sound switch, if it is ever wanted, is its own thing.
+    private var readAloudButton: some View {
+        Button {
+            Pronouncer.shared.muted.toggle()
+        } label: {
+            // why: the plain pair, not the .bubble one — SF Symbols has
+            // speaker.wave.2.bubble but no slashed twin for it, and a switch
+            // whose two states come from different families reads as two
+            // different controls.
+            Image(systemName: Pronouncer.shared.muted ? "speaker.slash" : "speaker.wave.2")
+                .font(.subheadline.weight(.bold))
+                .foregroundStyle(Color.dlTextSecondary)
+                .frame(width: 44, height: 44)
+                .background(Circle().fill(Color.dlSurfaceTint))
+        }
+        // why: ONE label, the state as the VALUE — a label that flips with the
+        // state leaves VoiceOver announcing the action as if it were the
+        // condition ("Ton an" on a muted app).
+        .accessibilityLabel("a11y.readAloud")
+        .accessibilityValue(readAloudValue)
+    }
+
+    private var readAloudValue: LocalizedStringKey {
+        Pronouncer.shared.muted ? "a11y.off" : "a11y.on"
     }
 }
 

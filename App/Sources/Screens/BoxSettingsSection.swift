@@ -23,6 +23,8 @@ struct BoxSettingsSection: View {
                 Divider().overlay(Color.dlSeparator)
                 maxUnsettledRow
                 Divider().overlay(Color.dlSeparator)
+                audioRow
+                Divider().overlay(Color.dlSeparator)
                 resetRow
             }
             .padding(DL.Space.l)
@@ -166,6 +168,34 @@ struct BoxSettingsSection: View {
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }
+    }
+
+    /// The same switch the session's top bar carries, and the place the
+    /// tap-to-replay gesture is disclosed — the card itself grows no
+    /// affordance for it, so the hint line is where it is named.
+    private var audioRow: some View {
+        VStack(alignment: .leading, spacing: DL.Space.s) {
+            Toggle(isOn: readAloudBinding) {
+                Text("settings.audio.title")
+                    .font(DL.Fonts.headline)
+                    .foregroundStyle(Color.dlTextPrimary)
+            }
+            .tint(.dlAccent)
+            Text("settings.audio.hint")
+                .font(DL.Fonts.caption)
+                .foregroundStyle(Color.dlTextSecondary)
+        }
+    }
+
+    /// Bound to NOT-muted: the row names the feature, the flag stores the
+    /// exception. It lives in UserDefaults, one flag for the device — not in
+    /// the box, where the product calibration would reset it on every load,
+    /// and not per target language.
+    private var readAloudBinding: Binding<Bool> {
+        Binding(
+            get: { !Pronouncer.shared.muted },
+            set: { Pronouncer.shared.muted = !$0 }
+        )
     }
 
     /// Fresh start with the CURRENT catalog content.

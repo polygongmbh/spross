@@ -89,6 +89,38 @@
         }
       }
     },
+    "a11y.off": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "aus"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "off"
+          }
+        }
+      }
+    },
+    "a11y.on": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "an"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "on"
+          }
+        }
+      }
+    },
     "a11y.practicePhrases": {
       "localizations": {
         "de": {
@@ -117,6 +149,38 @@
           "stringUnit": {
             "state": "translated",
             "value": " practice, in %@"
+          }
+        }
+      }
+    },
+    "a11y.pronounce": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aussprechen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pronounce"
+          }
+        }
+      }
+    },
+    "a11y.readAloud": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aussprache vorlesen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read words aloud"
           }
         }
       }
@@ -1869,6 +1933,38 @@
           "stringUnit": {
             "state": "translated",
             "value": "Almost! Correct spelling: %@"
+          }
+        }
+      }
+    },
+    "settings.audio.hint": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wörter beim Üben automatisch vorlesen. Tippen auf ein Wort spricht es erneut — auch bei ausgeschaltetem Vorlesen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read words aloud during review. Tapping a word speaks it again — even when read-aloud is off."
+          }
+        }
+      }
+    },
+    "settings.audio.title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wörter vorlesen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read words aloud"
           }
         }
       }
