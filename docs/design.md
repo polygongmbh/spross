@@ -203,6 +203,22 @@ never the shape of the app.
 - **Trainers**: number, clock and phrase drills, registry-driven from kern, so the hub
   offers only languages with authored content. Drills grade word by word and ramp with
   the learner instead of sitting at one level.
+- **Letter drill & alphabet sheet**: the Training card shows when slots, phrases OR an
+  alphabet exist for the target (the third predicate is catalog file presence, recomputed
+  on foreground/readiness — a voice installed in Settings brings the chip back). The
+  sheet renders every row (glyph, name, IPA, context, hint, example with meaning where
+  the reader's language knows the word) and ships even where the drill cannot — audio is
+  the drill's precondition, not the sheet's. The drill asks everything by ear: letter
+  NAME or gap word, tiles first among strangers, then among look- and sound-alikes, then
+  typed, and — once enough words are settled — dictation of the learner's own
+  consolidated words, which never touches their schedule. Correctness is never color
+  alone (checkmark/X over the tint); a miss never auto-advances; under VoiceOver and
+  Switch Control the advance timer becomes an explicit "Weiter". While reading aloud is
+  muted the drill stays visible and blocks with the one-tap unmute row instead of hiding
+  — a silenced feature must say how to unsilence it.
+- **One clean-correct beat: 1200 ms.** The trainer drills and the letter drill advance a
+  cleanly correct answer after the same 1200 ms on both platforms — the number lives here
+  once so a new surface cannot mint a second timing.
 
 Design language: warm, card-centric, emoji as illustration, article color coding
 der=blue / die=berry / das=green — degrading to neutral for languages without gendered

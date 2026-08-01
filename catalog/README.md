@@ -253,6 +253,55 @@ realizes and a form some card can show, no two entries claim one spoken form wit
 different bytes, every file ships and is referenced exactly once, and no author is a
 placeholder like "Own work" — BY and BY-SA both require naming somebody.
 
+## Alphabet (`catalog/alphabet/`)
+
+One file per declared language, `alphabet/<lang>.json`, entries in teaching order — the
+reference sheet renders it, the letter drill samples from it. **File presence is the
+registry**: adding a language's alphabet is dropping a file, no code lists which languages
+have one. A file for an undeclared language is never read; lint (`AlphabetLintTest`)
+fails it loudly instead of letting it sit.
+
+```json
+{ "entries": [
+  { "glyph": "и", "upper": "И", "name": "и", "ipa": "ɪ", "example": "mouse",
+    "hints": { "de": "kurzes, lockeres i wie in bitte", "en": "lax i as in bit" },
+    "confusable": { "look": ["й", "н"], "sound": ["і", "е"] } },
+  { "glyph": "ch", "kind": "contextual", "id": "ch-ich", "ipa": "ç",
+    "context": { "de": "nach hellen Vokalen", "en": "after front vowels" },
+    "example": "light", "hints": { "en": "…" },
+    "confusable": { "look": ["ch-ach"], "sound": ["sch"] } },
+  { "glyph": "б д з ж г", "kind": "rule",
+    "context": { "de": "am Wortende", "en": "word-finally" },
+    "hints": { "de": "keine Auslautverhärtung: б bleibt b — хліб" } }
+]}
+```
+
+- `kind` is `letter` (default), `digraph`, `contextual` or `rule`. A **rule** row is
+  sheet-only prose (uk's no-final-devoicing table): never prompted, never a choice tile,
+  and the only kind whose `glyph` may carry whitespace. `drill: false` keeps a real but
+  undrillable grapheme (uk `ʼ`, de length-h) out of every prompt; it stays a tile.
+- `id` (slug charset) is REQUIRED the moment two entries share a `glyph` (de authors
+  `ch` three times) and is then the entry's **ref**; otherwise the glyph is. `confusable`
+  refs (an id, or a glyph naming exactly one row) are closed symmetrically at parse —
+  authoring и → й also makes й → и — and homophone groups are derived from
+  byte-identical `ipa` strings, never authored.
+- Every entry needs an `ipa` or at least one hint. `hints`/`context` are keyed by the
+  READER's language (⊆ declared, like realization `notes`); `name` is the letter's own
+  name — the string a synthesizer is handed, never the bare glyph. Apostrophes are
+  stored as U+02BC; grading folds the class, so realizations keeping U+0027 still match.
+- `example` is a concept slug, resolved in two independent halves that never consult the
+  join: the alphabet's OWN language must realize the word (what the drill speaks and
+  gaps — a lint error otherwise), while the reader's language supplies the meaning line
+  (nullable — the sheet omits it, graceful degradation). `exampleText` is the escape
+  hatch where no concept fits; it carries no slug and therefore never claims a recording.
+- **Gap rule** (lint): a drill-true `digraph`/`contextual` row's resolved example
+  contains its glyph EXACTLY once — zero leaves nothing to blank, and with two the blank
+  can land on the wrong, position-bound instance and teach the opposite of the entry.
+  `letter` and `rule` rows are exempt: their example is sheet decoration.
+- No `audio` field. Letter recordings live in the audio manifest's `letters{}` (above),
+  keyed by lowercase glyph — lint holds that every recorded glyph addresses exactly one
+  alphabet row, which is why colliding-glyph entries can never carry one.
+
 ## What earns a slot, and how it is worded
 
 Two content rules that cut across every language file.

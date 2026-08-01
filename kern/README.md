@@ -487,6 +487,18 @@ day-key `yyyy-MM-dd`) with:
     `outside/river` next to `bedroom/pillow` (both sw `mto`) fails the gate instead of
     silently minting an ambiguous prompt. Comparison is case-SENSITIVE: `Husten`/`husten`
     is a real visual distinction and must stay legal.
+- `catalog/alphabet/<lang>.json` → `Alphabet`/`AlphabetEntry` (`AlphabetParser`, hand-parsed
+  on CatalogParser conventions; `JsonSupport` gained `optionalBoolean` and `stringListMap`).
+  The registry is file presence — `Catalog.alphabet(lang)` is null where no file is
+  authored — and alphabet reads fold into the fingerprint (content: editing one recomposes
+  a stale session once on upgrade; the audio manifest stays fingerprint-exempt). Example
+  resolution splits target and reader halves (`alphabetExample` / `exampleMeaning`) so the
+  sheet degrades per reader instead of erroring. Lint: shape/closure/homophone/gap rules on
+  synthetic JSON in `AlphabetFixtureTest`; real-content rules in **`AlphabetLintTest`**
+  (declared-language files only, own-language example realization, names on drill-true
+  letters, exactly-one-gap on gap rows, letters-manifest glyph collision).
+  `letters{}.matches == name` is WAIVED — the audio manifest schema rejects the field, so
+  the name↔recording check is a manual listening pass (backlog).
 
 ## 9. KMP project & Apple integration
 
@@ -522,6 +534,13 @@ day-key `yyyy-MM-dd`) with:
   The unleveled `sample` overload keeps the prototype's biased full-difficulty draws
   (numbers favor 2–3 digits, years cluster 1950–2050);
   only Clock's unleveled draw coincides with the leveled ceiling.
+  **`LetterDrill` is a separate facade, not a `TrainerKind` case**: its registry is
+  alphabet file presence in the catalog (adding a language edits no Kotlin), its ramp is
+  stateless and kern-owned (`entryLevel`/`winsToAdvance`/`advance` — both D11 halves in
+  one place so two platforms cannot drift), sampling takes an injected `Random` and an
+  app-computed promptable set (device voices are an app fact), and dictation draws only
+  `BoxEngine.consolidatedCardIds` through `dictationGradingCard` — it never books a
+  review (transcription is not recall; drills are stateless).
   Android: landed — `androidLibrary` KMP target
   (`com.android.kotlin.multiplatform.library`, AGP 9.3.0, compileSdk 36 / minSdk 26),
   androidMain NFC actual mirrors jvmMain; `:android` consumes the same facades.
