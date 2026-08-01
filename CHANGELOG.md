@@ -18,6 +18,13 @@
   der Uhr und in jedem Widget. Auf Android steht der Artikel jetzt überhaupt zum ersten
   Mal beim Wort — die Karte zeigte bisher nur das nackte Hauptwort.
 
+- **Und die spanischen Wörter sprechen**: zu 310 der 339 einzelnen spanischen Wörter
+  liegt eine echte Aufnahme bereit, von *¡Hola!* bis *mañana*; alles Übrige spricht wie
+  bisher die Stimme des Geräts. Anders als bei Kiswahili und Ukrainisch ist es nicht eine
+  Stimme, sondern viele — und woher die Sprecherinnen und Sprecher kommen, sagt Wikimedia
+  Commons nirgends, darum ist keine dieser Aufnahmen als Muster für das Spanisch Spaniens
+  zu verstehen. Wer spricht und unter welcher Lizenz, steht unter "Sprecher & Lizenzen".
+
 - **Buchstaben kannst du jetzt am Klang erkennen**: neben Zahlen, Uhrzeit und Sätzen steht
   im Training "Buchstaben" — eine Übung, die nichts zeigt und alles vorspricht. Du hörst
   einen Buchstabennamen und tippst den Buchstaben an: erst unter vieren, die nichts

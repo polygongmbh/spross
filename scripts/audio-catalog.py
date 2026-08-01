@@ -57,9 +57,13 @@ LICENCE_URLS = {
     'CC BY-SA 4.0': 'https://creativecommons.org/licenses/by-sa/4.0/',
     'CC BY-SA 3.0': 'https://creativecommons.org/licenses/by-sa/3.0/',
     'CC BY-SA 2.5': 'https://creativecommons.org/licenses/by-sa/2.5/',
+    'CC BY 4.0': 'https://creativecommons.org/licenses/by/4.0/',
     'CC BY 3.0 us': 'https://creativecommons.org/licenses/by/3.0/us/',
     'CC BY 3.0': 'https://creativecommons.org/licenses/by/3.0/',
     'CC BY 2.0 fr': 'https://creativecommons.org/licenses/by/2.0/fr/',
+    # CC0 waives the credit BY and BY-SA demand, but it is a dedication with a deed of
+    # its own — unlike a public-domain file, which has nothing to point the reader at.
+    'CC0': 'https://creativecommons.org/publicdomain/zero/1.0/',
     'Public domain': None,
 }
 

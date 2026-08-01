@@ -1,0 +1,2795 @@
+{
+  "language": "es",
+  "words": {
+    "address": {
+      "author": "AdrianAbdulBaha",
+      "file": "address.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "dirección",
+      "sha256": "4d7e3f738f91b9bb3c155b19d96ffc50dbc9c7df4ee65c4131560d87d2a9096e",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-dirección.wav"
+    },
+    "alarm-clock": {
+      "author": "AdrianAbdulBaha",
+      "file": "alarm-clock.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "despertador",
+      "sha256": "efacc090e564712e979c261deb329a551074b260ad66ebee4dbda3ffe17efdde",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-despertador.wav"
+    },
+    "always": {
+      "author": "GlyphEnjoyer",
+      "file": "always.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "siempre",
+      "sha256": "bf2919d662a43bcbe0539b0572f0028f4122ea1a81c93771ee1f4580d9453e98",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-siempre.wav"
+    },
+    "answer": {
+      "author": "AdrianAbdulBaha",
+      "file": "answer.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "respuesta",
+      "sha256": "d08fb8d8dcbf4cecab30bd45f2c4792e4d0298cd9e5ac254d24be945182808ad",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-respuesta.wav"
+    },
+    "application": {
+      "author": "AdrianAbdulBaha",
+      "file": "application.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "solicitud",
+      "sha256": "be2a3116f434ff5172f87586807996f27c50723ea54912007a155fee5ceb65ad",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-solicitud.wav"
+    },
+    "apply-for": {
+      "author": "Emanuelps27",
+      "file": "apply-for.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "solicitar",
+      "sha256": "7e953ab7e523f50bd7295ebe0dfd97a99658232c5e412ed0ef6545d78113cc37",
+      "source": "LL-Q1321 (spa)-Emanuelps27-solicitar.wav"
+    },
+    "appointment": {
+      "author": "Eavqwiki",
+      "file": "appointment.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cita",
+      "sha256": "fe0b291a5871bdd30eef75d5906cca756f407dd71a96495349f3ec91a949734e",
+      "source": "LL-Q1321 (spa)-Eavqwiki-cita.wav"
+    },
+    "approve": {
+      "author": "AdrianAbdulBaha",
+      "file": "approve.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "aprobar",
+      "sha256": "7aa320b18fc8dbccb82aabda03aeca7e8fd44f107616593b0807e789def57bcf",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-aprobar.wav"
+    },
+    "arrange": {
+      "author": "Wikipedian-walker",
+      "file": "arrange.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "concertar",
+      "sha256": "633a0c09f1fb0ed688cf30600fb497a2c4af15b0bda133475660eeb06ac4c84b",
+      "source": "LL-Q1321 (spa)-Wikipedian-walker-concertar.wav"
+    },
+    "arrive": {
+      "author": "GlyphEnjoyer",
+      "file": "arrive.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "llegar",
+      "sha256": "a21501d0e1539d4d760919679979065344194165016a044d9b5a459222eeaad7",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-llegar.wav"
+    },
+    "ask": {
+      "author": "AdrianAbdulBaha",
+      "file": "ask.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "preguntar",
+      "sha256": "02034bc34d3c4ff5fd09fe9b33bd65f3cb9c4cd60220d9356f00fecd201f5f10",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-preguntar.wav"
+    },
+    "back": {
+      "author": "Rodelar",
+      "file": "back.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "espalda",
+      "sha256": "b083e9a24396d977c3d04a445d75c4d82fa341650596c224e20fbc647be0da01",
+      "source": "LL-Q1321 (spa)-Rodelar-espalda.wav"
+    },
+    "bad": {
+      "author": "Rodelar",
+      "file": "bad.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "malo",
+      "sha256": "40bdb10f1f6f62e9bdd26c5d221aca7c347ea867bea6182c301ce55a8477c2d0",
+      "source": "LL-Q1321 (spa)-Rodelar-malo.wav"
+    },
+    "bag": {
+      "author": "AdrianAbdulBaha",
+      "file": "bag.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "bolsa",
+      "sha256": "4844a8c4d61080c74d3443ef2ad994ec6c42f1fae091e42288c7cf7a44ae3056",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-bolsa.wav"
+    },
+    "bathtub": {
+      "author": "Marreromarco",
+      "file": "bathtub.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "bañera",
+      "sha256": "f2a30970600303ca33c66408793a658ecfc144a7cac6f37e541a038366c8c1f5",
+      "source": "LL-Q1321 (spa)-Marreromarco-bañera.wav"
+    },
+    "be-called": {
+      "author": "Marreromarco",
+      "file": "be-called.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "llamarse",
+      "sha256": "8979df4a090cedb8730cefab458b6ab1f9113862593fa9044d8b4d5a2134e4c6",
+      "source": "LL-Q1321 (spa)-Marreromarco-llamarse.wav"
+    },
+    "bed": {
+      "author": "AdrianAbdulBaha",
+      "file": "bed.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cama",
+      "sha256": "baa4d17f00a524b1179deb58ced3ef3a67ad830f7722efdd1c78ad9d36c954ce",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-cama.wav"
+    },
+    "belt": {
+      "author": "Eavqwiki",
+      "file": "belt.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cinturón",
+      "sha256": "b84e93ec7470e45dd60218e61b7a4e14dfc16a17faf4e8fd3a471159ee33568c",
+      "source": "LL-Q1321 (spa)-Eavqwiki-cinturón.wav"
+    },
+    "bicycle": {
+      "author": "AdrianAbdulBaha",
+      "file": "bicycle.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "bicicleta",
+      "sha256": "551ccda9c4e3faf53e6870a74c30241c5570e4bc6f419eb41ed4a5f94ceba6c9",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-bicicleta.wav"
+    },
+    "big": {
+      "author": "GlyphEnjoyer",
+      "file": "big.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "grande",
+      "sha256": "31faacd104c54abb4ec3a81534ca8bbc62d8465b9d3124f35f8cad45423cd6f1",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-grande.wav"
+    },
+    "blanket": {
+      "author": "Marreromarco",
+      "file": "blanket.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "manta",
+      "sha256": "8bffa04e19b8da152979835e4455a40ad1d95380df3a78991a81ad5e48947ba2",
+      "source": "LL-Q1321 (spa)-Marreromarco-manta.wav"
+    },
+    "blood": {
+      "author": "Sinaloa",
+      "file": "blood.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "sangre",
+      "sha256": "02631e730c3997c6e7f0d286ef306aea4cacb75a8afb14e2f4b7d0416f9addb9",
+      "source": "LL-Q1321 (spa)-Sinaloa-sangre.wav"
+    },
+    "board": {
+      "author": "Marreromarco",
+      "file": "board.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pizarra",
+      "sha256": "6b2a26d400e927ebb03fda4bcd44403cefc734632e61fc62ffa5e85a1ba2358e",
+      "source": "LL-Q1321 (spa)-Marreromarco-pizarra.wav"
+    },
+    "boss": {
+      "author": "GlyphEnjoyer",
+      "file": "boss.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "jefe",
+      "sha256": "27d7e698607b8d521842b23fe5788581c00df47b58513ac5a4e6eec94f34e820",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-jefe.wav"
+    },
+    "bread": {
+      "author": "Eavqwiki",
+      "file": "bread.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pan",
+      "sha256": "603a4e2d7e4ff19448f4d9bff9f8ae4edf9c4503c2caa07d19baa1f53cf4a8d7",
+      "source": "LL-Q1321 (spa)-Eavqwiki-pan.wav"
+    },
+    "break": {
+      "author": "AdrianAbdulBaha",
+      "file": "break.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "descanso",
+      "sha256": "e73c260e1b568d6ee758c1928511ae400b2ca03771587cd2d980c076695a58f6",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-descanso.wav"
+    },
+    "bring": {
+      "author": "AdrianAbdulBaha",
+      "file": "bring.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "traer",
+      "sha256": "84929283538bc0d4f4c7f4e3041007824cbfb56e1df46f891a1f7db7bdd3cf8a",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-traer.wav"
+    },
+    "bucket": {
+      "author": "Marreromarco",
+      "file": "bucket.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cubo",
+      "sha256": "2bff3b19886d5f1bb81d19e0f143c201f6be740e622ba6dc58f7e383a064a283",
+      "source": "LL-Q1321 (spa)-Marreromarco-cubo.wav"
+    },
+    "bus": {
+      "author": "Eavqwiki",
+      "file": "bus.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "autobús",
+      "sha256": "64a6f317c9456e3b194d154df494968d156ec958637078ae36d4c969eca79dcb",
+      "source": "LL-Q1321 (spa)-Eavqwiki-autobús.wav"
+    },
+    "bus-stop": {
+      "author": "AdrianAbdulBaha",
+      "file": "bus-stop.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "parada",
+      "sha256": "359e9eab6e64927f92df56abbcdb4d9bb49691f93e4c5e80bc99070051e4ef45",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-parada.wav"
+    },
+    "buy": {
+      "author": "AdrianAbdulBaha",
+      "file": "buy.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "comprar",
+      "sha256": "bc06a4f62e1fe1ca3880d613ee0c6bae7926767c2b692debf3df576ff80ef4ca",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-comprar.wav"
+    },
+    "cable": {
+      "author": "Marreromarco",
+      "file": "cable.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cable",
+      "sha256": "1e81fe5d9af9eaa594a60ff01262335915cc6c0c7b6c0cbcceadc8d1d8dc0a36",
+      "source": "LL-Q1321 (spa)-Marreromarco-cable.wav"
+    },
+    "calendar": {
+      "author": "AdrianAbdulBaha",
+      "file": "calendar.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "calendario",
+      "sha256": "21297eb4ed5ec27a930881fd245b0191f7a24db6e0dfc9f1bbd6815fdade6221",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-calendario.wav"
+    },
+    "call": {
+      "author": "AdrianAbdulBaha",
+      "file": "call.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "llamar",
+      "sha256": "563c49d54b793e6b5fa2212c81ed4a0fd2ac42f8563b3a6db5b00ae312692f9c",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-llamar.wav"
+    },
+    "cancel": {
+      "author": "Marreromarco",
+      "file": "cancel.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cancelar",
+      "sha256": "618a8e3412bf68944ddc1620dfc23de563d41feed2d6bfacf190b377450c6eb7",
+      "source": "LL-Q1321 (spa)-Marreromarco-cancelar.wav"
+    },
+    "car": {
+      "author": "Eavqwiki",
+      "file": "car.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "coche",
+      "sha256": "a0c808b124e292cf31d3d5460c7f557afdd868c132589a5972d50a728eeb9c21",
+      "source": "LL-Q1321 (spa)-Eavqwiki-coche.wav"
+    },
+    "careful": {
+      "author": "Marreromarco",
+      "file": "careful.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cuidado",
+      "sha256": "a11e7e8ae60e604b5752e44c35ea423cf400107c5c0195e657c9ad14fbc0d15c",
+      "source": "LL-Q1321 (spa)-Marreromarco-cuidado.wav"
+    },
+    "carpet": {
+      "author": "AdrianAbdulBaha",
+      "file": "carpet.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "alfombra",
+      "sha256": "37158b87ea57cbbbe8107b8799d3c997b8d0fe6be605871a20fdc7a7f6707616",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-alfombra.wav"
+    },
+    "case-worker": {
+      "author": "Marreromarco",
+      "file": "case-worker.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "funcionario",
+      "sha256": "0dd8ce2136111b93ac984adb676a23f8c1cb36ba2e5cc41e5f0c62ce1fec901c",
+      "source": "LL-Q1321 (spa)-Marreromarco-funcionario.wav"
+    },
+    "certificate": {
+      "author": "Marreromarco",
+      "file": "certificate.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "certificado",
+      "sha256": "7699fc1c36d0abfa3bc7140f5019690453320b41443b22fdb9090a3b9e662560",
+      "source": "LL-Q1321 (spa)-Marreromarco-certificado.wav"
+    },
+    "chair": {
+      "author": "Eavqwiki",
+      "file": "chair.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "silla",
+      "sha256": "91487be481d503b333527036decc071fd52ff6db345aecc98b038680c601f0be",
+      "source": "LL-Q1321 (spa)-Eavqwiki-silla.wav"
+    },
+    "charger": {
+      "author": "Emanuelps27",
+      "file": "charger.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "cargador",
+      "sha256": "79228c4ba718f899d6d226697481d4157d81750b501b4af12a26baa3d32e1cb2",
+      "source": "LL-Q1321 (spa)-Emanuelps27-cargador.wav"
+    },
+    "cheese": {
+      "author": "Eavqwiki",
+      "file": "cheese.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "queso",
+      "sha256": "9b2e5f7b28f57c1f32097936ccd6cb3e0a15858bc69686e7d2d9c331f2480823",
+      "source": "LL-Q1321 (spa)-Eavqwiki-queso.wav"
+    },
+    "classroom": {
+      "author": "Marreromarco",
+      "file": "classroom.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "aula",
+      "sha256": "39af91b43e5448a674988ab4ef13acfea80bcdbbfd09ae97dbffa2526e252a24",
+      "source": "LL-Q1321 (spa)-Marreromarco-aula.wav"
+    },
+    "clean": {
+      "author": "Sinaloa",
+      "file": "clean.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "limpiar",
+      "sha256": "696c6fc26c25c853934121853cc76a127851f3bb2094c088b2b7d9d702d34abc",
+      "source": "LL-Q1321 (spa)-Sinaloa-limpiar.wav"
+    },
+    "clothes": {
+      "author": "AdrianAbdulBaha",
+      "file": "clothes.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "ropa",
+      "sha256": "3537347426bfc8aa58962b3e3fbf05d8717e56c402c2f3abc616e2c6286deadd",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-ropa.wav"
+    },
+    "coat": {
+      "author": "AdrianAbdulBaha",
+      "file": "coat.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "abrigo",
+      "sha256": "22afe78b772d92d67e529ea05816303df3909b21adfab2d0a95a00fdde52bdff",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-abrigo.wav"
+    },
+    "coffee": {
+      "author": "AdrianAbdulBaha",
+      "file": "coffee.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "café",
+      "sha256": "80a5f980ffba4397f331cc85f63b4ad42d53f9f933e65da16cd3d3f7d8d0ac9a",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-café.wav"
+    },
+    "cold": {
+      "author": "AdrianAbdulBaha",
+      "file": "cold.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "resfriado",
+      "sha256": "21410a5fe784776a14b5cc083970281ce739ab80d652584fba22b2bd3b35990e",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-resfriado.wav"
+    },
+    "colleague": {
+      "author": "AdrianAbdulBaha",
+      "file": "colleague.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "compañero",
+      "sha256": "0931fcb4b3f1d9f7a4cda61767dab9bcce50f5c04fc70003b49f140a0a21acec",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-compañero.wav"
+    },
+    "come": {
+      "author": "Rodelar",
+      "file": "come.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "venir",
+      "sha256": "215e26fe4f8d6a429181f4dd7911088cddc4b093219274ec3b3941f1a47fb056",
+      "source": "LL-Q1321 (spa)-Rodelar-venir.wav"
+    },
+    "company": {
+      "author": "Precision27",
+      "file": "company.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "empresa",
+      "sha256": "f7228ee85e67276fe572c9da0d53feabb8ca9d44e6e6f26e1b1ce0f1a77449c3",
+      "source": "LL-Q1321 (spa)-Precision27-empresa.wav"
+    },
+    "confirm": {
+      "author": "Marreromarco",
+      "file": "confirm.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "confirmar",
+      "sha256": "ca49d1217585d5468440823865cec4b9e9e1e8f671f5dac0603965d5783b5ab3",
+      "source": "LL-Q1321 (spa)-Marreromarco-confirmar.wav"
+    },
+    "confirmation": {
+      "author": "Marreromarco",
+      "file": "confirmation.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "confirmación",
+      "sha256": "c10b6e7d81762206474955beb0589da0f13267600d3bcc10107e21fc121bcdea",
+      "source": "LL-Q1321 (spa)-Marreromarco-confirmación.wav"
+    },
+    "contract": {
+      "author": "Marreromarco",
+      "file": "contract.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "contrato",
+      "sha256": "b8ae024cdcd3f57da3a395fab175f4ae55613632501c15fe46a7023237f514a1",
+      "source": "LL-Q1321 (spa)-Marreromarco-contrato.wav"
+    },
+    "cook": {
+      "author": "AdrianAbdulBaha",
+      "file": "cook.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cocinar",
+      "sha256": "dbe129f0554b4395d8f872c0d494009e0c426960bcd8458a96a3bf1f87d9e9ea",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-cocinar.wav"
+    },
+    "copy": {
+      "author": "Marreromarco",
+      "file": "copy.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "copiar",
+      "sha256": "ecf1e93e9f23a3950e2eac851fbd5534094d0e3143458342ea1e2d7617d774d5",
+      "source": "LL-Q1321 (spa)-Marreromarco-copiar.wav"
+    },
+    "correct": {
+      "author": "AdrianAbdulBaha",
+      "file": "correct.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "corregir",
+      "sha256": "ac1f51d83a3012c4ace6996e3f2c8f95c30914a4e1b1810b3844cadd73f11cb0",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-corregir.wav"
+    },
+    "cough": {
+      "author": "Marreromarco",
+      "file": "cough.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "tos",
+      "sha256": "80dd6447669060a20cb5fe2cd2ad7bfce3a1244a452d71a118a84a5da1b373f5",
+      "source": "LL-Q1321 (spa)-Marreromarco-tos.wav"
+    },
+    "course": {
+      "author": "Marreromarco",
+      "file": "course.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "curso",
+      "sha256": "f5aedb0c9e4be431e96341b3ae6c4634a0235655ca5fa8ff625cb85353ee6f8a",
+      "source": "LL-Q1321 (spa)-Marreromarco-curso.wav"
+    },
+    "cream": {
+      "author": "Marreromarco",
+      "file": "cream.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "crema",
+      "sha256": "aa796324a441b2cd21e869b96fbe3faac8ed77ba612cc2c5228bdc56e6c57d66",
+      "source": "LL-Q1321 (spa)-Marreromarco-crema.wav"
+    },
+    "cuddle": {
+      "author": "Marreromarco",
+      "file": "cuddle.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "acurrucarse",
+      "sha256": "57a732e5a6a1054d6df411ff27b75e03de69ee8ec5f7f78e6a77820088eaa7cf",
+      "source": "LL-Q1321 (spa)-Marreromarco-acurrucarse.wav"
+    },
+    "cup": {
+      "author": "Rodrigo5260",
+      "file": "cup.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "taza",
+      "sha256": "4271fbb6813ee91514972bd30f5246f53f4b5ec05e15736eb036b956ccb3145b",
+      "source": "LL-Q1321 (spa)-Rodrigo5260-taza.wav"
+    },
+    "curtain": {
+      "author": "AdrianAbdulBaha",
+      "file": "curtain.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cortina",
+      "sha256": "d18d758d1147d9baf574391ebfc129a6670299a7b474b3ba9a9117ff0042ba8c",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-cortina.wav"
+    },
+    "cut": {
+      "author": "Sinaloa",
+      "file": "cut.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "cortar",
+      "sha256": "c2a0695fd4ee32f442676b18e7a1bbfe33ba54162e31cc6028b842774f24f7e7",
+      "source": "LL-Q1321 (spa)-Sinaloa-cortar.wav"
+    },
+    "date": {
+      "author": "AdrianAbdulBaha",
+      "file": "date.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "fecha",
+      "sha256": "ce99621c66df23eb235c5441b42ff5e466ae77025d9d48a2b0fb56a0981649cd",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-fecha.wav"
+    },
+    "day": {
+      "author": "Sinaloa",
+      "file": "day.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "día",
+      "sha256": "f5cc42ab412666dc2c6fc4da12465d40e7719599a79846c3365a5b1aecbe7078",
+      "source": "LL-Q1321 (spa)-Sinaloa-día.wav"
+    },
+    "deadline": {
+      "author": "Marreromarco",
+      "file": "deadline.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "plazo",
+      "sha256": "7b0016413497a2f54294f2cc660f27882a2964e46f455600d98fe94606c23f74",
+      "source": "LL-Q1321 (spa)-Marreromarco-plazo.wav"
+    },
+    "delete": {
+      "author": "AdrianAbdulBaha",
+      "file": "delete.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "borrar",
+      "sha256": "521e7dbf7167cdb4a4407a8e1e0d5fccb7014452b721fde75154bf10079bd104",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-borrar.wav"
+    },
+    "depart": {
+      "author": "GlyphEnjoyer",
+      "file": "depart.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "salir",
+      "sha256": "bb45afd253f379ae288cbe5be838f43604dee707743d5182f0c413dbda92a372",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-salir.wav"
+    },
+    "desk": {
+      "author": "AdrianAbdulBaha",
+      "file": "desk.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "escritorio",
+      "sha256": "b1b9531bafd87f0cba5d86b6f01d9300d24c5e9f4d934a27076464eae17ab8d0",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-escritorio.wav"
+    },
+    "dictionary": {
+      "author": "Rodelar",
+      "file": "dictionary.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "diccionario",
+      "sha256": "906f538480f9dfdcba06da1b2a441d7bce4660a198895fd4372932d52d852dca",
+      "source": "LL-Q1321 (spa)-Rodelar-diccionario.wav"
+    },
+    "dirty": {
+      "author": "Sinaloa",
+      "file": "dirty.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "sucio",
+      "sha256": "2582f6d1c1f22be0d97a72a8237c60af0cc08a2d9140c68f8552d56b8f2f604f",
+      "source": "LL-Q1321 (spa)-Sinaloa-sucio.wav"
+    },
+    "dishwasher": {
+      "author": "Marreromarco",
+      "file": "dishwasher.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "lavavajillas",
+      "sha256": "997db4e2d535c43fb658f2e8c0f51097b92b4fb3fac68c59539eefbdf15053ab",
+      "source": "LL-Q1321 (spa)-Marreromarco-lavavajillas.wav"
+    },
+    "doctor": {
+      "author": "AdrianAbdulBaha",
+      "file": "doctor.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "médico",
+      "sha256": "e71f3716c81137474d7469185f799d15c662f5e92c0461d084f5e775d1d5e640",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-médico.wav"
+    },
+    "doctor-f": {
+      "author": "Marreromarco",
+      "file": "doctor-f.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "médica",
+      "sha256": "b4698a3efe3d8430ca9648041ba7a36e9bf33c33fbe1478e75a8ebdea747a445",
+      "source": "LL-Q1321 (spa)-Marreromarco-médica.wav"
+    },
+    "documents": {
+      "author": "Marreromarco",
+      "file": "documents.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "documentación",
+      "sha256": "d82d2cdf3c9e3712734f60495765341dd433dfa9b315998ddb6f86a498908986",
+      "source": "LL-Q1321 (spa)-Marreromarco-documentación.wav"
+    },
+    "door": {
+      "author": "AdrianAbdulBaha",
+      "file": "door.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "puerta",
+      "sha256": "25848e4947e9b6deb6c808069ecf386e71b2ec4a794f960a36a43e8b0a7ee5f2",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-puerta.wav"
+    },
+    "doorbell": {
+      "author": "AdrianAbdulBaha",
+      "file": "doorbell.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "timbre",
+      "sha256": "007ff89495e07a342008d5f3f35fa877597aebed6f0af1a4d6bb220995992604",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-timbre.wav"
+    },
+    "dream": {
+      "author": "AdrianAbdulBaha",
+      "file": "dream.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "soñar",
+      "sha256": "350ca0628e53dd052ea42a2117d819426d1efb9b507a4f694b8aa9ecc5752561",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-soñar.wav"
+    },
+    "dress": {
+      "author": "AdrianAbdulBaha",
+      "file": "dress.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "vestido",
+      "sha256": "8831b8facad4b8f0570118a04a9a206aca9391e4bfba90e191117ef2fdfec483",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-vestido.wav"
+    },
+    "drink": {
+      "author": "Rodelar",
+      "file": "drink.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "beber",
+      "sha256": "2a14460d198b1ecebaf251579850f1e4ac003e4ac98ec1488f0472fe5b520f49",
+      "source": "LL-Q1321 (spa)-Rodelar-beber.wav"
+    },
+    "ear": {
+      "author": "Eavqwiki",
+      "file": "ear.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "oído",
+      "sha256": "4403462536b8e5dd89c78bf456fc8a363b729e88a8b251ff3e73660ce2ae4ebe",
+      "source": "LL-Q1321 (spa)-Eavqwiki-oído.wav"
+    },
+    "earn": {
+      "author": "AdrianAbdulBaha",
+      "file": "earn.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "ganar",
+      "sha256": "25580ee86f96de38adbe7625cdbf19ed82f26e25fdffb5054f12ada7e8926659",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-ganar.wav"
+    },
+    "eat": {
+      "author": "Rodelar",
+      "file": "eat.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "comer",
+      "sha256": "829f059a4beed4cbaa3291b9b0d611df9c078e022b470a0b7eaad483a01c7bea",
+      "source": "LL-Q1321 (spa)-Rodelar-comer.wav"
+    },
+    "egg": {
+      "author": "Sinaloa",
+      "file": "egg.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "huevo",
+      "sha256": "0931cecef97ef4e0cf4298719875c59e0ba42cc5bf66ae1a3a8f185c973769d5",
+      "source": "LL-Q1321 (spa)-Sinaloa-huevo.wav"
+    },
+    "emergency": {
+      "author": "AdrianAbdulBaha",
+      "file": "emergency.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "emergencia",
+      "sha256": "2b8c5428d71dcd25c0a32efbc1d8f7f85d022ca44edbaf69c41f8350f7767424",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-emergencia.wav"
+    },
+    "enter": {
+      "author": "AdrianAbdulBaha",
+      "file": "enter.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "entrar",
+      "sha256": "c8da368a269538fd7b9a19a8f3cff3a66731323a7b63ac94a4569b22605825dd",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-entrar.wav"
+    },
+    "evening": {
+      "author": "AdrianAbdulBaha",
+      "file": "evening.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "tarde",
+      "sha256": "e895d78c96dd7fe545562531c784570b9c127a716981733ba5dc6c14892122ec",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-tarde.wav"
+    },
+    "exam": {
+      "author": "Marreromarco",
+      "file": "exam.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "examen",
+      "sha256": "299d4ec998924c80a0d23fc98f09d462b590c84fd3147a465c418af390c84114",
+      "source": "LL-Q1321 (spa)-Marreromarco-examen.wav"
+    },
+    "examine": {
+      "author": "AdrianAbdulBaha",
+      "file": "examine.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "examinar",
+      "sha256": "2305e519151772f5db272c220b7014bb9374a7431797f2d03f27fdbae95fbc9d",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-examinar.wav"
+    },
+    "exercise-book": {
+      "author": "AdrianAbdulBaha",
+      "file": "exercise-book.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cuaderno",
+      "sha256": "e42c6bdcb848fee01c5ef17ccf2bdce4377e528d388d80692fdc0fa4e3435dd5",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-cuaderno.wav"
+    },
+    "extend": {
+      "author": "AdrianAbdulBaha",
+      "file": "extend.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "renovar",
+      "sha256": "f6f583c25402675907a82593a75edb6a23f57a646e9e654adff09e2d36c5d5bb",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-renovar.wav"
+    },
+    "fast": {
+      "author": "Rodrigo5260",
+      "file": "fast.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "rápido",
+      "sha256": "9b0e99fb3f84b7eb2e0a45e132b45189518d5874974a23092c6a3f2a2f91b3f7",
+      "source": "LL-Q1321 (spa)-Rodrigo5260-rápido.wav"
+    },
+    "fee": {
+      "author": "AdrianAbdulBaha",
+      "file": "fee.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "tasa",
+      "sha256": "d4323f17a0f5692122e9d764aa2c4f27a803616a397f41b6083f66abec06bc8d",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-tasa.wav"
+    },
+    "fever": {
+      "author": "AdrianAbdulBaha",
+      "file": "fever.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "fiebre",
+      "sha256": "58e764a8068c5c0bcf46e195654320b22496f73a64ecd8a88b9bcbf1ddd989be",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-fiebre.wav"
+    },
+    "flower": {
+      "author": "Rodelar",
+      "file": "flower.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "flor",
+      "sha256": "4884ea67a2f018401d813788e5deff6f262c92025f55e00656c351627b7bae58",
+      "source": "LL-Q1321 (spa)-Rodelar-flor.wav"
+    },
+    "folder": {
+      "author": "Marreromarco",
+      "file": "folder.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "carpeta",
+      "sha256": "13cddcc44da840b9ef0c113ba0f24f6b198ff6587f760ee815e0cf42ea4ac15c",
+      "source": "LL-Q1321 (spa)-Marreromarco-carpeta.wav"
+    },
+    "fork": {
+      "author": "AdrianAbdulBaha",
+      "file": "fork.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "tenedor",
+      "sha256": "d983668e677292a148b69c58e1620b2ac39c1c0d75dc4e9943c3b7c7e213f8fd",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-tenedor.wav"
+    },
+    "form": {
+      "author": "Marreromarco",
+      "file": "form.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "formulario",
+      "sha256": "f14f487c19aca364d30f7205e9efce40718b5d3e7a01f481ebeca0e64011489b",
+      "source": "LL-Q1321 (spa)-Marreromarco-formulario.wav"
+    },
+    "fridge": {
+      "author": "AdrianAbdulBaha",
+      "file": "fridge.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "nevera",
+      "sha256": "af255f84bbc92365ac5871b52100733de6d12097322d948a4dad75372c3776fd",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-nevera.wav"
+    },
+    "friend": {
+      "author": "Alejandra",
+      "file": "friend.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "amigo",
+      "sha256": "774aaabc403b76dc8f1f081269131ac7c4d1b28ff1430083dc2527674a6537e1",
+      "source": "LL-Q1321 (spa)-Alejandra (LinguaLibreBooth)-amigo.wav"
+    },
+    "friend-f": {
+      "author": "AdrianAbdulBaha",
+      "file": "friend-f.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "amiga",
+      "sha256": "ff6b3e39fb65b52ef72005bba7940247cb871599686d0567ad073a11123fc9b5",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-amiga.wav"
+    },
+    "fry": {
+      "author": "AdrianAbdulBaha",
+      "file": "fry.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "freír",
+      "sha256": "d7df0b519b380ab0f1b229b32e0fc375c389575601aaa1c487945a414300c6d8",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-freír.wav"
+    },
+    "get-dressed": {
+      "author": "Marreromarco",
+      "file": "get-dressed.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "vestirse",
+      "sha256": "6c666abcf63668ce7c1350a6e6509e62b6f3cd8499a5751ed133263f7e136395",
+      "source": "LL-Q1321 (spa)-Marreromarco-vestirse.wav"
+    },
+    "get-up": {
+      "author": "Anonymât",
+      "file": "get-up.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "levantarse",
+      "sha256": "a48bb569ba41785e837b8c4a018f9dbf1f0985ce2dd5c8e72e3e971ec3c46c13",
+      "source": "LL-Q1321 (spa)-Anonymât (Kvardek du)-levantarse.wav"
+    },
+    "give": {
+      "author": "Rodelar",
+      "file": "give.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "dar",
+      "sha256": "bacf3aaa9fc950c8183543e7cd18d52b9667c0ee0efd707a23f7b695d6d21a9e",
+      "source": "LL-Q1321 (spa)-Rodelar-dar.wav"
+    },
+    "glove": {
+      "author": "AdrianAbdulBaha",
+      "file": "glove.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "guante",
+      "sha256": "a8d9d1b8f750d61745a8ed7bf9a6b60af105836a961f45271a386d5d19c86d81",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-guante.wav"
+    },
+    "go": {
+      "author": "Rodrigo5260",
+      "file": "go.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "ir",
+      "sha256": "71bb129ad5df946f023dcd12041c3bf9356edfb5ddf07f3f331d305836cc2ebc",
+      "source": "LL-Q1321 (spa)-Rodrigo5260-ir.wav"
+    },
+    "go-for-walk": {
+      "author": "AdrianAbdulBaha",
+      "file": "go-for-walk.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pasear",
+      "sha256": "a4be04069ca247552e0c6aec5ea748e0f443236e04ffb58a5d9c183ca3d65949",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pasear.wav"
+    },
+    "good": {
+      "author": "Sinaloa",
+      "file": "good.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "bueno",
+      "sha256": "787a25214a357d186b975aad92ffda1735f8365aadfcd111b0178adae6aa555e",
+      "source": "LL-Q1321 (spa)-Sinaloa-bueno.wav"
+    },
+    "grade": {
+      "author": "AdrianAbdulBaha",
+      "file": "grade.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "nota",
+      "sha256": "a04dc5d5ff4914dff50bfba9d5f8ef7c6959b473925f23ed13d0608b2a836fb4",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-nota.wav"
+    },
+    "greet": {
+      "author": "AdrianAbdulBaha",
+      "file": "greet.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "saludar",
+      "sha256": "53fd3f2d4aa9032fcf1e0f9a4bfcde03849093e54e546bec4f0f3f5c9c83bae9",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-saludar.wav"
+    },
+    "guest": {
+      "author": "Marreromarco",
+      "file": "guest.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "invitado",
+      "sha256": "57b70234c476547b762d9a8c38e734823ec3f717ac01557f61842693d2283af8",
+      "source": "LL-Q1321 (spa)-Marreromarco-invitado.wav"
+    },
+    "hair": {
+      "author": "Rodelar",
+      "file": "hair.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pelo",
+      "sha256": "5f36bc113a8318dc166be21ab7e1eda371da2eacce48e5b7750628b532ef9b2a",
+      "source": "LL-Q1321 (spa)-Rodelar-pelo.wav"
+    },
+    "hallway": {
+      "author": "Marreromarco",
+      "file": "hallway.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pasillo",
+      "sha256": "72cd1feb01165ef3da6f0b38d2aa5ab79a8333ce2d228bde4e25af2adf07be00",
+      "source": "LL-Q1321 (spa)-Marreromarco-pasillo.wav"
+    },
+    "hand-in": {
+      "author": "AdrianAbdulBaha",
+      "file": "hand-in.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "presentar",
+      "sha256": "a14f183400e4ae3fccecd758bac7df5234f1809cd9c2b0f36547045fe2504c6c",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-presentar.wav"
+    },
+    "hat": {
+      "author": "Marreromarco",
+      "file": "hat.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "gorro",
+      "sha256": "8d3b2e0cf582dc7f3024fd2ed16a8807f87b46d710aa0f93ab2c3038781134e2",
+      "source": "LL-Q1321 (spa)-Marreromarco-gorro.wav"
+    },
+    "have": {
+      "author": "GlyphEnjoyer",
+      "file": "have.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "tener",
+      "sha256": "638a5716c57c66e745fe1b781db795de3fddb2b1154b22410d16b5bad78b04f5",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-tener.wav"
+    },
+    "head": {
+      "author": "GlyphEnjoyer",
+      "file": "head.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "cabeza",
+      "sha256": "3246816779242ee450bdc07d8fb4ce801a92d4b09f5269bc0d654579d347dc99",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-cabeza.wav"
+    },
+    "hello": {
+      "author": "CaroEspinoza",
+      "file": "hello.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "hola",
+      "sha256": "9dca5da19fccaed46f417d1d4158adfdc6e4e9f92279b5d42f2ef4e4b85f3319",
+      "source": "LL-Q1321 (spa)-CaroEspinoza-HOLA.wav"
+    },
+    "help": {
+      "author": "GlyphEnjoyer",
+      "file": "help.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "ayuda",
+      "sha256": "bef35396abb287c02285103939dc0f3ccbacecc9a68830754611694c3dcbe0c0",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-ayuda.wav"
+    },
+    "here": {
+      "author": "GlyphEnjoyer",
+      "file": "here.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "aquí",
+      "sha256": "da4a3ef59fbff39a866a1540230014fb2e47890a3622b5005e997086d6e45150",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-aquí.wav"
+    },
+    "hire": {
+      "author": "Marreromarco",
+      "file": "hire.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "contratar",
+      "sha256": "9463f20b9d7ef814c2b9d0a384f11ef9002b1a108faf5abe6db3d72b4b2b66e4",
+      "source": "LL-Q1321 (spa)-Marreromarco-contratar.wav"
+    },
+    "holiday": {
+      "author": "Marreromarco",
+      "file": "holiday.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "vacaciones",
+      "sha256": "75e130450c0de36c5db932206a398eb6ac21214c8ff163e536682e718058e8e6",
+      "source": "LL-Q1321 (spa)-Marreromarco-vacaciones.wav"
+    },
+    "hospital": {
+      "author": "Rubýñ",
+      "file": "hospital.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "hospital",
+      "sha256": "7261524404062cb57939b99f2263de25d55fe4b72bad2868ce5f9218b9b86be0",
+      "source": "LL-Q1321 (spa)-Rubýñ-Hospital.wav"
+    },
+    "hour": {
+      "author": "AdrianAbdulBaha",
+      "file": "hour.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "hora",
+      "sha256": "c9c564a18a5c8b145fe55ce4d88dde99048195f646583b512d71615d50ce6c5a",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-hora.wav"
+    },
+    "house": {
+      "author": "GlyphEnjoyer",
+      "file": "house.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "casa",
+      "sha256": "27f4c5139e88f0c95bc25ee960933c28a4d5abafad38c8dafad5670d50949a7b",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-casa.wav"
+    },
+    "hunger": {
+      "author": "AdrianAbdulBaha",
+      "file": "hunger.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "hambre",
+      "sha256": "bed46bdb27f4a90734331a51c5a7ed32f8dab520828302f108f15cab2a08ebbf",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-hambre.wav"
+    },
+    "hurt": {
+      "author": "Marreromarco",
+      "file": "hurt.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "doler",
+      "sha256": "7afe357b400eb9b2e87f61c7437411186eca2f0d46a646de673fe74a682c9888",
+      "source": "LL-Q1321 (spa)-Marreromarco-doler.wav"
+    },
+    "important": {
+      "author": "Rachlel",
+      "file": "important.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "importante",
+      "sha256": "c17ace05c7125c848847f5c32698606b14820560c86a03abb2d1f3aa2656078e",
+      "source": "LL-Q1321 (spa)-Rachlel-importante.wav"
+    },
+    "inside": {
+      "author": "GlyphEnjoyer",
+      "file": "inside.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "dentro",
+      "sha256": "c7273cf1736d8170d4bdbc4ec31bcc4612ea8cd0cb6a3171aa5862c694cfd6c3",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-dentro.wav"
+    },
+    "internet": {
+      "author": "GlyphEnjoyer",
+      "file": "internet.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "internet",
+      "sha256": "747627e18119ab367f52d35bf2d08737e4a2fec4ac6d18e49f33bc798d4d6d25",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-Internet.wav"
+    },
+    "jacket": {
+      "author": "AdrianAbdulBaha",
+      "file": "jacket.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "chaqueta",
+      "sha256": "3b99a4bbc689f5d788dbc78734f30a10fd3391214b7b04d1e205e650297e5442",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-chaqueta.wav"
+    },
+    "key": {
+      "author": "Eavqwiki",
+      "file": "key.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "llave",
+      "sha256": "6c589edf234ddeac612e3bf651abb0624d87510d7b10b7aea91d8fb5b29d5f63",
+      "source": "LL-Q1321 (spa)-Eavqwiki-llave.wav"
+    },
+    "keyboard": {
+      "author": "AdrianAbdulBaha",
+      "file": "keyboard.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "teclado",
+      "sha256": "3dc77df4d8e237dd4883f3f69ef8e53b00f5d60143e4f8c46242874b813f125d",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-teclado.wav"
+    },
+    "knife": {
+      "author": "AdrianAbdulBaha",
+      "file": "knife.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cuchillo",
+      "sha256": "3607d60d4e871e3983895772ea224debc107d211d02fc2f2b90f324ee8c444da",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-cuchillo.wav"
+    },
+    "know": {
+      "author": "GlyphEnjoyer",
+      "file": "know.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "saber",
+      "sha256": "94666508ef61caa17ad0b026441419dd6d691ae180460f441dc14a2527ac7c13",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-saber.wav"
+    },
+    "lamp": {
+      "author": "AdrianAbdulBaha",
+      "file": "lamp.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "lámpara",
+      "sha256": "c49343366e6efb9b23111684230033e17459da32dcceaedbe119ca1a2280211a",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-lámpara.wav"
+    },
+    "language": {
+      "author": "AdrianAbdulBaha",
+      "file": "language.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "idioma",
+      "sha256": "7d8ba7e810409f6fc1c6443c1f7cd1fe0d7e7d24d94d88ad6d3ff0e1123feca4",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-idioma.wav"
+    },
+    "laptop": {
+      "author": "Marreromarco",
+      "file": "laptop.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "portátil",
+      "sha256": "1f1091b6b2e553bb6f057348592528cafb844f4635aa463d98824266bdbc8367",
+      "source": "LL-Q1321 (spa)-Marreromarco-portátil.wav"
+    },
+    "leave": {
+      "author": "GlyphEnjoyer",
+      "file": "leave.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "dejar",
+      "sha256": "22b6bc11b6779638bb60cb5a04e59e10e83b0896ef46980b76d97ab2c928cbad",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-dejar.wav"
+    },
+    "lesson": {
+      "author": "AdrianAbdulBaha",
+      "file": "lesson.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "clase",
+      "sha256": "3e58d6f2506b0c577d41cdf75aac0a2d88ceff278c062ec2370158062c80fa91",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-clase.wav"
+    },
+    "letter": {
+      "author": "AdrianAbdulBaha",
+      "file": "letter.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "carta",
+      "sha256": "00cfd0ff226a50b416b01da241447ce41320434a7219466e89adc0255e1b56cc",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-carta.wav"
+    },
+    "light": {
+      "author": "Rodrigo5260",
+      "file": "light.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "luz",
+      "sha256": "52ce51951e180e4eecb7190f5fae7f5de02c5c639b7502789ee95bfac286f7c6",
+      "source": "LL-Q1321 (spa)-Rodrigo5260-luz.wav"
+    },
+    "live": {
+      "author": "Rodelar",
+      "file": "live.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "vivir",
+      "sha256": "dcf7e24114d4206a6ac2848fac2e3f6c895f42444bc14ee7011ca0cda922ca55",
+      "source": "LL-Q1321 (spa)-Rodelar-vivir.wav"
+    },
+    "mailbox": {
+      "author": "Marreromarco",
+      "file": "mailbox.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "buzón",
+      "sha256": "e4fccb7f493dc83efdd9da9a144d7bc9ad875793d76b42408c95e58052425f5b",
+      "source": "LL-Q1321 (spa)-Marreromarco-buzón.wav"
+    },
+    "make": {
+      "author": "Precision27",
+      "file": "make.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "hacer",
+      "sha256": "6eb8f6b02fb488be8e03fcd5531c277df564690c42ad96f077ed6c9b27cd98da",
+      "source": "LL-Q1321 (spa)-Precision27-hacer.wav"
+    },
+    "market": {
+      "author": "Precision27",
+      "file": "market.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "mercado",
+      "sha256": "ed6ff26729adb171ba84c873ae72ffcab7691dce51e6f2c6aa63ccec9583d1e1",
+      "source": "LL-Q1321 (spa)-Precision27-mercado.wav"
+    },
+    "mattress": {
+      "author": "AdrianAbdulBaha",
+      "file": "mattress.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "colchón",
+      "sha256": "c5b0f3ab2e99cb3ac031b91922b857907d5662de1b020101a3ef2f68516fdc16",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-colchón.wav"
+    },
+    "milk": {
+      "author": "Julie Samothrace",
+      "file": "milk.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "leche",
+      "sha256": "ea0f50794208179f940a01b96b99144f95875b7350f1e1b3b871b1d7b8afba4f",
+      "source": "LL-Q1321 (spa)-Julie Samothrace-leche.wav"
+    },
+    "mirror": {
+      "author": "Mentxuwiki",
+      "file": "mirror.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "espejo",
+      "sha256": "c8b35ced7aec871c9cc951faa6d21c9e97eef378968e99b0a102f8246fbb2eca",
+      "source": "LL-Q1321 (spa)-Mentxuwiki-Espejo.wav"
+    },
+    "money": {
+      "author": "Rodrigo5260",
+      "file": "money.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "dinero",
+      "sha256": "cb286c6b4d48aa8cf557db194c049a6b828429d44d7e5f26b2793aa7169e29fb",
+      "source": "LL-Q1321 (spa)-Rodrigo5260-dinero.wav"
+    },
+    "morning": {
+      "author": "GlyphEnjoyer",
+      "file": "morning.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "mañana",
+      "sha256": "546cfea382bcdaff7e294fbb7b77a1a2702d2e2394869c05db85ebb59d1a863e",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-mañana.wav"
+    },
+    "mouse": {
+      "author": "Eavqwiki",
+      "file": "mouse.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "ratón",
+      "sha256": "4b572761fa17e24e102ea26678ef2ecb98d197043305e23429775fdaf6715191",
+      "source": "LL-Q1321 (spa)-Eavqwiki-ratón.wav"
+    },
+    "movie": {
+      "author": "Eavqwiki",
+      "file": "movie.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "película",
+      "sha256": "274dc2ee9ad7a2ce6c01c95c6131f890e642928b1059241e2468687d155009c9",
+      "source": "LL-Q1321 (spa)-Eavqwiki-película.wav"
+    },
+    "much": {
+      "author": "Precision27",
+      "file": "much.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "mucho",
+      "sha256": "20c076128fa95be7ec9a41460816024f31df44be44f139c9066b9d6ee5a10ad6",
+      "source": "LL-Q1321 (spa)-Precision27-mucho.wav"
+    },
+    "music": {
+      "author": "GlyphEnjoyer",
+      "file": "music.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "música",
+      "sha256": "1c47cd329170dc2915d34b198e9e9d574bf652f713ecf551575a785de4b353d5",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-música.wav"
+    },
+    "name": {
+      "author": "Rodelar",
+      "file": "name.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "nombre",
+      "sha256": "f9ee859e3170eedb4f295f7f73e19029302bbafd57e2f62a29f945203a22dd86",
+      "source": "LL-Q1321 (spa)-Rodelar-nombre.wav"
+    },
+    "need": {
+      "author": "AdrianAbdulBaha",
+      "file": "need.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "necesitar",
+      "sha256": "a1a4fb7417900cd4b76110d78f4175992cb5697e45e250dfab3b1f2890ff0c0a",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-necesitar.wav"
+    },
+    "neighbour": {
+      "author": "AdrianAbdulBaha",
+      "file": "neighbour.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "vecino",
+      "sha256": "bd20fa24a25b4b668810fc4643eb4c0754101ddb4ff75fd780fbb52b7b6187be",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-vecino.wav"
+    },
+    "new": {
+      "author": "Sinaloa",
+      "file": "new.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "nuevo",
+      "sha256": "95659e444479d3ffb39a322b1b388e5dd186b43333779d403b36dcfbb6c899c9",
+      "source": "LL-Q1321 (spa)-Sinaloa-nuevo.wav"
+    },
+    "newspaper": {
+      "author": "AdrianAbdulBaha",
+      "file": "newspaper.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "periódico",
+      "sha256": "e11c25c6c32bb81c7173e08402dcc971c4b586a9fdbf258d105ef6efeb690faa",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-periódico.wav"
+    },
+    "night": {
+      "author": "GlyphEnjoyer",
+      "file": "night.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "noche",
+      "sha256": "99149e5de8b9d275a9c44f6870a2df983144b2a64ad7311fa535315f7661d894",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-noche.wav"
+    },
+    "no": {
+      "author": "Sinaloa",
+      "file": "no.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "no",
+      "sha256": "3525d1b9cf5a1780375f1cb8fea06b0a2ec274819825b3619b827d87aced2d47",
+      "source": "LL-Q1321 (spa)-Sinaloa-no.wav"
+    },
+    "notebook": {
+      "author": "Eavqwiki",
+      "file": "notebook.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "libreta",
+      "sha256": "79897185bfbae4b88c5993e0fe52ade2783853122ea9eff21b82538e0c6db627",
+      "source": "LL-Q1321 (spa)-Eavqwiki-libreta.wav"
+    },
+    "notification": {
+      "author": "Marreromarco",
+      "file": "notification.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "resolución",
+      "sha256": "4e133430b1fd45e291dd265ecdac049367d407e844761dce6d458e0d26622c9e",
+      "source": "LL-Q1321 (spa)-Marreromarco-resolución.wav"
+    },
+    "now": {
+      "author": "Alejandra",
+      "file": "now.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "ahora",
+      "sha256": "f8910885445f4208ffd16fa324b873abd02c6ee01d3b193844e5331eb80f5111",
+      "source": "LL-Q1321 (spa)-Alejandra (LinguaLibreBooth)-ahora.wav"
+    },
+    "old": {
+      "author": "Rodelar",
+      "file": "old.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "viejo",
+      "sha256": "e289f677133b5773a0c3e48cfe135f6dd10dd717470a8081d2757e4090aff260",
+      "source": "LL-Q1321 (spa)-Rodelar-viejo.wav"
+    },
+    "outdoors": {
+      "author": "GlyphEnjoyer",
+      "file": "outdoors.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "fuera",
+      "sha256": "5c015906db722c3f894d679bdf411ebe425a85469093d14c915cd2c542d82c6c",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-fuera.wav"
+    },
+    "oven": {
+      "author": "AdrianAbdulBaha",
+      "file": "oven.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "horno",
+      "sha256": "bee1f00a6ea8d0bb8515844987c56096dd74a7e803cd232a2af2b8e9043f0bb0",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-horno.wav"
+    },
+    "page": {
+      "author": "AdrianAbdulBaha",
+      "file": "page.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "página",
+      "sha256": "7568498cabddd3589ee275b052971ef80ac4ee3a5f9272b2a73354aa3642550f",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-página.wav"
+    },
+    "pain": {
+      "author": "AdrianAbdulBaha",
+      "file": "pain.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "dolor",
+      "sha256": "16937b448811cf1f0b7cf7c36a21bb420b77933827221a1f75de371d2a5fb415",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-dolor.wav"
+    },
+    "pan": {
+      "author": "AdrianAbdulBaha",
+      "file": "pan.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "sartén",
+      "sha256": "c46005a938f2e0de9c807db62855692cdb35ff08fb0e364266417ac3b7623302",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-sartén.wav"
+    },
+    "paper": {
+      "author": "GlyphEnjoyer",
+      "file": "paper.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "papel",
+      "sha256": "acd849f9522a5e23e58d008291ca7479dab01041f7dfc6bfe9a9d56ad146a864",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-papel.wav"
+    },
+    "park": {
+      "author": "AdrianAbdulBaha",
+      "file": "park.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "parque",
+      "sha256": "bd7595871dd8fd2076687906734e2c1c09d72d093e74336f1ffd6bf16dc38c43",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-parque.wav"
+    },
+    "passport": {
+      "author": "AdrianAbdulBaha",
+      "file": "passport.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pasaporte",
+      "sha256": "ff42aec100157604544500d392eebd1ad6f33472a9b41695f0b5f2f9f17b9113",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pasaporte.wav"
+    },
+    "password": {
+      "author": "AdrianAbdulBaha",
+      "file": "password.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "contraseña",
+      "sha256": "ccddd581e0df5e541e0d63461dfd68339419a80a1ce7b3141698fa2c5108a2b3",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-contraseña.wav"
+    },
+    "pen": {
+      "author": "AdrianAbdulBaha",
+      "file": "pen.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "bolígrafo",
+      "sha256": "07da7636984380a18886bdd36815fee5f746442ea61ed6ba639a966d3ae2a8a5",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-bolígrafo.wav"
+    },
+    "person": {
+      "author": "GlyphEnjoyer",
+      "file": "person.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "persona",
+      "sha256": "09d13ffe6d7bdc154f5199eecb8c2bca5a60a38dc5fa163f6210f252816fb434",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-persona.wav"
+    },
+    "pharmacy": {
+      "author": "AdrianAbdulBaha",
+      "file": "pharmacy.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "farmacia",
+      "sha256": "fc42f87219688b4b067984eb558763d08dcb98820e7e8bd8b74b451cc97f275b",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-farmacia.wav"
+    },
+    "phone": {
+      "author": "Marreromarco",
+      "file": "phone.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "móvil",
+      "sha256": "a586199631fe6ccea1241554d5cfe698aed65f48ebff2fe27b97ca363e431e55",
+      "source": "LL-Q1321 (spa)-Marreromarco-móvil.wav"
+    },
+    "picture": {
+      "author": "AdrianAbdulBaha",
+      "file": "picture.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cuadro",
+      "sha256": "cd65974dbd4d31ac901d98e59da23ed348261527d272c9bcb7c6dd5475300eda",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-cuadro.wav"
+    },
+    "pill": {
+      "author": "Emanuelps27",
+      "file": "pill.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "pastilla",
+      "sha256": "d414cecc1b37b0e6a24fe0e7b54f23ff9034a3a7bdaa7b643362f8a4970c560b",
+      "source": "LL-Q1321 (spa)-Emanuelps27-pastilla.wav"
+    },
+    "pillow": {
+      "author": "AdrianAbdulBaha",
+      "file": "pillow.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "almohada",
+      "sha256": "cb0f111543028a5f382a2aa45c19ee7b55b1109b555406a8146aaa6e5064928d",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-almohada.wav"
+    },
+    "plan": {
+      "author": "GlyphEnjoyer",
+      "file": "plan.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "plan",
+      "sha256": "1fb9ce097143091a625939565c33cd51f59b743a6f1e1fe17d777be3d9e845fe",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-plan.wav"
+    },
+    "plant": {
+      "author": "AdrianAbdulBaha",
+      "file": "plant.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "planta",
+      "sha256": "1153c048f7a82380c5c22af94940847cd22add4f1b3c889289be103143f90be3",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-planta.wav"
+    },
+    "plate": {
+      "author": "Rodrigo5260",
+      "file": "plate.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "plato",
+      "sha256": "4bb2941ca9a771148324ac785f9189dcbc2559543edf7b01b2ca81671eb235d2",
+      "source": "LL-Q1321 (spa)-Rodrigo5260-plato.wav"
+    },
+    "play": {
+      "author": "Rodelar",
+      "file": "play.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "jugar",
+      "sha256": "ca9f66c155ee75dd566e76de4c7a51e342cb2c26ce3f4c5399c36c26d221158f",
+      "source": "LL-Q1321 (spa)-Rodelar-jugar.wav"
+    },
+    "postpone": {
+      "author": "Marreromarco",
+      "file": "postpone.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "aplazar",
+      "sha256": "5a9acab3565d604ee84ec7aaa6c03b0ce272ba75c12dcbefc5f40eda9b33ad82",
+      "source": "LL-Q1321 (spa)-Marreromarco-aplazar.wav"
+    },
+    "pot": {
+      "author": "AdrianAbdulBaha",
+      "file": "pot.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "olla",
+      "sha256": "69919b5265d76217b36ff3365c1922e0c834ff22ce9124f6b1e3f4e345a131ca",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-olla.wav"
+    },
+    "practice": {
+      "author": "Marreromarco",
+      "file": "practice.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "consulta",
+      "sha256": "46509678b4e06c3fbdc360d39ad84c5b058c375235be31dc1725c8a8a9f89605",
+      "source": "LL-Q1321 (spa)-Marreromarco-consulta.wav"
+    },
+    "practise": {
+      "author": "Marreromarco",
+      "file": "practise.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "practicar",
+      "sha256": "5c44e2ce7eb7fa3b9f2d61ebd3739710dd10ce90cb2038a1f92d39927d6d9e1c",
+      "source": "LL-Q1321 (spa)-Marreromarco-practicar.wav"
+    },
+    "prescription": {
+      "author": "AdrianAbdulBaha",
+      "file": "prescription.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "receta",
+      "sha256": "fae15522ca5e40549af9747de6dfcb071a1a244891377e7d417c6b916ae53083",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-receta.wav"
+    },
+    "print": {
+      "author": "Marreromarco",
+      "file": "print.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "imprimir",
+      "sha256": "adcce38720fb1b6e8b9d8139cb90af08ded7abf7d45f9b52027e4c8202de105b",
+      "source": "LL-Q1321 (spa)-Marreromarco-imprimir.wav"
+    },
+    "printer": {
+      "author": "AdrianAbdulBaha",
+      "file": "printer.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "impresora",
+      "sha256": "f7ff7b4dce93ed662b45742f2b3e0f89d393309665b97601ac808309dc6d068b",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-impresora.wav"
+    },
+    "profession": {
+      "author": "Marreromarco",
+      "file": "profession.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "profesión",
+      "sha256": "7c1ac08d6cffc921447508f7e5ab28663fd4f230d2a0833f9896dd0f3cbd6dfd",
+      "source": "LL-Q1321 (spa)-Marreromarco-profesión.wav"
+    },
+    "punctual": {
+      "author": "Emanuelps27",
+      "file": "punctual.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "puntual",
+      "sha256": "31c127da5a79eed71a1a83cb76aa4531fabd415f71935ef7ca868a76c178f837",
+      "source": "LL-Q1321 (spa)-Emanuelps27-puntual.wav"
+    },
+    "pupil": {
+      "author": "AdrianAbdulBaha",
+      "file": "pupil.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "alumno",
+      "sha256": "bf92fe27b4a560a871475457ff7c6a7aaae7d09a5819a6840c22e19ea273b23c",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-alumno.wav"
+    },
+    "pupil-f": {
+      "author": "Marreromarco",
+      "file": "pupil-f.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "alumna",
+      "sha256": "889d67174025672fa3fb36694a41b96a04a4e9e206ecbd9b402b56e70f9533af",
+      "source": "LL-Q1321 (spa)-Marreromarco-alumna.wav"
+    },
+    "pyjamas": {
+      "author": "Eavqwiki",
+      "file": "pyjamas.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pijama",
+      "sha256": "e0a0e9c26023665abde1a8d405ae77908a19a946fc443ac0b13755e1bf86a474",
+      "source": "LL-Q1321 (spa)-Eavqwiki-pijama.wav"
+    },
+    "question": {
+      "author": "AdrianAbdulBaha",
+      "file": "question.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pregunta",
+      "sha256": "c1a2a36532f5d151d48f2f1dc48a3a2f3b18a66bdc33a40a4b62a26900a6db93",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pregunta.wav"
+    },
+    "quiet": {
+      "author": "Precision27",
+      "file": "quiet.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "bajo",
+      "sha256": "2a35ef4bf5f2af6dc2dd5237def8a286fc625ffc4c124c109a3c658fb0460d70",
+      "source": "LL-Q1321 (spa)-Precision27-bajo.wav"
+    },
+    "rain": {
+      "author": "Sinaloa",
+      "file": "rain.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "lluvia",
+      "sha256": "abd6d0aa6ed932d9b95140e6e1c68cb634406e9b588e509cc53cc365bad8ae26",
+      "source": "LL-Q1321 (spa)-Sinaloa-lluvia.wav"
+    },
+    "read": {
+      "author": "AdrianAbdulBaha",
+      "file": "read.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "leer",
+      "sha256": "d3c6c5530243a7b0c443b1d6ffdf3b75dc77bc74eb333bbf738c3dd4aa2df32f",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-leer.wav"
+    },
+    "ready": {
+      "author": "Marreromarco",
+      "file": "ready.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "listo",
+      "sha256": "fa566c5c864615b89af71a2d1690ecab1eac033af8eaa7c95bfef47d65fb1672",
+      "source": "LL-Q1321 (spa)-Marreromarco-listo.wav"
+    },
+    "reheat": {
+      "author": "AdrianAbdulBaha",
+      "file": "reheat.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "calentar",
+      "sha256": "33de6abd81b211c028ecd4c9b839bd17016a00ffb8348939ba9f03628d5bd4a4",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-calentar.wav"
+    },
+    "reject": {
+      "author": "Marreromarco",
+      "file": "reject.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "rechazar",
+      "sha256": "c4749a1ea2f91f1f02c30d0ca0ea97c9cb111b840e5992b39ad4fb8957b20383",
+      "source": "LL-Q1321 (spa)-Marreromarco-rechazar.wav"
+    },
+    "remote": {
+      "author": "Marreromarco",
+      "file": "remote.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "mando",
+      "sha256": "b0d0b406e71ab85b6b6ff3ccd732d543532be8892573ddf8d11954639db60069",
+      "source": "LL-Q1321 (spa)-Marreromarco-mando.wav"
+    },
+    "reply": {
+      "author": "AdrianAbdulBaha",
+      "file": "reply.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "responder",
+      "sha256": "5ff65538bac7ae87afa1c26088c2c8b115ab71900da9cc6f465f29c57ff362e4",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-responder.wav"
+    },
+    "rest": {
+      "author": "Marreromarco",
+      "file": "rest.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "descansar",
+      "sha256": "f510e922b9986d462a42998f726f716b84816079fe4aa2bfb5c9aba2402b6cda",
+      "source": "LL-Q1321 (spa)-Marreromarco-descansar.wav"
+    },
+    "rice": {
+      "author": "AdrianAbdulBaha",
+      "file": "rice.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "arroz",
+      "sha256": "248fd7d33eca1c2998279b0004123177c0b5180588c83bf54ac68de6020545e4",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-arroz.wav"
+    },
+    "ring": {
+      "author": "Marreromarco",
+      "file": "ring.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "sonar",
+      "sha256": "91d784b713e2fdbd999ae9de8a12cbc018e3d5f8d48b7faa8c5117c6f71e380e",
+      "source": "LL-Q1321 (spa)-Marreromarco-sonar.wav"
+    },
+    "river": {
+      "author": "Sinaloa",
+      "file": "river.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "río",
+      "sha256": "fc92ca993b170dbacb690159479eb979a9245ea9f82d1213b8924ebb875f1e27",
+      "source": "LL-Q1321 (spa)-Sinaloa-río.wav"
+    },
+    "room": {
+      "author": "AdrianAbdulBaha",
+      "file": "room.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "habitación",
+      "sha256": "a68f96edda884fd82831faebee3bdc5027d732d8383999109a22131a854baba6",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-habitación.wav"
+    },
+    "salary": {
+      "author": "Marreromarco",
+      "file": "salary.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "sueldo",
+      "sha256": "b97aafea9019d3fed24717954d299417f68513d744fc3a9b652112f2657b3433",
+      "source": "LL-Q1321 (spa)-Marreromarco-sueldo.wav"
+    },
+    "salt": {
+      "author": "Rodelar",
+      "file": "salt.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "sal",
+      "sha256": "f7bd2955e8d1f1ab5fe0d4b0742fe2f88f7589dd1750b937834c67314c57933e",
+      "source": "LL-Q1321 (spa)-Rodelar-sal.wav"
+    },
+    "save": {
+      "author": "AdrianAbdulBaha",
+      "file": "save.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "guardar",
+      "sha256": "c38491dc94b2903e827d5575410382899521b8d0490438d0b870a460f5ba259a",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-guardar.wav"
+    },
+    "say": {
+      "author": "Rachlel",
+      "file": "say.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "decir",
+      "sha256": "511cb88400e25310925b6f937cd83429aae72da4081fb034a5011a1b39ae01d6",
+      "source": "LL-Q1321 (spa)-Rachlel-decir.wav"
+    },
+    "say-goodbye": {
+      "author": "Marreromarco",
+      "file": "say-goodbye.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "despedirse",
+      "sha256": "0fd26b303d51e51a4dca3f370a61819b3416ea9c092f78924a58f614c7ebf6f2",
+      "source": "LL-Q1321 (spa)-Marreromarco-despedirse.wav"
+    },
+    "school": {
+      "author": "GlyphEnjoyer",
+      "file": "school.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "escuela",
+      "sha256": "4c0e7dfa813252ff724fc8311c6d644bb555a9bc26102a53acb8d2714308fd02",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-escuela.wav"
+    },
+    "screen": {
+      "author": "AdrianAbdulBaha",
+      "file": "screen.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pantalla",
+      "sha256": "f9c379d827d865b92a92bd0804033fa96aaab7757150fce31955367c94d8ca24",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pantalla.wav"
+    },
+    "see": {
+      "author": "Precision27",
+      "file": "see.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "ver",
+      "sha256": "a4db58b87afa8a91594539ed9adbb88cbc845cac7b2cb575bab3c62b4988b78e",
+      "source": "LL-Q1321 (spa)-Precision27-ver.wav"
+    },
+    "sentence": {
+      "author": "AdrianAbdulBaha",
+      "file": "sentence.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "frase",
+      "sha256": "10f4bcdf8aa16a70bb31c7256f359f91a818307f2a56d6c178fe5327d68c70b0",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-frase.wav"
+    },
+    "shampoo": {
+      "author": "Marreromarco",
+      "file": "shampoo.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "champú",
+      "sha256": "16cf6eec2295f33f06402dd125faea52433493bc12c2489cf2f5606b2b7674cb",
+      "source": "LL-Q1321 (spa)-Marreromarco-champú.wav"
+    },
+    "shave": {
+      "author": "Emanuelps27",
+      "file": "shave.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "afeitarse",
+      "sha256": "24b65d37f54e4b080f8995799179429262b2c4e20a0209ae75d221094b04de9a",
+      "source": "LL-Q1321 (spa)-Emanuelps27-afeitarse.wav"
+    },
+    "shelf": {
+      "author": "Marreromarco",
+      "file": "shelf.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "estantería",
+      "sha256": "68423866beb66360bdc221feca88ecec99c88cf488f2c5b2b2ed3dd6f1b7f907",
+      "source": "LL-Q1321 (spa)-Marreromarco-estantería.wav"
+    },
+    "shift": {
+      "author": "Marreromarco",
+      "file": "shift.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "turno",
+      "sha256": "770d00a234f43ba307ee2c9f3c66cab62020fe3846c8347234417883a681159f",
+      "source": "LL-Q1321 (spa)-Marreromarco-turno.wav"
+    },
+    "shirt": {
+      "author": "AdrianAbdulBaha",
+      "file": "shirt.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "camisa",
+      "sha256": "83e073a68ee9d073a2775b889bf4089db7cdede9e50945f3c51d785df6311436",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-camisa.wav"
+    },
+    "shoe": {
+      "author": "Rodrigo5260",
+      "file": "shoe.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "zapato",
+      "sha256": "c07a433e838062e50edaf3d5733bf51de1337ad5353af6866f33c01ed270f114",
+      "source": "LL-Q1321 (spa)-Rodrigo5260-zapato.wav"
+    },
+    "shoe-rack": {
+      "author": "AdrianAbdulBaha",
+      "file": "shoe-rack.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "zapatero",
+      "sha256": "b711d0956f3a795503536d41265dee9a07c2283b122a7f0ad7edffbfdb6b9975",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-zapatero.wav"
+    },
+    "shower": {
+      "author": "AdrianAbdulBaha",
+      "file": "shower.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "ducha",
+      "sha256": "df154117879bddd28d6c16ed81f087afce3fb437e21c15d39da6e3919a9b8c16",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-ducha.wav"
+    },
+    "sick": {
+      "author": "AdrianAbdulBaha",
+      "file": "sick.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "enfermo",
+      "sha256": "e4edb47abe524768949ab211239e67eb637859fa67299ec03cab8a50a748f4d7",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-enfermo.wav"
+    },
+    "sick-note": {
+      "author": "GlyphEnjoyer",
+      "file": "sick-note.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "baja",
+      "sha256": "a9e6812333205d6e4e148a0933412767acd05cf345bb190869d85ce3efd4d690",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-baja.wav"
+    },
+    "sign": {
+      "author": "AdrianAbdulBaha",
+      "file": "sign.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "firmar",
+      "sha256": "f61487e3f46faef54c7818f93de0cbcd0b8557c8c0462792df5f21e436afeb79",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-firmar.wav"
+    },
+    "signature": {
+      "author": "AdrianAbdulBaha",
+      "file": "signature.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "firma",
+      "sha256": "ebee9093bcddaef9c607797ba6d81c172e0c785b11aaa7c1c1e46c79e29c930e",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-firma.wav"
+    },
+    "sink": {
+      "author": "Marreromarco",
+      "file": "sink.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "lavabo",
+      "sha256": "831086e7235423caf1811f3e1c27c97918073c3cbd3f9911566ec611cc2e559e",
+      "source": "LL-Q1321 (spa)-Marreromarco-lavabo.wav"
+    },
+    "sit": {
+      "author": "Sinaloa",
+      "file": "sit.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "sentarse",
+      "sha256": "8989cacd83733ea0dfda487a36ec146147c274044fc54c251416342096f02ac8",
+      "source": "LL-Q1321 (spa)-Sinaloa-sentarse.wav"
+    },
+    "sleep": {
+      "author": "Rodelar",
+      "file": "sleep.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "dormir",
+      "sha256": "942ae67dcad2db3a7403a92460915e4d9bfd2fcc1371823ae8e5eaea23eea424",
+      "source": "LL-Q1321 (spa)-Rodelar-dormir.wav"
+    },
+    "slow": {
+      "author": "AdrianAbdulBaha",
+      "file": "slow.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "lento",
+      "sha256": "5d516416de750918915d144f6860fa45b74271a1f7ef90416c5e37c9ec0535b0",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-lento.wav"
+    },
+    "small": {
+      "author": "Sinaloa",
+      "file": "small.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "pequeño",
+      "sha256": "b10a12200ea078df05fb31eb7e5ca30b012ff620c1faf3fa1c2fb2a9b6730893",
+      "source": "LL-Q1321 (spa)-Sinaloa-pequeño.wav"
+    },
+    "snore": {
+      "author": "Marreromarco",
+      "file": "snore.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "roncar",
+      "sha256": "c9624e53ddf385044878263a99959836b3e0411a752058690c0a0719bd9a3c2a",
+      "source": "LL-Q1321 (spa)-Marreromarco-roncar.wav"
+    },
+    "snow": {
+      "author": "Rodelar",
+      "file": "snow.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "nieve",
+      "sha256": "05e53f72a4737aa2b8beec4f257f9b95c6aceda4cc31706786fa8024d5ab7bbf",
+      "source": "LL-Q1321 (spa)-Rodelar-nieve.wav"
+    },
+    "soap": {
+      "author": "AdrianAbdulBaha",
+      "file": "soap.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "jabón",
+      "sha256": "103386ad431231698c71f28f3f9ab84d04ee7129a72b0e174d0f81dae5e5ad17",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-jabón.wav"
+    },
+    "sock": {
+      "author": "Eavqwiki",
+      "file": "sock.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "calcetín",
+      "sha256": "216002e5e0acb4aa2c5235725be4b9ebf1d02c6ddd039f8d5a90c7858a550534",
+      "source": "LL-Q1321 (spa)-Eavqwiki-calcetín.wav"
+    },
+    "socket": {
+      "author": "Marreromarco",
+      "file": "socket.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "enchufe",
+      "sha256": "a575733f61bf595b90b7dab964337fafef6cd79caff7ecf47860d6968d29255a",
+      "source": "LL-Q1321 (spa)-Marreromarco-enchufe.wav"
+    },
+    "sofa": {
+      "author": "AdrianAbdulBaha",
+      "file": "sofa.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "sofá",
+      "sha256": "fc16a5ea9e817907ece7456a05c9bfbff05655fe8009e81d56cffaba179e9309",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-sofá.wav"
+    },
+    "soft": {
+      "author": "AdrianAbdulBaha",
+      "file": "soft.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "blando",
+      "sha256": "48a43fabfa8f8649878ee51715eaf2a57310c19dce246416932d5ef1790d1cb2",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-blando.wav"
+    },
+    "speak": {
+      "author": "GlyphEnjoyer",
+      "file": "speak.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "hablar",
+      "sha256": "f8e2cc5d6ac2c8b7af49bdc4f09403055e8448b4b18b72126186c8283e049691",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-hablar.wav"
+    },
+    "sponge": {
+      "author": "Marreromarco",
+      "file": "sponge.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "esponja",
+      "sha256": "9d2071145ed3f4060d74780e9318aa20f2fb525d0b7dbec7d50c43e7738a0281",
+      "source": "LL-Q1321 (spa)-Marreromarco-esponja.wav"
+    },
+    "spoon": {
+      "author": "AdrianAbdulBaha",
+      "file": "spoon.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cuchara",
+      "sha256": "10cc74cd35718198c15002d99453e0721171c21121f18e8e77ccf608a1effbcf",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-cuchara.wav"
+    },
+    "stairs": {
+      "author": "AdrianAbdulBaha",
+      "file": "stairs.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "escalera",
+      "sha256": "9fbdb8e010af016de8031de2337a09b7664556bdef4856d154637409f25f3f91",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-escalera.wav"
+    },
+    "start": {
+      "author": "AdrianAbdulBaha",
+      "file": "start.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "empezar",
+      "sha256": "82e54d3b62ae0a3bc0d2fdf7a9a7b13cbb7e5616e760984513bcb9047c1cd7a8",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-empezar.wav"
+    },
+    "stomach": {
+      "author": "Rodelar",
+      "file": "stomach.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "barriga",
+      "sha256": "feb23c305bc968f6084249db6d5d89deae9fae5fb8fa20c9bb565f4efcdac9f8",
+      "source": "LL-Q1321 (spa)-Rodelar-barriga.wav"
+    },
+    "stove": {
+      "author": "AdrianAbdulBaha",
+      "file": "stove.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cocina",
+      "sha256": "f4fd2b03d324d117176126be04a653708fd2e3cc8547a874e5ad345d8f6bf911",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-cocina.wav"
+    },
+    "street": {
+      "author": "AdrianAbdulBaha",
+      "file": "street.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "calle",
+      "sha256": "29a125b557bc45bc681e610272761513044a4ccf9e81e2e296c74a2556b8b9bf",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-calle.wav"
+    },
+    "study": {
+      "author": "AdrianAbdulBaha",
+      "file": "study.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "estudiar",
+      "sha256": "eb33228c78e1d07a4116954a70404df50f90625434a5fd411d8b6307727ac237",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-estudiar.wav"
+    },
+    "submit": {
+      "author": "Marreromarco",
+      "file": "submit.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "entregar",
+      "sha256": "37e78f45e4d03ccd1eb35fdf9bb557542003ac7e9c59f5b45aa412edb7222699",
+      "source": "LL-Q1321 (spa)-Marreromarco-entregar.wav"
+    },
+    "sugar": {
+      "author": "Julie Samothrace",
+      "file": "sugar.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "azúcar",
+      "sha256": "a501f5d6ef091fe96a06da5da751161007c85f54e8ac43664161ddbfcc6545c9",
+      "source": "LL-Q1321 (spa)-Julie Samothrace-azúcar.wav"
+    },
+    "sun": {
+      "author": "Rodelar",
+      "file": "sun.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "sol",
+      "sha256": "4ebc48fb957d7f5ff8b5af91660214103117c0c926d3a151743080468c8e8ccd",
+      "source": "LL-Q1321 (spa)-Rodelar-sol.wav"
+    },
+    "sweater": {
+      "author": "Marreromarco",
+      "file": "sweater.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "jersey",
+      "sha256": "c63b22bc11d212c1e3ff2fbec9dc52edabecb64ac5d3e0a2ee44f78a9f25012e",
+      "source": "LL-Q1321 (spa)-Marreromarco-jersey.wav"
+    },
+    "t-shirt": {
+      "author": "AdrianAbdulBaha",
+      "file": "t-shirt.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "camiseta",
+      "sha256": "8430624e87dd920eec9a27df04578c548cd75b784312da245457b0f8674c7c6d",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-camiseta.wav"
+    },
+    "take": {
+      "author": "AdrianAbdulBaha",
+      "file": "take.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "coger",
+      "sha256": "a3f3d9702c5ea4610dfe9cc36eb77c1e7f0b49277d872928259e57c2b78b36df",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-coger.wav"
+    },
+    "take-shower": {
+      "author": "Wikipedian-walker",
+      "file": "take-shower.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "ducharse",
+      "sha256": "0c4bebb64193e044235e716369fd34c5471c0843a74c4342f912720f8130e83c",
+      "source": "LL-Q1321 (spa)-Wikipedian-walker-ducharse.wav"
+    },
+    "talk": {
+      "author": "AdrianAbdulBaha",
+      "file": "talk.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "charlar",
+      "sha256": "94f3830a0a0e3838ca931c42c1b299ee459a1572c07aa96820f269ab623f9b55",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-charlar.wav"
+    },
+    "tap": {
+      "author": "Millars",
+      "file": "tap.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "grifo",
+      "sha256": "8e7b9504011af4d190ace8fafe5d9e15596e9a33fce6d5f101029d09771dbd6c",
+      "source": "LL-Q1321 (spa)-Millars-grifo.wav"
+    },
+    "taste": {
+      "author": "Marreromarco",
+      "file": "taste.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "probar",
+      "sha256": "57a99b8890b14d75e57bbc607462d58ba998ea2c55b8ed7c5f55228d948ef892",
+      "source": "LL-Q1321 (spa)-Marreromarco-probar.wav"
+    },
+    "tax": {
+      "author": "Marreromarco",
+      "file": "tax.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "impuesto",
+      "sha256": "35151efbe037229b165c4ed3d40fb870952f15b4301d99d5249c8fd1c99cb5a2",
+      "source": "LL-Q1321 (spa)-Marreromarco-impuesto.wav"
+    },
+    "taxi": {
+      "author": "AdrianAbdulBaha",
+      "file": "taxi.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "taxi",
+      "sha256": "1dc1ecaa27873a998503b2c9b9a9e7944657eaeb14b7dc4a5ce6066bbbe3c3e6",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-taxi.wav"
+    },
+    "tea": {
+      "author": "Eavqwiki",
+      "file": "tea.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "té",
+      "sha256": "f7d66013cc847d693ce2b6990d93f9105005d7101fec7855fee173f5ac07e957",
+      "source": "LL-Q1321 (spa)-Eavqwiki-té.wav"
+    },
+    "teacher": {
+      "author": "AdrianAbdulBaha",
+      "file": "teacher.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "profesor",
+      "sha256": "5e1902a2fffd9245c2ae7d5a1c7473525ff8973f4e9229bee33dcb4f8f29b41a",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-profesor.wav"
+    },
+    "teacher-f": {
+      "author": "Marreromarco",
+      "file": "teacher-f.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "profesora",
+      "sha256": "12c0ee737e7f8b291afb50a45a6b25cdd99059f27aa5758e536dd83ab21e0651",
+      "source": "LL-Q1321 (spa)-Marreromarco-profesora.wav"
+    },
+    "thank": {
+      "author": "AdrianAbdulBaha",
+      "file": "thank.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "agradecer",
+      "sha256": "0aad0a9dfed061d86e984abc506dcb2de511f7c2de0f20824b3e62de8d4c409d",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-agradecer.wav"
+    },
+    "thirst": {
+      "author": "AdrianAbdulBaha",
+      "file": "thirst.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "sed",
+      "sha256": "9d6566dc5bba4ba9151f62f39350a85b363839ae9000ab4bd6a019c6fd9ce130",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-sed.wav"
+    },
+    "throat": {
+      "author": "AdrianAbdulBaha",
+      "file": "throat.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "garganta",
+      "sha256": "44b12ccc40b289011444fd864a752f6f93ae7186fcfaa8b2adf091d8437fc225",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-garganta.wav"
+    },
+    "ticket": {
+      "author": "AdrianAbdulBaha",
+      "file": "ticket.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "billete",
+      "sha256": "7c5d711c41df529fe56e3b90342b901184b81b43aa77d57fc0b9aad15777e490",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-billete.wav"
+    },
+    "tidy-up": {
+      "author": "AdrianAbdulBaha",
+      "file": "tidy-up.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "ordenar",
+      "sha256": "42f7f739eb0c19835b27d1d5cb72c06eac05c745c94cd585207e575f22d7e257",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-ordenar.wav"
+    },
+    "time": {
+      "author": "Precision27",
+      "file": "time.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "tiempo",
+      "sha256": "2a9a195d3f2d37d13d48b069c082dcbac3a58a0061e46b1d499db7c54b968619",
+      "source": "LL-Q1321 (spa)-Precision27-tiempo.wav"
+    },
+    "to-cough": {
+      "author": "Marreromarco",
+      "file": "to-cough.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "toser",
+      "sha256": "1bd0cc6265afc43c2435ab9fec45b0a7b1a3b9586902a6c859adec3a48efb522",
+      "source": "LL-Q1321 (spa)-Marreromarco-toser.wav"
+    },
+    "to-help": {
+      "author": "GlyphEnjoyer",
+      "file": "to-help.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "ayudar",
+      "sha256": "d28af9036caef4c954d9696309f89b8500c570e40e86ab72ef49d18a38cfd4d7",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-ayudar.wav"
+    },
+    "to-work": {
+      "author": "AdrianAbdulBaha",
+      "file": "to-work.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "trabajar",
+      "sha256": "9870c7f72392790221b7ac624038a70edd1921c4a109e0e5eb5ee1c2092c8f83",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-trabajar.wav"
+    },
+    "today": {
+      "author": "Precision27",
+      "file": "today.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "hoy",
+      "sha256": "72ed443effcc0e1963fc07dae1d5d2faab33713ab19d3b4619592eae8245fc78",
+      "source": "LL-Q1321 (spa)-Precision27-hoy.wav"
+    },
+    "toilet": {
+      "author": "Marreromarco",
+      "file": "toilet.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "inodoro",
+      "sha256": "f5b7d40b119e61bb034b44e3a37ec55d4580124f73c5c4b04419015bcb266f4d",
+      "source": "LL-Q1321 (spa)-Marreromarco-inodoro.wav"
+    },
+    "tomorrow": {
+      "author": "GlyphEnjoyer",
+      "file": "tomorrow.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "mañana",
+      "sha256": "546cfea382bcdaff7e294fbb7b77a1a2702d2e2394869c05db85ebb59d1a863e",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-mañana.wav"
+    },
+    "towel": {
+      "author": "AdrianAbdulBaha",
+      "file": "towel.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "toalla",
+      "sha256": "0e2de66ca3c3d3946f4cffc90636d99f15d94a069823eaae64a3f5abd0e39579",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-toalla.wav"
+    },
+    "traffic-light": {
+      "author": "Marreromarco",
+      "file": "traffic-light.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "semáforo",
+      "sha256": "b1f4ce02882916eccae1c0daf10049c55600b99d0fe6b5152578de389a0bebd3",
+      "source": "LL-Q1321 (spa)-Marreromarco-semáforo.wav"
+    },
+    "train": {
+      "author": "AdrianAbdulBaha",
+      "file": "train.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "tren",
+      "sha256": "1cfb6adbf3e82d7ecc52c029f699c7f48e992d6857a667f99b9ad74069b93cd4",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-tren.wav"
+    },
+    "translate": {
+      "author": "AdrianAbdulBaha",
+      "file": "translate.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "traducir",
+      "sha256": "902f490fbb73836f8b5f5d4747fcdf4eacb3e304bae06d9c60bb30c2086603e4",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-traducir.wav"
+    },
+    "tree": {
+      "author": "Rodelar",
+      "file": "tree.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "árbol",
+      "sha256": "b9f856ef5def674038c505cf3d52db2627a4c8e0b9db63d0b27298cd95a5e4b3",
+      "source": "LL-Q1321 (spa)-Rodelar-árbol.wav"
+    },
+    "trousers": {
+      "author": "AdrianAbdulBaha",
+      "file": "trousers.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pantalón",
+      "sha256": "a30c3767abef6ff399a5ba17f3547d01e83b1929830f8b349870e71bf0d2e476",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pantalón.wav"
+    },
+    "tv": {
+      "author": "AdrianAbdulBaha",
+      "file": "tv.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "televisión",
+      "sha256": "b0f761ec75d2f2228340846b38353a11ab21575986a886874e2a2f02a8eb0724",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-televisión.wav"
+    },
+    "umbrella": {
+      "author": "Eavqwiki",
+      "file": "umbrella.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "paraguas",
+      "sha256": "d5a8415bd552972b290076a57ba834033b2fca3f46130a6bc1a26fbe957efa5c",
+      "source": "LL-Q1321 (spa)-Eavqwiki-paraguas.wav"
+    },
+    "understand": {
+      "author": "AdrianAbdulBaha",
+      "file": "understand.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "entender",
+      "sha256": "01b12f98f9f411b7c9521e18cf6a93089aaf19daced8b9b71fd102fdcceb0775",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-entender.wav"
+    },
+    "urgent": {
+      "author": "Marreromarco",
+      "file": "urgent.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "urgente",
+      "sha256": "0495813ef7f883d2fb98fef7f55fdc3a2fd6614e4729dacf911f811e40b91bf8",
+      "source": "LL-Q1321 (spa)-Marreromarco-urgente.wav"
+    },
+    "wake-up": {
+      "author": "Marreromarco",
+      "file": "wake-up.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "despertarse",
+      "sha256": "b12cbb77c9e0c81c242da9360131ef1f1d21c7d94b00c631403f6f3e0063d0ef",
+      "source": "LL-Q1321 (spa)-Marreromarco-despertarse.wav"
+    },
+    "wall": {
+      "author": "AdrianAbdulBaha",
+      "file": "wall.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pared",
+      "sha256": "f810d09cb5bfc394633ac5a51efaab9b76616036d30519f240334d81eed7835b",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pared.wav"
+    },
+    "wallet": {
+      "author": "Marreromarco",
+      "file": "wallet.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "cartera",
+      "sha256": "bb903f5c19600f5ecfa974a1f593dd253170c25e451bfda4506dc855dfa234c9",
+      "source": "LL-Q1321 (spa)-Marreromarco-cartera.wav"
+    },
+    "wardrobe": {
+      "author": "AdrianAbdulBaha",
+      "file": "wardrobe.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "armario",
+      "sha256": "aad2cf2866b0624fd5ef348d7d76878f98a49b170ab866056819a11e4560e432",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-armario.wav"
+    },
+    "washing-machine": {
+      "author": "AdrianAbdulBaha",
+      "file": "washing-machine.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "lavadora",
+      "sha256": "1d77f9d9f59d64497a2bdb4ba6f09833431749cdf784abffd0265d02dfc90279",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-lavadora.wav"
+    },
+    "water": {
+      "author": "Precision27",
+      "file": "water.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "agua",
+      "sha256": "4a04114e81f72aa3cea60f17d56b790967edf21975194bbb1f73aef1c5f4c5f8",
+      "source": "LL-Q1321 (spa)-Precision27-agua.wav"
+    },
+    "way": {
+      "author": "Rodelar",
+      "file": "way.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "camino",
+      "sha256": "1e748d155b0b53f607fac0eced50e3fbac274d8007a3f1ffd78697a363308ae0",
+      "source": "LL-Q1321 (spa)-Rodelar-camino.wav"
+    },
+    "weather": {
+      "author": "Precision27",
+      "file": "weather.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "tiempo",
+      "sha256": "2a9a195d3f2d37d13d48b069c082dcbac3a58a0061e46b1d499db7c54b968619",
+      "source": "LL-Q1321 (spa)-Precision27-tiempo.wav"
+    },
+    "week": {
+      "author": "Precision27",
+      "file": "week.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "semana",
+      "sha256": "d3489e7eca5d32a15d856326ace588725c29f6939c94d7bc94499d23e6037073",
+      "source": "LL-Q1321 (spa)-Precision27-semana.wav"
+    },
+    "wind": {
+      "author": "Rodelar",
+      "file": "wind.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "viento",
+      "sha256": "0f50794de3f2c07a2533846c5400113f085d59bd1e981442445fa7d3849d9329",
+      "source": "LL-Q1321 (spa)-Rodelar-viento.wav"
+    },
+    "window": {
+      "author": "AdrianAbdulBaha",
+      "file": "window.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "ventana",
+      "sha256": "a2265ff98e620495b30c8084b8a4dcff0d32487b80c640fc6c0e9682b43e7ed1",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-ventana.wav"
+    },
+    "word": {
+      "author": "Akrit0mythos",
+      "file": "word.mp3",
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "palabra",
+      "sha256": "b6a197726ee0e874adec8bfcd0685a416c36d9c37e9d71d6971633e6f581c5cb",
+      "source": "LL-Q1321 (spa)-Akrit0mythos-palabra.wav"
+    },
+    "work": {
+      "author": "Precision27",
+      "file": "work.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "trabajo",
+      "sha256": "3ac175235b35510d5beccb51ce714d32942fe3cbea6686161ce980cf389c1ceb",
+      "source": "LL-Q1321 (spa)-Precision27-trabajo.wav"
+    },
+    "write": {
+      "author": "AdrianAbdulBaha",
+      "file": "write.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "escribir",
+      "sha256": "649fd24a95722400cb9f05b27a21b6b056866c8d7e63a01905fd0ce64d661fc4",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-escribir.wav"
+    },
+    "yawn": {
+      "author": "AdrianAbdulBaha",
+      "file": "yawn.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "bostezar",
+      "sha256": "38f49c9ef465561aa2343323819c00b5c8e451d842504f8a53d0aa6629e13fe2",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-bostezar.wav"
+    },
+    "yes": {
+      "author": "Precision27",
+      "file": "yes.mp3",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "sí",
+      "sha256": "746b540d08d8eb18a337cb02d072cd9f94165285aebf2c429852f90514b61dbc",
+      "source": "LL-Q1321 (spa)-Precision27-sí.wav"
+    }
+  }
+}
