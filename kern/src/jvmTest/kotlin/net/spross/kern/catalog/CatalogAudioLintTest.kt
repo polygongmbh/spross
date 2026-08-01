@@ -4,6 +4,7 @@ import java.io.File
 import java.security.MessageDigest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
@@ -166,6 +167,35 @@ class CatalogAudioLintTest {
             .filter { it.isFile && it.extension == "mp3" }
             .map { it.relativeTo(audioRoot).invariantSeparatorsPath }
         assertEquals(onDisk.toSortedSet(), referenced.toSortedSet())
+    }
+
+    /**
+     * The letters half of the attribution gate: the credits screen renders
+     * [Catalog.audioCredits] and nothing else, so a pack the grouping never reaches is a
+     * BY-SA notice no user can read — and bundling the files discharges nothing. A rule,
+     * not a roster: every letter recording has to find its own (language, author,
+     * licence) group carrying its glyph and its Commons filename. The uk pack is asserted
+     * present first, so the rule can never pass by having nothing to check.
+     */
+    @Test
+    fun everyLetterRecordingReachesTheCreditsSurface() {
+        assertTrue(catalog.audio["uk"]?.letters?.isNotEmpty() == true, "uk ships no letter recordings")
+        val credits = catalog.audioCredits()
+        for ((lang, manifest) in catalog.audio) {
+            for ((glyph, recording) in manifest.letters) {
+                val where = "audio/$lang letter \"$glyph\""
+                val group = assertNotNull(
+                    credits.singleOrNull {
+                        it.language == lang && it.author == recording.author && it.licence == recording.licence
+                    },
+                    "$where: no single ${recording.licence} group for ${recording.author}",
+                )
+                assertTrue(
+                    AudioCreditFile(glyph, recording.source) in group.files,
+                    "$where: absent from its own credit group",
+                )
+            }
+        }
     }
 
     /**
