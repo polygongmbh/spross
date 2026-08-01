@@ -161,6 +161,8 @@ never the shape of the app.
 - VoiceOver never gets autoplay talking over it. The headword is labeled with the language
   it is written in instead, so the screen reader says it in the right voice, and the replay
   is an action ON the word rather than a button around it.
+- Whose the voices are, what their licences ask of the app, and why a credits screen has to
+  stand before a word may be heard: `audio-licensing.md`.
 
 ## Counts & sessions
 

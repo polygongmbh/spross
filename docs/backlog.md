@@ -135,15 +135,10 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## Compliance
 
-- CC BY-SA vs App Store DRM, open before the FIRST submission:
-  §2(a)(5)(B) of the licence forbids applying "Effective Technological Measures" to the
-  shared material, and every App Store binary is FairPlay-encrypted — all of sw,
-  the uk letters, half of de and 237 of the 310 es files ship under BY-SA
-  (`catalog/audio/`, credits screen).
-  Attribution itself is covered (`App/Sources/Screens/CreditsView.swift`); this is the
-  second obligation. Mitigation on record: publish the same per-language files at a
-  public un-DRM'd URL, which the `catalog/audio/<lang>/` split already prepares.
-  Needs a legal read, not an engineering one.
+- CC BY-SA vs App Store DRM, open before the FIRST submission, and needing a legal read
+  rather than an engineering one: the obligation, the 690 files it covers and the
+  mitigation already on record are `audio-licensing.md` §6.1, which owns this question
+  along with the es accent caveat and the Azure gap-fill terms.
 
 ## Verification gaps
 

@@ -90,4 +90,6 @@ Kern modules under `kern/src/commonMain/kotlin/net/spross/kern/`:
 - Docs carry foundations; what the running app or the code answers faster stays out, and a needed cross-link means it is filed wrong.
 - Negations and hardlines only where the opposite is what would otherwise happen.
 - Out-of-scope discoveries go to `docs/backlog.md` (one-liners with pointers); prune on fix.
+- Whose the bundled recordings are and what their licences oblige — the ship/legal record —
+  is `docs/audio-licensing.md`; no other doc restates a licence term.
 - **Delete plan docs once shipped** — don't leave a stale third copy.
