@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Speech engines live in their own packages, which package visibility hides
+         since Android 11: without this the pinned engine cannot even be bound, and
+         every word without a recording would fall silent. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
+
     <application
         android:label="Spross"
         android:icon="@mipmap/ic_launcher"

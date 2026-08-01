@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import net.spross.app.audio.Pronouncer
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
@@ -58,8 +59,12 @@ data class SessionUi(
 class AppModel(app: Application) : AndroidViewModel(app) {
 
     private val boxFiles = BoxFiles(File(app.filesDir, "box"))
-    private val profile = ProfileStore(app.getSharedPreferences("spross", Context.MODE_PRIVATE))
+    private val prefs = app.getSharedPreferences("spross", Context.MODE_PRIVATE)
+    private val profile = ProfileStore(prefs)
     private var flow: SessionFlow? = null
+
+    /** The one door to a spoken target word — review cards now, the drills later. */
+    val pronouncer = Pronouncer(app, prefs)
 
     var screen by mutableStateOf<Screen>(Screen.Loading)
         private set
@@ -234,6 +239,13 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         val state = box ?: return
         stats = BoxEngine.statistics(state, now(), tz())
         sessionAvailable = !SessionComposer.composeSession(state, now(), tz()).isEmpty
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        // why: the synthesizer holds a binding to another process and the player a
+        // decoded clip — neither may outlive the model that opened them.
+        pronouncer.release()
     }
 
     // why: every answer persists (small doc, IO thread) — process death mid-session
