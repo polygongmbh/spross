@@ -227,14 +227,16 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   "letters": {
     "ж": { "file": "letters/u0436.mp3", "licence": "CC BY-SA 4.0",
            "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-           "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "77b0…" } } }
+           "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "77b0…",
+           "gain": 20.0, "lead": 1069 } } }
 ```
 
 - `language` must equal the folder name, and a folder for a language `languages.json`
   does not declare is never read — adding one is dropping a directory in, nothing else.
 - `words` is keyed by concept slug, `letters` (optional, uk only today) by lowercase
   glyph. Every field is required except `licenceUrl`, which is absent exactly for
-  public-domain files, having no deed to link.
+  public-domain files, having no deed to link, and `gain`/`lead`, absent where they
+  would be zero.
 - `matches` — the surface form the recording actually SPEAKS, and the lookup key:
   playback is keyed by what stands on the card, never by the slug the file was fetched
   for, so a rotated synonym nobody recorded falls through to the app's own voice
@@ -253,6 +255,11 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   re-encoding (including loudness normalization, so packs differ in loudness) is an
   adaptation under BY-SA. `sha256` is the digest the generator verified after the copy
   and lint re-hashes what was committed, which makes it a gate rather than a promise.
+- `gain` (dB) and `lead` (ms) are the generator's own MEASUREMENT of those untouched
+  bytes — how far the recording sits from the catalog's analysis target, and how much
+  dead air to start past — so the files stay unmodified and only the player corrects
+  them. What was measured, against which target, is `../scripts/audio-catalog.py`'s
+  `ANALYSIS`.
 - No `README.md` inside `audio/` — the Android sync only excludes one at the catalog
   root, so a nested one would ship in the APK. Audio schema docs live here.
 

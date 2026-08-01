@@ -4,6 +4,8 @@
     "а": {
       "author": "Tabrus",
       "file": "letters/u0430.mp3",
+      "gain": 7.6,
+      "lead": 1285,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "97cf1d216ef7950ed1204037365059c0dfbb1e5434962dfd768031f6d4e49e88",
@@ -12,6 +14,8 @@
     "б": {
       "author": "Tabrus",
       "file": "letters/u0431.mp3",
+      "gain": 15.7,
+      "lead": 1060,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "a70cfd0c62bdecc74097103d0b7b18f3ccd73e0e659b77bc2ffe1ace489d6116",
@@ -20,6 +24,8 @@
     "в": {
       "author": "Tabrus",
       "file": "letters/u0432.mp3",
+      "gain": 17.3,
+      "lead": 1062,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "b980c62f14372481e0e0a36b90db822183c423c688324d1cb7bdad76064b44a2",
@@ -28,6 +34,8 @@
     "г": {
       "author": "Tabrus",
       "file": "letters/u0433.mp3",
+      "gain": 18.2,
+      "lead": 748,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "aed2255ef062421afec3fed6ccd32d52812fdc99eb443e7ad8f3da458bd2a549",
@@ -36,6 +44,8 @@
     "д": {
       "author": "Tabrus",
       "file": "letters/u0434.mp3",
+      "gain": 13.3,
+      "lead": 548,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "90296d6ce5662c25c11a4503f227f3b230fa504b0e7ae304cdb9faf2281cd730",
@@ -44,6 +54,8 @@
     "е": {
       "author": "Tabrus",
       "file": "letters/u0435.mp3",
+      "gain": 16.0,
+      "lead": 1071,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "5f6fc316664a3f77ae5f3f9a9478771f41037466a613991e0d8b4b4043c46fc2",
@@ -52,6 +64,8 @@
     "ж": {
       "author": "Tabrus",
       "file": "letters/u0436.mp3",
+      "gain": 20.0,
+      "lead": 1069,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "508ab1714043ff86c4e7a7f3478fd72ecb67fccfd8b91b13527a23d80d3aff0f",
@@ -60,6 +74,8 @@
     "з": {
       "author": "Tabrus",
       "file": "letters/u0437.mp3",
+      "gain": 16.6,
+      "lead": 765,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "8bea3e0a753db07ec94ea5add25c7a096928e259afb67c4e8734203a5ff1f9a3",
@@ -68,6 +84,8 @@
     "и": {
       "author": "Tabrus",
       "file": "letters/u0438.mp3",
+      "gain": 11.0,
+      "lead": 1066,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "64aa12bd63377f002c872987f33b556374581b1a168890a660f4d89c64dd1724",
@@ -76,6 +94,8 @@
     "й": {
       "author": "Tabrus",
       "file": "letters/u0439.mp3",
+      "gain": 12.8,
+      "lead": 703,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "c48feac97296c067326c6b2d7d932ebb971b82d874439fa6eda1ea42a684c5a7",
@@ -84,6 +104,8 @@
     "к": {
       "author": "Tabrus",
       "file": "letters/u043a.mp3",
+      "gain": 10.4,
+      "lead": 1217,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "5d7837f8d6423a98fa275aa068048e156f7bad0dafe197c7318cf2afbc0fdb54",
@@ -92,6 +114,8 @@
     "л": {
       "author": "Tabrus",
       "file": "letters/u043b.mp3",
+      "gain": 14.3,
+      "lead": 872,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "3fb2592578ef933a474a3d00d6cc131a251a85704c9659104088bcffa731191d",
@@ -100,6 +124,8 @@
     "м": {
       "author": "Tabrus",
       "file": "letters/u043c.mp3",
+      "gain": 13.2,
+      "lead": 1050,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "bf5a47089943462f1e76492726737cb135bb96f7f1a96ad7f403e882034ba692",
@@ -108,6 +134,8 @@
     "н": {
       "author": "Tabrus",
       "file": "letters/u043d.mp3",
+      "gain": 12.7,
+      "lead": 873,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "92739d802e15e4155ef1be7f7bd12a8c6cc22f13055438b9fd283412161b5407",
@@ -116,6 +144,8 @@
     "о": {
       "author": "Tabrus",
       "file": "letters/u043e.mp3",
+      "gain": 15.9,
+      "lead": 1525,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "a34b39ff12a6666abe18e9f75e20e3d3e201f5c0dcd72efe6ffdedaf9c155a80",
@@ -124,6 +154,8 @@
     "п": {
       "author": "Tabrus",
       "file": "letters/u043f.mp3",
+      "gain": 13.1,
+      "lead": 1106,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "dc484f74c98269759996d870e17b1bb094e273e51d818297e4727f19633a3b44",
@@ -132,6 +164,8 @@
     "р": {
       "author": "Tabrus",
       "file": "letters/u0440.mp3",
+      "gain": 14.0,
+      "lead": 1264,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "c2dabb44923e6084e15382e90c64f0d3ca77b63ebb9fa952c5b6261dbcc4ed79",
@@ -140,6 +174,8 @@
     "с": {
       "author": "Tabrus",
       "file": "letters/u0441.mp3",
+      "gain": 16.7,
+      "lead": 996,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "5042cc56cb6323f60f99030069402407006c741966b6c032e5825639eed6c384",
@@ -148,6 +184,8 @@
     "т": {
       "author": "Tabrus",
       "file": "letters/u0442.mp3",
+      "gain": 15.0,
+      "lead": 1109,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "8439ee4c2d820fcba7befe890636c0f59582699891f1d7c01f12ea880e2bc6c0",
@@ -156,6 +194,8 @@
     "у": {
       "author": "Tabrus",
       "file": "letters/u0443.mp3",
+      "gain": 3.9,
+      "lead": 1064,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "65127ba91bb653a0dd206e1186f7647ad221cde429a0ece0dcac95ad605bab4c",
@@ -164,6 +204,8 @@
     "ф": {
       "author": "Tabrus",
       "file": "letters/u0444.mp3",
+      "gain": 16.2,
+      "lead": 1225,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "46b5db6ffd987be7016c6c77004905e886b25a94e8e1847ce9cea9e8a788fb0d",
@@ -172,6 +214,8 @@
     "х": {
       "author": "Tabrus",
       "file": "letters/u0445.mp3",
+      "gain": 16.8,
+      "lead": 1038,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "00febe2cea6d32bf76225bd2f25b613cb17739884facdb53e639c57684fffde8",
@@ -180,6 +224,8 @@
     "ц": {
       "author": "Tabrus",
       "file": "letters/u0446.mp3",
+      "gain": 17.8,
+      "lead": 920,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "8069d21b61be8a08d754c49732b2234c95de5e74d02acbba45a8c10a08a53afc",
@@ -188,6 +234,8 @@
     "ч": {
       "author": "Tabrus",
       "file": "letters/u0447.mp3",
+      "gain": 14.0,
+      "lead": 1016,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "6392fb8a7729a1948983ad2f872e40f80583dc0cb3b4d5a8c4cad0336c202474",
@@ -196,6 +244,8 @@
     "ш": {
       "author": "Tabrus",
       "file": "letters/u0448.mp3",
+      "gain": 15.5,
+      "lead": 967,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "5ffe6e673d734a669745824a92fac936672a20e058f795c1453d8b8eb267440e",
@@ -204,6 +254,8 @@
     "щ": {
       "author": "Tabrus",
       "file": "letters/u0449.mp3",
+      "gain": 16.4,
+      "lead": 775,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "d3d685624edd930369a66fb33bd7463be93ec63ae0b6ead88f1b017edc427444",
@@ -212,6 +264,8 @@
     "ю": {
       "author": "Tabrus",
       "file": "letters/u044e.mp3",
+      "gain": 13.6,
+      "lead": 635,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "3ca4dded829427ba2f2533057c34b310497ec6e8978dd70eebc64e912a82912a",
@@ -220,6 +274,8 @@
     "я": {
       "author": "Tabrus",
       "file": "letters/u044f.mp3",
+      "gain": 18.3,
+      "lead": 848,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "1bf1189b4a31f24dd0c4dca7d786da4dff941181036d002e00ce515eeab63824",
@@ -228,6 +284,8 @@
     "є": {
       "author": "Tabrus",
       "file": "letters/u0454.mp3",
+      "gain": 14.3,
+      "lead": 796,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "f78defce0bf53ffc6b1a937ce487ab87578e5075106085b9830ad43837277097",
@@ -236,6 +294,8 @@
     "і": {
       "author": "Tabrus",
       "file": "letters/u0456.mp3",
+      "gain": 12.3,
+      "lead": 1045,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "c71af86bf18045a4a4a200bd3737ef94757ac3d095abff51e96f7bf043b8175c",
@@ -244,6 +304,8 @@
     "ї": {
       "author": "Tabrus",
       "file": "letters/u0457.mp3",
+      "gain": 14.3,
+      "lead": 951,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "306357cfdde2d442803b05c2e69efd17cdc98d323d7a41b0975a7ba2eff0162e",
@@ -252,6 +314,8 @@
     "ґ": {
       "author": "Tabrus",
       "file": "letters/u0491.mp3",
+      "gain": 15.9,
+      "lead": 973,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "05cdcda73bb071d42d418dc84280a9996a466f4bfaf434fe0abb7265e54ddd4c",
@@ -262,6 +326,8 @@
     "address": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "address.mp3",
+      "gain": 2.7,
+      "lead": 7,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "адреса",
@@ -271,6 +337,8 @@
     "alarm-clock": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "alarm-clock.mp3",
+      "gain": 0.2,
+      "lead": 137,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "будильник",
@@ -280,6 +348,8 @@
     "always": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "always.mp3",
+      "gain": 1.9,
+      "lead": 245,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "завжди",
@@ -289,6 +359,8 @@
     "answer": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "answer.mp3",
+      "gain": -1.2,
+      "lead": 23,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "відповідь",
@@ -298,6 +370,8 @@
     "apartment": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "apartment.mp3",
+      "gain": 3.6,
+      "lead": 96,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "квартира",
@@ -307,6 +381,7 @@
     "application": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "application.mp3",
+      "gain": 1.1,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "заява",
@@ -316,6 +391,8 @@
     "approve": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "approve.mp3",
+      "gain": -1.0,
+      "lead": 86,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "схвалювати",
@@ -325,6 +402,8 @@
     "arrange": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "arrange.mp3",
+      "gain": -0.5,
+      "lead": 105,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "домовлятися",
@@ -334,6 +413,8 @@
     "arrive": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "arrive.mp3",
+      "gain": 2.1,
+      "lead": 161,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "прибувати",
@@ -343,6 +424,8 @@
     "ask": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "ask.mp3",
+      "gain": 2.1,
+      "lead": 55,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "питати",
@@ -352,6 +435,8 @@
     "back": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "back.mp3",
+      "gain": -0.2,
+      "lead": 69,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "спина",
@@ -361,6 +446,8 @@
     "bad": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "bad.mp3",
+      "gain": -1.7,
+      "lead": 50,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "поганий",
@@ -370,6 +457,8 @@
     "bag": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "bag.mp3",
+      "gain": -0.7,
+      "lead": 205,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сумка",
@@ -379,6 +468,8 @@
     "bake": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "bake.mp3",
+      "gain": 2.4,
+      "lead": 119,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "пекти",
@@ -388,6 +479,8 @@
     "bathtub": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "bathtub.mp3",
+      "gain": -2.1,
+      "lead": 59,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ванна",
@@ -397,6 +490,8 @@
     "be-called": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "be-called.mp3",
+      "gain": 1.0,
+      "lead": 247,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "називатися",
@@ -406,6 +501,8 @@
     "be-late": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "be-late.mp3",
+      "gain": 1.8,
+      "lead": 109,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "запізнюватися",
@@ -415,6 +512,8 @@
     "bed": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "bed.mp3",
+      "gain": -0.4,
+      "lead": 217,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ліжко",
@@ -424,6 +523,7 @@
     "belt": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "belt.mp3",
+      "gain": -1.7,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ремінь",
@@ -433,6 +533,7 @@
     "bicycle": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "bicycle.mp3",
+      "gain": 0.5,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "велосипед",
@@ -442,6 +543,8 @@
     "big": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "big.mp3",
+      "gain": 0.4,
+      "lead": 165,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "великий",
@@ -451,6 +554,8 @@
     "bin": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "bin.mp3",
+      "gain": -3.4,
+      "lead": 85,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "смітник",
@@ -460,6 +565,7 @@
     "blanket": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "blanket.mp3",
+      "gain": -0.3,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ковдра",
@@ -469,6 +575,8 @@
     "blood": {
       "author": "Женя Музика, Nicolas Vion",
       "file": "blood.mp3",
+      "gain": -1.4,
+      "lead": 92,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "кров",
@@ -478,6 +586,7 @@
     "board": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "board.mp3",
+      "gain": 1.5,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "дошка",
@@ -487,6 +596,8 @@
     "bread": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "bread.mp3",
+      "gain": -3.6,
+      "lead": 170,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "хліб",
@@ -496,6 +607,7 @@
     "break": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "break.mp3",
+      "gain": -0.4,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "перерва",
@@ -505,6 +617,7 @@
     "bucket": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "bucket.mp3",
+      "gain": -0.6,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "відро",
@@ -514,6 +627,7 @@
     "bus": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "bus.mp3",
+      "gain": 4.1,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "автобус",
@@ -523,6 +637,7 @@
     "bus-stop": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "bus-stop.mp3",
+      "gain": -1.2,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "зупинка",
@@ -532,6 +647,8 @@
     "buy": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "buy.mp3",
+      "gain": 0.8,
+      "lead": 4,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "купувати",
@@ -541,6 +658,7 @@
     "bye": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
       "file": "bye.mp3",
+      "gain": 1.1,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "бувай",
@@ -550,6 +668,8 @@
     "calendar": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "calendar.mp3",
+      "gain": -0.4,
+      "lead": 118,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "календар",
@@ -559,6 +679,8 @@
     "call": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "call.mp3",
+      "gain": 0.1,
+      "lead": 90,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "телефонувати",
@@ -568,6 +690,8 @@
     "cancel": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "cancel.mp3",
+      "gain": 2.8,
+      "lead": 194,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "скасовувати",
@@ -577,6 +701,7 @@
     "car": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "car.mp3",
+      "gain": -1.8,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "машина",
@@ -586,6 +711,8 @@
     "careful": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "careful.mp3",
+      "gain": 0.3,
+      "lead": 216,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "обережно",
@@ -595,6 +722,7 @@
     "carpet": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "carpet.mp3",
+      "gain": -0.6,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "килим",
@@ -604,6 +732,8 @@
     "case-worker": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "case-worker.mp3",
+      "gain": 0.9,
+      "lead": 189,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "працівник",
@@ -613,6 +743,7 @@
     "certificate": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "certificate.mp3",
+      "gain": -0.8,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "довідка",
@@ -622,6 +753,8 @@
     "chair": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "chair.mp3",
+      "gain": 1.7,
+      "lead": 229,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "стілець",
@@ -631,6 +764,8 @@
     "charger": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "charger.mp3",
+      "gain": 0.9,
+      "lead": 122,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "зарядка",
@@ -640,6 +775,8 @@
     "cheese": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "cheese.mp3",
+      "gain": -1.2,
+      "lead": 218,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сир",
@@ -649,6 +786,8 @@
     "classroom": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "classroom.mp3",
+      "gain": -0.2,
+      "lead": 45,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "клас",
@@ -658,6 +797,8 @@
     "clean": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "clean.mp3",
+      "gain": 0.2,
+      "lead": 173,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "чистити",
@@ -667,6 +808,8 @@
     "clothes": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "clothes.mp3",
+      "gain": -0.5,
+      "lead": 248,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "одяг",
@@ -676,6 +819,8 @@
     "coat": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "coat.mp3",
+      "gain": 2.1,
+      "lead": 14,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "пальто",
@@ -685,6 +830,8 @@
     "coffee": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "coffee.mp3",
+      "gain": 0.6,
+      "lead": 269,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "кава",
@@ -694,6 +841,8 @@
     "colleague": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "colleague.mp3",
+      "gain": -1.4,
+      "lead": 248,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "колега",
@@ -703,6 +852,8 @@
     "come": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "come.mp3",
+      "gain": 2.2,
+      "lead": 100,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "приходити",
@@ -712,6 +863,8 @@
     "company": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "company.mp3",
+      "gain": -1.7,
+      "lead": 169,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "фірма",
@@ -721,6 +874,8 @@
     "confirm": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "confirm.mp3",
+      "gain": 1.0,
+      "lead": 124,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "підтверджувати",
@@ -730,6 +885,8 @@
     "confirmation": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "confirmation.mp3",
+      "gain": 0.2,
+      "lead": 130,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "підтвердження",
@@ -739,6 +896,8 @@
     "contract": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "contract.mp3",
+      "gain": -1.9,
+      "lead": 91,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "договір",
@@ -748,6 +907,7 @@
     "cook": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "cook.mp3",
+      "lead": 249,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "готувати",
@@ -757,6 +917,8 @@
     "copy": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "copy.mp3",
+      "gain": 0.3,
+      "lead": 14,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "копіювати",
@@ -766,6 +928,7 @@
     "correct": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "correct.mp3",
+      "lead": 9,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "виправляти",
@@ -775,6 +938,8 @@
     "cough": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "cough.mp3",
+      "gain": 1.4,
+      "lead": 231,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "кашель",
@@ -784,6 +949,8 @@
     "course": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "course.mp3",
+      "gain": -1.8,
+      "lead": 178,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "курс",
@@ -793,6 +960,8 @@
     "course-book": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "course-book.mp3",
+      "gain": 1.6,
+      "lead": 106,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "підручник",
@@ -802,6 +971,8 @@
     "cream": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "cream.mp3",
+      "gain": -0.3,
+      "lead": 234,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "крем",
@@ -811,6 +982,8 @@
     "cuddle": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "cuddle.mp3",
+      "gain": -1.0,
+      "lead": 135,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "обійматися",
@@ -820,6 +993,8 @@
     "cup": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "cup.mp3",
+      "gain": 1.8,
+      "lead": 213,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "чашка",
@@ -829,6 +1004,7 @@
     "curtain": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
       "file": "curtain.mp3",
+      "gain": 0.6,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "штора",
@@ -838,6 +1014,8 @@
     "cut": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "cut.mp3",
+      "gain": -2.2,
+      "lead": 117,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "різати",
@@ -847,6 +1025,7 @@
     "cv": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "cv.mp3",
+      "gain": -2.4,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "резюме",
@@ -856,6 +1035,8 @@
     "date": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "date.mp3",
+      "gain": 1.5,
+      "lead": 158,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "дата",
@@ -865,6 +1046,7 @@
     "day": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "day.mp3",
+      "lead": 257,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "день",
@@ -874,6 +1056,8 @@
     "deadline": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "deadline.mp3",
+      "gain": -0.2,
+      "lead": 7,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "строк",
@@ -883,6 +1067,8 @@
     "delete": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "delete.mp3",
+      "gain": 0.8,
+      "lead": 154,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "видаляти",
@@ -892,6 +1078,8 @@
     "depart": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "depart.mp3",
+      "gain": 0.9,
+      "lead": 61,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "від'їжджати",
@@ -901,6 +1089,8 @@
     "dictionary": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "dictionary.mp3",
+      "gain": -2.5,
+      "lead": 231,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "словник",
@@ -910,6 +1100,7 @@
     "dirty": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "dirty.mp3",
+      "gain": -3.0,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "брудний",
@@ -919,6 +1110,8 @@
     "doctor": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "doctor.mp3",
+      "gain": -1.8,
+      "lead": 218,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "лікар",
@@ -928,6 +1121,8 @@
     "door": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "door.mp3",
+      "gain": 0.7,
+      "lead": 233,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "двері",
@@ -937,6 +1132,8 @@
     "doorbell": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "doorbell.mp3",
+      "gain": -1.9,
+      "lead": 39,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "дзвінок",
@@ -946,6 +1143,7 @@
     "dress": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "dress.mp3",
+      "gain": -0.2,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сукня",
@@ -955,6 +1153,8 @@
     "drink": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "drink.mp3",
+      "gain": 0.4,
+      "lead": 25,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "пити",
@@ -964,6 +1164,8 @@
     "ear": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "ear.mp3",
+      "gain": -2.5,
+      "lead": 36,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "вухо",
@@ -973,6 +1175,8 @@
     "earn": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "earn.mp3",
+      "gain": -0.3,
+      "lead": 94,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "заробляти",
@@ -982,6 +1186,8 @@
     "eat": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "eat.mp3",
+      "gain": -2.2,
+      "lead": 258,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "їсти",
@@ -991,6 +1197,8 @@
     "egg": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "egg.mp3",
+      "gain": -1.8,
+      "lead": 189,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "яйце",
@@ -1000,6 +1208,8 @@
     "enter": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "enter.mp3",
+      "gain": 2.6,
+      "lead": 210,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "заходити",
@@ -1009,6 +1219,8 @@
     "evening": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "evening.mp3",
+      "gain": 1.5,
+      "lead": 218,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "вечір",
@@ -1018,6 +1230,8 @@
     "exam": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "exam.mp3",
+      "gain": -1.3,
+      "lead": 238,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "іспит",
@@ -1027,6 +1241,8 @@
     "examine": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "examine.mp3",
+      "gain": 1.5,
+      "lead": 112,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "обстежувати",
@@ -1036,6 +1252,7 @@
     "exercise-book": {
       "author": "Женя Музика, Nicolas Vion",
       "file": "exercise-book.mp3",
+      "gain": 0.9,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "зошит",
@@ -1045,6 +1262,8 @@
     "extend": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "extend.mp3",
+      "gain": -1.5,
+      "lead": 213,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "продовжувати",
@@ -1054,6 +1273,8 @@
     "fast": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "fast.mp3",
+      "gain": 1.6,
+      "lead": 214,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "швидкий",
@@ -1063,6 +1284,8 @@
     "fee": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "fee.mp3",
+      "gain": -2.8,
+      "lead": 37,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "збір",
@@ -1072,6 +1295,7 @@
     "feel": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "feel.mp3",
+      "gain": 0.2,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "почуватися",
@@ -1081,6 +1305,8 @@
     "fever": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "fever.mp3",
+      "gain": 0.8,
+      "lead": 154,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "температура",
@@ -1090,6 +1316,7 @@
     "fill-in": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "fill-in.mp3",
+      "gain": 2.6,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "заповнювати",
@@ -1099,6 +1326,8 @@
     "flower": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "flower.mp3",
+      "gain": -0.7,
+      "lead": 252,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "квітка",
@@ -1108,6 +1337,8 @@
     "folder": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "folder.mp3",
+      "gain": 1.6,
+      "lead": 6,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "папка",
@@ -1117,6 +1348,7 @@
     "fork": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "fork.mp3",
+      "gain": 1.3,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "виделка",
@@ -1126,6 +1358,8 @@
     "form": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "form.mp3",
+      "gain": 0.2,
+      "lead": 87,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "бланк",
@@ -1135,6 +1369,8 @@
     "fridge": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "fridge.mp3",
+      "gain": -1.3,
+      "lead": 167,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "холодильник",
@@ -1144,6 +1380,7 @@
     "friend": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "friend.mp3",
+      "gain": -1.8,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "друг",
@@ -1153,6 +1390,8 @@
     "friend-f": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "friend-f.mp3",
+      "gain": -0.3,
+      "lead": 189,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "подруга",
@@ -1162,6 +1401,8 @@
     "fry": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "fry.mp3",
+      "gain": -1.0,
+      "lead": 194,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "смажити",
@@ -1171,6 +1412,7 @@
     "get-dressed": {
       "author": "Женя Музика, Nicolas Vion",
       "file": "get-dressed.mp3",
+      "gain": 0.9,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "одягатися",
@@ -1180,6 +1422,7 @@
     "get-undressed": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "get-undressed.mp3",
+      "gain": 0.8,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "роздягатися",
@@ -1189,6 +1432,8 @@
     "get-up": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "get-up.mp3",
+      "gain": 1.6,
+      "lead": 217,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "вставати",
@@ -1198,6 +1443,8 @@
     "give": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "give.mp3",
+      "gain": 2.6,
+      "lead": 201,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "давати",
@@ -1207,6 +1454,8 @@
     "glove": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "glove.mp3",
+      "gain": 2.4,
+      "lead": 26,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "рукавичка",
@@ -1216,6 +1465,7 @@
     "go": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "go.mp3",
+      "gain": -1.0,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "йти",
@@ -1225,6 +1475,8 @@
     "go-for-walk": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "go-for-walk.mp3",
+      "gain": -1.5,
+      "lead": 186,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "гуляти",
@@ -1234,6 +1486,8 @@
     "good": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "good.mp3",
+      "gain": -2.0,
+      "lead": 172,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "добрий",
@@ -1243,6 +1497,8 @@
     "grade": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "grade.mp3",
+      "gain": 1.6,
+      "lead": 231,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "оцінка",
@@ -1252,6 +1508,8 @@
     "guest": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "guest.mp3",
+      "gain": -2.9,
+      "lead": 198,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "гість",
@@ -1261,6 +1519,8 @@
     "hair": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "hair.mp3",
+      "gain": -2.1,
+      "lead": 28,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "волосся",
@@ -1270,6 +1530,7 @@
     "hallway": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "hallway.mp3",
+      "gain": 0.5,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "коридор",
@@ -1279,6 +1540,8 @@
     "hand-in": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "hand-in.mp3",
+      "gain": 1.5,
+      "lead": 36,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "подавати",
@@ -1288,6 +1551,8 @@
     "hat": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "hat.mp3",
+      "gain": 2.6,
+      "lead": 191,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "шапка",
@@ -1297,6 +1562,7 @@
     "have": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "have.mp3",
+      "gain": 0.4,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "мати",
@@ -1306,6 +1572,7 @@
     "head": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "head.mp3",
+      "gain": -1.9,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "голова",
@@ -1315,6 +1582,8 @@
     "hello": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "hello.mp3",
+      "gain": 0.7,
+      "lead": 51,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "привіт",
@@ -1324,6 +1593,8 @@
     "help": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "help.mp3",
+      "gain": 0.3,
+      "lead": 114,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "допомога",
@@ -1333,6 +1604,8 @@
     "here": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "here.mp3",
+      "gain": -0.9,
+      "lead": 1,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "тут",
@@ -1342,6 +1615,7 @@
     "holiday": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "holiday.mp3",
+      "gain": 4.9,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "відпустка",
@@ -1351,6 +1625,8 @@
     "hospital": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "hospital.mp3",
+      "gain": -1.2,
+      "lead": 55,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "лікарня",
@@ -1360,6 +1636,8 @@
     "hour": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "hour.mp3",
+      "gain": 0.1,
+      "lead": 242,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "година",
@@ -1369,6 +1647,8 @@
     "house": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "house.mp3",
+      "gain": -2.3,
+      "lead": 223,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "будинок",
@@ -1378,6 +1658,8 @@
     "hunger": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "hunger.mp3",
+      "gain": -1.8,
+      "lead": 75,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "голод",
@@ -1387,6 +1669,8 @@
     "hurt": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "hurt.mp3",
+      "gain": -1.0,
+      "lead": 11,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "боліти",
@@ -1396,6 +1680,7 @@
     "important": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "important.mp3",
+      "gain": 0.6,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "важливий",
@@ -1405,6 +1690,7 @@
     "inside": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "inside.mp3",
+      "gain": -2.0,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "всередині",
@@ -1414,6 +1700,8 @@
     "internet": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "internet.mp3",
+      "gain": -1.4,
+      "lead": 172,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "інтернет",
@@ -1423,6 +1711,8 @@
     "jacket": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "jacket.mp3",
+      "gain": -0.3,
+      "lead": 192,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "куртка",
@@ -1432,6 +1722,8 @@
     "jog": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "jog.mp3",
+      "gain": -1.7,
+      "lead": 246,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "бігати",
@@ -1441,6 +1733,8 @@
     "key": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "key.mp3",
+      "gain": 0.1,
+      "lead": 248,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ключ",
@@ -1450,6 +1744,7 @@
     "knife": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "knife.mp3",
+      "gain": -4.2,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ніж",
@@ -1459,6 +1754,8 @@
     "know": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "know.mp3",
+      "gain": 0.1,
+      "lead": 224,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "знати",
@@ -1468,6 +1765,7 @@
     "lamp": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "lamp.mp3",
+      "gain": -0.8,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "лампа",
@@ -1477,6 +1775,8 @@
     "language": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "language.mp3",
+      "gain": -3.6,
+      "lead": 228,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "мова",
@@ -1486,6 +1786,7 @@
     "laugh": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "laugh.mp3",
+      "lead": 199,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сміятися",
@@ -1495,6 +1796,8 @@
     "laundry": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "laundry.mp3",
+      "gain": -1.1,
+      "lead": 217,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "білизна",
@@ -1504,6 +1807,8 @@
     "left": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "left.mp3",
+      "gain": -0.9,
+      "lead": 152,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ліворуч",
@@ -1513,6 +1818,7 @@
     "lesson": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "lesson.mp3",
+      "gain": -2.7,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "урок",
@@ -1522,6 +1828,8 @@
     "letter": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "letter.mp3",
+      "gain": 0.4,
+      "lead": 52,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "лист",
@@ -1531,6 +1839,7 @@
     "light": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "light.mp3",
+      "gain": -2.2,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "світло",
@@ -1540,6 +1849,7 @@
     "live": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "live.mp3",
+      "lead": 228,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "жити",
@@ -1549,6 +1859,8 @@
     "make": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "make.mp3",
+      "gain": 0.2,
+      "lead": 124,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "робити",
@@ -1558,6 +1870,7 @@
     "market": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "market.mp3",
+      "gain": -3.6,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ринок",
@@ -1567,6 +1880,7 @@
     "mattress": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "mattress.mp3",
+      "gain": 1.6,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "матрац",
@@ -1576,6 +1890,8 @@
     "milk": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "milk.mp3",
+      "gain": -0.5,
+      "lead": 233,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "молоко",
@@ -1585,6 +1901,8 @@
     "mirror": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "mirror.mp3",
+      "gain": 0.7,
+      "lead": 226,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "дзеркало",
@@ -1594,6 +1912,8 @@
     "money": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "money.mp3",
+      "gain": -1.1,
+      "lead": 152,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "гроші",
@@ -1603,6 +1923,8 @@
     "morning": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "morning.mp3",
+      "gain": -0.4,
+      "lead": 205,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ранок",
@@ -1612,6 +1934,8 @@
     "mouse": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "mouse.mp3",
+      "gain": 0.1,
+      "lead": 235,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "миша",
@@ -1621,6 +1945,7 @@
     "movie": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "movie.mp3",
+      "gain": -3.9,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "фільм",
@@ -1630,6 +1955,7 @@
     "much": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "much.mp3",
+      "gain": -0.5,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "багато",
@@ -1639,6 +1965,8 @@
     "music": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "music.mp3",
+      "gain": -1.9,
+      "lead": 77,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "музика",
@@ -1648,6 +1976,8 @@
     "name": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "name.mp3",
+      "gain": -3.5,
+      "lead": 234,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ім'я",
@@ -1657,6 +1987,7 @@
     "need": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "need.mp3",
+      "gain": 1.2,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "потребувати",
@@ -1666,6 +1997,8 @@
     "neighbour": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "neighbour.mp3",
+      "gain": -1.6,
+      "lead": 171,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сусід",
@@ -1675,6 +2008,8 @@
     "new": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "new.mp3",
+      "gain": -1.0,
+      "lead": 262,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "новий",
@@ -1684,6 +2019,8 @@
     "newspaper": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "newspaper.mp3",
+      "gain": 1.5,
+      "lead": 184,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "газета",
@@ -1693,6 +2030,8 @@
     "night": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "night.mp3",
+      "gain": -4.7,
+      "lead": 134,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ніч",
@@ -1702,6 +2041,8 @@
     "nightstand": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "nightstand.mp3",
+      "gain": -2.3,
+      "lead": 9,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "тумбочка",
@@ -1711,6 +2052,8 @@
     "no": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "no.mp3",
+      "gain": -3.1,
+      "lead": 263,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ні",
@@ -1720,6 +2063,8 @@
     "notebook": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "notebook.mp3",
+      "gain": -1.4,
+      "lead": 124,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "блокнот",
@@ -1729,6 +2074,7 @@
     "notice": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "notice.mp3",
+      "gain": -4.1,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "звільнення",
@@ -1738,6 +2084,7 @@
     "notification": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "notification.mp3",
+      "gain": -3.0,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "рішення",
@@ -1747,6 +2094,8 @@
     "now": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "now.mp3",
+      "gain": -0.2,
+      "lead": 228,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "зараз",
@@ -1756,6 +2105,8 @@
     "office": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "office.mp3",
+      "gain": 0.8,
+      "lead": 142,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "установа",
@@ -1765,6 +2116,8 @@
     "old": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "old.mp3",
+      "gain": 1.5,
+      "lead": 210,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "старий",
@@ -1774,6 +2127,8 @@
     "outdoors": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "outdoors.mp3",
+      "gain": -0.4,
+      "lead": 40,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "надворі",
@@ -1783,6 +2138,8 @@
     "page": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "page.mp3",
+      "gain": 0.9,
+      "lead": 213,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сторінка",
@@ -1792,6 +2149,8 @@
     "pain": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pain.mp3",
+      "gain": -3.5,
+      "lead": 224,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "біль",
@@ -1810,6 +2169,8 @@
     "paper": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "paper.mp3",
+      "gain": 4.8,
+      "lead": 72,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "папір",
@@ -1819,6 +2180,8 @@
     "park": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "park.mp3",
+      "gain": -0.8,
+      "lead": 45,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "парк",
@@ -1828,6 +2191,8 @@
     "passport": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "passport.mp3",
+      "gain": 0.9,
+      "lead": 88,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "паспорт",
@@ -1837,6 +2202,7 @@
     "password": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "password.mp3",
+      "gain": -0.1,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "пароль",
@@ -1846,6 +2212,7 @@
     "pay": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pay.mp3",
+      "gain": 2.7,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "платити",
@@ -1855,6 +2222,8 @@
     "pen": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pen.mp3",
+      "gain": -0.4,
+      "lead": 227,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ручка",
@@ -1864,6 +2233,8 @@
     "person": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "person.mp3",
+      "gain": -1.3,
+      "lead": 43,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "людина",
@@ -1873,6 +2244,7 @@
     "pharmacy": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pharmacy.mp3",
+      "gain": 4.2,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "аптека",
@@ -1882,6 +2254,8 @@
     "phone": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "phone.mp3",
+      "gain": 0.9,
+      "lead": 120,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "телефон",
@@ -1891,6 +2265,8 @@
     "picture": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "picture.mp3",
+      "gain": -1.0,
+      "lead": 160,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "картина",
@@ -1900,6 +2276,8 @@
     "pill": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pill.mp3",
+      "gain": 3.3,
+      "lead": 29,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "таблетка",
@@ -1909,6 +2287,8 @@
     "pillow": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pillow.mp3",
+      "gain": 3.7,
+      "lead": 209,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "подушка",
@@ -1918,6 +2298,8 @@
     "plan": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "plan.mp3",
+      "gain": -0.2,
+      "lead": 98,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "план",
@@ -1927,6 +2309,8 @@
     "plant": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "plant.mp3",
+      "gain": -1.9,
+      "lead": 109,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "рослина",
@@ -1936,6 +2320,8 @@
     "plate": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "plate.mp3",
+      "gain": 1.9,
+      "lead": 22,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "тарілка",
@@ -1945,6 +2331,8 @@
     "play": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "play.mp3",
+      "gain": 0.9,
+      "lead": 196,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "грати",
@@ -1954,6 +2342,8 @@
     "postpone": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "postpone.mp3",
+      "gain": 0.1,
+      "lead": 264,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "переносити",
@@ -1963,6 +2353,8 @@
     "pot": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pot.mp3",
+      "gain": -1.4,
+      "lead": 93,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "каструля",
@@ -1972,6 +2364,7 @@
     "prescription": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "prescription.mp3",
+      "gain": 0.6,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "рецепт",
@@ -1981,6 +2374,7 @@
     "profession": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "profession.mp3",
+      "gain": -0.1,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "професія",
@@ -1990,6 +2384,8 @@
     "punctual": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "punctual.mp3",
+      "gain": -0.9,
+      "lead": 76,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "пунктуальний",
@@ -1999,6 +2395,8 @@
     "pupil": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pupil.mp3",
+      "gain": -1.6,
+      "lead": 237,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "учень",
@@ -2008,6 +2406,8 @@
     "pupil-f": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pupil-f.mp3",
+      "gain": -2.2,
+      "lead": 118,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "учениця",
@@ -2017,6 +2417,8 @@
     "pyjamas": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pyjamas.mp3",
+      "gain": -1.1,
+      "lead": 17,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "піжама",
@@ -2026,6 +2428,8 @@
     "question": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "question.mp3",
+      "gain": 1.3,
+      "lead": 88,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "запитання",
@@ -2035,6 +2439,8 @@
     "quiet": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "quiet.mp3",
+      "gain": 0.3,
+      "lead": 82,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "тихий",
@@ -2044,6 +2450,8 @@
     "quit": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "quit.mp3",
+      "gain": -0.3,
+      "lead": 150,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "звільнятися",
@@ -2053,6 +2461,8 @@
     "rain": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "rain.mp3",
+      "gain": -1.4,
+      "lead": 183,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "дощ",
@@ -2062,6 +2472,8 @@
     "read": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "read.mp3",
+      "gain": 2.2,
+      "lead": 219,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "читати",
@@ -2071,6 +2483,8 @@
     "ready": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "ready.mp3",
+      "gain": -1.8,
+      "lead": 124,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "готовий",
@@ -2080,6 +2494,7 @@
     "registration": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "registration.mp3",
+      "gain": -1.1,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "реєстрація",
@@ -2089,6 +2504,8 @@
     "reject": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "reject.mp3",
+      "gain": -0.2,
+      "lead": 158,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "відхиляти",
@@ -2098,6 +2515,7 @@
     "relax": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "relax.mp3",
+      "gain": 0.5,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "розслаблятися",
@@ -2107,6 +2525,8 @@
     "remote": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "remote.mp3",
+      "gain": -2.1,
+      "lead": 165,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "пульт",
@@ -2116,6 +2536,8 @@
     "reply": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "reply.mp3",
+      "gain": 1.7,
+      "lead": 31,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "відповідати",
@@ -2125,6 +2547,8 @@
     "rest": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "rest.mp3",
+      "gain": 1.8,
+      "lead": 183,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "відпочивати",
@@ -2134,6 +2558,8 @@
     "rice": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "rice.mp3",
+      "gain": -2.4,
+      "lead": 25,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "рис",
@@ -2143,6 +2569,8 @@
     "right": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "right.mp3",
+      "gain": 1.1,
+      "lead": 154,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "праворуч",
@@ -2152,6 +2580,8 @@
     "river": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "river.mp3",
+      "gain": 0.9,
+      "lead": 219,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "річка",
@@ -2161,6 +2591,8 @@
     "room": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "room.mp3",
+      "gain": -2.2,
+      "lead": 263,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "кімната",
@@ -2170,6 +2602,7 @@
     "salary": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "salary.mp3",
+      "gain": 2.8,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "зарплата",
@@ -2179,6 +2612,7 @@
     "salt": {
       "author": "Женя Музика, Nicolas Vion",
       "file": "salt.mp3",
+      "gain": -2.8,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сіль",
@@ -2188,6 +2622,7 @@
     "save": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "save.mp3",
+      "gain": -0.6,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "зберігати",
@@ -2197,6 +2632,8 @@
     "say": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "say.mp3",
+      "gain": 2.1,
+      "lead": 260,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "казати",
@@ -2206,6 +2643,8 @@
     "say-goodbye": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "say-goodbye.mp3",
+      "gain": 0.2,
+      "lead": 93,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "прощатися",
@@ -2215,6 +2654,8 @@
     "school": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "school.mp3",
+      "gain": -1.9,
+      "lead": 221,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "школа",
@@ -2224,6 +2665,7 @@
     "see": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "see.mp3",
+      "gain": 0.8,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "бачити",
@@ -2233,6 +2675,8 @@
     "sentence": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sentence.mp3",
+      "gain": 0.9,
+      "lead": 229,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "речення",
@@ -2242,6 +2686,7 @@
     "shampoo": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "shampoo.mp3",
+      "gain": -1.6,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "шампунь",
@@ -2251,6 +2696,8 @@
     "shave": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "shave.mp3",
+      "gain": -2.4,
+      "lead": 99,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "голитися",
@@ -2260,6 +2707,8 @@
     "shelf": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "shelf.mp3",
+      "gain": -0.8,
+      "lead": 40,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "полиця",
@@ -2269,6 +2718,7 @@
     "shift": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "shift.mp3",
+      "gain": -4.4,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "зміна",
@@ -2278,6 +2728,8 @@
     "shirt": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "shirt.mp3",
+      "gain": -0.9,
+      "lead": 35,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сорочка",
@@ -2287,6 +2739,8 @@
     "shoe": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "shoe.mp3",
+      "gain": -1.4,
+      "lead": 225,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "черевик",
@@ -2296,6 +2750,7 @@
     "shower": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "shower.mp3",
+      "lead": 149,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "душ",
@@ -2305,6 +2760,8 @@
     "sick": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sick.mp3",
+      "gain": -2.4,
+      "lead": 32,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "хворий",
@@ -2314,6 +2771,7 @@
     "sign": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sign.mp3",
+      "gain": 1.5,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "підписувати",
@@ -2323,6 +2781,7 @@
     "signature": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "signature.mp3",
+      "lead": 150,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "підпис",
@@ -2332,6 +2791,7 @@
     "sink": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sink.mp3",
+      "gain": -3.5,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "умивальник",
@@ -2341,6 +2801,8 @@
     "sit": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sit.mp3",
+      "gain": 0.6,
+      "lead": 46,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сидіти",
@@ -2350,6 +2812,8 @@
     "sleep": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sleep.mp3",
+      "gain": 1.5,
+      "lead": 11,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "спати",
@@ -2368,6 +2832,8 @@
     "small": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "small.mp3",
+      "gain": -0.6,
+      "lead": 256,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "малий",
@@ -2377,6 +2843,8 @@
     "snow": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "snow.mp3",
+      "gain": -4.0,
+      "lead": 169,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сніг",
@@ -2386,6 +2854,7 @@
     "soap": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
       "file": "soap.mp3",
+      "gain": -2.3,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "мило",
@@ -2395,6 +2864,8 @@
     "sock": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sock.mp3",
+      "gain": 3.1,
+      "lead": 178,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "шкарпетка",
@@ -2404,6 +2875,8 @@
     "socket": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "socket.mp3",
+      "gain": 0.7,
+      "lead": 32,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "розетка",
@@ -2413,6 +2886,8 @@
     "sofa": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sofa.mp3",
+      "gain": 0.6,
+      "lead": 244,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "диван",
@@ -2422,6 +2897,8 @@
     "soft": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "soft.mp3",
+      "gain": -0.3,
+      "lead": 258,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "м'який",
@@ -2431,6 +2908,8 @@
     "speak": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "speak.mp3",
+      "gain": -1.3,
+      "lead": 220,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "говорити",
@@ -2440,6 +2919,8 @@
     "sponge": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sponge.mp3",
+      "gain": 0.7,
+      "lead": 57,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "губка",
@@ -2449,6 +2930,8 @@
     "spoon": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "spoon.mp3",
+      "gain": -1.0,
+      "lead": 178,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "ложка",
@@ -2458,6 +2941,8 @@
     "stairs": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "stairs.mp3",
+      "gain": 1.2,
+      "lead": 213,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сходи",
@@ -2467,6 +2952,8 @@
     "start": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "start.mp3",
+      "gain": 0.3,
+      "lead": 81,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "починати",
@@ -2476,6 +2963,7 @@
     "stomach": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "stomach.mp3",
+      "gain": -1.4,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "живіт",
@@ -2485,6 +2973,8 @@
     "stove": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "stove.mp3",
+      "gain": 1.9,
+      "lead": 60,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "плита",
@@ -2494,6 +2984,8 @@
     "street": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "street.mp3",
+      "gain": -2.3,
+      "lead": 45,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "вулиця",
@@ -2503,6 +2995,7 @@
     "study": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
       "file": "study.mp3",
+      "gain": 1.8,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "вчитися",
@@ -2512,6 +3005,8 @@
     "submit": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "submit.mp3",
+      "gain": 2.3,
+      "lead": 201,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "здавати",
@@ -2521,6 +3016,8 @@
     "sugar": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sugar.mp3",
+      "gain": -0.4,
+      "lead": 223,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "цукор",
@@ -2530,6 +3027,7 @@
     "sun": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sun.mp3",
+      "gain": -2.0,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сонце",
@@ -2539,6 +3037,7 @@
     "sunbathe": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sunbathe.mp3",
+      "gain": 0.7,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "засмагати",
@@ -2548,6 +3047,8 @@
     "sweater": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sweater.mp3",
+      "gain": 1.8,
+      "lead": 204,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "светр",
@@ -2557,6 +3058,7 @@
     "take": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "take.mp3",
+      "lead": 129,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "брати",
@@ -2566,6 +3068,8 @@
     "talk": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "talk.mp3",
+      "gain": 0.1,
+      "lead": 132,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "розмовляти",
@@ -2575,6 +3079,8 @@
     "tap": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "tap.mp3",
+      "gain": 0.2,
+      "lead": 105,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "кран",
@@ -2584,6 +3090,7 @@
     "taste": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "taste.mp3",
+      "gain": -0.4,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "куштувати",
@@ -2593,6 +3100,8 @@
     "tax": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "tax.mp3",
+      "gain": 2.8,
+      "lead": 195,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "податок",
@@ -2602,6 +3111,8 @@
     "taxi": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "taxi.mp3",
+      "gain": -1.0,
+      "lead": 7,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "таксі",
@@ -2611,6 +3122,8 @@
     "tea": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "tea.mp3",
+      "gain": -1.5,
+      "lead": 198,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "чай",
@@ -2620,6 +3133,7 @@
     "teacher": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "teacher.mp3",
+      "gain": 0.9,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "вчитель",
@@ -2629,6 +3143,8 @@
     "teacher-f": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "teacher-f.mp3",
+      "gain": 1.3,
+      "lead": 108,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "вчителька",
@@ -2638,6 +3154,8 @@
     "thank": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "thank.mp3",
+      "gain": 1.8,
+      "lead": 236,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "дякувати",
@@ -2647,6 +3165,8 @@
     "thirst": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "thirst.mp3",
+      "gain": 0.4,
+      "lead": 36,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "спрага",
@@ -2656,6 +3176,7 @@
     "throat": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "throat.mp3",
+      "gain": -2.7,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "горло",
@@ -2665,6 +3186,8 @@
     "ticket": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "ticket.mp3",
+      "gain": 0.7,
+      "lead": 190,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "квиток",
@@ -2674,6 +3197,7 @@
     "tidy-up": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "tidy-up.mp3",
+      "lead": 108,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "прибирати",
@@ -2683,6 +3207,8 @@
     "time": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "time.mp3",
+      "gain": 0.9,
+      "lead": 209,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "час",
@@ -2692,6 +3218,8 @@
     "to-cough": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-cough.mp3",
+      "gain": 2.6,
+      "lead": 266,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "кашляти",
@@ -2701,6 +3229,8 @@
     "to-help": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-help.mp3",
+      "gain": 0.3,
+      "lead": 150,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "допомагати",
@@ -2710,6 +3240,8 @@
     "to-work": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-work.mp3",
+      "gain": 2.0,
+      "lead": 119,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "працювати",
@@ -2719,6 +3251,8 @@
     "today": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "today.mp3",
+      "gain": -2.4,
+      "lead": 199,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "сьогодні",
@@ -2728,6 +3262,8 @@
     "together": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "together.mp3",
+      "gain": 0.8,
+      "lead": 202,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "разом",
@@ -2737,6 +3273,8 @@
     "toilet": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "toilet.mp3",
+      "gain": -1.4,
+      "lead": 116,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "туалет",
@@ -2746,6 +3284,8 @@
     "tomorrow": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "tomorrow.mp3",
+      "gain": 1.0,
+      "lead": 58,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "завтра",
@@ -2755,6 +3295,8 @@
     "towel": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "towel.mp3",
+      "gain": -1.1,
+      "lead": 241,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "рушник",
@@ -2764,6 +3306,8 @@
     "traffic-light": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "traffic-light.mp3",
+      "gain": 1.2,
+      "lead": 41,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "світлофор",
@@ -2773,6 +3317,8 @@
     "train": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "train.mp3",
+      "gain": -1.7,
+      "lead": 274,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "поїзд",
@@ -2782,6 +3328,8 @@
     "train-station": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "train-station.mp3",
+      "gain": 0.6,
+      "lead": 31,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "вокзал",
@@ -2791,6 +3339,7 @@
     "translate": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "translate.mp3",
+      "gain": 1.7,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "перекладати",
@@ -2800,6 +3349,8 @@
     "tree": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "tree.mp3",
+      "gain": -0.7,
+      "lead": 239,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "дерево",
@@ -2809,6 +3360,8 @@
     "trousers": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "trousers.mp3",
+      "gain": 0.1,
+      "lead": 157,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "штани",
@@ -2818,6 +3371,8 @@
     "tv": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "tv.mp3",
+      "gain": -0.2,
+      "lead": 96,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "телевізор",
@@ -2827,6 +3382,7 @@
     "type": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "type.mp3",
+      "gain": 0.5,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "друкувати",
@@ -2836,6 +3392,7 @@
     "umbrella": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "umbrella.mp3",
+      "gain": 0.8,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "парасолька",
@@ -2845,6 +3402,8 @@
     "understand": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "understand.mp3",
+      "gain": -1.2,
+      "lead": 218,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "розуміти",
@@ -2854,6 +3413,8 @@
     "urgent": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "urgent.mp3",
+      "gain": -1.5,
+      "lead": 138,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "терміновий",
@@ -2863,6 +3424,8 @@
     "wait": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "wait.mp3",
+      "gain": 2.5,
+      "lead": 236,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "чекати",
@@ -2872,6 +3435,8 @@
     "wake-up": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "wake-up.mp3",
+      "gain": 1.4,
+      "lead": 97,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "прокидатися",
@@ -2881,6 +3446,8 @@
     "wall": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "wall.mp3",
+      "gain": 0.6,
+      "lead": 190,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "стіна",
@@ -2890,6 +3457,8 @@
     "wallet": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "wallet.mp3",
+      "gain": -3.6,
+      "lead": 204,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "гаманець",
@@ -2899,6 +3468,8 @@
     "water": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "water.mp3",
+      "gain": -0.3,
+      "lead": 241,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "вода",
@@ -2908,6 +3479,8 @@
     "way": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "way.mp3",
+      "gain": -0.5,
+      "lead": 3,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "дорога",
@@ -2917,6 +3490,8 @@
     "weather": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "weather.mp3",
+      "gain": -2.0,
+      "lead": 81,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "погода",
@@ -2926,6 +3501,7 @@
     "week": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "week.mp3",
+      "gain": 1.0,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "тиждень",
@@ -2935,6 +3511,8 @@
     "wind": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "wind.mp3",
+      "gain": -1.2,
+      "lead": 45,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "вітер",
@@ -2944,6 +3522,7 @@
     "window": {
       "author": "Женя Музика, Nicolas Vion",
       "file": "window.mp3",
+      "gain": -1.5,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "вікно",
@@ -2953,6 +3532,8 @@
     "word": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "word.mp3",
+      "gain": -2.2,
+      "lead": 193,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "слово",
@@ -2962,6 +3543,8 @@
     "work": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "work.mp3",
+      "gain": 1.2,
+      "lead": 226,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "робота",
@@ -2971,6 +3554,8 @@
     "write": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "write.mp3",
+      "gain": 1.9,
+      "lead": 99,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "писати",
@@ -2980,6 +3565,7 @@
     "yawn": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "yawn.mp3",
+      "gain": 1.9,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "позіхати",
@@ -2989,6 +3575,8 @@
     "yes": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "yes.mp3",
+      "gain": 2.1,
+      "lead": 260,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "так",

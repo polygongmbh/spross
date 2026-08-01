@@ -10,46 +10,56 @@ re-encoding is an adaptation under BY-SA — so every entry carries the sha256 t
 script verified after the copy, and lint re-hashes what was committed. Edit packs,
 never `catalog/audio/`.
 
-A pack row ships only once it survives four gates, each decision printed:
-  · the catalog knows the slug AND the language realizes it — packs go stale as
-    content moves, and a manifest entry for a word nobody studies is dead weight;
-  · the recording SPEAKS a form the card can show: `speechKey(matched_word)` has to
-    equal the key of `text`, a synonym or a variant, because lookup is keyed by what
-    stands on the card. This is what drops the sw `ku-` verbs, whose recordings say
-    the bare stem — playing "wasilisha" for "kuwasilisha" would teach the wrong word,
-    while punctuation ("Hujambo!") and the citation dash ("-zuri") fold away and stay;
-  · no two entries claim one speech key with differing bytes: the runtime cannot pick
-    between de `husten` cough/to-cough, so the first slug wins and the others lose a
-    credit line, not a sound;
-  · the author names somebody. "Own work"/"myself" credit nobody while BY and BY-SA
-    both require naming, so those rows are re-resolved against the Commons API and
-    dropped only when even that comes back empty.
+Three stages. Four GATES decide which pack rows may ship and who is credited, each
+decision printed (`audio_gates.py`). Survivors are COPIED byte-for-byte, and the copy
+that landed is then ANALYSED (`audio_measure.py`) into the optional `gain`/`lead`
+playback fields — see [ANALYSIS], which also decides the players' scheme.
 
 Deterministic: sorted keys, 2-space indent, unchanged packs give byte-identical output.
 """
 import argparse
 import csv
 import hashlib
-import html
 import json
 import os
-import re
 import shutil
 import sys
-import time
-import unicodedata
-import urllib.parse
-import urllib.request
+
+import audio_measure
+from audio_gates import attribute, digest_of, keep_reachable, keep_unambiguous
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'catalog')
 
-API = 'https://commons.wikimedia.org/w/api.php'
-UA = 'duolernen-audio-catalog/1.0 (educational vocab app; contact feedback@spross.net)'
+FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 
-# Authorship values that name nobody. Matched trimmed and case-insensitively, and
-# ONLY as a whole: `User:Tosca` is a name Commons can resolve, not a placeholder.
-JUNK_AUTHORS = {'own work', 'myself', ''}
+# The PLAYBACK ANALYSIS INDEX (user ruling 2026-08-01). The packs were recorded by
+# different people on different equipment and do not share a loudness; the uk letters are
+# both the quietest and the latest to start speaking. Re-encoding them is out — that is an
+# adaptation under BY-SA, and it would break the untouched-transcode gate — so what
+# corrects them is our own MEASUREMENT of the untouched bytes, carried in the manifest and
+# applied by the player. Measurement data carries no licence of its own, the credits'
+# "unmodified" claim stays true, and `sha256` keeps meaning exactly what it says.
+#
+# Measured over all 1126 shipped files: the word packs sit at a median -16.7 LUFS
+# (de -16.4, es -21.2, sw -11.4, uk -16.8) and the uk letters at -31.4 — a 14.7 dB deficit.
+# The rule was ≤ 6 dB → attenuate everything down to the quietest class; past that the
+# whole app would whisper, so the scheme is BOOST against the word-pack median: letters
+# take up to +20 dB, the loud sw pack takes about -5, and the players need a boost path.
+# (Letters also open with a median 1077 ms of dead air, against 173 ms for words.)
+ANALYSIS = {
+    'scheme': 'boost',
+    'target_lufs': -16.7,
+    'deficit_db': 14.7,
+    'ffmpeg': 'ffmpeg version 8.1.2',
+}
+
+# A recording's first 50 ms of near-silence is its attack, not dead air — starting past it
+# clips the consonant off the front. Everything before that the player may skip.
+LEAD_KEEP_MS = 50
+# ±20 dB is 10× amplitude and the point where a measurement is likelier broken than the
+# recording. uk `ж` (-37.4 LUFS, +20.7 measured) is the one entry the clamp catches today.
+GAIN_LIMIT_DB = 20.0
 
 # Every licence the packs actually carry → its canonical deed. An unlisted one is a
 # hard stop: the credits screen links what it names, and PD has no deed to link.
@@ -67,22 +77,6 @@ LICENCE_URLS = {
     'Public domain': None,
 }
 
-# Kept in step with kern's speechKey (kern/README.md §11) — the index this script
-# writes and the lookup that reads it have to fold the same things away.
-EDGE_PUNCTUATION = '!?¡¿.,;:…"\'«»„“”‘’‹›'
-
-
-def speech_key(form):
-    """Port of kern's `speechKey`: strip a leading stem dash and edge punctuation, NFC, lower."""
-    stem = form.strip()
-    if stem.startswith('-'):
-        stem = stem[1:]
-    while stem and (stem[0].isspace() or stem[0] in EDGE_PUNCTUATION):
-        stem = stem[1:]
-    while stem and (stem[-1].isspace() or stem[-1] in EDGE_PUNCTUATION):
-        stem = stem[:-1]
-    return unicodedata.normalize('NFC', stem).lower()
-
 
 def read_json(*parts):
     with open(os.path.join(*parts), encoding='utf-8') as f:
@@ -92,11 +86,6 @@ def read_json(*parts):
 def read_rows(path):
     with open(path, encoding='utf-8', newline='') as f:
         return list(csv.DictReader(f, delimiter='\t'))
-
-
-def digest_of(path):
-    with open(path, 'rb') as f:
-        return hashlib.sha256(f.read()).hexdigest()
 
 
 def load_catalog():
@@ -124,99 +113,16 @@ def licence_url(licence, where):
     return LICENCE_URLS[licence]
 
 
-def entry(file, licence, author, source, digest, matches=None):
+def entry(file, licence, author, source, digest, index, matches=None):
     """One manifest value; `licenceUrl` is absent exactly where there is no deed."""
     record = {'file': file, 'licence': licence, 'author': author,
-              'source': source, 'sha256': digest}
+              'source': source, 'sha256': digest, **index}
     if matches is not None:
         record['matches'] = matches
     url = licence_url(licence, source)
     if url:
         record['licenceUrl'] = url
     return record
-
-
-def keep_reachable(rows, lang, slugs, forms, drops):
-    """Gates 1 and 2: the catalog still knows the row, and the recording speaks a visible form."""
-    realized = forms.get(lang, {})
-    kept = []
-    for row in rows:
-        slug, spoken = row['slug'], row['matched_word']
-        if slug not in slugs:
-            drops.append(('unknown-slug', slug, 'no such concept in the catalog'))
-        elif slug not in realized:
-            drops.append(('unrealized', slug, 'the catalog knows it, %s does not say it' % lang))
-        elif speech_key(spoken) not in {speech_key(form) for form in realized[slug]}:
-            drops.append(('unreachable', slug,
-                          'recording says "%s", the card shows "%s"' % (spoken, realized[slug][0])))
-        else:
-            kept.append(row)
-    return kept
-
-
-def keep_unambiguous(rows, mp3_dir, drops):
-    """Gate 3: one speech key, one sound. Byte-identical twins stay; homographs lose the later slug."""
-    groups = {}
-    for row in rows:
-        groups.setdefault(speech_key(row['matched_word']), []).append(row)
-    kept = []
-    for key, group in sorted(groups.items()):
-        digests = {row['slug']: digest_of(os.path.join(mp3_dir, row['slug'] + '.mp3')) for row in group}
-        if len(set(digests.values())) == 1:
-            kept += group
-            continue
-        winner = min(digests)
-        for row in sorted(group, key=lambda r: r['slug']):
-            if digests[row['slug']] == digests[winner]:
-                kept.append(row)
-            else:
-                drops.append(('collision', row['slug'], '"%s" is already %s\'s sound' % (key, winner)))
-    return kept
-
-
-def commons_authors(sources):
-    """Commons filename → attribution, for rows whose pack authorship names nobody."""
-    resolved = {}
-    for start in range(0, len(sources), 50):
-        batch = sources[start:start + 50]
-        query = urllib.parse.urlencode({
-            'action': 'query', 'format': 'json', 'prop': 'imageinfo',
-            'iiprop': 'user|extmetadata', 'titles': '|'.join('File:' + name for name in batch),
-        })
-        request = urllib.request.Request(API + '?' + query, headers={'User-Agent': UA})
-        with urllib.request.urlopen(request, timeout=90) as response:
-            pages = json.load(response)['query']['pages']
-        for page in pages.values():
-            info = (page.get('imageinfo') or [{}])[0]
-            raw = info.get('extmetadata', {}).get('Artist', {}).get('value') or ''
-            artist = ' '.join(html.unescape(re.sub('<[^>]+>', ' ', raw)).split())
-            # why: the uploader is a weaker credit than the stated author, but a real
-            # one — Commons attributes to the account when the file states nothing.
-            if artist.lower() in JUNK_AUTHORS:
-                artist = 'Wikimedia Commons user %s' % info['user'] if info.get('user') else ''
-            resolved[page['title'].removeprefix('File:').replace('_', ' ')] = artist
-        time.sleep(0.5)
-    return resolved
-
-
-def attribute(rows, drops):
-    """Gate 4: re-resolve placeholder authorship against Commons, drop what stays anonymous."""
-    def unnamed(author):
-        return author.strip().lower() in JUNK_AUTHORS
-
-    files = sorted({row['file'] for row in rows if unnamed(row['author'])})
-    if not files:
-        return rows
-    print('  resolving %d unattributed file(s) against Commons…' % len(files))
-    resolved = commons_authors(files)
-    kept = []
-    for row in rows:
-        author = resolved.get(row['file'].replace('_', ' '), '') if unnamed(row['author']) else row['author']
-        if unnamed(author):
-            drops.append(('unattributable', row['slug'], '%s credits nobody' % row['file']))
-        else:
-            kept.append(dict(row, author=author))
-    return kept
 
 
 def copy_verified(source, target):
@@ -232,18 +138,49 @@ def copy_verified(source, target):
     return digest
 
 
+def playback_index(loudness, leading):
+    """The optional `gain`/`lead` for one entry — both absent when there is nothing to do."""
+    gain = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, ANALYSIS['target_lufs'] - loudness)), 1)
+    lead = max(0, round(leading * 1000) - LEAD_KEEP_MS)
+    index = {}
+    if gain:
+        index['gain'] = gain
+    if lead:
+        index['lead'] = lead
+    return index
+
+
+def copy_and_analyze(copies):
+    """`[(id, source, target)]` → `{id: (sha256, playback index)}`: ship the bytes, then measure.
+
+    why: the analysis runs over the file that LANDED, so an index can never describe other
+    bytes than the ones its own `sha256` pins — and one batched ffmpeg pass keeps a
+    thousand decodes off the converter's wall clock.
+    """
+    digests = {id: copy_verified(source, target) for id, source, target in copies}
+    measured = audio_measure.measure_all(FFMPEG, [target for _, _, target in copies])
+    analysed = {}
+    for id, _, target in copies:
+        loudness, leading = measured[target]
+        if loudness is None:
+            sys.exit('%s: decodes to silence — there is nothing to index' % target)
+        analysed[id] = (digests[id], playback_index(loudness, leading))
+    return analysed
+
+
 def convert_words(lang, pack, out_dir, slugs, forms):
     """Every shipping `words` entry for one language, plus the printed drop list."""
     drops = []
     mp3_dir = os.path.join(pack, 'mp3')
     rows = read_rows(os.path.join(pack, 'manifest.tsv'))
     kept = attribute(keep_unambiguous(keep_reachable(rows, lang, slugs, forms, drops), mp3_dir, drops), drops)
+    analysed = copy_and_analyze([(row['slug'], os.path.join(mp3_dir, row['slug'] + '.mp3'),
+                                  os.path.join(out_dir, row['slug'] + '.mp3')) for row in kept])
     words = {}
     for row in kept:
-        name = row['slug'] + '.mp3'
-        digest = copy_verified(os.path.join(mp3_dir, name), os.path.join(out_dir, name))
-        words[row['slug']] = entry(name, row['licence'], row['author'], row['file'],
-                                   digest, matches=row['matched_word'])
+        digest, index = analysed[row['slug']]
+        words[row['slug']] = entry(row['slug'] + '.mp3', row['licence'], row['author'],
+                                   row['file'], digest, index, matches=row['matched_word'])
     for reason, slug, detail in sorted(drops):
         print('  drop %-15s %-22s %s' % (reason, slug, detail))
     counts = {reason: sum(1 for drop in drops if drop[0] == reason)
@@ -255,13 +192,15 @@ def convert_words(lang, pack, out_dir, slugs, forms):
 
 def convert_letters(pack, out_dir):
     """The alphabet section: codepoint-named files, because glyph names decompose on APFS."""
+    rows = read_rows(os.path.join(pack, 'manifest.tsv'))
+    names = {row['letter']: 'letters/u%04x.mp3' % ord(row['letter']) for row in rows}
+    analysed = copy_and_analyze([(row['letter'], os.path.join(pack, 'mp3', row['local_file']),
+                                  os.path.join(out_dir, names[row['letter']])) for row in rows])
     letters = {}
-    for row in read_rows(os.path.join(pack, 'manifest.tsv')):
-        glyph = row['letter']
-        name = 'letters/u%04x.mp3' % ord(glyph)
-        digest = copy_verified(os.path.join(pack, 'mp3', row['local_file']),
-                               os.path.join(out_dir, name))
-        letters[glyph] = entry(name, row['licence'], row['author'], row['file'], digest)
+    for row in rows:
+        digest, index = analysed[row['letter']]
+        letters[row['letter']] = entry(names[row['letter']], row['licence'], row['author'],
+                                       row['file'], digest, index)
     print('  letters: %d recorded' % len(letters))
     return letters
 
@@ -280,6 +219,14 @@ def main():
     parser.add_argument('--packs', required=True, help='directory holding pack-<lang>/')
     parser.add_argument('--lang', action='append', help='convert only this language (repeatable)')
     args = parser.parse_args()
+
+    # why: gain/lead are this build's numbers to a decimal, so another ffmpeg silently
+    # rewrites manifests that were otherwise byte-identical — say so rather than surprise
+    # the diff. A warning, not a stop: the four gates hold on any build.
+    detected = audio_measure.version(FFMPEG)
+    if detected != ANALYSIS['ffmpeg']:
+        print('warning: measuring with %s; ANALYSIS was taken on %s — expect drifted decimals'
+              % (detected, ANALYSIS['ffmpeg']))
 
     slugs, forms = load_catalog()
     languages = sorted(name[len('pack-'):] for name in os.listdir(args.packs)

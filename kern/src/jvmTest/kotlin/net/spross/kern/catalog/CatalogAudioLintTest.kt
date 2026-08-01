@@ -199,6 +199,42 @@ class CatalogAudioLintTest {
     }
 
     /**
+     * The index's RANGE needs no rule here: `AudioManifestParser` refuses a gain past ±20 dB
+     * or a lead past 5 s outright, so a manifest carrying one never loads at all. What is
+     * left to check is whether the numbers say what they were measured to say.
+     *
+     * The index exists BECAUSE the letters are quiet and start late (user ruling
+     * 2026-08-01), so every letter recording has to carry a boost and a lead skip. Empty
+     * ones mean the manifest was regenerated without the analysis stage, and the drill goes
+     * back to whispering a second too late — which is exactly what nobody notices in a diff.
+     */
+    @Test
+    fun everyLetterRecordingCarriesItsPlaybackIndex() {
+        assertTrue(catalog.audio["uk"]?.letters?.isNotEmpty() == true, "uk ships no letter recordings")
+        for ((lang, manifest) in catalog.audio) {
+            for ((glyph, recording) in manifest.letters) {
+                val where = "audio/$lang letter \"$glyph\""
+                assertTrue(recording.gain > 0.0, "$where: gain ${recording.gain} dB — no boost measured")
+                assertTrue(recording.leadMs > 0, "$where: lead ${recording.leadMs} ms — no dead air measured")
+            }
+        }
+    }
+
+    /**
+     * The target IS the word packs' own median loudness, so half the word entries sit above
+     * it and half below and the median gain is zero. A median that has drifted means the
+     * manifests were generated against some other target than the one `ANALYSIS` records —
+     * every pack would then be corrected toward a level no one chose.
+     */
+    @Test
+    fun theWordPacksStayCentredOnTheAnalysisTarget() {
+        val gains = catalog.audio.values.flatMap { manifest -> manifest.words.values.map { it.gain } }.sorted()
+        assertTrue(gains.isNotEmpty(), "no word recordings ship")
+        val median = gains[gains.size / 2]
+        assertTrue(median in -1.0..1.0, "word gains centre on $median dB, not on the analysis target")
+    }
+
+    /**
      * The untouched-transcodes gate: Commons files ship byte-identical because
      * re-encoding is an adaptation under BY-SA. The converter writes the digest it
      * verified; this re-hashes what is actually committed.

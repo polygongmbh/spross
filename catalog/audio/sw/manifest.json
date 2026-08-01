@@ -4,6 +4,8 @@
     "address": {
       "author": "Waithera Were",
       "file": "address.mp3",
+      "gain": -7.6,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "anwani",
@@ -13,6 +15,8 @@
     "always": {
       "author": "Waithera Were",
       "file": "always.mp3",
+      "gain": -5.0,
+      "lead": 29,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "daima",
@@ -22,6 +26,8 @@
     "answer": {
       "author": "Waithera Were",
       "file": "answer.mp3",
+      "gain": 2.0,
+      "lead": 25,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jibu",
@@ -31,6 +37,8 @@
     "apartment": {
       "author": "Waithera Were",
       "file": "apartment.mp3",
+      "gain": -3.5,
+      "lead": 20,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fleti",
@@ -40,6 +48,8 @@
     "application": {
       "author": "Waithera Were",
       "file": "application.mp3",
+      "gain": -2.6,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ombi",
@@ -49,6 +59,8 @@
     "apply-for": {
       "author": "Waithera Were",
       "file": "apply-for.mp3",
+      "gain": -7.8,
+      "lead": 45,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuomba",
@@ -58,6 +70,8 @@
     "appointment": {
       "author": "Waithera Were",
       "file": "appointment.mp3",
+      "gain": -7.9,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "miadi",
@@ -67,6 +81,8 @@
     "approve": {
       "author": "Waithera Were",
       "file": "approve.mp3",
+      "gain": -5.8,
+      "lead": 39,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuidhinisha",
@@ -76,6 +92,8 @@
     "arrange": {
       "author": "Waithera Were",
       "file": "arrange.mp3",
+      "gain": -8.3,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kupanga",
@@ -85,6 +103,8 @@
     "arrive": {
       "author": "Waithera Were",
       "file": "arrive.mp3",
+      "gain": -5.8,
+      "lead": 239,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kufika",
@@ -94,6 +114,8 @@
     "ask": {
       "author": "Waithera Were",
       "file": "ask.mp3",
+      "gain": -5.0,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuuliza",
@@ -103,6 +125,8 @@
     "back": {
       "author": "Waithera Were",
       "file": "back.mp3",
+      "gain": -6.9,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mgongo",
@@ -112,6 +136,8 @@
     "bad": {
       "author": "Waithera Were",
       "file": "bad.mp3",
+      "gain": -11.1,
+      "lead": 43,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "baya",
@@ -121,6 +147,7 @@
     "bag": {
       "author": "Waithera Were",
       "file": "bag.mp3",
+      "gain": -6.3,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "begi",
@@ -130,6 +157,8 @@
     "bake": {
       "author": "Waithera Were",
       "file": "bake.mp3",
+      "gain": -5.7,
+      "lead": 38,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuoka",
@@ -139,6 +168,8 @@
     "be-called": {
       "author": "Waithera Were",
       "file": "be-called.mp3",
+      "gain": -4.5,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuitwa",
@@ -148,6 +179,8 @@
     "be-late": {
       "author": "Waithera Were",
       "file": "be-late.mp3",
+      "gain": -6.8,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuchelewa",
@@ -157,6 +190,8 @@
     "bed": {
       "author": "Waithera Were",
       "file": "bed.mp3",
+      "gain": -4.8,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kitanda",
@@ -166,6 +201,8 @@
     "belt": {
       "author": "Waithera Were",
       "file": "belt.mp3",
+      "gain": -6.8,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mkanda",
@@ -175,6 +212,8 @@
     "bicycle": {
       "author": "Waithera Were",
       "file": "bicycle.mp3",
+      "gain": -5.5,
+      "lead": 4,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "baiskeli",
@@ -184,6 +223,8 @@
     "big": {
       "author": "Waithera Were",
       "file": "big.mp3",
+      "gain": -2.4,
+      "lead": 38,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kubwa",
@@ -193,6 +234,8 @@
     "blanket": {
       "author": "Waithera Were",
       "file": "blanket.mp3",
+      "gain": -6.0,
+      "lead": 43,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "blanketi",
@@ -202,6 +245,7 @@
     "blood": {
       "author": "Waithera Were",
       "file": "blood.mp3",
+      "gain": -6.7,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "damu",
@@ -211,6 +255,8 @@
     "board": {
       "author": "Waithera Were",
       "file": "board.mp3",
+      "gain": -7.8,
+      "lead": 45,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ubao",
@@ -220,6 +266,8 @@
     "boss": {
       "author": "Waithera Were",
       "file": "boss.mp3",
+      "gain": -6.6,
+      "lead": 10,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bosi",
@@ -229,6 +277,8 @@
     "bread": {
       "author": "Waithera Were",
       "file": "bread.mp3",
+      "gain": -5.5,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mkate",
@@ -238,6 +288,8 @@
     "break": {
       "author": "Waithera Were",
       "file": "break.mp3",
+      "gain": -4.4,
+      "lead": 49,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pumziko",
@@ -247,6 +299,8 @@
     "bring": {
       "author": "Waithera Were",
       "file": "bring.mp3",
+      "gain": -7.4,
+      "lead": 36,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuleta",
@@ -256,6 +310,8 @@
     "bucket": {
       "author": "Waithera Were",
       "file": "bucket.mp3",
+      "gain": -5.7,
+      "lead": 36,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ndoo",
@@ -265,6 +321,7 @@
     "bus": {
       "author": "Waithera Were",
       "file": "bus.mp3",
+      "gain": -4.0,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "basi",
@@ -274,6 +331,8 @@
     "buy": {
       "author": "Waithera Were",
       "file": "buy.mp3",
+      "gain": -7.2,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kununua",
@@ -283,6 +342,8 @@
     "cable": {
       "author": "Waithera Were",
       "file": "cable.mp3",
+      "gain": -9.5,
+      "lead": 55,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kebo",
@@ -292,6 +353,8 @@
     "calendar": {
       "author": "Waithera Were",
       "file": "calendar.mp3",
+      "gain": -3.2,
+      "lead": 49,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kalenda",
@@ -301,6 +364,8 @@
     "cancel": {
       "author": "Waithera Were",
       "file": "cancel.mp3",
+      "gain": -7.5,
+      "lead": 45,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kughairi",
@@ -310,6 +375,8 @@
     "car": {
       "author": "Waithera Were",
       "file": "car.mp3",
+      "gain": -8.3,
+      "lead": 37,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gari",
@@ -319,6 +386,8 @@
     "careful": {
       "author": "Waithera Were",
       "file": "careful.mp3",
+      "gain": -4.7,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "angalia",
@@ -328,6 +397,8 @@
     "carpet": {
       "author": "Waithera Were",
       "file": "carpet.mp3",
+      "gain": 2.0,
+      "lead": 26,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zulia",
@@ -337,6 +408,8 @@
     "certificate": {
       "author": "Waithera Were",
       "file": "certificate.mp3",
+      "gain": -1.7,
+      "lead": 24,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "cheti",
@@ -346,6 +419,8 @@
     "chair": {
       "author": "Waithera Were",
       "file": "chair.mp3",
+      "gain": 2.3,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kiti",
@@ -355,6 +430,8 @@
     "charger": {
       "author": "Waithera Were",
       "file": "charger.mp3",
+      "gain": -6.6,
+      "lead": 26,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "chaja",
@@ -364,6 +441,8 @@
     "cheese": {
       "author": "Waithera Were",
       "file": "cheese.mp3",
+      "gain": 3.1,
+      "lead": 5,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jibini",
@@ -373,6 +452,8 @@
     "classroom": {
       "author": "Waithera Were",
       "file": "classroom.mp3",
+      "gain": -7.1,
+      "lead": 31,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "darasa",
@@ -382,6 +463,8 @@
     "clean": {
       "author": "Waithera Were",
       "file": "clean.mp3",
+      "gain": -6.6,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusafisha",
@@ -391,6 +474,8 @@
     "clothes": {
       "author": "Waithera Were",
       "file": "clothes.mp3",
+      "gain": -2.8,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nguo",
@@ -400,6 +485,8 @@
     "coat": {
       "author": "Waithera Were",
       "file": "coat.mp3",
+      "gain": -3.5,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "koti",
@@ -409,6 +496,8 @@
     "coffee": {
       "author": "Waithera Were",
       "file": "coffee.mp3",
+      "gain": -10.7,
+      "lead": 43,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kahawa",
@@ -418,6 +507,8 @@
     "cold": {
       "author": "Waithera Were",
       "file": "cold.mp3",
+      "gain": -1.9,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mafua",
@@ -427,6 +518,8 @@
     "come": {
       "author": "Waithera Were",
       "file": "come.mp3",
+      "gain": -4.5,
+      "lead": 37,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuja",
@@ -436,6 +529,8 @@
     "company": {
       "author": "Waithera Were",
       "file": "company.mp3",
+      "gain": -3.3,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kampuni",
@@ -445,6 +540,8 @@
     "confirm": {
       "author": "Waithera Were",
       "file": "confirm.mp3",
+      "gain": -2.7,
+      "lead": 43,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuthibitisha",
@@ -454,6 +551,8 @@
     "confirmation": {
       "author": "Waithera Were",
       "file": "confirmation.mp3",
+      "gain": -7.9,
+      "lead": 50,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "uthibitisho",
@@ -463,6 +562,8 @@
     "contract": {
       "author": "Waithera Were",
       "file": "contract.mp3",
+      "gain": -7.8,
+      "lead": 49,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mkataba",
@@ -472,6 +573,8 @@
     "cook": {
       "author": "Waithera Were",
       "file": "cook.mp3",
+      "gain": -3.4,
+      "lead": 45,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kupika",
@@ -481,6 +584,8 @@
     "correct": {
       "author": "Waithera Were",
       "file": "correct.mp3",
+      "gain": -5.8,
+      "lead": 43,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusahihisha",
@@ -490,6 +595,8 @@
     "cough": {
       "author": "Waithera Were",
       "file": "cough.mp3",
+      "gain": -4.3,
+      "lead": 42,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kikohozi",
@@ -499,6 +606,8 @@
     "course": {
       "author": "Waithera Were",
       "file": "course.mp3",
+      "gain": -4.7,
+      "lead": 45,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kozi",
@@ -508,6 +617,8 @@
     "cream": {
       "author": "Waithera Were",
       "file": "cream.mp3",
+      "gain": -2.3,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "krimu",
@@ -517,6 +628,8 @@
     "cup": {
       "author": "Waithera Were",
       "file": "cup.mp3",
+      "gain": -6.1,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kikombe",
@@ -526,6 +639,8 @@
     "curtain": {
       "author": "Waithera Were",
       "file": "curtain.mp3",
+      "gain": -6.3,
+      "lead": 39,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pazia",
@@ -535,6 +650,8 @@
     "cut": {
       "author": "Waithera Were",
       "file": "cut.mp3",
+      "gain": -5.5,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukata",
@@ -544,6 +661,8 @@
     "cv": {
       "author": "Waithera Were",
       "file": "cv.mp3",
+      "gain": -6.6,
+      "lead": 222,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wasifu",
@@ -553,6 +672,8 @@
     "date": {
       "author": "Waithera Were",
       "file": "date.mp3",
+      "gain": -8.5,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tarehe",
@@ -562,6 +683,8 @@
     "day": {
       "author": "Waithera Were",
       "file": "day.mp3",
+      "gain": -3.1,
+      "lead": 35,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "siku",
@@ -571,6 +694,8 @@
     "delete": {
       "author": "Waithera Were",
       "file": "delete.mp3",
+      "gain": -6.0,
+      "lead": 36,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kufuta",
@@ -580,6 +705,8 @@
     "depart": {
       "author": "Waithera Were",
       "file": "depart.mp3",
+      "gain": -4.4,
+      "lead": 234,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuondoka",
@@ -589,6 +716,8 @@
     "dictionary": {
       "author": "Waithera Were",
       "file": "dictionary.mp3",
+      "gain": -0.9,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kamusi",
@@ -598,6 +727,8 @@
     "dirty": {
       "author": "Waithera Were",
       "file": "dirty.mp3",
+      "gain": -4.1,
+      "lead": 14,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "chafu",
@@ -607,6 +738,7 @@
     "doctor": {
       "author": "Waithera Were",
       "file": "doctor.mp3",
+      "gain": -6.8,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "daktari",
@@ -616,6 +748,8 @@
     "documents": {
       "author": "Waithera Were",
       "file": "documents.mp3",
+      "gain": -7.6,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nyaraka",
@@ -625,6 +759,8 @@
     "door": {
       "author": "Waithera Were",
       "file": "door.mp3",
+      "gain": -9.0,
+      "lead": 38,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mlango",
@@ -634,6 +770,8 @@
     "doorbell": {
       "author": "Waithera Were",
       "file": "doorbell.mp3",
+      "gain": -5.7,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kengele",
@@ -643,6 +781,8 @@
     "dress": {
       "author": "Waithera Were",
       "file": "dress.mp3",
+      "gain": -5.5,
+      "lead": 18,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gauni",
@@ -652,6 +792,8 @@
     "drink": {
       "author": "Waithera Were",
       "file": "drink.mp3",
+      "gain": -8.7,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kunywa",
@@ -661,6 +803,8 @@
     "ear": {
       "author": "Waithera Were",
       "file": "ear.mp3",
+      "gain": -1.7,
+      "lead": 32,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sikio",
@@ -670,6 +814,8 @@
     "eat": {
       "author": "Waithera Were",
       "file": "eat.mp3",
+      "gain": -7.6,
+      "lead": 39,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kula",
@@ -679,6 +825,8 @@
     "egg": {
       "author": "Waithera Were",
       "file": "egg.mp3",
+      "gain": -6.9,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "yai",
@@ -688,6 +836,8 @@
     "emergency": {
       "author": "Waithera Were",
       "file": "emergency.mp3",
+      "gain": -7.6,
+      "lead": 42,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "dharura",
@@ -697,6 +847,8 @@
     "enter": {
       "author": "Waithera Were",
       "file": "enter.mp3",
+      "gain": -5.3,
+      "lead": 220,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuingia",
@@ -706,6 +858,8 @@
     "evening": {
       "author": "Waithera Were",
       "file": "evening.mp3",
+      "gain": -7.1,
+      "lead": 35,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jioni",
@@ -715,6 +869,8 @@
     "exam": {
       "author": "Waithera Were",
       "file": "exam.mp3",
+      "gain": -1.9,
+      "lead": 42,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mtihani",
@@ -724,6 +880,7 @@
     "excuse-me": {
       "author": "Waithera Were",
       "file": "excuse-me.mp3",
+      "gain": -5.4,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "samahani",
@@ -733,6 +890,8 @@
     "fast": {
       "author": "Waithera Were",
       "file": "fast.mp3",
+      "gain": -7.3,
+      "lead": 35,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "haraka",
@@ -742,6 +901,8 @@
     "fee": {
       "author": "Waithera Were",
       "file": "fee.mp3",
+      "gain": -6.7,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ada",
@@ -751,6 +912,8 @@
     "fever": {
       "author": "Waithera Were",
       "file": "fever.mp3",
+      "gain": -9.8,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "homa",
@@ -760,6 +923,8 @@
     "flower": {
       "author": "Waithera Were",
       "file": "flower.mp3",
+      "gain": -3.6,
+      "lead": 39,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ua",
@@ -769,6 +934,8 @@
     "folder": {
       "author": "Waithera Were",
       "file": "folder.mp3",
+      "gain": -4.5,
+      "lead": 2,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "folda",
@@ -778,6 +945,8 @@
     "fork": {
       "author": "Waithera Were",
       "file": "fork.mp3",
+      "gain": 3.3,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "uma",
@@ -787,6 +956,8 @@
     "form": {
       "author": "Waithera Were",
       "file": "form.mp3",
+      "gain": -8.1,
+      "lead": 30,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fomu",
@@ -796,6 +967,8 @@
     "fridge": {
       "author": "Waithera Were",
       "file": "fridge.mp3",
+      "gain": 0.2,
+      "lead": 22,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "friji",
@@ -805,6 +978,8 @@
     "friend": {
       "author": "Waithera Were",
       "file": "friend.mp3",
+      "gain": -1.1,
+      "lead": 36,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "rafiki",
@@ -814,6 +989,8 @@
     "fry": {
       "author": "Waithera Were",
       "file": "fry.mp3",
+      "gain": -7.0,
+      "lead": 38,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukaanga",
@@ -823,6 +1000,8 @@
     "get-dressed": {
       "author": "Waithera Were",
       "file": "get-dressed.mp3",
+      "gain": -8.2,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuvaa",
@@ -832,6 +1011,8 @@
     "get-up": {
       "author": "Waithera Were",
       "file": "get-up.mp3",
+      "gain": -1.3,
+      "lead": 49,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuinuka",
@@ -841,6 +1022,8 @@
     "give": {
       "author": "Waithera Were",
       "file": "give.mp3",
+      "gain": -5.8,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kupa",
@@ -850,6 +1033,8 @@
     "glove": {
       "author": "Waithera Were",
       "file": "glove.mp3",
+      "gain": -8.4,
+      "lead": 21,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "glavu",
@@ -859,6 +1044,8 @@
     "go": {
       "author": "Waithera Were",
       "file": "go.mp3",
+      "gain": -5.8,
+      "lead": 25,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kwenda",
@@ -868,6 +1055,8 @@
     "go-for-walk": {
       "author": "Waithera Were",
       "file": "go-for-walk.mp3",
+      "gain": -6.4,
+      "lead": 33,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kutembea",
@@ -877,6 +1066,8 @@
     "good": {
       "author": "Waithera Were",
       "file": "good.mp3",
+      "gain": -5.4,
+      "lead": 22,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zuri",
@@ -886,6 +1077,8 @@
     "good-day": {
       "author": "Waithera Were",
       "file": "good-day.mp3",
+      "gain": -7.3,
+      "lead": 26,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "habari",
@@ -895,6 +1088,8 @@
     "goodbye": {
       "author": "Waithera Were",
       "file": "goodbye.mp3",
+      "gain": -4.9,
+      "lead": 30,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kwaheri",
@@ -904,6 +1099,8 @@
     "grade": {
       "author": "Waithera Were",
       "file": "grade.mp3",
+      "gain": -8.3,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "alama",
@@ -913,6 +1110,8 @@
     "greet": {
       "author": "Waithera Were",
       "file": "greet.mp3",
+      "gain": -4.5,
+      "lead": 23,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusalimia",
@@ -922,6 +1121,8 @@
     "guest": {
       "author": "Waithera Were",
       "file": "guest.mp3",
+      "gain": 0.1,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mgeni",
@@ -931,6 +1132,8 @@
     "hair": {
       "author": "Waithera Were",
       "file": "hair.mp3",
+      "gain": -6.7,
+      "lead": 37,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nywele",
@@ -940,6 +1143,8 @@
     "hat": {
       "author": "Waithera Were",
       "file": "hat.mp3",
+      "gain": -1.9,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kofia",
@@ -949,6 +1154,8 @@
     "head": {
       "author": "Waithera Were",
       "file": "head.mp3",
+      "gain": -1.0,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kichwa",
@@ -958,6 +1165,8 @@
     "hello": {
       "author": "Waithera Were",
       "file": "hello.mp3",
+      "gain": -5.3,
+      "lead": 22,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hujambo",
@@ -967,6 +1176,8 @@
     "help": {
       "author": "Waithera Were",
       "file": "help.mp3",
+      "gain": -8.0,
+      "lead": 38,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "msaada",
@@ -976,6 +1187,8 @@
     "here": {
       "author": "Waithera Were",
       "file": "here.mp3",
+      "gain": -6.8,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hapa",
@@ -985,6 +1198,8 @@
     "hire": {
       "author": "Waithera Were",
       "file": "hire.mp3",
+      "gain": -7.3,
+      "lead": 43,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuajiri",
@@ -994,6 +1209,8 @@
     "holiday": {
       "author": "Waithera Were",
       "file": "holiday.mp3",
+      "gain": -1.3,
+      "lead": 37,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "likizo",
@@ -1003,6 +1220,8 @@
     "hospital": {
       "author": "Waithera Were",
       "file": "hospital.mp3",
+      "gain": -3.6,
+      "lead": 33,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hospitali",
@@ -1012,6 +1231,8 @@
     "hour": {
       "author": "Waithera Were",
       "file": "hour.mp3",
+      "gain": -7.6,
+      "lead": 31,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "saa",
@@ -1021,6 +1242,8 @@
     "house": {
       "author": "Waithera Were",
       "file": "house.mp3",
+      "gain": -4.2,
+      "lead": 45,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nyumba",
@@ -1030,6 +1253,8 @@
     "human": {
       "author": "Waithera Were",
       "file": "human.mp3",
+      "gain": -8.0,
+      "lead": 29,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "binadamu",
@@ -1039,6 +1264,8 @@
     "hunger": {
       "author": "Waithera Were",
       "file": "hunger.mp3",
+      "gain": -9.1,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "njaa",
@@ -1048,6 +1275,8 @@
     "hurt": {
       "author": "Waithera Were",
       "file": "hurt.mp3",
+      "gain": -11.2,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuuma",
@@ -1057,6 +1286,8 @@
     "i-love-you": {
       "author": "Goethe-Institut Cameroon",
       "file": "i-love-you.mp3",
+      "gain": -1.3,
+      "lead": 536,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nakupenda",
@@ -1066,6 +1297,8 @@
     "id-card": {
       "author": "Waithera Were",
       "file": "id-card.mp3",
+      "gain": -2.5,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kitambulisho",
@@ -1075,6 +1308,8 @@
     "important": {
       "author": "Waithera Were",
       "file": "important.mp3",
+      "gain": 1.0,
+      "lead": 42,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "muhimu",
@@ -1084,6 +1319,8 @@
     "inside": {
       "author": "Waithera Were",
       "file": "inside.mp3",
+      "gain": -4.0,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ndani",
@@ -1093,6 +1330,8 @@
     "internet": {
       "author": "Waithera Were",
       "file": "internet.mp3",
+      "gain": -2.2,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "intaneti",
@@ -1102,6 +1341,8 @@
     "jacket": {
       "author": "Waithera Were",
       "file": "jacket.mp3",
+      "gain": -0.8,
+      "lead": 39,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jaketi",
@@ -1111,6 +1352,8 @@
     "jog": {
       "author": "Waithera Were",
       "file": "jog.mp3",
+      "gain": -3.8,
+      "lead": 24,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukimbia",
@@ -1120,6 +1363,8 @@
     "key": {
       "author": "Waithera Were",
       "file": "key.mp3",
+      "gain": -0.7,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ufunguo",
@@ -1129,6 +1374,8 @@
     "keyboard": {
       "author": "Waithera Were",
       "file": "keyboard.mp3",
+      "gain": -6.8,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kibodi",
@@ -1138,6 +1385,8 @@
     "knife": {
       "author": "Waithera Were",
       "file": "knife.mp3",
+      "gain": 1.6,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kisu",
@@ -1147,6 +1396,8 @@
     "know": {
       "author": "Waithera Were",
       "file": "know.mp3",
+      "gain": -8.9,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kujua",
@@ -1156,6 +1407,8 @@
     "lamp": {
       "author": "Waithera Were",
       "file": "lamp.mp3",
+      "gain": -8.0,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "taa",
@@ -1165,6 +1418,8 @@
     "language": {
       "author": "Waithera Were",
       "file": "language.mp3",
+      "gain": -3.6,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "lugha",
@@ -1174,6 +1429,8 @@
     "laugh": {
       "author": "Waithera Were",
       "file": "laugh.mp3",
+      "gain": -5.9,
+      "lead": 32,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kucheka",
@@ -1183,6 +1440,8 @@
     "learn-by-heart": {
       "author": "Waithera Were",
       "file": "learn-by-heart.mp3",
+      "gain": -6.0,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukariri",
@@ -1192,6 +1451,8 @@
     "left": {
       "author": "Waithera Were",
       "file": "left.mp3",
+      "gain": -3.7,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kushoto",
@@ -1201,6 +1462,8 @@
     "lesson": {
       "author": "Waithera Were",
       "file": "lesson.mp3",
+      "gain": -4.8,
+      "lead": 21,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "somo",
@@ -1210,6 +1473,8 @@
     "letter": {
       "author": "Waithera Were",
       "file": "letter.mp3",
+      "gain": -4.8,
+      "lead": 18,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "barua",
@@ -1219,6 +1484,8 @@
     "light": {
       "author": "Waithera Were",
       "file": "light.mp3",
+      "gain": -4.5,
+      "lead": 38,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mwanga",
@@ -1228,6 +1495,8 @@
     "live": {
       "author": "Waithera Were",
       "file": "live.mp3",
+      "gain": -4.3,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuishi",
@@ -1237,6 +1506,8 @@
     "make": {
       "author": "Waithera Were",
       "file": "make.mp3",
+      "gain": -6.3,
+      "lead": 37,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kufanya",
@@ -1246,6 +1517,8 @@
     "market": {
       "author": "Waithera Were",
       "file": "market.mp3",
+      "gain": -5.9,
+      "lead": 43,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "soko",
@@ -1255,6 +1528,7 @@
     "mattress": {
       "author": "Waithera Were",
       "file": "mattress.mp3",
+      "gain": -1.5,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "godoro",
@@ -1264,6 +1538,8 @@
     "milk": {
       "author": "Waithera Were",
       "file": "milk.mp3",
+      "gain": -4.5,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "maziwa",
@@ -1273,6 +1549,8 @@
     "mirror": {
       "author": "Waithera Were",
       "file": "mirror.mp3",
+      "gain": -2.7,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kioo",
@@ -1282,6 +1560,8 @@
     "money": {
       "author": "Waithera Were",
       "file": "money.mp3",
+      "gain": 0.7,
+      "lead": 35,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pesa",
@@ -1291,6 +1571,8 @@
     "morning": {
       "author": "Waithera Were",
       "file": "morning.mp3",
+      "gain": 2.3,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "asubuhi",
@@ -1300,6 +1582,8 @@
     "mouse": {
       "author": "Waithera Were",
       "file": "mouse.mp3",
+      "gain": -9.3,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kipanya",
@@ -1309,6 +1593,7 @@
     "movie": {
       "author": "Waithera Were",
       "file": "movie.mp3",
+      "gain": -5.8,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "filamu",
@@ -1318,6 +1603,8 @@
     "much": {
       "author": "Waithera Were",
       "file": "much.mp3",
+      "gain": 1.7,
+      "lead": 45,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ingi",
@@ -1327,6 +1614,8 @@
     "music": {
       "author": "Waithera Were",
       "file": "music.mp3",
+      "gain": -0.8,
+      "lead": 37,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "muziki",
@@ -1336,6 +1625,7 @@
     "name": {
       "author": "Waithera Were",
       "file": "name.mp3",
+      "gain": 0.7,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jina",
@@ -1345,6 +1635,8 @@
     "need": {
       "author": "Waithera Were",
       "file": "need.mp3",
+      "gain": -7.0,
+      "lead": 42,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuhitaji",
@@ -1354,6 +1646,8 @@
     "neighbour": {
       "author": "Waithera Were",
       "file": "neighbour.mp3",
+      "gain": -3.9,
+      "lead": 8,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jirani",
@@ -1363,6 +1657,8 @@
     "new": {
       "author": "Waithera Were",
       "file": "new.mp3",
+      "gain": -6.2,
+      "lead": 134,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pya",
@@ -1372,6 +1668,8 @@
     "newspaper": {
       "author": "Waithera Were",
       "file": "newspaper.mp3",
+      "gain": -7.1,
+      "lead": 33,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gazeti",
@@ -1381,6 +1679,8 @@
     "night": {
       "author": "Waithera Were",
       "file": "night.mp3",
+      "gain": 0.2,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "usiku",
@@ -1390,6 +1690,8 @@
     "no": {
       "author": "Waithera Were",
       "file": "no.mp3",
+      "gain": -6.7,
+      "lead": 32,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hapana",
@@ -1399,6 +1701,7 @@
     "notebook": {
       "author": "Waithera Were",
       "file": "notebook.mp3",
+      "gain": -5.8,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "daftari",
@@ -1408,6 +1711,8 @@
     "now": {
       "author": "Waithera Were",
       "file": "now.mp3",
+      "gain": -4.6,
+      "lead": 36,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sasa",
@@ -1417,6 +1722,8 @@
     "old": {
       "author": "Waithera Were",
       "file": "old.mp3",
+      "gain": -7.3,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zee",
@@ -1426,6 +1733,8 @@
     "outdoors": {
       "author": "Waithera Were",
       "file": "outdoors.mp3",
+      "gain": -1.0,
+      "lead": 7,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nje",
@@ -1435,6 +1744,8 @@
     "oven": {
       "author": "Waithera Were",
       "file": "oven.mp3",
+      "gain": -3.6,
+      "lead": 42,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "oveni",
@@ -1444,6 +1755,8 @@
     "page": {
       "author": "Waithera Were",
       "file": "page.mp3",
+      "gain": -5.0,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ukurasa",
@@ -1453,6 +1766,8 @@
     "pain": {
       "author": "Waithera Were",
       "file": "pain.mp3",
+      "gain": -6.9,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "maumivu",
@@ -1462,6 +1777,8 @@
     "pan": {
       "author": "Waithera Were",
       "file": "pan.mp3",
+      "gain": -4.8,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kikaango",
@@ -1471,6 +1788,8 @@
     "paper": {
       "author": "Waithera Were",
       "file": "paper.mp3",
+      "gain": -6.2,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "karatasi",
@@ -1480,6 +1799,8 @@
     "park": {
       "author": "Waithera Were",
       "file": "park.mp3",
+      "gain": -3.6,
+      "lead": 1,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bustani",
@@ -1489,6 +1810,8 @@
     "passport": {
       "author": "Waithera Were",
       "file": "passport.mp3",
+      "gain": -1.3,
+      "lead": 42,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pasipoti",
@@ -1498,6 +1821,8 @@
     "pay": {
       "author": "Waithera Were",
       "file": "pay.mp3",
+      "gain": -8.1,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kulipa",
@@ -1507,6 +1832,8 @@
     "pen": {
       "author": "Waithera Were",
       "file": "pen.mp3",
+      "gain": -9.1,
+      "lead": 49,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kalamu",
@@ -1516,6 +1843,8 @@
     "person": {
       "author": "Waithera Were",
       "file": "person.mp3",
+      "gain": -4.0,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mtu",
@@ -1525,6 +1854,8 @@
     "phone": {
       "author": "Waithera Were",
       "file": "phone.mp3",
+      "gain": -1.8,
+      "lead": 38,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "simu",
@@ -1534,6 +1865,8 @@
     "picture": {
       "author": "Waithera Were",
       "file": "picture.mp3",
+      "gain": -0.7,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "picha",
@@ -1543,6 +1876,8 @@
     "pill": {
       "author": "Waithera Were",
       "file": "pill.mp3",
+      "gain": -1.9,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kidonge",
@@ -1552,6 +1887,8 @@
     "pillow": {
       "author": "Waithera Were",
       "file": "pillow.mp3",
+      "gain": -3.0,
+      "lead": 39,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mto",
@@ -1561,6 +1898,8 @@
     "plan": {
       "author": "Waithera Were",
       "file": "plan.mp3",
+      "gain": -5.3,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mpango",
@@ -1570,6 +1909,8 @@
     "plant": {
       "author": "Waithera Were",
       "file": "plant.mp3",
+      "gain": -5.6,
+      "lead": 36,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mmea",
@@ -1579,6 +1920,8 @@
     "plate": {
       "author": "Waithera Were",
       "file": "plate.mp3",
+      "gain": -8.9,
+      "lead": 30,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sahani",
@@ -1588,6 +1931,8 @@
     "play": {
       "author": "Waithera Were",
       "file": "play.mp3",
+      "gain": -6.5,
+      "lead": 42,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kucheza",
@@ -1597,6 +1942,8 @@
     "please": {
       "author": "Waithera Were",
       "file": "please.mp3",
+      "gain": -8.9,
+      "lead": 50,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tafadhali",
@@ -1606,6 +1953,8 @@
     "postpone": {
       "author": "Waithera Were",
       "file": "postpone.mp3",
+      "gain": -6.2,
+      "lead": 27,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuahirisha",
@@ -1615,6 +1964,8 @@
     "pot": {
       "author": "Waithera Were",
       "file": "pot.mp3",
+      "gain": -1.0,
+      "lead": 31,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sufuria",
@@ -1624,6 +1975,8 @@
     "practice": {
       "author": "Waithera Were",
       "file": "practice.mp3",
+      "gain": 2.9,
+      "lead": 43,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kliniki",
@@ -1633,6 +1986,8 @@
     "print": {
       "author": "Waithera Were",
       "file": "print.mp3",
+      "gain": -5.0,
+      "lead": 34,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuchapisha",
@@ -1642,6 +1997,8 @@
     "printer": {
       "author": "Waithera Were",
       "file": "printer.mp3",
+      "gain": -1.6,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "printa",
@@ -1651,6 +2008,8 @@
     "profession": {
       "author": "Waithera Were",
       "file": "profession.mp3",
+      "gain": -7.8,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "taaluma",
@@ -1660,6 +2019,8 @@
     "pupil": {
       "author": "Waithera Were",
       "file": "pupil.mp3",
+      "gain": -0.8,
+      "lead": 39,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mwanafunzi",
@@ -1669,6 +2030,8 @@
     "question": {
       "author": "Waithera Were",
       "file": "question.mp3",
+      "gain": -6.2,
+      "lead": 21,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "swali",
@@ -1678,6 +2041,8 @@
     "quiet": {
       "author": "Waithera Were",
       "file": "quiet.mp3",
+      "gain": 1.3,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kimya",
@@ -1687,6 +2052,8 @@
     "rain": {
       "author": "Waithera Were",
       "file": "rain.mp3",
+      "gain": -7.0,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mvua",
@@ -1696,6 +2063,8 @@
     "razor": {
       "author": "Waithera Were",
       "file": "razor.mp3",
+      "gain": -5.2,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wembe",
@@ -1705,6 +2074,8 @@
     "read": {
       "author": "Waithera Were",
       "file": "read.mp3",
+      "gain": -5.8,
+      "lead": 30,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusoma",
@@ -1714,6 +2085,8 @@
     "ready": {
       "author": "Waithera Were",
       "file": "ready.mp3",
+      "gain": -9.3,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tayari",
@@ -1723,6 +2096,8 @@
     "reject": {
       "author": "Waithera Were",
       "file": "reject.mp3",
+      "gain": -8.4,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukataa",
@@ -1732,6 +2107,8 @@
     "reply": {
       "author": "Waithera Were",
       "file": "reply.mp3",
+      "gain": -3.8,
+      "lead": 49,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kujibu",
@@ -1741,6 +2118,8 @@
     "rest": {
       "author": "Waithera Were",
       "file": "rest.mp3",
+      "gain": -3.2,
+      "lead": 39,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kupumzika",
@@ -1750,6 +2129,8 @@
     "rice": {
       "author": "Waithera Were",
       "file": "rice.mp3",
+      "gain": -4.0,
+      "lead": 42,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mchele",
@@ -1759,6 +2140,8 @@
     "right": {
       "author": "Waithera Were",
       "file": "right.mp3",
+      "gain": 0.3,
+      "lead": 43,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kulia",
@@ -1768,6 +2151,8 @@
     "river": {
       "author": "Waithera Were",
       "file": "river.mp3",
+      "gain": -3.0,
+      "lead": 39,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mto",
@@ -1777,6 +2162,8 @@
     "room": {
       "author": "Waithera Were",
       "file": "room.mp3",
+      "gain": -3.2,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "chumba",
@@ -1786,6 +2173,8 @@
     "salary": {
       "author": "Waithera Were",
       "file": "salary.mp3",
+      "gain": -7.8,
+      "lead": 38,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mshahara",
@@ -1795,6 +2184,8 @@
     "salt": {
       "author": "Waithera Were",
       "file": "salt.mp3",
+      "gain": -1.1,
+      "lead": 49,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "chumvi",
@@ -1804,6 +2195,8 @@
     "save": {
       "author": "Waithera Were",
       "file": "save.mp3",
+      "gain": -6.9,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuhifadhi",
@@ -1813,6 +2206,8 @@
     "say": {
       "author": "Waithera Were",
       "file": "say.mp3",
+      "gain": -3.2,
+      "lead": 45,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusema",
@@ -1822,6 +2217,8 @@
     "say-goodbye": {
       "author": "Waithera Were",
       "file": "say-goodbye.mp3",
+      "gain": -6.9,
+      "lead": 49,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuaga",
@@ -1831,6 +2228,8 @@
     "school": {
       "author": "Waithera Were",
       "file": "school.mp3",
+      "gain": -3.4,
+      "lead": 18,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "shule",
@@ -1840,6 +2239,7 @@
     "screen": {
       "author": "Waithera Were",
       "file": "screen.mp3",
+      "lead": 25,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "skrini",
@@ -1849,6 +2249,8 @@
     "see": {
       "author": "Waithera Were",
       "file": "see.mp3",
+      "gain": -7.2,
+      "lead": 37,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuona",
@@ -1858,6 +2260,8 @@
     "sentence": {
       "author": "Waithera Were",
       "file": "sentence.mp3",
+      "gain": -1.8,
+      "lead": 22,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sentensi",
@@ -1867,6 +2271,8 @@
     "shelf": {
       "author": "Waithera Were",
       "file": "shelf.mp3",
+      "gain": -7.2,
+      "lead": 34,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "rafu",
@@ -1876,6 +2282,8 @@
     "shift": {
       "author": "Waithera Were",
       "file": "shift.mp3",
+      "gain": -6.0,
+      "lead": 37,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zamu",
@@ -1885,6 +2293,8 @@
     "shirt": {
       "author": "Waithera Were",
       "file": "shirt.mp3",
+      "gain": -7.0,
+      "lead": 24,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "shati",
@@ -1894,6 +2304,8 @@
     "shoe": {
       "author": "Waithera Were",
       "file": "shoe.mp3",
+      "gain": -5.1,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kiatu",
@@ -1903,6 +2315,8 @@
     "sick": {
       "author": "Waithera Were",
       "file": "sick.mp3",
+      "gain": -5.4,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mgonjwa",
@@ -1912,6 +2326,8 @@
     "signature": {
       "author": "Waithera Were",
       "file": "signature.mp3",
+      "gain": -1.9,
+      "lead": 38,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sahihi",
@@ -1921,6 +2337,8 @@
     "sit": {
       "author": "Waithera Were",
       "file": "sit.mp3",
+      "gain": -8.3,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukaa",
@@ -1930,6 +2348,8 @@
     "sleep": {
       "author": "Waithera Were",
       "file": "sleep.mp3",
+      "gain": -9.2,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kulala",
@@ -1939,6 +2359,8 @@
     "slow": {
       "author": "Waithera Were",
       "file": "slow.mp3",
+      "gain": -5.3,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "polepole",
@@ -1948,6 +2370,7 @@
     "small": {
       "author": "Waithera Were",
       "file": "small.mp3",
+      "gain": -6.2,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "dogo",
@@ -1957,6 +2380,8 @@
     "snore": {
       "author": "Waithera Were",
       "file": "snore.mp3",
+      "gain": -8.0,
+      "lead": 35,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukoroma",
@@ -1966,6 +2391,8 @@
     "snow": {
       "author": "Waithera Were",
       "file": "snow.mp3",
+      "gain": -0.1,
+      "lead": 27,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "theluji",
@@ -1975,6 +2402,8 @@
     "soap": {
       "author": "Waithera Were",
       "file": "soap.mp3",
+      "gain": -5.0,
+      "lead": 25,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sabuni",
@@ -1984,6 +2413,8 @@
     "sock": {
       "author": "Waithera Were",
       "file": "sock.mp3",
+      "gain": 1.2,
+      "lead": 33,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "soksi",
@@ -1993,6 +2424,8 @@
     "socket": {
       "author": "Waithera Were",
       "file": "socket.mp3",
+      "gain": -4.4,
+      "lead": 38,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "soketi",
@@ -2002,6 +2435,8 @@
     "sofa": {
       "author": "Waithera Were",
       "file": "sofa.mp3",
+      "gain": -7.3,
+      "lead": 43,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kochi",
@@ -2011,6 +2446,8 @@
     "soft": {
       "author": "Waithera Were",
       "file": "soft.mp3",
+      "gain": -3.5,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "laini",
@@ -2020,6 +2457,8 @@
     "speak": {
       "author": "Waithera Were",
       "file": "speak.mp3",
+      "gain": -5.6,
+      "lead": 43,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuzungumza",
@@ -2029,6 +2468,8 @@
     "spoon": {
       "author": "Waithera Were",
       "file": "spoon.mp3",
+      "gain": 1.8,
+      "lead": 50,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kijiko",
@@ -2038,6 +2479,8 @@
     "stairs": {
       "author": "Waithera Were",
       "file": "stairs.mp3",
+      "gain": -4.7,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ngazi",
@@ -2047,6 +2490,8 @@
     "start": {
       "author": "Waithera Were",
       "file": "start.mp3",
+      "gain": -9.1,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuanza",
@@ -2056,6 +2501,8 @@
     "stir": {
       "author": "Waithera Were",
       "file": "stir.mp3",
+      "gain": -10.2,
+      "lead": 39,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukoroga",
@@ -2065,6 +2512,8 @@
     "stomach": {
       "author": "Waithera Were",
       "file": "stomach.mp3",
+      "gain": -5.8,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tumbo",
@@ -2074,6 +2523,7 @@
     "stove": {
       "author": "Waithera Were",
       "file": "stove.mp3",
+      "gain": 3.3,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jiko",
@@ -2083,6 +2533,8 @@
     "street": {
       "author": "Waithera Were",
       "file": "street.mp3",
+      "gain": -2.2,
+      "lead": 31,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "barabara",
@@ -2092,6 +2544,8 @@
     "study": {
       "author": "Waithera Were",
       "file": "study.mp3",
+      "gain": -0.1,
+      "lead": 35,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kujifunza",
@@ -2101,6 +2555,8 @@
     "submit": {
       "author": "Waithera Were",
       "file": "submit.mp3",
+      "gain": -7.0,
+      "lead": 49,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukabidhi",
@@ -2110,6 +2566,8 @@
     "sugar": {
       "author": "Waithera Were",
       "file": "sugar.mp3",
+      "gain": -3.8,
+      "lead": 26,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sukari",
@@ -2119,6 +2577,8 @@
     "sun": {
       "author": "Waithera Were",
       "file": "sun.mp3",
+      "gain": -8.4,
+      "lead": 42,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jua",
@@ -2128,6 +2588,8 @@
     "sweater": {
       "author": "Waithera Were",
       "file": "sweater.mp3",
+      "gain": -2.7,
+      "lead": 30,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sweta",
@@ -2137,6 +2599,8 @@
     "t-shirt": {
       "author": "Waithera Were",
       "file": "t-shirt.mp3",
+      "gain": -7.1,
+      "lead": 21,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fulana",
@@ -2146,6 +2610,8 @@
     "take": {
       "author": "Waithera Were",
       "file": "take.mp3",
+      "gain": -6.5,
+      "lead": 27,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuchukua",
@@ -2155,6 +2621,8 @@
     "take-shower": {
       "author": "Waithera Were",
       "file": "take-shower.mp3",
+      "gain": -6.9,
+      "lead": 25,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuoga",
@@ -2164,6 +2632,8 @@
     "talk": {
       "author": "Waithera Were",
       "file": "talk.mp3",
+      "gain": -6.1,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuongea",
@@ -2173,6 +2643,8 @@
     "taste": {
       "author": "Waithera Were",
       "file": "taste.mp3",
+      "gain": -7.0,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuonja",
@@ -2182,6 +2654,8 @@
     "tax": {
       "author": "Waithera Were",
       "file": "tax.mp3",
+      "gain": -3.2,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kodi",
@@ -2191,6 +2665,8 @@
     "taxi": {
       "author": "Waithera Were",
       "file": "taxi.mp3",
+      "gain": 1.2,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "teksi",
@@ -2200,6 +2676,8 @@
     "tea": {
       "author": "Waithera Were",
       "file": "tea.mp3",
+      "gain": -5.3,
+      "lead": 25,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "chai",
@@ -2209,6 +2687,8 @@
     "teacher": {
       "author": "Waithera Were",
       "file": "teacher.mp3",
+      "gain": -6.9,
+      "lead": 43,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mwalimu",
@@ -2218,6 +2698,8 @@
     "thank": {
       "author": "Waithera Were",
       "file": "thank.mp3",
+      "gain": -6.6,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kushukuru",
@@ -2227,6 +2709,8 @@
     "thirst": {
       "author": "Waithera Were",
       "file": "thirst.mp3",
+      "gain": -7.3,
+      "lead": 225,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kiu",
@@ -2236,6 +2720,8 @@
     "throat": {
       "author": "Waithera Were",
       "file": "throat.mp3",
+      "gain": -0.3,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "koo",
@@ -2245,6 +2731,8 @@
     "ticket": {
       "author": "Waithera Were",
       "file": "ticket.mp3",
+      "gain": -4.8,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tiketi",
@@ -2254,6 +2742,8 @@
     "time": {
       "author": "Waithera Were",
       "file": "time.mp3",
+      "gain": -8.4,
+      "lead": 55,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wakati",
@@ -2263,6 +2753,8 @@
     "to-cough": {
       "author": "Waithera Were",
       "file": "to-cough.mp3",
+      "gain": -8.7,
+      "lead": 38,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukohoa",
@@ -2272,6 +2764,8 @@
     "to-help": {
       "author": "Waithera Were",
       "file": "to-help.mp3",
+      "gain": -8.2,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusaidia",
@@ -2281,6 +2775,8 @@
     "today": {
       "author": "Waithera Were",
       "file": "today.mp3",
+      "gain": -8.4,
+      "lead": 39,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "leo",
@@ -2290,6 +2786,8 @@
     "together": {
       "author": "Waithera Were",
       "file": "together.mp3",
+      "gain": -2.8,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pamoja",
@@ -2299,6 +2797,8 @@
     "toilet": {
       "author": "Waithera Were",
       "file": "toilet.mp3",
+      "gain": -8.5,
+      "lead": 38,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "choo",
@@ -2308,6 +2808,8 @@
     "tomorrow": {
       "author": "Waithera Were",
       "file": "tomorrow.mp3",
+      "gain": -3.7,
+      "lead": 42,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kesho",
@@ -2317,6 +2819,8 @@
     "toothbrush": {
       "author": "Waithera Were",
       "file": "toothbrush.mp3",
+      "gain": -4.9,
+      "lead": 39,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mswaki",
@@ -2326,6 +2830,8 @@
     "towel": {
       "author": "Waithera Were",
       "file": "towel.mp3",
+      "gain": -6.1,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "taulo",
@@ -2335,6 +2841,8 @@
     "train": {
       "author": "Waithera Were",
       "file": "train.mp3",
+      "gain": -4.8,
+      "lead": 47,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "treni",
@@ -2344,6 +2852,8 @@
     "translate": {
       "author": "Waithera Were",
       "file": "translate.mp3",
+      "gain": -2.4,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kutafsiri",
@@ -2353,6 +2863,8 @@
     "tree": {
       "author": "Waithera Were",
       "file": "tree.mp3",
+      "gain": 3.0,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mti",
@@ -2362,6 +2874,8 @@
     "trousers": {
       "author": "Waithera Were",
       "file": "trousers.mp3",
+      "gain": -3.2,
+      "lead": 26,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "suruali",
@@ -2371,6 +2885,7 @@
     "tv": {
       "author": "Waithera Were",
       "file": "tv.mp3",
+      "gain": 1.2,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "televisheni",
@@ -2380,6 +2895,8 @@
     "umbrella": {
       "author": "Waithera Were",
       "file": "umbrella.mp3",
+      "gain": -6.8,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mwavuli",
@@ -2389,6 +2906,8 @@
     "understand": {
       "author": "Waithera Were",
       "file": "understand.mp3",
+      "gain": -8.3,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuelewa",
@@ -2398,6 +2917,8 @@
     "unlock": {
       "author": "Waithera Were",
       "file": "unlock.mp3",
+      "gain": -6.9,
+      "lead": 45,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kufungua",
@@ -2407,6 +2928,8 @@
     "wait": {
       "author": "Waithera Were",
       "file": "wait.mp3",
+      "gain": -2.1,
+      "lead": 27,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusubiri",
@@ -2416,6 +2939,7 @@
     "wake-up": {
       "author": "Waithera Were",
       "file": "wake-up.mp3",
+      "gain": -5.5,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuamka",
@@ -2425,6 +2949,8 @@
     "wall": {
       "author": "Waithera Were",
       "file": "wall.mp3",
+      "gain": -2.5,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ukuta",
@@ -2434,6 +2960,8 @@
     "wallet": {
       "author": "Waithera Were",
       "file": "wallet.mp3",
+      "gain": -7.4,
+      "lead": 55,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pochi",
@@ -2443,6 +2971,8 @@
     "water": {
       "author": "Waithera Were",
       "file": "water.mp3",
+      "gain": -5.8,
+      "lead": 46,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "maji",
@@ -2452,6 +2982,8 @@
     "way": {
       "author": "Waithera Were",
       "file": "way.mp3",
+      "gain": -3.9,
+      "lead": 36,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "njia",
@@ -2461,6 +2993,8 @@
     "week": {
       "author": "Waithera Were",
       "file": "week.mp3",
+      "gain": 1.5,
+      "lead": 35,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wiki",
@@ -2470,6 +3004,8 @@
     "wind": {
       "author": "Waithera Were",
       "file": "wind.mp3",
+      "gain": -2.9,
+      "lead": 48,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "upepo",
@@ -2479,6 +3015,8 @@
     "window": {
       "author": "Waithera Were",
       "file": "window.mp3",
+      "gain": 3.7,
+      "lead": 19,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "dirisha",
@@ -2488,6 +3026,8 @@
     "word": {
       "author": "Waithera Were",
       "file": "word.mp3",
+      "gain": -3.8,
+      "lead": 37,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "neno",
@@ -2497,6 +3037,8 @@
     "work": {
       "author": "Waithera Were",
       "file": "work.mp3",
+      "gain": -6.0,
+      "lead": 40,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kazi",
@@ -2506,6 +3048,8 @@
     "write": {
       "author": "Waithera Were",
       "file": "write.mp3",
+      "gain": -7.9,
+      "lead": 41,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuandika",
@@ -2515,6 +3059,7 @@
     "yes": {
       "author": "Waithera Were",
       "file": "yes.mp3",
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ndiyo",

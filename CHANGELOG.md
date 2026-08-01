@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **Die Buchstaben setzen sofort ein und sind so laut wie die Wörter**: die ukrainischen
+  Buchstabenaufnahmen fingen erst nach gut einer Sekunde Stille an zu sprechen und waren
+  dabei rund fünfzehn Dezibel leiser als jedes Wort — im Buchstaben-Drill hörte man sie zu
+  spät und kaum. Beides ist ausgemessen und wird beim Abspielen ausgeglichen, und dieselbe
+  Angleichung nimmt auch den Wortpaketen ihre Lautstärkesprünge: Kiswahili war bisher
+  hörbar lauter als Spanisch. Die Aufnahmen selbst bleiben unangetastet — Byte für Byte
+  die Dateien von Wikimedia Commons.
+
 - **Spanisch kannst du jetzt lernen**: in der Sprachwahl steht neben Englisch, Kiswahili und
   Ukrainisch neu 🇪🇸 Spanisch — von Anfang an vollständig, alle 528 Wörter und Sätze aus allen
   vierzehn Bereichen, von den ersten Worten bis zum Amt. Gelernt wird das Spanisch Spaniens:

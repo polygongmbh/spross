@@ -4,6 +4,8 @@
     "always": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "always.mp3",
+      "gain": -2.4,
+      "lead": 234,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "immer",
@@ -13,6 +15,8 @@
     "answer": {
       "author": "Jeuwre",
       "file": "answer.mp3",
+      "gain": 1.1,
+      "lead": 445,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "antwort",
@@ -22,6 +26,8 @@
     "apply-for": {
       "author": "Priwo",
       "file": "apply-for.mp3",
+      "gain": 1.6,
+      "lead": 803,
       "licence": "Public domain",
       "matches": "beantragen",
       "sha256": "a28756f402da89afa45d98188304bf7e4350ac25eaf302e1b9b0411c6ebe549c",
@@ -30,6 +36,8 @@
     "apply-lotion": {
       "author": "Jeuwre",
       "file": "apply-lotion.mp3",
+      "gain": -1.8,
+      "lead": 241,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "eincremen",
@@ -39,6 +47,7 @@
     "approve": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "approve.mp3",
+      "gain": 3.7,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "genehmigen",
@@ -48,6 +57,8 @@
     "arrange": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "arrange.mp3",
+      "gain": 6.5,
+      "lead": 16,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "vereinbaren",
@@ -57,6 +68,7 @@
     "arrive": {
       "author": "Kampy",
       "file": "arrive.mp3",
+      "gain": 6.5,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "ankommen",
@@ -66,6 +78,7 @@
     "ask": {
       "author": "User:Tosca",
       "file": "ask.mp3",
+      "gain": 7.4,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "fragen",
@@ -75,6 +88,7 @@
     "back": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "back.mp3",
+      "gain": 4.8,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "rücken",
@@ -84,6 +98,8 @@
     "bad": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "bad.mp3",
+      "gain": -1.4,
+      "lead": 156,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "schlecht",
@@ -93,6 +109,8 @@
     "bake": {
       "author": "Jeuwre",
       "file": "bake.mp3",
+      "gain": 3.5,
+      "lead": 107,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "backen",
@@ -102,6 +120,7 @@
     "be-called": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "be-called.mp3",
+      "gain": -0.9,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "heißen",
@@ -111,6 +130,8 @@
     "bed": {
       "author": "Jeuwre",
       "file": "bed.mp3",
+      "gain": 0.8,
+      "lead": 447,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bett",
@@ -120,6 +141,7 @@
     "big": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "big.mp3",
+      "gain": -3.3,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "groß",
@@ -129,6 +151,8 @@
     "blanket": {
       "author": "Jeuwre",
       "file": "blanket.mp3",
+      "gain": 3.0,
+      "lead": 503,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "decke",
@@ -138,6 +162,8 @@
     "board": {
       "author": "Jeuwre",
       "file": "board.mp3",
+      "gain": -1.1,
+      "lead": 447,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tafel",
@@ -147,6 +173,7 @@
     "bring": {
       "author": "Kampy",
       "file": "bring.mp3",
+      "gain": 2.7,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "mitbringen",
@@ -156,6 +183,8 @@
     "buy": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "buy.mp3",
+      "gain": -0.2,
+      "lead": 161,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "kaufen",
@@ -165,6 +194,8 @@
     "bye": {
       "author": "Jeuwre",
       "file": "bye.mp3",
+      "gain": -0.3,
+      "lead": 347,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tschüss",
@@ -174,6 +205,8 @@
     "cable": {
       "author": "Jeuwre",
       "file": "cable.mp3",
+      "gain": 0.3,
+      "lead": 441,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kabel",
@@ -183,6 +216,8 @@
     "call": {
       "author": "Jeuwre",
       "file": "call.mp3",
+      "gain": -0.3,
+      "lead": 436,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "anrufen",
@@ -192,6 +227,7 @@
     "cancel": {
       "author": "Jeuwre",
       "file": "cancel.mp3",
+      "gain": 4.7,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "absagen",
@@ -201,6 +237,8 @@
     "chair": {
       "author": "Jeuwre",
       "file": "chair.mp3",
+      "gain": -0.6,
+      "lead": 424,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "stuhl",
@@ -210,6 +248,8 @@
     "cheese": {
       "author": "Jeuwre",
       "file": "cheese.mp3",
+      "gain": 1.2,
+      "lead": 441,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "käse",
@@ -219,6 +259,7 @@
     "clean": {
       "author": "Kampy",
       "file": "clean.mp3",
+      "gain": 2.1,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "putzen",
@@ -228,6 +269,8 @@
     "coat": {
       "author": "Jeuwre",
       "file": "coat.mp3",
+      "gain": 0.2,
+      "lead": 433,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mantel",
@@ -237,6 +280,7 @@
     "come": {
       "author": "User:Tosca",
       "file": "come.mp3",
+      "gain": 5.7,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kommen",
@@ -246,6 +290,8 @@
     "confirm": {
       "author": "User:Tosca",
       "file": "confirm.mp3",
+      "gain": 7.8,
+      "lead": 67,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "bestätigen",
@@ -255,6 +301,8 @@
     "contract": {
       "author": "Jeuwre",
       "file": "contract.mp3",
+      "gain": 2.6,
+      "lead": 412,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "vertrag",
@@ -264,6 +312,8 @@
     "cook": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "cook.mp3",
+      "gain": 0.6,
+      "lead": 231,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "kochen",
@@ -273,6 +323,8 @@
     "copy": {
       "author": "Priwo",
       "file": "copy.mp3",
+      "gain": 0.4,
+      "lead": 468,
       "licence": "Public domain",
       "matches": "kopieren",
       "sha256": "974e910a7cf5029b6852eb43eec5e0720ef21c67fd5d6ff6930a9cd31fc9fc4c",
@@ -281,6 +333,8 @@
     "correct": {
       "author": "Jeuwre",
       "file": "correct.mp3",
+      "gain": -1.7,
+      "lead": 329,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "korrigieren",
@@ -290,6 +344,8 @@
     "cough": {
       "author": "Jeuwre",
       "file": "cough.mp3",
+      "gain": -2.5,
+      "lead": 386,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "husten",
@@ -299,6 +355,8 @@
     "cream": {
       "author": "Jeuwre",
       "file": "cream.mp3",
+      "gain": -2.9,
+      "lead": 344,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "creme",
@@ -308,6 +366,8 @@
     "cuddle": {
       "author": "Lars Engelmann",
       "file": "cuddle.mp3",
+      "gain": 2.3,
+      "lead": 675,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kuscheln",
@@ -317,6 +377,8 @@
     "cut": {
       "author": "Katrin Boxberger, Bernadette Perrin-Riou",
       "file": "cut.mp3",
+      "gain": -2.1,
+      "lead": 75,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "schneiden",
@@ -326,6 +388,8 @@
     "deadline": {
       "author": "Jeuwre",
       "file": "deadline.mp3",
+      "gain": 0.8,
+      "lead": 413,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "frist",
@@ -335,6 +399,8 @@
     "delete": {
       "author": "User:Tosca",
       "file": "delete.mp3",
+      "gain": 3.9,
+      "lead": 39,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "löschen",
@@ -344,6 +410,8 @@
     "depart": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "depart.mp3",
+      "gain": 6.4,
+      "lead": 41,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "abfahren",
@@ -353,6 +421,8 @@
     "dirty": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "dirty.mp3",
+      "gain": -2.1,
+      "lead": 193,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "schmutzig",
@@ -362,6 +432,8 @@
     "doctor": {
       "author": "Jeuwre",
       "file": "doctor.mp3",
+      "gain": 0.1,
+      "lead": 439,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "arzt",
@@ -371,6 +443,8 @@
     "documents": {
       "author": "Jeuwre",
       "file": "documents.mp3",
+      "gain": 0.8,
+      "lead": 436,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "unterlagen",
@@ -380,6 +454,8 @@
     "doorbell": {
       "author": "Jeuwre",
       "file": "doorbell.mp3",
+      "gain": -1.2,
+      "lead": 445,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "klingel",
@@ -389,6 +465,7 @@
     "dream": {
       "author": "Leni Berlin",
       "file": "dream.mp3",
+      "gain": 12.4,
       "licence": "CC BY-SA 2.5",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
       "matches": "träumen",
@@ -398,6 +475,8 @@
     "dress": {
       "author": "Jeuwre",
       "file": "dress.mp3",
+      "gain": -2.5,
+      "lead": 448,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kleid",
@@ -407,6 +486,8 @@
     "drink": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "drink.mp3",
+      "gain": -1.6,
+      "lead": 265,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "trinken",
@@ -416,6 +497,8 @@
     "earn": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "earn.mp3",
+      "gain": -0.5,
+      "lead": 185,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "verdienen",
@@ -425,6 +508,8 @@
     "eat": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "eat.mp3",
+      "gain": -1.3,
+      "lead": 31,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "essen",
@@ -434,6 +519,8 @@
     "email": {
       "author": "Jeuwre",
       "file": "email.mp3",
+      "gain": 0.2,
+      "lead": 440,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "e-mail",
@@ -443,6 +530,8 @@
     "enter": {
       "author": "Jeuwre",
       "file": "enter.mp3",
+      "gain": 2.0,
+      "lead": 281,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hereinkommen",
@@ -452,6 +541,8 @@
     "examine": {
       "author": "Katrin Boxberger, Bernadette Perrin-Riou",
       "file": "examine.mp3",
+      "gain": 0.2,
+      "lead": 263,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "untersuchen",
@@ -461,6 +552,8 @@
     "exercise-book": {
       "author": "Jeuwre",
       "file": "exercise-book.mp3",
+      "gain": 2.5,
+      "lead": 407,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "heft",
@@ -470,6 +563,8 @@
     "extend": {
       "author": "Jeuwre",
       "file": "extend.mp3",
+      "gain": -2.5,
+      "lead": 272,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "verlängern",
@@ -479,6 +574,8 @@
     "fast": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "fast.mp3",
+      "gain": -4.0,
+      "lead": 45,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "schnell",
@@ -488,6 +585,8 @@
     "fee": {
       "author": "Jeuwre",
       "file": "fee.mp3",
+      "gain": -2.4,
+      "lead": 446,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gebühr",
@@ -497,6 +596,8 @@
     "fever": {
       "author": "Jeuwre",
       "file": "fever.mp3",
+      "gain": 0.6,
+      "lead": 407,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fieber",
@@ -506,6 +607,8 @@
     "fill-in": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "fill-in.mp3",
+      "gain": -1.0,
+      "lead": 227,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "ausfüllen",
@@ -515,6 +618,8 @@
     "friend": {
       "author": "Jeuwre",
       "file": "friend.mp3",
+      "gain": -0.7,
+      "lead": 407,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "freund",
@@ -524,6 +629,7 @@
     "fry": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "fry.mp3",
+      "gain": 0.9,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "braten",
@@ -533,6 +639,7 @@
     "get-up": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "get-up.mp3",
+      "gain": 2.0,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "aufstehen",
@@ -542,6 +649,8 @@
     "give": {
       "author": "Priwo",
       "file": "give.mp3",
+      "gain": 0.4,
+      "lead": 800,
       "licence": "Public domain",
       "matches": "geben",
       "sha256": "f3741e4247cad9a3fd9a342eb9dfb3147986177b2e583e3de7bd6f83ef8142ad",
@@ -550,6 +659,7 @@
     "go": {
       "author": "Hschier",
       "file": "go.mp3",
+      "gain": -6.7,
       "licence": "CC BY 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
       "matches": "gehen",
@@ -559,6 +669,7 @@
     "good": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "good.mp3",
+      "gain": -2.4,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "gut",
@@ -568,6 +679,8 @@
     "greet": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "greet.mp3",
+      "gain": -1.1,
+      "lead": 65,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "begrüßen",
@@ -577,6 +690,8 @@
     "guest": {
       "author": "Jeuwre",
       "file": "guest.mp3",
+      "gain": 1.2,
+      "lead": 430,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gast",
@@ -586,6 +701,8 @@
     "hair": {
       "author": "Jeuwre",
       "file": "hair.mp3",
+      "gain": -2.0,
+      "lead": 407,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "haar",
@@ -595,6 +712,8 @@
     "hairdryer": {
       "author": "Jeuwre",
       "file": "hairdryer.mp3",
+      "gain": -1.6,
+      "lead": 378,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "föhn",
@@ -604,6 +723,7 @@
     "hand-in": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "hand-in.mp3",
+      "gain": 3.5,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "einreichen",
@@ -613,6 +733,8 @@
     "have": {
       "author": "Leni Berlin",
       "file": "have.mp3",
+      "gain": 9.8,
+      "lead": 21,
       "licence": "CC BY-SA 2.5",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
       "matches": "haben",
@@ -622,6 +744,8 @@
     "head": {
       "author": "Jeuwre",
       "file": "head.mp3",
+      "gain": 1.4,
+      "lead": 440,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kopf",
@@ -631,6 +755,8 @@
     "hello": {
       "author": "Jeuwre",
       "file": "hello.mp3",
+      "gain": 0.6,
+      "lead": 427,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hallo",
@@ -640,6 +766,7 @@
     "here": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "here.mp3",
+      "gain": -3.3,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "hier",
@@ -649,6 +776,8 @@
     "hire": {
       "author": "Jeuwre",
       "file": "hire.mp3",
+      "gain": -1.0,
+      "lead": 442,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "einstellen",
@@ -658,6 +787,8 @@
     "holiday": {
       "author": "Jeuwre",
       "file": "holiday.mp3",
+      "gain": -1.1,
+      "lead": 445,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "urlaub",
@@ -667,6 +798,8 @@
     "hour": {
       "author": "Jeuwre",
       "file": "hour.mp3",
+      "gain": -3.8,
+      "lead": 432,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "stunde",
@@ -676,6 +809,8 @@
     "house": {
       "author": "Jeuwre",
       "file": "house.mp3",
+      "gain": 1.6,
+      "lead": 412,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "haus",
@@ -685,6 +820,8 @@
     "human": {
       "author": "Jeuwre",
       "file": "human.mp3",
+      "gain": 0.8,
+      "lead": 441,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mensch",
@@ -694,6 +831,8 @@
     "hurt": {
       "author": "Jeuwre",
       "file": "hurt.mp3",
+      "gain": -1.3,
+      "lead": 415,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wehtun",
@@ -703,6 +842,8 @@
     "important": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "important.mp3",
+      "gain": 0.3,
+      "lead": 149,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "wichtig",
@@ -712,6 +853,8 @@
     "inside": {
       "author": "Jeuwre",
       "file": "inside.mp3",
+      "gain": -2.1,
+      "lead": 247,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "drinnen",
@@ -721,6 +864,8 @@
     "jog": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "jog.mp3",
+      "gain": -0.3,
+      "lead": 109,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "joggen",
@@ -730,6 +875,8 @@
     "key": {
       "author": "Jeuwre",
       "file": "key.mp3",
+      "gain": -0.3,
+      "lead": 431,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schlüssel",
@@ -739,6 +886,8 @@
     "knife": {
       "author": "Jeuwre",
       "file": "knife.mp3",
+      "gain": 7.4,
+      "lead": 441,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "messer",
@@ -748,6 +897,7 @@
     "know": {
       "author": "Jeuwre",
       "file": "know.mp3",
+      "gain": 0.6,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wissen",
@@ -757,6 +907,8 @@
     "laugh": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "laugh.mp3",
+      "gain": -1.2,
+      "lead": 177,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "lachen",
@@ -766,6 +918,8 @@
     "left": {
       "author": "Priwo",
       "file": "left.mp3",
+      "gain": 2.3,
+      "lead": 384,
       "licence": "Public domain",
       "matches": "links",
       "sha256": "107857d3a9f900ef99e38fc65ec18c43f2e4c3f2d77517285205b7460acf6800",
@@ -774,6 +928,8 @@
     "lesson": {
       "author": "Jeuwre",
       "file": "lesson.mp3",
+      "gain": -2.8,
+      "lead": 435,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "unterricht",
@@ -783,6 +939,8 @@
     "letter": {
       "author": "Jeuwre",
       "file": "letter.mp3",
+      "gain": -0.2,
+      "lead": 446,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "brief",
@@ -792,6 +950,8 @@
     "light": {
       "author": "Jeuwre",
       "file": "light.mp3",
+      "gain": -0.7,
+      "lead": 368,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "licht",
@@ -801,6 +961,8 @@
     "live": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "live.mp3",
+      "gain": -2.7,
+      "lead": 67,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "wohnen",
@@ -810,6 +972,8 @@
     "lock": {
       "author": "Jeuwre",
       "file": "lock.mp3",
+      "gain": 3.5,
+      "lead": 509,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "abschließen",
@@ -819,6 +983,7 @@
     "make": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "make.mp3",
+      "lead": 171,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "machen",
@@ -828,6 +993,8 @@
     "market": {
       "author": "Jeuwre",
       "file": "market.mp3",
+      "gain": -0.9,
+      "lead": 441,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "markt",
@@ -837,6 +1004,8 @@
     "mirror": {
       "author": "Jeuwre",
       "file": "mirror.mp3",
+      "gain": 0.2,
+      "lead": 429,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "spiegel",
@@ -846,6 +1015,8 @@
     "morning": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "morning.mp3",
+      "gain": -2.7,
+      "lead": 205,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "morgen",
@@ -855,6 +1026,8 @@
     "mouse": {
       "author": "Jeuwre",
       "file": "mouse.mp3",
+      "gain": -1.1,
+      "lead": 442,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "maus",
@@ -864,6 +1037,8 @@
     "movie": {
       "author": "Jeuwre",
       "file": "movie.mp3",
+      "gain": -2.6,
+      "lead": 386,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "film",
@@ -873,6 +1048,7 @@
     "much": {
       "author": "Kampy",
       "file": "much.mp3",
+      "gain": -4.5,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "viel",
@@ -882,6 +1058,7 @@
     "need": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "need.mp3",
+      "gain": -2.6,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "brauchen",
@@ -891,6 +1068,7 @@
     "new": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "new.mp3",
+      "gain": -2.2,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "neu",
@@ -900,6 +1078,8 @@
     "no": {
       "author": "Priwo",
       "file": "no.mp3",
+      "gain": 1.1,
+      "lead": 756,
       "licence": "Public domain",
       "matches": "nein",
       "sha256": "9103ee0fcad72d029d2e7a165c4eee485a03a1a55a98456ce7f14fe248752275",
@@ -908,6 +1088,8 @@
     "notification": {
       "author": "Jeuwre",
       "file": "notification.mp3",
+      "gain": -2.7,
+      "lead": 449,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bescheid",
@@ -917,6 +1099,8 @@
     "now": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "now.mp3",
+      "gain": 1.0,
+      "lead": 91,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "jetzt",
@@ -926,6 +1110,8 @@
     "old": {
       "author": "Oceancetaceen Alice Chodura",
       "file": "old.mp3",
+      "gain": 19.9,
+      "lead": 155,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "alt",
@@ -935,6 +1121,8 @@
     "outdoors": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "outdoors.mp3",
+      "gain": -1.0,
+      "lead": 174,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "draußen",
@@ -944,6 +1132,8 @@
     "pain": {
       "author": "Jeuwre",
       "file": "pain.mp3",
+      "gain": -0.4,
+      "lead": 432,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schmerz",
@@ -953,6 +1143,8 @@
     "park": {
       "author": "Jeuwre",
       "file": "park.mp3",
+      "gain": 3.2,
+      "lead": 447,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "park",
@@ -962,6 +1154,8 @@
     "passport": {
       "author": "Jeuwre",
       "file": "passport.mp3",
+      "gain": 1.7,
+      "lead": 439,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pass",
@@ -971,6 +1165,8 @@
     "pay": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "pay.mp3",
+      "gain": -1.6,
+      "lead": 256,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "bezahlen",
@@ -980,6 +1176,8 @@
     "pen": {
       "author": "Jeuwre",
       "file": "pen.mp3",
+      "gain": -1.9,
+      "lead": 431,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "stift",
@@ -989,6 +1187,8 @@
     "picture": {
       "author": "Jeuwre",
       "file": "picture.mp3",
+      "gain": -3.0,
+      "lead": 442,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bild",
@@ -998,6 +1198,8 @@
     "plan": {
       "author": "Jeuwre",
       "file": "plan.mp3",
+      "gain": -0.6,
+      "lead": 444,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "plan",
@@ -1007,6 +1209,8 @@
     "plant": {
       "author": "Jeuwre",
       "file": "plant.mp3",
+      "gain": -1.9,
+      "lead": 448,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pflanze",
@@ -1016,6 +1220,7 @@
     "play": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "play.mp3",
+      "gain": -0.5,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "spielen",
@@ -1025,6 +1230,8 @@
     "please": {
       "author": "Bleibein",
       "file": "please.mp3",
+      "gain": 0.9,
+      "lead": 442,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "bitte",
@@ -1034,6 +1241,8 @@
     "postpone": {
       "author": "Jeuwre",
       "file": "postpone.mp3",
+      "gain": -2.3,
+      "lead": 544,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "verschieben",
@@ -1043,6 +1252,8 @@
     "pot": {
       "author": "Jeuwre",
       "file": "pot.mp3",
+      "gain": 1.4,
+      "lead": 363,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "topf",
@@ -1052,6 +1263,8 @@
     "practise": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "practise.mp3",
+      "gain": -3.6,
+      "lead": 47,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "üben",
@@ -1061,6 +1274,8 @@
     "print": {
       "author": "Priwo",
       "file": "print.mp3",
+      "gain": 6.3,
+      "lead": 410,
       "licence": "Public domain",
       "matches": "drucken",
       "sha256": "38a81ac68c1bb750c1dad3f6ec281ec895aa4f1ef3b9d284cf6135f6d0a7bbb1",
@@ -1069,6 +1284,8 @@
     "profession": {
       "author": "Jeuwre",
       "file": "profession.mp3",
+      "gain": -2.7,
+      "lead": 441,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "beruf",
@@ -1078,6 +1295,8 @@
     "punctual": {
       "author": "Jeuwre",
       "file": "punctual.mp3",
+      "gain": 0.7,
+      "lead": 121,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pünktlich",
@@ -1087,6 +1306,8 @@
     "question": {
       "author": "Jeuwre",
       "file": "question.mp3",
+      "gain": -0.5,
+      "lead": 414,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "frage",
@@ -1096,6 +1317,7 @@
     "quiet": {
       "author": "Kampy",
       "file": "quiet.mp3",
+      "gain": -0.9,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "leise",
@@ -1105,6 +1327,7 @@
     "quit": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "quit.mp3",
+      "gain": 6.2,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kündigen",
@@ -1114,6 +1337,8 @@
     "rain": {
       "author": "Jeuwre",
       "file": "rain.mp3",
+      "gain": 2.4,
+      "lead": 449,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "regen",
@@ -1123,6 +1348,8 @@
     "read": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "read.mp3",
+      "gain": -2.3,
+      "lead": 121,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "lesen",
@@ -1132,6 +1359,8 @@
     "ready": {
       "author": "Jeuwre",
       "file": "ready.mp3",
+      "gain": 0.7,
+      "lead": 387,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fertig",
@@ -1141,6 +1370,8 @@
     "reheat": {
       "author": "Jeuwre",
       "file": "reheat.mp3",
+      "gain": 2.0,
+      "lead": 243,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "aufwärmen",
@@ -1150,6 +1381,8 @@
     "reject": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "reject.mp3",
+      "gain": 8.4,
+      "lead": 50,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "ablehnen",
@@ -1159,6 +1392,8 @@
     "reply": {
       "author": "User:Tosca",
       "file": "reply.mp3",
+      "gain": 8.0,
+      "lead": 89,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "antworten",
@@ -1168,6 +1403,8 @@
     "rice": {
       "author": "Jeuwre",
       "file": "rice.mp3",
+      "gain": 1.5,
+      "lead": 436,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "reis",
@@ -1177,6 +1414,8 @@
     "right": {
       "author": "Priwo",
       "file": "right.mp3",
+      "gain": 6.3,
+      "lead": 376,
       "licence": "Public domain",
       "matches": "rechts",
       "sha256": "bfcce21c616891b09a706d3e9d8419e5fbe648679b8c7bfe2a3b570f34d63c89",
@@ -1185,6 +1424,8 @@
     "ring": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "ring.mp3",
+      "gain": 3.0,
+      "lead": 343,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "klingeln",
@@ -1194,6 +1435,8 @@
     "room": {
       "author": "Jeuwre",
       "file": "room.mp3",
+      "gain": -2.9,
+      "lead": 403,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zimmer",
@@ -1203,6 +1446,8 @@
     "salt": {
       "author": "Jeuwre",
       "file": "salt.mp3",
+      "gain": 1.7,
+      "lead": 435,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "salz",
@@ -1212,6 +1457,7 @@
     "save": {
       "author": "User:Tosca",
       "file": "save.mp3",
+      "gain": 6.4,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "speichern",
@@ -1221,6 +1467,7 @@
     "say": {
       "author": "Kampy",
       "file": "say.mp3",
+      "gain": -1.9,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "sagen",
@@ -1230,6 +1477,8 @@
     "school": {
       "author": "Jeuwre",
       "file": "school.mp3",
+      "gain": -1.9,
+      "lead": 423,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schule",
@@ -1239,6 +1488,7 @@
     "see": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "see.mp3",
+      "gain": -3.3,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "sehen",
@@ -1248,6 +1498,8 @@
     "shift": {
       "author": "Jeuwre",
       "file": "shift.mp3",
+      "gain": 1.3,
+      "lead": 433,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schicht",
@@ -1257,6 +1509,8 @@
     "shoe": {
       "author": "Jeuwre",
       "file": "shoe.mp3",
+      "gain": -2.3,
+      "lead": 424,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schuh",
@@ -1266,6 +1520,8 @@
     "shop": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "shop.mp3",
+      "gain": -1.5,
+      "lead": 121,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "einkaufen",
@@ -1275,6 +1531,8 @@
     "shower": {
       "author": "Jeuwre",
       "file": "shower.mp3",
+      "gain": -4.0,
+      "lead": 447,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "dusche",
@@ -1284,6 +1542,8 @@
     "sick": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "sick.mp3",
+      "gain": -2.3,
+      "lead": 261,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "krank",
@@ -1293,6 +1553,7 @@
     "sign": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "sign.mp3",
+      "gain": 5.9,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "unterschreiben",
@@ -1302,6 +1563,7 @@
     "sit": {
       "author": "Kampy",
       "file": "sit.mp3",
+      "gain": 3.8,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "sitzen",
@@ -1311,6 +1573,8 @@
     "sleep": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "sleep.mp3",
+      "gain": 0.4,
+      "lead": 237,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "schlafen",
@@ -1320,6 +1584,7 @@
     "slow": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "slow.mp3",
+      "gain": 0.1,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "langsam",
@@ -1329,6 +1594,8 @@
     "slower": {
       "author": "Jeuwre",
       "file": "slower.mp3",
+      "gain": -0.1,
+      "lead": 229,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "langsamer",
@@ -1338,6 +1605,7 @@
     "small": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "small.mp3",
+      "gain": -2.3,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "klein",
@@ -1347,6 +1615,7 @@
     "snore": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "snore.mp3",
+      "gain": 1.9,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "schnarchen",
@@ -1356,6 +1625,8 @@
     "soap": {
       "author": "Jeuwre",
       "file": "soap.mp3",
+      "gain": 1.7,
+      "lead": 436,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "seife",
@@ -1365,6 +1636,8 @@
     "sock": {
       "author": "Jeuwre",
       "file": "sock.mp3",
+      "gain": 2.7,
+      "lead": 437,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "socke",
@@ -1374,6 +1647,7 @@
     "soft": {
       "author": "Kampy",
       "file": "soft.mp3",
+      "gain": -0.9,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "weich",
@@ -1383,6 +1657,7 @@
     "speak": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "speak.mp3",
+      "gain": -1.0,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "sprechen",
@@ -1392,6 +1667,8 @@
     "sponge": {
       "author": "Jeuwre",
       "file": "sponge.mp3",
+      "gain": -0.3,
+      "lead": 413,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schwamm",
@@ -1401,6 +1678,8 @@
     "spoon": {
       "author": "Jeuwre",
       "file": "spoon.mp3",
+      "gain": 0.3,
+      "lead": 442,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "löffel",
@@ -1410,6 +1689,7 @@
     "start": {
       "author": "Jeuwre",
       "file": "start.mp3",
+      "lead": 447,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "anfangen",
@@ -1419,6 +1699,8 @@
     "stir": {
       "author": "Jeuwre",
       "file": "stir.mp3",
+      "gain": -3.4,
+      "lead": 441,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "umrühren",
@@ -1428,6 +1710,8 @@
     "stomach": {
       "author": "Jeuwre",
       "file": "stomach.mp3",
+      "gain": -1.2,
+      "lead": 445,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bauch",
@@ -1437,6 +1721,8 @@
     "study": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "study.mp3",
+      "gain": -2.6,
+      "lead": 213,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "lernen",
@@ -1446,6 +1732,7 @@
     "submit": {
       "author": "Kampy",
       "file": "submit.mp3",
+      "gain": 2.8,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "abgeben",
@@ -1455,6 +1742,8 @@
     "sugar": {
       "author": "Jeuwre",
       "file": "sugar.mp3",
+      "gain": -1.1,
+      "lead": 434,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zucker",
@@ -1464,6 +1753,8 @@
     "sun": {
       "author": "Jeuwre",
       "file": "sun.mp3",
+      "gain": -0.4,
+      "lead": 435,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sonne",
@@ -1473,6 +1764,7 @@
     "take": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "take.mp3",
+      "gain": -3.5,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "nehmen",
@@ -1482,6 +1774,7 @@
     "take-shower": {
       "author": "Kampy",
       "file": "take-shower.mp3",
+      "gain": -7.2,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "duschen",
@@ -1491,6 +1784,7 @@
     "talk": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "talk.mp3",
+      "gain": -2.0,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "reden",
@@ -1500,6 +1794,8 @@
     "taste": {
       "author": "Jeuwre",
       "file": "taste.mp3",
+      "gain": -1.4,
+      "lead": 449,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "probieren",
@@ -1509,6 +1805,8 @@
     "tax": {
       "author": "Jeuwre",
       "file": "tax.mp3",
+      "gain": -2.8,
+      "lead": 439,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "steuer",
@@ -1518,6 +1816,7 @@
     "thank": {
       "author": "Kampy",
       "file": "thank.mp3",
+      "gain": 1.6,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "danken",
@@ -1527,6 +1826,8 @@
     "thirst": {
       "author": "Jeuwre",
       "file": "thirst.mp3",
+      "gain": -0.2,
+      "lead": 422,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "durst",
@@ -1536,6 +1837,8 @@
     "throat": {
       "author": "Jeuwre",
       "file": "throat.mp3",
+      "gain": 1.6,
+      "lead": 421,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hals",
@@ -1545,6 +1848,8 @@
     "tidy-up": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "tidy-up.mp3",
+      "gain": -1.6,
+      "lead": 87,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "aufräumen",
@@ -1554,6 +1859,8 @@
     "time": {
       "author": "Jeuwre",
       "file": "time.mp3",
+      "gain": 1.9,
+      "lead": 445,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zeit",
@@ -1563,6 +1870,8 @@
     "to-cough": {
       "author": "Jeuwre",
       "file": "to-cough.mp3",
+      "gain": -2.5,
+      "lead": 386,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "husten",
@@ -1572,6 +1881,7 @@
     "to-help": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "to-help.mp3",
+      "gain": -0.6,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "helfen",
@@ -1581,6 +1891,7 @@
     "to-work": {
       "author": "Kampy",
       "file": "to-work.mp3",
+      "gain": -3.6,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "arbeiten",
@@ -1590,6 +1901,7 @@
     "today": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "today.mp3",
+      "gain": -0.4,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "heute",
@@ -1599,6 +1911,8 @@
     "together": {
       "author": "Jeuwre",
       "file": "together.mp3",
+      "gain": -2.3,
+      "lead": 414,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zusammen",
@@ -1608,6 +1922,8 @@
     "tomorrow": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "tomorrow.mp3",
+      "gain": -2.7,
+      "lead": 205,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "morgen",
@@ -1617,6 +1933,7 @@
     "translate": {
       "author": "Kampy",
       "file": "translate.mp3",
+      "gain": 2.4,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "übersetzen",
@@ -1626,6 +1943,8 @@
     "tree": {
       "author": "Jeuwre",
       "file": "tree.mp3",
+      "gain": -0.5,
+      "lead": 442,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "baum",
@@ -1635,6 +1954,8 @@
     "trousers": {
       "author": "Jeuwre",
       "file": "trousers.mp3",
+      "gain": -1.0,
+      "lead": 424,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hose",
@@ -1644,6 +1965,8 @@
     "type": {
       "author": "Jeuwre",
       "file": "type.mp3",
+      "gain": 1.6,
+      "lead": 442,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tippen",
@@ -1653,6 +1976,8 @@
     "understand": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "understand.mp3",
+      "gain": -0.1,
+      "lead": 246,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "verstehen",
@@ -1662,6 +1987,7 @@
     "unlock": {
       "author": "Kampy",
       "file": "unlock.mp3",
+      "gain": 4.0,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "aufschließen",
@@ -1671,6 +1997,7 @@
     "urgent": {
       "author": "Jeuwre",
       "file": "urgent.mp3",
+      "gain": -1.5,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "dringend",
@@ -1680,6 +2007,8 @@
     "wait": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "wait.mp3",
+      "gain": 0.2,
+      "lead": 232,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "warten",
@@ -1689,6 +2018,7 @@
     "wake-up": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "wake-up.mp3",
+      "gain": 5.5,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "aufwachen",
@@ -1698,6 +2028,8 @@
     "wall": {
       "author": "Jeuwre",
       "file": "wall.mp3",
+      "gain": -0.3,
+      "lead": 428,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wand",
@@ -1707,6 +2039,7 @@
     "watch-tv": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "watch-tv.mp3",
+      "gain": -0.9,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "fernsehen",
@@ -1716,6 +2049,8 @@
     "water": {
       "author": "Jeuwre",
       "file": "water.mp3",
+      "gain": -0.1,
+      "lead": 437,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wasser",
@@ -1725,6 +2060,8 @@
     "way": {
       "author": "Jeuwre",
       "file": "way.mp3",
+      "gain": 1.7,
+      "lead": 432,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "weg",
@@ -1734,6 +2071,8 @@
     "weather": {
       "author": "Jeuwre",
       "file": "weather.mp3",
+      "gain": -1.3,
+      "lead": 439,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wetter",
@@ -1743,6 +2082,8 @@
     "wind": {
       "author": "Jeuwre",
       "file": "wind.mp3",
+      "gain": 0.7,
+      "lead": 431,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wind",
@@ -1752,6 +2093,8 @@
     "window": {
       "author": "Jeuwre",
       "file": "window.mp3",
+      "gain": -1.2,
+      "lead": 386,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fenster",
@@ -1761,6 +2104,8 @@
     "work": {
       "author": "Jeuwre",
       "file": "work.mp3",
+      "gain": -0.8,
+      "lead": 442,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "arbeit",
@@ -1770,6 +2115,8 @@
     "write": {
       "author": "Alexandra Poelzlbauers, Vion Nicolas",
       "file": "write.mp3",
+      "gain": -2.9,
+      "lead": 30,
       "licence": "CC BY 2.0 fr",
       "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
       "matches": "schreiben",
@@ -1779,6 +2126,8 @@
     "yawn": {
       "author": "Jeuwre",
       "file": "yawn.mp3",
+      "gain": -0.9,
+      "lead": 389,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gähnen",
@@ -1788,6 +2137,7 @@
     "yes": {
       "author": "MiER",
       "file": "yes.mp3",
+      "gain": -4.3,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "ja",
