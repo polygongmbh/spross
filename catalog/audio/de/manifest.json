@@ -1,0 +1,1798 @@
+{
+  "language": "de",
+  "words": {
+    "always": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "always.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "immer",
+      "sha256": "cc5a155038cd0f73e2d52635144fe7ed2af166a37c1a31aa94bca6d82f3084b3",
+      "source": "De-at-immer.ogg"
+    },
+    "answer": {
+      "author": "Jeuwre",
+      "file": "answer.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "antwort",
+      "sha256": "e4548802a118b38390c11aad8d88b28bf18ffd4a7cf62ad7ee14a980bc2ac861",
+      "source": "De-antwort.ogg"
+    },
+    "apply-for": {
+      "author": "Priwo",
+      "file": "apply-for.mp3",
+      "licence": "Public domain",
+      "matches": "beantragen",
+      "sha256": "a28756f402da89afa45d98188304bf7e4350ac25eaf302e1b9b0411c6ebe549c",
+      "source": "De-at-beantragen.ogg"
+    },
+    "apply-lotion": {
+      "author": "Jeuwre",
+      "file": "apply-lotion.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "eincremen",
+      "sha256": "6178449a842822b62d97cf546d16e815d42e78e8d4deb30ba8b99ed9c818b5a5",
+      "source": "De-eincremen.ogg"
+    },
+    "approve": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "approve.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "genehmigen",
+      "sha256": "cf90589d77c77fc1253513dc91d28755cec405a5faf5775a23bf279a790ca1f8",
+      "source": "De-genehmigen.ogg"
+    },
+    "arrange": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "arrange.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "vereinbaren",
+      "sha256": "3c763b269c94686fabb576e0081e323467948706b33c05caa1c38710b3c47fac",
+      "source": "De-vereinbaren.ogg"
+    },
+    "arrive": {
+      "author": "Kampy",
+      "file": "arrive.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "ankommen",
+      "sha256": "81dc2b10a219f80b68a605f5c6c4cb7b1564c368e93358ae3fabcd2dc6bce953",
+      "source": "De-ankommen.ogg"
+    },
+    "ask": {
+      "author": "User:Tosca",
+      "file": "ask.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "fragen",
+      "sha256": "f3de6d771fd9b593970d7826199fb58af9521409f3873512b8b428385fc41748",
+      "source": "De-fragen.ogg"
+    },
+    "back": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "back.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "rücken",
+      "sha256": "0d8db70b56da90184ce39cc3b436baab261f938e99104b53b6aab1be7c2563c8",
+      "source": "De-rücken.ogg"
+    },
+    "bad": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "bad.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "schlecht",
+      "sha256": "005a43c9bcd072ad7590fa1e2773c80f42c336905d62bd2b68484c5a7bbb8e3a",
+      "source": "De-at-schlecht.ogg"
+    },
+    "bake": {
+      "author": "Jeuwre",
+      "file": "bake.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "backen",
+      "sha256": "a78dd1be101ace01f9ae2eae2402706b4c7e8178da1c0151e7829b973afebae5",
+      "source": "De-backen.ogg"
+    },
+    "be-called": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "be-called.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "heißen",
+      "sha256": "9f7d22e2bed55f782cc123fc73feca9900657a982d8063078270a0bf15b2c45c",
+      "source": "De-at-heißen.ogg"
+    },
+    "bed": {
+      "author": "Jeuwre",
+      "file": "bed.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "bett",
+      "sha256": "a6a2db2348bfc8e26d106c177b59ec3c6cf445da6a7ad9e72d09812ab1a5c598",
+      "source": "De-bett.ogg"
+    },
+    "big": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "big.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "groß",
+      "sha256": "1b211ce0c3c5239250dc18a646e7a48c7c53291b62e790d30058bd02dee50882",
+      "source": "De-at-groß.ogg"
+    },
+    "blanket": {
+      "author": "Jeuwre",
+      "file": "blanket.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "decke",
+      "sha256": "0307c88ead6400fbb5706952075ff7e98ef17bd5bd43e7d5d2ac43d2a3fc4d40",
+      "source": "De-decke.ogg"
+    },
+    "board": {
+      "author": "Jeuwre",
+      "file": "board.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "tafel",
+      "sha256": "1026993bbe0d47e64d375eaad8e09629a4d00aa6650d1a931c269b63646ba161",
+      "source": "De-tafel.ogg"
+    },
+    "bring": {
+      "author": "Kampy",
+      "file": "bring.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "mitbringen",
+      "sha256": "0a28dc8a5e914db88aad2a16df6a4ab10b579bfb63bab9f1288d88bb953020d0",
+      "source": "De-mitbringen.ogg"
+    },
+    "buy": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "buy.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "kaufen",
+      "sha256": "c95ccb95768f21f14cb1286b1d865174cc238ac8273052e8a60a6085ed444401",
+      "source": "De-at-kaufen.ogg"
+    },
+    "bye": {
+      "author": "Jeuwre",
+      "file": "bye.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "tschüss",
+      "sha256": "ff363ed964659e6baf581d1f40f727422e944e521d1f88331a874510e8238da6",
+      "source": "De-tschüss.ogg"
+    },
+    "cable": {
+      "author": "Jeuwre",
+      "file": "cable.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "kabel",
+      "sha256": "755a548398d0b6a96ab8af5f343d519b9f02e67aa0434847d660dcc3e0bbc7d4",
+      "source": "De-kabel.ogg"
+    },
+    "call": {
+      "author": "Jeuwre",
+      "file": "call.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "anrufen",
+      "sha256": "cdff190d3c7c38fcd5b09b8ae82c457b0d9498e5d927fd5785a2ef42aeaea4d9",
+      "source": "De-anrufen.ogg"
+    },
+    "cancel": {
+      "author": "Jeuwre",
+      "file": "cancel.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "absagen",
+      "sha256": "57f665fe4c2d2d873b50790485345f37040d5a9bf389a04f1960fcbdb8a2f996",
+      "source": "De-absagen.ogg"
+    },
+    "chair": {
+      "author": "Jeuwre",
+      "file": "chair.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "stuhl",
+      "sha256": "a8bf3547f890b41efc04f1a71893c59809dc71beca37d9a75717bcf345a918bc",
+      "source": "De-stuhl.ogg"
+    },
+    "cheese": {
+      "author": "Jeuwre",
+      "file": "cheese.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "käse",
+      "sha256": "3e9669b2ed1c18ad770e6c1c94186e78ba2adab54e13fbcbfa0fe5b76622d617",
+      "source": "De-käse.ogg"
+    },
+    "clean": {
+      "author": "Kampy",
+      "file": "clean.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "putzen",
+      "sha256": "bb02a85a005b9ee345b408d301a9f96bd36ab1d170861e23fe82cc4ca861584d",
+      "source": "De-putzen.ogg"
+    },
+    "coat": {
+      "author": "Jeuwre",
+      "file": "coat.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "mantel",
+      "sha256": "66631d8a2e76246af477deaf7a80f5748fc6ab3df8f6e83b427dedf842f83e81",
+      "source": "De-mantel.ogg"
+    },
+    "come": {
+      "author": "User:Tosca",
+      "file": "come.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "kommen",
+      "sha256": "d51d047c98f66daa912135bd0b68b03a354cc6953c2b3ea0f5de639b224143a1",
+      "source": "De-kommen.ogg"
+    },
+    "confirm": {
+      "author": "User:Tosca",
+      "file": "confirm.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "bestätigen",
+      "sha256": "35de456368324302c0a610e2620842e7c898b7e493abf22a32cc6a0d275fa2e5",
+      "source": "De-bestätigen.ogg"
+    },
+    "contract": {
+      "author": "Jeuwre",
+      "file": "contract.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "vertrag",
+      "sha256": "6705225b5d37e1e3abfb24a7ab49b988a6b2ddecd2b29caf4fe564e933883dc4",
+      "source": "De-vertrag.ogg"
+    },
+    "cook": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "cook.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "kochen",
+      "sha256": "68cc9af60b04fb60201d6a56787d5e52f12fbc276ede80090a8872b0263315c3",
+      "source": "De-at-kochen.ogg"
+    },
+    "copy": {
+      "author": "Priwo",
+      "file": "copy.mp3",
+      "licence": "Public domain",
+      "matches": "kopieren",
+      "sha256": "974e910a7cf5029b6852eb43eec5e0720ef21c67fd5d6ff6930a9cd31fc9fc4c",
+      "source": "De-at-kopieren.ogg"
+    },
+    "correct": {
+      "author": "Jeuwre",
+      "file": "correct.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "korrigieren",
+      "sha256": "16c504f01c5e03fc4498dad3f78d556fddcde40b84c7f1be3e1c399c929f94ee",
+      "source": "De-korrigieren.ogg"
+    },
+    "cough": {
+      "author": "Jeuwre",
+      "file": "cough.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "husten",
+      "sha256": "a00b6aba842cda9b9f8d9ced86a2c19f8245ec9dff08a8833b8c9fd8c7ee1ed1",
+      "source": "De-husten.ogg"
+    },
+    "cream": {
+      "author": "Jeuwre",
+      "file": "cream.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "creme",
+      "sha256": "95e614aa64db951fa8fef295c2fa495017a0b768ab6b8547dcb60c5841200838",
+      "source": "De-creme.ogg"
+    },
+    "cuddle": {
+      "author": "Lars Engelmann",
+      "file": "cuddle.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "kuscheln",
+      "sha256": "c2024d62e994f74e18356eebc4eae498485bd059bf4a85be8251905616c62e05",
+      "source": "De-kuscheln.ogg"
+    },
+    "cut": {
+      "author": "Katrin Boxberger, Bernadette Perrin-Riou",
+      "file": "cut.mp3",
+      "licence": "CC BY 3.0 us",
+      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+      "matches": "schneiden",
+      "sha256": "d5814ff8d3deda6a250d9be6c8998adcaf6c3858784568ffd091d7d7653aeced",
+      "source": "De-schneiden.ogg"
+    },
+    "deadline": {
+      "author": "Jeuwre",
+      "file": "deadline.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "frist",
+      "sha256": "61522fe42d6a381c9803ce96ca7728fe33324f37417b427f50648d42f41fb152",
+      "source": "De-frist.ogg"
+    },
+    "delete": {
+      "author": "User:Tosca",
+      "file": "delete.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "löschen",
+      "sha256": "fbf0e712e751b8c5961da742ba362efdaadd62a2d425bbc7488875bf904d5c1d",
+      "source": "De-löschen.ogg"
+    },
+    "depart": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "depart.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "abfahren",
+      "sha256": "a925c71edad981394cb6a1d8657fc485213dc142deb0651b16d091f8e17fe9d1",
+      "source": "De-abfahren.ogg"
+    },
+    "dirty": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "dirty.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "schmutzig",
+      "sha256": "6c63a56e1b7ddbf57371d73521d212bded28accb2d8d4b550a615883fa5b97ac",
+      "source": "De-at-schmutzig.ogg"
+    },
+    "doctor": {
+      "author": "Jeuwre",
+      "file": "doctor.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "arzt",
+      "sha256": "0c8583ef9f20fc061fb783560e0637d6fc25e1d1c4dd07e08bcd602ac4c09fd8",
+      "source": "De-arzt.ogg"
+    },
+    "documents": {
+      "author": "Jeuwre",
+      "file": "documents.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "unterlagen",
+      "sha256": "63219d99bce5c72e7a40ed197cff874e2464dd5da217b8ca9dcd4ca90cf4fe8c",
+      "source": "De-unterlagen.ogg"
+    },
+    "doorbell": {
+      "author": "Jeuwre",
+      "file": "doorbell.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "klingel",
+      "sha256": "3a3b7990c4dddb8575c42f54af00bbd0a6a5d49ac1b0e3c1395739957901141a",
+      "source": "De-klingel.ogg"
+    },
+    "dream": {
+      "author": "Leni Berlin",
+      "file": "dream.mp3",
+      "licence": "CC BY-SA 2.5",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+      "matches": "träumen",
+      "sha256": "3044de0425dbd737ef2a561f01c95d67f7410c6e0cbe63ff5186f2687c8c1c4d",
+      "source": "De-träumen.ogg"
+    },
+    "dress": {
+      "author": "Jeuwre",
+      "file": "dress.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "kleid",
+      "sha256": "31e192c346a4038b9174e923c836fc13d11371c30d5ac78ad4369c8f783348a0",
+      "source": "De-kleid.ogg"
+    },
+    "drink": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "drink.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "trinken",
+      "sha256": "65edeab2addc0d051e967abce9bd380ce72bacaeb130f38f91aaa9853f82c235",
+      "source": "De-at-trinken.ogg"
+    },
+    "earn": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "earn.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "verdienen",
+      "sha256": "f53e940fd82b8ea0d6e79807bf9bb1790ce7795e43bf62f4a57fe1d79a64845b",
+      "source": "De-at-verdienen.ogg"
+    },
+    "eat": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "eat.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "essen",
+      "sha256": "e1ad881e3510f97f5389022f85927befa2d2621cc7b15afac900cb3b4ce31790",
+      "source": "De-at-essen.ogg"
+    },
+    "email": {
+      "author": "Jeuwre",
+      "file": "email.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "e-mail",
+      "sha256": "d4e87e0b0753d686fddcbe08876d238050a97d15e4f23a4361d3753c0f9f5c9c",
+      "source": "De-e-mail.ogg"
+    },
+    "enter": {
+      "author": "Jeuwre",
+      "file": "enter.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "hereinkommen",
+      "sha256": "77523cafe4392d6c15b021e3197160723a5c49459f62f377e4412b47fb2fb536",
+      "source": "De-hereinkommen.ogg"
+    },
+    "examine": {
+      "author": "Katrin Boxberger, Bernadette Perrin-Riou",
+      "file": "examine.mp3",
+      "licence": "CC BY 3.0 us",
+      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+      "matches": "untersuchen",
+      "sha256": "c1aa3b02aeb8077d1d4ba9fb5290b97294a873b0d418dcfcbc33185b356be041",
+      "source": "De-untersuchen.ogg"
+    },
+    "exercise-book": {
+      "author": "Jeuwre",
+      "file": "exercise-book.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "heft",
+      "sha256": "a9e84808a8af8d6b42011d92208144d16ad530d09812af6d48a2c1423e1ea7d3",
+      "source": "De-heft.ogg"
+    },
+    "extend": {
+      "author": "Jeuwre",
+      "file": "extend.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "verlängern",
+      "sha256": "7789d003633e884d6097bbd65a38f0f246d618c879c7f356c000f666658693cb",
+      "source": "De-verlängern.ogg"
+    },
+    "fast": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "fast.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "schnell",
+      "sha256": "39534284a1ae26cf0435f85b8c297a2c2d0f7e0bd39c233d1f151c9862620458",
+      "source": "De-at-schnell.ogg"
+    },
+    "fee": {
+      "author": "Jeuwre",
+      "file": "fee.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "gebühr",
+      "sha256": "372a8e61438e1095c93043e27056d8ffa402c7ce36898f658526710a8d3cda10",
+      "source": "De-gebühr.ogg"
+    },
+    "fever": {
+      "author": "Jeuwre",
+      "file": "fever.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "fieber",
+      "sha256": "36d7af3f2448e38f1f702190f4e3b8053d0d79a85d62c98e0c47255b8ad6c73c",
+      "source": "De-fieber.ogg"
+    },
+    "fill-in": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "fill-in.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "ausfüllen",
+      "sha256": "31fce2b56b3fd65b2005d064508c6fe064ac1100ae1c226baef98f8a7a530146",
+      "source": "De-at-ausfüllen.ogg"
+    },
+    "friend": {
+      "author": "Jeuwre",
+      "file": "friend.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "freund",
+      "sha256": "d40a6fb2fc0fa52cf73f7ea17372b9bbec3572453c4ec8d0fcb02319bcaa3a9c",
+      "source": "De-freund.ogg"
+    },
+    "fry": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "fry.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "braten",
+      "sha256": "65a6f108f5aa04e6ff14b9617c9feed9c39a96aa9e42efe777209907a6cf791c",
+      "source": "De-at-braten.ogg"
+    },
+    "get-up": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "get-up.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "aufstehen",
+      "sha256": "d7a4ef79a39a2fc0bf97fea9ecc1fffec9a84e9e897ca39cb7c4e6e7aeb1f99f",
+      "source": "De-at-aufstehen.ogg"
+    },
+    "give": {
+      "author": "Priwo",
+      "file": "give.mp3",
+      "licence": "Public domain",
+      "matches": "geben",
+      "sha256": "f3741e4247cad9a3fd9a342eb9dfb3147986177b2e583e3de7bd6f83ef8142ad",
+      "source": "De-at-geben.ogg"
+    },
+    "go": {
+      "author": "Hschier",
+      "file": "go.mp3",
+      "licence": "CC BY 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "matches": "gehen",
+      "sha256": "fb287a46ea18d6f389f162b46306ee054b33b919c6e3ea9d8e625c718855f4c6",
+      "source": "De-gehen.ogg"
+    },
+    "good": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "good.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "gut",
+      "sha256": "e4d62ad8f514a0740e031e868ffcfdda202ee1d48a4497ffdf4b2f3c6a3e4397",
+      "source": "De-at-gut.ogg"
+    },
+    "greet": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "greet.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "begrüßen",
+      "sha256": "3802c0056f4eea9c12be5f8dddc217aa6b5d5b2f1a731b8f32712f9cbd57cb94",
+      "source": "De-at-begrüßen.ogg"
+    },
+    "guest": {
+      "author": "Jeuwre",
+      "file": "guest.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "gast",
+      "sha256": "9d0d42805a7acca723bd6d5f80181f00383d7b5bb71ef9972697d65125273ebb",
+      "source": "De-gast.ogg"
+    },
+    "hair": {
+      "author": "Jeuwre",
+      "file": "hair.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "haar",
+      "sha256": "21f1ef1b82bf5db295f274087d872bb14f0e3c711823c9a7b0cef724569d782f",
+      "source": "De-haar.ogg"
+    },
+    "hairdryer": {
+      "author": "Jeuwre",
+      "file": "hairdryer.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "föhn",
+      "sha256": "91d323499c1ce7ed017d1e0618b80cc871536ba20c08f3b57d251d9d33909bcd",
+      "source": "De-föhn.ogg"
+    },
+    "hand-in": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "hand-in.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "einreichen",
+      "sha256": "e218972a09c0b6fb048fa9556195dc177d2c7520aa2ab8db9a232e915be8e9e7",
+      "source": "De-einreichen.ogg"
+    },
+    "have": {
+      "author": "Leni Berlin",
+      "file": "have.mp3",
+      "licence": "CC BY-SA 2.5",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+      "matches": "haben",
+      "sha256": "34e7d28e4bb706f7e289f31468fc1d1996ff7ebefd9e8a7334833ae799348343",
+      "source": "De-haben.ogg"
+    },
+    "head": {
+      "author": "Jeuwre",
+      "file": "head.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "kopf",
+      "sha256": "68cea3851de055547ed05bd2362b252094bf10a42ea64c74e29568f1d85b7577",
+      "source": "De-kopf.ogg"
+    },
+    "hello": {
+      "author": "Jeuwre",
+      "file": "hello.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "hallo",
+      "sha256": "a2d7cd28dac53d9c369635f8494f6094c66f69609dd681833cd4f0207603ade3",
+      "source": "De-hallo.ogg"
+    },
+    "here": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "here.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "hier",
+      "sha256": "43662e688aad14207ad4a117443851b1d54b161eddf789357ec434504f947def",
+      "source": "De-at-hier.ogg"
+    },
+    "hire": {
+      "author": "Jeuwre",
+      "file": "hire.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "einstellen",
+      "sha256": "21af0cfbd9ae469585444e6e8e11658af656b2066103bb4c4de990ec09c6fbe9",
+      "source": "De-einstellen.ogg"
+    },
+    "holiday": {
+      "author": "Jeuwre",
+      "file": "holiday.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "urlaub",
+      "sha256": "4c5e62861f38cd600a8a546df8c899614adc89d3069608546afd7c6e8926501f",
+      "source": "De-urlaub.ogg"
+    },
+    "hour": {
+      "author": "Jeuwre",
+      "file": "hour.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "stunde",
+      "sha256": "1319646d95079ccb29d32710cd4feaeba2911570bdd91754ab4909ec635e6b4f",
+      "source": "De-stunde.ogg"
+    },
+    "house": {
+      "author": "Jeuwre",
+      "file": "house.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "haus",
+      "sha256": "cb7b1e01af576adf66e9574e9c0ef3d91a91866cba53b9f381ec69f12729d9ce",
+      "source": "De-haus.ogg"
+    },
+    "human": {
+      "author": "Jeuwre",
+      "file": "human.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "mensch",
+      "sha256": "b14383d257cb24be1c8b723a03eb35babeb1f3f0502d1fdc4259b0808ad17140",
+      "source": "De-mensch.ogg"
+    },
+    "hurt": {
+      "author": "Jeuwre",
+      "file": "hurt.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "wehtun",
+      "sha256": "e57ec6c8f555343b1f09d1c6b74871980e7cb24c7068820a7c0bee113bf05afd",
+      "source": "De-wehtun.ogg"
+    },
+    "important": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "important.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "wichtig",
+      "sha256": "57a6aa9dee42f2c9b8b1e2a154f4485d9c0e3181395812f540b63c85577cdcab",
+      "source": "De-at-wichtig.ogg"
+    },
+    "inside": {
+      "author": "Jeuwre",
+      "file": "inside.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "drinnen",
+      "sha256": "dd9e611c10af36cc61981b21177c1a19252ac64a87622783cbad696bfb586cc4",
+      "source": "De-drinnen.ogg"
+    },
+    "jog": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "jog.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "joggen",
+      "sha256": "cebd6fcf17f05bcad7820e71a8e405d6d9e38d801e386fa5a9d892effcfe0746",
+      "source": "De-at-joggen.ogg"
+    },
+    "key": {
+      "author": "Jeuwre",
+      "file": "key.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "schlüssel",
+      "sha256": "c526d8ae02aef7bc8245e23b45442020084476cfdedf4a2f65ef226e79ebae4a",
+      "source": "De-schlüssel.ogg"
+    },
+    "knife": {
+      "author": "Jeuwre",
+      "file": "knife.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "messer",
+      "sha256": "ea0531f9b2aba9f05ec1759b9338a11df6c56cc7ce3ad8ebf6a661063d20b81d",
+      "source": "De-messer.ogg"
+    },
+    "know": {
+      "author": "Jeuwre",
+      "file": "know.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "wissen",
+      "sha256": "881a90761900ddad14d263d4238f0a86944c4f3f95590a490f5f15be2392abd8",
+      "source": "De-wissen.ogg"
+    },
+    "laugh": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "laugh.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "lachen",
+      "sha256": "4db1fa7c3840ad5913a58575482da24d32d2bde8eddfc465891eca7c55b47236",
+      "source": "De-at-lachen.ogg"
+    },
+    "left": {
+      "author": "Priwo",
+      "file": "left.mp3",
+      "licence": "Public domain",
+      "matches": "links",
+      "sha256": "107857d3a9f900ef99e38fc65ec18c43f2e4c3f2d77517285205b7460acf6800",
+      "source": "De-at-links.ogg"
+    },
+    "lesson": {
+      "author": "Jeuwre",
+      "file": "lesson.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "unterricht",
+      "sha256": "f2759a71ca2a61f2af6e20d2aa410281abd2e51ff8ed585395be4ce3970907d9",
+      "source": "De-unterricht.ogg"
+    },
+    "letter": {
+      "author": "Jeuwre",
+      "file": "letter.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "brief",
+      "sha256": "fc9c5086e3596e5b0d0a683e5ad7305d0a04954be515d42ea98d9a258d28d9bf",
+      "source": "De-brief.ogg"
+    },
+    "light": {
+      "author": "Jeuwre",
+      "file": "light.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "licht",
+      "sha256": "70e05ec9c6fbacfde94e0451bb32cb32c3cb582da0d91f826aa013cd5bdf8fab",
+      "source": "De-licht.ogg"
+    },
+    "live": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "live.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "wohnen",
+      "sha256": "4596cbf81b31eb081a4686760ae73db469b0820a430d8a28996e41d5d236729a",
+      "source": "De-at-wohnen.ogg"
+    },
+    "lock": {
+      "author": "Jeuwre",
+      "file": "lock.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "abschließen",
+      "sha256": "7901e41052576018f7a57a62bcca3c0c191c73bae6ab0104530fdb1de66a8783",
+      "source": "De-abschließen.ogg"
+    },
+    "make": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "make.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "machen",
+      "sha256": "56ff9b521d0afb65d407a49ede00589f4ae7f9ad34fafa82a06bfa50dc42abe8",
+      "source": "De-at-machen.ogg"
+    },
+    "market": {
+      "author": "Jeuwre",
+      "file": "market.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "markt",
+      "sha256": "acf33e355d7d3809f554d932dbfc16bcc3c1a185c2279da8ce219c5dda48358a",
+      "source": "De-markt.ogg"
+    },
+    "mirror": {
+      "author": "Jeuwre",
+      "file": "mirror.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "spiegel",
+      "sha256": "b1169c4e061b14c8daf071a3602c8f806af41a539b2033c30b780008613fb449",
+      "source": "De-spiegel.ogg"
+    },
+    "morning": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "morning.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "morgen",
+      "sha256": "a5e96da9476629dec7fdfcc83bc270670a90207d57980593f7d039900347537f",
+      "source": "De-at-morgen.ogg"
+    },
+    "mouse": {
+      "author": "Jeuwre",
+      "file": "mouse.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "maus",
+      "sha256": "3ff9b7bf83a3ff00eb2e021ccba43c2382f43ac578d7038584e7521cae0d78b5",
+      "source": "De-maus.ogg"
+    },
+    "movie": {
+      "author": "Jeuwre",
+      "file": "movie.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "film",
+      "sha256": "a0c103f951d67ba1a88c1d2f663ea9829502ef0780adea51cdd3a4e561dfcfb0",
+      "source": "De-film.ogg"
+    },
+    "much": {
+      "author": "Kampy",
+      "file": "much.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "viel",
+      "sha256": "47e1cd00c623b6c2d71a23f90562ada0ee1eda751e8d13976367175821a5e048",
+      "source": "De-viel.ogg"
+    },
+    "need": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "need.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "brauchen",
+      "sha256": "f1d1b88b131d796bac724eceaa9ae204cef69ac556053cba20798bd178c53241",
+      "source": "De-at-brauchen.ogg"
+    },
+    "new": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "new.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "neu",
+      "sha256": "d6cdeb72286878ba56e766d7c0519aaa1d2b6739cfb924945dfffbb9099b25b0",
+      "source": "De-at-neu.ogg"
+    },
+    "no": {
+      "author": "Priwo",
+      "file": "no.mp3",
+      "licence": "Public domain",
+      "matches": "nein",
+      "sha256": "9103ee0fcad72d029d2e7a165c4eee485a03a1a55a98456ce7f14fe248752275",
+      "source": "De-at-nein.ogg"
+    },
+    "notification": {
+      "author": "Jeuwre",
+      "file": "notification.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "bescheid",
+      "sha256": "6933778d612a098b7dc735a599766414d3ef9ad25632086d55cb60bb2776160d",
+      "source": "De-bescheid.ogg"
+    },
+    "now": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "now.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "jetzt",
+      "sha256": "d92c837acfca1400aac6637b9b491ea322431ce2838edfde4ab6391539619a86",
+      "source": "De-at-jetzt.ogg"
+    },
+    "old": {
+      "author": "Oceancetaceen Alice Chodura",
+      "file": "old.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "alt",
+      "sha256": "1a4916d2f2d771d0b40633b70d97d8c5dc64948f77ce950a829e49e449d20f1a",
+      "source": "De-alt.ogg"
+    },
+    "outdoors": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "outdoors.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "draußen",
+      "sha256": "47a13adea5b9df54096a38f6aaef757f900f8136d3f1edc05c06060cf0d97ac8",
+      "source": "De-at-draußen.ogg"
+    },
+    "pain": {
+      "author": "Jeuwre",
+      "file": "pain.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "schmerz",
+      "sha256": "a14fd3fef37ad3dbc9567e2c8973f65e67d9702f78e5e352f7f64a21667c9033",
+      "source": "De-schmerz.ogg"
+    },
+    "park": {
+      "author": "Jeuwre",
+      "file": "park.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "park",
+      "sha256": "ce719bbed105b900419a66db920f11d99935b8788f59f3ee6c66de630d1de87c",
+      "source": "De-park.ogg"
+    },
+    "passport": {
+      "author": "Jeuwre",
+      "file": "passport.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pass",
+      "sha256": "725fa5968761c144446a2e77aacf07b217b693a4aeecdac15e9cfa932a3f4179",
+      "source": "De-pass.ogg"
+    },
+    "pay": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "pay.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "bezahlen",
+      "sha256": "3037d9f7ec3158c8c0cd5cbedacb90dea7a4eb18475a9c9b70f1721f9c80007b",
+      "source": "De-at-bezahlen.ogg"
+    },
+    "pen": {
+      "author": "Jeuwre",
+      "file": "pen.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "stift",
+      "sha256": "626e2036de4040a17adc72d988d7ccf01d7d37606369616897239d2d5d1579a0",
+      "source": "De-stift.ogg"
+    },
+    "picture": {
+      "author": "Jeuwre",
+      "file": "picture.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "bild",
+      "sha256": "d23c390c633cff36fa213d3de093762e25c5f134aac0d382c93c662334db10ec",
+      "source": "De-bild.ogg"
+    },
+    "plan": {
+      "author": "Jeuwre",
+      "file": "plan.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "plan",
+      "sha256": "bfb48996e9b270dbb5b166b2f1fe87dcaa4cc7988126f5720cf39791c0a925a4",
+      "source": "De-plan.ogg"
+    },
+    "plant": {
+      "author": "Jeuwre",
+      "file": "plant.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pflanze",
+      "sha256": "0a1e73fdb2a56157bf398d6c88474dfab174e50adb852ff92d9d7b426df172e2",
+      "source": "De-pflanze.ogg"
+    },
+    "play": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "play.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "spielen",
+      "sha256": "74cafa5762f63e472e5de2ac1876f2e978b8d81669c57ae1d85dc3d9c065630c",
+      "source": "De-at-spielen.ogg"
+    },
+    "please": {
+      "author": "Bleibein",
+      "file": "please.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "bitte",
+      "sha256": "8d5f7cb3f84e0406c2ce88a697a6f2f12770bf442e8e135e9eca65820f0c0280",
+      "source": "De-bitte.ogg"
+    },
+    "postpone": {
+      "author": "Jeuwre",
+      "file": "postpone.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "verschieben",
+      "sha256": "506381fa022030e463aed1a41b5eadc0455beaf36d7675ac1c48d511cc0a1134",
+      "source": "De-verschieben.ogg"
+    },
+    "pot": {
+      "author": "Jeuwre",
+      "file": "pot.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "topf",
+      "sha256": "02efae0d58bf857a1a66c4aa816129f52d34db03592618857af552002cb41308",
+      "source": "De-topf.ogg"
+    },
+    "practise": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "practise.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "üben",
+      "sha256": "00ec533ae3c570ced724a80c91be4336d1cda513fd9b821f7ee97c4caa9042d7",
+      "source": "De-at-üben.ogg"
+    },
+    "print": {
+      "author": "Priwo",
+      "file": "print.mp3",
+      "licence": "Public domain",
+      "matches": "drucken",
+      "sha256": "38a81ac68c1bb750c1dad3f6ec281ec895aa4f1ef3b9d284cf6135f6d0a7bbb1",
+      "source": "De-at-drucken.ogg"
+    },
+    "profession": {
+      "author": "Jeuwre",
+      "file": "profession.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "beruf",
+      "sha256": "88b83437e33731fd1a64230290c2725e766c45705f9437f5215beebd21b3034d",
+      "source": "De-beruf.ogg"
+    },
+    "punctual": {
+      "author": "Jeuwre",
+      "file": "punctual.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pünktlich",
+      "sha256": "9e5622a058d05b34f545bb9cbb42250ec4194bc542b4a18226a57c066e6927f5",
+      "source": "De-pünktlich.ogg"
+    },
+    "question": {
+      "author": "Jeuwre",
+      "file": "question.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "frage",
+      "sha256": "02fa117a6f3cc22564a3865ef8a2ede70f2f2daa0b6bb7cb70157996d0c39c00",
+      "source": "De-frage.ogg"
+    },
+    "quiet": {
+      "author": "Kampy",
+      "file": "quiet.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "leise",
+      "sha256": "1dd3229d43da7cf7e199e01a8e371df4ff4f66afdf98a38ef9279e60e84e01d2",
+      "source": "De-leise.ogg"
+    },
+    "quit": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "quit.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "kündigen",
+      "sha256": "1865fac29867e3cce63eaf0e317e28a74b48460e5cd7f6228ea3e4de5bfef562",
+      "source": "De-kündigen.ogg"
+    },
+    "rain": {
+      "author": "Jeuwre",
+      "file": "rain.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "regen",
+      "sha256": "bb66118a3751d011ab0cc680328b12377b35af917c96c8553f5dcab9cdeeba45",
+      "source": "De-regen.ogg"
+    },
+    "read": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "read.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "lesen",
+      "sha256": "fea4f70d0e1f5b930b4790ca31eb96e698ed8f90582c89f35ad70012a8fb9434",
+      "source": "De-at-lesen.ogg"
+    },
+    "ready": {
+      "author": "Jeuwre",
+      "file": "ready.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "fertig",
+      "sha256": "84e96a76d759238e48fa13c9d9f3c2d8a8443c4e167546bd264be648a2bad86d",
+      "source": "De-fertig.ogg"
+    },
+    "reheat": {
+      "author": "Jeuwre",
+      "file": "reheat.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "aufwärmen",
+      "sha256": "7685393b24cb14756cb33bc1bb088daa671128fd3a64663c519526730aa3b1c6",
+      "source": "De-aufwärmen.ogg"
+    },
+    "reject": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "reject.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "ablehnen",
+      "sha256": "e216243cbbadda9cd9fad8f7c8c262f3a9b9679bf43f9b0881c07d494017f449",
+      "source": "De-ablehnen.ogg"
+    },
+    "reply": {
+      "author": "User:Tosca",
+      "file": "reply.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "antworten",
+      "sha256": "9c72025f3d6f9f40bbd225b319600c19adffe0ba4b64cf516a7de67cafa79a74",
+      "source": "De-antworten.ogg"
+    },
+    "rice": {
+      "author": "Jeuwre",
+      "file": "rice.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "reis",
+      "sha256": "270bd4fdfcebdde504028690d0f0c1771deb48e9953edd171be539ddce9464e4",
+      "source": "De-reis.ogg"
+    },
+    "right": {
+      "author": "Priwo",
+      "file": "right.mp3",
+      "licence": "Public domain",
+      "matches": "rechts",
+      "sha256": "bfcce21c616891b09a706d3e9d8419e5fbe648679b8c7bfe2a3b570f34d63c89",
+      "source": "De-at-rechts.ogg"
+    },
+    "ring": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "ring.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "klingeln",
+      "sha256": "3a33f9ef032088a3ae6834e8bf561c9495a514952d9e41a282363ff95ac9b57a",
+      "source": "De-klingeln.ogg"
+    },
+    "room": {
+      "author": "Jeuwre",
+      "file": "room.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "zimmer",
+      "sha256": "f1dba992fd011c6f9093911c603be019c8e52bb021ad7baf17f1e8bcb773fbb1",
+      "source": "De-zimmer.ogg"
+    },
+    "salt": {
+      "author": "Jeuwre",
+      "file": "salt.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "salz",
+      "sha256": "c90e5eb4fdb2633f8f2b5919c41b7a946435bf89604d34f7bddac64eb1b3e007",
+      "source": "De-salz.ogg"
+    },
+    "save": {
+      "author": "User:Tosca",
+      "file": "save.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "speichern",
+      "sha256": "9e7325073f8297e664e113346f7c5d45e9c41ef84965b377dc0c28cc05755abc",
+      "source": "De-speichern.ogg"
+    },
+    "say": {
+      "author": "Kampy",
+      "file": "say.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "sagen",
+      "sha256": "cdf948395ca27f5338cb1a6fcd93ec731ce71af10347550fc1c9a0a22ce57920",
+      "source": "De-sagen.ogg"
+    },
+    "school": {
+      "author": "Jeuwre",
+      "file": "school.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "schule",
+      "sha256": "34208d7f5aa8766cbbc9c44ed7a14f927dc80652a9e76d527647f71498ac2465",
+      "source": "De-schule.ogg"
+    },
+    "see": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "see.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "sehen",
+      "sha256": "5ba3ca61e632f45225d28f901b1ac82e8356d3fdd049ffdbc82d59a47d1866fd",
+      "source": "De-at-sehen.ogg"
+    },
+    "shift": {
+      "author": "Jeuwre",
+      "file": "shift.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "schicht",
+      "sha256": "4233496253da83d34e031118d064b2e01205cb785bf59650b180a76a9b5ecb02",
+      "source": "De-schicht.ogg"
+    },
+    "shoe": {
+      "author": "Jeuwre",
+      "file": "shoe.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "schuh",
+      "sha256": "65f4c6a4a5b3b543a05e2ae506b823b5a80fa559e135ee8b00144f49538d75d4",
+      "source": "De-schuh.ogg"
+    },
+    "shop": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "shop.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "einkaufen",
+      "sha256": "78789bfa266cc79f45e38a0d3dd1cf18e74106d784931946457532e5238f6f2c",
+      "source": "De-at-einkaufen.ogg"
+    },
+    "shower": {
+      "author": "Jeuwre",
+      "file": "shower.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "dusche",
+      "sha256": "163e711e25c02af7b8af3c0663ac518e48052f781bdeed3a54bb85924c41687f",
+      "source": "De-dusche.ogg"
+    },
+    "sick": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "sick.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "krank",
+      "sha256": "00675c76ef84d6526d4484c75b3c845332e484b98839cfbf8d0c9c9484b1f372",
+      "source": "De-at-krank.ogg"
+    },
+    "sign": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "sign.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "unterschreiben",
+      "sha256": "b8331f9c7f0e5470921ac12c2bfc07248a383c06a7a97ddc3113418a817c3be4",
+      "source": "De-unterschreiben.ogg"
+    },
+    "sit": {
+      "author": "Kampy",
+      "file": "sit.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "sitzen",
+      "sha256": "361513595f273426903655c0818a015c3f74f449a1bd0252779f1fd73d71a182",
+      "source": "De-sitzen.ogg"
+    },
+    "sleep": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "sleep.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "schlafen",
+      "sha256": "0b0cdadb8a9ae2cb5d25f5465fd3da25398859caf1713b6637c3773fbdeb9e5e",
+      "source": "De-at-schlafen.ogg"
+    },
+    "slow": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "slow.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "langsam",
+      "sha256": "6b9d5d21472b0005dc75adb8b01408946d49e6dd00d876a36d8bb3246b037d17",
+      "source": "De-at-langsam.ogg"
+    },
+    "slower": {
+      "author": "Jeuwre",
+      "file": "slower.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "langsamer",
+      "sha256": "4a5cc5349436f8e80485416ba1aa5ca758a8e877eb31552ae14e4d39cedd34dd",
+      "source": "De-langsamer.ogg"
+    },
+    "small": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "small.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "klein",
+      "sha256": "655704f4b71a9cd1c946a614d622c765b13dc2e4cb3cbdf2a1aab79e6d7d09eb",
+      "source": "De-at-klein.ogg"
+    },
+    "snore": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "snore.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "schnarchen",
+      "sha256": "d5eeedd5a6227c03514e5c6253eaba466cf5193d1194f0be00a8231d8e0a2b72",
+      "source": "De-schnarchen.ogg"
+    },
+    "soap": {
+      "author": "Jeuwre",
+      "file": "soap.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "seife",
+      "sha256": "2af179a2d4c19017d395cd9381e085777c52267d36b4164ab045d52b70b6b07f",
+      "source": "De-seife.ogg"
+    },
+    "sock": {
+      "author": "Jeuwre",
+      "file": "sock.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "socke",
+      "sha256": "2c5376a016ee523a88156cf739c2f1807643aa213938bfe91f3c7077037510e3",
+      "source": "De-socke.ogg"
+    },
+    "soft": {
+      "author": "Kampy",
+      "file": "soft.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "weich",
+      "sha256": "fb6c75e928e3b456f3fc1b4e821fe1076fdaffb77b11e829a8b4d253211be836",
+      "source": "De-weich.ogg"
+    },
+    "speak": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "speak.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "sprechen",
+      "sha256": "030d35524bc33c17c87cef0976ec9c11e060a762a586bd119d0f686ffecebc13",
+      "source": "De-at-sprechen.ogg"
+    },
+    "sponge": {
+      "author": "Jeuwre",
+      "file": "sponge.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "schwamm",
+      "sha256": "90e6575e028fa4eb9a6c06580cdb6bb0a4d83b78c0d505ea59d7402244fff861",
+      "source": "De-schwamm.ogg"
+    },
+    "spoon": {
+      "author": "Jeuwre",
+      "file": "spoon.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "löffel",
+      "sha256": "c9e4bd54210a6e2cfab4e37708d3e2add92f0c77910fc985da77d5b341e6b254",
+      "source": "De-löffel.ogg"
+    },
+    "start": {
+      "author": "Jeuwre",
+      "file": "start.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "anfangen",
+      "sha256": "cdba076768381f2855d135c9216f0c18844eb2c7e1af8ae561f3808b61884b5c",
+      "source": "De-anfangen.ogg"
+    },
+    "stir": {
+      "author": "Jeuwre",
+      "file": "stir.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "umrühren",
+      "sha256": "ab3f5c0f695d7c7c29fc64b5a6e3be4e3e69a962a6377b14543b1e2d36b68cf9",
+      "source": "De-umrühren.ogg"
+    },
+    "stomach": {
+      "author": "Jeuwre",
+      "file": "stomach.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "bauch",
+      "sha256": "16c81859495b5b64b4ebf1c56780bbec360be4d01531af7c259139a2faaf5877",
+      "source": "De-bauch.ogg"
+    },
+    "study": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "study.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "lernen",
+      "sha256": "9950280b2330f92a69daaeed7152a974c7fd024a3cda76c5c8db579ecd338f8c",
+      "source": "De-at-lernen.ogg"
+    },
+    "submit": {
+      "author": "Kampy",
+      "file": "submit.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "abgeben",
+      "sha256": "99a8d30188fa1faf085374c5d6ec2a51fec05fc0ff4ebc630c5c3fe893deda31",
+      "source": "De-abgeben.ogg"
+    },
+    "sugar": {
+      "author": "Jeuwre",
+      "file": "sugar.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "zucker",
+      "sha256": "e91499a8dc690c3e2b4537bc8ce7919536c8e982a654739546f944e1191ac7e1",
+      "source": "De-zucker.ogg"
+    },
+    "sun": {
+      "author": "Jeuwre",
+      "file": "sun.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "sonne",
+      "sha256": "3d51c9cb9b1e2e220ad3da123a3e7e3b5e67bba5d7a06eba02092092759ecaa0",
+      "source": "De-sonne.ogg"
+    },
+    "take": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "take.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "nehmen",
+      "sha256": "460a797ef89805c54db74475f1495fcb165022a9655810d69054d15d1ee21758",
+      "source": "De-at-nehmen.ogg"
+    },
+    "take-shower": {
+      "author": "Kampy",
+      "file": "take-shower.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "duschen",
+      "sha256": "893ea0e4b50c5d1c170fc2e413e4f4da71b6f2c835a52a824981a5bb4fcb874d",
+      "source": "De-duschen.ogg"
+    },
+    "talk": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "talk.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "reden",
+      "sha256": "9bc6b306c4f30e512668cc58d3a4f3e2d61cdf3889b2681760600bb3461a3fd3",
+      "source": "De-at-reden.ogg"
+    },
+    "taste": {
+      "author": "Jeuwre",
+      "file": "taste.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "probieren",
+      "sha256": "587dff4c31957db04a69f4c45acb3294e3d15fcaf74658a0113cba45e8701dd7",
+      "source": "De-probieren.ogg"
+    },
+    "tax": {
+      "author": "Jeuwre",
+      "file": "tax.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "steuer",
+      "sha256": "5ec39a56e9c541ad996ae864152a6583cac04acc5a00c81f702948b4bb63f991",
+      "source": "De-steuer.ogg"
+    },
+    "thank": {
+      "author": "Kampy",
+      "file": "thank.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "danken",
+      "sha256": "504cbbb5c2c75c196457cbb2d5868157195e1a59547b8363ec8a22978d63e9c0",
+      "source": "De-danken.ogg"
+    },
+    "thirst": {
+      "author": "Jeuwre",
+      "file": "thirst.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "durst",
+      "sha256": "c834837f1eefc7e452fc89dd863f314b4e27d79b72023219fb7085e1df040db6",
+      "source": "De-durst.ogg"
+    },
+    "throat": {
+      "author": "Jeuwre",
+      "file": "throat.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "hals",
+      "sha256": "73ff6601b324e0142ff40da31841698177e060dbb5d9e3c16128905991b203a4",
+      "source": "De-hals.ogg"
+    },
+    "tidy-up": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "tidy-up.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "aufräumen",
+      "sha256": "ee6ee1cbff838bc1bc70ae170fe07fd379358f900864f46531bc2a22e60bcd19",
+      "source": "De-at-aufräumen.ogg"
+    },
+    "time": {
+      "author": "Jeuwre",
+      "file": "time.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "zeit",
+      "sha256": "cbd9b4ef24cf2e22aa07723b185ab84a6269816c0fbfa8a9f65660ed14d52bf7",
+      "source": "De-zeit.ogg"
+    },
+    "to-cough": {
+      "author": "Jeuwre",
+      "file": "to-cough.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "husten",
+      "sha256": "a00b6aba842cda9b9f8d9ced86a2c19f8245ec9dff08a8833b8c9fd8c7ee1ed1",
+      "source": "De-husten.ogg"
+    },
+    "to-help": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "to-help.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "helfen",
+      "sha256": "cdb8b491412a3bac76365226955186bc848e4f904a50d4cb1b93237a8b791fd4",
+      "source": "De-at-helfen.ogg"
+    },
+    "to-work": {
+      "author": "Kampy",
+      "file": "to-work.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "arbeiten",
+      "sha256": "9efe8b9fdc415cea9a2481d3f74d7c24c8dac21c5cb5e4c873453d1f7c083954",
+      "source": "De-arbeiten.ogg"
+    },
+    "today": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "today.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "heute",
+      "sha256": "fa7615e00aaad0a934b61198b9118a5594b763dc9311087970d2fde06483df70",
+      "source": "De-at-heute.ogg"
+    },
+    "together": {
+      "author": "Jeuwre",
+      "file": "together.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "zusammen",
+      "sha256": "948038c9188e3ffe334c57f765d498ffd596a98c86ea1149371e0071bf23ff5a",
+      "source": "De-zusammen.ogg"
+    },
+    "tomorrow": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "tomorrow.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "morgen",
+      "sha256": "a5e96da9476629dec7fdfcc83bc270670a90207d57980593f7d039900347537f",
+      "source": "De-at-morgen.ogg"
+    },
+    "translate": {
+      "author": "Kampy",
+      "file": "translate.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "übersetzen",
+      "sha256": "139774a41e97a4f2d82e52654125e786d8a3be1a392cd0a0901d32ba11c67d79",
+      "source": "De-übersetzen.ogg"
+    },
+    "tree": {
+      "author": "Jeuwre",
+      "file": "tree.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "baum",
+      "sha256": "c9d2e5d3f54f549119000c028cf5e2ed314901a1126a56f5b95d7a4deb2bb606",
+      "source": "De-baum.ogg"
+    },
+    "trousers": {
+      "author": "Jeuwre",
+      "file": "trousers.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "hose",
+      "sha256": "6d86d4bcc3a04b37d9412a237ac0f0cdc3e69dd98a5a832d41a8a76a268d4e91",
+      "source": "De-hose.ogg"
+    },
+    "type": {
+      "author": "Jeuwre",
+      "file": "type.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "tippen",
+      "sha256": "16bca13b391951918067242bafd83728081066be98691b63e3aa25eea2495189",
+      "source": "De-tippen.ogg"
+    },
+    "understand": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "understand.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "verstehen",
+      "sha256": "367a32de00d38124668dbef71145f0f412524abbc7bdba4582d389ca34d4c5f2",
+      "source": "De-at-verstehen.ogg"
+    },
+    "unlock": {
+      "author": "Kampy",
+      "file": "unlock.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "aufschließen",
+      "sha256": "24ca8fc6c95f6e9f2b25a1eddc7a5d24ae665f40c5d869329deefa94327b10ae",
+      "source": "De-aufschließen.ogg"
+    },
+    "urgent": {
+      "author": "Jeuwre",
+      "file": "urgent.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "dringend",
+      "sha256": "bd6bbe16022f6c691a48199b5e75ef9559361739008a7d8bce2e021587284098",
+      "source": "De-dringend.ogg"
+    },
+    "wait": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "wait.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "warten",
+      "sha256": "1f90e94837258f65f62d0187443ff05f94b299475372a79823f83c495061c849",
+      "source": "De-at-warten.ogg"
+    },
+    "wake-up": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "wake-up.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "aufwachen",
+      "sha256": "71b7a2c7602be78da82ec7f411888601a7dd4bedd0f34ae5c80174b56a76b4a5",
+      "source": "De-aufwachen.ogg"
+    },
+    "wall": {
+      "author": "Jeuwre",
+      "file": "wall.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "wand",
+      "sha256": "02ee2c1eacebd978e7586434475d4d8c9e464d8b6deaa5531513a3ac516f6136",
+      "source": "De-wand.ogg"
+    },
+    "watch-tv": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "watch-tv.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "fernsehen",
+      "sha256": "4f6a6ad28c9060f77edf9ee9db0372e8dc0b085a0da8d510235ea586f79eb672",
+      "source": "De-at-fernsehen.ogg"
+    },
+    "water": {
+      "author": "Jeuwre",
+      "file": "water.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "wasser",
+      "sha256": "b3ecdda35bb84bfd5dda04b84a1d3cce7438fd748f420327dc13832722702d3c",
+      "source": "De-wasser.ogg"
+    },
+    "way": {
+      "author": "Jeuwre",
+      "file": "way.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "weg",
+      "sha256": "8a1a3850039f04669049361b29381da57f40c620ccc9f173e848ee880c83b5f6",
+      "source": "De-weg.ogg"
+    },
+    "weather": {
+      "author": "Jeuwre",
+      "file": "weather.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "wetter",
+      "sha256": "da38ab561e55bbad75d3536661a75986f82bfce723434f9e393419a9129c82b2",
+      "source": "De-wetter.ogg"
+    },
+    "wind": {
+      "author": "Jeuwre",
+      "file": "wind.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "wind",
+      "sha256": "6a2522413dc6b8497fc74a6f19ea9bc40c927440d553c832cc547bdc28b0d70c",
+      "source": "De-wind.ogg"
+    },
+    "window": {
+      "author": "Jeuwre",
+      "file": "window.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "fenster",
+      "sha256": "93c2aedffaba6d2a18325e769cd435f3951f951379fa214096242b9f448ec9bb",
+      "source": "De-fenster.ogg"
+    },
+    "work": {
+      "author": "Jeuwre",
+      "file": "work.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "arbeit",
+      "sha256": "c5450249a786a7c07573c1b5804ce7269d78298ef22ac67899614cd5580053d7",
+      "source": "De-arbeit.ogg"
+    },
+    "write": {
+      "author": "Alexandra Poelzlbauers, Vion Nicolas",
+      "file": "write.mp3",
+      "licence": "CC BY 2.0 fr",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+      "matches": "schreiben",
+      "sha256": "38e1f85e19156647f87f44936a60dc995f6bf2bd0a43175ea18cbb998b6d3420",
+      "source": "De-at-schreiben.ogg"
+    },
+    "yawn": {
+      "author": "Jeuwre",
+      "file": "yawn.mp3",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "gähnen",
+      "sha256": "c8eeb8bcbf4719589412f5e329706e3ad9c9ff8344cb888f1a7547c87572c759",
+      "source": "De-gähnen.ogg"
+    },
+    "yes": {
+      "author": "MiER",
+      "file": "yes.mp3",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "ja",
+      "sha256": "ae6884f6cd5c1d5a57fa5be477bb5487cdb374f84d293ae5ab11e413b7e1542d",
+      "source": "De-ja.ogg"
+    }
+  }
+}

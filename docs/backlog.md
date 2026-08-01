@@ -15,6 +15,15 @@ One line per item, with a file or context pointer, filed under the section it be
   (method: `../../docs/sprachposter-learnings.md`).
 - Phrase→component auto-linking gaps: ~half of phrases carry no `components`
   (naive matcher — `catalog/README.md` § concepts.json).
+- Pronunciation coverage is partial and uneven — 200/402 de single words, 280/384 sw,
+  304/399 uk carry a recording (`catalog/audio/`), and NO phrase carries one: the packs
+  only ever matched single-word realizations, leaving ~126 phrases per language to TTS
+  (silent on sw-iOS, which has no voice). What Commons never had is listed per pack in
+  `data/reference/audio/pack-*/missing.txt` (de 171, uk 37, sw 17); gap-filling
+  (commissioning or a paid voice) is a content project, scoped in that folder's README.
+- Each language speaks with one voice: sw and uk are a single speaker throughout, de is
+  half one (104 of 200) — one accent, one register, one microphone per language — and uk
+  `ь` has no letter recording at all (32/33).
 
 ## Engine & scheduling
 
@@ -64,6 +73,12 @@ One line per item, with a file or context pointer, filed under the section it be
 - Android carries its own unrelated palette (`android/.../ui/Theme.kt`) that never went
   through the contrast pass — it predates the ocean/forest re-cut and shares no values
   with `Design/Theme.swift`.
+- Audio ships un-thinned: `catalog/audio/` is 19 MB (de 4.9, sw 5.2, uk 9.0) and BOTH
+  installs carry all of it — the iOS folder reference and the Android catalog sync copy
+  the tree whole — so a Swahili learner downloads 14 MB of German and Ukrainian they can
+  never hear. Per-language delivery (on-demand resources / Play asset packs) would cut
+  the install to the target actually being learned; measure the real per-platform delta
+  before choosing a mechanism.
 
 ## Verification gaps
 
