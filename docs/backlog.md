@@ -80,6 +80,17 @@ One line per item, with a file or context pointer, filed under the section it be
   the install to the target actually being learned; measure the real per-platform delta
   before choosing a mechanism.
 
+## Compliance
+
+- CC BY-SA vs App Store DRM, open before the FIRST submission:
+  §2(a)(5)(B) of the licence forbids applying "Effective Technological Measures" to the
+  shared material, and every App Store binary is FairPlay-encrypted — all of sw,
+  the uk letters and half of de ship under BY-SA (`catalog/audio/`, credits screen).
+  Attribution itself is covered (`App/Sources/Screens/CreditsView.swift`); this is the
+  second obligation. Mitigation on record: publish the same per-language files at a
+  public un-DRM'd URL, which the `catalog/audio/<lang>/` split already prepares.
+  Needs a legal read, not an engineering one.
+
 ## Verification gaps
 
 - Watch pairing untested on real hardware;
