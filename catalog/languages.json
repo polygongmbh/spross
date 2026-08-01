@@ -1,6 +1,7 @@
 {
  "de": { "name": "Deutsch", "englishName": "German", "flag": "🇩🇪", "articles": ["der", "die", "das", "ein", "eine"] },
  "en": { "name": "English", "englishName": "English", "flag": "🇬🇧", "optionalVerbPrefixes": ["to "], "articles": ["the", "a", "an"] },
+ "es": { "name": "Español", "englishName": "Spanish", "flag": "🇪🇸", "articles": ["el", "la", "los", "las", "un", "una"] },
  "sw": { "name": "Kiswahili", "englishName": "Swahili", "flag": "🇹🇿", "optionalVerbPrefixes": ["ku", "kw"] },
  "uk": { "name": "Українська", "englishName": "Ukrainian", "flag": "🇺🇦" }
 }

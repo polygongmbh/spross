@@ -14,10 +14,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import net.spross.app.audio.Pronouncer
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
 import net.spross.kern.catalog.Catalog
+import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.JoinStamp
@@ -25,8 +27,10 @@ import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.Rating
 import net.spross.kern.model.SessionPlan
 import net.spross.kern.model.EmojiCue
+import net.spross.kern.model.PronunciationCue
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
+import net.spross.kern.model.pronunciationCue
 import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
@@ -39,6 +43,8 @@ sealed interface Screen {
     data class Onboarding(val editing: Boolean) : Screen
     data object Heute : Screen
     data object Session : Screen
+    data object About : Screen
+    data object LetterDrill : Screen
 }
 
 data class SessionUi(
@@ -47,6 +53,11 @@ data class SessionUi(
     val promptForm: String?,       // rotated recognition prompt
     /** Which face carries the picture; null when the word has none. */
     val emojiCue: EmojiCue?,
+    /**
+     * What the prompt says out loud, or null where the card owes that very form —
+     * non-null ⇔ kern's cue puts the target on screen from frame one.
+     */
+    val promptPronunciation: Pronunciation?,
     val segments: List<AnswerTone>,
     val remaining: Int,
     val progress: Float,
@@ -58,8 +69,12 @@ data class SessionUi(
 class AppModel(app: Application) : AndroidViewModel(app) {
 
     private val boxFiles = BoxFiles(File(app.filesDir, "box"))
-    private val profile = ProfileStore(app.getSharedPreferences("spross", Context.MODE_PRIVATE))
+    private val prefs = app.getSharedPreferences("spross", Context.MODE_PRIVATE)
+    private val profile = ProfileStore(prefs)
     private var flow: SessionFlow? = null
+
+    /** The one door to a spoken target word — review cards now, the drills later. */
+    val pronouncer = Pronouncer(app, prefs)
 
     var screen by mutableStateOf<Screen>(Screen.Loading)
         private set
@@ -128,6 +143,26 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Onboarding(editing = true)
     }
 
+    fun openAbout() {
+        screen = Screen.About
+    }
+
+    fun closeAbout() {
+        screen = Screen.Heute
+    }
+
+    /** The letters drill; what it can ask is `letterDrillAvailable`, which gates the chip. */
+    fun startLetterDrill() {
+        screen = Screen.LetterDrill
+    }
+
+    fun closeLetterDrill() {
+        // why: nothing may keep talking into Heute — the drill's own screen stops
+        // playback as it leaves, and this is the door it leaves by.
+        pronouncer.stop()
+        screen = Screen.Heute
+    }
+
     fun cancelOnboarding() {
         if (box != null) screen = Screen.Heute
     }
@@ -176,6 +211,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     fun answerCurrent(rating: Rating) {
         val active = flow ?: return
+        // why: the card is leaving — a word still sounding must not follow the learner
+        // onto the next one, the same cut iOS makes in resetCardState().
+        pronouncer.stop()
         active.answer(rating, now(), tz())
         box = active.box
         persist(active.box)
@@ -189,6 +227,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     fun finishSession() {
         val active = flow ?: return
+        pronouncer.stop() // the run is over: nothing keeps talking into Heute
         val ended = active.finish(now(), tz())
         flow = null
         sessionUi = null
@@ -204,7 +243,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         val ui = if (card == null) {
             SessionUi(
                 card = null, role = null, promptForm = null,
-                emojiCue = null,
+                emojiCue = null, promptPronunciation = null,
                 segments = active.segments.toList(), remaining = 0, progress = 1f,
                 introduced = active.introduced, strengthened = active.strengthened,
                 reviewed = active.answered,
@@ -212,13 +251,19 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         } else {
             val count = active.reviewCount(card.id)
             val role = presentationRole(card.id, count)
+            val promptForm = recognitionPromptForm(card, count)
             SessionUi(
                 card = card,
                 role = role,
-                promptForm = recognitionPromptForm(card, count),
+                promptForm = promptForm,
                 emojiCue = card.emoji?.let {
                     emojiCue(role, active.isSettled(card.id), count)
                 },
+                // why: the KERN cue, never `role == Recognize` — one rule, consumed by
+                // both apps. The PROMPTED form, so a rotated synonym is heard as itself.
+                promptPronunciation = catalog
+                    ?.takeIf { pronunciationCue(role) == PronunciationCue.Upfront }
+                    ?.pronunciation(card.target.lang, promptForm),
                 segments = active.segments.toList(),
                 remaining = active.remaining,
                 progress = active.progress(),
@@ -234,6 +279,13 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         val state = box ?: return
         stats = BoxEngine.statistics(state, now(), tz())
         sessionAvailable = !SessionComposer.composeSession(state, now(), tz()).isEmpty
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        // why: the synthesizer holds a binding to another process and the player a
+        // decoded clip — neither may outlive the model that opened them.
+        pronouncer.release()
     }
 
     // why: every answer persists (small doc, IO thread) — process death mid-session

@@ -9,6 +9,7 @@ struct BoxSettingsSection: View {
     let model: AppModel
 
     @State private var confirmingReset = false
+    @State private var creditsPresented = false
     @Environment(\.locale) private var locale
 
     var body: some View {
@@ -19,6 +20,8 @@ struct BoxSettingsSection: View {
 
             VStack(alignment: .leading, spacing: DL.Space.l) {
                 profileRow
+                Divider().overlay(Color.dlSeparator)
+                audioRow
                 Divider().overlay(Color.dlSeparator)
                 resetRow
             }
@@ -57,9 +60,28 @@ struct BoxSettingsSection: View {
                         .foregroundStyle(Color.dlAccent)
                 }
             }
+            creditsButton
         }
         .frame(maxWidth: .infinity)
         .padding(.top, DL.Space.m)
+        .sheet(isPresented: $creditsPresented) {
+            // why: a sheet leaves the chrome language behind, and credits are
+            // chrome — hand it the locale the settings block renders in.
+            CreditsView(model: model).environment(\.locale, locale)
+        }
+    }
+
+    /// Attribution for the bundled pronunciation recordings — a licence
+    /// obligation, not a courtesy: BY and BY-SA both ask for the speaker
+    /// by name, so the surface ships with the audio.
+    private var creditsButton: some View {
+        Button {
+            creditsPresented = true
+        } label: {
+            Label("settings.credits", systemImage: "waveform")
+                .font(DL.Fonts.subheadline)
+                .foregroundStyle(Color.dlAccent)
+        }
     }
 
     private var feedbackURL: URL? {
@@ -124,6 +146,34 @@ struct BoxSettingsSection: View {
             .accessibilityLabel(Text(title))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    /// The same switch the session's top bar carries, and the place the
+    /// tap-to-replay gesture is disclosed — the card itself grows no
+    /// affordance for it, so the hint line is where it is named.
+    private var audioRow: some View {
+        VStack(alignment: .leading, spacing: DL.Space.s) {
+            Toggle(isOn: readAloudBinding) {
+                Text("settings.audio.title")
+                    .font(DL.Fonts.headline)
+                    .foregroundStyle(Color.dlTextPrimary)
+            }
+            .tint(.dlAccent)
+            Text("settings.audio.hint")
+                .font(DL.Fonts.caption)
+                .foregroundStyle(Color.dlTextSecondary)
+        }
+    }
+
+    /// Bound to NOT-muted: the row names the feature, the flag stores the
+    /// exception. It lives in UserDefaults, one flag for the device — not in
+    /// the box, where the product calibration would reset it on every load,
+    /// and not per target language.
+    private var readAloudBinding: Binding<Bool> {
+        Binding(
+            get: { !Pronouncer.shared.muted },
+            set: { Pronouncer.shared.muted = !$0 }
+        )
     }
 
     /// Fresh start with the CURRENT catalog content.

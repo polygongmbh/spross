@@ -89,6 +89,54 @@
         }
       }
     },
+    "a11y.letterChoice %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buchstabe %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letter %@"
+          }
+        }
+      }
+    },
+    "a11y.off" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "aus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "off"
+          }
+        }
+      }
+    },
+    "a11y.on" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "an"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "on"
+          }
+        }
+      }
+    },
     "a11y.practicePhrases" : {
       "localizations" : {
         "de" : {
@@ -121,6 +169,38 @@
         }
       }
     },
+    "a11y.pronounce" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aussprechen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pronounce"
+          }
+        }
+      }
+    },
+    "a11y.readAloud" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aussprache vorlesen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read words aloud"
+          }
+        }
+      }
+    },
     "a11y.recordSuffix %@" : {
       "localizations" : {
         "de" : {
@@ -133,6 +213,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ", record %@"
+          }
+        }
+      }
+    },
+    "a11y.replayPrompt" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch einmal anhören"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play it again"
           }
         }
       }
@@ -221,6 +317,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Streak: %@ in a row"
+          }
+        }
+      }
+    },
+    "alphabet.speakExample" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beispiel anhören"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hear the example"
+          }
+        }
+      }
+    },
+    "alphabet.speakName" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name anhören"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hear the name"
+          }
+        }
+      }
+    },
+    "alphabet.title %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alphabet · %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alphabet · %@"
           }
         }
       }
@@ -541,6 +685,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reset"
+          }
+        }
+      }
+    },
+    "credits.commonsNote" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufnahmen von Wikimedia Commons"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recordings from Wikimedia Commons"
+          }
+        }
+      }
+    },
+    "credits.recordings %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Aufnahme"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Aufnahmen"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld recording"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld recordings"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "credits.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprecher & Lizenzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voices & licences"
+          }
+        }
+      }
+    },
+    "credits.unmodified" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufnahmen unverändert übernommen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recordings shipped unmodified"
           }
         }
       }
@@ -1273,6 +1505,118 @@
         }
       }
     },
+    "letters.audioOff" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ton ist aus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sound is off"
+          }
+        }
+      }
+    },
+    "letters.dictation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schreib, was du hörst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write what you hear"
+          }
+        }
+      }
+    },
+    "letters.enableSound" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ton einschalten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn sound on"
+          }
+        }
+      }
+    },
+    "letters.hear" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcher Buchstabe ist das?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which letter is this?"
+          }
+        }
+      }
+    },
+    "letters.heardInstead %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gehört war: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You heard: %@"
+          }
+        }
+      }
+    },
+    "letters.silentSwitchHint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nichts zu hören? Prüfe den Stummschalter."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't hear anything? Check the silent switch."
+          }
+        }
+      }
+    },
+    "letters.spell" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was fehlt im Wort?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What's missing in the word?"
+          }
+        }
+      }
+    },
     "nav.box" : {
       "localizations" : {
         "de" : {
@@ -1897,6 +2241,54 @@
         }
       }
     },
+    "settings.audio.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wörter beim Üben automatisch vorlesen. Tippen auf ein Wort spricht es erneut — auch bei ausgeschaltetem Vorlesen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read words aloud during review. Tapping a word speaks it again — even when read-aloud is off."
+          }
+        }
+      }
+    },
+    "settings.audio.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wörter vorlesen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read words aloud"
+          }
+        }
+      }
+    },
+    "settings.credits" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprecher & Lizenzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voices & licences"
+          }
+        }
+      }
+    },
     "settings.feedback" : {
       "localizations" : {
         "de" : {
@@ -2025,6 +2417,22 @@
         }
       }
     },
+    "trainer.alphabet" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alphabet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alphabet"
+          }
+        }
+      }
+    },
     "trainer.bestStreak %@" : {
       "localizations" : {
         "de" : {
@@ -2093,6 +2501,22 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "trainer.letters" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buchstaben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letters"
           }
         }
       }

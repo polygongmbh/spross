@@ -30,7 +30,7 @@ class RealCatalogJoinTest {
      */
     @Test
     fun joinEmitsExactlyTheConceptsBothLanguagesRealize() {
-        for (target in listOf("en", "sw", "uk")) {
+        for (target in listOf("en", "es", "sw", "uk")) {
             val expected = catalog.areas.flatMap { area ->
                 val sourceWords = area.realizations["de"].orEmpty()
                 val targetWords = area.realizations[target].orEmpty()
@@ -46,7 +46,7 @@ class RealCatalogJoinTest {
     /** Catastrophe guard: a loose floor, deliberately NOT a pinned per-pair count. */
     @Test
     fun everyGermanPairJoinsSubstantialCoverage() {
-        for (target in listOf("en", "sw", "uk")) {
+        for (target in listOf("en", "es", "sw", "uk")) {
             val size = catalog.join("de", target).size
             assertTrue(size > 300, "de→$target joined only $size cards")
         }
@@ -55,7 +55,7 @@ class RealCatalogJoinTest {
     @Test
     fun availableTargetsFromGermanCarryConceptCounts() {
         val targets = catalog.availableTargets("de")
-        assertEquals(listOf("en", "sw", "uk"), targets.map { it.code })
+        assertEquals(listOf("en", "es", "sw", "uk"), targets.map { it.code })
         // Agreement with the join, not magic numbers.
         assertEquals(targets.map { catalog.join("de", it.code).size }, targets.map { it.conceptCount })
         assertEquals("Kiswahili", targets.first { it.code == "sw" }.name)
@@ -102,7 +102,7 @@ class RealCatalogJoinTest {
         val id = "the-pot-is-still-on-the-stove"
         assertEquals("The pot is still on the stove.", catalog.join("de", "en").byId(id).target.text)
         assertEquals("Каструля ще стоїть на плиті.", catalog.join("de", "uk").byId(id).target.text)
-        for (target in listOf("en", "uk")) {
+        for (target in listOf("en", "es", "uk")) {
             assertFalse(catalog.join("de", target).any { it.id == "the-big-pot-is-on-the-stove" })
         }
     }

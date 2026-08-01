@@ -127,6 +127,48 @@ never the shape of the app.
 - Progress bar: one segment per answer, colored by its outcome.
 - A miss is stated where the learner is already looking;
   the streak survives a missed day, but not two in a row.
+- **Words are read aloud, and a recording is only played for the word it actually says.**
+  Kern matches recordings by the FORM on screen, never by concept, so a rotated synonym is
+  never answered with the canonical word; anything unmatched falls to the device's own
+  voice speaking exactly what stands there, and a target with neither — Swahili has no iOS
+  voice at all — stays silent rather than be read in the wrong one.
+- **Only the headword is ever spoken.** Article, ♀ badge, plural line and alternates are
+  grammar decoration: gender is taught by the article color, and the recordings say bare
+  words — speaking the article in the synthesized branch alone would make a word's
+  pronunciation depend on which branch happened to answer.
+- **Audio may never give the answer away**: whether a card's target may be heard is the
+  engine's cue, the audio twin of the emoji cue — a recognition prompt carries the target
+  from frame one and speaks at once, a produce card owes that very form and waits for the
+  reveal. Both apps consume that one cue instead of each deciding for itself.
+- **Autoplay fires only where the card holds the learner.** A clean correct answer flips in
+  0.45–1.2 s, less than a word lasts, and a word cut off every time teaches worse than one
+  not played — the tap and the next recognition of the card both say it in full. Produce
+  fires wait a beat so the feedback chime is out of the way first; chimes are never ducked
+  for them, and no fire ever delays a flip. One fire per card, whichever path reaches it.
+
+| on screen | speaks? | what is said |
+|---|---|---|
+| recognition prompt | yes, at once | the prompted form — the rotated synonym, never the canonical word |
+| recognition reveal, write-it-out step | no | already said once |
+| produce answered correctly, typed or checked | no — the card is already flipping | — |
+| produce typo accepted (waits for a tap) | yes, after the chime | the correction line's proper spelling |
+| produce revealed — Aufdecken, wrong, other word | yes, after the chime | the bare target word |
+
+- **Tapping a word says it again**, and says it even when reading aloud is switched off:
+  a tap is a request, and mute has to stay usable as the accessibility affordance. The
+  gesture is disclosed by the settings row's hint line, never by a mark on the card — the
+  hit area sits on every headword whether or not it can be heard, so no card changes size
+  between reviews because a synonym rotation landed on an unrecorded form.
+- **Reading aloud is on by default.** It is switched at the session's top bar — constant
+  chrome, so the card below never moves for it — and in the Box settings. One flag for the
+  device: not per target language, and not in the box, where the product calibration would
+  reset it. It governs the spoken words only; the feedback chimes are their own matter, and
+  both follow the ring/silent switch.
+- VoiceOver never gets autoplay talking over it. The headword is labeled with the language
+  it is written in instead, so the screen reader says it in the right voice, and the replay
+  is an action ON the word rather than a button around it.
+- Whose the voices are, what their licences ask of the app, and why a credits screen has to
+  stand before a word may be heard: `audio-licensing.md`.
 
 ## Counts & sessions
 
@@ -169,10 +211,30 @@ never the shape of the app.
 - **Trainers**: number, clock and phrase drills, registry-driven from kern, so the hub
   offers only languages with authored content. Drills grade word by word and ramp with
   the learner instead of sitting at one level.
+- **Letter drill & alphabet sheet**: the Training card shows when slots, phrases OR an
+  alphabet exist for the target (the third predicate is catalog file presence, recomputed
+  on foreground/readiness — a voice installed in Settings brings the chip back). The
+  sheet renders every row (glyph, name, IPA, context, hint, example with meaning where
+  the reader's language knows the word) and ships even where the drill cannot — audio is
+  the drill's precondition, not the sheet's. The drill asks everything by ear: letter
+  NAME or gap word, tiles first among strangers, then among look- and sound-alikes, then
+  typed, and — once enough words are settled — dictation of the learner's own
+  consolidated words, which never touches their schedule. Correctness is never color
+  alone (checkmark/X over the tint); a miss never auto-advances; under VoiceOver and
+  Switch Control the advance timer becomes an explicit "Weiter". While reading aloud is
+  muted the drill stays visible and blocks with the one-tap unmute row instead of hiding
+  — a silenced feature must say how to unsilence it.
+- **One clean-correct beat: 1200 ms.** The trainer drills and the letter drill advance a
+  cleanly correct answer after the same 1200 ms on both platforms — the number lives here
+  once so a new surface cannot mint a second timing.
 
 Design language: warm, card-centric, emoji as illustration, article color coding
 der=blue / die=berry / das=green — degrading to neutral for languages without gendered
-articles. Palette: stone-and-moss paper, clay headline, ocean and forest as secondaries
+articles. A two-gender language folds onto those same two hues rather than minting its own
+(es el/los/un blue, la/las/una berry, the neuter never reached). The article rendered is
+always the one `grammar.gender` names, prepended — never a word sliced off the front of the
+text, which carries the bare word in every language.
+Palette: stone-and-moss paper, clay headline, ocean and forest as secondaries
 (growing-box theme), every pairing clearing WCAG AA in both schemes.
 `App/Sources/Design/Theme.swift` holds the values and the rules that keep them there.
 
@@ -216,5 +278,8 @@ engine gates and the behavioral test inventory: kern README.
 
 Couple mode, accounts/sync, sw/uk UI chrome (those sources fall back to en),
 en trainer content.
-Android has the core loop only — no Box browse, trainers, widget, 14-day strip or
-write-it-out step, and its settings is a language switch.
+Android has the core loop and ONE trainer, the letter drill (a chip on Heute — the
+platform has no trainer hub) — no Box browse, other trainers, alphabet sheet, widget,
+14-day strip or write-it-out step, and its settings are a language switch and an About
+screen (version, read-aloud, credits — where iOS carries the read-aloud row in Box
+settings).

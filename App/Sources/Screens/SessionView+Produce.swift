@@ -88,6 +88,10 @@ extension SessionView {
                             .foregroundStyle(Color.dlTextSecondary)
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity)
+                            // why: a correct answer leaves the card CLOSED, so
+                            // this line is the only place the word stands —
+                            // tap-to-replay has to live on it, not on the card.
+                            .pronounceOnTap(pronounceAction(for: typoCorrection))
                         Button {
                             rate(.good)
                         } label: {
@@ -115,6 +119,10 @@ extension SessionView {
                             .foregroundStyle(Color.dlTextSecondary)
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity)
+                            // why: the line says what the learner DID write —
+                            // the word it plays is the one they owed, the same
+                            // one the reveal above it carries.
+                            .pronounceOnTap(pronounceAction(for: card.target.text))
                     }
                     // why: always reachable — a step you cannot leave is a
                     // trap, same as the copy step's own skip. Giving up here

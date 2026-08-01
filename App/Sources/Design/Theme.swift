@@ -56,10 +56,18 @@ enum DL {
     }
 
     /// Article → color. Text always carries the meaning; color only reinforces.
+    ///
+    /// A two-gender language folds onto the SAME two hues rather than minting its
+    /// own: masculine reads der-blue, feminine die-berry, and the plural and
+    /// indefinite articles take the color of the gender they inflect. Green is
+    /// German's neuter alone — a language without one simply never reaches it —
+    /// and an article this table does not know degrades to neutral, exactly as a
+    /// genderless target already does. Widget and watch surfaces mirror this
+    /// mapping in their own palettes; this is the canonical list.
     static func articleColor(_ article: String) -> Color {
         switch article.lowercased() {
-        case "der": return .dlDer
-        case "die": return .dlDie
+        case "der", "el", "los", "un": return .dlDer
+        case "die", "la", "las", "una": return .dlDie
         case "das": return .dlDas
         default: return .dlTextSecondary
         }
@@ -174,7 +182,7 @@ struct DLSoftButtonStyle: ButtonStyle {
                 .foregroundStyle(Color.dlTextPrimary)
 
             HStack(spacing: DL.Space.s) {
-                ForEach(["der", "die", "das"], id: \.self) { article in
+                ForEach(["der", "die", "das", "el", "la"], id: \.self) { article in
                     Text(article)
                         .font(DL.Fonts.badge)
                         .foregroundStyle(Color.dlOnColor)

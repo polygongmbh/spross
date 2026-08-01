@@ -1,0 +1,496 @@
+{
+ "entries": [
+  {
+   "glyph": "а",
+   "upper": "А",
+   "name": "а",
+   "ipa": "ɑ",
+   "example": "address",
+   "hints": {
+    "en": "always ah as in father — never the a of cat or the ay of name"
+   },
+   "confusable": {
+    "sound": ["я"]
+   }
+  },
+  {
+   "glyph": "б",
+   "upper": "Б",
+   "name": "бе",
+   "ipa": "b",
+   "example": "much",
+   "hints": {
+    "de": "wie b in Ball — nicht mit в verwechseln, das ist der w-Laut",
+    "en": "like b in bed — keep it apart from в, which is the v sound"
+   },
+   "confusable": {
+    "look": ["в", "ь"],
+    "sound": ["в", "п", "д", "т", "ц"]
+   }
+  },
+  {
+   "glyph": "в",
+   "upper": "В",
+   "name": "ве",
+   "ipa": "ʋ",
+   "example": "water",
+   "hints": {
+    "de": "sieht aus wie B, ist aber kein b — und kein deutsches w! Vor и, і, е ein lockeres w fast ohne Reibung; vor о und у klingt es wie das englische w in water (вода = „woda“); am Silbenende wie ein kurzes u (мав = „mau“)",
+    "en": "looks like B but is not b — and not English v. Before и, і, е a soft, frictionless v; before о and у it is English w (вода = 'woda'); at the end of a syllable a short oo (мав = 'mau')"
+   },
+   "confusable": {
+    "look": ["б"],
+    "sound": ["б", "ф", "у"]
+   }
+  },
+  {
+   "glyph": "г",
+   "upper": "Г",
+   "name": "ге",
+   "ipa": "ɦ",
+   "example": "money",
+   "hints": {
+    "de": "gehauchtes, stimmhaftes h wie in (a)ha — NIE das deutsche g; das harte g ist der eigene Buchstabe ґ",
+    "en": "a breathy voiced h, like h in ahead — never a hard g; the hard g is the separate letter ґ"
+   },
+   "confusable": {
+    "look": ["ґ", "т"],
+    "sound": ["х", "ґ", "к"]
+   }
+  },
+  {
+   "glyph": "ґ",
+   "upper": "Ґ",
+   "name": "ґе",
+   "ipa": "ɡ",
+   "exampleText": "ґудзик",
+   "hints": {
+    "de": "das harte g wie in Garten — seltener Buchstabe, nur in wenigen Wörtern wie ґудзик (Knopf)",
+    "en": "hard g as in go — a rare letter, found only in a handful of words like ґудзик (button)"
+   },
+   "confusable": {
+    "look": ["г"],
+    "sound": ["г", "к"]
+   }
+  },
+  {
+   "glyph": "д",
+   "upper": "Д",
+   "name": "де",
+   "ipa": "d",
+   "example": "day",
+   "hints": {
+    "de": "wie d in Danke — л auf einem Sockel; am Wortende bleibt es ein d: anders als im Deutschen (Rad klingt wie Rat) wird es nie zu t",
+    "en": "л standing on a base — d as in day"
+   },
+   "confusable": {
+    "look": ["л"],
+    "sound": ["т", "б"]
+   }
+  },
+  {
+   "glyph": "е",
+   "upper": "Е",
+   "name": "е",
+   "ipa": "ɛ",
+   "example": "hairdryer",
+   "hints": {
+    "de": "wie ä in hätte — nie „je“; den je-Laut schreibt man є",
+    "en": "like e in bed — never “ye”; the ye sound is written є"
+   },
+   "confusable": {
+    "look": ["є", "з"],
+    "sound": ["и", "є"]
+   }
+  },
+  {
+   "glyph": "є",
+   "upper": "Є",
+   "name": "є",
+   "ipa": "jɛ",
+   "example": "registration",
+   "hints": {
+    "de": "je wie in jetzt; nach einem Konsonanten macht є ihn weich und es bleibt ein e",
+    "en": "ye as in yes; after a consonant є softens it and leaves an e sound"
+   },
+   "confusable": {
+    "look": ["е", "ї", "з"],
+    "sound": ["е", "я", "ї"]
+   }
+  },
+  {
+   "glyph": "ж",
+   "upper": "Ж",
+   "name": "же",
+   "ipa": "ʒ",
+   "example": "live",
+   "hints": {
+    "de": "wie das J in Journal",
+    "en": "like the s in measure"
+   },
+   "confusable": {
+    "sound": ["ш", "з", "ч"]
+   }
+  },
+  {
+   "glyph": "з",
+   "upper": "З",
+   "name": "зе",
+   "ipa": "z",
+   "example": "now",
+   "hints": {
+    "de": "stimmhaftes s wie in Rose — sieht aus wie eine 3",
+    "en": "like z in zoo — looks like a 3"
+   },
+   "confusable": {
+    "look": ["е", "є"],
+    "sound": ["с", "ж"]
+   }
+  },
+  {
+   "glyph": "и",
+   "upper": "И",
+   "name": "и",
+   "ipa": "ɪ",
+   "example": "mouse",
+   "hints": {
+    "de": "kurzes, dunkles i wie in Tisch — die Zunge liegt weiter hinten und tiefer als beim deutschen i; das gespannte i ist і; sieht aus wie ein gespiegeltes N",
+    "en": "a short, dark i — like bit but with the tongue further back and lower; the tense ee is і; looks like a mirrored N"
+   },
+   "confusable": {
+    "look": ["й", "н", "ц"],
+    "sound": ["і", "е"]
+   }
+  },
+  {
+   "glyph": "і",
+   "upper": "І",
+   "name": "і",
+   "ipa": "i",
+   "example": "night",
+   "hints": {
+    "de": "wie i in Maschine — geschrieben wie das lateinische i; и ist der lockere Nachbar",
+    "en": "like ee in see — written like Latin i; и is its laxer neighbour"
+   },
+   "confusable": {
+    "look": ["ї", "и"],
+    "sound": ["и", "ї"]
+   }
+  },
+  {
+   "glyph": "ї",
+   "upper": "Ї",
+   "name": "ї",
+   "ipa": "ji",
+   "example": "eat",
+   "hints": {
+    "de": "immer zwei Laute: j + i (wie „ji“) — die zwei Punkte sind das j",
+    "en": "always two sounds: y + ee, as in yeast — the two dots are the y"
+   },
+   "confusable": {
+    "look": ["і", "є"],
+    "sound": ["і", "є", "й"]
+   }
+  },
+  {
+   "glyph": "й",
+   "upper": "Й",
+   "name": "йот",
+   "ipa": "j",
+   "example": "go",
+   "hints": {
+    "de": "kurzes j wie in ja; am Silbenende der i-Nachklang wie in Mai — й ist и mit Bogen (Breve), ein eigener Buchstabe",
+    "en": "like y in yes, or the y-glide at the end of boy — й is и with a breve, a separate letter"
+   },
+   "confusable": {
+    "look": ["и"],
+    "sound": ["ї", "і"]
+   }
+  },
+  {
+   "glyph": "к",
+   "upper": "К",
+   "name": "ка",
+   "ipa": "k",
+   "example": "coffee",
+   "hints": {
+    "de": "ohne Hauch — kein Luftstoß wie im deutschen Kaffee; к, п, т klingen eher wie das k in Skat",
+    "en": "no puff of air — unlike English coffee; к, п, т are unaspirated, as after s in skate"
+   },
+   "confusable": {
+    "sound": ["г", "ґ", "х"]
+   }
+  },
+  {
+   "glyph": "л",
+   "upper": "Л",
+   "name": "ел",
+   "ipa": "l",
+   "example": "lamp",
+   "hints": {
+    "de": "sieht aus wie ein spitzes n, ist aber ein l — dunkel und velar wie im englischen full, nicht das helle deutsche l in Lampe; vor і und mit ь wird es weich (сіль, Salz)",
+    "en": "looks like a pointed n but is an l — dark and velarised as in full, not the light l of lamp; before і and with ь it turns soft (сіль, salt)"
+   },
+   "confusable": {
+    "look": ["п", "д"],
+    "sound": ["р", "н", "м", "с", "ф"]
+   }
+  },
+  {
+   "glyph": "м",
+   "upper": "М",
+   "name": "ем",
+   "ipa": "m",
+   "example": "language"
+  },
+  {
+   "glyph": "н",
+   "upper": "Н",
+   "name": "ен",
+   "ipa": "n",
+   "example": "new",
+   "hints": {
+    "de": "sieht aus wie H, klingt aber wie n in Nacht",
+    "en": "looks like H but sounds like n in night"
+   },
+   "confusable": {
+    "look": ["и", "п"]
+   }
+  },
+  {
+   "glyph": "о",
+   "upper": "О",
+   "name": "о",
+   "ipa": "ɔ",
+   "example": "clothes",
+   "hints": {
+    "de": "immer ein volles, rundes o wie in Sonne — auch unbetont wird es nie zu einem Schwa und nie zu einem a (anders als im Russischen); vor betontem у oder і klingt es nur etwas geschlossener",
+    "en": "always a full, rounded o — like the aw in law but cut short; it never weakens to “uh”, even unstressed; before a stressed у or і it just closes slightly"
+   }
+  },
+  {
+   "glyph": "п",
+   "upper": "П",
+   "name": "пе",
+   "ipa": "p",
+   "example": "park",
+   "hints": {
+    "de": "sieht aus wie ein n mit geradem Dach (griechisches π), ist aber ein p wie in Park — ohne Hauch gesprochen, kein Luftstoß",
+    "en": "looks like a squared-off n (Greek π) but it is a p as in park — unaspirated, no puff of air"
+   },
+   "confusable": {
+    "look": ["л", "н"],
+    "sound": ["б", "т", "в"]
+   }
+  },
+  {
+   "glyph": "р",
+   "upper": "Р",
+   "name": "ер",
+   "ipa": "r",
+   "example": "rice",
+   "hints": {
+    "de": "sieht aus wie p, ist aber ein gerolltes Zungenspitzen-r",
+    "en": "looks like p but is a rolled r, as in Spanish or Italian"
+   },
+   "confusable": {
+    "look": ["в", "ь"],
+    "sound": ["л", "н", "м"]
+   }
+  },
+  {
+   "glyph": "с",
+   "upper": "С",
+   "name": "ес",
+   "ipa": "s",
+   "example": "cheese",
+   "hints": {
+    "de": "sieht aus wie c, klingt immer wie scharfes s in Haus — nie wie k",
+    "en": "looks like c but always sounds like s in sun — never k"
+   },
+   "confusable": {
+    "look": ["о", "е"],
+    "sound": ["з", "ц", "ш"]
+   }
+  },
+  {
+   "glyph": "т",
+   "upper": "Т",
+   "name": "те",
+   "ipa": "t",
+   "example": "here",
+   "hints": {
+    "de": "ohne Hauch — kein Luftstoß wie im deutschen Tee; wie das t in Stein",
+    "en": "no puff of air — unlike English tea; unaspirated, like the t after s in stop"
+   },
+   "confusable": {
+    "sound": ["д", "п", "ц"]
+   }
+  },
+  {
+   "glyph": "у",
+   "upper": "У",
+   "name": "у",
+   "ipa": "u",
+   "example": "pupil",
+   "hints": {
+    "de": "sieht aus wie y, klingt wie u in Schule",
+    "en": "looks like y but sounds like oo in moon"
+   },
+   "confusable": {
+    "look": ["ч", "х"],
+    "sound": ["ю", "о"]
+   }
+  },
+  {
+   "glyph": "ф",
+   "upper": "Ф",
+   "name": "еф",
+   "ipa": "f",
+   "example": "movie",
+   "confusable": {
+    "sound": ["в", "с", "х"]
+   }
+  },
+  {
+   "glyph": "х",
+   "upper": "Х",
+   "name": "ха",
+   "ipa": "x",
+   "example": "bread",
+   "hints": {
+    "de": "sieht aus wie x, klingt wie ch in Bach — nie ks; das gehauchte h ist г",
+    "en": "looks like x but sounds like ch in Scottish loch — never ks; the breathy h is г"
+   },
+   "confusable": {
+    "look": ["ж", "к"],
+    "sound": ["г", "к"]
+   }
+  },
+  {
+   "glyph": "ц",
+   "upper": "Ц",
+   "name": "це",
+   "ipa": "t͡s",
+   "example": "sugar",
+   "hints": {
+    "de": "wie z in Zahl (ts)",
+    "en": "like ts in cats — one letter for the ts sound, and Ukrainian also puts it at the start of a word, where English never does: ts-ukor, not zoo-kor"
+   },
+   "confusable": {
+    "look": ["щ", "ш", "и"],
+    "sound": ["ч", "с", "т"]
+   }
+  },
+  {
+   "glyph": "ч",
+   "upper": "Ч",
+   "name": "че",
+   "ipa": "t͡ʃ",
+   "example": "tea",
+   "hints": {
+    "de": "wie tsch in Tschüss",
+    "en": "like ch in church"
+   },
+   "confusable": {
+    "sound": ["ц", "щ", "ш"]
+   }
+  },
+  {
+   "glyph": "ш",
+   "upper": "Ш",
+   "name": "ша",
+   "ipa": "ʃ",
+   "example": "school",
+   "hints": {
+    "de": "wie sch in Schule",
+    "en": "like sh in shoe"
+   },
+   "confusable": {
+    "look": ["щ", "ц"],
+    "sound": ["щ", "ж", "с"]
+   }
+  },
+  {
+   "glyph": "щ",
+   "upper": "Щ",
+   "name": "ща",
+   "ipa": "ʃt͡ʃ",
+   "example": "rain",
+   "hints": {
+    "de": "zwei Laute schnell hintereinander: sch + tsch — sprich „frisch“ und „tschüss“ ohne Pause; nicht das weiche russische schsch",
+    "en": "two sounds run together: sh + ch, as in fresh cheese — not the soft Russian shch"
+   },
+   "confusable": {
+    "look": ["ш", "ц"],
+    "sound": ["ш", "ч"]
+   }
+  },
+  {
+   "glyph": "ь",
+   "upper": "Ь",
+   "name": "мʼякий знак",
+   "example": "salt",
+   "hints": {
+    "de": "kein eigener Laut — der Konsonant davor bekommt ein angedeutetes j (Zungenrücken zum Gaumen): сіль (Salz) endet auf ein weiches l, etwa „silj“",
+    "en": "no sound of its own — it softens the consonant before it (tongue toward the palate): сіль (salt) ends in the soft l of million, not the flat l of feel"
+   }
+  },
+  {
+   "glyph": "ю",
+   "upper": "Ю",
+   "name": "ю",
+   "ipa": "ju",
+   "example": "copy",
+   "hints": {
+    "de": "ju wie in Jubel; nach einem Konsonanten macht ю ihn weich und es bleibt ein u",
+    "en": "yu as in youth; after a consonant ю softens it and leaves an oo sound"
+   },
+   "confusable": {
+    "sound": ["у", "я", "є"]
+   }
+  },
+  {
+   "glyph": "я",
+   "upper": "Я",
+   "name": "я",
+   "ipa": "jɑ",
+   "example": "egg",
+   "hints": {
+    "de": "ja wie in Jacke; nach einem Konsonanten macht я ihn weich und es bleibt ein a",
+    "en": "ya as in yard; after a consonant я softens it and leaves an ah sound"
+   },
+   "confusable": {
+    "sound": ["а", "є", "ю"]
+   }
+  },
+  {
+   "glyph": "ʼ",
+   "kind": "contextual",
+   "name": "апостроф",
+   "context": {
+    "de": "nach den Lippenlauten б, п, в, м, ф, nach р und nach einem Präfix auf hartem Konsonanten — vor я, ю, є, ї",
+    "en": "after the labials б, п, в, м, ф, after р, and after a prefix ending in a hard consonant — before я, ю, є, ї"
+   },
+   "example": "name",
+   "hints": {
+    "de": "kein Laut — ein Trennzeichen: der Konsonant bleibt hart und das folgende я/ю/є/ї behält sein volles j (мʼя = m + ja)",
+    "en": "no sound — a separator: the consonant stays hard and the following я/ю/є/ї keeps its full y sound (мʼя = m + ya)"
+   },
+   "drill": false
+  },
+  {
+   "glyph": "б д з ж г",
+   "kind": "rule",
+   "context": {
+    "de": "am Wortende",
+    "en": "at the end of a word"
+   },
+   "example": "bread",
+   "hints": {
+    "de": "keine Auslautverhärtung: хліб endet auf einem echten b, сад auf einem echten d — nicht wie deutsch Kalb, Rad",
+    "en": "no final devoicing: хліб ends in a real b, сад in a real d"
+   }
+  }
+ ]
+}

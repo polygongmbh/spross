@@ -44,6 +44,11 @@ catalog/
     en.json
     sw.json
     uk.json
+  audio/                # GENERATED pronunciation recordings, one folder per language
+    <lang>/
+      manifest.json     # { language, words: { slug: … }, letters?: { glyph: … } }
+      <slug>.mp3
+      letters/u<hex>.mp3
 ```
 
 Adding a language is purely additive: drop a `<area>/<lang>.json` in each area for
@@ -169,8 +174,16 @@ Realization fields — only `text` is required:
   reveal teaches, and `synonyms` are what rotate beside it.
   Author them for reach, not for display: a form that deserves to be seen is a synonym.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
-  labels, no `(selten)` qualifier), one fact per key: de `gender` + `plural`,
+  labels, no `(selten)` qualifier), one fact per key: de and es `gender` + `plural`,
   sw `plural`, en `plural`, uk `plural`. Omit if empty.
+  `gender` is the ARTICLE the learner says, and always one the language declares
+  in `languages.json` — de der/die/das, es el/la, and `los`/`las` on the nouns
+  whose article genuinely IS the plural one (los auriculares, las vacaciones).
+  That is not decoration: grading reads it back as an article and demotes an
+  otherwise exact answer whose PRESENT leading article disagrees, so a singular
+  article on a plural-only noun would mark the one right answer a typo.
+  Omit `gender` where the language allows both and neither is taught
+  (es `internet`, which RAE writes without an article).
   `plural` is a bare full form (`"Wörter"`), a suffix (`"-n"`, `"-nen"`),
   `"="` (identical to the singular → render `"= Pl."`), or
   `"only"` (pluralia tantum, no singular → render `"nur Pl."`).
@@ -193,6 +206,116 @@ Realization fields — only `text` is required:
   Keep a note only if it changes what the learner would say or do; pure etymology
   ("wörtl. …") is cut. Load-bearing teaching (e.g. which word for "rice") is
   destined to become first-class training content, not a permanent note.
+
+## Audio (`catalog/audio/`)
+
+Bundled pronunciation recordings, one folder per language, **generated** by
+`app/scripts/audio-catalog.py --packs <workspace>` — edit packs, not this directory.
+The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
+unversioned research input; what is committed here is the shipped bytes and the
+licence record that has to travel with them. Both apps bundle the whole tree as it
+stands (iOS folder reference, the Android catalog sync), so nothing needs registering.
+
+```json
+{ "language": "uk",
+  "words": {
+    "office": { "file": "office.mp3", "matches": "установа",
+                "licence": "CC BY 3.0 us",
+                "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+                "author": "Галя Раптова, Nicolas Vion",
+                "source": "Uk-установа.ogg", "sha256": "1c44…" } },
+  "letters": {
+    "ж": { "file": "letters/u0436.mp3", "licence": "CC BY-SA 4.0",
+           "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+           "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "77b0…",
+           "gain": 20.0, "lead": 1069 } } }
+```
+
+- `language` must equal the folder name, and a folder for a language `languages.json`
+  does not declare is never read — adding one is dropping a directory in, nothing else.
+- `words` is keyed by concept slug, `letters` (optional, uk only today) by lowercase
+  glyph. Every field is required except `licenceUrl`, which is absent exactly for
+  public-domain files, having no deed to link, and `gain`/`lead`, absent where they
+  would be zero.
+- `matches` — the surface form the recording actually SPEAKS, and the lookup key:
+  playback is keyed by what stands on the card, never by the slug the file was fetched
+  for, so a rotated synonym nobody recorded falls through to the app's own voice
+  instead of playing the canonical word. It may differ from `text` in case
+  (`unterlagen` / "Unterlagen"), edge punctuation (`hallo` / "Hallo!") or the citation
+  dash (`zuri` / "-zuri") — the engine folds those away (`../kern/README.md` §11).
+  Letters carry no `matches`: they speak a name, and that string belongs to the
+  alphabet file.
+- `source` — the original Commons filename; the credits screen links `File:<source>`,
+  which is what keeps attribution checkable rather than merely present.
+- Word files are `<slug>.mp3`; letter files are `letters/u<codepoint>.mp3`, four
+  lowercase hex digits, never glyph-named — `й`/`ї` decompose under NFD on APFS and a
+  Unicode filename has to survive git, Gradle sync and AAPT unchanged. The manifest maps
+  the glyph, so the name is purely internal.
+- **The mp3 bytes are the Commons transcode untouched**, renamed and nothing else:
+  re-encoding (including loudness normalization, so packs differ in loudness) is an
+  adaptation under BY-SA. `sha256` is the digest the generator verified after the copy
+  and lint re-hashes what was committed, which makes it a gate rather than a promise.
+- `gain` (dB) and `lead` (ms) are the generator's own MEASUREMENT of those untouched
+  bytes — how far the recording sits from the catalog's analysis target, capped by the
+  headroom that file still has, and how much dead air to start past — so the files stay
+  unmodified and only the player corrects them. What was measured, against which target,
+  is `../scripts/audio-catalog.py`'s `ANALYSIS`.
+- No `README.md` inside `audio/` — the Android sync only excludes one at the catalog
+  root, so a nested one would ship in the APK. Audio schema docs live here.
+
+Lint (`CatalogAudioLintTest`) holds the rest: every entry names a slug its language
+realizes and a form some card can show, no two entries claim one spoken form with
+different bytes, every file ships and is referenced exactly once, and no author is a
+placeholder like "Own work" — BY and BY-SA both require naming somebody.
+
+## Alphabet (`catalog/alphabet/`)
+
+One file per declared language, `alphabet/<lang>.json`, entries in teaching order — the
+reference sheet renders it, the letter drill samples from it. **File presence is the
+registry**: adding a language's alphabet is dropping a file, no code lists which languages
+have one. A file for an undeclared language is never read; lint (`AlphabetLintTest`)
+fails it loudly instead of letting it sit.
+
+```json
+{ "entries": [
+  { "glyph": "и", "upper": "И", "name": "и", "ipa": "ɪ", "example": "mouse",
+    "hints": { "de": "kurzes, lockeres i wie in bitte", "en": "lax i as in bit" },
+    "confusable": { "look": ["й", "н"], "sound": ["і", "е"] } },
+  { "glyph": "ch", "kind": "contextual", "id": "ch-ich", "ipa": "ç",
+    "context": { "de": "nach hellen Vokalen", "en": "after front vowels" },
+    "example": "light", "hints": { "en": "…" },
+    "confusable": { "look": ["ch-ach"], "sound": ["sch"] } },
+  { "glyph": "б д з ж г", "kind": "rule",
+    "context": { "de": "am Wortende", "en": "word-finally" },
+    "hints": { "de": "keine Auslautverhärtung: б bleibt b — хліб" } }
+]}
+```
+
+- `kind` is `letter` (default), `digraph`, `contextual` or `rule`. A **rule** row is
+  sheet-only prose (uk's no-final-devoicing table): never prompted, never a choice tile,
+  and the only kind whose `glyph` may carry whitespace. `drill: false` keeps a real but
+  undrillable grapheme (uk `ʼ`, de length-h) out of every prompt; it stays a tile.
+- `id` (slug charset) is REQUIRED the moment two entries share a `glyph` (de authors
+  `ch` three times) and is then the entry's **ref**; otherwise the glyph is. `confusable`
+  refs (an id, or a glyph naming exactly one row) are closed symmetrically at parse —
+  authoring и → й also makes й → и — and homophone groups are derived from
+  byte-identical `ipa` strings, never authored.
+- Every entry needs an `ipa` or at least one hint. `hints`/`context` are keyed by the
+  READER's language (⊆ declared, like realization `notes`); `name` is the letter's own
+  name — the string a synthesizer is handed, never the bare glyph. Apostrophes are
+  stored as U+02BC; grading folds the class, so realizations keeping U+0027 still match.
+- `example` is a concept slug, resolved in two independent halves that never consult the
+  join: the alphabet's OWN language must realize the word (what the drill speaks and
+  gaps — a lint error otherwise), while the reader's language supplies the meaning line
+  (nullable — the sheet omits it, graceful degradation). `exampleText` is the escape
+  hatch where no concept fits; it carries no slug and therefore never claims a recording.
+- **Gap rule** (lint): a drill-true `digraph`/`contextual` row's resolved example
+  contains its glyph EXACTLY once — zero leaves nothing to blank, and with two the blank
+  can land on the wrong, position-bound instance and teach the opposite of the entry.
+  `letter` and `rule` rows are exempt: their example is sheet decoration.
+- No `audio` field. Letter recordings live in the audio manifest's `letters{}` (above),
+  keyed by lowercase glyph — lint holds that every recorded glyph addresses exactly one
+  alphabet row, which is why colliding-glyph entries can never carry one.
 
 ## What earns a slot, and how it is worded
 

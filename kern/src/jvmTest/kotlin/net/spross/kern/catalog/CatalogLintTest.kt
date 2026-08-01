@@ -11,6 +11,7 @@ import kotlin.test.assertTrue
  * Permanent lint over the REAL catalog: every §8 content rule. Structural rules
  * (shape, unknown keys, reference resolution, slug uniqueness, orphan realizations)
  * are enforced by the parser itself — [catalogParsesClean] locks those in.
+ * The §11 audio rules live beside this in [CatalogAudioLintTest].
  */
 class CatalogLintTest {
     private val catalog get() = RealCatalog.catalog
@@ -26,7 +27,7 @@ class CatalogLintTest {
 
     @Test
     fun catalogParsesClean() {
-        assertEquals(setOf("de", "en", "sw", "uk"), catalog.languages.keys)
+        assertEquals(setOf("de", "en", "es", "sw", "uk"), catalog.languages.keys)
         assertTrue(catalog.groups.isNotEmpty())
         assertTrue(catalog.areaNames.isNotEmpty())
     }
@@ -283,18 +284,45 @@ class CatalogLintTest {
                 // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
                 // not one word covering two German ones. Same treatment either way.
                 "sw mto: bedroom/pillow, outside/river",
+                // Reviewed 2026-07-31: es merges what de distinguishes by capitalization
+                // alone (der Morgen / morgen); en/sw/uk all keep the two apart, so no
+                // concept pair collides twice. The area disambiguates the produce prompt.
+                "es mañana: bedroom/morning, essentials/tomorrow",
+                // Reviewed 2026-07-31: `el tiempo` is both Zeit and Wetter. de/en/sw/uk
+                // all split it; `clima` is das Klima in Spain, so there is no alternative.
+                "es tiempo: essentials/time, outside/weather",
             ),
             actual,
         )
     }
 
+    /**
+     * Plural articles, per language that authors `gender` — not derivable, since German's
+     * is homographic with the feminine singular and no shipped noun tells the uses apart.
+     */
+    private val pluralArticles = mapOf("de" to setOf("die"), "es" to setOf("los", "las"))
+
+    /**
+     * Bare values, no labels — plus the closed domain `gender` carries. It IS the article
+     * the learner says, so it must be one the language declares, and on a `plural: "only"`
+     * noun it must be the plural one: grading reads the value back and demotes an answer
+     * whose PRESENT leading article disagrees, so a singular `el` on *auriculares* marks
+     * the only right answer, `los auriculares`, a typo. That is what makes es
+     * el/la/los/las the same rule as de's der/die/das rather than a de-shaped exception.
+     */
     @Test
-    fun grammarValuesAreBareAndTrimmed() {
+    fun grammarValuesAreWellFormed() {
         forEachRealization { area, lang, slug, raw ->
             for ((key, value) in raw.grammar) {
                 val where = "$area/$lang.json $slug.$key"
                 assertTrue(value.isNotBlank() && value.trim() == value, "$where: bad value \"$value\"")
                 assertTrue(!value.startsWith("Pl."), "$where: labeled value \"$value\"")
+            }
+            val gender = raw.grammar["gender"] ?: return@forEachRealization
+            val where = "$area/$lang.json $slug.gender"
+            assertTrue(gender in catalog.languages.getValue(lang).articles, "$where: no declared $lang article")
+            if (raw.grammar["plural"] == "only") {
+                assertTrue(gender in pluralArticles[lang].orEmpty(), "$where: \"$gender\" is not plural")
             }
         }
     }

@@ -1,0 +1,268 @@
+package net.spross.kern.trainer
+
+import kotlin.random.Random
+import net.spross.kern.catalog.Alphabet
+import net.spross.kern.catalog.AlphabetEntry
+import net.spross.kern.catalog.AlphabetKind
+import net.spross.kern.catalog.gapWord
+import net.spross.kern.model.Card
+import net.spross.kern.model.Language
+import net.spross.kern.model.nfcNormalized
+
+/**
+ * The letter drill: hear a sound, find the letter — multiple choice, then typing, then
+ * transcription of words the learner already holds.
+ *
+ * Registry-by-file, not by enum: a language has this drill exactly when
+ * `catalog/alphabet/<lang>.json` exists, so adding one is dropping a file
+ * ([net.spross.kern.catalog.Catalog.alphabet]). [TrainerKind] stays untouched.
+ *
+ * Everything here is pure and stateless — no schedule is read, no review is booked
+ * (transcription is not recall). Sampling takes an injected [Random] like every other
+ * generator in this package, so both platforms derive the same run from the same seed and
+ * the progression can be pinned in tests rather than described in two UI layers.
+ */
+object LetterDrill {
+    const val MAX_LEVEL_WITH_DICTATION = 9
+    const val MAX_LEVEL_WITHOUT_DICTATION = 7
+
+    /** One answer plus up to three distractors; two are tolerated on a tiny alphabet. */
+    const val CHOICE_COUNT = 4
+
+    /** Entry pacing stops one rung below transcription — nobody starts by taking dictation. */
+    private const val ENTRY_LEVEL_CEILING = 6
+    private const val SETTLED_PER_LEVEL = 12
+
+    /** Consolidated words from which one clean win is enough to move up a rung. */
+    private const val SETTLED_FOR_SHORT_STAGES = 60
+
+    /** Dictation at level 8 asks for short words; the count ignores spaces. */
+    private const val SHORT_WORD_LETTERS = 6
+
+    /** Below this many short candidates the level-8 filter is dropped — never draw from one. */
+    private const val MIN_SHORT_CANDIDATES = 3
+
+    fun maxLevel(dictationAvailable: Boolean): Int =
+        if (dictationAvailable) MAX_LEVEL_WITH_DICTATION else MAX_LEVEL_WITHOUT_DICTATION
+
+    /**
+     * Where a learner STARTS, from the words they already hold: 0–11 consolidated → 1,
+     * 60+ → 6. The `Growth.newBudget` pacing shape (a step per bucket, a hard ceiling) —
+     * someone with a vocabulary should not spell out `em` four times before the drill
+     * gets interesting, and someone without one should not be dropped into typing.
+     */
+    fun entryLevel(settledCards: Int): Int =
+        minOf(ENTRY_LEVEL_CEILING, 1 + maxOf(0, settledCards) / SETTLED_PER_LEVEL)
+
+    /**
+     * How LONG a rung is — the second half of the same pacing rule. A consolidated
+     * vocabulary earns each level in one clean win; below that the classic two apply, so
+     * a beginner gets the repetition and nobody else gets the drag.
+     */
+    fun winsToAdvance(settledCards: Int): Int = if (settledCards >= SETTLED_FOR_SHORT_STAGES) 1 else 2
+
+    /** 1–2 easy tiles, 3–5 confusable tiles, 6–7 typing, 8–9 dictation. */
+    fun stageFor(level: Int): LetterStage = when (level.coerceIn(1, MAX_LEVEL_WITH_DICTATION)) {
+        1, 2 -> LetterStage.ChoiceEasy
+        3, 4, 5 -> LetterStage.ChoiceConfusable
+        6, 7 -> LetterStage.Typed
+        else -> LetterStage.Dictation
+    }
+
+    /**
+     * [winsRequired] clean wins up, one miss down, floor 1 — the slot drill's ramp with its
+     * stage length passed in ([winsToAdvance]) so the step stays a pure function of what
+     * the caller already knows.
+     *
+     * An amber answer ([clean] false: a typo, a revealed hint) moves NOTHING. It is neither
+     * a win to bank nor a miss to punish, and letting it count either way would make the
+     * ramp disagree with what the learner just saw on screen.
+     */
+    fun advance(
+        level: Int,
+        winsAtLevel: Int,
+        correct: Boolean,
+        clean: Boolean,
+        maxLevel: Int,
+        winsRequired: Int,
+    ): LetterDrillProgress {
+        val ceiling = maxOf(1, maxLevel)
+        val current = level.coerceIn(1, ceiling)
+        val wins = maxOf(0, winsAtLevel)
+        if (!correct) return LetterDrillProgress(maxOf(1, current - 1), 0)
+        if (!clean) return LetterDrillProgress(current, wins)
+        val earned = wins + 1
+        return if (earned >= maxOf(1, winsRequired) && current < ceiling) {
+            LetterDrillProgress(current + 1, 0)
+        } else {
+            LetterDrillProgress(current, earned)
+        }
+    }
+
+    data class LetterDrillProgress(val level: Int, val winsAtLevel: Int)
+
+    /**
+     * An example word WITH its provenance: [slug] is null exactly when the text came from
+     * the entry's `exampleText` escape hatch rather than a concept the target language
+     * realizes. That distinction is the whole point of the type — it is what keeps a
+     * slug's recording from playing over a different word on screen.
+     */
+    data class AlphabetExampleWord(val text: String, val slug: String?)
+
+    /**
+     * One letter-stage question. [promptableRefs] is the app's own list (what the device
+     * can actually speak or play, §5.1) in file order; [avoidRef] is the previous answer,
+     * resampled once so a repeat needs two unlucky draws rather than one.
+     *
+     * Entries that cannot be ASKED are dropped defensively — a letter without a name, a
+     * gap entry whose example does not resolve or whose glyph does not sit in it exactly
+     * once. Lint makes all three unreachable in shipped content; the filter is what turns
+     * an authoring slip into a smaller pool instead of an unanswerable question.
+     */
+    fun sample(
+        alphabet: Alphabet,
+        targetExample: (AlphabetEntry) -> AlphabetExampleWord?,
+        level: Int,
+        promptableRefs: List<String>,
+        avoidRef: String?,
+        rng: Random,
+    ): LetterDrillTask {
+        val allowed = promptableRefs.toSet()
+        val pool = alphabet.entries
+            .filter { it.ref in allowed && it.drill && it.kind != AlphabetKind.Rule }
+            .mapNotNull { entry -> prompt(entry, targetExample)?.let { entry to it } }
+        require(pool.isNotEmpty()) { "no promptable entry in the ${alphabet.language} alphabet" }
+        var picked = pool[rng.nextInt(pool.size)]
+        if (picked.first.ref == avoidRef) picked = pool[rng.nextInt(pool.size)]
+        val (entry, prompt) = picked
+        // why: the letter stages stop at 7 — 8 and 9 are dictation, which draws from the
+        // box and enters through sampleDictation, never here.
+        val stage = stageFor(level.coerceIn(1, MAX_LEVEL_WITHOUT_DICTATION))
+        return LetterDrillTask(
+            stage = stage,
+            language = alphabet.language,
+            answerRef = entry.ref,
+            promptText = prompt.text,
+            promptKind = prompt.kind,
+            promptSlug = prompt.slug,
+            promptGlyph = prompt.glyph,
+            choices = LetterDrillChoices.tiles(alphabet, entry, stage, level, prompt.gap, rng),
+            gapText = prompt.gap,
+            accepted = listOf(entry.glyph),
+            display = entry.glyph,
+            gloss = prompt.gloss,
+        )
+    }
+
+    /**
+     * One dictation question. [candidates] arrive filtered to consolidated, speakable box
+     * cards (§5.2); kern drops anything with a space of its own — a transcription task is
+     * one word, whatever the caller believes.
+     *
+     * Level 8 asks for short words. If fewer than [MIN_SHORT_CANDIDATES] survive that
+     * filter the whole list is used instead: a drill that always dictates the same two
+     * words is worse than one that occasionally dictates a long one.
+     */
+    fun sampleDictation(
+        candidates: List<Card>,
+        level: Int,
+        avoidCardId: String?,
+        rng: Random,
+    ): LetterDrillTask {
+        val words = candidates.filter { ' ' !in it.target.text }
+        require(words.isNotEmpty()) { "no single-word dictation candidate" }
+        val short = words.filter { it.target.text.count { ch -> ch != ' ' } <= SHORT_WORD_LETTERS }
+        val pool = if (level <= 8 && short.size >= MIN_SHORT_CANDIDATES) short else words
+        var card = pool[rng.nextInt(pool.size)]
+        if (card.id == avoidCardId) card = pool[rng.nextInt(pool.size)]
+        return LetterDrillTask(
+            stage = LetterStage.Dictation,
+            language = card.target.lang,
+            answerRef = card.id,
+            promptText = card.target.text,
+            promptKind = LetterPromptKind.Word,
+            promptSlug = card.id,
+            promptGlyph = null,
+            choices = null,
+            gapText = null,
+            // why: transcription accepts what was SPOKEN and nothing else — a synonym
+            // would credit a word the learner never heard.
+            accepted = listOf(card.target.text),
+            display = card.target.text,
+            gloss = card.source.text,
+        )
+    }
+
+    /**
+     * The card a dictation answer is graded against: the real card's IDENTITY with only
+     * its answer set narrowed to the spoken form.
+     *
+     * The id, `feminineOf` and `kind` must survive. `CatalogAnswerGrader` skips the
+     * prompted concept when it looks for the word somebody else owns, so a synthetic id
+     * would let the learner's own concept come back as another word — «мишка» reported as
+     * a different word than «миша», naming the right answer as somebody else's. `kind`
+     * keys the verb-prefix leniency. `baseAccepted` goes, with the synonyms: the feminine
+     * demotion accepts the base word, which in a transcription is simply not what played.
+     */
+    fun dictationGradingCard(card: Card, task: LetterDrillTask): Card = card.copy(
+        baseAccepted = emptyList(),
+        target = card.target.copy(
+            text = task.accepted.firstOrNull() ?: card.target.text,
+            synonyms = emptyList(),
+            variants = emptyList(),
+        ),
+    )
+
+    /**
+     * Typed-glyph grading: exact after normalization, case-insensitive, no typo budget —
+     * a one-glyph answer with a slip allowance grades nothing at all. Multigraphs (`sch`,
+     * `rr`) go through the same exact test.
+     */
+    fun gradeLetter(input: String, task: LetterDrillTask): Boolean {
+        val typed = graded(input)
+        return typed.isNotEmpty() && task.accepted.any { graded(it) == typed }
+    }
+
+    /** The prompt side of a task; null where the entry cannot be asked at all. */
+    private data class Prompt(
+        val text: String,
+        val kind: LetterPromptKind,
+        val slug: String?,
+        val glyph: String?,
+        val gap: String?,
+        val gloss: String?,
+    )
+
+    private fun prompt(entry: AlphabetEntry, example: (AlphabetEntry) -> AlphabetExampleWord?): Prompt? {
+        if (entry.kind == AlphabetKind.Letter) {
+            // why: the NAME is the speakable unit — «ґе», not ґ (measured 0.39 s against 1.32 s).
+            val name = entry.name ?: return null
+            return Prompt(name, LetterPromptKind.Name, null, entry.glyph.lowercase(), null, null)
+        }
+        // why: a digraph has no name to speak and a bare synthesized sound is unreliable,
+        // so the question becomes the classic gap word — which also makes homophone sets
+        // (ß/ss, ll/y) answerable, because the word's spelling is what decides them.
+        val word = example(entry) ?: return null
+        val gap = entry.gapWord(word.text) ?: return null
+        return Prompt(
+            text = word.text,
+            kind = if (word.slug != null) LetterPromptKind.Word else LetterPromptKind.PlainText,
+            slug = word.slug,
+            glyph = null,
+            gap = gap,
+            gloss = word.text,
+        )
+    }
+
+    /**
+     * Comparison form for a typed glyph. The apostrophe class is folded to U+02BC — the
+     * alphabet files store that one canonically while a keyboard offers U+0027 and
+     * autocorrect offers U+2019, and all three mean the same letter.
+     */
+    private fun graded(text: String): String = nfcNormalized(text).trim().lowercase()
+        .map { if (it in APOSTROPHES) '\u02bc' else it }
+        .joinToString("")
+
+    /** Typewriter, curly, and the modifier letter the alphabet files store canonically. */
+    private val APOSTROPHES = setOf('\u0027', '\u2019', '\u02bc')
+}

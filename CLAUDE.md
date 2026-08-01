@@ -4,7 +4,7 @@ A personal spaced-repetition "growing box" app:
 FSRS-6-scheduled vocab that only grows while material sits, phrases unlock from their component words.
 Native iOS (SwiftUI) app "Spross" in `app/` with a Kotlin Multiplatform core (SprossKern);
 read `app/docs/design.md` (app layer) and `app/kern/README.md` (engine contract) before changing any behavior.
-Originally German-focused; any catalog language pair (source = known, target = learning; de/en/sw/uk) works now.
+Originally German-focused; any catalog language pair (source = known, target = learning; de/en/es/sw/uk) works now.
 Focus is on breadth of exposure to the language for maximum fluency with minimum effort, not perfect retention for single words.
 
 ## Commands
@@ -90,5 +90,7 @@ Kern modules under `kern/src/commonMain/kotlin/net/spross/kern/`:
 - Docs carry foundations; what the running app or the code answers faster stays out, and a needed cross-link means it is filed wrong.
 - Negations and hardlines only where the opposite is what would otherwise happen.
 - Out-of-scope discoveries go to `docs/backlog.md` (one-liners with pointers); prune on fix.
+- Whose the bundled recordings are and what their licences oblige — the ship/legal record —
+  is `docs/audio-licensing.md`; no other doc restates a licence term.
 - Write plans into docs/ and delete them once shipped, even if you did not write the plan
 - Whenever you are corrected or do extensive research, find or create an appropriate docs/ file to note insights

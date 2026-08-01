@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
+import net.spross.app.letterDrillAvailable
 
 @Composable
 fun HeuteScreen(model: AppModel) {
@@ -44,6 +45,9 @@ fun HeuteScreen(model: AppModel) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 TextButton(onClick = { model.editLanguages() }) { Text(chrome.changeLanguages) }
+                // The only other door out of Heute: version, the read-aloud switch
+                // and who spoke the recordings.
+                TextButton(onClick = { model.openAbout() }) { Text(chrome.aboutButton) }
             }
         }
 
@@ -57,6 +61,24 @@ fun HeuteScreen(model: AppModel) {
                     Stat("${stats.settledCount}", chrome.settledLabel)
                     Stat("${stats.activeCount - stats.settledCount}", chrome.freshLabel)
                     Stat("🔥 ${stats.streak}", "Streak")
+                }
+            }
+        }
+
+        // The platform's first trainer. It appears by itself once the synthesizer has
+        // bound (the predicate is observable — a cold start answers "no voice" for a
+        // moment), and stays put while reading aloud is switched off: the drill says so
+        // and offers the one tap that undoes it, which hiding the chip would not.
+        if (model.letterDrillAvailable) {
+            Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
+                Column(
+                    modifier = Modifier.fillMaxWidth().padding(20.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    Text(chrome.trainingTitle, style = MaterialTheme.typography.titleMedium)
+                    OutlinedButton(onClick = { model.startLetterDrill() }) {
+                        Text("🔤 ${chrome.lettersTitle}")
+                    }
                 }
             }
         }

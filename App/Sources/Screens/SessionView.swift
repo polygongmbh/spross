@@ -38,6 +38,10 @@ struct SessionView: View {
     /// only failing (kufunga vs kufungua).
     @State var otherWord: MatchOtherWord?
     @State var autoAdvance: Task<Void, Never>?
+    /// The card whose word has already been said. The one-shot autoplay guard
+    /// (SessionView+Audio.swift) — stored here because a SwiftUI extension
+    /// cannot carry state of its own.
+    @State var pronouncedCardID: String?
     /// Owned here (not in AnswerInputView) so whichever field is on screen —
     /// the answer field or the copy step's — takes focus the moment it
     /// mounts. Only ever one of them is mounted at a time.
@@ -62,11 +66,16 @@ struct SessionView: View {
                 SessionScaffold(position: model.sessionPosition,
                                 total: max(model.sessionTotal, 1),
                                 outcomes: model.sessionRatings.map(outcome(for:)),
+                                showsMuteButton: true,
                                 onClose: { model.closeSession() }) {
                     scaffoldContent
                 }
             }
         }
+        // why: the order is normative — reset stops whatever is sounding and
+        // clears the one-shot guard, focus lands before anything is played,
+        // and only then does the new card speak. Autoplay placed ahead of the
+        // reset would be killed by it on the same frame.
         .onChange(of: currentCardID) { _, _ in
             // why: safety net only — rate() already resets BEFORE the switch
             // so the next card can never render one frame still revealed.
@@ -74,19 +83,32 @@ struct SessionView: View {
             // why: a field carried over from the previous card is not
             // re-mounted, so nothing else would re-assert focus for it.
             focusAnswerField()
+            if let card = model.currentCard { autoplayPrompt(card) }
+        }
+        .onChange(of: produceAudioTrigger) { was, now in
+            if !was, now { autoplayProduceReveal() }
         }
         .onAppear {
             promptShownAt = Date()
+            // why: pays the process's first audio-session activation with an
+            // inaudible clip, here where nothing is typed — never on a produce
+            // reveal that carries the keyboard.
+            Pronouncer.shared.warmUp()
+            // why: the card-change hook does not see the FIRST card, exactly
+            // like promptShownAt; the one-shot guard covers the overlap.
+            if let card = model.currentCard { autoplayPrompt(card) }
         }
         .onDisappear {
             autoAdvance?.cancel()
             focusRetry?.cancel()
+            Pronouncer.shared.stop()
         }
         #if DEBUG
         // UI-test hooks: `-uitest-reveal 1` shows the first card revealed,
         // `-uitest-input xyz` prefills the answer field,
         // `-uitest-submit 1` submits the prefilled answer after 0.6 s,
-        // `-uitest-sound 1` plays each feedback sound with a console probe.
+        // `-uitest-sound 1` plays each feedback sound with a console probe,
+        // `-uitest-pronounce <form>` says one form and prints which branch said it.
         .onAppear {
             let defaults = UserDefaults.standard
             if defaults.bool(forKey: "uitest-reveal") {
@@ -104,11 +126,16 @@ struct SessionView: View {
             if defaults.bool(forKey: "uitest-sound") {
                 DLSound.uitestProbe()
             }
+            if let form = defaults.string(forKey: "uitest-pronounce") {
+                uitestPronounce(form)
+            }
         }
         #endif
     }
 
-    private var currentCardID: String? {
+    // why: internal, not private — the audio extension reads it to drop a
+    // delayed word whose card has already gone.
+    var currentCardID: String? {
         if case .card(let id)? = model.sessionStep { return id }
         return nil
     }
@@ -179,7 +206,9 @@ struct SessionView: View {
             let canonical = form == card.target.text
             return .init(text: form,
                          article: canonical ? CardDisplay.article(of: card.target) : nil,
-                         plural: canonical ? CardDisplay.plural(of: card.target, locale: locale) : nil)
+                         plural: canonical ? CardDisplay.plural(of: card.target, locale: locale) : nil,
+                         language: model.targetLanguage,
+                         pronounce: pronounceAction(for: form))
         }
     }
 
@@ -204,7 +233,9 @@ struct SessionView: View {
                          plural: CardDisplay.plural(of: card.target, locale: locale),
                          alternates: CardDisplay.alternates(of: card.target,
                                                             shown: card.target.text,
-                                                            locale: locale))
+                                                            locale: locale),
+                         language: model.targetLanguage,
+                         pronounce: pronounceAction(for: card.target.text))
         case .recognize:
             let meaning = ([card.source.text] + card.source.synonyms).joined(separator: " / ")
             return .init(text: meaning,
@@ -219,7 +250,7 @@ struct SessionView: View {
     /// wrong answer. A correct answer already stands in the input field, and a
     /// typo's proper spelling is carried by the correction line, so revealing
     /// there would put the same word on screen twice.
-    private var cardRevealed: Bool {
+    var cardRevealed: Bool {
         if case .revealed = feedback { return true }
         return revealed
     }
@@ -318,6 +349,10 @@ struct SessionView: View {
 
     private func resetCardState() {
         autoAdvance?.cancel()
+        // why: the word in the air belongs to the card that is leaving — the
+        // one place playback is stopped, together with .onDisappear.
+        Pronouncer.shared.stop()
+        pronouncedCardID = nil
         input = ""
         feedback = .neutral
         revealed = false

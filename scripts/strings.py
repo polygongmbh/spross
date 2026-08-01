@@ -49,7 +49,10 @@ CATEGORIES = {'de': ('one', 'other'), 'en': ('one', 'other')}
 UNEXTRACTABLE = {
     'heute.session.start',
     'grammar.plural.equals', 'grammar.plural.only', 'grammar.plural %@',
-    'grammar.also %@', 'session.answer.placeholder %@',
+    'grammar.also %@', 'session.answer.placeholder %@', 'session.copy.placeholder %@',
+    # A drill tile's a11y label interpolates the glyph into a plain String —
+    # no extractor follows an accessibilityLabel built at runtime either way.
+    'a11y.letterChoice %@',
     'lang.de', 'lang.en', 'lang.sw', 'lang.uk',
 }
 

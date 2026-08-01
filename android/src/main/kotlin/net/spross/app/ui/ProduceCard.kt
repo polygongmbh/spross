@@ -28,7 +28,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
+import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.SessionUi
+import net.spross.app.audio.Pronouncer
+import net.spross.app.pronounceAction
+import net.spross.app.pronounceTarget
+import net.spross.kern.model.Card
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.Rating
 import net.spross.kern.session.Match
@@ -42,6 +47,14 @@ private sealed interface ProduceMode {
     data class OtherWord(val word: String, val meanings: List<String>) : ProduceMode
     data object SelfGrade : ProduceMode
 }
+
+/**
+ * The form a reveal leaves standing on the card: a typo's own correction — the
+ * spelling the learner missed — and otherwise the bare target word. Never the
+ * article-carrying citation: articles are taught by their color, never spoken.
+ */
+private fun revealedForm(mode: ProduceMode, card: Card): String =
+    if (mode is ProduceMode.Typo) mode.corrected else card.target.text
 
 @Composable
 fun ProduceCard(model: AppModel, ui: SessionUi) {
@@ -63,12 +76,32 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
         }
     }
 
+    // The one-shot fired flag: the word belongs to the card, not to the transition
+    // that happened to reach it, so a second path can never say it twice.
+    var spoken by remember(card.id) { mutableStateOf(false) }
+
     // why: clean correct answers auto-advance after ~1.2 s (design.md review UX);
     // typos and reveals wait for an explicit tap instead.
     LaunchedEffect(mode) {
-        if (mode == ProduceMode.Correct) {
-            delay(1200)
-            model.answerCurrent(Rating.Good)
+        when (val current = mode) {
+            ProduceMode.Idle -> Unit
+            // Deliberately silent: the card is already flipping, in less time than a
+            // word lasts — a word cut off every time teaches worse than one not
+            // played, and the next recognition of the card says it in full (§6.2).
+            ProduceMode.Correct -> {
+                delay(1200)
+                model.answerCurrent(Rating.Good)
+            }
+            // The paths that HOLD the learner on the answer, and the only ones that
+            // speak: the beat lets the feedback chime finish first, and the effect
+            // dies with the card, so a tap through inside it takes the word along.
+            else -> {
+                delay(CHIME_CLEARANCE_MS)
+                if (!spoken) {
+                    spoken = true
+                    model.pronounceTarget(revealedForm(current, card), Pronouncer.Trigger.AUTO)
+                }
+            }
         }
     }
 
@@ -108,6 +141,8 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
             singleLine = true,
         )
 
+        // Tap-to-replay is asked for inside the reveal branches rather than hoisted:
+        // resolving a form is cheap but not free, and Idle recomposes on every keystroke.
         when (val current = mode) {
             ProduceMode.Idle -> Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedButton(
@@ -131,8 +166,10 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                 if (ui.emojiCue == EmojiCue.OnReveal) {
                     Text(card.emoji.orEmpty(), fontSize = 64.sp)
                 }
+                // why: no replay here, and nothing said — the card is on its way out
+                // (the iOS clean-correct decision, and a decision it is).
                 Text(
-                    "✓ ${card.target.text}",
+                    localizedTarget("✓ ${card.target.text}", card.target.lang),
                     style = MaterialTheme.typography.titleLarge,
                     color = ToneRight,
                 )
@@ -140,7 +177,10 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
             is ProduceMode.Typo -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(chrome.typoNote, color = ToneTough,
                     style = MaterialTheme.typography.bodyMedium)
-                TargetReveal(card.target, chrome)
+                TargetReveal(
+                    card.target, chrome,
+                    pronounce = model.pronounceAction(current.corrected),
+                )
                 Button(
                     onClick = { model.answerCurrent(Rating.Hard) },
                     modifier = Modifier.fillMaxWidth(),
@@ -155,7 +195,10 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.bodyMedium,
                 )
-                TargetReveal(card.target, chrome)
+                TargetReveal(
+                    card.target, chrome,
+                    pronounce = model.pronounceAction(card.target.text),
+                )
                 Button(
                     onClick = { model.answerCurrent(Rating.Again) },
                     modifier = Modifier.fillMaxWidth(),
@@ -164,7 +207,10 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                 }
             }
             ProduceMode.Wrong -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                TargetReveal(card.target, chrome)
+                TargetReveal(
+                    card.target, chrome,
+                    pronounce = model.pronounceAction(card.target.text),
+                )
                 Button(
                     onClick = { model.answerCurrent(Rating.Again) },
                     modifier = Modifier.fillMaxWidth(),
@@ -173,7 +219,10 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                 }
             }
             ProduceMode.SelfGrade -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                TargetReveal(card.target, chrome)
+                TargetReveal(
+                    card.target, chrome,
+                    pronounce = model.pronounceAction(card.target.text),
+                )
                 RatingButtons(chrome, onRate = { model.answerCurrent(it) })
             }
         }

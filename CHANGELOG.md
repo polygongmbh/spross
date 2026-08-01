@@ -2,6 +2,100 @@
 
 ## Unreleased
 
+- **Die Buchstaben setzen sofort ein und sind so laut wie die Wörter**: die ukrainischen
+  Buchstabenaufnahmen fingen erst nach gut einer Sekunde Stille an zu sprechen und waren
+  dabei rund fünfzehn Dezibel leiser als jedes Wort — im Buchstaben-Drill hörte man sie zu
+  spät und kaum. Beides ist ausgemessen und wird beim Abspielen ausgeglichen, und dieselbe
+  Angleichung nimmt auch den Wortpaketen ihre Lautstärkesprünge: Kiswahili war bisher
+  hörbar lauter als Spanisch. Die Aufnahmen selbst bleiben unangetastet — Byte für Byte
+  die Dateien von Wikimedia Commons.
+
+- **Spanisch kannst du jetzt lernen**: in der Sprachwahl steht neben Englisch, Kiswahili und
+  Ukrainisch neu 🇪🇸 Spanisch — von Anfang an vollständig, alle 528 Wörter und Sätze aus allen
+  vierzehn Bereichen, von den ersten Worten bis zum Amt. Gelernt wird das Spanisch Spaniens:
+  "¿Cómo dice?", nicht die lateinamerikanische Form — die gilt als Antwort trotzdem, wie auch
+  das umgangssprachliche Wort neben dem, das die Karte zeigt. Zu jedem Hauptwort steht sein
+  Artikel — *el* oder *la*, und *los*/*las* bei den Wörtern, die es nur im Plural gibt
+  (*los auriculares*, *las vacaciones*) —, und wo eine Mehrzahl nicht zu erraten ist,
+  steht auch sie dabei.
+
+- **Und der spanische Artikel hat seine Farbe**: *el* und *la* bekommen dieselben zwei
+  Farben, die *der* und *die* seit jeher tragen — Blau für das Männliche, Beerenrot für
+  das Weibliche; *los*, *las*, *un* und *una* gehen mit ihrem Geschlecht mit, und Grün
+  bleibt dem deutschen Neutrum, das es im Spanischen nicht gibt. So auf der Karte, auf
+  der Uhr und in jedem Widget. Auf Android steht der Artikel jetzt überhaupt zum ersten
+  Mal beim Wort — die Karte zeigte bisher nur das nackte Hauptwort.
+
+- **Und die spanischen Wörter sprechen**: zu 310 der 339 einzelnen spanischen Wörter
+  liegt eine echte Aufnahme bereit, von *¡Hola!* bis *mañana*; alles Übrige spricht wie
+  bisher die Stimme des Geräts. Anders als bei Kiswahili und Ukrainisch ist es nicht eine
+  Stimme, sondern viele — und woher die Sprecherinnen und Sprecher kommen, sagt Wikimedia
+  Commons nirgends, darum ist keine dieser Aufnahmen als Muster für das Spanisch Spaniens
+  zu verstehen. Wer spricht und unter welcher Lizenz, steht unter "Sprecher & Lizenzen".
+
+- **Buchstaben kannst du jetzt am Klang erkennen**: neben Zahlen, Uhrzeit und Sätzen steht
+  im Training "Buchstaben" — eine Übung, die nichts zeigt und alles vorspricht. Du hörst
+  einen Buchstabennamen und tippst den Buchstaben an: erst unter vieren, die nichts
+  miteinander zu tun haben, dann unter solchen, die sich ähnlich sehen oder gleich klingen,
+  später schreibst du ihn selbst. Für Ukrainisch sprechen echte Aufnahmen, sonst die Stimme
+  des Geräts. Bei dem, was man erst im Wort auseinanderhält — ß und ss, ei und ie, die drei
+  ch —, hörst du ein Wort und füllst die Lücke: ＿eife. Und wer genug Wörter gefestigt hat,
+  bekommt am Ende Diktat: Wort hören, Wort schreiben, sonst nichts. Die Übung steigt mit
+  dir: je mehr du schon sicher kannst, desto weiter oben fängt sie an und desto kürzer sind
+  ihre Stufen. Für deine Kartei zählt nichts davon — geübt wird hier ohne Folgen für den
+  Termin deiner Wörter.
+
+- **Auch auf Android erkennst du Buchstaben jetzt am Klang**: auf "Heute" steht neu ein Feld
+  "Training" mit "🔤 Buchstaben" — die erste Übung auf diesem Gerät. Sie zeigt nichts und
+  spricht alles: du hörst einen Buchstabennamen und tippst ihn unter vieren an, erst unter
+  solchen, die nichts miteinander zu tun haben, dann unter denen, die sich ähnlich sehen oder
+  gleich klingen, später schreibst du ihn selbst. Bei dem, was man erst im Wort
+  auseinanderhält, hörst du ein Wort und füllst die Lücke. Wer genug Wörter gefestigt hat,
+  bekommt am Ende Diktat: Wort hören, Wort schreiben, sonst nichts. Für Ukrainisch sprechen
+  echte Aufnahmen, sonst die Stimme des Geräts — der Knopf erscheint von selbst, sobald sie
+  bereitsteht. Ist das Vorlesen ausgeschaltet, sagt die Karte das und schaltet es mit einem
+  Tipp wieder ein. Für deine Kartei zählt nichts davon.
+
+- **Das Alphabet der Sprache, die du lernst, liegt jetzt im Training bereit**: unter den
+  Übungen öffnet "Alphabet" eine Tafel mit jeder Zeile, die es zu wissen gibt — Buchstabe
+  groß und klein, sein Name, seine Lautschrift, wann er wie klingt, und ein Beispielwort
+  samt Bedeutung, wo deine Sprache das Wort auch kennt. Für Ukrainisch das ganze Alphabet,
+  mitsamt Apostroph und der Regel, dass am Wortende nichts hart wird; für Deutsch die
+  Buchstaben und Buchstabenpaare, die täuschen: sch, ei/ie, die drei ch, v, ß/ss; für
+  Spanisch die, die man hören muss, um sie schreiben zu können — ll und y, die gleich
+  klingen, b und v, die denselben Laut haben, c und z, das getippte r neben dem gerollten
+  rr, das stumme h und das u, das nach g und q nicht mitspricht. Neben
+  jedem Namen und jedem Beispielwort steht ein Lautsprecher: einmal tippen, und du hörst,
+  wie der Buchstabe heißt und wie das Wort klingt — auch bei ausgeschaltetem Vorlesen.
+
+- **Wörter werden jetzt vorgelesen**: eine Karte sagt das Wort, das sie zeigt — mit
+  Aufnahmen echter Sprecherinnen und Sprecher, wo es welche gibt, und sonst mit der Stimme
+  des Geräts. Gesprochen wird immer genau die Form, die vor dir steht, nie eine andere
+  Schreibweise desselben Worts: beim Erkennen sofort, beim Schreiben erst, wenn das Wort
+  aufgedeckt ist — vorher wäre es die Antwort. Ein Tippen auf ein Wort spricht es noch
+  einmal, auch bei ausgeschaltetem Vorlesen. Abschalten kannst du es am Lautsprecher oben
+  in der Runde oder in den Einstellungen; der Stummschalter des Telefons gilt wie bisher
+  für alles. Und wer die Aufnahmen gesprochen hat, unter welcher Lizenz, steht jetzt unter
+  "Sprecher & Lizenzen" in den Einstellungen.
+
+- **Auch auf Android werden die Wörter jetzt vorgelesen**: dieselbe Regel wie auf dem
+  iPhone — eine Karte sagt das Wort, das sie zeigt, mit Aufnahmen echter Sprecherinnen und
+  Sprecher, wo es welche gibt, und sonst mit der Stimme des Geräts. Gesprochen wird genau
+  die Form, die vor dir steht: beim Erkennen sofort, beim Schreiben erst nach dem
+  Aufdecken oder der Tippfehler-Korrektur — vorher wäre es die Antwort. Ein Tippen auf ein
+  Wort spricht es noch einmal, auch bei ausgeschaltetem Vorlesen. Abschalten kannst du es
+  am Lautsprecher oben in der Runde; die Medienlautstärke des Telefons gilt wie bisher für
+  alles. Neu neben "Sprachen ändern" steht "Info": derselbe Schalter noch einmal, die
+  Version — und wer die Aufnahmen gesprochen hat, unter welcher Lizenz, mit Link auf jede
+  einzelne Datei bei Wikimedia Commons.
+
+- **New words no longer dry up after a run of hard answers**: the box handed out fewer of them
+  the more words you had recently got wrong, down to a trickle of two — so exactly the stretch
+  where variety helps most was the stretch it withheld. Growth is now paced only by what a
+  round can hold and by how far behind the reviews have fallen. The setting for it is gone
+  with it: it named a quantity shown nowhere and steered on the wrong signal.
+
+
 - **New words no longer dry up after a run of hard answers, or after time away**: the box
   handed out fewer of them the more words you had recently got wrong, down to a trickle of
   two, and stopped offering them at all once the reviews piled up past a threshold — so
@@ -14,6 +108,7 @@
   balances words coming due tomorrow against first sights, and is new words alone only when
   nothing is coming due at all. A day counts as done after a full round rather than a single
   answer.
+
 - **The start screen names what the round actually holds**: a round carried by words pulled
   forward was announced as an offer of new words, sometimes with none in it. Reviews, a
   warm-up and an offer of Frischlinge now read as the three different things they are, each

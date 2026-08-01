@@ -13,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import net.spross.app.ui.AboutScreen
 import net.spross.app.ui.HeuteScreen
+import net.spross.app.ui.LetterDrillScreen
 import net.spross.app.ui.OnboardingScreen
 import net.spross.app.ui.SessionScreen
 import net.spross.app.ui.SprossTheme
@@ -43,5 +45,7 @@ private fun Root(model: AppModel = viewModel()) {
         is Screen.Onboarding -> OnboardingScreen(model)
         Screen.Heute -> HeuteScreen(model)
         Screen.Session -> SessionScreen(model)
+        Screen.About -> AboutScreen(model)
+        Screen.LetterDrill -> LetterDrillScreen(model)
     }
 }

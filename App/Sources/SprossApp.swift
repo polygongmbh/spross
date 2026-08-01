@@ -1,9 +1,18 @@
+import AVFoundation
 import SwiftUI
 
 @main
 struct SprossApp: App {
     @State private var model = AppModel()
     @Environment(\.scenePhase) private var scenePhase
+
+    init() {
+        // why: one category for the whole process, set once and never
+        // activated by hand — .ambient mixes with whatever else is playing and
+        // follows the ring/silent switch, so a spoken word is as silenceable
+        // as the feedback chimes (Sounds.swift) already are.
+        try? AVAudioSession.sharedInstance().setCategory(.ambient)
+    }
 
     var body: some Scene {
         WindowGroup {

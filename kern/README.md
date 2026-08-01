@@ -326,6 +326,20 @@ day-key `yyyy-MM-dd`) with:
   no-op (`AnswerStatus.StaleCard`) the UI skips past. `SessionPlan` carries a
   `joinStamp` (source, target, catalog fingerprint); the app recomposes when stale.
 - `setSuspended(cardId)` — per card, as v1.
+- **`BoxEngine.consolidatedCardIds(state)`** — the words a drill may practise, in seed order.
+  It reads through the join-filtered active inventory (scheduled, joining, not suspended) and
+  keeps what `Statistics.isConsolidated` accepts, so a lapse takes a card off the list on its
+  own: consolidation wants the Review phase, and a lapsed card sits in Relearning until it
+  earns the stability back.
+  The rule lives here rather than in each app because "which words does the learner already
+  hold" is an engine question — restated over `box.cards` on two platforms it would drift,
+  and it would drift silently, since a drill that practises a word too early only feels
+  slightly harder.
+  Seed order, not the due shuffle: a drill samples with its own `Random` and needs a list
+  that is stable under it, not a second ordering rule; the seedIndex tie-break on card id
+  keeps that order total.
+  The query never writes — drills are stateless and book no reviews (transcription is not
+  recall), so nothing here touches FSRS.
 - **Exposure**: one entry per card by construction (tiers as v1); display surfaces always
   render the TARGET realization.
 - **AnswerNormalizer contract** (produce only — recognition is button self-grade;
@@ -478,6 +492,18 @@ day-key `yyyy-MM-dd`) with:
     `outside/river` next to `bedroom/pillow` (both sw `mto`) fails the gate instead of
     silently minting an ambiguous prompt. Comparison is case-SENSITIVE: `Husten`/`husten`
     is a real visual distinction and must stay legal.
+- `catalog/alphabet/<lang>.json` → `Alphabet`/`AlphabetEntry` (`AlphabetParser`, hand-parsed
+  on CatalogParser conventions; `JsonSupport` gained `optionalBoolean` and `stringListMap`).
+  The registry is file presence — `Catalog.alphabet(lang)` is null where no file is
+  authored — and alphabet reads fold into the fingerprint (content: editing one recomposes
+  a stale session once on upgrade; the audio manifest stays fingerprint-exempt). Example
+  resolution splits target and reader halves (`alphabetExample` / `exampleMeaning`) so the
+  sheet degrades per reader instead of erroring. Lint: shape/closure/homophone/gap rules on
+  synthetic JSON in `AlphabetFixtureTest`; real-content rules in **`AlphabetLintTest`**
+  (declared-language files only, own-language example realization, names on drill-true
+  letters, exactly-one-gap on gap rows, letters-manifest glyph collision).
+  `letters{}.matches == name` is WAIVED — the audio manifest schema rejects the field, so
+  the name↔recording check is a manual listening pass (backlog).
 
 ## 9. KMP project & Apple integration
 
@@ -502,7 +528,7 @@ day-key `yyyy-MM-dd`) with:
   conformances; Kotlin `Int` surfaces as `Int32` — bridge there, not at call sites.
 - Trainer: single `:kern` module, `Long` cardinals everywhere (Kotlin `Int` is 32-bit on
   all platforms — v1's arm64_32 fix generalizes). Trainer registry: de/sw/uk authored,
-  en absent (the hub's handling of that is an app rule).
+  en/es absent (the hub's handling of those is an app rule).
   Phrase templates keyed (source, target); reverse mode when target == de.
   German clock ACCEPTS 24-hour readings ("achtzehn Uhr fünfunddreißig", "null/vierundzwanzig
   Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.
@@ -513,6 +539,13 @@ day-key `yyyy-MM-dd`) with:
   The unleveled `sample` overload keeps the prototype's biased full-difficulty draws
   (numbers favor 2–3 digits, years cluster 1950–2050);
   only Clock's unleveled draw coincides with the leveled ceiling.
+  **`LetterDrill` is a separate facade, not a `TrainerKind` case**: its registry is
+  alphabet file presence in the catalog (adding a language edits no Kotlin), its ramp is
+  stateless and kern-owned (`entryLevel`/`winsToAdvance`/`advance` — both D11 halves in
+  one place so two platforms cannot drift), sampling takes an injected `Random` and an
+  app-computed promptable set (device voices are an app fact), and dictation draws only
+  `BoxEngine.consolidatedCardIds` through `dictationGradingCard` — it never books a
+  review (transcription is not recall; drills are stateless).
   Android: landed — `androidLibrary` KMP target
   (`com.android.kotlin.multiplatform.library`, AGP 9.3.0, compileSdk 36 / minSdk 26),
   androidMain NFC actual mirrors jvmMain; `:android` consumes the same facades.
@@ -547,6 +580,68 @@ day-key `yyyy-MM-dd`) with:
   join-inertness + source-switch round-trip (schedules + enqueued revive; phrases stay
   unlocked), stale-card answer no-op, FSRS-6 golden vectors + properties,
   DST/non-Gregorian day-key vectors, snapshot builders.
+
+## 11. Pronunciation
+
+- **When audio may play** — `PronunciationCue { Upfront, OnReveal }`,
+  declared beside `EmojiCue` in `model/Presentation.kt` because it is the same kind of rule:
+  what may be shown (heard) without giving the answer away.
+  `pronunciationCue(role)` is `Upfront` iff the role is Recognize — the target form stands on the card from frame one —
+  and `OnReveal` for Produce, which asks for that very form.
+  Both apps CONSUME the cue; neither re-derives `role == Recognize` for audio.
+  Which transitions actually fire, and how autoplay sits beside the auto-advance timers, is `../docs/design.md`'s.
+- **What is spoken is the bare headword** — the form the card teaches, never its rendering.
+  The inline article, the ♀ badge, the plural line and the area cue are grammar decoration and never reach a synthesizer;
+  gender is taught by the article-colour device, not by audio.
+  The recordings speak bare headwords, so this is the only rule that holds for the recorded and the synthesized branch alike.
+- **Two normalizations, both normative** (`catalog/Pronunciation.kt`):
+  `speechKey(form)` — trim whitespace, strip ONE leading `-` (the Swahili adjective stem citation `-zuri`),
+  strip leading/trailing sentence punctuation and quote marks — `¡`/`¿` among them, because Spanish writes them and no one says them —, NFC, lowercase.
+  `utterance(form)` — what a synthesizer is handed: the leading `-` gone (it gets vocalized as "minus"),
+  terminal punctuation KEPT, because it carries prosody.
+  `speechKey` is applied identically to a manifest's `matches` and to the visible form; nothing else folds.
+- **Lookup is keyed by the MATCHED SPOKEN FORM, never by the slug.**
+  `audio/<lang>/manifest.json` records, per slug, the form the recording actually speaks (`matches`).
+  `AudioManifest` builds two indices — the exact NFC form, then the `speechKey` — and exact wins.
+  A rotated synonym nobody recorded simply misses, and the app speaks it live:
+  a card never plays a word it does not show.
+- **Collision rule.** Entries sharing a `speechKey` whose bytes are IDENTICAL are one recording fetched under two slugs, and resolve.
+  Entries whose bytes differ (de `husten` = cough / to cough) have no right answer,
+  so the lookup returns null and the visible form is spoken live instead of guessed at.
+  That state may not ship: `CatalogAudioLintTest.noAmbiguousMatchedForm` fails the build,
+  and the converter resolves collisions when it generates the manifest.
+- **Kern returns paths and strings, never bytes.**
+  Manifests are JSON text read through `CatalogSource` like every other catalog file;
+  recording paths come back catalog-relative (`audio/uk/office.mp3`),
+  and every player, synthesizer and voice table stays app-side.
+- **The analysis index is measurement data, never an edit** (user ruling 2026-08-01).
+  An entry may carry `gain` (dB from the catalog's analysis target) and `lead` (dead air at its head, ms),
+  and `Pronunciation`/`LetterRecording` carry both on as `AudioIndex` — 0/0 where the field is absent or nothing plays.
+  The mp3 bytes stay the untouched Commons transcode, because re-encoding is an adaptation under BY-SA;
+  the packs share no loudness and the uk letters open a second late, so what corrects them is a MEASUREMENT of the shipped bytes
+  which only the player applies.
+  What was measured, against which target and under which scheme is `scripts/audio-catalog.py`'s `ANALYSIS`;
+  the sha256 gate is untouched by any of it.
+- **Audio is exempt from the fingerprint.**
+  `Catalog.load` reads the manifests through the RAW source, outside `FingerprintingSource`:
+  recordings cannot change the join, so a refreshed pack must never restamp a `JoinStamp`
+  and recompose a session that is already running.
+- Surface: `Catalog.pronunciation(lang, visibleForm) -> Pronunciation(form, utterance, lang, recordingPath?, gain, leadMs)`;
+  `Catalog.letterRecording(lang, glyph) -> LetterRecording(path, gain, leadMs)` for the letter drill,
+  and `Catalog.letterRecordingPath` for the callers that only ask whether a letter can be played at all
+  (the recording speaks the letter's NAME — the name string itself is the alphabet file's, and the manifest's
+  `letters` section is the only home of letter audio and its licence data);
+  `Catalog.audioCredits() -> [AudioCredit]`, grouped per (language, author, licence) with per-file rows.
+  BY and BY-SA cannot share one notice, so the groups ARE the credit rows,
+  and they derive from the shipped manifests, so the screen can never credit what is not bundled.
+- Lint (`CatalogAudioLintTest`, real catalog, vacuously green while `catalog/audio/` is empty):
+  entries name slugs their language realizes, every `matches` is reachable from a visible form,
+  no ambiguous speech key, slug-named word files and codepoint-named letter files
+  (glyph filenames decompose under NFD on APFS), every file ships and is referenced exactly once,
+  each sha256 re-hashed against the committed bytes — Commons transcodes ship untouched,
+  because re-encoding is an adaptation under BY-SA — and no author is a placeholder.
+- The manifest's own schema (fields, naming rules, provenance) is `catalog/README.md`'s:
+  this section owns the engine rule, not the file format.
 
 ## Deliberately dropped (recorded)
 

@@ -28,6 +28,13 @@ android {
             isMinifyEnabled = false
         }
     }
+
+    androidResources {
+        // why: the pronunciation player reads the recordings straight out of the APK
+        // (openFd), which answers only for a STORED entry — pinned here rather than
+        // left to whatever AAPT's default no-compress list happens to carry.
+        noCompress += "mp3"
+    }
 }
 
 // why: catalog/ is the single in-repo content master — bundling goes through

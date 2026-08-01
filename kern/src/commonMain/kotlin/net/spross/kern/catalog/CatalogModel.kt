@@ -53,6 +53,16 @@ internal data class RawRealization(
     val notes: Map<Language, String>,
 )
 
+/**
+ * One concept as the alphabet's example resolver sees it — the two halves of §2.2 kept
+ * apart: [realizations] answers "does THIS language have a word for it" per language,
+ * so the target-side example and the reader-side meaning never depend on each other.
+ */
+internal class CatalogSlug(
+    val emoji: String?,
+    val realizations: Map<Language, RawRealization>,
+)
+
 internal class CatalogArea(
     val name: String,
     val concepts: List<CatalogConcept>,

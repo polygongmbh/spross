@@ -39,6 +39,36 @@ data class Chrome(
     val pluralEquals: String,
     val pluralOnly: String,
     val pluralPrefix: String,
+    val readAloud: String,         // the switch's stable a11y label — never flips
+    val stateOn: String,
+    val stateOff: String,
+    val pronounce: String,         // "say it again" action on a word
+    val aboutButton: String,
+    val audioToggle: String,
+    val audioToggleHint: String,
+    val creditsTitle: String,
+    val creditsRecordings: String, // %d = how many files the speaker contributed
+    val creditsUnmodified: String,
+    val creditsCommons: String,
+    val trainingTitle: String,
+    val lettersTitle: String,
+    val lettersHear: String,       // the question a letter-name prompt asks
+    val lettersSpell: String,      // …and the one a gap word asks
+    val lettersDictation: String,
+    val letterChoice: String,      // %s = the glyph — a tile's spoken name
+    val replayPrompt: String,      // the replay button's name
+    val promptInLanguage: String,  // %s = target language name
+    val level: String,             // %d
+    val streak: String,            // %d
+    val typoCorrection: String,    // %s = the spelling the learner missed
+    val heardInstead: String,      // %s = the form that actually played
+    val audioOff: String,
+    val enableSound: String,
+    val tasksDone: String,         // %d
+    val bestStreak: String,        // %d
+    val answerCorrect: String,     // an answered tile's state, never colour alone
+    val answerWrong: String,
+    val correctAnswer: String,     // %s = what it was, on a miss or a reveal
 ) {
     companion object {
         fun forSource(source: String): Chrome = if (source == "de") DE else EN
@@ -78,6 +108,37 @@ data class Chrome(
             pluralEquals = "= Pl.",
             pluralOnly = "nur Pl.",
             pluralPrefix = "Pl. ",
+            readAloud = "Aussprache vorlesen",
+            stateOn = "an",
+            stateOff = "aus",
+            pronounce = "Aussprechen",
+            aboutButton = "Info",
+            audioToggle = "Wörter vorlesen",
+            audioToggleHint = "Wörter beim Üben automatisch vorlesen. Tippen auf ein Wort " +
+                "spricht es erneut — auch bei ausgeschaltetem Vorlesen.",
+            creditsTitle = "Sprecher & Lizenzen",
+            creditsRecordings = "%d Aufnahmen",
+            creditsUnmodified = "Aufnahmen unverändert übernommen",
+            creditsCommons = "Aufnahmen von Wikimedia Commons",
+            trainingTitle = "Training",
+            lettersTitle = "Buchstaben",
+            lettersHear = "Welcher Buchstabe ist das?",
+            lettersSpell = "Was fehlt im Wort?",
+            lettersDictation = "Schreib, was du hörst",
+            letterChoice = "Buchstabe %s",
+            replayPrompt = "Noch einmal anhören",
+            promptInLanguage = "auf %s",
+            level = "Stufe %d",
+            streak = "🔥 %d in Folge",
+            typoCorrection = "Fast! Richtig geschrieben: %s",
+            heardInstead = "Gehört war: %s",
+            audioOff = "Ton ist aus",
+            enableSound = "Ton einschalten",
+            tasksDone = "%d Aufgaben 🎯",
+            bestStreak = "Beste Serie: 🔥 %d in Folge",
+            answerCorrect = "Richtig",
+            answerWrong = "Falsch",
+            correctAnswer = "Richtig: %s",
         )
 
         private val EN = Chrome(
@@ -115,6 +176,37 @@ data class Chrome(
             pluralEquals = "= pl.",
             pluralOnly = "pl. only",
             pluralPrefix = "pl. ",
+            readAloud = "Read words aloud",
+            stateOn = "on",
+            stateOff = "off",
+            pronounce = "Pronounce",
+            aboutButton = "About",
+            audioToggle = "Read words aloud",
+            audioToggleHint = "Read words aloud during review. Tapping a word speaks it " +
+                "again — even when read-aloud is off.",
+            creditsTitle = "Voices & licences",
+            creditsRecordings = "%d recordings",
+            creditsUnmodified = "Recordings shipped unmodified",
+            creditsCommons = "Recordings from Wikimedia Commons",
+            trainingTitle = "Training",
+            lettersTitle = "Letters",
+            lettersHear = "Which letter is this?",
+            lettersSpell = "What's missing in the word?",
+            lettersDictation = "Write what you hear",
+            letterChoice = "Letter %s",
+            replayPrompt = "Play it again",
+            promptInLanguage = "in %s",
+            level = "Level %d",
+            streak = "🔥 %d in a row",
+            typoCorrection = "Almost! Correct spelling: %s",
+            heardInstead = "You heard: %s",
+            audioOff = "Sound is off",
+            enableSound = "Turn sound on",
+            tasksDone = "%d tasks 🎯",
+            bestStreak = "Best streak: 🔥 %d in a row",
+            answerCorrect = "Correct",
+            answerWrong = "Wrong",
+            correctAnswer = "Correct: %s",
         )
     }
 }

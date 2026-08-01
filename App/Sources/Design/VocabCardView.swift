@@ -27,15 +27,25 @@ struct VocabCardView: View {
         /// prompt, where a cue that identifies the concept would give the answer away.
         var context: String?
         var femMarker: Bool = false
+        /// BCP-47 code of the language this face is IN — set on the TARGET side
+        /// only, so VoiceOver reads the headword with the right voice instead
+        /// of spelling a Ukrainian word out in German.
+        var language: String?
+        /// Says the headword out loud, if it can be heard at all. Only the
+        /// gesture is conditional — the hit area is not (see `headline`).
+        var pronounce: (() -> Void)?
 
         init(text: String, article: String? = nil, plural: String? = nil,
-             alternates: String? = nil, context: String? = nil, femMarker: Bool = false) {
+             alternates: String? = nil, context: String? = nil, femMarker: Bool = false,
+             language: String? = nil, pronounce: (() -> Void)? = nil) {
             self.text = text
             self.article = article
             self.plural = plural
             self.alternates = alternates
             self.context = context
             self.femMarker = femMarker
+            self.language = language
+            self.pronounce = pronounce
         }
     }
 
@@ -168,16 +178,59 @@ struct VocabCardView: View {
         }
     }
 
+    /// Tapping the word says it. The tappable SHAPE and the 44 pt floor sit on
+    /// every card unconditionally — a word with a recording and one without
+    /// must measure exactly the same, or the same card would change height
+    /// between reviews as the synonym rotation lands on an unrecorded form.
+    /// Only the gesture and its accessibility action are conditional, so a
+    /// card with nothing to play carries no visual change at all.
     @ViewBuilder
     private func headline(_ side: Side, emphasized: Bool) -> some View {
+        let word = headlineRow(side, emphasized: emphasized)
+            .frame(minHeight: 44)
+            .contentShape(Rectangle())
+        if let pronounce = side.pronounce {
+            word
+                .onTapGesture(perform: pronounce)
+                // why: an ACTION, not a button — the headword stays a text
+                // element, so VoiceOver reads it as the word it is.
+                .accessibilityAction(named: Text("a11y.pronounce"), pronounce)
+        } else {
+            word
+        }
+    }
+
+    @ViewBuilder
+    private func headlineRow(_ side: Side, emphasized: Bool) -> some View {
         if side.femMarker {
             HStack(spacing: DL.Space.s) {
-                headlineText(side, emphasized: emphasized)
+                headlineWord(side, emphasized: emphasized)
                 FeminineBadge()
             }
         } else {
-            headlineText(side, emphasized: emphasized)
+            headlineWord(side, emphasized: emphasized)
         }
+    }
+
+    @ViewBuilder
+    private func headlineWord(_ side: Side, emphasized: Bool) -> some View {
+        let word = headlineText(side, emphasized: emphasized)
+        if let label = spokenLabel(side) {
+            word.accessibilityLabel(label)
+        } else {
+            word
+        }
+    }
+
+    /// The headline as VoiceOver should hear it, tagged with the language it is
+    /// written in. It matters most where autoplay is off by design: a VoiceOver
+    /// session never autoplays (nothing may speak over the screen reader), so
+    /// this reading is the only pronunciation the learner gets.
+    private func spokenLabel(_ side: Side) -> Text? {
+        guard let language = side.language else { return nil }
+        var label = AttributedString(side.article.map { "\($0) \(side.text)" } ?? side.text)
+        label.languageIdentifier = language
+        return Text(label)
     }
 
     /// Both sides use the same font so a word never changes size just

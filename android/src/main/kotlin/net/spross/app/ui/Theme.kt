@@ -11,10 +11,16 @@ val ToneTough = Color(0xFFD9A13B)
 val ToneWrong = Color(0xFFB3432E)
 val TrackGrey = Color(0xFFE8E0D2)
 
-/** Article color coding der=blue / die=pink-red / das=green; neutral otherwise. */
-fun articleTint(gender: String?): Color? = when (gender) {
-    "der" -> Color(0xFF3B6FCB)
-    "die" -> Color(0xFFC9506E)
+/**
+ * Article color coding der=blue / die=pink-red / das=green; neutral otherwise.
+ * A two-gender language folds onto the same two hues rather than minting its own —
+ * masculine blue, feminine pink-red, the plural and indefinite articles taking the
+ * color of the gender they inflect — so green stays German's neuter alone.
+ * `App/Sources/Design/Theme.swift` holds the canonical article list.
+ */
+fun articleTint(gender: String?): Color? = when (gender?.lowercase()) {
+    "der", "el", "los", "un" -> Color(0xFF3B6FCB)
+    "die", "la", "las", "una" -> Color(0xFFC9506E)
     "das" -> Color(0xFF3F9B57)
     else -> null
 }

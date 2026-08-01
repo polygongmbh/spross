@@ -1,0 +1,256 @@
+{
+ "title": "El dormitorio",
+ "words": {
+  "bed": {
+   "text": "cama",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "mattress": {
+   "text": "colchón",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "pillow": {
+   "text": "almohada",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "blanket": {
+   "text": "manta",
+   "variants": [
+    "frazada",
+    "cobija"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "bedding": {
+   "text": "ropa de cama",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "wardrobe": {
+   "text": "armario",
+   "variants": [
+    "ropero",
+    "clóset"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "alarm-clock": {
+   "text": "despertador",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "nightstand": {
+   "text": "mesilla de noche",
+   "variants": [
+    "mesita de noche",
+    "mesilla",
+    "velador"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "pyjamas": {
+   "text": "pijama",
+   "variants": [
+    "piyama"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "sock": {
+   "text": "calcetín",
+   "variants": [
+    "media"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "trousers": {
+   "text": "pantalón",
+   "variants": [
+    "pantalones"
+   ],
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "im Alltag meist im Plural: los pantalones"
+   }
+  },
+  "t-shirt": {
+   "text": "camiseta",
+   "variants": [
+    "playera",
+    "remera"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "sleep": {
+   "text": "dormir"
+  },
+  "wake-up": {
+   "text": "despertarse"
+  },
+  "dream": {
+   "text": "soñar"
+  },
+  "get-up": {
+   "text": "levantarse"
+  },
+  "get-undressed": {
+   "text": "desvestirse",
+   "synonyms": [
+    "quitarse la ropa"
+   ],
+   "variants": [
+    "desnudarse"
+   ]
+  },
+  "cuddle": {
+   "text": "acurrucarse",
+   "synonyms": [
+    "hacerse mimos"
+   ],
+   "variants": [
+    "achucharse",
+    "abrazarse"
+   ]
+  },
+  "yawn": {
+   "text": "bostezar"
+  },
+  "snore": {
+   "text": "roncar"
+  },
+  "clothes": {
+   "text": "ropa",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "shirt": {
+   "text": "camisa",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "dress": {
+   "text": "vestido",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "sweater": {
+   "text": "jersey",
+   "variants": [
+    "jerséi",
+    "suéter"
+   ],
+   "grammar": {
+    "gender": "el",
+    "plural": "jerséis"
+   }
+  },
+  "underwear": {
+   "text": "ropa interior",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "belt": {
+   "text": "cinturón",
+   "variants": [
+    "correa"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "night": {
+   "text": "noche",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "morning": {
+   "text": "mañana",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "mit Artikel la mañana = der Morgen (por la mañana = morgens); ohne Artikel heißt mañana morgen"
+   }
+  },
+  "make-bed": {
+   "text": "hacer la cama"
+  },
+  "soft": {
+   "text": "blando",
+   "synonyms": [
+    "suave"
+   ],
+   "variants": [
+    "blanda"
+   ],
+   "notes": {
+    "de": "blando = nachgiebig weich (Matratze, Kissen); suave = sanft, glatt (Haut, Stoff)"
+   }
+  },
+  "good-night-sleep-well": {
+   "text": "¡Buenas noches, que duermas bien!",
+   "variants": [
+    "¡Buenas noches, duerme bien!"
+   ]
+  },
+  "good-morning-my-love": {
+   "text": "¡Buenos días, mi amor!",
+   "variants": [
+    "¡Buenos días, cariño!"
+   ]
+  },
+  "im-tired": {
+   "text": "Estoy cansado.",
+   "variants": [
+    "Estoy cansada."
+   ]
+  },
+  "did-you-set-the-alarm": {
+   "text": "¿Has puesto el despertador?",
+   "variants": [
+    "¿Pusiste el despertador?"
+   ]
+  },
+  "five-more-minutes": {
+   "text": "Cinco minutos más…"
+  },
+  "turn-off-the-light": {
+   "text": "Apaga la luz."
+  },
+  "i-love-you": {
+   "text": "Te quiero.",
+   "variants": [
+    "Te amo."
+   ],
+   "notes": {
+    "de": "Alltagsform in Spanien; te amo ist deutlich pathetischer und in Spanien selten"
+   }
+  }
+ }
+}

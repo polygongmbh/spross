@@ -155,6 +155,15 @@ extension AppModel {
         return BoxEngine.shared.isConsolidated(state: box, cardId: cardID)
     }
 
+    /// The words the learner already holds, in seed order — the pool the
+    /// letter drill dictates from. A pure bridge: WHICH cards count as
+    /// consolidated is Kern's rule (`consolidatedCardIds`), and the drill's own
+    /// filters (single word, audible) sit in LetterDrillAvailability.
+    func consolidatedCards() -> [Card] {
+        guard let box else { return [] }
+        return BoxEngine.shared.consolidatedCardIds(state: box).compactMap { box.cards[$0] }
+    }
+
     /// Which face carries the picture: the prompt only where it cannot give the
     /// answer away, otherwise the reveal (contract §3).
     func emojiCue(for card: Card) -> EmojiCue {

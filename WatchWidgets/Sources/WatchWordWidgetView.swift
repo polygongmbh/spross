@@ -59,11 +59,13 @@ struct WatchWordWidgetView: View {
             }
     }
 
-    /// Article-tint colors, dark variants of the phone palette (Theme.swift).
+    /// Article-tint colors, dark variants of the phone palette; the article set
+    /// each hue answers for is `Theme.swift`'s (a two-gender language folds onto
+    /// masculine-blue and feminine-berry, and never reaches the neuter).
     private func tintColor(_ tint: String) -> Color {
         switch tint.lowercased() {
-        case "der": return Color(red: 0x74 / 255.0, green: 0xC0 / 255.0, blue: 0xFC / 255.0)
-        case "die": return Color(red: 0xF7 / 255.0, green: 0x83 / 255.0, blue: 0xAC / 255.0)
+        case "der", "el", "los", "un": return Color(red: 0x74 / 255.0, green: 0xC0 / 255.0, blue: 0xFC / 255.0)
+        case "die", "la", "las", "una": return Color(red: 0xF7 / 255.0, green: 0x83 / 255.0, blue: 0xAC / 255.0)
         case "das": return Color(red: 0x69 / 255.0, green: 0xDB / 255.0, blue: 0x7C / 255.0)
         default: return .white
         }
