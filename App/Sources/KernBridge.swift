@@ -37,6 +37,12 @@ extension AvailableTarget: @retroactive Identifiable {
     public var id: String { code }
 }
 
+extension AudioCredit: @retroactive Identifiable {
+    /// Credits group per (language, author, licence) — BY and BY-SA by one
+    /// author are two rows, so the licence belongs in the identity.
+    public var id: String { "\(language)|\(author)|\(licence)" }
+}
+
 // MARK: - Rating
 
 extension Rating {
