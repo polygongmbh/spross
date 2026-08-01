@@ -84,7 +84,6 @@ extension BoxConfig {
     /// cross the ObjC boundary, so the values are restated once, here.
     static func product() -> BoxConfig {
         BoxConfig(sessionCap: 25,
-                  dueSoftCap: 30,
                   desiredRetention: 0.8,
                   maximumIntervalDays: 365,
                   settledStability: 2.0,

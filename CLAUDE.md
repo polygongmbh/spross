@@ -61,7 +61,7 @@ Kern modules under `kern/src/commonMain/kotlin/net/spross/kern/`:
 - `model` — domain types; `Card` derives from the catalog join, never persisted.
 - `catalog` — catalog v2 parser + (source, target) join, deterministic card ids.
 - `fsrs` — FSRS-6 scheduler, pinned to reference golden vectors.
-- `box` — growth engine: budgets, health gate, phrase unlock, leeches (`BoxEngine` facade).
+- `box` — growth engine: budgets, phrase unlock, leeches (`BoxEngine` facade).
 - `session` — session composer + drain loop + answer normalizer + multiple-choice options.
 - `trainer` — number/clock/phrase drills (de/sw/uk authored).
 - `snapshot` / `store` — watch/widget snapshot builders + persisted-document facade.

@@ -45,11 +45,6 @@ One line per item, with a file or context pointer, filed under the section it be
   area — across word class and sub-cluster — and never across areas. Review is unaffected:
   once bound, contrasting near-neighbours is the useful case, and the catalog already
   teaches those apart (`promptAmbiguous`, `CatalogAnswerGrader.OtherWord`).
-- **`dueSoftCap` (30) has no anchor in the learner's actual throughput**, and it now carries
-  more weight than it was set for: with the unsettled-load throttle retired the health gate is
-  the ONE automatic brake on intake (`docs/growth-evidence.md`). The mechanism — throttle
-  introduction, never hide reviews — matches practitioner consensus, but the threshold would be
-  truer as a multiple of what a day really answers (`Growth.healthGateOpen`, kern README §6).
 
 ## Localization
 

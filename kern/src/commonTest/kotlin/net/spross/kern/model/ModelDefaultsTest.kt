@@ -13,7 +13,6 @@ class ModelDefaultsTest {
     fun boxConfigProductDefaults() {
         val config = BoxConfig()
         assertEquals(25, config.sessionCap)
-        assertEquals(30, config.dueSoftCap)
         assertEquals(0.8, config.desiredRetention)
         assertEquals(365, config.maximumIntervalDays)
         assertEquals(2.0, config.settledStability)

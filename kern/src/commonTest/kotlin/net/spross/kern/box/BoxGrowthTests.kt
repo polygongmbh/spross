@@ -7,7 +7,7 @@ import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Rating
 import net.spross.kern.session.SessionComposer.NEW_CARDS_PER_ROUND
 
-/** Growth: what a round may introduce, the health gate, enqueue — everything in cards. */
+/** Growth: what a round may introduce, and enqueue — everything in cards. */
 class BoxGrowthTests {
     private val now = Box.day1
 
@@ -37,7 +37,7 @@ class BoxGrowthTests {
     /**
      * The heart of the intake change: a box full of words that keep going wrong is still
      * offered a full round of new material. Shakiness is a difficulty signal, and it does
-     * not predict retention — only backlog throttles growth (`docs/growth-evidence.md`).
+     * not predict retention (`docs/growth-evidence.md`).
      */
     @Test
     fun shakyWordsNoLongerNarrowTheOffer() {
@@ -54,28 +54,24 @@ class BoxGrowthTests {
         assertEquals(NEW_CARDS_PER_ROUND, Box.candidates(state).newCards.size)
     }
 
+    /**
+     * A box far behind still grows. At `desiredRetention` 0.8 a sitting pushes far more cards
+     * out on longer intervals than the round's few new ones bring in, so the backlog is not a
+     * hole growth digs deeper — the reserve is what keeps a busy box from stalling entirely
+     * (`docs/growth-evidence.md`).
+     */
     @Test
-    fun backlogGateBlocksOnProjectedPostSessionBacklog() {
+    fun aDeepBacklogStillOffersNewWords() {
         var state = Box.state((1..70).map { Box.word(it) })
-        fun withDue(count: Int): BoxState {
-            var s = Box.state((1..70).map { Box.word(it) })
-            for (n in 1..count) {
-                val id = "w" + n.toString().padStart(2, '0')
-                s = Box.inject(
-                    s,
-                    Box.sched(id, dueMillis = now - n * 60_000L, lastReviewMillis = Box.plusDays(now, -1.0)),
-                )
-            }
-            return s
+        for (n in 1..60) {
+            val id = "w" + n.toString().padStart(2, '0')
+            state = Box.inject(
+                state,
+                Box.sched(id, dueMillis = now - n * 60_000L, lastReviewMillis = Box.plusDays(now, -1.0)),
+            )
         }
-        // A backlog the session can still work off leaves the way open: 54 − 25 = 29 < 30.
-        state = withDue(54)
-        assertEquals(54, BoxEngine.dueNow(state, now).size)
-        assertEquals(NEW_CARDS_PER_ROUND, Box.candidates(state).newCards.size)
-
-        // One more and the projected leftover reaches dueSoftCap → closed.
-        state = withDue(55)
-        assertTrue(Box.candidates(state).newCards.isEmpty())
+        assertEquals(60, BoxEngine.dueNow(state, now).size)
+        assertTrue(Box.candidates(state).newCards.isNotEmpty())
     }
 
     @Test

@@ -11,8 +11,6 @@ data class BoxConfig(
      * many words enter; see `docs/growth-evidence.md`).
      */
     val sessionCap: Int = 25,
-    /** Backlog health threshold in cards. */
-    val dueSoftCap: Int = 30,
     val desiredRetention: Double = 0.8,
     val maximumIntervalDays: Int = 365,
     /**

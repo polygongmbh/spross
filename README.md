@@ -7,7 +7,7 @@ Native iOS (SwiftUI, iOS 17+) + watchOS companion, fully offline,
 plus an Android core-loop app (Jetpack Compose) on the same engine.
 
 The box only grows while your material sits:
-new cards enter on a load-based budget behind a health gate,
+each round offers a round's worth of new cards and nothing throttles that but the round,
 phrases unlock once their component words are stable,
 and everything is scheduled by a golden-vector-tested FSRS-6 engine.
 Each card keeps ONE memory — reviews alternate between typed production

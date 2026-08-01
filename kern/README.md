@@ -159,7 +159,7 @@ v1 calibration restored (one schedule per card ⇒ one review touches one card):
 
 | Quantity | Default (all in cards) |
 |---|---|
-| `sessionCap` / `dueSoftCap` | 25 / 30 |
+| `sessionCap` | 25 |
 | `growthReserve` | ≤ 5 |
 | `SessionComposer.SESSION_FLOOR_CARDS` (a round worth sitting down for — §6) | 7 |
 | `SessionComposer.NEW_CARDS_PER_ROUND` (first sights one round may offer — §6) | 7 |
@@ -238,7 +238,7 @@ cards; `DayStats.reviews` = answer events.
   The elapsed span is the recall attempt (prompt shown → answer asked for),
   not the time spent choosing afterwards.
 
-Everything in the engine scout map ports 1:1 (budgets, health gate, growth-reserve formula,
+Everything in the engine scout map ports 1:1 (budgets, growth-reserve formula,
 introduction = first answer, silent answer drop, extra round, endless, exposure tiers,
 statistics, streak forgiveness, endSession fold + 60-day prune, deterministic orderings,
 day-key `yyyy-MM-dd`) with:
@@ -248,8 +248,7 @@ day-key `yyyy-MM-dd`) with:
   equality is what says today's run IS the record.
 - **Introduction is the card's first answer** (v1 semantics; the unit-era eligibility lag
   and one-per-plan rules are gone with the unit model). `enqueued` holds card ids;
-  enqueued cards lead composition, bypass the health gate, respect the per-round cap,
-  and dequeue at introduction.
+  enqueued cards lead composition, respect the per-round cap, and dequeue at introduction.
   Zero-component phrases follow seed order, never the unlock fast path (v1 rule restated).
 - **Intake is bounded per round, and by nothing else**: a round offers at most
   `NEW_CARDS_PER_ROUND` first sights — a round's worth, the size `SESSION_FLOOR_CARDS`
@@ -262,10 +261,13 @@ day-key `yyyy-MM-dd`) with:
   does not predict retention (`docs/growth-evidence.md`).
   `growthReserve` (≤ 5) reserves slots against a full due queue, and only for candidates that
   will actually appear — a box with nothing left to introduce hands every slot back to reviews.
-- **Health gate = backlog only**, and it is the ONE automatic brake: projected post-session
-  backlog stays under `dueSoftCap`, and growth is 0 while the gate is shut.
-  Time debt is the failure mode a breadth-first box actually risks; how shaky the material is
-  deliberately steers nothing.
+- **Backlog steers nothing either**, and the reserve is why it does not need to. At
+  `desiredRetention` 0.8 a sitting sends far more cards away on longer intervals than the few
+  reserved slots bring in, and the reserve is a small constant rather than something that
+  scales with the queue, so growth cannot compound a backlog the learner never works off.
+  A `dueSoftCap` gate used to shut growth entirely once the projected post-session backlog
+  passed a cap; it only ever fought the reserve, whose whole job is letting a busy box keep
+  growing. A box far behind still gets its round (`docs/growth-evidence.md`).
 - **Phrase unlock** reads each component's schedule **by card id** — join- and
   source-independent, so a source switch can never re-lock phrases. Components with no
   TARGET realization are excluded from the gate (v1 unresolved-component semantics).
@@ -559,8 +561,10 @@ day-key `yyyy-MM-dd`) with:
 - The relearning-share sub-gate (< 20 % of active, once active ≥ 10), and after it the whole
   unsettled-load throttle it had been folded into (`maxUnsettled`, `TRICKLE_CARDS`, and the
   learner-facing dial that set them): both steered growth by how shaky the material was, which
-  is a difficulty signal, not a retention one (`docs/growth-evidence.md`). The health gate
-  keeps backlog, which is the axis that matters.
+  is a difficulty signal, not a retention one (`docs/growth-evidence.md`).
+- The backlog health gate (`dueSoftCap`) that outlived them, for the reason in §6: the growth
+  reserve already bounds intake to a small constant a 0.8-retention sitting more than repays,
+  so the gate only ever fought the reserve it shared a session with.
 - `AnswerStatus.DroppedPoolFull`: intake is bounded per composed round, so there is nothing
   for an answer-time re-check to refuse.
 - `BoxStatistics.newSlotsAvailable`: no surface ever read it.

@@ -157,7 +157,7 @@ struct HeuteView: View {
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)
             // User agency: an extra round is endless-style when that has
-            // content (due + NEW vocab within budget/health gate), else
+            // content (due + NEW vocab within the round's budget), else
             // review-ahead — so it renders in every done state with active
             // cards; hidden only when even the fallback is empty.
             if model.canPracticeExtra {

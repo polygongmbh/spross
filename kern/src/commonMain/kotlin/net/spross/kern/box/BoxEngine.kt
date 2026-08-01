@@ -33,8 +33,8 @@ object BoxEngine {
      * Append card ids to the user priority queue. Enqueuing a phrase auto-prepends
      * its missing (unscheduled) components ahead of it. Unknown/non-joining ids,
      * already-scheduled cards, and duplicates are skipped. Enqueued cards lead
-     * composition and bypass the health gate, but respect the load throttle: a pack
-     * enrolls and drips in at the growth rate, it is not dumped at once.
+     * composition but respect the per-round cap: a pack enrolls and drips in at the
+     * growth rate, it is not dumped at once.
      */
     fun enqueue(state: BoxState, cardIds: List<String>): BoxState {
         val queued = state.enqueued.toMutableList()

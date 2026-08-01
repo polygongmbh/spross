@@ -1,11 +1,8 @@
 package net.spross.kern.box
 
-import kotlin.math.max
 import kotlin.math.min
-import kotlin.time.Instant
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
-import net.spross.kern.model.CardPhase
 
 /** New-card candidates: automatic unlock fast-path phrases separate from the rest. */
 internal data class NewCandidates(
@@ -20,22 +17,6 @@ internal data class NewCandidates(
 }
 
 internal object Growth {
-
-    /**
-     * Health gate: projected post-session backlog stays under `dueSoftCap`.
-     *
-     * The ONE automatic brake on intake, and deliberately the only one. It reads time
-     * debt — a backlog the learner cannot work off is the failure mode a breadth-first
-     * box actually risks. It does NOT read how shaky the material is: a cap on unsettled
-     * load used to do that, and it throttled growth on what amounts to in-session
-     * accuracy, which does not predict retention (`docs/growth-evidence.md`).
-     */
-    fun healthGateOpen(state: BoxState, nowEpochMillis: Long): Boolean {
-        val now = Instant.fromEpochMilliseconds(nowEpochMillis)
-        val dueCount = Inventory.active(state).count { it.due != null && it.due <= now }
-        val projectedBacklog = dueCount - min(dueCount, state.config.sessionCap)
-        return projectedBacklog < state.config.dueSoftCap
-    }
 
     // Phrase unlock reads component schedules RAW BY CARD ID — join- and
     // source-independent, so a source switch can never re-lock a phrase.
@@ -64,14 +45,14 @@ internal object Growth {
 
     /**
      * Candidate selection in card ids, capped by min([budget], [capacity]).
-     * Enqueued cards lead and bypass the health gate; with the gate open,
-     * unlocked phrases enter next, then seed-order cards (locked phrases wait
-     * for their components).
+     * Enqueued cards lead and enter whatever [autoGrowth] says — packing a word is an
+     * explicit ask. With automatic growth on, unlocked phrases enter next, then
+     * seed-order cards (locked phrases wait for their components).
      */
     fun newCandidates(
         state: BoxState,
         budget: Int,
-        gateOpen: Boolean,
+        autoGrowth: Boolean,
         capacity: Int,
     ): NewCandidates {
         var slots = min(budget, capacity)
@@ -81,14 +62,14 @@ internal object Growth {
         val unlockedPhrases = mutableListOf<String>()
         val newCards = mutableListOf<String>()
 
-        // 1. Enqueued lead — within the new-word budget, bypassing the health gate.
+        // 1. Enqueued lead — within the new-word budget, whatever automatic growth does.
         for (id in enqueuedEligible(state)) {
             if (slots <= 0) break
             if (!taken.add(id)) continue
             newCards += id
             slots -= 1
         }
-        if (!gateOpen) return NewCandidates(unlockedPhrases, newCards)
+        if (!autoGrowth) return NewCandidates(unlockedPhrases, newCards)
 
         val unscheduled = Inventory.joinedCards(state).filter { state.scheduling[it.id] == null }
 

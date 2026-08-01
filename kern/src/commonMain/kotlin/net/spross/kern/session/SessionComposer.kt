@@ -19,7 +19,16 @@ import net.spross.kern.model.SessionPlan
  */
 object SessionComposer {
 
-    /** Up to this many session slots are reserved so a full due queue can't starve growth. */
+    /**
+     * Up to this many session slots are reserved so a full due queue can't starve growth.
+     *
+     * Also the whole of the backlog policy. At `desiredRetention` 0.8 a sitting sends far more
+     * cards away on longer intervals than these few bring in, so a reserve this small cannot
+     * compound into a backlog the learner never works off — it does not scale with the queue,
+     * and FSRS shrinks each card's review load as it matures. A separate brake used to close
+     * growth entirely once the projected backlog passed a cap; it only ever fought this reserve,
+     * whose entire job is letting a busy box keep growing (`docs/growth-evidence.md`).
+     */
     private const val GROWTH_RESERVE_CARDS = 5
 
     /**
@@ -34,16 +43,17 @@ object SessionComposer {
      * A round introduces at most this many unseen cards — a round's worth of first
      * sights, the same size as [SESSION_FLOOR_CARDS] measures a round to be.
      * The rest is not withdrawn, only deferred — the next round offers it again.
-     * This and the health gate are the whole of the intake policy: nothing throttles
-     * on how shaky the material is (`docs/growth-evidence.md`).
+     * This and [GROWTH_RESERVE_CARDS] are the whole of the intake policy: nothing throttles
+     * on how shaky the material is, nor on how far behind the box has fallen
+     * (`docs/growth-evidence.md`).
      */
     const val NEW_CARDS_PER_ROUND: Int = 7
 
     /**
      * Today's plan: due cards oldest-first (ties by id), review slots capped at
      * `sessionCap − growthReserve`, then new candidates fill the remaining capacity —
-     * enqueued cards lead (health-gate bypass), unlocked phrases next, then seed-order
-     * cards. A short round is filled out to [SESSION_FLOOR_CARDS] (see [fillOut]).
+     * enqueued cards lead, unlocked phrases next, then seed-order cards. A short round is
+     * filled out to [SESSION_FLOOR_CARDS] (see [fillOut]).
      *
      * A quiet day — nothing due at all — is built rather than found: half the round is
      * held for cards that come due tomorrow, and new words take the rest. See [reservedForTomorrow].
@@ -51,7 +61,6 @@ object SessionComposer {
     fun composeSession(state: BoxState, nowEpochMillis: Long, tzId: String): SessionPlan {
         val cap = state.config.sessionCap
         val due = Inventory.due(state, nowEpochMillis)
-        val gateOpen = Growth.healthGateOpen(state, nowEpochMillis)
         val newBudget = if (due.isEmpty()) {
             min(SESSION_FLOOR_CARDS, cap) - reservedForTomorrow(state, nowEpochMillis, tzId)
         } else {
@@ -63,20 +72,19 @@ object SessionComposer {
         // turn every visit into a treadmill. Cards the learner PACKED themselves still enter —
         // that is an explicit ask, not automatic growth.
         val dayDone = due.isEmpty() && workedARound(state, nowEpochMillis, tzId)
-        val autoOpen = gateOpen && !dayDone
 
         // Reserve headroom only for new work that will actually appear — a box with
         // nothing left to introduce hands every slot back to the review queue. Costs a
         // second candidate pass, which keeps the precedence inside [Growth.newCandidates]
         // as the one place that decides WHICH cards enter.
-        val available = Growth.newCandidates(state, newBudget, autoOpen, capacity = cap).count
+        val available = Growth.newCandidates(state, newBudget, !dayDone, capacity = cap).count
         val growthReserve = min(available, GROWTH_RESERVE_CARDS)
         val reviews = due.take(max(0, cap - growthReserve))
 
         val candidates = Growth.newCandidates(
             state,
             budget = newBudget,
-            gateOpen = autoOpen,
+            autoGrowth = !dayDone,
             capacity = max(0, cap - reviews.size),
         )
         val plan = SessionPlan(
@@ -129,11 +137,10 @@ object SessionComposer {
 
     /**
      * On-demand extra round (user agency): everything due, then enqueued cards
-     * within the new-word budget (health-gate bypass), then review-ahead by soonest due so
-     * the round is never empty while the box holds active cards — early reviews are
-     * honest FSRS reviews (short elapsed → small stability gain). NO automatic
-     * seed-order growth: unrequested growth stays governed by the daily budget and
-     * health gate, so `unlockedPhrases` is always empty.
+     * within the new-word budget, then review-ahead by soonest due so the round is never
+     * empty while the box holds active cards — early reviews are honest FSRS reviews
+     * (short elapsed → small stability gain). NO automatic seed-order growth: unrequested
+     * growth stays with the daily round, so `unlockedPhrases` is always empty.
      */
     fun composeExtraSession(state: BoxState, nowEpochMillis: Long): SessionPlan {
         val cap = state.config.sessionCap
@@ -158,8 +165,8 @@ object SessionComposer {
 
     /**
      * Endless-practice refill: due cards (oldest first) plus new candidates within the
-     * new-word budget and health gate. Nothing is ever pulled ahead of its due time —
-     * spacing is preserved, and an empty plan legitimately means "come back later".
+     * new-word budget. Nothing is ever pulled ahead of its due time — spacing is
+     * preserved, and an empty plan legitimately means "come back later".
      */
     fun composeEndless(state: BoxState, nowEpochMillis: Long): SessionPlan {
         val cap = state.config.sessionCap
@@ -167,7 +174,7 @@ object SessionComposer {
         val candidates = Growth.newCandidates(
             state,
             budget = NEW_CARDS_PER_ROUND,
-            gateOpen = Growth.healthGateOpen(state, nowEpochMillis),
+            autoGrowth = true,
             capacity = max(0, cap - due.size),
         )
         return SessionPlan(

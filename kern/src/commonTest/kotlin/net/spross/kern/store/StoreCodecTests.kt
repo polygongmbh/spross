@@ -65,7 +65,7 @@ class StoreCodecTests {
     // Decode validation (hand-built minimal documents)
 
     private fun doc(scheduling: String = "", schemaVersion: Int = 1, source: String = "de"): String =
-        """{"config":{"desiredRetention":0.8,"dueSoftCap":30,"learningStepsSeconds":[60,600],""" +
+        """{"config":{"desiredRetention":0.8,"learningStepsSeconds":[60,600],""" +
             """"maximumIntervalDays":365,""" +
             """"relearningStepsSeconds":[600],"sessionCap":30},"dailyStats":{},"enqueued":[],""" +
             """"newIntroduced":{},"scheduling":{$scheduling},"schemaVersion":$schemaVersion,""" +
@@ -94,9 +94,9 @@ class StoreCodecTests {
 
     /**
      * A box written by an older build carries `maxLearning` and `phraseUnlockStability`,
-     * both renamed since, and `maxUnsettled`, retired with the load throttle. Keys this
-     * build no longer knows are dropped instead of failing the document, and the renamed
-     * settings fall back to the build's calibration.
+     * both renamed since, plus `maxUnsettled` and `dueSoftCap`, retired with the load
+     * throttle and the backlog gate. Keys this build no longer knows are dropped instead
+     * of failing the document, and the renamed settings fall back to the build's calibration.
      */
     @Test
     fun decodeDropsKeysRenamedSinceTheDocumentWasWritten() {

@@ -10,10 +10,11 @@ question, so it is worth knowing how thin the evidence for a cap actually is.
 ## The short version
 
 Intake is bounded by **two** things: how many cards a sitting tests (`sessionCap`) and how many
-first sights one round offers (`NEW_CARDS_PER_ROUND`), with the **health gate** stopping growth
-when the due backlog outruns what a session can work off. Nothing throttles on how *shaky* the
-material is. That third throttle existed (`maxUnsettled` against `unsettledLoad`) and was
-removed on 2026-08-01; the sections below are why.
+first sights one round offers (`NEW_CARDS_PER_ROUND`). Nothing throttles on how *shaky* the
+material is, and nothing throttles on how far behind the box has fallen. Both of those throttles
+existed and were removed on 2026-08-01 — `maxUnsettled` against `unsettledLoad`, and the
+`dueSoftCap` health gate. The sections below are why; the backlog one is arithmetic rather than
+literature, so it is [its own section](#the-backlog-gate-was-arithmetic-not-evidence).
 
 ## Proactive interference does not survive spaced practice
 
@@ -139,6 +140,34 @@ This is exactly what the retired `maxUnsettled` throttle did. `isSettled` is
 narrowed breadth in response. A breadth-first box can pick a metric that makes removing a cap
 look good just as easily as a depth-first one can pick one that makes keeping it look good;
 neither is a finding.
+
+## The backlog gate was arithmetic, not evidence
+
+The health gate shut growth off entirely once the projected post-session backlog
+(`dueCount − sessionCap`) reached `dueSoftCap`. Unlike the throttles above it aimed at a real
+failure mode — a queue the learner never works off — but it was never needed to prevent one,
+and it contradicted the mechanism sitting next to it.
+
+**The reserve already bounds intake to a small constant.** `growthReserve` is ≤ 5 slots and does
+not scale with the queue, so a sitting introduces at most a handful of cards no matter how far
+behind the box is. At `desiredRetention` 0.8 that same sitting sends the great majority of ~25
+reviewed cards away on longer intervals, and FSRS shrinks each card's ongoing load as its
+stability grows. Cards leave the daily queue faster than five a day enter it, so growth cannot
+compound into a backlog — the ratio is structural, not a tuning question.
+
+**The two mechanisms were fighting.** `growthReserve` exists precisely so a full due queue cannot
+starve growth; the health gate existed to starve growth anyway once the queue got full enough.
+Keeping both meant the box grew through a busy period and then stopped at an arbitrary
+threshold — with no bound on `dueSoftCap` derived from what a learner actually answers.
+
+**The cost of keeping it fell on the returning learner.** Coming back after two weeks away is
+exactly when the gate shut, so the box that had been growing daily went silent at the moment the
+learner re-engaged, and stayed silent until the backlog cleared. Nothing above supports paying
+that for a backlog the arithmetic says will not run away.
+
+What remains as backlog protection is the ordering, not a brake: reviews fill the session first
+and new cards take only what the reserve holds back, so a busy box spends nearly its whole
+sitting catching up on its own.
 
 ## Verification note
 

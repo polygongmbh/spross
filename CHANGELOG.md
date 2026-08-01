@@ -2,11 +2,14 @@
 
 ## Unreleased
 
-- **New words no longer dry up after a run of hard answers**: the box handed out fewer of them
-  the more words you had recently got wrong, down to a trickle of two — so exactly the stretch
-  where variety helps most was the stretch it withheld. Growth is now paced only by what a
-  round can hold and by how far behind the reviews have fallen. The setting for it is gone
-  with it: it named a quantity shown nowhere and steered on the wrong signal.
+- **New words no longer dry up after a run of hard answers, or after time away**: the box
+  handed out fewer of them the more words you had recently got wrong, down to a trickle of
+  two, and stopped offering them at all once the reviews piled up past a threshold — so
+  exactly the stretches where variety helps most were the ones it withheld. A round now
+  offers its few new words whatever state the box is in; reviews still fill the session
+  first, so a box that is behind spends nearly all of it catching up. The setting behind the
+  first of these is gone with it: it named a quantity shown nowhere and steered on the
+  wrong signal.
 - **A quiet day offers a mix instead of a wall of new words**: with nothing due, a round now
   balances words coming due tomorrow against first sights, and is new words alone only when
   nothing is coming due at all. A day counts as done after a full round rather than a single

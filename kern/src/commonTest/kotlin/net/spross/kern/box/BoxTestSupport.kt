@@ -59,8 +59,7 @@ internal object Box {
         promptFeminineMarker = false,
     )
 
-    fun config(dueSoftCap: Int = 30, sessionCap: Int = 25): BoxConfig =
-        BoxConfig(dueSoftCap = dueSoftCap, sessionCap = sessionCap)
+    fun config(sessionCap: Int = 25): BoxConfig = BoxConfig(sessionCap = sessionCap)
 
     val stamp = JoinStamp("de", "sw", "fixture")
 
@@ -105,12 +104,11 @@ internal object Box {
     /** Growth candidates under composer-computed budgets (the session composer's diet). */
     fun candidates(
         state: BoxState,
-        nowMillis: Long = day1,
         capacity: Int = state.config.sessionCap,
     ): NewCandidates = Growth.newCandidates(
         state,
         budget = SessionComposer.NEW_CARDS_PER_ROUND,
-        gateOpen = Growth.healthGateOpen(state, nowMillis),
+        autoGrowth = true,
         capacity = capacity,
     )
 }

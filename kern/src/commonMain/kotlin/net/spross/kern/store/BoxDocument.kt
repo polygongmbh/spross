@@ -35,7 +35,6 @@ internal data class BoxDocument(
 @Serializable
 internal data class ConfigDto(
     val sessionCap: Int,
-    val dueSoftCap: Int,
     val desiredRetention: Double,
     val maximumIntervalDays: Int,
     // why: defaulted so a document written before the rename supplies a value at all;
@@ -96,7 +95,6 @@ internal fun boxDocument(state: BoxState): BoxDocument = BoxDocument(
 
 private fun configDto(config: BoxConfig): ConfigDto = ConfigDto(
     sessionCap = config.sessionCap,
-    dueSoftCap = config.dueSoftCap,
     desiredRetention = config.desiredRetention,
     maximumIntervalDays = config.maximumIntervalDays,
     settledStability = config.settledStability,
@@ -157,7 +155,6 @@ internal fun BoxDocument.toDecoded(): DecodedBox {
 
 private fun ConfigDto.toDomain(): BoxConfig = BoxConfig(
     sessionCap = sessionCap,
-    dueSoftCap = dueSoftCap,
     desiredRetention = desiredRetention,
     maximumIntervalDays = maximumIntervalDays,
     settledStability = settledStability,

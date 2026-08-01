@@ -13,7 +13,7 @@ enum class AnswerTone { Right, Tough, Wrong }
 
 /**
  * On-demand extra round: endless composition FIRST (due + new vocab within the
- * pool budget and health gate); when that is empty, fall back to kern's
+ * round's budget); when that is empty, fall back to kern's
  * review-ahead extra round — mirrors iOS (design.md "Counts & sessions").
  */
 fun extraSessionPlan(state: BoxState, nowEpochMillis: Long): SessionPlan {
