@@ -1,0 +1,255 @@
+{
+ "title": "La escuela y el curso de idiomas",
+ "words": {
+  "school": {
+   "text": "escuela",
+   "synonyms": [
+    "colegio"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "el colegio ist die Schule der Kinder; la escuela ist allgemeiner: la escuela de idiomas = die Sprachschule."
+   }
+  },
+  "classroom": {
+   "text": "aula",
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "aula ist feminin, nimmt im Singular aber el (betontes a-): el aula, Plural las aulas."
+   }
+  },
+  "teacher": {
+   "text": "profesor",
+   "synonyms": [
+    "maestro"
+   ],
+   "variants": [
+    "profe"
+   ],
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "el maestro unterrichtet in der Grundschule, el profesor an weiterführenden Schulen und im Sprachkurs."
+   }
+  },
+  "teacher-f": {
+   "text": "profesora",
+   "synonyms": [
+    "maestra"
+   ],
+   "variants": [
+    "profe"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "board": {
+   "text": "pizarra",
+   "variants": [
+    "pizarrón"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "dictionary": {
+   "text": "diccionario",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "exercise-book": {
+   "text": "cuaderno",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "homework": {
+   "text": "deberes",
+   "variants": [
+    "tarea",
+    "tareas"
+   ],
+   "grammar": {
+    "gender": "el",
+    "plural": "only"
+   },
+   "notes": {
+    "de": "Nur im Plural: los deberes — hacer los deberes = Hausaufgaben machen."
+   }
+  },
+  "exam": {
+   "text": "examen",
+   "variants": [
+    "prueba"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "break": {
+   "text": "descanso",
+   "synonyms": [
+    "pausa"
+   ],
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "Die Pause zwischen den Schulstunden heißt el recreo."
+   }
+  },
+  "question": {
+   "text": "pregunta",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "answer": {
+   "text": "respuesta",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "ask": {
+   "text": "preguntar"
+  },
+  "reply": {
+   "text": "responder",
+   "synonyms": [
+    "contestar"
+   ]
+  },
+  "translate": {
+   "text": "traducir"
+  },
+  "pass-exam": {
+   "text": "aprobar el examen",
+   "variants": [
+    "pasar el examen"
+   ],
+   "notes": {
+    "de": "aprobar = bestehen, suspender = durchfallen."
+   }
+  },
+  "practise": {
+   "text": "practicar",
+   "variants": [
+    "hacer ejercicios"
+   ]
+  },
+  "raise-hand": {
+   "text": "levantar la mano",
+   "variants": [
+    "alzar la mano"
+   ]
+  },
+  "pupil": {
+   "text": "alumno",
+   "variants": [
+    "estudiante"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "pupil-f": {
+   "text": "alumna",
+   "variants": [
+    "estudiante"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "course": {
+   "text": "curso",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "lesson": {
+   "text": "clase",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Meist im Singular: hoy tengo clase = heute habe ich Unterricht."
+   }
+  },
+  "course-book": {
+   "text": "libro de texto",
+   "variants": [
+    "manual",
+    "libro del curso"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "page": {
+   "text": "página",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "sentence": {
+   "text": "frase",
+   "synonyms": [
+    "oración"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "grade": {
+   "text": "nota",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "correct": {
+   "text": "corregir"
+  },
+  "learn-by-heart": {
+   "text": "aprender de memoria",
+   "synonyms": [
+    "memorizar"
+   ]
+  },
+  "i-have-a-question": {
+   "text": "Tengo una pregunta."
+  },
+  "what-does-this-word-mean": {
+   "text": "¿Qué significa esta palabra?",
+   "variants": [
+    "¿Qué quiere decir esta palabra?"
+   ]
+  },
+  "how-do-you-say-this-in-german": {
+   "text": "¿Cómo se dice esto en alemán?",
+   "variants": [
+    "¿Cómo se dice eso en alemán?"
+   ]
+  },
+  "im-learning-german": {
+   "text": "Estoy aprendiendo alemán.",
+   "variants": [
+    "Aprendo alemán."
+   ]
+  },
+  "you-can-do-it": {
+   "text": "¡Seguro que lo consigues!",
+   "variants": [
+    "¡Tú puedes!",
+    "¡Seguro que lo logras!"
+   ]
+  }
+ }
+}

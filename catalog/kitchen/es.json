@@ -1,0 +1,272 @@
+{
+ "title": "La cocina",
+ "words": {
+  "fridge": {
+   "text": "nevera",
+   "synonyms": [
+    "frigorífico"
+   ],
+   "variants": [
+    "frigo",
+    "refrigerador",
+    "heladera"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "stove": {
+   "text": "cocina",
+   "variants": [
+    "fogón",
+    "placa",
+    "estufa"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la cocina ist auch der Raum (Küche); die einzelne Kochplatte heißt la placa, „auf dem Herd“ heißt en el fuego."
+   }
+  },
+  "oven": {
+   "text": "horno",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "dishwasher": {
+   "text": "lavavajillas",
+   "variants": [
+    "lavaplatos"
+   ],
+   "grammar": {
+    "gender": "el",
+    "plural": "="
+   }
+  },
+  "hunger": {
+   "text": "hambre",
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "feminin, im Singular aber mit el: el hambre — trotzdem mucha hambre; Hunger haben = tener hambre."
+   }
+  },
+  "thirst": {
+   "text": "sed",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "pot": {
+   "text": "olla",
+   "variants": [
+    "cacerola"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "pan": {
+   "text": "sartén",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "knife": {
+   "text": "cuchillo",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "spoon": {
+   "text": "cuchara",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "fork": {
+   "text": "tenedor",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "plate": {
+   "text": "plato",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "cook": {
+   "text": "cocinar",
+   "notes": {
+    "de": "cocinar = Essen zubereiten; Wasser kochen heißt hervir."
+   }
+  },
+  "bake": {
+   "text": "hornear",
+   "variants": [
+    "cocer al horno",
+    "hacer al horno"
+   ]
+  },
+  "cut": {
+   "text": "cortar"
+  },
+  "wash-the-dishes": {
+   "text": "fregar los platos",
+   "synonyms": [
+    "lavar los platos"
+   ]
+  },
+  "taste": {
+   "text": "probar"
+  },
+  "fry": {
+   "text": "freír"
+  },
+  "reheat": {
+   "text": "calentar",
+   "synonyms": [
+    "recalentar"
+   ]
+  },
+  "stir": {
+   "text": "remover",
+   "variants": [
+    "revolver"
+   ]
+  },
+  "take-out-trash": {
+   "text": "sacar la basura"
+  },
+  "careful": {
+   "text": "cuidado",
+   "variants": [
+    "ojo"
+   ]
+  },
+  "bread": {
+   "text": "pan",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "milk": {
+   "text": "leche",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "coffee": {
+   "text": "café",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "tea": {
+   "text": "té",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "egg": {
+   "text": "huevo",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "cheese": {
+   "text": "queso",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "salt": {
+   "text": "sal",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "sugar": {
+   "text": "azúcar",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "rice": {
+   "text": "arroz",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "cup": {
+   "text": "taza",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "the-knife-is-sharp": {
+   "text": "¡El cuchillo está afilado!",
+   "variants": [
+    "¡El cuchillo corta mucho!"
+   ]
+  },
+  "this-is-very-tasty": {
+   "text": "¡Esto está muy rico!",
+   "variants": [
+    "¡Está muy rico!",
+    "¡Esto está muy bueno!",
+    "¡Esto está buenísimo!"
+   ]
+  },
+  "are-you-cooking-rice-today": {
+   "text": "¿Cocinas arroz hoy?",
+   "variants": [
+    "¿Hoy cocinas arroz?",
+    "¿Vas a cocinar arroz hoy?",
+    "¿Haces arroz hoy?"
+   ]
+  },
+  "the-pot-is-still-on-the-stove": {
+   "text": "La olla todavía está en el fuego.",
+   "variants": [
+    "La olla sigue en el fuego.",
+    "La olla todavía está al fuego."
+   ],
+   "notes": {
+    "de": "auf dem Herd = en el fuego; en la cocina hieße „in der Küche“."
+   }
+  },
+  "wash-the-dishes-in-the-sink": {
+   "text": "¡Friega los platos en el fregadero!",
+   "variants": [
+    "¡Lava los platos en el fregadero!"
+   ]
+  },
+  "the-fridge-is-empty": {
+   "text": "La nevera está vacía.",
+   "variants": [
+    "El frigorífico está vacío."
+   ]
+  },
+  "can-you-set-the-table": {
+   "text": "¿Puedes poner la mesa?"
+  },
+  "the-water-is-boiling-hot": {
+   "text": "El agua está hirviendo.",
+   "variants": [
+    "El agua hierve."
+   ]
+  },
+  "careful-very-hot": {
+   "text": "¡Cuidado, muy caliente!",
+   "variants": [
+    "¡Cuidado, está muy caliente!",
+    "¡Cuidado, que quema!"
+   ]
+  }
+ }
+}

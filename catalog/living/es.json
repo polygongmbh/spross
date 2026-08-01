@@ -1,0 +1,254 @@
+{
+ "title": "El salón",
+ "words": {
+  "sofa": {
+   "text": "sofá",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "dining-table": {
+   "text": "mesa de comedor",
+   "variants": [
+    "mesa del comedor"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "chair": {
+   "text": "silla",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "tv": {
+   "text": "televisión",
+   "synonyms": [
+    "televisor"
+   ],
+   "variants": [
+    "tele"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "im Alltag fast immer la tele; el televisor ist das Gerät, la televisión auch das Programm."
+   }
+  },
+  "remote": {
+   "text": "mando",
+   "variants": [
+    "mando a distancia",
+    "control remoto"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "shelf": {
+   "text": "estantería",
+   "variants": [
+    "estante"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "plant": {
+   "text": "planta",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "window": {
+   "text": "ventana",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "curtain": {
+   "text": "cortina",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "carpet": {
+   "text": "alfombra",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "lamp": {
+   "text": "lámpara",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "picture": {
+   "text": "cuadro",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "watch-tv": {
+   "text": "ver la televisión",
+   "variants": [
+    "ver la tele"
+   ]
+  },
+  "read": {
+   "text": "leer"
+  },
+  "relax": {
+   "text": "relajarse"
+  },
+  "tidy-up": {
+   "text": "ordenar",
+   "synonyms": [
+    "recoger"
+   ]
+  },
+  "listen-to-music": {
+   "text": "escuchar música"
+  },
+  "water-plants": {
+   "text": "regar las plantas"
+  },
+  "play": {
+   "text": "jugar"
+  },
+  "talk": {
+   "text": "charlar",
+   "variants": [
+    "hablar",
+    "conversar"
+   ],
+   "notes": {
+    "de": "charlar = plaudern, sich unterhalten; sprechen allgemein ist hablar."
+   }
+  },
+  "room": {
+   "text": "habitación",
+   "synonyms": [
+    "cuarto"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "newspaper": {
+   "text": "periódico",
+   "synonyms": [
+    "diario"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "light": {
+   "text": "luz",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "music": {
+   "text": "música",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "wall": {
+   "text": "pared",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "movie": {
+   "text": "película",
+   "variants": [
+    "peli"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "evening": {
+   "text": "tarde",
+   "variants": [
+    "noche"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "kein eigenes Wort für Abend: bis zum Dunkelwerden la tarde, danach la noche — Guten Abend = buenas tardes bzw. buenas noches."
+   }
+  },
+  "sit": {
+   "text": "sentarse",
+   "variants": [
+    "estar sentado"
+   ],
+   "notes": {
+    "de": "sentarse = sich hinsetzen; sitzen als Zustand heißt estar sentado."
+   }
+  },
+  "laugh": {
+   "text": "reírse",
+   "variants": [
+    "reír"
+   ]
+  },
+  "quiet": {
+   "text": "bajo",
+   "synonyms": [
+    "silencioso"
+   ],
+   "variants": [
+    "bajito",
+    "baja"
+   ],
+   "notes": {
+    "de": "leise reden oder stellen = bajo (habla bajo); ein leises Gerät oder Zimmer ist silencioso."
+   }
+  },
+  "turn-on-the-tv": {
+   "text": "Enciende la televisión.",
+   "variants": [
+    "Enciende la tele.",
+    "Pon la tele.",
+    "Pon la televisión."
+   ]
+  },
+  "come-sit-with-me": {
+   "text": "¡Ven, siéntate conmigo!",
+   "variants": [
+    "¡Ven, siéntate a mi lado!"
+   ]
+  },
+  "shall-we-watch-a-movie": {
+   "text": "¿Vemos una película?",
+   "variants": [
+    "¿Vemos una peli?",
+    "¿Quieres ver una película?"
+   ]
+  },
+  "lets-hang-the-picture": {
+   "text": "¡Vamos a colgar el cuadro!",
+   "variants": [
+    "¡Colguemos el cuadro!"
+   ]
+  },
+  "the-curtains-hang-over-the-window": {
+   "text": "Las cortinas cuelgan delante de la ventana.",
+   "variants": [
+    "Las cortinas están delante de la ventana."
+   ]
+  },
+  "open-the-window-fresh-air": {
+   "text": "Abre la ventana."
+  }
+ }
+}

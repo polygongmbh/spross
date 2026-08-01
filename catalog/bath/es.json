@@ -1,0 +1,287 @@
+{
+ "title": "El cuarto de baño",
+ "words": {
+  "washing-machine": {
+   "text": "lavadora",
+   "variants": [
+    "lavarropas"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "laundry": {
+   "text": "colada",
+   "variants": [
+    "ropa sucia"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "die Wäsche als Ladung, die man wäscht oder aufhängt; Kleidung allgemein ist la ropa"
+   }
+  },
+  "toilet": {
+   "text": "inodoro",
+   "synonyms": [
+    "váter"
+   ],
+   "variants": [
+    "wáter",
+    "retrete"
+   ],
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "el inodoro ist das neutrale Wort für die Schüssel, umgangssprachlich sagt man in Spanien el váter; nach der öffentlichen Toilette fragt man mit los servicios oder el aseo"
+   }
+  },
+  "shower": {
+   "text": "ducha",
+   "variants": [
+    "regadera"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "sink": {
+   "text": "lavabo",
+   "variants": [
+    "lavamanos"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "mirror": {
+   "text": "espejo",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "toothbrush": {
+   "text": "cepillo de dientes",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "toothpaste": {
+   "text": "pasta de dientes",
+   "synonyms": [
+    "dentífrico"
+   ],
+   "variants": [
+    "pasta dentífrica"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "towel": {
+   "text": "toalla",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "soap": {
+   "text": "jabón",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "shampoo": {
+   "text": "champú",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "hairdryer": {
+   "text": "secador",
+   "variants": [
+    "secador de pelo"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "take-shower": {
+   "text": "ducharse"
+  },
+  "do-laundry": {
+   "text": "hacer la colada",
+   "variants": [
+    "lavar la ropa",
+    "poner una lavadora"
+   ]
+  },
+  "brush-teeth": {
+   "text": "lavarse los dientes",
+   "synonyms": [
+    "cepillarse los dientes"
+   ]
+  },
+  "dry-off": {
+   "text": "secarse"
+  },
+  "hang-up-laundry": {
+   "text": "tender la colada",
+   "variants": [
+    "tender la ropa",
+    "colgar la ropa"
+   ]
+  },
+  "clean": {
+   "text": "limpiar"
+  },
+  "shave": {
+   "text": "afeitarse",
+   "variants": [
+    "rasurarse"
+   ]
+  },
+  "comb-hair": {
+   "text": "peinarse",
+   "variants": [
+    "peinarse el pelo"
+   ]
+  },
+  "apply-lotion": {
+   "text": "ponerse crema",
+   "variants": [
+    "echarse crema",
+    "darse crema",
+    "aplicarse crema"
+   ]
+  },
+  "bathtub": {
+   "text": "bañera",
+   "variants": [
+    "tina"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "toilet-paper": {
+   "text": "papel higiénico",
+   "variants": [
+    "papel de váter"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "razor": {
+   "text": "maquinilla de afeitar",
+   "variants": [
+    "maquinilla",
+    "cuchilla de afeitar"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "sponge": {
+   "text": "esponja",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "hair": {
+   "text": "pelo",
+   "synonyms": [
+    "cabello"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "cream": {
+   "text": "crema",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "tap": {
+   "text": "grifo",
+   "variants": [
+    "canilla",
+    "llave del agua"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "bin": {
+   "text": "cubo de la basura",
+   "variants": [
+    "papelera",
+    "basurero",
+    "bote de basura"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "bucket": {
+   "text": "cubo",
+   "variants": [
+    "balde"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "dirty": {
+   "text": "sucio",
+   "variants": [
+    "sucia"
+   ]
+  },
+  "im-taking-a-quick-shower": {
+   "text": "Me voy a duchar rápido.",
+   "variants": [
+    "Voy a ducharme rápido.",
+    "Me doy una ducha rápida."
+   ]
+  },
+  "the-bathroom-is-occupied": {
+   "text": "¡El baño está ocupado!"
+  },
+  "the-laundry-is-done": {
+   "text": "La colada está lista.",
+   "variants": [
+    "La ropa está lista.",
+    "Ya está la colada."
+   ]
+  },
+  "wheres-my-towel": {
+   "text": "¿Dónde está mi toalla?"
+  },
+  "can-you-hang-the-laundry": {
+   "text": "¿Puedes tender la colada?",
+   "variants": [
+    "¿Puedes tender la ropa?"
+   ]
+  },
+  "dont-forget-to-brush-teeth": {
+   "text": "¡No te olvides de lavarte los dientes!",
+   "variants": [
+    "¡No olvides lavarte los dientes!",
+    "¡No te olvides de cepillarte los dientes!"
+   ]
+  },
+  "wash-your-hands": {
+   "text": "Lávate las manos."
+  },
+  "the-water-is-cold": {
+   "text": "¡El agua está fría!",
+   "notes": {
+    "de": "agua ist feminin, im Singular aber mit el (betontes a-): el agua está fría, Plural las aguas"
+   }
+  }
+ }
+}

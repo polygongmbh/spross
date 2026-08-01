@@ -4,6 +4,7 @@
   "titles": {
    "en": "First steps",
    "de": "Erste Schritte",
+   "es": "Primeros pasos",
    "sw": "Hatua za kwanza",
    "uk": "Перші кроки"
   },
@@ -23,6 +24,7 @@
   "titles": {
    "en": "At home",
    "de": "Zuhause",
+   "es": "En casa",
    "sw": "Nyumbani",
    "uk": "Вдома"
   },
@@ -58,6 +60,7 @@
   "titles": {
    "en": "Everyday life",
    "de": "Alltag & unterwegs",
+   "es": "La vida diaria",
    "sw": "Maisha ya kila siku",
    "uk": "Щоденне життя"
   },
@@ -77,6 +80,7 @@
   "titles": {
    "en": "Offices & work",
    "de": "Ämter & Beruf",
+   "es": "Oficinas y trabajo",
    "sw": "Ofisi na kazi",
    "uk": "Установи та робота"
   },

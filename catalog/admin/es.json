@@ -1,0 +1,294 @@
+{
+ "title": "En la Administración · ¡paso a paso!",
+ "words": {
+  "office": {
+   "text": "oficina pública",
+   "synonyms": [
+    "administración"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Für ein konkretes Amt sagt man in Spanien meist den Namen: el ayuntamiento (Rathaus), la oficina de extranjería (Ausländerbehörde)."
+   }
+  },
+  "form": {
+   "text": "formulario",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "application": {
+   "text": "solicitud",
+   "variants": [
+    "instancia",
+    "petición"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "id-card": {
+   "text": "carné de identidad",
+   "synonyms": [
+    "DNI"
+   ],
+   "variants": [
+    "carnet de identidad",
+    "carné"
+   ],
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "In Spanien heißt der Personalausweis el DNI; Ausländer bekommen stattdessen el NIE bzw. la TIE."
+   }
+  },
+  "residence-permit": {
+   "text": "permiso de residencia",
+   "synonyms": [
+    "tarjeta de residencia"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "signature": {
+   "text": "firma",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "ticket-number": {
+   "text": "número de turno",
+   "variants": [
+    "turno",
+    "número"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "case-worker": {
+   "text": "funcionario",
+   "synonyms": [
+    "tramitador"
+   ],
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "Am Schalter sagt man in Spanien funcionario; tramitador ist der Sachbearbeiter im engeren Sinn, der den Vorgang bearbeitet."
+   }
+  },
+  "case-worker-f": {
+   "text": "funcionaria",
+   "synonyms": [
+    "tramitadora"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "registration": {
+   "text": "empadronamiento",
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "Die Wohnsitzanmeldung heißt in Spanien empadronamiento; man meldet sich im ayuntamiento (Rathaus) an."
+   }
+  },
+  "documents": {
+   "text": "documentación",
+   "synonyms": [
+    "documentos"
+   ],
+   "variants": [
+    "papeles"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la documentación ist Singular und steht für alle Papiere zusammen — anders als „die Unterlagen“."
+   }
+  },
+  "fill-in": {
+   "text": "rellenar",
+   "variants": [
+    "completar",
+    "llenar"
+   ]
+  },
+  "sign": {
+   "text": "firmar"
+  },
+  "apply-for": {
+   "text": "solicitar",
+   "variants": [
+    "pedir"
+   ]
+  },
+  "submit": {
+   "text": "entregar"
+  },
+  "hand-in": {
+   "text": "presentar"
+  },
+  "pick-up": {
+   "text": "recoger el carné de identidad",
+   "variants": [
+    "recoger el carné",
+    "recoger el DNI",
+    "recoger el carnet de identidad"
+   ]
+  },
+  "extend": {
+   "text": "renovar",
+   "variants": [
+    "prolongar",
+    "alargar"
+   ]
+  },
+  "bring": {
+   "text": "traer"
+  },
+  "copy": {
+   "text": "copiar",
+   "variants": [
+    "fotocopiar"
+   ]
+  },
+  "passport": {
+   "text": "pasaporte",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "address": {
+   "text": "dirección",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "certificate": {
+   "text": "certificado",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "birth-certificate": {
+   "text": "certificado de nacimiento",
+   "synonyms": [
+    "partida de nacimiento"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "notification": {
+   "text": "resolución",
+   "synonyms": [
+    "notificación"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la resolución ist die amtliche Entscheidung selbst, la notificación ihre Zustellung."
+   }
+  },
+  "fee": {
+   "text": "tasa",
+   "variants": [
+    "tarifa"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "office-hours": {
+   "text": "horario de atención",
+   "synonyms": [
+    "horario de atención al público"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "waiting-room": {
+   "text": "sala de espera",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "reject": {
+   "text": "rechazar",
+   "synonyms": [
+    "denegar"
+   ]
+  },
+  "approve": {
+   "text": "aprobar",
+   "variants": [
+    "autorizar",
+    "conceder"
+   ]
+  },
+  "where-do-i-sign": {
+   "text": "¿Dónde tengo que firmar?",
+   "variants": [
+    "¿Dónde debo firmar?"
+   ]
+  },
+  "i-want-to-extend-my-residence-permit": {
+   "text": "Quiero renovar el permiso de residencia.",
+   "variants": [
+    "Quisiera renovar el permiso de residencia.",
+    "Quería renovar el permiso de residencia."
+   ]
+  },
+  "fill-out-the-form": {
+   "text": "Rellene el formulario.",
+   "variants": [
+    "Rellena el formulario.",
+    "Complete el formulario.",
+    "Llene el formulario."
+   ]
+  },
+  "take-a-queue-number": {
+   "text": "¡Coja un número de turno!",
+   "variants": [
+    "¡Coge un número de turno!",
+    "¡Saque un número de turno!",
+    "¡Coja un número!"
+   ]
+  },
+  "i-need-an-interpreter-for-the-application": {
+   "text": "Necesito un intérprete para la solicitud."
+  },
+  "did-you-bring-all-the-documents": {
+   "text": "¿Ha traído toda la documentación?",
+   "variants": [
+    "¿Has traído toda la documentación?",
+    "¿Ha traído todos los documentos?"
+   ]
+  },
+  "the-decision-comes-by-mail": {
+   "text": "La resolución llega por correo.",
+   "variants": [
+    "La notificación llega por correo."
+   ]
+  },
+  "when-does-my-id-expire": {
+   "text": "¿Cuándo caduca mi carné de identidad?",
+   "variants": [
+    "¿Cuándo caduca mi DNI?",
+    "¿Cuándo caduca mi carné?",
+    "¿Cuándo vence mi carné de identidad?"
+   ]
+  }
+ }
+}

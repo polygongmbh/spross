@@ -1,0 +1,292 @@
+{
+ "title": "El médico y la salud",
+ "words": {
+  "doctor": {
+   "text": "médico",
+   "variants": [
+    "doctor"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "doctor-f": {
+   "text": "médica",
+   "variants": [
+    "doctora"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "practice": {
+   "text": "consulta",
+   "variants": [
+    "consultorio"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la consulta = das Sprechzimmer/die Praxis; die staatliche Hausarztstelle in Spanien heißt el centro de salud."
+   }
+  },
+  "pain": {
+   "text": "dolor",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "fever": {
+   "text": "fiebre",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "pill": {
+   "text": "pastilla",
+   "variants": [
+    "comprimido",
+    "tableta"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Alltagswort ist la pastilla; auf der Packung steht meist comprimido."
+   }
+  },
+  "prescription": {
+   "text": "receta",
+   "variants": [
+    "receta médica"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "pharmacy": {
+   "text": "farmacia",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "insurance-card": {
+   "text": "tarjeta sanitaria",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "In Spanien ist es die tarjeta sanitaria der öffentlichen Gesundheitsversorgung — sie ersetzt die Versichertenkarte."
+   }
+  },
+  "health-insurance": {
+   "text": "seguro médico",
+   "variants": [
+    "seguro de salud"
+   ],
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "Eine Krankenkasse wie in Deutschland gibt es nicht: gesetzlich versichert ist man über la Seguridad Social; un seguro médico ist meist eine private Zusatzversicherung."
+   }
+  },
+  "cough": {
+   "text": "tos",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "cold": {
+   "text": "resfriado",
+   "synonyms": [
+    "catarro"
+   ],
+   "variants": [
+    "constipado"
+   ],
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "estar constipado heißt erkältet sein — nicht „verstopft“ (das ist estreñido)."
+   }
+  },
+  "hurt": {
+   "text": "doler",
+   "notes": {
+    "de": "doler steht wie „gefallen“: nicht „ich tue weh“, sondern me duele la cabeza (mir schmerzt der Kopf)."
+   }
+  },
+  "to-cough": {
+   "text": "toser"
+  },
+  "examine": {
+   "text": "examinar",
+   "variants": [
+    "explorar",
+    "reconocer"
+   ]
+  },
+  "prescribe-medicine": {
+   "text": "recetar medicamentos",
+   "variants": [
+    "prescribir medicamentos",
+    "recetar medicinas"
+   ]
+  },
+  "take-medicine": {
+   "text": "tomar medicamentos",
+   "variants": [
+    "tomar la medicación",
+    "tomar medicinas"
+   ]
+  },
+  "call-in-sick": {
+   "text": "coger la baja",
+   "variants": [
+    "pedir la baja",
+    "darse de baja",
+    "ponerse de baja"
+   ],
+   "notes": {
+    "de": "Krankmelden läuft in Spanien über la baja, die der Arzt ausstellt: coger la baja, estar de baja. coger ist in Spanien normal, in Lateinamerika vulgär."
+   }
+  },
+  "rest": {
+   "text": "descansar"
+  },
+  "head": {
+   "text": "cabeza",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "throat": {
+   "text": "garganta",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Spanisch trennt, was „Hals“ zusammenfasst: la garganta ist der Rachen (Halsschmerzen), el cuello der äußere Hals."
+   }
+  },
+  "stomach": {
+   "text": "barriga",
+   "synonyms": [
+    "tripa"
+   ],
+   "variants": [
+    "vientre",
+    "panza"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Bauchweh heißt me duele la barriga oder me duele la tripa; el vientre ist gehoben, el estómago meint den Magen selbst."
+   }
+  },
+  "back": {
+   "text": "espalda",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "ear": {
+   "text": "oído",
+   "variants": [
+    "oreja"
+   ],
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "Beim Arzt immer el oído (Innenohr, Gehör): me duele el oído. Die sichtbare Ohrmuschel ist la oreja."
+   }
+  },
+  "blood": {
+   "text": "sangre",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "hospital": {
+   "text": "hospital",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "emergency": {
+   "text": "emergencia",
+   "synonyms": [
+    "urgencia"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Die Notaufnahme heißt urgencias — „ir a urgencias“ = in die Notaufnahme gehen."
+   }
+  },
+  "sick-note": {
+   "text": "baja",
+   "variants": [
+    "baja médica",
+    "parte de baja"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "kurz für la baja médica; das Papier, das der Arzt aushändigt, ist el parte de baja."
+   }
+  },
+  "sick": {
+   "text": "enfermo",
+   "variants": [
+    "enferma"
+   ]
+  },
+  "feel": {
+   "text": "sentirse",
+   "variants": [
+    "encontrarse"
+   ],
+   "notes": {
+    "de": "Beim Arzt fragt man auch ¿Cómo se encuentra? = Wie fühlen Sie sich?"
+   }
+  },
+  "my-throat-hurts-a-lot": {
+   "text": "Me duele mucho la garganta."
+  },
+  "ive-had-a-fever-since-yesterday": {
+   "text": "Tengo fiebre desde ayer."
+  },
+  "take-the-pills-twice-daily": {
+   "text": "Tome las pastillas dos veces al día.",
+   "variants": [
+    "Toma las pastillas dos veces al día.",
+    "Tómese las pastillas dos veces al día."
+   ]
+  },
+  "get-well-soon": {
+   "text": "¡Que te mejores!",
+   "variants": [
+    "¡Que se mejore!",
+    "¡Mejórate pronto!"
+   ]
+  },
+  "show-me-your-insurance-card": {
+   "text": "Enséñeme su tarjeta sanitaria.",
+   "variants": [
+    "Enséñame tu tarjeta sanitaria.",
+    "Muéstreme su tarjeta sanitaria."
+   ]
+  },
+  "the-practice-is-closed": {
+   "text": "La consulta está cerrada."
+  }
+ }
+}

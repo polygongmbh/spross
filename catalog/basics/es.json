@@ -1,0 +1,162 @@
+{
+ "title": "Las primeras palabras · ¡empecemos!",
+ "words": {
+  "language": {
+   "text": "idioma",
+   "synonyms": [
+    "lengua"
+   ],
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "idioma = die einzelne Sprache (el alemán, el español) · lengua bedeutet dasselbe, heißt aber auch Zunge."
+   }
+  },
+  "word": {
+   "text": "palabra",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "name": {
+   "text": "nombre",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "help": {
+   "text": "ayuda",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "be-called": {
+   "text": "llamarse"
+  },
+  "say": {
+   "text": "decir"
+  },
+  "know": {
+   "text": "saber",
+   "notes": {
+    "de": "wissen = saber · kennen (Personen, Orte) = conocer."
+   }
+  },
+  "need": {
+   "text": "necesitar"
+  },
+  "thank": {
+   "text": "agradecer",
+   "synonyms": [
+    "dar las gracias"
+   ]
+  },
+  "here": {
+   "text": "aquí",
+   "variants": [
+    "acá"
+   ]
+  },
+  "always": {
+   "text": "siempre"
+  },
+  "together": {
+   "text": "juntos",
+   "variants": [
+    "juntas"
+   ],
+   "notes": {
+    "de": "richtet sich nach der Gruppe: juntos (Männer oder gemischt) · juntas (nur Frauen)."
+   }
+  },
+  "hello": {
+   "text": "¡Hola!"
+  },
+  "good-day": {
+   "text": "¡Buenos días!",
+   "variants": [
+    "¡Buen día!"
+   ],
+   "notes": {
+    "de": "bis zum Mittagessen · danach ¡Buenas tardes!, nach Einbruch der Dunkelheit ¡Buenas noches!"
+   }
+  },
+  "thank-you": {
+   "text": "¡Muchas gracias!",
+   "variants": [
+    "¡Gracias!"
+   ]
+  },
+  "please": {
+   "text": "¡Por favor!",
+   "notes": {
+    "de": "nur die Bitte — als Antwort auf „gracias“ sagt man De nada."
+   }
+  },
+  "excuse-me": {
+   "text": "¡Perdón!",
+   "variants": [
+    "¡Perdone!",
+    "¡Perdona!",
+    "¡Disculpe!",
+    "¡Disculpa!"
+   ]
+  },
+  "yes": {
+   "text": "Sí."
+  },
+  "no": {
+   "text": "No."
+  },
+  "whats-your-name": {
+   "text": "¿Cómo se llama usted?",
+   "variants": [
+    "¿Cómo se llama?",
+    "¿Cómo te llamas?"
+   ]
+  },
+  "my-name-is": {
+   "text": "Me llamo …"
+  },
+  "i-dont-know": {
+   "text": "No lo sé.",
+   "variants": [
+    "No sé."
+   ]
+  },
+  "pardon": {
+   "text": "¿Cómo dice?",
+   "variants": [
+    "¿Cómo dices?",
+    "¿Cómo?"
+   ]
+  },
+  "i-need-help": {
+   "text": "Necesito ayuda."
+  },
+  "all-good": {
+   "text": "Todo bien."
+  },
+  "goodbye": {
+   "text": "¡Adiós!"
+  },
+  "what-is-this-called": {
+   "text": "¿Cómo se llama esto?"
+  },
+  "how-are-you": {
+   "text": "¿Cómo está usted?",
+   "variants": [
+    "¿Cómo está?",
+    "¿Cómo estás?",
+    "¿Qué tal?"
+   ]
+  },
+  "bye": {
+   "text": "¡Hasta luego!",
+   "variants": [
+    "¡Chao!"
+   ]
+  }
+ }
+}

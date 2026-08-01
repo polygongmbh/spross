@@ -27,7 +27,7 @@ class CatalogLintTest {
 
     @Test
     fun catalogParsesClean() {
-        assertEquals(setOf("de", "en", "sw", "uk"), catalog.languages.keys)
+        assertEquals(setOf("de", "en", "es", "sw", "uk"), catalog.languages.keys)
         assertTrue(catalog.groups.isNotEmpty())
         assertTrue(catalog.areaNames.isNotEmpty())
     }
@@ -284,6 +284,13 @@ class CatalogLintTest {
                 // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
                 // not one word covering two German ones. Same treatment either way.
                 "sw mto: bedroom/pillow, outside/river",
+                // Reviewed 2026-07-31: es merges what de distinguishes by capitalization
+                // alone (der Morgen / morgen); en/sw/uk all keep the two apart, so no
+                // concept pair collides twice. The area disambiguates the produce prompt.
+                "es mañana: bedroom/morning, essentials/tomorrow",
+                // Reviewed 2026-07-31: `el tiempo` is both Zeit and Wetter. de/en/sw/uk
+                // all split it; `clima` is das Klima in Spain, so there is no alternative.
+                "es tiempo: essentials/time, outside/weather",
             ),
             actual,
         )

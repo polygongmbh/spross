@@ -1,0 +1,374 @@
+{
+ "title": "Lo esencial · ¡cada día!",
+ "words": {
+  "money": {
+   "text": "dinero",
+   "variants": [
+    "plata"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "water": {
+   "text": "agua",
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "feminin, steht im Singular aber mit el: el agua fría · Plural las aguas."
+   }
+  },
+  "time": {
+   "text": "tiempo",
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "tiempo heißt auch Wetter: ¿Qué tiempo hace? · das einzelne Mal ist una vez."
+   }
+  },
+  "day": {
+   "text": "día",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "week": {
+   "text": "semana",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "hour": {
+   "text": "hora",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "house": {
+   "text": "casa",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "person": {
+   "text": "persona",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "human": {
+   "text": "ser humano",
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "ser humano = Mensch als Gattung · persona = der einzelne Mensch."
+   }
+  },
+  "friend": {
+   "text": "amigo",
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "fester Freund, Partner: el novio."
+   }
+  },
+  "friend-f": {
+   "text": "amiga",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "feste Freundin, Partnerin: la novia."
+   }
+  },
+  "go": {
+   "text": "ir",
+   "notes": {
+    "de": "ir = gehen und fahren · zu Fuß betont: ir andando, caminar."
+   }
+  },
+  "come": {
+   "text": "venir"
+  },
+  "have": {
+   "text": "tener",
+   "notes": {
+    "de": "haber ist Hilfsverb (he comido) und hay = es gibt — Besitz immer mit tener."
+   }
+  },
+  "drink": {
+   "text": "beber"
+  },
+  "buy": {
+   "text": "comprar"
+  },
+  "give": {
+   "text": "dar"
+  },
+  "take": {
+   "text": "coger",
+   "variants": [
+    "tomar",
+    "agarrar"
+   ],
+   "notes": {
+    "de": "in Spanien das Alltagswort (coger el autobús) · in Lateinamerika vulgär, dort tomar oder agarrar."
+   }
+  },
+  "see": {
+   "text": "ver"
+  },
+  "make": {
+   "text": "hacer"
+  },
+  "pay": {
+   "text": "pagar"
+  },
+  "live": {
+   "text": "vivir",
+   "notes": {
+    "de": "vivir = wohnen und leben."
+   }
+  },
+  "good": {
+   "text": "bueno",
+   "variants": [
+    "buena",
+    "buen"
+   ],
+   "notes": {
+    "de": "vor männlichem Substantiv verkürzt: un buen amigo · als Adverb bien: todo bien."
+   }
+  },
+  "bad": {
+   "text": "malo",
+   "variants": [
+    "mala",
+    "mal"
+   ],
+   "notes": {
+    "de": "vor männlichem Substantiv verkürzt: un mal día · als Adverb mal."
+   }
+  },
+  "big": {
+   "text": "grande",
+   "variants": [
+    "gran"
+   ],
+   "notes": {
+    "de": "vor dem Substantiv verkürzt zu gran und heißt dann eher großartig · Körpergröße: alto."
+   }
+  },
+  "small": {
+   "text": "pequeño",
+   "variants": [
+    "pequeña"
+   ]
+  },
+  "much": {
+   "text": "mucho",
+   "variants": [
+    "mucha",
+    "muchos",
+    "muchas"
+   ],
+   "notes": {
+    "de": "richtet sich nach dem Substantiv: mucho dinero, mucha agua, muchos amigos."
+   }
+  },
+  "now": {
+   "text": "ahora"
+  },
+  "today": {
+   "text": "hoy"
+  },
+  "tomorrow": {
+   "text": "mañana",
+   "notes": {
+    "de": "mañana heißt auch der Morgen: por la mañana = morgens."
+   }
+  },
+  "new": {
+   "text": "nuevo",
+   "variants": [
+    "nueva"
+   ]
+  },
+  "old": {
+   "text": "viejo",
+   "variants": [
+    "vieja"
+   ],
+   "notes": {
+    "de": "bei Personen höflicher: mayor · antik, ehemalig: antiguo."
+   }
+  },
+  "eat": {
+   "text": "comer"
+  },
+  "speak": {
+   "text": "hablar"
+  },
+  "understand": {
+   "text": "entender",
+   "synonyms": [
+    "comprender"
+   ]
+  },
+  "wait": {
+   "text": "esperar",
+   "notes": {
+    "de": "esperar heißt auch hoffen und erwarten."
+   }
+  },
+  "repeat-word": {
+   "text": "repetir la palabra"
+  },
+  "slow": {
+   "text": "lento",
+   "synonyms": [
+    "despacio"
+   ],
+   "variants": [
+    "lenta"
+   ],
+   "notes": {
+    "de": "lento = Adjektiv · despacio = Adverb: habla despacio."
+   }
+  },
+  "fast": {
+   "text": "rápido",
+   "variants": [
+    "rápida",
+    "deprisa"
+   ]
+  },
+  "how-much-does-this-cost": {
+   "text": "¿Cuánto cuesta esto?",
+   "variants": [
+    "¿Cuánto cuesta?",
+    "¿Cuánto vale esto?",
+    "¿Cuánto vale?"
+   ]
+  },
+  "that-is-too-expensive": {
+   "text": "Eso es demasiado caro.",
+   "variants": [
+    "Es demasiado caro.",
+    "Esto es demasiado caro."
+   ]
+  },
+  "i-have-no-money": {
+   "text": "No tengo dinero."
+  },
+  "i-have-no-time": {
+   "text": "No tengo tiempo."
+  },
+  "do-you-have-water": {
+   "text": "¿Tiene agua?",
+   "variants": [
+    "¿Tiene usted agua?",
+    "¿Tienes agua?"
+   ]
+  },
+  "i-live-here": {
+   "text": "Vivo aquí."
+  },
+  "the-food-is-ready": {
+   "text": "¡La comida está lista!"
+  },
+  "i-understand": {
+   "text": "Entiendo.",
+   "variants": [
+    "Lo entiendo.",
+    "Comprendo."
+   ]
+  },
+  "i-dont-understand": {
+   "text": "No entiendo.",
+   "variants": [
+    "No lo entiendo.",
+    "No comprendo."
+   ]
+  },
+  "do-you-speak-english": {
+   "text": "¿Habla usted inglés?",
+   "variants": [
+    "¿Habla inglés?",
+    "¿Hablas inglés?"
+   ]
+  },
+  "i-speak-a-little-german": {
+   "text": "Solo hablo un poco de alemán.",
+   "variants": [
+    "Hablo solo un poco de alemán."
+   ]
+  },
+  "where-are-you-from": {
+   "text": "¿De dónde es usted?",
+   "variants": [
+    "¿De dónde es?",
+    "¿De dónde eres?"
+   ],
+   "notes": {
+    "de": "Spanisch fragt nach der Herkunft mit ser, nicht mit venir."
+   }
+  },
+  "can-you-repeat-that": {
+   "text": "¿Puede repetirlo?",
+   "variants": [
+    "¿Puede usted repetirlo?",
+    "¿Puedes repetirlo?",
+    "¿Me lo puede repetir?",
+    "¿Puede repetir?"
+   ]
+  },
+  "slower": {
+   "text": "¡Más despacio!",
+   "variants": [
+    "¡Más lento!"
+   ]
+  },
+  "a-good-friend": {
+   "text": "un buen amigo"
+  },
+  "old-people": {
+   "text": "personas mayores",
+   "variants": [
+    "gente mayor",
+    "los mayores"
+   ],
+   "notes": {
+    "de": "personas viejas klingt abwertend — im Alltag mayores."
+   }
+  },
+  "a-new-day": {
+   "text": "un nuevo día",
+   "variants": [
+    "un día nuevo"
+   ]
+  },
+  "the-house-is-big": {
+   "text": "La casa es grande."
+  },
+  "a-lot-of-water": {
+   "text": "mucha agua",
+   "notes": {
+    "de": "trotz el agua feminin: mucha agua."
+   }
+  },
+  "a-lot-of-money": {
+   "text": "mucho dinero"
+  },
+  "many-friends": {
+   "text": "muchos amigos",
+   "variants": [
+    "muchas amigas"
+   ]
+  }
+ }
+}
