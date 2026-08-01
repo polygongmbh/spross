@@ -256,10 +256,10 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   adaptation under BY-SA. `sha256` is the digest the generator verified after the copy
   and lint re-hashes what was committed, which makes it a gate rather than a promise.
 - `gain` (dB) and `lead` (ms) are the generator's own MEASUREMENT of those untouched
-  bytes — how far the recording sits from the catalog's analysis target, and how much
-  dead air to start past — so the files stay unmodified and only the player corrects
-  them. What was measured, against which target, is `../scripts/audio-catalog.py`'s
-  `ANALYSIS`.
+  bytes — how far the recording sits from the catalog's analysis target, capped by the
+  headroom that file still has, and how much dead air to start past — so the files stay
+  unmodified and only the player corrects them. What was measured, against which target,
+  is `../scripts/audio-catalog.py`'s `ANALYSIS`.
 - No `README.md` inside `audio/` — the Android sync only excludes one at the catalog
   root, so a nested one would ship in the APK. Audio schema docs live here.
 

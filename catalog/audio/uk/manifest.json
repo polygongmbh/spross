@@ -4,7 +4,7 @@
     "а": {
       "author": "Tabrus",
       "file": "letters/u0430.mp3",
-      "gain": 7.6,
+      "gain": 5.5,
       "lead": 1285,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -54,7 +54,7 @@
     "е": {
       "author": "Tabrus",
       "file": "letters/u0435.mp3",
-      "gain": 16.0,
+      "gain": 13.3,
       "lead": 1071,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -314,7 +314,7 @@
     "ґ": {
       "author": "Tabrus",
       "file": "letters/u0491.mp3",
-      "gain": 15.9,
+      "gain": 15.5,
       "lead": 973,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -370,7 +370,7 @@
     "apartment": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "apartment.mp3",
-      "gain": 3.6,
+      "gain": 2.7,
       "lead": 96,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
@@ -627,7 +627,7 @@
     "bus": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "bus.mp3",
-      "gain": 4.1,
+      "gain": 3.0,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "автобус",
@@ -1615,7 +1615,7 @@
     "holiday": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "holiday.mp3",
-      "gain": 4.9,
+      "gain": 3.1,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "відпустка",
@@ -2169,7 +2169,7 @@
     "paper": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "paper.mp3",
-      "gain": 4.8,
+      "gain": 3.8,
       "lead": 72,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
@@ -2244,7 +2244,7 @@
     "pharmacy": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pharmacy.mp3",
-      "gain": 4.2,
+      "gain": 3.0,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "аптека",
@@ -2276,7 +2276,7 @@
     "pill": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pill.mp3",
-      "gain": 3.3,
+      "gain": 2.6,
       "lead": 29,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
@@ -2287,7 +2287,7 @@
     "pillow": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pillow.mp3",
-      "gain": 3.7,
+      "gain": 2.9,
       "lead": 209,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
@@ -2864,7 +2864,7 @@
     "sock": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sock.mp3",
-      "gain": 3.1,
+      "gain": 3.0,
       "lead": 178,
       "licence": "CC BY 3.0 us",
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",

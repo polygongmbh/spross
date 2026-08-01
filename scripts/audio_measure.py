@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""ffmpeg measurement of the shipped recordings: how loud they are, and when they start.
+"""ffmpeg measurement of the shipped recordings: how loud they are, when they start, how
+close to full scale they already run.
 
 The mechanics behind `audio-catalog.py`'s analysis stage, which turns these numbers into
 the manifest's `gain`/`lead`. NOTHING here writes audio — every run decodes to the null
@@ -22,6 +23,7 @@ WORKERS = 10
 INTEGRATED = re.compile(r'^\s+I:\s+(-?[\d.]+|-inf) LUFS', re.M)
 SILENCE_START = re.compile(r'silence_start:\s*(-?[\d.]+)')
 SILENCE_END = re.compile(r'silence_end:\s*(-?[\d.]+)')
+PEAK_LEVEL = re.compile(r'Peak level dB:\s*(-?[\d.]+|-inf)')
 
 
 def version(binary):
@@ -31,27 +33,32 @@ def version(binary):
 
 
 def measure(binary, path):
-    """(integrated LUFS, leading silence in seconds); loudness is None for a silent file.
+    """(integrated LUFS, leading silence in seconds, sample peak dBFS); a silent file
+    measures None for both levels.
 
-    One decode, both filters. `ebur128` reports EBU R128 INTEGRATED loudness, which is
+    One decode, three filters. `ebur128` reports EBU R128 INTEGRATED loudness, which is
     gated — the pause a single word sits in does not drag its level down, so two packs can
     be compared on it. `silencedetect` opens a run at 0 exactly when the file starts with
-    dead air; a first run starting anywhere else means it starts speaking.
+    dead air; a first run starting anywhere else means it starts speaking. `astats` reports
+    the loudest DECODED sample, which is the ceiling a player's gain stage runs into — the
+    mp3's own headroom says nothing, the decoder's output is what gets amplified.
     """
     run = subprocess.run(
         [binary, '-hide_banner', '-nostats', '-i', path, '-af',
-         'silencedetect=noise=%ddB:d=%s,ebur128=peak=none'
-         % (SILENCE_THRESHOLD_DB, SILENCE_MIN_SECONDS), '-f', 'null', '-'],
+         'silencedetect=noise=%ddB:d=%s,astats=measure_overall=Peak_level:measure_perchannel=none,'
+         'ebur128=peak=none' % (SILENCE_THRESHOLD_DB, SILENCE_MIN_SECONDS), '-f', 'null', '-'],
         capture_output=True, text=True)
     if run.returncode != 0:
         raise RuntimeError('%s: ffmpeg failed\n%s' % (path, run.stderr[-800:]))
     loudness = INTEGRATED.findall(run.stderr)
+    peak = PEAK_LEVEL.findall(run.stderr)
     start = SILENCE_START.search(run.stderr)
     end = SILENCE_END.search(run.stderr)
     opens_silent = start is not None and abs(float(start.group(1))) < 1e-6
     return (
         float(loudness[-1]) if loudness and loudness[-1] != '-inf' else None,
         float(end.group(1)) if opens_silent and end else 0.0,
+        float(peak[-1]) if peak and peak[-1] != '-inf' else None,
     )
 
 

@@ -68,7 +68,7 @@
     "arrive": {
       "author": "Kampy",
       "file": "arrive.mp3",
-      "gain": 6.5,
+      "gain": 1.9,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "ankommen",
@@ -151,7 +151,7 @@
     "blanket": {
       "author": "Jeuwre",
       "file": "blanket.mp3",
-      "gain": 3.0,
+      "gain": 2.4,
       "lead": 503,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -173,7 +173,7 @@
     "bring": {
       "author": "Kampy",
       "file": "bring.mp3",
-      "gain": 2.7,
+      "gain": 1.8,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "mitbringen",
@@ -227,7 +227,7 @@
     "cancel": {
       "author": "Jeuwre",
       "file": "cancel.mp3",
-      "gain": 4.7,
+      "gain": 2.3,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "absagen",
@@ -410,7 +410,7 @@
     "depart": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "depart.mp3",
-      "gain": 6.4,
+      "gain": 4.3,
       "lead": 41,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -972,7 +972,7 @@
     "lock": {
       "author": "Jeuwre",
       "file": "lock.mp3",
-      "gain": 3.5,
+      "gain": 2.4,
       "lead": 509,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1143,7 +1143,7 @@
     "park": {
       "author": "Jeuwre",
       "file": "park.mp3",
-      "gain": 3.2,
+      "gain": 1.9,
       "lead": 447,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1274,7 +1274,7 @@
     "print": {
       "author": "Priwo",
       "file": "print.mp3",
-      "gain": 6.3,
+      "gain": 2.8,
       "lead": 410,
       "licence": "Public domain",
       "matches": "drucken",
@@ -1414,7 +1414,7 @@
     "right": {
       "author": "Priwo",
       "file": "right.mp3",
-      "gain": 6.3,
+      "gain": 2.8,
       "lead": 376,
       "licence": "Public domain",
       "matches": "rechts",
@@ -1563,7 +1563,7 @@
     "sit": {
       "author": "Kampy",
       "file": "sit.mp3",
-      "gain": 3.8,
+      "gain": 3.3,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "sitzen",
@@ -1732,7 +1732,7 @@
     "submit": {
       "author": "Kampy",
       "file": "submit.mp3",
-      "gain": 2.8,
+      "gain": -0.9,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "abgeben",
@@ -1816,7 +1816,7 @@
     "thank": {
       "author": "Kampy",
       "file": "thank.mp3",
-      "gain": 1.6,
+      "gain": -0.9,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "danken",
@@ -1933,7 +1933,7 @@
     "translate": {
       "author": "Kampy",
       "file": "translate.mp3",
-      "gain": 2.4,
+      "gain": 1.9,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "übersetzen",
@@ -1987,7 +1987,7 @@
     "unlock": {
       "author": "Kampy",
       "file": "unlock.mp3",
-      "gain": 4.0,
+      "gain": -1.0,
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "aufschließen",

@@ -21,6 +21,7 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 import os
 import shutil
 import sys
@@ -47,6 +48,17 @@ FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 # whole app would whisper, so the scheme is BOOST against the word-pack median: letters
 # take up to +20 dB, the loud sw pack takes about -5, and the players need a boost path.
 # (Letters also open with a median 1077 ms of dead air, against 173 ms for words.)
+#
+# A boost is also a CLIPPING risk, so the loudness number never decides a gain alone: the
+# player adds it to samples that already peak where they peak, and past full scale iOS's EQ
+# hard-clips while Android's `LoudnessEnhancer` compresses — one number, two sounds, neither
+# the recording. Every gain is therefore CAPPED at the headroom its own file has, measured on
+# the same decode: `gain = min(loudness gain, PEAK_CEILING_DBFS - peak)`, floored to the
+# decimal it ships at so rounding can never spend the margin. The cap only ever lowers, and it
+# binds on 70 of the 1126 files — on 31 of them the loudness number alone would have driven
+# the samples past full scale, worst es `here` (peak -3.2, +9.6 dB wanted, +2.1 granted). They
+# land under the loudness target instead of distorting: user ruling 2026-08-01, quiet is the
+# lesser loss.
 ANALYSIS = {
     'scheme': 'boost',
     'target_lufs': -16.7,
@@ -60,6 +72,10 @@ LEAD_KEEP_MS = 50
 # ±20 dB is 10× amplitude and the point where a measurement is likelier broken than the
 # recording. uk `ж` (-37.4 LUFS, +20.7 measured) is the one entry the clamp catches today.
 GAIN_LIMIT_DB = 20.0
+# The ceiling a boosted sample may reach. 1 dB of full scale stays unspent: the sample peak
+# we measure is not the inter-sample peak a resampler reconstructs, and the players' gain
+# stages add their own ringing on top of it.
+PEAK_CEILING_DBFS = -1.0
 
 # Every licence the packs actually carry → its canonical deed. An unlisted one is a
 # hard stop: the credits screen links what it names, and PD has no deed to link.
@@ -138,9 +154,12 @@ def copy_verified(source, target):
     return digest
 
 
-def playback_index(loudness, leading):
+def playback_index(loudness, leading, peak):
     """The optional `gain`/`lead` for one entry — both absent when there is nothing to do."""
-    gain = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, ANALYSIS['target_lufs'] - loudness)), 1)
+    boost = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, ANALYSIS['target_lufs'] - loudness)), 1)
+    # why: floor, never round — a gain rounded up to the shipped decimal spends the safety
+    # margin it was granted, and the file it was granted for is the one already near clipping.
+    gain = min(boost, math.floor((PEAK_CEILING_DBFS - peak) * 10) / 10)
     lead = max(0, round(leading * 1000) - LEAD_KEEP_MS)
     index = {}
     if gain:
@@ -161,10 +180,10 @@ def copy_and_analyze(copies):
     measured = audio_measure.measure_all(FFMPEG, [target for _, _, target in copies])
     analysed = {}
     for id, _, target in copies:
-        loudness, leading = measured[target]
-        if loudness is None:
+        loudness, leading, peak = measured[target]
+        if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % target)
-        analysed[id] = (digests[id], playback_index(loudness, leading))
+        analysed[id] = (digests[id], playback_index(loudness, leading, peak))
     return analysed
 
 
