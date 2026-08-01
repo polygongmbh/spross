@@ -2,99 +2,88 @@
 
 ## Unreleased
 
-- **Die Buchstaben setzen sofort ein und sind so laut wie die Wörter**: die ukrainischen
-  Buchstabenaufnahmen fingen erst nach gut einer Sekunde Stille an zu sprechen und waren
-  dabei rund fünfzehn Dezibel leiser als jedes Wort — im Buchstaben-Drill hörte man sie zu
-  spät und kaum. Beides ist ausgemessen und wird beim Abspielen ausgeglichen, und dieselbe
-  Angleichung nimmt auch den Wortpaketen ihre Lautstärkesprünge: Kiswahili war bisher
-  hörbar lauter als Spanisch. Die Aufnahmen selbst bleiben unangetastet — Byte für Byte
-  die Dateien von Wikimedia Commons.
+## 3.0.0 — 2026-08-01
 
-- **Spanisch kannst du jetzt lernen**: in der Sprachwahl steht neben Englisch, Kiswahili und
-  Ukrainisch neu 🇪🇸 Spanisch — von Anfang an vollständig, alle 528 Wörter und Sätze aus allen
-  vierzehn Bereichen, von den ersten Worten bis zum Amt. Gelernt wird das Spanisch Spaniens:
-  "¿Cómo dice?", nicht die lateinamerikanische Form — die gilt als Antwort trotzdem, wie auch
-  das umgangssprachliche Wort neben dem, das die Karte zeigt. Zu jedem Hauptwort steht sein
-  Artikel — *el* oder *la*, und *los*/*las* bei den Wörtern, die es nur im Plural gibt
-  (*los auriculares*, *las vacaciones*) —, und wo eine Mehrzahl nicht zu erraten ist,
-  steht auch sie dabei.
+- **Words are read aloud now**: a card speaks the word it shows — with recordings of real
+  speakers where they exist, and the device's voice otherwise. What is spoken is always
+  exactly the form in front of you, never another spelling of the same word: immediately
+  when you recognize, and when you write only once the word is revealed — before that it
+  would be the answer. Tapping a word speaks it again, even with read-aloud switched off.
+  Turn it off with the speaker at the top of a round or in the settings; the phone's silent
+  switch keeps covering everything, as before. And who spoke the recordings, under which
+  licence, now stands under "Sprecher & Lizenzen" in the settings.
 
-- **Und der spanische Artikel hat seine Farbe**: *el* und *la* bekommen dieselben zwei
-  Farben, die *der* und *die* seit jeher tragen — Blau für das Männliche, Beerenrot für
-  das Weibliche; *los*, *las*, *un* und *una* gehen mit ihrem Geschlecht mit, und Grün
-  bleibt dem deutschen Neutrum, das es im Spanischen nicht gibt. So auf der Karte, auf
-  der Uhr und in jedem Widget. Auf Android steht der Artikel jetzt überhaupt zum ersten
-  Mal beim Wort — die Karte zeigte bisher nur das nackte Hauptwort.
+- **On Android the words are read aloud too**: the same rule as on the iPhone — a card
+  speaks the word it shows, with recordings of real speakers where they exist and the
+  device's voice otherwise. Spoken is exactly the form in front of you: immediately when
+  you recognize, when you write only after the reveal or the typo correction — before that
+  it would be the answer. Tapping a word speaks it again, even with read-aloud off. Turn it
+  off with the speaker at the top of a round; the phone's media volume keeps covering
+  everything, as before. New beside "Sprachen ändern" stands "Info": the same switch once
+  more, the version — and who spoke the recordings, under which licence, with a link to
+  every single file on Wikimedia Commons.
 
-- **Und die spanischen Wörter sprechen**: zu 310 der 339 einzelnen spanischen Wörter
-  liegt eine echte Aufnahme bereit, von *¡Hola!* bis *mañana*; alles Übrige spricht wie
-  bisher die Stimme des Geräts. Anders als bei Kiswahili und Ukrainisch ist es nicht eine
-  Stimme, sondern viele — und woher die Sprecherinnen und Sprecher kommen, sagt Wikimedia
-  Commons nirgends, darum ist keine dieser Aufnahmen als Muster für das Spanisch Spaniens
-  zu verstehen. Wer spricht und unter welcher Lizenz, steht unter "Sprecher & Lizenzen".
+- **You can learn Spanish now**: the language choice offers, beside English, Kiswahili and
+  Ukrainian, 🇪🇸 Spanish — complete from day one, all 528 words and sentences across all
+  fourteen areas, from the first words to the Amt. What you learn is the Spanish of Spain:
+  "¿Cómo dice?", not the Latin American form — which still counts as an answer, as does the
+  colloquial word beside the one the card shows. Every noun carries its article — *el* or
+  *la*, and *los*/*las* for the words that only exist in the plural (*los auriculares*,
+  *las vacaciones*) — and where a plural can't be guessed, it is written out too.
 
-- **Buchstaben kannst du jetzt am Klang erkennen**: neben Zahlen, Uhrzeit und Sätzen steht
-  im Training "Buchstaben" — eine Übung, die nichts zeigt und alles vorspricht. Du hörst
-  einen Buchstabennamen und tippst den Buchstaben an: erst unter vieren, die nichts
-  miteinander zu tun haben, dann unter solchen, die sich ähnlich sehen oder gleich klingen,
-  später schreibst du ihn selbst. Für Ukrainisch sprechen echte Aufnahmen, sonst die Stimme
-  des Geräts. Bei dem, was man erst im Wort auseinanderhält — ß und ss, ei und ie, die drei
-  ch —, hörst du ein Wort und füllst die Lücke: ＿eife. Und wer genug Wörter gefestigt hat,
-  bekommt am Ende Diktat: Wort hören, Wort schreiben, sonst nichts. Die Übung steigt mit
-  dir: je mehr du schon sicher kannst, desto weiter oben fängt sie an und desto kürzer sind
-  ihre Stufen. Für deine Kartei zählt nichts davon — geübt wird hier ohne Folgen für den
-  Termin deiner Wörter.
+- **And the Spanish article has its color**: *el* and *la* get the same two colors *der*
+  and *die* have always worn — blue for the masculine, berry red for the feminine; *los*,
+  *las*, *un* and *una* follow their gender, and green stays with the German neuter, which
+  Spanish doesn't have. On the card, on the watch, and in every widget. On Android the
+  article now stands beside the word at all — the card used to show only the bare noun.
 
-- **Auch auf Android erkennst du Buchstaben jetzt am Klang**: auf "Heute" steht neu ein Feld
-  "Training" mit "🔤 Buchstaben" — die erste Übung auf diesem Gerät. Sie zeigt nichts und
-  spricht alles: du hörst einen Buchstabennamen und tippst ihn unter vieren an, erst unter
-  solchen, die nichts miteinander zu tun haben, dann unter denen, die sich ähnlich sehen oder
-  gleich klingen, später schreibst du ihn selbst. Bei dem, was man erst im Wort
-  auseinanderhält, hörst du ein Wort und füllst die Lücke. Wer genug Wörter gefestigt hat,
-  bekommt am Ende Diktat: Wort hören, Wort schreiben, sonst nichts. Für Ukrainisch sprechen
-  echte Aufnahmen, sonst die Stimme des Geräts — der Knopf erscheint von selbst, sobald sie
-  bereitsteht. Ist das Vorlesen ausgeschaltet, sagt die Karte das und schaltet es mit einem
-  Tipp wieder ein. Für deine Kartei zählt nichts davon.
+- **And the Spanish words speak**: 310 of the 339 single Spanish words come with a real
+  recording, from *¡Hola!* to *mañana*; everything else speaks with the device's voice, as
+  before. Unlike Kiswahili and Ukrainian it isn't one voice but many — and where the
+  speakers are from, Wikimedia Commons doesn't say, so none of these recordings should be
+  taken as a model of the Spanish of Spain. Who speaks, and under which licence, stands
+  under "Sprecher & Lizenzen".
 
-- **Das Alphabet der Sprache, die du lernst, liegt jetzt im Training bereit**: unter den
-  Übungen öffnet "Alphabet" eine Tafel mit jeder Zeile, die es zu wissen gibt — Buchstabe
-  groß und klein, sein Name, seine Lautschrift, wann er wie klingt, und ein Beispielwort
-  samt Bedeutung, wo deine Sprache das Wort auch kennt. Für Ukrainisch das ganze Alphabet,
-  mitsamt Apostroph und der Regel, dass am Wortende nichts hart wird; für Deutsch die
-  Buchstaben und Buchstabenpaare, die täuschen: sch, ei/ie, die drei ch, v, ß/ss; für
-  Spanisch die, die man hören muss, um sie schreiben zu können — ll und y, die gleich
-  klingen, b und v, die denselben Laut haben, c und z, das getippte r neben dem gerollten
-  rr, das stumme h und das u, das nach g und q nicht mitspricht. Neben
-  jedem Namen und jedem Beispielwort steht ein Lautsprecher: einmal tippen, und du hörst,
-  wie der Buchstabe heißt und wie das Wort klingt — auch bei ausgeschaltetem Vorlesen.
+- **You can now recognize letters by their sound**: beside numbers, clock and sentences
+  the training offers "Buchstaben" — an exercise that shows nothing and speaks everything.
+  You hear a letter's name and tap the letter: first among four that have nothing to do
+  with each other, then among ones that look alike or sound alike, later you type it
+  yourself. For Ukrainian real recordings speak, otherwise the device's voice. For what
+  you only tell apart inside a word — ß and ss, ei and ie, the three ch — you hear a word
+  and fill the gap: ＿eife. And once enough of your words are consolidated, dictation comes
+  at the end: hear a word, write the word, nothing else. The exercise grows with you: the
+  more you already know for sure, the higher it starts and the shorter its stages are.
+  None of it counts toward your box — practice here never touches your words' schedule.
 
-- **Wörter werden jetzt vorgelesen**: eine Karte sagt das Wort, das sie zeigt — mit
-  Aufnahmen echter Sprecherinnen und Sprecher, wo es welche gibt, und sonst mit der Stimme
-  des Geräts. Gesprochen wird immer genau die Form, die vor dir steht, nie eine andere
-  Schreibweise desselben Worts: beim Erkennen sofort, beim Schreiben erst, wenn das Wort
-  aufgedeckt ist — vorher wäre es die Antwort. Ein Tippen auf ein Wort spricht es noch
-  einmal, auch bei ausgeschaltetem Vorlesen. Abschalten kannst du es am Lautsprecher oben
-  in der Runde oder in den Einstellungen; der Stummschalter des Telefons gilt wie bisher
-  für alles. Und wer die Aufnahmen gesprochen hat, unter welcher Lizenz, steht jetzt unter
-  "Sprecher & Lizenzen" in den Einstellungen.
+- **On Android too, you can now recognize letters by their sound**: "Heute" gains a
+  "Training" card with "🔤 Buchstaben" — the first exercise on this device. It shows
+  nothing and speaks everything: you hear a letter's name and tap it among four, first
+  ones that have nothing to do with each other, then ones that look alike or sound alike,
+  later you type it yourself. For what you only tell apart inside a word, you hear a word
+  and fill the gap. Once enough of your words are consolidated, dictation comes at the
+  end: hear a word, write the word, nothing else. For Ukrainian real recordings speak,
+  otherwise the device's voice — the button appears by itself as soon as it is ready. If
+  read-aloud is off, the card says so and switches it back on with a tap. None of it
+  counts toward your box.
 
-- **Auch auf Android werden die Wörter jetzt vorgelesen**: dieselbe Regel wie auf dem
-  iPhone — eine Karte sagt das Wort, das sie zeigt, mit Aufnahmen echter Sprecherinnen und
-  Sprecher, wo es welche gibt, und sonst mit der Stimme des Geräts. Gesprochen wird genau
-  die Form, die vor dir steht: beim Erkennen sofort, beim Schreiben erst nach dem
-  Aufdecken oder der Tippfehler-Korrektur — vorher wäre es die Antwort. Ein Tippen auf ein
-  Wort spricht es noch einmal, auch bei ausgeschaltetem Vorlesen. Abschalten kannst du es
-  am Lautsprecher oben in der Runde; die Medienlautstärke des Telefons gilt wie bisher für
-  alles. Neu neben "Sprachen ändern" steht "Info": derselbe Schalter noch einmal, die
-  Version — und wer die Aufnahmen gesprochen hat, unter welcher Lizenz, mit Link auf jede
-  einzelne Datei bei Wikimedia Commons.
+- **The alphabet of the language you're learning now sits in the training**: among the
+  exercises, "Alphabet" opens a table with every row worth knowing — the letter in upper
+  and lower case, its name, its phonetic spelling, when it sounds like what, and an
+  example word with its meaning where your language knows the word too. For Ukrainian the
+  whole alphabet, including the apostrophe and the rule that nothing hardens at the end of
+  a word; for German the letters and letter pairs that mislead: sch, ei/ie, the three ch,
+  v, ß/ss; for Spanish the ones you have to hear to be able to write — ll and y, which
+  sound the same, b and v, which share one sound, c and z, the tapped r beside the rolled
+  rr, the silent h and the u that stays silent after g and q. Beside every name and every
+  example word sits a speaker: one tap, and you hear what the letter is called and how the
+  word sounds — even with read-aloud switched off.
 
-- **New words no longer dry up after a run of hard answers**: the box handed out fewer of them
-  the more words you had recently got wrong, down to a trickle of two — so exactly the stretch
-  where variety helps most was the stretch it withheld. Growth is now paced only by what a
-  round can hold and by how far behind the reviews have fallen. The setting for it is gone
-  with it: it named a quantity shown nowhere and steered on the wrong signal.
-
+- **The letters start instantly and are as loud as the words**: the Ukrainian letter
+  recordings only began to speak after a good second of silence, and did so about fifteen
+  decibels quieter than any word — in the letter drill you heard them late and barely.
+  Both are measured and evened out at playback, and the same alignment takes the volume
+  jumps out of the word packs too: Kiswahili used to be audibly louder than Spanish. The
+  recordings themselves stay untouched — byte for byte the files from Wikimedia Commons.
 
 - **New words no longer dry up after a run of hard answers, or after time away**: the box
   handed out fewer of them the more words you had recently got wrong, down to a trickle of
@@ -104,6 +93,7 @@
   first, so a box that is behind spends nearly all of it catching up. The setting behind the
   first of these is gone with it: it named a quantity shown nowhere and steered on the
   wrong signal.
+
 - **A quiet day offers a mix instead of a wall of new words**: with nothing due, a round now
   balances words coming due tomorrow against first sights, and is new words alone only when
   nothing is coming due at all. A day counts as done after a full round rather than a single
@@ -114,7 +104,7 @@
   warm-up and an offer of Frischlinge now read as the three different things they are, each
   with wording that varies with the round.
 
-## 2.4.1 — 2026-08-01
+## 2.4.1## 2.4.1 — 2026-08-01
 
 - **A word you are only asked to recognise is no longer typed back at you**: saying you
   did not know a target word asked for its spelling before moving on — with that same
