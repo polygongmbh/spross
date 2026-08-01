@@ -897,7 +897,7 @@
         }
       }
     },
-    "heute.session.freshReady" : {
+    "heute.session.freshReady.0" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -909,6 +909,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Up for some new words?"
+          }
+        }
+      }
+    },
+    "heute.session.freshReady.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frischlinge liegen bereit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Newbies on the table"
+          }
+        }
+      }
+    },
+    "heute.session.freshReady.2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein paar Frischlinge zum Kennenlernen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A few newbies to get to know"
           }
         }
       }
@@ -1033,7 +1065,7 @@
         }
       }
     },
-    "heute.session.reviewsReady" : {
+    "heute.session.reviewsReady.0" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1045,6 +1077,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your round is ready"
+          }
+        }
+      }
+    },
+    "heute.session.reviewsReady.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Stapel liegt bereit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A stack is ready"
+          }
+        }
+      }
+    },
+    "heute.session.reviewsReady.2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Box hat was für dich"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The box has something for you"
           }
         }
       }
@@ -1077,6 +1141,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Let's go!"
+          }
+        }
+      }
+    },
+    "heute.session.warmUpFresh.0" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auffrischen, plus ein paar Frischlinge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A refresher, plus a few newbies"
+          }
+        }
+      }
+    },
+    "heute.session.warmUpFresh.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bekanntes und ein bisschen Neues"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Familiar words and a little new"
+          }
+        }
+      }
+    },
+    "heute.session.warmUpFresh.2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Wiedersehen, Frischlinge dabei"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A reunion, with newbies along"
+          }
+        }
+      }
+    },
+    "heute.session.warmUpReady.0" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeit zum Auffrischen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time for a refresher"
+          }
+        }
+      }
+    },
+    "heute.session.warmUpReady.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Wiedersehen mit Bekanntem"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A reunion with familiar words"
+          }
+        }
+      }
+    },
+    "heute.session.warmUpReady.2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurz durchs Bekannte"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A quick pass through the familiar"
           }
         }
       }

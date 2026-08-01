@@ -25,13 +25,15 @@ extension AppModel {
         !(todayPlan?.isEmpty ?? true) || dueNowCount > 0
     }
 
-    /// What today's plan is led by.
-    /// Due work and an offer of new words read very differently to a learner,
-    /// so Heute names which one it is instead of calling both "a session".
-    enum SessionOffer {
-        /// Cards are due — the round leads with them.
+    /// What carries the round. Due work, a light warm-up, and an offer of new words
+    /// read very differently to a learner, so Heute names which one it is instead of
+    /// calling all three "a session".
+    enum SessionOffer: String {
+        /// Due work leads — more than a token one or two.
         case reviews
-        /// Nothing due; the round is an offer of new words (kern fills it out).
+        /// Light recall: cards pulled forward, or a due card or two, whatever else rides along.
+        case warmUp
+        /// Nothing to recall; the round is mostly first sights.
         case freshSet
         case nothing
     }
@@ -48,6 +50,35 @@ extension AppModel {
         /// Cards pulled forward to fill a short round out (kern's session floor).
         let aheadCount: Int
         let freshCount: Int
+
+        /// Fewer due cards than this and the round is a warm-up, whatever else it holds.
+        static let reviewsLeadFrom = 3
+
+        /// Which headline names this round. The variant turns on the round's SHAPE, never
+        /// on the clock: a learner does several rounds in a day and one repeated line reads
+        /// as a screen that never moved, while a line re-rolling between renders reads as a
+        /// glitch — and `heuteOffer` recomposes on every access.
+        var headlineKey: String {
+            let bucket: String
+            switch kind {
+            case .reviews: bucket = "reviewsReady"
+            case .warmUp: bucket = freshCount > 0 ? "warmUpFresh" : "warmUpReady"
+            case .freshSet, .nothing: bucket = "freshReady"
+            }
+            return "heute.session.\(bucket).\(variant(outOf: 3))"
+        }
+
+        /// FNV-1a over the counts, not `hashValue`: Swift seeds that per process, so the
+        /// same round would headline differently after every launch.
+        private func variant(outOf count: Int) -> Int {
+            var hash: UInt64 = 0xcbf2_9ce4_8422_2325
+            for value in [sessionReviews, aheadCount, freshCount] {
+                hash = (hash ^ UInt64(truncatingIfNeeded: value)) &* 0x100_0000_01b3
+            }
+            // why: FNV leaves its low bits barely mixed, and the modulo reads exactly those.
+            hash ^= hash >> 33
+            return Int(hash % UInt64(count))
+        }
     }
 
     var heuteOffer: HeuteOffer {
@@ -56,12 +87,23 @@ extension AppModel {
                               dueHeldBack: 0, aheadCount: 0, freshCount: 0)
         }
         let reviews = plan.reviews.count
-        let kind: SessionOffer = reviews > 0 ? .reviews : (plan.isEmpty ? .nothing : .freshSet)
+        let ahead = plan.ahead.count
+        let fresh = Int(plan.freshCount)
+        let kind: SessionOffer
+        if plan.isEmpty {
+            kind = .nothing
+        } else if reviews >= HeuteOffer.reviewsLeadFrom {
+            kind = .reviews
+        } else if reviews == 0 && fresh >= ahead {
+            kind = .freshSet
+        } else {
+            kind = .warmUp
+        }
         return HeuteOffer(kind: kind,
                           sessionReviews: reviews,
                           dueHeldBack: max(0, dueNowCount - reviews),
-                          aheadCount: plan.ahead.count,
-                          freshCount: Int(plan.freshCount))
+                          aheadCount: ahead,
+                          freshCount: fresh)
     }
 
     /// What the learner did today — reviews, first meetings, words that settled,
