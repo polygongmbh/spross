@@ -86,6 +86,7 @@ class CatalogAudioFixtureTest {
     fun speechKeyFoldsAwayEverythingThatIsSpellingRatherThanSpeech() {
         assertEquals("unterlagen", speechKey("Unterlagen"))
         assertEquals("hujambo", speechKey("Hujambo!"))
+        assertEquals("hola", speechKey("¡Hola!")) // Spanish opens what it closes
         assertEquals(speechKey("zuri"), speechKey("-zuri"))
         assertEquals("tür", speechKey("Tu\u0308r")) // decomposed input, composed key
         assertEquals("ім'я", speechKey("ім'я")) // an INNER apostrophe is part of the word

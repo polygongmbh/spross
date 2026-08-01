@@ -591,7 +591,7 @@ day-key `yyyy-MM-dd`) with:
   The recordings speak bare headwords, so this is the only rule that holds for the recorded and the synthesized branch alike.
 - **Two normalizations, both normative** (`catalog/Pronunciation.kt`):
   `speechKey(form)` — trim whitespace, strip ONE leading `-` (the Swahili adjective stem citation `-zuri`),
-  strip leading/trailing sentence punctuation and quote marks, NFC, lowercase.
+  strip leading/trailing sentence punctuation and quote marks — `¡`/`¿` among them, because Spanish writes them and no one says them —, NFC, lowercase.
   `utterance(form)` — what a synthesizer is handed: the leading `-` gone (it gets vocalized as "minus"),
   terminal punctuation KEPT, because it carries prosody.
   `speechKey` is applied identically to a manifest's `matches` and to the visible form; nothing else folds.

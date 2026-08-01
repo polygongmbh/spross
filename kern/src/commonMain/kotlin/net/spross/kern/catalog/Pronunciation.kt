@@ -5,9 +5,11 @@ import net.spross.kern.model.nfcNormalized
 
 /**
  * Characters a written form may carry at its edges but no one ever says —
- * sentence punctuation plus the quote marks a citation picks up.
+ * sentence punctuation plus the quote marks a citation picks up. `¡`/`¿` belong
+ * here for the same reason `!`/`?` do: Spanish writes them, nobody pronounces
+ * them, and a recording of "hola" has to answer a card reading "¡Hola!".
  */
-private const val EDGE_PUNCTUATION = "!?.,;:…\"'«»„“”‘’‹›"
+private const val EDGE_PUNCTUATION = "!?¡¿.,;:…\"'«»„“”‘’‹›"
 
 /**
  * The normative speech normalization (README §11): trim whitespace, strip ONE leading

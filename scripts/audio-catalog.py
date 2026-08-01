@@ -65,7 +65,7 @@ LICENCE_URLS = {
 
 # Kept in step with kern's speechKey (kern/README.md §11) — the index this script
 # writes and the lookup that reads it have to fold the same things away.
-EDGE_PUNCTUATION = '!?.,;:…"\'«»„“”‘’‹›'
+EDGE_PUNCTUATION = '!?¡¿.,;:…"\'«»„“”‘’‹›'
 
 
 def speech_key(form):
