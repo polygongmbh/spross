@@ -523,7 +523,7 @@ day-key `yyyy-MM-dd`) with:
   conformances; Kotlin `Int` surfaces as `Int32` — bridge there, not at call sites.
 - Trainer: single `:kern` module, `Long` cardinals everywhere (Kotlin `Int` is 32-bit on
   all platforms — v1's arm64_32 fix generalizes). Trainer registry: de/sw/uk authored,
-  en absent (the hub's handling of that is an app rule).
+  en/es absent (the hub's handling of those is an app rule).
   Phrase templates keyed (source, target); reverse mode when target == de.
   German clock ACCEPTS 24-hour readings ("achtzehn Uhr fünfunddreißig", "null/vierundzwanzig
   Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.
