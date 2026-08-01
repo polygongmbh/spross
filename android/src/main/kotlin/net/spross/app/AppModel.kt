@@ -19,6 +19,7 @@ import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
 import net.spross.kern.catalog.Catalog
+import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.JoinStamp
@@ -26,8 +27,10 @@ import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.Rating
 import net.spross.kern.model.SessionPlan
 import net.spross.kern.model.EmojiCue
+import net.spross.kern.model.PronunciationCue
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
+import net.spross.kern.model.pronunciationCue
 import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
@@ -49,6 +52,11 @@ data class SessionUi(
     val promptForm: String?,       // rotated recognition prompt
     /** Which face carries the picture; null when the word has none. */
     val emojiCue: EmojiCue?,
+    /**
+     * What the prompt says out loud, or null where the card owes that very form —
+     * non-null ⇔ kern's cue puts the target on screen from frame one.
+     */
+    val promptPronunciation: Pronunciation?,
     val segments: List<AnswerTone>,
     val remaining: Int,
     val progress: Float,
@@ -190,6 +198,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     fun answerCurrent(rating: Rating) {
         val active = flow ?: return
+        // why: the card is leaving — a word still sounding must not follow the learner
+        // onto the next one, the same cut iOS makes in resetCardState().
+        pronouncer.stop()
         active.answer(rating, now(), tz())
         box = active.box
         persist(active.box)
@@ -203,6 +214,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     fun finishSession() {
         val active = flow ?: return
+        pronouncer.stop() // the run is over: nothing keeps talking into Heute
         val ended = active.finish(now(), tz())
         flow = null
         sessionUi = null
@@ -218,7 +230,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         val ui = if (card == null) {
             SessionUi(
                 card = null, role = null, promptForm = null,
-                emojiCue = null,
+                emojiCue = null, promptPronunciation = null,
                 segments = active.segments.toList(), remaining = 0, progress = 1f,
                 introduced = active.introduced, strengthened = active.strengthened,
                 reviewed = active.answered,
@@ -226,13 +238,19 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         } else {
             val count = active.reviewCount(card.id)
             val role = presentationRole(card.id, count)
+            val promptForm = recognitionPromptForm(card, count)
             SessionUi(
                 card = card,
                 role = role,
-                promptForm = recognitionPromptForm(card, count),
+                promptForm = promptForm,
                 emojiCue = card.emoji?.let {
                     emojiCue(role, active.isSettled(card.id), count)
                 },
+                // why: the KERN cue, never `role == Recognize` — one rule, consumed by
+                // both apps. The PROMPTED form, so a rotated synonym is heard as itself.
+                promptPronunciation = catalog
+                    ?.takeIf { pronunciationCue(role) == PronunciationCue.Upfront }
+                    ?.pronunciation(card.target.lang, promptForm),
                 segments = active.segments.toList(),
                 remaining = active.remaining,
                 progress = active.progress(),
