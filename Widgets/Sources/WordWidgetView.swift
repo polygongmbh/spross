@@ -149,10 +149,13 @@ struct WordWidgetView: View {
         return Text("\(tint) ").foregroundStyle(tintColor(tint))
     }
 
+    /// The article set each hue answers for is `Theme.swift`'s: a two-gender
+    /// language folds onto masculine-blue and feminine-berry (its plural and
+    /// indefinite articles with it) and never reaches the neuter.
     private func tintColor(_ tint: String) -> Color {
-        switch tint {
-        case "der": Color(red: 0.10, green: 0.44, blue: 0.76)
-        case "die": Color(red: 0.76, green: 0.15, blue: 0.36)
+        switch tint.lowercased() {
+        case "der", "el", "los", "un": Color(red: 0.10, green: 0.44, blue: 0.76)
+        case "die", "la", "las", "una": Color(red: 0.76, green: 0.15, blue: 0.36)
         case "das": Color(red: 0.12, green: 0.48, blue: 0.20)
         default: .secondary
         }
