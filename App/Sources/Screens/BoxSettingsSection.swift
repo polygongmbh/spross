@@ -9,6 +9,7 @@ struct BoxSettingsSection: View {
     let model: AppModel
 
     @State private var confirmingReset = false
+    @State private var creditsPresented = false
     @Environment(\.locale) private var locale
 
     var body: some View {
@@ -59,9 +60,28 @@ struct BoxSettingsSection: View {
                         .foregroundStyle(Color.dlAccent)
                 }
             }
+            creditsButton
         }
         .frame(maxWidth: .infinity)
         .padding(.top, DL.Space.m)
+        .sheet(isPresented: $creditsPresented) {
+            // why: a sheet leaves the chrome language behind, and credits are
+            // chrome — hand it the locale the settings block renders in.
+            CreditsView(model: model).environment(\.locale, locale)
+        }
+    }
+
+    /// Attribution for the bundled pronunciation recordings — a licence
+    /// obligation, not a courtesy: BY and BY-SA both ask for the speaker
+    /// by name, so the surface ships with the audio.
+    private var creditsButton: some View {
+        Button {
+            creditsPresented = true
+        } label: {
+            Label("settings.credits", systemImage: "waveform")
+                .font(DL.Fonts.subheadline)
+                .foregroundStyle(Color.dlAccent)
+        }
     }
 
     private var feedbackURL: URL? {
