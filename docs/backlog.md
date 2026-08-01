@@ -33,6 +33,19 @@ One line per item, with a file or context pointer, filed under the section it be
   O-Umlaut / U-Umlaut, which no source prescribed). Each is written up with its evidence
   in `data/orchestration/audio-langs-2026-07/alphabet-drafts/*-notes.md`; method as ever
   in `../../docs/sprachposter-learnings.md`.
+- The Spanish alphabet (`catalog/alphabet/es.json`) is the same LLM authoring and owes the
+  same sweep, with 15 questions of its own: whether the ll/y merger may be taught as flatly
+  as it is (yeísmo is standard, but ʎ survives in rural Castile), which jota a Spanish voice
+  really says ([x] or the northern [χ]), how far the vanishing final d may be simplified for
+  a beginner, whether /s/ belongs in the after-l-n-s trill rule at all, and which letter
+  names a teacher uses in 2026 — RAE's *ye*, *uve*, *erre doble* or the *i griega* and
+  *doble ele* people still say. Two are scope calls rather than facts: the three vowel rows
+  an English reader needs (i, e, u — non-derivable for them, derivable for a German) and a
+  row for the written accent, which five example words carry and nothing explains. What the
+  file teaches is es-ES throughout, which makes the voice reading it load-bearing: an es-MX
+  voice speaks /s/ where the c and z rows promise /θ/ and contradicts them out loud. Every
+  divergence LatAm would need instead — seseo, sheísmo, the aspirated j, the dropped final
+  d, the letter names — is written up row by row in the same `es-notes.md`.
 - Commission the two missing uk letter recordings — «мʼякий знак» and «апостроф»: no
   Commons file exists for either, so `ь` is spoken by the device voice where one is
   installed and silently leaves the drill where none is, and the apostrophe can never be
@@ -42,7 +55,7 @@ One line per item, with a file or context pointer, filed under the section it be
   carries it. A `stress` field on realizations (`catalog/README.md`) is the shape the
   pronunciation plan proposed; the alphabet table cannot teach it in the plan's place.
 - Hints and contexts are keyed by the READER's language, so they follow the SOURCE
-  languages the app offers — both alphabet files carry de + en only. The day sw or uk
+  languages the app offers — all three alphabet files carry de + en only. The day sw or uk
   becomes a base language, each needs its own hint pass, not a translation of the
   English: the German pivot prose for de is already parked in the drafts' notes, while
   sw needs authoring from scratch (sw `j` is /ɟ/, so the en "y in yes" anchor is wrong).

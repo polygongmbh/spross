@@ -39,7 +39,10 @@
   groß und klein, sein Name, seine Lautschrift, wann er wie klingt, und ein Beispielwort
   samt Bedeutung, wo deine Sprache das Wort auch kennt. Für Ukrainisch das ganze Alphabet,
   mitsamt Apostroph und der Regel, dass am Wortende nichts hart wird; für Deutsch die
-  Buchstaben und Buchstabenpaare, die täuschen: sch, ei/ie, die drei ch, v, ß/ss. Neben
+  Buchstaben und Buchstabenpaare, die täuschen: sch, ei/ie, die drei ch, v, ß/ss; für
+  Spanisch die, die man hören muss, um sie schreiben zu können — ll und y, die gleich
+  klingen, b und v, die denselben Laut haben, c und z, das getippte r neben dem gerollten
+  rr, das stumme h und das u, das nach g und q nicht mitspricht. Neben
   jedem Namen und jedem Beispielwort steht ein Lautsprecher: einmal tippen, und du hörst,
   wie der Buchstabe heißt und wie das Wort klingt — auch bei ausgeschaltetem Vorlesen.
 
