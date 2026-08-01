@@ -83,15 +83,18 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         if (trigger == Trigger.AUTO && (muted || readsScreenAloud)) return
         speaker.stop()
         val path = pronunciation.recordingPath
-        // why: the player still holds the last clip decoded, so a second ask for the
-        // same word answers without a second load — the reason SoundPool is here.
+        // why: the player still holds the last clip prepared, so a second ask for the
+        // same word answers without a second decode — the reason it keeps it.
         if (path != null && path == loaded && player.replay()) return
         // why: one word at a time — a new fire replaces whatever is sounding.
         player.stop()
         loaded = null
         val recording = path?.let(::openRecording)
         if (recording != null) {
-            player.play(recording)
+            // why: the loudness and the dead air are the catalog's MEASUREMENTS of bytes
+            // that stay the untouched transcode — playback is the one place they are ever
+            // applied, and never the file.
+            player.play(recording, pronunciation.gain, pronunciation.leadMs)
             loaded = path
             return
         }

@@ -154,3 +154,16 @@ One line per item, with a file or context pointer, filed under the section it be
   no lint can pin «йот» to what `letters/u0439.mp3` actually says — the names were
   authored from the 1993 orthography, and wherever a clip says something else it is the
   `name` FIELD that has to change, never the audio. One listening pass, 32 clips.
+- The Android pronunciation player has never been HEARD. `PronunciationPlayer` moved to
+  MediaPlayer + `LoudnessEnhancer` to carry the analysis index (SoundPool can neither seek
+  nor boost); the arithmetic is unit-pinned (`PlaybackIndexTest`) and the build is green,
+  but no emulator image and no device were at hand when it landed, so the boost, the lead
+  skip and the async request guard have only ever been reasoned about. One letter-drill
+  run on hardware settles all three — and it is the only way to learn whether
+  `MODIFY_AUDIO_SETTINGS` is really needed for a session-scoped effect (it is declared).
+- The analysis index has no PEAK term: 30 of the 1126 files exceed 0 dBFS once their gain
+  is applied (worst es `here`, +6.4 dB; two uk letters, ≤ +1.7). iOS clips them in the EQ;
+  `LoudnessEnhancer`, by its own documentation, compresses what its target would push past
+  full scale instead — so the same numbers do not sound the same on the two platforms. A
+  true-peak term in `scripts/audio-catalog.py`, capping a gain at the headroom the file
+  actually has, would end both.

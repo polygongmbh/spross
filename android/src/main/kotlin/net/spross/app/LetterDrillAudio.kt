@@ -19,11 +19,17 @@ fun AppModel.letterPrompt(task: LetterDrillTask): Pronunciation? = when (task.pr
     // why: the ONE lookup NOT keyed by the visible form — what is written (р) and what is
     // said («ер») are different strings, so the manifest is addressed by the glyph.
     LetterPromptKind.Name -> task.promptGlyph?.let { glyph ->
+        // why: the whole recording, not just its path — the letters are the quietest and
+        // latest-starting files we ship, and the drill is where that is heard, so the
+        // analysis index travels with them.
+        val recording = catalog?.letterRecording(task.language, glyph)
         Pronunciation(
             form = task.promptText,
             utterance = utterance(task.promptText),
             lang = task.language,
-            recordingPath = catalog?.letterRecordingPath(task.language, glyph),
+            recordingPath = recording?.path,
+            gain = recording?.gain ?: 0.0,
+            leadMs = recording?.leadMs ?: 0,
         )
     }
     // A word the catalog owns: the matched-form lookup the review cards use.
