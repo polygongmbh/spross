@@ -16,13 +16,15 @@ One line per item, with a file or context pointer, filed under the section it be
 - Phrase→component auto-linking gaps: ~half of phrases carry no `components`
   (naive matcher — `catalog/README.md` § concepts.json).
 - Pronunciation coverage is partial and uneven — 200/402 de single words, 280/384 sw,
-  304/399 uk carry a recording (`catalog/audio/`), and NO phrase carries one: the packs
-  only ever matched single-word realizations, leaving ~126 phrases per language to TTS
-  (silent on sw-iOS, which has no voice). What Commons never had is listed per pack in
-  `data/reference/audio/pack-*/missing.txt` (de 171, uk 37, sw 17); gap-filling
+  304/399 uk, 310/339 es carry a recording (`catalog/audio/`), and NO phrase carries one:
+  the packs only ever matched single-word realizations, leaving ~126 phrases per language
+  to TTS (silent on sw-iOS, which has no voice). What Commons never had is listed per pack
+  in `data/reference/audio/pack-*/missing.txt` (de 171, uk 37, sw 17, es 29); gap-filling
   (commissioning or a paid voice) is a content project, scoped in that folder's README.
-- Each language speaks with one voice: sw and uk are a single speaker throughout, de is
-  half one (104 of 200) — one accent, one register, one microphone per language — and uk
+- Voice consistency varies by pack: sw and uk are a single speaker throughout, de is
+  half one (104 of 200) — one accent, one register, one microphone — while es is a crowd
+  of 19 Lingua Libre speakers in 20 credit groups, none with a stated country or variety
+  (`data/reference/audio/pack-es/ATTRIBUTION.md` carries the accent caveat); and uk
   `ь` has no letter recording at all (32/33).
 - The alphabet files are LLM-authored and await a native-speaker sweep of every hint and
   every letter name (`catalog/alphabet/uk.json`, `catalog/alphabet/de.json`): 12 open
@@ -33,6 +35,22 @@ One line per item, with a file or context pointer, filed under the section it be
   O-Umlaut / U-Umlaut, which no source prescribed). Each is written up with its evidence
   in `data/orchestration/audio-langs-2026-07/alphabet-drafts/*-notes.md`; method as ever
   in `../../docs/sprachposter-learnings.md`.
+- The es catalog (528 realizations in `catalog/*/es.json`) is LLM-authored against the
+  German anchor and owes its native-speaker sweep — explicit debt per the build's decision
+  record: a 20-pick priority queue the authors themselves flagged lowest-confidence
+  (`admin/office`, `work/leave`, `kitchen/reheat`, `bedroom/cuddle` lead it), ~24 medium
+  flags, and 49 recorded per-area disputes, the author's choice standing in the JSON in
+  every case. Queue, disputes and evidence:
+  `data/orchestration/audio-langs-2026-07/es-content/final/REPORT.md` §5 (hand a native
+  speaker §5 A first) and the seven `drafts/*-notes.md` "Review disputes" sections;
+  method `../../docs/sprachposter-learnings.md`. Separate from the sweep, five
+  cross-cutting rulings stay with the catalog owner (REPORT §5 C): C2 `desk/internet`
+  ships without `gender` (deliberate), C3 cross-gender synonyms sit under the wrong
+  article tint (15 pairs; 5 more lexemes were demoted to variants over it), C6 `variants`
+  doubles as a demotion bucket for genuine second lexemes, C7 whether Tatoeba-verbatim
+  strings are banned, C8 cross-area accept-set overlaps. Already ruled and shipped:
+  C1 (`los`/`las` on the three pluralia tantum), C4 (area titles as authored),
+  C5 (a leading `¿`/`¡` folds away in grading and in the audio lookup).
 - The Spanish alphabet (`catalog/alphabet/es.json`) is the same LLM authoring and owes the
   same sweep, with 15 questions of its own: whether the ll/y merger may be taught as flatly
   as it is (yeísmo is standard, but ʎ survives in rural Castile), which jota a Spanish voice
@@ -108,10 +126,10 @@ One line per item, with a file or context pointer, filed under the section it be
 - Android carries its own unrelated palette (`android/.../ui/Theme.kt`) that never went
   through the contrast pass — it predates the ocean/forest re-cut and shares no values
   with `Design/Theme.swift`.
-- Audio ships un-thinned: `catalog/audio/` is 19 MB (de 4.9, sw 5.2, uk 9.0) and BOTH
-  installs carry all of it — the iOS folder reference and the Android catalog sync copy
-  the tree whole — so a Swahili learner downloads 14 MB of German and Ukrainian they can
-  never hear. Per-language delivery (on-demand resources / Play asset packs) would cut
+- Audio ships un-thinned: `catalog/audio/` is 26 MB (de 4.9, es 7.2, sw 5.2, uk 9.0) and
+  BOTH installs carry all of it — the iOS folder reference and the Android catalog sync
+  copy the tree whole — so a Swahili learner downloads 21 MB of German, Spanish and
+  Ukrainian they can never hear. Per-language delivery (on-demand resources / Play asset packs) would cut
   the install to the target actually being learned; measure the real per-platform delta
   before choosing a mechanism.
 
@@ -120,7 +138,8 @@ One line per item, with a file or context pointer, filed under the section it be
 - CC BY-SA vs App Store DRM, open before the FIRST submission:
   §2(a)(5)(B) of the licence forbids applying "Effective Technological Measures" to the
   shared material, and every App Store binary is FairPlay-encrypted — all of sw,
-  the uk letters and half of de ship under BY-SA (`catalog/audio/`, credits screen).
+  the uk letters, half of de and 237 of the 310 es files ship under BY-SA
+  (`catalog/audio/`, credits screen).
   Attribution itself is covered (`App/Sources/Screens/CreditsView.swift`); this is the
   second obligation. Mitigation on record: publish the same per-language files at a
   public un-DRM'd URL, which the `catalog/audio/<lang>/` split already prepares.
