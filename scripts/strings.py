@@ -49,7 +49,7 @@ CATEGORIES = {'de': ('one', 'other'), 'en': ('one', 'other')}
 UNEXTRACTABLE = {
     'heute.session.start',
     'grammar.plural.equals', 'grammar.plural.only', 'grammar.plural %@',
-    'grammar.also %@', 'session.answer.placeholder %@',
+    'grammar.also %@', 'session.answer.placeholder %@', 'session.copy.placeholder %@',
     'lang.de', 'lang.en', 'lang.sw', 'lang.uk',
 }
 
