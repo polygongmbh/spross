@@ -16,6 +16,14 @@ internal data class AudioRecording(
     val source: String,
     /** Hex digest of the shipped bytes — lint re-hashes the file against it. */
     val sha256: String,
+    /**
+     * The ANALYSIS INDEX: dB from the catalog's analysis target, and dead air at the head
+     * in ms. Both are MEASUREMENTS of the shipped bytes, never edits to them — the packs
+     * were recorded by different people and differ by up to 20 dB, and re-encoding is an
+     * adaptation under BY-SA. Absent in the manifest means 0, i.e. nothing to correct.
+     */
+    val gain: Double,
+    val leadMs: Long,
 )
 
 /**
@@ -37,20 +45,23 @@ internal class AudioManifest(
     /** lowercase glyph → recording, in manifest order. */
     val letters: Map<String, AudioRecording>,
 ) {
-    private val byExactForm: Map<String, String?> = index { nfcNormalized(it) }
-    private val bySpeechKey: Map<String, String?> = index { speechKey(it) }
-    private val byGlyph: Map<String, String> =
-        letters.entries.associate { (glyph, recording) -> nfcNormalized(glyph) to path(recording) }
+    private val byExactForm: Map<String, AudioRecording?> = index { nfcNormalized(it) }
+    private val bySpeechKey: Map<String, AudioRecording?> = index { speechKey(it) }
+    private val byGlyph: Map<String, AudioRecording> =
+        letters.entries.associate { (glyph, recording) -> nfcNormalized(glyph) to recording }
 
-    /** Catalog-relative path of the recording that speaks [visibleForm], else null. */
-    fun recordingPath(visibleForm: String): String? {
+    /** The recording that speaks [visibleForm], else null. */
+    fun recording(visibleForm: String): AudioRecording? {
         val exact = nfcNormalized(visibleForm)
         if (exact in byExactForm) return byExactForm[exact]
         return bySpeechKey[speechKey(visibleForm)]
     }
 
     /** The letter's recording, NFC-folded so a decomposed glyph still resolves. */
-    fun letterPath(glyph: String): String? = byGlyph[nfcNormalized(glyph)]
+    fun letterRecording(glyph: String): AudioRecording? = byGlyph[nfcNormalized(glyph)]
+
+    /** Catalog-relative path of one of this manifest's recordings ("audio/uk/office.mp3"). */
+    fun path(recording: AudioRecording): String = "audio/$language/${recording.file}"
 
     /**
      * (label, recording) for the credits screen, manifest order: words labelled by the
@@ -60,23 +71,28 @@ internal class AudioManifest(
         words.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
             letters.map { (glyph, recording) -> glyph to recording }
 
-    private fun path(recording: AudioRecording): String = "audio/$language/${recording.file}"
-
-    /** Spoken-form key → path, or → null where entries disagree about non-identical bytes. */
-    private fun index(key: (String) -> String): Map<String, String?> =
+    /** Spoken-form key → recording, or → null where entries disagree about non-identical bytes. */
+    private fun index(key: (String) -> String): Map<String, AudioRecording?> =
         words.values
             .mapNotNull { recording -> recording.matches?.let { key(it) to recording } }
             .groupBy({ (formKey, _) -> formKey }, { (_, recording) -> recording })
             .mapValues { (_, group) ->
                 // why: one recording fetched under two slugs is the same bytes twice, so
                 // either file speaks the right word; differing bytes have no right answer.
-                if (group.mapTo(mutableSetOf()) { it.sha256 }.size == 1) path(group.first()) else null
+                if (group.mapTo(mutableSetOf()) { it.sha256 }.size == 1) group.first() else null
             }
 }
 
 internal object AudioManifestParser {
-    private val WORD_KEYS = setOf("file", "matches", "licence", "licenceUrl", "author", "source", "sha256")
+    private val WORD_KEYS =
+        setOf("file", "matches", "licence", "licenceUrl", "author", "source", "sha256", "gain", "lead")
     private val LETTER_KEYS = WORD_KEYS - "matches"
+
+    /** The converter clamps here: past 10× amplitude the index is likelier wrong than the file. */
+    private const val GAIN_LIMIT_DB = 20.0
+
+    /** Five seconds of dead air is not a lead-in, it is the wrong recording. */
+    private const val LEAD_LIMIT_MS = 5_000L
 
     fun parse(path: String, text: String, expectedLanguage: Language): AudioManifest {
         val root = parseJson(path, text).obj(path, "root")
@@ -112,6 +128,8 @@ internal object AudioManifestParser {
                 author = entry.requireNonBlank(path, context, "author"),
                 source = entry.requireNonBlank(path, context, "source"),
                 sha256 = entry.requireNonBlank(path, context, "sha256"),
+                gain = entry.gain(path, context),
+                leadMs = entry.leadMs(path, context),
             )
         }
     }
@@ -120,4 +138,22 @@ internal object AudioManifestParser {
         requireString(path, context, key).also {
             if (it.isBlank()) parseError(path, "$context: blank \"$key\"")
         }
+
+    /** Absent means the recording already sits at the analysis target. */
+    private fun JsonObject.gain(path: String, context: String): Double {
+        val gain = optionalDouble(path, context, "gain") ?: return 0.0
+        if (gain !in -GAIN_LIMIT_DB..GAIN_LIMIT_DB) {
+            parseError(path, "$context: gain $gain dB is outside ±$GAIN_LIMIT_DB")
+        }
+        return gain
+    }
+
+    /** Absent means the recording starts speaking at once. */
+    private fun JsonObject.leadMs(path: String, context: String): Long {
+        val lead = optionalLong(path, context, "lead") ?: return 0
+        if (lead !in 0..LEAD_LIMIT_MS) {
+            parseError(path, "$context: lead $lead ms is outside 0..$LEAD_LIMIT_MS")
+        }
+        return lead
+    }
 }

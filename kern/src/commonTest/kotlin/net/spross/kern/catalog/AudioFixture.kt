@@ -6,6 +6,10 @@ package net.spross.kern.catalog
  * values, pinned by `CatalogAudioFixtureTest`; between them the entries carry every
  * reachability class of README §11 (exact, caseless, NFD/NFC, edge punctuation, stem
  * dash) plus both collision shapes.
+ *
+ * The analysis index appears in all three of its states: a boost with a lead skip (the uk
+ * letters, which is what it exists for), an attenuation on a loud word (`sw` door), and
+ * absent altogether, which has to read back as 0/0.
  */
 internal object AudioFixture {
     private const val BY_SA = "https://creativecommons.org/licenses/by-sa/4.0/"
@@ -36,7 +40,8 @@ internal object AudioFixture {
             { "language": "sw",
               "words": {
                 "door":   { "file": "door.mp3", "matches": "mlango", "licence": "CC BY-SA 4.0",
-                            "licenceUrl": "$BY_SA", "author": "Juma", "source": "Sw-mlango.ogg", "sha256": "s1" },
+                            "licenceUrl": "$BY_SA", "author": "Juma", "source": "Sw-mlango.ogg", "sha256": "s1",
+                            "gain": -5.4, "lead": 41 },
                 "mouse":  { "file": "mouse.mp3", "matches": "panya", "licence": "CC BY-SA 4.0",
                             "licenceUrl": "$BY_SA", "author": "Juma", "source": "Sw-panya.ogg", "sha256": "s2" },
                 "waiter": { "file": "waiter.mp3", "matches": "Panya", "licence": "CC BY-SA 4.0",
@@ -51,9 +56,11 @@ internal object AudioFixture {
                            "licenceUrl": "$BY", "author": "Halyna", "source": "Uk-миша.ogg", "sha256": "u2" } },
               "letters": {
                 "ж": { "file": "letters/u0436.mp3", "licence": "CC BY-SA 4.0", "licenceUrl": "$BY_SA",
-                       "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "u3" },
+                       "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "u3",
+                       "gain": 20.0, "lead": 1069 },
                 "і": { "file": "letters/u0456.mp3", "licence": "CC BY-SA 4.0", "licenceUrl": "$BY_SA",
-                       "author": "Tabrus", "source": "Іі – ukrainian.ogg", "sha256": "u4" } } }
+                       "author": "Tabrus", "source": "Іі – ukrainian.ogg", "sha256": "u4",
+                       "gain": 12.5, "lead": 604 } } }
         """.trimIndent(),
     )
 

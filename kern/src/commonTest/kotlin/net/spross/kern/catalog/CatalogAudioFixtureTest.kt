@@ -3,6 +3,7 @@ package net.spross.kern.catalog
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -37,6 +38,71 @@ class CatalogAudioFixtureTest {
         // Public-domain files have no deed to link.
         assertNull(catalog.audio.getValue("uk").words.getValue("door").licenceUrl)
     }
+
+    // -- the analysis index ------------------------------------------------------------
+
+    @Test
+    fun theIndexIsReadWhereItIsAuthoredAndZeroWhereItIsNot() {
+        val letter = catalog.audio.getValue("uk").letters.getValue("ж")
+        assertEquals(20.0, letter.gain) // quiet: boosted toward the target
+        assertEquals(1069L, letter.leadMs)
+        val loud = catalog.audio.getValue("sw").words.getValue("door")
+        assertEquals(-5.4, loud.gain) // loud: the same field, the other sign
+        assertEquals(41L, loud.leadMs)
+        // Absent is not "unknown" — it is a recording with nothing to correct.
+        val plain = catalog.audio.getValue("uk").words.getValue("mouse")
+        assertEquals(0.0, plain.gain)
+        assertEquals(0L, plain.leadMs)
+    }
+
+    @Test
+    fun aWordCarriesItsIndexToThePronunciation() {
+        val spoken = catalog.pronunciation("sw", "-mlango")
+        assertEquals(-5.4, spoken.gain)
+        assertEquals(41L, spoken.leadMs)
+        // Nothing to play means nothing to correct, not a stale index from elsewhere.
+        val synthesized = catalog.pronunciation("de", "Kellnerin")
+        assertNull(synthesized.recordingPath)
+        assertEquals(0.0, synthesized.gain)
+        assertEquals(0L, synthesized.leadMs)
+    }
+
+    @Test
+    fun aLetterCarriesItsIndexBesideItsPath() {
+        val letter = assertNotNull(catalog.letterRecording("uk", "ж"))
+        assertEquals("audio/uk/letters/u0436.mp3", letter.path)
+        assertEquals(20.0, letter.gain)
+        assertEquals(1069L, letter.leadMs)
+        assertNull(catalog.letterRecording("uk", "ь")) // no recording exists
+        assertNull(catalog.letterRecording("en", "ж")) // no manifest at all
+    }
+
+    @Test
+    fun anIndexOutsideMeasurementRangeIsAParseError() {
+        for ((field, value) in listOf("gain" to "20.1", "gain" to "-40", "lead" to "5001", "lead" to "-1")) {
+            val error = assertFailsWith<CatalogFormatException>("$field=$value was accepted") {
+                AudioFixture.catalogWith("audio/uk/manifest.json", letterManifest("\"$field\": $value"))
+            }
+            assertTrue(field in error.message.orEmpty(), error.message.orEmpty())
+        }
+    }
+
+    @Test
+    fun anIndexThatIsNotANumberIsAParseError() {
+        // A quoted measurement is a generator bug, and a fractional millisecond is another.
+        for (authored in listOf("\"gain\": \"20.0\"", "\"lead\": 1069.5")) {
+            assertFailsWith<CatalogFormatException>("$authored was accepted") {
+                AudioFixture.catalogWith("audio/uk/manifest.json", letterManifest(authored))
+            }
+        }
+    }
+
+    private fun letterManifest(index: String): String =
+        """
+        { "language": "uk",
+          "letters": { "ж": { "file": "letters/u0436.mp3", "licence": "Public domain",
+                              "author": "Tabrus", "source": "s.ogg", "sha256": "u3", $index } } }
+        """.trimIndent()
 
     @Test
     fun unknownKeysAreRejectedWithTheirPath() {

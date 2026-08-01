@@ -34,8 +34,26 @@ fun speechKey(form: String): String {
 fun utterance(form: String): String = form.trim().removePrefix("-").trim()
 
 /**
+ * How a bundled recording is PLAYED — the measured half of the manifest, beside the
+ * provenance half the credits screen reads. The packs come from different people on
+ * different equipment and share no loudness, and the uk letters open with a second of dead
+ * air before they speak; re-encoding them is an adaptation under BY-SA, so the shipped
+ * bytes stay the untouched Commons transcode and the correction travels as MEASUREMENT
+ * DATA applied at playback. Whether a player realizes [gain] by boosting or by attenuating
+ * is its own business: the number means the same either way, and 0/0 is "play as it is".
+ */
+interface AudioIndex {
+    /** Decibels from the catalog's analysis target: positive is quiet, negative is loud. */
+    val gain: Double
+
+    /** Dead air at the head of the file, in ms — start here and the recording speaks at once. */
+    val leadMs: Long
+}
+
+/**
  * What to say for one target form, resolved against the bundled recordings.
- * Recordings are canonical; [recordingPath] null means the app speaks [utterance] live.
+ * Recordings are canonical; [recordingPath] null means the app speaks [utterance] live,
+ * and then the index is 0/0 — a synthesizer needs no correcting.
  */
 data class Pronunciation( // data class: Swift sees value equality
     /** The form as it stands on the card — a rotated synonym prompts as itself. */
@@ -44,7 +62,21 @@ data class Pronunciation( // data class: Swift sees value equality
     val lang: Language,
     /** Catalog-relative path of the recording ("audio/uk/office.mp3"), null → synthesize. */
     val recordingPath: String?,
-)
+    override val gain: Double = 0.0,
+    override val leadMs: Long = 0,
+) : AudioIndex
+
+/**
+ * A letter's recording and how to play it — the letters' [Pronunciation], which they cannot
+ * share: what is written (р) and what is said («ер») are different strings, so the manifest
+ * is addressed by the glyph and the NAME belongs to the alphabet file, not to audio.
+ */
+data class LetterRecording(
+    /** Catalog-relative path ("audio/uk/letters/u0440.mp3"). */
+    val path: String,
+    override val gain: Double,
+    override val leadMs: Long,
+) : AudioIndex
 
 /** One credited recording: [label] is the form it speaks, or the letter's glyph. */
 data class AudioCreditFile(

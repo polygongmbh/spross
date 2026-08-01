@@ -125,16 +125,32 @@ class Catalog internal constructor(
      * speaks that form ([speechKey]); everything else falls to the app's synthesizer,
      * which is handed [Pronunciation.utterance]. Paths only: kern never reads audio bytes.
      */
-    fun pronunciation(lang: Language, visibleForm: String): Pronunciation =
-        Pronunciation(
+    fun pronunciation(lang: Language, visibleForm: String): Pronunciation {
+        val manifest = audio[lang]
+        val recording = manifest?.recording(visibleForm)
+        return Pronunciation(
             form = visibleForm,
             utterance = utterance(visibleForm),
             lang = lang,
-            recordingPath = audio[lang]?.recordingPath(visibleForm),
+            recordingPath = recording?.let { manifest.path(it) },
+            gain = recording?.gain ?: 0.0,
+            leadMs = recording?.leadMs ?: 0,
         )
+    }
 
-    /** The letter's recording, catalog-relative; null → the drill speaks its NAME instead. */
-    fun letterRecordingPath(lang: Language, glyph: String): String? = audio[lang]?.letterPath(glyph)
+    /**
+     * The letter's recording and how to play it; null → the drill speaks its NAME instead.
+     * The letters' half of [pronunciation] — they carry no visible form to look up.
+     */
+    fun letterRecording(lang: Language, glyph: String): LetterRecording? {
+        val manifest = audio[lang] ?: return null
+        val recording = manifest.letterRecording(glyph) ?: return null
+        return LetterRecording(manifest.path(recording), recording.gain, recording.leadMs)
+    }
+
+    /** Just the path, for the callers that only ask whether a letter CAN be played. */
+    fun letterRecordingPath(lang: Language, glyph: String): String? =
+        letterRecording(lang, glyph)?.path
 
     /**
      * The alphabet reference sheet's content for [lang], null where no file is authored.

@@ -609,12 +609,21 @@ day-key `yyyy-MM-dd`) with:
   Manifests are JSON text read through `CatalogSource` like every other catalog file;
   recording paths come back catalog-relative (`audio/uk/office.mp3`),
   and every player, synthesizer and voice table stays app-side.
+- **The analysis index is measurement data, never an edit** (user ruling 2026-08-01).
+  An entry may carry `gain` (dB from the catalog's analysis target) and `lead` (dead air at its head, ms),
+  and `Pronunciation`/`LetterRecording` carry both on as `AudioIndex` — 0/0 where the field is absent or nothing plays.
+  The mp3 bytes stay the untouched Commons transcode, because re-encoding is an adaptation under BY-SA;
+  the packs share no loudness and the uk letters open a second late, so what corrects them is a MEASUREMENT of the shipped bytes
+  which only the player applies.
+  What was measured, against which target and under which scheme is `scripts/audio-catalog.py`'s `ANALYSIS`;
+  the sha256 gate is untouched by any of it.
 - **Audio is exempt from the fingerprint.**
   `Catalog.load` reads the manifests through the RAW source, outside `FingerprintingSource`:
   recordings cannot change the join, so a refreshed pack must never restamp a `JoinStamp`
   and recompose a session that is already running.
-- Surface: `Catalog.pronunciation(lang, visibleForm) -> Pronunciation(form, utterance, lang, recordingPath?)`;
-  `Catalog.letterRecordingPath(lang, glyph)` for the letter drill
+- Surface: `Catalog.pronunciation(lang, visibleForm) -> Pronunciation(form, utterance, lang, recordingPath?, gain, leadMs)`;
+  `Catalog.letterRecording(lang, glyph) -> LetterRecording(path, gain, leadMs)` for the letter drill,
+  and `Catalog.letterRecordingPath` for the callers that only ask whether a letter can be played at all
   (the recording speaks the letter's NAME — the name string itself is the alphabet file's, and the manifest's
   `letters` section is the only home of letter audio and its licence data);
   `Catalog.audioCredits() -> [AudioCredit]`, grouped per (language, author, licence) with per-file rows.
