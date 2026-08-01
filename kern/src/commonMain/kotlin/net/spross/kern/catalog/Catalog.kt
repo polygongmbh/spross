@@ -19,9 +19,28 @@ class Catalog internal constructor(
     val fingerprint: String,
     /** Keyed by language, only where `audio/<lang>/manifest.json` exists. */
     internal val audio: Map<Language, AudioManifest>,
+    /** Keyed by language, only where `alphabet/<lang>.json` exists — the drill's registry. */
+    internal val alphabets: Map<Language, Alphabet>,
 ) {
     /** Flattened default area order (groups top-to-bottom, areas as listed). */
     val areaNames: List<String> = areas.map { it.name }
+
+    /** slug → the one concept that owns it, built once (slugs are globally unique). */
+    private val slugIndex: Map<String, CatalogSlug> = buildMap {
+        for (area in areas) {
+            for (concept in area.concepts) {
+                put(
+                    concept.slug,
+                    CatalogSlug(
+                        emoji = concept.emoji,
+                        realizations = area.realizations.mapNotNull { (lang, words) ->
+                            words[concept.slug]?.let { lang to it }
+                        }.toMap(),
+                    ),
+                )
+            }
+        }
+    }
 
     fun areaTitle(area: String, lang: Language): String? =
         areas.firstOrNull { it.name == area }?.titles?.get(lang)
@@ -118,6 +137,33 @@ class Catalog internal constructor(
     fun letterRecordingPath(lang: Language, glyph: String): String? = audio[lang]?.letterPath(glyph)
 
     /**
+     * The alphabet reference sheet's content for [lang], null where no file is authored.
+     * File presence IS the registry: adding a language's alphabet is dropping a file.
+     */
+    fun alphabet(lang: Language): Alphabet? = alphabets[lang]
+
+    /**
+     * The entry's example word in the ALPHABET's own language — what the drill speaks and
+     * gaps. Source-independent by design: the example must exist no matter who is reading,
+     * so the join is never consulted. Null → the caller falls back to
+     * [AlphabetEntry.exampleText], which carries no slug and therefore no recording.
+     */
+    fun alphabetExample(entry: AlphabetEntry, lang: Language): AlphabetExample? {
+        val slug = entry.exampleSlug ?: return null
+        val concept = slugIndex[slug] ?: return null
+        val text = concept.realizations[lang]?.text ?: return null
+        return AlphabetExample(slug, text, concept.emoji)
+    }
+
+    /**
+     * What the example word MEANS to a reader of [lang] — null whenever that language does
+     * not realize the concept. The sheet then omits the meaning line: graceful
+     * degradation, never an error (an alphabet is not a join).
+     */
+    fun exampleMeaning(slug: String, lang: Language): String? =
+        slugIndex[slug]?.realizations?.get(lang)?.text
+
+    /**
      * Attribution for every bundled recording, grouped by (language, author, licence) —
      * BY and BY-SA cannot share a notice, so the groups ARE the credit rows. Derived from
      * the shipped manifests, so the surface can never credit what is not bundled. Order is
@@ -184,7 +230,13 @@ class Catalog internal constructor(
                 val path = "audio/$lang/manifest.json"
                 source.read(path)?.let { lang to AudioManifestParser.parse(path, it, lang) }
             }.toMap()
-            return Catalog(groups, languages, areas, tracked.fingerprint(), audio)
+            // why: TRACKED, unlike audio — an alphabet is content, so editing one recomposes
+            // a running session once on upgrade, which is the designed behavior.
+            val alphabets = languages.keys.mapNotNull { lang ->
+                val path = "alphabet/$lang.json"
+                tracked.read(path)?.let { lang to AlphabetParser.parse(path, it, lang, languages.keys) }
+            }.toMap()
+            return Catalog(groups, languages, areas, tracked.fingerprint(), audio, alphabets)
         }
     }
 }
