@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+- **New words no longer dry up after a run of hard answers**: the box handed out fewer of them
+  the more words you had recently got wrong, down to a trickle of two — so exactly the stretch
+  where variety helps most was the stretch it withheld. Growth is now paced only by what a
+  round can hold and by how far behind the reviews have fallen. The setting for it is gone
+  with it: it named a quantity shown nowhere and steered on the wrong signal.
+- **A quiet day offers a mix instead of a wall of new words**: with nothing due, a round now
+  balances words coming due tomorrow against first sights, and is new words alone only when
+  nothing is coming due at all. A day counts as done after a full round rather than a single
+  answer.
+- **The start screen names what the round actually holds**: a round carried by words pulled
+  forward was announced as an offer of new words, sometimes with none in it. Reviews, a
+  warm-up and an offer of Frischlinge now read as the three different things they are, each
+  with wording that varies with the round.
+
 ## 2.4.1 — 2026-08-01
 
 - **A word you are only asked to recognise is no longer typed back at you**: saying you

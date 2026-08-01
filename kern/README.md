@@ -159,10 +159,8 @@ v1 calibration restored (one schedule per card ⇒ one review touches one card):
 
 | Quantity | Default (all in cards) |
 |---|---|
-| `maxUnsettled` (active cards that have not settled — §6) | 20 |
-| `sessionCap` / `dueSoftCap` | 30 / 30 |
+| `sessionCap` / `dueSoftCap` | 25 / 30 |
 | `growthReserve` | ≤ 5 |
-| `Growth.TRICKLE_CARDS` (the floor under the new-word budget) | 2 |
 | `SessionComposer.SESSION_FLOOR_CARDS` (a round worth sitting down for — §6) | 7 |
 | `SessionComposer.NEW_CARDS_PER_ROUND` (first sights one round may offer — §6) | 7 |
 | `TodayReport.MIN_ANSWERS_FOR_RECALL` / `RECALL_STRAIN_MARGIN` (§6) | 10 / 0.2 |
@@ -250,34 +248,24 @@ day-key `yyyy-MM-dd`) with:
   equality is what says today's run IS the record.
 - **Introduction is the card's first answer** (v1 semantics; the unit-era eligibility lag
   and one-per-plan rules are gone with the unit model). `enqueued` holds card ids;
-  enqueued cards lead composition, bypass the health gate, respect the new-word budget,
+  enqueued cards lead composition, bypass the health gate, respect the per-round cap,
   and dequeue at introduction.
   Zero-component phrases follow seed order, never the unlock fast path (v1 rule restated).
-- **The new-word budget measures unsettled LOAD, not headcount**:
-  `Growth.newBudget = max(TRICKLE_CARDS, maxUnsettled − unsettledLoad)`, where
-  `unsettledLoad` counts active cards that have not settled (§5).
-  The old learning pool counted cards in the Learning phase, which measured how many cards
-  were started rather than how much was in flight: eight words the learner already knew
-  filled it exactly as eight that would not stick.
-  Words answered on sight settle at once and now cost the budget nothing, so easy material
-  keeps the way open, while a pile at low stability closes growth down to a trickle rather
-  than dead — a session with nothing new in it is a grind on the very words that are not
-  landing.
-  `maxUnsettled = 0` is the one way to stop growth entirely: it reads as the learner saying
-  "stop", and the trickle must not talk over that.
-- **A round offers at most `NEW_CARDS_PER_ROUND` first sights** (user ruling 2026-07-31):
-  the budget measures how much may be *in flight*, and a box with nothing in flight opens it
-  to nearly `maxUnsettled` — a rested learner was handed twenty unseen words in one plan,
-  which reads as a wall rather than an offer.
-  The ceiling is a round's worth, the size `SESSION_FLOOR_CARDS` measures a round to be,
-  and it applies to every composed round (today's, endless, the extra round) including
-  enqueued cards, since a packed queue overloads exactly the same way.
-  Nothing is withdrawn, only deferred: what the budget still allows is offered again next round.
-  `growthReserve` (≤ 5) is unchanged — it reserves slots against a full due queue,
-  it does not cap growth.
-- **Health gate = backlog only**: projected post-session backlog stays under `dueSoftCap`.
-  Time debt is a different axis from load; how much material is unsettled is the budget's
-  job, and `gatedNewBudget` is 0 while the gate is shut.
+- **Intake is bounded per round, and by nothing else**: a round offers at most
+  `NEW_CARDS_PER_ROUND` first sights — a round's worth, the size `SESSION_FLOOR_CARDS`
+  measures a round to be — across every composed round (today's, endless, the extra round)
+  including enqueued cards, since a packed queue overloads the same way.
+  Nothing is withdrawn, only deferred: the next round offers the rest again.
+  There is no cap on how much may be *in flight*. `maxUnsettled` used to impose one, read off
+  how many active cards sat below `settledStability`; that bar is cleared by a single Good,
+  so it counted the words answered WRONG and throttled breadth on a difficulty signal that
+  does not predict retention (`docs/growth-evidence.md`).
+  `growthReserve` (≤ 5) reserves slots against a full due queue, and only for candidates that
+  will actually appear — a box with nothing left to introduce hands every slot back to reviews.
+- **Health gate = backlog only**, and it is the ONE automatic brake: projected post-session
+  backlog stays under `dueSoftCap`, and growth is 0 while the gate is shut.
+  Time debt is the failure mode a breadth-first box actually risks; how shaky the material is
+  deliberately steers nothing.
 - **Phrase unlock** reads each component's schedule **by card id** — join- and
   source-independent, so a source switch can never re-lock phrases. Components with no
   TARGET realization are excluded from the gate (v1 unresolved-component semantics).
@@ -295,17 +283,22 @@ day-key `yyyy-MM-dd`) with:
   `SessionPlan.queue` is the run in order — due work, then warm-ups, then unseen words —
   and callers build their queue from it rather than concatenating the lists themselves.
 - **A round shorter than `SESSION_FLOOR_CARDS` is filled out** (user ruling 2026-07-30):
-  a loaded box throttles growth to `TRICKLE_CARDS`, and a couple of new words offered as
-  the day's work reads as the app having nothing to give.
+  two or three cards offered as the day's work reads as the app having nothing to give, so
   `composeSession` tops such a round up with reviews pulled forward, soonest due first —
-  honest FSRS reviews, never extra new words, because the budget that made the round small
-  is the one thing the floor must not talk over.
-  An empty plan is filled out too, but ONLY while the day has no reps in it yet
-  (user ruling 2026-07-30): a learner who has answered nothing today should always find a
-  round to do, so nothing due plus nothing done is a round pulled forward, not a closed box.
-  Once the day HAS been worked, an empty plan stays empty — re-filling it would make every
-  visit a treadmill and erase the spacing the engine exists to keep. `composeSession`
-  therefore takes `tzId`: "today" is a local-calendar question.
+  honest FSRS reviews, never extra new words, which are capped per round on purpose.
+- **A quiet day is built, not found** (user ruling 2026-08-01): with nothing due, half the
+  floor is held for cards coming due inside tomorrow and new words take the rest.
+  Pulling tomorrow's card forward costs almost no spacing; one due in three weeks burns real
+  spacing, which is why the reservation counts only that horizon.
+  Nothing due tomorrow also means nothing was recently missed — then the round is new words
+  alone. Reaching past tomorrow happens only when there is nothing new left, so an exhausted
+  catalog still opens a round instead of an empty screen.
+  A round is withheld in exactly one case: nothing due and the day already worked, where
+  worked means a round's worth of answers rather than a single tap. "Nothing more right now"
+  is a real answer, and manufacturing another round would make every visit a treadmill.
+  Cards the learner PACKED still enter then — that is an explicit ask, not automatic growth.
+  `composeSession` takes `tzId` for all of this: "today" and "tomorrow" are local-calendar
+  questions.
 - **`TodayReport`** (`BoxEngine.today`) is the day's own report: reviews and misses read
   live from the review logs (so the numbers hold mid-session), introductions and settled
   crossings from the day counters the engine books at answer time (`newIntroduced`,
@@ -559,11 +552,14 @@ day-key `yyyy-MM-dd`) with:
 - Two minute-scale learning steps (the reference `[1m, 10m]`): a retry that lands a handful
   of cards later is answered on novelty, not on the pair — the product runs one `[2m]` step,
   which outlasts a short sitting, so the retry starts the next one (§5).
-- The relearning-share sub-gate (< 20 % of active, once active ≥ 10): relearning cards are
-  unsettled by definition, so the load the new-word budget already reads subsumes it (§6);
-  the health gate keeps backlog, which is a different axis.
-- `AnswerStatus.DroppedPoolFull`: the budget never reaches zero on its own, so the
-  answer-time re-check could not fire (`maxUnsettled = 0` refuses at composition).
+- The relearning-share sub-gate (< 20 % of active, once active ≥ 10), and after it the whole
+  unsettled-load throttle it had been folded into (`maxUnsettled`, `TRICKLE_CARDS`, and the
+  learner-facing dial that set them): both steered growth by how shaky the material was, which
+  is a difficulty signal, not a retention one (`docs/growth-evidence.md`). The health gate
+  keeps backlog, which is the axis that matters.
+- `AnswerStatus.DroppedPoolFull`: intake is bounded per composed round, so there is nothing
+  for an answer-time re-check to refuse.
+- `BoxStatistics.newSlotsAvailable`: no surface ever read it.
 - `variantOf` (user ruling 2026-07-22: the 4 near-duplicate phrase twins were unified
   instead — base slug keeps an adapted realization; schema field deleted everywhere).
 - Homonym disambiguation as **content**: a per-realization `sense`/`gloss` string and a

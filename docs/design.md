@@ -40,8 +40,8 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
   an answered review is never only in memory.
 - **Calibration is re-applied from the build on every load**: learning steps, retention
   and caps are decisions the app version makes, so a box written months ago must not go
-  on answering to the numbers that shipped with it. `maxUnsettled` survives — it is the
-  one figure the learner sets themselves.
+  on answering to the numbers that shipped with it. Nothing survives it — growth pacing
+  is the engine's opinion, not a figure the learner tunes (`docs/growth-evidence.md`).
 - Swift 6 strict concurrency.
 
 ## Profile & onboarding
