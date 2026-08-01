@@ -111,6 +111,12 @@ never the shape of the app.
   passes for new again; a word that has not settled is typed with the answer in view.
   Encoding only, never a grade — the rating the self-grade already chose is applied
   unchanged, so self-grading still owns the schedule.
+  Production asks for it, and so does a first exposure — the review that teaches the word,
+  written once as it is met. A later recognition miss does not: the target has stood in
+  the prompt since the first frame, so copying it teaches nothing the reading did not,
+  and the next review asks for the word properly.
+  One write-out per miss, never two: giving up on a produce retry ends the card, because
+  that field already was the write-out.
 - **Finishing the word IS the answer**, when producing and when writing out alike:
   the field confirms itself the moment the letters line up and the card flips a beat
   later, so there is **no confirm button** to reach for. Backing out of a finished word

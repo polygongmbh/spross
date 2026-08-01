@@ -6,7 +6,8 @@ import SprossKern
 /// PRODUCE prompts the source side and grades typed target input
 /// ("Aufdecken" without typing falls back to self-grading);
 /// RECOGNIZE prompts one rotated target form and is reveal + self-grade
-/// only — never typed. Presented as a full-screen cover.
+/// only — never typed, bar the first exposure's write-it-out
+/// (SessionView+Copy.swift). Presented as a full-screen cover.
 struct SessionView: View {
     @Bindable var model: AppModel
 
@@ -224,9 +225,9 @@ struct SessionView: View {
     }
 
     /// A field is on screen only where there is something to type: produce
-    /// before its blank self-grade, and the copy step. Recognize is never
-    /// typed, so it shows none — iOS drops the keyboard for a hidden field
-    /// anyway, so pretending otherwise only cost reliable focus.
+    /// before its blank self-grade, and the copy step. Recognize brings up
+    /// none of its own — iOS drops the keyboard for a hidden field anyway, so
+    /// pretending otherwise only cost reliable focus.
     @ViewBuilder
     private func controls(_ card: Card, role: PresentationRole) -> some View {
         if copyPending != nil {

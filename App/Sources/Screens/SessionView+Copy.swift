@@ -14,8 +14,8 @@ import SprossKern
 extension SessionView {
 
     /// Only the TARGET language is ever copied; typing the word you already know
-    /// would teach nothing. On recognition the target sits in the prompt, on
-    /// production in the revealed answer — either way it is on screen.
+    /// would teach nothing. On the first exposure the target sits in the prompt,
+    /// on production in the revealed answer — either way it is on screen.
     private var copyText: String {
         guard let card = model.currentCard else { return "" }
         return card.target.text
@@ -110,9 +110,19 @@ extension SessionView {
         commit(rating)
     }
 
-    /// Whether this card's miss should ask for the word to be written out.
+    /// Whether this card's miss should ask for the word to be written out:
+    /// production, or the first exposure — the two moments where writing the
+    /// word is more than copying it back off the prompt.
+    ///
+    /// A first exposure is the word being TAUGHT, so it is written once as it is
+    /// met, and once per word ever. A later recognition miss is the target
+    /// standing on screen since the first frame: transcribing it teaches nothing
+    /// the reading did not, and the word is asked for properly next review,
+    /// which is production.
     func wantsCopyStep(_ rating: Rating, card: Card?) -> Bool {
         guard let card, rating == .again, !copyText.isEmpty else { return false }
+        guard model.presentationRole(for: card.id) == .produce
+                || model.isFirstExposure(card.id) else { return false }
         return !model.isSettled(card.id)
     }
 }

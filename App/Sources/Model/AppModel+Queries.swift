@@ -94,6 +94,12 @@ extension AppModel {
                                     reviewCount: scheduling(for: cardID)?.reviewCount ?? 0)
     }
 
+    /// Whether this card has never been answered — the review that TEACHES the
+    /// word rather than testing it (always recognition, contract §3).
+    func isFirstExposure(_ cardID: String) -> Bool {
+        (scheduling(for: cardID)?.reviewCount ?? 0) == 0
+    }
+
     /// Whether this card has settled — the fast bar behind presentation support.
     func isSettled(_ cardID: String) -> Bool {
         guard let box else { return false }

@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **A word you are only asked to recognise is no longer typed back at you**: saying you
+  did not know a target word asked for its spelling before moving on — with that same
+  word standing in the prompt above the field, so the answer was copied off the screen it
+  came from. Recognition now ends at the reveal and the self-grade, and the writing is
+  asked where it teaches something: producing a word, and meeting one for the first time,
+  which is written once as it is introduced. Giving up on a production retry also ends the
+  card now instead of opening a second field for the same word.
+
 ## 2.4.0 — 2026-07-31
 
 - **Missing a day no longer takes back the days before it**: the flame forgave a missed
