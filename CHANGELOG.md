@@ -11,6 +11,13 @@
   (*los auriculares*, *las vacaciones*) —, und wo eine Mehrzahl nicht zu erraten ist,
   steht auch sie dabei.
 
+- **Und der spanische Artikel hat seine Farbe**: *el* und *la* bekommen dieselben zwei
+  Farben, die *der* und *die* seit jeher tragen — Blau für das Männliche, Beerenrot für
+  das Weibliche; *los*, *las*, *un* und *una* gehen mit ihrem Geschlecht mit, und Grün
+  bleibt dem deutschen Neutrum, das es im Spanischen nicht gibt. So auf der Karte, auf
+  der Uhr und in jedem Widget. Auf Android steht der Artikel jetzt überhaupt zum ersten
+  Mal beim Wort — die Karte zeigte bisher nur das nackte Hauptwort.
+
 - **Buchstaben kannst du jetzt am Klang erkennen**: neben Zahlen, Uhrzeit und Sätzen steht
   im Training "Buchstaben" — eine Übung, die nichts zeigt und alles vorspricht. Du hörst
   einen Buchstabennamen und tippst den Buchstaben an: erst unter vieren, die nichts

@@ -223,7 +223,9 @@ never the shape of the app.
 Design language: warm, card-centric, emoji as illustration, article color coding
 der=blue / die=berry / das=green — degrading to neutral for languages without gendered
 articles. A two-gender language folds onto those same two hues rather than minting its own
-(es el/los/un blue, la/las/una berry, the neuter never reached).
+(es el/los/un blue, la/las/una berry, the neuter never reached). The article rendered is
+always the one `grammar.gender` names, prepended — never a word sliced off the front of the
+text, which carries the bare word in every language.
 Palette: stone-and-moss paper, clay headline, ocean and forest as secondaries
 (growing-box theme), every pairing clearing WCAG AA in both schemes.
 `App/Sources/Design/Theme.swift` holds the values and the rules that keep them there.

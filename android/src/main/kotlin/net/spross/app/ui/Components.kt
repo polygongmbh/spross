@@ -121,17 +121,21 @@ fun localizedTarget(text: AnnotatedString, lang: Language): AnnotatedString =
 fun localizedTarget(text: String, lang: Language): AnnotatedString =
     localizedTarget(AnnotatedString(text), lang)
 
-/** Leading article rendered in its color when the grammar carries a gender. */
+/**
+ * The citation form as one line — "el frigorífico" — with the leading article in its
+ * color where the grammar carries a gender.
+ *
+ * The article comes from `grammar.gender` and is PREPENDED; it is never sliced out of
+ * `text`, which carries the bare word in every language. Reading the first word as an
+ * article held only because German nouns are one word: es has 32 multi-word nouns, and
+ * *pasta de dientes* would have rendered its own head tinted as though *pasta* were an
+ * article. Genderless targets render exactly the text and nothing else.
+ */
 fun articleColoredText(realization: Realization): AnnotatedString {
-    val tint = articleTint(CardDisplay.gender(realization))
-    val firstSpace = realization.text.indexOf(' ')
+    val article = CardDisplay.gender(realization) ?: return AnnotatedString(realization.text)
     return buildAnnotatedString {
-        if (tint != null && firstSpace > 0) {
-            withStyle(SpanStyle(color = tint)) { append(realization.text.take(firstSpace)) }
-            append(realization.text.substring(firstSpace))
-        } else {
-            append(realization.text)
-        }
+        withStyle(SpanStyle(color = articleTint(article) ?: Color.Unspecified)) { append(article) }
+        append(" ${realization.text}")
     }
 }
 
