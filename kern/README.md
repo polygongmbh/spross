@@ -327,6 +327,20 @@ day-key `yyyy-MM-dd`) with:
   no-op (`AnswerStatus.StaleCard`) the UI skips past. `SessionPlan` carries a
   `joinStamp` (source, target, catalog fingerprint); the app recomposes when stale.
 - `setSuspended(cardId)` — per card, as v1.
+- **`BoxEngine.consolidatedCardIds(state)`** — the words a drill may practise, in seed order.
+  It reads through the join-filtered active inventory (scheduled, joining, not suspended) and
+  keeps what `Statistics.isConsolidated` accepts, so a lapse takes a card off the list on its
+  own: consolidation wants the Review phase, and a lapsed card sits in Relearning until it
+  earns the stability back.
+  The rule lives here rather than in each app because "which words does the learner already
+  hold" is an engine question — restated over `box.cards` on two platforms it would drift,
+  and it would drift silently, since a drill that practises a word too early only feels
+  slightly harder.
+  Seed order, not the due shuffle: a drill samples with its own `Random` and needs a list
+  that is stable under it, not a second ordering rule; the seedIndex tie-break on card id
+  keeps that order total.
+  The query never writes — drills are stateless and book no reviews (transcription is not
+  recall), so nothing here touches FSRS.
 - **Exposure**: one entry per card by construction (tiers as v1); display surfaces always
   render the TARGET realization.
 - **AnswerNormalizer contract** (produce only — recognition is button self-grade;
