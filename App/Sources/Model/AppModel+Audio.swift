@@ -30,4 +30,46 @@ extension AppModel {
     func pronunciationCue(for card: Card) -> PronunciationCue {
         SprossKern.pronunciationCue(role: presentationRole(for: card.id))
     }
+
+    // MARK: - Letters
+
+    /// A letter's NAME, out of the letters pack. The one lookup that is NOT
+    /// keyed by the visible form: what is written (р) and what is said («ер»)
+    /// are different strings, so the manifest is addressed by the glyph.
+    func letterPronunciation(name: String, glyph: String, lang: String) -> Pronunciation {
+        Pronunciation(form: name,
+                      utterance: SprossKern.utterance(form: name),
+                      lang: lang,
+                      recordingPath: catalog?.letterRecordingPath(lang: lang, glyph: glyph))
+    }
+
+    /// A visible target form, through the same matched-form lookup the review
+    /// cards use — a recording only ever plays over the word it actually says.
+    func formPronunciation(_ form: String, lang: String) -> Pronunciation? {
+        catalog?.pronunciation(lang: lang, visibleForm: form)
+    }
+
+    /// A form with NO recording looked up at all: the live voice reads what
+    /// stands on screen. For text carrying no slug (an `exampleText` escape
+    /// hatch) — a concept's recording may not be claimed for a different word.
+    func spokenPronunciation(_ form: String, lang: String) -> Pronunciation {
+        Pronunciation(form: form,
+                      utterance: SprossKern.utterance(form: form),
+                      lang: lang,
+                      recordingPath: nil)
+    }
+
+    /// What a letter-drill question SAYS, and out of which recording — the
+    /// task's provenance decides that, and nothing else.
+    func promptPronunciation(for task: LetterDrillTask) -> Pronunciation? {
+        switch task.promptKind {
+        case .name:
+            guard let glyph = task.promptGlyph else { return nil }
+            return letterPronunciation(name: task.promptText, glyph: glyph, lang: task.language)
+        case .word:
+            return formPronunciation(task.promptText, lang: task.language)
+        case .plainText:
+            return spokenPronunciation(task.promptText, lang: task.language)
+        }
+    }
 }

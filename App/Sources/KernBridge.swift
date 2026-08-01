@@ -89,6 +89,30 @@ extension DayStats {
     var reviewCount: Int { Int(reviews) }
 }
 
+/// Levels are `Int` everywhere in the drill UI; the ladder is Kotlin `Int`.
+/// Bridged HERE so no view ever writes `Int32(…)` around a rung number.
+extension LetterDrill {
+    func ceiling(dictation: Bool) -> Int { Int(maxLevel(dictationAvailable: dictation)) }
+
+    func entryLevel(settled: Int) -> Int { Int(entryLevel(settledCards: Int32(settled))) }
+
+    func winsToAdvance(settled: Int) -> Int { Int(winsToAdvance(settledCards: Int32(settled))) }
+
+    func stage(level: Int) -> LetterStage { stageFor(level: Int32(level)) }
+
+    func step(level: Int, winsAtLevel: Int, correct: Bool, clean: Bool,
+              maxLevel: Int, winsRequired: Int) -> LetterDrill.LetterDrillProgress {
+        advance(level: Int32(level), winsAtLevel: Int32(winsAtLevel),
+                correct: correct, clean: clean,
+                maxLevel: Int32(maxLevel), winsRequired: Int32(winsRequired))
+    }
+}
+
+extension LetterDrill.LetterDrillProgress {
+    var nextLevel: Int { Int(level) }
+    var wins: Int { Int(winsAtLevel) }
+}
+
 // MARK: - Config
 
 extension BoxConfig {
