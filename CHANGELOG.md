@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.4.1 — 2026-08-01
+
 - **A word you are only asked to recognise is no longer typed back at you**: saying you
   did not know a target word asked for its spelling before moving on — with that same
   word standing in the prompt above the field, so the answer was copied off the screen it
