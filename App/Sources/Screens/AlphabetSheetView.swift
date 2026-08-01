@@ -4,8 +4,10 @@ import SprossKern
 /// The alphabet of the language being learned, one card per row of
 /// `catalog/alphabet/<lang>.json`: the glyph with its capital, the letter's
 /// own name, its IPA, when it takes that value, what it sounds like, and an
-/// example word. Reading matter, not a drill — nothing here is graded, and
-/// nothing is spoken yet.
+/// example word — the name and the word each with a speaker beside them.
+/// Reading matter, not a drill: nothing here is graded, and nothing plays
+/// unasked. Every tap is a request, so it sounds even while reading aloud is
+/// switched off — nobody opens a reference sheet by accident.
 ///
 /// Rows are whatever the file holds, in authored order: single letters,
 /// digraphs (`sch`), the same glyph twice under different ids (`ch-ich` /
@@ -75,6 +77,16 @@ struct AlphabetSheetView: View {
         // glyph, name, context, hint, example. Thirty-five separate elements
         // to swipe through is not a reference sheet.
         .accessibilityElement(children: .combine)
+        // why: and because the row is one element, the two speakers inside it
+        // are row ACTIONS rather than targets to hunt for inside the label.
+        .accessibilityActions {
+            if let speak = speakName(entry) {
+                Button("alphabet.speakName", action: speak)
+            }
+            if let speak = speakExample(entry) {
+                Button("alphabet.speakExample", action: speak)
+            }
+        }
     }
 
     /// Glyph and capital large, the name beside it, the IPA trailing.
@@ -87,6 +99,9 @@ struct AlphabetSheetView: View {
                 Text(verbatim: name)
                     .font(DL.Fonts.body)
                     .foregroundStyle(Color.dlTextSecondary)
+            }
+            if let speak = speakName(entry) {
+                speakButton(speak)
             }
             Spacer(minLength: 0)
             if let ipa = entry.ipa {
@@ -137,12 +152,69 @@ struct AlphabetSheetView: View {
                         .font(DL.Fonts.subheadline)
                         .foregroundStyle(Color.dlTextSecondary)
                 }
+                Spacer(minLength: 0)
+                if let speak = speakExample(entry) {
+                    speakButton(speak)
+                }
             }
         } else if let text = entry.exampleText {
-            Text(verbatim: text)
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
+            HStack(alignment: .firstTextBaseline, spacing: DL.Space.s) {
+                Text(verbatim: text)
+                    .font(DL.Fonts.headline)
+                    .foregroundStyle(Color.dlTextPrimary)
+                Spacer(minLength: 0)
+                if let speak = speakExample(entry) {
+                    speakButton(speak)
+                }
+            }
         }
+    }
+
+    // MARK: - Hearing a row
+
+    /// The letter's own NAME — «ер», never the bare glyph, which a synthesizer
+    /// reads as anything from a spelling alphabet to a pause. The letters pack
+    /// answers it where one exists; the voice where it does not.
+    private func speakName(_ entry: AlphabetEntry) -> (() -> Void)? {
+        guard let name = entry.name else { return nil }
+        return play(model.letterPronunciation(name: name,
+                                              glyph: entry.glyph.lowercased(),
+                                              lang: language))
+    }
+
+    /// The example word, under the same provenance rule the drill follows: a
+    /// concept's realization may be answered by that concept's recording, an
+    /// `exampleText` by nothing — it carries no slug to look one up with.
+    private func speakExample(_ entry: AlphabetEntry) -> (() -> Void)? {
+        if let example = model.catalog?.alphabetExample(entry: entry, lang: language) {
+            return play(model.formPronunciation(example.text, lang: language))
+        }
+        return entry.exampleText.flatMap { play(model.spokenPronunciation($0, lang: language)) }
+    }
+
+    /// A tap that sounds — nil where the device can neither play nor speak the
+    /// form, so the speaker is absent rather than dead.
+    private func play(_ pronunciation: Pronunciation?) -> (() -> Void)? {
+        guard let pronunciation else { return nil }
+        let url = model.audioURL(pronunciation.recordingPath)
+        guard Pronouncer.shared.canPronounce(pronunciation, recordingURL: url) else { return nil }
+        // why: `.tap` — an explicit request is heard even while reading aloud
+        // is switched off, exactly as tapping a word on a card is.
+        return { Pronouncer.shared.pronounce(pronunciation, recordingURL: url, trigger: .tap) }
+    }
+
+    /// Hidden from VoiceOver on purpose: the row is one element, and hearing
+    /// it is offered as a row action instead (`accessibilityActions`).
+    private func speakButton(_ action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: "speaker.wave.2.fill")
+                .font(DL.Fonts.subheadline)
+                .foregroundStyle(Color.dlAccent)
+                .frame(width: 44, height: 44)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityHidden(true)
     }
 
     // MARK: - Catalog reads

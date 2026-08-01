@@ -289,6 +289,38 @@
         }
       }
     },
+    "alphabet.speakExample" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beispiel anhören"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hear the example"
+          }
+        }
+      }
+    },
+    "alphabet.speakName" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name anhören"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hear the name"
+          }
+        }
+      }
+    },
     "alphabet.title %@" : {
       "localizations" : {
         "de" : {

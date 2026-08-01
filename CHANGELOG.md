@@ -7,8 +7,9 @@
   groß und klein, sein Name, seine Lautschrift, wann er wie klingt, und ein Beispielwort
   samt Bedeutung, wo deine Sprache das Wort auch kennt. Für Ukrainisch das ganze Alphabet,
   mitsamt Apostroph und der Regel, dass am Wortende nichts hart wird; für Deutsch die
-  Buchstaben und Buchstabenpaare, die täuschen: sch, ei/ie, die drei ch, v, ß/ss. Zu hören
-  ist noch nichts — das kommt mit der Buchstaben-Übung.
+  Buchstaben und Buchstabenpaare, die täuschen: sch, ei/ie, die drei ch, v, ß/ss. Neben
+  jedem Namen und jedem Beispielwort steht ein Lautsprecher: einmal tippen, und du hörst,
+  wie der Buchstabe heißt und wie das Wort klingt — auch bei ausgeschaltetem Vorlesen.
 
 - **Wörter werden jetzt vorgelesen**: eine Karte sagt das Wort, das sie zeigt — mit
   Aufnahmen echter Sprecherinnen und Sprecher, wo es welche gibt, und sonst mit der Stimme
