@@ -174,8 +174,16 @@ Realization fields — only `text` is required:
   reveal teaches, and `synonyms` are what rotate beside it.
   Author them for reach, not for display: a form that deserves to be seen is a synonym.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
-  labels, no `(selten)` qualifier), one fact per key: de `gender` + `plural`,
+  labels, no `(selten)` qualifier), one fact per key: de and es `gender` + `plural`,
   sw `plural`, en `plural`, uk `plural`. Omit if empty.
+  `gender` is the ARTICLE the learner says, and always one the language declares
+  in `languages.json` — de der/die/das, es el/la, and `los`/`las` on the nouns
+  whose article genuinely IS the plural one (los auriculares, las vacaciones).
+  That is not decoration: grading reads it back as an article and demotes an
+  otherwise exact answer whose PRESENT leading article disagrees, so a singular
+  article on a plural-only noun would mark the one right answer a typo.
+  Omit `gender` where the language allows both and neither is taught
+  (es `internet`, which RAE writes without an article).
   `plural` is a bare full form (`"Wörter"`), a suffix (`"-n"`, `"-nen"`),
   `"="` (identical to the singular → render `"= Pl."`), or
   `"only"` (pluralia tantum, no singular → render `"nur Pl."`).

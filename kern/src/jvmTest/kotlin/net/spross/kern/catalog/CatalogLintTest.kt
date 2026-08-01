@@ -296,13 +296,33 @@ class CatalogLintTest {
         )
     }
 
+    /**
+     * Plural articles, per language that authors `gender` — not derivable, since German's
+     * is homographic with the feminine singular and no shipped noun tells the uses apart.
+     */
+    private val pluralArticles = mapOf("de" to setOf("die"), "es" to setOf("los", "las"))
+
+    /**
+     * Bare values, no labels — plus the closed domain `gender` carries. It IS the article
+     * the learner says, so it must be one the language declares, and on a `plural: "only"`
+     * noun it must be the plural one: grading reads the value back and demotes an answer
+     * whose PRESENT leading article disagrees, so a singular `el` on *auriculares* marks
+     * the only right answer, `los auriculares`, a typo. That is what makes es
+     * el/la/los/las the same rule as de's der/die/das rather than a de-shaped exception.
+     */
     @Test
-    fun grammarValuesAreBareAndTrimmed() {
+    fun grammarValuesAreWellFormed() {
         forEachRealization { area, lang, slug, raw ->
             for ((key, value) in raw.grammar) {
                 val where = "$area/$lang.json $slug.$key"
                 assertTrue(value.isNotBlank() && value.trim() == value, "$where: bad value \"$value\"")
                 assertTrue(!value.startsWith("Pl."), "$where: labeled value \"$value\"")
+            }
+            val gender = raw.grammar["gender"] ?: return@forEachRealization
+            val where = "$area/$lang.json $slug.gender"
+            assertTrue(gender in catalog.languages.getValue(lang).articles, "$where: no declared $lang article")
+            if (raw.grammar["plural"] == "only") {
+                assertTrue(gender in pluralArticles[lang].orEmpty(), "$where: \"$gender\" is not plural")
             }
         }
     }

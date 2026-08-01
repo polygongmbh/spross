@@ -7,7 +7,9 @@
   vierzehn Bereichen, von den ersten Worten bis zum Amt. Gelernt wird das Spanisch Spaniens:
   "¿Cómo dice?", nicht die lateinamerikanische Form — die gilt als Antwort trotzdem, wie auch
   das umgangssprachliche Wort neben dem, das die Karte zeigt. Zu jedem Hauptwort steht sein
-  Artikel, *el* oder *la*, und wo eine Mehrzahl nicht zu erraten ist, steht auch sie dabei.
+  Artikel — *el* oder *la*, und *los*/*las* bei den Wörtern, die es nur im Plural gibt
+  (*los auriculares*, *las vacaciones*) —, und wo eine Mehrzahl nicht zu erraten ist,
+  steht auch sie dabei.
 
 - **Buchstaben kannst du jetzt am Klang erkennen**: neben Zahlen, Uhrzeit und Sätzen steht
   im Training "Buchstaben" — eine Übung, die nichts zeigt und alles vorspricht. Du hörst

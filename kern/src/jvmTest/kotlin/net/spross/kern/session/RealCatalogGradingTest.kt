@@ -1,6 +1,7 @@
 package net.spross.kern.session
 
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertIs
 import kotlin.test.assertTrue
@@ -48,6 +49,34 @@ class RealCatalogGradingTest {
             // Non-vacuity: every language does carry near-twins to grade.
             assertTrue(examined > 0, "de→$target swept no near pairs at all")
         }
+    }
+
+    /**
+     * The citation form the reveal teaches — `grammar.gender` plus the text — is the
+     * spelling a learner copies back, so producing it has to grade Exact. It could not
+     * for the es pluralia tantum while they stored a singular `el`/`la` for the
+     * convention's sake: the article-mismatch demotion saw `los auriculares` disagree
+     * with `el` and marked the one right answer a typo. They carry their real article
+     * now, and this is the rule that keeps every gendered card honest, in any language.
+     */
+    @Test
+    fun everyGenderedCardAcceptsTheCitationFormItTeaches() {
+        var examined = 0
+        for (source in catalog.languages.keys) {
+            for (target in catalog.availableTargets(source).map { it.code }) {
+                val normalizer = AnswerNormalizer(catalog.languages.getValue(target))
+                for (card in catalog.join(source, target)) {
+                    val citation = "${card.target.grammar["gender"] ?: continue} ${card.target.text}"
+                    examined++
+                    assertEquals(
+                        Match.Exact,
+                        normalizer.evaluate(citation, card),
+                        "$source→$target ${card.id}: \"$citation\" is not graded exact",
+                    )
+                }
+            }
+        }
+        assertTrue(examined > 0, "no gendered card was swept at all")
     }
 
     /** The named pair, end to end on the shipping catalog. */
