@@ -403,9 +403,14 @@ day-key `yyyy-MM-dd`) with:
   it does not move with the clock), dailyStats tail
   (~70 days) for the streak walk, `schemaVersion`. Built by a KMP `SnapshotBuilder`,
   written by the app.
-- **WatchSnapshot v3**: direction/pair/`german` are gone — one entry per CARD with BOTH
-  sides pre-resolved: `{cardId, sourceText, targetText, accepted[], emoji?, articleTint?,
+- **WatchSnapshot v4**: direction/pair/`german` are gone — one entry per CARD with BOTH
+  sides pre-resolved: `{cardId, sourceText, targetText, emoji?, articleTint?,
   femMarker, due, stability, nextRole, promptForm, distractors[], optionForm?}` + `schemaVersion`.
+  **The wire carries only what a surface draws**: v4 dropped `accepted[]` (the full target
+  family), which was shipped for a reveal the quiz does not have — the watch answers by
+  picking a tile, so there is no second face to list alternates on. Should the watch ever
+  grow the phone's "auch: …" line, the field comes back with the surface that reads it,
+  not ahead of it.
   `distractors` (v3) are the multiple-choice tiles for that entry, picked by
   `session/MultipleChoice` and read on THIS entry's option side —
   so the watch only shuffles and cannot put the two languages in one question.
@@ -427,7 +432,8 @@ day-key `yyyy-MM-dd`) with:
   The shortlist is the variety knob: three of the ten reach a question, so the
   same card keeps offering the same handful until the next push.
   It is also the first thing to cut if the snapshot ever crowds the ~60 KB cap —
-  a full 60-entry de→sw snapshot measures ~18 KB, ~7 KB of it distractors;
+  a full 60-entry de→sw snapshot measured ~18 KB, ~7 KB of it distractors (taken while
+  `accepted[]` was still aboard, so v4 sits under it);
   shipping card ids instead of texts would recover most of that, at the price of
   making the watch resolve the option side again (the v2 bug's home).
   The phone resolves `nextRole` and the rotated `promptForm` from the log count at build

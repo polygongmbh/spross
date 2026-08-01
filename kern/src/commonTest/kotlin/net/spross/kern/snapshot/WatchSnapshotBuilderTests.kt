@@ -36,7 +36,6 @@ class WatchSnapshotBuilderTests {
         assertEquals("Kellner", entry.sourceText) // bare — femMarker carries the badge
         assertEquals(true, entry.femMarker)
         assertEquals("Kellnerin", entry.targetText)
-        assertEquals(listOf("Kellnerin", "Serviererin", "Bedienung"), entry.accepted)
         assertEquals("produce", entry.nextRole)
         assertEquals("👩", entry.emoji) // produce + learning → visible
         assertEquals("die", entry.articleTint)
@@ -61,7 +60,6 @@ class WatchSnapshotBuilderTests {
         assertEquals("recognize", entry.nextRole)
         assertNull(entry.emoji) // never on recognition measurement: it depicts the answer
         assertEquals("Serviererin", entry.promptForm) // count 3 rotation → the synonym
-        assertTrue(entry.accepted.isNotEmpty()) // reveal shows the full family
     }
 
     @Test
@@ -254,7 +252,7 @@ class WatchSnapshotBuilderTests {
     @Test
     fun schemaVersionAndGeneratedArePinned() {
         val doc = WatchSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1)
-        assertEquals(3, doc.schemaVersion)
+        assertEquals(4, doc.schemaVersion)
         assertEquals(Box.day1, doc.generated)
     }
 

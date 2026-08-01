@@ -31,11 +31,6 @@ One line per item, with a file or context pointer, filed under the section it be
   word class, area and shape rank them now, but the newest entry can still be the odd
   one out — the same class of problem the phone's due-order reshuffle fixed,
   on another surface.
-- `WatchEntryDto.accepted` ships every entry's full target family and no watch surface
-  reads it (`Shared/Sources/WatchSnapshot.swift`): its doc calls it reveal display,
-  but the quiz has no such reveal. Either the watch grows the phone's "auch: …" line,
-  or the field leaves the wire, where it is a fair slice of the ~60 KB budget
-  (kern README §7).
 - Rating labels carry more weight on a first exposure now that Good sends a word about a week
   out (kern README §5) — the button wording deserves a look
   (`App/Sources/Design/RatingButtonsView.swift`).
