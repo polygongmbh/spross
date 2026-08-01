@@ -121,6 +121,46 @@ never the shape of the app.
 - Progress bar: one segment per answer, colored by its outcome.
 - A miss is stated where the learner is already looking;
   the streak survives a missed day, but not two in a row.
+- **Words are read aloud, and a recording is only played for the word it actually says.**
+  Kern matches recordings by the FORM on screen, never by concept, so a rotated synonym is
+  never answered with the canonical word; anything unmatched falls to the device's own
+  voice speaking exactly what stands there, and a target with neither — Swahili has no iOS
+  voice at all — stays silent rather than be read in the wrong one.
+- **Only the headword is ever spoken.** Article, ♀ badge, plural line and alternates are
+  grammar decoration: gender is taught by the article color, and the recordings say bare
+  words — speaking the article in the synthesized branch alone would make a word's
+  pronunciation depend on which branch happened to answer.
+- **Audio may never give the answer away**: whether a card's target may be heard is the
+  engine's cue, the audio twin of the emoji cue — a recognition prompt carries the target
+  from frame one and speaks at once, a produce card owes that very form and waits for the
+  reveal. Both apps consume that one cue instead of each deciding for itself.
+- **Autoplay fires only where the card holds the learner.** A clean correct answer flips in
+  0.45–1.2 s, less than a word lasts, and a word cut off every time teaches worse than one
+  not played — the tap and the next recognition of the card both say it in full. Produce
+  fires wait a beat so the feedback chime is out of the way first; chimes are never ducked
+  for them, and no fire ever delays a flip. One fire per card, whichever path reaches it.
+
+| on screen | speaks? | what is said |
+|---|---|---|
+| recognition prompt | yes, at once | the prompted form — the rotated synonym, never the canonical word |
+| recognition reveal, write-it-out step | no | already said once |
+| produce answered correctly, typed or checked | no — the card is already flipping | — |
+| produce typo accepted (waits for a tap) | yes, after the chime | the correction line's proper spelling |
+| produce revealed — Aufdecken, wrong, other word | yes, after the chime | the bare target word |
+
+- **Tapping a word says it again**, and says it even when reading aloud is switched off:
+  a tap is a request, and mute has to stay usable as the accessibility affordance. The
+  gesture is disclosed by the settings row's hint line, never by a mark on the card — the
+  hit area sits on every headword whether or not it can be heard, so no card changes size
+  between reviews because a synonym rotation landed on an unrecorded form.
+- **Reading aloud is on by default.** It is switched at the session's top bar — constant
+  chrome, so the card below never moves for it — and in the Box settings. One flag for the
+  device: not per target language, and not in the box, where the product calibration would
+  reset it. It governs the spoken words only; the feedback chimes are their own matter, and
+  both follow the ring/silent switch.
+- VoiceOver never gets autoplay talking over it. The headword is labeled with the language
+  it is written in instead, so the screen reader says it in the right voice, and the replay
+  is an action ON the word rather than a button around it.
 
 ## Counts & sessions
 

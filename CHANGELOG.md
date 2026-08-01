@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- **Wörter werden jetzt vorgelesen**: eine Karte sagt das Wort, das sie zeigt — mit
+  Aufnahmen echter Sprecherinnen und Sprecher, wo es welche gibt, und sonst mit der Stimme
+  des Geräts. Gesprochen wird immer genau die Form, die vor dir steht, nie eine andere
+  Schreibweise desselben Worts: beim Erkennen sofort, beim Schreiben erst, wenn das Wort
+  aufgedeckt ist — vorher wäre es die Antwort. Ein Tippen auf ein Wort spricht es noch
+  einmal, auch bei ausgeschaltetem Vorlesen. Abschalten kannst du es am Lautsprecher oben
+  in der Runde oder in den Einstellungen; der Stummschalter des Telefons gilt wie bisher
+  für alles. Und wer die Aufnahmen gesprochen hat, unter welcher Lizenz, steht jetzt unter
+  "Sprecher & Lizenzen" in den Einstellungen.
+
 ## 2.4.0 — 2026-07-31
 
 - **Missing a day no longer takes back the days before it**: the flame forgave a missed
