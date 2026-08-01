@@ -127,4 +127,14 @@ class PresentationTest {
         assertEquals(EmojiCue.OnReveal, emojiCue(produce, settled = true, reviewCount = 4))
         assertEquals(EmojiCue.OnReveal, emojiCue(produce, settled = true, reviewCount = 6))
     }
+
+    // -- pronunciation policy ----------------------------------------------------------
+
+    @Test
+    fun theTargetIsSpokenOnlyOnceItsFormIsOnScreen() {
+        // Recognition prompts the target itself: hearing it from frame one teaches.
+        assertEquals(PronunciationCue.Upfront, pronunciationCue(recognize))
+        // Production asks for that very form — speaking it early would hand it over.
+        assertEquals(PronunciationCue.OnReveal, pronunciationCue(produce))
+    }
 }

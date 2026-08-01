@@ -17,6 +17,8 @@ class Catalog internal constructor(
     internal val areas: List<CatalogArea>,
     /** Stable content hash over every catalog file read (for [net.spross.kern.model.JoinStamp]). */
     val fingerprint: String,
+    /** Keyed by language, only where `audio/<lang>/manifest.json` exists. */
+    internal val audio: Map<Language, AudioManifest>,
 ) {
     /** Flattened default area order (groups top-to-bottom, areas as listed). */
     val areaNames: List<String> = areas.map { it.name }
@@ -98,6 +100,44 @@ class Catalog internal constructor(
             .filter { it.conceptCount >= MIN_JOINABLE_CONCEPTS }
     }
 
+    /**
+     * How [visibleForm] is pronounced in [lang] — keyed by what stands on the card, so a
+     * rotated synonym is spoken as itself. A bundled recording is returned only when it
+     * speaks that form ([speechKey]); everything else falls to the app's synthesizer,
+     * which is handed [Pronunciation.utterance]. Paths only: kern never reads audio bytes.
+     */
+    fun pronunciation(lang: Language, visibleForm: String): Pronunciation =
+        Pronunciation(
+            form = visibleForm,
+            utterance = utterance(visibleForm),
+            lang = lang,
+            recordingPath = audio[lang]?.recordingPath(visibleForm),
+        )
+
+    /** The letter's recording, catalog-relative; null → the drill speaks its NAME instead. */
+    fun letterRecordingPath(lang: Language, glyph: String): String? = audio[lang]?.letterPath(glyph)
+
+    /**
+     * Attribution for every bundled recording, grouped by (language, author, licence) —
+     * BY and BY-SA cannot share a notice, so the groups ARE the credit rows. Derived from
+     * the shipped manifests, so the surface can never credit what is not bundled. Order is
+     * stable: languages as declared, entries as the manifest lists them.
+     */
+    fun audioCredits(): List<AudioCredit> {
+        val files = LinkedHashMap<CreditKey, MutableList<AudioCreditFile>>()
+        val deeds = mutableMapOf<CreditKey, String?>()
+        for ((lang, manifest) in audio) {
+            for ((label, recording) in manifest.creditRows()) {
+                val key = CreditKey(lang, recording.author, recording.licence)
+                files.getOrPut(key) { mutableListOf() } += AudioCreditFile(label, recording.source)
+                if (key !in deeds) deeds[key] = recording.licenceUrl
+            }
+        }
+        return files.map { (key, rows) ->
+            AudioCredit(key.language, key.author, key.licence, deeds[key], rows)
+        }
+    }
+
     private fun realize(lang: Language, raw: RawRealization, source: Language): Realization =
         Realization(
             lang = lang,
@@ -137,7 +177,17 @@ class Catalog internal constructor(
                 }
                 CatalogArea(name, concepts, titles, realizations)
             }
-            return Catalog(groups, languages, areas, tracked.fingerprint())
+            // why: read through the RAW source, never the fingerprinting wrapper — audio
+            // can never change the join, so a refreshed pack must not restamp (and
+            // recompose) a session that is already running.
+            val audio = languages.keys.mapNotNull { lang ->
+                val path = "audio/$lang/manifest.json"
+                source.read(path)?.let { lang to AudioManifestParser.parse(path, it, lang) }
+            }.toMap()
+            return Catalog(groups, languages, areas, tracked.fingerprint(), audio)
         }
     }
 }
+
+/** Credit identity: one author's work in one language under one licence. */
+private data class CreditKey(val language: Language, val author: String, val licence: String)

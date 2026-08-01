@@ -75,6 +75,24 @@ fun emojiCue(
         EmojiCue.OnReveal
     }
 
+/** WHEN target-language audio may play without giving the answer away. */
+enum class PronunciationCue {
+    /** From the start — the target form is on screen from frame one. */
+    Upfront,
+
+    /** Held back until the reveal, where the form the learner owes is out. */
+    OnReveal,
+}
+
+/**
+ * Pronunciation policy — the audio twin of [emojiCue], and the ONE rule both apps
+ * consume rather than re-deriving `role == Recognize` each in their own way.
+ * Recognition prompts the target itself, so hearing it teaches; production asks for
+ * that very form, so the word waits for the reveal.
+ */
+fun pronunciationCue(role: PresentationRole): PronunciationCue =
+    if (role == PresentationRole.Recognize) PronunciationCue.Upfront else PronunciationCue.OnReveal
+
 /**
  * FNV-1a 64-bit over UTF-8 — bit-exact port of v1's `BoxEngine.stableHash`
  * (deterministic across platforms sharing state; never a runtime-seeded hash).

@@ -8,6 +8,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
+/** Join and parse over the synthetic [Fixture]; audio lives in [CatalogAudioFixtureTest]. */
 class CatalogFixtureTest {
     private val catalog = Fixture.catalog()
 
