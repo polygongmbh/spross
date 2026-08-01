@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **Das Alphabet der Sprache, die du lernst, liegt jetzt im Training bereit**: unter den
+  Übungen öffnet "Alphabet" eine Tafel mit jeder Zeile, die es zu wissen gibt — Buchstabe
+  groß und klein, sein Name, seine Lautschrift, wann er wie klingt, und ein Beispielwort
+  samt Bedeutung, wo deine Sprache das Wort auch kennt. Für Ukrainisch das ganze Alphabet,
+  mitsamt Apostroph und der Regel, dass am Wortende nichts hart wird; für Deutsch die
+  Buchstaben und Buchstabenpaare, die täuschen: sch, ei/ie, die drei ch, v, ß/ss. Zu hören
+  ist noch nichts — das kommt mit der Buchstaben-Übung.
+
 - **Wörter werden jetzt vorgelesen**: eine Karte sagt das Wort, das sie zeigt — mit
   Aufnahmen echter Sprecherinnen und Sprecher, wo es welche gibt, und sonst mit der Stimme
   des Geräts. Gesprochen wird immer genau die Form, die vor dir steht, nie eine andere
