@@ -55,8 +55,19 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     /**
      * Whether the device has a voice for [lang] at all — Swahili has none without
      * Google TTS installed, and those words stay silent unless a recording matched.
+     *
+     * Reads the synthesizer's readiness, which is Compose state: a surface that gates on
+     * this recomposes by itself the moment the engine finishes binding.
      */
     fun canSpeak(lang: Language): Boolean = speaker.canSpeak(lang)
+
+    /**
+     * Whether a screen reader is reading the screen aloud — the same fact that gates
+     * autoplay, exposed because a drill built ENTIRELY out of audio has to compensate
+     * for the suppression (focus goes to the replay button, no timed screen change).
+     * One definition, so the gate and its compensation can never disagree.
+     */
+    val readsScreenAloud: Boolean get() = accessibility?.isTouchExplorationEnabled == true
 
     /**
      * Whether this form can be heard at all — gates the tap-to-replay affordance so a
@@ -69,7 +80,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     fun pronounce(pronunciation: Pronunciation, trigger: Trigger) {
         // why: TalkBack reads the card itself, target word included — autoplay on top
         // of it is two voices over one word. A tap is never gated: it is a request.
-        if (trigger == Trigger.AUTO && (muted || readsTheScreenAloud())) return
+        if (trigger == Trigger.AUTO && (muted || readsScreenAloud)) return
         speaker.stop()
         val path = pronunciation.recordingPath
         // why: the player still holds the last clip decoded, so a second ask for the
@@ -109,8 +120,6 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         } catch (_: IOException) {
             null // no file behind the path: fall through to the live voice
         }
-
-    private fun readsTheScreenAloud(): Boolean = accessibility?.isTouchExplorationEnabled == true
 
     private companion object {
         const val KEY_MUTED = "pronunciationMuted"

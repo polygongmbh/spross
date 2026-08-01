@@ -2,6 +2,9 @@ package net.spross.app.audio
 
 import android.content.Context
 import android.speech.tts.TextToSpeech
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import java.util.Locale
 import net.spross.kern.model.Language
 
@@ -16,9 +19,16 @@ import net.spross.kern.model.Language
  */
 class Speaker(context: Context) {
 
-    /** Binding is asynchronous — nothing may be said before it lands, or ever if it fails. */
-    @Volatile
-    private var ready = false
+    /**
+     * Binding is asynchronous — nothing may be said before it lands, or ever if it fails.
+     *
+     * Compose state rather than a plain flag: what a device can SAY decides whether the
+     * letter drill exists at all, and a surface that asked before the binding landed would
+     * hide it for the rest of the run. Written from `onInit`, which arrives on the main
+     * thread; snapshot state is safe either way.
+     */
+    var ready by mutableStateOf(false)
+        private set
 
     private val tts = TextToSpeech(
         context.applicationContext,
