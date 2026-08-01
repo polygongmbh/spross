@@ -44,6 +44,9 @@ fun HeuteScreen(model: AppModel) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 TextButton(onClick = { model.editLanguages() }) { Text(chrome.changeLanguages) }
+                // The only other door out of Heute: version, the read-aloud switch
+                // and who spoke the recordings.
+                TextButton(onClick = { model.openAbout() }) { Text(chrome.aboutButton) }
             }
         }
 

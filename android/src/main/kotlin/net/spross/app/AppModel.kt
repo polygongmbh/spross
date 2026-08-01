@@ -40,6 +40,7 @@ sealed interface Screen {
     data class Onboarding(val editing: Boolean) : Screen
     data object Heute : Screen
     data object Session : Screen
+    data object About : Screen
 }
 
 data class SessionUi(
@@ -131,6 +132,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     fun editLanguages() {
         screen = Screen.Onboarding(editing = true)
+    }
+
+    fun openAbout() {
+        screen = Screen.About
+    }
+
+    fun closeAbout() {
+        screen = Screen.Heute
     }
 
     fun cancelOnboarding() {
