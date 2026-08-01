@@ -12,6 +12,17 @@
   für alles. Und wer die Aufnahmen gesprochen hat, unter welcher Lizenz, steht jetzt unter
   "Sprecher & Lizenzen" in den Einstellungen.
 
+- **Auch auf Android werden die Wörter jetzt vorgelesen**: dieselbe Regel wie auf dem
+  iPhone — eine Karte sagt das Wort, das sie zeigt, mit Aufnahmen echter Sprecherinnen und
+  Sprecher, wo es welche gibt, und sonst mit der Stimme des Geräts. Gesprochen wird genau
+  die Form, die vor dir steht: beim Erkennen sofort, beim Schreiben erst nach dem
+  Aufdecken oder der Tippfehler-Korrektur — vorher wäre es die Antwort. Ein Tippen auf ein
+  Wort spricht es noch einmal, auch bei ausgeschaltetem Vorlesen. Abschalten kannst du es
+  am Lautsprecher oben in der Runde; die Medienlautstärke des Telefons gilt wie bisher für
+  alles. Neu neben "Sprachen ändern" steht "Info": derselbe Schalter noch einmal, die
+  Version — und wer die Aufnahmen gesprochen hat, unter welcher Lizenz, mit Link auf jede
+  einzelne Datei bei Wikimedia Commons.
+
 ## 2.4.0 — 2026-07-31
 
 - **Missing a day no longer takes back the days before it**: the flame forgave a missed
