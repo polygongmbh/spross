@@ -44,6 +44,11 @@ catalog/
     en.json
     sw.json
     uk.json
+  audio/                # GENERATED pronunciation recordings, one folder per language
+    <lang>/
+      manifest.json     # { language, words: { slug: … }, letters?: { glyph: … } }
+      <slug>.mp3
+      letters/u<hex>.mp3
 ```
 
 Adding a language is purely additive: drop a `<area>/<lang>.json` in each area for
@@ -193,6 +198,60 @@ Realization fields — only `text` is required:
   Keep a note only if it changes what the learner would say or do; pure etymology
   ("wörtl. …") is cut. Load-bearing teaching (e.g. which word for "rice") is
   destined to become first-class training content, not a permanent note.
+
+## Audio (`catalog/audio/`)
+
+Bundled pronunciation recordings, one folder per language, **generated** by
+`app/scripts/audio-catalog.py --packs <workspace>` — edit packs, not this directory.
+The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
+unversioned research input; what is committed here is the shipped bytes and the
+licence record that has to travel with them. Both apps bundle the whole tree as it
+stands (iOS folder reference, the Android catalog sync), so nothing needs registering.
+
+```json
+{ "language": "uk",
+  "words": {
+    "office": { "file": "office.mp3", "matches": "установа",
+                "licence": "CC BY 3.0 us",
+                "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+                "author": "Галя Раптова, Nicolas Vion",
+                "source": "Uk-установа.ogg", "sha256": "1c44…" } },
+  "letters": {
+    "ж": { "file": "letters/u0436.mp3", "licence": "CC BY-SA 4.0",
+           "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+           "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "77b0…" } } }
+```
+
+- `language` must equal the folder name, and a folder for a language `languages.json`
+  does not declare is never read — adding one is dropping a directory in, nothing else.
+- `words` is keyed by concept slug, `letters` (optional, uk only today) by lowercase
+  glyph. Every field is required except `licenceUrl`, which is absent exactly for
+  public-domain files, having no deed to link.
+- `matches` — the surface form the recording actually SPEAKS, and the lookup key:
+  playback is keyed by what stands on the card, never by the slug the file was fetched
+  for, so a rotated synonym nobody recorded falls through to the app's own voice
+  instead of playing the canonical word. It may differ from `text` in case
+  (`unterlagen` / "Unterlagen"), edge punctuation (`hallo` / "Hallo!") or the citation
+  dash (`zuri` / "-zuri") — the engine folds those away (`../kern/README.md` §11).
+  Letters carry no `matches`: they speak a name, and that string belongs to the
+  alphabet file.
+- `source` — the original Commons filename; the credits screen links `File:<source>`,
+  which is what keeps attribution checkable rather than merely present.
+- Word files are `<slug>.mp3`; letter files are `letters/u<codepoint>.mp3`, four
+  lowercase hex digits, never glyph-named — `й`/`ї` decompose under NFD on APFS and a
+  Unicode filename has to survive git, Gradle sync and AAPT unchanged. The manifest maps
+  the glyph, so the name is purely internal.
+- **The mp3 bytes are the Commons transcode untouched**, renamed and nothing else:
+  re-encoding (including loudness normalization, so packs differ in loudness) is an
+  adaptation under BY-SA. `sha256` is the digest the generator verified after the copy
+  and lint re-hashes what was committed, which makes it a gate rather than a promise.
+- No `README.md` inside `audio/` — the Android sync only excludes one at the catalog
+  root, so a nested one would ship in the APK. Audio schema docs live here.
+
+Lint (`CatalogAudioLintTest`) holds the rest: every entry names a slug its language
+realizes and a form some card can show, no two entries claim one spoken form with
+different bytes, every file ships and is referenced exactly once, and no author is a
+placeholder like "Own work" — BY and BY-SA both require naming somebody.
 
 ## What earns a slot, and how it is worded
 
