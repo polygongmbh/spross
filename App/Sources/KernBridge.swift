@@ -43,6 +43,12 @@ extension AudioCredit: @retroactive Identifiable {
     public var id: String { "\(language)|\(author)|\(licence)" }
 }
 
+extension AlphabetEntry: @retroactive Identifiable {
+    /// `ref` is the authored id where a file declares one, else the glyph —
+    /// the only thing that tells German's three `ch` rows apart.
+    public var id: String { ref }
+}
+
 // MARK: - Rating
 
 extension Rating {
