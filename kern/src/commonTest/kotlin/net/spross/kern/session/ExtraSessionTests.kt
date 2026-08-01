@@ -45,28 +45,27 @@ class ExtraSessionTests {
     }
 
     @Test
-    fun enqueuedRespectTheNewWordBudgetInBothRoundTypes() {
-        var state = Box.state((1..6).map { Box.word(it) }, Box.config(maxUnsettled = 2))
+    fun enqueuedLeadInBothRoundTypesAndDequeueOnAnswer() {
+        var state = Box.state((1..10).map { Box.word(it) })
         state = BoxEngine.enqueue(state, listOf("w03", "w04", "w05"))
         val t = Box.plusSeconds(day0, 600)
 
-        // Both round types surface enqueued cards, but only up to the new-word budget.
+        // Both round types put the pack first, then fill the round out in seed order.
         val plan = SessionComposer.composeSession(state, t, Box.TZ)
-        assertEquals(listOf("w03", "w04"), plan.newCards)
+        assertEquals(listOf("w03", "w04", "w05", "w01", "w02", "w06", "w07"), plan.newCards)
         val extra = SessionComposer.composeExtraSession(state, t)
-        assertEquals(listOf("w03", "w04"), extra.newCards)
+        assertEquals(listOf("w03", "w04", "w05"), extra.newCards)
 
-        // Answering introduces them and dequeues; the rest of the pack waits its turn.
+        // Answering introduces them and dequeues.
         var after = Box.answered(state, "w03", Rating.Good, Box.plusSeconds(t, 100))
         after = Box.answered(after, "w04", Rating.Good, Box.plusSeconds(t, 200))
         assertEquals(listOf("w05"), after.enqueued)
-        // The pack leads; the trickle brings a seed-order word along for variety.
-        assertEquals(listOf("w05", "w01"), SessionComposer.composeSession(after, t, Box.TZ).newCards)
+        assertEquals("w05", SessionComposer.composeSession(after, t, Box.TZ).newCards.first())
     }
 
     @Test
     fun endlessGivesDueAndNewButNeverPullsAhead() {
-        var state = Box.state((1..5).map { Box.word(it) }, Box.config(maxUnsettled = 3))
+        var state = Box.state((1..5).map { Box.word(it) })
         state = BoxEngine.enqueue(state, listOf("w01"))
         // w01 missed → one 2-minute step, then FSRS.
         state = Box.answered(state, "w01", Rating.Again, day0)
@@ -74,8 +73,8 @@ class ExtraSessionTests {
         // 1 min in: w01 is NOT due yet, so endless must not re-show it …
         val soon = SessionComposer.composeEndless(state, Box.plusSeconds(day0, 60))
         assertFalse(soon.reviews.contains("w01"))
-        // … it just keeps introducing new cards while the budget has room (3 − 1 = 2).
-        assertEquals(listOf("w02", "w03"), soon.newCards)
+        // … it just keeps introducing new cards while the round has room.
+        assertEquals(listOf("w02", "w03", "w04", "w05"), soon.newCards)
 
         // Once w01's step is genuinely due, it comes back as a review.
         val later = SessionComposer.composeEndless(state, Box.plusSeconds(day0, 130))

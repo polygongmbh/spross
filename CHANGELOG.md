@@ -89,6 +89,32 @@
   Version — und wer die Aufnahmen gesprochen hat, unter welcher Lizenz, mit Link auf jede
   einzelne Datei bei Wikimedia Commons.
 
+- **New words no longer dry up after a run of hard answers**: the box handed out fewer of them
+  the more words you had recently got wrong, down to a trickle of two — so exactly the stretch
+  where variety helps most was the stretch it withheld. Growth is now paced only by what a
+  round can hold and by how far behind the reviews have fallen. The setting for it is gone
+  with it: it named a quantity shown nowhere and steered on the wrong signal.
+
+- **A quiet day offers a mix instead of a wall of new words**: with nothing due, a round now
+  balances words coming due tomorrow against first sights, and is new words alone only when
+  nothing is coming due at all. A day counts as done after a full round rather than a single
+  answer.
+
+- **The start screen names what the round actually holds**: a round carried by words pulled
+  forward was announced as an offer of new words, sometimes with none in it. Reviews, a
+  warm-up and an offer of Frischlinge now read as the three different things they are, each
+  with wording that varies with the round.
+
+## 2.4.1 — 2026-08-01
+
+- **A word you are only asked to recognise is no longer typed back at you**: saying you
+  did not know a target word asked for its spelling before moving on — with that same
+  word standing in the prompt above the field, so the answer was copied off the screen it
+  came from. Recognition now ends at the reveal and the self-grade, and the writing is
+  asked where it teaches something: producing a word, and meeting one for the first time,
+  which is written once as it is introduced. Giving up on a production retry also ends the
+  card now instead of opening a second field for the same word.
+
 ## 2.4.0 — 2026-07-31
 
 - **Missing a day no longer takes back the days before it**: the flame forgave a missed

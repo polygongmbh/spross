@@ -12,6 +12,8 @@ internal data class NewCandidates(
     val unlockedPhrases: List<String>,
     val newCards: List<String>,
 ) {
+    val count: Int get() = unlockedPhrases.size + newCards.size
+
     companion object {
         val empty = NewCandidates(emptyList(), emptyList())
     }
@@ -20,15 +22,13 @@ internal data class NewCandidates(
 internal object Growth {
 
     /**
-     * Never quite zero: a session with nothing new in it is a grind on the very
-     * words that are not landing, which is the opposite of what a loaded box
-     * needs. Breadth is the point — see [newBudget].
-     */
-    const val TRICKLE_CARDS: Int = 2
-
-    /**
      * Health gate: projected post-session backlog stays under `dueSoftCap`.
-     * Time debt only — how much material is unsettled is [newBudget]'s job.
+     *
+     * The ONE automatic brake on intake, and deliberately the only one. It reads time
+     * debt — a backlog the learner cannot work off is the failure mode a breadth-first
+     * box actually risks. It does NOT read how shaky the material is: a cap on unsettled
+     * load used to do that, and it throttled growth on what amounts to in-session
+     * accuracy, which does not predict retention (`docs/growth-evidence.md`).
      */
     fun healthGateOpen(state: BoxState, nowEpochMillis: Long): Boolean {
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
@@ -36,29 +36,6 @@ internal object Growth {
         val projectedBacklog = dueCount - min(dueCount, state.config.sessionCap)
         return projectedBacklog < state.config.dueSoftCap
     }
-
-    /** Active cards that have not sat down yet — the words actually in flight. */
-    fun unsettledLoad(state: BoxState): Int =
-        Inventory.active(state).count { !Statistics.isSettled(state, it) }
-
-    /**
-     * Room for new words, ignoring the health gate. Measured against how much of
-     * the box is genuinely unsettled rather than how many cards were started:
-     * words answered on sight sit down immediately and cost nothing, so a day of
-     * easy material opens the way for more, while a pile of words at low
-     * stability closes it down to a [TRICKLE_CARDS] of variety.
-     */
-    fun newBudget(state: BoxState): Int {
-        val cap = state.config.maxUnsettled
-        // why: a cap of 0 is the learner saying "stop growing" — the trickle is
-        // for a box that is merely loaded, and must not talk over that.
-        if (cap <= 0) return 0
-        return max(TRICKLE_CARDS, cap - unsettledLoad(state))
-    }
-
-    /** Budget after the health gate: 0 when the gate is closed. */
-    fun gatedNewBudget(state: BoxState, nowEpochMillis: Long): Int =
-        if (healthGateOpen(state, nowEpochMillis)) newBudget(state) else 0
 
     // Phrase unlock reads component schedules RAW BY CARD ID — join- and
     // source-independent, so a source switch can never re-lock a phrase.

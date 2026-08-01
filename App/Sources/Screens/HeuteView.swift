@@ -58,7 +58,7 @@ struct HeuteView: View {
     private func sessionCard(_ offer: AppModel.HeuteOffer) -> some View {
         VStack(spacing: DL.Space.l) {
             sessionStats
-            Text(offer.kind == .reviews ? "heute.session.reviewsReady" : "heute.session.freshReady")
+            Text(LocalizedStringKey(offer.headlineKey))
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)

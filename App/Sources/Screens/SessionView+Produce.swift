@@ -24,7 +24,9 @@ extension SessionView {
             // action once revealed — a hardware keyboard still needs
             // a way to give up without finishing the retype.
             if case .revealed = feedback {
-                rate(.again)
+                // why: straight to commit — this field WAS the write-it-out
+                // step, so `rate` would answer the same word with a second one.
+                commit(.again)
             } else {
                 submit(card)
             }
@@ -123,8 +125,10 @@ extension SessionView {
                             .pronounceOnTap(pronounceAction(for: card.target.text))
                     }
                     // why: always reachable — a step you cannot leave is a
-                    // trap, same as the copy step's own skip.
-                    Button("session.skipCopy") { rate(.again) }
+                    // trap, same as the copy step's own skip. Giving up here
+                    // ends the card: this field already is the one write-out
+                    // the word gets, so nothing may hand it a second one.
+                    Button("session.skipCopy") { commit(.again) }
                         .font(DL.Fonts.caption)
                         .foregroundStyle(Color.dlTextSecondary)
                 }

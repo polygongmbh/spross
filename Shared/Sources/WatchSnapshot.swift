@@ -1,6 +1,6 @@
 import Foundation
 
-/// Compact phone → watch state transfer ("snapshot down, events up"), v2:
+/// Compact phone → watch state transfer ("snapshot down, events up"), v4:
 /// decode-only mirror of Kern's `WatchSnapshotBuilder` JSON. One entry per
 /// CARD with both sides pre-resolved — the watch never joins, never types,
 /// and links no Kotlin. The phone is the source of truth; the watch only
@@ -10,13 +10,11 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
     /// One drainable card. `nextRole` "produce": prompt `sourceText`
     /// (+ ♀ badge when `femMarker`), reveal the target family. "recognize":
     /// prompt `promptForm` (the rotated target form), reveal `sourceText`.
-    /// `emoji` is pre-gated by the phone (emoji policy); `accepted` lists the
-    /// full target family for reveal display.
+    /// `emoji` is pre-gated by the phone (emoji policy).
     struct Entry: Codable, Sendable, Equatable, Identifiable {
         var cardId: String
         var sourceText: String
         var targetText: String
-        var accepted: [String]
         var emoji: String?
         var articleTint: String?
         var femMarker: Bool

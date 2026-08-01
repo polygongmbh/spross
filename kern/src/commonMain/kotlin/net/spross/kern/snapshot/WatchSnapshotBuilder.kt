@@ -18,7 +18,7 @@ import net.spross.kern.session.MultipleChoice
 import net.spross.kern.store.StoreJson
 
 /**
- * Phone-side builder of the watch application-context snapshot, v3:
+ * Phone-side builder of the watch application-context snapshot, v4:
  * one entry per CARD with BOTH sides pre-resolved, so the watch stays pure
  * Swift and never joins. [WatchEntryDto.nextRole]/[WatchEntryDto.promptForm]
  * are resolved from the log count at build time; the watch presents
@@ -29,7 +29,7 @@ import net.spross.kern.store.StoreJson
  * limit.
  */
 object WatchSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 3
+    const val SCHEMA_VERSION: Int = 4
     const val ENTRY_CAP: Int = 60
     private const val RECOGNIZE = "recognize"
 
@@ -140,7 +140,6 @@ object WatchSnapshotBuilder {
             cardId = card.id,
             sourceText = card.source.text,
             targetText = card.target.text,
-            accepted = listOf(card.target.text) + card.target.synonyms + card.target.variants,
             // why: the snapshot is answered in one shot, so a picture held back for a
             // reveal has no honest moment to appear and could only leak the answer —
             // it is withheld from the wire rather than trusted to the reader.
@@ -172,8 +171,7 @@ internal data class WatchSnapshotDoc(
  * One drainable card with both sides. [nextRole] "produce": prompt [sourceText]
  * (+ labeled ♀ badge when [femMarker]), reveal the target family. "recognize":
  * prompt [promptForm] (the rotated target form), reveal [sourceText] decorated.
- * [emoji] is pre-gated by the emoji policy; [accepted] lists the full target
- * family for reveal display (the watch never types). [distractors] are the
+ * [emoji] is pre-gated by the emoji policy. [distractors] are the
  * ranked wrong options for THIS entry's role — the watch picks three and
  * shuffles them with the answer, which it reads off [optionForm].
  */
@@ -182,7 +180,6 @@ internal data class WatchEntryDto(
     val cardId: String,
     val sourceText: String,
     val targetText: String,
-    val accepted: List<String>,
     val emoji: String? = null,
     val articleTint: String? = null,
     val femMarker: Boolean,

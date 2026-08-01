@@ -40,8 +40,8 @@ android/   Jetpack Compose app — core loop on the same engine (§ Android belo
   an answered review is never only in memory.
 - **Calibration is re-applied from the build on every load**: learning steps, retention
   and caps are decisions the app version makes, so a box written months ago must not go
-  on answering to the numbers that shipped with it. `maxUnsettled` survives — it is the
-  one figure the learner sets themselves.
+  on answering to the numbers that shipped with it. Nothing survives it — growth pacing
+  is the engine's opinion, not a figure the learner tunes (`docs/growth-evidence.md`).
 - Swift 6 strict concurrency.
 
 ## Profile & onboarding
@@ -111,6 +111,12 @@ never the shape of the app.
   passes for new again; a word that has not settled is typed with the answer in view.
   Encoding only, never a grade — the rating the self-grade already chose is applied
   unchanged, so self-grading still owns the schedule.
+  Production asks for it, and so does a first exposure — the review that teaches the word,
+  written once as it is met. A later recognition miss does not: the target has stood in
+  the prompt since the first frame, so copying it teaches nothing the reading did not,
+  and the next review asks for the word properly.
+  One write-out per miss, never two: giving up on a produce retry ends the card, because
+  that field already was the write-out.
 - **Finishing the word IS the answer**, when producing and when writing out alike:
   the field confirms itself the moment the letters line up and the card flips a beat
   later, so there is **no confirm button** to reach for. Backing out of a finished word

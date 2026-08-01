@@ -6,20 +6,17 @@ package net.spross.kern.model
  */
 data class BoxConfig(
     /**
-     * How many words may be in flight at once, in cards that have not sat down
-     * (see [net.spross.kern.box.Growth.newBudget]). Words answered on sight
-     * settle immediately and never count against it.
+     * Session size in cards — the one bound the evidence actually supports
+     * (output interference falls on how many cards a sitting TESTS, not on how
+     * many words enter; see `docs/growth-evidence.md`).
      */
-    val maxUnsettled: Int = 20,
-    /** Session size in cards. */
-    val sessionCap: Int = 30,
+    val sessionCap: Int = 25,
     /** Backlog health threshold in cards. */
     val dueSoftCap: Int = 30,
     val desiredRetention: Double = 0.8,
     val maximumIntervalDays: Int = 365,
     /**
      * Days of stability at which a card has SETTLED — the threshold behind the
-     * new-word budget ([net.spross.kern.box.Growth.newBudget]) and the
      * presentation rules that support a word only while it is still landing
      * (see [net.spross.kern.box.Statistics.isSettled]). FSRS-6 recalibrated.
      * The stricter [consolidatedStability] governs the stats display and
@@ -30,7 +27,7 @@ data class BoxConfig(
      * Days of stability at which a card counts as CONSOLIDATED — a stricter bar than
      * [settledStability], used only by the stats display (fresh/settled split, the
      * session-summary tally) and phrase unlock (see [net.spross.kern.box.Growth.isComponentStable]).
-     * Budget pacing and in-session presentation support keep using [settledStability];
+     * In-session presentation support keeps using [settledStability];
      * this one exists so a merely-Good first answer doesn't read as "landed" while a
      * genuinely known-on-sight Easy answer still does — set between S0(Good) = 2.3065
      * and S0(Easy) = 8.2956.
