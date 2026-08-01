@@ -250,6 +250,8 @@ engine gates and the behavioral test inventory: kern README.
 
 Couple mode, accounts/sync, sw/uk UI chrome (those sources fall back to en),
 en trainer content.
-Android has the core loop only — no Box browse, trainers, widget, 14-day strip or
-write-it-out step, and its settings are a language switch and an About screen
-(version, read-aloud, credits — where iOS carries the read-aloud row in Box settings).
+Android has the core loop and ONE trainer, the letter drill (a chip on Heute — the
+platform has no trainer hub) — no Box browse, other trainers, alphabet sheet, widget,
+14-day strip or write-it-out step, and its settings are a language switch and an About
+screen (version, read-aloud, credits — where iOS carries the read-aloud row in Box
+settings).

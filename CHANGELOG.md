@@ -14,6 +14,17 @@
   ihre Stufen. Für deine Kartei zählt nichts davon — geübt wird hier ohne Folgen für den
   Termin deiner Wörter.
 
+- **Auch auf Android erkennst du Buchstaben jetzt am Klang**: auf "Heute" steht neu ein Feld
+  "Training" mit "🔤 Buchstaben" — die erste Übung auf diesem Gerät. Sie zeigt nichts und
+  spricht alles: du hörst einen Buchstabennamen und tippst ihn unter vieren an, erst unter
+  solchen, die nichts miteinander zu tun haben, dann unter denen, die sich ähnlich sehen oder
+  gleich klingen, später schreibst du ihn selbst. Bei dem, was man erst im Wort
+  auseinanderhält, hörst du ein Wort und füllst die Lücke. Wer genug Wörter gefestigt hat,
+  bekommt am Ende Diktat: Wort hören, Wort schreiben, sonst nichts. Für Ukrainisch sprechen
+  echte Aufnahmen, sonst die Stimme des Geräts — der Knopf erscheint von selbst, sobald sie
+  bereitsteht. Ist das Vorlesen ausgeschaltet, sagt die Karte das und schaltet es mit einem
+  Tipp wieder ein. Für deine Kartei zählt nichts davon.
+
 - **Das Alphabet der Sprache, die du lernst, liegt jetzt im Training bereit**: unter den
   Übungen öffnet "Alphabet" eine Tafel mit jeder Zeile, die es zu wissen gibt — Buchstabe
   groß und klein, sein Name, seine Lautschrift, wann er wie klingt, und ein Beispielwort
