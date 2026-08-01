@@ -37,10 +37,16 @@ extension AppModel {
     /// keyed by the visible form: what is written (р) and what is said («ер»)
     /// are different strings, so the manifest is addressed by the glyph.
     func letterPronunciation(name: String, glyph: String, lang: String) -> Pronunciation {
-        Pronunciation(form: name,
-                      utterance: SprossKern.utterance(form: name),
-                      lang: lang,
-                      recordingPath: catalog?.letterRecordingPath(lang: lang, glyph: glyph))
+        // why: the whole recording, not just its path — the letters are the
+        // quietest and latest-starting files we ship, and the drill is where
+        // that is heard, so the analysis index travels with them.
+        let recording = catalog?.letterRecording(lang: lang, glyph: glyph)
+        return Pronunciation(form: name,
+                             utterance: SprossKern.utterance(form: name),
+                             lang: lang,
+                             recordingPath: recording?.path,
+                             gain: recording?.gain ?? 0,
+                             leadMs: recording?.leadMs ?? 0)
     }
 
     /// A visible target form, through the same matched-form lookup the review
@@ -53,10 +59,14 @@ extension AppModel {
     /// stands on screen. For text carrying no slug (an `exampleText` escape
     /// hatch) — a concept's recording may not be claimed for a different word.
     func spokenPronunciation(_ form: String, lang: String) -> Pronunciation {
+        // why: 0/0 — the live voice is synthesized at the system's own
+        // loudness and starts when it is asked to; there is nothing to correct.
         Pronunciation(form: form,
                       utterance: SprossKern.utterance(form: form),
                       lang: lang,
-                      recordingPath: nil)
+                      recordingPath: nil,
+                      gain: 0,
+                      leadMs: 0)
     }
 
     /// What a letter-drill question SAYS, and out of which recording — the

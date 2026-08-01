@@ -175,10 +175,13 @@ extension LetterDrillView {
                     trigger: Pronouncer.Trigger) {
         guard UserDefaults.standard.bool(forKey: "uitest-letters-probe") else { return }
         let gated = trigger == .auto && (Pronouncer.shared.muted || screenReaderOn)
+        // why: the analysis index rides along — the letters are the recordings
+        // it exists for, and this is where a run shows it reached the player.
         print("""
             LetterDrill probe: play \(trigger == .auto ? "auto" : "tap") \
             stage \(task.stage.name) level \(level) kind \(task.promptKind.name) \
             text "\(task.promptText)" recording \(pronunciation.recordingPath ?? "none") \
+            index \(pronunciation.gain) dB/\(pronunciation.leadMs) ms \
             muted \(Pronouncer.shared.muted) screenReader \(screenReaderOn) \
             → \(gated ? "SUPPRESSED" : "played")
             """)

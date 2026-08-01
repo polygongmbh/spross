@@ -60,7 +60,10 @@ final class Pronouncer {
         // why: one word at a time — a new fire replaces whatever is sounding.
         stop()
         if let recordingURL {
-            player.play(url: recordingURL)
+            // why: the loudness and the dead air are the catalog's MEASUREMENTS
+            // of bytes that stay the untouched transcode — playback is the one
+            // place they are ever applied, and never the file.
+            player.play(url: recordingURL, gainDb: pronunciation.gain, leadMs: pronunciation.leadMs)
             return
         }
         // Silent no-op when no voice exists for the language.
@@ -92,7 +95,8 @@ final class Pronouncer {
         stop()
         if let recordingURL {
             let path = pronunciation.recordingPath ?? recordingURL.lastPathComponent
-            player.play(url: recordingURL) {
+            player.play(url: recordingURL,
+                        gainDb: pronunciation.gain, leadMs: pronunciation.leadMs) {
                 print("Pronounce probe: recording \(path) played to completion")
             }
             return
