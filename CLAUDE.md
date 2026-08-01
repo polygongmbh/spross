@@ -90,4 +90,5 @@ Kern modules under `kern/src/commonMain/kotlin/net/spross/kern/`:
 - Docs carry foundations; what the running app or the code answers faster stays out, and a needed cross-link means it is filed wrong.
 - Negations and hardlines only where the opposite is what would otherwise happen.
 - Out-of-scope discoveries go to `docs/backlog.md` (one-liners with pointers); prune on fix.
-- **Delete plan docs once shipped** — don't leave a stale third copy.
+- Write plans into docs/ and delete them once shipped, even if you did not write the plan
+- Whenever you are corrected or do extensive research, find or create an appropriate docs/ file to note insights
