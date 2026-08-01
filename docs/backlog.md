@@ -24,6 +24,28 @@ One line per item, with a file or context pointer, filed under the section it be
 - Each language speaks with one voice: sw and uk are a single speaker throughout, de is
   half one (104 of 200) — one accent, one register, one microphone per language — and uk
   `ь` has no letter recording at all (32/33).
+- The alphabet files are LLM-authored and await a native-speaker sweep of every hint and
+  every letter name (`catalog/alphabet/uk.json`, `catalog/alphabet/de.json`): 12 open
+  questions for uk (the name «йот» vs the older «ий», the в allophony and о raising
+  wording, the ч/щ anchors, ґудзик as an `exampleText`) and 11 for de (s→/z/ and -ig as
+  the variety anchor, the English respellings, the ẞ policy, the Vau/We/Jot/Zett/Eszett
+  strings against the de-DE voice — plus the three umlaut names minted here, A-Umlaut /
+  O-Umlaut / U-Umlaut, which no source prescribed). Each is written up with its evidence
+  in `data/orchestration/audio-langs-2026-07/alphabet-drafts/*-notes.md`; method as ever
+  in `../../docs/sprachposter-learnings.md`.
+- Commission the two missing uk letter recordings — «мʼякий знак» and «апостроф»: no
+  Commons file exists for either, so `ь` is spoken by the device voice where one is
+  installed and silently leaves the drill where none is, and the apostrophe can never be
+  prompted at all. Two clips from the pack's own speaker would close both.
+- No field carries Ukrainian stress, which is unmarked in writing and load-bearing:
+  учень, миша and одяг teach their vowel only if the sheet can show which syllable
+  carries it. A `stress` field on realizations (`catalog/README.md`) is the shape the
+  pronunciation plan proposed; the alphabet table cannot teach it in the plan's place.
+- Hints and contexts are keyed by the READER's language, so they follow the SOURCE
+  languages the app offers — both alphabet files carry de + en only. The day sw or uk
+  becomes a base language, each needs its own hint pass, not a translation of the
+  English: the German pivot prose for de is already parked in the drafts' notes, while
+  sw needs authoring from scratch (sw `j` is /ɟ/, so the en "y in yes" anchor is wrong).
 
 ## Engine & scheduling
 
@@ -95,3 +117,8 @@ One line per item, with a file or context pointer, filed under the section it be
 
 - Watch pairing untested on real hardware;
   complication rendering never screenshot-verified (no simctl affordance).
+- The 32 uk letter recordings have never been heard against the names the alphabet file
+  speaks. `letters{}` carries no `matches` field (`catalog/audio/uk/manifest.json`), so
+  no lint can pin «йот» to what `letters/u0439.mp3` actually says — the names were
+  authored from the 1993 orthography, and wherever a clip says something else it is the
+  `name` FIELD that has to change, never the audio. One listening pass, 32 clips.
