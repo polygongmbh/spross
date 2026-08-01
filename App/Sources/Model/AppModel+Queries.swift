@@ -25,15 +25,15 @@ extension AppModel {
         !(todayPlan?.isEmpty ?? true) || dueNowCount > 0
     }
 
-    /// What carries the round. Due work, a light warm-up, and an offer of new words
-    /// read very differently to a learner, so Heute names which one it is instead of
-    /// calling all three "a session".
+    /// What carries the round — whichever side of it outweighs the other. Due work, a
+    /// light warm-up, and an offer of new words read very differently to a learner, so
+    /// Heute names which one it is instead of calling all three "a session".
     enum SessionOffer: String {
-        /// Due work leads — more than a token one or two.
+        /// Recall outweighs the new words, and there is enough of it to lead.
         case reviews
-        /// Light recall: cards pulled forward, or a due card or two, whatever else rides along.
+        /// Recall outweighs the new words but amounts to a token one or two.
         case warmUp
-        /// Nothing to recall; the round is mostly first sights.
+        /// First sights outnumber everything there is to recall.
         case freshSet
         case nothing
     }
@@ -51,21 +51,21 @@ extension AppModel {
         let aheadCount: Int
         let freshCount: Int
 
-        /// Fewer due cards than this and the round is a warm-up, whatever else it holds.
+        /// Fewer due cards than this and recall is a warm-up, never the round's headline.
         static let reviewsLeadFrom = 3
 
-        /// Which headline names this round. The variant turns on the round's SHAPE, never
-        /// on the clock: a learner does several rounds in a day and one repeated line reads
-        /// as a screen that never moved, while a line re-rolling between renders reads as a
-        /// glitch — and `heuteOffer` recomposes on every access.
+        /// Which headline names this round: one string set per kind, keyed by the kind
+        /// itself so a new kind cannot silently keep an old kind's words.
+        ///
+        /// The variant turns on the round's SHAPE, never on the clock: a learner does
+        /// several rounds in a day and one repeated line reads as a screen that never
+        /// moved, while a line re-rolling between renders reads as a glitch — and
+        /// `heuteOffer` recomposes on every access.
         var headlineKey: String {
-            let bucket: String
-            switch kind {
-            case .reviews: bucket = "reviewsReady"
-            case .warmUp: bucket = "warmUpReady"
-            case .freshSet, .nothing: bucket = "freshReady"
-            }
-            return "heute.session.\(bucket).\(variant(outOf: 3))"
+            // The done card speaks for an empty round, so `nothing` has no words of its
+            // own; naming it anyway keeps every path off a missing key.
+            let named = kind == .nothing ? SessionOffer.freshSet : kind
+            return "heute.session.\(named.rawValue).\(variant(outOf: 3))"
         }
 
         /// FNV-1a over the counts, not `hashValue`: Swift seeds that per process, so the
@@ -92,10 +92,10 @@ extension AppModel {
         let kind: SessionOffer
         if plan.isEmpty {
             kind = .nothing
+        } else if fresh > reviews + ahead {
+            kind = .freshSet
         } else if reviews >= HeuteOffer.reviewsLeadFrom {
             kind = .reviews
-        } else if reviews == 0 && fresh >= ahead {
-            kind = .freshSet
         } else {
             kind = .warmUp
         }
