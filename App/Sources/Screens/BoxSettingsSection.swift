@@ -20,8 +20,6 @@ struct BoxSettingsSection: View {
             VStack(alignment: .leading, spacing: DL.Space.l) {
                 profileRow
                 Divider().overlay(Color.dlSeparator)
-                maxUnsettledRow
-                Divider().overlay(Color.dlSeparator)
                 resetRow
             }
             .padding(DL.Space.l)
@@ -128,26 +126,6 @@ struct BoxSettingsSection: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private var maxUnsettledRow: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
-            Stepper(value: maxUnsettledBinding, in: 0...60) {
-                HStack {
-                    Text("settings.maxUnsettled.title")
-                        .font(DL.Fonts.headline)
-                        .foregroundStyle(Color.dlTextPrimary)
-                    Spacer()
-                    Text(maxUnsettledBinding.wrappedValue.formatted())
-                        .font(DL.Fonts.statValue)
-                        .foregroundStyle(Color.dlAccent)
-                        .monospacedDigit()
-                }
-            }
-            Text("settings.maxUnsettled.hint")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
-        }
-    }
-
     /// Fresh start with the CURRENT catalog content.
     private var resetRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
@@ -215,13 +193,6 @@ struct BoxSettingsSection: View {
                     model.switchTarget(candidate)
                 }
             }
-        )
-    }
-
-    private var maxUnsettledBinding: Binding<Int> {
-        Binding(
-            get: { Int(model.box?.config.maxUnsettled ?? 20) },
-            set: { model.setMaxUnsettled($0) }
         )
     }
 }

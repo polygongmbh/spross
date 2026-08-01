@@ -30,6 +30,12 @@ internal object Inventory {
     fun active(state: BoxState): List<CardScheduling> =
         scheduled(state).filter { !it.suspended }
 
+    /** Active cards carrying a due date, soonest first — the pull-forward pool. */
+    fun scheduledAhead(state: BoxState): List<CardScheduling> =
+        active(state)
+            .filter { it.due != null }
+            .sortedWith(compareBy({ it.due }, { it.cardId }))
+
     /** Active cards with `due <= now`, oldest DAY first, shuffled within the day. */
     fun due(state: BoxState, nowEpochMillis: Long): List<CardScheduling> {
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)

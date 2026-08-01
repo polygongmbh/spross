@@ -83,8 +83,7 @@ extension BoxConfig {
     /// Product calibration (contract §4/§5) — Kotlin default arguments don't
     /// cross the ObjC boundary, so the values are restated once, here.
     static func product() -> BoxConfig {
-        BoxConfig(maxUnsettled: 20,
-                  sessionCap: 30,
+        BoxConfig(sessionCap: 25,
                   dueSoftCap: 30,
                   desiredRetention: 0.8,
                   maximumIntervalDays: 365,
@@ -94,17 +93,6 @@ extension BoxConfig {
                   relearningStepsSeconds: [KotlinLong(longLong: 600)])
     }
 
-    func with(maxUnsettled: Int) -> BoxConfig {
-        doCopy(maxUnsettled: Int32(maxUnsettled),
-               sessionCap: sessionCap,
-               dueSoftCap: dueSoftCap,
-               desiredRetention: desiredRetention,
-               maximumIntervalDays: maximumIntervalDays,
-               settledStability: settledStability,
-               consolidatedStability: consolidatedStability,
-               learningStepsSeconds: learningStepsSeconds,
-               relearningStepsSeconds: relearningStepsSeconds)
-    }
 }
 
 extension BoxState {
@@ -118,9 +106,9 @@ extension BoxState {
     /// Calibration belongs to the app build, not to the stored document: steps,
     /// retention and caps are decisions this version makes, and a box written
     /// months ago would otherwise keep answering to the numbers that shipped the
-    /// day it was created. Only `maxUnsettled` survives the refresh — it is the
-    /// one figure the learner sets themselves (Box settings).
+    /// day it was created. Nothing survives the refresh — growth pacing is the
+    /// engine's opinion, not a figure the learner tunes.
     func withProductCalibration() -> BoxState {
-        with(config: .product().with(maxUnsettled: Int(config.maxUnsettled)))
+        with(config: .product())
     }
 }

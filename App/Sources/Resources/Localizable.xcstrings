@@ -1961,38 +1961,6 @@
         }
       }
     },
-    "settings.maxUnsettled.hint" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "So viele Wörter dürfen gleichzeitig ungefestigt sein. Wörter, die du gleich kannst, zählen nicht mit — und auch bei vollem Zulauf kommen ein paar neue für die Abwechslung."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "How many words may stay unsettled at once. Words you know on sight don't count — and even when it's full, a couple of new ones still come through for variety."
-          }
-        }
-      }
-    },
-    "settings.maxUnsettled.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wörter gleichzeitig im Zulauf"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Words in flight at once"
-          }
-        }
-      }
-    },
     "settings.profile.hint" : {
       "localizations" : {
         "de" : {

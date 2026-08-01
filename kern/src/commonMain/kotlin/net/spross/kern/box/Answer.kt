@@ -65,7 +65,7 @@ internal object Answering {
     // why: eligibility is re-checked at answer time (plans outlive phase changes
     // and may straddle midnight) — composition-only enforcement would let a
     // stale plan introduce a still-locked phrase. There is no budget re-check:
-    // the new-word budget is a soft figure that never reaches zero (Growth.newBudget).
+    // intake is bounded per composed round, not per card answered.
     private fun introduce(
         state: BoxState,
         card: Card,

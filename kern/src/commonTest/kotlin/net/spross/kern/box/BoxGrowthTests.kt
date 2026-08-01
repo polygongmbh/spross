@@ -5,135 +5,77 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Rating
+import net.spross.kern.session.SessionComposer.NEW_CARDS_PER_ROUND
 
-/** Growth: new-word budget, health gate, enqueue — everything denominated in cards. */
+/** Growth: what a round may introduce, the health gate, enqueue — everything in cards. */
 class BoxGrowthTests {
     private val now = Box.day1
 
     @Test
-    fun dayOneBootstrapSpendsTheWholeBudget() {
-        val state = Box.state((1..10).map { Box.word(it) }, Box.config(maxUnsettled = 5))
+    fun dayOneOffersARoundsWorthOfNewWords() {
+        val state = Box.state((1..10).map { Box.word(it) })
         val plan = Box.candidates(state)
         assertTrue(plan.unlockedPhrases.isEmpty())
-        assertEquals((1..5).map { "w0$it" }, plan.newCards)
+        assertEquals((1..NEW_CARDS_PER_ROUND).map { "w0$it" }, plan.newCards)
     }
 
-    // The cap counts what has NOT settled, so a day of words you already knew
-    // costs the box nothing and the way stays open — the point of measuring
-    // load rather than headcount.
     @Test
-    fun dayOneIntroducesUpToTheUnsettledCap() {
-        var state = Box.state(
-            (1..20).map { Box.word(it, synonyms = listOf("s$it")) },
-            Box.config(maxUnsettled = 8),
-        )
+    fun theRestIsDeferredNotWithdrawn() {
+        var state = Box.state((1..20).map { Box.word(it, synonyms = listOf("s$it")) })
         val plan = Box.candidates(state)
-        assertEquals((1..8).map { "w0$it" }, plan.newCards)
+        assertEquals(NEW_CARDS_PER_ROUND, plan.newCards.size)
 
         for (id in plan.newCards) {
             state = Box.answered(state, id, Rating.Good, now)
         }
-        assertEquals(8, state.newIntroduced["2026-07-01"])
-        assertEquals(8, BoxEngine.statistics(state, now, Box.TZ).activeCount)
+        assertEquals(NEW_CARDS_PER_ROUND, state.newIntroduced["2026-07-01"])
+        assertEquals(NEW_CARDS_PER_ROUND, BoxEngine.statistics(state, now, Box.TZ).activeCount)
+        // The next round picks up where this one stopped.
+        assertEquals("w08", Box.candidates(state).newCards.first())
     }
 
+    /**
+     * The heart of the intake change: a box full of words that keep going wrong is still
+     * offered a full round of new material. Shakiness is a difficulty signal, and it does
+     * not predict retention — only backlog throttles growth (`docs/growth-evidence.md`).
+     */
     @Test
-    fun settledWordsDoNotConsumeTheBudget() {
-        var state = Box.state((1..12).map { Box.word(it) }, Box.config(maxUnsettled = 4))
-        val past = Box.plusDays(now, -10.0)
-        val future = Box.plusDays(now, 5.0)
-        for (n in 1..6) {
-            state = Box.inject(
-                state,
-                Box.sched("w0$n", stability = 9.0, dueMillis = future, lastReviewMillis = past),
-            )
-        }
-        assertEquals(0, Growth.unsettledLoad(state))
-        assertEquals(4, Growth.newBudget(state))
-    }
-
-    // Relearning cards are unsettled by definition, so a box full of them throttles
-    // growth on its own — what the old relearning-share sub-gate approximated.
-    @Test
-    fun unsettledWordsCloseGrowthDownToTheTrickle() {
-        var state = Box.state((1..12).map { Box.word(it) }, Box.config(maxUnsettled = 8))
+    fun shakyWordsNoLongerNarrowTheOffer() {
+        var state = Box.state((1..30).map { Box.word(it) })
         val past = Box.plusDays(now, -1.0)
         val future = Box.plusDays(now, 5.0)
-        for (n in 1..3) {
+        for (n in 1..18) {
+            val id = "w" + n.toString().padStart(2, '0')
             state = Box.inject(
                 state,
-                Box.sched("w0$n", phase = CardPhase.Relearning, dueMillis = future, lastReviewMillis = past),
+                Box.sched(id, phase = CardPhase.Relearning, dueMillis = future, lastReviewMillis = past),
             )
         }
-        assertEquals(3, Growth.unsettledLoad(state))
-        assertEquals(5, Growth.newBudget(state))
-
-        for (n in 4..8) {
-            state = Box.inject(
-                state,
-                Box.sched("w0$n", phase = CardPhase.Relearning, dueMillis = future, lastReviewMillis = past),
-            )
-        }
-        // At the cap growth never stops dead: a trickle keeps every session varied.
-        assertEquals(Growth.TRICKLE_CARDS, Growth.newBudget(state))
-        assertEquals(Growth.TRICKLE_CARDS, Box.candidates(state).newCards.size)
+        assertEquals(NEW_CARDS_PER_ROUND, Box.candidates(state).newCards.size)
     }
 
     @Test
     fun backlogGateBlocksOnProjectedPostSessionBacklog() {
         var state = Box.state((1..70).map { Box.word(it) })
-        for (n in 1..61) {
-            val id = "w" + n.toString().padStart(2, '0')
-            state = Box.inject(
-                state,
-                Box.sched(id, dueMillis = now - n * 60_000L, lastReviewMillis = Box.plusDays(now, -1.0)),
-            )
+        fun withDue(count: Int): BoxState {
+            var s = Box.state((1..70).map { Box.word(it) })
+            for (n in 1..count) {
+                val id = "w" + n.toString().padStart(2, '0')
+                s = Box.inject(
+                    s,
+                    Box.sched(id, dueMillis = now - n * 60_000L, lastReviewMillis = Box.plusDays(now, -1.0)),
+                )
+            }
+            return s
         }
-        // 61 due cards − 30 sessionCap = 31 ≥ dueSoftCap 30 → closed.
-        assertEquals(61, BoxEngine.dueNow(state, now).size)
+        // A backlog the session can still work off leaves the way open: 54 − 25 = 29 < 30.
+        state = withDue(54)
+        assertEquals(54, BoxEngine.dueNow(state, now).size)
+        assertEquals(NEW_CARDS_PER_ROUND, Box.candidates(state).newCards.size)
+
+        // One more and the projected leftover reaches dueSoftCap → closed.
+        state = withDue(55)
         assertTrue(Box.candidates(state).newCards.isEmpty())
-    }
-
-    @Test
-    fun budgetTracksLoadAcrossRecomposition() {
-        var state = Box.state((1..10).map { Box.word(it) }, Box.config(maxUnsettled = 5))
-        val plan = Box.candidates(state)
-        assertEquals(5, plan.newCards.size)
-
-        // Words answered on sight settle at once and cost the budget nothing.
-        for (id in plan.newCards.take(3)) {
-            state = Box.answered(state, id, Rating.Good, now)
-        }
-        assertEquals(0, Growth.unsettledLoad(state))
-        assertEquals(5, Growth.newBudget(state))
-
-        // The ones that miss are what loads the box.
-        for (id in plan.newCards.drop(3)) {
-            state = Box.answered(state, id, Rating.Again, now)
-        }
-        assertEquals(2, Growth.unsettledLoad(state))
-        assertEquals(3, Growth.newBudget(state))
-    }
-
-    @Test
-    fun budgetRecoversAsWordsSettle() {
-        var state = Box.state((1..14).map { Box.word(it) }, Box.config(maxUnsettled = 10))
-        for (n in 1..9) {
-            state = Box.answered(state, "w0$n", Rating.Again, now)
-        }
-        // 9 words still on their way in → down to the trickle.
-        assertEquals(9, Growth.unsettledLoad(state))
-        assertEquals(Growth.TRICKLE_CARDS, Growth.newBudget(state))
-
-        // Three of them stabilise over the following days; the budget opens back up.
-        for (n in 1..3) {
-            state = Box.inject(
-                state,
-                Box.sched("w0$n", stability = 9.0, dueMillis = Box.plusDays(now, 5.0), lastReviewMillis = now),
-            )
-        }
-        assertEquals(6, Growth.unsettledLoad(state))
-        assertEquals(4, Growth.newBudget(state))
     }
 
     @Test
@@ -146,38 +88,41 @@ class BoxGrowthTests {
     }
 
     @Test
-    fun enqueuedLeadWithinBudgetAndPhrasePullsComponentsFirst() {
-        var state = Box.state((1..10).map { Box.word(it) }, Box.config(maxUnsettled = 5))
+    fun enqueuedLeadWithinTheRoundAndPhrasePullsComponentsFirst() {
+        var state = Box.state((1..10).map { Box.word(it) })
         state = BoxEngine.enqueue(state, listOf("w07"))
         assertEquals(
-            listOf("w07", "w01", "w02", "w03", "w04"),
+            listOf("w07", "w01", "w02", "w03", "w04", "w05", "w06"),
             Box.candidates(state).newCards,
         )
 
         var withPhrase = Box.state(
             (1..6).map { Box.word(it) } + Box.phrase("p1", components = listOf("w05", "w06")),
-            Box.config(maxUnsettled = 5),
         )
         withPhrase = BoxEngine.enqueue(withPhrase, listOf("p1"))
         assertEquals(listOf("w05", "w06", "p1"), withPhrase.enqueued)
         // Locked phrase never enters, even enqueued; components lead, then automatic
-        // growth fills the rest of the budget.
+        // growth fills the rest of the round.
         assertEquals(
-            listOf("w05", "w06", "w01", "w02", "w03"),
+            listOf("w05", "w06", "w01", "w02", "w03", "w04"),
             Box.candidates(withPhrase).newCards,
         )
     }
 
     @Test
-    fun enqueuedRespectLoadThrottlePackDripsIn() {
-        var state = Box.state((1..10).map { Box.word(it) }, Box.config(maxUnsettled = 2))
-        state = BoxEngine.enqueue(state, listOf("w06", "w07", "w08"))
-        assertEquals(listOf("w06", "w07"), Box.candidates(state).newCards)
+    fun enqueuedPackDripsInARoundAtATime() {
+        var state = Box.state((1..12).map { Box.word(it) })
+        state = BoxEngine.enqueue(state, (1..10).map { "w" + it.toString().padStart(2, '0') })
+        assertEquals(
+            (1..NEW_CARDS_PER_ROUND).map { "w0$it" },
+            Box.candidates(state).newCards,
+        )
 
-        state = Box.answered(state, "w06", Rating.Good, now)
-        state = Box.answered(state, "w07", Rating.Good, now)
-        // At the cap the pack keeps dripping at the trickle rate, w08 first.
-        assertEquals(listOf("w08"), state.enqueued)
+        for (id in Box.candidates(state).newCards) {
+            state = Box.answered(state, id, Rating.Good, now)
+        }
+        // What the round could not take is still packed, front first.
+        assertEquals(listOf("w08", "w09", "w10"), state.enqueued)
         assertEquals("w08", Box.candidates(state).newCards.first())
     }
 

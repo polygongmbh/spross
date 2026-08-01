@@ -93,22 +93,24 @@ class StoreCodecTests {
     }
 
     /**
-     * A box written by 2.0.0 carries `maxLearning` and `phraseUnlockStability`, both
-     * renamed since. Keys this build no longer knows are dropped instead of failing
-     * the document, and the renamed settings fall back to the build's calibration.
+     * A box written by an older build carries `maxLearning` and `phraseUnlockStability`,
+     * both renamed since, and `maxUnsettled`, retired with the load throttle. Keys this
+     * build no longer knows are dropped instead of failing the document, and the renamed
+     * settings fall back to the build's calibration.
      */
     @Test
     fun decodeDropsKeysRenamedSinceTheDocumentWasWritten() {
         val legacy =
             """{"config":{"desiredRetention":0.8,"dueSoftCap":30,""" +
                 """"learningStepsSeconds":[60,600],"maxLearning":9,"maximumIntervalDays":365,""" +
-                """"phraseUnlockStability":2.0,"relearningStepsSeconds":[600],"sessionCap":30},""" +
+                """"phraseUnlockStability":2.0,"maxUnsettled":9,"relearningStepsSeconds":[600],""" +
+                """"sessionCap":30},""" +
                 """"dailyStats":{},"enqueued":[],"newIntroduced":{},""" +
                 """"scheduling":{${entry()}},"schemaVersion":1,"source":"de","target":"uk"}"""
 
         val decoded = StoreCodec.decode(legacy)
 
-        assertEquals(20, decoded.config.maxUnsettled)
+        assertEquals(30, decoded.config.sessionCap)
         assertEquals(2.0, decoded.config.settledStability)
         assertEquals(6.0, decoded.config.consolidatedStability)
         assertEquals("w1", decoded.scheduling.getValue("w1").cardId)

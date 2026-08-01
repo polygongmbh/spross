@@ -114,7 +114,6 @@ class BoxStatisticsTests {
         assertEquals(2, stats.activeCount)
         assertEquals(1, stats.dueCount)
         assertEquals(1, stats.suspendedCount)
-        assertEquals(20, stats.newSlotsAvailable) // nothing unsettled, default cap
     }
 
     @Test

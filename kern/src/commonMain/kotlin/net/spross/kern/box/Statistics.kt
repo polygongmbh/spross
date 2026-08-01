@@ -20,8 +20,6 @@ data class BoxStatistics(
     val dueCount: Int,
     /** Cards whose schedule is suspended (out of rotation). */
     val suspendedCount: Int,
-    /** New words that could enter now; 0 when the health gate is closed. */
-    val newSlotsAvailable: Int,
     /** Days with reviews > 0; a missed day is bridged, two in a row end the run. */
     val streak: Int,
     /** The longest such run the box has ever held; equals [streak] when today's run is it. */
@@ -53,7 +51,6 @@ internal object Statistics {
             settledCount = active.count { isConsolidated(state, it) },
             dueCount = active.count { it.due != null && it.due <= now },
             suspendedCount = Inventory.scheduled(state).count { it.suspended },
-            newSlotsAvailable = Growth.gatedNewBudget(state, nowEpochMillis),
             streak = streak(state.dailyStats, nowEpochMillis, tzId),
             longestStreak = longestStreak(state.dailyStats, nowEpochMillis, tzId),
             areas = areaStatistics(state),
@@ -62,11 +59,10 @@ internal object Statistics {
 
     /**
      * A card has settled once it sits in Review at or above [BoxConfig.settledStability].
-     * THE predicate for "has this word landed": it gates phrase unlock
-     * ([Growth.isComponentStable]), splits settled from fresh in the progress UI,
-     * and decides which presentation supports a word still on its way in. A card
-     * that just lapsed is back in Relearning, so it stops being settled — which is the
-     * point: it needs the support again.
+     * The support bar: it decides which presentation still props a word up while it is
+     * on its way in. A card that just lapsed is back in Relearning, so it stops being
+     * settled — which is the point: it needs the support again. The stricter
+     * [isConsolidated] is what "has this word landed" means everywhere else.
      */
     fun isSettled(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&
@@ -75,8 +71,8 @@ internal object Statistics {
     /**
      * The stricter "really landed" bar: Review phase at or above
      * [BoxConfig.consolidatedStability]. Feeds the fresh/settled stats split, the
-     * session-summary tally, and phrase unlock — never budget pacing or in-session
-     * presentation support, which stay on the faster [isSettled].
+     * session-summary tally, and phrase unlock — never in-session presentation
+     * support, which stays on the faster [isSettled].
      */
     fun isConsolidated(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&

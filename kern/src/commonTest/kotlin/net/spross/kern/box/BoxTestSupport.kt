@@ -14,6 +14,7 @@ import net.spross.kern.model.MemoryState
 import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
 import net.spross.kern.model.ReviewLogEntry
+import net.spross.kern.session.SessionComposer
 
 /** Shared builders for box-engine scenario tests — fixed UTC clock, hand-built joins. */
 internal object Box {
@@ -58,8 +59,8 @@ internal object Box {
         promptFeminineMarker = false,
     )
 
-    fun config(maxUnsettled: Int = 20, dueSoftCap: Int = 30, sessionCap: Int = 30): BoxConfig =
-        BoxConfig(maxUnsettled = maxUnsettled, dueSoftCap = dueSoftCap, sessionCap = sessionCap)
+    fun config(dueSoftCap: Int = 30, sessionCap: Int = 25): BoxConfig =
+        BoxConfig(dueSoftCap = dueSoftCap, sessionCap = sessionCap)
 
     val stamp = JoinStamp("de", "sw", "fixture")
 
@@ -108,7 +109,7 @@ internal object Box {
         capacity: Int = state.config.sessionCap,
     ): NewCandidates = Growth.newCandidates(
         state,
-        budget = Growth.newBudget(state),
+        budget = SessionComposer.NEW_CARDS_PER_ROUND,
         gateOpen = Growth.healthGateOpen(state, nowMillis),
         capacity = capacity,
     )
