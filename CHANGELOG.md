@@ -7,10 +7,11 @@
   thumb that closed one round early finds the next one's way out where it left it, instead
   of travelling to the bottom of the screen and back.
 
-- **The reveal chime is audible again.** Pronunciation recordings now play under a
-  catalog-measured loudness correction that can boost a quiet recording well past where
-  the feedback sounds used to sit, so reveal — the softest of the four by design — was
-  getting buried under it. The four sounds are louder now, in the same balance as before.
+- **The feedback chimes are heard beside the spoken words instead of under them.** They
+  used to play on the phone's ringer volume while every word played on the media volume,
+  so the two answered to different sliders and a low ringer silenced the chimes outright —
+  reveal, the softest of them, first. Now they share the words' volume, and they are
+  levelled against the words rather than against nothing.
 
 ## 3.1.0 — 2026-08-02
 

@@ -49,9 +49,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(ROOT, 'App/Resources/Sounds')
 
 SAMPLE_RATE = 44100
-PEAK = 0.5           # headroom: pronunciation now carries the ANALYSIS INDEX boost
-                     # (catalog gain, up to +20 dB) — 0.26 predates that and reveal
-                     # (level 0.30, the quietest sound here) got buried under it
+# These now play on the app's MEDIA volume, beside the spoken words, rather than on
+# the ringer (Sounds.swift) — so the words are what they are levelled against. The
+# catalog boosts every recording toward -16.7 LUFS under a -1 dBFS ceiling, and 0.26
+# was chosen when a chime only ever answered to the ringer slider.
+PEAK = 0.7
 END_FADE = 0.005     # s — no click when the tail is truncated by the buffer
 
 # Odd harmonics falling ~1/n² (triangle-like: soft, bodied, no saw/square buzz),
@@ -92,8 +94,10 @@ SOUNDS = {
         (E4,         0.100, 0.26, 0.95),
     ]),
     # plays on every card whatever the outcome, so the least of everything:
-    # quietest, roundest, shortest, and low enough not to pierce
-    'reveal': dict(tau=0.036, attack=0.018, bright=0.10, level=0.30, notes=[
+    # quietest, roundest, shortest, and low enough not to pierce. Still the
+    # quietest of the four, but not by the old 7.6 dB — at a tenth of a second
+    # it is the one sound short enough to be missed rather than merely soft.
+    'reveal': dict(tau=0.036, attack=0.018, bright=0.10, level=0.45, notes=[
         (G4,         0.000, 0.11, 1.00),
     ]),
     # heard once, at the end: the correct interval kept climbing, with a long

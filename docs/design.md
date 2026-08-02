@@ -164,6 +164,10 @@ never the shape of the app.
   device: not per target language, and not in the box, where the product calibration would
   reset it. It governs the spoken words only; the feedback chimes are their own matter, and
   both follow the ring/silent switch.
+- **Chimes and words share one volume.** Both play on the app's own audio session, so the
+  levels they were authored at are the levels heard against each other. A chime routed to
+  the system-sound server instead would answer to the ringer while every word answered to
+  media — two sliders, and the chime gone whenever the ringer sat low.
 - VoiceOver never gets autoplay talking over it. The headword is labeled with the language
   it is written in instead, so the screen reader says it in the right voice, and the replay
   is an action ON the word rather than a button around it.

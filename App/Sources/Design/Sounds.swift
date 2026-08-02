@@ -1,4 +1,4 @@
-import AudioToolbox
+import AVFoundation
 import UIKit
 
 // MARK: - DLSound
@@ -10,77 +10,107 @@ import UIKit
 // (1053/1054/1057 and friends). Those ids carry the system alert haptic with
 // them on Taptic iPhones — it follows Sounds & Haptics › Haptics and there is
 // no per-call opt-out, so a correct answer buzzed even though nothing here
-// asked it to. Custom sounds never do that, which puts every vibration in
-// this file back under our control.
+// asked it to. Custom files never do that, which puts every vibration in this
+// file back under our control.
 //
-// System sounds still follow the ring/silent switch (deliberately no
-// AVAudioSession override), so a muted phone stays muted.
+// They are played by `AVAudioPlayer` on the app's OWN audio session, not by
+// AudioToolbox's system-sound server. That server is a SEPARATE VOLUME DOMAIN:
+// on iOS it follows the ringer, while everything an app plays for itself
+// follows media. Nothing noticed while the app only ever chimed — the ringer
+// was the only slider in play — but since the words got a voice the two are
+// heard against each other, and a chime on the ringer sits below a word on
+// media by whatever gap the two sliders happen to hold. At a low ringer it is
+// not quiet, it is gone, and no amount of level in `scripts/sounds.py` reaches
+// it. One domain for both is what makes those levels mean anything.
+//
+// The session is `.ambient`, set once in `SprossApp.init` and never activated
+// by hand — it still follows the ring/silent switch, so a muted phone stays
+// muted exactly as the system-sound route used to guarantee.
 
+@MainActor
 enum DLSound {
 
     /// Ascending major third — the positive confirmation people already know.
-    private static let correctID = load("correct")
+    private static let correctPlayer = load("correct")
     /// Descending minor third: down, but consonant.
-    private static let wrongID = load("wrong")
+    private static let wrongPlayer = load("wrong")
     /// One neutral note; revealing an answer is not a verdict.
-    private static let revealID = load("reveal")
+    private static let revealPlayer = load("reveal")
     /// The correct interval carried on up to the octave — the finish screen only.
-    private static let cheerID = load("cheer")
+    private static let cheerPlayer = load("cheer")
 
     static func correct() {
-        play(correctID)
+        play(correctPlayer)
     }
 
     static func wrong() {
-        play(wrongID)
+        play(wrongPlayer)
         // why: the only haptic in the app — a single light tap on a wrong
         // answer as a gentle wake-up cue, never on reveal or on a correct one.
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
     }
 
     static func reveal() {
-        play(revealID)
+        play(revealPlayer)
     }
 
     static func cheer() {
-        play(cheerID)
+        play(cheerPlayer)
     }
 
-    /// Registers a bundled sound once; `nil` (a missing resource) plays nothing.
-    private static func load(_ name: String) -> SystemSoundID? {
-        guard let url = Bundle.main.url(forResource: name, withExtension: "wav")
-        else { return nil }
-        var id: SystemSoundID = 0
-        guard AudioServicesCreateSystemSoundID(url as CFURL, &id) == kAudioServicesNoError
-        else { return nil }
-        return id
+    /// Loads the four players off the answering path, so the first chime of a
+    /// session does not pay `prepareToPlay`'s buffer allocation on the very tap
+    /// that fires it. Called beside `Pronouncer.warmUp()`, which pays the
+    /// session's first activation the same way.
+    static func warmUp() {
+        _ = correctPlayer
+        _ = wrongPlayer
+        _ = revealPlayer
+        _ = cheerPlayer
     }
 
-    private static func play(_ id: SystemSoundID?) {
-        guard let id else { return }
-        AudioServicesPlaySystemSound(id)
+    /// Readies a bundled sound once; `nil` (a missing resource) plays nothing.
+    private static func load(_ name: String) -> AVAudioPlayer? {
+        guard let url = Bundle.main.url(forResource: name, withExtension: "wav"),
+              let player = try? AVAudioPlayer(contentsOf: url)
+        else { return nil }
+        player.prepareToPlay()
+        return player
+    }
+
+    /// why: a second answer inside the first chime's tail rewinds it rather
+    /// than being dropped — one player per sound, restarted on every fire.
+    private static func play(_ player: AVAudioPlayer?) {
+        guard let player else { return }
+        player.currentTime = 0
+        player.play()
     }
 
     #if DEBUG
-    /// UI-test hook (`-uitest-sound 1`): plays each sound staggered with a
-    /// completion probe. A firing completion means the system resolved the
-    /// sound id and played it through — the audibility proxy in the simulator,
-    /// and the check that the files actually made it into the bundle.
+    /// UI-test hook (`-uitest-sound 1`): plays each sound staggered, reporting
+    /// what the player did with it — the audibility proxy in the simulator, and
+    /// the check that the files actually made it into the bundle.
     static func uitestProbe() {
-        let probes: [(String, SystemSoundID?)] =
-            [("correct", correctID), ("wrong", wrongID), ("reveal", revealID),
-             ("cheer", cheerID)]
+        let probes: [(String, AVAudioPlayer?)] =
+            [("correct", correctPlayer), ("wrong", wrongPlayer), ("reveal", revealPlayer),
+             ("cheer", cheerPlayer)]
         for (index, probe) in probes.enumerated() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 1.4) {
-                guard let id = probe.1 else {
+            Task { @MainActor in
+                try? await Task.sleep(for: .milliseconds(index * 1400))
+                guard let player = probe.1 else {
                     print("DLSound probe: \(probe.0) MISSING from the bundle")
                     return
                 }
-                // why: AudioToolbox calls the completion on its own queue —
-                // the closure must not assume main-actor isolation.
-                AudioServicesPlaySystemSoundWithCompletion(id) { @Sendable in
-                    print("DLSound probe: \(probe.0) (id \(id)) played to completion")
+                player.currentTime = 0
+                guard player.play() else {
+                    print("DLSound probe: \(probe.0) REFUSED to start")
+                    return
                 }
+                try? await Task.sleep(for: .seconds(player.duration))
+                print("""
+                    DLSound probe: \(probe.0) played \
+                    \(String(format: "%.2f", player.duration)) s to completion
+                    """)
             }
         }
     }

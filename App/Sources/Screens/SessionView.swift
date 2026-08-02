@@ -94,6 +94,7 @@ struct SessionView: View {
             // inaudible clip, here where nothing is typed — never on a produce
             // reveal that carries the keyboard.
             Pronouncer.shared.warmUp()
+            DLSound.warmUp()
             // why: the card-change hook does not see the FIRST card, exactly
             // like promptShownAt; the one-shot guard covers the overlap.
             if let card = model.currentCard { autoplayPrompt(card) }
