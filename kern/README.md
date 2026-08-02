@@ -504,6 +504,16 @@ day-key `yyyy-MM-dd`) with:
   letters, exactly-one-gap on gap rows, letters-manifest glyph collision).
   `letters{}.matches == name` is WAIVED — the audio manifest schema rejects the field, so
   the name↔recording check is a manual listening pass (backlog).
+- `catalog/drills/` — the sentence frames, a top-level sibling outside `areas.json`
+  (format owned by `catalog/README.md`). A frame is a concept + per-language realizations,
+  joined at runtime like a card, but it is not a card: no area, no `seedIndex`, outside the
+  phrase-unlock gate. **Frames are read through the RAW `CatalogSource`, not the
+  fingerprinting wrapper** — the same exemption the audio manifest has, and for the same
+  reason: a frame edit can never change the card join, so it must not restamp and recompose
+  a running box. An absent `drills/` folder is legal. Lint: **`CatalogFrameLintTest`**
+  (slug shape/uniqueness/disjointness from concepts, one `{slot}` per text and per variant,
+  `{count}` ⟺ `count` and only on a `numbers` frame, note keys are declared languages);
+  vocab grounding of every answer side in **`PhraseVocabAuditTests`**.
 
 ## 9. KMP project & Apple integration
 
@@ -527,9 +537,15 @@ day-key `yyyy-MM-dd`) with:
   App/Sources adds `Date ↔ epochMillis` helpers and `Identifiable`/`Equatable`
   conformances; Kotlin `Int` surfaces as `Int32` — bridge there, not at call sites.
 - Trainer: single `:kern` module, `Long` cardinals everywhere (Kotlin `Int` is 32-bit on
-  all platforms — v1's arm64_32 fix generalizes). Trainer registry: de/sw/uk authored,
-  en/es absent (the hub's handling of those is an app rule).
-  Phrase templates keyed (source, target); reverse mode when target == de.
+  all platforms — v1's arm64_32 fix generalizes). Trainer registry: de/en/es/sw/uk
+  authored; a language outside it has no drills (the hub's handling of that is an app rule).
+  `Catalog.phraseTemplates(source, target)` is the frames' half of the card join:
+  one `PhraseTemplate` per frame realized in BOTH languages, directional like a `Card`,
+  with `count`/`masculineNumeral`/`note` riding along from the ANSWER realization.
+  Nothing pair-shaped is stored, so authoring one language file lights up every pair it
+  makes. Availability gate: **empty unless `Trainer.supports(target)`** — sampling generates
+  the answer side's number words, so a language without a pack can only ever supply prompts.
+  Reverse mode is the same template read the other way, for any pair, not only `target == de`.
   German clock ACCEPTS 24-hour readings ("achtzehn Uhr fünfunddreißig", "null/vierundzwanzig
   Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.
   An hour word directly before "Uhr" apocopates: "ein Uhr", never "eins Uhr";
