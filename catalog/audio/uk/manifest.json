@@ -1548,6 +1548,17 @@
       "sha256": "5eb6dba031b3f2a31d69265c4f9d107115377ef20ec65061d3b4cea5492f0601",
       "source": "Uk-волосся.ogg"
     },
+    "hairdryer": {
+      "author": "Tohaomg",
+      "file": "hairdryer.mp3",
+      "gain": 2.8,
+      "lead": 105,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "фен",
+      "sha256": "d61ceae07b76d968dc361719a0c236457f4b9330a1e19a361c361d54dda47f55",
+      "source": "LL-Q8798 (ukr)-Tohaomg-фен.wav"
+    },
     "hallway": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "hallway.mp3",

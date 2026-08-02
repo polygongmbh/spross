@@ -12,22 +12,30 @@ lives outside the repo in `data/reference/audio/README.md`.
 
 ## 1. What ships, and under what
 
-1126 mp3 files, ~26 MB, all of them Wikimedia Commons transcodes:
-**690 CC BY-SA · 374 CC BY · 62 CC0 or public domain**.
+1319 mp3 files, ~29 MB, all of them Wikimedia Commons transcodes:
+**879 CC BY-SA · 329 CC BY · 111 CC0 or public domain**.
 
 | Pack | Files | Source | Licences | Speakers | Obligation |
 |---|---|---|---|---|---|
-| `audio/de/` | 200 words | Commons `De-*.ogg` | BY-SA 4.0 104 · BY-SA 3.0 35 · BY-SA 2.5 2 · BY 2.0 fr 49 · BY 3.0 us 2 · BY 3.0 1 · PD 7 | 13 credit groups, Jeuwre 104 of 200 | credit every group; share-alike on the 141 BY-SA files |
-| `audio/es/` | 310 words | Lingua Libre, via Commons | BY-SA 4.0 237 · CC0 55 · BY 4.0 18 | 19 speakers, 20 credit groups (AdrianAbdulBaha 127, Marreromarco 68) | credit all but the 55 CC0; share-alike on 237 |
+| `audio/de/` | 369 words | Commons `De-*.ogg`, Lingua Libre `LL-Q188 (deu)` | BY-SA 4.0 267 · BY-SA 3.0 46 · BY-SA 2.5 1 · CC0 51 · BY 3.0 us 2 · BY 3.0 1 · PD 1 | 21 credit groups, Jeuwre 231 | credit all but the CC0; share-alike on 314 |
+| `audio/de/letters/` | 8 letters | Commons `De-<letter>.ogg` | BY-SA 4.0 6 · BY-SA 3.0 2 | Jeuwre 6, T.Voekler 2 | credit + share-alike |
+| `audio/de/texts/` | 2 words | Commons `De-*.ogg` | BY-SA 4.0 1 · BY-SA 3.0 1 | 2 groups | credit + share-alike |
+| `audio/es/` | 311 words | Lingua Libre, via Commons | BY-SA 4.0 237 · CC0 55 · BY 4.0 18 · BY-SA 2.5 1 | 20 credit groups (AdrianAbdulBaha 127, Marreromarco 68) | credit all but the 55 CC0; share-alike on 238 |
+| `audio/es/letters/` | 6 letters | Lingua Libre, via Commons | CC0 2 · BY 4.0 2 · BY-SA 4.0 2 | 4 groups | credit all but the CC0 |
+| `audio/es/texts/` | 4 words | Lingua Libre, via Commons | CC0 2 · BY 4.0 1 · BY-SA 4.0 1 | 4 groups | credit all but the CC0 |
 | `audio/sw/` | 280 words | Commons `Sw-ke-*.flac` | BY-SA 4.0, whole pack | Waithera Were 279, Goethe-Institut Cameroon 1 | credit + share-alike, whole pack |
-| `audio/uk/` words | 304 words | Commons `Uk-*.ogg` (Shtooka) | BY 3.0 us 303 · BY 2.0 fr 1 | Галя Раптова / Nicolas Vion 295, 2 further groups | **attribution only — no share-alike** |
-| `audio/uk/letters/` | 32 letters | Commons `Аа – ukrainian.ogg` | BY-SA 4.0 | Tabrus | credit + share-alike |
+| `audio/uk/` words | 305 words | Commons `Uk-*.ogg` (Shtooka), one Lingua Libre | BY 3.0 us 303 · BY 2.0 fr 1 · BY-SA 4.0 1 | Галя Раптова / Nicolas Vion 295, 3 further groups | credit every group; share-alike on the one BY-SA file |
+| `audio/uk/letters/` | 33 letters | Commons `Аа – ukrainian.ogg`, one Lingua Libre | BY-SA 4.0 | Tabrus 32, Tohaomg 1 | credit + share-alike |
+| `audio/uk/texts/` | 1 word | Commons `Uk-*.ogg` | BY 3.0 us | Галя Раптова / Nicolas Vion | attribution only |
 
 Share-alike reaches the **audio files only**.
 CC carries no GPL-style linking clause,
 so bundling BY-SA recordings leaves the Kotlin core, the UI and the catalog data unaffected.
-The Ukrainian words are the one pack free of share-alike entirely,
-which is worth remembering before any pack is ever re-cut.
+The Ukrainian WORDS were long the one pack free of share-alike entirely;
+`фен` ended that — one BY-SA 4.0 file, taken because the alphabet's `е` row had no
+recorded example otherwise. The obligation was already carried by every other pack,
+uk's own letters included, so it costs nothing new; it is noted because the property
+was worth something while it lasted, and a future re-cut should not assume it back.
 
 ## 2. How the obligations are discharged
 

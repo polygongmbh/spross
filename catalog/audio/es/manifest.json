@@ -1323,6 +1323,16 @@
       "sha256": "787a25214a357d186b975aad92ffda1735f8365aadfcd111b0178adae6aa555e",
       "source": "LL-Q1321 (spa)-Sinaloa-bueno.wav"
     },
+    "goodbye": {
+      "author": "Wikimedia Commons user Fibonacci",
+      "file": "goodbye.mp3",
+      "gain": 2.0,
+      "licence": "CC BY-SA 2.5",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+      "matches": "adiós",
+      "sha256": "d9b4335a589c2552c6139598fda3d5cb6acbe83bcbbab9c584dc63b52e9b8cc2",
+      "source": "Es-adiós.ogg"
+    },
     "grade": {
       "author": "AdrianAbdulBaha",
       "file": "grade.mp3",
