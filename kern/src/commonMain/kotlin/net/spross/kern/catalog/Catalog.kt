@@ -5,6 +5,8 @@ import net.spross.kern.model.Language
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Realization
 import net.spross.kern.model.nfcNormalized
+import net.spross.kern.trainer.PhraseTemplate
+import net.spross.kern.trainer.Trainer
 
 /**
  * The parsed content catalog. Cards are a runtime [join] per (source, target) profile —
@@ -21,6 +23,10 @@ class Catalog internal constructor(
     internal val audio: Map<Language, AudioManifest>,
     /** Keyed by language, only where `alphabet/<lang>.json` exists — the drill's registry. */
     internal val alphabets: Map<Language, Alphabet>,
+    /** Sentence frames from `drills/frames.json`, in manifest order; empty without the folder. */
+    internal val frames: List<CatalogFrame>,
+    /** lang → frame slug → realization; only languages whose `drills/<lang>.json` exists. */
+    internal val frameRealizations: Map<Language, Map<String, RawFrame>>,
 ) {
     /** Flattened default area order (groups top-to-bottom, areas as listed). */
     val areaNames: List<String> = areas.map { it.name }
@@ -109,6 +115,37 @@ class Catalog internal constructor(
 
     private fun promptKey(card: Card): String =
         nfcNormalized(card.source.text).trim() + if (card.promptFeminineMarker) "♀" else ""
+
+    /**
+     * The frames' half of [join]: one [PhraseTemplate] per frame realized in BOTH languages,
+     * directional like a [Card], with `count`/`masculineNumeral`/`notes` riding along from
+     * the ANSWER realization. Empty unless [Trainer.supports] the target — sampling generates
+     * the answer side's number words, so a target without a pack only ever supplies prompts.
+     */
+    fun phraseTemplates(source: Language, target: Language): List<PhraseTemplate> {
+        require(source != target) { "source == target ($source)" }
+        require(source in languages) { "unknown source language \"$source\"" }
+        require(target in languages) { "unknown target language \"$target\"" }
+        if (!Trainer.supports(target)) return emptyList()
+        val sourceFrames = frameRealizations[source].orEmpty()
+        val targetFrames = frameRealizations[target].orEmpty()
+        return frames.mapNotNull { frame ->
+            val prompt = sourceFrames[frame.slug] ?: return@mapNotNull null
+            val answer = targetFrames[frame.slug] ?: return@mapNotNull null
+            PhraseTemplate(
+                id = frame.slug,
+                source = source,
+                target = target,
+                sourceTemplate = prompt.text,
+                targetTemplate = answer.text,
+                slotKind = frame.slot,
+                acceptedFrames = answer.variants,
+                gloss = answer.notes[source], // why: notes never cross-language fall back — §2
+                countForms = answer.count,
+                masculineSlot = answer.masculineNumeral,
+            )
+        }
+    }
 
     /** Targets learnable from [source]: every other language with ≥ 50 joinable concepts. */
     fun availableTargets(source: Language): List<AvailableTarget> {
@@ -252,7 +289,19 @@ class Catalog internal constructor(
                 val path = "alphabet/$lang.json"
                 tracked.read(path)?.let { lang to AlphabetParser.parse(path, it, lang, languages.keys) }
             }.toMap()
-            return Catalog(groups, languages, areas, tracked.fingerprint(), audio, alphabets)
+            // why: read through the RAW source, like audio — a frame is never part of the
+            // card join, so editing one must not restamp and recompose every running box.
+            val conceptSlugs = areas.flatMap { area -> area.concepts.map { it.slug } }.toSet()
+            val frames = source.read("drills/frames.json")
+                ?.let { CatalogParser.parseFrames("drills/frames.json", it, conceptSlugs) }.orEmpty()
+            val slots = frames.associate { it.slug to it.slot }
+            val frameRealizations = languages.keys.mapNotNull { lang ->
+                val path = "drills/$lang.json"
+                source.read(path)?.let { lang to CatalogParser.parseFrameLanguageFile(path, it, slots) }
+            }.toMap()
+            return Catalog(
+                groups, languages, areas, tracked.fingerprint(), audio, alphabets, frames, frameRealizations,
+            )
         }
     }
 }

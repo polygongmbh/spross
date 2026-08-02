@@ -7,11 +7,47 @@ internal class MapCatalogSource(private val files: Map<String, String>) : Catalo
 /**
  * Inline fixture catalog exercising the join rules: feminine base-fallback + skip,
  * Sie/du variants, sparse coverage, "to " prefix, missing language files
- * (beta has no sw/en), seedIndex flattening across two groups, and
- * decomposed-Unicode forms (gamma/de door).
+ * (beta has no sw/en), seedIndex flattening across two groups,
+ * decomposed-Unicode forms (gamma/de door), and the [drills] frames.
  */
 internal object Fixture {
     private val du = "u\u0308" // decomposed u-umlaut: u + combining diaeresis
+
+    /**
+     * Frame files, kept apart so a test can drop them wholesale and exercise the
+     * absent-`drills/` case. `learning-since-year` is German-only (never joins), and `fr`
+     * is realized although no trainer pack covers it (the availability gate).
+     */
+    val drills: Map<String, String> = mapOf(
+        "drills/frames.json" to """
+            [ { "slug": "bus-arrives-at", "slot": "clock" },
+              { "slug": "i-have-n-keys", "slot": "numbers" },
+              { "slug": "learning-since-year", "slot": "years" } ]
+        """.trimIndent(),
+        "drills/de.json" to """
+            { "frames": {
+                "bus-arrives-at": { "text": "Der Bus kommt um {slot} Uhr." },
+                "i-have-n-keys": { "text": "Ich habe {slot} Schl\u00fcssel.",
+                                   "variants": ["Ich habe {slot} Schluessel."] },
+                "learning-since-year": { "text": "Ich lerne seit {slot}." } } }
+        """.trimIndent(),
+        "drills/fr.json" to """
+            { "frames": { "bus-arrives-at": { "text": "Le bus arrive à {slot}." } } }
+        """.trimIndent(),
+        "drills/sw.json" to """
+            { "frames": {
+                "bus-arrives-at": { "text": "Basi linakuja {slot}." },
+                "i-have-n-keys": { "text": "Nina funguo {slot}." } } }
+        """.trimIndent(),
+        "drills/uk.json" to """
+            { "frames": {
+                "bus-arrives-at": { "text": "\u0410\u0432\u0442\u043e\u0431\u0443\u0441 {slot}." },
+                "i-have-n-keys": { "text": "\u0423 \u043c\u0435\u043d\u0435 \u0454 {slot} {count}.",
+                                   "count": { "one": "\u043a\u043b\u044e\u0447", "few": "\u043a\u043b\u044e\u0447\u0456", "many": "\u043a\u043b\u044e\u0447\u0456\u0432" },
+                                   "masculineNumeral": true,
+                                   "notes": { "de": "Zahlwort-Kongruenz." } } } }
+        """.trimIndent(),
+    )
 
     val files: Map<String, String> = mapOf(
         "areas.json" to """
@@ -28,6 +64,7 @@ internal object Fixture {
                      "articles": ["der", "die", "das", "ein", "eine"] },
              "en": { "name": "English", "englishName": "English", "flag": "🇬🇧",
                      "optionalVerbPrefixes": ["to "], "articles": ["the", "a", "an"] },
+             "fr": { "name": "Français", "englishName": "French", "flag": "🇫🇷" },
              "sw": { "name": "Kiswahili", "englishName": "Swahili", "flag": "🇹🇿",
                      "optionalVerbPrefixes": ["ku", "kw"] },
              "uk": { "name": "Українська", "englishName": "Ukrainian", "flag": "🇺🇦" }
@@ -116,7 +153,7 @@ internal object Fixture {
         "gamma/uk.json" to """
             { "title": "Гамма", "words": { "door": { "text": "двері", "grammar": { "plural": "only" } } } }
         """.trimIndent(),
-    )
+    ) + drills
 
     fun catalog(): Catalog = Catalog.load(MapCatalogSource(files))
 }

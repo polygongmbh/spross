@@ -2,6 +2,8 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.Language
+import net.spross.kern.trainer.PhraseTemplate
+import net.spross.kern.trainer.TrainerKind
 
 /** One ordered group from `areas.json`. */
 data class AreaGroup(
@@ -49,6 +51,30 @@ internal data class RawRealization(
     val synonyms: List<String>,
     val variants: List<String>,
     val grammar: Map<String, String>,
+    /** Keyed by explanation language; selected by the profile's source at join time. */
+    val notes: Map<Language, String>,
+)
+
+/**
+ * A sentence frame as authored in `drills/frames.json` — language-neutral, exactly like
+ * [CatalogConcept]: a slug plus the [slot] kind its single `{slot}` takes. Frames are not
+ * scheduled cards, so they carry no area, no kind and no seedIndex.
+ */
+internal data class CatalogFrame(
+    val slug: String,
+    val slot: TrainerKind,
+)
+
+/** One frame rendered in one language, as authored in `drills/<lang>.json`. */
+internal data class RawFrame(
+    /** Carries exactly one `{slot}`, and `{count}` iff [count] is authored. */
+    val text: String,
+    /** Accept-only alternate renderings of [text] (the du/Sie register split). */
+    val variants: List<String>,
+    /** Counted-noun agreement for the `{count}` marker; `numbers` frames only. */
+    val count: PhraseTemplate.CountForms?,
+    /** This realization counts a masculine/indeclinable noun: одна/дві are wrong. */
+    val masculineNumeral: Boolean,
     /** Keyed by explanation language; selected by the profile's source at join time. */
     val notes: Map<Language, String>,
 )

@@ -26,11 +26,17 @@ class TrainerHintsTests {
         assertEquals("elfu", Trainer.placeValueHint(4, "sw"))
         assertEquals("milioni", Trainer.placeValueHint(7, "sw"))
         assertEquals("Milliarde", Trainer.placeValueHint(10, "de"))
+        assertEquals("thousand", Trainer.placeValueHint(4, "en"))
+        assertEquals("billion", Trainer.placeValueHint(10, "en"))
+        // Spanish counts 10^9 as "mil millones" — no short-scale billion.
+        assertEquals("mil millones", Trainer.placeValueHint(10, "es"))
     }
 
     @Test
     fun tensReferenceIsSwahiliOnly() {
         assertNull(Trainer.tensReference("de"))
+        assertNull(Trainer.tensReference("en"))
+        assertNull(Trainer.tensReference("es"))
         assertNull(Trainer.tensReference("uk"))
         val sw = assertNotNull(Trainer.tensReference("sw"))
         assertEquals(9, sw.size)
@@ -41,9 +47,9 @@ class TrainerHintsTests {
 
     @Test
     fun unauthoredLanguagesHaveNoHintsAndNoTrainer() {
-        assertNull(Trainer.placeValueHint(3, "en"))
-        assertNull(Trainer.tensReference("en"))
-        assertTrue(!Trainer.supports("en"))
-        assertEquals(listOf("de", "sw", "uk"), Trainer.languages)
+        assertNull(Trainer.placeValueHint(3, "fr"))
+        assertNull(Trainer.tensReference("fr"))
+        assertTrue(!Trainer.supports("fr"))
+        assertEquals(listOf("de", "en", "es", "sw", "uk"), Trainer.languages)
     }
 }

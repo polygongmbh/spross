@@ -24,6 +24,11 @@ data class PhraseTemplate(
      */
     val targetTemplate: String,
     val slotKind: TrainerKind,
+    /**
+     * Accept-only alternate renderings of [targetTemplate] (the du/Sie register split):
+     * graded as correct, never displayed.
+     */
+    val acceptedFrames: List<String> = emptyList(),
     /** Template-level note, merged with the slot task's gloss. */
     val gloss: String? = null,
     /**

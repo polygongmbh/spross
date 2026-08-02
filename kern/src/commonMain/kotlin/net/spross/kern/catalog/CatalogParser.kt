@@ -4,6 +4,8 @@ import kotlinx.serialization.json.JsonObject
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.Language
 import net.spross.kern.model.LanguageInfo
+import net.spross.kern.trainer.PhraseTemplate
+import net.spross.kern.trainer.TrainerKind
 
 /** Wraps a [CatalogSource], folding every read into an FNV-1a 64 fingerprint. */
 internal class FingerprintingSource(private val delegate: CatalogSource) {
@@ -157,6 +159,87 @@ internal object CatalogParser {
             slug to parseRealization(path, slug, el.obj(path, slug))
         }
         return title to words
+    }
+
+    /**
+     * The frame manifest. Frame slugs live in the same namespace as concept slugs —
+     * [conceptSlugs] keeps them disjoint, so nothing can address both a card and a drill.
+     */
+    fun parseFrames(path: String, text: String, conceptSlugs: Set<String>): List<CatalogFrame> {
+        val frames = parseJson(path, text).arr(path, "root").mapIndexed { i, el ->
+            val o = el.obj(path, "[$i]")
+            o.rejectUnknownKeys(path, "[$i]", setOf("slug", "slot"))
+            val slug = o.requireString(path, "[$i]", "slug")
+            if (slug.isEmpty() || '|' in slug || '/' in slug) parseError(path, "[$i]: bad slug \"$slug\"")
+            if (slug in conceptSlugs) parseError(path, "$slug: frame slug also names a concept")
+            val slot = when (val raw = o.requireString(path, slug, "slot")) {
+                "numbers" -> TrainerKind.Numbers
+                "years" -> TrainerKind.Years
+                "clock" -> TrainerKind.Clock
+                else -> parseError(path, "$slug: unknown slot \"$raw\"")
+            }
+            CatalogFrame(slug, slot)
+        }
+        val slugs = frames.map { it.slug }
+        if (slugs.size != slugs.toSet().size) parseError(path, "duplicate frame slug")
+        return frames
+    }
+
+    /** Returns slug → frame realization; validates slugs and markers against [slots]. */
+    fun parseFrameLanguageFile(
+        path: String,
+        text: String,
+        slots: Map<String, TrainerKind>,
+    ): Map<String, RawFrame> {
+        val root = parseJson(path, text).obj(path, "root")
+        root.rejectUnknownKeys(path, "root", setOf("frames"))
+        val framesObj = root["frames"]?.obj(path, "frames") ?: parseError(path, "missing \"frames\"")
+        return framesObj.entries.associate { (slug, el) ->
+            val slot = slots[slug] ?: parseError(path, "frame for unknown slug \"$slug\"")
+            slug to parseFrame(path, slug, slot, el.obj(path, slug))
+        }
+    }
+
+    private fun parseFrame(path: String, slug: String, slot: TrainerKind, o: JsonObject): RawFrame {
+        o.rejectUnknownKeys(path, slug, setOf("text", "variants", "count", "masculineNumeral", "notes"))
+        val text = o.requireString(path, slug, "text")
+        val variants = o.stringList(path, slug, "variants")
+        val count = o["count"]?.let { el ->
+            if (slot != TrainerKind.Numbers) parseError(path, "$slug: count on a ${slot.name.lowercase()} frame")
+            val co = el.obj(path, "$slug.count")
+            co.rejectUnknownKeys(path, "$slug.count", setOf("one", "few", "many"))
+            PhraseTemplate.CountForms(
+                one = co.requireString(path, "$slug.count", "one"),
+                few = co.requireString(path, "$slug.count", "few"),
+                many = co.requireString(path, "$slug.count", "many"),
+            )
+        }
+        for (frame in listOf(text) + variants) {
+            if (frame.isBlank()) parseError(path, "$slug: blank frame")
+            if (occurrences(frame, PhraseTemplate.SLOT_MARKER) != 1) {
+                parseError(path, "$slug: \"$frame\" needs exactly one ${PhraseTemplate.SLOT_MARKER}")
+            }
+            if (occurrences(frame, PhraseTemplate.COUNT_MARKER) != (if (count == null) 0 else 1)) {
+                parseError(path, "$slug: \"$frame\" carries ${PhraseTemplate.COUNT_MARKER} iff \"count\" is authored")
+            }
+        }
+        return RawFrame(
+            text = text,
+            variants = variants,
+            count = count,
+            masculineNumeral = o.optionalBoolean(path, slug, "masculineNumeral") ?: false,
+            notes = o.stringMap(path, slug, "notes"),
+        )
+    }
+
+    private fun occurrences(text: String, marker: String): Int {
+        var found = 0
+        var index = text.indexOf(marker)
+        while (index >= 0) {
+            found++
+            index = text.indexOf(marker, index + marker.length)
+        }
+        return found
     }
 
     private fun parseRealization(path: String, slug: String, o: JsonObject): RawRealization {

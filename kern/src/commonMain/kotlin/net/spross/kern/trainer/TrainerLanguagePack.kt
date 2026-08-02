@@ -43,6 +43,34 @@ private object GermanPack : TrainerLanguagePack {
     )
 }
 
+private object EnglishPack : TrainerLanguagePack {
+    override fun number(n: Long) = EnglishNumbers.variants(n)
+    override fun year(y: Long): YearReading {
+        val variants = EnglishNumbers.yearVariants(y)
+        return YearReading(variants[0], variants)
+    }
+    override fun clock(hour: Int, minute: Int) = EnglishClock.task(hour, minute)
+    override val placeValues = listOf(
+        "ten", "hundred", "thousand", "ten thousand", "hundred thousand",
+        "million", "ten million", "hundred million", "billion",
+    )
+}
+
+private object SpanishPack : TrainerLanguagePack {
+    override fun number(n: Long) = SpanishNumbers.variants(n)
+    override fun year(y: Long): YearReading {
+        // A year counts nothing, so it never takes the feminine agreement.
+        val cardinal = SpanishNumbers.cardinal(y)
+        return YearReading(cardinal, listOf(cardinal))
+    }
+    override fun clock(hour: Int, minute: Int) = SpanishClock.task(hour, minute)
+    // Spanish has no short-scale billion: 10^9 counts as "mil millones".
+    override val placeValues = listOf(
+        "diez", "cien", "mil", "diez mil", "cien mil",
+        "millón", "diez millones", "cien millones", "mil millones",
+    )
+}
+
 private object SwahiliPack : TrainerLanguagePack {
     override fun number(n: Long) = listOf(SwahiliNumbers.cardinal(n))
     override fun year(y: Long): YearReading {
@@ -72,9 +100,11 @@ private object UkrainianPack : TrainerLanguagePack {
     )
 }
 
-/** The registry: de/sw/uk authored, insertion order is presentation order. */
+/** The registry: de/en/es/sw/uk authored, insertion order is presentation order. */
 internal val trainerPacks: Map<Language, TrainerLanguagePack> = linkedMapOf(
     "de" to GermanPack,
+    "en" to EnglishPack,
+    "es" to SpanishPack,
     "sw" to SwahiliPack,
     "uk" to UkrainianPack,
 )

@@ -2,8 +2,10 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.trainer.TrainerKind
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -160,6 +162,76 @@ class CatalogFixtureTest {
     fun areaEmojiIsLanguageNeutralAndNullForUnknownAreas() {
         assertEquals("🌀", catalog.areaEmoji("gamma"))
         assertNull(catalog.areaEmoji("delta"))
+    }
+
+    // -- drill frames ------------------------------------------------------------------
+
+    @Test
+    fun framesJoinSymmetricallyInBothDirections() {
+        val forward = catalog.phraseTemplates("de", "sw")
+        assertEquals(listOf("bus-arrives-at", "i-have-n-keys"), forward.map { it.id })
+        assertEquals("Der Bus kommt um {slot} Uhr.", forward[0].sourceTemplate)
+        assertEquals("Basi linakuja {slot}.", forward[0].targetTemplate)
+        val reverse = catalog.phraseTemplates("sw", "de").first { it.id == "bus-arrives-at" }
+        assertEquals("Basi linakuja {slot}.", reverse.sourceTemplate)
+        assertEquals("Der Bus kommt um {slot} Uhr.", reverse.targetTemplate)
+        assertEquals(TrainerKind.Clock, reverse.slotKind)
+    }
+
+    @Test
+    fun frameRealizedInOnlyOneLanguageNeverJoins() {
+        // learning-since-year is German-only.
+        assertTrue(catalog.phraseTemplates("de", "sw").none { it.id == "learning-since-year" })
+        assertTrue(catalog.phraseTemplates("de", "uk").none { it.id == "learning-since-year" })
+    }
+
+    /** count/masculineNumeral/notes belong to the ANSWER realization, never to the pair. */
+    @Test
+    fun answerSideCarriesAgreementAndNote() {
+        val forward = catalog.phraseTemplates("de", "uk").first { it.id == "i-have-n-keys" }
+        assertEquals("ключі", forward.countForms?.form(3))
+        assertTrue(forward.masculineSlot)
+        assertEquals("Zahlwort-Kongruenz.", forward.gloss)
+        val reverse = catalog.phraseTemplates("uk", "de").first { it.id == "i-have-n-keys" }
+        assertNull(reverse.countForms)
+        assertFalse(reverse.masculineSlot)
+        assertNull(reverse.gloss)
+        assertEquals(listOf("Ich habe {slot} Schluessel."), reverse.acceptedFrames)
+    }
+
+    /** Only the ANSWER side needs generated number words — a pack-less language still prompts. */
+    @Test
+    fun targetWithoutATrainerPackHasNoFrames() {
+        assertTrue(catalog.phraseTemplates("de", "fr").isEmpty())
+        assertEquals(
+            listOf("Le bus arrive à {slot}."),
+            catalog.phraseTemplates("fr", "sw").map { it.sourceTemplate },
+        )
+    }
+
+    @Test
+    fun absentDrillsFolderIsLegal() {
+        val bare = Catalog.load(MapCatalogSource(Fixture.files - Fixture.drills.keys))
+        assertTrue(bare.phraseTemplates("de", "sw").isEmpty())
+        assertEquals(catalog.join("de", "sw").size, bare.join("de", "sw").size)
+    }
+
+    @Test
+    fun malformedFrameFileNamesThePath() {
+        val broken = Fixture.files + mapOf(
+            "drills/uk.json" to """{ "frames": { "no-such-frame": { "text": "{slot}." } } }""",
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("drills/uk.json" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    /** Frames ride the RAW source: editing one must not restamp a running box. */
+    @Test
+    fun frameEditsLeaveTheFingerprintAlone() {
+        val edited = Fixture.files + mapOf(
+            "drills/sw.json" to Fixture.drills.getValue("drills/sw.json").replace("Basi", "Gari"),
+        )
+        assertEquals(catalog.fingerprint, Catalog.load(MapCatalogSource(edited)).fingerprint)
     }
 
     @Test
