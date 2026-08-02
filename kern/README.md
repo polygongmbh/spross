@@ -544,7 +544,9 @@ day-key `yyyy-MM-dd`) with:
   APFS inode as Swift `Kern/` — never create it). Package `net.spross.kern`
   (+ `.trainer`). Pins (probe-proven, Xcode 26.6): Kotlin **2.4.0** (SKIE 0.10.13's ceiling —
   bump only as a pair; comment in the version catalog), serialization 1.11.0,
-  datetime 0.8.0, Gradle 9.6.1, JDK 17. Configuration cache on.
+  datetime 0.8.0, Gradle 9.6.1, JDK 21 toolchain. Configuration cache on.
+  Toolchain auto-provisioning is off: JDK 21 must be installed, and the Homebrew keg
+  path is named in `gradle.properties` because Gradle cannot auto-detect it.
 - Targets: `jvm()` (fast gate + Android-ready), `iosArm64`, `iosSimulatorArm64` — static
   framework **SprossKern**. No watchOS targets (nothing links Kotlin on watch; 3 unused
   slice builds cost ~40–60 % of every kern-edit rebuild, measured 23.7 s → target ≈ 10 s).
