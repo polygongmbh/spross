@@ -57,7 +57,6 @@ class PhraseVocabAuditTests {
             "нас",   // Personalpronomen „uns“ («у нас є» = wir haben)
             "євро",  // internationale Währung, unveränderlich
         ),
-        // --- English, Spanish: no frames authored yet (work package 5) -------------
     )
 
     /**
@@ -79,6 +78,11 @@ class PhraseVocabAuditTests {
             "shows" to "show", "costs" to "cost",
             "plates" to "plate", "notebooks" to "notebook", "chairs" to "chair", // Plural
         ),
+        // --- Spanish ---------------------------------------------------------------
+        "es" to mapOf(
+            "repita" to "repetir",   // Imperativ der Höflichkeitsform (usted)
+            "escribe" to "escribir", // Imperativ der Du-Form
+        ),
         // --- Swahili --------------------------------------------------------------
         "sw" to mapOf(
             "ninaamka" to "kuamka",   // ni-na-amka „ich wache auf“
@@ -96,7 +100,6 @@ class PhraseVocabAuditTests {
             "стільці" to "стілець", "стільців" to "стілець", // Zählformen
             "ключів" to "ключ",                              // Zählform (ключі steht verbatim im Katalog)
         ),
-        // --- English, Spanish: no frames authored yet (work package 5) -------------
     )
 
     @Test
@@ -147,7 +150,7 @@ class PhraseVocabAuditTests {
     fun everyLanguageWithAPackAndFramesIsAudited() {
         val audited = joinedPairs().map { it.second }.toSet()
         assertTrue(
-            listOf("de", "en", "sw", "uk").all { it in audited },
+            listOf("de", "en", "es", "sw", "uk").all { it in audited },
             "audited: $audited",
         )
         for (target in audited) assertTrue(Trainer.supports(target), "$target answers without a pack")
