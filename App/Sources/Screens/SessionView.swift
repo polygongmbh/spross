@@ -37,6 +37,10 @@ struct SessionView: View {
     /// reveal names it, so a near-miss teaches the other word instead of
     /// only failing (kufunga vs kufungua).
     @State var otherWord: MatchOtherWord?
+    /// The retype after a miss has reached the word. The card stays on its
+    /// reveal (`feedback` is still `.revealed`) while the FIELD goes green —
+    /// the two say different things at that moment.
+    @State var retryApproved = false
     @State var autoAdvance: Task<Void, Never>?
     /// The card whose word has already been said. The one-shot autoplay guard
     /// (SessionView+Audio.swift) — stored here because a SwiftUI extension
@@ -366,6 +370,7 @@ struct SessionView: View {
         revealed = false
         typoCorrection = nil
         otherWord = nil
+        retryApproved = false
         copyPending = nil
         copyInput = ""
         copyMissed = false

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Writing the word out after a miss now confirms itself.** Retyping a missed word to the
+  end turned the sound on but left the field sitting in its amber "here is the answer"
+  state — it now goes green with its checkmark, the same confirmation a word you got right
+  the first time gets.
+
 ## 3.4.0 — 2026-08-02
 
 - **Drill cards now look and behave like review cards.** The answer appears on the card

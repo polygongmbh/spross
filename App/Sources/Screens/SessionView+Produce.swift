@@ -10,7 +10,7 @@ extension SessionView {
     /// field claiming focus for itself is the only ordering that holds.
     func answerField(_ card: Card) -> some View {
         AnswerInputView(text: $input,
-                        feedback: feedback,
+                        feedback: fieldFeedback,
                         placeholder: inputPlaceholder,
                         // why: the card's reveal already carries the
                         // answer with its article color, plural and
@@ -23,7 +23,11 @@ extension SessionView {
             // why: Enter used to hit the "Next" button's default
             // action once revealed — a hardware keyboard still needs
             // a way to give up without finishing the retype.
-            if case .revealed = feedback {
+            if retryApproved {
+                // why: the retype already stands — Enter only skips the beat
+                // the timer is waiting out, it does not re-grade it.
+                rate(.hard)
+            } else if case .revealed = feedback {
                 // why: straight to commit — this field WAS the write-it-out
                 // step, so `rate` would answer the same word with a second one.
                 commit(.again)
@@ -36,6 +40,13 @@ extension SessionView {
         .onChange(of: input) { _, _ in approveWhenTyped(card) }
         .padding(.bottom, DL.Space.m)
         .onAppear { focusAnswerField() }
+    }
+
+    /// The field's own state. It parts ways with the card's on a finished
+    /// retype: the card holds its reveal open while the field turns green with
+    /// its checkmark, the same confirmation a first-try answer gets.
+    var fieldFeedback: AnswerInputView.Feedback {
+        retryApproved ? .correct : feedback
     }
 
     /// True while produce has nothing to type into: the blank "Aufdecken"
@@ -126,6 +137,17 @@ extension SessionView {
                             // one the reveal above it carries.
                             .pronounceOnTap(pronounceAction(for: card.target.text))
                     }
+                    if retryApproved, screenReaderOn {
+                        // why: the timer never arms under a screen reader, so a
+                        // finished retype would have no way on but "give up" —
+                        // which grades .again, not the .hard it just earned.
+                        Button {
+                            rate(.hard)
+                        } label: {
+                            DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
+                        }
+                        .buttonStyle(DLPrimaryButtonStyle())
+                    }
                     // why: always reachable — a step you cannot leave is a
                     // trap, same as the copy step's own skip. Giving up here
                     // ends the card: this field already is the one write-out
@@ -179,9 +201,20 @@ extension SessionView {
     /// than the blind .again a bare "give up" would.
     private func approveRetry(_ card: Card) {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty, isExactAnswer(trimmed, card: card) else { return }
+        guard !trimmed.isEmpty, isExactAnswer(trimmed, card: card) else {
+            // why: backing out of a finished retype takes the green with it —
+            // and the pending .hard, which would otherwise fire on a word that
+            // no longer stands written.
+            if retryApproved {
+                autoAdvance?.cancel()
+                withAnimation { retryApproved = false }
+            }
+            return
+        }
+        guard !retryApproved else { return }
         autoAdvance?.cancel()
         DLSound.correct()
+        withAnimation { retryApproved = true }
         AutoAdvance.scheduleLive(&autoAdvance) { rate(.hard) }
     }
 
