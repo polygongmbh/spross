@@ -25,8 +25,8 @@
 
 - **A speaker icon marks every word that can be read aloud** — beside the headword on a
   review card and next to each word in the box list — and pulses gently while it plays.
-  The letter-listening drill's replay is now a big glyph rather than a button, and the
-  whole card responds to a tap.
+  The letter-listening drill's replay is now a big glyph rather than a button; on every
+  card, tapping the icon itself is what plays the sound.
 - **The number, year and clock drills now work in English and Spanish**, next to German,
   Swahili and Ukrainian. They take the readings a speaker actually uses: "three hundred
   forty-seven" and "three hundred and forty-seven", "nineteen seventy-eight" and "one

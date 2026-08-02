@@ -146,12 +146,13 @@ private struct BoxCardRow: View {
                         .font(DL.Fonts.body)
                         .foregroundStyle(Color.dlTextPrimary)
                         .lineLimit(1)
-                    if pronounce != nil {
+                    if let pronounce {
                         SpeakerIcon(size: .small,
-                                   isPlaying: model.isPronouncing(card.target.text, lang: card.target.lang))
+                                   isPlaying: model.isPronouncing(card.target.text, lang: card.target.lang),
+                                   pronounce: pronounce)
+                            .accessibilityLabel("a11y.pronounce")
                     }
                 }
-                .pronounceOnTap(pronounce)
                 Text(card.source.text)
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)

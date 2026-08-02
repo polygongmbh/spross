@@ -31,8 +31,8 @@ struct VocabCardView: View {
         /// only, so VoiceOver reads the headword with the right voice instead
         /// of spelling a Ukrainian word out in German.
         var language: String?
-        /// Says the headword out loud, if it can be heard at all. Only the
-        /// gesture is conditional — the hit area is not (see `headline`).
+        /// Says the headword out loud, if it can be heard at all — nil hides
+        /// the speaker icon beside the word entirely (see `headlineRow`).
         var pronounce: (() -> Void)?
         /// Whether this side's word is the one sounding right now — pulses
         /// the small speaker icon beside it.
@@ -182,26 +182,14 @@ struct VocabCardView: View {
         }
     }
 
-    /// Tapping the word says it. The tappable SHAPE and the 44 pt floor sit on
-    /// every card unconditionally — a word with a recording and one without
-    /// must measure exactly the same, or the same card would change height
-    /// between reviews as the synonym rotation lands on an unrecorded form.
-    /// Only the gesture and its accessibility action are conditional, so a
-    /// card with nothing to play carries no visual change at all.
-    @ViewBuilder
+    /// The 44 pt floor sits on every card unconditionally — a word with a
+    /// recording and one without must measure exactly the same, or the same
+    /// card would change height between reviews as the synonym rotation lands
+    /// on an unrecorded form. The tap lives on the speaker icon beside it
+    /// (`headlineRow`), never on the word itself.
     private func headline(_ side: Side, emphasized: Bool) -> some View {
-        let word = headlineRow(side, emphasized: emphasized)
+        headlineRow(side, emphasized: emphasized)
             .frame(minHeight: 44)
-            .contentShape(Rectangle())
-        if let pronounce = side.pronounce {
-            word
-                .onTapGesture(perform: pronounce)
-                // why: an ACTION, not a button — the headword stays a text
-                // element, so VoiceOver reads it as the word it is.
-                .accessibilityAction(named: Text("a11y.pronounce"), pronounce)
-        } else {
-            word
-        }
     }
 
     @ViewBuilder
@@ -209,8 +197,9 @@ struct VocabCardView: View {
         if side.pronounce != nil || side.femMarker {
             HStack(spacing: DL.Space.s) {
                 headlineWord(side, emphasized: emphasized)
-                if side.pronounce != nil {
-                    SpeakerIcon(size: .small, isPlaying: side.isPlaying)
+                if let pronounce = side.pronounce {
+                    SpeakerIcon(size: .small, isPlaying: side.isPlaying, pronounce: pronounce)
+                        .accessibilityLabel("a11y.pronounce")
                 }
                 if side.femMarker {
                     FeminineBadge()
