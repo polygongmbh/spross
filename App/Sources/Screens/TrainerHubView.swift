@@ -4,9 +4,10 @@ import SprossKern
 /// Compact "Training" card on the Heute screen: slot drills (Zahlen /
 /// Uhrzeit), the sentence drill, and the alphabet of the language being
 /// learned. Offerings are registry-driven: slot drills appear only when
-/// Kern's trainer supports the learned language, the sentence drill only when
-/// (source, target) templates exist, the alphabet only where a file was
-/// authored — an unauthored language (e.g. en) hides its sections, an empty
+/// Kern's trainer supports the learned language, the sentence drill only
+/// where the catalog realizes a sentence frame in BOTH languages and the
+/// answer language has a trainer pack, the alphabet only where a file was
+/// authored — a language missing any of that hides its sections, an empty
 /// card hides entirely. Trainers are stateless — they never touch BoxState
 /// or FSRS.
 struct TrainerHubView: View {
@@ -33,20 +34,28 @@ struct TrainerHubView: View {
         drillLanguage.map { Trainer.shared.supports(language: $0) } ?? false
     }
 
-    /// Sentence templates are keyed (source, target); learners OF German get
-    /// the reverse drill over the (de, source) templates.
-    var phraseKey: (source: String, target: String, reverse: Bool)? {
-        guard let target = drillLanguage else { return nil }
+    /// The sentence drill this profile can run: the frames the catalog joins
+    /// for the pair, plus the direction they are asked in. Learners OF German
+    /// get the reverse drill over the (de, source) frames.
+    var phraseDrill: (source: String, target: String, reverse: Bool, templates: [PhraseTemplate])? {
+        guard let catalog = model.catalog, let target = drillLanguage else { return nil }
         let key = target == "de"
             ? (source: "de", target: model.sourceLanguage, reverse: true)
             : (source: model.sourceLanguage, target: target, reverse: false)
-        let templates = PhraseTemplates.shared.templates(source: key.source, target: key.target)
-        return templates.isEmpty ? nil : key
+        // why: Kern throws on an unknown or self-paired language rather than
+        // returning empty, and a Kotlin throw crossing back is a crash.
+        guard key.source != key.target,
+              catalog.languages[key.source] != nil,
+              catalog.languages[key.target] != nil else { return nil }
+        let templates = catalog.phraseTemplates(source: key.source, target: key.target)
+        return templates.isEmpty
+            ? nil
+            : (source: key.source, target: key.target, reverse: key.reverse, templates: templates)
     }
 
     var body: some View {
         Group {
-            if slotsAvailable || phraseKey != nil || alphabetAvailable {
+            if slotsAvailable || phraseDrill != nil || alphabetAvailable {
                 card
             }
         }
@@ -99,7 +108,7 @@ struct TrainerHubView: View {
             // why: gated as a whole — a language with an alphabet and no drills
             // (the moment such a file lands) would otherwise open an empty row
             // of chips above the Alphabet row.
-            if slotsAvailable || phraseKey != nil || letterDrillAvailable {
+            if slotsAvailable || phraseDrill != nil || letterDrillAvailable {
                 HStack(spacing: DL.Space.m) {
                     // why: years drill dropped — it's covered by the numbers
                     // drill (identical reading in Swahili/Ukrainian). Years
@@ -109,7 +118,7 @@ struct TrainerHubView: View {
                             drillChip(kind)
                         }
                     }
-                    if phraseKey != nil {
+                    if phraseDrill != nil {
                         phraseChip
                     }
                     if letterDrillAvailable {
@@ -162,8 +171,9 @@ struct TrainerHubView: View {
     /// Sentence drill: composes phrase templates with slot values.
     private var phraseChip: some View {
         Button {
-            guard let key = phraseKey else { return }
-            destination = .phrases(source: key.source, target: key.target, reverse: key.reverse)
+            guard let drill = phraseDrill else { return }
+            destination = .phrases(source: drill.source, target: drill.target,
+                                   reverse: drill.reverse, templates: drill.templates)
         } label: {
             chipLabel(emoji: "💬", title: Text("trainer.phrases"))
         }
