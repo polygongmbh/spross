@@ -282,6 +282,15 @@
     "plural": "marafiki wazuri"
    }
   },
+  "my-girlfriend": {
+   "text": "mpenzi wangu",
+   "notes": {
+    "de": "mpenzi ist geschlechtsneutral: Freund wie Freundin. rafiki bleibt der platonische Freund."
+   }
+  },
+  "her-boyfriend": {
+   "text": "mpenzi wake"
+  },
   "old-people": {
    "text": "watu wazee"
   },

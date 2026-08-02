@@ -275,6 +275,20 @@
   ]
  },
  {
+  "slug": "my-girlfriend",
+  "kind": "phrase",
+  "components": [
+   "friend"
+  ]
+ },
+ {
+  "slug": "her-boyfriend",
+  "kind": "phrase",
+  "components": [
+   "friend"
+  ]
+ },
+ {
   "slug": "old-people",
   "kind": "phrase",
   "components": [

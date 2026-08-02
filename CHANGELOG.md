@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **"Freundin" now comes with the pairing that makes it a girlfriend.** German has no word
+  of its own for boyfriend or girlfriend — the possessive is what carries the meaning — so
+  "meine Freundin" and "ihr Freund" join the essentials as phrases of their own beside the
+  plain word, in every language the area covers.
+
 - **An area card's phrase count now says something.** It used to report phrases as
   "unlocked" the moment they had no component words to wait on — which most have
   none of, so the figure sat there fixed and unrelated to the settled/fresh count
