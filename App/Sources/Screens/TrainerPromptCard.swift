@@ -11,6 +11,15 @@ import SprossKern
 struct TrainerPromptCard: View {
     let task: TrainerTask
     var sentence = false
+    /// A short fact about THIS prompt ("Neue Stelle: mia"), shown until the
+    /// answer arrives. It rides inside the card so its coming and going never
+    /// moves the field or the button below — see `hintPill`.
+    struct Hint {
+        let icon: String
+        let text: LocalizedStringKey
+    }
+
+    var hint: Hint?
     /// The answer is out — the card grows it below the prompt, exactly like a
     /// vocabulary card, instead of a panel under the input field.
     var revealed = false
@@ -33,6 +42,10 @@ struct TrainerPromptCard: View {
                         .minimumScaleFactor(0.6)
                 }
                 .transition(.opacity.combined(with: .move(edge: .top)))
+            } else if let hint {
+                // why: the reveal TAKES this slot rather than stacking under it —
+                // the hint is scaffolding for a prompt still unanswered.
+                hintPill(hint)
             }
         }
         .padding(DL.Space.l)
@@ -41,5 +54,16 @@ struct TrainerPromptCard: View {
         .frame(minHeight: 185)
         .dlCardSurface()
         .animation(.easeOut(duration: 0.25), value: revealed)
+    }
+
+    private func hintPill(_ hint: Hint) -> some View {
+        Label(hint.text, systemImage: hint.icon)
+            .font(DL.Fonts.caption)
+            .foregroundStyle(Color.dlAccent)
+            .padding(.horizontal, DL.Space.m)
+            .padding(.vertical, DL.Space.s)
+            .background(
+                Capsule().fill(Color.dlSurfaceTint)
+            )
     }
 }

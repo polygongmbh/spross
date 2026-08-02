@@ -26,10 +26,13 @@ extension TrainerSessionView {
     /// drill). Internal: advance() marks each length as seen.
     var currentDigits: Int? { isNumbers ? current.prompt.count : nil }
 
-    /// Place word shown the first time a new number length appears.
-    private var placeValueHint: String? {
-        guard let digits = currentDigits, !seenDigitCounts.contains(digits) else { return nil }
-        return Trainer.shared.placeValueHint(digits: Int32(digits), language: language)
+    /// Place word shown the first time a new number length appears — on the
+    /// card itself, so the prompts that carry no hint sit exactly as high.
+    private var placeValueHint: TrainerPromptCard.Hint? {
+        guard let digits = currentDigits, !seenDigitCounts.contains(digits),
+              let place = Trainer.shared.placeValueHint(digits: Int32(digits), language: language)
+        else { return nil }
+        return .init(icon: "textformat.123", text: "trainer.newPlace \(place)")
     }
 
     /// Tens look-up for the current drill (Swahili numbers only).
@@ -44,13 +47,10 @@ extension TrainerSessionView {
                 // ZStack so outgoing and incoming prompt overlap during the
                 // flip; .id gives each run position its own view identity.
                 ZStack {
-                    TrainerPromptCard(task: current, sentence: isPhrases, revealed: cardRevealed)
+                    TrainerPromptCard(task: current, sentence: isPhrases,
+                                      hint: placeValueHint, revealed: cardRevealed)
                         .id(index)
                         .transition(reduceMotion ? .opacity : .dlCardFlip)
-                }
-                if let placeValueHint {
-                    hintPill(icon: "textformat.123", text: "trainer.newPlace \(placeValueHint)")
-                        .transition(.opacity)
                 }
                 controls
             }
@@ -200,17 +200,6 @@ extension TrainerSessionView {
         guard let tensReference else { return nil }
         let afterWrong = { if case .revealed = feedback { return true }; return false }()
         return (hintUsed || afterWrong) ? tensReference : nil
-    }
-
-    private func hintPill(icon: String, text: LocalizedStringKey) -> some View {
-        Label(text, systemImage: icon)
-            .font(DL.Fonts.caption)
-            .foregroundStyle(Color.dlAccent)
-            .padding(.horizontal, DL.Space.m)
-            .padding(.vertical, DL.Space.s)
-            .background(
-                Capsule().fill(Color.dlSurfaceTint)
-            )
     }
 
     private func referenceCard(_ entries: [String]) -> some View {
