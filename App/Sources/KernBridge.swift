@@ -82,7 +82,6 @@ extension AreaStatistics {
     var activeCards: Int { Int(active) }
     var settledCards: Int { Int(settled) }
     var lockedPhrases: Int { Int(phrasesLocked) }
-    var unlockedPhrases: Int { Int(phrasesUnlocked) }
 }
 
 extension DayStats {

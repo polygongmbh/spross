@@ -96,6 +96,10 @@ struct AreaChip: View {
     let learning: Int
     /// Every card the area holds, introduced or not — the bar's denominator.
     let total: Int
+    /// Phrases still waiting on their component words to stabilize — not a
+    /// count the bar can place (they aren't scheduled yet), so it only ever
+    /// shows up here, and only when it says something (never at zero).
+    let lockedPhrases: Int
 
     /// Settled → learning → not yet introduced, measured against `total`.
     private var segments: [AreaBarSegment] {
@@ -144,15 +148,23 @@ struct AreaChip: View {
         .accessibilityElement(children: .combine)
     }
 
-    /// Same idiom as the Box screen's phrase counts: icon-led caption labels.
+    /// Settled, fresh, and — only when it says something — locked phrases,
+    /// as one row of icon-led caption labels instead of two disjoint rows.
+    /// Three German words rarely fit this card's width at full size, so they
+    /// shrink together instead of wrapping mid-word or truncating to "gefes…".
     private var counts: some View {
-        HStack(spacing: DL.Space.l) {
+        HStack(spacing: DL.Space.m) {
             Label("progress.consolidatedCount \(settled.formatted())", systemImage: "checkmark.seal.fill")
             Label("progress.freshCount \(learning.formatted())", systemImage: "leaf.fill")
+            if lockedPhrases > 0 {
+                Label("box.phrasesLocked \(lockedPhrases.formatted())", systemImage: "lock.fill")
+            }
             Spacer(minLength: 0)
         }
         .font(DL.Fonts.caption)
         .foregroundStyle(Color.dlTextSecondary)
+        .lineLimit(1)
+        .minimumScaleFactor(0.75)
     }
 }
 
@@ -215,11 +227,11 @@ private extension View {
                 BoxStatTile(emoji: "🌳", value: "84", label: "progress.consolidated")
                 BoxStatTile(emoji: "🌱", value: "48", label: "progress.fresh")
             }
-            AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6, total: 24)
+            AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6, total: 24, lockedPhrases: 0)
                 .previewCard()
-            AreaChip(emoji: "🛁", name: "Bad", settled: 4, learning: 9, total: 41)
+            AreaChip(emoji: "🛁", name: "Bad", settled: 4, learning: 9, total: 41, lockedPhrases: 3)
                 .previewCard()
-            AreaChip(emoji: "🧰", name: "Werkstatt", settled: 0, learning: 0, total: 17)
+            AreaChip(emoji: "🧰", name: "Werkstatt", settled: 0, learning: 0, total: 17, lockedPhrases: 0)
                 .previewCard()
             HStack(spacing: DL.Space.s) {
                 ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }
@@ -233,7 +245,7 @@ private extension View {
 #Preview("Progress pieces · dark") {
     VStack(alignment: .leading, spacing: DL.Space.xl) {
         StreakFlameView(days: 3)
-        AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6, total: 52)
+        AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6, total: 52, lockedPhrases: 2)
             .previewCard()
         HStack(spacing: DL.Space.s) {
             ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }

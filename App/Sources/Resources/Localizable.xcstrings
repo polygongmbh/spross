@@ -433,46 +433,6 @@
         }
       }
     },
-    "box.phrasesUnlocked %lld" : {
-      "localizations" : {
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld Satz freigeschaltet"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld Sätze freigeschaltet"
-                }
-              }
-            }
-          }
-        },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld sentence unlocked"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld sentences unlocked"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "box.suspended" : {
       "localizations" : {
         "de" : {

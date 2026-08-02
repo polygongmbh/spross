@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **An area card's phrase count now says something.** It used to report phrases as
+  "unlocked" the moment they had no component words to wait on — which most have
+  none of, so the figure sat there fixed and unrelated to the settled/fresh count
+  beside it. Only the locked count remains, folded into that same row, since it's
+  the only phrase figure that ever changes.
+
 - **Writing the word out after a miss now confirms itself.** Retyping a missed word to the
   end turned the sound on but left the field sitting in its amber "here is the answer"
   state — it now goes green with its checkmark, the same confirmation a word you got right

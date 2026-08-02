@@ -141,30 +141,15 @@ private struct BoxAreaSection: View {
         let learning = max(0, (stats?.activeCards ?? 0) - settled)
 
         return HStack(alignment: .top, spacing: DL.Space.s) {
-            VStack(alignment: .leading, spacing: DL.Space.s) {
-                AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
-                         settled: settled, learning: learning,
-                         total: stats?.totalCards ?? 0)
-                phraseRow(stats)
-            }
+            AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
+                     settled: settled, learning: learning,
+                     total: stats?.totalCards ?? 0,
+                     lockedPhrases: stats?.lockedPhrases ?? 0)
             FoldChevron(open: expanded)
                 .foregroundStyle(Color.dlTextSecondary)
                 .padding(.top, DL.Space.s)
         }
         .contentShape(Rectangle())
-    }
-
-    @ViewBuilder
-    private func phraseRow(_ stats: AreaStatistics?) -> some View {
-        if let stats, stats.lockedPhrases + stats.unlockedPhrases > 0 {
-            HStack(spacing: DL.Space.l) {
-                Label("box.phrasesUnlocked \(stats.unlockedPhrases)", systemImage: "lock.open.fill")
-                Label("box.phrasesLocked \(stats.lockedPhrases.formatted())", systemImage: "lock.fill")
-                Spacer(minLength: 0)
-            }
-            .font(DL.Fonts.caption)
-            .foregroundStyle(Color.dlTextSecondary)
-        }
     }
 
     /// The count moved from the button's face into its label: an icon-only
