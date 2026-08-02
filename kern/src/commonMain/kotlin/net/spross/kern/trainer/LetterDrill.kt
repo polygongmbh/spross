@@ -8,6 +8,7 @@ import net.spross.kern.catalog.gapWord
 import net.spross.kern.model.Card
 import net.spross.kern.model.Language
 import net.spross.kern.model.nfcNormalized
+import net.spross.kern.session.spokenOnly
 
 /**
  * The letter drill: hear a sound, find the letter — multiple choice, then typing, then
@@ -270,24 +271,12 @@ object LetterDrill {
     }
 
     /**
-     * The card a dictation answer is graded against: the real card's IDENTITY with only
-     * its answer set narrowed to the spoken form.
-     *
-     * The id, `feminineOf` and `kind` must survive. `CatalogAnswerGrader` skips the
-     * prompted concept when it looks for the word somebody else owns, so a synthetic id
-     * would let the learner's own concept come back as another word — «мишка» reported as
-     * a different word than «миша», naming the right answer as somebody else's. `kind`
-     * keys the verb-prefix leniency. `baseAccepted` goes, with the synonyms: the feminine
-     * demotion accepts the base word, which in a transcription is simply not what played.
+     * The card a dictation answer is graded against — [spokenOnly] over what the task
+     * actually played. The rule is shared with sound-prompted review, which asks by ear
+     * for the same reason and must not credit a word the learner never heard.
      */
-    fun dictationGradingCard(card: Card, task: LetterDrillTask): Card = card.copy(
-        baseAccepted = emptyList(),
-        target = card.target.copy(
-            text = task.accepted.firstOrNull() ?: card.target.text,
-            synonyms = emptyList(),
-            variants = emptyList(),
-        ),
-    )
+    fun dictationGradingCard(card: Card, task: LetterDrillTask): Card =
+        spokenOnly(card, task.accepted.firstOrNull() ?: card.target.text)
 
     /**
      * Typed-glyph grading: exact after normalization, case-insensitive, no typo budget —

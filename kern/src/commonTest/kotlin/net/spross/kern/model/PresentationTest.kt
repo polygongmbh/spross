@@ -136,5 +136,52 @@ class PresentationTest {
         assertEquals(PronunciationCue.Upfront, pronunciationCue(recognize))
         // Production asks for that very form — speaking it early would hand it over.
         assertEquals(PronunciationCue.OnReveal, pronunciationCue(produce))
+        // Unless the sound IS the prompt, where holding it back asks nothing at all.
+        assertEquals(PronunciationCue.Upfront, pronunciationCue(produce, ProducePrompt.Sound))
+        assertEquals(PronunciationCue.OnReveal, pronunciationCue(produce, ProducePrompt.Source))
+    }
+
+    // -- sound-prompted production -----------------------------------------------------
+
+    @Test
+    fun onlyAConsolidatedAudibleWordIsEverAskedByEar() {
+        for (count in 0..9) {
+            assertEquals(
+                ProducePrompt.Source,
+                producePrompt("w01", count, consolidated = false, audible = true),
+                "a word still landing must keep its meaning on the prompt (count $count)",
+            )
+            assertEquals(
+                ProducePrompt.Source,
+                producePrompt("w01", count, consolidated = true, audible = false),
+                "a silent device falls back rather than asking nothing (count $count)",
+            )
+        }
+    }
+
+    /**
+     * The rotation has to move BETWEEN produce turns. Roles alternate per review, so a
+     * card's produce turns all share one `reviewCount` parity — a rule reading it directly
+     * would make a word sound-prompted forever or never.
+     */
+    @Test
+    fun theSoundPromptAlternatesAcrossACardsProduceTurns() {
+        for (id in listOf("w01", "w02", "kitchen/fridge", "тест")) {
+            val prompts = (0..20)
+                .filter { presentationRole(id, it) == produce }
+                .map { producePrompt(id, it, consolidated = true, audible = true) }
+            assertTrue(ProducePrompt.Sound in prompts, "$id is never asked by ear")
+            assertTrue(ProducePrompt.Source in prompts, "$id is never asked by meaning")
+            // No run of three: the two ways of asking take turns.
+            for (window in prompts.windowed(3)) {
+                assertFalse(window.toSet().size == 1, "$id repeats one prompt three times: $prompts")
+            }
+        }
+    }
+
+    @Test
+    fun theSoundPromptIsDeterministic() {
+        val once = (0..12).map { producePrompt("kitchen/fridge", it, consolidated = true, audible = true) }
+        assertEquals(once, (0..12).map { producePrompt("kitchen/fridge", it, consolidated = true, audible = true) })
     }
 }

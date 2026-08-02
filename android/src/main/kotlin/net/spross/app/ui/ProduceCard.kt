@@ -1,13 +1,17 @@
 package net.spross.app.ui
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -21,8 +25,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,15 +42,20 @@ import net.spross.app.SessionUi
 import net.spross.app.audio.Pronouncer
 import net.spross.app.pronounceAction
 import net.spross.app.pronounceTarget
+import net.spross.kern.catalog.speechKey
 import net.spross.kern.model.Card
 import net.spross.kern.model.EmojiCue
+import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.Rating
 import net.spross.kern.session.Match
+import net.spross.kern.session.spokenOnly
 
 private sealed interface ProduceMode {
     data object Idle : ProduceMode
     data object Correct : ProduceMode
     data class Typo(val corrected: String) : ProduceMode
+    /** Right word, wrong one: a form this card accepts that is not what played. */
+    data class Heard(val spoken: String) : ProduceMode
     data object Wrong : ProduceMode
     /** Wrong, but the typed form is another concept's word — the reveal names it. */
     data class OtherWord(val word: String, val meanings: List<String>) : ProduceMode
@@ -56,6 +70,12 @@ private sealed interface ProduceMode {
 private fun revealedForm(mode: ProduceMode, card: Card): String =
     if (mode is ProduceMode.Typo) mode.corrected else card.target.text
 
+/** A form the card itself lists as a synonym or a variant — right word, wrong one. */
+private fun alsoAccepted(input: String, card: Card): Boolean {
+    val typed = speechKey(input)
+    return (card.target.synonyms + card.target.variants).any { speechKey(it) == typed }
+}
+
 @Composable
 fun ProduceCard(model: AppModel, ui: SessionUi) {
     val card = ui.card ?: return
@@ -64,11 +84,23 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
     var input by remember(card.id) { mutableStateOf("") }
     var mode by remember(card.id) { mutableStateOf<ProduceMode>(ProduceMode.Idle) }
 
+    val heard = ui.producePrompt == ProducePrompt.Sound
+
     fun check() {
         if (input.isBlank()) return
+        // why: asked by ear ⇒ only the form that PLAYED counts, the letter drill's own
+        // rule (`spokenOnly`) — crediting a synonym would credit a word never heard.
+        val graded = if (heard) spokenOnly(card, card.target.text) else card
         // why: the catalog grader, not the bare normalizer — a form another
         // concept owns is that word, not a forgiven slip of this one (kern §6).
-        mode = when (val match = model.produceGrader?.grade(input, card) ?: return) {
+        val match = model.produceGrader?.grade(input, graded) ?: return
+        // why: BEFORE the verdict — the narrowed answer set would otherwise fail a
+        // synonym the reveal itself teaches ("auch: …"). Amber, never wrong.
+        if (heard && match !is Match.Exact && alsoAccepted(input, card)) {
+            mode = ProduceMode.Heard(card.target.text)
+            return
+        }
+        mode = when (match) {
             is Match.Exact -> ProduceMode.Correct
             is Match.Typo -> ProduceMode.Typo(match.corrected)
             is Match.OtherWord -> ProduceMode.OtherWord(match.word, match.meanings)
@@ -113,11 +145,32 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
         if (ui.emojiCue == EmojiCue.Upfront) {
             Text(card.emoji.orEmpty(), fontSize = 64.sp)
         }
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(card.source.text, style = MaterialTheme.typography.headlineLarge)
-            if (card.promptFeminineMarker) {
-                Text(" ♀", style = MaterialTheme.typography.headlineLarge,
-                    color = MaterialTheme.colorScheme.secondary)
+        if (heard) {
+            // why: the meaning is withheld ON PURPOSE, so no cue rides along with it —
+            // the replay glyph is the whole question. Autoplay already said the word;
+            // this is the way to hear it again.
+            Box(
+                modifier = Modifier
+                    .size(72.dp)
+                    .background(MaterialTheme.colorScheme.primary, CircleShape)
+                    .clickable { model.pronounceTarget(card.target.text, Pronouncer.Trigger.TAP) }
+                    // why: merged, or the loudspeaker would be a node of its own and
+                    // TalkBack would read the picture after the button it belongs to.
+                    .semantics(mergeDescendants = true) {
+                        role = Role.Button
+                        contentDescription = chrome.pronounce
+                    },
+                contentAlignment = Alignment.Center,
+            ) {
+                Text("🔊", fontSize = 30.sp)
+            }
+        } else {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(card.source.text, style = MaterialTheme.typography.headlineLarge)
+                if (card.promptFeminineMarker) {
+                    Text(" ♀", style = MaterialTheme.typography.headlineLarge,
+                        color = MaterialTheme.colorScheme.secondary)
+                }
             }
         }
 
@@ -133,7 +186,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
             keyboardActions = KeyboardActions(onDone = {
                 when (mode) {
                     ProduceMode.Idle -> check()
-                    is ProduceMode.Typo -> model.answerCurrent(Rating.Hard)
+                    is ProduceMode.Typo, is ProduceMode.Heard -> model.answerCurrent(Rating.Hard)
                     ProduceMode.Wrong, is ProduceMode.OtherWord -> model.answerCurrent(Rating.Again)
                     else -> Unit
                 }
@@ -180,6 +233,21 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                 TargetReveal(
                     card.target, chrome,
                     pronounce = model.pronounceAction(current.corrected),
+                )
+                Button(
+                    onClick = { model.answerCurrent(Rating.Hard) },
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Text(chrome.next)
+                }
+            }
+            is ProduceMode.Heard -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                // why: same slot as the typo note — both say what became of the answer.
+                Text(chrome.heardInstead.format(current.spoken), color = ToneTough,
+                    style = MaterialTheme.typography.bodyMedium)
+                TargetReveal(
+                    card.target, chrome,
+                    pronounce = model.pronounceAction(current.spoken),
                 )
                 Button(
                     onClick = { model.answerCurrent(Rating.Hard) },

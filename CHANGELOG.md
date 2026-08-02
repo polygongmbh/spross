@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **Words you have settled sometimes come up as a sound to write down.** Producing a word
+  always started from its meaning, so a word could be answered right for months without
+  the sound of it ever being asked for. Now a word you have properly consolidated is now
+  and then prompted by ear alone — one replay button, nothing written — and what you type
+  is what you heard. It is the same review either way, it counts the same, and the reveal
+  gives the meaning back. A word the phone cannot say right now, or one you have reading
+  aloud switched off, keeps asking the old way.
+
 - **Dictation now asks for the words worth spelling twice.** The last rungs of the letter
   drill picked any word you had settled, so an evening could go by on words you had never
   once got wrong. It now leans toward the ones that earn the practice: words carrying the

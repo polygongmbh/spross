@@ -37,10 +37,16 @@ struct VocabCardView: View {
         /// Whether this side's word is the one sounding right now — pulses
         /// the small speaker icon beside it.
         var isPlaying: Bool = false
+        /// This face IS the sound: the big replay glyph stands where the word
+        /// would, and `text` never renders. Set on a produce prompt asked by
+        /// ear, where showing the word would be showing the answer.
+        var listening: Bool = false
 
         init(text: String, article: String? = nil, plural: String? = nil,
              alternates: String? = nil, context: String? = nil, femMarker: Bool = false,
-             language: String? = nil, pronounce: (() -> Void)? = nil, isPlaying: Bool = false) {
+             language: String? = nil, pronounce: (() -> Void)? = nil, isPlaying: Bool = false,
+             listening: Bool = false) {
+            self.listening = listening
             self.text = text
             self.article = article
             self.plural = plural
@@ -174,7 +180,13 @@ struct VocabCardView: View {
 
     @ViewBuilder
     private func headlineRow(_ side: Side, emphasized: Bool) -> some View {
-        if side.pronounce != nil || side.femMarker {
+        if side.listening {
+            // why: the glyph IS the question here — no word may render beside
+            // it, and it keeps its own label because there is no headword for
+            // VoiceOver to read instead.
+            SpeakerIcon(size: .large, isPlaying: side.isPlaying, pronounce: side.pronounce)
+                .accessibilityLabel("a11y.pronounce")
+        } else if side.pronounce != nil || side.femMarker {
             HStack(spacing: DL.Space.s) {
                 // why: the same accessories mirrored on the leading edge, inert —
                 // the two faces of a card carry different ones (the target side has

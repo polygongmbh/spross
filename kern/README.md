@@ -133,6 +133,18 @@ no config flag, no user-facing direction anywhere.
   Every form gets prompted at zero extra scheduling cost.
   Reveal always shows the full family; the source-side reveal may show source synonyms
   informatively ("Amt / Verwaltung").
+- **Sound-prompted production**: `producePrompt(cardId, reviewCount, consolidated, audible)`
+  answers whether a produce turn asks by MEANING or by ear. Not a third role — the role
+  function is a bit-exact v1 contract and a word asked from its sound is still produced,
+  so only the prompt side moves and one schedule still sees one kind of answer.
+  `Sound` needs the STRICTER consolidated bar (§5), because this WITHDRAWS the meaning
+  rather than adding support, plus the app's word that the form can be heard right now
+  (no recording and no voice, reading aloud off, or a screen reader — each falls back to
+  `Source` rather than putting up an empty card). Alternation divides the count by two like
+  the synonym rotation: roles alternate per review, so `reviewCount % 2` is CONSTANT across
+  one card's produce turns. Grading narrows to the form that played (`session.spokenOnly`,
+  shared with the letter drill's dictation); a synonym of the same card is amber, never
+  wrong, since the reveal itself teaches those forms.
 - **Emoji cue**: `emojiCue(role, settled, reviewCount)` answers WHEN the picture appears,
   never whether it appears at all and never where (that is the renderer's, and it is fixed).
   **Upfront** iff (first exposure) OR (role == Produce ∧ the word has not settled, §5) —
@@ -636,8 +648,8 @@ day-key `yyyy-MM-dd`) with:
 - **When audio may play** — `PronunciationCue { Upfront, OnReveal }`,
   declared beside `EmojiCue` in `model/Presentation.kt` because it is the same kind of rule:
   what may be shown (heard) without giving the answer away.
-  `pronunciationCue(role)` is `Upfront` iff the role is Recognize — the target form stands on the card from frame one —
-  and `OnReveal` for Produce, which asks for that very form.
+  `pronunciationCue(role, prompt)` is `Upfront` iff the role is Recognize — the target form stands on the card from frame one —
+  or the produce prompt IS the sound; `OnReveal` for a produce card that asks for that very form.
   Both apps CONSUME the cue; neither re-derives `role == Recognize` for audio.
   Which transitions actually fire, and how autoplay sits beside the auto-advance timers, is `../docs/design.md`'s.
 - **What is spoken is the bare headword** — the form the card teaches, never its rendering.

@@ -89,16 +89,16 @@ extension SessionView {
                 // A clean answer auto-advances after ~1.2 s (design §Review
                 // UX). A typo pauses here — show the proper spelling and wait
                 // for a tap so the slip is reviewed.
-                if let typoCorrection {
+                if let amber = typoCorrection ?? heardInstead {
                     VStack(spacing: DL.Space.m) {
                         // why: the proper spelling is the point of this pause —
                         // it has to be as readable as the reveal's own lines.
-                        Text("session.typoCorrection \(typoCorrection)")
+                        amberLine(amber)
                             .dlPauseLine()
                             // why: a correct answer leaves the card CLOSED, so
                             // this line is the only place the word stands —
                             // tap-to-replay has to live on it, not on the card.
-                            .pronounceOnTap(pronounceAction(for: typoCorrection))
+                            .pronounceOnTap(pronounceAction(for: amber))
                         Button {
                             rate(.good)
                         } label: {
@@ -160,6 +160,14 @@ extension SessionView {
         }
     }
 
+    /// The amber hold's line: a slip's proper spelling, or — where the question
+    /// was the sound — the form that actually played beside the one written.
+    private func amberLine(_ form: String) -> Text {
+        heardInstead == nil
+            ? Text("session.typoCorrection \(form)")
+            : Text("letters.heardInstead \(form)")
+    }
+
     // MARK: - Grading (produce only — recognize is button self-grade)
 
     private var inputEmpty: Bool {
@@ -180,7 +188,7 @@ extension SessionView {
     /// has to pause on its correction anyway. Backing out of a finished word takes
     /// the green with it, so typing past the answer never commits it.
     private func approveWhenTyped(_ card: Card) {
-        guard copyPending == nil, !revealed, typoCorrection == nil else { return }
+        guard copyPending == nil, !revealed, typoCorrection == nil, heardInstead == nil else { return }
         if case .revealed = feedback {
             approveRetry(card)
             return
@@ -234,8 +242,25 @@ extension SessionView {
 
     private func isExactAnswer(_ text: String, card: Card) -> Bool {
         guard let grader = model.produceGrader else { return false }
-        if case .exact = onEnum(of: grader.grade(input: text, card: card)) { return true }
+        if case .exact = onEnum(of: grader.grade(input: text, card: gradingCard(card))) { return true }
         return false
+    }
+
+    /// What the answer is graded AGAINST. A card asked by ear accepts only the
+    /// form that played — Kern's `spokenOnly`, the same rule the letter drill's
+    /// dictation runs, because crediting a synonym would credit a word the
+    /// learner never heard. Everywhere else the card grades as itself.
+    func gradingCard(_ card: Card) -> Card {
+        guard model.producePrompt(for: card) == .sound else { return card }
+        return spokenOnly(card: card, spokenForm: card.target.text)
+    }
+
+    /// A form the REAL card lists as a synonym or a variant — right word, not
+    /// the one that played. Amber, never wrong: the reveal itself teaches these
+    /// forms ("auch: …"), so failing one would contradict the card.
+    private func alsoAccepted(_ input: String, of card: Card) -> Bool {
+        let typed = speechKey(form: input)
+        return (card.target.synonyms + card.target.variants).contains { speechKey(form: $0) == typed }
     }
 
     func submit(_ card: Card) {
@@ -245,7 +270,19 @@ extension SessionView {
         // Kern normalizer: accepted forms = target text ∪ synonyms ∪ variants,
         // article-optional, verb-prefix-optional, article-mismatch → typo;
         // a form another concept owns is that word, not a slip of this one.
-        switch onEnum(of: grader.grade(input: trimmed, card: card)) {
+        let graded = grader.grade(input: trimmed, card: gradingCard(card))
+        // why: BEFORE the verdict, and only where the card was asked by ear —
+        // the narrowed answer set would otherwise fail a synonym the reveal
+        // itself teaches. It is not wrong, it simply is not what played.
+        if model.producePrompt(for: card) == .sound, alsoAccepted(trimmed, of: card) {
+            feedback = .correct
+            DLSound.correct()
+            heardInstead = card.target.text
+            focusRetry?.cancel()
+            answerFocused = false
+            return
+        }
+        switch onEnum(of: graded) {
         case .exact:
             feedback = .correct
             DLSound.correct()

@@ -22,8 +22,13 @@ extension SessionView {
         case .upfront:
             // why: the PROMPTED form, never the canonical one — a rotated
             // synonym has to be heard as the word that is actually on screen.
+            // A sound-prompted produce has nothing on screen at all, so what
+            // plays is the very form it grades against.
             guard claimAutoplay(card.id) else { return }
-            speak(model.promptForm(for: card), trigger: .auto)
+            let form = model.producePrompt(for: card) == .sound
+                ? card.target.text
+                : model.promptForm(for: card)
+            speak(form, trigger: .auto)
         case .onReveal:
             break
         }
@@ -45,7 +50,7 @@ extension SessionView {
     var produceAudioTrigger: Bool {
         guard let card = model.currentCard,
               model.presentationRole(for: card.id) == .produce else { return false }
-        return cardRevealed || typoCorrection != nil
+        return cardRevealed || typoCorrection != nil || heardInstead != nil
     }
 
     /// Says the produce card's word once its transition has landed.
@@ -58,7 +63,8 @@ extension SessionView {
         guard let card = model.currentCard, claimAutoplay(card.id) else { return }
         // why: the correction line is the only place a typo's proper spelling
         // stands. Otherwise the bare target text — never `CardDisplay.citation`,
-        // whose article is grammar decoration the audio never speaks.
+        // whose article is grammar decoration the audio never speaks, and the
+        // very form a heard-instead hold already names.
         let form = typoCorrection ?? card.target.text
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(300))
