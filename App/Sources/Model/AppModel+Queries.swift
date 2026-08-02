@@ -106,7 +106,7 @@ extension AppModel {
                           freshCount: fresh)
     }
 
-    /// What the learner did today — reviews, first meetings, words that settled,
+    /// What the learner did today — reviews, first meetings, words that consolidated,
     /// and whether today's recall has fallen far enough to suggest stopping.
     var today: TodayReport? {
         guard let box else { return nil }
@@ -128,14 +128,6 @@ extension AppModel {
 
     func scheduling(for cardID: String) -> CardScheduling? {
         box?.scheduling[cardID]
-    }
-
-    /// The same bar the area tallies count "gefestigt" against — Review phase
-    /// AND stability past the consolidated threshold, which the phase alone
-    /// does not imply.
-    func isConsolidated(cardID: String) -> Bool {
-        guard let box else { return false }
-        return BoxEngine.shared.isConsolidated(state: box, cardId: cardID)
     }
 
     /// How this card's NEXT review is presented (alternating, per log count).

@@ -88,7 +88,7 @@ object BoxEngine {
         val folded = DayStats(
             reviews = previous.reviews + reviewsDone,
             introduced = state.newIntroduced[day] ?: 0,
-            settled = state.settledCrossed[day] ?: 0,
+            consolidated = state.consolidatedCrossed[day] ?: 0,
             activeCount = Inventory.active(state).size,
         )
         // why: yyyy-MM-dd keys compare chronologically as strings, so pruning is a
@@ -97,7 +97,7 @@ object BoxEngine {
         return state.copy(
             dailyStats = state.dailyStats + (day to folded),
             newIntroduced = state.newIntroduced.filterKeys { it >= cutoff },
-            settledCrossed = state.settledCrossed.filterKeys { it >= cutoff },
+            consolidatedCrossed = state.consolidatedCrossed.filterKeys { it >= cutoff },
         )
     }
 
@@ -123,7 +123,7 @@ object BoxEngine {
 
     /**
      * Has this card genuinely consolidated? See [Statistics.isConsolidated] —
-     * the stricter threshold behind the fresh/settled stats split and phrase
+     * the stricter threshold behind the fresh/consolidated stats split and phrase
      * unlock. Unknown ids read as false.
      */
     fun isConsolidated(state: BoxState, cardId: String): Boolean =

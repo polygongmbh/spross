@@ -60,8 +60,8 @@ class DayKeyTests {
 
         state = BoxEngine.endSession(state, reviewsDone = 1, nowEpochMillis = lateUtc, tzId = "Pacific/Kiritimati")
         assertEquals(
-            // A single Good doesn't consolidate on sight (only Easy does) — not yet settled.
-            DayStats(reviews = 1, introduced = 1, settled = 0, activeCount = 1),
+            // A single Good doesn't consolidate on sight (only Easy does) — not yet consolidated.
+            DayStats(reviews = 1, introduced = 1, consolidated = 0, activeCount = 1),
             state.dailyStats["2026-07-02"],
         )
     }

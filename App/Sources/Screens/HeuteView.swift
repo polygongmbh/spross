@@ -177,15 +177,15 @@ struct HeuteView: View {
     }
 
     /// "24 Wiederholungen · 3 Frischlinge · 2 gefestigt" — the day's gain, not just
-    /// that it happened. Settled crossings lead nothing: they are the rarest part
+    /// that it happened. Consolidated crossings lead nothing: they are the rarest part
     /// and the one worth reading last.
     private func todayTally(_ report: TodayReport) -> Text {
         var parts: [Text] = [Text("heute.session.reviews \(Int(report.reviews))")]
         if report.introduced > 0 {
             parts.append(Text("heute.session.newCards \(Int(report.introduced))"))
         }
-        if report.settled > 0 {
-            parts.append(Text("heute.done.settled \(Int(report.settled).formatted())"))
+        if report.consolidated > 0 {
+            parts.append(Text("heute.done.consolidated \(Int(report.consolidated).formatted())"))
         }
         return parts.joined() ?? Text("heute.session.someCards")
     }

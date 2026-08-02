@@ -7,7 +7,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.Rating
 
-/** The day's own report: what was answered, met, settled — and whether it is going badly. */
+/** The day's own report: what was answered, met, consolidated — and whether it is going badly. */
 class TodayReportTests {
     private val now = Box.day1
 
@@ -28,7 +28,7 @@ class TodayReportTests {
         assertEquals(1, today.missed)
         // A single Good answer no longer consolidates on sight (only Easy does) —
         // none of today's words have proven themselves yet.
-        assertEquals(0, today.settled)
+        assertEquals(0, today.consolidated)
     }
 
     /** Yesterday's work belongs to yesterday — the day boundary is the caller's zone. */
@@ -74,25 +74,25 @@ class TodayReportTests {
         assertFalse(BoxEngine.today(fine, now, Box.TZ).recallStrained)
     }
 
-    /** Only the crossing counts: a word already settled goes on being reviewed for free. */
+    /** Only the crossing counts: a word already consolidated goes on being reviewed for free. */
     @Test
     fun aWordCountsOnTheDayItCrossesAndNotAgain() {
         var state = boxOf(2)
         // A single Good graduates to Review (stability 2.3065) but doesn't consolidate yet.
         state = Box.answered(state, "w01", Rating.Good, now)
-        assertEquals(0, BoxEngine.today(state, now, Box.TZ).settled)
+        assertEquals(0, BoxEngine.today(state, now, Box.TZ).consolidated)
 
         // A second success, well after the natural interval, pushes stability past the
         // consolidated bar — that is the day the crossing is booked.
         val later = Box.plusDays(now, 30.0)
         state = Box.answered(state, "w01", Rating.Good, later)
         assertTrue(BoxEngine.isConsolidated(state, "w01"))
-        assertEquals(1, BoxEngine.today(state, later, Box.TZ).settled)
+        assertEquals(1, BoxEngine.today(state, later, Box.TZ).consolidated)
 
         // Already consolidated — reviewing it again does not cross a second time.
         val evenLater = Box.plusDays(later, 30.0)
         state = Box.answered(state, "w01", Rating.Good, evenLater)
-        assertEquals(0, BoxEngine.today(state, evenLater, Box.TZ).settled)
+        assertEquals(0, BoxEngine.today(state, evenLater, Box.TZ).consolidated)
     }
 
     /** Today's arrivals, minus the ones that landed on arrival — not minus every crossing. */
@@ -102,16 +102,16 @@ class TodayReportTests {
         state = Box.answered(state, "w01", Rating.Good, now)
         state = Box.answered(state, "w02", Rating.Good, now)
         // Known on sight: introduced and consolidated by the same answer, so it
-        // belongs to the settled tally and never to the fresh one.
+        // belongs to the consolidated tally and never to the fresh one.
         state = Box.answered(state, "w03", Rating.Easy, now)
 
         val today = BoxEngine.today(state, now, Box.TZ)
         assertEquals(3, today.introduced)
-        assertEquals(1, today.settled)
+        assertEquals(1, today.consolidated)
         assertEquals(2, today.stillFresh)
     }
 
-    /** An older word crossing today is the settled tile's news, not the fresh tile's loss. */
+    /** An older word crossing today is the consolidated tile's news, not the fresh tile's loss. */
     @Test
     fun anOlderWordConsolidatingDoesNotEatTodaysFreshCount() {
         var state = boxOf(2)
@@ -122,7 +122,7 @@ class TodayReportTests {
         state = Box.answered(state, "w02", Rating.Good, later)
 
         val today = BoxEngine.today(state, later, Box.TZ)
-        assertEquals(1, today.settled) // w01 crossed, having arrived a month ago
+        assertEquals(1, today.consolidated) // w01 crossed, having arrived a month ago
         assertEquals(1, today.introduced)
         assertEquals(1, today.stillFresh) // w02 only — never net, never negative
     }
@@ -143,6 +143,6 @@ class TodayReportTests {
         assertFalse(BoxEngine.isConsolidated(state, "w01"))
         state = Box.answered(state, "w01", Rating.Good, now)
         assertTrue(BoxEngine.isConsolidated(state, "w01"))
-        assertEquals(1, BoxEngine.today(state, now, Box.TZ).settled)
+        assertEquals(1, BoxEngine.today(state, now, Box.TZ).consolidated)
     }
 }

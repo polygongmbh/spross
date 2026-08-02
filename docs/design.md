@@ -215,7 +215,7 @@ never the shape of the app.
   **The plan is the whole run**: the counter on screen is a promise, so nothing joins a
   session already under way — a word maturing mid-sitting waits for the summary rather
   than pushing the finish line back. Practising on is where it comes in.
-  Session end is a summary that celebrates, carrying the streak and what the run settled.
+  Session end is a summary that celebrates, carrying the streak and what the run consolidated.
 - **A record is named, a number is only counted.** A day streak standing at its longest
   ever (`BoxStatistics.longestStreak`) says so on the finish screen; a drill run that beats
   its own stored best says so too, and is the only thing in a drill that earns confetti and
@@ -246,7 +246,7 @@ never the shape of the app.
   drift apart on which way out is the default.
   A day that is going badly says so, and says why stopping is the better call.
 - **Box** (📦 from Heute): browse the catalog by area, pack words in, revive suspended
-  ones; settings live here — profile, unsettled cap, reset.
+  ones; settings live here — profile, reset.
 - **Trainers**: number, clock and phrase drills, registry-driven from kern, so the hub
   offers only languages with authored content. Drills grade word by word and ramp with
   the learner instead of sitting at one level.
@@ -266,7 +266,7 @@ never the shape of the app.
   says its own sound, words the learner already holds first, so a rung stops meaning one
   memorized blank (`catalog/README.md` § Alphabet owns which rows may draw). Tiles first
   among strangers, then among look- and sound-alikes, then
-  typed, and — once enough words are settled — dictation of the learner's own
+  typed, and — once enough words are consolidated — dictation of the learner's own
   consolidated words, which never touches their schedule and leans toward the ones worth
   spelling twice: words carrying the language's hard graphemes, and words this learner has
   forgotten before. Correctness is never color

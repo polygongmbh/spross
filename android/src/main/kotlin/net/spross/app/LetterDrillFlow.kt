@@ -44,7 +44,7 @@ data class LetterCorrection(val kind: Kind, val form: String) {
  */
 class LetterDrillFlow(
     private val availability: LetterDrillAvailability,
-    settledCards: Int,
+    consolidatedCards: Int,
     /** The real cards, for dictation grading identity. */
     private val cards: Map<String, Card>,
     private val dictationGrader: CatalogAnswerGrader?,
@@ -55,9 +55,9 @@ class LetterDrillFlow(
     val maxLevel: Int = LetterDrill.maxLevel(availability.dictationAvailable)
 
     /** How long a rung is — kern's step function, not this class's. */
-    private val winsRequired: Int = LetterDrill.winsToAdvance(settledCards)
+    private val winsRequired: Int = LetterDrill.winsToAdvance(consolidatedCards)
 
-    var level by mutableStateOf(minOf(LetterDrill.entryLevel(settledCards), maxLevel))
+    var level by mutableStateOf(minOf(LetterDrill.entryLevel(consolidatedCards), maxLevel))
         private set
     private var winsAtLevel = 0
 
@@ -247,7 +247,7 @@ fun AppModel.newLetterDrill(): LetterDrillFlow? {
     val info = cat.languages[availability.language] ?: return null
     return LetterDrillFlow(
         availability = availability,
-        settledCards = stats?.settledCount ?: 0,
+        consolidatedCards = stats?.consolidatedCount ?: 0,
         cards = state.cards,
         // why: the STRICT drill normalizer (no article leniency, a slip per word) with the
         // whole join in view — a per-word budget alone accepts `kufungua` for `kufunga`,

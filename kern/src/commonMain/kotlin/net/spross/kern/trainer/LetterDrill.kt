@@ -32,10 +32,10 @@ object LetterDrill {
 
     /** Entry pacing stops one rung below transcription — nobody starts by taking dictation. */
     private const val ENTRY_LEVEL_CEILING = 6
-    private const val SETTLED_PER_LEVEL = 12
+    private const val CONSOLIDATED_PER_LEVEL = 12
 
     /** Consolidated words from which one clean win is enough to move up a rung. */
-    private const val SETTLED_FOR_SHORT_STAGES = 60
+    private const val CONSOLIDATED_FOR_SHORT_STAGES = 60
 
     /** Dictation at level 8 asks for short words; the count ignores spaces. */
     private const val SHORT_WORD_LETTERS = 6
@@ -64,15 +64,15 @@ object LetterDrill {
      * someone with a vocabulary should not spell out `em` four times before the drill
      * gets interesting, and someone without one should not be dropped into typing.
      */
-    fun entryLevel(settledCards: Int): Int =
-        minOf(ENTRY_LEVEL_CEILING, 1 + maxOf(0, settledCards) / SETTLED_PER_LEVEL)
+    fun entryLevel(consolidatedCards: Int): Int =
+        minOf(ENTRY_LEVEL_CEILING, 1 + maxOf(0, consolidatedCards) / CONSOLIDATED_PER_LEVEL)
 
     /**
      * How LONG a rung is — the second half of the same pacing rule. A consolidated
      * vocabulary earns each level in one clean win; below that the classic two apply, so
      * a beginner gets the repetition and nobody else gets the drag.
      */
-    fun winsToAdvance(settledCards: Int): Int = if (settledCards >= SETTLED_FOR_SHORT_STAGES) 1 else 2
+    fun winsToAdvance(consolidatedCards: Int): Int = if (consolidatedCards >= CONSOLIDATED_FOR_SHORT_STAGES) 1 else 2
 
     /** 1–2 easy tiles, 3–5 confusable tiles, 6–7 typing, 8–9 dictation. */
     fun stageFor(level: Int): LetterStage = when (level.coerceIn(1, MAX_LEVEL_WITH_DICTATION)) {

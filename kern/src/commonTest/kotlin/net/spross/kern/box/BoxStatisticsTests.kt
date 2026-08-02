@@ -89,9 +89,9 @@ class BoxStatisticsTests {
         )
 
         state = BoxEngine.endSession(state, reviewsDone = 7, nowEpochMillis = now, tzId = Box.TZ)
-        // settled = 1: the word was answered on sight, so it sat down the day it arrived.
+        // consolidated = 1: the word was answered on sight, so it landed the day it arrived.
         assertEquals(
-            DayStats(reviews = 7, introduced = 1, settled = 1, activeCount = 1),
+            DayStats(reviews = 7, introduced = 1, consolidated = 1, activeCount = 1),
             state.dailyStats["2026-07-01"],
         )
         assertNull(state.newIntroduced["2026-01-01"]) // > 60 days back, pruned
@@ -117,23 +117,23 @@ class BoxStatisticsTests {
     }
 
     @Test
-    fun settledCountsOnlyReviewCardsAtOrAboveTheConsolidatedThreshold() {
+    fun consolidatedCountsOnlyReviewCardsAtOrAboveTheConsolidatedThreshold() {
         var state = Box.state((1..3).map { Box.word(it) })
         state = Box.inject(state, Box.sched("w01", stability = 6.0, dueMillis = now, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w02", stability = 5.9, dueMillis = now, lastReviewMillis = now))
         state = Box.inject(
             state,
-            // Stable enough, but still stepping through Learning — not settled.
+            // Stable enough, but still stepping through Learning — not consolidated.
             Box.sched("w03", phase = CardPhase.Learning, stability = 9.0, dueMillis = now, lastReviewMillis = now),
         )
 
         val stats = BoxEngine.statistics(state, now, Box.TZ)
         assertEquals(3, stats.activeCount)
-        assertEquals(1, stats.settledCount)
+        assertEquals(1, stats.consolidatedCount)
     }
 
     @Test
-    fun areaBreakdownTotalsSettledAndPhraseLocks() {
+    fun areaBreakdownTotalsConsolidatedAndPhraseLocks() {
         var state = Box.state(
             listOf(
                 Box.word(1, area = "kitchen"), Box.word(2, area = "kitchen"),
@@ -154,11 +154,11 @@ class BoxStatisticsTests {
         val kitchen = stats.areas[0]
         assertEquals(4, kitchen.total)
         assertEquals(2, kitchen.active)
-        assertEquals(1, kitchen.settled) // only w01: Review phase & stability ≥ 6.0
+        assertEquals(1, kitchen.consolidated) // only w01: Review phase & stability ≥ 6.0
         assertEquals(1, kitchen.phrasesLocked) // p-locked: w02 not stable yet
         assertEquals(1, kitchen.phrasesUnlocked) // p-free has no components
         assertEquals(
-            AreaStatistics("market", total = 1, active = 0, settled = 0, phrasesLocked = 0, phrasesUnlocked = 0),
+            AreaStatistics("market", total = 1, active = 0, consolidated = 0, phrasesLocked = 0, phrasesUnlocked = 0),
             stats.areas[1],
         )
     }

@@ -907,6 +907,22 @@
         }
       }
     },
+    "heute.done.consolidated %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ gefestigt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ solidified"
+          }
+        }
+      }
+    },
     "heute.done.extraRound" : {
       "localizations" : {
         "de" : {
@@ -919,22 +935,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "One more round?"
-          }
-        }
-      }
-    },
-    "heute.done.settled %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ gefestigt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ solidified"
           }
         }
       }

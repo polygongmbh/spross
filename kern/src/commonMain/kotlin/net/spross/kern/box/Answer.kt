@@ -50,7 +50,7 @@ internal object Answering {
             AnswerOutcome(
                 state.copy(
                     scheduling = state.scheduling + (cardId to next),
-                    settledCrossed = state.settledCrossed.bookIf(
+                    consolidatedCrossed = state.consolidatedCrossed.bookIf(
                         !wasConsolidated && Statistics.isConsolidated(state, next),
                         dayKey(nowEpochMillis, tzId),
                     ),
@@ -87,8 +87,8 @@ internal object Answering {
             scheduling = state.scheduling + (card.id to sched),
             newIntroduced = state.newIntroduced + (day to (state.newIntroduced[day] ?: 0) + 1),
             // A word known on sight (Easy) consolidates the moment it arrives —
-            // introduced and settled on the same answer, and the day's report says both.
-            settledCrossed = state.settledCrossed.bookIf(Statistics.isConsolidated(state, sched), day),
+            // introduced and consolidated on the same answer, and the day's report says both.
+            consolidatedCrossed = state.consolidatedCrossed.bookIf(Statistics.isConsolidated(state, sched), day),
             enqueued = state.enqueued.filter { it != card.id },
         )
         return AnswerOutcome(next, AnswerStatus.Applied)

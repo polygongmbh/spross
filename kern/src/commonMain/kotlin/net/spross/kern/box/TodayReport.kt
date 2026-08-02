@@ -9,7 +9,7 @@ import net.spross.kern.model.Rating
 /**
  * What the learner actually did today, in cards — the day's own report.
  * Reviews and misses are read live from the review logs, so the numbers hold
- * mid-session; introductions and settled crossings come from the day counters
+ * mid-session; introductions and consolidated crossings come from the day counters
  * the engine books at answer time.
  */
 data class TodayReport(
@@ -18,12 +18,12 @@ data class TodayReport(
     /** Words met for the first time today. */
     val introduced: Int,
     /** Words that crossed into consolidated today (see [Statistics.isConsolidated]). */
-    val settled: Int,
+    val consolidated: Int,
     /**
      * Of today's first meetings, the ones still fresh — met today and not
      * consolidated (yet). Read live from the cards themselves, so a word known
      * on sight leaves it the moment it lands, and one that lapses back returns:
-     * [introduced] minus [settled] cannot say this, since [settled] also counts
+     * [introduced] minus [consolidated] cannot say this, since [consolidated] also counts
      * long-standing words crossing the bar today.
      */
     val stillFresh: Int,
@@ -86,7 +86,7 @@ internal fun todayReport(state: BoxState, nowEpochMillis: Long, tzId: String): T
     return TodayReport(
         reviews = reviews,
         introduced = state.newIntroduced[day] ?: 0,
-        settled = state.settledCrossed[day] ?: 0,
+        consolidated = state.consolidatedCrossed[day] ?: 0,
         stillFresh = stillFresh,
         missed = missed,
         expectedRecall = state.config.desiredRetention,

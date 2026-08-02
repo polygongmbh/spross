@@ -84,7 +84,7 @@ private struct AreaBarSegment: Identifiable {
     let color: Color
 }
 
-/// Per-area chip: emoji + name + settled/learning counts over a bar that
+/// Per-area chip: emoji + name + consolidated/learning counts over a bar that
 /// measures both against the area's FULL card count, so the untouched rest
 /// of an area stays visible instead of a bar that always reads as full.
 ///
@@ -93,8 +93,8 @@ private struct AreaBarSegment: Identifiable {
 struct AreaChip: View {
     let emoji: String
     let name: String
-    /// Cards in review phase ("gefestigt").
-    let settled: Int
+    /// Cards past the consolidated bar ("gefestigt") — not merely in Review.
+    let consolidated: Int
     /// Cards still in learning/relearning ("frisch").
     let learning: Int
     /// Every card the area holds, introduced or not — the bar's denominator.
@@ -104,18 +104,18 @@ struct AreaChip: View {
     /// shows up here, and only when it says something (never at zero).
     let lockedPhrases: Int
 
-    /// Settled → learning → not yet introduced, measured against `total`.
+    /// Consolidated → learning → not yet introduced, measured against `total`.
     private var segments: [AreaBarSegment] {
-        [(settled, Color.dlSuccess),
+        [(consolidated, Color.dlSuccess),
          (learning, Color.dlAmber),
-         (max(total - settled - learning, 0), Color.dlSeparator)]
+         (max(total - consolidated - learning, 0), Color.dlSeparator)]
             .enumerated()
             .filter { $0.element.0 > 0 }
             .map { AreaBarSegment(id: $0.offset, count: $0.element.0, color: $0.element.1) }
     }
 
     /// Never below the introduced count: a stale `total` must not overflow the bar.
-    private var denominator: CGFloat { CGFloat(max(total, settled + learning, 1)) }
+    private var denominator: CGFloat { CGFloat(max(total, consolidated + learning, 1)) }
 
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
@@ -151,13 +151,13 @@ struct AreaChip: View {
         .accessibilityElement(children: .combine)
     }
 
-    /// Settled, fresh, and — only when it says something — locked phrases,
+    /// Consolidated, fresh, and — only when it says something — locked phrases,
     /// as one row of icon-led caption labels instead of two disjoint rows.
     /// Three German words rarely fit this card's width at full size, so they
     /// shrink together instead of wrapping mid-word or truncating to "gefes…".
     private var counts: some View {
         HStack(spacing: DL.Space.m) {
-            Label("progress.consolidatedCount \(settled.formatted())", systemImage: "checkmark.seal.fill")
+            Label("progress.consolidatedCount \(consolidated.formatted())", systemImage: "checkmark.seal.fill")
             Label("progress.freshCount \(learning.formatted())", systemImage: "leaf.fill")
             if lockedPhrases > 0 {
                 // why: the padlock carries "locked", so the text only has to
@@ -248,11 +248,11 @@ private extension View {
                 BoxStatTile(emoji: "🌳", value: "84", label: "progress.consolidated")
                 BoxStatTile(emoji: "🌱", value: "48", label: "progress.fresh")
             }
-            AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6, total: 24, lockedPhrases: 0)
+            AreaChip(emoji: "🍳", name: "Küche", consolidated: 18, learning: 6, total: 24, lockedPhrases: 0)
                 .previewCard()
-            AreaChip(emoji: "🛁", name: "Bad", settled: 4, learning: 9, total: 41, lockedPhrases: 3)
+            AreaChip(emoji: "🛁", name: "Bad", consolidated: 4, learning: 9, total: 41, lockedPhrases: 3)
                 .previewCard()
-            AreaChip(emoji: "🧰", name: "Werkstatt", settled: 0, learning: 0, total: 17, lockedPhrases: 0)
+            AreaChip(emoji: "🧰", name: "Werkstatt", consolidated: 0, learning: 0, total: 17, lockedPhrases: 0)
                 .previewCard()
             HStack(spacing: DL.Space.s) {
                 ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }
@@ -268,7 +268,7 @@ private extension View {
 #Preview("Progress pieces · dark") {
     VStack(alignment: .leading, spacing: DL.Space.xl) {
         StreakFlameView(days: 3)
-        AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6, total: 52, lockedPhrases: 2)
+        AreaChip(emoji: "🍳", name: "Küche", consolidated: 18, learning: 6, total: 52, lockedPhrases: 2)
             .previewCard()
         HStack(spacing: DL.Space.s) {
             ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }

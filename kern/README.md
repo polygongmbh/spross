@@ -221,7 +221,7 @@ cards; `DayStats.reviews` = answer events.
     `BoxEngine.isSettled(state, cardId)`) gates the new-word budget (§6) and picks which
     support a word gets while it is still on its way in (§3).
   - `consolidatedStability` = 6.0 days (`Statistics.isConsolidated`, facade
-    `BoxEngine.isConsolidated(state, cardId)`) gates phrase unlock (§6) and splits settled
+    `BoxEngine.isConsolidated(state, cardId)`) gates phrase unlock (§6) and splits consolidated
     from fresh in the progress UI — set strictly between S0(Good) and S0(Easy) so a single
     Good answer no longer reads as "landed" while a single Easy still does.
   Recalibrated for FSRS-6: at retention 0.8 the interval is 3.316 × stability, so
@@ -283,7 +283,7 @@ day-key `yyyy-MM-dd`) with:
 - **Phrase unlock** reads each component's schedule **by card id** — join- and
   source-independent, so a source switch can never re-lock phrases. Components with no
   TARGET realization are excluded from the gate (v1 unresolved-component semantics).
-  Gate: not suspended, and settled (§5) — the predicate, never a restated threshold.
+  Gate: not suspended, and consolidated (§5) — the predicate, never a restated threshold.
 - **Due order is day-bucketed, then shuffled**: reviews drain oldest overdue DAY first
   (backlog fairness), but inside a day the order is `fnv1a64("<dueEpochDay>:<fnv1a64(cardId)>")`,
   card id last as the collision tie-break.
@@ -321,9 +321,9 @@ day-key `yyyy-MM-dd`) with:
   `composeSession` takes `tzId` for all of this: "today" and "tomorrow" are local-calendar
   questions.
 - **`TodayReport`** (`BoxEngine.today`) is the day's own report: reviews and misses read
-  live from the review logs (so the numbers hold mid-session), introductions and settled
+  live from the review logs (so the numbers hold mid-session), introductions and consolidated
   crossings from the day counters the engine books at answer time (`newIntroduced`,
-  `settledCrossed`, both folded into `DayStats` at `endSession` and pruned together).
+  `consolidatedCrossed`, both folded into `DayStats` at `endSession` and pruned together).
   `recall` is null below `MIN_ANSWERS_FOR_RECALL` — a handful of answers cannot carry a
   ratio — and `recallStrained` names the rule "today is going badly", not the remedy:
   what a surface does with it is the app's call.
@@ -429,7 +429,7 @@ day-key `yyyy-MM-dd`) with:
   decode-only Swift (an extension cannot run the join: no catalog in its bundle, ~30 MB
   memory cap vs 33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
   entries (target-side text, emoji, article tint), per-card `{due}` for render-time
-  `dueCount(now)`, the settled-card count (`settledCount`, resolved phone-side —
+  `dueCount(now)`, the consolidated-card count (`consolidatedCount`, resolved phone-side —
   it does not move with the clock), dailyStats tail
   (~70 days) for the streak walk, `schemaVersion`. Built by a KMP `SnapshotBuilder`,
   written by the app.

@@ -114,11 +114,11 @@ extension AppModel {
     }
 
     /// Bucket each answer for the end summary: first-ever answer = new, a word
-    /// crossing into settled = "gefestigt", else a review rep.
+    /// crossing into consolidated = "gefestigt", else a review rep.
     ///
     /// why: the crossing, not a phase transition — with one learning step a word
     /// reaches Review on its first pass while its stability is still tiny, so the
-    /// phase edge would have called that settled and the summary would have said
+    /// phase edge would have called that consolidated and the summary would have said
     /// "gefestigt" about a word that had barely landed.
     private func tallySummary(firstAnswer: Bool, wasConsolidated: Bool, isConsolidated: Bool) {
         if firstAnswer {

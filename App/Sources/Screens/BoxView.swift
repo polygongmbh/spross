@@ -137,12 +137,12 @@ private struct BoxAreaSection: View {
     }
 
     private func header(_ stats: AreaStatistics?) -> some View {
-        let settled = stats?.settledCards ?? 0
-        let learning = max(0, (stats?.activeCards ?? 0) - settled)
+        let consolidated = stats?.consolidatedCards ?? 0
+        let learning = max(0, (stats?.activeCards ?? 0) - consolidated)
 
         return HStack(alignment: .top, spacing: DL.Space.s) {
             AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
-                     settled: settled, learning: learning,
+                     consolidated: consolidated, learning: learning,
                      total: stats?.totalCards ?? 0,
                      lockedPhrases: stats?.lockedPhrases ?? 0)
             FoldChevron(open: expanded)
@@ -232,7 +232,7 @@ private struct BoxCardRow: View {
                 .background(Color.dlAccent.opacity(0.14), in: Capsule())
             } else {
                 PhaseBadge(phase: badgePhase(sched),
-                           consolidated: model.isConsolidated(cardID: card.id))
+                           consolidated: model.isConsolidated(card.id))
             }
         }
         .padding(.horizontal, DL.Space.m)

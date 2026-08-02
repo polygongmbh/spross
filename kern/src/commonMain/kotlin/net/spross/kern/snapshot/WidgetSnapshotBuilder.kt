@@ -52,7 +52,7 @@ object WidgetSnapshotBuilder {
             schemaVersion = SCHEMA_VERSION,
             entries = entries,
             cards = cards,
-            settledCount = active.count { Statistics.isConsolidated(state, it) },
+            consolidatedCount = active.count { Statistics.isConsolidated(state, it) },
             dailyStats = tailKeys.associateWith { dayStatsDto(state.dailyStats.getValue(it)) },
         )
     }
@@ -67,7 +67,7 @@ internal data class WidgetSnapshotDoc(
     /** Every active card's due date — the render-time dueCount input. */
     val cards: List<WidgetCardDto>,
     /** Active cards that have consolidated; time-independent, so it is resolved here. */
-    val settledCount: Int,
+    val consolidatedCount: Int,
     /** Trailing [WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS] day keys. */
     val dailyStats: Map<String, DayStatsDto>,
 )
