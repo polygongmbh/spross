@@ -76,12 +76,28 @@ struct VocabCardView: View {
     /// all fit on screen without scrolling. Previews keep the big card.
     var compact: Bool = false
 
+    /// The picture sits BESIDE the words, never above them: vertical space is the
+    /// scarce axis (card + input + button + keyboard share one screen), and a
+    /// fixed side slot means the reveal can fade it in without moving a thing.
+    /// It belongs to the CARD rather than the prompt line, so it stays centred
+    /// against prompt and reveal together instead of riding up as the card grows.
+    /// The slot is mirrored on the trailing edge so the words stay centred.
     var body: some View {
-        VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
-            promptRow
-            if revealed {
-                revealSection
-                    .transition(.opacity.combined(with: .move(edge: .top)))
+        HStack(spacing: DL.Space.m) {
+            if hasEmoji {
+                emojiIllustration(emoji ?? "")
+                    .opacity(emojiCue == .upfront || revealed ? 1 : 0)
+            }
+            VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
+                sideBlock(prompt, emphasized: false)
+                if revealed {
+                    revealSection
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                }
+            }
+            .frame(maxWidth: .infinity)
+            if hasEmoji {
+                Color.clear.frame(width: emojiDiameter, height: 1)
             }
         }
         .padding(compact ? DL.Space.l : DL.Space.xl)
@@ -95,24 +111,6 @@ struct VocabCardView: View {
     }
 
     // MARK: Pieces
-
-    /// The picture sits BESIDE the word, never above it: vertical space is the
-    /// scarce axis (card + input + button + keyboard share one screen), and a
-    /// fixed side slot means the reveal can fade it in without moving a thing.
-    /// The slot is mirrored on the trailing edge so the word stays centred.
-    private var promptRow: some View {
-        HStack(spacing: DL.Space.m) {
-            if hasEmoji {
-                emojiIllustration(emoji ?? "")
-                    .opacity(emojiCue == .upfront || revealed ? 1 : 0)
-            }
-            sideBlock(prompt, emphasized: false)
-                .frame(maxWidth: .infinity)
-            if hasEmoji {
-                Color.clear.frame(width: emojiDiameter, height: 1)
-            }
-        }
-    }
 
     private var hasEmoji: Bool {
         !(emoji ?? "").isEmpty
