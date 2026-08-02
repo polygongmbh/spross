@@ -141,6 +141,11 @@ struct SessionView: View {
         return nil
     }
 
+    /// VoiceOver and Switch Control both make a timed screen change hostile:
+    /// it truncates the correctness announcement and moves the page under the
+    /// user. Where either runs, an explicit "Weiter" replaces the beat.
+    var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
+
     /// Bar segments: good/easy green, hard amber, again brick.
     private func outcome(for rating: Rating) -> SessionOutcome {
         switch rating {
@@ -369,21 +374,6 @@ struct SessionView: View {
         // clock starts with the prompt the learner is about to see.
         promptShownAt = Date()
         recallMs = 0
-    }
-
-    /// A beat between the last letter and the card leaving, shared by every
-    /// path where finishing the word IS the action (typing an answer,
-    /// writing a missed word out).
-    ///
-    /// why: a flip on the same frame as the final keystroke reads as a glitch
-    /// rather than as having finished. Re-armed on every keystroke, so typing
-    /// past the word calls the flip off instead of racing it.
-    func armFinishedTyping(_ action: @escaping @MainActor () -> Void) {
-        autoAdvance = Task {
-            try? await Task.sleep(for: .milliseconds(450))
-            guard !Task.isCancelled else { return }
-            action()
-        }
     }
 
     /// Close the recall attempt: the prompt has been on screen since

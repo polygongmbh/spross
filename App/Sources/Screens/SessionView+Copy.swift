@@ -76,7 +76,7 @@ extension SessionView {
         if copyMissed { withAnimation { copyMissed = false } }
         if copyFeedback != .correct { DLSound.correct() }
         withAnimation { copyFeedback = .correct }
-        armFinishedTyping { applyPendingRating() }
+        AutoAdvance.scheduleLive(&autoAdvance) { applyPendingRating() }
     }
 
     private var copyPlaceholder: String {

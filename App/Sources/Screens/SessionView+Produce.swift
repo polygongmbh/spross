@@ -100,6 +100,16 @@ extension SessionView {
                         .buttonStyle(DLPrimaryButtonStyle())
                         .keyboardShortcut(.defaultAction)
                     }
+                } else if screenReaderOn {
+                    // why: the timer never armed here, so this is the only way
+                    // on — a clean answer would otherwise leave nothing to tap.
+                    Button {
+                        rate(.good)
+                    } label: {
+                        DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
+                    }
+                    .buttonStyle(DLPrimaryButtonStyle())
+                    .keyboardShortcut(.defaultAction)
                 } else {
                     EmptyView()
                 }
@@ -169,7 +179,7 @@ extension SessionView {
         }
         if feedback != .correct { DLSound.correct() }
         withAnimation { feedback = .correct }
-        armFinishedTyping { rate(.good) }
+        AutoAdvance.scheduleLive(&autoAdvance) { rate(.good) }
     }
 
     /// Finishing the retype after a miss is the self-grade: reaching the
@@ -180,7 +190,7 @@ extension SessionView {
         guard !trimmed.isEmpty, isExactAnswer(trimmed, card: card) else { return }
         autoAdvance?.cancel()
         DLSound.correct()
-        armFinishedTyping { rate(.hard) }
+        AutoAdvance.scheduleLive(&autoAdvance) { rate(.hard) }
     }
 
     /// After a miss reveals the answer, keep the whole words [input] already
@@ -214,11 +224,10 @@ extension SessionView {
         case .exact:
             feedback = .correct
             DLSound.correct()
-            autoAdvance = Task {
-                try? await Task.sleep(for: .milliseconds(1200))
-                guard !Task.isCancelled else { return }
-                rate(.good)
-            }
+            // why: AutoAdvance skips the timer under a screen reader — it
+            // truncates the correctness announcement and moves the screen
+            // under the user (produceButtons renders "Weiter" there instead).
+            AutoAdvance.scheduleExplicit(&autoAdvance) { rate(.good) }
         case .typo(let typo):
             // why: don't auto-advance on a typo — pause (keeping the typed
             // text visible) so the learner reviews the slip. Still counts as
