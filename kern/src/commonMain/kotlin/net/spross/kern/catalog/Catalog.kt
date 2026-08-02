@@ -118,9 +118,11 @@ class Catalog internal constructor(
 
     /**
      * The frames' half of [join]: one [PhraseTemplate] per frame realized in BOTH languages,
-     * directional like a [Card], with `count`/`masculineNumeral`/`notes` riding along from
-     * the ANSWER realization. Empty unless [Trainer.supports] the target — sampling generates
-     * the answer side's number words, so a target without a pack only ever supplies prompts.
+     * directional like a [Card]. `masculineNumeral`/`notes` ride along from the ANSWER
+     * realization; `count` rides from BOTH, because agreement belongs to whichever language
+     * authored it and the prompt renders its own frame. Empty unless [Trainer.supports] the
+     * target — sampling generates the answer side's number words, so a target without a pack
+     * only ever supplies prompts.
      */
     fun phraseTemplates(source: Language, target: Language): List<PhraseTemplate> {
         require(source != target) { "source == target ($source)" }
@@ -143,6 +145,7 @@ class Catalog internal constructor(
                 acceptedSourceFrames = prompt.variants,
                 note = answer.notes[source], // why: notes never cross-language fall back — §2
                 countForms = answer.count,
+                sourceCountForms = prompt.count,
                 masculineNumeral = answer.masculineNumeral,
             )
         }

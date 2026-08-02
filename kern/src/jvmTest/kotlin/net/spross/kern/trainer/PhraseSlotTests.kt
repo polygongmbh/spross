@@ -326,4 +326,38 @@ class PhraseSlotTests {
             assertEquals(ids.size, ids.toSet().size, "duplicate frame id in $source→$target")
         }
     }
+
+    /**
+     * No marker ever reaches the learner. Agreement is authored per realization, so the
+     * language supplying the PROMPT fills its own `{count}` — uk authors it on three frames,
+     * which used to surface literally the moment Ukrainian became a source (uk→en, uk→sw).
+     */
+    @Test
+    fun noMarkerSurvivesIntoAnythingTheLearnerSees() {
+        val rng = Random(20260802)
+        for (template in RealFrames.all) {
+            val tasks = if (template.slotKind == TrainerKind.Clock) {
+                listOf(
+                    PhraseSlots.instantiate(template, hour = 21, minute = 45),
+                    PhraseSlots.reverseInstantiate(template, hour = 21, minute = 45),
+                )
+            } else {
+                // 21 and 13 straddle the Slavic agreement split (one / many).
+                listOf(21L, 13L).flatMap {
+                    listOf(PhraseSlots.instantiate(template, it), PhraseSlots.reverseInstantiate(template, it))
+                }
+            } + listOf(PhraseSlots.sample(template, rng), PhraseSlots.reverseSample(template, rng))
+
+            for (task in tasks) {
+                for (surface in listOf(task.prompt, task.display) + task.accepted) {
+                    for (marker in listOf(PhraseTemplate.SLOT_MARKER, PhraseTemplate.COUNT_MARKER)) {
+                        assertTrue(
+                            marker !in surface,
+                            "${template.source}→${template.target} ${template.id}: „$marker“ reached the learner in „$surface“",
+                        )
+                    }
+                }
+            }
+        }
+    }
 }

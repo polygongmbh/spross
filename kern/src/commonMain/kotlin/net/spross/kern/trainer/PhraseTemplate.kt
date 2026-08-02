@@ -14,8 +14,8 @@ data class PhraseTemplate(
     /** Learning-language side; also selects the slot generator. */
     val target: Language,
     /**
-     * Source sentence with `{slot}`; the prompt substitutes digits
-     * ("14:35", "347", "1978"), never words.
+     * Source sentence with `{slot}` (and `{count}` iff [sourceCountForms] is set);
+     * the prompt substitutes digits ("14:35", "347", "1978"), never words.
      */
     val sourceTemplate: String,
     /**
@@ -41,6 +41,12 @@ data class PhraseTemplate(
      * numeral (Ukrainian). [targetTemplate] then contains `{count}`.
      */
     val countForms: CountForms? = null,
+    /**
+     * [countForms] on the source side. Agreement is a property of the realization, so a
+     * frame authored with `{count}` carries it into every pair — including the ones where
+     * that language is the PROMPT and the marker would otherwise reach the learner literally.
+     */
+    val sourceCountForms: CountForms? = null,
     /**
      * Templates counting a masculine/indeclinable noun: feminine numeral
      * variants (одна/дві) must NOT be accepted — these templates exist to

@@ -102,9 +102,10 @@ object PhraseSlots {
     fun reverseInstantiate(template: PhraseTemplate, value: Long): TrainerTask {
         val forward = instantiate(template, value)
         val frames = sourceFrames(template)
+        val countWord = sourceCountWord(template, value)
         val accepted = mutableListOf<String>()
         for (frame in frames) {
-            val sentence = frame.replace(PhraseTemplate.SLOT_MARKER, value.toString())
+            val sentence = fillTarget(frame, value.toString(), countWord)
             if (sentence !in accepted) accepted += sentence
         }
         if (Trainer.supports(template.source)) {
@@ -114,7 +115,7 @@ object PhraseSlots {
             }.filterNot { isFilteredFeminine(template, it) }
             for (frame in frames) {
                 for (reading in readings) {
-                    val sentence = frame.replace(PhraseTemplate.SLOT_MARKER, reading)
+                    val sentence = fillTarget(frame, reading, countWord)
                     if (sentence !in accepted) accepted += sentence
                 }
             }
@@ -125,6 +126,14 @@ object PhraseSlots {
     /** Canonical source frame first — it is what the reverse drill displays. */
     private fun sourceFrames(template: PhraseTemplate): List<String> =
         (listOf(template.sourceTemplate) + template.acceptedSourceFrames).distinct()
+
+    /**
+     * The prompt realization's own counted-noun form. A frame authored with `{count}` is
+     * realized that way in every pair, so the side showing the prompt has to fill its own
+     * marker — otherwise a uk-source learner reads a literal "{count}".
+     */
+    private fun sourceCountWord(template: PhraseTemplate, value: Long?): String? =
+        template.sourceCountForms?.let { forms -> value?.let(forms::form) }
 
     private fun reverseTask(
         template: PhraseTemplate,
@@ -182,7 +191,7 @@ object PhraseSlots {
             value?.let(forms::form)
         }
 
-        val prompt = template.sourceTemplate.replace(PhraseTemplate.SLOT_MARKER, slot.prompt)
+        val prompt = fillTarget(template.sourceTemplate, slot.prompt, sourceCountWord(template, value))
         val display = fillTarget(template.targetTemplate, slot.display, countWord)
         val renderings = (slot.accepted.filterNot { isFilteredFeminine(template, it) } + digitForms(slot))
             .distinct()
