@@ -16,11 +16,7 @@ extension TrainerSessionView {
             DLSound.correct()
             // A hint-assisted answer stays amber (no level progress).
             let segment: SessionOutcome = hintUsed ? .tough : .right
-            autoAdvance = Task {
-                try? await Task.sleep(for: .milliseconds(1200))
-                guard !Task.isCancelled else { return }
-                advance(correct: true, segment: segment)
-            }
+            AutoAdvance.scheduleExplicit(&autoAdvance) { advance(correct: true, segment: segment) }
         case .typo(let corrected):
             // why: no auto-advance on a typo — the pause shows the proper
             // spelling; "Weiter" then books it amber (no level progress).

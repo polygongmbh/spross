@@ -161,6 +161,18 @@ extension TrainerSessionView {
                         .keyboardShortcut(.defaultAction)
                     }
                     .transition(.opacity)
+                } else if screenReaderOn {
+                    // why: the timer never arms under VoiceOver/Switch Control —
+                    // without this the clean-correct branch offers nothing to tap.
+                    Button {
+                        advance(correct: true, segment: hintUsed ? .tough : .right)
+                    } label: {
+                        Text("common.next")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(DLPrimaryButtonStyle())
+                    .keyboardShortcut(.defaultAction)
+                    .transition(.opacity)
                 } else {
                     EmptyView()
                 }

@@ -97,6 +97,8 @@ struct TrainerSessionView: View {
 
     var language: String { mode.typedLanguage }
 
+    var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
+
     func languageName(_ code: String) -> String {
         LanguageNames.display(code, locale: locale, catalog: nil)
     }
