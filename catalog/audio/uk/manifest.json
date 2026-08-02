@@ -322,6 +322,18 @@
       "source": "Ґґ – ukrainian.ogg"
     }
   },
+  "texts": {
+    "ґудзик": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "texts/u0491u0443u0434u0437u0438u043a.mp3",
+      "gain": -0.6,
+      "licence": "CC BY 3.0 us",
+      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+      "matches": "ґудзик",
+      "sha256": "a145a4b0718fcbb49d8b66cdea8d048206bed8e9a375409a686f3d59244da31e",
+      "source": "Uk-ґудзик.ogg"
+    }
+  },
   "words": {
     "address": {
       "author": "Галя Раптова, Nicolas Vion",

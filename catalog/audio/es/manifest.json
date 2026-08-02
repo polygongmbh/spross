@@ -1,5 +1,51 @@
 {
   "language": "es",
+  "texts": {
+    "guitarra": {
+      "author": "Rodrigo5260",
+      "file": "texts/guitarra.mp3",
+      "gain": 5.5,
+      "lead": 202,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "guitarra",
+      "sha256": "586c22b5f62e473f03000e9d31f80857a089eb8a3e648998c2e5354f060b3e57",
+      "source": "LL-Q1321 (spa)-Rodrigo5260-guitarra.wav"
+    },
+    "pero": {
+      "author": "Precision27",
+      "file": "texts/pero.mp3",
+      "gain": -1.2,
+      "lead": 183,
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "matches": "pero",
+      "sha256": "d93279e8b7bddb189346811260ca99c1745571169fad6cf9c2373544fdcf9f7f",
+      "source": "LL-Q1321 (spa)-Precision27-pero.wav"
+    },
+    "perro": {
+      "author": "Akhram",
+      "file": "texts/perro.mp3",
+      "gain": 6.4,
+      "lead": 191,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "perro",
+      "sha256": "1bd7813a476cf729e13102aaf012e6a13400bdeef6185e5242af7b53eb0ea43a",
+      "source": "LL-Q1321 (spa)-Akhram-perro.wav"
+    },
+    "pingüino": {
+      "author": "AdrianAbdulBaha",
+      "file": "texts/pingu00fcino.mp3",
+      "gain": 7.3,
+      "lead": 207,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pingüino",
+      "sha256": "877ce7a359c139c1c74859b96aadf3a4ad7cbf50952f5f44135f698af2e70876",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pingüino.wav"
+    }
+  },
   "words": {
     "address": {
       "author": "AdrianAbdulBaha",

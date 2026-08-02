@@ -224,10 +224,35 @@ def convert_letters(pack, out_dir):
     return letters
 
 
-def write_manifest(lang, out_dir, words, letters):
+def convert_texts(pack, out_dir):
+    """The alphabet's `exampleText` words — reference material that carries no slug.
+
+    `sechs`, `Quittung`, the es `pero`/`perro` minimal pair: core to the sheet and to the
+    letter drill, and citable by no concept, so the word gates — which resolve a slug
+    against the catalog — can never reach them. They index by the FORM they speak, exactly
+    as words do, so a recording still only ever plays over the word it actually says.
+    Files are ASCII-named for the reason the letters are codepoint-named: macOS normalises
+    filenames, and `pingüino.mp3` cannot be looked up by the string a manifest stores.
+    """
+    rows = read_rows(os.path.join(pack, 'manifest.tsv'))
+    names = {row['text']: 'texts/' + row['local_file'] for row in rows}
+    analysed = copy_and_analyze([(row['text'], os.path.join(pack, 'mp3', row['local_file']),
+                                  os.path.join(out_dir, names[row['text']])) for row in rows])
+    texts = {}
+    for row in rows:
+        digest, index = analysed[row['text']]
+        texts[row['text']] = entry(names[row['text']], row['licence'], row['author'],
+                                   row['file'], digest, index, matches=row['text'])
+    print('  texts: %d recorded' % len(texts))
+    return texts
+
+
+def write_manifest(lang, out_dir, words, letters, texts):
     manifest = {'language': lang, 'words': words}
     if letters:
         manifest['letters'] = letters
+    if texts:
+        manifest['texts'] = texts
     with open(os.path.join(out_dir, 'manifest.json'), 'w', encoding='utf-8') as f:
         json.dump(manifest, f, ensure_ascii=False, indent=2, sort_keys=True)
         f.write('\n')
@@ -249,7 +274,7 @@ def main():
 
     slugs, forms = load_catalog()
     languages = sorted(name[len('pack-'):] for name in os.listdir(args.packs)
-                       if name.startswith('pack-') and not name.endswith('-letters')
+                       if name.startswith('pack-') and not name.endswith(('-letters', '-texts'))
                        and os.path.isdir(os.path.join(args.packs, name)))
     for lang in args.lang or languages:
         pack = os.path.join(args.packs, 'pack-%s' % lang)
@@ -262,7 +287,9 @@ def main():
         words = convert_words(lang, pack, out_dir, slugs, forms)
         letters_pack = os.path.join(args.packs, 'pack-%s-letters' % lang)
         letters = convert_letters(letters_pack, out_dir) if os.path.isdir(letters_pack) else {}
-        write_manifest(lang, out_dir, words, letters)
+        texts_pack = os.path.join(args.packs, 'pack-%s-texts' % lang)
+        texts = convert_texts(texts_pack, out_dir) if os.path.isdir(texts_pack) else {}
+        write_manifest(lang, out_dir, words, letters, texts)
 
 
 if __name__ == '__main__':

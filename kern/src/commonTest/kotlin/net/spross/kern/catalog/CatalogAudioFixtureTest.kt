@@ -20,6 +20,23 @@ class CatalogAudioFixtureTest {
 
     // -- parse -------------------------------------------------------------------------
 
+    /**
+     * A `texts{}` entry voices an alphabet `exampleText` — reference material citing no
+     * concept. It shares the WORDS' form index rather than getting a lookup of its own,
+     * so the sheet, the drill and a review card all reach it through one code path, and
+     * none of them can play it over a word it does not say.
+     */
+    @Test
+    fun anExampleTextIsFoundByTheFormItSpeaks() {
+        assertEquals("audio/uk/texts/u0434u0436u0435u0440u0435u043bu043e.mp3", recording("uk", "джерело"))
+        // Same folding as words: edge punctuation is spelling, not speech.
+        assertEquals("audio/uk/texts/u0434u0436u0435u0440u0435u043bu043e.mp3", recording("uk", "Джерело!"))
+        assertNull(recording("uk", "джерела"))
+        val text = catalog.audio.getValue("uk").texts.getValue("джерело")
+        assertEquals("джерело", text.matches)
+        assertEquals(88L, text.leadMs)
+    }
+
     @Test
     fun everyAuthoredFieldLandsWhereItWasAuthored() {
         val word = catalog.audio.getValue("uk").words.getValue("mouse")

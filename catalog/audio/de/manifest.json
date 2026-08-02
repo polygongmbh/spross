@@ -80,6 +80,29 @@
       "source": "De-Ü.ogg"
     }
   },
+  "texts": {
+    "Quittung": {
+      "author": "Jeuwre",
+      "file": "texts/quittung.mp3",
+      "gain": -1.6,
+      "lead": 448,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "Quittung",
+      "sha256": "51b99cf6a6c9d2b4ea1f12440acfcff593a9d35f81a1137fd92fea6eab552ec5",
+      "source": "De-Quittung.ogg"
+    },
+    "sechs": {
+      "author": "joni",
+      "file": "texts/sechs.mp3",
+      "gain": 7.2,
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "matches": "sechs",
+      "sha256": "a5c21e54fac916f01bd73541d6687e75957e16d47d3b6e198e48390edfde4e89",
+      "source": "De-sechs.ogg"
+    }
+  },
   "words": {
     "address": {
       "author": "Jeuwre",

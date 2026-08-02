@@ -102,7 +102,11 @@ extension AppModel {
         case .word:
             return formPronunciation(task.promptText, lang: task.language)
         case .plainText:
-            return spokenPronunciation(task.promptText, lang: task.language)
+            // why: an alphabet `exampleText` carries no slug but the manifest records the
+            // FORM (`texts{}`), so reference words like sechs and the pero/perro pair are
+            // heard as a voice recorded them; synthesis is the fallback, not the rule.
+            return formPronunciation(task.promptText, lang: task.language)
+                ?? spokenPronunciation(task.promptText, lang: task.language)
         }
     }
 }

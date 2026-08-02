@@ -218,14 +218,18 @@ struct AlphabetSheetView: View {
                                               lang: language))
     }
 
-    /// The example word, under the same provenance rule the drill follows: a
-    /// concept's realization may be answered by that concept's recording, an
-    /// `exampleText` by nothing — it carries no slug to look one up with.
+    /// The example word, under the provenance rule the drill follows: the lookup is
+    /// keyed by the FORM, so a recording only ever plays over the word it says.
+    /// An `exampleText` carries no slug, but the manifest's `texts{}` records those
+    /// forms directly — `sechs`, `pero`/`perro` — and the voice is the fallback,
+    /// not the rule, for reference material this central.
     private func speakExample(_ entry: AlphabetEntry) -> (() -> Void)? {
         if let example = model.catalog?.alphabetExample(entry: entry, lang: language) {
             return play(model.formPronunciation(example.text, lang: language))
         }
-        return entry.exampleText.flatMap { play(model.spokenPronunciation($0, lang: language)) }
+        guard let text = entry.exampleText else { return nil }
+        return play(model.formPronunciation(text, lang: language)
+            ?? model.spokenPronunciation(text, lang: language))
     }
 
     /// A tap that sounds — nil where the device can neither play nor speak the

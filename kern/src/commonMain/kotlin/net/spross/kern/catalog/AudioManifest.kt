@@ -44,6 +44,14 @@ internal class AudioManifest(
     val words: Map<String, AudioRecording>,
     /** lowercase glyph → recording, in manifest order. */
     val letters: Map<String, AudioRecording>,
+    /**
+     * form → recording for the alphabet's `exampleText` words, in manifest order. They
+     * carry no slug — that is what an `exampleText` IS — so they are keyed and matched by
+     * the form they speak, and share [words]' form index: the lookup a card does and the
+     * lookup the sheet does are the same lookup, and neither can play a recording over a
+     * word it does not say.
+     */
+    val texts: Map<String, AudioRecording>,
 ) {
     private val byExactForm: Map<String, AudioRecording?> = index { nfcNormalized(it) }
     private val bySpeechKey: Map<String, AudioRecording?> = index { speechKey(it) }
@@ -65,15 +73,16 @@ internal class AudioManifest(
 
     /**
      * (label, recording) for the credits screen, manifest order: words labelled by the
-     * form they speak, then letters by their glyph.
+     * form they speak, then letters by their glyph, then the alphabet's own example words.
      */
     fun creditRows(): List<Pair<String, AudioRecording>> =
         words.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
-            letters.map { (glyph, recording) -> glyph to recording }
+            letters.map { (glyph, recording) -> glyph to recording } +
+            texts.values.mapNotNull { recording -> recording.matches?.let { it to recording } }
 
     /** Spoken-form key → recording, or → null where entries disagree about non-identical bytes. */
     private fun index(key: (String) -> String): Map<String, AudioRecording?> =
-        words.values
+        (words.values + texts.values)
             .mapNotNull { recording -> recording.matches?.let { key(it) to recording } }
             .groupBy({ (formKey, _) -> formKey }, { (_, recording) -> recording })
             .mapValues { (_, group) ->
@@ -96,7 +105,7 @@ internal object AudioManifestParser {
 
     fun parse(path: String, text: String, expectedLanguage: Language): AudioManifest {
         val root = parseJson(path, text).obj(path, "root")
-        root.rejectUnknownKeys(path, "root", setOf("language", "words", "letters"))
+        root.rejectUnknownKeys(path, "root", setOf("language", "words", "letters", "texts"))
         val language = root.requireString(path, "root", "language")
         if (language != expectedLanguage) {
             parseError(path, "declares language \"$language\", expected \"$expectedLanguage\"")
@@ -105,6 +114,7 @@ internal object AudioManifestParser {
             language = language,
             words = section(path, root, "words", WORD_KEYS),
             letters = section(path, root, "letters", LETTER_KEYS),
+            texts = section(path, root, "texts", WORD_KEYS),
         )
     }
 

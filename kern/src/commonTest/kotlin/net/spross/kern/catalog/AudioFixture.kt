@@ -60,7 +60,11 @@ internal object AudioFixture {
                        "gain": 20.0, "lead": 1069 },
                 "і": { "file": "letters/u0456.mp3", "licence": "CC BY-SA 4.0", "licenceUrl": "$BY_SA",
                        "author": "Tabrus", "source": "Іі – ukrainian.ogg", "sha256": "u4",
-                       "gain": 12.5, "lead": 604 } } }
+                       "gain": 12.5, "lead": 604 } },
+              "texts": {
+                "джерело": { "file": "texts/u0434u0436u0435u0440u0435u043bu043e.mp3", "matches": "джерело",
+                             "licence": "CC BY 3.0 us", "licenceUrl": "$BY", "author": "Halyna",
+                             "source": "Uk-джерело.ogg", "sha256": "u5", "lead": 88 } } }
         """.trimIndent(),
     )
 

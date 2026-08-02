@@ -28,6 +28,7 @@ class CatalogAudioLintTest {
         for ((lang, manifest) in catalog.audio) {
             for ((slug, recording) in manifest.words) action(lang, slug, recording)
             for ((glyph, recording) in manifest.letters) action(lang, glyph, recording)
+            for ((form, recording) in manifest.texts) action(lang, form, recording)
         }
     }
 
@@ -102,6 +103,24 @@ class CatalogAudioLintTest {
                     "$where: file does not name the glyph's codepoint",
                 )
             }
+            for ((form, recording) in manifest.texts) {
+                val where = "audio/$lang text \"$form\""
+                // why: same reason the letters are codepoint-named — `pingüino.mp3` cannot
+                // be looked up by the string a manifest stores once APFS has normalised it.
+                assertEquals(
+                    "texts/${asciiStem(form)}.mp3",
+                    recording.file,
+                    "$where: file is not the form's ASCII stem",
+                )
+            }
+        }
+    }
+
+    /** The converter's file-stem rule: [a-z0-9-] survives, everything else becomes `u<hex>`. */
+    private fun asciiStem(form: String): String = buildString {
+        for (ch in form.trim().lowercase()) {
+            if (ch.code < 128 && (ch.isLetterOrDigit() || ch == '-')) append(ch)
+            else append("u%04x".format(ch.code))
         }
     }
 
@@ -128,6 +147,32 @@ class CatalogAudioLintTest {
             }
             for ((glyph, recording) in manifest.letters) {
                 assertEquals(null, recording.matches, "audio/$lang letter \"$glyph\": letters speak a name")
+            }
+            for ((form, recording) in manifest.texts) {
+                // why: the key IS the spoken form for a text entry — it has no slug to be
+                // keyed by, and the two disagreeing would index the recording under a word
+                // it does not say.
+                assertEquals(form, recording.matches, "audio/$lang text \"$form\": key is not what it speaks")
+            }
+        }
+    }
+
+    /**
+     * A `texts{}` entry exists only to voice an alphabet row's `exampleText`. One that
+     * matches no row is a stale fetch: it can never be reached, and its mp3 ships for
+     * nothing. (The converse is fine — a form Commons has no recording for stays synthesized.)
+     */
+    @Test
+    fun everyTextEntryVoicesAnAlphabetExampleText() {
+        for ((lang, manifest) in catalog.audio) {
+            if (manifest.texts.isEmpty()) continue
+            val alphabet = assertNotNull(
+                catalog.alphabet(lang),
+                "audio/$lang ships text recordings but no alphabet is authored",
+            )
+            val authored = alphabet.entries.mapNotNull { it.exampleText }.toSet()
+            for (form in manifest.texts.keys) {
+                assertTrue(form in authored, "audio/$lang text \"$form\": no alphabet row cites it")
             }
         }
     }
@@ -156,7 +201,7 @@ class CatalogAudioLintTest {
     fun everyAudioFileShipsAndIsReferencedExactlyOnce() {
         val referenced = mutableListOf<String>()
         for ((lang, manifest) in catalog.audio) {
-            for (recording in manifest.words.values + manifest.letters.values) {
+            for (recording in manifest.words.values + manifest.letters.values + manifest.texts.values) {
                 val relative = "$lang/${recording.file}"
                 assertTrue(File(audioRoot, relative).isFile, "audio/$relative: missing on disk")
                 referenced += relative
@@ -245,7 +290,7 @@ class CatalogAudioLintTest {
     @Test
     fun audioFilesMatchTheirManifestHashes() {
         for ((lang, manifest) in catalog.audio) {
-            for (entry in manifest.words.entries + manifest.letters.entries) {
+            for (entry in manifest.words.entries + manifest.letters.entries + manifest.texts.entries) {
                 val file = File(audioRoot, "$lang/${entry.value.file}")
                 if (!file.isFile) continue // reported by everyAudioFileShipsAndIsReferencedExactlyOnce
                 val digest = MessageDigest.getInstance("SHA-256").digest(file.readBytes())
