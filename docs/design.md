@@ -85,13 +85,6 @@ never the shape of the app.
 - The emoji sits in a fixed slot **beside the headword**, never above it:
   vertical space is the scarce axis — card, input, button and keyboard share one screen —
   and the slot is held for the card's whole life, so a reveal moves nothing.
-- **A prompt card reserves the height of its own tallest routine state** (`DL.Reserve`),
-  so optional content coming and going never moves the field or the button below it:
-  a word with a picture measures the same as one without, a word asked by ear the same as
-  one asked by meaning, a drill prompt carrying a place-value hint the same as one without.
-  Per card FACE, never one number for all three — the listening card's replay glyph is twice
-  the height of a line of digits, and levelling them would spend the keyboard's budget
-  everywhere to buy stillness in one place.
 - Ambiguous prompts (the target merges two source concepts) carry an **area label**.
   Produce only: on a recognition prompt a cue precise enough to disambiguate would give
   the answer away. Never graded.
@@ -255,7 +248,7 @@ never the shape of the app.
   come, and the field's placeholder names the language to answer in, so a badge or a
   "Zahl · auf Spanisch" caption would be the third telling of what one tap said.
   The one thing it does carry is the place-value hint the first time a length appears —
-  a fact about THIS number, inside the card's reserved room, and the reveal takes its slot.
+  a fact about THIS number, and the reveal takes its place rather than stacking under it.
 - **Letter drill & alphabet sheet**: the Training card shows when slots, phrases OR an
   alphabet exist for the target (the third predicate is catalog file presence, recomputed
   on foreground/readiness — a voice installed in Settings brings the chip back). The

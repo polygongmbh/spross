@@ -57,10 +57,10 @@ struct HearPromptCard: View {
         }
         .padding(DL.Space.l)
         .frame(maxWidth: .infinity)
-        // why: the gap word, the unmute row and the silent-switch line all come
-        // and go on this face — the tallest of them is held for every question,
-        // so a run never jumps a layout between two of its own tasks.
-        .frame(minHeight: DL.Reserve.hearCard)
+        // why: the sibling drill card's height — an ordinary question holds it
+        // exactly, so a run sits still and a learner moving between the two
+        // drills meets one layout. A gap word is what may still grow it.
+        .frame(minHeight: DL.Reserve.drillCard)
         .dlCardSurface()
     }
 
@@ -75,11 +75,16 @@ struct HearPromptCard: View {
 
     /// Big, but never circled or filled — it names what the card does rather
     /// than acting as a control styled to look like one.
+    ///
+    /// why: it keeps its generous tap target but reserves only the glyph in
+    /// layout, overhanging into the gaps above and below — nothing there is
+    /// tappable, and at full height it cost the card 36 pt of empty air.
     private var replayGlyph: some View {
         SpeakerIcon(size: .large, isPlaying: isPlaying, pronounce: replay)
             .accessibilityLabel("a11y.replayPrompt")
             .accessibilityAddTraits(.startsMediaSession)
             .accessibilityFocused(replayFocus)
+            .frame(height: 52)
     }
 
     private var unmuteRow: some View {

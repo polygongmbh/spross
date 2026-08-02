@@ -7,8 +7,8 @@
   between the card and the field — so the first number of a new length pushed the button
   under the keyboard, and the next one snapped everything back up. Hints now sit on the card
   itself, in room it was already holding, and every card holds the height of the tallest thing
-  it can show: a word with a picture and one without, a word asked by ear and the same word
-  asked by meaning, a number with a hint and one without all sit exactly as high.
+  it routinely shows: a word with a picture and one without, a word asked by ear and the same
+  word asked by meaning, a number with a hint and one without all sit exactly as high.
 
 - **The frisch tile says what the day brought in again.** Its "+N heute" was the day's new
   words minus every word that consolidated that day, so an evening spent on older words

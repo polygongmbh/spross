@@ -48,21 +48,21 @@ enum DL {
     /// state, so nothing below it moves as optional content comes and goes —
     /// vertical space is the scarce axis (card, input, button and keyboard
     /// share one screen), and a button that slides under the keyboard costs
-    /// more than a card with air in it. Per card FACE, never one number for
-    /// all: the listening card's replay glyph is twice the height of a line of
-    /// digits, and levelling the three would spend that budget everywhere.
+    /// more than a card with air in it. The tallest routine state, not the
+    /// tallest possible one: a rare face that overflows simply grows the card,
+    /// because levelling every card up to an exception buys stillness with air.
     /// The reveal is exempt — it grows the card downward and reserves nothing.
     enum Reserve {
-        /// Drill prompt: one 56 pt line of digits plus the place-value pill —
-        /// measured on device, where the pill case comes to 141.3 pt.
+        /// Drill prompt, shared by both drill faces: one 56 pt line of digits
+        /// plus the place-value pill (141.3 pt measured), and the listening
+        /// card's caption plus replay glyph plus its once-per-run silent-switch
+        /// line. A gap word ("Ge l＿") is the exception that grows the card —
+        /// levelling every question up to it would buy stillness with air.
         static let drillCard: CGFloat = 144
         /// Review prompt (compact): the by-ear prompt's 88 pt replay target,
         /// which is the tallest a prompt side gets — a word asked by ear and
         /// the same word asked by meaning then measure alike.
         static let reviewCard: CGFloat = 120
-        /// Listening prompt: caption plus the 88 pt replay target, levelled
-        /// with the gap-word and silent-switch variants of the same card.
-        static let hearCard: CGFloat = 185
     }
 
     // MARK: Type scale — SF Rounded throughout
