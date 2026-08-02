@@ -66,7 +66,8 @@ struct TrainerHubView: View {
         .fullScreenCover(item: drillDestination) { destination in
             Group {
                 if let mode = destination.drillMode {
-                    TrainerSessionView(mode: mode, normalizer: normalizer(for: mode))
+                    TrainerSessionView(mode: mode, normalizer: normalizer(for: mode),
+                                       catalog: model.catalog)
                 } else if let language = destination.lettersLanguage {
                     LetterDrillView(model: model, language: language)
                 }

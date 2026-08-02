@@ -50,6 +50,9 @@ struct TrainerSessionView: View {
     /// Kern grader for the typed language; nil (previews) falls back to a
     /// plain case/punctuation-insensitive comparison.
     var normalizer: AnswerNormalizer?
+    /// Names the drilled language where no chrome exonym exists for it —
+    /// without it a language the chrome does not know is spelled "ES".
+    var catalog: Catalog?
 
     @Environment(\.dismiss) var dismiss
 
@@ -89,9 +92,10 @@ struct TrainerSessionView: View {
         self.init(mode: .slots(kind, language))
     }
 
-    init(mode: Mode, normalizer: AnswerNormalizer? = nil) {
+    init(mode: Mode, normalizer: AnswerNormalizer? = nil, catalog: Catalog? = nil) {
         self.mode = mode
         self.normalizer = normalizer
+        self.catalog = catalog
         _tasks = State(initialValue: [Self.sampleTask(mode: mode, level: 1, avoiding: nil)])
     }
 
@@ -100,7 +104,7 @@ struct TrainerSessionView: View {
     var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
 
     func languageName(_ code: String) -> String {
-        LanguageNames.display(code, locale: locale, catalog: nil)
+        LanguageNames.display(code, locale: locale, catalog: catalog)
     }
 
     var body: some View {
