@@ -1,0 +1,53 @@
+{
+ "title": "Сполучні слова",
+ "words": {
+  "higher": {
+   "text": "вище"
+  },
+  "lower": {
+   "text": "нижче"
+  },
+  "more": {
+   "text": "більше"
+  },
+  "less": {
+   "text": "менше"
+  },
+  "always": {
+   "text": "завжди"
+  },
+  "never": {
+   "text": "ніколи"
+  },
+  "maybe": {
+   "text": "можливо",
+   "variants": [
+    "може"
+   ]
+  },
+  "sometimes": {
+   "text": "іноді"
+  },
+  "often": {
+   "text": "часто"
+  },
+  "but": {
+   "text": "але"
+  },
+  "also": {
+   "text": "також"
+  },
+  "more-or-less": {
+   "text": "більш-менш"
+  },
+  "i-am-always-there": {
+   "text": "Я завжди там."
+  },
+  "hang-it-higher": {
+   "text": "Повісь це вище."
+  },
+  "hang-it-lower": {
+   "text": "Повісь це нижче."
+  }
+ }
+}

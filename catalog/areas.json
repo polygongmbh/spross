@@ -16,6 +16,14 @@
    {
     "area": "essentials",
     "emoji": "⭐"
+   },
+   {
+    "area": "connectors",
+    "emoji": "🔗"
+   },
+   {
+    "area": "questions",
+    "emoji": "❓"
    }
   ]
  },

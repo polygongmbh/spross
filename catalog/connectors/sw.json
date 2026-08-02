@@ -1,0 +1,50 @@
+{
+ "title": "Maneno ya kuunganisha",
+ "words": {
+  "higher": {
+   "text": "juu zaidi"
+  },
+  "lower": {
+   "text": "chini zaidi"
+  },
+  "more": {
+   "text": "zaidi"
+  },
+  "less": {
+   "text": "pungufu"
+  },
+  "always": {
+   "text": "daima"
+  },
+  "never": {
+   "text": "kamwe"
+  },
+  "maybe": {
+   "text": "labda"
+  },
+  "sometimes": {
+   "text": "wakati mwingine"
+  },
+  "often": {
+   "text": "mara nyingi"
+  },
+  "but": {
+   "text": "lakini"
+  },
+  "also": {
+   "text": "pia"
+  },
+  "more-or-less": {
+   "text": "zaidi au pungufu"
+  },
+  "i-am-always-there": {
+   "text": "Niko pale daima."
+  },
+  "hang-it-higher": {
+   "text": "Itundike juu zaidi."
+  },
+  "hang-it-lower": {
+   "text": "Itundike chini zaidi."
+  }
+ }
+}

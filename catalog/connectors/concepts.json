@@ -1,0 +1,75 @@
+[
+ {
+  "slug": "higher",
+  "kind": "adjective"
+ },
+ {
+  "slug": "lower",
+  "kind": "adjective"
+ },
+ {
+  "slug": "more",
+  "kind": "adjective"
+ },
+ {
+  "slug": "less",
+  "kind": "adjective"
+ },
+ {
+  "slug": "always",
+  "kind": "adjective"
+ },
+ {
+  "slug": "never",
+  "kind": "adjective"
+ },
+ {
+  "slug": "maybe",
+  "kind": "adjective"
+ },
+ {
+  "slug": "sometimes",
+  "kind": "adjective"
+ },
+ {
+  "slug": "often",
+  "kind": "adjective"
+ },
+ {
+  "slug": "but",
+  "kind": "adjective"
+ },
+ {
+  "slug": "also",
+  "kind": "adjective"
+ },
+ {
+  "slug": "more-or-less",
+  "kind": "phrase",
+  "components": [
+   "more",
+   "less"
+  ]
+ },
+ {
+  "slug": "i-am-always-there",
+  "kind": "phrase",
+  "components": [
+   "always"
+  ]
+ },
+ {
+  "slug": "hang-it-higher",
+  "kind": "phrase",
+  "components": [
+   "higher"
+  ]
+ },
+ {
+  "slug": "hang-it-lower",
+  "kind": "phrase",
+  "components": [
+   "lower"
+  ]
+ }
+]

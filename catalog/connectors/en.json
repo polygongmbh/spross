@@ -1,0 +1,50 @@
+{
+ "title": "Connecting words",
+ "words": {
+  "higher": {
+   "text": "higher"
+  },
+  "lower": {
+   "text": "lower"
+  },
+  "more": {
+   "text": "more"
+  },
+  "less": {
+   "text": "less"
+  },
+  "always": {
+   "text": "always"
+  },
+  "never": {
+   "text": "never"
+  },
+  "maybe": {
+   "text": "maybe"
+  },
+  "sometimes": {
+   "text": "sometimes"
+  },
+  "often": {
+   "text": "often"
+  },
+  "but": {
+   "text": "but"
+  },
+  "also": {
+   "text": "also"
+  },
+  "more-or-less": {
+   "text": "more or less"
+  },
+  "i-am-always-there": {
+   "text": "I am always there."
+  },
+  "hang-it-higher": {
+   "text": "Hang it higher."
+  },
+  "hang-it-lower": {
+   "text": "Hang it lower."
+  }
+ }
+}

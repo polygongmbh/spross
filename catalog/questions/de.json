@@ -1,0 +1,41 @@
+{
+ "title": "Fragewörter",
+ "words": {
+  "where": {
+   "text": "wo"
+  },
+  "who": {
+   "text": "wer"
+  },
+  "what": {
+   "text": "was"
+  },
+  "here": {
+   "text": "hier"
+  },
+  "there": {
+   "text": "dort"
+  },
+  "this": {
+   "text": "das hier"
+  },
+  "that": {
+   "text": "das dort",
+   "variants": [
+    "das da"
+   ]
+  },
+  "where-are-they": {
+   "text": "Wo sind sie?"
+  },
+  "who-is-there": {
+   "text": "Wer ist da?"
+  },
+  "do-you-need-this": {
+   "text": "Brauchen Sie das hier?",
+   "variants": [
+    "Brauchst du das hier?"
+   ]
+  }
+ }
+}

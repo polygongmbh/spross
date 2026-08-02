@@ -1,0 +1,35 @@
+{
+ "title": "Question words",
+ "words": {
+  "where": {
+   "text": "where"
+  },
+  "who": {
+   "text": "who"
+  },
+  "what": {
+   "text": "what"
+  },
+  "here": {
+   "text": "here"
+  },
+  "there": {
+   "text": "there"
+  },
+  "this": {
+   "text": "this"
+  },
+  "that": {
+   "text": "that"
+  },
+  "where-are-they": {
+   "text": "Where are they?"
+  },
+  "who-is-there": {
+   "text": "Who is there?"
+  },
+  "do-you-need-this": {
+   "text": "Do you need this?"
+  }
+ }
+}

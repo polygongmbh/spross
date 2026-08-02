@@ -1,0 +1,51 @@
+[
+ {
+  "slug": "where",
+  "kind": "adjective"
+ },
+ {
+  "slug": "who",
+  "kind": "adjective"
+ },
+ {
+  "slug": "what",
+  "kind": "adjective"
+ },
+ {
+  "slug": "here",
+  "kind": "adjective"
+ },
+ {
+  "slug": "there",
+  "kind": "adjective"
+ },
+ {
+  "slug": "this",
+  "kind": "adjective"
+ },
+ {
+  "slug": "that",
+  "kind": "adjective"
+ },
+ {
+  "slug": "where-are-they",
+  "kind": "phrase",
+  "components": [
+   "where"
+  ]
+ },
+ {
+  "slug": "who-is-there",
+  "kind": "phrase",
+  "components": [
+   "who"
+  ]
+ },
+ {
+  "slug": "do-you-need-this",
+  "kind": "phrase",
+  "components": [
+   "this"
+  ]
+ }
+]

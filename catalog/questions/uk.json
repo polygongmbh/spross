@@ -1,0 +1,35 @@
+{
+ "title": "Питальні слова",
+ "words": {
+  "where": {
+   "text": "де"
+  },
+  "who": {
+   "text": "хто"
+  },
+  "what": {
+   "text": "що"
+  },
+  "here": {
+   "text": "тут"
+  },
+  "there": {
+   "text": "там"
+  },
+  "this": {
+   "text": "це"
+  },
+  "that": {
+   "text": "те"
+  },
+  "where-are-they": {
+   "text": "Де вони?"
+  },
+  "who-is-there": {
+   "text": "Хто там?"
+  },
+  "do-you-need-this": {
+   "text": "Вам це потрібне?"
+  }
+ }
+}

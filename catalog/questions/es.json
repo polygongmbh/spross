@@ -1,0 +1,41 @@
+{
+ "title": "Palabras interrogativas",
+ "words": {
+  "where": {
+   "text": "dónde"
+  },
+  "who": {
+   "text": "quién"
+  },
+  "what": {
+   "text": "qué"
+  },
+  "here": {
+   "text": "aquí",
+   "variants": [
+    "acá"
+   ]
+  },
+  "there": {
+   "text": "ahí"
+  },
+  "this": {
+   "text": "esto"
+  },
+  "that": {
+   "text": "eso"
+  },
+  "where-are-they": {
+   "text": "¿Dónde están?"
+  },
+  "who-is-there": {
+   "text": "¿Quién está ahí?"
+  },
+  "do-you-need-this": {
+   "text": "¿Necesita esto?",
+   "variants": [
+    "¿Necesitas esto?"
+   ]
+  }
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "title": "Maneno ya maswali",
+ "words": {
+  "where": {
+   "text": "wapi"
+  },
+  "who": {
+   "text": "nani"
+  },
+  "what": {
+   "text": "nini"
+  },
+  "here": {
+   "text": "hapa"
+  },
+  "there": {
+   "text": "pale"
+  },
+  "this": {
+   "text": "hii",
+   "notes": {
+    "de": "Klasse-9/10-Form (Standardform für unbestimmte Dinge) — bei anderen Nomenklassen ändert sich das Demonstrativ, z. B. kiti → hiki."
+   }
+  },
+  "that": {
+   "text": "hiyo",
+   "notes": {
+    "de": "Klasse-9/10-Form, siehe hii."
+   }
+  },
+  "where-are-they": {
+   "text": "Wako wapi?"
+  },
+  "who-is-there": {
+   "text": "Nani yuko pale?"
+  },
+  "do-you-need-this": {
+   "text": "Unahitaji hii?"
+  }
+ }
+}

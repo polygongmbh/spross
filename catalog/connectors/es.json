@@ -1,0 +1,59 @@
+{
+ "title": "Palabras de enlace",
+ "words": {
+  "higher": {
+   "text": "más alto"
+  },
+  "lower": {
+   "text": "más bajo"
+  },
+  "more": {
+   "text": "más"
+  },
+  "less": {
+   "text": "menos"
+  },
+  "always": {
+   "text": "siempre"
+  },
+  "never": {
+   "text": "nunca"
+  },
+  "maybe": {
+   "text": "quizás",
+   "variants": [
+    "tal vez"
+   ]
+  },
+  "sometimes": {
+   "text": "a veces"
+  },
+  "often": {
+   "text": "a menudo"
+  },
+  "but": {
+   "text": "pero"
+  },
+  "also": {
+   "text": "también"
+  },
+  "more-or-less": {
+   "text": "más o menos"
+  },
+  "i-am-always-there": {
+   "text": "Siempre estoy ahí."
+  },
+  "hang-it-higher": {
+   "text": "Cuélguelo más alto.",
+   "variants": [
+    "Cuélgalo más alto."
+   ]
+  },
+  "hang-it-lower": {
+   "text": "Cuélguelo más bajo.",
+   "variants": [
+    "Cuélgalo más bajo."
+   ]
+  }
+ }
+}
