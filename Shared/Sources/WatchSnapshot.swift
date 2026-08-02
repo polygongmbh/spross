@@ -1,6 +1,6 @@
 import Foundation
 
-/// Compact phone → watch state transfer ("snapshot down, events up"), v4:
+/// Compact phone → watch state transfer ("snapshot down, events up"), v5:
 /// decode-only mirror of Kern's `WatchSnapshotBuilder` JSON. One entry per
 /// CARD with both sides pre-resolved — the watch never joins, never types,
 /// and links no Kotlin. The phone is the source of truth; the watch only
@@ -10,12 +10,17 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
     /// One drainable card. `nextRole` "produce": prompt `sourceText`
     /// (+ ♀ badge when `femMarker`), reveal the target family. "recognize":
     /// prompt `promptForm` (the rotated target form), reveal `sourceText`.
-    /// `emoji` is pre-gated by the phone (emoji policy).
+    /// The picture arrives under the key that names when it may be seen —
+    /// `emoji` from frame one, `revealEmoji` only after the answer.
     struct Entry: Codable, Sendable, Equatable, Identifiable {
         var cardId: String
         var sourceText: String
         var targetText: String
         var emoji: String?
+        /// The same picture where the policy holds it back until the answer is
+        /// out. Never rendered before a tile is tapped — that is the whole
+        /// reason it travels under its own key instead of in `emoji`.
+        var revealEmoji: String?
         var articleTint: String?
         var femMarker: Bool
         /// Epoch milliseconds (trivial Swift decoding, no date strategy).

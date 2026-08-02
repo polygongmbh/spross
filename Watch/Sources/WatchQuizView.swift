@@ -2,15 +2,21 @@ import SwiftUI
 
 /// The one watch practice screen: a role-aware multiple-choice question over
 /// the due queue, then review-ahead. Correctness + response time derive the
-/// FSRS rating (`WatchGrading`) — no self-grading. Instant feedback (green
-/// right / amber wrong — never red), then auto-advance.
+/// FSRS rating (`WatchGrading`) — no self-grading. Instant feedback on three
+/// channels (green right / red wrong plus a red wash, a haptic shaped like the
+/// rating, and that rating badged on the tile — `WatchFeedback`), then
+/// auto-advance.
 /// One progress indicator, in the title: the due batch counts to its end,
 /// free practice shows the answer streak (having no total to count toward).
 /// - recognize: prompt the target `promptForm` (article-tinted), tap the
 ///   matching source meaning.
 /// - produce:   prompt the source meaning (+ ♀ badge), tap the target word.
+///
+/// A card that has a picture shows it on the prompt line once answered — never
+/// before, since on a recognition question the picture depicts the answer.
 struct WatchQuizView: View {
     @Bindable var model: WatchModel
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         Group {
@@ -20,6 +26,29 @@ struct WatchQuizView: View {
             } else {
                 completion
             }
+        }
+        .overlay { wrongFlash }
+        .animation(feedbackAnimation, value: model.selectedIndex)
+        .animation(feedbackAnimation, value: model.wrongFlash)
+    }
+
+    /// Reduce Motion keeps the colors and the badge — only the movement goes,
+    /// exactly as every phone screen treats `.dlCardFlip`.
+    private var feedbackAnimation: Animation {
+        reduceMotion ? .easeOut(duration: 0.15) : .spring(response: 0.28, dampingFraction: 0.6)
+    }
+
+    /// The alarm a tile tint alone was too quiet to raise. Hit testing stays off
+    /// so the wash can never swallow the tap that follows it.
+    @ViewBuilder
+    private var wrongFlash: some View {
+        if model.wrongFlash {
+            Color.wlWrong
+                .opacity(0.55)
+                .ignoresSafeArea()
+                .allowsHitTesting(false)
+                .transition(.opacity)
+                .accessibilityHidden(true)
         }
     }
 
@@ -40,19 +69,25 @@ struct WatchQuizView: View {
                                   GridItem(.flexible(), spacing: 6)]
 
     private func quiz(_ question: WatchPracticeQuestion) -> some View {
-        VStack(spacing: 8) {
-            prompt(question.promptEntry)
-                .frame(maxWidth: .infinity)
-            // why: 2×2 grid instead of a tall list — the whole round fits on
-            // screen without scrolling.
-            LazyVGrid(columns: Self.columns, spacing: 6) {
-                ForEach(Array(question.options.enumerated()), id: \.offset) { index, option in
-                    optionButton(index, option, question)
+        // why: the scroll view is a seatbelt, not a layout — kern's text cap
+        // (`WatchSnapshotBuilder.MAX_TEXT_CHARS`) keeps the 2×2 grid on screen,
+        // and this only guarantees that a tile can still be READ and reached
+        // rather than clipped when Dynamic Type or the smallest face runs out.
+        ScrollView {
+            VStack(spacing: 8) {
+                prompt(question.promptEntry)
+                    .frame(maxWidth: .infinity)
+                // why: 2×2 grid instead of a tall list — all four options stay
+                // in sight at once, so no tap lands on an unseen tile.
+                LazyVGrid(columns: Self.columns, spacing: 6) {
+                    ForEach(Array(question.options.enumerated()), id: \.offset) { index, option in
+                        optionButton(index, option, question)
+                    }
                 }
             }
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 2)
         }
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, 2)
     }
 
     // MARK: - Prompt (role-aware)
@@ -62,11 +97,27 @@ struct WatchQuizView: View {
         promptText(entry)
             .font(.system(.title2, design: .rounded, weight: .bold))
             .minimumScaleFactor(0.6)
+            // why: unbounded, a multi-line prompt takes the height the grid needs
+            // and pushes the tiles off the face — the prompt yields first.
+            .lineLimit(3)
             .multilineTextAlignment(.center)
     }
 
     private func promptText(_ entry: WatchSnapshot.Entry) -> Text {
-        entry.isRecognize ? targetLine(entry, form: entry.promptForm) : sourceLine(entry)
+        let line = entry.isRecognize ? targetLine(entry, form: entry.promptForm) : sourceLine(entry)
+        guard model.selectedIndex != nil, let picture = revealPicture(entry) else { return line }
+        return Text("\(picture) ") + line
+    }
+
+    /// The card's picture, once the tile has been tapped and it can give nothing
+    /// away. It joins the prompt LINE rather than taking a slot of its own, so
+    /// the answered card never reflows under the thumb — and nothing appears at
+    /// all before the answer, which is what keeps a produce prompt honest.
+    ///
+    /// Either key will do here: at reveal both are safe, and kern fills exactly
+    /// the one its emoji policy allows.
+    private func revealPicture(_ entry: WatchSnapshot.Entry) -> String? {
+        entry.revealEmoji ?? entry.emoji
     }
 
     /// Source meaning; ♀ is a labeled badge, never part of the word.
@@ -97,20 +148,41 @@ struct WatchQuizView: View {
             Text(option)
                 .font(.system(.footnote, design: .rounded, weight: .semibold))
                 .minimumScaleFactor(0.5)
-                .lineLimit(3)
+                // why: a capped phrase wants four half-width lines before it
+                // starts shrinking — `minHeight` is a floor, so the tile grows.
+                .lineLimit(4)
                 .frame(maxWidth: .infinity, minHeight: 44)
+                // why: an overlay costs no layout, so nothing shifts under the
+                // thumb the instant the badge appears.
+                .overlay(alignment: .topTrailing) { ratingBadge(index) }
         }
         .buttonStyle(.borderedProminent)
         .tint(tint(for: index, question))
         .foregroundStyle(labelColor(for: index, question))
     }
 
-    /// Neutral until a choice; then the correct tile greens and a wrong pick
-    /// ambers (never red), other tiles dim.
+    /// The rating the tap earned, on the tile that earned it — an emoji rather
+    /// than a word, so it tells an insider how the answer landed without
+    /// announcing a grade the learner could start playing to (`WatchFeedback`).
+    @ViewBuilder
+    private func ratingBadge(_ index: Int) -> some View {
+        if index == model.selectedIndex, let rating = model.lastRating {
+            Text(WatchFeedback.emoji(forRating: rating))
+                .font(.system(size: 13))
+                // why: inset rather than offset out — a badge hanging past the
+                // tile's own frame is the first thing a clipping cell eats.
+                .padding(2)
+                .transition(.scale.combined(with: .opacity))
+                .accessibilityHidden(true)
+        }
+    }
+
+    /// Neutral until a choice; then the correct tile greens, a wrong pick reds,
+    /// other tiles dim.
     private func tint(for index: Int, _ question: WatchPracticeQuestion) -> Color {
         guard let selected = model.selectedIndex else { return Color.wlTextSecondary.opacity(0.3) }
         if index == question.correctIndex { return .wlSuccess }
-        if index == selected { return .wlAmber }
+        if index == selected { return .wlWrong }
         return Color.wlTextSecondary.opacity(0.15)
     }
 

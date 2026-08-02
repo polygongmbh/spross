@@ -421,8 +421,8 @@ day-key `yyyy-MM-dd`) with:
   it does not move with the clock), dailyStats tail
   (~70 days) for the streak walk, `schemaVersion`. Built by a KMP `SnapshotBuilder`,
   written by the app.
-- **WatchSnapshot v4**: direction/pair/`german` are gone — one entry per CARD with BOTH
-  sides pre-resolved: `{cardId, sourceText, targetText, emoji?, articleTint?,
+- **WatchSnapshot v5**: direction/pair/`german` are gone — one entry per CARD with BOTH
+  sides pre-resolved: `{cardId, sourceText, targetText, emoji?, revealEmoji?, articleTint?,
   femMarker, due, stability, nextRole, promptForm, distractors[], optionForm?}` + `schemaVersion`.
   **The wire carries only what a surface draws**: v4 dropped `accepted[]` (the full target
   family), which was shipped for a reveal the quiz does not have — the watch answers by
@@ -432,10 +432,14 @@ day-key `yyyy-MM-dd`) with:
   `distractors` (v3) are the multiple-choice tiles for that entry, picked by
   `session/MultipleChoice` and read on THIS entry's option side —
   so the watch only shuffles and cannot put the two languages in one question.
-  Nothing but MEANING may separate the answer from its company, and three rules keep it so:
+  Nothing but MEANING may separate the answer from its company, and four rules keep it so:
   same word class first (a lone verb among nouns is answerable off its `ku` alone),
+  then the same `sentenceShape` (a lone question mark among full stops is answerable
+  without the tile being read; the closing mark names the shape in every catalog language,
+  since Spanish never writes `¿`/`¡` without its partner, and every single word is `Bare`),
   then same area (four kitchen words test the kitchen),
   then shape (length gap + a heavy part-count penalty).
+  All four RANK and none filters, so a thin box still fills four tiles.
   The pool is every SCHEDULED card, not the capped entry list — the cap is a wire budget,
   and a pool that small leaves a question no same-class company to keep;
   unscheduled cards stay out, since a word first met as somebody else's wrong answer
@@ -455,11 +459,24 @@ day-key `yyyy-MM-dd`) with:
   shipping card ids instead of texts would recover most of that, at the price of
   making the watch resolve the option side again (the v2 bug's home).
   The phone resolves `nextRole` and the rotated `promptForm` from the log count at build
-  time; presentation is the app layer's
-  and `emoji` is pre-gated to the PROMPT side by §3 — the watch quiz has no reveal face to
-  hang a picture on, so a reveal-side emoji is simply omitted from the entry.
+  time; presentation is the app layer's.
+  **v5** carries the held-back picture as well: §3's emoji cue no longer decides WHETHER the
+  picture ships but which KEY it ships under — `emoji` for one the learner may see from
+  frame one, `revealEmoji` for one that may only be seen once a tile has been tapped. Exactly
+  one is ever set. v4 omitted the second outright, on the grounds that the watch had no
+  reveal face to hang it on; the graded feedback window is that face, so the picture now has
+  an honest moment and no longer has to be withheld to stay honest. Two keys rather than one
+  key plus a flag, so a surface that reads `emoji` and draws it immediately — the
+  complication does exactly this — cannot leak a reveal-side picture by forgetting the flag.
   Ranking is **due-first** (a due card is never evicted by a non-due lower tier), then
   exposure tiers, capped at 60 entries (the ~60 KB `updateApplicationContext` limit).
+  A second cap is a LEGIBILITY budget rather than a wire one: `MAX_TEXT_CHARS` (24) keeps a
+  card off the watch entirely when any form it can render — both sides, plus the target
+  synonyms a rotated `promptForm` reaches for — runs longer than a tile in a 2×2 grid holds.
+  It gates the option pool as well as the entries, from the one predicate, so a distractor
+  can never overflow a tile an answer could not have. It drops ~9% of a pair's cards, all of
+  them long sentences: a four-way pick between those is exposure rather than recall, and the
+  phone gives exposure better, on a card with room for it.
   `make` lives phone-side; watch stays pure Swift.
 
 ## 8. Catalog schema additions (same-series migration)

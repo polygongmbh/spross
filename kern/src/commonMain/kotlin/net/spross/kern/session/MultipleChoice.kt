@@ -13,11 +13,12 @@ import net.spross.kern.model.CardKind
  * instead of the prompt's would mix the two languages on screen.
  *
  * Nothing but MEANING may separate the answer from the options standing next to
- * it. Two things otherwise do: a word class the other options don't share —
- * every Swahili verb wears `ku`, every German noun a capital — and, within one
- * class, the shape of the string. [Option] carries what the first needs;
- * [optionForm] takes the marker off the writing where the class can't be
- * matched, and [shapeDistance] settles the rest.
+ * it. Three things otherwise do: a word class the other options don't share —
+ * every Swahili verb wears `ku`, every German noun a capital — the sentence a
+ * text closes itself as, and, within both, the shape of the string. [Option]
+ * carries what the first needs; [optionForm] takes the marker off the writing
+ * where the class can't be matched, [sentenceShape] keeps a question among
+ * questions, and [shapeDistance] settles the rest.
  */
 object MultipleChoice {
 
@@ -48,6 +49,29 @@ object MultipleChoice {
     data class Option(val text: String, val kind: CardKind, val area: String)
 
     /**
+     * How a text closes itself — the one thing besides word class that a tile
+     * wears in its WRITING rather than in its meaning. A lone question mark
+     * among full stops answers the question before anyone has read it.
+     */
+    enum class SentenceShape { Question, Exclamation, Statement, Bare }
+
+    /**
+     * [text]'s shape, read off its last non-blank character.
+     *
+     * The closing mark is enough in every catalog language: Spanish writes an
+     * opening `¿`/`¡` too, but never without the closing one, so a tile that
+     * ends like the answer also begins like it. Every single word is [Bare],
+     * which is why this rule reaches phrases only.
+     */
+    fun sentenceShape(text: String): SentenceShape =
+        when (text.trimEnd().lastOrNull()) {
+            '?' -> SentenceShape.Question
+            '!' -> SentenceShape.Exclamation
+            '.', '…' -> SentenceShape.Statement
+            else -> SentenceShape.Bare
+        }
+
+    /**
      * The form [text] is OFFERED in, which is not always the form it is taught
      * in: a bound stem loses its dash, and a verb its citation prefix (sw `ku`,
      * en `to `). Both mark a word class in the writing itself, so a lone `-zuri`
@@ -69,24 +93,33 @@ object MultipleChoice {
     /**
      * Up to [limit] distractors for [answer], best company first: unique
      * case-insensitively, distinct from the answer, and ranked by word class,
-     * then area, then [shapeDistance]. Same class first is what keeps the
-     * question about meaning; same area makes it a question worth asking, since
-     * telling four kitchen words apart tests the kitchen. Empty when every
-     * candidate repeats the answer.
+     * then [sentenceShape], then area, then [shapeDistance]. Same class first is
+     * what keeps the question about meaning; closing the same way keeps a
+     * statement from being ruled out beside a question without being read; same
+     * area makes it a question worth asking, since telling four kitchen words
+     * apart tests the kitchen. Empty when every candidate repeats the answer.
+     *
+     * Every key RANKS, none filters — a box with nothing well-matched left still
+     * fills four tiles rather than offering three.
      */
     fun distractors(answer: Option, candidates: List<Option>, limit: Int = SHORTLIST): List<String> {
         val seen = mutableSetOf(answer.text.lowercase())
         val unique = candidates.filter { seen.add(it.text.lowercase()) }
+        val shape = sentenceShape(answer.text)
+        // Shapes are decided once per candidate rather than inside the
+        // comparator: `offer` already ranks the whole pool once per entry.
         return unique
+            .map { it to sentenceShape(it.text) }
             .sortedWith(
                 compareBy(
-                    { it.kind != answer.kind },
-                    { it.area != answer.area },
-                    { shapeDistance(it.text, answer.text) },
+                    { (option, _) -> option.kind != answer.kind },
+                    { (_, candidateShape) -> candidateShape != shape },
+                    { (option, _) -> option.area != answer.area },
+                    { (option, _) -> shapeDistance(option.text, answer.text) },
                 ),
             )
             .take(limit)
-            .map { it.text }
+            .map { (option, _) -> option.text }
     }
 
     /**

@@ -38,6 +38,7 @@ class WatchSnapshotBuilderTests {
         assertEquals("Kellnerin", entry.targetText)
         assertEquals("produce", entry.nextRole)
         assertEquals("👩", entry.emoji) // produce + learning → visible
+        assertNull(entry.revealEmoji) // already upfront, so nothing is held back
         assertEquals("die", entry.articleTint)
         assertEquals(due, entry.due)
         assertEquals(1.5, entry.stability)
@@ -59,6 +60,7 @@ class WatchSnapshotBuilderTests {
 
         assertEquals("recognize", entry.nextRole)
         assertNull(entry.emoji) // never on recognition measurement: it depicts the answer
+        assertEquals("👩", entry.revealEmoji) // but the reveal has nothing left to give away
         assertEquals("Serviererin", entry.promptForm) // count 3 rotation → the synonym
     }
 
@@ -72,6 +74,37 @@ class WatchSnapshotBuilderTests {
         val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single()
         assertEquals("produce", entry.nextRole)
         assertNull(entry.emoji)
+        assertEquals("👩", entry.revealEmoji)
+    }
+
+    // The picture rides on the key that names when it may be seen, so a surface
+    // reading `emoji` alone can never show a held-back one early.
+    @Test
+    fun theTwoEmojiKeysAreNeverBothSet() {
+        var state = Snap.state(listOf(fem, Snap.card("plain", 2)))
+        for (count in listOf(0, 1, 2, 3, 4)) {
+            state = Box.inject(
+                state,
+                Box.sched(
+                    "wf", phase = CardPhase.Learning, stability = 1.0,
+                    dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = count,
+                ),
+            )
+            val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single { it.cardId == "wf" }
+            assertTrue(
+                entry.emoji == null || entry.revealEmoji == null,
+                "log count $count offered the picture twice",
+            )
+            assertEquals("👩", entry.emoji ?: entry.revealEmoji, "log count $count lost the picture")
+        }
+    }
+
+    @Test
+    fun aCardWithoutAPictureShipsNeitherKey() {
+        val state = scheduled(Snap.card("plain", 1), Snap.card("other", 2))
+        val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single { it.cardId == "plain" }
+        assertNull(entry.emoji)
+        assertNull(entry.revealEmoji)
     }
 
     // Verifier finding: due-first ranking — a currently-due card outranks any
@@ -212,6 +245,58 @@ class WatchSnapshotBuilderTests {
         assertEquals(setOf("sw-x1", "sw-x2", "sw-x3"), offered.take(3).toSet())
     }
 
+    // why: a sentence longer than a tile can hold arrives shrunk past reading, and
+    // a four-way pick between sentences is exposure rather than recall — the phone
+    // keeps teaching it, the watch simply never sees it.
+    @Test
+    fun aTextTooLongForATileNeverReachesTheWatch() {
+        val long = "a".repeat(WatchSnapshotBuilder.MAX_TEXT_CHARS + 1)
+        val state = scheduled(
+            Snap.card("fits", 1, targetText = "a".repeat(WatchSnapshotBuilder.MAX_TEXT_CHARS)),
+            Snap.card("toolong", 2, targetText = long),
+        )
+        val entries = WatchSnapshotBuilder.doc(state, Box.day1).entries
+        assertEquals(listOf("fits"), entries.map { it.cardId })
+    }
+
+    // The cap gates the option POOL too: a distractor that overflows its tile
+    // breaks the question exactly as badly as an answer that does.
+    @Test
+    fun anOverlongCardIsNeverOfferedAsSomebodyElsesTile() {
+        val state = scheduled(
+            Snap.card("probe", 1, targetText = "t-probe"),
+            Snap.card("short", 2, targetText = "t-short"),
+            Snap.card("toolong", 3, targetText = "b".repeat(WatchSnapshotBuilder.MAX_TEXT_CHARS + 1)),
+        )
+        val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single { it.cardId == "probe" }
+        assertEquals(listOf("t-short"), entry.distractors)
+    }
+
+    @Test
+    fun theSourceSideIsMeasuredJustAsTheTargetIs() {
+        val state = scheduled(
+            Snap.card("ok", 1),
+            Snap.card("wordy", 2, sourceText = "c".repeat(WatchSnapshotBuilder.MAX_TEXT_CHARS + 1)),
+        )
+        val entries = WatchSnapshotBuilder.doc(state, Box.day1).entries
+        assertEquals(listOf("ok"), entries.map { it.cardId })
+    }
+
+    // `recognitionPromptForm` rotates onto a synonym, so a synonym that cannot be
+    // rendered keeps its whole card off the watch rather than breaking one review.
+    @Test
+    fun anOverlongSynonymKeepsItsCardOff() {
+        val state = scheduled(
+            Snap.card("plain", 1),
+            Snap.card(
+                "rotates", 2,
+                synonyms = listOf("d".repeat(WatchSnapshotBuilder.MAX_TEXT_CHARS + 1)),
+            ),
+        )
+        val entries = WatchSnapshotBuilder.doc(state, Box.day1).entries
+        assertEquals(listOf("plain"), entries.map { it.cardId })
+    }
+
     @Test
     fun aBoundStemIsOfferedWithoutItsDashAndStillTaughtWithIt() {
         val state = scheduled(
@@ -252,7 +337,7 @@ class WatchSnapshotBuilderTests {
     @Test
     fun schemaVersionAndGeneratedArePinned() {
         val doc = WatchSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1)
-        assertEquals(4, doc.schemaVersion)
+        assertEquals(5, doc.schemaVersion)
         assertEquals(Box.day1, doc.generated)
     }
 

@@ -145,6 +145,13 @@ One line per item, with a file or context pointer, filed under the section it be
   un-arm-on-further-typing logic would need a new case for, so it is a design call rather
   than a mechanical port (`LetterDrillView+Grading.swift` `verdict(_:task:)`).
 
+- The watch quiz tells correctness to the EYE only — tile tint, red wash and the rating
+  emoji are all visual, and the emoji is `accessibilityHidden` because VoiceOver reading
+  "raising hands" after every tap is worse than silence
+  (`Watch/Sources/WatchQuizView.swift` `ratingBadge`). The phone states the opposite rule
+  for its letter drill ("correctness is never color alone", `design.md`), so the watch owes
+  a spoken equivalent — an accessibility label or value on the answered tile, not a mark.
+
 ## Localization
 
 - Watch, widget, and complication chrome is hardcoded German with no string catalog
