@@ -61,35 +61,43 @@
  },
  {
   "slug": "watch-tv",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📺"
  },
  {
   "slug": "read",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📖"
  },
  {
   "slug": "relax",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "😌"
  },
  {
   "slug": "tidy-up",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🧹"
  },
  {
   "slug": "listen-to-music",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🎵"
  },
  {
   "slug": "water-plants",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🪴"
  },
  {
   "slug": "play",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🎲"
  },
  {
   "slug": "talk",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "💬"
  },
  {
   "slug": "room",
@@ -128,19 +136,23 @@
  },
  {
   "slug": "sit",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "💺"
  },
  {
   "slug": "laugh",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "😂"
  },
  {
   "slug": "quiet",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "🤫"
  },
  {
   "slug": "turn-on-the-tv",
   "kind": "phrase",
+  "emoji": "📺",
   "components": [
    "tv"
   ]
@@ -148,16 +160,19 @@
  {
   "slug": "come-sit-with-me",
   "kind": "phrase",
+  "emoji": "💺",
   "components": []
  },
  {
   "slug": "shall-we-watch-a-movie",
   "kind": "phrase",
+  "emoji": "🎬",
   "components": []
  },
  {
   "slug": "lets-hang-the-picture",
   "kind": "phrase",
+  "emoji": "🖼️",
   "components": [
    "picture"
   ]
@@ -165,6 +180,7 @@
  {
   "slug": "the-curtains-hang-over-the-window",
   "kind": "phrase",
+  "emoji": "🪟",
   "components": [
    "curtain",
    "window"
@@ -173,6 +189,7 @@
  {
   "slug": "open-the-window-fresh-air",
   "kind": "phrase",
+  "emoji": "🌬️",
   "components": [
    "window"
   ]

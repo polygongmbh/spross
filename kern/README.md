@@ -712,8 +712,9 @@ day-key `yyyy-MM-dd`) with:
   carries it for free, in every language, lint-guaranteed to exist; `sense` would be a new
   authored field for ~9 entries, and `homonymOf` encodes at concept level a fact that is
   per-language (`kupumzika` is ambiguous in sw only) and rots as languages are added.
-  Also rejected: emoji-as-cue (12 of 13 colliding concepts are verbs, which carry no emoji
-  at all, so the cue is absent exactly where the ambiguity bites), cluster-wide
+  Also rejected: emoji-as-cue — verbs and phrases carry an emoji now, but a merged pair
+  merges on one meaning and so wears one picture, leaving the cue silent exactly where the
+  ambiguity bites; the area label resolves it for free. Also rejected: cluster-wide
   grading leniency (accepting any cluster member teaches away the distinction the learner
   is there to acquire; if a same-area cluster ever proves unfixable, revisit as `Typo`,
   never `Exact`), and suppressing/deferring a cluster member (breaks composition

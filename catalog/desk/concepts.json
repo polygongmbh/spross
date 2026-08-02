@@ -61,39 +61,48 @@
  },
  {
   "slug": "to-work",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "💼"
  },
  {
   "slug": "type",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "⌨️"
  },
  {
   "slug": "print",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🖨️"
  },
  {
   "slug": "save",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "💾"
  },
  {
   "slug": "take-break",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "☕"
  },
  {
   "slug": "write",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "✍️"
  },
  {
   "slug": "call",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📞"
  },
  {
   "slug": "delete",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🗑️"
  },
  {
   "slug": "study",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📚"
  },
  {
   "slug": "phone",
@@ -137,25 +146,30 @@
  },
  {
   "slug": "important",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "❗"
  },
  {
   "slug": "ready",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "✅"
  },
  {
   "slug": "im-in-a-meeting",
   "kind": "phrase",
+  "emoji": "👥",
   "components": []
  },
  {
   "slug": "dont-disturb-me",
   "kind": "phrase",
+  "emoji": "🤫",
   "components": []
  },
  {
   "slug": "the-laptop-wont-charge-anymore",
   "kind": "phrase",
+  "emoji": "🔋",
   "components": [
    "laptop"
   ]
@@ -163,26 +177,31 @@
  {
   "slug": "the-internet-is-gone",
   "kind": "phrase",
+  "emoji": "📵",
   "components": []
  },
  {
   "slug": "coffee-break",
   "kind": "phrase",
+  "emoji": "☕",
   "components": []
  },
  {
   "slug": "i-have-a-lot-to-do",
   "kind": "phrase",
+  "emoji": "📋",
   "components": []
  },
  {
   "slug": "end-of-workday",
   "kind": "phrase",
+  "emoji": "🎉",
   "components": []
  },
  {
   "slug": "send-me-the-email",
   "kind": "phrase",
+  "emoji": "📧",
   "components": []
  }
 ]

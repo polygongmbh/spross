@@ -61,35 +61,43 @@
  },
  {
   "slug": "go-for-walk",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "👣"
  },
  {
   "slug": "ride-bike",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🚴"
  },
  {
   "slug": "shop",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🛍️"
  },
  {
   "slug": "take-bus",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🚌"
  },
  {
   "slug": "jog",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🏃"
  },
  {
   "slug": "grill-meat",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🍖"
  },
  {
   "slug": "sunbathe",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🌞"
  },
  {
   "slug": "plant-flowers",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🌷"
  },
  {
   "slug": "depart",
@@ -146,15 +154,18 @@
  },
  {
   "slug": "left",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "⬅️"
  },
  {
   "slug": "right",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "➡️"
  },
  {
   "slug": "hows-the-weather-today",
   "kind": "phrase",
+  "emoji": "🌤️",
   "components": [
    "weather"
   ]
@@ -162,16 +173,19 @@
  {
   "slug": "take-an-umbrella",
   "kind": "phrase",
+  "emoji": "☂️",
   "components": []
  },
  {
   "slug": "its-raining",
   "kind": "phrase",
+  "emoji": "🌧️",
   "components": []
  },
  {
   "slug": "the-sun-is-shining",
   "kind": "phrase",
+  "emoji": "☀️",
   "components": [
    "sun"
   ]
@@ -179,6 +193,7 @@
  {
   "slug": "shall-we-take-a-walk",
   "kind": "phrase",
+  "emoji": "👣",
   "components": [
    "go-for-walk"
   ]
@@ -186,6 +201,7 @@
  {
   "slug": "the-bus-is-coming-soon",
   "kind": "phrase",
+  "emoji": "🚌",
   "components": [
    "bus"
   ]
@@ -193,6 +209,7 @@
  {
   "slug": "when-does-the-train-leave",
   "kind": "phrase",
+  "emoji": "🚆",
   "components": [
    "train",
    "depart"
@@ -201,6 +218,7 @@
  {
   "slug": "what-a-beautiful-day",
   "kind": "phrase",
+  "emoji": "🌈",
   "components": []
  }
 ]

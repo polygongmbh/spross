@@ -30,6 +30,7 @@
  {
   "slug": "where-are-they",
   "kind": "phrase",
+  "emoji": "🔍",
   "components": [
    "where"
   ]
@@ -37,6 +38,7 @@
  {
   "slug": "who-is-there",
   "kind": "phrase",
+  "emoji": "🚪",
   "components": [
    "who"
   ]
@@ -44,6 +46,7 @@
  {
   "slug": "do-you-need-this",
   "kind": "phrase",
+  "emoji": "👉",
   "components": [
    "this"
   ]

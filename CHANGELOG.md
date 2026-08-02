@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **Verbs, adjectives and whole sentences now come with a picture too.** The emoji cue used
+  to be a noun's privilege, so most of what you meet — every verb, every phrase — arrived as
+  bare text and had to be worked out from the translation alone. Now the picture carries the
+  meaning there as well, on the first exposure and whenever a word you haven't settled comes
+  up to be produced. The words that stay bare are the ones no picture can honestly show:
+  "viel", "jetzt", "wo", "aber" and their kind, where a wrong cue would cost more than a
+  missing one.
+
 - **"Freundin" now comes with the pairing that makes it a girlfriend.** German has no word
   of its own for boyfriend or girlfriend — the possessive is what carries the meaning — so
   "meine Freundin" and "ihr Freund" join the essentials as phrases of their own beside the

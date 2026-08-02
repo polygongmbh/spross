@@ -1,31 +1,38 @@
 [
  {
   "slug": "higher",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "⬆️"
  },
  {
   "slug": "lower",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "⬇️"
  },
  {
   "slug": "more",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "➕"
  },
  {
   "slug": "less",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "➖"
  },
  {
   "slug": "always",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "♾️"
  },
  {
   "slug": "never",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "🚫"
  },
  {
   "slug": "maybe",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "🤷"
  },
  {
   "slug": "sometimes",
@@ -46,6 +53,7 @@
  {
   "slug": "more-or-less",
   "kind": "phrase",
+  "emoji": "⚖️",
   "components": [
    "more",
    "less"
@@ -54,6 +62,7 @@
  {
   "slug": "i-am-always-there",
   "kind": "phrase",
+  "emoji": "🙋",
   "components": [
    "always"
   ]
@@ -61,6 +70,7 @@
  {
   "slug": "hang-it-higher",
   "kind": "phrase",
+  "emoji": "⬆️",
   "components": [
    "higher"
   ]
@@ -68,6 +78,7 @@
  {
   "slug": "hang-it-lower",
   "kind": "phrase",
+  "emoji": "⬇️",
   "components": [
    "lower"
   ]

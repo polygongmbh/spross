@@ -61,39 +61,48 @@
  },
  {
   "slug": "apply",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📨"
  },
  {
   "slug": "introduce-oneself",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🙋"
  },
  {
   "slug": "earn",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "💰"
  },
  {
   "slug": "start",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "▶️"
  },
  {
   "slug": "leave",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🚪"
  },
  {
   "slug": "quit",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📃"
  },
  {
   "slug": "hire",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🧑‍💼"
  },
  {
   "slug": "to-help",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🤲"
  },
  {
   "slug": "work-overtime",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🕘"
  },
  {
   "slug": "profession",
@@ -143,6 +152,7 @@
  {
   "slug": "tomorrow-i-have-a-job-interview",
   "kind": "phrase",
+  "emoji": "👔",
   "components": [
    "introduce-oneself",
    "company"
@@ -151,6 +161,7 @@
  {
   "slug": "my-shift-starts-at-six",
   "kind": "phrase",
+  "emoji": "🕕",
   "components": [
    "shift",
    "start"
@@ -159,16 +170,19 @@
  {
   "slug": "ill-send-the-sick-note-right-away",
   "kind": "phrase",
+  "emoji": "📄",
   "components": []
  },
  {
   "slug": "have-a-nice-evening-off",
   "kind": "phrase",
+  "emoji": "🌆",
   "components": []
  },
  {
   "slug": "can-you-help-me-briefly",
   "kind": "phrase",
+  "emoji": "🆘",
   "components": [
    "to-help"
   ]
@@ -176,6 +190,7 @@
  {
   "slug": "i-want-vacation-next-week",
   "kind": "phrase",
+  "emoji": "🏖️",
   "components": [
    "holiday"
   ]
@@ -183,6 +198,7 @@
  {
   "slug": "read-the-contract",
   "kind": "phrase",
+  "emoji": "📋",
   "components": [
    "contract"
   ]
@@ -190,6 +206,7 @@
  {
   "slug": "whats-the-salary",
   "kind": "phrase",
+  "emoji": "💶",
   "components": [
    "salary"
   ]

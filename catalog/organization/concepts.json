@@ -36,39 +36,48 @@
  },
  {
   "slug": "arrange",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🤝"
  },
  {
   "slug": "confirm",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "✅"
  },
  {
   "slug": "cancel",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "❌"
  },
  {
   "slug": "postpone",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "⏭️"
  },
  {
   "slug": "register",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📝"
  },
  {
   "slug": "be-late",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "⏰"
  },
  {
   "slug": "punctual",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "⌚"
  },
  {
   "slug": "urgent",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "🚨"
  },
  {
   "slug": "i-would-like-to-arrange-an-appointment",
   "kind": "phrase",
+  "emoji": "📅",
   "components": [
    "appointment"
   ]
@@ -76,6 +85,7 @@
  {
   "slug": "i-have-to-cancel-the-appointment",
   "kind": "phrase",
+  "emoji": "❌",
   "components": [
    "appointment",
    "cancel"
@@ -84,6 +94,7 @@
  {
   "slug": "the-deadline-is-tomorrow",
   "kind": "phrase",
+  "emoji": "⏳",
   "components": [
    "deadline"
   ]
@@ -91,6 +102,7 @@
  {
   "slug": "what-are-the-opening-hours",
   "kind": "phrase",
+  "emoji": "🕐",
   "components": [
    "opening-hours"
   ]
@@ -98,6 +110,7 @@
  {
   "slug": "can-we-postpone-the-appointment",
   "kind": "phrase",
+  "emoji": "⏭️",
   "components": [
    "appointment",
    "postpone"
@@ -106,6 +119,7 @@
  {
   "slug": "i-have-an-appointment-at-ten",
   "kind": "phrase",
+  "emoji": "🕙",
   "components": [
    "appointment"
   ]
