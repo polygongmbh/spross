@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.6.0 — 2026-08-02
+
 - **The answer button stays put, and stays above the keyboard.** Cards used to hold room for
   content they no longer carried, and the number drill's "new place" hint arrived as a row
   between the card and the field — so the first number of a new length pushed the button
