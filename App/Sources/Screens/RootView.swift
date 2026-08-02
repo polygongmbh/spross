@@ -6,6 +6,8 @@ struct RootView: View {
     @Bindable var model: AppModel
 
     @State private var boxPresented = false
+    @State private var sprouting = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         Group {
@@ -59,10 +61,18 @@ struct RootView: View {
 
     private var loading: some View {
         VStack(spacing: DL.Space.l) {
-            Text(verbatim: "📦")
+            Text(verbatim: "🌱")
                 .font(.system(size: 56))
+                .dlSway(angle: 4, period: 2.2)
+                .scaleEffect(sprouting ? 1.08 : 0.92)
+                .animation(
+                    reduceMotion ? nil
+                        : .easeInOut(duration: 1.4).repeatForever(autoreverses: true),
+                    value: sprouting
+                )
+                .onAppear { sprouting = true }
             ProgressView()
-                .tint(.dlAccent)
+                .tint(.dlSuccess)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.dlBackground.ignoresSafeArea())
