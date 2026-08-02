@@ -27,14 +27,14 @@ scripts/strings.py --fix     # clear the stale flags Xcode writes into the Strin
 - **Every commit green**: tests + app build clean at each commit, not just at session end.
   Green means YOUR commit's tree — with other work in flight, scope the gate to what you touched,
   and read another party's red as theirs, not as a blocker.
+- **On red, attribute before escalating**: `git status`/`diff` the failing file first — if it's not
+  one you touched, that's someone else's break. Don't rerun the same broad gate or reach for a
+  bigger one hoping for a different answer; narrow instead (targeted tests, `compileKotlinJvm` over
+  `jvmTest` when kern main is untouched) and fall back to reading your own diff when no gate isolates it.
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `test:`, `docs:`, `build:`) with scopes
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
-- **`CHANGELOG.md` is curated, not per-commit**:
-  user-observable deltas only, grouped by version, written in ENGLISH
-  (quoted UI labels stay in the language the UI shows; the 3.0.0 notes were
-  drafted in German by mistake and had to be translated at release).
-  New entries always land under the top `## Unreleased` heading.
-  At bump time, rename `## Unreleased` to `## <version> — <date>` and open a fresh empty `## Unreleased` above it.
+- `CHANGELOG.md` is curated: user-observable deltas only, grouped by version, written in ENGLISH.
+  New entries always land under the top `## Unreleased` heading. At bump time, rename `## Unreleased` to `## <version> — <date>` and open a fresh empty `## Unreleased` above it.
 - Other parties may change files or commit while you work, do not mind unless their edits conflict with yours.
   Stage only your changes for commits ideally using pathspecs and check before touching history.
   A file you share with in-flight work gets only your hunks staged, never theirs carried along.
@@ -44,7 +44,7 @@ scripts/strings.py --fix     # clear the stale flags Xcode writes into the Strin
 - Max ~300 lines per file; split at natural boundaries. Modularity over bloat.
 - Comments only for non-obvious constraints;
   side-effectful effects get a one-line `// why:` (trigger + observable result).
-- **Semantic linebreaks** in Markdown/docs: one clause per line.
+- ALWAYS use **Semantic linebreaks** for text - in docs, markdown files, documentation comments: one sentence/clause per line.
 - Tests: behavior over implementation detail; extract pure logic so it's testable without the framework.
 - Engine APIs name the rule, never the rendering: no screen positions in kern types.
 
