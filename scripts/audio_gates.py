@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Which pack rows may ship, and who gets credited — the four gates of `audio-catalog.py`.
+"""Which pack rows may ship, and who gets credited — the five gates of `audio-catalog.py`.
 
-A pack row ships only once it survives all four, each decision printed by the caller:
+A pack row ships only once it survives all five, each decision printed by the caller:
   · the catalog knows the slug AND the language realizes it — packs go stale as
     content moves, and a manifest entry for a word nobody studies is dead weight;
   · the recording SPEAKS a form the card can show: `speechKey(matched_word)` has to
@@ -9,6 +9,10 @@ A pack row ships only once it survives all four, each decision printed by the ca
     stands on the card. This is what drops the sw `ku-` verbs, whose recordings say
     the bare stem — playing "wasilisha" for "kuwasilisha" would teach the wrong word,
     while punctuation ("Hujambo!") and the citation dash ("-zuri") fold away and stay;
+  · a Lingua Libre filename ENDS in the word its row claims — that grammar puts the
+    speaker and the word in one dash-joined string, so a compound like `Earl-Grey-Tee`
+    can be read as a recording of "Tee" by anything that guesses the boundary. Two such
+    files shipped before this gate existed;
   · no two entries claim one speech key with differing bytes: the runtime cannot pick
     between de `husten` cough/to-cough, so the first slug wins and the others lose a
     credit line, not a sound;
@@ -73,6 +77,43 @@ def keep_reachable(rows, lang, slugs, forms, drops):
                           'recording says "%s", the card shows "%s"' % (spoken, realized[slug][0])))
         else:
             kept.append(row)
+    return kept
+
+
+LINGUA_LIBRE = re.compile(r"^LL-Q\d+ ?\([a-z]{3}\)-(?P<rest>.+)\.(?:wav|ogg|flac|mp3)$")
+
+
+def keep_named_by_its_file(rows, drops):
+    """Gate 5: a Lingua Libre filename must be exactly `<the credited speaker>-<the word>`.
+
+    Lingua Libre names a file `<speaker>-<word>` and both halves may carry hyphens, so the
+    boundary is a guess — one the resolver used to make by cutting wherever the tail matched
+    a word it was looking for. That let every compound answer to its last noun:
+    `Mighty Wire-Earl-Grey-Tee` shipped as "Tee" and `Frank C. Müller-1-Raum-Wohnung` as
+    "Wohnung", so the card showed one word while the voice said another. Both reached users.
+
+    Checking the TAIL is not enough, and that is the trap: `…müller-1-raum-wohnung` does end
+    in "-wohnung". What pins the boundary is the `author` the Commons API returned — an
+    independent witness, not a re-parse of the same string. Where it prefixes the filename,
+    the rest must be the word and nothing else.
+
+    Skipped where the credit was normalised away from the filename ("Alejandra
+    (LinguaLibreBooth)" credits as "Alejandra"): there is then no anchor, and inventing one
+    would drop good rows. Convention-named files (`De-Nacht.ogg`) are exempt outright —
+    their title was CONSTRUCTED from the word, so there is no boundary to disagree about.
+    """
+    kept = []
+    for row in rows:
+        match = LINGUA_LIBRE.match(unicodedata.normalize("NFC", row["file"]))
+        author = row["author"].strip().lower()
+        rest = unicodedata.normalize("NFC", match.group("rest")).lower() if match else ""
+        if not match or not author or not rest.startswith(author + "-"):
+            kept.append(row)
+        elif rest[len(author) + 1:] == speech_key(row["matched_word"]):
+            kept.append(row)
+        else:
+            drops.append(("misnamed", row["slug"], '%s is not %s saying "%s"'
+                          % (row["file"], row["author"], row["matched_word"])))
     return kept
 
 

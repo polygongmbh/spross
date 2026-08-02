@@ -149,15 +149,14 @@
       "source": "De-antwort.ogg"
     },
     "apartment": {
-      "author": "Frank C. Müller",
+      "author": "Kampy",
       "file": "apartment.mp3",
-      "gain": 4.4,
-      "lead": 201,
-      "licence": "CC BY-SA 4.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "gain": -0.3,
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "wohnung",
-      "sha256": "2c13e2b72a758ce8528332e22df4c8e685e276f6a547ab809ec60ec4d2a432b2",
-      "source": "LL-Q188 (deu)-Frank C. Müller-1-Raum-Wohnung.wav"
+      "sha256": "eb66ec3924aa6bdfa049a4534b273f34f7903026f4a47af8fcafae77198efb72",
+      "source": "De-Wohnung.ogg"
     },
     "application": {
       "author": "Jeuwre",
@@ -3507,15 +3506,14 @@
       "source": "De-Taxi.ogg"
     },
     "tea": {
-      "author": "Mighty Wire",
+      "author": "Kampy",
       "file": "tea.mp3",
-      "gain": 2.9,
-      "lead": 195,
-      "licence": "CC0",
-      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "gain": -4.6,
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "tee",
-      "sha256": "cbc88ea593551947eb8412ecb618d8fcbedc70cd05330d5073ee6d46d9bc2111",
-      "source": "LL-Q188 (deu)-Mighty Wire-Earl-Grey-Tee.wav"
+      "sha256": "361ce9efdf4379005768708c171db73b218c994e8daf04e5cffd6fa6151c24f0",
+      "source": "De-Tee.ogg"
     },
     "teacher": {
       "author": "Sebastian Wallroth",

@@ -27,7 +27,8 @@ import shutil
 import sys
 
 import audio_measure
-from audio_gates import attribute, digest_of, keep_reachable, keep_unambiguous
+from audio_gates import (attribute, digest_of, keep_named_by_its_file, keep_reachable,
+                         keep_unambiguous)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'catalog')
@@ -192,7 +193,8 @@ def convert_words(lang, pack, out_dir, slugs, forms):
     drops = []
     mp3_dir = os.path.join(pack, 'mp3')
     rows = read_rows(os.path.join(pack, 'manifest.tsv'))
-    kept = attribute(keep_unambiguous(keep_reachable(rows, lang, slugs, forms, drops), mp3_dir, drops), drops)
+    reachable = keep_named_by_its_file(keep_reachable(rows, lang, slugs, forms, drops), drops)
+    kept = attribute(keep_unambiguous(reachable, mp3_dir, drops), drops)
     analysed = copy_and_analyze([(row['slug'], os.path.join(mp3_dir, row['slug'] + '.mp3'),
                                   os.path.join(out_dir, row['slug'] + '.mp3')) for row in kept])
     words = {}
@@ -203,7 +205,8 @@ def convert_words(lang, pack, out_dir, slugs, forms):
     for reason, slug, detail in sorted(drops):
         print('  drop %-15s %-22s %s' % (reason, slug, detail))
     counts = {reason: sum(1 for drop in drops if drop[0] == reason)
-              for reason in ('unknown-slug', 'unrealized', 'unreachable', 'collision', 'unattributable')}
+              for reason in ('unknown-slug', 'unrealized', 'unreachable', 'misnamed',
+                             'collision', 'unattributable')}
     print('  %s: %d rows → %d playable (%s)' % (lang, len(rows), len(words),
           ', '.join('%d %s' % (count, reason) for reason, count in counts.items())))
     return words
