@@ -53,8 +53,9 @@ enum DL {
     /// digits, and levelling the three would spend that budget everywhere.
     /// The reveal is exempt — it grows the card downward and reserves nothing.
     enum Reserve {
-        /// Drill prompt: one 56 pt line of digits plus the place-value pill.
-        static let drillCard: CGFloat = 140
+        /// Drill prompt: one 56 pt line of digits plus the place-value pill —
+        /// measured on device, where the pill case comes to 141.3 pt.
+        static let drillCard: CGFloat = 144
         /// Review prompt (compact): the by-ear prompt's 88 pt replay target,
         /// which is the tallest a prompt side gets — a word asked by ear and
         /// the same word asked by meaning then measure alike.
