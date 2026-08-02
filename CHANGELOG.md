@@ -8,7 +8,9 @@
   their own recorded names as well, so Zett, Vau and the umlauts sound like German rather
   than like a description being read out — and the reference words the sheet cites, down
   to the Spanish `pero`/`perro` pair whose whole point is hearing the difference, are
-  recordings too.
+  recordings too. The German ones are also cleaner: where a word was spoken over audible
+  hiss — *Nacht* worst of all — a clearer recording of the same word takes its place, so
+  the voices differ more than before but the noise behind them is gone.
 
 - **The alphabet sheet groups what belongs together.** The umlauts stand as a block, ch
   and sch as another, the s sounds as another, each under a heading, with the plain
