@@ -125,6 +125,15 @@ One line per item, with a file or context pointer, filed under the section it be
   once bound, contrasting near-neighbours is the useful case, and the catalog already
   teaches those apart (`promptAmbiguous`, `CatalogAnswerGrader.OtherWord`).
 
+## App & UX
+
+- The letter drill's typed and dictation stage has no live-check auto-advance —
+  finishing the word does not end the step the way it does in vocab review and the
+  trainer drills (`App/Sources/Design/AutoAdvance.swift`) — deferred because its verdict
+  ladder carries a third `heard` outcome (a synonym of the dictated word) that the
+  un-arm-on-further-typing logic would need a new case for, so it is a design call rather
+  than a mechanical port (`LetterDrillView+Grading.swift` `verdict(_:task:)`).
+
 ## Localization
 
 - Watch, widget, and complication chrome is hardcoded German with no string catalog

@@ -117,7 +117,8 @@ never the shape of the app.
   and the next review asks for the word properly.
   One write-out per miss, never two: giving up on a produce retry ends the card, because
   that field already was the write-out.
-- **Finishing the word IS the answer**, when producing and when writing out alike:
+- **Finishing the word IS the answer**, when producing, when writing out, and in the
+  trainer drills alike:
   the field confirms itself the moment the letters line up and the card flips a beat
   later, so there is **no confirm button** to reach for. Backing out of a finished word
   takes the confirmation with it. Every step keeps a way out — a step you cannot leave
@@ -224,13 +225,18 @@ never the shape of the app.
   NAME or gap word, tiles first among strangers, then among look- and sound-alikes, then
   typed, and — once enough words are settled — dictation of the learner's own
   consolidated words, which never touches their schedule. Correctness is never color
-  alone (checkmark/X over the tint); a miss never auto-advances; under VoiceOver and
-  Switch Control the advance timer becomes an explicit "Weiter". While reading aloud is
+  alone (checkmark/X over the tint); a miss never auto-advances. While reading aloud is
   muted the drill stays visible and blocks with the one-tap unmute row instead of hiding
   — a silenced feature must say how to unsilence it.
-- **One clean-correct beat: 1200 ms.** The trainer drills and the letter drill advance a
-  cleanly correct answer after the same 1200 ms on both platforms — the number lives here
-  once so a new surface cannot mint a second timing.
+- **Two clean-correct beats, one home: 450 ms live, 1200 ms explicit.** The 0.45–1.2 s a
+  clean answer waits above is those two tiers — 450 ms when the typing itself went exactly
+  correct, 1200 ms when the learner tapped Check, Enter or a tile. Vocab review, the
+  trainer drills and the letter drill's tile and explicit-submit stages all schedule off
+  the one shared helper (`App/Sources/Design/AutoAdvance.swift`) rather than each screen
+  carrying its own timer, so both numbers and the accessibility guard — under VoiceOver
+  and Switch Control no timer runs at all and an explicit "Weiter" takes its place — live
+  in a single place. The letter drill's typed and dictation stage is the deliberate
+  holdout with no live tier (`backlog.md` § App & UX).
 
 Design language: warm, card-centric, emoji as illustration, article color coding
 der=blue / die=berry / das=green — degrading to neutral for languages without gendered

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Number, clock and phrase drills now finish the moment you type the right answer** —
+  the same "no Check tap needed" behavior vocabulary review already had. VoiceOver and
+  Switch Control users get an explicit "Weiter" wherever a drill would otherwise advance
+  on its own, matching what the letter drill already offered.
+
 - **Drills now forgive a slip in short answer words too.** A one-letter typo in a word
   like "für" or "am" used to be marked wrong outright in number, year and clock drills,
   even though longer words in the same sentence already forgave one slip.
