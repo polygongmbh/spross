@@ -23,6 +23,9 @@ extension TrainerSessionView {
             feedback = .correct
             DLSound.correct()
             typoCorrection = corrected
+            // why: a pause that waits for a tap must not hold the keyboard —
+            // it covers the button the pause is waiting for.
+            answerFocused = false
         case .wrong:
             feedback = .revealed(correctAnswer: current.display)
             DLSound.wrong()

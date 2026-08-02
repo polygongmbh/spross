@@ -134,6 +134,21 @@ extension View {
     func dlCardShadow() -> some View {
         shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 6)
     }
+
+    /// The one card FACE: surface fill, hairline, shadow. Every card a session
+    /// puts up — vocabulary, drill prompt, listening prompt — wears this, so a
+    /// screen never shows two cards cut from different cloth.
+    func dlCardSurface() -> some View {
+        background(
+            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
+                .fill(Color.dlSurface)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
+                .strokeBorder(Color.dlSeparator.opacity(0.6), lineWidth: 1)
+        )
+        .dlCardShadow()
+    }
 }
 
 /// Filled terracotta primary action. Never a default gray Button.

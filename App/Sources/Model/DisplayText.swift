@@ -8,6 +8,7 @@ enum LanguageNames {
     private static let chromeKeys: [String: String] = [
         "de": "lang.de",
         "en": "lang.en",
+        "es": "lang.es",
         "sw": "lang.sw",
         "uk": "lang.uk",
     ]

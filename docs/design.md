@@ -125,6 +125,10 @@ never the shape of the app.
   is a trap.
 - A field is on screen only where there is something to type, and is focused the moment
   it is there — typing never costs a tap first.
+  **A pause that waits for a tap gives the keyboard back**, everywhere one exists — the
+  amber holds (a typo's spelling, a dictation's other form) end in a button, and a keyboard
+  left standing covers the button being waited for. A beat that advances on its own keeps
+  it: a keyboard that drops and returns within the 1.2 s is worse than one that never moved.
 - Progress bar: one segment per answer, colored by its outcome.
 - A miss is stated where the learner is already looking;
   the streak survives a missed day, but not two in a row.
@@ -216,6 +220,10 @@ never the shape of the app.
 - **Trainers**: number, clock and phrase drills, registry-driven from kern, so the hub
   offers only languages with authored content. Drills grade word by word and ramp with
   the learner instead of sitting at one level.
+  A drill card is a review card — same face, same reveal — and carries nothing but the
+  prompt: the run's header line already names what is drilled and how far the ramp has
+  come, and the field's placeholder names the language to answer in, so a badge or a
+  "Zahl · auf Spanisch" caption would be the third telling of what one tap said.
 - **Letter drill & alphabet sheet**: the Training card shows when slots, phrases OR an
   alphabet exist for the target (the third predicate is catalog file presence, recomputed
   on foreground/readiness — a voice installed in Settings brings the chip back). The

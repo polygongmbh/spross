@@ -80,15 +80,7 @@ struct VocabCardView: View {
         }
         .padding(compact ? DL.Space.l : DL.Space.xl)
         .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .fill(Color.dlSurface)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .strokeBorder(Color.dlSeparator.opacity(0.6), lineWidth: 1)
-        )
-        .dlCardShadow()
+        .dlCardSurface()
         .animation(.easeOut(duration: 0.25), value: revealed)
     }
 
@@ -128,20 +120,8 @@ struct VocabCardView: View {
 
     @ViewBuilder
     private var revealSection: some View {
-        VStack(spacing: DL.Space.m) {
-            RoundedRectangle(cornerRadius: 1)
-                .fill(Color.dlSeparator)
-                .frame(width: 44, height: 2)
+        DLCardReveal(note: note) {
             sideBlock(answer, emphasized: true)
-            if let note {
-                // why: subheadline, not caption — post-reveal lines are meant to
-                // be read, and 12 pt secondary text is where legibility broke.
-                Text(note)
-                    .font(DL.Fonts.subheadline)
-                    .italic()
-                    .foregroundStyle(Color.dlTextSecondary)
-                    .multilineTextAlignment(.center)
-            }
         }
     }
 

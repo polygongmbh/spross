@@ -66,7 +66,8 @@ struct TrainerHubView: View {
         .fullScreenCover(item: drillDestination) { destination in
             Group {
                 if let mode = destination.drillMode {
-                    TrainerSessionView(mode: mode, normalizer: normalizer(for: mode))
+                    TrainerSessionView(mode: mode, normalizer: normalizer(for: mode),
+                                       catalog: model.catalog)
                 } else if let language = destination.lettersLanguage {
                     LetterDrillView(model: model, language: language)
                 }
@@ -225,15 +226,6 @@ extension TrainerKind {
         switch self {
         case .numbers: return "trainer.numbers"
         case .years: return "trainer.years"
-        case .clock: return "trainer.clock"
-        }
-    }
-
-    /// Localized display key for the singular prompt caption ("Zahl · auf …").
-    var trainerPromptLabelKey: LocalizedStringKey {
-        switch self {
-        case .numbers: return "trainer.prompt.number"
-        case .years: return "trainer.prompt.year"
         case .clock: return "trainer.clock"
         }
     }

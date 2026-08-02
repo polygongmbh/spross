@@ -53,7 +53,7 @@ UNEXTRACTABLE = {
     # A drill tile's a11y label interpolates the glyph into a plain String —
     # no extractor follows an accessibilityLabel built at runtime either way.
     'a11y.letterChoice %@',
-    'lang.de', 'lang.en', 'lang.sw', 'lang.uk',
+    'lang.de', 'lang.en', 'lang.es', 'lang.sw', 'lang.uk',
 }
 
 

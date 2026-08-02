@@ -1,8 +1,10 @@
 import SwiftUI
 
-/// The audio question, in the same card chrome as TrainerPromptCard: a caption
-/// naming what is being asked, one large replay glyph, and — for a gap
-/// question — the example word with the asked grapheme blanked.
+/// The audio question, on the same card face as every other session card: a
+/// caption naming what is being asked, one large replay glyph, and — for a gap
+/// question — the example word with the asked grapheme blanked. The caption
+/// stays here where the slot drills dropped theirs: a sound has nothing on
+/// screen to say what it is asking for.
 ///
 /// No answer ever renders here, and that is the whole point: everything the
 /// learner is given is the sound, plus whatever the gap word already shows.
@@ -58,15 +60,7 @@ struct HearPromptCard: View {
         // why: the sibling prompt card's height, so the two drills do not jump
         // a layout apart when a learner moves between them.
         .frame(minHeight: 185)
-        .background(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .fill(Color.dlSurface)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .strokeBorder(Color.dlSeparator.opacity(0.6), lineWidth: 1)
-        )
-        .dlCardShadow()
+        .dlCardSurface()
     }
 
     private var caption: some View {
