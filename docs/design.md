@@ -260,11 +260,28 @@ Its scope is § Not yet.
 - The phone precomputes both snapshots on every persist; the surfaces decode and draw,
   and never compute what the phone could pre-resolve.
 - Watch: one graded **multiple-choice** loop — the watch never types, and the options
-  arrive ranked from kern so that nothing but meaning tells the answer from its company.
+  arrive ranked from kern so that nothing but meaning tells the answer from its company:
+  word class, then how the sentence closes, then area, then string shape (kern README §7).
   No self-grading: correctness and response time derive the rating.
   Multiple choice on a keyboard-less device is a deliberate concession to the
   recall-first rule, with the latency curve compensating for it.
   Answers return as events; the phone reschedules against real timestamps and re-pushes.
+- **A word too long for a tile is a phone word.** The wrist carries only what four tiles
+  can hold at a readable size (kern `MAX_TEXT_CHARS`); a longer phrase is never pushed and
+  never offered as somebody else's distractor. This costs the watch about a quarter of the
+  phrases and no single word at all, and it is a gain rather than a loss: a four-way pick
+  between sentences is exposure, not recall, and exposure is what the phone's own card
+  already does better. What the watch drops, it drops from BOTH the entries and the option
+  pool, from one predicate — the two can never disagree about what fits.
+- **Every answer answers back, on three channels.** A haptic shaped like the derived rating
+  (affirming, a double tap for slow-but-right, a failure buzz for a miss), the rating itself
+  badged on the tapped tile as an emoji, and — on a miss only — the tile and a brief
+  full-screen wash in red. **Red is the wrist's alone**: the phone keeps wrong off its cards
+  because the learner stays there and can correct it, while a glance-long wrist answer has
+  no second face to be gentle on. The badge is a tell, never a label: naming the grade would
+  invite playing to the latency the grade is measuring. Reduce Motion keeps every color and
+  the badge and drops only the movement. No sound — the wrist is a silent surface, and two
+  channels already carry it.
 - Two runs, and only one of them ends: the **due batch** is a counter that reaches its
   end and returns to the start screen by itself, while **free practice** takes the words
   closest to slipping, lap after lap, carrying the answer streak in place of a total.

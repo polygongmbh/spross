@@ -432,10 +432,14 @@ day-key `yyyy-MM-dd`) with:
   `distractors` (v3) are the multiple-choice tiles for that entry, picked by
   `session/MultipleChoice` and read on THIS entry's option side —
   so the watch only shuffles and cannot put the two languages in one question.
-  Nothing but MEANING may separate the answer from its company, and three rules keep it so:
+  Nothing but MEANING may separate the answer from its company, and four rules keep it so:
   same word class first (a lone verb among nouns is answerable off its `ku` alone),
+  then the same `sentenceShape` (a lone question mark among full stops is answerable
+  without the tile being read; the closing mark names the shape in every catalog language,
+  since Spanish never writes `¿`/`¡` without its partner, and every single word is `Bare`),
   then same area (four kitchen words test the kitchen),
   then shape (length gap + a heavy part-count penalty).
+  All four RANK and none filters, so a thin box still fills four tiles.
   The pool is every SCHEDULED card, not the capped entry list — the cap is a wire budget,
   and a pool that small leaves a question no same-class company to keep;
   unscheduled cards stay out, since a word first met as somebody else's wrong answer
@@ -460,6 +464,13 @@ day-key `yyyy-MM-dd`) with:
   hang a picture on, so a reveal-side emoji is simply omitted from the entry.
   Ranking is **due-first** (a due card is never evicted by a non-due lower tier), then
   exposure tiers, capped at 60 entries (the ~60 KB `updateApplicationContext` limit).
+  A second cap is a LEGIBILITY budget rather than a wire one: `MAX_TEXT_CHARS` (24) keeps a
+  card off the watch entirely when any form it can render — both sides, plus the target
+  synonyms a rotated `promptForm` reaches for — runs longer than a tile in a 2×2 grid holds.
+  It gates the option pool as well as the entries, from the one predicate, so a distractor
+  can never overflow a tile an answer could not have. It drops ~9% of a pair's cards, all of
+  them long sentences: a four-way pick between those is exposure rather than recall, and the
+  phone gives exposure better, on a card with room for it.
   `make` lives phone-side; watch stays pure Swift.
 
 ## 8. Catalog schema additions (same-series migration)

@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+- **The watch quiz answers back.** Every tap now buzzes — and buzzes differently depending
+  on how the answer went, where only mistakes used to register at all. A wrong pick turns
+  the tile red and flashes the screen instead of shading it quietly ochre, and the tile you
+  tapped gets a small emoji showing how the answer was scored: 🙌 effortless, 👍 known,
+  👌 got there in the end, 👋 come back to this one.
+
+- **Wrong answers on the watch stop being ruled out by their punctuation.** When the
+  question was a question, the other three options could be statements — so the right
+  answer was the one with the question mark, no reading required. Options now match the
+  way the answer's sentence ends.
+
+- **Long sentences no longer get squeezed onto the watch.** Phrases too long for four
+  watch-sized buttons stayed on the phone, where they have a card to themselves; what still
+  reaches the wrist is sized to be read rather than cut off. Every single word stays, and
+  short phrases like "Wo sind sie?" do too.
+
 ## 3.3.0 — 2026-08-02
 
 - **The Spanish alphabet sheet speaks, and two words that said the wrong thing are
