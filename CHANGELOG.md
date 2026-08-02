@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.2.0 — 2026-08-02
+
 - **Number, clock and phrase drills now finish the moment you type the right answer** —
   the same "no Check tap needed" behavior vocabulary review already had. VoiceOver and
   Switch Control users get an explicit "Weiter" wherever a drill would otherwise advance
