@@ -294,6 +294,7 @@ struct TrainerSessionView: View {
         acceptedSourceFrames: [],
         note: nil,
         countForms: nil,
+        sourceCountForms: nil,
         masculineNumeral: false
     )
     TrainerSessionView(mode: .phrases(source: "de", target: "uk",
