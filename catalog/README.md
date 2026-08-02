@@ -265,6 +265,11 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   headroom that file still has, and how much dead air to start past — so the files stay
   unmodified and only the player corrects them. What was measured, against which target,
   is `../scripts/audio-catalog.py`'s `ANALYSIS`.
+- `snr` (dB) is a third measurement of the same bytes — peak minus noise floor, how far
+  the word stands above the hiss under it — but nothing plays it. It is carried so lint
+  can see the SHAPE of a pack and refuse a rebuild that quietly reintroduces noise an
+  earlier sweep removed. A floor per file would be dishonest: some words have nothing
+  cleaner on Commons, so the rule is on the median and the size of the bad tail.
 - No `README.md` inside `audio/` — the Android sync only excludes one at the catalog
   root, so a nested one would ship in the APK. Audio schema docs live here.
 

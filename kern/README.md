@@ -641,6 +641,8 @@ day-key `yyyy-MM-dd`) with:
   The mp3 bytes stay the untouched Commons transcode, because re-encoding is an adaptation under BY-SA;
   the packs share no loudness and the uk letters open a second late, so what corrects them is a MEASUREMENT of the shipped bytes
   which only the player applies.
+  A third measurement, `snr` (peak minus noise floor), corrects nothing and reaches no player:
+  it exists so lint can hold a pack's median and bad tail, and refuse a rebuild that reintroduces removed hiss.
   What was measured, against which target and under which scheme is `scripts/audio-catalog.py`'s `ANALYSIS`;
   the sha256 gate is untouched by any of it.
 - **Audio is exempt from the fingerprint.**

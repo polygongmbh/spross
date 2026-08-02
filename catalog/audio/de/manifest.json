@@ -9,6 +9,7 @@
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "ef9e453849bf44b85f20931839f9811d7a4159586c007d32b6ae711ad9c4e3c7",
+      "snr": 86.8,
       "source": "De-J.ogg"
     },
     "v": {
@@ -18,6 +19,7 @@
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "sha256": "665359a6bc269a8a81884142cc3838bb8f2b1b1b207e4cd458dfe5d2b6f716e2",
+      "snr": 32.3,
       "source": "De-V.ogg"
     },
     "w": {
@@ -28,6 +30,7 @@
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "aea60ac2b8c033d2a2a152dfe151ba4df20a7a61ef25e7bbbfefc4d4c77a429f",
+      "snr": 86.6,
       "source": "De-W.ogg"
     },
     "z": {
@@ -37,6 +40,7 @@
       "licence": "CC BY-SA 3.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "sha256": "a478799fdf43a0e236b4cf8fa0cf1cd99cdef5337a0da6b50cee5c9c92c25c61",
+      "snr": 56.0,
       "source": "De-Z.ogg"
     },
     "ß": {
@@ -47,6 +51,7 @@
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "d5cbb4c0d163f6c08b06f8f5249b62ae7dd5cd4a18c9f922fd9f22491164a071",
+      "snr": 86.8,
       "source": "De-Eszett.ogg"
     },
     "ä": {
@@ -57,6 +62,7 @@
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "dbec3dda765e27e1a930d5e00500bb3154229a25bc9330c717855c6cdbef4c95",
+      "snr": 86.9,
       "source": "De-Ä.ogg"
     },
     "ö": {
@@ -67,6 +73,7 @@
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "0535eb289f63d5c496dad9a0f9d8a5a00f0ed609045bb71282527ae34276c161",
+      "snr": 86.4,
       "source": "De-Ö.ogg"
     },
     "ü": {
@@ -77,6 +84,7 @@
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "sha256": "dd1ce57f8a7fa47258bb44e84fc137d523b2f99d647ebe88d35eccf320cad3ba",
+      "snr": 86.8,
       "source": "De-Ü.ogg"
     }
   },
@@ -90,6 +98,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "Quittung",
       "sha256": "51b99cf6a6c9d2b4ea1f12440acfcff593a9d35f81a1137fd92fea6eab552ec5",
+      "snr": 87.3,
       "source": "De-Quittung.ogg"
     },
     "sechs": {
@@ -100,6 +109,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "sechs",
       "sha256": "a5c21e54fac916f01bd73541d6687e75957e16d47d3b6e198e48390edfde4e89",
+      "snr": 38.9,
       "source": "De-sechs.ogg"
     }
   },
@@ -113,6 +123,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "adresse",
       "sha256": "9db612e3d25ecc317f54941b59d68571957cc0bacb18317eaea7b9ec2a6c708e",
+      "snr": 57.2,
       "source": "De-Adresse.ogg"
     },
     "alarm-clock": {
@@ -124,6 +135,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wecker",
       "sha256": "068904711832f7ef2169963cbffae6571fc29a88a0639b5fe21024e6dc900551",
+      "snr": 87.8,
       "source": "De-Wecker.ogg"
     },
     "always": {
@@ -135,6 +147,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "immer",
       "sha256": "a776070dc3897d694dfc546f7562a3ce43980989d28da6a65f1774831b59c980",
+      "snr": 67.2,
       "source": "De-immer.ogg"
     },
     "answer": {
@@ -146,6 +159,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "antwort",
       "sha256": "e4548802a118b38390c11aad8d88b28bf18ffd4a7cf62ad7ee14a980bc2ac861",
+      "snr": 84.0,
       "source": "De-antwort.ogg"
     },
     "apartment": {
@@ -156,6 +170,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "wohnung",
       "sha256": "eb66ec3924aa6bdfa049a4534b273f34f7903026f4a47af8fcafae77198efb72",
+      "snr": 20.4,
       "source": "De-Wohnung.ogg"
     },
     "application": {
@@ -167,6 +182,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "antrag",
       "sha256": "2f78cedd5e562d2c3b514029d980b23f0d179d11a07339ad292fbfdc6f49feb5",
+      "snr": 39.0,
       "source": "De-Antrag.ogg"
     },
     "apply-for": {
@@ -177,6 +193,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "beantragen",
       "sha256": "62336fd6dba1324a5f2d7be2426e5e3c05bbefa3a00bc45fb96391e3370eebc0",
+      "snr": 88.5,
       "source": "De-beantragen.ogg"
     },
     "apply-lotion": {
@@ -188,6 +205,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "eincremen",
       "sha256": "6178449a842822b62d97cf546d16e815d42e78e8d4deb30ba8b99ed9c818b5a5",
+      "snr": 81.0,
       "source": "De-eincremen.ogg"
     },
     "appointment": {
@@ -199,6 +217,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "termin",
       "sha256": "315d4807f6ccefd99367838e9efafccea535c01a9f9eeb4ab30d09e9af2e27cd",
+      "snr": 86.5,
       "source": "De-Termin.ogg"
     },
     "approve": {
@@ -209,6 +228,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "genehmigen",
       "sha256": "cf90589d77c77fc1253513dc91d28755cec405a5faf5775a23bf279a790ca1f8",
+      "snr": 31.1,
       "source": "De-genehmigen.ogg"
     },
     "arrange": {
@@ -220,6 +240,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "vereinbaren",
       "sha256": "3c763b269c94686fabb576e0081e323467948706b33c05caa1c38710b3c47fac",
+      "snr": 37.1,
       "source": "De-vereinbaren.ogg"
     },
     "arrive": {
@@ -231,6 +252,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ankommen",
       "sha256": "ef42d10d4c7df31c68a7c38d53997d63e1462034c0f4f0a0e9371fa6143c9cc9",
+      "snr": 57.0,
       "source": "LL-Q188 (deu)-Natschoba-ankommen.wav"
     },
     "ask": {
@@ -242,6 +264,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "fragen",
       "sha256": "8dcccea55f2d41d3b8bc21f057ede2de93a759ab6464f517b29d6ee20ba2a2de",
+      "snr": 57.6,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Fragen.wav"
     },
     "back": {
@@ -253,6 +276,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "rücken",
       "sha256": "3a5c2519be8cfe3621d3ab01fdf66d1725317afe18dabe4cd91edec54c3bc00e",
+      "snr": 55.0,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Rücken.wav"
     },
     "bad": {
@@ -264,6 +288,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "schlecht",
       "sha256": "ad2866147b4e0af48be32bde7f71cdc9fed5fa900335e54a572ea7297f18dac2",
+      "snr": 57.0,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-schlecht.wav"
     },
     "bag": {
@@ -275,6 +300,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "tasche",
       "sha256": "06d44ba824578a7d438e5c58d854d805133e922235d646807d0904f07ee6f104",
+      "snr": 86.2,
       "source": "De-Tasche.ogg"
     },
     "bake": {
@@ -286,6 +312,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "backen",
       "sha256": "a78dd1be101ace01f9ae2eae2402706b4c7e8178da1c0151e7829b973afebae5",
+      "snr": 70.4,
       "source": "De-backen.ogg"
     },
     "bathtub": {
@@ -297,6 +324,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "badewanne",
       "sha256": "fdf158fc8ed7cd01adebdb9bf4d7f83a570bdbee1aebbd924b5b34a73d226acb",
+      "snr": 86.5,
       "source": "De-Badewanne.ogg"
     },
     "be-called": {
@@ -308,6 +336,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "heißen",
       "sha256": "b47deb84a13a4f5fa0f4fc6cd522c1d81f0a00ace311f1d15a2715db3d06811f",
+      "snr": 60.2,
       "source": "LL-Q188 (deu)-Natschoba-heißen.wav"
     },
     "bed": {
@@ -319,6 +348,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bett",
       "sha256": "a6a2db2348bfc8e26d106c177b59ec3c6cf445da6a7ad9e72d09812ab1a5c598",
+      "snr": 86.0,
       "source": "De-bett.ogg"
     },
     "bedding": {
@@ -330,6 +360,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bettwäsche",
       "sha256": "43c5f8b3857e452f2cbe4bc92be2ebca0d7cb5fbd56024910fd25f807d7c49cc",
+      "snr": 87.1,
       "source": "De-Bettwäsche.ogg"
     },
     "belt": {
@@ -341,6 +372,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gürtel",
       "sha256": "20f09c10b23f1d2e9fe488a907024eb131a42f52ff8f589164d11f71130e2bfa",
+      "snr": 87.2,
       "source": "De-Gürtel.ogg"
     },
     "bicycle": {
@@ -352,6 +384,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "fahrrad",
       "sha256": "6871fb58815fe8bdcde12741883f09fb33425a71abf0d5bbbb02c7b885ce652e",
+      "snr": 55.1,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Fahrrad.wav"
     },
     "big": {
@@ -362,6 +395,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "groß",
       "sha256": "de0f9572dbb2bcda119fc74c093ac8cc5f72676740df42f99ba342a56aaa7b1c",
+      "snr": 57.8,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-groß.wav"
     },
     "bin": {
@@ -373,6 +407,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mülleimer",
       "sha256": "89afdcbf61b3dbe1c67611765b6cd004975d7a4aeddb7d3484965a0d7c69ee3f",
+      "snr": 64.9,
       "source": "De-Mülleimer.ogg"
     },
     "birth-certificate": {
@@ -383,6 +418,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "geburtsurkunde",
       "sha256": "d6a872f21befca18a5962eb78d2947e8abe0e4344d22ef2e645cd22ca005be35",
+      "snr": 86.9,
       "source": "De-Geburtsurkunde.ogg"
     },
     "blanket": {
@@ -394,6 +430,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "decke",
       "sha256": "0307c88ead6400fbb5706952075ff7e98ef17bd5bd43e7d5d2ac43d2a3fc4d40",
+      "snr": 86.2,
       "source": "De-decke.ogg"
     },
     "blood": {
@@ -405,6 +442,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "blut",
       "sha256": "abff997f9469d64a56c8e4fc4d6af0a69677749efbd535eaaa497d65cc617d35",
+      "snr": 51.3,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Blut.wav"
     },
     "board": {
@@ -416,6 +454,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tafel",
       "sha256": "1026993bbe0d47e64d375eaad8e09629a4d00aa6650d1a931c269b63646ba161",
+      "snr": 87.2,
       "source": "De-tafel.ogg"
     },
     "boss": {
@@ -449,6 +488,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "brot",
       "sha256": "fe731f2cd325198da80e02bd94e2fc59af18d18902da8dd5df38ba9a840a0846",
+      "snr": 55.4,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Brot.wav"
     },
     "break": {
@@ -460,6 +500,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pause",
       "sha256": "c2442c021257bb5af46869950be1a58316cdf6370424c2e3eca51e4054c9811f",
+      "snr": 86.4,
       "source": "De-Pause.ogg"
     },
     "bring": {
@@ -471,6 +512,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mitbringen",
       "sha256": "f15544503574e653b5aca1ca47bc2b700492a5c5a09c56f79d4b9ed4a5533491",
+      "snr": 63.0,
       "source": "LL-Q188 (deu)-Natschoba-mitbringen.wav"
     },
     "bucket": {
@@ -482,6 +524,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "eimer",
       "sha256": "978c6868a5375f077068b897b3112d052fc7dd4ba372dc2a2bc8306a0e66db66",
+      "snr": 80.1,
       "source": "De-Eimer.ogg"
     },
     "bus": {
@@ -492,6 +535,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "bus",
       "sha256": "0bb1d7dd764b08af9ba188f60a8a6ee82e801a156821cbad5a33ad7096797edb",
+      "snr": 25.6,
       "source": "De-Bus.ogg"
     },
     "bus-stop": {
@@ -503,6 +547,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "haltestelle",
       "sha256": "1ab8947c7f8913ff3a5d06c41f1846ed5ff944fd5f5f882be121a53eef038295",
+      "snr": 93.9,
       "source": "De-Haltestelle.ogg"
     },
     "buy": {
@@ -514,6 +559,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kaufen",
       "sha256": "7917a22e800f49e7b71d1549be6c97a36779c4bbab6ed360337012beaacf91b5",
+      "snr": 64.7,
       "source": "LL-Q188 (deu)-Natschoba-kaufen.wav"
     },
     "bye": {
@@ -525,6 +571,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tschüss",
       "sha256": "ff363ed964659e6baf581d1f40f727422e944e521d1f88331a874510e8238da6",
+      "snr": 85.8,
       "source": "De-tschüss.ogg"
     },
     "cable": {
@@ -536,6 +583,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kabel",
       "sha256": "755a548398d0b6a96ab8af5f343d519b9f02e67aa0434847d660dcc3e0bbc7d4",
+      "snr": 85.0,
       "source": "De-kabel.ogg"
     },
     "calendar": {
@@ -547,6 +595,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "kalender",
       "sha256": "cd358b2ef898ec95e38aeba3171fa021d5cca9c4e05ad381c88b00430756a1eb",
+      "snr": 59.3,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Kalender.wav"
     },
     "call": {
@@ -558,6 +607,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "anrufen",
       "sha256": "cdff190d3c7c38fcd5b09b8ae82c457b0d9498e5d927fd5785a2ef42aeaea4d9",
+      "snr": 85.5,
       "source": "De-anrufen.ogg"
     },
     "cancel": {
@@ -568,6 +618,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "absagen",
       "sha256": "57f665fe4c2d2d873b50790485345f37040d5a9bf389a04f1960fcbdb8a2f996",
+      "snr": 46.4,
       "source": "De-absagen.ogg"
     },
     "car": {
@@ -579,6 +630,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "auto",
       "sha256": "850c83b5ed32ce521584d78711fbae4bbb13c0bbc543128ee5ef2e6f5ac4cdb9",
+      "snr": 49.4,
       "source": "LL-Q188 (deu)-Poslovitch-Auto.wav"
     },
     "careful": {
@@ -590,6 +642,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "vorsicht",
       "sha256": "ef045c7ae7fa11483c526e9490259820df67e2c52240da8446113a63cc00a7ee",
+      "snr": 86.8,
       "source": "De-Vorsicht.ogg"
     },
     "carpet": {
@@ -601,6 +654,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "teppich",
       "sha256": "0cfd5bd8e7876035d79aec952a2160af9ece0e0058ef70372de51d55b1e6dd62",
+      "snr": 86.4,
       "source": "De-Teppich.ogg"
     },
     "case-worker": {
@@ -612,6 +666,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sachbearbeiter",
       "sha256": "bde78a88cd0e2380509c0901ea37ecbd62a9761c16167589a20d17d0aff0b171",
+      "snr": 86.6,
       "source": "De-Sachbearbeiter.ogg"
     },
     "case-worker-f": {
@@ -623,6 +678,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sachbearbeiterin",
       "sha256": "af19b338201c6c672f0d53fc23393c0cac6c4e83226d7949c5f800fedbd2228d",
+      "snr": 86.9,
       "source": "De-Sachbearbeiterin.ogg"
     },
     "certificate": {
@@ -634,6 +690,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bescheinigung",
       "sha256": "ec8271c5297fd19d67600f764cdec07a38dd4b856f3529f8017442f6f14b3c54",
+      "snr": 86.9,
       "source": "De-Bescheinigung.ogg"
     },
     "chair": {
@@ -645,6 +702,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "stuhl",
       "sha256": "a8bf3547f890b41efc04f1a71893c59809dc71beca37d9a75717bcf345a918bc",
+      "snr": 87.0,
       "source": "De-stuhl.ogg"
     },
     "charger": {
@@ -656,6 +714,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ladekabel",
       "sha256": "2b33bdc7b3136a7092d2e7fd2497b49ffd1f9f1a2ada969a7ccf58fa0fc51731",
+      "snr": 86.3,
       "source": "De-Ladekabel.ogg"
     },
     "cheese": {
@@ -667,6 +726,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "käse",
       "sha256": "3e9669b2ed1c18ad770e6c1c94186e78ba2adab54e13fbcbfa0fe5b76622d617",
+      "snr": 85.4,
       "source": "De-käse.ogg"
     },
     "classroom": {
@@ -678,6 +738,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "klassenzimmer",
       "sha256": "35667a9b146b877157ab3dd6fb4679e02b2cbad8011dbe3f53727f9f4fc7d300",
+      "snr": 76.8,
       "source": "De-Klassenzimmer.ogg"
     },
     "clean": {
@@ -688,6 +749,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "putzen",
       "sha256": "bb02a85a005b9ee345b408d301a9f96bd36ab1d170861e23fe82cc4ca861584d",
+      "snr": 24.1,
       "source": "De-putzen.ogg"
     },
     "clothes": {
@@ -698,6 +760,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kleidung",
       "sha256": "0def992373deaf49ab4881dfe2afe1e33f35b19601cd00e454d1ac3d948a42c6",
+      "snr": 35.9,
       "source": "De-Kleidung.ogg"
     },
     "coat": {
@@ -709,6 +772,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mantel",
       "sha256": "66631d8a2e76246af477deaf7a80f5748fc6ab3df8f6e83b427dedf842f83e81",
+      "snr": 87.0,
       "source": "De-mantel.ogg"
     },
     "coffee": {
@@ -719,6 +783,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kaffee",
       "sha256": "5689c376801e6872c5f308ded5f208ea075279772509fab64e5a9856d82f2b76",
+      "snr": 30.3,
       "source": "De-Kaffee.ogg"
     },
     "coffee-break": {
@@ -730,6 +795,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kaffeepause",
       "sha256": "7d5d4bcb2136e030272b5572d0b0a78e9007f2a58c0145805292b092dc7cdd6b",
+      "snr": 82.6,
       "source": "De-Kaffeepause.ogg"
     },
     "cold": {
@@ -741,6 +807,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "erkältung",
       "sha256": "f0a50185c784f5e803310531b0200366c3c30e5d2f611199707e90df8b85c380",
+      "snr": 84.0,
       "source": "De-Erkältung.ogg"
     },
     "colleague": {
@@ -751,6 +818,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kollege",
       "sha256": "b9f4ab5d3d566f3e88a8eb10912ac7c1da627bc6d1cd5498cb0f597674aae8d7",
+      "snr": 33.1,
       "source": "De-Kollege.ogg"
     },
     "colleague-f": {
@@ -762,6 +830,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kollegin",
       "sha256": "dd5beffcd983b90bf9781168bb215fc01cfe7d0ea765ef03a154ce8f0b28c2d5",
+      "snr": 72.7,
       "source": "De-Kollegin.ogg"
     },
     "come": {
@@ -773,6 +842,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "kommen",
       "sha256": "32c096250aca8d6cb16998049833d71be0dbf3a1066ea211ce78b0ca51b27e8f",
+      "snr": 61.1,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-kommen.wav"
     },
     "company": {
@@ -784,6 +854,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "firma",
       "sha256": "0ec04c7e659a453a4efe79cc05e0d00b32ddf9420d80649ee137bc00f795818f",
+      "snr": 85.5,
       "source": "De-Firma.ogg"
     },
     "confirm": {
@@ -795,6 +866,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "bestätigen",
       "sha256": "35de456368324302c0a610e2620842e7c898b7e493abf22a32cc6a0d275fa2e5",
+      "snr": 35.8,
       "source": "De-bestätigen.ogg"
     },
     "confirmation": {
@@ -806,6 +878,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bestätigung",
       "sha256": "6a88cf144cd1c123049cfaad316088ab0323365ab635c0e76e7d8ba39bfe3587",
+      "snr": 87.0,
       "source": "De-Bestätigung.ogg"
     },
     "contract": {
@@ -817,6 +890,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "vertrag",
       "sha256": "6705225b5d37e1e3abfb24a7ab49b988a6b2ddecd2b29caf4fe564e933883dc4",
+      "snr": 83.9,
       "source": "De-vertrag.ogg"
     },
     "cook": {
@@ -828,6 +902,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kochen",
       "sha256": "4255808a091cc8977c1bb1a4c4b44144418c1a623b0df3dbea439890dd2a0687",
+      "snr": 59.8,
       "source": "LL-Q188 (deu)-Natschoba-kochen.wav"
     },
     "copy": {
@@ -838,6 +913,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kopieren",
       "sha256": "4e8d34e583ed450465567c38ba414fa01527823c354de4df56ecc7e66fe102c2",
+      "snr": 32.2,
       "source": "De-kopieren.ogg"
     },
     "correct": {
@@ -849,6 +925,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "korrigieren",
       "sha256": "16c504f01c5e03fc4498dad3f78d556fddcde40b84c7f1be3e1c399c929f94ee",
+      "snr": 87.1,
       "source": "De-korrigieren.ogg"
     },
     "cough": {
@@ -860,6 +937,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "husten",
       "sha256": "a00b6aba842cda9b9f8d9ced86a2c19f8245ec9dff08a8833b8c9fd8c7ee1ed1",
+      "snr": 70.8,
       "source": "De-husten.ogg"
     },
     "course": {
@@ -871,6 +949,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kurs",
       "sha256": "e44b453a8043bfc87ab551ca9ff474561b6690c120d3bd445e4168c865a29475",
+      "snr": 57.6,
       "source": "De-Kurs.ogg"
     },
     "course-book": {
@@ -882,6 +961,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kursbuch",
       "sha256": "96ead5b2c3bf49a016d583b7453e4d34acef6c18abc84d076e8b058820e14398",
+      "snr": 85.1,
       "source": "De-Kursbuch.ogg"
     },
     "cream": {
@@ -893,6 +973,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "creme",
       "sha256": "95e614aa64db951fa8fef295c2fa495017a0b768ab6b8547dcb60c5841200838",
+      "snr": 87.2,
       "source": "De-creme.ogg"
     },
     "cuddle": {
@@ -914,6 +995,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "tasse",
       "sha256": "e29cc1031efb09764806d27326b64e30ee68f96c57ab556ed9d55349798d6b10",
+      "snr": 32.1,
       "source": "De-Tasse.ogg"
     },
     "curtain": {
@@ -925,6 +1007,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "vorhang",
       "sha256": "74687e203aebab88a84620b6e63ed39ea2c9c4283bc19394a90f442f3b5da200",
+      "snr": 87.2,
       "source": "De-Vorhang.ogg"
     },
     "cut": {
@@ -936,6 +1019,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "schneiden",
       "sha256": "d5814ff8d3deda6a250d9be6c8998adcaf6c3858784568ffd091d7d7653aeced",
+      "snr": 52.8,
       "source": "De-schneiden.ogg"
     },
     "cv": {
@@ -947,6 +1031,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "lebenslauf",
       "sha256": "2dca03ad8d0c8d571180f420c3fbd641f1ebc2bd6f893681e072b65e9dcc4623",
+      "snr": 86.5,
       "source": "De-Lebenslauf.ogg"
     },
     "date": {
@@ -957,6 +1042,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "datum",
       "sha256": "ec76864d470fb9d4b1a30753684f9599b4b6f9b6b5097caa92799e48e82a5869",
+      "snr": 35.0,
       "source": "De-Datum.ogg"
     },
     "day": {
@@ -968,6 +1054,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "tag",
       "sha256": "b984817689666d5a4755d8cb29d8716d7fa79ce68b2bf9dad28090dfa75fd8c2",
+      "snr": 60.1,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Tag.wav"
     },
     "deadline": {
@@ -979,6 +1066,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "frist",
       "sha256": "61522fe42d6a381c9803ce96ca7728fe33324f37417b427f50648d42f41fb152",
+      "snr": 84.7,
       "source": "De-frist.ogg"
     },
     "delete": {
@@ -990,6 +1078,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "löschen",
       "sha256": "0fdd848757110b642312107051d95dad83ae8cb8018c5eb2c746c44db19f4dd7",
+      "snr": 73.6,
       "source": "LL-Q188 (deu)-Trypeds-löschen.wav"
     },
     "depart": {
@@ -1000,6 +1089,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "abfahren",
       "sha256": "b2f6bbb14e22f47de5398823bb7afd06578799af384169035f5090fe83e03c29",
+      "snr": 59.8,
       "source": "LL-Q188 (deu)-Natschoba-abfahren.wav"
     },
     "desk": {
@@ -1010,6 +1100,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "schreibtisch",
       "sha256": "c3dfee49ef066b17012079c2f57c51956e77810ab283edf927df7bc9b8c27d91",
+      "snr": 28.6,
       "source": "De-Schreibtisch.ogg"
     },
     "dictionary": {
@@ -1021,6 +1112,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wörterbuch",
       "sha256": "d3829cef40683b2489013b2d2acec229f965e6b32e37dd06026282494ca2dbf5",
+      "snr": 98.4,
       "source": "De-Wörterbuch.ogg"
     },
     "dining-table": {
@@ -1032,6 +1124,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "esstisch",
       "sha256": "bc4ef6aa83b731be711bbe19045fe298157c8022483ebf81aa3fdd99678ee9ea",
+      "snr": 72.8,
       "source": "De-Esstisch.ogg"
     },
     "dirty": {
@@ -1043,6 +1136,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "schmutzig",
       "sha256": "c059d6dd5c85b1b433dfaf2fdc0b04aa50316313922ab7cc4353a8c905f54c20",
+      "snr": 65.5,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-schmutzig.wav"
     },
     "dishwasher": {
@@ -1054,6 +1148,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "spülmaschine",
       "sha256": "bbfc0606f72cfcdb3a51465bad1789570ad1a4b2e711953fcfdbe83f14ec85bd",
+      "snr": 86.3,
       "source": "De-Spülmaschine.ogg"
     },
     "doctor": {
@@ -1065,6 +1160,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "arzt",
       "sha256": "0c8583ef9f20fc061fb783560e0637d6fc25e1d1c4dd07e08bcd602ac4c09fd8",
+      "snr": 86.8,
       "source": "De-arzt.ogg"
     },
     "doctor-f": {
@@ -1076,6 +1172,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ärztin",
       "sha256": "9a956058dc2ac8fd5409979325a7630867356ca5d8ca0524285a4482b9639493",
+      "snr": 86.4,
       "source": "De-Ärztin.ogg"
     },
     "documents": {
@@ -1087,6 +1184,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "unterlagen",
       "sha256": "63219d99bce5c72e7a40ed197cff874e2464dd5da217b8ca9dcd4ca90cf4fe8c",
+      "snr": 82.9,
       "source": "De-unterlagen.ogg"
     },
     "door": {
@@ -1098,6 +1196,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tür",
       "sha256": "8b0a94ee2eeedf675c7ec2b93b45e826b6723fc5a08798afd570b5fab588b856",
+      "snr": 87.5,
       "source": "De-Tür.ogg"
     },
     "doorbell": {
@@ -1109,6 +1208,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "klingel",
       "sha256": "3a3b7990c4dddb8575c42f54af00bbd0a6a5d49ac1b0e3c1395739957901141a",
+      "snr": 86.7,
       "source": "De-klingel.ogg"
     },
     "dream": {
@@ -1120,6 +1220,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "träumen",
       "sha256": "65b933f85feae28dfc43d2ec64bd5fe41923c1e6de6148430bade5bbed70838b",
+      "snr": 62.1,
       "source": "LL-Q188 (deu)-Natschoba-träumen.wav"
     },
     "dress": {
@@ -1131,6 +1232,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kleid",
       "sha256": "31e192c346a4038b9174e923c836fc13d11371c30d5ac78ad4369c8f783348a0",
+      "snr": 86.8,
       "source": "De-kleid.ogg"
     },
     "drink": {
@@ -1142,6 +1244,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "trinken",
       "sha256": "6bc5ee1918fdcad2ba7355967dc175a2c8b43c347f4a9b72b0ac581b379185e3",
+      "snr": 58.8,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-trinken.wav"
     },
     "ear": {
@@ -1153,6 +1256,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "ohr",
       "sha256": "e107116e43554a9f0dc0ef5e119076dff81bc34b05d1c7293ee3689e5703d2fc",
+      "snr": 57.9,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Ohr.wav"
     },
     "earn": {
@@ -1164,6 +1268,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "verdienen",
       "sha256": "44545a7d7fe339679d312b61a3237eb8fd84450180d00cb965214b1e0e973106",
+      "snr": 48.1,
       "source": "LL-Q188 (deu)-Natschoba-verdienen.wav"
     },
     "eat": {
@@ -1175,6 +1280,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "essen",
       "sha256": "b145bc0ea7aa41c7bd73af902a2e044f6cddd96f05c8c1d5ca4f85680a5bc6b6",
+      "snr": 57.6,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-essen.wav"
     },
     "egg": {
@@ -1186,6 +1292,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "ei",
       "sha256": "a8148810c954d0ee045794e0d482fdf7b1f93ed06d693d9f0fddd9fdb397e99c",
+      "snr": 55.4,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Ei.wav"
     },
     "email": {
@@ -1197,6 +1304,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "e-mail",
       "sha256": "d4e87e0b0753d686fddcbe08876d238050a97d15e4f23a4361d3753c0f9f5c9c",
+      "snr": 84.1,
       "source": "De-e-mail.ogg"
     },
     "emergency": {
@@ -1208,6 +1316,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "notfall",
       "sha256": "437e5dd47af8fbe4c5768f05d6b69a75a4d338dcb92ceee2303060f7de61af77",
+      "snr": 103.0,
       "source": "De-Notfall.ogg"
     },
     "end-of-workday": {
@@ -1219,6 +1328,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "feierabend",
       "sha256": "b3dcce96d9f9ca4de8e14e06a80d03a245c7d161aa2c841b11b2327306e021a8",
+      "snr": 85.9,
       "source": "De-Feierabend.ogg"
     },
     "enter": {
@@ -1230,6 +1340,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hereinkommen",
       "sha256": "77523cafe4392d6c15b021e3197160723a5c49459f62f377e4412b47fb2fb536",
+      "snr": 73.5,
       "source": "De-hereinkommen.ogg"
     },
     "evening": {
@@ -1241,6 +1352,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "abend",
       "sha256": "5a879f04fbdb1a6b2eb5c1f791f2ecb3f96cee1e1b3c5c2c3a10e921024bd5d0",
+      "snr": 58.7,
       "source": "LL-Q188 (deu)-Djknusper-abend.wav"
     },
     "exam": {
@@ -1251,6 +1363,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "prüfung",
       "sha256": "d7663b8277655e4f43b9f611f1e65bda27c8e1733750eef1fae008ee6f3143d2",
+      "snr": 87.4,
       "source": "De-Prüfung.ogg"
     },
     "examine": {
@@ -1262,6 +1375,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
       "matches": "untersuchen",
       "sha256": "c1aa3b02aeb8077d1d4ba9fb5290b97294a873b0d418dcfcbc33185b356be041",
+      "snr": 56.8,
       "source": "De-untersuchen.ogg"
     },
     "excuse-me": {
@@ -1273,6 +1387,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "entschuldigung",
       "sha256": "9e8e5c29721b2adc4bd0ee81247f34b0a231df88b499931f9a4ec6c209c54e52",
+      "snr": 72.3,
       "source": "De-Entschuldigung.ogg"
     },
     "exercise-book": {
@@ -1284,6 +1399,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "heft",
       "sha256": "a9e84808a8af8d6b42011d92208144d16ad530d09812af6d48a2c1423e1ea7d3",
+      "snr": 85.7,
       "source": "De-heft.ogg"
     },
     "extend": {
@@ -1295,6 +1411,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "verlängern",
       "sha256": "7789d003633e884d6097bbd65a38f0f246d618c879c7f356c000f666658693cb",
+      "snr": 76.7,
       "source": "De-verlängern.ogg"
     },
     "fast": {
@@ -1306,6 +1423,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schnell",
       "sha256": "c24404719cde42dbc48c9bce473f7b73eab5c16e9533e4a556280781f73c43ea",
+      "snr": 56.5,
       "source": "LL-Q188 (deu)-Natschoba-schnell.wav"
     },
     "fee": {
@@ -1317,6 +1435,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gebühr",
       "sha256": "372a8e61438e1095c93043e27056d8ffa402c7ce36898f658526710a8d3cda10",
+      "snr": 86.7,
       "source": "De-gebühr.ogg"
     },
     "fever": {
@@ -1328,6 +1447,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fieber",
       "sha256": "36d7af3f2448e38f1f702190f4e3b8053d0d79a85d62c98e0c47255b8ad6c73c",
+      "snr": 85.1,
       "source": "De-fieber.ogg"
     },
     "fill-in": {
@@ -1339,6 +1459,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ausfüllen",
       "sha256": "e71404ae79e9498ed6fafcc8563ad4d32496f1dc2c3562345435bbf064b425f5",
+      "snr": 87.4,
       "source": "De-ausfüllen.ogg"
     },
     "flower": {
@@ -1350,6 +1471,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "blume",
       "sha256": "f94adcfae61bc1e6535a64a2f6f03647317538f877bd6019d7e87315c4de0f55",
+      "snr": 54.6,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Blume.wav"
     },
     "folder": {
@@ -1361,6 +1483,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ordner",
       "sha256": "2bac33ebe78043d14ade245a4ad452ecd302d7895af8e6abf30f50360c5debbc",
+      "snr": 85.8,
       "source": "De-Ordner.ogg"
     },
     "fork": {
@@ -1372,6 +1495,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "gabel",
       "sha256": "2009d1b58d114d1d64fe839afd0aba7240ff23ff17e8a174d864fde6824738ff",
+      "snr": 54.7,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Gabel.wav"
     },
     "form": {
@@ -1383,6 +1507,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "formular",
       "sha256": "a1e1540e7e4864f134a98f1325b78a2f30a17aee9a441ef591cd89ba3335096e",
+      "snr": 85.3,
       "source": "De-Formular.ogg"
     },
     "fridge": {
@@ -1393,6 +1518,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kühlschrank",
       "sha256": "06cf2498804a0f236fb574a34b5c84e90e17ce5def54368737e075bf6b93988c",
+      "snr": 21.7,
       "source": "De-Kühlschrank.ogg"
     },
     "friend": {
@@ -1404,6 +1530,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "freund",
       "sha256": "d40a6fb2fc0fa52cf73f7ea17372b9bbec3572453c4ec8d0fcb02319bcaa3a9c",
+      "snr": 86.9,
       "source": "De-freund.ogg"
     },
     "friend-f": {
@@ -1415,6 +1542,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "freundin",
       "sha256": "27b2f907aca121a301824245a1b5958ee9d4b3a2a2e4fd220e9b6a273f7c01c4",
+      "snr": 80.2,
       "source": "De-Freundin.ogg"
     },
     "fry": {
@@ -1426,6 +1554,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "braten",
       "sha256": "2982b9aa372d32e8a7bb649c34e6386be3d6943609709bdd0c2dd02d3eee41de",
+      "snr": 45.8,
       "source": "De-braten.ogg"
     },
     "full-time": {
@@ -1437,6 +1566,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "vollzeit",
       "sha256": "598f3a2e7b08f40934be7b2592b53e27967e903264f59386bc2c271955b0395a",
+      "snr": 84.7,
       "source": "De-Vollzeit.ogg"
     },
     "get-up": {
@@ -1448,6 +1578,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "aufstehen",
       "sha256": "caf477f424f6eaf645d3986818ba2387659e3cacbcbbad5146f73221919aede4",
+      "snr": 57.4,
       "source": "LL-Q188 (deu)-Natschoba-aufstehen.wav"
     },
     "give": {
@@ -1459,6 +1590,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "geben",
       "sha256": "c9a94c6241113dc08d280321aee744af184b7ce2597ccc002d9e8cec61fecf7e",
+      "snr": 60.6,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-geben.wav"
     },
     "glove": {
@@ -1470,6 +1602,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "handschuh",
       "sha256": "7dccd20164a66feea2e7bca79576a812544dcc2343818b06b38d08fedd60e1b7",
+      "snr": 54.3,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Handschuh.wav"
     },
     "go": {
@@ -1480,6 +1613,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
       "matches": "gehen",
       "sha256": "fb287a46ea18d6f389f162b46306ee054b33b919c6e3ea9d8e625c718855f4c6",
+      "snr": 55.4,
       "source": "De-gehen.ogg"
     },
     "good": {
@@ -1491,6 +1625,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "gut",
       "sha256": "f7961e84beb57f449d4592a01d7f221555b584bc9a354f25e2133f23b1781b95",
+      "snr": 54.8,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Gut.wav"
     },
     "grade": {
@@ -1502,6 +1637,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "note",
       "sha256": "c3dd75a5793875cd0fc15a24651e048796c61845fabc5a3c3bf6d375fb86dabb",
+      "snr": 86.6,
       "source": "De-Note.ogg"
     },
     "greet": {
@@ -1513,6 +1649,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "begrüßen",
       "sha256": "414223d19b7d6d13842a09e9dbbfe36420f60b66ce5f7cde999f7a04c7b95b91",
+      "snr": 42.4,
       "source": "LL-Q188 (deu)-Natschoba-begrüßen.wav"
     },
     "guest": {
@@ -1524,6 +1661,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gast",
       "sha256": "9d0d42805a7acca723bd6d5f80181f00383d7b5bb71ef9972697d65125273ebb",
+      "snr": 86.8,
       "source": "De-gast.ogg"
     },
     "hair": {
@@ -1535,6 +1673,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "haar",
       "sha256": "21f1ef1b82bf5db295f274087d872bb14f0e3c711823c9a7b0cef724569d782f",
+      "snr": 86.7,
       "source": "De-haar.ogg"
     },
     "hairdryer": {
@@ -1546,6 +1685,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "föhn",
       "sha256": "91d323499c1ce7ed017d1e0618b80cc871536ba20c08f3b57d251d9d33909bcd",
+      "snr": 86.7,
       "source": "De-föhn.ogg"
     },
     "hallway": {
@@ -1557,6 +1697,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "flur",
       "sha256": "d89d2acfae77c775f0fe4c35f04240fe296c63e2bed95bb795385edfb74c1996",
+      "snr": 83.9,
       "source": "De-Flur.ogg"
     },
     "hand-in": {
@@ -1567,6 +1708,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "einreichen",
       "sha256": "e218972a09c0b6fb048fa9556195dc177d2c7520aa2ab8db9a232e915be8e9e7",
+      "snr": 39.0,
       "source": "De-einreichen.ogg"
     },
     "hat": {
@@ -1578,6 +1720,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "mütze",
       "sha256": "ad53f9973e2048514f1a032262687757e327c324966c6f58b042ad9d8994ff3c",
+      "snr": 54.5,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Mütze.wav"
     },
     "have": {
@@ -1589,6 +1732,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
       "matches": "haben",
       "sha256": "34e7d28e4bb706f7e289f31468fc1d1996ff7ebefd9e8a7334833ae799348343",
+      "snr": 34.6,
       "source": "De-haben.ogg"
     },
     "head": {
@@ -1600,6 +1744,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kopf",
       "sha256": "68cea3851de055547ed05bd2362b252094bf10a42ea64c74e29568f1d85b7577",
+      "snr": 86.7,
       "source": "De-kopf.ogg"
     },
     "headphones": {
@@ -1611,6 +1756,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kopfhörer",
       "sha256": "897c701cc37df33c63123bb5ffa6eb7c909e1a9ef6786e9bdc2e479517b56c49",
+      "snr": 84.4,
       "source": "De-Kopfhörer.ogg"
     },
     "health-insurance": {
@@ -1622,6 +1768,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "krankenkasse",
       "sha256": "1ca2cfdc1520941264c6d33c6822823014aaa0b05409de54ad667d42cab8f553",
+      "snr": 96.2,
       "source": "De-Krankenkasse.ogg"
     },
     "hello": {
@@ -1633,6 +1780,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hallo",
       "sha256": "a2d7cd28dac53d9c369635f8494f6094c66f69609dd681833cd4f0207603ade3",
+      "snr": 85.2,
       "source": "De-hallo.ogg"
     },
     "help": {
@@ -1644,6 +1792,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hilfe",
       "sha256": "4ec7d44caa0745f0ca5b202d31ed0b24446a80fef2b3ba091a2d501daa493e8d",
+      "snr": 86.7,
       "source": "De-Hilfe.ogg"
     },
     "here": {
@@ -1655,6 +1804,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hier",
       "sha256": "fb9308e0f180e2b1a472553901916ec3d2e4828aef18993d6949b36eb8ec3567",
+      "snr": 66.0,
       "source": "De-hier.ogg"
     },
     "hire": {
@@ -1666,6 +1816,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "einstellen",
       "sha256": "21af0cfbd9ae469585444e6e8e11658af656b2066103bb4c4de990ec09c6fbe9",
+      "snr": 86.5,
       "source": "De-einstellen.ogg"
     },
     "holiday": {
@@ -1677,6 +1828,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "urlaub",
       "sha256": "4c5e62861f38cd600a8a546df8c899614adc89d3069608546afd7c6e8926501f",
+      "snr": 87.1,
       "source": "De-urlaub.ogg"
     },
     "homework": {
@@ -1688,6 +1840,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "hausaufgabe",
       "sha256": "f427b0c924454bac4f2caa069c92542b0c1e1a423293023d3e1a06635a936870",
+      "snr": 54.3,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Hausaufgabe.wav"
     },
     "hospital": {
@@ -1699,6 +1852,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "krankenhaus",
       "sha256": "39d186dc4c4f8e59dda6cbbecda575fa62c1dad7fe19d32d9ac6d116887aa8e4",
+      "snr": 66.7,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Krankenhaus.wav"
     },
     "hour": {
@@ -1710,6 +1864,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "stunde",
       "sha256": "1319646d95079ccb29d32710cd4feaeba2911570bdd91754ab4909ec635e6b4f",
+      "snr": 86.9,
       "source": "De-stunde.ogg"
     },
     "house": {
@@ -1721,6 +1876,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "haus",
       "sha256": "cb7b1e01af576adf66e9574e9c0ef3d91a91866cba53b9f381ec69f12729d9ce",
+      "snr": 83.4,
       "source": "De-haus.ogg"
     },
     "human": {
@@ -1732,6 +1888,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mensch",
       "sha256": "b14383d257cb24be1c8b723a03eb35babeb1f3f0502d1fdc4259b0808ad17140",
+      "snr": 83.9,
       "source": "De-mensch.ogg"
     },
     "hunger": {
@@ -1742,6 +1899,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "hunger",
       "sha256": "fdb7c7979c0ad9a589125d2720c3aa53019a86b12de5513c84de5868d345723c",
+      "snr": 36.9,
       "source": "De-Hunger.ogg"
     },
     "hurt": {
@@ -1753,6 +1911,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wehtun",
       "sha256": "e57ec6c8f555343b1f09d1c6b74871980e7cb24c7068820a7c0bee113bf05afd",
+      "snr": 86.7,
       "source": "De-wehtun.ogg"
     },
     "id-card": {
@@ -1764,6 +1923,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ausweis",
       "sha256": "f3d0f6fc40d67511218da1a07c8d4e94614608141740a6413f44f69dfb849c1c",
+      "snr": 92.6,
       "source": "De-Ausweis.ogg"
     },
     "important": {
@@ -1775,6 +1935,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wichtig",
       "sha256": "cc3be5c80d8d6ae1198c0f8095357cf32e394d9c12cb902c78614a9c200c7d39",
+      "snr": 86.6,
       "source": "De-wichtig.ogg"
     },
     "inside": {
@@ -1786,6 +1947,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "drinnen",
       "sha256": "dd9e611c10af36cc61981b21177c1a19252ac64a87622783cbad696bfb586cc4",
+      "snr": 87.8,
       "source": "De-drinnen.ogg"
     },
     "insurance-card": {
@@ -1797,6 +1959,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "versichertenkarte",
       "sha256": "92b2b0ec0294831778b112c36a98b11003aa8ad566e1182a2290a3ff5c51024a",
+      "snr": 86.7,
       "source": "De-Versichertenkarte.ogg"
     },
     "internet": {
@@ -1808,6 +1971,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "internet",
       "sha256": "caba0d18f577b2fda3d50f08d9a32631e07515408098678ebba85a87db239f2c",
+      "snr": 85.5,
       "source": "De-Internet.ogg"
     },
     "interview": {
@@ -1819,6 +1983,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "vorstellungsgespräch",
       "sha256": "d71a4aae00b2eb4918ccd58e15876d8bcc21ba4cd51d06ba1f10ef0101fcd856",
+      "snr": 86.7,
       "source": "De-Vorstellungsgespräch.ogg"
     },
     "jacket": {
@@ -1830,6 +1995,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "jacke",
       "sha256": "09adeef39597e18fe8c55925113ed0ce58d999e4936178249ff7b9553c085c2e",
+      "snr": 60.4,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Jacke.wav"
     },
     "job-application": {
@@ -1841,6 +2007,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bewerbung",
       "sha256": "39fcaf34a5ec98847ef5899f712c670c066efec697cd33170d5797b36b768200",
+      "snr": 86.9,
       "source": "De-Bewerbung.ogg"
     },
     "jog": {
@@ -1852,6 +2019,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "joggen",
       "sha256": "b376f6626600aa5785acdf0911809264b3482f735fc4c9860401163bfc847e33",
+      "snr": 87.0,
       "source": "De-joggen.ogg"
     },
     "key": {
@@ -1863,6 +2031,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schlüssel",
       "sha256": "c526d8ae02aef7bc8245e23b45442020084476cfdedf4a2f65ef226e79ebae4a",
+      "snr": 87.0,
       "source": "De-schlüssel.ogg"
     },
     "keyboard": {
@@ -1874,6 +2043,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tastatur",
       "sha256": "bb04535a5a3ef9ee62a401c46abdd25406a787e46606908aaa0b91a7486e0a89",
+      "snr": 106.9,
       "source": "De-Tastatur.ogg"
     },
     "knife": {
@@ -1885,6 +2055,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "messer",
       "sha256": "ea0531f9b2aba9f05ec1759b9338a11df6c56cc7ce3ad8ebf6a661063d20b81d",
+      "snr": 75.5,
       "source": "De-messer.ogg"
     },
     "know": {
@@ -1896,6 +2067,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "wissen",
       "sha256": "7ccda2f7553c8e002ceddb8839a102bf903f61a7bd35b595f2e6d15f14f8a446",
+      "snr": 59.7,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Wissen.wav"
     },
     "lamp": {
@@ -1907,6 +2079,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "lampe",
       "sha256": "9e9ab478191c96a862a55379a6197a349735a8a43d15036c8c23ae7885547c71",
+      "snr": 50.2,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Lampe.wav"
     },
     "language": {
@@ -1917,6 +2090,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "sprache",
       "sha256": "17b45e469b28d6a8e8778326bd291e5dde413a4967e7c760939d8c20a75453a9",
+      "snr": 61.4,
       "source": "De-Sprache.ogg"
     },
     "laptop": {
@@ -1927,6 +2101,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "laptop",
       "sha256": "b3cf03792e4e6b08d96ff254101e0f5b11f5b7dbd31eec732e350d961a9a8372",
+      "snr": 35.2,
       "source": "De-Laptop.ogg"
     },
     "laugh": {
@@ -1938,6 +2113,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "lachen",
       "sha256": "aa6cb0bd8c27e8ac75dc8f915b28e51fec813ad4b407eb119b2d3a14be127fca",
+      "snr": 69.1,
       "source": "De-lachen.ogg"
     },
     "laundry": {
@@ -1949,6 +2125,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wäsche",
       "sha256": "e5ca45e619f4e23997643daca9be1aacdd219b23f4fe2f85b8b063e30c56a4c3",
+      "snr": 87.1,
       "source": "De-Wäsche.ogg"
     },
     "leave": {
@@ -1959,6 +2136,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "verlassen",
       "sha256": "fc2245595f449bbb91b12650b0739d242479d3d5ff6ec2e9433c29407cd4e333",
+      "snr": 29.0,
       "source": "De-verlassen.ogg"
     },
     "left": {
@@ -1970,6 +2148,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "links",
       "sha256": "f7e2700046ca3eb2ff29a16ea82f7d10c1c27eed46956fb7ba75ef54b5cd9359",
+      "snr": 86.2,
       "source": "De-links.ogg"
     },
     "lesson": {
@@ -1981,6 +2160,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "unterricht",
       "sha256": "f2759a71ca2a61f2af6e20d2aa410281abd2e51ff8ed585395be4ce3970907d9",
+      "snr": 87.2,
       "source": "De-unterricht.ogg"
     },
     "letter": {
@@ -1992,6 +2172,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "brief",
       "sha256": "fc9c5086e3596e5b0d0a683e5ad7305d0a04954be515d42ea98d9a258d28d9bf",
+      "snr": 87.1,
       "source": "De-brief.ogg"
     },
     "light": {
@@ -2003,6 +2184,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "licht",
       "sha256": "70e05ec9c6fbacfde94e0451bb32cb32c3cb582da0d91f826aa013cd5bdf8fab",
+      "snr": 65.7,
       "source": "De-licht.ogg"
     },
     "live": {
@@ -2014,6 +2196,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wohnen",
       "sha256": "bc68c5d61ec1664cfa8d2720093f98dee234576e4e9cc55fc7b0e1658a47ce6b",
+      "snr": 56.5,
       "source": "LL-Q188 (deu)-Natschoba-wohnen.wav"
     },
     "lock": {
@@ -2025,6 +2208,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "abschließen",
       "sha256": "7901e41052576018f7a57a62bcca3c0c191c73bae6ab0104530fdb1de66a8783",
+      "snr": 86.7,
       "source": "De-abschließen.ogg"
     },
     "mailbox": {
@@ -2036,6 +2220,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "briefkasten",
       "sha256": "a40fa48e9c528239414e221179f6991b35bd0f777321a33b343a0c23920759d7",
+      "snr": 86.5,
       "source": "De-Briefkasten.ogg"
     },
     "make": {
@@ -2047,6 +2232,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "machen",
       "sha256": "5b182c630816fb3cd4068c7aa8b3dcb6f2e9ff728444bc16bb3ecff2f3dd913f",
+      "snr": 65.5,
       "source": "LL-Q188 (deu)-Natschoba-machen.wav"
     },
     "market": {
@@ -2058,6 +2244,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "markt",
       "sha256": "acf33e355d7d3809f554d932dbfc16bcc3c1a185c2279da8ce219c5dda48358a",
+      "snr": 87.0,
       "source": "De-markt.ogg"
     },
     "mattress": {
@@ -2069,6 +2256,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "matratze",
       "sha256": "185095616f671794d115cced11cf2a876613ac03e39f12328391e189058ffe26",
+      "snr": 86.7,
       "source": "De-Matratze.ogg"
     },
     "milk": {
@@ -2079,6 +2267,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "milch",
       "sha256": "9e9106d1ab42fce50927f36bd1167e6ee81c470d77909f81b26c0248584bce15",
+      "snr": 29.3,
       "source": "De-Milch.ogg"
     },
     "mirror": {
@@ -2090,6 +2279,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "spiegel",
       "sha256": "b1169c4e061b14c8daf071a3602c8f806af41a539b2033c30b780008613fb449",
+      "snr": 87.2,
       "source": "De-spiegel.ogg"
     },
     "money": {
@@ -2101,6 +2291,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "geld",
       "sha256": "15ab4a6e62d05e9e8598e27572fccee9759f03faee637917658213ac8a1c9d3f",
+      "snr": 62.2,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Geld.wav"
     },
     "morning": {
@@ -2112,6 +2303,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "morgen",
       "sha256": "5a71c78eee203874d3d4fe3d710b858546ec23ad5bb63c159af7e176f4981963",
+      "snr": 84.6,
       "source": "De-morgen.ogg"
     },
     "mouse": {
@@ -2123,6 +2315,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "maus",
       "sha256": "3ff9b7bf83a3ff00eb2e021ccba43c2382f43ac578d7038584e7521cae0d78b5",
+      "snr": 86.3,
       "source": "De-maus.ogg"
     },
     "movie": {
@@ -2134,6 +2327,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "film",
       "sha256": "a0c103f951d67ba1a88c1d2f663ea9829502ef0780adea51cdd3a4e561dfcfb0",
+      "snr": 86.8,
       "source": "De-film.ogg"
     },
     "much": {
@@ -2145,6 +2339,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "viel",
       "sha256": "e92d7d7b3c1c4c51f13bdfda714e2b5b0feced2ec1c1fe0d5b85907f2fe6357c",
+      "snr": 60.6,
       "source": "LL-Q188 (deu)-Natschoba-viel.wav"
     },
     "music": {
@@ -2156,6 +2351,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "musik",
       "sha256": "53bc23d1a4c724da94967fa509ffc302e1120d2a70aa715696844bc91ef858ab",
+      "snr": 86.4,
       "source": "De-Musik.ogg"
     },
     "name": {
@@ -2166,6 +2362,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "name",
       "sha256": "ecb64fada809e06bf2893b9ba2f7bc3a05162e8bedf7f4bbd748f4f051b7227c",
+      "snr": 50.4,
       "source": "De-Name.ogg"
     },
     "need": {
@@ -2177,6 +2374,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "brauchen",
       "sha256": "de488ae2839d3c4b8e1a1962dbc4290a012194cfa99901d80c9a134e521dff52",
+      "snr": 60.9,
       "source": "LL-Q188 (deu)-Natschoba-brauchen.wav"
     },
     "neighbour": {
@@ -2187,6 +2385,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "nachbar",
       "sha256": "2c2b2b920ae92b4150df2574ed44d2d9f61b32d9e9b595de4be2b23e7d26be05",
+      "snr": 24.0,
       "source": "De-Nachbar.ogg"
     },
     "new": {
@@ -2198,6 +2397,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "neu",
       "sha256": "7d1f2156a2b5e97d1525135bf78beb6fc8226b982ea3d93d01ed7b2f67e7b2ba",
+      "snr": 59.7,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-neu.wav"
     },
     "newspaper": {
@@ -2209,6 +2409,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zeitung",
       "sha256": "de578a8e7b03e511532ec29f263246fc51e416a28b7a08d104f9fd49a17b2d20",
+      "snr": 95.0,
       "source": "De-Zeitung.ogg"
     },
     "night": {
@@ -2220,6 +2421,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "nacht",
       "sha256": "48073189b015b43ae4fe2b5efe1eb0ddc7ce4a94eebf8e00025f5921518b93b0",
+      "snr": 57.4,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Nacht.wav"
     },
     "nightstand": {
@@ -2231,6 +2433,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nachttisch",
       "sha256": "80e90f61e54df167b72b34c88e46fc9be8b5554e4eb881d46a16ec63f2af0f46",
+      "snr": 85.8,
       "source": "De-Nachttisch.ogg"
     },
     "no": {
@@ -2253,6 +2456,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "notizbuch",
       "sha256": "9a8ffe7cb48a0cfd1fb36d9cc15322451c7c4a57a19b65cdf855e05f0b9eeec2",
+      "snr": 96.5,
       "source": "De-Notizbuch.ogg"
     },
     "notice": {
@@ -2264,6 +2468,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kündigung",
       "sha256": "01e588a0369c996c21c0211fed990f6fef155a562537550e3fddb70e2e5ac909",
+      "snr": 86.6,
       "source": "De-Kündigung.ogg"
     },
     "notification": {
@@ -2275,6 +2480,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bescheid",
       "sha256": "6933778d612a098b7dc735a599766414d3ef9ad25632086d55cb60bb2776160d",
+      "snr": 86.8,
       "source": "De-bescheid.ogg"
     },
     "now": {
@@ -2286,6 +2492,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jetzt",
       "sha256": "be7b9e707634c2f1380629149b482dd5823fa47260b7b456a1e131802d2a83e3",
+      "snr": 63.5,
       "source": "LL-Q188 (deu)-Natschoba-jetzt.wav"
     },
     "office": {
@@ -2297,6 +2504,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "amt",
       "sha256": "22d63ce48c1c9318448a42cfc41cb7ee748e3193f8cdb1aa86041209bcf02cab",
+      "snr": 86.5,
       "source": "De-Amt.ogg"
     },
     "office-chair": {
@@ -2308,6 +2516,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bürostuhl",
       "sha256": "4f397bef645f7a246b70c78f1268f5865f5543951b18ccf5634ccdf5eaedd857",
+      "snr": 75.7,
       "source": "De-Bürostuhl.ogg"
     },
     "office-hours": {
@@ -2319,6 +2528,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sprechstunde",
       "sha256": "8ea05ea63064afad4bb459107def7fc558e3fede53b65b1f4528c732f7b772e4",
+      "snr": 86.7,
       "source": "De-Sprechstunde.ogg"
     },
     "old": {
@@ -2330,6 +2540,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "alt",
       "sha256": "c4c4c1dda088e8dded30c5bd59645f998933f50e93edec101142a920795c647c",
+      "snr": 57.0,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-alt.wav"
     },
     "opening-hours": {
@@ -2341,6 +2552,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "öffnungszeiten",
       "sha256": "8338c3b66c8bbeead3f781fc7ddbc42f0450f006103d46f31af031b3592c9b03",
+      "snr": 86.5,
       "source": "De-Öffnungszeiten.ogg"
     },
     "outdoors": {
@@ -2352,6 +2564,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "draußen",
       "sha256": "5edf619f877f062dd3e860e58190fe7f51578fc4585a2894b887baf268942d69",
+      "snr": 86.5,
       "source": "De-draußen.ogg"
     },
     "oven": {
@@ -2363,6 +2576,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "backofen",
       "sha256": "d4dbdc81a3ff52cb083ff6bd20337091674c286a3232e41a49536ed8283e0902",
+      "snr": 97.3,
       "source": "De-Backofen.ogg"
     },
     "page": {
@@ -2374,6 +2588,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "seite",
       "sha256": "847305fbf5c2e65922c9b9ec5bb6e85e1a50bc7ab6ab3968e284a04da5b96abe",
+      "snr": 59.8,
       "source": "De-Seite.ogg"
     },
     "pain": {
@@ -2385,6 +2600,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schmerz",
       "sha256": "a14fd3fef37ad3dbc9567e2c8973f65e67d9702f78e5e352f7f64a21667c9033",
+      "snr": 86.7,
       "source": "De-schmerz.ogg"
     },
     "pan": {
@@ -2396,6 +2612,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pfanne",
       "sha256": "634cf8f22e12cd45304193e28407ac70da107ccba9774d887c8392f29b51292e",
+      "snr": 86.9,
       "source": "De-Pfanne.ogg"
     },
     "paper": {
@@ -2406,6 +2623,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "papier",
       "sha256": "73680b28a3720939f0b945c9b006a792e060f79ea0eeeb576985972d6cc6bee6",
+      "snr": 24.5,
       "source": "De-Papier.ogg"
     },
     "park": {
@@ -2417,6 +2635,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "park",
       "sha256": "ce719bbed105b900419a66db920f11d99935b8788f59f3ee6c66de630d1de87c",
+      "snr": 86.6,
       "source": "De-park.ogg"
     },
     "part-time": {
@@ -2428,6 +2647,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "teilzeit",
       "sha256": "3a466ae50bf329983c279cdb86f29724272bad5bea48780486e93089b881010a",
+      "snr": 87.1,
       "source": "De-Teilzeit.ogg"
     },
     "passport": {
@@ -2439,6 +2659,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pass",
       "sha256": "725fa5968761c144446a2e77aacf07b217b693a4aeecdac15e9cfa932a3f4179",
+      "snr": 86.4,
       "source": "De-pass.ogg"
     },
     "password": {
@@ -2450,6 +2671,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "passwort",
       "sha256": "3be1269630ef42278297f3cd5b238193f3be71b120f8c591a45ed3d8e20d3eda",
+      "snr": 85.7,
       "source": "De-Passwort.ogg"
     },
     "pay": {
@@ -2461,6 +2683,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bezahlen",
       "sha256": "d99a2b118998b2a4a8287b5648e4edf75c9ca64c717a4bf5314b3b9f2e4c0b83",
+      "snr": 86.8,
       "source": "De-bezahlen.ogg"
     },
     "pen": {
@@ -2472,6 +2695,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "stift",
       "sha256": "626e2036de4040a17adc72d988d7ccf01d7d37606369616897239d2d5d1579a0",
+      "snr": 87.3,
       "source": "De-stift.ogg"
     },
     "person": {
@@ -2482,6 +2706,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "person",
       "sha256": "091a1bdbd35120d1ce724af71078e2aedb2ce1227e78fa833729ac5b4b99a3c1",
+      "snr": 26.7,
       "source": "De-Person.ogg"
     },
     "pharmacy": {
@@ -2493,6 +2718,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "apotheke",
       "sha256": "875fe1b2e79a623ee4446a2d2b7bcb4b3d00bafa9e81a752a5627f25edbd609a",
+      "snr": 87.0,
       "source": "De-Apotheke.ogg"
     },
     "phone": {
@@ -2504,6 +2730,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "handy",
       "sha256": "ead9a88efdae625cedaa950c1b5c8904ad3009586da0c283c250256eae791d0e",
+      "snr": 92.5,
       "source": "De-Handy.ogg"
     },
     "picture": {
@@ -2515,6 +2742,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bild",
       "sha256": "d23c390c633cff36fa213d3de093762e25c5f134aac0d382c93c662334db10ec",
+      "snr": 85.8,
       "source": "De-bild.ogg"
     },
     "pill": {
@@ -2526,6 +2754,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tablette",
       "sha256": "04030f701da8a954595d8cfe350dad49bf8413e539b602cdc8b020156d64a386",
+      "snr": 85.9,
       "source": "De-Tablette.ogg"
     },
     "pillow": {
@@ -2537,6 +2766,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kissen",
       "sha256": "95a99567d1ac01d255ea001eb0f284f683955e86bc9ca69a3e7bcd360de5e539",
+      "snr": 87.0,
       "source": "De-Kissen.ogg"
     },
     "plan": {
@@ -2548,6 +2778,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "plan",
       "sha256": "bfb48996e9b270dbb5b166b2f1fe87dcaa4cc7988126f5720cf39791c0a925a4",
+      "snr": 86.7,
       "source": "De-plan.ogg"
     },
     "plant": {
@@ -2559,6 +2790,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pflanze",
       "sha256": "0a1e73fdb2a56157bf398d6c88474dfab174e50adb852ff92d9d7b426df172e2",
+      "snr": 86.9,
       "source": "De-pflanze.ogg"
     },
     "plate": {
@@ -2570,6 +2802,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "teller",
       "sha256": "5e7f18f62074c20cca073131fb647ee358c177d92ce01ecc62a29f6832c0c4c0",
+      "snr": 76.3,
       "source": "De-Teller.ogg"
     },
     "play": {
@@ -2581,6 +2814,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "spielen",
       "sha256": "b56a95a3b029bd8dddd1af246177d151c33374a508b93122ee4f0de13427c479",
+      "snr": 57.7,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Spielen.wav"
     },
     "please": {
@@ -2592,6 +2826,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "bitte",
       "sha256": "8d5f7cb3f84e0406c2ce88a697a6f2f12770bf442e8e135e9eca65820f0c0280",
+      "snr": 86.3,
       "source": "De-bitte.ogg"
     },
     "postpone": {
@@ -2603,6 +2838,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "verschieben",
       "sha256": "506381fa022030e463aed1a41b5eadc0455beaf36d7675ac1c48d511cc0a1134",
+      "snr": 86.7,
       "source": "De-verschieben.ogg"
     },
     "pot": {
@@ -2614,6 +2850,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "topf",
       "sha256": "02efae0d58bf857a1a66c4aa816129f52d34db03592618857af552002cb41308",
+      "snr": 86.5,
       "source": "De-topf.ogg"
     },
     "practice": {
@@ -2625,6 +2862,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "praxis",
       "sha256": "0cacdb9849fb9374ed94056203301b0d20870f9fb532910aaa1a19e039fb6825",
+      "snr": 86.4,
       "source": "De-Praxis.ogg"
     },
     "practise": {
@@ -2636,6 +2874,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "üben",
       "sha256": "920ddd8653e865eb96d6beb53be6183f496d2056514577d189f46720d0c83f6b",
+      "snr": 86.2,
       "source": "De-üben.ogg"
     },
     "prescription": {
@@ -2647,6 +2886,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "rezept",
       "sha256": "60adde16bca8e66264db65ac64ea4080ac200f7de637df34f892a4d681caf6fb",
+      "snr": 87.0,
       "source": "De-Rezept.ogg"
     },
     "print": {
@@ -2658,6 +2898,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "drucken",
       "sha256": "75f1ce566086bc685365cad08528c1da5eea45319b0dde960252ecdf8dacd3cb",
+      "snr": 33.6,
       "source": "De-drucken.ogg"
     },
     "printer": {
@@ -2669,6 +2910,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "drucker",
       "sha256": "517372b829641837439cf23375235d63a52ba527a3919d7787fd72071c97f10f",
+      "snr": 76.2,
       "source": "De-Drucker.ogg"
     },
     "profession": {
@@ -2680,6 +2922,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "beruf",
       "sha256": "88b83437e33731fd1a64230290c2725e766c45705f9437f5215beebd21b3034d",
+      "snr": 86.5,
       "source": "De-beruf.ogg"
     },
     "punctual": {
@@ -2702,6 +2945,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "schüler",
       "sha256": "27361e072d20ed90132d5dbc6990a7f316b3d46b665b07379c28fc89a4cd231e",
+      "snr": 51.9,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Schüler.wav"
     },
     "pupil-f": {
@@ -2713,6 +2957,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schülerin",
       "sha256": "97d9ea8a39e8cf2e8ee03abf2785c276503d088678bedf0ccdd1758adffa7a9d",
+      "snr": 69.4,
       "source": "De-Schülerin.ogg"
     },
     "pyjamas": {
@@ -2724,6 +2969,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schlafanzug",
       "sha256": "b9b8370e980158e9ef869f893092799f87f1b301ca1801135291c11437129d9c",
+      "snr": 71.5,
       "source": "De-Schlafanzug.ogg"
     },
     "question": {
@@ -2735,6 +2981,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "frage",
       "sha256": "02fa117a6f3cc22564a3865ef8a2ede70f2f2daa0b6bb7cb70157996d0c39c00",
+      "snr": 86.8,
       "source": "De-frage.ogg"
     },
     "quiet": {
@@ -2746,6 +2993,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "leise",
       "sha256": "a0c029cdc11f0eb90e67d6be416cf3d34d1f03bc81f54a44575a3103f5c5eecb",
+      "snr": 62.1,
       "source": "LL-Q188 (deu)-Natschoba-leise.wav"
     },
     "quit": {
@@ -2756,6 +3004,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kündigen",
       "sha256": "1865fac29867e3cce63eaf0e317e28a74b48460e5cd7f6228ea3e4de5bfef562",
+      "snr": 31.6,
       "source": "De-kündigen.ogg"
     },
     "rain": {
@@ -2767,6 +3016,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "regen",
       "sha256": "bb66118a3751d011ab0cc680328b12377b35af917c96c8553f5dcab9cdeeba45",
+      "snr": 82.5,
       "source": "De-regen.ogg"
     },
     "razor": {
@@ -2778,6 +3028,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "rasierer",
       "sha256": "a75cc1c09f9c7ef0287e3cafec6c76766ae2f9cd5e0b9124be1667d161b869f7",
+      "snr": 69.5,
       "source": "De-Rasierer.ogg"
     },
     "read": {
@@ -2789,6 +3040,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "lesen",
       "sha256": "a6e89ae314156fc631934767a6624acc8166bf57df8897c121a05ff999f9f909",
+      "snr": 55.0,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-lesen.wav"
     },
     "ready": {
@@ -2800,6 +3052,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fertig",
       "sha256": "84e96a76d759238e48fa13c9d9f3c2d8a8443c4e167546bd264be648a2bad86d",
+      "snr": 86.3,
       "source": "De-fertig.ogg"
     },
     "registration": {
@@ -2811,6 +3064,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "anmeldung",
       "sha256": "5aa1a2a4bb1edc953c8c9302645b0dba5f8653a50e4b172deb521adf55c47fb7",
+      "snr": 86.5,
       "source": "De-Anmeldung.ogg"
     },
     "reheat": {
@@ -2822,6 +3076,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "aufwärmen",
       "sha256": "7685393b24cb14756cb33bc1bb088daa671128fd3a64663c519526730aa3b1c6",
+      "snr": 73.9,
       "source": "De-aufwärmen.ogg"
     },
     "reject": {
@@ -2833,6 +3088,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "ablehnen",
       "sha256": "e216243cbbadda9cd9fad8f7c8c262f3a9b9679bf43f9b0881c07d494017f449",
+      "snr": 31.3,
       "source": "De-ablehnen.ogg"
     },
     "remote": {
@@ -2844,6 +3100,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fernbedienung",
       "sha256": "aff005a2c284ad7bb1429b2641c19da4b0ef98448f7378c4c99c0f23cb02e1ac",
+      "snr": 86.4,
       "source": "De-Fernbedienung.ogg"
     },
     "reply": {
@@ -2855,6 +3112,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "antworten",
       "sha256": "34942f30535450ca2e17b85ba7cc1ef330070a5754bda8e121299c7e22fdd005",
+      "snr": 60.9,
       "source": "LL-Q188 (deu)-Natschoba-antworten.wav"
     },
     "residence-permit": {
@@ -2866,6 +3124,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "aufenthaltstitel",
       "sha256": "eefa977e658ed3d1dedc440ad7ee65b54ee7f287d2ad42b85eb065a276f0afc8",
+      "snr": 85.9,
       "source": "De-Aufenthaltstitel.ogg"
     },
     "rice": {
@@ -2877,6 +3136,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "reis",
       "sha256": "270bd4fdfcebdde504028690d0f0c1771deb48e9953edd171be539ddce9464e4",
+      "snr": 84.0,
       "source": "De-reis.ogg"
     },
     "right": {
@@ -2888,6 +3148,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "rechts",
       "sha256": "ab0d322d14b7cd621c01a6e09c787b79755db7845bfd8c5651ba38bee4b873cd",
+      "snr": 87.0,
       "source": "De-rechts.ogg"
     },
     "ring": {
@@ -2899,6 +3160,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "klingeln",
       "sha256": "3a33f9ef032088a3ae6834e8bf561c9495a514952d9e41a282363ff95ac9b57a",
+      "snr": 38.4,
       "source": "De-klingeln.ogg"
     },
     "river": {
@@ -2910,6 +3172,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "fluss",
       "sha256": "5343437290923f1cc15f44a7f2bf3fc6c1bcfe49df2cf3e7725b21377500b2b2",
+      "snr": 60.3,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Fluss.wav"
     },
     "room": {
@@ -2921,6 +3184,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zimmer",
       "sha256": "f1dba992fd011c6f9093911c603be019c8e52bb021ad7baf17f1e8bcb773fbb1",
+      "snr": 86.9,
       "source": "De-zimmer.ogg"
     },
     "salary": {
@@ -2931,6 +3195,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "gehalt",
       "sha256": "cec1ebfdfa71826ac29e252a4dd0f995542156e33799f09b92646db1e927cad1",
+      "snr": 32.7,
       "source": "De-Gehalt.ogg"
     },
     "salt": {
@@ -2942,6 +3207,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "salz",
       "sha256": "c90e5eb4fdb2633f8f2b5919c41b7a946435bf89604d34f7bddac64eb1b3e007",
+      "snr": 83.0,
       "source": "De-salz.ogg"
     },
     "save": {
@@ -2953,6 +3219,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "speichern",
       "sha256": "4b5840b9ec4c4f72fec9f61d2c398c8398562525eeb401776a2f5186c48ca7a0",
+      "snr": 54.9,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Speichern.wav"
     },
     "say": {
@@ -2964,6 +3231,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "sagen",
       "sha256": "e80e04d91c0f342ee0aec629ce7fd0bfb4d2cd0bcc2cf595802b07829bf5224e",
+      "snr": 75.1,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-sagen.wav"
     },
     "school": {
@@ -2975,6 +3243,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schule",
       "sha256": "34208d7f5aa8766cbbc9c44ed7a14f927dc80652a9e76d527647f71498ac2465",
+      "snr": 85.9,
       "source": "De-schule.ogg"
     },
     "screen": {
@@ -2986,6 +3255,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bildschirm",
       "sha256": "47ce70c1c105d28809877fb229eca22977149279aaf13ea5a13fc014317d5cd0",
+      "snr": 86.4,
       "source": "De-Bildschirm.ogg"
     },
     "see": {
@@ -2997,6 +3267,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "sehen",
       "sha256": "48a38ce822b20404da8177c9e01ef851d010676aec35abed7c0f3ebdd6db354f",
+      "snr": 51.6,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-sehen.wav"
     },
     "shampoo": {
@@ -3008,6 +3279,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "shampoo",
       "sha256": "c1868f2b040cc2d8abade5e9877e8a422ca3e0e07850433991f8e0b410f11801",
+      "snr": 80.1,
       "source": "De-Shampoo.ogg"
     },
     "shelf": {
@@ -3019,6 +3291,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "regal",
       "sha256": "7ce39ee64c046850d1a7d01d7b7005cb14c6f4e41e465f56a78687e213a8b9fa",
+      "snr": 85.6,
       "source": "De-Regal.ogg"
     },
     "shift": {
@@ -3030,6 +3303,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schicht",
       "sha256": "4233496253da83d34e031118d064b2e01205cb785bf59650b180a76a9b5ecb02",
+      "snr": 83.7,
       "source": "De-schicht.ogg"
     },
     "shirt": {
@@ -3040,6 +3314,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "hemd",
       "sha256": "5c7f9812d3f600136acdb41f2bae8db90cc600df6bc72194e47f075e2fe74807",
+      "snr": 38.1,
       "source": "De-Hemd.ogg"
     },
     "shoe": {
@@ -3051,6 +3326,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schuh",
       "sha256": "65f4c6a4a5b3b543a05e2ae506b823b5a80fa559e135ee8b00144f49538d75d4",
+      "snr": 86.4,
       "source": "De-schuh.ogg"
     },
     "shoe-rack": {
@@ -3062,6 +3338,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schuhregal",
       "sha256": "bce836200a4bce823ae819bf7d7db1050c845aab180f48f1a229448bbb210068",
+      "snr": 87.1,
       "source": "De-Schuhregal.ogg"
     },
     "shop": {
@@ -3073,6 +3350,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "einkaufen",
       "sha256": "beade1c6077c7755b1289c652988c0dbdaafef5be050c45dbf7e1419fff4b0e7",
+      "snr": 83.4,
       "source": "De-einkaufen.ogg"
     },
     "shower": {
@@ -3084,6 +3362,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "dusche",
       "sha256": "163e711e25c02af7b8af3c0663ac518e48052f781bdeed3a54bb85924c41687f",
+      "snr": 86.5,
       "source": "De-dusche.ogg"
     },
     "sick": {
@@ -3094,6 +3373,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "krank",
       "sha256": "ebbe5ad0817db3e6fbe868a98c8806221e1ee47e471c6ec2bc0d9d82ef87d376",
+      "snr": 35.9,
       "source": "De-krank.ogg"
     },
     "sick-note": {
@@ -3105,6 +3385,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "krankmeldung",
       "sha256": "f4421c069866fcf4db86bb8c852ee5a0b6f9539d6c3dac5c25252816e277f5c2",
+      "snr": 87.5,
       "source": "De-Krankmeldung.ogg"
     },
     "sign": {
@@ -3115,6 +3396,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "unterschreiben",
       "sha256": "b8331f9c7f0e5470921ac12c2bfc07248a383c06a7a97ddc3113418a817c3be4",
+      "snr": 33.5,
       "source": "De-unterschreiben.ogg"
     },
     "signature": {
@@ -3126,6 +3408,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "unterschrift",
       "sha256": "7927c7f1159e6fa453887c16e97ff7b5c159d0d4a5a3fff798eb685e7f3fef42",
+      "snr": 87.1,
       "source": "De-Unterschrift.ogg"
     },
     "sink": {
@@ -3137,6 +3420,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "waschbecken",
       "sha256": "305b2ce2bc2c2d97f93aa51ece229a01112518158ab4da7c588c40a3c02292ae",
+      "snr": 87.6,
       "source": "De-Waschbecken.ogg"
     },
     "sit": {
@@ -3148,6 +3432,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "sitzen",
       "sha256": "57746ff9c95c86b16cfe3302cf534182ab3f450aab3feb0249fd80d850283270",
+      "snr": 56.5,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Sitzen.wav"
     },
     "sleep": {
@@ -3159,6 +3444,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "schlafen",
       "sha256": "69d3b328f7928cd2301232a1e5d29c35e35e23c13443341a089aa8f5b3333116",
+      "snr": 72.4,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-schlafen.wav"
     },
     "slow": {
@@ -3170,6 +3456,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "langsam",
       "sha256": "db7846d27491ccaa817133c8c57c695376352c451367e45bf6f8c7b8676980cb",
+      "snr": 67.1,
       "source": "LL-Q188 (deu)-Natschoba-langsam.wav"
     },
     "slower": {
@@ -3181,6 +3468,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "langsamer",
       "sha256": "4a5cc5349436f8e80485416ba1aa5ca758a8e877eb31552ae14e4d39cedd34dd",
+      "snr": 67.1,
       "source": "De-langsamer.ogg"
     },
     "small": {
@@ -3192,6 +3480,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "klein",
       "sha256": "6e861e4adf91e4d3643e238dbda014ddcd79292370bccd7e6971b8e98cb18806",
+      "snr": 67.2,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-klein.wav"
     },
     "snore": {
@@ -3202,6 +3491,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "schnarchen",
       "sha256": "d5eeedd5a6227c03514e5c6253eaba466cf5193d1194f0be00a8231d8e0a2b72",
+      "snr": 37.8,
       "source": "De-schnarchen.ogg"
     },
     "snow": {
@@ -3213,6 +3503,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "schnee",
       "sha256": "23b75aa1af406c4bf754ea043362d7535355aaac2f49dfc7278fd051e95fd515",
+      "snr": 58.9,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Schnee.wav"
     },
     "soap": {
@@ -3224,6 +3515,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "seife",
       "sha256": "2af179a2d4c19017d395cd9381e085777c52267d36b4164ab045d52b70b6b07f",
+      "snr": 82.1,
       "source": "De-seife.ogg"
     },
     "sock": {
@@ -3235,6 +3527,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "socke",
       "sha256": "2c5376a016ee523a88156cf739c2f1807643aa213938bfe91f3c7077037510e3",
+      "snr": 85.1,
       "source": "De-socke.ogg"
     },
     "socket": {
@@ -3246,6 +3539,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "steckdose",
       "sha256": "802b7b316d17b4b319644aa3128e1581563a5ed5201eedb3cb6d442e71d633df",
+      "snr": 86.5,
       "source": "De-Steckdose.ogg"
     },
     "sofa": {
@@ -3257,6 +3551,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "sofa",
       "sha256": "a4b7c606bc6e6531b4e019df63ff40d6248127429fca2629e466c9e2e2ee3a1d",
+      "snr": 55.3,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Sofa.wav"
     },
     "soft": {
@@ -3268,6 +3563,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "weich",
       "sha256": "ee2802006e95bdaac2cbb52fd9f019bc4b50e8fb5869253efb233f43d8253a1a",
+      "snr": 75.5,
       "source": "LL-Q188 (deu)-Natschoba-weich.wav"
     },
     "speak": {
@@ -3278,6 +3574,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sprechen",
       "sha256": "6d9459dd71f74a7c8eed54ebe6719a7c297d764aac1617666d685dcc892804cf",
+      "snr": 61.7,
       "source": "LL-Q188 (deu)-Natschoba-sprechen.wav"
     },
     "sponge": {
@@ -3289,6 +3586,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schwamm",
       "sha256": "90e6575e028fa4eb9a6c06580cdb6bb0a4d83b78c0d505ea59d7402244fff861",
+      "snr": 86.3,
       "source": "De-schwamm.ogg"
     },
     "spoon": {
@@ -3300,6 +3598,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "löffel",
       "sha256": "c9e4bd54210a6e2cfab4e37708d3e2add92f0c77910fc985da77d5b341e6b254",
+      "snr": 86.6,
       "source": "De-löffel.ogg"
     },
     "stairs": {
@@ -3311,6 +3610,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "treppe",
       "sha256": "2291b68e7e18802bc010ab63c493f54c0ef2f6b9c16a1fd14d43abca8f53623f",
+      "snr": 79.7,
       "source": "De-Treppe.ogg"
     },
     "start": {
@@ -3321,6 +3621,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "anfangen",
       "sha256": "cdba076768381f2855d135c9216f0c18844eb2c7e1af8ae561f3808b61884b5c",
+      "snr": 86.8,
       "source": "De-anfangen.ogg"
     },
     "stir": {
@@ -3332,6 +3633,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "umrühren",
       "sha256": "ab3f5c0f695d7c7c29fc64b5a6e3be4e3e69a962a6377b14543b1e2d36b68cf9",
+      "snr": 86.5,
       "source": "De-umrühren.ogg"
     },
     "stomach": {
@@ -3343,6 +3645,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bauch",
       "sha256": "16c81859495b5b64b4ebf1c56780bbec360be4d01531af7c259139a2faaf5877",
+      "snr": 86.2,
       "source": "De-bauch.ogg"
     },
     "stove": {
@@ -3354,6 +3657,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "herd",
       "sha256": "3816e0a2da2f72b3737d0fc07364940f09c06fde53ed99d065e334fab9a09ac9",
+      "snr": 101.1,
       "source": "De-Herd.ogg"
     },
     "street": {
@@ -3365,6 +3669,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "straße",
       "sha256": "ef473dde7fb75a0cb6a96bb69864a7ffee188ac351b9caecc2cb71766780c39a",
+      "snr": 53.5,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Straße.wav"
     },
     "study": {
@@ -3375,6 +3680,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "lernen",
       "sha256": "6cfb41debd7de8858736e64c1b2231b09d74eb790fbe004d0ef80dd191e4b705",
+      "snr": 63.2,
       "source": "LL-Q188 (deu)-Natschoba-lernen.wav"
     },
     "submit": {
@@ -3385,6 +3691,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "abgeben",
       "sha256": "99a8d30188fa1faf085374c5d6ec2a51fec05fc0ff4ebc630c5c3fe893deda31",
+      "snr": 41.1,
       "source": "De-abgeben.ogg"
     },
     "sugar": {
@@ -3396,6 +3703,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zucker",
       "sha256": "e91499a8dc690c3e2b4537bc8ce7919536c8e982a654739546f944e1191ac7e1",
+      "snr": 87.1,
       "source": "De-zucker.ogg"
     },
     "sun": {
@@ -3407,6 +3715,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sonne",
       "sha256": "3d51c9cb9b1e2e220ad3da123a3e7e3b5e67bba5d7a06eba02092092759ecaa0",
+      "snr": 87.2,
       "source": "De-sonne.ogg"
     },
     "sweater": {
@@ -3418,6 +3727,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "pullover",
       "sha256": "934cd3d64f60896f02e5d26c20582f7807a1326c8aeeef98d59e00f671c81210",
+      "snr": 51.3,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Pullover.wav"
     },
     "t-shirt": {
@@ -3429,6 +3739,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "t-shirt",
       "sha256": "4268a885223741b68a5c2fcfe59d6af5c3294483054c4d43c54eebe2b82c2d7a",
+      "snr": 98.7,
       "source": "De-T-Shirt.ogg"
     },
     "take": {
@@ -3440,6 +3751,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nehmen",
       "sha256": "f2d520a5a781513a33c573f81972b6e648b9f91e39ce8c1c0b0807f9e0cc4e99",
+      "snr": 57.3,
       "source": "LL-Q188 (deu)-Natschoba-nehmen.wav"
     },
     "take-shower": {
@@ -3450,6 +3762,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "duschen",
       "sha256": "893ea0e4b50c5d1c170fc2e413e4f4da71b6f2c835a52a824981a5bb4fcb874d",
+      "snr": 16.2,
       "source": "De-duschen.ogg"
     },
     "talk": {
@@ -3460,6 +3773,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "reden",
       "sha256": "c5d99a8f02c588d0d8dcc8f0543f6c928e2504b5e488333a4d22d1a27f25b5f5",
+      "snr": 83.6,
       "source": "De-reden.ogg"
     },
     "tap": {
@@ -3471,6 +3785,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wasserhahn",
       "sha256": "a3aa2be9451d51645c8d1ebfa2d4a4e96376e10751f33ecb8969a5805317c8ad",
+      "snr": 86.0,
       "source": "De-Wasserhahn.ogg"
     },
     "taste": {
@@ -3482,6 +3797,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "probieren",
       "sha256": "587dff4c31957db04a69f4c45acb3294e3d15fcaf74658a0113cba45e8701dd7",
+      "snr": 86.9,
       "source": "De-probieren.ogg"
     },
     "tax": {
@@ -3493,6 +3809,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "steuer",
       "sha256": "5ec39a56e9c541ad996ae864152a6583cac04acc5a00c81f702948b4bb63f991",
+      "snr": 87.2,
       "source": "De-steuer.ogg"
     },
     "taxi": {
@@ -3503,6 +3820,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "taxi",
       "sha256": "4c9ede0bfa93a94a70b92b2de4d88fd8f0d2af88843cbda3dfe74d12b1649e8c",
+      "snr": 29.8,
       "source": "De-Taxi.ogg"
     },
     "tea": {
@@ -3513,6 +3831,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "tee",
       "sha256": "361ce9efdf4379005768708c171db73b218c994e8daf04e5cffd6fa6151c24f0",
+      "snr": 22.4,
       "source": "De-Tee.ogg"
     },
     "teacher": {
@@ -3524,6 +3843,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "lehrer",
       "sha256": "2b4cc6800e964e79371dd80676fcca9aaae87c03116b0375b804e6f7f0d048c1",
+      "snr": 56.3,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Lehrer.wav"
     },
     "teacher-f": {
@@ -3535,6 +3855,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "lehrerin",
       "sha256": "8e397765b416a284641e65582c111490d11304d7f602badb28401700aea35775",
+      "snr": 87.0,
       "source": "De-Lehrerin.ogg"
     },
     "thank": {
@@ -3546,6 +3867,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "danken",
       "sha256": "70a91be15bc02a59ab514c92ab76647a25864f728e662708732b5373147e29a8",
+      "snr": 59.2,
       "source": "LL-Q188 (deu)-Natschoba-danken.wav"
     },
     "thirst": {
@@ -3557,6 +3879,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "durst",
       "sha256": "c834837f1eefc7e452fc89dd863f314b4e27d79b72023219fb7085e1df040db6",
+      "snr": 86.3,
       "source": "De-durst.ogg"
     },
     "throat": {
@@ -3568,6 +3891,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hals",
       "sha256": "73ff6601b324e0142ff40da31841698177e060dbb5d9e3c16128905991b203a4",
+      "snr": 84.1,
       "source": "De-hals.ogg"
     },
     "ticket": {
@@ -3579,6 +3903,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fahrkarte",
       "sha256": "cc733a1c69f8c4a146ca4ab1b698ff54c619c08587786839faa5cb8763c0afcb",
+      "snr": 83.4,
       "source": "De-Fahrkarte.ogg"
     },
     "tidy-up": {
@@ -3590,6 +3915,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "aufräumen",
       "sha256": "5ff61c5911854d1c8202b391a06b13af7fc055a10d45d719171413b3ab6ee9c2",
+      "snr": 86.8,
       "source": "De-aufräumen.ogg"
     },
     "time": {
@@ -3601,6 +3927,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zeit",
       "sha256": "cbd9b4ef24cf2e22aa07723b185ab84a6269816c0fbfa8a9f65660ed14d52bf7",
+      "snr": 86.7,
       "source": "De-zeit.ogg"
     },
     "to-cough": {
@@ -3612,6 +3939,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "husten",
       "sha256": "a00b6aba842cda9b9f8d9ced86a2c19f8245ec9dff08a8833b8c9fd8c7ee1ed1",
+      "snr": 70.8,
       "source": "De-husten.ogg"
     },
     "to-help": {
@@ -3623,6 +3951,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "helfen",
       "sha256": "b1823d781c5179f53b3b734f7a2dbfd9338f3502be61a67a948abaec2495c32f",
+      "snr": 64.4,
       "source": "LL-Q188 (deu)-Natschoba-helfen.wav"
     },
     "to-work": {
@@ -3634,6 +3963,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "arbeiten",
       "sha256": "195cade0f694d67cd3727e11143260e69c7dfd9b2756cb98b328c565066f00f8",
+      "snr": 58.1,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Arbeiten.wav"
     },
     "today": {
@@ -3645,6 +3975,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "heute",
       "sha256": "4a2ecfda626844abe73eeeda7a147aeaa2df9787f7a79c4a4312bbb7dc60e508",
+      "snr": 59.0,
       "source": "LL-Q188 (deu)-Natschoba-heute.wav"
     },
     "together": {
@@ -3656,6 +3987,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zusammen",
       "sha256": "948038c9188e3ffe334c57f765d498ffd596a98c86ea1149371e0071bf23ff5a",
+      "snr": 86.5,
       "source": "De-zusammen.ogg"
     },
     "toilet": {
@@ -3667,6 +3999,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "toilette",
       "sha256": "ae24831b665866a07b5a9ff2de959c36866205d9cb87f67b750d81176516a808",
+      "snr": 54.5,
       "source": "De-Toilette.ogg"
     },
     "toilet-paper": {
@@ -3678,6 +4011,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "toilettenpapier",
       "sha256": "a0d84c9184133c63038cd9d6fd9f90cdfae1661ef65bfc311e436122c37617ae",
+      "snr": 86.7,
       "source": "De-Toilettenpapier.ogg"
     },
     "tomorrow": {
@@ -3689,6 +4023,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "morgen",
       "sha256": "5a71c78eee203874d3d4fe3d710b858546ec23ad5bb63c159af7e176f4981963",
+      "snr": 84.6,
       "source": "De-morgen.ogg"
     },
     "toothbrush": {
@@ -3700,6 +4035,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zahnbürste",
       "sha256": "e17af19ddb56d3b21c9a20d64e25ade04eefb2b2197fcdff44db9dee1f5d07bf",
+      "snr": 86.1,
       "source": "De-Zahnbürste.ogg"
     },
     "toothpaste": {
@@ -3711,6 +4047,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zahnpasta",
       "sha256": "9f74b75b6de27ee8b560ba4f0da8912e203108f4000699869efa0da9be1c422d",
+      "snr": 73.9,
       "source": "De-Zahnpasta.ogg"
     },
     "towel": {
@@ -3722,6 +4059,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "handtuch",
       "sha256": "6a3f7e86a5536bc92eed5428bebc78178e2cb41a36e4e9485098fddcc13bafe8",
+      "snr": 86.9,
       "source": "De-Handtuch.ogg"
     },
     "traffic-light": {
@@ -3733,6 +4071,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ampel",
       "sha256": "9dc9aa87145acc76aeec70f3cb1783fb355da36a2db0f3369ff7a22220ea3387",
+      "snr": 86.8,
       "source": "De-Ampel.ogg"
     },
     "train": {
@@ -3743,6 +4082,7 @@
       "licence": "Public domain",
       "matches": "zug",
       "sha256": "8ad8db166509ab5b229b9595b8ba8c567dfb0284b913f2b705f40e88f74eab11",
+      "snr": 46.5,
       "source": "De-Zug.ogg"
     },
     "train-station": {
@@ -3754,6 +4094,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "bahnhof",
       "sha256": "28bb493967154b866a6692b94dfa831e24d73af38e42b17e83ee098f548f79cb",
+      "snr": 47.1,
       "source": "LL-Q188 (deu)-Poslovitch-Bahnhof.wav"
     },
     "training": {
@@ -3765,6 +4106,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ausbildung",
       "sha256": "498b2cc4fb0c8e4fa22e3959180cfbb796fff5891e2fe4259d0fa38599b840b5",
+      "snr": 86.8,
       "source": "De-Ausbildung.ogg"
     },
     "translate": {
@@ -3776,6 +4118,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "übersetzen",
       "sha256": "0ed84f6b0f597d826ea38142371daa21fcdeef5481d91463bef2b9327994e134",
+      "snr": 69.7,
       "source": "LL-Q188 (deu)-Natschoba-übersetzen.wav"
     },
     "tree": {
@@ -3787,6 +4130,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "baum",
       "sha256": "c9d2e5d3f54f549119000c028cf5e2ed314901a1126a56f5b95d7a4deb2bb606",
+      "snr": 86.7,
       "source": "De-baum.ogg"
     },
     "trousers": {
@@ -3798,6 +4142,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hose",
       "sha256": "6d86d4bcc3a04b37d9412a237ac0f0cdc3e69dd98a5a832d41a8a76a268d4e91",
+      "snr": 87.3,
       "source": "De-hose.ogg"
     },
     "tv": {
@@ -3809,6 +4154,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "fernseher",
       "sha256": "62e3d08e720fd4f228722ea23d65b2aee4fa0c6f81055df7ac752c8d21a7dfa2",
+      "snr": 62.5,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Fernseher.wav"
     },
     "type": {
@@ -3820,6 +4166,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tippen",
       "sha256": "16bca13b391951918067242bafd83728081066be98691b63e3aa25eea2495189",
+      "snr": 87.8,
       "source": "De-tippen.ogg"
     },
     "umbrella": {
@@ -3831,6 +4178,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "regenschirm",
       "sha256": "b8d4212dc75599a70f0a27b21d74268dea674040d1e96ea34b749ce051002eeb",
+      "snr": 85.7,
       "source": "De-Regenschirm.ogg"
     },
     "understand": {
@@ -3842,6 +4190,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "verstehen",
       "sha256": "9ceb1e0f7ad76d27baec7fbb3343b5377dca400054c7968d24314eceab5f3a62",
+      "snr": 60.5,
       "source": "LL-Q188 (deu)-Natschoba-verstehen.wav"
     },
     "underwear": {
@@ -3852,6 +4201,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "unterwäsche",
       "sha256": "e2632c17993734312309accfad44a1b670ece2aadf00aa6d92eea75786256ee8",
+      "snr": 23.2,
       "source": "De-Unterwäsche.ogg"
     },
     "unlock": {
@@ -3862,6 +4212,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "aufschließen",
       "sha256": "24ca8fc6c95f6e9f2b25a1eddc7a5d24ae665f40c5d869329deefa94327b10ae",
+      "snr": 32.2,
       "source": "De-aufschließen.ogg"
     },
     "urgent": {
@@ -3873,6 +4224,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "dringend",
       "sha256": "c337d7b512d2d829e4779e488914ab5efd5af291c6ddf15d9a796737c3243547",
+      "snr": 55.0,
       "source": "LL-Q188 (deu)-Natschoba-dringend.wav"
     },
     "wait": {
@@ -3883,6 +4235,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "warten",
       "sha256": "688ce8a78801818c1d7065a3c20bfc0c788f6e6d8c2efcd7d517627cbd13c80e",
+      "snr": 32.0,
       "source": "De-warten.ogg"
     },
     "waiting-room": {
@@ -3894,6 +4247,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wartezimmer",
       "sha256": "cfab4a44494caf533c38f59f9fc2254199e433606f1659fa4de2e132a1b4ddef",
+      "snr": 87.4,
       "source": "De-Wartezimmer.ogg"
     },
     "waiting-time": {
@@ -3905,6 +4259,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wartezeit",
       "sha256": "9e091ec01782e3230b431076fffca18c3db4c050b54dfe81d3cc43fbdcbdb24f",
+      "snr": 86.7,
       "source": "De-Wartezeit.ogg"
     },
     "wake-up": {
@@ -3916,6 +4271,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "aufwachen",
       "sha256": "3a4401c8626f8ef5ad8f675a9993b48c8b0ee82d48e0659c21efcb0a7c6f25fa",
+      "snr": 61.4,
       "source": "LL-Q188 (deu)-Natschoba-aufwachen.wav"
     },
     "wall": {
@@ -3927,6 +4283,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wand",
       "sha256": "02ee2c1eacebd978e7586434475d4d8c9e464d8b6deaa5531513a3ac516f6136",
+      "snr": 86.8,
       "source": "De-wand.ogg"
     },
     "wallet": {
@@ -3938,6 +4295,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "geldbeutel",
       "sha256": "2a44c135eb4151a8cc3491de403063146153c8faca23cfd16d76ca946a1c2741",
+      "snr": 85.6,
       "source": "De-Geldbeutel.ogg"
     },
     "wardrobe": {
@@ -3949,6 +4307,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kleiderschrank",
       "sha256": "fb38b4e0da042046609a1887341eb6da3f21f069550746d0ec12f4a993130efe",
+      "snr": 86.1,
       "source": "De-Kleiderschrank.ogg"
     },
     "washing-machine": {
@@ -3960,6 +4319,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "waschmaschine",
       "sha256": "82cde2994efb8aae807f12b8cf36f6a90040bdb3a7b53da43dea22e0fa6c3498",
+      "snr": 87.1,
       "source": "De-Waschmaschine.ogg"
     },
     "watch-tv": {
@@ -3971,6 +4331,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fernsehen",
       "sha256": "87fb3f39c60d53124fd5d854d741ccfa181a91e83b77cf7a3b93f43acd908a76",
+      "snr": 86.9,
       "source": "De-fernsehen.ogg"
     },
     "water": {
@@ -3982,6 +4343,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wasser",
       "sha256": "b3ecdda35bb84bfd5dda04b84a1d3cce7438fd748f420327dc13832722702d3c",
+      "snr": 87.0,
       "source": "De-wasser.ogg"
     },
     "way": {
@@ -3993,6 +4355,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "weg",
       "sha256": "8a1a3850039f04669049361b29381da57f40c620ccc9f173e848ee880c83b5f6",
+      "snr": 87.3,
       "source": "De-weg.ogg"
     },
     "weather": {
@@ -4004,6 +4367,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wetter",
       "sha256": "da38ab561e55bbad75d3536661a75986f82bfce723434f9e393419a9129c82b2",
+      "snr": 87.1,
       "source": "De-wetter.ogg"
     },
     "week": {
@@ -4015,6 +4379,7 @@
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "woche",
       "sha256": "d5ea90204565bb13a3096266a1d3c19622dbb54afe4a6f28f9b769dafed96a83",
+      "snr": 50.9,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Woche.wav"
     },
     "wind": {
@@ -4026,6 +4391,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wind",
       "sha256": "6a2522413dc6b8497fc74a6f19ea9bc40c927440d553c832cc547bdc28b0d70c",
+      "snr": 86.6,
       "source": "De-wind.ogg"
     },
     "window": {
@@ -4037,6 +4403,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fenster",
       "sha256": "93c2aedffaba6d2a18325e769cd435f3951f951379fa214096242b9f448ec9bb",
+      "snr": 86.9,
       "source": "De-fenster.ogg"
     },
     "word": {
@@ -4047,6 +4414,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "wort",
       "sha256": "1ab9640914621644eb7aad56b0ab22143bd5d1e97f7d1c5b344f9d20c0ddf01e",
+      "snr": 42.3,
       "source": "De-Wort.ogg"
     },
     "work": {
@@ -4058,6 +4426,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "arbeit",
       "sha256": "c5450249a786a7c07573c1b5804ce7269d78298ef22ac67899614cd5580053d7",
+      "snr": 87.0,
       "source": "De-arbeit.ogg"
     },
     "work-permit": {
@@ -4069,6 +4438,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "arbeitserlaubnis",
       "sha256": "2404c6ccb7002677f758314d2b4c92ebce5dd91aa844f20a3ce5a7c7a1798298",
+      "snr": 86.7,
       "source": "De-Arbeitserlaubnis.ogg"
     },
     "working-hours": {
@@ -4091,6 +4461,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schreiben",
       "sha256": "ff69a057cd9d5b60dcdd23e856ccc0596b68944088a77d2c9430bb1ee1fb4437",
+      "snr": 67.7,
       "source": "LL-Q188 (deu)-Natschoba-schreiben.wav"
     },
     "yawn": {
@@ -4102,6 +4473,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gähnen",
       "sha256": "c8eeb8bcbf4719589412f5e329706e3ad9c9ff8344cb888f1a7547c87572c759",
+      "snr": 86.9,
       "source": "De-gähnen.ogg"
     },
     "yes": {
@@ -4113,6 +4485,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ja",
       "sha256": "f0eae6349da2b2f47c890beda5d353ffc3d6f178d867afb2b4ca395a1eb5f5a9",
+      "snr": 65.3,
       "source": "LL-Q188 (deu)-Natschoba-ja.wav"
     }
   }

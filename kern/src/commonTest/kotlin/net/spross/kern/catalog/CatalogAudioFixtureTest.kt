@@ -70,6 +70,10 @@ class CatalogAudioFixtureTest {
         val plain = catalog.audio.getValue("uk").words.getValue("mouse")
         assertEquals(0.0, plain.gain)
         assertEquals(0L, plain.leadMs)
+        // `snr` rides along the same way, but corrects nothing — it is carried so lint can
+        // see how clean a pack is, and never reaches a player.
+        assertEquals(62.3, loud.snr)
+        assertEquals(0.0, plain.snr)
     }
 
     @Test

@@ -155,8 +155,15 @@ def copy_verified(source, target):
     return digest
 
 
-def playback_index(loudness, leading, peak):
-    """The optional `gain`/`lead` for one entry — both absent when there is nothing to do."""
+def playback_index(loudness, leading, peak, floor):
+    """The optional `gain`/`lead` plus `snr` for one entry — absent when there is nothing to say.
+
+    `snr` is peak minus noise floor: how far the word stands above the hiss under it. Unlike
+    the other two it changes no playback — it is carried so the lint can see the SHAPE of a
+    pack and refuse a rebuild that quietly reintroduces the noise a previous one removed.
+    Measured, never applied: filtering the file would be an adaptation under BY-SA and would
+    break the sha256 that pins it.
+    """
     boost = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, ANALYSIS['target_lufs'] - loudness)), 1)
     # why: floor, never round — a gain rounded up to the shipped decimal spends the safety
     # margin it was granted, and the file it was granted for is the one already near clipping.
@@ -167,6 +174,8 @@ def playback_index(loudness, leading, peak):
         index['gain'] = gain
     if lead:
         index['lead'] = lead
+    if floor is not None:
+        index['snr'] = round(peak - floor, 1)
     return index
 
 
@@ -181,10 +190,10 @@ def copy_and_analyze(copies):
     measured = audio_measure.measure_all(FFMPEG, [target for _, _, target in copies])
     analysed = {}
     for id, _, target in copies:
-        loudness, leading, peak = measured[target]
+        loudness, leading, peak, floor = measured[target]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % target)
-        analysed[id] = (digests[id], playback_index(loudness, leading, peak))
+        analysed[id] = (digests[id], playback_index(loudness, leading, peak, floor))
     return analysed
 
 

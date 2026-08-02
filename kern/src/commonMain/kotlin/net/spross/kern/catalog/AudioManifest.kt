@@ -25,6 +25,13 @@ internal data class AudioRecording(
      */
     val gain: Double,
     val leadMs: Long,
+    /**
+     * Peak minus noise floor in dB — how far the word stands above the hiss under it.
+     * A MEASUREMENT like the other two, but one nothing plays: it exists so lint can see
+     * the shape of a pack and refuse a rebuild that quietly reintroduces noise a previous
+     * one removed. 0.0 where the converter recorded none.
+     */
+    val snr: Double,
 )
 
 /**
@@ -95,7 +102,8 @@ internal class AudioManifest(
 
 internal object AudioManifestParser {
     private val WORD_KEYS =
-        setOf("file", "matches", "licence", "licenceUrl", "author", "source", "sha256", "gain", "lead")
+        setOf("file", "matches", "licence", "licenceUrl", "author", "source", "sha256",
+              "gain", "lead", "snr")
     private val LETTER_KEYS = WORD_KEYS - "matches"
 
     /** The converter clamps here: past 10× amplitude the index is likelier wrong than the file. */
@@ -141,6 +149,7 @@ internal object AudioManifestParser {
                 sha256 = entry.requireNonBlank(path, context, "sha256"),
                 gain = entry.gain(path, context),
                 leadMs = entry.leadMs(path, context),
+                snr = entry.optionalDouble(path, context, "snr") ?: 0.0,
             )
         }
     }

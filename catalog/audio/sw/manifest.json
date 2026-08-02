@@ -10,6 +10,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "anwani",
       "sha256": "2fcbc34b4aa26ef703b0f2258160bffd6c3c69df703af98d3d107f3b69abd90d",
+      "snr": 49.5,
       "source": "Sw-ke-anwani.flac"
     },
     "always": {
@@ -21,6 +22,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "daima",
       "sha256": "3a392cee015ea6201ea27e784e8b6f44da6307539512ca2583614016b2527c5a",
+      "snr": 49.3,
       "source": "Sw-ke-daima.flac"
     },
     "answer": {
@@ -32,6 +34,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jibu",
       "sha256": "3ccaa0a1f7d5e5db6130fcafdb80c02489622b06a6e280309c87f988c751db30",
+      "snr": 49.6,
       "source": "Sw-ke-jibu.flac"
     },
     "apartment": {
@@ -43,6 +46,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fleti",
       "sha256": "a9188532d2dee0e79ab1c93d93edd746a53f99e3c51310570601b91109ec639a",
+      "snr": 53.2,
       "source": "Sw-ke-fleti.flac"
     },
     "application": {
@@ -54,6 +58,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ombi",
       "sha256": "1fcd98a7d5da8d12cdff0b692cc2ebb2e247efd841fab0886369bffccf0e057b",
+      "snr": 48.8,
       "source": "Sw-ke-ombi.flac"
     },
     "apply-for": {
@@ -65,6 +70,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuomba",
       "sha256": "a62b5d011a60249a97c5b1d55955aa28ba125a6b540c8055cd2bdfecefb26051",
+      "snr": 43.0,
       "source": "Sw-ke-kuomba.flac"
     },
     "appointment": {
@@ -76,6 +82,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "miadi",
       "sha256": "08f937377dcfebc77686f2502f43545d4176324a88344a8baa9f7c855b72db89",
+      "snr": 57.9,
       "source": "Sw-ke-miadi.flac"
     },
     "approve": {
@@ -87,6 +94,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuidhinisha",
       "sha256": "94d5f14ddac8d4c73de5587309c2f8815626429346438abd95a3e5e43574b30b",
+      "snr": 43.5,
       "source": "Sw-ke-kuidhinisha.flac"
     },
     "arrange": {
@@ -98,6 +106,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kupanga",
       "sha256": "73f840f3e5fed6d296ce4671b633628993702b4d69f3d98448557de9359b79f4",
+      "snr": 48.0,
       "source": "Sw-ke-kupanga.flac"
     },
     "arrive": {
@@ -109,6 +118,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kufika",
       "sha256": "1ccf5a1c0d9554e9e7c3cea8a3c1a11e539e7de834e7731f7df6d711a0c6a5b2",
+      "snr": 83.7,
       "source": "Sw-ke-kufika.flac"
     },
     "ask": {
@@ -120,6 +130,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuuliza",
       "sha256": "470d6444cc655c2835e5efa996b71e931468ccc58030e02221faa2259247bebe",
+      "snr": 46.6,
       "source": "Sw-ke-kuuliza.flac"
     },
     "back": {
@@ -131,6 +142,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mgongo",
       "sha256": "9e305c11058fcd82a706265dba5315b65676524443a0e0dd4316705cb48d5b89",
+      "snr": 47.5,
       "source": "Sw-ke-mgongo.flac"
     },
     "bad": {
@@ -142,6 +154,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "baya",
       "sha256": "dbee59f35bb7b8f5b21ce388d9403ce5485d87897ae5342c0ba1072526ba276a",
+      "snr": 47.8,
       "source": "Sw-ke-baya.flac"
     },
     "bag": {
@@ -152,6 +165,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "begi",
       "sha256": "afda741bd6df035c55ebc49952635e443eaa92ae184c7a2b071c86efc81c8be1",
+      "snr": 44.6,
       "source": "Sw-ke-begi.flac"
     },
     "bake": {
@@ -163,6 +177,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuoka",
       "sha256": "0debb7c652979d1cb68f6471ebde47d8a002e8b724442925a69a00ae5a079f28",
+      "snr": 45.1,
       "source": "Sw-ke-kuoka.flac"
     },
     "be-called": {
@@ -174,6 +189,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuitwa",
       "sha256": "8bf70c13ea43eae64a2b75bf75064e1fd29ccc10fe3136e37c56284c365495f1",
+      "snr": 45.4,
       "source": "Sw-ke-kuitwa.flac"
     },
     "be-late": {
@@ -185,6 +201,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuchelewa",
       "sha256": "abda59a568e153fa474d96e375f3ef7d76b651d8661becccb5110917c60a5298",
+      "snr": 50.3,
       "source": "Sw-ke-kuchelewa.flac"
     },
     "bed": {
@@ -196,6 +213,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kitanda",
       "sha256": "054588946a1502531abde8a8bce9737e068629efa973d47a74dd8437ea03ec61",
+      "snr": 56.6,
       "source": "Sw-ke-kitanda.flac"
     },
     "belt": {
@@ -207,6 +225,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mkanda",
       "sha256": "e7d27a6ca9685a3077853b6532440f9a7cbcbd968e89d8ed33409b21b740e0b4",
+      "snr": 53.9,
       "source": "Sw-ke-mkanda.flac"
     },
     "bicycle": {
@@ -218,6 +237,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "baiskeli",
       "sha256": "34441818264b6ed11fc01f63e32c87436633f57342a3e3ba02712e1339b3b3f7",
+      "snr": 43.0,
       "source": "Sw-ke-baiskeli.flac"
     },
     "big": {
@@ -229,6 +249,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kubwa",
       "sha256": "5e4cef9596993628acfb7659c7106904346805c3cc40c30713efe137f1cc9f9a",
+      "snr": 57.5,
       "source": "Sw-ke-kubwa.flac"
     },
     "blanket": {
@@ -240,6 +261,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "blanketi",
       "sha256": "fc6d831979bd6eb18d50a9f6dc7942088ce2fb258d5dc69070f3e4960db4532c",
+      "snr": 43.7,
       "source": "Sw-ke-blanketi.flac"
     },
     "blood": {
@@ -250,6 +272,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "damu",
       "sha256": "0fcbf8218c6101ae03fae2bb42246799a816d2fa17152fec45c06ed730dd4ed4",
+      "snr": 31.8,
       "source": "Sw-ke-damu.flac"
     },
     "board": {
@@ -261,6 +284,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ubao",
       "sha256": "1d0883d096b060228e9fbc31caf2164b4e3c152aa4749d8fefc10602c41ccc2e",
+      "snr": 51.4,
       "source": "Sw-ke-ubao.flac"
     },
     "boss": {
@@ -272,6 +296,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bosi",
       "sha256": "b7d9cae30e1ebada2c4dbbd0d7c73042bbe9a5b6c3a4c1f57b8ac8df0aff9bb3",
+      "snr": 49.6,
       "source": "Sw-ke-bosi.flac"
     },
     "bread": {
@@ -283,6 +308,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mkate",
       "sha256": "ddfab933875e3f558ac5b7027c3abf5a4a1c075c686d9456c7e44f79662d7ab1",
+      "snr": 54.2,
       "source": "Sw-ke-mkate.flac"
     },
     "break": {
@@ -294,6 +320,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pumziko",
       "sha256": "517b704f07b1d38b8c803c3218c190696333b3b66cd7f8612e0f5e184b2bd941",
+      "snr": 56.1,
       "source": "Sw-ke-pumziko.flac"
     },
     "bring": {
@@ -305,6 +332,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuleta",
       "sha256": "61cae504c3c357e826bf955e5e8657194f443e15ae05645e02aeb70f930071a8",
+      "snr": 49.9,
       "source": "Sw-ke-kuleta.flac"
     },
     "bucket": {
@@ -316,6 +344,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ndoo",
       "sha256": "fbacc0297a44cac6c68bad199691bda82ae5bca4b336fa4236e2cb743ea7bea5",
+      "snr": 56.5,
       "source": "Sw-ke-ndoo.flac"
     },
     "bus": {
@@ -326,6 +355,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "basi",
       "sha256": "1c5453dfc57a071338c3fd33941287fb9e321d92af98a4fe8d361878c9ba394d",
+      "snr": 37.4,
       "source": "Sw-ke-basi.flac"
     },
     "buy": {
@@ -337,6 +367,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kununua",
       "sha256": "1fa12e63e9a7c5f42e46831d133f5963148c2f08d670f5b2412de32e50b81463",
+      "snr": 47.4,
       "source": "Sw-ke-kununua.flac"
     },
     "cable": {
@@ -348,6 +379,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kebo",
       "sha256": "f8576ddf02a0547853548f1563c671ce7afe7ad1a19f65f419ac27e01024a174",
+      "snr": 42.8,
       "source": "Sw-ke-kebo.flac"
     },
     "calendar": {
@@ -359,6 +391,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kalenda",
       "sha256": "7f87206dbba8e5e45aeeb21376c18df865a1c85ceefffa38ccfe82dd9a59a4c5",
+      "snr": 51.5,
       "source": "Sw-ke-kalenda.flac"
     },
     "cancel": {
@@ -370,6 +403,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kughairi",
       "sha256": "609f9da405ab7d47f029abd1b3231768f1d3eea7aacae7cc244adf83d440dcd5",
+      "snr": 46.7,
       "source": "Sw-ke-kughairi.flac"
     },
     "car": {
@@ -381,6 +415,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gari",
       "sha256": "3e8bca7bf63c741f6a45f37fe864405e40cf99e82b4fabf631d998c0403ac157",
+      "snr": 48.9,
       "source": "Sw-ke-gari.flac"
     },
     "careful": {
@@ -392,6 +427,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "angalia",
       "sha256": "7c114a07771332afa5736be82ebce408ba50e2f4d99b4747214192af6b1cbec1",
+      "snr": 57.1,
       "source": "Sw-ke-angalia.flac"
     },
     "carpet": {
@@ -403,6 +439,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zulia",
       "sha256": "11f1650ff29ab12db03627212b6c91df96bd07c6d22125dc470e36d561ba2ac6",
+      "snr": 51.6,
       "source": "Sw-ke-zulia.flac"
     },
     "certificate": {
@@ -414,6 +451,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "cheti",
       "sha256": "e3caa30ba395a2056716b122465e8690b5cab69abce43c603c16fc12d5fa19ea",
+      "snr": 53.9,
       "source": "Sw-ke-cheti.flac"
     },
     "chair": {
@@ -425,6 +463,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kiti",
       "sha256": "ab761d22f555bc9e4c6b81f4b067cae36b56ee35ad04f2fa50a0fb8e1f3ca1f5",
+      "snr": 53.5,
       "source": "Sw-ke-kiti.flac"
     },
     "charger": {
@@ -436,6 +475,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "chaja",
       "sha256": "7856c602db5ea8150b64d7472c6d36f93db198ddc5033504d9aabffbee67ade2",
+      "snr": 54.1,
       "source": "Sw-ke-chaja.flac"
     },
     "cheese": {
@@ -447,6 +487,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jibini",
       "sha256": "b0a0064538efd88497e754fba9ce8ff48bc02f0a02847b3af54810bfb6df89b8",
+      "snr": 41.1,
       "source": "Sw-ke-jibini.flac"
     },
     "classroom": {
@@ -458,6 +499,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "darasa",
       "sha256": "c1fda1ebf7687485526610a4130ae0e3d116dd3ef6cd96104549f2a08c2cdb7d",
+      "snr": 49.6,
       "source": "Sw-ke-darasa.flac"
     },
     "clean": {
@@ -469,6 +511,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusafisha",
       "sha256": "9c50e821c640234dbb62963485fbf18a61cc6050595d276d023df0f1426ef09d",
+      "snr": 49.1,
       "source": "Sw-ke-kusafisha.flac"
     },
     "clothes": {
@@ -480,6 +523,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nguo",
       "sha256": "4642692dfa78a7437bc13b11b7557550e30428ed09cd56b9802fe452182b4fca",
+      "snr": 42.9,
       "source": "Sw-ke-nguo.flac"
     },
     "coat": {
@@ -491,6 +535,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "koti",
       "sha256": "ec893588dfc9b1d0822b54b19a280543897bd527b176f1d9c0445a6a5d67943c",
+      "snr": 54.8,
       "source": "Sw-ke-koti.flac"
     },
     "coffee": {
@@ -502,6 +547,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kahawa",
       "sha256": "51a0da5f4c692fda44f7b3aa7437f859209aadb227ef9a3dd56a923566336940",
+      "snr": 45.8,
       "source": "Sw-ke-kahawa.flac"
     },
     "cold": {
@@ -513,6 +559,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mafua",
       "sha256": "758d14132e5cf8c2f75e7546b2dd2d56717999f2becf5bdac31b6466615c6fa6",
+      "snr": 56.0,
       "source": "Sw-ke-mafua.flac"
     },
     "come": {
@@ -524,6 +571,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuja",
       "sha256": "62eabeb3d05fe6cbeb02881b1ed0506deeff7c4df69b4beb91d7495a11806864",
+      "snr": 49.9,
       "source": "Sw-ke-kuja.flac"
     },
     "company": {
@@ -535,6 +583,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kampuni",
       "sha256": "6ab2920a229cf27720f32bd2c71f44f91354803023ab7e5c32630e76747d2d5c",
+      "snr": 56.8,
       "source": "Sw-ke-kampuni.flac"
     },
     "confirm": {
@@ -546,6 +595,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuthibitisha",
       "sha256": "e91594c2ba178c0a00e55744ac0ddd158d772fc3561eadb96d2a60f97d416e42",
+      "snr": 46.9,
       "source": "Sw-ke-kuthibitisha.flac"
     },
     "confirmation": {
@@ -557,6 +607,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "uthibitisho",
       "sha256": "0f5da4f0715e45093feb4f0c7fa633fc1b8e50828de1ce64473f08a0880beca8",
+      "snr": 48.9,
       "source": "Sw-ke-uthibitisho.flac"
     },
     "contract": {
@@ -568,6 +619,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mkataba",
       "sha256": "06a00cd1f09dfa1212a5e12f01536f95fe1e041f2ab63b0e6e4f95a011cbb58d",
+      "snr": 52.0,
       "source": "Sw-ke-mkataba.flac"
     },
     "cook": {
@@ -579,6 +631,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kupika",
       "sha256": "4c20cc043c2381891745cfaa832a253c361fde6b28d70421a087e1f5f78331a0",
+      "snr": 47.5,
       "source": "Sw-ke-kupika.flac"
     },
     "correct": {
@@ -590,6 +643,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusahihisha",
       "sha256": "877a2a9cf9a639e07ea791e0750388e8758a797846ec8a06c1f9c97563f1ecaa",
+      "snr": 49.8,
       "source": "Sw-ke-kusahihisha.flac"
     },
     "cough": {
@@ -601,6 +655,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kikohozi",
       "sha256": "22cf853708ed416d3db97dce0fc947e62cd9951f7287e19a356884b74bb860d3",
+      "snr": 52.4,
       "source": "Sw-ke-kikohozi.flac"
     },
     "course": {
@@ -612,6 +667,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kozi",
       "sha256": "1754703f15691196ef009c684336a3cb3fc685af9bd726b1c9bf849c8de0cd9d",
+      "snr": 56.1,
       "source": "Sw-ke-kozi.flac"
     },
     "cream": {
@@ -623,6 +679,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "krimu",
       "sha256": "052a8acc660e94a8b5dbe2d9990040df648633aac41a2d81ad86a2fdc0a969b6",
+      "snr": 48.6,
       "source": "Sw-ke-krimu.flac"
     },
     "cup": {
@@ -634,6 +691,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kikombe",
       "sha256": "d802a3ed4efe30295f97724aac09210d466a58ff7b26e68b2d179f7200113074",
+      "snr": 44.1,
       "source": "Sw-ke-kikombe.flac"
     },
     "curtain": {
@@ -645,6 +703,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pazia",
       "sha256": "3fb4d38c05ace8bb12645728567d446a8686785cf0921813fa1e9e9b6e9a5b65",
+      "snr": 49.2,
       "source": "Sw-ke-pazia.flac"
     },
     "cut": {
@@ -656,6 +715,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukata",
       "sha256": "ddd26f5359ef4b69835a9a6de098cd32706d3b2d1c9d1351a1e4b99f69955d62",
+      "snr": 49.1,
       "source": "Sw-ke-kukata.flac"
     },
     "cv": {
@@ -667,6 +727,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wasifu",
       "sha256": "aa2acf931804dfbc74f1aaa5cdc5a7e4cbecc6c1d75a8bcf218977782b3ef08a",
+      "snr": 82.9,
       "source": "Sw-ke-wasifu.flac"
     },
     "date": {
@@ -678,6 +739,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tarehe",
       "sha256": "7bf021a566cd9cbf8aa9be1b326502c22d7d739d350ca608e47b51e46ab91297",
+      "snr": 54.5,
       "source": "Sw-ke-tarehe.flac"
     },
     "day": {
@@ -689,6 +751,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "siku",
       "sha256": "07afdb9ec03c5db08e0e51fda343a103bfe7eb780cf8dd2d1c1822050759f8f4",
+      "snr": 49.6,
       "source": "Sw-ke-siku.flac"
     },
     "delete": {
@@ -700,6 +763,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kufuta",
       "sha256": "339e66b6f651d460c6d8511fc7cbb216dc3a46e37f1cd16315499dbc1951046f",
+      "snr": 46.3,
       "source": "Sw-ke-kufuta.flac"
     },
     "depart": {
@@ -711,6 +775,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuondoka",
       "sha256": "fe96727c1594340ea40d7204c5ba51fb98f3367e59bd74c38b6f540143686067",
+      "snr": 82.9,
       "source": "Sw-ke-kuondoka.flac"
     },
     "dictionary": {
@@ -722,6 +787,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kamusi",
       "sha256": "55db11bb6b8c650ef13e728d44c6ecf0e3f79b2c3a6c43f69146e7da61c8e70b",
+      "snr": 57.2,
       "source": "Sw-ke-kamusi.flac"
     },
     "dirty": {
@@ -733,6 +799,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "chafu",
       "sha256": "952f3da0131c41add29154e8985b9fe379b02dbf7bc464ac05bdfe4664f0888e",
+      "snr": 47.3,
       "source": "Sw-ke-chafu.flac"
     },
     "doctor": {
@@ -743,6 +810,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "daktari",
       "sha256": "bbad951dc4942fc9ac578761502d7dbe1cc6ca09f5e40fa972d0f6b62ba9a67b",
+      "snr": 41.9,
       "source": "Sw-ke-daktari.flac"
     },
     "documents": {
@@ -754,6 +822,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nyaraka",
       "sha256": "022b861fc061cdd7ddfc2066029555059e9009fc48b1d0c247582c2f9be8532e",
+      "snr": 53.3,
       "source": "Sw-ke-nyaraka.flac"
     },
     "door": {
@@ -765,6 +834,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mlango",
       "sha256": "9b6626318c91a248411a515a35073a4f3f5fa5a17194a1b9d72a55b0f714be4f",
+      "snr": 55.6,
       "source": "Sw-ke-mlango.flac"
     },
     "doorbell": {
@@ -776,6 +846,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kengele",
       "sha256": "818aecf335ac223fd76d3c845e89c3e446a0f62b6ad11226fb7165adcfa1cf43",
+      "snr": 48.6,
       "source": "Sw-ke-kengele.flac"
     },
     "dress": {
@@ -787,6 +858,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gauni",
       "sha256": "5958826d434efe9e12c1abcc0d9dbe70aedad5fb602e82102ec1f533738227b8",
+      "snr": 55.8,
       "source": "Sw-ke-gauni.flac"
     },
     "drink": {
@@ -798,6 +870,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kunywa",
       "sha256": "5493878c1a722741aecac9c73ab13a9a59c6d05a76078338c0fa5148d7cfc4aa",
+      "snr": 46.1,
       "source": "Sw-ke-kunywa.flac"
     },
     "ear": {
@@ -809,6 +882,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sikio",
       "sha256": "0f395f3df54cba63553870a02fd7a4d8997168d126aeb68dbb6c3b0901b5066e",
+      "snr": 54.0,
       "source": "Sw-ke-sikio.flac"
     },
     "eat": {
@@ -820,6 +894,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kula",
       "sha256": "04b583fac431569f4a054a46f4bfa86a19f642160d44edd04a615dd90b4d0cd6",
+      "snr": 47.9,
       "source": "Sw-ke-kula.flac"
     },
     "egg": {
@@ -831,6 +906,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "yai",
       "sha256": "be29f55c1c067538f14c4612697a9b39dd31d4fac532352299611cb1b68c6e7f",
+      "snr": 56.1,
       "source": "Sw-ke-yai.flac"
     },
     "emergency": {
@@ -842,6 +918,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "dharura",
       "sha256": "acbdb69c36a540f0543bb0bce24c52294cc00c5c005ad2c0897af05946714692",
+      "snr": 47.9,
       "source": "Sw-ke-dharura.flac"
     },
     "enter": {
@@ -853,6 +930,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuingia",
       "sha256": "f4183af0a58666650048b55fea30cc1124adbd4fcc35272281ce4f230a8f4332",
+      "snr": 83.1,
       "source": "Sw-ke-kuingia.flac"
     },
     "evening": {
@@ -864,6 +942,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jioni",
       "sha256": "da172e261c759b27c505ef21ac1178d87787d5689c04174f1603e82f63608a61",
+      "snr": 56.9,
       "source": "Sw-ke-jioni.flac"
     },
     "exam": {
@@ -875,6 +954,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mtihani",
       "sha256": "1ce4ad7114f5979dacd4cfda57506348e77bbbbafbad7d9f8e33a782db96a932",
+      "snr": 57.3,
       "source": "Sw-ke-mtihani.flac"
     },
     "excuse-me": {
@@ -885,6 +965,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "samahani",
       "sha256": "bf346ed0413a5c7f93b0e3df3a73c42b920e70e8b8d9ee7d3f04978f8638cbaa",
+      "snr": 38.8,
       "source": "Sw-ke-samahani.flac"
     },
     "fast": {
@@ -896,6 +977,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "haraka",
       "sha256": "a8c466e84944febf6d20ac33374283a3969ce3a90b1c1c447af7f5af08581165",
+      "snr": 45.3,
       "source": "Sw-ke-haraka.flac"
     },
     "fee": {
@@ -907,6 +989,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ada",
       "sha256": "7bb5febd09066e87a7e2bfc1c4da9fecb84f179488fd0def3ad5c727edc29dad",
+      "snr": 55.1,
       "source": "Sw-ke-ada.flac"
     },
     "fever": {
@@ -918,6 +1001,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "homa",
       "sha256": "9154b6948bbb5986288069af1bde530d5f70d399a9eae0047e7222e58eb9d629",
+      "snr": 45.4,
       "source": "Sw-ke-homa.flac"
     },
     "flower": {
@@ -929,6 +1013,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ua",
       "sha256": "82d9cd8fba58200aeb334cbed037ffa068017827b7cfb9a9696bd116704b44a6",
+      "snr": 56.9,
       "source": "Sw-ke-ua.flac"
     },
     "folder": {
@@ -940,6 +1025,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "folda",
       "sha256": "ea795655a4cbe3eeaa43b4cc499c26d2eda266bb611f2e8e7f4f63b149c15265",
+      "snr": 38.6,
       "source": "Sw-ke-folda.flac"
     },
     "fork": {
@@ -951,6 +1037,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "uma",
       "sha256": "20be2d259cadc6f1e9f8ba104260c929937aff463eaf6c3fc0c231e43832a603",
+      "snr": 55.0,
       "source": "Sw-ke-uma.flac"
     },
     "form": {
@@ -962,6 +1049,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fomu",
       "sha256": "5c31172938c64d1bbdad0e2e67ebbe6383cc0e2aafe686980f63f15c2e994f20",
+      "snr": 48.0,
       "source": "Sw-ke-fomu.flac"
     },
     "fridge": {
@@ -973,6 +1061,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "friji",
       "sha256": "d88d0910bfa308edbd22f4f5d3d011234ab0ac975829e04b11a26a9841a6f9c9",
+      "snr": 52.4,
       "source": "Sw-ke-friji.flac"
     },
     "friend": {
@@ -984,6 +1073,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "rafiki",
       "sha256": "9c1c96a002d24bdca5b23db981d6d7878698a9579ac2f722fb61462496eaf077",
+      "snr": 58.9,
       "source": "Sw-ke-rafiki.flac"
     },
     "fry": {
@@ -995,6 +1085,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukaanga",
       "sha256": "894f59aa70873ab43b0d908764117cfff8665fe5c76f3517bfc17e6ce28e4825",
+      "snr": 44.3,
       "source": "Sw-ke-kukaanga.flac"
     },
     "get-dressed": {
@@ -1006,6 +1097,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuvaa",
       "sha256": "48784d2160c441967b0658bf7686b2ff1978e9cbce83e0c589ea8f68b9087993",
+      "snr": 48.3,
       "source": "Sw-ke-kuvaa.flac"
     },
     "get-up": {
@@ -1017,6 +1109,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuinuka",
       "sha256": "336525bd3331a4fd39c7b18f59d228d3b6a5c14d67986d7d9faf0362e299049c",
+      "snr": 50.4,
       "source": "Sw-ke-kuinuka.flac"
     },
     "give": {
@@ -1028,6 +1121,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kupa",
       "sha256": "068012a9e413728fdb047d78d558bc2be7ca2b3365fe32d21c0b70b0f77056d4",
+      "snr": 46.7,
       "source": "Sw-ke-kupa.flac"
     },
     "glove": {
@@ -1039,6 +1133,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "glavu",
       "sha256": "364e065a5d8e082c2466d8a94299d95878b110046ea1509fc48281823596cf8a",
+      "snr": 49.6,
       "source": "Sw-ke-glavu.flac"
     },
     "go": {
@@ -1050,6 +1145,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kwenda",
       "sha256": "cb3e4821d55acb7411c670d5dc5e56b00585cd0ca374193d74c0b397cad61518",
+      "snr": 49.7,
       "source": "Sw-ke-kwenda.flac"
     },
     "go-for-walk": {
@@ -1061,6 +1157,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kutembea",
       "sha256": "42320fe64db564c8d8b5f93f43cddb770566107ec4e590393d3b7b68f26496ad",
+      "snr": 47.9,
       "source": "Sw-ke-kutembea.flac"
     },
     "good": {
@@ -1072,6 +1169,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zuri",
       "sha256": "3cbfcef7d60a8a4d8ed7c5ccf451780b991ea7e47862961ed746d1b6d679868f",
+      "snr": 48.0,
       "source": "Sw-ke-zuri.flac"
     },
     "good-day": {
@@ -1083,6 +1181,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "habari",
       "sha256": "ab0dffeeec8997bc091912c1649905c8bbb4e130625f990ce13567fd1d5389b6",
+      "snr": 54.4,
       "source": "Sw-ke-habari.flac"
     },
     "goodbye": {
@@ -1094,6 +1193,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kwaheri",
       "sha256": "5499f06f89b722c42570bd1d7c2bad2309e56824684581c6197151132da057d1",
+      "snr": 53.3,
       "source": "Sw-ke-kwaheri.flac"
     },
     "grade": {
@@ -1105,6 +1205,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "alama",
       "sha256": "357c0e57b5d558a0365c570260641d3b768978935314b541e2ccf616e3f33b21",
+      "snr": 44.6,
       "source": "Sw-ke-alama.flac"
     },
     "greet": {
@@ -1116,6 +1217,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusalimia",
       "sha256": "376cf556df9121440436e8beac8b2620242bd9487e6c4a1bee8049a3325d1984",
+      "snr": 48.3,
       "source": "Sw-ke-kusalimia.flac"
     },
     "guest": {
@@ -1127,6 +1229,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mgeni",
       "sha256": "387ff6c86f8936b35ff2c793d98ca1dada16e3e73c611e874f88da9cff5ac158",
+      "snr": 55.6,
       "source": "Sw-ke-mgeni.flac"
     },
     "hair": {
@@ -1138,6 +1241,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nywele",
       "sha256": "dfff63db26cee519924b26fff6608a83309ba3d24b225bc50fae8f146a2ce893",
+      "snr": 53.5,
       "source": "Sw-ke-nywele.flac"
     },
     "hat": {
@@ -1149,6 +1253,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kofia",
       "sha256": "08cead1d0ed1890248ce79689d26705c9c3fd4cf2ee9433557cf00eb2ff46ac4",
+      "snr": 55.4,
       "source": "Sw-ke-kofia.flac"
     },
     "head": {
@@ -1160,6 +1265,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kichwa",
       "sha256": "be7e5d5c743fa25c893dc2ddfdf217b16bdfb0df3542ef5266e8d3a31be5a677",
+      "snr": 55.5,
       "source": "Sw-ke-kichwa.flac"
     },
     "hello": {
@@ -1171,6 +1277,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hujambo",
       "sha256": "732d328aa74420fd140776adb1fd0f83cd967ac5e423a925c8df05d035a4f1c6",
+      "snr": 49.2,
       "source": "Sw-ke-hujambo.flac"
     },
     "help": {
@@ -1182,6 +1289,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "msaada",
       "sha256": "82a5b928c9906cfa66a79c68a3c9d62f76b617b9ed5f082bf0a2bceb50783f3e",
+      "snr": 57.7,
       "source": "Sw-ke-msaada.flac"
     },
     "here": {
@@ -1193,6 +1301,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hapa",
       "sha256": "105509d0c64d6657f9abea0baf63cd7da5fb0e1bc39e97fd59c96a1515571706",
+      "snr": 56.2,
       "source": "Sw-ke-hapa.flac"
     },
     "hire": {
@@ -1204,6 +1313,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuajiri",
       "sha256": "91dad284e46cc3e18d5c8c4e295a1b08ff56fffaf62cd0b1cebbd636ba1d5682",
+      "snr": 48.6,
       "source": "Sw-ke-kuajiri.flac"
     },
     "holiday": {
@@ -1215,6 +1325,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "likizo",
       "sha256": "b125713affea13465a75075c73570eed6a9844c03001b301c9cf5945e52b4a27",
+      "snr": 50.7,
       "source": "Sw-ke-likizo.flac"
     },
     "hospital": {
@@ -1226,6 +1337,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hospitali",
       "sha256": "6e7049ce0b8ac48d7b2238cc782709b3fd714c5708a7c1f88da74e5663bf3a0a",
+      "snr": 46.5,
       "source": "Sw-ke-hospitali.flac"
     },
     "hour": {
@@ -1237,6 +1349,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "saa",
       "sha256": "cbfbc28f9407c3d1bb73d5c8d9697f808ce048b3176cc809baaf56362e1f32a0",
+      "snr": 58.7,
       "source": "Sw-ke-saa.flac"
     },
     "house": {
@@ -1248,6 +1361,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nyumba",
       "sha256": "0140c58dff5e34a0472b7600f605363e322c146ee8dfbfd193a87fcf06d80d17",
+      "snr": 54.5,
       "source": "Sw-ke-nyumba.flac"
     },
     "human": {
@@ -1259,6 +1373,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "binadamu",
       "sha256": "3ff773d5658cfd9d67106b65f1ba54b84bc82cdcfc7f06cc12da39f169450225",
+      "snr": 47.1,
       "source": "Sw-ke-binadamu.flac"
     },
     "hunger": {
@@ -1270,6 +1385,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "njaa",
       "sha256": "5981ed6b37503051075106e9a35caaddfe804df5c01290fe3f923cdefb8aeead",
+      "snr": 49.0,
       "source": "Sw-ke-njaa.flac"
     },
     "hurt": {
@@ -1281,6 +1397,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuuma",
       "sha256": "09ab34fc508ba8e62ee8f1444f139852726f81d33cb18ed18e65885004b53cd6",
+      "snr": 45.0,
       "source": "Sw-ke-kuuma.flac"
     },
     "i-love-you": {
@@ -1292,6 +1409,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nakupenda",
       "sha256": "acfb21bff1a298e746dded18df6d915c4f8cd45e4ee562422d35dc60fdc27c39",
+      "snr": 75.2,
       "source": "LL-Q26186450(swa)-Mndetatsin-Nakupenda(je t'aime).wav"
     },
     "id-card": {
@@ -1303,6 +1421,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kitambulisho",
       "sha256": "b73803e6bbfde3112e603b1246cc32f84dbda51442138e98f443628935c47b8b",
+      "snr": 48.6,
       "source": "Sw-ke-kitambulisho.flac"
     },
     "important": {
@@ -1314,6 +1433,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "muhimu",
       "sha256": "08e2b24258260bec2834dffa24200482057ba38f8a93dd345db534dd6a55f3ce",
+      "snr": 51.8,
       "source": "Sw-ke-muhimu.flac"
     },
     "inside": {
@@ -1325,6 +1445,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ndani",
       "sha256": "42406154bdeed880ef24b1cdeda921b3ed7e527ac316f7fa0dd39d408ccf2763",
+      "snr": 52.8,
       "source": "Sw-ke-ndani.flac"
     },
     "internet": {
@@ -1336,6 +1457,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "intaneti",
       "sha256": "6ea5bcccc1a6ef823a8344517ac876be1c6ca87613dfe8b044556c355bab20e9",
+      "snr": 58.0,
       "source": "Sw-ke-intaneti.flac"
     },
     "jacket": {
@@ -1347,6 +1469,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jaketi",
       "sha256": "78651a649112d077bc137bf8397a29dcb764dcc4fd84fc9ff70006466ab59c1f",
+      "snr": 55.2,
       "source": "Sw-ke-jaketi.flac"
     },
     "jog": {
@@ -1358,6 +1481,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukimbia",
       "sha256": "d1550fdb26a3180bd3393ba5d79c1c02c07d611e8d53519f0e0058a28ff017ab",
+      "snr": 46.4,
       "source": "Sw-ke-kukimbia.flac"
     },
     "key": {
@@ -1369,6 +1493,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ufunguo",
       "sha256": "8d8d60a1bbd58d5a5212cf85aafebc739e2950ef9ca4b6dcd41eaf65d75c7454",
+      "snr": 53.2,
       "source": "Sw-ke-ufunguo.flac"
     },
     "keyboard": {
@@ -1380,6 +1505,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kibodi",
       "sha256": "d09fbd28fb1188a4c13951d5a4cba1b5e4c8cf4573906ce39c1ddaaf142a8a81",
+      "snr": 48.9,
       "source": "Sw-ke-kibodi.flac"
     },
     "knife": {
@@ -1391,6 +1517,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kisu",
       "sha256": "71de371882d53ae81ea007f90e2fbd8ce87b77ff2ce9f1452f1ae21d9d90b150",
+      "snr": 51.9,
       "source": "Sw-ke-kisu.flac"
     },
     "know": {
@@ -1402,6 +1529,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kujua",
       "sha256": "2d0804f3ead8f342c07b812fc471925c16f0038abac98324f4276e52beb986e1",
+      "snr": 45.3,
       "source": "Sw-ke-kujua.flac"
     },
     "lamp": {
@@ -1413,6 +1541,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "taa",
       "sha256": "7fbbe879d4170e826bea15e4fdb2c74aeeaa35cf5dc6ecbae73d3e4861476ed2",
+      "snr": 55.0,
       "source": "Sw-ke-taa.flac"
     },
     "language": {
@@ -1424,6 +1553,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "lugha",
       "sha256": "10738f5dd4d32f85174e99f67ec7ae4490ed5db30c9ded3faed4f9fe64105ffc",
+      "snr": 54.9,
       "source": "Sw-ke-lugha.flac"
     },
     "laugh": {
@@ -1435,6 +1565,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kucheka",
       "sha256": "28aa385d7c22c177f5d2cba43c9b697cf9fbc318cd758e97f1fa6fb2113479e2",
+      "snr": 49.8,
       "source": "Sw-ke-kucheka.flac"
     },
     "learn-by-heart": {
@@ -1446,6 +1577,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukariri",
       "sha256": "dfe33d9de782310fe4203280d2361703ce2a68ca61a3ab71273830bc5e9e347b",
+      "snr": 48.7,
       "source": "Sw-ke-kukariri.flac"
     },
     "left": {
@@ -1457,6 +1589,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kushoto",
       "sha256": "cba34f7295c0afe2f580858c678b45272a1fbcbc6e6d9a83192e3eb7e34677df",
+      "snr": 54.3,
       "source": "Sw-ke-kushoto.flac"
     },
     "lesson": {
@@ -1468,6 +1601,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "somo",
       "sha256": "9e82122319a24333201f56db9411e6546b7d732320e5bd1cb557d5b919c2fed2",
+      "snr": 54.7,
       "source": "Sw-ke-somo.flac"
     },
     "letter": {
@@ -1479,6 +1613,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "barua",
       "sha256": "7b253560a0f6f0351a7251c721b229d0367fcc67f9981316d9711ff350bb3654",
+      "snr": 53.4,
       "source": "Sw-ke-barua.flac"
     },
     "light": {
@@ -1490,6 +1625,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mwanga",
       "sha256": "0eebcbf08c7c7ddda0b73d91188b3783185a40e9c3922b09df56e68bc75f078c",
+      "snr": 55.0,
       "source": "Sw-ke-mwanga.flac"
     },
     "live": {
@@ -1501,6 +1637,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuishi",
       "sha256": "23b33fd122e9521c8bb4f5c2d1f3e07fec1c848485839e2a3b8221a74c70dd88",
+      "snr": 49.0,
       "source": "Sw-ke-kuishi.flac"
     },
     "make": {
@@ -1512,6 +1649,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kufanya",
       "sha256": "53c441fdb97a34cb4a02e08516af462a21abab543aac535d8b932efa2ebaf363",
+      "snr": 45.5,
       "source": "Sw-ke-kufanya.flac"
     },
     "market": {
@@ -1523,6 +1661,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "soko",
       "sha256": "90ca6b32b67f2f650d8e9bf27b2d72a476169907a84bde143bf085f3d78ecd7e",
+      "snr": 49.1,
       "source": "Sw-ke-soko.flac"
     },
     "mattress": {
@@ -1533,6 +1672,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "godoro",
       "sha256": "500b3ca3471ad77bed5e6a2c38596219f476439faa22e7551b35d0b94c92c580",
+      "snr": 38.7,
       "source": "Sw-ke-godoro.flac"
     },
     "milk": {
@@ -1544,6 +1684,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "maziwa",
       "sha256": "141949f072d0d3d7f81cf84006c842e31a778a778ca81361900a4e48f460e62e",
+      "snr": 50.1,
       "source": "Sw-ke-maziwa.flac"
     },
     "mirror": {
@@ -1555,6 +1696,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kioo",
       "sha256": "b5bc5026eb110c152be498cda5fd7aab254e001625885a20f24d55345c78a810",
+      "snr": 56.0,
       "source": "Sw-ke-kioo.flac"
     },
     "money": {
@@ -1566,6 +1708,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pesa",
       "sha256": "5572b1a762a24dd56fb0d9a0967b255f13fc7da428862da18a2ab331f3b60e2b",
+      "snr": 53.6,
       "source": "Sw-ke-pesa.flac"
     },
     "morning": {
@@ -1577,6 +1720,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "asubuhi",
       "sha256": "f02a5d58a904e7778224b61d6438ddaa498b9e162707fe5ba07dc3f0b86088d1",
+      "snr": 45.0,
       "source": "Sw-ke-asubuhi.flac"
     },
     "mouse": {
@@ -1588,6 +1732,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kipanya",
       "sha256": "ed5b276a7a416916f33e387b844ac334a32ca66a3e424725a0121efe69985231",
+      "snr": 49.2,
       "source": "Sw-ke-kipanya.flac"
     },
     "movie": {
@@ -1598,6 +1743,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "filamu",
       "sha256": "6e874a52dfb0da3c198b607e5589e6d19bca5ed7256a3cda2bce2ccfef405ba0",
+      "snr": 41.0,
       "source": "Sw-ke-filamu.flac"
     },
     "much": {
@@ -1609,6 +1755,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ingi",
       "sha256": "e1ed2cc5698b10ff858fd1c46a0e22cd921fcfb2af4381025b862987509f6a4e",
+      "snr": 43.6,
       "source": "Sw-ke-ingi.flac"
     },
     "music": {
@@ -1620,6 +1767,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "muziki",
       "sha256": "05c7ecb8d9693c9fdd15abf89ba8ce39c7c0b4a91c938660d587021cc4988054",
+      "snr": 54.1,
       "source": "Sw-ke-muziki.flac"
     },
     "name": {
@@ -1630,6 +1778,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jina",
       "sha256": "bc41ffbf9c8655a9d914cfecc9e8f3d784b241f794ea5439f61b1276b40a75c2",
+      "snr": 41.0,
       "source": "Sw-ke-jina.flac"
     },
     "need": {
@@ -1641,6 +1790,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuhitaji",
       "sha256": "e532a22a55368eae70cd6443cd2d41580f1b763479b8b24cb76dbb545268a54e",
+      "snr": 48.5,
       "source": "Sw-ke-kuhitaji.flac"
     },
     "neighbour": {
@@ -1652,6 +1802,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jirani",
       "sha256": "135a35316ccf7cc28fa5248804c4385dff4199c562917d77d5a632115a544915",
+      "snr": 44.7,
       "source": "Sw-ke-jirani.flac"
     },
     "new": {
@@ -1663,6 +1814,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pya",
       "sha256": "fc7a07bad98aadae493d222859474d3517bb7db57ccd1625028420f57203848d",
+      "snr": 83.5,
       "source": "Sw-ke-pya.flac"
     },
     "newspaper": {
@@ -1674,6 +1826,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gazeti",
       "sha256": "8d55dfbbcb162a908e14fbb205d4532ec7ca7d6673a4c5c8861bd6f06171fcf9",
+      "snr": 54.9,
       "source": "Sw-ke-gazeti.flac"
     },
     "night": {
@@ -1685,6 +1838,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "usiku",
       "sha256": "831b474d98caeecc66d5dfafd693881ba2b60bbbf4d6b01888299dcbf13263a9",
+      "snr": 52.9,
       "source": "Sw-ke-usiku.flac"
     },
     "no": {
@@ -1696,6 +1850,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hapana",
       "sha256": "353546624a27b21eaadb056ab18a05b79303aa828cfda01b9f715cf0a07769ef",
+      "snr": 57.8,
       "source": "Sw-ke-hapana.flac"
     },
     "notebook": {
@@ -1706,6 +1861,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "daftari",
       "sha256": "3605b3c63261ed9eace90eb6a4c4694132fb5e745199d297009a9711be655805",
+      "snr": 33.2,
       "source": "Sw-ke-daftari.flac"
     },
     "now": {
@@ -1717,6 +1873,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sasa",
       "sha256": "d2be54e5aa0691878232e619f2b8fbd51cee0331e1918781bc6a3b7f345aa79b",
+      "snr": 57.8,
       "source": "Sw-ke-sasa.flac"
     },
     "old": {
@@ -1728,6 +1885,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zee",
       "sha256": "22a331d22ce61188144794c60c8cf73a7face7664853d1ec74a569cd3e90c933",
+      "snr": 55.8,
       "source": "Sw-ke-zee.flac"
     },
     "outdoors": {
@@ -1739,6 +1897,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nje",
       "sha256": "8708509298a0189352887dc3891fdbda44a139aab7ec1069e18794d6048a3035",
+      "snr": 39.6,
       "source": "Sw-ke-nje.flac"
     },
     "oven": {
@@ -1750,6 +1909,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "oveni",
       "sha256": "423a279ce9e8b2ccaf42e28357714b75cc5d45f7b7ad9aa555ef01be94d957e3",
+      "snr": 50.9,
       "source": "Sw-ke-oveni.flac"
     },
     "page": {
@@ -1761,6 +1921,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ukurasa",
       "sha256": "29555010442606db4a722b2129b33ce1ecd115bd0c49867a8fcb0e496728b809",
+      "snr": 59.2,
       "source": "Sw-ke-ukurasa.flac"
     },
     "pain": {
@@ -1772,6 +1933,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "maumivu",
       "sha256": "6364630fe497984f6d48e060bdbb1e7e575bbd6bfa0ec8cdb30d28d2ea6822ff",
+      "snr": 48.3,
       "source": "Sw-ke-maumivu.flac"
     },
     "pan": {
@@ -1783,6 +1945,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kikaango",
       "sha256": "5928329bea890112714d422b18fd0070a40f9f0b99bcebb3134dd1d9fd27a853",
+      "snr": 55.2,
       "source": "Sw-ke-kikaango.flac"
     },
     "paper": {
@@ -1794,6 +1957,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "karatasi",
       "sha256": "35e4d4c290b751592036ea3846e5701c4fa6cd62ede7a7ad6cd25254441b0471",
+      "snr": 46.9,
       "source": "Sw-ke-karatasi.flac"
     },
     "park": {
@@ -1805,6 +1969,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bustani",
       "sha256": "ca8f8ffa575304fb1ee6915da874efb5b8ae04eb4779bf88d35315754950186c",
+      "snr": 43.4,
       "source": "Sw-ke-bustani.flac"
     },
     "passport": {
@@ -1816,6 +1981,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pasipoti",
       "sha256": "93f387e6f25369ae55da49038e6fd8e3cce76d8ba9065e198f977458bb46ff1b",
+      "snr": 58.6,
       "source": "Sw-ke-pasipoti.flac"
     },
     "pay": {
@@ -1827,6 +1993,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kulipa",
       "sha256": "400061933d0bd4d79e69a24213b31d097be0435c709e30ed6ad992809cac975b",
+      "snr": 45.1,
       "source": "Sw-ke-kulipa.flac"
     },
     "pen": {
@@ -1838,6 +2005,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kalamu",
       "sha256": "e8ad371104d42d3c06298d1a5b535571f043e5011198f995e5542f59c5437dc6",
+      "snr": 50.1,
       "source": "Sw-ke-kalamu.flac"
     },
     "person": {
@@ -1849,6 +2017,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mtu",
       "sha256": "2aa5b0fa6fd10cd9dbc1ac4e7412b43f385fbd437298c9e80c44f34ddfac4179",
+      "snr": 52.2,
       "source": "Sw-ke-mtu.flac"
     },
     "phone": {
@@ -1860,6 +2029,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "simu",
       "sha256": "12375c70d8ec4ea35f164cc0a4590588250d3c7342231b8695dce1348674fc7a",
+      "snr": 52.8,
       "source": "Sw-ke-simu.flac"
     },
     "picture": {
@@ -1871,6 +2041,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "picha",
       "sha256": "53ebd471806abd6b166acc8db5e8a756952a149605e9fa685c339773125d72e2",
+      "snr": 49.2,
       "source": "Sw-ke-picha.flac"
     },
     "pill": {
@@ -1882,6 +2053,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kidonge",
       "sha256": "e577a7407a147fb05472b6eb5561fa25549f7ab3b286813a7d1e79c77f4db433",
+      "snr": 55.3,
       "source": "Sw-ke-kidonge.flac"
     },
     "pillow": {
@@ -1893,6 +2065,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mto",
       "sha256": "672a246822a81f38cf388d0ad7cb9fdae6bfd2f7ae0a6b4565d84e5d120a5277",
+      "snr": 47.5,
       "source": "Sw-ke-mto.flac"
     },
     "plan": {
@@ -1904,6 +2077,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mpango",
       "sha256": "06161d69154a1d0e8a2a2fbed42501d7e3d851c17e02e53abe5ae03d39becd2e",
+      "snr": 55.5,
       "source": "Sw-ke-mpango.flac"
     },
     "plant": {
@@ -1915,6 +2089,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mmea",
       "sha256": "f33aeb4d8a94b986ba3953a4a28cd0d796a3cb6baa7de83fd06bfd5176c0236f",
+      "snr": 54.9,
       "source": "Sw-ke-mmea.flac"
     },
     "plate": {
@@ -1926,6 +2101,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sahani",
       "sha256": "40d9c294b3b467af30c2d30855f16ffef4c1580666284f080da77fdf2f5bbe30",
+      "snr": 45.4,
       "source": "Sw-ke-sahani.flac"
     },
     "play": {
@@ -1937,6 +2113,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kucheza",
       "sha256": "3fdc17a7e541144929c51d6e73d2f580714f5702b2738de623a7b51f38645212",
+      "snr": 50.3,
       "source": "Sw-ke-kucheza.flac"
     },
     "please": {
@@ -1948,6 +2125,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tafadhali",
       "sha256": "432cfa7f21c498cf1eca7ceb9cbe1ce8178c8dc06bd66f42e9e2ddad1cb8b793",
+      "snr": 47.7,
       "source": "Sw-ke-tafadhali.flac"
     },
     "postpone": {
@@ -1959,6 +2137,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuahirisha",
       "sha256": "a25b2e273f9e62e7a2db5ab99e6309fcda64dccc6860b6517229f99d70f8740c",
+      "snr": 46.9,
       "source": "Sw-ke-kuahirisha.flac"
     },
     "pot": {
@@ -1970,6 +2149,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sufuria",
       "sha256": "caf44fa8b8e4f527dbeb3273d08d2c84c3595e463bd5c0064cc11ba7ac3a6d3f",
+      "snr": 56.8,
       "source": "Sw-ke-sufuria.flac"
     },
     "practice": {
@@ -1981,6 +2161,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kliniki",
       "sha256": "533acaa545c1d9b17d1560827b6c2bae259f9575a6a165a78f3d9e7ec548a0a3",
+      "snr": 53.2,
       "source": "Sw-ke-kliniki.flac"
     },
     "print": {
@@ -1992,6 +2173,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuchapisha",
       "sha256": "3c1b56a1088452a729ea7ecde9d137b05f9a5346383a0374f4dae006fd05ba9e",
+      "snr": 49.5,
       "source": "Sw-ke-kuchapisha.flac"
     },
     "printer": {
@@ -2003,6 +2185,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "printa",
       "sha256": "4ba88495756e34e172e61be8e36eea3937929903091ff517052a1a9cacac8985",
+      "snr": 57.6,
       "source": "Sw-ke-printa.flac"
     },
     "profession": {
@@ -2014,6 +2197,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "taaluma",
       "sha256": "c3841c9297fabd7b106c48d5088b8e6cd117ea47c87f2357b451b793705a9bd3",
+      "snr": 49.8,
       "source": "Sw-ke-taaluma.flac"
     },
     "pupil": {
@@ -2025,6 +2209,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mwanafunzi",
       "sha256": "91450e96d7f12eb0b6cb549950540daed08a863a247b612c42b62499b30fc694",
+      "snr": 53.4,
       "source": "Sw-ke-mwanafunzi.flac"
     },
     "question": {
@@ -2036,6 +2221,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "swali",
       "sha256": "fbc587f99ec1c90d9b3edf32fc43743f37c405ad347327a188919ae411948f4c",
+      "snr": 55.6,
       "source": "Sw-ke-swali.flac"
     },
     "quiet": {
@@ -2047,6 +2233,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kimya",
       "sha256": "c9a4a7ddba177ee607dcc6043eda46c4f9634f7ee46784acd1d59084aa50b1d5",
+      "snr": 53.7,
       "source": "Sw-ke-kimya.flac"
     },
     "rain": {
@@ -2058,6 +2245,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mvua",
       "sha256": "f5d38f1b23644b231d60f2b3ffd27799d4b844d445945cf6bde1b570c102f09b",
+      "snr": 55.1,
       "source": "Sw-ke-mvua.flac"
     },
     "razor": {
@@ -2069,6 +2257,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wembe",
       "sha256": "29ec1b38c028f4910c6e3802ca67d414aedc9550fc92ccde6d7b9bd17ca8cc90",
+      "snr": 49.4,
       "source": "Sw-ke-wembe.flac"
     },
     "read": {
@@ -2080,6 +2269,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusoma",
       "sha256": "548c61bf59ec1daf811e9e8973795f483d7a9249443b17fcdcc02b03984150fc",
+      "snr": 48.5,
       "source": "Sw-ke-kusoma.flac"
     },
     "ready": {
@@ -2091,6 +2281,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tayari",
       "sha256": "9c29301abdd7249d90ea2f36712a993635896a8d14b40d8e908811f82efd6dcd",
+      "snr": 50.2,
       "source": "Sw-ke-tayari.flac"
     },
     "reject": {
@@ -2102,6 +2293,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukataa",
       "sha256": "2c9dbbfac585e3e91aede3b8d6dd5212c7ca2ade58e3465477f2a0e850b67608",
+      "snr": 47.4,
       "source": "Sw-ke-kukataa.flac"
     },
     "reply": {
@@ -2113,6 +2305,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kujibu",
       "sha256": "71ee484cae0533842b5dc9cc3a83cb157fa3c6dfe9fcae80b1fea1252840fed4",
+      "snr": 46.8,
       "source": "Sw-ke-kujibu.flac"
     },
     "rest": {
@@ -2124,6 +2317,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kupumzika",
       "sha256": "0dd2b6fc7b5c6951febef3629ac3397626c356816f5ca5451bb50dce4c4f1053",
+      "snr": 47.8,
       "source": "Sw-ke-kupumzika.flac"
     },
     "rice": {
@@ -2135,6 +2329,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mchele",
       "sha256": "ae0b45feb94be8fcd682c28da74e1746da5c0300b63ec823bda9bb6cd56b5f53",
+      "snr": 54.8,
       "source": "Sw-ke-mchele.flac"
     },
     "right": {
@@ -2146,6 +2341,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kulia",
       "sha256": "75482045af1ef077b4f1af00f74dacceafb188899813f257358ba46358d20bfe",
+      "snr": 56.1,
       "source": "Sw-ke-kulia.flac"
     },
     "river": {
@@ -2157,6 +2353,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mto",
       "sha256": "672a246822a81f38cf388d0ad7cb9fdae6bfd2f7ae0a6b4565d84e5d120a5277",
+      "snr": 47.5,
       "source": "Sw-ke-mto.flac"
     },
     "room": {
@@ -2168,6 +2365,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "chumba",
       "sha256": "998d0d623dce63bc63ba17df416c4b9b128b96037b5019ea4d0d9147fb4a994e",
+      "snr": 54.2,
       "source": "Sw-ke-chumba.flac"
     },
     "salary": {
@@ -2179,6 +2377,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mshahara",
       "sha256": "16c69efb56a770a4d40116bb762753ff878551caf75be805185de3fef843d6e9",
+      "snr": 55.5,
       "source": "Sw-ke-mshahara.flac"
     },
     "salt": {
@@ -2190,6 +2389,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "chumvi",
       "sha256": "702393f02a8950b34eb42936f07b1e4d6322fba38420c2f0f59591e85fad1f02",
+      "snr": 46.2,
       "source": "Sw-ke-chumvi.flac"
     },
     "save": {
@@ -2201,6 +2401,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuhifadhi",
       "sha256": "87153d4b125d1c5f4ce8db1a4c93f8c75212b40f186188ea269801d7cf204dec",
+      "snr": 50.5,
       "source": "Sw-ke-kuhifadhi.flac"
     },
     "say": {
@@ -2212,6 +2413,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusema",
       "sha256": "fc173652fde196f7666c699a7f826f4976daa9970791d844bff55aa2f80f23a1",
+      "snr": 48.4,
       "source": "Sw-ke-kusema.flac"
     },
     "say-goodbye": {
@@ -2223,6 +2425,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuaga",
       "sha256": "c1ec01ae4c5e2460ccec7bda9dc3c58c1685ca0d5f941b76b139a4bd0694a085",
+      "snr": 49.7,
       "source": "Sw-ke-kuaga.flac"
     },
     "school": {
@@ -2234,6 +2437,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "shule",
       "sha256": "27e28f00c4817a5db2099d3d84bd5cc2c44bdff910ea95b743aea5bcdaa619fc",
+      "snr": 54.1,
       "source": "Sw-ke-shule.flac"
     },
     "screen": {
@@ -2244,6 +2448,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "skrini",
       "sha256": "8a105322f63456682e84c4954b58d60c5aef1d75bd32648495e8a08545dea8e5",
+      "snr": 54.5,
       "source": "Sw-ke-skrini.flac"
     },
     "see": {
@@ -2255,6 +2460,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuona",
       "sha256": "d7012365d043d8c30ee92bc9f0f9e89c930a840deb7ecea333900f393d581f66",
+      "snr": 48.2,
       "source": "Sw-ke-kuona.flac"
     },
     "sentence": {
@@ -2266,6 +2472,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sentensi",
       "sha256": "2728bf5a84e749fe44c7193af89b88f369c9f4cd9ecec6be4a774e4e2dd17c6c",
+      "snr": 57.1,
       "source": "Sw-ke-sentensi.flac"
     },
     "shelf": {
@@ -2277,6 +2484,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "rafu",
       "sha256": "ab57109c41ede7d27aee994c8753f76b185e350b4c4c6834f5b6bb9186bf5e58",
+      "snr": 49.5,
       "source": "Sw-ke-rafu.flac"
     },
     "shift": {
@@ -2288,6 +2496,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zamu",
       "sha256": "7d407ab60349d3949a96975b23220da775b4fa82ea4c00d37a8d52a30a00e619",
+      "snr": 57.2,
       "source": "Sw-ke-zamu.flac"
     },
     "shirt": {
@@ -2299,6 +2508,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "shati",
       "sha256": "434c3b466ea876d996e2ffb3ace4ed3c7c729c69d713c2c6a31477974cd7c324",
+      "snr": 53.0,
       "source": "Sw-ke-shati.flac"
     },
     "shoe": {
@@ -2310,6 +2520,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kiatu",
       "sha256": "38fecee7ac5cf6ed7b3f0b050f030d02eee18c2e4d5e6fc7200db0fd3dfdd629",
+      "snr": 55.2,
       "source": "Sw-ke-kiatu.flac"
     },
     "sick": {
@@ -2321,6 +2532,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mgonjwa",
       "sha256": "01ca903442ee3f77eb4742d4609c1f8e44b9fba025cab00c6194dbd1a046f935",
+      "snr": 49.0,
       "source": "Sw-ke-mgonjwa.flac"
     },
     "signature": {
@@ -2332,6 +2544,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sahihi",
       "sha256": "9ed110bfbc1a9a221d2f5bf3f1911f1a13f40116d082803bccd36049779a1f43",
+      "snr": 53.0,
       "source": "Sw-ke-sahihi.flac"
     },
     "sit": {
@@ -2343,6 +2556,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukaa",
       "sha256": "6cd0cba7b24050a7e8ca282ff57420d3f6436279bf4d117c6422e04452644077",
+      "snr": 48.6,
       "source": "Sw-ke-kukaa.flac"
     },
     "sleep": {
@@ -2354,6 +2568,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kulala",
       "sha256": "69589fbae42bb85e1a9b84a9b818c24b839d99e0bb03fc6d7ab81f533cc71b9f",
+      "snr": 47.1,
       "source": "Sw-ke-kulala.flac"
     },
     "slow": {
@@ -2365,6 +2580,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "polepole",
       "sha256": "fdf2b096c9f118ce791523c84390ed7d8f27766906452c348d70ffb7f24cba42",
+      "snr": 53.9,
       "source": "Sw-ke-polepole.flac"
     },
     "small": {
@@ -2375,6 +2591,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "dogo",
       "sha256": "e698d25615cf9a8e1d5a4041675918dd5091d16b96c68f3abab06b2dc912079a",
+      "snr": 49.8,
       "source": "Sw-ke-dogo.flac"
     },
     "snore": {
@@ -2386,6 +2603,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukoroma",
       "sha256": "c046f943b3bd17a0b55724fe3fabd033aed1f7922a2316e4c5c153a3ffdaa5b5",
+      "snr": 46.3,
       "source": "Sw-ke-kukoroma.flac"
     },
     "snow": {
@@ -2397,6 +2615,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "theluji",
       "sha256": "e4d46cebeee9f150a67a454899ee5db875310eaf3be547f8792907786687aadc",
+      "snr": 51.0,
       "source": "Sw-ke-theluji.flac"
     },
     "soap": {
@@ -2408,6 +2627,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sabuni",
       "sha256": "3c10f4b3b6507c4459857ab3abb8b67ee06c504dd48a550ecbe2a49bf73d6680",
+      "snr": 51.5,
       "source": "Sw-ke-sabuni.flac"
     },
     "sock": {
@@ -2419,6 +2639,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "soksi",
       "sha256": "9eed3f41838de32d56b36aae43b0d6cf44f61180f10242068c0d8ce338de91e2",
+      "snr": 57.1,
       "source": "Sw-ke-soksi.flac"
     },
     "socket": {
@@ -2430,6 +2651,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "soketi",
       "sha256": "9c9847567377b330f4de50cc81631ad5ff436baf2d6bae22bd12f81c9811efcf",
+      "snr": 52.3,
       "source": "Sw-ke-soketi.flac"
     },
     "sofa": {
@@ -2441,6 +2663,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kochi",
       "sha256": "4b1bf710c9261082c678161b634730235fd030fd804f3c975bc45f859032c31c",
+      "snr": 49.9,
       "source": "Sw-ke-kochi.flac"
     },
     "soft": {
@@ -2452,6 +2675,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "laini",
       "sha256": "1e8711f788d82dcf3db909b34a8821ae431ba74413d96cb65f9d007633b8a46a",
+      "snr": 54.1,
       "source": "Sw-ke-laini.flac"
     },
     "speak": {
@@ -2463,6 +2687,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuzungumza",
       "sha256": "2ecc6f43bebed1ff512c69d66dc9de5b82b8081b60b1f73a344f16c3fa999b93",
+      "snr": 47.9,
       "source": "Sw-ke-kuzungumza.flac"
     },
     "spoon": {
@@ -2474,6 +2699,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kijiko",
       "sha256": "79286175a32551f8e30cdf82aee0ad5861869999f037b8665ed20f15beeb6d09",
+      "snr": 54.2,
       "source": "Sw-ke-kijiko.flac"
     },
     "stairs": {
@@ -2485,6 +2711,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ngazi",
       "sha256": "6557eeea3020823845037c2ddebe59e9ccff7357c45d45aa3be118d9c0add613",
+      "snr": 51.8,
       "source": "Sw-ke-ngazi.flac"
     },
     "start": {
@@ -2496,6 +2723,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuanza",
       "sha256": "c601dc4610be247ed75c47ed4e67bd732342aa49a7053fe7b3d1da45fb010408",
+      "snr": 47.3,
       "source": "Sw-ke-kuanza.flac"
     },
     "stir": {
@@ -2507,6 +2735,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukoroga",
       "sha256": "9dd476f6912ff9a78aa99e07ad122eb0294d933797965d8ec67e2b804c47c3f4",
+      "snr": 47.3,
       "source": "Sw-ke-kukoroga.flac"
     },
     "stomach": {
@@ -2518,6 +2747,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tumbo",
       "sha256": "2185462ccaaa76b8f2a1517c21b620bc4108c86bc522f4da8bade78c9c923f88",
+      "snr": 46.6,
       "source": "Sw-ke-tumbo.flac"
     },
     "stove": {
@@ -2528,6 +2758,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jiko",
       "sha256": "6a963f5e265e35b2ca11579cfd941dd55d8dd741c7c91073ad6525a004fbfdfd",
+      "snr": 29.9,
       "source": "Sw-ke-jiko.flac"
     },
     "street": {
@@ -2539,6 +2770,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "barabara",
       "sha256": "9271cd4cd2431139a8ad19de42dc09f260444b793e858c5d1429de9e77af985c",
+      "snr": 50.8,
       "source": "Sw-ke-barabara.flac"
     },
     "study": {
@@ -2550,6 +2782,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kujifunza",
       "sha256": "dce1184f5c4a53f2dcb788916035b31ca2643e2c8ff010125b9e3bc7d4b99d57",
+      "snr": 49.4,
       "source": "Sw-ke-kujifunza.flac"
     },
     "submit": {
@@ -2561,6 +2794,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukabidhi",
       "sha256": "53fb4ac4de70070381693bd3b0fd87d7e55447e3cdbf624deaf34f07730a7a65",
+      "snr": 48.0,
       "source": "Sw-ke-kukabidhi.flac"
     },
     "sugar": {
@@ -2572,6 +2806,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sukari",
       "sha256": "5e661970791f7df2a74fb63cac08157469c592992e7233a9a76721057a50da9e",
+      "snr": 43.2,
       "source": "Sw-ke-sukari.flac"
     },
     "sun": {
@@ -2583,6 +2818,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jua",
       "sha256": "f84eb145167aaae7c81980b0db377c2bb36ace5fac412396537103c9bcc0bf9e",
+      "snr": 53.6,
       "source": "Sw-ke-jua.flac"
     },
     "sweater": {
@@ -2594,6 +2830,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sweta",
       "sha256": "690d7203cc0ea4405793fe3c143a817b54d3db9cbf1eb135d455d4302a277073",
+      "snr": 43.4,
       "source": "Sw-ke-sweta.flac"
     },
     "t-shirt": {
@@ -2605,6 +2842,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "fulana",
       "sha256": "3510d5f01bec43bb4afdacb09a1368f58ed67646e0dc7a49528953af4afa85b8",
+      "snr": 42.7,
       "source": "Sw-ke-fulana.flac"
     },
     "take": {
@@ -2616,6 +2854,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuchukua",
       "sha256": "53d524ba01a6c35ad9d55793fcd68823f686e56f2646eb2d225e7ccbdfb78758",
+      "snr": 45.7,
       "source": "Sw-ke-kuchukua.flac"
     },
     "take-shower": {
@@ -2627,6 +2866,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuoga",
       "sha256": "a09ab9d79845dcf60c225ce864499d06e4cb6c9c3fc459bc00b7538126d4300d",
+      "snr": 47.7,
       "source": "Sw-ke-kuoga.flac"
     },
     "talk": {
@@ -2638,6 +2878,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuongea",
       "sha256": "e45fbf4e87e5d0337aa944a49ea2dc1b4611fb7aecf3047ad25df4adef206446",
+      "snr": 47.5,
       "source": "Sw-ke-kuongea.flac"
     },
     "taste": {
@@ -2649,6 +2890,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuonja",
       "sha256": "681f62a4ac6c31cd9671a3e80da190b5de5d4c12a0109180c86563793f8c82a6",
+      "snr": 44.6,
       "source": "Sw-ke-kuonja.flac"
     },
     "tax": {
@@ -2660,6 +2902,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kodi",
       "sha256": "c1c7ebca628206ad5acdca0553a85e1819ff77bffbcd811bd6ce7fb7a0081c35",
+      "snr": 56.6,
       "source": "Sw-ke-kodi.flac"
     },
     "taxi": {
@@ -2671,6 +2914,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "teksi",
       "sha256": "6df0813d45cf43168e73042f363e4d0829ae3d2f4e55bd947be6a79c62bdc1f4",
+      "snr": 43.7,
       "source": "Sw-ke-teksi.flac"
     },
     "tea": {
@@ -2682,6 +2926,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "chai",
       "sha256": "f6def195695f06e5407534835a5d386a24b44d1a1a1d019c6c292f1845e7aac5",
+      "snr": 55.7,
       "source": "Sw-ke-chai.flac"
     },
     "teacher": {
@@ -2693,6 +2938,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mwalimu",
       "sha256": "1b5477a11e2b2f4f2e4a99e8df16ec1d30102f6717ab4a670bbc677acfbc840b",
+      "snr": 50.7,
       "source": "Sw-ke-mwalimu.flac"
     },
     "thank": {
@@ -2704,6 +2950,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kushukuru",
       "sha256": "d8b2e252ae141b1f809fdfa2835c85b80f9826a784003916be902972230c9686",
+      "snr": 46.3,
       "source": "Sw-ke-kushukuru.flac"
     },
     "thirst": {
@@ -2715,6 +2962,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kiu",
       "sha256": "692b3d89373f5af8ddac87388ac8c25444a3e4f55a7cf29ce3dbfacb080a3a1c",
+      "snr": 82.9,
       "source": "Sw-ke-kiu.flac"
     },
     "throat": {
@@ -2726,6 +2974,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "koo",
       "sha256": "1807e81d58972d781558ba08a24b4191a3ede365048aab1a3dd472c2c28a0f46",
+      "snr": 52.5,
       "source": "Sw-ke-koo.flac"
     },
     "ticket": {
@@ -2737,6 +2986,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tiketi",
       "sha256": "38076fdd2fcc4b8434224f3845e1e2b662e1f0cac5aa338a7831f348d91b8ccb",
+      "snr": 52.6,
       "source": "Sw-ke-tiketi.flac"
     },
     "time": {
@@ -2748,6 +2998,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wakati",
       "sha256": "bf251832de4fc30ad5636bb94fb3947615bca158baddee1198e735e1f9557ad2",
+      "snr": 50.7,
       "source": "Sw-ke-wakati.flac"
     },
     "to-cough": {
@@ -2759,6 +3010,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kukohoa",
       "sha256": "36d60a43ef40742a64ecd4d3bbb5bc10bbb19640e0d8f99348964ebe2a912f6a",
+      "snr": 47.1,
       "source": "Sw-ke-kukohoa.flac"
     },
     "to-help": {
@@ -2770,6 +3022,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusaidia",
       "sha256": "7f40d8bf97ac5f12be1a6e8635c5d674740cec16e816e7b33dd0a65eab27dbfb",
+      "snr": 48.5,
       "source": "Sw-ke-kusaidia.flac"
     },
     "today": {
@@ -2781,6 +3034,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "leo",
       "sha256": "ad11247f0e00b5f5ebfcbf54c7cb20bdaeae7d59928a8bf5dac7199026dfa9d5",
+      "snr": 53.8,
       "source": "Sw-ke-leo.flac"
     },
     "together": {
@@ -2792,6 +3046,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pamoja",
       "sha256": "6fcecd16696982caa57447ab40f504b7e91fd5b439acacb6219a04b8ea869ee7",
+      "snr": 57.0,
       "source": "Sw-ke-pamoja.flac"
     },
     "toilet": {
@@ -2803,6 +3058,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "choo",
       "sha256": "7eb43aecd2def1d95988c06c09ec9cbda47ee546c1f2b04edb58e0d670872214",
+      "snr": 57.3,
       "source": "Sw-ke-choo.flac"
     },
     "tomorrow": {
@@ -2814,6 +3070,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kesho",
       "sha256": "9dcef51fc10d377998a3e7134aa013c969cdbea9d6cffad1c655e944386fd82f",
+      "snr": 50.2,
       "source": "Sw-ke-kesho.flac"
     },
     "toothbrush": {
@@ -2825,6 +3082,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mswaki",
       "sha256": "aa170d059e1c3e5e764ef547a32f73c2722d314ad3cb9d76de7b9faf76a73d16",
+      "snr": 56.3,
       "source": "Sw-ke-mswaki.flac"
     },
     "towel": {
@@ -2836,6 +3094,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "taulo",
       "sha256": "18f23a899dee828f2f19bea7e253587f48b9da7dfc066eed38be5ed221af088b",
+      "snr": 49.8,
       "source": "Sw-ke-taulo.flac"
     },
     "train": {
@@ -2847,6 +3106,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "treni",
       "sha256": "ccedbd2ff8b7c2e33e6f6a53d3314de98e51c951bfcca522a4862b5c27ee46b6",
+      "snr": 48.5,
       "source": "Sw-ke-treni.flac"
     },
     "translate": {
@@ -2858,6 +3118,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kutafsiri",
       "sha256": "25108671201c714a72c1efc68c4ab76cd4768f50927ecceb715b4581b0ca0fa1",
+      "snr": 47.1,
       "source": "Sw-ke-kutafsiri.flac"
     },
     "tree": {
@@ -2869,6 +3130,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mti",
       "sha256": "7d6dceaf66a011ceaaae9ac85fa423eec1a8e8644c2f330f67a2defe7207f85c",
+      "snr": 51.6,
       "source": "Sw-ke-mti.flac"
     },
     "trousers": {
@@ -2880,6 +3142,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "suruali",
       "sha256": "ca1af91204037cd66ff565ca6dac8a2545c490c96dca0c0571a0932cc47dd545",
+      "snr": 58.1,
       "source": "Sw-ke-suruali.flac"
     },
     "tv": {
@@ -2890,6 +3153,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "televisheni",
       "sha256": "34f0fc414a75b39680389431fe87b6fcc0dad893721d39fda88254700e0c0818",
+      "snr": 42.8,
       "source": "Sw-ke-televisheni.flac"
     },
     "umbrella": {
@@ -2901,6 +3165,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mwavuli",
       "sha256": "20a56613598fb64e8755a9a10f55e104f49a4f995fd68b110519e69a48050363",
+      "snr": 47.1,
       "source": "Sw-ke-mwavuli.flac"
     },
     "understand": {
@@ -2912,6 +3177,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuelewa",
       "sha256": "5eee5933fe4458122d3fee392866c107d7290eb4b91b9b52a69f64dd7fffb240",
+      "snr": 47.3,
       "source": "Sw-ke-kuelewa.flac"
     },
     "unlock": {
@@ -2923,6 +3189,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kufungua",
       "sha256": "9acc6821595f54e83f4a5fbc1e0cc78e01cab0593a52b12b97644c9b24c5cb79",
+      "snr": 50.4,
       "source": "Sw-ke-kufungua.flac"
     },
     "wait": {
@@ -2934,6 +3201,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kusubiri",
       "sha256": "9ce624b01527b82a227a19de038ca46e9afaa16bee1b5452134f5ac6732a2fbd",
+      "snr": 50.1,
       "source": "Sw-ke-kusubiri.flac"
     },
     "wake-up": {
@@ -2944,6 +3212,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuamka",
       "sha256": "cfd9b7f43eeacf719a7b3e8bf0c7db75fa27de494e1d6778c1331e24d1dd2f9f",
+      "snr": 50.2,
       "source": "Sw-ke-kuamka.flac"
     },
     "wall": {
@@ -2955,6 +3224,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ukuta",
       "sha256": "53e13138cf1de6921385b4b9eeadd437cd2ef949fdc391f15a8d5ec1ec4cf708",
+      "snr": 54.8,
       "source": "Sw-ke-ukuta.flac"
     },
     "wallet": {
@@ -2966,6 +3236,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "pochi",
       "sha256": "27321153466223e72ac5f612eb2412cd623e7d3cfda61e276356c56ccaed3e48",
+      "snr": 47.2,
       "source": "Sw-ke-pochi.flac"
     },
     "water": {
@@ -2977,6 +3248,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "maji",
       "sha256": "0e32da8b556f03d587456966f52e4e1b4a9ced5e264abf2fba6d2611055fd5f1",
+      "snr": 50.5,
       "source": "Sw-ke-maji.flac"
     },
     "way": {
@@ -2988,6 +3260,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "njia",
       "sha256": "0af42b35115601a539a66fc5a41313c9b527249b4ebb41db74f045d333b0431f",
+      "snr": 58.5,
       "source": "Sw-ke-njia.flac"
     },
     "week": {
@@ -2999,6 +3272,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wiki",
       "sha256": "15f5adf289b9be242b1f8545a946e79372b063d8f77a0014882b5c2f2caaac3b",
+      "snr": 55.0,
       "source": "Sw-ke-wiki.flac"
     },
     "wind": {
@@ -3010,6 +3284,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "upepo",
       "sha256": "18c9cf6e4d51bdb24711a19100cbdb629cc17a7983ab3b560561331e85b91984",
+      "snr": 55.1,
       "source": "Sw-ke-upepo.flac"
     },
     "window": {
@@ -3021,6 +3296,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "dirisha",
       "sha256": "1dbdae3c6811379b9c4c81a41e7ddb06d9ed70e016310eba6036c4cbaf8af250",
+      "snr": 49.1,
       "source": "Sw-ke-dirisha.flac"
     },
     "word": {
@@ -3032,6 +3308,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "neno",
       "sha256": "10c3e30c69066ac6ba5f565b5b29fc59e2f7504581909aee945aa9e9c8528014",
+      "snr": 56.9,
       "source": "Sw-ke-neno.flac"
     },
     "work": {
@@ -3043,6 +3320,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kazi",
       "sha256": "2cdf3b04fac21878b4d326eb844a15d7f44f46d70d3ab76de652e92e60452a15",
+      "snr": 52.4,
       "source": "Sw-ke-kazi.flac"
     },
     "write": {
@@ -3054,6 +3332,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuandika",
       "sha256": "daa222d9ad0babcb7db13f0d5d843303d831e657326f6686563ef24943727d83",
+      "snr": 46.8,
       "source": "Sw-ke-kuandika.flac"
     },
     "yes": {
@@ -3064,6 +3343,7 @@
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ndiyo",
       "sha256": "3ed200980fd77b03c375e933e1c7cac3a3c6f3f0dc2eceeb390f9980ab71f15b",
+      "snr": 54.1,
       "source": "Sw-ke-ndiyo.flac"
     }
   }

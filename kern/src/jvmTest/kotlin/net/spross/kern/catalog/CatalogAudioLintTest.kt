@@ -271,6 +271,34 @@ class CatalogAudioLintTest {
     }
 
     /**
+     * How clean a pack is, as a DISTRIBUTION rather than a floor per file.
+     *
+     * A per-file minimum cannot be written honestly: twelve German rows sit under 30 dB
+     * because Commons has nothing cleaner for those words, and a rule that fails the build
+     * over an unimprovable file is a rule that gets suppressed. What a rebuild must not do
+     * is quietly undo the sweep that removed the hiss — a whole pack sliding down, or the
+     * bad tail growing. Both are visible in the shape and neither goes stale as content
+     * grows. Today: medians de 84, es 56, uk 45, sw 50; worst tail de at 3.2%.
+     *
+     * `snr` changes no playback. It is carried purely so this can be asserted.
+     */
+    @Test
+    fun noPackLosesItsRecordingQuality() {
+        for ((lang, manifest) in catalog.audio) {
+            val measured = (manifest.words.values + manifest.letters.values + manifest.texts.values)
+                .map { it.snr }.filter { it != 0.0 }
+            assertTrue(measured.size > 10, "audio/$lang: only ${measured.size} entries carry an snr")
+            val median = measured.sorted()[measured.size / 2]
+            assertTrue(median >= 40.0, "audio/$lang: median snr $median dB has fallen below 40")
+            val hissy = measured.count { it < 30.0 }
+            assertTrue(
+                hissy * 100 <= measured.size * 5,
+                "audio/$lang: $hissy of ${measured.size} entries are under 30 dB — over 5%",
+            )
+        }
+    }
+
+    /**
      * The target IS the word packs' own median loudness, so half the word entries sit above
      * it and half below and the median gain is zero. A median that has drifted means the
      * manifests were generated against some other target than the one `ANALYSIS` records —
