@@ -58,15 +58,7 @@ struct HearPromptCard: View {
         // why: the sibling prompt card's height, so the two drills do not jump
         // a layout apart when a learner moves between them.
         .frame(minHeight: 185)
-        .background(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .fill(Color.dlSurface)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .strokeBorder(Color.dlSeparator.opacity(0.6), lineWidth: 1)
-        )
-        .dlCardShadow()
+        .dlCardSurface()
     }
 
     private var caption: some View {

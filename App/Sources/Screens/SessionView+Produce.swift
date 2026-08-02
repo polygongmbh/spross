@@ -83,11 +83,7 @@ extension SessionView {
                         // why: the proper spelling is the point of this pause —
                         // it has to be as readable as the reveal's own lines.
                         Text("session.typoCorrection \(typoCorrection)")
-                            .font(DL.Fonts.subheadline)
-                            .italic()
-                            .foregroundStyle(Color.dlTextSecondary)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
+                            .dlPauseLine()
                             // why: a correct answer leaves the card CLOSED, so
                             // this line is the only place the word stands —
                             // tap-to-replay has to live on it, not on the card.
@@ -124,11 +120,7 @@ extension SessionView {
                         // why: same line as the typo correction — both explain
                         // what became of the answer, so they read alike.
                         Text("session.otherWord \(otherWord.word) \(otherWord.meanings.joined(separator: ", "))")
-                            .font(DL.Fonts.subheadline)
-                            .italic()
-                            .foregroundStyle(Color.dlTextSecondary)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
+                            .dlPauseLine()
                             // why: the line says what the learner DID write —
                             // the word it plays is the one they owed, the same
                             // one the reveal above it carries.

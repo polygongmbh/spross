@@ -210,11 +210,7 @@ extension LetterDrillView {
         if let line = pauseLine {
             VStack(spacing: DL.Space.m) {
                 line
-                    .font(DL.Fonts.subheadline)
-                    .italic()
-                    .foregroundStyle(Color.dlTextSecondary)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
+                    .dlPauseLine()
                 nextButton { advance(correct: true, clean: false) }
             }
             .transition(.opacity)
