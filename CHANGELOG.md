@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.4.0 — 2026-08-02
+
 - **Drill cards now look and behave like review cards.** The answer appears on the card
   itself when you miss it or tap "Aufdecken" — with the sentence drill's meaning under it —
   instead of in a panel below the input field, and revealing no longer types the answer
