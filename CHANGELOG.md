@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.1.0 — 2026-08-02
+
 - **German is spoken by people almost everywhere now, not by the device's voice.** Most
   German words were reaching for the synthesizer because the recordings were being looked
   for under the wrong spelling; they were there all along. The alphabet's letters have
