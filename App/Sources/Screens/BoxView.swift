@@ -176,7 +176,7 @@ private struct BoxAreaSection: View {
     }
 
     private var cardList: some View {
-        VStack(spacing: DL.Space.xs) {
+        VStack(spacing: DL.Space.s) {
             ForEach(model.cards(inArea: area)) { card in
                 BoxCardRow(model: model, card: card)
             }
@@ -230,11 +230,12 @@ private struct BoxCardRow: View {
                 .padding(.vertical, DL.Space.xs + 1)
                 .background(Color.dlAccent.opacity(0.14), in: Capsule())
             } else {
-                PhaseBadge(phase: badgePhase(sched))
+                PhaseBadge(phase: badgePhase(sched),
+                           consolidated: model.isConsolidated(cardID: card.id))
             }
         }
-        .padding(.horizontal, DL.Space.l)
-        .padding(.vertical, DL.Space.s + 2)
+        .padding(.horizontal, DL.Space.m)
+        .padding(.vertical, DL.Space.xs + 2)
         .background(
             // why: the row sits INSIDE the area card now — surface on surface
             // would leave the rows without an edge of their own.

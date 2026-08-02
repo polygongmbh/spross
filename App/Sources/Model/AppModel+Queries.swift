@@ -130,6 +130,14 @@ extension AppModel {
         box?.scheduling[cardID]
     }
 
+    /// The same bar the area tallies count "gefestigt" against — Review phase
+    /// AND stability past the consolidated threshold, which the phase alone
+    /// does not imply.
+    func isConsolidated(cardID: String) -> Bool {
+        guard let box else { return false }
+        return BoxEngine.shared.isConsolidated(state: box, cardId: cardID)
+    }
+
     /// How this card's NEXT review is presented (alternating, per log count).
     func presentationRole(for cardID: String) -> PresentationRole {
         SprossKern.presentationRole(cardId: cardID,

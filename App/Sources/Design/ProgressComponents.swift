@@ -157,7 +157,10 @@ struct AreaChip: View {
             Label("progress.consolidatedCount \(settled.formatted())", systemImage: "checkmark.seal.fill")
             Label("progress.freshCount \(learning.formatted())", systemImage: "leaf.fill")
             if lockedPhrases > 0 {
-                Label("box.phrasesLocked \(lockedPhrases.formatted())", systemImage: "lock.fill")
+                // why: the padlock carries "locked", so the text only has to
+                // name what is locked — three full labels do not fit the card.
+                Label("box.phrasesLockedShort \(lockedPhrases)", systemImage: "lock.fill")
+                    .accessibilityLabel(Text("box.phrasesLocked \(lockedPhrases)"))
             }
             Spacer(minLength: 0)
         }
@@ -194,9 +197,20 @@ struct PhaseBadge: View {
     }
 
     let phase: Phase
+    /// Whether this card counts as consolidated in its area's tally. The icon
+    /// follows THIS, not the phase: a card reaches Review well below the
+    /// consolidated threshold, so a seal keyed to the phase would mark cards
+    /// the "gefestigt" count above it does not include.
+    var consolidated: Bool = false
+
+    /// The area row's own two icons, so a badge and that row agree on sight.
+    private var icon: String {
+        if phase == .new { return "circle.dashed" }
+        return consolidated ? "checkmark.seal.fill" : "leaf.fill"
+    }
 
     var body: some View {
-        Text(phase.label)
+        Label(phase.label, systemImage: icon)
             .font(DL.Fonts.caption)
             .foregroundStyle(phase.color)
             .padding(.horizontal, DL.Space.m)
@@ -236,6 +250,8 @@ private extension View {
             HStack(spacing: DL.Space.s) {
                 ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }
             }
+            // The same Review card once it has passed the consolidated bar.
+            PhaseBadge(phase: .review, consolidated: true)
         }
         .padding(DL.Space.xl)
     }
