@@ -229,15 +229,6 @@ extension TrainerKind {
         case .clock: return "trainer.clock"
         }
     }
-
-    /// Localized display key for the singular prompt caption ("Zahl · auf …").
-    var trainerPromptLabelKey: LocalizedStringKey {
-        switch self {
-        case .numbers: return "trainer.prompt.number"
-        case .years: return "trainer.prompt.year"
-        case .clock: return "trainer.clock"
-        }
-    }
 }
 
 /// Resolves a catalog key against a specific UI-language bundle. Needed for
