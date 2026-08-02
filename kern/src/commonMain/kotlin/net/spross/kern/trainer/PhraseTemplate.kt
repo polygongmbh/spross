@@ -29,8 +29,13 @@ data class PhraseTemplate(
      * graded as correct, never displayed.
      */
     val acceptedFrames: List<String> = emptyList(),
-    /** Template-level note, merged with the slot task's gloss. */
-    val gloss: String? = null,
+    /** [acceptedFrames] on the source side — what the reverse drill also grades as correct. */
+    val acceptedSourceFrames: List<String> = emptyList(),
+    /**
+     * The answer realization's note in the learner's explanation language,
+     * merged with the slot task's gloss.
+     */
+    val note: String? = null,
     /**
      * Present only on Numbers templates whose target noun must agree with the
      * numeral (Ukrainian). [targetTemplate] then contains `{count}`.
@@ -41,10 +46,10 @@ data class PhraseTemplate(
      * variants (одна/дві) must NOT be accepted — these templates exist to
      * train exactly that agreement (language-review finding).
      */
-    val masculineSlot: Boolean = false,
+    val masculineNumeral: Boolean = false,
 ) {
     /** Effective masculine-numeral rule — implied for all [countForms] templates. */
-    val masculineNumeralOnly: Boolean get() = masculineSlot || countForms != null
+    val masculineNumeralOnly: Boolean get() = masculineNumeral || countForms != null
 
     /**
      * Ukrainian counted-noun agreement for a `{count}` marker following the

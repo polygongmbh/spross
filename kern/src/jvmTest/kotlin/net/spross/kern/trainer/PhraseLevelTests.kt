@@ -18,7 +18,7 @@ class PhraseLevelTests {
         clockTime.find(sentence)!!.groupValues[2].toInt()
 
     private fun templates(kind: TrainerKind): List<PhraseTemplate> =
-        PhraseTemplates.all.filter { it.slotKind == kind }
+        RealFrames.all.filter { it.slotKind == kind }
 
     // Gentle start: level 1 per kind
 
@@ -90,7 +90,7 @@ class PhraseLevelTests {
 
     @Test
     fun leveledSamplingIsDeterministicAndMatchesInstantiate() {
-        for (template in PhraseTemplates.all) {
+        for (template in RealFrames.all) {
             for (level in 1..Trainer.maxLevel(template.slotKind)) {
                 val a = Random(0xBEEF + level)
                 val b = Random(0xBEEF + level)
@@ -100,8 +100,7 @@ class PhraseLevelTests {
                     val expected = if (template.slotKind == TrainerKind.Clock) {
                         val hour = b.nextInt(24)
                         val cap = if (template.target == "sw") 30 else 59
-                        val minute = Trainer.clockMinute(level, cap, b)
-                        PhraseSlots.instantiate(template, hour = hour, minute = minute)
+                        PhraseSlots.instantiate(template, hour = hour, minute = Trainer.clockMinute(level, cap, b))
                     } else {
                         val slot = Trainer.sample(template.slotKind, template.target, level, b)
                         PhraseSlots.instantiate(template, value = slot.prompt.toLong())
@@ -125,7 +124,7 @@ class PhraseLevelTests {
 
     @Test
     fun leveledReverseMatchesLeveledForward() {
-        for (template in PhraseTemplates.all) {
+        for (template in RealFrames.all) {
             for (level in 1..Trainer.maxLevel(template.slotKind)) {
                 val a = Random(11L * level)
                 val b = Random(11L * level)

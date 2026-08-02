@@ -190,12 +190,14 @@ class CatalogFixtureTest {
     fun answerSideCarriesAgreementAndNote() {
         val forward = catalog.phraseTemplates("de", "uk").first { it.id == "i-have-n-keys" }
         assertEquals("ключі", forward.countForms?.form(3))
-        assertTrue(forward.masculineSlot)
-        assertEquals("Zahlwort-Kongruenz.", forward.gloss)
+        assertTrue(forward.masculineNumeral)
+        assertEquals("Zahlwort-Kongruenz.", forward.note)
+        // The prompt realization's variants ride along too — the reverse drill grades them.
+        assertEquals(listOf("Ich habe {slot} Schluessel."), forward.acceptedSourceFrames)
         val reverse = catalog.phraseTemplates("uk", "de").first { it.id == "i-have-n-keys" }
         assertNull(reverse.countForms)
-        assertFalse(reverse.masculineSlot)
-        assertNull(reverse.gloss)
+        assertFalse(reverse.masculineNumeral)
+        assertNull(reverse.note)
         assertEquals(listOf("Ich habe {slot} Schluessel."), reverse.acceptedFrames)
     }
 

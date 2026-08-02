@@ -49,10 +49,18 @@
    "text": "Ich lerne seit {slot} Deutsch."
   },
   "repeat-the-year": {
-   "text": "Wiederholen Sie bitte die Jahreszahl: {slot}."
+   "text": "Wiederholen Sie bitte das Datum: {slot}.",
+   "variants": [
+    "Wiederhole bitte das Datum: {slot}.",
+    "Wiederholen Sie bitte die Jahreszahl: {slot}.",
+    "Wiederhole bitte die Jahreszahl: {slot}."
+   ]
   },
   "write-the-year": {
-   "text": "Schreib bitte die Jahreszahl: {slot}."
+   "text": "Schreib bitte das Datum: {slot}.",
+   "variants": [
+    "Schreib bitte die Jahreszahl: {slot}."
+   ]
   }
  }
 }

@@ -140,9 +140,10 @@ class Catalog internal constructor(
                 targetTemplate = answer.text,
                 slotKind = frame.slot,
                 acceptedFrames = answer.variants,
-                gloss = answer.notes[source], // why: notes never cross-language fall back — §2
+                acceptedSourceFrames = prompt.variants,
+                note = answer.notes[source], // why: notes never cross-language fall back — §2
                 countForms = answer.count,
-                masculineSlot = answer.masculineNumeral,
+                masculineNumeral = answer.masculineNumeral,
             )
         }
     }

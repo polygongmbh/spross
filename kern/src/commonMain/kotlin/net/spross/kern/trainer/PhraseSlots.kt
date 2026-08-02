@@ -6,9 +6,10 @@ import kotlin.random.Random
  * Instantiates a [PhraseTemplate] into a [TrainerTask] by composing with the
  * Trainer slot generators: the source-language prompt gets the digits, the
  * target display gets the canonical words, accepted gets one full sentence
- * per accepted slot RENDERING — every written-out generator variant plus the
- * digit form(s), in both drill directions (user report: word forms typed
- * mid-sentence were rejected). Pure — sampling takes an injected [Random].
+ * per accepted FRAME × accepted slot RENDERING — every authored variant frame
+ * crossed with every written-out generator variant plus the digit form(s), in
+ * both drill directions (user report: word forms typed mid-sentence were
+ * rejected). Pure — sampling takes an injected [Random].
  */
 object PhraseSlots {
 
@@ -85,48 +86,67 @@ object PhraseSlots {
      * зошит."), the answer is the source sentence. Digits stay the canonical
      * fast path ("Ich habe 21 Hefte." / "… um 20:00 Uhr …", zero-padded and
      * bare), and every written-out source reading is accepted alongside
-     * ("… um achtzehn Uhr fünfunddreißig …").
+     * ("… um achtzehn Uhr fünfunddreißig …") — each in the canonical frame and
+     * in every [PhraseTemplate.acceptedSourceFrames] variant.
      */
     fun reverseInstantiate(template: PhraseTemplate, hour: Int, minute: Int): TrainerTask {
         val forward = instantiate(template, hour, minute)
+        val frames = sourceFrames(template)
         val accepted = mutableListOf<String>()
-        for (digits in listOf("${pad2(hour)}:${pad2(minute)}", "$hour:${pad2(minute)}")) {
-            val sentence = template.sourceTemplate.replace(PhraseTemplate.SLOT_MARKER, digits)
-            if (sentence !in accepted) accepted += sentence
-        }
-        if (Trainer.supports(template.source)) {
-            for (reading in Trainer.clock(hour, minute, template.source).accepted) {
-                val sentence = sourceClockSentence(template, reading) ?: continue
+        for (frame in frames) {
+            for (digits in listOf("${pad2(hour)}:${pad2(minute)}", "$hour:${pad2(minute)}")) {
+                val sentence = frame.replace(PhraseTemplate.SLOT_MARKER, digits)
                 if (sentence !in accepted) accepted += sentence
             }
         }
-        return TrainerTask(
-            kind = template.slotKind, language = template.source,
-            prompt = forward.display, accepted = accepted,
-            display = accepted[0], gloss = forward.gloss,
-        )
+        if (Trainer.supports(template.source)) {
+            val readings = Trainer.clock(hour, minute, template.source).accepted
+            for (frame in frames) {
+                for (reading in readings) {
+                    val sentence = sourceClockSentence(frame, reading) ?: continue
+                    if (sentence !in accepted) accepted += sentence
+                }
+            }
+        }
+        return reverseTask(template, forward, accepted)
     }
 
     fun reverseInstantiate(template: PhraseTemplate, value: Long): TrainerTask {
         val forward = instantiate(template, value)
-        val accepted = mutableListOf(template.sourceTemplate.replace(PhraseTemplate.SLOT_MARKER, value.toString()))
+        val frames = sourceFrames(template)
+        val accepted = mutableListOf<String>()
+        for (frame in frames) {
+            val sentence = frame.replace(PhraseTemplate.SLOT_MARKER, value.toString())
+            if (sentence !in accepted) accepted += sentence
+        }
         if (Trainer.supports(template.source)) {
             val readings = when (template.slotKind) {
                 TrainerKind.Numbers -> Trainer.drillNumber(value, template.source).accepted
                 else -> Trainer.year(value, template.source).accepted
-            }
-            for (reading in readings) {
-                if (isFilteredFeminine(template, reading)) continue
-                val sentence = template.sourceTemplate.replace(PhraseTemplate.SLOT_MARKER, reading)
-                if (sentence !in accepted) accepted += sentence
+            }.filterNot { isFilteredFeminine(template, it) }
+            for (frame in frames) {
+                for (reading in readings) {
+                    val sentence = frame.replace(PhraseTemplate.SLOT_MARKER, reading)
+                    if (sentence !in accepted) accepted += sentence
+                }
             }
         }
-        return TrainerTask(
-            kind = template.slotKind, language = template.source,
-            prompt = forward.display, accepted = accepted,
-            display = accepted[0], gloss = forward.gloss,
-        )
+        return reverseTask(template, forward, accepted)
     }
+
+    /** Canonical source frame first — it is what the reverse drill displays. */
+    private fun sourceFrames(template: PhraseTemplate): List<String> =
+        (listOf(template.sourceTemplate) + template.acceptedSourceFrames).distinct()
+
+    private fun reverseTask(
+        template: PhraseTemplate,
+        forward: TrainerTask,
+        accepted: List<String>,
+    ): TrainerTask = TrainerTask(
+        kind = template.slotKind, language = template.source,
+        prompt = forward.display, accepted = accepted,
+        display = accepted[0], gloss = forward.gloss,
+    )
 
     /**
      * Source-sentence substitution for a written-out clock reading: the
@@ -137,9 +157,9 @@ object PhraseSlots {
      * dropped) and is skipped elsewhere — "Es ist jetzt um acht." is not a
      * time statement.
      */
-    private fun sourceClockSentence(template: PhraseTemplate, reading: String): String? {
+    private fun sourceClockSentence(sourceFrame: String, reading: String): String? {
         val marker = PhraseTemplate.SLOT_MARKER
-        val frame = template.sourceTemplate.replace("$marker Uhr", marker)
+        val frame = sourceFrame.replace("$marker Uhr", marker)
         var words = reading
         if (words.startsWith("um ")) {
             if (!frame.substringBefore(marker).endsWith("um ")) return null
@@ -176,17 +196,17 @@ object PhraseSlots {
 
         val prompt = template.sourceTemplate.replace(PhraseTemplate.SLOT_MARKER, slot.prompt)
         val display = fillTarget(template.targetTemplate, slot.display, countWord)
+        val renderings = (slot.accepted.filterNot { isFilteredFeminine(template, it) } + digitForms(slot))
+            .distinct()
+        val frames = (listOf(template.targetTemplate) + template.acceptedFrames).distinct()
         val accepted = mutableListOf<String>()
-        for (variant in slot.accepted) {
-            if (isFilteredFeminine(template, variant)) continue
-            val sentence = fillTarget(template.targetTemplate, variant, countWord)
-            if (sentence !in accepted) accepted += sentence
+        for (frame in frames) {
+            for (rendering in renderings) {
+                val sentence = fillTarget(frame, rendering, countWord)
+                if (sentence !in accepted) accepted += sentence
+            }
         }
-        for (digits in digitForms(slot)) {
-            val sentence = fillTarget(template.targetTemplate, digits, countWord)
-            if (sentence !in accepted) accepted += sentence
-        }
-        val gloss = listOfNotNull(template.gloss, slot.gloss).joinToString(" · ")
+        val gloss = listOfNotNull(template.note, slot.gloss).joinToString(" · ")
 
         return TrainerTask(
             kind = template.slotKind, language = template.target,
@@ -204,7 +224,7 @@ object PhraseSlots {
 
     /**
      * Feminine numeral ENDING a variant (одна/дві) before a masculine counted
-     * noun would accept the exact agreement error [PhraseTemplate.masculineSlot]
+     * noun would accept the exact agreement error [PhraseTemplate.masculineNumeral]
      * templates train — drop it wherever accepted sentences are assembled.
      */
     private fun isFilteredFeminine(template: PhraseTemplate, variant: String): Boolean {

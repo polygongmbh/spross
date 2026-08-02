@@ -9,74 +9,88 @@ import kotlin.test.assertTrue
 /**
  * Accepted-form assembly for phrase-slot drills: every rendering of the slot
  * value — digits AND written-out generator variants — yields an accepted
- * sentence, in both drill directions (user report: written-out numbers and
- * times typed mid-sentence were rejected).
+ * sentence in every authored frame, in both drill directions (user report:
+ * written-out numbers and times typed mid-sentence were rejected).
  */
 class PhraseAcceptedFormsTests {
 
-    private fun template(id: String): PhraseTemplate =
-        PhraseTemplates.all.first { it.id == id }
+    private fun frame(target: String, slug: String) = RealFrames.frame(target, slug)
 
     // Reverse: the German answer accepts written-out readings alongside digits
 
     @Test
     fun reverseClockAcceptsWrittenOutAndDigitalTime() {
-        val task = PhraseSlots.reverseInstantiate(template("uk-clock-jetzt"), hour = 18, minute = 35)
+        val task = PhraseSlots.reverseInstantiate(frame("uk", "it-is-now"), hour = 18, minute = 35)
         assertEquals("Es ist jetzt 18:35 Uhr.", task.display)
         assertTrue("Es ist jetzt 18:35 Uhr." in task.accepted)
         // The 24-hour reading absorbs the frame's literal "Uhr".
         assertTrue("Es ist jetzt achtzehn Uhr fünfunddreißig." in task.accepted)
         // Conversational 12-hour reading.
         assertTrue("Es ist jetzt fünf nach halb sieben." in task.accepted)
-        // Swahili templates embed only minutes 0..30 — same assembly there.
-        val zug = PhraseSlots.reverseInstantiate(template("sw-clock-zug"), hour = 18, minute = 5)
-        assertTrue("Der Zug fährt um 18:05 Uhr ab." in zug.accepted)
-        assertTrue("Der Zug fährt um achtzehn Uhr fünf ab." in zug.accepted)
-        assertTrue("Der Zug fährt um fünf nach sechs ab." in zug.accepted)
+        val train = PhraseSlots.reverseInstantiate(frame("sw", "train-departs-at"), hour = 18, minute = 5)
+        assertTrue("Der Zug fährt um 18:05 Uhr ab." in train.accepted)
+        assertTrue("Der Zug fährt um achtzehn Uhr fünf ab." in train.accepted)
+        assertTrue("Der Zug fährt um fünf nach sechs ab." in train.accepted)
     }
 
     @Test
     fun reverseClockComposesColloquialUmOnlyAfterUm() {
-        val zug = PhraseSlots.reverseInstantiate(template("sw-clock-zug"), hour = 20, minute = 0)
+        val train = PhraseSlots.reverseInstantiate(frame("sw", "train-departs-at"), hour = 20, minute = 0)
         // "um acht" reading + frame "… um {slot} Uhr …" merge without doubling "um".
-        assertTrue("Der Zug fährt um acht ab." in zug.accepted)
-        assertTrue("Der Zug fährt um acht Uhr ab." in zug.accepted)
-        assertTrue("Der Zug fährt um punkt acht ab." in zug.accepted)
-        assertTrue("Der Zug fährt um zwanzig Uhr ab." in zug.accepted)
-        val jetzt = PhraseSlots.reverseInstantiate(template("uk-clock-jetzt"), hour = 20, minute = 0)
+        assertTrue("Der Zug fährt um acht ab." in train.accepted)
+        assertTrue("Der Zug fährt um acht Uhr ab." in train.accepted)
+        assertTrue("Der Zug fährt um punkt acht ab." in train.accepted)
+        assertTrue("Der Zug fährt um zwanzig Uhr ab." in train.accepted)
+        val now = PhraseSlots.reverseInstantiate(frame("uk", "it-is-now"), hour = 20, minute = 0)
         // No "um" in the frame → the adverbial "um acht" reading is skipped.
-        assertFalse(jetzt.accepted.any { "um acht" in it })
-        assertTrue("Es ist jetzt acht Uhr." in jetzt.accepted)
-        assertTrue("Es ist jetzt zwanzig Uhr." in jetzt.accepted)
+        assertFalse(now.accepted.any { "um acht" in it })
+        assertTrue("Es ist jetzt acht Uhr." in now.accepted)
+        assertTrue("Es ist jetzt zwanzig Uhr." in now.accepted)
     }
 
     @Test
     fun reverseClockOneOClockComposesApocopatedEinUhr() {
-        val zug = PhraseSlots.reverseInstantiate(template("sw-clock-zug"), hour = 13, minute = 0)
-        assertTrue("Der Zug fährt um ein Uhr ab." in zug.accepted)
-        assertTrue("Der Zug fährt um eins ab." in zug.accepted)
-        assertTrue("Der Zug fährt um dreizehn Uhr ab." in zug.accepted)
-        assertFalse(zug.accepted.any { "eins Uhr" in it }, "wrong 'eins Uhr' in ${zug.accepted}")
+        val train = PhraseSlots.reverseInstantiate(frame("sw", "train-departs-at"), hour = 13, minute = 0)
+        assertTrue("Der Zug fährt um ein Uhr ab." in train.accepted)
+        assertTrue("Der Zug fährt um eins ab." in train.accepted)
+        assertTrue("Der Zug fährt um dreizehn Uhr ab." in train.accepted)
+        assertFalse(train.accepted.any { "eins Uhr" in it }, "wrong 'eins Uhr' in ${train.accepted}")
     }
 
     @Test
     fun reverseNumberAndYearAcceptWrittenForms() {
-        val price = PhraseSlots.reverseInstantiate(template("uk-num-preis"), value = 21L)
+        val price = PhraseSlots.reverseInstantiate(frame("uk", "it-costs-n-euros"), value = 21L)
         assertEquals(
             listOf("Das kostet 21 Euro.", "Das kostet einundzwanzig Euro."),
             price.accepted,
         )
-        val year = PhraseSlots.reverseInstantiate(template("uk-year-wiederholen"), value = 1978L)
+        val year = PhraseSlots.reverseInstantiate(frame("uk", "repeat-the-year"), value = 1978L)
         assertTrue("Wiederholen Sie bitte die Jahreszahl: 1978." in year.accepted)
         assertTrue("Wiederholen Sie bitte die Jahreszahl: neunzehnhundertachtundsiebzig." in year.accepted)
         assertTrue("Wiederholen Sie bitte die Jahreszahl: eintausendneunhundertachtundsiebzig." in year.accepted)
+    }
+
+    /** The prompt realization's variant frames grade too — the du/Sie register split. */
+    @Test
+    fun reverseAcceptsEverySourceVariantFrame() {
+        val task = PhraseSlots.reverseInstantiate(frame("uk", "repeat-please"), value = 7L)
+        assertEquals("Wiederholen Sie bitte: 7.", task.display)
+        assertEquals(
+            listOf(
+                "Wiederholen Sie bitte: 7.",
+                "Wiederhole bitte: 7.",
+                "Wiederholen Sie bitte: sieben.",
+                "Wiederhole bitte: sieben.",
+            ),
+            task.accepted,
+        )
     }
 
     // Forward: the target-language answer accepts the digit form too
 
     @Test
     fun forwardClockAcceptsPaddedAndBareDigits() {
-        val task = PhraseSlots.instantiate(template("sw-clock-zug"), hour = 8, minute = 5)
+        val task = PhraseSlots.instantiate(frame("sw", "train-departs-at"), hour = 8, minute = 5)
         assertTrue("Treni inaondoka 08:05." in task.accepted)
         assertTrue("Treni inaondoka 8:05." in task.accepted)
         // The canonical word reading stays the display.
@@ -85,22 +99,23 @@ class PhraseAcceptedFormsTests {
 
     @Test
     fun forwardNumberAcceptsDigitsWithCountAgreement() {
-        val task = PhraseSlots.instantiate(template("uk-num-hefte"), value = 22L)
+        val task = PhraseSlots.instantiate(frame("uk", "i-have-n-notebooks"), value = 22L)
         assertTrue("У мене є 22 зошити." in task.accepted)
         assertEquals("У мене є двадцять два зошити.", task.display)
     }
 
-    // masculineSlot filter holds across the widened accepted assembly
+    // masculineNumeral filter holds across the widened accepted assembly
 
     @Test
-    fun masculineSlotNeverAcceptsFilteredFeminineForms() {
+    fun masculineNumeralNeverAcceptsFilteredFeminineForms() {
         val feminineBeforeNoun = Regex("(одна|дві) (євро|зошит)")
-        for (id in listOf("uk-num-preis", "uk-num-hefte")) {
+        for (slug in listOf("it-costs-n-euros", "i-have-n-notebooks")) {
             for (value in listOf(1L, 2L, 21L, 22L, 101L, 102L, 1001L, 1002L, 2022L)) {
-                val forward = PhraseSlots.instantiate(template(id), value)
-                val reverse = PhraseSlots.reverseInstantiate(template(id), value)
+                val template = frame("uk", slug)
+                val forward = PhraseSlots.instantiate(template, value)
+                val reverse = PhraseSlots.reverseInstantiate(template, value)
                 for (sentence in forward.accepted + reverse.accepted) {
-                    assertFalse(feminineBeforeNoun.containsMatchIn(sentence), "$id/$value: $sentence")
+                    assertFalse(feminineBeforeNoun.containsMatchIn(sentence), "$slug/$value: $sentence")
                 }
             }
         }
@@ -110,7 +125,7 @@ class PhraseAcceptedFormsTests {
 
     @Test
     fun sampledAcceptedSetsAreDeterministic() {
-        for (template in PhraseTemplates.all) {
+        for (template in RealFrames.all) {
             assertEquals(
                 PhraseSlots.reverseSample(template, Random(42)),
                 PhraseSlots.reverseSample(template, Random(42)),
