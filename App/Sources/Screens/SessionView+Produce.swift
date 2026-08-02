@@ -235,6 +235,11 @@ extension SessionView {
             feedback = .correct
             DLSound.correct()
             typoCorrection = typo.corrected
+            // why: a pause that waits for a tap must not hold the keyboard —
+            // it covers the button the pause is waiting for. The pending
+            // retry is cancelled first, or it re-focuses 120 ms later.
+            focusRetry?.cancel()
+            answerFocused = false
         case .otherWord(let other):
             // why: the typed word is taken — no typo credit (kufunga is not a
             // slip of kufungua), and the reveal says what they did write.

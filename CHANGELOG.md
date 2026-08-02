@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **The keyboard steps aside when a drill or review pauses on a near miss.** Accepting a
+  word with a small typo shows the proper spelling and waits for "Weiter" — but the
+  keyboard used to stay up and cover that button. It now drops, in the number, clock and
+  sentence drills, in vocabulary review, and in the letter drill (where a form you were
+  not played waits the same way).
+
 ## 3.3.0 — 2026-08-02
 
 - **The Spanish alphabet sheet speaks, and two words that said the wrong thing are
