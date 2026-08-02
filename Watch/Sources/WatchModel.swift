@@ -5,9 +5,10 @@ import WatchKit
 
 /// Watch app state: holds the latest phone snapshot and drains it as a graded
 /// multiple-choice run. Each tap is scored from correctness + response time
-/// (`WatchGrading`) and queued to the phone as an FSRS review. No watch-local
-/// FSRS — the phone reschedules; an answered card simply leaves the local due
-/// list until the next snapshot.
+/// (`WatchGrading`), answered back in the shape of that rating (`WatchFeedback`
+/// — a haptic always, a red wash on a miss), and queued to the phone as an FSRS
+/// review. No watch-local FSRS — the phone reschedules; an answered card simply
+/// leaves the local due list until the next snapshot.
 ///
 /// Two runs, one progress indicator each (`WatchRun`): the due batch counts to
 /// an end, free practice recycles and counts the answer streak.
@@ -29,6 +30,11 @@ final class WatchModel {
     private(set) var currentQuestion: WatchPracticeQuestion?
     /// The tapped option index; non-nil freezes the tiles into feedback state.
     private(set) var selectedIndex: Int?
+    /// The rating the last tap earned (raw FSRS 1–4), for the tile's badge —
+    /// the quiz shows it as an emoji, never as a word (`WatchFeedback`).
+    private(set) var lastRating: Int?
+    /// Raised for a moment after a wrong pick; the quiz washes the screen red.
+    private(set) var wrongFlash = false
     private(set) var streak = 0
     private(set) var answeredCount = 0
     /// Cards the due batch set out to answer — the counter's denominator.
@@ -38,6 +44,11 @@ final class WatchModel {
     private var questionShownAt = Date()
     private var rng = SystemRandomNumberGenerator()
     private var autoAdvance: Task<Void, Never>?
+    private var flash: Task<Void, Never>?
+
+    /// How long the wrong-answer wash stays up — long enough to register, short
+    /// enough that it is gone before the eye returns to the tiles.
+    private static let flashMillis = 260
 
     let connectivity = WatchConnectivityClient()
     let calendar = Calendar.current
@@ -164,13 +175,16 @@ final class WatchModel {
         selectedIndex = index
         let correct = index == question.correctIndex
         streak = correct ? streak + 1 : 0
-        // why: a wrong pick gets one light `.click`; correct picks stay haptic-free.
-        if !correct { WKInterfaceDevice.current().play(.click) }
 
         let elapsedMs = Int(Date().timeIntervalSince(questionShownAt) * 1000)
         let optionChars = question.options.joined().count
         let rating = WatchGrading.rating(correct: correct, elapsedMs: elapsedMs,
                                          optionChars: optionChars)
+        lastRating = rating
+        // why: every answer answers back, and in the shape of the rating it
+        // earned — a silent correct tap used to feel the same as no tap at all.
+        WKInterfaceDevice.current().play(WatchFeedback.haptic(forRating: rating))
+        if !correct { raiseWrongFlash() }
 
         connectivity.send(WatchAnswerEvent(cardId: id, rating: rating, date: Date()))
         // Every answer is an FSRS review, second lap included; the local list is
@@ -191,8 +205,22 @@ final class WatchModel {
         }
     }
 
+    /// Wash the screen red, then take it down again — the flash is the alarm a
+    /// tile tint alone was too quiet to raise.
+    private func raiseWrongFlash() {
+        flash?.cancel()
+        wrongFlash = true
+        flash = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .milliseconds(Self.flashMillis))
+            guard !Task.isCancelled else { return }
+            self?.wrongFlash = false
+        }
+    }
+
     func endSession() {
         autoAdvance?.cancel()
+        flash?.cancel()
+        wrongFlash = false
         sessionPresented = false
         currentID = nil
         currentQuestion = nil
@@ -251,6 +279,7 @@ final class WatchModel {
     /// Build the question for the current card and (re)start the response clock.
     private func makeQuestionForCurrent() {
         selectedIndex = nil
+        lastRating = nil
         guard let entry = currentEntry else {
             currentQuestion = nil
             return
