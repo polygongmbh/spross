@@ -57,9 +57,10 @@ struct HearPromptCard: View {
         }
         .padding(DL.Space.l)
         .frame(maxWidth: .infinity)
-        // why: the sibling prompt card's height, so the two drills do not jump
-        // a layout apart when a learner moves between them.
-        .frame(minHeight: 185)
+        // why: the gap word, the unmute row and the silent-switch line all come
+        // and go on this face — the tallest of them is held for every question,
+        // so a run never jumps a layout between two of its own tasks.
+        .frame(minHeight: DL.Reserve.hearCard)
         .dlCardSurface()
     }
 

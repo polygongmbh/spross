@@ -50,8 +50,9 @@ struct TrainerPromptCard: View {
         }
         .padding(DL.Space.l)
         .frame(maxWidth: .infinity)
-        // why: compact enough that prompt + input + button clear the keyboard.
-        .frame(minHeight: 185)
+        // why: room for the prompt AND the hint pill, held whether or not the
+        // pill is there, so the field and button below never move.
+        .frame(minHeight: DL.Reserve.drillCard)
         .dlCardSurface()
         .animation(.easeOut(duration: 0.25), value: revealed)
     }

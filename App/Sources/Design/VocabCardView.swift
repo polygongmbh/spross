@@ -86,6 +86,10 @@ struct VocabCardView: View {
         }
         .padding(compact ? DL.Space.l : DL.Space.xl)
         .frame(maxWidth: .infinity)
+        // why: a session card holds one height whether the prompt is a word, a
+        // word under an area label, or the replay glyph of a by-ear question;
+        // previews stay content-driven.
+        .frame(minHeight: compact ? DL.Reserve.reviewCard : nil)
         .dlCardSurface()
         .animation(.easeOut(duration: 0.25), value: revealed)
     }
