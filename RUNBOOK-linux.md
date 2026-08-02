@@ -65,3 +65,21 @@ Min Android 8.0 (API 26).
   plan disk accordingly.
 - Release builds (`:android:assembleRelease`) are unsigned;
   signing config is deliberately not set up yet (pre-production).
+
+## Claude Code on the web / cloud containers
+
+Remote sessions run this same Linux path, with two container-specific gaps
+`.claude/hooks/session-start.sh` and this doc close:
+
+- The container ships JDK 21 as the system default but no JDK 17, and
+  `kern/build.gradle.kts` pins `jvmToolchain(17)` with no toolchain download
+  repository configured — `./gradlew` fails outright, not just slowly, without
+  a real JDK 17 install. The session-start hook installs
+  `openjdk-17-jdk-headless` once per container (apt, idempotent) and leaves
+  `JAVA_HOME` on the preinstalled 21; Gradle auto-detects the 17 install under
+  `/usr/lib/jvm` on its own.
+- There is no Xcode, `xcodegen`, `xcrun`/`simctl`, or `idb` in these
+  containers and there never will be — don't probe for them or try to install
+  them. `:kern:jvmTest` plus the Android gates above are the rudimentary
+  verification available here; the iOS build gate in `CLAUDE.md` and the
+  `verify` skill are Mac-only.

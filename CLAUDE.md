@@ -19,6 +19,9 @@ scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodeg
 scripts/strings.py --fix     # clear the stale flags Xcode writes into the String Catalog
 ```
 
+Xcode/`xcodegen`/simctl lines above are Mac-only — never present, never installable, on Linux/cloud sessions.
+There, `./gradlew :kern:jvmTest` is the gate; see `RUNBOOK-linux.md` for the rest.
+
 ## Commit & release rules
 
 - **Commit incrementally and atomically** —
