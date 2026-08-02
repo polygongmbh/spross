@@ -7,6 +7,11 @@
   thumb that closed one round early finds the next one's way out where it left it, instead
   of travelling to the bottom of the screen and back.
 
+- **The reveal chime is audible again.** Pronunciation recordings now play under a
+  catalog-measured loudness correction that can boost a quiet recording well past where
+  the feedback sounds used to sit, so reveal — the softest of the four by design — was
+  getting buried under it. The four sounds are louder now, in the same balance as before.
+
 ## 3.1.0 — 2026-08-02
 
 - **German is spoken by people almost everywhere now, not by the device's voice.** Most

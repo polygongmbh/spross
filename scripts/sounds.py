@@ -49,7 +49,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(ROOT, 'App/Resources/Sounds')
 
 SAMPLE_RATE = 44100
-PEAK = 0.26          # headroom: these play over the ring/silent switch, not loud
+PEAK = 0.5           # headroom: pronunciation now carries the ANALYSIS INDEX boost
+                     # (catalog gain, up to +20 dB) — 0.26 predates that and reveal
+                     # (level 0.30, the quietest sound here) got buried under it
 END_FADE = 0.005     # s — no click when the tail is truncated by the buffer
 
 # Odd harmonics falling ~1/n² (triangle-like: soft, bodied, no saw/square buzz),
