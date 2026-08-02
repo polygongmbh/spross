@@ -173,6 +173,10 @@ One line per item, with a file or context pointer, filed under the section it be
   Ukrainian they can never hear. Per-language delivery (on-demand resources / Play asset packs) would cut
   the install to the target actually being learned; measure the real per-platform delta
   before choosing a mechanism.
+- `compileSdk` sits at 36 and that is now what holds androidx back: lifecycle 2.11 refuses
+  to resolve below 37 (`checkDebugAarMetadata`), and the next Compose BOM will follow it.
+  Bumping needs the android-37 platform installed and a re-check of `targetSdk` separately —
+  compiling against 37 does not opt the app into its runtime behavior.
 
 ## Compliance
 
