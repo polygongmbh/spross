@@ -2,8 +2,10 @@ import SwiftUI
 
 /// The one watch practice screen: a role-aware multiple-choice question over
 /// the due queue, then review-ahead. Correctness + response time derive the
-/// FSRS rating (`WatchGrading`) — no self-grading. Instant feedback (green
-/// right / amber wrong — never red), then auto-advance.
+/// FSRS rating (`WatchGrading`) — no self-grading. Instant feedback on three
+/// channels (green right / red wrong plus a red wash, a haptic shaped like the
+/// rating, and that rating badged on the tile — `WatchFeedback`), then
+/// auto-advance.
 /// One progress indicator, in the title: the due batch counts to its end,
 /// free practice shows the answer streak (having no total to count toward).
 /// - recognize: prompt the target `promptForm` (article-tinted), tap the
@@ -11,6 +13,7 @@ import SwiftUI
 /// - produce:   prompt the source meaning (+ ♀ badge), tap the target word.
 struct WatchQuizView: View {
     @Bindable var model: WatchModel
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         Group {
@@ -20,6 +23,29 @@ struct WatchQuizView: View {
             } else {
                 completion
             }
+        }
+        .overlay { wrongFlash }
+        .animation(feedbackAnimation, value: model.selectedIndex)
+        .animation(feedbackAnimation, value: model.wrongFlash)
+    }
+
+    /// Reduce Motion keeps the colors and the badge — only the movement goes,
+    /// exactly as every phone screen treats `.dlCardFlip`.
+    private var feedbackAnimation: Animation {
+        reduceMotion ? .easeOut(duration: 0.15) : .spring(response: 0.28, dampingFraction: 0.6)
+    }
+
+    /// The alarm a tile tint alone was too quiet to raise. Hit testing stays off
+    /// so the wash can never swallow the tap that follows it.
+    @ViewBuilder
+    private var wrongFlash: some View {
+        if model.wrongFlash {
+            Color.wlWrong
+                .opacity(0.55)
+                .ignoresSafeArea()
+                .allowsHitTesting(false)
+                .transition(.opacity)
+                .accessibilityHidden(true)
         }
     }
 
@@ -110,18 +136,35 @@ struct WatchQuizView: View {
                 // starts shrinking — `minHeight` is a floor, so the tile grows.
                 .lineLimit(4)
                 .frame(maxWidth: .infinity, minHeight: 44)
+                // why: an overlay costs no layout, so nothing shifts under the
+                // thumb the instant the badge appears.
+                .overlay(alignment: .topTrailing) { ratingBadge(index) }
         }
         .buttonStyle(.borderedProminent)
         .tint(tint(for: index, question))
         .foregroundStyle(labelColor(for: index, question))
     }
 
-    /// Neutral until a choice; then the correct tile greens and a wrong pick
-    /// ambers (never red), other tiles dim.
+    /// The rating the tap earned, on the tile that earned it — an emoji rather
+    /// than a word, so it tells an insider how the answer landed without
+    /// announcing a grade the learner could start playing to (`WatchFeedback`).
+    @ViewBuilder
+    private func ratingBadge(_ index: Int) -> some View {
+        if index == model.selectedIndex, let rating = model.lastRating {
+            Text(WatchFeedback.emoji(forRating: rating))
+                .font(.system(size: 13))
+                .transition(.scale.combined(with: .opacity))
+                .accessibilityHidden(true)
+                .offset(x: 4, y: -4)
+        }
+    }
+
+    /// Neutral until a choice; then the correct tile greens, a wrong pick reds,
+    /// other tiles dim.
     private func tint(for index: Int, _ question: WatchPracticeQuestion) -> Color {
         guard let selected = model.selectedIndex else { return Color.wlTextSecondary.opacity(0.3) }
         if index == question.correctIndex { return .wlSuccess }
-        if index == selected { return .wlAmber }
+        if index == selected { return .wlWrong }
         return Color.wlTextSecondary.opacity(0.15)
     }
 

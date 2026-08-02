@@ -52,6 +52,28 @@
       "targetText": "Sofa"
     },
     {
+      "cardId": "fixture-wo-sind-sie",
+      "distractors": ["Who is there?", "What is that?", "Would you need this one?"],
+      "due": 1767268800000,
+      "femMarker": false,
+      "nextRole": "recognize",
+      "promptForm": "Wo sind sie?",
+      "sourceText": "Where are they?",
+      "stability": 3.0,
+      "targetText": "Wo sind sie?"
+    },
+    {
+      "cardId": "fixture-brauchen-sie-das",
+      "distractors": ["Wo sind sie?", "Wer ist da?", "Was kostet das?"],
+      "due": 1767272400000,
+      "femMarker": false,
+      "nextRole": "produce",
+      "promptForm": "Brauchen Sie das hier?",
+      "sourceText": "Do you need this?",
+      "stability": 0.9,
+      "targetText": "Brauchen Sie das hier?"
+    },
+    {
       "articleTint": "der",
       "cardId": "fixture-fernseher",
       "distractors": ["sofa", "fridge", "waiter", "dishwasher"],
