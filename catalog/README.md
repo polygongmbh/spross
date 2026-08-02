@@ -44,6 +44,9 @@ catalog/
     en.json
     sw.json
     uk.json
+  drills/               # sentence frames for the generated number/year/clock drills
+    frames.json         # ordered [{slug, slot}] — language-neutral frame concepts
+    <lang>.json         # { frames: { slug: realization } }
   audio/                # GENERATED pronunciation recordings, one folder per language
     <lang>/
       manifest.json     # { language, words: { slug: … }, letters?: { glyph: … } }
@@ -316,6 +319,84 @@ fails it loudly instead of letting it sit.
 - No `audio` field. Letter recordings live in the audio manifest's `letters{}` (above),
   keyed by lowercase glyph — lint holds that every recorded glyph addresses exactly one
   alphabet row, which is why colliding-glyph entries can never carry one.
+
+## Drill frames (`catalog/drills/`)
+
+Sentence frames for the procedural drills:
+a curated sentence whose single `{slot}` the engine fills with a generated
+number, year or clock time.
+A frame is a **concept** exactly as a word is — `frames.json` names it and the slot kind
+it takes, and each `drills/<lang>.json` renders it in that language.
+Nothing pair-shaped is stored: `de→uk` and `en→uk` read the same Ukrainian file.
+
+**`drills/frames.json`** — the ordered frame manifest:
+```json
+[ { "slug": "train-departs-at",   "slot": "clock"   },
+  { "slug": "i-have-n-notebooks", "slot": "numbers" } ]
+```
+
+**`drills/<lang>.json`** — the frames this language renders, keyed by slug (`de.json`):
+```json
+{ "frames": {
+    "train-departs-at": { "text": "Der Zug fährt um {slot} Uhr ab." },
+    "repeat-please":    { "text": "Wiederholen Sie bitte: {slot}.",
+                          "variants": ["Wiederhole bitte: {slot}."] } } }
+```
+
+The same frames on the Ukrainian side, carrying what only Ukrainian needs (`uk.json`):
+```json
+{ "frames": {
+    "i-have-n-notebooks": {
+      "text": "У мене є {slot} {count}.",
+      "count": { "one": "зошит", "few": "зошити", "many": "зошитів" },
+      "notes": { "de": "Zahlwort-Kongruenz: 1 → зошит, 2–4 → зошити, 5+ → зошитів" } },
+    "it-costs-n-euros": { "text": "Це {slot} євро.", "masculineNumeral": true } } }
+```
+
+- `slot` is `numbers`, `years` or `clock` — which generator fills the frame.
+- **The drill is a symmetric runtime join**, like the card join:
+  a frame realized in BOTH the learner's languages becomes one drill,
+  and the profile decides which side prompts and which side is typed.
+  A frame realized in one language only simply never appears — the coverage rule again,
+  and the honest way to drop a frame a language cannot carry.
+- A frame drill exists only where the **answer** language has a trainer pack:
+  the slot value is generated in the language being typed,
+  so a language without one can still supply prompts but never answers.
+- **An absent `drills/` folder is legal** — no frames, no sentence drill.
+- Frame slugs share the concept namespace and must not collide with one:
+  a slug names either a card or a frame, never both.
+
+Realization fields — `text` is required, everything else is per-language:
+- `text` — the frame, carrying **exactly one `{slot}`** (and `{count}` iff `count` is authored).
+- `variants` — accept-only alternate frames, the same rule as a realization's `variants`:
+  the du-form beside the Sie-form, graded as correct and never displayed.
+- `count` — counted-noun agreement (`one`/`few`/`many`) substituted for the `{count}` marker;
+  `numbers` frames only, since there is otherwise no numeral to agree with.
+- `masculineNumeral` — this frame counts a masculine or indeclinable noun,
+  so the feminine numerals (uk одна/дві) must NOT be accepted:
+  the frame exists to train exactly that agreement.
+- `notes` — keyed by explanation language, exactly as a realization's `notes`.
+
+Frames sit outside `areas.json` on purpose:
+they are not scheduled cards,
+so they stay out of the card join, out of `seedIndex` and out of the phrase-unlock gate,
+and editing one never restamps a learner's box.
+
+**Language constraints** found in review, which bind whoever authors a frame:
+- Swahili clock readings start "Saa …" and drop into mid-sentence adverbial position
+  lowercased ("Treni inaondoka saa mbili usiku."),
+  so a Swahili clock frame must read naturally with the value inline.
+- Ukrainian time-at ("о + Lokativ") does NOT compose with the nominative clock readings
+  the trainer generates, so Ukrainian clock frames are predicate frames
+  ("Зараз …", "На будильнику …") — fewer, but correct.
+- Ukrainian year frames would need ordinal and case forms the trainer does not produce,
+  so they use dictation framing, where the bare cardinal reading is natural.
+- Ukrainian counted nouns must be **masculine**,
+  so the trainer's canonical masculine numeral stays grammatical.
+- Swahili needs "tangu mwaka …" for a year: a bare cardinal after `tangu` does not read as one.
+
+Every non-slot content word on the answer side is verified against the card join
+(`PhraseVocabAuditTests`); only documented function words go beyond it.
 
 ## What earns a slot, and how it is worded
 
