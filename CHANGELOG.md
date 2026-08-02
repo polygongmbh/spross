@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+- **German is spoken by people almost everywhere now, not by the device's voice.** Most
+  German words were reaching for the synthesizer because the recordings were being looked
+  for under the wrong spelling; they were there all along. The alphabet's letters have
+  their own recorded names as well, so Zett, Vau and the umlauts sound like German rather
+  than like a description being read out — and the reference words the sheet cites, down
+  to the Spanish `pero`/`perro` pair whose whole point is hearing the difference, are
+  recordings too.
+
+- **The alphabet sheet groups what belongs together.** The umlauts stand as a block, ch
+  and sch as another, the s sounds as another, each under a heading, with the plain
+  letters last and arranged so the ones you confuse sit side by side. Ukrainian keeps its
+  alphabetical order — that order is itself something you need.
+
 - **The sentence drill reaches language pairs it never covered before.** A sentence frame
   is written once per language and paired up when you pick a pair, instead of existing only
   where somebody had written out both sides together — so learning Ukrainian from Swahili
