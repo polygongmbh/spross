@@ -1,6 +1,15 @@
 {
   "language": "uk",
   "letters": {
+    "ʼ": {
+      "author": "Tohaomg",
+      "file": "letters/u02bc.mp3",
+      "gain": 2.8,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "ed6462de639b47dadf2d8b6a6b022376a1273ab5f621594ff56aa691fd5f4ddd",
+      "source": "LL-Q8798 (ukr)-Tohaomg-апостроф.wav"
+    },
     "а": {
       "author": "Tabrus",
       "file": "letters/u0430.mp3",
