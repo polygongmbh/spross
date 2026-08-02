@@ -6,6 +6,7 @@ import kotlin.test.assertTrue
 import net.spross.kern.catalog.Fixture
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Realization
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.Match
@@ -27,7 +28,11 @@ import net.spross.kern.session.Match
  * - sw `nne` (4) ↔ `nane` (8), one insertion — and every tens compound
  *   ("kumi na nne" ↔ "kumi na nane", …: 10 pairs over 0..99);
  * - uk `дев'ять` (9) ↔ `десять` (10), one substitution once the apostrophe
- *   is deleted by the comparison pipeline.
+ *   is deleted by the comparison pipeline;
+ * - en `eight` (8) ↔ `eighty` (80), one insertion, and every hundreds
+ *   compound ("one hundred eight" ↔ "one hundred eighty");
+ * - es `sesenta` (60) ↔ `setenta` (70), one deletion, and every compound
+ *   built on them ("sesenta y uno" ↔ "setenta y uno").
  * Any pair NOT on this list fails the sweep; a vanished known pair fails too
  * (the allowlist must not rot).
  */
@@ -47,6 +52,20 @@ class TrainerTypoBridgeGuardTests {
     }
 
     @Test
+    fun englishCardinals0To999BridgeOnlyTheKnownEightEightyPairs() {
+        val known = sweep("en", (0L..999L).map { EnglishNumbers.cardinal(it) })
+        assertEquals(10, known.size, "expected the ten eight ↔ eighty pairs, got $known")
+        assertTrue(known.all { "eight\"" in it && "eighty\"" in it }, "unexpected pair in $known")
+    }
+
+    @Test
+    fun spanishCardinals0To999BridgeOnlyTheKnownSixtySeventyPairs() {
+        val known = sweep("es", (0L..999L).map { SpanishNumbers.cardinal(it) })
+        assertEquals(100, known.size, "expected the hundred sesenta ↔ setenta pairs, got $known")
+        assertTrue(known.all { "sesenta" in it && "setenta" in it }, "unexpected pair in $known")
+    }
+
+    @Test
     fun swahiliCardinals0To99BridgeOnlyTheKnownFourEightPairs() {
         val known = sweep("sw", (0L..99L).map { SwahiliNumbers.cardinal(it) })
         assertEquals(10, known.size, "expected the ten nne ↔ nane pairs, got $known")
@@ -62,7 +81,7 @@ class TrainerTypoBridgeGuardTests {
      */
     private fun sweep(language: String, words: List<String>): List<String> {
         val normalizer = AnswerNormalizer(
-            catalog.languages.getValue(language),
+            languageInfo(language),
             articleLeniency = false,
             maxTyposPerWord = 1,
         )
@@ -83,10 +102,18 @@ class TrainerTypoBridgeGuardTests {
         return known
     }
 
-    /** Same head words + an allowlisted final-word pair (covers the tens compounds). */
-    private fun isKnownBridge(a: String, b: String): Boolean =
-        a.substringBeforeLast(' ', "") == b.substringBeforeLast(' ', "") &&
-            setOf(a.substringAfterLast(' '), b.substringAfterLast(' ')) in KNOWN_BRIDGES
+    /**
+     * The two readings differ in exactly one word and that word pair is
+     * allowlisted — which is what a compound of a known pair looks like,
+     * wherever the pair sits ("sesenta y uno" ↔ "setenta y uno").
+     */
+    private fun isKnownBridge(a: String, b: String): Boolean {
+        val left = a.split(' ')
+        val right = b.split(' ')
+        if (left.size != right.size) return false
+        val differing = left.indices.filter { left[it] != right[it] }
+        return differing.size == 1 && setOf(left[differing[0]], right[differing[0]]) in KNOWN_BRIDGES
+    }
 
     /** The AnswerNormalizer comparison shape of a generated word. */
     private fun comparisonShape(word: String): String =
@@ -121,7 +148,20 @@ class TrainerTypoBridgeGuardTests {
         return d[a.length][b.length]
     }
 
+    /**
+     * The fixture catalog's entry, or a bare one for a language it does not
+     * carry — a cardinal has no article and no citation prefix, so only the
+     * typo budget decides the sweep.
+     */
+    private fun languageInfo(language: String): LanguageInfo =
+        catalog.languages[language] ?: LanguageInfo(language, language, language, "🏳️")
+
     private companion object {
-        val KNOWN_BRIDGES = listOf(setOf("nne", "nane"), setOf("девять", "десять"))
+        val KNOWN_BRIDGES = listOf(
+            setOf("nne", "nane"),
+            setOf("девять", "десять"),
+            setOf("eight", "eighty"),
+            setOf("sesenta", "setenta"),
+        )
     }
 }
