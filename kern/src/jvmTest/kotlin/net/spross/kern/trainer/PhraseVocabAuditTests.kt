@@ -26,7 +26,7 @@ class PhraseVocabAuditTests {
      * drifted into. A language with more function words than another gets a bigger figure
      * and has to say so here.
      */
-    private val allowlistSize: Map<Language, Int> = mapOf("de" to 14, "sw" to 4, "uk" to 2)
+    private val allowlistSize: Map<Language, Int> = mapOf("de" to 14, "en" to 2, "sw" to 4, "uk" to 2)
 
     /** Documented allowlist — function words and international words only. */
     private val allowlist: Map<Language, Set<String>> = mapOf(
@@ -39,6 +39,11 @@ class PhraseVocabAuditTests {
             "ist", "haben", "habe", // Kopula sein + Possessiv haben
             "auf", "ab",         // trennbare Verbpartikeln (wache … auf, fährt … ab)
             "euro",              // internationale Währung, wie in sw/uk
+        ),
+        // --- English ---------------------------------------------------------------
+        "en" to setOf(
+            "euros", // internationale Währung, wie in de/sw/uk — im Plural, weil „euro“ selbst kein Kartenwort ist
+            "been",  // Hilfsverb: „since“ erzwingt have been + -ing, ein Präsens ist hier ungrammatisch
         ),
         // --- Swahili --------------------------------------------------------------
         "sw" to setOf(
@@ -67,6 +72,12 @@ class PhraseVocabAuditTests {
             "zeigt" to "zeigen",
             "schreib" to "schreiben",                    // Imperativ
             "hefte" to "Heft", "stühle" to "Stuhl",      // Plural
+        ),
+        // --- English ---------------------------------------------------------------
+        "en" to mapOf(
+            "departs" to "depart", "arrives" to "arrive",  // 3. Person Singular
+            "shows" to "show", "costs" to "cost",
+            "plates" to "plate", "notebooks" to "notebook", "chairs" to "chair", // Plural
         ),
         // --- Swahili --------------------------------------------------------------
         "sw" to mapOf(
@@ -135,7 +146,10 @@ class PhraseVocabAuditTests {
     @Test
     fun everyLanguageWithAPackAndFramesIsAudited() {
         val audited = joinedPairs().map { it.second }.toSet()
-        assertTrue("sw" in audited && "uk" in audited && "de" in audited, "audited: $audited")
+        assertTrue(
+            listOf("de", "en", "sw", "uk").all { it in audited },
+            "audited: $audited",
+        )
         for (target in audited) assertTrue(Trainer.supports(target), "$target answers without a pack")
     }
 

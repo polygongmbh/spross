@@ -1,0 +1,115 @@
+{
+ "frames": {
+  "train-departs-at": {
+   "text": "The train departs at {slot}.",
+   "variants": [
+    "The train leaves at {slot}."
+   ]
+  },
+  "bus-arrives-at": {
+   "text": "The bus arrives at {slot}.",
+   "variants": [
+    "The bus comes at {slot}."
+   ]
+  },
+  "i-wake-up-at": {
+   "text": "I wake up at {slot}.",
+   "variants": [
+    "I get up at {slot}."
+   ]
+  },
+  "we-eat-at": {
+   "text": "We eat at {slot}."
+  },
+  "meeting-is-at": {
+   "text": "The meeting is at {slot}.",
+   "variants": [
+    "The meeting starts at {slot}."
+   ]
+  },
+  "it-is-now": {
+   "text": "It is now {slot}.",
+   "variants": [
+    "It's now {slot}.",
+    "It is {slot} now.",
+    "The time is now {slot}."
+   ]
+  },
+  "alarm-clock-shows": {
+   "text": "The alarm clock shows {slot}.",
+   "variants": [
+    "The alarm clock says {slot}."
+   ]
+  },
+  "we-have-n-plates": {
+   "text": "We have {slot} plates.",
+   "variants": [
+    "We've got {slot} plates."
+   ]
+  },
+  "i-have-n-notebooks": {
+   "text": "I have {slot} notebooks.",
+   "variants": [
+    "I've got {slot} notebooks."
+   ]
+  },
+  "we-have-n-chairs": {
+   "text": "We have {slot} chairs.",
+   "variants": [
+    "We've got {slot} chairs."
+   ]
+  },
+  "i-have-n-keys": {
+   "text": "I have {slot} keys.",
+   "variants": [
+    "I've got {slot} keys."
+   ]
+  },
+  "it-costs-n-euros": {
+   "text": "It costs {slot} euros.",
+   "variants": [
+    "That costs {slot} euros.",
+    "It's {slot} euros."
+   ],
+   "notes": {
+    "de": "Plural: euros — anders als „30 Euro“ im Deutschen"
+   }
+  },
+  "repeat-please": {
+   "text": "Please repeat: {slot}.",
+   "variants": [
+    "Repeat, please: {slot}."
+   ]
+  },
+  "write-please": {
+   "text": "Please write: {slot}.",
+   "variants": [
+    "Write, please: {slot}."
+   ]
+  },
+  "learning-since-year": {
+   "text": "I have been learning German since {slot}.",
+   "variants": [
+    "I've been learning German since {slot}.",
+    "I have been studying German since {slot}."
+   ],
+   "notes": {
+    "de": "„seit“ verlangt im Englischen have been + -ing, nie das Präsens"
+   }
+  },
+  "repeat-the-year": {
+   "text": "Please repeat the date: {slot}.",
+   "variants": [
+    "Repeat the date, please: {slot}.",
+    "Please repeat the year: {slot}."
+   ]
+  },
+  "write-the-year": {
+   "text": "Please write the date: {slot}.",
+   "variants": [
+    "Write the date, please: {slot}.",
+    "Please write the year: {slot}."
+   ]
+  }
+ }
+}
