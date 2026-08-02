@@ -75,11 +75,16 @@ internal object LetterDrillFixture {
      * The app's own resolver shape (§3.4): the concept realization wins and carries its
      * slug, `exampleText` steps in without one. An entry holding BOTH — `ch-ich` — falls
      * back to plain text here, which is what stamps it [LetterPromptKind.PlainText].
+     *
+     * One word per row on purpose: the pooled draw has to reproduce the single-example
+     * behaviour exactly, which is what the golden sequences pin.
      */
-    val example: (AlphabetEntry) -> LetterDrill.AlphabetExampleWord? = { entry ->
-        entry.exampleSlug?.let { slug ->
-            realized[slug]?.let { LetterDrill.AlphabetExampleWord(it, slug) }
-        } ?: entry.exampleText?.let { LetterDrill.AlphabetExampleWord(it, null) }
+    val example: (AlphabetEntry) -> List<LetterDrill.AlphabetExampleWord> = { entry ->
+        listOfNotNull(
+            entry.exampleSlug?.let { slug ->
+                realized[slug]?.let { LetterDrill.AlphabetExampleWord(it, slug) }
+            } ?: entry.exampleText?.let { LetterDrill.AlphabetExampleWord(it, null) },
+        )
     }
 
     fun entry(ref: String): AlphabetEntry = requireNotNull(alphabet.entry(ref)) { "no entry \"$ref\"" }

@@ -241,7 +241,10 @@ never the shape of the app.
   sheet renders every row (glyph, name, IPA, context, hint, example with meaning where
   the reader's language knows the word) and ships even where the drill cannot — audio is
   the drill's precondition, not the sheet's. The drill asks everything by ear: letter
-  NAME or gap word, tiles first among strangers, then among look- and sound-alikes, then
+  NAME or gap word — and a gap word is drawn from the whole catalog wherever the glyph
+  says its own sound, words the learner already holds first, so a rung stops meaning one
+  memorized blank (`catalog/README.md` § Alphabet owns which rows may draw). Tiles first
+  among strangers, then among look- and sound-alikes, then
   typed, and — once enough words are settled — dictation of the learner's own
   consolidated words, which never touches their schedule. Correctness is never color
   alone (checkmark/X over the tint); a miss never auto-advances. While reading aloud is

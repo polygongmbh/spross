@@ -42,6 +42,9 @@ object LetterDrill {
     /** Below this many short candidates the level-8 filter is dropped — never draw from one. */
     private const val MIN_SHORT_CANDIDATES = 3
 
+    /** The same floor on the gap word's known-first preference; below it, the whole pool. */
+    private const val MIN_KNOWN_CANDIDATES = 3
+
     fun maxLevel(dictationAvailable: Boolean): Int =
         if (dictationAvailable) MAX_LEVEL_WITH_DICTATION else MAX_LEVEL_WITHOUT_DICTATION
 
@@ -106,35 +109,47 @@ object LetterDrill {
      * the entry's `exampleText` escape hatch rather than a concept the target language
      * realizes. That distinction is the whole point of the type — it is what keeps a
      * slug's recording from playing over a different word on screen.
+     *
+     * [known] is the learner's side of it: true where the box already holds the word, so
+     * the draw can favour words that mean something to them (see [sample]).
      */
-    data class AlphabetExampleWord(val text: String, val slug: String?)
+    data class AlphabetExampleWord(val text: String, val slug: String?, val known: Boolean = false)
 
     /**
      * One letter-stage question. [promptableRefs] is the app's own list (what the device
-     * can actually speak or play, §5.1) in file order; [avoidRef] is the previous answer,
-     * resampled once so a repeat needs two unlucky draws rather than one.
+     * can actually speak or play, §5.1) in file order; [avoidRef] is the previous answer
+     * and [avoidWord] the previous gap word, each resampled once so a repeat needs two
+     * unlucky draws rather than one.
+     *
+     * [targetExamples] hands over EVERY word a row could gap, already narrowed to what
+     * this device can say (`Catalog.alphabetExamples` upstream of it). Callers precompute
+     * it per run rather than per question — it is a catalog sweep, not a lookup.
      *
      * Entries that cannot be ASKED are dropped defensively — a letter without a name, a
-     * gap entry whose example does not resolve or whose glyph does not sit in it exactly
+     * gap entry whose examples do not resolve or whose glyph sits in none of them exactly
      * once. Lint makes all three unreachable in shipped content; the filter is what turns
      * an authoring slip into a smaller pool instead of an unanswerable question.
      */
     fun sample(
         alphabet: Alphabet,
-        targetExample: (AlphabetEntry) -> AlphabetExampleWord?,
+        targetExamples: (AlphabetEntry) -> List<AlphabetExampleWord>,
         level: Int,
         promptableRefs: List<String>,
         avoidRef: String?,
+        avoidWord: String?,
         rng: Random,
     ): LetterDrillTask {
         val allowed = promptableRefs.toSet()
         val pool = alphabet.entries
             .filter { it.ref in allowed && it.drill && it.kind != AlphabetKind.Rule }
-            .mapNotNull { entry -> prompt(entry, targetExample)?.let { entry to it } }
+            .map { entry -> entry to gapCandidates(entry, targetExamples) }
+            .filter { (entry, words) -> entry.kind == AlphabetKind.Letter || words.isNotEmpty() }
+            .filter { (entry, _) -> entry.kind != AlphabetKind.Letter || entry.name != null }
         require(pool.isNotEmpty()) { "no promptable entry in the ${alphabet.language} alphabet" }
         var picked = pool[rng.nextInt(pool.size)]
         if (picked.first.ref == avoidRef) picked = pool[rng.nextInt(pool.size)]
-        val (entry, prompt) = picked
+        val (entry, words) = picked
+        val prompt = prompt(entry, words, avoidWord, rng)
         // why: the letter stages stop at 7 — 8 and 9 are dictation, which draws from the
         // box and enters through sampleDictation, never here.
         val stage = stageFor(level.coerceIn(1, MAX_LEVEL_WITHOUT_DICTATION))
@@ -223,7 +238,7 @@ object LetterDrill {
         return typed.isNotEmpty() && task.accepted.any { graded(it) == typed }
     }
 
-    /** The prompt side of a task; null where the entry cannot be asked at all. */
+    /** The prompt side of a task. */
     private data class Prompt(
         val text: String,
         val kind: LetterPromptKind,
@@ -233,25 +248,58 @@ object LetterDrill {
         val gloss: String?,
     )
 
-    private fun prompt(entry: AlphabetEntry, example: (AlphabetEntry) -> AlphabetExampleWord?): Prompt? {
+    /** The words a row could actually gap — empty for a letter row, which is asked by name. */
+    private fun gapCandidates(
+        entry: AlphabetEntry,
+        examples: (AlphabetEntry) -> List<AlphabetExampleWord>,
+    ): List<AlphabetExampleWord> =
+        if (entry.kind == AlphabetKind.Letter) emptyList()
+        else examples(entry).filter { entry.gapWord(it.text) != null }
+
+    private fun prompt(
+        entry: AlphabetEntry,
+        words: List<AlphabetExampleWord>,
+        avoidWord: String?,
+        rng: Random,
+    ): Prompt {
         if (entry.kind == AlphabetKind.Letter) {
             // why: the NAME is the speakable unit — «ґе», not ґ (measured 0.39 s against 1.32 s).
-            val name = entry.name ?: return null
+            val name = requireNotNull(entry.name) { "letter ${entry.ref} without a name" }
             return Prompt(name, LetterPromptKind.Name, null, entry.glyph.lowercase(), null, null)
         }
         // why: a digraph has no name to speak and a bare synthesized sound is unreliable,
         // so the question becomes the classic gap word — which also makes homophone sets
         // (ß/ss, ll/y) answerable, because the word's spelling is what decides them.
-        val word = example(entry) ?: return null
-        val gap = entry.gapWord(word.text) ?: return null
+        val word = draw(words, avoidWord, rng)
         return Prompt(
             text = word.text,
             kind = if (word.slug != null) LetterPromptKind.Word else LetterPromptKind.PlainText,
             slug = word.slug,
             glyph = null,
-            gap = gap,
+            gap = requireNotNull(entry.gapWord(word.text)) { "ungappable ${entry.ref}: ${word.text}" },
             gloss = word.text,
         )
+    }
+
+    /**
+     * The gap word itself: words the learner already holds first, so the drill spells out
+     * a vocabulary rather than a word list — but only while enough of them exist, or a
+     * beginner's three known words would come round all evening. [avoidWord] is resampled
+     * once, the same courtesy the entry draw gets.
+     */
+    private fun draw(
+        words: List<AlphabetExampleWord>,
+        avoidWord: String?,
+        rng: Random,
+    ): AlphabetExampleWord {
+        val known = words.filter { it.known }
+        val pool = if (known.size >= MIN_KNOWN_CANDIDATES) known else words
+        // why: a row with one word has nothing to draw — spending randomness on it would
+        // shift every later draw in the run for a choice that was never made.
+        if (pool.size == 1) return pool.single()
+        var word = pool[rng.nextInt(pool.size)]
+        if (word.text == avoidWord) word = pool[rng.nextInt(pool.size)]
+        return word
     }
 
     /**

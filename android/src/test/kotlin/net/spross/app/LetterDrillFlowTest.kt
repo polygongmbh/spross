@@ -37,12 +37,15 @@ class LetterDrillFlowTest {
         hints = emptyMap(),
         context = emptyMap(),
         drill = true,
+        mine = true,
+        section = null,
         confusableLook = emptyList(),
         confusableSound = emptyList(),
     )
 
     private val alphabet = Alphabet(
         language = "uk",
+        sections = emptyList(),
         entries = listOf(
             letter("а", "а"), letter("б", "бе"), letter("в", "ве"),
             letter("г", "ге"), letter("д", "де"), letter("е", "е"),
@@ -83,7 +86,6 @@ class LetterDrillFlowTest {
                 promptableRefs = alphabet.entries.map { it.ref },
                 dictationCandidates = cards,
             ),
-            exampleWord = { null },
             settledCards = settled,
             cards = cards.associateBy { it.id },
             dictationGrader = CatalogAnswerGrader(

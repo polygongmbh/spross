@@ -27,7 +27,17 @@ data class LetterDrillAvailability(
     val promptableRefs: List<String>,
     /** Consolidated, single-word, audible box cards — the dictation pool. */
     val dictationCandidates: List<Card>,
+    /**
+     * Ref → every word this device can say the row's gap from, known words flagged. Built
+     * ONCE per run: it is a catalog sweep, and a per-question rebuild would re-audit every
+     * candidate's audio for a single draw.
+     */
+    val gapWords: Map<String, List<LetterDrill.AlphabetExampleWord>> = emptyMap(),
 ) {
+    /** What kern is handed for one row — empty for a letter row, which gaps nothing. */
+    fun examples(entry: AlphabetEntry): List<LetterDrill.AlphabetExampleWord> =
+        gapWords[entry.ref].orEmpty()
+
     val drillAvailable: Boolean get() = alphabet != null && promptableRefs.isNotEmpty()
 
     val dictationAvailable: Boolean get() = dictationCandidates.size >= DICTATION_FLOOR
@@ -59,7 +69,13 @@ val AppModel.letterDrillAvailable: Boolean
         val cat = catalog ?: return false
         val alphabet = cat.alphabet(language) ?: return false
         val voice = pronouncer.canSpeak(language)
-        return alphabet.entries.any { promptable(it, language, voice, cat) }
+        // why: the sweep is lazy behind `promptable`, so the cheap letter half answers
+        // first and a chip on Heute costs a catalog walk only where no letter can be said.
+        return alphabet.entries.any { entry ->
+            promptable(entry, language, voice, cat) {
+                alphabetExampleWords(entry, language, emptySet(), voice, cat)
+            }
+        }
     }
 
 /** Everything a run needs to draw from; null before a box is joined. */
@@ -68,17 +84,24 @@ fun AppModel.letterDrillAvailability(): LetterDrillAvailability? {
     val cat = catalog ?: return null
     val alphabet = cat.alphabet(language)
     val voice = pronouncer.canSpeak(language)
+    val consolidated = consolidatedCandidates()
+    // why: Card.id IS the concept slug, so holding a word is a set lookup.
+    val known = consolidated.map { it.id }.toSet()
+    val gapWords = alphabet?.entries.orEmpty()
+        .filter { it.kind != AlphabetKind.Letter && it.kind != AlphabetKind.Rule }
+        .associate { it.ref to alphabetExampleWords(it, language, known, voice, cat) }
     return LetterDrillAvailability(
         language = language,
         alphabet = alphabet,
         promptableRefs = alphabet?.entries.orEmpty()
-            .filter { promptable(it, language, voice, cat) }
+            .filter { entry -> promptable(entry, language, voice, cat) { gapWords[entry.ref].orEmpty() } }
             .map { it.ref },
-        dictationCandidates = consolidatedCandidates()
+        dictationCandidates = consolidated
             // why: a transcription task is ONE word — a phrase card would ask the
             // learner to type a sentence from a single hearing.
             .filter { ' ' !in it.target.text }
             .filter { audible(it.target.text, it.target.lang, voice, cat) },
+        gapWords = gapWords,
     )
 }
 
@@ -89,25 +112,31 @@ fun AppModel.consolidatedCandidates(): List<Card> {
 }
 
 /**
- * The example word kern is handed for an entry, WITH its provenance: a slug only where
- * the target language realizes the concept itself, so an `exampleText` escape hatch can
- * never claim that concept's recording. One definition, because availability and sampling
- * must agree on it.
+ * Every word kern may gap for an entry, WITH its provenance: a slug only where the target
+ * language realizes the concept itself, so an `exampleText` escape hatch can never claim
+ * that concept's recording. One definition, because availability and sampling must agree
+ * on it.
+ *
+ * Kern's sweep decides WHICH words qualify; this decides which of them the device can
+ * actually say, and which the learner already holds.
  */
-fun alphabetExampleWord(
+fun alphabetExampleWords(
     entry: AlphabetEntry,
     language: Language,
+    known: Set<String>,
+    voice: Boolean,
     catalog: Catalog,
-): LetterDrill.AlphabetExampleWord? {
-    catalog.alphabetExample(entry, language)?.let {
-        return LetterDrill.AlphabetExampleWord(it.text, it.slug)
-    }
-    return entry.exampleText?.let { LetterDrill.AlphabetExampleWord(it, null) }
+): List<LetterDrill.AlphabetExampleWord> {
+    val swept = catalog.alphabetExamples(entry, language)
+        .filter { audible(it.text, language, voice, catalog) }
+        .map { LetterDrill.AlphabetExampleWord(it.text, it.slug, it.slug in known) }
+    if (swept.isNotEmpty()) return swept
+    return entry.exampleText?.let { listOf(LetterDrill.AlphabetExampleWord(it, null)) }.orEmpty()
 }
 
 /**
- * A letter is asked by its NAME (a bundled recording, or the voice), a digraph by its
- * example WORD, which must resolve and be audible.
+ * A letter is asked by its NAME (a bundled recording, or the voice), a digraph by a gap
+ * WORD, of which [words] must offer at least one.
  *
  * The one predicate this cannot repeat is whether the glyph sits in that word exactly
  * once — `gapWord` is internal to kern's catalog package. Lint pins it on shipped content
@@ -119,6 +148,7 @@ private fun promptable(
     language: Language,
     voice: Boolean,
     catalog: Catalog,
+    words: () -> List<LetterDrill.AlphabetExampleWord>,
 ): Boolean {
     if (!entry.drill || entry.kind == AlphabetKind.Rule) return false
     if (entry.kind == AlphabetKind.Letter) {
@@ -127,8 +157,7 @@ private fun promptable(
         if (entry.name == null) return false
         return catalog.letterRecordingPath(language, entry.glyph.lowercase()) != null || voice
     }
-    val word = alphabetExampleWord(entry, language, catalog) ?: return false
-    return audible(word.text, language, voice, catalog)
+    return words().isNotEmpty()
 }
 
 /** Whether a form can be heard at all: a recording that speaks THIS very form, or a voice. */

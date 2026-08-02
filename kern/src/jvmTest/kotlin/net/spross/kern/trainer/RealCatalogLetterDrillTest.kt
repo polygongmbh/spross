@@ -31,14 +31,15 @@ class RealCatalogLetterDrillTest {
             } else if (entry.kind == AlphabetKind.Letter) {
                 entry.name != null || catalog.letterRecordingPath(lang, entry.glyph) != null
             } else {
-                example(lang)(entry) != null
+                examples(lang)(entry).isNotEmpty()
             }
         }.map { it.ref }
 
-    private fun example(lang: Language): (AlphabetEntry) -> LetterDrill.AlphabetExampleWord? = { entry ->
-        catalog.alphabetExample(entry, lang)
-            ?.let { LetterDrill.AlphabetExampleWord(it.text, it.slug) }
-            ?: entry.exampleText?.let { LetterDrill.AlphabetExampleWord(it, null) }
+    /** §3.4 with nothing filtered out: the whole pool, plus the escape hatch where it is empty. */
+    private fun examples(lang: Language): (AlphabetEntry) -> List<LetterDrill.AlphabetExampleWord> = { entry ->
+        catalog.alphabetExamples(entry, lang)
+            .map { LetterDrill.AlphabetExampleWord(it.text, it.slug) }
+            .ifEmpty { listOfNotNull(entry.exampleText?.let { LetterDrill.AlphabetExampleWord(it, null) }) }
     }
 
     private fun draws(lang: Language, level: Int, count: Int = 120): List<LetterDrillTask> {
@@ -47,8 +48,12 @@ class RealCatalogLetterDrillTest {
         assertTrue(refs.size >= 5, "$lang: only ${refs.size} promptable entries")
         val rng = Random(level * 1000 + lang.hashCode())
         var avoid: String? = null
+        var avoidWord: String? = null
         return (1..count).map {
-            LetterDrill.sample(alphabet, example(lang), level, refs, avoid, rng).also { avoid = it.answerRef }
+            LetterDrill.sample(alphabet, examples(lang), level, refs, avoid, avoidWord, rng).also {
+                avoid = it.answerRef
+                avoidWord = it.promptText
+            }
         }
     }
 

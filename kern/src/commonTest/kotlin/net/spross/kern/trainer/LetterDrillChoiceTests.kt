@@ -17,7 +17,7 @@ class LetterDrillChoiceTests {
 
     private fun tasks(level: Int, seeds: IntRange = 1..200): List<LetterDrillTask> = seeds.map {
         LetterDrill.sample(
-            alphabet, LetterDrillFixture.example, level, LetterDrillFixture.allRefs, null, Random(it),
+            alphabet, LetterDrillFixture.example, level, LetterDrillFixture.allRefs, null, null, Random(it),
         )
     }
 
@@ -155,7 +155,7 @@ class LetterDrillChoiceTests {
             "zz",
             setOf("zz", "en"),
         )
-        val task = LetterDrill.sample(tiny, { null }, 1, listOf("v"), null, Random(7))
+        val task = LetterDrill.sample(tiny, { emptyList() }, 1, listOf("v"), null, null, Random(7))
         assertEquals(3, task.choices?.size)
         assertTrue("f" in task.choices.orEmpty(), "the last resort is any non-answer glyph")
     }

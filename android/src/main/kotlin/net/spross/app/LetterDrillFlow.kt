@@ -4,7 +4,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import kotlin.random.Random
-import net.spross.kern.catalog.AlphabetEntry
 import net.spross.kern.catalog.speechKey
 import net.spross.kern.model.Card
 import net.spross.kern.session.AnswerNormalizer
@@ -45,7 +44,6 @@ data class LetterCorrection(val kind: Kind, val form: String) {
  */
 class LetterDrillFlow(
     private val availability: LetterDrillAvailability,
-    private val exampleWord: (AlphabetEntry) -> LetterDrill.AlphabetExampleWord?,
     settledCards: Int,
     /** The real cards, for dictation grading identity. */
     private val cards: Map<String, Card>,
@@ -64,7 +62,7 @@ class LetterDrillFlow(
     private var winsAtLevel = 0
 
     /** The question on screen; null only once nothing can be asked any more. */
-    var task by mutableStateOf(sample(level, null))
+    var task by mutableStateOf(sample(level, null, null))
         private set
 
     /**
@@ -136,7 +134,11 @@ class LetterDrillFlow(
     fun advance(correct: Boolean, clean: Boolean) {
         silence()
         val step = LetterDrill.advance(level, winsAtLevel, correct, clean, maxLevel, winsRequired)
-        val following = sample(step.level, task?.answerRef)
+        val following = sample(
+            step.level,
+            task?.answerRef,
+            task?.let { if (it.gapText == null) null else it.promptText },
+        )
         level = step.level
         winsAtLevel = step.winsAtLevel
         if (correct) {
@@ -204,9 +206,10 @@ class LetterDrillFlow(
 
     /**
      * One question at [level]: dictation draws from the box, every other stage from the
-     * alphabet. [avoiding] is the previous answer, which kern resamples once.
+     * alphabet. [avoiding] is the previous answer and [avoidingWord] the word it gapped,
+     * each of which kern resamples once.
      */
-    private fun sample(level: Int, avoiding: String?): LetterDrillTask? {
+    private fun sample(level: Int, avoiding: String?, avoidingWord: String?): LetterDrillTask? {
         if (LetterDrill.stageFor(level) == LetterStage.Dictation &&
             availability.dictationCandidates.isNotEmpty()
         ) {
@@ -214,7 +217,15 @@ class LetterDrillFlow(
         }
         val alphabet = availability.alphabet ?: return null
         if (availability.promptableRefs.isEmpty()) return null
-        return LetterDrill.sample(alphabet, exampleWord, level, availability.promptableRefs, avoiding, rng)
+        return LetterDrill.sample(
+            alphabet,
+            availability::examples,
+            level,
+            availability.promptableRefs,
+            avoiding,
+            avoidingWord,
+            rng,
+        )
     }
 }
 
@@ -230,7 +241,6 @@ fun AppModel.newLetterDrill(): LetterDrillFlow? {
     val info = cat.languages[availability.language] ?: return null
     return LetterDrillFlow(
         availability = availability,
-        exampleWord = { entry -> alphabetExampleWord(entry, availability.language, cat) },
         settledCards = stats?.settledCount ?: 0,
         cards = state.cards,
         // why: the STRICT drill normalizer (no article leniency, a slip per word) with the

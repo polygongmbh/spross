@@ -30,7 +30,7 @@ class LetterDrillGoldenTests {
             var avoid: String? = null
             repeat(RUN_LENGTH) {
                 val task = LetterDrill.sample(
-                    fixture.alphabet, fixture.example, level, fixture.allRefs, avoid, rng,
+                    fixture.alphabet, fixture.example, level, fixture.allRefs, avoid, null, rng,
                 )
                 avoid = task.answerRef
                 appendLine(

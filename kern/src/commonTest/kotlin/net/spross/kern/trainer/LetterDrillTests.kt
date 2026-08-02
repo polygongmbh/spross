@@ -3,6 +3,7 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -14,7 +15,7 @@ class LetterDrillTests {
     private val fixture = LetterDrillFixture
 
     private fun sample(level: Int, seed: Int, refs: List<String> = fixture.allRefs, avoid: String? = null) =
-        LetterDrill.sample(fixture.alphabet, fixture.example, level, refs, avoid, Random(seed))
+        LetterDrill.sample(fixture.alphabet, fixture.example, level, refs, avoid, null, Random(seed))
 
     @Test
     fun theLadderMapsLevelsToStages() {
@@ -167,6 +168,64 @@ class LetterDrillTests {
         assertTrue(repeats in 20..80, "repeats after one resample: $repeats of 200")
     }
 
+    /**
+     * A run of pooled draws on the one row that offers a choice — the `ß` row, handed four
+     * words. One rng across the run, as a real sitting has it.
+     */
+    private fun gapped(
+        words: List<AlphabetExampleWord>,
+        count: Int = 200,
+        avoidWord: String? = null,
+    ): List<String> {
+        val rng = Random(4)
+        return (1..count).map {
+            LetterDrill.sample(fixture.alphabet, { words }, 6, listOf("ß"), null, avoidWord, rng).promptText
+        }
+    }
+
+    private val sharpWords =
+        listOf("Straße", "Fuß", "groß", "heiß").map { AlphabetExampleWord(it, null) }
+
+    @Test
+    fun aRowWithSeveralWordsGapsADifferentOneEachTime() {
+        assertEquals(
+            sharpWords.map { it.text }.toSet(),
+            gapped(sharpWords).toSet(),
+            "every word the caller offered must be reachable",
+        )
+    }
+
+    @Test
+    fun theWordItJustGappedIsResampledOnce() {
+        val repeats = gapped(sharpWords, avoidWord = "Fuß").count { it == "Fuß" }
+        // Same courtesy as the entry draw: a repeat needs two unlucky draws out of four.
+        assertTrue(repeats in 2..30, "repeats after one resample: $repeats of 200")
+    }
+
+    /**
+     * Known words lead — but only while there are enough of them, or a beginner holding
+     * three words would meet the same three all evening.
+     */
+    @Test
+    fun knownWordsAreDrawnWhileEnoughOfThemExist() {
+        val known = listOf("Straße", "Fuß", "groß").map { AlphabetExampleWord(it, null, known = true) }
+        val stranger = AlphabetExampleWord("heiß", null)
+        assertFalse("heiß" in gapped(known + stranger), "a stranger displaced a word the learner holds")
+        assertTrue(
+            "heiß" in gapped(known.take(2) + stranger),
+            "below the floor the whole pool must open up",
+        )
+    }
+
+    @Test
+    fun aRowWhoseWordsCannotBeGappedIsNeverAsked() {
+        // "Wasser" holds no ß at all — the pool empties and the row leaves the draw.
+        val unusable = listOf(AlphabetExampleWord("Wasser", null))
+        assertFailsWith<IllegalArgumentException> {
+            LetterDrill.sample(fixture.alphabet, { unusable }, 6, listOf("ß"), null, null, Random(1))
+        }
+    }
+
     @Test
     fun typedGlyphsGradeExactlyAcrossCaseFormAndApostrophe() {
         val task = task(accepted = listOf("ü"))
@@ -208,12 +267,14 @@ class LetterDrillTests {
     @Test
     fun anUnrealizedSlugNeverKeepsItsProvenance() {
         // The resolver decides: same entry, a realization present, and the task is a Word.
-        val resolved: (AlphabetEntry) -> AlphabetExampleWord? = { entry ->
-            entry.exampleSlug?.let { AlphabetExampleWord("Licht", it) }
-                ?: entry.exampleText?.let { AlphabetExampleWord(it, null) }
+        val resolved: (AlphabetEntry) -> List<AlphabetExampleWord> = { entry ->
+            listOfNotNull(
+                entry.exampleSlug?.let { AlphabetExampleWord("Licht", it) }
+                    ?: entry.exampleText?.let { AlphabetExampleWord(it, null) },
+            )
         }
         val task = LetterDrill.sample(
-            fixture.alphabet, resolved, 6, listOf("ch-ich"), null, Random(1),
+            fixture.alphabet, resolved, 6, listOf("ch-ich"), null, null, Random(1),
         )
         assertEquals(LetterPromptKind.Word, task.promptKind)
         assertEquals("light", task.promptSlug)

@@ -341,6 +341,15 @@ fails it loudly instead of letting it sit.
   gaps — a lint error otherwise), while the reader's language supplies the meaning line
   (nullable — the sheet omits it, graceful degradation). `exampleText` is the escape
   hatch where no concept fits; it carries no slug and therefore never claims a recording.
+- **The drill gaps a POOL, not the one example.** Where the glyph string identifies the
+  row's sound on its own, `Catalog.alphabetExamples` sweeps the whole catalog for words of
+  the language carrying it exactly once — the authored example leads, the rest follow in
+  seed order, and the sheet still shows only the authored one. Three things bar the sweep,
+  because each means the letters can stand where the sound does not: `kind` `contextual`,
+  a declared `context` (es `gu` before e/i — *seguro* has the letters, not the rule), and a
+  glyph two rows share. `"mine": false` is the author's own bar for a string that lies
+  anyway (de `chs`, whose only catalog hit is a compound seam). A candidate is one bare
+  word: no space, no sentence punctuation.
 - **Gap rule** (lint): a drill-true `digraph`/`contextual` row's resolved example
   contains its glyph EXACTLY once — zero leaves nothing to blank, and with two the blank
   can land on the wrong, position-bound instance and teach the opposite of the entry.

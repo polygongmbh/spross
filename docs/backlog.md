@@ -79,6 +79,13 @@ One line per item, with a file or context pointer, filed under the section it be
     `Es-<name>.ogg/.wav/.flac` convention in every casing. Six clips from one Spanish
     speaker would also fix what the other six cannot: the Spanish letter block currently
     changes voice row to row.
+- The catalog-wide gap sweep reaches only plain digraphs, so two gaps stay one word deep.
+  Ukrainian gains nothing at all — 33 of its 35 rows are `letter` rows, asked by spoken
+  name, and it authors no digraph to sweep. And every position-bound row (de `ch`×3,
+  `s`×2, the final-devoicing trio, `er`; es `c`, `g`, `gu`, `r`, `d`) still rides its one
+  authored example, because `context` is prose keyed by the reader rather than a rule the
+  engine can test. A machine-readable environment field would open both, and would owe the
+  same native-speaker sweep the hints already do.
 - No field carries Ukrainian stress, which is unmarked in writing and load-bearing:
   учень, миша and одяг teach their vowel only if the sheet can show which syllable
   carries it. A `stress` field on realizations (`catalog/README.md`) is the shape the

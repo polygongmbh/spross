@@ -583,7 +583,12 @@ day-key `yyyy-MM-dd`) with:
   alphabet file presence in the catalog (adding a language edits no Kotlin), its ramp is
   stateless and kern-owned (`entryLevel`/`winsToAdvance`/`advance` — both D11 halves in
   one place so two platforms cannot drift), sampling takes an injected `Random` and an
-  app-computed promptable set (device voices are an app fact), and dictation draws only
+  app-computed promptable set (device voices are an app fact).
+  A gap row draws its word from a POOL (`Catalog.alphabetExamples`, rules in
+  `catalog/README.md` § Alphabet), the app narrowing it to what the device can say and
+  flagging what the box already holds; kern favours the known words while at least three
+  stand, and spends no randomness where a row offers one word.
+  Dictation draws only
   `BoxEngine.consolidatedCardIds` through `dictationGradingCard` — it never books a
   review (transcription is not recall; drills are stateless).
   Android: landed — `androidLibrary` KMP target

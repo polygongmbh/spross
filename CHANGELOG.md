@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **Fill-in-the-blank now blanks a different word each time.** Every sound had exactly one
+  word to its name, so the "sch" question was always the same word and answering it a second
+  time proved nothing about the sound. The drill now draws its gap word from the whole
+  catalog — words you already have first, so the blank falls in vocabulary you know — for
+  every sound whose letters say it wherever they stand. The ones that depend on where they
+  sit in the word keep the word an author picked for them: a German "ch" sounds one way
+  after an i and another after an a, and a blank cut in the wrong place would teach the
+  opposite of the question.
+
 ## 3.5.0 — 2026-08-02
 
 - **Tapping a word now speaks it even with the phone on silent.** Two switches could

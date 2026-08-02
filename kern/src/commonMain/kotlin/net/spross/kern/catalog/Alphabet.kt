@@ -48,6 +48,13 @@ data class AlphabetEntry( // data class: Swift sees value equality (kern README 
     val context: Map<Language, String>,
     /** `false` keeps a silent grapheme out of every prompt; it stays a choice tile. */
     val drill: Boolean,
+    /**
+     * `false` bars the catalog sweep for this row — its glyph string turns up in words
+     * that do NOT say what the row teaches, so only the authored example may gap it
+     * (de `chs`: the catalog's only hit is a compound seam, `ch`+`s`, not the /ks/).
+     * Says nothing on a row [Alphabet.minesExamples] rejects anyway.
+     */
+    val mine: Boolean,
     /** Id of the [AlphabetSection] this row sits in; null where the file declares none. */
     val section: String?,
     /** Refs that LOOK alike, closed both ways at parse. */
@@ -76,6 +83,7 @@ data class Alphabet(
     val entries: List<AlphabetEntry>,
 ) {
     private val byRef: Map<String, AlphabetEntry> = entries.associateBy { it.ref }
+    private val byGlyph: Map<String, List<AlphabetEntry>> = entries.groupBy { it.glyph.lowercase() }
     private val bySection: Map<String, List<AlphabetEntry>> =
         entries.filter { it.section != null }.groupBy { it.section!! }
     private val byIpa: Map<String, List<AlphabetEntry>> =
@@ -83,6 +91,26 @@ data class Alphabet(
             .groupBy({ (ipa, _) -> ipa }, { (_, entry) -> entry })
 
     fun entry(ref: String): AlphabetEntry? = byRef[ref]
+
+    /**
+     * Whether the drill may cut this row's gap from ANY word of the language rather than
+     * only from its authored example — true iff the glyph string identifies the row's
+     * sound on its own.
+     *
+     * Three ways it does not, and each bars the sweep: a [AlphabetKind.Contextual] row is
+     * position-bound by definition, a declared [AlphabetEntry.context] says so even where
+     * the kind does not (es `gu` before e/i — *seguro* carries the letters and not the
+     * rule), and a glyph two rows share cannot say which of them a word means. [Letter]
+     * rows are asked by their spoken name, so they never gap at all, and [Rule] rows are
+     * sheet prose. What survives is the plain digraph — de `ei`, `sch`, es `ll` — where
+     * containment IS the sound, and [AlphabetEntry.mine] is the author's escape from a
+     * string that lies anyway.
+     */
+    fun minesExamples(entry: AlphabetEntry): Boolean =
+        entry.mine &&
+            entry.kind == AlphabetKind.Digraph &&
+            entry.context.isEmpty() &&
+            byGlyph[entry.glyph.lowercase()]?.size == 1
 
     /** The rows of one section, in authored order — empty for an id no row claims. */
     fun entries(of: String): List<AlphabetEntry> = bySection[of].orEmpty()
@@ -129,6 +157,16 @@ internal fun gapText(word: String, glyph: String): String? {
     if (at < 0) return null
     return source.substring(0, at) + GAP_MARKER + source.substring(at + needle.length)
 }
+
+/**
+ * Whether a realization can carry a gap at all: ONE word, and none of the punctuation a
+ * catalog sentence brings with it. A gapped "Feierabend!" or "Nein." reads as a typo on
+ * the learner's side of the screen, and a blanked sentence is a different exercise.
+ */
+internal fun isGappableWord(text: String): Boolean =
+    text.isNotEmpty() && text.none { it.isWhitespace() || it in SENTENCE_PUNCTUATION }
+
+private const val SENTENCE_PUNCTUATION = ".,;:!?¿¡…«»\"()/"
 
 /** How often [glyph] starts inside [word], overlaps counted — same folding as [gapText]. */
 internal fun glyphOccurrences(word: String, glyph: String): Int {
