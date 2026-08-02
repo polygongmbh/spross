@@ -139,7 +139,7 @@ class PhraseSlotTests {
     @Test
     fun ukrainianYearDictation() {
         val task = PhraseSlots.instantiate(frame("uk", "repeat-the-year"), value = 1978L)
-        assertEquals("Повторіть, будь ласка: одна тисяча дев'ятсот сімдесят вісім.", task.display)
+        assertEquals("Повторіть, будь ласка, дату: одна тисяча дев'ятсот сімдесят вісім.", task.display)
         assertTrue("Повторіть, будь ласка: тисяча дев'ятсот сімдесят вісім." in task.accepted)
     }
 

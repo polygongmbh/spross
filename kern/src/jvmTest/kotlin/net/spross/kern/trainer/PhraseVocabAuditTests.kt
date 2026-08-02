@@ -26,7 +26,7 @@ class PhraseVocabAuditTests {
      * drifted into. A language with more function words than another gets a bigger figure
      * and has to say so here.
      */
-    private val allowlistSize: Map<Language, Int> = mapOf("de" to 14, "sw" to 4, "uk" to 3)
+    private val allowlistSize: Map<Language, Int> = mapOf("de" to 14, "sw" to 4, "uk" to 2)
 
     /** Documented allowlist — function words and international words only. */
     private val allowlist: Map<Language, Set<String>> = mapOf(
@@ -50,7 +50,6 @@ class PhraseVocabAuditTests {
         // --- Ukrainian ------------------------------------------------------------
         "uk" to setOf(
             "нас",   // Personalpronomen „uns“ («у нас є» = wir haben)
-            "повторіть", // „wiederholen Sie“ — grounded in the basics starter pack
             "євро",  // internationale Währung, unveränderlich
         ),
         // --- English, Spanish: no frames authored yet (work package 5) -------------
@@ -80,6 +79,8 @@ class PhraseVocabAuditTests {
         "uk" to mapOf(
             "будильнику" to "будильник", // Lokativ nach «на»
             "напиши" to "писати",        // Imperativ „schreib“
+            "повторіть" to "повторити",  // Höflichkeitsimperativ
+            "дату" to "дата",            // Akkusativ nach «Повторіть/Напиши … дату»
             "зошити" to "зошит", "зошитів" to "зошит",       // Zählformen
             "стільці" to "стілець", "стільців" to "стілець", // Zählformen
             "ключів" to "ключ",                              // Zählform (ключі steht verbatim im Katalog)

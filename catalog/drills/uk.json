@@ -1,12 +1,16 @@
 {
  "frames": {
   "it-is-now": {
-   "text": "Зараз {slot}."
+   "text": "Зараз {slot}.",
+   "notes": {
+    "en": "Predicate frame: Ukrainian time-at («о» + locative) does not compose with the nominative reading, so the time stands as the predicate."
+   }
   },
   "alarm-clock-shows": {
    "text": "На будильнику {slot}.",
    "notes": {
-    "de": "wörtl.: „Auf dem Wecker [ist] …“"
+    "de": "wörtl.: „Auf dem Wecker [ist] …“",
+    "en": "literally „On the alarm clock [is] …“ — a predicate frame, since «о» + locative does not compose with the nominative reading."
    }
   },
   "i-have-n-notebooks": {
@@ -17,7 +21,8 @@
     "many": "зошитів"
    },
    "notes": {
-    "de": "Zahlwort-Kongruenz: 1 → зошит, 2–4 → зошити, 5+ → зошитів"
+    "de": "Zahlwort-Kongruenz: 1 → зошит, 2–4 → зошити, 5+ → зошитів",
+    "en": "Counted-noun agreement: 1 → зошит, 2–4 → зошити, 5+ → зошитів"
    }
   },
   "we-have-n-chairs": {
@@ -28,7 +33,8 @@
     "many": "стільців"
    },
    "notes": {
-    "de": "Zahlwort-Kongruenz: 1 → стілець, 2–4 → стільці, 5+ → стільців"
+    "de": "Zahlwort-Kongruenz: 1 → стілець, 2–4 → стільці, 5+ → стільців",
+    "en": "Counted-noun agreement: 1 → стілець, 2–4 → стільці, 5+ → стільців"
    }
   },
   "i-have-n-keys": {
@@ -39,27 +45,52 @@
     "many": "ключів"
    },
    "notes": {
-    "de": "Zahlwort-Kongruenz: 1 → ключ, 2–4 → ключі, 5+ → ключів"
+    "de": "Zahlwort-Kongruenz: 1 → ключ, 2–4 → ключі, 5+ → ключів",
+    "en": "Counted-noun agreement: 1 → ключ, 2–4 → ключі, 5+ → ключів"
    }
   },
   "it-costs-n-euros": {
    "text": "Це {slot} євро.",
    "masculineNumeral": true,
    "notes": {
-    "de": "wörtl.: „Das sind … Euro.“ — євро ist unveränderlich"
+    "de": "wörtl.: „Das sind … Euro.“ — євро ist unveränderlich, das Zahlwort bleibt männlich (один, два)",
+    "en": "literally „That is … euros.“ — євро never inflects, and the numeral stays masculine (один, два)."
    }
   },
   "repeat-please": {
-   "text": "Повторіть, будь ласка: {slot}."
+   "text": "Повторіть, будь ласка: {slot}.",
+   "variants": [
+    "Повтори, будь ласка: {slot}."
+   ]
   },
   "write-please": {
-   "text": "Напиши, будь ласка: {slot}."
+   "text": "Напиши, будь ласка: {slot}.",
+   "variants": [
+    "Напишіть, будь ласка: {slot}."
+   ]
   },
   "repeat-the-year": {
-   "text": "Повторіть, будь ласка: {slot}."
+   "text": "Повторіть, будь ласка, дату: {slot}.",
+   "variants": [
+    "Повтори, будь ласка, дату: {slot}.",
+    "Повторіть, будь ласка: {slot}.",
+    "Повтори, будь ласка: {slot}."
+   ],
+   "notes": {
+    "de": "Diktat-Rahmen: die Jahreszahl wird als reine Kardinalzahl gelesen; „дату“ ist der Akkusativ von „дата“",
+    "en": "Dictation frame: the year is read as a plain cardinal; „дату“ is the accusative of „дата“."
+   }
   },
   "write-the-year": {
-   "text": "Напиши, будь ласка: {slot}."
+   "text": "Напиши, будь ласка, дату: {slot}.",
+   "variants": [
+    "Напишіть, будь ласка, дату: {slot}.",
+    "Напиши, будь ласка: {slot}."
+   ],
+   "notes": {
+    "de": "Diktat-Rahmen: die Jahreszahl wird als reine Kardinalzahl geschrieben; „дату“ ist der Akkusativ von „дата“",
+    "en": "Dictation frame: the year is written as a plain cardinal; „дату“ is the accusative of „дата“."
+   }
   }
  }
 }
