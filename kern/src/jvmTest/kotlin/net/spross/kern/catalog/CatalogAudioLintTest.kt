@@ -22,7 +22,7 @@ class CatalogAudioLintTest {
 
     /** Authorship values that name nobody — a BY/BY-SA file carrying one cannot ship. */
     private val junkAuthors = setOf("own work", "myself", "")
-    private val letterFileName = Regex("^letters/u[0-9a-f]{4}\\.mp3$")
+    private val letterFileName = Regex("^letters/(u[0-9a-f]{4})+\\.mp3$")
 
     private fun forEachEntry(action: (lang: String, id: String, recording: AudioRecording) -> Unit) {
         for ((lang, manifest) in catalog.audio) {
@@ -95,12 +95,14 @@ class CatalogAudioLintTest {
             }
             for ((glyph, recording) in manifest.letters) {
                 val where = "audio/$lang letter \"$glyph\""
-                assertEquals(1, glyph.codePointCount(0, glyph.length), "$where: not a single glyph")
+                assertTrue(glyph.isNotBlank(), "$where: blank glyph")
                 assertTrue(letterFileName.matches(recording.file), "$where: bad file \"${recording.file}\"")
+                // why: one `u<cp>` per codepoint — a named row may be a digraph (es `ch`),
+                // and a single codepoint would make `ch` and `c` the same file.
                 assertEquals(
-                    "letters/u%04x.mp3".format(glyph.codePointAt(0)),
+                    "letters/${glyph.codePoints().toArray().joinToString("") { "u%04x".format(it) }}.mp3",
                     recording.file,
-                    "$where: file does not name the glyph's codepoint",
+                    "$where: file does not name the glyph's codepoints",
                 )
             }
             for ((form, recording) in manifest.texts) {

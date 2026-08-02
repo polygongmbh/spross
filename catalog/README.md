@@ -250,10 +250,12 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   alphabet file.
 - `source` — the original Commons filename; the credits screen links `File:<source>`,
   which is what keeps attribution checkable rather than merely present.
-- Word files are `<slug>.mp3`; letter files are `letters/u<codepoint>.mp3`, four
-  lowercase hex digits, never glyph-named — `й`/`ї` decompose under NFD on APFS and a
-  Unicode filename has to survive git, Gradle sync and AAPT unchanged. The manifest maps
-  the glyph, so the name is purely internal.
+- Word files are `<slug>.mp3`; letter files are `letters/u<codepoint>….mp3`, one
+  `u` + four lowercase hex digits PER CODEPOINT, never glyph-named — `й`/`ї` decompose
+  under NFD on APFS and a Unicode filename has to survive git, Gradle sync and AAPT
+  unchanged. A sequence rather than one codepoint because a named row may be a digraph
+  (es `ch`), which a single codepoint would file under `c`. The manifest maps the glyph,
+  so the name is purely internal.
 - **The mp3 bytes are the Commons transcode untouched**, renamed and nothing else:
   re-encoding (including loudness normalization, so packs differ in loudness) is an
   adaptation under BY-SA. `sha256` is the digest the generator verified after the copy

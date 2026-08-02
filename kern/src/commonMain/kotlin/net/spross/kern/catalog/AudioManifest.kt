@@ -6,7 +6,8 @@ import net.spross.kern.model.nfcNormalized
 
 /** One bundled recording as authored in `audio/<lang>/manifest.json`. */
 internal data class AudioRecording(
-    /** Path relative to `audio/<lang>/`: `<slug>.mp3`, or `letters/u<codepoint>.mp3`. */
+    /** Path relative to `audio/<lang>/`: `<slug>.mp3`, or `letters/u<codepoint>….mp3`
+     *  (one `u<cp>` per codepoint — a named row may be a digraph). */
     val file: String,
     /** The exact surface form the recording speaks; null for letters (they speak a name). */
     val matches: String?,

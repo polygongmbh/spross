@@ -212,10 +212,20 @@ def convert_words(lang, pack, out_dir, slugs, forms):
     return words
 
 
+def letter_file(glyph):
+    """`letters/u<cp>…mp3` — one `u<cp>` per codepoint, because glyph names decompose on APFS.
+
+    A sequence rather than a single codepoint: a named row may be a DIGRAPH (es `ch` che,
+    and `ll`/`rr` if anyone ever records them). Single-codepoint glyphs are unaffected, so
+    nothing already shipped is renamed.
+    """
+    return 'letters/%s.mp3' % ''.join('u%04x' % ord(char) for char in glyph)
+
+
 def convert_letters(pack, out_dir):
     """The alphabet section: codepoint-named files, because glyph names decompose on APFS."""
     rows = read_rows(os.path.join(pack, 'manifest.tsv'))
-    names = {row['letter']: 'letters/u%04x.mp3' % ord(row['letter']) for row in rows}
+    names = {row['letter']: letter_file(row['letter']) for row in rows}
     analysed = copy_and_analyze([(row['letter'], os.path.join(pack, 'mp3', row['local_file']),
                                   os.path.join(out_dir, names[row['letter']])) for row in rows])
     letters = {}
