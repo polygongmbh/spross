@@ -77,6 +77,16 @@ One line per item, with a file or context pointer, filed under the section it be
   becomes a base language, each needs its own hint pass, not a translation of the
   English: the German pivot prose for de is already parked in the drafts' notes, while
   sw needs authoring from scratch (sw `j` is /ɟ/, so the en "y in yes" anchor is wrong).
+- Sentence-frame notes are authored for German readers only (`notes` in `catalog/drills/*.json`),
+  so every other explanation language drills the frames with no gloss at all —
+  the counted-noun agreement rules uk needs explained most of all.
+- Swahili number frames can only ever count N-class nouns: the agreement lands on the
+  NUMERAL, not on the noun, and `count` inflects the noun — so `i-have-n-notebooks`
+  and `we-have-n-chairs` are dropped from `catalog/drills/sw.json` rather than coined wrong.
+  A numeral-side agreement field is what it would take to author them.
+- sw `repeat-the-year`/`write-the-year` render byte-identical to `repeat-please`/`write-please`
+  — a bare cardinal with no head noun, so nothing tells the learner which frame was asked.
+  uk re-cut its pair to name «дату»; sw still needs a heading word a speaker would actually use.
 
 ## Engine & scheduling
 
