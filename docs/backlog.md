@@ -84,6 +84,13 @@ One line per item, with a file or context pointer, filed under the section it be
   NUMERAL, not on the noun, and `count` inflects the noun — so `i-have-n-notebooks`
   and `we-have-n-chairs` are dropped from `catalog/drills/sw.json` rather than coined wrong.
   A numeral-side agreement field is what it would take to author them.
+- The reverse sentence drill (`target == "de"` in `TrainerHubView`) is a data limitation that
+  no longer exists: frames were only ever authored with `source == de`, so learners OF German
+  had to run them backwards. Every language now realizes frames and has a pack, so
+  `phraseTemplates("uk", "de")` runs forward — and forward is the better drill, because
+  reverse prompts with digits and accepts words, letting the learner answer a numeral drill
+  in digits. Dropping it deletes `reverse` from the hub, `TrainerSessionView.Mode` and
+  `recordKey`, plus `reverseInstantiate`/`reverseSample`/`reverseOf` in `PhraseSlots`.
 - sw `repeat-the-year`/`write-the-year` render byte-identical to `repeat-please`/`write-please`
   — a bare cardinal with no head noun, so nothing tells the learner which frame was asked.
   uk re-cut its pair to name «дату»; sw still needs a heading word a speaker would actually use.
