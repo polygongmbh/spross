@@ -1,5 +1,65 @@
 {
   "language": "es",
+  "letters": {
+    "b": {
+      "author": "Marreromarco",
+      "file": "letters/u0062.mp3",
+      "gain": 3.4,
+      "lead": 221,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "2651c54867bdff58c585d608b84184c44df8b4efbc0edc347ff157345ade071d",
+      "source": "LL-Q1321 (spa)-Marreromarco-be.wav"
+    },
+    "ch": {
+      "author": "Rodrigo5260",
+      "file": "letters/u0063u0068.mp3",
+      "gain": 5.9,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "a5b141db2eba4fc69cb5044681beb016cfdffa7e5d45e5596b76963fd028d130",
+      "source": "LL-Q1321 (spa)-Rodrigo5260-che.wav"
+    },
+    "j": {
+      "author": "Emanuelps27",
+      "file": "letters/u006a.mp3",
+      "gain": 11.1,
+      "lead": 196,
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sha256": "86a4d6720e366c2d06fe6d8c4c267ae0c4484f3f1c2b430ac8dc48962a5f65a6",
+      "source": "LL-Q1321 (spa)-Emanuelps27-jota.wav"
+    },
+    "r": {
+      "author": "Emanuelps27",
+      "file": "letters/u0072.mp3",
+      "gain": 9.9,
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sha256": "a25b9bc494a7ba3ee523e5baca19bb08fe28b4b7c37937575f3bcf0cbdbff77c",
+      "source": "LL-Q1321 (spa)-Emanuelps27-erre.wav"
+    },
+    "s": {
+      "author": "Sinaloa",
+      "file": "letters/u0073.mp3",
+      "gain": 7.5,
+      "lead": 185,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "155032e89eac622925af45e617681e54f98f86fcc08c70dbc0d8cf8a3ca9d3ff",
+      "source": "LL-Q1321 (spa)-Sinaloa-ese.wav"
+    },
+    "z": {
+      "author": "Marreromarco",
+      "file": "letters/u007a.mp3",
+      "gain": 4.6,
+      "lead": 265,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "383b29af9bbf7b12558b03a082d28b5a7dfbee03810a16a93fcca3f3cae77c9f",
+      "source": "LL-Q1321 (spa)-Marreromarco-zeta.wav"
+    }
+  },
   "texts": {
     "guitarra": {
       "author": "Rodrigo5260",
