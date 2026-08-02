@@ -6,8 +6,8 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 /**
- * Level-aware phrase-slot sampling: sentence drills ramp with the same level
- * semantics as the plain drills, intersected with template constraints.
+ * Level-aware phrase-slot sampling: sentence drills ramp with exactly the same
+ * level semantics as the plain drills — a frame never constrains the value.
  */
 class PhraseLevelTests {
 
@@ -57,32 +57,31 @@ class PhraseLevelTests {
         }
     }
 
-    // Template constraint ∩ level set (Swahili clock embeds only minutes 0..30)
+    // No frame constrains the minute set (the Swahili ≤ 30 rule is deleted)
 
     @Test
-    fun quarterLevelIntersectsSwahiliConstraint() {
+    fun quarterLevelYieldsAllFourQuarters() {
         val rng = Random(4)
         for (template in templates(TrainerKind.Clock)) {
-            val allowed = if (template.target == "sw") setOf(0, 15, 30) else setOf(0, 15, 30, 45)
             val seen = mutableSetOf<Int>()
             repeat(120) {
                 seen += minuteOf(PhraseSlots.sample(template, level = 2, rng).prompt)
             }
-            assertEquals(allowed, seen, template.id)
+            assertEquals(setOf(0, 15, 30, 45), seen, template.id)
         }
     }
 
     @Test
-    fun maxLevelKeepsSwahiliMinutesUnderConstraint() {
+    fun maxLevelReachesMinutesPastHalfPast() {
         val rng = Random(5)
-        for (template in templates(TrainerKind.Clock).filter { it.target == "sw" }) {
-            var sawOverQuarter = false
+        for (template in templates(TrainerKind.Clock)) {
+            var sawPastHalf = false
             repeat(120) {
                 val minute = minuteOf(PhraseSlots.sample(template, level = 4, rng).prompt)
-                assertTrue(minute <= 30, "${template.id}: $minute")
-                if (minute > 15) sawOverQuarter = true
+                assertTrue(minute in 0..59, "${template.id}: $minute")
+                if (minute > 30) sawPastHalf = true
             }
-            assertTrue(sawOverQuarter, "${template.id}: expected non-trivial minutes at level 4")
+            assertTrue(sawPastHalf, "${template.id}: expected countdown-form minutes at level 4")
         }
     }
 
@@ -99,8 +98,7 @@ class PhraseLevelTests {
                     // Cross-check against the shared Trainer draw machinery.
                     val expected = if (template.slotKind == TrainerKind.Clock) {
                         val hour = b.nextInt(24)
-                        val cap = if (template.target == "sw") 30 else 59
-                        PhraseSlots.instantiate(template, hour = hour, minute = Trainer.clockMinute(level, cap, b))
+                        PhraseSlots.instantiate(template, hour = hour, minute = Trainer.clockMinute(level, b))
                     } else {
                         val slot = Trainer.sample(template.slotKind, template.target, level, b)
                         PhraseSlots.instantiate(template, value = slot.prompt.toLong())

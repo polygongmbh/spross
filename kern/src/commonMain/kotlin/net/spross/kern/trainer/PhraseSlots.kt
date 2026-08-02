@@ -15,14 +15,10 @@ object PhraseSlots {
 
     /**
      * Clock templates. Any minute is read out by the language clocks; the
-     * source prompt shows the digital time ("… um 14:35 Uhr …"). Swahili
-     * templates only accept minutes ≤ 30: the >30 countdown form
-     * ("saa tatu kasoro dakika …") reads awkwardly when embedded
-     * (language-review finding).
+     * source prompt shows the digital time ("… um 14:35 Uhr …").
      */
     fun instantiate(template: PhraseTemplate, hour: Int, minute: Int): TrainerTask {
         require(template.slotKind == TrainerKind.Clock) { "hour/minute instantiation requires a Clock template" }
-        require(template.target != "sw" || minute <= 30) { "Swahili phrase templates embed only minutes 0..30" }
         val slot = Trainer.clock(hour, minute, template.target)
         return compose(template, slot, value = null)
     }
@@ -41,8 +37,7 @@ object PhraseSlots {
     /**
      * Full-difficulty sampling with the Trainer's ported biases
      * (numbers 10–9999 weighted to 2–3 digits, years around 1950–2050).
-     * Clock is the leveled sampler at max level: any hour and minute,
-     * intersected with the template constraint (Swahili minutes 0..30).
+     * Clock is the leveled sampler at max level: any hour and any minute.
      */
     fun sample(template: PhraseTemplate, rng: Random): TrainerTask {
         if (template.slotKind == TrainerKind.Clock) {
@@ -60,23 +55,16 @@ object PhraseSlots {
      * level = digit count; years: recent decades → historic range; clock:
      * full hours → any minute — see the leveled [Trainer.sample]), then
      * instantiated, so accepted sentences stay identical to [instantiate].
-     * Clock templates intersect the level's minute set with the template
-     * constraint (Swahili embeds only minutes 0..30, so level 2 quarters
-     * become {0, 15, 30} and level 4 caps at :30).
      */
     fun sample(template: PhraseTemplate, level: Int, rng: Random): TrainerTask {
         if (template.slotKind == TrainerKind.Clock) {
-            return instantiate(template, rng.nextInt(24), drawMinute(template, level, rng))
+            return instantiate(template, rng.nextInt(24), Trainer.clockMinute(level, rng))
         }
         val slot = Trainer.sample(template.slotKind, template.target, level, rng)
         // why: slot.prompt is the Trainer's numeric contract ("347"/"1978"),
         // so counted-noun agreement can reuse the sampled value exactly.
         return instantiate(template, value = slot.prompt.toLong())
     }
-
-    /** Leveled minute set ∩ template constraint (see [sample]). */
-    private fun drawMinute(template: PhraseTemplate, level: Int, rng: Random): Int =
-        Trainer.clockMinute(level, cap = if (template.target == "sw") 30 else 59, rng)
 
     // Reverse (target sentence shown, source language typed)
 

@@ -37,6 +37,15 @@ class PhraseSlotTests {
         assertEquals("Ninaamka saa kumi na mbili na nusu asubuhi.", task.display)
     }
 
+    /** The deleted ≤30 rule: the countdown reading embeds like any other. */
+    @Test
+    fun swahiliClockEmbedsTheCountdownFormPastHalfPast() {
+        val task = PhraseSlots.instantiate(frame("sw", "train-departs-at"), hour = 20, minute = 50)
+        assertEquals("Der Zug fährt um 20:50 Uhr ab.", task.prompt)
+        assertTrue("kasoro" in task.display, task.display)
+        assertTrue(task.display in task.accepted)
+    }
+
     @Test
     fun swahiliPlateCount() {
         val task = PhraseSlots.instantiate(frame("sw", "we-have-n-plates"), value = 347L)
@@ -205,11 +214,7 @@ class PhraseSlotTests {
             when (template.slotKind) {
                 TrainerKind.Clock ->
                     for (h in listOf(0, 6, 9, 13, 14, 20, 23)) {
-                        // Swahili embeds only minutes 0..30 (>30 countdown form is
-                        // a standalone predicate — language-review fix).
-                        val minutes = if (template.target == "sw") listOf(0, 15, 20, 25, 30)
-                        else listOf(0, 15, 20, 30, 35, 45, 55)
-                        for (m in minutes) {
+                        for (m in listOf(0, 15, 20, 30, 35, 45, 55)) {
                             val slot = Trainer.clock(h, m, template.target)
                             val task = PhraseSlots.instantiate(template, hour = h, minute = m)
                             verifyVariantCoverage(template, slot, task, value = null)
@@ -291,10 +296,7 @@ class PhraseSlotTests {
             repeat(50) {
                 val sampled = PhraseSlots.sample(template, a)
                 // Reconstruct with the same-seeded RNG draws.
-                val expected = if (template.slotKind == TrainerKind.Clock && template.target == "sw") {
-                    // Mirrors PhraseSlots.sample's restricted Swahili draw.
-                    PhraseSlots.instantiate(template, hour = b.nextInt(24), minute = b.nextInt(31))
-                } else if (template.slotKind == TrainerKind.Clock) {
+                val expected = if (template.slotKind == TrainerKind.Clock) {
                     val slot = Trainer.sample(TrainerKind.Clock, template.target, b)
                     val parts = slot.prompt.split(":").map { it.toInt() }
                     PhraseSlots.instantiate(template, hour = parts[0], minute = parts[1])
