@@ -1,8 +1,10 @@
 import SwiftUI
 
-/// The audio question, in the same card chrome as TrainerPromptCard: a caption
-/// naming what is being asked, one large replay glyph, and — for a gap
-/// question — the example word with the asked grapheme blanked.
+/// The audio question, on the same card face as every other session card: a
+/// caption naming what is being asked, one large replay glyph, and — for a gap
+/// question — the example word with the asked grapheme blanked. The caption
+/// stays here where the slot drills dropped theirs: a sound has nothing on
+/// screen to say what it is asking for.
 ///
 /// No answer ever renders here, and that is the whole point: everything the
 /// learner is given is the sound, plus whatever the gap word already shows.
