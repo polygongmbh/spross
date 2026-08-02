@@ -220,6 +220,10 @@ never the shape of the app.
 - **Trainers**: number, clock and phrase drills, registry-driven from kern, so the hub
   offers only languages with authored content. Drills grade word by word and ramp with
   the learner instead of sitting at one level.
+  A drill card is a review card — same face, same reveal — and carries nothing but the
+  prompt: the run's header line already names what is drilled and how far the ramp has
+  come, and the field's placeholder names the language to answer in, so a badge or a
+  "Zahl · auf Spanisch" caption would be the third telling of what one tap said.
 - **Letter drill & alphabet sheet**: the Training card shows when slots, phrases OR an
   alphabet exist for the target (the third predicate is catalog file presence, recomputed
   on foreground/readiness — a voice installed in Settings brings the chip back). The

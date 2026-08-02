@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Drill cards now look and behave like review cards.** The answer appears on the card
+  itself when you miss it or tap "Aufdecken" — with the sentence drill's meaning under it —
+  instead of in a panel below the input field, and revealing no longer types the answer
+  into the field for you. The card also drops its emoji badge and its "ZAHL · AUF ES"
+  caption: the line above already says what you are drilling, and the field already says
+  which language to answer in.
+
 - **The keyboard steps aside when a drill or review pauses on a near miss.** Accepting a
   word with a small typo shows the proper spelling and waits for "Weiter" — but the
   keyboard used to stay up and cover that button. It now drops, in the number, clock and
