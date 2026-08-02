@@ -26,6 +26,11 @@ final class PronunciationPlayer {
     /// recording to obey.
     private static let gainLimitDb = 20.0
 
+    /// How often one word may be put back. A tap costs one rebuild; a second is
+    /// a device changing route under a learner, and a third is a fight nobody
+    /// wins by restarting.
+    private static let rearmLimit = 2
+
     private let engine = AVAudioEngine()
     private let node = AVAudioPlayerNode()
     private let equalizer = AVAudioUnitEQ()
@@ -42,6 +47,24 @@ final class PronunciationPlayer {
     /// calls back after `stop()` as well, and that one answers to nobody.
     private var playback = 0
     private var warmedUp = false
+    /// The word in the air, kept whole so it can be put back. The engine's I/O
+    /// is rebuilt under us on a route change — headphones, and now the category
+    /// flip a tap performs (`AudioSession`) — which drops a segment scheduled a
+    /// moment earlier without it ever sounding. That is a word that has to be
+    /// tapped twice: the first tap paid for the route change, the second found
+    /// the session already right. Recovery used to be the NEXT word; it is this
+    /// one.
+    private var pending: Request?
+    /// Re-arms spent on `pending` — a rebuild that arrives in a run must not
+    /// become a loop of restarts.
+    private var rearms = 0
+
+    private struct Request {
+        let url: URL
+        let gainDb: Double
+        let leadMs: Int64
+        let onFinish: (@MainActor () -> Void)?
+    }
 
     /// Builds the graph and only the graph: nothing here touches the audio
     /// session, so a screen that merely reads the mute flag pays nothing.
@@ -51,6 +74,14 @@ final class PronunciationPlayer {
         engine.attach(equalizer)
         engine.connect(node, to: equalizer, format: wiring)
         engine.connect(equalizer, to: engine.mainMixerNode, format: wiring)
+        // why: the engine stops itself when its I/O is rebuilt and takes any
+        // scheduled segment with it — the word is put back here rather than
+        // left for the next one to recover.
+        NotificationCenter.default.addObserver(
+            forName: .AVAudioEngineConfigurationChange, object: engine, queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated { self?.rearm() }
+        }
     }
 
     /// Plays `url` under its analysis index, replacing whatever was sounding.
@@ -58,14 +89,21 @@ final class PronunciationPlayer {
     /// an error surface.
     func play(url: URL, gainDb: Double = 0, leadMs: Int64 = 0,
               onFinish: (@MainActor () -> Void)? = nil) {
+        rearms = 0
+        play(Request(url: url, gainDb: gainDb, leadMs: leadMs, onFinish: onFinish))
+    }
+
+    private func play(_ request: Request) {
         stop()
+        let (url, onFinish) = (request.url, request.onFinish)
         guard let file = try? AVAudioFile(forReading: url), file.length > 0, running()
         else { return }
-        let lead = AVAudioFramePosition(Double(leadMs) / 1000 * file.processingFormat.sampleRate)
+        pending = request
+        let lead = AVAudioFramePosition(Double(request.leadMs) / 1000 * file.processingFormat.sampleRate)
         // why: a lead that would swallow the whole file is a broken
         // measurement — the recording is still worth playing whole.
         let head = (0..<file.length).contains(lead) ? lead : 0
-        equalizer.globalGain = Float(min(Self.gainLimitDb, max(-Self.gainLimitDb, gainDb)))
+        equalizer.globalGain = Float(min(Self.gainLimitDb, max(-Self.gainLimitDb, request.gainDb)))
         self.onFinish = onFinish
         let current = playback
         node.scheduleSegment(file, startingFrame: head,
@@ -81,7 +119,17 @@ final class PronunciationPlayer {
     func stop() {
         playback += 1
         onFinish = nil
+        pending = nil
         node.stop()
+    }
+
+    /// Puts the word back after the engine's I/O was rebuilt under it. Nothing
+    /// pending means nothing was dropped — a rebuild between words is exactly
+    /// the case `running()` already covers.
+    private func rearm() {
+        guard let request = pending, rearms < Self.rearmLimit else { return }
+        rearms += 1
+        play(request)
     }
 
     /// Pays the process's FIRST audio-session activation — implicit, on the
@@ -99,8 +147,9 @@ final class PronunciationPlayer {
     /// Whether there is an audio path at all, starting the engine where it is
     /// not running yet. Started, it is LEFT running: stopping it between words
     /// would hand `warmUp`'s activation cost back to the very next card. A
-    /// route change (headphones in) stops the engine on its own — the next
-    /// word finds it stopped and starts it again, and that is the recovery.
+    /// route change (headphones in, or the category a tap raises) stops the
+    /// engine on its own — a word already in the air is put back by `rearm()`,
+    /// and one that had not started yet finds the engine stopped here.
     private func running() -> Bool {
         guard wiring != nil else { return false }
         if engine.isRunning { return true }
@@ -112,6 +161,8 @@ final class PronunciationPlayer {
     /// or a newer word has happened since) stays silent.
     private func finish(_ playback: Int) {
         guard playback == self.playback else { return }
+        // why: a word that has been heard is not put back by a later rebuild.
+        pending = nil
         let finished = onFinish
         onFinish = nil
         finished?()
