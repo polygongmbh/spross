@@ -149,14 +149,15 @@
       "source": "De-antwort.ogg"
     },
     "apartment": {
-      "author": "Kampy",
+      "author": "Frank C. Müller",
       "file": "apartment.mp3",
-      "gain": -0.3,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 4.4,
+      "lead": 201,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wohnung",
-      "sha256": "eb66ec3924aa6bdfa049a4534b273f34f7903026f4a47af8fcafae77198efb72",
-      "source": "De-Wohnung.ogg"
+      "sha256": "2c13e2b72a758ce8528332e22df4c8e685e276f6a547ab809ec60ec4d2a432b2",
+      "source": "LL-Q188 (deu)-Frank C. Müller-1-Raum-Wohnung.wav"
     },
     "application": {
       "author": "Jeuwre",
@@ -223,44 +224,48 @@
       "source": "De-vereinbaren.ogg"
     },
     "arrive": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "arrive.mp3",
-      "gain": 1.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 6.1,
+      "lead": 143,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ankommen",
-      "sha256": "81dc2b10a219f80b68a605f5c6c4cb7b1564c368e93358ae3fabcd2dc6bce953",
-      "source": "De-ankommen.ogg"
+      "sha256": "ef42d10d4c7df31c68a7c38d53997d63e1462034c0f4f0a0e9371fa6143c9cc9",
+      "source": "LL-Q188 (deu)-Natschoba-ankommen.wav"
     },
     "ask": {
-      "author": "User:Tosca",
+      "author": "Sebastian Wallroth",
       "file": "ask.mp3",
-      "gain": 7.4,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 8.5,
+      "lead": 99,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "fragen",
-      "sha256": "f3de6d771fd9b593970d7826199fb58af9521409f3873512b8b428385fc41748",
-      "source": "De-fragen.ogg"
+      "sha256": "8dcccea55f2d41d3b8bc21f057ede2de93a759ab6464f517b29d6ee20ba2a2de",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Fragen.wav"
     },
     "back": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
+      "author": "Sebastian Wallroth",
       "file": "back.mp3",
-      "gain": 4.8,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 12.7,
+      "lead": 163,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "rücken",
-      "sha256": "0d8db70b56da90184ce39cc3b436baab261f938e99104b53b6aab1be7c2563c8",
-      "source": "De-rücken.ogg"
+      "sha256": "3a5c2519be8cfe3621d3ab01fdf66d1725317afe18dabe4cd91edec54c3bc00e",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Rücken.wav"
     },
     "bad": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "bad.mp3",
-      "gain": -3.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 2.7,
+      "lead": 222,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "schlecht",
-      "sha256": "042aabab0d6cdbf257935a672b67c56d0e164b6fc6d1eef960a41c138f335582",
-      "source": "De-schlecht.ogg"
+      "sha256": "ad2866147b4e0af48be32bde7f71cdc9fed5fa900335e54a572ea7297f18dac2",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-schlecht.wav"
     },
     "bag": {
       "author": "Jeuwre",
@@ -296,15 +301,15 @@
       "source": "De-Badewanne.ogg"
     },
     "be-called": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
+      "author": "Natschoba",
       "file": "be-called.mp3",
-      "gain": 3.5,
-      "lead": 345,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 9.0,
+      "lead": 184,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "heißen",
-      "sha256": "59218234cc2df3ded87a7f8b2ac48c7122eb84d87eae07f9b045c366c975e372",
-      "source": "De-heißen.ogg"
+      "sha256": "b47deb84a13a4f5fa0f4fc6cd522c1d81f0a00ace311f1d15a2715db3d06811f",
+      "source": "LL-Q188 (deu)-Natschoba-heißen.wav"
     },
     "bed": {
       "author": "Jeuwre",
@@ -340,24 +345,25 @@
       "source": "De-Gürtel.ogg"
     },
     "bicycle": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "bicycle.mp3",
-      "gain": -3.1,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 3.7,
+      "lead": 112,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "fahrrad",
-      "sha256": "86274ab0ca19427e3152fae5a840b701e5f47125a7e242412908d1357dd0efbc",
-      "source": "De-Fahrrad.ogg"
+      "sha256": "6871fb58815fe8bdcde12741883f09fb33425a71abf0d5bbbb02c7b885ce652e",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Fahrrad.wav"
     },
     "big": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "big.mp3",
-      "gain": -0.5,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 14.9,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "groß",
-      "sha256": "34d7f8ab509a15332bd19bb5a27be11e7d1887777d4018b1a9b302277f23d772",
-      "source": "De-groß.ogg"
+      "sha256": "de0f9572dbb2bcda119fc74c093ac8cc5f72676740df42f99ba342a56aaa7b1c",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-groß.wav"
     },
     "bin": {
       "author": "Jeuwre",
@@ -392,14 +398,15 @@
       "source": "De-decke.ogg"
     },
     "blood": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "blood.mp3",
-      "gain": -1.3,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 7.9,
+      "lead": 209,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "blut",
-      "sha256": "77b0044bf35dc6aa344a59ed277e3a0eb3bb3bff13fdc8ad9ad8d53106543558",
-      "source": "De-Blut.ogg"
+      "sha256": "abff997f9469d64a56c8e4fc4d6af0a69677749efbd535eaaa497d65cc617d35",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Blut.wav"
     },
     "board": {
       "author": "Jeuwre",
@@ -435,14 +442,15 @@
       "source": "De-Chefin.ogg"
     },
     "bread": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "bread.mp3",
-      "gain": -6.4,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 4.0,
+      "lead": 191,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "brot",
-      "sha256": "40bd8b98d81d59d945559afbda96c9710d4e27bcf484212793c1623742e7d044",
-      "source": "De-Brot.ogg"
+      "sha256": "fe731f2cd325198da80e02bd94e2fc59af18d18902da8dd5df38ba9a840a0846",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Brot.wav"
     },
     "break": {
       "author": "Jeuwre",
@@ -456,14 +464,15 @@
       "source": "De-Pause.ogg"
     },
     "bring": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "bring.mp3",
-      "gain": 1.8,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 5.5,
+      "lead": 208,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mitbringen",
-      "sha256": "0a28dc8a5e914db88aad2a16df6a4ab10b579bfb63bab9f1288d88bb953020d0",
-      "source": "De-mitbringen.ogg"
+      "sha256": "f15544503574e653b5aca1ca47bc2b700492a5c5a09c56f79d4b9ed4a5533491",
+      "source": "LL-Q188 (deu)-Natschoba-mitbringen.wav"
     },
     "bucket": {
       "author": "Jeuwre",
@@ -498,14 +507,15 @@
       "source": "De-Haltestelle.ogg"
     },
     "buy": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "buy.mp3",
-      "gain": 0.3,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 1.4,
+      "lead": 194,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kaufen",
-      "sha256": "5c12b3d4522ca5bad18b16aaae2ff0665ab7dd173a60687fbd6d53ffde59d90f",
-      "source": "De-kaufen.ogg"
+      "sha256": "7917a22e800f49e7b71d1549be6c97a36779c4bbab6ed360337012beaacf91b5",
+      "source": "LL-Q188 (deu)-Natschoba-kaufen.wav"
     },
     "bye": {
       "author": "Jeuwre",
@@ -530,14 +540,15 @@
       "source": "De-kabel.ogg"
     },
     "calendar": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "calendar.mp3",
-      "gain": -2.6,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 5.7,
+      "lead": 259,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "kalender",
-      "sha256": "d43ab9763d6a9ac042f7cd0b00ac22fda86573063c231f1cbc1d62c72f6c662d",
-      "source": "De-Kalender.ogg"
+      "sha256": "cd358b2ef898ec95e38aeba3171fa021d5cca9c4e05ad381c88b00430756a1eb",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Kalender.wav"
     },
     "call": {
       "author": "Jeuwre",
@@ -561,14 +572,15 @@
       "source": "De-absagen.ogg"
     },
     "car": {
-      "author": "Kampy",
+      "author": "Poslovitch",
       "file": "car.mp3",
-      "gain": -0.8,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 3.5,
+      "lead": 256,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "auto",
-      "sha256": "476d306d4b6e862d16f40426fd40c57fbc2d747cc2bb3c264f1f17953f4ce1c0",
-      "source": "De-Auto.ogg"
+      "sha256": "850c83b5ed32ce521584d78711fbae4bbb13c0bbc543128ee5ef2e6f5ac4cdb9",
+      "source": "LL-Q188 (deu)-Poslovitch-Auto.wav"
     },
     "careful": {
       "author": "Jeuwre",
@@ -754,14 +766,15 @@
       "source": "De-Kollegin.ogg"
     },
     "come": {
-      "author": "User:Tosca",
+      "author": "Sebastian Wallroth",
       "file": "come.mp3",
-      "gain": 5.7,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 12.5,
+      "lead": 140,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "kommen",
-      "sha256": "d51d047c98f66daa912135bd0b68b03a354cc6953c2b3ea0f5de639b224143a1",
-      "source": "De-kommen.ogg"
+      "sha256": "32c096250aca8d6cb16998049833d71be0dbf3a1066ea211ce78b0ca51b27e8f",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-kommen.wav"
     },
     "company": {
       "author": "Jeuwre",
@@ -808,14 +821,15 @@
       "source": "De-vertrag.ogg"
     },
     "cook": {
-      "author": "StMH",
+      "author": "Natschoba",
       "file": "cook.mp3",
-      "gain": 12.2,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 4.8,
+      "lead": 203,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kochen",
-      "sha256": "e34b47be2de8d0cee30701fa3f6afdcce6d6765933450890a15e9964d79e1825",
-      "source": "De-kochen.ogg"
+      "sha256": "4255808a091cc8977c1bb1a4c4b44144418c1a623b0df3dbea439890dd2a0687",
+      "source": "LL-Q188 (deu)-Natschoba-kochen.wav"
     },
     "copy": {
       "author": "Wikimedia Commons user Jakob.scholbach",
@@ -947,14 +961,15 @@
       "source": "De-Datum.ogg"
     },
     "day": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "day.mp3",
-      "gain": 3.0,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 7.6,
+      "lead": 274,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "tag",
-      "sha256": "4e2e487af7144e75293cbe60e2197ecd9aa72309576a28ba0adcf572f9f9d96f",
-      "source": "De-Tag.ogg"
+      "sha256": "b984817689666d5a4755d8cb29d8716d7fa79ce68b2bf9dad28090dfa75fd8c2",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Tag.wav"
     },
     "deadline": {
       "author": "Jeuwre",
@@ -968,26 +983,25 @@
       "source": "De-frist.ogg"
     },
     "delete": {
-      "author": "User:Tosca",
+      "author": "Trypeds",
       "file": "delete.mp3",
-      "gain": 3.9,
-      "lead": 39,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 5.4,
+      "lead": 229,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "löschen",
-      "sha256": "fbf0e712e751b8c5961da742ba362efdaadd62a2d425bbc7488875bf904d5c1d",
-      "source": "De-löschen.ogg"
+      "sha256": "0fdd848757110b642312107051d95dad83ae8cb8018c5eb2c746c44db19f4dd7",
+      "source": "LL-Q188 (deu)-Trypeds-löschen.wav"
     },
     "depart": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
+      "author": "Natschoba",
       "file": "depart.mp3",
-      "gain": 4.3,
-      "lead": 41,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 8.8,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "abfahren",
-      "sha256": "a925c71edad981394cb6a1d8657fc485213dc142deb0651b16d091f8e17fe9d1",
-      "source": "De-abfahren.ogg"
+      "sha256": "b2f6bbb14e22f47de5398823bb7afd06578799af384169035f5090fe83e03c29",
+      "source": "LL-Q188 (deu)-Natschoba-abfahren.wav"
     },
     "desk": {
       "author": "Kampy",
@@ -1022,14 +1036,15 @@
       "source": "De-Esstisch.ogg"
     },
     "dirty": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "dirty.mp3",
-      "gain": 6.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 12.5,
+      "lead": 100,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "schmutzig",
-      "sha256": "2650628a8437c9d7cc26a29a1d5c867caff8b01ef3a24fb61c1c3b8936a86d6c",
-      "source": "De-schmutzig.ogg"
+      "sha256": "c059d6dd5c85b1b433dfaf2fdc0b04aa50316313922ab7cc4353a8c905f54c20",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-schmutzig.wav"
     },
     "dishwasher": {
       "author": "Jeuwre",
@@ -1098,14 +1113,15 @@
       "source": "De-klingel.ogg"
     },
     "dream": {
-      "author": "Leni Berlin",
+      "author": "Natschoba",
       "file": "dream.mp3",
-      "gain": 12.4,
-      "licence": "CC BY-SA 2.5",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+      "gain": 2.2,
+      "lead": 205,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "träumen",
-      "sha256": "3044de0425dbd737ef2a561f01c95d67f7410c6e0cbe63ff5186f2687c8c1c4d",
-      "source": "De-träumen.ogg"
+      "sha256": "65b933f85feae28dfc43d2ec64bd5fe41923c1e6de6148430bade5bbed70838b",
+      "source": "LL-Q188 (deu)-Natschoba-träumen.wav"
     },
     "dress": {
       "author": "Jeuwre",
@@ -1119,55 +1135,59 @@
       "source": "De-kleid.ogg"
     },
     "drink": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "drink.mp3",
-      "gain": -2.3,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 4.9,
+      "lead": 208,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "trinken",
-      "sha256": "b208ee1ab23fbec240025dd659532bf0c8d693a69c512c3b22ffb29ae43cec15",
-      "source": "De-trinken.ogg"
+      "sha256": "6bc5ee1918fdcad2ba7355967dc175a2c8b43c347f4a9b72b0ac581b379185e3",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-trinken.wav"
     },
     "ear": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "ear.mp3",
-      "gain": -3.7,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 5.5,
+      "lead": 243,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "ohr",
-      "sha256": "9a6d641a3bab071b26f8d5e0c66ff122a5e02bb0b28c057576a187447558f2b1",
-      "source": "De-Ohr.ogg"
+      "sha256": "e107116e43554a9f0dc0ef5e119076dff81bc34b05d1c7293ee3689e5703d2fc",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Ohr.wav"
     },
     "earn": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "earn.mp3",
-      "gain": 2.0,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 10.4,
+      "lead": 170,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "verdienen",
-      "sha256": "19970133280f5a81d50095105410458624d86a4f46f4dd748572fef7741a2e40",
-      "source": "De-verdienen.ogg"
+      "sha256": "44545a7d7fe339679d312b61a3237eb8fd84450180d00cb965214b1e0e973106",
+      "source": "LL-Q188 (deu)-Natschoba-verdienen.wav"
     },
     "eat": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "eat.mp3",
-      "gain": 1.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 1.3,
+      "lead": 262,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "essen",
-      "sha256": "a1809d9335539a56652ebcfd3e5187b58a5148adb03cbd4f06e8b81d1eddbef7",
-      "source": "De-essen.ogg"
+      "sha256": "b145bc0ea7aa41c7bd73af902a2e044f6cddd96f05c8c1d5ca4f85680a5bc6b6",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-essen.wav"
     },
     "egg": {
-      "author": "User:Tosca",
+      "author": "Sebastian Wallroth",
       "file": "egg.mp3",
-      "gain": 0.9,
-      "lead": 33,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 10.6,
+      "lead": 247,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "ei",
-      "sha256": "7e0951c34c0c572e6a9641f05e7ed8b738ed7c3e5b6b12a0d03c4e81ace584e6",
-      "source": "De-Ei.ogg"
+      "sha256": "a8148810c954d0ee045794e0d482fdf7b1f93ed06d693d9f0fddd9fdb397e99c",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Ei.wav"
     },
     "email": {
       "author": "Jeuwre",
@@ -1214,14 +1234,15 @@
       "source": "De-hereinkommen.ogg"
     },
     "evening": {
-      "author": "Arnim Faryn",
+      "author": "Djknusper",
       "file": "evening.mp3",
-      "gain": 2.8,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 4.6,
+      "lead": 186,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "abend",
-      "sha256": "7f62baf14e52a3512af96928ceddca20ddfdcccdc7f39465683a333ac4929be7",
-      "source": "De-Abend.ogg"
+      "sha256": "5a879f04fbdb1a6b2eb5c1f791f2ecb3f96cee1e1b3c5c2c3a10e921024bd5d0",
+      "source": "LL-Q188 (deu)-Djknusper-abend.wav"
     },
     "exam": {
       "author": "Jeuwre",
@@ -1278,14 +1299,15 @@
       "source": "De-verlängern.ogg"
     },
     "fast": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "fast.mp3",
-      "gain": -6.1,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 3.7,
+      "lead": 132,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schnell",
-      "sha256": "fb630862d089af6756f8b35314bc3d484b49c98a704e7a34e621e7811270ebf9",
-      "source": "De-schnell.ogg"
+      "sha256": "c24404719cde42dbc48c9bce473f7b73eab5c16e9533e4a556280781f73c43ea",
+      "source": "LL-Q188 (deu)-Natschoba-schnell.wav"
     },
     "fee": {
       "author": "Jeuwre",
@@ -1321,14 +1343,15 @@
       "source": "De-ausfüllen.ogg"
     },
     "flower": {
-      "author": "T.Voekler",
+      "author": "Sebastian Wallroth",
       "file": "flower.mp3",
-      "gain": -4.2,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 5.1,
+      "lead": 245,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "blume",
-      "sha256": "b74bd4ea16b59d0a42409b4fa683400bd08a9b7f7af772a1096c7932a2c7e5cf",
-      "source": "De-Blume.ogg"
+      "sha256": "f94adcfae61bc1e6535a64a2f6f03647317538f877bd6019d7e87315c4de0f55",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Blume.wav"
     },
     "folder": {
       "author": "Jeuwre",
@@ -1342,14 +1365,15 @@
       "source": "De-Ordner.ogg"
     },
     "fork": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "fork.mp3",
-      "gain": 0.5,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 3.5,
+      "lead": 68,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "gabel",
-      "sha256": "5e9f9a4042c85df4c8a0941b6350363376d397cf7b162944030cb4aba4f6b2bb",
-      "source": "De-Gabel.ogg"
+      "sha256": "2009d1b58d114d1d64fe839afd0aba7240ff23ff17e8a174d864fde6824738ff",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Gabel.wav"
     },
     "form": {
       "author": "Jeuwre",
@@ -1417,34 +1441,37 @@
       "source": "De-Vollzeit.ogg"
     },
     "get-up": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "get-up.mp3",
-      "gain": -1.1,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 5.2,
+      "lead": 262,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "aufstehen",
-      "sha256": "a2cd984b39acd66e2ea4fc438a2ce03f46de5518f560cdbfdcf43a97ed53bdf0",
-      "source": "De-aufstehen.ogg"
+      "sha256": "caf477f424f6eaf645d3986818ba2387659e3cacbcbbad5146f73221919aede4",
+      "source": "LL-Q188 (deu)-Natschoba-aufstehen.wav"
     },
     "give": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "give.mp3",
-      "gain": 0.8,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 15.8,
+      "lead": 281,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "geben",
-      "sha256": "b8f57fa228162ce5c53a1c019ff50ba5699b15485771b757e132b186aa54ee07",
-      "source": "De-geben.ogg"
+      "sha256": "c9a94c6241113dc08d280321aee744af184b7ce2597ccc002d9e8cec61fecf7e",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-geben.wav"
     },
     "glove": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "glove.mp3",
-      "gain": 2.1,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 9.8,
+      "lead": 204,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "handschuh",
-      "sha256": "f6a964b9545c22546092cf394f5d2be95b87d13879a0ce105f93b4eddb36bd56",
-      "source": "De-Handschuh.ogg"
+      "sha256": "7dccd20164a66feea2e7bca79576a812544dcc2343818b06b38d08fedd60e1b7",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Handschuh.wav"
     },
     "go": {
       "author": "Hschier",
@@ -1457,14 +1484,15 @@
       "source": "De-gehen.ogg"
     },
     "good": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "good.mp3",
-      "gain": -5.0,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 9.2,
+      "lead": 201,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "gut",
-      "sha256": "ebcb156683e64ae776c61a98d2cc65b79be93a800c17036700f3240f16af47b6",
-      "source": "De-gut.ogg"
+      "sha256": "f7961e84beb57f449d4592a01d7f221555b584bc9a354f25e2133f23b1781b95",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Gut.wav"
     },
     "grade": {
       "author": "Jeuwre",
@@ -1478,14 +1506,15 @@
       "source": "De-Note.ogg"
     },
     "greet": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "greet.mp3",
-      "gain": -0.6,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 11.3,
+      "lead": 254,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "begrüßen",
-      "sha256": "3ccb5eba19fa7d4a5908a63af47ab5980cdf5d2509b5f79ca4f2e5c89893abb7",
-      "source": "De-begrüßen.ogg"
+      "sha256": "414223d19b7d6d13842a09e9dbbfe36420f60b66ce5f7cde999f7a04c7b95b91",
+      "source": "LL-Q188 (deu)-Natschoba-begrüßen.wav"
     },
     "guest": {
       "author": "Jeuwre",
@@ -1542,14 +1571,15 @@
       "source": "De-einreichen.ogg"
     },
     "hat": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "hat.mp3",
-      "gain": 0.6,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 7.4,
+      "lead": 198,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "mütze",
-      "sha256": "ce2e01d2489951dd24658fdca155bfea5662738ae928422da881d83420d479c7",
-      "source": "De-Mütze.ogg"
+      "sha256": "ad53f9973e2048514f1a032262687757e327c324966c6f58b042ad9d8994ff3c",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Mütze.wav"
     },
     "have": {
       "author": "Leni Berlin",
@@ -1651,25 +1681,26 @@
       "source": "De-urlaub.ogg"
     },
     "homework": {
-      "author": "Jeuwre",
+      "author": "Sebastian Wallroth",
       "file": "homework.mp3",
-      "gain": 0.7,
-      "lead": 144,
-      "licence": "CC BY-SA 4.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "gain": 5.2,
+      "lead": 166,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "hausaufgabe",
-      "sha256": "9e9bf605f37c64fdc0264b7a3644183c28b224e6c4696dcb5f0c218a21f4a539",
-      "source": "De-Hausaufgabe.ogg"
+      "sha256": "f427b0c924454bac4f2caa069c92542b0c1e1a423293023d3e1a06635a936870",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Hausaufgabe.wav"
     },
     "hospital": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "hospital.mp3",
-      "gain": -1.0,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 9.6,
+      "lead": 168,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "krankenhaus",
-      "sha256": "b73a65c92f59f1247b08e46a37c3186f470e8d0b0ebd6396d521d13f6cdcb8b4",
-      "source": "De-Krankenhaus.ogg"
+      "sha256": "39d186dc4c4f8e59dda6cbbecda575fa62c1dad7fe19d32d9ac6d116887aa8e4",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Krankenhaus.wav"
     },
     "hour": {
       "author": "Jeuwre",
@@ -1792,14 +1823,15 @@
       "source": "De-Vorstellungsgespräch.ogg"
     },
     "jacket": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "jacket.mp3",
-      "gain": 2.1,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 6.0,
+      "lead": 214,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "jacke",
-      "sha256": "6f303c90f05960de5fc385a1e3b853bab727c556934ac1cfce21b0e168987402",
-      "source": "De-Jacke.ogg"
+      "sha256": "09adeef39597e18fe8c55925113ed0ce58d999e4936178249ff7b9553c085c2e",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Jacke.wav"
     },
     "job-application": {
       "author": "Jeuwre",
@@ -1857,24 +1889,26 @@
       "source": "De-messer.ogg"
     },
     "know": {
-      "author": "Jeuwre",
+      "author": "Sebastian Wallroth",
       "file": "know.mp3",
-      "gain": 0.6,
-      "licence": "CC BY-SA 4.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "gain": 5.2,
+      "lead": 218,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "wissen",
-      "sha256": "881a90761900ddad14d263d4238f0a86944c4f3f95590a490f5f15be2392abd8",
-      "source": "De-wissen.ogg"
+      "sha256": "7ccda2f7553c8e002ceddb8839a102bf903f61a7bd35b595f2e6d15f14f8a446",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Wissen.wav"
     },
     "lamp": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "lamp.mp3",
-      "gain": -0.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 11.8,
+      "lead": 261,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "lampe",
-      "sha256": "c952a6eefed54a671159ffb63e0a1ffb3e08e30c4b3756f9b50f4802c37f2516",
-      "source": "De-Lampe.ogg"
+      "sha256": "9e9ab478191c96a862a55379a6197a349735a8a43d15036c8c23ae7885547c71",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Lampe.wav"
     },
     "language": {
       "author": "Edward Montgomery Harrington",
@@ -1973,14 +2007,15 @@
       "source": "De-licht.ogg"
     },
     "live": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "live.mp3",
-      "gain": -0.1,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 2.0,
+      "lead": 270,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "wohnen",
-      "sha256": "eb5c37b75ffb18835808fb61c6b4d85a8e6ec3d294798412d12d41edfb2e9b6a",
-      "source": "De-wohnen.ogg"
+      "sha256": "bc68c5d61ec1664cfa8d2720093f98dee234576e4e9cc55fc7b0e1658a47ce6b",
+      "source": "LL-Q188 (deu)-Natschoba-wohnen.wav"
     },
     "lock": {
       "author": "Jeuwre",
@@ -2005,14 +2040,15 @@
       "source": "De-Briefkasten.ogg"
     },
     "make": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "make.mp3",
-      "gain": 2.0,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 9.6,
+      "lead": 200,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "machen",
-      "sha256": "876b69159498094c2226869644ab8729a7ad3ae458a723a9f38ff7c7910a9d88",
-      "source": "De-machen.ogg"
+      "sha256": "5b182c630816fb3cd4068c7aa8b3dcb6f2e9ff728444bc16bb3ecff2f3dd913f",
+      "source": "LL-Q188 (deu)-Natschoba-machen.wav"
     },
     "market": {
       "author": "Jeuwre",
@@ -2058,14 +2094,15 @@
       "source": "De-spiegel.ogg"
     },
     "money": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "money.mp3",
-      "gain": -2.0,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 3.9,
+      "lead": 229,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "geld",
-      "sha256": "a01b0e24647547b0682707339a7b6505470adb8d4af3b2629671c5593f78778f",
-      "source": "De-Geld.ogg"
+      "sha256": "15ab4a6e62d05e9e8598e27572fccee9759f03faee637917658213ac8a1c9d3f",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Geld.wav"
     },
     "morning": {
       "author": "Jeuwre",
@@ -2101,14 +2138,15 @@
       "source": "De-film.ogg"
     },
     "much": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "much.mp3",
-      "gain": -4.5,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 4.0,
+      "lead": 146,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "viel",
-      "sha256": "47e1cd00c623b6c2d71a23f90562ada0ee1eda751e8d13976367175821a5e048",
-      "source": "De-viel.ogg"
+      "sha256": "e92d7d7b3c1c4c51f13bdfda714e2b5b0feced2ec1c1fe0d5b85907f2fe6357c",
+      "source": "LL-Q188 (deu)-Natschoba-viel.wav"
     },
     "music": {
       "author": "Jeuwre",
@@ -2132,14 +2170,15 @@
       "source": "De-Name.ogg"
     },
     "need": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "need.mp3",
-      "gain": -1.8,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 6.4,
+      "lead": 124,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "brauchen",
-      "sha256": "b8c017b147ee644b0e529ee8cba5f237c6f72d310e614a65c43775616f83ee3b",
-      "source": "De-brauchen.ogg"
+      "sha256": "de488ae2839d3c4b8e1a1962dbc4290a012194cfa99901d80c9a134e521dff52",
+      "source": "LL-Q188 (deu)-Natschoba-brauchen.wav"
     },
     "neighbour": {
       "author": "Kampy",
@@ -2152,14 +2191,15 @@
       "source": "De-Nachbar.ogg"
     },
     "new": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "new.mp3",
-      "gain": -6.7,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 12.0,
+      "lead": 224,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "neu",
-      "sha256": "b1a6995b77fc9f389a5bed49127f5fa980b3ddabad4e4f311b8eb3882d0718ad",
-      "source": "De-neu.ogg"
+      "sha256": "7d1f2156a2b5e97d1525135bf78beb6fc8226b982ea3d93d01ed7b2f67e7b2ba",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-neu.wav"
     },
     "newspaper": {
       "author": "Jeuwre",
@@ -2173,14 +2213,15 @@
       "source": "De-Zeitung.ogg"
     },
     "night": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "night.mp3",
-      "gain": 1.8,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 9.1,
+      "lead": 241,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "nacht",
-      "sha256": "726840701397b95afa5ce0f7cb3a7604874827ade48f917d4f042918c8475952",
-      "source": "De-Nacht.ogg"
+      "sha256": "48073189b015b43ae4fe2b5efe1eb0ddc7ce4a94eebf8e00025f5921518b93b0",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Nacht.wav"
     },
     "nightstand": {
       "author": "Jeuwre",
@@ -2238,14 +2279,15 @@
       "source": "De-bescheid.ogg"
     },
     "now": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "now.mp3",
-      "gain": 4.8,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 8.8,
+      "lead": 216,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jetzt",
-      "sha256": "c2b961d9991a128da5a4bfa5432f10a5e45827afec1d7145bfabced7ce0d69b4",
-      "source": "De-jetzt.ogg"
+      "sha256": "be7b9e707634c2f1380629149b482dd5823fa47260b7b456a1e131802d2a83e3",
+      "source": "LL-Q188 (deu)-Natschoba-jetzt.wav"
     },
     "office": {
       "author": "Jeuwre",
@@ -2281,15 +2323,15 @@
       "source": "De-Sprechstunde.ogg"
     },
     "old": {
-      "author": "Oceancetaceen Alice Chodura",
+      "author": "Sebastian Wallroth",
       "file": "old.mp3",
-      "gain": 19.9,
-      "lead": 155,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 3.3,
+      "lead": 170,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "alt",
-      "sha256": "1a4916d2f2d771d0b40633b70d97d8c5dc64948f77ce950a829e49e449d20f1a",
-      "source": "De-alt.ogg"
+      "sha256": "c4c4c1dda088e8dded30c5bd59645f998933f50e93edec101142a920795c647c",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-alt.wav"
     },
     "opening-hours": {
       "author": "Jeuwre",
@@ -2532,14 +2574,15 @@
       "source": "De-Teller.ogg"
     },
     "play": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "play.mp3",
-      "gain": 2.0,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 4.9,
+      "lead": 170,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "spielen",
-      "sha256": "d35a81a2dde186ae4ca30bcb544693574efd5ccc6916e93a2464fa370fa31f63",
-      "source": "De-spielen.ogg"
+      "sha256": "b56a95a3b029bd8dddd1af246177d151c33374a508b93122ee4f0de13427c479",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Spielen.wav"
     },
     "please": {
       "author": "Bleibein",
@@ -2652,14 +2695,15 @@
       "source": "De-pünktlich.ogg"
     },
     "pupil": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "pupil.mp3",
-      "gain": -1.1,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 10.1,
+      "lead": 235,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "schüler",
-      "sha256": "4525b7e86bbd5327bb3288f739f025c0b2d3a1e302f41d71ed46d74fc6a07ddf",
-      "source": "De-Schüler.ogg"
+      "sha256": "27361e072d20ed90132d5dbc6990a7f316b3d46b665b07379c28fc89a4cd231e",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Schüler.wav"
     },
     "pupil-f": {
       "author": "Jeuwre",
@@ -2695,14 +2739,15 @@
       "source": "De-frage.ogg"
     },
     "quiet": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "quiet.mp3",
-      "gain": -0.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 7.6,
+      "lead": 264,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "leise",
-      "sha256": "1dd3229d43da7cf7e199e01a8e371df4ff4f66afdf98a38ef9279e60e84e01d2",
-      "source": "De-leise.ogg"
+      "sha256": "a0c029cdc11f0eb90e67d6be416cf3d34d1f03bc81f54a44575a3103f5c5eecb",
+      "source": "LL-Q188 (deu)-Natschoba-leise.wav"
     },
     "quit": {
       "author": "Wikimedia Commons user Jakob.scholbach",
@@ -2737,14 +2782,15 @@
       "source": "De-Rasierer.ogg"
     },
     "read": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "read.mp3",
-      "gain": -1.6,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 3.0,
+      "lead": 221,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "lesen",
-      "sha256": "e01536703b26341315b430e677ccee21750a2d2997a80633a396a89005250f30",
-      "source": "De-lesen.ogg"
+      "sha256": "a6e89ae314156fc631934767a6624acc8166bf57df8897c121a05ff999f9f909",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-lesen.wav"
     },
     "ready": {
       "author": "Jeuwre",
@@ -2802,15 +2848,15 @@
       "source": "De-Fernbedienung.ogg"
     },
     "reply": {
-      "author": "User:Tosca",
+      "author": "Natschoba",
       "file": "reply.mp3",
-      "gain": 8.0,
-      "lead": 89,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 5.1,
+      "lead": 268,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "antworten",
-      "sha256": "9c72025f3d6f9f40bbd225b319600c19adffe0ba4b64cf516a7de67cafa79a74",
-      "source": "De-antworten.ogg"
+      "sha256": "34942f30535450ca2e17b85ba7cc1ef330070a5754bda8e121299c7e22fdd005",
+      "source": "LL-Q188 (deu)-Natschoba-antworten.wav"
     },
     "residence-permit": {
       "author": "Jeuwre",
@@ -2857,14 +2903,15 @@
       "source": "De-klingeln.ogg"
     },
     "river": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "river.mp3",
-      "gain": -0.2,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 7.4,
+      "lead": 178,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "fluss",
-      "sha256": "efe1b9311d5aa0fb234520e7cd275d1a7ef7e876898288b2579d0fadf3e928ea",
-      "source": "De-Fluss.ogg"
+      "sha256": "5343437290923f1cc15f44a7f2bf3fc6c1bcfe49df2cf3e7725b21377500b2b2",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Fluss.wav"
     },
     "room": {
       "author": "Jeuwre",
@@ -2899,24 +2946,26 @@
       "source": "De-salz.ogg"
     },
     "save": {
-      "author": "User:Tosca",
+      "author": "Sebastian Wallroth",
       "file": "save.mp3",
-      "gain": 6.4,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 5.9,
+      "lead": 232,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "speichern",
-      "sha256": "9e7325073f8297e664e113346f7c5d45e9c41ef84965b377dc0c28cc05755abc",
-      "source": "De-speichern.ogg"
+      "sha256": "4b5840b9ec4c4f72fec9f61d2c398c8398562525eeb401776a2f5186c48ca7a0",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Speichern.wav"
     },
     "say": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "say.mp3",
-      "gain": -1.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 11.2,
+      "lead": 230,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "sagen",
-      "sha256": "cdf948395ca27f5338cb1a6fcd93ec731ce71af10347550fc1c9a0a22ce57920",
-      "source": "De-sagen.ogg"
+      "sha256": "e80e04d91c0f342ee0aec629ce7fd0bfb4d2cd0bcc2cf595802b07829bf5224e",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-sagen.wav"
     },
     "school": {
       "author": "Jeuwre",
@@ -2941,14 +2990,15 @@
       "source": "De-Bildschirm.ogg"
     },
     "see": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "see.mp3",
-      "gain": -3.3,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 3.0,
+      "lead": 183,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "sehen",
-      "sha256": "85ad9bc98df955993831e8522ba870276a34acacfd76d3751a762dd862611aec",
-      "source": "De-sehen.ogg"
+      "sha256": "48a38ce822b20404da8177c9e01ef851d010676aec35abed7c0f3ebdd6db354f",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-sehen.wav"
     },
     "shampoo": {
       "author": "Jeuwre",
@@ -3091,34 +3141,37 @@
       "source": "De-Waschbecken.ogg"
     },
     "sit": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "sit.mp3",
-      "gain": 3.3,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 1.2,
+      "lead": 237,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "sitzen",
-      "sha256": "361513595f273426903655c0818a015c3f74f449a1bd0252779f1fd73d71a182",
-      "source": "De-sitzen.ogg"
+      "sha256": "57746ff9c95c86b16cfe3302cf534182ab3f450aab3feb0249fd80d850283270",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Sitzen.wav"
     },
     "sleep": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "sleep.mp3",
-      "gain": -0.4,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 8.9,
+      "lead": 177,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "schlafen",
-      "sha256": "fa7b3775bdc43b74243d842aaa9f7220c2849911f949534237746fd2a9b62485",
-      "source": "De-schlafen.ogg"
+      "sha256": "69d3b328f7928cd2301232a1e5d29c35e35e23c13443341a089aa8f5b3333116",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-schlafen.wav"
     },
     "slow": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "slow.mp3",
-      "gain": -1.0,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 5.6,
+      "lead": 248,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "langsam",
-      "sha256": "94be9c24b3503a2562596e2f3e22a475c34d152910c73bf70665792d8c85e0c8",
-      "source": "De-langsam.ogg"
+      "sha256": "db7846d27491ccaa817133c8c57c695376352c451367e45bf6f8c7b8676980cb",
+      "source": "LL-Q188 (deu)-Natschoba-langsam.wav"
     },
     "slower": {
       "author": "Jeuwre",
@@ -3132,14 +3185,15 @@
       "source": "De-langsamer.ogg"
     },
     "small": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "small.mp3",
-      "gain": -5.6,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 4.3,
+      "lead": 283,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "klein",
-      "sha256": "4e52b8518455ed1bffcc123dbd7a3dee59b62752131c46043abd821dc86e971d",
-      "source": "De-klein.ogg"
+      "sha256": "6e861e4adf91e4d3643e238dbda014ddcd79292370bccd7e6971b8e98cb18806",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-klein.wav"
     },
     "snore": {
       "author": "Wikimedia Commons user Jakob.scholbach",
@@ -3152,14 +3206,15 @@
       "source": "De-schnarchen.ogg"
     },
     "snow": {
-      "author": "No machine-readable author provided. S.~commonswiki assumed (based on copyright claims).",
+      "author": "Sebastian Wallroth",
       "file": "snow.mp3",
-      "gain": 6.9,
-      "lead": 11,
-      "licence": "Public domain",
+      "gain": 11.2,
+      "lead": 247,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "schnee",
-      "sha256": "9fcb29a29cc9fa7abc32dd5361426a0ae67383f7956fd32e4e5ba865d61b03ca",
-      "source": "De-Schnee.ogg"
+      "sha256": "23b75aa1af406c4bf754ea043362d7535355aaac2f49dfc7278fd051e95fd515",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Schnee.wav"
     },
     "soap": {
       "author": "Jeuwre",
@@ -3195,34 +3250,36 @@
       "source": "De-Steckdose.ogg"
     },
     "sofa": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "sofa.mp3",
-      "gain": -4.8,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 7.6,
+      "lead": 222,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "sofa",
-      "sha256": "5154fc23eda7e6f41fbf8a187f5f1d01289284dbba6e67fced22f92b9cbba376",
-      "source": "De-Sofa.ogg"
+      "sha256": "a4b7c606bc6e6531b4e019df63ff40d6248127429fca2629e466c9e2e2ee3a1d",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Sofa.wav"
     },
     "soft": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "soft.mp3",
-      "gain": -0.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 1.7,
+      "lead": 224,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "weich",
-      "sha256": "fb6c75e928e3b456f3fc1b4e821fe1076fdaffb77b11e829a8b4d253211be836",
-      "source": "De-weich.ogg"
+      "sha256": "ee2802006e95bdaac2cbb52fd9f019bc4b50e8fb5869253efb233f43d8253a1a",
+      "source": "LL-Q188 (deu)-Natschoba-weich.wav"
     },
     "speak": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "speak.mp3",
-      "gain": 2.2,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 3.7,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sprechen",
-      "sha256": "9e15245ede145fc8c2192c94abf766e555728a5ca297c32d4885f5b866586370",
-      "source": "De-sprechen.ogg"
+      "sha256": "6d9459dd71f74a7c8eed54ebe6719a7c297d764aac1617666d685dcc892804cf",
+      "source": "LL-Q188 (deu)-Natschoba-sprechen.wav"
     },
     "sponge": {
       "author": "Jeuwre",
@@ -3301,24 +3358,25 @@
       "source": "De-Herd.ogg"
     },
     "street": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "street.mp3",
-      "gain": -3.7,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 7.6,
+      "lead": 207,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "straße",
-      "sha256": "7b41395c52fefcffa59cb3fafdd527f916b1f1a0104de26ff3cc027e4ef614b7",
-      "source": "De-Straße.ogg"
+      "sha256": "ef473dde7fb75a0cb6a96bb69864a7ffee188ac351b9caecc2cb71766780c39a",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Straße.wav"
     },
     "study": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "study.mp3",
-      "gain": -0.6,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 7.7,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "lernen",
-      "sha256": "52c74e43e268a81ccb0ca9b008c331c912be2e2c2884e5fd7de883f6fca8c18b",
-      "source": "De-lernen.ogg"
+      "sha256": "6cfb41debd7de8858736e64c1b2231b09d74eb790fbe004d0ef80dd191e4b705",
+      "source": "LL-Q188 (deu)-Natschoba-lernen.wav"
     },
     "submit": {
       "author": "Kampy",
@@ -3353,14 +3411,15 @@
       "source": "De-sonne.ogg"
     },
     "sweater": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "sweater.mp3",
-      "gain": -3.1,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 6.3,
+      "lead": 273,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "pullover",
-      "sha256": "6ac007b648ca160d0f3eff2268b807aafaa9fdeab26d5441ac618190bcf4cb04",
-      "source": "De-Pullover.ogg"
+      "sha256": "934cd3d64f60896f02e5d26c20582f7807a1326c8aeeef98d59e00f671c81210",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Pullover.wav"
     },
     "t-shirt": {
       "author": "Jeuwre",
@@ -3374,14 +3433,15 @@
       "source": "De-T-Shirt.ogg"
     },
     "take": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "take.mp3",
-      "gain": -0.5,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 6.5,
+      "lead": 199,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nehmen",
-      "sha256": "02f6034ce8708d5b6914cdf607ceeb3d6ad928bdc6554f37252f16cc82ce7c00",
-      "source": "De-nehmen.ogg"
+      "sha256": "f2d520a5a781513a33c573f81972b6e648b9f91e39ce8c1c0b0807f9e0cc4e99",
+      "source": "LL-Q188 (deu)-Natschoba-nehmen.wav"
     },
     "take-shower": {
       "author": "Kampy",
@@ -3447,24 +3507,26 @@
       "source": "De-Taxi.ogg"
     },
     "tea": {
-      "author": "Kampy",
+      "author": "Mighty Wire",
       "file": "tea.mp3",
-      "gain": -4.6,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 2.9,
+      "lead": 195,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "tee",
-      "sha256": "361ce9efdf4379005768708c171db73b218c994e8daf04e5cffd6fa6151c24f0",
-      "source": "De-Tee.ogg"
+      "sha256": "cbc88ea593551947eb8412ecb618d8fcbedc70cd05330d5073ee6d46d9bc2111",
+      "source": "LL-Q188 (deu)-Mighty Wire-Earl-Grey-Tee.wav"
     },
     "teacher": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "teacher.mp3",
-      "gain": -3.5,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 8.0,
+      "lead": 233,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "lehrer",
-      "sha256": "843c2c4b7f70edd8ed6cb5fe634c3d8773693fa6711dc5a396e113580af0fd33",
-      "source": "De-Lehrer.ogg"
+      "sha256": "2b4cc6800e964e79371dd80676fcca9aaae87c03116b0375b804e6f7f0d048c1",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Lehrer.wav"
     },
     "teacher-f": {
       "author": "Jeuwre",
@@ -3478,14 +3540,15 @@
       "source": "De-Lehrerin.ogg"
     },
     "thank": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "thank.mp3",
-      "gain": -0.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 8.4,
+      "lead": 238,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "danken",
-      "sha256": "504cbbb5c2c75c196457cbb2d5868157195e1a59547b8363ec8a22978d63e9c0",
-      "source": "De-danken.ogg"
+      "sha256": "70a91be15bc02a59ab514c92ab76647a25864f728e662708732b5373147e29a8",
+      "source": "LL-Q188 (deu)-Natschoba-danken.wav"
     },
     "thirst": {
       "author": "Jeuwre",
@@ -3554,34 +3617,37 @@
       "source": "De-husten.ogg"
     },
     "to-help": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "to-help.mp3",
-      "gain": -1.7,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 6.5,
+      "lead": 135,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "helfen",
-      "sha256": "9b8ae108643217a3952f6664b67cf8f58916ab8d1a96530790006378d5cfeacc",
-      "source": "De-helfen.ogg"
+      "sha256": "b1823d781c5179f53b3b734f7a2dbfd9338f3502be61a67a948abaec2495c32f",
+      "source": "LL-Q188 (deu)-Natschoba-helfen.wav"
     },
     "to-work": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "to-work.mp3",
-      "gain": -3.6,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 5.8,
+      "lead": 244,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "arbeiten",
-      "sha256": "9efe8b9fdc415cea9a2481d3f74d7c24c8dac21c5cb5e4c873453d1f7c083954",
-      "source": "De-arbeiten.ogg"
+      "sha256": "195cade0f694d67cd3727e11143260e69c7dfd9b2756cb98b328c565066f00f8",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Arbeiten.wav"
     },
     "today": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "today.mp3",
-      "gain": 0.3,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 8.1,
+      "lead": 200,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "heute",
-      "sha256": "be45357334859ad9f2acb9ea4ebea5c834ed90fd95c4e29894281350f6ece6e2",
-      "source": "De-heute.ogg"
+      "sha256": "4a2ecfda626844abe73eeeda7a147aeaa2df9787f7a79c4a4312bbb7dc60e508",
+      "source": "LL-Q188 (deu)-Natschoba-heute.wav"
     },
     "together": {
       "author": "Jeuwre",
@@ -3682,14 +3748,15 @@
       "source": "De-Zug.ogg"
     },
     "train-station": {
-      "author": "T.Voekler",
+      "author": "Poslovitch",
       "file": "train-station.mp3",
-      "gain": -1.4,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 0.7,
+      "lead": 237,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "bahnhof",
-      "sha256": "d25ebf36cbff91960168a7437017f5c730f9fe222dad9bd3321e3ad82d9aa0ab",
-      "source": "De-Bahnhof.ogg"
+      "sha256": "28bb493967154b866a6692b94dfa831e24d73af38e42b17e83ee098f548f79cb",
+      "source": "LL-Q188 (deu)-Poslovitch-Bahnhof.wav"
     },
     "training": {
       "author": "Jeuwre",
@@ -3703,14 +3770,15 @@
       "source": "De-Ausbildung.ogg"
     },
     "translate": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "translate.mp3",
-      "gain": 1.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 2.5,
+      "lead": 258,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "übersetzen",
-      "sha256": "139774a41e97a4f2d82e52654125e786d8a3be1a392cd0a0901d32ba11c67d79",
-      "source": "De-übersetzen.ogg"
+      "sha256": "0ed84f6b0f597d826ea38142371daa21fcdeef5481d91463bef2b9327994e134",
+      "source": "LL-Q188 (deu)-Natschoba-übersetzen.wav"
     },
     "tree": {
       "author": "Jeuwre",
@@ -3735,14 +3803,15 @@
       "source": "De-hose.ogg"
     },
     "tv": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "tv.mp3",
-      "gain": -2.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 4.4,
+      "lead": 133,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "fernseher",
-      "sha256": "457e0dc226221b7cbd8d72e7564f7130f22070ecf341bd210a3d95cd2dd64b52",
-      "source": "De-Fernseher.ogg"
+      "sha256": "62e3d08e720fd4f228722ea23d65b2aee4fa0c6f81055df7ac752c8d21a7dfa2",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Fernseher.wav"
     },
     "type": {
       "author": "Jeuwre",
@@ -3767,14 +3836,15 @@
       "source": "De-Regenschirm.ogg"
     },
     "understand": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "understand.mp3",
-      "gain": -0.7,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 3.2,
+      "lead": 124,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "verstehen",
-      "sha256": "a6b34a231733d4c622d9b963a90ee49d6e10ac95bbe3ceec700730f5072b8770",
-      "source": "De-verstehen.ogg"
+      "sha256": "9ceb1e0f7ad76d27baec7fbb3343b5377dca400054c7968d24314eceab5f3a62",
+      "source": "LL-Q188 (deu)-Natschoba-verstehen.wav"
     },
     "underwear": {
       "author": "Kampy",
@@ -3797,14 +3867,15 @@
       "source": "De-aufschließen.ogg"
     },
     "urgent": {
-      "author": "Jeuwre",
+      "author": "Natschoba",
       "file": "urgent.mp3",
-      "gain": -1.5,
+      "gain": 7.1,
+      "lead": 183,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "dringend",
-      "sha256": "bd6bbe16022f6c691a48199b5e75ef9559361739008a7d8bce2e021587284098",
-      "source": "De-dringend.ogg"
+      "sha256": "c337d7b512d2d829e4779e488914ab5efd5af291c6ddf15d9a796737c3243547",
+      "source": "LL-Q188 (deu)-Natschoba-dringend.wav"
     },
     "wait": {
       "author": "Kampy",
@@ -3839,14 +3910,15 @@
       "source": "De-Wartezeit.ogg"
     },
     "wake-up": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
+      "author": "Natschoba",
       "file": "wake-up.mp3",
-      "gain": 5.5,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 7.4,
+      "lead": 200,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "aufwachen",
-      "sha256": "71b7a2c7602be78da82ec7f411888601a7dd4bedd0f34ae5c80174b56a76b4a5",
-      "source": "De-aufwachen.ogg"
+      "sha256": "3a4401c8626f8ef5ad8f675a9993b48c8b0ee82d48e0659c21efcb0a7c6f25fa",
+      "source": "LL-Q188 (deu)-Natschoba-aufwachen.wav"
     },
     "wall": {
       "author": "Jeuwre",
@@ -3937,14 +4009,15 @@
       "source": "De-wetter.ogg"
     },
     "week": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "week.mp3",
-      "gain": 3.2,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 5.9,
+      "lead": 256,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "woche",
-      "sha256": "fbc5b71515bc4fd8f8f0015bf10db22d7a6c79a4ce912f746579eba13692550a",
-      "source": "De-Woche.ogg"
+      "sha256": "d5ea90204565bb13a3096266a1d3c19622dbb54afe4a6f28f9b769dafed96a83",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Woche.wav"
     },
     "wind": {
       "author": "Jeuwre",
@@ -4012,14 +4085,15 @@
       "source": "De-Arbeitszeit.ogg"
     },
     "write": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "write.mp3",
-      "gain": -5.1,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 3.8,
+      "lead": 81,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schreiben",
-      "sha256": "03ec291134635054701fcb9ca2ba899da02af92ecf3524d8c5b510bfa7161447",
-      "source": "De-schreiben.ogg"
+      "sha256": "ff69a057cd9d5b60dcdd23e856ccc0596b68944088a77d2c9430bb1ee1fb4437",
+      "source": "LL-Q188 (deu)-Natschoba-schreiben.wav"
     },
     "yawn": {
       "author": "Jeuwre",
@@ -4033,14 +4107,15 @@
       "source": "De-gähnen.ogg"
     },
     "yes": {
-      "author": "MiER",
+      "author": "Natschoba",
       "file": "yes.mp3",
-      "gain": -4.3,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 4.4,
+      "lead": 177,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ja",
-      "sha256": "ae6884f6cd5c1d5a57fa5be477bb5487cdb374f84d293ae5ab11e413b7e1542d",
-      "source": "De-ja.ogg"
+      "sha256": "f0eae6349da2b2f47c890beda5d353ffc3d6f178d867afb2b4ca395a1eb5f5a9",
+      "source": "LL-Q188 (deu)-Natschoba-ja.wav"
     }
   }
 }
