@@ -15,8 +15,20 @@
   "meeting-is-at": {
    "text": "Mkutano ni {slot}."
   },
+  "it-is-now": {
+   "text": "Sasa ni {slot}.",
+   "variants": [
+    "Ni {slot} sasa."
+   ]
+  },
   "we-have-n-plates": {
    "text": "Tuna sahani {slot}."
+  },
+  "i-have-n-keys": {
+   "text": "Nina funguo {slot}.",
+   "notes": {
+    "de": "funguo ist der Plural von ufunguo und steht in der N-Klasse — die Zahlwörter bleiben unverändert (funguo mbili, funguo tano)."
+   }
   },
   "it-costs-n-euros": {
    "text": "Ni euro {slot}.",
@@ -25,10 +37,16 @@
    }
   },
   "repeat-please": {
-   "text": "Rudia, tafadhali: {slot}."
+   "text": "Rudia, tafadhali: {slot}.",
+   "variants": [
+    "Tafadhali rudia: {slot}."
+   ]
   },
   "write-please": {
-   "text": "Andika, tafadhali: {slot}."
+   "text": "Andika, tafadhali: {slot}.",
+   "variants": [
+    "Tafadhali andika: {slot}."
+   ]
   },
   "learning-since-year": {
    "text": "Ninajifunza Kijerumani tangu mwaka {slot}.",
@@ -36,8 +54,20 @@
     "de": "Jahreszahl als Kardinalzahl gelesen — mwaka = Jahr"
    }
   },
+  "repeat-the-year": {
+   "text": "Rudia, tafadhali: {slot}.",
+   "variants": [
+    "Tafadhali rudia: {slot}."
+   ],
+   "notes": {
+    "de": "Diktat-Rahmen ohne „Datum“: mwaka/tarehe vor der blanken Kardinalzahl liest sich nicht als Jahresangabe."
+   }
+  },
   "write-the-year": {
-   "text": "Andika, tafadhali: {slot}."
+   "text": "Andika, tafadhali: {slot}.",
+   "variants": [
+    "Tafadhali andika: {slot}."
+   ]
   }
  }
 }
