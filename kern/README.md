@@ -542,7 +542,7 @@ day-key `yyyy-MM-dd`) with:
 - Gradle root `app/` (wrapper committed; `.gitignore` += `build/`, `.gradle/`, `.kotlin/`,
   `local.properties`); module `:kern` at **`app/kern`** (`kern/` at root is the same
   APFS inode as Swift `Kern/` — never create it). Package `net.spross.kern`
-  (+ `.trainer`). Pins (probe-proven, Xcode 26.6): Kotlin **2.4.0** (SKIE 0.10.13's ceiling —
+  (+ `.trainer`). Pins (probe-proven, Xcode 26.6): Kotlin **2.4.10** (SKIE 0.10.14's ceiling —
   bump only as a pair; comment in the version catalog), serialization 1.11.0,
   datetime 0.8.0, Gradle 9.6.1, JDK 21 toolchain. Configuration cache on.
   Toolchain auto-provisioning is off: JDK 21 must be installed, and the Homebrew keg
