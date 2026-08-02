@@ -34,10 +34,13 @@ struct VocabCardView: View {
         /// Says the headword out loud, if it can be heard at all. Only the
         /// gesture is conditional — the hit area is not (see `headline`).
         var pronounce: (() -> Void)?
+        /// Whether this side's word is the one sounding right now — pulses
+        /// the small speaker icon beside it.
+        var isPlaying: Bool = false
 
         init(text: String, article: String? = nil, plural: String? = nil,
              alternates: String? = nil, context: String? = nil, femMarker: Bool = false,
-             language: String? = nil, pronounce: (() -> Void)? = nil) {
+             language: String? = nil, pronounce: (() -> Void)? = nil, isPlaying: Bool = false) {
             self.text = text
             self.article = article
             self.plural = plural
@@ -46,6 +49,7 @@ struct VocabCardView: View {
             self.femMarker = femMarker
             self.language = language
             self.pronounce = pronounce
+            self.isPlaying = isPlaying
         }
     }
 
@@ -202,10 +206,15 @@ struct VocabCardView: View {
 
     @ViewBuilder
     private func headlineRow(_ side: Side, emphasized: Bool) -> some View {
-        if side.femMarker {
+        if side.pronounce != nil || side.femMarker {
             HStack(spacing: DL.Space.s) {
                 headlineWord(side, emphasized: emphasized)
-                FeminineBadge()
+                if side.pronounce != nil {
+                    SpeakerIcon(size: .small, isPlaying: side.isPlaying)
+                }
+                if side.femMarker {
+                    FeminineBadge()
+                }
             }
         } else {
             headlineWord(side, emphasized: emphasized)

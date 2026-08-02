@@ -1,15 +1,16 @@
 import SwiftUI
 
 /// The audio question, in the same card chrome as TrainerPromptCard: a caption
-/// naming what is being asked, one large replay button, and — for a gap
-/// question — the example word with the asked grapheme blanked.
+/// naming what is being asked, one large replay glyph, and — for a gap
+/// question — the example word with the asked grapheme blanked. The whole
+/// card is the tap target, not just the glyph (see `body`).
 ///
 /// No answer ever renders here, and that is the whole point: everything the
 /// learner is given is the sound, plus whatever the gap word already shows.
 ///
 /// Two silences can meet a learner on this card, and it names both. The app's
 /// own read-aloud switch is one tap to undo, so the card BLOCKS with that tap
-/// instead of showing a speaker button that does nothing. The hardware silent
+/// instead of showing a speaker that does nothing. The hardware silent
 /// switch cannot be detected at all (Sounds.swift doctrine) — so a run's first
 /// question states it once, rather than leaving a dead screen to be guessed at.
 struct HearPromptCard: View {
@@ -21,6 +22,8 @@ struct HearPromptCard: View {
     var gapText: String?
     /// nil where the device can neither play nor speak this prompt.
     var replay: (() -> Void)?
+    /// Whether the prompt is sounding right now — pulses the speaker glyph.
+    var isPlaying: Bool = false
     var muted: Bool
     var unmute: () -> Void
     /// First task of a run only — a line repeated on every question is noise.
@@ -34,7 +37,7 @@ struct HearPromptCard: View {
     var body: some View {
         VStack(spacing: DL.Space.m) {
             caption
-            replayButton
+            replayGlyph
             if let gapText {
                 Text(verbatim: gapText)
                     .font(.system(size: 40, weight: .bold, design: .rounded))
@@ -65,6 +68,10 @@ struct HearPromptCard: View {
                 .strokeBorder(Color.dlSeparator.opacity(0.6), lineWidth: 1)
         )
         .dlCardShadow()
+        // why: on a pure-listening card the whole card IS the control — a
+        // learner should not have to land a tap on one small circle.
+        .contentShape(Rectangle())
+        .onTapGesture { replay?() }
     }
 
     private var caption: some View {
@@ -76,20 +83,18 @@ struct HearPromptCard: View {
             .multilineTextAlignment(.center)
     }
 
-    /// Well past the 44 pt floor: on this card it is not a control beside the
-    /// content, it IS the content.
-    private var replayButton: some View {
-        Button { replay?() } label: {
-            Image(systemName: "speaker.wave.2.fill")
-                .font(.system(size: 30, weight: .semibold))
-                .foregroundStyle(replay == nil ? Color.dlTextSecondary : Color.dlOnColor)
-                .frame(width: 72, height: 72)
-                .background(Circle().fill(replay == nil ? Color.dlSurfaceTint : Color.dlAccent))
-        }
-        .disabled(replay == nil)
-        .accessibilityLabel("a11y.replayPrompt")
-        .accessibilityAddTraits(.startsMediaSession)
-        .accessibilityFocused(replayFocus)
+    /// Big, but never circled or filled — it names what the card does rather
+    /// than acting as a control beside the content; the tap gesture lives on
+    /// the card as a whole (see `body`). Still its own VoiceOver element, so
+    /// `replayFocus` has somewhere to land on every task change.
+    private var replayGlyph: some View {
+        SpeakerIcon(size: .large, isPlaying: isPlaying)
+            .opacity(replay == nil ? 0.35 : 1)
+            .accessibilityElement()
+            .accessibilityLabel("a11y.replayPrompt")
+            .accessibilityAddTraits(replay == nil ? .notEnabled : .startsMediaSession)
+            .accessibilityAction { replay?() }
+            .accessibilityFocused(replayFocus)
     }
 
     private var unmuteRow: some View {

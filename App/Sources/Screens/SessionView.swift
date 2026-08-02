@@ -208,7 +208,8 @@ struct SessionView: View {
                          article: canonical ? CardDisplay.article(of: card.target) : nil,
                          plural: canonical ? CardDisplay.plural(of: card.target, locale: locale) : nil,
                          language: model.targetLanguage,
-                         pronounce: pronounceAction(for: form))
+                         pronounce: pronounceAction(for: form),
+                         isPlaying: isPronouncing(form))
         }
     }
 
@@ -235,7 +236,8 @@ struct SessionView: View {
                                                             shown: card.target.text,
                                                             locale: locale),
                          language: model.targetLanguage,
-                         pronounce: pronounceAction(for: card.target.text))
+                         pronounce: pronounceAction(for: card.target.text),
+                         isPlaying: isPronouncing(card.target.text))
         case .recognize:
             let meaning = ([card.source.text] + card.source.synonyms).joined(separator: " / ")
             return .init(text: meaning,

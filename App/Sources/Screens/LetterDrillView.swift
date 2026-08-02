@@ -178,6 +178,13 @@ struct LetterDrillView: View {
         }
     }
 
+    /// Whether the current question's prompt is sounding right now — pulses
+    /// the replay glyph on `HearPromptCard`.
+    var promptIsPlaying: Bool {
+        guard let task = current, let pronunciation = model.promptPronunciation(for: task) else { return false }
+        return Pronouncer.shared.playingKey == Pronouncer.key(for: pronunciation)
+    }
+
     /// The blocking unmute row's action: flip the one device flag and play the
     /// question at once, so the fix and its proof are a single tap.
     func unmute() {

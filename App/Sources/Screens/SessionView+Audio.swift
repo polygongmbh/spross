@@ -96,15 +96,15 @@ extension SessionView {
     /// speak it, so a word that cannot be heard grows no gesture that does
     /// nothing. The hit area on the card stands either way.
     func pronounceAction(for form: String) -> (() -> Void)? {
-        guard let pronunciation = pronunciation(of: form) else { return nil }
-        let recordingURL = model.audioURL(pronunciation.recordingPath)
-        guard Pronouncer.shared.canPronounce(pronunciation, recordingURL: recordingURL)
-        else { return nil }
-        // why: a tap is a request, not autoplay — it speaks even while reading
-        // aloud is switched off, and the settings hint says so.
-        return {
-            Pronouncer.shared.pronounce(pronunciation, recordingURL: recordingURL, trigger: .tap)
-        }
+        guard let target = model.targetLanguage else { return nil }
+        return model.pronounceAction(for: form, lang: target)
+    }
+
+    /// Whether `form` is the word sounding right now — drives the small
+    /// audio icon's pulse on the card headline.
+    func isPronouncing(_ form: String) -> Bool {
+        guard let target = model.targetLanguage else { return false }
+        return model.isPronouncing(form, lang: target)
     }
 
     private func pronunciation(of form: String) -> Pronunciation? {

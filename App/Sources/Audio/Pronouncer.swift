@@ -39,8 +39,18 @@ final class Pronouncer {
     private let player = PronunciationPlayer()
     private let speaker = Speaker()
 
+    /// Identity of the pronunciation sounding right now, `lang|form` — nil
+    /// when nothing is. Only one word plays at a time, but a screen can show
+    /// several (the catalog list), so a UI icon compares its own key against
+    /// this to know whether IT is the one pulsing.
+    private(set) var playingKey: String?
+
     init() {
         muted = UserDefaults.standard.bool(forKey: Self.mutedKey)
+    }
+
+    static func key(for pronunciation: Pronunciation) -> String {
+        "\(pronunciation.lang)|\(pronunciation.form)"
     }
 
     /// Whether the device has a voice for `language` at all (Swahili on iOS
@@ -59,20 +69,36 @@ final class Pronouncer {
         if trigger == .auto, muted || UIAccessibility.isVoiceOverRunning { return }
         // why: one word at a time — a new fire replaces whatever is sounding.
         stop()
+        let key = Self.key(for: pronunciation)
         if let recordingURL {
             // why: the loudness and the dead air are the catalog's MEASUREMENTS
             // of bytes that stay the untouched transcode — playback is the one
             // place they are ever applied, and never the file.
-            player.play(url: recordingURL, gainDb: pronunciation.gain, leadMs: pronunciation.leadMs)
+            playingKey = key
+            player.play(url: recordingURL, gainDb: pronunciation.gain, leadMs: pronunciation.leadMs) {
+                [weak self] in self?.clearPlaying(key)
+            }
             return
         }
         // Silent no-op when no voice exists for the language.
-        speaker.speak(pronunciation.utterance, language: pronunciation.lang)
+        guard canSpeak(language: pronunciation.lang) else { return }
+        playingKey = key
+        speaker.speak(pronunciation.utterance, language: pronunciation.lang) {
+            [weak self] in self?.clearPlaying(key)
+        }
     }
 
     func stop() {
         player.stop()
         speaker.stop()
+        playingKey = nil
+    }
+
+    /// A stale finish — from a `stop()` or a newer word already sounding —
+    /// answers to nobody.
+    private func clearPlaying(_ key: String) {
+        guard playingKey == key else { return }
+        playingKey = nil
     }
 
     /// Plays the bundled silent clip once so the process's first audio-session

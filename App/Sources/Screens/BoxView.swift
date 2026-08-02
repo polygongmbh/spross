@@ -133,6 +133,7 @@ private struct BoxCardRow: View {
 
     var body: some View {
         let sched = model.scheduling(for: card.id)
+        let pronounce = model.pronounceAction(for: card.target.text, lang: card.target.lang)
 
         HStack(spacing: DL.Space.m) {
             Text(card.displayEmoji)
@@ -140,10 +141,17 @@ private struct BoxCardRow: View {
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 // Exposure surfaces render the TARGET side first (contract §6).
-                Text(CardDisplay.citation(of: card.target))
-                    .font(DL.Fonts.body)
-                    .foregroundStyle(Color.dlTextPrimary)
-                    .lineLimit(1)
+                HStack(spacing: DL.Space.xs) {
+                    Text(CardDisplay.citation(of: card.target))
+                        .font(DL.Fonts.body)
+                        .foregroundStyle(Color.dlTextPrimary)
+                        .lineLimit(1)
+                    if pronounce != nil {
+                        SpeakerIcon(size: .small,
+                                   isPlaying: model.isPronouncing(card.target.text, lang: card.target.lang))
+                    }
+                }
+                .pronounceOnTap(pronounce)
                 Text(card.source.text)
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)

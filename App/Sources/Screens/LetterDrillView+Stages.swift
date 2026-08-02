@@ -18,6 +18,7 @@ extension LetterDrillView {
                                        language: task.language,
                                        gapText: task.gapText,
                                        replay: replayAction,
+                                       isPlaying: promptIsPlaying,
                                        muted: Pronouncer.shared.muted,
                                        unmute: { unmute() },
                                        // why: once per run — a line under every
