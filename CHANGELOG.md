@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.5.0 — 2026-08-02
+
 - **Tapping a word now speaks it even with the phone on silent.** Two switches could
   silence the app — its own and the phone's — and the phone's swallowed even the words you
   asked for by tapping them, which left the letter drill unanswerable with no way to see
