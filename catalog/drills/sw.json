@@ -1,0 +1,43 @@
+{
+ "frames": {
+  "train-departs-at": {
+   "text": "Treni inaondoka {slot}."
+  },
+  "bus-arrives-at": {
+   "text": "Basi linakuja {slot}."
+  },
+  "i-wake-up-at": {
+   "text": "Ninaamka {slot}."
+  },
+  "we-eat-at": {
+   "text": "Tunakula {slot}."
+  },
+  "meeting-is-at": {
+   "text": "Mkutano ni {slot}."
+  },
+  "we-have-n-plates": {
+   "text": "Tuna sahani {slot}."
+  },
+  "it-costs-n-euros": {
+   "text": "Ni euro {slot}.",
+   "notes": {
+    "de": "wörtl.: „Es sind … Euro.“"
+   }
+  },
+  "repeat-please": {
+   "text": "Rudia, tafadhali: {slot}."
+  },
+  "write-please": {
+   "text": "Andika, tafadhali: {slot}."
+  },
+  "learning-since-year": {
+   "text": "Ninajifunza Kijerumani tangu mwaka {slot}.",
+   "notes": {
+    "de": "Jahreszahl als Kardinalzahl gelesen — mwaka = Jahr"
+   }
+  },
+  "write-the-year": {
+   "text": "Andika, tafadhali: {slot}."
+  }
+ }
+}

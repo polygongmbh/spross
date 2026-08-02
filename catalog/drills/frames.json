@@ -1,0 +1,70 @@
+[
+ {
+  "slug": "train-departs-at",
+  "slot": "clock"
+ },
+ {
+  "slug": "bus-arrives-at",
+  "slot": "clock"
+ },
+ {
+  "slug": "i-wake-up-at",
+  "slot": "clock"
+ },
+ {
+  "slug": "we-eat-at",
+  "slot": "clock"
+ },
+ {
+  "slug": "meeting-is-at",
+  "slot": "clock"
+ },
+ {
+  "slug": "it-is-now",
+  "slot": "clock"
+ },
+ {
+  "slug": "alarm-clock-shows",
+  "slot": "clock"
+ },
+ {
+  "slug": "we-have-n-plates",
+  "slot": "numbers"
+ },
+ {
+  "slug": "i-have-n-notebooks",
+  "slot": "numbers"
+ },
+ {
+  "slug": "we-have-n-chairs",
+  "slot": "numbers"
+ },
+ {
+  "slug": "i-have-n-keys",
+  "slot": "numbers"
+ },
+ {
+  "slug": "it-costs-n-euros",
+  "slot": "numbers"
+ },
+ {
+  "slug": "repeat-please",
+  "slot": "numbers"
+ },
+ {
+  "slug": "write-please",
+  "slot": "numbers"
+ },
+ {
+  "slug": "learning-since-year",
+  "slot": "years"
+ },
+ {
+  "slug": "repeat-the-year",
+  "slot": "years"
+ },
+ {
+  "slug": "write-the-year",
+  "slot": "years"
+ }
+]

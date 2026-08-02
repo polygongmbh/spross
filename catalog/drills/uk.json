@@ -1,0 +1,65 @@
+{
+ "frames": {
+  "it-is-now": {
+   "text": "Зараз {slot}."
+  },
+  "alarm-clock-shows": {
+   "text": "На будильнику {slot}.",
+   "notes": {
+    "de": "wörtl.: „Auf dem Wecker [ist] …“"
+   }
+  },
+  "i-have-n-notebooks": {
+   "text": "У мене є {slot} {count}.",
+   "count": {
+    "one": "зошит",
+    "few": "зошити",
+    "many": "зошитів"
+   },
+   "notes": {
+    "de": "Zahlwort-Kongruenz: 1 → зошит, 2–4 → зошити, 5+ → зошитів"
+   }
+  },
+  "we-have-n-chairs": {
+   "text": "У нас є {slot} {count}.",
+   "count": {
+    "one": "стілець",
+    "few": "стільці",
+    "many": "стільців"
+   },
+   "notes": {
+    "de": "Zahlwort-Kongruenz: 1 → стілець, 2–4 → стільці, 5+ → стільців"
+   }
+  },
+  "i-have-n-keys": {
+   "text": "У мене є {slot} {count}.",
+   "count": {
+    "one": "ключ",
+    "few": "ключі",
+    "many": "ключів"
+   },
+   "notes": {
+    "de": "Zahlwort-Kongruenz: 1 → ключ, 2–4 → ключі, 5+ → ключів"
+   }
+  },
+  "it-costs-n-euros": {
+   "text": "Це {slot} євро.",
+   "masculineNumeral": true,
+   "notes": {
+    "de": "wörtl.: „Das sind … Euro.“ — євро ist unveränderlich"
+   }
+  },
+  "repeat-please": {
+   "text": "Повторіть, будь ласка: {slot}."
+  },
+  "write-please": {
+   "text": "Напиши, будь ласка: {slot}."
+  },
+  "repeat-the-year": {
+   "text": "Повторіть, будь ласка: {slot}."
+  },
+  "write-the-year": {
+   "text": "Напиши, будь ласка: {slot}."
+  }
+ }
+}

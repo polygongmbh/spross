@@ -1,0 +1,58 @@
+{
+ "frames": {
+  "train-departs-at": {
+   "text": "Der Zug fährt um {slot} Uhr ab."
+  },
+  "bus-arrives-at": {
+   "text": "Der Bus kommt um {slot} Uhr."
+  },
+  "i-wake-up-at": {
+   "text": "Ich wache um {slot} Uhr auf."
+  },
+  "we-eat-at": {
+   "text": "Wir essen um {slot} Uhr."
+  },
+  "meeting-is-at": {
+   "text": "Das Meeting ist um {slot} Uhr."
+  },
+  "it-is-now": {
+   "text": "Es ist jetzt {slot} Uhr."
+  },
+  "alarm-clock-shows": {
+   "text": "Der Wecker zeigt {slot} Uhr."
+  },
+  "we-have-n-plates": {
+   "text": "Wir haben {slot} Teller."
+  },
+  "i-have-n-notebooks": {
+   "text": "Ich habe {slot} Hefte."
+  },
+  "we-have-n-chairs": {
+   "text": "Wir haben {slot} Stühle."
+  },
+  "i-have-n-keys": {
+   "text": "Ich habe {slot} Schlüssel."
+  },
+  "it-costs-n-euros": {
+   "text": "Das kostet {slot} Euro."
+  },
+  "repeat-please": {
+   "text": "Wiederholen Sie bitte: {slot}.",
+   "variants": [
+    "Wiederhole bitte: {slot}."
+   ]
+  },
+  "write-please": {
+   "text": "Schreib bitte: {slot}."
+  },
+  "learning-since-year": {
+   "text": "Ich lerne seit {slot} Deutsch."
+  },
+  "repeat-the-year": {
+   "text": "Wiederholen Sie bitte die Jahreszahl: {slot}."
+  },
+  "write-the-year": {
+   "text": "Schreib bitte die Jahreszahl: {slot}."
+  }
+ }
+}
