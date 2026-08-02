@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **The sentence drill reaches language pairs it never covered before.** A sentence frame
+  is written once per language and paired up when you pick a pair, instead of existing only
+  where somebody had written out both sides together — so learning Ukrainian from Swahili
+  offers the same sentences as learning it from German.
+
 - **A speaker icon marks every word that can be read aloud** — beside the headword on a
   review card and next to each word in the box list — and pulses gently while it plays.
   The letter-listening drill's replay is now a big glyph rather than a button, and the
