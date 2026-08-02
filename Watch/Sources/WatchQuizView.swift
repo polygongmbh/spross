@@ -153,9 +153,11 @@ struct WatchQuizView: View {
         if index == model.selectedIndex, let rating = model.lastRating {
             Text(WatchFeedback.emoji(forRating: rating))
                 .font(.system(size: 13))
+                // why: inset rather than offset out — a badge hanging past the
+                // tile's own frame is the first thing a clipping cell eats.
+                .padding(2)
                 .transition(.scale.combined(with: .opacity))
                 .accessibilityHidden(true)
-                .offset(x: 4, y: -4)
         }
     }
 
