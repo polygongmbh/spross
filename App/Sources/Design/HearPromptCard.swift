@@ -92,7 +92,8 @@ struct HearPromptCard: View {
             .opacity(replay == nil ? 0.35 : 1)
             .accessibilityElement()
             .accessibilityLabel("a11y.replayPrompt")
-            .accessibilityAddTraits(replay == nil ? .notEnabled : .startsMediaSession)
+            .accessibilityAddTraits(replay == nil ? [] : .startsMediaSession)
+            .disabled(replay == nil)
             .accessibilityAction { replay?() }
             .accessibilityFocused(replayFocus)
     }
