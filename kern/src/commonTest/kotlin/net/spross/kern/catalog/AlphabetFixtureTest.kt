@@ -83,6 +83,101 @@ class AlphabetFixtureTest {
         assertEquals(false, uk.row("ʼ").drill)
     }
 
+    // -- sections ----------------------------------------------------------------------
+
+    /**
+     * Sections are optional per FILE: de groups its rows, uk states none because its order
+     * IS its alphabet. Both shapes have to load, or adding the grouping would have forced
+     * every language to adopt it.
+     */
+    @Test
+    fun sectionsAreOptionalPerFile() {
+        assertEquals(listOf("letters", "s-sounds", "ch", "position"), de.sections.map { it.id })
+        assertEquals(mapOf("de" to "Buchstaben", "en" to "Letters"), de.sections.first().titles)
+        assertEquals(emptyList(), uk.sections)
+        assertTrue(uk.entries.all { it.section == null })
+    }
+
+    @Test
+    fun rowsResolveToTheirSectionInAuthoredOrder() {
+        assertEquals(listOf("m", "n", "ü"), de.entries("letters").map { it.ref })
+        assertEquals(listOf("ch-ich", "ch-ach", "ch-chef"), de.entries("ch").map { it.ref })
+        assertEquals("s-sounds", de.row("ß").section)
+        assertEquals(emptyList(), de.entries("no-such-section"))
+    }
+
+    /**
+     * The order is a PARSE rule, not something the sheet sorts out: a file that reads in
+     * one order and renders in another is a trap for the next author, and `entries` is
+     * also what the drill samples.
+     */
+    @Test
+    fun sectionsMustBeDeclaredAndRunContiguouslyInOrder() {
+        fun sectioned(entries: String): String =
+            """{ "sections": [ { "id": "one", "title": { "en": "One" } },
+                               { "id": "two", "title": { "en": "Two" } } ],
+                 "entries": [$entries] }"""
+
+        fun rejectsFile(alphabet: String): String =
+            assertFailsWith<CatalogFormatException> {
+                AlphabetFixture.catalogWith("alphabet/de.json", alphabet)
+            }.message.orEmpty()
+
+        val interleaved = rejectsFile(
+            sectioned(
+                """
+                { "glyph": "a", "ipa": "a", "section": "one" },
+                { "glyph": "b", "ipa": "b", "section": "two" },
+                { "glyph": "c", "ipa": "c", "section": "one" }
+                """.trimIndent(),
+            ),
+        )
+        assertTrue("resumes after a break" in interleaved, interleaved)
+
+        val outOfOrder = rejectsFile(
+            sectioned(
+                """
+                { "glyph": "a", "ipa": "a", "section": "two" },
+                { "glyph": "b", "ipa": "b", "section": "one" }
+                """.trimIndent(),
+            ),
+        )
+        assertTrue("declared" in outOfOrder, outOfOrder)
+
+        val homeless = rejectsFile(sectioned("""{ "glyph": "a", "ipa": "a" }"""))
+        assertTrue("no section" in homeless, homeless)
+
+        val undeclared = rejectsFile(sectioned("""{ "glyph": "a", "ipa": "a", "section": "three" }"""))
+        assertTrue("undeclared section" in undeclared, undeclared)
+
+        // …and the mirror: a section on a row whose file declares none.
+        val orphan = rejects("""{ "glyph": "a", "ipa": "a", "section": "one" }""")
+        assertTrue("the file declares none" in orphan, orphan)
+    }
+
+    @Test
+    fun sectionShapeErrorsAreRejected() {
+        fun rejectsFile(alphabet: String): String =
+            assertFailsWith<CatalogFormatException> {
+                AlphabetFixture.catalogWith("alphabet/de.json", alphabet)
+            }.message.orEmpty()
+
+        val row = """{ "glyph": "a", "ipa": "a", "section": "one" }"""
+        assertTrue("needs a title" in rejectsFile("""{ "sections": [ { "id": "one" } ], "entries": [$row] }"""))
+        assertTrue("bad id" in rejectsFile("""{ "sections": [ { "id": "One_1", "title": { "en": "x" } } ], "entries": [$row] }"""))
+        assertTrue(
+            "undeclared language" in rejectsFile(
+                """{ "sections": [ { "id": "one", "title": { "es": "x" } } ], "entries": [$row] }""",
+            ),
+        )
+        val duplicate = rejectsFile(
+            """{ "sections": [ { "id": "one", "title": { "en": "x" } },
+                               { "id": "one", "title": { "en": "y" } } ], "entries": [$row] }""",
+        )
+        assertTrue("duplicate section \"one\"" in duplicate, duplicate)
+        assertTrue("present but empty" in rejectsFile("""{ "sections": [], "entries": [$row] }"""))
+    }
+
     // -- derived tables ----------------------------------------------------------------
 
     @Test

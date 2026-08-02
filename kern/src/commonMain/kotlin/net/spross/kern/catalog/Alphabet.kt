@@ -11,6 +11,22 @@ import net.spross.kern.model.nfcNormalized
  */
 enum class AlphabetKind { Letter, Digraph, Contextual, Rule }
 
+/**
+ * A named group of rows — the umlauts together, the ch/sch family together, the plain
+ * letters last. Which rows belong with which is a fact about the LANGUAGE, so it is
+ * authored beside them and not derived from a glyph's shape: German groups ei/ie/eu/äu
+ * because they are the vowel pairs, and no property of the strings says so.
+ *
+ * Optional per file. Ukrainian authors none — its order IS the alphabet, and a learner
+ * needs that order for a dictionary or a form, so grouping it would cost more than the
+ * reading it buys.
+ */
+data class AlphabetSection(
+    val id: String,
+    /** Keyed by READER language, on [AlphabetEntry.hints]' rule. */
+    val titles: Map<Language, String>,
+)
+
 /** One row of `catalog/alphabet/<lang>.json`; hand-parsed by [AlphabetParser]. */
 data class AlphabetEntry( // data class: Swift sees value equality (kern README §9)
     /** The stable key every reference uses: the authored `id`, else the [glyph]. */
@@ -32,6 +48,8 @@ data class AlphabetEntry( // data class: Swift sees value equality (kern README 
     val context: Map<Language, String>,
     /** `false` keeps a silent grapheme out of every prompt; it stays a choice tile. */
     val drill: Boolean,
+    /** Id of the [AlphabetSection] this row sits in; null where the file declares none. */
+    val section: String?,
     /** Refs that LOOK alike, closed both ways at parse. */
     val confusableLook: List<String>,
     /** Refs that SOUND alike, closed both ways at parse. */
@@ -51,13 +69,23 @@ data class AlphabetExample(val slug: String, val text: String, val emoji: String
  * the same make a heard question unanswerable, and the drill has to know that without
  * anyone maintaining a second table.
  */
-data class Alphabet(val language: Language, val entries: List<AlphabetEntry>) {
+data class Alphabet(
+    val language: Language,
+    /** Declared groups, in the order they are read; empty where the file states none. */
+    val sections: List<AlphabetSection>,
+    val entries: List<AlphabetEntry>,
+) {
     private val byRef: Map<String, AlphabetEntry> = entries.associateBy { it.ref }
+    private val bySection: Map<String, List<AlphabetEntry>> =
+        entries.filter { it.section != null }.groupBy { it.section!! }
     private val byIpa: Map<String, List<AlphabetEntry>> =
         entries.mapNotNull { entry -> entry.ipa?.let { it to entry } }
             .groupBy({ (ipa, _) -> ipa }, { (_, entry) -> entry })
 
     fun entry(ref: String): AlphabetEntry? = byRef[ref]
+
+    /** The rows of one section, in authored order — empty for an id no row claims. */
+    fun entries(of: String): List<AlphabetEntry> = bySection[of].orEmpty()
 
     fun lookAlikes(ref: String): List<AlphabetEntry> = resolve(byRef[ref]?.confusableLook)
 

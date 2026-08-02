@@ -6,37 +6,50 @@ package net.spross.kern.catalog
  * the rows carry every schema shape: all four kinds, a three-way duplicate glyph with
  * ids, both confusion axes, a homophone pair, a `drill:false` grapheme, `exampleText`
  * escapes, and an `example` its own language does not realize (the degradation case).
+ * de declares `sections` and uk declares none, so both halves of the optional grouping
+ * are exercised by every test that loads the fixture.
  */
 internal object AlphabetFixture {
     val files: Map<String, String> = mapOf(
         "alphabet/de.json" to """
-            { "entries": [
+            { "sections": [
+              { "id": "letters", "title": { "de": "Buchstaben", "en": "Letters" } },
+              { "id": "s-sounds", "title": { "en": "The s sounds" } },
+              { "id": "ch", "title": { "en": "ch" } },
+              { "id": "position", "title": { "en": "Where it stands" } }
+            ],
+            "entries": [
               { "glyph": "m", "upper": "M", "name": "em", "ipa": "m", "example": "mouse",
+                "section": "letters",
                 "hints": { "de": "wie in Maus", "en": "as in mouse" },
                 "confusable": { "look": ["n"] } },
-              { "glyph": "n", "upper": "N", "name": "en", "ipa": "n",
+              { "glyph": "n", "upper": "N", "name": "en", "ipa": "n", "section": "letters",
                 "hints": { "en": "as in no" } },
               { "glyph": "ü", "upper": "Ü", "name": "ü", "ipa": "yː", "example": "door",
+                "section": "letters",
                 "hints": { "en": "round your lips and say ee" } },
               { "glyph": "ß", "kind": "digraph", "ipa": "s", "example": "greet",
+                "section": "s-sounds",
                 "hints": { "en": "sharp s, never a b" },
                 "confusable": { "look": ["ss"], "sound": ["ss"] } },
               { "glyph": "ss", "kind": "digraph", "ipa": "s", "exampleText": "Wasser",
+                "section": "s-sounds",
                 "hints": { "en": "after a short vowel" } },
               { "glyph": "ch", "kind": "contextual", "id": "ch-ich", "ipa": "ç",
-                "context": { "en": "after e, i" }, "example": "cook",
+                "context": { "en": "after e, i" }, "example": "cook", "section": "ch",
                 "hints": { "en": "the soft one" },
                 "confusable": { "look": ["ch-ach", "ch-chef"], "sound": ["ch-ach"] } },
               { "glyph": "ch", "kind": "contextual", "id": "ch-ach", "ipa": "x",
-                "context": { "en": "after a, o, u" }, "exampleText": "Nacht",
+                "context": { "en": "after a, o, u" }, "exampleText": "Nacht", "section": "ch",
                 "hints": { "en": "the scraped one" } },
               { "glyph": "ch", "kind": "contextual", "id": "ch-chef", "ipa": "ʃ",
-                "context": { "en": "in French loans" }, "exampleText": "Chef",
+                "context": { "en": "in French loans" }, "exampleText": "Chef", "section": "ch",
                 "hints": { "en": "sh, as French left it" } },
               { "glyph": "h", "kind": "contextual", "id": "h-length", "drill": false,
-                "context": { "en": "after a vowel" }, "exampleText": "Kuh",
+                "context": { "en": "after a vowel" }, "exampleText": "Kuh", "section": "position",
                 "hints": { "en": "silent — it only lengthens" } },
               { "glyph": "b d g", "kind": "rule", "drill": true, "example": "royal",
+                "section": "position",
                 "context": { "en": "word-finally" },
                 "hints": { "en": "final devoicing: Fürst ends in a t sound" } }
             ] }

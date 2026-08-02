@@ -14,20 +14,80 @@ import net.spross.kern.model.nfcNormalized
 internal object AlphabetParser {
     private val ENTRY_KEYS = setOf(
         "glyph", "upper", "kind", "id", "name", "ipa",
-        "example", "exampleText", "hints", "context", "drill", "confusable",
+        "example", "exampleText", "hints", "context", "drill", "confusable", "section",
     )
+    private val SECTION_KEYS = setOf("id", "title")
     private val AXES = setOf("look", "sound")
     private val ID_PATTERN = Regex("^[a-z0-9]+(-[a-z0-9]+)*$")
 
     fun parse(path: String, text: String, language: Language, declared: Set<Language>): Alphabet {
         val root = parseJson(path, text).obj(path, "root")
-        root.rejectUnknownKeys(path, "root", setOf("entries"))
+        root.rejectUnknownKeys(path, "root", setOf("sections", "entries"))
+        val sections = parseSections(path, root, declared)
         val rows = root["entries"]?.arr(path, "entries") ?: parseError(path, "missing \"entries\"")
         if (rows.isEmpty()) parseError(path, "empty entries")
         val entries = rows.mapIndexed { i, el ->
             parseEntry(path, el.obj(path, "entries[$i]"), "entries[$i]", declared)
         }
-        return Alphabet(language, close(path, entries))
+        placeInSections(path, sections, entries)
+        return Alphabet(language, sections, close(path, entries))
+    }
+
+    private fun parseSections(
+        path: String,
+        root: JsonObject,
+        declared: Set<Language>,
+    ): List<AlphabetSection> {
+        val rows = root["sections"]?.arr(path, "sections") ?: return emptyList()
+        if (rows.isEmpty()) parseError(path, "\"sections\" is present but empty")
+        val sections = rows.mapIndexed { i, el ->
+            val where = "sections[$i]"
+            val o = el.obj(path, where)
+            o.rejectUnknownKeys(path, where, SECTION_KEYS)
+            val id = o.requireString(path, where, "id")
+            if (!ID_PATTERN.matches(id)) parseError(path, "$where: bad id \"$id\"")
+            val titles = languageMap(path, "$where ($id)", o, "title", declared)
+            if (titles.isEmpty()) parseError(path, "$where ($id): needs a title")
+            AlphabetSection(id, titles)
+        }
+        sections.groupingBy { it.id }.eachCount().forEach { (id, count) ->
+            if (count > 1) parseError(path, "duplicate section \"$id\"")
+        }
+        return sections
+    }
+
+    /**
+     * Sections declared ⟺ every row names one, and the rows follow the declared order in
+     * contiguous runs. The order is a hard parse rule rather than something the sheet
+     * sorts out, because otherwise a file reads in one order and renders in another —
+     * and the row order is also what [Alphabet.entries] hands the drill.
+     */
+    private fun placeInSections(
+        path: String,
+        sections: List<AlphabetSection>,
+        entries: List<AlphabetEntry>,
+    ) {
+        if (sections.isEmpty()) {
+            entries.firstOrNull { it.section != null }?.let {
+                parseError(path, "${it.ref}: section \"${it.section}\" but the file declares none")
+            }
+            return
+        }
+        val ids = sections.map { it.id }
+        val seen = mutableListOf<String>()
+        for (entry in entries) {
+            val section = entry.section
+                ?: parseError(path, "${entry.ref}: no section, and the file declares ${ids.size}")
+            if (section !in ids) parseError(path, "${entry.ref}: undeclared section \"$section\"")
+            if (seen.lastOrNull() != section) {
+                if (section in seen) parseError(path, "${entry.ref}: section \"$section\" resumes after a break")
+                seen.add(section)
+            }
+        }
+        val declared = ids.filter { it in seen }
+        if (seen != declared) {
+            parseError(path, "sections run ${seen.joinToString(", ")} — declared ${declared.joinToString(", ")}")
+        }
     }
 
     private fun parseEntry(
@@ -74,6 +134,7 @@ internal object AlphabetParser {
             context = languageMap(path, where, o, "context", declared),
             // why: a rule row is prose the sheet renders — `drill` on one is ignored, not obeyed.
             drill = kind != AlphabetKind.Rule && (o.optionalBoolean(path, where, "drill") ?: true),
+            section = o.nonBlank(path, where, "section"),
             confusableLook = confusable["look"].orEmpty(),
             confusableSound = confusable["sound"].orEmpty(),
         )

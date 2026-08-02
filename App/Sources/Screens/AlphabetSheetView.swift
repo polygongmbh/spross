@@ -12,7 +12,9 @@ import SprossKern
 /// Rows are whatever the file holds, in authored order: single letters,
 /// digraphs (`sch`), the same glyph twice under different ids (`ch-ich` /
 /// `ch-ach`), and prose `rule` rows that state an orthography rule rather
-/// than a grapheme.
+/// than a grapheme. Where the file declares `sections`, they head their runs
+/// of rows; where it declares none (uk, whose order IS its alphabet) the
+/// sheet is the flat list it always was.
 ///
 /// Teaching aids follow the READER, with one fallback rule for both maps:
 /// `hints[source] ?? hints["en"]`, `context[source] ?? context["en"]`. The
@@ -31,8 +33,17 @@ struct AlphabetSheetView: View {
         NavigationStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: DL.Space.m) {
-                    ForEach(entries) { entry in
-                        row(entry)
+                    if sections.isEmpty {
+                        ForEach(entries) { entry in
+                            row(entry)
+                        }
+                    } else {
+                        ForEach(sections, id: \.id) { section in
+                            heading(section)
+                            ForEach(alphabet?.entries(of: section.id) ?? []) { entry in
+                                row(entry)
+                            }
+                        }
                     }
                 }
                 .padding(DL.Space.xl)
@@ -47,6 +58,22 @@ struct AlphabetSheetView: View {
             }
         }
         .tint(.dlAccent)
+    }
+
+    // MARK: - One section
+
+    /// A section title, on the same reader fallback its rows' hints use. Sections are
+    /// authored per file: a language whose order IS its alphabet (uk) declares none and
+    /// the sheet stays the flat list it always was.
+    @ViewBuilder
+    private func heading(_ section: AlphabetSection) -> some View {
+        if let title = reader(section.titles) {
+            Text(verbatim: title)
+                .font(DL.Fonts.title)
+                .foregroundStyle(Color.dlTextSecondary)
+                .padding(.top, DL.Space.m)
+                .accessibilityAddTraits(.isHeader)
+        }
     }
 
     // MARK: - One entry
@@ -95,7 +122,7 @@ struct AlphabetSheetView: View {
             Text(verbatim: glyphs(entry))
                 .font(glyphFont(entry))
                 .foregroundStyle(Color.dlTextPrimary)
-            if let name = entry.name {
+            if let name = displayName(entry) {
                 Text(verbatim: name)
                     .font(DL.Fonts.body)
                     .foregroundStyle(Color.dlTextSecondary)
@@ -113,6 +140,15 @@ struct AlphabetSheetView: View {
                     .accessibilityHidden(true)
             }
         }
+    }
+
+    /// The name, unless the glyph column already says it: German Ü is NAMED "Ü" and
+    /// Ukrainian а is named «а», so printing both makes the row stutter. Hiding it costs
+    /// nothing — a letter's name is there to be HEARD, and the speaker stays either way.
+    private func displayName(_ entry: AlphabetEntry) -> String? {
+        guard let name = entry.name else { return nil }
+        let shown = [entry.glyph.lowercased(), (entry.upper ?? "").lowercased()]
+        return shown.contains(name.lowercased()) ? nil : name
     }
 
     /// "А а" where a case pair exists, else the glyph alone.
@@ -219,9 +255,11 @@ struct AlphabetSheetView: View {
 
     // MARK: - Catalog reads
 
-    private var entries: [AlphabetEntry] {
-        model.catalog?.alphabet(lang: language)?.entries ?? []
-    }
+    private var alphabet: Alphabet? { model.catalog?.alphabet(lang: language) }
+
+    private var sections: [AlphabetSection] { alphabet?.sections ?? [] }
+
+    private var entries: [AlphabetEntry] { alphabet?.entries ?? [] }
 
     /// What the example MEANS to this reader — null wherever the reader's
     /// language does not realize the concept, and then simply left out. An

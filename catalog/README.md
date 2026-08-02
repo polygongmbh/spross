@@ -273,14 +273,16 @@ placeholder like "Own work" — BY and BY-SA both require naming somebody.
 
 ## Alphabet (`catalog/alphabet/`)
 
-One file per declared language, `alphabet/<lang>.json`, entries in teaching order — the
-reference sheet renders it, the letter drill samples from it. **File presence is the
+One file per declared language, `alphabet/<lang>.json`, entries in teaching order and
+optionally grouped into `sections` — the reference sheet renders it, the letter drill
+samples from it. **File presence is the
 registry**: adding a language's alphabet is dropping a file, no code lists which languages
 have one. A file for an undeclared language is never read; lint (`AlphabetLintTest`)
 fails it loudly instead of letting it sit.
 
 ```json
-{ "entries": [
+{ "sections": [ { "id": "umlauts", "title": { "en": "The umlauts" } } ],
+  "entries": [
   { "glyph": "и", "upper": "И", "name": "и", "ipa": "ɪ", "example": "mouse",
     "hints": { "de": "kurzes, lockeres i wie in bitte", "en": "lax i as in bit" },
     "confusable": { "look": ["й", "н"], "sound": ["і", "е"] } },
@@ -294,6 +296,13 @@ fails it loudly instead of letting it sit.
 ]}
 ```
 
+- `sections` is OPTIONAL and groups the rows the sheet renders — the umlauts together,
+  the ch/sch family together, the plain letters last. Declaring it binds every entry to a
+  `section`, and the rows must then follow the declared order in contiguous runs (a parse
+  error otherwise: a file that reads in one order and renders in another is a trap, and
+  `entries` is also what the drill samples). Titles are keyed by the READER, like `hints`.
+  uk declares none on purpose — its order IS the alphabet, which a learner needs for a
+  dictionary or a form, so grouping it would cost more than the reading it buys.
 - `kind` is `letter` (default), `digraph`, `contextual` or `rule`. A **rule** row is
   sheet-only prose (uk's no-final-devoicing table): never prompted, never a choice tile,
   and the only kind whose `glyph` may carry whitespace. `drill: false` keeps a real but
@@ -318,7 +327,9 @@ fails it loudly instead of letting it sit.
   `letter` and `rule` rows are exempt: their example is sheet decoration.
 - No `audio` field. Letter recordings live in the audio manifest's `letters{}` (above),
   keyed by lowercase glyph — lint holds that every recorded glyph addresses exactly one
-  alphabet row, which is why colliding-glyph entries can never carry one.
+  NAMED alphabet row. A recording is only ever reached through a row's `name`, so the
+  nameless rows of a shared glyph (de `ch`×3, `v-loan` beside `v-f`) are no ambiguity;
+  two named rows on one glyph would be, and stay barred.
 
 ## Drill frames (`catalog/drills/`)
 
