@@ -159,16 +159,27 @@ never the shape of the app.
 | produce typo accepted (waits for a tap) | yes, after the chime | the correction line's proper spelling |
 | produce revealed — Aufdecken, wrong, other word | yes, after the chime | the bare target word |
 
-- **Tapping a word says it again**, and says it even when reading aloud is switched off:
-  a tap is a request, and mute has to stay usable as the accessibility affordance. The
-  gesture is disclosed by the settings row's hint line, never by a mark on the card — the
-  hit area sits on every headword whether or not it can be heard, so no card changes size
-  between reviews because a synonym rotation landed on an unrecorded form.
-- **Reading aloud is on by default.** It is switched at the session's top bar — constant
-  chrome, so the card below never moves for it — and in the Box settings. One flag for the
-  device: not per target language, and not in the box, where the product calibration would
-  reset it. It governs the spoken words only; the feedback chimes are their own matter, and
-  both follow the ring/silent switch.
+- **Tapping a word says it again — past both mutes.** A tap is a request, so it outranks
+  the app's own switch (mute has to stay usable as the accessibility affordance) and the
+  phone's silent switch alike: that one sound plays under `.playback`, which the hardware
+  switch cannot reach. Everything the app fires by ITSELF stays `.ambient`, where the phone
+  keeps its authority — the whole rule is `AudioSession`, one category chosen per sound.
+  The gesture is disclosed by the settings row's hint line, never by a mark on the card —
+  the hit area sits on every headword whether or not it can be heard, so no card changes
+  size between reviews because a synonym rotation landed on an unrecorded form.
+- **Reading aloud is on by default, and the silent switch is free to silence it.** That is
+  the untouched state; the switch — at the session's top bar, constant chrome so the card
+  below never moves for it, and in the Box settings — turns it into a decision. Switched
+  OFF it silences autoplay whatever the phone says. Switched ON it is itself a request to
+  hear something and lifts autoplay past a silenced phone, because a switch that says on
+  and says nothing is worse than no switch. Three states, one setting for the device: not
+  per target language, and not in the box, where the product calibration would reset it.
+  The silent switch's position cannot be read back (no API), so it is followed by deferring
+  to it, never by mirroring it.
+- **The feedback chimes are their own matter** — the read-aloud switch does not silence
+  them — but they play under whatever category it left standing, so the phone reaches them
+  exactly as it reaches autoplay. Nobody ever asked for a chime, so no chime is ever louder
+  than the phone.
 - **Chimes and words share one volume.** Both play on the app's own audio session, so the
   levels they were authored at are the levels heard against each other. A chime routed to
   the system-sound server instead would answer to the ringer while every word answered to
@@ -235,7 +246,9 @@ never the shape of the app.
   consolidated words, which never touches their schedule. Correctness is never color
   alone (checkmark/X over the tint); a miss never auto-advances. While reading aloud is
   muted the drill stays visible and blocks with the one-tap unmute row instead of hiding
-  — a silenced feature must say how to unsilence it.
+  — a silenced feature must say how to unsilence it, and that one tap clears the phone's
+  silence with it. The silent switch alone cannot block the drill: the replay glyph is a
+  tap, and the run's first question names the switch for the autoplay it does eat.
 - **Two clean-correct beats, one home: 450 ms live, 1200 ms explicit.** The 0.45–1.2 s a
   clean answer waits above is those two tiers — 450 ms when the typing itself went exactly
   correct, 1200 ms when the learner tapped Check, Enter or a tile. Vocab review, the

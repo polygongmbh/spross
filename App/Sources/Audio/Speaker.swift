@@ -18,9 +18,10 @@ final class Speaker: NSObject {
 
     override init() {
         super.init()
-        // why: without this the synthesizer opens a session of its own, which
-        // ignores the app's .ambient category — TTS would talk through the
-        // ring/silent switch while the recordings stayed politely silent.
+        // why: without this the synthesizer opens a session of its own and
+        // answers to nothing the app set — TTS would talk through the
+        // ring/silent switch while the recordings stayed politely silent, and
+        // AudioSession's per-fire category would reach only half the words.
         synthesizer.usesApplicationAudioSession = true
         synthesizer.delegate = self
         // why: a voice installed in Settings while the app slept is invisible

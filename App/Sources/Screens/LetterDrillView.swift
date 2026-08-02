@@ -182,10 +182,12 @@ struct LetterDrillView: View {
         return Pronouncer.shared.playingKey == Pronouncer.key(for: pronunciation)
     }
 
-    /// The blocking unmute row's action: flip the one device flag and play the
-    /// question at once, so the fix and its proof are a single tap.
+    /// The blocking unmute row's action: switch reading aloud on — which also
+    /// carries the drill past a silenced phone, the other silence this card
+    /// names — and play the question at once, so the fix and its proof are a
+    /// single tap.
     func unmute() {
-        Pronouncer.shared.muted = false
+        Pronouncer.shared.setReadAloud(on: true)
         playPrompt(trigger: .tap)
     }
 

@@ -21,20 +21,26 @@ final class Pronouncer {
         case tap
     }
 
-    private static let mutedKey = "pronunciationMuted"
-
-    /// One device-scoped flag (never per target language, never in the box —
-    /// `withProductCalibration()` would reset it): silences AUTOPLAY only.
-    /// Absent default = false, so reading aloud is on for fresh installs and
-    /// upgrades alike; the top-bar toggle is the off switch.
-    var muted: Bool {
+    /// One device-scoped setting (never per target language, never in the box —
+    /// `withProductCalibration()` would reset it): governs AUTOPLAY only, and
+    /// starts at `.followsPhone`, so reading aloud is on for fresh installs
+    /// while the silent switch keeps its say.
+    var readAloud: ReadAloud {
         didSet {
-            UserDefaults.standard.set(muted, forKey: Self.mutedKey)
+            readAloud.store()
+            // why: the phone's switch acts on the CATEGORY, so a setting
+            // flipped mid-session has to reach the session, not just this flag.
+            AudioSession.adopt(readAloud)
             // why: muting is expected to take effect on the word in the air,
             // not only on the next card.
-            if muted { stop() }
+            if readAloud == .off { stop() }
         }
     }
+
+    /// Whether reading aloud is switched off IN THE APP — what the two toggles
+    /// render and what the letter drill blocks on. A phone silenced by its own
+    /// switch is not this, and cannot be read at all.
+    var muted: Bool { readAloud == .off }
 
     private let player = PronunciationPlayer()
     private let speaker = Speaker()
@@ -46,7 +52,14 @@ final class Pronouncer {
     private(set) var playingKey: String?
 
     init() {
-        muted = UserDefaults.standard.bool(forKey: Self.mutedKey)
+        readAloud = .stored
+    }
+
+    /// What both switches call: turning reading aloud ON is itself a request to
+    /// hear something, so from then on it outranks a silenced phone — the
+    /// switch never claims a word the phone would eat.
+    func setReadAloud(on: Bool) {
+        readAloud = on ? .on : .off
     }
 
     static func key(for pronunciation: Pronunciation) -> String {
@@ -66,7 +79,15 @@ final class Pronouncer {
 
     /// Says the form: the recording when one matched, else the live voice.
     func pronounce(_ pronunciation: Pronunciation, recordingURL: URL?, trigger: Trigger) {
-        if trigger == .auto, muted || UIAccessibility.isVoiceOverRunning { return }
+        switch trigger {
+        case .auto:
+            if muted || UIAccessibility.isVoiceOverRunning { return }
+            AudioSession.useStanding()
+        case .tap:
+            // why: a tap outranks BOTH mutes — the app's switch already let it
+            // through, and the category is what lets it past the phone's.
+            AudioSession.useExplicit()
+        }
         // why: one word at a time — a new fire replaces whatever is sounding.
         stop()
         let key = Self.key(for: pronunciation)
@@ -116,8 +137,9 @@ final class Pronouncer {
     /// UI-test hook (`-uitest-pronounce <form>`): says one form and prints
     /// which branch answered it — the audibility proxy in the simulator, and
     /// the check that the recording actually made it into the bundle.
-    /// Bypasses mute: it is a probe, not gameplay.
+    /// Bypasses both mutes: it is a probe, not gameplay.
     func uitestProbe(_ pronunciation: Pronunciation, recordingURL: URL?) {
+        AudioSession.useExplicit()
         stop()
         if let recordingURL {
             let path = pronunciation.recordingPath ?? recordingURL.lastPathComponent

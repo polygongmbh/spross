@@ -2248,13 +2248,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wörter beim Üben automatisch vorlesen. Tippen auf ein Wort spricht es erneut — auch bei ausgeschaltetem Vorlesen."
+            "value" : "Wörter beim Üben automatisch vorlesen — eingeschaltet auch bei stummem Handy. Tippen auf ein Wort spricht es erneut, immer."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Read words aloud during review. Tapping a word speaks it again — even when read-aloud is off."
+            "value" : "Read words aloud during review — switched on, it plays through a silenced phone too. Tapping a word speaks it again, always."
           }
         }
       }

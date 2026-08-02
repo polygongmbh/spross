@@ -12,11 +12,12 @@ import AVFoundation
 /// either. So: one player node through one EQ into the main mixer, and
 /// nothing else.
 ///
-/// The audio session is configured once at launch (`SprossApp.init`,
-/// `.ambient`) and NEVER activated by hand: `setActive` is main-thread
-/// synchronous, and the review loop cannot afford a synchronous hitch on a
-/// transition that carries the keyboard. Activation stays implicit — starting
-/// the engine performs it — see `warmUp(url:)` for where the first one is paid.
+/// The audio session's CATEGORY is chosen per fire (`AudioSession`) — that is
+/// the only lever over the ring/silent switch — but the session is NEVER
+/// activated by hand: `setActive` is main-thread synchronous, and the review
+/// loop cannot afford a synchronous hitch on a transition that carries the
+/// keyboard. Activation stays implicit — starting the engine performs it — see
+/// `warmUp(url:)` for where the first one is paid.
 @MainActor
 final class PronunciationPlayer {
 

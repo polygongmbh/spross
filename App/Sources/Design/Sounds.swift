@@ -23,9 +23,12 @@ import UIKit
 // not quiet, it is gone, and no amount of level in `scripts/sounds.py` reaches
 // it. One domain for both is what makes those levels mean anything.
 //
-// The session is `.ambient`, set once in `SprossApp.init` and never activated
-// by hand — it still follows the ring/silent switch, so a muted phone stays
-// muted exactly as the system-sound route used to guarantee.
+// The session is the app's own, never activated by hand, and the chimes play
+// under the STANDING category (`AudioSession`) exactly as autoplay does: they
+// follow the ring/silent switch the way the system-sound route used to
+// guarantee, and they follow a hand-switched read-aloud past it. Only a
+// deliberate tap on a word is louder than the phone — a chime never asks for
+// that, because nobody ever asked for a chime.
 
 @MainActor
 enum DLSound {
@@ -82,6 +85,7 @@ enum DLSound {
     /// than being dropped — one player per sound, restarted on every fire.
     private static func play(_ player: AVAudioPlayer?) {
         guard let player else { return }
+        AudioSession.useStanding()
         player.currentTime = 0
         player.play()
     }

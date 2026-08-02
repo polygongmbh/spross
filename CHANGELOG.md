@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Tapping a word now speaks it even with the phone on silent.** Two switches could
+  silence the app — its own and the phone's — and the phone's swallowed even the words you
+  asked for by tapping them, which left the letter drill unanswerable with no way to see
+  why. A tap is now a request that comes through whatever either switch says. Reading aloud
+  by itself still defers to the phone: on silent it stays quiet, and switching it on by hand
+  is what carries it past that, so the switch never claims sound it cannot deliver.
+
 - **Verbs, adjectives and whole sentences now come with a picture too.** The emoji cue used
   to be a noun's privilege, so most of what you meet — every verb, every phrase — arrived as
   bare text and had to be worked out from the translation alone. Now the picture carries the
