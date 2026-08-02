@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.3.0 — 2026-08-02
+
 - **The Spanish alphabet sheet speaks, and two words that said the wrong thing are
   fixed.** Half the Spanish letter names are read by Spanish speakers now instead of by
   the phone — the other half nobody has ever recorded. The Ukrainian apostrophe has a
