@@ -288,6 +288,9 @@ day-key `yyyy-MM-dd`) with:
   two or three cards offered as the day's work reads as the app having nothing to give, so
   `composeSession` tops such a round up with reviews pulled forward, soonest due first —
   honest FSRS reviews, never extra new words, which are capped per round on purpose.
+  Soonest-due-first is what makes that cheap: an early review buys least when recall is still
+  near-certain, so the cards nearest their due date are the ones whose spacing costs nothing
+  to spend (`docs/growth-evidence.md`).
 - **A quiet day is built, not found** (user ruling 2026-08-01): with nothing due, at most half
   the floor is held for cards coming due inside tomorrow and new words take the rest.
   Pulling tomorrow's card forward costs almost no spacing; one due in three weeks burns real
