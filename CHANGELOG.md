@@ -21,7 +21,11 @@
   is written once per language and paired up when you pick a pair, instead of existing only
   where somebody had written out both sides together — so learning Ukrainian from Swahili
   offers the same sentences as learning it from German. English and Spanish now have
-  sentences of their own, and answer as readily as they prompt.
+  sentences of their own, and answer as readily as they prompt. Learning German is asked
+  the same way round as every other language now — the sentence shows a time or a number
+  in figures and you write it out, rather than being handed the words and answering in
+  figures. German answers also read as German: the hour no longer arrives with an "Uhr"
+  too many behind it.
 
 - **A speaker icon marks every word that can be read aloud** — beside the headword on a
   review card and next to each word in the box list — and pulses gently while it plays.

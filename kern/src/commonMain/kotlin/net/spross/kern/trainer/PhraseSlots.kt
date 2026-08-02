@@ -7,9 +7,9 @@ import kotlin.random.Random
  * Trainer slot generators: the source-language prompt gets the digits, the
  * target display gets the canonical words, accepted gets one full sentence
  * per accepted FRAME × accepted slot RENDERING — every authored variant frame
- * crossed with every written-out generator variant plus the digit form(s), in
- * both drill directions (user report: word forms typed mid-sentence were
- * rejected). Pure — sampling takes an injected [Random].
+ * crossed with every written-out generator variant plus the digit form(s)
+ * (user report: word forms typed mid-sentence were rejected).
+ * Pure — sampling takes an injected [Random].
  */
 object PhraseSlots {
 
@@ -66,67 +66,6 @@ object PhraseSlots {
         return instantiate(template, value = slot.prompt.toLong())
     }
 
-    // Reverse (target sentence shown, source language typed)
-
-    /**
-     * Reverse drill for learners of the SOURCE language (product: source ==
-     * de): prompt is the target sentence in words ("У мене є двадцять один
-     * зошит."), the answer is the source sentence. Digits stay the canonical
-     * fast path ("Ich habe 21 Hefte." / "… um 20:00 Uhr …", zero-padded and
-     * bare), and every written-out source reading is accepted alongside
-     * ("… um achtzehn Uhr fünfunddreißig …") — each in the canonical frame and
-     * in every [PhraseTemplate.acceptedSourceFrames] variant.
-     */
-    fun reverseInstantiate(template: PhraseTemplate, hour: Int, minute: Int): TrainerTask {
-        val forward = instantiate(template, hour, minute)
-        val frames = sourceFrames(template)
-        val accepted = mutableListOf<String>()
-        for (frame in frames) {
-            for (digits in listOf("${pad2(hour)}:${pad2(minute)}", "$hour:${pad2(minute)}")) {
-                val sentence = frame.replace(PhraseTemplate.SLOT_MARKER, digits)
-                if (sentence !in accepted) accepted += sentence
-            }
-        }
-        if (Trainer.supports(template.source)) {
-            val readings = Trainer.clock(hour, minute, template.source).accepted
-            for (frame in frames) {
-                for (reading in readings) {
-                    val sentence = sourceClockSentence(frame, reading) ?: continue
-                    if (sentence !in accepted) accepted += sentence
-                }
-            }
-        }
-        return reverseTask(template, forward, accepted)
-    }
-
-    fun reverseInstantiate(template: PhraseTemplate, value: Long): TrainerTask {
-        val forward = instantiate(template, value)
-        val frames = sourceFrames(template)
-        val countWord = sourceCountWord(template, value)
-        val accepted = mutableListOf<String>()
-        for (frame in frames) {
-            val sentence = fillTarget(frame, value.toString(), countWord)
-            if (sentence !in accepted) accepted += sentence
-        }
-        if (Trainer.supports(template.source)) {
-            val readings = when (template.slotKind) {
-                TrainerKind.Numbers -> Trainer.drillNumber(value, template.source).accepted
-                else -> Trainer.year(value, template.source).accepted
-            }.filterNot { isFilteredFeminine(template, it) }
-            for (frame in frames) {
-                for (reading in readings) {
-                    val sentence = fillTarget(frame, reading, countWord)
-                    if (sentence !in accepted) accepted += sentence
-                }
-            }
-        }
-        return reverseTask(template, forward, accepted)
-    }
-
-    /** Canonical source frame first — it is what the reverse drill displays. */
-    private fun sourceFrames(template: PhraseTemplate): List<String> =
-        (listOf(template.sourceTemplate) + template.acceptedSourceFrames).distinct()
-
     /**
      * The prompt realization's own counted-noun form. A frame authored with `{count}` is
      * realized that way in every pair, so the side showing the prompt has to fill its own
@@ -134,54 +73,6 @@ object PhraseSlots {
      */
     private fun sourceCountWord(template: PhraseTemplate, value: Long?): String? =
         template.sourceCountForms?.let { forms -> value?.let(forms::form) }
-
-    private fun reverseTask(
-        template: PhraseTemplate,
-        forward: TrainerTask,
-        accepted: List<String>,
-    ): TrainerTask = TrainerTask(
-        kind = template.slotKind, language = template.source,
-        prompt = forward.display, accepted = accepted,
-        display = accepted[0], gloss = forward.gloss,
-    )
-
-    /**
-     * Source-sentence substitution for a written-out clock reading: the
-     * reading is the WHOLE time expression, so a literal " Uhr" right after
-     * the slot is absorbed ("um {slot} Uhr" + "achtzehn Uhr fünfunddreißig" →
-     * "um achtzehn Uhr fünfunddreißig"); a reading itself starting "um "
-     * composes only where the frame already says "um " (the duplicate is
-     * dropped) and is skipped elsewhere — "Es ist jetzt um acht." is not a
-     * time statement.
-     */
-    private fun sourceClockSentence(sourceFrame: String, reading: String): String? {
-        val marker = PhraseTemplate.SLOT_MARKER
-        val frame = sourceFrame.replace("$marker Uhr", marker)
-        var words = reading
-        if (words.startsWith("um ")) {
-            if (!frame.substringBefore(marker).endsWith("um ")) return null
-            words = words.removePrefix("um ")
-        }
-        return frame.replace(marker, words)
-    }
-
-    fun reverseSample(template: PhraseTemplate, rng: Random): TrainerTask =
-        reverseOf(template, sample(template, rng))
-
-    /** Level-aware reverse drill — same value ramp as the leveled [sample]. */
-    fun reverseSample(template: PhraseTemplate, level: Int, rng: Random): TrainerTask =
-        reverseOf(template, sample(template, level, rng))
-
-    private fun reverseOf(template: PhraseTemplate, forward: TrainerTask): TrainerTask {
-        if (template.slotKind == TrainerKind.Clock) {
-            val parts = Regex("""\d+""").findAll(forward.prompt).map { it.value.toInt() }.toList()
-            val hour = if (parts.size > 1) parts[parts.size - 2] else 0
-            val minute = parts.lastOrNull() ?: 0
-            return reverseInstantiate(template, hour, minute)
-        }
-        val digits = forward.prompt.filter { it.isDigit() }
-        return reverseInstantiate(template, digits.toLongOrNull() ?: 0L)
-    }
 
     // Composition
 
@@ -192,13 +83,20 @@ object PhraseSlots {
         }
 
         val prompt = fillTarget(template.sourceTemplate, slot.prompt, sourceCountWord(template, value))
-        val display = fillTarget(template.targetTemplate, slot.display, countWord)
-        val renderings = (slot.accepted.filterNot { isFilteredFeminine(template, it) } + digitForms(slot))
-            .distinct()
+        val display = fillWords(template, template.targetTemplate, slot.display, countWord)
+            ?: fillTarget(template.targetTemplate, slot.display, countWord)
+        val words = slot.accepted.filterNot { isFilteredFeminine(template, it) }.distinct()
+        val digits = digitForms(slot)
         val frames = (listOf(template.targetTemplate) + template.acceptedFrames).distinct()
         val accepted = mutableListOf<String>()
         for (frame in frames) {
-            for (rendering in renderings) {
+            // why: a written-out clock reading rewrites the frame around it, a digital one
+            // never does — "Es ist jetzt 18:35 Uhr." keeps the Uhr the words absorb.
+            for (rendering in words) {
+                val sentence = fillWords(template, frame, rendering, countWord) ?: continue
+                if (sentence !in accepted) accepted += sentence
+            }
+            for (rendering in digits) {
                 val sentence = fillTarget(frame, rendering, countWord)
                 if (sentence !in accepted) accepted += sentence
             }
@@ -210,6 +108,32 @@ object PhraseSlots {
             prompt = prompt, accepted = accepted, display = display,
             gloss = gloss.ifEmpty { null },
         )
+    }
+
+    /**
+     * Fills one frame with one WRITTEN-OUT slot reading. A clock reading is the whole time
+     * expression, so a literal " Uhr" right after the slot is absorbed ("um {slot} Uhr" +
+     * "achtzehn Uhr fünfunddreißig" → "um achtzehn Uhr fünfunddreißig"); a reading itself
+     * starting "um " composes only where the frame already says "um " (the duplicate is
+     * dropped) and is skipped elsewhere — "Es ist jetzt um acht." is not a time statement.
+     * German is the only language whose readings carry those words, so this is a no-op
+     * everywhere else. Null = this reading does not belong in this frame.
+     */
+    private fun fillWords(
+        template: PhraseTemplate,
+        frame: String,
+        reading: String,
+        countWord: String?,
+    ): String? {
+        if (template.slotKind != TrainerKind.Clock) return fillTarget(frame, reading, countWord)
+        val marker = PhraseTemplate.SLOT_MARKER
+        val absorbed = frame.replace("$marker Uhr", marker)
+        var words = reading
+        if (words.startsWith("um ")) {
+            if (!absorbed.substringBefore(marker).endsWith("um ")) return null
+            words = words.removePrefix("um ")
+        }
+        return fillTarget(absorbed, words, countWord)
     }
 
     /** Digit renderings of the slot ("347", "1978"; clock "08:05" and "8:05"). */

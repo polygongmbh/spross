@@ -192,13 +192,14 @@ class CatalogFixtureTest {
         assertEquals("ключі", forward.countForms?.form(3))
         assertTrue(forward.masculineNumeral)
         assertEquals("Zahlwort-Kongruenz.", forward.note)
-        // The prompt realization's variants ride along too — the reverse drill grades them.
-        assertEquals(listOf("Ich habe {slot} Schluessel."), forward.acceptedSourceFrames)
-        val reverse = catalog.phraseTemplates("uk", "de").first { it.id == "i-have-n-keys" }
-        assertNull(reverse.countForms)
-        assertFalse(reverse.masculineNumeral)
-        assertNull(reverse.note)
-        assertEquals(listOf("Ich habe {slot} Schluessel."), reverse.acceptedFrames)
+        // Swapping the pair swaps which realization those fields come from — and the uk
+        // agreement follows uk into the PROMPT slot, where the frame still has to render it.
+        val swapped = catalog.phraseTemplates("uk", "de").first { it.id == "i-have-n-keys" }
+        assertNull(swapped.countForms)
+        assertEquals("ключі", swapped.sourceCountForms?.form(3))
+        assertFalse(swapped.masculineNumeral)
+        assertNull(swapped.note)
+        assertEquals(listOf("Ich habe {slot} Schluessel."), swapped.acceptedFrames)
     }
 
     /** Only the ANSWER side needs generated number words — a pack-less language still prompts. */

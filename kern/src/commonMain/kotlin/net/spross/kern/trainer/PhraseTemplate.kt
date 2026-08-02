@@ -29,8 +29,6 @@ data class PhraseTemplate(
      * graded as correct, never displayed.
      */
     val acceptedFrames: List<String> = emptyList(),
-    /** [acceptedFrames] on the source side — what the reverse drill also grades as correct. */
-    val acceptedSourceFrames: List<String> = emptyList(),
     /**
      * The answer realization's note in the learner's explanation language,
      * merged with the slot task's gloss.

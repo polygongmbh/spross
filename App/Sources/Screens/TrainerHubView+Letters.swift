@@ -18,14 +18,14 @@ import SprossKern
 /// presenters this destination belongs to, not whether it is showing.
 enum HubDestination: Identifiable {
     case slots(kind: TrainerKind, language: String)
-    case phrases(source: String, target: String, reverse: Bool, templates: [PhraseTemplate])
+    case phrases(source: String, target: String, templates: [PhraseTemplate])
     case letters(language: String)
     case alphabet(language: String)
 
     var id: String {
         switch self {
         case let .slots(kind, language): return "\(kind.name)-\(language)"
-        case let .phrases(source, target, reverse, _): return "phrases-\(source)-\(target)-\(reverse)"
+        case let .phrases(source, target, _): return "phrases-\(source)-\(target)"
         case let .letters(language): return "letters-\(language)"
         case let .alphabet(language): return "alphabet-\(language)"
         }
@@ -36,8 +36,8 @@ enum HubDestination: Identifiable {
     var drillMode: TrainerSessionView.Mode? {
         switch self {
         case let .slots(kind, language): return .slots(kind, language)
-        case let .phrases(source, target, reverse, templates):
-            return .phrases(source: source, target: target, reverse: reverse, templates: templates)
+        case let .phrases(source, target, templates):
+            return .phrases(source: source, target: target, templates: templates)
         case .letters, .alphabet: return nil
         }
     }
@@ -159,7 +159,7 @@ extension TrainerHubView {
         }
         if raw == "phrases", let drill = phraseDrill {
             return .phrases(source: drill.source, target: drill.target,
-                            reverse: drill.reverse, templates: drill.templates)
+                            templates: drill.templates)
         }
         if raw == "letters", let language = drillLanguage,
            // why: computed here rather than read off `letterDrill` — this hook

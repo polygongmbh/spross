@@ -238,15 +238,34 @@ class PhraseSlotTests {
      * Independent re-rendering of the spec: one target frame with the variant
      * substituted (mid-sentence values lowercase their first letter).
      */
-    private fun render(frame: String, template: PhraseTemplate, variant: String, value: Long?): String {
-        val index = frame.indexOf("{slot}")
-        if (index < 0) return ""
-        val atStart = frame.take(index).isBlank()
+    /**
+     * Independent oracle for one frame × one rendering. [wordReading] carries the clock
+     * rule: a written-out reading is the whole time expression and absorbs the frame's
+     * " Uhr", a digital one leaves the frame alone. Null = the reading is skipped here.
+     */
+    private fun render(
+        frame: String,
+        template: PhraseTemplate,
+        variant: String,
+        value: Long?,
+        wordReading: Boolean = true,
+    ): String? {
+        var text = frame
         var words = variant
+        if (wordReading && template.slotKind == TrainerKind.Clock) {
+            text = text.replace("{slot} Uhr", "{slot}")
+            if (words.startsWith("um ")) {
+                if (!text.substringBefore("{slot}").endsWith("um ")) return null
+                words = words.removePrefix("um ")
+            }
+        }
+        val index = text.indexOf("{slot}")
+        if (index < 0) return ""
+        val atStart = text.take(index).isBlank()
         words.firstOrNull()?.let { f ->
             words = (if (atStart) f.uppercase() else f.lowercase()) + words.substring(1)
         }
-        var sentence = frame.replace("{slot}", words)
+        var sentence = text.replace("{slot}", words)
         val forms = template.countForms
         if (forms != null && value != null) {
             sentence = sentence.replace("{count}", forms.form(value))
@@ -275,14 +294,18 @@ class PhraseSlotTests {
         } else {
             listOf(slot.prompt)
         }
-        val renderings = (written + digits).distinct()
         val frames = listOf(template.targetTemplate) + template.acceptedFrames
         val expected = frames
-            .flatMap { frame -> renderings.map { render(frame, template, it, value) } }
+            .flatMap { frame ->
+                written.distinct().mapNotNull { render(frame, template, it, value) } +
+                    digits.mapNotNull { render(frame, template, it, value, wordReading = false) }
+            }
             .distinct()
         assertEquals(expected, task.accepted, "${template.id}: sentence per frame × variant")
         assertEquals(task.accepted.size, task.accepted.toSet().size, "${template.id}: duplicates")
-        assertEquals(render(template.targetTemplate, template, slot.display, value), task.display)
+        val display = render(template.targetTemplate, template, slot.display, value)
+            ?: render(template.targetTemplate, template, slot.display, value, wordReading = false)
+        assertEquals(display, task.display)
         assertTrue(task.display in task.accepted)
     }
 
@@ -337,16 +360,11 @@ class PhraseSlotTests {
         val rng = Random(20260802)
         for (template in RealFrames.all) {
             val tasks = if (template.slotKind == TrainerKind.Clock) {
-                listOf(
-                    PhraseSlots.instantiate(template, hour = 21, minute = 45),
-                    PhraseSlots.reverseInstantiate(template, hour = 21, minute = 45),
-                )
+                listOf(PhraseSlots.instantiate(template, hour = 21, minute = 45))
             } else {
                 // 21 and 13 straddle the Slavic agreement split (one / many).
-                listOf(21L, 13L).flatMap {
-                    listOf(PhraseSlots.instantiate(template, it), PhraseSlots.reverseInstantiate(template, it))
-                }
-            } + listOf(PhraseSlots.sample(template, rng), PhraseSlots.reverseSample(template, rng))
+                listOf(21L, 13L).map { PhraseSlots.instantiate(template, it) }
+            } + listOf(PhraseSlots.sample(template, rng))
 
             for (task in tasks) {
                 for (surface in listOf(task.prompt, task.display) + task.accepted) {

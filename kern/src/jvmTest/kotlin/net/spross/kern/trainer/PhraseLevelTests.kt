@@ -117,31 +117,4 @@ class PhraseLevelTests {
         val digits = PhraseSlots.sample(number, level = 99, Random(7)).prompt.filter { it.isDigit() }
         assertEquals(10, digits.length)
     }
-
-    // Reverse drills ramp identically
-
-    @Test
-    fun leveledReverseMatchesLeveledForward() {
-        for (template in RealFrames.all) {
-            for (level in 1..Trainer.maxLevel(template.slotKind)) {
-                val a = Random(11L * level)
-                val b = Random(11L * level)
-                val reversed = PhraseSlots.reverseSample(template, level, a)
-                val forward = PhraseSlots.sample(template, level, b)
-                assertEquals(forward.display, reversed.prompt, "${template.id} L$level")
-                assertEquals(template.source, reversed.language, template.id)
-            }
-        }
-    }
-
-    @Test
-    fun levelOneReverseClockAnswersFullHours() {
-        val rng = Random(8)
-        for (template in templates(TrainerKind.Clock)) {
-            repeat(40) {
-                val task = PhraseSlots.reverseSample(template, level = 1, rng)
-                assertEquals(0, minuteOf(task.display), "${template.id}: ${task.display}")
-            }
-        }
-    }
 }

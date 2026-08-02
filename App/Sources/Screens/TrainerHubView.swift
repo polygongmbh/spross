@@ -35,22 +35,17 @@ struct TrainerHubView: View {
     }
 
     /// The sentence drill this profile can run: the frames the catalog joins
-    /// for the pair, plus the direction they are asked in. Learners OF German
-    /// get the reverse drill over the (de, source) frames.
-    var phraseDrill: (source: String, target: String, reverse: Bool, templates: [PhraseTemplate])? {
+    /// for the pair, always asked known-language prompt → learned-language answer.
+    var phraseDrill: (source: String, target: String, templates: [PhraseTemplate])? {
         guard let catalog = model.catalog, let target = drillLanguage else { return nil }
-        let key = target == "de"
-            ? (source: "de", target: model.sourceLanguage, reverse: true)
-            : (source: model.sourceLanguage, target: target, reverse: false)
+        let source = model.sourceLanguage
         // why: Kern throws on an unknown or self-paired language rather than
         // returning empty, and a Kotlin throw crossing back is a crash.
-        guard key.source != key.target,
-              catalog.languages[key.source] != nil,
-              catalog.languages[key.target] != nil else { return nil }
-        let templates = catalog.phraseTemplates(source: key.source, target: key.target)
-        return templates.isEmpty
-            ? nil
-            : (source: key.source, target: key.target, reverse: key.reverse, templates: templates)
+        guard source != target,
+              catalog.languages[source] != nil,
+              catalog.languages[target] != nil else { return nil }
+        let templates = catalog.phraseTemplates(source: source, target: target)
+        return templates.isEmpty ? nil : (source: source, target: target, templates: templates)
     }
 
     var body: some View {
@@ -173,7 +168,7 @@ struct TrainerHubView: View {
         Button {
             guard let drill = phraseDrill else { return }
             destination = .phrases(source: drill.source, target: drill.target,
-                                   reverse: drill.reverse, templates: drill.templates)
+                                   templates: drill.templates)
         } label: {
             chipLabel(emoji: "💬", title: Text("trainer.phrases"))
         }

@@ -142,7 +142,6 @@ class Catalog internal constructor(
                 targetTemplate = answer.text,
                 slotKind = frame.slot,
                 acceptedFrames = answer.variants,
-                acceptedSourceFrames = prompt.variants,
                 note = answer.notes[source], // why: notes never cross-language fall back — §2
                 countForms = answer.count,
                 sourceCountForms = prompt.count,

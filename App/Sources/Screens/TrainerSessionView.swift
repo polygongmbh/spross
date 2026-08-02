@@ -13,19 +13,17 @@ import SprossKern
 struct TrainerSessionView: View {
     /// What a run drills: bare slot values, or full sentences composed from
     /// the catalog's sentence frames + slot values. Languages are catalog
-    /// codes; `reverse` sentences show the target sentence and expect the
-    /// frame's source language typed (for learners of German). The frames are
-    /// carried, not looked up — a run samples from the set it was opened with.
+    /// codes. The frames are carried, not looked up — a run samples from the
+    /// set it was opened with.
     enum Mode {
         case slots(TrainerKind, String)
-        case phrases(source: String, target: String, reverse: Bool, templates: [PhraseTemplate])
+        case phrases(source: String, target: String, templates: [PhraseTemplate])
 
         /// The language answers are typed in.
         var typedLanguage: String {
             switch self {
             case .slots(_, let language): return language
-            case .phrases(let source, let target, let reverse, _):
-                return reverse ? source : target
+            case .phrases(_, let target, _): return target
             }
         }
 
@@ -37,14 +35,13 @@ struct TrainerSessionView: View {
             }
         }
 
-        /// Identity a record is kept under (`TrainerRecords`): what is drilled,
-        /// in which language, and in which direction — a sentence run typed in
-        /// German is not the same feat as the same frames typed in Swahili.
+        /// Identity a record is kept under (`TrainerRecords`): what is drilled
+        /// and in which pair — a sentence run typed in German is not the same
+        /// feat as the same frames typed in Swahili.
         var recordKey: String {
             switch self {
             case .slots(let kind, let language): return "\(kind.name).\(language)"
-            case .phrases(let source, let target, let reverse, _):
-                return reverse ? "phrases.\(target)-\(source)" : "phrases.\(source)-\(target)"
+            case .phrases(let source, let target, _): return "phrases.\(source)-\(target)"
             }
         }
     }
@@ -184,15 +181,13 @@ struct TrainerSessionView: View {
         case .slots(let kind, let language):
             return Trainer.shared.sample(kind: kind, language: language,
                                          level: Int32(level), rng: rng)
-        case .phrases(_, _, let reverse, let templates):
+        case .phrases(_, _, let templates):
             // why: non-empty by construction — the hub resolves the pair's
             // frames and only offers the chip when the catalog joined some.
             let template = templates[Int.random(in: 0..<templates.count)]
             // Leveled slot values — same ramp semantics as the plain drills;
             // Kern clamps the level to each frame's own slot kind.
-            return reverse
-                ? PhraseSlots.shared.reverseSample(template: template, level: Int32(level), rng: rng)
-                : PhraseSlots.shared.sample(template: template, level: Int32(level), rng: rng)
+            return PhraseSlots.shared.sample(template: template, level: Int32(level), rng: rng)
         }
     }
 
@@ -202,7 +197,7 @@ struct TrainerSessionView: View {
         switch mode {
         case .slots(let kind, _):
             return Int(Trainer.shared.maxLevel(kind: kind))
-        case .phrases(_, _, _, let templates):
+        case .phrases(_, _, let templates):
             return templates
                 .map { Int(Trainer.shared.maxLevel(kind: $0.slotKind)) }
                 .max() ?? 1
@@ -281,7 +276,7 @@ struct TrainerSessionView: View {
     TrainerSessionView(kind: .numbers, language: "sw")
 }
 
-#Preview("Phrases · reverse (typed German)") {
+#Preview("Phrases · German → Ukrainian") {
     // Hand-built frame: a preview has no catalog to join one out of.
     let template = PhraseTemplate(
         id: "train-departs-at",
@@ -291,14 +286,12 @@ struct TrainerSessionView: View {
         targetTemplate: "Потяг відправляється о {slot}.",
         slotKind: .clock,
         acceptedFrames: [],
-        acceptedSourceFrames: [],
         note: nil,
         countForms: nil,
         sourceCountForms: nil,
         masculineNumeral: false
     )
-    TrainerSessionView(mode: .phrases(source: "de", target: "uk",
-                                      reverse: true, templates: [template]))
+    TrainerSessionView(mode: .phrases(source: "de", target: "uk", templates: [template]))
 }
 
 #Preview("Clock · German · dark") {
