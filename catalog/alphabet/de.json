@@ -1,38 +1,80 @@
 {
- "entries": [
+ "sections": [
   {
-   "glyph": "sch",
-   "kind": "digraph",
-   "ipa": "ʃ",
-   "example": "school",
-   "hints": {
-    "en": "one sound, English sh as in shoe: Schule = 'shoo-luh' — except before the ending -chen, where it stays s + ch: bisschen, Häuschen"
-   },
-   "confusable": {
-    "look": ["ch-ich", "ch-ach", "ss"],
-    "sound": ["ch-ich", "s-spst"]
+   "id": "umlauts",
+   "title": {
+    "en": "The umlauts"
    }
   },
   {
-   "glyph": "s",
-   "kind": "contextual",
-   "id": "s-spst",
-   "ipa": "ʃ",
-   "context": {
-    "en": "before p or t, at the start of a word or stem — also after prefixes and inside compounds"
-   },
-   "example": "pen",
+   "id": "vowel-pairs",
+   "title": {
+    "en": "Vowel pairs"
+   }
+  },
+  {
+   "id": "ch-sch",
+   "title": {
+    "en": "ch and sch"
+   }
+  },
+  {
+   "id": "s-sounds",
+   "title": {
+    "en": "The s sounds"
+   }
+  },
+  {
+   "id": "position",
+   "title": {
+    "en": "Where it stands changes it"
+   }
+  },
+  {
+   "id": "single-letters",
+   "title": {
+    "en": "Single letters that surprise"
+   }
+  }
+ ],
+ "entries": [
+  {
+   "glyph": "ä",
+   "upper": "Ä",
+   "name": "Ä",
+   "section": "umlauts",
+   "ipa": "ɛː",
+   "example": "cheese",
    "hints": {
-    "en": "sp- and st- start with sh, also after a prefix: Stift = 'shtift', verstehen = 'fair-SHTAY-en', aufstehen = 'OWF-shtay-en'. Inside a word it stays s: Fenster, kostet."
-   },
-   "confusable": {
-    "look": ["s-voiced", "ss"],
-    "sound": ["sch", "ch-ich"]
+    "en": "like the e in 'bed', held long: Käse, spät — never the 'ay' of 'day' and never English 'a'"
+   }
+  },
+  {
+   "glyph": "ö",
+   "upper": "Ö",
+   "name": "Ö",
+   "section": "umlauts",
+   "ipa": "øː",
+   "example": "hairdryer",
+   "hints": {
+    "en": "say 'ay' as in 'day', then round your lips: Föhn, hören, schön — never 'oh', never 'oy'"
+   }
+  },
+  {
+   "glyph": "ü",
+   "upper": "Ü",
+   "name": "Ü",
+   "section": "umlauts",
+   "ipa": "yː",
+   "example": "practise",
+   "hints": {
+    "en": "say 'ee', then round your lips as if for 'oo' and hold it: üben, Tür, fünf — never English 'oo' and never 'yoo'"
    }
   },
   {
    "glyph": "ei",
    "kind": "digraph",
+   "section": "vowel-pairs",
    "ipa": "aɪ̯",
    "example": "small",
    "hints": {
@@ -45,6 +87,7 @@
   {
    "glyph": "ie",
    "kind": "digraph",
+   "section": "vowel-pairs",
    "ipa": "iː",
    "example": "fever",
    "hints": {
@@ -57,6 +100,7 @@
   {
    "glyph": "eu",
    "kind": "digraph",
+   "section": "vowel-pairs",
    "ipa": "ɔʏ̯",
    "example": "new",
    "hints": {
@@ -70,6 +114,7 @@
   {
    "glyph": "äu",
    "kind": "digraph",
+   "section": "vowel-pairs",
    "ipa": "ɔʏ̯",
    "example": "dream",
    "hints": {
@@ -81,39 +126,24 @@
    }
   },
   {
-   "glyph": "ü",
-   "upper": "Ü",
-   "name": "U-Umlaut",
-   "ipa": "yː",
-   "example": "practise",
+   "glyph": "sch",
+   "kind": "digraph",
+   "section": "ch-sch",
+   "ipa": "ʃ",
+   "example": "school",
    "hints": {
-    "en": "say 'ee', then round your lips as if for 'oo' and hold it: üben, Tür, fünf — never English 'oo' and never 'yoo'"
-   }
-  },
-  {
-   "glyph": "ö",
-   "upper": "Ö",
-   "name": "O-Umlaut",
-   "ipa": "øː",
-   "example": "hairdryer",
-   "hints": {
-    "en": "say 'ay' as in 'day', then round your lips: Föhn, hören, schön — never 'oh', never 'oy'"
-   }
-  },
-  {
-   "glyph": "ä",
-   "upper": "Ä",
-   "name": "A-Umlaut",
-   "ipa": "ɛː",
-   "example": "cheese",
-   "hints": {
-    "en": "like the e in 'bed', held long: Käse, spät — never the 'ay' of 'day' and never English 'a'"
+    "en": "one sound, English sh as in shoe: Schule = 'shoo-luh' — except before the ending -chen, where it stays s + ch: bisschen, Häuschen"
+   },
+   "confusable": {
+    "look": ["ch-ich", "ch-ach", "ss"],
+    "sound": ["ch-ich", "s-spst"]
    }
   },
   {
    "glyph": "ch",
    "kind": "contextual",
    "id": "ch-ich",
+   "section": "ch-sch",
    "ipa": "ç",
    "context": {
     "en": "after e, i, ä, ö, ü, ei, eu/äu and after l, n, r — and always in the ending -chen (Mädchen, Frauchen); never in chs"
@@ -131,6 +161,7 @@
    "glyph": "ch",
    "kind": "contextual",
    "id": "ch-ach",
+   "section": "ch-sch",
    "ipa": "x",
    "context": {
     "en": "after a, o, u and au — but never before the diminutive ending -chen, and never in chs"
@@ -148,6 +179,7 @@
    "glyph": "ch",
    "kind": "contextual",
    "id": "ch-chef",
+   "section": "ch-sch",
    "ipa": "ʃ",
    "context": {
     "en": "at the start of a word borrowed from French"
@@ -163,6 +195,7 @@
   {
    "glyph": "chs",
    "kind": "digraph",
+   "section": "ch-sch",
    "ipa": "ks",
    "exampleText": "sechs",
    "hints": {
@@ -173,80 +206,10 @@
    }
   },
   {
-   "glyph": "w",
-   "upper": "W",
-   "name": "We",
-   "ipa": "v",
-   "example": "water",
-   "hints": {
-    "en": "German w is English v: Wasser = 'VASS-uh' — never like English w"
-   },
-   "confusable": {
-    "look": ["v-f"],
-    "sound": ["v-loan"]
-   }
-  },
-  {
-   "glyph": "v",
-   "upper": "V",
-   "id": "v-f",
-   "name": "Vau",
-   "ipa": "f",
-   "example": "much",
-   "hints": {
-    "en": "usually f: viel = 'feel', Vorsicht, von"
-   },
-   "confusable": {
-    "look": ["w"],
-    "sound": ["w"]
-   }
-  },
-  {
-   "glyph": "v",
-   "kind": "contextual",
-   "id": "v-loan",
-   "ipa": "v",
-   "context": {
-    "en": "in words borrowed from other languages"
-   },
-   "example": "sweater",
-   "hints": {
-    "en": "in loanwords v is a real v: Pullover, Video, Vase"
-   },
-   "confusable": {
-    "look": ["v-f"]
-   }
-  },
-  {
-   "glyph": "j",
-   "upper": "J",
-   "name": "Jot",
-   "ipa": "j",
-   "example": "jacket",
-   "hints": {
-    "en": "like y in 'yes': Jacke = 'YAH-kuh', ja = 'yah' — only English loanwords (Job, Jeans, joggen) keep the English j"
-   },
-   "confusable": {
-    "sound": ["ch-ich"]
-   }
-  },
-  {
-   "glyph": "z",
-   "upper": "Z",
-   "name": "Zett",
-   "ipa": "t͡s",
-   "example": "room",
-   "hints": {
-    "en": "ts as in 'cats', even at the start of a word: Zimmer = 'tsimmer'. tz after a short vowel is the same sound: jetzt, sitzen, putzen — never a buzzing English z."
-   },
-   "confusable": {
-    "sound": ["ß", "ss", "s-voiced"]
-   }
-  },
-  {
    "glyph": "s",
    "kind": "contextual",
    "id": "s-voiced",
+   "section": "s-sounds",
    "ipa": "z",
    "context": {
     "en": "at the start of a word or syllable before a vowel — but not right after p, k or t (Erbse, Krebse)"
@@ -261,21 +224,27 @@
    }
   },
   {
-   "glyph": "ß",
-   "name": "Eszett",
-   "ipa": "s",
-   "example": "big",
+   "glyph": "s",
+   "kind": "contextual",
+   "id": "s-spst",
+   "section": "s-sounds",
+   "ipa": "ʃ",
+   "context": {
+    "en": "before p or t, at the start of a word or stem — also after prefixes and inside compounds"
+   },
+   "example": "pen",
    "hints": {
-    "en": "a sharp s, never a b: groß = 'grohss'; it follows a long vowel or a diphthong — Straße, groß, heißen, weiß"
+    "en": "sp- and st- start with sh, also after a prefix: Stift = 'shtift', verstehen = 'fair-SHTAY-en', aufstehen = 'OWF-shtay-en'. Inside a word it stays s: Fenster, kostet."
    },
    "confusable": {
-    "look": ["ss"],
-    "sound": ["ss", "s-voiced", "z"]
+    "look": ["s-voiced", "ss"],
+    "sound": ["sch", "ch-ich"]
    }
   },
   {
    "glyph": "ss",
    "kind": "digraph",
+   "section": "s-sounds",
    "ipa": "s",
    "example": "eat",
    "hints": {
@@ -287,27 +256,38 @@
    }
   },
   {
-   "glyph": "qu",
-   "kind": "digraph",
-   "ipa": "kv",
-   "exampleText": "Quittung",
+   "glyph": "ß",
+   "name": "Eszett",
+   "section": "s-sounds",
+   "ipa": "s",
+   "example": "big",
    "hints": {
-    "en": "kv, not kw: Quittung = 'KVIT-oong' (oo short, as in 'book')"
+    "en": "a sharp s, never a b: groß = 'grohss'; it follows a long vowel or a diphthong — Straße, groß, heißen, weiß"
+   },
+   "confusable": {
+    "look": ["ss"],
+    "sound": ["ss", "s-voiced", "z"]
    }
   },
   {
-   "glyph": "pf",
-   "kind": "digraph",
-   "ipa": "pf",
-   "example": "head",
+   "glyph": "z",
+   "upper": "Z",
+   "name": "Zett",
+   "section": "s-sounds",
+   "ipa": "t͡s",
+   "example": "room",
    "hints": {
-    "en": "both letters sound, squeezed into one push: Kopf = 'kopf', Topf, pflanzen — not just f, and not p plus a separate f"
+    "en": "ts as in 'cats', even at the start of a word: Zimmer = 'tsimmer'. tz after a short vowel is the same sound: jetzt, sitzen, putzen — never a buzzing English z."
+   },
+   "confusable": {
+    "sound": ["ß", "ss", "s-voiced"]
    }
   },
   {
    "glyph": "d",
    "kind": "contextual",
    "id": "d-final",
+   "section": "position",
    "ipa": "t",
    "context": {
     "en": "at the end of a word or syllable"
@@ -324,6 +304,7 @@
    "glyph": "b",
    "kind": "contextual",
    "id": "b-final",
+   "section": "position",
    "ipa": "p",
    "context": {
     "en": "at the end of a word or syllable"
@@ -340,6 +321,7 @@
    "glyph": "g",
    "kind": "contextual",
    "id": "g-final",
+   "section": "position",
    "ipa": "k",
    "context": {
     "en": "at the end of a word or syllable"
@@ -354,9 +336,23 @@
    }
   },
   {
+   "glyph": "er",
+   "kind": "contextual",
+   "section": "position",
+   "ipa": "ɐ",
+   "context": {
+    "en": "unstressed at the end of a word"
+   },
+   "example": "teacher",
+   "hints": {
+    "en": "final -er is a vowel, not an r: Lehrer = 'LAY-ruh', Fenster = 'FEN-stuh', Wasser = 'VASS-uh' — like the -a in 'sofa'"
+   }
+  },
+  {
    "glyph": "h",
    "kind": "contextual",
    "id": "h-length",
+   "section": "position",
    "context": {
     "en": "after a vowel, when it does not begin a new syllable"
    },
@@ -370,15 +366,85 @@
    }
   },
   {
-   "glyph": "er",
-   "kind": "contextual",
-   "ipa": "ɐ",
-   "context": {
-    "en": "unstressed at the end of a word"
-   },
-   "example": "teacher",
+   "glyph": "w",
+   "upper": "W",
+   "name": "We",
+   "section": "single-letters",
+   "ipa": "v",
+   "example": "water",
    "hints": {
-    "en": "final -er is a vowel, not an r: Lehrer = 'LAY-ruh', Fenster = 'FEN-stuh', Wasser = 'VASS-uh' — like the -a in 'sofa'"
+    "en": "German w is English v: Wasser = 'VASS-uh' — never like English w"
+   },
+   "confusable": {
+    "look": ["v-f"],
+    "sound": ["v-loan"]
+   }
+  },
+  {
+   "glyph": "v",
+   "upper": "V",
+   "id": "v-f",
+   "name": "Vau",
+   "section": "single-letters",
+   "ipa": "f",
+   "example": "much",
+   "hints": {
+    "en": "usually f: viel = 'feel', Vorsicht, von"
+   },
+   "confusable": {
+    "look": ["w"],
+    "sound": ["w"]
+   }
+  },
+  {
+   "glyph": "v",
+   "kind": "contextual",
+   "id": "v-loan",
+   "section": "single-letters",
+   "ipa": "v",
+   "context": {
+    "en": "in words borrowed from other languages"
+   },
+   "example": "sweater",
+   "hints": {
+    "en": "in loanwords v is a real v: Pullover, Video, Vase"
+   },
+   "confusable": {
+    "look": ["v-f"]
+   }
+  },
+  {
+   "glyph": "j",
+   "upper": "J",
+   "name": "Jot",
+   "section": "single-letters",
+   "ipa": "j",
+   "example": "jacket",
+   "hints": {
+    "en": "like y in 'yes': Jacke = 'YAH-kuh', ja = 'yah' — only English loanwords (Job, Jeans, joggen) keep the English j"
+   },
+   "confusable": {
+    "sound": ["ch-ich"]
+   }
+  },
+  {
+   "glyph": "qu",
+   "kind": "digraph",
+   "section": "single-letters",
+   "ipa": "kv",
+   "exampleText": "Quittung",
+   "hints": {
+    "en": "kv, not kw: Quittung = 'KVIT-oong' (oo short, as in 'book')"
+   }
+  },
+  {
+   "glyph": "pf",
+   "kind": "digraph",
+   "section": "single-letters",
+   "ipa": "pf",
+   "example": "head",
+   "hints": {
+    "en": "both letters sound, squeezed into one push: Kopf = 'kopf', Topf, pflanzen — not just f, and not p plus a separate f"
    }
   }
  ]
