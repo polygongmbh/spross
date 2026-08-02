@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **The frisch tile says what the day brought in again.** Its "+N heute" was the day's new
+  words minus every word that consolidated that day, so an evening spent on older words
+  could wipe it out entirely — and the tile went blank beside a gefestigt tile still
+  counting. It now counts the words you met today that have not landed yet, which is what
+  it was meant to say all along; a word known on sight still goes straight to gefestigt.
+
 - **Words you have settled sometimes come up as a sound to write down.** Producing a word
   always started from its meaning, so a word could be answered right for months without
   the sound of it ever being asked for. Now a word you have properly consolidated is now

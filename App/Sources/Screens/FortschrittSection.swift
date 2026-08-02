@@ -25,10 +25,10 @@ struct FortschrittSection: View {
                 BoxStatTile(emoji: "🌱",
                             value: "\(model.stats?.freshCards ?? 0)",
                             label: "progress.fresh",
-                            // Net, not gross: a card that both arrives and consolidates
-                            // today must not still count toward the fresh delta, or the
-                            // delta can outrun the (now smaller) fresh total.
-                            delta: delta(Int(model.today?.introduced ?? 0) - Int(model.today?.settled ?? 0)))
+                            // Today's arrivals that are still fresh — an older word
+                            // consolidating now belongs to the tile beside this one,
+                            // and must not eat a delta it never contributed to.
+                            delta: delta(Int(model.today?.stillFresh ?? 0)))
             }
         }
     }

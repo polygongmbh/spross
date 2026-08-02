@@ -230,6 +230,8 @@ never the shape of the app.
   A day the learner has not worked is never called done.
   The done state and the Fortschritt tiles carry the day's own movement under the
   standing totals: totals say where the box stands, deltas say that today moved it.
+  Each delta is its own tile's news — today's arrivals still fresh, today's crossings
+  into gefestigt — never one tile's figure netted against the other's.
 - **Stopping is the default at the end of a round**: the round that was planned is done,
   so "Fertig" is the primary button and going on the quiet one below it — an earned break
   needs no arguing for, and another round is still one tap away.

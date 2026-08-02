@@ -95,6 +95,38 @@ class TodayReportTests {
         assertEquals(0, BoxEngine.today(state, evenLater, Box.TZ).settled)
     }
 
+    /** Today's arrivals, minus the ones that landed on arrival — not minus every crossing. */
+    @Test
+    fun stillFreshCountsTodaysArrivalsThatHaveNotLanded() {
+        var state = boxOf(3)
+        state = Box.answered(state, "w01", Rating.Good, now)
+        state = Box.answered(state, "w02", Rating.Good, now)
+        // Known on sight: introduced and consolidated by the same answer, so it
+        // belongs to the settled tally and never to the fresh one.
+        state = Box.answered(state, "w03", Rating.Easy, now)
+
+        val today = BoxEngine.today(state, now, Box.TZ)
+        assertEquals(3, today.introduced)
+        assertEquals(1, today.settled)
+        assertEquals(2, today.stillFresh)
+    }
+
+    /** An older word crossing today is the settled tile's news, not the fresh tile's loss. */
+    @Test
+    fun anOlderWordConsolidatingDoesNotEatTodaysFreshCount() {
+        var state = boxOf(2)
+        state = Box.answered(state, "w01", Rating.Good, now)
+
+        val later = Box.plusDays(now, 30.0)
+        state = Box.answered(state, "w01", Rating.Good, later)
+        state = Box.answered(state, "w02", Rating.Good, later)
+
+        val today = BoxEngine.today(state, later, Box.TZ)
+        assertEquals(1, today.settled) // w01 crossed, having arrived a month ago
+        assertEquals(1, today.introduced)
+        assertEquals(1, today.stillFresh) // w02 only — never net, never negative
+    }
+
     /** A word on its way in crosses the moment its stability reaches the threshold. */
     @Test
     fun theCrossingIsBookedOnTheAnswerThatMakesIt() {
