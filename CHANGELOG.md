@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **The Spanish alphabet sheet speaks, and two words that said the wrong thing are
+  fixed.** Half the Spanish letter names are read by Spanish speakers now instead of by
+  the phone — the other half nobody has ever recorded. The Ukrainian apostrophe has a
+  voice for the first time, and the example words beside *¡Adiós!* and *фен* are
+  recordings. In German, *Wohnung* and *Tee* had been playing recordings of longer words
+  that merely ended the same way; they say the word on the card again.
+
 - **The Box tab's area cards now show what's actually left to add.** Each area folds
   into a single card — tap its name to reveal the words inside, tap the small plus
   beside it to pack in what's still unscheduled — and its progress bar now measures
