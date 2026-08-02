@@ -11,6 +11,9 @@ import SwiftUI
 /// - recognize: prompt the target `promptForm` (article-tinted), tap the
 ///   matching source meaning.
 /// - produce:   prompt the source meaning (+ ♀ badge), tap the target word.
+///
+/// A card that has a picture shows it on the prompt line once answered — never
+/// before, since on a recognition question the picture depicts the answer.
 struct WatchQuizView: View {
     @Bindable var model: WatchModel
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -101,7 +104,20 @@ struct WatchQuizView: View {
     }
 
     private func promptText(_ entry: WatchSnapshot.Entry) -> Text {
-        entry.isRecognize ? targetLine(entry, form: entry.promptForm) : sourceLine(entry)
+        let line = entry.isRecognize ? targetLine(entry, form: entry.promptForm) : sourceLine(entry)
+        guard model.selectedIndex != nil, let picture = revealPicture(entry) else { return line }
+        return Text("\(picture) ") + line
+    }
+
+    /// The card's picture, once the tile has been tapped and it can give nothing
+    /// away. It joins the prompt LINE rather than taking a slot of its own, so
+    /// the answered card never reflows under the thumb — and nothing appears at
+    /// all before the answer, which is what keeps a produce prompt honest.
+    ///
+    /// Either key will do here: at reveal both are safe, and kern fills exactly
+    /// the one its emoji policy allows.
+    private func revealPicture(_ entry: WatchSnapshot.Entry) -> String? {
+        entry.revealEmoji ?? entry.emoji
     }
 
     /// Source meaning; ♀ is a labeled badge, never part of the word.

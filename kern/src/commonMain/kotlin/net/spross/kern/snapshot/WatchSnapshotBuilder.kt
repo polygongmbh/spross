@@ -18,7 +18,7 @@ import net.spross.kern.session.MultipleChoice
 import net.spross.kern.store.StoreJson
 
 /**
- * Phone-side builder of the watch application-context snapshot, v4:
+ * Phone-side builder of the watch application-context snapshot, v5:
  * one entry per CARD with BOTH sides pre-resolved, so the watch stays pure
  * Swift and never joins. [WatchEntryDto.nextRole]/[WatchEntryDto.promptForm]
  * are resolved from the log count at build time; the watch presents
@@ -30,7 +30,7 @@ import net.spross.kern.store.StoreJson
  * cannot hold.
  */
 object WatchSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 4
+    const val SCHEMA_VERSION: Int = 5
     const val ENTRY_CAP: Int = 60
 
     /**
@@ -163,16 +163,16 @@ object WatchSnapshotBuilder {
     private fun entry(sched: CardScheduling, card: Card, settled: Boolean): WatchEntryDto {
         val reviewCount = sched.reviewCount
         val nextRole = presentationRole(card.id, reviewCount)
+        val cue = emojiCue(nextRole, settled, reviewCount)
         return WatchEntryDto(
             cardId = card.id,
             sourceText = card.source.text,
             targetText = card.target.text,
-            // why: the snapshot is answered in one shot, so a picture held back for a
-            // reveal has no honest moment to appear and could only leak the answer —
-            // it is withheld from the wire rather than trusted to the reader.
-            emoji = card.emoji?.takeIf {
-                emojiCue(nextRole, settled, reviewCount) == EmojiCue.Upfront
-            },
+            // The picture rides on the field that names WHEN it may be seen, so the
+            // watch cannot show a reveal one early by reading the wrong key. Exactly
+            // one of the two is ever set, and neither for a card with no emoji.
+            emoji = card.emoji?.takeIf { cue == EmojiCue.Upfront },
+            revealEmoji = card.emoji?.takeIf { cue == EmojiCue.OnReveal },
             articleTint = articleTint(card),
             femMarker = card.promptFeminineMarker,
             due = sched.due!!.toEpochMilliseconds(),
@@ -198,8 +198,9 @@ internal data class WatchSnapshotDoc(
  * One drainable card with both sides. [nextRole] "produce": prompt [sourceText]
  * (+ labeled ♀ badge when [femMarker]), reveal the target family. "recognize":
  * prompt [promptForm] (the rotated target form), reveal [sourceText] decorated.
- * [emoji] is pre-gated by the emoji policy. [distractors] are the
- * ranked wrong options for THIS entry's role — the watch picks three and
+ * [emoji]/[revealEmoji] split the picture by the emoji policy's cue — the first may
+ * be seen from frame one, the second only once the answer is out. [distractors] are
+ * the ranked wrong options for THIS entry's role — the watch picks three and
  * shuffles them with the answer, which it reads off [optionForm].
  */
 @Serializable
@@ -208,6 +209,13 @@ internal data class WatchEntryDto(
     val sourceText: String,
     val targetText: String,
     val emoji: String? = null,
+    /**
+     * The same picture where the policy holds it back — shown once the tile is
+     * tapped and nothing is left to give away. Its own field rather than a flag
+     * beside [emoji], so a surface that shows pictures upfront cannot leak one by
+     * forgetting to read the flag.
+     */
+    val revealEmoji: String? = null,
     val articleTint: String? = null,
     val femMarker: Boolean,
     val due: Long,

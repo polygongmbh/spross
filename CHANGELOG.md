@@ -8,6 +8,10 @@
   tapped gets a small emoji showing how the answer was scored: 🙌 effortless, 👍 known,
   👌 got there in the end, 👋 come back to this one.
 
+- **Words with a picture show it on the watch once you have answered.** The emoji appears
+  beside the word the moment you tap a tile — never before, since on a "what does this
+  mean?" question the picture would be the answer. Words without one are unchanged.
+
 - **Wrong answers on the watch stop being ruled out by their punctuation.** When the
   question was a question, the other three options could be statements — so the right
   answer was the one with the question mark, no reading required. Options now match the

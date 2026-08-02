@@ -282,6 +282,13 @@ Its scope is § Not yet.
   invite playing to the latency the grade is measuring. Reduce Motion keeps every color and
   the badge and drops only the movement. No sound — the wrist is a silent surface, and two
   channels already carry it.
+- **The picture arrives with the answer.** A card that has an emoji shows it on the watch's
+  prompt line once a tile is tapped, never before: on a recognition question the picture
+  depicts the very meaning being asked for. That reveal moment is also why the wire now
+  carries held-back pictures at all — the emoji cue picks which KEY the picture travels
+  under rather than whether it travels (kern README §7), so no surface can show one early
+  by reading the wrong field. It joins the prompt line instead of taking a slot of its own,
+  so an answered card never reflows under the thumb.
 - Two runs, and only one of them ends: the **due batch** is a counter that reaches its
   end and returns to the start screen by itself, while **free practice** takes the words
   closest to slipping, lap after lap, carrying the answer streak in place of a total.
