@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **The number, year and clock drills now work in English and Spanish**, next to German,
+  Swahili and Ukrainian. They take the readings a speaker actually uses: "three hundred
+  forty-seven" and "three hundred and forty-seven", "nineteen seventy-eight" and "one
+  thousand nine hundred seventy-eight", "quarter past two" and "two fifteen" — and on the
+  Spanish side "son las tres menos cuarto" as readily as "son las dos y cuarenta y cinco".
+
 ## 3.0.0 — 2026-08-01
 
 - **Words are read aloud now**: a card speaks the word it shows — with recordings of real
