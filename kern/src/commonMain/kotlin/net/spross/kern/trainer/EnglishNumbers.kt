@@ -22,14 +22,11 @@ internal object EnglishNumbers {
         spellings(listOf(compose(n, useAnd = false), compose(n, useAnd = true)))
 
     /**
-     * Canonical year reading: pair-counting ("nineteen seventy-eight") wherever
-     * it is idiomatic, i.e. every four-digit year that is not a round thousand.
-     * 2000–2009 are the exception — "two thousand five" is the ordinary reading
-     * there and "twenty oh five" the marginal one.
+     * All accepted year readings, canonical first: pair-counting ("nineteen
+     * seventy-eight") wherever it is idiomatic, i.e. every four-digit year that
+     * is not a round thousand. 2000–2009 are the exception — "two thousand five"
+     * is the ordinary reading there and "twenty oh five" the marginal one.
      */
-    fun year(y: Long): String = yearVariants(y).first()
-
-    /** All accepted year readings, canonical first. */
     fun yearVariants(y: Long): List<String> {
         val cardinals = listOf(compose(y, useAnd = false), compose(y, useAnd = true))
         if (!pairReadable(y)) return spellings(cardinals)
