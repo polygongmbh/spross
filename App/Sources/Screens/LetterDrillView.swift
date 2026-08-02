@@ -1,6 +1,5 @@
 import SwiftUI
 import SprossKern
-import UIKit
 
 /// The letter drill: hear a sound, find the letter. Four glyph tiles, then
 /// confusable ones, then typing the glyph, and finally dictation of words the
@@ -86,9 +85,7 @@ struct LetterDrillView: View {
     /// VoiceOver and Switch Control both make a timed screen change hostile:
     /// it truncates the correctness announcement and moves the page under the
     /// user. Where either runs, an explicit "Weiter" replaces the beat.
-    var screenReaderOn: Bool {
-        UIAccessibility.isVoiceOverRunning || UIAccessibility.isSwitchControlRunning
-    }
+    var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
 
     func languageName(_ code: String) -> String {
         LanguageNames.display(code, locale: locale, catalog: model.catalog)

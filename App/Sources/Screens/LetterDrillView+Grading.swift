@@ -27,15 +27,10 @@ extension LetterDrillView {
         }
         feedback = .correct
         DLSound.correct()
-        // why: no timer under a screen reader — it truncates the correctness
-        // announcement and moves the screen under the user (§6.1 renders
-        // "Weiter" there instead).
-        guard !screenReaderOn else { return }
-        autoAdvance = Task {
-            try? await Task.sleep(for: .milliseconds(1200))
-            guard !Task.isCancelled else { return }
-            advance(correct: true, clean: true)
-        }
+        // why: AutoAdvance skips the timer under a screen reader — it
+        // truncates the correctness announcement and moves the screen under
+        // the user (§6.1 renders "Weiter" there instead).
+        AutoAdvance.scheduleExplicit(&autoAdvance) { advance(correct: true, clean: true) }
     }
 
     /// "Aufdecken" on an empty field: the answer goes INTO the field rather
@@ -55,12 +50,7 @@ extension LetterDrillView {
         case .clean:
             feedback = .correct
             DLSound.correct()
-            guard !screenReaderOn else { return }
-            autoAdvance = Task {
-                try? await Task.sleep(for: .milliseconds(1200))
-                guard !Task.isCancelled else { return }
-                advance(correct: true, clean: true)
-            }
+            AutoAdvance.scheduleExplicit(&autoAdvance) { advance(correct: true, clean: true) }
         case .typo(let corrected):
             // why: no auto-advance on a slip — the pause shows the proper
             // spelling, and "Weiter" then books it amber.
