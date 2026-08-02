@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **Drills now forgive a slip in short answer words too.** A one-letter typo in a word
+  like "für" or "am" used to be marked wrong outright in number, year and clock drills,
+  even though longer words in the same sentence already forgave one slip.
+
 - **The screen that ends a round can be left from the same corner the round could.** The
   close cross now sits top left on the finish screen and on a drill's summary too, so the
   thumb that closed one round early finds the next one's way out where it left it, instead

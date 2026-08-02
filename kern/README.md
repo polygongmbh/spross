@@ -367,7 +367,9 @@ day-key `yyyy-MM-dd`) with:
   the one-arg init stays the lenient vocab-review default (both inits in the ObjC header).
   The budget is likewise constructor-switched for drill grading:
   `AnswerNormalizer(language, articleLeniency, maxTyposPerWord = 1)` grades **word by word** —
-  each word forgives one slip, a word carrying a digit forgives none
+  each word forgives one slip FLATLY, regardless of the word's own length
+  (a three-letter word forgives the same one slip a long one does),
+  and a word carrying a digit forgives none
   ("21"/"29", "18:05" → "18" "05" sit one edit apart),
   and a typed answer with a different word COUNT falls back to the whole-form rule.
   What a drill must never accept is one number for another, and that danger lives inside

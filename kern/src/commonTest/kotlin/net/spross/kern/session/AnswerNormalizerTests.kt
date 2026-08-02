@@ -236,6 +236,24 @@ class AnswerNormalizerTests {
     }
 
     @Test
+    fun shortNonDigitWordsGetTheSameCapAsLongerWords() {
+        val drill = AnswerNormalizer(
+            catalog.languages.getValue("de"),
+            articleLeniency = false,
+            maxTyposPerWord = 1,
+        )
+        val phrase = card("de", "Ich kaufe das für dich.", kind = CardKind.Phrase)
+        // "für" is 3 letters — the old length-scaled per-word rule forced budget 0
+        // regardless of the cap; the cap alone now governs every word, short or long.
+        assertEquals(
+            Match.Typo("Ich kaufe das für dich."),
+            drill.evaluate("Ich kaufe das for dich.", phrase),
+        )
+        // Two slips in the same short word still exceed the cap.
+        assertEquals(Match.Wrong, drill.evaluate("Ich kaufe das fox dich.", phrase))
+    }
+
+    @Test
     fun decomposedUnicodeAndArticleInsideSynonymConverge() {
         val door = joined(swToDe, "door") // NFD "Tür", synonym "die  Türe"
         assertEquals(Match.Exact, de.evaluate("Tür", door))
@@ -252,6 +270,9 @@ class AnswerNormalizerTests {
         assertEquals(0, de.matchingPrefixWordCount("Tisch", "Der Kühlschrank"))
         // Typed more words than the answer has → capped at the answer's length.
         assertEquals(2, de.matchingPrefixWordCount("Der Kühlschrank ist leer", "Der Kühlschrank"))
+        // "Der" is 3 letters — the retry-priming rule keeps its own length floor,
+        // independent of any drill's maxTyposPerWord (unaffected by that fix).
+        assertEquals(0, de.matchingPrefixWordCount("Dre Kühlschrank", "Der Kühlschrank"))
         // Typed fewer words than the answer → capped at what was typed.
         assertEquals(1, de.matchingPrefixWordCount("Der", "Der Kühlschrank"))
         // Empty input matches nothing.

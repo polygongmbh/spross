@@ -52,9 +52,12 @@ sealed interface Match {
  * ≥ 2 edits apart (guard sweep in TrainerTypoBridgeGuardTests; audited
  * exceptions sw nne↔nane and uk дев'ять↔десять sit one apart and are gated
  * there explicitly), so capping each word at one slip keeps them apart while
- * the sentence as a whole may fumble once per word. A word carrying a digit
- * still grades exact-only: distinct digit renderings ("21"/"29", "18:05" →
- * "18" "05") sit one edit apart, so no positive budget is safe for them.
+ * the sentence as a whole may fumble once per word. The cap applies flatly
+ * to every word regardless of its own length, unlike the whole-phrase rule
+ * below — a short word (e.g. "für") forgives the same one slip a long one
+ * does. A word carrying a digit still grades exact-only: distinct digit
+ * renderings ("21"/"29", "18:05" → "18" "05") sit one edit apart, so no
+ * positive budget is safe for them.
  */
 class AnswerNormalizer(
     answerLanguage: LanguageInfo,
@@ -101,7 +104,7 @@ class AnswerNormalizer(
         while (count < typed.size && count < expected.size) {
             val a = cleaned(typed[count]).trim()
             val b = cleaned(expected[count]).trim()
-            if (b.isEmpty() || damerauLevenshtein(a, b) > wordBudget(b, Int.MAX_VALUE)) break
+            if (b.isEmpty() || damerauLevenshtein(a, b) > prefixWordBudget(b)) break
             count++
         }
         return count
@@ -229,11 +232,28 @@ class AnswerNormalizer(
         }
     }
 
-    /** One word's slips: none at all for a digit, else the length formula under [cap]. */
-    private fun wordBudget(word: String, cap: Int): Int {
-        if (word.any { it.isDigit() }) return 0
-        return minOf(allowedTypos(word.length), cap)
-    }
+    /**
+     * One word's slips under the drill's per-word cap: none at all for a
+     * digit, else the cap itself — flat, regardless of the word's own
+     * length. The cap (currently always 1) already dominated the length
+     * formula for every word the formula was tuned for (≥4 letters), so a
+     * shorter word now gets the same cap instead of being floored to zero
+     * for no safety reason: the digit check above is what actually keeps a
+     * drill from bridging one number into another.
+     */
+    private fun wordBudget(word: String, cap: Int): Int =
+        if (word.any { it.isDigit() }) 0 else cap
+
+    /**
+     * One word's slips for [matchingPrefixWordCount]'s retry-priming rule:
+     * the length-scaled formula, same floor whole-phrase vocab reviews use.
+     * Unrelated to [maxTyposPerWord] — this UI-only helper (which words of a
+     * miss to keep in the retry field) has never read it and must not start
+     * now, or a short mistyped word would keep far more of the field than a
+     * retry is meant to prime.
+     */
+    private fun prefixWordBudget(word: String): Int =
+        if (word.any { it.isDigit() }) 0 else allowedTypos(word.length)
 
     /** The listed leading article a raw answer starts with (only when more words follow). */
     private fun leadingArticle(raw: String): String? {
