@@ -1,34 +1,47 @@
 {
+ "sections": [
+  {
+   "id": "y-sounds",
+   "title": {
+    "de": "ll und y klingen gleich",
+    "en": "ll and y sound alike"
+   }
+  },
+  {
+   "id": "throat",
+   "title": {
+    "de": "Der j-Laut",
+    "en": "The j sound"
+   }
+  },
+  {
+   "id": "s-sounds",
+   "title": {
+    "de": "c, z, s — und das harte k",
+    "en": "c, z, s — and the hard k"
+   }
+  },
+  {
+   "id": "r-sounds",
+   "title": {
+    "de": "Die zwei r",
+    "en": "The two r sounds"
+   }
+  },
+  {
+   "id": "single-letters",
+   "title": {
+    "de": "Einzelbuchstaben mit Überraschung",
+    "en": "Single letters that surprise"
+   }
+  }
+ ],
  "entries": [
-  {
-   "glyph": "h",
-   "upper": "H",
-   "name": "hache",
-   "example": "hello",
-   "hints": {
-    "de": "stumm — hola klingt wie „ola“; nur im Digraph ch wird sie mitgesprochen",
-    "en": "silent — hola sounds like “ola”; only in the digraph ch does it do any work"
-   },
-   "drill": false,
-   "confusable": {
-    "sound": ["j", "g"]
-   }
-  },
-  {
-   "glyph": "ñ",
-   "upper": "Ñ",
-   "name": "eñe",
-   "ipa": "ɲ",
-   "example": "morning",
-   "hints": {
-    "de": "wie nj in Tanja oder gn in Champagner",
-    "en": "like ny in canyon"
-   }
-  },
   {
    "glyph": "ll",
    "kind": "digraph",
    "name": "elle",
+   "section": "y-sounds",
    "ipa": "ʝ",
    "example": "street",
    "hints": {
@@ -41,6 +54,7 @@
    "upper": "Y",
    "id": "y-cons",
    "name": "ye",
+   "section": "y-sounds",
    "ipa": "ʝ",
    "example": "help",
    "hints": {
@@ -48,13 +62,16 @@
     "en": "as a consonant like y in yes — the same sound as ll"
    },
    "confusable": {
-    "look": ["y-vowel"]
+    "look": [
+     "y-vowel"
+    ]
    }
   },
   {
    "glyph": "y",
    "kind": "contextual",
    "id": "y-vowel",
+   "section": "y-sounds",
    "ipa": "i",
    "context": {
     "de": "am Wortende und als das Wort y (= und)",
@@ -70,6 +87,7 @@
    "glyph": "j",
    "upper": "J",
    "name": "jota",
+   "section": "throat",
    "ipa": "x",
    "example": "soap",
    "hints": {
@@ -80,6 +98,7 @@
   {
    "glyph": "g",
    "kind": "contextual",
+   "section": "throat",
    "ipa": "x",
    "context": {
     "de": "vor e und i",
@@ -94,6 +113,7 @@
   {
    "glyph": "gu",
    "kind": "digraph",
+   "section": "throat",
    "ipa": "ɡ",
    "context": {
     "de": "vor e und i",
@@ -105,13 +125,19 @@
     "en": "hard g, the u is silent: guitarra = “ghee-tarra” — never a j-sound"
    },
    "confusable": {
-    "look": ["g", "qu"],
-    "sound": ["qu"]
+    "look": [
+     "g",
+     "qu"
+    ],
+    "sound": [
+     "qu"
+    ]
    }
   },
   {
    "glyph": "gü",
    "kind": "digraph",
+   "section": "throat",
    "ipa": "ɡw",
    "context": {
     "de": "vor e und i (güe, güi)",
@@ -123,13 +149,17 @@
     "en": "the two dots make the u audible: pingüino = “pin-gwee-no”"
    },
    "confusable": {
-    "look": ["gu", "g"]
+    "look": [
+     "gu",
+     "g"
+    ]
    }
   },
   {
    "glyph": "c",
    "kind": "contextual",
    "id": "c-soft",
+   "section": "s-sounds",
    "ipa": "θ",
    "context": {
     "de": "vor e und i",
@@ -141,14 +171,19 @@
     "en": "like th in thing (European Spanish); k elsewhere — cocina has both"
    },
    "confusable": {
-    "look": ["c-hard"],
-    "sound": ["s"]
+    "look": [
+     "c-hard"
+    ],
+    "sound": [
+     "s"
+    ]
    }
   },
   {
    "glyph": "c",
    "kind": "contextual",
    "id": "c-hard",
+   "section": "s-sounds",
    "ipa": "k",
    "context": {
     "de": "vor a, o und u",
@@ -164,6 +199,7 @@
    "glyph": "z",
    "upper": "Z",
    "name": "zeta",
+   "section": "s-sounds",
    "ipa": "θ",
    "example": "shoe",
    "hints": {
@@ -171,13 +207,16 @@
     "en": "like th in thing, never an English z (European Spanish)"
    },
    "confusable": {
-    "sound": ["s"]
+    "sound": [
+     "s"
+    ]
    }
   },
   {
    "glyph": "s",
    "upper": "S",
    "name": "ese",
+   "section": "s-sounds",
    "ipa": "s",
    "example": "cheese",
    "hints": {
@@ -188,6 +227,7 @@
   {
    "glyph": "qu",
    "kind": "digraph",
+   "section": "s-sounds",
    "ipa": "k",
    "context": {
     "de": "vor e und i",
@@ -200,32 +240,11 @@
    }
   },
   {
-   "glyph": "b",
-   "upper": "B",
-   "name": "be",
-   "ipa": "b",
-   "example": "drink",
-   "hints": {
-    "de": "identisch mit v — beber und vivir beginnen mit demselben Laut",
-    "en": "identical to v — beber and vivir start with the same sound"
-   }
-  },
-  {
-   "glyph": "v",
-   "upper": "V",
-   "name": "uve",
-   "ipa": "b",
-   "example": "live",
-   "hints": {
-    "de": "genau wie b — vivir und beber beginnen mit demselben Laut; nie wie das v in Vater (f) und nie wie das w in Wasser",
-    "en": "exactly like b — Spanish has no v-sound; vivir and beber start identically"
-   }
-  },
-  {
    "glyph": "r",
    "upper": "R",
    "id": "r-tap",
    "name": "erre",
+   "section": "r-sounds",
    "ipa": "ɾ",
    "exampleText": "pero",
    "hints": {
@@ -233,14 +252,21 @@
     "en": "a single tongue-tip tap, like tt in American “butter”"
    },
    "confusable": {
-    "look": ["r-strong"],
-    "sound": ["rr", "r-strong", "d"]
+    "look": [
+     "r-strong"
+    ],
+    "sound": [
+     "rr",
+     "r-strong",
+     "d"
+    ]
    }
   },
   {
    "glyph": "rr",
    "kind": "digraph",
    "name": "erre doble",
+   "section": "r-sounds",
    "ipa": "r",
    "exampleText": "perro",
    "hints": {
@@ -248,13 +274,17 @@
     "en": "a strongly rolled r — pero (but) and perro (dog) are different words"
    },
    "confusable": {
-    "look": ["r-tap", "r-strong"]
+    "look": [
+     "r-tap",
+     "r-strong"
+    ]
    }
   },
   {
    "glyph": "r",
    "kind": "contextual",
    "id": "r-strong",
+   "section": "r-sounds",
    "ipa": "r",
    "context": {
     "de": "am Wortanfang und nach l, n, s",
@@ -267,8 +297,75 @@
    }
   },
   {
+   "glyph": "h",
+   "upper": "H",
+   "name": "hache",
+   "section": "single-letters",
+   "example": "hello",
+   "hints": {
+    "de": "stumm — hola klingt wie „ola“; nur im Digraph ch wird sie mitgesprochen",
+    "en": "silent — hola sounds like “ola”; only in the digraph ch does it do any work"
+   },
+   "drill": false,
+   "confusable": {
+    "sound": [
+     "j",
+     "g"
+    ]
+   }
+  },
+  {
+   "glyph": "ñ",
+   "upper": "Ñ",
+   "name": "eñe",
+   "section": "single-letters",
+   "ipa": "ɲ",
+   "example": "morning",
+   "hints": {
+    "de": "wie nj in Tanja oder gn in Champagner",
+    "en": "like ny in canyon"
+   }
+  },
+  {
+   "glyph": "ch",
+   "kind": "digraph",
+   "name": "che",
+   "section": "single-letters",
+   "ipa": "t͡ʃ",
+   "example": "shower",
+   "hints": {
+    "de": "wie tsch in Tschüss — nie wie deutsches ch",
+    "en": "like ch in cheese"
+   }
+  },
+  {
+   "glyph": "b",
+   "upper": "B",
+   "name": "be",
+   "section": "single-letters",
+   "ipa": "b",
+   "example": "drink",
+   "hints": {
+    "de": "identisch mit v — beber und vivir beginnen mit demselben Laut",
+    "en": "identical to v — beber and vivir start with the same sound"
+   }
+  },
+  {
+   "glyph": "v",
+   "upper": "V",
+   "name": "uve",
+   "section": "single-letters",
+   "ipa": "b",
+   "example": "live",
+   "hints": {
+    "de": "genau wie b — vivir und beber beginnen mit demselben Laut; nie wie das v in Vater (f) und nie wie das w in Wasser",
+    "en": "exactly like b — Spanish has no v-sound; vivir and beber start identically"
+   }
+  },
+  {
    "glyph": "d",
    "kind": "contextual",
+   "section": "single-letters",
    "ipa": "ð",
    "context": {
     "de": "überall außer am Satzanfang und nach n oder l",
@@ -278,17 +375,6 @@
    "hints": {
     "de": "weich wie englisches th in this; am Wortende oft kaum hörbar (usted klingt fast wie „usté“)",
     "en": "soft like th in this; at word end often barely heard (usted ≈ “usté”)"
-   }
-  },
-  {
-   "glyph": "ch",
-   "kind": "digraph",
-   "name": "che",
-   "ipa": "t͡ʃ",
-   "example": "shower",
-   "hints": {
-    "de": "wie tsch in Tschüss — nie wie deutsches ch",
-    "en": "like ch in cheese"
    }
   }
  ]
