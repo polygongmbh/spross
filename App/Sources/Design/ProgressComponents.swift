@@ -62,7 +62,10 @@ struct BoxStatTile: View {
             }
         }
         .padding(DL.Space.l)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        // why: tiles pair up in a row and only one of them may carry a delta —
+        // the surface takes the row's full height so the quiet one is not a
+        // visibly shorter card next to its neighbour.
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(
             RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
                 .fill(Color.dlSurface)
