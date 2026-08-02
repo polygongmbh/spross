@@ -40,19 +40,25 @@ struct WatchQuizView: View {
                                   GridItem(.flexible(), spacing: 6)]
 
     private func quiz(_ question: WatchPracticeQuestion) -> some View {
-        VStack(spacing: 8) {
-            prompt(question.promptEntry)
-                .frame(maxWidth: .infinity)
-            // why: 2×2 grid instead of a tall list — the whole round fits on
-            // screen without scrolling.
-            LazyVGrid(columns: Self.columns, spacing: 6) {
-                ForEach(Array(question.options.enumerated()), id: \.offset) { index, option in
-                    optionButton(index, option, question)
+        // why: the scroll view is a seatbelt, not a layout — kern's text cap
+        // (`WatchSnapshotBuilder.MAX_TEXT_CHARS`) keeps the 2×2 grid on screen,
+        // and this only guarantees that a tile can still be READ and reached
+        // rather than clipped when Dynamic Type or the smallest face runs out.
+        ScrollView {
+            VStack(spacing: 8) {
+                prompt(question.promptEntry)
+                    .frame(maxWidth: .infinity)
+                // why: 2×2 grid instead of a tall list — all four options stay
+                // in sight at once, so no tap lands on an unseen tile.
+                LazyVGrid(columns: Self.columns, spacing: 6) {
+                    ForEach(Array(question.options.enumerated()), id: \.offset) { index, option in
+                        optionButton(index, option, question)
+                    }
                 }
             }
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 2)
         }
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, 2)
     }
 
     // MARK: - Prompt (role-aware)
@@ -62,6 +68,9 @@ struct WatchQuizView: View {
         promptText(entry)
             .font(.system(.title2, design: .rounded, weight: .bold))
             .minimumScaleFactor(0.6)
+            // why: unbounded, a multi-line prompt takes the height the grid needs
+            // and pushes the tiles off the face — the prompt yields first.
+            .lineLimit(3)
             .multilineTextAlignment(.center)
     }
 
@@ -97,7 +106,9 @@ struct WatchQuizView: View {
             Text(option)
                 .font(.system(.footnote, design: .rounded, weight: .semibold))
                 .minimumScaleFactor(0.5)
-                .lineLimit(3)
+                // why: a capped phrase wants four half-width lines before it
+                // starts shrinking — `minHeight` is a floor, so the tile grows.
+                .lineLimit(4)
                 .frame(maxWidth: .infinity, minHeight: 44)
         }
         .buttonStyle(.borderedProminent)
