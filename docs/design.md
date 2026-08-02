@@ -276,8 +276,7 @@ engine gates and the behavioral test inventory: kern README.
 
 ## Not yet
 
-Couple mode, accounts/sync, sw/uk UI chrome (those sources fall back to en),
-en trainer content.
+Couple mode, accounts/sync, sw/uk UI chrome (those sources fall back to en).
 Android has the core loop and ONE trainer, the letter drill (a chip on Heute — the
 platform has no trainer hub) — no Box browse, other trainers, alphabet sheet, widget,
 14-day strip or write-it-out step, and its settings are a language switch and an About

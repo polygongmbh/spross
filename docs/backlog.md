@@ -92,10 +92,11 @@ One line per item, with a file or context pointer, filed under the section it be
 
 - Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch,
   but revisit the cap if the active box outgrows it (kern README §7).
-- sw/uk number near-twins gated in `TrainerTypoBridgeGuardTests`
-  (sw `nne`↔`nane` incl. tens compounds; uk `дев'ять`↔`десять`):
+- Number near-twins gated in `TrainerTypoBridgeGuardTests`
+  (sw `nne`↔`nane` incl. tens compounds; uk `дев'ять`↔`десять`;
+  en `eight`↔`eighty`; es `sesenta`↔`setenta`, both with their compounds):
   at the drill's one-slip-per-word budget one can pass for the other —
-  product call pending (no slips at all for sw/uk number drills vs accept).
+  product call pending (no slips at all for number drills vs accept).
 - FSRS parameter optimization from review logs —
   enabled by the full per-card logs, unbuilt (kern README §5).
 - Watch multiple-choice distractors carry no novelty or recency criterion
