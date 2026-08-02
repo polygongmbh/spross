@@ -213,7 +213,13 @@ class LetterDrillFlow(
         if (LetterDrill.stageFor(level) == LetterStage.Dictation &&
             availability.dictationCandidates.isNotEmpty()
         ) {
-            return LetterDrill.sampleDictation(availability.dictationCandidates, level, avoiding, rng)
+            return LetterDrill.sampleDictation(
+                availability.dictationCandidates,
+                availability.alphabet,
+                level,
+                avoiding,
+                rng,
+            )
         }
         val alphabet = availability.alphabet ?: return null
         if (availability.promptableRefs.isEmpty()) return null

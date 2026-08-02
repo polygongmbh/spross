@@ -90,6 +90,17 @@ data class Alphabet(
         entries.mapNotNull { entry -> entry.ipa?.let { it to entry } }
             .groupBy({ (ipa, _) -> ipa }, { (_, entry) -> entry })
 
+    /**
+     * The graphemes this language singles out as worth a lesson — every drillable digraph
+     * and contextual row, lowercased. A word carrying one is a word whose SPELLING is the
+     * hard part, which is what a dictation rung is testing; the plain letters say nothing
+     * about difficulty, so they are not here.
+     */
+    val trickyGlyphs: List<String> = entries
+        .filter { it.drill && (it.kind == AlphabetKind.Digraph || it.kind == AlphabetKind.Contextual) }
+        .map { it.glyph.lowercase() }
+        .distinct()
+
     fun entry(ref: String): AlphabetEntry? = byRef[ref]
 
     /**

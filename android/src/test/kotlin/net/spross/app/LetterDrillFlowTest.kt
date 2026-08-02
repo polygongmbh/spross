@@ -15,6 +15,7 @@ import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Realization
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
+import net.spross.kern.trainer.LetterDrill
 import net.spross.kern.trainer.LetterStage
 
 /**
@@ -84,7 +85,7 @@ class LetterDrillFlowTest {
                 language = "uk",
                 alphabet = alphabet,
                 promptableRefs = alphabet.entries.map { it.ref },
-                dictationCandidates = cards,
+                dictationCandidates = cards.map { LetterDrill.DictationCandidate(it) },
             ),
             settledCards = settled,
             cards = cards.associateBy { it.id },

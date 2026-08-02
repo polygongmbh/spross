@@ -99,6 +99,10 @@ internal object LetterDrillFixture {
         card("rainbow", "Regenbogen"),
     )
 
+    /** The same words with a clean schedule — every weight 1, so the draw stays uniform. */
+    fun dictationCandidates(cards: List<Card> = dictationCards()): List<LetterDrill.DictationCandidate> =
+        cards.map { LetterDrill.DictationCandidate(it) }
+
     fun card(id: String, text: String, synonyms: List<String> = emptyList()): Card = Card(
         id = id,
         kind = CardKind.Noun,

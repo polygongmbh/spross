@@ -246,7 +246,9 @@ never the shape of the app.
   memorized blank (`catalog/README.md` § Alphabet owns which rows may draw). Tiles first
   among strangers, then among look- and sound-alikes, then
   typed, and — once enough words are settled — dictation of the learner's own
-  consolidated words, which never touches their schedule. Correctness is never color
+  consolidated words, which never touches their schedule and leans toward the ones worth
+  spelling twice: words carrying the language's hard graphemes, and words this learner has
+  forgotten before. Correctness is never color
   alone (checkmark/X over the tint); a miss never auto-advances. While reading aloud is
   muted the drill stays visible and blocks with the one-tap unmute row instead of hiding
   — a silenced feature must say how to unsilence it, and that one tap clears the phone's

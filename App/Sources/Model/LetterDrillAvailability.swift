@@ -24,8 +24,9 @@ struct LetterDrillAvailability {
     let alphabet: Alphabet?
     /// Refs Kern may sample, in file order.
     let promptableRefs: [String]
-    /// Consolidated, single-word, audible box cards — the dictation pool.
-    let dictationCandidates: [Card]
+    /// Consolidated, single-word, audible box cards — the dictation pool, each
+    /// carrying the schedule figures Kern weighs the draw by.
+    let dictationCandidates: [LetterDrill.DictationCandidate]
     /// Ref → every word this device can say the row's gap from, known words
     /// flagged. Built ONCE per run: it is a catalog sweep, and a per-question
     /// rebuild would re-audit every candidate's audio for a single draw.
@@ -69,6 +70,14 @@ struct LetterDrillAvailability {
             // the learner to type a sentence from a single hearing.
             .filter { !$0.target.text.contains(" ") }
             .filter { Self.audible($0.target.text, language: $0.target.lang, model: model, catalog: catalog) }
+            .map { card in
+                let memory = model.scheduling(for: card.id)
+                return LetterDrill.DictationCandidate(
+                    card: card,
+                    difficulty: memory?.memory?.difficulty ?? 0,
+                    lapses: memory?.lapses ?? 0
+                )
+            }
     }
 
     /// Every word Kern may gap for an entry, WITH its provenance: a slug only

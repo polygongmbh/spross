@@ -202,6 +202,7 @@ struct LetterDrillView: View {
         let rng = KotlinRandom.companion
         if drill.stage(level: level) == .dictation, !availability.dictationCandidates.isEmpty {
             return drill.sampleDictation(candidates: availability.dictationCandidates,
+                                         alphabet: availability.alphabet,
                                          level: Int32(level), avoidCardId: avoiding, rng: rng)
         }
         guard let alphabet = availability.alphabet, !availability.promptableRefs.isEmpty else {

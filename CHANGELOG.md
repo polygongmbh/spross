@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Dictation now asks for the words worth spelling twice.** The last rungs of the letter
+  drill picked any word you had settled, so an evening could go by on words you had never
+  once got wrong. It now leans toward the ones that earn the practice: words carrying the
+  letters the language's own alphabet page singles out, and words you have forgotten before
+  or that the schedule rates hard. Nothing is shut out — an easy word still comes up, just
+  less often than the one you keep missing.
+
 - **Fill-in-the-blank now blanks a different word each time.** Every sound had exactly one
   word to its name, so the "sch" question was always the same word and answering it a second
   time proved nothing about the sound. The drill now draws its gap word from the whole

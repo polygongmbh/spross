@@ -25,8 +25,11 @@ data class LetterDrillAvailability(
     val alphabet: Alphabet?,
     /** Refs kern may sample, in file order. */
     val promptableRefs: List<String>,
-    /** Consolidated, single-word, audible box cards — the dictation pool. */
-    val dictationCandidates: List<Card>,
+    /**
+     * Consolidated, single-word, audible box cards — the dictation pool, each carrying the
+     * schedule figures kern weighs the draw by.
+     */
+    val dictationCandidates: List<LetterDrill.DictationCandidate>,
     /**
      * Ref → every word this device can say the row's gap from, known words flagged. Built
      * ONCE per run: it is a catalog sweep, and a per-question rebuild would re-audit every
@@ -100,7 +103,15 @@ fun AppModel.letterDrillAvailability(): LetterDrillAvailability? {
             // why: a transcription task is ONE word — a phrase card would ask the
             // learner to type a sentence from a single hearing.
             .filter { ' ' !in it.target.text }
-            .filter { audible(it.target.text, it.target.lang, voice, cat) },
+            .filter { audible(it.target.text, it.target.lang, voice, cat) }
+            .map { card ->
+                val sched = box?.scheduling?.get(card.id)
+                LetterDrill.DictationCandidate(
+                    card = card,
+                    difficulty = sched?.memory?.difficulty ?: 0.0,
+                    lapses = sched?.lapses ?: 0,
+                )
+            },
         gapWords = gapWords,
     )
 }
