@@ -29,6 +29,26 @@ extension TrainerSessionView {
         }
     }
 
+    /// Take a word typed out exactly right as the answer, without a "Prüfen"
+    /// tap — same rule vocab review's produce field uses ("Finishing the word
+    /// IS the answer"). Drills have no reveal-then-retype step (`.revealed`
+    /// locks the field), so the guard only needs to keep clear of an in-flight
+    /// typo pause.
+    func approveWhenTyped() {
+        guard typoCorrection == nil else { return }
+        if case .revealed = feedback { return }
+        autoAdvance?.cancel()
+        let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty, case .exact = grade(trimmed) else {
+            if feedback == .correct { withAnimation { feedback = .neutral } }
+            return
+        }
+        if feedback != .correct { DLSound.correct() }
+        withAnimation { feedback = .correct }
+        let segment: SessionOutcome = hintUsed ? .tough : .right
+        AutoAdvance.scheduleLive(&autoAdvance) { advance(correct: true, segment: segment) }
+    }
+
     /// Drill grading verdict (mirrors the vocab Match ladder).
     private enum Grade {
         case exact

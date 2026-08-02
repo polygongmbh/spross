@@ -95,6 +95,7 @@ extension TrainerSessionView {
                             focus: $answerFocused) {
                 submit()
             }
+            .onChange(of: input) { _, _ in approveWhenTyped() }
             if case .revealed = feedback, let gloss = current.gloss {
                 // why: post-reveal text is read, not glanced at — same size as
                 // the vocab card's gloss so the two drills stay consistent.
