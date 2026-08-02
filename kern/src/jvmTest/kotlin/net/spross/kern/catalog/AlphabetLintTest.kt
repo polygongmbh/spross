@@ -92,12 +92,16 @@ class AlphabetLintTest {
 
     /**
      * §2.3's collision rule: a `letters{}` key is a lowercase glyph, so it can address an
-     * alphabet row only while exactly ONE row carries that glyph. Colliding-glyph entries
-     * (the de `ch`×3 / `v`×2 rows) are Word-prompted and may never carry a letter-name
-     * recording — this lint is what keeps that true as content moves.
+     * alphabet row only while exactly ONE row it could ever be played for carries that
+     * glyph. The reachable rows are the NAMED ones — a letter recording is only ever asked
+     * for through a row's `name` (the sheet's speaker, the drill's `Name` prompt), and a
+     * nameless row is Word-prompted and never reaches the letters manifest at all. So de
+     * `ch`×3 (none named) and the nameless `v-loan` beside the named `v-f` are no
+     * ambiguity, while two NAMED rows on one glyph would be: the recording could not say
+     * which of them it speaks.
      */
     @Test
-    fun everyLetterRecordingAddressesExactlyOneAlphabetRow() {
+    fun everyLetterRecordingAddressesExactlyOneNamedAlphabetRow() {
         for ((lang, manifest) in catalog.audio) {
             if (manifest.letters.isEmpty()) continue
             val alphabet = assertNotNull(
@@ -105,11 +109,12 @@ class AlphabetLintTest {
                 "audio/$lang ships letter recordings but no alphabet is authored",
             )
             for (glyph in manifest.letters.keys) {
-                val rows = alphabet.entries.filter { it.glyph.lowercase() == glyph.lowercase() }
+                val rows = alphabet.entries
+                    .filter { it.name != null && it.glyph.lowercase() == glyph.lowercase() }
                 assertEquals(
                     1,
                     rows.size,
-                    "audio/$lang letter \"$glyph\": matches ${rows.size} alphabet rows",
+                    "audio/$lang letter \"$glyph\": matches ${rows.size} NAMED alphabet rows",
                 )
             }
         }

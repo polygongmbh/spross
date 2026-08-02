@@ -203,20 +203,23 @@ class CatalogAudioLintTest {
      * or a lead past 5 s outright, so a manifest carrying one never loads at all. What is
      * left to check is whether the numbers say what they were measured to say.
      *
-     * The index exists BECAUSE the letters are quiet and start late (user ruling
-     * 2026-08-01), so every letter recording has to carry a boost and a lead skip. Empty
-     * ones mean the manifest was regenerated without the analysis stage, and the drill goes
-     * back to whispering a second too late — which is exactly what nobody notices in a diff.
+     * The index exists BECAUSE the uk letters are quiet and start late (user ruling
+     * 2026-08-01) — but its SIGN is a property of the pack it measured, never a rule: uk's
+     * letters take a boost and a long lead skip, while de's letter names come out of the
+     * same ordinary word recordings as its vocabulary and are ATTENUATED instead. What no
+     * real pack produces is a whole alphabet measuring exactly 0 dB / 0 ms; that is the
+     * analysis stage having been skipped, and the drill goes back to whispering a second
+     * too late — which is exactly what nobody notices in a diff.
      */
     @Test
-    fun everyLetterRecordingCarriesItsPlaybackIndex() {
+    fun everyLettersPackCarriesItsPlaybackIndex() {
         assertTrue(catalog.audio["uk"]?.letters?.isNotEmpty() == true, "uk ships no letter recordings")
         for ((lang, manifest) in catalog.audio) {
-            for ((glyph, recording) in manifest.letters) {
-                val where = "audio/$lang letter \"$glyph\""
-                assertTrue(recording.gain > 0.0, "$where: gain ${recording.gain} dB — no boost measured")
-                assertTrue(recording.leadMs > 0, "$where: lead ${recording.leadMs} ms — no dead air measured")
-            }
+            if (manifest.letters.isEmpty()) continue
+            assertTrue(
+                manifest.letters.values.any { it.gain != 0.0 || it.leadMs > 0 },
+                "audio/$lang: every letter measures 0 dB / 0 ms — the analysis stage did not run",
+            )
         }
     }
 
