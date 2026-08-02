@@ -172,6 +172,22 @@ struct DLSoftButtonStyle: ButtonStyle {
     }
 }
 
+/// Compact icon-only action: one glyph on a round tint, sized for a thumb.
+struct DLIconButtonStyle: ButtonStyle {
+    var color: Color = .dlAccent
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(DL.Fonts.headline)
+            .foregroundStyle(color)
+            .frame(width: 40, height: 40)
+            .background(color.opacity(0.14), in: Circle())
+            .opacity(configuration.isPressed ? 0.7 : 1)
+            .scaleEffect(configuration.isPressed ? 0.9 : 1)
+            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: configuration.isPressed)
+    }
+}
+
 // MARK: - Preview
 
 #Preview("Palette") {
@@ -205,6 +221,12 @@ struct DLSoftButtonStyle: ButtonStyle {
                 .buttonStyle(DLPrimaryButtonStyle())
             Button("preview.skip") {}
                 .buttonStyle(DLSoftButtonStyle(color: .dlTeal))
+            HStack(spacing: DL.Space.m) {
+                Button { } label: { Image(systemName: "plus") }
+                    .buttonStyle(DLIconButtonStyle())
+                Button { } label: { Image(systemName: "speaker.wave.2.fill") }
+                    .buttonStyle(DLIconButtonStyle(color: .dlTeal))
+            }
         }
         .padding(DL.Space.xl)
     }

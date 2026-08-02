@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **The Box tab's area cards now show what's actually left to add.** Each area folds
+  into a single card — tap its name to reveal the words inside, tap the small plus
+  beside it to pack in what's still unscheduled — and its progress bar now measures
+  against the area's full word count instead of just what's already been reviewed,
+  so it stops reading as finished while more words are still waiting to be added.
+  Groups fold the same way, opening on whichever one is already in progress, with
+  every area's emoji shown up front so a folded group still says what's inside.
+
 ## 3.2.0 — 2026-08-02
 
 - **Number, clock and phrase drills now finish the moment you type the right answer** —

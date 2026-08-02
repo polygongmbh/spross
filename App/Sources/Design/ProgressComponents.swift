@@ -74,7 +74,19 @@ struct BoxStatTile: View {
 
 // MARK: AreaChip
 
-/// Per-area chip: emoji + name + settled/learning split bar with counts.
+/// One stretch of the area bar; empty stretches are dropped before layout.
+private struct AreaBarSegment: Identifiable {
+    let id: Int
+    let count: Int
+    let color: Color
+}
+
+/// Per-area chip: emoji + name + settled/learning counts over a bar that
+/// measures both against the area's FULL card count, so the untouched rest
+/// of an area stays visible instead of a bar that always reads as full.
+///
+/// Plain content, no card chrome: it sits inside its area's card on the Box
+/// screen, and a second background there would read as a card in a card.
 struct AreaChip: View {
     let emoji: String
     let name: String
@@ -82,34 +94,46 @@ struct AreaChip: View {
     let settled: Int
     /// Cards still in learning/relearning ("frisch").
     let learning: Int
+    /// Every card the area holds, introduced or not — the bar's denominator.
+    let total: Int
 
-    private var total: Int { max(settled + learning, 1) }
+    /// Settled → learning → not yet introduced, measured against `total`.
+    private var segments: [AreaBarSegment] {
+        [(settled, Color.dlSuccess),
+         (learning, Color.dlAmber),
+         (max(total - settled - learning, 0), Color.dlSeparator)]
+            .enumerated()
+            .filter { $0.element.0 > 0 }
+            .map { AreaBarSegment(id: $0.offset, count: $0.element.0, color: $0.element.1) }
+    }
+
+    /// Never below the introduced count: a stale `total` must not overflow the bar.
+    private var denominator: CGFloat { CGFloat(max(total, settled + learning, 1)) }
 
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
             HStack(spacing: DL.Space.s) {
                 Text(emoji).accessibilityHidden(true)
                 Text(name)
-                    .font(DL.Fonts.headline)
+                    .font(DL.Fonts.title)
                     .foregroundStyle(Color.dlTextPrimary)
                     .lineLimit(1)
                 Spacer(minLength: DL.Space.s)
-                Text("progress.consolidatedFresh \(settled.formatted()) \(learning.formatted())")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
             }
+            counts
             GeometryReader { geo in
-                if settled + learning == 0 {
-                    // why: a fresh area has nothing settled or learning — a full
-                    // amber bar would read as "everything learning"; show neutral.
+                if segments.isEmpty {
+                    // why: an empty area still needs a bar in its slot — a full
+                    // amber one would read as "everything learning"; show neutral.
                     Capsule().fill(Color.dlSeparator)
                 } else {
+                    let unit = max(geo.size.width - CGFloat(segments.count - 1) * 2, 0) / denominator
                     HStack(spacing: 2) {
-                        Capsule()
-                            .fill(Color.dlSuccess)
-                            .frame(width: geo.size.width * CGFloat(settled) / CGFloat(total))
-                        Capsule()
-                            .fill(Color.dlAmber)
+                        ForEach(segments) { segment in
+                            Capsule()
+                                .fill(segment.color)
+                                .frame(width: unit * CGFloat(segment.count))
+                        }
                     }
                 }
             }
@@ -117,13 +141,18 @@ struct AreaChip: View {
             .clipShape(Capsule())
             .accessibilityHidden(true) // why: counts above already carry the split
         }
-        .padding(DL.Space.l)
-        .background(
-            RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                .fill(Color.dlSurface)
-        )
-        .dlCardShadow()
         .accessibilityElement(children: .combine)
+    }
+
+    /// Same idiom as the Box screen's phrase counts: icon-led caption labels.
+    private var counts: some View {
+        HStack(spacing: DL.Space.l) {
+            Label("progress.consolidatedCount \(settled.formatted())", systemImage: "checkmark.seal.fill")
+            Label("progress.freshCount \(learning.formatted())", systemImage: "leaf.fill")
+            Spacer(minLength: 0)
+        }
+        .font(DL.Fonts.caption)
+        .foregroundStyle(Color.dlTextSecondary)
     }
 }
 
@@ -166,6 +195,18 @@ struct PhaseBadge: View {
 
 // MARK: - Previews
 
+/// The card its real callers wrap it in, so the preview shows it in place.
+private extension View {
+    func previewCard() -> some View {
+        padding(DL.Space.l)
+            .background(
+                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
+                    .fill(Color.dlSurface)
+            )
+            .dlCardShadow()
+    }
+}
+
 #Preview("Progress pieces") {
     ScrollView {
         VStack(alignment: .leading, spacing: DL.Space.xl) {
@@ -174,8 +215,12 @@ struct PhaseBadge: View {
                 BoxStatTile(emoji: "🌳", value: "84", label: "progress.consolidated")
                 BoxStatTile(emoji: "🌱", value: "48", label: "progress.fresh")
             }
-            AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6)
-            AreaChip(emoji: "🛁", name: "Bad", settled: 4, learning: 9)
+            AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6, total: 24)
+                .previewCard()
+            AreaChip(emoji: "🛁", name: "Bad", settled: 4, learning: 9, total: 41)
+                .previewCard()
+            AreaChip(emoji: "🧰", name: "Werkstatt", settled: 0, learning: 0, total: 17)
+                .previewCard()
             HStack(spacing: DL.Space.s) {
                 ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }
             }
@@ -188,7 +233,8 @@ struct PhaseBadge: View {
 #Preview("Progress pieces · dark") {
     VStack(alignment: .leading, spacing: DL.Space.xl) {
         StreakFlameView(days: 3)
-        AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6)
+        AreaChip(emoji: "🍳", name: "Küche", settled: 18, learning: 6, total: 52)
+            .previewCard()
         HStack(spacing: DL.Space.s) {
             ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }
         }

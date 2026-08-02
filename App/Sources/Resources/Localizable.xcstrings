@@ -417,22 +417,6 @@
         }
       }
     },
-    "box.hideCards" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Karten ausblenden"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hide cards"
-          }
-        }
-      }
-    },
     "box.phrasesLocked %@" : {
       "localizations" : {
         "de" : {
@@ -482,46 +466,6 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld sentences unlocked"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "box.showCards %lld" : {
-      "localizations" : {
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld Karte anzeigen"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld Karten anzeigen"
-                }
-              }
-            }
-          }
-        },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Show %lld card"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Show %lld cards"
                 }
               }
             }
@@ -1841,18 +1785,18 @@
         }
       }
     },
-    "progress.consolidatedFresh %@ %@" : {
+    "progress.consolidatedCount %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ gefestigt · %@ frisch"
+            "value" : "%@ gefestigt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ consolidated · %2$@ fresh"
+            "value" : "%@ consolidated"
           }
         }
       }
@@ -1869,6 +1813,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fresh"
+          }
+        }
+      }
+    },
+    "progress.freshCount %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ frisch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ fresh"
           }
         }
       }

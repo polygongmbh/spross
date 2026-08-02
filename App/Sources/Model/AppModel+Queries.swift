@@ -273,6 +273,18 @@ extension AppModel {
         }
     }
 
+    /// The group the Box browser opens on: the first one holding cards already
+    /// in learning — where the learner left off, and the only group whose
+    /// numbers have anything to say. A box nothing has been started in falls
+    /// back to the first group, so the screen never opens fully folded.
+    var defaultExpandedGroupID: String? {
+        let sections = areaGroupSections
+        let started = sections.first { section in
+            section.areas.contains { (areaStats($0)?.activeCards ?? 0) > 0 }
+        }
+        return started?.id ?? sections.first?.id
+    }
+
     func areaStats(_ name: String) -> AreaStatistics? {
         stats?.areas.first { $0.name == name }
     }
