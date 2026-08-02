@@ -15,17 +15,19 @@ One line per item, with a file or context pointer, filed under the section it be
   (method: `../../docs/sprachposter-learnings.md`).
 - Phrase→component auto-linking gaps: ~half of phrases carry no `components`
   (naive matcher — `catalog/README.md` § concepts.json).
-- Pronunciation coverage is partial and uneven — 200/402 de single words, 280/384 sw,
-  304/399 uk, 310/339 es carry a recording (`catalog/audio/`), and NO phrase carries one:
-  the packs only ever matched single-word realizations, leaving ~126 phrases per language
-  to TTS (silent on sw-iOS, which has no voice). What Commons never had is listed per pack
-  in `data/reference/audio/pack-*/missing.txt` (de 171, uk 37, sw 17, es 29); gap-filling
-  (commissioning or a paid voice) is a content project, scoped in that folder's README.
+- Pronunciation coverage is uneven across LANGUAGES and absent for phrases — the packs
+  only ever matched single-word realizations, so no phrase carries a recording and every
+  one falls to TTS (silent on sw-iOS, which has no voice). What Commons never had is
+  listed per pack in `data/reference/audio/pack-*/missing.txt`; gap-filling (commissioning
+  or a paid voice) is a content project, scoped in that folder's README.
 - Voice consistency varies by pack: sw and uk are a single speaker throughout, de is
-  half one (104 of 200) — one accent, one register, one microphone — while es is a crowd
-  of 19 Lingua Libre speakers in 20 credit groups, none with a stated country or variety
-  (`data/reference/audio/pack-es/ATTRIBUTION.md` carries the accent caveat); and uk
-  `ь` has no letter recording at all (32/33).
+  mostly one (Jeuwre) with a Lingua Libre remainder, while es is a crowd of Lingua Libre
+  speakers in twenty credit groups, none with a stated country or variety
+  (`data/reference/audio/pack-es/ATTRIBUTION.md` carries the accent caveat). Deliberately
+  NOT addressed by shipping several recordings per word: measured, only 18% of German and
+  29% of Spanish words have a second voice on Commons at all, uk and sw have effectively
+  none, and the alternative is usually the noisier take — the fix for unevenness is a
+  quality floor, not more voices.
 - The alphabet files are LLM-authored and await a native-speaker sweep of every hint and
   every letter name (`catalog/alphabet/uk.json`, `catalog/alphabet/de.json`): 12 open
   questions for uk (the name «йот» vs the older «ий», the в allophony and о raising
@@ -64,10 +66,19 @@ One line per item, with a file or context pointer, filed under the section it be
   voice speaks /s/ where the c and z rows promise /θ/ and contradicts them out loud. Every
   divergence LatAm would need instead — seseo, sheísmo, the aspirated j, the dropped final
   d, the letter names — is written up row by row in the same `es-notes.md`.
-- Commission the two missing uk letter recordings — «мʼякий знак» and «апостроф»: no
-  Commons file exists for either, so `ь` is spoken by the device voice where one is
-  installed and silently leaves the drill where none is, and the apostrophe can never be
-  prompted at all. Two clips from the pack's own speaker would close both.
+- Commission the letter names Commons does not have — seven clips close every remaining
+  gap in the alphabet sheets:
+  - uk «мʼякий знак». The `<Аа> – ukrainian.ogg` series is exactly 32 files with no
+    soft-sign entry and Lingua Libre has nothing for the phrase; only the two halves exist
+    separately (`Uk-м'який.ogg`, `Uk-знак.ogg`), and splicing them would be an adaptation
+    under BY-SA as well as a recording of something nobody said. So `ь` is spoken by the
+    device voice where one is installed and is silent where none is. (Its sibling
+    «апостроф» is closed — Tohaomg's Lingua Libre file.)
+  - es `elle`, `ye`, `erre doble`, `hache`, `eñe`, `uve`. Verified absent by enumerating
+    the whole 19k-file `Category:Lingua Libre pronunciation-spa` AND by probing the
+    `Es-<name>.ogg/.wav/.flac` convention in every casing. Six clips from one Spanish
+    speaker would also fix what the other six cannot: the Spanish letter block currently
+    changes voice row to row.
 - No field carries Ukrainian stress, which is unmarked in writing and load-bearing:
   учень, миша and одяг teach their vowel only if the sheet can show which syllable
   carries it. A `stress` field on realizations (`catalog/README.md`) is the shape the
@@ -159,7 +170,7 @@ One line per item, with a file or context pointer, filed under the section it be
 ## Compliance
 
 - CC BY-SA vs App Store DRM, open before the FIRST submission, and needing a legal read
-  rather than an engineering one: the obligation, the 690 files it covers and the
+  rather than an engineering one: the obligation, the files it covers and the
   mitigation already on record are `audio-licensing.md` §6.1, which owns this question
   along with the es accent caveat and the Azure gap-fill terms.
 
