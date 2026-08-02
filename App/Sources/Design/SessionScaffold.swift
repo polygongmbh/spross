@@ -61,14 +61,7 @@ struct SessionScaffold<Content: View>: View {
 
     private var topBar: some View {
         HStack(spacing: DL.Space.m) {
-            Button(action: onClose) {
-                Image(systemName: "xmark")
-                    .font(.subheadline.weight(.bold))
-                    .foregroundStyle(Color.dlTextSecondary)
-                    .frame(width: 44, height: 44)
-                    .background(Circle().fill(Color.dlSurfaceTint))
-            }
-            .accessibilityLabel("a11y.endSession")
+            SessionCloseButton(action: onClose)
 
             GeometryReader { geo in
                 if outcomes.isEmpty {
@@ -138,6 +131,39 @@ struct SessionScaffold<Content: View>: View {
 
     private var readAloudValue: LocalizedStringKey {
         Pronouncer.shared.muted ? "a11y.off" : "a11y.on"
+    }
+}
+
+// MARK: - SessionCloseButton
+
+/// The way out of a running session — and, in the same corner, out of the
+/// screen that ends it. The thumb that closed one round early finds the next
+/// round's exit where it left it, without a trip to the bottom of the screen.
+struct SessionCloseButton: View {
+    var label: LocalizedStringKey = "a11y.endSession"
+    var action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: "xmark")
+                .font(.subheadline.weight(.bold))
+                .foregroundStyle(Color.dlTextSecondary)
+                .frame(width: 44, height: 44)
+                .background(Circle().fill(Color.dlSurfaceTint))
+        }
+        .accessibilityLabel(label)
+    }
+}
+
+extension View {
+    /// Hangs the close button in the top-left corner of a summary screen, at
+    /// the inset `SessionScaffold` uses — so it lands under the same thumb.
+    func sessionCloseCorner(label: LocalizedStringKey = "a11y.endSession",
+                            action: @escaping () -> Void) -> some View {
+        overlay(alignment: .topLeading) {
+            SessionCloseButton(label: label, action: action)
+                .padding(DL.Space.l)
+        }
     }
 }
 

@@ -83,6 +83,9 @@ struct SessionCompletionView: View {
         .overlay(ConfettiView(run: celebration).ignoresSafeArea())
         .contentShape(Rectangle())
         .onTapGesture(perform: replay)
+        // why: after the overlay and the replay gesture, so the corner stays
+        // tappable — a tap there leaves instead of setting off the confetti.
+        .sessionCloseCorner(label: "common.done", action: onDone)
         .onAppear {
             burst = true
             DLSound.cheer()

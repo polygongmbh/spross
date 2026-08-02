@@ -266,6 +266,7 @@ extension LetterDrillView {
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.dlBackground.ignoresSafeArea())
+        .sessionCloseCorner(label: "common.done") { dismiss() }
     }
 
     private var summaryEmoji: String {

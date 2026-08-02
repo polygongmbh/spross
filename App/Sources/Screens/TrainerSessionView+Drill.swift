@@ -263,6 +263,7 @@ extension TrainerSessionView {
         .overlay {
             if newRecord { ConfettiView().ignoresSafeArea() }
         }
+        .sessionCloseCorner(label: "common.done") { dismiss() }
     }
 
     private var summaryEmoji: String {

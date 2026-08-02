@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **The screen that ends a round can be left from the same corner the round could.** The
+  close cross now sits top left on the finish screen and on a drill's summary too, so the
+  thumb that closed one round early finds the next one's way out where it left it, instead
+  of travelling to the bottom of the screen and back.
+
 ## 3.1.0 — 2026-08-02
 
 - **German is spoken by people almost everywhere now, not by the device's voice.** Most
