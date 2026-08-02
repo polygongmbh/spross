@@ -26,11 +26,25 @@ import net.spross.kern.store.StoreJson
  * [WatchEntryDto.distractors] ships the multiple-choice tiles already ranked
  * and already on the entry's own option side, so the watch only shuffles.
  * Capped at [ENTRY_CAP] to stay under the ~60 KB `updateApplicationContext`
- * limit.
+ * limit, and at [MAX_TEXT_CHARS] per side so nothing arrives that a tile
+ * cannot hold.
  */
 object WatchSnapshotBuilder {
     const val SCHEMA_VERSION: Int = 4
     const val ENTRY_CAP: Int = 60
+
+    /**
+     * Longest text the watch will carry, per side. Four tiles in a 2×2 grid on a
+     * 41 mm face hold about this much before the words shrink past reading, and a
+     * four-way pick between sentences is exposure rather than recall anyway — a
+     * longer phrase is taught on the phone, where it has a card to itself.
+     *
+     * Unlike [ENTRY_CAP] this is not a wire budget but a legibility one, so it
+     * gates the option POOL as well: a distractor too long for its tile breaks
+     * the question exactly as badly as an answer too long for its tile.
+     */
+    const val MAX_TEXT_CHARS: Int = 24
+
     private const val RECOGNIZE = "recognize"
 
     fun build(
@@ -57,6 +71,9 @@ object WatchSnapshotBuilder {
         val ranked = Inventory.active(state).mapNotNull { sched ->
             val memory = sched.memory ?: return@mapNotNull null
             val due = sched.due ?: return@mapNotNull null
+            // why: one predicate for both lists below — a card the watch cannot
+            // render is also a card it must not offer as somebody else's tile.
+            if (!fitsOnWatch(state.cards.getValue(sched.cardId))) return@mapNotNull null
             // Exposure tiers for scheduled cards; the watch never introduces,
             // so the enqueued-new and upcoming tiers are absent by design.
             val tier = when (sched.phase) {
@@ -83,6 +100,16 @@ object WatchSnapshotBuilder {
             entries = entries.map { offer(it, state, pool, citationPrefixes) },
         )
     }
+
+    /**
+     * Whether every form [card] can put on the watch clears [MAX_TEXT_CHARS].
+     * Both sides count, since either can be the option side once the role flips,
+     * and the target's synonyms count with them — a rotated prompt form
+     * (`recognitionPromptForm`) is rendered just as the canonical one is.
+     */
+    private fun fitsOnWatch(card: Card): Boolean =
+        card.source.text.length <= MAX_TEXT_CHARS &&
+            (listOf(card.target.text) + card.target.synonyms).all { it.length <= MAX_TEXT_CHARS }
 
     private data class Ranked(
         val isDue: Boolean,
