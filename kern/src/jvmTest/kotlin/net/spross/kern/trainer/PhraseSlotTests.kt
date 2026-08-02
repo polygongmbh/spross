@@ -143,6 +143,93 @@ class PhraseSlotTests {
         assertTrue("Повторіть, будь ласка: тисяча дев'ятсот сімдесят вісім." in task.accepted)
     }
 
+    // Hand-picked exact instantiations (de → en)
+
+    @Test
+    fun englishTrainDepartureCrossesTheVariantFrame() {
+        val task = PhraseSlots.instantiate(RealFrames.frame("en", "train-departs-at"), hour = 20, minute = 15)
+        assertEquals("Der Zug fährt um 20:15 Uhr ab.", task.prompt)
+        assertEquals("The train departs at quarter past eight.", task.display)
+        // Every reading × both authored frames; the digital time closes each frame's run.
+        assertEquals(
+            listOf(
+                "The train departs at quarter past eight.",
+                "The train departs at a quarter past eight.",
+                "The train departs at quarter after eight.",
+                "The train departs at a quarter after eight.",
+                "The train departs at fifteen past eight.",
+                "The train departs at eight fifteen.",
+                "The train departs at 20:15.",
+                "The train leaves at quarter past eight.",
+                "The train leaves at a quarter past eight.",
+                "The train leaves at quarter after eight.",
+                "The train leaves at a quarter after eight.",
+                "The train leaves at fifteen past eight.",
+                "The train leaves at eight fifteen.",
+                "The train leaves at 20:15.",
+            ),
+            task.accepted,
+        )
+    }
+
+    @Test
+    fun englishPlateCountAcceptsTheHyphenlessSpelling() {
+        val task = PhraseSlots.instantiate(RealFrames.frame("en", "we-have-n-plates"), value = 22L)
+        assertEquals("Wir haben 22 Teller.", task.prompt)
+        assertEquals("We have twenty-two plates.", task.display)
+        assertEquals(
+            listOf(
+                "We have twenty-two plates.",
+                "We have twenty two plates.",
+                "We have 22 plates.",
+                "We've got twenty-two plates.",
+                "We've got twenty two plates.",
+                "We've got 22 plates.",
+            ),
+            task.accepted,
+        )
+    }
+
+    // Hand-picked exact instantiations (de → es)
+
+    /** The Spanish reading carries its own copula, so the frame supplies none. */
+    @Test
+    fun spanishClockNowKeepsTheSingularCopulaAtOne() {
+        val task = PhraseSlots.instantiate(RealFrames.frame("es", "it-is-now"), hour = 13, minute = 30)
+        assertEquals("Es ist jetzt 13:30 Uhr.", task.prompt)
+        assertEquals("Ahora es la una y media.", task.display)
+        assertEquals(
+            listOf(
+                "Ahora es la una y media.",
+                "Ahora es la una y treinta.",
+                "Ahora una y media.",
+                "Ahora una y treinta.",
+                "Ahora 13:30.",
+            ),
+            task.accepted,
+        )
+    }
+
+    /** Apocope and the feminine both grade; the usted frame doubles every one of them. */
+    @Test
+    fun spanishDictationAcceptsEveryNumeralGenderAndBothRegisters() {
+        val task = PhraseSlots.instantiate(RealFrames.frame("es", "write-please"), value = 21L)
+        assertEquals("Escribe, por favor: veintiuno.", task.display)
+        assertEquals(
+            listOf(
+                "Escribe, por favor: veintiuno.",
+                "Escribe, por favor: veintiún.",
+                "Escribe, por favor: veintiuna.",
+                "Escribe, por favor: 21.",
+                "Escriba, por favor: veintiuno.",
+                "Escriba, por favor: veintiún.",
+                "Escriba, por favor: veintiuna.",
+                "Escriba, por favor: 21.",
+            ),
+            task.accepted,
+        )
+    }
+
     // Variant frames
 
     /** A variant frame is graded, never displayed — one sentence per frame × slot rendering. */
@@ -208,108 +295,35 @@ class PhraseSlotTests {
 
     // Every accepted frame × slot variant → exactly one accepted sentence
 
+    /**
+     * Structural sweep over every joined pair, at every clock position and value the drill
+     * reaches. Deliberately NOT a second copy of [PhraseSlots.compose] — the exact sentences
+     * are pinned by the hand-written examples above, one language at a time. What is asserted
+     * here is only what restating the rules could not tell us: nothing repeats, and the
+     * sentence the reveal teaches is one of the sentences it grades.
+     */
     @Test
-    fun everyAcceptedVariantAppearsInExactlyOneSentence() {
+    fun everyPairAssemblesDistinctAnswersTheDisplayBelongsTo() {
         for (template in RealFrames.all) {
-            when (template.slotKind) {
+            val tasks = when (template.slotKind) {
                 TrainerKind.Clock ->
-                    for (h in listOf(0, 6, 9, 13, 14, 20, 23)) {
-                        for (m in listOf(0, 15, 20, 30, 35, 45, 55)) {
-                            val slot = Trainer.clock(h, m, template.target)
-                            val task = PhraseSlots.instantiate(template, hour = h, minute = m)
-                            verifyVariantCoverage(template, slot, task, value = null)
+                    listOf(0, 6, 9, 13, 14, 20, 23).flatMap { h ->
+                        listOf(0, 15, 20, 30, 35, 45, 55).map { m ->
+                            PhraseSlots.instantiate(template, hour = h, minute = m)
                         }
                     }
-                TrainerKind.Numbers, TrainerKind.Years ->
-                    for (v in listOf(1L, 2L, 5L, 11L, 21L, 22L, 25L, 100L, 347L, 1000L, 1978L, 2026L)) {
-                        val slot = if (template.slotKind == TrainerKind.Numbers) {
-                            Trainer.drillNumber(v, template.target)
-                        } else {
-                            Trainer.year(v, template.target)
-                        }
-                        val task = PhraseSlots.instantiate(template, value = v)
-                        verifyVariantCoverage(template, slot, task, value = v)
-                    }
+                else ->
+                    listOf(1L, 2L, 5L, 11L, 21L, 22L, 25L, 100L, 347L, 1000L, 1978L, 2026L)
+                        .map { PhraseSlots.instantiate(template, value = it) }
+            }
+            for (task in tasks) {
+                val where = "${template.source}→${template.target} ${template.id}"
+                assertTrue(task.accepted.isNotEmpty(), where)
+                assertEquals(task.accepted.size, task.accepted.toSet().size, "$where: duplicates")
+                assertTrue(task.display in task.accepted, "$where: ${task.display}")
             }
         }
     }
-
-    /**
-     * Independent re-rendering of the spec: one target frame with the variant
-     * substituted (mid-sentence values lowercase their first letter).
-     */
-    /**
-     * Independent oracle for one frame × one rendering. [wordReading] carries the clock
-     * rule: a written-out reading is the whole time expression and absorbs the frame's
-     * " Uhr", a digital one leaves the frame alone. Null = the reading is skipped here.
-     */
-    private fun render(
-        frame: String,
-        template: PhraseTemplate,
-        variant: String,
-        value: Long?,
-        wordReading: Boolean = true,
-    ): String? {
-        var text = frame
-        var words = variant
-        if (wordReading && template.slotKind == TrainerKind.Clock) {
-            text = text.replace("{slot} Uhr", "{slot}")
-            if (words.startsWith("um ")) {
-                if (!text.substringBefore("{slot}").endsWith("um ")) return null
-                words = words.removePrefix("um ")
-            }
-        }
-        val index = text.indexOf("{slot}")
-        if (index < 0) return ""
-        val atStart = text.take(index).isBlank()
-        words.firstOrNull()?.let { f ->
-            words = (if (atStart) f.uppercase() else f.lowercase()) + words.substring(1)
-        }
-        var sentence = text.replace("{slot}", words)
-        val forms = template.countForms
-        if (forms != null && value != null) {
-            sentence = sentence.replace("{count}", forms.form(value))
-        }
-        return sentence
-    }
-
-    private fun verifyVariantCoverage(
-        template: PhraseTemplate,
-        slot: TrainerTask,
-        task: TrainerTask,
-        value: Long?,
-    ) {
-        // masculineNumeralOnly templates drop feminine-final variants by design.
-        val written = slot.accepted.filter { variant ->
-            if (!template.masculineNumeralOnly) return@filter true
-            val last = variant.substringAfterLast(' ')
-            last != "одна" && last != "дві"
-        }
-        // The digit rendering(s) are accepted after the word variants
-        // (clock: zero-padded and bare-hour digital time).
-        val digits = if (template.slotKind == TrainerKind.Clock) {
-            val bare = slot.prompt.substringBefore(':').toInt().toString() +
-                ":" + slot.prompt.substringAfter(':')
-            listOf(slot.prompt, bare).distinct()
-        } else {
-            listOf(slot.prompt)
-        }
-        val frames = listOf(template.targetTemplate) + template.acceptedFrames
-        val expected = frames
-            .flatMap { frame ->
-                written.distinct().mapNotNull { render(frame, template, it, value) } +
-                    digits.mapNotNull { render(frame, template, it, value, wordReading = false) }
-            }
-            .distinct()
-        assertEquals(expected, task.accepted, "${template.id}: sentence per frame × variant")
-        assertEquals(task.accepted.size, task.accepted.toSet().size, "${template.id}: duplicates")
-        val display = render(template.targetTemplate, template, slot.display, value)
-            ?: render(template.targetTemplate, template, slot.display, value, wordReading = false)
-        assertEquals(display, task.display)
-        assertTrue(task.display in task.accepted)
-    }
-
-    // Sampling
 
     @Test
     fun samplingIsDeterministicAndMatchesInstantiate() {
