@@ -213,6 +213,10 @@ struct PhaseBadge: View {
         Label(phase.label, systemImage: icon)
             .font(DL.Fonts.caption)
             .foregroundStyle(phase.color)
+            // why: a one-word badge in a crowded row gets compressed until it
+            // wraps ("Ne/u"); it keeps its width and the word beside it gives.
+            .lineLimit(1)
+            .fixedSize(horizontal: true, vertical: false)
             .padding(.horizontal, DL.Space.m)
             .padding(.vertical, DL.Space.xs + 1)
             .background(phase.color.opacity(0.14), in: Capsule())

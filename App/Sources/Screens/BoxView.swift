@@ -200,24 +200,25 @@ private struct BoxCardRow: View {
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 // Exposure surfaces render the TARGET side first (contract §6).
-                HStack(spacing: DL.Space.xs) {
-                    Text(CardDisplay.citation(of: card.target))
-                        .font(DL.Fonts.body)
-                        .foregroundStyle(Color.dlTextPrimary)
-                        .lineLimit(1)
-                    if let pronounce {
-                        SpeakerIcon(size: .small,
-                                   isPlaying: model.isPronouncing(card.target.text, lang: card.target.lang),
-                                   pronounce: pronounce)
-                            .accessibilityLabel("a11y.pronounce")
-                    }
-                }
+                Text(CardDisplay.citation(of: card.target))
+                    .font(DL.Fonts.body)
+                    .foregroundStyle(Color.dlTextPrimary)
+                    .lineLimit(1)
                 Text(card.source.text)
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                     .lineLimit(1)
             }
             Spacer(minLength: DL.Space.s)
+            // why: the speaker's 44pt tap target is taller than both lines of
+            // text — beside the word it stretched the row; its own column lets
+            // the row close to the height the words actually need.
+            if let pronounce {
+                SpeakerIcon(size: .small,
+                            isPlaying: model.isPronouncing(card.target.text, lang: card.target.lang),
+                            pronounce: pronounce)
+                    .accessibilityLabel("a11y.pronounce")
+            }
             if sched?.suspended == true {
                 Text(verbatim: "💤")
                     .accessibilityLabel("box.suspended")
