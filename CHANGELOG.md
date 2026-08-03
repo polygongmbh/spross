@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- **On Android the day counts the way it does on the iPhone.** Both apps had been keeping the
+  same rules in two places, and the copies had drifted apart: the extra round after a finished
+  day reached for new words instead of pulling practice forward, the summary called a word
+  strengthened for merely not having been missed, leaving the app mid-round could lose the
+  day's reviews along with the streak they had earned, and a phone set to a language the
+  catalog cannot teach from would not start at all. Those rules now have one home that both
+  apps read from, so there is nothing left to drift. The word family under a card no longer
+  repeats the word already standing above it, and the language picker names each language the
+  way it names itself. On the iPhone, the streak strip and the flame beside it now agree on
+  which days the run covers.
+
 - **The box can be searched, and answers with your own word when it has none.** Reaching a
   word used to mean knowing which area it sat on and folding your way down to it. The
   magnifier in the box's bar takes either language, or the name of an area: an area opens

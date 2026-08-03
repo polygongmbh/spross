@@ -3,14 +3,22 @@
 Audit of 2026-08-03, sweeping `App/`, `Watch/`, `Widgets/`, `Shared/` against `kern/` and `android/`.
 Delete this file once the moves it lists have shipped.
 
+**Shipped:** moves 1 and 3, and every "smaller" bullet except the ones still listed below.
+The four drifts are closed — the run, the offer, the covered languages, the calibration,
+the article table, the streak walk, the area buckets and the day helpers are kern's,
+and both apps read them. `android/SessionFlow.kt` is gone.
+What is left is moves 2, 4, 5, 6 and the remainder of the small list.
+
 The native layers should own aesthetics and device facts only:
 layout, animation, focus, haptics, audio engines, widget timelines, accessibility flags, string tables.
 Everything below is currently Swift but is a *rule*, and Android has to re-derive it or copy it.
 
-## The evidence: drift is not hypothetical
+## The evidence: drift was not hypothetical
 
-`android/` already re-implements the app layer (~3.5k LOC main, ~750 test).
-Four behavioral deltas exist today, each in logic that was left platform-side:
+All four below are closed — kept here because they are the argument for finishing the list,
+not a status board. Each was a rule left platform-side and written a second time.
+
+`android/` re-implements the app layer (~3.5k LOC main, ~750 test):
 
 1. **Extra round composes differently.**
    `AppModel+Session.swift:36-51` calls `composeExtraSession` directly;
@@ -28,13 +36,17 @@ Four behavioral deltas exist today, each in logic that was left platform-side:
    (`Catalog.kt:154`). iOS intersects with `catalog.languages.keys` first (`AppModel.swift:102-105`).
    A French or Italian device throws at launch.
 
-Every one is a rule that exists twice.
+Every one was a rule that existed twice.
+Android's own `SessionFlowTest` *asserted* three of them, the extra-round ordering by name —
+a test suite pinning the drift as intended behavior is what a second implementation buys you.
 
 ## Pattern: there is none on iOS; Android already picked MVVM
 
-`AppModel` is a 1229-line `@Observable` Store/Controller hybrid — 96 public members,
+As audited, before the first moves landed —
+`AppModel` was a 1229-line `@Observable` Store/Controller hybrid — 96 public members,
 20 stored state fields (12 of them `session*`), ~45 uncached derivations,
-plus a `mutate(_:)` escape hatch on the aggregate (`AppModel.swift:329`).
+plus a `mutate(_:)` escape hatch on the aggregate.
+The twelve session fields are now one `SessionRunState`; the rest stands.
 `todayPlan` recomposes the whole session on every read (`AppModel+Queries.swift:12-17`).
 
 Three screens are their own uncontrolled view models — 47 `@State` between them:
@@ -64,17 +76,18 @@ No new kern dependency; data classes already cross the boundary.
 
 ## Moves, highest value first
 
-1. **`session/SessionRun`** — queue, endless refill, delta fold, stale recompose, summary tallies,
-   `canPracticeMore` / `streakIsRecord` (`AppModel+Session.swift:14-239`, ~200 lines;
-   Android's `SessionFlow.kt`, 105). All four drifts collapse into one file with one test suite.
+1. ~~**`session/SessionRun`**~~ — shipped. `canPracticeMore`/`canPracticeExtra`/`sessionAvailable`
+   landed in `SessionOffer.kt` rather than `SessionRun.kt`: they are box queries, not run state.
 2. **`session/Turn`** — the produce/recognize turn: feedback state × revealed × typo × heardInstead × otherWord × retry,
    and which rating each branch fires (`SessionView+Produce.swift:26-316`, ~180 lines).
    Folds in `SelfGrading` + `CatalogAnswerGrader`; the view keeps input, focus, animation, sound.
    Includes the copy-step predicate (`SessionView+Copy.swift:122-127`) and the recall-timing capture
    (`SessionView.swift:409-428`).
-3. **Profile activation + `BoxConfig.product()`** — join → decode → calibrate → bootstrap → persist
-   (`AppModel.swift:93-252`), and the calibration constants restated in Swift (`KernBridge.swift:117-148`)
-   that already exist as kern defaults (`Config.kt:13-48`). Closes drift 4.
+3. ~~**Profile activation + `BoxConfig.product()`**~~ — shipped as `coveredSources()`/`defaultSource()`
+   plus `BoxConfig.product()` and `BoxState.withProductCalibration()`. `availableTargets` keeps its
+   `require` deliberately: the safe query is now the one a launch reaches for, and an unknown source
+   stays a programming error rather than an empty answer. The rest of `activate` — bundle paths,
+   `UserDefaults`, the observable plumbing — stayed iOS, correctly.
 4. **`trainer/LetterDrillRun` + `TrainerRun`** — the run drivers around kern's existing ramp
    (`LetterDrillView.swift:54-284`, `TrainerSessionView.swift:59-276`).
    The trainer's adaptive ramp (two clean wins up, a miss down, amber neutral) exists *only* in Swift —
@@ -87,35 +100,35 @@ No new kern dependency; data classes already cross the boundary.
    and `WatchSnapshotDoc`/`WatchEntryDto` made public so no consumer re-declares them
    (`Shared/WatchSnapshot.swift:8-114`).
 
-## Smaller, mostly cheap
+## Smaller — what is left
 
-- `session/SessionOffer` — round classification, the `reviewsLeadFrom = 3` threshold, and the FNV-1a-64
-  headline pick (`AppModel+Queries.swift:28-107`). kern already has `fnv1a64` (`Presentation.kt:147`, `internal`).
-  Cross-platform determinism is the stated requirement, so it cannot stay in Swift.
-- `model` — `articleGender(tint)`: the article→gender table is copied five times
-  (`Theme.swift:81-97`, `WatchTheme.swift:28-44`, `WordWidgetView.swift:147-162`,
-  `WatchWordWidgetView.swift:63-72`, `android/ui/Theme.kt:14-26`). The colors stay per-surface.
-- `box/Statistics` — the streak walk is written three times (`Statistics.kt:90-108`,
-  `WidgetSnapshot.swift:53-75` which labels itself a deliberate duplicate, `ActivityStripView.swift:81-103`);
-  add `streakWindow(days)` and `learningCards` (`max(0, active - consolidated)`, computed in four places).
-- `box/Time` — `isoDayKey` (`KernBridge.swift:21-26`) and `tomorrowDueCount` (`AppModel+Queries.swift:119-125`)
-  re-implement `Time.kt:19,26-29`; expose those instead.
+Shipped from this list: `session/SessionOffer` (its FNV now hashes UTF-8 bytes, so a round may pick a
+different one of its three phrasings than Swift's per-process hash did — intended),
+`model/Article.kt` (`articleGender` + `shownArticle`), `box/Statistics` (`streakWindow`, `learningCount`,
+the area buckets), `box/Time` (`dayKey`/`endOfTomorrow` public).
+
+`Watch/`, `Widgets/` and `WatchWidgets/` keep their gender-table and streak-walk copies — those targets
+do not link Kotlin, so the duplication is forced there and only there. Their comments should point at
+`model/Article.kt` and `box/Statistics.kt` as the canonical version. On Android, where widgets are
+in-process, no such copy may exist.
+
 - `catalog` — `LanguagePicker.choices/apply` (the swap rule is written twice in Swift,
   `OnboardingView.swift:69-119` and `BoxSettingsSection.swift:207-248`, and a third, lossier time in Kotlin),
-  `LanguageInfo.pickerRow/pickerLabel` (`DisplayText.swift:7-47`),
+  `LanguageInfo.pickerRow/pickerLabel` (`DisplayText.swift:7-47`; Android's picker was showing exonyms
+  only and is fixed in place, so this is now a two-file agreement rather than a bug),
   `chromeLanguage(source)` (`AppModel.swift:259-276`),
   audio resolution: `clampedGain` / `headMs` (the `20.0 dB` limit and the lead-validity rule exist
   in three places: `PronunciationPlayer.swift:26,102-106`, `AudioManifest.kt:110,113`, `android/audio/PlaybackIndex.kt`),
   `VoiceSelection.preferredTag` (the `es ⇒ es-ES` distinción rule, `Speaker.swift:69-86`, already re-stated in Kotlin).
-- `model` — plural sentinel resolution and the alternates-minus-shown-form rule (`DisplayText.swift:67-104`);
-  Android's `CardDisplay.kt:14-29` omits the exclusion, so its "auch:" line repeats the word on screen.
+- `model` — plural sentinel resolution and the alternates-minus-shown-form rule (`DisplayText.swift:67-104`).
+  Android's `CardDisplay.kt` had omitted the exclusion, the empty-plural guard and the canonical form
+  itself; fixed in place, so the two now agree — but they agree in two files, which is the thing to close.
 - `session/MultipleChoice.question` — the watch samples and shuffles kern's ranked shortlist in Swift
   (`WatchPracticeQuestion.swift:24-49`); `RecognitionGrading` — latency→rating
   (`WatchGrading.swift:14-29`), the sibling of `SelfGrading.kt:33-51`.
-- `box` — browser grouping/ordering/`enqueueableCount` (`AppModel+Queries.swift:233-307`,
+- `box` — browser grouping/ordering/`enqueueableCount` (`AppModel+Queries.swift`,
   which restates half of `BoxEngine.enqueue`'s skip rules), `CardRowState` (`BoxCardRow.swift:59-98`),
-  the `AreaChip` bucket split (`ProgressComponents.swift:112-122`),
-  and the `PhaseBadge` invariant that the seal follows `consolidated`, not phase (`ProgressComponents.swift:206-217`) —
+  and the `PhaseBadge` invariant that the seal follows `consolidated`, not phase (`ProgressComponents.swift`) —
   a domain rule currently stated only in a view.
 - `box/TodayReport` — which summary parts appear and the done-vs-caught-up choice
   (`HeuteView.swift:99-217`, `SessionCompletionView.swift:43-49`).
