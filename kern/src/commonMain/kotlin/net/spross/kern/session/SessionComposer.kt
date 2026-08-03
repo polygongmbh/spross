@@ -62,15 +62,50 @@ object SessionComposer {
     private const val RETURNING_SOON_MILLIS: Long = 12L * 60 * 60 * 1000
 
     /**
-     * Today's plan: due cards oldest-first (ties by id), review slots capped at
-     * `sessionCap − growthReserve`, then new candidates fill the remaining capacity —
-     * enqueued cards lead, unlocked phrases next, then seed-order cards. A short round is
-     * filled out to [SESSION_FLOOR_CARDS] (see [fillOut]).
+     * Today's plan: [composeRound], unless the day is over.
      *
-     * A quiet day — nothing due at all — is built rather than found: half the round is
-     * held for cards that come due tomorrow, and new words take the rest. See [reservedForTomorrow].
+     * The day is done once nothing is due, nothing is about to be, and the learner has worked
+     * a round's worth: "nothing more right now" is a real answer, and manufacturing another
+     * round would turn every visit into a treadmill. Nothing composes past that — not even
+     * cards the learner packed themselves, which an explicit ask deserves an explicit round
+     * for ([composeExtraSession]) rather than a half-sized one behind a finished screen.
      */
     fun composeSession(state: BoxState, nowEpochMillis: Long, tzId: String): SessionPlan {
+        val dayDone = Inventory.due(state, nowEpochMillis).isEmpty() &&
+            !returningSoon(state, nowEpochMillis) &&
+            workedARound(state, nowEpochMillis, tzId)
+        if (dayDone) {
+            return SessionPlan(
+                reviews = emptyList(),
+                ahead = emptyList(),
+                unlockedPhrases = emptyList(),
+                newCards = emptyList(),
+                joinStamp = state.joinStamp,
+            )
+        }
+        return composeRound(state, nowEpochMillis, tzId)
+    }
+
+    /**
+     * A round, whatever asked for it — [composeSession] when the day opens one, and the app
+     * directly for the rounds the learner asks for (the extra round off the done card, each
+     * endless refill). One set of rules for all three: they used to have their own, which is
+     * why the asked-for ones kept arriving as a wall of first sights or a wall of cards
+     * dragged forward from days out.
+     *
+     * Due cards oldest-first (ties by id), review slots capped at `sessionCap − growthReserve`,
+     * then new candidates fill the remaining capacity — enqueued cards lead, unlocked phrases
+     * next, then seed-order cards. A short round is filled out to [SESSION_FLOOR_CARDS]
+     * (see [fillOut]).
+     *
+     * A quiet round — nothing due at all — is built rather than found: half of it is held for
+     * cards that come due tomorrow, and new words take the rest. See [reservedForTomorrow].
+     *
+     * Its SIZE is the box's to set, not the caller's: due work carries a round when the learner
+     * is behind, cards coming due inside tomorrow carry it when the box is settling, and when
+     * little is coming up the reservation falls away and new words take the whole of it.
+     */
+    fun composeRound(state: BoxState, nowEpochMillis: Long, tzId: String): SessionPlan {
         val cap = state.config.sessionCap
         val due = Inventory.due(state, nowEpochMillis)
         val newBudget = if (due.isEmpty()) {
@@ -79,26 +114,17 @@ object SessionComposer {
             NEW_CARDS_PER_ROUND
         }
 
-        // The day is done once nothing is due, nothing is about to be, and the learner has
-        // worked a round's worth: "nothing more right now" is a real answer, and manufacturing
-        // another round would turn every visit into a treadmill. Cards the learner PACKED
-        // themselves still enter — that is an explicit ask, not automatic growth.
-        val dayDone = due.isEmpty() &&
-            !returningSoon(state, nowEpochMillis) &&
-            workedARound(state, nowEpochMillis, tzId)
-
         // Reserve headroom only for new work that will actually appear — a box with
         // nothing left to introduce hands every slot back to the review queue. Costs a
         // second candidate pass, which keeps the precedence inside [Growth.newCandidates]
         // as the one place that decides WHICH cards enter.
-        val available = Growth.newCandidates(state, newBudget, !dayDone, capacity = cap).count
+        val available = Growth.newCandidates(state, newBudget, capacity = cap).count
         val growthReserve = min(available, GROWTH_RESERVE_CARDS)
         val reviews = due.take(max(0, cap - growthReserve))
 
         val candidates = Growth.newCandidates(
             state,
             budget = newBudget,
-            autoGrowth = !dayDone,
             capacity = max(0, cap - reviews.size),
         )
         val plan = SessionPlan(
@@ -108,7 +134,7 @@ object SessionComposer {
             newCards = candidates.newCards,
             joinStamp = state.joinStamp,
         )
-        return if (dayDone) plan else fillOut(state, plan, nowEpochMillis)
+        return fillOut(state, plan, nowEpochMillis)
     }
 
     /**
@@ -166,54 +192,4 @@ object SessionComposer {
         return plan.copy(ahead = ahead.map { it.cardId })
     }
 
-    /**
-     * On-demand extra round (user agency): everything due, then enqueued cards
-     * within the new-word budget, then review-ahead by soonest due so the round is never
-     * empty while the box holds active cards — early reviews are honest FSRS reviews
-     * (short elapsed → small stability gain). NO automatic seed-order growth: unrequested
-     * growth stays with the daily round, so `unlockedPhrases` is always empty.
-     */
-    fun composeExtraSession(state: BoxState, nowEpochMillis: Long): SessionPlan {
-        val cap = state.config.sessionCap
-        val due = Inventory.due(state, nowEpochMillis).take(cap)
-        val enqueuedNew = Growth.enqueuedEligible(state)
-            .take(NEW_CARDS_PER_ROUND)
-
-        val dueCards = due.mapTo(mutableSetOf()) { it.cardId }
-        val remaining = max(0, cap - due.size - enqueuedNew.size)
-        val ahead = Inventory.scheduledAhead(state)
-            .filter { it.cardId !in dueCards }
-            .take(remaining)
-
-        return SessionPlan(
-            reviews = due.map { it.cardId },
-            ahead = ahead.map { it.cardId },
-            unlockedPhrases = emptyList(),
-            newCards = enqueuedNew,
-            joinStamp = state.joinStamp,
-        )
-    }
-
-    /**
-     * Endless-practice refill: due cards (oldest first) plus new candidates within the
-     * new-word budget. Nothing is ever pulled ahead of its due time — spacing is
-     * preserved, and an empty plan legitimately means "come back later".
-     */
-    fun composeEndless(state: BoxState, nowEpochMillis: Long): SessionPlan {
-        val cap = state.config.sessionCap
-        val due = Inventory.due(state, nowEpochMillis).take(cap)
-        val candidates = Growth.newCandidates(
-            state,
-            budget = NEW_CARDS_PER_ROUND,
-            autoGrowth = true,
-            capacity = max(0, cap - due.size),
-        )
-        return SessionPlan(
-            reviews = due.map { it.cardId },
-            ahead = emptyList(),
-            unlockedPhrases = candidates.unlockedPhrases,
-            newCards = candidates.newCards,
-            joinStamp = state.joinStamp,
-        )
-    }
 }

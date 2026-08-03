@@ -45,14 +45,12 @@ internal object Growth {
 
     /**
      * Candidate selection in card ids, capped by min([budget], [capacity]).
-     * Enqueued cards lead and enter whatever [autoGrowth] says — packing a word is an
-     * explicit ask. With automatic growth on, unlocked phrases enter next, then
-     * seed-order cards (locked phrases wait for their components).
+     * Enqueued cards lead — packing a word is an explicit ask. Unlocked phrases enter next,
+     * then seed-order cards (locked phrases wait for their components).
      */
     fun newCandidates(
         state: BoxState,
         budget: Int,
-        autoGrowth: Boolean,
         capacity: Int,
     ): NewCandidates {
         var slots = min(budget, capacity)
@@ -62,14 +60,13 @@ internal object Growth {
         val unlockedPhrases = mutableListOf<String>()
         val newCards = mutableListOf<String>()
 
-        // 1. Enqueued lead — within the new-word budget, whatever automatic growth does.
+        // 1. Enqueued lead — within the new-word budget.
         for (id in enqueuedEligible(state)) {
             if (slots <= 0) break
             if (!taken.add(id)) continue
             newCards += id
             slots -= 1
         }
-        if (!autoGrowth) return NewCandidates(unlockedPhrases, newCards)
 
         val unscheduled = Inventory.joinedCards(state).filter { state.scheduling[it.id] == null }
 

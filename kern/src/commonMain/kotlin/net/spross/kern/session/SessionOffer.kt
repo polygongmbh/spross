@@ -3,6 +3,7 @@ package net.spross.kern.session
 import kotlin.math.max
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.Growth
 import net.spross.kern.model.fnv1a64
 
 /**
@@ -108,16 +109,22 @@ object SessionOffers {
             BoxEngine.dueNow(state, nowEpochMillis).isNotEmpty()
 
     /**
-     * Whether an endless refill would yield anything right now — what the summary's
-     * "keep practising" turns on. Nothing is pulled ahead of its due time here.
+     * Whether a round the learner asks for would yield anything — what both the summary's
+     * "keep practising" and the done card's extra round turn on, since both open the same
+     * [SessionComposer.composeRound]. It counts pull-aheads, so it holds in every done state
+     * with active cards; only a box with nothing left at all answers no.
      */
-    fun canPracticeMore(state: BoxState, nowEpochMillis: Long): Boolean =
-        !SessionComposer.composeEndless(state, nowEpochMillis).isEmpty
+    fun canPracticeMore(state: BoxState, nowEpochMillis: Long, tzId: String): Boolean =
+        !SessionComposer.composeRound(state, nowEpochMillis, tzId).isEmpty
 
     /**
-     * Whether an extra round would yield anything. Unlike [canPracticeMore] this counts
-     * pull-aheads too, so it holds in every done state with active cards.
+     * Whether words the learner packed could enter the next round — a locked phrase does not
+     * count, since it waits on its components rather than on the learner.
+     *
+     * A finished day composes nothing, so packing on one leaves the learner looking at a card
+     * that says the day is over; this is what lets that card say what the next round holds
+     * instead of leaving the pack unaccounted for.
      */
-    fun canPracticeExtra(state: BoxState, nowEpochMillis: Long): Boolean =
-        !SessionComposer.composeExtraSession(state, nowEpochMillis).isEmpty
+    fun packedWordsPending(state: BoxState): Boolean =
+        Growth.enqueuedEligible(state).isNotEmpty()
 }

@@ -108,7 +108,6 @@ internal object Box {
     ): NewCandidates = Growth.newCandidates(
         state,
         budget = SessionComposer.NEW_CARDS_PER_ROUND,
-        autoGrowth = true,
         capacity = capacity,
     )
 }

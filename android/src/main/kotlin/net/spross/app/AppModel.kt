@@ -306,7 +306,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 segments = active.segments, remaining = 0,
                 introduced = active.newCards, strengthened = active.graduated,
                 reviewed = active.reviews,
-                canPracticeMore = SessionOffers.canPracticeMore(state, now()),
+                canPracticeMore = SessionOffers.canPracticeMore(state, now(), tz()),
             )
         } else {
             val count = state.scheduling[card.id]?.reviewCount ?: 0
@@ -336,7 +336,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 introduced = active.newCards,
                 strengthened = active.graduated,
                 reviewed = active.reviews,
-                canPracticeMore = SessionOffers.canPracticeMore(state, now()),
+                canPracticeMore = SessionOffers.canPracticeMore(state, now(), tz()),
             )
         }
         sessionUi = ui
@@ -346,7 +346,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         val state = box ?: return
         stats = BoxEngine.statistics(state, now(), tz())
         sessionAvailable = SessionOffers.sessionAvailable(state, now(), tz())
-        canPracticeExtra = SessionOffers.canPracticeExtra(state, now())
+        canPracticeExtra = SessionOffers.canPracticeMore(state, now(), tz())
     }
 
     override fun onCleared() {

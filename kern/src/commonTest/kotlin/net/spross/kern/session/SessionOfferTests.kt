@@ -126,16 +126,14 @@ class SessionOfferTests {
     }
 
     /**
-     * Endless never reaches ahead of a due time, the extra round does — so a caught-up box
-     * still has an extra round in it while endless is dry.
+     * A round the learner asks for reaches ahead of a due time, so a caught-up box still has
+     * one in it. Only a box with nothing left at all answers no — which is what makes the
+     * offer safe to show wherever a round can be opened.
      */
     @Test
-    fun theExtraRoundOutlastsEndlessOnACaughtUpBox() {
+    fun anAskedForRoundOutlastsACaughtUpBox() {
         val caughtUp = state(due = 0, ahead = 4, catalog = 4, sessionCap = 25)
-        assertFalse(SessionOffers.canPracticeMore(caughtUp, now))
-        assertTrue(SessionOffers.canPracticeExtra(caughtUp, now))
-        // …and neither has anything to offer on an empty box.
-        assertFalse(SessionOffers.canPracticeMore(Box.state(emptyList()), now))
-        assertFalse(SessionOffers.canPracticeExtra(Box.state(emptyList()), now))
+        assertTrue(SessionOffers.canPracticeMore(caughtUp, now, Box.TZ))
+        assertFalse(SessionOffers.canPracticeMore(Box.state(emptyList()), now, Box.TZ))
     }
 }

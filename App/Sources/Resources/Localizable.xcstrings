@@ -1211,6 +1211,22 @@
         }
       }
     },
+    "heute.done.packed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine gepackten Wörter sind in der nächsten Runde dabei."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your packed words are in the next round."
+          }
+        }
+      }
+    },
     "heute.done.title" : {
       "localizations" : {
         "de" : {

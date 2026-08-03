@@ -82,7 +82,7 @@ class SessionRunTests {
         assertEquals(SessionStep.Completed, run.step)
         // The held-back work is still due — the summary is where it gets offered.
         assertEquals(20, BoxEngine.dueNow(run.box, now).size)
-        assertTrue(SessionOffers.canPracticeMore(run.box, now))
+        assertTrue(SessionOffers.canPracticeMore(run.box, now, Box.TZ))
     }
 
     /** A card that leaves the box under the run shrinks the promise instead of stalling it. */
@@ -137,19 +137,16 @@ class SessionRunTests {
     }
 
     /**
-     * The extra round is the mixing round, not endless: on a box whose endless refill is all
-     * first sights, the extra round still comes back as recall pulled forward.
+     * The extra round is an ordinary round: recall pulled forward AND new words, in the mix the
+     * box asks for. It used to be composed by rules of its own and kept arriving as one extreme
+     * or the other — all first sights, or all cards dragged forward.
      */
     @Test
-    fun theExtraRoundMixesRecallInsteadOfFirstSights() {
+    fun theExtraRoundMixesRecallWithFirstSights() {
         val state = quietState(soon = 3, catalog = 20)
-        val endless = SessionComposer.composeEndless(state, now)
-        assertEquals(SessionComposer.NEW_CARDS_PER_ROUND, endless.freshCount)
-        assertTrue(endless.ahead.isEmpty())
-
         val run = SessionRun.reduce(SessionRun.idle(state), SessionIntent.StartExtra, now, Box.TZ).state
-        assertEquals(listOf("w01", "w02", "w03"), run.queue)
-        assertEquals(3, run.total)
+        assertEquals(listOf("w01", "w02", "w03"), run.queue.take(3))
+        assertEquals(SessionComposer.SESSION_FLOOR_CARDS, run.total)
         assertTrue(run.active)
         assertFalse(run.finished)
     }
@@ -182,14 +179,24 @@ class SessionRunTests {
         assertNotNull(more.currentCardId)
     }
 
-    /** A dry refill leaves the run on its summary — asked for, but nothing to hand over. */
+    /**
+     * A dry refill leaves the run on its summary — asked for, but nothing to hand over.
+     *
+     * Dry now means a box with nothing left AT ALL: a refill is an ordinary round, so a single
+     * card answered minutes ago still comes back as a pull-ahead. Here the catalog is taken out
+     * from under the run, the way a source switch does.
+     */
     @Test
     fun aDryEndlessRefillStaysOnTheSummary() {
         var run = started(Box.state(listOf(Box.word(1))), now)
         run = answer(run, Rating.Good, now)
         assertTrue(run.finished)
+        // Still one active card, so the refill has a round in it …
+        assertTrue(SessionOffers.canPracticeMore(run.box, now, Box.TZ))
 
-        val asked = SessionRun.reduce(run, SessionIntent.ContinueEndless, now, Box.TZ).state
+        // … until there is nothing to compose from.
+        val emptied = SessionRun.withBox(run, Box.state(emptyList()))
+        val asked = SessionRun.reduce(emptied, SessionIntent.ContinueEndless, now, Box.TZ).state
         assertTrue(asked.endless)
         assertTrue(asked.finished)
         assertEquals(SessionStep.Completed, asked.step)

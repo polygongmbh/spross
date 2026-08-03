@@ -160,10 +160,10 @@ struct HeuteView: View {
                     .foregroundStyle(Color.dlTextSecondary)
                     .multilineTextAlignment(.center)
             }
-            // User agency: an extra round mixes due work, packed vocab and pull-aheads
-            // (kern's review-ahead composer), so it renders in every done state with
-            // active cards; hidden only when that comes back empty.
-            if model.canPracticeExtra {
+            // User agency: an extra round is an ordinary round composed on demand, so it
+            // renders in every done state with active cards; hidden only when the box has
+            // nothing left to compose at all.
+            if model.canPracticeMore {
                 Button("heute.done.extraRound") {
                     model.startExtraSession()
                 }
@@ -216,8 +216,12 @@ struct HeuteView: View {
         return parts.joined() ?? Text("heute.session.someCards")
     }
 
+    /// A finished day composes nothing, so words packed on one only arrive through the round
+    /// above — said as a fact about that round, in the smallest type on the card, because
+    /// the pack was the learner's move and does not need answering.
     private var tomorrowText: Text {
-        model.tomorrowDueCount == 0
+        if model.hasPackedWords { return Text("heute.done.packed") }
+        return model.tomorrowDueCount == 0
             ? Text("heute.done.tomorrowFresh")
             : Text("heute.done.tomorrowDue \(model.tomorrowDueCount)")
     }

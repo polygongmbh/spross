@@ -127,21 +127,19 @@ extension AppModel {
     var sessionGraduated: Int { Int(run?.graduated ?? 0) }
     var sessionReviews: Int { Int(run?.reviews ?? 0) }
 
-    /// Whether an endless refill would yield anything right now (drives the
-    /// "Weiter üben" button's presence on the summary).
+    /// Whether a round the learner asks for would yield anything — drives both the summary's
+    /// "Weiter üben" and the done card's extra round, which open the same composition.
     var canPracticeMore: Bool {
         guard let box else { return false }
         return SessionOffers.shared.canPracticeMore(state: box,
-                                                    nowEpochMillis: Date().epochMillis)
+                                                    nowEpochMillis: Date().epochMillis,
+                                                    tzId: currentTzId())
     }
 
-    /// Whether an extra round would yield anything (drives the done card's extra-round
-    /// button). Unlike `canPracticeMore` this counts pull-aheads too, so it holds in
-    /// every done state with active cards.
-    var canPracticeExtra: Bool {
+    /// Whether words the learner packed are still waiting to enter a round.
+    var hasPackedWords: Bool {
         guard let box else { return false }
-        return SessionOffers.shared.canPracticeExtra(state: box,
-                                                     nowEpochMillis: Date().epochMillis)
+        return SessionOffers.shared.packedWordsPending(state: box)
     }
 
     /// The day streak standing at its all-time best, which the finish screen names.

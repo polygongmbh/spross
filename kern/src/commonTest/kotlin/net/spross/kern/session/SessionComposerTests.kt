@@ -266,9 +266,13 @@ class SessionComposerTests {
         assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
     }
 
+    /**
+     * A finished day composes nothing at all — not even words the learner packed. Packing IS
+     * an explicit ask, which is why it is answered by the round the learner opens rather than
+     * by a round appearing behind a screen that says the day is over.
+     */
     @Test
-    fun cardsThePlayerPackedThemselvesStillEnterOnAFinishedDay() {
-        // Automatic growth rests once the day is done; an explicit "pack in die Box" does not.
+    fun wordsPackedOnAFinishedDayWaitForTheRoundTheLearnerOpens() {
         val state = BoxEngine.enqueue(quietBox(soon = 0, later = 5), listOf("w20"))
         val worked = BoxEngine.endSession(
             state,
@@ -276,9 +280,67 @@ class SessionComposerTests {
             nowEpochMillis = now,
             tzId = Box.TZ,
         )
-        val plan = SessionComposer.composeSession(worked, now, Box.TZ)
-        assertEquals(listOf("w20"), plan.newCards)
-        assertTrue(plan.ahead.isEmpty())
+        assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
+        assertEquals("w20", SessionComposer.composeRound(worked, now, Box.TZ).newCards.first())
+    }
+
+    /**
+     * The bug this rule was written for: packing a category on a finished day used to compose
+     * a daily round of FOUR first sights and nothing else — the tomorrow reservation docked the
+     * new-word budget, and the pull-aheads it was docked FOR never came, because a done day
+     * skipped the fill. Four cards, no recall, under the floor, behind a "done" screen.
+     */
+    @Test
+    fun packingOnAFinishedDayNeverComposesAHalfRound() {
+        // Three cards back tomorrow but past the returning span — the shape of a box worked
+        // this morning, and the one where the reservation docks the budget by its full half.
+        var state = Box.state((1..30).map { Box.word(it) })
+        listOf(15L, 18L, 20L).forEachIndexed { i, hours ->
+            state = Box.inject(
+                state,
+                Box.sched(
+                    id(i + 1),
+                    stability = 0.5,
+                    dueMillis = Box.plusSeconds(now, hours * 3_600),
+                    lastReviewMillis = Box.plusDays(now, -1.0),
+                ),
+            )
+        }
+        val packed = BoxEngine.enqueue(state, (20..26).map { id(it) })
+        val worked = BoxEngine.endSession(
+            packed,
+            reviewsDone = SessionComposer.SESSION_FLOOR_CARDS,
+            nowEpochMillis = now,
+            tzId = Box.TZ,
+        )
+        assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
+
+        val round = SessionComposer.composeRound(worked, now, Box.TZ)
+        assertEquals(4, round.freshCount)
+        assertEquals(listOf("w01", "w02", "w03"), round.ahead)
+        assertEquals(SessionComposer.SESSION_FLOOR_CARDS, round.cardCount)
+    }
+
+    /**
+     * An asked-for round is sized by the box, not by the caller: what is coming due inside
+     * tomorrow sets how much of it is recall, and the rest is new words. The two bespoke
+     * composers this replaced each pinned one extreme — all first sights, or all pull-aheads.
+     */
+    @Test
+    fun anAskedForRoundIsSizedByTheBox() {
+        val settling = SessionComposer.composeRound(quietBox(soon = 5, later = 0), now, Box.TZ)
+        assertEquals(listOf("w01", "w02", "w03"), settling.ahead)
+        assertEquals(4, settling.freshCount)
+
+        // Nothing coming up: the reservation falls away and new words take the whole round.
+        val quiet = SessionComposer.composeRound(quietBox(soon = 0, later = 5), now, Box.TZ)
+        assertTrue(quiet.ahead.isEmpty())
+        assertEquals(SessionComposer.NEW_CARDS_PER_ROUND, quiet.freshCount)
+
+        // Behind: due work carries it, and the round is far bigger than the floor.
+        val behind = SessionComposer.composeRound(backloggedState(), now, Box.TZ)
+        assertTrue(behind.reviews.size > SessionComposer.SESSION_FLOOR_CARDS)
+        assertTrue(behind.ahead.isEmpty())
     }
 
     @Test
@@ -298,15 +360,11 @@ class SessionComposerTests {
             SessionComposer.NEW_CARDS_PER_ROUND,
             SessionComposer.composeSession(restedBox, now, Box.TZ).freshCount,
         )
-        assertEquals(
-            SessionComposer.NEW_CARDS_PER_ROUND,
-            SessionComposer.composeEndless(restedBox, now).freshCount,
-        )
         // Enqueued cards lead composition, but the round holds them to the same size.
         val packed = restedBox.copy(enqueued = (1..12).map { id(it) })
         assertEquals(
             SessionComposer.NEW_CARDS_PER_ROUND,
-            SessionComposer.composeExtraSession(packed, now).freshCount,
+            SessionComposer.composeRound(packed, now, Box.TZ).freshCount,
         )
     }
 }

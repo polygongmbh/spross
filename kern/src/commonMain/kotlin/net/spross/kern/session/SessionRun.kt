@@ -120,7 +120,7 @@ object SessionRun {
             begin(state, SessionComposer.composeSession(state.box, nowEpochMillis, tzId), nowEpochMillis, tzId)
         SessionIntent.StartExtra -> startExtra(state, nowEpochMillis, tzId)
         is SessionIntent.Answer -> answer(state, intent.rating, nowEpochMillis, tzId)
-        SessionIntent.ContinueEndless -> continueEndless(state, nowEpochMillis)
+        SessionIntent.ContinueEndless -> continueEndless(state, nowEpochMillis, tzId)
         SessionIntent.RecomposeIfStale -> recompose(state, nowEpochMillis, tzId)
         SessionIntent.FoldPartial -> foldPartial(state, nowEpochMillis, tzId)
         SessionIntent.Finish -> finish(state, nowEpochMillis, tzId)
@@ -128,16 +128,15 @@ object SessionRun {
     }
 
     /**
-     * The extra round is [SessionComposer.composeExtraSession] itself: everything due, packed
-     * vocab within the new-word budget, then pull-aheads by soonest due — recall mixed with new
-     * words, which is what an extra round is for.
+     * The extra round is [SessionComposer.composeRound] itself — the day-done question is
+     * [SessionComposer.composeSession]'s alone, and a round the learner opens is an ordinary one.
      *
-     * why: composing endless first looks equivalent but is not — endless is rarely empty on a box
-     * with catalog left, so the mixing round almost never got composed and the extra round came
-     * back all first sights.
+     * why: it used to be composed by rules of its own, so it kept arriving as either a wall of
+     * first sights or a wall of cards dragged forward from days out, depending on which of the
+     * two bespoke composers happened to win.
      */
     private fun startExtra(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionReduction {
-        val plan = SessionComposer.composeExtraSession(state.box, nowEpochMillis)
+        val plan = SessionComposer.composeRound(state.box, nowEpochMillis, tzId)
         return if (plan.isEmpty) unchanged(state) else begin(state, plan, nowEpochMillis, tzId)
     }
 
@@ -214,23 +213,30 @@ object SessionRun {
         val next = state.queue.firstOrNull()
         if (next != null) return SessionReduction(state.copy(step = SessionStep.Card(next)), effects)
         if (state.endless) {
-            refilled(state, nowEpochMillis)?.let { return SessionReduction(it, effects) }
+            refilled(state, nowEpochMillis, tzId)?.let { return SessionReduction(it, effects) }
         }
         val done = finish(state, nowEpochMillis, tzId)
         return SessionReduction(done.state.copy(step = SessionStep.Completed), effects + done.effects)
     }
 
-    /** Pull the next endless batch onto the queue; null when dry. */
-    private fun refilled(state: SessionRunState, nowEpochMillis: Long): SessionRunState? {
-        val more = SessionComposer.composeEndless(state.box, nowEpochMillis).queue
+    /**
+     * Pull the next endless batch onto the queue; null when dry.
+     *
+     * A refill is a round like any other, pull-aheads included: spacing spent on the
+     * soonest-due cards costs nearly nothing (`docs/growth-evidence.md`), and withholding them
+     * only made every refill an all-new one. So the run ends when the learner closes it rather
+     * than when the catalog does — which is what "endless" is asked for.
+     */
+    private fun refilled(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionRunState? {
+        val more = SessionComposer.composeRound(state.box, nowEpochMillis, tzId).queue
         if (more.isEmpty()) return null
         return state.copy(queue = more, total = state.total + more.size, step = SessionStep.Card(more.first()))
     }
 
     /** Endless stays asked-for even when the refill comes back dry — the run just stays on its summary. */
-    private fun continueEndless(state: SessionRunState, nowEpochMillis: Long): SessionReduction {
+    private fun continueEndless(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionReduction {
         val asked = state.copy(endless = true)
-        val refilled = refilled(asked, nowEpochMillis) ?: return unchanged(asked)
+        val refilled = refilled(asked, nowEpochMillis, tzId) ?: return unchanged(asked)
         // Re-open so the next finish books the new delta.
         return unchanged(refilled.copy(finished = false))
     }
