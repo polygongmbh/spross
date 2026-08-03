@@ -210,7 +210,7 @@ struct BoxSettingsSection: View {
 
     /// ALL covered sources — including the current target: picking it swaps.
     private var sourceChoices: [String] {
-        model.catalog.map { model.coveredSources($0) } ?? []
+        model.catalog?.coveredSources() ?? []
     }
 
     /// Learnable targets from the current source PLUS the source itself —

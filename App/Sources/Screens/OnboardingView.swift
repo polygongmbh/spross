@@ -18,15 +18,14 @@ struct OnboardingView: View {
 
     init(model: AppModel) {
         self.model = model
-        let covered = model.catalog.map { model.coveredSources($0) } ?? []
-        let source = AppModel.defaultSource(covered: covered)
+        let source = model.defaultSource
         _source = State(initialValue: source)
         _target = State(initialValue: model.catalog?
             .availableTargets(source: source).first?.code)
     }
 
     private var sources: [String] {
-        model.catalog.map { model.coveredSources($0) } ?? []
+        model.catalog?.coveredSources() ?? []
     }
 
     private var targets: [AvailableTarget] {

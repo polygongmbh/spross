@@ -202,13 +202,9 @@ private struct BoxAreaSection: View {
     }
 
     private func header(_ stats: AreaStatistics?) -> some View {
-        let consolidated = stats?.consolidatedCards ?? 0
-        let learning = max(0, (stats?.activeCards ?? 0) - consolidated)
-
-        return HStack(alignment: .top, spacing: DL.Space.s) {
+        HStack(alignment: .top, spacing: DL.Space.s) {
             AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
-                     consolidated: consolidated, learning: learning,
-                     total: stats?.totalCards ?? 0,
+                     progress: stats?.progress ?? .empty,
                      lockedPhrases: stats?.lockedPhrases ?? 0)
             FoldChevron(open: expanded)
                 .foregroundStyle(Color.dlTextSecondary)

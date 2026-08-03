@@ -60,7 +60,7 @@ struct SessionView: View {
 
     var body: some View {
         Group {
-            if model.sessionStep == .completed {
+            if model.sessionCompleted {
                 SessionCompletionView(newCount: model.sessionNew,
                                       graduatedCount: model.sessionGraduated,
                                       reviewCount: model.sessionReviews,
@@ -73,7 +73,7 @@ struct SessionView: View {
             } else {
                 SessionScaffold(position: model.sessionPosition,
                                 total: max(model.sessionTotal, 1),
-                                outcomes: model.sessionRatings.map(outcome(for:)),
+                                outcomes: model.sessionSegments,
                                 showsMuteButton: true,
                                 onClose: { model.closeSession() }) {
                     scaffoldContent
@@ -144,24 +144,12 @@ struct SessionView: View {
 
     // why: internal, not private — the audio extension reads it to drop a
     // delayed word whose card has already gone.
-    var currentCardID: String? {
-        if case .card(let id)? = model.sessionStep { return id }
-        return nil
-    }
+    var currentCardID: String? { model.currentCardId }
 
     /// VoiceOver and Switch Control both make a timed screen change hostile:
     /// it truncates the correctness announcement and moves the page under the
     /// user. Where either runs, an explicit "Weiter" replaces the beat.
     var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
-
-    /// Bar segments: good/easy green, hard amber, again brick.
-    private func outcome(for rating: Rating) -> SessionOutcome {
-        switch rating {
-        case .again: return .wrong
-        case .hard: return .tough
-        case .good, .easy: return .right
-        }
-    }
 
     @ViewBuilder
     private var scaffoldContent: some View {
@@ -229,7 +217,7 @@ struct SessionView: View {
             let form = model.promptForm(for: card)
             let canonical = form == card.target.text
             return .init(text: form,
-                         article: canonical ? CardDisplay.article(of: card.target) : nil,
+                         article: CardDisplay.articleLabel(of: card.target, shown: form),
                          plural: canonical ? CardDisplay.plural(of: card.target, locale: locale) : nil,
                          language: model.targetLanguage,
                          pronounce: pronounceAction(for: form),
@@ -264,7 +252,8 @@ struct SessionView: View {
                 ? [meaning, alternates].compactMap { $0 }.joined(separator: " · ")
                 : alternates
             return .init(text: card.target.text,
-                         article: CardDisplay.article(of: card.target),
+                         article: CardDisplay.articleLabel(of: card.target,
+                                                           shown: card.target.text),
                          plural: CardDisplay.plural(of: card.target, locale: locale),
                          alternates: below,
                          language: model.targetLanguage,

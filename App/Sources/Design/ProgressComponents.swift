@@ -88,6 +88,23 @@ private struct AreaBarSegment: Identifiable {
     let color: Color
 }
 
+/// An area's cards split into the three stretches the bar draws, with what they
+/// are measured against. The split and the denominator are the box's rulings
+/// (`AreaStatistics`); the screen hands them over so Design stays kern-free.
+struct AreaProgress {
+    /// Cards past the consolidated bar ("gefestigt") — not merely in Review.
+    let consolidated: Int
+    /// Cards still in learning/relearning ("frisch").
+    let learning: Int
+    /// Cards the area holds that have never been introduced.
+    let notIntroduced: Int
+    /// The bar's denominator — never below the introduced count.
+    let progressTotal: Int
+
+    /// What an area with no statistics yet draws: a bar with nothing on it.
+    static let empty = AreaProgress(consolidated: 0, learning: 0, notIntroduced: 0, progressTotal: 1)
+}
+
 /// Per-area chip: emoji + name + consolidated/learning counts over a bar that
 /// measures both against the area's FULL card count, so the untouched rest
 /// of an area stays visible instead of a bar that always reads as full.
@@ -97,29 +114,23 @@ private struct AreaBarSegment: Identifiable {
 struct AreaChip: View {
     let emoji: String
     let name: String
-    /// Cards past the consolidated bar ("gefestigt") — not merely in Review.
-    let consolidated: Int
-    /// Cards still in learning/relearning ("frisch").
-    let learning: Int
-    /// Every card the area holds, introduced or not — the bar's denominator.
-    let total: Int
+    let progress: AreaProgress
     /// Phrases still waiting on their component words to stabilize — not a
     /// count the bar can place (they aren't scheduled yet), so it only ever
     /// shows up here, and only when it says something (never at zero).
     let lockedPhrases: Int
 
-    /// Consolidated → learning → not yet introduced, measured against `total`.
+    /// Consolidated → learning → not yet introduced.
     private var segments: [AreaBarSegment] {
-        [(consolidated, Color.dlSuccess),
-         (learning, Color.dlAmber),
-         (max(total - consolidated - learning, 0), Color.dlSeparator)]
+        [(progress.consolidated, Color.dlSuccess),
+         (progress.learning, Color.dlAmber),
+         (progress.notIntroduced, Color.dlSeparator)]
             .enumerated()
             .filter { $0.element.0 > 0 }
             .map { AreaBarSegment(id: $0.offset, count: $0.element.0, color: $0.element.1) }
     }
 
-    /// Never below the introduced count: a stale `total` must not overflow the bar.
-    private var denominator: CGFloat { CGFloat(max(total, consolidated + learning, 1)) }
+    private var denominator: CGFloat { CGFloat(max(progress.progressTotal, 1)) }
 
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
@@ -161,8 +172,9 @@ struct AreaChip: View {
     /// shrink together instead of wrapping mid-word or truncating to "gefes…".
     private var counts: some View {
         HStack(spacing: DL.Space.m) {
-            Label("progress.consolidatedCount \(consolidated.formatted())", systemImage: "checkmark.seal.fill")
-            Label("progress.freshCount \(learning.formatted())", systemImage: "leaf.fill")
+            Label("progress.consolidatedCount \(progress.consolidated.formatted())",
+                  systemImage: "checkmark.seal.fill")
+            Label("progress.freshCount \(progress.learning.formatted())", systemImage: "leaf.fill")
             if lockedPhrases > 0 {
                 // why: the padlock carries "locked", so the text only has to
                 // name what is locked — three full labels do not fit the card.
@@ -252,11 +264,17 @@ private extension View {
                 BoxStatTile(emoji: "🌳", value: "84", label: "progress.consolidated")
                 BoxStatTile(emoji: "🌱", value: "48", label: "progress.fresh")
             }
-            AreaChip(emoji: "🍳", name: "Küche", consolidated: 18, learning: 6, total: 24, lockedPhrases: 0)
+            AreaChip(emoji: "🍳", name: "Küche",
+                     progress: .init(consolidated: 18, learning: 6, notIntroduced: 0, progressTotal: 24),
+                     lockedPhrases: 0)
                 .previewCard()
-            AreaChip(emoji: "🛁", name: "Bad", consolidated: 4, learning: 9, total: 41, lockedPhrases: 3)
+            AreaChip(emoji: "🛁", name: "Bad",
+                     progress: .init(consolidated: 4, learning: 9, notIntroduced: 28, progressTotal: 41),
+                     lockedPhrases: 3)
                 .previewCard()
-            AreaChip(emoji: "🧰", name: "Werkstatt", consolidated: 0, learning: 0, total: 17, lockedPhrases: 0)
+            AreaChip(emoji: "🧰", name: "Werkstatt",
+                     progress: .init(consolidated: 0, learning: 0, notIntroduced: 17, progressTotal: 17),
+                     lockedPhrases: 0)
                 .previewCard()
             HStack(spacing: DL.Space.s) {
                 ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }
@@ -272,7 +290,9 @@ private extension View {
 #Preview("Progress pieces · dark") {
     VStack(alignment: .leading, spacing: DL.Space.xl) {
         StreakFlameView(days: 3)
-        AreaChip(emoji: "🍳", name: "Küche", consolidated: 18, learning: 6, total: 52, lockedPhrases: 2)
+        AreaChip(emoji: "🍳", name: "Küche",
+                 progress: .init(consolidated: 18, learning: 6, notIntroduced: 28, progressTotal: 52),
+                 lockedPhrases: 2)
             .previewCard()
         HStack(spacing: DL.Space.s) {
             ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }

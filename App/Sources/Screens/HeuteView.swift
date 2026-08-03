@@ -55,7 +55,7 @@ struct HeuteView: View {
 
     // MARK: - Session available
 
-    private func sessionCard(_ offer: AppModel.HeuteOffer) -> some View {
+    private func sessionCard(_ offer: SessionOffer) -> some View {
         VStack(spacing: DL.Space.l) {
             sessionStats
             Text(LocalizedStringKey(offer.headlineKey))
@@ -69,7 +69,9 @@ struct HeuteView: View {
             if offer.dueHeldBack > 0 {
                 // The cap is a promise, not a loss: name the rest so a backlog
                 // never looks like cards that vanished.
-                Text("heute.session.heldBack \(offer.dueHeldBack)")
+                // why: Int, not the engine's Int32 — a plural key only varies
+                // on a count the String Catalog recognises.
+                Text("heute.session.heldBack \(Int(offer.dueHeldBack))")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                     .multilineTextAlignment(.center)
@@ -114,16 +116,20 @@ struct HeuteView: View {
     /// but a pulled-forward card is the same act of recalling as a due one,
     /// so it counts into the repetitions instead of standing as its own pile.
     /// Only when it carries the round alone does it get named: Auffrischer.
-    private func sessionSummary(_ offer: AppModel.HeuteOffer) -> Text {
+    private func sessionSummary(_ offer: SessionOffer) -> Text {
+        // why: every count crosses into Int here — the engine counts in Int32, and
+        // a plural key only varies on a count the String Catalog recognises.
+        let reviews = Int(offer.reviews)
+        let ahead = Int(offer.ahead)
+        let fresh = Int(offer.fresh)
         var parts: [Text] = []
-        if offer.sessionReviews > 0 {
-            let repetitions = offer.sessionReviews + offer.aheadCount
-            parts.append(Text("heute.session.reviews \(repetitions)"))
-        } else if offer.aheadCount > 0 {
-            parts.append(Text("heute.session.ahead \(offer.aheadCount)"))
+        if reviews > 0 {
+            parts.append(Text("heute.session.reviews \(reviews + ahead)"))
+        } else if ahead > 0 {
+            parts.append(Text("heute.session.ahead \(ahead)"))
         }
-        if offer.freshCount > 0 {
-            parts.append(Text("heute.session.newCards \(offer.freshCount)"))
+        if fresh > 0 {
+            parts.append(Text("heute.session.newCards \(fresh)"))
         }
         return parts.joined() ?? Text("heute.session.someCards")
     }

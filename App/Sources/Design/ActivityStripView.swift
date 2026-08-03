@@ -1,13 +1,24 @@
 import SwiftUI
 
+/// One column of the strip: a day, what was reviewed on it, and whether the
+/// current streak covers it. The box walks the streak once and hands the answer
+/// over (`ActivityDay`); the strip only draws it.
+struct ActivityColumn: Equatable {
+    /// Local midnight of the day — the weekday letter is rendered from it.
+    let day: Date
+    let reviews: Int
+    /// Covered by the run the header's flame counts, earned day or bridged gap.
+    let inStreak: Bool
+}
+
 /// 14-day activity strip: one bar per day, plus the streak run it belongs to.
 /// Bars carry volume twice — height (√-scaled, so one huge day can't flatten
 /// the rest) and fill intensity. Today is clay, the streak run underlines the
 /// days that earned the flame in the header. Renders from pre-aggregated daily
 /// review counts — never from logs.
 struct ActivityStripView: View {
-    /// Trailing days, oldest first, today last (see `AppModel.last14Days()`).
-    let days: [(day: Date, reviews: Int)]
+    /// Trailing days, oldest first, today last.
+    let days: [ActivityColumn]
     /// Authoritative streak from `BoxStatistics` — the strip never recomputes
     /// the number, only draws which days it covers.
     var streakDays: Int = 0
@@ -19,7 +30,6 @@ struct ActivityStripView: View {
 
     var body: some View {
         let maxReviews = max(days.map(\.reviews).max() ?? 1, 1)
-        let streak = streakIndices
 
         VStack(alignment: .leading, spacing: DL.Space.m) {
             HStack(spacing: DL.Space.s) {
@@ -33,14 +43,14 @@ struct ActivityStripView: View {
             }
             HStack(alignment: .bottom, spacing: Self.barSpacing) {
                 ForEach(Array(days.enumerated()), id: \.element.day) { index, entry in
-                    let run = runStyle(at: index, streak: streak)
+                    let run = runStyle(at: index)
                     dayColumn(entry,
                               maxReviews: maxReviews,
                               isToday: index == days.count - 1,
                               run: run,
-                              joinsLeft: index > 0 && runStyle(at: index - 1, streak: streak) == run,
+                              joinsLeft: index > 0 && runStyle(at: index - 1) == run,
                               joinsRight: index < days.count - 1
-                                  && runStyle(at: index + 1, streak: streak) == run)
+                                  && runStyle(at: index + 1) == run)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -64,7 +74,7 @@ struct ActivityStripView: View {
             .accessibilityHidden(true) // why: the combined strip label names the streak
     }
 
-    private func activityLabel(_ days: [(day: Date, reviews: Int)]) -> Text {
+    private func activityLabel(_ days: [ActivityColumn]) -> Text {
         let activeDays = days.filter { $0.reviews > 0 }.count
         let activity = Text("a11y.activity14Days \(activeDays)")
         guard streakDays > 0 else { return activity }
@@ -72,35 +82,6 @@ struct ActivityStripView: View {
     }
 
     // MARK: - Runs
-
-    /// Which columns the *current* streak covers: walk back from today, and — like
-    /// `Statistics.streak` — bridge a missed day, ending the run on two in a row.
-    /// Today with nothing done yet is not a miss at all.
-    /// The rule only ever spans earned days: a bridged gap counts when it sits
-    /// between two of them, never as a tail reaching past the oldest one.
-    private var streakIndices: Set<Int> {
-        guard streakDays > 0, !days.isEmpty else { return [] }
-        var covered: Set<Int> = []
-        var oldestEarned = days.count
-        var previousWasMiss = false
-        var index = days.count - 1
-        while index >= 0 {
-            if days[index].reviews > 0 {
-                covered.insert(index)
-                oldestEarned = index
-                previousWasMiss = false
-            } else if index == days.count - 1 {
-                // today isn't over — skip it without counting a miss
-            } else if previousWasMiss {
-                break
-            } else {
-                previousWasMiss = true
-                covered.insert(index)
-            }
-            index -= 1
-        }
-        return covered.filter { $0 >= oldestEarned }
-    }
 
     private enum RunStyle: Equatable {
         case none
@@ -120,14 +101,14 @@ struct ActivityStripView: View {
         }
     }
 
-    private func runStyle(at index: Int, streak: Set<Int>) -> RunStyle {
-        if streak.contains(index) { return .current }
+    private func runStyle(at index: Int) -> RunStyle {
+        if days[index].inStreak { return .current }
         return days[index].reviews > 0 ? .past : .none
     }
 
     // MARK: - Columns
 
-    private func dayColumn(_ entry: (day: Date, reviews: Int),
+    private func dayColumn(_ entry: ActivityColumn,
                            maxReviews: Int,
                            isToday: Bool,
                            run: RunStyle,
@@ -143,7 +124,7 @@ struct ActivityStripView: View {
         .frame(maxWidth: .infinity)
     }
 
-    private func bar(_ entry: (day: Date, reviews: Int),
+    private func bar(_ entry: ActivityColumn,
                      maxReviews: Int,
                      isToday: Bool) -> some View {
         // √ of the share, so a 40-review day doesn't squash every 4-review day
@@ -191,13 +172,17 @@ struct ActivityStripView: View {
     let calendar = Calendar.current
     let today = calendar.startOfDay(for: .now)
     let counts = [4, 0, 9, 3, 26, 6, 0, 5, 7, 0, 11, 8, 14, 5]
-    let days: [(day: Date, reviews: Int)] = (0..<14).map { offset in
+    // Every gap here sits between two earned days, so the run bridges all of
+    // them and the badge counts the 11 that were earned.
+    let days: [ActivityColumn] = (0..<14).map { offset in
         let day = calendar.date(byAdding: .day, value: offset - 13, to: today)!
-        return (day: day, reviews: counts[offset])
+        return ActivityColumn(day: day, reviews: counts[offset], inStreak: true)
     }
     return VStack(spacing: DL.Space.l) {
-        ActivityStripView(days: days, streakDays: 5)
-        ActivityStripView(days: days.map { (day: $0.day, reviews: 0) })
+        ActivityStripView(days: days, streakDays: 11)
+        ActivityStripView(days: days.map {
+            ActivityColumn(day: $0.day, reviews: 0, inStreak: false)
+        })
     }
     .padding()
     .background(Color.dlBackground)

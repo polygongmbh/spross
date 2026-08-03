@@ -2,13 +2,6 @@ import Foundation
 import Observation
 import SprossKern
 
-/// One step of a running session.
-enum SessionStep: Equatable {
-    /// Show this card (by id).
-    case card(String)
-    case completed
-}
-
 /// A failure worth showing as error chrome on Heute. The model names the
 /// case only — the view localizes it (`HeuteView`), so the message follows
 /// the known-language chrome locale like every other string.
@@ -110,22 +103,6 @@ final class AppModel {
             ?? Catalog.companion.FALLBACK_SOURCE
     }
 
-    /// Shim over `Catalog.coveredSources()` — kept while the pickers still ask
-    /// the model for the list (`OnboardingView`, `BoxSettingsSection`).
-    func coveredSources(_ catalog: Catalog) -> [String] {
-        catalog.coveredSources()
-    }
-
-    /// Shim over `Catalog.defaultSource(deviceLanguage:)`, which needs the
-    /// catalog a static cannot reach — `OnboardingView` still asks statically.
-    static func defaultSource(covered: [String]) -> String {
-        loadedCatalog?.defaultSource(deviceLanguage: deviceLanguage)
-            ?? Catalog.companion.FALLBACK_SOURCE
-    }
-
-    /// The catalog `defaultSource(covered:)` answers from; set the moment one loads.
-    private static var loadedCatalog: Catalog?
-
     func languageInfo(_ code: String) -> LanguageInfo? {
         catalog?.languages[code]
     }
@@ -152,7 +129,6 @@ final class AppModel {
             return
         }
         self.catalog = catalog
-        Self.loadedCatalog = catalog
 
         let storedTarget = UserDefaults.standard.string(forKey: Self.targetLanguageKey)
         guard let target = targetOverride ?? storedTarget else {

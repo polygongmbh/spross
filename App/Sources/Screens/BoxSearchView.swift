@@ -112,7 +112,6 @@ struct BoxSearchView: View {
     /// they have worked from one they have not before choosing it.
     private func areaRow(_ area: String) -> some View {
         let stats = model.areaStats(area)
-        let consolidated = stats?.consolidatedCards ?? 0
 
         return Button {
             reveal(area)
@@ -120,9 +119,7 @@ struct BoxSearchView: View {
         } label: {
             HStack(alignment: .top, spacing: DL.Space.s) {
                 AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
-                         consolidated: consolidated,
-                         learning: max(0, (stats?.activeCards ?? 0) - consolidated),
-                         total: stats?.totalCards ?? 0,
+                         progress: stats?.progress ?? .empty,
                          lockedPhrases: stats?.lockedPhrases ?? 0)
                 Image(systemName: "chevron.right")
                     .font(.caption2)

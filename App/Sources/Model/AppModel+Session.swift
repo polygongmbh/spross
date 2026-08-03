@@ -93,26 +93,33 @@ extension AppModel {
 
     // MARK: - What the session screen reads
 
+    /// The card the run stands on, or nil once it has reached its summary.
+    var currentCardId: String? {
+        #if DEBUG
+        if uitestFinished { return nil }
+        #endif
+        return run?.currentCardId
+    }
+
     var currentCard: Card? {
-        guard let id = run?.currentCardId else { return nil }
+        guard let id = currentCardId else { return nil }
         return box?.cards[id]
     }
 
-    var sessionStep: SessionStep? {
-        #if DEBUG
-        if uitestFinished { return .completed }
-        #endif
-        guard let run else { return nil }
-        return run.currentCardId.map(SessionStep.card) ?? .completed
-    }
+    /// Whether the run is showing its summary rather than a card — the session
+    /// screen's one branch. No run at all is not a summary.
+    var sessionCompleted: Bool { run != nil && currentCardId == nil }
 
     /// 1-based position in the composed plan — fixed for the run.
     var sessionPosition: Int { Int(run?.position ?? 1) }
 
     var sessionTotal: Int { Int(run?.total ?? 0) }
 
-    /// Ratings in answer order, feeding the segmented progress bar.
-    var sessionRatings: [Rating] { run?.ratings ?? [] }
+    /// The answered stretch as the progress bar draws it. Which rating reads as
+    /// which tone is kern's grouping (`AnswerTone`); only the hues are ours.
+    var sessionSegments: [SessionOutcome] {
+        (run?.segments ?? []).map(SessionOutcome.init)
+    }
 
     /// End-of-session summary tallies (design §Session): new cards started,
     /// cards graduated to review ("gefestigt"), and review answers.

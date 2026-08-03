@@ -78,22 +78,41 @@ enum DL {
         static let statValue = Font.system(.title, design: .rounded, weight: .bold)
     }
 
-    /// Article → color. Text always carries the meaning; color only reinforces.
+    /// Gender → color. Text always carries the meaning; color only reinforces.
     ///
     /// A two-gender language folds onto the SAME two hues rather than minting its
-    /// own: masculine reads der-blue, feminine die-berry, and the plural and
-    /// indefinite articles take the color of the gender they inflect. Green is
-    /// German's neuter alone — a language without one simply never reaches it —
-    /// and an article this table does not know degrades to neutral, exactly as a
-    /// genderless target already does. Widget and watch surfaces mirror this
-    /// mapping in their own palettes; this is the canonical list.
-    static func articleColor(_ article: String) -> Color {
-        switch article.lowercased() {
-        case "der", "el", "los", "un": return .dlDer
-        case "die", "la", "las", "una": return .dlDie
-        case "das": return .dlDas
-        default: return .dlTextSecondary
+    /// own: masculine reads der-blue, feminine die-berry. Green is German's neuter
+    /// alone — a language without one simply never reaches it — and a word whose
+    /// gender the box cannot name degrades to neutral, exactly as a genderless
+    /// target already does. Widget and watch surfaces mirror this mapping in their
+    /// own palettes. WHICH article marks which gender is not decided here:
+    /// that list is `kern/model/Article.kt`.
+    static func genderColor(_ gender: DLGender?) -> Color {
+        switch gender {
+        case .masculine: return .dlDer
+        case .feminine: return .dlDie
+        case .neuter: return .dlDas
+        case nil: return .dlTextSecondary
         }
+    }
+}
+
+/// The grammatical gender a word's article marks, as this palette reads it.
+/// The Design-local twin of the box's `Gender`, so components stay kern-free.
+enum DLGender {
+    case masculine, feminine, neuter
+}
+
+/// An article as a card face shows it: the word itself and the gender it marks,
+/// as ONE value so the two can never disagree. The screen resolves the gender
+/// when it builds the face — the design system only paints it.
+struct DLArticle {
+    let text: String
+    let gender: DLGender?
+
+    init(_ text: String, gender: DLGender?) {
+        self.text = text
+        self.gender = gender
     }
 }
 
@@ -236,13 +255,18 @@ struct DLIconButtonStyle: ButtonStyle {
                 .foregroundStyle(Color.dlTextPrimary)
 
             HStack(spacing: DL.Space.s) {
-                ForEach(["der", "die", "das", "el", "la"], id: \.self) { article in
-                    Text(article)
+                let articles: [DLArticle] = [
+                    .init("der", gender: .masculine), .init("die", gender: .feminine),
+                    .init("das", gender: .neuter), .init("el", gender: .masculine),
+                    .init("la", gender: .feminine),
+                ]
+                ForEach(articles, id: \.text) { article in
+                    Text(article.text)
                         .font(DL.Fonts.badge)
                         .foregroundStyle(Color.dlOnColor)
                         .padding(.horizontal, DL.Space.m)
                         .padding(.vertical, DL.Space.xs + 2)
-                        .background(DL.articleColor(article), in: Capsule())
+                        .background(DL.genderColor(article.gender), in: Capsule())
                 }
             }
 

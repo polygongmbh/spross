@@ -66,10 +66,22 @@ extension Card {
 /// sentinel values via localized chrome strings.
 enum CardDisplay {
 
-    /// The realization's article for inline coloring (de `gender` carries the
-    /// article itself: "der"/"die"/"das").
-    static func article(of realization: Realization) -> String? {
+    /// The realization's authored article (de `gender` carries the article
+    /// itself: "der"/"die"/"das").
+    private static func article(of realization: Realization) -> String? {
         realization.grammar["gender"]
+    }
+
+    /// The article a card face may show in front of `shown`, with the gender it
+    /// marks — both rules are the box's (`model/Article.kt`): a rotated synonym
+    /// is a different word, so the card's article steps aside rather than
+    /// mislabel it, and which article marks which gender is stated there once.
+    static func articleLabel(of realization: Realization, shown: String) -> DLArticle? {
+        guard let article = shownArticle(article: article(of: realization),
+                                         shownForm: shown,
+                                         targetText: realization.text)
+        else { return nil }
+        return DLArticle(article, gender: DLGender(articleGender(article: article)))
     }
 
     /// "der Kühlschrank" — citation form with its article where present.

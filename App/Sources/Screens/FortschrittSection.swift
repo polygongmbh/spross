@@ -13,7 +13,7 @@ struct FortschrittSection: View {
             Text("progress.title")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
-            ActivityStripView(days: model.last14Days(),
+            ActivityStripView(days: model.activityWindow().map(ActivityColumn.init),
                               streakDays: model.stats?.streakDays ?? 0)
             HStack(spacing: DL.Space.m) {
                 // Standing totals with today's movement under them: the totals say
@@ -23,7 +23,7 @@ struct FortschrittSection: View {
                             label: "progress.consolidated",
                             delta: delta(Int(model.today?.consolidated ?? 0)))
                 BoxStatTile(emoji: "🌱",
-                            value: "\(model.stats?.freshCards ?? 0)",
+                            value: "\(model.stats?.learningCards ?? 0)",
                             label: "progress.fresh",
                             // Today's arrivals that are still fresh — an older word
                             // consolidating now belongs to the tile beside this one,

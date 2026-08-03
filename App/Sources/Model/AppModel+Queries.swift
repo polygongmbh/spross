@@ -18,50 +18,14 @@ extension AppModel {
                                                      tzId: currentTzId())
     }
 
-    /// Kern's `SessionOffer` as Heute reads it: counts in Int, and the headline
-    /// resolved to a String Catalog key. Which round it is and which phrasing names
-    /// it are kern's rulings (`session/SessionOffer.kt`); only the words are ours.
-    struct HeuteOffer {
-        let kind: SessionOfferKind
-        /// Reviews this round actually takes (capped), not the whole backlog.
-        let sessionReviews: Int
-        /// Due cards the session cap holds back for a later round.
-        let dueHeldBack: Int
-        /// Cards pulled forward to fill a short round out (kern's session floor).
-        let aheadCount: Int
-        let freshCount: Int
-        let headlineKey: String
-
-        init(_ offer: SessionOffer) {
-            kind = offer.kind
-            sessionReviews = Int(offer.reviews)
-            dueHeldBack = Int(offer.dueHeldBack)
-            aheadCount = Int(offer.ahead)
-            freshCount = Int(offer.fresh)
-            headlineKey = "heute.session.\(Self.stem(offer.headline.kind)).\(offer.headline.variant)"
-        }
-
-        /// One string set per kind, keyed by the kind itself so a new kind cannot
-        /// silently keep an old kind's words. `nothing` never reaches here — kern
-        /// folds it onto `freshSet`, the done card speaking for an empty round —
-        /// but naming it anyway keeps every path off a missing key.
-        private static func stem(_ kind: SessionOfferKind) -> String {
-            switch kind {
-            case .reviews: return "reviews"
-            case .warmUp: return "warmUp"
-            case .freshSet, .nothing: return "freshSet"
-            }
-        }
-    }
-
-    var heuteOffer: HeuteOffer {
+    /// Today's round as kern classified it. A box that has not loaded offers nothing.
+    var heuteOffer: SessionOffer {
         guard let box else {
-            return HeuteOffer(SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0,
-                                           ahead: 0, fresh: 0))
+            return SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0, ahead: 0, fresh: 0)
         }
-        return HeuteOffer(SessionOffers.shared.offer(state: box,
-                                                     nowEpochMillis: Date().epochMillis,
-                                                     tzId: currentTzId()))
+        return SessionOffers.shared.offer(state: box,
+                                          nowEpochMillis: Date().epochMillis,
+                                          tzId: currentTzId())
     }
 
     /// What the learner did today — reviews, first meetings, words that consolidated,
@@ -280,12 +244,26 @@ extension AppModel {
         return streakWindow(dailyStats: box.dailyStats, days: Int32(days),
                             nowEpochMillis: now.epochMillis, tzId: currentTzId())
     }
+}
 
-    /// Shim over `activityWindow` for `ActivityStripView`, which still walks the
-    /// streak itself from bare counts instead of reading each day's `role`.
-    func last14Days(now: Date = Date()) -> [(day: Date, reviews: Int)] {
-        activityWindow(now: now).map {
-            (day: Date(epochMillis: $0.dayStartEpochMillis), reviews: Int($0.reviews))
+extension SessionOffer {
+
+    /// The String Catalog key naming this round. Which kind owns the words and
+    /// which of its phrasings this round takes are kern's rulings
+    /// (`session/SessionOffer.kt`); only the words themselves are ours.
+    var headlineKey: String {
+        "heute.session.\(Self.stem(headline.kind)).\(headline.variant)"
+    }
+
+    /// One string set per kind, keyed by the kind itself so a new kind cannot
+    /// silently keep an old kind's words. `nothing` never reaches here — kern
+    /// folds it onto `freshSet`, the done card speaking for an empty round —
+    /// but naming it anyway keeps every path off a missing key.
+    private static func stem(_ kind: SessionOfferKind) -> String {
+        switch kind {
+        case .reviews: return "reviews"
+        case .warmUp: return "warmUp"
+        case .freshSet, .nothing: return "freshSet"
         }
     }
 }

@@ -19,7 +19,7 @@ struct VocabCardView: View {
     /// ♀ badge (never graded).
     struct Side {
         var text: String
-        var article: String?
+        var article: DLArticle?
         var plural: String?
         var alternates: String?
         /// Disambiguating label ABOVE the headword — the area, set only on an ambiguous
@@ -42,7 +42,7 @@ struct VocabCardView: View {
         /// ear, where showing the word would be showing the answer.
         var listening: Bool = false
 
-        init(text: String, article: String? = nil, plural: String? = nil,
+        init(text: String, article: DLArticle? = nil, plural: String? = nil,
              alternates: String? = nil, context: String? = nil, femMarker: Bool = false,
              language: String? = nil, pronounce: (() -> Void)? = nil, isPlaying: Bool = false,
              listening: Bool = false) {
@@ -239,7 +239,7 @@ struct VocabCardView: View {
     /// this reading is the only pronunciation the learner gets.
     private func spokenLabel(_ side: Side) -> Text? {
         guard let language = side.language else { return nil }
-        var label = AttributedString(side.article.map { "\($0) \(side.text)" } ?? side.text)
+        var label = AttributedString(side.article.map { "\($0.text) \(side.text)" } ?? side.text)
         label.languageIdentifier = language
         return Text(label)
     }
@@ -251,9 +251,9 @@ struct VocabCardView: View {
             .font(compact ? DL.Fonts.title : DL.Fonts.hero)
             .foregroundStyle(emphasized ? Color.dlAccent : Color.dlTextPrimary)
         guard let article = side.article else { return word }
-        return Text(verbatim: "\(article) ")
+        return Text(verbatim: "\(article.text) ")
             .font(compact ? DL.Fonts.title : DL.Fonts.hero)
-            .foregroundStyle(DL.articleColor(article))
+            .foregroundStyle(DL.genderColor(article.gender))
             + word
     }
 }
@@ -316,15 +316,15 @@ extension Animation {
 /// Colored article pill, exactly like the poster's "der/die/das" pills.
 /// The article text itself carries the meaning; color only reinforces it.
 struct ArticleBadge: View {
-    let article: String
+    let article: DLArticle
 
     var body: some View {
-        Text(article)
+        Text(article.text)
             .font(DL.Fonts.badge)
             .foregroundStyle(Color.dlOnColor)
             .padding(.horizontal, DL.Space.m)
             .padding(.vertical, DL.Space.xs + 2)
-            .background(DL.articleColor(article), in: Capsule())
+            .background(DL.genderColor(article.gender), in: Capsule())
     }
 }
 
@@ -334,7 +334,8 @@ struct ArticleBadge: View {
     VocabCardView(
         emoji: "🧊",
         prompt: .init(text: "friji"),
-        answer: .init(text: "Kühlschrank", article: "der", plural: "Pl. Kühlschränke"),
+        answer: .init(text: "Kühlschrank", article: .init("der", gender: .masculine),
+                      plural: "Pl. Kühlschränke"),
         note: nil,
         revealed: false
     )
@@ -348,7 +349,8 @@ struct ArticleBadge: View {
         emoji: "🍳",
         emojiCue: .onReveal,
         prompt: .init(text: "kikaango"),
-        answer: .init(text: "Pfanne", article: "die", plural: "Pl. Pfannen"),
+        answer: .init(text: "Pfanne", article: .init("die", gender: .feminine),
+                      plural: "Pl. Pfannen"),
         note: "wörtlich: kleines Bratgefäß",
         revealed: true
     )
@@ -362,7 +364,8 @@ struct ArticleBadge: View {
         // Not-yet-sticking word: emoji as light support.
         VocabCardView(
             emoji: "🥄",
-            prompt: .init(text: "Löffel", article: "der", plural: "Pl. Löffel"),
+            prompt: .init(text: "Löffel", article: .init("der", gender: .masculine),
+                          plural: "Pl. Löffel"),
             answer: .init(text: "kijiko"),
             note: nil,
             revealed: false,

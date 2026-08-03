@@ -64,15 +64,21 @@ extension BoxStatistics {
     var streakDays: Int { Int(streak) }
     var longestStreakDays: Int { Int(longestStreak) }
     var consolidatedCards: Int { Int(consolidatedCount) }
-    /// Active cards that have not consolidated yet — the fresh half of the Fortschritt split.
-    var freshCards: Int { Int(learningCount) }
+    var learningCards: Int { Int(learningCount) }
 }
 
 extension AreaStatistics {
-    var totalCards: Int { Int(total) }
     var activeCards: Int { Int(active) }
     var consolidatedCards: Int { Int(consolidated) }
     var lockedPhrases: Int { Int(phrasesLocked) }
+
+    /// The area's three buckets and what they are measured against, as the
+    /// design system reads them — which card falls in which bucket, and how a
+    /// stale total is clamped, are the engine's rulings (`box/Statistics.kt`).
+    var progress: AreaProgress {
+        AreaProgress(consolidated: Int(consolidated), learning: Int(learning),
+                     notIntroduced: Int(notIntroduced), progressTotal: Int(progressTotal))
+    }
 }
 
 extension DayStats {
@@ -101,6 +107,45 @@ extension LetterDrill {
 extension LetterDrill.LetterDrillProgress {
     var nextLevel: Int { Int(level) }
     var wins: Int { Int(winsAtLevel) }
+}
+
+// MARK: - Kern → Design value types
+//
+// `App/Sources/Design` is kern-free by design, so every rule it renders arrives
+// as one of its own value types. These are the only places the two meet.
+
+extension SessionOutcome {
+    /// The bar segment one answer draws. The bucketing is kern's (`AnswerTone`).
+    init(_ tone: AnswerTone) {
+        switch tone {
+        case .right: self = .right
+        case .tough: self = .tough
+        case .wrong: self = .wrong
+        }
+    }
+}
+
+extension DLGender {
+    /// The palette's twin of the box's `Gender` — kern names the gender an
+    /// article marks (`model/Article.kt`), the design system names the hue.
+    init?(_ gender: Gender?) {
+        guard let gender else { return nil }
+        switch gender {
+        case .masculine: self = .masculine
+        case .feminine: self = .feminine
+        case .neuter: self = .neuter
+        }
+    }
+}
+
+extension ActivityColumn {
+    /// One day of the box's activity window. Earned and bridged days alike are
+    /// covered by the run the flame counts — the strip never walks it itself.
+    init(_ day: ActivityDay) {
+        self.init(day: Date(epochMillis: day.dayStartEpochMillis),
+                  reviews: Int(day.reviews),
+                  inStreak: day.role != .outside)
+    }
 }
 
 // The product calibration and `withProductCalibration()` are Kern's

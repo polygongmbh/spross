@@ -208,7 +208,8 @@ struct SessionExitButtons: View {
             VocabCardView(
                 emoji: "🥄",
                 prompt: .init(text: "kijiko"),
-                answer: .init(text: "Löffel", article: "der", plural: "Pl. Löffel"),
+                answer: .init(text: "Löffel", article: .init("der", gender: .masculine),
+                              plural: "Pl. Löffel"),
                 note: nil,
                 revealed: true
             )
