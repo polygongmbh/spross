@@ -15,19 +15,16 @@ enum PlantEmoji {
 
         var layer = context
         layer.opacity = 0.7 + 0.3 * mark.depth
-        layer.translateBy(x: mark.foot.x, y: mark.foot.y - mark.size * 0.5)
+        layer.translateBy(x: mark.foot.x, y: mark.foot.y)
         layer.rotate(by: .radians(mark.tilt))
 
-        let text = Text(verbatim: glyph).font(.system(size: mark.size))
-        layer.draw(context.resolve(text), at: .zero, anchor: .center)
+        // why: a glyph is drawn from its middle, and every plant here stands on
+        // its foot — so it is lifted by half its own height to reach the ground.
+        let size = mark.size * 0.8
+        let text = Text(verbatim: glyph).font(.system(size: size))
+        layer.draw(context.resolve(text), at: CGPoint(x: 0, y: -size * 0.5), anchor: .center)
 
-        if mark.plant.touchedToday {
-            let radius = mark.size * 0.34
-            let ring = CGRect(x: -radius, y: mark.size * 0.5 - radius * 0.3,
-                              width: radius * 2, height: radius * 0.6)
-            layer.stroke(Path(ellipseIn: ring), with: .color(.dlAccent),
-                         lineWidth: max(0.6, mark.size * 0.05))
-        }
+        if mark.plant.touchedToday { PlantShapes.spark(&layer, mark) }
     }
 
     /// Nil where the stage has no plant to draw — bare ground falls back to the

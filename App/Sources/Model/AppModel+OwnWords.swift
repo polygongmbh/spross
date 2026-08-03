@@ -10,10 +10,6 @@ extension AppModel {
     /// The one area own words live in; not a catalog folder name.
     var ownArea: String { OwnWords.shared.AREA }
 
-    /// Whether any word the learner wrote joins this profile — what puts the
-    /// area on the Box screen at all.
-    var hasOwnWords: Bool { areaNames.contains(ownArea) }
-
     func isOwnWord(_ cardID: String) -> Bool { OwnWords.shared.owns(cardId: cardID) }
 
     /// Take in a word the learner wrote, in both of the profile's languages.

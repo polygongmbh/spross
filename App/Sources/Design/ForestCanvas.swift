@@ -9,6 +9,10 @@ import SwiftUI
 // be five hundred layers. Nothing is stored per plant; ForestLayout derives
 // position, size and tilt from the card id.
 //
+// The forest never animates. A box grows over weeks, and motion would be
+// claiming a change the picture cannot actually be showing — which also means
+// there is nothing here for Reduce Motion to switch off.
+//
 // The canvas itself is hidden from accessibility. Each grove carries a real
 // button on the very same rect the layout gave it, so what a sighted learner
 // taps and what VoiceOver reads are one element, and every stage is told by
@@ -26,6 +30,13 @@ enum PlantStyle: String, CaseIterable, Identifiable {
         case .emoji: return "settings.plantStyle.emoji"
         }
     }
+}
+
+/// Where the chosen style is kept, so the forest and the settings that change
+/// it cannot disagree about the key.
+enum PlantStyleSetting {
+    static let key = "plantStyle"
+    static let `default` = PlantStyle.drawn
 }
 
 struct ForestCanvas: View {
@@ -73,16 +84,20 @@ struct ForestCanvas: View {
     }
 
     private func groveControl(_ frame: GroveFrame) -> some View {
-        VStack(spacing: 1) {
+        VStack(spacing: 0) {
+            // The patch itself is the Canvas's; this half is only the tap target.
             Spacer(minLength: 0)
-            Text(verbatim: frame.grove.emoji)
-                .font(.system(size: 11))
-                .accessibilityHidden(true)
-            Text(frame.grove.title)
-                .font(.system(size: 9, design: .rounded))
-                .foregroundStyle(Color.dlTextSecondary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
+            HStack(spacing: 3) {
+                Text(verbatim: frame.grove.emoji)
+                    .font(.system(size: 9))
+                    .accessibilityHidden(true)
+                Text(frame.grove.title)
+                    .font(.system(size: 9, design: .rounded))
+                    .foregroundStyle(Color.dlTextSecondary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+            }
+            .frame(height: ForestLayout.labelHeight)
         }
         .frame(width: frame.rect.width, height: frame.rect.height + ForestLayout.labelHeight)
         .contentShape(Rectangle())

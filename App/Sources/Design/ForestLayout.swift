@@ -135,22 +135,23 @@ enum ForestLayout {
         return last.rect.maxY + labelHeight
     }
 
-    /// Scatters a grove's plants over its patch, back row first.
+    /// Scatters a grove's plants over its patch, back band first.
     ///
-    /// Plants are laid on bands running back-to-front, jittered within their band
-    /// so the bands never read as rows. Drawing order is the sort: a plant in a
-    /// nearer band is drawn later and so stands in front, which is the only thing
-    /// making a patch read as ground rather than as a sticker sheet.
+    /// Where a plant stands comes from its id, NEVER from its place in the list.
+    /// Seed order would otherwise put every word the learner has actually reached
+    /// in the same corner and march the growth rightward as a wedge — the box
+    /// grows in seed order, and a patch that showed it would read as a bug.
+    ///
+    /// Drawing order is the sort: a plant in a nearer band is drawn later and so
+    /// stands in front, which is what makes a patch read as ground rather than as
+    /// a sticker sheet.
     static func marks(_ grove: Grove, in rect: CGRect) -> [PlantMark] {
         guard !grove.plants.isEmpty else { return [] }
         let bands = max(2, min(5, Int(sqrt(Double(grove.plants.count)))))
-        let perBand = Double(grove.plants.count) / Double(bands)
 
-        return grove.plants.enumerated().map { index, plant in
-            let band = min(bands - 1, Int(Double(index) / perBand))
-            // why: the FIRST plant of a band must not always sit at its left edge —
-            // seed order would otherwise draw a diagonal across every grove.
-            let alongBand = (Double(index) - Double(band) * perBand + noise(plant.id, 1)) / (perBand + 1)
+        return grove.plants.map { plant -> PlantMark in
+            let band = min(bands - 1, Int(noise(plant.id, 4) * Double(bands)))
+            let alongBand = noise(plant.id, 1)
             let depth = bands == 1 ? 1 : Double(band) / Double(bands - 1)
 
             // Nearer bands sit lower and draw bigger — the whole of the perspective.
@@ -161,12 +162,15 @@ enum ForestLayout {
 
             return PlantMark(
                 plant: plant,
-                foot: CGPoint(x: rect.minX + rect.width * CGFloat(alongBand.clamped(0.04, 0.96)), y: ground),
-                size: rect.height * 0.46 * CGFloat(spread),
+                foot: CGPoint(x: rect.minX + rect.width * CGFloat(alongBand.clamped(0.05, 0.95)), y: ground),
+                size: rect.height * 0.38 * CGFloat(spread),
                 tilt: (noise(plant.id, 3) - 0.5) * 0.22,
                 depth: depth
             )
         }
+        // why: back bands must be painted before the ones in front of them, and
+        // the hash that placed the plants left them in no particular order.
+        .sorted { $0.depth < $1.depth }
     }
 
     /// Stable 0..<1 noise for one (id, property) — the same SplitMix64 finish

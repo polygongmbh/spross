@@ -38,6 +38,10 @@ final class AppModel {
     /// reduction or `box` below.
     var run: SessionRunState?
     private(set) var stats: BoxStatistics?
+    /// Where every card stands on the growth ladder — what the forest is drawn
+    /// from. Cached beside `stats` rather than derived on read: it is one entry
+    /// per card in the join, and Heute would otherwise rebuild it every redraw.
+    private(set) var growth: [CardGrowth] = []
     /// Settable internally only so AppModel+Queries can report reset failures.
     var loadFailure: LoadFailure?
     private(set) var catalog: Catalog?
@@ -271,10 +275,13 @@ final class AppModel {
     // MARK: - Persistence & stats
 
     func refreshStats() {
+        let now = Date().epochMillis
         stats = box.map {
-            BoxEngine.shared.statistics(state: $0, nowEpochMillis: Date().epochMillis,
-                                        tzId: currentTzId())
+            BoxEngine.shared.statistics(state: $0, nowEpochMillis: now, tzId: currentTzId())
         }
+        growth = box.map {
+            BoxEngine.shared.growth(state: $0, nowEpochMillis: now, tzId: currentTzId())
+        } ?? []
     }
 
     /// Scene went to background → fold any mid-session reviews into dailyStats

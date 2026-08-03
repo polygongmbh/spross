@@ -10,6 +10,7 @@ struct BoxSettingsSection: View {
 
     @State private var confirmingReset = false
     @State private var creditsPresented = false
+    @AppStorage(PlantStyleSetting.key) private var plantStyle = PlantStyleSetting.default.rawValue
     @Environment(\.locale) private var locale
 
     var body: some View {
@@ -22,6 +23,8 @@ struct BoxSettingsSection: View {
                 profileRow
                 Divider().overlay(Color.dlSeparator)
                 audioRow
+                Divider().overlay(Color.dlSeparator)
+                plantStyleRow
                 Divider().overlay(Color.dlSeparator)
                 resetRow
             }
@@ -175,6 +178,23 @@ struct BoxSettingsSection: View {
             get: { !Pronouncer.shared.muted },
             set: { Pronouncer.shared.setReadAloud(on: $0) }
         )
+    }
+
+    /// How Heute's forest draws its plants. A look, not a rule: the box grows
+    /// the same either way, which is why it sits here and not in the picture.
+    private var plantStyleRow: some View {
+        VStack(alignment: .leading, spacing: DL.Space.s) {
+            Text("settings.plantStyle.title")
+                .font(DL.Fonts.headline)
+                .foregroundStyle(Color.dlTextPrimary)
+            Picker("settings.plantStyle.title", selection: $plantStyle) {
+                ForEach(PlantStyle.allCases) { style in
+                    Text(style.label).tag(style.rawValue)
+                }
+            }
+            .pickerStyle(.segmented)
+            .labelsHidden()
+        }
     }
 
     /// Fresh start with the CURRENT catalog content.

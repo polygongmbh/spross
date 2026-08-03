@@ -1,11 +1,17 @@
 import SwiftUI
 
-/// Single-screen app: Heute is the root, the Box pushes via the 📦 toolbar
-/// icon. Onboarding sheet on first launch, full-screen session cover.
+/// Single-screen app: Heute is the root and holds the box itself, as the forest
+/// at its foot. An area pushes from its grove there or from a search hit;
+/// settings push from the gear. Onboarding sheet on first launch, full-screen
+/// session cover.
 struct RootView: View {
     @Bindable var model: AppModel
 
-    @State private var boxPresented = false
+    /// The area being browsed — nil is Heute. Search and the forest both set it,
+    /// so a hit and a tap land on one screen rather than two ways in.
+    @State private var openedArea: String?
+    @State private var settingsPresented = false
+    @State private var searchPresented = false
     @State private var sprouting = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -32,29 +38,43 @@ struct RootView: View {
         }
         .task {
             await model.start()
-            if model.uitestScreen == "box" {
-                boxPresented = true
+            if model.uitestScreen == "settings" {
+                settingsPresented = true
             }
         }
     }
 
     private var home: some View {
         NavigationStack {
-            HeuteView(model: model, openBox: { boxPresented = true })
-                .navigationDestination(isPresented: $boxPresented) {
-                    BoxView(model: model)
+            HeuteView(model: model, openArea: { openedArea = $0 })
+                .navigationDestination(item: $openedArea) { area in
+                    AreaView(model: model, area: area)
+                }
+                .navigationDestination(isPresented: $settingsPresented) {
+                    SettingsView(model: model)
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            boxPresented = true
+                            searchPresented = true
                         } label: {
-                            Image(systemName: "shippingbox.fill")
+                            Image(systemName: "magnifyingglass")
                         }
-                        .accessibilityLabel("nav.box")
+                        .accessibilityLabel("box.search")
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            settingsPresented = true
+                        } label: {
+                            Image(systemName: "gearshape")
+                        }
+                        .accessibilityLabel("nav.settings")
                     }
                 }
                 .toolbarBackground(.hidden, for: .navigationBar)
+                .sheet(isPresented: $searchPresented) {
+                    BoxSearchView(model: model, reveal: { openedArea = $0 })
+                }
         }
         .tint(.dlAccent)
     }

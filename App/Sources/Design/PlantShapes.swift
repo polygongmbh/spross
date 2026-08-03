@@ -15,13 +15,17 @@ import SwiftUI
 enum PlantShapes {
 
     /// Ground colour, and what a never-started word leaves behind.
+    ///
+    /// Deliberately faint: an untouched catalog is most of the box for a long
+    /// time, and ground that competed with the plants would make a young forest
+    /// read as a grey field rather than as room to grow.
     static func soil(_ context: inout GraphicsContext, _ mark: PlantMark) {
-        let radius = max(0.8, mark.size * 0.09)
+        let radius = max(0.7, mark.size * 0.07)
         let dot = CGRect(
             x: mark.foot.x - radius, y: mark.foot.y - radius,
             width: radius * 2, height: radius * 2
         )
-        context.fill(Path(ellipseIn: dot), with: .color(.dlSeparator))
+        context.fill(Path(ellipseIn: dot), with: .color(.dlSeparator.opacity(0.55)))
     }
 
     static func draw(_ context: inout GraphicsContext, _ mark: PlantMark) {
@@ -154,12 +158,18 @@ enum PlantShapes {
         context.stroke(stem(height: h, bend: 0), with: .color(.dlSeparator), lineWidth: lineWidth(mark))
     }
 
-    /// Answered today — a light ring at the plant's foot, so the day's work
-    /// shows where it happened rather than as a number somewhere else.
-    private static func spark(_ context: inout GraphicsContext, _ mark: PlantMark) {
-        let radius = mark.size * 0.3
-        let ring = CGRect(x: -radius, y: -radius * 0.34, width: radius * 2, height: radius * 0.68)
-        context.stroke(Path(ellipseIn: ring), with: .color(.dlAccent), lineWidth: max(0.6, mark.size * 0.05))
+    /// Answered today — a short line of fresh earth at the plant's foot, so the
+    /// day's work shows where it happened rather than as a number somewhere else.
+    /// A mark on the GROUND, not on the plant: it says the word was tended today,
+    /// never that it grew a stage, and a ring around the plant read as both.
+    /// Shared with the emoji style, which owes the day the same mark.
+    static func spark(_ context: inout GraphicsContext, _ mark: PlantMark) {
+        let half = mark.size * 0.2
+        var path = Path()
+        path.move(to: CGPoint(x: -half, y: 0))
+        path.addLine(to: CGPoint(x: half, y: 0))
+        context.stroke(path, with: .color(.dlAccent.opacity(0.75)),
+                       style: StrokeStyle(lineWidth: max(0.6, mark.size * 0.06), lineCap: .round))
     }
 
     // MARK: Pieces

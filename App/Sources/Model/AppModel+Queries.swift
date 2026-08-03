@@ -150,13 +150,10 @@ extension AppModel {
 
     // MARK: - Box queries
 
-    /// Area keys in catalog default order (groups top-to-bottom).
+    /// Area keys in catalog default order (groups top-to-bottom) — the order the
+    /// forest lays its groves out in, so adjacency still says which group an
+    /// area belongs to now that nothing folds.
     var areaNames: [String] {
-        #if DEBUG
-        // UI-test hook: `-uitest-noareas 1` hides the area sections so the
-        // Box tab's settings block is reachable without scrolling.
-        if UserDefaults.standard.bool(forKey: "uitest-noareas") { return [] }
-        #endif
         guard let catalog, let stats else { return [] }
         let present = Set(stats.areas.map(\.name))
         let fromCatalog = catalog.areaNames.filter(present.contains)
@@ -179,39 +176,6 @@ extension AppModel {
     func areaEmoji(_ area: String) -> String {
         if area == ownArea { return OwnWords.shared.EMOJI }
         return catalog?.areaEmoji(area: area) ?? "📦"
-    }
-
-    /// One Box browser section: an areas.json group with its present areas.
-    struct AreaGroupSection: Identifiable {
-        let id: String
-        let title: String
-        let areas: [String]
-    }
-
-    /// Manifest-ordered groups (title in the SOURCE language, en fallback),
-    /// filtered to the areas actually present in this profile's box —
-    /// mirrors `areaNames` (incl. its uitest hook); empty groups drop out.
-    var areaGroupSections: [AreaGroupSection] {
-        guard let catalog else { return [] }
-        let present = Set(areaNames)
-        return catalog.groups.compactMap { group in
-            let areas = group.areas.filter(present.contains)
-            guard !areas.isEmpty else { return nil }
-            let title = group.titles[sourceLanguage] ?? group.titles["en"] ?? group.id.capitalized
-            return AreaGroupSection(id: group.id, title: title, areas: areas)
-        }
-    }
-
-    /// The group the Box browser opens on: the first one holding cards already
-    /// in learning — where the learner left off, and the only group whose
-    /// numbers have anything to say. A box nothing has been started in falls
-    /// back to the first group, so the screen never opens fully folded.
-    var defaultExpandedGroupID: String? {
-        let sections = areaGroupSections
-        let started = sections.first { section in
-            section.areas.contains { (areaStats($0)?.activeCards ?? 0) > 0 }
-        }
-        return started?.id ?? sections.first?.id
     }
 
     func areaStats(_ name: String) -> AreaStatistics? {
