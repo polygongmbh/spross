@@ -156,7 +156,7 @@ One line per item, with a file or context pointer, filed under the section it be
   emoji are all visual, and the emoji is `accessibilityHidden` because VoiceOver reading
   "raising hands" after every tap is worse than silence
   (`Watch/Sources/WatchQuizView.swift` `ratingBadge`). The phone states the opposite rule
-  for its letter drill ("correctness is never color alone", `design.md`), so the watch owes
+  for its letter drill ("correctness is never color alone", `surfaces.md`), so the watch owes
   a spoken equivalent — an accessibility label or value on the answered tile, not a mark.
 
 ## Localization
@@ -170,7 +170,7 @@ One line per item, with a file or context pointer, filed under the section it be
 ## Platform reach
 
 - Android not yet ported: Box browse, trainers, widget, 14-day strip, confetti/haptics
-  (`design.md` § Android companion).
+  (`surfaces.md` § Android companion).
 - Android carries its own unrelated palette (`android/.../ui/Theme.kt`) that never went
   through the contrast pass — it predates the ocean/forest re-cut and shares no values
   with `Design/Theme.swift`.

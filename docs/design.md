@@ -1,6 +1,8 @@
 # Spross — app design (v2)
 
-This doc is the build contract for the APP layer: screens, review UX, profile, persistence wiring.
+This doc is the build contract for the REVIEW LOOP: the card, the typing, Heute, the Box.
+Two app domains have their own pages — `surfaces.md` (drills, the wrist, Android) and
+`read-aloud.md` (what speaks, and when).
 The product thesis and phase plan live in `../../docs/roadmap.md`;
 the engine — scheduling, growth, sessions, grading, snapshots — in `../kern/README.md`.
 
@@ -135,64 +137,6 @@ never the shape of the app.
 - Progress bar: one segment per answer, colored by its outcome.
 - A miss is stated where the learner is already looking;
   the streak survives a missed day, but not two in a row.
-- **Words are read aloud, and a recording is only played for the word it actually says.**
-  Kern matches recordings by the FORM on screen, never by concept, so a rotated synonym is
-  never answered with the canonical word; anything unmatched falls to the device's own
-  voice speaking exactly what stands there, and a target with neither — Swahili has no iOS
-  voice at all — stays silent rather than be read in the wrong one.
-- **Only the headword is ever spoken.** Article, ♀ badge, plural line and alternates are
-  grammar decoration: gender is taught by the article color, and the recordings say bare
-  words — speaking the article in the synthesized branch alone would make a word's
-  pronunciation depend on which branch happened to answer.
-- **Audio may never give the answer away**: whether a card's target may be heard is the
-  engine's cue, the audio twin of the emoji cue — a recognition prompt carries the target
-  from frame one and speaks at once, a produce card owes that very form and waits for the
-  reveal. Both apps consume that one cue instead of each deciding for itself.
-- **Autoplay fires only where the card holds the learner.** A clean correct answer flips in
-  0.45–1.2 s, less than a word lasts, and a word cut off every time teaches worse than one
-  not played — the tap and the next recognition of the card both say it in full. Produce
-  fires wait a beat so the feedback chime is out of the way first; chimes are never ducked
-  for them, and no fire ever delays a flip. One fire per card, whichever path reaches it.
-
-| on screen | speaks? | what is said |
-|---|---|---|
-| recognition prompt | yes, at once | the prompted form — the rotated synonym, never the canonical word |
-| recognition reveal, write-it-out step | no | already said once |
-| produce answered correctly, typed or checked | no — the card is already flipping | — |
-| produce typo accepted (waits for a tap) | yes, after the chime | the correction line's proper spelling |
-| produce revealed — Aufdecken, wrong, other word | yes, after the chime | the bare target word |
-
-- **Tapping a word says it again — past both mutes.** A tap is a request, so it outranks
-  the app's own switch (mute has to stay usable as the accessibility affordance) and the
-  phone's silent switch alike: that one sound plays under `.playback`, which the hardware
-  switch cannot reach. Everything the app fires by ITSELF stays `.ambient`, where the phone
-  keeps its authority — the whole rule is `AudioSession`, one category chosen per sound.
-  The gesture is disclosed by the settings row's hint line, never by a mark on the card —
-  the hit area sits on every headword whether or not it can be heard, so no card changes
-  size between reviews because a synonym rotation landed on an unrecorded form.
-- **Reading aloud is on by default, and the silent switch is free to silence it.** That is
-  the untouched state; the switch — at the session's top bar, constant chrome so the card
-  below never moves for it, and in the Box settings — turns it into a decision. Switched
-  OFF it silences autoplay whatever the phone says. Switched ON it is itself a request to
-  hear something and lifts autoplay past a silenced phone, because a switch that says on
-  and says nothing is worse than no switch. Three states, one setting for the device: not
-  per target language, and not in the box, where the product calibration would reset it.
-  The silent switch's position cannot be read back (no API), so it is followed by deferring
-  to it, never by mirroring it.
-- **The feedback chimes are their own matter** — the read-aloud switch does not silence
-  them — but they play under whatever category it left standing, so the phone reaches them
-  exactly as it reaches autoplay. Nobody ever asked for a chime, so no chime is ever louder
-  than the phone.
-- **Chimes and words share one volume.** Both play on the app's own audio session, so the
-  levels they were authored at are the levels heard against each other. A chime routed to
-  the system-sound server instead would answer to the ringer while every word answered to
-  media — two sliders, and the chime gone whenever the ringer sat low.
-- VoiceOver never gets autoplay talking over it. The headword is labeled with the language
-  it is written in instead, so the screen reader says it in the right voice, and the replay
-  is an action ON the word rather than a button around it.
-- Whose the voices are, what their licences ask of the app, and why a credits screen has to
-  stand before a word may be heard: `audio-licensing.md`.
-
 ## Counts & sessions
 
 - Sessions are composed, never configured.
@@ -252,34 +196,6 @@ never the shape of the app.
     collide with them, and a box reset never takes them. Deleting one is a long-press on
     its row, and it is the only deletion in the app: a catalog word can be put to sleep,
     never removed.
-- **Trainers**: number, clock and phrase drills, registry-driven from kern, so the hub
-  offers only languages with authored content. Drills grade word by word and ramp with
-  the learner instead of sitting at one level.
-  A drill card is a review card — same face, same reveal — and carries nothing but the
-  prompt: the run's header line already names what is drilled and how far the ramp has
-  come, and the field's placeholder names the language to answer in, so a badge or a
-  "Zahl · auf Spanisch" caption would be the third telling of what one tap said.
-  The one thing it does carry is the place-value hint the first time a length appears —
-  a fact about THIS number, and the reveal takes its place rather than stacking under it.
-- **Letter drill & alphabet sheet**: the Training card shows when slots, phrases OR an
-  alphabet exist for the target (the third predicate is catalog file presence, recomputed
-  on foreground/readiness — a voice installed in Settings brings the chip back). The
-  sheet renders every row (glyph, name, IPA, context, hint, example with meaning where
-  the reader's language knows the word) and ships even where the drill cannot — audio is
-  the drill's precondition, not the sheet's. The drill asks everything by ear: letter
-  NAME or gap word — and a gap word is drawn from the whole catalog wherever the glyph
-  says its own sound, words the learner already holds first, so a rung stops meaning one
-  memorized blank (`catalog/README.md` § Alphabet owns which rows may draw). Tiles first
-  among strangers, then among look- and sound-alikes, then
-  typed, and — once enough words are consolidated — dictation of the learner's own
-  consolidated words, which never touches their schedule and leans toward the ones worth
-  spelling twice: words carrying the language's hard graphemes, and words this learner has
-  forgotten before. Correctness is never color
-  alone (checkmark/X over the tint); a miss never auto-advances. While reading aloud is
-  muted the drill stays visible and blocks with the one-tap unmute row instead of hiding
-  — a silenced feature must say how to unsilence it, and that one tap clears the phone's
-  silence with it. The silent switch alone cannot block the drill: the replay glyph is a
-  tap, and the run's first question names the switch for the autoplay it does eat.
 - **Two clean-correct beats, one home: 450 ms live, 1200 ms explicit.** The 0.45–1.2 s a
   clean answer waits above is those two tiers — 450 ms when the typing itself went exactly
   correct, 1200 ms when the learner tapped Check, Enter or a tile. Vocab review, the
@@ -299,54 +215,6 @@ text, which carries the bare word in every language.
 Palette: stone-and-moss paper, clay headline, ocean and forest as secondaries
 (growing-box theme), every pairing clearing WCAG AA in both schemes.
 `App/Sources/Design/Theme.swift` holds the values and the rules that keep them there.
-
-## Android companion (core loop)
-
-`android/` renders THIS contract with Compose — same engine facades, same review UX
-rules. Platform deltas only: the catalog ships as APK assets synced from `catalog/`,
-and the box is app-private and written after every answer rather than debounced.
-Its scope is § Not yet.
-
-## Watch & widgets (decode-only)
-
-- The phone precomputes both snapshots on every persist; the surfaces decode and draw,
-  and never compute what the phone could pre-resolve.
-- Watch: one graded **multiple-choice** loop — the watch never types, and the options
-  arrive ranked from kern so that nothing but meaning tells the answer from its company:
-  word class, then how the sentence closes, then area, then string shape
-  (`../kern/docs/snapshots.md`).
-  No self-grading: correctness and response time derive the rating.
-  Multiple choice on a keyboard-less device is a deliberate concession to the
-  recall-first rule, with the latency curve compensating for it.
-  Answers return as events; the phone reschedules against real timestamps and re-pushes.
-- **A word too long for a tile is a phone word.** The wrist carries only what four tiles
-  can hold at a readable size (kern `MAX_TEXT_CHARS`); a longer phrase is never pushed and
-  never offered as somebody else's distractor. This costs the watch about a quarter of the
-  phrases and no single word at all, and it is a gain rather than a loss: a four-way pick
-  between sentences is exposure, not recall, and exposure is what the phone's own card
-  already does better. What the watch drops, it drops from BOTH the entries and the option
-  pool, from one predicate — the two can never disagree about what fits.
-- **Every answer answers back, on three channels.** A haptic shaped like the derived rating
-  (affirming, a double tap for slow-but-right, a failure buzz for a miss), the rating itself
-  badged on the tapped tile as an emoji, and — on a miss only — the tile and a brief
-  full-screen wash in red. **Red is the wrist's alone**: the phone keeps wrong off its cards
-  because the learner stays there and can correct it, while a glance-long wrist answer has
-  no second face to be gentle on. The badge is a tell, never a label: naming the grade would
-  invite playing to the latency the grade is measuring. Reduce Motion keeps every color and
-  the badge and drops only the movement. No sound — the wrist is a silent surface, and two
-  channels already carry it.
-- **The picture arrives with the answer.** A card that has an emoji shows it on the watch's
-  prompt line once a tile is tapped, never before: on a recognition question the picture
-  depicts the very meaning being asked for. That reveal moment is also why the wire now
-  carries held-back pictures at all — the emoji cue picks which KEY the picture travels
-  under rather than whether it travels (`../kern/docs/snapshots.md`), so no surface can show one early
-  by reading the wrong field. It joins the prompt line instead of taking a slot of its own,
-  so an answered card never reflows under the thumb.
-- Two runs, and only one of them ends: the **due batch** is a counter that reaches its
-  end and returns to the start screen by itself, while **free practice** takes the words
-  closest to slipping, lap after lap, carrying the answer streak in place of a total.
-  Practice has no end screen — a run the learner ends when they like has nothing to
-  celebrate.
 
 ## Content pipeline
 

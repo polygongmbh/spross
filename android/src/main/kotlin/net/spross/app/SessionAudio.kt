@@ -11,7 +11,7 @@ import net.spross.kern.model.pronunciationCue
  * is [Pronouncer], and all that is left — which form, on which transition — is here.
  *
  * The iOS twin is `SessionView+Audio.swift`; the firing table both follow is
- * design.md § Review UX.
+ * docs/read-aloud.md.
  */
 
 /**
