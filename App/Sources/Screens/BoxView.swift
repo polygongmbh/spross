@@ -2,11 +2,19 @@ import SwiftUI
 import SprossKern
 
 /// Browse the box: areas with their stats, per-area "Pack in die Box",
-/// card lists with phase badges, and the settings block.
+/// card lists with phase badges, and the settings block. The magnifier in the
+/// bar opens the same box by typing (`BoxSearchView`), which hands an area back
+/// here to be revealed.
 struct BoxView: View {
     let model: AppModel
 
     @State private var expandedGroups: Set<String>
+    /// Which areas stand open — lifted out of the sections themselves, because a
+    /// search hit has to be able to open the one it landed in.
+    @State private var expandedAreas: Set<String> = []
+    @State private var searchPresented = false
+    /// The area the box should bring into view; cleared the moment it has.
+    @State private var scrollTarget: String?
 
     init(model: AppModel) {
         self.model = model
@@ -16,25 +24,75 @@ struct BoxView: View {
     }
 
     var body: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
-                header
-                // Areas grouped under their areas.json groups, manifest order.
-                ForEach(model.areaGroupSections) { group in
-                    VStack(alignment: .leading, spacing: DL.Space.l) {
-                        groupHeader(group)
-                        if expandedGroups.contains(group.id) {
-                            ForEach(group.areas, id: \.self) { area in
-                                BoxAreaSection(model: model, area: area)
+        ScrollViewReader { proxy in
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
+                    header
+                    // Areas grouped under their areas.json groups, manifest order.
+                    ForEach(model.areaGroupSections) { group in
+                        VStack(alignment: .leading, spacing: DL.Space.l) {
+                            groupHeader(group)
+                            if expandedGroups.contains(group.id) {
+                                ForEach(group.areas, id: \.self) { area in
+                                    BoxAreaSection(model: model, area: area,
+                                                   expanded: fold(of: area))
+                                        .id(area)
+                                }
                             }
                         }
                     }
+                    BoxSettingsSection(model: model)
                 }
-                BoxSettingsSection(model: model)
+                .padding(DL.Space.xl)
             }
-            .padding(DL.Space.xl)
+            // why: revealing an area is two moves — open it, then bring it up to
+            // the thumb; the second one needs the proxy the scroll view owns.
+            .onChange(of: scrollTarget) { _, area in
+                guard let area else { return }
+                withAnimation(.easeInOut(duration: 0.25)) {
+                    proxy.scrollTo(area, anchor: .top)
+                }
+                scrollTarget = nil
+            }
         }
         .background(Color.dlBackground.ignoresSafeArea())
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    searchPresented = true
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                }
+                .accessibilityLabel("box.search")
+            }
+        }
+        .toolbarBackground(.hidden, for: .navigationBar)
+        .sheet(isPresented: $searchPresented) {
+            BoxSearchView(model: model, reveal: reveal(area:))
+        }
+    }
+
+    /// One area's fold, held by the screen so both the header and a search hit
+    /// can move it.
+    private func fold(of area: String) -> Binding<Bool> {
+        Binding(
+            get: { expandedAreas.contains(area) },
+            set: { open in
+                if open { expandedAreas.insert(area) } else { expandedAreas.remove(area) }
+            }
+        )
+    }
+
+    /// A search hit names the area it lives in: the group unfolds, the area
+    /// unfolds, and the box scrolls it into reach.
+    private func reveal(area: String) {
+        guard let group = model.areaGroupSections.first(where: { $0.areas.contains(area) })
+        else { return }
+        withAnimation(.easeInOut(duration: 0.2)) {
+            expandedGroups.insert(group.id)
+            expandedAreas.insert(area)
+        }
+        scrollTarget = area
     }
 
     /// Foldable group row — a hairline rule and no card of its own, so the
@@ -107,8 +165,7 @@ private struct FoldChevron: View {
 private struct BoxAreaSection: View {
     let model: AppModel
     let area: String
-
-    @State private var expanded = false
+    @Binding var expanded: Bool
 
     var body: some View {
         let stats = model.areaStats(area)
@@ -180,77 +237,6 @@ private struct BoxAreaSection: View {
             ForEach(model.cards(inArea: area)) { card in
                 BoxCardRow(model: model, card: card)
             }
-        }
-    }
-}
-
-// MARK: - Card row
-
-private struct BoxCardRow: View {
-    let model: AppModel
-    let card: Card
-
-    var body: some View {
-        let sched = model.scheduling(for: card.id)
-        let pronounce = model.pronounceAction(for: card.target.text, lang: card.target.lang)
-
-        HStack(spacing: DL.Space.m) {
-            Text(card.displayEmoji)
-                .font(.title3)
-                .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 2) {
-                // Exposure surfaces render the TARGET side first (contract §6).
-                Text(CardDisplay.citation(of: card.target))
-                    .font(DL.Fonts.body)
-                    .foregroundStyle(Color.dlTextPrimary)
-                    .lineLimit(1)
-                Text(card.source.text)
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
-                    .lineLimit(1)
-            }
-            Spacer(minLength: DL.Space.s)
-            // why: the speaker's 44pt tap target is taller than both lines of
-            // text — beside the word it stretched the row; its own column lets
-            // the row close to the height the words actually need.
-            if let pronounce {
-                SpeakerIcon(size: .small,
-                            isPlaying: model.isPronouncing(card.target.text, lang: card.target.lang),
-                            pronounce: pronounce)
-                    .accessibilityLabel("a11y.pronounce")
-            }
-            if sched?.suspended == true {
-                Text(verbatim: "💤")
-                    .accessibilityLabel("box.suspended")
-                Button("box.wake") {
-                    model.setSuspended(cardID: card.id, suspended: false)
-                }
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlAccent)
-                .padding(.horizontal, DL.Space.m)
-                .padding(.vertical, DL.Space.xs + 1)
-                .background(Color.dlAccent.opacity(0.14), in: Capsule())
-            } else {
-                PhaseBadge(phase: badgePhase(sched),
-                           consolidated: model.isConsolidated(card.id))
-            }
-        }
-        .padding(.horizontal, DL.Space.m)
-        .padding(.vertical, DL.Space.xs + 2)
-        .background(
-            // why: the row sits INSIDE the area card now — surface on surface
-            // would leave the rows without an edge of their own.
-            RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                .fill(Color.dlSurfaceTint)
-        )
-    }
-
-    private func badgePhase(_ sched: CardScheduling?) -> PhaseBadge.Phase {
-        switch sched?.phase {
-        case nil, .theNew?: return .new
-        case .learning?: return .learning
-        case .review?: return .review
-        case .relearning?: return .relearning
         }
     }
 }
