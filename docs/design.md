@@ -179,7 +179,7 @@ never the shape of the app.
   size between reviews because a synonym rotation landed on an unrecorded form.
 - **Reading aloud is on by default, and the silent switch is free to silence it.** That is
   the untouched state; the switch — at the session's top bar, constant chrome so the card
-  below never moves for it, and in the Box settings — turns it into a decision. Switched
+  below never moves for it, and in Settings — turns it into a decision. Switched
   OFF it silences autoplay whatever the phone says. Switched ON it is itself a request to
   hear something and lifts autoplay past a silenced phone, because a switch that says on
   and says nothing is worse than no switch. Three states, one setting for the device: not
@@ -220,7 +220,7 @@ never the shape of the app.
 
 - **Heute** is the only root screen:
   session card (streak flame + the round's counts, or done state),
-  trainer hub, condensed Fortschritt section (14-day strip, gefestigt/frisch split).
+  trainer hub, then the Fortschritt section — 14-day strip and the forest.
   The card names what the round is led by rather than calling everything "a session":
   due work, or an offer of new words when nothing is due.
   Copy for the second is an OFFER, never a summons —
@@ -236,22 +236,39 @@ never the shape of the app.
   mark, headline, what the day bought, the way on, then fine print —
   and its mark IS the streak badge: two elements sandwiched the prose between them,
   and a card that both cheers and counts the run says one thing, not two.
-  The done state and the Fortschritt tiles carry the day's own movement under the
-  standing totals: totals say where the box stands, deltas say that today moved it.
-  Each delta is its own tile's news — today's arrivals still fresh, today's crossings
-  into gefestigt — never one tile's figure netted against the other's.
+  The done state carries the day's own movement under the standing totals:
+  totals say where the box stands, the day's figures say that today moved it.
 - **Stopping is the default at the end of a round**: the round that was planned is done,
   so "Fertig" is the primary button and going on the quiet one below it — an earned break
   needs no arguing for, and another round is still one tap away.
   A session summary and a drill's end through the same pair of buttons, so they cannot
   drift apart on which way out is the default.
   A day that is going badly says so, and says why stopping is the better call.
-- **Box** (📦 from Heute): browse the catalog by area, pack words in, revive suspended
-  ones; settings live here — profile, reset.
-  - **Search** (🔍 in the bar) reaches a word without knowing its shelf. The two result
-    kinds offer what they ARE: an area unfolds itself back on the Box screen and scrolls
-    into reach, a word can be heard and packed on its own — a learner who went looking for
-    one word by name should not have to take the shelf around it.
+- **The forest** at the foot of Heute IS the box: one plant per word, clustered into a
+  grove per area, in catalog order so adjacency still says which group an area belongs to.
+  The box had a screen of its own for as long as it was a list; a picture of what has
+  grown can be looked at from where the learner already is, and the browsing hangs off it.
+  A grove opens its area.
+  How far a word has come is `GrowthStage`'s to say (`../kern/README.md` §6) and this
+  layer's to draw: which rung takes which plant, and whether two rungs share one, is
+  decided in `ForestSection` alone. Growth reads UP the ladder — seed, sprout, stem,
+  leaf, flower, tree — so the flower is the word that has landed and the tree the one
+  that has stopped needing tending. Species is the word's kind.
+  Plants stand where a hash of their card id puts them, never where their place in seed
+  order would: the box grows in seed order, and a patch that showed it would pile
+  everything the learner has reached into one corner.
+  The picture is never the only telling — the canvas is hidden from accessibility and
+  each grove carries the tap target and the spoken split as one element, every stage is
+  a silhouette before it is a colour, and the standing figures are spelled out beneath.
+  Nothing in it moves: a box grows over weeks, and motion would claim a change the
+  picture is not showing.
+  - **Area** (a grove, or a search hit): the words in it and the one control that packs
+    the rest of them in. It opens on its words — the learner said which area they meant
+    by tapping it.
+  - **Search** (🔍 in Heute's bar) reaches a word without knowing its shelf. The two
+    result kinds offer what they ARE: an area opens itself, a word can be heard and
+    packed on its own — a learner who went looking for one word by name should not have
+    to take the shelf around it.
   - **Own words** are what a search with no answer leads to: the learner has just proved
     the catalog has no word for what they need, so the empty state is where writing one
     down belongs, and nowhere else. Both languages are asked for, because a word is only
@@ -262,6 +279,9 @@ never the shape of the app.
     collide with them, and a box reset never takes them. Deleting one is a long-press on
     its row, and it is the only deletion in the app: a catalog word can be put to sleep,
     never removed.
+- **Settings** (⚙️ in Heute's bar): profile, reading aloud, which plants the forest draws,
+  reset, credits. They rode at the foot of the Box screen under every area in the catalog,
+  which was the only place they could go while the box was a screen.
 - **Trainers**: number, clock and phrase drills, registry-driven from kern, so the hub
   offers only languages with authored content. Drills grade word by word and ramp with
   the learner instead of sitting at one level.

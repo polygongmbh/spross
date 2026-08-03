@@ -23,7 +23,7 @@ xcrun simctl uninstall booted net.spross.app         # reset to clean state
 
 DEBUG launch-arg hooks (read in `AppModel.start()`):
 `-uitest-source de -uitest-target sw` (skip onboarding with that profile),
-`-uitest-screen box` (push Box screen), `-uitest-autostart 1`.
+`-uitest-screen settings` (push Settings), `-uitest-autostart 1`.
 
 Screenshots: `xcrun simctl io booted screenshot /tmp/x.png` (1206x2622 px = 402x874 pt on iPhone 17 Pro; divide px by 3 for tap points).
 
@@ -47,5 +47,5 @@ Box documents (per-target, progress evidence) live in the shared app group:
 `~/Library/Developer/CoreSimulator/Devices/<UDID>/data/Containers/Shared/AppGroup/*/box/box-<target>.json`
 (`source`/`target` top-level keys carry the join stamp).
 
-Flows worth driving: onboarding (clean install), Box screen settings section
-(~20 flick-swipes down from top of Box screen).
+Flows worth driving: onboarding (clean install), Heute's forest
+(~4 flick-swipes down from the top; a grove tap opens its area).

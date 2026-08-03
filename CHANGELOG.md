@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- **Your box is a forest now, and it grows on the first screen.** Where Heute ended in two
+  numbers there is now a plant for every word you have: a seed once you have packed it, a
+  sprout at your first answer, and up through leaves to a flower when the word has landed
+  and a tree when it has stopped needing you. Its kind decides what it grows into, and the
+  ones you worked on today carry a mark at their feet. Each area is its own patch, so you
+  can see at a glance which corners of the language you have actually been in — and where
+  there is still bare ground. Tapping a patch opens that area, which is where the words,
+  the packing and everything the Box screen used to do now live; the Box screen itself is
+  gone, and searching and settings moved up to the bar on Heute. Plants can be drawn or
+  emoji, in Settings.
+
 ## 3.7.0 — 2026-08-03
 
 - **Words you pack on a finished day arrive in the round you open.** Packing an area once the
