@@ -328,7 +328,11 @@ day-key `yyyy-MM-dd`) with:
   `RETURNING_SOON_MILLIS`** (12 h), and the day already worked, where worked means a round's
   worth of answers rather than a single tap. "Nothing more right now" is a real answer, and
   manufacturing another round would make every visit a treadmill.
-  Cards the learner PACKED still enter then — that is an explicit ask, not automatic growth.
+  **Nothing composes past that, packed cards included** (user ruling 2026-08-03): packing IS an
+  explicit ask, and the round the learner opens is where it is answered. Letting it through the
+  day's own round instead produced a four-card round of first sights — the tomorrow reservation
+  docked the budget by its half, and the pull-aheads it was docked FOR never came, because a
+  done day skips the fill.
   **A word on a learning step is the day's own unfinished business** (user ruling 2026-08-03):
   it was missed minutes ago and returns in minutes, so a day closed in between is a claim the
   scheduler overturns by itself. The span is rolling rather than a calendar edge, because what
@@ -353,8 +357,20 @@ day-key `yyyy-MM-dd`) with:
   Cards falling due while the learner sits there — a learning step maturing, most often —
   used to be drained straight in, so the count they were counting down to moved away from
   them mid-sitting. Nothing joins a run under way now; the work is still due, and endless
-  practice (`composeEndless`, explicitly asked for from the summary) is where it lands.
+  practice (explicitly asked for from the summary) is where it lands.
   `dueNow` therefore feeds counts, rings and fresh pulls only.
+- **One composer for every round** (user ruling 2026-08-03): `composeRound` is what the day
+  opens, what the extra round off a finished day opens, and what each endless refill pulls.
+  User agency decides WHETHER a round opens; it never decides what goes in one. The extra
+  round and endless each used to have a composer of their own and had drifted to opposite
+  extremes — packed cards with a pull-ahead tail sized to `sessionCap`, versus new words with
+  pull-aheads withheld entirely — so which one a screen happened to call decided whether the
+  learner got a wall of first sights or a wall of cards dragged forward from days out.
+  Under the shared rules a round's SIZE is the box's to set: due work carries it when the
+  learner is behind, cards coming due inside tomorrow when the box is settling, new words when
+  little is coming up. `composeSession` is `composeRound` plus the day-done question, and
+  nothing else. A refill therefore pulls ahead like any round, so an endless run ends when the
+  learner closes it rather than when the catalog does — which is what "endless" is asked for.
 - **Join filter inventory**: composition, dueNow, dueCount, statistics, exposure operate on
   cards that join the current profile; the unlock check and `answer()` history reads
   operate on raw schedules by id. Non-joining schedules and enqueued entries are kept

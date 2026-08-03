@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **Words you pack on a finished day arrive in the round you open.** Packing an area once the
+  day was already done conjured a stunted round behind the "done" screen: a handful of first
+  sights, no practice mixed through, over before it began. A finished day now stays finished,
+  and the pack is offered by "Noch eine Runde?" — which composes the way every round does,
+  practice when words are coming back, new ones when little is, and both when the box holds
+  both. Practising on from the summary follows the same rule, so it keeps going for as long as
+  you want it to instead of running dry on a box you have caught up with. The done screen
+  mentions the pack, quietly.
+
 - **On Android the day counts the way it does on the iPhone.** Both apps had been keeping the
   same rules in two places, and the copies had drifted apart: the extra round after a finished
   day reached for new words instead of pulling practice forward, the summary called a word
