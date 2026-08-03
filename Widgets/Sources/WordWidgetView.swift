@@ -55,17 +55,12 @@ struct WordWidgetView: View {
         }
     }
 
-    /// Compact streak · gefestigt line for the bottom of the small tile.
+    /// Compact streak line for the bottom of the small tile.
     private var statsFooter: some View {
         HStack(spacing: 8) {
             if entry.streak > 0 {
-                Label("\(entry.streak)", systemImage: "flame.fill")
+                Label("\(entry.streak)", systemImage: entry.streakRenewedToday ? "flame.fill" : "flame")
                     .foregroundStyle(.orange)
-            }
-            Spacer()
-            if entry.consolidated > 0 {
-                Label("\(entry.consolidated)", systemImage: "leaf.fill")
-                    .foregroundStyle(.green)
             }
         }
         .font(.caption2.weight(.semibold))
@@ -84,21 +79,16 @@ struct WordWidgetView: View {
         }
     }
 
-    /// 🔥 streak · N fällig · N gefestigt — glanceable box growth.
+    /// 🔥 streak · N fällig — glanceable box growth.
     private var statsHeader: some View {
         HStack(spacing: 12) {
             if entry.streak > 0 {
-                Label("\(entry.streak)", systemImage: "flame.fill")
+                Label("\(entry.streak)", systemImage: entry.streakRenewedToday ? "flame.fill" : "flame")
                     .foregroundStyle(.orange)
             }
             if entry.dueCount > 0 {
                 Label("\(entry.dueCount) fällig", systemImage: "tray.full")
                     .foregroundStyle(.orange)
-            }
-            Spacer()
-            if entry.consolidated > 0 {
-                Label("\(entry.consolidated) gefestigt", systemImage: "leaf.fill")
-                    .foregroundStyle(.green)
             }
         }
         .font(.caption.weight(.semibold))

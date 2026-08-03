@@ -74,6 +74,15 @@ struct WidgetSnapshot: Codable {
         return count
     }
 
+    /// Whether today already has a review — drives the widget's flame between
+    /// filled (renewed) and hollow (still needs a review to keep the streak).
+    func streakRenewedToday(now: Date, timeZone: TimeZone = .current) -> Bool {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = timeZone
+        let today = calendar.startOfDay(for: now)
+        return (dailyStats[Self.dayKey(today, calendar: calendar)]?.reviews ?? 0) > 0
+    }
+
     /// Kern day keys are ISO `yyyy-MM-dd` regardless of the device calendar.
     private static func dayKey(_ date: Date, calendar: Calendar) -> String {
         let parts = calendar.dateComponents([.year, .month, .day], from: date)

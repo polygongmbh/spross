@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **The widget dropped its consolidated-word count and gave the streak flame a hollow state.**
+  The "N gefestigt" number wasn't actionable from the lock screen, so it's gone; the streak
+  flame now shows filled once today's review is in and hollow while it's still outstanding, so
+  a glance at the widget tells you whether the streak still needs tending today.
+
 ## 3.7.0 — 2026-08-03
 
 - **Words you pack on a finished day arrive in the round you open.** Packing an area once the

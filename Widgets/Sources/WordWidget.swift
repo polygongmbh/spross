@@ -43,6 +43,8 @@ struct WordEntry: TimelineEntry {
     let words: [WidgetWord]
     let dueCount: Int
     let streak: Int
+    /// Whether today already has a review — drives the flame's filled vs. hollow state.
+    let streakRenewedToday: Bool
     /// Active cards that have consolidated — the box's growth, not a retention score.
     let consolidated: Int
 
@@ -62,7 +64,7 @@ struct WordEntry: TimelineEntry {
             WidgetWord(emoji: "🌙", tint: nil, word: "mwezi", meaning: "Mond"),
             WidgetWord(emoji: "🏠", tint: nil, word: "nyumba", meaning: "Haus"),
         ],
-        dueCount: 0, streak: 3, consolidated: 12)
+        dueCount: 0, streak: 3, streakRenewedToday: true, consolidated: 12)
 }
 
 struct WordProvider: TimelineProvider {
@@ -92,6 +94,7 @@ struct WordProvider: TimelineProvider {
         }
         let dueCount = snapshot.dueCount(now: start)
         let streak = snapshot.streak(now: start)
+        let streakRenewedToday = snapshot.streakRenewedToday(now: start)
         return (0..<24).map { slot in
             // Rotate a window of `listSize` words; primary is the window head.
             let window = (0..<Self.listSize).map { words[(slot + $0) % words.count] }
@@ -100,6 +103,7 @@ struct WordProvider: TimelineProvider {
                              words: window,
                              dueCount: dueCount,
                              streak: streak,
+                             streakRenewedToday: streakRenewedToday,
                              consolidated: snapshot.consolidatedCount)
         }
     }
