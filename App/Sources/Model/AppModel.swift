@@ -40,43 +40,42 @@ final class AppModel {
     }
 
     private(set) var phase: Phase = .loading
-    /// Settable internally only so AppModel+Session can apply answers.
-    var box: BoxState?
+    /// The whole session run — queue, tallies, and THE BOX (`SessionRun`).
+    /// Settable across the model's extensions; every write goes through a
+    /// reduction or `box` below.
+    var run: SessionRunState?
     private(set) var stats: BoxStatistics?
     /// Settable internally only so AppModel+Queries can report reset failures.
     var loadFailure: LoadFailure?
     private(set) var catalog: Catalog?
 
-    // MARK: Session state (mutated in AppModel+Session)
+    /// The stored document, as a window onto the run: a reduction carries the
+    /// box it answered against, so the two can never disagree about which state
+    /// the next answer applies to.
+    var box: BoxState? {
+        get { run?.box }
+        set {
+            guard let newValue else { run = nil; return }
+            run = run.map { SessionRun.shared.withBox(state: $0, box: newValue) }
+                ?? SessionRun.shared.idle(box: newValue)
+        }
+    }
+
+    // MARK: Session presentation (iOS-only; the run itself lives in `run`)
 
     var sessionPresented = false
-    var sessionStep: SessionStep?
-    var sessionQueue: [String] = []
-    var sessionTotal = 0
-    var sessionAnswered = 0
-    /// Ratings in answer order, feeding the segmented progress bar.
-    var sessionRatings: [Rating] = []
-    /// Answers already folded into dailyStats (partial folds on backgrounding).
-    var sessionFolded = 0
-    /// End-of-session summary tallies (design §Session): new cards started,
-    /// cards graduated to review ("gefestigt"), and review answers.
-    var sessionNew = 0
-    var sessionGraduated = 0
-    var sessionReviews = 0
-    /// Endless practice: on completion the user can keep pulling due + new
-    /// cards until they stop, instead of ending the round.
-    var sessionEndless = false
-    var sessionEnded = true
-    /// Join the running session was composed against; a mismatch with the
-    /// box's stamp (source switch, catalog update) forces a recompose.
-    var sessionJoinStamp: JoinStamp?
     private(set) var autostartSession = false
     /// DEBUG hook: `-uitest-screen box` pushes the Box screen after launch,
     /// `finish` jumps a fresh session to its finish screen.
     private(set) var uitestScreen: String?
+    #if DEBUG
+    /// DEBUG hook: `-uitest-screen finish` parks a fresh run on its summary
+    /// without answering anything — a step the reducer has no intent for,
+    /// because nothing but a test ever asks for it.
+    var uitestFinished = false
+    #endif
 
     let store: BoxStore
-    let calendar = Calendar.current
     /// Watch sync bridge (PhoneConnectivity.swift): snapshot down, events up.
     let watchBridge = PhoneConnectivity()
     static let sourceLanguageKey = "sourceLanguage"
@@ -93,22 +92,39 @@ final class AppModel {
     var sourceLanguage: String {
         box?.joinStamp.source
             ?? UserDefaults.standard.string(forKey: Self.sourceLanguageKey)
-            ?? Self.defaultSource(covered: catalog.map(coveredSources) ?? [])
+            ?? defaultSource
     }
 
     var targetLanguage: String? { box?.joinStamp.target }
 
-    /// Sources worth offering: every language with at least one learnable target.
-    func coveredSources(_ catalog: Catalog) -> [String] {
-        catalog.languages.keys.sorted()
-            .filter { !catalog.availableTargets(source: $0).isEmpty }
+    /// What this device reports it reads — the one fact Kern cannot have.
+    static var deviceLanguage: String {
+        Locale.current.language.languageCode?.identifier ?? Catalog.companion.FALLBACK_SOURCE
     }
 
-    /// Device language when covered, else English (contract §1).
-    static func defaultSource(covered: [String]) -> String {
-        let device = Locale.current.language.languageCode?.identifier ?? "en"
-        return covered.contains(device) ? device : "en"
+    /// The source a fresh install opens with (contract §1) — Kern's ruling over
+    /// the catalog, so a device language nothing can be taught from still lands
+    /// on a source that teaches.
+    var defaultSource: String {
+        catalog?.defaultSource(deviceLanguage: Self.deviceLanguage)
+            ?? Catalog.companion.FALLBACK_SOURCE
     }
+
+    /// Shim over `Catalog.coveredSources()` — kept while the pickers still ask
+    /// the model for the list (`OnboardingView`, `BoxSettingsSection`).
+    func coveredSources(_ catalog: Catalog) -> [String] {
+        catalog.coveredSources()
+    }
+
+    /// Shim over `Catalog.defaultSource(deviceLanguage:)`, which needs the
+    /// catalog a static cannot reach — `OnboardingView` still asks statically.
+    static func defaultSource(covered: [String]) -> String {
+        loadedCatalog?.defaultSource(deviceLanguage: deviceLanguage)
+            ?? Catalog.companion.FALLBACK_SOURCE
+    }
+
+    /// The catalog `defaultSource(covered:)` answers from; set the moment one loads.
+    private static var loadedCatalog: Catalog?
 
     func languageInfo(_ code: String) -> LanguageInfo? {
         catalog?.languages[code]
@@ -136,6 +152,7 @@ final class AppModel {
             return
         }
         self.catalog = catalog
+        Self.loadedCatalog = catalog
 
         let storedTarget = UserDefaults.standard.string(forKey: Self.targetLanguageKey)
         guard let target = targetOverride ?? storedTarget else {
@@ -143,8 +160,7 @@ final class AppModel {
             return
         }
         let storedSource = UserDefaults.standard.string(forKey: Self.sourceLanguageKey)
-        let source = sourceOverride ?? storedSource
-            ?? Self.defaultSource(covered: coveredSources(catalog))
+        let source = sourceOverride ?? storedSource ?? defaultSource
         await activate(source: source, target: target)
         if autostartSession, sessionAvailable {
             startSession()
@@ -154,7 +170,7 @@ final class AppModel {
         // straight to its finish screen (confetti/cheer/exit buttons).
         if uitestScreen == "finish", sessionAvailable {
             startSession()
-            sessionStep = .completed
+            uitestFinished = true
         }
         #endif
     }
@@ -192,7 +208,8 @@ final class AppModel {
                     .join(cards: cards, joinStamp: stamp)
                     .withProductCalibration()
             } else {
-                state = BoxEngine.shared.bootstrap(cards: cards, config: .product(),
+                state = BoxEngine.shared.bootstrap(cards: cards,
+                                                   config: BoxConfig.companion.product(),
                                                    joinStamp: stamp)
             }
             box = state
@@ -287,16 +304,12 @@ final class AppModel {
     /// Scene went to background → fold any mid-session reviews into dailyStats
     /// (an evicted app must not lose them), then flush immediately.
     func persistNow() {
-        foldPartialSession()
-        guard let box else { return }
-        pushWatchSnapshot() // app background → refresh the watch (sync spec)
-        let json = StoreCodec.shared.encode(state: box)
-        let widgetJSON = widgetSnapshotJSON(for: box)
-        let target = box.joinStamp.target
-        Task { [store] in
-            try? await store.saveNow(json: json, target: target)
-            await store.saveWidgetSnapshot(json: widgetJSON)
-        }
+        // why: the fold's own Persist effect already flushed; a day with nothing
+        // to fold still owes the disk whatever else moved before the app left.
+        let flushed = reduce(SessionIntent.FoldPartial.shared)
+            .contains { ($0 as? SessionEffect.Persist)?.immediate == true }
+        guard !flushed, let box else { return }
+        persist(box, immediate: true) // pushes the watch snapshot too (sync spec)
     }
 
     func persist(_ state: BoxState, immediate: Bool = false) {

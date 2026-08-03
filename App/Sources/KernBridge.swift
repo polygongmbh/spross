@@ -16,15 +16,6 @@ extension Date {
 /// Engine boundary time zone: device-current per call (v1 parity).
 func currentTzId() -> String { TimeZone.current.identifier }
 
-/// Kern day keys are ISO `yyyy-MM-dd` regardless of the device calendar —
-/// this must format identically for dailyStats lookups.
-func isoDayKey(for date: Date, timeZone: TimeZone = .current) -> String {
-    var calendar = Calendar(identifier: .gregorian)
-    calendar.timeZone = timeZone
-    let parts = calendar.dateComponents([.year, .month, .day], from: date)
-    return String(format: "%04d-%02d-%02d", parts.year ?? 0, parts.month ?? 0, parts.day ?? 0)
-}
-
 extension KotlinInstant {
     var date: Date { Date(epochMillis: toEpochMilliseconds()) }
 }
@@ -74,7 +65,7 @@ extension BoxStatistics {
     var longestStreakDays: Int { Int(longestStreak) }
     var consolidatedCards: Int { Int(consolidatedCount) }
     /// Active cards that have not consolidated yet — the fresh half of the Fortschritt split.
-    var freshCards: Int { max(0, activeCards - consolidatedCards) }
+    var freshCards: Int { Int(learningCount) }
 }
 
 extension AreaStatistics {
@@ -112,37 +103,6 @@ extension LetterDrill.LetterDrillProgress {
     var wins: Int { Int(winsAtLevel) }
 }
 
-// MARK: - Config
-
-extension BoxConfig {
-    /// Product calibration (contract §4/§5) — Kotlin default arguments don't
-    /// cross the ObjC boundary, so the values are restated once, here.
-    static func product() -> BoxConfig {
-        BoxConfig(sessionCap: 25,
-                  desiredRetention: 0.8,
-                  maximumIntervalDays: 365,
-                  settledStability: 2.0,
-                  consolidatedStability: 6.0,
-                  learningStepsSeconds: [KotlinLong(longLong: 120)],
-                  relearningStepsSeconds: [KotlinLong(longLong: 600)])
-    }
-
-}
-
-extension BoxState {
-    func with(config: BoxConfig) -> BoxState {
-        doCopy(config: config, cards: cards, joinStamp: joinStamp,
-               scheduling: scheduling, enqueued: enqueued,
-               newIntroduced: newIntroduced, consolidatedCrossed: consolidatedCrossed,
-               dailyStats: dailyStats, ownWords: ownWords)
-    }
-
-    /// Calibration belongs to the app build, not to the stored document: steps,
-    /// retention and caps are decisions this version makes, and a box written
-    /// months ago would otherwise keep answering to the numbers that shipped the
-    /// day it was created. Nothing survives the refresh — growth pacing is the
-    /// engine's opinion, not a figure the learner tunes.
-    func withProductCalibration() -> BoxState {
-        with(config: .product())
-    }
-}
+// The product calibration and `withProductCalibration()` are Kern's
+// (`model/Config.kt`, `store/Calibration.kt`) — a Swift copy of the table would
+// drift from the engine that answers to it.

@@ -9,40 +9,20 @@ extension AppModel {
 
     // MARK: - Heute-derived values
 
-    var todayPlan: SessionPlan? {
-        guard let box else { return nil }
-        return SessionComposer.shared.composeSession(state: box,
+    /// Whether there is a round to sit down to — kern counts due work the composed
+    /// round could not carry, so a capped backlog never reads as "nothing".
+    var sessionAvailable: Bool {
+        guard let box else { return false }
+        return SessionOffers.shared.sessionAvailable(state: box,
                                                      nowEpochMillis: Date().epochMillis,
                                                      tzId: currentTzId())
     }
 
-    var dueNowCount: Int {
-        guard let box else { return 0 }
-        return BoxEngine.shared.dueNow(state: box, nowEpochMillis: Date().epochMillis).count
-    }
-
-    var sessionAvailable: Bool {
-        !(todayPlan?.isEmpty ?? true) || dueNowCount > 0
-    }
-
-    /// What carries the round — whichever side of it outweighs the other. Due work, a
-    /// light warm-up, and an offer of new words read very differently to a learner, so
-    /// Heute names which one it is instead of calling all three "a session".
-    enum SessionOffer: String {
-        /// Recall outweighs the new words, and there is enough of it to lead.
-        case reviews
-        /// Recall outweighs the new words but amounts to a token one or two.
-        case warmUp
-        /// First sights outnumber everything there is to recall.
-        case freshSet
-        case nothing
-    }
-
-    /// One composition, everything Heute needs from it —
-    /// `todayPlan` recomposes on every access,
-    /// so the screen takes this snapshot once per render.
+    /// Kern's `SessionOffer` as Heute reads it: counts in Int, and the headline
+    /// resolved to a String Catalog key. Which round it is and which phrasing names
+    /// it are kern's rulings (`session/SessionOffer.kt`); only the words are ours.
     struct HeuteOffer {
-        let kind: SessionOffer
+        let kind: SessionOfferKind
         /// Reviews this round actually takes (capped), not the whole backlog.
         let sessionReviews: Int
         /// Due cards the session cap holds back for a later round.
@@ -50,60 +30,38 @@ extension AppModel {
         /// Cards pulled forward to fill a short round out (kern's session floor).
         let aheadCount: Int
         let freshCount: Int
+        let headlineKey: String
 
-        /// Fewer due cards than this and recall is a warm-up, never the round's headline.
-        static let reviewsLeadFrom = 3
-
-        /// Which headline names this round: one string set per kind, keyed by the kind
-        /// itself so a new kind cannot silently keep an old kind's words.
-        ///
-        /// The variant turns on the round's SHAPE, never on the clock: a learner does
-        /// several rounds in a day and one repeated line reads as a screen that never
-        /// moved, while a line re-rolling between renders reads as a glitch — and
-        /// `heuteOffer` recomposes on every access.
-        var headlineKey: String {
-            // The done card speaks for an empty round, so `nothing` has no words of its
-            // own; naming it anyway keeps every path off a missing key.
-            let named = kind == .nothing ? SessionOffer.freshSet : kind
-            return "heute.session.\(named.rawValue).\(variant(outOf: 3))"
+        init(_ offer: SessionOffer) {
+            kind = offer.kind
+            sessionReviews = Int(offer.reviews)
+            dueHeldBack = Int(offer.dueHeldBack)
+            aheadCount = Int(offer.ahead)
+            freshCount = Int(offer.fresh)
+            headlineKey = "heute.session.\(Self.stem(offer.headline.kind)).\(offer.headline.variant)"
         }
 
-        /// FNV-1a over the counts, not `hashValue`: Swift seeds that per process, so the
-        /// same round would headline differently after every launch.
-        private func variant(outOf count: Int) -> Int {
-            var hash: UInt64 = 0xcbf2_9ce4_8422_2325
-            for value in [sessionReviews, aheadCount, freshCount] {
-                hash = (hash ^ UInt64(truncatingIfNeeded: value)) &* 0x100_0000_01b3
+        /// One string set per kind, keyed by the kind itself so a new kind cannot
+        /// silently keep an old kind's words. `nothing` never reaches here — kern
+        /// folds it onto `freshSet`, the done card speaking for an empty round —
+        /// but naming it anyway keeps every path off a missing key.
+        private static func stem(_ kind: SessionOfferKind) -> String {
+            switch kind {
+            case .reviews: return "reviews"
+            case .warmUp: return "warmUp"
+            case .freshSet, .nothing: return "freshSet"
             }
-            // why: FNV leaves its low bits barely mixed, and the modulo reads exactly those.
-            hash ^= hash >> 33
-            return Int(hash % UInt64(count))
         }
     }
 
     var heuteOffer: HeuteOffer {
-        guard let plan = todayPlan else {
-            return HeuteOffer(kind: .nothing, sessionReviews: 0,
-                              dueHeldBack: 0, aheadCount: 0, freshCount: 0)
+        guard let box else {
+            return HeuteOffer(SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0,
+                                           ahead: 0, fresh: 0))
         }
-        let reviews = plan.reviews.count
-        let ahead = plan.ahead.count
-        let fresh = Int(plan.freshCount)
-        let kind: SessionOffer
-        if plan.isEmpty {
-            kind = .nothing
-        } else if fresh > reviews + ahead {
-            kind = .freshSet
-        } else if reviews >= HeuteOffer.reviewsLeadFrom {
-            kind = .reviews
-        } else {
-            kind = .warmUp
-        }
-        return HeuteOffer(kind: kind,
-                          sessionReviews: reviews,
-                          dueHeldBack: max(0, dueNowCount - reviews),
-                          aheadCount: ahead,
-                          freshCount: fresh)
+        return HeuteOffer(SessionOffers.shared.offer(state: box,
+                                                     nowEpochMillis: Date().epochMillis,
+                                                     tzId: currentTzId()))
     }
 
     /// What the learner did today — reviews, first meetings, words that consolidated,
@@ -115,13 +73,13 @@ extension AppModel {
                                       tzId: currentTzId())
     }
 
-    /// Cards that will be due by tomorrow evening (preview on the done state).
+    /// Cards that will be due by tomorrow evening (preview on the done state) —
+    /// the horizon is kern's, not a second local-midnight derivation.
     var tomorrowDueCount: Int {
-        guard let box,
-              let end = calendar.date(byAdding: .day, value: 2,
-                                      to: calendar.startOfDay(for: Date()))
-        else { return 0 }
-        return BoxEngine.shared.dueNow(state: box, nowEpochMillis: end.epochMillis).count
+        guard let box else { return 0 }
+        let horizon = endOfTomorrow(nowEpochMillis: Date().epochMillis, tzId: currentTzId())
+        return BoxEngine.shared.dueNow(state: box,
+                                       nowEpochMillis: horizon.toEpochMilliseconds()).count
     }
 
     // MARK: - Presentation (contract §3 — render-time role resolution)
@@ -315,13 +273,19 @@ extension AppModel {
 
     // MARK: - Fortschritt
 
-    /// Reviews per day for the trailing 14 days (oldest first), from dailyStats.
-    func last14Days(now: Date = Date()) -> [(day: Date, reviews: Int)] {
+    /// The trailing days with their review counts AND their place in the current
+    /// streak — one walk in kern, so the strip and the flame cannot disagree.
+    func activityWindow(days: Int = 14, now: Date = Date()) -> [ActivityDay] {
         guard let box else { return [] }
-        let start = calendar.startOfDay(for: now)
-        return (0..<14).reversed().compactMap { offset in
-            guard let day = calendar.date(byAdding: .day, value: -offset, to: start) else { return nil }
-            return (day, box.dailyStats[isoDayKey(for: day)]?.reviewCount ?? 0)
+        return streakWindow(dailyStats: box.dailyStats, days: Int32(days),
+                            nowEpochMillis: now.epochMillis, tzId: currentTzId())
+    }
+
+    /// Shim over `activityWindow` for `ActivityStripView`, which still walks the
+    /// streak itself from bare counts instead of reading each day's `role`.
+    func last14Days(now: Date = Date()) -> [(day: Date, reviews: Int)] {
+        activityWindow(now: now).map {
+            (day: Date(epochMillis: $0.dayStartEpochMillis), reviews: Int($0.reviews))
         }
     }
 }

@@ -2,238 +2,144 @@ import Foundation
 import SprossKern
 import WidgetKit
 
-// Session flow: composed plan → card queue → completion.
+// Session flow: kern's `SessionRun` IS the machine — composition, the queue, the
+// endless refill, the summary tallies and the day's fold all live there, and every
+// command below reduces one intent against `run` and honours what comes back.
 //
-// Composition is role-agnostic (plans carry card ids); whether a card is
-// produced or recognized is resolved at render time from its log count.
-// THE COMPOSED PLAN IS THE WHOLE RUN: the count on screen is a promise, so
-// nothing joins a session already under way — work that comes due while the
-// learner is sitting there waits for the summary, where "Weiter üben" pulls it
-// in on purpose. Only endless mode refills, and only once it has been asked for.
+// What stays here is what kern deliberately cannot name: the fullScreenCover's
+// presentation flag, WidgetKit, and the Int/enum bridging the screens read.
 
 extension AppModel {
 
-    var currentCard: Card? {
-        guard case .card(let id)? = sessionStep else { return nil }
-        return box?.cards[id]
-    }
+    // MARK: - The reducer
 
-    /// 1-based position in the composed plan — fixed for the run.
-    var sessionPosition: Int {
-        min(sessionAnswered + 1, max(sessionTotal, 1))
+    /// One intent against the live run: the returned state replaces `run` (and
+    /// with it `box`), the returned effects are carried out. Handing the effects
+    /// back lets a caller see what the reduction already did.
+    @discardableResult
+    func reduce(_ intent: SessionIntent) -> [SessionEffect] {
+        guard let run else { return [] }
+        let reduction = SessionRun.shared.reduce(state: run, intent: intent,
+                                                 nowEpochMillis: Date().epochMillis,
+                                                 tzId: currentTzId())
+        self.run = reduction.state
+        // why: closing an unfinished run books the day and then says so again —
+        // the day moved once, and every reload costs the widget a redraw.
+        var booked = false
+        for effect in reduction.effects {
+            switch onEnum(of: effect) {
+            case .persist(let write):
+                persist(reduction.state.box, immediate: write.immediate)
+            case .dayBooked:
+                booked = true
+            }
+        }
+        if booked {
+            refreshStats()
+            // why: the box just changed materially — the widget's word rotation
+            // should reflect fresh learning immediately, not at timeline end.
+            WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
+        }
+        return reduction.effects
     }
 
     // MARK: - Lifecycle
 
     func startSession() {
-        guard let box else { return }
-        let now = Date()
-        let plan = SessionComposer.shared.composeSession(state: box,
-                                                         nowEpochMillis: now.epochMillis,
-                                                         tzId: currentTzId())
-        begin(plan, now: now)
+        begin(SessionIntent.Start.shared)
     }
 
     /// On-demand extra round from the Heute done card: kern's review-ahead round —
-    /// everything due, then packed vocab within the new-word budget, then pull-aheads by
-    /// soonest due — so it mixes recall with new words the way an extra round is meant to.
-    ///
-    /// why: `composeEndless` used to be tried ahead of it, for its automatic seed-order
-    /// growth. But endless is rarely empty on a box with catalog left, so the round that
-    /// mixes almost never got composed and the extra round came back all first sights.
+    /// everything due, then packed vocab within the new-word budget, then pull-aheads
+    /// by soonest due. Composing empty is a no-op there, so nothing gets presented.
     func startExtraSession() {
-        guard let box else { return }
-        let now = Date()
-        let plan = SessionComposer.shared.composeExtraSession(state: box,
-                                                              nowEpochMillis: now.epochMillis)
-        guard !plan.isEmpty else { return }
-        begin(plan, now: now)
+        begin(SessionIntent.StartExtra.shared)
     }
 
-    private func begin(_ plan: SessionPlan, now: Date) {
-        sessionQueue = plan.queue
-        sessionTotal = sessionQueue.count
-        sessionAnswered = 0
-        sessionFolded = 0
-        sessionRatings = []
-        sessionNew = 0
-        sessionGraduated = 0
-        sessionReviews = 0
-        sessionEndless = false
-        sessionEnded = false
-        sessionJoinStamp = plan.joinStamp
-        advanceSession(now: now)
-        sessionPresented = true
-    }
-
-    /// The box's join moved under a running session (source switch, catalog
-    /// update) → recompose against the live join; stale ids would no-op.
-    func recomposeSessionIfStale() {
-        guard sessionPresented, !sessionEnded, let box,
-              let stamp = sessionJoinStamp, stamp != box.joinStamp else { return }
-        let now = Date()
-        let plan = SessionComposer.shared.composeSession(state: box,
-                                                         nowEpochMillis: now.epochMillis,
-                                                         tzId: currentTzId())
-        sessionQueue = plan.queue
-        sessionTotal = sessionAnswered + sessionQueue.count
-        sessionJoinStamp = plan.joinStamp
-        advanceSession(now: now)
+    private func begin(_ intent: SessionIntent) {
+        #if DEBUG
+        uitestFinished = false
+        #endif
+        reduce(intent)
+        // why: a run kern refused to start (no box, or an extra round that came back
+        // empty) must not raise the cover over nothing.
+        if run?.active == true { sessionPresented = true }
     }
 
     /// Apply one answer (every answer event is an FSRS review), then advance.
     func answerCurrent(_ rating: Rating) {
-        guard case .card(let id)? = sessionStep, let current = box else { return }
-        let now = Date()
-        let wasConsolidated = isConsolidated(id)
-        let outcome = BoxEngine.shared.answer(state: current, cardId: id, rating: rating,
-                                              nowEpochMillis: now.epochMillis,
-                                              tzId: currentTzId())
-        box = outcome.state
-        if outcome.status == .applied {
-            tallySummary(firstAnswer: scheduling(for: id)?.reviewCount == 1,
-                         wasConsolidated: wasConsolidated, isConsolidated: isConsolidated(id))
-            sessionRatings.append(rating)
-            sessionAnswered += 1
-        } else {
-            // Stale/dropped answers leave the run silently — shrink the total
-            // so the progress counter stays honest.
-            sessionTotal = max(1, sessionTotal - 1)
-        }
-        if !sessionQueue.isEmpty {
-            sessionQueue.removeFirst()
-        }
-        persist(outcome.state) // debounced — `BoxStore` owns the cadence
-        advanceSession(now: now)
-    }
-
-    /// Bucket each answer for the end summary: first-ever answer = new, a word
-    /// crossing into consolidated = "gefestigt", else a review rep.
-    ///
-    /// why: the crossing, not a phase transition — with one learning step a word
-    /// reaches Review on its first pass while its stability is still tiny, so the
-    /// phase edge would have called that consolidated and the summary would have said
-    /// "gefestigt" about a word that had barely landed.
-    private func tallySummary(firstAnswer: Bool, wasConsolidated: Bool, isConsolidated: Bool) {
-        if firstAnswer {
-            sessionNew += 1
-        } else if !wasConsolidated && isConsolidated {
-            sessionGraduated += 1
-        } else {
-            sessionReviews += 1
-        }
-    }
-
-    /// Next step: composed queue → endless refill (only once asked for) → done.
-    ///
-    /// why: no mid-run drain. Cards coming due while the learner sits there used to
-    /// be pulled straight in, so "12/30" quietly became "12/37" and the finish line
-    /// moved away from someone already counting down to it. They are still due —
-    /// the summary offers them under "Weiter üben".
-    func advanceSession(now: Date = Date()) {
-        guard let box else {
-            sessionStep = .completed
-            return
-        }
-        if let nextID = sessionQueue.first {
-            sessionStep = .card(nextID)
-            return
-        }
-        if sessionEndless, enqueueEndlessBatch(from: box, now: now) {
-            return
-        }
-        finishSession(now: now)
-        sessionStep = .completed
+        reduce(SessionIntent.Answer(rating: rating))
     }
 
     /// "Weiter üben": switch the finished session into endless mode and pull the
-    /// first refill batch. No-op (stays on the summary) if nothing is available.
+    /// first refill batch. Staying on the summary is kern's answer to a dry refill.
     func continueEndless() {
-        guard let box else { return }
-        let now = Date()
-        sessionEndless = true
-        guard enqueueEndlessBatch(from: box, now: now) else { return }
-        sessionEnded = false // re-open so finishSession books the new delta
+        reduce(SessionIntent.ContinueEndless.shared)
     }
+
+    /// The box's join moved under a running session (source switch, catalog
+    /// update) → kern recomposes against the live join; stale ids would no-op.
+    func recomposeSessionIfStale() {
+        reduce(SessionIntent.RecomposeIfStale.shared)
+    }
+
+    /// Close button or "Fertig" on the completion view. The step and queue stay as
+    /// they were — the fullScreenCover is still animating out and must keep showing
+    /// its content; a start resets everything.
+    func closeSession() {
+        reduce(SessionIntent.Close.shared)
+        sessionPresented = false
+    }
+
+    // MARK: - What the session screen reads
+
+    var currentCard: Card? {
+        guard let id = run?.currentCardId else { return nil }
+        return box?.cards[id]
+    }
+
+    var sessionStep: SessionStep? {
+        #if DEBUG
+        if uitestFinished { return .completed }
+        #endif
+        guard let run else { return nil }
+        return run.currentCardId.map(SessionStep.card) ?? .completed
+    }
+
+    /// 1-based position in the composed plan — fixed for the run.
+    var sessionPosition: Int { Int(run?.position ?? 1) }
+
+    var sessionTotal: Int { Int(run?.total ?? 0) }
+
+    /// Ratings in answer order, feeding the segmented progress bar.
+    var sessionRatings: [Rating] { run?.ratings ?? [] }
+
+    /// End-of-session summary tallies (design §Session): new cards started,
+    /// cards graduated to review ("gefestigt"), and review answers.
+    var sessionNew: Int { Int(run?.newCards ?? 0) }
+    var sessionGraduated: Int { Int(run?.graduated ?? 0) }
+    var sessionReviews: Int { Int(run?.reviews ?? 0) }
 
     /// Whether an endless refill would yield anything right now (drives the
     /// "Weiter üben" button's presence on the summary).
     var canPracticeMore: Bool {
         guard let box else { return false }
-        return !SessionComposer.shared.composeEndless(state: box,
-                                                      nowEpochMillis: Date().epochMillis).isEmpty
+        return SessionOffers.shared.canPracticeMore(state: box,
+                                                    nowEpochMillis: Date().epochMillis)
     }
 
-    /// The day streak standing at its all-time best (`BoxStatistics.longestStreak`),
-    /// which the finish screen names. A first day is not a record worth announcing —
-    /// every box has one, and nothing has been held on to yet.
-    var streakIsRecord: Bool {
-        guard let stats else { return false }
-        return stats.streakDays >= 2 && stats.streakDays == stats.longestStreakDays
-    }
-
-    /// Whether `startExtraSession` would yield anything (drives the done card's extra-round
-    /// button). Unlike `canPracticeMore` this counts pull-aheads too, so it holds in every
-    /// done state with active cards.
+    /// Whether an extra round would yield anything (drives the done card's extra-round
+    /// button). Unlike `canPracticeMore` this counts pull-aheads too, so it holds in
+    /// every done state with active cards.
     var canPracticeExtra: Bool {
         guard let box else { return false }
-        return !SessionComposer.shared.composeExtraSession(state: box,
-                                                           nowEpochMillis: Date().epochMillis).isEmpty
+        return SessionOffers.shared.canPracticeExtra(state: box,
+                                                     nowEpochMillis: Date().epochMillis)
     }
 
-    /// Pull the next endless batch onto the queue; returns false if dry.
-    private func enqueueEndlessBatch(from box: BoxState, now: Date) -> Bool {
-        let plan = SessionComposer.shared.composeEndless(state: box,
-                                                         nowEpochMillis: now.epochMillis)
-        let more = plan.queue
-        guard !more.isEmpty else { return false }
-        sessionQueue = more
-        sessionTotal += more.count
-        sessionStep = .card(more[0])
-        return true
-    }
-
-    /// Fold today's counters into dailyStats exactly once per session.
-    /// Only the not-yet-folded delta is booked (`foldPartialSession` may have
-    /// already folded earlier answers when the app was backgrounded).
-    func finishSession(now: Date = Date()) {
-        guard !sessionEnded, let current = box else { return }
-        sessionEnded = true
-        let next = BoxEngine.shared.endSession(state: current,
-                                               reviewsDone: Int32(sessionAnswered - sessionFolded),
-                                               nowEpochMillis: now.epochMillis,
-                                               tzId: currentTzId())
-        sessionFolded = sessionAnswered
-        box = next
-        persist(next, immediate: true)
-        refreshStats()
-        // why: the box just changed materially — the widget's word rotation
-        // should reflect fresh learning immediately, not at timeline end.
-        WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
-    }
-
-    /// Backgrounding mid-session: fold answered-so-far into dailyStats so an
-    /// evicted app never loses demonstrated reviews (streak stays honest).
-    /// Kern's endSession accumulates `reviews`, so later folds add deltas only.
-    func foldPartialSession(now: Date = Date()) {
-        guard !sessionEnded, sessionAnswered > sessionFolded, let current = box else { return }
-        box = BoxEngine.shared.endSession(state: current,
-                                          reviewsDone: Int32(sessionAnswered - sessionFolded),
-                                          nowEpochMillis: now.epochMillis,
-                                          tzId: currentTzId())
-        sessionFolded = sessionAnswered
-    }
-
-    /// Close button or "Fertig" on the completion view.
-    /// Leaves sessionStep/queue intact — the fullScreenCover is still animating
-    /// out and must keep showing its content; startSession resets everything.
-    func closeSession() {
-        if !sessionEnded, sessionAnswered > 0 {
-            finishSession()
-        }
-        sessionEnded = true
-        sessionEndless = false
-        sessionPresented = false
-        refreshStats()
+    /// The day streak standing at its all-time best, which the finish screen names.
+    var streakIsRecord: Bool {
+        guard let stats else { return false }
+        return SessionRun.shared.streakIsRecord(stats: stats)
     }
 }
