@@ -227,7 +227,15 @@ never the shape of the app.
   the words are on the table, they are not waiting on the learner.
   What the card promises is what the round will really hand over — the cap it will take,
   never the pile behind it.
-  A day the learner has not worked is never called done.
+  A day the learner has not worked is never called done —
+  and neither is one with work still coming back, which the engine answers by composing
+  the round rather than the finish (`../kern/README.md` §6).
+  A screen that celebrates and is overturned minutes later teaches the learner not to
+  believe it.
+  The done state is ordered like every other celebration in the app —
+  mark, headline, what the day bought, the way on, then fine print —
+  and its mark IS the streak badge: two elements sandwiched the prose between them,
+  and a card that both cheers and counts the run says one thing, not two.
   The done state and the Fortschritt tiles carry the day's own movement under the
   standing totals: totals say where the box stands, deltas say that today moved it.
   Each delta is its own tile's news — today's arrivals still fresh, today's crossings
