@@ -542,12 +542,11 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   phone gives exposure better, on a card with room for it.
   `make` lives phone-side; watch stays pure Swift.
 
-## 8. Catalog schema additions (same-series migration)
+## 8. Catalog schema — engine-side rules
 
 - `languages.json`: `articles` (§1).
-- `areas.json`: a group's `areas` is an array of **objects** (`{ "area", "emoji" }`),
-  no longer bare strings. The emoji is language-neutral display metadata,
-  so the catalog now owns the area icon that was a hardcoded map in the iOS app
+- `areas.json`: a group's `areas` is an array of **objects** (`{ "area", "emoji" }`).
+  The emoji is language-neutral display metadata, so the catalog owns the area icon
   and both apps read the same one.
   The parser rejects unknown keys and validates the emoji with the concept-emoji rule
   (non-blank, ≤ 12 chars, every char ≥ U+2000), so a new area cannot ship without one.
@@ -556,11 +555,10 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   `Catalog.areaEmoji(area) -> String?`, the language-neutral sibling of `areaTitle`.
 - Realization: `variants: [String]` next to `synonyms` — a **display/accept distinction
   only**, never a scheduling one (§3): synonyms rotate as recognition prompt forms and
-  show on reveal; variants are accepted silently and never prompted. Migration:
-  uk gender-agreement/diminutive/internationalism entries (завела, мишка, контракт,
-  компанія) move synonyms → variants; the 14 slash-joined de Sie/du texts become
-  `text` = Sie-form + `variants` = [du-form] (embedded `" / "` was untypeable).
-- `catalog/README.md` updated; **CatalogLintTest** (permanent, on the real catalog) enforces:
+  show on reveal; variants are accepted silently and never prompted.
+  A form nobody can type is a variant, never a `text`: an embedded `" / "` is untypeable,
+  so a Sie/du pair is `text` = Sie-form + `variants` = [du-form].
+- **CatalogLintTest** (permanent, on the real catalog) enforces:
   parse/shape/order rules, slug charset (no `|`), seedIndex uniqueness, synonyms ≠ text,
   no duplicate synonym/variant entries, no `" / "` in text, components resolve same-area,
   feminineOf resolves, concept emoji well-formed, every manifest area carries an emoji.
@@ -666,16 +664,8 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
 
 ## 10. Testing & gates
 
-- Fast gate: `./gradlew :kern:jvmTest` (replaces `cd Kern && swift test` — CLAUDE.md/README
-  update in the same series). iOS gate: xcodegen + `xcodebuild -scheme Spross build` +
-  simulator run-through. Release archive smoke.
-- Ported suites per the engine scout inventory, with the **FSRS-6 adaptation table**:
-  relearning entry = reference 10 m (no in-session retry — drain assertions adapted),
-  learning Hard = 6m at step0 / ×1.5 single-step, new+Again+Good needs a further Good under
-  the reference two-step config (the product's single step graduates it),
-  graduation intervals from FSRS-6 S0, day one introduces up to the unsettled cap;
-  direction-scoped statistics tests are obsolete; v1 MixedDirectionTests port as
-  bit-exact `presentationRole` FNV vectors; everything else behavioral ports 1:1.
+- Fast gate: `./gradlew :kern:jvmTest`. iOS gate: xcodegen + `xcodebuild -scheme Spross
+  build` + simulator run-through. Release archive smoke.
 - **Catalog tests split three ways, by who owns the expectation.**
   `CatalogFixtureTest` (commonTest, synthetic `Fixture.kt`) pins exact values —
   the test owns its input, so parser/join plumbing is asserted there.
@@ -687,12 +677,6 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   then reads as a join regression, and the assertion measures content, not code.
   A test that restates the mapping it asserts — comparing `RawRealization` to `Realization`
   field by field — is a change-detector for a copy function, not coverage.
-- New suites: CatalogLintTest (§8), parser fixtures (feminine ♀ fallback, Sie/du variants,
-  sparse coverage, en "to "/sw ku-kw prefixes, notes selection),
-  first-exposure-always-recognition + emoji-cue policy + synonym-rotation coverage,
-  join-inertness + source-switch round-trip (schedules + enqueued revive; phrases stay
-  unlocked), stale-card answer no-op, FSRS-6 golden vectors + properties,
-  DST/non-Gregorian day-key vectors, snapshot builders.
 
 ## 11. Pronunciation
 
@@ -758,28 +742,13 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
 - The manifest's own schema (fields, naming rules, provenance) is `catalog/README.md`'s:
   this section owns the engine rule, not the file format.
 
-## Deliberately dropped (recorded)
+## Rejected designs
 
-- Per-role/per-form scheduling — `Role`-as-schedule, `UnitKey`, recognize eligibility lag,
-  one-unit-per-card-per-plan (user ruling 2026-07-22: one schedule per card).
-- Typed recognition (user ruling 2026-07-22: self-grade only — the panel's paraphrase
-  finding stands) and the phrase-recognition exclusion (phrases alternate, self-graded).
-- In-session lapse retry (breadth ruling 2026-07-22: relearning = reference `[10m]`).
-- Two minute-scale learning steps (the reference `[1m, 10m]`): a retry that lands a handful
-  of cards later is answered on novelty, not on the pair — the product runs one `[2m]` step,
-  which outlasts a short sitting, so the retry starts the next one (§5).
-- The relearning-share sub-gate (< 20 % of active, once active ≥ 10), and after it the whole
-  unsettled-load throttle it had been folded into (`maxUnsettled`, `TRICKLE_CARDS`, and the
-  learner-facing dial that set them): both steered growth by how shaky the material was, which
-  is a difficulty signal, not a retention one (`docs/growth-evidence.md`).
-- The backlog health gate (`dueSoftCap`) that outlived them, for the reason in §6: the growth
-  reserve already bounds intake to a small constant a 0.8-retention sitting more than repays,
-  so the gate only ever fought the reserve it shared a session with.
-- `AnswerStatus.DroppedPoolFull`: intake is bounded per composed round, so there is nothing
-  for an answer-time re-check to refuse.
-- `BoxStatistics.newSlotsAvailable`: no surface ever read it.
-- `variantOf` (user ruling 2026-07-22: the 4 near-duplicate phrase twins were unified
-  instead — base slug keeps an adapted realization; schema field deleted everywhere).
+Roads not taken — never built, so there is no diff to find them in.
+What was built and later removed is git's to remember, not this doc's.
+
+- **Typed recognition** (user ruling 2026-07-22): self-grade only, the panel's paraphrase
+  finding stands. Nor is there a phrase-recognition exclusion — phrases alternate too.
 - Homonym disambiguation as **content**: a per-realization `sense`/`gloss` string and a
   concept-level `homonymOf`/`disambiguator` link. Both rejected — the area label already
   carries it for free, in every language, lint-guaranteed to exist; `sense` would be a new
@@ -792,8 +761,3 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   is there to acquire; if a same-area cluster ever proves unfixable, revisit as `Typo`,
   never `Exact`), and suppressing/deferring a cluster member (breaks composition
   determinism to hide a content problem, and the collision returns once both are learned).
-- `Direction`, `mixedDirections` as a flag (alternation is the only mode), `LanguagePair`,
-  `id|direction` keys, per-pair store docs, slugified de-centric card ids, persisted Cards,
-  reconcile upsert half, the `"/"`-join↔split grading contract,
-  v1 immersion subtitle for chrome-less targets (kept for de/en),
-  Swift DuoKern + FSRS-5 vectors + DuoKernTrainer product split, watch Kotlin linkage.
