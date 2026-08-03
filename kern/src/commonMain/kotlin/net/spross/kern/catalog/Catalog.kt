@@ -212,6 +212,29 @@ class Catalog internal constructor(
     }
 
     /**
+     * Every word of [lang] this row could gap — the authored example first, then the rest
+     * of the catalog in seed order, so a drill run varies its words instead of asking the
+     * same one all evening. One element (or none) wherever [Alphabet.minesExamples] says
+     * the glyph does not identify the row's sound on its own, which is the whole
+     * correctness argument: what is swept in was never in doubt.
+     *
+     * A candidate is one WORD — no space, no sentence punctuation — carrying the glyph
+     * exactly once, the same predicate [gapWord] applies before a question is asked.
+     * Recordings still line up because every element keeps its slug.
+     */
+    fun alphabetExamples(entry: AlphabetEntry, lang: Language): List<AlphabetExample> {
+        val authored = alphabetExample(entry, lang)
+        if (alphabets[lang]?.minesExamples(entry) != true) return listOfNotNull(authored)
+        val mined = slugIndex.asSequence().mapNotNull { (slug, concept) ->
+            if (slug == authored?.slug) return@mapNotNull null
+            val text = concept.realizations[lang]?.text ?: return@mapNotNull null
+            if (!isGappableWord(text) || glyphOccurrences(text, entry.glyph) != 1) return@mapNotNull null
+            AlphabetExample(slug, text, concept.emoji)
+        }
+        return listOfNotNull(authored) + mined
+    }
+
+    /**
      * What the example word MEANS to a reader of [lang] — null whenever that language does
      * not realize the concept. The sheet then omits the meaning line: graceful
      * degradation, never an error (an alphabet is not a join).

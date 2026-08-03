@@ -46,7 +46,7 @@ class WidgetSnapshotBuilderTests {
     }
 
     @Test
-    fun cardsCarryDueMillisAndTheSettledCountIsResolvedPhoneSide() {
+    fun cardsCarryDueMillisAndTheConsolidatedCountIsResolvedPhoneSide() {
         val due = Box.plusDays(Box.day1, 2.0)
         val lastReview = Box.plusSeconds(Box.day1, -3600)
         var state = Snap.state(listOf(fem, gendered))
@@ -63,7 +63,7 @@ class WidgetSnapshotBuilderTests {
 
         assertEquals(due, byCard.getValue("wf").due)
         assertEquals(Box.day1, byCard.getValue("wg").due)
-        assertEquals(1, doc.settledCount) // wg has not settled
+        assertEquals(1, doc.consolidatedCount) // wg has not consolidated
     }
 
     @Test

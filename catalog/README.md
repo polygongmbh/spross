@@ -7,7 +7,7 @@ crowdsourced per-language contribution, and a slow default learning progression.
 ## The key modeling decision: everything is a concept
 
 - A **concept** is language-neutral: a `slug`, a `kind`
-  (`noun` | `verb` | `adjective` | `phrase`), and (for words) an `emoji`.
+  (`noun` | `verb` | `adjective` | `phrase`), and an optional `emoji`.
   Words and phrases live in one ordered list.
 - A **realization** is one concept rendered in one language (`text` + grammar + notes).
 - A **pair** (de↔sw, de↔uk, later sw↔uk) is a **runtime join** on slug — never stored.
@@ -108,17 +108,30 @@ is a runtime/user-preference concern; the content only supplies the default.
 seed/introduction order (phrases follow their area's words):
 ```json
 [ { "slug": "fridge",  "kind": "noun", "emoji": "🧊" },
-  { "slug": "cook",    "kind": "verb" },
-  { "slug": "careful", "kind": "adjective" },
+  { "slug": "cook",    "kind": "verb", "emoji": "🧑‍🍳" },
+  { "slug": "careful", "kind": "adjective", "emoji": "⚠️" },
   { "slug": "teacher-f", "kind": "noun", "emoji": "👩‍🏫", "feminineOf": "teacher" },
-  { "slug": "the-fridge-is-empty", "kind": "phrase", "components": ["fridge"] } ]
+  { "slug": "the-fridge-is-empty", "kind": "phrase", "emoji": "🧊",
+    "components": ["fridge"] } ]
 ```
 Slugs are readable English lemmas, **globally unique across every area** (lint-enforced).
 English doubles as the keying language AND a content language: the slug is the identity,
 `en.json` carries the English realization (display text may differ from the slug —
 verb `cook` → `"to cook"`, phrase `the-fridge-is-empty` → `"The fridge is empty."`).
+- `emoji` — optional on EVERY kind, not just nouns. It is the engine's meaning cue, shown
+  upfront on a first exposure and on an unsettled produce prompt (`../kern/README.md` §3),
+  so the bar is that it must not teach the wrong thing: authored wherever an honest picture
+  exists, absent where one does not. That is why the function words have none —
+  `viel`, `jetzt`, `groß`, `wo`, `aber`, `oft` are exactly where a picture would mislead,
+  and a wrong cue costs more than a missing one. A phrase takes its topic's picture, so
+  sharing one with the word it is built from is expected (`the-fridge-is-empty` ← `fridge`);
+  two distinct WORDS in one area sharing a picture is not, unless one names the other
+  (`Zähne putzen` may wear the toothbrush's).
 - `components` (phrases only) — same-area word slugs the phrase is built from;
   the box gates a phrase's unlock on those words being learned. Empty = no gate.
+  A component only ever unlocks a phrase where the TARGET realizes it, so gate on a
+  concept every language carries: a `feminineOf` component would leave the phrase locked
+  forever in a pair whose target has no feminine form (en, sw).
 - `adjective` is the catch-all for single words that are neither noun nor verb:
   adjectives, adverbs, and interjections (`draußen`, `immer`, `Vorsicht`).
   Prefer splitting such a word out of a phrase over inflating the phrase:
@@ -328,6 +341,15 @@ fails it loudly instead of letting it sit.
   gaps — a lint error otherwise), while the reader's language supplies the meaning line
   (nullable — the sheet omits it, graceful degradation). `exampleText` is the escape
   hatch where no concept fits; it carries no slug and therefore never claims a recording.
+- **The drill gaps a POOL, not the one example.** Where the glyph string identifies the
+  row's sound on its own, `Catalog.alphabetExamples` sweeps the whole catalog for words of
+  the language carrying it exactly once — the authored example leads, the rest follow in
+  seed order, and the sheet still shows only the authored one. Three things bar the sweep,
+  because each means the letters can stand where the sound does not: `kind` `contextual`,
+  a declared `context` (es `gu` before e/i — *seguro* has the letters, not the rule), and a
+  glyph two rows share. `"mine": false` is the author's own bar for a string that lies
+  anyway (de `chs`, whose only catalog hit is a compound seam). A candidate is one bare
+  word: no space, no sentence punctuation.
 - **Gap rule** (lint): a drill-true `digraph`/`contextual` row's resolved example
   contains its glyph EXACTLY once — zero leaves nothing to blank, and with two the blank
   can land on the wrong, position-bound instance and teach the opposite of the entry.

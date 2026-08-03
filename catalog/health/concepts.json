@@ -62,31 +62,38 @@
  },
  {
   "slug": "hurt",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🤕"
  },
  {
   "slug": "to-cough",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "😷"
  },
  {
   "slug": "examine",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🩺"
  },
  {
   "slug": "prescribe-medicine",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📝"
  },
  {
   "slug": "take-medicine",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "💊"
  },
  {
   "slug": "call-in-sick",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📞"
  },
  {
   "slug": "rest",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🛌"
  },
  {
   "slug": "head",
@@ -135,7 +142,8 @@
  },
  {
   "slug": "sick",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "🤒"
  },
  {
   "slug": "feel",
@@ -144,6 +152,7 @@
  {
   "slug": "my-throat-hurts-a-lot",
   "kind": "phrase",
+  "emoji": "😣",
   "components": [
    "hurt"
   ]
@@ -151,6 +160,7 @@
  {
   "slug": "ive-had-a-fever-since-yesterday",
   "kind": "phrase",
+  "emoji": "🌡️",
   "components": [
    "fever"
   ]
@@ -158,6 +168,7 @@
  {
   "slug": "take-the-pills-twice-daily",
   "kind": "phrase",
+  "emoji": "💊",
   "components": [
    "pill",
    "take-medicine"
@@ -166,11 +177,13 @@
  {
   "slug": "get-well-soon",
   "kind": "phrase",
+  "emoji": "💐",
   "components": []
  },
  {
   "slug": "show-me-your-insurance-card",
   "kind": "phrase",
+  "emoji": "💳",
   "components": [
    "insurance-card"
   ]
@@ -178,6 +191,7 @@
  {
   "slug": "the-practice-is-closed",
   "kind": "phrase",
+  "emoji": "🚪",
   "components": [
    "practice"
   ]

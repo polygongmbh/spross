@@ -71,18 +71,12 @@
    "text": "amigo",
    "grammar": {
     "gender": "el"
-   },
-   "notes": {
-    "de": "fester Freund, Partner: el novio."
    }
   },
   "friend-f": {
    "text": "amiga",
    "grammar": {
     "gender": "la"
-   },
-   "notes": {
-    "de": "feste Freundin, Partnerin: la novia."
    }
   },
   "go": {
@@ -335,6 +329,12 @@
   },
   "a-good-friend": {
    "text": "un buen amigo"
+  },
+  "my-girlfriend": {
+   "text": "mi novia"
+  },
+  "her-boyfriend": {
+   "text": "su novio"
   },
   "old-people": {
    "text": "personas mayores",

@@ -106,11 +106,13 @@ struct SessionScaffold<Content: View>: View {
     /// which is why the switch lives up here and not on the card itself.
     ///
     /// It governs the SPOKEN WORDS only. The feedback chimes are DLSound's and
-    /// deliberately stay outside its scope (they follow the ring/silent switch
+    /// deliberately stay outside its scope (the ring/silent switch reaches them
     /// already); a global sound switch, if it is ever wanted, is its own thing.
+    /// Switching it ON is read as a request to hear something and lifts autoplay
+    /// past a silenced phone — otherwise the switch would say on and say nothing.
     private var readAloudButton: some View {
         Button {
-            Pronouncer.shared.muted.toggle()
+            Pronouncer.shared.setReadAloud(on: Pronouncer.shared.muted)
         } label: {
             // why: the plain pair, not the .bubble one — SF Symbols has
             // speaker.wave.2.bubble but no slashed twin for it, and a switch

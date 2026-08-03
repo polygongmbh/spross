@@ -24,8 +24,8 @@ data class BoxState(
     val enqueued: List<String> = emptyList(),
     /** dayKey → cards introduced; pruned to trailing 60 days. */
     val newIntroduced: Map<String, Int> = emptyMap(),
-    /** dayKey → cards that crossed into settled; pruned with [newIntroduced]. */
-    val settledCrossed: Map<String, Int> = emptyMap(),
+    /** dayKey → cards that crossed into CONSOLIDATED; pruned with [newIntroduced]. */
+    val consolidatedCrossed: Map<String, Int> = emptyMap(),
     /** dayKey → aggregates; never pruned. */
     val dailyStats: Map<String, DayStats> = emptyMap(),
 )

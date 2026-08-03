@@ -18,7 +18,7 @@ import net.spross.kern.session.MultipleChoice
 import net.spross.kern.store.StoreJson
 
 /**
- * Phone-side builder of the watch application-context snapshot, v4:
+ * Phone-side builder of the watch application-context snapshot, v5:
  * one entry per CARD with BOTH sides pre-resolved, so the watch stays pure
  * Swift and never joins. [WatchEntryDto.nextRole]/[WatchEntryDto.promptForm]
  * are resolved from the log count at build time; the watch presents
@@ -26,11 +26,25 @@ import net.spross.kern.store.StoreJson
  * [WatchEntryDto.distractors] ships the multiple-choice tiles already ranked
  * and already on the entry's own option side, so the watch only shuffles.
  * Capped at [ENTRY_CAP] to stay under the ~60 KB `updateApplicationContext`
- * limit.
+ * limit, and at [MAX_TEXT_CHARS] per side so nothing arrives that a tile
+ * cannot hold.
  */
 object WatchSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 4
+    const val SCHEMA_VERSION: Int = 5
     const val ENTRY_CAP: Int = 60
+
+    /**
+     * Longest text the watch will carry, per side. Four tiles in a 2×2 grid on a
+     * 41 mm face hold about this much before the words shrink past reading, and a
+     * four-way pick between sentences is exposure rather than recall anyway — a
+     * longer phrase is taught on the phone, where it has a card to itself.
+     *
+     * Unlike [ENTRY_CAP] this is not a wire budget but a legibility one, so it
+     * gates the option POOL as well: a distractor too long for its tile breaks
+     * the question exactly as badly as an answer too long for its tile.
+     */
+    const val MAX_TEXT_CHARS: Int = 24
+
     private const val RECOGNIZE = "recognize"
 
     fun build(
@@ -57,6 +71,9 @@ object WatchSnapshotBuilder {
         val ranked = Inventory.active(state).mapNotNull { sched ->
             val memory = sched.memory ?: return@mapNotNull null
             val due = sched.due ?: return@mapNotNull null
+            // why: one predicate for both lists below — a card the watch cannot
+            // render is also a card it must not offer as somebody else's tile.
+            if (!fitsOnWatch(state.cards.getValue(sched.cardId))) return@mapNotNull null
             // Exposure tiers for scheduled cards; the watch never introduces,
             // so the enqueued-new and upcoming tiers are absent by design.
             val tier = when (sched.phase) {
@@ -83,6 +100,16 @@ object WatchSnapshotBuilder {
             entries = entries.map { offer(it, state, pool, citationPrefixes) },
         )
     }
+
+    /**
+     * Whether every form [card] can put on the watch clears [MAX_TEXT_CHARS].
+     * Both sides count, since either can be the option side once the role flips,
+     * and the target's synonyms count with them — a rotated prompt form
+     * (`recognitionPromptForm`) is rendered just as the canonical one is.
+     */
+    private fun fitsOnWatch(card: Card): Boolean =
+        card.source.text.length <= MAX_TEXT_CHARS &&
+            (listOf(card.target.text) + card.target.synonyms).all { it.length <= MAX_TEXT_CHARS }
 
     private data class Ranked(
         val isDue: Boolean,
@@ -136,16 +163,16 @@ object WatchSnapshotBuilder {
     private fun entry(sched: CardScheduling, card: Card, settled: Boolean): WatchEntryDto {
         val reviewCount = sched.reviewCount
         val nextRole = presentationRole(card.id, reviewCount)
+        val cue = emojiCue(nextRole, settled, reviewCount)
         return WatchEntryDto(
             cardId = card.id,
             sourceText = card.source.text,
             targetText = card.target.text,
-            // why: the snapshot is answered in one shot, so a picture held back for a
-            // reveal has no honest moment to appear and could only leak the answer —
-            // it is withheld from the wire rather than trusted to the reader.
-            emoji = card.emoji?.takeIf {
-                emojiCue(nextRole, settled, reviewCount) == EmojiCue.Upfront
-            },
+            // The picture rides on the field that names WHEN it may be seen, so the
+            // watch cannot show a reveal one early by reading the wrong key. Exactly
+            // one of the two is ever set, and neither for a card with no emoji.
+            emoji = card.emoji?.takeIf { cue == EmojiCue.Upfront },
+            revealEmoji = card.emoji?.takeIf { cue == EmojiCue.OnReveal },
             articleTint = articleTint(card),
             femMarker = card.promptFeminineMarker,
             due = sched.due!!.toEpochMilliseconds(),
@@ -171,8 +198,9 @@ internal data class WatchSnapshotDoc(
  * One drainable card with both sides. [nextRole] "produce": prompt [sourceText]
  * (+ labeled ♀ badge when [femMarker]), reveal the target family. "recognize":
  * prompt [promptForm] (the rotated target form), reveal [sourceText] decorated.
- * [emoji] is pre-gated by the emoji policy. [distractors] are the
- * ranked wrong options for THIS entry's role — the watch picks three and
+ * [emoji]/[revealEmoji] split the picture by the emoji policy's cue — the first may
+ * be seen from frame one, the second only once the answer is out. [distractors] are
+ * the ranked wrong options for THIS entry's role — the watch picks three and
  * shuffles them with the answer, which it reads off [optionForm].
  */
 @Serializable
@@ -181,6 +209,13 @@ internal data class WatchEntryDto(
     val sourceText: String,
     val targetText: String,
     val emoji: String? = null,
+    /**
+     * The same picture where the policy holds it back — shown once the tile is
+     * tapped and nothing is left to give away. Its own field rather than a flag
+     * beside [emoji], so a surface that shows pictures upfront cannot leak one by
+     * forgetting to read the flag.
+     */
+    val revealEmoji: String? = null,
     val articleTint: String? = null,
     val femMarker: Boolean,
     val due: Long,

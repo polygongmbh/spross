@@ -15,6 +15,7 @@ import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Realization
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
+import net.spross.kern.trainer.LetterDrill
 import net.spross.kern.trainer.LetterStage
 
 /**
@@ -37,12 +38,15 @@ class LetterDrillFlowTest {
         hints = emptyMap(),
         context = emptyMap(),
         drill = true,
+        mine = true,
+        section = null,
         confusableLook = emptyList(),
         confusableSound = emptyList(),
     )
 
     private val alphabet = Alphabet(
         language = "uk",
+        sections = emptyList(),
         entries = listOf(
             letter("а", "а"), letter("б", "бе"), letter("в", "ве"),
             letter("г", "ге"), letter("д", "де"), letter("е", "е"),
@@ -74,17 +78,16 @@ class LetterDrillFlowTest {
 
     private var silenced = 0
 
-    private fun flow(settled: Int = 0, dictation: Boolean = false): LetterDrillFlow {
+    private fun flow(consolidated: Int = 0, dictation: Boolean = false): LetterDrillFlow {
         val cards = if (dictation) dictationCards else emptyList()
         return LetterDrillFlow(
             availability = LetterDrillAvailability(
                 language = "uk",
                 alphabet = alphabet,
                 promptableRefs = alphabet.entries.map { it.ref },
-                dictationCandidates = cards,
+                dictationCandidates = cards.map { LetterDrill.DictationCandidate(it) },
             ),
-            exampleWord = { null },
-            settledCards = settled,
+            consolidatedCards = consolidated,
             cards = cards.associateBy { it.id },
             dictationGrader = CatalogAnswerGrader(
                 AnswerNormalizer(language, articleLeniency = false, maxTyposPerWord = 1),
@@ -128,7 +131,7 @@ class LetterDrillFlowTest {
         drill.next() // advance
         assertEquals(2, silenced)
 
-        val typed = flow(settled = 72)
+        val typed = flow(consolidated = 72)
         silenced = 0
         typed.reveal()
         assertEquals(1, silenced)
@@ -143,7 +146,7 @@ class LetterDrillFlowTest {
 
     @Test
     fun twoCleanWinsClimbARungAndAMissStepsBackDown() {
-        val drill = flow() // 0 settled ⇒ the classic two wins per rung
+        val drill = flow() // 0 consolidated ⇒ the classic two wins per rung
         answerCorrectly(drill)
         assertEquals(1, drill.level)
         answerCorrectly(drill)
@@ -159,7 +162,7 @@ class LetterDrillFlowTest {
     // A revealed answer is a miss, whatever stands in the field afterwards.
     @Test
     fun revealingFillsTheFieldAndBooksAMiss() {
-        val drill = flow(settled = 72) // enters at Typed
+        val drill = flow(consolidated = 72) // enters at Typed
         assertEquals(LetterStage.Typed, drill.task!!.stage)
         assertEquals(6, drill.level)
         drill.reveal()
@@ -169,8 +172,8 @@ class LetterDrillFlowTest {
     }
 
     @Test
-    fun oneCleanWinIsEnoughOnceAVocabularyHasSettled() {
-        val drill = flow(settled = 72)
+    fun oneCleanWinIsEnoughOnceAVocabularyHasConsolidated() {
+        val drill = flow(consolidated = 72)
         answerCorrectly(drill)
         assertEquals(7, drill.level)
     }
@@ -182,7 +185,7 @@ class LetterDrillFlowTest {
      */
     @Test
     fun aDictatedSynonymIsAmberAndNamesTheFormThatPlayed() {
-        val drill = flow(settled = 72, dictation = true)
+        val drill = flow(consolidated = 72, dictation = true)
         // Climb to dictation, then keep drawing until the word with a taught variant
         // comes up — the draw is kern's, and this asserts the verdict, not the seed.
         repeat(40) { if (drill.task?.display != "миша") answerCorrectly(drill) }

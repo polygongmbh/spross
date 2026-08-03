@@ -33,7 +33,9 @@ class LetterDictationGradingTest {
         AnswerNormalizer(catalog.languages.getValue(target), articleLeniency = false, maxTyposPerWord = 1)
 
     private fun grading(card: Card): Card =
-        LetterDrill.dictationGradingCard(card, LetterDrill.sampleDictation(listOf(card), 9, null, Random(1)))
+        LetterDrill.dictationGradingCard(card, LetterDrill.sampleDictation(
+            listOf(LetterDrill.DictationCandidate(card)), null, 9, null, Random(1),
+        ))
 
     private fun List<Card>.byText(text: String): Card =
         firstOrNull { it.target.text == text } ?: throw AssertionError("no card answers \"$text\"")

@@ -29,7 +29,9 @@ import net.spross.kern.model.SessionPlan
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.PronunciationCue
 import net.spross.kern.model.emojiCue
+import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.presentationRole
+import net.spross.kern.model.producePrompt
 import net.spross.kern.model.pronunciationCue
 import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.session.AnswerNormalizer
@@ -51,6 +53,8 @@ data class SessionUi(
     val card: Card?,               // null ⇒ drained: show the summary
     val role: PresentationRole?,
     val promptForm: String?,       // rotated recognition prompt
+    /** Whether a produce turn asks by meaning or by ear; [ProducePrompt.Source] elsewhere. */
+    val producePrompt: ProducePrompt = ProducePrompt.Source,
     /** Which face carries the picture; null when the word has none. */
     val emojiCue: EmojiCue?,
     /**
@@ -237,6 +241,22 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Heute
     }
 
+    private fun isConsolidated(cardId: String): Boolean =
+        box?.let { BoxEngine.isConsolidated(it, cardId) } == true
+
+    /**
+     * Whether the card's own form can be heard RIGHT NOW — the one fact kern's
+     * [producePrompt] cannot have. Three ways it cannot, and each keeps the source
+     * prompt rather than putting up a card with nothing in it: no recording and no
+     * voice, reading aloud switched off, and TalkBack, which suppresses every autoplay
+     * so nothing may speak over the screen reader.
+     */
+    private fun audible(card: Card): Boolean {
+        if (pronouncer.muted || pronouncer.readsScreenAloud) return false
+        val pronunciation = catalog?.pronunciation(card.target.lang, card.target.text) ?: return false
+        return pronouncer.canPronounce(pronunciation)
+    }
+
     private fun refreshSessionUi() {
         val active = flow ?: run { sessionUi = null; return }
         val card = active.currentCard()
@@ -252,18 +272,25 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             val count = active.reviewCount(card.id)
             val role = presentationRole(card.id, count)
             val promptForm = recognitionPromptForm(card, count)
+            val prompt = producePrompt(card.id, count, isConsolidated(card.id), audible(card))
             SessionUi(
                 card = card,
                 role = role,
                 promptForm = promptForm,
+                producePrompt = prompt,
                 emojiCue = card.emoji?.let {
                     emojiCue(role, active.isSettled(card.id), count)
                 },
                 // why: the KERN cue, never `role == Recognize` — one rule, consumed by
                 // both apps. The PROMPTED form, so a rotated synonym is heard as itself.
                 promptPronunciation = catalog
-                    ?.takeIf { pronunciationCue(role) == PronunciationCue.Upfront }
-                    ?.pronunciation(card.target.lang, promptForm),
+                    ?.takeIf { pronunciationCue(role, prompt) == PronunciationCue.Upfront }
+                    // why: a sound-prompted produce has NOTHING on screen, so what plays
+                    // is the very form it grades against, not the recognition rotation.
+                    ?.pronunciation(
+                        card.target.lang,
+                        if (prompt == ProducePrompt.Sound) card.target.text else promptForm,
+                    ),
                 segments = active.segments.toList(),
                 remaining = active.remaining,
                 progress = active.progress(),

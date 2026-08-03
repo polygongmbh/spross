@@ -6,7 +6,11 @@ Everything below is plain Gradle.
 
 ## Prerequisites
 
-- **JDK 17** (`sudo apt install openjdk-17-jdk` or equivalent; `java -version` must say 17).
+- **JDK 21** (`sudo apt install openjdk-21-jdk` or equivalent) — the Gradle toolchain
+  needs it installed; auto-provisioning is off, so a missing JDK 21 fails the build.
+  Both the daemon (`gradle/gradle-daemon-jvm.properties`) and every module toolchain
+  are pinned to 21, so the JVM that launches `./gradlew` does not matter —
+  but a JDK 21 must be discoverable or the daemon never starts.
 - **Android SDK command-line tools** — either a full Android Studio install
   or the standalone tools:
 

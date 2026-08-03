@@ -7,11 +7,12 @@ struct SprossApp: App {
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
-        // why: one category for the whole process, set once and never
-        // activated by hand — .ambient mixes with whatever else is playing and
-        // follows the ring/silent switch, so a spoken word is as silenceable
-        // as the feedback chimes (Sounds.swift) already are.
-        try? AVAudioSession.sharedInstance().setCategory(.ambient)
+        // why: the standing category for everything the app fires by itself,
+        // set once and never activated by hand — .ambient, so the ring/silent
+        // switch keeps its authority over autoplay and the feedback chimes
+        // alike, unless reading aloud was switched on by hand. A deliberate tap
+        // raises it per sound; the whole rule lives in AudioSession.
+        AudioSession.adopt(.stored)
     }
 
     var body: some Scene {

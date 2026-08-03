@@ -14,7 +14,7 @@ import net.spross.kern.model.nfcNormalized
 internal object AlphabetParser {
     private val ENTRY_KEYS = setOf(
         "glyph", "upper", "kind", "id", "name", "ipa",
-        "example", "exampleText", "hints", "context", "drill", "confusable", "section",
+        "example", "exampleText", "hints", "context", "drill", "mine", "confusable", "section",
     )
     private val SECTION_KEYS = setOf("id", "title")
     private val AXES = setOf("look", "sound")
@@ -134,6 +134,7 @@ internal object AlphabetParser {
             context = languageMap(path, where, o, "context", declared),
             // why: a rule row is prose the sheet renders — `drill` on one is ignored, not obeyed.
             drill = kind != AlphabetKind.Rule && (o.optionalBoolean(path, where, "drill") ?: true),
+            mine = o.optionalBoolean(path, where, "mine") ?: true,
             section = o.nonBlank(path, where, "section"),
             confusableLook = confusable["look"].orEmpty(),
             confusableSound = confusable["sound"].orEmpty(),

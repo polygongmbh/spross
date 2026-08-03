@@ -1,5 +1,6 @@
 import Foundation
 import SprossKern
+import UIKit
 
 // The app half of the audio boundary: Kern hands out catalog-relative PATHS
 // and never opens a file, so turning a path into a bundle URL happens here —
@@ -28,7 +29,27 @@ extension AppModel {
     /// consumed rather than re-derived: both apps switch on this one cue
     /// instead of each testing the role in its own way.
     func pronunciationCue(for card: Card) -> PronunciationCue {
-        SprossKern.pronunciationCue(role: presentationRole(for: card.id))
+        SprossKern.pronunciationCue(role: presentationRole(for: card.id),
+                                    prompt: producePrompt(for: card))
+    }
+
+    /// Whether a produce card asks by MEANING or by ear — Kern's rule again,
+    /// with the one fact it cannot have: whether this device, right now, can
+    /// say the word at all. Three ways it cannot, and each falls back to the
+    /// source prompt rather than putting up a card with nothing in it: no
+    /// recording and no voice, reading aloud switched off, and VoiceOver, which
+    /// suppresses every autoplay so nothing may speak over the screen reader.
+    func producePrompt(for card: Card) -> ProducePrompt {
+        guard let pronunciation = formPronunciation(card.target.text, lang: card.target.lang)
+        else { return .source }
+        let audible = !Pronouncer.shared.muted
+            && !UIAccessibility.isVoiceOverRunning
+            && Pronouncer.shared.canPronounce(pronunciation,
+                                              recordingURL: audioURL(pronunciation.recordingPath))
+        return SprossKern.producePrompt(cardId: card.id,
+                                        reviewCount: Int32(scheduling(for: card.id)?.reviewCount ?? 0),
+                                        consolidated: isConsolidated(card.id),
+                                        audible: audible)
     }
 
     // MARK: - Letters

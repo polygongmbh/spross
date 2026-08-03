@@ -23,9 +23,11 @@ data class BoxConfig(
     val settledStability: Double = 2.0,
     /**
      * Days of stability at which a card counts as CONSOLIDATED — a stricter bar than
-     * [settledStability], used only by the stats display (fresh/settled split, the
-     * session-summary tally) and phrase unlock (see [net.spross.kern.box.Growth.isComponentStable]).
-     * In-session presentation support keeps using [settledStability];
+     * [settledStability], read by the stats display (fresh/consolidated split, the
+     * session-summary tally), phrase unlock (see [net.spross.kern.box.Growth.isComponentStable]),
+     * the drill pools, and [net.spross.kern.model.producePrompt], which WITHDRAWS the
+     * meaning from a prompt rather than adding support and so takes the stricter bar.
+     * In-session presentation SUPPORT keeps using [settledStability];
      * this one exists so a merely-Good first answer doesn't read as "landed" while a
      * genuinely known-on-sight Easy answer still does — set between S0(Good) = 2.3065
      * and S0(Easy) = 8.2956.
@@ -50,7 +52,7 @@ data class BoxConfig(
 data class DayStats(
     val reviews: Int = 0,
     val introduced: Int = 0,
-    /** Cards that crossed into settled that day — the day's real gain. */
-    val settled: Int = 0,
+    /** Cards that crossed into CONSOLIDATED that day — the day's real gain. */
+    val consolidated: Int = 0,
     val activeCount: Int = 0,
 )

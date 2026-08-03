@@ -11,9 +11,13 @@ extension Color {
     }
 
     static let wlAccent = Color(watchHex: 0xFF9A6B)   // clay
-    static let wlAmber = Color(watchHex: 0xF2C078)    // ochre "again" — warm, never red
     static let wlTeal = Color(watchHex: 0x6FCFE8)     // ocean
     static let wlSuccess = Color(watchHex: 0x8AE39B)  // forest
+    // why: the phone keeps wrong off its cards, but a glance-long wrist answer
+    // has no second face to correct on — so the miss is red here, on the tile
+    // and in the wash behind it. Mirrors the phone's dark `dlWrong` rather than
+    // minting an alarm hue of its own.
+    static let wlWrong = Color(watchHex: 0xF08D86)    // brick
     static let wlTextSecondary = Color(watchHex: 0xADBBAF)
 
     static let wlDer = Color(watchHex: 0x90CBFF)

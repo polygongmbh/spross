@@ -8,6 +8,7 @@ import net.spross.kern.catalog.gapWord
 import net.spross.kern.model.Card
 import net.spross.kern.model.Language
 import net.spross.kern.model.nfcNormalized
+import net.spross.kern.session.spokenOnly
 
 /**
  * The letter drill: hear a sound, find the letter — multiple choice, then typing, then
@@ -31,16 +32,28 @@ object LetterDrill {
 
     /** Entry pacing stops one rung below transcription — nobody starts by taking dictation. */
     private const val ENTRY_LEVEL_CEILING = 6
-    private const val SETTLED_PER_LEVEL = 12
+    private const val CONSOLIDATED_PER_LEVEL = 12
 
     /** Consolidated words from which one clean win is enough to move up a rung. */
-    private const val SETTLED_FOR_SHORT_STAGES = 60
+    private const val CONSOLIDATED_FOR_SHORT_STAGES = 60
 
     /** Dictation at level 8 asks for short words; the count ignores spaces. */
     private const val SHORT_WORD_LETTERS = 6
 
     /** Below this many short candidates the level-8 filter is dropped — never draw from one. */
     private const val MIN_SHORT_CANDIDATES = 3
+
+    /** The same floor on the gap word's known-first preference; below it, the whole pool. */
+    private const val MIN_KNOWN_CANDIDATES = 3
+
+    /** Ceilings on the three things that make a word worth dictating twice (see [dictationWeight]). */
+    private const val TRICKY_CAP = 3
+    private const val LAPSE_CAP = 3
+    private const val DIFFICULTY_CAP = 2
+
+    /** FSRS difficulty runs 1–10; below its middle a word is not what the rung is for. */
+    private const val DIFFICULTY_MIDPOINT = 5.0
+    private const val DIFFICULTY_PER_STEP = 2.0
 
     fun maxLevel(dictationAvailable: Boolean): Int =
         if (dictationAvailable) MAX_LEVEL_WITH_DICTATION else MAX_LEVEL_WITHOUT_DICTATION
@@ -51,15 +64,15 @@ object LetterDrill {
      * someone with a vocabulary should not spell out `em` four times before the drill
      * gets interesting, and someone without one should not be dropped into typing.
      */
-    fun entryLevel(settledCards: Int): Int =
-        minOf(ENTRY_LEVEL_CEILING, 1 + maxOf(0, settledCards) / SETTLED_PER_LEVEL)
+    fun entryLevel(consolidatedCards: Int): Int =
+        minOf(ENTRY_LEVEL_CEILING, 1 + maxOf(0, consolidatedCards) / CONSOLIDATED_PER_LEVEL)
 
     /**
      * How LONG a rung is — the second half of the same pacing rule. A consolidated
      * vocabulary earns each level in one clean win; below that the classic two apply, so
      * a beginner gets the repetition and nobody else gets the drag.
      */
-    fun winsToAdvance(settledCards: Int): Int = if (settledCards >= SETTLED_FOR_SHORT_STAGES) 1 else 2
+    fun winsToAdvance(consolidatedCards: Int): Int = if (consolidatedCards >= CONSOLIDATED_FOR_SHORT_STAGES) 1 else 2
 
     /** 1–2 easy tiles, 3–5 confusable tiles, 6–7 typing, 8–9 dictation. */
     fun stageFor(level: Int): LetterStage = when (level.coerceIn(1, MAX_LEVEL_WITH_DICTATION)) {
@@ -106,35 +119,47 @@ object LetterDrill {
      * the entry's `exampleText` escape hatch rather than a concept the target language
      * realizes. That distinction is the whole point of the type — it is what keeps a
      * slug's recording from playing over a different word on screen.
+     *
+     * [known] is the learner's side of it: true where the box already holds the word, so
+     * the draw can favour words that mean something to them (see [sample]).
      */
-    data class AlphabetExampleWord(val text: String, val slug: String?)
+    data class AlphabetExampleWord(val text: String, val slug: String?, val known: Boolean = false)
 
     /**
      * One letter-stage question. [promptableRefs] is the app's own list (what the device
-     * can actually speak or play, §5.1) in file order; [avoidRef] is the previous answer,
-     * resampled once so a repeat needs two unlucky draws rather than one.
+     * can actually speak or play, §5.1) in file order; [avoidRef] is the previous answer
+     * and [avoidWord] the previous gap word, each resampled once so a repeat needs two
+     * unlucky draws rather than one.
+     *
+     * [targetExamples] hands over EVERY word a row could gap, already narrowed to what
+     * this device can say (`Catalog.alphabetExamples` upstream of it). Callers precompute
+     * it per run rather than per question — it is a catalog sweep, not a lookup.
      *
      * Entries that cannot be ASKED are dropped defensively — a letter without a name, a
-     * gap entry whose example does not resolve or whose glyph does not sit in it exactly
+     * gap entry whose examples do not resolve or whose glyph sits in none of them exactly
      * once. Lint makes all three unreachable in shipped content; the filter is what turns
      * an authoring slip into a smaller pool instead of an unanswerable question.
      */
     fun sample(
         alphabet: Alphabet,
-        targetExample: (AlphabetEntry) -> AlphabetExampleWord?,
+        targetExamples: (AlphabetEntry) -> List<AlphabetExampleWord>,
         level: Int,
         promptableRefs: List<String>,
         avoidRef: String?,
+        avoidWord: String?,
         rng: Random,
     ): LetterDrillTask {
         val allowed = promptableRefs.toSet()
         val pool = alphabet.entries
             .filter { it.ref in allowed && it.drill && it.kind != AlphabetKind.Rule }
-            .mapNotNull { entry -> prompt(entry, targetExample)?.let { entry to it } }
+            .map { entry -> entry to gapCandidates(entry, targetExamples) }
+            .filter { (entry, words) -> entry.kind == AlphabetKind.Letter || words.isNotEmpty() }
+            .filter { (entry, _) -> entry.kind != AlphabetKind.Letter || entry.name != null }
         require(pool.isNotEmpty()) { "no promptable entry in the ${alphabet.language} alphabet" }
         var picked = pool[rng.nextInt(pool.size)]
         if (picked.first.ref == avoidRef) picked = pool[rng.nextInt(pool.size)]
-        val (entry, prompt) = picked
+        val (entry, words) = picked
+        val prompt = prompt(entry, words, avoidWord, rng)
         // why: the letter stages stop at 7 — 8 and 9 are dictation, which draws from the
         // box and enters through sampleDictation, never here.
         val stage = stageFor(level.coerceIn(1, MAX_LEVEL_WITHOUT_DICTATION))
@@ -155,6 +180,18 @@ object LetterDrill {
     }
 
     /**
+     * A dictation candidate: the card, plus the two things about it the drill weighs that
+     * a [Card] cannot carry. [difficulty] is FSRS's own 1–10 (0 stands for "the caller has
+     * no schedule for this", which weighs nothing), [lapses] the times it has been
+     * forgotten. Both are read from `CardScheduling`, never re-derived here.
+     */
+    data class DictationCandidate(
+        val card: Card,
+        val difficulty: Double = 0.0,
+        val lapses: Int = 0,
+    )
+
+    /**
      * One dictation question. [candidates] arrive filtered to consolidated, speakable box
      * cards (§5.2); kern drops anything with a space of its own — a transcription task is
      * one word, whatever the caller believes.
@@ -162,19 +199,27 @@ object LetterDrill {
      * Level 8 asks for short words. If fewer than [MIN_SHORT_CANDIDATES] survive that
      * filter the whole list is used instead: a drill that always dictates the same two
      * words is worse than one that occasionally dictates a long one.
+     *
+     * Inside whatever pool survives, the draw is WEIGHTED by [dictationWeight] — a rung
+     * spent on words already spelt right is a rung spent on nothing. [alphabet] is only
+     * consulted for the language's own hard graphemes; a language without one dictates
+     * fine, it just weighs the spelling half at zero.
      */
     fun sampleDictation(
-        candidates: List<Card>,
+        candidates: List<DictationCandidate>,
+        alphabet: Alphabet?,
         level: Int,
         avoidCardId: String?,
         rng: Random,
     ): LetterDrillTask {
-        val words = candidates.filter { ' ' !in it.target.text }
+        val words = candidates.filter { ' ' !in it.card.target.text }
         require(words.isNotEmpty()) { "no single-word dictation candidate" }
-        val short = words.filter { it.target.text.count { ch -> ch != ' ' } <= SHORT_WORD_LETTERS }
+        val short = words.filter { it.card.target.text.count { ch -> ch != ' ' } <= SHORT_WORD_LETTERS }
         val pool = if (level <= 8 && short.size >= MIN_SHORT_CANDIDATES) short else words
-        var card = pool[rng.nextInt(pool.size)]
-        if (card.id == avoidCardId) card = pool[rng.nextInt(pool.size)]
+        val tricky = alphabet?.trickyGlyphs.orEmpty()
+        val weights = pool.map { dictationWeight(it, tricky) }
+        var card = weighted(pool, weights, rng).card
+        if (card.id == avoidCardId) card = weighted(pool, weights, rng).card
         return LetterDrillTask(
             stage = LetterStage.Dictation,
             language = card.target.lang,
@@ -194,24 +239,44 @@ object LetterDrill {
     }
 
     /**
-     * The card a dictation answer is graded against: the real card's IDENTITY with only
-     * its answer set narrowed to the spoken form.
+     * How much of the dictation draw a candidate is worth. One is the floor every word
+     * keeps — nothing is ever excluded, only out-drawn — and three things add to it:
      *
-     * The id, `feminineOf` and `kind` must survive. `CatalogAnswerGrader` skips the
-     * prompted concept when it looks for the word somebody else owns, so a synthetic id
-     * would let the learner's own concept come back as another word — «мишка» reported as
-     * a different word than «миша», naming the right answer as somebody else's. `kind`
-     * keys the verb-prefix leniency. `baseAccepted` goes, with the synonyms: the feminine
-     * demotion accepts the base word, which in a transcription is simply not what played.
+     * the SPELLING (how many of the language's own hard graphemes the word carries, which
+     * is what a transcription actually tests), the LAPSES (words this learner has
+     * forgotten before), and FSRS's DIFFICULTY above the midpoint. Each is capped, so a
+     * single leech cannot take the rung over, and every term is zero on a short clean word
+     * — which is exactly when the draw stays uniform.
      */
-    fun dictationGradingCard(card: Card, task: LetterDrillTask): Card = card.copy(
-        baseAccepted = emptyList(),
-        target = card.target.copy(
-            text = task.accepted.firstOrNull() ?: card.target.text,
-            synonyms = emptyList(),
-            variants = emptyList(),
-        ),
-    )
+    fun dictationWeight(candidate: DictationCandidate, trickyGlyphs: List<String>): Int {
+        val word = candidate.card.target.text.lowercase()
+        val spelling = minOf(TRICKY_CAP, trickyGlyphs.count { it in word })
+        val forgotten = minOf(LAPSE_CAP, maxOf(0, candidate.lapses))
+        val hard = minOf(
+            DIFFICULTY_CAP,
+            ((candidate.difficulty - DIFFICULTY_MIDPOINT) / DIFFICULTY_PER_STEP).toInt().coerceAtLeast(0),
+        )
+        return 1 + spelling + forgotten + hard
+    }
+
+    /** Cumulative draw over [weights]; identical to a uniform pick where they all match. */
+    private fun <T> weighted(pool: List<T>, weights: List<Int>, rng: Random): T {
+        val total = weights.sum()
+        var roll = rng.nextInt(total)
+        for ((index, weight) in weights.withIndex()) {
+            roll -= weight
+            if (roll < 0) return pool[index]
+        }
+        return pool.last()
+    }
+
+    /**
+     * The card a dictation answer is graded against — [spokenOnly] over what the task
+     * actually played. The rule is shared with sound-prompted review, which asks by ear
+     * for the same reason and must not credit a word the learner never heard.
+     */
+    fun dictationGradingCard(card: Card, task: LetterDrillTask): Card =
+        spokenOnly(card, task.accepted.firstOrNull() ?: card.target.text)
 
     /**
      * Typed-glyph grading: exact after normalization, case-insensitive, no typo budget —
@@ -223,7 +288,7 @@ object LetterDrill {
         return typed.isNotEmpty() && task.accepted.any { graded(it) == typed }
     }
 
-    /** The prompt side of a task; null where the entry cannot be asked at all. */
+    /** The prompt side of a task. */
     private data class Prompt(
         val text: String,
         val kind: LetterPromptKind,
@@ -233,25 +298,58 @@ object LetterDrill {
         val gloss: String?,
     )
 
-    private fun prompt(entry: AlphabetEntry, example: (AlphabetEntry) -> AlphabetExampleWord?): Prompt? {
+    /** The words a row could actually gap — empty for a letter row, which is asked by name. */
+    private fun gapCandidates(
+        entry: AlphabetEntry,
+        examples: (AlphabetEntry) -> List<AlphabetExampleWord>,
+    ): List<AlphabetExampleWord> =
+        if (entry.kind == AlphabetKind.Letter) emptyList()
+        else examples(entry).filter { entry.gapWord(it.text) != null }
+
+    private fun prompt(
+        entry: AlphabetEntry,
+        words: List<AlphabetExampleWord>,
+        avoidWord: String?,
+        rng: Random,
+    ): Prompt {
         if (entry.kind == AlphabetKind.Letter) {
             // why: the NAME is the speakable unit — «ґе», not ґ (measured 0.39 s against 1.32 s).
-            val name = entry.name ?: return null
+            val name = requireNotNull(entry.name) { "letter ${entry.ref} without a name" }
             return Prompt(name, LetterPromptKind.Name, null, entry.glyph.lowercase(), null, null)
         }
         // why: a digraph has no name to speak and a bare synthesized sound is unreliable,
         // so the question becomes the classic gap word — which also makes homophone sets
         // (ß/ss, ll/y) answerable, because the word's spelling is what decides them.
-        val word = example(entry) ?: return null
-        val gap = entry.gapWord(word.text) ?: return null
+        val word = draw(words, avoidWord, rng)
         return Prompt(
             text = word.text,
             kind = if (word.slug != null) LetterPromptKind.Word else LetterPromptKind.PlainText,
             slug = word.slug,
             glyph = null,
-            gap = gap,
+            gap = requireNotNull(entry.gapWord(word.text)) { "ungappable ${entry.ref}: ${word.text}" },
             gloss = word.text,
         )
+    }
+
+    /**
+     * The gap word itself: words the learner already holds first, so the drill spells out
+     * a vocabulary rather than a word list — but only while enough of them exist, or a
+     * beginner's three known words would come round all evening. [avoidWord] is resampled
+     * once, the same courtesy the entry draw gets.
+     */
+    private fun draw(
+        words: List<AlphabetExampleWord>,
+        avoidWord: String?,
+        rng: Random,
+    ): AlphabetExampleWord {
+        val known = words.filter { it.known }
+        val pool = if (known.size >= MIN_KNOWN_CANDIDATES) known else words
+        // why: a row with one word has nothing to draw — spending randomness on it would
+        // shift every later draw in the run for a choice that was never made.
+        if (pool.size == 1) return pool.single()
+        var word = pool[rng.nextInt(pool.size)]
+        if (word.text == avoidWord) word = pool[rng.nextInt(pool.size)]
+        return word
     }
 
     /**

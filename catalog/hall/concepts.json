@@ -61,39 +61,48 @@
  },
  {
   "slug": "lock",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🔒"
  },
  {
   "slug": "ring",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🔔"
  },
  {
   "slug": "take-off-shoes",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "👟"
  },
  {
   "slug": "set-off",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "👣"
  },
  {
   "slug": "unlock",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🔓"
  },
  {
   "slug": "get-dressed",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "👔"
  },
  {
   "slug": "arrive",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🛬"
  },
  {
   "slug": "greet",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🤝"
  },
  {
   "slug": "say-goodbye",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "👋"
  },
  {
   "slug": "shoe",
@@ -132,19 +141,23 @@
  },
  {
   "slug": "knock-on-door",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🚪"
  },
  {
   "slug": "enter",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "➡️"
  },
  {
   "slug": "inside",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "🏠"
  },
  {
   "slug": "do-you-have-the-keys",
   "kind": "phrase",
+  "emoji": "🔑",
   "components": [
    "key"
   ]
@@ -152,11 +165,13 @@
  {
   "slug": "ill-be-right-back",
   "kind": "phrase",
+  "emoji": "🔙",
   "components": []
  },
  {
   "slug": "take-off-your-shoes",
   "kind": "phrase",
+  "emoji": "👟",
   "components": [
    "take-off-shoes"
   ]
@@ -164,21 +179,25 @@
  {
   "slug": "hurry-were-late",
   "kind": "phrase",
+  "emoji": "🏃",
   "components": []
  },
  {
   "slug": "see-you-later",
   "kind": "phrase",
+  "emoji": "👋",
   "components": []
  },
  {
   "slug": "welcome-home",
   "kind": "phrase",
+  "emoji": "🏡",
   "components": []
  },
  {
   "slug": "the-doorbell-suddenly-rang",
   "kind": "phrase",
+  "emoji": "🔔",
   "components": [
    "ring"
   ]
@@ -186,6 +205,7 @@
  {
   "slug": "dont-forget-your-jacket",
   "kind": "phrase",
+  "emoji": "🧥",
   "components": [
    "jacket"
   ]
@@ -193,6 +213,7 @@
  {
   "slug": "put-on-the-jacket",
   "kind": "phrase",
+  "emoji": "🧥",
   "components": [
    "get-dressed",
    "jacket"

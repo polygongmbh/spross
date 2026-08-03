@@ -79,6 +79,13 @@ One line per item, with a file or context pointer, filed under the section it be
     `Es-<name>.ogg/.wav/.flac` convention in every casing. Six clips from one Spanish
     speaker would also fix what the other six cannot: the Spanish letter block currently
     changes voice row to row.
+- The catalog-wide gap sweep reaches only plain digraphs, so two gaps stay one word deep.
+  Ukrainian gains nothing at all — 33 of its 35 rows are `letter` rows, asked by spoken
+  name, and it authors no digraph to sweep. And every position-bound row (de `ch`×3,
+  `s`×2, the final-devoicing trio, `er`; es `c`, `g`, `gu`, `r`, `d`) still rides its one
+  authored example, because `context` is prose keyed by the reader rather than a rule the
+  engine can test. A machine-readable environment field would open both, and would owe the
+  same native-speaker sweep the hints already do.
 - No field carries Ukrainian stress, which is unmarked in writing and load-bearing:
   учень, миша and одяг teach their vowel only if the sheet can show which syllable
   carries it. A `stress` field on realizations (`catalog/README.md`) is the shape the
@@ -145,6 +152,13 @@ One line per item, with a file or context pointer, filed under the section it be
   un-arm-on-further-typing logic would need a new case for, so it is a design call rather
   than a mechanical port (`LetterDrillView+Grading.swift` `verdict(_:task:)`).
 
+- The watch quiz tells correctness to the EYE only — tile tint, red wash and the rating
+  emoji are all visual, and the emoji is `accessibilityHidden` because VoiceOver reading
+  "raising hands" after every tap is worse than silence
+  (`Watch/Sources/WatchQuizView.swift` `ratingBadge`). The phone states the opposite rule
+  for its letter drill ("correctness is never color alone", `design.md`), so the watch owes
+  a spoken equivalent — an accessibility label or value on the answered tile, not a mark.
+
 ## Localization
 
 - Watch, widget, and complication chrome is hardcoded German with no string catalog
@@ -166,6 +180,10 @@ One line per item, with a file or context pointer, filed under the section it be
   Ukrainian they can never hear. Per-language delivery (on-demand resources / Play asset packs) would cut
   the install to the target actually being learned; measure the real per-platform delta
   before choosing a mechanism.
+- `compileSdk` sits at 36 and that is now what holds androidx back: lifecycle 2.11 refuses
+  to resolve below 37 (`checkDebugAarMetadata`), and the next Compose BOM will follow it.
+  Bumping needs the android-37 platform installed and a re-check of `targetSdk` separately —
+  compiling against 37 does not opt the app into its runtime behavior.
 
 ## Compliance
 

@@ -42,6 +42,29 @@ enum DL {
         static let control: CGFloat = 14
     }
 
+    // MARK: Reserved heights (pt)
+
+    /// A session prompt card reserves the height of its own tallest ROUTINE
+    /// state, so nothing below it moves as optional content comes and goes —
+    /// vertical space is the scarce axis (card, input, button and keyboard
+    /// share one screen), and a button that slides under the keyboard costs
+    /// more than a card with air in it. The tallest routine state, not the
+    /// tallest possible one: a rare face that overflows simply grows the card,
+    /// because levelling every card up to an exception buys stillness with air.
+    /// The reveal is exempt — it grows the card downward and reserves nothing.
+    enum Reserve {
+        /// Drill prompt, shared by both drill faces: one 56 pt line of digits
+        /// plus the place-value pill (141.3 pt measured), and the listening
+        /// card's caption plus replay glyph plus its once-per-run silent-switch
+        /// line. A gap word ("Ge l＿") is the exception that grows the card —
+        /// levelling every question up to it would buy stillness with air.
+        static let drillCard: CGFloat = 144
+        /// Review prompt (compact): the by-ear prompt's 88 pt replay target,
+        /// which is the tallest a prompt side gets — a word asked by ear and
+        /// the same word asked by meaning then measure alike.
+        static let reviewCard: CGFloat = 120
+    }
+
     // MARK: Type scale — SF Rounded throughout
 
     enum Fonts {
@@ -133,6 +156,21 @@ extension View {
     /// The one card shadow used everywhere.
     func dlCardShadow() -> some View {
         shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 6)
+    }
+
+    /// The one card FACE: surface fill, hairline, shadow. Every card a session
+    /// puts up — vocabulary, drill prompt, listening prompt — wears this, so a
+    /// screen never shows two cards cut from different cloth.
+    func dlCardSurface() -> some View {
+        background(
+            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
+                .fill(Color.dlSurface)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
+                .strokeBorder(Color.dlSeparator.opacity(0.6), lineWidth: 1)
+        )
+        .dlCardShadow()
     }
 }
 

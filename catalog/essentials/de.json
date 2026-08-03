@@ -217,6 +217,12 @@
   "a-good-friend": {
    "text": "ein guter Freund"
   },
+  "my-girlfriend": {
+   "text": "meine Freundin"
+  },
+  "her-boyfriend": {
+   "text": "ihr Freund"
+  },
   "old-people": {
    "text": "alte Leute",
    "variants": [

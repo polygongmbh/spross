@@ -7,6 +7,14 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+// why: kern compiles on the JDK 21 toolchain — unpinned, this module would inherit
+// whatever JVM launched the daemon and its unit tests could not load kern's classes.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 android {
     namespace = "net.spross.app"
     compileSdk = 36

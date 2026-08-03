@@ -72,17 +72,16 @@ extension BoxStatistics {
     var suspendedCards: Int { Int(suspendedCount) }
     var streakDays: Int { Int(streak) }
     var longestStreakDays: Int { Int(longestStreak) }
-    var settledCards: Int { Int(settledCount) }
-    /// Active cards not settled yet — the fresh half of the Fortschritt split.
-    var freshCards: Int { max(0, activeCards - settledCards) }
+    var consolidatedCards: Int { Int(consolidatedCount) }
+    /// Active cards that have not consolidated yet — the fresh half of the Fortschritt split.
+    var freshCards: Int { max(0, activeCards - consolidatedCards) }
 }
 
 extension AreaStatistics {
     var totalCards: Int { Int(total) }
     var activeCards: Int { Int(active) }
-    var settledCards: Int { Int(settled) }
+    var consolidatedCards: Int { Int(consolidated) }
     var lockedPhrases: Int { Int(phrasesLocked) }
-    var unlockedPhrases: Int { Int(phrasesUnlocked) }
 }
 
 extension DayStats {
@@ -94,9 +93,9 @@ extension DayStats {
 extension LetterDrill {
     func ceiling(dictation: Bool) -> Int { Int(maxLevel(dictationAvailable: dictation)) }
 
-    func entryLevel(settled: Int) -> Int { Int(entryLevel(settledCards: Int32(settled))) }
+    func entryLevel(consolidated: Int) -> Int { Int(entryLevel(consolidatedCards: Int32(consolidated))) }
 
-    func winsToAdvance(settled: Int) -> Int { Int(winsToAdvance(settledCards: Int32(settled))) }
+    func winsToAdvance(consolidated: Int) -> Int { Int(winsToAdvance(consolidatedCards: Int32(consolidated))) }
 
     func stage(level: Int) -> LetterStage { stageFor(level: Int32(level)) }
 
@@ -134,7 +133,7 @@ extension BoxState {
     func with(config: BoxConfig) -> BoxState {
         doCopy(config: config, cards: cards, joinStamp: joinStamp,
                scheduling: scheduling, enqueued: enqueued,
-               newIntroduced: newIntroduced, settledCrossed: settledCrossed,
+               newIntroduced: newIntroduced, consolidatedCrossed: consolidatedCrossed,
                dailyStats: dailyStats)
     }
 

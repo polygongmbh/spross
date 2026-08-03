@@ -1,8 +1,10 @@
 import SwiftUI
 
-/// The audio question, in the same card chrome as TrainerPromptCard: a caption
-/// naming what is being asked, one large replay glyph, and — for a gap
-/// question — the example word with the asked grapheme blanked.
+/// The audio question, on the same card face as every other session card: a
+/// caption naming what is being asked, one large replay glyph, and — for a gap
+/// question — the example word with the asked grapheme blanked. The caption
+/// stays here where the slot drills dropped theirs: a sound has nothing on
+/// screen to say what it is asking for.
 ///
 /// No answer ever renders here, and that is the whole point: everything the
 /// learner is given is the sound, plus whatever the gap word already shows.
@@ -55,18 +57,11 @@ struct HearPromptCard: View {
         }
         .padding(DL.Space.l)
         .frame(maxWidth: .infinity)
-        // why: the sibling prompt card's height, so the two drills do not jump
-        // a layout apart when a learner moves between them.
-        .frame(minHeight: 185)
-        .background(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .fill(Color.dlSurface)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .strokeBorder(Color.dlSeparator.opacity(0.6), lineWidth: 1)
-        )
-        .dlCardShadow()
+        // why: the sibling drill card's height — an ordinary question holds it
+        // exactly, so a run sits still and a learner moving between the two
+        // drills meets one layout. A gap word is what may still grow it.
+        .frame(minHeight: DL.Reserve.drillCard)
+        .dlCardSurface()
     }
 
     private var caption: some View {
@@ -80,11 +75,16 @@ struct HearPromptCard: View {
 
     /// Big, but never circled or filled — it names what the card does rather
     /// than acting as a control styled to look like one.
+    ///
+    /// why: it keeps its generous tap target but reserves only the glyph in
+    /// layout, overhanging into the gaps above and below — nothing there is
+    /// tappable, and at full height it cost the card 36 pt of empty air.
     private var replayGlyph: some View {
         SpeakerIcon(size: .large, isPlaying: isPlaying, pronounce: replay)
             .accessibilityLabel("a11y.replayPrompt")
             .accessibilityAddTraits(.startsMediaSession)
             .accessibilityFocused(replayFocus)
+            .frame(height: 52)
     }
 
     private var unmuteRow: some View {

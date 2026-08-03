@@ -14,14 +14,25 @@ extension TrainerSessionView {
         return false
     }
 
+    /// The card carries the answer whenever the learner did not produce it —
+    /// a miss or "Aufdecken". A typo leaves it closed: the correction line
+    /// already spells the word out, and the answer is never on screen twice.
+    private var cardRevealed: Bool {
+        if case .revealed = feedback { return true }
+        return false
+    }
+
     /// Digit count of the current numeric prompt (nil outside the numbers
     /// drill). Internal: advance() marks each length as seen.
     var currentDigits: Int? { isNumbers ? current.prompt.count : nil }
 
-    /// Place word shown the first time a new number length appears.
-    private var placeValueHint: String? {
-        guard let digits = currentDigits, !seenDigitCounts.contains(digits) else { return nil }
-        return Trainer.shared.placeValueHint(digits: Int32(digits), language: language)
+    /// Place word shown the first time a new number length appears — on the
+    /// card itself, so the prompts that carry no hint sit exactly as high.
+    private var placeValueHint: TrainerPromptCard.Hint? {
+        guard let digits = currentDigits, !seenDigitCounts.contains(digits),
+              let place = Trainer.shared.placeValueHint(digits: Int32(digits), language: language)
+        else { return nil }
+        return .init(icon: "textformat.123", text: "trainer.newPlace \(place)")
     }
 
     /// Tens look-up for the current drill (Swahili numbers only).
@@ -36,13 +47,10 @@ extension TrainerSessionView {
                 // ZStack so outgoing and incoming prompt overlap during the
                 // flip; .id gives each run position its own view identity.
                 ZStack {
-                    TrainerPromptCard(task: current, sentence: isPhrases)
+                    TrainerPromptCard(task: current, sentence: isPhrases,
+                                      hint: placeValueHint, revealed: cardRevealed)
                         .id(index)
                         .transition(reduceMotion ? .opacity : .dlCardFlip)
-                }
-                if let placeValueHint {
-                    hintPill(icon: "textformat.123", text: "trainer.newPlace \(placeValueHint)")
-                        .transition(.opacity)
                 }
                 controls
             }
@@ -92,21 +100,13 @@ extension TrainerSessionView {
                             feedback: feedback,
                             placeholder: String(format: DLChrome.string("session.answer.placeholder %@", locale: locale),
                                                 languageName(language)),
+                            // why: the card's reveal carries the answer and its
+                            // gloss now — the panel below repeated it.
+                            showsRevealPanel: false,
                             focus: $answerFocused) {
                 submit()
             }
             .onChange(of: input) { _, _ in approveWhenTyped() }
-            if case .revealed = feedback, let gloss = current.gloss {
-                // why: post-reveal text is read, not glanced at — same size as
-                // the vocab card's gloss so the two drills stay consistent.
-                Text(gloss)
-                    .font(DL.Fonts.subheadline)
-                    .italic()
-                    .foregroundStyle(Color.dlTextSecondary)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
-                    .transition(.opacity)
-            }
             switch feedback {
             case .neutral:
                 VStack(spacing: DL.Space.s) {
@@ -114,9 +114,9 @@ extension TrainerSessionView {
                     Button {
                         if inputEmpty {
                             DLSound.reveal()
-                            // why: fill the field with the answer instead of
-                            // leaving an empty box beside the reveal panel.
-                            input = current.display
+                            // why: the field stays empty — the card is where the
+                            // answer stands, and typing it in for the learner
+                            // would put the same word on screen twice.
                             withAnimation { feedback = .revealed(correctAnswer: current.display) }
                         } else {
                             submit()
@@ -147,11 +147,7 @@ extension TrainerSessionView {
                 if let typoCorrection {
                     VStack(spacing: DL.Space.m) {
                         Text("session.typoCorrection \(typoCorrection)")
-                            .font(DL.Fonts.subheadline)
-                            .italic()
-                            .foregroundStyle(Color.dlTextSecondary)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
+                            .dlPauseLine()
                         Button {
                             advance(correct: true, segment: .tough)
                         } label: {
@@ -204,17 +200,6 @@ extension TrainerSessionView {
         guard let tensReference else { return nil }
         let afterWrong = { if case .revealed = feedback { return true }; return false }()
         return (hintUsed || afterWrong) ? tensReference : nil
-    }
-
-    private func hintPill(icon: String, text: LocalizedStringKey) -> some View {
-        Label(text, systemImage: icon)
-            .font(DL.Fonts.caption)
-            .foregroundStyle(Color.dlAccent)
-            .padding(.horizontal, DL.Space.m)
-            .padding(.vertical, DL.Space.s)
-            .background(
-                Capsule().fill(Color.dlSurfaceTint)
-            )
     }
 
     private func referenceCard(_ entries: [String]) -> some View {

@@ -10,7 +10,7 @@ extension SessionView {
     /// field claiming focus for itself is the only ordering that holds.
     func answerField(_ card: Card) -> some View {
         AnswerInputView(text: $input,
-                        feedback: feedback,
+                        feedback: fieldFeedback,
                         placeholder: inputPlaceholder,
                         // why: the card's reveal already carries the
                         // answer with its article color, plural and
@@ -23,7 +23,11 @@ extension SessionView {
             // why: Enter used to hit the "Next" button's default
             // action once revealed — a hardware keyboard still needs
             // a way to give up without finishing the retype.
-            if case .revealed = feedback {
+            if retryApproved {
+                // why: the retype already stands — Enter only skips the beat
+                // the timer is waiting out, it does not re-grade it.
+                rate(.hard)
+            } else if case .revealed = feedback {
                 // why: straight to commit — this field WAS the write-it-out
                 // step, so `rate` would answer the same word with a second one.
                 commit(.again)
@@ -36,6 +40,13 @@ extension SessionView {
         .onChange(of: input) { _, _ in approveWhenTyped(card) }
         .padding(.bottom, DL.Space.m)
         .onAppear { focusAnswerField() }
+    }
+
+    /// The field's own state. It parts ways with the card's on a finished
+    /// retype: the card holds its reveal open while the field turns green with
+    /// its checkmark, the same confirmation a first-try answer gets.
+    var fieldFeedback: AnswerInputView.Feedback {
+        retryApproved ? .correct : feedback
     }
 
     /// True while produce has nothing to type into: the blank "Aufdecken"
@@ -78,20 +89,16 @@ extension SessionView {
                 // A clean answer auto-advances after ~1.2 s (design §Review
                 // UX). A typo pauses here — show the proper spelling and wait
                 // for a tap so the slip is reviewed.
-                if let typoCorrection {
+                if let amber = typoCorrection ?? heardInstead {
                     VStack(spacing: DL.Space.m) {
                         // why: the proper spelling is the point of this pause —
                         // it has to be as readable as the reveal's own lines.
-                        Text("session.typoCorrection \(typoCorrection)")
-                            .font(DL.Fonts.subheadline)
-                            .italic()
-                            .foregroundStyle(Color.dlTextSecondary)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
+                        amberLine(amber)
+                            .dlPauseLine()
                             // why: a correct answer leaves the card CLOSED, so
                             // this line is the only place the word stands —
                             // tap-to-replay has to live on it, not on the card.
-                            .pronounceOnTap(pronounceAction(for: typoCorrection))
+                            .pronounceOnTap(pronounceAction(for: amber))
                         Button {
                             rate(.good)
                         } label: {
@@ -124,15 +131,22 @@ extension SessionView {
                         // why: same line as the typo correction — both explain
                         // what became of the answer, so they read alike.
                         Text("session.otherWord \(otherWord.word) \(otherWord.meanings.joined(separator: ", "))")
-                            .font(DL.Fonts.subheadline)
-                            .italic()
-                            .foregroundStyle(Color.dlTextSecondary)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
+                            .dlPauseLine()
                             // why: the line says what the learner DID write —
                             // the word it plays is the one they owed, the same
                             // one the reveal above it carries.
                             .pronounceOnTap(pronounceAction(for: card.target.text))
+                    }
+                    if retryApproved, screenReaderOn {
+                        // why: the timer never arms under a screen reader, so a
+                        // finished retype would have no way on but "give up" —
+                        // which grades .again, not the .hard it just earned.
+                        Button {
+                            rate(.hard)
+                        } label: {
+                            DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
+                        }
+                        .buttonStyle(DLPrimaryButtonStyle())
                     }
                     // why: always reachable — a step you cannot leave is a
                     // trap, same as the copy step's own skip. Giving up here
@@ -144,6 +158,14 @@ extension SessionView {
                 }
             }
         }
+    }
+
+    /// The amber hold's line: a slip's proper spelling, or — where the question
+    /// was the sound — the form that actually played beside the one written.
+    private func amberLine(_ form: String) -> Text {
+        heardInstead == nil
+            ? Text("session.typoCorrection \(form)")
+            : Text("letters.heardInstead \(form)")
     }
 
     // MARK: - Grading (produce only — recognize is button self-grade)
@@ -166,7 +188,7 @@ extension SessionView {
     /// has to pause on its correction anyway. Backing out of a finished word takes
     /// the green with it, so typing past the answer never commits it.
     private func approveWhenTyped(_ card: Card) {
-        guard copyPending == nil, !revealed, typoCorrection == nil else { return }
+        guard copyPending == nil, !revealed, typoCorrection == nil, heardInstead == nil else { return }
         if case .revealed = feedback {
             approveRetry(card)
             return
@@ -187,9 +209,20 @@ extension SessionView {
     /// than the blind .again a bare "give up" would.
     private func approveRetry(_ card: Card) {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty, isExactAnswer(trimmed, card: card) else { return }
+        guard !trimmed.isEmpty, isExactAnswer(trimmed, card: card) else {
+            // why: backing out of a finished retype takes the green with it —
+            // and the pending .hard, which would otherwise fire on a word that
+            // no longer stands written.
+            if retryApproved {
+                autoAdvance?.cancel()
+                withAnimation { retryApproved = false }
+            }
+            return
+        }
+        guard !retryApproved else { return }
         autoAdvance?.cancel()
         DLSound.correct()
+        withAnimation { retryApproved = true }
         AutoAdvance.scheduleLive(&autoAdvance) { rate(.hard) }
     }
 
@@ -209,8 +242,25 @@ extension SessionView {
 
     private func isExactAnswer(_ text: String, card: Card) -> Bool {
         guard let grader = model.produceGrader else { return false }
-        if case .exact = onEnum(of: grader.grade(input: text, card: card)) { return true }
+        if case .exact = onEnum(of: grader.grade(input: text, card: gradingCard(card))) { return true }
         return false
+    }
+
+    /// What the answer is graded AGAINST. A card asked by ear accepts only the
+    /// form that played — Kern's `spokenOnly`, the same rule the letter drill's
+    /// dictation runs, because crediting a synonym would credit a word the
+    /// learner never heard. Everywhere else the card grades as itself.
+    func gradingCard(_ card: Card) -> Card {
+        guard model.producePrompt(for: card) == .sound else { return card }
+        return spokenOnly(card: card, spokenForm: card.target.text)
+    }
+
+    /// A form the REAL card lists as a synonym or a variant — right word, not
+    /// the one that played. Amber, never wrong: the reveal itself teaches these
+    /// forms ("auch: …"), so failing one would contradict the card.
+    private func alsoAccepted(_ input: String, of card: Card) -> Bool {
+        let typed = speechKey(form: input)
+        return (card.target.synonyms + card.target.variants).contains { speechKey(form: $0) == typed }
     }
 
     func submit(_ card: Card) {
@@ -220,7 +270,19 @@ extension SessionView {
         // Kern normalizer: accepted forms = target text ∪ synonyms ∪ variants,
         // article-optional, verb-prefix-optional, article-mismatch → typo;
         // a form another concept owns is that word, not a slip of this one.
-        switch onEnum(of: grader.grade(input: trimmed, card: card)) {
+        let graded = grader.grade(input: trimmed, card: gradingCard(card))
+        // why: BEFORE the verdict, and only where the card was asked by ear —
+        // the narrowed answer set would otherwise fail a synonym the reveal
+        // itself teaches. It is not wrong, it simply is not what played.
+        if model.producePrompt(for: card) == .sound, alsoAccepted(trimmed, of: card) {
+            feedback = .correct
+            DLSound.correct()
+            heardInstead = card.target.text
+            focusRetry?.cancel()
+            answerFocused = false
+            return
+        }
+        switch onEnum(of: graded) {
         case .exact:
             feedback = .correct
             DLSound.correct()
@@ -235,6 +297,11 @@ extension SessionView {
             feedback = .correct
             DLSound.correct()
             typoCorrection = typo.corrected
+            // why: a pause that waits for a tap must not hold the keyboard —
+            // it covers the button the pause is waiting for. The pending
+            // retry is cancelled first, or it re-focuses 120 ms later.
+            focusRetry?.cancel()
+            answerFocused = false
         case .otherWord(let other):
             // why: the typed word is taken — no typo credit (kufunga is not a
             // slip of kufungua), and the reveal says what they did write.

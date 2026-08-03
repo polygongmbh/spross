@@ -5,7 +5,7 @@ set -eu
 cd "$(dirname "$0")/.."
 
 if ! ./gradlew --version >/dev/null 2>&1; then
-  echo "error: bootstrap: './gradlew --version' failed — is a JDK (17) installed?" >&2
+  echo "error: bootstrap: './gradlew --version' failed — is a JDK (21) installed?" >&2
   exit 1
 fi
 

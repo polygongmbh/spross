@@ -33,9 +33,9 @@ struct WidgetSnapshot: Codable {
     var schemaVersion: Int
     var entries: [Entry]
     var cards: [CardInfo]
-    /// Active cards settled at or above the phrase-unlock stability; resolved
+    /// Active cards that have consolidated (kern `Statistics.isConsolidated`); resolved
     /// phone-side because, unlike due dates, it does not move with the clock.
-    var settledCount: Int
+    var consolidatedCount: Int
     /// Trailing ~70 days, keyed by ISO `yyyy-MM-dd`.
     var dailyStats: [String: Day]
 

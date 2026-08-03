@@ -62,27 +62,33 @@
  },
  {
   "slug": "ask",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🙋"
  },
  {
   "slug": "reply",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "↩️"
  },
  {
   "slug": "translate",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🔤"
  },
  {
   "slug": "pass-exam",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🏆"
  },
  {
   "slug": "practise",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🔁"
  },
  {
   "slug": "raise-hand",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "✋"
  },
  {
   "slug": "pupil",
@@ -127,15 +133,18 @@
  },
  {
   "slug": "correct",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "✏️"
  },
  {
   "slug": "learn-by-heart",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🧠"
  },
  {
   "slug": "i-have-a-question",
   "kind": "phrase",
+  "emoji": "❓",
   "components": [
    "question"
   ]
@@ -143,21 +152,25 @@
  {
   "slug": "what-does-this-word-mean",
   "kind": "phrase",
+  "emoji": "📖",
   "components": []
  },
  {
   "slug": "how-do-you-say-this-in-german",
   "kind": "phrase",
+  "emoji": "🗣️",
   "components": []
  },
  {
   "slug": "im-learning-german",
   "kind": "phrase",
+  "emoji": "🇩🇪",
   "components": []
  },
  {
   "slug": "you-can-do-it",
   "kind": "phrase",
+  "emoji": "💪",
   "components": []
  }
 ]

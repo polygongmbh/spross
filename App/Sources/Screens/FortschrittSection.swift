@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Condensed progress section at the bottom of Heute: 14-day activity strip
-/// plus the settled/fresh split of the active cards (the two sum to the active
+/// plus the consolidated/fresh split of the active cards (the two sum to the active
 /// count the Box header spells out). The strip labels the streak it draws;
 /// due count on the session ring; suspended cards surface in the Box.
 /// Everything renders from `BoxStatistics` and `dailyStats` — never from logs.
@@ -19,16 +19,16 @@ struct FortschrittSection: View {
                 // Standing totals with today's movement under them: the totals say
                 // where the box stands, the deltas say that today moved it.
                 BoxStatTile(emoji: "🌳",
-                            value: "\(model.stats?.settledCards ?? 0)",
+                            value: "\(model.stats?.consolidatedCards ?? 0)",
                             label: "progress.consolidated",
-                            delta: delta(Int(model.today?.settled ?? 0)))
+                            delta: delta(Int(model.today?.consolidated ?? 0)))
                 BoxStatTile(emoji: "🌱",
                             value: "\(model.stats?.freshCards ?? 0)",
                             label: "progress.fresh",
-                            // Net, not gross: a card that both arrives and consolidates
-                            // today must not still count toward the fresh delta, or the
-                            // delta can outrun the (now smaller) fresh total.
-                            delta: delta(Int(model.today?.introduced ?? 0) - Int(model.today?.settled ?? 0)))
+                            // Today's arrivals that are still fresh — an older word
+                            // consolidating now belongs to the tile beside this one,
+                            // and must not eat a delta it never contributed to.
+                            delta: delta(Int(model.today?.stillFresh ?? 0)))
             }
         }
     }

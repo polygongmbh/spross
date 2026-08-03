@@ -19,6 +19,10 @@ struct SessionView: View {
     /// Set when the answer was accepted with a small typo — the proper
     /// spelling is shown and the card waits for a tap so the slip is seen.
     @State var typoCorrection: String?
+    /// Set when a SOUND-prompted answer is a form this very card accepts, but
+    /// not the one that played. Amber like a typo: the word is right, it is
+    /// simply not the one the learner heard, and the line says which was.
+    @State var heardInstead: String?
     /// The rating a missed word already earned, held while it is written out
     /// (SessionView+Copy.swift). Non-nil ⇒ the copy step owns the controls.
     @State var copyPending: Rating?
@@ -37,6 +41,10 @@ struct SessionView: View {
     /// reveal names it, so a near-miss teaches the other word instead of
     /// only failing (kufunga vs kufungua).
     @State var otherWord: MatchOtherWord?
+    /// The retype after a miss has reached the word. The card stays on its
+    /// reveal (`feedback` is still `.revealed`) while the FIELD goes green —
+    /// the two say different things at that moment.
+    @State var retryApproved = false
     @State var autoAdvance: Task<Void, Never>?
     /// The card whose word has already been said. The one-shot autoplay guard
     /// (SessionView+Audio.swift) — stored here because a SwiftUI extension
@@ -201,6 +209,16 @@ struct SessionView: View {
     private func promptSide(_ card: Card, role: PresentationRole) -> VocabCardView.Side {
         switch role {
         case .produce:
+            // why: a consolidated word is sometimes asked by ear alone — the
+            // meaning is withheld ON PURPOSE, so no cue rides along with it
+            // either; what stands is the replay glyph and nothing else.
+            if model.producePrompt(for: card) == .sound {
+                return .init(text: card.target.text,
+                             language: model.targetLanguage,
+                             pronounce: pronounceAction(for: card.target.text),
+                             isPlaying: isPronouncing(card.target.text),
+                             listening: true)
+            }
             return .init(text: card.source.text,
                          context: card.promptAmbiguous ? areaCue(card.area) : nil,
                          femMarker: card.promptFeminineMarker)
@@ -235,12 +253,20 @@ struct SessionView: View {
     private func answerSide(_ card: Card, role: PresentationRole) -> VocabCardView.Side {
         switch role {
         case .produce:
+            // why: a sound-prompted card never said what the word MEANS, so the
+            // reveal owes it — otherwise a miss teaches nothing but spelling.
+            let meaning = ([card.source.text] + card.source.synonyms).joined(separator: " / ")
+            let alternates = CardDisplay.alternates(of: card.target,
+                                                    shown: card.target.text,
+                                                    locale: locale)
+            let heard = model.producePrompt(for: card) == .sound
+            let below: String? = heard
+                ? [meaning, alternates].compactMap { $0 }.joined(separator: " · ")
+                : alternates
             return .init(text: card.target.text,
                          article: CardDisplay.article(of: card.target),
                          plural: CardDisplay.plural(of: card.target, locale: locale),
-                         alternates: CardDisplay.alternates(of: card.target,
-                                                            shown: card.target.text,
-                                                            locale: locale),
+                         alternates: below,
                          language: model.targetLanguage,
                          pronounce: pronounceAction(for: card.target.text),
                          isPlaying: isPronouncing(card.target.text))
@@ -365,7 +391,9 @@ struct SessionView: View {
         feedback = .neutral
         revealed = false
         typoCorrection = nil
+        heardInstead = nil
         otherWord = nil
+        retryApproved = false
         copyPending = nil
         copyInput = ""
         copyMissed = false

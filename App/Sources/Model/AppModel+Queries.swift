@@ -106,7 +106,7 @@ extension AppModel {
                           freshCount: fresh)
     }
 
-    /// What the learner did today — reviews, first meetings, words that settled,
+    /// What the learner did today — reviews, first meetings, words that consolidated,
     /// and whether today's recall has fallen far enough to suggest stopping.
     var today: TodayReport? {
         guard let box else { return nil }

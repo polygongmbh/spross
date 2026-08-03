@@ -198,6 +198,7 @@
    "section": "ch-sch",
    "ipa": "ks",
    "exampleText": "sechs",
+   "mine": false,
    "hints": {
     "en": "chs inside one stem is a plain 'ks': sechs = 'zeks', wachsen, Fuchs — not the ch sound at all. Where the s belongs to an ending the ch survives: du machst, nächste."
    },

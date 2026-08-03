@@ -124,6 +124,92 @@ class MultipleChoiceTests {
     }
 
     @Test
+    fun sentenceShapeIsReadOffTheClosingMark() {
+        assertEquals(MultipleChoice.SentenceShape.Question, MultipleChoice.sentenceShape("Wo sind sie?"))
+        assertEquals(MultipleChoice.SentenceShape.Question, MultipleChoice.sentenceShape("¿Cocinas arroz hoy?"))
+        assertEquals(MultipleChoice.SentenceShape.Exclamation, MultipleChoice.sentenceShape("¡Buenos días!"))
+        assertEquals(MultipleChoice.SentenceShape.Statement, MultipleChoice.sentenceShape("Ich koche Reis."))
+        assertEquals(MultipleChoice.SentenceShape.Statement, MultipleChoice.sentenceShape("Einen Moment…"))
+        assertEquals(MultipleChoice.SentenceShape.Bare, MultipleChoice.sentenceShape("Guten Tag"))
+        assertEquals(MultipleChoice.SentenceShape.Bare, MultipleChoice.sentenceShape("Wasser"))
+    }
+
+    @Test
+    fun trailingBlanksNeverChangeTheShape() {
+        assertEquals(MultipleChoice.SentenceShape.Question, MultipleChoice.sentenceShape("Wer ist da? "))
+        assertEquals(MultipleChoice.SentenceShape.Bare, MultipleChoice.sentenceShape(""))
+    }
+
+    // why: a lone question mark answers the question before it is read — the
+    // far-off question outranks the statement of identical length.
+    @Test
+    fun aQuestionKeepsTheCompanyOfQuestions() {
+        val picked = pick(
+            answer = option("Wo sind sie?", CardKind.Phrase),
+            candidates = listOf(
+                option("Wer ist da?", CardKind.Phrase),
+                option("Wo sind wir.", CardKind.Phrase),
+            ),
+            limit = 1,
+        )
+        assertEquals(listOf("Wer ist da?"), picked)
+    }
+
+    @Test
+    fun anExclamationIsNotTheSameShapeAsAStatement() {
+        val picked = pick(
+            answer = option("Guten Morgen!", CardKind.Phrase),
+            candidates = listOf(
+                option("Ich bin müde.", CardKind.Phrase),
+                option("Schlaf gut!", CardKind.Phrase),
+            ),
+            limit = 1,
+        )
+        assertEquals(listOf("Schlaf gut!"), picked)
+    }
+
+    @Test
+    fun sentenceShapeOutranksTheArea() {
+        val picked = pick(
+            answer = option("Wo sind sie?", CardKind.Phrase, area = "questions"),
+            candidates = listOf(
+                option("Ich koche Reis.", CardKind.Phrase, area = "questions"),
+                option("Wer kocht da?", CardKind.Phrase, area = "kitchen"),
+            ),
+            limit = 1,
+        )
+        assertEquals(listOf("Wer kocht da?"), picked)
+    }
+
+    @Test
+    fun theWordClassStillOutranksTheSentenceShape() {
+        val picked = pick(
+            answer = option("Wo sind sie?", CardKind.Phrase),
+            candidates = listOf(
+                option("Wasser?", CardKind.Noun),
+                option("Ich koche Reis.", CardKind.Phrase),
+            ),
+            limit = 1,
+        )
+        assertEquals(listOf("Ich koche Reis."), picked)
+    }
+
+    // The shape RANKS, it never filters: four tiles still fill from a box that
+    // has nothing closing the same way left to offer.
+    @Test
+    fun aPoolThatSharesNoShapeStillFillsTheTiles() {
+        val picked = pick(
+            answer = option("Wo sind sie?", CardKind.Phrase),
+            candidates = listOf(
+                option("Ich koche Reis.", CardKind.Phrase),
+                option("Schlaf gut!", CardKind.Phrase),
+                option("Guten Tag", CardKind.Phrase),
+            ),
+        )
+        assertEquals(3, picked.size)
+    }
+
+    @Test
     fun aBoundStemIsOfferedWithoutItsDash() {
         assertEquals("zuri", MultipleChoice.optionForm("-zuri", CardKind.Adjective, emptyList()))
     }

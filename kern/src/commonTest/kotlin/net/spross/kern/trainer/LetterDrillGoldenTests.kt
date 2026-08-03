@@ -30,7 +30,7 @@ class LetterDrillGoldenTests {
             var avoid: String? = null
             repeat(RUN_LENGTH) {
                 val task = LetterDrill.sample(
-                    fixture.alphabet, fixture.example, level, fixture.allRefs, avoid, rng,
+                    fixture.alphabet, fixture.example, level, fixture.allRefs, avoid, null, rng,
                 )
                 avoid = task.answerRef
                 appendLine(
@@ -43,9 +43,11 @@ class LetterDrillGoldenTests {
             appendLine("level $level")
             val rng = Random(SEED)
             var avoid: String? = null
-            val cards = fixture.dictationCards()
+            // The fixture's schedules are clean, so the weighting on show is the SPELLING
+            // half alone: "Buch" carries a tricky glyph and comes up twice as often.
+            val cards = fixture.dictationCandidates()
             repeat(RUN_LENGTH) {
-                val task = LetterDrill.sampleDictation(cards, level, avoid, rng)
+                val task = LetterDrill.sampleDictation(cards, fixture.alphabet, level, avoid, rng)
                 avoid = task.answerRef
                 appendLine("  ${task.stage} ${task.answerRef} ${task.display}")
             }
@@ -107,19 +109,19 @@ class LetterDrillGoldenTests {
               Typed ss PlainText [-] Wa＿er
               Typed ch-ich PlainText [-] Li＿t
             level 8
+              Dictation book Buch
               Dictation ice Eis
               Dictation house Haus
-              Dictation sun Sonne
-              Dictation house Haus
-              Dictation ice Eis
-              Dictation sun Sonne
-            level 9
-              Dictation rainbow Regenbogen
-              Dictation ice Eis
-              Dictation rainbow Regenbogen
               Dictation book Buch
               Dictation house Haus
-              Dictation ice Eis
+              Dictation book Buch
+            level 9
+              Dictation rainbow Regenbogen
+              Dictation rainbow Regenbogen
+              Dictation house Haus
+              Dictation rainbow Regenbogen
+              Dictation sun Sonne
+              Dictation book Buch
         """.trimIndent()
     }
 }

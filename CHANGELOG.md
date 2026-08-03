@@ -2,6 +2,114 @@
 
 ## Unreleased
 
+## 3.6.0 — 2026-08-02
+
+- **The answer button stays put, and stays above the keyboard.** Cards used to hold room for
+  content they no longer carried, and the number drill's "new place" hint arrived as a row
+  between the card and the field — so the first number of a new length pushed the button
+  under the keyboard, and the next one snapped everything back up. Hints now sit on the card
+  itself, in room it was already holding, and every card holds the height of the tallest thing
+  it routinely shows: a word with a picture and one without, a word asked by ear and the same
+  word asked by meaning, a number with a hint and one without all sit exactly as high.
+
+- **The frisch tile says what the day brought in again.** Its "+N heute" was the day's new
+  words minus every word that consolidated that day, so an evening spent on older words
+  could wipe it out entirely — and the tile went blank beside a gefestigt tile still
+  counting. It now counts the words you met today that have not landed yet, which is what
+  it was meant to say all along; a word known on sight still goes straight to gefestigt.
+
+- **Words you have settled sometimes come up as a sound to write down.** Producing a word
+  always started from its meaning, so a word could be answered right for months without
+  the sound of it ever being asked for. Now a word you have properly consolidated is now
+  and then prompted by ear alone — one replay button, nothing written — and what you type
+  is what you heard. It is the same review either way, it counts the same, and the reveal
+  gives the meaning back. A word the phone cannot say right now, or one you have reading
+  aloud switched off, keeps asking the old way.
+
+- **Dictation now asks for the words worth spelling twice.** The last rungs of the letter
+  drill picked any word you had settled, so an evening could go by on words you had never
+  once got wrong. It now leans toward the ones that earn the practice: words carrying the
+  letters the language's own alphabet page singles out, and words you have forgotten before
+  or that the schedule rates hard. Nothing is shut out — an easy word still comes up, just
+  less often than the one you keep missing.
+
+- **Fill-in-the-blank now blanks a different word each time.** Every sound had exactly one
+  word to its name, so the "sch" question was always the same word and answering it a second
+  time proved nothing about the sound. The drill now draws its gap word from the whole
+  catalog — words you already have first, so the blank falls in vocabulary you know — for
+  every sound whose letters say it wherever they stand. The ones that depend on where they
+  sit in the word keep the word an author picked for them: a German "ch" sounds one way
+  after an i and another after an a, and a blank cut in the wrong place would teach the
+  opposite of the question.
+
+## 3.5.0 — 2026-08-02
+
+- **Tapping a word now speaks it even with the phone on silent.** Two switches could
+  silence the app — its own and the phone's — and the phone's swallowed even the words you
+  asked for by tapping them, which left the letter drill unanswerable with no way to see
+  why. A tap is now a request that comes through whatever either switch says. Reading aloud
+  by itself still defers to the phone: on silent it stays quiet, and switching it on by hand
+  is what carries it past that, so the switch never claims sound it cannot deliver.
+
+- **Verbs, adjectives and whole sentences now come with a picture too.** The emoji cue used
+  to be a noun's privilege, so most of what you meet — every verb, every phrase — arrived as
+  bare text and had to be worked out from the translation alone. Now the picture carries the
+  meaning there as well, on the first exposure and whenever a word you haven't settled comes
+  up to be produced. The words that stay bare are the ones no picture can honestly show:
+  "viel", "jetzt", "wo", "aber" and their kind, where a wrong cue would cost more than a
+  missing one.
+
+- **"Freundin" now comes with the pairing that makes it a girlfriend.** German has no word
+  of its own for boyfriend or girlfriend — the possessive is what carries the meaning — so
+  "meine Freundin" and "ihr Freund" join the essentials as phrases of their own beside the
+  plain word, in every language the area covers.
+
+- **An area card's phrase count now says something.** It used to report phrases as
+  "unlocked" the moment they had no component words to wait on — which most have
+  none of, so the figure sat there fixed and unrelated to the settled/fresh count
+  beside it. Only the locked count remains, folded into that same row, since it's
+  the only phrase figure that ever changes.
+
+- **Writing the word out after a miss now confirms itself.** Retyping a missed word to the
+  end turned the sound on but left the field sitting in its amber "here is the answer"
+  state — it now goes green with its checkmark, the same confirmation a word you got right
+  the first time gets.
+
+## 3.4.0 — 2026-08-02
+
+- **Drill cards now look and behave like review cards.** The answer appears on the card
+  itself when you miss it or tap "Aufdecken" — with the sentence drill's meaning under it —
+  instead of in a panel below the input field, and revealing no longer types the answer
+  into the field for you. The card also drops its emoji badge and its "ZAHL · AUF ES"
+  caption: the line above already says what you are drilling, and the field already says
+  which language to answer in.
+
+- **The keyboard steps aside when a drill or review pauses on a near miss.** Accepting a
+  word with a small typo shows the proper spelling and waits for "Weiter" — but the
+  keyboard used to stay up and cover that button. It now drops, in the number, clock and
+  sentence drills, in vocabulary review, and in the letter drill (where a form you were
+  not played waits the same way).
+
+- **The watch quiz answers back.** Every tap now buzzes — and buzzes differently depending
+  on how the answer went, where only mistakes used to register at all. A wrong pick turns
+  the tile red and flashes the screen instead of shading it quietly ochre, and the tile you
+  tapped gets a small emoji showing how the answer was scored: 🙌 effortless, 👍 known,
+  👌 got there in the end, 👋 come back to this one.
+
+- **Words with a picture show it on the watch once you have answered.** The emoji appears
+  beside the word the moment you tap a tile — never before, since on a "what does this
+  mean?" question the picture would be the answer. Words without one are unchanged.
+
+- **Wrong answers on the watch stop being ruled out by their punctuation.** When the
+  question was a question, the other three options could be statements — so the right
+  answer was the one with the question mark, no reading required. Options now match the
+  way the answer's sentence ends.
+
+- **Long sentences no longer get squeezed onto the watch.** Phrases too long for four
+  watch-sized buttons stayed on the phone, where they have a card to themselves; what still
+  reaches the wrist is sized to be read rather than cut off. Every single word stays, and
+  short phrases like "Wo sind sie?" do too.
+
 ## 3.3.0 — 2026-08-02
 
 - **The Spanish alphabet sheet speaks, and two words that said the wrong thing are

@@ -417,23 +417,8 @@
         }
       }
     },
-    "box.phrasesLocked %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ gesperrt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ locked"
-          }
-        }
-      }
-    },
-    "box.phrasesUnlocked %lld" : {
+    "box.phrasesLocked %lld" : {
+      "comment" : "Spoken form; the row itself shows box.phrasesLockedShort beside a padlock.",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -441,13 +426,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Satz freigeschaltet"
+                  "value" : "%lld Satz gesperrt"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Sätze freigeschaltet"
+                  "value" : "%lld Sätze gesperrt"
                 }
               }
             }
@@ -459,13 +444,54 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld sentence unlocked"
+                  "value" : "%lld sentence locked"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld sentences unlocked"
+                  "value" : "%lld sentences locked"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "box.phrasesLockedShort %lld" : {
+      "comment" : "Sits beside a padlock, which carries the \"locked\"; box.phrasesLocked is what VoiceOver reads.",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Satz"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Sätze"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sentence"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sentences"
                 }
               }
             }
@@ -881,6 +907,22 @@
         }
       }
     },
+    "heute.done.consolidated %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ gefestigt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ solidified"
+          }
+        }
+      }
+    },
     "heute.done.extraRound" : {
       "localizations" : {
         "de" : {
@@ -893,22 +935,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "One more round?"
-          }
-        }
-      }
-    },
-    "heute.done.settled %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ gefestigt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ solidified"
           }
         }
       }
@@ -1413,6 +1439,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "English"
+          }
+        }
+      }
+    },
+    "lang.es" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spanisch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spanish"
           }
         }
       }
@@ -2206,13 +2248,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wörter beim Üben automatisch vorlesen. Tippen auf ein Wort spricht es erneut — auch bei ausgeschaltetem Vorlesen."
+            "value" : "Wörter beim Üben automatisch vorlesen — eingeschaltet auch bei stummem Handy. Tippen auf ein Wort spricht es erneut, immer."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Read words aloud during review. Tapping a word speaks it again — even when read-aloud is off."
+            "value" : "Read words aloud during review — switched on, it plays through a silenced phone too. Tapping a word speaks it again, always."
           }
         }
       }
@@ -2573,54 +2615,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "in %@"
-          }
-        }
-      }
-    },
-    "trainer.prompt.number" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zahl"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Number"
-          }
-        }
-      }
-    },
-    "trainer.prompt.sentence" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Satz"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sentence"
-          }
-        }
-      }
-    },
-    "trainer.prompt.year" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jahreszahl"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Year"
           }
         }
       }

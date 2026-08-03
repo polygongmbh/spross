@@ -4,7 +4,12 @@
     {
       "articleTint": "der",
       "cardId": "fixture-kuehlschrank",
-      "distractors": ["Spülmaschine", "Kellnerin", "Fernseher", "Sofa"],
+      "distractors": [
+        "Spülmaschine",
+        "Kellnerin",
+        "Fernseher",
+        "Sofa"
+      ],
       "due": 1767254400000,
       "emoji": "🧊",
       "femMarker": false,
@@ -17,11 +22,17 @@
     {
       "articleTint": "die",
       "cardId": "fixture-spuelmaschine",
-      "distractors": ["fridge", "waiter", "sofa", "television"],
+      "distractors": [
+        "fridge",
+        "waiter",
+        "sofa",
+        "television"
+      ],
       "due": 1767258000000,
       "femMarker": false,
       "nextRole": "recognize",
       "promptForm": "Spülmaschine",
+      "revealEmoji": "🍽️",
       "sourceText": "dishwasher",
       "stability": 4.2,
       "targetText": "Spülmaschine"
@@ -29,7 +40,12 @@
     {
       "articleTint": "die",
       "cardId": "fixture-kellnerin",
-      "distractors": ["fridge", "sofa", "dishwasher", "TV"],
+      "distractors": [
+        "fridge",
+        "sofa",
+        "dishwasher",
+        "TV"
+      ],
       "due": 1767261600000,
       "femMarker": true,
       "nextRole": "recognize",
@@ -41,7 +57,12 @@
     {
       "articleTint": "das",
       "cardId": "fixture-sofa",
-      "distractors": ["Kellnerin", "Fernseher", "Kühlschrank", "Spülmaschine"],
+      "distractors": [
+        "Kellnerin",
+        "Fernseher",
+        "Kühlschrank",
+        "Spülmaschine"
+      ],
       "due": 1767265200000,
       "emoji": "🛋️",
       "femMarker": false,
@@ -52,19 +73,55 @@
       "targetText": "Sofa"
     },
     {
+      "cardId": "fixture-wo-sind-sie",
+      "distractors": [
+        "Who is there?",
+        "What is that?",
+        "Would you need this one?"
+      ],
+      "due": 1767268800000,
+      "femMarker": false,
+      "nextRole": "recognize",
+      "promptForm": "Wo sind sie?",
+      "sourceText": "Where are they?",
+      "stability": 3.0,
+      "targetText": "Wo sind sie?"
+    },
+    {
+      "cardId": "fixture-brauchen-sie-das",
+      "distractors": [
+        "Wo sind sie?",
+        "Wer ist da?",
+        "Was kostet das?"
+      ],
+      "due": 1767272400000,
+      "femMarker": false,
+      "nextRole": "produce",
+      "promptForm": "Brauchen Sie das hier?",
+      "sourceText": "Do you need this?",
+      "stability": 0.9,
+      "targetText": "Brauchen Sie das hier?"
+    },
+    {
       "articleTint": "der",
       "cardId": "fixture-fernseher",
-      "distractors": ["sofa", "fridge", "waiter", "dishwasher"],
+      "distractors": [
+        "sofa",
+        "fridge",
+        "waiter",
+        "dishwasher"
+      ],
       "due": 4070937600000,
       "femMarker": false,
       "nextRole": "recognize",
       "promptForm": "Fernseher",
+      "revealEmoji": "📺",
       "sourceText": "television",
       "stability": 21.0,
       "targetText": "Fernseher"
     }
   ],
   "generated": 1782907200000,
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "target": "de"
 }

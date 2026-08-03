@@ -137,34 +137,19 @@ private struct BoxAreaSection: View {
     }
 
     private func header(_ stats: AreaStatistics?) -> some View {
-        let settled = stats?.settledCards ?? 0
-        let learning = max(0, (stats?.activeCards ?? 0) - settled)
+        let consolidated = stats?.consolidatedCards ?? 0
+        let learning = max(0, (stats?.activeCards ?? 0) - consolidated)
 
         return HStack(alignment: .top, spacing: DL.Space.s) {
-            VStack(alignment: .leading, spacing: DL.Space.s) {
-                AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
-                         settled: settled, learning: learning,
-                         total: stats?.totalCards ?? 0)
-                phraseRow(stats)
-            }
+            AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
+                     consolidated: consolidated, learning: learning,
+                     total: stats?.totalCards ?? 0,
+                     lockedPhrases: stats?.lockedPhrases ?? 0)
             FoldChevron(open: expanded)
                 .foregroundStyle(Color.dlTextSecondary)
                 .padding(.top, DL.Space.s)
         }
         .contentShape(Rectangle())
-    }
-
-    @ViewBuilder
-    private func phraseRow(_ stats: AreaStatistics?) -> some View {
-        if let stats, stats.lockedPhrases + stats.unlockedPhrases > 0 {
-            HStack(spacing: DL.Space.l) {
-                Label("box.phrasesUnlocked \(stats.unlockedPhrases)", systemImage: "lock.open.fill")
-                Label("box.phrasesLocked \(stats.lockedPhrases.formatted())", systemImage: "lock.fill")
-                Spacer(minLength: 0)
-            }
-            .font(DL.Fonts.caption)
-            .foregroundStyle(Color.dlTextSecondary)
-        }
     }
 
     /// The count moved from the button's face into its label: an icon-only
@@ -191,7 +176,7 @@ private struct BoxAreaSection: View {
     }
 
     private var cardList: some View {
-        VStack(spacing: DL.Space.xs) {
+        VStack(spacing: DL.Space.s) {
             ForEach(model.cards(inArea: area)) { card in
                 BoxCardRow(model: model, card: card)
             }
@@ -215,24 +200,25 @@ private struct BoxCardRow: View {
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 // Exposure surfaces render the TARGET side first (contract §6).
-                HStack(spacing: DL.Space.xs) {
-                    Text(CardDisplay.citation(of: card.target))
-                        .font(DL.Fonts.body)
-                        .foregroundStyle(Color.dlTextPrimary)
-                        .lineLimit(1)
-                    if let pronounce {
-                        SpeakerIcon(size: .small,
-                                   isPlaying: model.isPronouncing(card.target.text, lang: card.target.lang),
-                                   pronounce: pronounce)
-                            .accessibilityLabel("a11y.pronounce")
-                    }
-                }
+                Text(CardDisplay.citation(of: card.target))
+                    .font(DL.Fonts.body)
+                    .foregroundStyle(Color.dlTextPrimary)
+                    .lineLimit(1)
                 Text(card.source.text)
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                     .lineLimit(1)
             }
             Spacer(minLength: DL.Space.s)
+            // why: the speaker's 44pt tap target is taller than both lines of
+            // text — beside the word it stretched the row; its own column lets
+            // the row close to the height the words actually need.
+            if let pronounce {
+                SpeakerIcon(size: .small,
+                            isPlaying: model.isPronouncing(card.target.text, lang: card.target.lang),
+                            pronounce: pronounce)
+                    .accessibilityLabel("a11y.pronounce")
+            }
             if sched?.suspended == true {
                 Text(verbatim: "💤")
                     .accessibilityLabel("box.suspended")
@@ -245,11 +231,12 @@ private struct BoxCardRow: View {
                 .padding(.vertical, DL.Space.xs + 1)
                 .background(Color.dlAccent.opacity(0.14), in: Capsule())
             } else {
-                PhaseBadge(phase: badgePhase(sched))
+                PhaseBadge(phase: badgePhase(sched),
+                           consolidated: model.isConsolidated(card.id))
             }
         }
-        .padding(.horizontal, DL.Space.l)
-        .padding(.vertical, DL.Space.s + 2)
+        .padding(.horizontal, DL.Space.m)
+        .padding(.vertical, DL.Space.xs + 2)
         .background(
             // why: the row sits INSIDE the area card now — surface on surface
             // would leave the rows without an edge of their own.

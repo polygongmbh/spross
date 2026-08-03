@@ -37,10 +37,16 @@ struct VocabCardView: View {
         /// Whether this side's word is the one sounding right now — pulses
         /// the small speaker icon beside it.
         var isPlaying: Bool = false
+        /// This face IS the sound: the big replay glyph stands where the word
+        /// would, and `text` never renders. Set on a produce prompt asked by
+        /// ear, where showing the word would be showing the answer.
+        var listening: Bool = false
 
         init(text: String, article: String? = nil, plural: String? = nil,
              alternates: String? = nil, context: String? = nil, femMarker: Bool = false,
-             language: String? = nil, pronounce: (() -> Void)? = nil, isPlaying: Bool = false) {
+             language: String? = nil, pronounce: (() -> Void)? = nil, isPlaying: Bool = false,
+             listening: Bool = false) {
+            self.listening = listening
             self.text = text
             self.article = article
             self.plural = plural
@@ -70,47 +76,41 @@ struct VocabCardView: View {
     /// all fit on screen without scrolling. Previews keep the big card.
     var compact: Bool = false
 
-    var body: some View {
-        VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
-            promptRow
-            if revealed {
-                revealSection
-                    .transition(.opacity.combined(with: .move(edge: .top)))
-            }
-        }
-        .padding(compact ? DL.Space.l : DL.Space.xl)
-        .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .fill(Color.dlSurface)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .strokeBorder(Color.dlSeparator.opacity(0.6), lineWidth: 1)
-        )
-        .dlCardShadow()
-        .animation(.easeOut(duration: 0.25), value: revealed)
-    }
-
-    // MARK: Pieces
-
-    /// The picture sits BESIDE the word, never above it: vertical space is the
+    /// The picture sits BESIDE the words, never above them: vertical space is the
     /// scarce axis (card + input + button + keyboard share one screen), and a
     /// fixed side slot means the reveal can fade it in without moving a thing.
-    /// The slot is mirrored on the trailing edge so the word stays centred.
-    private var promptRow: some View {
+    /// It belongs to the CARD rather than the prompt line, so it stays centred
+    /// against prompt and reveal together instead of riding up as the card grows.
+    /// The slot is mirrored on the trailing edge so the words stay centred.
+    var body: some View {
         HStack(spacing: DL.Space.m) {
             if hasEmoji {
                 emojiIllustration(emoji ?? "")
                     .opacity(emojiCue == .upfront || revealed ? 1 : 0)
             }
-            sideBlock(prompt, emphasized: false)
-                .frame(maxWidth: .infinity)
+            VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
+                sideBlock(prompt, emphasized: false)
+                if revealed {
+                    revealSection
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                }
+            }
+            .frame(maxWidth: .infinity)
             if hasEmoji {
                 Color.clear.frame(width: emojiDiameter, height: 1)
             }
         }
+        .padding(compact ? DL.Space.l : DL.Space.xl)
+        .frame(maxWidth: .infinity)
+        // why: a session card holds one height whether the prompt is a word, a
+        // word under an area label, or the replay glyph of a by-ear question;
+        // previews stay content-driven.
+        .frame(minHeight: compact ? DL.Reserve.reviewCard : nil)
+        .dlCardSurface()
+        .animation(.easeOut(duration: 0.25), value: revealed)
     }
+
+    // MARK: Pieces
 
     private var hasEmoji: Bool {
         !(emoji ?? "").isEmpty
@@ -128,20 +128,8 @@ struct VocabCardView: View {
 
     @ViewBuilder
     private var revealSection: some View {
-        VStack(spacing: DL.Space.m) {
-            RoundedRectangle(cornerRadius: 1)
-                .fill(Color.dlSeparator)
-                .frame(width: 44, height: 2)
+        DLCardReveal(note: note) {
             sideBlock(answer, emphasized: true)
-            if let note {
-                // why: subheadline, not caption — post-reveal lines are meant to
-                // be read, and 12 pt secondary text is where legibility broke.
-                Text(note)
-                    .font(DL.Fonts.subheadline)
-                    .italic()
-                    .foregroundStyle(Color.dlTextSecondary)
-                    .multilineTextAlignment(.center)
-            }
         }
     }
 
@@ -194,19 +182,44 @@ struct VocabCardView: View {
 
     @ViewBuilder
     private func headlineRow(_ side: Side, emphasized: Bool) -> some View {
-        if side.pronounce != nil || side.femMarker {
+        if side.listening {
+            // why: the glyph IS the question here — no word may render beside
+            // it, and it keeps its own label because there is no headword for
+            // VoiceOver to read instead.
+            SpeakerIcon(size: .large, isPlaying: side.isPlaying, pronounce: side.pronounce)
+                .accessibilityLabel("a11y.pronounce")
+        } else if side.pronounce != nil || side.femMarker {
             HStack(spacing: DL.Space.s) {
+                // why: the same accessories mirrored on the leading edge, inert —
+                // the two faces of a card carry different ones (the target side has
+                // the speaker, the source side does not), so without the ballast the
+                // reveal's word sits visibly off the prompt's word above it.
+                accessories(side)
+                    .hidden()
+                    .allowsHitTesting(false)
+                    .accessibilityHidden(true)
                 headlineWord(side, emphasized: emphasized)
-                if let pronounce = side.pronounce {
-                    SpeakerIcon(size: .small, isPlaying: side.isPlaying, pronounce: pronounce)
-                        .accessibilityLabel("a11y.pronounce")
-                }
-                if side.femMarker {
-                    FeminineBadge()
-                }
+                accessories(side)
             }
         } else {
             headlineWord(side, emphasized: emphasized)
+        }
+    }
+
+    /// What rides beside the headword. The speaker keeps its 44 pt tap target
+    /// but reserves only the glyph in layout, overhanging into the gap — at
+    /// full width it would cost the word 104 pt of its line once mirrored.
+    @ViewBuilder
+    private func accessories(_ side: Side) -> some View {
+        HStack(spacing: DL.Space.s) {
+            if let pronounce = side.pronounce {
+                SpeakerIcon(size: .small, isPlaying: side.isPlaying, pronounce: pronounce)
+                    .accessibilityLabel("a11y.pronounce")
+                    .frame(width: 26)
+            }
+            if side.femMarker {
+                FeminineBadge()
+            }
         }
     }
 

@@ -61,19 +61,23 @@
  },
  {
   "slug": "sleep",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "😴"
  },
  {
   "slug": "wake-up",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🌞"
  },
  {
   "slug": "dream",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "💭"
  },
  {
   "slug": "get-up",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "⬆️"
  },
  {
   "slug": "get-undressed",
@@ -81,15 +85,18 @@
  },
  {
   "slug": "cuddle",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🤗"
  },
  {
   "slug": "yawn",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🥱"
  },
  {
   "slug": "snore",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "😪"
  },
  {
   "slug": "clothes",
@@ -133,15 +140,18 @@
  },
  {
   "slug": "make-bed",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🛏️"
  },
  {
   "slug": "soft",
-  "kind": "adjective"
+  "kind": "adjective",
+  "emoji": "🧸"
  },
  {
   "slug": "good-night-sleep-well",
   "kind": "phrase",
+  "emoji": "🌙",
   "components": [
    "sleep"
   ]
@@ -149,16 +159,19 @@
  {
   "slug": "good-morning-my-love",
   "kind": "phrase",
+  "emoji": "💕",
   "components": []
  },
  {
   "slug": "im-tired",
   "kind": "phrase",
+  "emoji": "🥱",
   "components": []
  },
  {
   "slug": "did-you-set-the-alarm",
   "kind": "phrase",
+  "emoji": "⏰",
   "components": [
    "alarm-clock"
   ]
@@ -166,16 +179,19 @@
  {
   "slug": "five-more-minutes",
   "kind": "phrase",
+  "emoji": "⏱️",
   "components": []
  },
  {
   "slug": "turn-off-the-light",
   "kind": "phrase",
+  "emoji": "💡",
   "components": []
  },
  {
   "slug": "i-love-you",
   "kind": "phrase",
+  "emoji": "❤️",
   "components": []
  }
 ]

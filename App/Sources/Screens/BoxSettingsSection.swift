@@ -165,14 +165,15 @@ struct BoxSettingsSection: View {
         }
     }
 
-    /// Bound to NOT-muted: the row names the feature, the flag stores the
-    /// exception. It lives in UserDefaults, one flag for the device — not in
+    /// Bound to NOT-muted: the row names the feature, the setting stores the
+    /// exception. It lives in UserDefaults, one setting for the device — not in
     /// the box, where the product calibration would reset it on every load,
-    /// and not per target language.
+    /// and not per target language. Switching it on also lifts autoplay past a
+    /// silenced phone (`AudioSession`), which is what the hint line names.
     private var readAloudBinding: Binding<Bool> {
         Binding(
             get: { !Pronouncer.shared.muted },
-            set: { Pronouncer.shared.muted = !$0 }
+            set: { Pronouncer.shared.setReadAloud(on: $0) }
         )
     }
 

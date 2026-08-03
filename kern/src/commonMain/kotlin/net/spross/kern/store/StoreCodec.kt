@@ -28,7 +28,7 @@ data class DecodedBox(
     val scheduling: Map<String, CardScheduling>,
     val enqueued: List<String>,
     val newIntroduced: Map<String, Int>,
-    val settledCrossed: Map<String, Int>,
+    val consolidatedCrossed: Map<String, Int>,
     val dailyStats: Map<String, DayStats>,
 ) {
     /** Re-join hook: attach a fresh catalog join to obtain a live [BoxState]. */
@@ -39,7 +39,7 @@ data class DecodedBox(
         scheduling = scheduling,
         enqueued = enqueued,
         newIntroduced = newIntroduced,
-        settledCrossed = settledCrossed,
+        consolidatedCrossed = consolidatedCrossed,
         dailyStats = dailyStats,
     )
 }

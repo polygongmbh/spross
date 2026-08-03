@@ -1,11 +1,11 @@
 [versions]
-# Kotlin 2.4.0 is SKIE 0.10.13's supported ceiling — bump the two only as a pair.
-kotlin = "2.4.0"
-skie = "0.10.13"
+# Kotlin 2.4.10 is SKIE 0.10.14's supported ceiling — bump the two only as a pair.
+kotlin = "2.4.10"
+skie = "0.10.14"
 kotlinx-serialization = "1.11.0"
 kotlinx-datetime = "0.8.0"
-# AGP 9.3.0 = newest stable line compatible with Gradle 9.6.1 / Kotlin 2.4.0.
-agp = "9.3.0"
+# AGP 9.3.1 = newest stable line compatible with Gradle 9.6.1 / Kotlin 2.4.10.
+agp = "9.3.1"
 compose-bom = "2026.06.01"
 activity-compose = "1.13.0"
 # lifecycle 2.11 requires compileSdk 37; 2.10 is the newest line for our SDK 36 pin.

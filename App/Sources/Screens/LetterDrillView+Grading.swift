@@ -57,10 +57,14 @@ extension LetterDrillView {
             feedback = .correct
             DLSound.correct()
             typoCorrection = corrected
+            answerFocused = false
         case .heard(let spoken):
             feedback = .correct
             DLSound.correct()
             heardInstead = spoken
+            // why: both amber holds wait for a tap, and a held keyboard
+            // covers the button they wait for.
+            answerFocused = false
         case .wrong:
             feedback = .revealed(correctAnswer: task.display)
             DLSound.wrong()
@@ -192,7 +196,7 @@ extension LetterDrillView {
         }
         print("""
             LetterDrill probe: box \(moment) active \(stats.activeCards) due \(stats.dueCards) \
-            settled \(stats.settledCards) reviewsToday \(model.today.map { Int($0.reviews) } ?? -1)
+            consolidated \(stats.consolidatedCards) reviewsToday \(model.today.map { Int($0.reviews) } ?? -1)
             """)
     }
 }

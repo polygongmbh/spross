@@ -56,9 +56,9 @@ struct LetterDrillView: View {
         self.language = language
         let availability = LetterDrillAvailability(model: model, language: language)
         self.availability = availability
-        let settled = model.stats?.settledCards ?? 0
+        let consolidated = model.stats?.consolidatedCards ?? 0
         let ceiling = LetterDrill.shared.ceiling(dictation: availability.dictationAvailable)
-        var start = min(LetterDrill.shared.entryLevel(settled: settled), ceiling)
+        var start = min(LetterDrill.shared.entryLevel(consolidated: consolidated), ceiling)
         #if DEBUG
         // UI-test hook: `-uitest-letters-level N` opens the run at that rung,
         // which is how any stage is reached deterministically.
@@ -67,8 +67,8 @@ struct LetterDrillView: View {
         #endif
         _level = State(initialValue: start)
         _tasks = State(initialValue: [Self.sample(model: model, language: language,
-                                                  availability: availability,
-                                                  level: start, avoiding: nil)].compactMap { $0 })
+                                                  availability: availability, level: start,
+                                                  avoiding: nil, avoidingWord: nil)].compactMap { $0 })
     }
 
     /// The rung ceiling: 9 where dictation exists, else 7.
@@ -77,7 +77,7 @@ struct LetterDrillView: View {
     /// How long a rung is — one clean win for a consolidated vocabulary, the
     /// classic two below it (Kern's step function, not this view's).
     var winsRequired: Int {
-        LetterDrill.shared.winsToAdvance(settled: model.stats?.settledCards ?? 0)
+        LetterDrill.shared.winsToAdvance(consolidated: model.stats?.consolidatedCards ?? 0)
     }
 
     var current: LetterDrillTask? { tasks.indices.contains(index) ? tasks[index] : nil }
@@ -182,37 +182,38 @@ struct LetterDrillView: View {
         return Pronouncer.shared.playingKey == Pronouncer.key(for: pronunciation)
     }
 
-    /// The blocking unmute row's action: flip the one device flag and play the
-    /// question at once, so the fix and its proof are a single tap.
+    /// The blocking unmute row's action: switch reading aloud on — which also
+    /// carries the drill past a silenced phone, the other silence this card
+    /// names — and play the question at once, so the fix and its proof are a
+    /// single tap.
     func unmute() {
-        Pronouncer.shared.muted = false
+        Pronouncer.shared.setReadAloud(on: true)
         playPrompt(trigger: .tap)
     }
 
     // MARK: - Sampling
 
     /// One question at the current rung. Dictation draws from the box, every
-    /// other stage from the alphabet; `avoiding` is the previous answer, which
-    /// Kern resamples once.
+    /// other stage from the alphabet; `avoiding` is the previous answer and
+    /// `avoidingWord` the word it gapped, each of which Kern resamples once.
     static func sample(model: AppModel, language: String, availability: LetterDrillAvailability,
-                       level: Int, avoiding: String?) -> LetterDrillTask? {
+                       level: Int, avoiding: String?, avoidingWord: String?) -> LetterDrillTask? {
         let drill = LetterDrill.shared
         let rng = KotlinRandom.companion
         if drill.stage(level: level) == .dictation, !availability.dictationCandidates.isEmpty {
             return drill.sampleDictation(candidates: availability.dictationCandidates,
+                                         alphabet: availability.alphabet,
                                          level: Int32(level), avoidCardId: avoiding, rng: rng)
         }
-        guard let alphabet = availability.alphabet, !availability.promptableRefs.isEmpty,
-              let catalog = model.catalog
-        else { return nil }
+        guard let alphabet = availability.alphabet, !availability.promptableRefs.isEmpty else {
+            return nil
+        }
         return drill.sample(alphabet: alphabet,
-                            targetExample: { entry in
-                                LetterDrillAvailability.exampleWord(entry, language: language,
-                                                                    catalog: catalog)
-                            },
+                            targetExamples: { availability.examples($0) },
                             level: Int32(level),
                             promptableRefs: availability.promptableRefs,
                             avoidRef: avoiding,
+                            avoidWord: avoidingWord,
                             rng: rng)
     }
 
@@ -228,7 +229,8 @@ struct LetterDrillView: View {
                                            correct: correct, clean: clean,
                                            maxLevel: maxLevel, winsRequired: winsRequired)
         let next = Self.sample(model: model, language: language, availability: availability,
-                               level: step.nextLevel, avoiding: current?.answerRef)
+                               level: step.nextLevel, avoiding: current?.answerRef,
+                               avoidingWord: current?.gapText == nil ? nil : current?.promptText)
         level = step.nextLevel
         winsAtLevel = step.wins
         if correct {

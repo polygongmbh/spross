@@ -57,39 +57,48 @@
  },
  {
   "slug": "fill-in",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "✏️"
  },
  {
   "slug": "sign",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🖊️"
  },
  {
   "slug": "apply-for",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📮"
  },
  {
   "slug": "submit",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📤"
  },
  {
   "slug": "hand-in",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📥"
  },
  {
   "slug": "pick-up",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "📦"
  },
  {
   "slug": "extend",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "⏩"
  },
  {
   "slug": "bring",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🎒"
  },
  {
   "slug": "copy",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "🖨️"
  },
  {
   "slug": "passport",
@@ -133,15 +142,18 @@
  },
  {
   "slug": "reject",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "❌"
  },
  {
   "slug": "approve",
-  "kind": "verb"
+  "kind": "verb",
+  "emoji": "✅"
  },
  {
   "slug": "where-do-i-sign",
   "kind": "phrase",
+  "emoji": "🖊️",
   "components": [
    "sign"
   ]
@@ -149,6 +161,7 @@
  {
   "slug": "i-want-to-extend-my-residence-permit",
   "kind": "phrase",
+  "emoji": "🪪",
   "components": [
    "residence-permit",
    "extend"
@@ -157,6 +170,7 @@
  {
   "slug": "fill-out-the-form",
   "kind": "phrase",
+  "emoji": "📋",
   "components": [
    "fill-in",
    "form"
@@ -165,6 +179,7 @@
  {
   "slug": "take-a-queue-number",
   "kind": "phrase",
+  "emoji": "🎫",
   "components": [
    "ticket-number"
   ]
@@ -172,6 +187,7 @@
  {
   "slug": "i-need-an-interpreter-for-the-application",
   "kind": "phrase",
+  "emoji": "🗣️",
   "components": [
    "application"
   ]
@@ -179,6 +195,7 @@
  {
   "slug": "did-you-bring-all-the-documents",
   "kind": "phrase",
+  "emoji": "📑",
   "components": [
    "documents"
   ]
@@ -186,11 +203,13 @@
  {
   "slug": "the-decision-comes-by-mail",
   "kind": "phrase",
+  "emoji": "📬",
   "components": []
  },
  {
   "slug": "when-does-my-id-expire",
   "kind": "phrase",
+  "emoji": "📆",
   "components": [
    "id-card"
   ]

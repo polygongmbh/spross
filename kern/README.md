@@ -133,6 +133,18 @@ no config flag, no user-facing direction anywhere.
   Every form gets prompted at zero extra scheduling cost.
   Reveal always shows the full family; the source-side reveal may show source synonyms
   informatively ("Amt / Verwaltung").
+- **Sound-prompted production**: `producePrompt(cardId, reviewCount, consolidated, audible)`
+  answers whether a produce turn asks by MEANING or by ear. Not a third role — the role
+  function is a bit-exact v1 contract and a word asked from its sound is still produced,
+  so only the prompt side moves and one schedule still sees one kind of answer.
+  `Sound` needs the STRICTER consolidated bar (§5), because this WITHDRAWS the meaning
+  rather than adding support, plus the app's word that the form can be heard right now
+  (no recording and no voice, reading aloud off, or a screen reader — each falls back to
+  `Source` rather than putting up an empty card). Alternation divides the count by two like
+  the synonym rotation: roles alternate per review, so `reviewCount % 2` is CONSTANT across
+  one card's produce turns. Grading narrows to the form that played (`session.spokenOnly`,
+  shared with the letter drill's dictation); a synonym of the same card is amber, never
+  wrong, since the reveal itself teaches those forms.
 - **Emoji cue**: `emojiCue(role, settled, reviewCount)` answers WHEN the picture appears,
   never whether it appears at all and never where (that is the renderer's, and it is fixed).
   **Upfront** iff (first exposure) OR (role == Produce ∧ the word has not settled, §5) —
@@ -209,7 +221,7 @@ cards; `DayStats.reviews` = answer events.
     `BoxEngine.isSettled(state, cardId)`) gates the new-word budget (§6) and picks which
     support a word gets while it is still on its way in (§3).
   - `consolidatedStability` = 6.0 days (`Statistics.isConsolidated`, facade
-    `BoxEngine.isConsolidated(state, cardId)`) gates phrase unlock (§6) and splits settled
+    `BoxEngine.isConsolidated(state, cardId)`) gates phrase unlock (§6) and splits consolidated
     from fresh in the progress UI — set strictly between S0(Good) and S0(Easy) so a single
     Good answer no longer reads as "landed" while a single Easy still does.
   Recalibrated for FSRS-6: at retention 0.8 the interval is 3.316 × stability, so
@@ -271,7 +283,7 @@ day-key `yyyy-MM-dd`) with:
 - **Phrase unlock** reads each component's schedule **by card id** — join- and
   source-independent, so a source switch can never re-lock phrases. Components with no
   TARGET realization are excluded from the gate (v1 unresolved-component semantics).
-  Gate: not suspended, and settled (§5) — the predicate, never a restated threshold.
+  Gate: not suspended, and consolidated (§5) — the predicate, never a restated threshold.
 - **Due order is day-bucketed, then shuffled**: reviews drain oldest overdue DAY first
   (backlog fairness), but inside a day the order is `fnv1a64("<dueEpochDay>:<fnv1a64(cardId)>")`,
   card id last as the collision tie-break.
@@ -309,9 +321,9 @@ day-key `yyyy-MM-dd`) with:
   `composeSession` takes `tzId` for all of this: "today" and "tomorrow" are local-calendar
   questions.
 - **`TodayReport`** (`BoxEngine.today`) is the day's own report: reviews and misses read
-  live from the review logs (so the numbers hold mid-session), introductions and settled
+  live from the review logs (so the numbers hold mid-session), introductions and consolidated
   crossings from the day counters the engine books at answer time (`newIntroduced`,
-  `settledCrossed`, both folded into `DayStats` at `endSession` and pruned together).
+  `consolidatedCrossed`, both folded into `DayStats` at `endSession` and pruned together).
   `recall` is null below `MIN_ANSWERS_FOR_RECALL` — a handful of answers cannot carry a
   ratio — and `recallStrained` names the rule "today is going badly", not the remedy:
   what a surface does with it is the app's call.
@@ -417,12 +429,12 @@ day-key `yyyy-MM-dd`) with:
   decode-only Swift (an extension cannot run the join: no catalog in its bundle, ~30 MB
   memory cap vs 33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
   entries (target-side text, emoji, article tint), per-card `{due}` for render-time
-  `dueCount(now)`, the settled-card count (`settledCount`, resolved phone-side —
+  `dueCount(now)`, the consolidated-card count (`consolidatedCount`, resolved phone-side —
   it does not move with the clock), dailyStats tail
   (~70 days) for the streak walk, `schemaVersion`. Built by a KMP `SnapshotBuilder`,
   written by the app.
-- **WatchSnapshot v4**: direction/pair/`german` are gone — one entry per CARD with BOTH
-  sides pre-resolved: `{cardId, sourceText, targetText, emoji?, articleTint?,
+- **WatchSnapshot v5**: direction/pair/`german` are gone — one entry per CARD with BOTH
+  sides pre-resolved: `{cardId, sourceText, targetText, emoji?, revealEmoji?, articleTint?,
   femMarker, due, stability, nextRole, promptForm, distractors[], optionForm?}` + `schemaVersion`.
   **The wire carries only what a surface draws**: v4 dropped `accepted[]` (the full target
   family), which was shipped for a reveal the quiz does not have — the watch answers by
@@ -432,10 +444,14 @@ day-key `yyyy-MM-dd`) with:
   `distractors` (v3) are the multiple-choice tiles for that entry, picked by
   `session/MultipleChoice` and read on THIS entry's option side —
   so the watch only shuffles and cannot put the two languages in one question.
-  Nothing but MEANING may separate the answer from its company, and three rules keep it so:
+  Nothing but MEANING may separate the answer from its company, and four rules keep it so:
   same word class first (a lone verb among nouns is answerable off its `ku` alone),
+  then the same `sentenceShape` (a lone question mark among full stops is answerable
+  without the tile being read; the closing mark names the shape in every catalog language,
+  since Spanish never writes `¿`/`¡` without its partner, and every single word is `Bare`),
   then same area (four kitchen words test the kitchen),
   then shape (length gap + a heavy part-count penalty).
+  All four RANK and none filters, so a thin box still fills four tiles.
   The pool is every SCHEDULED card, not the capped entry list — the cap is a wire budget,
   and a pool that small leaves a question no same-class company to keep;
   unscheduled cards stay out, since a word first met as somebody else's wrong answer
@@ -455,11 +471,24 @@ day-key `yyyy-MM-dd`) with:
   shipping card ids instead of texts would recover most of that, at the price of
   making the watch resolve the option side again (the v2 bug's home).
   The phone resolves `nextRole` and the rotated `promptForm` from the log count at build
-  time; presentation is the app layer's
-  and `emoji` is pre-gated to the PROMPT side by §3 — the watch quiz has no reveal face to
-  hang a picture on, so a reveal-side emoji is simply omitted from the entry.
+  time; presentation is the app layer's.
+  **v5** carries the held-back picture as well: §3's emoji cue no longer decides WHETHER the
+  picture ships but which KEY it ships under — `emoji` for one the learner may see from
+  frame one, `revealEmoji` for one that may only be seen once a tile has been tapped. Exactly
+  one is ever set. v4 omitted the second outright, on the grounds that the watch had no
+  reveal face to hang it on; the graded feedback window is that face, so the picture now has
+  an honest moment and no longer has to be withheld to stay honest. Two keys rather than one
+  key plus a flag, so a surface that reads `emoji` and draws it immediately — the
+  complication does exactly this — cannot leak a reveal-side picture by forgetting the flag.
   Ranking is **due-first** (a due card is never evicted by a non-due lower tier), then
   exposure tiers, capped at 60 entries (the ~60 KB `updateApplicationContext` limit).
+  A second cap is a LEGIBILITY budget rather than a wire one: `MAX_TEXT_CHARS` (24) keeps a
+  card off the watch entirely when any form it can render — both sides, plus the target
+  synonyms a rotated `promptForm` reaches for — runs longer than a tile in a 2×2 grid holds.
+  It gates the option pool as well as the entries, from the one predicate, so a distractor
+  can never overflow a tile an answer could not have. It drops ~9% of a pair's cards, all of
+  them long sentences: a four-way pick between those is exposure rather than recall, and the
+  phone gives exposure better, on a card with room for it.
   `make` lives phone-side; watch stays pure Swift.
 
 ## 8. Catalog schema additions (same-series migration)
@@ -525,9 +554,11 @@ day-key `yyyy-MM-dd`) with:
 - Gradle root `app/` (wrapper committed; `.gitignore` += `build/`, `.gradle/`, `.kotlin/`,
   `local.properties`); module `:kern` at **`app/kern`** (`kern/` at root is the same
   APFS inode as Swift `Kern/` — never create it). Package `net.spross.kern`
-  (+ `.trainer`). Pins (probe-proven, Xcode 26.6): Kotlin **2.4.0** (SKIE 0.10.13's ceiling —
+  (+ `.trainer`). Pins (probe-proven, Xcode 26.6): Kotlin **2.4.10** (SKIE 0.10.14's ceiling —
   bump only as a pair; comment in the version catalog), serialization 1.11.0,
-  datetime 0.8.0, Gradle 9.6.1, JDK 17. Configuration cache on.
+  datetime 0.8.0, Gradle 9.6.1, JDK 21 toolchain. Configuration cache on.
+  Toolchain auto-provisioning is off: JDK 21 must be installed, and the Homebrew keg
+  path is named in `gradle.properties` because Gradle cannot auto-detect it.
 - Targets: `jvm()` (fast gate + Android-ready), `iosArm64`, `iosSimulatorArm64` — static
   framework **SprossKern**. No watchOS targets (nothing links Kotlin on watch; 3 unused
   slice builds cost ~40–60 % of every kern-edit rebuild, measured 23.7 s → target ≈ 10 s).
@@ -564,7 +595,17 @@ day-key `yyyy-MM-dd`) with:
   alphabet file presence in the catalog (adding a language edits no Kotlin), its ramp is
   stateless and kern-owned (`entryLevel`/`winsToAdvance`/`advance` — both D11 halves in
   one place so two platforms cannot drift), sampling takes an injected `Random` and an
-  app-computed promptable set (device voices are an app fact), and dictation draws only
+  app-computed promptable set (device voices are an app fact).
+  A gap row draws its word from a POOL (`Catalog.alphabetExamples`, rules in
+  `catalog/README.md` § Alphabet), the app narrowing it to what the device can say and
+  flagging what the box already holds; kern favours the known words while at least three
+  stand, and spends no randomness where a row offers one word.
+  Dictation weighs its draw (`dictationWeight`): a floor of one that shuts nothing out,
+  plus how many of the language's own hard graphemes the word carries (`Alphabet.trickyGlyphs`),
+  its lapses, and FSRS difficulty above the midpoint — each capped, so one leech cannot take
+  a rung over, and all three zero on a clean plain word, where the draw is bit-for-bit the
+  uniform one. The two schedule figures ride in on `DictationCandidate`; kern reads no state.
+  Dictation draws only
   `BoxEngine.consolidatedCardIds` through `dictationGradingCard` — it never books a
   review (transcription is not recall; drills are stateless).
   Android: landed — `androidLibrary` KMP target
@@ -607,8 +648,8 @@ day-key `yyyy-MM-dd`) with:
 - **When audio may play** — `PronunciationCue { Upfront, OnReveal }`,
   declared beside `EmojiCue` in `model/Presentation.kt` because it is the same kind of rule:
   what may be shown (heard) without giving the answer away.
-  `pronunciationCue(role)` is `Upfront` iff the role is Recognize — the target form stands on the card from frame one —
-  and `OnReveal` for Produce, which asks for that very form.
+  `pronunciationCue(role, prompt)` is `Upfront` iff the role is Recognize — the target form stands on the card from frame one —
+  or the produce prompt IS the sound; `OnReveal` for a produce card that asks for that very form.
   Both apps CONSUME the cue; neither re-derives `role == Recognize` for audio.
   Which transitions actually fire, and how autoplay sits beside the auto-advance timers, is `../docs/design.md`'s.
 - **What is spoken is the bare headword** — the form the card teaches, never its rendering.
@@ -693,8 +734,9 @@ day-key `yyyy-MM-dd`) with:
   carries it for free, in every language, lint-guaranteed to exist; `sense` would be a new
   authored field for ~9 entries, and `homonymOf` encodes at concept level a fact that is
   per-language (`kupumzika` is ambiguous in sw only) and rots as languages are added.
-  Also rejected: emoji-as-cue (12 of 13 colliding concepts are verbs, which carry no emoji
-  at all, so the cue is absent exactly where the ambiguity bites), cluster-wide
+  Also rejected: emoji-as-cue — verbs and phrases carry an emoji now, but a merged pair
+  merges on one meaning and so wears one picture, leaving the cue silent exactly where the
+  ambiguity bites; the area label resolves it for free. Also rejected: cluster-wide
   grading leniency (accepting any cluster member teaches away the distinction the learner
   is there to acquire; if a same-area cluster ever proves unfixable, revisit as `Typo`,
   never `Exact`), and suppressing/deferring a cluster member (breaks composition
