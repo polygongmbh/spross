@@ -2,6 +2,26 @@
 
 ## Unreleased
 
+- **The day is no longer called finished while words are still coming back.** Missing a word
+  puts it on a two-minute step, so the screen could congratulate you on the day and then hand
+  the same words back a few minutes later — and the "tomorrow you can review N cards" line
+  underneath was counting those very words as tomorrow's. A word due back within the next
+  twelve hours now keeps the day open, and the round it opens is an ordinary one: the
+  returning words first, topped up with cards pulled forward, new words alongside. Once
+  nothing is coming back for hours, the day is done as before, and going on is your call.
+
+- **The finished-day card reads in one line of thought.** Its streak badge sat between two
+  lines of text with the button below, so a card of five stacked pieces had no order to it.
+  The celebration and the streak are now one badge at the top — the flame gives way to the
+  day's own mark — with what the day brought under it, the way on next, and what happens
+  tomorrow as fine print beneath. A box with no streak yet shows the mark alone instead of
+  announcing "🔥 0 Tage".
+
+- **"Noch eine Runde?" mixes practice in again.** The extra round after a finished day had
+  quietly become all-new-words: it reached for fresh vocabulary first and only fell back to
+  the round that mixes due work, words you packed yourself and cards pulled forward — a
+  fallback that almost never ran while the catalog still had words left.
+
 ## 3.6.0 — 2026-08-02
 
 - **The answer button stays put, and stays above the keyboard.** Cards used to hold room for
