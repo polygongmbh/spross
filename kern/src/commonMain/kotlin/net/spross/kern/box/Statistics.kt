@@ -3,6 +3,8 @@ package net.spross.kern.box
 import kotlin.time.Instant
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.minus
 import kotlinx.datetime.plus
 import net.spross.kern.model.CardKind
@@ -25,7 +27,14 @@ data class BoxStatistics(
     /** The longest such run the box has ever held; equals [streak] when today's run is it. */
     val longestStreak: Int,
     val areas: List<AreaStatistics>,
-)
+) {
+    /**
+     * Active cards that have not consolidated yet — the fresh half of the split.
+     * Clamped: a caller may hold a statistics value older than the counts it reads
+     * beside, and a negative bucket is never a truth about the box.
+     */
+    val learningCount: Int get() = maxOf(0, activeCount - consolidatedCount)
+}
 
 data class AreaStatistics(
     val name: String,
@@ -39,7 +48,79 @@ data class AreaStatistics(
     val phrasesLocked: Int,
     /** Phrases already introduced, component-free, or with all components stable. */
     val phrasesUnlocked: Int,
+) {
+    /** Active cards in the area still on their way in — see [BoxStatistics.learningCount]. */
+    val learning: Int get() = maxOf(0, active - consolidated)
+
+    /** Cards the area holds that have never been introduced — the third bucket. */
+    val notIntroduced: Int get() = maxOf(total - consolidated - learning, 0)
+
+    /**
+     * What the three buckets are measured against. Never below the introduced
+     * count: [total] comes from the join and can lag the schedules, and a stale
+     * total must not make the introduced cards read as more than everything.
+     */
+    val progressTotal: Int get() = maxOf(total, consolidated + learning, 1)
+}
+
+/** How the streak rule reads one day of the trailing window. */
+enum class StreakRole {
+    /** Reviews were done; the day is part of the current run and counts toward it. */
+    Earned,
+
+    /** No reviews, but the run spans the day — it stalls the streak rather than ending it. */
+    Bridged,
+
+    /** Outside the current run: an older active day, an unfinished today, or a gap that ended it. */
+    Outside,
+}
+
+/** One day of the activity window: what the box recorded, and how the streak rule reads it. */
+data class ActivityDay(
+    /** ISO `yyyy-MM-dd` local day key — the same key [BoxState.dailyStats] is keyed by. */
+    val day: String,
+    /** Local midnight of [day]; callers render the weekday from this, never from a calendar of their own. */
+    val dayStartEpochMillis: Long,
+    val reviews: Int,
+    val role: StreakRole,
 )
+
+/**
+ * The trailing [days] local days, OLDEST first and today last, each with its review
+ * count and its place in the current streak.
+ *
+ * The very walk the streak number is counted from, so the two can never disagree:
+ * the Earned days inside the window are exactly the days [BoxStatistics.streak]
+ * counted — all of them, whenever the run is no longer than the window.
+ *
+ * A bridged gap only ever sits BETWEEN earned days. Reaching past the oldest earned
+ * day it would be claiming a run that never started — an empty box would light up its
+ * last two days.
+ */
+fun streakWindow(
+    dailyStats: Map<String, DayStats>,
+    days: Int,
+    nowEpochMillis: Long,
+    tzId: String,
+): List<ActivityDay> {
+    require(days > 0) { "window needs at least one day" }
+    val zone = TimeZone.of(tzId)
+    val today = localDate(nowEpochMillis, tzId)
+    val run = Statistics.streakRun(dailyStats, today)
+    return (days - 1 downTo 0).map { back ->
+        val day = today.minus(back, DateTimeUnit.DAY)
+        ActivityDay(
+            day = day.toString(),
+            dayStartEpochMillis = day.atStartOfDayIn(zone).toEpochMilliseconds(),
+            reviews = dailyStats[day.toString()]?.reviews ?: 0,
+            role = when (run[day]) {
+                true -> StreakRole.Earned
+                false -> StreakRole.Bridged
+                null -> StreakRole.Outside
+            },
+        )
+    }
+}
 
 internal object Statistics {
 
@@ -87,24 +168,38 @@ internal object Statistics {
      * Today without reviews is not a miss at all (the day isn't over) — it neither breaks
      * the run nor pairs with an empty yesterday.
      */
-    fun streak(dailyStats: Map<String, DayStats>, nowEpochMillis: Long, tzId: String): Int {
-        var count = 0
+    fun streak(dailyStats: Map<String, DayStats>, nowEpochMillis: Long, tzId: String): Int =
+        streakRun(dailyStats, localDate(nowEpochMillis, tzId)).count { it.value }
+
+    /**
+     * The days the current run covers, newest first: date → earned (false = bridged).
+     * The one walk both [streak] and [streakWindow] read, so the count and the
+     * days shown as covered are the same answer told twice.
+     *
+     * Bridges past the oldest earned day drop out: forgiveness spans a run, it does
+     * not start one.
+     */
+    fun streakRun(dailyStats: Map<String, DayStats>, today: LocalDate): Map<LocalDate, Boolean> {
+        val walked = mutableListOf<Pair<LocalDate, Boolean>>()
         var previousWasMiss = false
-        var day = localDate(nowEpochMillis, tzId)
+        var day = today
         var isToday = true
         while (true) {
             val reviews = dailyStats[day.toString()]?.reviews ?: 0
             if (reviews > 0) {
-                count += 1
+                walked += day to true
                 previousWasMiss = false
             } else if (!isToday) {
                 if (previousWasMiss) break
                 previousWasMiss = true
+                walked += day to false
             }
             isToday = false
             day = day.minus(1, DateTimeUnit.DAY)
         }
-        return count
+        val oldestEarned = walked.indexOfLast { it.second }
+        if (oldestEarned < 0) return emptyMap()
+        return walked.take(oldestEarned + 1).toMap()
     }
 
     /**

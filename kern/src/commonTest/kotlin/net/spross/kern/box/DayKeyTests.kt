@@ -79,6 +79,36 @@ class DayKeyTests {
     }
 
     @Test
+    fun endOfTomorrowIsTheSecondLocalMidnightAhead() {
+        // 23:30 UTC on July 1 is already July 2 in Kiritimati, so its horizon is July 4 local.
+        val lateUtc = Box.millis(2026, 7, 1, 23, 30)
+        assertEquals(local("UTC", 2026, 7, 3, 0, 0), endOfTomorrow(lateUtc, "UTC").toEpochMilliseconds())
+        assertEquals(
+            local("Pacific/Kiritimati", 2026, 7, 4, 0, 0),
+            endOfTomorrow(lateUtc, "Pacific/Kiritimati").toEpochMilliseconds(),
+        )
+        // Berlin falls back on 2026-10-25: the horizon is a local midnight, not now + 48h.
+        val beforeFallBack = local("Europe/Berlin", 2026, 10, 24, 20, 0)
+        assertEquals(
+            local("Europe/Berlin", 2026, 10, 26, 0, 0),
+            endOfTomorrow(beforeFallBack, "Europe/Berlin").toEpochMilliseconds(),
+        )
+    }
+
+    @Test
+    fun dueThroughTomorrowReadsTheHorizonKernNames() {
+        var state = Box.state(listOf(Box.word(1), Box.word(2), Box.word(3)))
+        val now = Box.millis(2026, 7, 1, 20, 0)
+        state = Box.inject(state, Box.sched("w01", dueMillis = now, lastReviewMillis = now))
+        // Tomorrow evening: inside the horizon. Day after: outside it.
+        state = Box.inject(state, Box.sched("w02", dueMillis = Box.millis(2026, 7, 2, 22, 0), lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w03", dueMillis = Box.millis(2026, 7, 3, 10, 0), lastReviewMillis = now))
+
+        val horizon = endOfTomorrow(now, Box.TZ).toEpochMilliseconds()
+        assertEquals(listOf("w01", "w02"), BoxEngine.dueNow(state, horizon).sorted())
+    }
+
+    @Test
     fun streakWalksLocalDaysAcrossDstChange() {
         val state = Box.state(listOf(Box.word(1))).copy(
             dailyStats = listOf("2026-10-24", "2026-10-25", "2026-10-26")
