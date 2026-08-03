@@ -2,10 +2,8 @@
 
 The standing contract for the Kotlin Multiplatform core (`:kern`):
 scheduling, growth, sessions, grading, snapshots.
-Grew out of the 2026-07 KMP rewrite (per-unit deviations were adversarially reviewed;
-the 2026-07-22 presentation-model rulings are folded into §3/§4).
 App-layer UX rules stay in `../docs/design.md`; this doc owns the engine.
-Product frame (overrides v1 where they conflict):
+Product frame:
 any source (known) / target (learning) language pair from the catalog;
 no user-facing direction concept;
 progress tracked per target language;
@@ -27,8 +25,7 @@ draw it is rendering and does not.
 
 - `Language` = string code from `catalog/languages.json` — open set, no enum.
 - `LanguageInfo(code, name, englishName, flag, optionalVerbPrefixes, articles)` —
-  per-language metadata from `catalog/languages.json` (field semantics: `catalog/README.md`);
-  `articles` replaces v1's hardcoded German article list.
+  per-language metadata from `catalog/languages.json` (field semantics: `catalog/README.md`).
 - Profile = (source, target), source ≠ target.
   `Catalog.availableTargets(source)` requires ≥ 50 joinable concepts, and answers only for a
   language the catalog declares — an undeclared one is a caller that skipped the launch query.
@@ -87,7 +84,7 @@ data class Realization(
 - **Notes**: selected by SOURCE language at join time, no cross-language fallback
   (a de note never surfaces for an en-source user; non-de sources are note-less until authored).
 - **Grammar display is target-side only**: plural line and article coloring render only for
-  the target realization (v1's "plural only for learners OF German", generalized).
+  the target realization.
   Every real plural carries the "Pl. " label, suffixes resolved against the word
   ("-nen" → "Pl. Lehrerinnen"); sentinels "=" → "= Pl.", "only" → "nur Pl."
   via localized chrome strings, not hardcoded German.
@@ -98,8 +95,7 @@ data class Realization(
 No per-role or per-form scheduling —
 production and recognition are PRESENTATIONS of the same memory,
 both feeding the one schedule ("every answer event is an FSRS review" holds).
-This is v1's `mixedDirections` model kept as the ONLY mode:
-no config flag, no user-facing direction anywhere.
+No config flag, no user-facing direction anywhere.
 
 - **PRODUCE**: prompt = source text (+ ♀ badge when marked), typed answer in target.
   Accepted: target `text ∪ synonyms ∪ variants`, article-optional (target articles),
@@ -125,12 +121,11 @@ no config flag, no user-facing direction anywhere.
     the moment to recall it) WITH its emoji as the cue, and the reveal teaches the meaning,
     self-graded. An honest Again lands in the single learning step (§5), so the word returns
     at the END of the session — as the typed production attempt below.
-    (Matches v1's `presentationDirection` first-exposure rule.)
   - The second review (`count == 1`) is ALWAYS production — seen once, now attempt it
     (ruling 2026-07-22: "returns the same session as production", both hash parities).
   - From `count == 2` role = parity(`count` + FNV-1a-64(cardId)):
     FNV-1a 64-bit over UTF-8, offset `0xcbf29ce484222325`, prime `0x100000001b3` —
-    bit-exact v1 port; the per-card phase offset keeps the box from flipping in sync.
+    the per-card phase offset keeps the box from flipping in sync.
 - **Synonym rotation** on recognition prompts: the prompted form cycles deterministically
   through `text` + `synonyms` — index = (`count / 2` + id-hash offset) mod formCount
   (parity-independent: recognition happens every other review); first exposure always
@@ -140,7 +135,7 @@ no config flag, no user-facing direction anywhere.
   informatively ("Amt / Verwaltung").
 - **Sound-prompted production**: `producePrompt(cardId, reviewCount, consolidated, audible)`
   answers whether a produce turn asks by MEANING or by ear. Not a third role — the role
-  function is a bit-exact v1 contract and a word asked from its sound is still produced,
+  function is fixed and a word asked from its sound is still produced,
   so only the prompt side moves and one schedule still sees one kind of answer.
   `Sound` needs the STRICTER consolidated bar (§5), because this WITHDRAWS the meaning
   rather than adding support, plus the app's word that the form can be heard right now
@@ -172,7 +167,7 @@ no config flag, no user-facing direction anywhere.
 
 ## 4. Denomination — everything in cards
 
-v1 calibration restored (one schedule per card ⇒ one review touches one card):
+One schedule per card ⇒ one review touches one card:
 
 | Quantity | Default (all in cards) |
 |---|---|
@@ -197,8 +192,7 @@ this to every loaded box).
   pinned reference report: same-day `sinc ≥ 1` mask for G ≥ Hard, S_MIN 0.001, fuzz OFF,
   engine maximum_interval 36500.
 - `elapsedDays` = fractional `max(0, (now − lastLog)/86400)`; short-term path < 1.0.
-  Copied vectors all review exactly at due where conventions agree; ts-only real-timestamp
-  vectors are excluded from the port.
+  Golden vectors all review exactly at due; real-timestamp vectors stay out of the suite.
 - Steps are config; the ENGINE defaults stay the reference pair (`learning [1m, 10m]`,
   `relearning [10m]`) so the golden vectors run verbatim.
   **The product runs ONE learning step, `[2m]`** (`relearning [10m]` unchanged).
@@ -212,8 +206,7 @@ this to every loaded box).
   2026-07-29; `3m` was tried first and outlasted the day's practice altogether.)
   **No in-session lapse retry** (breadth ruling 2026-07-22): a lapsed review card returns
   after 10 m, typically next session; the run it lapsed in does not wait for it.
-  Graduation follows the reference machine (one step later than v1's hand-rolled steps —
-  accepted, tested against the pinned minute tables).
+  Graduation follows the reference machine, tested against the pinned minute tables.
 - **Graduated intervals are continuous in the product.** `Fsrs.intervalRawDays` is the
   fractional interval the model asks for; `FsrsScheduler.graduate` quantizes it to
   `intervalGranularitySeconds` and floors it at `minimumIntervalSeconds`.
@@ -235,14 +228,14 @@ this to every loaded box).
     from fresh in the progress UI — set strictly between S0(Good) and S0(Easy) so a single
     Good answer no longer reads as "landed" while a single Easy still does.
   Recalibrated for FSRS-6: at retention 0.8 the interval is 3.316 × stability, so
-  S0(Good) = 2.3065 crosses `settledStability` at graduation the way v1's FSRS-5 3.0 did
+  S0(Good) = 2.3065 crosses `settledStability` at graduation
   (≈ 7.6 days out, Easy ≈ 27.5) while S0(Hard) = 1.2931 does not — a word answered Good on
   sight settles (budget/presentation) but does not consolidate (stats/unlock) on its first
   answer; S0(Easy) = 8.2956 clears both.
-- Golden vectors copied verbatim from the pinned releases with PROVENANCE (repo/tag/SHA);
-  FSRS-6 property tests re-express the v1 property suite. Weight optimization stays out.
+- Golden vectors copied verbatim from the pinned releases with PROVENANCE (repo/tag/SHA).
+  Weight optimization stays out.
 
-## 6. Box / Session semantics (deltas from the v1 port map)
+## 6. Box / Session semantics
 
 - **Self-grading takes a verdict and a clock** (`SelfGrading`):
   the learner reports Unknown / Tough / Knew,
@@ -260,18 +253,16 @@ this to every loaded box).
   The elapsed span is the recall attempt (prompt shown → answer asked for),
   not the time spent choosing afterwards.
 
-Everything in the engine scout map ports 1:1 (budgets, growth-reserve formula,
-introduction = first answer, silent answer drop, extra round, endless, exposure tiers,
-statistics, streak forgiveness, endSession fold + 60-day prune, deterministic orderings,
-day-key `yyyy-MM-dd`) with:
+The engine also owns budgets and the growth-reserve formula, the silent answer drop, the
+extra round, endless, exposure tiers, statistics, streak forgiveness, the `endSession` fold
+and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 - **`BoxStatistics.longestStreak`**: the longest run ever held, under the same forgiveness
   rule the current streak walks back with, over the whole (never pruned) `dailyStats`.
   An unfinished today can extend a run but never end one, so it is always ≥ `streak` —
   equality is what says today's run IS the record.
-- **Introduction is the card's first answer** (v1 semantics; the unit-era eligibility lag
-  and one-per-plan rules are gone with the unit model). `enqueued` holds card ids;
+- **Introduction is the card's first answer.** `enqueued` holds card ids;
   enqueued cards lead composition, respect the per-round cap, and dequeue at introduction.
-  Zero-component phrases follow seed order, never the unlock fast path (v1 rule restated).
+  Zero-component phrases follow seed order, never the unlock fast path.
 - **Intake is bounded per round, and by nothing else**: a round offers at most
   `NEW_CARDS_PER_ROUND` first sights — a round's worth, the size `SESSION_FLOOR_CARDS`
   measures a round to be — across every composed round (today's, endless, the extra round)
@@ -292,7 +283,7 @@ day-key `yyyy-MM-dd`) with:
   growing. A box far behind still gets its round (`docs/growth-evidence.md`).
 - **Phrase unlock** reads each component's schedule **by card id** — join- and
   source-independent, so a source switch can never re-lock phrases. Components with no
-  TARGET realization are excluded from the gate (v1 unresolved-component semantics).
+  TARGET realization are excluded from the gate.
   Gate: not suspended, and consolidated (§5) — the predicate, never a restated threshold.
 - **Due order is day-bucketed, then shuffled**: reviews drain oldest overdue DAY first
   (backlog fairness), but inside a day the order is `fnv1a64("<dueEpochDay>:<fnv1a64(cardId)>")`,
@@ -378,7 +369,7 @@ day-key `yyyy-MM-dd`) with:
 - `answer(cardId, rating, nowMillis, tzId)` on a non-joining or unknown id is a defined
   no-op (`AnswerStatus.StaleCard`) the UI skips past. `SessionPlan` carries a
   `joinStamp` (source, target, catalog fingerprint); the app recomposes when stale.
-- `setSuspended(cardId)` — per card, as v1.
+- `setSuspended(cardId)` — per card.
 - **`BoxEngine.consolidatedCardIds(state)`** — the words a drill may practise, in seed order.
   It reads through the join-filtered active inventory (scheduled, joining, not suspended) and
   keeps what `Statistics.isConsolidated` accepts, so a lapse takes a card off the list on its
@@ -393,7 +384,7 @@ day-key `yyyy-MM-dd`) with:
   keeps that order total.
   The query never writes — drills are stateless and book no reviews (transcription is not
   recall), so nothing here touches FSRS.
-- **Exposure**: one entry per card by construction (tiers as v1); display surfaces always
+- **Exposure**: one entry per card by construction; display surfaces always
   render the TARGET realization.
 - **AnswerNormalizer contract** (produce only — recognition is button self-grade;
   catalog-fixture tested with "Kwaheri!", "to cook", "Der Kühlschrank ist leer.",
@@ -405,7 +396,7 @@ day-key `yyyy-MM-dd`) with:
   typo budget → article-mismatch-demotes-to-typo only when the expected
   answer's grammar carries `gender`; stray-short-leading-word rule unchanged.
   **Typo budget**: one slip per six letters (spaces excluded), floor 1,
-  and zero below four letters — wider than v1's `<5 → 0, one per ten` at both ends.
+  and zero below four letters.
   Leniency is safe to the extent the catalog can disprove it:
   `CatalogAnswerGrader` withdraws the credit wherever the typed form is really
   another concept's word, so a wider budget buys forgiveness for genuine slips
@@ -483,8 +474,8 @@ day-key `yyyy-MM-dd`) with:
   small (probe showed serialization internals otherwise flood it).
 - Engine boundary time: `nowEpochMillis: Long` + `tzId: String` (kotlinx-datetime 0.8 has
   no Swift-Date bridging; Instant/TimeZone are constructed inside). TimeZone = device-current
-  per call (v1 parity). Day keys are ISO regardless of device calendar (v1 latent
-  non-Gregorian bug fixed; DST + non-Gregorian vectors in the test suite).
+  per call. Day keys are ISO regardless of device calendar
+  (DST + non-Gregorian vectors in the test suite).
 - **WidgetSnapshot** (NEW): the phone precomputes on every persist; the iOS widget is
   decode-only Swift (an extension cannot run the join: no catalog in its bundle, ~30 MB
   memory cap vs 33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
@@ -633,7 +624,7 @@ day-key `yyyy-MM-dd`) with:
   App/Sources adds `Date ↔ epochMillis` helpers and `Identifiable`/`Equatable`
   conformances; Kotlin `Int` surfaces as `Int32` — bridge there, not at call sites.
 - Trainer: single `:kern` module, `Long` cardinals everywhere (Kotlin `Int` is 32-bit on
-  all platforms — v1's arm64_32 fix generalizes). Trainer registry: de/en/es/sw/uk
+  all platforms). Trainer registry: de/en/es/sw/uk
   authored; a language outside it has no drills (the hub's handling of that is an app rule).
   `Catalog.phraseTemplates(source, target)` is the frames' half of the card join:
   one `PhraseTemplate` per frame realized in BOTH languages, directional like a `Card`,
