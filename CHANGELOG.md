@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.7.0 — 2026-08-03
+
 - **Words you pack on a finished day arrive in the round you open.** Packing an area once the
   day was already done conjured a stunted round behind the "done" screen: a handful of first
   sights, no practice mixed through, over before it began. A finished day now stays finished,
