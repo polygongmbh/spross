@@ -29,12 +29,12 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.intl.LocaleList
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import net.spross.app.AnswerTone
 import net.spross.app.CardDisplay
 import net.spross.app.Chrome
 import net.spross.kern.model.Language
 import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
+import net.spross.kern.session.AnswerTone
 
 /** Answer-colored progress bar: one segment per answer, grey track for the rest. */
 @Composable
@@ -132,20 +132,27 @@ fun localizedTarget(text: String, lang: Language): AnnotatedString =
  * article. Genderless targets render exactly the text and nothing else.
  */
 fun articleColoredText(realization: Realization): AnnotatedString {
-    val article = CardDisplay.gender(realization) ?: return AnnotatedString(realization.text)
+    val article = CardDisplay.article(realization) ?: return AnnotatedString(realization.text)
     return buildAnnotatedString {
         withStyle(SpanStyle(color = articleTint(article) ?: Color.Unspecified)) { append(article) }
         append(" ${realization.text}")
     }
 }
 
-/** Target-side reveal: colored text, plural line, synonym family, note. */
+/**
+ * Target-side reveal: colored text, plural line, synonym family, note.
+ *
+ * [alsoShown] names forms of this word standing ELSEWHERE on the screen — a rotated
+ * recognition prompt, say. The citation form is always one of them, since this very
+ * composable draws it.
+ */
 @Composable
 fun TargetReveal(
     target: Realization,
     chrome: Chrome,
     modifier: Modifier = Modifier,
     pronounce: (() -> Unit)? = null,
+    alsoShown: List<String> = emptyList(),
 ) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Text(
@@ -157,7 +164,7 @@ fun TargetReveal(
             Text(it, style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
-        CardDisplay.alsoLine(target, chrome)?.let {
+        CardDisplay.alsoLine(target, chrome, alsoShown + target.text)?.let {
             Text(it, style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant)
         }

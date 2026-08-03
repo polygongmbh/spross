@@ -25,7 +25,6 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.Rating
-import net.spross.kern.model.SessionPlan
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.PronunciationCue
 import net.spross.kern.model.emojiCue
@@ -35,10 +34,16 @@ import net.spross.kern.model.producePrompt
 import net.spross.kern.model.pronunciationCue
 import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.AnswerTone
 import net.spross.kern.session.CatalogAnswerGrader
-import net.spross.kern.session.SessionComposer
+import net.spross.kern.session.SessionEffect
+import net.spross.kern.session.SessionIntent
+import net.spross.kern.session.SessionOffers
+import net.spross.kern.session.SessionRun
+import net.spross.kern.session.SessionRunState
 import net.spross.kern.store.StoreCodec
 import net.spross.kern.store.StoreFormatException
+import net.spross.kern.store.withProductCalibration
 
 sealed interface Screen {
     data object Loading : Screen
@@ -64,10 +69,12 @@ data class SessionUi(
     val promptPronunciation: Pronunciation?,
     val segments: List<AnswerTone>,
     val remaining: Int,
-    val progress: Float,
+    /** Summary tallies, in the order the chrome line formats them ([SessionRunState]'s buckets). */
     val introduced: Int,
     val strengthened: Int,
     val reviewed: Int,
+    /** Whether an endless refill would yield anything — what "Weiter üben" turns on. */
+    val canPracticeMore: Boolean,
 )
 
 class AppModel(app: Application) : AndroidViewModel(app) {
@@ -75,7 +82,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     private val boxFiles = BoxFiles(File(app.filesDir, "box"))
     private val prefs = app.getSharedPreferences("spross", Context.MODE_PRIVATE)
     private val profile = ProfileStore(prefs)
-    private var flow: SessionFlow? = null
+
+    /** The run kern steps; null between sessions. The screen reads [sessionUi] instead. */
+    private var sessionRun: SessionRunState? = null
 
     /** The one door to a spoken target word — review cards now, the drills later. */
     val pronouncer = Pronouncer(app, prefs)
@@ -89,6 +98,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     var stats by mutableStateOf<BoxStatistics?>(null)
         private set
     var sessionAvailable by mutableStateOf(false)
+        private set
+
+    /** Whether the done card's extra round would come back with anything. */
+    var canPracticeExtra by mutableStateOf(false)
         private set
     var sessionUi by mutableStateOf<SessionUi?>(null)
         private set
@@ -129,14 +142,12 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
-    /** Device language when it can teach something from the catalog, else en. */
-    fun defaultSource(cat: Catalog): String {
-        val device = Locale.getDefault().language
-        return if (cat.availableTargets(device).isNotEmpty()) device else "en"
-    }
-
-    fun coveredSources(cat: Catalog): List<String> =
-        cat.languages.keys.filter { cat.availableTargets(it).isNotEmpty() }.sorted()
+    /**
+     * The source a fresh install opens with. Kern's rule, over the device's report:
+     * asking [Catalog.availableTargets] about an undeclared locale THROWS, so a French
+     * or Italian phone used to crash on launch here.
+     */
+    fun defaultSource(cat: Catalog): String = cat.defaultSource(Locale.getDefault().language)
 
     fun completeOnboarding(source: String, target: String) {
         profile.set(source, target)
@@ -179,13 +190,15 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         val restored = withContext(Dispatchers.IO) {
             boxFiles.read(target)?.let { json ->
                 try {
-                    StoreCodec.decode(json).join(cards, stamp)
+                    // why: calibration belongs to the BUILD — a box written months ago would
+                    // otherwise keep pacing itself by the numbers that shipped with it.
+                    StoreCodec.decode(json).join(cards, stamp).withProductCalibration()
                 } catch (_: StoreFormatException) {
                     null // unreadable document: start fresh rather than crash (pre-production)
                 }
             }
         }
-        val state = restored ?: BoxEngine.bootstrap(cards, BoxConfig(), stamp)
+        val state = restored ?: BoxEngine.bootstrap(cards, BoxConfig.product(), stamp)
         box = state
         normalizer = AnswerNormalizer(cat.languages.getValue(target))
         persist(state)
@@ -193,52 +206,77 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Heute
     }
 
-    fun startSession() {
-        val state = box ?: return
-        begin(SessionComposer.composeSession(state, now(), tz()))
-    }
+    fun startSession() = begin(SessionIntent.Start)
 
-    fun startExtraSession() {
-        val state = box ?: return
-        // begin() no-ops on an empty plan — the tap only does nothing when
-        // BOTH compositions are empty (box without active cards).
-        begin(extraSessionPlan(state, now()))
-    }
+    /**
+     * The done card's extra round: kern composes the mixing round itself — everything due,
+     * packed vocab within the budget, then pull-aheads — and no-ops when that is empty.
+     */
+    fun startExtraSession() = begin(SessionIntent.StartExtra)
 
-    private fun begin(plan: SessionPlan) {
-        val state = box ?: return
-        if (plan.isEmpty) return
-        flow = SessionFlow(state, plan)
-        refreshSessionUi()
+    private fun begin(intent: SessionIntent) {
+        val started = dispatch(intent) ?: return
+        // A round that came back empty never took the learner anywhere, and leaves no run
+        // behind for the next tap to inherit.
+        if (started.currentCardId == null) {
+            sessionRun = null
+            sessionUi = null
+            return
+        }
         screen = Screen.Session
     }
 
     fun answerCurrent(rating: Rating) {
-        val active = flow ?: return
+        sessionRun ?: return
         // why: the card is leaving — a word still sounding must not follow the learner
         // onto the next one, the same cut iOS makes in resetCardState().
         pronouncer.stop()
-        active.answer(rating, now(), tz())
-        box = active.box
-        persist(active.box)
-        refreshSessionUi()
+        dispatch(SessionIntent.Answer(rating))
     }
 
     fun continueEndless() {
-        flow?.continueEndless(now())
-        refreshSessionUi()
+        sessionRun ?: return
+        dispatch(SessionIntent.ContinueEndless)
+    }
+
+    /**
+     * Backgrounding mid-run (`SprossActivity.onStop`): the day's answers are booked here
+     * or lost with the process. Kern books the not-yet-folded delta only, so the finish
+     * that follows cannot count them twice.
+     */
+    fun foldPartialSession() {
+        sessionRun ?: return
+        dispatch(SessionIntent.FoldPartial)
     }
 
     fun finishSession() {
-        val active = flow ?: return
+        sessionRun ?: return
         pronouncer.stop() // the run is over: nothing keeps talking into Heute
-        val ended = active.finish(now(), tz())
-        flow = null
+        dispatch(SessionIntent.Close)
+        sessionRun = null
         sessionUi = null
-        box = ended
-        persist(ended)
-        refreshStats()
         screen = Screen.Heute
+    }
+
+    /**
+     * Step the run and honour what it asks for. The whole session machine is kern's;
+     * this is the platform half — the clock, the disk, and the observable state.
+     */
+    private fun dispatch(intent: SessionIntent): SessionRunState? {
+        val state = box ?: return null
+        // The box may have moved outside the run (a fresh load, settings) — carry it in.
+        val current = sessionRun?.let { SessionRun.withBox(it, state) } ?: SessionRun.idle(state)
+        val reduction = SessionRun.reduce(current, intent, now(), tz())
+        sessionRun = reduction.state
+        box = reduction.state.box
+        for (effect in reduction.effects) {
+            when (effect) {
+                is SessionEffect.Persist -> persist(reduction.state.box, effect.immediate)
+                SessionEffect.DayBooked -> refreshStats()
+            }
+        }
+        refreshSessionUi()
+        return reduction.state
     }
 
     private fun isConsolidated(cardId: String): Boolean =
@@ -258,18 +296,20 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     private fun refreshSessionUi() {
-        val active = flow ?: run { sessionUi = null; return }
-        val card = active.currentCard()
+        val active = sessionRun ?: run { sessionUi = null; return }
+        val state = active.box
+        val card = active.currentCardId?.let { state.cards[it] }
         val ui = if (card == null) {
             SessionUi(
                 card = null, role = null, promptForm = null,
                 emojiCue = null, promptPronunciation = null,
-                segments = active.segments.toList(), remaining = 0, progress = 1f,
-                introduced = active.introduced, strengthened = active.strengthened,
-                reviewed = active.answered,
+                segments = active.segments, remaining = 0,
+                introduced = active.newCards, strengthened = active.graduated,
+                reviewed = active.reviews,
+                canPracticeMore = SessionOffers.canPracticeMore(state, now()),
             )
         } else {
-            val count = active.reviewCount(card.id)
+            val count = state.scheduling[card.id]?.reviewCount ?: 0
             val role = presentationRole(card.id, count)
             val promptForm = recognitionPromptForm(card, count)
             val prompt = producePrompt(card.id, count, isConsolidated(card.id), audible(card))
@@ -279,7 +319,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 promptForm = promptForm,
                 producePrompt = prompt,
                 emojiCue = card.emoji?.let {
-                    emojiCue(role, active.isSettled(card.id), count)
+                    emojiCue(role, BoxEngine.isSettled(state, card.id), count)
                 },
                 // why: the KERN cue, never `role == Recognize` — one rule, consumed by
                 // both apps. The PROMPTED form, so a rotated synonym is heard as itself.
@@ -291,12 +331,12 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                         card.target.lang,
                         if (prompt == ProducePrompt.Sound) card.target.text else promptForm,
                     ),
-                segments = active.segments.toList(),
+                segments = active.segments,
                 remaining = active.remaining,
-                progress = active.progress(),
-                introduced = active.introduced,
-                strengthened = active.strengthened,
-                reviewed = active.answered,
+                introduced = active.newCards,
+                strengthened = active.graduated,
+                reviewed = active.reviews,
+                canPracticeMore = SessionOffers.canPracticeMore(state, now()),
             )
         }
         sessionUi = ui
@@ -305,7 +345,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     private fun refreshStats() {
         val state = box ?: return
         stats = BoxEngine.statistics(state, now(), tz())
-        sessionAvailable = !SessionComposer.composeSession(state, now(), tz()).isEmpty
+        sessionAvailable = SessionOffers.sessionAvailable(state, now(), tz())
+        canPracticeExtra = SessionOffers.canPracticeExtra(state, now())
     }
 
     override fun onCleared() {
@@ -315,11 +356,21 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         pronouncer.release()
     }
 
-    // why: every answer persists (small doc, IO thread) — process death mid-session
-    // then costs at most the in-flight card, matching iOS's debounced-save guarantee.
-    private fun persist(state: BoxState) {
+    /**
+     * Every answer persists (small doc, IO thread) — process death mid-session then costs
+     * at most the in-flight card, matching iOS's debounced-save guarantee.
+     *
+     * [immediate] is the day's fold asking to be on disk BEFORE the caller returns: it is
+     * dispatched from `onStop`, where the process may not live long enough for a queued
+     * write, and a fold that never reaches disk is no fold.
+     */
+    private fun persist(state: BoxState, immediate: Boolean = false) {
         val json = StoreCodec.encode(state)
         val target = state.joinStamp.target
+        if (immediate) {
+            boxFiles.write(target, json)
+            return
+        }
         // why: NonCancellable — a write racing activity teardown must still land.
         viewModelScope.launch(Dispatchers.IO + NonCancellable) { boxFiles.write(target, json) }
     }

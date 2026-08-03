@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -72,8 +73,13 @@ fun OnboardingScreen(model: AppModel) {
         Text(chrome.chooseTitle, style = MaterialTheme.typography.headlineMedium)
 
         Text(chrome.iSpeak, style = MaterialTheme.typography.titleMedium)
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            model.coveredSources(catalog).forEach { code ->
+        // why: scrollable — a row names its language in its own words too, which is
+        // what makes it findable and what makes the strip wider than the screen.
+        Row(
+            modifier = Modifier.horizontalScroll(rememberScrollState()),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            catalog.coveredSources().forEach { code ->
                 if (code == source) {
                     Button(onClick = {}, contentPadding = ButtonDefaults.TextButtonContentPadding) {
                         Text(label(code), maxLines = 1)

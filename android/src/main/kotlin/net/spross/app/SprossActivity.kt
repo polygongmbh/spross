@@ -3,6 +3,7 @@ package net.spross.app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawingPadding
@@ -21,6 +22,11 @@ import net.spross.app.ui.SessionScreen
 import net.spross.app.ui.SprossTheme
 
 class SprossActivity : ComponentActivity() {
+
+    // The very model the composition below resolves: `viewModel()` reads this activity's
+    // store, so the lifecycle and the screen step the same run.
+    private val model: AppModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -29,10 +35,21 @@ class SprossActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    Box(Modifier.safeDrawingPadding()) { Root() }
+                    Box(Modifier.safeDrawingPadding()) { Root(model) }
                 }
             }
         }
+    }
+
+    /**
+     * why: onStop is the last callback an evicted app is promised — a session left mid-run
+     * books what has been answered here, or the day's streak-bearing reviews die with the
+     * process. onPause would fire for a dialog on top too, folding while the learner is
+     * still sitting there.
+     */
+    override fun onStop() {
+        super.onStop()
+        model.foldPartialSession()
     }
 }
 

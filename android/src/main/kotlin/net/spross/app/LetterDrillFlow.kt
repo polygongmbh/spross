@@ -31,7 +31,7 @@ data class LetterCorrection(val kind: Kind, val form: String) {
 
 /**
  * A letter-drill run: the state one screen shows and the rules it books answers by,
- * kept out of the composition the way [SessionFlow] keeps the review loop out of it.
+ * kept out of the composition the way kern's `SessionRun` keeps the review loop out of it.
  *
  * Everything decidable lives in kern — the ladder, the draw, the ramp step, typed
  * grading. What is left here is the run itself: which question stands, what the last

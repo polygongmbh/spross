@@ -137,7 +137,7 @@ private fun RecognizeCard(model: AppModel, ui: SessionUi) {
                             color = MaterialTheme.colorScheme.secondary)
                     }
                 }
-                CardDisplay.alsoLine(card.source, chrome)?.let {
+                CardDisplay.alsoLine(card.source, chrome, card.source.text)?.let {
                     Text(it, style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
@@ -145,6 +145,9 @@ private fun RecognizeCard(model: AppModel, ui: SessionUi) {
             TargetReveal(
                 card.target, chrome,
                 pronounce = model.pronounceAction(card.target.text),
+                // The prompt is still standing above the reveal — whatever form it
+                // rotated in is on screen and is no longer an alternative.
+                alsoShown = listOf(promptForm),
             )
             Spacer(Modifier.weight(1f))
             RatingButtons(chrome, onRate = { model.answerCurrent(it) })
@@ -171,10 +174,14 @@ private fun Summary(model: AppModel, ui: SessionUi) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Spacer(Modifier.height(32.dp))
-        OutlinedButton(onClick = { model.continueEndless() }, modifier = Modifier.fillMaxWidth()) {
-            Text(chrome.keepPracticing)
+        // The offer stands only while there is something behind it: a refill that would
+        // come back dry leaves the button doing nothing when tapped.
+        if (ui.canPracticeMore) {
+            OutlinedButton(onClick = { model.continueEndless() }, modifier = Modifier.fillMaxWidth()) {
+                Text(chrome.keepPracticing)
+            }
+            Spacer(Modifier.height(8.dp))
         }
-        Spacer(Modifier.height(8.dp))
         Button(onClick = { model.finishSession() }, modifier = Modifier.fillMaxWidth()) {
             Text(chrome.finish)
         }

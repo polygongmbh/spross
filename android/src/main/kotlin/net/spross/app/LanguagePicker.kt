@@ -5,8 +5,11 @@ import net.spross.kern.model.LanguageInfo
 
 /**
  * Pure onboarding picker logic (iOS OnboardingView parity):
- * rows render "🇩🇪 German" — flag + English exonym, chrome-locale-independent —
- * and neither side hides the other's pick: choosing it swaps the selections.
+ * rows name a language in its own words and in English, and neither side hides the
+ * other's pick — choosing it swaps the selections.
+ *
+ * The label form is `LanguageNames.pickerRow` in Swift; it is on kern's list to own
+ * (docs/portability.md, `catalog`).
  */
 object LanguagePicker {
 
@@ -14,9 +17,17 @@ object LanguagePicker {
 
     data class TargetChoice(val code: String, val conceptCount: Int)
 
-    /** Picker row label: flag + English exonym from languages.json. */
-    fun rowLabel(code: String, info: LanguageInfo?): String =
-        info?.let { "${it.flag} ${it.englishName}" } ?: code.uppercase()
+    /**
+     * A picker ROW: "🇺🇦 Українська · Ukrainian" — flag, the language's own name, and the
+     * English exonym. Both, because a flag beside a script you cannot read is easy to
+     * mistake for a neighbouring language, while the endonym is how a speaker of it finds
+     * their own row. Collapsed where the two names are the same ("🇬🇧 English").
+     */
+    fun rowLabel(code: String, info: LanguageInfo?): String {
+        val language = info ?: return code.uppercase()
+        if (language.name == language.englishName) return "${language.flag} ${language.name}"
+        return "${language.flag} ${language.name} · ${language.englishName}"
+    }
 
     /**
      * Learnable targets PLUS the current source — picking it swaps the pair

@@ -46,26 +46,49 @@ class CardDisplayTest {
         )
     }
 
+    /** An authored-but-empty plural is not a form — it used to render a bare "Pl. ". */
     @Test
-    fun missingPluralAndSynonymsGiveNull() {
-        assertNull(CardDisplay.pluralLine(realization("nyumba"), chrome))
-        assertNull(CardDisplay.alsoLine(realization("nyumba"), chrome))
+    fun anEmptyPluralIsNoPluralAtAll() {
+        assertNull(CardDisplay.pluralLine(realization("nyumba", plural = ""), chrome))
     }
 
     @Test
-    fun alsoLineJoinsSynonymFamily() {
-        assertEquals(
-            "auch: das Amt / die Behörde",
+    fun missingPluralAndSynonymsGiveNull() {
+        assertNull(CardDisplay.pluralLine(realization("nyumba"), chrome))
+        assertNull(CardDisplay.alsoLine(realization("nyumba"), chrome, "nyumba"))
+    }
+
+    @Test
+    fun alsoLineJoinsTheFamilyBeyondTheFormOnScreen() {
+        val word = realization("die Verwaltung", synonyms = listOf("das Amt", "die Behörde"))
+        assertEquals("auch: das Amt / die Behörde", CardDisplay.alsoLine(word, chrome, "die Verwaltung"))
+    }
+
+    /**
+     * The regression: a rotated recognition prompt puts a SYNONYM on screen, and the line
+     * used to offer it back as though it were another word — while dropping the citation
+     * form the learner had not seen.
+     */
+    @Test
+    fun theFormOnScreenNeverAppearsAmongItsOwnAlternatives() {
+        val word = realization("die Verwaltung", synonyms = listOf("das Amt", "die Behörde"))
+        assertEquals("auch: die Verwaltung / die Behörde", CardDisplay.alsoLine(word, chrome, "das Amt"))
+    }
+
+    @Test
+    fun aWordWithNothingLeftToOfferHasNoLine() {
+        assertNull(
             CardDisplay.alsoLine(
-                realization("die Verwaltung", synonyms = listOf("das Amt", "die Behörde")),
+                realization("das Amt", synonyms = listOf("die Behörde")),
                 chrome,
+                listOf("das Amt", "die Behörde"),
             ),
         )
     }
 
     @Test
-    fun genderPassesThrough() {
-        assertEquals("die", CardDisplay.gender(realization("die Küche", gender = "die")))
-        assertNull(CardDisplay.gender(realization("nyumba")))
+    fun theArticleComesOffTheGrammar() {
+        assertEquals("die", CardDisplay.article(realization("die Küche", gender = "die")))
+        assertNull(CardDisplay.article(realization("nyumba")))
     }
 }

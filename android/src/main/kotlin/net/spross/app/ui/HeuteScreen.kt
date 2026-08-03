@@ -59,7 +59,7 @@ fun HeuteScreen(model: AppModel) {
                 ) {
                     Stat("${stats.dueCount}", chrome.dueLabel)
                     Stat("${stats.consolidatedCount}", chrome.consolidatedLabel)
-                    Stat("${stats.activeCount - stats.consolidatedCount}", chrome.freshLabel)
+                    Stat("${stats.learningCount}", chrome.freshLabel)
                     Stat("🔥 ${stats.streak}", "Streak")
                 }
             }
@@ -94,7 +94,9 @@ fun HeuteScreen(model: AppModel) {
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.fillMaxWidth(),
             )
-            if ((stats?.activeCount ?: 0) > 0) {
+            // The round has to come back with something; active cards alone did not
+            // promise that.
+            if (model.canPracticeExtra) {
                 OutlinedButton(
                     onClick = { model.startExtraSession() },
                     modifier = Modifier.fillMaxWidth(),

@@ -25,10 +25,17 @@ class LanguagePickerTest {
 
     private fun targetsOf(code: String) = coverage[code].orEmpty()
 
+    /** A row names the language in its own words first — a flag alone is not identifiable. */
     @Test
-    fun rowLabelIsFlagPlusEnglishName() {
-        val de = LanguageInfo(code = "de", name = "Deutsch", englishName = "German", flag = "🇩🇪")
-        assertEquals("🇩🇪 German", LanguagePicker.rowLabel("de", de))
+    fun rowLabelCarriesTheEndonymAndTheExonym() {
+        val uk = LanguageInfo(code = "uk", name = "Українська", englishName = "Ukrainian", flag = "🇺🇦")
+        assertEquals("🇺🇦 Українська · Ukrainian", LanguagePicker.rowLabel("uk", uk))
+    }
+
+    @Test
+    fun oneNameIsEnoughWhereBothAgree() {
+        val en = LanguageInfo(code = "en", name = "English", englishName = "English", flag = "🇬🇧")
+        assertEquals("🇬🇧 English", LanguagePicker.rowLabel("en", en))
     }
 
     @Test

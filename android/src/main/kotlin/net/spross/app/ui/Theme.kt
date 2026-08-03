@@ -4,6 +4,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import net.spross.kern.model.Gender
+import net.spross.kern.model.articleGender
 
 // Poster-derived warm palette (design.md: warm, card-centric).
 val ToneRight = Color(0xFF4C9A57)
@@ -12,17 +14,17 @@ val ToneWrong = Color(0xFFB3432E)
 val TrackGrey = Color(0xFFE8E0D2)
 
 /**
- * Article color coding der=blue / die=pink-red / das=green; neutral otherwise.
- * A two-gender language folds onto the same two hues rather than minting its own —
- * masculine blue, feminine pink-red, the plural and indefinite articles taking the
- * color of the gender they inflect — so green stays German's neuter alone.
- * `App/Sources/Design/Theme.swift` holds the canonical article list.
+ * The hue an ARTICLE wears: masculine blue, feminine pink-red, German's neuter green,
+ * and nothing where the box cannot name a gender.
+ *
+ * Which article marks which gender is content, so [articleGender] answers it once for
+ * every surface; only the three colors are this platform's, and they stay here.
  */
-fun articleTint(gender: String?): Color? = when (gender?.lowercase()) {
-    "der", "el", "los", "un" -> Color(0xFF3B6FCB)
-    "die", "la", "las", "una" -> Color(0xFFC9506E)
-    "das" -> Color(0xFF3F9B57)
-    else -> null
+fun articleTint(article: String?): Color? = when (articleGender(article)) {
+    Gender.Masculine -> Color(0xFF3B6FCB)
+    Gender.Feminine -> Color(0xFFC9506E)
+    Gender.Neuter -> Color(0xFF3F9B57)
+    null -> null
 }
 
 private val SprossLight = lightColorScheme(
