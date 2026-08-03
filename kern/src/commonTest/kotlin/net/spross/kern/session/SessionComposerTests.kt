@@ -206,10 +206,13 @@ class SessionComposerTests {
      * A day the learner has not really worked is never closed: nothing due plus nothing
      * done means a round, not a finish line. A round's worth of answers is the bar —
      * one tap used to be enough, which closed a day nobody had worked.
+     *
+     * Nothing comes back for days in this box, so a worked day genuinely has nothing left;
+     * a word returning within hours is the other half of the rule ([aWordComingBackKeepsTheDayOpen]).
      */
     @Test
     fun aDayIsOnlyDoneOnceARoundsWorthIsDone() {
-        val state = quietBox(soon = 3, later = 0)
+        val state = quietBox(soon = 0, later = 5)
         val floor = SessionComposer.SESSION_FLOOR_CARDS
 
         val barelyStarted = BoxEngine.endSession(state, reviewsDone = floor - 1, nowEpochMillis = now, tzId = Box.TZ)
@@ -222,10 +225,51 @@ class SessionComposerTests {
         assertTrue(SessionComposer.composeSession(worked, tomorrow, Box.TZ).cardCount > 0)
     }
 
+    /**
+     * A word missed minutes ago sits on a learning step and comes back in minutes — the
+     * day's own unfinished business. Calling that day finished is a claim the scheduler
+     * overturns by itself a moment later, so the round is composed rather than withheld.
+     *
+     * And it is an ORDINARY round: the returning words lead, the floor tops it up with
+     * pull-aheads as on any short day, and growth resumes with it. Nothing here is a
+     * special case except the question of whether the day is over.
+     */
+    @Test
+    fun aWordComingBackKeepsTheDayOpen() {
+        val worked = BoxEngine.endSession(
+            quietBox(soon = 3, later = 0),
+            reviewsDone = SessionComposer.SESSION_FLOOR_CARDS,
+            nowEpochMillis = now,
+            tzId = Box.TZ,
+        )
+        val plan = SessionComposer.composeSession(worked, now, Box.TZ)
+        assertEquals(listOf("w01", "w02", "w03"), plan.ahead)
+        assertEquals(4, plan.freshCount)
+        assertEquals(SessionComposer.SESSION_FLOOR_CARDS, plan.cardCount)
+    }
+
+    @Test
+    fun aCardADayOutLeavesAWorkedDayClosed() {
+        // The span is what makes a card today's, not the calendar: twenty hours out is
+        // past any sitting the learner is still in, however the date happens to fall.
+        var state = Box.state((1..30).map { Box.word(it) })
+        state = Box.inject(
+            state,
+            Box.sched("w01", dueMillis = Box.plusSeconds(now, 20 * 3_600L), lastReviewMillis = now),
+        )
+        val worked = BoxEngine.endSession(
+            state,
+            reviewsDone = SessionComposer.SESSION_FLOOR_CARDS,
+            nowEpochMillis = now,
+            tzId = Box.TZ,
+        )
+        assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
+    }
+
     @Test
     fun cardsThePlayerPackedThemselvesStillEnterOnAFinishedDay() {
         // Automatic growth rests once the day is done; an explicit "pack in die Box" does not.
-        val state = BoxEngine.enqueue(quietBox(soon = 3, later = 0), listOf("w20"))
+        val state = BoxEngine.enqueue(quietBox(soon = 0, later = 5), listOf("w20"))
         val worked = BoxEngine.endSession(
             state,
             reviewsDone = SessionComposer.SESSION_FLOOR_CARDS,
