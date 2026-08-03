@@ -24,10 +24,64 @@ object BoxEngine {
     /**
      * Swap the join (source switch or catalog update) keeping every schedule, queue
      * entry, and stat: entries whose card no longer joins turn inert and revive here
-     * on switch-back.
+     * on switch-back. The learner's own words re-join under the new pair by the same
+     * coverage rule the catalog uses.
      */
     fun rejoin(state: BoxState, cards: List<Card>, joinStamp: JoinStamp): BoxState =
-        state.copy(cards = cards.associateBy { it.id }, joinStamp = joinStamp)
+        state.copy(
+            cards = (cards + OwnWords.cards(state.ownWords, joinStamp.source, joinStamp.target))
+                .associateBy { it.id },
+            joinStamp = joinStamp,
+        )
+
+    /**
+     * Destructive fresh start: every schedule, queue entry and tally goes; the join,
+     * the configuration and the learner's own words stay. Their words are content
+     * they authored, not progress — clearing what the box KNOWS must never delete
+     * what it HOLDS.
+     */
+    fun reset(state: BoxState): BoxState = BoxState(
+        config = state.config,
+        cards = state.cards,
+        joinStamp = state.joinStamp,
+        ownWords = state.ownWords,
+    )
+
+    /**
+     * Take in a word the learner wrote and pack it. Packing is not a separate step:
+     * they named this word themselves, so waiting for growth to walk to it would be
+     * absurd. A word already known by id, or one the current profile cannot join
+     * (written in only one of its two languages), leaves the state untouched.
+     */
+    fun addOwnWord(state: BoxState, word: OwnWord): BoxState {
+        require(OwnWords.owns(word.id)) { "own word id must start with \"${OwnWords.ID_PREFIX}\"" }
+        if (state.ownWords.any { it.id == word.id }) return state
+        val words = state.ownWords + word
+        val next = state.copy(ownWords = words, cards = rebuilt(state, words))
+        return if (next.cards[word.id] == null) next else enqueue(next, listOf(word.id))
+    }
+
+    /**
+     * Take a word the learner wrote back out, with its schedule and its place in the
+     * queue. Catalog words are never removable this way — a word the box did not get
+     * from the learner is not theirs to delete, only to suspend ([setSuspended]).
+     */
+    fun removeOwnWord(state: BoxState, wordId: String): BoxState {
+        if (state.ownWords.none { it.id == wordId }) return state
+        val words = state.ownWords.filterNot { it.id == wordId }
+        return state.copy(
+            ownWords = words,
+            cards = rebuilt(state, words),
+            scheduling = state.scheduling - wordId,
+            enqueued = state.enqueued.filterNot { it == wordId },
+        )
+    }
+
+    /** The card map with every own-word card re-derived; the catalog half is untouched. */
+    private fun rebuilt(state: BoxState, words: List<OwnWord>): Map<String, Card> =
+        state.cards.filterKeys { !OwnWords.owns(it) } +
+            OwnWords.cards(words, state.joinStamp.source, state.joinStamp.target)
+                .associateBy { it.id }
 
     /**
      * Append card ids to the user priority queue. Enqueuing a phrase auto-prepends

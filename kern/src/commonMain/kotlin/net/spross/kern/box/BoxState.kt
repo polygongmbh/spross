@@ -14,7 +14,10 @@ import net.spross.kern.model.JoinStamp
  */
 data class BoxState(
     val config: BoxConfig,
-    /** Joined cards by id — the join filter for every inventory read. */
+    /**
+     * Joined cards by id — the join filter for every inventory read. The catalog join
+     * plus whatever [ownWords] contributes to it; nothing else may put a card here.
+     */
     val cards: Map<String, Card>,
     /** Identifies the join this state was built against; plans carry it for staleness. */
     val joinStamp: JoinStamp,
@@ -28,6 +31,12 @@ data class BoxState(
     val consolidatedCrossed: Map<String, Int> = emptyMap(),
     /** dayKey → aggregates; never pruned. */
     val dailyStats: Map<String, DayStats> = emptyMap(),
+    /**
+     * Words the learner wrote themselves, in the order they wrote them. Unlike
+     * [cards] these ARE persisted — they are content nothing else holds, so losing
+     * them would lose the word, not merely a derivation of it.
+     */
+    val ownWords: List<OwnWord> = emptyList(),
 )
 
 enum class AnswerStatus {

@@ -208,13 +208,12 @@ extension AppModel {
         mutate { $0 = BoxEngine.shared.setSuspended(state: $0, cardId: cardID, suspended: suspended) }
     }
 
-    /// Destructive fresh start: re-bootstrap this target's box from the
-    /// current catalog join, keeping the user's config (budget).
+    /// Destructive fresh start: every schedule and tally goes, the join, the
+    /// user's config (budget) and their own words stay — which of those a reset
+    /// keeps is the engine's ruling, not this layer's (kern §6).
     func resetBox() async {
         guard let old = box else { return }
-        let fresh = BoxEngine.shared.bootstrap(cards: Array(old.cards.values),
-                                               config: old.config,
-                                               joinStamp: old.joinStamp)
+        let fresh = BoxEngine.shared.reset(state: old)
         box = fresh
         do {
             try await store.saveNow(json: StoreCodec.shared.encode(state: fresh),

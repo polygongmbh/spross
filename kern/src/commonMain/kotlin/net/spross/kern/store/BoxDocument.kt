@@ -3,7 +3,10 @@ package net.spross.kern.store
 import kotlin.time.Instant
 import kotlinx.serialization.Serializable
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.OwnWord
+import net.spross.kern.box.OwnWords
 import net.spross.kern.model.BoxConfig
+import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.DayStats
@@ -31,6 +34,23 @@ internal data class BoxDocument(
     // absent day simply has no crossings recorded.
     val consolidatedCrossed: Map<String, Int> = emptyMap(),
     val dailyStats: Map<String, DayStatsDto>,
+    // why: defaulted like the counters above — a document written before the learner
+    // could author words at all decodes as one who has authored none.
+    val ownWords: List<OwnWordDto> = emptyList(),
+)
+
+/**
+ * A word the learner wrote. The ONE piece of content the box document owns: every
+ * other card in it is a derivation of the catalog and is re-derived on load, so this
+ * is the only entry whose loss would lose a word rather than a computation.
+ */
+@Serializable
+internal data class OwnWordDto(
+    val id: String,
+    val kind: String,
+    val emoji: String? = null,
+    /** language → the word in it, exactly as the catalog keys a concept's realizations. */
+    val texts: Map<String, String>,
 )
 
 @Serializable
@@ -92,6 +112,14 @@ internal fun boxDocument(state: BoxState): BoxDocument = BoxDocument(
     newIntroduced = state.newIntroduced,
     consolidatedCrossed = state.consolidatedCrossed,
     dailyStats = state.dailyStats.mapValues { dayStatsDto(it.value) },
+    ownWords = state.ownWords.map(::ownWordDto),
+)
+
+private fun ownWordDto(word: OwnWord): OwnWordDto = OwnWordDto(
+    id = word.id,
+    kind = kindName(word.kind),
+    emoji = word.emoji,
+    texts = word.texts,
 )
 
 private fun configDto(config: BoxConfig): ConfigDto = ConfigDto(
@@ -131,6 +159,13 @@ private fun phaseName(phase: CardPhase): String = when (phase) {
     CardPhase.Relearning -> "relearning"
 }
 
+private fun kindName(kind: CardKind): String = when (kind) {
+    CardKind.Noun -> "noun"
+    CardKind.Verb -> "verb"
+    CardKind.Adjective -> "adjective"
+    CardKind.Phrase -> "phrase"
+}
+
 // Decoding (document → validated aggregate)
 
 private fun fail(message: String): Nothing = throw StoreFormatException(message)
@@ -151,7 +186,21 @@ internal fun BoxDocument.toDecoded(): DecodedBox {
         newIntroduced = newIntroduced,
         consolidatedCrossed = consolidatedCrossed,
         dailyStats = dailyStats.mapValues { it.value.toDomain() },
+        ownWords = ownWords.map { it.toDomain() },
     )
+}
+
+private fun OwnWordDto.toDomain(): OwnWord {
+    if (!OwnWords.owns(id)) fail("own word \"$id\" does not carry the ${OwnWords.ID_PREFIX} prefix")
+    if (texts.isEmpty()) fail("own word \"$id\" carries no text in any language")
+    val parsedKind = when (kind) {
+        "noun" -> CardKind.Noun
+        "verb" -> CardKind.Verb
+        "adjective" -> CardKind.Adjective
+        "phrase" -> CardKind.Phrase
+        else -> fail("own word \"$id\": unknown kind \"$kind\"")
+    }
+    return OwnWord(id = id, kind = parsedKind, emoji = emoji, texts = texts)
 }
 
 private fun ConfigDto.toDomain(): BoxConfig = BoxConfig(

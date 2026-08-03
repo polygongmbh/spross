@@ -60,6 +60,7 @@ data class Realization(
 ```
 
 - Cards derive at load from the catalog join; **never persisted**.
+  The learner's own words are the one other source of them (§6) and follow every rule here.
 - **Identity is the slug alone** — globally unique across areas, lint-enforced
   (`catalog/README.md`). `area` and `kind` are presentation metadata the content may
   restructure freely: moving or reclassifying a concept keeps its schedule, because the
@@ -422,12 +423,32 @@ day-key `yyyy-MM-dd`) with:
   Only the collision is catalog-wide — nothing else about "wrong" widens.
   `RealCatalogGradingTest` sweeps every near pair of every de→{en,sw,uk} join:
   no catalog word grades as a forgiven slip of another.
+- **Own words** (`OwnWord`, `OwnWords`, `BoxEngine.addOwnWord/removeOwnWord`) — what the
+  learner writes when the catalog has no word for what they need. They are the second and
+  last source of cards, and the only CONTENT the box document holds: every other card in it
+  is re-derived on load, so losing this entry would lose a word rather than a computation.
+  - `texts` is keyed by language exactly as a concept's realizations are, which buys the
+    catalog's coverage rule unchanged — a word joins the profiles that pair two languages
+    it is written in, goes inert in the others, and revives on the way back.
+  - Ids carry the `own:` prefix and areas are fixed to `own`, so a catalog that grows can
+    neither collide with the learner's words nor quietly reclaim them. `seedIndex` starts
+    at `OwnWords.SEED_BASE`, behind every catalog concept — automatic growth walks seed
+    order, and a word asked for by name is packed on the spot anyway (`addOwnWord`
+    enqueues, because waiting for growth to reach a word the learner just wrote is absurd).
+  - `removeOwnWord` takes the word, its schedule and its queue place out together. It is
+    the one deletion the engine offers, and it reaches own words only: a catalog word is
+    not the learner's to delete, only to suspend.
+  - `BoxEngine.reset(state)` is the destructive fresh start — schedules, queue and tallies
+    go; the join, the configuration and the own words stay. Clearing what the box KNOWS
+    must never delete what it HOLDS.
 
 ## 7. Store & snapshots
 
 - One document per TARGET: `box-<target>.json` in App Group `group.net.spross.app`.
   `BoxDocument { schemaVersion: 1, target, source, config, scheduling, enqueued,
-  newIntroduced, dailyStats }` — scheduling keys are card ids;
+  newIntroduced, dailyStats, ownWords }` — scheduling keys are card ids;
+  `ownWords` is the document's only content (§6), defaulted so a box written before the
+  learner could author any decodes as one who has authored none;
   kotlinx.serialization; dates as ISO-8601 UTC strings via explicit `kotlin.time.Instant`
   serializers; facade encodes with **sorted keys** (deterministic bytes).
   All `@Serializable` types are `internal`; the public surface is a narrow facade

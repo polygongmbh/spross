@@ -134,7 +134,7 @@ extension BoxState {
         doCopy(config: config, cards: cards, joinStamp: joinStamp,
                scheduling: scheduling, enqueued: enqueued,
                newIntroduced: newIntroduced, consolidatedCrossed: consolidatedCrossed,
-               dailyStats: dailyStats)
+               dailyStats: dailyStats, ownWords: ownWords)
     }
 
     /// Calibration belongs to the app build, not to the stored document: steps,

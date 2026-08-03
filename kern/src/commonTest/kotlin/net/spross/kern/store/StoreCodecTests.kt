@@ -5,6 +5,9 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import net.spross.kern.box.BoxEngine
+import net.spross.kern.box.OwnWord
+import net.spross.kern.box.OwnWords
 import net.spross.kern.model.CardPhase
 
 class StoreCodecTests {
@@ -64,11 +67,19 @@ class StoreCodecTests {
 
     // Decode validation (hand-built minimal documents)
 
-    private fun doc(scheduling: String = "", schemaVersion: Int = 1, source: String = "de"): String =
+    private fun doc(
+        scheduling: String = "",
+        schemaVersion: Int = 1,
+        source: String = "de",
+        /** null omits the key entirely — the shape a box written before own words has. */
+        ownWords: String? = null,
+    ): String =
         """{"config":{"desiredRetention":0.8,"learningStepsSeconds":[60,600],""" +
             """"maximumIntervalDays":365,""" +
             """"relearningStepsSeconds":[600],"sessionCap":30},"dailyStats":{},"enqueued":[],""" +
-            """"newIntroduced":{},"scheduling":{$scheduling},"schemaVersion":$schemaVersion,""" +
+            """"newIntroduced":{},""" +
+            (ownWords?.let { """"ownWords":[$it],""" } ?: "") +
+            """"scheduling":{$scheduling},"schemaVersion":$schemaVersion,""" +
             """"source":"$source","target":"uk"}"""
 
     private fun entry(
@@ -165,6 +176,59 @@ class StoreCodecTests {
     fun decodeRejectsInvalidInstant() {
         assertFailsWith<StoreFormatException> {
             StoreCodec.decode(doc(entry(due = ""","due":"yesterday"""")))
+        }
+    }
+
+    // Own words — the one thing in the document that is content, not a derivation
+
+    private val umbrella = OwnWord(
+        id = "own:regenschirm", kind = OwnWords.DEFAULT_KIND, emoji = "☂️",
+        texts = mapOf("de" to "Regenschirm", "uk" to "парасолька"),
+    )
+
+    @Test
+    fun ownWordsSurviveTheRoundTripAndRejoinAsCards() {
+        val authored = BoxEngine.addOwnWord(state, umbrella)
+        val rejoined = StoreCodec.decode(StoreCodec.encode(authored))
+            .join(StoreFixture.cards, StoreFixture.stamp)
+        assertEquals(authored, rejoined)
+        assertEquals("парасолька", rejoined.cards.getValue(umbrella.id).target.text)
+    }
+
+    @Test
+    fun aDocumentWrittenBeforeOwnWordsExistedDecodesAsNone() {
+        assertTrue(StoreCodec.decode(doc(entry())).ownWords.isEmpty())
+    }
+
+    @Test
+    fun decodeAcceptsAnOwnWordWithNoPicture() {
+        val word = """{"id":"own:regen","kind":"noun","texts":{"de":"Regen","uk":"дощ"}}"""
+        val decoded = StoreCodec.decode(doc(entry(), ownWords = word)).ownWords.single()
+        assertEquals(null, decoded.emoji)
+        assertEquals(mapOf("de" to "Regen", "uk" to "дощ"), decoded.texts)
+    }
+
+    @Test
+    fun decodeRejectsAnOwnWordIdThatCouldCollideWithTheCatalog() {
+        val word = """{"id":"regen","kind":"noun","texts":{"de":"Regen"}}"""
+        assertFailsWith<StoreFormatException> {
+            StoreCodec.decode(doc(entry(), ownWords = word))
+        }
+    }
+
+    @Test
+    fun decodeRejectsAnOwnWordWithNoTextAtAll() {
+        val word = """{"id":"own:regen","kind":"noun","texts":{}}"""
+        assertFailsWith<StoreFormatException> {
+            StoreCodec.decode(doc(entry(), ownWords = word))
+        }
+    }
+
+    @Test
+    fun decodeRejectsAnUnknownOwnWordKind() {
+        val word = """{"id":"own:regen","kind":"weather","texts":{"de":"Regen"}}"""
+        assertFailsWith<StoreFormatException> {
+            StoreCodec.decode(doc(entry(), ownWords = word))
         }
     }
 }

@@ -6,6 +6,8 @@ import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.OwnWord
+import net.spross.kern.box.OwnWords
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardScheduling
@@ -30,17 +32,25 @@ data class DecodedBox(
     val newIntroduced: Map<String, Int>,
     val consolidatedCrossed: Map<String, Int>,
     val dailyStats: Map<String, DayStats>,
+    val ownWords: List<OwnWord>,
 ) {
-    /** Re-join hook: attach a fresh catalog join to obtain a live [BoxState]. */
+    /**
+     * Re-join hook: attach a fresh catalog join to obtain a live [BoxState]. The
+     * learner's own words are joined in here rather than by the caller — they are
+     * the box's own content, and an app that had to remember to merge them would
+     * one day forget.
+     */
     fun join(cards: List<Card>, joinStamp: JoinStamp): BoxState = BoxState(
         config = config,
-        cards = cards.associateBy { it.id },
+        cards = (cards + OwnWords.cards(ownWords, joinStamp.source, joinStamp.target))
+            .associateBy { it.id },
         joinStamp = joinStamp,
         scheduling = scheduling,
         enqueued = enqueued,
         newIntroduced = newIntroduced,
         consolidatedCrossed = consolidatedCrossed,
         dailyStats = dailyStats,
+        ownWords = ownWords,
     )
 }
 
