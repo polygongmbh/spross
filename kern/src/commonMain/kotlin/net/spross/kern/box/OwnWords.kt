@@ -37,6 +37,13 @@ object OwnWords {
     const val ID_PREFIX: String = "own:"
 
     /**
+     * The area's icon. Language-neutral display metadata, owned here for the same
+     * reason a catalog area's emoji is owned by the catalog: two apps carrying their
+     * own map is how the icon ends up existing on one platform only.
+     */
+    const val EMOJI: String = "✍️"
+
+    /**
      * Own words sort behind every catalog concept: automatic growth walks seed
      * order, and a word the learner asked for by name is packed on the spot
      * anyway — it never needs growth to reach it.

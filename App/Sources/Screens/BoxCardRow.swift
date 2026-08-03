@@ -14,6 +14,21 @@ struct BoxCardRow: View {
     var pack: (() -> Void)?
 
     var body: some View {
+        // why: only a word the learner wrote is theirs to delete — a catalog word
+        // can be put to sleep, never removed, so it carries no menu at all.
+        if model.isOwnWord(card.id) {
+            row.contextMenu {
+                Button("box.ownWords.remove", systemImage: "trash", role: .destructive) {
+                    model.removeOwnWord(card.id)
+                }
+            }
+        } else {
+            row
+        }
+    }
+
+    @ViewBuilder
+    private var row: some View {
         let sched = model.scheduling(for: card.id)
         let pronounce = model.pronounceAction(for: card.target.text, lang: card.target.lang)
 

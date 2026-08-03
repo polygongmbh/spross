@@ -237,18 +237,26 @@ extension AppModel {
         #endif
         guard let catalog, let stats else { return [] }
         let present = Set(stats.areas.map(\.name))
-        return catalog.areaNames.filter(present.contains)
+        let fromCatalog = catalog.areaNames.filter(present.contains)
+        // why: the manifest cannot list an area the catalog does not own, so the
+        // learner's own words follow every catalog area — where their seed order
+        // puts them anyway.
+        guard present.contains(ownArea) else { return fromCatalog }
+        return fromCatalog + [ownArea]
     }
 
-    /// Area heading in the profile's source language, catalog-provided.
+    /// Area heading in the profile's source language, catalog-provided. The
+    /// learner's own area is chrome, so it reads from the string catalog instead.
     func areaTitle(_ area: String) -> String {
-        catalog?.areaTitle(area: area, lang: sourceLanguage) ?? area.capitalized
+        if area == ownArea { return DLChrome.string("box.ownWords", locale: knownLocale) }
+        return catalog?.areaTitle(area: area, lang: sourceLanguage) ?? area.capitalized
     }
 
-    /// Area icon, catalog-provided and language-neutral (`areas.json`).
-    /// Falls back to a neutral box for a key the catalog does not list.
+    /// Area icon, language-neutral: the catalog owns its own (`areas.json`), Kern
+    /// owns the one area the catalog cannot. A neutral box for anything else.
     func areaEmoji(_ area: String) -> String {
-        catalog?.areaEmoji(area: area) ?? "📦"
+        if area == ownArea { return OwnWords.shared.EMOJI }
+        return catalog?.areaEmoji(area: area) ?? "📦"
     }
 
     /// One Box browser section: an areas.json group with its present areas.

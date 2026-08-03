@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **The box can be searched, and answers with your own word when it has none.** Reaching a
+  word used to mean knowing which area it sat on and folding your way down to it. The
+  magnifier in the box's bar takes either language, or the name of an area: an area opens
+  itself up in the box, a word can be heard and packed on its own without the shelf around
+  it. And when nothing comes back, that is the moment you can write the word down yourself
+  — both languages, a picture if you like — and it is packed straight away. Your own words
+  stand in an area of their own, so a growing catalog never collides with them and
+  resetting the box never takes them; a long press on one deletes it.
+
 - **The day is no longer called finished while words are still coming back.** Missing a word
   puts it on a two-minute step, so the screen could congratulate you on the day and then hand
   the same words back a few minutes later — and the "tomorrow you can review N cards" line

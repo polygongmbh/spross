@@ -417,6 +417,118 @@
         }
       }
     },
+    "box.ownWords" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigene Wörter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your own words"
+          }
+        }
+      }
+    },
+    "box.ownWords.add" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anlegen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        }
+      }
+    },
+    "box.ownWords.explainer" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigene Wörter stehen in ihrem eigenen Bereich. Ein wachsender Katalog rührt sie nicht an."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your own words stand in an area of their own. A growing catalog never touches them."
+          }
+        }
+      }
+    },
+    "box.ownWords.inLanguage %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In %@"
+          }
+        }
+      }
+    },
+    "box.ownWords.picture" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bild (optional)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Picture (optional)"
+          }
+        }
+      }
+    },
+    "box.ownWords.remove" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wort löschen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete word"
+          }
+        }
+      }
+    },
+    "box.ownWords.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigenes Wort"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your own word"
+          }
+        }
+      }
+    },
     "box.packWord" : {
       "localizations" : {
         "de" : {
@@ -639,6 +751,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Words"
+          }
+        }
+      }
+    },
+    "box.search.writeOwn %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ selbst eintragen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write “%@” yourself"
           }
         }
       }

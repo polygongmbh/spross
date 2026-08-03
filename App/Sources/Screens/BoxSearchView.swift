@@ -17,6 +17,9 @@ struct BoxSearchView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var query = ""
     @State private var results: BoxSearchResults?
+    @State private var writingOwnWord = false
+    /// Set once a word has been written; the box is then sent to the area holding it.
+    @State private var wrote = false
 
     var body: some View {
         NavigationStack {
@@ -50,6 +53,17 @@ struct BoxSearchView: View {
         .onChange(of: query) { _, typed in
             results = model.searchBox(typed)
         }
+        // why: the reveal waits for the form to be gone — two sheets closing at
+        // once leaves the box scrolling behind one of them.
+        .sheet(isPresented: $writingOwnWord, onDismiss: sendToTheNewWord) {
+            OwnWordFormView(model: model, query: query) { _ in wrote = true }
+        }
+    }
+
+    private func sendToTheNewWord() {
+        guard wrote else { return }
+        reveal(model.ownArea)
+        dismiss()
     }
 
     @ViewBuilder
@@ -68,10 +82,16 @@ struct BoxSearchView: View {
                 }
             }
         } else if results != nil {
-            Text("box.search.nothing \(query)")
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextSecondary)
-                .padding(.top, DL.Space.l)
+            // A box with no answer is where the learner's own words come from:
+            // they have just proved the catalog has none for what they need.
+            VStack(alignment: .leading, spacing: DL.Space.l) {
+                Text("box.search.nothing \(query)")
+                    .font(DL.Fonts.body)
+                    .foregroundStyle(Color.dlTextSecondary)
+                Button("box.search.writeOwn \(query)") { writingOwnWord = true }
+                    .buttonStyle(DLSoftButtonStyle())
+            }
+            .padding(.top, DL.Space.l)
         } else {
             Text("box.search.hint")
                 .font(DL.Fonts.subheadline)

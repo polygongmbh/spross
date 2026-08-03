@@ -41,6 +41,14 @@ struct BoxView: View {
                             }
                         }
                     }
+                    // why: no manifest group owns the learner's own words, and none
+                    // should — they stand on their own, after everything the catalog
+                    // brought.
+                    if model.hasOwnWords {
+                        BoxAreaSection(model: model, area: model.ownArea,
+                                       expanded: fold(of: model.ownArea))
+                            .id(model.ownArea)
+                    }
                     BoxSettingsSection(model: model)
                 }
                 .padding(DL.Space.xl)
@@ -84,12 +92,12 @@ struct BoxView: View {
     }
 
     /// A search hit names the area it lives in: the group unfolds, the area
-    /// unfolds, and the box scrolls it into reach.
+    /// unfolds, and the box scrolls it into reach. The own-words area sits in no
+    /// group, so there is simply nothing to unfold above it.
     private func reveal(area: String) {
-        guard let group = model.areaGroupSections.first(where: { $0.areas.contains(area) })
-        else { return }
+        let group = model.areaGroupSections.first { $0.areas.contains(area) }
         withAnimation(.easeInOut(duration: 0.2)) {
-            expandedGroups.insert(group.id)
+            if let group { expandedGroups.insert(group.id) }
             expandedAreas.insert(area)
         }
         scrollTarget = area

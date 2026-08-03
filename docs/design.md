@@ -248,6 +248,20 @@ never the shape of the app.
   A day that is going badly says so, and says why stopping is the better call.
 - **Box** (📦 from Heute): browse the catalog by area, pack words in, revive suspended
   ones; settings live here — profile, reset.
+  - **Search** (🔍 in the bar) reaches a word without knowing its shelf. The two result
+    kinds offer what they ARE: an area unfolds itself back on the Box screen and scrolls
+    into reach, a word can be heard and packed on its own — a learner who went looking for
+    one word by name should not have to take the shelf around it.
+  - **Own words** are what a search with no answer leads to: the learner has just proved
+    the catalog has no word for what they need, so the empty state is where writing one
+    down belongs, and nowhere else. Both languages are asked for, because a word is only
+    studiable as a pair; the known side arrives prefilled from the query, since a search
+    box is far more often used to name what one wants to be able to SAY than a form met in
+    the wild. They land in an area of their own, after every catalog area — which is the
+    whole point of the arrangement (`../kern/README.md` §6): a growing catalog can never
+    collide with them, and a box reset never takes them. Deleting one is a long-press on
+    its row, and it is the only deletion in the app: a catalog word can be put to sleep,
+    never removed.
 - **Trainers**: number, clock and phrase drills, registry-driven from kern, so the hub
   offers only languages with authored content. Drills grade word by word and ramp with
   the learner instead of sitting at one level.
