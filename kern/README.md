@@ -314,12 +314,24 @@ day-key `yyyy-MM-dd`) with:
   Nothing due tomorrow also means nothing was recently missed — then the round is new words
   alone. Reaching past tomorrow happens only when there is nothing new left, so an exhausted
   catalog still opens a round instead of an empty screen.
-  A round is withheld in exactly one case: nothing due and the day already worked, where
-  worked means a round's worth of answers rather than a single tap. "Nothing more right now"
-  is a real answer, and manufacturing another round would make every visit a treadmill.
+  A round is withheld in exactly one case: nothing due, **nothing coming back within
+  `RETURNING_SOON_MILLIS`** (12 h), and the day already worked, where worked means a round's
+  worth of answers rather than a single tap. "Nothing more right now" is a real answer, and
+  manufacturing another round would make every visit a treadmill.
   Cards the learner PACKED still enter then — that is an explicit ask, not automatic growth.
+  **A word on a learning step is the day's own unfinished business** (user ruling 2026-08-03):
+  it was missed minutes ago and returns in minutes, so a day closed in between is a claim the
+  scheduler overturns by itself. The span is rolling rather than a calendar edge, because what
+  makes a word today's is that it comes back while the learner is still here — midnight knows
+  nothing about that, and the same step would be today's at nine in the morning and tomorrow's
+  at five to twelve. Twelve hours is a waking day: it holds every learning and relearning step
+  (the only schedules that land inside one, a graduated interval flooring at a day) and reaches
+  for nothing that is genuinely a day out.
+  Only the QUESTION of whether the day is over moves; a round carrying a returning word is an
+  **ordinary round** — `fillOut` tops it up with pull-aheads as on any short day, and growth
+  resumes with it, so there is no second composition path to keep in step.
   `composeSession` takes `tzId` for all of this: "today" and "tomorrow" are local-calendar
-  questions.
+  questions — the returning span is the one deliberate exception.
 - **`TodayReport`** (`BoxEngine.today`) is the day's own report: reviews and misses read
   live from the review logs (so the numbers hold mid-session), introductions and consolidated
   crossings from the day counters the engine books at answer time (`newIntroduced`,

@@ -50,6 +50,18 @@ object SessionComposer {
     const val NEW_CARDS_PER_ROUND: Int = 7
 
     /**
+     * How far ahead a card still counts as THIS day's work (see [returningSoon]).
+     *
+     * A rolling span, not a calendar edge: what makes a word today's is that it comes back
+     * while the learner is still here, and midnight knows nothing about that — the same
+     * two-minute step would be today's at nine in the morning and tomorrow's at five to
+     * twelve. Twelve hours is the width of a waking day, so it holds every learning and
+     * relearning step (the only schedules that ever land inside one, since a graduated
+     * interval floors at a day) without reaching for a card that is genuinely a day out.
+     */
+    private const val RETURNING_SOON_MILLIS: Long = 12L * 60 * 60 * 1000
+
+    /**
      * Today's plan: due cards oldest-first (ties by id), review slots capped at
      * `sessionCap − growthReserve`, then new candidates fill the remaining capacity —
      * enqueued cards lead, unlocked phrases next, then seed-order cards. A short round is
@@ -67,11 +79,13 @@ object SessionComposer {
             NEW_CARDS_PER_ROUND
         }
 
-        // The day is done once nothing is due and the learner has worked a round's worth:
-        // "nothing more right now" is a real answer, and manufacturing another round would
-        // turn every visit into a treadmill. Cards the learner PACKED themselves still enter —
-        // that is an explicit ask, not automatic growth.
-        val dayDone = due.isEmpty() && workedARound(state, nowEpochMillis, tzId)
+        // The day is done once nothing is due, nothing is about to be, and the learner has
+        // worked a round's worth: "nothing more right now" is a real answer, and manufacturing
+        // another round would turn every visit into a treadmill. Cards the learner PACKED
+        // themselves still enter — that is an explicit ask, not automatic growth.
+        val dayDone = due.isEmpty() &&
+            !returningSoon(state, nowEpochMillis) &&
+            workedARound(state, nowEpochMillis, tzId)
 
         // Reserve headroom only for new work that will actually appear — a box with
         // nothing left to introduce hands every slot back to the review queue. Costs a
@@ -110,6 +124,23 @@ object SessionComposer {
         val soon = Inventory.scheduledAhead(state).count { it.due!! <= horizon }
         return min(soon, min(SESSION_FLOOR_CARDS, state.config.sessionCap) / 2)
     }
+
+    /**
+     * Whether a card comes back inside [RETURNING_SOON_MILLIS] — the day is not over while
+     * one does.
+     *
+     * A word sent to a learning step is the day's own unfinished business: it was missed
+     * minutes ago and returns in minutes, so a screen that calls the day finished in between
+     * is overturned by its own scheduler. Only the QUESTION is asked here; what the round
+     * then holds is left to the ordinary path, because a round carrying a returning word is
+     * an ordinary round — [fillOut] tops it up with pull-aheads exactly as it does any other
+     * short one, and growth resumes with it.
+     */
+    private fun returningSoon(state: BoxState, nowEpochMillis: Long): Boolean =
+        Inventory.scheduledAhead(state).any {
+            val due = it.due!!.toEpochMilliseconds()
+            due > nowEpochMillis && due - nowEpochMillis <= RETURNING_SOON_MILLIS
+        }
 
     /** A round's worth of answers is what closes a day — one tap never did. */
     private fun workedARound(state: BoxState, nowEpochMillis: Long, tzId: String): Boolean =

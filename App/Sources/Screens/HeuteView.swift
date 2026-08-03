@@ -133,13 +133,16 @@ struct HeuteView: View {
     /// "Done" only once the day has actually been worked;
     /// otherwise nothing is due right now, which is a different message
     /// and must not claim a finish the learner never made.
+    ///
+    /// Ordered like every other celebration screen in the app — mark, headline, what the
+    /// day bought, the way on, fine print. The mark and the streak are ONE badge: as two
+    /// elements they sandwiched the prose between them, and a card that both cheers and
+    /// counts the run says one thing, not two.
     private var doneCard: some View {
         let today = model.today
         let worked = (today?.reviews ?? 0) > 0
         return VStack(spacing: DL.Space.l) {
-            Text(verbatim: worked ? "🎉" : "🌱")
-                .font(.system(size: 56))
-                .accessibilityHidden(true)
+            doneMark(worked: worked)
             Text(worked ? "heute.done.title" : "heute.caughtUp.title")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
@@ -151,21 +154,21 @@ struct HeuteView: View {
                     .foregroundStyle(Color.dlTextSecondary)
                     .multilineTextAlignment(.center)
             }
-            StreakFlameView(days: model.stats?.streakDays ?? 0)
-            tomorrowText
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextSecondary)
-                .multilineTextAlignment(.center)
-            // User agency: an extra round is endless-style when that has
-            // content (due + NEW vocab within the round's budget), else
-            // review-ahead — so it renders in every done state with active
-            // cards; hidden only when even the fallback is empty.
+            // User agency: an extra round mixes due work, packed vocab and pull-aheads
+            // (kern's review-ahead composer), so it renders in every done state with
+            // active cards; hidden only when that comes back empty.
             if model.canPracticeExtra {
                 Button("heute.done.extraRound") {
                     model.startExtraSession()
                 }
                 .buttonStyle(DLSoftButtonStyle())
             }
+            // Under the button on purpose: what happens next is the smallest thing on
+            // the card, and the way on is what the thumb is looking for.
+            tomorrowText
+                .font(DL.Fonts.caption)
+                .foregroundStyle(Color.dlTextSecondary)
+                .multilineTextAlignment(.center)
         }
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity)
@@ -174,6 +177,23 @@ struct HeuteView: View {
                 .fill(Color.dlSurface)
         )
         .dlCardShadow()
+    }
+
+    /// The day's mark: the celebration wearing the streak, or the bare emoji when there
+    /// is no run to name yet — the same fallback `sessionStats` makes with ✨, and the
+    /// reason the badge is guarded at all: unguarded it read "🔥 0 Tage" to anyone who
+    /// had not started one.
+    @ViewBuilder
+    private func doneMark(worked: Bool) -> some View {
+        let emoji = worked ? "🎉" : "🌱"
+        let streak = model.stats?.streakDays ?? 0
+        if streak > 0 {
+            StreakFlameView(days: streak, emoji: emoji)
+        } else {
+            Text(verbatim: emoji)
+                .font(.system(size: 56))
+                .accessibilityHidden(true)
+        }
     }
 
     /// "24 Wiederholungen · 3 Frischlinge · 2 gefestigt" — the day's gain, not just

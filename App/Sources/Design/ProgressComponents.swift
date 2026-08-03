@@ -9,10 +9,14 @@ import SwiftUI
 
 struct StreakFlameView: View {
     let days: Int
+    /// The mark the run wears. The flame is the streak's identity everywhere it is
+    /// merely reported; a screen that IS the celebration hands its own emoji in and
+    /// carries one badge instead of a badge under a hero saying the same thing twice.
+    var emoji: String = "🔥"
 
     var body: some View {
         HStack(spacing: DL.Space.s) {
-            Text(verbatim: "🔥")
+            Text(verbatim: emoji)
                 .font(.title2)
                 .accessibilityHidden(true)
             Text(days.formatted())
