@@ -2,10 +2,12 @@
 
 ## Unreleased
 
-- **The widget dropped its consolidated-word count and gave the streak flame a hollow state.**
-  The "N gefestigt" number wasn't actionable from the lock screen, so it's gone; the streak
-  flame now shows filled once today's review is in and hollow while it's still outstanding, so
-  a glance at the widget tells you whether the streak still needs tending today.
+- **The widget dropped its consolidated-word count and the streak flame now shows how much
+  slack is left.** The "N gefestigt" number wasn't actionable from the lock screen, so it's
+  gone. The flame is lit once today's review is in, dwindling while today is still open but
+  yesterday was fine, and hollow when yesterday was already the streak's one forgiven miss — a
+  glance now tells you not just whether you're due, but how urgent it is. A flame with no
+  streak yet shows hollow and gray, a quiet nudge to start one.
 
 ## 3.7.0 — 2026-08-03
 

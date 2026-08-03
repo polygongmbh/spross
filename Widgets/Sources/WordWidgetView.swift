@@ -58,10 +58,7 @@ struct WordWidgetView: View {
     /// Compact streak line for the bottom of the small tile.
     private var statsFooter: some View {
         HStack(spacing: 8) {
-            if entry.streak > 0 {
-                Label("\(entry.streak)", systemImage: entry.streakRenewedToday ? "flame.fill" : "flame")
-                    .foregroundStyle(.orange)
-            }
+            flameLabel
         }
         .font(.caption2.weight(.semibold))
     }
@@ -82,16 +79,29 @@ struct WordWidgetView: View {
     /// 🔥 streak · N fällig — glanceable box growth.
     private var statsHeader: some View {
         HStack(spacing: 12) {
-            if entry.streak > 0 {
-                Label("\(entry.streak)", systemImage: entry.streakRenewedToday ? "flame.fill" : "flame")
-                    .foregroundStyle(.orange)
-            }
+            flameLabel
             if entry.dueCount > 0 {
                 Label("\(entry.dueCount) fällig", systemImage: "tray.full")
                     .foregroundStyle(.orange)
             }
         }
         .font(.caption.weight(.semibold))
+    }
+
+    /// Streak flame — icon/color/count vary with `entry.flameState`; count is
+    /// omitted for `.unlit` (bare restart nudge, nothing to count yet).
+    @ViewBuilder
+    private var flameLabel: some View {
+        switch entry.flameState {
+        case .lit:
+            Label("\(entry.streak)", systemImage: "flame.fill").foregroundStyle(.orange)
+        case .dwindling:
+            Label("\(entry.streak)", systemImage: "flame.fill").foregroundStyle(.orange.opacity(0.5))
+        case .atRisk:
+            Label("\(entry.streak)", systemImage: "flame").foregroundStyle(.orange)
+        case .unlit:
+            Image(systemName: "flame").foregroundStyle(.secondary)
+        }
     }
 
     private func wordRow(_ word: WidgetWord) -> some View {

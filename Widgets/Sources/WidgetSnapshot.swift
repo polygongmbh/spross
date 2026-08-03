@@ -1,5 +1,13 @@
 import Foundation
 
+/// Flame states the widget renders, safest to most urgent.
+enum FlameState {
+    case lit        // reviewed today — streak safe until tomorrow.
+    case dwindling  // not yet today, but yesterday had a review — a miss today just becomes the run's one bridge.
+    case atRisk     // not yet today, and yesterday was already the bridge — a miss today ends the run.
+    case unlit      // streak is zero — nothing to protect, a bare restart nudge.
+}
+
 /// Decode-only mirror of Kern's `WidgetSnapshotBuilder` JSON, written by the
 /// app on every persist. The widget extension links no Kotlin (no catalog in
 /// its bundle, tight extension memory cap) — everything it renders is
@@ -74,13 +82,17 @@ struct WidgetSnapshot: Codable {
         return count
     }
 
-    /// Whether today already has a review — drives the widget's flame between
-    /// filled (renewed) and hollow (still needs a review to keep the streak).
-    func streakRenewedToday(now: Date, timeZone: TimeZone = .current) -> Bool {
+    /// Derives the flame's state from `streak` (already computed by the caller via
+    /// `streak(now:)`) plus whether today and yesterday have reviews.
+    func flameState(streak: Int, now: Date, timeZone: TimeZone = .current) -> FlameState {
+        guard streak > 0 else { return .unlit }
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = timeZone
         let today = calendar.startOfDay(for: now)
-        return (dailyStats[Self.dayKey(today, calendar: calendar)]?.reviews ?? 0) > 0
+        if (dailyStats[Self.dayKey(today, calendar: calendar)]?.reviews ?? 0) > 0 { return .lit }
+        guard let yesterday = calendar.date(byAdding: .day, value: -1, to: today) else { return .atRisk }
+        let yesterdayReviewed = (dailyStats[Self.dayKey(yesterday, calendar: calendar)]?.reviews ?? 0) > 0
+        return yesterdayReviewed ? .dwindling : .atRisk
     }
 
     /// Kern day keys are ISO `yyyy-MM-dd` regardless of the device calendar.
