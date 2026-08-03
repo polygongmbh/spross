@@ -55,23 +55,8 @@ There, `./gradlew :kern:jvmTest` is the gate; see `RUNBOOK-linux.md` for the res
 
 - Offload open-ended research and large implementations to subagents rather than crowding one session;
   hand each the full spec + the relevant `docs/` pointer.
-- For "where does X live" questions, prefer a code-graph tool over growing Architecture below.
+- For "where does X live" questions, use a code-graph tool or the module docs — never grow this file.
 - Large mechanical refactors go through a codemod, not hand edits — write it, run it, review the diff.
-
-## Architecture
-
-Inner → outer, App depends on the kern (SprossKern framework), never the reverse.
-Kern modules under `kern/src/commonMain/kotlin/net/spross/kern/`:
-
-- `model` — domain types; `Card` derives from the catalog join, never persisted.
-- `catalog` — catalog v2 parser + (source, target) join, deterministic card ids.
-- `fsrs` — FSRS-6 scheduler, pinned to reference golden vectors.
-- `box` — growth engine: budgets, phrase unlock, leeches (`BoxEngine` facade).
-- `session` — session composer + drain loop + answer normalizer + multiple-choice options.
-- `trainer` — number/clock/phrase drills (de/sw/uk authored).
-- `snapshot` / `store` — watch/widget snapshot builders + persisted-document facade.
-
-Only the app target links Kotlin; the Swift side is laid out in `README.md` § Structure.
 
 ## Invariants
 
@@ -79,6 +64,8 @@ Only the app target links Kotlin; the Swift side is laid out in `README.md` § S
 > continuity are not constraints; migrations need only behavioral (golden-vector) parity.
 > The notes below are current design, not data-preservation vows.
 
+- Inner → outer: App depends on the kern (SprossKern framework), never the reverse;
+  only the app target links Kotlin (`kern/README.md` §9).
 - `phase == new ⟺ memory == null ⟺ due == null` on a card's scheduling.
 - **Introduction = first answer**, never at composition — budget accounting relies on this.
 - **One FSRS schedule per card**, keyed by card id (ids never contain `|`) —
