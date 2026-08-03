@@ -34,26 +34,20 @@ extension AppModel {
         begin(plan, now: now)
     }
 
-    /// On-demand extra round from the Heute done card. Prefers endless-style
-    /// composition (due cards plus NEW vocab within the pool budget and health
-    /// gate); when the done card shows, that is usually empty — then it falls
-    /// back to kern's review-ahead extra round (soonest-due first, enqueued
-    /// cards included), which has content whenever the box holds active cards.
+    /// On-demand extra round from the Heute done card: kern's review-ahead round —
+    /// everything due, then packed vocab within the new-word budget, then pull-aheads by
+    /// soonest due — so it mixes recall with new words the way an extra round is meant to.
+    ///
+    /// why: `composeEndless` used to be tried ahead of it, for its automatic seed-order
+    /// growth. But endless is rarely empty on a box with catalog left, so the round that
+    /// mixes almost never got composed and the extra round came back all first sights.
     func startExtraSession() {
         guard let box else { return }
         let now = Date()
-        let plan = extraSessionPlan(state: box, now: now)
+        let plan = SessionComposer.shared.composeExtraSession(state: box,
+                                                              nowEpochMillis: now.epochMillis)
         guard !plan.isEmpty else { return }
         begin(plan, now: now)
-    }
-
-    /// Endless plan when it has content, else the review-ahead extra round.
-    private func extraSessionPlan(state: BoxState, now: Date) -> SessionPlan {
-        let endless = SessionComposer.shared.composeEndless(state: state,
-                                                            nowEpochMillis: now.epochMillis)
-        if !endless.isEmpty { return endless }
-        return SessionComposer.shared.composeExtraSession(state: state,
-                                                          nowEpochMillis: now.epochMillis)
     }
 
     private func begin(_ plan: SessionPlan, now: Date) {
@@ -178,13 +172,13 @@ extension AppModel {
         return stats.streakDays >= 2 && stats.streakDays == stats.longestStreakDays
     }
 
-    /// Whether `startExtraSession` would yield anything (drives the done
-    /// card's "Extra-Runde üben" button). Unlike `canPracticeMore`, this
-    /// includes the review-ahead fallback, so it holds in every done state
-    /// with active cards.
+    /// Whether `startExtraSession` would yield anything (drives the done card's extra-round
+    /// button). Unlike `canPracticeMore` this counts pull-aheads too, so it holds in every
+    /// done state with active cards.
     var canPracticeExtra: Bool {
         guard let box else { return false }
-        return !extraSessionPlan(state: box, now: Date()).isEmpty
+        return !SessionComposer.shared.composeExtraSession(state: box,
+                                                           nowEpochMillis: Date().epochMillis).isEmpty
     }
 
     /// Pull the next endless batch onto the queue; returns false if dry.
