@@ -70,10 +70,8 @@ Kern modules under `kern/src/commonMain/kotlin/net/spross/kern/`:
 - `session` — session composer + drain loop + answer normalizer + multiple-choice options.
 - `trainer` — number/clock/phrase drills (de/sw/uk authored).
 - `snapshot` / `store` — watch/widget snapshot builders + persisted-document facade.
-- `App/Sources/Design` — kern-free SwiftUI component library (poster-derived theme).
-- `App/Sources/Store` — file-backed `BoxStore` actor (one JSON document per target language).
-- `App/Sources/{Model,Screens}` — observable AppModel + single-screen Heute root (Box pushes from it).
-- `Shared/`, `Watch/`, `Widgets/`, `WatchWidgets/` — decode-only Swift snapshot surfaces; only the app target links Kotlin.
+
+Only the app target links Kotlin; the Swift side is laid out in `README.md` § Structure.
 
 ## Invariants
 
