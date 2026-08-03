@@ -170,7 +170,7 @@ Realization fields — only `text` is required:
   A form that only ever appears bound carries its leading dash (sw `-zuri`, which takes the
   noun's class prefix): it is the citation convention, grading ignores the dash, and the
   engine takes it off again wherever the dash alone would identify the answer among plain
-  words (kern README §7). The agreement forms themselves go in `variants`.
+  words (`../kern/docs/snapshots.md`). The agreement forms themselves go in `variants`.
 - `synonyms` — DISTINCT-KNOWLEDGE alternates of `text` (array; omit if none):
   genuinely different lexemes for the same concept that a learner must recognize
   on their own (uk `office` установа/відомство, uk `boss` шеф/керівник).
@@ -258,7 +258,7 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   for, so a rotated synonym nobody recorded falls through to the app's own voice
   instead of playing the canonical word. It may differ from `text` in case
   (`unterlagen` / "Unterlagen"), edge punctuation (`hallo` / "Hallo!") or the citation
-  dash (`zuri` / "-zuri") — the engine folds those away (`../kern/README.md` §11).
+  dash (`zuri` / "-zuri") — the engine folds those away (`../kern/docs/audio.md`).
   Letters carry no `matches`: they speak a name, and that string belongs to the
   alphabet file.
 - `source` — the original Commons filename; the credits screen links `File:<source>`,

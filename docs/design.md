@@ -20,16 +20,9 @@ no user-facing direction concept; progress tracked per target language.
 Every screen answers "What do I do right now?" with zero ambiguity.
 The app composes the work; the user never browses for what to study.
 
-## Architecture
+## Boundaries & persistence
 
-Strict dependency direction (App → SprossKern, never the reverse):
-
-```
-kern       SprossKern — Kotlin Multiplatform engine (contract: kern/README.md)
-App/       SwiftUI iOS app — views, observable AppModel, file-backed store actor
-Shared/ Watch/ Widgets/ WatchWidgets/   decode-only Swift snapshot surfaces
-android/   Jetpack Compose app — core loop on the same engine (§ Android below)
-```
+Strict dependency direction: App → SprossKern, never the reverse.
 
 - ONLY the app target links the Kotlin framework;
   watch and widget targets are pure Swift over phone-built snapshots.
@@ -202,12 +195,9 @@ never the shape of the app.
 
 ## Counts & sessions
 
-- Every user-facing count is **concept-denominated**: a word is one word to the learner,
-  whichever way it is being asked.
 - Sessions are composed, never configured.
-  **The plan is the whole run**: the counter on screen is a promise, so nothing joins a
-  session already under way — a word maturing mid-sitting waits for the summary rather
-  than pushing the finish line back. Practising on is where it comes in.
+  **The plan is the whole run**: the counter on screen is a promise, 
+  so nothing joins a session already under way unless in endless mode.
   Session end is a summary that celebrates, carrying the streak and what the run consolidated.
 - **A record is named, a number is only counted.** A day streak standing at its longest
   ever (`BoxStatistics.longestStreak`) says so on the finish screen; a drill run that beats
@@ -323,7 +313,8 @@ Its scope is § Not yet.
   and never compute what the phone could pre-resolve.
 - Watch: one graded **multiple-choice** loop — the watch never types, and the options
   arrive ranked from kern so that nothing but meaning tells the answer from its company:
-  word class, then how the sentence closes, then area, then string shape (kern README §7).
+  word class, then how the sentence closes, then area, then string shape
+  (`../kern/docs/snapshots.md`).
   No self-grading: correctness and response time derive the rating.
   Multiple choice on a keyboard-less device is a deliberate concession to the
   recall-first rule, with the latency curve compensating for it.
@@ -348,7 +339,7 @@ Its scope is § Not yet.
   prompt line once a tile is tapped, never before: on a recognition question the picture
   depicts the very meaning being asked for. That reveal moment is also why the wire now
   carries held-back pictures at all — the emoji cue picks which KEY the picture travels
-  under rather than whether it travels (kern README §7), so no surface can show one early
+  under rather than whether it travels (`../kern/docs/snapshots.md`), so no surface can show one early
   by reading the wrong field. It joins the prompt line instead of taking a slot of its own,
   so an answered card never reflows under the thumb.
 - Two runs, and only one of them ends: the **due batch** is a counter that reaches its

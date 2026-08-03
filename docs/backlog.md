@@ -115,7 +115,7 @@ One line per item, with a file or context pointer, filed under the section it be
 ## Engine & scheduling
 
 - Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch,
-  but revisit the cap if the active box outgrows it (kern README §7).
+  but revisit the cap if the active box outgrows it (`../kern/docs/snapshots.md`).
 - Number near-twins gated in `TrainerTypoBridgeGuardTests`
   (sw `nne`↔`nane` incl. tens compounds; uk `дев'ять`↔`десять`;
   en `eight`↔`eighty`; es `sesenta`↔`setenta`, both with their compounds):

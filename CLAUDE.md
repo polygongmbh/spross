@@ -65,7 +65,7 @@ There, `./gradlew :kern:jvmTest` is the gate; see `RUNBOOK-linux.md` for the res
 > The notes below are current design, not data-preservation vows.
 
 - Inner → outer: App depends on the kern (SprossKern framework), never the reverse;
-  only the app target links Kotlin (`kern/README.md` §9).
+  only the app target links Kotlin (`kern/docs/build.md`).
 - `phase == new ⟺ memory == null ⟺ due == null` on a card's scheduling.
 - **Introduction = first answer**, never at composition — budget accounting relies on this.
 - **One FSRS schedule per card**, keyed by card id (ids never contain `|`) —
