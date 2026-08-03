@@ -31,6 +31,11 @@ class Catalog internal constructor(
     /** Flattened default area order (groups top-to-bottom, areas as listed). */
     val areaNames: List<String> = areas.map { it.name }
 
+    /** Backs [coveredSources]; lazy because deriving it joins every ordered pair. */
+    private val covered: List<Language> by lazy {
+        languages.keys.sorted().filter { availableTargets(it).isNotEmpty() }
+    }
+
     /** slug → the one concept that owns it, built once (slugs are globally unique). */
     private val slugIndex: Map<String, CatalogSlug> = buildMap {
         for (area in areas) {
@@ -150,13 +155,36 @@ class Catalog internal constructor(
         }
     }
 
-    /** Targets learnable from [source]: every other language with ≥ 50 joinable concepts. */
+    /**
+     * Targets learnable from [source]: every other language with ≥ 50 joinable concepts.
+     * Like [join], this answers only for a language the catalog declares — an undeclared
+     * one is a caller that skipped [coveredSources], not a profile with nothing to learn.
+     */
     fun availableTargets(source: Language): List<AvailableTarget> {
         require(source in languages) { "unknown source language \"$source\"" }
         return languages.values
             .filter { it.code != source }
             .map { AvailableTarget(it.code, it.name, join(source, it.code).size) }
             .filter { it.conceptCount >= MIN_JOINABLE_CONCEPTS }
+    }
+
+    /**
+     * Sources worth offering: every language with at least one learnable target, sorted
+     * by code. The total query in front of [availableTargets] — asking whether a device
+     * locale is offerable must be answerable for locales the catalog has never heard of.
+     */
+    fun coveredSources(): List<Language> = covered
+
+    /**
+     * The source a fresh install opens with on a device reporting [deviceLanguage]
+     * (contract §1): that language when the catalog teaches from it, else English —
+     * and where English itself teaches nothing, the first source that does, so the
+     * answer stays one [availableTargets] accepts.
+     */
+    fun defaultSource(deviceLanguage: Language): Language = when {
+        deviceLanguage in covered -> deviceLanguage
+        FALLBACK_SOURCE in covered -> FALLBACK_SOURCE
+        else -> covered.firstOrNull() ?: FALLBACK_SOURCE
     }
 
     /**
@@ -275,6 +303,9 @@ class Catalog internal constructor(
 
     companion object {
         private const val MIN_JOINABLE_CONCEPTS = 50
+
+        /** The source every device falls back to when its own language teaches nothing. */
+        const val FALLBACK_SOURCE: Language = "en"
 
         fun load(source: CatalogSource): Catalog {
             val tracked = FingerprintingSource(source)

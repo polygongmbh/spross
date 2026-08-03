@@ -11,7 +11,10 @@ import kotlin.time.Instant
 class ModelDefaultsTest {
     @Test
     fun boxConfigProductDefaults() {
-        val config = BoxConfig()
+        // The factory IS the defaults — the platforms call it because Kotlin default
+        // arguments do not cross the ObjC boundary, not to state a second calibration.
+        val config = BoxConfig.product()
+        assertEquals(BoxConfig(), config)
         assertEquals(25, config.sessionCap)
         assertEquals(0.8, config.desiredRetention)
         assertEquals(365, config.maximumIntervalDays)

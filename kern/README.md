@@ -30,8 +30,12 @@ draw it is rendering and does not.
   per-language metadata from `catalog/languages.json` (field semantics: `catalog/README.md`);
   `articles` replaces v1's hardcoded German article list.
 - Profile = (source, target), source ≠ target.
-  `Catalog.availableTargets(source)` requires ≥ 50 joinable concepts.
-  (Picker display and the device-language default are app rules.)
+  `Catalog.availableTargets(source)` requires ≥ 50 joinable concepts, and answers only for a
+  language the catalog declares — an undeclared one is a caller that skipped the launch query.
+  That query is `coveredSources()`: every language with at least one learnable target, sorted;
+  `defaultSource(device)` picks the device language when it is covered, else `en`
+  (else, for a catalog that cannot teach from English, its first covered source).
+  So no device locale can throw at launch. (Picker display is an app rule.)
 
 ## 2. Card — derived, language-symmetric
 
@@ -180,6 +184,11 @@ v1 calibration restored (one schedule per card ⇒ one review touches one card):
 
 Every user-facing count (due ring, "x neu", active, widget) and `DayStats` field is in
 cards; `DayStats.reviews` = answer events.
+
+`BoxConfig.product()` hands that calibration out as a value — the table is the `BoxConfig`
+defaults and the factory returns them, because Kotlin default arguments do not cross the
+ObjC boundary and a platform that cannot see them would restate the numbers (§7 re-applies
+this to every loaded box).
 
 ## 5. FSRS-6
 
@@ -449,6 +458,8 @@ day-key `yyyy-MM-dd`) with:
   newIntroduced, dailyStats, ownWords }` — scheduling keys are card ids;
   `ownWords` is the document's only content (§6), defaulted so a box written before the
   learner could author any decodes as one who has authored none;
+  the stored `config` is a record of the calibration a box was written under, never an input —
+  `BoxState.withProductCalibration()` re-applies the build's (§4) to every box that loads;
   kotlinx.serialization; dates as ISO-8601 UTC strings via explicit `kotlin.time.Instant`
   serializers; facade encodes with **sorted keys** (deterministic bytes).
   All `@Serializable` types are `internal`; the public surface is a narrow facade

@@ -46,7 +46,17 @@ data class BoxConfig(
      * lapse retry (breadth ruling 2026-07-22).
      */
     val relearningStepsSeconds: List<Long> = listOf(600L),
-)
+) {
+    companion object {
+        /**
+         * The shipped calibration, handed out as a value: exactly the defaults above.
+         * A factory because Kotlin default arguments do not cross the ObjC boundary —
+         * without one, every platform that cannot see them restates the table and the
+         * numbers drift apart quietly (see `docs/portability.md`).
+         */
+        fun product(): BoxConfig = BoxConfig()
+    }
+}
 
 /** Per-day aggregates; every count is in cards (reviews = answer events). */
 data class DayStats(
