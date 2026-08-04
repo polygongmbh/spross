@@ -18,5 +18,126 @@
   "slug": "shop",
   "kind": "verb",
   "emoji": "🛍️"
+ },
+ {
+  "slug": "city",
+  "kind": "noun",
+  "emoji": "🏙️"
+ },
+ {
+  "slug": "village",
+  "kind": "noun",
+  "emoji": "🏘️"
+ },
+ {
+  "slug": "neighbourhood",
+  "kind": "noun"
+ },
+ {
+  "slug": "building",
+  "kind": "noun",
+  "emoji": "🏢"
+ },
+ {
+  "slug": "store",
+  "kind": "noun",
+  "emoji": "🏪"
+ },
+ {
+  "slug": "bank",
+  "kind": "noun",
+  "emoji": "🏦"
+ },
+ {
+  "slug": "post-office",
+  "kind": "noun",
+  "emoji": "🏤"
+ },
+ {
+  "slug": "restaurant",
+  "kind": "noun",
+  "emoji": "🍽️"
+ },
+ {
+  "slug": "hotel",
+  "kind": "noun",
+  "emoji": "🏨"
+ },
+ {
+  "slug": "church",
+  "kind": "noun",
+  "emoji": "⛪"
+ },
+ {
+  "slug": "mosque",
+  "kind": "noun",
+  "emoji": "🕌"
+ },
+ {
+  "slug": "library",
+  "kind": "noun",
+  "emoji": "📚"
+ },
+ {
+  "slug": "police",
+  "kind": "noun",
+  "emoji": "👮"
+ },
+ {
+  "slug": "cinema",
+  "kind": "noun",
+  "emoji": "🎬"
+ },
+ {
+  "slug": "bridge",
+  "kind": "noun",
+  "emoji": "🌉"
+ },
+ {
+  "slug": "where-is-the-post-office",
+  "kind": "phrase",
+  "emoji": "🏤",
+  "components": [
+   "post-office"
+  ]
+ },
+ {
+  "slug": "is-there-a-bank-here",
+  "kind": "phrase",
+  "emoji": "🏦",
+  "components": [
+   "bank"
+  ]
+ },
+ {
+  "slug": "the-shop-is-still-open",
+  "kind": "phrase",
+  "emoji": "🏪",
+  "components": [
+   "store"
+  ]
+ },
+ {
+  "slug": "im-looking-for-a-hotel",
+  "kind": "phrase",
+  "emoji": "🏨",
+  "components": [
+   "hotel"
+  ]
+ },
+ {
+  "slug": "lets-meet-at-the-market",
+  "kind": "phrase",
+  "emoji": "🛒",
+  "components": [
+   "market"
+  ]
+ },
+ {
+  "slug": "i-live-in-this-neighbourhood",
+  "kind": "phrase",
+  "components": [
+   "neighbourhood"
+  ]
  }
 ]
