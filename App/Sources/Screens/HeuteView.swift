@@ -4,50 +4,37 @@ import SprossKern
 /// The north star screen: one glance = what to do right now.
 struct HeuteView: View {
     let model: AppModel
-    /// Open one area — the forest's groves and nothing else lead here.
-    var openArea: (String) -> Void = { _ in }
+    /// Open the box — at one area when the forest names it, else at the top.
+    var openBox: (String?) -> Void = { _ in }
 
     @Environment(\.locale) private var locale
 
-    /// The forest's place in the scroll, so an empty box can send the learner
-    /// to it: what to do about an empty box is down there, not on another screen.
-    private static let forestAnchor = "forest"
-
     var body: some View {
         let offer = model.heuteOffer
-        ScrollViewReader { proxy in
-            ScrollView {
-                VStack(alignment: .leading, spacing: DL.Space.xl) {
-                    header
-                    if let failure = model.loadFailure {
-                        stateCard(emoji: "🫤",
-                                  title: "error.title",
-                                  message: failure.text)
-                    } else if offer.kind != .nothing {
-                        sessionCard(offer)
-                    } else if (model.stats?.activeCards ?? 0) > 0 {
-                        doneCard
-                    } else {
-                        stateCard(emoji: "📦",
-                                  title: "heute.empty.title",
-                                  message: Text("heute.empty.message"),
-                                  action: ("heute.empty.action", { showForest(proxy) }))
-                    }
-                    TrainerHubView(model: model)
-                    ForestSection(model: model, open: openArea)
-                        .id(Self.forestAnchor)
+        ScrollView {
+            VStack(alignment: .leading, spacing: DL.Space.xl) {
+                header
+                if let failure = model.loadFailure {
+                    stateCard(emoji: "🫤",
+                              title: "error.title",
+                              message: failure.text)
+                } else if offer.kind != .nothing {
+                    sessionCard(offer)
+                } else if (model.stats?.activeCards ?? 0) > 0 {
+                    doneCard
+                } else {
+                    stateCard(emoji: "📦",
+                              title: "heute.empty.title",
+                              message: Text("heute.empty.message"),
+                              action: ("heute.empty.action", { openBox(nil) }))
                 }
-                .padding(DL.Space.xl)
+                TrainerHubView(model: model)
+                ForestSection(model: model, open: { openBox($0) })
             }
+            .padding(DL.Space.xl)
         }
         .scrollBounceBehavior(.basedOnSize)
         .background(Color.dlBackground.ignoresSafeArea())
-    }
-
-    private func showForest(_ proxy: ScrollViewProxy) {
-        withAnimation(.easeInOut(duration: 0.25)) {
-            proxy.scrollTo(Self.forestAnchor, anchor: .top)
-        }
     }
 
     // MARK: - Header

@@ -369,6 +369,22 @@
         }
       }
     },
+    "box.cardsInProgress %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ von %@ Karten in Arbeit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ of %2$@ cards in progress"
+          }
+        }
+      }
+    },
     "box.enqueue %@" : {
       "localizations" : {
         "de" : {
@@ -767,6 +783,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Paused"
+          }
+        }
+      }
+    },
+    "box.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Box"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The box"
           }
         }
       }
@@ -1272,13 +1304,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bereiche zeigen"
+            "value" : "Zur Box"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Show areas"
+            "value" : "Go to box"
           }
         }
       }
@@ -1859,18 +1891,18 @@
         }
       }
     },
-    "nav.settings" : {
+    "nav.box" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einstellungen"
+            "value" : "Box"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Settings"
+            "value" : "Box"
           }
         }
       }
@@ -2067,6 +2099,22 @@
         }
       }
     },
+    "progress.consolidated" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gefestigt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consolidated"
+          }
+        }
+      }
+    },
     "progress.consolidatedCount %@" : {
       "localizations" : {
         "de" : {
@@ -2079,6 +2127,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ consolidated"
+          }
+        }
+      }
+    },
+    "progress.fresh" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frisch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fresh"
           }
         }
       }
@@ -2127,6 +2191,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Progress"
+          }
+        }
+      }
+    },
+    "progress.today %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%@ heute"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%@ today"
           }
         }
       }
@@ -2527,54 +2607,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Send feedback"
-          }
-        }
-      }
-    },
-    "settings.plantStyle.drawn" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gezeichnet"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Drawn"
-          }
-        }
-      }
-    },
-    "settings.plantStyle.emoji" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Emoji"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Emoji"
-          }
-        }
-      }
-    },
-    "settings.plantStyle.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pflanzen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plants"
           }
         }
       }

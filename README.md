@@ -21,8 +21,7 @@ and self-graded recognition of the same schedule.
   Pure logic, time injected (`nowEpochMillis`/`tzId`), fully unit-tested.
   Engine contract: `kern/README.md`.
 - `App/` — SwiftUI app: design system (poster-derived theme), file-backed store
-  (one document per target language), screens (Heute — which holds the box as its
-  forest — plus the area, session, drill and settings pushes off it).
+  (one document per target language), screens (Heute / Box / Fortschritt).
   The only target that links the Kotlin framework.
 - `Shared/`, `Watch/`, `Widgets/`, `WatchWidgets/` — decode-only Swift surfaces
   reading phone-built snapshots; no Kotlin linkage.
@@ -55,7 +54,7 @@ scripts/run-sim.sh -- -uitest-source de -uitest-target sw   # skip onboarding
 ```
 
 Arguments after `--` reach the app: `-uitest-source`/`-uitest-target` pick a
-language pair, `-uitest-screen settings` opens Settings, `-uitest-autostart 1` starts
+language pair, `-uitest-screen box` opens the Box, `-uitest-autostart 1` starts
 the session, `-uitest-trainer numbers|years|clock|phrases` opens a drill
 (DEBUG only, read in `AppModel.start()`).
 

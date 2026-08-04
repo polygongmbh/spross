@@ -126,13 +126,10 @@ in-process, no such copy may exist.
 - `session/MultipleChoice.question` — the watch samples and shuffles kern's ranked shortlist in Swift
   (`WatchPracticeQuestion.swift:24-49`); `RecognitionGrading` — latency→rating
   (`WatchGrading.swift:14-29`), the sibling of `SelfGrading.kt:33-51`.
-- `box` — `enqueueableCount` (`AppModel+Queries.swift`, which restates half of
-  `BoxEngine.enqueue`'s skip rules), `CardRowState` (`BoxCardRow.swift:59-98`),
+- `box` — browser grouping/ordering/`enqueueableCount` (`AppModel+Queries.swift`,
+  which restates half of `BoxEngine.enqueue`'s skip rules), `CardRowState` (`BoxCardRow.swift:59-98`),
   and the `PhaseBadge` invariant that the seal follows `consolidated`, not phase (`ProgressComponents.swift`) —
   a domain rule currently stated only in a view.
-  The browser's grouping and fold state are gone with the Box screen; area ORDER is still
-  Swift's (`areaNames`), and the forest's growth rungs went straight into kern
-  (`box/GrowthStage.kt`) rather than being derived from schedules app-side.
 - `box/TodayReport` — which summary parts appear and the done-vs-caught-up choice
   (`HeuteView.swift:99-217`, `SessionCompletionView.swift:43-49`).
   The strings stay platform-side; the rule choosing the key does not.

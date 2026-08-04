@@ -2,109 +2,68 @@ import SwiftUI
 
 // MARK: - ForestCanvas
 //
-// The whole box as one picture: every card a plant, every area a grove.
+// The box as one picture: a tree per area, standing in rows on shared ground.
 //
-// Drawn as ONE Canvas, never a view per plant — the same call ConfettiView
-// makes and for the same reason: a box of five hundred words would otherwise
-// be five hundred layers. Nothing is stored per plant; ForestLayout derives
-// position, size and tilt from the card id.
+// Drawn as ONE Canvas, never a view per tree — the same call ConfettiView makes.
+// Nothing is stored: every measure comes from the area's own counts, and what
+// little jitter there is comes from a hash of the area name, so the forest is
+// identical on every redraw and survives a relaunch unchanged.
 //
-// The forest never animates. A box grows over weeks, and motion would be
-// claiming a change the picture cannot actually be showing — which also means
-// there is nothing here for Reduce Motion to switch off.
+// The forest never animates. A box grows over weeks, and motion would claim a
+// change the picture is not showing — which also means there is nothing here
+// for Reduce Motion to switch off.
 //
-// The canvas itself is hidden from accessibility. Each grove carries a real
-// button on the very same rect the layout gave it, so what a sighted learner
-// taps and what VoiceOver reads are one element, and every stage is told by
-// silhouette and size rather than by colour alone.
-
-/// Which of the two plant styles the forest draws in.
-enum PlantStyle: String, CaseIterable, Identifiable {
-    case drawn, emoji
-
-    var id: String { rawValue }
-
-    var label: LocalizedStringKey {
-        switch self {
-        case .drawn: return "settings.plantStyle.drawn"
-        case .emoji: return "settings.plantStyle.emoji"
-        }
-    }
-}
-
-/// Where the chosen style is kept, so the forest and the settings that change
-/// it cannot disagree about the key.
-enum PlantStyleSetting {
-    static let key = "plantStyle"
-    static let `default` = PlantStyle.drawn
-}
+// The canvas is hidden from accessibility. Each tree carries a real button on
+// the very cell the layout gave it, so what a sighted learner taps and what
+// VoiceOver reads are one element, and the counts are spoken rather than left
+// to colour.
 
 struct ForestCanvas: View {
-    let groves: [Grove]
-    var style: PlantStyle = .drawn
-    /// What tapping a grove does. Nil leaves the forest a picture.
+    let trees: [AreaTree]
+    /// What tapping a tree does. Nil leaves the forest a picture.
     var open: ((String) -> Void)?
-    /// The spoken description of one grove — the screen's to write, since it
+    /// The spoken description of one area — the screen's to write, since it
     /// alone knows what the counts are called.
-    var describe: ((Grove) -> Text)?
+    var describe: ((AreaTree) -> Text)?
 
-    /// The width to lay out in. Taken from the environment rather than measured:
-    /// a Canvas has to be given a height, the height falls out of the layout, and
-    /// the layout needs the width first — so the screen states it once and both
-    /// the picture and its buttons are placed against the same number.
+    /// The width to lay out in. Taken from the environment rather than
+    /// measured: a Canvas has to be given a height, the height falls out of the
+    /// layout, and the layout needs the width first — so the screen states it
+    /// once and both the picture and its buttons are placed against one number.
     @Environment(\.dlContentWidth) private var width
 
     var body: some View {
-        let frames = ForestLayout.frames(groves, width: width)
+        let marks = ForestLayout.marks(trees, width: width)
         return ZStack(alignment: .topLeading) {
             Canvas { context, _ in
-                for frame in frames {
-                    ground(&context, frame)
-                    for mark in frame.marks {
-                        switch style {
-                        case .drawn: PlantShapes.draw(&context, mark)
-                        case .emoji: PlantEmoji.draw(&context, mark)
-                        }
-                    }
-                }
+                for mark in marks { TreeShapes.draw(&context, mark) }
             }
             .accessibilityHidden(true)
-            ForEach(frames) { frame in
-                groveControl(frame)
+            ForEach(marks, id: \.tree.id) { mark in
+                label(mark)
             }
         }
-        .frame(width: width, height: ForestLayout.height(groves, width: width), alignment: .topLeading)
+        .frame(width: width, height: ForestLayout.height(trees, width: width), alignment: .topLeading)
     }
 
-    /// The patch a grove stands on, and its name underneath.
-    private func ground(_ context: inout GraphicsContext, _ frame: GroveFrame) {
-        let patch = RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-            .path(in: frame.rect)
-        context.fill(patch, with: .color(.dlSurfaceTint.opacity(0.55)))
-    }
-
-    private func groveControl(_ frame: GroveFrame) -> some View {
+    /// The area's emoji under its tree — the identity the catalog already owns,
+    /// and the only text small enough to sit under a 58pt cell. The name itself
+    /// is in the accessibility label and on the screen the tree opens.
+    private func label(_ mark: TreeMark) -> some View {
         VStack(spacing: 0) {
-            // The patch itself is the Canvas's; this half is only the tap target.
             Spacer(minLength: 0)
-            HStack(spacing: 3) {
-                Text(verbatim: frame.grove.emoji)
-                    .font(.system(size: 9))
-                    .accessibilityHidden(true)
-                Text(frame.grove.title)
-                    .font(.system(size: 9, design: .rounded))
-                    .foregroundStyle(Color.dlTextSecondary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
-            }
-            .frame(height: ForestLayout.labelHeight)
+            Text(verbatim: mark.tree.emoji)
+                .font(.system(size: 13))
+                .opacity(mark.tree.isBare ? 0.4 : 1)
+                .accessibilityHidden(true)
+                .frame(height: ForestLayout.labelHeight)
         }
-        .frame(width: frame.rect.width, height: frame.rect.height + ForestLayout.labelHeight)
+        .frame(width: mark.cell.width, height: mark.cell.height)
         .contentShape(Rectangle())
-        .offset(x: frame.rect.minX, y: frame.rect.minY)
-        .onTapGesture { open?(frame.grove.id) }
+        .offset(x: mark.cell.minX, y: mark.cell.minY)
+        .onTapGesture { open?(mark.tree.id) }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(describe?(frame.grove) ?? Text(frame.grove.title))
+        .accessibilityLabel(describe?(mark.tree) ?? Text(mark.tree.title))
         .accessibilityAddTraits(open == nil ? [] : .isButton)
     }
 }
@@ -127,57 +86,57 @@ extension EnvironmentValues {
 
 // MARK: - Previews
 
-/// A fabricated box at a given age — the only way to see a full forest without
-/// months of reviews behind it.
-private func sampleGroves(cards: Int) -> [Grove] {
-    let areas = [("kitchen", "🍳", "Küche"), ("bath", "🛁", "Bad"), ("desk", "✏️", "Schreibtisch"),
-                 ("living", "🛋️", "Wohnen"), ("hall", "🚪", "Flur"), ("outside", "🌳", "Draußen"),
-                 ("school", "🎒", "Schule"), ("work", "💼", "Arbeit")]
-    let stages: [PlantStage] = [.soil, .soil, .seed, .sprout, .stem, .leafed, .bloom, .bloom, .tree, .wilting, .dormant]
-    let kinds: [PlantKind] = [.noun, .verb, .modifier, .phrase]
-    var index = 0
-    return areas.map { area, emoji, title in
-        let count = max(3, cards / areas.count + (area.count * 7) % 11)
-        let plants = (0..<count).map { position -> Plant in
-            index += 1
-            let noise = ForestLayout.noise("\(area)-\(position)", 9)
-            return Plant(
-                id: "\(area)-\(position)",
-                stage: stages[Int(noise * Double(stages.count)) % stages.count],
-                kind: kinds[index % kinds.count],
-                growth: ForestLayout.noise("\(area)-\(position)", 10),
-                touchedToday: noise > 0.9
-            )
-        }
-        return Grove(id: area, emoji: emoji, title: title, plants: plants)
+/// A fabricated box at a given age — the only way to see a grown forest
+/// without months of reviews behind it.
+private func sampleTrees(age: Double) -> [AreaTree] {
+    let areas = [("basics", "👋", "Die ersten Wörter", 27), ("essentials", "⭐", "Alltag", 62),
+                 ("connectors", "🔗", "Verbindungswörter", 15), ("questions", "❓", "Fragewörter", 10),
+                 ("kitchen", "🍳", "Die Küche", 41), ("living", "🛋️", "Wohnzimmer", 36),
+                 ("bath", "🛁", "Bad", 39), ("bedroom", "🛏️", "Schlafzimmer", 37),
+                 ("desk", "✏️", "Schreibtisch", 39), ("hall", "🚪", "Flur", 40),
+                 ("outside", "🌳", "Draußen", 41), ("school", "🎒", "Schule", 33),
+                 ("organization", "🗒️", "Termine", 21), ("admin", "🗂️", "Amt", 38),
+                 ("health", "🩺", "Gesundheit", 36), ("work", "💼", "Arbeit", 38),
+                 ("own", "📦", "Eigene Wörter", 4)]
+    return areas.enumerated().map { index, area in
+        let (id, emoji, title, total) = area
+        // Areas fill in catalog order, so an "age" walks the box the way growth does.
+        let reached = max(0.0, min(1.0, age * Double(areas.count) - Double(index)))
+        let started = Int(Double(total) * min(1, reached * 1.3))
+        let settled = Int(Double(started) * max(0, reached - 0.25))
+        let blossoms = Int(Double(settled) * max(0, reached - 0.55))
+        let fruit = Int(Double(blossoms) * max(0, reached - 0.8))
+        return AreaTree(
+            id: id, emoji: emoji, title: title,
+            leaves: settled - blossoms, blossoms: blossoms - fruit, fruit: fruit,
+            growing: started - settled,
+            fallen: reached > 0.3 && index % 3 == 0 ? 2 : 0,
+            mass: Double(settled) * 0.35 + Double(blossoms) * 0.6 + Double(fruit),
+            tendedToday: index % 5 == 2 && reached > 0
+        )
     }
 }
 
 private struct ForestPreview: View {
-    let cards: Int
-    @State private var style: PlantStyle = .drawn
+    let age: Double
 
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
-            Picker("Stil", selection: $style) {
-                ForEach(PlantStyle.allCases) { Text($0.rawValue).tag($0) }
-            }
-            .pickerStyle(.segmented)
-            ForestCanvas(groves: sampleGroves(cards: cards), style: style, open: { _ in })
+            ForestCanvas(trees: sampleTrees(age: age), open: { _ in })
         }
         .padding(DL.Space.xl)
-        .environment(\.dlContentWidth, 393 - DL.Space.xl * 2)
+        .environment(\.dlContentWidth, 402 - DL.Space.xl * 2)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(Color.dlBackground)
     }
 }
 
-#Preview("Forest · a young box") { ForestPreview(cards: 20) }
+#Preview("Forest · untouched") { ForestPreview(age: 0) }
 
-#Preview("Forest · a working box") { ForestPreview(cards: 200) }
+#Preview("Forest · first weeks") { ForestPreview(age: 0.18) }
 
-#Preview("Forest · a full box") { ForestPreview(cards: 550) }
+#Preview("Forest · a working box") { ForestPreview(age: 0.55) }
 
-#Preview("Forest · dark") {
-    ForestPreview(cards: 200).preferredColorScheme(.dark)
-}
+#Preview("Forest · a grown box") { ForestPreview(age: 1.0) }
+
+#Preview("Forest · dark") { ForestPreview(age: 0.55).preferredColorScheme(.dark) }

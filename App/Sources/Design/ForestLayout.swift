@@ -2,180 +2,149 @@ import Foundation
 
 // MARK: - Forest layout
 //
-// Where every plant stands, as plain values: no SwiftUI, no kern, no drawing.
-// The canvas draws these frames and the accessibility overlay places its
-// buttons on the very same rects, so the picture and its tap targets cannot
-// drift apart.
+// One tree per area, standing in rows. Plain values: no SwiftUI, no kern, no
+// drawing — so a preview can fabricate a box at any age.
 //
-// Nothing is stored per plant. Position, tilt and species variant all come
-// out of a hash of the card id, so a forest is identical on every redraw,
-// survives a relaunch unchanged, and needs no layout state to persist.
+// The unit is the AREA, not the card. A word is a leaf, not a character: five
+// hundred individual plants can only ever be read as texture, and drawing them
+// as objects made a freshly packed area look like a spilled bag rather than
+// like sowing. Sixteen trees can each be looked at.
+//
+// Every tree in a row stands on ONE baseline, so their heights compare
+// directly. That comparison is the picture: a row is a skyline, and unlike the
+// old per-card patches — sized by how many words the CATALOG holds, and so
+// identical on install day and a year in — a skyline changes shape as the box
+// grows.
 
-/// What a plant is grown from — one card's standing, in Design's own words.
-/// The Design-local twin of the box's `GrowthStage`, so components stay
-/// kern-free. Two rungs of the box's ladder may well map onto one of these.
-enum PlantStage {
-    /// A word the box holds and has not started — bare ground, not a plant.
-    case soil
-    case seed
-    case sprout
-    /// Up but bare: in review, not yet settled.
-    case stem
-    /// Leafed out: settled, on its way to landing.
-    case leafed
-    /// In flower: the word has landed.
-    case bloom
-    /// Full grown: a month or more between sights of it.
-    case tree
-    /// Lapsed, drooping until it earns its stability back.
-    case wilting
-    /// Out of rotation.
-    case dormant
-
-    /// How much room the plant needs, before its own growth scale.
-    /// Ordered exactly as the ladder runs, so a grove's tallest plants are its
-    /// furthest-grown ones and the depth sort below reads as depth.
-    var height: CGFloat {
-        switch self {
-        case .soil: return 0.10
-        case .seed: return 0.18
-        case .sprout: return 0.34
-        case .stem: return 0.48
-        case .leafed: return 0.62
-        case .bloom: return 0.78
-        case .tree: return 1.00
-        case .wilting: return 0.42
-        case .dormant: return 0.22
-        }
-    }
-}
-
-/// Which species a plant takes — the card's kind, in Design's own words.
-enum PlantKind {
-    case noun, verb, modifier, phrase
-}
-
-/// One card as the forest sees it.
-struct Plant: Identifiable {
-    let id: String
-    let stage: PlantStage
-    let kind: PlantKind
-    /// 0…1 within the stage — how far the word has come beyond clearing its bar.
-    var growth: Double = 0
-    /// Answered today; the day's growth, marked where it happened.
-    var touchedToday: Bool = false
-}
-
-/// One area's patch of ground.
-struct Grove: Identifiable {
+/// One area's tree, in the terms the drawing needs: counts of marks, not cards.
+struct AreaTree: Identifiable {
     let id: String
     let emoji: String
     let title: String
-    let plants: [Plant]
+    /// Words that have reached the canopy, split by how far each has come.
+    /// A word is exactly one mark — leaf, then blossom, then fruit — so the
+    /// canopy is made of the words themselves and nothing is counted twice.
+    let leaves: Int
+    let blossoms: Int
+    let fruit: Int
+    /// Words started but not yet in the canopy — why the tree is growing at all.
+    let growing: Int
+    /// Words that lapsed: a couple of leaves on the ground, never a smaller tree.
+    let fallen: Int
+    /// The area's aggregate growth, in words-worth-of-stability.
+    let mass: Double
+    /// Something here was answered today.
+    let tendedToday: Bool
+
+    /// Whether anything at all has happened here. A bare area draws as bare
+    /// ground, NOT as empty slots: a catalog the learner never chose must not
+    /// read as a list of things they have failed to do.
+    var isBare: Bool { leaves + blossoms + fruit + growing == 0 }
+
+    /// Everything standing in the canopy.
+    var canopyCount: Int { leaves + blossoms + fruit }
 }
 
-/// One plant placed: where it stands, how big, and how it leans.
-struct PlantMark {
-    let plant: Plant
-    /// The plant's FOOT — where it meets the ground, not its centre.
+/// One tree placed: where it stands, how big, and where its canopy sits.
+struct TreeMark {
+    let tree: AreaTree
+    /// Where the trunk meets the ground.
     let foot: CGPoint
-    let size: CGFloat
-    let tilt: Double
-    /// 0…1 across the grove's depth, 1 nearest the viewer. Fades the back rows.
-    let depth: Double
-}
-
-/// One grove placed, with its plants already in draw order.
-struct GroveFrame: Identifiable {
-    let id: String
-    let grove: Grove
-    let rect: CGRect
-    let marks: [PlantMark]
+    /// Trunk top, and the canopy's centre.
+    let crown: CGPoint
+    let canopyRadius: CGFloat
+    /// The cell the label and the tap target fill.
+    let cell: CGRect
+    /// The ground line this tree's whole row shares.
+    let baseline: CGFloat
 }
 
 enum ForestLayout {
 
-    /// Smallest patch a grove gets, so an untouched area is still a place.
-    static let minGroveWidth: CGFloat = 84
-    static let groveHeight: CGFloat = 76
-    static let gap: CGFloat = DL.Space.s
-    /// The label under each patch.
-    static let labelHeight: CGFloat = 16
+    /// Cell size — six across a 354pt content width, which is the phone.
+    static let minCellWidth: CGFloat = 52
+    static let rowHeight: CGFloat = 62
+    static let labelHeight: CGFloat = 18
+    static let rowGap: CGFloat = DL.Space.s
 
-    /// Lays the groves out in rows across `width`, in the order given.
-    ///
-    /// A grove's width grows with the square root of its plant count, not with the
-    /// count: an area holding forty words is bigger than one holding ten, but not
-    /// four times bigger, or the first area the learner works would take the screen
-    /// and the rest would be slivers.
-    static func frames(_ groves: [Grove], width: CGFloat) -> [GroveFrame] {
-        guard width > 0 else { return [] }
-        let widths = groves.map { grove -> CGFloat in
-            let spread = CGFloat(sqrt(Double(max(grove.plants.count, 1)) / 12))
-            return min(width, max(minGroveWidth, minGroveWidth * spread))
-        }
-        var frames: [GroveFrame] = []
-        var x: CGFloat = 0
-        var y: CGFloat = 0
-        for (grove, groveWidth) in zip(groves, widths) {
-            if x > 0 && x + groveWidth > width {
-                x = 0
-                y += groveHeight + labelHeight + gap
-            }
-            let rect = CGRect(x: x, y: y, width: groveWidth, height: groveHeight)
-            frames.append(GroveFrame(id: grove.id, grove: grove, rect: rect, marks: marks(grove, in: rect)))
-            x += groveWidth + gap
-        }
-        return frames
-    }
+    /// Trunk heights, foot to crown. The floor is a seedling; the ceiling keeps
+    /// the tallest area inside its row instead of towering over the others.
+    static let minTrunk: CGFloat = 9
+    static let maxTrunk: CGFloat = 34
 
-    /// The height the whole forest needs at this width.
-    static func height(_ groves: [Grove], width: CGFloat) -> CGFloat {
-        guard let last = frames(groves, width: width).last else { return 0 }
-        return last.rect.maxY + labelHeight
-    }
+    /// Lays the trees out in rows across `width`, in the order given.
+    static func marks(_ trees: [AreaTree], width: CGFloat) -> [TreeMark] {
+        guard width > 0, !trees.isEmpty else { return [] }
+        let columns = max(2, Int(width / minCellWidth))
+        let cellWidth = width / CGFloat(columns)
 
-    /// Scatters a grove's plants over its patch, back band first.
-    ///
-    /// Where a plant stands comes from its id, NEVER from its place in the list.
-    /// Seed order would otherwise put every word the learner has actually reached
-    /// in the same corner and march the growth rightward as a wedge — the box
-    /// grows in seed order, and a patch that showed it would read as a bug.
-    ///
-    /// Drawing order is the sort: a plant in a nearer band is drawn later and so
-    /// stands in front, which is what makes a patch read as ground rather than as
-    /// a sticker sheet.
-    static func marks(_ grove: Grove, in rect: CGRect) -> [PlantMark] {
-        guard !grove.plants.isEmpty else { return [] }
-        let bands = max(2, min(5, Int(sqrt(Double(grove.plants.count)))))
-
-        return grove.plants.map { plant -> PlantMark in
-            let band = min(bands - 1, Int(noise(plant.id, 4) * Double(bands)))
-            let alongBand = noise(plant.id, 1)
-            let depth = bands == 1 ? 1 : Double(band) / Double(bands - 1)
-
-            // Nearer bands sit lower and draw bigger — the whole of the perspective.
-            let ground = rect.minY + rect.height * CGFloat(0.42 + 0.58 * depth)
-            let spread = (0.62 + 0.38 * depth)
-                * (0.86 + 0.28 * noise(plant.id, 2))
-                * (0.72 + 0.28 * Double(plant.stage.height) + 0.24 * plant.growth)
-
-            return PlantMark(
-                plant: plant,
-                foot: CGPoint(x: rect.minX + rect.width * CGFloat(alongBand.clamped(0.05, 0.95)), y: ground),
-                size: rect.height * 0.38 * CGFloat(spread),
-                tilt: (noise(plant.id, 3) - 0.5) * 0.22,
-                depth: depth
+        return trees.enumerated().map { index, tree in
+            let cell = CGRect(
+                x: CGFloat(index % columns) * cellWidth,
+                y: CGFloat(index / columns) * (rowHeight + labelHeight + rowGap),
+                width: cellWidth,
+                height: rowHeight + labelHeight
+            )
+            // why: one baseline for the whole row — a height only says something
+            // against a ground line its neighbours share.
+            let baseline = cell.minY + rowHeight
+            let foot = CGPoint(x: cell.midX, y: baseline)
+            return TreeMark(
+                tree: tree,
+                foot: foot,
+                crown: CGPoint(x: foot.x, y: baseline - trunkHeight(tree)),
+                canopyRadius: canopyRadius(tree),
+                cell: cell,
+                baseline: baseline
             )
         }
-        // why: back bands must be painted before the ones in front of them, and
-        // the hash that placed the plants left them in no particular order.
-        .sorted { $0.depth < $1.depth }
     }
 
-    /// Stable 0..<1 noise for one (id, property) — the same SplitMix64 finish
-    /// `ConfettiView` uses, over an FNV-1a fold of the id so neighbouring card
-    /// ids ("w41", "w42") land nowhere near each other.
+    static func height(_ trees: [AreaTree], width: CGFloat) -> CGFloat {
+        marks(trees, width: width).last?.cell.maxY ?? 0
+    }
+
+    /// How tall the area stands. Square-rooted, because `mass` is a sum over
+    /// words: without it the first area worked would dwarf every other for
+    /// months, and the skyline would say more about where the learner started
+    /// than about where the box now is.
+    static func trunkHeight(_ tree: AreaTree) -> CGFloat {
+        guard !tree.isBare else { return 0 }
+        return minTrunk + (maxTrunk - minTrunk) * CGFloat(min(1, sqrt(tree.mass / 10)))
+    }
+
+    /// The canopy grows with what is IN it, and saturates: past a couple of
+    /// dozen words the marks pack tighter rather than the tree spreading wider.
+    static func canopyRadius(_ tree: AreaTree) -> CGFloat {
+        guard tree.canopyCount > 0 else { return 0 }
+        return 4.5 + 12 * CGFloat(min(1, sqrt(Double(tree.canopyCount) / 26)))
+    }
+
+    /// Where the canopy's marks sit: a golden-angle spiral, which fills a disc
+    /// evenly at any count with no collision test and no rejection loop — so a
+    /// canopy of three and a canopy of sixty are both even, and neither clumps.
+    ///
+    /// Ordered outward, and the drawing spends that order: fruit and blossom
+    /// take the rim where they read, leaves fill in behind them.
+    static func canopy(_ mark: TreeMark, count: Int) -> [CGPoint] {
+        guard count > 0 else { return [] }
+        let goldenAngle = 2.399963229728653
+        let turn = noise(mark.tree.id, 7) * .pi * 2
+        return (0..<count).map { index in
+            let ratio = (Double(index) + 0.5) / Double(count)
+            let radius = Double(mark.canopyRadius) * sqrt(ratio)
+            let angle = Double(index) * goldenAngle + turn
+            return CGPoint(
+                x: mark.crown.x + CGFloat(cos(angle) * radius),
+                // why: a canopy is wider than it is tall — a circle of marks on
+                // a stick reads as a lollipop, not as a tree.
+                y: mark.crown.y + CGFloat(sin(angle) * radius * 0.78)
+            )
+        }
+    }
+
+    /// Stable 0..<1 noise for one (id, property) — the SplitMix64 finish
+    /// `ConfettiView` uses, over an FNV-1a fold of the id.
     static func noise(_ id: String, _ salt: Int) -> Double {
         var hash: UInt64 = 0xCBF2_9CE4_8422_2325
         for byte in id.utf8 {
@@ -187,8 +156,4 @@ enum ForestLayout {
         x ^= x >> 33
         return Double(x >> 11) / Double(1 << 53)
     }
-}
-
-private extension Double {
-    func clamped(_ low: Double, _ high: Double) -> Double { min(max(self, low), high) }
 }

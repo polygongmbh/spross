@@ -8,7 +8,7 @@
 #   scripts/run-sim.sh -- -uitest-source de -uitest-target sw   — DEBUG launch args
 #
 # Everything after `--` is passed to the app (see AppModel.start(): -uitest-source,
-# -uitest-target, -uitest-screen settings, -uitest-autostart 1, -uitest-trainer numbers).
+# -uitest-target, -uitest-screen box, -uitest-autostart 1, -uitest-trainer numbers).
 set -eu
 cd "$(dirname "$0")/.."
 
