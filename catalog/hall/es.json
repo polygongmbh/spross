@@ -223,6 +223,18 @@
     "adentro"
    ]
   },
+  "house": {
+   "text": "casa",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "live": {
+   "text": "vivir",
+   "notes": {
+    "de": "vivir = wohnen und leben."
+   }
+  },
   "do-you-have-the-keys": {
    "text": "¿Tienes las llaves?",
    "variants": [
@@ -278,6 +290,12 @@
   },
   "put-on-the-jacket": {
    "text": "ponerse la chaqueta"
+  },
+  "i-live-here": {
+   "text": "Vivo aquí."
+  },
+  "the-house-is-big": {
+   "text": "La casa es grande."
   }
  }
 }

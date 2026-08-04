@@ -1,0 +1,51 @@
+{
+ "title": "Die wichtigsten Verben",
+ "subtitle": "Was du in jedem Raum und auf jedem Weg brauchst.",
+ "words": {
+  "go": {
+   "text": "gehen"
+  },
+  "come": {
+   "text": "kommen"
+  },
+  "have": {
+   "text": "haben"
+  },
+  "give": {
+   "text": "geben"
+  },
+  "take": {
+   "text": "nehmen"
+  },
+  "see": {
+   "text": "sehen"
+  },
+  "make": {
+   "text": "machen"
+  },
+  "like": {
+   "text": "mögen"
+  },
+  "can": {
+   "text": "können"
+  },
+  "think": {
+   "text": "denken"
+  },
+  "wait": {
+   "text": "warten"
+  },
+  "do-you-have-water": {
+   "text": "Haben Sie Wasser?",
+   "variants": [
+    "Hast du Wasser?"
+   ]
+  },
+  "where-are-you-from": {
+   "text": "Woher kommen Sie?",
+   "variants": [
+    "Woher kommst du?"
+   ]
+  }
+ }
+}

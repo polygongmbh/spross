@@ -218,6 +218,18 @@
     "plural": "="
    }
   },
+  "water": {
+   "text": "Wasser",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "eat": {
+   "text": "essen"
+  },
+  "drink": {
+   "text": "trinken"
+  },
   "im-hungry": {
    "text": "Ich habe Hunger."
   },
@@ -241,6 +253,9 @@
   },
   "without-salt-please": {
    "text": "Ohne Salz, bitte."
+  },
+  "the-food-is-ready": {
+   "text": "Das Essen ist fertig!"
   }
  }
 }

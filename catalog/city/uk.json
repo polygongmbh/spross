@@ -71,6 +71,18 @@
     "plural": "мости"
    }
   },
+  "money": {
+   "text": "гроші",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "buy": {
+   "text": "купувати"
+  },
+  "pay": {
+   "text": "платити"
+  },
   "where-is-the-post-office": {
    "text": "Де пошта?"
   },
@@ -91,6 +103,18 @@
   },
   "i-live-in-this-neighbourhood": {
    "text": "Я живу в цьому районі."
+  },
+  "how-much-does-this-cost": {
+   "text": "Скільки це коштує?"
+  },
+  "that-is-too-expensive": {
+   "text": "Це занадто дорого."
+  },
+  "i-have-no-money": {
+   "text": "У мене немає грошей."
+  },
+  "a-lot-of-money": {
+   "text": "багато грошей"
   }
  }
 }

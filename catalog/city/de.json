@@ -135,6 +135,18 @@
     "plural": "-n"
    }
   },
+  "money": {
+   "text": "Geld",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "buy": {
+   "text": "kaufen"
+  },
+  "pay": {
+   "text": "bezahlen"
+  },
   "where-is-the-post-office": {
    "text": "Wo ist die Post?"
   },
@@ -152,6 +164,18 @@
   },
   "i-live-in-this-neighbourhood": {
    "text": "Ich wohne in diesem Viertel."
+  },
+  "how-much-does-this-cost": {
+   "text": "Wie viel kostet das?"
+  },
+  "that-is-too-expensive": {
+   "text": "Das ist zu teuer."
+  },
+  "i-have-no-money": {
+   "text": "Ich habe kein Geld."
+  },
+  "a-lot-of-money": {
+   "text": "viel Geld"
   }
  }
 }

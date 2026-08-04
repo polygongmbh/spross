@@ -119,6 +119,27 @@
   "inside": {
    "text": "всередині"
   },
+  "house": {
+   "text": "будинок",
+   "synonyms": [
+    "дім"
+   ],
+   "grammar": {
+    "plural": "будинки"
+   },
+   "notes": {
+    "de": "будинок = das Gebäude · дім = Heim, Zuhause."
+   }
+  },
+  "live": {
+   "text": "жити",
+   "synonyms": [
+    "мешкати"
+   ],
+   "notes": {
+    "de": "жити = leben und wohnen (Alltag) · мешкати = wohnen, amtlich."
+   }
+  },
   "do-you-have-the-keys": {
    "text": "У тебе є ключі?"
   },
@@ -148,6 +169,12 @@
    "variants": [
     "Роззуйся."
    ]
+  },
+  "i-live-here": {
+   "text": "Я живу тут."
+  },
+  "the-house-is-big": {
+   "text": "Будинок великий."
   }
  }
 }

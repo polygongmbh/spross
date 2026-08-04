@@ -177,6 +177,16 @@
   "inside": {
    "text": "drinnen"
   },
+  "house": {
+   "text": "Haus",
+   "grammar": {
+    "gender": "das",
+    "plural": "Häuser"
+   }
+  },
+  "live": {
+   "text": "wohnen"
+  },
   "do-you-have-the-keys": {
    "text": "Hast du die Schlüssel?"
   },
@@ -206,6 +216,12 @@
   },
   "take-off-your-shoes": {
    "text": "Zieh deine Schuhe aus."
+  },
+  "i-live-here": {
+   "text": "Ich wohne hier."
+  },
+  "the-house-is-big": {
+   "text": "Das Haus ist groß."
   }
  }
 }

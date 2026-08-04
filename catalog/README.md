@@ -506,11 +506,11 @@ The area is the folder, and three things ride on it:
 it is the produce prompt's disambiguator,
 `components` and `feminineOf` resolve **inside** it,
 and it is the unit a contributor writes and reviews.
-So a concept sits with the scene it belongs to —
-unless a phrase holds it where it is:
-`person`, `human` and `friend` stay in `essentials` because five essentials phrases
-name them (or an essentials adjective) as components,
-and a phrase can only ever gate on a word of its own area.
+So a concept sits with the scene it belongs to,
+and a phrase gating on it travels with it —
+`components` is an unlock gate, not a claim about the sentence's words,
+so a phrase whose second component would stay behind simply drops it
+(`old-people` keeps `person`, lets go of `old`, and unlocks a little earlier).
 Orientation words (`left`, `right`) sit in `nature` for want of a better scene:
 they belong to no room and to no errand,
 and an area of two words would earn nothing.

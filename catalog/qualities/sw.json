@@ -1,0 +1,110 @@
+{
+ "title": "Sifa",
+ "subtitle": "Kubwa au ndogo, nzuri au mbaya.",
+ "words": {
+  "good": {
+   "text": "-zuri",
+   "variants": [
+    "nzuri",
+    "mzuri",
+    "wazuri",
+    "kizuri",
+    "vizuri",
+    "mazuri",
+    "mizuri"
+   ],
+   "notes": {
+    "de": "Adjektive bekommen die Vorsilbe der Nomenklasse: mtu mzuri, kitu kizuri, nyumba nzuri."
+   }
+  },
+  "bad": {
+   "text": "-baya",
+   "variants": [
+    "mbaya",
+    "wabaya",
+    "kibaya",
+    "vibaya",
+    "mabaya",
+    "mibaya"
+   ]
+  },
+  "big": {
+   "text": "-kubwa",
+   "variants": [
+    "mkubwa",
+    "wakubwa",
+    "kikubwa",
+    "vikubwa",
+    "makubwa",
+    "mikubwa"
+   ]
+  },
+  "small": {
+   "text": "-dogo",
+   "variants": [
+    "ndogo",
+    "mdogo",
+    "wadogo",
+    "kidogo",
+    "vidogo",
+    "madogo",
+    "midogo"
+   ]
+  },
+  "much": {
+   "text": "-ingi",
+   "variants": [
+    "nyingi",
+    "wengi",
+    "mengi",
+    "vingi",
+    "mingi",
+    "mwingi",
+    "kingi"
+   ],
+   "notes": {
+    "de": "Vorsilbe verschmilzt: watu wengi, maji mengi, pesa nyingi."
+   }
+  },
+  "new": {
+   "text": "-pya",
+   "variants": [
+    "mpya",
+    "wapya",
+    "jipya",
+    "kipya",
+    "vipya",
+    "mapya",
+    "mipya"
+   ]
+  },
+  "old": {
+   "text": "-zee",
+   "synonyms": [
+    "kuukuu"
+   ],
+   "variants": [
+    "mzee",
+    "wazee"
+   ],
+   "notes": {
+    "de": "-zee bei Menschen: mtu mzee · kuukuu bei Sachen: gari kuukuu."
+   }
+  },
+  "slow": {
+   "text": "polepole",
+   "notes": {
+    "de": "unveränderlich — kein Klassenpräfix: anaenda polepole."
+   }
+  },
+  "fast": {
+   "text": "haraka",
+   "notes": {
+    "de": "unveränderlich · attributiv mit -a: gari la haraka."
+   }
+  },
+  "a-lot-of-water": {
+   "text": "maji mengi"
+  }
+ }
+}

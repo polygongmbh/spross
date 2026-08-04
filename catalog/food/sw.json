@@ -176,6 +176,18 @@
   "dinner": {
    "text": "chakula cha jioni"
   },
+  "water": {
+   "text": "maji",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "eat": {
+   "text": "kula"
+  },
+  "drink": {
+   "text": "kunywa"
+  },
   "im-hungry": {
    "text": "Nina njaa."
   },
@@ -196,6 +208,9 @@
   },
   "without-salt-please": {
    "text": "Bila chumvi, tafadhali."
+  },
+  "the-food-is-ready": {
+   "text": "Chakula kiko tayari!"
   }
  }
 }

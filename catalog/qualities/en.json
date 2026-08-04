@@ -1,0 +1,36 @@
+{
+ "title": "Qualities",
+ "subtitle": "Big or small, good or bad.",
+ "words": {
+  "good": {
+   "text": "good"
+  },
+  "bad": {
+   "text": "bad"
+  },
+  "big": {
+   "text": "big"
+  },
+  "small": {
+   "text": "small"
+  },
+  "much": {
+   "text": "much"
+  },
+  "new": {
+   "text": "new"
+  },
+  "old": {
+   "text": "old"
+  },
+  "slow": {
+   "text": "slow"
+  },
+  "fast": {
+   "text": "fast"
+  },
+  "a-lot-of-water": {
+   "text": "a lot of water"
+  }
+ }
+}

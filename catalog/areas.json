@@ -14,16 +14,20 @@
     "emoji": "👋"
    },
    {
-    "area": "essentials",
-    "emoji": "⭐"
+    "area": "verbs",
+    "emoji": "🏃"
    },
    {
-    "area": "time",
-    "emoji": "🕒"
+    "area": "qualities",
+    "emoji": "📏"
    },
    {
     "area": "colours",
     "emoji": "🎨"
+   },
+   {
+    "area": "time",
+    "emoji": "🕒"
    },
    {
     "area": "language",

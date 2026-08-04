@@ -1,0 +1,36 @@
+{
+ "title": "Eigenschaften",
+ "subtitle": "Groß oder klein, gut oder schlecht.",
+ "words": {
+  "good": {
+   "text": "gut"
+  },
+  "bad": {
+   "text": "schlecht"
+  },
+  "big": {
+   "text": "groß"
+  },
+  "small": {
+   "text": "klein"
+  },
+  "much": {
+   "text": "viel"
+  },
+  "new": {
+   "text": "neu"
+  },
+  "old": {
+   "text": "alt"
+  },
+  "slow": {
+   "text": "langsam"
+  },
+  "fast": {
+   "text": "schnell"
+  },
+  "a-lot-of-water": {
+   "text": "viel Wasser"
+  }
+ }
+}

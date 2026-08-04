@@ -160,6 +160,21 @@
   "emoji": "🍽️"
  },
  {
+  "slug": "water",
+  "kind": "noun",
+  "emoji": "🌊"
+ },
+ {
+  "slug": "eat",
+  "kind": "verb",
+  "emoji": "🍽️"
+ },
+ {
+  "slug": "drink",
+  "kind": "verb",
+  "emoji": "🥤"
+ },
+ {
   "slug": "im-hungry",
   "kind": "phrase",
   "emoji": "🤤",
@@ -216,6 +231,14 @@
   "emoji": "🧂",
   "components": [
    "salt"
+  ]
+ },
+ {
+  "slug": "the-food-is-ready",
+  "kind": "phrase",
+  "emoji": "🍲",
+  "components": [
+   "eat"
   ]
  }
 ]

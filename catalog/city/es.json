@@ -122,6 +122,21 @@
     "gender": "el"
    }
   },
+  "money": {
+   "text": "dinero",
+   "variants": [
+    "plata"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "buy": {
+   "text": "comprar"
+  },
+  "pay": {
+   "text": "pagar"
+  },
   "where-is-the-post-office": {
    "text": "¿Dónde está la oficina de correos?",
    "variants": [
@@ -145,6 +160,27 @@
   },
   "i-live-in-this-neighbourhood": {
    "text": "Vivo en este barrio."
+  },
+  "how-much-does-this-cost": {
+   "text": "¿Cuánto cuesta esto?",
+   "variants": [
+    "¿Cuánto cuesta?",
+    "¿Cuánto vale esto?",
+    "¿Cuánto vale?"
+   ]
+  },
+  "that-is-too-expensive": {
+   "text": "Eso es demasiado caro.",
+   "variants": [
+    "Es demasiado caro.",
+    "Esto es demasiado caro."
+   ]
+  },
+  "i-have-no-money": {
+   "text": "No tengo dinero."
+  },
+  "a-lot-of-money": {
+   "text": "mucho dinero"
   }
  }
 }

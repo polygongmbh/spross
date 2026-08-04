@@ -203,6 +203,21 @@
     "gender": "la"
    }
   },
+  "water": {
+   "text": "agua",
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "feminin, steht im Singular aber mit el: el agua fría · Plural las aguas."
+   }
+  },
+  "eat": {
+   "text": "comer"
+  },
+  "drink": {
+   "text": "beber"
+  },
   "im-hungry": {
    "text": "Tengo hambre."
   },
@@ -223,6 +238,9 @@
   },
   "without-salt-please": {
    "text": "Sin sal, por favor."
+  },
+  "the-food-is-ready": {
+   "text": "¡La comida está lista!"
   }
  }
 }

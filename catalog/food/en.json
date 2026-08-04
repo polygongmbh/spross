@@ -107,6 +107,15 @@
   "dinner": {
    "text": "dinner"
   },
+  "water": {
+   "text": "water"
+  },
+  "eat": {
+   "text": "to eat"
+  },
+  "drink": {
+   "text": "to drink"
+  },
   "im-hungry": {
    "text": "I'm hungry."
   },
@@ -127,6 +136,9 @@
   },
   "without-salt-please": {
    "text": "Without salt, please."
+  },
+  "the-food-is-ready": {
+   "text": "The food is ready!"
   }
  }
 }

@@ -1,0 +1,51 @@
+[
+ {
+  "slug": "good",
+  "kind": "adjective",
+  "emoji": "👍"
+ },
+ {
+  "slug": "bad",
+  "kind": "adjective",
+  "emoji": "👎"
+ },
+ {
+  "slug": "big",
+  "kind": "adjective"
+ },
+ {
+  "slug": "small",
+  "kind": "adjective"
+ },
+ {
+  "slug": "much",
+  "kind": "adjective"
+ },
+ {
+  "slug": "new",
+  "kind": "adjective",
+  "emoji": "🆕"
+ },
+ {
+  "slug": "old",
+  "kind": "adjective"
+ },
+ {
+  "slug": "slow",
+  "kind": "adjective",
+  "emoji": "🐌"
+ },
+ {
+  "slug": "fast",
+  "kind": "adjective",
+  "emoji": "⚡"
+ },
+ {
+  "slug": "a-lot-of-water",
+  "kind": "phrase",
+  "emoji": "💦",
+  "components": [
+   "much"
+  ]
+ }
+]

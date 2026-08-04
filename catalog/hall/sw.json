@@ -149,6 +149,15 @@
   "inside": {
    "text": "ndani"
   },
+  "house": {
+   "text": "nyumba",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "live": {
+   "text": "kuishi"
+  },
   "do-you-have-the-keys": {
    "text": "Unazo funguo?"
   },
@@ -175,6 +184,12 @@
   },
   "take-off-your-shoes": {
    "text": "Vua viatu vyako."
+  },
+  "i-live-here": {
+   "text": "Ninaishi hapa."
+  },
+  "the-house-is-big": {
+   "text": "Nyumba ni kubwa."
   }
  }
 }

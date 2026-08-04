@@ -104,6 +104,15 @@
   "dinner": {
    "text": "вечеря"
   },
+  "water": {
+   "text": "вода"
+  },
+  "eat": {
+   "text": "їсти"
+  },
+  "drink": {
+   "text": "пити"
+  },
   "im-hungry": {
    "text": "Я голодний.",
    "variants": [
@@ -130,6 +139,9 @@
   },
   "without-salt-please": {
    "text": "Без солі, будь ласка."
+  },
+  "the-food-is-ready": {
+   "text": "Їжа готова!"
   }
  }
 }

@@ -101,6 +101,12 @@
   "inside": {
    "text": "inside"
   },
+  "house": {
+   "text": "house"
+  },
+  "live": {
+   "text": "to live"
+  },
   "do-you-have-the-keys": {
    "text": "Do you have the keys?"
   },
@@ -127,6 +133,12 @@
   },
   "take-off-your-shoes": {
    "text": "Take off your shoes."
+  },
+  "i-live-here": {
+   "text": "I live here."
+  },
+  "the-house-is-big": {
+   "text": "The house is big."
   }
  }
 }

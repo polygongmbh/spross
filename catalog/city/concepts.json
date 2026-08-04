@@ -94,6 +94,21 @@
   "emoji": "🌉"
  },
  {
+  "slug": "money",
+  "kind": "noun",
+  "emoji": "💰"
+ },
+ {
+  "slug": "buy",
+  "kind": "verb",
+  "emoji": "🛒"
+ },
+ {
+  "slug": "pay",
+  "kind": "verb",
+  "emoji": "💳"
+ },
+ {
   "slug": "where-is-the-post-office",
   "kind": "phrase",
   "emoji": "🏤",
@@ -138,6 +153,34 @@
   "kind": "phrase",
   "components": [
    "neighbourhood"
+  ]
+ },
+ {
+  "slug": "how-much-does-this-cost",
+  "kind": "phrase",
+  "emoji": "💶",
+  "components": []
+ },
+ {
+  "slug": "that-is-too-expensive",
+  "kind": "phrase",
+  "emoji": "💸",
+  "components": []
+ },
+ {
+  "slug": "i-have-no-money",
+  "kind": "phrase",
+  "emoji": "🪙",
+  "components": [
+   "money"
+  ]
+ },
+ {
+  "slug": "a-lot-of-money",
+  "kind": "phrase",
+  "emoji": "🤑",
+  "components": [
+   "money"
   ]
  }
 ]
