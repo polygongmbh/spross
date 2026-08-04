@@ -2,6 +2,25 @@
 
 ## Unreleased
 
+- **The box is arranged the way you would look for something.** Body parts were filed under
+  the doctor, food sat among the pots, and everything outside the front door — buses, shops,
+  rivers, weather — shared one shelf called "Draußen". The catalog now opens on the people
+  and the body, keeps the kitchen for cooking and gives food a shelf of its own, and splits
+  the outdoors into getting around, the town and nature. The language course stays with the
+  first steps where a beginner needs it, while the school moves in beside work, and the
+  doctor's visit is no longer the same shelf as how you feel. No word starts over: a card
+  that changed shelves keeps everything it had learned about you. Shelf names are plain names
+  again, with the cheerful line moved underneath where it belongs — and in every language,
+  rather than only in Swahili and Ukrainian.
+
+- **The words that were already spoken aloud finally have cards.** The bundled Swahili
+  recordings had long been saying words the box never taught — chakula, mkono, duka, kitabu —
+  because they only ever appeared inside a sentence. They are cards now, along with the
+  family, the body from head to foot, food and drink, the town and the road, the colours, the
+  months and the year, and the small words a beginner reaches for constantly and the catalog
+  simply lacked: if, and, or, because, when, why. Most of them arrive with a human voice
+  already attached.
+
 ## 3.7.0 — 2026-08-03
 
 - **Words you pack on a finished day arrive in the round you open.** Packing an area once the
