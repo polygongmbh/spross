@@ -112,6 +112,11 @@ struct TreeMark {
     var skeleton: TreeSkeleton {
         TreeSkeleton.grown(
             seed: SplitMix64(tree.id).seed,
+            // why: generations come from the TREE, never from the height it is
+            // being drawn at — a transition scales the height every frame, and a
+            // crown that grew a generation halfway through would reshuffle every
+            // slot under the marks already hanging on them.
+            depth: TreeSkeleton.generations(for: tree),
             in: CGRect(x: foot.x - height * 0.6, y: foot.y - height,
                        width: max(height * 1.2, 1), height: max(height, 1))
         )

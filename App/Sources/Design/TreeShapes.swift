@@ -212,14 +212,14 @@ enum TreeShapes {
     /// so the one unambiguously good thing looked like a loss.
     private static func fruit(_ context: inout GraphicsContext, at point: CGPoint, size: CGFloat) {
         var stalk = Path()
-        stalk.move(to: CGPoint(x: point.x, y: point.y - size * 0.52))
-        stalk.addLine(to: CGPoint(x: point.x, y: point.y - size * 0.2))
+        stalk.move(to: CGPoint(x: point.x, y: point.y - size * 0.62))
+        stalk.addLine(to: CGPoint(x: point.x, y: point.y - size * 0.26))
         context.stroke(stalk, with: .color(.dlBorderStrong),
                        style: StrokeStyle(lineWidth: max(0.6, size * 0.1), lineCap: .round))
-        context.fill(circle(point, size * 0.46), with: .color(.dlAccent))
+        context.fill(circle(point, size * 0.56), with: .color(.dlAccent))
         // A highlight: at this size it is the difference between fruit and a dot.
-        context.fill(circle(CGPoint(x: point.x - size * 0.14, y: point.y - size * 0.14),
-                            size * 0.13),
+        context.fill(circle(CGPoint(x: point.x - size * 0.17, y: point.y - size * 0.17),
+                            size * 0.15),
                      with: .color(.dlSurface.opacity(0.65)))
     }
 
@@ -232,7 +232,7 @@ enum TreeShapes {
     /// ellipse and a fruit's disc without relying on hue — at a third of the ink.
     private static func blossom(_ context: inout GraphicsContext, at point: CGPoint,
                                 size: CGFloat, angle: Double) {
-        let span = size * 0.92
+        let span = size * 1.12
         var lobes = Path()
         for turn in [0.0, Double.pi / 2] {
             let petal = Path(ellipseIn: CGRect(x: -span / 2, y: -span * 0.22,

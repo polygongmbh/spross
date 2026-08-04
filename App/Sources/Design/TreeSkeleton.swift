@@ -55,13 +55,30 @@ struct TreeSkeleton {
 
     /// Structural generations. Four is where a deciduous tree stops gaining
     /// anything at this size; past it the segments are under a point.
-    static let depth = 4
+    static let maxDepth = 4
 
+    /// How many generations an area of this standing has earned.
+    ///
+    /// A young area used to get a full four-generation crown squeezed into a
+    /// dozen points, which read as a scribble rather than as a small tree: the
+    /// branch COUNT said "old" while the size said "new". A sapling forks twice,
+    /// and a tree earns its next generation by growing.
+    ///
+    /// Taken from the area's standing rather than from the size it is drawn at,
+    /// so the hero and the forest show one tree and a transition cannot grow a
+    /// generation halfway through.
+    static func generations(for tree: AreaTree) -> Int {
+        switch ForestLayout.treeHeight(tree) {
+        case ..<19: return 2
+        case ..<34: return 3
+        default: return maxDepth
+        }
+    }
 
     /// Grows one tree, fitted into `rect` with its foot on the bottom edge.
-    /// `seed` alone decides the shape, so one area's tree is the same tree
-    /// wherever it is drawn and however many words hang on it.
-    static func grown(seed: UInt64, in rect: CGRect) -> TreeSkeleton {
+    /// `seed` and `depth` alone decide the shape, so one area's tree is the same
+    /// tree wherever it is drawn and however many words hang on it.
+    static func grown(seed: UInt64, depth: Int, in rect: CGRect) -> TreeSkeleton {
         var rng = SplitMix64(seed: seed)
         var segments: [TreeSegment] = []
         var slots: [LeafSlot] = []
@@ -69,7 +86,7 @@ struct TreeSkeleton {
         // Grown in unit space pointing up, then measured and fitted: the shape
         // must not depend on the box it is asked to fill.
         branch(from: .zero, angle: -.pi / 2, length: 0.30, width: 0.058,
-               depth: 0, side: 1, rng: &rng, segments: &segments, slots: &slots)
+               depth: 0, limit: depth, side: 1, rng: &rng, segments: &segments, slots: &slots)
 
         let fitted = fit(segments: segments, slots: slots, in: rect)
         // Ranked twig by twig, the twigs themselves in a shuffled order: a
@@ -89,7 +106,7 @@ struct TreeSkeleton {
 
     private static func branch(
         from origin: CGPoint, angle: Double, length: Double, width: Double,
-        depth: Int, side: Double, rng: inout SplitMix64,
+        depth: Int, limit: Int, side: Double, rng: inout SplitMix64,
         segments: inout [TreeSegment], slots: inout [LeafSlot]
     ) {
         let twig = segments.count
@@ -105,19 +122,24 @@ struct TreeSkeleton {
                                     startWidth: CGFloat(width), endWidth: CGFloat(endWidth),
                                     depth: depth))
 
-        // Leaves hang on the last two generations only — foliage sits at the
-        // outside of a tree, never down among the structural limbs.
-        if depth >= self.depth - 1 {
-            for (index, t) in [0.42, 0.68, 0.92].enumerated() {
-                let point = bezier(origin, control, end, t)
-                slots.append(LeafSlot(point: point, angle: tangent(origin, control, end, t),
-                                      side: index.isMultiple(of: 2) ? side : -side, twig: twig))
-            }
+        // Where leaves may hang. Terminal twigs carry the most, the generation
+        // behind them carries some, and the limb behind THAT carries a couple —
+        // foliage thins toward the trunk rather than stopping dead at the tips,
+        // which is what left the branches bare. Deliberately few slots in total:
+        // an area's words have to be able to fill the tree they hang on.
+        let carries: [Double]
+        switch limit - depth {
+        case 0: carries = [0.34, 0.62, 0.88]
+        case 1: carries = [0.55, 0.85]
+        case 2: carries = limit >= 3 ? [0.72] : []
+        default: carries = []
         }
-        guard depth < self.depth else {
-            slots.append(LeafSlot(point: end, angle: angle, side: side, twig: twig))
-            return
+        for (index, t) in carries.enumerated() {
+            let point = bezier(origin, control, end, t)
+            slots.append(LeafSlot(point: point, angle: tangent(origin, control, end, t),
+                                  side: index.isMultiple(of: 2) ? side : -side, twig: twig))
         }
+        guard depth < limit else { return }
 
         // Branches reach for the light a little more with every generation:
         // the parent's direction, bent a fraction of the way back toward up.
@@ -128,16 +150,17 @@ struct TreeSkeleton {
         let lateral = lifted + side * rng.range(0.52, 0.84)
 
         branch(from: end, angle: dominant, length: length * 0.80 * rng.range(0.92, 1.08),
-               width: width * 0.82, depth: depth + 1, side: -side,
+               width: width * 0.82, depth: depth + 1, limit: limit, side: -side,
                rng: &rng, segments: &segments, slots: &slots)
         branch(from: end, angle: lateral, length: length * 0.62 * rng.range(0.85, 1.15),
-               width: width * 0.57, depth: depth + 1, side: -side,
+               width: width * 0.57, depth: depth + 1, limit: limit, side: -side,
                rng: &rng, segments: &segments, slots: &slots)
         // A third limb low down, sometimes: perfect two-way forking all the way
         // down reads as a diagram of a tree rather than as one.
         if depth <= 1, rng.next() < 0.22 {
             branch(from: end, angle: lifted - side * rng.range(0.52, 0.84),
-                   length: length * 0.55, width: width * 0.45, depth: depth + 1, side: side,
+                   length: length * 0.55, width: width * 0.45, depth: depth + 1,
+                   limit: limit, side: side,
                    rng: &rng, segments: &segments, slots: &slots)
         }
     }
