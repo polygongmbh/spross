@@ -34,21 +34,14 @@ struct GrowingTreeView: View, Animatable {
         .accessibilityHidden(true)
     }
 
-    /// The mark with the moment's own trunk and canopy, keeping the finished
-    /// tree's identity so placement stays put.
+    /// The mark at this moment's height, keeping the finished tree's identity
+    /// so the skeleton — and therefore every slot — stays put.
     private func geometry(_ mark: TreeMark, _ shown: AreaTree) -> TreeMark {
-        let full = ForestLayout.trunkHeight(transition.after)
-        let now = ForestLayout.trunkHeight(shown)
-        let scale = full > 0 ? now / full : 0
-        return TreeMark(
-            tree: mark.tree,
-            foot: mark.foot,
-            crown: CGPoint(x: mark.crown.x,
-                           y: mark.foot.y + (mark.crown.y - mark.foot.y) * scale),
-            canopyRadius: mark.canopyRadius * scale,
-            cell: mark.cell,
-            baseline: mark.baseline
-        )
+        let full = ForestLayout.treeHeight(transition.after)
+        let now = ForestLayout.treeHeight(shown)
+        return TreeMark(tree: mark.tree, foot: mark.foot,
+                        height: mark.height * (full > 0 ? now / full : 0),
+                        cell: mark.cell, baseline: mark.baseline)
     }
 }
 
