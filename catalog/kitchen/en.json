@@ -68,6 +68,18 @@
   "cup": {
    "text": "cup"
   },
+  "bowl": {
+   "text": "bowl"
+  },
+  "basket": {
+   "text": "basket"
+  },
+  "tin": {
+   "text": "tin",
+   "variants": [
+    "can"
+   ]
+  },
   "the-knife-is-sharp": {
    "text": "The knife is sharp!"
   },

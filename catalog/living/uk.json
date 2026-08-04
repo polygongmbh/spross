@@ -107,6 +107,18 @@
   "quiet": {
    "text": "тихий"
   },
+  "furniture": {
+   "text": "меблі",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "game": {
+   "text": "гра",
+   "grammar": {
+    "plural": "ігри"
+   }
+  },
   "turn-on-the-tv": {
    "text": "Увімкни телевізор."
   },

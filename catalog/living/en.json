@@ -101,6 +101,12 @@
   "quiet": {
    "text": "quiet"
   },
+  "furniture": {
+   "text": "furniture"
+  },
+  "game": {
+   "text": "game"
+  },
   "turn-on-the-tv": {
    "text": "Turn on the television.",
    "variants": [

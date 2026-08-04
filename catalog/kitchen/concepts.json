@@ -105,6 +105,21 @@
   "emoji": "🍵"
  },
  {
+  "slug": "bowl",
+  "kind": "noun",
+  "emoji": "🥣"
+ },
+ {
+  "slug": "basket",
+  "kind": "noun",
+  "emoji": "🧺"
+ },
+ {
+  "slug": "tin",
+  "kind": "noun",
+  "emoji": "🥫"
+ },
+ {
   "slug": "the-knife-is-sharp",
   "kind": "phrase",
   "emoji": "🔪",

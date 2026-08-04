@@ -146,6 +146,18 @@
   "quiet": {
    "text": "kimya"
   },
+  "furniture": {
+   "text": "samani",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "game": {
+   "text": "mchezo",
+   "grammar": {
+    "plural": "michezo"
+   }
+  },
   "turn-on-the-tv": {
    "text": "Washa televisheni."
   },

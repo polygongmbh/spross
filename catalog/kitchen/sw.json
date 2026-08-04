@@ -98,6 +98,24 @@
     "plural": "vikombe"
    }
   },
+  "bowl": {
+   "text": "bakuli",
+   "grammar": {
+    "plural": "mabakuli"
+   }
+  },
+  "basket": {
+   "text": "kikapu",
+   "grammar": {
+    "plural": "vikapu"
+   }
+  },
+  "tin": {
+   "text": "kopo",
+   "grammar": {
+    "plural": "makopo"
+   }
+  },
   "the-knife-is-sharp": {
    "text": "Kisu ni kikali!"
   },

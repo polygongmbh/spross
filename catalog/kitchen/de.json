@@ -109,6 +109,27 @@
     "plural": "-n"
    }
   },
+  "bowl": {
+   "text": "Schüssel",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "basket": {
+   "text": "Korb",
+   "grammar": {
+    "gender": "der",
+    "plural": "Körbe"
+   }
+  },
+  "tin": {
+   "text": "Dose",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
   "the-knife-is-sharp": {
    "text": "Das Messer ist scharf!"
   },

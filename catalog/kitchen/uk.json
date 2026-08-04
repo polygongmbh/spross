@@ -71,6 +71,21 @@
   "cup": {
    "text": "чашка"
   },
+  "bowl": {
+   "text": "миска"
+  },
+  "basket": {
+   "text": "кошик"
+  },
+  "tin": {
+   "text": "банка",
+   "variants": [
+    "бляшанка"
+   ],
+   "notes": {
+    "de": "банка ist auch das Einmachglas; die Blechdose allein heißt бляшанка."
+   }
+  },
   "the-knife-is-sharp": {
    "text": "Ніж гострий!"
   },

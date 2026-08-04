@@ -215,6 +215,21 @@
     "de": "leise reden oder stellen = bajo (habla bajo); ein leises Gerät oder Zimmer ist silencioso."
    }
   },
+  "furniture": {
+   "text": "muebles",
+   "grammar": {
+    "gender": "los"
+   },
+   "notes": {
+    "de": "meist im Plural: los muebles; el mueble ist ein einzelnes Möbelstück."
+   }
+  },
+  "game": {
+   "text": "juego",
+   "grammar": {
+    "gender": "el"
+   }
+  },
   "turn-on-the-tv": {
    "text": "Enciende la televisión.",
    "variants": [

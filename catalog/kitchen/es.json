@@ -140,6 +140,32 @@
     "gender": "la"
    }
   },
+  "bowl": {
+   "text": "cuenco",
+   "variants": [
+    "bol",
+    "tazón"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "basket": {
+   "text": "cesta",
+   "variants": [
+    "cesto",
+    "canasta"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "tin": {
+   "text": "lata",
+   "grammar": {
+    "gender": "la"
+   }
+  },
   "the-knife-is-sharp": {
    "text": "¡El cuchillo está afilado!",
    "variants": [
