@@ -165,23 +165,48 @@ enum ForestLayout {
             // spreads out rather than crowding against the left edge.
             let gap = max(0, width - taken) / CGFloat(row.count + 1)
             let tallest = row.map { treeHeight(trees[$0]) }.max() ?? minHeight
-            let rowHeight = max(Self.rowHeight, tallest + 10)
-            let baseline = top + rowHeight
+            // Headroom above and below for the ground to rise and fall in.
+            let rowHeight = max(Self.rowHeight, tallest + 10) + groundRoll
+            let ground = top + rowHeight
+
+            var placed: [TreeMark] = []
             var x = gap
-            for index in row {
+            for (seat, index) in row.enumerated() {
                 let drift = CGFloat(noise(trees[index].id, 31) - 0.5) * min(gap, 10)
+                let stand = ground + roll(trees[index].id, seat: seat)
                 let cell = CGRect(x: x + drift, y: top,
-                                  width: room[index], height: rowHeight + labelHeight)
-                marks.append(TreeMark(tree: trees[index],
-                                      foot: CGPoint(x: cell.midX, y: baseline),
-                                      height: treeHeight(trees[index]),
-                                      cell: cell,
-                                      baseline: baseline))
+                                  width: room[index],
+                                  height: stand - top + labelHeight)
+                placed.append(TreeMark(tree: trees[index],
+                                       foot: CGPoint(x: cell.midX, y: stand),
+                                       height: treeHeight(trees[index]),
+                                       cell: cell,
+                                       baseline: stand))
                 x += room[index] + gap
             }
-            top = baseline + labelHeight + rowGap
+            // why: a tree standing further back is drawn first, so the one in
+            // front of it overlaps — the only thing that turns an offset
+            // baseline into depth rather than into a misalignment.
+            marks += placed.sorted { $0.baseline < $1.baseline }
+            top = ground + groundRoll + labelHeight + rowGap
         }
         return marks
+    }
+
+    /// How far the ground may rise or fall under any one tree.
+    ///
+    /// Small on purpose: heights are still meant to compare, and the line they
+    /// are measured against has to stay recognisable as one line. This is enough
+    /// to break the ruler — a row of trees rooted at exactly one y reads as a
+    /// plantation, and the box is not one — without making a taller tree
+    /// ambiguous, since the offsets are a fraction of the height range.
+    static let groundRoll: CGFloat = 6
+
+    /// A gentle wave along the row plus a little noise per tree: a wave alone
+    /// is a pattern, noise alone is a mess, and the two together read as ground.
+    private static func roll(_ id: String, seat: Int) -> CGFloat {
+        let wave = sin(Double(seat) * 1.15 + noise(id, 43) * 0.9)
+        return CGFloat(wave * 0.62 + (noise(id, 37) - 0.5) * 0.7) * groundRoll
     }
 
     static func height(_ trees: [AreaTree], width: CGFloat) -> CGFloat {

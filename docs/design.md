@@ -201,7 +201,11 @@ never the shape of the app.
   **Size comes from what has grown, never from what the catalog holds.** Sized by catalog
   count, every area would draw the same on install day and a year in — and the one thing a
   growing box's picture owes the learner is a shape that changes. A row is therefore a
-  skyline: one baseline, so heights compare.
+  skyline, measured against a ground line its trees roughly share: the ground rolls a few
+  points under each of them, and a tree standing further back is drawn first so the one in
+  front overlaps it. Equal cells on one exact baseline read as a plantation, and the box is
+  not one — but the roll stays a fraction of the height range, because heights are still
+  what the row is for.
   **An area nobody has opened draws nothing at all** — not even ground. A mark per
   untouched word turns a catalog the learner did not choose into five hundred things they
   have not done; the dimmed area emoji already says the place exists.
