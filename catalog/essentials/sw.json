@@ -1,5 +1,6 @@
 {
- "title": "Mambo muhimu · kila siku!",
+ "title": "Mambo muhimu",
+ "subtitle": "Maneno unayotumia kila siku.",
  "words": {
   "money": {
    "text": "pesa"
@@ -8,36 +9,6 @@
    "text": "maji",
    "grammar": {
     "plural": "only"
-   }
-  },
-  "time": {
-   "text": "wakati",
-   "synonyms": [
-    "muda"
-   ],
-   "grammar": {
-    "plural": "nyakati"
-   },
-   "notes": {
-    "de": "wakati = Zeit allgemein · muda = Zeitspanne: „Sina muda“ = Ich habe keine Zeit."
-   }
-  },
-  "day": {
-   "text": "siku",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "week": {
-   "text": "wiki",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "hour": {
-   "text": "saa",
-   "grammar": {
-    "plural": "="
    }
   },
   "house": {
@@ -106,6 +77,24 @@
   "live": {
    "text": "kuishi"
   },
+  "like": {
+   "text": "kupenda",
+   "notes": {
+    "de": "deckt mögen und lieben ab: Napenda chai · Nakupenda = Ich liebe dich."
+   }
+  },
+  "can": {
+   "text": "kuweza",
+   "notes": {
+    "de": "Präsens: naweza, unaweza, anaweza · verneint: siwezi = ich kann nicht."
+   }
+  },
+  "think": {
+   "text": "kufikiri",
+   "notes": {
+    "de": "über etwas nachdenken: kufikiria jambo."
+   }
+  },
   "good": {
    "text": "-zuri",
    "variants": [
@@ -169,15 +158,6 @@
    "notes": {
     "de": "Vorsilbe verschmilzt: watu wengi, maji mengi, pesa nyingi."
    }
-  },
-  "now": {
-   "text": "sasa"
-  },
-  "today": {
-   "text": "leo"
-  },
-  "tomorrow": {
-   "text": "kesho"
   },
   "new": {
    "text": "-pya",
@@ -243,9 +223,6 @@
   "i-have-no-money": {
    "text": "Sina pesa."
   },
-  "i-have-no-time": {
-   "text": "Sina muda."
-  },
   "do-you-have-water": {
    "text": "Una maji?"
   },
@@ -293,12 +270,6 @@
   },
   "old-people": {
    "text": "watu wazee"
-  },
-  "a-new-day": {
-   "text": "siku mpya",
-   "grammar": {
-    "plural": "="
-   }
   },
   "the-house-is-big": {
    "text": "Nyumba ni kubwa."

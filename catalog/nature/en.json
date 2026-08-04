@@ -1,0 +1,132 @@
+{
+ "title": "Nature",
+ "subtitle": "Out in the fresh air.",
+ "words": {
+  "tree": {
+   "text": "tree"
+  },
+  "flower": {
+   "text": "flower"
+  },
+  "sun": {
+   "text": "sun"
+  },
+  "rain": {
+   "text": "rain"
+  },
+  "weather": {
+   "text": "weather"
+  },
+  "snow": {
+   "text": "snow"
+  },
+  "wind": {
+   "text": "wind"
+  },
+  "river": {
+   "text": "river"
+  },
+  "outdoors": {
+   "text": "outside"
+  },
+  "left": {
+   "text": "left"
+  },
+  "right": {
+   "text": "right"
+  },
+  "go-for-walk": {
+   "text": "to go for a walk"
+  },
+  "jog": {
+   "text": "to jog"
+  },
+  "sunbathe": {
+   "text": "to sunbathe"
+  },
+  "plant-flowers": {
+   "text": "to plant flowers"
+  },
+  "grill-meat": {
+   "text": "to grill meat"
+  },
+  "animal": {
+   "text": "animal"
+  },
+  "dog": {
+   "text": "dog"
+  },
+  "cat": {
+   "text": "cat"
+  },
+  "bird": {
+   "text": "bird"
+  },
+  "sky": {
+   "text": "sky"
+  },
+  "cloud": {
+   "text": "cloud"
+  },
+  "mountain": {
+   "text": "mountain"
+  },
+  "sea": {
+   "text": "sea"
+  },
+  "beach": {
+   "text": "beach",
+   "grammar": {
+    "plural": "beaches"
+   }
+  },
+  "lake": {
+   "text": "lake"
+  },
+  "forest": {
+   "text": "forest"
+  },
+  "stone": {
+   "text": "stone"
+  },
+  "moon": {
+   "text": "moon"
+  },
+  "star": {
+   "text": "star"
+  },
+  "hows-the-weather-today": {
+   "text": "How's the weather today?"
+  },
+  "its-raining": {
+   "text": "It's raining."
+  },
+  "the-sun-is-shining": {
+   "text": "The sun is shining!"
+  },
+  "shall-we-take-a-walk": {
+   "text": "Shall we go for a walk?"
+  },
+  "take-an-umbrella": {
+   "text": "Take an umbrella!",
+   "variants": [
+    "Take an umbrella with you!"
+   ]
+  },
+  "what-a-beautiful-day": {
+   "text": "What a beautiful day!"
+  },
+  "lets-go-to-the-beach": {
+   "text": "Let's go to the beach!"
+  },
+  "we-are-going-to-the-mountains": {
+   "text": "We're going to the mountains."
+  },
+  "look-a-bird": {
+   "text": "Look, a bird!"
+  },
+  "the-cat-is-sleeping": {
+   "text": "The cat is sleeping."
+  }
+ }
+}

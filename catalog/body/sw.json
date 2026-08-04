@@ -1,0 +1,174 @@
+{
+ "title": "Mwili",
+ "subtitle": "Kutoka kichwani hadi miguuni.",
+ "words": {
+  "head": {
+   "text": "kichwa",
+   "grammar": {
+    "plural": "vichwa"
+   }
+  },
+  "hair": {
+   "text": "nywele",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "face": {
+   "text": "uso",
+   "grammar": {
+    "plural": "nyuso"
+   }
+  },
+  "eye": {
+   "text": "jicho",
+   "grammar": {
+    "plural": "macho"
+   }
+  },
+  "ear": {
+   "text": "sikio",
+   "grammar": {
+    "plural": "masikio"
+   }
+  },
+  "nose": {
+   "text": "pua",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "mouth": {
+   "text": "mdomo",
+   "grammar": {
+    "plural": "midomo"
+   },
+   "notes": {
+    "de": "mdomo heißt Mund und Lippe — eine eigene Vokabel für die Lippe gibt es nicht."
+   }
+  },
+  "tooth": {
+   "text": "jino",
+   "grammar": {
+    "plural": "meno"
+   }
+  },
+  "hand": {
+   "text": "mkono",
+   "grammar": {
+    "plural": "mikono"
+   },
+   "notes": {
+    "de": "mkono heißt Hand und Arm; welcher gemeint ist, sagt der Zusammenhang."
+   }
+  },
+  "foot": {
+   "text": "mguu",
+   "grammar": {
+    "plural": "miguu"
+   },
+   "notes": {
+    "de": "mguu heißt Fuß und Bein."
+   }
+  },
+  "stomach": {
+   "text": "tumbo",
+   "grammar": {
+    "plural": "matumbo"
+   }
+  },
+  "back": {
+   "text": "mgongo",
+   "grammar": {
+    "plural": "migongo"
+   }
+  },
+  "throat": {
+   "text": "koo",
+   "grammar": {
+    "plural": "makoo"
+   }
+  },
+  "shoulder": {
+   "text": "bega",
+   "grammar": {
+    "plural": "mabega"
+   }
+  },
+  "knee": {
+   "text": "goti",
+   "grammar": {
+    "plural": "magoti"
+   }
+  },
+  "chest": {
+   "text": "kifua",
+   "grammar": {
+    "plural": "vifua"
+   }
+  },
+  "heart": {
+   "text": "moyo",
+   "grammar": {
+    "plural": "mioyo"
+   }
+  },
+  "blood": {
+   "text": "damu"
+  },
+  "skin": {
+   "text": "ngozi",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "bone": {
+   "text": "mfupa",
+   "grammar": {
+    "plural": "mifupa"
+   }
+  },
+  "finger": {
+   "text": "kidole",
+   "grammar": {
+    "plural": "vidole"
+   },
+   "notes": {
+    "de": "kidole heißt Finger und Zehe; kidole cha mguu ist die Zehe."
+   }
+  },
+  "tongue": {
+   "text": "ulimi",
+   "grammar": {
+    "plural": "ndimi"
+   }
+  },
+  "neck": {
+   "text": "shingo",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "my-head-hurts": {
+   "text": "Kichwa kinaniuma."
+  },
+  "give-me-your-hand": {
+   "text": "Nipe mkono wako."
+  },
+  "open-your-mouth": {
+   "text": "Fungua mdomo."
+  },
+  "close-your-eyes": {
+   "text": "Funga macho."
+  },
+  "i-have-long-hair": {
+   "text": "Nina nywele ndefu."
+  },
+  "my-feet-are-cold": {
+   "text": "Miguu yangu ina baridi."
+  },
+  "my-heart-is-beating-fast": {
+   "text": "Moyo wangu unapiga haraka."
+  }
+ }
+}

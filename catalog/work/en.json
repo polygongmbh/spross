@@ -1,5 +1,6 @@
 {
- "title": "Work & profession",
+ "title": "Work",
+ "subtitle": "Good luck on the job.",
  "words": {
   "work": {
    "text": "work"
@@ -103,6 +104,15 @@
   },
   "notice": {
    "text": "notice of termination"
+  },
+  "worker": {
+   "text": "worker"
+  },
+  "employer": {
+   "text": "employer"
+  },
+  "customer": {
+   "text": "customer"
   },
   "tomorrow-i-have-a-job-interview": {
    "text": "Tomorrow I will introduce myself at the company."

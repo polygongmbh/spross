@@ -1,5 +1,6 @@
 {
- "title": "Lo esencial · ¡cada día!",
+ "title": "Lo esencial",
+ "subtitle": "Las palabras de cada día.",
  "words": {
   "money": {
    "text": "dinero",
@@ -17,33 +18,6 @@
    },
    "notes": {
     "de": "feminin, steht im Singular aber mit el: el agua fría · Plural las aguas."
-   }
-  },
-  "time": {
-   "text": "tiempo",
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "tiempo heißt auch Wetter: ¿Qué tiempo hace? · das einzelne Mal ist una vez."
-   }
-  },
-  "day": {
-   "text": "día",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "week": {
-   "text": "semana",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "hour": {
-   "text": "hora",
-   "grammar": {
-    "gender": "la"
    }
   },
   "house": {
@@ -128,6 +102,24 @@
     "de": "vivir = wohnen und leben."
    }
   },
+  "like": {
+   "text": "gustar",
+   "notes": {
+    "de": "umgekehrt gebaut: Me gusta el café = Ich mag Kaffee · lieben ist amar oder querer."
+   }
+  },
+  "can": {
+   "text": "poder",
+   "notes": {
+    "de": "unregelmäßig: puedo, puedes, puede, podemos."
+   }
+  },
+  "think": {
+   "text": "pensar",
+   "notes": {
+    "de": "pensar en algo = an etwas denken · pensar que = glauben, dass."
+   }
+  },
   "good": {
    "text": "bueno",
    "variants": [
@@ -172,18 +164,6 @@
    ],
    "notes": {
     "de": "richtet sich nach dem Substantiv: mucho dinero, mucha agua, muchos amigos."
-   }
-  },
-  "now": {
-   "text": "ahora"
-  },
-  "today": {
-   "text": "hoy"
-  },
-  "tomorrow": {
-   "text": "mañana",
-   "notes": {
-    "de": "mañana heißt auch der Morgen: por la mañana = morgens."
    }
   },
   "new": {
@@ -258,9 +238,6 @@
   },
   "i-have-no-money": {
    "text": "No tengo dinero."
-  },
-  "i-have-no-time": {
-   "text": "No tengo tiempo."
   },
   "do-you-have-water": {
    "text": "¿Tiene agua?",
@@ -345,12 +322,6 @@
    "notes": {
     "de": "personas viejas klingt abwertend — im Alltag mayores."
    }
-  },
-  "a-new-day": {
-   "text": "un nuevo día",
-   "variants": [
-    "un día nuevo"
-   ]
   },
   "the-house-is-big": {
    "text": "La casa es grande."

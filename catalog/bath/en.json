@@ -1,5 +1,6 @@
 {
  "title": "The bathroom",
+ "subtitle": "Fresh and clean.",
  "words": {
   "washing-machine": {
    "text": "washing machine"
@@ -78,9 +79,6 @@
   },
   "sponge": {
    "text": "sponge"
-  },
-  "hair": {
-   "text": "hair"
   },
   "cream": {
    "text": "cream"

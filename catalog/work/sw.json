@@ -1,5 +1,6 @@
 {
- "title": "Kazini · tuchape kazi!",
+ "title": "Kazini",
+ "subtitle": "Tuchape kazi.",
  "words": {
   "work": {
    "text": "kazi",
@@ -137,6 +138,24 @@
    "text": "notisi ya kuacha kazi",
    "grammar": {
     "plural": "notisi za kuacha kazi"
+   }
+  },
+  "worker": {
+   "text": "mfanyakazi",
+   "grammar": {
+    "plural": "wafanyakazi"
+   }
+  },
+  "employer": {
+   "text": "mwajiri",
+   "grammar": {
+    "plural": "waajiri"
+   }
+  },
+  "customer": {
+   "text": "mteja",
+   "grammar": {
+    "plural": "wateja"
    }
   },
   "tomorrow-i-have-a-job-interview": {

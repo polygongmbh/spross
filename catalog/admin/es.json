@@ -1,5 +1,6 @@
 {
- "title": "En la Administración · ¡paso a paso!",
+ "title": "En la Administración",
+ "subtitle": "Paso a paso con los papeles.",
  "words": {
   "office": {
    "text": "oficina pública",
@@ -236,6 +237,33 @@
     "autorizar",
     "conceder"
    ]
+  },
+  "law": {
+   "text": "ley",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "visa": {
+   "text": "visado",
+   "variants": [
+    "visa"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "fine": {
+   "text": "multa",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "receipt": {
+   "text": "recibo",
+   "grammar": {
+    "gender": "el"
+   }
   },
   "where-do-i-sign": {
    "text": "¿Dónde tengo que firmar?",

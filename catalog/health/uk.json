@@ -1,21 +1,7 @@
 {
- "title": "У лікаря · будьте здорові!",
+ "title": "Здоров'я",
+ "subtitle": "Як ти почуваєшся сьогодні.",
  "words": {
-  "doctor": {
-   "text": "лікар"
-  },
-  "doctor-f": {
-   "text": "лікарка"
-  },
-  "practice": {
-   "text": "лікарський кабінет",
-   "grammar": {
-    "plural": "лікарські кабінети"
-   },
-   "notes": {
-    "de": "auch «практика» (vor allem Privatpraxis)"
-   }
-  },
   "pain": {
    "text": "біль",
    "grammar": {
@@ -31,30 +17,6 @@
     "гарячка"
    ]
   },
-  "pill": {
-   "text": "таблетка",
-   "synonyms": [
-    "пігулка"
-   ]
-  },
-  "prescription": {
-   "text": "рецепт"
-  },
-  "pharmacy": {
-   "text": "аптека"
-  },
-  "insurance-card": {
-   "text": "картка медичного страхування",
-   "grammar": {
-    "plural": "картки медичного страхування"
-   }
-  },
-  "health-insurance": {
-   "text": "лікарняна каса",
-   "grammar": {
-    "plural": "лікарняні каси"
-   }
-  },
   "cough": {
    "text": "кашель"
   },
@@ -67,59 +29,8 @@
   "to-cough": {
    "text": "кашляти"
   },
-  "examine": {
-   "text": "обстежувати"
-  },
-  "prescribe-medicine": {
-   "text": "виписувати ліки"
-  },
-  "take-medicine": {
-   "text": "приймати ліки"
-  },
-  "call-in-sick": {
-   "text": "повідомляти, що захворів",
-   "synonyms": [
-    "іти на лікарняний"
-   ]
-  },
   "rest": {
    "text": "відпочивати"
-  },
-  "head": {
-   "text": "голова"
-  },
-  "throat": {
-   "text": "горло"
-  },
-  "stomach": {
-   "text": "живіт",
-   "grammar": {
-    "plural": "животи"
-   }
-  },
-  "back": {
-   "text": "спина"
-  },
-  "ear": {
-   "text": "вухо"
-  },
-  "blood": {
-   "text": "кров"
-  },
-  "hospital": {
-   "text": "лікарня"
-  },
-  "emergency": {
-   "text": "екстрений випадок",
-   "grammar": {
-    "plural": "екстрені випадки"
-   }
-  },
-  "sick-note": {
-   "text": "лікарняний",
-   "grammar": {
-    "plural": "лікарняні"
-   }
   },
   "sick": {
    "text": "хворий"
@@ -127,23 +38,74 @@
   "feel": {
    "text": "почуватися"
   },
+  "health": {
+   "text": "здоров'я"
+  },
+  "illness": {
+   "text": "хвороба"
+  },
+  "healthy": {
+   "text": "здоровий"
+  },
+  "tired": {
+   "text": "втомлений"
+  },
+  "weak": {
+   "text": "слабкий"
+  },
+  "dizziness": {
+   "text": "запаморочення",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "wound": {
+   "text": "рана"
+  },
+  "hurt-oneself": {
+   "text": "поранитися",
+   "synonyms": [
+    "травмуватися"
+   ]
+  },
+  "bandage": {
+   "text": "бинт"
+  },
+  "breathe": {
+   "text": "дихати"
+  },
+  "recover": {
+   "text": "одужувати",
+   "variants": [
+    "одужати"
+   ]
+  },
+  "allergy": {
+   "text": "алергія"
+  },
   "my-throat-hurts-a-lot": {
    "text": "У мене дуже болить горло."
   },
   "ive-had-a-fever-since-yesterday": {
    "text": "У мене з учора температура."
   },
-  "take-the-pills-twice-daily": {
-   "text": "Приймайте таблетки двічі на день."
-  },
   "get-well-soon": {
    "text": "Швидкого одужання!"
   },
-  "show-me-your-insurance-card": {
-   "text": "Покажіть мені вашу картку медичного страхування."
+  "i-dont-feel-well": {
+   "text": "Я почуваюся недобре.",
+   "variants": [
+    "Мені погано."
+   ]
   },
-  "the-practice-is-closed": {
-   "text": "Лікарський кабінет зачинений."
+  "the-wound-hurts": {
+   "text": "Рана болить."
+  },
+  "i-cant-breathe-well": {
+   "text": "Я не можу добре дихати."
+  },
+  "i-have-to-rest": {
+   "text": "Мені треба відпочити."
   }
  }
 }

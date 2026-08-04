@@ -1,5 +1,6 @@
 {
  "title": "Das Wichtigste im Alltag",
+ "subtitle": "Wörter, die du jeden Tag brauchst.",
  "words": {
   "money": {
    "text": "Geld",
@@ -11,34 +12,6 @@
    "text": "Wasser",
    "grammar": {
     "gender": "das"
-   }
-  },
-  "time": {
-   "text": "Zeit",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "day": {
-   "text": "Tag",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "week": {
-   "text": "Woche",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "hour": {
-   "text": "Stunde",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
    }
   },
   "house": {
@@ -109,6 +82,15 @@
   "live": {
    "text": "wohnen"
   },
+  "like": {
+   "text": "mögen"
+  },
+  "can": {
+   "text": "können"
+  },
+  "think": {
+   "text": "denken"
+  },
   "good": {
    "text": "gut"
   },
@@ -123,15 +105,6 @@
   },
   "much": {
    "text": "viel"
-  },
-  "now": {
-   "text": "jetzt"
-  },
-  "today": {
-   "text": "heute"
-  },
-  "tomorrow": {
-   "text": "morgen"
   },
   "new": {
    "text": "neu"
@@ -168,9 +141,6 @@
   },
   "i-have-no-money": {
    "text": "Ich habe kein Geld."
-  },
-  "i-have-no-time": {
-   "text": "Ich habe keine Zeit."
   },
   "do-you-have-water": {
    "text": "Haben Sie Wasser?",
@@ -228,9 +198,6 @@
    "variants": [
     "alte Menschen"
    ]
-  },
-  "a-new-day": {
-   "text": "ein neuer Tag"
   },
   "the-house-is-big": {
    "text": "Das Haus ist groß."

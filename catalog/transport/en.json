@@ -1,0 +1,124 @@
+{
+ "title": "Transport",
+ "subtitle": "Off we go.",
+ "words": {
+  "traffic-light": {
+   "text": "traffic light"
+  },
+  "bicycle": {
+   "text": "bicycle"
+  },
+  "bus": {
+   "text": "bus",
+   "grammar": {
+    "plural": "buses"
+   }
+  },
+  "bus-stop": {
+   "text": "bus stop"
+  },
+  "train": {
+   "text": "train"
+  },
+  "car": {
+   "text": "car"
+  },
+  "taxi": {
+   "text": "taxi"
+  },
+  "train-station": {
+   "text": "train station"
+  },
+  "ticket": {
+   "text": "ticket"
+  },
+  "way": {
+   "text": "way"
+  },
+  "ride-bike": {
+   "text": "to ride a bike"
+  },
+  "take-bus": {
+   "text": "to take the bus"
+  },
+  "depart": {
+   "text": "to depart"
+  },
+  "journey": {
+   "text": "journey",
+   "synonyms": [
+    "trip"
+   ]
+  },
+  "travel": {
+   "text": "to travel"
+  },
+  "driver": {
+   "text": "driver"
+  },
+  "plane": {
+   "text": "plane",
+   "variants": [
+    "aeroplane",
+    "airplane"
+   ]
+  },
+  "airport": {
+   "text": "airport"
+  },
+  "ship": {
+   "text": "ship"
+  },
+  "motorbike": {
+   "text": "motorbike",
+   "variants": [
+    "motorcycle"
+   ]
+  },
+  "lorry": {
+   "text": "lorry",
+   "variants": [
+    "truck"
+   ],
+   "grammar": {
+    "plural": "lorries"
+   }
+  },
+  "passenger": {
+   "text": "passenger"
+  },
+  "luggage": {
+   "text": "luggage",
+   "variants": [
+    "baggage"
+   ]
+  },
+  "fare": {
+   "text": "fare"
+  },
+  "get-off": {
+   "text": "to get off"
+  },
+  "the-bus-is-coming-soon": {
+   "text": "The bus is coming soon."
+  },
+  "when-does-the-train-leave": {
+   "text": "When does the train leave?"
+  },
+  "have-a-good-journey": {
+   "text": "Have a good journey!",
+   "variants": [
+    "Have a good trip!"
+   ]
+  },
+  "where-is-the-airport": {
+   "text": "Where is the airport?"
+  },
+  "how-much-is-the-fare": {
+   "text": "How much is the fare?"
+  },
+  "i-get-off-here": {
+   "text": "I'm getting off here."
+  }
+ }
+}

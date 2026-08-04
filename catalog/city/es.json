@@ -1,0 +1,150 @@
+{
+ "title": "La ciudad",
+ "subtitle": "Siempre hay movimiento.",
+ "words": {
+  "street": {
+   "text": "calle",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "market": {
+   "text": "mercado",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "park": {
+   "text": "parque",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "shop": {
+   "text": "hacer la compra",
+   "synonyms": [
+    "ir de compras"
+   ],
+   "notes": {
+    "de": "hacer la compra ist der Lebensmitteleinkauf, ir de compras eher der Bummel durch die Läden."
+   }
+  },
+  "city": {
+   "text": "ciudad",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "village": {
+   "text": "pueblo",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "neighbourhood": {
+   "text": "barrio",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "building": {
+   "text": "edificio",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "store": {
+   "text": "tienda",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "bank": {
+   "text": "banco",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "post-office": {
+   "text": "oficina de correos",
+   "variants": [
+    "correos"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "restaurant": {
+   "text": "restaurante",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "hotel": {
+   "text": "hotel",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "church": {
+   "text": "iglesia",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "mosque": {
+   "text": "mezquita",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "library": {
+   "text": "biblioteca",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "police": {
+   "text": "policía",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "cinema": {
+   "text": "cine",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "bridge": {
+   "text": "puente",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "where-is-the-post-office": {
+   "text": "¿Dónde está la oficina de correos?",
+   "variants": [
+    "¿Dónde está correos?"
+   ]
+  },
+  "is-there-a-bank-here": {
+   "text": "¿Hay un banco por aquí?"
+  },
+  "the-shop-is-still-open": {
+   "text": "La tienda todavía está abierta."
+  },
+  "im-looking-for-a-hotel": {
+   "text": "Busco un hotel."
+  },
+  "lets-meet-at-the-market": {
+   "text": "Quedamos en el mercado.",
+   "variants": [
+    "Nos vemos en el mercado."
+   ]
+  },
+  "i-live-in-this-neighbourhood": {
+   "text": "Vivo en este barrio."
+  }
+ }
+}

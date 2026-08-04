@@ -1,5 +1,6 @@
 {
  "title": "Fragewörter",
+ "subtitle": "Wer, was, wann und warum.",
  "words": {
   "where": {
    "text": "wo"
@@ -25,6 +26,25 @@
     "das da"
    ]
   },
+  "when": {
+   "text": "wann"
+  },
+  "why": {
+   "text": "warum"
+  },
+  "how": {
+   "text": "wie"
+  },
+  "which": {
+   "text": "welcher",
+   "variants": [
+    "welche",
+    "welches"
+   ]
+  },
+  "how-many": {
+   "text": "wie viele"
+  },
   "where-are-they": {
    "text": "Wo sind sie?"
   },
@@ -35,6 +55,15 @@
    "text": "Brauchen Sie das hier?",
    "variants": [
     "Brauchst du das hier?"
+   ]
+  },
+  "when-does-it-start": {
+   "text": "Wann fängt es an?"
+  },
+  "what-time-is-it": {
+   "text": "Wie spät ist es?",
+   "variants": [
+    "Wie viel Uhr ist es?"
    ]
   }
  }

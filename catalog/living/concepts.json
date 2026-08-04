@@ -150,6 +150,15 @@
   "emoji": "🤫"
  },
  {
+  "slug": "furniture",
+  "kind": "noun"
+ },
+ {
+  "slug": "game",
+  "kind": "noun",
+  "emoji": "🎲"
+ },
+ {
   "slug": "turn-on-the-tv",
   "kind": "phrase",
   "emoji": "📺",

@@ -1,5 +1,6 @@
 {
- "title": "Darasani · tujifunze pamoja!",
+ "title": "Darasani",
+ "subtitle": "Siku ya kawaida shuleni.",
  "words": {
   "school": {
    "text": "shule",
@@ -25,12 +26,6 @@
     "plural": "mbao"
    }
   },
-  "dictionary": {
-   "text": "kamusi",
-   "grammar": {
-    "plural": "="
-   }
-  },
   "exercise-book": {
    "text": "daftari la mazoezi",
    "grammar": {
@@ -54,27 +49,6 @@
    "grammar": {
     "plural": "mapumziko"
    }
-  },
-  "question": {
-   "text": "swali",
-   "grammar": {
-    "plural": "maswali"
-   }
-  },
-  "answer": {
-   "text": "jibu",
-   "grammar": {
-    "plural": "majibu"
-   }
-  },
-  "ask": {
-   "text": "kuuliza"
-  },
-  "reply": {
-   "text": "kujibu"
-  },
-  "translate": {
-   "text": "kutafsiri"
   },
   "pass-exam": {
    "text": "kufaulu mtihani"
@@ -115,12 +89,6 @@
     "plural": "kurasa"
    }
   },
-  "sentence": {
-   "text": "sentensi",
-   "grammar": {
-    "plural": "="
-   }
-  },
   "grade": {
    "text": "alama",
    "grammar": {
@@ -130,23 +98,50 @@
   "correct": {
    "text": "kusahihisha"
   },
-  "learn-by-heart": {
-   "text": "kukariri"
+  "book": {
+   "text": "kitabu",
+   "grammar": {
+    "plural": "vitabu"
+   }
   },
-  "i-have-a-question": {
-   "text": "Nina swali."
+  "university": {
+   "text": "chuo kikuu",
+   "grammar": {
+    "plural": "vyuo vikuu"
+   }
   },
-  "what-does-this-word-mean": {
-   "text": "Neno hili lina maana gani?"
+  "timetable": {
+   "text": "ratiba",
+   "grammar": {
+    "plural": "="
+   }
   },
-  "how-do-you-say-this-in-german": {
-   "text": "Hii inasemwaje kwa Kijerumani?"
+  "to-count": {
+   "text": "kuhesabu"
   },
-  "im-learning-german": {
-   "text": "Ninajifunza Kijerumani."
+  "to-try": {
+   "text": "kujaribu"
   },
-  "you-can-do-it": {
-   "text": "Hakika utaweza!"
+  "do-the-homework": {
+   "text": "Ninafanya kazi ya nyumbani."
+  },
+  "the-exam-is-tomorrow": {
+   "text": "Mtihani ni kesho."
+  },
+  "look-at-the-timetable": {
+   "text": "Angalia ratiba."
+  },
+  "the-break-is-over": {
+   "text": "Pumziko limeisha."
+  },
+  "ask-the-teacher": {
+   "text": "Muulize mwalimu."
+  },
+  "i-have-a-good-grade": {
+   "text": "Nina alama nzuri."
+  },
+  "we-go-to-the-classroom": {
+   "text": "Tunaenda darasani."
   }
  }
 }

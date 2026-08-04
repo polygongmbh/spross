@@ -1,5 +1,6 @@
 {
- "title": "У вітальні · час відпочити",
+ "title": "У вітальні",
+ "subtitle": "Час відпочити.",
  "words": {
   "sofa": {
    "text": "диван"
@@ -105,6 +106,18 @@
   },
   "quiet": {
    "text": "тихий"
+  },
+  "furniture": {
+   "text": "меблі",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "game": {
+   "text": "гра",
+   "grammar": {
+    "plural": "ігри"
+   }
   },
   "turn-on-the-tv": {
    "text": "Увімкни телевізор."

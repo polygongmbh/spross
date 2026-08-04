@@ -1,5 +1,6 @@
 {
- "title": "Die Arbeit & der Beruf",
+ "title": "Die Arbeit",
+ "subtitle": "Viel Erfolg im Job.",
  "words": {
   "work": {
    "text": "Arbeit",
@@ -171,6 +172,27 @@
    "grammar": {
     "gender": "die",
     "plural": "-en"
+   }
+  },
+  "worker": {
+   "text": "Arbeiter",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "employer": {
+   "text": "Arbeitgeber",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "customer": {
+   "text": "Kunde",
+   "grammar": {
+    "gender": "der",
+    "plural": "-n"
    }
   },
   "tomorrow-i-have-a-job-interview": {

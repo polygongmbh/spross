@@ -1,21 +1,5 @@
 [
  {
-  "slug": "doctor",
-  "kind": "noun",
-  "emoji": "🧑‍⚕️"
- },
- {
-  "slug": "doctor-f",
-  "kind": "noun",
-  "emoji": "👩‍⚕️",
-  "feminineOf": "doctor"
- },
- {
-  "slug": "practice",
-  "kind": "noun",
-  "emoji": "🏥"
- },
- {
   "slug": "pain",
   "kind": "noun",
   "emoji": "🤕"
@@ -24,31 +8,6 @@
   "slug": "fever",
   "kind": "noun",
   "emoji": "🌡️"
- },
- {
-  "slug": "pill",
-  "kind": "noun",
-  "emoji": "💊"
- },
- {
-  "slug": "prescription",
-  "kind": "noun",
-  "emoji": "📃"
- },
- {
-  "slug": "pharmacy",
-  "kind": "noun",
-  "emoji": "⚕️"
- },
- {
-  "slug": "insurance-card",
-  "kind": "noun",
-  "emoji": "💳"
- },
- {
-  "slug": "health-insurance",
-  "kind": "noun",
-  "emoji": "🛡️"
  },
  {
   "slug": "cough",
@@ -71,74 +30,9 @@
   "emoji": "😷"
  },
  {
-  "slug": "examine",
-  "kind": "verb",
-  "emoji": "🩺"
- },
- {
-  "slug": "prescribe-medicine",
-  "kind": "verb",
-  "emoji": "📝"
- },
- {
-  "slug": "take-medicine",
-  "kind": "verb",
-  "emoji": "💊"
- },
- {
-  "slug": "call-in-sick",
-  "kind": "verb",
-  "emoji": "📞"
- },
- {
   "slug": "rest",
   "kind": "verb",
   "emoji": "🛌"
- },
- {
-  "slug": "head",
-  "kind": "noun",
-  "emoji": "🧠"
- },
- {
-  "slug": "throat",
-  "kind": "noun",
-  "emoji": "🗣️"
- },
- {
-  "slug": "stomach",
-  "kind": "noun",
-  "emoji": "🫃"
- },
- {
-  "slug": "back",
-  "kind": "noun",
-  "emoji": "🩻"
- },
- {
-  "slug": "ear",
-  "kind": "noun",
-  "emoji": "👂"
- },
- {
-  "slug": "blood",
-  "kind": "noun",
-  "emoji": "🩸"
- },
- {
-  "slug": "hospital",
-  "kind": "noun",
-  "emoji": "🏥"
- },
- {
-  "slug": "emergency",
-  "kind": "noun",
-  "emoji": "🚑"
- },
- {
-  "slug": "sick-note",
-  "kind": "noun",
-  "emoji": "🧾"
  },
  {
   "slug": "sick",
@@ -148,6 +42,63 @@
  {
   "slug": "feel",
   "kind": "verb"
+ },
+ {
+  "slug": "health",
+  "kind": "noun",
+  "emoji": "💚"
+ },
+ {
+  "slug": "illness",
+  "kind": "noun",
+  "emoji": "🦠"
+ },
+ {
+  "slug": "healthy",
+  "kind": "adjective",
+  "emoji": "💪"
+ },
+ {
+  "slug": "tired",
+  "kind": "adjective",
+  "emoji": "😴"
+ },
+ {
+  "slug": "weak",
+  "kind": "adjective",
+  "emoji": "🪫"
+ },
+ {
+  "slug": "dizziness",
+  "kind": "noun",
+  "emoji": "😵‍💫"
+ },
+ {
+  "slug": "wound",
+  "kind": "noun",
+  "emoji": "🩸"
+ },
+ {
+  "slug": "hurt-oneself",
+  "kind": "verb"
+ },
+ {
+  "slug": "bandage",
+  "kind": "noun",
+  "emoji": "🩹"
+ },
+ {
+  "slug": "breathe",
+  "kind": "verb",
+  "emoji": "🫁"
+ },
+ {
+  "slug": "recover",
+  "kind": "verb"
+ },
+ {
+  "slug": "allergy",
+  "kind": "noun"
  },
  {
   "slug": "my-throat-hurts-a-lot",
@@ -166,34 +117,42 @@
   ]
  },
  {
-  "slug": "take-the-pills-twice-daily",
-  "kind": "phrase",
-  "emoji": "💊",
-  "components": [
-   "pill",
-   "take-medicine"
-  ]
- },
- {
   "slug": "get-well-soon",
   "kind": "phrase",
   "emoji": "💐",
   "components": []
  },
  {
-  "slug": "show-me-your-insurance-card",
+  "slug": "i-dont-feel-well",
   "kind": "phrase",
-  "emoji": "💳",
+  "emoji": "🤒",
   "components": [
-   "insurance-card"
+   "feel"
   ]
  },
  {
-  "slug": "the-practice-is-closed",
+  "slug": "the-wound-hurts",
   "kind": "phrase",
-  "emoji": "🚪",
+  "emoji": "🩸",
   "components": [
-   "practice"
+   "wound",
+   "hurt"
+  ]
+ },
+ {
+  "slug": "i-cant-breathe-well",
+  "kind": "phrase",
+  "emoji": "🫁",
+  "components": [
+   "breathe"
+  ]
+ },
+ {
+  "slug": "i-have-to-rest",
+  "kind": "phrase",
+  "emoji": "🛌",
+  "components": [
+   "rest"
   ]
  }
 ]

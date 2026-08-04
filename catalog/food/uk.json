@@ -1,0 +1,135 @@
+{
+ "title": "Їжа",
+ "subtitle": "Те, що подають на стіл.",
+ "words": {
+  "bread": {
+   "text": "хліб"
+  },
+  "milk": {
+   "text": "молоко"
+  },
+  "coffee": {
+   "text": "кава"
+  },
+  "tea": {
+   "text": "чай"
+  },
+  "egg": {
+   "text": "яйце"
+  },
+  "cheese": {
+   "text": "сир"
+  },
+  "salt": {
+   "text": "сіль"
+  },
+  "sugar": {
+   "text": "цукор"
+  },
+  "rice": {
+   "text": "рис"
+  },
+  "hunger": {
+   "text": "голод"
+  },
+  "thirst": {
+   "text": "спрага"
+  },
+  "food": {
+   "text": "їжа"
+  },
+  "meat": {
+   "text": "м'ясо"
+  },
+  "fish": {
+   "text": "риба"
+  },
+  "chicken": {
+   "text": "курка"
+  },
+  "fruit": {
+   "text": "фрукт"
+  },
+  "vegetable": {
+   "text": "овоч"
+  },
+  "potato": {
+   "text": "картопля"
+  },
+  "onion": {
+   "text": "цибуля"
+  },
+  "tomato": {
+   "text": "помідор"
+  },
+  "banana": {
+   "text": "банан"
+  },
+  "apple": {
+   "text": "яблуко"
+  },
+  "oil": {
+   "text": "олія"
+  },
+  "flour": {
+   "text": "борошно"
+  },
+  "butter": {
+   "text": "масло"
+  },
+  "soup": {
+   "text": "суп"
+  },
+  "sauce": {
+   "text": "соус"
+  },
+  "juice": {
+   "text": "сік",
+   "grammar": {
+    "plural": "соки"
+   }
+  },
+  "cooked-rice": {
+   "text": "варений рис"
+  },
+  "cassava": {
+   "text": "маніок"
+  },
+  "breakfast": {
+   "text": "сніданок",
+   "grammar": {
+    "plural": "сніданки"
+   }
+  },
+  "dinner": {
+   "text": "вечеря"
+  },
+  "im-hungry": {
+   "text": "Я голодний.",
+   "variants": [
+    "Я голодна."
+   ]
+  },
+  "whats-for-dinner": {
+   "text": "Що на вечерю?"
+  },
+  "i-dont-eat-meat": {
+   "text": "Я не їм м'яса."
+  },
+  "bread-with-butter": {
+   "text": "хліб з маслом"
+  },
+  "fruit-and-vegetables": {
+   "text": "фрукти й овочі",
+   "variants": [
+    "фрукти і овочі"
+   ]
+  },
+  "i-eat-rice-with-sauce": {
+   "text": "Я їм рис із соусом."
+  },
+  "without-salt-please": {
+   "text": "Без солі, будь ласка."
+  }
+ }
+}

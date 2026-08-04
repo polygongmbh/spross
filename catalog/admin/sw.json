@@ -1,5 +1,6 @@
 {
- "title": "Ofisini · subiri zamu yako!",
+ "title": "Ofisini",
+ "subtitle": "Hatua kwa hatua, subiri zamu yako.",
  "words": {
   "office": {
    "text": "ofisi ya serikali",
@@ -136,6 +137,30 @@
   },
   "approve": {
    "text": "kuidhinisha"
+  },
+  "law": {
+   "text": "sheria",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "visa": {
+   "text": "viza",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "fine": {
+   "text": "faini",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "receipt": {
+   "text": "resiti",
+   "grammar": {
+    "plural": "="
+   }
   },
   "where-do-i-sign": {
    "text": "Nitie sahihi wapi?"

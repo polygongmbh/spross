@@ -12,6 +12,12 @@ Engine contract: `../README.md`.
   `AreaGroup.areas: [String]` is unchanged — the ordered names every consumer flat-maps;
   the emoji rides alongside in `AreaGroup.areaEmojis: [String: String]` and is read via
   `Catalog.areaEmoji(area) -> String?`, the language-neutral sibling of `areaTitle`.
+- `<area>/<lang>.json`: an optional `subtitle` beside `title`, read via
+  `Catalog.areaSubtitle(area, lang) -> String?` — the same shape as `areaTitle`, so a
+  reader gets it in their own language or not at all. `title` therefore stays a plain
+  NAME: it is also the produce prompt's disambiguating cue, which no consumer trims.
+  Lint (`subtitlesAreCompletePerAreaAndDistinctFromTheTitle`): an area authoring one
+  authors it in every declared language, and it neither contains the title nor a `·`.
 - Realization: `variants: [String]` next to `synonyms` — a **display/accept distinction
   only**, never a scheduling one (`../README.md` §3): synonyms rotate as recognition prompt forms and
   show on reveal; variants are accepted silently and never prompted.
@@ -32,7 +38,7 @@ Engine contract: `../README.md`.
     `relax`/`rest` collided in sw AND uk while de (sich entspannen/sich ausruhen) and en
     keep them apart, so the fix was a precise uk realization, not a deletion.
   - `crossAreaPromptCollisionsAreKnown` — pins the tolerated cross-area set, so adding
-    `outside/river` next to `bedroom/pillow` (both sw `mto`) fails the gate instead of
+    `nature/river` next to `bedroom/pillow` (both sw `mto`) fails the gate instead of
     silently minting an ambiguous prompt. Comparison is case-SENSITIVE: `Husten`/`husten`
     is a real visual distinction and must stay legal.
 - `catalog/alphabet/<lang>.json` → `Alphabet`/`AlphabetEntry` (`AlphabetParser`, hand-parsed

@@ -1,5 +1,6 @@
 {
- "title": "Citas y plazos · ¡todo organizado!",
+ "title": "Citas y plazos",
+ "subtitle": "Para que nada se te escape.",
  "words": {
   "appointment": {
    "text": "cita",
@@ -100,6 +101,18 @@
   },
   "urgent": {
    "text": "urgente"
+  },
+  "list": {
+   "text": "lista",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "to-finish": {
+   "text": "terminar",
+   "synonyms": [
+    "acabar"
+   ]
   },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Quiero concertar una cita.",

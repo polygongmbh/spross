@@ -1,0 +1,246 @@
+{
+ "title": "Das Essen",
+ "subtitle": "Was auf den Tisch kommt.",
+ "words": {
+  "bread": {
+   "text": "Brot",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "milk": {
+   "text": "Milch",
+   "grammar": {
+    "gender": "die"
+   }
+  },
+  "coffee": {
+   "text": "Kaffee",
+   "grammar": {
+    "gender": "der",
+    "plural": "-s"
+   }
+  },
+  "tea": {
+   "text": "Tee",
+   "grammar": {
+    "gender": "der",
+    "plural": "-s"
+   }
+  },
+  "egg": {
+   "text": "Ei",
+   "grammar": {
+    "gender": "das",
+    "plural": "-er"
+   }
+  },
+  "cheese": {
+   "text": "Käse",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "salt": {
+   "text": "Salz",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "sugar": {
+   "text": "Zucker",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "rice": {
+   "text": "Reis",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "hunger": {
+   "text": "Hunger",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "thirst": {
+   "text": "Durst",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "food": {
+   "text": "Essen",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "meat": {
+   "text": "Fleisch",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "fish": {
+   "text": "Fisch",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "chicken": {
+   "text": "Hähnchen",
+   "grammar": {
+    "gender": "das",
+    "plural": "="
+   }
+  },
+  "fruit": {
+   "text": "Obst",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "vegetable": {
+   "text": "Gemüse",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "potato": {
+   "text": "Kartoffel",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "onion": {
+   "text": "Zwiebel",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "tomato": {
+   "text": "Tomate",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "banana": {
+   "text": "Banane",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "apple": {
+   "text": "Apfel",
+   "grammar": {
+    "gender": "der",
+    "plural": "Äpfel"
+   }
+  },
+  "oil": {
+   "text": "Öl",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "flour": {
+   "text": "Mehl",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "butter": {
+   "text": "Butter",
+   "grammar": {
+    "gender": "die"
+   }
+  },
+  "soup": {
+   "text": "Suppe",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "sauce": {
+   "text": "Soße",
+   "variants": [
+    "Sauce"
+   ],
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "juice": {
+   "text": "Saft",
+   "grammar": {
+    "gender": "der",
+    "plural": "Säfte"
+   }
+  },
+  "cooked-rice": {
+   "text": "gekochter Reis"
+  },
+  "cassava": {
+   "text": "Maniok",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "ugali": {
+   "text": "Maisbrei",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "breakfast": {
+   "text": "Frühstück",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "dinner": {
+   "text": "Abendessen",
+   "grammar": {
+    "gender": "das",
+    "plural": "="
+   }
+  },
+  "im-hungry": {
+   "text": "Ich habe Hunger."
+  },
+  "whats-for-dinner": {
+   "text": "Was gibt es zum Abendessen?",
+   "variants": [
+    "Was gibt's zum Abendessen?"
+   ]
+  },
+  "i-dont-eat-meat": {
+   "text": "Ich esse kein Fleisch."
+  },
+  "bread-with-butter": {
+   "text": "Brot mit Butter"
+  },
+  "fruit-and-vegetables": {
+   "text": "Obst und Gemüse"
+  },
+  "i-eat-rice-with-sauce": {
+   "text": "Ich esse Reis mit Soße."
+  },
+  "without-salt-please": {
+   "text": "Ohne Salz, bitte."
+  }
+ }
+}

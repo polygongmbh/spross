@@ -1,0 +1,222 @@
+[
+ {
+  "slug": "tree",
+  "kind": "noun",
+  "emoji": "🌳"
+ },
+ {
+  "slug": "flower",
+  "kind": "noun",
+  "emoji": "🌸"
+ },
+ {
+  "slug": "sun",
+  "kind": "noun",
+  "emoji": "☀️"
+ },
+ {
+  "slug": "rain",
+  "kind": "noun",
+  "emoji": "🌧️"
+ },
+ {
+  "slug": "weather",
+  "kind": "noun",
+  "emoji": "🌤️"
+ },
+ {
+  "slug": "snow",
+  "kind": "noun",
+  "emoji": "❄️"
+ },
+ {
+  "slug": "wind",
+  "kind": "noun",
+  "emoji": "💨"
+ },
+ {
+  "slug": "river",
+  "kind": "noun"
+ },
+ {
+  "slug": "outdoors",
+  "kind": "adjective"
+ },
+ {
+  "slug": "left",
+  "kind": "adjective",
+  "emoji": "⬅️"
+ },
+ {
+  "slug": "right",
+  "kind": "adjective",
+  "emoji": "➡️"
+ },
+ {
+  "slug": "go-for-walk",
+  "kind": "verb",
+  "emoji": "👣"
+ },
+ {
+  "slug": "jog",
+  "kind": "verb",
+  "emoji": "🏃"
+ },
+ {
+  "slug": "sunbathe",
+  "kind": "verb",
+  "emoji": "🌞"
+ },
+ {
+  "slug": "plant-flowers",
+  "kind": "verb",
+  "emoji": "🌷"
+ },
+ {
+  "slug": "grill-meat",
+  "kind": "verb",
+  "emoji": "🍖"
+ },
+ {
+  "slug": "animal",
+  "kind": "noun",
+  "emoji": "🐾"
+ },
+ {
+  "slug": "dog",
+  "kind": "noun",
+  "emoji": "🐕"
+ },
+ {
+  "slug": "cat",
+  "kind": "noun",
+  "emoji": "🐈"
+ },
+ {
+  "slug": "bird",
+  "kind": "noun",
+  "emoji": "🐦"
+ },
+ {
+  "slug": "sky",
+  "kind": "noun"
+ },
+ {
+  "slug": "cloud",
+  "kind": "noun",
+  "emoji": "☁️"
+ },
+ {
+  "slug": "mountain",
+  "kind": "noun",
+  "emoji": "⛰️"
+ },
+ {
+  "slug": "sea",
+  "kind": "noun",
+  "emoji": "🌊"
+ },
+ {
+  "slug": "beach",
+  "kind": "noun",
+  "emoji": "🏖️"
+ },
+ {
+  "slug": "lake",
+  "kind": "noun"
+ },
+ {
+  "slug": "forest",
+  "kind": "noun",
+  "emoji": "🌲"
+ },
+ {
+  "slug": "stone",
+  "kind": "noun",
+  "emoji": "🪨"
+ },
+ {
+  "slug": "moon",
+  "kind": "noun",
+  "emoji": "🌙"
+ },
+ {
+  "slug": "star",
+  "kind": "noun",
+  "emoji": "⭐"
+ },
+ {
+  "slug": "hows-the-weather-today",
+  "kind": "phrase",
+  "emoji": "🌤️",
+  "components": [
+   "weather"
+  ]
+ },
+ {
+  "slug": "its-raining",
+  "kind": "phrase",
+  "emoji": "🌧️",
+  "components": []
+ },
+ {
+  "slug": "the-sun-is-shining",
+  "kind": "phrase",
+  "emoji": "☀️",
+  "components": [
+   "sun"
+  ]
+ },
+ {
+  "slug": "shall-we-take-a-walk",
+  "kind": "phrase",
+  "emoji": "👣",
+  "components": [
+   "go-for-walk"
+  ]
+ },
+ {
+  "slug": "take-an-umbrella",
+  "kind": "phrase",
+  "emoji": "☂️",
+  "components": []
+ },
+ {
+  "slug": "what-a-beautiful-day",
+  "kind": "phrase",
+  "emoji": "🌈",
+  "components": []
+ },
+ {
+  "slug": "lets-go-to-the-beach",
+  "kind": "phrase",
+  "emoji": "🏖️",
+  "components": [
+   "beach"
+  ]
+ },
+ {
+  "slug": "we-are-going-to-the-mountains",
+  "kind": "phrase",
+  "emoji": "⛰️",
+  "components": [
+   "mountain"
+  ]
+ },
+ {
+  "slug": "look-a-bird",
+  "kind": "phrase",
+  "emoji": "🐦",
+  "components": [
+   "bird"
+  ]
+ },
+ {
+  "slug": "the-cat-is-sleeping",
+  "kind": "phrase",
+  "emoji": "🐈",
+  "components": [
+   "cat"
+  ]
+ }
+]

@@ -1,27 +1,7 @@
 {
- "title": "Der Arzt & die Gesundheit",
+ "title": "Die Gesundheit",
+ "subtitle": "Wie es dir heute geht.",
  "words": {
-  "doctor": {
-   "text": "Arzt",
-   "grammar": {
-    "gender": "der",
-    "plural": "Ärzte"
-   }
-  },
-  "doctor-f": {
-   "text": "Ärztin",
-   "grammar": {
-    "gender": "die",
-    "plural": "-nen"
-   }
-  },
-  "practice": {
-   "text": "Praxis",
-   "grammar": {
-    "gender": "die",
-    "plural": "Praxen"
-   }
-  },
   "pain": {
    "text": "Schmerz",
    "grammar": {
@@ -33,41 +13,6 @@
    "text": "Fieber",
    "grammar": {
     "gender": "das"
-   }
-  },
-  "pill": {
-   "text": "Tablette",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "prescription": {
-   "text": "Rezept",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
-  },
-  "pharmacy": {
-   "text": "Apotheke",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "insurance-card": {
-   "text": "Versichertenkarte",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "health-insurance": {
-   "text": "Krankenkasse",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
    }
   },
   "cough": {
@@ -89,82 +34,8 @@
   "to-cough": {
    "text": "husten"
   },
-  "examine": {
-   "text": "untersuchen"
-  },
-  "prescribe-medicine": {
-   "text": "Medikamente verschreiben"
-  },
-  "take-medicine": {
-   "text": "Medikamente einnehmen"
-  },
-  "call-in-sick": {
-   "text": "sich krankmelden"
-  },
   "rest": {
    "text": "sich ausruhen"
-  },
-  "head": {
-   "text": "Kopf",
-   "grammar": {
-    "gender": "der",
-    "plural": "Köpfe"
-   }
-  },
-  "throat": {
-   "text": "Hals",
-   "grammar": {
-    "gender": "der",
-    "plural": "Hälse"
-   }
-  },
-  "stomach": {
-   "text": "Bauch",
-   "grammar": {
-    "gender": "der",
-    "plural": "Bäuche"
-   }
-  },
-  "back": {
-   "text": "Rücken",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "ear": {
-   "text": "Ohr",
-   "grammar": {
-    "gender": "das",
-    "plural": "-en"
-   }
-  },
-  "blood": {
-   "text": "Blut",
-   "grammar": {
-    "gender": "das"
-   }
-  },
-  "hospital": {
-   "text": "Krankenhaus",
-   "grammar": {
-    "gender": "das",
-    "plural": "Krankenhäuser"
-   }
-  },
-  "emergency": {
-   "text": "Notfall",
-   "grammar": {
-    "gender": "der",
-    "plural": "Notfälle"
-   }
-  },
-  "sick-note": {
-   "text": "Krankmeldung",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
   },
   "sick": {
    "text": "krank"
@@ -172,29 +43,87 @@
   "feel": {
    "text": "sich fühlen"
   },
+  "health": {
+   "text": "Gesundheit",
+   "grammar": {
+    "gender": "die"
+   }
+  },
+  "illness": {
+   "text": "Krankheit",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "healthy": {
+   "text": "gesund"
+  },
+  "tired": {
+   "text": "müde"
+  },
+  "weak": {
+   "text": "schwach"
+  },
+  "dizziness": {
+   "text": "Schwindel",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "wound": {
+   "text": "Wunde",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "hurt-oneself": {
+   "text": "sich verletzen"
+  },
+  "bandage": {
+   "text": "Verband",
+   "grammar": {
+    "gender": "der",
+    "plural": "Verbände"
+   }
+  },
+  "breathe": {
+   "text": "atmen"
+  },
+  "recover": {
+   "text": "gesund werden",
+   "variants": [
+    "genesen"
+   ]
+  },
+  "allergy": {
+   "text": "Allergie",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
   "my-throat-hurts-a-lot": {
    "text": "Mein Hals tut sehr weh."
   },
   "ive-had-a-fever-since-yesterday": {
    "text": "Ich habe seit gestern Fieber."
   },
-  "take-the-pills-twice-daily": {
-   "text": "Nehmen Sie die Tabletten zweimal täglich ein.",
-   "variants": [
-    "Bitte nimm die Tabletten zweimal täglich ein."
-   ]
-  },
   "get-well-soon": {
    "text": "Gute Besserung!"
   },
-  "show-me-your-insurance-card": {
-   "text": "Zeigen Sie mir Ihre Versichertenkarte.",
-   "variants": [
-    "Zeig mir bitte deine Versichertenkarte."
-   ]
+  "i-dont-feel-well": {
+   "text": "Ich fühle mich nicht wohl."
   },
-  "the-practice-is-closed": {
-   "text": "Die Praxis ist geschlossen."
+  "the-wound-hurts": {
+   "text": "Die Wunde tut weh."
+  },
+  "i-cant-breathe-well": {
+   "text": "Ich kann nicht gut atmen."
+  },
+  "i-have-to-rest": {
+   "text": "Ich muss mich ausruhen."
   }
  }
 }

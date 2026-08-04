@@ -174,6 +174,14 @@ extension AppModel {
         return catalog?.areaTitle(area: area, lang: sourceLanguage) ?? area.capitalized
     }
 
+    /// The flavour clause under the heading, in the same language — optional content,
+    /// so nil is the ordinary answer for an area that authors none. The learner's own
+    /// area has no author to write one.
+    func areaSubtitle(_ area: String) -> String? {
+        guard area != ownArea else { return nil }
+        return catalog?.areaSubtitle(area: area, lang: sourceLanguage)
+    }
+
     /// Area icon, language-neutral: the catalog owns its own (`areas.json`), Kern
     /// owns the one area the catalog cannot. A neutral box for anything else.
     func areaEmoji(_ area: String) -> String {

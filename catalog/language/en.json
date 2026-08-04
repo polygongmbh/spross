@@ -1,0 +1,63 @@
+{
+ "title": "The language course",
+ "subtitle": "Ask, answer, keep learning.",
+ "words": {
+  "dictionary": {
+   "text": "dictionary",
+   "grammar": {
+    "plural": "dictionaries"
+   }
+  },
+  "question": {
+   "text": "question"
+  },
+  "answer": {
+   "text": "answer"
+  },
+  "ask": {
+   "text": "to ask"
+  },
+  "reply": {
+   "text": "to reply"
+  },
+  "translate": {
+   "text": "to translate"
+  },
+  "sentence": {
+   "text": "sentence"
+  },
+  "learn-by-heart": {
+   "text": "to learn by heart"
+  },
+  "meaning": {
+   "text": "meaning"
+  },
+  "to-pronounce": {
+   "text": "to pronounce"
+  },
+  "read-aloud": {
+   "text": "to read aloud"
+  },
+  "mother-tongue": {
+   "text": "mother tongue",
+   "variants": [
+    "native language"
+   ]
+  },
+  "i-have-a-question": {
+   "text": "I have a question."
+  },
+  "what-does-this-word-mean": {
+   "text": "What does this word mean?"
+  },
+  "how-do-you-say-this-in-german": {
+   "text": "How do you say this in German?"
+  },
+  "im-learning-german": {
+   "text": "I'm learning German."
+  },
+  "you-can-do-it": {
+   "text": "You can definitely do it!"
+  }
+ }
+}

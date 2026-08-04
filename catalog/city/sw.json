@@ -1,0 +1,141 @@
+{
+ "title": "Mjini",
+ "subtitle": "Kuna shughuli kila wakati.",
+ "words": {
+  "street": {
+   "text": "barabara",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "market": {
+   "text": "soko",
+   "grammar": {
+    "plural": "masoko"
+   }
+  },
+  "park": {
+   "text": "bustani",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "shop": {
+   "text": "kwenda madukani"
+  },
+  "city": {
+   "text": "mji",
+   "grammar": {
+    "plural": "miji"
+   },
+   "notes": {
+    "de": "jiji ist die Großstadt, mji die Stadt überhaupt."
+   }
+  },
+  "village": {
+   "text": "kijiji",
+   "grammar": {
+    "plural": "vijiji"
+   }
+  },
+  "neighbourhood": {
+   "text": "mtaa",
+   "grammar": {
+    "plural": "mitaa"
+   }
+  },
+  "building": {
+   "text": "jengo",
+   "grammar": {
+    "plural": "majengo"
+   }
+  },
+  "store": {
+   "text": "duka",
+   "grammar": {
+    "plural": "maduka"
+   }
+  },
+  "bank": {
+   "text": "benki",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "post-office": {
+   "text": "posta",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "restaurant": {
+   "text": "mkahawa",
+   "grammar": {
+    "plural": "mikahawa"
+   }
+  },
+  "hotel": {
+   "text": "hoteli",
+   "grammar": {
+    "plural": "="
+   },
+   "notes": {
+    "de": "hoteli bezeichnet oft auch eine einfache Gaststätte."
+   }
+  },
+  "church": {
+   "text": "kanisa",
+   "grammar": {
+    "plural": "makanisa"
+   }
+  },
+  "mosque": {
+   "text": "msikiti",
+   "grammar": {
+    "plural": "misikiti"
+   }
+  },
+  "library": {
+   "text": "maktaba",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "police": {
+   "text": "polisi",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "cinema": {
+   "text": "sinema",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "bridge": {
+   "text": "daraja",
+   "grammar": {
+    "plural": "madaraja"
+   }
+  },
+  "where-is-the-post-office": {
+   "text": "Posta iko wapi?"
+  },
+  "is-there-a-bank-here": {
+   "text": "Kuna benki hapa?"
+  },
+  "the-shop-is-still-open": {
+   "text": "Duka bado liko wazi."
+  },
+  "im-looking-for-a-hotel": {
+   "text": "Natafuta hoteli."
+  },
+  "lets-meet-at-the-market": {
+   "text": "Tukutane sokoni."
+  },
+  "i-live-in-this-neighbourhood": {
+   "text": "Ninaishi katika mtaa huu."
+  }
+ }
+}

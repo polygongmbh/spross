@@ -1,5 +1,6 @@
 {
  "title": "Die Küche",
+ "subtitle": "Hier duftet es nach Abendessen.",
  "words": {
   "fridge": {
    "text": "Kühlschrank",
@@ -27,18 +28,6 @@
    "grammar": {
     "gender": "die",
     "plural": "-n"
-   }
-  },
-  "hunger": {
-   "text": "Hunger",
-   "grammar": {
-    "gender": "der"
-   }
-  },
-  "thirst": {
-   "text": "Durst",
-   "grammar": {
-    "gender": "der"
    }
   },
   "pot": {
@@ -113,67 +102,29 @@
   "careful": {
    "text": "Vorsicht"
   },
-  "bread": {
-   "text": "Brot",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
-  },
-  "milk": {
-   "text": "Milch",
-   "grammar": {
-    "gender": "die"
-   }
-  },
-  "coffee": {
-   "text": "Kaffee",
-   "grammar": {
-    "gender": "der",
-    "plural": "-s"
-   }
-  },
-  "tea": {
-   "text": "Tee",
-   "grammar": {
-    "gender": "der",
-    "plural": "-s"
-   }
-  },
-  "egg": {
-   "text": "Ei",
-   "grammar": {
-    "gender": "das",
-    "plural": "-er"
-   }
-  },
-  "cheese": {
-   "text": "Käse",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "salt": {
-   "text": "Salz",
-   "grammar": {
-    "gender": "das"
-   }
-  },
-  "sugar": {
-   "text": "Zucker",
-   "grammar": {
-    "gender": "der"
-   }
-  },
-  "rice": {
-   "text": "Reis",
-   "grammar": {
-    "gender": "der"
-   }
-  },
   "cup": {
    "text": "Tasse",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "bowl": {
+   "text": "Schüssel",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "basket": {
+   "text": "Korb",
+   "grammar": {
+    "gender": "der",
+    "plural": "Körbe"
+   }
+  },
+  "tin": {
+   "text": "Dose",
    "grammar": {
     "gender": "die",
     "plural": "-n"

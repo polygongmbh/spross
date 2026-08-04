@@ -1,5 +1,6 @@
 {
- "title": "На кухні · смачного!",
+ "title": "На кухні",
+ "subtitle": "Тут пахне вечерею.",
  "words": {
   "fridge": {
    "text": "холодильник"
@@ -15,12 +16,6 @@
    "grammar": {
     "plural": "посудомийні машини"
    }
-  },
-  "hunger": {
-   "text": "голод"
-  },
-  "thirst": {
-   "text": "спрага"
   },
   "pot": {
    "text": "каструля"
@@ -73,35 +68,23 @@
   "careful": {
    "text": "обережно"
   },
-  "bread": {
-   "text": "хліб"
-  },
-  "milk": {
-   "text": "молоко"
-  },
-  "coffee": {
-   "text": "кава"
-  },
-  "tea": {
-   "text": "чай"
-  },
-  "egg": {
-   "text": "яйце"
-  },
-  "cheese": {
-   "text": "сир"
-  },
-  "salt": {
-   "text": "сіль"
-  },
-  "sugar": {
-   "text": "цукор"
-  },
-  "rice": {
-   "text": "рис"
-  },
   "cup": {
    "text": "чашка"
+  },
+  "bowl": {
+   "text": "миска"
+  },
+  "basket": {
+   "text": "кошик"
+  },
+  "tin": {
+   "text": "банка",
+   "variants": [
+    "бляшанка"
+   ],
+   "notes": {
+    "de": "банка ist auch das Einmachglas; die Blechdose allein heißt бляшанка."
+   }
   },
   "the-knife-is-sharp": {
    "text": "Ніж гострий!"

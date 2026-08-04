@@ -143,22 +143,24 @@ internal object CatalogParser {
         }
     }
 
-    /** Returns (title, slug → realization); validates slugs against the area's concepts. */
+    /** Returns the area's headings + realizations; validates slugs against its concepts. */
     fun parseAreaLanguageFile(
         path: String,
         text: String,
         conceptSlugs: Set<String>,
-    ): Pair<String, Map<String, RawRealization>> {
+    ): RawArea {
         val root = parseJson(path, text).obj(path, "root")
-        root.rejectUnknownKeys(path, "root", setOf("title", "words"))
+        root.rejectUnknownKeys(path, "root", setOf("title", "subtitle", "words"))
         val title = root.requireString(path, "root", "title")
         if (title.isBlank()) parseError(path, "blank title")
+        val subtitle = root.optionalString(path, "root", "subtitle")
+        if (subtitle != null && subtitle.isBlank()) parseError(path, "blank subtitle")
         val wordsObj = root["words"]?.obj(path, "words") ?: parseError(path, "missing \"words\"")
         val words = wordsObj.entries.associate { (slug, el) ->
             if (slug !in conceptSlugs) parseError(path, "realization for unknown slug \"$slug\"")
             slug to parseRealization(path, slug, el.obj(path, slug))
         }
-        return title to words
+        return RawArea(title, subtitle, words)
     }
 
     /**

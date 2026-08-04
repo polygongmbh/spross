@@ -1,0 +1,111 @@
+{
+ "title": "The body",
+ "subtitle": "From head to toe.",
+ "words": {
+  "head": {
+   "text": "head"
+  },
+  "hair": {
+   "text": "hair"
+  },
+  "face": {
+   "text": "face"
+  },
+  "eye": {
+   "text": "eye"
+  },
+  "ear": {
+   "text": "ear"
+  },
+  "nose": {
+   "text": "nose"
+  },
+  "mouth": {
+   "text": "mouth"
+  },
+  "tooth": {
+   "text": "tooth",
+   "grammar": {
+    "plural": "teeth"
+   }
+  },
+  "lip": {
+   "text": "lip"
+  },
+  "hand": {
+   "text": "hand"
+  },
+  "arm": {
+   "text": "arm"
+  },
+  "foot": {
+   "text": "foot",
+   "grammar": {
+    "plural": "feet"
+   }
+  },
+  "leg": {
+   "text": "leg"
+  },
+  "stomach": {
+   "text": "stomach"
+  },
+  "back": {
+   "text": "back"
+  },
+  "throat": {
+   "text": "throat"
+  },
+  "shoulder": {
+   "text": "shoulder"
+  },
+  "knee": {
+   "text": "knee"
+  },
+  "chest": {
+   "text": "chest"
+  },
+  "heart": {
+   "text": "heart"
+  },
+  "blood": {
+   "text": "blood"
+  },
+  "skin": {
+   "text": "skin"
+  },
+  "bone": {
+   "text": "bone"
+  },
+  "finger": {
+   "text": "finger"
+  },
+  "tongue": {
+   "text": "tongue"
+  },
+  "neck": {
+   "text": "neck"
+  },
+  "my-head-hurts": {
+   "text": "My head hurts."
+  },
+  "give-me-your-hand": {
+   "text": "Give me your hand."
+  },
+  "open-your-mouth": {
+   "text": "Open your mouth."
+  },
+  "close-your-eyes": {
+   "text": "Close your eyes."
+  },
+  "i-have-long-hair": {
+   "text": "I have long hair."
+  },
+  "my-feet-are-cold": {
+   "text": "My feet are cold."
+  },
+  "my-heart-is-beating-fast": {
+   "text": "My heart is beating fast."
+  }
+ }
+}

@@ -1,5 +1,6 @@
 {
- "title": "School & language class",
+ "title": "The school",
+ "subtitle": "An ordinary school day.",
  "words": {
   "school": {
    "text": "school"
@@ -13,12 +14,6 @@
   "board": {
    "text": "board"
   },
-  "dictionary": {
-   "text": "dictionary",
-   "grammar": {
-    "plural": "dictionaries"
-   }
-  },
   "exercise-book": {
    "text": "exercise book"
   },
@@ -30,21 +25,6 @@
   },
   "break": {
    "text": "break"
-  },
-  "question": {
-   "text": "question"
-  },
-  "answer": {
-   "text": "answer"
-  },
-  "ask": {
-   "text": "to ask"
-  },
-  "reply": {
-   "text": "to reply"
-  },
-  "translate": {
-   "text": "to translate"
   },
   "pass-exam": {
    "text": "to pass the exam"
@@ -70,32 +50,50 @@
   "page": {
    "text": "page"
   },
-  "sentence": {
-   "text": "sentence"
-  },
   "grade": {
    "text": "grade"
   },
   "correct": {
    "text": "to correct"
   },
-  "learn-by-heart": {
-   "text": "to learn by heart"
+  "book": {
+   "text": "book"
   },
-  "i-have-a-question": {
-   "text": "I have a question."
+  "university": {
+   "text": "university",
+   "grammar": {
+    "plural": "universities"
+   }
   },
-  "what-does-this-word-mean": {
-   "text": "What does this word mean?"
+  "timetable": {
+   "text": "timetable"
   },
-  "how-do-you-say-this-in-german": {
-   "text": "How do you say this in German?"
+  "to-count": {
+   "text": "to count"
   },
-  "im-learning-german": {
-   "text": "I'm learning German."
+  "to-try": {
+   "text": "to try"
   },
-  "you-can-do-it": {
-   "text": "You can definitely do it!"
+  "do-the-homework": {
+   "text": "I'm doing my homework."
+  },
+  "the-exam-is-tomorrow": {
+   "text": "The exam is tomorrow."
+  },
+  "look-at-the-timetable": {
+   "text": "Look at the timetable."
+  },
+  "the-break-is-over": {
+   "text": "The break is over."
+  },
+  "ask-the-teacher": {
+   "text": "Ask the teacher."
+  },
+  "i-have-a-good-grade": {
+   "text": "I have a good grade."
+  },
+  "we-go-to-the-classroom": {
+   "text": "We're going to the classroom."
   }
  }
 }

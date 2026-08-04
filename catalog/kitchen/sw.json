@@ -1,5 +1,6 @@
 {
- "title": "Jikoni · karibu chakula kitamu!",
+ "title": "Jikoni",
+ "subtitle": "Harufu ya chakula cha jioni.",
  "words": {
   "fridge": {
    "text": "friji",
@@ -24,12 +25,6 @@
    "grammar": {
     "plural": "mashine za kuosha vyombo"
    }
-  },
-  "hunger": {
-   "text": "njaa"
-  },
-  "thirst": {
-   "text": "kiu"
   },
   "pot": {
    "text": "sufuria",
@@ -97,58 +92,28 @@
   "careful": {
    "text": "angalia"
   },
-  "bread": {
-   "text": "mkate",
-   "grammar": {
-    "plural": "mikate"
-   }
-  },
-  "milk": {
-   "text": "maziwa",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "coffee": {
-   "text": "kahawa"
-  },
-  "tea": {
-   "text": "chai",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "egg": {
-   "text": "yai",
-   "grammar": {
-    "plural": "mayai"
-   }
-  },
-  "cheese": {
-   "text": "jibini",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "salt": {
-   "text": "chumvi"
-  },
-  "sugar": {
-   "text": "sukari",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "rice": {
-   "text": "mchele",
-   "notes": {
-    "de": "mchele = roher Reis · wali = gekochter Reis"
-   }
-  },
   "cup": {
    "text": "kikombe",
    "grammar": {
     "plural": "vikombe"
+   }
+  },
+  "bowl": {
+   "text": "bakuli",
+   "grammar": {
+    "plural": "mabakuli"
+   }
+  },
+  "basket": {
+   "text": "kikapu",
+   "grammar": {
+    "plural": "vikapu"
+   }
+  },
+  "tin": {
+   "text": "kopo",
+   "grammar": {
+    "plural": "makopo"
    }
   },
   "the-knife-is-sharp": {

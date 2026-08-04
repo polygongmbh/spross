@@ -1,5 +1,6 @@
 {
  "title": "Connecting words",
+ "subtitle": "The words that hold a sentence together.",
  "words": {
   "higher": {
    "text": "higher"
@@ -34,6 +35,39 @@
   "also": {
    "text": "also"
   },
+  "and": {
+   "text": "and"
+  },
+  "or": {
+   "text": "or"
+  },
+  "if": {
+   "text": "if"
+  },
+  "because": {
+   "text": "because"
+  },
+  "so-that": {
+   "text": "so that"
+  },
+  "before": {
+   "text": "before"
+  },
+  "after": {
+   "text": "after"
+  },
+  "until": {
+   "text": "until"
+  },
+  "without": {
+   "text": "without"
+  },
+  "again": {
+   "text": "again"
+  },
+  "still": {
+   "text": "still"
+  },
   "more-or-less": {
    "text": "more or less"
   },
@@ -45,6 +79,12 @@
   },
   "hang-it-lower": {
    "text": "Hang it lower."
+  },
+  "if-you-want": {
+   "text": "If you want."
+  },
+  "tea-or-coffee": {
+   "text": "Tea or coffee?"
   }
  }
 }

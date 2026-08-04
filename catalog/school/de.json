@@ -1,5 +1,6 @@
 {
- "title": "Die Schule & der Sprachkurs",
+ "title": "Die Schule",
+ "subtitle": "Ein ganz normaler Schultag.",
  "words": {
   "school": {
    "text": "Schule",
@@ -36,13 +37,6 @@
     "plural": "-n"
    }
   },
-  "dictionary": {
-   "text": "Wörterbuch",
-   "grammar": {
-    "gender": "das",
-    "plural": "Wörterbücher"
-   }
-  },
   "exercise-book": {
    "text": "Heft",
    "grammar": {
@@ -70,29 +64,6 @@
     "gender": "die",
     "plural": "-n"
    }
-  },
-  "question": {
-   "text": "Frage",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "answer": {
-   "text": "Antwort",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "ask": {
-   "text": "fragen"
-  },
-  "reply": {
-   "text": "antworten"
-  },
-  "translate": {
-   "text": "übersetzen"
   },
   "pass-exam": {
    "text": "die Prüfung bestehen"
@@ -147,13 +118,6 @@
     "plural": "-n"
    }
   },
-  "sentence": {
-   "text": "Satz",
-   "grammar": {
-    "gender": "der",
-    "plural": "Sätze"
-   }
-  },
   "grade": {
    "text": "Note",
    "grammar": {
@@ -164,23 +128,62 @@
   "correct": {
    "text": "korrigieren"
   },
-  "learn-by-heart": {
-   "text": "auswendig lernen"
+  "book": {
+   "text": "Buch",
+   "grammar": {
+    "gender": "das",
+    "plural": "Bücher"
+   }
   },
-  "i-have-a-question": {
-   "text": "Ich habe eine Frage."
+  "university": {
+   "text": "Universität",
+   "variants": [
+    "Uni"
+   ],
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
   },
-  "what-does-this-word-mean": {
-   "text": "Was bedeutet dieses Wort?"
+  "timetable": {
+   "text": "Stundenplan",
+   "grammar": {
+    "gender": "der",
+    "plural": "Stundenpläne"
+   }
   },
-  "how-do-you-say-this-in-german": {
-   "text": "Wie sagt man das auf Deutsch?"
+  "to-count": {
+   "text": "zählen"
   },
-  "im-learning-german": {
-   "text": "Ich lerne Deutsch."
+  "to-try": {
+   "text": "versuchen"
   },
-  "you-can-do-it": {
-   "text": "Du schaffst das bestimmt!"
+  "do-the-homework": {
+   "text": "Ich mache die Hausaufgaben."
+  },
+  "the-exam-is-tomorrow": {
+   "text": "Morgen ist die Prüfung."
+  },
+  "look-at-the-timetable": {
+   "text": "Schau auf den Stundenplan.",
+   "variants": [
+    "Schauen Sie auf den Stundenplan."
+   ]
+  },
+  "the-break-is-over": {
+   "text": "Die Pause ist vorbei."
+  },
+  "ask-the-teacher": {
+   "text": "Frag den Lehrer.",
+   "variants": [
+    "Fragen Sie den Lehrer."
+   ]
+  },
+  "i-have-a-good-grade": {
+   "text": "Ich habe eine gute Note."
+  },
+  "we-go-to-the-classroom": {
+   "text": "Wir gehen ins Klassenzimmer."
   }
  }
 }

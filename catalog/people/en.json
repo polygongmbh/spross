@@ -1,0 +1,108 @@
+{
+ "title": "The family",
+ "subtitle": "The people closest to you.",
+ "words": {
+  "family": {
+   "text": "family",
+   "grammar": {
+    "plural": "families"
+   }
+  },
+  "mother": {
+   "text": "mother"
+  },
+  "father": {
+   "text": "father"
+  },
+  "parents": {
+   "text": "parents",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "child": {
+   "text": "child",
+   "grammar": {
+    "plural": "children"
+   }
+  },
+  "son": {
+   "text": "son"
+  },
+  "daughter": {
+   "text": "daughter"
+  },
+  "brother": {
+   "text": "brother"
+  },
+  "sister": {
+   "text": "sister"
+  },
+  "man": {
+   "text": "man",
+   "grammar": {
+    "plural": "men"
+   }
+  },
+  "woman": {
+   "text": "woman",
+   "grammar": {
+    "plural": "women"
+   }
+  },
+  "boy": {
+   "text": "boy"
+  },
+  "girl": {
+   "text": "girl"
+  },
+  "baby": {
+   "text": "baby",
+   "grammar": {
+    "plural": "babies"
+   }
+  },
+  "grandmother": {
+   "text": "grandmother"
+  },
+  "grandfather": {
+   "text": "grandfather"
+  },
+  "husband": {
+   "text": "husband"
+  },
+  "wife": {
+   "text": "wife",
+   "grammar": {
+    "plural": "wives"
+   }
+  },
+  "uncle": {
+   "text": "uncle"
+  },
+  "aunt": {
+   "text": "aunt"
+  },
+  "this-is-my-mother": {
+   "text": "This is my mother."
+  },
+  "where-is-your-father": {
+   "text": "Where is your father?"
+  },
+  "i-have-two-children": {
+   "text": "I have two children."
+  },
+  "my-family-is-big": {
+   "text": "My family is big."
+  },
+  "i-have-a-brother": {
+   "text": "I have a brother."
+  },
+  "my-parents-live-here": {
+   "text": "My parents live here."
+  },
+  "how-is-your-grandmother": {
+   "text": "How is your grandmother?"
+  }
+ }
+}

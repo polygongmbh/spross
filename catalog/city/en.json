@@ -1,0 +1,100 @@
+{
+ "title": "The city",
+ "subtitle": "Always something going on.",
+ "words": {
+  "street": {
+   "text": "street"
+  },
+  "market": {
+   "text": "market"
+  },
+  "park": {
+   "text": "park"
+  },
+  "shop": {
+   "text": "to go shopping"
+  },
+  "city": {
+   "text": "city",
+   "grammar": {
+    "plural": "cities"
+   }
+  },
+  "village": {
+   "text": "village"
+  },
+  "neighbourhood": {
+   "text": "neighbourhood",
+   "variants": [
+    "neighborhood"
+   ]
+  },
+  "building": {
+   "text": "building"
+  },
+  "store": {
+   "text": "shop",
+   "variants": [
+    "store"
+   ]
+  },
+  "bank": {
+   "text": "bank"
+  },
+  "post-office": {
+   "text": "post office"
+  },
+  "restaurant": {
+   "text": "restaurant"
+  },
+  "hotel": {
+   "text": "hotel"
+  },
+  "church": {
+   "text": "church",
+   "grammar": {
+    "plural": "churches"
+   }
+  },
+  "mosque": {
+   "text": "mosque"
+  },
+  "library": {
+   "text": "library",
+   "grammar": {
+    "plural": "libraries"
+   }
+  },
+  "police": {
+   "text": "police"
+  },
+  "cinema": {
+   "text": "cinema",
+   "variants": [
+    "movie theatre",
+    "movie theater"
+   ]
+  },
+  "bridge": {
+   "text": "bridge"
+  },
+  "where-is-the-post-office": {
+   "text": "Where is the post office?"
+  },
+  "is-there-a-bank-here": {
+   "text": "Is there a bank here?"
+  },
+  "the-shop-is-still-open": {
+   "text": "The shop is still open."
+  },
+  "im-looking-for-a-hotel": {
+   "text": "I'm looking for a hotel."
+  },
+  "lets-meet-at-the-market": {
+   "text": "Let's meet at the market."
+  },
+  "i-live-in-this-neighbourhood": {
+   "text": "I live in this neighbourhood."
+  }
+ }
+}

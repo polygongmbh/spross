@@ -1,0 +1,93 @@
+[
+ {
+  "slug": "dictionary",
+  "kind": "noun",
+  "emoji": "📖"
+ },
+ {
+  "slug": "question",
+  "kind": "noun",
+  "emoji": "❓"
+ },
+ {
+  "slug": "answer",
+  "kind": "noun",
+  "emoji": "✅"
+ },
+ {
+  "slug": "ask",
+  "kind": "verb",
+  "emoji": "🙋"
+ },
+ {
+  "slug": "reply",
+  "kind": "verb",
+  "emoji": "↩️"
+ },
+ {
+  "slug": "translate",
+  "kind": "verb",
+  "emoji": "🔤"
+ },
+ {
+  "slug": "sentence",
+  "kind": "noun",
+  "emoji": "💬"
+ },
+ {
+  "slug": "learn-by-heart",
+  "kind": "verb",
+  "emoji": "🧠"
+ },
+ {
+  "slug": "meaning",
+  "kind": "noun",
+  "emoji": "💡"
+ },
+ {
+  "slug": "to-pronounce",
+  "kind": "verb",
+  "emoji": "🗣️"
+ },
+ {
+  "slug": "read-aloud",
+  "kind": "verb",
+  "emoji": "📢"
+ },
+ {
+  "slug": "mother-tongue",
+  "kind": "noun"
+ },
+ {
+  "slug": "i-have-a-question",
+  "kind": "phrase",
+  "emoji": "❓",
+  "components": [
+   "question"
+  ]
+ },
+ {
+  "slug": "what-does-this-word-mean",
+  "kind": "phrase",
+  "emoji": "📖",
+  "components": []
+ },
+ {
+  "slug": "how-do-you-say-this-in-german",
+  "kind": "phrase",
+  "emoji": "🗣️",
+  "components": []
+ },
+ {
+  "slug": "im-learning-german",
+  "kind": "phrase",
+  "emoji": "🇩🇪",
+  "components": []
+ },
+ {
+  "slug": "you-can-do-it",
+  "kind": "phrase",
+  "emoji": "💪",
+  "components": []
+ }
+]

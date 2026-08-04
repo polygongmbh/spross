@@ -1,5 +1,6 @@
 {
- "title": "Найважливіше · щодня!",
+ "title": "Найважливіше",
+ "subtitle": "Слова на кожен день.",
  "words": {
   "money": {
    "text": "гроші",
@@ -9,24 +10,6 @@
   },
   "water": {
    "text": "вода"
-  },
-  "time": {
-   "text": "час"
-  },
-  "day": {
-   "text": "день",
-   "grammar": {
-    "plural": "дні"
-   }
-  },
-  "week": {
-   "text": "тиждень",
-   "grammar": {
-    "plural": "тижні"
-   }
-  },
-  "hour": {
-   "text": "година"
   },
   "house": {
    "text": "будинок",
@@ -103,6 +86,18 @@
     "de": "жити = leben und wohnen (Alltag) · мешкати = wohnen, amtlich."
    }
   },
+  "like": {
+   "text": "любити",
+   "notes": {
+    "de": "deckt mögen und lieben ab · „mir gefällt“ ist мені подобається."
+   }
+  },
+  "can": {
+   "text": "могти"
+  },
+  "think": {
+   "text": "думати"
+  },
   "good": {
    "text": "добрий",
    "variants": [
@@ -126,15 +121,6 @@
   },
   "much": {
    "text": "багато"
-  },
-  "now": {
-   "text": "зараз"
-  },
-  "today": {
-   "text": "сьогодні"
-  },
-  "tomorrow": {
-   "text": "завтра"
   },
   "new": {
    "text": "новий"
@@ -177,9 +163,6 @@
   },
   "i-have-no-money": {
    "text": "У мене немає грошей."
-  },
-  "i-have-no-time": {
-   "text": "У мене немає часу."
   },
   "do-you-have-water": {
    "text": "У вас є вода?",
@@ -231,9 +214,6 @@
   },
   "old-people": {
    "text": "старі люди"
-  },
-  "a-new-day": {
-   "text": "новий день"
   },
   "the-house-is-big": {
    "text": "Будинок великий."

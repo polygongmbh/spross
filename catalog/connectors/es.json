@@ -1,5 +1,6 @@
 {
  "title": "Palabras de enlace",
+ "subtitle": "Las que unen una frase con la siguiente.",
  "words": {
   "higher": {
    "text": "más alto"
@@ -37,6 +38,57 @@
   "also": {
    "text": "también"
   },
+  "and": {
+   "text": "y",
+   "variants": [
+    "e"
+   ],
+   "notes": {
+    "de": "vor i- und hi- wird y zu e: madre e hija."
+   }
+  },
+  "or": {
+   "text": "o",
+   "variants": [
+    "u"
+   ],
+   "notes": {
+    "de": "vor o- und ho- wird o zu u: siete u ocho."
+   }
+  },
+  "if": {
+   "text": "si"
+  },
+  "because": {
+   "text": "porque"
+  },
+  "so-that": {
+   "text": "para que"
+  },
+  "before": {
+   "text": "antes de"
+  },
+  "after": {
+   "text": "después de"
+  },
+  "until": {
+   "text": "hasta"
+  },
+  "without": {
+   "text": "sin"
+  },
+  "again": {
+   "text": "otra vez",
+   "variants": [
+    "de nuevo"
+   ]
+  },
+  "still": {
+   "text": "todavía",
+   "variants": [
+    "aún"
+   ]
+  },
   "more-or-less": {
    "text": "más o menos"
   },
@@ -54,6 +106,15 @@
    "variants": [
     "Cuélgalo más bajo."
    ]
+  },
+  "if-you-want": {
+   "text": "Si quiere.",
+   "variants": [
+    "Si quieres."
+   ]
+  },
+  "tea-or-coffee": {
+   "text": "¿Té o café?"
   }
  }
 }

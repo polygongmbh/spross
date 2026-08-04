@@ -1,5 +1,6 @@
 {
- "title": "На роботі · успіхів!",
+ "title": "На роботі",
+ "subtitle": "Успіхів!",
  "words": {
   "work": {
    "text": "робота"
@@ -117,6 +118,15 @@
    "grammar": {
     "plural": "="
    }
+  },
+  "worker": {
+   "text": "робітник"
+  },
+  "employer": {
+   "text": "роботодавець"
+  },
+  "customer": {
+   "text": "клієнт"
   },
   "tomorrow-i-have-a-job-interview": {
    "text": "Завтра я представлюся у фірмі."

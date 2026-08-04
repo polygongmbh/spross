@@ -203,6 +203,27 @@ class CatalogLintTest {
         }
     }
 
+    /**
+     * A subtitle is flavour, so an area may carry none — but half a set is worse than
+     * none: the clause would stand in one reader's box and be a hole in the next. It is
+     * also not the title again, in any form, and never the `·`-glued tail it replaced,
+     * which is the shape the whole field exists to retire.
+     */
+    @Test
+    fun subtitlesAreCompletePerAreaAndDistinctFromTheTitle() {
+        for (area in catalog.areas) {
+            if (area.subtitles.isEmpty()) continue
+            assertEquals(area.titles.keys, area.subtitles.keys, "area ${area.name}: partial subtitles")
+            for ((lang, subtitle) in area.subtitles) {
+                val where = "${area.name}/$lang.json subtitle"
+                assertTrue(subtitle.isNotBlank() && subtitle.trim() == subtitle, "$where: untrimmed \"$subtitle\"")
+                assertTrue("·" !in subtitle, "$where: carries a \"·\" tail")
+                val title = area.titles.getValue(lang)
+                assertTrue(title !in subtitle, "$where: repeats the title \"$title\"")
+            }
+        }
+    }
+
     @Test
     fun notesKeyedByDeclaredLanguages() {
         forEachRealization { area, lang, slug, raw ->
@@ -270,7 +291,7 @@ class CatalogLintTest {
      * Cross-area, single-language collisions are legitimate target-language merges (Swahili
      * has one word where German has two) — tolerated at runtime, where the join sets
      * `promptAmbiguous` and the UI adds the area label to the produce prompt. Pinned so a
-     * NEW one (adding `outside/river` beside `bedroom/pillow`, both sw `mto`) fails here
+     * NEW one (adding `nature/river` beside `bedroom/pillow`, both sw `mto`) fails here
      * instead of silently shipping an unanswerable prompt.
      */
     @Test
@@ -280,17 +301,31 @@ class CatalogLintTest {
             .toSortedSet()
         assertEquals(
             sortedSetOf(
-                // Reviewed 2026-07-25: the textbook homonym, and the only entry here that
-                // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
-                // not one word covering two German ones. Same treatment either way.
-                "sw mto: bedroom/pillow, outside/river",
                 // Reviewed 2026-07-31: es merges what de distinguishes by capitalization
                 // alone (der Morgen / morgen); en/sw/uk all keep the two apart, so no
                 // concept pair collides twice. The area disambiguates the produce prompt.
-                "es mañana: bedroom/morning, essentials/tomorrow",
+                "es mañana: bedroom/morning, time/tomorrow",
                 // Reviewed 2026-07-31: `el tiempo` is both Zeit and Wetter. de/en/sw/uk
                 // all split it; `clima` is das Klima in Spain, so there is no alternative.
-                "es tiempo: essentials/time, outside/weather",
+                "es tiempo: nature/weather, time/time",
+                // Reviewed 2026-07-25: the textbook homonym, and the only entry here that
+                // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
+                // not one word covering two German ones. Same treatment either way.
+                // Re-pathed 2026-08-04: `outside` split into transport/city/nature and
+                // `river` landed in `nature` — the same pair, renamed, not a new one.
+                "sw mto: bedroom/pillow, nature/river",
+                // Reviewed 2026-08-04: sw `mwezi` is moon and month, exactly as uk `місяць`
+                // is — so the moon is authored without uk, which keeps this to one language
+                // and pinnable instead of the unfixable two-language pair.
+                "sw mwezi: nature/moon, time/month",
+                // Reviewed 2026-08-04: `ndege` is the only Swahili word for both bird and
+                // aeroplane; de/en/es/uk all split them. The plane carries a de note so the
+                // learner meets the second sense as a fact, not as a surprise.
+                "sw ndege: nature/bird, transport/plane",
+                // Reviewed 2026-08-04: `nyanya` is the ordinary word for grandmother and for
+                // tomato alike, both of them the first word a learner needs in their area.
+                // Repicking either would teach the rarer word for no gain.
+                "sw nyanya: food/tomato, people/grandmother",
             ),
             actual,
         )

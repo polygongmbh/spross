@@ -1,0 +1,51 @@
+{
+ "title": "Кольори",
+ "subtitle": "Червоний, синій і все між ними.",
+ "words": {
+  "colour": {
+   "text": "колір",
+   "grammar": {
+    "plural": "кольори"
+   }
+  },
+  "white": {
+   "text": "білий"
+  },
+  "black": {
+   "text": "чорний"
+  },
+  "red": {
+   "text": "червоний"
+  },
+  "blue": {
+   "text": "синій",
+   "variants": [
+    "блакитний"
+   ],
+   "notes": {
+    "de": "синій = dunkelblau, блакитний = hellblau — das Ukrainische trennt beide."
+   }
+  },
+  "green": {
+   "text": "зелений"
+  },
+  "yellow": {
+   "text": "жовтий"
+  },
+  "brown": {
+   "text": "коричневий"
+  },
+  "grey": {
+   "text": "сірий"
+  },
+  "purple": {
+   "text": "фіолетовий"
+  },
+  "what-colour-is-it": {
+   "text": "Якого це кольору?"
+  },
+  "a-white-car": {
+   "text": "Біла машина."
+  }
+ }
+}

@@ -150,6 +150,19 @@
   "emoji": "📤"
  },
  {
+  "slug": "worker",
+  "kind": "noun"
+ },
+ {
+  "slug": "employer",
+  "kind": "noun"
+ },
+ {
+  "slug": "customer",
+  "kind": "noun",
+  "emoji": "🛍️"
+ },
+ {
   "slug": "tomorrow-i-have-a-job-interview",
   "kind": "phrase",
   "emoji": "👔",

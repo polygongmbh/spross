@@ -1,0 +1,68 @@
+{
+ "title": "Los colores",
+ "subtitle": "Rojo, azul y todo lo demás.",
+ "words": {
+  "colour": {
+   "text": "color",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "white": {
+   "text": "blanco",
+   "variants": [
+    "blanca"
+   ]
+  },
+  "black": {
+   "text": "negro",
+   "variants": [
+    "negra"
+   ]
+  },
+  "red": {
+   "text": "rojo",
+   "variants": [
+    "roja"
+   ]
+  },
+  "blue": {
+   "text": "azul"
+  },
+  "green": {
+   "text": "verde"
+  },
+  "yellow": {
+   "text": "amarillo",
+   "variants": [
+    "amarilla"
+   ]
+  },
+  "brown": {
+   "text": "marrón",
+   "variants": [
+    "café",
+    "castaño"
+   ],
+   "notes": {
+    "de": "in Lateinamerika meist café, bei Haaren castaño."
+   }
+  },
+  "grey": {
+   "text": "gris"
+  },
+  "purple": {
+   "text": "morado",
+   "variants": [
+    "morada",
+    "violeta"
+   ]
+  },
+  "what-colour-is-it": {
+   "text": "¿De qué color es?"
+  },
+  "a-white-car": {
+   "text": "Un coche blanco."
+  }
+ }
+}

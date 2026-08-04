@@ -1,5 +1,6 @@
 {
- "title": "Sebuleni · mahali pa kupumzika",
+ "title": "Sebuleni",
+ "subtitle": "Mahali pa kupumzika.",
  "words": {
   "sofa": {
    "text": "kochi",
@@ -144,6 +145,18 @@
   },
   "quiet": {
    "text": "kimya"
+  },
+  "furniture": {
+   "text": "samani",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "game": {
+   "text": "mchezo",
+   "grammar": {
+    "plural": "michezo"
+   }
   },
   "turn-on-the-tv": {
    "text": "Washa televisheni."

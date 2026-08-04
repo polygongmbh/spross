@@ -1,0 +1,214 @@
+{
+ "title": "Der Körper",
+ "subtitle": "Von Kopf bis Fuß.",
+ "words": {
+  "head": {
+   "text": "Kopf",
+   "grammar": {
+    "gender": "der",
+    "plural": "Köpfe"
+   }
+  },
+  "hair": {
+   "text": "Haar",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "face": {
+   "text": "Gesicht",
+   "grammar": {
+    "gender": "das",
+    "plural": "-er"
+   }
+  },
+  "eye": {
+   "text": "Auge",
+   "grammar": {
+    "gender": "das",
+    "plural": "-n"
+   }
+  },
+  "ear": {
+   "text": "Ohr",
+   "grammar": {
+    "gender": "das",
+    "plural": "-en"
+   }
+  },
+  "nose": {
+   "text": "Nase",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "mouth": {
+   "text": "Mund",
+   "grammar": {
+    "gender": "der",
+    "plural": "Münder"
+   }
+  },
+  "tooth": {
+   "text": "Zahn",
+   "grammar": {
+    "gender": "der",
+    "plural": "Zähne"
+   }
+  },
+  "lip": {
+   "text": "Lippe",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "hand": {
+   "text": "Hand",
+   "grammar": {
+    "gender": "die",
+    "plural": "Hände"
+   }
+  },
+  "arm": {
+   "text": "Arm",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "foot": {
+   "text": "Fuß",
+   "grammar": {
+    "gender": "der",
+    "plural": "Füße"
+   }
+  },
+  "leg": {
+   "text": "Bein",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "stomach": {
+   "text": "Bauch",
+   "grammar": {
+    "gender": "der",
+    "plural": "Bäuche"
+   }
+  },
+  "back": {
+   "text": "Rücken",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "throat": {
+   "text": "Hals",
+   "grammar": {
+    "gender": "der",
+    "plural": "Hälse"
+   }
+  },
+  "shoulder": {
+   "text": "Schulter",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "knee": {
+   "text": "Knie",
+   "grammar": {
+    "gender": "das",
+    "plural": "="
+   }
+  },
+  "chest": {
+   "text": "Brust",
+   "grammar": {
+    "gender": "die",
+    "plural": "Brüste"
+   }
+  },
+  "heart": {
+   "text": "Herz",
+   "grammar": {
+    "gender": "das",
+    "plural": "-en"
+   }
+  },
+  "blood": {
+   "text": "Blut",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "skin": {
+   "text": "Haut",
+   "grammar": {
+    "gender": "die",
+    "plural": "Häute"
+   }
+  },
+  "bone": {
+   "text": "Knochen",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "finger": {
+   "text": "Finger",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "tongue": {
+   "text": "Zunge",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "neck": {
+   "text": "Nacken",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "my-head-hurts": {
+   "text": "Mein Kopf tut weh."
+  },
+  "give-me-your-hand": {
+   "text": "Gib mir deine Hand."
+  },
+  "open-your-mouth": {
+   "text": "Mach den Mund auf.",
+   "variants": [
+    "Öffne den Mund."
+   ]
+  },
+  "close-your-eyes": {
+   "text": "Mach die Augen zu.",
+   "variants": [
+    "Schließ die Augen."
+   ]
+  },
+  "i-have-long-hair": {
+   "text": "Ich habe lange Haare."
+  },
+  "my-feet-are-cold": {
+   "text": "Meine Füße sind kalt."
+  },
+  "my-heart-is-beating-fast": {
+   "text": "Mein Herz schlägt schnell."
+  }
+ }
+}

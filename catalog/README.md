@@ -157,12 +157,20 @@ so rename deliberately, never just to polish a lemma.
 
 **`<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json
-{ "title": "Die Küche",
+{ "title": "Die Küche", "subtitle": "Hier duftet es nach Abendessen.",
   "words": {
     "fridge": { "text": "Kühlschrank", "grammar": { "gender": "der", "plural": "Kühlschränke" } },
     "cook":   { "text": "kochen" },
     "the-fridge-is-empty": { "text": "Der Kühlschrank ist leer." } } }
 ```
+- `title` — the area's plain NAME, nothing appended. It doubles as the disambiguating
+  cue on an ambiguous produce prompt, where a flavour tail glued on with `·` would
+  turn a label into a sentence.
+- `subtitle` — OPTIONAL flavour clause rendered under the title, one short line.
+  Never the title again and never a fragment of it, and per area it is **all-or-nothing
+  across the declared languages**: a clause only one language carries reads as a hole
+  in every other reader's box. Lint holds both.
+
 Realization fields — only `text` is required:
 - `text` — the canonical answer/display form, nothing else (no embedded glosses/labels).
   Never bracket a disambiguator into it (`"mto (Kissen)"`) — everything in `text` has to be
@@ -475,6 +483,36 @@ is what tells them apart (`kuacha` verlassen vs `kuacha kazi` kündigen,
 `kuomba` beantragen vs `kuomba kazi` sich bewerben): there the object is a
 disambiguator, it is carried by the merged language alone, and the homonym rule above
 governs it.
+
+## Which area a concept lives in
+
+**An area holds a few dozen cards.** It is a shelf a learner can hold in their head and
+choose to pull forward, not a drawer everything vaguely related falls into — so an area
+growing past roughly forty asks to be cut along the seam a learner would name
+(the doctor's visit out of health, the clock out of the everyday words, the colours out
+before they ever land there). The cut is cheap: the slug is the card id and carries no
+area, so nobody's schedule notices. The one area still over the line is `essentials`,
+which is the catch-all by construction and would need a further cut to come down.
+
+The area is the folder, and three things ride on it:
+it is the produce prompt's disambiguator,
+`components` and `feminineOf` resolve **inside** it,
+and it is the unit a contributor writes and reviews.
+So a concept sits with the scene it belongs to —
+unless a phrase holds it where it is:
+`person`, `human` and `friend` stay in `essentials` because five essentials phrases
+name them (or an essentials adjective) as components,
+and a phrase can only ever gate on a word of its own area.
+Orientation words (`left`, `right`) sit in `nature` for want of a better scene:
+they belong to no room and to no errand,
+and an area of two words would earn nothing.
+
+Moving one is mechanical and cheap — the slug is the card id and carries no area,
+so nobody's schedule notices — and `../scripts/catalog-move.py` is what does it:
+it carries every language's realization verbatim,
+appends words before the destination's phrase block,
+and refuses a move that would part a phrase from a component,
+a feminine from its base, or mint a same-area prompt collision.
 
 ## What v2 dropped from v1
 

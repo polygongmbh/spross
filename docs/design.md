@@ -55,6 +55,9 @@ Strict dependency direction: App → SprossKern, never the reverse.
   language: copy edits then never detach a translation, and a new chrome language is
   additive. How a key is written and kept honest: `scripts/strings.py`.
 - Area titles and area emoji both come from the catalog; the app carries no map of its own.
+  A title is a plain name, so it can serve as the produce prompt's area cue unedited;
+  the catalog's optional area subtitle is the flavour line, shown under the title
+  in the box and nowhere a cue is wanted.
 
 ## Presentation model in the UI
 

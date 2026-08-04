@@ -151,6 +151,25 @@
   "emoji": "✅"
  },
  {
+  "slug": "law",
+  "kind": "noun",
+  "emoji": "⚖️"
+ },
+ {
+  "slug": "visa",
+  "kind": "noun"
+ },
+ {
+  "slug": "fine",
+  "kind": "noun",
+  "emoji": "💶"
+ },
+ {
+  "slug": "receipt",
+  "kind": "noun",
+  "emoji": "🧾"
+ },
+ {
   "slug": "where-do-i-sign",
   "kind": "phrase",
   "emoji": "🖊️",

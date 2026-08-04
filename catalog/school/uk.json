@@ -1,5 +1,6 @@
 {
- "title": "У школі · вчимося разом!",
+ "title": "У школі",
+ "subtitle": "Звичайний шкільний день.",
  "words": {
   "school": {
    "text": "школа"
@@ -16,9 +17,6 @@
   "board": {
    "text": "дошка"
   },
-  "dictionary": {
-   "text": "словник"
-  },
   "exercise-book": {
    "text": "зошит"
   },
@@ -33,24 +31,6 @@
   },
   "break": {
    "text": "перерва"
-  },
-  "question": {
-   "text": "запитання",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "answer": {
-   "text": "відповідь"
-  },
-  "ask": {
-   "text": "питати"
-  },
-  "reply": {
-   "text": "відповідати"
-  },
-  "translate": {
-   "text": "перекладати"
   },
   "pass-exam": {
    "text": "скласти іспит"
@@ -82,35 +62,59 @@
   "page": {
    "text": "сторінка"
   },
-  "sentence": {
-   "text": "речення",
-   "grammar": {
-    "plural": "="
-   }
-  },
   "grade": {
    "text": "оцінка"
   },
   "correct": {
    "text": "виправляти"
   },
-  "learn-by-heart": {
-   "text": "вчити напам'ять"
+  "book": {
+   "text": "книжка",
+   "variants": [
+    "книга"
+   ]
   },
-  "i-have-a-question": {
-   "text": "У мене є запитання."
+  "university": {
+   "text": "університет"
   },
-  "what-does-this-word-mean": {
-   "text": "Що означає це слово?"
+  "timetable": {
+   "text": "розклад"
   },
-  "how-do-you-say-this-in-german": {
-   "text": "Як це сказати німецькою?"
+  "to-count": {
+   "text": "рахувати"
   },
-  "im-learning-german": {
-   "text": "Я вчу німецьку."
+  "to-try": {
+   "text": "намагатися",
+   "variants": [
+    "пробувати"
+   ]
   },
-  "you-can-do-it": {
-   "text": "Ти точно впораєшся!"
+  "do-the-homework": {
+   "text": "Я роблю домашнє завдання."
+  },
+  "the-exam-is-tomorrow": {
+   "text": "Іспит завтра."
+  },
+  "look-at-the-timetable": {
+   "text": "Подивись на розклад.",
+   "variants": [
+    "Подивіться на розклад."
+   ]
+  },
+  "the-break-is-over": {
+   "text": "Перерва закінчилася."
+  },
+  "ask-the-teacher": {
+   "text": "Запитай вчителя.",
+   "variants": [
+    "Запитайте вчителя."
+   ]
+  },
+  "i-have-a-good-grade": {
+   "text": "У мене гарна оцінка."
+  },
+  "we-go-to-the-classroom": {
+   "text": "Ми йдемо до класу."
   }
  }
 }

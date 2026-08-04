@@ -1,5 +1,6 @@
 {
- "title": "Bafuni · safi kabisa!",
+ "title": "Bafuni",
+ "subtitle": "Safi kabisa.",
  "words": {
   "washing-machine": {
    "text": "mashine ya kufulia",
@@ -113,12 +114,6 @@
    "text": "sifongo",
    "grammar": {
     "plural": "="
-   }
-  },
-  "hair": {
-   "text": "nywele",
-   "grammar": {
-    "plural": "only"
    }
   },
   "cream": {

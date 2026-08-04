@@ -20,16 +20,6 @@
   "emoji": "💦"
  },
  {
-  "slug": "hunger",
-  "kind": "noun",
-  "emoji": "🤤"
- },
- {
-  "slug": "thirst",
-  "kind": "noun",
-  "emoji": "🥤"
- },
- {
   "slug": "pot",
   "kind": "noun",
   "emoji": "🫕"
@@ -110,54 +100,24 @@
   "emoji": "⚠️"
  },
  {
-  "slug": "bread",
-  "kind": "noun",
-  "emoji": "🍞"
- },
- {
-  "slug": "milk",
-  "kind": "noun",
-  "emoji": "🥛"
- },
- {
-  "slug": "coffee",
-  "kind": "noun",
-  "emoji": "☕"
- },
- {
-  "slug": "tea",
-  "kind": "noun",
-  "emoji": "🫖"
- },
- {
-  "slug": "egg",
-  "kind": "noun",
-  "emoji": "🥚"
- },
- {
-  "slug": "cheese",
-  "kind": "noun",
-  "emoji": "🧀"
- },
- {
-  "slug": "salt",
-  "kind": "noun",
-  "emoji": "🧂"
- },
- {
-  "slug": "sugar",
-  "kind": "noun",
-  "emoji": "🍬"
- },
- {
-  "slug": "rice",
-  "kind": "noun",
-  "emoji": "🍚"
- },
- {
   "slug": "cup",
   "kind": "noun",
   "emoji": "🍵"
+ },
+ {
+  "slug": "bowl",
+  "kind": "noun",
+  "emoji": "🥣"
+ },
+ {
+  "slug": "basket",
+  "kind": "noun",
+  "emoji": "🧺"
+ },
+ {
+  "slug": "tin",
+  "kind": "noun",
+  "emoji": "🥫"
  },
  {
   "slug": "the-knife-is-sharp",

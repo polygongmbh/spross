@@ -219,6 +219,7 @@ private struct BoxAreaSection: View {
     private func header(_ stats: AreaStatistics?) -> some View {
         HStack(alignment: .top, spacing: DL.Space.s) {
             AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
+                     subtitle: model.areaSubtitle(area),
                      progress: stats?.progress ?? .empty,
                      lockedPhrases: stats?.lockedPhrases ?? 0)
             FoldChevron(open: expanded)

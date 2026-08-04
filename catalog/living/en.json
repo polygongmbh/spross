@@ -1,5 +1,6 @@
 {
  "title": "The living room",
+ "subtitle": "Time to unwind.",
  "words": {
   "sofa": {
    "text": "sofa"
@@ -99,6 +100,12 @@
   },
   "quiet": {
    "text": "quiet"
+  },
+  "furniture": {
+   "text": "furniture"
+  },
+  "game": {
+   "text": "game"
   },
   "turn-on-the-tv": {
    "text": "Turn on the television.",

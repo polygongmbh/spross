@@ -1,5 +1,6 @@
 {
  "title": "Das Wohnzimmer",
+ "subtitle": "Zeit zum Ausruhen.",
  "words": {
   "sofa": {
    "text": "Sofa",
@@ -165,6 +166,20 @@
   },
   "quiet": {
    "text": "leise"
+  },
+  "furniture": {
+   "text": "Möbel",
+   "grammar": {
+    "gender": "die",
+    "plural": "only"
+   }
+  },
+  "game": {
+   "text": "Spiel",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
   },
   "turn-on-the-tv": {
    "text": "Mach den Fernseher an."

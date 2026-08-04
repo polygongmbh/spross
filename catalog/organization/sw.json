@@ -1,5 +1,6 @@
 {
- "title": "Miadi na mipango · jipange!",
+ "title": "Miadi na mipango",
+ "subtitle": "Jipange, usisahau.",
  "words": {
   "appointment": {
    "text": "miadi",
@@ -60,6 +61,15 @@
   },
   "punctual": {
    "text": "kwa wakati"
+  },
+  "list": {
+   "text": "orodha",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "to-finish": {
+   "text": "kumaliza"
   },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Ningependa kupanga miadi."

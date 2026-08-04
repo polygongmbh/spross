@@ -18,12 +18,52 @@
     "emoji": "⭐"
    },
    {
+    "area": "time",
+    "emoji": "🕒"
+   },
+   {
+    "area": "colours",
+    "emoji": "🎨"
+   },
+   {
+    "area": "language",
+    "emoji": "🗣️"
+   },
+   {
     "area": "connectors",
     "emoji": "🔗"
    },
    {
     "area": "questions",
     "emoji": "❓"
+   }
+  ]
+ },
+ {
+  "group": "human",
+  "titles": {
+   "en": "People & health",
+   "de": "Mensch & Gesundheit",
+   "es": "Personas y salud",
+   "sw": "Mtu na afya",
+   "uk": "Людина і здоров'я"
+  },
+  "areas": [
+   {
+    "area": "people",
+    "emoji": "👪"
+   },
+   {
+    "area": "body",
+    "emoji": "🧍"
+   },
+   {
+    "area": "health",
+    "emoji": "🩺"
+   },
+   {
+    "area": "doctor",
+    "emoji": "🧑‍⚕️"
    }
   ]
  },
@@ -40,6 +80,10 @@
    {
     "area": "kitchen",
     "emoji": "🍳"
+   },
+   {
+    "area": "food",
+    "emoji": "🥖"
    },
    {
     "area": "living",
@@ -64,22 +108,26 @@
   ]
  },
  {
-  "group": "everyday",
+  "group": "around",
   "titles": {
-   "en": "Everyday life",
-   "de": "Alltag & unterwegs",
-   "es": "La vida diaria",
-   "sw": "Maisha ya kila siku",
-   "uk": "Щоденне життя"
+   "en": "Out and about",
+   "de": "Draußen",
+   "es": "Fuera de casa",
+   "sw": "Nje na safarini",
+   "uk": "Надворі та в дорозі"
   },
   "areas": [
    {
-    "area": "outside",
-    "emoji": "🌳"
+    "area": "transport",
+    "emoji": "🚌"
    },
    {
-    "area": "school",
-    "emoji": "🎒"
+    "area": "city",
+    "emoji": "🏙️"
+   },
+   {
+    "area": "nature",
+    "emoji": "🌳"
    }
   ]
  },
@@ -94,20 +142,20 @@
   },
   "areas": [
    {
+    "area": "school",
+    "emoji": "🎒"
+   },
+   {
+    "area": "work",
+    "emoji": "💼"
+   },
+   {
     "area": "organization",
     "emoji": "🗒️"
    },
    {
     "area": "admin",
     "emoji": "🗂️"
-   },
-   {
-    "area": "health",
-    "emoji": "🩺"
-   },
-   {
-    "area": "work",
-    "emoji": "💼"
    }
   ]
  }

@@ -12,19 +12,19 @@ lives outside the repo in `data/reference/audio/README.md`.
 
 ## 1. What ships, and under what
 
-1319 mp3 files, ~29 MB, all of them Wikimedia Commons transcodes:
-**879 CC BY-SA · 329 CC BY · 111 CC0 or public domain**.
+2032 mp3 files, ~43 MB, all of them Wikimedia Commons transcodes:
+**1313 CC BY-SA · 526 CC BY · 193 CC0 or public domain**.
 
 | Pack | Files | Source | Licences | Speakers | Obligation |
 |---|---|---|---|---|---|
-| `audio/de/` | 369 words | Commons `De-*.ogg`, Lingua Libre `LL-Q188 (deu)` | BY-SA 4.0 267 · BY-SA 3.0 46 · BY-SA 2.5 1 · CC0 51 · BY 3.0 us 2 · BY 3.0 1 · PD 1 | 21 credit groups, Jeuwre 231 | credit all but the CC0; share-alike on 314 |
+| `audio/de/` | 559 words | Commons `De-*.ogg`, Lingua Libre `LL-Q188 (deu)` | BY-SA 4.0 384 · BY-SA 3.0 76 · BY-SA 2.5 1 · CC0 92 · BY 3.0 us 3 · BY 3.0 1 · PD 2 | 27 credit groups, Jeuwre 317 | credit all but the CC0; share-alike on 461 |
 | `audio/de/letters/` | 8 letters | Commons `De-<letter>.ogg` | BY-SA 4.0 6 · BY-SA 3.0 2 | Jeuwre 6, T.Voekler 2 | credit + share-alike |
 | `audio/de/texts/` | 2 words | Commons `De-*.ogg` | BY-SA 4.0 1 · BY-SA 3.0 1 | 2 groups | credit + share-alike |
-| `audio/es/` | 311 words | Lingua Libre, via Commons | BY-SA 4.0 237 · CC0 55 · BY 4.0 18 · BY-SA 2.5 1 | 20 credit groups (AdrianAbdulBaha 127, Marreromarco 68) | credit all but the 55 CC0; share-alike on 238 |
+| `audio/es/` | 480 words | Lingua Libre, via Commons, plus one Commons `Es-*.ogg` | BY-SA 4.0 346 · CC0 95 · BY 4.0 38 · BY-SA 2.5 1 | 24 credit groups (AdrianAbdulBaha 185, Marreromarco 86) | credit all but the 95 CC0; share-alike on 347 |
 | `audio/es/letters/` | 6 letters | Lingua Libre, via Commons | CC0 2 · BY 4.0 2 · BY-SA 4.0 2 | 4 groups | credit all but the CC0 |
 | `audio/es/texts/` | 4 words | Lingua Libre, via Commons | CC0 2 · BY 4.0 1 · BY-SA 4.0 1 | 4 groups | credit all but the CC0 |
-| `audio/sw/` | 280 words | Commons `Sw-ke-*.flac` | BY-SA 4.0, whole pack | Waithera Were 279, Goethe-Institut Cameroon 1 | credit + share-alike, whole pack |
-| `audio/uk/` words | 305 words | Commons `Uk-*.ogg` (Shtooka), one Lingua Libre | BY 3.0 us 303 · BY 2.0 fr 1 · BY-SA 4.0 1 | Галя Раптова / Nicolas Vion 295, 3 further groups | credit every group; share-alike on the one BY-SA file |
+| `audio/sw/` | 458 words | Commons `Sw-ke-*.flac` | BY-SA 4.0, whole pack | Waithera Were 456, Goethe-Institut Cameroon 1, Lucyin 1 | credit + share-alike, whole pack |
+| `audio/uk/` words | 481 words | Commons `Uk-*.ogg` (Shtooka), one Lingua Libre | BY 3.0 us 479 · BY 2.0 fr 1 · BY-SA 4.0 1 | Галя Раптова / Nicolas Vion 465, 4 further groups | credit every group; share-alike on the one BY-SA file |
 | `audio/uk/letters/` | 33 letters | Commons `Аа – ukrainian.ogg`, one Lingua Libre | BY-SA 4.0 | Tabrus 32, Tohaomg 1 | credit + share-alike |
 | `audio/uk/texts/` | 1 word | Commons `Uk-*.ogg` | BY 3.0 us | Галя Раптова / Nicolas Vion | attribution only |
 
@@ -140,7 +140,7 @@ Notable rejections, one line each:
 1. **BY-SA §2(a)(5)(B) versus App Store DRM — the pre-submission gate.**
    The licence forbids applying "Effective Technological Measures" to the shared material,
    and every App Store binary is FairPlay-encrypted;
-   690 of the 1126 files are BY-SA — all 280 sw, the 32 uk letters, 141 of 200 de, 237 of 310 es.
+   1313 of the 2032 files are BY-SA — all 458 sw, 34 of 515 uk, 471 of 569 de, 350 of 490 es.
    Attribution, the other obligation, is already covered (§2).
    **Mitigation on record:** additionally publish the same recordings at a public un-DRM'd URL
    under the same licences, in **separate per-language files** —

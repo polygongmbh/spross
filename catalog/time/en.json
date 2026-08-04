@@ -1,0 +1,54 @@
+{
+ "title": "Time and dates",
+ "subtitle": "When something happens, and how long it lasts.",
+ "words": {
+  "time": {
+   "text": "time"
+  },
+  "day": {
+   "text": "day"
+  },
+  "week": {
+   "text": "week"
+  },
+  "hour": {
+   "text": "hour"
+  },
+  "minute": {
+   "text": "minute"
+  },
+  "month": {
+   "text": "month"
+  },
+  "year": {
+   "text": "year"
+  },
+  "now": {
+   "text": "now"
+  },
+  "today": {
+   "text": "today"
+  },
+  "tomorrow": {
+   "text": "tomorrow"
+  },
+  "yesterday": {
+   "text": "yesterday"
+  },
+  "early": {
+   "text": "early"
+  },
+  "late": {
+   "text": "late"
+  },
+  "soon": {
+   "text": "soon"
+  },
+  "i-have-no-time": {
+   "text": "I have no time."
+  },
+  "a-new-day": {
+   "text": "a new day"
+  }
+ }
+}

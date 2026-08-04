@@ -1,0 +1,132 @@
+{
+ "title": "Food",
+ "subtitle": "What comes to the table.",
+ "words": {
+  "bread": {
+   "text": "bread"
+  },
+  "milk": {
+   "text": "milk"
+  },
+  "coffee": {
+   "text": "coffee"
+  },
+  "tea": {
+   "text": "tea"
+  },
+  "egg": {
+   "text": "egg"
+  },
+  "cheese": {
+   "text": "cheese"
+  },
+  "salt": {
+   "text": "salt"
+  },
+  "sugar": {
+   "text": "sugar"
+  },
+  "rice": {
+   "text": "rice"
+  },
+  "hunger": {
+   "text": "hunger"
+  },
+  "thirst": {
+   "text": "thirst"
+  },
+  "food": {
+   "text": "food"
+  },
+  "meat": {
+   "text": "meat"
+  },
+  "fish": {
+   "text": "fish",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "chicken": {
+   "text": "chicken"
+  },
+  "fruit": {
+   "text": "fruit"
+  },
+  "vegetable": {
+   "text": "vegetable"
+  },
+  "potato": {
+   "text": "potato",
+   "grammar": {
+    "plural": "potatoes"
+   }
+  },
+  "onion": {
+   "text": "onion"
+  },
+  "tomato": {
+   "text": "tomato",
+   "grammar": {
+    "plural": "tomatoes"
+   }
+  },
+  "banana": {
+   "text": "banana"
+  },
+  "apple": {
+   "text": "apple"
+  },
+  "oil": {
+   "text": "oil"
+  },
+  "flour": {
+   "text": "flour"
+  },
+  "butter": {
+   "text": "butter"
+  },
+  "soup": {
+   "text": "soup"
+  },
+  "sauce": {
+   "text": "sauce"
+  },
+  "juice": {
+   "text": "juice"
+  },
+  "cooked-rice": {
+   "text": "cooked rice"
+  },
+  "cassava": {
+   "text": "cassava"
+  },
+  "breakfast": {
+   "text": "breakfast"
+  },
+  "dinner": {
+   "text": "dinner"
+  },
+  "im-hungry": {
+   "text": "I'm hungry."
+  },
+  "whats-for-dinner": {
+   "text": "What's for dinner?"
+  },
+  "i-dont-eat-meat": {
+   "text": "I don't eat meat."
+  },
+  "bread-with-butter": {
+   "text": "bread with butter"
+  },
+  "fruit-and-vegetables": {
+   "text": "fruit and vegetables"
+  },
+  "i-eat-rice-with-sauce": {
+   "text": "I eat rice with sauce."
+  },
+  "without-salt-please": {
+   "text": "Without salt, please."
+  }
+ }
+}

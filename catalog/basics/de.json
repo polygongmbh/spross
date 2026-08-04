@@ -1,5 +1,6 @@
 {
  "title": "Die ersten Wörter",
+ "subtitle": "Hier fängt alles an.",
  "words": {
   "language": {
    "text": "Sprache",
@@ -106,6 +107,21 @@
   },
   "bye": {
    "text": "Tschüss!"
+  },
+  "welcome": {
+   "text": "Willkommen!"
+  },
+  "may-i-come-in": {
+   "text": "Darf ich hereinkommen?",
+   "variants": [
+    "Darf ich reinkommen?"
+   ]
+  },
+  "sorry-to-hear-that": {
+   "text": "Das tut mir leid!"
+  },
+  "greetings-elder": {
+   "text": "Ich grüße Sie!"
   }
  }
 }

@@ -1,0 +1,84 @@
+{
+ "title": "At the doctor",
+ "subtitle": "From the appointment to the prescription.",
+ "words": {
+  "doctor": {
+   "text": "doctor"
+  },
+  "practice": {
+   "text": "doctor's office"
+  },
+  "pill": {
+   "text": "pill"
+  },
+  "prescription": {
+   "text": "prescription"
+  },
+  "pharmacy": {
+   "text": "pharmacy",
+   "grammar": {
+    "plural": "pharmacies"
+   }
+  },
+  "insurance-card": {
+   "text": "insurance card"
+  },
+  "health-insurance": {
+   "text": "health insurance"
+  },
+  "hospital": {
+   "text": "hospital"
+  },
+  "emergency": {
+   "text": "emergency",
+   "grammar": {
+    "plural": "emergencies"
+   }
+  },
+  "sick-note": {
+   "text": "sick note"
+  },
+  "examine": {
+   "text": "to examine"
+  },
+  "prescribe-medicine": {
+   "text": "to prescribe medicine"
+  },
+  "take-medicine": {
+   "text": "to take medicine"
+  },
+  "call-in-sick": {
+   "text": "to call in sick"
+  },
+  "medicine": {
+   "text": "medicine"
+  },
+  "nurse": {
+   "text": "nurse"
+  },
+  "dentist": {
+   "text": "dentist"
+  },
+  "vaccination": {
+   "text": "vaccination"
+  },
+  "ambulance": {
+   "text": "ambulance"
+  },
+  "take-the-pills-twice-daily": {
+   "text": "Take the pills twice daily."
+  },
+  "show-me-your-insurance-card": {
+   "text": "Show me your insurance card."
+  },
+  "the-practice-is-closed": {
+   "text": "The doctor's office is closed."
+  },
+  "i-have-to-see-a-doctor": {
+   "text": "I have to see a doctor."
+  },
+  "call-an-ambulance": {
+   "text": "Call an ambulance!"
+  }
+ }
+}

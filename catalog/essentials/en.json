@@ -1,23 +1,12 @@
 {
  "title": "Everyday essentials",
+ "subtitle": "The words you reach for every day.",
  "words": {
   "money": {
    "text": "money"
   },
   "water": {
    "text": "water"
-  },
-  "time": {
-   "text": "time"
-  },
-  "day": {
-   "text": "day"
-  },
-  "week": {
-   "text": "week"
-  },
-  "hour": {
-   "text": "hour"
   },
   "house": {
    "text": "house"
@@ -67,6 +56,18 @@
   "live": {
    "text": "to live"
   },
+  "like": {
+   "text": "to like"
+  },
+  "can": {
+   "text": "can",
+   "variants": [
+    "to be able to"
+   ]
+  },
+  "think": {
+   "text": "to think"
+  },
   "good": {
    "text": "good"
   },
@@ -81,15 +82,6 @@
   },
   "much": {
    "text": "much"
-  },
-  "now": {
-   "text": "now"
-  },
-  "today": {
-   "text": "today"
-  },
-  "tomorrow": {
-   "text": "tomorrow"
   },
   "new": {
    "text": "new"
@@ -126,9 +118,6 @@
   },
   "i-have-no-money": {
    "text": "I have no money."
-  },
-  "i-have-no-time": {
-   "text": "I have no time."
   },
   "do-you-have-water": {
    "text": "Do you have water?"
@@ -171,9 +160,6 @@
   },
   "old-people": {
    "text": "old people"
-  },
-  "a-new-day": {
-   "text": "a new day"
   },
   "the-house-is-big": {
    "text": "The house is big."

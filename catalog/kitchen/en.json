@@ -1,5 +1,6 @@
 {
  "title": "The kitchen",
+ "subtitle": "It smells of dinner in here.",
  "words": {
   "fridge": {
    "text": "fridge"
@@ -12,12 +13,6 @@
   },
   "dishwasher": {
    "text": "dishwasher"
-  },
-  "hunger": {
-   "text": "hunger"
-  },
-  "thirst": {
-   "text": "thirst"
   },
   "pot": {
    "text": "pot"
@@ -70,35 +65,20 @@
   "careful": {
    "text": "careful"
   },
-  "bread": {
-   "text": "bread"
-  },
-  "milk": {
-   "text": "milk"
-  },
-  "coffee": {
-   "text": "coffee"
-  },
-  "tea": {
-   "text": "tea"
-  },
-  "egg": {
-   "text": "egg"
-  },
-  "cheese": {
-   "text": "cheese"
-  },
-  "salt": {
-   "text": "salt"
-  },
-  "sugar": {
-   "text": "sugar"
-  },
-  "rice": {
-   "text": "rice"
-  },
   "cup": {
    "text": "cup"
+  },
+  "bowl": {
+   "text": "bowl"
+  },
+  "basket": {
+   "text": "basket"
+  },
+  "tin": {
+   "text": "tin",
+   "variants": [
+    "can"
+   ]
   },
   "the-knife-is-sharp": {
    "text": "The knife is sharp!"

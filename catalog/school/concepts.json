@@ -26,11 +26,6 @@
   "emoji": "📝"
  },
  {
-  "slug": "dictionary",
-  "kind": "noun",
-  "emoji": "📖"
- },
- {
   "slug": "exercise-book",
   "kind": "noun",
   "emoji": "📒"
@@ -49,31 +44,6 @@
   "slug": "break",
   "kind": "noun",
   "emoji": "☕"
- },
- {
-  "slug": "question",
-  "kind": "noun",
-  "emoji": "❓"
- },
- {
-  "slug": "answer",
-  "kind": "noun",
-  "emoji": "✅"
- },
- {
-  "slug": "ask",
-  "kind": "verb",
-  "emoji": "🙋"
- },
- {
-  "slug": "reply",
-  "kind": "verb",
-  "emoji": "↩️"
- },
- {
-  "slug": "translate",
-  "kind": "verb",
-  "emoji": "🔤"
  },
  {
   "slug": "pass-exam",
@@ -122,11 +92,6 @@
   "emoji": "📄"
  },
  {
-  "slug": "sentence",
-  "kind": "noun",
-  "emoji": "💬"
- },
- {
   "slug": "grade",
   "kind": "noun",
   "emoji": "💯"
@@ -137,40 +102,83 @@
   "emoji": "✏️"
  },
  {
-  "slug": "learn-by-heart",
-  "kind": "verb",
-  "emoji": "🧠"
+  "slug": "book",
+  "kind": "noun",
+  "emoji": "📖"
  },
  {
-  "slug": "i-have-a-question",
+  "slug": "university",
+  "kind": "noun",
+  "emoji": "🏛️"
+ },
+ {
+  "slug": "timetable",
+  "kind": "noun",
+  "emoji": "🗓️"
+ },
+ {
+  "slug": "to-count",
+  "kind": "verb",
+  "emoji": "🔢"
+ },
+ {
+  "slug": "to-try",
+  "kind": "verb"
+ },
+ {
+  "slug": "do-the-homework",
   "kind": "phrase",
-  "emoji": "❓",
+  "emoji": "✍️",
   "components": [
-   "question"
+   "homework"
   ]
  },
  {
-  "slug": "what-does-this-word-mean",
+  "slug": "the-exam-is-tomorrow",
   "kind": "phrase",
-  "emoji": "📖",
-  "components": []
+  "emoji": "📋",
+  "components": [
+   "exam"
+  ]
  },
  {
-  "slug": "how-do-you-say-this-in-german",
+  "slug": "look-at-the-timetable",
   "kind": "phrase",
-  "emoji": "🗣️",
-  "components": []
+  "emoji": "🗓️",
+  "components": [
+   "timetable"
+  ]
  },
  {
-  "slug": "im-learning-german",
+  "slug": "the-break-is-over",
   "kind": "phrase",
-  "emoji": "🇩🇪",
-  "components": []
+  "emoji": "☕",
+  "components": [
+   "break"
+  ]
  },
  {
-  "slug": "you-can-do-it",
+  "slug": "ask-the-teacher",
   "kind": "phrase",
-  "emoji": "💪",
-  "components": []
+  "emoji": "🧑‍🏫",
+  "components": [
+   "teacher"
+  ]
+ },
+ {
+  "slug": "i-have-a-good-grade",
+  "kind": "phrase",
+  "emoji": "💯",
+  "components": [
+   "grade"
+  ]
+ },
+ {
+  "slug": "we-go-to-the-classroom",
+  "kind": "phrase",
+  "emoji": "🎓",
+  "components": [
+   "classroom"
+  ]
  }
 ]

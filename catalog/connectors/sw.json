@@ -1,5 +1,6 @@
 {
  "title": "Maneno ya kuunganisha",
+ "subtitle": "Maneno yanayoshikamanisha sentensi.",
  "words": {
   "higher": {
    "text": "juu zaidi"
@@ -34,6 +35,54 @@
   "also": {
    "text": "pia"
   },
+  "and": {
+   "text": "na",
+   "notes": {
+    "de": "na heißt auch „mit“: chai na maziwa · njoo na mimi."
+   }
+  },
+  "or": {
+   "text": "au"
+  },
+  "if": {
+   "text": "kama",
+   "variants": [
+    "ikiwa"
+   ],
+   "notes": {
+    "de": "kama heißt auch „wie, als ob“ · die Frage „wann?“ ist lini."
+   }
+  },
+  "because": {
+   "text": "kwa sababu"
+  },
+  "so-that": {
+   "text": "ili"
+  },
+  "before": {
+   "text": "kabla ya"
+  },
+  "after": {
+   "text": "baada ya"
+  },
+  "until": {
+   "text": "mpaka",
+   "synonyms": [
+    "hadi"
+   ]
+  },
+  "without": {
+   "text": "bila"
+  },
+  "again": {
+   "text": "tena"
+  },
+  "still": {
+   "text": "bado",
+   "notes": {
+    "de": "allein als Antwort heißt bado „noch nicht“: Umemaliza? — Bado."
+   }
+  },
   "more-or-less": {
    "text": "zaidi au pungufu"
   },
@@ -45,6 +94,12 @@
   },
   "hang-it-lower": {
    "text": "Itundike chini zaidi."
+  },
+  "if-you-want": {
+   "text": "Kama unataka."
+  },
+  "tea-or-coffee": {
+   "text": "Chai au kahawa?"
   }
  }
 }

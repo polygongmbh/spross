@@ -1,0 +1,80 @@
+[
+ {
+  "slug": "time",
+  "kind": "noun",
+  "emoji": "⌚"
+ },
+ {
+  "slug": "day",
+  "kind": "noun",
+  "emoji": "📆"
+ },
+ {
+  "slug": "week",
+  "kind": "noun",
+  "emoji": "🗓️"
+ },
+ {
+  "slug": "hour",
+  "kind": "noun",
+  "emoji": "⏱️"
+ },
+ {
+  "slug": "minute",
+  "kind": "noun",
+  "emoji": "⏲️"
+ },
+ {
+  "slug": "month",
+  "kind": "noun"
+ },
+ {
+  "slug": "year",
+  "kind": "noun"
+ },
+ {
+  "slug": "now",
+  "kind": "adjective"
+ },
+ {
+  "slug": "today",
+  "kind": "adjective",
+  "emoji": "📅"
+ },
+ {
+  "slug": "tomorrow",
+  "kind": "adjective"
+ },
+ {
+  "slug": "yesterday",
+  "kind": "adjective"
+ },
+ {
+  "slug": "early",
+  "kind": "adjective"
+ },
+ {
+  "slug": "late",
+  "kind": "adjective"
+ },
+ {
+  "slug": "soon",
+  "kind": "adjective"
+ },
+ {
+  "slug": "i-have-no-time",
+  "kind": "phrase",
+  "emoji": "⏰",
+  "components": [
+   "time"
+  ]
+ },
+ {
+  "slug": "a-new-day",
+  "kind": "phrase",
+  "emoji": "🌅",
+  "components": [
+   "day"
+  ]
+ }
+]

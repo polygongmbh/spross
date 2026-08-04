@@ -1,5 +1,6 @@
 {
  "title": "Termine & Organisation",
+ "subtitle": "Damit nichts liegen bleibt.",
  "words": {
   "appointment": {
    "text": "Termin",
@@ -73,6 +74,16 @@
   },
   "urgent": {
    "text": "dringend"
+  },
+  "list": {
+   "text": "Liste",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "to-finish": {
+   "text": "beenden"
   },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Ich möchte einen Termin vereinbaren."

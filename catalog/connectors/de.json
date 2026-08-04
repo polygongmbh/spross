@@ -1,5 +1,6 @@
 {
  "title": "Verbindungswörter",
+ "subtitle": "Wörter, die einen Satz zusammenhalten.",
  "words": {
   "higher": {
    "text": "höher"
@@ -34,6 +35,39 @@
   "also": {
    "text": "auch"
   },
+  "and": {
+   "text": "und"
+  },
+  "or": {
+   "text": "oder"
+  },
+  "if": {
+   "text": "wenn"
+  },
+  "because": {
+   "text": "weil"
+  },
+  "so-that": {
+   "text": "damit"
+  },
+  "before": {
+   "text": "vor"
+  },
+  "after": {
+   "text": "nach"
+  },
+  "until": {
+   "text": "bis"
+  },
+  "without": {
+   "text": "ohne"
+  },
+  "again": {
+   "text": "wieder"
+  },
+  "still": {
+   "text": "noch"
+  },
   "more-or-less": {
    "text": "mehr oder weniger"
   },
@@ -45,6 +79,15 @@
   },
   "hang-it-lower": {
    "text": "Häng es niedriger."
+  },
+  "if-you-want": {
+   "text": "Wenn Sie wollen.",
+   "variants": [
+    "Wenn du willst."
+   ]
+  },
+  "tea-or-coffee": {
+   "text": "Tee oder Kaffee?"
   }
  }
 }

@@ -1,5 +1,6 @@
 {
  "title": "The public office",
+ "subtitle": "Step by step through the paperwork.",
  "words": {
   "office": {
    "text": "public office"
@@ -102,6 +103,18 @@
   },
   "approve": {
    "text": "to approve"
+  },
+  "law": {
+   "text": "law"
+  },
+  "visa": {
+   "text": "visa"
+  },
+  "fine": {
+   "text": "fine"
+  },
+  "receipt": {
+   "text": "receipt"
   },
   "where-do-i-sign": {
    "text": "Where do I sign?"
