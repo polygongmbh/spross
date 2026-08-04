@@ -119,6 +119,15 @@
     "plural": "="
    }
   },
+  "worker": {
+   "text": "робітник"
+  },
+  "employer": {
+   "text": "роботодавець"
+  },
+  "customer": {
+   "text": "клієнт"
+  },
   "tomorrow-i-have-a-job-interview": {
    "text": "Завтра я представлюся у фірмі."
   },

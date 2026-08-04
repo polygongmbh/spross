@@ -50,6 +50,12 @@
   "urgent": {
    "text": "urgent"
   },
+  "list": {
+   "text": "list"
+  },
+  "to-finish": {
+   "text": "to finish"
+  },
   "i-would-like-to-arrange-an-appointment": {
    "text": "I would like to arrange an appointment."
   },

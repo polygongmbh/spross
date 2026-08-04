@@ -102,6 +102,18 @@
   "urgent": {
    "text": "urgente"
   },
+  "list": {
+   "text": "lista",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "to-finish": {
+   "text": "terminar",
+   "synonyms": [
+    "acabar"
+   ]
+  },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Quiero concertar una cita.",
    "variants": [

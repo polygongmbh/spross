@@ -168,6 +168,34 @@
   "approve": {
    "text": "genehmigen"
   },
+  "law": {
+   "text": "Gesetz",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "visa": {
+   "text": "Visum",
+   "grammar": {
+    "gender": "das",
+    "plural": "Visa"
+   }
+  },
+  "fine": {
+   "text": "Bußgeld",
+   "grammar": {
+    "gender": "das",
+    "plural": "-er"
+   }
+  },
+  "receipt": {
+   "text": "Quittung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
   "where-do-i-sign": {
    "text": "Wo muss ich unterschreiben?"
   },

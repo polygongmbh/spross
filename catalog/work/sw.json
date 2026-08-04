@@ -140,6 +140,24 @@
     "plural": "notisi za kuacha kazi"
    }
   },
+  "worker": {
+   "text": "mfanyakazi",
+   "grammar": {
+    "plural": "wafanyakazi"
+   }
+  },
+  "employer": {
+   "text": "mwajiri",
+   "grammar": {
+    "plural": "waajiri"
+   }
+  },
+  "customer": {
+   "text": "mteja",
+   "grammar": {
+    "plural": "wateja"
+   }
+  },
   "tomorrow-i-have-a-job-interview": {
    "text": "Kesho nitajitambulisha kwenye kampuni."
   },

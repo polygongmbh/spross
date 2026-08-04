@@ -75,6 +75,16 @@
   "emoji": "🚨"
  },
  {
+  "slug": "list",
+  "kind": "noun",
+  "emoji": "🗒️"
+ },
+ {
+  "slug": "to-finish",
+  "kind": "verb",
+  "emoji": "🏁"
+ },
+ {
   "slug": "i-would-like-to-arrange-an-appointment",
   "kind": "phrase",
   "emoji": "📅",

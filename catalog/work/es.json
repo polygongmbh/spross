@@ -260,6 +260,24 @@
     "de": "el despido ist die Kündigung durch den Arbeitgeber; kündigt man selbst, heißt das la dimisión bzw. la baja voluntaria."
    }
   },
+  "worker": {
+   "text": "trabajador",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "employer": {
+   "text": "empleador",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "customer": {
+   "text": "cliente",
+   "grammar": {
+    "gender": "el"
+   }
+  },
   "tomorrow-i-have-a-job-interview": {
    "text": "Mañana me presento en la empresa.",
    "variants": [

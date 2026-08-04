@@ -238,6 +238,33 @@
     "conceder"
    ]
   },
+  "law": {
+   "text": "ley",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "visa": {
+   "text": "visado",
+   "variants": [
+    "visa"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "fine": {
+   "text": "multa",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "receipt": {
+   "text": "recibo",
+   "grammar": {
+    "gender": "el"
+   }
+  },
   "where-do-i-sign": {
    "text": "¿Dónde tengo que firmar?",
    "variants": [

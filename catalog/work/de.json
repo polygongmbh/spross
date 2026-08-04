@@ -174,6 +174,27 @@
     "plural": "-en"
    }
   },
+  "worker": {
+   "text": "Arbeiter",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "employer": {
+   "text": "Arbeitgeber",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "customer": {
+   "text": "Kunde",
+   "grammar": {
+    "gender": "der",
+    "plural": "-n"
+   }
+  },
   "tomorrow-i-have-a-job-interview": {
    "text": "Morgen stelle ich mich bei der Firma vor."
   },

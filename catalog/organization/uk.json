@@ -62,6 +62,12 @@
   "urgent": {
    "text": "терміновий"
   },
+  "list": {
+   "text": "список"
+  },
+  "to-finish": {
+   "text": "закінчувати"
+  },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Я хочу записатися на прийом."
   },
