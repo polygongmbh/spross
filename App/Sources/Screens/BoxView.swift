@@ -7,6 +7,9 @@ import SprossKern
 /// here to be revealed.
 struct BoxView: View {
     let model: AppModel
+    /// The area to open on, when the box was reached by naming one — a tree in
+    /// Heute's forest. Revealed once, on appear, exactly as a search hit is.
+    var revealArea: String?
 
     @State private var expandedGroups: Set<String>
     /// Which areas stand open — lifted out of the sections themselves, because a
@@ -16,11 +19,18 @@ struct BoxView: View {
     /// The area the box should bring into view; cleared the moment it has.
     @State private var scrollTarget: String?
 
-    init(model: AppModel) {
+    init(model: AppModel, revealArea: String? = nil) {
         self.model = model
+        self.revealArea = revealArea
         // why: the opening fold reads the box once, at construction — a group
         // that folds itself shut again as the learner works would be worse.
-        _expandedGroups = State(initialValue: Set([model.defaultExpandedGroupID].compactMap { $0 }))
+        // An area named on the way in opens INSTEAD of the default group: the
+        // learner already said which one they meant.
+        let opening = revealArea.flatMap { area in
+            model.areaGroupSections.first { $0.areas.contains(area) }?.id
+        } ?? model.defaultExpandedGroupID
+        _expandedGroups = State(initialValue: Set([opening].compactMap { $0 }))
+        _expandedAreas = State(initialValue: Set([revealArea].compactMap { $0 }))
     }
 
     var body: some View {
@@ -61,6 +71,11 @@ struct BoxView: View {
                     proxy.scrollTo(area, anchor: .top)
                 }
                 scrollTarget = nil
+            }
+            // why: the fold is already set by init — this only brings the named
+            // area up to the thumb, and only on the first appearance.
+            .onAppear {
+                if let revealArea, scrollTarget == nil { scrollTarget = revealArea }
             }
         }
         .background(Color.dlBackground.ignoresSafeArea())

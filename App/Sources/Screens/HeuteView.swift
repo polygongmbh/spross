@@ -4,7 +4,8 @@ import SprossKern
 /// The north star screen: one glance = what to do right now.
 struct HeuteView: View {
     let model: AppModel
-    var openBox: () -> Void = {}
+    /// Open the box — at one area when the forest names it, else at the top.
+    var openBox: (String?) -> Void = { _ in }
 
     @Environment(\.locale) private var locale
 
@@ -25,10 +26,10 @@ struct HeuteView: View {
                     stateCard(emoji: "📦",
                               title: "heute.empty.title",
                               message: Text("heute.empty.message"),
-                              action: ("heute.empty.action", openBox))
+                              action: ("heute.empty.action", { openBox(nil) }))
                 }
                 TrainerHubView(model: model)
-                FortschrittSection(model: model)
+                ForestSection(model: model, open: { openBox($0) })
             }
             .padding(DL.Space.xl)
         }

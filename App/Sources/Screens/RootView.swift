@@ -6,6 +6,9 @@ struct RootView: View {
     @Bindable var model: AppModel
 
     @State private var boxPresented = false
+    /// The area the box should open on, set by a tree in Heute's forest —
+    /// the forest names a place, the box is still the screen that shows it.
+    @State private var boxArea: String?
     @State private var sprouting = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -40,9 +43,12 @@ struct RootView: View {
 
     private var home: some View {
         NavigationStack {
-            HeuteView(model: model, openBox: { boxPresented = true })
+            HeuteView(model: model, openBox: { area in
+                boxArea = area
+                boxPresented = true
+            })
                 .navigationDestination(isPresented: $boxPresented) {
-                    BoxView(model: model)
+                    BoxView(model: model, revealArea: boxArea)
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {

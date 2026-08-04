@@ -60,6 +60,10 @@ extension AppModel {
         #if DEBUG
         uitestFinished = false
         #endif
+        // why: the summary shows what THIS round did to an area, so the before
+        // has to be taken while it still is the before — one snapshot at the
+        // door, since which area the round will favour is not knowable yet.
+        treesBeforeSession = Dictionary(uniqueKeysWithValues: areaTrees.map { ($0.id, $0) })
         reduce(intent)
         // why: a run kern refused to start (no box, or an extra round that came back
         // empty) must not raise the cover over nothing.
@@ -126,6 +130,33 @@ extension AppModel {
     var sessionNew: Int { Int(run?.newCards ?? 0) }
     var sessionGraduated: Int { Int(run?.graduated ?? 0) }
     var sessionReviews: Int { Int(run?.reviews ?? 0) }
+
+    /// The area this round worked hardest, before the round and after it —
+    /// what the summary draws. Nil when the round touched nothing joinable.
+    var sessionGrowth: TreeTransition? {
+        guard let area = sessionArea, let after = areaTree(area) else { return nil }
+        let empty = AreaTree(id: area, emoji: after.emoji, title: after.title,
+                             leaves: 0, blossoms: 0, fruit: 0, growing: 0, fallen: 0,
+                             mass: 0, tendedToday: false)
+        return TreeTransition(before: treesBeforeSession[area] ?? empty, after: after)
+    }
+
+    /// The area this round worked hardest — what the summary draws a tree of.
+    var sessionArea: String? {
+        guard let box, let touched = run?.answeredIds, !touched.isEmpty else { return nil }
+        var byArea: [String: Int] = [:]
+        for id in touched {
+            guard let area = box.cards[id]?.area else { continue }
+            byArea[area, default: 0] += 1
+        }
+        // why: walk in catalog order keeping a STRICT >, so a round split evenly
+        // between two areas names the same one every time it is shown.
+        var best: (area: String, count: Int)?
+        for area in areaNames where (byArea[area] ?? 0) > (best?.count ?? 0) {
+            best = (area, byArea[area] ?? 0)
+        }
+        return best?.area
+    }
 
     /// Whether a round the learner asks for would yield anything — drives both the summary's
     /// "Weiter üben" and the done card's extra round, which open the same composition.

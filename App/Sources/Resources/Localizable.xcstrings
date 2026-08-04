@@ -2355,6 +2355,166 @@
         }
       }
     },
+    "session.finished.grew" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hier kannst du jetzt mehr"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can say more here"
+          }
+        }
+      }
+    },
+    "session.finished.growth.blooming.0" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etwas ist aufgegangen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something's taken hold"
+          }
+        }
+      }
+    },
+    "session.finished.growth.blooming.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Wissen blüht auf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your knowledge is blooming"
+          }
+        }
+      }
+    },
+    "session.finished.growth.blooming.2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etwas trägt jetzt Blüten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something's in blossom now"
+          }
+        }
+      }
+    },
+    "session.finished.growth.grown.0" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Wissen ist gewachsen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your knowledge has grown"
+          }
+        }
+      }
+    },
+    "session.finished.growth.grown.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Wissen wurzelt tiefer"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your knowledge is rooting deeper"
+          }
+        }
+      }
+    },
+    "session.finished.growth.grown.2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Wissen steht fester"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your knowledge stands firmer"
+          }
+        }
+      }
+    },
+    "session.finished.growth.sown.0" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neue Sprösslinge gesät"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fresh seeds in the ground"
+          }
+        }
+      }
+    },
+    "session.finished.growth.sown.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Wissen keimt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your knowledge is sprouting"
+          }
+        }
+      }
+    },
+    "session.finished.growth.sown.2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frisch gesät"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Freshly sown"
+          }
+        }
+      }
+    },
     "session.finished.keepPracticing" : {
       "localizations" : {
         "de" : {

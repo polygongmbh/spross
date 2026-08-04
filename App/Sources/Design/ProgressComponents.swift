@@ -37,48 +37,6 @@ struct StreakFlameView: View {
     }
 }
 
-// MARK: BoxStatTile
-
-struct BoxStatTile: View {
-    let emoji: String
-    let value: String
-    let label: LocalizedStringKey
-    /// Today's movement on this figure — the part that turns a standing total
-    /// into a sense of progress. Omitted when the day has not moved it.
-    var delta: LocalizedStringKey?
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text(emoji)
-                .font(.title3)
-                .accessibilityHidden(true)
-            Text(value)
-                .font(DL.Fonts.statValue)
-                .foregroundStyle(Color.dlTextPrimary)
-                .minimumScaleFactor(0.7)
-            Text(label)
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
-            if let delta {
-                Text(delta)
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlAccent)
-            }
-        }
-        .padding(DL.Space.l)
-        // why: tiles pair up in a row and only one of them may carry a delta —
-        // the surface takes the row's full height so the quiet one is not a
-        // visibly shorter card next to its neighbour.
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(
-            RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                .fill(Color.dlSurface)
-        )
-        .dlCardShadow()
-        .accessibilityElement(children: .combine)
-    }
-}
-
 // MARK: AreaChip
 
 /// One stretch of the area bar; empty stretches are dropped before layout.
@@ -270,10 +228,6 @@ private extension View {
     ScrollView {
         VStack(alignment: .leading, spacing: DL.Space.xl) {
             StreakFlameView(days: 12)
-            HStack(spacing: DL.Space.m) {
-                BoxStatTile(emoji: "🌳", value: "84", label: "progress.consolidated")
-                BoxStatTile(emoji: "🌱", value: "48", label: "progress.fresh")
-            }
             AreaChip(emoji: "🍳", name: "Küche",
                      subtitle: "Hier duftet es nach Abendessen.",
                      progress: .init(consolidated: 18, learning: 6, notIntroduced: 0, progressTotal: 24),

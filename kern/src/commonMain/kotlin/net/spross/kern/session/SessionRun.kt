@@ -70,6 +70,15 @@ data class SessionRunState(
     val folded: Int,
     /** Ratings in answer order. */
     val ratings: List<Rating>,
+    /**
+     * The cards those ratings landed on, in the same order — a dropped answer
+     * appends to neither, so the two lists stay index-aligned.
+     *
+     * What the run TOUCHED, which the tallies cannot answer: they count kinds of
+     * answer, and a surface asking "which part of the box did this round move"
+     * would otherwise have to keep its own copy of the plan and subtract.
+     */
+    val answeredIds: List<String> = emptyList(),
     /** Summary tallies: first meetings, words that crossed into consolidated, review reps. */
     val newCards: Int,
     val graduated: Int,
@@ -165,7 +174,8 @@ object SessionRun {
         val applied = outcome.status == AnswerStatus.Applied
         val next = if (applied) {
             tallied(
-                state.copy(box = outcome.state, ratings = state.ratings + rating, answered = state.answered + 1),
+                state.copy(box = outcome.state, ratings = state.ratings + rating,
+                           answeredIds = state.answeredIds + cardId, answered = state.answered + 1),
                 firstAnswer = outcome.state.scheduling[cardId]?.reviewCount == 1,
                 wasConsolidated = wasConsolidated,
                 isConsolidated = BoxEngine.isConsolidated(outcome.state, cardId),

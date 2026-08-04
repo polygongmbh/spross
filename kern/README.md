@@ -226,6 +226,9 @@ this to every loaded box).
 - Leech: lapse counted iff `phase == review && rating == again`; 8 → auto-suspend (per card).
 - **Two "has this word landed" thresholds**, both Review phase AND stability ≥ the
   threshold, so a lapse un-lands a card either way — the point: it needs the support again.
+  A third, `MATURED_STABILITY` = 30 days (`GrowthStage.Matured`), gates NOTHING and is a
+  constant rather than a `BoxConfig` field: it exists so the ladder below has a top rung
+  to report, and there is no product decision to tune behind it.
   - `settledStability` = 2.0 days (`Statistics.isSettled`, facade
     `BoxEngine.isSettled(state, cardId)`) gates the new-word budget (§6) and picks which
     support a word gets while it is still on its way in (§3).
@@ -350,6 +353,14 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   `recall` is null below `MIN_ANSWERS_FOR_RECALL` — a handful of answers cannot carry a
   ratio — and `recallStrained` names the rule "today is going badly", not the remedy:
   what a surface does with it is the app's call.
+- **`GrowthStage`** (`BoxEngine.growth`) is the same box told per card instead of per count:
+  one rung each for unscheduled / queued / learning / fresh / settled / consolidated /
+  matured / relearning / suspended, in seed order, with the card's raw stability and whether
+  today's answer touched it. Suspension and a lapse outrank every bar — a rung says where a
+  card stands now, never how far it once got. The rungs name the RULE, so a surface may draw
+  two of them the same; what they look like is not the engine's answer. It is the whole-box
+  read behind a surface that draws the box itself rather than the totals `statistics`
+  aggregates it into, and the reason the app needs no schedule-reading rules of its own.
 - **A composed session never refills** (user ruling 2026-07-29): the plan IS the run.
   Cards falling due while the learner sits there — a learning step maturing, most often —
   used to be drained straight in, so the count they were counting down to moved away from

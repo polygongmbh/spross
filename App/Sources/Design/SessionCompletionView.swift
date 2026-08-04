@@ -14,6 +14,10 @@ struct SessionCompletionView: View {
     /// Today's run is the longest the box has ever held (`BoxStatistics`), so the
     /// streak is worth naming rather than just counting.
     var streakIsRecord: Bool = false
+    /// The area this round worked hardest, as it stood before the round and as
+    /// it stands now. The round just moved it, so its tree is the one thing on
+    /// this screen about THIS learner's box rather than about having finished.
+    var grownArea: TreeTransition?
     var canPracticeMore: Bool = false
     /// Today's recall has fallen far below what the box schedules for
     /// (`TodayReport.recallStrained`). Practising on stays available either
@@ -25,6 +29,7 @@ struct SessionCompletionView: View {
     @State private var burst = false
     /// Bumped on every replay; ConfettiView adds a wave per value.
     @State private var celebration = 0
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     /// The ring around the popper — one sign per idea (sprout, star, hands,
     /// sparkle, arm, balloon), so no two read as the same thing at a glance.
@@ -51,7 +56,10 @@ struct SessionCompletionView: View {
     var body: some View {
         VStack(spacing: DL.Space.xl) {
             Spacer()
-            burstHero
+            // why: the tree takes the hero slot when the round grew an area —
+            // a party popper is the same picture whatever the learner did, and
+            // two celebratory graphics on one screen is one too many.
+            if grownArea == nil { burstHero } else { grownAreaHero }
             Text("session.finished.title")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
@@ -103,6 +111,80 @@ struct SessionCompletionView: View {
             celebration += 1
         }
         DLSound.cheer()
+    }
+
+    /// The area the round moved most, as it stood before this round and as it
+    /// stands now. The area is LABELLED rather than named in a sentence: the
+    /// area did not grow — what the learner can say did — and a sentence that
+    /// swallowed "Die Küche" would claim the opposite while reading badly.
+    @ViewBuilder
+    private var grownAreaHero: some View {
+        if let grownArea, !grownArea.after.isBare {
+            VStack(spacing: DL.Space.s) {
+                GrowingTreeView(transition: grownArea,
+                                progress: burst || reduceMotion ? 1 : 0)
+                    .frame(height: 190)
+                    .animation(reduceMotion ? nil
+                                : .spring(response: 1.5, dampingFraction: 0.85).delay(0.25),
+                               value: burst)
+                VStack(spacing: 2) {
+                    Text(growthHeadline)
+                        .font(DL.Fonts.headline)
+                        .foregroundStyle(Color.dlTextPrimary)
+                    Text(verbatim: "\(grownArea.after.emoji) \(grownArea.after.title)")
+                        .font(DL.Fonts.caption)
+                        .foregroundStyle(Color.dlTextSecondary)
+                }
+            }
+            .accessibilityElement(children: .combine)
+        }
+    }
+
+    /// What the round did to the learner, said through the growing metaphor.
+    ///
+    /// The line turns on the round's SHAPE, never on the clock — the same rule
+    /// the session card's own three phrasings follow — so it cannot re-roll
+    /// between renders of one summary. Consolidation outranks a big new-word
+    /// round: it is the rarest thing that happens on this screen, and the tally
+    /// below names the new words anyway.
+    ///
+    /// The subject is always the learner's knowledge, never the area. The area
+    /// did not grow, and it is labelled separately below for that reason.
+    private var growthHeadline: LocalizedStringKey {
+        // why: a day the box itself is telling the learner to stop makes no
+        // growth claim — a screen that celebrates and is contradicted two lines
+        // down teaches the learner not to believe it.
+        guard !restSuggested else { return "session.finished.grew" }
+
+        // why: the key is built as a STRING and only then wrapped. Interpolating
+        // inside `LocalizedStringKey("…\(n)")` takes the string-INTERPOLATION
+        // initializer, which makes the key "…%lld" with an argument — it
+        // compiles, and renders the raw key at runtime.
+        let kind: String
+        var variants = 3
+        var offset = 0
+        if graduatedCount > 0 {
+            kind = "blooming"
+        } else if newCount > graduatedCount + reviewCount {
+            kind = "sown"
+        } else {
+            kind = "grown"
+            // A round that added no mark to the canopy can only honestly claim
+            // depth — nothing visibly grew, what was there took a firmer hold.
+            // Those are variants 1 and 2; variant 0 says "gewachsen".
+            if grownArea.map({ $0.before.canopyCount == $0.after.canopyCount }) ?? false {
+                variants = 2
+                offset = 1
+            }
+        }
+        let key = "session.finished.growth.\(kind).\(variant(of: variants) + offset)"
+        return LocalizedStringKey(key)
+    }
+
+    /// A stable choice among `count`, hashed from the round's own tallies.
+    private func variant(of count: Int) -> Int {
+        let seed = SplitMix64("\(newCount):\(graduatedCount):\(reviewCount)").seed
+        return Int(SplitMix64.mix(seed) % UInt64(count))
     }
 
     private var burstHero: some View {

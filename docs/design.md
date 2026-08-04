@@ -146,6 +146,12 @@ never the shape of the app.
   **The plan is the whole run**: the counter on screen is a promise, 
   so nothing joins a session already under way unless in endless mode.
   Session end is a summary that celebrates, carrying the streak and what the run consolidated.
+  It also carries the TREE of the area the round worked hardest, rising out of the ground as
+  the screen arrives — the one place a tree may move, because it is the one place where
+  something just happened, and the only part of that screen that is about this learner's own
+  box rather than about having finished. Which area is kern's answer (`SessionRunState`
+  records what the run touched); ties walk catalog order, so a round split evenly names the
+  same area every time it is shown.
 - **A record is named, a number is only counted.** A day streak standing at its longest
   ever (`BoxStatistics.longestStreak`) says so on the finish screen; a drill run that beats
   its own stored best says so too, and is the only thing in a drill that earns confetti and
@@ -157,7 +163,7 @@ never the shape of the app.
 
 - **Heute** is the only root screen:
   session card (streak flame + the round's counts, or done state),
-  trainer hub, condensed Fortschritt section (14-day strip, gefestigt/frisch split).
+  trainer hub, then the Fortschritt section — 14-day strip and the forest.
   The card names what the round is led by rather than calling everything "a session":
   due work, or an offer of new words when nothing is due.
   Copy for the second is an OFFER, never a summons —
@@ -173,18 +179,50 @@ never the shape of the app.
   mark, headline, what the day bought, the way on, then fine print —
   and its mark IS the streak badge: two elements sandwiched the prose between them,
   and a card that both cheers and counts the run says one thing, not two.
-  The done state and the Fortschritt tiles carry the day's own movement under the
-  standing totals: totals say where the box stands, deltas say that today moved it.
-  Each delta is its own tile's news — today's arrivals still fresh, today's crossings
-  into gefestigt — never one tile's figure netted against the other's.
+  The done state carries the day's own movement under the standing totals:
+  totals say where the box stands, the day's figures say that today moved it.
 - **Stopping is the default at the end of a round**: the round that was planned is done,
   so "Fertig" is the primary button and going on the quiet one below it — an earned break
   needs no arguing for, and another round is still one tap away.
   A session summary and a drill's end through the same pair of buttons, so they cannot
   drift apart on which way out is the default.
   A day that is going badly says so, and says why stopping is the better call.
+- **The forest** at the foot of Heute is a picture of the box, never a way around it:
+  one tree per area, in catalog order, on ground its whole row shares. It answers the one
+  question a count cannot — how the box is SHAPED, and which corners of the language have
+  never been opened — and it hands anything actionable to the Box screen by opening it at
+  the area a tree names.
+  **The unit is the area, not the word.** Five hundred plants can only be read as texture,
+  and drawing each as an object made packing an area — forty words at once, a normal
+  move — look like a spilled bag rather than like sowing. One tree can be looked at.
+  **A tree is one organism its whole life**, never swapped for another at some rung: the
+  trunk is what the area has grown, the canopy IS its words that have settled, and blossom
+  and fruit appear ON that canopy. So the picture never starts over, and has no top rung
+  at which it stops. A word is a leaf — a thing believed many of without being counted;
+  which rung of `GrowthStage` (`../kern/README.md` §6) becomes which mark is decided in
+  `ForestSection` and nowhere else.
+  **Size comes from what has grown, never from what the catalog holds.** Sized by catalog
+  count, every area would draw the same on install day and a year in — and the one thing a
+  growing box's picture owes the learner is a shape that changes. A row is therefore a
+  skyline, measured against a ground line its trees roughly share: the ground rolls a few
+  points under each of them, and a tree standing further back is drawn first so the one in
+  front overlaps it. Equal cells on one exact baseline read as a plantation, and the box is
+  not one — but the roll stays a fraction of the height range, because heights are still
+  what the row is for.
+  **An area nobody has opened draws nothing at all** — not even ground. A mark per
+  untouched word turns a catalog the learner did not choose into five hundred things they
+  have not done; the dimmed area emoji already says the place exists.
+  A lapse drops leaves at the foot and never shrinks the tree: the engine expects about a
+  fifth of reviews to miss, and a picture that shrank for a routine Tuesday would overstate
+  what a lapse costs. A suspended word is owed no space at all — waking it is the box's.
+  The picture is never the only telling — the canvas is hidden from accessibility, each
+  tree carries the tap target and the spoken split as one element, blossom differs from
+  leaf in shape before colour, and the standing figures are spelled out beneath.
+  Nothing in it moves: a box grows over weeks, and motion would claim a change the
+  picture is not showing.
 - **Box** (📦 from Heute): browse the catalog by area, pack words in, revive suspended
-  ones; settings live here — profile, reset.
+  ones; settings live here — profile, reset. A tree in the forest opens it already
+  unfolded at that area, exactly as a search hit does.
   - **Search** (🔍 in the bar) reaches a word without knowing its shelf. The two result
     kinds offer what they ARE: an area unfolds itself back on the Box screen and scrolls
     into reach, a word can be heard and packed on its own — a learner who went looking for

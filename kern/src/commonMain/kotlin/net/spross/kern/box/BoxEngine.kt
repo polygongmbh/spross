@@ -167,6 +167,14 @@ object BoxEngine {
         todayReport(state, nowEpochMillis, tzId)
 
     /**
+     * Where every card of the join stands on the growth ladder, in seed order —
+     * see [boxGrowth]. The whole-box read behind a surface that draws the box
+     * itself, rather than the counts [statistics] aggregates it into.
+     */
+    fun growth(state: BoxState, nowEpochMillis: Long, tzId: String): List<CardGrowth> =
+        boxGrowth(state, nowEpochMillis, tzId)
+
+    /**
      * Has this card settled? See [Statistics.isSettled] — the fast threshold
      * behind budget pacing and the presentation support a word gets while it is
      * still landing. Unknown ids read as false: a card with no schedule has

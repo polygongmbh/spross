@@ -1,0 +1,68 @@
+import SwiftUI
+import SprossKern
+
+/// The bottom of Heute: the 14-day strip, then the box as a forest — one tree
+/// per area, in catalog order with the learner's own words last.
+///
+/// It is a picture of the box, not a way around it: tapping a tree opens the
+/// Box screen at that area, which is still where browsing, packing and reviving
+/// live. What the forest adds is the thing a count cannot — how the whole box
+/// is shaped, and which corners of the language have never been opened.
+struct ForestSection: View {
+    let model: AppModel
+    let open: (String) -> Void
+
+    /// Measured once and reused: the forest has to know its width before it can
+    /// say how tall it is (see `ForestCanvas`).
+    @State private var width: CGFloat = 0
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: DL.Space.m) {
+            widthProbe
+            Text("progress.title")
+                .font(DL.Fonts.title)
+                .foregroundStyle(Color.dlTextPrimary)
+            ActivityStripView(days: model.activityWindow().map(ActivityColumn.init),
+                              streakDays: model.stats?.streakDays ?? 0)
+            ForestCanvas(trees: model.areaTrees, open: open, describe: describe)
+                .environment(\.dlContentWidth, width)
+            caption
+        }
+    }
+
+    private var widthProbe: some View {
+        Color.clear
+            .frame(height: 0)
+            .background {
+                GeometryReader { proxy in
+                    Color.clear
+                        .onAppear { width = proxy.size.width }
+                        .onChange(of: proxy.size.width) { _, new in width = new }
+                }
+            }
+    }
+
+    /// The standing split in words, under the picture: a forest says how the box
+    /// is shaped, never how many words are in it.
+    private var caption: some View {
+        Text.joined(
+            Text("progress.consolidatedCount \((model.stats?.consolidatedCards ?? 0).formatted())"),
+            Text("progress.freshCount \((model.stats?.learningCards ?? 0).formatted())")
+        )
+        .font(DL.Fonts.caption)
+        .foregroundStyle(Color.dlTextSecondary)
+    }
+
+    // MARK: - Areas as trees
+
+    /// What VoiceOver reads: the picture says nothing aloud, so the label
+    /// carries the area and the same split the caption spells out.
+    private func describe(_ tree: AreaTree) -> Text {
+        let stats = model.areaStats(tree.id)
+        return Text.joined(
+            Text(tree.title),
+            Text("progress.consolidatedCount \((stats?.consolidated ?? 0).formatted())"),
+            Text("progress.freshCount \((stats?.learning ?? 0).formatted())")
+        )
+    }
+}

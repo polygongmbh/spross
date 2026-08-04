@@ -7,6 +7,17 @@
   Phrases that do not fit a row now stay on the phone, where they have a card to themselves,
   the way the watch has always picked what fits its tiles.
 
+- **Your box is a forest now, and it grows on the first screen.** Where Heute ended in two
+  numbers there is a tree for every area — and every tree is made of your words. Packing
+  an area plants a seedling. Words that settle become its leaves, words that land open as
+  blossom, words you will not see again for a month hang as fruit, and the tree stands as
+  tall as the area has grown, so a row of them reads as a skyline that changes shape over
+  the months. An area you worked today has fresh earth at its foot; one that slipped drops
+  a couple of leaves, and never shrinks for it. Areas you have never opened are simply
+  bare — the catalog is not a checklist. Tap a tree to open the box right at that area.
+  And when you finish a round, the area you worked hardest grows out of the ground on the
+  summary, so the end of a session shows what it actually moved.
+
 ## 3.8.0 — 2026-08-04
 
 - **The box is arranged the way you would look for something.** Body parts were filed under
