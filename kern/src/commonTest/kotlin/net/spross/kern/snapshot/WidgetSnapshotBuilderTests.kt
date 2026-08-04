@@ -46,6 +46,23 @@ class WidgetSnapshotBuilderTests {
     }
 
     @Test
+    fun phrasesTooLongForARowNeverReachTheWidget() {
+        val longTarget = Snap.card("wl", 4, targetText = "a".repeat(WidgetSnapshotBuilder.MAX_TEXT_CHARS + 1))
+        val longSource = Snap.card(
+            "ws", 5,
+            sourceText = "b".repeat(WidgetSnapshotBuilder.MAX_TEXT_CHARS), feminineMarker = true,
+        )
+        val fits = Snap.card("wk", 6, sourceText = "c".repeat(WidgetSnapshotBuilder.MAX_TEXT_CHARS))
+        val cards = listOf(longTarget, longSource, fits)
+        val state = cards.fold(Snap.state(cards)) { s, card ->
+            Box.inject(s, Box.sched(card.id, dueMillis = Box.plusDays(Box.day1, 1.0), lastReviewMillis = Box.day1))
+        }
+
+        val ids = WidgetSnapshotBuilder.doc(state, Box.day1, exposureLimit = 10).entries.map { it.cardId }
+        assertEquals(listOf("wk"), ids) // the ♀ marker pushes "ws" over the limit
+    }
+
+    @Test
     fun cardsCarryDueMillisAndTheConsolidatedCountIsResolvedPhoneSide() {
         val due = Box.plusDays(Box.day1, 2.0)
         val lastReview = Box.plusSeconds(Box.day1, -3600)

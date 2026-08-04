@@ -207,6 +207,10 @@ object BoxEngine {
             .map { it.id }
 
     /** See [Exposure.exposureCards]; `nowEpochMillis` reserved for future due-weighting. */
-    fun exposureCards(state: BoxState, nowEpochMillis: Long, limit: Int): List<Card> =
-        Exposure.exposureCards(state, limit)
+    fun exposureCards(
+        state: BoxState,
+        nowEpochMillis: Long,
+        limit: Int,
+        eligible: (Card) -> Boolean = { true },
+    ): List<Card> = Exposure.exposureCards(state, limit, eligible)
 }

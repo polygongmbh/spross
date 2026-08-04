@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **The widget only offers words it can actually show.** A long phrase had to share one line
+  with its meaning, so it arrived shrunken past reading — the very glance a widget exists for.
+  Phrases that do not fit a row now stay on the phone, where they have a card to themselves,
+  the way the watch has always picked what fits its tiles.
+
 ## 3.8.0 — 2026-08-04
 
 - **The box is arranged the way you would look for something.** Body parts were filed under

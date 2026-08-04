@@ -5,6 +5,7 @@ import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.Inventory
 import net.spross.kern.box.Statistics
+import net.spross.kern.model.Card
 import net.spross.kern.store.DayStatsDto
 import net.spross.kern.store.StoreJson
 import net.spross.kern.store.dayStatsDto
@@ -24,6 +25,17 @@ object WidgetSnapshotBuilder {
     /** v1 widget timeline depth (24 quarter-hour rotations). */
     const val DEFAULT_EXPOSURE_LIMIT: Int = 24
 
+    /**
+     * Longest text a widget row can hold. A row gives each side a share of one
+     * tile-width line, so a longer phrase only arrives shrunken to the point of
+     * being unreadable at a glance — which is all a widget is for. It is taught
+     * on the phone, where it has a card to itself.
+     *
+     * Tighter than the watch's [WatchSnapshotBuilder.MAX_TEXT_CHARS]: the watch
+     * gives a tile its own line, the widget puts word and meaning on one.
+     */
+    const val MAX_TEXT_CHARS: Int = 20
+
     fun build(
         state: BoxState,
         nowEpochMillis: Long,
@@ -32,7 +44,7 @@ object WidgetSnapshotBuilder {
         StoreJson.encodeSorted(WidgetSnapshotDoc.serializer(), doc(state, nowEpochMillis, exposureLimit))
 
     internal fun doc(state: BoxState, nowEpochMillis: Long, exposureLimit: Int): WidgetSnapshotDoc {
-        val entries = BoxEngine.exposureCards(state, nowEpochMillis, exposureLimit).map { card ->
+        val entries = BoxEngine.exposureCards(state, nowEpochMillis, exposureLimit, ::fitsOnWidget).map { card ->
             WidgetEntryDto(
                 cardId = card.id,
                 text = card.target.text,
@@ -56,6 +68,14 @@ object WidgetSnapshotBuilder {
             dailyStats = tailKeys.associateWith { dayStatsDto(state.dailyStats.getValue(it)) },
         )
     }
+
+    /**
+     * Whether both sides of [card] clear [MAX_TEXT_CHARS] as rendered — the
+     * source is measured with its ♀ marker, since that is what the row shows.
+     */
+    private fun fitsOnWidget(card: Card): Boolean =
+        card.target.text.length <= MAX_TEXT_CHARS &&
+            decoratedSourceText(card).length <= MAX_TEXT_CHARS
 }
 
 /** Widget document; all dates are epoch millis for trivial Swift decoding. */
