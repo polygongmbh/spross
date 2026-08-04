@@ -52,9 +52,30 @@ struct TreeTransition {
     let before: AreaTree
     let after: AreaTree
 
+    /// Where the animation starts: `before`, but with no tier holding more than
+    /// it ends with.
+    ///
+    /// why: a round can take a mark off the tree — a word that lapsed leaves the
+    /// canopy, and a word that matures moves from one tier to the next. Played
+    /// forward those read as marks being removed, and a summary that takes
+    /// something away in front of the learner is the wrong screen for it. A tier
+    /// that shrank simply starts where it ends; what the round ADDED still
+    /// animates, and what it cost is still there in the finished picture.
+    private var start: AreaTree {
+        AreaTree(id: before.id, emoji: before.emoji, title: before.title,
+                 leaves: min(before.leaves, after.leaves),
+                 blossoms: min(before.blossoms, after.blossoms),
+                 fruit: min(before.fruit, after.fruit),
+                 growing: min(before.growing, after.growing),
+                 fallen: min(before.fallen, after.fallen),
+                 mass: min(before.mass, after.mass),
+                 tendedToday: before.tendedToday)
+    }
+
     /// The tree partway between. Counts round rather than truncate, so a single
     /// new leaf arrives halfway through rather than only at the very end.
     func at(_ progress: Double) -> AreaTree {
+        let before = start
         let t = min(1, max(0, progress))
         func step(_ from: Int, _ to: Int) -> Int {
             Int((Double(from) + (Double(to) - Double(from)) * t).rounded())

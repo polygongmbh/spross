@@ -148,7 +148,7 @@ enum TreeShapes {
             // what makes them read as attached rather than scattered.
             let angle = slot.angle + slot.side * 0.95 - 0.26
             if rank < shown.fruit {
-                context.fill(circle(slot.point, size * 0.34), with: .color(.dlAccent))
+                fruit(&context, at: slot.point, size: size)
             } else if rank < shown.fruit + shown.blossoms {
                 blossom(&context, at: slot.point, size: size)
             } else if rank.isMultiple(of: 2) {
@@ -192,6 +192,26 @@ enum TreeShapes {
     private static func leaf(_ context: inout GraphicsContext, at point: CGPoint,
                              size: CGFloat, angle: Double, color: Color) {
         context.fill(leafPath(at: point, size: size, angle: angle), with: .color(color))
+    }
+
+    /// A word the learner will not see again for months — the furthest thing on
+    /// the tree.
+    ///
+    /// Drawn HEAVIER than a blossom, not lighter. A word promotes from blossom
+    /// to fruit, and while it was a small dot that promotion read as a flower
+    /// being taken away: the ladder's visual weight was inverted at the top,
+    /// so the one unambiguously good thing looked like a loss.
+    private static func fruit(_ context: inout GraphicsContext, at point: CGPoint, size: CGFloat) {
+        var stalk = Path()
+        stalk.move(to: CGPoint(x: point.x, y: point.y - size * 0.52))
+        stalk.addLine(to: CGPoint(x: point.x, y: point.y - size * 0.2))
+        context.stroke(stalk, with: .color(.dlBorderStrong),
+                       style: StrokeStyle(lineWidth: max(0.6, size * 0.1), lineCap: .round))
+        context.fill(circle(point, size * 0.46), with: .color(.dlAccent))
+        // A highlight: at this size it is the difference between fruit and a dot.
+        context.fill(circle(CGPoint(x: point.x - size * 0.14, y: point.y - size * 0.14),
+                            size * 0.13),
+                     with: .color(.dlSurface.opacity(0.65)))
     }
 
     /// A word that has landed. Told apart from a leaf by SHAPE as well as

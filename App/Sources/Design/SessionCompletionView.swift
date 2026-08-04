@@ -128,7 +128,7 @@ struct SessionCompletionView: View {
                                 : .spring(response: 1.5, dampingFraction: 0.85).delay(0.25),
                                value: burst)
                 VStack(spacing: 2) {
-                    Text("session.finished.grew")
+                    Text(growthHeadline)
                         .font(DL.Fonts.headline)
                         .foregroundStyle(Color.dlTextPrimary)
                     Text(verbatim: "\(grownArea.after.emoji) \(grownArea.after.title)")
@@ -138,6 +138,53 @@ struct SessionCompletionView: View {
             }
             .accessibilityElement(children: .combine)
         }
+    }
+
+    /// What the round did to the learner, said through the growing metaphor.
+    ///
+    /// The line turns on the round's SHAPE, never on the clock — the same rule
+    /// the session card's own three phrasings follow — so it cannot re-roll
+    /// between renders of one summary. Consolidation outranks a big new-word
+    /// round: it is the rarest thing that happens on this screen, and the tally
+    /// below names the new words anyway.
+    ///
+    /// The subject is always the learner's knowledge, never the area. The area
+    /// did not grow, and it is labelled separately below for that reason.
+    private var growthHeadline: LocalizedStringKey {
+        // why: a day the box itself is telling the learner to stop makes no
+        // growth claim — a screen that celebrates and is contradicted two lines
+        // down teaches the learner not to believe it.
+        guard !restSuggested else { return "session.finished.grew" }
+
+        // why: the key is built as a STRING and only then wrapped. Interpolating
+        // inside `LocalizedStringKey("…\(n)")` takes the string-INTERPOLATION
+        // initializer, which makes the key "…%lld" with an argument — it
+        // compiles, and renders the raw key at runtime.
+        let kind: String
+        var variants = 3
+        var offset = 0
+        if graduatedCount > 0 {
+            kind = "blooming"
+        } else if newCount > graduatedCount + reviewCount {
+            kind = "sown"
+        } else {
+            kind = "grown"
+            // A round that added no mark to the canopy can only honestly claim
+            // depth — nothing visibly grew, what was there took a firmer hold.
+            // Those are variants 1 and 2; variant 0 says "gewachsen".
+            if grownArea.map({ $0.before.canopyCount == $0.after.canopyCount }) ?? false {
+                variants = 2
+                offset = 1
+            }
+        }
+        let key = "session.finished.growth.\(kind).\(variant(of: variants) + offset)"
+        return LocalizedStringKey(key)
+    }
+
+    /// A stable choice among `count`, hashed from the round's own tallies.
+    private func variant(of count: Int) -> Int {
+        let seed = SplitMix64("\(newCount):\(graduatedCount):\(reviewCount)").seed
+        return Int(SplitMix64.mix(seed) % UInt64(count))
     }
 
     private var burstHero: some View {

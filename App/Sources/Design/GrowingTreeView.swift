@@ -25,9 +25,9 @@ struct GrowingTreeView: View, Animatable {
     var body: some View {
         Canvas { context, size in
             let shown = transition.at(progress)
-            // why: the tree is SIZED for its finished state and only its marks
-            // move — a tree that grew its own frame would shift under the eye
-            // while the thing being watched is what landed in the canopy.
+            // why: the frame is the FINISHED tree's, so the drawing never
+            // outgrows the space it was given mid-animation; within it the tree
+            // rises from the height it had before the round.
             let mark = ForestLayout.solitary(transition.after, in: size)
             TreeShapes.draw(&context, geometry(mark, shown), showing: shown)
         }
