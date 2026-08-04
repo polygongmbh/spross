@@ -52,6 +52,10 @@
    {
     "area": "health",
     "emoji": "🩺"
+   },
+   {
+    "area": "doctor",
+    "emoji": "🧑‍⚕️"
    }
   ]
  },

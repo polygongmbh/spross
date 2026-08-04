@@ -1,0 +1,126 @@
+{
+ "title": "У лікаря",
+ "subtitle": "Від запису до рецепта.",
+ "words": {
+  "doctor": {
+   "text": "лікар"
+  },
+  "doctor-f": {
+   "text": "лікарка"
+  },
+  "practice": {
+   "text": "лікарський кабінет",
+   "grammar": {
+    "plural": "лікарські кабінети"
+   },
+   "notes": {
+    "de": "auch «практика» (vor allem Privatpraxis)"
+   }
+  },
+  "pill": {
+   "text": "таблетка",
+   "synonyms": [
+    "пігулка"
+   ]
+  },
+  "prescription": {
+   "text": "рецепт"
+  },
+  "pharmacy": {
+   "text": "аптека"
+  },
+  "insurance-card": {
+   "text": "картка медичного страхування",
+   "grammar": {
+    "plural": "картки медичного страхування"
+   }
+  },
+  "health-insurance": {
+   "text": "лікарняна каса",
+   "grammar": {
+    "plural": "лікарняні каси"
+   }
+  },
+  "hospital": {
+   "text": "лікарня"
+  },
+  "emergency": {
+   "text": "екстрений випадок",
+   "grammar": {
+    "plural": "екстрені випадки"
+   }
+  },
+  "sick-note": {
+   "text": "лікарняний",
+   "grammar": {
+    "plural": "лікарняні"
+   }
+  },
+  "examine": {
+   "text": "обстежувати"
+  },
+  "prescribe-medicine": {
+   "text": "виписувати ліки"
+  },
+  "take-medicine": {
+   "text": "приймати ліки"
+  },
+  "call-in-sick": {
+   "text": "повідомляти, що захворів",
+   "synonyms": [
+    "іти на лікарняний"
+   ]
+  },
+  "medicine": {
+   "text": "ліки",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "nurse": {
+   "text": "медбрат"
+  },
+  "nurse-f": {
+   "text": "медсестра"
+  },
+  "dentist": {
+   "text": "стоматолог",
+   "synonyms": [
+    "зубний лікар"
+   ]
+  },
+  "vaccination": {
+   "text": "щеплення",
+   "synonyms": [
+    "вакцинація"
+   ],
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "ambulance": {
+   "text": "швидка допомога",
+   "variants": [
+    "швидка"
+   ]
+  },
+  "take-the-pills-twice-daily": {
+   "text": "Приймайте таблетки двічі на день."
+  },
+  "show-me-your-insurance-card": {
+   "text": "Покажіть мені вашу картку медичного страхування."
+  },
+  "the-practice-is-closed": {
+   "text": "Лікарський кабінет зачинений."
+  },
+  "i-have-to-see-a-doctor": {
+   "text": "Мені треба до лікаря."
+  },
+  "call-an-ambulance": {
+   "text": "Викличте швидку допомогу!",
+   "variants": [
+    "Виклич швидку!"
+   ]
+  }
+ }
+}

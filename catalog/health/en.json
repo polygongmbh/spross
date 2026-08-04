@@ -1,36 +1,12 @@
 {
- "title": "At the doctor",
- "subtitle": "Everything for your health.",
+ "title": "Health",
+ "subtitle": "How you are feeling today.",
  "words": {
-  "doctor": {
-   "text": "doctor"
-  },
-  "practice": {
-   "text": "doctor's office"
-  },
   "pain": {
    "text": "pain"
   },
   "fever": {
    "text": "fever"
-  },
-  "pill": {
-   "text": "pill"
-  },
-  "prescription": {
-   "text": "prescription"
-  },
-  "pharmacy": {
-   "text": "pharmacy",
-   "grammar": {
-    "plural": "pharmacies"
-   }
-  },
-  "insurance-card": {
-   "text": "insurance card"
-  },
-  "health-insurance": {
-   "text": "health insurance"
   },
   "cough": {
    "text": "cough"
@@ -44,32 +20,8 @@
   "to-cough": {
    "text": "to cough"
   },
-  "examine": {
-   "text": "to examine"
-  },
-  "prescribe-medicine": {
-   "text": "to prescribe medicine"
-  },
-  "take-medicine": {
-   "text": "to take medicine"
-  },
-  "call-in-sick": {
-   "text": "to call in sick"
-  },
   "rest": {
    "text": "to rest"
-  },
-  "hospital": {
-   "text": "hospital"
-  },
-  "emergency": {
-   "text": "emergency",
-   "grammar": {
-    "plural": "emergencies"
-   }
-  },
-  "sick-note": {
-   "text": "sick note"
   },
   "sick": {
    "text": "sick"
@@ -77,23 +29,78 @@
   "feel": {
    "text": "to feel"
   },
+  "health": {
+   "text": "health"
+  },
+  "illness": {
+   "text": "illness",
+   "synonyms": [
+    "disease"
+   ],
+   "grammar": {
+    "plural": "illnesses"
+   }
+  },
+  "healthy": {
+   "text": "healthy"
+  },
+  "tired": {
+   "text": "tired"
+  },
+  "weak": {
+   "text": "weak"
+  },
+  "dizziness": {
+   "text": "dizziness"
+  },
+  "wound": {
+   "text": "wound"
+  },
+  "hurt-oneself": {
+   "text": "to hurt oneself",
+   "variants": [
+    "to injure oneself",
+    "to hurt yourself"
+   ]
+  },
+  "bandage": {
+   "text": "bandage"
+  },
+  "breathe": {
+   "text": "to breathe"
+  },
+  "recover": {
+   "text": "to recover",
+   "variants": [
+    "to get better"
+   ]
+  },
+  "allergy": {
+   "text": "allergy",
+   "grammar": {
+    "plural": "allergies"
+   }
+  },
   "my-throat-hurts-a-lot": {
    "text": "My throat hurts a lot."
   },
   "ive-had-a-fever-since-yesterday": {
    "text": "I've had a fever since yesterday."
   },
-  "take-the-pills-twice-daily": {
-   "text": "Take the pills twice daily."
-  },
   "get-well-soon": {
    "text": "Get well soon!"
   },
-  "show-me-your-insurance-card": {
-   "text": "Show me your insurance card."
+  "i-dont-feel-well": {
+   "text": "I don't feel well."
   },
-  "the-practice-is-closed": {
-   "text": "The doctor's office is closed."
+  "the-wound-hurts": {
+   "text": "The wound hurts."
+  },
+  "i-cant-breathe-well": {
+   "text": "I can't breathe well."
+  },
+  "i-have-to-rest": {
+   "text": "I have to rest."
   }
  }
 }

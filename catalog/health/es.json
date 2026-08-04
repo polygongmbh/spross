@@ -1,37 +1,7 @@
 {
- "title": "En el médico",
- "subtitle": "Todo por la salud.",
+ "title": "La salud",
+ "subtitle": "Cómo te encuentras hoy.",
  "words": {
-  "doctor": {
-   "text": "médico",
-   "variants": [
-    "doctor"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "doctor-f": {
-   "text": "médica",
-   "variants": [
-    "doctora"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "practice": {
-   "text": "consulta",
-   "variants": [
-    "consultorio"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "la consulta = das Sprechzimmer/die Praxis; die staatliche Hausarztstelle in Spanien heißt el centro de salud."
-   }
-  },
   "pain": {
    "text": "dolor",
    "grammar": {
@@ -42,55 +12,6 @@
    "text": "fiebre",
    "grammar": {
     "gender": "la"
-   }
-  },
-  "pill": {
-   "text": "pastilla",
-   "variants": [
-    "comprimido",
-    "tableta"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "Alltagswort ist la pastilla; auf der Packung steht meist comprimido."
-   }
-  },
-  "prescription": {
-   "text": "receta",
-   "variants": [
-    "receta médica"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "pharmacy": {
-   "text": "farmacia",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "insurance-card": {
-   "text": "tarjeta sanitaria",
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "In Spanien ist es die tarjeta sanitaria der öffentlichen Gesundheitsversorgung — sie ersetzt die Versichertenkarte."
-   }
-  },
-  "health-insurance": {
-   "text": "seguro médico",
-   "variants": [
-    "seguro de salud"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "Eine Krankenkasse wie in Deutschland gibt es nicht: gesetzlich versichert ist man über la Seguridad Social; un seguro médico ist meist eine private Zusatzversicherung."
    }
   },
   "cough": {
@@ -123,71 +44,8 @@
   "to-cough": {
    "text": "toser"
   },
-  "examine": {
-   "text": "examinar",
-   "variants": [
-    "explorar",
-    "reconocer"
-   ]
-  },
-  "prescribe-medicine": {
-   "text": "recetar medicamentos",
-   "variants": [
-    "prescribir medicamentos",
-    "recetar medicinas"
-   ]
-  },
-  "take-medicine": {
-   "text": "tomar medicamentos",
-   "variants": [
-    "tomar la medicación",
-    "tomar medicinas"
-   ]
-  },
-  "call-in-sick": {
-   "text": "coger la baja",
-   "variants": [
-    "pedir la baja",
-    "darse de baja",
-    "ponerse de baja"
-   ],
-   "notes": {
-    "de": "Krankmelden läuft in Spanien über la baja, die der Arzt ausstellt: coger la baja, estar de baja. coger ist in Spanien normal, in Lateinamerika vulgär."
-   }
-  },
   "rest": {
    "text": "descansar"
-  },
-  "hospital": {
-   "text": "hospital",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "emergency": {
-   "text": "emergencia",
-   "synonyms": [
-    "urgencia"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "Die Notaufnahme heißt urgencias — „ir a urgencias“ = in die Notaufnahme gehen."
-   }
-  },
-  "sick-note": {
-   "text": "baja",
-   "variants": [
-    "baja médica",
-    "parte de baja"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "kurz für la baja médica; das Papier, das der Arzt aushändigt, ist el parte de baja."
-   }
   },
   "sick": {
    "text": "enfermo",
@@ -204,18 +62,92 @@
     "de": "Beim Arzt fragt man auch ¿Cómo se encuentra? = Wie fühlen Sie sich?"
    }
   },
+  "health": {
+   "text": "salud",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "illness": {
+   "text": "enfermedad",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "healthy": {
+   "text": "sano",
+   "synonyms": [
+    "saludable"
+   ],
+   "variants": [
+    "sana"
+   ],
+   "notes": {
+    "de": "sano beschreibt den Menschen: estoy sano · saludable eher Essen und Lebensweise: comida saludable."
+   }
+  },
+  "tired": {
+   "text": "cansado",
+   "variants": [
+    "cansada"
+   ]
+  },
+  "weak": {
+   "text": "débil"
+  },
+  "dizziness": {
+   "text": "mareo",
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "estar mareado heißt schwindlig sein — und ebenso reise- oder seekrank."
+   }
+  },
+  "wound": {
+   "text": "herida",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "hurt-oneself": {
+   "text": "hacerse daño",
+   "variants": [
+    "lesionarse"
+   ]
+  },
+  "bandage": {
+   "text": "venda",
+   "variants": [
+    "vendaje"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "das kleine Pflaster ist la tirita (Spanien), la curita (Lateinamerika)."
+   }
+  },
+  "breathe": {
+   "text": "respirar"
+  },
+  "recover": {
+   "text": "recuperarse",
+   "variants": [
+    "reponerse"
+   ]
+  },
+  "allergy": {
+   "text": "alergia",
+   "grammar": {
+    "gender": "la"
+   }
+  },
   "my-throat-hurts-a-lot": {
    "text": "Me duele mucho la garganta."
   },
   "ive-had-a-fever-since-yesterday": {
    "text": "Tengo fiebre desde ayer."
-  },
-  "take-the-pills-twice-daily": {
-   "text": "Tome las pastillas dos veces al día.",
-   "variants": [
-    "Toma las pastillas dos veces al día.",
-    "Tómese las pastillas dos veces al día."
-   ]
   },
   "get-well-soon": {
    "text": "¡Que te mejores!",
@@ -224,15 +156,17 @@
     "¡Mejórate pronto!"
    ]
   },
-  "show-me-your-insurance-card": {
-   "text": "Enséñeme su tarjeta sanitaria.",
-   "variants": [
-    "Enséñame tu tarjeta sanitaria.",
-    "Muéstreme su tarjeta sanitaria."
-   ]
+  "i-dont-feel-well": {
+   "text": "No me siento bien."
   },
-  "the-practice-is-closed": {
-   "text": "La consulta está cerrada."
+  "the-wound-hurts": {
+   "text": "Me duele la herida."
+  },
+  "i-cant-breathe-well": {
+   "text": "No puedo respirar bien."
+  },
+  "i-have-to-rest": {
+   "text": "Tengo que descansar."
   }
  }
 }

@@ -1,19 +1,7 @@
 {
- "title": "Kwa daktari",
- "subtitle": "Afya njema kwanza.",
+ "title": "Afya",
+ "subtitle": "Unajisikiaje leo.",
  "words": {
-  "doctor": {
-   "text": "daktari",
-   "grammar": {
-    "plural": "madaktari"
-   }
-  },
-  "practice": {
-   "text": "kliniki",
-   "grammar": {
-    "plural": "="
-   }
-  },
   "pain": {
    "text": "maumivu",
    "grammar": {
@@ -22,30 +10,6 @@
   },
   "fever": {
    "text": "homa"
-  },
-  "pill": {
-   "text": "kidonge",
-   "grammar": {
-    "plural": "vidonge"
-   }
-  },
-  "pharmacy": {
-   "text": "duka la dawa",
-   "grammar": {
-    "plural": "maduka ya dawa"
-   }
-  },
-  "insurance-card": {
-   "text": "kadi ya bima ya afya",
-   "grammar": {
-    "plural": "kadi za bima ya afya"
-   }
-  },
-  "health-insurance": {
-   "text": "mfuko wa bima ya afya",
-   "grammar": {
-    "plural": "mifuko ya bima ya afya"
-   }
   },
   "cough": {
    "text": "kikohozi",
@@ -65,35 +29,8 @@
   "to-cough": {
    "text": "kukohoa"
   },
-  "prescribe-medicine": {
-   "text": "kuandika dawa"
-  },
-  "take-medicine": {
-   "text": "kunywa dawa"
-  },
-  "call-in-sick": {
-   "text": "kutoa taarifa ya ugonjwa"
-  },
   "rest": {
    "text": "kupumzika"
-  },
-  "hospital": {
-   "text": "hospitali",
-   "grammar": {
-    "plural": "mahospitali"
-   }
-  },
-  "emergency": {
-   "text": "dharura",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "sick-note": {
-   "text": "cheti cha daktari",
-   "grammar": {
-    "plural": "vyeti vya daktari"
-   }
   },
   "sick": {
    "text": "mgonjwa"
@@ -101,14 +38,80 @@
   "feel": {
    "text": "kujisikia"
   },
+  "health": {
+   "text": "afya"
+  },
+  "illness": {
+   "text": "ugonjwa",
+   "grammar": {
+    "plural": "magonjwa"
+   }
+  },
+  "healthy": {
+   "text": "-zima",
+   "variants": [
+    "mzima",
+    "wazima",
+    "nzima"
+   ],
+   "notes": {
+    "de": "mzima heißt auch „ganz“: «Mzima?» ist die übliche Rückfrage nach dem Befinden."
+   }
+  },
+  "tired": {
+   "text": "-chovu",
+   "variants": [
+    "mchovu",
+    "wachovu"
+   ],
+   "notes": {
+    "de": "im Alltag sagt man meist das Verb: Nimechoka = ich bin müde."
+   }
+  },
+  "weak": {
+   "text": "dhaifu"
+  },
+  "dizziness": {
+   "text": "kizunguzungu",
+   "grammar": {
+    "plural": "vizunguzungu"
+   }
+  },
+  "wound": {
+   "text": "jeraha",
+   "grammar": {
+    "plural": "majeraha"
+   }
+  },
+  "hurt-oneself": {
+   "text": "kujiumiza"
+  },
+  "bandage": {
+   "text": "bendeji",
+   "variants": [
+    "bandeji"
+   ],
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "breathe": {
+   "text": "kupumua"
+  },
+  "recover": {
+   "text": "kupona"
+  },
+  "allergy": {
+   "text": "mzio",
+   "grammar": {
+    "plural": "mizio"
+   }
+  },
   "my-throat-hurts-a-lot": {
    "text": "Koo linaniuma sana."
   },
   "ive-had-a-fever-since-yesterday": {
    "text": "Nina homa tangu jana."
-  },
-  "take-the-pills-twice-daily": {
-   "text": "Kunywa vidonge mara mbili kwa siku."
   },
   "get-well-soon": {
    "text": "Upone haraka!",
@@ -119,11 +122,20 @@
     "de": "pole = Mitgefühls-Wort ohne direktes deutsches Gegenstück"
    }
   },
-  "show-me-your-insurance-card": {
-   "text": "Nionyeshe kadi yako ya bima ya afya."
+  "i-dont-feel-well": {
+   "text": "Sijisikii vizuri."
   },
-  "the-practice-is-closed": {
-   "text": "Kliniki imefungwa."
+  "the-wound-hurts": {
+   "text": "Jeraha linauma."
+  },
+  "i-cant-breathe-well": {
+   "text": "Siwezi kupumua vizuri."
+  },
+  "i-have-to-rest": {
+   "text": "Lazima nipumzike.",
+   "variants": [
+    "Ninahitaji kupumzika."
+   ]
   }
  }
 }
