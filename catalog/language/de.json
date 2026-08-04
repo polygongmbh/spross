@@ -2,12 +2,23 @@
  "title": "Sprache lernen",
  "subtitle": "Nachfragen, verstehen, im Gespräch bleiben.",
  "words": {
-  "dictionary": {
-   "text": "Wörterbuch",
-   "grammar": {
-    "gender": "das",
-    "plural": "Wörterbücher"
-   }
+  "hear": {
+   "text": "hören"
+  },
+  "understand": {
+   "text": "verstehen"
+  },
+  "speak": {
+   "text": "sprechen"
+  },
+  "repeat-word": {
+   "text": "das Wort wiederholen"
+  },
+  "loud": {
+   "text": "laut"
+  },
+  "ask": {
+   "text": "fragen"
   },
   "question": {
    "text": "Frage",
@@ -23,24 +34,8 @@
     "plural": "-en"
    }
   },
-  "ask": {
-   "text": "fragen"
-  },
   "reply": {
    "text": "antworten"
-  },
-  "translate": {
-   "text": "übersetzen"
-  },
-  "sentence": {
-   "text": "Satz",
-   "grammar": {
-    "gender": "der",
-    "plural": "Sätze"
-   }
-  },
-  "learn-by-heart": {
-   "text": "auswendig lernen"
   },
   "meaning": {
    "text": "Bedeutung",
@@ -52,8 +47,28 @@
   "to-pronounce": {
    "text": "aussprechen"
   },
+  "translate": {
+   "text": "übersetzen"
+  },
   "read-aloud": {
    "text": "vorlesen"
+  },
+  "learn-by-heart": {
+   "text": "auswendig lernen"
+  },
+  "dictionary": {
+   "text": "Wörterbuch",
+   "grammar": {
+    "gender": "das",
+    "plural": "Wörterbücher"
+   }
+  },
+  "sentence": {
+   "text": "Satz",
+   "grammar": {
+    "gender": "der",
+    "plural": "Sätze"
+   }
   },
   "mother-tongue": {
    "text": "Muttersprache",
@@ -62,35 +77,29 @@
     "plural": "-n"
    }
   },
-  "speak": {
-   "text": "sprechen"
-  },
-  "understand": {
-   "text": "verstehen"
-  },
-  "repeat-word": {
-   "text": "das Wort wiederholen"
-  },
-  "i-have-a-question": {
-   "text": "Ich habe eine Frage."
-  },
-  "what-does-this-word-mean": {
-   "text": "Was bedeutet dieses Wort?"
-  },
-  "how-do-you-say-this-in-german": {
-   "text": "Wie sagt man das auf Deutsch?"
-  },
-  "im-learning-german": {
-   "text": "Ich lerne Deutsch."
-  },
-  "you-can-do-it": {
-   "text": "Du schaffst das bestimmt!"
+  "i-dont-understand": {
+   "text": "Ich verstehe nicht."
   },
   "i-understand": {
    "text": "Ich verstehe."
   },
-  "i-dont-understand": {
-   "text": "Ich verstehe nicht."
+  "can-you-repeat-that": {
+   "text": "Können Sie das wiederholen?",
+   "variants": [
+    "Kannst du das wiederholen?"
+   ]
+  },
+  "slower": {
+   "text": "Langsamer!"
+  },
+  "i-cant-hear-you": {
+   "text": "Ich kann Sie nicht hören.",
+   "variants": [
+    "Ich kann dich nicht hören."
+   ]
+  },
+  "louder": {
+   "text": "Lauter!"
   },
   "do-you-speak-english": {
    "text": "Sprechen Sie Englisch?",
@@ -101,14 +110,20 @@
   "i-speak-a-little-german": {
    "text": "Ich spreche nur ein bisschen Deutsch."
   },
-  "can-you-repeat-that": {
-   "text": "Können Sie das wiederholen?",
-   "variants": [
-    "Kannst du das wiederholen?"
-   ]
+  "what-does-this-word-mean": {
+   "text": "Was bedeutet dieses Wort?"
   },
-  "slower": {
-   "text": "Langsamer!"
+  "how-do-you-say-this-in-german": {
+   "text": "Wie sagt man das auf Deutsch?"
+  },
+  "im-learning-german": {
+   "text": "Ich lerne Deutsch."
+  },
+  "i-have-a-question": {
+   "text": "Ich habe eine Frage."
+  },
+  "you-can-do-it": {
+   "text": "Du schaffst das bestimmt!"
   }
  }
 }

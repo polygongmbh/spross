@@ -2,11 +2,29 @@
  "title": "Kujifunza lugha",
  "subtitle": "Kuuliza, kuelewa, kuendelea na mazungumzo.",
  "words": {
-  "dictionary": {
-   "text": "kamusi",
-   "grammar": {
-    "plural": "="
+  "hear": {
+   "text": "kusikia"
+  },
+  "understand": {
+   "text": "kuelewa"
+  },
+  "speak": {
+   "text": "kuzungumza"
+  },
+  "repeat-word": {
+   "text": "kurudia neno"
+  },
+  "loud": {
+   "text": "kwa sauti kubwa",
+   "variants": [
+    "kwa sauti ya juu"
+   ],
+   "notes": {
+    "de": "kein Adjektiv, sondern adverbial: Sema kwa sauti kubwa."
    }
+  },
+  "ask": {
+   "text": "kuuliza"
   },
   "question": {
    "text": "swali",
@@ -20,23 +38,8 @@
     "plural": "majibu"
    }
   },
-  "ask": {
-   "text": "kuuliza"
-  },
   "reply": {
    "text": "kujibu"
-  },
-  "translate": {
-   "text": "kutafsiri"
-  },
-  "sentence": {
-   "text": "sentensi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "learn-by-heart": {
-   "text": "kukariri"
   },
   "meaning": {
    "text": "maana",
@@ -47,8 +50,26 @@
   "to-pronounce": {
    "text": "kutamka"
   },
+  "translate": {
+   "text": "kutafsiri"
+  },
   "read-aloud": {
    "text": "kusoma kwa sauti"
+  },
+  "learn-by-heart": {
+   "text": "kukariri"
+  },
+  "dictionary": {
+   "text": "kamusi",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "sentence": {
+   "text": "sentensi",
+   "grammar": {
+    "plural": "="
+   }
   },
   "mother-tongue": {
    "text": "lugha ya mama",
@@ -56,17 +77,35 @@
     "plural": "lugha za mama"
    }
   },
-  "speak": {
-   "text": "kuzungumza"
+  "i-dont-understand": {
+   "text": "Sielewi."
   },
-  "understand": {
-   "text": "kuelewa"
+  "i-understand": {
+   "text": "Naelewa."
   },
-  "repeat-word": {
-   "text": "kurudia neno"
+  "can-you-repeat-that": {
+   "text": "Unaweza kurudia?"
   },
-  "i-have-a-question": {
-   "text": "Nina swali."
+  "slower": {
+   "text": "Polepole zaidi!"
+  },
+  "i-cant-hear-you": {
+   "text": "Sikusikii.",
+   "variants": [
+    "Siwezi kukusikia."
+   ]
+  },
+  "louder": {
+   "text": "Kwa sauti zaidi!",
+   "variants": [
+    "Kwa sauti kubwa zaidi!"
+   ]
+  },
+  "do-you-speak-english": {
+   "text": "Unazungumza Kiingereza?"
+  },
+  "i-speak-a-little-german": {
+   "text": "Ninazungumza Kijerumani kidogo tu."
   },
   "what-does-this-word-mean": {
    "text": "Neno hili lina maana gani?"
@@ -77,26 +116,11 @@
   "im-learning-german": {
    "text": "Ninajifunza Kijerumani."
   },
+  "i-have-a-question": {
+   "text": "Nina swali."
+  },
   "you-can-do-it": {
    "text": "Hakika utaweza!"
-  },
-  "i-understand": {
-   "text": "Naelewa."
-  },
-  "i-dont-understand": {
-   "text": "Sielewi."
-  },
-  "do-you-speak-english": {
-   "text": "Unazungumza Kiingereza?"
-  },
-  "i-speak-a-little-german": {
-   "text": "Ninazungumza Kijerumani kidogo tu."
-  },
-  "can-you-repeat-that": {
-   "text": "Unaweza kurudia?"
-  },
-  "slower": {
-   "text": "Polepole zaidi!"
   }
  }
 }

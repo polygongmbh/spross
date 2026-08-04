@@ -2,11 +2,38 @@
  "title": "Aprender el idioma",
  "subtitle": "Preguntar, entender, seguir en la conversación.",
  "words": {
-  "dictionary": {
-   "text": "diccionario",
-   "grammar": {
-    "gender": "el"
+  "hear": {
+   "text": "oír",
+   "notes": {
+    "de": "oír = wahrnehmen · escuchar = bewusst zuhören."
    }
+  },
+  "understand": {
+   "text": "entender",
+   "synonyms": [
+    "comprender"
+   ]
+  },
+  "speak": {
+   "text": "hablar"
+  },
+  "repeat-word": {
+   "text": "repetir la palabra"
+  },
+  "loud": {
+   "text": "alto",
+   "synonyms": [
+    "fuerte"
+   ],
+   "variants": [
+    "alta"
+   ],
+   "notes": {
+    "de": "Lautstärke: habla alto oder habla fuerte · alto heißt auch hoch."
+   }
+  },
+  "ask": {
+   "text": "preguntar"
   },
   "question": {
    "text": "pregunta",
@@ -20,31 +47,10 @@
     "gender": "la"
    }
   },
-  "ask": {
-   "text": "preguntar"
-  },
   "reply": {
    "text": "responder",
    "synonyms": [
     "contestar"
-   ]
-  },
-  "translate": {
-   "text": "traducir"
-  },
-  "sentence": {
-   "text": "frase",
-   "synonyms": [
-    "oración"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "learn-by-heart": {
-   "text": "aprender de memoria",
-   "synonyms": [
-    "memorizar"
    ]
   },
   "meaning": {
@@ -56,8 +62,32 @@
   "to-pronounce": {
    "text": "pronunciar"
   },
+  "translate": {
+   "text": "traducir"
+  },
   "read-aloud": {
    "text": "leer en voz alta"
+  },
+  "learn-by-heart": {
+   "text": "aprender de memoria",
+   "synonyms": [
+    "memorizar"
+   ]
+  },
+  "dictionary": {
+   "text": "diccionario",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "sentence": {
+   "text": "frase",
+   "synonyms": [
+    "oración"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
   },
   "mother-tongue": {
    "text": "lengua materna",
@@ -65,20 +95,61 @@
     "gender": "la"
    }
   },
-  "speak": {
-   "text": "hablar"
-  },
-  "understand": {
-   "text": "entender",
-   "synonyms": [
-    "comprender"
+  "i-dont-understand": {
+   "text": "No entiendo.",
+   "variants": [
+    "No lo entiendo.",
+    "No comprendo."
    ]
   },
-  "repeat-word": {
-   "text": "repetir la palabra"
+  "i-understand": {
+   "text": "Entiendo.",
+   "variants": [
+    "Lo entiendo.",
+    "Comprendo."
+   ]
   },
-  "i-have-a-question": {
-   "text": "Tengo una pregunta."
+  "can-you-repeat-that": {
+   "text": "¿Puede repetirlo?",
+   "variants": [
+    "¿Puede usted repetirlo?",
+    "¿Puedes repetirlo?",
+    "¿Me lo puede repetir?",
+    "¿Puede repetir?"
+   ]
+  },
+  "slower": {
+   "text": "¡Más despacio!",
+   "variants": [
+    "¡Más lento!"
+   ]
+  },
+  "i-cant-hear-you": {
+   "text": "No le oigo.",
+   "variants": [
+    "No te oigo.",
+    "No lo oigo.",
+    "No la oigo."
+   ]
+  },
+  "louder": {
+   "text": "¡Más fuerte!",
+   "variants": [
+    "¡Más alto!"
+   ]
+  },
+  "do-you-speak-english": {
+   "text": "¿Habla usted inglés?",
+   "variants": [
+    "¿Habla inglés?",
+    "¿Hablas inglés?"
+   ]
+  },
+  "i-speak-a-little-german": {
+   "text": "Solo hablo un poco de alemán.",
+   "variants": [
+    "Hablo solo un poco de alemán."
+   ]
   },
   "what-does-this-word-mean": {
    "text": "¿Qué significa esta palabra?",
@@ -98,53 +169,14 @@
     "Aprendo alemán."
    ]
   },
+  "i-have-a-question": {
+   "text": "Tengo una pregunta."
+  },
   "you-can-do-it": {
    "text": "¡Seguro que lo consigues!",
    "variants": [
     "¡Tú puedes!",
     "¡Seguro que lo logras!"
-   ]
-  },
-  "i-understand": {
-   "text": "Entiendo.",
-   "variants": [
-    "Lo entiendo.",
-    "Comprendo."
-   ]
-  },
-  "i-dont-understand": {
-   "text": "No entiendo.",
-   "variants": [
-    "No lo entiendo.",
-    "No comprendo."
-   ]
-  },
-  "do-you-speak-english": {
-   "text": "¿Habla usted inglés?",
-   "variants": [
-    "¿Habla inglés?",
-    "¿Hablas inglés?"
-   ]
-  },
-  "i-speak-a-little-german": {
-   "text": "Solo hablo un poco de alemán.",
-   "variants": [
-    "Hablo solo un poco de alemán."
-   ]
-  },
-  "can-you-repeat-that": {
-   "text": "¿Puede repetirlo?",
-   "variants": [
-    "¿Puede usted repetirlo?",
-    "¿Puedes repetirlo?",
-    "¿Me lo puede repetir?",
-    "¿Puede repetir?"
-   ]
-  },
-  "slower": {
-   "text": "¡Más despacio!",
-   "variants": [
-    "¡Más lento!"
    ]
   }
  }

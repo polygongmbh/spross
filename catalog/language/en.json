@@ -2,11 +2,23 @@
  "title": "Learning the language",
  "subtitle": "Asking, understanding, staying in the conversation.",
  "words": {
-  "dictionary": {
-   "text": "dictionary",
-   "grammar": {
-    "plural": "dictionaries"
-   }
+  "hear": {
+   "text": "to hear"
+  },
+  "understand": {
+   "text": "to understand"
+  },
+  "speak": {
+   "text": "to speak"
+  },
+  "repeat-word": {
+   "text": "to repeat the word"
+  },
+  "loud": {
+   "text": "loud"
+  },
+  "ask": {
+   "text": "to ask"
   },
   "question": {
    "text": "question"
@@ -14,20 +26,8 @@
   "answer": {
    "text": "answer"
   },
-  "ask": {
-   "text": "to ask"
-  },
   "reply": {
    "text": "to reply"
-  },
-  "translate": {
-   "text": "to translate"
-  },
-  "sentence": {
-   "text": "sentence"
-  },
-  "learn-by-heart": {
-   "text": "to learn by heart"
   },
   "meaning": {
    "text": "meaning"
@@ -35,8 +35,23 @@
   "to-pronounce": {
    "text": "to pronounce"
   },
+  "translate": {
+   "text": "to translate"
+  },
   "read-aloud": {
    "text": "to read aloud"
+  },
+  "learn-by-heart": {
+   "text": "to learn by heart"
+  },
+  "dictionary": {
+   "text": "dictionary",
+   "grammar": {
+    "plural": "dictionaries"
+   }
+  },
+  "sentence": {
+   "text": "sentence"
   },
   "mother-tongue": {
    "text": "mother tongue",
@@ -44,17 +59,29 @@
     "native language"
    ]
   },
-  "speak": {
-   "text": "to speak"
+  "i-dont-understand": {
+   "text": "I don't understand."
   },
-  "understand": {
-   "text": "to understand"
+  "i-understand": {
+   "text": "I understand."
   },
-  "repeat-word": {
-   "text": "to repeat the word"
+  "can-you-repeat-that": {
+   "text": "Can you repeat that?"
   },
-  "i-have-a-question": {
-   "text": "I have a question."
+  "slower": {
+   "text": "Slower!"
+  },
+  "i-cant-hear-you": {
+   "text": "I can't hear you."
+  },
+  "louder": {
+   "text": "Louder!"
+  },
+  "do-you-speak-english": {
+   "text": "Do you speak English?"
+  },
+  "i-speak-a-little-german": {
+   "text": "I only speak a little German."
   },
   "what-does-this-word-mean": {
    "text": "What does this word mean?"
@@ -65,26 +92,11 @@
   "im-learning-german": {
    "text": "I'm learning German."
   },
+  "i-have-a-question": {
+   "text": "I have a question."
+  },
   "you-can-do-it": {
    "text": "You can definitely do it!"
-  },
-  "i-understand": {
-   "text": "I understand."
-  },
-  "i-dont-understand": {
-   "text": "I don't understand."
-  },
-  "do-you-speak-english": {
-   "text": "Do you speak English?"
-  },
-  "i-speak-a-little-german": {
-   "text": "I only speak a little German."
-  },
-  "can-you-repeat-that": {
-   "text": "Can you repeat that?"
-  },
-  "slower": {
-   "text": "Slower!"
   }
  }
 }
