@@ -314,6 +314,10 @@ class CatalogLintTest {
                 // Re-pathed 2026-08-04: `outside` split into transport/city/nature and
                 // `river` landed in `nature` — the same pair, renamed, not a new one.
                 "sw mto: bedroom/pillow, nature/river",
+                // Reviewed 2026-08-04: `ndege` is the only Swahili word for both bird and
+                // aeroplane; de/en/es/uk all split them. The plane carries a de note so the
+                // learner meets the second sense as a fact, not as a surprise.
+                "sw ndege: nature/bird, transport/plane",
                 // Reviewed 2026-08-04: `nyanya` is the ordinary word for grandmother and for
                 // tomato alike, both of them the first word a learner needs in their area.
                 // Repicking either would teach the rarer word for no gain.

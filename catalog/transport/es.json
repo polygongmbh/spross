@@ -110,6 +110,85 @@
     "de": "Züge und Busse „fahren ab“ mit salir: El tren sale a las ocho."
    }
   },
+  "journey": {
+   "text": "viaje",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "travel": {
+   "text": "viajar"
+  },
+  "driver": {
+   "text": "conductor",
+   "variants": [
+    "chofer",
+    "chófer"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "plane": {
+   "text": "avión",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "airport": {
+   "text": "aeropuerto",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "ship": {
+   "text": "barco",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "motorbike": {
+   "text": "moto",
+   "variants": [
+    "motocicleta"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la moto ist die Kurzform von la motocicleta und behält deren Femininum."
+   }
+  },
+  "lorry": {
+   "text": "camión",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "passenger": {
+   "text": "pasajero",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "luggage": {
+   "text": "equipaje",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "fare": {
+   "text": "tarifa",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "get-off": {
+   "text": "bajarse",
+   "variants": [
+    "bajar"
+   ]
+  },
   "the-bus-is-coming-soon": {
    "text": "El autobús llega enseguida.",
    "variants": [
@@ -122,6 +201,21 @@
    "variants": [
     "¿A qué hora sale el tren?"
    ]
+  },
+  "have-a-good-journey": {
+   "text": "¡Buen viaje!"
+  },
+  "where-is-the-airport": {
+   "text": "¿Dónde está el aeropuerto?"
+  },
+  "how-much-is-the-fare": {
+   "text": "¿Cuál es la tarifa?",
+   "variants": [
+    "¿Cuánto cuesta el pasaje?"
+   ]
+  },
+  "i-get-off-here": {
+   "text": "Me bajo aquí."
   }
  }
 }

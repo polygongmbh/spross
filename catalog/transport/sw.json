@@ -71,11 +71,95 @@
   "depart": {
    "text": "kuondoka"
   },
+  "journey": {
+   "text": "safari",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "travel": {
+   "text": "kusafiri"
+  },
+  "driver": {
+   "text": "dereva",
+   "grammar": {
+    "plural": "madereva"
+   }
+  },
+  "plane": {
+   "text": "ndege",
+   "grammar": {
+    "plural": "="
+   },
+   "notes": {
+    "de": "ndege heißt auch der Vogel."
+   }
+  },
+  "airport": {
+   "text": "uwanja wa ndege",
+   "grammar": {
+    "plural": "viwanja vya ndege"
+   }
+  },
+  "ship": {
+   "text": "meli",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "motorbike": {
+   "text": "pikipiki",
+   "grammar": {
+    "plural": "="
+   },
+   "notes": {
+    "de": "Das Motorradtaxi heißt bodaboda."
+   }
+  },
+  "lorry": {
+   "text": "lori",
+   "grammar": {
+    "plural": "malori"
+   }
+  },
+  "passenger": {
+   "text": "abiria",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "luggage": {
+   "text": "mzigo",
+   "grammar": {
+    "plural": "mizigo"
+   }
+  },
+  "fare": {
+   "text": "nauli",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "get-off": {
+   "text": "kushuka"
+  },
   "the-bus-is-coming-soon": {
    "text": "Basi linakuja sasa hivi."
   },
   "when-does-the-train-leave": {
    "text": "Treni inaondoka lini?"
+  },
+  "have-a-good-journey": {
+   "text": "Safari njema!"
+  },
+  "where-is-the-airport": {
+   "text": "Uwanja wa ndege uko wapi?"
+  },
+  "how-much-is-the-fare": {
+   "text": "Nauli ni ngapi?"
+  },
+  "i-get-off-here": {
+   "text": "Nashuka hapa."
   }
  }
 }

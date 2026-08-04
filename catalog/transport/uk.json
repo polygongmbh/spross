@@ -47,11 +47,74 @@
   "depart": {
    "text": "від'їжджати"
   },
+  "journey": {
+   "text": "подорож",
+   "synonyms": [
+    "поїздка"
+   ]
+  },
+  "travel": {
+   "text": "подорожувати"
+  },
+  "driver": {
+   "text": "водій"
+  },
+  "plane": {
+   "text": "літак"
+  },
+  "airport": {
+   "text": "аеропорт"
+  },
+  "ship": {
+   "text": "корабель",
+   "grammar": {
+    "plural": "кораблі"
+   }
+  },
+  "motorbike": {
+   "text": "мотоцикл"
+  },
+  "lorry": {
+   "text": "вантажівка"
+  },
+  "passenger": {
+   "text": "пасажир"
+  },
+  "luggage": {
+   "text": "багаж"
+  },
+  "fare": {
+   "text": "плата за проїзд",
+   "variants": [
+    "вартість проїзду"
+   ]
+  },
+  "get-off": {
+   "text": "виходити",
+   "variants": [
+    "сходити"
+   ]
+  },
   "the-bus-is-coming-soon": {
    "text": "Автобус зараз приїде."
   },
   "when-does-the-train-leave": {
    "text": "Коли вирушає поїзд?"
+  },
+  "have-a-good-journey": {
+   "text": "Гарної подорожі!",
+   "variants": [
+    "Щасливої дороги!"
+   ]
+  },
+  "where-is-the-airport": {
+   "text": "Де аеропорт?"
+  },
+  "how-much-is-the-fare": {
+   "text": "Скільки коштує проїзд?"
+  },
+  "i-get-off-here": {
+   "text": "Я виходжу тут."
   }
  }
 }

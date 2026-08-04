@@ -81,11 +81,108 @@
   "depart": {
    "text": "abfahren"
   },
+  "journey": {
+   "text": "Reise",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "travel": {
+   "text": "reisen"
+  },
+  "driver": {
+   "text": "Fahrer",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "plane": {
+   "text": "Flugzeug",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "airport": {
+   "text": "Flughafen",
+   "grammar": {
+    "gender": "der",
+    "plural": "Flughäfen"
+   }
+  },
+  "ship": {
+   "text": "Schiff",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "motorbike": {
+   "text": "Motorrad",
+   "grammar": {
+    "gender": "das",
+    "plural": "Motorräder"
+   }
+  },
+  "lorry": {
+   "text": "Lastwagen",
+   "variants": [
+    "Lkw",
+    "LKW"
+   ],
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "passenger": {
+   "text": "Passagier",
+   "variants": [
+    "Fahrgast"
+   ],
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "luggage": {
+   "text": "Gepäck",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "fare": {
+   "text": "Fahrpreis",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "get-off": {
+   "text": "aussteigen"
+  },
   "the-bus-is-coming-soon": {
    "text": "Der Bus kommt gleich."
   },
   "when-does-the-train-leave": {
    "text": "Wann fährt der Zug ab?"
+  },
+  "have-a-good-journey": {
+   "text": "Gute Reise!"
+  },
+  "where-is-the-airport": {
+   "text": "Wo ist der Flughafen?"
+  },
+  "how-much-is-the-fare": {
+   "text": "Wie hoch ist der Fahrpreis?",
+   "variants": [
+    "Was kostet die Fahrt?"
+   ]
+  },
+  "i-get-off-here": {
+   "text": "Ich steige hier aus."
   }
  }
 }
