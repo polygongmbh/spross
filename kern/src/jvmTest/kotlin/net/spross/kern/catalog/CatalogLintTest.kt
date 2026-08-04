@@ -314,6 +314,10 @@ class CatalogLintTest {
                 // Re-pathed 2026-08-04: `outside` split into transport/city/nature and
                 // `river` landed in `nature` — the same pair, renamed, not a new one.
                 "sw mto: bedroom/pillow, nature/river",
+                // Reviewed 2026-08-04: `nyanya` is the ordinary word for grandmother and for
+                // tomato alike, both of them the first word a learner needs in their area.
+                // Repicking either would teach the rarer word for no gain.
+                "sw nyanya: food/tomato, people/grandmother",
             ),
             actual,
         )
