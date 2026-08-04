@@ -1,5 +1,15 @@
 [
  {
+  "slug": "person",
+  "kind": "noun",
+  "emoji": "👤"
+ },
+ {
+  "slug": "human",
+  "kind": "noun",
+  "emoji": "🧑"
+ },
+ {
   "slug": "family",
   "kind": "noun",
   "emoji": "👪"
@@ -66,6 +76,17 @@
   "slug": "baby",
   "kind": "noun",
   "emoji": "👶"
+ },
+ {
+  "slug": "friend",
+  "kind": "noun",
+  "emoji": "🫂"
+ },
+ {
+  "slug": "friend-f",
+  "kind": "noun",
+  "emoji": "👭",
+  "feminineOf": "friend"
  },
  {
   "slug": "grandmother",
@@ -148,6 +169,46 @@
   "emoji": "👵",
   "components": [
    "grandmother"
+  ]
+ },
+ {
+  "slug": "a-good-friend",
+  "kind": "phrase",
+  "emoji": "🧑‍🤝‍🧑",
+  "components": [
+   "friend"
+  ]
+ },
+ {
+  "slug": "my-girlfriend",
+  "kind": "phrase",
+  "emoji": "👩‍❤️‍👩",
+  "components": [
+   "friend"
+  ]
+ },
+ {
+  "slug": "her-boyfriend",
+  "kind": "phrase",
+  "emoji": "👩‍❤️‍👨",
+  "components": [
+   "friend"
+  ]
+ },
+ {
+  "slug": "old-people",
+  "kind": "phrase",
+  "emoji": "🧓",
+  "components": [
+   "person"
+  ]
+ },
+ {
+  "slug": "many-friends",
+  "kind": "phrase",
+  "emoji": "👥",
+  "components": [
+   "friend"
   ]
  }
 ]

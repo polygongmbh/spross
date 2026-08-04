@@ -2,6 +2,15 @@
  "title": "The family",
  "subtitle": "The people closest to you.",
  "words": {
+  "person": {
+   "text": "person",
+   "grammar": {
+    "plural": "people"
+   }
+  },
+  "human": {
+   "text": "human being"
+  },
   "family": {
    "text": "family",
    "grammar": {
@@ -62,6 +71,9 @@
     "plural": "babies"
    }
   },
+  "friend": {
+   "text": "friend"
+  },
   "grandmother": {
    "text": "grandmother"
   },
@@ -103,6 +115,21 @@
   },
   "how-is-your-grandmother": {
    "text": "How is your grandmother?"
+  },
+  "a-good-friend": {
+   "text": "a good friend"
+  },
+  "my-girlfriend": {
+   "text": "my girlfriend"
+  },
+  "her-boyfriend": {
+   "text": "her boyfriend"
+  },
+  "old-people": {
+   "text": "old people"
+  },
+  "many-friends": {
+   "text": "many friends"
   }
  }
 }

@@ -2,6 +2,21 @@
  "title": "La familia",
  "subtitle": "Las personas más cercanas a ti.",
  "words": {
+  "person": {
+   "text": "persona",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "human": {
+   "text": "ser humano",
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "ser humano = Mensch als Gattung · persona = der einzelne Mensch."
+   }
+  },
   "family": {
    "text": "familia",
    "grammar": {
@@ -95,6 +110,18 @@
     "gender": "el"
    }
   },
+  "friend": {
+   "text": "amigo",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "friend-f": {
+   "text": "amiga",
+   "grammar": {
+    "gender": "la"
+   }
+  },
   "grandmother": {
    "text": "abuela",
    "grammar": {
@@ -162,6 +189,31 @@
    "text": "¿Cómo está tu abuela?",
    "variants": [
     "¿Cómo está su abuela?"
+   ]
+  },
+  "a-good-friend": {
+   "text": "un buen amigo"
+  },
+  "my-girlfriend": {
+   "text": "mi novia"
+  },
+  "her-boyfriend": {
+   "text": "su novio"
+  },
+  "old-people": {
+   "text": "personas mayores",
+   "variants": [
+    "gente mayor",
+    "los mayores"
+   ],
+   "notes": {
+    "de": "personas viejas klingt abwertend — im Alltag mayores."
+   }
+  },
+  "many-friends": {
+   "text": "muchos amigos",
+   "variants": [
+    "muchas amigas"
    ]
   }
  }

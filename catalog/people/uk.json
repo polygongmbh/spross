@@ -2,6 +2,12 @@
  "title": "Родина",
  "subtitle": "Найближчі тобі люди.",
  "words": {
+  "person": {
+   "text": "людина",
+   "grammar": {
+    "plural": "люди"
+   }
+  },
   "family": {
    "text": "сім'я",
    "variants": [
@@ -68,6 +74,15 @@
     "plural": "немовлята"
    }
   },
+  "friend": {
+   "text": "друг",
+   "grammar": {
+    "plural": "друзі"
+   }
+  },
+  "friend-f": {
+   "text": "подруга"
+  },
   "grandmother": {
    "text": "бабуся"
   },
@@ -106,6 +121,24 @@
    "variants": [
     "Як справи у вашої бабусі?"
    ]
+  },
+  "a-good-friend": {
+   "text": "добрий друг",
+   "variants": [
+    "хороший друг"
+   ]
+  },
+  "my-girlfriend": {
+   "text": "моя дівчина"
+  },
+  "her-boyfriend": {
+   "text": "її хлопець"
+  },
+  "old-people": {
+   "text": "старі люди"
+  },
+  "many-friends": {
+   "text": "багато друзів"
   }
  }
 }

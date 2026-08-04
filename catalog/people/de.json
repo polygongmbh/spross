@@ -2,6 +2,20 @@
  "title": "Die Familie",
  "subtitle": "Die Menschen, die dir nahe sind.",
  "words": {
+  "person": {
+   "text": "Person",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "human": {
+   "text": "Mensch",
+   "grammar": {
+    "gender": "der",
+    "plural": "-en"
+   }
+  },
   "family": {
    "text": "Familie",
    "grammar": {
@@ -100,6 +114,20 @@
     "plural": "-s"
    }
   },
+  "friend": {
+   "text": "Freund",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "friend-f": {
+   "text": "Freundin",
+   "grammar": {
+    "gender": "die",
+    "plural": "-nen"
+   }
+  },
   "grandmother": {
    "text": "Oma",
    "variants": [
@@ -174,6 +202,24 @@
    "variants": [
     "Wie geht es Ihrer Oma?"
    ]
+  },
+  "a-good-friend": {
+   "text": "ein guter Freund"
+  },
+  "my-girlfriend": {
+   "text": "meine Freundin"
+  },
+  "her-boyfriend": {
+   "text": "ihr Freund"
+  },
+  "old-people": {
+   "text": "alte Leute",
+   "variants": [
+    "alte Menschen"
+   ]
+  },
+  "many-friends": {
+   "text": "viele Freunde"
   }
  }
 }
