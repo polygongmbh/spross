@@ -143,6 +143,12 @@ never the shape of the app.
   **The plan is the whole run**: the counter on screen is a promise, 
   so nothing joins a session already under way unless in endless mode.
   Session end is a summary that celebrates, carrying the streak and what the run consolidated.
+  It also carries the TREE of the area the round worked hardest, rising out of the ground as
+  the screen arrives — the one place a tree may move, because it is the one place where
+  something just happened, and the only part of that screen that is about this learner's own
+  box rather than about having finished. Which area is kern's answer (`SessionRunState`
+  records what the run touched); ties walk catalog order, so a round split evenly names the
+  same area every time it is shown.
 - **A record is named, a number is only counted.** A day streak standing at its longest
   ever (`BoxStatistics.longestStreak`) says so on the finish screen; a drill run that beats
   its own stored best says so too, and is the only thing in a drill that earns confetti and

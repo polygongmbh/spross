@@ -10,6 +10,8 @@
   the months. An area you worked today has fresh earth at its foot; one that slipped drops
   a couple of leaves, and never shrinks for it. Areas you have never opened are simply
   bare — the catalog is not a checklist. Tap a tree to open the box right at that area.
+  And when you finish a round, the area you worked hardest grows out of the ground on the
+  summary, so the end of a session shows what it actually moved.
 
 ## 3.7.0 — 2026-08-03
 
