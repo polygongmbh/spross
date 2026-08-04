@@ -5,6 +5,51 @@
   "head": {
    "text": "голова"
   },
+  "hair": {
+   "text": "волосся"
+  },
+  "face": {
+   "text": "обличчя",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "eye": {
+   "text": "око",
+   "grammar": {
+    "plural": "очі"
+   }
+  },
+  "ear": {
+   "text": "вухо"
+  },
+  "nose": {
+   "text": "ніс",
+   "grammar": {
+    "plural": "носи"
+   }
+  },
+  "mouth": {
+   "text": "рот"
+  },
+  "tooth": {
+   "text": "зуб"
+  },
+  "lip": {
+   "text": "губа"
+  },
+  "hand": {
+   "text": "рука",
+   "notes": {
+    "de": "рука heißt Hand und Arm."
+   }
+  },
+  "foot": {
+   "text": "нога",
+   "notes": {
+    "de": "нога heißt Fuß und Bein."
+   }
+  },
   "stomach": {
    "text": "живіт",
    "grammar": {
@@ -17,14 +62,68 @@
   "throat": {
    "text": "горло"
   },
-  "ear": {
-   "text": "вухо"
+  "shoulder": {
+   "text": "плече"
+  },
+  "knee": {
+   "text": "коліно"
+  },
+  "chest": {
+   "text": "груди",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "heart": {
+   "text": "серце"
   },
   "blood": {
    "text": "кров"
   },
-  "hair": {
-   "text": "волосся"
+  "skin": {
+   "text": "шкіра"
+  },
+  "bone": {
+   "text": "кістка"
+  },
+  "finger": {
+   "text": "палець",
+   "grammar": {
+    "plural": "пальці"
+   },
+   "notes": {
+    "de": "палець heißt Finger und Zehe; палець ноги ist die Zehe."
+   }
+  },
+  "tongue": {
+   "text": "язик"
+  },
+  "neck": {
+   "text": "шия"
+  },
+  "my-head-hurts": {
+   "text": "У мене болить голова."
+  },
+  "give-me-your-hand": {
+   "text": "Дай мені руку."
+  },
+  "open-your-mouth": {
+   "text": "Відкрий рот."
+  },
+  "close-your-eyes": {
+   "text": "Заплющ очі.",
+   "variants": [
+    "Закрий очі."
+   ]
+  },
+  "i-have-long-hair": {
+   "text": "У мене довге волосся."
+  },
+  "my-feet-are-cold": {
+   "text": "У мене холодні ноги."
+  },
+  "my-heart-is-beating-fast": {
+   "text": "Моє серце б'ється швидко."
   }
  }
 }

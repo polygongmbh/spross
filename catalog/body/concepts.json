@@ -5,6 +5,66 @@
   "emoji": "🧠"
  },
  {
+  "slug": "hair",
+  "kind": "noun",
+  "emoji": "💇"
+ },
+ {
+  "slug": "face",
+  "kind": "noun",
+  "emoji": "🙂"
+ },
+ {
+  "slug": "eye",
+  "kind": "noun",
+  "emoji": "👁️"
+ },
+ {
+  "slug": "ear",
+  "kind": "noun",
+  "emoji": "👂"
+ },
+ {
+  "slug": "nose",
+  "kind": "noun",
+  "emoji": "👃"
+ },
+ {
+  "slug": "mouth",
+  "kind": "noun",
+  "emoji": "👄"
+ },
+ {
+  "slug": "tooth",
+  "kind": "noun",
+  "emoji": "🦷"
+ },
+ {
+  "slug": "lip",
+  "kind": "noun",
+  "emoji": "💋"
+ },
+ {
+  "slug": "hand",
+  "kind": "noun",
+  "emoji": "✋"
+ },
+ {
+  "slug": "arm",
+  "kind": "noun",
+  "emoji": "💪"
+ },
+ {
+  "slug": "foot",
+  "kind": "noun",
+  "emoji": "🦶"
+ },
+ {
+  "slug": "leg",
+  "kind": "noun",
+  "emoji": "🦵"
+ },
+ {
   "slug": "stomach",
   "kind": "noun",
   "emoji": "🫃"
@@ -20,9 +80,21 @@
   "emoji": "🗣️"
  },
  {
-  "slug": "ear",
+  "slug": "shoulder",
+  "kind": "noun"
+ },
+ {
+  "slug": "knee",
+  "kind": "noun"
+ },
+ {
+  "slug": "chest",
+  "kind": "noun"
+ },
+ {
+  "slug": "heart",
   "kind": "noun",
-  "emoji": "👂"
+  "emoji": "🫀"
  },
  {
   "slug": "blood",
@@ -30,8 +102,82 @@
   "emoji": "🩸"
  },
  {
-  "slug": "hair",
+  "slug": "skin",
+  "kind": "noun"
+ },
+ {
+  "slug": "bone",
   "kind": "noun",
-  "emoji": "💇"
+  "emoji": "🦴"
+ },
+ {
+  "slug": "finger",
+  "kind": "noun",
+  "emoji": "👆"
+ },
+ {
+  "slug": "tongue",
+  "kind": "noun",
+  "emoji": "👅"
+ },
+ {
+  "slug": "neck",
+  "kind": "noun"
+ },
+ {
+  "slug": "my-head-hurts",
+  "kind": "phrase",
+  "emoji": "🤕",
+  "components": [
+   "head"
+  ]
+ },
+ {
+  "slug": "give-me-your-hand",
+  "kind": "phrase",
+  "emoji": "✋",
+  "components": [
+   "hand"
+  ]
+ },
+ {
+  "slug": "open-your-mouth",
+  "kind": "phrase",
+  "emoji": "👄",
+  "components": [
+   "mouth"
+  ]
+ },
+ {
+  "slug": "close-your-eyes",
+  "kind": "phrase",
+  "emoji": "👁️",
+  "components": [
+   "eye"
+  ]
+ },
+ {
+  "slug": "i-have-long-hair",
+  "kind": "phrase",
+  "emoji": "💇",
+  "components": [
+   "hair"
+  ]
+ },
+ {
+  "slug": "my-feet-are-cold",
+  "kind": "phrase",
+  "emoji": "🦶",
+  "components": [
+   "foot"
+  ]
+ },
+ {
+  "slug": "my-heart-is-beating-fast",
+  "kind": "phrase",
+  "emoji": "🫀",
+  "components": [
+   "heart"
+  ]
  }
 ]
