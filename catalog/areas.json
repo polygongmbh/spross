@@ -110,5 +110,21 @@
     "emoji": "💼"
    }
   ]
+ },
+ {
+  "group": "expressions",
+  "titles": {
+   "en": "Idioms & expressions",
+   "de": "Redewendungen",
+   "es": "Modismos y expresiones",
+   "sw": "Misemo",
+   "uk": "Ідіоми та вирази"
+  },
+  "areas": [
+   {
+    "area": "idioms",
+    "emoji": "🎭"
+   }
+  ]
  }
 ]

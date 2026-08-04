@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **Idioms have their own place in the box.** A new card kind carries figurative
+  expressions — "it's raining cats and dogs" and its German counterpart "es gießt wie
+  aus Eimern" describe the same downpour with unrelated imagery, not a translation of
+  each other, and every idiom now shows one fixed mask emoji on first sight so that's
+  clear before you've read a word. Nine idioms ship for German, English and Spanish,
+  each chosen because another language genuinely has the same expression, never
+  because it happened to translate; on reveal, a note spells out what the other
+  side's words literally mean.
+
 ## 3.7.0 — 2026-08-03
 
 - **Words you pack on a finished day arrive in the round you open.** Packing an area once the

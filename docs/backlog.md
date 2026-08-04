@@ -15,6 +15,13 @@ One line per item, with a file or context pointer, filed under the section it be
   (method: `../../docs/sprachposter-learnings.md`).
 - Phrase→component auto-linking gaps: ~half of phrases carry no `components`
   (naive matcher — `catalog/README.md` § concepts.json).
+- The idiom catalog (`catalog/idioms/`, 9 concepts) is LLM-authored and owes a
+  native-speaker verification sweep in de, en and es alike — each pairing was chosen
+  for genuine meaning-equivalence, not just checked by a translator, and that
+  judgment call is exactly what a native speaker should confirm or correct
+  (method: `../../docs/sprachposter-learnings.md`). sw and uk idiom coverage is open
+  future work: it needs a native speaker to find real equivalents from scratch, not a
+  translation pass over the existing de/en/es set.
 - Pronunciation coverage is uneven across LANGUAGES and absent for phrases — the packs
   only ever matched single-word realizations, so no phrase carries a recording and every
   one falls to TTS (silent on sw-iOS, which has no voice). What Commons never had is
