@@ -44,8 +44,71 @@
     "швидко"
    ]
   },
+  "long": {
+   "text": "довгий",
+   "variants": [
+    "довго"
+   ]
+  },
+  "short": {
+   "text": "короткий",
+   "variants": [
+    "коротко"
+   ]
+  },
+  "heavy": {
+   "text": "важкий",
+   "variants": [
+    "важко"
+   ]
+  },
+  "lightweight": {
+   "text": "легкий",
+   "variants": [
+    "легко"
+   ]
+  },
+  "difficult": {
+   "text": "складний",
+   "variants": [
+    "важкий",
+    "складно"
+   ],
+   "notes": {
+    "de": "wie im Deutschen deckt важкий auch schwierig ab."
+   }
+  },
+  "easy": {
+   "text": "простий",
+   "variants": [
+    "просто",
+    "легкий",
+    "легко"
+   ]
+  },
+  "clean-adj": {
+   "text": "чистий",
+   "variants": [
+    "чисто"
+   ]
+  },
+  "sharp": {
+   "text": "гострий",
+   "variants": [
+    "гостро"
+   ]
+  },
   "a-lot-of-water": {
    "text": "багато води"
+  },
+  "the-day-is-long": {
+   "text": "День довгий."
+  },
+  "that-is-too-heavy": {
+   "text": "Це занадто важке."
+  },
+  "the-water-is-clean": {
+   "text": "Вода чиста."
   }
  }
 }

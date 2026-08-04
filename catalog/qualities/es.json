@@ -82,11 +82,68 @@
     "deprisa"
    ]
   },
+  "long": {
+   "text": "largo",
+   "variants": [
+    "larga"
+   ]
+  },
+  "short": {
+   "text": "corto",
+   "variants": [
+    "corta"
+   ],
+   "notes": {
+    "de": "Körpergröße: bajo."
+   }
+  },
+  "heavy": {
+   "text": "pesado",
+   "variants": [
+    "pesada"
+   ]
+  },
+  "lightweight": {
+   "text": "ligero",
+   "variants": [
+    "ligera"
+   ]
+  },
+  "difficult": {
+   "text": "difícil"
+  },
+  "easy": {
+   "text": "fácil"
+  },
+  "clean-adj": {
+   "text": "limpio",
+   "variants": [
+    "limpia"
+   ]
+  },
+  "sharp": {
+   "text": "afilado",
+   "variants": [
+    "afilada"
+   ],
+   "notes": {
+    "de": "nur für Klingen; scharf im Geschmack ist picante."
+   }
+  },
   "a-lot-of-water": {
    "text": "mucha agua",
    "notes": {
     "de": "trotz el agua feminin: mucha agua."
    }
+  },
+  "the-day-is-long": {
+   "text": "El día es largo."
+  },
+  "that-is-too-heavy": {
+   "text": "Eso es demasiado pesado."
+  },
+  "the-water-is-clean": {
+   "text": "El agua está limpia."
   }
  }
 }

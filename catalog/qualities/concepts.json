@@ -41,11 +41,64 @@
   "emoji": "⚡"
  },
  {
+  "slug": "long",
+  "kind": "adjective"
+ },
+ {
+  "slug": "short",
+  "kind": "adjective"
+ },
+ {
+  "slug": "heavy",
+  "kind": "adjective"
+ },
+ {
+  "slug": "lightweight",
+  "kind": "adjective"
+ },
+ {
+  "slug": "difficult",
+  "kind": "adjective"
+ },
+ {
+  "slug": "easy",
+  "kind": "adjective"
+ },
+ {
+  "slug": "clean-adj",
+  "kind": "adjective"
+ },
+ {
+  "slug": "sharp",
+  "kind": "adjective"
+ },
+ {
   "slug": "a-lot-of-water",
   "kind": "phrase",
   "emoji": "💦",
   "components": [
    "much"
+  ]
+ },
+ {
+  "slug": "the-day-is-long",
+  "kind": "phrase",
+  "components": [
+   "long"
+  ]
+ },
+ {
+  "slug": "that-is-too-heavy",
+  "kind": "phrase",
+  "components": [
+   "heavy"
+  ]
+ },
+ {
+  "slug": "the-water-is-clean",
+  "kind": "phrase",
+  "components": [
+   "clean-adj"
   ]
  }
 ]

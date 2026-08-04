@@ -29,8 +29,50 @@
   "fast": {
    "text": "fast"
   },
+  "long": {
+   "text": "long"
+  },
+  "short": {
+   "text": "short"
+  },
+  "heavy": {
+   "text": "heavy"
+  },
+  "lightweight": {
+   "text": "lightweight",
+   "variants": [
+    "light"
+   ],
+   "notes": {
+    "de": "Alltagswort ist light, das aber auch Licht heißt; lightweight meint immer das Gewicht."
+   }
+  },
+  "difficult": {
+   "text": "difficult",
+   "synonyms": [
+    "hard"
+   ]
+  },
+  "easy": {
+   "text": "easy"
+  },
+  "clean-adj": {
+   "text": "clean"
+  },
+  "sharp": {
+   "text": "sharp"
+  },
   "a-lot-of-water": {
    "text": "a lot of water"
+  },
+  "the-day-is-long": {
+   "text": "The day is long."
+  },
+  "that-is-too-heavy": {
+   "text": "That is too heavy."
+  },
+  "the-water-is-clean": {
+   "text": "The water is clean."
   }
  }
 }
