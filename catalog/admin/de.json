@@ -205,13 +205,13 @@
   "fill-out-the-form": {
    "text": "Füllen Sie das Formular aus.",
    "variants": [
-    "Bitte fülle das Formular vollständig aus."
+    "Fülle das Formular aus."
    ]
   },
   "take-a-queue-number": {
    "text": "Ziehen Sie eine Wartenummer!",
    "variants": [
-    "Zieh bitte zuerst eine Wartenummer!"
+    "Zieh eine Wartenummer!"
    ]
   },
   "i-need-an-interpreter-for-the-application": {

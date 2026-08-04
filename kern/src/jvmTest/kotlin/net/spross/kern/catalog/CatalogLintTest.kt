@@ -17,6 +17,15 @@ class CatalogLintTest {
     private val catalog get() = RealCatalog.catalog
     private val slugPattern = Regex("^[a-z0-9]+(-[a-z0-9]+)*$")
 
+    /** The one word each language adds to soften a request — see [alternatesDoNotAddOrDropPolitenessParticles]. */
+    private val politenessParticle = mapOf(
+        "de" to Regex("\\bbitte\\b", RegexOption.IGNORE_CASE),
+        "en" to Regex("\\bplease\\b", RegexOption.IGNORE_CASE),
+        "es" to Regex("\\bpor favor\\b", RegexOption.IGNORE_CASE),
+        "sw" to Regex("\\btafadhali\\b", RegexOption.IGNORE_CASE),
+        "uk" to Regex("\\bбудь ласка\\b", RegexOption.IGNORE_CASE),
+    )
+
     private fun forEachRealization(action: (area: String, lang: String, slug: String, raw: RawRealization) -> Unit) {
         for (area in catalog.areas) {
             for ((lang, words) in area.realizations) {
@@ -107,6 +116,27 @@ class CatalogLintTest {
             val alternates = raw.synonyms + raw.variants
             assertTrue(alternates.toSet().size == alternates.size, "$where: duplicate alternates")
             assertTrue(raw.text !in alternates, "$where: alternate equals text")
+        }
+    }
+
+    /**
+     * A register variant swaps the address form and nothing else: a du-form that also
+     * gains a "bitte" the Sie-form never had is a second sentence, and the slug
+     * (`can-you-repeat-that`, no "please") then names neither of them. Parity in both
+     * directions, because the drift went that way in five German entries at once.
+     */
+    @Test
+    fun alternatesDoNotAddOrDropPolitenessParticles() {
+        forEachRealization { area, lang, slug, raw ->
+            val particle = politenessParticle[lang] ?: return@forEachRealization
+            val inText = particle.containsMatchIn(raw.text)
+            for (alternate in raw.synonyms + raw.variants) {
+                assertEquals(
+                    inText,
+                    particle.containsMatchIn(alternate),
+                    "$area/$lang.json $slug: \"$alternate\" disagrees with \"${raw.text}\" on the politeness particle",
+                )
+            }
         }
     }
 

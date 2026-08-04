@@ -197,6 +197,14 @@ Realization fields — only `text` is required:
   and that is the whole of it — `text` is the form prompted on recognize and the form the
   reveal teaches, and `synonyms` are what rotate beside it.
   Author them for reach, not for display: a form that deserves to be seen is a synonym.
+  **A register pair is a swap, not a rewrite**: the du-form differs from the Sie-form in the
+  address alone, and a `bitte` the Sie-form never had makes it a second sentence the slug
+  no longer names (`can-you-repeat-that` says nothing about please). Lint holds the
+  politeness particle equal across `text` and every alternate, in both directions.
+  Which register `text` carries is the **scene's** call — the counter, the surgery and the
+  office say Sie, the kitchen and the hall say du — so a phrase whose scene fixes the
+  register carries no register variant at all, and only the phrases that travel between
+  scenes (`whats-your-name`, `where-is-your-father`) carry both.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
   labels, no `(selten)` qualifier), one fact per key: de and es `gender` + `plural`,
   sw `plural`, en `plural`, uk `plural`. Omit if empty.
