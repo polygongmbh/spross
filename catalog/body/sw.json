@@ -1,0 +1,45 @@
+{
+ "title": "Mwili",
+ "subtitle": "Kutoka kichwani hadi miguuni.",
+ "words": {
+  "head": {
+   "text": "kichwa",
+   "grammar": {
+    "plural": "vichwa"
+   }
+  },
+  "stomach": {
+   "text": "tumbo",
+   "grammar": {
+    "plural": "matumbo"
+   }
+  },
+  "back": {
+   "text": "mgongo",
+   "grammar": {
+    "plural": "migongo"
+   }
+  },
+  "throat": {
+   "text": "koo",
+   "grammar": {
+    "plural": "makoo"
+   }
+  },
+  "ear": {
+   "text": "sikio",
+   "grammar": {
+    "plural": "masikio"
+   }
+  },
+  "blood": {
+   "text": "damu"
+  },
+  "hair": {
+   "text": "nywele",
+   "grammar": {
+    "plural": "only"
+   }
+  }
+ }
+}

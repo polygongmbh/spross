@@ -1,5 +1,6 @@
 {
- "title": "Die Schule & der Sprachkurs",
+ "title": "Die Schule",
+ "subtitle": "Ein ganz normaler Schultag.",
  "words": {
   "school": {
    "text": "Schule",
@@ -36,13 +37,6 @@
     "plural": "-n"
    }
   },
-  "dictionary": {
-   "text": "Wörterbuch",
-   "grammar": {
-    "gender": "das",
-    "plural": "Wörterbücher"
-   }
-  },
   "exercise-book": {
    "text": "Heft",
    "grammar": {
@@ -70,29 +64,6 @@
     "gender": "die",
     "plural": "-n"
    }
-  },
-  "question": {
-   "text": "Frage",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "answer": {
-   "text": "Antwort",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "ask": {
-   "text": "fragen"
-  },
-  "reply": {
-   "text": "antworten"
-  },
-  "translate": {
-   "text": "übersetzen"
   },
   "pass-exam": {
    "text": "die Prüfung bestehen"
@@ -147,13 +118,6 @@
     "plural": "-n"
    }
   },
-  "sentence": {
-   "text": "Satz",
-   "grammar": {
-    "gender": "der",
-    "plural": "Sätze"
-   }
-  },
   "grade": {
    "text": "Note",
    "grammar": {
@@ -163,24 +127,6 @@
   },
   "correct": {
    "text": "korrigieren"
-  },
-  "learn-by-heart": {
-   "text": "auswendig lernen"
-  },
-  "i-have-a-question": {
-   "text": "Ich habe eine Frage."
-  },
-  "what-does-this-word-mean": {
-   "text": "Was bedeutet dieses Wort?"
-  },
-  "how-do-you-say-this-in-german": {
-   "text": "Wie sagt man das auf Deutsch?"
-  },
-  "im-learning-german": {
-   "text": "Ich lerne Deutsch."
-  },
-  "you-can-do-it": {
-   "text": "Du schaffst das bestimmt!"
   }
  }
 }

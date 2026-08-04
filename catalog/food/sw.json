@@ -1,0 +1,60 @@
+{
+ "title": "Chakula",
+ "subtitle": "Kinachokuja mezani.",
+ "words": {
+  "bread": {
+   "text": "mkate",
+   "grammar": {
+    "plural": "mikate"
+   }
+  },
+  "milk": {
+   "text": "maziwa",
+   "grammar": {
+    "plural": "only"
+   }
+  },
+  "coffee": {
+   "text": "kahawa"
+  },
+  "tea": {
+   "text": "chai",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "egg": {
+   "text": "yai",
+   "grammar": {
+    "plural": "mayai"
+   }
+  },
+  "cheese": {
+   "text": "jibini",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "salt": {
+   "text": "chumvi"
+  },
+  "sugar": {
+   "text": "sukari",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "rice": {
+   "text": "mchele",
+   "notes": {
+    "de": "mchele = roher Reis · wali = gekochter Reis"
+   }
+  },
+  "hunger": {
+   "text": "njaa"
+  },
+  "thirst": {
+   "text": "kiu"
+  }
+ }
+}

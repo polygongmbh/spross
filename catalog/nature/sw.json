@@ -1,0 +1,84 @@
+{
+ "title": "Asili",
+ "subtitle": "Hewa safi na anga wazi.",
+ "words": {
+  "tree": {
+   "text": "mti",
+   "grammar": {
+    "plural": "miti"
+   }
+  },
+  "flower": {
+   "text": "ua",
+   "grammar": {
+    "plural": "maua"
+   }
+  },
+  "sun": {
+   "text": "jua"
+  },
+  "rain": {
+   "text": "mvua"
+  },
+  "weather": {
+   "text": "hali ya hewa"
+  },
+  "snow": {
+   "text": "theluji"
+  },
+  "wind": {
+   "text": "upepo",
+   "grammar": {
+    "plural": "pepo"
+   }
+  },
+  "river": {
+   "text": "mto",
+   "grammar": {
+    "plural": "mito"
+   }
+  },
+  "outdoors": {
+   "text": "nje"
+  },
+  "left": {
+   "text": "kushoto"
+  },
+  "right": {
+   "text": "kulia"
+  },
+  "go-for-walk": {
+   "text": "kutembea"
+  },
+  "jog": {
+   "text": "kukimbia"
+  },
+  "sunbathe": {
+   "text": "kuota jua"
+  },
+  "plant-flowers": {
+   "text": "kupanda maua"
+  },
+  "grill-meat": {
+   "text": "kuchoma nyama"
+  },
+  "hows-the-weather-today": {
+   "text": "Hali ya hewa ikoje leo?"
+  },
+  "its-raining": {
+   "text": "Mvua inanyesha."
+  },
+  "the-sun-is-shining": {
+   "text": "Jua linang'aa!"
+  },
+  "shall-we-take-a-walk": {
+   "text": "Twende kutembea?"
+  },
+  "take-an-umbrella": {
+   "text": "Chukua mwavuli!"
+  },
+  "what-a-beautiful-day": {
+   "text": "Siku nzuri kama nini!"
+  }
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "title": "Мовний курс",
+ "subtitle": "Питай, відповідай, вчися далі.",
+ "words": {
+  "dictionary": {
+   "text": "словник"
+  },
+  "question": {
+   "text": "запитання",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "answer": {
+   "text": "відповідь"
+  },
+  "ask": {
+   "text": "питати"
+  },
+  "reply": {
+   "text": "відповідати"
+  },
+  "translate": {
+   "text": "перекладати"
+  },
+  "sentence": {
+   "text": "речення",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "learn-by-heart": {
+   "text": "вчити напам'ять"
+  },
+  "i-have-a-question": {
+   "text": "У мене є запитання."
+  },
+  "what-does-this-word-mean": {
+   "text": "Що означає це слово?"
+  },
+  "how-do-you-say-this-in-german": {
+   "text": "Як це сказати німецькою?"
+  },
+  "im-learning-german": {
+   "text": "Я вчу німецьку."
+  },
+  "you-can-do-it": {
+   "text": "Ти точно впораєшся!"
+  }
+ }
+}

@@ -1,5 +1,6 @@
 {
- "title": "Darasani · tujifunze pamoja!",
+ "title": "Darasani",
+ "subtitle": "Siku ya kawaida shuleni.",
  "words": {
   "school": {
    "text": "shule",
@@ -25,12 +26,6 @@
     "plural": "mbao"
    }
   },
-  "dictionary": {
-   "text": "kamusi",
-   "grammar": {
-    "plural": "="
-   }
-  },
   "exercise-book": {
    "text": "daftari la mazoezi",
    "grammar": {
@@ -54,27 +49,6 @@
    "grammar": {
     "plural": "mapumziko"
    }
-  },
-  "question": {
-   "text": "swali",
-   "grammar": {
-    "plural": "maswali"
-   }
-  },
-  "answer": {
-   "text": "jibu",
-   "grammar": {
-    "plural": "majibu"
-   }
-  },
-  "ask": {
-   "text": "kuuliza"
-  },
-  "reply": {
-   "text": "kujibu"
-  },
-  "translate": {
-   "text": "kutafsiri"
   },
   "pass-exam": {
    "text": "kufaulu mtihani"
@@ -115,12 +89,6 @@
     "plural": "kurasa"
    }
   },
-  "sentence": {
-   "text": "sentensi",
-   "grammar": {
-    "plural": "="
-   }
-  },
   "grade": {
    "text": "alama",
    "grammar": {
@@ -129,24 +97,6 @@
   },
   "correct": {
    "text": "kusahihisha"
-  },
-  "learn-by-heart": {
-   "text": "kukariri"
-  },
-  "i-have-a-question": {
-   "text": "Nina swali."
-  },
-  "what-does-this-word-mean": {
-   "text": "Neno hili lina maana gani?"
-  },
-  "how-do-you-say-this-in-german": {
-   "text": "Hii inasemwaje kwa Kijerumani?"
-  },
-  "im-learning-german": {
-   "text": "Ninajifunza Kijerumani."
-  },
-  "you-can-do-it": {
-   "text": "Hakika utaweza!"
   }
  }
 }

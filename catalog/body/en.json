@@ -1,0 +1,27 @@
+{
+ "title": "The body",
+ "subtitle": "From head to toe.",
+ "words": {
+  "head": {
+   "text": "head"
+  },
+  "stomach": {
+   "text": "stomach"
+  },
+  "back": {
+   "text": "back"
+  },
+  "throat": {
+   "text": "throat"
+  },
+  "ear": {
+   "text": "ear"
+  },
+  "blood": {
+   "text": "blood"
+  },
+  "hair": {
+   "text": "hair"
+  }
+ }
+}

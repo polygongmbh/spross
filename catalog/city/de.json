@@ -1,0 +1,30 @@
+{
+ "title": "Die Stadt",
+ "subtitle": "Immer etwas los.",
+ "words": {
+  "street": {
+   "text": "Straße",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "market": {
+   "text": "Markt",
+   "grammar": {
+    "gender": "der",
+    "plural": "Märkte"
+   }
+  },
+  "park": {
+   "text": "Park",
+   "grammar": {
+    "gender": "der",
+    "plural": "-s"
+   }
+  },
+  "shop": {
+   "text": "einkaufen"
+  }
+ }
+}

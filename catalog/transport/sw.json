@@ -1,0 +1,81 @@
+{
+ "title": "Usafiri",
+ "subtitle": "Twende zetu.",
+ "words": {
+  "traffic-light": {
+   "text": "taa ya barabarani",
+   "grammar": {
+    "plural": "taa za barabarani"
+   }
+  },
+  "bicycle": {
+   "text": "baiskeli",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "bus": {
+   "text": "basi",
+   "grammar": {
+    "plural": "mabasi"
+   }
+  },
+  "bus-stop": {
+   "text": "kituo cha basi",
+   "grammar": {
+    "plural": "vituo vya basi"
+   }
+  },
+  "train": {
+   "text": "treni",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "car": {
+   "text": "gari",
+   "grammar": {
+    "plural": "magari"
+   }
+  },
+  "taxi": {
+   "text": "teksi",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "train-station": {
+   "text": "stesheni ya treni",
+   "grammar": {
+    "plural": "stesheni za treni"
+   }
+  },
+  "ticket": {
+   "text": "tiketi",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "way": {
+   "text": "njia",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "ride-bike": {
+   "text": "kuendesha baiskeli"
+  },
+  "take-bus": {
+   "text": "kupanda basi"
+  },
+  "depart": {
+   "text": "kuondoka"
+  },
+  "the-bus-is-coming-soon": {
+   "text": "Basi linakuja sasa hivi."
+  },
+  "when-does-the-train-leave": {
+   "text": "Treni inaondoka lini?"
+  }
+ }
+}

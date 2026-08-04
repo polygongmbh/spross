@@ -301,17 +301,19 @@ class CatalogLintTest {
             .toSortedSet()
         assertEquals(
             sortedSetOf(
-                // Reviewed 2026-07-25: the textbook homonym, and the only entry here that
-                // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
-                // not one word covering two German ones. Same treatment either way.
-                "sw mto: bedroom/pillow, outside/river",
                 // Reviewed 2026-07-31: es merges what de distinguishes by capitalization
                 // alone (der Morgen / morgen); en/sw/uk all keep the two apart, so no
                 // concept pair collides twice. The area disambiguates the produce prompt.
                 "es mañana: bedroom/morning, essentials/tomorrow",
                 // Reviewed 2026-07-31: `el tiempo` is both Zeit and Wetter. de/en/sw/uk
                 // all split it; `clima` is das Klima in Spain, so there is no alternative.
-                "es tiempo: essentials/time, outside/weather",
+                "es tiempo: essentials/time, nature/weather",
+                // Reviewed 2026-07-25: the textbook homonym, and the only entry here that
+                // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
+                // not one word covering two German ones. Same treatment either way.
+                // Re-pathed 2026-08-04: `outside` split into transport/city/nature and
+                // `river` landed in `nature` — the same pair, renamed, not a new one.
+                "sw mto: bedroom/pillow, nature/river",
             ),
             actual,
         )

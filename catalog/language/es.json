@@ -1,0 +1,79 @@
+{
+ "title": "El curso de idiomas",
+ "subtitle": "Preguntar, responder, seguir aprendiendo.",
+ "words": {
+  "dictionary": {
+   "text": "diccionario",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "question": {
+   "text": "pregunta",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "answer": {
+   "text": "respuesta",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "ask": {
+   "text": "preguntar"
+  },
+  "reply": {
+   "text": "responder",
+   "synonyms": [
+    "contestar"
+   ]
+  },
+  "translate": {
+   "text": "traducir"
+  },
+  "sentence": {
+   "text": "frase",
+   "synonyms": [
+    "oración"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "learn-by-heart": {
+   "text": "aprender de memoria",
+   "synonyms": [
+    "memorizar"
+   ]
+  },
+  "i-have-a-question": {
+   "text": "Tengo una pregunta."
+  },
+  "what-does-this-word-mean": {
+   "text": "¿Qué significa esta palabra?",
+   "variants": [
+    "¿Qué quiere decir esta palabra?"
+   ]
+  },
+  "how-do-you-say-this-in-german": {
+   "text": "¿Cómo se dice esto en alemán?",
+   "variants": [
+    "¿Cómo se dice eso en alemán?"
+   ]
+  },
+  "im-learning-german": {
+   "text": "Estoy aprendiendo alemán.",
+   "variants": [
+    "Aprendo alemán."
+   ]
+  },
+  "you-can-do-it": {
+   "text": "¡Seguro que lo consigues!",
+   "variants": [
+    "¡Tú puedes!",
+    "¡Seguro que lo logras!"
+   ]
+  }
+ }
+}

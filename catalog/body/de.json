@@ -1,0 +1,54 @@
+{
+ "title": "Der Körper",
+ "subtitle": "Von Kopf bis Fuß.",
+ "words": {
+  "head": {
+   "text": "Kopf",
+   "grammar": {
+    "gender": "der",
+    "plural": "Köpfe"
+   }
+  },
+  "stomach": {
+   "text": "Bauch",
+   "grammar": {
+    "gender": "der",
+    "plural": "Bäuche"
+   }
+  },
+  "back": {
+   "text": "Rücken",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "throat": {
+   "text": "Hals",
+   "grammar": {
+    "gender": "der",
+    "plural": "Hälse"
+   }
+  },
+  "ear": {
+   "text": "Ohr",
+   "grammar": {
+    "gender": "das",
+    "plural": "-en"
+   }
+  },
+  "blood": {
+   "text": "Blut",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "hair": {
+   "text": "Haar",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  }
+ }
+}

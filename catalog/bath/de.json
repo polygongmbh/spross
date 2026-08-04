@@ -1,5 +1,6 @@
 {
  "title": "Das Badezimmer",
+ "subtitle": "Frisch und sauber.",
  "words": {
   "washing-machine": {
    "text": "Waschmaschine",
@@ -137,13 +138,6 @@
    "grammar": {
     "gender": "der",
     "plural": "Schwämme"
-   }
-  },
-  "hair": {
-   "text": "Haar",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
    }
   },
   "cream": {

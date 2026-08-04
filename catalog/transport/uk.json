@@ -1,0 +1,57 @@
+{
+ "title": "Транспорт",
+ "subtitle": "Рушаймо в дорогу.",
+ "words": {
+  "traffic-light": {
+   "text": "світлофор"
+  },
+  "bicycle": {
+   "text": "велосипед"
+  },
+  "bus": {
+   "text": "автобус"
+  },
+  "bus-stop": {
+   "text": "зупинка"
+  },
+  "train": {
+   "text": "поїзд"
+  },
+  "car": {
+   "text": "машина"
+  },
+  "taxi": {
+   "text": "таксі",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "train-station": {
+   "text": "вокзал"
+  },
+  "ticket": {
+   "text": "квиток",
+   "grammar": {
+    "plural": "квитки"
+   }
+  },
+  "way": {
+   "text": "дорога"
+  },
+  "ride-bike": {
+   "text": "їздити на велосипеді"
+  },
+  "take-bus": {
+   "text": "їхати автобусом"
+  },
+  "depart": {
+   "text": "від'їжджати"
+  },
+  "the-bus-is-coming-soon": {
+   "text": "Автобус зараз приїде."
+  },
+  "when-does-the-train-leave": {
+   "text": "Коли вирушає поїзд?"
+  }
+ }
+}

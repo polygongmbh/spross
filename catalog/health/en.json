@@ -1,5 +1,6 @@
 {
- "title": "The doctor & health",
+ "title": "At the doctor",
+ "subtitle": "Everything for your health.",
  "words": {
   "doctor": {
    "text": "doctor"
@@ -57,24 +58,6 @@
   },
   "rest": {
    "text": "to rest"
-  },
-  "head": {
-   "text": "head"
-  },
-  "throat": {
-   "text": "throat"
-  },
-  "stomach": {
-   "text": "stomach"
-  },
-  "back": {
-   "text": "back"
-  },
-  "ear": {
-   "text": "ear"
-  },
-  "blood": {
-   "text": "blood"
   },
   "hospital": {
    "text": "hospital"

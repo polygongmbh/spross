@@ -1,0 +1,83 @@
+[
+ {
+  "slug": "traffic-light",
+  "kind": "noun",
+  "emoji": "🚦"
+ },
+ {
+  "slug": "bicycle",
+  "kind": "noun",
+  "emoji": "🚲"
+ },
+ {
+  "slug": "bus",
+  "kind": "noun",
+  "emoji": "🚌"
+ },
+ {
+  "slug": "bus-stop",
+  "kind": "noun",
+  "emoji": "🚏"
+ },
+ {
+  "slug": "train",
+  "kind": "noun",
+  "emoji": "🚆"
+ },
+ {
+  "slug": "car",
+  "kind": "noun",
+  "emoji": "🚗"
+ },
+ {
+  "slug": "taxi",
+  "kind": "noun",
+  "emoji": "🚕"
+ },
+ {
+  "slug": "train-station",
+  "kind": "noun",
+  "emoji": "🚉"
+ },
+ {
+  "slug": "ticket",
+  "kind": "noun",
+  "emoji": "🎟️"
+ },
+ {
+  "slug": "way",
+  "kind": "noun",
+  "emoji": "🚶"
+ },
+ {
+  "slug": "ride-bike",
+  "kind": "verb",
+  "emoji": "🚴"
+ },
+ {
+  "slug": "take-bus",
+  "kind": "verb",
+  "emoji": "🚌"
+ },
+ {
+  "slug": "depart",
+  "kind": "verb"
+ },
+ {
+  "slug": "the-bus-is-coming-soon",
+  "kind": "phrase",
+  "emoji": "🚌",
+  "components": [
+   "bus"
+  ]
+ },
+ {
+  "slug": "when-does-the-train-leave",
+  "kind": "phrase",
+  "emoji": "🚆",
+  "components": [
+   "train",
+   "depart"
+  ]
+ }
+]

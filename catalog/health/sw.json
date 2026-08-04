@@ -1,5 +1,6 @@
 {
- "title": "Kwa daktari · afya njema!",
+ "title": "Kwa daktari",
+ "subtitle": "Afya njema kwanza.",
  "words": {
   "doctor": {
    "text": "daktari",
@@ -75,39 +76,6 @@
   },
   "rest": {
    "text": "kupumzika"
-  },
-  "head": {
-   "text": "kichwa",
-   "grammar": {
-    "plural": "vichwa"
-   }
-  },
-  "throat": {
-   "text": "koo",
-   "grammar": {
-    "plural": "makoo"
-   }
-  },
-  "stomach": {
-   "text": "tumbo",
-   "grammar": {
-    "plural": "matumbo"
-   }
-  },
-  "back": {
-   "text": "mgongo",
-   "grammar": {
-    "plural": "migongo"
-   }
-  },
-  "ear": {
-   "text": "sikio",
-   "grammar": {
-    "plural": "masikio"
-   }
-  },
-  "blood": {
-   "text": "damu"
   },
   "hospital": {
    "text": "hospitali",

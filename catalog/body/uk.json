@@ -1,0 +1,30 @@
+{
+ "title": "Тіло",
+ "subtitle": "Від голови до ніг.",
+ "words": {
+  "head": {
+   "text": "голова"
+  },
+  "stomach": {
+   "text": "живіт",
+   "grammar": {
+    "plural": "животи"
+   }
+  },
+  "back": {
+   "text": "спина"
+  },
+  "throat": {
+   "text": "горло"
+  },
+  "ear": {
+   "text": "вухо"
+  },
+  "blood": {
+   "text": "кров"
+  },
+  "hair": {
+   "text": "волосся"
+  }
+ }
+}

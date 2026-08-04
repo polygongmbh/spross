@@ -26,11 +26,6 @@
   "emoji": "📝"
  },
  {
-  "slug": "dictionary",
-  "kind": "noun",
-  "emoji": "📖"
- },
- {
   "slug": "exercise-book",
   "kind": "noun",
   "emoji": "📒"
@@ -49,31 +44,6 @@
   "slug": "break",
   "kind": "noun",
   "emoji": "☕"
- },
- {
-  "slug": "question",
-  "kind": "noun",
-  "emoji": "❓"
- },
- {
-  "slug": "answer",
-  "kind": "noun",
-  "emoji": "✅"
- },
- {
-  "slug": "ask",
-  "kind": "verb",
-  "emoji": "🙋"
- },
- {
-  "slug": "reply",
-  "kind": "verb",
-  "emoji": "↩️"
- },
- {
-  "slug": "translate",
-  "kind": "verb",
-  "emoji": "🔤"
  },
  {
   "slug": "pass-exam",
@@ -122,11 +92,6 @@
   "emoji": "📄"
  },
  {
-  "slug": "sentence",
-  "kind": "noun",
-  "emoji": "💬"
- },
- {
   "slug": "grade",
   "kind": "noun",
   "emoji": "💯"
@@ -135,42 +100,5 @@
   "slug": "correct",
   "kind": "verb",
   "emoji": "✏️"
- },
- {
-  "slug": "learn-by-heart",
-  "kind": "verb",
-  "emoji": "🧠"
- },
- {
-  "slug": "i-have-a-question",
-  "kind": "phrase",
-  "emoji": "❓",
-  "components": [
-   "question"
-  ]
- },
- {
-  "slug": "what-does-this-word-mean",
-  "kind": "phrase",
-  "emoji": "📖",
-  "components": []
- },
- {
-  "slug": "how-do-you-say-this-in-german",
-  "kind": "phrase",
-  "emoji": "🗣️",
-  "components": []
- },
- {
-  "slug": "im-learning-german",
-  "kind": "phrase",
-  "emoji": "🇩🇪",
-  "components": []
- },
- {
-  "slug": "you-can-do-it",
-  "kind": "phrase",
-  "emoji": "💪",
-  "components": []
  }
 ]

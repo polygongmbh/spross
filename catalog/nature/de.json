@@ -1,0 +1,104 @@
+{
+ "title": "Die Natur",
+ "subtitle": "Raus an die frische Luft.",
+ "words": {
+  "tree": {
+   "text": "Baum",
+   "grammar": {
+    "gender": "der",
+    "plural": "Bäume"
+   }
+  },
+  "flower": {
+   "text": "Blume",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "sun": {
+   "text": "Sonne",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "rain": {
+   "text": "Regen",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "weather": {
+   "text": "Wetter",
+   "grammar": {
+    "gender": "das"
+   }
+  },
+  "snow": {
+   "text": "Schnee",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "wind": {
+   "text": "Wind",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "river": {
+   "text": "Fluss",
+   "grammar": {
+    "gender": "der",
+    "plural": "Flüsse"
+   }
+  },
+  "outdoors": {
+   "text": "draußen"
+  },
+  "left": {
+   "text": "links"
+  },
+  "right": {
+   "text": "rechts"
+  },
+  "go-for-walk": {
+   "text": "spazieren gehen"
+  },
+  "jog": {
+   "text": "joggen"
+  },
+  "sunbathe": {
+   "text": "sich sonnen"
+  },
+  "plant-flowers": {
+   "text": "Blumen pflanzen"
+  },
+  "grill-meat": {
+   "text": "Fleisch grillen"
+  },
+  "hows-the-weather-today": {
+   "text": "Wie ist das Wetter heute?"
+  },
+  "its-raining": {
+   "text": "Es regnet."
+  },
+  "the-sun-is-shining": {
+   "text": "Die Sonne scheint!"
+  },
+  "shall-we-take-a-walk": {
+   "text": "Wollen wir spazieren gehen?"
+  },
+  "take-an-umbrella": {
+   "text": "Nimm einen Regenschirm!",
+   "variants": [
+    "Nimm einen Regenschirm mit!"
+   ]
+  },
+  "what-a-beautiful-day": {
+   "text": "Was für ein schöner Tag!"
+  }
+ }
+}

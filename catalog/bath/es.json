@@ -1,5 +1,6 @@
 {
  "title": "El cuarto de baño",
+ "subtitle": "Fresco y limpio.",
  "words": {
   "washing-machine": {
    "text": "lavadora",
@@ -188,15 +189,6 @@
    "text": "esponja",
    "grammar": {
     "gender": "la"
-   }
-  },
-  "hair": {
-   "text": "pelo",
-   "synonyms": [
-    "cabello"
-   ],
-   "grammar": {
-    "gender": "el"
    }
   },
   "cream": {

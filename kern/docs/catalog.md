@@ -38,7 +38,7 @@ Engine contract: `../README.md`.
     `relax`/`rest` collided in sw AND uk while de (sich entspannen/sich ausruhen) and en
     keep them apart, so the fix was a precise uk realization, not a deletion.
   - `crossAreaPromptCollisionsAreKnown` — pins the tolerated cross-area set, so adding
-    `outside/river` next to `bedroom/pillow` (both sw `mto`) fails the gate instead of
+    `nature/river` next to `bedroom/pillow` (both sw `mto`) fails the gate instead of
     silently minting an ambiguous prompt. Comparison is case-SENSITIVE: `Husten`/`husten`
     is a real visual distinction and must stay legal.
 - `catalog/alphabet/<lang>.json` → `Alphabet`/`AlphabetEntry` (`AlphabetParser`, hand-parsed

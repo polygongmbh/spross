@@ -1,0 +1,33 @@
+{
+ "title": "La ciudad",
+ "subtitle": "Siempre hay movimiento.",
+ "words": {
+  "street": {
+   "text": "calle",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "market": {
+   "text": "mercado",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "park": {
+   "text": "parque",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "shop": {
+   "text": "hacer la compra",
+   "synonyms": [
+    "ir de compras"
+   ],
+   "notes": {
+    "de": "hacer la compra ist der Lebensmitteleinkauf, ir de compras eher der Bummel durch die Läden."
+   }
+  }
+ }
+}

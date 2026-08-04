@@ -1,0 +1,27 @@
+{
+ "title": "Mjini",
+ "subtitle": "Kuna shughuli kila wakati.",
+ "words": {
+  "street": {
+   "text": "barabara",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "market": {
+   "text": "soko",
+   "grammar": {
+    "plural": "masoko"
+   }
+  },
+  "park": {
+   "text": "bustani",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "shop": {
+   "text": "kwenda madukani"
+  }
+ }
+}

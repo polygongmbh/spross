@@ -1,5 +1,6 @@
 {
  "title": "La cocina",
+ "subtitle": "Aquí huele a cena.",
  "words": {
   "fridge": {
    "text": "nevera",
@@ -43,21 +44,6 @@
    "grammar": {
     "gender": "el",
     "plural": "="
-   }
-  },
-  "hunger": {
-   "text": "hambre",
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "feminin, im Singular aber mit el: el hambre — trotzdem mucha hambre; Hunger haben = tener hambre."
-   }
-  },
-  "thirst": {
-   "text": "sed",
-   "grammar": {
-    "gender": "la"
    }
   },
   "pot": {
@@ -147,60 +133,6 @@
    "variants": [
     "ojo"
    ]
-  },
-  "bread": {
-   "text": "pan",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "milk": {
-   "text": "leche",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "coffee": {
-   "text": "café",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "tea": {
-   "text": "té",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "egg": {
-   "text": "huevo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "cheese": {
-   "text": "queso",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "salt": {
-   "text": "sal",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "sugar": {
-   "text": "azúcar",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "rice": {
-   "text": "arroz",
-   "grammar": {
-    "gender": "el"
-   }
   },
   "cup": {
    "text": "taza",

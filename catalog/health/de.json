@@ -1,5 +1,6 @@
 {
- "title": "Der Arzt & die Gesundheit",
+ "title": "Beim Arzt",
+ "subtitle": "Alles für die Gesundheit.",
  "words": {
   "doctor": {
    "text": "Arzt",
@@ -103,47 +104,6 @@
   },
   "rest": {
    "text": "sich ausruhen"
-  },
-  "head": {
-   "text": "Kopf",
-   "grammar": {
-    "gender": "der",
-    "plural": "Köpfe"
-   }
-  },
-  "throat": {
-   "text": "Hals",
-   "grammar": {
-    "gender": "der",
-    "plural": "Hälse"
-   }
-  },
-  "stomach": {
-   "text": "Bauch",
-   "grammar": {
-    "gender": "der",
-    "plural": "Bäuche"
-   }
-  },
-  "back": {
-   "text": "Rücken",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "ear": {
-   "text": "Ohr",
-   "grammar": {
-    "gender": "das",
-    "plural": "-en"
-   }
-  },
-  "blood": {
-   "text": "Blut",
-   "grammar": {
-    "gender": "das"
-   }
   },
   "hospital": {
    "text": "Krankenhaus",

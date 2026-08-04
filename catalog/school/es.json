@@ -1,5 +1,6 @@
 {
- "title": "La escuela y el curso de idiomas",
+ "title": "La escuela",
+ "subtitle": "Un día normal de clase.",
  "words": {
   "school": {
    "text": "escuela",
@@ -58,12 +59,6 @@
     "gender": "la"
    }
   },
-  "dictionary": {
-   "text": "diccionario",
-   "grammar": {
-    "gender": "el"
-   }
-  },
   "exercise-book": {
    "text": "cuaderno",
    "grammar": {
@@ -104,30 +99,6 @@
    "notes": {
     "de": "Die Pause zwischen den Schulstunden heißt el recreo."
    }
-  },
-  "question": {
-   "text": "pregunta",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "answer": {
-   "text": "respuesta",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "ask": {
-   "text": "preguntar"
-  },
-  "reply": {
-   "text": "responder",
-   "synonyms": [
-    "contestar"
-   ]
-  },
-  "translate": {
-   "text": "traducir"
   },
   "pass-exam": {
    "text": "aprobar el examen",
@@ -199,15 +170,6 @@
     "gender": "la"
    }
   },
-  "sentence": {
-   "text": "frase",
-   "synonyms": [
-    "oración"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
   "grade": {
    "text": "nota",
    "grammar": {
@@ -216,40 +178,6 @@
   },
   "correct": {
    "text": "corregir"
-  },
-  "learn-by-heart": {
-   "text": "aprender de memoria",
-   "synonyms": [
-    "memorizar"
-   ]
-  },
-  "i-have-a-question": {
-   "text": "Tengo una pregunta."
-  },
-  "what-does-this-word-mean": {
-   "text": "¿Qué significa esta palabra?",
-   "variants": [
-    "¿Qué quiere decir esta palabra?"
-   ]
-  },
-  "how-do-you-say-this-in-german": {
-   "text": "¿Cómo se dice esto en alemán?",
-   "variants": [
-    "¿Cómo se dice eso en alemán?"
-   ]
-  },
-  "im-learning-german": {
-   "text": "Estoy aprendiendo alemán.",
-   "variants": [
-    "Aprendo alemán."
-   ]
-  },
-  "you-can-do-it": {
-   "text": "¡Seguro que lo consigues!",
-   "variants": [
-    "¡Tú puedes!",
-    "¡Seguro que lo logras!"
-   ]
   }
  }
 }

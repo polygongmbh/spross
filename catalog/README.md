@@ -484,6 +484,28 @@ is what tells them apart (`kuacha` verlassen vs `kuacha kazi` kündigen,
 disambiguator, it is carried by the merged language alone, and the homonym rule above
 governs it.
 
+## Which area a concept lives in
+
+The area is the folder, and three things ride on it:
+it is the produce prompt's disambiguator,
+`components` and `feminineOf` resolve **inside** it,
+and it is the unit a contributor writes and reviews.
+So a concept sits with the scene it belongs to —
+unless a phrase holds it where it is:
+`person`, `human` and `friend` stay in `essentials` because five essentials phrases
+name them (or an essentials adjective) as components,
+and a phrase can only ever gate on a word of its own area.
+Orientation words (`left`, `right`) sit in `nature` for want of a better scene:
+they belong to no room and to no errand,
+and an area of two words would earn nothing.
+
+Moving one is mechanical and cheap — the slug is the card id and carries no area,
+so nobody's schedule notices — and `../scripts/catalog-move.py` is what does it:
+it carries every language's realization verbatim,
+appends words before the destination's phrase block,
+and refuses a move that would part a phrase from a component,
+a feminine from its base, or mint a same-area prompt collision.
+
 ## What v2 dropped from v1
 
 - `kind`/`area` encoded in ids (kind is a concept field; area is the folder).

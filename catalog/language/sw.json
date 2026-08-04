@@ -1,0 +1,57 @@
+{
+ "title": "Kozi ya lugha",
+ "subtitle": "Uliza, jibu, endelea kujifunza.",
+ "words": {
+  "dictionary": {
+   "text": "kamusi",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "question": {
+   "text": "swali",
+   "grammar": {
+    "plural": "maswali"
+   }
+  },
+  "answer": {
+   "text": "jibu",
+   "grammar": {
+    "plural": "majibu"
+   }
+  },
+  "ask": {
+   "text": "kuuliza"
+  },
+  "reply": {
+   "text": "kujibu"
+  },
+  "translate": {
+   "text": "kutafsiri"
+  },
+  "sentence": {
+   "text": "sentensi",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "learn-by-heart": {
+   "text": "kukariri"
+  },
+  "i-have-a-question": {
+   "text": "Nina swali."
+  },
+  "what-does-this-word-mean": {
+   "text": "Neno hili lina maana gani?"
+  },
+  "how-do-you-say-this-in-german": {
+   "text": "Hii inasemwaje kwa Kijerumani?"
+  },
+  "im-learning-german": {
+   "text": "Ninajifunza Kijerumani."
+  },
+  "you-can-do-it": {
+   "text": "Hakika utaweza!"
+  }
+ }
+}

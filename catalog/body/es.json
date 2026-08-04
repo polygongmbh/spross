@@ -1,0 +1,70 @@
+{
+ "title": "El cuerpo",
+ "subtitle": "De la cabeza a los pies.",
+ "words": {
+  "head": {
+   "text": "cabeza",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "stomach": {
+   "text": "barriga",
+   "synonyms": [
+    "tripa"
+   ],
+   "variants": [
+    "vientre",
+    "panza"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Bauchweh heißt me duele la barriga oder me duele la tripa; el vientre ist gehoben, el estómago meint den Magen selbst."
+   }
+  },
+  "back": {
+   "text": "espalda",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "throat": {
+   "text": "garganta",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Spanisch trennt, was „Hals“ zusammenfasst: la garganta ist der Rachen (Halsschmerzen), el cuello der äußere Hals."
+   }
+  },
+  "ear": {
+   "text": "oído",
+   "variants": [
+    "oreja"
+   ],
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "Beim Arzt immer el oído (Innenohr, Gehör): me duele el oído. Die sichtbare Ohrmuschel ist la oreja."
+   }
+  },
+  "blood": {
+   "text": "sangre",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "hair": {
+   "text": "pelo",
+   "synonyms": [
+    "cabello"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  }
+ }
+}

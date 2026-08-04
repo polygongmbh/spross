@@ -1,0 +1,39 @@
+{
+ "title": "Food",
+ "subtitle": "What comes to the table.",
+ "words": {
+  "bread": {
+   "text": "bread"
+  },
+  "milk": {
+   "text": "milk"
+  },
+  "coffee": {
+   "text": "coffee"
+  },
+  "tea": {
+   "text": "tea"
+  },
+  "egg": {
+   "text": "egg"
+  },
+  "cheese": {
+   "text": "cheese"
+  },
+  "salt": {
+   "text": "salt"
+  },
+  "sugar": {
+   "text": "sugar"
+  },
+  "rice": {
+   "text": "rice"
+  },
+  "hunger": {
+   "text": "hunger"
+  },
+  "thirst": {
+   "text": "thirst"
+  }
+ }
+}

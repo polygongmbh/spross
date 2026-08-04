@@ -1,0 +1,39 @@
+{
+ "title": "Їжа",
+ "subtitle": "Те, що подають на стіл.",
+ "words": {
+  "bread": {
+   "text": "хліб"
+  },
+  "milk": {
+   "text": "молоко"
+  },
+  "coffee": {
+   "text": "кава"
+  },
+  "tea": {
+   "text": "чай"
+  },
+  "egg": {
+   "text": "яйце"
+  },
+  "cheese": {
+   "text": "сир"
+  },
+  "salt": {
+   "text": "сіль"
+  },
+  "sugar": {
+   "text": "цукор"
+  },
+  "rice": {
+   "text": "рис"
+  },
+  "hunger": {
+   "text": "голод"
+  },
+  "thirst": {
+   "text": "спрага"
+  }
+ }
+}

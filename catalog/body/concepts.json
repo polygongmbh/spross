@@ -1,0 +1,37 @@
+[
+ {
+  "slug": "head",
+  "kind": "noun",
+  "emoji": "🧠"
+ },
+ {
+  "slug": "stomach",
+  "kind": "noun",
+  "emoji": "🫃"
+ },
+ {
+  "slug": "back",
+  "kind": "noun",
+  "emoji": "🩻"
+ },
+ {
+  "slug": "throat",
+  "kind": "noun",
+  "emoji": "🗣️"
+ },
+ {
+  "slug": "ear",
+  "kind": "noun",
+  "emoji": "👂"
+ },
+ {
+  "slug": "blood",
+  "kind": "noun",
+  "emoji": "🩸"
+ },
+ {
+  "slug": "hair",
+  "kind": "noun",
+  "emoji": "💇"
+ }
+]

@@ -1,0 +1,75 @@
+{
+ "title": "Nature",
+ "subtitle": "Out in the fresh air.",
+ "words": {
+  "tree": {
+   "text": "tree"
+  },
+  "flower": {
+   "text": "flower"
+  },
+  "sun": {
+   "text": "sun"
+  },
+  "rain": {
+   "text": "rain"
+  },
+  "weather": {
+   "text": "weather"
+  },
+  "snow": {
+   "text": "snow"
+  },
+  "wind": {
+   "text": "wind"
+  },
+  "river": {
+   "text": "river"
+  },
+  "outdoors": {
+   "text": "outside"
+  },
+  "left": {
+   "text": "left"
+  },
+  "right": {
+   "text": "right"
+  },
+  "go-for-walk": {
+   "text": "to go for a walk"
+  },
+  "jog": {
+   "text": "to jog"
+  },
+  "sunbathe": {
+   "text": "to sunbathe"
+  },
+  "plant-flowers": {
+   "text": "to plant flowers"
+  },
+  "grill-meat": {
+   "text": "to grill meat"
+  },
+  "hows-the-weather-today": {
+   "text": "How's the weather today?"
+  },
+  "its-raining": {
+   "text": "It's raining."
+  },
+  "the-sun-is-shining": {
+   "text": "The sun is shining!"
+  },
+  "shall-we-take-a-walk": {
+   "text": "Shall we go for a walk?"
+  },
+  "take-an-umbrella": {
+   "text": "Take an umbrella!",
+   "variants": [
+    "Take an umbrella with you!"
+   ]
+  },
+  "what-a-beautiful-day": {
+   "text": "What a beautiful day!"
+  }
+ }
+}

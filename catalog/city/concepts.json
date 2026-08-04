@@ -1,0 +1,22 @@
+[
+ {
+  "slug": "street",
+  "kind": "noun",
+  "emoji": "🛣️"
+ },
+ {
+  "slug": "market",
+  "kind": "noun",
+  "emoji": "🛒"
+ },
+ {
+  "slug": "park",
+  "kind": "noun",
+  "emoji": "🏞️"
+ },
+ {
+  "slug": "shop",
+  "kind": "verb",
+  "emoji": "🛍️"
+ }
+]
