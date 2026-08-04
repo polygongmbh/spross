@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.8.0 — 2026-08-04
+
 - **The box is arranged the way you would look for something.** Body parts were filed under
   the doctor, food sat among the pots, and everything outside the front door — buses, shops,
   rivers, weather — shared one shelf called "Draußen". The catalog now opens on the people
