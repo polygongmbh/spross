@@ -8,10 +8,15 @@
   and the body, keeps the kitchen for cooking and gives food a shelf of its own, and splits
   the outdoors into getting around, the town and nature. The language course stays with the
   first steps where a beginner needs it, while the school moves in beside work, and the
-  doctor's visit is no longer the same shelf as how you feel. No word starts over: a card
-  that changed shelves keeps everything it had learned about you. Shelf names are plain names
-  again, with the cheerful line moved underneath where it belongs — and in every language,
-  rather than only in Swahili and Ukrainian.
+  doctor's visit is no longer the same shelf as how you feel. The shelf of everyday words
+  that quietly collected everything else is gone too: the adjectives stand together, money
+  and paying moved into the town, eating and water to the food, the house to the hallway,
+  and what remains is the handful of verbs that belong to no scene at all. Friends and
+  family are with the people now, and the language shelf is about learning a language
+  rather than attending a course — it has the words for not catching what someone said.
+  No word starts over: a card that changed shelves keeps everything it had learned about
+  you. Shelf names are plain names again, with the cheerful line moved underneath where it
+  belongs — and in every language, rather than only in Swahili and Ukrainian.
 
 - **The words that were already spoken aloud finally have cards.** The bundled Swahili
   recordings had long been saying words the box never taught — chakula, mkono, duka, kitabu —
