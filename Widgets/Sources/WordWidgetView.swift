@@ -71,12 +71,13 @@ struct WordWidgetView: View {
         .font(.caption2.weight(.semibold))
     }
 
+    /// Nine rows fill the tile; the gap is tightened so they fit without crowding.
     private var large: some View {
         VStack(alignment: .leading, spacing: 10) {
             statsHeader
             Divider()
-            VStack(alignment: .leading, spacing: 10) {
-                ForEach(Array(entry.words.enumerated()), id: \.offset) { _, word in
+            VStack(alignment: .leading, spacing: 8) {
+                ForEach(Array(entry.words.prefix(9).enumerated()), id: \.offset) { _, word in
                     wordRow(word)
                 }
             }

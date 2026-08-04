@@ -26,6 +26,10 @@
   simply lacked: if, and, or, because, when, why. Most of them arrive with a human voice
   already attached.
 
+- **The big widget fills itself with words.** It had been showing a handful and leaving the
+  rest of the tile blank. The list now runs to the bottom of the tile, so a glance at the
+  home screen carries a full page of exposure instead of a third of one.
+
 ## 3.7.0 — 2026-08-03
 
 - **Words you pack on a finished day arrive in the round you open.** Packing an area once the

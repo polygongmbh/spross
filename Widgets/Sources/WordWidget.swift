@@ -61,6 +61,12 @@ struct WordEntry: TimelineEntry {
             WidgetWord(emoji: "💧", tint: nil, word: "maji", meaning: "Wasser"),
             WidgetWord(emoji: "🌙", tint: nil, word: "mwezi", meaning: "Mond"),
             WidgetWord(emoji: "🏠", tint: nil, word: "nyumba", meaning: "Haus"),
+            WidgetWord(emoji: "☀️", tint: nil, word: "jua", meaning: "Sonne"),
+            WidgetWord(emoji: "🐟", tint: nil, word: "samaki", meaning: "Fisch"),
+            WidgetWord(emoji: "📖", tint: nil, word: "kitabu", meaning: "Buch"),
+            WidgetWord(emoji: "🌳", tint: nil, word: "mti", meaning: "Baum"),
+            WidgetWord(emoji: "🚪", tint: nil, word: "mlango", meaning: "Tür"),
+            WidgetWord(emoji: "🔥", tint: nil, word: "moto", meaning: "Feuer"),
         ],
         dueCount: 0, streak: 3, consolidated: 12)
 }
@@ -78,11 +84,11 @@ struct WordProvider: TimelineProvider {
     }
 
     /// Number of words shown in the large family's list.
-    private static let listSize = 5
+    private static let listSize = 9
 
     /// Up to 6 h of 15-minute entries cycling through attention-worthy cards.
     /// The compact families see one rotating card; the large family sees a
-    /// rotating window of `listSize` cards plus box stats.
+    /// rotating window of up to `listSize` cards plus box stats.
     private func timelineEntries(from start: Date) -> [WordEntry] {
         guard let snapshot = WidgetSnapshotReader.load(),
               !snapshot.entries.isEmpty else { return [.placeholder] }
@@ -94,7 +100,9 @@ struct WordProvider: TimelineProvider {
         let streak = snapshot.streak(now: start)
         return (0..<24).map { slot in
             // Rotate a window of `listSize` words; primary is the window head.
-            let window = (0..<Self.listSize).map { words[(slot + $0) % words.count] }
+            // why: a short box would otherwise wrap and repeat a word in one tile.
+            let window = (0..<min(Self.listSize, words.count))
+                .map { words[(slot + $0) % words.count] }
             return WordEntry(date: start.addingTimeInterval(Double(slot) * 15 * 60),
                              primary: window[0],
                              words: window,
