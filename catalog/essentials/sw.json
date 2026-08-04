@@ -41,6 +41,27 @@
     "plural": "="
    }
   },
+  "minute": {
+   "text": "dakika",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "month": {
+   "text": "mwezi",
+   "grammar": {
+    "plural": "miezi"
+   },
+   "notes": {
+    "de": "mwezi ist auch der Mond."
+   }
+  },
+  "year": {
+   "text": "mwaka",
+   "grammar": {
+    "plural": "miaka"
+   }
+  },
   "house": {
    "text": "nyumba",
    "grammar": {
@@ -106,6 +127,24 @@
   },
   "live": {
    "text": "kuishi"
+  },
+  "like": {
+   "text": "kupenda",
+   "notes": {
+    "de": "deckt mögen und lieben ab: Napenda chai · Nakupenda = Ich liebe dich."
+   }
+  },
+  "can": {
+   "text": "kuweza",
+   "notes": {
+    "de": "Präsens: naweza, unaweza, anaweza · verneint: siwezi = ich kann nicht."
+   }
+  },
+  "think": {
+   "text": "kufikiri",
+   "notes": {
+    "de": "über etwas nachdenken: kufikiria jambo."
+   }
   },
   "good": {
    "text": "-zuri",

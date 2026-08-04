@@ -20,6 +20,15 @@
   "hour": {
    "text": "hour"
   },
+  "minute": {
+   "text": "minute"
+  },
+  "month": {
+   "text": "month"
+  },
+  "year": {
+   "text": "year"
+  },
   "house": {
    "text": "house"
   },
@@ -67,6 +76,18 @@
   },
   "live": {
    "text": "to live"
+  },
+  "like": {
+   "text": "to like"
+  },
+  "can": {
+   "text": "can",
+   "variants": [
+    "to be able to"
+   ]
+  },
+  "think": {
+   "text": "to think"
   },
   "good": {
    "text": "good"

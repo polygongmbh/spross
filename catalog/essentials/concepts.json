@@ -30,6 +30,19 @@
   "emoji": "⏱️"
  },
  {
+  "slug": "minute",
+  "kind": "noun",
+  "emoji": "⏲️"
+ },
+ {
+  "slug": "month",
+  "kind": "noun"
+ },
+ {
+  "slug": "year",
+  "kind": "noun"
+ },
+ {
   "slug": "house",
   "kind": "noun",
   "emoji": "🏡"
@@ -109,6 +122,21 @@
   "slug": "live",
   "kind": "verb",
   "emoji": "🏘️"
+ },
+ {
+  "slug": "like",
+  "kind": "verb",
+  "emoji": "❤️"
+ },
+ {
+  "slug": "can",
+  "kind": "verb",
+  "emoji": "💪"
+ },
+ {
+  "slug": "think",
+  "kind": "verb",
+  "emoji": "🤔"
  },
  {
   "slug": "good",

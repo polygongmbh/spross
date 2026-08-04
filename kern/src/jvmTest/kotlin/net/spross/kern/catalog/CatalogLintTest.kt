@@ -314,6 +314,10 @@ class CatalogLintTest {
                 // Re-pathed 2026-08-04: `outside` split into transport/city/nature and
                 // `river` landed in `nature` — the same pair, renamed, not a new one.
                 "sw mto: bedroom/pillow, nature/river",
+                // Reviewed 2026-08-04: sw `mwezi` is moon and month, exactly as uk `місяць`
+                // is — so the moon is authored without uk, which keeps this to one language
+                // and pinnable instead of the unfixable two-language pair.
+                "sw mwezi: essentials/month, nature/moon",
                 // Reviewed 2026-08-04: `ndege` is the only Swahili word for both bird and
                 // aeroplane; de/en/es/uk all split them. The plane carries a de note so the
                 // learner meets the second sense as a fact, not as a surprise.

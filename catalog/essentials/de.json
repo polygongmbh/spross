@@ -42,6 +42,27 @@
     "plural": "-n"
    }
   },
+  "minute": {
+   "text": "Minute",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "month": {
+   "text": "Monat",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "year": {
+   "text": "Jahr",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
   "house": {
    "text": "Haus",
    "grammar": {
@@ -109,6 +130,15 @@
   },
   "live": {
    "text": "wohnen"
+  },
+  "like": {
+   "text": "mögen"
+  },
+  "can": {
+   "text": "können"
+  },
+  "think": {
+   "text": "denken"
   },
   "good": {
    "text": "gut"

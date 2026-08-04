@@ -47,6 +47,24 @@
     "gender": "la"
    }
   },
+  "minute": {
+   "text": "minuto",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "month": {
+   "text": "mes",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "year": {
+   "text": "año",
+   "grammar": {
+    "gender": "el"
+   }
+  },
   "house": {
    "text": "casa",
    "grammar": {
@@ -127,6 +145,24 @@
    "text": "vivir",
    "notes": {
     "de": "vivir = wohnen und leben."
+   }
+  },
+  "like": {
+   "text": "gustar",
+   "notes": {
+    "de": "umgekehrt gebaut: Me gusta el café = Ich mag Kaffee · lieben ist amar oder querer."
+   }
+  },
+  "can": {
+   "text": "poder",
+   "notes": {
+    "de": "unregelmäßig: puedo, puedes, puede, podemos."
+   }
+  },
+  "think": {
+   "text": "pensar",
+   "notes": {
+    "de": "pensar en algo = an etwas denken · pensar que = glauben, dass."
    }
   },
   "good": {

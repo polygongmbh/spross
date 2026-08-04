@@ -29,6 +29,21 @@
   "hour": {
    "text": "година"
   },
+  "minute": {
+   "text": "хвилина"
+  },
+  "month": {
+   "text": "місяць"
+  },
+  "year": {
+   "text": "рік",
+   "grammar": {
+    "plural": "роки"
+   },
+   "notes": {
+    "de": "nach Zahlen: 2 роки, aber 5 років."
+   }
+  },
   "house": {
    "text": "будинок",
    "synonyms": [
@@ -103,6 +118,18 @@
    "notes": {
     "de": "жити = leben und wohnen (Alltag) · мешкати = wohnen, amtlich."
    }
+  },
+  "like": {
+   "text": "любити",
+   "notes": {
+    "de": "deckt mögen und lieben ab · „mir gefällt“ ist мені подобається."
+   }
+  },
+  "can": {
+   "text": "могти"
+  },
+  "think": {
+   "text": "думати"
   },
   "good": {
    "text": "добрий",
