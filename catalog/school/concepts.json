@@ -124,5 +124,61 @@
  {
   "slug": "to-try",
   "kind": "verb"
+ },
+ {
+  "slug": "do-the-homework",
+  "kind": "phrase",
+  "emoji": "✍️",
+  "components": [
+   "homework"
+  ]
+ },
+ {
+  "slug": "the-exam-is-tomorrow",
+  "kind": "phrase",
+  "emoji": "📋",
+  "components": [
+   "exam"
+  ]
+ },
+ {
+  "slug": "look-at-the-timetable",
+  "kind": "phrase",
+  "emoji": "🗓️",
+  "components": [
+   "timetable"
+  ]
+ },
+ {
+  "slug": "the-break-is-over",
+  "kind": "phrase",
+  "emoji": "☕",
+  "components": [
+   "break"
+  ]
+ },
+ {
+  "slug": "ask-the-teacher",
+  "kind": "phrase",
+  "emoji": "🧑‍🏫",
+  "components": [
+   "teacher"
+  ]
+ },
+ {
+  "slug": "i-have-a-good-grade",
+  "kind": "phrase",
+  "emoji": "💯",
+  "components": [
+   "grade"
+  ]
+ },
+ {
+  "slug": "we-go-to-the-classroom",
+  "kind": "phrase",
+  "emoji": "🎓",
+  "components": [
+   "classroom"
+  ]
  }
 ]

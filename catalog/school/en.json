@@ -73,6 +73,27 @@
   },
   "to-try": {
    "text": "to try"
+  },
+  "do-the-homework": {
+   "text": "I'm doing my homework."
+  },
+  "the-exam-is-tomorrow": {
+   "text": "The exam is tomorrow."
+  },
+  "look-at-the-timetable": {
+   "text": "Look at the timetable."
+  },
+  "the-break-is-over": {
+   "text": "The break is over."
+  },
+  "ask-the-teacher": {
+   "text": "Ask the teacher."
+  },
+  "i-have-a-good-grade": {
+   "text": "I have a good grade."
+  },
+  "we-go-to-the-classroom": {
+   "text": "We're going to the classroom."
   }
  }
 }

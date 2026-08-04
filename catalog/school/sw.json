@@ -121,6 +121,27 @@
   },
   "to-try": {
    "text": "kujaribu"
+  },
+  "do-the-homework": {
+   "text": "Ninafanya kazi ya nyumbani."
+  },
+  "the-exam-is-tomorrow": {
+   "text": "Mtihani ni kesho."
+  },
+  "look-at-the-timetable": {
+   "text": "Angalia ratiba."
+  },
+  "the-break-is-over": {
+   "text": "Pumziko limeisha."
+  },
+  "ask-the-teacher": {
+   "text": "Muulize mwalimu."
+  },
+  "i-have-a-good-grade": {
+   "text": "Nina alama nzuri."
+  },
+  "we-go-to-the-classroom": {
+   "text": "Tunaenda darasani."
   }
  }
 }

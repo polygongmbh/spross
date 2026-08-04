@@ -88,6 +88,33 @@
    "variants": [
     "пробувати"
    ]
+  },
+  "do-the-homework": {
+   "text": "Я роблю домашнє завдання."
+  },
+  "the-exam-is-tomorrow": {
+   "text": "Іспит завтра."
+  },
+  "look-at-the-timetable": {
+   "text": "Подивись на розклад.",
+   "variants": [
+    "Подивіться на розклад."
+   ]
+  },
+  "the-break-is-over": {
+   "text": "Перерва закінчилася."
+  },
+  "ask-the-teacher": {
+   "text": "Запитай вчителя.",
+   "variants": [
+    "Запитайте вчителя."
+   ]
+  },
+  "i-have-a-good-grade": {
+   "text": "У мене гарна оцінка."
+  },
+  "we-go-to-the-classroom": {
+   "text": "Ми йдемо до класу."
   }
  }
 }

@@ -211,6 +211,33 @@
    "variants": [
     "probar"
    ]
+  },
+  "do-the-homework": {
+   "text": "Hago los deberes."
+  },
+  "the-exam-is-tomorrow": {
+   "text": "El examen es mañana."
+  },
+  "look-at-the-timetable": {
+   "text": "Mira el horario.",
+   "variants": [
+    "Mire el horario."
+   ]
+  },
+  "the-break-is-over": {
+   "text": "El descanso ha terminado."
+  },
+  "ask-the-teacher": {
+   "text": "Pregunta al profesor.",
+   "variants": [
+    "Pregunte al profesor."
+   ]
+  },
+  "i-have-a-good-grade": {
+   "text": "Tengo una buena nota."
+  },
+  "we-go-to-the-classroom": {
+   "text": "Vamos al aula."
   }
  }
 }
