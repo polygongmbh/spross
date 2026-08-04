@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.9.0 — 2026-08-04
+
 - **The widget only offers words it can actually show.** A long phrase had to share one line
   with its meaning, so it arrived shrunken past reading — the very glance a widget exists for.
   Phrases that do not fit a row now stay on the phone, where they have a card to themselves,
