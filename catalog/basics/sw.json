@@ -100,6 +100,37 @@
   },
   "how-are-you": {
    "text": "Habari yako?"
+  },
+  "welcome": {
+   "text": "Karibu!",
+   "variants": [
+    "Karibuni!"
+   ],
+   "notes": {
+    "de": "Auch die Antwort auf „Hodi?“ und die Einladung „Komm herein!“ · an mehrere: Karibuni!"
+   }
+  },
+  "may-i-come-in": {
+   "text": "Hodi!",
+   "notes": {
+    "de": "Ruft man an der Tür, statt zu klopfen; die Antwort ist „Karibu!“"
+   }
+  },
+  "sorry-to-hear-that": {
+   "text": "Pole!",
+   "variants": [
+    "Pole sana!",
+    "Poleni!"
+   ],
+   "notes": {
+    "de": "Mitgefühl bei jedem Missgeschick, auch beim Stolpern oder nach der Arbeit — nie eine Entschuldigung für eigene Schuld · an mehrere: Poleni!"
+   }
+  },
+  "greetings-elder": {
+   "text": "Shikamoo!",
+   "notes": {
+    "de": "Respektgruß an Ältere; die Antwort ist immer „Marahaba!“ · unter Gleichaltrigen bleibt es bei „Hujambo!“"
+   }
   }
  }
 }

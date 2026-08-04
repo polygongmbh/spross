@@ -149,6 +149,28 @@
    "variants": [
     "¡Chao!"
    ]
+  },
+  "welcome": {
+   "text": "¡Bienvenido!",
+   "variants": [
+    "¡Bienvenida!",
+    "¡Bienvenidos!",
+    "¡Bienvenidas!"
+   ]
+  },
+  "may-i-come-in": {
+   "text": "¿Se puede?",
+   "variants": [
+    "¿Se puede pasar?",
+    "¿Puedo pasar?"
+   ]
+  },
+  "sorry-to-hear-that": {
+   "text": "¡Cuánto lo siento!",
+   "variants": [
+    "Lo siento mucho.",
+    "¡Qué pena!"
+   ]
   }
  }
 }

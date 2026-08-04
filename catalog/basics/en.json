@@ -82,6 +82,18 @@
   },
   "bye": {
    "text": "Bye!"
+  },
+  "welcome": {
+   "text": "Welcome!"
+  },
+  "may-i-come-in": {
+   "text": "May I come in?"
+  },
+  "sorry-to-hear-that": {
+   "text": "Sorry to hear that."
+  },
+  "greetings-elder": {
+   "text": "Greetings!"
   }
  }
 }
