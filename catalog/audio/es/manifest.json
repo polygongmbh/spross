@@ -1118,6 +1118,18 @@
       "snr": 59.8,
       "source": "LL-Q1321 (spa)-Sinaloa-limpiar.wav"
     },
+    "clean-adj": {
+      "author": "AdrianAbdulBaha",
+      "file": "clean-adj.mp3",
+      "gain": 7.4,
+      "lead": 221,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "limpio",
+      "sha256": "f2d2cfb32382f4e8785673bafbb2c14db87b4ed12af6ee6aebbe95ba4061734c",
+      "snr": 49.2,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-limpio.wav"
+    },
     "clothes": {
       "author": "AdrianAbdulBaha",
       "file": "clothes.mp3",
@@ -1498,6 +1510,18 @@
       "snr": 81.5,
       "source": "LL-Q1321 (spa)-Rodelar-diccionario.wav"
     },
+    "difficult": {
+      "author": "AdrianAbdulBaha",
+      "file": "difficult.mp3",
+      "gain": 5.7,
+      "lead": 112,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "difícil",
+      "sha256": "d86f9375dc13882a800dadf9a8827851fefc9856b7d51e089fa9ae5f4ed3f8ea",
+      "snr": 52.5,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-difícil.wav"
+    },
     "dinner": {
       "author": "AdrianAbdulBaha",
       "file": "dinner.mp3",
@@ -1699,6 +1723,18 @@
       "sha256": "25580ee86f96de38adbe7625cdbf19ed82f26e25fdffb5054f12ada7e8926659",
       "snr": 45.6,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-ganar.wav"
+    },
+    "easy": {
+      "author": "AdrianAbdulBaha",
+      "file": "easy.mp3",
+      "gain": 2.6,
+      "lead": 159,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "fácil",
+      "sha256": "fba53f5d7990c0dc9da5666e4946d75969235b14691dd9b549a9509d1dbfbd59",
+      "snr": 49.1,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-fácil.wav"
     },
     "eat": {
       "author": "Rodelar",
@@ -2198,16 +2234,6 @@
       "snr": 67.2,
       "source": "LL-Q1321 (spa)-Sinaloa-bueno.wav"
     },
-    "goodbye": {
-      "author": "Wikimedia Commons user Fibonacci",
-      "file": "goodbye.mp3",
-      "gain": 2.0,
-      "licence": "CC BY-SA 2.5",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
-      "matches": "adiós",
-      "sha256": "d9b4335a589c2552c6139598fda3d5cb6acbe83bcbbab9c584dc63b52e9b8cc2",
-      "source": "Es-adiós.ogg"
-    },
     "grade": {
       "author": "AdrianAbdulBaha",
       "file": "grade.mp3",
@@ -2399,6 +2425,17 @@
       "snr": 59.8,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-sano.wav"
     },
+    "hear": {
+      "author": "Rodelar",
+      "file": "hear.mp3",
+      "gain": 0.1,
+      "lead": 187,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "oír",
+      "sha256": "292687a5400645db7062e87b6f7944ec8dc9e2fd8ac976633ae73840d66c3f86",
+      "source": "LL-Q1321 (spa)-Rodelar-oír.wav"
+    },
     "heart": {
       "author": "Sinaloa",
       "file": "heart.mp3",
@@ -2410,6 +2447,18 @@
       "sha256": "30fa69908a39dbfb1b7878a401d7b7bd5e8dab9b4c972f673b339bff9f327217",
       "snr": 66.0,
       "source": "LL-Q1321 (spa)-Sinaloa-corazón.wav"
+    },
+    "heavy": {
+      "author": "Rodelar",
+      "file": "heavy.mp3",
+      "gain": -2.7,
+      "lead": 202,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pesado",
+      "sha256": "4b8524e0d501efe0ce54a59b82d1c469ebe35ecaf5049e90aab9e495f8cf1365",
+      "snr": 84.7,
+      "source": "LL-Q1321 (spa)-Rodelar-pesado.wav"
     },
     "hello": {
       "author": "CaroEspinoza",
@@ -2865,6 +2914,18 @@
       "snr": 52.7,
       "source": "LL-Q1321 (spa)-Rodrigo5260-luz.wav"
     },
+    "lightweight": {
+      "author": "Marreromarco",
+      "file": "lightweight.mp3",
+      "gain": 3.6,
+      "lead": 248,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "ligero",
+      "sha256": "6cc5df59e99c711d68e863406c3ca7136591569c9f1d2e5bfe9b0c1da1aaf3a6",
+      "snr": 50.0,
+      "source": "LL-Q1321 (spa)-Marreromarco-ligero.wav"
+    },
     "like": {
       "author": "AdrianAbdulBaha",
       "file": "like.mp3",
@@ -2913,6 +2974,18 @@
       "snr": 83.0,
       "source": "LL-Q1321 (spa)-Rodelar-vivir.wav"
     },
+    "long": {
+      "author": "GlyphEnjoyer",
+      "file": "long.mp3",
+      "gain": 3.3,
+      "lead": 179,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "largo",
+      "sha256": "ec388b96c194ca9b36e988b17eb71402c95836a6e3775ab7887795d00a6b3211",
+      "snr": 66.9,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-largo.wav"
+    },
     "lorry": {
       "author": "AdrianAbdulBaha",
       "file": "lorry.mp3",
@@ -2924,6 +2997,18 @@
       "sha256": "4e5e32e67bc192fcb21cbd5fb836914746776e472be4f54621b8421fcc60a23d",
       "snr": 56.3,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-camión.wav"
+    },
+    "loud": {
+      "author": "GlyphEnjoyer",
+      "file": "loud.mp3",
+      "gain": 2.5,
+      "lead": 193,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "alto",
+      "sha256": "9cd843c7f8977efcb90220b364e4fe0803c0ae265a1016463ed845f34e65e753",
+      "snr": 62.5,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-alto.wav"
     },
     "luggage": {
       "author": "Marreromarco",
@@ -4267,6 +4352,18 @@
       "snr": 52.2,
       "source": "LL-Q1321 (spa)-Marreromarco-champú.wav"
     },
+    "sharp": {
+      "author": "Rodelar",
+      "file": "sharp.mp3",
+      "gain": 0.4,
+      "lead": 277,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "afilado",
+      "sha256": "1b68514bd515b894b3e917cf675ad7c599c341f334a8d33b391fb38765ff213f",
+      "snr": 84.0,
+      "source": "LL-Q1321 (spa)-Rodelar-afilado.wav"
+    },
     "shave": {
       "author": "Emanuelps27",
       "file": "shave.mp3",
@@ -4350,6 +4447,18 @@
       "sha256": "b711d0956f3a795503536d41265dee9a07c2283b122a7f0ad7edffbfdb6b9975",
       "snr": 56.0,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-zapatero.wav"
+    },
+    "short": {
+      "author": "Sinaloa",
+      "file": "short.mp3",
+      "gain": 8.9,
+      "lead": 187,
+      "licence": "CC0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "corto",
+      "sha256": "4cb350e2b9716a01411afcc4e5b9f77e7bb09a19b60c2f955e3f61666804df00",
+      "snr": 61.8,
+      "source": "LL-Q1321 (spa)-Sinaloa-corto.wav"
     },
     "shoulder": {
       "author": "AdrianAbdulBaha",

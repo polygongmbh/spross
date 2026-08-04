@@ -945,6 +945,18 @@
       "snr": 49.1,
       "source": "Sw-ke-kusafisha.flac"
     },
+    "clean-adj": {
+      "author": "Waithera Were",
+      "file": "clean-adj.mp3",
+      "gain": -7.0,
+      "lead": 24,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "safi",
+      "sha256": "57ed6bfb14c438bb136f40d3762efe1531bb5f78c311c4186773f4df34443651",
+      "snr": 50.5,
+      "source": "Sw-ke-safi.flac"
+    },
     "clothes": {
       "author": "Waithera Were",
       "file": "clothes.mp3",
@@ -1280,6 +1292,18 @@
       "snr": 57.2,
       "source": "Sw-ke-kamusi.flac"
     },
+    "difficult": {
+      "author": "Waithera Were",
+      "file": "difficult.mp3",
+      "gain": -5.2,
+      "lead": 33,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "gumu",
+      "sha256": "e6f1c200811cc3846405ed8fe7c7af931bbe63141066ad1b55581d36a205d243",
+      "snr": 54.6,
+      "source": "Sw-ke-gumu.flac"
+    },
     "dirty": {
       "author": "Waithera Were",
       "file": "dirty.mp3",
@@ -1422,6 +1446,18 @@
       "sha256": "edaf62e2600e567af45a61844eb7e153f161b434bbb79f477d0df2e1f76a1c5a",
       "snr": 49.8,
       "source": "Sw-ke-mapema.flac"
+    },
+    "easy": {
+      "author": "Waithera Were",
+      "file": "easy.mp3",
+      "gain": -6.9,
+      "lead": 31,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "rahisi",
+      "sha256": "b23e2661f31037ff3939239b637fa0f7d007dc716e2fc085111262a05f36c1d8",
+      "snr": 54.7,
+      "source": "Sw-ke-rahisi.flac"
     },
     "eat": {
       "author": "Waithera Were",
@@ -2140,6 +2176,18 @@
       "snr": 50.1,
       "source": "Sw-ke-zima.flac"
     },
+    "hear": {
+      "author": "Waithera Were",
+      "file": "hear.mp3",
+      "gain": -3.9,
+      "lead": 42,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "kusikia",
+      "sha256": "8585bc259a123f421ef0531fa1dfa0eee0c28cc1a11dcc678ed015d623aa1692",
+      "snr": 45.0,
+      "source": "Sw-ke-kusikia.flac"
+    },
     "heart": {
       "author": "Waithera Were",
       "file": "heart.mp3",
@@ -2151,6 +2199,18 @@
       "sha256": "161854610f37003ef74051383c0fbf2936d87b2542300b14695b665cc7b79fd0",
       "snr": 49.8,
       "source": "Sw-ke-moyo.flac"
+    },
+    "heavy": {
+      "author": "Waithera Were",
+      "file": "heavy.mp3",
+      "gain": -3.1,
+      "lead": 37,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "zito",
+      "sha256": "17fb382ec21bb073d663169a8830b997bce2222c630ba8d7d62f535ba4946969",
+      "snr": 53.7,
+      "source": "Sw-ke-zito.flac"
     },
     "hello": {
       "author": "Waithera Were",
@@ -2667,6 +2727,18 @@
       "snr": 55.0,
       "source": "Sw-ke-mwanga.flac"
     },
+    "lightweight": {
+      "author": "Waithera Were",
+      "file": "lightweight.mp3",
+      "gain": -4.9,
+      "lead": 44,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "epesi",
+      "sha256": "cd372b6ec5c021b4c1abd55875f371eafaab4f26816b435f6bd133c1b927752a",
+      "snr": 49.3,
+      "source": "Sw-ke-epesi.flac"
+    },
     "like": {
       "author": "Waithera Were",
       "file": "like.mp3",
@@ -2713,6 +2785,18 @@
       "sha256": "c78b67b9ff870346b0c52dad23cfdc8977134b5d68f420463d4589dc40f65ec2",
       "snr": 41.0,
       "source": "Sw-ke-kufunga.flac"
+    },
+    "long": {
+      "author": "Waithera Were",
+      "file": "long.mp3",
+      "gain": -6.7,
+      "lead": 38,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "refu",
+      "sha256": "841b933568fe6d843212daecec6600933d0c2a4a27e4bb62428e01340644edc0",
+      "snr": 48.5,
+      "source": "Sw-ke-refu.flac"
     },
     "lorry": {
       "author": "Waithera Were",
@@ -4004,6 +4088,18 @@
       "snr": 57.1,
       "source": "Sw-ke-sentensi.flac"
     },
+    "sharp": {
+      "author": "Waithera Were",
+      "file": "sharp.mp3",
+      "gain": -6.3,
+      "lead": 147,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "kali",
+      "sha256": "5c01c86af561f5be771e2d5e396f35037f0fd643a75184b8bf3a102a86986b9c",
+      "snr": 83.5,
+      "source": "Sw-ke-kali.flac"
+    },
     "shelf": {
       "author": "Waithera Were",
       "file": "shelf.mp3",
@@ -4063,6 +4159,18 @@
       "sha256": "38fecee7ac5cf6ed7b3f0b050f030d02eee18c2e4d5e6fc7200db0fd3dfdd629",
       "snr": 55.2,
       "source": "Sw-ke-kiatu.flac"
+    },
+    "short": {
+      "author": "Waithera Were",
+      "file": "short.mp3",
+      "gain": -2.8,
+      "lead": 20,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "fupi",
+      "sha256": "c4dce3df788872b478a086d4397fca225229971ee8c769e701787c7b5311e053",
+      "snr": 48.8,
+      "source": "Sw-ke-fupi.flac"
     },
     "shoulder": {
       "author": "Waithera Were",
