@@ -49,6 +49,13 @@ struct LeafSlot {
     /// them — the thing that reads as a tree — rather than an even thin haze
     /// over the whole crown.
     let twig: Int
+    /// Whether this slot sits on new outer growth — the last two generations.
+    ///
+    /// A tree flowers and fruits on its youngest wood; nothing heavy hangs off a
+    /// structural limb, let alone off the trunk. These rank ahead of the rest
+    /// and fruit and blossom take the lowest ranks, so the heaviest marks can
+    /// only reach a twig that could actually hold them.
+    let bearing: Bool
 }
 
 struct TreeSkeleton {
@@ -57,6 +64,13 @@ struct TreeSkeleton {
     /// one never moves those already placed — the property the summary's
     /// before/after animation is built on.
     let slots: [LeafSlot]
+    /// The typical gap between neighbouring slots — what a mark is sized
+    /// against. Sized against the tree's HEIGHT instead, a mark was the same
+    /// fraction of every tree; but a three-generation crown holds half the slots
+    /// of a four-generation one over the same spread, so it drew the same small
+    /// marks with twice the sky between them and read as the thin tree whatever
+    /// the learner had done to it.
+    let pitch: CGFloat
 
     /// Structural generations. Four is where a deciduous tree stops gaining
     /// anything at this size; past it the segments are under a point.
@@ -101,17 +115,33 @@ struct TreeSkeleton {
                depth: 0, limit: depth, side: 1, rng: &rng, segments: &segments, slots: &slots)
 
         let fitted = fit(segments: segments, slots: slots, in: rect)
-        // Ranked twig by twig, the twigs themselves in a shuffled order: a
-        // canopy fills in clumps with sky between them, and filling in
-        // traversal order instead would leaf one side of the tree at a time.
+        // Outer growth first, and within it twig by twig with the twigs
+        // themselves shuffled: a canopy fills in clumps with sky between them,
+        // and filling in traversal order would leaf one side at a time.
+        // Outer first earns its place twice: it is where fruit and blossom
+        // belong and they take the lowest ranks, and a part-full canopy then
+        // leaves the limbs near the trunk bare, where a real tree's gaps are.
         let ranked = fitted.slots.enumerated()
             .sorted { left, right in
+                if left.element.bearing != right.element.bearing { return left.element.bearing }
                 let a = SplitMix64.mix(seed &+ UInt64(left.element.twig))
                 let b = SplitMix64.mix(seed &+ UInt64(right.element.twig))
                 return a == b ? left.offset < right.offset : a < b
             }
             .map(\.element)
-        return TreeSkeleton(segments: fitted.segments, slots: ranked)
+        return TreeSkeleton(segments: fitted.segments, slots: ranked,
+                            pitch: pitch(of: ranked))
+    }
+
+    /// Root of (crown area / slots): the side of the square each slot gets if
+    /// the crown were shared out evenly — a stand-in for the mean distance to a
+    /// neighbour that, unlike the real thing, is O(n).
+    private static func pitch(of slots: [LeafSlot]) -> CGFloat {
+        guard slots.count > 1 else { return 1 }
+        let xs = slots.map(\.point.x), ys = slots.map(\.point.y)
+        let spread = (xs.max() ?? 0) - (xs.min() ?? 0)
+        let rise = (ys.max() ?? 0) - (ys.min() ?? 0)
+        return max(1, sqrt(spread * rise / CGFloat(slots.count)))
     }
 
     // MARK: Growing
@@ -146,7 +176,9 @@ struct TreeSkeleton {
         // ~37% of its slots as a young one filled of its own, so every tree in
         // the forest was equally sparse and maturity showed only as size. These
         // totals are small enough that a well-worked area comes close to filling
-        // its tree, which is what "well worked" should look like.
+        // its tree, which is what "well worked" should look like. The inner
+        // generations keep their slots even though nothing heavy may hang there:
+        // ranked last, they are what a nearly-full crown reaches for.
         let carries: [Double]
         switch limit - depth {
         case 0: carries = [0.66]
@@ -155,10 +187,14 @@ struct TreeSkeleton {
         case 3: carries = [0.62]
         default: carries = []
         }
+        // The last two generations are the young wood: thin enough that anything
+        // may hang there, and the only place fruit and blossom are allowed.
+        let bearing = limit - depth <= 1
         for (index, t) in carries.enumerated() {
             let point = bezier(origin, control, end, t)
             slots.append(LeafSlot(point: point, angle: tangent(origin, control, end, t),
-                                  side: index.isMultiple(of: 2) ? side : -side, twig: twig))
+                                  side: index.isMultiple(of: 2) ? side : -side, twig: twig,
+                                  bearing: bearing))
         }
         guard depth < limit else { return }
 
@@ -176,11 +212,16 @@ struct TreeSkeleton {
         branch(from: end, angle: lateral, length: length * 0.72 * rng.range(0.91, 1.09),
                width: width * 0.57, depth: depth + 1, limit: limit, side: -side,
                rng: &rng, segments: &segments, slots: &slots)
-        // A third limb low down, sometimes: perfect two-way forking all the way
-        // down reads as a diagram of a tree rather than as one. Kept to the
-        // lowest forks — further out it multiplies the twig count faster than
-        // an area gains the words to clothe them.
-        if depth <= 1, rng.next() < 0.25 {
+        // A third limb off the trunk, sometimes: perfect two-way forking all the
+        // way down reads as a diagram of a tree rather than as one.
+        //
+        // The FIRST fork only. Allowed at the second as well it fired up to
+        // three times, each firing carrying a whole subtree, and a
+        // four-generation crown came out anywhere between 42 and 83 slots — two
+        // areas with the same forty words drawing at 95% and 48% full, the
+        // sparse one sparse only because it had drawn a bushier skeleton. One
+        // draw per tree keeps the asymmetry and holds the spread to 42–63.
+        if depth == 0, rng.next() < 0.38 {
             branch(from: end, angle: lifted - side * rng.range(0.70, 0.95),
                    length: length * 0.6, width: width * 0.45, depth: depth + 1,
                    limit: limit, side: side,
@@ -216,7 +257,7 @@ struct TreeSkeleton {
                             depth: $0.depth)
             },
             slots.map { LeafSlot(point: place($0.point), angle: $0.angle,
-                                 side: $0.side, twig: $0.twig) }
+                                 side: $0.side, twig: $0.twig, bearing: $0.bearing) }
         )
     }
 
@@ -232,45 +273,5 @@ struct TreeSkeleton {
         let dx = CGFloat(2 * (1 - t)) * (b.x - a.x) + CGFloat(2 * t) * (c.x - b.x)
         let dy = CGFloat(2 * (1 - t)) * (b.y - a.y) + CGFloat(2 * t) * (c.y - b.y)
         return atan2(Double(dy), Double(dx))
-    }
-}
-
-// MARK: - Deterministic randomness
-
-/// SplitMix64 over an FNV-1a fold of the identity.
-///
-/// Explicitly NOT Swift's `Hasher`: the standard library seeds it randomly per
-/// process, so a tree keyed on `hashValue` would be a different tree after
-/// every relaunch.
-struct SplitMix64 {
-    private var state: UInt64
-
-    init(seed: UInt64) { state = seed }
-
-    init(_ identity: String) {
-        var hash: UInt64 = 0xCBF2_9CE4_8422_2325
-        for byte in identity.utf8 {
-            hash = (hash ^ UInt64(byte)) &* 0x1000_0000_01B3
-        }
-        state = hash
-    }
-
-    var seed: UInt64 { state }
-
-    static func mix(_ value: UInt64) -> UInt64 {
-        var x = value &+ 0x9E37_79B9_7F4A_7C15
-        x = (x ^ (x >> 30)) &* 0xBF58_476D_1CE4_E5B9
-        x = (x ^ (x >> 27)) &* 0x94D0_49BB_1331_11EB
-        return x ^ (x >> 31)
-    }
-
-    /// The next value in 0..<1.
-    mutating func next() -> Double {
-        state = state &+ 0x9E37_79B9_7F4A_7C15
-        return Double(Self.mix(state) >> 11) / Double(1 << 53)
-    }
-
-    mutating func range(_ low: Double, _ high: Double) -> Double {
-        low + (high - low) * next()
     }
 }

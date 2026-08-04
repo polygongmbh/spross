@@ -138,11 +138,19 @@ enum TreeShapes {
     /// through the crown rather than ringing it.
     private static func foliage(_ context: inout GraphicsContext, _ skeleton: TreeSkeleton,
                                 _ mark: TreeMark, _ shown: AreaTree) {
-        // why: marks get FINER as the canopy fills. A mark sized for a tree
-        // carrying six words is a blot on one carrying sixty, and the reading
-        // wanted at that end is foliage, not sixty countable objects.
+        // why: marks get BROADER as the canopy thins, so a crown that is two
+        // thirds full still closes into foliage instead of showing sky between
+        // every mark. A tree only ever fills the band its generation count gives
+        // it — cross into the next generation and the same words are suddenly
+        // spread over twice the twigs — and sizing the marks against that fill
+        // is what keeps the two ends of a band looking equally worked.
+        //
+        // Measured on the crown's hull rather than guessed: the marks used to
+        // cover ~42% of it at forty words, which is a twiggy tree with leaves on
+        // it, not a leafy one. This lands near 65%, where the gaps read as gaps
+        // in a canopy rather than as a canopy that never closed.
         let fill = Double(shown.canopyCount) / Double(max(skeleton.slots.count, 1))
-        let base = max(2.4, mark.height * 0.088 * CGFloat(1 - 0.10 * min(1, fill)))
+        let base = max(2.4, skeleton.pitch * 0.90 * CGFloat(1 + 0.30 * (1 - min(1, fill))))
         var tones = [Path(), Path(), Path()]
 
         for (rank, slot) in skeleton.slots.prefix(shown.canopyCount).enumerated() {
@@ -162,7 +170,13 @@ enum TreeShapes {
             } else if rank < shown.fruit + shown.blossoms {
                 blossom(&context, at: slot.point, size: size, angle: angle)
             } else {
-                tones[Int(grain * 3) % 3].addPath(leafPath(at: slot.point, size: size * 1.05,
+                // A leaf runs BROADER than the base a fruit or a blossom is cut
+                // to. It is the only mark meant to merge with its neighbours —
+                // foliage is a mass, fruit is a countable thing — and the extra
+                // reach is what closes the gaps between twigs. Kept well under
+                // the step from leaf to blossom to fruit, so a word maturing
+                // never reads as its mark being taken away.
+                tones[Int(grain * 3) % 3].addPath(leafPath(at: slot.point, size: size * 1.24,
                                                            angle: angle))
             }
         }
