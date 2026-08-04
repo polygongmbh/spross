@@ -8,27 +8,6 @@
   "water": {
    "text": "water"
   },
-  "time": {
-   "text": "time"
-  },
-  "day": {
-   "text": "day"
-  },
-  "week": {
-   "text": "week"
-  },
-  "hour": {
-   "text": "hour"
-  },
-  "minute": {
-   "text": "minute"
-  },
-  "month": {
-   "text": "month"
-  },
-  "year": {
-   "text": "year"
-  },
   "house": {
    "text": "house"
   },
@@ -104,15 +83,6 @@
   "much": {
    "text": "much"
   },
-  "now": {
-   "text": "now"
-  },
-  "today": {
-   "text": "today"
-  },
-  "tomorrow": {
-   "text": "tomorrow"
-  },
   "new": {
    "text": "new"
   },
@@ -148,9 +118,6 @@
   },
   "i-have-no-money": {
    "text": "I have no money."
-  },
-  "i-have-no-time": {
-   "text": "I have no time."
   },
   "do-you-have-water": {
    "text": "Do you have water?"
@@ -193,9 +160,6 @@
   },
   "old-people": {
    "text": "old people"
-  },
-  "a-new-day": {
-   "text": "a new day"
   },
   "the-house-is-big": {
    "text": "The house is big."

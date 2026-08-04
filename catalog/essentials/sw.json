@@ -11,57 +11,6 @@
     "plural": "only"
    }
   },
-  "time": {
-   "text": "wakati",
-   "synonyms": [
-    "muda"
-   ],
-   "grammar": {
-    "plural": "nyakati"
-   },
-   "notes": {
-    "de": "wakati = Zeit allgemein · muda = Zeitspanne: „Sina muda“ = Ich habe keine Zeit."
-   }
-  },
-  "day": {
-   "text": "siku",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "week": {
-   "text": "wiki",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "hour": {
-   "text": "saa",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "minute": {
-   "text": "dakika",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "month": {
-   "text": "mwezi",
-   "grammar": {
-    "plural": "miezi"
-   },
-   "notes": {
-    "de": "mwezi ist auch der Mond."
-   }
-  },
-  "year": {
-   "text": "mwaka",
-   "grammar": {
-    "plural": "miaka"
-   }
-  },
   "house": {
    "text": "nyumba",
    "grammar": {
@@ -210,15 +159,6 @@
     "de": "Vorsilbe verschmilzt: watu wengi, maji mengi, pesa nyingi."
    }
   },
-  "now": {
-   "text": "sasa"
-  },
-  "today": {
-   "text": "leo"
-  },
-  "tomorrow": {
-   "text": "kesho"
-  },
   "new": {
    "text": "-pya",
    "variants": [
@@ -283,9 +223,6 @@
   "i-have-no-money": {
    "text": "Sina pesa."
   },
-  "i-have-no-time": {
-   "text": "Sina muda."
-  },
   "do-you-have-water": {
    "text": "Una maji?"
   },
@@ -333,12 +270,6 @@
   },
   "old-people": {
    "text": "watu wazee"
-  },
-  "a-new-day": {
-   "text": "siku mpya",
-   "grammar": {
-    "plural": "="
-   }
   },
   "the-house-is-big": {
    "text": "Nyumba ni kubwa."

@@ -1,0 +1,90 @@
+{
+ "title": "Wakati na tarehe",
+ "subtitle": "Lini jambo hutokea na huchukua muda gani.",
+ "words": {
+  "time": {
+   "text": "wakati",
+   "synonyms": [
+    "muda"
+   ],
+   "grammar": {
+    "plural": "nyakati"
+   },
+   "notes": {
+    "de": "wakati = Zeit allgemein · muda = Zeitspanne: „Sina muda“ = Ich habe keine Zeit."
+   }
+  },
+  "day": {
+   "text": "siku",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "week": {
+   "text": "wiki",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "hour": {
+   "text": "saa",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "minute": {
+   "text": "dakika",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "month": {
+   "text": "mwezi",
+   "grammar": {
+    "plural": "miezi"
+   },
+   "notes": {
+    "de": "mwezi ist auch der Mond."
+   }
+  },
+  "year": {
+   "text": "mwaka",
+   "grammar": {
+    "plural": "miaka"
+   }
+  },
+  "now": {
+   "text": "sasa"
+  },
+  "today": {
+   "text": "leo"
+  },
+  "tomorrow": {
+   "text": "kesho"
+  },
+  "yesterday": {
+   "text": "jana"
+  },
+  "early": {
+   "text": "mapema"
+  },
+  "soon": {
+   "text": "hivi karibuni",
+   "synonyms": [
+    "punde"
+   ],
+   "notes": {
+    "de": "hivi karibuni heißt auch kürzlich — die Zeitform sagt, was gemeint ist."
+   }
+  },
+  "i-have-no-time": {
+   "text": "Sina muda."
+  },
+  "a-new-day": {
+   "text": "siku mpya",
+   "grammar": {
+    "plural": "="
+   }
+  }
+ }
+}

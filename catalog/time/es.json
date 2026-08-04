@@ -1,0 +1,81 @@
+{
+ "title": "La hora y la fecha",
+ "subtitle": "Cuándo pasa algo y cuánto dura.",
+ "words": {
+  "time": {
+   "text": "tiempo",
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "tiempo heißt auch Wetter: ¿Qué tiempo hace? · das einzelne Mal ist una vez."
+   }
+  },
+  "day": {
+   "text": "día",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "week": {
+   "text": "semana",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "hour": {
+   "text": "hora",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "minute": {
+   "text": "minuto",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "month": {
+   "text": "mes",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "year": {
+   "text": "año",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "now": {
+   "text": "ahora"
+  },
+  "today": {
+   "text": "hoy"
+  },
+  "tomorrow": {
+   "text": "mañana",
+   "notes": {
+    "de": "mañana heißt auch der Morgen: por la mañana = morgens."
+   }
+  },
+  "yesterday": {
+   "text": "ayer"
+  },
+  "early": {
+   "text": "temprano"
+  },
+  "soon": {
+   "text": "pronto"
+  },
+  "i-have-no-time": {
+   "text": "No tengo tiempo."
+  },
+  "a-new-day": {
+   "text": "un nuevo día",
+   "variants": [
+    "un día nuevo"
+   ]
+  }
+ }
+}

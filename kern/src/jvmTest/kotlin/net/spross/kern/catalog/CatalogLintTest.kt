@@ -304,10 +304,10 @@ class CatalogLintTest {
                 // Reviewed 2026-07-31: es merges what de distinguishes by capitalization
                 // alone (der Morgen / morgen); en/sw/uk all keep the two apart, so no
                 // concept pair collides twice. The area disambiguates the produce prompt.
-                "es mañana: bedroom/morning, essentials/tomorrow",
+                "es mañana: bedroom/morning, time/tomorrow",
                 // Reviewed 2026-07-31: `el tiempo` is both Zeit and Wetter. de/en/sw/uk
                 // all split it; `clima` is das Klima in Spain, so there is no alternative.
-                "es tiempo: essentials/time, nature/weather",
+                "es tiempo: nature/weather, time/time",
                 // Reviewed 2026-07-25: the textbook homonym, and the only entry here that
                 // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
                 // not one word covering two German ones. Same treatment either way.
@@ -317,7 +317,7 @@ class CatalogLintTest {
                 // Reviewed 2026-08-04: sw `mwezi` is moon and month, exactly as uk `місяць`
                 // is — so the moon is authored without uk, which keeps this to one language
                 // and pinnable instead of the unfixable two-language pair.
-                "sw mwezi: essentials/month, nature/moon",
+                "sw mwezi: nature/moon, time/month",
                 // Reviewed 2026-08-04: `ndege` is the only Swahili word for both bird and
                 // aeroplane; de/en/es/uk all split them. The plane carries a de note so the
                 // learner meets the second sense as a fact, not as a surprise.

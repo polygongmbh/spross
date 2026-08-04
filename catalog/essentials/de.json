@@ -14,55 +14,6 @@
     "gender": "das"
    }
   },
-  "time": {
-   "text": "Zeit",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "day": {
-   "text": "Tag",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "week": {
-   "text": "Woche",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "hour": {
-   "text": "Stunde",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "minute": {
-   "text": "Minute",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "month": {
-   "text": "Monat",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "year": {
-   "text": "Jahr",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
-  },
   "house": {
    "text": "Haus",
    "grammar": {
@@ -155,15 +106,6 @@
   "much": {
    "text": "viel"
   },
-  "now": {
-   "text": "jetzt"
-  },
-  "today": {
-   "text": "heute"
-  },
-  "tomorrow": {
-   "text": "morgen"
-  },
   "new": {
    "text": "neu"
   },
@@ -199,9 +141,6 @@
   },
   "i-have-no-money": {
    "text": "Ich habe kein Geld."
-  },
-  "i-have-no-time": {
-   "text": "Ich habe keine Zeit."
   },
   "do-you-have-water": {
    "text": "Haben Sie Wasser?",
@@ -259,9 +198,6 @@
    "variants": [
     "alte Menschen"
    ]
-  },
-  "a-new-day": {
-   "text": "ein neuer Tag"
   },
   "the-house-is-big": {
    "text": "Das Haus ist groß."

@@ -11,39 +11,6 @@
   "water": {
    "text": "вода"
   },
-  "time": {
-   "text": "час"
-  },
-  "day": {
-   "text": "день",
-   "grammar": {
-    "plural": "дні"
-   }
-  },
-  "week": {
-   "text": "тиждень",
-   "grammar": {
-    "plural": "тижні"
-   }
-  },
-  "hour": {
-   "text": "година"
-  },
-  "minute": {
-   "text": "хвилина"
-  },
-  "month": {
-   "text": "місяць"
-  },
-  "year": {
-   "text": "рік",
-   "grammar": {
-    "plural": "роки"
-   },
-   "notes": {
-    "de": "nach Zahlen: 2 роки, aber 5 років."
-   }
-  },
   "house": {
    "text": "будинок",
    "synonyms": [
@@ -155,15 +122,6 @@
   "much": {
    "text": "багато"
   },
-  "now": {
-   "text": "зараз"
-  },
-  "today": {
-   "text": "сьогодні"
-  },
-  "tomorrow": {
-   "text": "завтра"
-  },
   "new": {
    "text": "новий"
   },
@@ -205,9 +163,6 @@
   },
   "i-have-no-money": {
    "text": "У мене немає грошей."
-  },
-  "i-have-no-time": {
-   "text": "У мене немає часу."
   },
   "do-you-have-water": {
    "text": "У вас є вода?",
@@ -259,9 +214,6 @@
   },
   "old-people": {
    "text": "старі люди"
-  },
-  "a-new-day": {
-   "text": "новий день"
   },
   "the-house-is-big": {
    "text": "Будинок великий."

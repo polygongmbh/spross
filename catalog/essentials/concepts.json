@@ -10,39 +10,6 @@
   "emoji": "🌊"
  },
  {
-  "slug": "time",
-  "kind": "noun",
-  "emoji": "⌚"
- },
- {
-  "slug": "day",
-  "kind": "noun",
-  "emoji": "📆"
- },
- {
-  "slug": "week",
-  "kind": "noun",
-  "emoji": "🗓️"
- },
- {
-  "slug": "hour",
-  "kind": "noun",
-  "emoji": "⏱️"
- },
- {
-  "slug": "minute",
-  "kind": "noun",
-  "emoji": "⏲️"
- },
- {
-  "slug": "month",
-  "kind": "noun"
- },
- {
-  "slug": "year",
-  "kind": "noun"
- },
- {
   "slug": "house",
   "kind": "noun",
   "emoji": "🏡"
@@ -161,19 +128,6 @@
   "kind": "adjective"
  },
  {
-  "slug": "now",
-  "kind": "adjective"
- },
- {
-  "slug": "today",
-  "kind": "adjective",
-  "emoji": "📅"
- },
- {
-  "slug": "tomorrow",
-  "kind": "adjective"
- },
- {
   "slug": "new",
   "kind": "adjective",
   "emoji": "🆕"
@@ -237,15 +191,6 @@
   "emoji": "🪙",
   "components": [
    "money",
-   "have"
-  ]
- },
- {
-  "slug": "i-have-no-time",
-  "kind": "phrase",
-  "emoji": "⏰",
-  "components": [
-   "time",
    "have"
   ]
  },
@@ -362,15 +307,6 @@
   "components": [
    "person",
    "old"
-  ]
- },
- {
-  "slug": "a-new-day",
-  "kind": "phrase",
-  "emoji": "🌅",
-  "components": [
-   "day",
-   "new"
   ]
  },
  {
