@@ -1,6 +1,6 @@
 {
- "title": "Kozi ya lugha",
- "subtitle": "Uliza, jibu, endelea kujifunza.",
+ "title": "Kujifunza lugha",
+ "subtitle": "Kuuliza, kuelewa, kuendelea na mazungumzo.",
  "words": {
   "dictionary": {
    "text": "kamusi",
@@ -56,6 +56,15 @@
     "plural": "lugha za mama"
    }
   },
+  "speak": {
+   "text": "kuzungumza"
+  },
+  "understand": {
+   "text": "kuelewa"
+  },
+  "repeat-word": {
+   "text": "kurudia neno"
+  },
   "i-have-a-question": {
    "text": "Nina swali."
   },
@@ -70,6 +79,24 @@
   },
   "you-can-do-it": {
    "text": "Hakika utaweza!"
+  },
+  "i-understand": {
+   "text": "Naelewa."
+  },
+  "i-dont-understand": {
+   "text": "Sielewi."
+  },
+  "do-you-speak-english": {
+   "text": "Unazungumza Kiingereza?"
+  },
+  "i-speak-a-little-german": {
+   "text": "Ninazungumza Kijerumani kidogo tu."
+  },
+  "can-you-repeat-that": {
+   "text": "Unaweza kurudia?"
+  },
+  "slower": {
+   "text": "Polepole zaidi!"
   }
  }
 }

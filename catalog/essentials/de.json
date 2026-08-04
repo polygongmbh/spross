@@ -21,34 +21,6 @@
     "plural": "Häuser"
    }
   },
-  "person": {
-   "text": "Person",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "human": {
-   "text": "Mensch",
-   "grammar": {
-    "gender": "der",
-    "plural": "-en"
-   }
-  },
-  "friend": {
-   "text": "Freund",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "friend-f": {
-   "text": "Freundin",
-   "grammar": {
-    "gender": "die",
-    "plural": "-nen"
-   }
-  },
   "go": {
    "text": "gehen"
   },
@@ -115,17 +87,8 @@
   "eat": {
    "text": "essen"
   },
-  "speak": {
-   "text": "sprechen"
-  },
-  "understand": {
-   "text": "verstehen"
-  },
   "wait": {
    "text": "warten"
-  },
-  "repeat-word": {
-   "text": "das Wort wiederholen"
   },
   "slow": {
    "text": "langsam"
@@ -154,49 +117,10 @@
   "the-food-is-ready": {
    "text": "Das Essen ist fertig!"
   },
-  "i-understand": {
-   "text": "Ich verstehe."
-  },
-  "i-dont-understand": {
-   "text": "Ich verstehe nicht."
-  },
-  "do-you-speak-english": {
-   "text": "Sprechen Sie Englisch?",
-   "variants": [
-    "Sprichst du Englisch?"
-   ]
-  },
-  "i-speak-a-little-german": {
-   "text": "Ich spreche nur ein bisschen Deutsch."
-  },
   "where-are-you-from": {
    "text": "Woher kommen Sie?",
    "variants": [
     "Woher kommst du?"
-   ]
-  },
-  "can-you-repeat-that": {
-   "text": "Können Sie das wiederholen?",
-   "variants": [
-    "Kannst du das wiederholen?"
-   ]
-  },
-  "slower": {
-   "text": "Langsamer!"
-  },
-  "a-good-friend": {
-   "text": "ein guter Freund"
-  },
-  "my-girlfriend": {
-   "text": "meine Freundin"
-  },
-  "her-boyfriend": {
-   "text": "ihr Freund"
-  },
-  "old-people": {
-   "text": "alte Leute",
-   "variants": [
-    "alte Menschen"
    ]
   },
   "the-house-is-big": {
@@ -207,9 +131,6 @@
   },
   "a-lot-of-money": {
    "text": "viel Geld"
-  },
-  "many-friends": {
-   "text": "viele Freunde"
   }
  }
 }

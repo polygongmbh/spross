@@ -26,33 +26,6 @@
     "gender": "la"
    }
   },
-  "person": {
-   "text": "persona",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "human": {
-   "text": "ser humano",
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "ser humano = Mensch als Gattung · persona = der einzelne Mensch."
-   }
-  },
-  "friend": {
-   "text": "amigo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "friend-f": {
-   "text": "amiga",
-   "grammar": {
-    "gender": "la"
-   }
-  },
   "go": {
    "text": "ir",
    "notes": {
@@ -184,23 +157,11 @@
   "eat": {
    "text": "comer"
   },
-  "speak": {
-   "text": "hablar"
-  },
-  "understand": {
-   "text": "entender",
-   "synonyms": [
-    "comprender"
-   ]
-  },
   "wait": {
    "text": "esperar",
    "notes": {
     "de": "esperar heißt auch hoffen und erwarten."
    }
-  },
-  "repeat-word": {
-   "text": "repetir la palabra"
   },
   "slow": {
    "text": "lento",
@@ -252,33 +213,6 @@
   "the-food-is-ready": {
    "text": "¡La comida está lista!"
   },
-  "i-understand": {
-   "text": "Entiendo.",
-   "variants": [
-    "Lo entiendo.",
-    "Comprendo."
-   ]
-  },
-  "i-dont-understand": {
-   "text": "No entiendo.",
-   "variants": [
-    "No lo entiendo.",
-    "No comprendo."
-   ]
-  },
-  "do-you-speak-english": {
-   "text": "¿Habla usted inglés?",
-   "variants": [
-    "¿Habla inglés?",
-    "¿Hablas inglés?"
-   ]
-  },
-  "i-speak-a-little-german": {
-   "text": "Solo hablo un poco de alemán.",
-   "variants": [
-    "Hablo solo un poco de alemán."
-   ]
-  },
   "where-are-you-from": {
    "text": "¿De dónde es usted?",
    "variants": [
@@ -287,40 +221,6 @@
    ],
    "notes": {
     "de": "Spanisch fragt nach der Herkunft mit ser, nicht mit venir."
-   }
-  },
-  "can-you-repeat-that": {
-   "text": "¿Puede repetirlo?",
-   "variants": [
-    "¿Puede usted repetirlo?",
-    "¿Puedes repetirlo?",
-    "¿Me lo puede repetir?",
-    "¿Puede repetir?"
-   ]
-  },
-  "slower": {
-   "text": "¡Más despacio!",
-   "variants": [
-    "¡Más lento!"
-   ]
-  },
-  "a-good-friend": {
-   "text": "un buen amigo"
-  },
-  "my-girlfriend": {
-   "text": "mi novia"
-  },
-  "her-boyfriend": {
-   "text": "su novio"
-  },
-  "old-people": {
-   "text": "personas mayores",
-   "variants": [
-    "gente mayor",
-    "los mayores"
-   ],
-   "notes": {
-    "de": "personas viejas klingt abwertend — im Alltag mayores."
    }
   },
   "the-house-is-big": {
@@ -334,12 +234,6 @@
   },
   "a-lot-of-money": {
    "text": "mucho dinero"
-  },
-  "many-friends": {
-   "text": "muchos amigos",
-   "variants": [
-    "muchas amigas"
-   ]
   }
  }
 }

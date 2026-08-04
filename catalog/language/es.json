@@ -1,6 +1,6 @@
 {
- "title": "El curso de idiomas",
- "subtitle": "Preguntar, responder, seguir aprendiendo.",
+ "title": "Aprender el idioma",
+ "subtitle": "Preguntar, entender, seguir en la conversación.",
  "words": {
   "dictionary": {
    "text": "diccionario",
@@ -65,6 +65,18 @@
     "gender": "la"
    }
   },
+  "speak": {
+   "text": "hablar"
+  },
+  "understand": {
+   "text": "entender",
+   "synonyms": [
+    "comprender"
+   ]
+  },
+  "repeat-word": {
+   "text": "repetir la palabra"
+  },
   "i-have-a-question": {
    "text": "Tengo una pregunta."
   },
@@ -91,6 +103,48 @@
    "variants": [
     "¡Tú puedes!",
     "¡Seguro que lo logras!"
+   ]
+  },
+  "i-understand": {
+   "text": "Entiendo.",
+   "variants": [
+    "Lo entiendo.",
+    "Comprendo."
+   ]
+  },
+  "i-dont-understand": {
+   "text": "No entiendo.",
+   "variants": [
+    "No lo entiendo.",
+    "No comprendo."
+   ]
+  },
+  "do-you-speak-english": {
+   "text": "¿Habla usted inglés?",
+   "variants": [
+    "¿Habla inglés?",
+    "¿Hablas inglés?"
+   ]
+  },
+  "i-speak-a-little-german": {
+   "text": "Solo hablo un poco de alemán.",
+   "variants": [
+    "Hablo solo un poco de alemán."
+   ]
+  },
+  "can-you-repeat-that": {
+   "text": "¿Puede repetirlo?",
+   "variants": [
+    "¿Puede usted repetirlo?",
+    "¿Puedes repetirlo?",
+    "¿Me lo puede repetir?",
+    "¿Puede repetir?"
+   ]
+  },
+  "slower": {
+   "text": "¡Más despacio!",
+   "variants": [
+    "¡Más lento!"
    ]
   }
  }

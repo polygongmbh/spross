@@ -15,27 +15,6 @@
   "emoji": "🏡"
  },
  {
-  "slug": "person",
-  "kind": "noun",
-  "emoji": "👤"
- },
- {
-  "slug": "human",
-  "kind": "noun",
-  "emoji": "🧑"
- },
- {
-  "slug": "friend",
-  "kind": "noun",
-  "emoji": "🫂"
- },
- {
-  "slug": "friend-f",
-  "kind": "noun",
-  "emoji": "👭",
-  "feminineOf": "friend"
- },
- {
   "slug": "go",
   "kind": "verb",
   "emoji": "➡️"
@@ -142,24 +121,9 @@
   "emoji": "🍽️"
  },
  {
-  "slug": "speak",
-  "kind": "verb",
-  "emoji": "💬"
- },
- {
-  "slug": "understand",
-  "kind": "verb",
-  "emoji": "💡"
- },
- {
   "slug": "wait",
   "kind": "verb",
   "emoji": "⏳"
- },
- {
-  "slug": "repeat-word",
-  "kind": "verb",
-  "emoji": "🔁"
  },
  {
   "slug": "slow",
@@ -220,93 +184,11 @@
   ]
  },
  {
-  "slug": "i-understand",
-  "kind": "phrase",
-  "emoji": "💡",
-  "components": [
-   "understand"
-  ]
- },
- {
-  "slug": "i-dont-understand",
-  "kind": "phrase",
-  "emoji": "😕",
-  "components": [
-   "understand"
-  ]
- },
- {
-  "slug": "do-you-speak-english",
-  "kind": "phrase",
-  "emoji": "🇬🇧",
-  "components": [
-   "speak"
-  ]
- },
- {
-  "slug": "i-speak-a-little-german",
-  "kind": "phrase",
-  "emoji": "🇩🇪",
-  "components": [
-   "speak"
-  ]
- },
- {
   "slug": "where-are-you-from",
   "kind": "phrase",
   "emoji": "🌍",
   "components": [
    "come"
-  ]
- },
- {
-  "slug": "can-you-repeat-that",
-  "kind": "phrase",
-  "emoji": "🔁",
-  "components": [
-   "repeat-word"
-  ]
- },
- {
-  "slug": "slower",
-  "kind": "phrase",
-  "emoji": "🐌",
-  "components": [
-   "slow"
-  ]
- },
- {
-  "slug": "a-good-friend",
-  "kind": "phrase",
-  "emoji": "🧑‍🤝‍🧑",
-  "components": [
-   "friend",
-   "good"
-  ]
- },
- {
-  "slug": "my-girlfriend",
-  "kind": "phrase",
-  "emoji": "👩‍❤️‍👩",
-  "components": [
-   "friend"
-  ]
- },
- {
-  "slug": "her-boyfriend",
-  "kind": "phrase",
-  "emoji": "👩‍❤️‍👨",
-  "components": [
-   "friend"
-  ]
- },
- {
-  "slug": "old-people",
-  "kind": "phrase",
-  "emoji": "🧓",
-  "components": [
-   "person",
-   "old"
   ]
  },
  {
@@ -333,15 +215,6 @@
   "emoji": "🤑",
   "components": [
    "money",
-   "much"
-  ]
- },
- {
-  "slug": "many-friends",
-  "kind": "phrase",
-  "emoji": "👥",
-  "components": [
-   "friend",
    "much"
   ]
  }

@@ -23,21 +23,6 @@
     "de": "будинок = das Gebäude · дім = Heim, Zuhause."
    }
   },
-  "person": {
-   "text": "людина",
-   "grammar": {
-    "plural": "люди"
-   }
-  },
-  "friend": {
-   "text": "друг",
-   "grammar": {
-    "plural": "друзі"
-   }
-  },
-  "friend-f": {
-   "text": "подруга"
-  },
   "go": {
    "text": "йти",
    "variants": [
@@ -131,17 +116,8 @@
   "eat": {
    "text": "їсти"
   },
-  "speak": {
-   "text": "говорити"
-  },
-  "understand": {
-   "text": "розуміти"
-  },
   "wait": {
    "text": "чекати"
-  },
-  "repeat-word": {
-   "text": "повторювати слово"
   },
   "slow": {
    "text": "повільний",
@@ -176,44 +152,8 @@
   "the-food-is-ready": {
    "text": "Їжа готова!"
   },
-  "i-understand": {
-   "text": "Я розумію."
-  },
-  "i-dont-understand": {
-   "text": "Я не розумію."
-  },
-  "do-you-speak-english": {
-   "text": "Ви розмовляєте англійською?"
-  },
-  "i-speak-a-little-german": {
-   "text": "Я лише трохи розмовляю німецькою."
-  },
   "where-are-you-from": {
    "text": "Звідки ви?"
-  },
-  "can-you-repeat-that": {
-   "text": "Чи можете ви це повторити?",
-   "variants": [
-    "Можеш це повторити?"
-   ]
-  },
-  "slower": {
-   "text": "Повільніше!"
-  },
-  "a-good-friend": {
-   "text": "добрий друг",
-   "variants": [
-    "хороший друг"
-   ]
-  },
-  "my-girlfriend": {
-   "text": "моя дівчина"
-  },
-  "her-boyfriend": {
-   "text": "її хлопець"
-  },
-  "old-people": {
-   "text": "старі люди"
   },
   "the-house-is-big": {
    "text": "Будинок великий."
@@ -223,9 +163,6 @@
   },
   "a-lot-of-money": {
    "text": "багато грошей"
-  },
-  "many-friends": {
-   "text": "багато друзів"
   }
  }
 }

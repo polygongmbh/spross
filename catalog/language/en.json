@@ -1,6 +1,6 @@
 {
- "title": "The language course",
- "subtitle": "Ask, answer, keep learning.",
+ "title": "Learning the language",
+ "subtitle": "Asking, understanding, staying in the conversation.",
  "words": {
   "dictionary": {
    "text": "dictionary",
@@ -44,6 +44,15 @@
     "native language"
    ]
   },
+  "speak": {
+   "text": "to speak"
+  },
+  "understand": {
+   "text": "to understand"
+  },
+  "repeat-word": {
+   "text": "to repeat the word"
+  },
   "i-have-a-question": {
    "text": "I have a question."
   },
@@ -58,6 +67,24 @@
   },
   "you-can-do-it": {
    "text": "You can definitely do it!"
+  },
+  "i-understand": {
+   "text": "I understand."
+  },
+  "i-dont-understand": {
+   "text": "I don't understand."
+  },
+  "do-you-speak-english": {
+   "text": "Do you speak English?"
+  },
+  "i-speak-a-little-german": {
+   "text": "I only speak a little German."
+  },
+  "can-you-repeat-that": {
+   "text": "Can you repeat that?"
+  },
+  "slower": {
+   "text": "Slower!"
   }
  }
 }

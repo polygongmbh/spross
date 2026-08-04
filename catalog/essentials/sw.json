@@ -17,27 +17,6 @@
     "plural": "="
    }
   },
-  "person": {
-   "text": "mtu",
-   "grammar": {
-    "plural": "watu"
-   }
-  },
-  "human": {
-   "text": "binadamu",
-   "grammar": {
-    "plural": "="
-   },
-   "notes": {
-    "de": "binadamu = Mensch als Gattungswesen · mtu = einzelne Person."
-   }
-  },
-  "friend": {
-   "text": "rafiki",
-   "grammar": {
-    "plural": "marafiki"
-   }
-  },
   "go": {
    "text": "kwenda"
   },
@@ -187,17 +166,8 @@
   "eat": {
    "text": "kula"
   },
-  "speak": {
-   "text": "kuzungumza"
-  },
-  "understand": {
-   "text": "kuelewa"
-  },
   "wait": {
    "text": "kusubiri"
-  },
-  "repeat-word": {
-   "text": "kurudia neno"
   },
   "slow": {
    "text": "polepole",
@@ -232,44 +202,8 @@
   "the-food-is-ready": {
    "text": "Chakula kiko tayari!"
   },
-  "i-understand": {
-   "text": "Naelewa."
-  },
-  "i-dont-understand": {
-   "text": "Sielewi."
-  },
-  "do-you-speak-english": {
-   "text": "Unazungumza Kiingereza?"
-  },
-  "i-speak-a-little-german": {
-   "text": "Ninazungumza Kijerumani kidogo tu."
-  },
   "where-are-you-from": {
    "text": "Unatoka wapi?"
-  },
-  "can-you-repeat-that": {
-   "text": "Unaweza kurudia?"
-  },
-  "slower": {
-   "text": "Polepole zaidi!"
-  },
-  "a-good-friend": {
-   "text": "rafiki mzuri",
-   "grammar": {
-    "plural": "marafiki wazuri"
-   }
-  },
-  "my-girlfriend": {
-   "text": "mpenzi wangu",
-   "notes": {
-    "de": "mpenzi ist geschlechtsneutral: Freund wie Freundin. rafiki bleibt der platonische Freund."
-   }
-  },
-  "her-boyfriend": {
-   "text": "mpenzi wake"
-  },
-  "old-people": {
-   "text": "watu wazee"
   },
   "the-house-is-big": {
    "text": "Nyumba ni kubwa."
@@ -279,9 +213,6 @@
   },
   "a-lot-of-money": {
    "text": "pesa nyingi"
-  },
-  "many-friends": {
-   "text": "marafiki wengi"
   }
  }
 }

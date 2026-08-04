@@ -1,6 +1,6 @@
 {
- "title": "Der Sprachkurs",
- "subtitle": "Fragen, antworten, weiterlernen.",
+ "title": "Sprache lernen",
+ "subtitle": "Nachfragen, verstehen, im Gespräch bleiben.",
  "words": {
   "dictionary": {
    "text": "Wörterbuch",
@@ -62,6 +62,15 @@
     "plural": "-n"
    }
   },
+  "speak": {
+   "text": "sprechen"
+  },
+  "understand": {
+   "text": "verstehen"
+  },
+  "repeat-word": {
+   "text": "das Wort wiederholen"
+  },
   "i-have-a-question": {
    "text": "Ich habe eine Frage."
   },
@@ -76,6 +85,30 @@
   },
   "you-can-do-it": {
    "text": "Du schaffst das bestimmt!"
+  },
+  "i-understand": {
+   "text": "Ich verstehe."
+  },
+  "i-dont-understand": {
+   "text": "Ich verstehe nicht."
+  },
+  "do-you-speak-english": {
+   "text": "Sprechen Sie Englisch?",
+   "variants": [
+    "Sprichst du Englisch?"
+   ]
+  },
+  "i-speak-a-little-german": {
+   "text": "Ich spreche nur ein bisschen Deutsch."
+  },
+  "can-you-repeat-that": {
+   "text": "Können Sie das wiederholen?",
+   "variants": [
+    "Kannst du das wiederholen?"
+   ]
+  },
+  "slower": {
+   "text": "Langsamer!"
   }
  }
 }

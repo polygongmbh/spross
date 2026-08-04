@@ -11,18 +11,6 @@
   "house": {
    "text": "house"
   },
-  "person": {
-   "text": "person",
-   "grammar": {
-    "plural": "people"
-   }
-  },
-  "human": {
-   "text": "human being"
-  },
-  "friend": {
-   "text": "friend"
-  },
   "go": {
    "text": "to go"
   },
@@ -92,17 +80,8 @@
   "eat": {
    "text": "to eat"
   },
-  "speak": {
-   "text": "to speak"
-  },
-  "understand": {
-   "text": "to understand"
-  },
   "wait": {
    "text": "to wait"
-  },
-  "repeat-word": {
-   "text": "to repeat the word"
   },
   "slow": {
    "text": "slow"
@@ -128,38 +107,8 @@
   "the-food-is-ready": {
    "text": "The food is ready!"
   },
-  "i-understand": {
-   "text": "I understand."
-  },
-  "i-dont-understand": {
-   "text": "I don't understand."
-  },
-  "do-you-speak-english": {
-   "text": "Do you speak English?"
-  },
-  "i-speak-a-little-german": {
-   "text": "I only speak a little German."
-  },
   "where-are-you-from": {
    "text": "Where are you from?"
-  },
-  "can-you-repeat-that": {
-   "text": "Can you repeat that?"
-  },
-  "slower": {
-   "text": "Slower!"
-  },
-  "a-good-friend": {
-   "text": "a good friend"
-  },
-  "my-girlfriend": {
-   "text": "my girlfriend"
-  },
-  "her-boyfriend": {
-   "text": "her boyfriend"
-  },
-  "old-people": {
-   "text": "old people"
   },
   "the-house-is-big": {
    "text": "The house is big."
@@ -169,9 +118,6 @@
   },
   "a-lot-of-money": {
    "text": "a lot of money"
-  },
-  "many-friends": {
-   "text": "many friends"
   }
  }
 }

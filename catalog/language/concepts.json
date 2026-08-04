@@ -32,7 +32,7 @@
  {
   "slug": "sentence",
   "kind": "noun",
-  "emoji": "💬"
+  "emoji": "📝"
  },
  {
   "slug": "learn-by-heart",
@@ -41,8 +41,7 @@
  },
  {
   "slug": "meaning",
-  "kind": "noun",
-  "emoji": "💡"
+  "kind": "noun"
  },
  {
   "slug": "to-pronounce",
@@ -57,6 +56,21 @@
  {
   "slug": "mother-tongue",
   "kind": "noun"
+ },
+ {
+  "slug": "speak",
+  "kind": "verb",
+  "emoji": "💬"
+ },
+ {
+  "slug": "understand",
+  "kind": "verb",
+  "emoji": "💡"
+ },
+ {
+  "slug": "repeat-word",
+  "kind": "verb",
+  "emoji": "🔁"
  },
  {
   "slug": "i-have-a-question",
@@ -88,6 +102,52 @@
   "slug": "you-can-do-it",
   "kind": "phrase",
   "emoji": "💪",
+  "components": []
+ },
+ {
+  "slug": "i-understand",
+  "kind": "phrase",
+  "emoji": "💡",
+  "components": [
+   "understand"
+  ]
+ },
+ {
+  "slug": "i-dont-understand",
+  "kind": "phrase",
+  "emoji": "😕",
+  "components": [
+   "understand"
+  ]
+ },
+ {
+  "slug": "do-you-speak-english",
+  "kind": "phrase",
+  "emoji": "🇬🇧",
+  "components": [
+   "speak"
+  ]
+ },
+ {
+  "slug": "i-speak-a-little-german",
+  "kind": "phrase",
+  "emoji": "🇩🇪",
+  "components": [
+   "speak"
+  ]
+ },
+ {
+  "slug": "can-you-repeat-that",
+  "kind": "phrase",
+  "emoji": "🔁",
+  "components": [
+   "repeat-word"
+  ]
+ },
+ {
+  "slug": "slower",
+  "kind": "phrase",
+  "emoji": "🐌",
   "components": []
  }
 ]
