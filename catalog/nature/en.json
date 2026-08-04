@@ -50,6 +50,51 @@
   "grill-meat": {
    "text": "to grill meat"
   },
+  "animal": {
+   "text": "animal"
+  },
+  "dog": {
+   "text": "dog"
+  },
+  "cat": {
+   "text": "cat"
+  },
+  "bird": {
+   "text": "bird"
+  },
+  "sky": {
+   "text": "sky"
+  },
+  "cloud": {
+   "text": "cloud"
+  },
+  "mountain": {
+   "text": "mountain"
+  },
+  "sea": {
+   "text": "sea"
+  },
+  "beach": {
+   "text": "beach",
+   "grammar": {
+    "plural": "beaches"
+   }
+  },
+  "lake": {
+   "text": "lake"
+  },
+  "forest": {
+   "text": "forest"
+  },
+  "stone": {
+   "text": "stone"
+  },
+  "moon": {
+   "text": "moon"
+  },
+  "star": {
+   "text": "star"
+  },
   "hows-the-weather-today": {
    "text": "How's the weather today?"
   },
@@ -70,6 +115,18 @@
   },
   "what-a-beautiful-day": {
    "text": "What a beautiful day!"
+  },
+  "lets-go-to-the-beach": {
+   "text": "Let's go to the beach!"
+  },
+  "we-are-going-to-the-mountains": {
+   "text": "We're going to the mountains."
+  },
+  "look-a-bird": {
+   "text": "Look, a bird!"
+  },
+  "the-cat-is-sleeping": {
+   "text": "The cat is sleeping."
   }
  }
 }

@@ -79,6 +79,103 @@
   "grill-meat": {
    "text": "Fleisch grillen"
   },
+  "animal": {
+   "text": "Tier",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "dog": {
+   "text": "Hund",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "cat": {
+   "text": "Katze",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "bird": {
+   "text": "Vogel",
+   "grammar": {
+    "gender": "der",
+    "plural": "Vögel"
+   }
+  },
+  "sky": {
+   "text": "Himmel",
+   "grammar": {
+    "gender": "der"
+   }
+  },
+  "cloud": {
+   "text": "Wolke",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
+  "mountain": {
+   "text": "Berg",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "sea": {
+   "text": "Meer",
+   "grammar": {
+    "gender": "das",
+    "plural": "-e"
+   }
+  },
+  "beach": {
+   "text": "Strand",
+   "grammar": {
+    "gender": "der",
+    "plural": "Strände"
+   }
+  },
+  "lake": {
+   "text": "See",
+   "grammar": {
+    "gender": "der",
+    "plural": "-n"
+   }
+  },
+  "forest": {
+   "text": "Wald",
+   "grammar": {
+    "gender": "der",
+    "plural": "Wälder"
+   }
+  },
+  "stone": {
+   "text": "Stein",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "moon": {
+   "text": "Mond",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "star": {
+   "text": "Stern",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
   "hows-the-weather-today": {
    "text": "Wie ist das Wetter heute?"
   },
@@ -99,6 +196,24 @@
   },
   "what-a-beautiful-day": {
    "text": "Was für ein schöner Tag!"
+  },
+  "lets-go-to-the-beach": {
+   "text": "Gehen wir an den Strand!",
+   "variants": [
+    "Lass uns an den Strand gehen!"
+   ]
+  },
+  "we-are-going-to-the-mountains": {
+   "text": "Wir fahren in die Berge."
+  },
+  "look-a-bird": {
+   "text": "Schau mal, ein Vogel!",
+   "variants": [
+    "Schau, ein Vogel!"
+   ]
+  },
+  "the-cat-is-sleeping": {
+   "text": "Die Katze schläft."
   }
  }
 }

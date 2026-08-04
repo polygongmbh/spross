@@ -53,6 +53,60 @@
   "grill-meat": {
    "text": "смажити м'ясо на грилі"
   },
+  "animal": {
+   "text": "тварина"
+  },
+  "dog": {
+   "text": "собака",
+   "variants": [
+    "пес"
+   ]
+  },
+  "cat": {
+   "text": "кіт",
+   "variants": [
+    "кішка"
+   ],
+   "grammar": {
+    "plural": "коти"
+   }
+  },
+  "bird": {
+   "text": "птах",
+   "variants": [
+    "пташка"
+   ]
+  },
+  "sky": {
+   "text": "небо"
+  },
+  "cloud": {
+   "text": "хмара"
+  },
+  "mountain": {
+   "text": "гора"
+  },
+  "sea": {
+   "text": "море"
+  },
+  "beach": {
+   "text": "пляж"
+  },
+  "lake": {
+   "text": "озеро"
+  },
+  "forest": {
+   "text": "ліс"
+  },
+  "stone": {
+   "text": "камінь",
+   "grammar": {
+    "plural": "камені"
+   }
+  },
+  "star": {
+   "text": "зірка"
+  },
   "hows-the-weather-today": {
    "text": "Яка сьогодні погода?"
   },
@@ -70,6 +124,21 @@
   },
   "what-a-beautiful-day": {
    "text": "Який гарний день!"
+  },
+  "lets-go-to-the-beach": {
+   "text": "Ходімо на пляж!"
+  },
+  "we-are-going-to-the-mountains": {
+   "text": "Ми їдемо в гори."
+  },
+  "look-a-bird": {
+   "text": "Дивись, пташка!",
+   "variants": [
+    "Дивись, птах!"
+   ]
+  },
+  "the-cat-is-sleeping": {
+   "text": "Кіт спить."
   }
  }
 }

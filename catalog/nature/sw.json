@@ -62,6 +62,90 @@
   "grill-meat": {
    "text": "kuchoma nyama"
   },
+  "animal": {
+   "text": "mnyama",
+   "grammar": {
+    "plural": "wanyama"
+   }
+  },
+  "dog": {
+   "text": "mbwa",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "cat": {
+   "text": "paka",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "bird": {
+   "text": "ndege",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "sky": {
+   "text": "anga"
+  },
+  "cloud": {
+   "text": "wingu",
+   "grammar": {
+    "plural": "mawingu"
+   }
+  },
+  "mountain": {
+   "text": "mlima",
+   "grammar": {
+    "plural": "milima"
+   }
+  },
+  "sea": {
+   "text": "bahari",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "beach": {
+   "text": "ufukwe",
+   "synonyms": [
+    "pwani"
+   ],
+   "grammar": {
+    "plural": "fukwe"
+   }
+  },
+  "lake": {
+   "text": "ziwa",
+   "grammar": {
+    "plural": "maziwa"
+   }
+  },
+  "forest": {
+   "text": "msitu",
+   "grammar": {
+    "plural": "misitu"
+   }
+  },
+  "stone": {
+   "text": "jiwe",
+   "grammar": {
+    "plural": "mawe"
+   }
+  },
+  "moon": {
+   "text": "mwezi",
+   "grammar": {
+    "plural": "miezi"
+   }
+  },
+  "star": {
+   "text": "nyota",
+   "grammar": {
+    "plural": "="
+   }
+  },
   "hows-the-weather-today": {
    "text": "Hali ya hewa ikoje leo?"
   },
@@ -79,6 +163,24 @@
   },
   "what-a-beautiful-day": {
    "text": "Siku nzuri kama nini!"
+  },
+  "lets-go-to-the-beach": {
+   "text": "Twende ufukweni!",
+   "variants": [
+    "Twende pwani!"
+   ]
+  },
+  "we-are-going-to-the-mountains": {
+   "text": "Tunaenda milimani."
+  },
+  "look-a-bird": {
+   "text": "Angalia, ndege!",
+   "variants": [
+    "Tazama, ndege!"
+   ]
+  },
+  "the-cat-is-sleeping": {
+   "text": "Paka analala."
   }
  }
 }

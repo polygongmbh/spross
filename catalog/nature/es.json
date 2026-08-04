@@ -106,6 +106,93 @@
     "hacer una barbacoa"
    ]
   },
+  "animal": {
+   "text": "animal",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "dog": {
+   "text": "perro",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "cat": {
+   "text": "gato",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "bird": {
+   "text": "pájaro",
+   "variants": [
+    "ave"
+   ],
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "sky": {
+   "text": "cielo",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "cloud": {
+   "text": "nube",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "mountain": {
+   "text": "montaña",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "sea": {
+   "text": "mar",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "beach": {
+   "text": "playa",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "lake": {
+   "text": "lago",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "forest": {
+   "text": "bosque",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "stone": {
+   "text": "piedra",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "moon": {
+   "text": "luna",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "star": {
+   "text": "estrella",
+   "grammar": {
+    "gender": "la"
+   }
+  },
   "hows-the-weather-today": {
    "text": "¿Qué tiempo hace hoy?",
    "variants": [
@@ -147,6 +234,28 @@
    "variants": [
     "¡Qué día más bonito!",
     "¡Qué día tan hermoso!"
+   ]
+  },
+  "lets-go-to-the-beach": {
+   "text": "¡Vamos a la playa!",
+   "variants": [
+    "¡Vámonos a la playa!"
+   ]
+  },
+  "we-are-going-to-the-mountains": {
+   "text": "Vamos a la montaña.",
+   "variants": [
+    "Nos vamos a la montaña.",
+    "Vamos a las montañas."
+   ]
+  },
+  "look-a-bird": {
+   "text": "¡Mira, un pájaro!"
+  },
+  "the-cat-is-sleeping": {
+   "text": "El gato está durmiendo.",
+   "variants": [
+    "El gato duerme."
    ]
   }
  }

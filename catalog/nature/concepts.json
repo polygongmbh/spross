@@ -78,6 +78,74 @@
   "emoji": "🍖"
  },
  {
+  "slug": "animal",
+  "kind": "noun",
+  "emoji": "🐾"
+ },
+ {
+  "slug": "dog",
+  "kind": "noun",
+  "emoji": "🐕"
+ },
+ {
+  "slug": "cat",
+  "kind": "noun",
+  "emoji": "🐈"
+ },
+ {
+  "slug": "bird",
+  "kind": "noun",
+  "emoji": "🐦"
+ },
+ {
+  "slug": "sky",
+  "kind": "noun"
+ },
+ {
+  "slug": "cloud",
+  "kind": "noun",
+  "emoji": "☁️"
+ },
+ {
+  "slug": "mountain",
+  "kind": "noun",
+  "emoji": "⛰️"
+ },
+ {
+  "slug": "sea",
+  "kind": "noun",
+  "emoji": "🌊"
+ },
+ {
+  "slug": "beach",
+  "kind": "noun",
+  "emoji": "🏖️"
+ },
+ {
+  "slug": "lake",
+  "kind": "noun"
+ },
+ {
+  "slug": "forest",
+  "kind": "noun",
+  "emoji": "🌲"
+ },
+ {
+  "slug": "stone",
+  "kind": "noun",
+  "emoji": "🪨"
+ },
+ {
+  "slug": "moon",
+  "kind": "noun",
+  "emoji": "🌙"
+ },
+ {
+  "slug": "star",
+  "kind": "noun",
+  "emoji": "⭐"
+ },
+ {
   "slug": "hows-the-weather-today",
   "kind": "phrase",
   "emoji": "🌤️",
@@ -118,5 +186,37 @@
   "kind": "phrase",
   "emoji": "🌈",
   "components": []
+ },
+ {
+  "slug": "lets-go-to-the-beach",
+  "kind": "phrase",
+  "emoji": "🏖️",
+  "components": [
+   "beach"
+  ]
+ },
+ {
+  "slug": "we-are-going-to-the-mountains",
+  "kind": "phrase",
+  "emoji": "⛰️",
+  "components": [
+   "mountain"
+  ]
+ },
+ {
+  "slug": "look-a-bird",
+  "kind": "phrase",
+  "emoji": "🐦",
+  "components": [
+   "bird"
+  ]
+ },
+ {
+  "slug": "the-cat-is-sleeping",
+  "kind": "phrase",
+  "emoji": "🐈",
+  "components": [
+   "cat"
+  ]
  }
 ]
