@@ -6,7 +6,16 @@ package net.spross.kern.model
  * Engine-wise it is a plain word: introducible on its own, never phrase-gated,
  * never verb-prefix-stripped.
  */
-enum class CardKind { Noun, Verb, Adjective, Phrase }
+enum class CardKind { Noun, Verb, Adjective, Phrase, Idiom }
+
+/**
+ * Fixed kind-marker emoji for every idiom card. Deliberately uniform across all
+ * idiom concepts — never a per-concept meaning cue like other kinds' emoji — so a
+ * learner recognizes "this is figurative" from the glyph alone, before reading
+ * either language's text, on the very first exposure (`Catalog.kt` applies it at
+ * join time; a per-concept `emoji` is rejected on idiom concepts at parse time).
+ */
+const val IDIOM_EMOJI = "🎭"
 
 /** One concept rendered in one language, as joined for a concrete (source, target) profile. */
 data class Realization(

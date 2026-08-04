@@ -1,6 +1,8 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.model.Card
+import net.spross.kern.model.CardKind
+import net.spross.kern.model.IDIOM_EMOJI
 import net.spross.kern.model.Language
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Realization
@@ -92,7 +94,9 @@ class Catalog internal constructor(
                     id = concept.id,
                     kind = concept.kind,
                     area = area.name,
-                    emoji = concept.emoji,
+                    // why: idiom emoji is a kind marker, not a per-concept picture —
+                    // see IDIOM_EMOJI — applied here so every consumer sees it, never null.
+                    emoji = if (concept.kind == CardKind.Idiom) IDIOM_EMOJI else concept.emoji,
                     seedIndex = concept.seedIndex,
                     // why: components without a target realization can never be studied —
                     // filtering here keeps the phrase-unlock gate a plain all-components check.

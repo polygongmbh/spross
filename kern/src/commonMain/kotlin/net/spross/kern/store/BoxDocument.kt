@@ -164,6 +164,7 @@ private fun kindName(kind: CardKind): String = when (kind) {
     CardKind.Verb -> "verb"
     CardKind.Adjective -> "adjective"
     CardKind.Phrase -> "phrase"
+    CardKind.Idiom -> "idiom"
 }
 
 // Decoding (document → validated aggregate)
@@ -198,6 +199,7 @@ private fun OwnWordDto.toDomain(): OwnWord {
         "verb" -> CardKind.Verb
         "adjective" -> CardKind.Adjective
         "phrase" -> CardKind.Phrase
+        "idiom" -> CardKind.Idiom
         else -> fail("own word \"$id\": unknown kind \"$kind\"")
     }
     return OwnWord(id = id, kind = parsedKind, emoji = emoji, texts = texts)
