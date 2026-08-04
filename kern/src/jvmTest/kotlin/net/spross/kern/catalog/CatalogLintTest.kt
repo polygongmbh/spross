@@ -291,7 +291,7 @@ class CatalogLintTest {
      * Cross-area, single-language collisions are legitimate target-language merges (Swahili
      * has one word where German has two) — tolerated at runtime, where the join sets
      * `promptAmbiguous` and the UI adds the area label to the produce prompt. Pinned so a
-     * NEW one (adding `outside/river` beside `bedroom/pillow`, both sw `mto`) fails here
+     * NEW one (adding `nature/river` beside `bedroom/pillow`, both sw `mto`) fails here
      * instead of silently shipping an unanswerable prompt.
      */
     @Test
