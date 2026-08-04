@@ -37,16 +37,17 @@ enum TreeShapes {
 
     // MARK: Ground
 
-    /// The ground a worked area stands on — a line, not a filled ellipse: an
-    /// ellipse under every tree read as a row of saucers, and the ground is the
-    /// one thing here that should draw no attention at all.
+    /// What the tree stands on: a soft shadow under the trunk, sized with the
+    /// canopy above it.
+    ///
+    /// Deliberately NOT a line — a stroke under every tree read as a shelf, with
+    /// the area's emoji beneath it looking like a label stuck to the furniture.
+    /// A shadow grounds the tree without drawing anything.
     private static func ground(_ context: inout GraphicsContext, _ mark: TreeMark) {
-        let half = mark.cell.width * 0.22
-        var path = Path()
-        path.move(to: CGPoint(x: mark.foot.x - half, y: mark.baseline))
-        path.addLine(to: CGPoint(x: mark.foot.x + half, y: mark.baseline))
-        context.stroke(path, with: .color(.dlSeparator),
-                       style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
+        let width = max(9, mark.canopyRadius * 1.5)
+        let shadow = CGRect(x: mark.foot.x - width / 2, y: mark.baseline - 1.6,
+                            width: width, height: 3.2)
+        context.fill(Path(ellipseIn: shadow), with: .color(.dlSeparator.opacity(0.6)))
     }
 
     /// Answered today — a short line of fresh earth at the foot. A mark on the
@@ -76,13 +77,41 @@ enum TreeShapes {
         leaf(&context, at: top, size: 5.5, angle: .pi + 0.7, color: .dlSuccess)
     }
 
+    /// A tapered trunk that forks into the canopy's lobes. Both halves matter:
+    /// an untapered stroke reads as a stick, and a canopy that does not grow out
+    /// of branches reads as a ball balanced on one.
     private static func trunk(_ context: inout GraphicsContext, _ mark: TreeMark) {
+        let base = 1.5 + 2.4 * (mark.canopyRadius / 15.5)
+        let lean = CGFloat(ForestLayout.noise(mark.tree.id, 21) - 0.5) * 2.2
+        let top = CGPoint(x: mark.crown.x + lean, y: mark.crown.y)
+
+        // Branches first, so the trunk's own taper covers where they meet it.
+        let lobes = ForestLayout.lobes(mark)
+        let fork = CGPoint(x: mark.foot.x + lean * 0.5,
+                           y: mark.foot.y - (mark.foot.y - top.y) * 0.55)
+        for lobe in lobes.dropFirst() {
+            var branch = Path()
+            branch.move(to: fork)
+            branch.addQuadCurve(
+                to: CGPoint(x: lobe.centre.x, y: lobe.centre.y + lobe.radius * 0.2),
+                control: CGPoint(x: (fork.x + lobe.centre.x) / 2, y: fork.y - (fork.y - lobe.centre.y) * 0.7)
+            )
+            context.stroke(branch, with: .color(.dlBorderStrong),
+                           style: StrokeStyle(lineWidth: max(0.8, base * 0.42), lineCap: .round))
+        }
+
+        // The trunk as a filled taper: wide at the foot, narrow at the crown.
         var path = Path()
-        path.move(to: mark.foot)
-        path.addLine(to: CGPoint(x: mark.crown.x, y: mark.crown.y + 2))
-        context.stroke(path, with: .color(.dlBorderStrong),
-                       style: StrokeStyle(lineWidth: 1.6 + 1.8 * (mark.canopyRadius / 16.5),
-                                          lineCap: .round))
+        path.move(to: CGPoint(x: mark.foot.x - base / 2, y: mark.foot.y))
+        path.addQuadCurve(to: CGPoint(x: top.x - base * 0.16, y: top.y),
+                          control: CGPoint(x: mark.foot.x - base * 0.4,
+                                           y: (mark.foot.y + top.y) / 2))
+        path.addLine(to: CGPoint(x: top.x + base * 0.16, y: top.y))
+        path.addQuadCurve(to: CGPoint(x: mark.foot.x + base / 2, y: mark.foot.y),
+                          control: CGPoint(x: mark.foot.x + base * 0.4,
+                                           y: (mark.foot.y + top.y) / 2))
+        path.closeSubpath()
+        context.fill(path, with: .color(.dlBorderStrong))
     }
 
     /// The canopy IS the area's settled words. Mark size falls as the count
@@ -90,18 +119,28 @@ enum TreeShapes {
     /// a leaf is a thing you believe there are many of without counting them.
     private static func canopy(_ context: inout GraphicsContext, _ mark: TreeMark) {
         let tree = mark.tree
+        // why: a soft mass behind the marks is what makes a scatter of leaves
+        // read as foliage rather than as confetti hanging in the air.
+        for lobe in ForestLayout.lobes(mark) {
+            context.fill(circle(lobe.centre, lobe.radius * 1.05),
+                         with: .color(.dlSuccess.opacity(0.16)))
+        }
+
         let points = ForestLayout.canopy(mark, count: tree.canopyCount)
-        let size = max(2.2, min(5.0, mark.canopyRadius * 1.5 / sqrt(Double(tree.canopyCount))))
+        let size = max(2.4, min(5.2, mark.canopyRadius * 1.6 / sqrt(Double(tree.canopyCount))))
 
         for (index, point) in points.enumerated() {
             // Outward-first: the rim carries the words that have come furthest.
             if index < tree.fruit {
-                context.fill(circle(point, size * 0.52), with: .color(.dlAccent))
+                context.fill(circle(point, size * 0.5), with: .color(.dlAccent))
             } else if index < tree.fruit + tree.blossoms {
                 blossom(&context, at: point, size: size)
             } else {
-                let angle = ForestLayout.noise("\(tree.id)-\(index)", 11) * .pi
-                leaf(&context, at: point, size: size * 1.5, angle: angle, color: .dlSuccess)
+                let seed = ForestLayout.noise("\(tree.id)-\(index)", 11)
+                // Two tones of the one green: a canopy in a single flat colour
+                // has no depth at any size.
+                leaf(&context, at: point, size: size * 1.45, angle: seed * .pi,
+                     color: .dlSuccess.opacity(seed > 0.55 ? 1 : 0.72))
             }
         }
     }
@@ -112,11 +151,15 @@ enum TreeShapes {
     /// about what a lapse costs.
     private static func fallen(_ context: inout GraphicsContext, _ mark: TreeMark) {
         guard mark.tree.fallen > 0 else { return }
+        // why: clear of the shadow and small — clustered at the trunk they read
+        // as dirt at the base rather than as leaves that came down.
+        let clear = max(7, mark.canopyRadius * 0.9)
         for index in 0..<min(mark.tree.fallen, 3) {
             let side: CGFloat = index.isMultiple(of: 2) ? -1 : 1
-            let spread = 6 + CGFloat(ForestLayout.noise("\(mark.tree.id)-f\(index)", 13) * 5)
-            let at = CGPoint(x: mark.foot.x + side * spread, y: mark.baseline - 1)
-            leaf(&context, at: at, size: 4.5, angle: side > 0 ? 0.15 : .pi - 0.15, color: .dlAmber)
+            let spread = clear + CGFloat(ForestLayout.noise("\(mark.tree.id)-f\(index)", 13) * 6)
+            let at = CGPoint(x: mark.foot.x + side * spread, y: mark.baseline + 0.5)
+            leaf(&context, at: at, size: 3.6, angle: side > 0 ? 0.2 : .pi - 0.2,
+                 color: .dlAmber.opacity(0.85))
         }
     }
 

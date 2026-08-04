@@ -63,14 +63,14 @@ enum ForestLayout {
 
     /// Cell size — six across a 354pt content width, which is the phone.
     static let minCellWidth: CGFloat = 52
-    static let rowHeight: CGFloat = 62
+    static let rowHeight: CGFloat = 70
     static let labelHeight: CGFloat = 18
     static let rowGap: CGFloat = DL.Space.s
 
     /// Trunk heights, foot to crown. The floor is a seedling; the ceiling keeps
     /// the tallest area inside its row instead of towering over the others.
     static let minTrunk: CGFloat = 9
-    static let maxTrunk: CGFloat = 34
+    static let maxTrunk: CGFloat = 40
 
     /// Lays the trees out in rows across `width`, in the order given.
     static func marks(_ trees: [AreaTree], width: CGFloat) -> [TreeMark] {
@@ -104,41 +104,79 @@ enum ForestLayout {
         marks(trees, width: width).last?.cell.maxY ?? 0
     }
 
+    /// The mass at which a tree reaches full height — a large area, thoroughly
+    /// learned. It has to sit near the top of what a real box produces, or every
+    /// worked area saturates and the row stops being a skyline at all.
+    static let fullMass = 24.0
+
     /// How tall the area stands. Square-rooted, because `mass` is a sum over
     /// words: without it the first area worked would dwarf every other for
     /// months, and the skyline would say more about where the learner started
     /// than about where the box now is.
     static func trunkHeight(_ tree: AreaTree) -> CGFloat {
         guard !tree.isBare else { return 0 }
-        return minTrunk + (maxTrunk - minTrunk) * CGFloat(min(1, sqrt(tree.mass / 10)))
+        return minTrunk + (maxTrunk - minTrunk) * CGFloat(min(1, sqrt(tree.mass / fullMass)))
     }
 
     /// The canopy grows with what is IN it, and saturates: past a couple of
     /// dozen words the marks pack tighter rather than the tree spreading wider.
     static func canopyRadius(_ tree: AreaTree) -> CGFloat {
         guard tree.canopyCount > 0 else { return 0 }
-        return 4.5 + 12 * CGFloat(min(1, sqrt(Double(tree.canopyCount) / 26)))
+        return 5 + 13 * CGFloat(min(1, sqrt(Double(tree.canopyCount) / 26)))
     }
 
-    /// Where the canopy's marks sit: a golden-angle spiral, which fills a disc
-    /// evenly at any count with no collision test and no rejection loop — so a
-    /// canopy of three and a canopy of sixty are both even, and neither clumps.
+    /// The canopy is built from a few overlapping lobes, one per branch, rather
+    /// than from one disc: a circle on a stick is the shape of a drawn lollipop,
+    /// and an irregular outline is most of what separates the two.
     ///
-    /// Ordered outward, and the drawing spends that order: fruit and blossom
-    /// take the rim where they read, leaves fill in behind them.
+    /// Returns each lobe's centre and radius, the first being the crown itself.
+    static func lobes(_ mark: TreeMark) -> [(centre: CGPoint, radius: CGFloat)] {
+        let radius = mark.canopyRadius
+        guard radius > 0 else { return [] }
+        let count = radius > 10 ? 4 : 3
+        return (0..<count).map { index in
+            guard index > 0 else {
+                return (CGPoint(x: mark.crown.x, y: mark.crown.y - radius * 0.1), radius * 0.66)
+            }
+            let spread = ForestLayout.noise(mark.tree.id, 20 + index)
+            // Lobes fan upward and outward from the crown, never below it.
+            let angle = .pi + (Double(index) - 0.5) / Double(count - 1) * .pi + (spread - 0.5) * 0.5
+            let reach = radius * CGFloat(0.42 + spread * 0.22)
+            return (CGPoint(x: mark.crown.x + CGFloat(cos(angle)) * reach,
+                            y: mark.crown.y + CGFloat(sin(angle)) * reach * 0.85),
+                    radius * CGFloat(0.46 + spread * 0.16))
+        }
+    }
+
+    /// Where the canopy's marks sit: a golden-angle spiral WITHIN each lobe,
+    /// which fills a disc evenly at any count with no collision test and no
+    /// rejection loop — so a canopy of three and a canopy of sixty are both
+    /// even, while the lobes keep the outline from closing into a circle.
+    ///
+    /// Ordered outward within its lobe, and the drawing spends that order:
+    /// fruit and blossom take the rim where they read, leaves fill in behind.
     static func canopy(_ mark: TreeMark, count: Int) -> [CGPoint] {
         guard count > 0 else { return [] }
+        let lobes = lobes(mark)
+        guard !lobes.isEmpty else { return [] }
         let goldenAngle = 2.399963229728653
         let turn = noise(mark.tree.id, 7) * .pi * 2
+        var perLobe = [Int](repeating: 0, count: lobes.count)
+
         return (0..<count).map { index in
-            let ratio = (Double(index) + 0.5) / Double(count)
-            let radius = Double(mark.canopyRadius) * sqrt(ratio)
+            // why: the outermost marks are drawn first and must land on the
+            // OUTER lobes, so blossom and fruit sit at the canopy's edge.
+            let lobeIndex = lobes.count - 1 - (index % lobes.count)
+            let lobe = lobes[lobeIndex]
+            let seat = perLobe[lobeIndex]
+            perLobe[lobeIndex] += 1
+            let capacity = max(1, count / lobes.count + 1)
+            let ratio = (Double(seat) + 0.5) / Double(capacity)
+            let radius = Double(lobe.radius) * sqrt(min(1, ratio))
             let angle = Double(index) * goldenAngle + turn
             return CGPoint(
-                x: mark.crown.x + CGFloat(cos(angle) * radius),
-                // why: a canopy is wider than it is tall — a circle of marks on
-                // a stick reads as a lollipop, not as a tree.
-                y: mark.crown.y + CGFloat(sin(angle) * radius * 0.78)
+                x: lobe.centre.x + CGFloat(cos(angle) * radius),
+                y: lobe.centre.y + CGFloat(sin(angle) * radius * 0.86)
             )
         }
     }
