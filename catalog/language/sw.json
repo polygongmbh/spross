@@ -38,6 +38,24 @@
   "learn-by-heart": {
    "text": "kukariri"
   },
+  "meaning": {
+   "text": "maana",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "to-pronounce": {
+   "text": "kutamka"
+  },
+  "read-aloud": {
+   "text": "kusoma kwa sauti"
+  },
+  "mother-tongue": {
+   "text": "lugha ya mama",
+   "grammar": {
+    "plural": "lugha za mama"
+   }
+  },
   "i-have-a-question": {
    "text": "Nina swali."
   },

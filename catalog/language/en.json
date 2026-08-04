@@ -29,6 +29,21 @@
   "learn-by-heart": {
    "text": "to learn by heart"
   },
+  "meaning": {
+   "text": "meaning"
+  },
+  "to-pronounce": {
+   "text": "to pronounce"
+  },
+  "read-aloud": {
+   "text": "to read aloud"
+  },
+  "mother-tongue": {
+   "text": "mother tongue",
+   "variants": [
+    "native language"
+   ]
+  },
   "i-have-a-question": {
    "text": "I have a question."
   },

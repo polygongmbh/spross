@@ -40,6 +40,25 @@
   "emoji": "🧠"
  },
  {
+  "slug": "meaning",
+  "kind": "noun",
+  "emoji": "💡"
+ },
+ {
+  "slug": "to-pronounce",
+  "kind": "verb",
+  "emoji": "🗣️"
+ },
+ {
+  "slug": "read-aloud",
+  "kind": "verb",
+  "emoji": "📢"
+ },
+ {
+  "slug": "mother-tongue",
+  "kind": "noun"
+ },
+ {
   "slug": "i-have-a-question",
   "kind": "phrase",
   "emoji": "❓",

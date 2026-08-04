@@ -32,6 +32,24 @@
   "learn-by-heart": {
    "text": "вчити напам'ять"
   },
+  "meaning": {
+   "text": "значення",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "to-pronounce": {
+   "text": "вимовляти"
+  },
+  "read-aloud": {
+   "text": "читати вголос"
+  },
+  "mother-tongue": {
+   "text": "рідна мова",
+   "grammar": {
+    "plural": "рідні мови"
+   }
+  },
   "i-have-a-question": {
    "text": "У мене є запитання."
   },

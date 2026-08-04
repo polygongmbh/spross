@@ -42,6 +42,26 @@
   "learn-by-heart": {
    "text": "auswendig lernen"
   },
+  "meaning": {
+   "text": "Bedeutung",
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "to-pronounce": {
+   "text": "aussprechen"
+  },
+  "read-aloud": {
+   "text": "vorlesen"
+  },
+  "mother-tongue": {
+   "text": "Muttersprache",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
   "i-have-a-question": {
    "text": "Ich habe eine Frage."
   },

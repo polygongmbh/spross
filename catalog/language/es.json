@@ -47,6 +47,24 @@
     "memorizar"
    ]
   },
+  "meaning": {
+   "text": "significado",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "to-pronounce": {
+   "text": "pronunciar"
+  },
+  "read-aloud": {
+   "text": "leer en voz alta"
+  },
+  "mother-tongue": {
+   "text": "lengua materna",
+   "grammar": {
+    "gender": "la"
+   }
+  },
   "i-have-a-question": {
    "text": "Tengo una pregunta."
   },
