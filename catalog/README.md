@@ -499,8 +499,16 @@ choose to pull forward, not a drawer everything vaguely related falls into — s
 growing past roughly forty asks to be cut along the seam a learner would name
 (the doctor's visit out of health, the clock out of the everyday words, the colours out
 before they ever land there). The cut is cheap: the slug is the card id and carries no
-area, so nobody's schedule notices. The one area still over the line is `essentials`,
-which is the catch-all by construction and would need a further cut to come down.
+area, so nobody's schedule notices.
+
+**No area may be the leftover bin.** An area whose name states no test for belonging will
+refill, because every word that fits nowhere fits there — which is exactly what happened
+to the area once called `essentials`, "Das Wichtigste im Alltag", until it had to be
+dissolved into the scenes it was holding. Every area's name must therefore answer *what
+gets in*, and the answer must be able to say no: a room (`kitchen`), an errand (`admin`),
+a kind of word (`colours`, `qualities`), or — for the words that belong to no scene at
+all — the deliberately narrow `verbs`, which admits a word only when no scene claims it.
+A word that fits none of them is not homeless; it is evidence that a shelf is missing.
 
 The area is the folder, and three things ride on it:
 it is the produce prompt's disambiguator,
