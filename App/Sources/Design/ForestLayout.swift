@@ -181,6 +181,46 @@ enum ForestLayout {
         }
     }
 
+    /// The same tree part-grown: everything the drawing measures comes from the
+    /// crown and the canopy radius, so lerping those two toward the foot grows
+    /// the whole thing — trunk, branches, lobes and every mark in them — out of
+    /// the ground together, rather than assembling it in pieces.
+    static func revealed(_ mark: TreeMark, _ fraction: Double) -> TreeMark {
+        let grown = CGFloat(min(1, max(0, fraction)))
+        return TreeMark(
+            tree: mark.tree,
+            foot: mark.foot,
+            crown: CGPoint(x: mark.foot.x + (mark.crown.x - mark.foot.x) * grown,
+                           y: mark.foot.y + (mark.crown.y - mark.foot.y) * grown),
+            canopyRadius: mark.canopyRadius * grown,
+            cell: mark.cell,
+            baseline: mark.baseline
+        )
+    }
+
+    /// One tree alone, filling a box of its own — what a session summary draws.
+    ///
+    /// The scale is derived from the space given rather than fixed: a tree is
+    /// far bigger here than in the forest, where it shares the width with five
+    /// others, and a constant multiplier clips the tallest areas' canopies.
+    static func solitary(_ tree: AreaTree, in size: CGSize) -> TreeMark {
+        let baseline = size.height - 4
+        let foot = CGPoint(x: size.width / 2, y: baseline)
+        let trunk = trunkHeight(tree)
+        let canopy = canopyRadius(tree)
+        // The canopy's lobes reach about 1.7 radii above the crown.
+        let natural = max(1, trunk + canopy * 1.7)
+        let scale = min((size.height - 8) / natural, size.width / max(1, canopy * 3.2))
+        return TreeMark(
+            tree: tree,
+            foot: foot,
+            crown: CGPoint(x: foot.x, y: baseline - trunk * scale),
+            canopyRadius: canopy * scale,
+            cell: CGRect(origin: .zero, size: size),
+            baseline: baseline
+        )
+    }
+
     /// Stable 0..<1 noise for one (id, property) — the SplitMix64 finish
     /// `ConfettiView` uses, over an FNV-1a fold of the id.
     static func noise(_ id: String, _ salt: Int) -> Double {

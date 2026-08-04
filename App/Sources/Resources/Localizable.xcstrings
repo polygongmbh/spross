@@ -2355,6 +2355,22 @@
         }
       }
     },
+    "session.finished.grew %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ist gewachsen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ has grown"
+          }
+        }
+      }
+    },
     "session.finished.keepPracticing" : {
       "localizations" : {
         "de" : {

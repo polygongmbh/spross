@@ -24,7 +24,7 @@ struct ForestSection: View {
                 .foregroundStyle(Color.dlTextPrimary)
             ActivityStripView(days: model.activityWindow().map(ActivityColumn.init),
                               streakDays: model.stats?.streakDays ?? 0)
-            ForestCanvas(trees: trees, open: open, describe: describe)
+            ForestCanvas(trees: model.areaTrees, open: open, describe: describe)
                 .environment(\.dlContentWidth, width)
             caption
         }
@@ -55,21 +55,6 @@ struct ForestSection: View {
 
     // MARK: - Areas as trees
 
-    /// One tree per area the box holds, in the Box screen's own order
-    /// (`AppModel.areaNames` — catalog groups top to bottom, own words last).
-    private var trees: [AreaTree] {
-        guard let box = model.box else { return [] }
-        let maximumInterval = Double(box.config.maximumIntervalDays)
-        var byArea: [String: AreaGrowth] = [:]
-        for entry in model.growth {
-            guard let card = box.cards[entry.cardId] else { continue }
-            byArea[card.area, default: AreaGrowth()].add(entry, maximumInterval: maximumInterval)
-        }
-        return model.areaNames.compactMap { area in
-            byArea[area]?.tree(id: area, emoji: model.areaEmoji(area), title: model.areaTitle(area))
-        }
-    }
-
     /// What VoiceOver reads: the picture says nothing aloud, so the label
     /// carries the area and the same split the caption spells out.
     private func describe(_ tree: AreaTree) -> Text {
@@ -79,67 +64,5 @@ struct ForestSection: View {
             Text("progress.consolidatedCount \((stats?.consolidated ?? 0).formatted())"),
             Text("progress.freshCount \((stats?.learning ?? 0).formatted())")
         )
-    }
-}
-
-// MARK: - Kern → Design
-
-/// One area's cards, tallied into the marks its tree is made of.
-///
-/// Which rung becomes which mark is decided HERE and nowhere else: kern names
-/// the rule (`GrowthStage`), and the picture is free to give several rungs one
-/// mark — as it does for everything still on its way in.
-private struct AreaGrowth {
-    var leaves = 0
-    var blossoms = 0
-    var fruit = 0
-    var growing = 0
-    var fallen = 0
-    var mass = 0.0
-    var tendedToday = false
-
-    /// A word is fruit only once it is well past the matured bar. Blossom is
-    /// meant to be the rare thing on a tree — mapping it to `consolidated`, the
-    /// state most of a worked area sits in, turned every grown tree pink.
-    static let fruitStability = 120.0
-
-    mutating func add(_ entry: CardGrowth, maximumInterval: Double) {
-        if entry.touchedToday { tendedToday = true }
-        // why: mass is what the trunk is made of, so every word that has come
-        // anywhere counts toward it — a settled word carries more of the tree
-        // than one met yesterday, and a word never opened carries none of it.
-        mass += entry.reach(maximumIntervalDays: maximumInterval)
-        switch entry.stage {
-        case .unscheduled: break
-        case .queued, .learning, .fresh: growing += 1
-        // The canopy is green because most of a worked area IS green: settled
-        // and consolidated words are the bulk of any box that is being used.
-        case .settled, .consolidated: leaves += 1
-        case .matured:
-            if entry.stability >= Self.fruitStability { fruit += 1 } else { blossoms += 1 }
-        case .relearning: fallen += 1
-        // A word the box has taken out of rotation is owed no space in the
-        // picture; waking it lives on its row in the Box screen.
-        case .suspended: break
-        }
-    }
-
-    func tree(id: String, emoji: String, title: String) -> AreaTree {
-        AreaTree(id: id, emoji: emoji, title: title,
-                 leaves: leaves, blossoms: blossoms, fruit: fruit,
-                 growing: growing, fallen: fallen, mass: mass, tendedToday: tendedToday)
-    }
-}
-
-extension CardGrowth {
-    /// How far one word has come, 0…1 — what it contributes to its area's tree.
-    ///
-    /// Logarithmic, because stability grows multiplicatively: on a linear scale
-    /// every word short of a year out would count the same, and the difference
-    /// between a week and a month — the part the learner actually lives through
-    /// — would be invisible.
-    func reach(maximumIntervalDays: Double) -> Double {
-        guard stability > 1, maximumIntervalDays > 1 else { return 0 }
-        return min(1, log(stability) / log(maximumIntervalDays))
     }
 }

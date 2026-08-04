@@ -127,6 +127,23 @@ extension AppModel {
     var sessionGraduated: Int { Int(run?.graduated ?? 0) }
     var sessionReviews: Int { Int(run?.reviews ?? 0) }
 
+    /// The area this round worked hardest — what the summary draws a tree of.
+    var sessionArea: String? {
+        guard let box, let touched = run?.answeredIds, !touched.isEmpty else { return nil }
+        var byArea: [String: Int] = [:]
+        for id in touched {
+            guard let area = box.cards[id]?.area else { continue }
+            byArea[area, default: 0] += 1
+        }
+        // why: walk in catalog order keeping a STRICT >, so a round split evenly
+        // between two areas names the same one every time it is shown.
+        var best: (area: String, count: Int)?
+        for area in areaNames where (byArea[area] ?? 0) > (best?.count ?? 0) {
+            best = (area, byArea[area] ?? 0)
+        }
+        return best?.area
+    }
+
     /// Whether a round the learner asks for would yield anything — drives both the summary's
     /// "Weiter üben" and the done card's extra round, which open the same composition.
     var canPracticeMore: Bool {
