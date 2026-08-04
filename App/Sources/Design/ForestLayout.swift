@@ -116,17 +116,18 @@ struct TreeMark {
     /// The ground line this tree's whole row shares.
     let baseline: CGFloat
 
-    /// The branches, grown from the area's name and this size alone — never
-    /// from a count, so the very same tree stands before and after a round and
-    /// only what hangs on it moves.
+    /// The branches, grown from the area's name and its standing — so the very
+    /// same tree stands before and after a round and only what hangs on it moves.
     var skeleton: TreeSkeleton {
         TreeSkeleton.grown(
             seed: SplitMix64(tree.id).seed,
-            // why: generations come from the TREE, never from the height it is
-            // being drawn at — a transition scales the height every frame, and a
-            // crown that grew a generation halfway through would reshuffle every
-            // slot under the marks already hanging on them.
+            // why: both counts come from the TREE — the finished one, whatever
+            // moment is being drawn — and never from the height it is drawn at.
+            // A transition scales the height every frame, and a crown that grew
+            // a generation or a slot halfway through would reshuffle every slot
+            // under the marks already hanging on them.
             depth: TreeSkeleton.generations(for: tree),
+            slots: TreeSkeleton.slots(for: tree),
             in: CGRect(x: foot.x - height * 0.72, y: foot.y - height,
                        width: max(height * 1.44, 1), height: max(height, 1))
         )

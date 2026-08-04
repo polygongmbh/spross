@@ -138,19 +138,16 @@ enum TreeShapes {
     /// through the crown rather than ringing it.
     private static func foliage(_ context: inout GraphicsContext, _ skeleton: TreeSkeleton,
                                 _ mark: TreeMark, _ shown: AreaTree) {
-        // why: marks get BROADER as the canopy thins, so a crown that is two
-        // thirds full still closes into foliage instead of showing sky between
-        // every mark. A tree only ever fills the band its generation count gives
-        // it — cross into the next generation and the same words are suddenly
-        // spread over twice the twigs — and sizing the marks against that fill
-        // is what keeps the two ends of a band looking equally worked.
+        // why: a mark is sized against the crown it has to help fill, not
+        // against the tree's height — pitch is the crown shared out over the
+        // words hanging in it, so thirty marks on a middling tree close into
+        // foliage exactly as sixty do on a large one.
         //
-        // Measured on the crown's hull rather than guessed: the marks used to
-        // cover ~42% of it at forty words, which is a twiggy tree with leaves on
-        // it, not a leafy one. This lands near 65%, where the gaps read as gaps
-        // in a canopy rather than as a canopy that never closed.
-        let fill = Double(shown.canopyCount) / Double(max(skeleton.slots.count, 1))
-        let base = max(2.4, skeleton.pitch * 0.90 * CGFloat(1 + 0.30 * (1 - min(1, fill))))
+        // No term for how full the canopy is any more. The pool is cut to the
+        // words, so that fraction is now the same on every tree — and being the
+        // one input that moved during the summary's animation, it quietly swelled
+        // every mark on the tree while the round's words were still arriving.
+        let base = max(2.4, skeleton.pitch * 0.93)
         var tones = [Path(), Path(), Path()]
 
         for (rank, slot) in skeleton.slots.prefix(shown.canopyCount).enumerated() {
