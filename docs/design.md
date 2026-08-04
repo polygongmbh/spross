@@ -178,31 +178,42 @@ never the shape of the app.
   A session summary and a drill's end through the same pair of buttons, so they cannot
   drift apart on which way out is the default.
   A day that is going badly says so, and says why stopping is the better call.
-- **The forest** at the foot of Heute IS the box: one plant per word, clustered into a
-  grove per area, in catalog order so adjacency still says which group an area belongs to.
-  The box had a screen of its own for as long as it was a list; a picture of what has
-  grown can be looked at from where the learner already is, and the browsing hangs off it.
-  A grove opens its area.
-  How far a word has come is `GrowthStage`'s to say (`../kern/README.md` §6) and this
-  layer's to draw: which rung takes which plant, and whether two rungs share one, is
-  decided in `ForestSection` alone. Growth reads UP the ladder — seed, sprout, stem,
-  leaf, flower, tree — so the flower is the word that has landed and the tree the one
-  that has stopped needing tending. Species is the word's kind.
-  Plants stand where a hash of their card id puts them, never where their place in seed
-  order would: the box grows in seed order, and a patch that showed it would pile
-  everything the learner has reached into one corner.
-  The picture is never the only telling — the canvas is hidden from accessibility and
-  each grove carries the tap target and the spoken split as one element, every stage is
-  a silhouette before it is a colour, and the standing figures are spelled out beneath.
+- **The forest** at the foot of Heute is a picture of the box, never a way around it:
+  one tree per area, in catalog order, on ground its whole row shares. It answers the one
+  question a count cannot — how the box is SHAPED, and which corners of the language have
+  never been opened — and it hands anything actionable to the Box screen by opening it at
+  the area a tree names.
+  **The unit is the area, not the word.** Five hundred plants can only be read as texture,
+  and drawing each as an object made packing an area — forty words at once, a normal
+  move — look like a spilled bag rather than like sowing. One tree can be looked at.
+  **A tree is one organism its whole life**, never swapped for another at some rung: the
+  trunk is what the area has grown, the canopy IS its words that have settled, and blossom
+  and fruit appear ON that canopy. So the picture never starts over, and has no top rung
+  at which it stops. A word is a leaf — a thing believed many of without being counted;
+  which rung of `GrowthStage` (`../kern/README.md` §6) becomes which mark is decided in
+  `ForestSection` and nowhere else.
+  **Size comes from what has grown, never from what the catalog holds.** Sized by catalog
+  count, every area would draw the same on install day and a year in — and the one thing a
+  growing box's picture owes the learner is a shape that changes. A row is therefore a
+  skyline: one baseline, so heights compare.
+  **An area nobody has opened draws nothing at all** — not even ground. A mark per
+  untouched word turns a catalog the learner did not choose into five hundred things they
+  have not done; the dimmed area emoji already says the place exists.
+  A lapse drops leaves at the foot and never shrinks the tree: the engine expects about a
+  fifth of reviews to miss, and a picture that shrank for a routine Tuesday would overstate
+  what a lapse costs. A suspended word is owed no space at all — waking it is the box's.
+  The picture is never the only telling — the canvas is hidden from accessibility, each
+  tree carries the tap target and the spoken split as one element, blossom differs from
+  leaf in shape before colour, and the standing figures are spelled out beneath.
   Nothing in it moves: a box grows over weeks, and motion would claim a change the
   picture is not showing.
-  - **Area** (a grove, or a search hit): the words in it and the one control that packs
-    the rest of them in. It opens on its words — the learner said which area they meant
-    by tapping it.
-  - **Search** (🔍 in Heute's bar) reaches a word without knowing its shelf. The two
-    result kinds offer what they ARE: an area opens itself, a word can be heard and
-    packed on its own — a learner who went looking for one word by name should not have
-    to take the shelf around it.
+- **Box** (📦 from Heute): browse the catalog by area, pack words in, revive suspended
+  ones; settings live here — profile, reset. A tree in the forest opens it already
+  unfolded at that area, exactly as a search hit does.
+  - **Search** (🔍 in the bar) reaches a word without knowing its shelf. The two result
+    kinds offer what they ARE: an area unfolds itself back on the Box screen and scrolls
+    into reach, a word can be heard and packed on its own — a learner who went looking for
+    one word by name should not have to take the shelf around it.
   - **Own words** are what a search with no answer leads to: the learner has just proved
     the catalog has no word for what they need, so the empty state is where writing one
     down belongs, and nowhere else. Both languages are asked for, because a word is only
