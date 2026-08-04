@@ -2,10 +2,8 @@
 
 The standing contract for the Kotlin Multiplatform core (`:kern`):
 scheduling, growth, sessions, grading, snapshots.
-Grew out of the 2026-07 KMP rewrite (per-unit deviations were adversarially reviewed;
-the 2026-07-22 presentation-model rulings are folded into §3/§4).
 App-layer UX rules stay in `../docs/design.md`; this doc owns the engine.
-Product frame (overrides v1 where they conflict):
+Product frame:
 any source (known) / target (learning) language pair from the catalog;
 no user-facing direction concept;
 progress tracked per target language;
@@ -23,12 +21,17 @@ The same test applies to snapshot fields: withholding data because shipping it c
 the answer is policy and belongs here; withholding it because a surface has nowhere to
 draw it is rendering and does not.
 
+The engine's own semantics are below. Four domains have their own pages:
+`docs/snapshots.md` (the box document and the watch/widget wire),
+`docs/catalog.md` (what the engine needs of the catalog),
+`docs/audio.md` (pronunciation rules),
+`docs/build.md` (KMP pins and the Xcode hand-off).
+
 ## 1. Languages & profile
 
 - `Language` = string code from `catalog/languages.json` — open set, no enum.
 - `LanguageInfo(code, name, englishName, flag, optionalVerbPrefixes, articles)` —
-  per-language metadata from `catalog/languages.json` (field semantics: `catalog/README.md`);
-  `articles` replaces v1's hardcoded German article list.
+  per-language metadata from `catalog/languages.json` (field semantics: `catalog/README.md`).
 - Profile = (source, target), source ≠ target.
   `Catalog.availableTargets(source)` requires ≥ 50 joinable concepts, and answers only for a
   language the catalog declares — an undeclared one is a caller that skipped the launch query.
@@ -87,7 +90,7 @@ data class Realization(
 - **Notes**: selected by SOURCE language at join time, no cross-language fallback
   (a de note never surfaces for an en-source user; non-de sources are note-less until authored).
 - **Grammar display is target-side only**: plural line and article coloring render only for
-  the target realization (v1's "plural only for learners OF German", generalized).
+  the target realization.
   Every real plural carries the "Pl. " label, suffixes resolved against the word
   ("-nen" → "Pl. Lehrerinnen"); sentinels "=" → "= Pl.", "only" → "nur Pl."
   via localized chrome strings, not hardcoded German.
@@ -98,8 +101,7 @@ data class Realization(
 No per-role or per-form scheduling —
 production and recognition are PRESENTATIONS of the same memory,
 both feeding the one schedule ("every answer event is an FSRS review" holds).
-This is v1's `mixedDirections` model kept as the ONLY mode:
-no config flag, no user-facing direction anywhere.
+No config flag, no user-facing direction anywhere.
 
 - **PRODUCE**: prompt = source text (+ ♀ badge when marked), typed answer in target.
   Accepted: target `text ∪ synonyms ∪ variants`, article-optional (target articles),
@@ -125,12 +127,11 @@ no config flag, no user-facing direction anywhere.
     the moment to recall it) WITH its emoji as the cue, and the reveal teaches the meaning,
     self-graded. An honest Again lands in the single learning step (§5), so the word returns
     at the END of the session — as the typed production attempt below.
-    (Matches v1's `presentationDirection` first-exposure rule.)
   - The second review (`count == 1`) is ALWAYS production — seen once, now attempt it
     (ruling 2026-07-22: "returns the same session as production", both hash parities).
   - From `count == 2` role = parity(`count` + FNV-1a-64(cardId)):
     FNV-1a 64-bit over UTF-8, offset `0xcbf29ce484222325`, prime `0x100000001b3` —
-    bit-exact v1 port; the per-card phase offset keeps the box from flipping in sync.
+    the per-card phase offset keeps the box from flipping in sync.
 - **Synonym rotation** on recognition prompts: the prompted form cycles deterministically
   through `text` + `synonyms` — index = (`count / 2` + id-hash offset) mod formCount
   (parity-independent: recognition happens every other review); first exposure always
@@ -140,7 +141,7 @@ no config flag, no user-facing direction anywhere.
   informatively ("Amt / Verwaltung").
 - **Sound-prompted production**: `producePrompt(cardId, reviewCount, consolidated, audible)`
   answers whether a produce turn asks by MEANING or by ear. Not a third role — the role
-  function is a bit-exact v1 contract and a word asked from its sound is still produced,
+  function is fixed and a word asked from its sound is still produced,
   so only the prompt side moves and one schedule still sees one kind of answer.
   `Sound` needs the STRICTER consolidated bar (§5), because this WITHDRAWS the meaning
   rather than adding support, plus the app's word that the form can be heard right now
@@ -172,7 +173,7 @@ no config flag, no user-facing direction anywhere.
 
 ## 4. Denomination — everything in cards
 
-v1 calibration restored (one schedule per card ⇒ one review touches one card):
+One schedule per card ⇒ one review touches one card:
 
 | Quantity | Default (all in cards) |
 |---|---|
@@ -187,7 +188,7 @@ cards; `DayStats.reviews` = answer events.
 
 `BoxConfig.product()` hands that calibration out as a value — the table is the `BoxConfig`
 defaults and the factory returns them, because Kotlin default arguments do not cross the
-ObjC boundary and a platform that cannot see them would restate the numbers (§7 re-applies
+ObjC boundary and a platform that cannot see them would restate the numbers (`docs/snapshots.md` re-applies
 this to every loaded box).
 
 ## 5. FSRS-6
@@ -197,8 +198,7 @@ this to every loaded box).
   pinned reference report: same-day `sinc ≥ 1` mask for G ≥ Hard, S_MIN 0.001, fuzz OFF,
   engine maximum_interval 36500.
 - `elapsedDays` = fractional `max(0, (now − lastLog)/86400)`; short-term path < 1.0.
-  Copied vectors all review exactly at due where conventions agree; ts-only real-timestamp
-  vectors are excluded from the port.
+  Golden vectors all review exactly at due; real-timestamp vectors stay out of the suite.
 - Steps are config; the ENGINE defaults stay the reference pair (`learning [1m, 10m]`,
   `relearning [10m]`) so the golden vectors run verbatim.
   **The product runs ONE learning step, `[2m]`** (`relearning [10m]` unchanged).
@@ -212,8 +212,7 @@ this to every loaded box).
   2026-07-29; `3m` was tried first and outlasted the day's practice altogether.)
   **No in-session lapse retry** (breadth ruling 2026-07-22): a lapsed review card returns
   after 10 m, typically next session; the run it lapsed in does not wait for it.
-  Graduation follows the reference machine (one step later than v1's hand-rolled steps —
-  accepted, tested against the pinned minute tables).
+  Graduation follows the reference machine, tested against the pinned minute tables.
 - **Graduated intervals are continuous in the product.** `Fsrs.intervalRawDays` is the
   fractional interval the model asks for; `FsrsScheduler.graduate` quantizes it to
   `intervalGranularitySeconds` and floors it at `minimumIntervalSeconds`.
@@ -238,14 +237,14 @@ this to every loaded box).
     from fresh in the progress UI — set strictly between S0(Good) and S0(Easy) so a single
     Good answer no longer reads as "landed" while a single Easy still does.
   Recalibrated for FSRS-6: at retention 0.8 the interval is 3.316 × stability, so
-  S0(Good) = 2.3065 crosses `settledStability` at graduation the way v1's FSRS-5 3.0 did
+  S0(Good) = 2.3065 crosses `settledStability` at graduation
   (≈ 7.6 days out, Easy ≈ 27.5) while S0(Hard) = 1.2931 does not — a word answered Good on
   sight settles (budget/presentation) but does not consolidate (stats/unlock) on its first
   answer; S0(Easy) = 8.2956 clears both.
-- Golden vectors copied verbatim from the pinned releases with PROVENANCE (repo/tag/SHA);
-  FSRS-6 property tests re-express the v1 property suite. Weight optimization stays out.
+- Golden vectors copied verbatim from the pinned releases with PROVENANCE (repo/tag/SHA).
+  Weight optimization stays out.
 
-## 6. Box / Session semantics (deltas from the v1 port map)
+## 6. Box / Session semantics
 
 - **Self-grading takes a verdict and a clock** (`SelfGrading`):
   the learner reports Unknown / Tough / Knew,
@@ -263,18 +262,16 @@ this to every loaded box).
   The elapsed span is the recall attempt (prompt shown → answer asked for),
   not the time spent choosing afterwards.
 
-Everything in the engine scout map ports 1:1 (budgets, growth-reserve formula,
-introduction = first answer, silent answer drop, extra round, endless, exposure tiers,
-statistics, streak forgiveness, endSession fold + 60-day prune, deterministic orderings,
-day-key `yyyy-MM-dd`) with:
+The engine also owns budgets and the growth-reserve formula, the silent answer drop, the
+extra round, endless, exposure tiers, statistics, streak forgiveness, the `endSession` fold
+and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 - **`BoxStatistics.longestStreak`**: the longest run ever held, under the same forgiveness
   rule the current streak walks back with, over the whole (never pruned) `dailyStats`.
   An unfinished today can extend a run but never end one, so it is always ≥ `streak` —
   equality is what says today's run IS the record.
-- **Introduction is the card's first answer** (v1 semantics; the unit-era eligibility lag
-  and one-per-plan rules are gone with the unit model). `enqueued` holds card ids;
+- **Introduction is the card's first answer.** `enqueued` holds card ids;
   enqueued cards lead composition, respect the per-round cap, and dequeue at introduction.
-  Zero-component phrases follow seed order, never the unlock fast path (v1 rule restated).
+  Zero-component phrases follow seed order, never the unlock fast path.
 - **Intake is bounded per round, and by nothing else**: a round offers at most
   `NEW_CARDS_PER_ROUND` first sights — a round's worth, the size `SESSION_FLOOR_CARDS`
   measures a round to be — across every composed round (today's, endless, the extra round)
@@ -295,7 +292,7 @@ day-key `yyyy-MM-dd`) with:
   growing. A box far behind still gets its round (`docs/growth-evidence.md`).
 - **Phrase unlock** reads each component's schedule **by card id** — join- and
   source-independent, so a source switch can never re-lock phrases. Components with no
-  TARGET realization are excluded from the gate (v1 unresolved-component semantics).
+  TARGET realization are excluded from the gate.
   Gate: not suspended, and consolidated (§5) — the predicate, never a restated threshold.
 - **Due order is day-bucketed, then shuffled**: reviews drain oldest overdue DAY first
   (backlog fairness), but inside a day the order is `fnv1a64("<dueEpochDay>:<fnv1a64(cardId)>")`,
@@ -389,7 +386,7 @@ day-key `yyyy-MM-dd`) with:
 - `answer(cardId, rating, nowMillis, tzId)` on a non-joining or unknown id is a defined
   no-op (`AnswerStatus.StaleCard`) the UI skips past. `SessionPlan` carries a
   `joinStamp` (source, target, catalog fingerprint); the app recomposes when stale.
-- `setSuspended(cardId)` — per card, as v1.
+- `setSuspended(cardId)` — per card.
 - **`BoxEngine.consolidatedCardIds(state)`** — the words a drill may practise, in seed order.
   It reads through the join-filtered active inventory (scheduled, joining, not suspended) and
   keeps what `Statistics.isConsolidated` accepts, so a lapse takes a card off the list on its
@@ -404,7 +401,7 @@ day-key `yyyy-MM-dd`) with:
   keeps that order total.
   The query never writes — drills are stateless and book no reviews (transcription is not
   recall), so nothing here touches FSRS.
-- **Exposure**: one entry per card by construction (tiers as v1); display surfaces always
+- **Exposure**: one entry per card by construction; display surfaces always
   render the TARGET realization.
 - **AnswerNormalizer contract** (produce only — recognition is button self-grade;
   catalog-fixture tested with "Kwaheri!", "to cook", "Der Kühlschrank ist leer.",
@@ -416,7 +413,7 @@ day-key `yyyy-MM-dd`) with:
   typo budget → article-mismatch-demotes-to-typo only when the expected
   answer's grammar carries `gender`; stray-short-leading-word rule unchanged.
   **Typo budget**: one slip per six letters (spaces excluded), floor 1,
-  and zero below four letters — wider than v1's `<5 → 0, one per ten` at both ends.
+  and zero below four letters.
   Leniency is safe to the extent the catalog can disprove it:
   `CatalogAnswerGrader` withdraws the credit wherever the typed form is really
   another concept's word, so a wider budget buys forgiveness for genuine slips
@@ -478,224 +475,10 @@ day-key `yyyy-MM-dd`) with:
     go; the join, the configuration and the own words stay. Clearing what the box KNOWS
     must never delete what it HOLDS.
 
-## 7. Store & snapshots
+## 7. Testing & gates
 
-- One document per TARGET: `box-<target>.json` in App Group `group.net.spross.app`.
-  `BoxDocument { schemaVersion: 1, target, source, config, scheduling, enqueued,
-  newIntroduced, dailyStats, ownWords }` — scheduling keys are card ids;
-  `ownWords` is the document's only content (§6), defaulted so a box written before the
-  learner could author any decodes as one who has authored none;
-  the stored `config` is a record of the calibration a box was written under, never an input —
-  `BoxState.withProductCalibration()` re-applies the build's (§4) to every box that loads;
-  kotlinx.serialization; dates as ISO-8601 UTC strings via explicit `kotlin.time.Instant`
-  serializers; facade encodes with **sorted keys** (deterministic bytes).
-  All `@Serializable` types are `internal`; the public surface is a narrow facade
-  (`encode/decode` — no `migrate()` until a schema v2 exists) — keeps the ObjC header
-  small (probe showed serialization internals otherwise flood it).
-- Engine boundary time: `nowEpochMillis: Long` + `tzId: String` (kotlinx-datetime 0.8 has
-  no Swift-Date bridging; Instant/TimeZone are constructed inside). TimeZone = device-current
-  per call (v1 parity). Day keys are ISO regardless of device calendar (v1 latent
-  non-Gregorian bug fixed; DST + non-Gregorian vectors in the test suite).
-- **WidgetSnapshot** (NEW): the phone precomputes on every persist; the iOS widget is
-  decode-only Swift (an extension cannot run the join: no catalog in its bundle, ~30 MB
-  memory cap vs 33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
-  entries (target-side text, emoji, article tint), per-card `{due}` for render-time
-  `dueCount(now)`, the consolidated-card count (`consolidatedCount`, resolved phone-side —
-  it does not move with the clock), dailyStats tail
-  (~70 days) for the streak walk, `schemaVersion`. Built by a KMP `SnapshotBuilder`,
-  written by the app.
-- **WatchSnapshot v5**: direction/pair/`german` are gone — one entry per CARD with BOTH
-  sides pre-resolved: `{cardId, sourceText, targetText, emoji?, revealEmoji?, articleTint?,
-  femMarker, due, stability, nextRole, promptForm, distractors[], optionForm?}` + `schemaVersion`.
-  **The wire carries only what a surface draws**: v4 dropped `accepted[]` (the full target
-  family), which was shipped for a reveal the quiz does not have — the watch answers by
-  picking a tile, so there is no second face to list alternates on. Should the watch ever
-  grow the phone's "auch: …" line, the field comes back with the surface that reads it,
-  not ahead of it.
-  `distractors` (v3) are the multiple-choice tiles for that entry, picked by
-  `session/MultipleChoice` and read on THIS entry's option side —
-  so the watch only shuffles and cannot put the two languages in one question.
-  Nothing but MEANING may separate the answer from its company, and four rules keep it so:
-  same word class first (a lone verb among nouns is answerable off its `ku` alone),
-  then the same `sentenceShape` (a lone question mark among full stops is answerable
-  without the tile being read; the closing mark names the shape in every catalog language,
-  since Spanish never writes `¿`/`¡` without its partner, and every single word is `Bare`),
-  then same area (four kitchen words test the kitchen),
-  then shape (length gap + a heavy part-count penalty).
-  All four RANK and none filters, so a thin box still fills four tiles.
-  The pool is every SCHEDULED card, not the capped entry list — the cap is a wire budget,
-  and a pool that small leaves a question no same-class company to keep;
-  unscheduled cards stay out, since a word first met as somebody else's wrong answer
-  is no longer new when it arrives. Up to ten per entry, omitted when the box has
-  nothing else to offer.
-  Where a class marker survives the ranking anyway, the writing gives it up:
-  `optionForm` is the entry's own option with a bound stem's dash and a verb's
-  citation prefix dropped (`-zuri` → `zuri`, `kupika` → `pika`), absent when it would
-  equal the taught form, which the reveal shows either way.
-  The prefixes come from `languages.json` via the builder's `citationPrefixes` —
-  an empty map simply leaves every verb whole.
-  The shortlist is the variety knob: three of the ten reach a question, so the
-  same card keeps offering the same handful until the next push.
-  It is also the first thing to cut if the snapshot ever crowds the ~60 KB cap —
-  a full 60-entry de→sw snapshot measured ~18 KB, ~7 KB of it distractors (taken while
-  `accepted[]` was still aboard, so v4 sits under it);
-  shipping card ids instead of texts would recover most of that, at the price of
-  making the watch resolve the option side again (the v2 bug's home).
-  The phone resolves `nextRole` and the rotated `promptForm` from the log count at build
-  time; presentation is the app layer's.
-  **v5** carries the held-back picture as well: §3's emoji cue no longer decides WHETHER the
-  picture ships but which KEY it ships under — `emoji` for one the learner may see from
-  frame one, `revealEmoji` for one that may only be seen once a tile has been tapped. Exactly
-  one is ever set. v4 omitted the second outright, on the grounds that the watch had no
-  reveal face to hang it on; the graded feedback window is that face, so the picture now has
-  an honest moment and no longer has to be withheld to stay honest. Two keys rather than one
-  key plus a flag, so a surface that reads `emoji` and draws it immediately — the
-  complication does exactly this — cannot leak a reveal-side picture by forgetting the flag.
-  Ranking is **due-first** (a due card is never evicted by a non-due lower tier), then
-  exposure tiers, capped at 60 entries (the ~60 KB `updateApplicationContext` limit).
-  A second cap is a LEGIBILITY budget rather than a wire one: `MAX_TEXT_CHARS` (24) keeps a
-  card off the watch entirely when any form it can render — both sides, plus the target
-  synonyms a rotated `promptForm` reaches for — runs longer than a tile in a 2×2 grid holds.
-  It gates the option pool as well as the entries, from the one predicate, so a distractor
-  can never overflow a tile an answer could not have. It drops ~9% of a pair's cards, all of
-  them long sentences: a four-way pick between those is exposure rather than recall, and the
-  phone gives exposure better, on a card with room for it.
-  `make` lives phone-side; watch stays pure Swift.
-
-## 8. Catalog schema additions (same-series migration)
-
-- `languages.json`: `articles` (§1).
-- `areas.json`: a group's `areas` is an array of **objects** (`{ "area", "emoji" }`),
-  no longer bare strings. The emoji is language-neutral display metadata,
-  so the catalog now owns the area icon that was a hardcoded map in the iOS app
-  and both apps read the same one.
-  The parser rejects unknown keys and validates the emoji with the concept-emoji rule
-  (non-blank, ≤ 12 chars, every char ≥ U+2000), so a new area cannot ship without one.
-  `AreaGroup.areas: [String]` is unchanged — the ordered names every consumer flat-maps;
-  the emoji rides alongside in `AreaGroup.areaEmojis: [String: String]` and is read via
-  `Catalog.areaEmoji(area) -> String?`, the language-neutral sibling of `areaTitle`.
-- Realization: `variants: [String]` next to `synonyms` — a **display/accept distinction
-  only**, never a scheduling one (§3): synonyms rotate as recognition prompt forms and
-  show on reveal; variants are accepted silently and never prompted. Migration:
-  uk gender-agreement/diminutive/internationalism entries (завела, мишка, контракт,
-  компанія) move synonyms → variants; the 14 slash-joined de Sie/du texts become
-  `text` = Sie-form + `variants` = [du-form] (embedded `" / "` was untypeable).
-- `catalog/README.md` updated; **CatalogLintTest** (permanent, on the real catalog) enforces:
-  parse/shape/order rules, slug charset (no `|`), seedIndex uniqueness, synonyms ≠ text,
-  no duplicate synonym/variant entries, no `" / "` in text, components resolve same-area,
-  feminineOf resolves, concept emoji well-formed, every manifest area carries an emoji.
-- **Homonym gates** (no schema field — the area label is the disambiguator, §2/§3).
-  Lint owns what the engine cannot fix, runtime tolerates the rest:
-  - `noPromptCollisionWithinAnArea` — a display-identical prompt inside ONE area is a hard
-    error: the area cue would be identical, so the prompt stays unanswerable. Fix in content.
-  - `noConceptPairCollidesInTwoLanguages` — the same pair colliding in two languages means
-    one meaning authored twice; unify (the `variantOf` ruling). Caveat when it fires: check
-    it is not simply two languages independently merging a distinction de/en do draw —
-    `relax`/`rest` collided in sw AND uk while de (sich entspannen/sich ausruhen) and en
-    keep them apart, so the fix was a precise uk realization, not a deletion.
-  - `crossAreaPromptCollisionsAreKnown` — pins the tolerated cross-area set, so adding
-    `outside/river` next to `bedroom/pillow` (both sw `mto`) fails the gate instead of
-    silently minting an ambiguous prompt. Comparison is case-SENSITIVE: `Husten`/`husten`
-    is a real visual distinction and must stay legal.
-- `catalog/alphabet/<lang>.json` → `Alphabet`/`AlphabetEntry` (`AlphabetParser`, hand-parsed
-  on CatalogParser conventions; `JsonSupport` gained `optionalBoolean` and `stringListMap`).
-  The registry is file presence — `Catalog.alphabet(lang)` is null where no file is
-  authored — and alphabet reads fold into the fingerprint (content: editing one recomposes
-  a stale session once on upgrade; the audio manifest stays fingerprint-exempt). Example
-  resolution splits target and reader halves (`alphabetExample` / `exampleMeaning`) so the
-  sheet degrades per reader instead of erroring. Lint: shape/closure/homophone/gap rules on
-  synthetic JSON in `AlphabetFixtureTest`; real-content rules in **`AlphabetLintTest`**
-  (declared-language files only, own-language example realization, names on drill-true
-  letters, exactly-one-gap on gap rows, letters-manifest glyph collision).
-  `letters{}.matches == name` is WAIVED — the audio manifest schema rejects the field, so
-  the name↔recording check is a manual listening pass (backlog).
-- `catalog/drills/` — the sentence frames, a top-level sibling outside `areas.json`
-  (format owned by `catalog/README.md`). A frame is a concept + per-language realizations,
-  joined at runtime like a card, but it is not a card: no area, no `seedIndex`, outside the
-  phrase-unlock gate. **Frames are read through the RAW `CatalogSource`, not the
-  fingerprinting wrapper** — the same exemption the audio manifest has, and for the same
-  reason: a frame edit can never change the card join, so it must not restamp and recompose
-  a running box. An absent `drills/` folder is legal. Lint: **`CatalogFrameLintTest`**
-  (slug shape/uniqueness/disjointness from concepts, one `{slot}` per text and per variant,
-  `{count}` ⟺ `count` and only on a `numbers` frame, note keys are declared languages);
-  vocab grounding of every answer side in **`PhraseVocabAuditTests`**.
-
-## 9. KMP project & Apple integration
-
-- Gradle root `app/` (wrapper committed; `.gitignore` += `build/`, `.gradle/`, `.kotlin/`,
-  `local.properties`); module `:kern` at **`app/kern`** (`kern/` at root is the same
-  APFS inode as Swift `Kern/` — never create it). Package `net.spross.kern`
-  (+ `.trainer`). Pins (probe-proven, Xcode 26.6): Kotlin **2.4.10** (SKIE 0.10.14's ceiling —
-  bump only as a pair; comment in the version catalog), serialization 1.11.0,
-  datetime 0.8.0, Gradle 9.6.1, JDK 21 toolchain. Configuration cache on.
-  Toolchain auto-provisioning is off: JDK 21 must be installed, and the Homebrew keg
-  path is named in `gradle.properties` because Gradle cannot auto-detect it.
-- Targets: `jvm()` (fast gate + Android-ready), `iosArm64`, `iosSimulatorArm64` — static
-  framework **SprossKern**. No watchOS targets (nothing links Kotlin on watch; 3 unused
-  slice builds cost ~40–60 % of every kern-edit rebuild, measured 23.7 s → target ≈ 10 s).
-- Xcode: the app target links the framework directly (`FRAMEWORK_SEARCH_PATHS`, no SwiftPM
-  binaryTarget — wrong build ordering + clean-checkout deadlock). An in-target xcodegen
-  `preBuildScripts` phase branches on `$CONFIGURATION`/`$SDK_NAME`, runs the matching
-  `linkDebug/ReleaseFramework<Target>` Gradle task, and copies the framework to a
-  configuration-neutral search path. `scripts/bootstrap.sh` for fresh clones; a Release
-  archive smoke check joins the gates. Only the APP target links Kotlin; widget/watch/
-  complication are decode-only Swift (§7).
-- Swift ergonomics: UI-crossing Kotlin types are data classes; a small Swift bridge file in
-  App/Sources adds `Date ↔ epochMillis` helpers and `Identifiable`/`Equatable`
-  conformances; Kotlin `Int` surfaces as `Int32` — bridge there, not at call sites.
-- Trainer: single `:kern` module, `Long` cardinals everywhere (Kotlin `Int` is 32-bit on
-  all platforms — v1's arm64_32 fix generalizes). Trainer registry: de/en/es/sw/uk
-  authored; a language outside it has no drills (the hub's handling of that is an app rule).
-  `Catalog.phraseTemplates(source, target)` is the frames' half of the card join:
-  one `PhraseTemplate` per frame realized in BOTH languages, directional like a `Card`,
-  with `count`/`masculineNumeral`/`note` riding along from the ANSWER realization.
-  Nothing pair-shaped is stored, so authoring one language file lights up every pair it
-  makes. Availability gate: **empty unless `Trainer.supports(target)`** — sampling generates
-  the answer side's number words, so a language without a pack can only ever supply prompts.
-  Reverse mode is the same template read the other way, for any pair, not only `target == de`.
-  German clock ACCEPTS 24-hour readings ("achtzehn Uhr fünfunddreißig", "null/vierundzwanzig
-  Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.
-  An hour word directly before "Uhr" apocopates: "ein Uhr", never "eins Uhr";
-  bare "eins" stays ("punkt eins", "um eins", "halb eins").
-  `PhraseSlots` samples level-aware — same per-kind ramp tables as the plain drills
-  (a template's slot kind clamps the level).
-  The unleveled `sample` overload keeps the prototype's biased full-difficulty draws
-  (numbers favor 2–3 digits, years cluster 1950–2050);
-  only Clock's unleveled draw coincides with the leveled ceiling.
-  **`LetterDrill` is a separate facade, not a `TrainerKind` case**: its registry is
-  alphabet file presence in the catalog (adding a language edits no Kotlin), its ramp is
-  stateless and kern-owned (`entryLevel`/`winsToAdvance`/`advance` — both D11 halves in
-  one place so two platforms cannot drift), sampling takes an injected `Random` and an
-  app-computed promptable set (device voices are an app fact).
-  A gap row draws its word from a POOL (`Catalog.alphabetExamples`, rules in
-  `catalog/README.md` § Alphabet), the app narrowing it to what the device can say and
-  flagging what the box already holds; kern favours the known words while at least three
-  stand, and spends no randomness where a row offers one word.
-  Dictation weighs its draw (`dictationWeight`): a floor of one that shuts nothing out,
-  plus how many of the language's own hard graphemes the word carries (`Alphabet.trickyGlyphs`),
-  its lapses, and FSRS difficulty above the midpoint — each capped, so one leech cannot take
-  a rung over, and all three zero on a clean plain word, where the draw is bit-for-bit the
-  uniform one. The two schedule figures ride in on `DictationCandidate`; kern reads no state.
-  Dictation draws only
-  `BoxEngine.consolidatedCardIds` through `dictationGradingCard` — it never books a
-  review (transcription is not recall; drills are stateless).
-  Android: landed — `androidLibrary` KMP target
-  (`com.android.kotlin.multiplatform.library`, AGP 9.3.0, compileSdk 36 / minSdk 26),
-  androidMain NFC actual mirrors jvmMain; `:android` consumes the same facades.
-  Gate: `./gradlew :kern:compileAndroidMain`.
-
-## 10. Testing & gates
-
-- Fast gate: `./gradlew :kern:jvmTest` (replaces `cd Kern && swift test` — CLAUDE.md/README
-  update in the same series). iOS gate: xcodegen + `xcodebuild -scheme Spross build` +
-  simulator run-through. Release archive smoke.
-- Ported suites per the engine scout inventory, with the **FSRS-6 adaptation table**:
-  relearning entry = reference 10 m (no in-session retry — drain assertions adapted),
-  learning Hard = 6m at step0 / ×1.5 single-step, new+Again+Good needs a further Good under
-  the reference two-step config (the product's single step graduates it),
-  graduation intervals from FSRS-6 S0, day one introduces up to the unsettled cap;
-  direction-scoped statistics tests are obsolete; v1 MixedDirectionTests port as
-  bit-exact `presentationRole` FNV vectors; everything else behavioral ports 1:1.
+- Fast gate: `./gradlew :kern:jvmTest`. iOS gate: xcodegen + `xcodebuild -scheme Spross
+  build` + simulator run-through. Release archive smoke.
 - **Catalog tests split three ways, by who owns the expectation.**
   `CatalogFixtureTest` (commonTest, synthetic `Fixture.kt`) pins exact values —
   the test owns its input, so parser/join plumbing is asserted there.
@@ -707,99 +490,14 @@ day-key `yyyy-MM-dd`) with:
   then reads as a join regression, and the assertion measures content, not code.
   A test that restates the mapping it asserts — comparing `RawRealization` to `Realization`
   field by field — is a change-detector for a copy function, not coverage.
-- New suites: CatalogLintTest (§8), parser fixtures (feminine ♀ fallback, Sie/du variants,
-  sparse coverage, en "to "/sw ku-kw prefixes, notes selection),
-  first-exposure-always-recognition + emoji-cue policy + synonym-rotation coverage,
-  join-inertness + source-switch round-trip (schedules + enqueued revive; phrases stay
-  unlocked), stale-card answer no-op, FSRS-6 golden vectors + properties,
-  DST/non-Gregorian day-key vectors, snapshot builders.
 
-## 11. Pronunciation
+## Rejected designs
 
-- **When audio may play** — `PronunciationCue { Upfront, OnReveal }`,
-  declared beside `EmojiCue` in `model/Presentation.kt` because it is the same kind of rule:
-  what may be shown (heard) without giving the answer away.
-  `pronunciationCue(role, prompt)` is `Upfront` iff the role is Recognize — the target form stands on the card from frame one —
-  or the produce prompt IS the sound; `OnReveal` for a produce card that asks for that very form.
-  Both apps CONSUME the cue; neither re-derives `role == Recognize` for audio.
-  Which transitions actually fire, and how autoplay sits beside the auto-advance timers, is `../docs/design.md`'s.
-- **What is spoken is the bare headword** — the form the card teaches, never its rendering.
-  The inline article, the ♀ badge, the plural line and the area cue are grammar decoration and never reach a synthesizer;
-  gender is taught by the article-colour device, not by audio.
-  The recordings speak bare headwords, so this is the only rule that holds for the recorded and the synthesized branch alike.
-- **Two normalizations, both normative** (`catalog/Pronunciation.kt`):
-  `speechKey(form)` — trim whitespace, strip ONE leading `-` (the Swahili adjective stem citation `-zuri`),
-  strip leading/trailing sentence punctuation and quote marks — `¡`/`¿` among them, because Spanish writes them and no one says them —, NFC, lowercase.
-  `utterance(form)` — what a synthesizer is handed: the leading `-` gone (it gets vocalized as "minus"),
-  terminal punctuation KEPT, because it carries prosody.
-  `speechKey` is applied identically to a manifest's `matches` and to the visible form; nothing else folds.
-- **Lookup is keyed by the MATCHED SPOKEN FORM, never by the slug.**
-  `audio/<lang>/manifest.json` records, per slug, the form the recording actually speaks (`matches`).
-  `AudioManifest` builds two indices — the exact NFC form, then the `speechKey` — and exact wins.
-  A rotated synonym nobody recorded simply misses, and the app speaks it live:
-  a card never plays a word it does not show.
-- **Collision rule.** Entries sharing a `speechKey` whose bytes are IDENTICAL are one recording fetched under two slugs, and resolve.
-  Entries whose bytes differ (de `husten` = cough / to cough) have no right answer,
-  so the lookup returns null and the visible form is spoken live instead of guessed at.
-  That state may not ship: `CatalogAudioLintTest.noAmbiguousMatchedForm` fails the build,
-  and the converter resolves collisions when it generates the manifest.
-- **Kern returns paths and strings, never bytes.**
-  Manifests are JSON text read through `CatalogSource` like every other catalog file;
-  recording paths come back catalog-relative (`audio/uk/office.mp3`),
-  and every player, synthesizer and voice table stays app-side.
-- **The analysis index is measurement data, never an edit** (user ruling 2026-08-01).
-  An entry may carry `gain` (dB from the catalog's analysis target) and `lead` (dead air at its head, ms),
-  and `Pronunciation`/`LetterRecording` carry both on as `AudioIndex` — 0/0 where the field is absent or nothing plays.
-  The mp3 bytes stay the untouched Commons transcode, because re-encoding is an adaptation under BY-SA;
-  the packs share no loudness and the uk letters open a second late, so what corrects them is a MEASUREMENT of the shipped bytes
-  which only the player applies.
-  A third measurement, `snr` (peak minus noise floor), corrects nothing and reaches no player:
-  it exists so lint can hold a pack's median and bad tail, and refuse a rebuild that reintroduces removed hiss.
-  What was measured, against which target and under which scheme is `scripts/audio-catalog.py`'s `ANALYSIS`;
-  the sha256 gate is untouched by any of it.
-- **Audio is exempt from the fingerprint.**
-  `Catalog.load` reads the manifests through the RAW source, outside `FingerprintingSource`:
-  recordings cannot change the join, so a refreshed pack must never restamp a `JoinStamp`
-  and recompose a session that is already running.
-- Surface: `Catalog.pronunciation(lang, visibleForm) -> Pronunciation(form, utterance, lang, recordingPath?, gain, leadMs)`;
-  `Catalog.letterRecording(lang, glyph) -> LetterRecording(path, gain, leadMs)` for the letter drill,
-  and `Catalog.letterRecordingPath` for the callers that only ask whether a letter can be played at all
-  (the recording speaks the letter's NAME — the name string itself is the alphabet file's, and the manifest's
-  `letters` section is the only home of letter audio and its licence data);
-  `Catalog.audioCredits() -> [AudioCredit]`, grouped per (language, author, licence) with per-file rows.
-  BY and BY-SA cannot share one notice, so the groups ARE the credit rows,
-  and they derive from the shipped manifests, so the screen can never credit what is not bundled.
-- Lint (`CatalogAudioLintTest`, real catalog, vacuously green while `catalog/audio/` is empty):
-  entries name slugs their language realizes, every `matches` is reachable from a visible form,
-  no ambiguous speech key, slug-named word files and codepoint-named letter files
-  (glyph filenames decompose under NFD on APFS), every file ships and is referenced exactly once,
-  each sha256 re-hashed against the committed bytes — Commons transcodes ship untouched,
-  because re-encoding is an adaptation under BY-SA — and no author is a placeholder.
-- The manifest's own schema (fields, naming rules, provenance) is `catalog/README.md`'s:
-  this section owns the engine rule, not the file format.
+Roads not taken — never built, so there is no diff to find them in.
+What was built and later removed is git's to remember, not this doc's.
 
-## Deliberately dropped (recorded)
-
-- Per-role/per-form scheduling — `Role`-as-schedule, `UnitKey`, recognize eligibility lag,
-  one-unit-per-card-per-plan (user ruling 2026-07-22: one schedule per card).
-- Typed recognition (user ruling 2026-07-22: self-grade only — the panel's paraphrase
-  finding stands) and the phrase-recognition exclusion (phrases alternate, self-graded).
-- In-session lapse retry (breadth ruling 2026-07-22: relearning = reference `[10m]`).
-- Two minute-scale learning steps (the reference `[1m, 10m]`): a retry that lands a handful
-  of cards later is answered on novelty, not on the pair — the product runs one `[2m]` step,
-  which outlasts a short sitting, so the retry starts the next one (§5).
-- The relearning-share sub-gate (< 20 % of active, once active ≥ 10), and after it the whole
-  unsettled-load throttle it had been folded into (`maxUnsettled`, `TRICKLE_CARDS`, and the
-  learner-facing dial that set them): both steered growth by how shaky the material was, which
-  is a difficulty signal, not a retention one (`docs/growth-evidence.md`).
-- The backlog health gate (`dueSoftCap`) that outlived them, for the reason in §6: the growth
-  reserve already bounds intake to a small constant a 0.8-retention sitting more than repays,
-  so the gate only ever fought the reserve it shared a session with.
-- `AnswerStatus.DroppedPoolFull`: intake is bounded per composed round, so there is nothing
-  for an answer-time re-check to refuse.
-- `BoxStatistics.newSlotsAvailable`: no surface ever read it.
-- `variantOf` (user ruling 2026-07-22: the 4 near-duplicate phrase twins were unified
-  instead — base slug keeps an adapted realization; schema field deleted everywhere).
+- **Typed recognition** (user ruling 2026-07-22): self-grade only, the panel's paraphrase
+  finding stands. Nor is there a phrase-recognition exclusion — phrases alternate too.
 - Homonym disambiguation as **content**: a per-realization `sense`/`gloss` string and a
   concept-level `homonymOf`/`disambiguator` link. Both rejected — the area label already
   carries it for free, in every language, lint-guaranteed to exist; `sense` would be a new
@@ -812,8 +510,3 @@ day-key `yyyy-MM-dd`) with:
   is there to acquire; if a same-area cluster ever proves unfixable, revisit as `Typo`,
   never `Exact`), and suppressing/deferring a cluster member (breaks composition
   determinism to hide a content problem, and the collision returns once both are learned).
-- `Direction`, `mixedDirections` as a flag (alternation is the only mode), `LanguagePair`,
-  `id|direction` keys, per-pair store docs, slugified de-centric card ids, persisted Cards,
-  reconcile upsert half, the `"/"`-join↔split grading contract,
-  v1 immersion subtitle for chrome-less targets (kept for de/en),
-  Swift DuoKern + FSRS-5 vectors + DuoKernTrainer product split, watch Kotlin linkage.

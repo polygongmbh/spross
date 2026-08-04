@@ -64,5 +64,5 @@ Physical devices: `scripts/deploy-devices.sh`.
 Android builds Mac-free — commands, SDK setup, and install steps: `RUNBOOK-linux.md`.
 
 Framework mechanism: a pre-build phase stages `SprossKern.framework`
-via `scripts/build-kern.sh` (integration detail: `kern/README.md` §9).
+via `scripts/build-kern.sh` (integration detail: `kern/docs/build.md`).
 After adding/removing Swift source files: `xcodegen generate`.
