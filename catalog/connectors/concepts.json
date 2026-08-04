@@ -51,6 +51,50 @@
   "kind": "adjective"
  },
  {
+  "slug": "and",
+  "kind": "adjective"
+ },
+ {
+  "slug": "or",
+  "kind": "adjective"
+ },
+ {
+  "slug": "if",
+  "kind": "adjective"
+ },
+ {
+  "slug": "because",
+  "kind": "adjective"
+ },
+ {
+  "slug": "so-that",
+  "kind": "adjective"
+ },
+ {
+  "slug": "before",
+  "kind": "adjective"
+ },
+ {
+  "slug": "after",
+  "kind": "adjective"
+ },
+ {
+  "slug": "until",
+  "kind": "adjective"
+ },
+ {
+  "slug": "without",
+  "kind": "adjective"
+ },
+ {
+  "slug": "again",
+  "kind": "adjective"
+ },
+ {
+  "slug": "still",
+  "kind": "adjective"
+ },
+ {
   "slug": "more-or-less",
   "kind": "phrase",
   "emoji": "⚖️",
@@ -81,6 +125,21 @@
   "emoji": "⬇️",
   "components": [
    "lower"
+  ]
+ },
+ {
+  "slug": "if-you-want",
+  "kind": "phrase",
+  "components": [
+   "if"
+  ]
+ },
+ {
+  "slug": "tea-or-coffee",
+  "kind": "phrase",
+  "emoji": "☕",
+  "components": [
+   "or"
   ]
  }
 ]
