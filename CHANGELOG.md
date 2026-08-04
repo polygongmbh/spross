@@ -24,6 +24,13 @@
   And when you finish a round, the area you worked hardest grows out of the ground on the
   summary, so the end of a session shows what it actually moved.
 
+- **Idioms have a shelf of their own.** An expression is not a translation: "it's raining cats
+  and dogs" and "es gießt wie aus Eimern" describe the same downpour with unrelated pictures.
+  They are their own kind of card now, marked on first sight so you know before reading a word
+  that the other side will not line up, and the reveal spells out what its words literally say.
+  The ones that ship were each picked because another language genuinely has the same
+  expression, never because it happened to translate.
+
 ## 3.8.0 — 2026-08-04
 
 - **The box is arranged the way you would look for something.** Body parts were filed under

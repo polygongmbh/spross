@@ -57,6 +57,11 @@ extension Card {
         case .verb: return "⚡"
         case .adjective: return "✨"
         case .phrase: return "💬"
+        // Card.emoji is never nil for idioms (Catalog.kt applies the fixed
+        // IDIOM_EMOJI at join time), so this branch is defensive/unreachable —
+        // still required for switch exhaustiveness. Keep in sync with kern's
+        // IDIOM_EMOJI (Card.kt).
+        case .idiom: return "🎭"
         }
     }
 }

@@ -105,12 +105,16 @@ internal object CatalogParser {
                 "verb" -> CardKind.Verb
                 "adjective" -> CardKind.Adjective
                 "phrase" -> CardKind.Phrase
+                "idiom" -> CardKind.Idiom
                 else -> parseError(path, "$slug: unknown kind \"$raw\"")
             }
             if (kind != CardKind.Phrase && "components" in o.keys) {
                 parseError(path, "$slug: components on a ${kind.name.lowercase()}")
             }
             if (kind != CardKind.Noun && "feminineOf" in o.keys) parseError(path, "$slug: feminineOf on a non-noun")
+            if (kind == CardKind.Idiom && "emoji" in o.keys) {
+                parseError(path, "$slug: idioms use the fixed idiom emoji, not a per-concept one")
+            }
             CatalogConcept(
                 area = area,
                 slug = slug,

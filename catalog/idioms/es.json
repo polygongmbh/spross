@@ -1,0 +1,47 @@
+{
+ "title": "Modismos",
+ "words": {
+  "cross-your-fingers": {
+   "text": "Cruzo los dedos por ti.",
+   "notes": {
+    "de": "Wörtlich: „Ich kreuze die Finger für dich.“",
+    "en": "Literally: \"I cross my fingers for you.\""
+   }
+  },
+  "put-your-foot-in-it": {
+   "text": "Metí la pata.",
+   "notes": {
+    "de": "Wörtlich: „Ich habe die Pfote hineingesteckt.“",
+    "en": "Literally: \"I put the paw in.\""
+   }
+  },
+  "fed-up-to-here": {
+   "text": "Estoy hasta las narices.",
+   "notes": {
+    "de": "Wörtlich: „Ich bin bis zu den Nasenlöchern.“",
+    "en": "Literally: \"I'm up to the nostrils.\""
+   }
+  },
+  "turn-a-blind-eye": {
+   "text": "Hizo la vista gorda.",
+   "notes": {
+    "de": "Wörtlich: „Er machte den dicken Blick.“",
+    "en": "Literally: \"He made the fat view.\""
+   }
+  },
+  "seventh-heaven": {
+   "text": "Está en el séptimo cielo.",
+   "notes": {
+    "de": "Wörtlich dasselbe Bild.",
+    "en": "Literally the same image."
+   }
+  },
+  "raining-cats-and-dogs": {
+   "text": "Llueve a cántaros.",
+   "notes": {
+    "de": "Wörtlich: „Es regnet krugweise.“",
+    "en": "Literally: \"It's raining by the jugful.\""
+   }
+  }
+ }
+}

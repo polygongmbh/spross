@@ -7,7 +7,7 @@ crowdsourced per-language contribution, and a slow default learning progression.
 ## The key modeling decision: everything is a concept
 
 - A **concept** is language-neutral: a `slug`, a `kind`
-  (`noun` | `verb` | `adjective` | `phrase`), and an optional `emoji`.
+  (`noun` | `verb` | `adjective` | `phrase` | `idiom`), and an optional `emoji`.
   Words and phrases live in one ordered list.
 - A **realization** is one concept rendered in one language (`text` + grammar + notes).
 - A **pair** (de↔sw, de↔uk, later sw↔uk) is a **runtime join** on slug — never stored.
@@ -132,6 +132,13 @@ verb `cook` → `"to cook"`, phrase `the-fridge-is-empty` → `"The fridge is em
   A component only ever unlocks a phrase where the TARGET realizes it, so gate on a
   concept every language carries: a `feminineOf` component would leave the phrase locked
   forever in a pair whose target has no feminine form (en, sw).
+- `idiom` — a figurative expression, curated (not auto-linked) for genuine
+  cross-language meaning-equivalence; see "Idioms are the exception" below.
+  Structurally forbidden from carrying `emoji`, `components`, or `feminineOf` —
+  the parser rejects a concept that tries. Every idiom card shows the engine's
+  fixed `IDIOM_EMOJI` instead (`../kern/README.md` §2), and idioms carry no
+  unlock gate, so ordering (last group in `areas.json`) is what keeps them
+  behind the vocabulary they presuppose.
 - `adjective` is the catch-all for single words that are neither noun nor verb:
   adjectives, adverbs, and interjections (`draußen`, `immer`, `Vorsicht`).
   Prefer splitting such a word out of a phrase over inflating the phrase:
@@ -480,6 +487,20 @@ and it is worth re-cutting the source phrase to keep
 The replaced wording moves to `variants` so nobody's typed answer stops grading.
 Where a language genuinely has no equivalent —
 a greeting formula, `Feierabend`, the Swahili clock — a `notes` entry carries the gap.
+
+**Idioms are the exception.** The word-mirroring rule above is what makes an ordinary
+phrase learnable: the words visibly correspond, so a learner works out which did what.
+An idiom (`kind: "idiom"`, `catalog/idioms/`) is figurative by definition, so that
+correspondence would be dishonest to fake — "es gießt wie aus Eimern" (lit. "it's
+pouring as if from buckets") and "it's raining cats and dogs" describe the same event
+with unrelated imagery, and forcing a calque onto either side would just teach the
+wrong idiom. The curation bar replaces word-mirroring with **meaning-equivalence**:
+ship a pairing only where another language has a genuinely equivalent expression —
+same real-world function, not shared imagery — and use the ordinary coverage rule to
+omit a language honestly where no such expression is known, rather than force one.
+`notes` (keyed by explanation language, same field as everywhere else) carries the
+literal back-translation of each side's imagery — that gap, made visible on reveal, is
+the actual teaching content: not just the matching idiom, but why the words don't match.
 
 The same rule decides **baked-in objects**: a verb carries its object in EVERY
 language or in none. Swahili often cannot go bare, because one verb covers several

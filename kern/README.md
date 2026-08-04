@@ -45,7 +45,7 @@ The engine's own semantics are below. Four domains have their own pages:
 ```kotlin
 data class Card(              // data class: Swift sees value equality (SwiftUI diffing)
   val id: String,             // the concept's catalog slug — never contains '|' or '/'
-  val kind: CardKind,         // noun | verb | adjective | phrase
+  val kind: CardKind,         // noun | verb | adjective | phrase | idiom
   val area: String,
   val emoji: String?,
   val seedIndex: Int,
@@ -89,6 +89,13 @@ data class Realization(
   gets prompts no cue in the answer language could resolve. Produce-side only — see §3.
 - **Notes**: selected by SOURCE language at join time, no cross-language fallback
   (a de note never surfaces for an en-source user; non-de sources are note-less until authored).
+- **`Idiom` emoji is fixed, not per-concept**: the join sets `emoji = IDIOM_EMOJI` for
+  every idiom card regardless of what the catalog concept carries (nothing — the parser
+  rejects an authored `emoji` on `kind: "idiom"`). Every other kind's emoji is a
+  per-concept meaning cue; an idiom's is a kind marker, so a learner recognizes "this is
+  figurative" from the glyph alone before reading either language's text. Idioms also
+  carry no `components`/`feminineOf` (structurally forbidden) and so no unlock gate —
+  see `catalog/README.md` "Idioms are the exception".
 - **Grammar display is target-side only**: plural line and article coloring render only for
   the target realization.
   Every real plural carries the "Pl. " label, suffixes resolved against the word
