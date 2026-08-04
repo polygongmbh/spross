@@ -208,7 +208,9 @@ struct SessionView: View {
                              listening: true)
             }
             return .init(text: card.source.text,
-                         context: card.promptAmbiguous ? areaCue(card.area) : nil,
+                         // why: the area title IS the disambiguating cue, in the source
+                         // language — it is a plain name, so nothing is trimmed off it.
+                         context: card.promptAmbiguous ? model.areaTitle(card.area) : nil,
                          femMarker: card.promptFeminineMarker)
         case .recognize:
             // why: deliberately NO context cue here — the prompt is the target form, so
@@ -223,16 +225,6 @@ struct SessionView: View {
                          pronounce: pronounceAction(for: form),
                          isPlaying: isPronouncing(form))
         }
-    }
-
-    /// Area label as a disambiguating cue, in the source language (`areaTitle` already
-    /// resolves there). Titles carry a "·" flavour tail ("Jikoni · karibu chakula
-    /// kitamu!") — only the head is a label, so the tail is dropped.
-    private func areaCue(_ area: String) -> String {
-        model.areaTitle(area)
-            .split(separator: "·", maxSplits: 1)
-            .first
-            .map { $0.trimmingCharacters(in: .whitespaces) } ?? model.areaTitle(area)
     }
 
     /// The reveal always shows the full family: produce reveals the target

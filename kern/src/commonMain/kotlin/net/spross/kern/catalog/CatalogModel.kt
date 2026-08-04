@@ -45,6 +45,14 @@ internal data class CatalogConcept(
     val id: String get() = slug
 }
 
+/** One `<area>/<lang>.json` as authored: the area's headings plus its realizations. */
+internal data class RawArea(
+    val title: String,
+    /** The optional flavour clause under [title]; null where this area authors none. */
+    val subtitle: String?,
+    val words: Map<String, RawRealization>,
+)
+
 /** One realization as authored, before profile selection. */
 internal data class RawRealization(
     val text: String,
@@ -93,6 +101,8 @@ internal class CatalogArea(
     val name: String,
     val concepts: List<CatalogConcept>,
     val titles: Map<Language, String>,
+    /** Optional flavour clauses, keyed like [titles] — absent for an area authoring none. */
+    val subtitles: Map<Language, String>,
     /** lang → slug → realization; only languages whose file exists. */
     val realizations: Map<Language, Map<String, RawRealization>>,
 ) {

@@ -8,7 +8,8 @@ internal class MapCatalogSource(private val files: Map<String, String>) : Catalo
  * Inline fixture catalog exercising the join rules: feminine base-fallback + skip,
  * Sie/du variants, sparse coverage, "to " prefix, missing language files
  * (beta has no sw/en), seedIndex flattening across two groups,
- * decomposed-Unicode forms (gamma/de door), and the [drills] frames.
+ * decomposed-Unicode forms (gamma/de door), area subtitles (gamma authors them,
+ * alpha and beta none), and the [drills] frames.
  */
 internal object Fixture {
     private val du = "u\u0308" // decomposed u-umlaut: u + combining diaeresis
@@ -142,16 +143,18 @@ internal object Fixture {
             [ { "slug": "door", "kind": "noun", "emoji": "🚪" } ]
         """.trimIndent(),
         "gamma/de.json" to """
-            { "title": "Gamma",
+            { "title": "Gamma", "subtitle": "Alles dreht sich.",
               "words": {
                 "door": { "text": "T${du}r", "synonyms": ["die  T${du}re"],
                           "grammar": { "gender": "die", "plural": "-en" } } } }
         """.trimIndent(),
         "gamma/sw.json" to """
-            { "title": "Gamma", "words": { "door": { "text": "mlango" } } }
+            { "title": "Gamma", "subtitle": "Kila kitu kinazunguka.",
+              "words": { "door": { "text": "mlango" } } }
         """.trimIndent(),
         "gamma/uk.json" to """
-            { "title": "Гамма", "words": { "door": { "text": "двері", "grammar": { "plural": "only" } } } }
+            { "title": "Гамма", "subtitle": "Усе обертається.",
+              "words": { "door": { "text": "двері", "grammar": { "plural": "only" } } } }
         """.trimIndent(),
     ) + drills
 

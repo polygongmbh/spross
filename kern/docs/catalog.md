@@ -12,6 +12,12 @@ Engine contract: `../README.md`.
   `AreaGroup.areas: [String]` is unchanged — the ordered names every consumer flat-maps;
   the emoji rides alongside in `AreaGroup.areaEmojis: [String: String]` and is read via
   `Catalog.areaEmoji(area) -> String?`, the language-neutral sibling of `areaTitle`.
+- `<area>/<lang>.json`: an optional `subtitle` beside `title`, read via
+  `Catalog.areaSubtitle(area, lang) -> String?` — the same shape as `areaTitle`, so a
+  reader gets it in their own language or not at all. `title` therefore stays a plain
+  NAME: it is also the produce prompt's disambiguating cue, which no consumer trims.
+  Lint (`subtitlesAreCompletePerAreaAndDistinctFromTheTitle`): an area authoring one
+  authors it in every declared language, and it neither contains the title nor a `·`.
 - Realization: `variants: [String]` next to `synonyms` — a **display/accept distinction
   only**, never a scheduling one (`../README.md` §3): synonyms rotate as recognition prompt forms and
   show on reveal; variants are accepted silently and never prompted.

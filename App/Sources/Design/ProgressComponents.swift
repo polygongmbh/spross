@@ -114,6 +114,9 @@ struct AreaProgress {
 struct AreaChip: View {
     let emoji: String
     let name: String
+    /// The area's flavour clause, where the catalog authors one — never louder
+    /// than the name it sits under, and simply absent otherwise.
+    var subtitle: String?
     let progress: AreaProgress
     /// Phrases still waiting on their component words to stabilize — not a
     /// count the bar can place (they aren't scheduled yet), so it only ever
@@ -141,6 +144,13 @@ struct AreaChip: View {
                     .foregroundStyle(Color.dlTextPrimary)
                     .lineLimit(1)
                 Spacer(minLength: DL.Space.s)
+            }
+            if let subtitle {
+                Text(subtitle)
+                    .font(DL.Fonts.subheadline)
+                    .foregroundStyle(Color.dlTextSecondary)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             counts
             GeometryReader { geo in
@@ -265,6 +275,7 @@ private extension View {
                 BoxStatTile(emoji: "🌱", value: "48", label: "progress.fresh")
             }
             AreaChip(emoji: "🍳", name: "Küche",
+                     subtitle: "Hier duftet es nach Abendessen.",
                      progress: .init(consolidated: 18, learning: 6, notIntroduced: 0, progressTotal: 24),
                      lockedPhrases: 0)
                 .previewCard()

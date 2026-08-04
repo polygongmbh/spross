@@ -57,6 +57,14 @@ class Catalog internal constructor(
         areas.firstOrNull { it.name == area }?.titles?.get(lang)
 
     /**
+     * The area's flavour clause, the same shape as [areaTitle]. Optional content: null
+     * says this area authors none (in any language), never that the reader's is missing —
+     * a subtitle is authored in every declared language or in none.
+     */
+    fun areaSubtitle(area: String, lang: Language): String? =
+        areas.firstOrNull { it.name == area }?.subtitles?.get(lang)
+
+    /**
      * The area's illustrative emoji from `areas.json` — language-neutral, so unlike
      * [areaTitle] it takes no language. Null only for an area the manifest never lists.
      */
@@ -323,15 +331,17 @@ class Catalog internal constructor(
                 seedIndex += concepts.size
                 val slugs = concepts.map { it.slug }.toSet()
                 val titles = mutableMapOf<Language, String>()
+                val subtitles = mutableMapOf<Language, String>()
                 val realizations = mutableMapOf<Language, Map<String, RawRealization>>()
                 for (lang in languages.keys) {
                     val path = "$name/$lang.json"
                     val text = tracked.read(path) ?: continue
-                    val (title, words) = CatalogParser.parseAreaLanguageFile(path, text, slugs)
-                    titles[lang] = title
-                    realizations[lang] = words
+                    val raw = CatalogParser.parseAreaLanguageFile(path, text, slugs)
+                    titles[lang] = raw.title
+                    raw.subtitle?.let { subtitles[lang] = it }
+                    realizations[lang] = raw.words
                 }
-                CatalogArea(name, concepts, titles, realizations)
+                CatalogArea(name, concepts, titles, subtitles, realizations)
             }
             // why: read through the RAW source, never the fingerprinting wrapper — audio
             // can never change the join, so a refreshed pack must not restamp (and

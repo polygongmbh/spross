@@ -158,6 +158,26 @@ class CatalogFixtureTest {
         assertEquals(listOf("start", "more"), catalog.groups.map { it.id })
     }
 
+    /** Optional and per-language: gamma authors one, alpha authors none at all. */
+    @Test
+    fun areaSubtitleReadsBesideTheTitle() {
+        assertEquals("Alles dreht sich.", catalog.areaSubtitle("gamma", "de"))
+        assertEquals("Усе обертається.", catalog.areaSubtitle("gamma", "uk"))
+        assertEquals("Gamma", catalog.areaTitle("gamma", "de"))
+        assertNull(catalog.areaSubtitle("gamma", "en")) // no gamma/en.json at all
+        assertNull(catalog.areaSubtitle("alpha", "de"))
+        assertNull(catalog.areaSubtitle("delta", "de"))
+    }
+
+    @Test
+    fun misspelledAreaHeadingKeyIsRejected() {
+        val broken = Fixture.files + mapOf(
+            "gamma/sw.json" to """{ "title": "Gamma", "subtitel": "…", "words": {} }""",
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("subtitel" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
     @Test
     fun areaEmojiIsLanguageNeutralAndNullForUnknownAreas() {
         assertEquals("🌀", catalog.areaEmoji("gamma"))

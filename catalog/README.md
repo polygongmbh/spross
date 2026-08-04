@@ -157,12 +157,20 @@ so rename deliberately, never just to polish a lemma.
 
 **`<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json
-{ "title": "Die Küche",
+{ "title": "Die Küche", "subtitle": "Hier duftet es nach Abendessen.",
   "words": {
     "fridge": { "text": "Kühlschrank", "grammar": { "gender": "der", "plural": "Kühlschränke" } },
     "cook":   { "text": "kochen" },
     "the-fridge-is-empty": { "text": "Der Kühlschrank ist leer." } } }
 ```
+- `title` — the area's plain NAME, nothing appended. It doubles as the disambiguating
+  cue on an ambiguous produce prompt, where a flavour tail glued on with `·` would
+  turn a label into a sentence.
+- `subtitle` — OPTIONAL flavour clause rendered under the title, one short line.
+  Never the title again and never a fragment of it, and per area it is **all-or-nothing
+  across the declared languages**: a clause only one language carries reads as a hole
+  in every other reader's box. Lint holds both.
+
 Realization fields — only `text` is required:
 - `text` — the canonical answer/display form, nothing else (no embedded glosses/labels).
   Never bracket a disambiguator into it (`"mto (Kissen)"`) — everything in `text` has to be

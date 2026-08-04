@@ -203,6 +203,27 @@ class CatalogLintTest {
         }
     }
 
+    /**
+     * A subtitle is flavour, so an area may carry none — but half a set is worse than
+     * none: the clause would stand in one reader's box and be a hole in the next. It is
+     * also not the title again, in any form, and never the `·`-glued tail it replaced,
+     * which is the shape the whole field exists to retire.
+     */
+    @Test
+    fun subtitlesAreCompletePerAreaAndDistinctFromTheTitle() {
+        for (area in catalog.areas) {
+            if (area.subtitles.isEmpty()) continue
+            assertEquals(area.titles.keys, area.subtitles.keys, "area ${area.name}: partial subtitles")
+            for ((lang, subtitle) in area.subtitles) {
+                val where = "${area.name}/$lang.json subtitle"
+                assertTrue(subtitle.isNotBlank() && subtitle.trim() == subtitle, "$where: untrimmed \"$subtitle\"")
+                assertTrue("·" !in subtitle, "$where: carries a \"·\" tail")
+                val title = area.titles.getValue(lang)
+                assertTrue(title !in subtitle, "$where: repeats the title \"$title\"")
+            }
+        }
+    }
+
     @Test
     fun notesKeyedByDeclaredLanguages() {
         forEachRealization { area, lang, slug, raw ->
