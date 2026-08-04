@@ -486,6 +486,14 @@ governs it.
 
 ## Which area a concept lives in
 
+**An area holds a few dozen cards.** It is a shelf a learner can hold in their head and
+choose to pull forward, not a drawer everything vaguely related falls into — so an area
+growing past roughly forty asks to be cut along the seam a learner would name
+(the doctor's visit out of health, the clock out of the everyday words, the colours out
+before they ever land there). The cut is cheap: the slug is the card id and carries no
+area, so nobody's schedule notices. The one area still over the line is `essentials`,
+which is the catch-all by construction and would need a further cut to come down.
+
 The area is the folder, and three things ride on it:
 it is the produce prompt's disambiguator,
 `components` and `feminineOf` resolve **inside** it,
