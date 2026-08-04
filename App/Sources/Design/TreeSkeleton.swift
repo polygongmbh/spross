@@ -122,16 +122,22 @@ struct TreeSkeleton {
                                     startWidth: CGFloat(width), endWidth: CGFloat(endWidth),
                                     depth: depth))
 
-        // Where leaves may hang. Terminal twigs carry the most, the generation
-        // behind them carries some, and the limb behind THAT carries a couple —
-        // foliage thins toward the trunk rather than stopping dead at the tips,
-        // which is what left the branches bare. Deliberately few slots in total:
-        // an area's words have to be able to fill the tree they hang on.
+        // Where leaves may hang, PER SEGMENT — and the inner generations carry
+        // more each, not fewer.
+        //
+        // why: segment count roughly doubles per generation, so giving the
+        // terminal twigs the most slots each put the overwhelming majority of
+        // all foliage on the outermost ring, and with monopodial branching that
+        // ring sits high. The tree wore its leaves like a cap. Weighted this way
+        // the terminal generation holds under half of the slots and the limbs
+        // below carry the rest, which is where a deciduous crown's mass
+        // actually is.
         let carries: [Double]
         switch limit - depth {
-        case 0: carries = [0.34, 0.62, 0.88]
-        case 1: carries = [0.55, 0.85]
-        case 2: carries = limit >= 3 ? [0.72] : []
+        case 0: carries = [0.44, 0.82]
+        case 1: carries = [0.30, 0.56, 0.82]
+        case 2: carries = [0.36, 0.64, 0.90]
+        case 3: carries = [0.62]
         default: carries = []
         }
         for (index, t) in carries.enumerated() {
@@ -144,22 +150,22 @@ struct TreeSkeleton {
         // Branches reach for the light a little more with every generation:
         // the parent's direction, bent a fraction of the way back toward up.
         let up = -Double.pi / 2
-        let lifted = angle + (up - angle) * 0.10 * Double(depth)
+        let lifted = angle + (up - angle) * 0.045 * Double(depth)
 
         let dominant = lifted + rng.range(0.14, 0.31) * (rng.next() < 0.5 ? -1 : 1)
-        let lateral = lifted + side * rng.range(0.52, 0.84)
+        let lateral = lifted + side * rng.range(0.62, 1.02)
 
         branch(from: end, angle: dominant, length: length * 0.80 * rng.range(0.92, 1.08),
                width: width * 0.82, depth: depth + 1, limit: limit, side: -side,
                rng: &rng, segments: &segments, slots: &slots)
-        branch(from: end, angle: lateral, length: length * 0.62 * rng.range(0.85, 1.15),
+        branch(from: end, angle: lateral, length: length * 0.72 * rng.range(0.85, 1.15),
                width: width * 0.57, depth: depth + 1, limit: limit, side: -side,
                rng: &rng, segments: &segments, slots: &slots)
         // A third limb low down, sometimes: perfect two-way forking all the way
         // down reads as a diagram of a tree rather than as one.
-        if depth <= 1, rng.next() < 0.22 {
-            branch(from: end, angle: lifted - side * rng.range(0.52, 0.84),
-                   length: length * 0.55, width: width * 0.45, depth: depth + 1,
+        if depth <= limit - 2, rng.next() < 0.3 {
+            branch(from: end, angle: lifted - side * rng.range(0.62, 1.02),
+                   length: length * 0.6, width: width * 0.45, depth: depth + 1,
                    limit: limit, side: side,
                    rng: &rng, segments: &segments, slots: &slots)
         }

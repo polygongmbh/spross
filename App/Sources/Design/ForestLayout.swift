@@ -117,8 +117,8 @@ struct TreeMark {
             // crown that grew a generation halfway through would reshuffle every
             // slot under the marks already hanging on them.
             depth: TreeSkeleton.generations(for: tree),
-            in: CGRect(x: foot.x - height * 0.6, y: foot.y - height,
-                       width: max(height * 1.2, 1), height: max(height, 1))
+            in: CGRect(x: foot.x - height * 0.72, y: foot.y - height,
+                       width: max(height * 1.44, 1), height: max(height, 1))
         )
     }
 }
@@ -146,7 +146,7 @@ enum ForestLayout {
     /// Equal cells in equal columns read as planting rather than as growth.
     static func marks(_ trees: [AreaTree], width: CGFloat) -> [TreeMark] {
         guard width > 0, !trees.isEmpty else { return [] }
-        let room = trees.map { max(minCellWidth * 0.62, treeHeight($0) * 1.05 + 12) }
+        let room = trees.map { max(minCellWidth * 0.62, treeHeight($0) * 1.28 + 12) }
 
         var rows: [[Int]] = []
         var row: [Int] = []
@@ -174,11 +174,18 @@ enum ForestLayout {
             let rowHeight = max(Self.rowHeight, tallest + 10) + groundRoll
             let ground = top + rowHeight
 
+            // why: ONE phase for the whole row. Seeded per tree — as it was —
+            // every trunk sampled a different point of the wave, so neighbours
+            // were uncorrelated and the result was noise wearing a wave's
+            // clothing. Ground is only ground if the tree beside you is at
+            // nearly the same height as you.
+            let phase = noise(trees[row[0]].id, 43) * 2 * .pi
+
             var placed: [TreeMark] = []
             var x = gap
             for (seat, index) in row.enumerated() {
                 let drift = CGFloat(noise(trees[index].id, 31) - 0.5) * min(gap, 10)
-                let stand = ground + roll(trees[index].id, seat: seat)
+                let stand = ground + roll(seat: seat, phase: phase)
                 let cell = CGRect(x: x + drift, y: top,
                                   width: room[index],
                                   height: stand - top + labelHeight)
@@ -207,11 +214,15 @@ enum ForestLayout {
     /// ambiguous, since the offsets are a fraction of the height range.
     static let groundRoll: CGFloat = 6
 
-    /// A gentle wave along the row plus a little noise per tree: a wave alone
-    /// is a pattern, noise alone is a mess, and the two together read as ground.
-    private static func roll(_ id: String, seat: Int) -> CGFloat {
-        let wave = sin(Double(seat) * 1.15 + noise(id, 43) * 0.9)
-        return CGFloat(wave * 0.62 + (noise(id, 37) - 0.5) * 0.7) * groundRoll
+    /// One slow wave along the row, and nothing else.
+    ///
+    /// The per-tree noise that used to be mixed in is gone with the per-tree
+    /// phase: two independent jitters on the same axis is how an offset stops
+    /// reading as terrain and starts reading as a mistake. A low frequency
+    /// matters as much — at 0.55 rad per seat a row of six is barely half a
+    /// period, so the ground leans rather than ripples.
+    private static func roll(seat: Int, phase: Double) -> CGFloat {
+        CGFloat(sin(Double(seat) * 0.55 + phase)) * groundRoll
     }
 
     static func height(_ trees: [AreaTree], width: CGFloat) -> CGFloat {
