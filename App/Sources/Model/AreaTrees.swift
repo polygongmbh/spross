@@ -43,6 +43,9 @@ struct AreaGrowth {
     var fallen = 0
     var mass = 0.0
     var tendedToday = false
+    /// One entry per canopy word — what each has come to, for the mark that
+    /// stands for it.
+    var reaches: [Double] = []
 
     /// A word is fruit only once it is well past the matured bar. Blossom is
     /// meant to be the rare thing on a tree — mapping it to `consolidated`, the
@@ -54,15 +57,19 @@ struct AreaGrowth {
         // why: mass is what the trunk is made of, so every word that has come
         // anywhere counts toward it — a settled word carries more of the tree
         // than one met yesterday, and a word never opened carries none of it.
-        mass += entry.reach(maximumIntervalDays: maximumInterval)
+        let reach = entry.reach(maximumIntervalDays: maximumInterval)
+        mass += reach
         switch entry.stage {
         case .unscheduled: break
         case .queued, .learning, .fresh: growing += 1
         // The canopy is green because most of a worked area IS green: settled
         // and consolidated words are the bulk of any box that is being used.
-        case .settled, .consolidated: leaves += 1
+        case .settled, .consolidated:
+            leaves += 1
+            reaches.append(reach)
         case .matured:
             if entry.stability >= Self.fruitStability { fruit += 1 } else { blossoms += 1 }
+            reaches.append(reach)
         case .relearning: fallen += 1
         // A word the box has taken out of rotation is owed no space in the
         // picture; waking it lives on its row in the Box screen.
@@ -73,7 +80,11 @@ struct AreaGrowth {
     func tree(id: String, emoji: String, title: String) -> AreaTree {
         AreaTree(id: id, emoji: emoji, title: title,
                  leaves: leaves, blossoms: blossoms, fruit: fruit,
-                 growing: growing, fallen: fallen, mass: mass, tendedToday: tendedToday)
+                 growing: growing, fallen: fallen, mass: mass, tendedToday: tendedToday,
+                 // why: most-grown first, which is the order the canopy draws
+                 // its marks in — fruit at the rim, then blossom, then leaves —
+                 // so entry n belongs to mark n.
+                 reaches: reaches.sorted(by: >))
     }
 }
 

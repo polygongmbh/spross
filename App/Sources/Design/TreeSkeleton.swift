@@ -22,6 +22,11 @@ import Foundation
 //   · Every segment bows slightly; a straight line never occurs in a tree.
 //   · A bare trunk before the first fork — at 50pt that is most of what says
 //     "tree" at all.
+//
+// The random ranges are deliberately narrow. Every one of them is a shape
+// decision, and a seed that draws from the tails of several at once is how a
+// generator that is right on average still produces the occasional ugly tree —
+// and there is no art director between the hash and the screen.
 
 /// One length of branch: a bowed centre line that tapers along its length.
 struct TreeSegment {
@@ -68,9 +73,16 @@ struct TreeSkeleton {
     /// so the hero and the forest show one tree and a transition cannot grow a
     /// generation halfway through.
     static func generations(for tree: AreaTree) -> Int {
-        switch ForestLayout.treeHeight(tree) {
-        case ..<19: return 2
-        case ..<34: return 3
+        // why: from the number of WORDS the canopy has to hold, not from the
+        // tree's height. Height comes from aggregate stability, which climbs
+        // while a word is merely getting stronger — so an area could grow tall
+        // enough to earn another generation of twigs without gaining a single
+        // leaf to hang on them, which is what left the thin trees twiggy. Tied
+        // to the canopy, a tree fills up, earns its next generation, and fills
+        // that.
+        switch tree.canopyCount {
+        case ..<12: return 2
+        case ..<30: return 3
         default: return maxDepth
         }
     }
@@ -122,21 +134,24 @@ struct TreeSkeleton {
                                     startWidth: CGFloat(width), endWidth: CGFloat(endWidth),
                                     depth: depth))
 
-        // Where leaves may hang, PER SEGMENT — and the inner generations carry
-        // more each, not fewer.
+        // Where leaves may hang, PER SEGMENT — weighted to the inner
+        // generations, because segment count roughly doubles per generation and
+        // loading the terminal twigs put nearly all foliage on the outermost
+        // ring, which monopodial branching keeps high. The tree wore its leaves
+        // like a cap.
         //
-        // why: segment count roughly doubles per generation, so giving the
-        // terminal twigs the most slots each put the overwhelming majority of
-        // all foliage on the outermost ring, and with monopodial branching that
-        // ring sits high. The tree wore its leaves like a cap. Weighted this way
-        // the terminal generation holds under half of the slots and the limbs
-        // below carry the rest, which is where a deciduous crown's mass
-        // actually is.
+        // The TOTAL matters more than the weighting, though. A tree's slot count
+        // grows with its generations while its words grow with the learner, and
+        // the two used to grow at the same rate — a mature area filled the same
+        // ~37% of its slots as a young one filled of its own, so every tree in
+        // the forest was equally sparse and maturity showed only as size. These
+        // totals are small enough that a well-worked area comes close to filling
+        // its tree, which is what "well worked" should look like.
         let carries: [Double]
         switch limit - depth {
-        case 0: carries = [0.44, 0.82]
-        case 1: carries = [0.30, 0.56, 0.82]
-        case 2: carries = [0.36, 0.64, 0.90]
+        case 0: carries = [0.66]
+        case 1: carries = [0.38, 0.76]
+        case 2: carries = [0.40, 0.78]
         case 3: carries = [0.62]
         default: carries = []
         }
@@ -152,19 +167,21 @@ struct TreeSkeleton {
         let up = -Double.pi / 2
         let lifted = angle + (up - angle) * 0.045 * Double(depth)
 
-        let dominant = lifted + rng.range(0.14, 0.31) * (rng.next() < 0.5 ? -1 : 1)
-        let lateral = lifted + side * rng.range(0.62, 1.02)
+        let dominant = lifted + rng.range(0.17, 0.27) * (rng.next() < 0.5 ? -1 : 1)
+        let lateral = lifted + side * rng.range(0.70, 0.95)
 
-        branch(from: end, angle: dominant, length: length * 0.80 * rng.range(0.92, 1.08),
+        branch(from: end, angle: dominant, length: length * 0.80 * rng.range(0.95, 1.05),
                width: width * 0.82, depth: depth + 1, limit: limit, side: -side,
                rng: &rng, segments: &segments, slots: &slots)
-        branch(from: end, angle: lateral, length: length * 0.72 * rng.range(0.85, 1.15),
+        branch(from: end, angle: lateral, length: length * 0.72 * rng.range(0.91, 1.09),
                width: width * 0.57, depth: depth + 1, limit: limit, side: -side,
                rng: &rng, segments: &segments, slots: &slots)
         // A third limb low down, sometimes: perfect two-way forking all the way
-        // down reads as a diagram of a tree rather than as one.
-        if depth <= limit - 2, rng.next() < 0.3 {
-            branch(from: end, angle: lifted - side * rng.range(0.62, 1.02),
+        // down reads as a diagram of a tree rather than as one. Kept to the
+        // lowest forks — further out it multiplies the twig count faster than
+        // an area gains the words to clothe them.
+        if depth <= 1, rng.next() < 0.25 {
+            branch(from: end, angle: lifted - side * rng.range(0.70, 0.95),
                    length: length * 0.6, width: width * 0.45, depth: depth + 1,
                    limit: limit, side: side,
                    rng: &rng, segments: &segments, slots: &slots)

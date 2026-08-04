@@ -142,14 +142,17 @@ enum TreeShapes {
         // carrying six words is a blot on one carrying sixty, and the reading
         // wanted at that end is foliage, not sixty countable objects.
         let fill = Double(shown.canopyCount) / Double(max(skeleton.slots.count, 1))
-        let base = max(2.4, mark.height * 0.085 * CGFloat(1 - 0.18 * min(1, fill)))
+        let base = max(2.4, mark.height * 0.088 * CGFloat(1 - 0.10 * min(1, fill)))
         var tones = [Path(), Path(), Path()]
 
         for (rank, slot) in skeleton.slots.prefix(shown.canopyCount).enumerated() {
-            // Every mark takes its own size and lean from its slot: a canopy of
-            // identical stamps is the other way to look machine-made.
+            // A mark's SIZE is its own word's standing; only its lean is
+            // hashed. A canopy of identical stamps is the other way to look
+            // machine-made, and a canopy whose variation means something is
+            // better than one whose variation is noise.
             let grain = ForestLayout.noise("\(mark.tree.id)-\(rank)", 41)
-            let size = base * CGFloat(0.82 + 0.36 * grain)
+            let reach = rank < shown.reaches.count ? shown.reaches[rank] : 0.4
+            let size = base * CGFloat(0.74 + 0.62 * reach)
             // why: leaves point away from the twig and a little upward, which is
             // what makes them read as attached rather than scattered.
             let angle = slot.angle + slot.side * (0.78 + 0.34 * grain) - 0.26

@@ -35,6 +35,12 @@ struct AreaTree: Identifiable {
     let mass: Double
     /// Something here was answered today.
     let tendedToday: Bool
+    /// How far each canopy word has come, 0…1, most-grown first — one entry per
+    /// mark, in the order the marks are drawn. The canopy's marks take their
+    /// SIZE from these, so a leaf is the size of the word it stands for rather
+    /// than of a hash: within one tier a word held for a week and one held for
+    /// a month stop drawing identically.
+    var reaches: [Double] = []
 
     /// Whether anything at all has happened here. A bare area draws as bare
     /// ground, NOT as empty slots: a catalog the learner never chose must not
@@ -88,7 +94,11 @@ struct TreeTransition {
             growing: step(before.growing, after.growing),
             fallen: step(before.fallen, after.fallen),
             mass: before.mass + (after.mass - before.mass) * t,
-            tendedToday: after.tendedToday
+            tendedToday: after.tendedToday,
+            // why: the FINISHED tree's, always. Both lists run most-grown first,
+            // so a mark keeps its word as the count climbs; interpolating the
+            // list itself would slide every word's size along the canopy.
+            reaches: after.reaches
         )
     }
 }
@@ -163,70 +173,49 @@ enum ForestLayout {
         if !row.isEmpty { rows.append(row) }
 
         var marks: [TreeMark] = []
-        var top: CGFloat = 0
-        for row in rows {
+        var base: CGFloat = 0
+        for (rank, row) in rows.enumerated() {
             let taken = row.reduce(CGFloat(0)) { $0 + room[$1] }
             // Slack goes between the trees AND to the margins, so a short row
             // spreads out rather than crowding against the left edge.
             let gap = max(0, width - taken) / CGFloat(row.count + 1)
             let tallest = row.map { treeHeight(trees[$0]) }.max() ?? minHeight
-            // Headroom above and below for the ground to rise and fall in.
-            let rowHeight = max(Self.rowHeight, tallest + 10) + groundRoll
-            let ground = top + rowHeight
+            let band = max(rowHeight, tallest + 10)
+            let pitch = band + labelHeight + rowGap
 
-            // why: ONE phase for the whole row. Seeded per tree — as it was —
-            // every trunk sampled a different point of the wave, so neighbours
-            // were uncorrelated and the result was noise wearing a wave's
-            // clothing. Ground is only ground if the tree beside you is at
-            // nearly the same height as you.
-            let phase = noise(trees[row[0]].id, 43) * 2 * .pi
-
-            var placed: [TreeMark] = []
             var x = gap
             for (seat, index) in row.enumerated() {
                 let drift = CGFloat(noise(trees[index].id, 31) - 0.5) * min(gap, 10)
-                let stand = ground + roll(seat: seat, phase: phase)
-                let cell = CGRect(x: x + drift, y: top,
-                                  width: room[index],
-                                  height: stand - top + labelHeight)
-                placed.append(TreeMark(tree: trees[index],
-                                       foot: CGPoint(x: cell.midX, y: stand),
-                                       height: treeHeight(trees[index]),
-                                       cell: cell,
-                                       baseline: stand))
+                // why: every second tree drops half a row, and which half a row
+                // starts on flips with the row — so the forest tiles diagonally
+                // and a tree always has neighbours above and below it as well as
+                // beside it. Fixed rather than random: an even lattice broken
+                // only by the widths and the drift reads as an orchard, where
+                // the wave it replaces read as a wave.
+                let dropped = (seat + rank).isMultiple(of: 2)
+                let stand = base + band + (dropped ? 0 : pitch * 0.5)
+                let cell = CGRect(x: x + drift, y: stand - band,
+                                  width: room[index], height: band + labelHeight)
+                marks.append(TreeMark(tree: trees[index],
+                                      foot: CGPoint(x: cell.midX, y: stand),
+                                      height: treeHeight(trees[index]),
+                                      cell: cell,
+                                      baseline: stand))
                 x += room[index] + gap
             }
-            // why: a tree standing further back is drawn first, so the one in
-            // front of it overlaps — the only thing that turns an offset
-            // baseline into depth rather than into a misalignment.
-            marks += placed.sorted { $0.baseline < $1.baseline }
-            top = ground + groundRoll + labelHeight + rowGap
+            base += pitch
         }
-        return marks
+        // why: back to front across the WHOLE forest, not within a row — once
+        // rows interleave, the tree in front of you may well belong to another
+        // one, and only a global order layers them correctly.
+        return marks.sorted { $0.baseline < $1.baseline }
     }
 
-    /// How far the ground may rise or fall under any one tree.
-    ///
-    /// Small on purpose: heights are still meant to compare, and the line they
-    /// are measured against has to stay recognisable as one line. This is enough
-    /// to break the ruler — a row of trees rooted at exactly one y reads as a
-    /// plantation, and the box is not one — without making a taller tree
-    /// ambiguous, since the offsets are a fraction of the height range.
-    static let groundRoll: CGFloat = 6
-
-    /// One slow wave along the row, and nothing else.
-    ///
-    /// The per-tree noise that used to be mixed in is gone with the per-tree
-    /// phase: two independent jitters on the same axis is how an offset stops
-    /// reading as terrain and starts reading as a mistake. A low frequency
-    /// matters as much — at 0.55 rad per seat a row of six is barely half a
-    /// period, so the ground leans rather than ripples.
-    private static func roll(seat: Int, phase: Double) -> CGFloat {
-        CGFloat(sin(Double(seat) * 0.55 + phase)) * groundRoll
-    }
 
     static func height(_ trees: [AreaTree], width: CGFloat) -> CGFloat {
-        marks(trees, width: width).last?.cell.maxY ?? 0
+        // why: the marks are ordered by depth, not down the page — the lowest
+        // edge belongs to whichever tree stands furthest forward.
+        marks(trees, width: width).map(\.cell.maxY).max() ?? 0
     }
 
     /// The mass at which a tree reaches full height — a large area, thoroughly
