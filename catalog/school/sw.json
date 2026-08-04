@@ -97,6 +97,30 @@
   },
   "correct": {
    "text": "kusahihisha"
+  },
+  "book": {
+   "text": "kitabu",
+   "grammar": {
+    "plural": "vitabu"
+   }
+  },
+  "university": {
+   "text": "chuo kikuu",
+   "grammar": {
+    "plural": "vyuo vikuu"
+   }
+  },
+  "timetable": {
+   "text": "ratiba",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "to-count": {
+   "text": "kuhesabu"
+  },
+  "to-try": {
+   "text": "kujaribu"
   }
  }
 }

@@ -178,6 +178,39 @@
   },
   "correct": {
    "text": "corregir"
+  },
+  "book": {
+   "text": "libro",
+   "grammar": {
+    "gender": "el"
+   }
+  },
+  "university": {
+   "text": "universidad",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "timetable": {
+   "text": "horario",
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "el horario ist jeder Zeitplan; der Stundenplan der Schule heißt genauer el horario de clases."
+   }
+  },
+  "to-count": {
+   "text": "contar",
+   "notes": {
+    "de": "contar heißt auch erzählen: cuéntame = erzähl mir."
+   }
+  },
+  "to-try": {
+   "text": "intentar",
+   "variants": [
+    "probar"
+   ]
   }
  }
 }

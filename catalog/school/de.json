@@ -127,6 +127,36 @@
   },
   "correct": {
    "text": "korrigieren"
+  },
+  "book": {
+   "text": "Buch",
+   "grammar": {
+    "gender": "das",
+    "plural": "Bücher"
+   }
+  },
+  "university": {
+   "text": "Universität",
+   "variants": [
+    "Uni"
+   ],
+   "grammar": {
+    "gender": "die",
+    "plural": "-en"
+   }
+  },
+  "timetable": {
+   "text": "Stundenplan",
+   "grammar": {
+    "gender": "der",
+    "plural": "Stundenpläne"
+   }
+  },
+  "to-count": {
+   "text": "zählen"
+  },
+  "to-try": {
+   "text": "versuchen"
   }
  }
 }

@@ -55,6 +55,24 @@
   },
   "correct": {
    "text": "to correct"
+  },
+  "book": {
+   "text": "book"
+  },
+  "university": {
+   "text": "university",
+   "grammar": {
+    "plural": "universities"
+   }
+  },
+  "timetable": {
+   "text": "timetable"
+  },
+  "to-count": {
+   "text": "to count"
+  },
+  "to-try": {
+   "text": "to try"
   }
  }
 }

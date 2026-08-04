@@ -67,6 +67,27 @@
   },
   "correct": {
    "text": "виправляти"
+  },
+  "book": {
+   "text": "книжка",
+   "variants": [
+    "книга"
+   ]
+  },
+  "university": {
+   "text": "університет"
+  },
+  "timetable": {
+   "text": "розклад"
+  },
+  "to-count": {
+   "text": "рахувати"
+  },
+  "to-try": {
+   "text": "намагатися",
+   "variants": [
+    "пробувати"
+   ]
   }
  }
 }

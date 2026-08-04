@@ -100,5 +100,29 @@
   "slug": "correct",
   "kind": "verb",
   "emoji": "✏️"
+ },
+ {
+  "slug": "book",
+  "kind": "noun",
+  "emoji": "📖"
+ },
+ {
+  "slug": "university",
+  "kind": "noun",
+  "emoji": "🏛️"
+ },
+ {
+  "slug": "timetable",
+  "kind": "noun",
+  "emoji": "🗓️"
+ },
+ {
+  "slug": "to-count",
+  "kind": "verb",
+  "emoji": "🔢"
+ },
+ {
+  "slug": "to-try",
+  "kind": "verb"
  }
 ]
