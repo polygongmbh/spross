@@ -1,5 +1,6 @@
 {
  "title": "Question words",
+ "subtitle": "Who, what, when and why.",
  "words": {
   "where": {
    "text": "where"
@@ -22,6 +23,21 @@
   "that": {
    "text": "that"
   },
+  "when": {
+   "text": "when"
+  },
+  "why": {
+   "text": "why"
+  },
+  "how": {
+   "text": "how"
+  },
+  "which": {
+   "text": "which"
+  },
+  "how-many": {
+   "text": "how many"
+  },
   "where-are-they": {
    "text": "Where are they?"
   },
@@ -30,6 +46,12 @@
   },
   "do-you-need-this": {
    "text": "Do you need this?"
+  },
+  "when-does-it-start": {
+   "text": "When does it start?"
+  },
+  "what-time-is-it": {
+   "text": "What time is it?"
   }
  }
 }

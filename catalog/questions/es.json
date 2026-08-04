@@ -1,5 +1,6 @@
 {
  "title": "Palabras interrogativas",
+ "subtitle": "Quién, qué, cuándo y por qué.",
  "words": {
   "where": {
    "text": "dónde"
@@ -25,6 +26,27 @@
   "that": {
    "text": "eso"
   },
+  "when": {
+   "text": "cuándo"
+  },
+  "why": {
+   "text": "por qué"
+  },
+  "how": {
+   "text": "cómo"
+  },
+  "which": {
+   "text": "cuál",
+   "variants": [
+    "cuáles"
+   ]
+  },
+  "how-many": {
+   "text": "cuántos",
+   "variants": [
+    "cuántas"
+   ]
+  },
   "where-are-they": {
    "text": "¿Dónde están?"
   },
@@ -36,6 +58,12 @@
    "variants": [
     "¿Necesitas esto?"
    ]
+  },
+  "when-does-it-start": {
+   "text": "¿Cuándo empieza?"
+  },
+  "what-time-is-it": {
+   "text": "¿Qué hora es?"
   }
  }
 }

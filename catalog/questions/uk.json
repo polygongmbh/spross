@@ -1,5 +1,6 @@
 {
  "title": "Питальні слова",
+ "subtitle": "Хто, що, коли і чому.",
  "words": {
   "where": {
    "text": "де"
@@ -22,6 +23,25 @@
   "that": {
    "text": "те"
   },
+  "when": {
+   "text": "коли"
+  },
+  "why": {
+   "text": "чому"
+  },
+  "how": {
+   "text": "як"
+  },
+  "which": {
+   "text": "який",
+   "variants": [
+    "яка",
+    "яке"
+   ]
+  },
+  "how-many": {
+   "text": "скільки"
+  },
   "where-are-they": {
    "text": "Де вони?"
   },
@@ -30,6 +50,12 @@
   },
   "do-you-need-this": {
    "text": "Вам це потрібне?"
+  },
+  "when-does-it-start": {
+   "text": "Коли це починається?"
+  },
+  "what-time-is-it": {
+   "text": "Котра година?"
   }
  }
 }

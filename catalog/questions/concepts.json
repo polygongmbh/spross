@@ -28,6 +28,26 @@
   "kind": "adjective"
  },
  {
+  "slug": "when",
+  "kind": "adjective"
+ },
+ {
+  "slug": "why",
+  "kind": "adjective"
+ },
+ {
+  "slug": "how",
+  "kind": "adjective"
+ },
+ {
+  "slug": "which",
+  "kind": "adjective"
+ },
+ {
+  "slug": "how-many",
+  "kind": "adjective"
+ },
+ {
   "slug": "where-are-they",
   "kind": "phrase",
   "emoji": "🔍",
@@ -49,6 +69,22 @@
   "emoji": "👉",
   "components": [
    "this"
+  ]
+ },
+ {
+  "slug": "when-does-it-start",
+  "kind": "phrase",
+  "emoji": "⏰",
+  "components": [
+   "when"
+  ]
+ },
+ {
+  "slug": "what-time-is-it",
+  "kind": "phrase",
+  "emoji": "🕐",
+  "components": [
+   "how-many"
   ]
  }
 ]

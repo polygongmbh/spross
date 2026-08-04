@@ -1,5 +1,6 @@
 {
  "title": "Maneno ya maswali",
+ "subtitle": "Nani, nini, lini na kwa nini.",
  "words": {
   "where": {
    "text": "wapi"
@@ -28,6 +29,37 @@
     "de": "Klasse-9/10-Form, siehe hii."
    }
   },
+  "when": {
+   "text": "lini"
+  },
+  "why": {
+   "text": "kwa nini",
+   "synonyms": [
+    "mbona"
+   ]
+  },
+  "how": {
+   "text": "vipi"
+  },
+  "which": {
+   "text": "gani",
+   "notes": {
+    "de": "gani steht hinter dem Nomen: chai gani? — welcher Tee?"
+   }
+  },
+  "how-many": {
+   "text": "-ngapi",
+   "variants": [
+    "ngapi",
+    "wangapi",
+    "vingapi",
+    "mangapi",
+    "mingapi"
+   ],
+   "notes": {
+    "de": "nimmt die Klassenvorsilbe: watu wangapi? vitabu vingapi?"
+   }
+  },
   "where-are-they": {
    "text": "Wako wapi?"
   },
@@ -36,6 +68,12 @@
   },
   "do-you-need-this": {
    "text": "Unahitaji hii?"
+  },
+  "when-does-it-start": {
+   "text": "Inaanza lini?"
+  },
+  "what-time-is-it": {
+   "text": "Saa ngapi?"
   }
  }
 }
