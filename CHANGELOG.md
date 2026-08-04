@@ -7,6 +7,12 @@
   Phrases that do not fit a row now stay on the phone, where they have a card to themselves,
   the way the watch has always picked what fits its tiles.
 
+- **The widget's flame says how much slack the streak has left.** The "N gefestigt" count went
+  with it — a number you could not act on from the lock screen. The flame is lit once today's
+  review is in, dwindling while today is still open but yesterday was fine, and hollow when
+  yesterday was already the streak's one forgiven miss, so a glance tells you not just whether
+  you are due but how urgent it is. With no streak yet it shows hollow and grey.
+
 - **Your box is a forest now, and it grows on the first screen.** Where Heute ended in two
   numbers there is a tree for every area — and every tree is made of your words. Packing
   an area plants a seedling. Words that settle become its leaves, words that land open as

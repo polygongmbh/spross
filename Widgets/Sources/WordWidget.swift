@@ -43,6 +43,8 @@ struct WordEntry: TimelineEntry {
     let words: [WidgetWord]
     let dueCount: Int
     let streak: Int
+    /// Drives the flame's icon/color/count — see `FlameState`.
+    let flameState: FlameState
     /// Active cards that have consolidated — the box's growth, not a retention score.
     let consolidated: Int
 
@@ -68,7 +70,7 @@ struct WordEntry: TimelineEntry {
             WidgetWord(emoji: "🚪", tint: nil, word: "mlango", meaning: "Tür"),
             WidgetWord(emoji: "🔥", tint: nil, word: "moto", meaning: "Feuer"),
         ],
-        dueCount: 0, streak: 3, consolidated: 12)
+        dueCount: 0, streak: 3, flameState: .lit, consolidated: 12)
 }
 
 struct WordProvider: TimelineProvider {
@@ -98,6 +100,7 @@ struct WordProvider: TimelineProvider {
         }
         let dueCount = snapshot.dueCount(now: start)
         let streak = snapshot.streak(now: start)
+        let flameState = snapshot.flameState(streak: streak, now: start)
         return (0..<24).map { slot in
             // Rotate a window of `listSize` words; primary is the window head.
             // why: a short box would otherwise wrap and repeat a word in one tile.
@@ -108,6 +111,7 @@ struct WordProvider: TimelineProvider {
                              words: window,
                              dueCount: dueCount,
                              streak: streak,
+                             flameState: flameState,
                              consolidated: snapshot.consolidatedCount)
         }
     }
