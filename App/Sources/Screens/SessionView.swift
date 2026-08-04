@@ -66,7 +66,7 @@ struct SessionView: View {
                                       reviewCount: model.sessionReviews,
                                       streakDays: model.stats?.streakDays ?? 0,
                                       streakIsRecord: model.streakIsRecord,
-                                      grownArea: model.sessionArea.flatMap(model.areaTree),
+                                      grownArea: model.sessionGrowth,
                                       canPracticeMore: model.canPracticeMore,
                                       restSuggested: model.today?.recallStrained ?? false,
                                       onPractice: { model.continueEndless() },

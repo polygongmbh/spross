@@ -14,10 +14,10 @@ struct SessionCompletionView: View {
     /// Today's run is the longest the box has ever held (`BoxStatistics`), so the
     /// streak is worth naming rather than just counting.
     var streakIsRecord: Bool = false
-    /// The area this round worked hardest, and how it stands now. The round
-    /// just moved it, so its tree is the one thing on this screen that is about
-    /// THIS learner's box rather than about finishing anything.
-    var grownArea: AreaTree?
+    /// The area this round worked hardest, as it stood before the round and as
+    /// it stands now. The round just moved it, so its tree is the one thing on
+    /// this screen about THIS learner's box rather than about having finished.
+    var grownArea: TreeTransition?
     var canPracticeMore: Bool = false
     /// Today's recall has fallen far below what the box schedules for
     /// (`TodayReport.recallStrained`). Practising on stays available either
@@ -56,7 +56,10 @@ struct SessionCompletionView: View {
     var body: some View {
         VStack(spacing: DL.Space.xl) {
             Spacer()
-            burstHero
+            // why: the tree takes the hero slot when the round grew an area —
+            // a party popper is the same picture whatever the learner did, and
+            // two celebratory graphics on one screen is one too many.
+            if grownArea == nil { burstHero } else { grownAreaHero }
             Text("session.finished.title")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
@@ -64,7 +67,6 @@ struct SessionCompletionView: View {
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)
-            grownAreaBand
             VStack(spacing: DL.Space.s) {
                 StreakFlameView(days: streakDays)
                 if streakIsRecord {
@@ -111,21 +113,28 @@ struct SessionCompletionView: View {
         DLSound.cheer()
     }
 
-    /// The area the round moved most, growing out of the ground once. Named in
-    /// words underneath, because the tree alone cannot say which area it is —
-    /// and a round that touched nothing joinable simply shows nothing.
+    /// The area the round moved most, as it stood before this round and as it
+    /// stands now. The area is LABELLED rather than named in a sentence: the
+    /// area did not grow — what the learner can say did — and a sentence that
+    /// swallowed "Die Küche" would claim the opposite while reading badly.
     @ViewBuilder
-    private var grownAreaBand: some View {
-        if let grownArea, !grownArea.isBare {
-            VStack(spacing: DL.Space.xs) {
-                GrowingTreeView(tree: grownArea, grown: burst || reduceMotion ? 1 : 0)
-                    .frame(height: 118)
+    private var grownAreaHero: some View {
+        if let grownArea, !grownArea.after.isBare {
+            VStack(spacing: DL.Space.s) {
+                GrowingTreeView(transition: grownArea,
+                                progress: burst || reduceMotion ? 1 : 0)
+                    .frame(height: 190)
                     .animation(reduceMotion ? nil
-                                : .spring(response: 1.15, dampingFraction: 0.72).delay(0.2),
+                                : .spring(response: 1.5, dampingFraction: 0.85).delay(0.25),
                                value: burst)
-                Text("session.finished.grew \(grownArea.title)")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                VStack(spacing: 2) {
+                    Text("session.finished.grew")
+                        .font(DL.Fonts.headline)
+                        .foregroundStyle(Color.dlTextPrimary)
+                    Text(verbatim: "\(grownArea.after.emoji) \(grownArea.after.title)")
+                        .font(DL.Fonts.caption)
+                        .foregroundStyle(Color.dlTextSecondary)
+                }
             }
             .accessibilityElement(children: .combine)
         }

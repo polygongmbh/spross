@@ -45,6 +45,31 @@ struct AreaTree: Identifiable {
     var canopyCount: Int { leaves + blossoms + fruit }
 }
 
+/// One area's tree before and after something happened to it — a finished
+/// round, most often. What is drawn is the whole tree at some point between,
+/// so the learner sees what they already had and watches this round land on it.
+struct TreeTransition {
+    let before: AreaTree
+    let after: AreaTree
+
+    /// The tree partway between. Counts round rather than truncate, so a single
+    /// new leaf appears halfway through rather than only at the very end.
+    func at(_ progress: Double) -> AreaTree {
+        let t = min(1, max(0, progress))
+        func step(_ from: Int, _ to: Int) -> Int { Int((Double(from) + (Double(to) - Double(from)) * t).rounded()) }
+        return AreaTree(
+            id: after.id, emoji: after.emoji, title: after.title,
+            leaves: step(before.leaves, after.leaves),
+            blossoms: step(before.blossoms, after.blossoms),
+            fruit: step(before.fruit, after.fruit),
+            growing: step(before.growing, after.growing),
+            fallen: step(before.fallen, after.fallen),
+            mass: before.mass + (after.mass - before.mass) * t,
+            tendedToday: after.tendedToday
+        )
+    }
+}
+
 /// One tree placed: where it stands, how big, and where its canopy sits.
 struct TreeMark {
     let tree: AreaTree

@@ -17,22 +17,30 @@ import SwiftUI
 
 enum TreeShapes {
 
-    static func draw(_ context: inout GraphicsContext, _ mark: TreeMark) {
+    /// Draws `mark`, showing the counts of `showing` — normally the same tree.
+    ///
+    /// They come apart during a transition: geometry and mark POSITIONS come
+    /// from `mark` (built on the after-tree), while how many marks are drawn and
+    /// what each is comes from `showing`. That is what lets a leaf turn into a
+    /// blossom in place instead of the whole canopy reshuffling around it.
+    static func draw(_ context: inout GraphicsContext, _ mark: TreeMark,
+                     showing: AreaTree? = nil) {
+        let shown = showing ?? mark.tree
         // why: an area nobody has opened draws NOTHING — not even ground. A mark
         // on every untouched area turns a catalog the learner did not choose
         // into a list of things they have not done, and its dimmed emoji already
         // says the place exists.
-        guard !mark.tree.isBare else { return }
+        guard !shown.isBare else { return }
         ground(&context, mark)
 
-        if mark.tree.canopyCount == 0 {
+        if shown.canopyCount == 0 {
             seedling(&context, mark)
         } else {
             trunk(&context, mark)
-            canopy(&context, mark)
+            canopy(&context, mark, shown)
         }
-        fallen(&context, mark)
-        if mark.tree.tendedToday { freshEarth(&context, mark) }
+        fallen(&context, mark, shown)
+        if shown.tendedToday { freshEarth(&context, mark) }
     }
 
     // MARK: Ground
@@ -117,7 +125,8 @@ enum TreeShapes {
     /// The canopy IS the area's settled words. Mark size falls as the count
     /// rises, so a full canopy reads as foliage rather than as counted objects —
     /// a leaf is a thing you believe there are many of without counting them.
-    private static func canopy(_ context: inout GraphicsContext, _ mark: TreeMark) {
+    private static func canopy(_ context: inout GraphicsContext, _ mark: TreeMark,
+                               _ shown: AreaTree) {
         let tree = mark.tree
         // why: a soft mass behind the marks is what makes a scatter of leaves
         // read as foliage rather than as confetti hanging in the air.
@@ -126,14 +135,16 @@ enum TreeShapes {
                          with: .color(.dlSuccess.opacity(0.16)))
         }
 
-        let points = ForestLayout.canopy(mark, count: tree.canopyCount)
-        let size = max(2.4, min(5.2, mark.canopyRadius * 1.6 / sqrt(Double(tree.canopyCount))))
+        // why: placed against the FINAL count, drawn up to the shown one — so
+        // a mark that already stands never moves when another arrives.
+        let points = ForestLayout.canopy(mark, count: max(tree.canopyCount, shown.canopyCount))
+        let size = max(2.4, min(5.2, mark.canopyRadius * 1.6 / sqrt(Double(max(1, tree.canopyCount)))))
 
-        for (index, point) in points.enumerated() {
+        for (index, point) in points.prefix(shown.canopyCount).enumerated() {
             // Outward-first: the rim carries the words that have come furthest.
-            if index < tree.fruit {
+            if index < shown.fruit {
                 context.fill(circle(point, size * 0.5), with: .color(.dlAccent))
-            } else if index < tree.fruit + tree.blossoms {
+            } else if index < shown.fruit + shown.blossoms {
                 blossom(&context, at: point, size: size)
             } else {
                 let seed = ForestLayout.noise("\(tree.id)-\(index)", 11)
@@ -149,12 +160,13 @@ enum TreeShapes {
     /// shrinks for them — the engine expects roughly one review in five to miss,
     /// and a picture that shrank the tree for a routine Tuesday would be lying
     /// about what a lapse costs.
-    private static func fallen(_ context: inout GraphicsContext, _ mark: TreeMark) {
-        guard mark.tree.fallen > 0 else { return }
+    private static func fallen(_ context: inout GraphicsContext, _ mark: TreeMark,
+                               _ shown: AreaTree) {
+        guard shown.fallen > 0 else { return }
         // why: clear of the shadow and small — clustered at the trunk they read
         // as dirt at the base rather than as leaves that came down.
         let clear = max(7, mark.canopyRadius * 0.9)
-        for index in 0..<min(mark.tree.fallen, 3) {
+        for index in 0..<min(shown.fallen, 3) {
             let side: CGFloat = index.isMultiple(of: 2) ? -1 : 1
             let spread = clear + CGFloat(ForestLayout.noise("\(mark.tree.id)-f\(index)", 13) * 6)
             let at = CGPoint(x: mark.foot.x + side * spread, y: mark.baseline + 0.5)

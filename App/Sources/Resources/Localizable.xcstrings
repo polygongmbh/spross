@@ -2355,18 +2355,18 @@
         }
       }
     },
-    "session.finished.grew %@" : {
+    "session.finished.grew" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ ist gewachsen"
+            "value" : "Hier kannst du jetzt mehr"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ has grown"
+            "value" : "You can say more here"
           }
         }
       }

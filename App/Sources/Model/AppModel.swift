@@ -42,6 +42,10 @@ final class AppModel {
     /// from. Cached beside `stats` rather than derived on read: it is one entry
     /// per card in the join, and Heute would otherwise rebuild it every redraw.
     private(set) var growth: [CardGrowth] = []
+    /// Each area's tree as it stood when the current run started — the "before"
+    /// the summary animates from. Held on the model rather than in the session
+    /// state because it is a picture, not a rule kern has any business in.
+    var treesBeforeSession: [String: AreaTree] = [:]
     /// Settable internally only so AppModel+Queries can report reset failures.
     var loadFailure: LoadFailure?
     private(set) var catalog: Catalog?
