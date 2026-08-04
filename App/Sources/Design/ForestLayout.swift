@@ -132,27 +132,56 @@ enum ForestLayout {
     static let maxHeight: CGFloat = 58
 
     /// Lays the trees out in rows across `width`, in the order given.
+    ///
+    /// Rows, not a grid: every tree in a row stands on ONE baseline, which is
+    /// what lets two areas be compared at a glance, and that is the only thing
+    /// held rigid. Everything else gives — a tree claims room in proportion to
+    /// its own size, a row is only as tall as its tallest, the slack left over
+    /// is spread between them, and each stands a little off its slot's centre.
+    /// Equal cells in equal columns read as planting rather than as growth.
     static func marks(_ trees: [AreaTree], width: CGFloat) -> [TreeMark] {
         guard width > 0, !trees.isEmpty else { return [] }
-        let columns = max(2, Int(width / minCellWidth))
-        let cellWidth = width / CGFloat(columns)
+        let room = trees.map { max(minCellWidth * 0.62, treeHeight($0) * 1.05 + 12) }
 
-        return trees.enumerated().map { index, tree in
-            let cell = CGRect(
-                x: CGFloat(index % columns) * cellWidth,
-                y: CGFloat(index / columns) * (rowHeight + labelHeight + rowGap),
-                width: cellWidth,
-                height: rowHeight + labelHeight
-            )
-            // why: one baseline for the whole row — a height only says something
-            // against a ground line its neighbours share.
-            let baseline = cell.minY + rowHeight
-            return TreeMark(tree: tree,
-                            foot: CGPoint(x: cell.midX, y: baseline),
-                            height: treeHeight(tree),
-                            cell: cell,
-                            baseline: baseline)
+        var rows: [[Int]] = []
+        var row: [Int] = []
+        var used: CGFloat = 0
+        for index in trees.indices {
+            if !row.isEmpty, used + room[index] > width {
+                rows.append(row)
+                row = []
+                used = 0
+            }
+            row.append(index)
+            used += room[index]
         }
+        if !row.isEmpty { rows.append(row) }
+
+        var marks: [TreeMark] = []
+        var top: CGFloat = 0
+        for row in rows {
+            let taken = row.reduce(CGFloat(0)) { $0 + room[$1] }
+            // Slack goes between the trees AND to the margins, so a short row
+            // spreads out rather than crowding against the left edge.
+            let gap = max(0, width - taken) / CGFloat(row.count + 1)
+            let tallest = row.map { treeHeight(trees[$0]) }.max() ?? minHeight
+            let rowHeight = max(Self.rowHeight, tallest + 10)
+            let baseline = top + rowHeight
+            var x = gap
+            for index in row {
+                let drift = CGFloat(noise(trees[index].id, 31) - 0.5) * min(gap, 10)
+                let cell = CGRect(x: x + drift, y: top,
+                                  width: room[index], height: rowHeight + labelHeight)
+                marks.append(TreeMark(tree: trees[index],
+                                      foot: CGPoint(x: cell.midX, y: baseline),
+                                      height: treeHeight(trees[index]),
+                                      cell: cell,
+                                      baseline: baseline))
+                x += room[index] + gap
+            }
+            top = baseline + labelHeight + rowGap
+        }
+        return marks
     }
 
     static func height(_ trees: [AreaTree], width: CGFloat) -> CGFloat {

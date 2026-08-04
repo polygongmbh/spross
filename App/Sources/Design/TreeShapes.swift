@@ -133,32 +133,41 @@ enum TreeShapes {
         return path
     }
 
-    /// The marks, on the slots the twigs offer. Leaves batch into two tones of
-    /// the one green — a canopy in a single flat colour has no depth at any
-    /// size — and blossom and fruit take the first slots, which the skeleton
-    /// shuffled, so they scatter through the crown rather than ringing it.
+    /// The marks, on the slots the twigs offer. Blossom and fruit take the
+    /// first slots, which the skeleton shuffled twig by twig, so they scatter
+    /// through the crown rather than ringing it.
     private static func foliage(_ context: inout GraphicsContext, _ skeleton: TreeSkeleton,
                                 _ mark: TreeMark, _ shown: AreaTree) {
-        let size = max(2.8, mark.height * 0.085)
-        var light = Path()
-        var dark = Path()
+        // why: marks get FINER as the canopy fills. A mark sized for a tree
+        // carrying six words is a blot on one carrying sixty, and the reading
+        // wanted at that end is foliage, not sixty countable objects.
+        let fill = Double(shown.canopyCount) / Double(max(skeleton.slots.count, 1))
+        let base = max(2.4, mark.height * 0.085 * CGFloat(1 - 0.18 * min(1, fill)))
+        var tones = [Path(), Path(), Path()]
 
         for (rank, slot) in skeleton.slots.prefix(shown.canopyCount).enumerated() {
+            // Every mark takes its own size and lean from its slot: a canopy of
+            // identical stamps is the other way to look machine-made.
+            let grain = ForestLayout.noise("\(mark.tree.id)-\(rank)", 41)
+            let size = base * CGFloat(0.82 + 0.36 * grain)
             // why: leaves point away from the twig and a little upward, which is
             // what makes them read as attached rather than scattered.
-            let angle = slot.angle + slot.side * 0.95 - 0.26
+            let angle = slot.angle + slot.side * (0.78 + 0.34 * grain) - 0.26
+
             if rank < shown.fruit {
                 fruit(&context, at: slot.point, size: size)
             } else if rank < shown.fruit + shown.blossoms {
-                blossom(&context, at: slot.point, size: size)
-            } else if rank.isMultiple(of: 2) {
-                light.addPath(leafPath(at: slot.point, size: size, angle: angle))
+                blossom(&context, at: slot.point, size: size, angle: angle)
             } else {
-                dark.addPath(leafPath(at: slot.point, size: size, angle: angle))
+                tones[Int(grain * 3) % 3].addPath(leafPath(at: slot.point, size: size * 1.05,
+                                                           angle: angle))
             }
         }
-        context.fill(light, with: .color(.dlSuccess.opacity(0.72)))
-        context.fill(dark, with: .color(.dlSuccess))
+        // Three tones of the one green rather than two: at a canopy's worth of
+        // marks the extra step is the difference between depth and a flat mass.
+        for (index, opacity) in [0.74, 0.88, 1.0].enumerated() {
+            context.fill(tones[index], with: .color(.dlSuccess.opacity(opacity)))
+        }
     }
 
     /// Words that lapsed: leaves on the ground beside the trunk. The tree never
@@ -214,18 +223,27 @@ enum TreeShapes {
                      with: .color(.dlSurface.opacity(0.65)))
     }
 
-    /// A word that has landed. Told apart from a leaf by SHAPE as well as
-    /// colour — a rosette against an ellipse — so the canopy still reads where
-    /// hue does not.
-    private static func blossom(_ context: inout GraphicsContext, at point: CGPoint, size: CGFloat) {
-        let petal = size * 0.3
-        for index in 0..<5 {
-            let angle = Double(index) / 5 * 2 * .pi
-            let at = CGPoint(x: point.x + CGFloat(cos(angle)) * petal,
-                             y: point.y + CGFloat(sin(angle)) * petal)
-            context.fill(circle(at, petal * 0.82), with: .color(.dlDie))
+    /// A word that has landed.
+    ///
+    /// Two crossed ellipses and an eye, not five separate petals: a rosette is
+    /// six shapes and holds its own against a leaf, which is right on a tree
+    /// carrying four of them and far too loud on one carrying forty. This keeps
+    /// the four-lobed silhouette — so it is still told from a leaf's single
+    /// ellipse and a fruit's disc without relying on hue — at a third of the ink.
+    private static func blossom(_ context: inout GraphicsContext, at point: CGPoint,
+                                size: CGFloat, angle: Double) {
+        let span = size * 0.92
+        var lobes = Path()
+        for turn in [0.0, Double.pi / 2] {
+            let petal = Path(ellipseIn: CGRect(x: -span / 2, y: -span * 0.22,
+                                               width: span, height: span * 0.44))
+            lobes.addPath(petal.applying(
+                CGAffineTransform(translationX: point.x, y: point.y)
+                    .rotated(by: CGFloat(angle + turn))
+            ))
         }
-        context.fill(circle(point, petal * 0.5), with: .color(.dlAmber))
+        context.fill(lobes, with: .color(.dlDie))
+        context.fill(circle(point, span * 0.17), with: .color(.dlAmber))
     }
 
     private static func circle(_ centre: CGPoint, _ radius: CGFloat) -> Path {
