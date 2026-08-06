@@ -74,8 +74,8 @@ extension LetterDrillView {
                          // why: the meaning is a REVEAL, never a cue — and a gap
                          // question's gloss IS the word, so it would repeat it.
                          note: task.gapText == nil ? task.gloss : nil,
-                         pronounce: model.speakAction(for: word, lang: task.language),
-                         isPlaying: model.isSpeaking(word, lang: task.language))
+                         pronounce: model.pronounceAction(for: word, lang: task.language),
+                         isPlaying: model.isPronouncing(word, lang: task.language))
         }
     }
 
@@ -239,12 +239,12 @@ extension LetterDrillView {
     /// the drilled language.
     private func correctionPronounce(_ task: LetterDrillTask) -> (() -> Void)? {
         guard case .almost(let form, _) = feedback else { return nil }
-        return model.speakAction(for: form, lang: task.language)
+        return model.pronounceAction(for: form, lang: task.language)
     }
 
     private func correctionPlaying(_ task: LetterDrillTask) -> Bool {
         guard case .almost(let form, _) = feedback else { return false }
-        return model.isSpeaking(form, lang: task.language)
+        return model.isPronouncing(form, lang: task.language)
     }
 
     var inputEmpty: Bool { input.trimmingCharacters(in: .whitespaces).isEmpty }

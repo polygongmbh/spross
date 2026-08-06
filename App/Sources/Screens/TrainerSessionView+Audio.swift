@@ -5,9 +5,10 @@ import SprossKern
 /// — there is nothing to play until the reading is out, so unlike the letter
 /// drill this surface has no prompt audio at all: every fire here is a reveal.
 ///
-/// The forms are generated, so no catalog lists them and the ordinary
-/// catalog-keyed lookup finds nothing. `AppModel.speakAction` falls back to the
-/// live voice, which is what makes a drill answer audible at all.
+/// The readings are generated and no catalog lists them, but Kern's lookup is
+/// total — it hands back an utterance for the live voice where it has no
+/// recording — so the ordinary `pronounceAction` says them. Nothing was ever
+/// calling it here; that, not the lookup, is why the drills were silent.
 extension TrainerSessionView {
 
     /// The form currently owed to the learner: the correction after a slip,
@@ -26,28 +27,57 @@ extension TrainerSessionView {
     /// box is not on screen.
     var correctionPronounce: (() -> Void)? {
         guard case .almost(let form, _) = feedback else { return nil }
-        return model?.speakAction(for: form, lang: language)
+        return model?.pronounceAction(for: form, lang: language)
     }
 
     var correctionPlaying: Bool {
         guard case .almost(let form, _) = feedback else { return false }
-        return model?.isSpeaking(form, lang: language) ?? false
+        return model?.isPronouncing(form, lang: language) ?? false
     }
 
     /// Fires once when the answer comes out, however it came out. `.auto`, so
     /// the read-aloud switch and VoiceOver both still veto it — a tap on the
     /// speaker outranks the mute, this does not.
+    ///
+    /// Held in `answerVoice` rather than fired and forgotten: the wait outlives
+    /// a fast tap, and a reveal that is closed within it would otherwise speak
+    /// its answer over whatever screen replaced the run.
     func autoplayAnswer() {
         guard let model, let form = spokenAnswer else { return }
-        let position = index
-        Task { @MainActor in
+        answerVoice?.cancel()
+        answerVoice = Task { @MainActor in
             // why: the correct/wrong chime lands first — the same 300 ms the
             // review session waits, or the word starts under the chime.
             try? await Task.sleep(for: .milliseconds(300))
-            // why: a fast "Weiter" can move the run while this waits; the
-            // answer to a task already gone must not speak over the new one.
-            guard index == position else { return }
-            model.speakAloud(form, lang: language)
+            guard !Task.isCancelled else { return }
+            model.pronounceAloud(form, lang: language)
+        }
+    }
+
+    /// Silence, and drop a wait that has not fired yet. Every way out of a task
+    /// goes through here — the next prompt, the summary, the door — because a
+    /// reading belongs to the task that revealed it and to nothing after.
+    func hushAnswer() {
+        answerVoice?.cancel()
+        answerVoice = nil
+        Pronouncer.shared.stop()
+    }
+
+    /// Ask the field that is about to be on screen for focus. The immediate
+    /// request covers a field already mounted; the retry covers one mounting in
+    /// the same frame — a request that arrives before its field exists is
+    /// simply dropped (`SessionView.focusAnswerField`, same shape).
+    ///
+    /// It began to matter here when "Aufdecken" started REMOVING the field
+    /// rather than disabling it: the next task remounts one, and the plain
+    /// assignment raced it.
+    func focusAnswerField() {
+        answerFocused = true
+        focusRetry?.cancel()
+        focusRetry = Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(120))
+            guard !Task.isCancelled else { return }
+            answerFocused = true
         }
     }
 }

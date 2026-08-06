@@ -113,42 +113,20 @@ extension AppModel {
         return Pronouncer.shared.playingKey == Pronouncer.key(for: pronunciation)
     }
 
-    // MARK: - Forms the catalog has never heard of
-
-    /// What says `form`, falling back to the live voice where the catalog holds
-    /// no entry for it. The catalog still wins when it has one — a measured
-    /// recording beats a synthesized reading of the same word.
+    /// Autoplay sibling of `pronounceAction`: says the form itself rather than
+    /// handing back a closure, and passes `.auto`, so the read-aloud switch and
+    /// VoiceOver both still veto it where a tap would outrank them.
     ///
-    /// The drills GENERATE their answers ("dreihundertsiebenundvierzig", "son
-    /// las tres y cuarto"): no catalog lists them, so the catalog-only lookup
-    /// returns nothing and they were simply never spoken.
-    func spokenOrRecorded(_ form: String, lang: String) -> Pronunciation {
-        catalog?.pronunciation(lang: lang, visibleForm: form) ?? spokenPronunciation(form, lang: lang)
-    }
-
-    /// Tap-to-replay for any visible form, generated or catalogued. Still nil
-    /// where the device can do neither — Swahili has no iOS voice, so an
-    /// unrecorded Swahili form grows no icon rather than a silent one.
-    func speakAction(for form: String, lang: String) -> (() -> Void)? {
-        let pronunciation = spokenOrRecorded(form, lang: lang)
-        let recordingURL = audioURL(pronunciation.recordingPath)
-        guard Pronouncer.shared.canPronounce(pronunciation, recordingURL: recordingURL) else { return nil }
-        // why: a tap is a request, not autoplay — it speaks even while reading
-        // aloud is switched off.
-        return { Pronouncer.shared.pronounce(pronunciation, recordingURL: recordingURL, trigger: .tap) }
-    }
-
-    /// Autoplay sibling of `speakAction` — obeys the read-aloud switch, where a
-    /// tap outranks it.
-    func speakAloud(_ form: String, lang: String) {
-        let pronunciation = spokenOrRecorded(form, lang: lang)
+    /// Kern's lookup is total — a form it has no recording for still comes back
+    /// with an utterance for the live voice — so this speaks a GENERATED drill
+    /// answer ("dreihundertsiebenundvierzig") exactly as readily as a
+    /// catalogued word, and stays silent only where the language has no voice
+    /// and no recording either.
+    func pronounceAloud(_ form: String, lang: String) {
+        guard let pronunciation = catalog?.pronunciation(lang: lang, visibleForm: form) else { return }
         Pronouncer.shared.pronounce(pronunciation,
                                     recordingURL: audioURL(pronunciation.recordingPath),
                                     trigger: .auto)
-    }
-
-    func isSpeaking(_ form: String, lang: String) -> Bool {
-        Pronouncer.shared.playingKey == Pronouncer.key(for: spokenOrRecorded(form, lang: lang))
     }
 
     /// What a letter-drill question SAYS, and out of which recording — the

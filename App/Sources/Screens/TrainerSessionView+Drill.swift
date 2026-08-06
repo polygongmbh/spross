@@ -49,8 +49,8 @@ extension TrainerSessionView {
                 ZStack {
                     TrainerPromptCard(task: current, sentence: isPhrases,
                                       hint: placeValueHint, revealed: cardRevealed,
-                                      pronounce: model?.speakAction(for: current.display, lang: language),
-                                      isPlaying: model?.isSpeaking(current.display, lang: language) ?? false)
+                                      pronounce: model?.pronounceAction(for: current.display, lang: language),
+                                      isPlaying: model?.isPronouncing(current.display, lang: language) ?? false)
                         .id(index)
                         .transition(reduceMotion ? .opacity : .dlCardFlip)
                 }

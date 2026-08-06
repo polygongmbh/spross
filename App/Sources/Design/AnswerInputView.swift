@@ -120,6 +120,18 @@ struct AnswerInputView: View {
             color: feedback == .correct ? Color.dlSuccess.opacity(0.35) : .clear,
             radius: 10
         )
+        // why: the amber edge is the only thing left marking a reveal once the
+        // lightbulb is gone, and a colour alone says nothing to a screen reader
+        // (WCAG 1.4.1). The state is spoken instead of drawn.
+        .accessibilityValue(statusValue)
+    }
+
+    private var statusValue: Text {
+        switch feedback {
+        case .neutral: return Text(verbatim: "")
+        case .correct, .almost: return Text("a11y.correct")
+        case .revealed: return Text("a11y.notAnswered")
+        }
     }
 
     /// The checkmark says ACCEPTED and rides both correct states; its colour
@@ -190,9 +202,9 @@ struct AnswerInputView: View {
             RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
                 .fill(Color.dlAmber.opacity(0.14))
         )
-        // why: combined so VoiceOver reads "Fast! Korrekte Schreibweise, X" as
-        // one thing — but the speaker keeps its own action, so it stays
-        // reachable rather than being folded into the label.
+        // why: `contain`, not `combine` — combining would swallow the speaker,
+        // and a correction the learner cannot replay is the thing this box
+        // exists to fix. Caption and form stay two stops.
         .accessibilityElement(children: .contain)
     }
 }

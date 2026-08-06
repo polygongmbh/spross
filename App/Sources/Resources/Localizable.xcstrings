@@ -105,6 +105,22 @@
         }
       }
     },
+    "a11y.notAnswered" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht beantwortet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not answered"
+          }
+        }
+      }
+    },
     "a11y.off" : {
       "localizations" : {
         "de" : {

@@ -88,6 +88,10 @@ struct TrainerSessionView: View {
     @State var typoCorrection: String?
     // why: internal, not private — the +Grading extension cancels/schedules it.
     @State var autoAdvance: Task<Void, Never>?
+    /// The pending "say the answer" wait, held so leaving a task can drop it.
+    @State var answerVoice: Task<Void, Never>?
+    /// Second focus attempt for a field that remounts (see focusAnswerField).
+    @State var focusRetry: Task<Void, Never>?
     @FocusState var answerFocused: Bool
     @Environment(\.accessibilityReduceMotion) var reduceMotion
     @Environment(\.locale) var locale
@@ -135,10 +139,10 @@ struct TrainerSessionView: View {
                 }
             }
         }
-        .onAppear { answerFocused = true }
-        .onChange(of: index) { _, _ in answerFocused = true }
+        .onAppear { focusAnswerField() }
+        .onChange(of: index) { _, _ in focusAnswerField() }
         .onChange(of: showingSummary) { _, summarizing in
-            if !summarizing { answerFocused = true }
+            if !summarizing { focusAnswerField() }
         }
         // why: one fire per answer — the trigger is "is a form owed", so a slip
         // and a miss both speak once, and the neutral state resets it.
@@ -147,7 +151,8 @@ struct TrainerSessionView: View {
         }
         .onDisappear {
             autoAdvance?.cancel()
-            Pronouncer.shared.stop()
+            focusRetry?.cancel()
+            hushAnswer()
         }
         #if DEBUG
         // UI-test hooks: `-uitest-input xyz` prefills the answer field,
@@ -236,6 +241,9 @@ struct TrainerSessionView: View {
     /// (the run record stays). The next task is generated on demand.
     func advance(correct: Bool, segment: SessionOutcome? = nil) {
         autoAdvance?.cancel()
+        // why: the reading belongs to the task being left — without this it
+        // keeps sounding over the prompt that replaces it.
+        hushAnswer()
         // Mark this length as introduced so its place-value hint shows once.
         if let currentDigits { seenDigitCounts.insert(currentDigits) }
         if correct {
@@ -276,6 +284,9 @@ struct TrainerSessionView: View {
     /// summary. An untouched run (nothing answered) just closes.
     private func closeRun() {
         autoAdvance?.cancel()
+        // why: the summary swaps in WITHIN this view, so .onDisappear never
+        // fires — without this the answer reads on over the summary.
+        hushAnswer()
         if feedback.isAccepted {
             // why: a pending typo pause books amber, same as answering —
             // closing must not upgrade it to a clean win (level ramp).
