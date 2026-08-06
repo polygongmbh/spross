@@ -60,9 +60,25 @@ FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 # the samples past full scale, worst es `here` (peak -3.2, +9.6 dB wanted, +2.1 granted). They
 # land under the loudness target instead of distorting: user ruling 2026-08-01, quiet is the
 # lesser loss.
+#
+# WHAT the loudness is measured through changed on 2026-08-06 (user ruling, after a
+# Swahili session where the words plainly varied). Flat R128 said that pack was the
+# tightest we ship — 467 files inside 3 dB — while the ear said otherwise, and both were
+# right: the meter counts energy the phone's speaker cannot radiate. `karibu` and
+# `nakupenda` measure 0.1 dB apart flat and 16 apart through `audio_measure.SPEAKER_LENS`,
+# which is the number that matches what is heard. Gains come off the LENSED loudness now;
+# the flat figure survives as what the packs are described by, nowhere else.
+#
+# `speaker_lufs` is where the sw pack already sat under the lens, so re-indexing it moved
+# the balance without moving the pack — the only way to hear one change at a time. It is
+# PROVISIONAL for exactly that reason: the packs do not share a lensed level (uk sits
+# ~2.4 dB under sw while both measure -16.7 flat), so whichever number the other three are
+# eventually re-indexed to has to be chosen with all four in view.
 ANALYSIS = {
     'scheme': 'boost',
     'target_lufs': -16.7,
+    'speaker_lufs': -17.5,
+    'lensed': ['sw'],
     'deficit_db': 14.7,
     'ffmpeg': 'ffmpeg version 8.1.2',
 }
@@ -155,8 +171,12 @@ def copy_verified(source, target):
     return digest
 
 
-def playback_index(loudness, leading, peak, floor):
+def playback_index(loudness, speaker, leading, peak, floor, lensed=False):
     """The optional `gain`/`lead` plus `snr` for one entry — absent when there is nothing to say.
+
+    `lensed` takes the gain off what a phone speaker can radiate (see [ANALYSIS]) instead of
+    off the flat loudness. The lens only ever decides the TARGET a file is moved toward;
+    the ceiling below still answers to the flat peak, because that is what clips.
 
     `snr` is peak minus noise floor: how far the word stands above the hiss under it. Unlike
     the other two it changes no playback — it is carried so the lint can see the SHAPE of a
@@ -164,7 +184,8 @@ def playback_index(loudness, leading, peak, floor):
     Measured, never applied: filtering the file would be an adaptation under BY-SA and would
     break the sha256 that pins it.
     """
-    boost = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, ANALYSIS['target_lufs'] - loudness)), 1)
+    wanted = (ANALYSIS['speaker_lufs'] - speaker) if lensed else (ANALYSIS['target_lufs'] - loudness)
+    boost = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, wanted)), 1)
     # why: floor, never round — a gain rounded up to the shipped decimal spends the safety
     # margin it was granted, and the file it was granted for is the one already near clipping.
     gain = min(boost, math.floor((PEAK_CEILING_DBFS - peak) * 10) / 10)
@@ -179,7 +200,7 @@ def playback_index(loudness, leading, peak, floor):
     return index
 
 
-def copy_and_analyze(copies):
+def copy_and_analyze(copies, lensed=False):
     """`[(id, source, target)]` → `{id: (sha256, playback index)}`: ship the bytes, then measure.
 
     why: the analysis runs over the file that LANDED, so an index can never describe other
@@ -190,10 +211,12 @@ def copy_and_analyze(copies):
     measured = audio_measure.measure_all(FFMPEG, [target for _, _, target in copies])
     analysed = {}
     for id, _, target in copies:
-        loudness, leading, peak, floor = measured[target]
+        loudness, speaker, leading, peak, floor = measured[target]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % target)
-        analysed[id] = (digests[id], playback_index(loudness, leading, peak, floor))
+        if lensed and speaker is None:
+            sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % target)
+        analysed[id] = (digests[id], playback_index(loudness, speaker, leading, peak, floor, lensed))
     return analysed
 
 
@@ -205,7 +228,8 @@ def convert_words(lang, pack, out_dir, slugs, forms):
     reachable = keep_named_by_its_file(keep_reachable(rows, lang, slugs, forms, drops), drops)
     kept = attribute(keep_unambiguous(reachable, mp3_dir, drops), drops)
     analysed = copy_and_analyze([(row['slug'], os.path.join(mp3_dir, row['slug'] + '.mp3'),
-                                  os.path.join(out_dir, row['slug'] + '.mp3')) for row in kept])
+                                  os.path.join(out_dir, row['slug'] + '.mp3')) for row in kept],
+                                lensed=lang in ANALYSIS['lensed'])
     words = {}
     for row in kept:
         digest, index = analysed[row['slug']]
@@ -269,6 +293,51 @@ def convert_texts(pack, out_dir):
     return texts
 
 
+def reindex(lang):
+    """Re-derive `gain`/`lead`/`snr` for a language already under `catalog/audio/`, out of
+    the bytes it ships — nothing is copied, converted or renamed.
+
+    why a second entry point at all: the packs are unversioned research input and may be
+    long gone from the machine that needs to re-measure, while the mp3 the index describes
+    is right here and pinned. Every file's `sha256` is re-verified first, so a re-index can
+    never quietly re-describe changed bytes — which is also the whole claim the credits make.
+    """
+    out_dir = os.path.join(CATALOG, 'audio', lang)
+    manifest = read_json(out_dir, 'manifest.json')
+    entries = {(section, key): item
+               for section in ('words', 'letters', 'texts') if section in manifest
+               for key, item in manifest[section].items()}
+    measured = audio_measure.measure_all(
+        FFMPEG, sorted({os.path.join(out_dir, item['file']) for item in entries.values()}))
+    moved, limited = [], 0
+    for (section, key), item in sorted(entries.items()):
+        path = os.path.join(out_dir, item['file'])
+        if digest_of(path) != item['sha256']:
+            sys.exit('%s: sha256 no longer matches — the bytes changed, re-run the convert'
+                     % path)
+        loudness, speaker, leading, peak, floor = measured[path]
+        if loudness is None or peak is None:
+            sys.exit('%s: decodes to silence — there is nothing to index' % path)
+        index = playback_index(loudness, speaker, leading, peak, floor,
+                               lensed=lang in ANALYSIS['lensed'])
+        was = item.get('gain', 0)
+        for field in ('gain', 'lead', 'snr'):
+            item.pop(field, None)
+        item.update(index)
+        if index.get('gain', 0) != was:
+            moved.append(index.get('gain', 0) - was)
+        if speaker is not None and index.get('gain', 0) < round(
+                ANALYSIS['speaker_lufs'] - speaker, 1) - 0.05:
+            limited += 1
+    write_manifest(lang, out_dir, manifest.get('words', {}),
+                   manifest.get('letters', {}), manifest.get('texts', {}))
+    moved.sort()
+    print('  %s: %d entries, %d re-gained (median %+.1f dB, widest %+.1f), %d held by the '
+          'peak ceiling' % (lang, len(entries), len(moved),
+                            moved[len(moved) // 2] if moved else 0,
+                            max(moved, key=abs) if moved else 0, limited))
+
+
 def write_manifest(lang, out_dir, words, letters, texts):
     manifest = {'language': lang, 'words': words}
     if letters:
@@ -282,9 +351,13 @@ def write_manifest(lang, out_dir, words, letters, texts):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument('--packs', required=True, help='directory holding pack-<lang>/')
+    parser.add_argument('--packs', help='directory holding pack-<lang>/')
     parser.add_argument('--lang', action='append', help='convert only this language (repeatable)')
+    parser.add_argument('--reindex', action='store_true',
+                        help='re-measure catalog/audio/<lang>/ in place; no packs needed')
     args = parser.parse_args()
+    if not args.packs and not args.reindex:
+        parser.error('--packs is required unless --reindex re-measures what already ships')
 
     # why: gain/lead are this build's numbers to a decimal, so another ffmpeg silently
     # rewrites manifests that were otherwise byte-identical — say so rather than surprise
@@ -293,6 +366,14 @@ def main():
     if detected != ANALYSIS['ffmpeg']:
         print('warning: measuring with %s; ANALYSIS was taken on %s — expect drifted decimals'
               % (detected, ANALYSIS['ffmpeg']))
+
+    if args.reindex:
+        shipped = sorted(name for name in os.listdir(os.path.join(CATALOG, 'audio'))
+                         if os.path.isdir(os.path.join(CATALOG, 'audio', name)))
+        for lang in args.lang or shipped:
+            print('reindex %s' % lang)
+            reindex(lang)
+        return
 
     slugs, forms = load_catalog()
     languages = sorted(name[len('pack-'):] for name in os.listdir(args.packs)

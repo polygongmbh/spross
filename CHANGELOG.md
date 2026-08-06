@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **The Swahili words are evened out for the speaker you actually hold.** Words built on
+  nasals and back vowels — *mguu*, *gumu*, *ndizi* — put their voice where a phone speaker
+  cannot follow, so they arrived noticeably under the bright ones however carefully the
+  levels were measured. They are levelled by what the phone can radiate now. *Nakupenda* is
+  the one that stays quiet: that recording already runs at the edge of full scale, and
+  lifting it would clip rather than help.
+
 ## 3.10.0 — 2026-08-06
 
 - **The feedback chimes are heard beside the spoken words, not under them.** They were

@@ -20,6 +20,21 @@ SILENCE_MIN_SECONDS = 0.02
 # time keeps the analysis stage off the converter's wall clock (seconds, not minutes).
 WORKERS = 10
 
+# The SPEAKER LENS: the same loudness, measured through what a phone can actually radiate.
+# R128 weights a word's energy at 150 Hz nearly like its energy at 2 kHz; a phone speaker
+# reproduces almost none of the first. So two words that measure level flat are heard many
+# dB apart on the device — sw `karibu`, all sharp open vowels, against `nakupenda`, built
+# on nasals and back vowels: 0.1 dB apart flat, and 16 apart through this. Which is the
+# whole of what "the words are not balanced" turned out to be.
+#
+# 400 Hz at 12 dB/oct is the MIDDLE of two wrong answers. A real iPhone gives up closer to
+# 500 and far more steeply, but a boost aimed at that is still heard on headphones, where
+# the low end it corrects for is present after all — a word lifted 13 dB for a speaker that
+# needed it is a boomy word on anything better. This model corrects the worst of the pack by
+# about 4 dB and most of it by under one, which is the trade taken: the phone gets most of
+# the balance, nothing gets a correction it would have to be forgiven for elsewhere.
+SPEAKER_LENS = 'highpass=f=400:poles=2'
+
 INTEGRATED = re.compile(r'^\s+I:\s+(-?[\d.]+|-inf) LUFS', re.M)
 SILENCE_START = re.compile(r'silence_start:\s*(-?[\d.]+)')
 SILENCE_END = re.compile(r'silence_end:\s*(-?[\d.]+)')
@@ -34,8 +49,13 @@ def version(binary):
 
 
 def measure(binary, path):
-    """(integrated LUFS, leading silence in seconds, sample peak dBFS, noise floor dBFS);
-    a silent file measures None for the levels.
+    """(integrated LUFS, the same through SPEAKER_LENS, leading silence in seconds, sample
+    peak dBFS, noise floor dBFS); a silent file measures None for the levels.
+
+    Two decodes: the plain one below, and one more through the lens — which is what the
+    gain is actually derived from, the flat number staying as the figure the packs are
+    described by. Two passes rather than a split graph because an `I:` line says which
+    loudness it is only by which instance printed it.
 
     One decode, three filters. `ebur128` reports EBU R128 INTEGRATED loudness, which is
     gated — the pause a single word sits in does not drag its level down, so two packs can
@@ -61,10 +81,23 @@ def measure(binary, path):
     opens_silent = start is not None and abs(float(start.group(1))) < 1e-6
     return (
         float(loudness[-1]) if loudness and loudness[-1] != '-inf' else None,
+        lensed_loudness(binary, path),
         float(end.group(1)) if opens_silent and end else 0.0,
         float(peak[-1]) if peak and peak[-1] != '-inf' else None,
         float(floor[-1]) if floor and floor[-1] != '-inf' else None,
     )
+
+
+def lensed_loudness(binary, path):
+    """Integrated loudness of what a phone speaker can radiate of `path` (SPEAKER_LENS)."""
+    run = subprocess.run(
+        [binary, '-hide_banner', '-nostats', '-i', path, '-af',
+         '%s,ebur128=peak=none' % SPEAKER_LENS, '-f', 'null', '-'],
+        capture_output=True, text=True)
+    if run.returncode != 0:
+        raise RuntimeError('%s: ffmpeg failed\n%s' % (path, run.stderr[-800:]))
+    lensed = INTEGRATED.findall(run.stderr)
+    return float(lensed[-1]) if lensed and lensed[-1] != '-inf' else None
 
 
 def measure_all(binary, paths):
