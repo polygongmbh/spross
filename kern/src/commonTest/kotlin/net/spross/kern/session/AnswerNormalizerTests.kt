@@ -168,6 +168,26 @@ class AnswerNormalizerTests {
         assertEquals(Match.Wrong, sw.evaluate("dee", card("sw", "nyumba"))) // never strips the only word
     }
 
+    /**
+     * The rescue is a vocab-review rule. A drill grades every word, because in a
+     * clock reading every word names WHICH time it is — and the rescue recurses,
+     * peeling one word per level, so a reading used to decay onto other times'
+     * answers ("fünf vor halb sieben" → "halb sieben", 18:25 accepted at 18:30).
+     */
+    @Test
+    fun drillGradingNeverStripsAStrayLeadingWord() {
+        val drill = AnswerNormalizer(
+            catalog.languages.getValue("de"),
+            articleLeniency = false,
+            maxTyposPerWord = 1,
+        )
+        val halbSieben = card("de", "halb sieben", kind = CardKind.Phrase)
+        assertEquals(Match.Wrong, drill.evaluate("fünf vor halb sieben", halbSieben))
+        assertEquals(Match.Wrong, drill.evaluate("fünf nach halb sieben", halbSieben))
+        // Down to a single word, however many levels of peeling it would take.
+        assertEquals(Match.Wrong, drill.evaluate("Viertel nach sieben", card("de", "sieben")))
+    }
+
     @Test
     fun leadingArticleIsOptionalOnBothSidesOfAPhrase() {
         val leer = card("de", "Der Kühlschrank ist leer.", kind = CardKind.Phrase)

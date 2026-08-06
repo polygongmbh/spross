@@ -127,7 +127,8 @@ class AnswerNormalizer(
      * iff `kind == verb`; the article-mismatch demotion applies iff the target's
      * grammar carries `gender` (a PRESENT leading article that disagrees is a typo,
      * a missing one stays exact). A stray unrecognized short leading word that,
-     * once dropped, makes the rest match is a typo, not a failure.
+     * once dropped, makes the rest match is a typo, not a failure — in vocab
+     * reviews only, see [strayLeadingWordRecovery].
      */
     fun evaluate(input: String, card: Card): Match {
         val accepted = listOf(card.target.text) + card.target.synonyms + card.target.variants
@@ -185,13 +186,21 @@ class AnswerNormalizer(
                 best = Match.Typo(corrected = bestForm ?: normalizedInput)
             }
         }
-        if (best == Match.Wrong) {
+        // why: the recovery reads a stray leading word as a mistyped article, which is
+        // a vocab-review rule. In a drill every word carries the answer — "fünf vor
+        // halb sieben" minus its first word is 18:30, not a misspelling of it — and the
+        // recovery RECURSES, peeling one word per level ("son las doce y uno" → "uno"),
+        // so a reading decayed onto four other times' answers.
+        if (best == Match.Wrong && maxTyposPerWord == null) {
             best = strayLeadingWordRecovery(input, accepted, prefixes)
         }
         return best
     }
 
-    /** Drop a short all-letter leading word and regrade; a match after the drop is a typo. */
+    /**
+     * Drop a short all-letter leading word and regrade; a match after the drop is a
+     * typo. Vocab reviews only ([maxTyposPerWord] unset) — a drill grades every word.
+     */
     private fun strayLeadingWordRecovery(
         input: String,
         accepted: List<String>,
