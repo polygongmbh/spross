@@ -47,6 +47,54 @@ class TrainerGermanClockTests {
         assertEquals("Mitternacht", task.display)
         assertAccepts(task, "null uhr")
         assertAccepts(task, "vierundzwanzig uhr")
+        // The colloquial full-hour readings were dropped at exactly the two hours a
+        // speaker says them out loud, because the standard reading is a name there.
+        assertAccepts(task, "zwölf uhr")
+        assertAccepts(task, "punkt zwölf")
+        assertAccepts(task, "um zwölf")
+        assertAccepts(task, "zwölf uhr nachts")
+        val noon = clock(12, 0)
+        assertEquals("Mittag", noon.display)
+        assertAccepts(noon, "zwölf uhr mittags")
+        assertAccepts(noon, "punkt zwölf uhr")
+    }
+
+    /** Where the hour sits in the day, at the full hour — and the apocope holds. */
+    @Test
+    fun theFullHourAcceptsTheDayPart() {
+        assertAccepts(clock(1, 0), "ein uhr nachts")
+        assertAccepts(clock(13, 0), "ein uhr nachmittags")
+        assertAccepts(clock(9, 0), "neun uhr vormittags")
+        assertAccepts(clock(21, 0), "neun uhr abends")
+        assertAccepts(clock(5, 0), "fünf uhr früh")
+        assertAccepts(clock(18, 0), "sechs uhr abends")
+        assertAccepts(clock(6, 0), "sechs uhr morgens")
+        for (hour in 0..23) {
+            assertFalse(clock(hour, 0).accepted.any { "eins Uhr" in it }, "hour $hour")
+        }
+    }
+
+    /** The half hour counts from ten out either side, and "Minuten" is optional. */
+    @Test
+    fun tenEitherSideOfHalfAndTheOptionalMinuten() {
+        assertAccepts(clock(18, 20), "zehn vor halb sieben")
+        assertAccepts(clock(18, 40), "zehn nach halb sieben")
+        assertAccepts(clock(18, 5), "fünf minuten nach sechs")
+        assertAccepts(clock(18, 40), "zwanzig minuten vor sieben")
+        assertAccepts(clock(18, 25), "fünf minuten vor halb sieben")
+        // "Viertel Minuten nach" is not a reading.
+        assertFalse(clock(18, 15).accepted.any { "Minuten" in it }, clock(18, 15).accepted.toString())
+    }
+
+    /** The reveal names alternatives, not every way the time can be said. */
+    @Test
+    fun theGlossStaysShort() {
+        for (hour in 0..23) {
+            for (minute in listOf(0, 15, 20, 30, 45)) {
+                val gloss = clock(hour, minute).gloss ?: continue
+                assertTrue(gloss.split(" oder ").size <= 3, "$hour:$minute → $gloss")
+            }
+        }
     }
 
     @Test

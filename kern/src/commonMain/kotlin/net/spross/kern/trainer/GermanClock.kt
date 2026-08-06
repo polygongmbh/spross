@@ -8,6 +8,9 @@ package net.spross.kern.trainer
 internal object GermanClock {
     private val hourWords = listOf("zwölf", "eins", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwölf")
 
+    /** The counts a relative reading uses; only these take an optional "Minuten". */
+    private val MINUTE_COUNTS = setOf("fünf", "zehn", "zwanzig", "fünfundzwanzig")
+
     private data class Conversational(val standard: String, val regional: String)
 
     /**
@@ -53,12 +56,64 @@ internal object GermanClock {
         if (c.regional != c.standard) accepted += c.regional
         // Colloquial "um zehn" reads a full hour the same as "zehn Uhr" / "punkt zehn".
         if (minutes == 0 && c.standard.endsWith("Uhr")) accepted += "um ${hourWords[hours % 12]}"
-        for (reading in twentyFourHour(hours, minutes)) {
-            if (reading !in accepted) accepted += reading
+        // The reveal names at most three alternatives; everything past here is the
+        // same reading said another way, and would crowd the line out.
+        val gloss = accepted.drop(1).take(3)
+            .takeIf { it.isNotEmpty() }
+            ?.let { "auch: ${it.joinToString(" oder ")}" }
+
+        for (reading in twentyFourHour(hours, minutes)) accepted.addUnlessPresent(reading)
+        if (minutes == 0) {
+            val hourWord = hourWords[hours % 12]
+            // why: at noon and midnight the standard reading is a NAME, so the gate
+            // above skipped the colloquial full-hour forms at exactly the two hours
+            // where a speaker says them out loud to disambiguate.
+            for (form in listOf("${beforeUhr(hourWord)} Uhr", "punkt $hourWord", "um $hourWord")) {
+                accepted.addUnlessPresent(form)
+            }
+            accepted.addUnlessPresent("punkt ${beforeUhr(hourWord)} Uhr")
+            for (part in dayParts(hours)) accepted.addUnlessPresent("${beforeUhr(hourWord)} Uhr $part")
         }
-        val alternatives = accepted.drop(1)
-        val gloss = if (alternatives.isEmpty()) null else "auch: ${alternatives.joinToString(" oder ")}"
+        // The half hour is also counted from ten out on either side.
+        val nextWord = hourWords[(hours % 12 + 1) % 12]
+        if (minutes == 20) accepted.addUnlessPresent("zehn vor halb $nextWord")
+        if (minutes == 40) accepted.addUnlessPresent("zehn nach halb $nextWord")
+        for (form in accepted.toList()) accepted.addUnlessPresent(withMinuten(form) ?: continue)
         return ClockReading(c.standard, accepted, gloss)
+    }
+
+    private fun MutableList<String>.addUnlessPresent(reading: String) {
+        if (reading !in this) this += reading
+    }
+
+    /** "fünf nach sechs" also reads "fünf Minuten nach sechs"; "Viertel" never does. */
+    private fun withMinuten(reading: String): String? {
+        val words = reading.split(" ")
+        if (words.size < 3 || words[0] !in MINUTE_COUNTS || words[1] !in setOf("nach", "vor")) return null
+        return words[0] + " Minuten " + words.drop(1).joinToString(" ")
+    }
+
+    /**
+     * How the hour is placed in the day, at the full hour. Deliberately generous where
+     * speakers disagree — the sets for an hour and the hour twelve on stay disjoint
+     * (nothing before noon is ever abends, nothing after is ever morgens), so widening
+     * one never lets it answer the other. "früh" is accepted, never taught.
+     */
+    private fun dayParts(hours: Int): List<String> = when (hours) {
+        0, 1 -> listOf("nachts")
+        2, 3 -> listOf("nachts", "morgens")
+        4, 5 -> listOf("früh", "morgens", "nachts")
+        6, 7 -> listOf("morgens", "früh")
+        8 -> listOf("morgens", "früh", "vormittags")
+        9 -> listOf("morgens", "vormittags")
+        10, 11 -> listOf("vormittags", "morgens")
+        12 -> listOf("mittags")
+        13, 14 -> listOf("nachmittags", "mittags")
+        15, 16 -> listOf("nachmittags")
+        17 -> listOf("nachmittags", "abends")
+        in 18..20 -> listOf("abends")
+        21, 22 -> listOf("abends", "nachts")
+        else -> listOf("nachts", "abends")
     }
 
     /**

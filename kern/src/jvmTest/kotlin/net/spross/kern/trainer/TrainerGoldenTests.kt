@@ -94,17 +94,17 @@ class TrainerGoldenTests {
             if (m == 0 && expected.standard.endsWith("Uhr")) {
                 golden += "um " + expected.regional.removePrefix("punkt ")
             }
-            // Golden values lead the accepted list unchanged; the documented
-            // accepted-only additions follow: the formal 24-hour reading
-            // ("achtzehn Uhr fünfunddreißig"), plus "vierundzwanzig Uhr" at 0:00.
+            // Golden values lead the accepted list unchanged. What follows them is
+            // accepted-only and free to grow — this asserts what must be IN that tail
+            // (the formal 24-hour reading, plus "vierundzwanzig Uhr" at 0:00), not what
+            // else may be, so the day-part and "Minuten" readings need no restating here.
             assertEquals(golden, task.accepted.take(golden.size), "t=$key")
+            val tail = task.accepted.drop(golden.size)
             val h24 = GermanNumbers.cardinal(h.toLong()) + " Uhr" +
                 (if (m == 0) "" else " " + GermanNumbers.cardinal(m.toLong()))
-            val additions = buildList {
-                if (h24 !in golden) add(h24)
-                if (h == 0 && m == 0) add("vierundzwanzig Uhr")
-            }
-            assertEquals(additions, task.accepted.drop(golden.size), "t=$key")
+            if (h24 !in golden) assertEquals(h24, tail.firstOrNull(), "t=$key")
+            if (h == 0 && m == 0) assertTrue("vierundzwanzig Uhr" in tail, "t=$key")
+            assertTrue(tail.none { it in golden }, "t=$key: golden reading repeated in $tail")
         }
     }
 
