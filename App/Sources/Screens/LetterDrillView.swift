@@ -270,7 +270,7 @@ struct LetterDrillView: View {
     func closeRun() {
         autoAdvance?.cancel()
         Pronouncer.shared.stop()
-        if feedback == .correct {
+        if feedback.isAccepted {
             // why: a pending pause books amber, exactly as answering would —
             // closing must not upgrade it to a clean win.
             advance(correct: true, clean: typoCorrection == nil && heardInstead == nil)

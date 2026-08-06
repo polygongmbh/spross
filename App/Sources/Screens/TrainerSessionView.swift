@@ -162,7 +162,7 @@ struct TrainerSessionView: View {
             }
             // `-uitest-typo 1` renders the accepted-with-typo state.
             if defaults.bool(forKey: "uitest-typo") {
-                feedback = .correct
+                feedback = .almost(correctForm: current.display, reason: .typo)
                 typoCorrection = current.display
             }
         }
@@ -258,7 +258,7 @@ struct TrainerSessionView: View {
     /// summary. An untouched run (nothing answered) just closes.
     private func closeRun() {
         autoAdvance?.cancel()
-        if feedback == .correct {
+        if feedback.isAccepted {
             // why: a pending typo pause books amber, same as answering —
             // closing must not upgrade it to a clean win (level ramp).
             advance(correct: true, segment: typoCorrection != nil ? .tough : nil)

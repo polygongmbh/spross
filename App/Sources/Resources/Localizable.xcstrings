@@ -233,22 +233,6 @@
         }
       }
     },
-    "a11y.revealed" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aufgelöst"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Revealed"
-          }
-        }
-      }
-    },
     "a11y.sessionTally %@ %@ %@" : {
       "localizations" : {
         "de" : {
@@ -2271,6 +2255,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clear search"
+          }
+        }
+      }
+    },
+    "session.almost.heard" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gehört war"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You heard"
+          }
+        }
+      }
+    },
+    "session.almost.typo" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast! Korrekte Schreibweise"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Almost! Correct spelling"
           }
         }
       }

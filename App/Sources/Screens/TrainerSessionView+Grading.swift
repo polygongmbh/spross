@@ -20,7 +20,7 @@ extension TrainerSessionView {
         case .typo(let corrected):
             // why: no auto-advance on a typo — the pause shows the proper
             // spelling; "Weiter" then books it amber (no level progress).
-            feedback = .correct
+            feedback = .almost(correctForm: corrected, reason: .typo)
             DLSound.correct()
             typoCorrection = corrected
             // why: a pause that waits for a tap must not hold the keyboard —

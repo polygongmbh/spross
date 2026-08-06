@@ -54,12 +54,12 @@ extension LetterDrillView {
         case .typo(let corrected):
             // why: no auto-advance on a slip — the pause shows the proper
             // spelling, and "Weiter" then books it amber.
-            feedback = .correct
+            feedback = .almost(correctForm: corrected, reason: .typo)
             DLSound.correct()
             typoCorrection = corrected
             answerFocused = false
         case .heard(let spoken):
-            feedback = .correct
+            feedback = .almost(correctForm: spoken, reason: .heard)
             DLSound.correct()
             heardInstead = spoken
             // why: both amber holds wait for a tap, and a held keyboard

@@ -141,24 +141,21 @@ extension TrainerSessionView {
                         .foregroundStyle(Color.dlTextSecondary)
                     }
                 }
+            case .almost:
+                // A typo pauses — the box above spells the word out; this only
+                // waits for the tap that books it amber.
+                Button {
+                    advance(correct: true, segment: .tough)
+                } label: {
+                    Text("common.next")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(DLPrimaryButtonStyle())
+                .keyboardShortcut(.defaultAction)
+                .transition(.opacity)
             case .correct:
-                // A clean answer auto-advances after ~1.2 s. A typo pauses —
-                // show the proper spelling and wait for a tap.
-                if let typoCorrection {
-                    VStack(spacing: DL.Space.m) {
-                        Text("session.typoCorrection \(typoCorrection)")
-                            .dlPauseLine()
-                        Button {
-                            advance(correct: true, segment: .tough)
-                        } label: {
-                            Text("common.next")
-                                .frame(maxWidth: .infinity)
-                        }
-                        .buttonStyle(DLPrimaryButtonStyle())
-                        .keyboardShortcut(.defaultAction)
-                    }
-                    .transition(.opacity)
-                } else if screenReaderOn {
+                // A clean answer auto-advances after ~1.2 s.
+                if screenReaderOn {
                     // why: the timer never arms under VoiceOver/Switch Control —
                     // without this the clean-correct branch offers nothing to tap.
                     Button {

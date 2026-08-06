@@ -152,6 +152,10 @@ extension LetterDrillView {
             if screenReaderOn {
                 nextButton { advance(correct: true, clean: true) }
             }
+        // why: tiles grade exact-only (no typo budget), so this cannot arise
+        // here — it books like any other accepted answer if it ever does.
+        case .almost:
+            nextButton { advance(correct: true, clean: false) }
         case .revealed:
             nextButton { advance(correct: false, clean: true) }
         }
@@ -194,35 +198,23 @@ extension LetterDrillView {
                 .buttonStyle(DLPrimaryButtonStyle())
                 .keyboardShortcut(.defaultAction)
                 .animation(.easeOut(duration: 0.15), value: inputEmpty)
+            case .almost:
+                // The two amber holds — a slip, and a form the review flow
+                // teaches but the dictation did not play. The box above spells
+                // either one out; this waits for the tap that books it amber.
+                nextButton { advance(correct: true, clean: false) }
+                    .transition(.opacity)
             case .correct:
-                pause
+                // why: the timer never arms under a screen reader, so a clean
+                // hit would otherwise have nothing to move on with.
+                if screenReaderOn {
+                    nextButton { advance(correct: true, clean: true) }
+                }
             case .revealed:
                 nextButton { advance(correct: false, clean: true) }
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
-    }
-
-    /// The two amber holds: a slip worth seeing spelled out, and a form the
-    /// review flow teaches but the dictation did not play.
-    @ViewBuilder
-    private var pause: some View {
-        if let line = pauseLine {
-            VStack(spacing: DL.Space.m) {
-                line
-                    .dlPauseLine()
-                nextButton { advance(correct: true, clean: false) }
-            }
-            .transition(.opacity)
-        } else if screenReaderOn {
-            nextButton { advance(correct: true, clean: true) }
-        }
-    }
-
-    private var pauseLine: Text? {
-        if let heardInstead { return Text("letters.heardInstead \(heardInstead)") }
-        if let typoCorrection { return Text("session.typoCorrection \(typoCorrection)") }
-        return nil
     }
 
     var inputEmpty: Bool { input.trimmingCharacters(in: .whitespaces).isEmpty }

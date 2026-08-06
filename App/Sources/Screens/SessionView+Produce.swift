@@ -19,7 +19,9 @@ extension SessionView {
                         focus: $answerFocused,
                         // why: a miss keeps typing — the retype IS the
                         // answer, so the field must not lock on reveal.
-                        locked: false) {
+                        locked: false,
+                        pronounceCorrection: correctionPronounce,
+                        correctionIsPlaying: correctionPlaying) {
             // why: Enter used to hit the "Next" button's default
             // action once revealed — a hardware keyboard still needs
             // a way to give up without finishing the retype.
@@ -47,6 +49,22 @@ extension SessionView {
     /// its checkmark, the same confirmation a first-try answer gets.
     var fieldFeedback: AnswerInputView.Feedback {
         retryApproved ? .correct : feedback
+    }
+
+    /// The form the correction box carries, if it is carrying one — the single
+    /// place the amber hold's word is named, so the box and its speaker can
+    /// never end up saying two different things.
+    var correctionForm: String? {
+        if case .almost(let form, _) = fieldFeedback { return form }
+        return nil
+    }
+
+    var correctionPronounce: (() -> Void)? {
+        correctionForm.flatMap { pronounceAction(for: $0) }
+    }
+
+    var correctionPlaying: Bool {
+        correctionForm.map { isPronouncing($0) } ?? false
     }
 
     /// True while produce has nothing to type into: the blank "Aufdecken"
@@ -85,29 +103,20 @@ extension SessionView {
                 .buttonStyle(DLPrimaryButtonStyle())
                 .keyboardShortcut(.defaultAction)
                 .animation(.easeOut(duration: 0.15), value: inputEmpty)
+            case .almost:
+                // A typo or a heard-instead pauses here — the box above spells
+                // the owed form out and says it; this waits for the tap that
+                // books the card.
+                Button {
+                    rate(.good)
+                } label: {
+                    DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
+                }
+                .buttonStyle(DLPrimaryButtonStyle())
+                .keyboardShortcut(.defaultAction)
             case .correct:
-                // A clean answer auto-advances after ~1.2 s (design §Review
-                // UX). A typo pauses here — show the proper spelling and wait
-                // for a tap so the slip is reviewed.
-                if let amber = typoCorrection ?? heardInstead {
-                    VStack(spacing: DL.Space.m) {
-                        // why: the proper spelling is the point of this pause —
-                        // it has to be as readable as the reveal's own lines.
-                        amberLine(amber)
-                            .dlPauseLine()
-                            // why: a correct answer leaves the card CLOSED, so
-                            // this line is the only place the word stands —
-                            // tap-to-replay has to live on it, not on the card.
-                            .pronounceOnTap(pronounceAction(for: amber))
-                        Button {
-                            rate(.good)
-                        } label: {
-                            DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
-                        }
-                        .buttonStyle(DLPrimaryButtonStyle())
-                        .keyboardShortcut(.defaultAction)
-                    }
-                } else if screenReaderOn {
+                // A clean answer auto-advances after ~1.2 s (design §Review UX).
+                if screenReaderOn {
                     // why: the timer never armed here, so this is the only way
                     // on — a clean answer would otherwise leave nothing to tap.
                     Button {
@@ -158,14 +167,6 @@ extension SessionView {
                 }
             }
         }
-    }
-
-    /// The amber hold's line: a slip's proper spelling, or — where the question
-    /// was the sound — the form that actually played beside the one written.
-    private func amberLine(_ form: String) -> Text {
-        heardInstead == nil
-            ? Text("session.typoCorrection \(form)")
-            : Text("letters.heardInstead \(form)")
     }
 
     // MARK: - Grading (produce only — recognize is button self-grade)
@@ -275,7 +276,7 @@ extension SessionView {
         // the narrowed answer set would otherwise fail a synonym the reveal
         // itself teaches. It is not wrong, it simply is not what played.
         if model.producePrompt(for: card) == .sound, alsoAccepted(trimmed, of: card) {
-            feedback = .correct
+            feedback = .almost(correctForm: card.target.text, reason: .heard)
             DLSound.correct()
             heardInstead = card.target.text
             focusRetry?.cancel()
@@ -294,7 +295,7 @@ extension SessionView {
             // why: don't auto-advance on a typo — pause (keeping the typed
             // text visible) so the learner reviews the slip. Still counts as
             // correct once they tap on.
-            feedback = .correct
+            feedback = .almost(correctForm: typo.corrected, reason: .typo)
             DLSound.correct()
             typoCorrection = typo.corrected
             // why: a pause that waits for a tap must not hold the keyboard —
