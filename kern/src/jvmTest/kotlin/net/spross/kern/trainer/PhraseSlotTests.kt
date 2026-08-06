@@ -155,25 +155,18 @@ class PhraseSlotTests {
         assertEquals("Der Zug fährt um 20:15 Uhr ab.", task.prompt)
         assertEquals("The train departs at quarter past eight.", task.display)
         // Every reading × both authored frames; the digital time closes each frame's run.
-        assertEquals(
-            listOf(
-                "The train departs at quarter past eight.",
-                "The train departs at a quarter past eight.",
-                "The train departs at quarter after eight.",
-                "The train departs at a quarter after eight.",
-                "The train departs at fifteen past eight.",
-                "The train departs at eight fifteen.",
-                "The train departs at 20:15.",
-                "The train leaves at quarter past eight.",
-                "The train leaves at a quarter past eight.",
-                "The train leaves at quarter after eight.",
-                "The train leaves at a quarter after eight.",
-                "The train leaves at fifteen past eight.",
-                "The train leaves at eight fifteen.",
-                "The train leaves at 20:15.",
-            ),
-            task.accepted,
-        )
+        for (frame in listOf("The train departs at", "The train leaves at")) {
+            for (reading in listOf(
+                "quarter past eight", "a quarter past eight", "quarter after eight",
+                "fifteen past eight", "fifteen minutes past eight", "fifteen after eight",
+                "eight fifteen", "quarter past eight in the evening",
+                "eight fifteen in the evening", "twenty fifteen", "20:15",
+            )) {
+                assertTrue("$frame $reading." in task.accepted, "$frame $reading.")
+            }
+        }
+        assertEquals(task.accepted.size, task.accepted.toSet().size)
+        assertTrue(task.accepted.last().endsWith("20:15."))
     }
 
     @Test

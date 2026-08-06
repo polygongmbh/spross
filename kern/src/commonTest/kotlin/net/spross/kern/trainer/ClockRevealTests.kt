@@ -30,9 +30,11 @@ class ClockRevealTests {
                     val task = Trainer.clock(hour, minute, language)
                     val where = "$language ${task.prompt}"
                     assertTrue(task.display in task.accepted, "$where: display not accepted")
-                    val listed = task.gloss?.substringAfter(marker, "").orEmpty()
+                    // An em-dash tail is a labelled warning ("never 'fourteen o'clock'"),
+                    // the one thing a gloss may name that the drill does NOT accept.
+                    val listed = task.gloss?.substringAfter(marker, "").orEmpty().substringBefore(" — ")
                     if (listed.isEmpty()) continue
-                    for (alternative in listed.split(", ", " oder ")) {
+                    for (alternative in listed.split(", ", " oder ", " or ")) {
                         assertTrue(alternative in task.accepted, "$where: gloss names \"$alternative\"")
                         assertTrue(alternative != task.display, "$where: gloss repeats the display")
                     }

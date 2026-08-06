@@ -88,9 +88,49 @@ class TrainerEnglishTests {
         assertEquals("quarter to three", Trainer.clock(14, 45, "en").display)
         assertEquals("twenty-five to three", Trainer.clock(14, 35, "en").display)
         assertEquals("five past two", Trainer.clock(14, 5, "en").display)
-        assertEquals("seventeen past two", Trainer.clock(14, 17, "en").display)
+        // Off the five-minute grid a clock is read out, not counted from the hour.
+        assertEquals("two seventeen", Trainer.clock(14, 17, "en").display)
+        assertTrue("seventeen past two" in Trainer.clock(14, 17, "en").accepted)
+        assertEquals("eleven fifty-nine", Trainer.clock(23, 59, "en").display)
         // The prompt is the only place digits appear.
         assertEquals("14:35", Trainer.clock(14, 35, "en").prompt)
+    }
+
+    /** Where the hour sits in the day, and the registers beside the past/to forms. */
+    @Test
+    fun clockAcceptsTheDayPartAndTheTwentyFourHourReading() {
+        val quarterToFive = Trainer.clock(16, 45, "en").accepted
+        assertTrue("quarter to five in the afternoon" in quarterToFive)
+        assertTrue("four forty-five in the afternoon" in quarterToFive)
+        assertTrue("sixteen forty-five" in quarterToFive)
+        assertTrue("quarter of five" in quarterToFive)
+        assertTrue("fifteen minutes to five" in quarterToFive)
+        assertTrue("quarter till five" in quarterToFive)
+        // The small hours are the morning, never "at night".
+        assertTrue("two o'clock in the morning" in Trainer.clock(2, 0, "en").accepted)
+        assertTrue("ten past eleven at night" in Trainer.clock(23, 10, "en").accepted)
+        assertTrue("ten after two" in Trainer.clock(14, 10, "en").accepted)
+        assertTrue("oh nine hundred hours" in Trainer.clock(9, 0, "en").accepted)
+        assertTrue("twenty-two oh five" in Trainer.clock(22, 5, "en").accepted)
+        // "of" is one edit from the digital "oh", so a numeric "ten of three" would
+        // grade correct at 3:10 — only the quarter takes it.
+        assertTrue(Trainer.clock(14, 50, "en").accepted.none { " of " in it })
+        // The calque the 24-hour prompt invites stays wrong, and the gloss says so.
+        assertTrue(Trainer.clock(14, 0, "en").accepted.none { "fourteen o'clock" in it })
+        assertTrue("fourteen o'clock" in (Trainer.clock(14, 0, "en").gloss ?: ""))
+    }
+
+    /** Counting off midnight and noon by name, either side of them. */
+    @Test
+    fun midnightAndNoonAnchorTheHalfHourEitherSide() {
+        assertTrue("quarter past midnight" in Trainer.clock(0, 15, "en").accepted)
+        assertTrue("half past midnight" in Trainer.clock(0, 30, "en").accepted)
+        assertTrue("one minute to midnight" in Trainer.clock(23, 59, "en").accepted)
+        assertTrue("quarter to noon" in Trainer.clock(11, 45, "en").accepted)
+        assertTrue("ten past noon" in Trainer.clock(12, 10, "en").accepted)
+        assertTrue("ten past midday" in Trainer.clock(12, 10, "en").accepted)
+        // Accepted only — the ordinary reading is what the reveal teaches.
+        assertEquals("half past twelve", Trainer.clock(0, 30, "en").display)
     }
 
     @Test
@@ -119,9 +159,13 @@ class TrainerEnglishTests {
         val midnight = Trainer.clock(0, 0, "en")
         assertEquals("midnight", midnight.display)
         assertTrue("twelve o'clock" in midnight.accepted)
+        assertTrue("twelve midnight" in midnight.accepted)
+        assertTrue("twelve o'clock at night" in midnight.accepted)
         val noon = Trainer.clock(12, 0, "en")
         assertEquals("noon", noon.display)
         assertTrue("midday" in noon.accepted)
+        assertTrue("twelve noon" in noon.accepted)
+        assertTrue("twelve hundred hours" in noon.accepted)
         // Only the exact hour is named; 00:30 reads as a time.
         assertEquals("half past twelve", Trainer.clock(0, 30, "en").display)
     }
