@@ -188,37 +188,11 @@ struct VocabCardView: View {
             // VoiceOver to read instead.
             SpeakerIcon(size: .large, isPlaying: side.isPlaying, pronounce: side.pronounce)
                 .accessibilityLabel("a11y.pronounce")
-        } else if side.pronounce != nil || side.femMarker {
-            HStack(spacing: DL.Space.s) {
-                // why: the same accessories mirrored on the leading edge, inert —
-                // the two faces of a card carry different ones (the target side has
-                // the speaker, the source side does not), so without the ballast the
-                // reveal's word sits visibly off the prompt's word above it.
-                accessories(side)
-                    .hidden()
-                    .allowsHitTesting(false)
-                    .accessibilityHidden(true)
-                headlineWord(side, emphasized: emphasized)
-                accessories(side)
-            }
         } else {
-            headlineWord(side, emphasized: emphasized)
-        }
-    }
-
-    /// What rides beside the headword. The speaker keeps its 44 pt tap target
-    /// but reserves only the glyph in layout, overhanging into the gap — at
-    /// full width it would cost the word 104 pt of its line once mirrored.
-    @ViewBuilder
-    private func accessories(_ side: Side) -> some View {
-        HStack(spacing: DL.Space.s) {
-            if let pronounce = side.pronounce {
-                SpeakerIcon(size: .small, isPlaying: side.isPlaying, pronounce: pronounce)
-                    .accessibilityLabel("a11y.pronounce")
-                    .frame(width: 26)
-            }
-            if side.femMarker {
-                FeminineBadge()
+            DLSpokenWord(pronounce: side.pronounce,
+                         isPlaying: side.isPlaying,
+                         badge: side.femMarker ? AnyView(FeminineBadge()) : nil) {
+                headlineWord(side, emphasized: emphasized)
             }
         }
     }

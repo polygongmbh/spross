@@ -1,0 +1,80 @@
+import SwiftUI
+
+// MARK: - DLSpokenWord
+//
+// A centred word with the speaker that says it. Every surface that reveals a
+// target-language answer renders it through here — a review card, a drill card,
+// a dictation — so "the answer" is one thing with one affordance rather than a
+// treatment each screen reinvents.
+//
+// The icon is MIRRORED: a hidden, inert copy on the leading edge. Without the
+// ballast the word sits visibly off the one above it, because the two faces of
+// a card carry different accessories (the target side has the speaker, the
+// source side does not).
+
+struct DLSpokenWord<Word: View>: View {
+    /// nil where the word can neither be played nor spoken — the icon and its
+    /// ballast both drop, so a word with nothing to hear centres on its own
+    /// instead of leaning against an affordance that does nothing.
+    var pronounce: (() -> Void)?
+    var isPlaying: Bool = false
+    /// Rides beside the speaker and mirrors with it (the ♀ badge).
+    var badge: AnyView?
+    @ViewBuilder var word: Word
+
+    var body: some View {
+        if pronounce != nil || badge != nil {
+            HStack(spacing: DL.Space.s) {
+                accessories
+                    .hidden()
+                    .allowsHitTesting(false)
+                    .accessibilityHidden(true)
+                word
+                accessories
+            }
+        } else {
+            word
+        }
+    }
+
+    /// The speaker keeps its 44 pt tap target but reserves only the glyph in
+    /// layout, overhanging into the gap — at full width it would cost the word
+    /// 104 pt of its line once mirrored.
+    private var accessories: some View {
+        HStack(spacing: DL.Space.s) {
+            if let pronounce {
+                SpeakerIcon(size: .small, isPlaying: isPlaying, pronounce: pronounce)
+                    .accessibilityLabel("a11y.pronounce")
+                    .frame(width: 26)
+            }
+            badge
+        }
+    }
+}
+
+// MARK: - Previews
+
+#Preview("Spoken word") {
+    VStack(spacing: DL.Space.xl) {
+        DLSpokenWord(pronounce: {}) {
+            Text(verbatim: "billete")
+                .font(DL.Fonts.title)
+                .foregroundStyle(Color.dlAccent)
+        }
+        DLSpokenWord(pronounce: {}, isPlaying: true) {
+            Text(verbatim: "son las tres y cuarto")
+                .font(DL.Fonts.title)
+                .foregroundStyle(Color.dlAccent)
+                .multilineTextAlignment(.center)
+        }
+        // Nothing to hear: no icon, no ballast — the word centres on its own.
+        DLSpokenWord {
+            Text(verbatim: "elfu mbili")
+                .font(DL.Fonts.title)
+                .foregroundStyle(Color.dlAccent)
+        }
+    }
+    .padding(DL.Space.xl)
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .background(Color.dlBackground)
+}
