@@ -33,7 +33,9 @@ struct AnswerInputView: View {
         /// checkmark and box agree — so the green glow stays what it always
         /// was: the clean answer's alone.
         case almost(correctForm: String, reason: AlmostReason)
-        case revealed(correctAnswer: String)
+        /// The word was not produced at all. Carries nothing: the CARD holds
+        /// the answer in every case, so a copy here could only contradict it.
+        case revealed
 
         /// Graded correct — cleanly or nearly. Callers deciding whether an
         /// answer STANDS must ask this rather than `== .correct`, or a near
@@ -49,9 +51,6 @@ struct AnswerInputView: View {
     @Binding var text: String
     var feedback: Feedback = .neutral
     var placeholder: String = "Antwort eingeben …"
-    /// The panel below the field is for prompts whose card never shows the
-    /// answer; a card that reveals owns the answer instead.
-    var showsRevealPanel: Bool = true
     /// Session views own focus so the keyboard is up the moment a card
     /// appears; standalone use falls back to the internal focus state.
     var focus: FocusState<Bool>.Binding?
@@ -77,12 +76,6 @@ struct AnswerInputView: View {
             }
             if case .almost(let form, let reason) = feedback {
                 correctionBox(form: form, caption: reason.caption)
-                    .transition(.opacity.combined(with: .move(edge: .top)))
-            }
-            // why: when "Aufdecken" fills the field with the answer, the field
-            // already shows it — the panel below would just duplicate it.
-            if showsRevealPanel, case .revealed(let answer) = feedback, text != answer {
-                correctionBox(form: answer, caption: "session.correctAnswer")
                     .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
@@ -220,11 +213,10 @@ private struct AnswerInputPreviewHost: View {
             AnswerInputView(text: $slip,
                             feedback: .almost(correctForm: "kisu", reason: .typo),
                             pronounceCorrection: {})
-            AnswerInputView(text: $wrong, feedback: .revealed(correctAnswer: "kisu"))
+            AnswerInputView(text: $wrong, feedback: .revealed)
             // Inert: revealed, locked and empty — the field renders nothing at
             // all, so this row is deliberately blank.
-            AnswerInputView(text: $empty, feedback: .revealed(correctAnswer: "kisu"),
-                            showsRevealPanel: false)
+            AnswerInputView(text: $empty, feedback: .revealed)
         }
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

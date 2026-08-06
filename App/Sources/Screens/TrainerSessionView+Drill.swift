@@ -102,9 +102,6 @@ extension TrainerSessionView {
                             feedback: feedback,
                             placeholder: String(format: DLChrome.string("session.answer.placeholder %@", locale: locale),
                                                 languageName(language)),
-                            // why: the card's reveal carries the answer and its
-                            // gloss now — the panel below repeated it.
-                            showsRevealPanel: false,
                             focus: $answerFocused,
                             pronounceCorrection: correctionPronounce,
                             correctionIsPlaying: correctionPlaying) {
@@ -121,7 +118,7 @@ extension TrainerSessionView {
                             // why: the field stays empty — the card is where the
                             // answer stands, and typing it in for the learner
                             // would put the same word on screen twice.
-                            withAnimation { feedback = .revealed(correctAnswer: current.display) }
+                            withAnimation { feedback = .revealed }
                         } else {
                             submit()
                         }

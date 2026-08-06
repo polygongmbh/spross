@@ -27,7 +27,7 @@ extension TrainerSessionView {
             // it covers the button the pause is waiting for.
             answerFocused = false
         case .wrong:
-            feedback = .revealed(correctAnswer: current.display)
+            feedback = .revealed
             DLSound.wrong()
         }
     }

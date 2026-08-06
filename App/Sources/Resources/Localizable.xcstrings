@@ -2355,22 +2355,6 @@
         }
       }
     },
-    "session.correctAnswer" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Richtige Antwort"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Correct answer"
-          }
-        }
-      }
-    },
     "session.finished.grew" : {
       "localizations" : {
         "de" : {

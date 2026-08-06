@@ -12,10 +12,6 @@ extension SessionView {
         AnswerInputView(text: $input,
                         feedback: fieldFeedback,
                         placeholder: inputPlaceholder,
-                        // why: the card's reveal already carries the
-                        // answer with its article color, plural and
-                        // alternates — the panel repeated it.
-                        showsRevealPanel: false,
                         focus: $answerFocused,
                         // why: a miss keeps typing — the retype IS the
                         // answer, so the field must not lock on reveal.
@@ -306,12 +302,12 @@ extension SessionView {
         case .otherWord(let other):
             // why: the typed word is taken — no typo credit (kufunga is not a
             // slip of kufungua), and the reveal says what they did write.
-            feedback = .revealed(correctAnswer: CardDisplay.citation(of: card.target))
+            feedback = .revealed
             otherWord = other
             DLSound.wrong()
             primeRetry(card)
         case .wrong:
-            feedback = .revealed(correctAnswer: CardDisplay.citation(of: card.target))
+            feedback = .revealed
             DLSound.wrong()
             primeRetry(card)
         }

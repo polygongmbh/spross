@@ -17,6 +17,7 @@ extension LetterDrillView {
                         HearPromptCard(question: question(for: task),
                                        language: task.language,
                                        gapText: task.gapText,
+                                       revealed: cardReveal(task),
                                        replay: replayAction,
                                        isPlaying: promptIsPlaying,
                                        muted: Pronouncer.shared.muted,
@@ -50,6 +51,32 @@ extension LetterDrillView {
     func question(for task: LetterDrillTask) -> LocalizedStringKey {
         if task.stage == .dictation { return "letters.dictation" }
         return task.gapText == nil ? "letters.hear" : "letters.spell"
+    }
+
+    /// The answer, once the learner has stopped owing it. A gap question closes
+    /// its blank with the word Kern already handed over (`gloss`); a dictation
+    /// grows the transcription with its meaning below.
+    ///
+    /// The two amber holds reveal too: a slip and a heard-instead both leave a
+    /// spelling worth seeing whole, and the box under the field says which of
+    /// the two it was.
+    private func cardReveal(_ task: LetterDrillTask) -> HearPromptCard.Reveal? {
+        switch feedback {
+        case .neutral:
+            return nil
+        case .correct:
+            // why: a clean answer flips in ~1.2 s — opening the card for a beat
+            // reads as a correction the learner did not earn.
+            return nil
+        case .almost, .revealed:
+            guard let word = task.gapText == nil ? task.display : task.gloss else { return nil }
+            return .init(word: word,
+                         // why: the meaning is a REVEAL, never a cue — and a gap
+                         // question's gloss IS the word, so it would repeat it.
+                         note: task.gapText == nil ? task.gloss : nil,
+                         pronounce: model.speakAction(for: word, lang: task.language),
+                         isPlaying: model.isSpeaking(word, lang: task.language))
+        }
     }
 
     private var streakLine: some View {
@@ -171,19 +198,10 @@ extension LetterDrillView {
                             placeholder: String(format: DLChrome.string("session.answer.placeholder %@",
                                                                         locale: locale),
                                                 languageName(task.language)),
-                            focus: $answerFocused) {
+                            focus: $answerFocused,
+                            pronounceCorrection: correctionPronounce(task),
+                            correctionIsPlaying: correctionPlaying(task)) {
                 submit(task)
-            }
-            // why: the meaning is a REVEAL, never a cue — a dictation that
-            // shows what the word means is no longer taken from the sound.
-            if case .revealed = feedback, let gloss = task.gloss {
-                Text(verbatim: gloss)
-                    .font(DL.Fonts.subheadline)
-                    .italic()
-                    .foregroundStyle(Color.dlTextSecondary)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
-                    .transition(.opacity)
             }
             switch feedback {
             case .neutral:
@@ -215,6 +233,18 @@ extension LetterDrillView {
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
+    }
+
+    /// Tap-to-replay for the correction box — the form the slip owed, said in
+    /// the drilled language.
+    private func correctionPronounce(_ task: LetterDrillTask) -> (() -> Void)? {
+        guard case .almost(let form, _) = feedback else { return nil }
+        return model.speakAction(for: form, lang: task.language)
+    }
+
+    private func correctionPlaying(_ task: LetterDrillTask) -> Bool {
+        guard case .almost(let form, _) = feedback else { return false }
+        return model.isSpeaking(form, lang: task.language)
     }
 
     var inputEmpty: Bool { input.trimmingCharacters(in: .whitespaces).isEmpty }

@@ -21,7 +21,7 @@ extension LetterDrillView {
         Pronouncer.shared.stop()
         chosen = glyph
         guard glyph == answer else {
-            feedback = .revealed(correctAnswer: answer)
+            feedback = .revealed
             DLSound.wrong()
             return
         }
@@ -33,13 +33,15 @@ extension LetterDrillView {
         AutoAdvance.scheduleExplicit(&autoAdvance) { advance(correct: true, clean: true) }
     }
 
-    /// "Aufdecken" on an empty field: the answer goes INTO the field rather
-    /// than beside it, and the question books as a miss.
+    /// "Aufdecken" on an empty field: the CARD carries the answer — the gap
+    /// closes over it — and the question books as a miss. The field stays
+    /// empty, which is what makes it disappear: it has nothing of the
+    /// learner's to show, and typing the answer in for them would put the same
+    /// word on screen twice.
     func reveal(_ task: LetterDrillTask) {
         Pronouncer.shared.stop()
         DLSound.reveal()
-        input = task.display
-        withAnimation { feedback = .revealed(correctAnswer: task.display) }
+        withAnimation { feedback = .revealed }
     }
 
     func submit(_ task: LetterDrillTask) {
@@ -66,7 +68,7 @@ extension LetterDrillView {
             // covers the button they wait for.
             answerFocused = false
         case .wrong:
-            feedback = .revealed(correctAnswer: task.display)
+            feedback = .revealed
             DLSound.wrong()
         }
     }
