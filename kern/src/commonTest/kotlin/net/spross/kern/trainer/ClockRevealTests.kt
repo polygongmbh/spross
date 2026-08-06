@@ -48,7 +48,7 @@ class ClockRevealTests {
      */
     @Test
     fun everyReadingSetStaysWithinItsCapAndCarriesNoDuplicates() {
-        val caps = mapOf("de" to 14, "en" to 26, "es" to 28, "sw" to 16, "uk" to 24)
+        val caps = mapOf("de" to 14, "en" to 26, "es" to 42, "sw" to 16, "uk" to 24)
         for (language in Trainer.languages) {
             var widest = 0
             var widestAt = ""

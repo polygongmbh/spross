@@ -79,15 +79,15 @@ class TrainerSpanishTests {
 
     @Test
     fun clockAgreesWithTheNamedHour() {
-        assertEquals("son las dos", Trainer.clock(14, 0, "es").display)
-        assertEquals("es la una", Trainer.clock(13, 0, "es").display)
-        assertEquals("son las dos y media", Trainer.clock(14, 30, "es").display)
-        assertEquals("es la una y cuarto", Trainer.clock(13, 15, "es").display)
-        assertEquals("son las tres menos cuarto", Trainer.clock(14, 45, "es").display)
+        assertEquals("son las dos de la tarde", Trainer.clock(14, 0, "es").display)
+        assertEquals("es la una de la tarde", Trainer.clock(13, 0, "es").display)
+        assertEquals("son las dos y media de la tarde", Trainer.clock(14, 30, "es").display)
+        assertEquals("es la una y cuarto de la tarde", Trainer.clock(13, 15, "es").display)
+        assertEquals("son las tres menos cuarto de la tarde", Trainer.clock(14, 45, "es").display)
         // The copula follows the hour the reading names, not the clock's hour.
-        assertEquals("es la una menos cuarto", Trainer.clock(12, 45, "es").display)
-        assertEquals("son las tres menos veinticinco", Trainer.clock(14, 35, "es").display)
-        assertEquals("son las dos y diecisiete", Trainer.clock(14, 17, "es").display)
+        assertEquals("es la una menos cuarto de la tarde", Trainer.clock(12, 45, "es").display)
+        assertEquals("son las tres menos veinticinco de la tarde", Trainer.clock(14, 35, "es").display)
+        assertEquals("son las dos y diecisiete de la tarde", Trainer.clock(14, 17, "es").display)
     }
 
     @Test
@@ -95,9 +95,12 @@ class TrainerSpanishTests {
         val half = Trainer.clock(14, 30, "es").accepted
         assertTrue("son las dos y treinta" in half)
         assertTrue("dos y media" in half)
+        assertTrue("las dos y media" in half)
+        assertTrue("son las dos treinta" in half)
 
         val quarter = Trainer.clock(14, 15, "es").accepted
         assertTrue("son las dos y quince" in quarter)
+        assertTrue("son las dos y quince minutos" in quarter)
 
         val toThree = Trainer.clock(14, 45, "es").accepted
         assertTrue("son las dos y cuarenta y cinco" in toThree)
@@ -108,13 +111,76 @@ class TrainerSpanishTests {
         assertTrue("dos" in two)
     }
 
+    /** The part of the day belongs to the hour the reading NAMES. */
     @Test
-    fun middayAndMidnightAreAccepted() {
+    fun theDayPartFollowsTheNamedHourAndStaysOptional() {
+        assertEquals("son las cinco de la madrugada", Trainer.clock(5, 0, "es").display)
+        assertEquals("son las cinco de la tarde", Trainer.clock(17, 0, "es").display)
+        // 19:45 reads as eight o'clock, and eight is de la noche.
+        assertEquals("son las ocho menos cuarto de la noche", Trainer.clock(19, 45, "es").display)
+        assertTrue("son las ocho menos cuarto de la tarde" in Trainer.clock(19, 45, "es").accepted)
+        // Counting DOWN to noon is still morning: never "del día".
+        assertEquals("son las doce menos cuarto de la mañana", Trainer.clock(11, 45, "es").display)
+        // Every reading is accepted bare, so nothing that graded right stops.
+        for (bare in listOf("son las cinco menos cuarto", "cinco menos cuarto", "las cinco menos cuarto")) {
+            assertTrue(bare in Trainer.clock(16, 45, "es").accepted, bare)
+        }
+    }
+
+    /** "veinte para las tres" — the countdown as America says it. */
+    @Test
+    fun theAmericanCountdownIsAccepted() {
+        val toThree = Trainer.clock(14, 40, "es").accepted
+        assertTrue("veinte para las tres" in toThree)
+        assertTrue("veinte minutos para las tres" in toThree)
+        assertTrue("faltan veinte para las tres" in toThree)
+        assertTrue("faltan veinte minutos para las tres" in toThree)
+        assertTrue("son veinte para las tres" in toThree)
+        val toOne = Trainer.clock(12, 45, "es").accepted
+        assertTrue("cuarto para la una" in toOne)
+        assertTrue("falta un cuarto para la una" in toOne)
+        assertTrue("quince minutos para la una" in toOne)
+        // "a" never replaces "para" — the DPD says so outright.
+        assertTrue(Trainer.clock(14, 40, "es").accepted.none { " a las " in it })
+    }
+
+    /** Timetables, news and announcements run 0–23 and name no part of the day. */
+    @Test
+    fun theTimetableRegisterIsAccepted() {
+        assertTrue("son las catorce treinta" in Trainer.clock(14, 30, "es").accepted)
+        assertTrue("son las catorce horas treinta minutos" in Trainer.clock(14, 30, "es").accepted)
+        assertTrue("son las dieciocho treinta y cinco" in Trainer.clock(18, 35, "es").accepted)
+        assertTrue("son las veintiuna horas" in Trainer.clock(21, 0, "es").accepted)
+        // One o'clock stays singular even here.
+        assertTrue("es la una treinta" in Trainer.clock(1, 30, "es").accepted)
+        assertTrue(Trainer.clock(1, 30, "es").accepted.none { it.startsWith("son las una") })
+    }
+
+    /** A minute is counted with its noun, never with a bare "uno". */
+    @Test
+    fun oneMinuteIsCountedWithTheNoun() {
+        assertEquals("son las dos y un minuto de la tarde", Trainer.clock(14, 1, "es").display)
+        assertEquals("son las tres menos un minuto de la tarde", Trainer.clock(14, 59, "es").display)
+        assertTrue("un minuto para las tres" in Trainer.clock(14, 59, "es").accepted)
+        // An apocopating count keeps its noun apocopated too.
+        assertTrue("son las dos y veintiún minutos" in Trainer.clock(14, 21, "es").accepted)
+        for (task in listOf(Trainer.clock(14, 1, "es"), Trainer.clock(14, 21, "es"), Trainer.clock(14, 59, "es"))) {
+            assertTrue(task.accepted.none { "uno minutos" in it || "un minutos" in it }, task.accepted.toString())
+        }
+    }
+
+    @Test
+    fun middayAndMidnightAreNamed() {
         val midnight = Trainer.clock(0, 0, "es")
-        assertEquals("son las doce", midnight.display)
+        assertEquals("son las doce de la noche", midnight.display)
         assertTrue("es medianoche" in midnight.accepted)
+        assertTrue("es la medianoche" in midnight.accepted)
+        assertTrue("son las cero horas" in midnight.accepted)
         val noon = Trainer.clock(12, 0, "es")
+        assertEquals("son las doce del mediodía", noon.display)
         assertTrue("es mediodía" in noon.accepted)
-        assertEquals("son las doce y media", Trainer.clock(0, 30, "es").display)
+        assertTrue("son las doce del día" in noon.accepted)
+        // Only the exact hour is named; half past midnight reads as a time.
+        assertEquals("son las doce y media de la noche", Trainer.clock(0, 30, "es").display)
     }
 }

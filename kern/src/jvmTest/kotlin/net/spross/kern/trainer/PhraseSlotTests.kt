@@ -201,17 +201,17 @@ class PhraseSlotTests {
     fun spanishClockNowKeepsTheSingularCopulaAtOne() {
         val task = PhraseSlots.instantiate(RealFrames.frame("es", "it-is-now"), hour = 13, minute = 30)
         assertEquals("Es ist jetzt 13:30 Uhr.", task.prompt)
-        assertEquals("Ahora es la una y media.", task.display)
-        assertEquals(
-            listOf(
-                "Ahora es la una y media.",
-                "Ahora es la una y treinta.",
-                "Ahora una y media.",
-                "Ahora una y treinta.",
-                "Ahora 13:30.",
-            ),
-            task.accepted,
-        )
+        assertEquals("Ahora es la una y media de la tarde.", task.display)
+        for (sentence in listOf(
+            "Ahora es la una y media.",
+            "Ahora la una y media de la tarde.",
+            "Ahora una y media.",
+            "Ahora es la una y treinta.",
+            "Ahora es la una treinta.",
+            "Ahora 13:30.",
+        )) {
+            assertTrue(sentence in task.accepted, "$sentence missing from ${task.accepted}")
+        }
     }
 
     /** Apocope and the feminine both grade; the usted frame doubles every one of them. */
