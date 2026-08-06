@@ -152,6 +152,14 @@ never the shape of the app.
   box rather than about having finished. Which area is kern's answer (`SessionRunState`
   records what the run touched); ties walk catalog order, so a round split evenly names the
   same area every time it is shown.
+- **The tree rises whatever the round did to the counts**, and what the round CHANGED lands
+  on it afterwards — new marks out of nothing, a matured word swelling where it already hung,
+  one after another rather than all at once. Two motions, because they answer two questions:
+  a round that promoted nothing still moved the box, and a learner holding a hard area steady
+  has earned the tree standing up. Tied to the counts alone the picture was simply frozen on
+  those days. Only the round's own marks move; the rest of the crown holds still, which is
+  what makes the new leaf the thing the eye goes to. Reduce Motion draws the finished tree at
+  once, both motions included.
 - **A record is named, a number is only counted.** A day streak standing at its longest
   ever (`BoxStatistics.longestStreak`) says so on the finish screen; a drill run that beats
   its own stored best says so too, and is the only thing in a drill that earns confetti and
