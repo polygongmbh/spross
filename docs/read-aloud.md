@@ -72,6 +72,9 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   levels they were authored at are the levels heard against each other. A chime routed to
   the system-sound server instead would answer to the ringer while every word answered to
   media — two sliders, and the chime gone whenever the ringer sat low.
+  One volume also means one measure: the chimes are levelled against the loudness target
+  every recording is boosted to, not against their own peaks, and `scripts/sounds.py` holds
+  the numbers and why a struck note has to sit above a word's to be heard beside it.
 - VoiceOver never gets autoplay talking over it. The headword is labeled with the language
   it is written in instead, so the screen reader says it in the right voice, and the replay
   is an action ON the word rather than a button around it.

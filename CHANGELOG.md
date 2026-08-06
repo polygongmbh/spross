@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **The feedback chimes are heard beside the spoken words, not under them.** They were
+  matched to the recordings by their loudest instant, which for a struck note is a spike
+  over a decay — so every chime arrived quieter than the words it plays between, and the
+  soft tick on a reveal was quiet enough to miss. They are levelled by loudness now.
+
 - **The letter drill always speaks its question.** Its whole content is a sound, so it no
   longer answers to the read-aloud switch or to a phone set to silent — and the switch that
   used to sit in its top bar, along with the row that asked you to turn the sound back on,
@@ -31,6 +36,9 @@
   And wrong answers no longer slip through — a drill used to accept "half two" for two
   o'clock and "fünf vor halb sieben" for half past six, because it forgave a first word
   that was in fact the whole point.
+  The emphatic full hour no longer grades: "punkt sechs", "six o'clock sharp",
+  "en punto", "kamili" and "рівно" all insist the hour is EXACT rather than say which
+  hour it is, and that is not the answer a clock prompt is asking for.
 
 - **The word you missed always turns up where you can read it — and hear it.** Where the
   right answer appeared used to depend on which screen you were on. Now a miss opens the
