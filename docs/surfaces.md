@@ -8,8 +8,9 @@ auto-advance beats these share with it, are `design.md`'s.
 - **Trainers**: number, clock and phrase drills, registry-driven from kern, so the hub
   offers only languages with authored content. Drills grade word by word and ramp with
   the learner instead of sitting at one level.
-  A drill card is a review card — same face, same reveal — and carries nothing but the
-  prompt: the run's header line already names what is drilled and how far the ramp has
+  A drill card is a review card — same face, same reveal, and the revealed reading is
+  spoken and replayable like any other answer (`read-aloud.md`) — and carries nothing but
+  the prompt: the run's header line already names what is drilled and how far the ramp has
   come, and the field's placeholder names the language to answer in, so a badge or a
   "Zahl · auf Spanisch" caption would be the third telling of what one tap said.
   The one thing it does carry is the place-value hint the first time a length appears —

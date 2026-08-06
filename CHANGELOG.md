@@ -27,6 +27,20 @@
   o'clock and "fünf vor halb sieben" for half past six, because it forgave a first word
   that was in fact the whole point.
 
+- **The word you missed always turns up where you can read it — and hear it.** Where the
+  right answer appeared used to depend on which screen you were on. Now a miss opens the
+  card onto the answer, and an answer that was close — a slip of spelling, or the form a
+  dictation actually played — hands the proper one back in an amber panel under the field,
+  at a size worth reading and with a speaker beside it, instead of the fine print it used
+  to be squeezed into. The field keeps showing what you typed and nothing else, and a
+  field you can no longer type into stops standing there as though you could.
+
+- **The number, clock and phrase drills say their answers out loud.** A drill teaching you
+  to read "347" or "14:35" never once spoke the reading it was teaching. Now the revealed
+  reading says itself as it lands, a tap plays it again, and the run carries the same
+  read-aloud switch a review does. Where the phone has no voice for the language it stays
+  quiet, rather than offering a speaker that would say nothing.
+
 ## 3.9.0 — 2026-08-04
 
 - **The widget only offers words it can actually show.** A long phrase had to share one line

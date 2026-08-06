@@ -10,6 +10,9 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   never answered with the canonical word; anything unmatched falls to the device's own
   voice speaking exactly what stands there, and a target with neither — Swahili has no iOS
   voice at all — stays silent rather than be read in the wrong one.
+  The drills lean on that fallback entirely: they GENERATE their readings
+  ("dreihundertsiebenundvierzig", "son las tres y cuarto"), so no catalog lists them
+  and the voice is what says them.
 - **Only the headword is ever spoken.** Article, ♀ badge, plural line and alternates are
   grammar decoration: gender is taught by the article color, and the recordings say bare
   words — speaking the article in the synthesized branch alone would make a word's
@@ -22,28 +25,33 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   0.45–1.2 s, less than a word lasts, and a word cut off every time teaches worse than one
   not played — the tap and the next recognition of the card both say it in full. Produce
   fires wait a beat so the feedback chime is out of the way first; chimes are never ducked
-  for them, and no fire ever delays a flip. One fire per card, whichever path reaches it.
+  for them, and no fire ever delays a flip.
+  One fire per card, and one per drill task, whichever path reaches it.
 
 | on screen | speaks? | what is said |
 |---|---|---|
 | recognition prompt | yes, at once | the prompted form — the rotated synonym, never the canonical word |
 | recognition reveal, write-it-out step | no | already said once |
 | produce answered correctly, typed or checked | no — the card is already flipping | — |
-| produce typo accepted (waits for a tap) | yes, after the chime | the correction line's proper spelling |
+| near miss accepted — a typo, a form heard instead (waits for a tap) | yes, after the chime | the form the correction box carries |
 | produce revealed — Aufdecken, wrong, other word | yes, after the chime | the bare target word |
+| trainer drill prompt — a numeral, a clock face | no | there is nothing to say yet: the reading IS the answer |
+| trainer drill reading revealed or corrected | yes, after the chime | the reading itself, generated, so usually the voice |
 
 - **Tapping a word says it again — past both mutes.** A tap is a request, so it outranks
   the app's own switch (mute has to stay usable as the accessibility affordance) and the
   phone's silent switch alike: that one sound plays under `.playback`, which the hardware
   switch cannot reach. Everything the app fires by ITSELF stays `.ambient`, where the phone
   keeps its authority — the whole rule is `AudioSession`, one category chosen per sound.
-  The gesture is disclosed by the settings row's hint line, never by a mark on the card —
-  the hit area sits on every headword whether or not it can be heard, so no card changes
-  size between reviews because a synonym rotation landed on an unrecorded form.
+  The gesture is disclosed by the settings row's hint line and by the speaker standing
+  beside the word; a form that can be heard neither way drops the icon, and the card holds
+  its height regardless, so a synonym rotation landing on an unrecorded form never
+  resizes it.
 - **Reading aloud is on by default, and the silent switch is free to silence it.** That is
-  the untouched state; the switch — at the session's top bar, constant chrome so the card
-  below never moves for it, and in the Box settings — turns it into a decision. Switched
-  OFF it silences autoplay whatever the phone says. Switched ON it is itself a request to
+  the untouched state; the switch — at the top bar of every run that speaks, review and
+  drill alike, constant chrome so the card below never moves for it, and in the Box
+  settings — turns it into a decision. Switched OFF it silences autoplay whatever the
+  phone says. Switched ON it is itself a request to
   hear something and lifts autoplay past a silenced phone, because a switch that says on
   and says nothing is worse than no switch. Three states, one setting for the device: not
   per target language, and not in the box, where the product calibration would reset it.

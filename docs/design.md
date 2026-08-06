@@ -93,11 +93,22 @@ never the shape of the app.
 
 - A wrong answer reveals **inline**, expanding the card DOWNWARD;
   no space is reserved for it beforehand.
-- **The answer is never on screen twice.** The card expands only when the word was not
-  produced — a wrong answer or "Aufdecken"; anything graded correct leaves the card
-  closed and is narrated at the field, where the learner's own attempt already stands.
-- A typo counts as correct but does NOT auto-advance: the typed word stays with the
-  proper spelling beside it, so the slip is seen before the card goes.
+- **The answer is never on screen twice, and never in the field** —
+  the field carries what the LEARNER typed and nothing else.
+  The card expands only when the word was not produced — a wrong answer or "Aufdecken";
+  anything graded correct leaves the card closed and is narrated at the field,
+  where the learner's own attempt already stands.
+  So how close the answer came decides where the owed form is read:
+  a miss opens the CARD onto it, a near miss gets a box under the field.
+  Either way it stands at a size worth reading, with the speaker that says it beside it —
+  the form the learner owed is the one word on screen most needing to land,
+  and a caption squeezed under the field is not how it lands.
+- **A near miss runs amber throughout** — field edge, checkmark and box agree.
+  A typo and a dictation's other form are graded correct and keep the checkmark;
+  the colour says how cleanly, never whether the answer counted,
+  so the green glow stays the clean answer's alone.
+- A near miss does NOT auto-advance: the typed word stays in the field
+  with the form it missed in the box below, so the slip is seen before the card goes.
 - A wrong answer that IS another word of the catalog **names that word** instead of
   forgiving it, so two words a learner needs told apart can never grade each other correct.
 - **A word you have consolidated is sometimes asked by ear alone**: the prompt is the
@@ -133,6 +144,8 @@ never the shape of the app.
   is a trap.
 - A field is on screen only where there is something to type, and is focused the moment
   it is there — typing never costs a tap first.
+  A reveal that leaves it locked with nothing of the learner's in it takes the field away
+  entirely: a placeholder and a border are an invitation it cannot honour.
   **A pause that waits for a tap gives the keyboard back**, everywhere one exists — the
   amber holds (a typo's spelling, a dictation's other form) end in a button, and a keyboard
   left standing covers the button being waited for. A beat that advances on its own keeps
