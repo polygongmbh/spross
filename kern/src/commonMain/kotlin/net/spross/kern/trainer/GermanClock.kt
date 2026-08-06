@@ -16,7 +16,7 @@ internal object GermanClock {
      */
     private fun beforeUhr(hourWord: String) = if (hourWord == "eins") "ein" else hourWord
 
-    /** Non-round minutes fall back to a digital reading ("drei Uhr 17"). */
+    /** Non-round minutes fall back to a plain reading ("drei Uhr siebzehn"). */
     private fun conversational(hours: Int, minutes: Int): Conversational {
         val h12 = hours % 12
         val nextH = (h12 + 1) % 12
@@ -39,7 +39,9 @@ internal object GermanClock {
             45 -> Conversational("Viertel vor $nextWord", "Dreiviertel $nextWord")
             50 -> same("zehn vor $nextWord")
             55 -> same("fünf vor $nextWord")
-            else -> same("${beforeUhr(hWord)} Uhr $minutes")
+            // why: the prompt already IS "21:17" — a reveal that answers it with
+            // digits teaches nothing, and the spelled minute was graded wrong.
+            else -> same("${beforeUhr(hWord)} Uhr ${GermanNumbers.cardinal(minutes.toLong())}")
         }
     }
 

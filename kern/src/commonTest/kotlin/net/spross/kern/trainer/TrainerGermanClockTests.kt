@@ -93,14 +93,16 @@ class TrainerGermanClockTests {
         assertEquals("fünf nach eins", task.display)
         assertAccepts(task, "ein uhr fünf")
         val nonRound = clock(13, 17)
-        assertEquals("ein Uhr 17", nonRound.display)
+        assertEquals("ein Uhr siebzehn", nonRound.display)
         assertAccepts(nonRound, "dreizehn uhr siebzehn")
     }
 
     @Test
     fun nonRoundMinutesAccept24HourReadingSpelledOut() {
         val task = clock(21, 17)
-        assertEquals("neun Uhr 17", task.display)
+        assertEquals("neun Uhr siebzehn", task.display)
         assertAccepts(task, "einundzwanzig uhr siebzehn")
+        // No reading anywhere in the drill answers a digital prompt with digits.
+        assertFalse(task.accepted.any { it.any(Char::isDigit) }, task.accepted.toString())
     }
 }
