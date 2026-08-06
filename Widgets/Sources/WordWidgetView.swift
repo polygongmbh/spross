@@ -17,36 +17,28 @@ struct WordWidgetView: View {
         }
     }
 
+    /// One word with room to be looked at: the picture leads, the stats are a
+    /// single quiet line, and nothing rules the square into sections.
     private var small: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack(alignment: .top) {
-                Text(entry.emoji).font(.system(size: 40))
-                Spacer()
-                if entry.dueCount > 0 {
-                    Text("\(entry.dueCount)")
-                        .font(.caption2.bold())
-                        .padding(.horizontal, 6).padding(.vertical, 2)
-                        .background(Capsule().fill(.orange.opacity(0.2)))
-                        .foregroundStyle(.orange)
-                }
-            }
+        VStack(spacing: 4) {
             Spacer(minLength: 0)
+            Text(entry.emoji).font(.system(size: 44))
             wordLine(font: .title3.bold())
             Text(entry.meaning)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
-            Divider()
+            Spacer(minLength: 0)
             statsFooter
         }
+        .frame(maxWidth: .infinity)
     }
 
     private var medium: some View {
-        VStack(alignment: .leading, spacing: 7) {
+        VStack(alignment: .leading, spacing: 8) {
             statsHeader
-            Divider()
-            VStack(alignment: .leading, spacing: 7) {
+            VStack(alignment: .leading, spacing: 8) {
                 ForEach(Array(entry.words.prefix(3).enumerated()), id: \.offset) { _, word in
                     wordRow(word)
                 }
@@ -55,36 +47,59 @@ struct WordWidgetView: View {
         }
     }
 
-    /// Compact streak line for the bottom of the small tile.
+    /// Flame and due count on one line for the bottom of the small tile.
     private var statsFooter: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 10) {
             flameLabel
+            if entry.dueCount > 0 {
+                Label("\(entry.dueCount)", systemImage: "tray.full")
+                    .foregroundStyle(.orange)
+            }
         }
         .font(.caption2.weight(.semibold))
     }
 
-    /// Nine rows fill the tile; the gap is tightened so they fit without crowding.
+    /// A poster rather than a longer list: the cell is the unit, so a pair is read
+    /// in place instead of scanned across the tile, and stacking gives each side
+    /// the full column width. Rows are spaced apart rather than stacked from the
+    /// top — a poster that ends two thirds up the tile reads as a truncated list.
     private var large: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 0) {
             statsHeader
-            Divider()
-            VStack(alignment: .leading, spacing: 8) {
-                ForEach(Array(entry.words.prefix(9).enumerated()), id: \.offset) { _, word in
-                    wordRow(word)
+            Divider().padding(.top, 8)
+            ForEach(Array(posterRows.enumerated()), id: \.offset) { _, row in
+                Spacer(minLength: 10)
+                HStack(alignment: .top, spacing: 12) {
+                    ForEach(Array(row.enumerated()), id: \.offset) { _, word in
+                        posterCell(word)
+                    }
+                    // why: a final odd cell must keep its column width, not spread
+                    // across the row and break the poster's grid.
+                    if row.count == 1 { Color.clear.frame(maxWidth: .infinity) }
                 }
             }
-            Spacer(minLength: 0)
         }
     }
 
-    /// 🔥 streak · N fällig — glanceable box growth.
+    /// The poster's words in rows of two.
+    private var posterRows: [[WidgetWord]] {
+        let words = Array(entry.words.prefix(6))
+        return stride(from: 0, to: words.count, by: 2).map {
+            Array(words[$0..<min($0 + 2, words.count)])
+        }
+    }
+
+    /// 🔥 streak · N fällig, with the fortnight's activity on the right — the
+    /// header has the room the bottom of a tile does not.
     private var statsHeader: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 10) {
             flameLabel
             if entry.dueCount > 0 {
                 Label("\(entry.dueCount) fällig", systemImage: "tray.full")
                     .foregroundStyle(.orange)
             }
+            Spacer(minLength: 8)
+            WidgetActivityStrip(days: entry.activityDays)
         }
         .font(.caption.weight(.semibold))
     }
@@ -105,17 +120,36 @@ struct WordWidgetView: View {
         }
     }
 
+    /// Word and meaning meet at the picture instead of at the tile's two edges,
+    /// and the equal side frames put every row's emoji on the same centre line.
     private func wordRow(_ word: WidgetWord) -> some View {
-        HStack(spacing: 10) {
-            Text(word.emoji).font(.title3)
-            wordLine(for: word, font: .body.weight(.semibold))
-            Spacer(minLength: 6)
+        HStack(spacing: 8) {
+            wordLine(for: word, font: .title3.weight(.semibold))
+                .frame(maxWidth: .infinity, alignment: .trailing)
+            // why: emoji advance widths differ (☀️ against 🚪), so an unsized column
+            // would let the spine wander from row to row.
+            Text(word.emoji).font(.title3).frame(width: 22)
+            Text(word.meaning)
+                .font(.body)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+
+    /// One poster cell: picture, target, meaning, stacked and left-aligned.
+    private func posterCell(_ word: WidgetWord) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(word.emoji).font(.system(size: 30))
+            wordLine(for: word, font: .headline)
             Text(word.meaning)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
-                .minimumScaleFactor(0.7)
+                .minimumScaleFactor(0.6)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var lockScreen: some View {
@@ -161,4 +195,25 @@ struct WordWidgetView: View {
         default: .secondary
         }
     }
+}
+
+// Placing a widget on a simulator home screen is the only other way to see these,
+// so each family previews from the placeholder box.
+
+#Preview("Klein", as: .systemSmall) {
+    WordWidget()
+} timeline: {
+    WordEntry.placeholder
+}
+
+#Preview("Mittel", as: .systemMedium) {
+    WordWidget()
+} timeline: {
+    WordEntry.placeholder
+}
+
+#Preview("Groß", as: .systemLarge) {
+    WordWidget()
+} timeline: {
+    WordEntry.placeholder
 }

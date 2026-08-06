@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **The home-screen widgets are read at a glance instead of scanned.** A word and its meaning
+  used to sit at opposite edges of the tile with a different gap between them on every line;
+  they now meet at their picture in the middle of the row. The big tile shows a poster of
+  words rather than a long list of equal lines, the small one drops its rules and gives the
+  picture room, and the list tiles carry the last fortnight's activity in their header.
+
 - **The Swahili words are evened out for the speaker you actually hold.** Words built on
   nasals and back vowels — *mguu*, *gumu*, *ndizi* — put their voice where a phone speaker
   cannot follow, so they arrived noticeably under the bright ones however carefully the

@@ -37,9 +37,10 @@ struct WidgetWord {
 
 struct WordEntry: TimelineEntry {
     let date: Date
-    /// The rotating card for the compact families (small/medium/lock screen).
+    /// The rotating card for the compact families (small/lock screen).
     let primary: WidgetWord
-    /// Attention-worthy cards for the large family's list; primary is words.first.
+    /// Attention-worthy cards for the list families, ordered shortest first for
+    /// the page; `primary` is the rotation head, which the sort moves out of place.
     let words: [WidgetWord]
     let dueCount: Int
     let streak: Int
@@ -47,6 +48,8 @@ struct WordEntry: TimelineEntry {
     let flameState: FlameState
     /// Active cards that have consolidated — the box's growth, not a retention score.
     let consolidated: Int
+    /// Trailing fortnight of review counts for the header strip.
+    let activityDays: [ActivityDay]
 
     // Convenience accessors for the compact families.
     var emoji: String { primary.emoji }
@@ -57,20 +60,33 @@ struct WordEntry: TimelineEntry {
     static let placeholder = WordEntry(
         date: .now,
         primary: WidgetWord(emoji: "🧊", tint: nil, word: "friji", meaning: "Kühlschrank"),
-        words: [
-            WidgetWord(emoji: "🧊", tint: nil, word: "friji", meaning: "Kühlschrank"),
-            WidgetWord(emoji: "🍞", tint: nil, word: "mkate", meaning: "Brot"),
-            WidgetWord(emoji: "💧", tint: nil, word: "maji", meaning: "Wasser"),
-            WidgetWord(emoji: "🌙", tint: nil, word: "mwezi", meaning: "Mond"),
-            WidgetWord(emoji: "🏠", tint: nil, word: "nyumba", meaning: "Haus"),
-            WidgetWord(emoji: "☀️", tint: nil, word: "jua", meaning: "Sonne"),
-            WidgetWord(emoji: "🐟", tint: nil, word: "samaki", meaning: "Fisch"),
-            WidgetWord(emoji: "📖", tint: nil, word: "kitabu", meaning: "Buch"),
-            WidgetWord(emoji: "🌳", tint: nil, word: "mti", meaning: "Baum"),
-            WidgetWord(emoji: "🚪", tint: nil, word: "mlango", meaning: "Tür"),
-            WidgetWord(emoji: "🔥", tint: nil, word: "moto", meaning: "Feuer"),
-        ],
-        dueCount: 0, streak: 3, flameState: .lit, consolidated: 12)
+        // why: sorted like a real window, or the gallery would advertise a ragged
+        // list the placed widget never shows.
+        words: sortedForDisplay(placeholderWords),
+        dueCount: 0, streak: 3, flameState: .lit, consolidated: 12,
+        activityDays: placeholderDays)
+
+    private static let placeholderWords = [
+        WidgetWord(emoji: "🧊", tint: nil, word: "friji", meaning: "Kühlschrank"),
+        WidgetWord(emoji: "🍞", tint: nil, word: "mkate", meaning: "Brot"),
+        WidgetWord(emoji: "💧", tint: nil, word: "maji", meaning: "Wasser"),
+        WidgetWord(emoji: "🌙", tint: nil, word: "mwezi", meaning: "Mond"),
+        WidgetWord(emoji: "🏠", tint: nil, word: "nyumba", meaning: "Haus"),
+        WidgetWord(emoji: "☀️", tint: nil, word: "jua", meaning: "Sonne"),
+    ]
+
+    /// A hand-written fortnight so the gallery snapshot and the previews draw a
+    /// real strip rather than a flat rule.
+    private static let placeholderDays: [ActivityDay] = {
+        let counts = [4, 0, 9, 3, 26, 6, 0, 5, 7, 0, 11, 8, 14, 5]
+        let calendar = Calendar(identifier: .gregorian)
+        let today = calendar.startOfDay(for: .now)
+        return counts.enumerated().compactMap { offset, reviews in
+            guard let day = calendar.date(byAdding: .day, value: offset - 13, to: today)
+            else { return nil }
+            return ActivityDay(day: day, reviews: reviews, isToday: offset == counts.count - 1)
+        }
+    }()
 }
 
 struct WordProvider: TimelineProvider {
@@ -85,11 +101,11 @@ struct WordProvider: TimelineProvider {
         completion(Timeline(entries: entries, policy: .atEnd))
     }
 
-    /// Number of words shown in the large family's list.
-    private static let listSize = 9
+    /// Cells in the large family's poster grid (2 × 3).
+    private static let listSize = 6
 
     /// Up to 6 h of 15-minute entries cycling through attention-worthy cards.
-    /// The compact families see one rotating card; the large family sees a
+    /// The compact families see one rotating card; the list families see a
     /// rotating window of up to `listSize` cards plus box stats.
     private func timelineEntries(from start: Date) -> [WordEntry] {
         guard let snapshot = WidgetSnapshotReader.load(),
@@ -101,18 +117,33 @@ struct WordProvider: TimelineProvider {
         let dueCount = snapshot.dueCount(now: start)
         let streak = snapshot.streak(now: start)
         let flameState = snapshot.flameState(streak: streak, now: start)
+        let activityDays = snapshot.recentDays(count: 14, now: start)
         return (0..<24).map { slot in
-            // Rotate a window of `listSize` words; primary is the window head.
+            // Rotate a window of `listSize` words; the head is the compact families'
+            // card, and each quarter-hour hands the spot to the next word.
             // why: a short box would otherwise wrap and repeat a word in one tile.
             let window = (0..<min(Self.listSize, words.count))
                 .map { words[(slot + $0) % words.count] }
             return WordEntry(date: start.addingTimeInterval(Double(slot) * 15 * 60),
                              primary: window[0],
-                             words: window,
+                             words: sortedForDisplay(window),
                              dueCount: dueCount,
                              streak: streak,
                              flameState: flameState,
-                             consolidated: snapshot.consolidatedCount)
+                             consolidated: snapshot.consolidatedCount,
+                             activityDays: activityDays)
         }
+    }
+
+}
+
+/// Shortest pair first, so a list opens into a cone around its emoji spine and the
+/// grid fills reading order short-to-long. Which cards travel stays kern's attention
+/// ranking; only where they land in the tile is decided here.
+func sortedForDisplay(_ window: [WidgetWord]) -> [WidgetWord] {
+    window.sorted {
+        let left = ($0.word.count + $0.meaning.count, $0.word.count)
+        let right = ($1.word.count + $1.meaning.count, $1.word.count)
+        return left < right
     }
 }

@@ -82,6 +82,21 @@ struct WidgetSnapshot: Codable {
         return count
     }
 
+    /// Trailing `count` days, oldest first, today last — the header strip's input.
+    /// A pure lookup: the snapshot already carries ~10 weeks of day counts, so the
+    /// strip costs nothing on the wire.
+    func recentDays(count: Int, now: Date, timeZone: TimeZone = .current) -> [ActivityDay] {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = timeZone
+        let today = calendar.startOfDay(for: now)
+        return (0..<count).reversed().compactMap { offset in
+            guard let day = calendar.date(byAdding: .day, value: -offset, to: today) else { return nil }
+            return ActivityDay(day: day,
+                               reviews: dailyStats[Self.dayKey(day, calendar: calendar)]?.reviews ?? 0,
+                               isToday: offset == 0)
+        }
+    }
+
     /// Derives the flame's state from `streak` (already computed by the caller via
     /// `streak(now:)`) plus whether today and yesterday have reviews.
     func flameState(streak: Int, now: Date, timeZone: TimeZone = .current) -> FlameState {

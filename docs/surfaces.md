@@ -45,6 +45,15 @@ Its scope is § Not yet.
 
 - The phone precomputes both snapshots on every persist; the surfaces decode and draw,
   and never compute what the phone could pre-resolve.
+- **The widget's families differ in kind, not in row count.** Small is one word with its
+  picture and a single stats line. Medium is a short list whose rows meet at a fixed emoji
+  column — word right of one edge, meaning left of the other, both touching the picture — so
+  a pair is read in place instead of scanned across the tile. Large is a poster of stacked
+  cells rather than a longer list: equal rows have no hierarchy, so a glance reads none of
+  them, and a cell gives each side the full column width that a shared line denies it. Rows
+  and cells run shortest pair first; which cards travel is kern's attention ranking, where
+  they land is the tile's. Both list families carry the fortnight's review bars in the
+  header, which has the room the bottom of a tile does not.
 - Watch: one graded **multiple-choice** loop — the watch never types, and the options
   arrive ranked from kern so that nothing but meaning tells the answer from its company:
   word class, then how the sentence closes, then area, then string shape
