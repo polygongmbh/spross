@@ -15,7 +15,7 @@ extension TrainerSessionView {
     }
 
     /// The card carries the answer whenever the learner did not produce it —
-    /// a miss or "Aufdecken". A typo leaves it closed: the correction line
+    /// a miss or "Aufdecken". A typo leaves it closed: the correction box
     /// already spells the word out, and the answer is never on screen twice.
     private var cardRevealed: Bool {
         if case .revealed = feedback { return true }

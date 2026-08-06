@@ -264,7 +264,7 @@ struct SessionView: View {
 
     /// The card expands only when the word was NOT produced — "Aufdecken" or a
     /// wrong answer. A correct answer already stands in the input field, and a
-    /// typo's proper spelling is carried by the correction line, so revealing
+    /// typo's proper spelling is carried by the correction box, so revealing
     /// there would put the same word on screen twice.
     var cardRevealed: Bool {
         if case .revealed = feedback { return true }

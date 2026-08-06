@@ -96,7 +96,7 @@ extension LetterDrillView {
         // why: BEFORE the grader's own verdict — the review flow explicitly
         // teaches these forms ("auch: …"), so a synonym of the dictated word is
         // never wrong and never somebody else's word. It simply is not what
-        // played, and the correction line says which form did.
+        // played, and the correction box says which form did.
         if alsoAccepted(trimmed, of: card) { return .heard(task.display) }
         switch onEnum(of: graded) {
         case .typo(let typo): return .typo(typo.corrected)

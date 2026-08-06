@@ -61,7 +61,7 @@ extension SessionView {
     /// these are the two produce paths that carry no auto-advance at all.
     func autoplayProduceReveal() {
         guard let card = model.currentCard, claimAutoplay(card.id) else { return }
-        // why: the correction line is the only place a typo's proper spelling
+        // why: the correction box is the only place a typo's proper spelling
         // stands. Otherwise the bare target text — never `CardDisplay.citation`,
         // whose article is grammar decoration the audio never speaks, and the
         // very form a heard-instead hold already names.
