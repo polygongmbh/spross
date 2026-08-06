@@ -85,6 +85,9 @@ internal object UkrainianNumbers {
     /** Canonical (masculine counting) form. */
     fun cardinal(n: Long): String = compose(n, feminineUnits = false)
 
+    /** Feminine counting form — what хвилина and година are counted with. */
+    fun feminine(n: Long): String = compose(n, feminineUnits = true)
+
     /**
      * Canonical form first, then accepted variants: feminine unit ending
      * (одна/дві) and, for 1xxx numbers, the common reading without leading

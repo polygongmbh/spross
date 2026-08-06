@@ -80,8 +80,11 @@ class PhraseSlotTests {
     fun ukrainianClockNowFullHour() {
         val task = PhraseSlots.instantiate(frame("uk", "it-is-now"), hour = 14, minute = 0)
         assertEquals("Es ist jetzt 14:00 Uhr.", task.prompt)
-        assertEquals("Зараз друга година.", task.display)
-        assertEquals(listOf("Зараз друга година.", "Зараз друга.", "Зараз 14:00."), task.accepted)
+        assertEquals("Зараз друга година дня.", task.display)
+        assertTrue("Зараз друга година." in task.accepted)
+        assertTrue("Зараз друга." in task.accepted)
+        assertTrue("Зараз чотирнадцята година." in task.accepted)
+        assertTrue("Зараз 14:00." in task.accepted)
         assertTrue(task.kind == TrainerKind.Clock && task.language == "uk")
     }
 
@@ -89,15 +92,16 @@ class PhraseSlotTests {
     fun ukrainianClockNowGenericMinutes() {
         val task = PhraseSlots.instantiate(frame("uk", "it-is-now"), hour = 14, minute = 35)
         assertEquals("Es ist jetzt 14:35 Uhr.", task.prompt)
-        assertEquals("Зараз друга тридцять п'ять.", task.display)
+        assertEquals("Зараз за двадцять п'ять третя дня.", task.display)
         assertTrue("Зараз за двадцять п'ять третя." in task.accepted)
+        assertTrue("Зараз друга тридцять п'ять." in task.accepted)
     }
 
     @Test
     fun ukrainianAlarmClockHalfPast() {
         val task = PhraseSlots.instantiate(frame("uk", "alarm-clock-shows"), hour = 2, minute = 30)
         assertEquals("Der Wecker zeigt 02:30 Uhr.", task.prompt)
-        assertEquals("На будильнику пів на третю.", task.display)
+        assertEquals("На будильнику пів на третю ночі.", task.display)
         assertTrue("На будильнику пів третьої." in task.accepted)
         assertTrue("На будильнику друга тридцять." in task.accepted)
     }
@@ -290,7 +294,9 @@ class PhraseSlotTests {
         val task = PhraseSlots.instantiate(frame("uk", "alarm-clock-shows"), hour = 2, minute = 15)
         val gloss = task.gloss ?: ""
         assertTrue(gloss.startsWith("wörtl.: „Auf dem Wecker [ist] …“ · "))
-        assertTrue("чверть на" in gloss)
+        // The frame's note is authored per source language; the slot's names the
+        // alternative readings, and does so in the language being answered in.
+        assertTrue("також: п'ятнадцять хвилин на третю" in gloss, gloss)
     }
 
     // Every accepted frame × slot variant → exactly one accepted sentence

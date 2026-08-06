@@ -85,36 +85,89 @@ class TrainerUkrainianTests {
 
     @Test
     fun clockPatterns() {
-        // exact hour: ordinal + година, bare ordinal accepted
+        // exact hour: ordinal + година + the part of the day; both are droppable
         val two = clock(14, 0)
-        assertEquals("друга година", two.display)
+        assertEquals("друга година дня", two.display)
+        assertTrue("друга година" in two.accepted)
+        assertTrue("друга дня" in two.accepted)
         assertTrue("друга" in two.accepted)
-        assertEquals("дванадцята година", clock(0, 0).display)
-        assertEquals("перша година", clock(13, 0).display)
+        assertTrue("рівно друга" in two.accepted)
+        assertEquals("перша година ночі", clock(1, 0).display)
 
         // half past: пів на + accusative of next hour
-        assertEquals("пів на третю", clock(2, 30).display)
-        assertEquals("пів на дванадцяту", clock(11, 30).display)
-        assertEquals("пів на першу", clock(12, 30).display)
+        assertEquals("пів на третю ночі", clock(2, 30).display)
+        // 11:30 names the twelfth hour, which is noon — "дванадцята ранку" is not a thing.
+        assertEquals("пів на дванадцяту дня", clock(11, 30).display)
+        assertEquals("пів на першу дня", clock(12, 30).display)
+        assertTrue("пів третьої" in clock(2, 30).accepted)
 
         // quarter past: чверть на + accusative; variant "п'ятнадцять по <locative>"
         val quarter = clock(2, 15)
-        assertEquals("чверть на третю", quarter.display)
+        assertEquals("чверть на третю ночі", quarter.display)
         assertTrue("п'ятнадцять по другій" in quarter.accepted)
-        assertEquals("чверть на першу", clock(12, 15).display)
+        assertTrue("п'ятнадцять хвилин на третю" in quarter.accepted)
+        assertEquals("чверть на першу дня", clock(12, 15).display)
 
         // quarter to: за чверть + nominative of next hour
-        assertEquals("за чверть третя", clock(2, 45).display)
-        assertEquals("за чверть дванадцята", clock(23, 45).display)
+        assertEquals("за чверть третя ночі", clock(2, 45).display)
+        assertEquals("за чверть дванадцята ночі", clock(23, 45).display)
         assertTrue("за п'ятнадцять третя" in clock(2, 45).accepted)
+        assertTrue("чверть до третьої" in clock(2, 45).accepted)
 
-        // generic minutes: digital reading, plus по/за variants
+        // round steps take the construction; a minute off the grid is read out
         val d35 = clock(14, 35)
-        assertEquals("друга тридцять п'ять", d35.display)
-        assertTrue("за двадцять п'ять третя" in d35.accepted)
-        val d10 = clock(14, 10)
-        assertEquals("друга десять", d10.display)
-        assertTrue("десять по другій" in d10.accepted)
+        assertEquals("за двадцять п'ять третя дня", d35.display)
+        assertTrue("двадцять п'ять хвилин до третьої" in d35.accepted)
+        assertEquals("двадцять хвилин на третю дня", clock(14, 20).display)
+        assertEquals("друга сімнадцять дня", clock(14, 17).display)
+        assertTrue("десять по другій" in clock(14, 10).accepted)
         assertTrue("за п'ять десята" in clock(9, 55).accepted)
+    }
+
+    /** Minutes count хвилина, which is feminine — "дві", never "два". */
+    @Test
+    fun minutesAreCountedAsTheFeminineNounTheyAre() {
+        assertTrue("дві хвилини на третю" in clock(14, 2).accepted)
+        assertTrue("двадцять одна хвилина на третю" in clock(14, 21).accepted)
+        assertTrue("за дві хвилини третя" in clock(14, 58).accepted)
+        assertTrue("за одну хвилину третя" in clock(14, 59).accepted)
+        // At a count of one the noun stands alone; the bare numeral never does.
+        assertTrue("хвилина на третю" in clock(14, 1).accepted)
+        assertTrue("одна на третю" !in clock(14, 1).accepted)
+        for (task in listOf(clock(14, 2), clock(14, 21), clock(14, 58))) {
+            val masculine = task.accepted.filter { "два" in it.split(' ') || "один" in it.split(' ') }
+            assertTrue(masculine.isEmpty(), masculine.toString())
+        }
+    }
+
+    /**
+     * The part of the day belongs to the hour the reading NAMES: 11:45 names noon,
+     * so it is дня, not ранку — and 17:45 names six in the evening, not the afternoon.
+     */
+    @Test
+    fun theDayPartFollowsTheHourTheReadingNames() {
+        assertEquals("за чверть дванадцята дня", clock(11, 45).display)
+        assertEquals("за чверть шоста вечора", clock(17, 45).display)
+        assertEquals("дев'ята година ранку", clock(9, 0).display)
+        assertEquals("дев'ята година вечора", clock(21, 0).display)
+        // Overlapping boundaries accept both readings.
+        assertTrue("третя година ночі" in clock(3, 0).accepted)
+        assertTrue("третя година ранку" in clock(3, 0).accepted)
+    }
+
+    @Test
+    fun midnightAndNoonAreNamedAndTheOfficialClockIsAccepted() {
+        val midnight = clock(0, 0)
+        assertEquals("північ", midnight.display)
+        assertTrue("опівночі" in midnight.accepted)
+        assertTrue("нульова година" in midnight.accepted)
+        val noon = clock(12, 0)
+        assertEquals("дванадцята година дня", noon.display)
+        assertTrue("полудень" in noon.accepted)
+        assertTrue("опівдні" in noon.accepted)
+        // Timetables and news run 0–23, and never name a part of the day.
+        assertTrue("шістнадцята година сорок п'ять хвилин" in clock(16, 45).accepted)
+        assertTrue("шістнадцята сорок п'ять" in clock(16, 45).accepted)
+        assertTrue("двадцять перша година" in clock(21, 0).accepted)
     }
 }
