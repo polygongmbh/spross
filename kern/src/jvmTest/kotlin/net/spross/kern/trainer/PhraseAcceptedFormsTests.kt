@@ -55,7 +55,6 @@ class PhraseAcceptedFormsTests {
         // "um acht" reading + frame "… um {slot} Uhr …" merge without doubling "um".
         assertTrue("Der Zug fährt um acht ab." in train.accepted)
         assertTrue("Der Zug fährt um acht Uhr ab." in train.accepted)
-        assertTrue("Der Zug fährt um punkt acht ab." in train.accepted)
         assertTrue("Der Zug fährt um zwanzig Uhr ab." in train.accepted)
         // No "um" in the frame → the adverbial "um acht" reading is skipped.
         val now = PhraseSlots.instantiate(RealFrames.frame("de", "it-is-now", source = "uk"), 20, 0)

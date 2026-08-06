@@ -26,6 +26,13 @@ internal interface TrainerLanguagePack {
     /** Highest place word per digit count; index 0 → 2 digits … index 8 → 10 digits. */
     val placeValues: List<String>
 
+    /**
+     * Every part of the day this clock can hang on a reading. Derived, never authored
+     * twice — and abstract on purpose: a sixth pack that forgot it would otherwise get
+     * no collision coverage in silence, which is the hole this member exists to close.
+     */
+    val clockDayParts: Set<String>
+
     /** Tens look-up, authored only where tens are hard to recall (sw). */
     val tensReference: List<String>? get() = null
 
@@ -41,6 +48,7 @@ private object GermanPack : TrainerLanguagePack {
         "zehn", "hundert", "tausend", "zehntausend", "hunderttausend",
         "Million", "zehn Millionen", "hundert Millionen", "Milliarde",
     )
+    override val clockDayParts: Set<String> = (0..23).flatMapTo(mutableSetOf(), GermanClock::dayParts)
 }
 
 private object EnglishPack : TrainerLanguagePack {
@@ -54,6 +62,8 @@ private object EnglishPack : TrainerLanguagePack {
         "ten", "hundred", "thousand", "ten thousand", "hundred thousand",
         "million", "ten million", "hundred million", "billion",
     )
+    override val clockDayParts: Set<String> =
+        (0..23).flatMapTo(mutableSetOf(), EnglishClockRegisters::dayParts)
 }
 
 private object SpanishPack : TrainerLanguagePack {
@@ -69,6 +79,16 @@ private object SpanishPack : TrainerLanguagePack {
         "diez", "cien", "mil", "diez mil", "cien mil",
         "millón", "diez millones", "cien millones", "mil millones",
     )
+    // why: Spanish decides on three arguments, so the vocabulary is the union over the
+    // whole domain — a sentinel minute would miss a word a future rule keys on.
+    override val clockDayParts: Set<String> = buildSet {
+        for (h in 0..23) {
+            for (m in 0..59) {
+                addAll(SpanishClockForms.dayParts(h, m, countdown = false))
+                addAll(SpanishClockForms.dayParts(h, m, countdown = true))
+            }
+        }
+    }
 }
 
 private object SwahiliPack : TrainerLanguagePack {
@@ -86,6 +106,7 @@ private object SwahiliPack : TrainerLanguagePack {
         "kumi", "mia", "elfu", "elfu kumi", "elfu mia",
         "milioni", "milioni kumi", "milioni mia", "bilioni",
     )
+    override val clockDayParts: Set<String> = (0..23).flatMapTo(mutableSetOf(), SwahiliClock::dayParts)
     override val tensReference get() = SwahiliNumbers.tensReference
     override fun drillNumber(n: Long) = SwahiliNumbers.acceptedVariants(n)
 }
@@ -101,6 +122,8 @@ private object UkrainianPack : TrainerLanguagePack {
         "десять", "сто", "тисяча", "десять тисяч", "сто тисяч",
         "мільйон", "десять мільйонів", "сто мільйонів", "мільярд",
     )
+    override val clockDayParts: Set<String> =
+        (0..23).flatMapTo(mutableSetOf(), UkrainianClockForms::dayParts)
 }
 
 /** The registry: de/en/es/sw/uk authored, insertion order is presentation order. */

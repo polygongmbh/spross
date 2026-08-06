@@ -90,10 +90,6 @@ class TrainerGoldenTests {
             assertEquals(expected.standard, task.display, "t=$key")
             val golden = mutableListOf(expected.standard)
             if (expected.regional != expected.standard) golden += expected.regional
-            // Round hours also accept colloquial "um zehn" (regional is "punkt <hour>").
-            if (m == 0 && expected.standard.endsWith("Uhr")) {
-                golden += "um " + expected.regional.removePrefix("punkt ")
-            }
             // Golden values lead the accepted list unchanged. What follows them is
             // accepted-only and free to grow — this asserts what must be IN that tail
             // (the formal 24-hour reading, plus "vierundzwanzig Uhr" at 0:00), not what

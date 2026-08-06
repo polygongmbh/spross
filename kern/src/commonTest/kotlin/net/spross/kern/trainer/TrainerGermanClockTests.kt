@@ -31,7 +31,6 @@ class TrainerGermanClockTests {
         assertAccepts(task, "achtzehn uhr")
         // The colloquial "um sechs" full-hour reading stays accepted.
         assertAccepts(task, "um sechs")
-        assertAccepts(task, "punkt sechs")
     }
 
     @Test
@@ -50,13 +49,11 @@ class TrainerGermanClockTests {
         // The colloquial full-hour readings were dropped at exactly the two hours a
         // speaker says them out loud, because the standard reading is a name there.
         assertAccepts(task, "zwölf uhr")
-        assertAccepts(task, "punkt zwölf")
         assertAccepts(task, "um zwölf")
         assertAccepts(task, "zwölf uhr nachts")
         val noon = clock(12, 0)
         assertEquals("Mittag", noon.display)
         assertAccepts(noon, "zwölf uhr mittags")
-        assertAccepts(noon, "punkt zwölf uhr")
     }
 
     /** Where the hour sits in the day, at the full hour — and the apocope holds. */
@@ -121,7 +118,6 @@ class TrainerGermanClockTests {
         assertEquals("ein Uhr", task.display)
         assertAccepts(task, "ein uhr")
         // Bare "eins" (no "Uhr" following) keeps its full form.
-        assertAccepts(task, "punkt eins")
         assertAccepts(task, "um eins")
         assertFalse(task.accepted.any { it.lowercase() == "eins uhr" }, "wrong 'eins Uhr' in ${task.accepted}")
     }

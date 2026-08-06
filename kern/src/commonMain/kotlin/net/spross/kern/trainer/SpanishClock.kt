@@ -65,10 +65,7 @@ internal object SpanishClock {
 
         // Additive: counting up from the hour on the clock.
         when (m) {
-            0 -> {
-                forms += Core(cur, h)
-                forms += Core("$cur en punto", h)
-            }
+            0 -> forms += Core(cur, h)
             // why: Spanish counts one minute with the noun, never with a bare "uno".
             1 -> {
                 forms += Core("$cur y un minuto", h)
@@ -121,13 +118,6 @@ internal object SpanishClock {
     private fun bare(h: Int, m: Int): List<String> {
         val out = mutableListOf<String>()
         if (m > 30) out += paraFamily(h, m)
-        if (m == 0) {
-            // "en punto" reads on either side of the part of the day.
-            val cur = Forms.hourWords[h % 12]
-            for (part in Forms.dayParts(h, 0, countdown = false)) {
-                out += "${Forms.copula(cur)} $cur $part en punto"
-            }
-        }
         out += official(h, m)
         return out
     }
@@ -272,9 +262,8 @@ internal object SpanishClock {
         "son las doce de la noche",
         listOf(
             "son las doce de la noche", "es medianoche", "es la medianoche", "medianoche",
-            "son las doce en punto de la noche", "son las doce de la noche en punto",
-            "las doce de la noche", "son las doce", "son las doce en punto",
-            "las doce", "doce", "doce en punto", "son las cero horas", "las cero horas",
+            "las doce de la noche", "son las doce",
+            "las doce", "doce", "son las cero horas", "las cero horas",
         ),
         "también: es medianoche · las cero horas",
     )
@@ -283,9 +272,9 @@ internal object SpanishClock {
         "son las doce del mediodía",
         listOf(
             "son las doce del mediodía", "son las doce del día", "son las doce de la mañana",
-            "es mediodía", "es el mediodía", "es mediodía en punto", "mediodía",
-            "las doce del mediodía", "las doce del día", "son las doce", "son las doce en punto",
-            "las doce", "doce", "doce en punto", "son las doce horas",
+            "es mediodía", "es el mediodía", "mediodía",
+            "las doce del mediodía", "las doce del día", "son las doce",
+            "las doce", "doce", "son las doce horas",
         ),
         "también: son las doce del día · es mediodía",
     )

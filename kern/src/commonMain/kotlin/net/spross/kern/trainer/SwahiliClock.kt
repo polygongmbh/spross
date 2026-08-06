@@ -13,23 +13,29 @@ internal object SwahiliClock {
     private val hourWords = listOf("kumi na mbili", "moja", "mbili", "tatu", "nne", "tano", "sita", "saba", "nane", "tisa", "kumi", "kumi na moja", "kumi na mbili")
 
     /**
-     * Parts of the day that fit the hour, canonical (display) form first. Dawn is
-     * alfajiri, not yet asubuhi; the small hours are usiku, and four is still one of
-     * them. mchana runs from noon, and alasiri belongs to the late afternoon only —
+     * Parts of the day that fit the hour, canonical (display) form first. alfajiri owns
+     * dawn, 04–06; usiku runs 19–03; asubuhi is the morning proper from seven, mchana
+     * runs from noon, jioni from four, and alasiri belongs to the late afternoon only —
      * never to the top of the list, and never before three.
      *
+     * A second entry is there because speakers disagree at a BOUNDARY, and each overlap
+     * is named from one side only (04 looks back at 03, 06 forward at 07, 16 back at 15,
+     * 19 back at 18); an hour interior to its block carries no neighbour.
+     *
      * The canonical form must stay ONE word: `TrainerGoldenTests` recovers the
-     * period-less reading by dropping the display's last word.
+     * period-less reading by dropping the display's last word — so `usiku wa manane`,
+     * the pack's only multi-word part, may never lead either.
      */
     fun dayParts(hours: Int): List<String> = when (hours) {
         in 0..3 -> listOf("usiku", "usiku wa manane")
-        4 -> listOf("usiku", "alfajiri", "asubuhi")
-        5 -> listOf("alfajiri", "usiku", "asubuhi")
-        6 -> listOf("asubuhi", "alfajiri")
+        4 -> listOf("alfajiri", "usiku")
+        5 -> listOf("alfajiri")
+        6 -> listOf("alfajiri", "asubuhi")
         in 7..11 -> listOf("asubuhi")
         in 12..14 -> listOf("mchana")
         15 -> listOf("mchana", "jioni", "alasiri")
-        in 16..17 -> listOf("jioni", "mchana", "alasiri")
+        16 -> listOf("jioni", "mchana", "alasiri")
+        17 -> listOf("jioni", "alasiri")
         18 -> listOf("jioni")
         19 -> listOf("usiku", "jioni")
         else -> listOf("usiku")
@@ -61,10 +67,7 @@ internal object SwahiliClock {
         val out = mutableListOf<String>()
 
         when {
-            minutes == 0 -> {
-                out += "Saa $hWord"
-                out += "Saa $hWord kamili"
-            }
+            minutes == 0 -> out += "Saa $hWord"
             minutes == 15 -> {
                 out += "Saa $hWord na robo"
                 out += "Saa $hWord na dakika kumi na tano"

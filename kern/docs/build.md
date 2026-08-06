@@ -37,7 +37,7 @@ Engine contract: `../README.md`.
   German clock ACCEPTS 24-hour readings ("achtzehn Uhr fünfunddreißig", "null/vierundzwanzig
   Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.
   An hour word directly before "Uhr" apocopates: "ein Uhr", never "eins Uhr";
-  bare "eins" stays ("punkt eins", "um eins", "halb eins").
+  bare "eins" stays ("um eins", "halb eins").
   `PhraseSlots` samples level-aware — same per-kind ramp tables as the plain drills
   (a template's slot kind clamps the level).
   The unleveled `sample` overload keeps the prototype's biased full-difficulty draws

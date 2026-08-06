@@ -107,7 +107,6 @@ class TrainerSpanishTests {
         assertTrue("son las tres menos quince" in toThree)
 
         val two = Trainer.clock(14, 0, "es").accepted
-        assertTrue("son las dos en punto" in two)
         assertTrue("dos" in two)
     }
 

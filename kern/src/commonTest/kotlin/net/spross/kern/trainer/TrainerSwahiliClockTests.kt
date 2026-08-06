@@ -6,7 +6,7 @@ import kotlin.test.assertTrue
 
 /**
  * Swahili clock readings beyond what `trainer-golden.json` pins: the quarter words, the
- * additive reading past the half hour, `kamili`, and the parts of the day.
+ * additive reading past the half hour, and the parts of the day.
  */
 class TrainerSwahiliClockTests {
 
@@ -37,19 +37,11 @@ class TrainerSwahiliClockTests {
     }
 
     @Test
-    fun theExactHourTakesKamiliBeforeTheDayPart() {
-        val eight = clock(20, 0)
-        assertEquals("Saa mbili usiku", eight.display)
-        assertTrue("Saa mbili kamili" in eight.accepted)
-        assertTrue("Saa mbili kamili usiku" in eight.accepted)
-        assertTrue("Saa mbili usiku kamili" !in eight.accepted)
-    }
-
-    @Test
     fun theDayPartsCoverDawnAndTheDeadOfNight() {
-        // Four in the morning is still the night; dawn is alfajiri, not yet asubuhi.
-        assertEquals("Saa kumi usiku", clock(4, 0).display)
-        assertTrue("Saa kumi alfajiri" in clock(4, 0).accepted)
+        // Four in the morning is already dawn — alfajiri, not yet asubuhi — and the
+        // night it just left is still accepted across the boundary.
+        assertEquals("Saa kumi alfajiri", clock(4, 0).display)
+        assertTrue("Saa kumi usiku" in clock(4, 0).accepted)
         assertEquals("Saa kumi na moja alfajiri", clock(5, 0).display)
         assertTrue("Saa sita usiku wa manane" in clock(0, 0).accepted)
         // alasiri is the late afternoon only, and never leads.

@@ -121,11 +121,12 @@ One line per item, with a file or context pointer, filed under the section it be
 - uk has no time-*when* clock frame (`о`/`об` + locative: "о шістнадцятій"): both shipped
   frames are predicates, and the adverbial needs `PhraseSlots.fillWords`' German-only
   `"um "` absorption generalized first (`clock-registers.md`).
-- sw `kasa` ("saa nne kasa dakika tano") and `adhuhuri` at 12–14 are plausible but were
-  left out for want of a Tanzanian source; `DL(kasa, kasoro) = 2`, so they must be listed
-  outright, not left to the typo budget.
 - de accepts no bare hour word ("Es ist acht.") though the German is right — with the
   drill's stray-word rescue gone it is now safe to add, but it wants its own sweep run.
+- The emphatic full hour (de `punkt`, en `sharp`/`on the dot`, es `en punto`, sw `kamili`,
+  uk `рівно`) was dropped from the clock generators (`docs/clock-registers.md` §Rejected)
+  and belongs in the catalog instead, as adverbs met in a sentence — a content proposal
+  for the owner, not a generator change.
 
 ## Engine & scheduling
 
@@ -150,8 +151,13 @@ One line per item, with a file or context pointer, filed under the section it be
   `american:85-89`, `EnglishClockRegisters.anchors:58-72`) with `past` as `<= 30` in two of
   them and `< 30` in the third — the largest true duplication in the clock corpus, and
   larger than everything cross-language put together.
-- `ClockCollisionSweepTests.DAY_PARTS` (line 248) is a third copy of the day-part vocabulary
-  and has already drifted (it lists `"a.m"`, `" am"`, `" pm"` for en, which no generator emits).
+- A `clockAnchors` slot for midnight/noon on `TrainerLanguagePack` is deferred: unlike the day
+  parts it would be a NEW authored copy rather than a removed one — de bakes them into early
+  returns in `GermanClock.conversational`, en into `EnglishClockRegisters.anchors`, es and uk
+  into hand-written `ClockReading` constants, and sw has none by design.
+- The 24-hour register closes the twelve-hour cycle by NUMBER (`achtzehn Uhr` cannot answer 06:00),
+  which `ClockCollisionSweepTests.sweep()` never grades because it skips same-cycle pairs —
+  so that closure is unheld, unlike the day parts' (`dayPartReadingsCloseTheTwelveHourCycle`).
 - FSRS parameter optimization from review logs —
   enabled by the full per-card logs, unbuilt (kern README §5).
 - Watch multiple-choice distractors carry no novelty or recency criterion

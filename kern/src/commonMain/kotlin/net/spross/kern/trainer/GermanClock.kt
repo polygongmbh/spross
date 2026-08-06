@@ -3,7 +3,7 @@ package net.spross.kern.trainer
 /**
  * German conversational clock times, ported from the prototype `ClockTrainer.tsx`:
  * Hochdeutsch standard plus regional (Oberfranken) variants
- * ("Viertel sieben", "Dreiviertel sieben", "punkt sechs").
+ * ("Viertel sieben", "Dreiviertel sieben").
  */
 internal object GermanClock {
     private val hourWords = listOf("zwölf", "eins", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwölf")
@@ -15,7 +15,7 @@ internal object GermanClock {
 
     /**
      * Directly before "Uhr" German apocopates "eins" to "ein" ("ein Uhr fünf");
-     * the bare hour word stays "eins" ("punkt eins", "um eins", "halb eins").
+     * the bare hour word stays "eins" ("um eins", "halb eins").
      */
     private fun beforeUhr(hourWord: String) = if (hourWord == "eins") "ein" else hourWord
 
@@ -30,7 +30,7 @@ internal object GermanClock {
         if (hours == 12 && minutes == 0) return Conversational("Mittag", "Mittag")
 
         return when (minutes) {
-            0 -> Conversational("${beforeUhr(hWord)} Uhr", "punkt $hWord")
+            0 -> same("${beforeUhr(hWord)} Uhr")
             5 -> same("fünf nach $hWord")
             10 -> same("zehn nach $hWord")
             15 -> Conversational("Viertel nach $hWord", "Viertel $nextWord")
@@ -54,7 +54,7 @@ internal object GermanClock {
         val c = conversational(hours, minutes)
         val accepted = mutableListOf(c.standard)
         if (c.regional != c.standard) accepted += c.regional
-        // Colloquial "um zehn" reads a full hour the same as "zehn Uhr" / "punkt zehn".
+        // Colloquial "um zehn" reads a full hour the same as "zehn Uhr".
         if (minutes == 0 && c.standard.endsWith("Uhr")) accepted += "um ${hourWords[hours % 12]}"
         for (reading in twentyFourHour(hours, minutes)) accepted.addUnlessPresent(reading)
         if (minutes == 0) {
@@ -62,10 +62,9 @@ internal object GermanClock {
             // why: at noon and midnight the standard reading is a NAME, so the gate
             // above skipped the colloquial full-hour forms at exactly the two hours
             // where a speaker says them out loud to disambiguate.
-            for (form in listOf("${beforeUhr(hourWord)} Uhr", "punkt $hourWord", "um $hourWord")) {
+            for (form in listOf("${beforeUhr(hourWord)} Uhr", "um $hourWord")) {
                 accepted.addUnlessPresent(form)
             }
-            accepted.addUnlessPresent("punkt ${beforeUhr(hourWord)} Uhr")
             for (part in dayParts(hours)) accepted.addUnlessPresent("${beforeUhr(hourWord)} Uhr $part")
         }
         // The half hour is also counted from ten out on either side.
@@ -75,9 +74,7 @@ internal object GermanClock {
         for (form in accepted.toList()) accepted.addUnlessPresent(withMinuten(form) ?: continue)
         // The reveal names the other ways to SAY the hour ("Dreiviertel sieben" against
         // "Viertel vor sieben"), never the same reading with a word added or dropped.
-        // why: "punkt sechs" reads as an emphasis — exactly AT six — rather than another
-        // name for the time, so the full hour is offered as "um sechs"; both stay accepted.
-        val candidates = accepted.drop(1).filterNot { it.startsWith("punkt ") }
+        val candidates = accepted.drop(1)
         val gloss = ClockGloss.line(c.standard, candidates, limit = 3, lead = "auch: ", separator = " oder ")
         return ClockReading(c.standard, accepted, gloss)
     }
@@ -98,8 +95,11 @@ internal object GermanClock {
      * speakers disagree — the sets for an hour and the hour twelve on stay disjoint
      * (nothing before noon is ever abends, nothing after is ever morgens), so widening
      * one never lets it answer the other. "früh" is accepted, never taught.
+     *
+     * Consulted at the full hour only — [task] reads it inside `if (minutes == 0)`, so
+     * German hangs the part on `<hour> Uhr <part>` and on nothing else.
      */
-    private fun dayParts(hours: Int): List<String> = when (hours) {
+    fun dayParts(hours: Int): List<String> = when (hours) {
         0, 1 -> listOf("nachts")
         2, 3 -> listOf("nachts", "morgens")
         4, 5 -> listOf("früh", "morgens", "nachts")

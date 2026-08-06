@@ -51,11 +51,6 @@ internal object UkrainianClock {
             m == 0 -> {
                 forms += Core("${Forms.nominative[cur]} година", h)
                 forms += Core(Forms.nominative[cur], h)
-                forms += Core("рівно ${Forms.nominative[cur]} година", h)
-                forms += Core("рівно ${Forms.nominative[cur]}", h)
-                // why: постпозитивне рівно closes the phrase, so nothing may follow it —
-                // this reading takes no part of the day.
-                forms += Core("${Forms.nominative[cur]} година рівно", null)
             }
             m < 30 -> {
                 if (m == 15) {
@@ -157,7 +152,10 @@ internal object UkrainianClock {
         val cur = Forms.index(h)
         val next = Forms.index(h + 1)
         val candidates = when {
-            m == 0 -> listOf("рівно ${Forms.nominative[cur]} година", "рівно ${Forms.nominative[cur]}")
+            // why: the full hour has no colloquial alternative — the official register
+            // below supplies its lines — and the `m < 30` arm would count zero minutes
+            // into the coming hour ("нуль хвилин на третю"), which nobody says.
+            m == 0 -> emptyList()
             m == 15 -> listOf("п'ятнадцять хвилин на ${Forms.accusative[next]}", "чверть по ${Forms.locative[cur]}")
             m == 30 -> listOf("пів ${Forms.genitive[next]}", "тридцять хвилин на ${Forms.accusative[next]}")
             m == 45 -> listOf("за п'ятнадцять хвилин ${Forms.nominative[next]}", "чверть до ${Forms.genitive[next]}")
@@ -171,16 +169,15 @@ internal object UkrainianClock {
                 "${Forms.minuteNumeral(60 - m)} ${Forms.minuteNoun(60 - m)} до ${Forms.genitive[next]}",
             )
         }
-        // The official register closes the list wherever a colloquial alternative ran
-        // out — and collapses into the display below thirteen, where the two ordinals
-        // are the same word, which [ClockGloss] then drops.
-        val official = listOf(
-            if (m == 0) {
-                "${Forms.official[h]} година"
-            } else {
-                "${Forms.official[h]} година ${Forms.minuteNumeral(m)} ${Forms.minuteNoun(m)}"
-            },
-        ).filter { it in readings }
+        // The official register closes the list wherever a colloquial alternative ran out.
+        // Its ordinal collapses into the display below thirteen — the two are the same
+        // word, which [ClockGloss] drops — so the full hour also offers the spoken-zero
+        // digital reading, the one register a learner cannot derive from the display there.
+        val official = if (m == 0) {
+            listOf("${Forms.official[h]} година", "${UkrainianNumbers.cardinal(h.toLong())} нуль нуль")
+        } else {
+            listOf("${Forms.official[h]} година ${Forms.minuteNumeral(m)} ${Forms.minuteNoun(m)}")
+        }.filter { it in readings }
         return ClockGloss.line(readings.first(), candidates + official, limit = 2, lead = "також: ", separator = ", ")
     }
 

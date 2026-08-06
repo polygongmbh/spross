@@ -71,7 +71,8 @@ class ClockCollisionSweepTests {
      */
     @Test
     fun dayPartReadingsCloseTheTwelveHourCycle() {
-        for ((language, parts) in DAY_PARTS) {
+        for ((language, pack) in trainerPacks) {
+            val parts = pack.clockDayParts
             val normalizer = drillNormalizer(language)
             val offenders = sortedSetOf<String>()
             for (h in 0..11) {
@@ -89,7 +90,8 @@ class ClockCollisionSweepTests {
             }
             assertEquals(
                 emptyList(), offenders.toList(),
-                "$language: day-part readings that still answer the other half of the day",
+                "$language: day-part readings that still answer the other half of the day " +
+                    "(markers: ${parts.sorted()})",
             )
         }
     }
@@ -247,25 +249,6 @@ class ClockCollisionSweepTests {
             setOf("девяту", "десяту"),
             setOf("девятій", "десятій"),
             setOf("девятої", "десятої"),
-        )
-
-        /**
-         * Lowercased markers that identify a reading as naming the part of the day.
-         *
-         * English's meridiem is deliberately NOT listed: `am` and `pm` are one
-         * substitution apart, so under the drill's flat one-slip-per-word budget each
-         * grades correct for the other and the twelve-hour cycle stays open across
-         * them. That was ruled acceptable — typing the wrong meridiem is a knowledge
-         * error, not a slip, and the typo verdict holds the card and shows the right
-         * form. The PHRASE day parts below ("in the morning" / "in the afternoon") carry
-         * no such excuse and must keep closing the cycle.
-         */
-        val DAY_PARTS = mapOf(
-            "de" to listOf("morgens", "vormittags", "mittags", "nachmittags", "abends", "nachts", "früh"),
-            "en" to listOf("in the morning", "in the afternoon", "in the evening", "at night"),
-            "es" to listOf("de la madrugada", "de la mañana", "del mediodía", "del día", "de la tarde", "de la noche"),
-            "sw" to listOf("alfajiri", "asubuhi", "mchana", "alasiri", "jioni", "usiku"),
-            "uk" to listOf("ранку", "дня", "вечора", "ночі"),
         )
     }
 }

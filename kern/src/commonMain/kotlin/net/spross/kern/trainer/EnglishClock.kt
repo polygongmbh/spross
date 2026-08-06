@@ -30,7 +30,7 @@ internal object EnglishClock {
         val next = hourWords[(h12 + 1) % 12]
 
         val conversational = when (minutes) {
-            0 -> listOf("$cur o'clock", cur, "$cur o'clock sharp", "$cur o'clock on the dot", "exactly $cur o'clock")
+            0 -> listOf("$cur o'clock", cur)
             15 -> listOf("quarter past $cur", "a quarter past $cur", "quarter after $cur", "a quarter after $cur")
             30 -> listOf("half past $cur", "half $cur")
             45 -> listOf(

@@ -91,7 +91,6 @@ class TrainerUkrainianTests {
         assertTrue("друга година" in two.accepted)
         assertTrue("друга дня" in two.accepted)
         assertTrue("друга" in two.accepted)
-        assertTrue("рівно друга" in two.accepted)
         assertEquals("перша година ночі", clock(1, 0).display)
 
         // half past: пів на + accusative of next hour

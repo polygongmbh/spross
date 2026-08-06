@@ -35,11 +35,6 @@ Three rules sit on top of that, and none of them is derivable from the words alo
 - **A joiner swap is not a different idiom.**
   `quarter to five` · `quarter till five` · `quarter of five` are one construction with the preposition changed,
   and only one may take a line.
-  This is deliberately NOT a blanket "same word count, one position differs" rule:
-  German `punkt sechs` and `um sechs` sit exactly one word apart and are two constructions, not one said twice.
-  What keeps `punkt` off the German gloss is a judgment about what it MEANS —
-  an emphasis, "exactly at six", rather than another name for the hour — which no word-shape test could make;
-  it stays accepted throughout.
   Which joiners are interchangeable is a language's own knowledge,
   so English builds its gloss candidates explicitly instead of filtering its accepted set.
 - **`quarter of` is named anyway, because it is a false friend.**
@@ -56,6 +51,8 @@ Three rules sit on top of that, and none of them is derivable from the words alo
   which is why `cinco para las cinco` is named at :55 and `son las cuatro y cincuenta y cinco` is not.
   English has the same rule from the other side: with a minute on it
   the 24-hour reading is the digital one in another register, so it is named at :00 only.
+  Ukrainian names its spoken-zero digital reading (`дев'ять нуль нуль`) at :00 for the same reason,
+  and below thirteen it is the only line left — the official ordinal is the colloquial one there.
 
 Spanish is where a REGISTER earns a line of its own.
 At a minute off the round steps, `son las nueve y diecisiete minutos` spells the noun out,
@@ -84,36 +81,21 @@ takes the morning and the afternoon respectively.
 
 ## Parts of the day
 
+Which words fit which hour is authored once, in the five `dayParts` functions —
+`GermanClock.dayParts`, `EnglishClockRegisters.dayParts`, `SpanishClockForms.dayParts`,
+`SwahiliClock.dayParts`, `UkrainianClockForms.dayParts`.
+Those functions ARE the grid; each carries its own non-derivable notes in its KDoc,
+and each pack's `clockDayParts` is the union over that language's own function —
+five per-language sets, never one pooled across them,
+so `dayPartReadingsCloseTheTwelveHourCycle` grades German readings against German markers.
 Boundaries overlap where speakers do, and both readings are accepted across an overlap.
-Naming the part is optional everywhere — every reading is accepted bare.
 
-| hour | de | en | es (named hour) | sw | uk |
-|---|---|---|---|---|---|
-| 0 | nachts | in the morning · at night | de la noche (+ de la madrugada past :00) | usiku · usiku wa manane | ночі |
-| 1–2 | nachts | in the morning | de la madrugada · de la mañana | usiku · usiku wa manane | ночі |
-| 3 | nachts · morgens | in the morning | de la madrugada · de la mañana | usiku · usiku wa manane | ночі · ранку |
-| 4 | früh · morgens · nachts | in the morning | de la madrugada · de la mañana | usiku · alfajiri · asubuhi | ранку |
-| 5 | früh · morgens · nachts | in the morning | de la madrugada · de la mañana | alfajiri · usiku · asubuhi | ранку |
-| 6 | morgens · früh | in the morning | de la mañana · de la madrugada | asubuhi · alfajiri | ранку |
-| 7–11 | morgens/vormittags | in the morning | de la mañana | asubuhi | ранку |
-| 12 | mittags | in the afternoon | del mediodía · del día · de la mañana (· de la tarde past :00) | mchana | дня |
-| 13 | nachmittags · mittags | in the afternoon | de la tarde · del mediodía | mchana | дня |
-| 14–16 | nachmittags | in the afternoon | de la tarde | mchana / jioni · alasiri from 15 | дня |
-| 17 | nachmittags · abends | in the afternoon · in the evening | de la tarde | jioni · mchana · alasiri | вечора · дня |
-| 18–20 | abends | in the evening | de la tarde · de la noche at 19, both at 20 | jioni at 18, usiku · jioni at 19 | вечора |
-| 21–22 | abends · nachts | in the evening · at night at 21 | de la noche | usiku | вечора |
-| 23 | nachts · abends | at night | de la noche | usiku | вечора · ночі |
-
-Notes that are not derivable from the table:
-
-- English does not use "at night" for the small hours — `two o'clock in the morning` is what natives say.
-- German's `früh` is accepted, never taught.
-- Swahili's `alasiri` is the LATE afternoon only and never leads;
-  `usiku wa manane` is the pack's one multi-word part and must never lead either,
-  because `TrainerGoldenTests` recovers the bare reading by dropping the display's last word.
-- Spanish attaches the part to the conversational readings and to the shortest `para` form,
-  not to the timetable register, which names 0–23 already.
-  Ukrainian's official register does the same.
+Naming the part is optional everywhere — every reading is accepted bare —
+and WHERE a language may attach one is its own rule, which the functions alone do not show:
+German's is in `GermanClock.dayParts`' KDoc;
+Spanish attaches it to the conversational readings and to the shortest `para` form,
+not to the timetable register, which names 0–23 already;
+Ukrainian's official register does the same.
 
 ## What two times may share
 
@@ -146,20 +128,29 @@ which counts against the HALF hour rather than the coming one — 6:25 is "fünf
 the half hour names the coming hour in de and uk and the current one in en, es and sw;
 Swahili's hours are offset by six and its display is assembled outside its accepted list;
 German has no cores at all, and English hangs its parts of the day on two readings after every bare one.
-Only `leadWith` (`ClockReadings.kt`) and the empty-gloss rule (`ClockGloss.line`) carry no language rule, and those are shared.
-The reusable artifact is this document, not a base class.
+`leadWith` (`ClockReadings.kt`) and the empty-gloss rule (`ClockGloss.line`) carry no language
+rule, and those are shared outright.
+`TrainerLanguagePack.clockDayParts` shares the SLOT and nothing else:
+the words are a language's own vocabulary and each pack derives its set from its own `dayParts`.
+The fraction and half words are not shareable for exactly that reason:
+the word is never the emitted unit, the frame is,
+and the five frames agree on word order, on which hour is named, and on case in no combination.
+The reusable artifact is otherwise this document, not a base class.
 
 A sixth language takes all of:
 
-- a new `*Clock.kt` and a row in the table above;
+- a new `*Clock.kt` with its own `dayParts`;
 - its entry in `trainerPacks` (`TrainerLanguagePack.kt`) — without it the generator is dead code
   and every sweep skips it in silence, with nothing going red;
+- `clockDayParts` on that pack, derived from its `dayParts` and never authored a second time.
+  It is abstract, so forgetting it is a compile error rather than a quiet gap:
+  `dayPartReadingsCloseTheTwelveHourCycle` iterates `trainerPacks` and reads the markers off the pack;
 - a cap in `ClockRevealTests`, plus its gloss lead-in in that test's `alternativeMarkers`
   — or its name in `ruleHintGlosses` where the gloss is a hint rather than a list —
   and its gloss separator in the `separators` it splits on;
   a marker or separator that matches nothing skips 1440 rows quietly, which is exactly what that test is there to catch;
-- its own `@Test` in `ClockCollisionSweepTests` calling `sweep()` with its gated pairs, and an entry in that file's `DAY_PARTS`
-  — the sweep runs off hand-written per-language tests, so a language with neither gets no collision coverage and nothing goes red.
+- its own `@Test` in `ClockCollisionSweepTests` calling `sweep()` with its gated pairs
+  — that sweep runs off hand-written per-language tests, so a language without one gets no collision coverage and nothing goes red.
 
 ## English a.m./p.m., accepted knowingly
 
@@ -180,8 +171,10 @@ typing out the wrong meridiem is a knowledge error rather than a slip, and an un
 and a typo verdict does not auto-advance — it holds the card and shows the correct form,
 so the learner is corrected and the answer books amber.
 Being corrected is the teaching outcome wanted here.
-`ClockCollisionSweepTests.DAY_PARTS` therefore does not list the meridiem,
-while the phrase day parts beside it still have to close the cycle.
+The meridiem is therefore left out of the cycle check by CONSTRUCTION:
+it lives in `EnglishClockRegisters.meridiem`, never in `dayParts`,
+so it never reaches `clockDayParts` and nothing has to remember to exclude it.
+The phrase day parts, which do live there, still have to close the cycle.
 
 At 00:00 and 12:00 `twelve a.m.` and `twelve p.m.` are accepted but never named:
 that pair is the one native speakers themselves get backwards,
@@ -195,3 +188,11 @@ so the reveal keeps teaching `midnight` and `noon` there.
   the colloquial alternates exist on the five-minute grid only.
 - **Ukrainian `нуль годин`** — a calque, and one edit from a digital reading of another hour.
 - **Spanish `veinte a las tres`** — `a` never replaces `para`.
+- **Swahili `kasa`** — not a Swahili word (owner-confirmed);
+  the quarter words are `na robo` and `kasorobo`, and both are generated already.
+- **The emphatic full hour, in all five** — de `punkt sechs`, en `six o'clock sharp` / `on the dot` / `exactly six o'clock`,
+  es `en punto`, sw `kamili`, uk `рівно`.
+  They say the hour is EXACT, which is a different claim from what time it is,
+  and no learner answering "18:00" volunteers the suffix —
+  so the coverage never paid for the branch each of the five carried at `m == 0`.
+  Where they belong is the catalog, as adverbs a learner meets in a sentence.

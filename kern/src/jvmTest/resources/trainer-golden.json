@@ -213,7 +213,7 @@
     },
     "04:00": {
       "standard": "vier Uhr",
-      "regional": "punkt vier"
+      "regional": "um vier"
     },
     "04:05": {
       "standard": "fünf nach vier",
@@ -261,7 +261,7 @@
     },
     "06:00": {
       "standard": "sechs Uhr",
-      "regional": "punkt sechs"
+      "regional": "um sechs"
     },
     "06:05": {
       "standard": "fünf nach sechs",
@@ -309,7 +309,7 @@
     },
     "09:00": {
       "standard": "neun Uhr",
-      "regional": "punkt neun"
+      "regional": "um neun"
     },
     "09:05": {
       "standard": "fünf nach neun",
@@ -357,7 +357,7 @@
     },
     "11:00": {
       "standard": "elf Uhr",
-      "regional": "punkt elf"
+      "regional": "um elf"
     },
     "11:05": {
       "standard": "fünf nach elf",
@@ -453,7 +453,7 @@
     },
     "15:00": {
       "standard": "drei Uhr",
-      "regional": "punkt drei"
+      "regional": "um drei"
     },
     "15:05": {
       "standard": "fünf nach drei",
@@ -501,7 +501,7 @@
     },
     "18:00": {
       "standard": "sechs Uhr",
-      "regional": "punkt sechs"
+      "regional": "um sechs"
     },
     "18:05": {
       "standard": "fünf nach sechs",
@@ -549,7 +549,7 @@
     },
     "21:00": {
       "standard": "neun Uhr",
-      "regional": "punkt neun"
+      "regional": "um neun"
     },
     "21:05": {
       "standard": "fünf nach neun",
@@ -597,7 +597,7 @@
     },
     "23:00": {
       "standard": "elf Uhr",
-      "regional": "punkt elf"
+      "regional": "um elf"
     },
     "23:05": {
       "standard": "fünf nach elf",
@@ -657,30 +657,30 @@
     "00:45": "Saa saba kasorobo usiku",
     "00:50": "Saa saba kasoro dakika kumi usiku",
     "00:55": "Saa saba kasoro dakika tano usiku",
-    "04:00": "Saa kumi usiku",
-    "04:05": "Saa kumi na dakika tano usiku",
-    "04:10": "Saa kumi na dakika kumi usiku",
-    "04:15": "Saa kumi na robo usiku",
-    "04:20": "Saa kumi na dakika ishirini usiku",
-    "04:25": "Saa kumi na dakika ishirini na tano usiku",
-    "04:30": "Saa kumi na nusu usiku",
-    "04:35": "Saa kumi na moja kasoro dakika ishirini na tano usiku",
-    "04:40": "Saa kumi na moja kasoro dakika ishirini usiku",
-    "04:45": "Saa kumi na moja kasorobo usiku",
-    "04:50": "Saa kumi na moja kasoro dakika kumi usiku",
-    "04:55": "Saa kumi na moja kasoro dakika tano usiku",
-    "06:00": "Saa kumi na mbili asubuhi",
-    "06:05": "Saa kumi na mbili na dakika tano asubuhi",
-    "06:10": "Saa kumi na mbili na dakika kumi asubuhi",
-    "06:15": "Saa kumi na mbili na robo asubuhi",
-    "06:20": "Saa kumi na mbili na dakika ishirini asubuhi",
-    "06:25": "Saa kumi na mbili na dakika ishirini na tano asubuhi",
-    "06:30": "Saa kumi na mbili na nusu asubuhi",
-    "06:35": "Saa moja kasoro dakika ishirini na tano asubuhi",
-    "06:40": "Saa moja kasoro dakika ishirini asubuhi",
-    "06:45": "Saa moja kasorobo asubuhi",
-    "06:50": "Saa moja kasoro dakika kumi asubuhi",
-    "06:55": "Saa moja kasoro dakika tano asubuhi",
+    "04:00": "Saa kumi alfajiri",
+    "04:05": "Saa kumi na dakika tano alfajiri",
+    "04:10": "Saa kumi na dakika kumi alfajiri",
+    "04:15": "Saa kumi na robo alfajiri",
+    "04:20": "Saa kumi na dakika ishirini alfajiri",
+    "04:25": "Saa kumi na dakika ishirini na tano alfajiri",
+    "04:30": "Saa kumi na nusu alfajiri",
+    "04:35": "Saa kumi na moja kasoro dakika ishirini na tano alfajiri",
+    "04:40": "Saa kumi na moja kasoro dakika ishirini alfajiri",
+    "04:45": "Saa kumi na moja kasorobo alfajiri",
+    "04:50": "Saa kumi na moja kasoro dakika kumi alfajiri",
+    "04:55": "Saa kumi na moja kasoro dakika tano alfajiri",
+    "06:00": "Saa kumi na mbili alfajiri",
+    "06:05": "Saa kumi na mbili na dakika tano alfajiri",
+    "06:10": "Saa kumi na mbili na dakika kumi alfajiri",
+    "06:15": "Saa kumi na mbili na robo alfajiri",
+    "06:20": "Saa kumi na mbili na dakika ishirini alfajiri",
+    "06:25": "Saa kumi na mbili na dakika ishirini na tano alfajiri",
+    "06:30": "Saa kumi na mbili na nusu alfajiri",
+    "06:35": "Saa moja kasoro dakika ishirini na tano alfajiri",
+    "06:40": "Saa moja kasoro dakika ishirini alfajiri",
+    "06:45": "Saa moja kasorobo alfajiri",
+    "06:50": "Saa moja kasoro dakika kumi alfajiri",
+    "06:55": "Saa moja kasoro dakika tano alfajiri",
     "09:00": "Saa tatu asubuhi",
     "09:05": "Saa tatu na dakika tano asubuhi",
     "09:10": "Saa tatu na dakika kumi asubuhi",

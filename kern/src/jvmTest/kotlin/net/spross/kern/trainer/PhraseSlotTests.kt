@@ -22,8 +22,6 @@ class PhraseSlotTests {
             listOf(
                 "Treni inaondoka saa mbili.",
                 "Treni inaondoka saa mbili usiku.",
-                "Treni inaondoka saa mbili kamili.",
-                "Treni inaondoka saa mbili kamili usiku.",
                 "Treni inaondoka 20:00.",
             ),
             task.accepted,
@@ -36,7 +34,7 @@ class PhraseSlotTests {
     fun swahiliWakeUpLowercasesSaaMidSentence() {
         val task = PhraseSlots.instantiate(frame("sw", "i-wake-up-at"), hour = 6, minute = 30)
         assertEquals("Ich wache um 06:30 Uhr auf.", task.prompt)
-        assertEquals("Ninaamka saa kumi na mbili na nusu asubuhi.", task.display)
+        assertEquals("Ninaamka saa kumi na mbili na nusu alfajiri.", task.display)
     }
 
     /** The deleted ≤30 rule: the countdown reading embeds like any other. */
@@ -261,10 +259,8 @@ class PhraseSlotTests {
         assertEquals(
             listOf(
                 "Sema saa mbili.", "Sema saa mbili asubuhi.",
-                "Sema saa mbili kamili.", "Sema saa mbili kamili asubuhi.",
                 "Sema 08:00.", "Sema 8:00.",
                 "Tafadhali sema saa mbili.", "Tafadhali sema saa mbili asubuhi.",
-                "Tafadhali sema saa mbili kamili.", "Tafadhali sema saa mbili kamili asubuhi.",
                 "Tafadhali sema 08:00.", "Tafadhali sema 8:00.",
             ),
             task.accepted,
