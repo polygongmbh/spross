@@ -101,12 +101,12 @@ internal object EnglishClock {
      * prompt invites the calque — the one thing English does not say. A drill that
      * advertises a reading it then marks wrong is worse than no gloss at all.
      */
-    private fun gloss(readings: List<String>, hours: Int): String {
-        val display = readings.first()
-        val picks = readings.drop(1)
-            .filter { it != display && " in the " !in it && " at night" !in it && " hours" !in it }
-            .take(2)
-        val warning = if (hours in 13..23) " — never \"${EnglishNumbers.cardinal(hours.toLong())} o'clock\"" else ""
-        return "also: " + picks.joinToString(" or ") + warning
+    private fun gloss(readings: List<String>, hours: Int): String? {
+        val candidates = readings.drop(1)
+            .filter { " in the " !in it && " at night" !in it && " hours" !in it }
+        val picks = ClockGloss.alternatives(readings.first(), candidates, limit = 2)
+        val warning = if (hours in 13..23) "never \"${EnglishNumbers.cardinal(hours.toLong())} o'clock\"" else ""
+        if (picks.isEmpty()) return warning.ifEmpty { null }
+        return "also: " + picks.joinToString(" or ") + if (warning.isEmpty()) "" else " — $warning"
     }
 }

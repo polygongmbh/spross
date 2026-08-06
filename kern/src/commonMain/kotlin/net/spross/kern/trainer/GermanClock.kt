@@ -56,12 +56,6 @@ internal object GermanClock {
         if (c.regional != c.standard) accepted += c.regional
         // Colloquial "um zehn" reads a full hour the same as "zehn Uhr" / "punkt zehn".
         if (minutes == 0 && c.standard.endsWith("Uhr")) accepted += "um ${hourWords[hours % 12]}"
-        // The reveal names at most three alternatives; everything past here is the
-        // same reading said another way, and would crowd the line out.
-        val gloss = accepted.drop(1).take(3)
-            .takeIf { it.isNotEmpty() }
-            ?.let { "auch: ${it.joinToString(" oder ")}" }
-
         for (reading in twentyFourHour(hours, minutes)) accepted.addUnlessPresent(reading)
         if (minutes == 0) {
             val hourWord = hourWords[hours % 12]
@@ -79,6 +73,10 @@ internal object GermanClock {
         if (minutes == 20) accepted.addUnlessPresent("zehn vor halb $nextWord")
         if (minutes == 40) accepted.addUnlessPresent("zehn nach halb $nextWord")
         for (form in accepted.toList()) accepted.addUnlessPresent(withMinuten(form) ?: continue)
+        // The reveal names the other ways to SAY the hour ("Dreiviertel sieben" against
+        // "Viertel vor sieben"), never the same reading with a word added or dropped.
+        val picks = ClockGloss.alternatives(c.standard, accepted.drop(1), limit = 3)
+        val gloss = if (picks.isEmpty()) null else "auch: ${picks.joinToString(" oder ")}"
         return ClockReading(c.standard, accepted, gloss)
     }
 

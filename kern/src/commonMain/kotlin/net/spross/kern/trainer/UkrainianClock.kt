@@ -32,7 +32,8 @@ internal object UkrainianClock {
             for (part in parts) accepted += "${core.text} $part"
             accepted += core.text
         }
-        return ClockReading(accepted.first(), accepted.distinct(), gloss(hours, minutes))
+        val readings = accepted.distinct()
+        return ClockReading(readings.first(), readings, gloss(hours, minutes, readings))
     }
 
     /** Every reading of the time, the one the reveal teaches first. */
@@ -148,12 +149,15 @@ internal object UkrainianClock {
         return listOf(full, Core("$hourWord ${Forms.minuteNumeral(m)}", null))
     }
 
-    /** Alternatives worth naming on the reveal — each one already accepted. */
-    private fun gloss(h: Int, m: Int): String {
+    /**
+     * Alternatives worth naming on the reveal — each one already accepted, and each a
+     * different way of SAYING the time rather than the same one shorter ([ClockGloss]).
+     */
+    private fun gloss(h: Int, m: Int, readings: List<String>): String? {
         val cur = Forms.index(h)
         val next = Forms.index(h + 1)
-        val alternatives = when {
-            m == 0 -> listOf("${Forms.nominative[cur]} ${Forms.dayParts(h)[0]}", "рівно ${Forms.nominative[cur]}")
+        val candidates = when {
+            m == 0 -> listOf("рівно ${Forms.nominative[cur]} година", "рівно ${Forms.nominative[cur]}")
             m == 15 -> listOf("п'ятнадцять хвилин на ${Forms.accusative[next]}", "чверть по ${Forms.locative[cur]}")
             m == 30 -> listOf("пів ${Forms.genitive[next]}", "тридцять хвилин на ${Forms.accusative[next]}")
             m == 45 -> listOf("за п'ятнадцять хвилин ${Forms.nominative[next]}", "чверть до ${Forms.genitive[next]}")
@@ -167,7 +171,18 @@ internal object UkrainianClock {
                 "${Forms.minuteNumeral(60 - m)} ${Forms.minuteNoun(60 - m)} до ${Forms.genitive[next]}",
             )
         }
-        return "також: " + alternatives.joinToString(", ")
+        // The official register closes the list wherever a colloquial alternative ran
+        // out — and collapses into the display below thirteen, where the two ordinals
+        // are the same word, which [ClockGloss] then drops.
+        val official = listOf(
+            if (m == 0) {
+                "${Forms.official[h]} година"
+            } else {
+                "${Forms.official[h]} година ${Forms.minuteNumeral(m)} ${Forms.minuteNoun(m)}"
+            },
+        ).filter { it in readings }
+        val picks = ClockGloss.alternatives(readings.first(), candidates + official, limit = 2)
+        return if (picks.isEmpty()) null else "також: " + picks.joinToString(", ")
     }
 
     private fun List<Core>.leadWith(text: String): List<Core> {

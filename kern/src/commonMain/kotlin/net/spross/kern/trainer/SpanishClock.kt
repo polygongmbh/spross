@@ -201,28 +201,25 @@ internal object SpanishClock {
     }
 
     /**
-     * One alternative per family, picked out of the accepted set itself so the reveal
-     * can never name a reading the drill would then mark wrong. The countdown, the
-     * American `para` and the timetable register are the three worth showing — the
-     * additive form stands in wherever the display already took one of them.
+     * One alternative per family — the countdown, the American `para`, the additive
+     * form and the timetable register — picked out of the accepted set itself so the
+     * reveal can never name a reading the drill would then mark wrong, and filtered by
+     * [ClockGloss] so it never spends a line on the same reading said shorter.
      */
-    private fun gloss(accepted: List<String>): String {
+    private fun gloss(accepted: List<String>): String? {
         val display = accepted.first()
         // why: the gloss teaches the other CONSTRUCTION, so it names readings stripped
         // of the part of the day — repeating that would spend all three lines on it.
-        val plain = accepted.filter {
-            it != display && (it.startsWith("son las ") || it.startsWith("es la ")) &&
-                " de la " !in it && " del " !in it
-        }
-        val picks = listOfNotNull(
-            // The very same reading with nothing after it — naming the part is optional.
-            plain.firstOrNull(),
-            accepted.firstOrNull { " para " in it && " de la " !in it && " del " !in it },
-            plain.firstOrNull { " y " in it },
-            plain.firstOrNull { " y " !in it && " menos " !in it && " horas " !in it && " en punto" !in it },
-            plain.lastOrNull { " horas " !in it },
-        ).distinct().take(3)
-        return "auch: " + picks.joinToString(" · ")
+        val plain = accepted.filter { " de la " !in it && " del " !in it && " horas " !in it }
+        val copular = plain.filter { it.startsWith("son las ") || it.startsWith("es la ") }
+        // Every copular reading is a candidate; the filter below is what decides which
+        // of them are genuinely other ways of saying it.
+        val candidates = listOfNotNull(
+            copular.firstOrNull { " menos " in it },
+            plain.firstOrNull { " para " in it },
+        ) + copular
+        val picks = ClockGloss.alternatives(display, candidates, limit = 3)
+        return if (picks.isEmpty()) null else "auch: " + picks.joinToString(" · ")
     }
 
     private fun List<Core>.leadWith(text: String): List<Core> {

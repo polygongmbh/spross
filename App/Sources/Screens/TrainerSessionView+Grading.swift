@@ -36,12 +36,16 @@ extension TrainerSessionView {
     /// tap — same rule vocab review's produce field uses ("Finishing the word
     /// IS the answer"). Drills have no reveal-then-retype step (`.revealed`
     /// locks the field), so the guard only needs to keep clear of an in-flight
-    /// typo pause.
+    /// typo pause — and of an answer still being written, see `stillGrowing`.
     func approveWhenTyped() {
         guard typoCorrection == nil else { return }
         if case .revealed = feedback { return }
         autoAdvance?.cancel()
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !stillGrowing(trimmed) else {
+            if feedback == .correct { withAnimation { feedback = .neutral } }
+            return
+        }
         guard !trimmed.isEmpty, case .exact = grade(trimmed) else {
             if feedback == .correct { withAnimation { feedback = .neutral } }
             return
@@ -50,6 +54,18 @@ extension TrainerSessionView {
         withAnimation { feedback = .correct }
         let segment: SessionOutcome = hintUsed ? .tough : .right
         AutoAdvance.scheduleLive(&autoAdvance) { advance(correct: true, segment: segment) }
+    }
+
+    /// Is the learner mid-way through a longer accepted answer? A clock reading is
+    /// accepted with and without the part of the day, so "son las nueve" is both a
+    /// finished answer and the first half of "son las nueve de la noche" — and a field
+    /// that confirms itself on the shorter one takes the fuller answer away before it
+    /// can be typed. Only the reading the reveal TEACHES confirms on its own here;
+    /// anything shorter that another reading continues waits for "Prüfen".
+    private func stillGrowing(_ trimmed: String) -> Bool {
+        let typed = fallbackNormalized(trimmed)
+        guard !typed.isEmpty, typed != fallbackNormalized(current.display) else { return false }
+        return current.accepted.contains { fallbackNormalized($0).hasPrefix(typed + " ") }
     }
 
     /// Drill grading verdict (mirrors the vocab Match ladder).
