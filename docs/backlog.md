@@ -140,6 +140,18 @@ One line per item, with a file or context pointer, filed under the section it be
   en `eight`↔`eighty`; es `sesenta`↔`setenta`, both with their compounds):
   at the drill's one-slip-per-word budget one can pass for the other —
   product call pending (no slips at all for number drills vs accept).
+- Spanish's gloss lead-in is `"auch: "` (`SpanishClock.kt:221`) against `ClockRevealTests`'
+  `"también: "`, so the es gloss — and sw's, which carries no `"pia: "` — is unasserted at
+  all 1440 times; the fix moves prefix, separator and the test's split set together.
+- `UkrainianClock.gloss` (lines 159-173) rebuilds its candidates from `Forms` instead of
+  selecting them out of `readings` the way es does, so uk carries a third encoding of its
+  own minute grammar and needs `.filter { it in readings }` as a guard.
+- `EnglishClock` triplicates its own count/noun/direction derivation (`spelledMinutes:70-73`,
+  `american:85-89`, `EnglishClockRegisters.anchors:58-72`) with `past` as `<= 30` in two of
+  them and `< 30` in the third — the largest true duplication in the clock corpus, and
+  larger than everything cross-language put together.
+- `ClockCollisionSweepTests.DAY_PARTS` (line 248) is a third copy of the day-part vocabulary
+  and has already drifted (it lists `"a.m"`, `" am"`, `" pm"` for en, which no generator emits).
 - FSRS parameter optimization from review logs —
   enabled by the full per-card logs, unbuilt (kern README §5).
 - Watch multiple-choice distractors carry no novelty or recency criterion

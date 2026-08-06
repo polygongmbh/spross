@@ -92,6 +92,16 @@ Two exclusions are load-bearing and are commented at the point they are made:
 - English's 24-hour hour word keeps its hyphen: spaced,
   `twenty two eleven` comes within a slip per word of `twenty to eleven`.
 
+## Why five generators and not one
+
+The five files rhyme because clocks are one object, not because they run one computation.
+The past/to pivot is a different minute in each (`:25` de, `:31` en, `>30` es/sw/uk);
+the half hour names the coming hour in de and uk and the current one in en, es and sw;
+Swahili's hours are offset by six and its display is assembled outside its accepted list;
+German has no cores at all, and English hangs its parts of the day on two readings after every bare one.
+Only `leadWith` (`ClockReadings.kt`) and the empty-gloss rule (`ClockGloss.line`) carry no language rule, and those are shared.
+A sixth language is a new `*Clock.kt`, a row in the table above, a cap in `ClockRevealTests` and an entry in the sweep's `DAY_PARTS` — the reusable artifact is this document, not a base class.
+
 ## Rejected, with reasons
 
 - **English a.m./p.m.** — at the two hours it would lead with it is the form style guides tell learners to avoid,

@@ -26,6 +26,23 @@ internal object ClockGloss {
         return picked
     }
 
+    /**
+     * The reveal's line: the picks under the language's own lead-in, or nothing at all —
+     * a gloss with no alternative left to name is not a shorter gloss, it is no gloss.
+     * [lead] and [separator] are words in the language being ANSWERED in and stay at the
+     * call site; centralizing them would make five user-visible strings one edit apart.
+     */
+    fun line(
+        display: String,
+        candidates: List<String>,
+        limit: Int,
+        lead: String,
+        separator: String,
+    ): String? {
+        val picks = alternatives(display, candidates, limit)
+        return if (picks.isEmpty()) null else lead + picks.joinToString(separator)
+    }
+
     /** True when one reading is the other with whole words dropped. */
     private fun sameIdiom(a: String, b: String): Boolean {
         val left = words(a)

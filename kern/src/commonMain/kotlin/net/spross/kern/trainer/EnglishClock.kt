@@ -104,9 +104,8 @@ internal object EnglishClock {
     private fun gloss(readings: List<String>, hours: Int): String? {
         val candidates = readings.drop(1)
             .filter { " in the " !in it && " at night" !in it && " hours" !in it }
-        val picks = ClockGloss.alternatives(readings.first(), candidates, limit = 2)
-        val warning = if (hours in 13..23) "never \"${EnglishNumbers.cardinal(hours.toLong())} o'clock\"" else ""
-        if (picks.isEmpty()) return warning.ifEmpty { null }
-        return "also: " + picks.joinToString(" or ") + if (warning.isEmpty()) "" else " — $warning"
+        val also = ClockGloss.line(readings.first(), candidates, limit = 2, lead = "also: ", separator = " or ")
+        val warning = if (hours in 13..23) "never \"${EnglishNumbers.cardinal(hours.toLong())} o'clock\"" else null
+        return listOfNotNull(also, warning).joinToString(" — ").ifEmpty { null }
     }
 }

@@ -107,7 +107,7 @@ internal object SpanishClock {
                 forms += Core("$next menos $spelled minutos", nextHour, countdown = true, period = false)
             }
         }
-        return forms.leadWith(displayCore(h, m, cur, next, count, restCount))
+        return forms.leadWith(displayCore(h, m, cur, next, count, restCount)) { it.text }
     }
 
     /**
@@ -218,13 +218,7 @@ internal object SpanishClock {
             copular.firstOrNull { " menos " in it },
             plain.firstOrNull { " para " in it },
         ) + copular
-        val picks = ClockGloss.alternatives(display, candidates, limit = 3)
-        return if (picks.isEmpty()) null else "auch: " + picks.joinToString(" · ")
-    }
-
-    private fun List<Core>.leadWith(text: String): List<Core> {
-        val at = indexOfFirst { it.text == text }
-        return if (at <= 0) this else listOf(this[at]) + filterIndexed { i, _ -> i != at }
+        return ClockGloss.line(display, candidates, limit = 3, lead = "auch: ", separator = " · ")
     }
 
     private val MIDNIGHT = ClockReading(

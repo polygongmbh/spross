@@ -104,7 +104,7 @@ internal object UkrainianClock {
             }
         }
         forms += official(h, m)
-        return forms.leadWith(displayText(h, m, cur, next))
+        return forms.leadWith(displayText(h, m, cur, next)) { it.text }
     }
 
     /**
@@ -181,13 +181,7 @@ internal object UkrainianClock {
                 "${Forms.official[h]} година ${Forms.minuteNumeral(m)} ${Forms.minuteNoun(m)}"
             },
         ).filter { it in readings }
-        val picks = ClockGloss.alternatives(readings.first(), candidates + official, limit = 2)
-        return if (picks.isEmpty()) null else "також: " + picks.joinToString(", ")
-    }
-
-    private fun List<Core>.leadWith(text: String): List<Core> {
-        val at = indexOfFirst { it.text == text }
-        return if (at <= 0) this else listOf(this[at]) + filterIndexed { i, _ -> i != at }
+        return ClockGloss.line(readings.first(), candidates + official, limit = 2, lead = "також: ", separator = ", ")
     }
 
     private val NAMED_MIDNIGHT = ClockReading(
