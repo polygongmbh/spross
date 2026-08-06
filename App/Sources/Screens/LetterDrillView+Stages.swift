@@ -20,11 +20,6 @@ extension LetterDrillView {
                                        revealed: cardReveal(task),
                                        replay: replayAction,
                                        isPlaying: promptIsPlaying,
-                                       muted: Pronouncer.shared.muted,
-                                       unmute: { unmute() },
-                                       // why: once per run — a line under every
-                                       // question is furniture, not a hint.
-                                       showsSilentSwitchHint: doneCount == 0,
                                        replayFocus: $replayFocused)
                             .id(index)
                             .transition(reduceMotion ? .opacity : .dlCardFlip)

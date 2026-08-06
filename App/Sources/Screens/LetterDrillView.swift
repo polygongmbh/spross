@@ -102,7 +102,6 @@ struct LetterDrillView: View {
                                 total: doneCount + 1,
                                 outcomes: outcomes,
                                 counter: "\(outcomes.filter { $0 != .wrong }.count)/\(doneCount)",
-                                showsMuteButton: true,
                                 onClose: { closeRun() }) {
                     drillContent
                 }
@@ -115,12 +114,12 @@ struct LetterDrillView: View {
         // why: BOTH hooks. .onChange never fires for the FIRST item, and a
         // single hook therefore ships a silent first question.
         .onAppear {
-            playPrompt(trigger: .auto)
+            playPrompt(trigger: .essential)
             answerFocused = !screenReaderOn && typing
         }
         .onChange(of: index) { _, _ in
             Pronouncer.shared.stop()
-            playPrompt(trigger: .auto)
+            playPrompt(trigger: .essential)
             // The audio question, one action away, on every task.
             replayFocused = true
             // why: not under a screen reader — moving the keyboard focus there
@@ -146,9 +145,10 @@ struct LetterDrillView: View {
 
     // MARK: - Audio
 
-    /// Says the current question. Autoplay passes `.auto`, which is where the
-    /// read-aloud switch and the VoiceOver gate apply; every explicit tap
-    /// passes `.tap` and always sounds. Both live in Pronouncer, not here.
+    /// Says the current question. Autoplay passes `.essential`: here the sound
+    /// IS the question, so the read-aloud switch never reaches it and only
+    /// VoiceOver — which must not be talked over — still holds it back. Every
+    /// explicit tap passes `.tap`. Both gates live in Pronouncer, not here.
     func playPrompt(trigger: Pronouncer.Trigger) {
         guard let task = current, let pronunciation = model.promptPronunciation(for: task) else { return }
         #if DEBUG
@@ -180,15 +180,6 @@ struct LetterDrillView: View {
     var promptIsPlaying: Bool {
         guard let task = current, let pronunciation = model.promptPronunciation(for: task) else { return false }
         return Pronouncer.shared.playingKey == Pronouncer.key(for: pronunciation)
-    }
-
-    /// The blocking unmute row's action: switch reading aloud on — which also
-    /// carries the drill past a silenced phone, the other silence this card
-    /// names — and play the question at once, so the fix and its proof are a
-    /// single tap.
-    func unmute() {
-        Pronouncer.shared.setReadAloud(on: true)
-        playPrompt(trigger: .tap)
     }
 
     // MARK: - Sampling

@@ -165,20 +165,25 @@ extension LetterDrillView {
     }
 
     /// Every fire, with everything the autoplay assertions need: that the FIRST
-    /// question of a fresh run played at all, on which trigger, and which of
-    /// the two gates was standing.
+    /// question of a fresh run played at all, on which trigger, and — the one
+    /// gate this drill still has — whether a screen reader was standing.
     func uitestPlay(_ task: LetterDrillTask, pronunciation: Pronunciation,
                     trigger: Pronouncer.Trigger) {
         guard UserDefaults.standard.bool(forKey: "uitest-letters-probe") else { return }
-        let gated = trigger == .auto && (Pronouncer.shared.muted || screenReaderOn)
+        let gated = trigger != .tap && screenReaderOn
+        let name = switch trigger {
+        case .auto: "auto"
+        case .essential: "essential"
+        case .tap: "tap"
+        }
         // why: the analysis index rides along — the letters are the recordings
         // it exists for, and this is where a run shows it reached the player.
         print("""
-            LetterDrill probe: play \(trigger == .auto ? "auto" : "tap") \
+            LetterDrill probe: play \(name) \
             stage \(task.stage.name) level \(level) kind \(task.promptKind.name) \
             text "\(task.promptText)" recording \(pronunciation.recordingPath ?? "none") \
             index \(pronunciation.gain) dB/\(pronunciation.leadMs) ms \
-            muted \(Pronouncer.shared.muted) screenReader \(screenReaderOn) \
+            screenReader \(screenReaderOn) \
             → \(gated ? "SUPPRESSED" : "played")
             """)
     }

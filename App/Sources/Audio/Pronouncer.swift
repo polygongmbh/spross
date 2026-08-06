@@ -19,6 +19,10 @@ final class Pronouncer {
     enum Trigger {
         case auto
         case tap
+        /// An autoplay that carries the QUESTION itself (the letter drill):
+        /// opening a screen whose only content is a sound IS the request, so
+        /// neither mute reaches it. Only VoiceOver still holds it back.
+        case essential
     }
 
     /// One device-scoped setting (never per target language, never in the box —
@@ -38,8 +42,8 @@ final class Pronouncer {
     }
 
     /// Whether reading aloud is switched off IN THE APP — what the two toggles
-    /// render and what the letter drill blocks on. A phone silenced by its own
-    /// switch is not this, and cannot be read at all.
+    /// render. A phone silenced by its own switch is not this, and cannot be
+    /// read at all.
     var muted: Bool { readAloud == .off }
 
     private let player = PronunciationPlayer()
@@ -83,6 +87,14 @@ final class Pronouncer {
         case .auto:
             if muted || UIAccessibility.isVoiceOverRunning { return }
             AudioSession.useStanding()
+        case .essential:
+            // why: the sound IS the question — either mute would leave a card
+            // with nothing on it, and the replay tap breaks through the phone's
+            // switch anyway, so deferring to it buys a tap per question and no
+            // silence at all. VoiceOver alone still holds: it must not be
+            // talked over, and the replay glyph takes its focus per task.
+            if UIAccessibility.isVoiceOverRunning { return }
+            AudioSession.useExplicit()
         case .tap:
             // why: a tap outranks BOTH mutes — the app's switch already let it
             // through, and the category is what lets it past the phone's.

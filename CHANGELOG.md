@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **The letter drill always speaks its question.** Its whole content is a sound, so it no
+  longer answers to the read-aloud switch or to a phone set to silent — and the switch that
+  used to sit in its top bar, along with the row that asked you to turn the sound back on,
+  is gone. Everywhere else the switch keeps its say.
+
 - **The hours drill tells the time the way people do.** Every language now says where
   the hour sits in the day — "son las cinco menos cuarto de la tarde", "друга година
   дня", "quarter to five in the afternoon", "ein Uhr nachts" — which is the difference

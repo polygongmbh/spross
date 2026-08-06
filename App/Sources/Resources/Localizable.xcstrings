@@ -1779,22 +1779,6 @@
         }
       }
     },
-    "letters.audioOff" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ton ist aus"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sound is off"
-          }
-        }
-      }
-    },
     "letters.dictation" : {
       "localizations" : {
         "de" : {
@@ -1807,22 +1791,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Write what you hear"
-          }
-        }
-      }
-    },
-    "letters.enableSound" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ton einschalten"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turn sound on"
           }
         }
       }
@@ -1855,22 +1823,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You heard: %@"
-          }
-        }
-      }
-    },
-    "letters.silentSwitchHint" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nichts zu hören? Prüfe den Stummschalter."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Can't hear anything? Check the silent switch."
           }
         }
       }

@@ -29,11 +29,10 @@ auto-advance beats these share with it, are `design.md`'s.
   consolidated words, which never touches their schedule and leans toward the ones worth
   spelling twice: words carrying the language's hard graphemes, and words this learner has
   forgotten before. Correctness is never color
-  alone (checkmark/X over the tint); a miss never auto-advances. While reading aloud is
-  muted the drill stays visible and blocks with the one-tap unmute row instead of hiding
-  — a silenced feature must say how to unsilence it, and that one tap clears the phone's
-  silence with it. The silent switch alone cannot block the drill: the replay glyph is a
-  tap, and the run's first question names the switch for the autoplay it does eat.
+  alone (checkmark/X over the tint); a miss never auto-advances. Neither mute reaches the
+  drill and it carries no mute button: entering a screen whose only content is a sound is
+  itself the request to hear one (`read-aloud.md`), so no run of it can open on a card with
+  nothing to answer.
 
 ## Android companion (core loop)
 

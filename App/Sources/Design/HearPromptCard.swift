@@ -12,11 +12,9 @@ import SwiftUI
 /// the gap closes over the grapheme it was hiding, or, where there was no gap
 /// to close, the word grows below the glyph.
 ///
-/// Two silences can meet a learner on this card, and it names both. The app's
-/// own read-aloud switch is one tap to undo, so the card BLOCKS with that tap
-/// instead of showing a speaker that does nothing. The hardware silent
-/// switch cannot be detected at all (Sounds.swift doctrine) — so a run's first
-/// question states it once, rather than leaving a dead screen to be guessed at.
+/// Neither mute reaches this card: a screen whose only content is a sound was
+/// itself the request to hear one (`Pronouncer.Trigger.essential`), so there is
+/// no silenced state to name and no unmute to offer.
 struct HearPromptCard: View {
     /// What is being asked ("Welcher Buchstabe ist das?" …).
     let question: LocalizedStringKey
@@ -44,10 +42,6 @@ struct HearPromptCard: View {
     var replay: (() -> Void)?
     /// Whether the prompt is sounding right now — pulses the speaker glyph.
     var isPlaying: Bool = false
-    var muted: Bool
-    var unmute: () -> Void
-    /// First task of a run only — a line repeated on every question is noise.
-    var showsSilentSwitchHint: Bool
     /// VoiceOver lands here on every task change: the question is one action
     /// away rather than somewhere below the caption.
     var replayFocus: AccessibilityFocusState<Bool>.Binding
@@ -81,14 +75,6 @@ struct HearPromptCard: View {
                     }
                 }
                 .transition(.opacity.combined(with: .move(edge: .top)))
-            }
-            if muted {
-                unmuteRow
-            } else if showsSilentSwitchHint {
-                Text("letters.silentSwitchHint")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
-                    .multilineTextAlignment(.center)
             }
         }
         .padding(DL.Space.l)
@@ -131,17 +117,6 @@ struct HearPromptCard: View {
             .accessibilityFocused(replayFocus)
             .frame(height: 52)
     }
-
-    private var unmuteRow: some View {
-        VStack(spacing: DL.Space.s) {
-            Text("letters.audioOff")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
-            Button("letters.enableSound", action: unmute)
-                .buttonStyle(DLSoftButtonStyle())
-        }
-        .transition(.opacity)
-    }
 }
 
 // MARK: - Previews
@@ -152,21 +127,17 @@ private struct HearPromptPreviewHost: View {
     var body: some View {
         VStack(spacing: DL.Space.xl) {
             HearPromptCard(question: "letters.hear", language: "uk",
-                           replay: {}, muted: false, unmute: {},
-                           showsSilentSwitchHint: true, replayFocus: $focus)
+                           replay: {}, replayFocus: $focus)
             HearPromptCard(question: "letters.spell", language: "de",
-                           gapText: "Na＿t", replay: {}, muted: true, unmute: {},
-                           showsSilentSwitchHint: false, replayFocus: $focus)
+                           gapText: "Na＿t", replay: {}, replayFocus: $focus)
             // The gap closed: the whole word stands where the blank did.
             HearPromptCard(question: "letters.spell", language: "de",
                            gapText: "Na＿t", revealed: .init(word: "Nacht", pronounce: {}),
-                           replay: {}, muted: false, unmute: {},
-                           showsSilentSwitchHint: false, replayFocus: $focus)
+                           replay: {}, replayFocus: $focus)
             // Dictation: no gap to close, so the word grows below the glyph.
             HearPromptCard(question: "letters.dictation", language: "sw",
                            revealed: .init(word: "lugha", note: "Sprache", pronounce: {}),
-                           replay: {}, muted: false, unmute: {},
-                           showsSilentSwitchHint: false, replayFocus: $focus)
+                           replay: {}, replayFocus: $focus)
         }
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

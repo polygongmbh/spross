@@ -47,9 +47,16 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   beside the word; a form that can be heard neither way drops the icon, and the card holds
   its height regardless, so a synonym rotation landing on an unrecorded form never
   resizes it.
+- **The letters drill is the one autoplay no mute reaches, and it carries no switch of its
+  own.** Entering a screen whose only content is a sound is itself the request to hear one,
+  so its question plays under `.playback` like a tap does — the exception to "app-fired
+  sounds stay `.ambient`", and the only one. Deferring there bought no silence anyway: the
+  replay glyph goes past the hardware switch on the first tap, so a silenced phone only ever
+  cost a tap per question and a moment of a screen that looked broken. VoiceOver still holds
+  it back, and gets the replay glyph handed to it on every task instead.
 - **Reading aloud is on by default, and the silent switch is free to silence it.** That is
-  the untouched state; the switch — at the top bar of every run that speaks, review and
-  drill alike, constant chrome so the card below never moves for it, and in the Box
+  the untouched state; the switch — at the top bar of every run it governs, review and
+  number drill alike, constant chrome so the card below never moves for it, and in the Box
   settings — turns it into a decision. Switched OFF it silences autoplay whatever the
   phone says. Switched ON it is itself a request to
   hear something and lifts autoplay past a silenced phone, because a switch that says on
