@@ -22,12 +22,14 @@ class PhraseSlotTests {
             listOf(
                 "Treni inaondoka saa mbili.",
                 "Treni inaondoka saa mbili usiku.",
+                "Treni inaondoka saa mbili kamili.",
+                "Treni inaondoka saa mbili kamili usiku.",
                 "Treni inaondoka 20:00.",
             ),
             task.accepted,
         )
         assertTrue(task.kind == TrainerKind.Clock && task.language == "sw")
-        assertEquals("Saa ± 6h · asubuhi/mchana/jioni/usiku optional", task.gloss)
+        assertEquals("Saa ± 6h · na robo/nusu · kasoro/kasorobo · usiku optional", task.gloss)
     }
 
     @Test
@@ -258,8 +260,11 @@ class PhraseSlotTests {
         assertEquals("Sema saa mbili asubuhi.", task.display)
         assertEquals(
             listOf(
-                "Sema saa mbili.", "Sema saa mbili asubuhi.", "Sema 08:00.", "Sema 8:00.",
+                "Sema saa mbili.", "Sema saa mbili asubuhi.",
+                "Sema saa mbili kamili.", "Sema saa mbili kamili asubuhi.",
+                "Sema 08:00.", "Sema 8:00.",
                 "Tafadhali sema saa mbili.", "Tafadhali sema saa mbili asubuhi.",
+                "Tafadhali sema saa mbili kamili.", "Tafadhali sema saa mbili kamili asubuhi.",
                 "Tafadhali sema 08:00.", "Tafadhali sema 8:00.",
             ),
             task.accepted,

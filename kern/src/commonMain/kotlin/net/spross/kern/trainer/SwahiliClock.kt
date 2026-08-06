@@ -1,56 +1,93 @@
 package net.spross.kern.trainer
 
 /**
- * Swahili saa-system clock times, ported from the prototype `ClockTrainer.tsx`.
- * Saa hour = western hour shifted by 6; day periods asubuhi/mchana/jioni/usiku;
- * "na nusu" for half past, "kasoro dakika ..." counting down past the half hour.
+ * Swahili saa-system clock times. The saa hour is the western hour shifted by six, so
+ * eight in the morning is saa mbili — the second hour of daylight. Quarters have their
+ * own words (`na robo`, `kasorobo`), the half hour is `na nusu`, and past the half the
+ * reading counts down to the coming hour with `kasoro`.
+ *
+ * The part of the day is what separates saa mbili in the morning from saa mbili at
+ * night, and it is optional: every reading is accepted bare as well.
  */
 internal object SwahiliClock {
     private val hourWords = listOf("kumi na mbili", "moja", "mbili", "tatu", "nne", "tano", "sita", "saba", "nane", "tisa", "kumi", "kumi na moja", "kumi na mbili")
 
-    const val GLOSS = "Saa ± 6h · asubuhi/mchana/jioni/usiku optional"
-
     /**
-     * Day periods that fit the hour, canonical (display) form first. mchana
-     * = afternoon starts at noon, not 10; the mchana↔jioni boundary isn't
-     * fixed, so both are accepted across the late-afternoon overlap. The
-     * period is optional (see [accepted]), so these only widen what counts.
+     * Parts of the day that fit the hour, canonical (display) form first. Dawn is
+     * alfajiri, not yet asubuhi; the small hours are usiku, and four is still one of
+     * them. mchana runs from noon, and alasiri belongs to the late afternoon only —
+     * never to the top of the list, and never before three.
+     *
+     * The canonical form must stay ONE word: `TrainerGoldenTests` recovers the
+     * period-less reading by dropping the display's last word.
      */
-    private fun periods(hours: Int): List<String> = when (hours) {
-        in 4..11 -> listOf("asubuhi")
+    fun dayParts(hours: Int): List<String> = when (hours) {
+        in 0..3 -> listOf("usiku", "usiku wa manane")
+        4 -> listOf("usiku", "alfajiri", "asubuhi")
+        5 -> listOf("alfajiri", "usiku", "asubuhi")
+        6 -> listOf("asubuhi", "alfajiri")
+        in 7..11 -> listOf("asubuhi")
         in 12..14 -> listOf("mchana")
-        15 -> listOf("mchana", "jioni")
-        in 16..17 -> listOf("jioni", "mchana")
+        15 -> listOf("mchana", "jioni", "alasiri")
+        in 16..17 -> listOf("jioni", "mchana", "alasiri")
         18 -> listOf("jioni")
+        19 -> listOf("usiku", "jioni")
         else -> listOf("usiku")
     }
 
-    /**
-     * Canonical display string, with the primary day period appended.
-     * Any minute is spelled out (`SwahiliNumbers.cardinal`).
-     */
+    /** Canonical display string, with the primary part of the day appended. */
     fun time(hours: Int, minutes: Int): String =
-        core(hours, minutes) + " " + periods(hours)[0]
+        cores(hours, minutes).first() + " " + dayParts(hours)[0]
 
     /**
-     * All accepted spellings: the bare reading (period optional) plus one per
-     * plausible day period. First is the period-less form.
+     * All accepted spellings: every reading bare, and every reading with each plausible
+     * part of the day. The bare forms are deliberately open across the 12-hour cycle —
+     * "saa sita" is midnight and noon alike, and only naming the part closes it.
      */
-    fun accepted(hours: Int, minutes: Int): List<String> {
-        val base = core(hours, minutes)
-        return listOf(base) + periods(hours).map { "$base $it" }
-    }
+    fun accepted(hours: Int, minutes: Int): List<String> =
+        cores(hours, minutes)
+            .flatMap { core -> listOf(core) + dayParts(hours).map { "$core $it" } }
+            .distinct()
 
-    /** The time reading without any day period. */
-    private fun core(hours: Int, minutes: Int): String {
+    /** Alternatives worth naming on the reveal, per time. */
+    fun gloss(hours: Int): String =
+        "Saa ± 6h · na robo/nusu · kasoro/kasorobo · ${dayParts(hours).joinToString("/")} optional"
+
+    /** Every reading of the time without a part of the day, canonical first. */
+    private fun cores(hours: Int, minutes: Int): List<String> {
         val saaHour = (hours + 6) % 12
-        val nextSaaHour = (saaHour + 1) % 12
         val hWord = hourWords[saaHour]
-        val nextWord = hourWords[nextSaaHour]
+        val nextWord = hourWords[(saaHour + 1) % 12]
+        val out = mutableListOf<String>()
 
-        if (minutes == 0) return "Saa $hWord"
-        if (minutes == 30) return "Saa $hWord na nusu"
-        if (minutes < 30) return "Saa $hWord na dakika ${SwahiliNumbers.cardinal(minutes.toLong())}"
-        return "Saa $nextWord kasoro dakika ${SwahiliNumbers.cardinal((60 - minutes).toLong())}"
+        when {
+            minutes == 0 -> {
+                out += "Saa $hWord"
+                out += "Saa $hWord kamili"
+            }
+            minutes == 15 -> {
+                out += "Saa $hWord na robo"
+                out += "Saa $hWord na dakika kumi na tano"
+            }
+            minutes == 30 -> out += "Saa $hWord na nusu"
+            minutes < 30 -> out += "Saa $hWord na dakika ${SwahiliNumbers.cardinal(minutes.toLong())}"
+            minutes == 45 -> {
+                out += "Saa $nextWord kasorobo"
+                out += "Saa $nextWord kasoro robo"
+                out += "Saa $nextWord kasoro dakika kumi na tano"
+            }
+            else -> out += "Saa $nextWord kasoro dakika ${SwahiliNumbers.cardinal((60 - minutes).toLong())}"
+        }
+        if (minutes > 30) {
+            out += "Saa $nextWord kasoro ${SwahiliNumbers.cardinal((60 - minutes).toLong())}"
+        }
+        // why: past the half hour the additive reading still counts on the CURRENT saa
+        // hour — 23:45 is saa tano na dakika arobaini na tano, never saa sita. One
+        // published course prints the coming hour here; correcting the code toward it
+        // would put 720 readings an hour out.
+        if (minutes >= 30) {
+            out += "Saa $hWord na dakika ${SwahiliNumbers.cardinal(minutes.toLong())}"
+        }
+        return out.distinct()
     }
 }
