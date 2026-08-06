@@ -48,7 +48,9 @@ extension TrainerSessionView {
                 // flip; .id gives each run position its own view identity.
                 ZStack {
                     TrainerPromptCard(task: current, sentence: isPhrases,
-                                      hint: placeValueHint, revealed: cardRevealed)
+                                      hint: placeValueHint, revealed: cardRevealed,
+                                      pronounce: model?.speakAction(for: current.display, lang: language),
+                                      isPlaying: model?.isSpeaking(current.display, lang: language) ?? false)
                         .id(index)
                         .transition(reduceMotion ? .opacity : .dlCardFlip)
                 }
@@ -103,7 +105,9 @@ extension TrainerSessionView {
                             // why: the card's reveal carries the answer and its
                             // gloss now — the panel below repeated it.
                             showsRevealPanel: false,
-                            focus: $answerFocused) {
+                            focus: $answerFocused,
+                            pronounceCorrection: correctionPronounce,
+                            correctionIsPlaying: correctionPlaying) {
                 submit()
             }
             .onChange(of: input) { _, _ in approveWhenTyped() }

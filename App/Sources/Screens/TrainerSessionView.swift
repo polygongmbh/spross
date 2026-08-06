@@ -53,6 +53,10 @@ struct TrainerSessionView: View {
     /// Names the drilled language where no chrome exonym exists for it —
     /// without it a language the chrome does not know is spelled "ES".
     var catalog: Catalog?
+    /// Only for saying the answer out loud. Optional because previews build a
+    /// run out of nothing but a kind and a language — a drill with no model is
+    /// silent rather than broken.
+    var model: AppModel?
 
     @Environment(\.dismiss) var dismiss
 
@@ -92,10 +96,12 @@ struct TrainerSessionView: View {
         self.init(mode: .slots(kind, language))
     }
 
-    init(mode: Mode, normalizer: AnswerNormalizer? = nil, catalog: Catalog? = nil) {
+    init(mode: Mode, normalizer: AnswerNormalizer? = nil, catalog: Catalog? = nil,
+         model: AppModel? = nil) {
         self.mode = mode
         self.normalizer = normalizer
         self.catalog = catalog
+        self.model = model
         _tasks = State(initialValue: [Self.sampleTask(mode: mode, level: 1, avoiding: nil)])
     }
 
@@ -120,6 +126,10 @@ struct TrainerSessionView: View {
                                 total: doneCount + 1,
                                 outcomes: outcomes,
                                 counter: "\(outcomes.filter { $0 != .wrong }.count)/\(doneCount)",
+                                // why: the run says its answers out loud now, so
+                                // it owes the learner a way to silence them here
+                                // rather than in Settings.
+                                showsMuteButton: model != nil,
                                 onClose: { closeRun() }) {
                     drillContent
                 }
@@ -130,7 +140,15 @@ struct TrainerSessionView: View {
         .onChange(of: showingSummary) { _, summarizing in
             if !summarizing { answerFocused = true }
         }
-        .onDisappear { autoAdvance?.cancel() }
+        // why: one fire per answer — the trigger is "is a form owed", so a slip
+        // and a miss both speak once, and the neutral state resets it.
+        .onChange(of: spokenAnswer) { _, form in
+            if form != nil { autoplayAnswer() }
+        }
+        .onDisappear {
+            autoAdvance?.cancel()
+            Pronouncer.shared.stop()
+        }
         #if DEBUG
         // UI-test hooks: `-uitest-input xyz` prefills the answer field,
         // `-uitest-submit 1` submits it after 0.6 s,

@@ -23,6 +23,10 @@ struct TrainerPromptCard: View {
     /// The answer is out — the card grows it below the prompt, exactly like a
     /// vocabulary card, instead of a panel under the input field.
     var revealed = false
+    /// Says the revealed answer — nil where it can neither be played nor
+    /// spoken, which drops the icon rather than showing a dead one.
+    var pronounce: (() -> Void)?
+    var isPlaying = false
 
     var body: some View {
         VStack(spacing: DL.Space.m) {
@@ -35,11 +39,13 @@ struct TrainerPromptCard: View {
                 .multilineTextAlignment(.center)
             if revealed {
                 DLCardReveal(note: task.gloss) {
-                    Text(task.display)
-                        .font(sentence ? DL.Fonts.headline : DL.Fonts.title)
-                        .foregroundStyle(Color.dlAccent)
-                        .multilineTextAlignment(.center)
-                        .minimumScaleFactor(0.6)
+                    DLSpokenWord(pronounce: pronounce, isPlaying: isPlaying) {
+                        Text(task.display)
+                            .font(sentence ? DL.Fonts.headline : DL.Fonts.title)
+                            .foregroundStyle(Color.dlAccent)
+                            .multilineTextAlignment(.center)
+                            .minimumScaleFactor(0.6)
+                    }
                 }
                 .transition(.opacity.combined(with: .move(edge: .top)))
             } else if let hint {

@@ -67,7 +67,7 @@ struct TrainerHubView: View {
             Group {
                 if let mode = destination.drillMode {
                     TrainerSessionView(mode: mode, normalizer: normalizer(for: mode),
-                                       catalog: model.catalog)
+                                       catalog: model.catalog, model: model)
                 } else if let language = destination.lettersLanguage {
                     LetterDrillView(model: model, language: language)
                 }
