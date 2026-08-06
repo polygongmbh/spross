@@ -418,7 +418,10 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   on both sides → iff `kind == verb`: any listed `optionalVerbPrefixes` entry (normalized
   the same way, space-preserving — en `"to "`) optional on both sides → Damerau-Levenshtein
   typo budget → article-mismatch-demotes-to-typo only when the expected
-  answer's grammar carries `gender`; stray-short-leading-word rule unchanged.
+  answer's grammar carries `gender`; a stray short leading word that, once dropped,
+  makes the rest match is a typo — **vocab reviews only**: it recurses, peeling one
+  word per level, and a drill grades against a whole reading where every word names
+  which time it is ("fünf vor halb sieben" is not a misspelling of "halb sieben").
   **Typo budget**: one slip per six letters (spaces excluded), floor 1,
   and zero below four letters.
   Leniency is safe to the extent the catalog can disprove it:
@@ -445,6 +448,8 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   through the real drill normalizer and proves none is accepted for another;
   audited exceptions — sw `nne`↔`nane` (4↔8, incl. tens compounds)
   and uk `дев'ять`↔`десять` (9↔10) — are gated explicitly in the sweep.
+  `ClockCollisionSweepTests` is its clock half, over all 1440 times in all five languages;
+  which readings a clock may share and which it may not is `../docs/clock-registers.md`.
   Vocab reviews (`maxTyposPerWord = null`, the default) keep one budget over the whole form.
   `matchingPrefixWordCount(input, answer)` is a UI-only sibling of `evaluate` — how many
   leading whole words already match, each within its own single-word budget — so a miss's

@@ -118,11 +118,23 @@ One line per item, with a file or context pointer, filed under the section it be
 - sw `repeat-the-year`/`write-the-year` render byte-identical to `repeat-please`/`write-please`
   — a bare cardinal with no head noun, so nothing tells the learner which frame was asked.
   uk re-cut its pair to name «дату»; sw still needs a heading word a speaker would actually use.
+- uk has no time-*when* clock frame (`о`/`об` + locative: "о шістнадцятій"): both shipped
+  frames are predicates, and the adverbial needs `PhraseSlots.fillWords`' German-only
+  `"um "` absorption generalized first (`clock-registers.md`).
+- sw `kasa` ("saa nne kasa dakika tano") and `adhuhuri` at 12–14 are plausible but were
+  left out for want of a Tanzanian source; `DL(kasa, kasoro) = 2`, so they must be listed
+  outright, not left to the typo budget.
+- de accepts no bare hour word ("Es ist acht.") though the German is right — with the
+  drill's stray-word rescue gone it is now safe to add, but it wants its own sweep run.
 
 ## Engine & scheduling
 
 - Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch,
   but revisit the cap if the active box outgrows it (`../kern/docs/snapshots.md`).
+- `AnswerNormalizer.strayLeadingWordRecovery` tests the RAW leading token for letters,
+  so "it's half past two" behaves unlike "it is half past two" where the rule still
+  lives (vocab review). Testing `cleaned(first)` would make it consistent — a widening,
+  so it wants its own `RealCatalogGradingTest` run.
 - Number near-twins gated in `TrainerTypoBridgeGuardTests`
   (sw `nne`↔`nane` incl. tens compounds; uk `дев'ять`↔`десять`;
   en `eight`↔`eighty`; es `sesenta`↔`setenta`, both with their compounds):

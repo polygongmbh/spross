@@ -2,6 +2,27 @@
 
 ## Unreleased
 
+- **The hours drill tells the time the way people do.** Every language now says where
+  the hour sits in the day — "son las cinco menos cuarto de la tarde", "друга година
+  дня", "quarter to five in the afternoon", "ein Uhr nachts" — which is the difference
+  between five in the morning and five in the afternoon that the drill simply could not
+  express before. Saying it stays optional, and it follows the hour the reading names,
+  so a quarter to eight in the evening is called evening even while the clock says seven.
+  Midnight and noon have their own words again in every language.
+  Beside the one reading it teaches, the drill now takes the ones you would actually
+  reach for: the American "veinte para las tres" and "ten after two", the timetable
+  register a station announcement uses, Swahili's "na robo" and "kasorobo" — the two
+  words for the quarter hours, which the drill had been spelling out the long way —
+  and Ukrainian's "двадцять хвилин на третю" beyond the quarter it was stuck on.
+  Where a minute falls off the five-minute grid, the reveal reads the clock out instead
+  of counting from the hour, because that is what a speaker does.
+  Some readings were simply wrong: Ukrainian counted its minutes as masculine when
+  хвилина is feminine, Spanish said "y uno" for a single minute, and German answered
+  a digital prompt with the digits it had just shown.
+  And wrong answers no longer slip through — a drill used to accept "half two" for two
+  o'clock and "fünf vor halb sieben" for half past six, because it forgave a first word
+  that was in fact the whole point.
+
 ## 3.9.0 — 2026-08-04
 
 - **The widget only offers words it can actually show.** A long phrase had to share one line
