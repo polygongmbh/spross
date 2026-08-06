@@ -9,30 +9,23 @@ import net.spross.kern.trainer.EnglishClockRegisters as Registers
  * reads a clock aloud as "seventeen minutes past two".
  *
  * Accepted beside it: the digital reading everywhere, the "a quarter"/"minutes" forms,
- * American "after"/"till"/"quarter of", the part of the day, and the 24-hour reading.
- * 12-hour cycle — the prompt carries the 24-hour value.
+ * American "after"/"till"/"quarter of", the part of the day, the meridiem and the
+ * 24-hour reading. 12-hour cycle — the prompt carries the 24-hour value.
  */
 internal object EnglishClock {
     private val hourWords = listOf("twelve", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve")
 
     fun task(hours: Int, minutes: Int): ClockReading {
+        if (minutes == 0 && hours == 0) return MIDNIGHT
+        if (minutes == 0 && hours == 12) return NOON
         val readings = readings(hours, minutes)
-        return ClockReading(readings.first(), readings, gloss(readings, hours))
+        return ClockReading(readings.first(), readings, gloss(readings.first(), named(hours, minutes), hours))
     }
 
     private fun readings(hours: Int, minutes: Int): List<String> {
         val h12 = hours % 12
         val cur = hourWords[h12]
         val next = hourWords[(h12 + 1) % 12]
-
-        if (minutes == 0 && hours == 0) {
-            return listOf("midnight", "twelve midnight", "twelve o'clock at night", "twelve o'clock", "twelve") +
-                Registers.twentyFourHour(0, 0)
-        }
-        if (minutes == 0 && hours == 12) {
-            return listOf("noon", "midday", "twelve noon", "twelve midday", "twelve o'clock", "twelve") +
-                Registers.twentyFourHour(12, 0)
-        }
 
         val conversational = when (minutes) {
             0 -> listOf("$cur o'clock", cur, "$cur o'clock sharp", "$cur o'clock on the dot", "exactly $cur o'clock")
@@ -42,11 +35,10 @@ internal object EnglishClock {
                 "quarter to $next", "a quarter to $next", "quarter till $next", "a quarter till $next",
                 "quarter of $next", "a quarter of $next",
             )
-            in 1..29 -> listOf("${EnglishNumbers.underHundred(minutes)} past $cur")
-            else -> listOf("${EnglishNumbers.underHundred(60 - minutes)} to $next")
+            else -> listOf(counted(minutes, cur, next))
         }
         // The quarters also read with their minute count ("fifteen past two").
-        val counted = when (minutes) {
+        val quarterCounts = when (minutes) {
             15 -> listOf("${EnglishNumbers.underHundred(minutes)} past $cur")
             45 -> listOf("${EnglishNumbers.underHundred(60 - minutes)} to $next", "fifteen till $next")
             else -> emptyList()
@@ -57,12 +49,19 @@ internal object EnglishClock {
         val digital = if (minutes == 0) emptyList() else listOf(digital(cur, minutes))
         val display = if (minutes % 5 == 0) conversational.first() else digital.first()
 
-        val core = EnglishNumbers.spellings(conversational + counted + spelledOut + american + digital)
+        val core = EnglishNumbers.spellings(conversational + quarterCounts + spelledOut + american + digital)
         val placed = EnglishNumbers.spellings(listOf(conversational.first()) + digital)
             .flatMap { form -> Registers.dayParts(hours).map { "$form $it" } }
-        val all = core + placed + Registers.anchors(hours, minutes) + Registers.twentyFourHour(hours, minutes)
+        val meridiem = Registers.meridiem(hours, digital.ifEmpty { listOf(cur) })
+        val all = core + placed + meridiem +
+            Registers.anchors(hours, minutes) + Registers.twentyFourHour(hours, minutes)
         return (listOf(display) + all).distinct()
     }
+
+    /** "seventeen past two", "twenty-five to three" — the count off the hour. */
+    private fun counted(minutes: Int, cur: String, next: String): String =
+        if (minutes in 1..29) "${EnglishNumbers.underHundred(minutes)} past $cur"
+        else "${EnglishNumbers.underHundred(60 - minutes)} to $next"
 
     /** "seventeen minutes past two", "one minute to twelve" — the count with its noun. */
     private fun spelledMinutes(minutes: Int, cur: String, next: String): List<String> {
@@ -97,15 +96,59 @@ internal object EnglishClock {
     }
 
     /**
-     * Two alternatives from the time's own accepted set, plus — where the 24-hour
-     * prompt invites the calque — the one thing English does not say. A drill that
-     * advertises a reading it then marks wrong is worse than no gloss at all.
+     * The readings the reveal names, in the order it would spend its two lines on them.
+     * Built explicitly rather than filtered out of the accepted set, because what is
+     * left out is the point: a joiner swap ("quarter till five" for "quarter to five",
+     * "ten after two" for "ten past two") is one construction with the preposition
+     * changed and teaches nothing a second time.
      */
-    private fun gloss(readings: List<String>, hours: Int): String? {
-        val candidates = readings.drop(1)
-            .filter { " in the " !in it && " at night" !in it && " hours" !in it }
-        val also = ClockGloss.line(readings.first(), candidates, limit = 2, lead = "also: ", separator = " or ")
+    private fun named(hours: Int, minutes: Int): List<String> {
+        val h12 = hours % 12
+        val cur = hourWords[h12]
+        val next = hourWords[(h12 + 1) % 12]
+        return listOfNotNull(
+            // why: German "Viertel fünf" is 4:15 and English "quarter of five" is 4:45,
+            // so a learner carrying the idiom across lands half an hour out. That false
+            // friend earns the line even though "till" is accepted and never named.
+            "quarter of $next".takeIf { minutes == 45 },
+            "${if (minutes == 0) cur else digital(cur, minutes)} ${Registers.meridiemMark(hours)}",
+            // Off the five-minute grid the display IS the digital reading, so the count
+            // off the hour is the construction it does not show.
+            counted(minutes, cur, next).takeIf { minutes % 5 != 0 },
+            // why: with a minute on it the 24-hour reading is the digital one in another
+            // register — one reading that spells the minute out is all a gloss needs.
+            Registers.twentyFourHour(hours, minutes).firstOrNull()?.takeIf { minutes == 0 },
+        )
+    }
+
+    /**
+     * The gloss: up to two alternatives, plus — where the 24-hour prompt invites the
+     * calque — the one thing English does not say. A drill that advertises a reading it
+     * then marks wrong is worse than no gloss at all, so [named] draws on accepted
+     * readings only and `ClockRevealTests` holds it to that.
+     */
+    private fun gloss(display: String, candidates: List<String>, hours: Int): String? {
+        val also = ClockGloss.line(display, candidates, limit = 2, lead = "also: ", separator = " or ")
         val warning = if (hours in 13..23) "never \"${EnglishNumbers.cardinal(hours.toLong())} o'clock\"" else null
         return listOfNotNull(also, warning).joinToString(" — ").ifEmpty { null }
     }
+
+    /**
+     * why: at the two named hours the meridiem is accepted but never advertised —
+     * "twelve a.m." and "twelve p.m." are the pair native speakers themselves get
+     * backwards, so the reveal keeps teaching "midnight" and "noon" here.
+     */
+    private val MIDNIGHT = ClockReading(
+        "midnight",
+        listOf("midnight", "twelve midnight", "twelve o'clock at night", "twelve o'clock", "twelve") +
+            Registers.meridiem(0, listOf("twelve")) + Registers.twentyFourHour(0, 0),
+        "also: twelve o'clock",
+    )
+
+    private val NOON = ClockReading(
+        "noon",
+        listOf("noon", "midday", "twelve noon", "twelve midday", "twelve o'clock", "twelve") +
+            Registers.meridiem(12, listOf("twelve")) + Registers.twentyFourHour(12, 0),
+        "also: midday or twelve o'clock",
+    )
 }

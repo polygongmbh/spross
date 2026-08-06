@@ -12,10 +12,17 @@ package net.spross.kern.trainer
  * So a candidate is dropped when its words are a subsequence of the display's, or the
  * display's are a subsequence of its — and again against every alternative already
  * picked, so two spellings of one idiom never take both slots.
+ *
+ * What this rule cannot see is a joiner swap: "quarter till five" against "quarter to
+ * five" is one construction with the preposition changed, while German's "punkt sechs"
+ * and "um sechs" are two. Which joiners are interchangeable is a language's own rule, so
+ * a generator that has such pairs builds its candidate list explicitly (EnglishClock)
+ * rather than filtering its accepted set — never by a blanket one-word-differs test here.
  */
 internal object ClockGloss {
 
-    fun alternatives(display: String, candidates: List<String>, limit: Int): List<String> {
+    /** Private on purpose: [line] is the one entry point, and it owns the empty-gloss rule. */
+    private fun alternatives(display: String, candidates: List<String>, limit: Int): List<String> {
         val picked = mutableListOf<String>()
         for (candidate in candidates) {
             if (picked.size == limit) break

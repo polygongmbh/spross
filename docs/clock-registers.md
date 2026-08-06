@@ -23,6 +23,44 @@ A `ClockReading` carries three things, and they are not interchangeable.
   A gloss that advertises a form the grader rejects is a trap, so `ClockRevealTests` holds it to that.
   The one exception is a labelled warning after an em dash
   (English names `"fourteen o'clock"` as the thing not to say).
+  The lead-in and the separator are words of the answer language too —
+  `auch: `, `also: `, `también: `, `також: ` — never the authoring language's.
+
+## What a reveal names
+
+A candidate is dropped when its words are a subsequence of the display's or the display's are of its
+(`ClockGloss`): the same reading with a word added or dropped is not another way to say the time.
+Three rules sit on top of that, and none of them is derivable from the words alone.
+
+- **A joiner swap is not a different idiom.**
+  `quarter to five` · `quarter till five` · `quarter of five` are one construction with the preposition changed,
+  and only one may take a line.
+  This is deliberately NOT a blanket "same word count, one position differs" rule:
+  German `punkt sechs` and `um sechs` would collapse under it and they are genuinely different constructions,
+  both of which the German gloss must keep offering.
+  Which joiners are interchangeable is a language's own knowledge,
+  so English builds its gloss candidates explicitly instead of filtering its accepted set.
+- **`quarter of` is named anyway, because it is a false friend.**
+  German `Viertel fünf` is 4:15 and English `quarter of five` is 4:45,
+  so a German-speaking learner who carries the idiom across lands half an hour out.
+  That is worth a line even though the joiner rule above drops `till`,
+  which stays accepted and unnamed.
+- **One reading per construction, not per wording.**
+  Counting the minute UP from the hour on the clock is one move whichever register says it,
+  so `son las cuatro y cuarenta y cinco` and `son las dieciséis cuarenta y cinco` do not both get a line;
+  Spanish keeps the timetable one, the register a learner cannot derive from the display.
+  Counting DOWN from the coming hour is a different construction, `menos` and `para` are two more,
+  and each of those keeps its own line however it names the number —
+  which is why `cinco para las cinco` is named at :55 and `son las cuatro y cincuenta y cinco` is not.
+  English has the same rule from the other side: with a minute on it
+  the 24-hour reading is the digital one in another register, so it is named at :00 only.
+
+A gloss is ABSENT, not empty, wherever a language has no second construction at that time.
+Below hour 13 the Spanish timetable reading is word for word the conversational one,
+so the subsequence rule drops the last survivor and the reveal says nothing —
+padding it with the same reading minus the day part and plus `minutos`
+would name one reading twice, which is the thing this section exists to forbid.
+German's reveal already goes bare at most of its times and that is the correct output, not a gap.
 
 ## The named-hour rule
 
@@ -82,8 +120,9 @@ A reading that NAMES the part of the day must close it —
 naming it is the whole point — and `dayPartReadingsCloseTheTwelveHourCycle` holds it to that.
 
 Everything else is a bug: no reading may be accepted for a second time in the same cycle.
-Four word pairs sit one slip apart and are gated as audited exceptions
-(`nne`/`nane`, `cuarto`/`cuatro`, and the Ukrainian `дев'ять`/`десять` ordinal cases).
+Three word pairs sit one slip apart and are gated as audited exceptions —
+`nne`/`nane`, `cuarto`/`cuatro`, and `дев'ять`/`десять`,
+the last listed once per Ukrainian ordinal case it reaches the clock in.
 
 Two exclusions are load-bearing and are commented at the point they are made:
 
@@ -100,13 +139,48 @@ the half hour names the coming hour in de and uk and the current one in en, es a
 Swahili's hours are offset by six and its display is assembled outside its accepted list;
 German has no cores at all, and English hangs its parts of the day on two readings after every bare one.
 Only `leadWith` (`ClockReadings.kt`) and the empty-gloss rule (`ClockGloss.line`) carry no language rule, and those are shared.
-A sixth language is a new `*Clock.kt`, a row in the table above, a cap in `ClockRevealTests` and an entry in the sweep's `DAY_PARTS` — the reusable artifact is this document, not a base class.
+The reusable artifact is this document, not a base class.
+
+A sixth language takes all of:
+
+- a new `*Clock.kt` and a row in the table above;
+- its entry in `trainerPacks` (`TrainerLanguagePack.kt`) — without it the generator is dead code
+  and every sweep skips it in silence, with nothing going red;
+- a cap in `ClockRevealTests`, plus its gloss lead-in in that test's `alternativeMarkers`
+  — or its name in `ruleHintGlosses` where the gloss is a hint rather than a list —
+  and its gloss separator in the `separators` it splits on;
+  a marker or separator that matches nothing skips 1440 rows quietly, which is exactly what that test is there to catch;
+- its own `@Test` in `ClockCollisionSweepTests` calling `sweep()` with its gated pairs, and an entry in that file's `DAY_PARTS`
+  — the sweep runs off hand-written per-language tests, so a language with neither gets no collision coverage and nothing goes red.
+
+## English a.m./p.m., accepted knowingly
+
+A learner meets a.m./p.m. constantly, so the drill has to know it.
+It rides on the numeric readings only — the digital one (`four forty-five p.m.`) and the bare hour at :00 (`four p.m.`) —
+because `quarter to five p.m.` is not English, and the 24-hour prompt decides which of the two it is.
+
+Both spellings are emitted because both are correct English, and only an emitted reading grades exact.
+`cleaned()` turns `.` into a space and deletes only `-'’`,
+so `four forty-five p.m.` is four words against `four forty-five pm`'s three;
+differing word counts drop to the whole-form budget, where the two sit one space apart.
+Listing only one would therefore book the other — a correct answer — amber as a typo.
+
+`am` and `pm` themselves ARE one substitution apart, and the drill's budget is one slip per word flat,
+so each grades correct for the other and the twelve-hour cycle stays open across the meridiem.
+That is accepted, for two reasons:
+typing out the wrong meridiem is a knowledge error rather than a slip, and an unlikely one;
+and a typo verdict does not auto-advance — it holds the card and shows the correct form,
+so the learner is corrected and the answer books amber.
+Being corrected is the teaching outcome wanted here.
+`ClockCollisionSweepTests.DAY_PARTS` therefore does not list the meridiem,
+while the phrase day parts beside it still have to close the cycle.
+
+At 00:00 and 12:00 `twelve a.m.` and `twelve p.m.` are accepted but never named:
+that pair is the one native speakers themselves get backwards,
+so the reveal keeps teaching `midnight` and `noon` there.
 
 ## Rejected, with reasons
 
-- **English a.m./p.m.** — at the two hours it would lead with it is the form style guides tell learners to avoid,
-  and it is confirmed fatal: `two a.m.` grades correct at 14:00.
-  The part-of-day suffixes cover the same need.
 - **English approximators** (`gone four`, `nearly four`) — an approximator names an interval,
   so accepting it at 16:20 necessarily accepts it at 16:05.
 - **German odd-minute relative readings** (`siebzehn nach drei`) —

@@ -152,6 +152,11 @@ One line per item, with a file or context pointer, filed under the section it be
   larger than everything cross-language put together.
 - `ClockCollisionSweepTests.DAY_PARTS` (line 248) is a third copy of the day-part vocabulary
   and has already drifted (it lists `"a.m"`, `" am"`, `" pm"` for en, which no generator emits).
+- `ClockCollisionSweepTests` indexes candidate pairs by word count, so it only ever grades
+  readings of EQUAL length against each other, while `AnswerNormalizer` also bridges
+  unequal-length pairs on one whole-form budget (`withinBudget`) — that path is probed
+  clean today but nothing holds it; closing it takes a second index keyed on the whole
+  shape's deletion neighbourhood.
 - FSRS parameter optimization from review logs —
   enabled by the full per-card logs, unbuilt (kern README §5).
 - Watch multiple-choice distractors carry no novelty or recency criterion

@@ -10,12 +10,16 @@
   so a quarter to eight in the evening is called evening even while the clock says seven.
   Midnight and noon have their own words again in every language.
   Beside the one reading it teaches, the drill now takes the ones you would actually
-  reach for: the American "veinte para las tres" and "ten after two", the timetable
-  register a station announcement uses, Swahili's "na robo" and "kasorobo" — the two
-  words for the quarter hours, which the drill had been spelling out the long way —
-  and Ukrainian's "двадцять хвилин на третю" beyond the quarter it was stuck on.
+  reach for: the American "veinte para las tres" and "ten after two", English's
+  "four forty-five p.m.", the timetable register a station announcement uses, Swahili's
+  "na robo" and "kasorobo" — the two words for the quarter hours, which the drill had
+  been spelling out the long way — and Ukrainian's "двадцять хвилин на третю" beyond
+  the quarter it was stuck on.
   Where a minute falls off the five-minute grid, the reveal reads the clock out instead
   of counting from the hour, because that is what a speaker does.
+  The reveal names those alternatives in the language you are answering in — the Spanish
+  one had been announcing them in German — and spends its lines on readings that really
+  are different, not on the same idiom with the preposition swapped.
   Some readings were simply wrong: Ukrainian counted its minutes as masculine when
   хвилина is feminine, Spanish said "y uno" for a single minute, and German answered
   a digital prompt with the digits it had just shown.

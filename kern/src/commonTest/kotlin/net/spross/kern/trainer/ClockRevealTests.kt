@@ -15,26 +15,45 @@ import kotlin.test.assertTrue
  */
 class ClockRevealTests {
 
-    /** The gloss lists alternatives after this marker, one per language. */
+    /**
+     * The gloss lists alternatives after this marker, in the language being ANSWERED in.
+     * A language must appear here or in [ruleHintGlosses], and the test says so out loud:
+     * a marker that matches nothing skips its 1440 rows in silence, which is the whole
+     * defect this file exists to catch.
+     */
     private val alternativeMarkers = mapOf(
-        "de" to "auch: ", "en" to "also: ", "es" to "también: ",
-        "sw" to "pia: ", "uk" to "також: ",
+        "de" to "auch: ", "en" to "also: ", "es" to "también: ", "uk" to "також: ",
     )
+
+    /**
+     * Languages whose gloss is a rule hint ("Saa ± 6h · na robo/nusu"), not a list of
+     * readings — there is nothing in it to hold to the accepted set. Declaring them is
+     * what keeps a language missing from [alternativeMarkers] from passing quietly.
+     */
+    private val ruleHintGlosses = setOf("sw")
+
+    /** Every separator a gloss joins its alternatives with, across the languages. */
+    private val separators = arrayOf(", ", " oder ", " or ", " · ")
 
     @Test
     fun everyAlternativeTheGlossNamesIsAcceptedAndNotTheDisplay() {
         for (language in Trainer.languages) {
-            val marker = alternativeMarkers.getValue(language)
+            val marker = alternativeMarkers[language]
+            assertTrue(
+                marker != null || language in ruleHintGlosses,
+                "$language: no gloss lead-in registered, and not declared a rule-hint gloss",
+            )
             for (hour in 0..23) {
                 for (minute in 0..59) {
                     val task = Trainer.clock(hour, minute, language)
                     val where = "$language ${task.prompt}"
                     assertTrue(task.display in task.accepted, "$where: display not accepted")
+                    if (marker == null) continue
                     // An em-dash tail is a labelled warning ("never 'fourteen o'clock'"),
                     // the one thing a gloss may name that the drill does NOT accept.
                     val listed = task.gloss?.substringAfter(marker, "").orEmpty().substringBefore(" — ")
                     if (listed.isEmpty()) continue
-                    for (alternative in listed.split(", ", " oder ", " or ")) {
+                    for (alternative in listed.split(*separators)) {
                         assertTrue(alternative in task.accepted, "$where: gloss names \"$alternative\"")
                         assertTrue(alternative != task.display, "$where: gloss repeats the display")
                     }
@@ -50,7 +69,7 @@ class ClockRevealTests {
      */
     @Test
     fun everyReadingSetStaysWithinItsCapAndCarriesNoDuplicates() {
-        val caps = mapOf("de" to 14, "en" to 26, "es" to 42, "sw" to 22, "uk" to 24)
+        val caps = mapOf("de" to 14, "en" to 27, "es" to 42, "sw" to 22, "uk" to 24)
         for (language in Trainer.languages) {
             var widest = 0
             var widestAt = ""

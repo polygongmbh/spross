@@ -48,7 +48,7 @@ internal object SpanishClock {
         }
         readings += bare(hours, minutes)
         val accepted = readings.distinct()
-        return ClockReading(accepted.first(), accepted, gloss(accepted))
+        return ClockReading(accepted.first(), accepted, gloss(accepted, hours, minutes))
     }
 
     private fun cores(h: Int, m: Int): List<Core> {
@@ -177,11 +177,13 @@ internal object SpanishClock {
         }
         val count = SpanishNumbers.underHundred(m)
         val spelled = if (m == 1) "un minuto" else "${Forms.beforeMinutos(m).first()} minutos"
-        return listOf(
-            "$copula $hourWord $count",
-            "$article $hourWord $count",
-            "$copula $hourWord horas $spelled",
-        )
+        // why: a single-digit minute is spoken with its zero — a board reads 16:05 as
+        // "las dieciséis cero cinco". The bare count is said too and stays accepted, but
+        // the zero-bearing form leads, so it is the one the reveal teaches.
+        val counts = if (m < 10) listOf("cero $count", count) else listOf(count)
+        return counts.map { "$copula $hourWord $it" } +
+            counts.map { "$article $hourWord $it" } +
+            "$copula $hourWord horas $spelled"
     }
 
     /**
@@ -201,24 +203,55 @@ internal object SpanishClock {
     }
 
     /**
-     * One alternative per family — the countdown, the American `para`, the additive
-     * form and the timetable register — picked out of the accepted set itself so the
-     * reveal can never name a reading the drill would then mark wrong, and filtered by
-     * [ClockGloss] so it never spends a line on the same reading said shorter.
+     * One alternative per family — the countdown, the American `para`, and one reading
+     * that counts the minute up from the hour — picked out of the accepted set itself so
+     * the reveal can never name a reading the drill would then mark wrong, and filtered
+     * by [ClockGloss] so it never spends a line on the same reading said shorter.
      */
-    private fun gloss(accepted: List<String>): String? {
+    private fun gloss(accepted: List<String>, h: Int, m: Int): String? {
         val display = accepted.first()
         // why: the gloss teaches the other CONSTRUCTION, so it names readings stripped
         // of the part of the day — repeating that would spend all three lines on it.
         val plain = accepted.filter { " de la " !in it && " del " !in it && " horas " !in it }
         val copular = plain.filter { it.startsWith("son las ") || it.startsWith("es la ") }
-        // Every copular reading is a candidate; the filter below is what decides which
-        // of them are genuinely other ways of saying it.
+        // why: "son las cuatro y cuarenta y cinco" and "son las dieciséis cuarenta y
+        // cinco" are two registers doing one move, so only one of them takes a line —
+        // the timetable one, which is the register a learner cannot derive from the
+        // conversational display.
+        val counting = official(h, m).firstOrNull()
+        // One candidate per family: the countdown and the `para` reading are taken in
+        // accepted order, which is the plainest each family has, and no further
+        // countdown may follow — a second one is the same construction with its noun
+        // spelled out ("es la una menos veintiún minutos"), which the subsequence rule
+        // cannot see across an apocopated count.
         val candidates = listOfNotNull(
             copular.firstOrNull { " menos " in it },
             plain.firstOrNull { " para " in it },
-        ) + copular
-        return ClockGloss.line(display, candidates, limit = 3, lead = "auch: ", separator = " · ")
+        ) + copular.filter { " menos " !in it }
+        val trimmed = candidates.filter { it == counting || !countsUpFromTheHour(it, m) }
+        // why: below hour 13 the timetable reading is word for word the conversational
+        // one, so trimming can leave nothing and the reveal goes bare — at those times
+        // the two registers coincide and there is no second construction to name.
+        return ClockGloss.line(display, trimmed, limit = 3, lead = "también: ", separator = " · ")
+    }
+
+    /**
+     * Does the reading count the minute UP from the hour on the clock, as a number —
+     * "son las cuatro y cuarenta y cinco", "son las cuatro cuarenta y cinco", "son las
+     * dieciséis cuarenta y cinco"? That is one move in three registers, so the gloss
+     * spends a line on one of them only. The countdown and the American `para` count
+     * from the COMING hour instead: different constructions, never in this class however
+     * they name the number, which is also what keeps the hour word of "cinco para las
+     * cinco" from reading as the minute.
+     *
+     * The count is matched in both spellings, plain and apocopated ("y veintiuno", "y
+     * veintiún minutos"), or the apocopated twin outlives the reading it restates.
+     */
+    private fun countsUpFromTheHour(reading: String, m: Int): Boolean {
+        if (m == 0 || " menos " in reading || " para " in reading) return false
+        val head = reading.removeSuffix(" minutos").removeSuffix(" minuto")
+        val counts = listOf(SpanishNumbers.underHundred(m)) + Forms.beforeMinutos(m)
+        return counts.any { head.endsWith(" $it") }
     }
 
     private val MIDNIGHT = ClockReading(
@@ -229,7 +262,7 @@ internal object SpanishClock {
             "las doce de la noche", "son las doce", "son las doce en punto",
             "las doce", "doce", "doce en punto", "son las cero horas", "las cero horas",
         ),
-        "auch: es medianoche · las cero horas",
+        "también: es medianoche · las cero horas",
     )
 
     private val NOON = ClockReading(
@@ -240,6 +273,6 @@ internal object SpanishClock {
             "las doce del mediodía", "las doce del día", "son las doce", "son las doce en punto",
             "las doce", "doce", "doce en punto", "son las doce horas",
         ),
-        "auch: son las doce del día · es mediodía",
+        "también: son las doce del día · es mediodía",
     )
 }
