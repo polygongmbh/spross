@@ -18,6 +18,9 @@ import net.spross.kern.trainer.SpanishClockForms as Forms
  */
 internal object SpanishClock {
 
+    /** The steps a speaker names with a fraction word instead of a count. */
+    private val ROUND_STEPS = setOf(0, 15, 30, 45)
+
     /**
      * One reading without its article. [namedHour] is the hour it names, null where a
      * part of the day would be redundant (the timetable register names 0–23 already).
@@ -203,10 +206,11 @@ internal object SpanishClock {
     }
 
     /**
-     * One alternative per family — the countdown, the American `para`, and one reading
-     * that counts the minute up from the hour — picked out of the accepted set itself so
-     * the reveal can never name a reading the drill would then mark wrong, and filtered
-     * by [ClockGloss] so it never spends a line on the same reading said shorter.
+     * One alternative per family — the countdown, the American `para`, the spelled-out
+     * `minutos` register and one reading that counts the minute up from the hour —
+     * picked out of the accepted set itself so the reveal can never name a reading the
+     * drill would then mark wrong, and filtered by [ClockGloss] so it never spends a
+     * line on the same reading said shorter.
      */
     private fun gloss(accepted: List<String>, h: Int, m: Int): String? {
         val display = accepted.first()
@@ -219,27 +223,37 @@ internal object SpanishClock {
         // the timetable one, which is the register a learner cannot derive from the
         // conversational display.
         val counting = official(h, m).firstOrNull()
+        // why: off the round steps, spelling the noun out is what marks the number as a
+        // COUNTED minute — the contrast a learner needs against the fraction words
+        // ("y cuarto", "y media") the round steps taught them. At those steps the same
+        // reading is the display's own count with a word added, so it is not offered.
+        val spelledMinutes = copular
+            .firstOrNull { " y " in it && it.endsWith(" minutos") }
+            ?.takeIf { m !in ROUND_STEPS }
         // One candidate per family: the countdown and the `para` reading are taken in
         // accepted order, which is the plainest each family has, and no further
         // countdown may follow — a second one is the same construction with its noun
         // spelled out ("es la una menos veintiún minutos"), which the subsequence rule
-        // cannot see across an apocopated count.
+        // cannot see across an apocopated count. Both outrank the `minutos` register:
+        // another construction teaches more than another way to say this one.
         val candidates = listOfNotNull(
             copular.firstOrNull { " menos " in it },
             plain.firstOrNull { " para " in it },
+            spelledMinutes,
         ) + copular.filter { " menos " !in it }
-        val trimmed = candidates.filter { it == counting || !countsUpFromTheHour(it, m) }
-        // why: below hour 13 the timetable reading is word for word the conversational
-        // one, so trimming can leave nothing and the reveal goes bare — at those times
-        // the two registers coincide and there is no second construction to name.
+        val trimmed = candidates.filter {
+            it == counting || it == spelledMinutes || !countsUpFromTheHour(it, m)
+        }
         return ClockGloss.line(display, trimmed, limit = 3, lead = "también: ", separator = " · ")
     }
 
     /**
      * Does the reading count the minute UP from the hour on the clock, as a number —
      * "son las cuatro y cuarenta y cinco", "son las cuatro cuarenta y cinco", "son las
-     * dieciséis cuarenta y cinco"? That is one move in three registers, so the gloss
-     * spends a line on one of them only. The countdown and the American `para` count
+     * dieciséis cuarenta y cinco"? That is one move in several registers, and the gloss
+     * names the ones a learner cannot derive from the display — the timetable reading,
+     * and off the round steps the spelled-out `minutos` — never the bare count, which
+     * is the display with its day part dropped. The countdown and the American `para` count
      * from the COMING hour instead: different constructions, never in this class however
      * they name the number, which is also what keeps the hour word of "cinco para las
      * cinco" from reading as the minute.

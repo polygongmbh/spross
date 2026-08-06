@@ -19,7 +19,9 @@ internal object EnglishClock {
         if (minutes == 0 && hours == 0) return MIDNIGHT
         if (minutes == 0 && hours == 12) return NOON
         val readings = readings(hours, minutes)
-        return ClockReading(readings.first(), readings, gloss(readings.first(), named(hours, minutes), hours))
+        val display = readings.first()
+        val gloss = ClockGloss.line(display, named(hours, minutes), limit = 2, lead = "also: ", separator = " or ")
+        return ClockReading(display, readings, gloss)
     }
 
     private fun readings(hours: Int, minutes: Int): List<String> {
@@ -101,6 +103,9 @@ internal object EnglishClock {
      * left out is the point: a joiner swap ("quarter till five" for "quarter to five",
      * "ten after two" for "ten past two") is one construction with the preposition
      * changed and teaches nothing a second time.
+     *
+     * Every one of them is an ACCEPTED reading — a drill that advertises a form it then
+     * marks wrong is worse than no gloss at all, and `ClockRevealTests` holds it to that.
      */
     private fun named(hours: Int, minutes: Int): List<String> {
         val h12 = hours % 12
@@ -119,18 +124,6 @@ internal object EnglishClock {
             // register — one reading that spells the minute out is all a gloss needs.
             Registers.twentyFourHour(hours, minutes).firstOrNull()?.takeIf { minutes == 0 },
         )
-    }
-
-    /**
-     * The gloss: up to two alternatives, plus — where the 24-hour prompt invites the
-     * calque — the one thing English does not say. A drill that advertises a reading it
-     * then marks wrong is worse than no gloss at all, so [named] draws on accepted
-     * readings only and `ClockRevealTests` holds it to that.
-     */
-    private fun gloss(display: String, candidates: List<String>, hours: Int): String? {
-        val also = ClockGloss.line(display, candidates, limit = 2, lead = "also: ", separator = " or ")
-        val warning = if (hours in 13..23) "never \"${EnglishNumbers.cardinal(hours.toLong())} o'clock\"" else null
-        return listOfNotNull(also, warning).joinToString(" — ").ifEmpty { null }
     }
 
     /**

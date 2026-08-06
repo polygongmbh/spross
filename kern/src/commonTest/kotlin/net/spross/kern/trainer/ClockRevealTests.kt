@@ -49,9 +49,7 @@ class ClockRevealTests {
                     val where = "$language ${task.prompt}"
                     assertTrue(task.display in task.accepted, "$where: display not accepted")
                     if (marker == null) continue
-                    // An em-dash tail is a labelled warning ("never 'fourteen o'clock'"),
-                    // the one thing a gloss may name that the drill does NOT accept.
-                    val listed = task.gloss?.substringAfter(marker, "").orEmpty().substringBefore(" — ")
+                    val listed = task.gloss?.substringAfter(marker, "").orEmpty()
                     if (listed.isEmpty()) continue
                     for (alternative in listed.split(*separators)) {
                         assertTrue(alternative in task.accepted, "$where: gloss names \"$alternative\"")

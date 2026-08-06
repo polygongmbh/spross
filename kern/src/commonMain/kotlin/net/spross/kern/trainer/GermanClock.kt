@@ -75,7 +75,10 @@ internal object GermanClock {
         for (form in accepted.toList()) accepted.addUnlessPresent(withMinuten(form) ?: continue)
         // The reveal names the other ways to SAY the hour ("Dreiviertel sieben" against
         // "Viertel vor sieben"), never the same reading with a word added or dropped.
-        val gloss = ClockGloss.line(c.standard, accepted.drop(1), limit = 3, lead = "auch: ", separator = " oder ")
+        // why: "punkt sechs" reads as an emphasis — exactly AT six — rather than another
+        // name for the time, so the full hour is offered as "um sechs"; both stay accepted.
+        val candidates = accepted.drop(1).filterNot { it.startsWith("punkt ") }
+        val gloss = ClockGloss.line(c.standard, candidates, limit = 3, lead = "auch: ", separator = " oder ")
         return ClockReading(c.standard, accepted, gloss)
     }
 

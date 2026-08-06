@@ -115,9 +115,9 @@ class TrainerEnglishTests {
         // "of" is one edit from the digital "oh", so a numeric "ten of three" would
         // grade correct at 3:10 — only the quarter takes it.
         assertTrue(Trainer.clock(14, 50, "en").accepted.none { " of " in it })
-        // The calque the 24-hour prompt invites stays wrong, and the gloss says so.
+        // The calque the 24-hour prompt invites stays wrong, at every hour past twelve.
         assertTrue(Trainer.clock(14, 0, "en").accepted.none { "fourteen o'clock" in it })
-        assertTrue("fourteen o'clock" in (Trainer.clock(14, 0, "en").gloss ?: ""))
+        assertTrue(Trainer.clock(16, 0, "en").accepted.none { "sixteen o'clock" in it })
     }
 
     /** Counting off midnight and noon by name, either side of them. */

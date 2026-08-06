@@ -19,10 +19,10 @@ A `ClockReading` carries three things, and they are not interchangeable.
   Generous on purpose: a learner who types a real, correct alternative must not be marked wrong.
   This is where the registers live — the timetable one, the American one, the elliptical one.
 - **gloss** — up to three alternatives, in the language being ANSWERED in,
-  each one already in `accepted`.
-  A gloss that advertises a form the grader rejects is a trap, so `ClockRevealTests` holds it to that.
-  The one exception is a labelled warning after an em dash
-  (English names `"fourteen o'clock"` as the thing not to say).
+  each one already in `accepted`, with no exception:
+  a gloss that advertises a form the grader rejects is a trap, so `ClockRevealTests` holds it to that.
+  Naming what NOT to say is a warning rather than an alternative, and a warning repeated
+  at every reveal of every hour past twelve is not worth the line it takes.
   The lead-in and the separator are words of the answer language too —
   `auch: `, `also: `, `también: `, `також: ` — never the authoring language's.
 
@@ -36,8 +36,10 @@ Three rules sit on top of that, and none of them is derivable from the words alo
   `quarter to five` · `quarter till five` · `quarter of five` are one construction with the preposition changed,
   and only one may take a line.
   This is deliberately NOT a blanket "same word count, one position differs" rule:
-  German `punkt sechs` and `um sechs` would collapse under it and they are genuinely different constructions,
-  both of which the German gloss must keep offering.
+  German `punkt sechs` and `um sechs` sit exactly one word apart and are two constructions, not one said twice.
+  What keeps `punkt` off the German gloss is a judgment about what it MEANS —
+  an emphasis, "exactly at six", rather than another name for the hour — which no word-shape test could make;
+  it stays accepted throughout.
   Which joiners are interchangeable is a language's own knowledge,
   so English builds its gloss candidates explicitly instead of filtering its accepted set.
 - **`quarter of` is named anyway, because it is a false friend.**
@@ -55,12 +57,17 @@ Three rules sit on top of that, and none of them is derivable from the words alo
   English has the same rule from the other side: with a minute on it
   the 24-hour reading is the digital one in another register, so it is named at :00 only.
 
+Spanish is where a REGISTER earns a line of its own.
+At a minute off the round steps, `son las nueve y diecisiete minutos` spells the noun out,
+and spelling it is what marks the number as a COUNTED minute —
+the contrast a learner needs against `y cuarto` and `y media`, the fraction words the round steps taught them.
+So it is named wherever the minute is not 0, 15, 30 or 45:
+after the countdown and the `para` families, which are other constructions and outrank a register,
+and beside the timetable reading, which it does not displace.
+At the round steps themselves it is the display's own count with a word added, and the subsequence rule drops it.
+
 A gloss is ABSENT, not empty, wherever a language has no second construction at that time.
-Below hour 13 the Spanish timetable reading is word for word the conversational one,
-so the subsequence rule drops the last survivor and the reveal says nothing —
-padding it with the same reading minus the day part and plus `minutos`
-would name one reading twice, which is the thing this section exists to forbid.
-German's reveal already goes bare at most of its times and that is the correct output, not a gap.
+German's reveal goes bare at most of its times, and that is the correct output, not a gap.
 
 ## The named-hour rule
 
@@ -134,7 +141,8 @@ Two exclusions are load-bearing and are commented at the point they are made:
 ## Why five generators and not one
 
 The five files rhyme because clocks are one object, not because they run one computation.
-The past/to pivot is a different minute in each (`:25` de, `:31` en, `>30` es/sw/uk);
+The past/to pivot is `:31` in four of them and `:25` in German,
+which counts against the HALF hour rather than the coming one — 6:25 is "fünf vor halb sieben";
 the half hour names the coming hour in de and uk and the current one in en, es and sw;
 Swahili's hours are offset by six and its display is assembled outside its accepted list;
 German has no cores at all, and English hangs its parts of the day on two readings after every bare one.
