@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.10.0 — 2026-08-06
+
 - **The feedback chimes are heard beside the spoken words, not under them.** They were
   matched to the recordings by their loudest instant, which for a struck note is a spike
   over a decay — so every chime arrived quieter than the words it plays between, and the
