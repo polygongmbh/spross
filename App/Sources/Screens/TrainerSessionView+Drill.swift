@@ -86,11 +86,20 @@ extension TrainerSessionView {
         return Text(verbatim: "\(variant.trainerEmoji) ") + text
     }
 
+    /// What the field asks for. Naming the language is right only while the
+    /// answer is words — a reversed task wants the value written out, and
+    /// "Auf Swahili …" over a number pad asks for the wrong thing.
+    private var fieldPlaceholder: String {
+        currentReversed
+            ? DLChrome.string("trainer.answer.digits", locale: locale)
+            : answerPlaceholder(language)
+    }
+
     private var controls: some View {
         VStack(spacing: DL.Space.m) {
             AnswerInputView(text: $input,
                             feedback: feedback,
-                            placeholder: answerPlaceholder(language),
+                            placeholder: fieldPlaceholder,
                             focus: $answerFocused,
                             correctionVoice: .init(
                                 pronounce: { model?.pronounceAction(for: $0, lang: language) },

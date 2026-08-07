@@ -153,22 +153,6 @@
         }
       }
     },
-    "a11y.practicePhrases" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sätze üben"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Practice sentences"
-          }
-        }
-      }
-    },
     "a11y.practiceSuffix %@" : {
       "localizations" : {
         "de" : {
@@ -3103,6 +3087,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alphabet"
+          }
+        }
+      }
+    },
+    "trainer.answer.digits" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In Ziffern …"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In digits …"
           }
         }
       }
