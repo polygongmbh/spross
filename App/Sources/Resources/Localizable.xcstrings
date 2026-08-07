@@ -2376,13 +2376,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Was du gesät hast, sagst du jetzt"
+            "value" : "Jetzt sagst du, was du gesät hast"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "What you sowed, you can say now"
+            "value" : "Saying what you sowed"
           }
         }
       }
@@ -2398,7 +2398,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "What you know is in bloom here"
+            "value" : "You've brought this into bloom"
           }
         }
       }
@@ -2408,13 +2408,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine Pflege zeigt sich"
+            "value" : "Du hast es gepflegt, jetzt trägt's"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your care is showing"
+            "value" : "Your tending shows"
           }
         }
       }
@@ -2430,7 +2430,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "What you can say here is growing"
+            "value" : "You've grown what you can say"
           }
         }
       }
@@ -2440,13 +2440,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Du hast die Wurzeln gestärkt"
+            "value" : "Du hast tiefe Wurzeln geschlagen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You've put down deeper roots"
+            "value" : "Your words root deeper now"
           }
         }
       }
@@ -2462,7 +2462,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "By now it's settled in"
+            "value" : "Words are settling in"
           }
         }
       }
@@ -2472,13 +2472,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Du hast hier was angelegt"
+            "value" : "Deine ersten Wörter in guter Erde"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You've started a patch here"
+            "value" : "Your first words in good soil"
           }
         }
       }
@@ -2510,7 +2510,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is starting to grow in you"
+            "value" : "You've got this sprouting"
           }
         }
       }
@@ -2526,7 +2526,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You've just planted this"
+            "value" : "You're planting, word by word"
           }
         }
       }
