@@ -84,8 +84,7 @@ extension AppModel {
     /// answer away, otherwise the reveal (contract §3).
     func emojiCue(for card: Card) -> EmojiCue {
         SprossKern.emojiCue(role: presentationRole(for: card.id),
-                                  consolidated: isConsolidated(card.id),
-                                  reviewCount: scheduling(for: card.id)?.reviewCount ?? 0)
+                                  consolidated: isConsolidated(card.id))
     }
 
     /// The rotated target form to prompt on a recognition review.

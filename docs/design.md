@@ -63,9 +63,9 @@ Strict dependency direction: App → SprossKern, never the reverse.
 
 **Practice means typing.** Writing the word is the recall the box is scheduling, so that
 is what a card asks for. Revealing is the way out of it, for the three cases where typing
-is not the question: a word met for the first time (with the emoji as its cue), a target
-form to be recognized rather than produced, and a learner who does not want to type right
-now — one hand on the phone is reason enough.
+is not the question: a word met for the first time (heard and read, its picture waiting for
+the reveal), a target form to be recognized rather than produced, and a learner who does not
+want to type right now — one hand on the phone is reason enough.
 The grade buttons live on that path only; they are the way back to the deck,
 never the shape of the app.
 

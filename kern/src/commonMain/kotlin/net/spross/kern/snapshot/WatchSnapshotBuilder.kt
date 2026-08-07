@@ -163,7 +163,7 @@ object WatchSnapshotBuilder {
     private fun entry(sched: CardScheduling, card: Card, consolidated: Boolean): WatchEntryDto {
         val reviewCount = sched.reviewCount
         val nextRole = presentationRole(card.id, reviewCount)
-        val cue = emojiCue(nextRole, consolidated, reviewCount)
+        val cue = emojiCue(nextRole, consolidated)
         return WatchEntryDto(
             cardId = card.id,
             sourceText = card.source.text,

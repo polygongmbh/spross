@@ -131,9 +131,10 @@ No config flag, no user-facing direction anywhere.
 - **Role resolution** is a pure render-time function of `(cardId, log.count)`:
   - First exposure (`count == 0`) is ALWAYS recognition — the learner cannot produce a
     word never seen; the target is PROMPTED first (a learner who already knows it deserves
-    the moment to recall it) WITH its emoji as the cue, and the reveal teaches the meaning,
-    self-graded. An honest Again lands in the single learning step (§5), so the word returns
-    at the END of the session — as the typed production attempt below.
+    the moment to recall it), spoken but WITHOUT its emoji (the cue rule above), and the
+    reveal teaches the meaning, self-graded. An honest Again lands in the single learning
+    step (§5), so the word returns at the END of the session — as the typed production
+    attempt below, which is where the picture supports it.
   - The second review (`count == 1`) is ALWAYS production — seen once, now attempt it
     (ruling 2026-07-22: "returns the same session as production", both hash parities).
   - From `count == 2` role = parity(`count` + FNV-1a-64(cardId)):
@@ -158,18 +159,28 @@ No config flag, no user-facing direction anywhere.
   one card's produce turns. Grading narrows to the form that played (`session.spokenOnly`,
   shared with the letter drill's dictation); a synonym of the same card is amber, never
   wrong, since the reveal itself teaches those forms.
-- **Emoji cue**: `emojiCue(role, consolidated, reviewCount)` answers WHEN the picture appears,
+- **Emoji cue**: `emojiCue(role, consolidated)` answers WHEN the picture appears,
   never whether it appears at all and never where (that is the renderer's, and it is fixed).
-  **Upfront** iff (first exposure) OR (role == Produce ∧ the word has not landed, §5) —
-  the two places it supports recall without giving the answer away, since a produce prompt
-  already names the concept in the source language;
-  **OnReveal** everywhere else, in every phase.
-  The first exposure is the one recognition prompt that carries it, deliberately:
-  it is the cue that makes a first recall attempt possible at all.
+  **Upfront** iff role == Produce ∧ the word has not landed (§5) — the one prompt it can
+  support recall on without giving the answer away, since a produce prompt already names
+  the concept in the source language and asks for the other one;
+  **OnReveal** everywhere else, in every phase and on every recognition prompt.
+  Having landed, not the FSRS phase, is what "still landing" means here.
   Hiding it outright once a word was learned took it away from exactly the reviews where a
   word is still matched on novelty rather than on meaning; once the answer is out there is
   nothing left to leak, and binding the picture to the meaning is what those reviews need.
-  Having landed, not the FSRS phase, is what "still landing" means here.
+  **The first exposure does not carry it** (ruling 2026-08-07). It used to, as the cue that
+  made a first recall attempt possible — but a first exposure is recognition, and the
+  picture depicts the very concept being asked for, so on a self-graded card it is not a
+  cue but the answer. "The emoji was obvious" and "I knew the word" reach the button
+  identically, and the schedule cannot tell them apart; a first exposure is where that
+  costs most, because that answer decides how long the word goes away for.
+  Nothing is withheld from a learner meeting the word: the target form is on screen, its
+  sound plays (`pronunciationCue` is Upfront on every recognition prompt), and the reveal
+  brings meaning and picture together, which is where a first sight teaches. What moved is
+  WHERE the picture lands — off a prompt no one can grade honestly, onto the typed produce
+  turn that follows it, which by role resolution is the very next review and the first one
+  that asks the learner to actually know the word.
 - **♀** is a labeled badge, never graded: the production prompt shows source base + badge;
   the recognition reveal decorates the source answer with the badge.
   A base-word answer typed on a feminine produce card grades as typo, not failure
