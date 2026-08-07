@@ -3,20 +3,17 @@ package net.spross.kern.trainer
 /**
  * German readings of the written number forms (Duden · DWDS · Wikipedia "Zahlwort").
  *
- * Every form is attested across the whole drilled range, so nothing is excluded.
- * Two range edges are encoded rather than implemented speculatively:
- * the fraction noun's -tel → -stel switch starts at denominator 20, unreachable at d ≤ 12,
- * and the ordinal -te → -ste switch is governed by the LAST cardinal component —
- * within 1..100 that is exactly "≤19 → -te, ≥20 → -ste", but 101. is "hunderterste"
- * again, so widening [LIMITS] means rewriting the rule, not extending it.
+ * Every form is attested across the whole drilled range, so nothing is excluded and
+ * [LIMITS] takes the default reach whole. Two of that reach's edges are load-bearing
+ * here rather than incidental: the fraction noun's -tel → -stel switch starts at
+ * denominator 20, unreachable at d ≤ 12, and the ordinal -te → -ste switch is governed
+ * by the LAST cardinal component — within 1..100 that is exactly "≤19 → -te,
+ * ≥20 → -ste", but 101. is "hunderterste" again. Widening either edge means rewriting
+ * the rule below, not extending it.
  */
 internal object GermanForms {
 
-    val LIMITS = FormLimits(
-        forms = NumberForm.entries.toSet(),
-        fractionDenominators = (2..12).toSet(),
-        ordinalRange = 1L..100L,
-    )
+    val LIMITS = FormLimits(forms = NumberForm.entries.toSet())
 
     fun reading(value: NumberValue): List<String> = when (value) {
         is NumberValue.Negative -> listOf("minus " + GermanNumbers.cardinal(value.magnitude))

@@ -17,11 +17,7 @@ package net.spross.kern.trainer
  */
 internal object UkrainianForms {
 
-    val LIMITS = FormLimits(
-        forms = NumberForm.entries.toSet(),
-        fractionDenominators = (2..12).toSet(),
-        ordinalRange = 1L..100L,
-    )
+    val LIMITS = FormLimits(forms = NumberForm.entries.toSet())
 
     fun reading(value: NumberValue): List<String> = when (value) {
         is NumberValue.Negative -> UkrainianNumbers.variants(value.magnitude).map { "мінус $it" }

@@ -14,11 +14,7 @@ package net.spross.kern.trainer
  */
 internal object EnglishForms {
 
-    val LIMITS = FormLimits(
-        forms = NumberForm.entries.toSet(),
-        fractionDenominators = (2..12).toSet(),
-        ordinalRange = 1L..100L,
-    )
+    val LIMITS = FormLimits(forms = NumberForm.entries.toSet())
 
     fun reading(value: NumberValue): List<String> = EnglishNumbers.spellings(
         when (value) {

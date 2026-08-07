@@ -45,6 +45,11 @@ internal val NumberValue.form: NumberForm
  * How far a language reaches. The ladder INTERSECTS its rung with this, so a language
  * that cannot read a form simply never draws it — the registry pattern again, and the
  * default is "nothing", so an unauthored pack offers no Forms drill instead of crashing.
+ *
+ * The reach defaults are the drill's own — fractions to twelfths, ordinals to 100 —
+ * so a pack names a field only where it DEPARTS from them. A restated default reads
+ * as a decision the language made, which is exactly what es and sw did make and de,
+ * en and uk did not.
  */
 internal data class FormLimits(
     val forms: Set<NumberForm> = emptySet(),
