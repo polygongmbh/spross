@@ -4,9 +4,13 @@ import SprossKern
 /// Drill screen content + close summary of TrainerSessionView. State lives
 /// on TrainerSessionView; split out purely for file size.
 extension TrainerSessionView {
-    private var isPhrases: Bool { currentVariant == .phrases }
-
     private var isNumbers: Bool { currentVariant == .numbers }
+
+    /// A prompt made of WORDS is laid out like one — smaller and wrapped — where a
+    /// numeral gets the one big line. Asked of the prompt rather than of the run, so
+    /// a composed sentence and a reversed reading are both read as what they are and
+    /// the card never learns which direction the run is running in.
+    private var wordyPrompt: Bool { current.promptDisplay.contains(where: \.isLetter) }
 
     /// The card carries the answer whenever the learner did not produce it —
     /// a miss or "Aufdecken". A typo leaves it closed: the correction box
@@ -44,7 +48,7 @@ extension TrainerSessionView {
                 // ZStack so outgoing and incoming prompt overlap during the
                 // flip; .id gives each run position its own view identity.
                 ZStack {
-                    TrainerPromptCard(task: current, sentence: isPhrases,
+                    TrainerPromptCard(task: current, sentence: wordyPrompt,
                                       hint: placeValueHint, revealed: cardRevealed,
                                       pronounce: model?.pronounceAction(for: current.display, lang: language),
                                       isPlaying: model?.isPronouncing(current.display, lang: language) ?? false)
@@ -72,7 +76,12 @@ extension TrainerSessionView {
         let variant = currentVariant
         guard maxLevel(variant) > 1 else { return nil }
         let rung = level(variant)
-        let text = isNumbers ? Text("trainer.digits \(rung)") : Text("trainer.level \(rung.formatted())")
+        guard !isNumbers else {
+            // why: `trainer.digits` is the numbers drill's own wording and already
+            // wears 🔢 — putting the variant's face in front would double it.
+            return Text("trainer.digits \(rung)")
+        }
+        let text = Text("trainer.level \(rung.formatted())")
         guard mode.variants.count > 1 else { return text }
         return Text(verbatim: "\(variant.trainerEmoji) ") + text
     }
