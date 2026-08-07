@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **A word that doesn't stick in two tries is now pushed out, not repeated.** Leech
+  auto-suspend used to wait for eight review-phase lapses; the box is breadth-first, so it
+  now suspends after two — and counts a struggle during the word's own learning steps
+  toward that, not only failures after it had graduated. A suspended word is exactly as
+  reversible as before: revive it from the Box whenever you want another run at it.
+
 ## 3.11.0 — 2026-08-07
 
 - **Every word an area holds gets its mark on the tree.** How many marks a crown could
