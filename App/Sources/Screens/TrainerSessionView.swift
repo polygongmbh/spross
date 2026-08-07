@@ -157,9 +157,16 @@ struct TrainerSessionView: View {
         #if DEBUG
         // UI-test hooks: `-uitest-input xyz` prefills the answer field,
         // `-uitest-submit 1` submits it after 0.6 s,
-        // `-uitest-streak N` presets a running streak for screenshots.
+        // `-uitest-streak N` presets a running streak for screenshots,
+        // `-uitest-level N` starts the run at that rung (numbers: digit count),
+        // which is the only way to photograph a long prompt without playing up to it.
         .onAppear {
             let defaults = UserDefaults.standard
+            let presetLevel = defaults.integer(forKey: "uitest-level")
+            if presetLevel > 0 {
+                level = min(presetLevel, maxLevel)
+                tasks = [Self.sampleTask(mode: mode, level: level, avoiding: nil)]
+            }
             if let prefill = defaults.string(forKey: "uitest-input") {
                 input = prefill
             }
