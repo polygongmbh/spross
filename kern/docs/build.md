@@ -47,6 +47,17 @@ Engine contract: `../README.md`.
   dot and comma are inverted between German and English, so a neutral mark is the only one
   that teaches neither as the truth.
   Years and clock times are never grouped — they keep the default by setting nothing.
+  `TrainerKind.Forms` asks the other ways a number is written — negatives, decimals,
+  percentages, multiplicatives, fractions, ordinals — over a ten-rung ladder where each
+  rung keeps everything below it, and its own `internal` model (`NumberValue`, `FormLimits`)
+  never reaches the ObjC header. The rung's forms are intersected with the language's, so a
+  pack that cannot read one never draws it, and a pack that authors none offers no Forms
+  drill at all (`Trainer.supportsForms`). **A Forms prompt is the one language-dependent
+  prompt**: German shows `3,7` where English shows `3.7`, because the reading names the mark
+  (`Komma` · `point`) and a shared prompt would lie about the answer it grades — everything
+  else stays neutral, including the ordinal mark `20.` and the `45 %` thin space.
+  Fractions are drawn REDUCED: `2/4` would legitimately read both "zwei Viertel" and
+  "ein halb", and no pack should carry that equivalence to grade its own drill.
   A sentence slot's grouped digits are accepted alongside the plain ones.
   `Trainer.reference(language)` generates the numbers page from those same packs —
   bands keyed `ones`/`teens`/`tens`/`twenties`/`compounds`/`hundreds`/`places`,

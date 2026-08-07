@@ -3,7 +3,8 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import net.spross.kern.model.Language
 
-enum class TrainerKind { Numbers, Years, Clock }
+/** Appended, never reordered — [Forms] is last because nothing serializes the ordinal. */
+enum class TrainerKind { Numbers, Years, Clock, Forms }
 
 /**
  * One procedural drill task. Pure data — the UI compares typed input against
@@ -117,7 +118,13 @@ object Trainer {
             year(y, language)
         }
         TrainerKind.Clock -> clock(rng.nextInt(24), rng.nextInt(60), language)
+        // Forms has no full-difficulty bias of its own: its ceiling IS its top rung.
+        TrainerKind.Forms -> sample(kind, language, maxLevel(kind), rng)
     }
+
+    /** Whether the Forms drill has anything to offer in [language] — the app's chip gate. */
+    fun supportsForms(language: Language): Boolean =
+        trainerPacks[language]?.formLimits?.forms?.isNotEmpty() == true
 
     /**
      * Adaptive difficulty ceiling per kind. Levels are 1-based; the app ramps
@@ -127,6 +134,7 @@ object Trainer {
         TrainerKind.Numbers -> 10 // level == digit count (up to billions)
         TrainerKind.Years -> 3
         TrainerKind.Clock -> 4
+        TrainerKind.Forms -> FORMS_MAX_LEVEL
     }
 
     /**
@@ -136,6 +144,7 @@ object Trainer {
      *   3 full historic range (1100–2099, German hundred-style variants).
      * - clock: 1 full hours, 2 quarters, 3 five-minute steps up to :30,
      *   4 any minute (incl. the >30 to-the-hour forms).
+     * - forms: the ten rungs of [rungForms], each keeping everything below it.
      */
     fun sample(kind: TrainerKind, language: Language, level: Int, rng: Random): TrainerTask {
         val l = level.coerceIn(1, maxLevel(kind))
@@ -150,7 +159,30 @@ object Trainer {
                 year(y, language)
             }
             TrainerKind.Clock -> clock(rng.nextInt(24), clockMinute(l, rng), language)
+            TrainerKind.Forms -> formTask(language, l, rng)
         }
+    }
+
+    /**
+     * One number-form task: the ladder draws the value, the pack reads it, and the
+     * prompt is rendered with that pack's decimal mark (the one language-dependent
+     * prompt in the trainer — see [renderForm]).
+     */
+    private fun formTask(language: Language, level: Int, rng: Random): TrainerTask {
+        val pack = pack(language)
+        val value = drawForm(pack.formLimits, level, rng)
+        val accepted = value?.let(pack::formReading).orEmpty()
+        // why: a pack that reads no form still has to answer sample(Forms, …) — it falls
+        // back to a plain cardinal rather than throwing across the ObjC boundary. The app
+        // never shows it: the Forms variant is gated on supportsForms().
+        if (value == null || accepted.isEmpty()) {
+            return drillNumber(drawNumber(level, rng), language).copy(kind = TrainerKind.Forms)
+        }
+        val prompt = renderForm(value, pack.decimalMark, grouped = false)
+        return TrainerTask(
+            TrainerKind.Forms, language, prompt, accepted, accepted[0],
+            promptDisplay = renderForm(value, pack.decimalMark, grouped = true),
+        )
     }
 
     /** Leveled minute draw, shared by the plain clock drill and the phrase slots. */
@@ -215,11 +247,16 @@ object Trainer {
             TrainerKind.Numbers -> listOf(value, groupDigits(value)).distinct()
             TrainerKind.Years -> listOf(value)
             TrainerKind.Clock -> clockDigitForms(value)
-            // Forms lands with its own readings (plan stage 10); its arm belongs here,
-            // accepting the rendered form and — for decimals — both marks.
+            // why: a form is written, not just spelled — "3,7" and "3.7" are the same
+            // number, "20." and "20" the same rank, so the notation must not cost the rung.
+            TrainerKind.Forms -> formDigitForms(task.prompt, task.promptDisplay)
         }
         // The reveal shows the readable rendering, which is always one of the accepted ones.
-        val reveal = if (task.kind == TrainerKind.Numbers) groupDigits(value) else value
+        val reveal = when (task.kind) {
+            TrainerKind.Numbers -> groupDigits(value)
+            TrainerKind.Forms -> task.promptDisplay
+            else -> value
+        }
         return TrainerTask(
             kind = task.kind, language = task.language,
             prompt = task.display, accepted = accepted,

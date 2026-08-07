@@ -36,6 +36,20 @@ internal interface TrainerLanguagePack {
     /** Tens look-up, authored only where tens are hard to recall (sw). */
     val tensReference: List<String>? get() = null
 
+    /**
+     * Accepted readings of a number form, canonical first — empty where the language
+     * has no reading for it. Defaulted like [formLimits] and [decimalMark] so an
+     * unauthored language quietly offers no Forms drill instead of forcing every pack
+     * to change at once.
+     */
+    fun formReading(value: NumberValue): List<String> = emptyList()
+
+    /** Which forms this language can be drilled on, and how far each reaches. */
+    val formLimits: FormLimits get() = FormLimits()
+
+    /** The mark between whole and fraction, which the reading names ("Komma" · "point"). */
+    val decimalMark: Char get() = '.'
+
     /** Accepted spellings for the level drill (sw adds the "na"-less form). */
     fun drillNumber(n: Long): List<String> = number(n)
 }

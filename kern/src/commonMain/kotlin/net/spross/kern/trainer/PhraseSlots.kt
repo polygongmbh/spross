@@ -26,10 +26,14 @@ object PhraseSlots {
     /** Number and year templates. */
     fun instantiate(template: PhraseTemplate, value: Long): TrainerTask {
         require(template.slotKind != TrainerKind.Clock) { "clock templates take hour/minute" }
+        // Exhaustive on purpose: a new kind must fail loudly here rather than
+        // silently become a year, which an `else` arm would have made it.
         val slot = when (template.slotKind) {
             // why: drill accepted set — sw speakers routinely drop the "na" connectors
             TrainerKind.Numbers -> Trainer.drillNumber(value, template.target)
-            else -> Trainer.year(value, template.target)
+            TrainerKind.Years -> Trainer.year(value, template.target)
+            TrainerKind.Clock, TrainerKind.Forms ->
+                throw IllegalArgumentException("no phrase slot generator for ${template.slotKind}")
         }
         return compose(template, slot, value)
     }
