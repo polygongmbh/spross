@@ -38,8 +38,11 @@ internal object UkrainianNumbers {
      * Slavic count agreement for a multiplier [t]: form for a bare 1, forms
      * for 2–4, else the "many" (genitive plural) form; the 11–14 exception
      * always takes the "many" form.
+     *
+     * The ONE agreement device in the pack — [UkrainianForms] counts відсоток and раз
+     * with it, and gets the two-way ціла/цілих split by passing the same word twice.
      */
-    private fun agree(t: Long, one: String, few: String, many: String): String {
+    internal fun agree(t: Long, one: String, few: String, many: String): String {
         if ((t % 100) in 11..14) return many
         return when ((t % 10).toInt()) {
             1 -> one

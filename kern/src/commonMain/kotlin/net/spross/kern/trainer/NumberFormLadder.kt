@@ -68,8 +68,19 @@ private fun drawDecimal(level: Int, rng: Random): NumberValue.Decimal {
         level >= 7 -> 1 + rng.nextInt(2)
         else -> 1
     }
-    val digits = buildString { repeat(places) { append('0' + rng.nextInt(10)) } }
-    return NumberValue.Decimal(whole, digits)
+    return NumberValue.Decimal(whole, fractionDigits(places, rng))
+}
+
+/**
+ * A digit string that is never all zeros. A trailing zero is worth drawing — "3,40" and
+ * "3,4" are different readings — but "3,00" is degenerate in every language that names the
+ * place it lands on ("три цілих нуль сотих"), so an all-zero draw is repaired rather than
+ * retried: the ladder promises no retry loops.
+ */
+private fun fractionDigits(places: Int, rng: Random): String {
+    val digits = CharArray(places) { '0' + rng.nextInt(10) }
+    if (digits.all { it == '0' }) digits[places - 1] = '1' + rng.nextInt(9)
+    return digits.concatToString()
 }
 
 /**

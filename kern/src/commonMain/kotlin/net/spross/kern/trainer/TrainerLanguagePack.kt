@@ -146,6 +146,9 @@ private object UkrainianPack : TrainerLanguagePack {
     )
     override val clockDayParts: Set<String> =
         (0..23).flatMapTo(mutableSetOf(), UkrainianClockForms::dayParts)
+    override fun formReading(value: NumberValue) = UkrainianForms.reading(value)
+    override val formLimits = UkrainianForms.LIMITS
+    override val decimalMark = ','
 }
 
 /** The registry: de/en/es/sw/uk authored, insertion order is presentation order. */

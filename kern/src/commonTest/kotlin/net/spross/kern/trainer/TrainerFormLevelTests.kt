@@ -27,8 +27,8 @@ class TrainerFormLevelTests {
 
     @Test
     fun theFormsChipIsOfferedExactlyWhereAPackAuthorsForms() {
-        assertEquals(listOf("de", "en", "es"), authored)
-        for (language in listOf("sw", "uk")) {
+        assertEquals(listOf("de", "en", "es", "uk"), authored)
+        for (language in listOf("sw")) {
             assertFalse(Trainer.supportsForms(language), "$language authors no forms yet")
         }
     }
@@ -77,6 +77,26 @@ class TrainerFormLevelTests {
         assertTrue(value.denominator <= 12, "$where: $value")
         assertTrue(value.numerator in 1 until value.denominator, "$where: $value")
         assertEquals(1L, gcd(value.numerator, value.denominator), "$where: $value is not reduced")
+    }
+
+    /**
+     * A trailing zero is a real reading ("3,40" ≠ "3,4"), but an all-zero fractional part
+     * is degenerate wherever the place is named ("три цілих нуль сотих").
+     */
+    @Test
+    fun aDrawnDecimalNeverHasAnAllZeroFractionalPart() {
+        for (language in authored) {
+            for (level in 1..Trainer.maxLevel(TrainerKind.Forms)) {
+                for (value in draws(language, level)) {
+                    if (value is NumberValue.Decimal) {
+                        assertTrue(
+                            value.fractionDigits.any { it != '0' },
+                            "$language level $level drew $value",
+                        )
+                    }
+                }
+            }
+        }
     }
 
     /** Below rung 8 a fraction is a unit fraction, and below rung 9 an ordinal stays small. */
