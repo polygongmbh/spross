@@ -82,12 +82,23 @@ extension NumbersOverview {
             .fixedSize(horizontal: false, vertical: true)
     }
 
-    /// Kern's band key → its heading. A key this build has no wording for still
-    /// gets its rows: a new band must be able to land in kern first.
+    /// Kern's band key → its heading. Spelled out rather than interpolated: a
+    /// `LocalizedStringKey` built from a value is a FORMAT with an argument, so
+    /// "numbers.section.\(key)" looks up "numbers.section.%@" and prints the raw
+    /// key on screen. A band this build has no wording for still gets its rows —
+    /// a new band must be able to land in kern first.
     private static func bandTitle(_ key: String) -> LocalizedStringKey? {
-        let known = ["ones", "teens", "tens", "twenties",
-                     "compounds", "hundreds", "places", "forms"]
-        return known.contains(key) ? LocalizedStringKey("numbers.section.\(key)") : nil
+        switch key {
+        case "ones": return "numbers.section.ones"
+        case "teens": return "numbers.section.teens"
+        case "tens": return "numbers.section.tens"
+        case "twenties": return "numbers.section.twenties"
+        case "compounds": return "numbers.section.compounds"
+        case "hundreds": return "numbers.section.hundreds"
+        case "places": return "numbers.section.places"
+        case "forms": return "numbers.section.forms"
+        default: return nil
+        }
     }
 
     // MARK: - What to watch out for
