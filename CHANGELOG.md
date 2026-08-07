@@ -10,6 +10,14 @@
   A sentence slot takes the separator alongside the bare digits, so copying the prompt as
   written cannot cost the rung.
 
+- **The clock drill climbs a step at a time, and never takes back a minute it taught.**
+  Past the quarters it jumped straight to any minute at all, and the quarter to the hour
+  the learner had just earned quietly dropped out again on the way up. The climb now goes
+  from the full hours to the quarters, counts up in fives to the half, then adds the
+  countdown to the next hour, and only at the top is the face read out minute by minute —
+  each step keeping everything the one below it offered. Sentence drills ramp with it, and
+  the step that opens them is the five-minute one their unlock always claimed it was.
+
 ## 3.11.0 — 2026-08-07
 
 - **Every word an area holds gets its mark on the tree.** How many marks a crown could
