@@ -49,16 +49,40 @@ class TrainerLevelTests {
         assertTrue(sawConnector, "expected some multi-part Swahili numbers with a na-less variant")
     }
 
+    private fun minutesDrawn(level: Int, seed: Int, draws: Int = 200): Set<Int> {
+        val rng = Random(seed)
+        return (1..draws)
+            .map { Trainer.sample(TrainerKind.Clock, "de", level, rng).prompt.takeLast(2).toInt() }
+            .toSet()
+    }
+
     @Test
-    fun clockLevelsRestrictMinutes() {
-        val rng = Random(2)
-        repeat(80) {
-            val l1 = Trainer.sample(TrainerKind.Clock, "de", 1, rng)
-            assertTrue(l1.prompt.endsWith(":00"))
-            val l3 = Trainer.sample(TrainerKind.Clock, "sw", 3, rng)
-            val minute = l3.prompt.takeLast(2).toInt()
-            assertTrue(minute <= 30)
+    fun clockRungsOfferExactlyTheirMinutes() {
+        val rungs = mapOf(
+            1 to setOf(0),
+            2 to setOf(0, 15, 30, 45),
+            3 to setOf(0, 5, 10, 15, 20, 25, 30, 45),
+            4 to (0..55 step 5).toSet(),
+        )
+        for ((level, expected) in rungs) {
+            assertEquals(expected, minutesDrawn(level, seed = 2 + level), "clock level $level")
         }
+    }
+
+    @Test
+    fun clockRungsAreNested() {
+        val seen = (1..Trainer.maxLevel(TrainerKind.Clock)).map { minutesDrawn(it, seed = 20 + it) }
+        for ((lower, higher) in seen.zipWithNext()) {
+            assertTrue(higher.containsAll(lower), "a minute was withdrawn: $lower ⊄ $higher")
+        }
+    }
+
+    @Test
+    fun topClockRungReadsTheFaceOut() {
+        val top = minutesDrawn(Trainer.maxLevel(TrainerKind.Clock), seed = 9, draws = 400)
+        assertTrue(top.all { it in 0..59 })
+        assertTrue(top.any { it % 5 != 0 }, "expected off-grid minutes at the ceiling")
+        assertTrue(top.any { it > 30 && it % 5 != 0 }, "expected off-grid minutes past the half")
     }
 
     @Test

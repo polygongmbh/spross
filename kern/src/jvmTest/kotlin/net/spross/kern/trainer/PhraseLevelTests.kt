@@ -72,16 +72,29 @@ class PhraseLevelTests {
     }
 
     @Test
+    fun countdownLevelAddsTheLateFivesAndNothingOffGrid() {
+        val rng = Random(8)
+        for (template in templates(TrainerKind.Clock)) {
+            val seen = mutableSetOf<Int>()
+            repeat(200) {
+                seen += minuteOf(PhraseSlots.sample(template, level = 4, rng).prompt)
+            }
+            assertEquals((0..55 step 5).toSet(), seen, template.id)
+        }
+    }
+
+    @Test
     fun maxLevelReachesMinutesPastHalfPast() {
         val rng = Random(5)
+        val top = Trainer.maxLevel(TrainerKind.Clock)
         for (template in templates(TrainerKind.Clock)) {
             var sawPastHalf = false
             repeat(120) {
-                val minute = minuteOf(PhraseSlots.sample(template, level = 4, rng).prompt)
+                val minute = minuteOf(PhraseSlots.sample(template, level = top, rng).prompt)
                 assertTrue(minute in 0..59, "${template.id}: $minute")
                 if (minute > 30) sawPastHalf = true
             }
-            assertTrue(sawPastHalf, "${template.id}: expected countdown-form minutes at level 4")
+            assertTrue(sawPastHalf, "${template.id}: expected countdown-form minutes at level $top")
         }
     }
 

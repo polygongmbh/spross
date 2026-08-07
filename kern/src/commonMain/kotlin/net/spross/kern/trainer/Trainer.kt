@@ -133,7 +133,7 @@ object Trainer {
     fun maxLevel(kind: TrainerKind): Int = when (kind) {
         TrainerKind.Numbers -> 10 // level == digit count (up to billions)
         TrainerKind.Years -> 3
-        TrainerKind.Clock -> 4
+        TrainerKind.Clock -> CLOCK_MAX_LEVEL
         TrainerKind.Forms -> FORMS_MAX_LEVEL
     }
 
@@ -142,8 +142,9 @@ object Trainer {
      * - numbers: level = digit count (1 → 0–9 … 10 → 1000000000–9999999999).
      * - years: 1 recent decades (1990–2029), 2 modern century (1900–2099),
      *   3 full historic range (1100–2099, German hundred-style variants).
-     * - clock: 1 full hours, 2 quarters, 3 five-minute steps up to :30,
-     *   4 any minute (incl. the >30 to-the-hour forms).
+     * - clock: the five nested rungs of [clockRung] — 1 full hours, 2 the quarters,
+     *   3 five-minute steps to the half (:45 kept), 4 the whole five-minute grid
+     *   (the to-the-hour countdown), 5 any minute.
      * - forms: the ten rungs of [rungForms], each keeping everything below it.
      */
     fun sample(kind: TrainerKind, language: Language, level: Int, rng: Random): TrainerTask {
@@ -186,13 +187,7 @@ object Trainer {
     }
 
     /** Leveled minute draw, shared by the plain clock drill and the phrase slots. */
-    internal fun clockMinute(level: Int, rng: Random): Int =
-        when (level.coerceIn(1, maxLevel(TrainerKind.Clock))) {
-            1 -> 0
-            2 -> intArrayOf(0, 15, 30, 45)[rng.nextInt(4)]
-            3 -> rng.nextInt(31)
-            else -> rng.nextInt(60)
-        }
+    internal fun clockMinute(level: Int, rng: Random): Int = drawClockMinute(level, rng)
 
     /**
      * Highest place-value word for a number of the given digit count, shown
