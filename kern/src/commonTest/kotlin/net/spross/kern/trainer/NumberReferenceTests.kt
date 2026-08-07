@@ -62,18 +62,21 @@ class NumberReferenceTests {
     }
 
     /**
-     * The Swahili tens look-up survives whole, one section up for 10 — which is where
-     * its own generator puts it. Nothing is lost, so the old API has no reason to stay.
+     * The Swahili tens — the one look-up the app used to offer, and the reason the
+     * table exists at all — read exactly as they always did, now inside a page every
+     * language gets. 10 sits one band up, which is where its own generator puts it.
      */
     @Test
     fun swahilisTensLookUpSurvivesInsideTheTable() {
         val rows = Trainer.reference("sw").flatMap { it.entries }.associate { it.value to it.reading }
-        for (line in SwahiliNumbers.tensReference) {
-            val (value, reading) = line.split(" ", limit = 2)
-            assertEquals(reading, rows[value], "tensReference row \"$line\"")
+        val expected = listOf(
+            "10" to "kumi", "20" to "ishirini", "30" to "thelathini", "40" to "arobaini",
+            "50" to "hamsini", "60" to "sitini", "70" to "sabini", "80" to "themanini",
+            "90" to "tisini",
+        )
+        for ((value, reading) in expected) {
+            assertEquals(reading, rows[value], "tens row $value")
         }
-        assertEquals("kumi", rows["10"])
-        assertEquals("tisini", rows["90"])
     }
 
     /** Values that would otherwise never be seen: 0 and the one non-round hundred. */

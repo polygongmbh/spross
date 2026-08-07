@@ -33,22 +33,8 @@ class TrainerHintsTests {
     }
 
     @Test
-    fun tensReferenceIsSwahiliOnly() {
-        assertNull(Trainer.tensReference("de"))
-        assertNull(Trainer.tensReference("en"))
-        assertNull(Trainer.tensReference("es"))
-        assertNull(Trainer.tensReference("uk"))
-        val sw = assertNotNull(Trainer.tensReference("sw"))
-        assertEquals(9, sw.size)
-        assertEquals("10 kumi", sw.first())
-        assertTrue("30 thelathini" in sw)
-        assertEquals("90 tisini", sw.last())
-    }
-
-    @Test
     fun unauthoredLanguagesHaveNoHintsAndNoTrainer() {
         assertNull(Trainer.placeValueHint(3, "fr"))
-        assertNull(Trainer.tensReference("fr"))
         assertTrue(!Trainer.supports("fr"))
         assertEquals(listOf("de", "en", "es", "sw", "uk"), Trainer.languages)
     }

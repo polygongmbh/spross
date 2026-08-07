@@ -219,17 +219,6 @@ object Trainer {
     fun reference(language: Language): List<ReferenceSection> = buildReference(language)
 
     /**
-     * Tens look-up ("10 kumi" … "90 tisini") — Swahili only, whose tens are
-     * the hardest part to recall. null for languages with regular tens.
-     */
-    @Deprecated(
-        "Subsumed by reference(language), which offers every language a table. " +
-            "The in-run \"?\" is its last caller and is rewired next.",
-        ReplaceWith("reference(language)"),
-    )
-    fun tensReference(language: Language): List<String>? = trainerPacks[language]?.tensReference
-
-    /**
      * How LONG a rung is. Two clean wins per level is the climb; fast mode spends
      * one, which is the reward for having topped the ladder the hard way.
      * (Same shape as [LetterDrill.winsToAdvance], whose pacing rule this follows.)

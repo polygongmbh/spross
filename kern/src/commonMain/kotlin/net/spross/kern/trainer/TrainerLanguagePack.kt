@@ -33,9 +33,6 @@ internal interface TrainerLanguagePack {
      */
     val clockDayParts: Set<String>
 
-    /** Tens look-up, authored only where tens are hard to recall (sw). */
-    val tensReference: List<String>? get() = null
-
     /**
      * Accepted readings of a number form, canonical first — empty where the language
      * has no reading for it. Defaulted like [formLimits] and [decimalMark] so an
@@ -125,7 +122,6 @@ private object SwahiliPack : TrainerLanguagePack {
         "milioni", "milioni kumi", "milioni mia", "bilioni",
     )
     override val clockDayParts: Set<String> = (0..23).flatMapTo(mutableSetOf(), SwahiliClock::dayParts)
-    override val tensReference get() = SwahiliNumbers.tensReference
     override fun formReading(value: NumberValue) = SwahiliForms.reading(value)
     override val formLimits = SwahiliForms.LIMITS
     override fun drillNumber(n: Long) = SwahiliNumbers.acceptedVariants(n)

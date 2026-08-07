@@ -53,9 +53,12 @@ struct TrainerSessionView: View, LanguageNaming {
     /// Digit counts already introduced with a place-value hint — each length
     /// is hinted only the first time it appears.
     @State var seenDigitCounts: Set<Int> = []
-    /// The learner tapped "?" for the tens reference on this task: it stays
-    /// visible and marks the answer amber (no level progress).
+    /// The learner looked the numbers up while owing this answer: it marks the
+    /// answer amber (no level progress).
     @State var hintUsed = false
+    /// The reference table, raised over the run by "?".
+    // why: internal, not private — the +Drill extension owns the button.
+    @State var showingReference = false
     @State var input = ""
     @State var feedback: AnswerInputView.Feedback = .neutral
     /// Set when the answer was accepted with a small typo — the proper

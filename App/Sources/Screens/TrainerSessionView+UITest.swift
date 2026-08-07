@@ -15,7 +15,8 @@ extension TrainerSessionView {
     /// `-uitest-summary 1` jumps straight to the close-summary state — add
     /// `-uitest-record 1` to drop the stored record first, so the run books one
     /// and the summary shows its record state;
-    /// `-uitest-typo 1` renders the accepted-with-typo state.
+    /// `-uitest-typo 1` renders the accepted-with-typo state;
+    /// `-uitest-reference 1` raises the numbers table the "?" opens.
     func uitestStart() {
         let defaults = UserDefaults.standard
         let presetLevel = defaults.integer(forKey: "uitest-level")
@@ -41,6 +42,15 @@ extension TrainerSessionView {
         if defaults.bool(forKey: "uitest-typo") {
             feedback = .almost(correctForm: current.display, reason: .typo)
             typoCorrection = current.display
+        }
+        if defaults.bool(forKey: "uitest-reference") {
+            // why: a sheet raised while the run under it is still animating in is
+            // dropped — the tap this stands in for always comes after that.
+            Task { @MainActor in
+                try? await Task.sleep(for: .milliseconds(600))
+                hintUsed = true
+                showingReference = true
+            }
         }
     }
 }

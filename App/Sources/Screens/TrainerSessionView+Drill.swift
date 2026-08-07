@@ -36,11 +36,6 @@ extension TrainerSessionView {
         return .init(icon: "textformat.123", text: "trainer.newPlace \(place)")
     }
 
-    /// Tens look-up for the current drill (Swahili numbers only).
-    private var tensReference: [String]? {
-        isNumbers ? Trainer.shared.tensReference(language: language) : nil
-    }
-
     var drillContent: some View {
         ScrollView {
             VStack(spacing: DL.Space.m) {
@@ -61,6 +56,9 @@ extension TrainerSessionView {
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollDismissesKeyboard(.never)
+        .sheet(isPresented: $showingReference) {
+            NumberReferenceSheet(language: language, catalog: catalog)
+        }
     }
 
     private var streakLine: some View {
@@ -130,17 +128,6 @@ extension TrainerSessionView {
                     .buttonStyle(DLPrimaryButtonStyle())
                     .keyboardShortcut(.defaultAction)
                     .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
-                    // "?" tens reference — using it marks the answer amber.
-                    if tensReference != nil, !hintUsed {
-                        Button {
-                            withAnimation { hintUsed = true }
-                        } label: {
-                            Label("trainer.tensLookup", systemImage: "questionmark.circle")
-                                .font(DL.Fonts.caption)
-                        }
-                        .buttonStyle(.plain)
-                        .foregroundStyle(Color.dlTextSecondary)
-                    }
                 }
             case .almost:
                 // A typo pauses — the box above spells the word out; this only
@@ -185,38 +172,29 @@ extension TrainerSessionView {
                 // why: Enter advances when revealed (hardware keyboards).
                 .keyboardShortcut(.defaultAction)
             }
-            if let visibleReference {
-                referenceCard(visibleReference)
-                    .transition(.opacity)
+            if isNumbers {
+                lookupButton
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
     }
 
-    /// Tens look-up shown once the learner taps "?" or after a wrong answer.
-    private var visibleReference: [String]? {
-        guard let tensReference else { return nil }
-        let afterWrong = { if case .revealed = feedback { return true }; return false }()
-        return (hintUsed || afterWrong) ? tensReference : nil
-    }
-
-    private func referenceCard(_ entries: [String]) -> some View {
-        VStack(alignment: .leading, spacing: DL.Space.xs) {
-            Text("trainer.tens")
+    /// The whole numbers page, one tap away mid-run — the overview's table, not
+    /// a second, smaller truth beside it. Outside the feedback switch because a
+    /// miss is exactly when a learner wants to look the word up.
+    private var lookupButton: some View {
+        Button {
+            // why: a look-up while the answer is still owed costs the rung, the
+            // way the tens list always did — the task books amber. Once the
+            // answer is in, nothing is owed and reading is free.
+            if case .neutral = feedback { hintUsed = true }
+            showingReference = true
+        } label: {
+            Label("trainer.lookup", systemImage: "questionmark.circle")
                 .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
-                .textCase(.uppercase)
-            Text(entries.joined(separator: " · "))
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlTextPrimary)
-                .fixedSize(horizontal: false, vertical: true)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(DL.Space.l)
-        .background(
-            RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                .fill(Color.dlSurfaceTint)
-        )
+        .buttonStyle(.plain)
+        .foregroundStyle(Color.dlTextSecondary)
     }
 
     // MARK: - Close summary

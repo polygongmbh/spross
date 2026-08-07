@@ -3227,6 +3227,22 @@
         }
       }
     },
+    "trainer.lookup" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlen nachschlagen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Look up numbers"
+          }
+        }
+      }
+    },
     "trainer.modifier.fast" : {
       "localizations" : {
         "de" : {
@@ -3487,38 +3503,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "trainer.tens" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zehner"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tens"
-          }
-        }
-      }
-    },
-    "trainer.tensLookup" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zehner nachschlagen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Look up tens"
           }
         }
       }
