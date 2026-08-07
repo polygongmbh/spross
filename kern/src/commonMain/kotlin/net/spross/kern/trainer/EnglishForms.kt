@@ -86,14 +86,18 @@ internal object EnglishForms {
      * force n == 1, and authoring dead content only gives the vocabulary sweep work.
      */
     private fun fraction(n: Long, d: Long): List<String> {
-        val numerators = if (n == 1L) listOf("one", "a") else listOf(EnglishNumbers.cardinal(n))
         val denominators = denominatorWords(d).map { if (n > 1L) it + "s" else it }
-        val readings = numerators.flatMap { num -> denominators.map { "$num $it" } }
+        val numeral = denominators.map { EnglishNumbers.cardinal(n) + " " + it }
+        // The article reads the fraction as a noun phrase and is NEVER hyphenated:
+        // "a two-thirds majority" hyphenates the numeral, "a-third" is not English —
+        // and with hyphens deleted by the comparison pipeline it also grades as the
+        // bare ordinal, which is another prompt in the same drill.
+        val article = if (n == 1L) denominators.map { "a $it" } else emptyList()
         // "half a kilo", "a quarter past" — these two stand alone as nouns, the rest do not.
         val bare = if (n == 1L && (d == 2L || d == 4L)) listOf(denominators.first()) else emptyList()
         // why: spellings() only goes hyphen → space, and a fraction's canonical form is
         // spaced, so the hyphenated spelling has to be written the other way round here.
-        return readings + readings.map { it.replace(' ', '-') } + bare
+        return numeral + numeral.map { it.replace(' ', '-') } + article + bare
     }
 
     private fun denominatorWords(d: Long): List<String> = when (d) {
