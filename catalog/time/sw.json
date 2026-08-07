@@ -77,6 +77,18 @@
     "de": "hivi karibuni heißt auch kürzlich — die Zeitform sagt, was gemeint ist."
    }
   },
+  "noon": {
+   "text": "adhuhuri",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "afternoon": {
+   "text": "mchana",
+   "notes": {
+    "de": "mchana ist auch der helle Tag — der Nachmittagsgruß lautet „Habari za mchana“."
+   }
+  },
   "i-have-no-time": {
    "text": "Sina muda."
   },
@@ -85,6 +97,15 @@
    "grammar": {
     "plural": "="
    }
+  },
+  "two-in-the-afternoon": {
+   "text": "saa nane mchana",
+   "notes": {
+    "de": "Die Saa-Zählung liegt sechs Stunden versetzt: 14 Uhr ist die achte Stunde des Tages."
+   }
+  },
+  "twelve-noon-sharp": {
+   "text": "saa sita mchana kamili"
   }
  }
 }

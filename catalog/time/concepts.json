@@ -62,6 +62,15 @@
   "kind": "adjective"
  },
  {
+  "slug": "noon",
+  "kind": "noun",
+  "emoji": "🕛"
+ },
+ {
+  "slug": "afternoon",
+  "kind": "noun"
+ },
+ {
   "slug": "i-have-no-time",
   "kind": "phrase",
   "emoji": "⏰",
@@ -75,6 +84,24 @@
   "emoji": "🌅",
   "components": [
    "day"
+  ]
+ },
+ {
+  "slug": "two-in-the-afternoon",
+  "kind": "phrase",
+  "emoji": "🕑",
+  "components": [
+   "hour",
+   "afternoon"
+  ]
+ },
+ {
+  "slug": "twelve-noon-sharp",
+  "kind": "phrase",
+  "emoji": "🕛",
+  "components": [
+   "hour",
+   "noon"
   ]
  }
 ]

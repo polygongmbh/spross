@@ -68,6 +68,12 @@
   "soon": {
    "text": "pronto"
   },
+  "noon": {
+   "text": "mediodía",
+   "grammar": {
+    "gender": "el"
+   }
+  },
   "i-have-no-time": {
    "text": "No tengo tiempo."
   },
@@ -76,6 +82,12 @@
    "variants": [
     "un día nuevo"
    ]
+  },
+  "two-in-the-afternoon": {
+   "text": "las dos de la tarde"
+  },
+  "twelve-noon-sharp": {
+   "text": "las doce del mediodía en punto"
   }
  }
 }

@@ -72,11 +72,37 @@
   "soon": {
    "text": "bald"
   },
+  "noon": {
+   "text": "Mittag",
+   "variants": [
+    "mittags"
+   ],
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "afternoon": {
+   "text": "Nachmittag",
+   "variants": [
+    "nachmittags"
+   ],
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
   "i-have-no-time": {
    "text": "Ich habe keine Zeit."
   },
   "a-new-day": {
    "text": "ein neuer Tag"
+  },
+  "two-in-the-afternoon": {
+   "text": "zwei Uhr nachmittags"
+  },
+  "twelve-noon-sharp": {
+   "text": "punkt zwölf Uhr mittags"
   }
  }
 }

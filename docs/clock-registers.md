@@ -195,4 +195,6 @@ so the reveal keeps teaching `midnight` and `noon` there.
   They say the hour is EXACT, which is a different claim from what time it is,
   and no learner answering "18:00" volunteers the suffix —
   so the coverage never paid for the branch each of the five carried at `m == 0`.
-  Where they belong is the catalog, as adverbs a learner meets in a sentence.
+  They are taught in the catalog instead, by `time/twelve-noon-sharp`:
+  the knowledge is WHERE the word sits — de and uk prepose it, en, es and sw postpose it,
+  and sw puts it after the part of the day — which a sentence carries and a word card cannot.

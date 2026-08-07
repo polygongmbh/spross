@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **The hour said exactly is a card now.** "Punkt zwölf Uhr mittags", "twelve noon sharp",
+  "las doce del mediodía en punto", "saa sita mchana kamili" and "рівно о дванадцятій дня"
+  all insist the hour is exact rather than say which hour it is, which is why the hours
+  drill stopped grading them. Time and dates teaches them as sentences instead, because
+  the thing worth knowing is where the word goes: German and Ukrainian put it before the
+  time, English, Spanish and Swahili after it. Noon and afternoon arrive as words of their
+  own, and the Swahili sentences show the six-hour shift of the saa clock in use.
+
 - **The Swahili clock reveal stops answering the next prompt.** It used to print the
   fraction words and the countdown alongside every time, which is the very thing the drill
   asks you to produce. It now names only what a reading cannot show: the saa hour is the

@@ -123,10 +123,14 @@ One line per item, with a file or context pointer, filed under the section it be
   `"um "` absorption generalized first (`clock-registers.md`).
 - de accepts no bare hour word ("Es ist acht.") though the German is right — with the
   drill's stray-word rescue gone it is now safe to add, but it wants its own sweep run.
-- The emphatic full hour (de `punkt`, en `sharp`/`on the dot`, es `en punto`, sw `kamili`,
-  uk `рівно`) was dropped from the clock generators (`docs/clock-registers.md` §Rejected)
-  and belongs in the catalog instead, as adverbs met in a sentence — a content proposal
-  for the owner, not a generator change.
+- The emphatic full hour is taught by `time/twelve-noon-sharp` now, and the phrase made two
+  calls the finished JSON cannot show: sw hangs `kamili` after the part of the day
+  (`saa sita mchana kamili`), where `saa sita kamili mchana` composes just as well,
+  and sw `afternoon` took `mchana` — the word the greeting uses — over `alasiri`,
+  which is the late afternoon only.
+- `time` has no `midnight`, though the clock reveal teaches it at 00:00 beside `noon`
+  (`docs/clock-registers.md` §English a.m./p.m.); es and uk carry no `afternoon` on purpose,
+  es because `tarde` is already `living/evening` and uk because it has no plain noun for it.
 
 ## Engine & scheduling
 

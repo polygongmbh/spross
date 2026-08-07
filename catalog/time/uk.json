@@ -62,11 +62,26 @@
     "незабаром"
    ]
   },
+  "noon": {
+   "text": "полудень",
+   "grammar": {
+    "plural": "полудні"
+   }
+  },
   "i-have-no-time": {
    "text": "У мене немає часу."
   },
   "a-new-day": {
    "text": "новий день"
+  },
+  "two-in-the-afternoon": {
+   "text": "друга дня"
+  },
+  "twelve-noon-sharp": {
+   "text": "рівно о дванадцятій дня",
+   "notes": {
+    "de": "«о» + Lokativ sagt, WANN etwas passiert; die bloße Uhrzeit steht im Nominativ (друга дня)."
+   }
   }
  }
 }
