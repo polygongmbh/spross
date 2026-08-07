@@ -29,15 +29,20 @@ internal fun rungForms(level: Int): Set<NumberForm> =
  * empty — a language that reads fractions but no negatives, asked at rung 1 — the language's
  * own set stands in, walked in ladder order. Deterministic in [rng], with no retry loop:
  * a draw that cannot be satisfied is never attempted, it is filtered out first.
+ *
+ * [magnitudeDigits] sizes the two forms that HAVE a magnitude — the negative's value and
+ * the decimal's whole part — from a Numbers rung instead of this ladder's own gentler one
+ * ([DrillModifier.Mix]). Zero, the default, leaves every draw to [level]. A percentage is
+ * bounded by its own meaning and a fraction by its denominator, so neither ever grows.
  */
-internal fun drawForm(limits: FormLimits, level: Int, rng: Random): NumberValue? {
+internal fun drawForm(limits: FormLimits, level: Int, rng: Random, magnitudeDigits: Int = 0): NumberValue? {
     val available = LADDER.filter { it in limits.forms && drawable(it, limits) }
     if (available.isEmpty()) return null
     val onRung = available.filter { it in rungForms(level) }
     val candidates = onRung.ifEmpty { available }
     return when (candidates[rng.nextInt(candidates.size)]) {
-        NumberForm.Negative -> drawNegative(level, rng)
-        NumberForm.Decimal -> drawDecimal(level, rng)
+        NumberForm.Negative -> drawNegative(level, magnitudeDigits, rng)
+        NumberForm.Decimal -> drawDecimal(level, magnitudeDigits, rng)
         NumberForm.Percent -> drawPercent(level, rng)
         NumberForm.Multiplicative -> drawMultiplicative(level, rng)
         NumberForm.Fraction -> drawFraction(limits, level, rng)
@@ -52,7 +57,9 @@ private fun drawable(form: NumberForm, limits: FormLimits): Boolean = when (form
     else -> true
 }
 
-private fun drawNegative(level: Int, rng: Random): NumberValue.Negative {
+private fun drawNegative(level: Int, magnitudeDigits: Int, rng: Random): NumberValue.Negative {
+    // why: floored at 1 — there is no negative zero to read out.
+    if (magnitudeDigits >= 1) return NumberValue.Negative(maxOf(1L, drawNumber(magnitudeDigits, rng)))
     val bound = when {
         level >= 10 -> 10_000L
         level >= 7 -> 1_000L
@@ -61,8 +68,12 @@ private fun drawNegative(level: Int, rng: Random): NumberValue.Negative {
     return NumberValue.Negative(rng.nextLong(1, bound))
 }
 
-private fun drawDecimal(level: Int, rng: Random): NumberValue.Decimal {
-    val whole = if (level >= 10) rng.nextLong(0, 1_000) else rng.nextLong(0, 10)
+private fun drawDecimal(level: Int, magnitudeDigits: Int, rng: Random): NumberValue.Decimal {
+    val whole = when {
+        magnitudeDigits >= 1 -> drawNumber(magnitudeDigits, rng)
+        level >= 10 -> rng.nextLong(0, 1_000)
+        else -> rng.nextLong(0, 10)
+    }
     val places = when {
         level >= 10 -> 1 + rng.nextInt(3)
         level >= 7 -> 1 + rng.nextInt(2)

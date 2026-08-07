@@ -160,18 +160,27 @@ object Trainer {
                 year(y, language)
             }
             TrainerKind.Clock -> clock(rng.nextInt(24), clockMinute(l, rng), language)
-            TrainerKind.Forms -> formTask(language, l, rng)
+            TrainerKind.Forms -> formTask(language, l, 0, rng)
         }
     }
+
+    /**
+     * A Forms task whose values are sized by a NUMBERS rung rather than by the forms
+     * ladder's own gentler one — [DrillModifier.Mix]'s second half, where "−7" grows into
+     * "−4 072 918" and "3,7" into "12 345,7". [level] still decides which forms are on
+     * offer; [magnitudeDigits] only widens the two that have a magnitude to widen.
+     */
+    fun sampleForms(language: Language, level: Int, magnitudeDigits: Int, rng: Random): TrainerTask =
+        formTask(language, level.coerceIn(1, FORMS_MAX_LEVEL), magnitudeDigits.coerceIn(0, 10), rng)
 
     /**
      * One number-form task: the ladder draws the value, the pack reads it, and the
      * prompt is rendered with that pack's decimal mark (the one language-dependent
      * prompt in the trainer — see [renderForm]).
      */
-    private fun formTask(language: Language, level: Int, rng: Random): TrainerTask {
+    private fun formTask(language: Language, level: Int, magnitudeDigits: Int, rng: Random): TrainerTask {
         val pack = pack(language)
-        val value = drawForm(pack.formLimits, level, rng)
+        val value = drawForm(pack.formLimits, level, rng, magnitudeDigits)
         val accepted = value?.let(pack::formReading).orEmpty()
         // why: a pack that reads no form still has to answer sample(Forms, …) — it falls
         // back to a plain cardinal rather than throwing across the ObjC boundary. The app
@@ -273,22 +282,26 @@ object Trainer {
     }
 
     private val SLOT_VALUE = Regex("""\d+(?::\d+)?""")
+}
 
-    /**
-     * Level-sized number with zeros biased to ~40% on the non-leading digits,
-     * so the drill favours rounder values (less tedious than typing arbitrary
-     * long numbers). The leading digit stays 1–9 so the value keeps exactly
-     * [digits] digits.
-     */
-    private fun drawNumber(digits: Int, rng: Random): Long {
-        if (digits <= 1) return rng.nextLong(0, 10)
-        var value = rng.nextLong(1, 10)
-        repeat(digits - 1) {
-            val d = if (rng.nextInt(10) < 4) 0L else rng.nextLong(1, 10)
-            value = value * 10 + d
-        }
-        return value
+/**
+ * Level-sized number with zeros biased to ~40% on the non-leading digits,
+ * so the drill favours rounder values (less tedious than typing arbitrary
+ * long numbers). The leading digit stays 1–9 so the value keeps exactly
+ * [digits] digits.
+ *
+ * Top-level rather than [Trainer]'s own, because the forms ladder draws its
+ * Mix-sized magnitudes from it and a second copy would give the two drills
+ * different-looking numbers.
+ */
+internal fun drawNumber(digits: Int, rng: Random): Long {
+    if (digits <= 1) return rng.nextLong(0, 10)
+    var value = rng.nextLong(1, 10)
+    repeat(digits - 1) {
+        val d = if (rng.nextInt(10) < 4) 0L else rng.nextLong(1, 10)
+        value = value * 10 + d
     }
+    return value
 }
 
 internal fun pad2(value: Int): String = value.toString().padStart(2, '0')

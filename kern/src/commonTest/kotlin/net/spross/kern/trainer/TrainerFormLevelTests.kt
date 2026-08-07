@@ -53,6 +53,54 @@ class TrainerFormLevelTests {
         }
     }
 
+    // The Mix magnitude
+
+    /**
+     * Under Mix a form is sized by the Numbers rung, so rung 1's "−7" becomes a
+     * seven-digit negative and a decimal grows a five-digit whole part — while the
+     * forms on offer, and the reading that grades them, stay the rung's own.
+     */
+    @Test
+    fun theMixMagnitudeWidensTheFormsThatHaveOne() {
+        val rng = Random(0x111)
+        val limits = FormLimits(forms = setOf(NumberForm.Negative, NumberForm.Decimal))
+        val wide = List(200) { checkNotNull(drawForm(limits, level = 1, rng = rng, magnitudeDigits = 7)) }
+        for (value in wide) {
+            val magnitude = when (value) {
+                is NumberValue.Negative -> value.magnitude
+                is NumberValue.Decimal -> value.whole
+                else -> error("rung 1 with two forms drew $value")
+            }
+            assertTrue(magnitude >= 1_000_000, "seven digits asked for, got $value")
+        }
+        // Rung 1 still offers rung 1: no ordinal, no percentage, however wide the value.
+        assertTrue(wide.any { it is NumberValue.Negative })
+    }
+
+    @Test
+    fun theFormsWithoutAMagnitudeIgnoreTheMixWidening() {
+        val rng = Random(0x222)
+        val limits = FormLimits(forms = setOf(NumberForm.Percent, NumberForm.Fraction))
+        for (value in List(200) { checkNotNull(drawForm(limits, level = 10, rng = rng, magnitudeDigits = 10)) }) {
+            when (value) {
+                is NumberValue.Percent -> assertTrue(value.n in 1..100, "$value")
+                is NumberValue.Fraction -> assertTrue(value.denominator <= 12, "$value")
+                else -> error("unexpected $value")
+            }
+        }
+    }
+
+    /** Zero magnitude is the plain ladder, byte for byte — Mix off changes nothing. */
+    @Test
+    fun noMixMagnitudeLeavesTheLadderExactlyAsItWas() {
+        for (language in authored) {
+            assertEquals(
+                Trainer.sample(TrainerKind.Forms, language, 6, Random(11)),
+                Trainer.sampleForms(language, level = 6, magnitudeDigits = 0, rng = Random(11)),
+            )
+        }
+    }
+
     @Test
     fun everyRungStaysInsideTheLanguagesOwnLimits() {
         for (language in authored) {
