@@ -49,6 +49,32 @@ internal interface TrainerLanguagePack {
 
     /** Accepted spellings for the level drill (sw adds the "na"-less form). */
     fun drillNumber(n: Long): List<String> = number(n)
+
+    /**
+     * Whether a leading capital in this language's readings is PUNCTUATION rather than
+     * spelling. Swahili writes its clock standalone ("Saa mbili usiku") and lowercases it
+     * inside a sentence; German's readings begin on nouns — Mitternacht, Mittag, Viertel —
+     * whose capital is part of the word, so lowercasing one is a spelling mistake. Hence
+     * the default is to leave a reading's case alone, and only a language that writes its
+     * readings sentence-style says so.
+     */
+    val readingsCarrySentenceCapital: Boolean get() = false
+
+    /**
+     * A word a frame may carry right after the slot that a written-out reading already
+     * says: German "um {slot} Uhr" meets "achtzehn Uhr fünfunddreißig", and the frame's own
+     * "Uhr" gives way. Null where a frame can never double one — the digital rendering
+     * keeps it either way ("Es ist jetzt 18:35 Uhr.").
+     */
+    val slotEcho: String? get() = null
+
+    /**
+     * Prepositions some readings LEAD with ("um acht"). Such a reading composes only where
+     * the frame already carries that preposition — the duplicate is then dropped — and is
+     * skipped anywhere else: "Es ist jetzt um acht." is not a time statement. A list because
+     * one language may alternate by phonology (uk «о»/«об»).
+     */
+    val readingPrepositions: List<String> get() = emptyList()
 }
 
 private object GermanPack : TrainerLanguagePack {
@@ -63,6 +89,8 @@ private object GermanPack : TrainerLanguagePack {
     override fun formReading(value: NumberValue) = GermanForms.reading(value)
     override val formLimits = GermanForms.LIMITS
     override val decimalMark = ','
+    override val slotEcho = "Uhr"
+    override val readingPrepositions = listOf("um ")
 }
 
 private object EnglishPack : TrainerLanguagePack {
@@ -125,6 +153,9 @@ private object SwahiliPack : TrainerLanguagePack {
     override fun formReading(value: NumberValue) = SwahiliForms.reading(value)
     override val formLimits = SwahiliForms.LIMITS
     override fun drillNumber(n: Long) = SwahiliNumbers.acceptedVariants(n)
+    // why: "Saa mbili usiku" is written as a standalone answer — the capital is the
+    // sentence's, not the word's, and it drops the moment the reading goes mid-sentence.
+    override val readingsCarrySentenceCapital = true
 }
 
 private object UkrainianPack : TrainerLanguagePack {

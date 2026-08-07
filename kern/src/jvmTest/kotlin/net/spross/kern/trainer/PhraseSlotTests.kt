@@ -386,6 +386,24 @@ class PhraseSlotTests {
 
     // Casing at sentence start
 
+    /**
+     * German readings begin on NOUNS, whose capital is part of the word — the composer
+     * lowercased every mid-sentence reading for Swahili's sake and spelled those wrong.
+     */
+    @Test
+    fun germanNounReadingsKeepTheirCapitalMidSentence() {
+        val train = RealFrames.frame("de", "train-departs-at", source = "en")
+        val midnight = PhraseSlots.instantiate(train, hour = 0, minute = 0)
+        assertEquals("Der Zug fährt um Mitternacht ab.", midnight.display)
+        assertTrue(midnight.accepted.none { "mitternacht" in it }, midnight.accepted.toString())
+        assertEquals(
+            "Der Zug fährt um Viertel nach acht ab.",
+            PhraseSlots.instantiate(train, hour = 8, minute = 15).display,
+        )
+        val noon = PhraseSlots.instantiate(RealFrames.frame("de", "it-is-now", source = "uk"), 12, 0)
+        assertEquals("Es ist jetzt Mittag.", noon.display)
+    }
+
     @Test
     fun sentenceInitialSlotKeepsCapital() {
         val synthetic = PhraseTemplate(

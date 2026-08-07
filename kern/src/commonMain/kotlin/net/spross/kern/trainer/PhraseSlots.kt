@@ -1,6 +1,7 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
+import net.spross.kern.model.Language
 
 /**
  * Instantiates a [PhraseTemplate] into a [TrainerTask] by composing with the
@@ -95,10 +96,13 @@ object PhraseSlots {
         }
 
         val sourceCount = sourceCountWord(template, value)
-        val prompt = fillTarget(template.sourceTemplate, slot.prompt, sourceCount)
-        val promptDisplay = fillTarget(template.sourceTemplate, slot.promptDisplay, sourceCount)
+        // why: the prompt side takes DIGITS, which have no case — the answer language's
+        // casing rule is passed through it unread rather than looked up twice.
+        val prompt = fillTarget(template.sourceTemplate, slot.prompt, sourceCount, template.target)
+        val promptDisplay =
+            fillTarget(template.sourceTemplate, slot.promptDisplay, sourceCount, template.target)
         val display = fillWords(template, template.targetTemplate, slot.display, countWord)
-            ?: fillTarget(template.targetTemplate, slot.display, countWord)
+            ?: fillTarget(template.targetTemplate, slot.display, countWord, template.target)
         val words = slot.accepted.filterNot { isFilteredFeminine(template, it) }.distinct()
         val digits = digitForms(slot)
         val frames = (listOf(template.targetTemplate) + template.acceptedFrames).distinct()
@@ -111,7 +115,7 @@ object PhraseSlots {
                 if (sentence !in accepted) accepted += sentence
             }
             for (rendering in digits) {
-                val sentence = fillTarget(frame, rendering, countWord)
+                val sentence = fillTarget(frame, rendering, countWord, template.target)
                 if (sentence !in accepted) accepted += sentence
             }
         }
@@ -127,12 +131,13 @@ object PhraseSlots {
 
     /**
      * Fills one frame with one WRITTEN-OUT slot reading. A clock reading is the whole time
-     * expression, so a literal " Uhr" right after the slot is absorbed ("um {slot} Uhr" +
-     * "achtzehn Uhr fünfunddreißig" → "um achtzehn Uhr fünfunddreißig"); a reading itself
-     * starting "um " composes only where the frame already says "um " (the duplicate is
-     * dropped) and is skipped elsewhere — "Es ist jetzt um acht." is not a time statement.
-     * German is the only language whose readings carry those words, so this is a no-op
-     * everywhere else. Null = this reading does not belong in this frame.
+     * expression, so a word right after the slot that the reading already says is absorbed
+     * ([TrainerLanguagePack.slotEcho]: "um {slot} Uhr" + "achtzehn Uhr fünfunddreißig" →
+     * "um achtzehn Uhr fünfunddreißig"); a reading LEADING with a preposition
+     * ([TrainerLanguagePack.readingPrepositions]) composes only where the frame already
+     * says it, and is skipped elsewhere. Both words come from the answer language's pack,
+     * so a language whose readings carry none of them passes through untouched.
+     * Null = this reading does not belong in this frame.
      */
     private fun fillWords(
         template: PhraseTemplate,
@@ -140,15 +145,17 @@ object PhraseSlots {
         reading: String,
         countWord: String?,
     ): String? {
-        if (template.slotKind != TrainerKind.Clock) return fillTarget(frame, reading, countWord)
-        val marker = PhraseTemplate.SLOT_MARKER
-        val absorbed = frame.replace("$marker Uhr", marker)
-        var words = reading
-        if (words.startsWith("um ")) {
-            if (!absorbed.substringBefore(marker).endsWith("um ")) return null
-            words = words.removePrefix("um ")
+        val language = template.target
+        if (template.slotKind != TrainerKind.Clock) {
+            return fillTarget(frame, reading, countWord, language)
         }
-        return fillTarget(absorbed, words, countWord)
+        val pack = Trainer.pack(language)
+        val marker = PhraseTemplate.SLOT_MARKER
+        val absorbed = pack.slotEcho?.let { frame.replace("$marker $it", marker) } ?: frame
+        val preposition = pack.readingPrepositions.firstOrNull { reading.startsWith(it) }
+            ?: return fillTarget(absorbed, reading, countWord, language)
+        if (!absorbed.substringBefore(marker).endsWith(preposition)) return null
+        return fillTarget(absorbed, reading.removePrefix(preposition), countWord, language)
     }
 
     /**
@@ -175,18 +182,23 @@ object PhraseSlots {
     }
 
     /**
-     * Sentence-position-aware substitution: mid-sentence slots lowercase the
-     * value's first letter (Trainer's Swahili clock strings start "Saa …"),
-     * sentence-initial slots uppercase it.
+     * Sentence-position-aware substitution: a sentence-initial slot uppercases the value's
+     * first letter, and a mid-sentence one lowercases it only where [language] writes its
+     * readings sentence-style ([TrainerLanguagePack.readingsCarrySentenceCapital]).
      */
-    internal fun fillTarget(template: String, slotWords: String, countWord: String?): String {
+    internal fun fillTarget(
+        template: String,
+        slotWords: String,
+        countWord: String?,
+        language: Language,
+    ): String {
         var result = template
         val index = result.indexOf(PhraseTemplate.SLOT_MARKER)
         if (index >= 0) {
             val sentenceStart = result.take(index).none { it.isLetter() || it.isDigit() }
             result = result.replaceRange(
                 index, index + PhraseTemplate.SLOT_MARKER.length,
-                adjustCase(slotWords, sentenceStart),
+                adjustCase(slotWords, sentenceStart, language),
             )
         }
         if (countWord != null) {
@@ -195,9 +207,12 @@ object PhraseSlots {
         return result
     }
 
-    internal fun adjustCase(words: String, sentenceStart: Boolean): String {
+    internal fun adjustCase(words: String, sentenceStart: Boolean, language: Language): String {
         val first = words.firstOrNull() ?: return words
-        val head = if (sentenceStart) first.uppercase() else first.lowercase()
-        return head + words.substring(1)
+        if (sentenceStart) return first.uppercase() + words.substring(1)
+        // why: German's readings begin on nouns (Mitternacht, Viertel) — lowercasing one
+        // mid-sentence spells it wrong, so only a sentence-cased language gives its capital up.
+        if (!Trainer.pack(language).readingsCarrySentenceCapital) return words
+        return first.lowercase() + words.substring(1)
     }
 }
