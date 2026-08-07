@@ -116,8 +116,7 @@ struct SessionView: View, LanguageNaming {
         }
         #if DEBUG
         // UI-test hooks: `-uitest-reveal 1` shows the first card revealed,
-        // `-uitest-input xyz` prefills the answer field,
-        // `-uitest-submit 1` submits the prefilled answer after 0.6 s,
+        // the shared answer hooks (`UITestAnswer`),
         // `-uitest-sound 1` plays each feedback sound with a console probe,
         // `-uitest-pronounce <form>` says one form and prints which branch said it.
         .onAppear {
@@ -125,15 +124,8 @@ struct SessionView: View, LanguageNaming {
             if defaults.bool(forKey: "uitest-reveal") {
                 revealed = true
             }
-            if let prefill = defaults.string(forKey: "uitest-input") {
-                input = prefill
-            }
-            if defaults.bool(forKey: "uitest-submit") {
-                Task { @MainActor in
-                    try? await Task.sleep(for: .milliseconds(600))
-                    if let card = model.currentCard { submit(card) }
-                }
-            }
+            if let prefill = UITestAnswer.prefill { input = prefill }
+            UITestAnswer.submitAfterBeat { if let card = model.currentCard { submit(card) } }
             if defaults.bool(forKey: "uitest-sound") {
                 DLSound.uitestProbe()
             }

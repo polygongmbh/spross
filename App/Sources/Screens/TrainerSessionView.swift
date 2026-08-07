@@ -163,8 +163,7 @@ struct TrainerSessionView: View, LanguageNaming {
             hushAnswer()
         }
         #if DEBUG
-        // UI-test hooks: `-uitest-input xyz` prefills the answer field,
-        // `-uitest-submit 1` submits it after 0.6 s,
+        // UI-test hooks: the shared answer hooks (`UITestAnswer`),
         // `-uitest-streak N` presets a running streak for screenshots,
         // `-uitest-level N` starts the run at that rung (numbers: digit count),
         // which is the only way to photograph a long prompt without playing up to it.
@@ -175,15 +174,8 @@ struct TrainerSessionView: View, LanguageNaming {
                 level = min(presetLevel, maxLevel)
                 tasks = [Self.sampleTask(mode: mode, level: level, avoiding: nil)]
             }
-            if let prefill = defaults.string(forKey: "uitest-input") {
-                input = prefill
-            }
-            if defaults.bool(forKey: "uitest-submit") {
-                Task { @MainActor in
-                    try? await Task.sleep(for: .milliseconds(600))
-                    submit()
-                }
-            }
+            if let prefill = UITestAnswer.prefill { input = prefill }
+            UITestAnswer.submitAfterBeat { submit() }
             let preset = defaults.integer(forKey: "uitest-streak")
             if preset > 0 {
                 streak = preset

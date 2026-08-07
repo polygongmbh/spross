@@ -125,13 +125,8 @@ extension LetterDrillView {
 
     func uitestStart() {
         let defaults = UserDefaults.standard
-        if let prefill = defaults.string(forKey: "uitest-input") { input = prefill }
-        if defaults.bool(forKey: "uitest-submit"), let task = current {
-            Task { @MainActor in
-                try? await Task.sleep(for: .milliseconds(600))
-                submit(task)
-            }
-        }
+        if let prefill = UITestAnswer.prefill { input = prefill }
+        if let task = current { UITestAnswer.submitAfterBeat { submit(task) } }
         // `-uitest-streak N` and `-uitest-summary 1`, the slot drill's two
         // figures under the slot drill's two names: the close summary is the
         // one state no argument could otherwise reach, because the X is the
