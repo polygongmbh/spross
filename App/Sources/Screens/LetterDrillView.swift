@@ -96,13 +96,9 @@ struct LetterDrillView: View {
             if showingSummary {
                 summary
             } else if current != nil {
-                // why: endless run — position == total keeps the scaffold's
-                // counter honest and the bar fills as the run grows.
-                SessionScaffold(position: doneCount + 1,
-                                total: doneCount + 1,
-                                outcomes: outcomes,
-                                counter: "\(outcomes.filter { $0 != .wrong }.count)/\(doneCount)",
-                                onClose: { closeRun() }) {
+                SessionScaffold.endless(answered: doneCount,
+                                        outcomes: outcomes,
+                                        onClose: { closeRun() }) {
                     drillContent
                 }
             } else {

@@ -138,19 +138,13 @@ struct TrainerSessionView: View {
             if showingSummary {
                 summary
             } else {
-                // why: endless run — position == total keeps the scaffold's
-                // "n/n" counter honest (n tasks incl. the current one) and
-                // the bar fills toward full as the run grows, never breaks.
-                // Counter = "correct/answered" (an endless run has no total).
-                SessionScaffold(position: doneCount + 1,
-                                total: doneCount + 1,
-                                outcomes: outcomes,
-                                counter: "\(outcomes.filter { $0 != .wrong }.count)/\(doneCount)",
-                                // why: the run says its answers out loud now, so
-                                // it owes the learner a way to silence them here
-                                // rather than in Settings.
-                                showsMuteButton: model != nil,
-                                onClose: { closeRun() }) {
+                SessionScaffold.endless(answered: doneCount,
+                                        outcomes: outcomes,
+                                        // why: the run says its answers out loud
+                                        // now, so it owes the learner a way to
+                                        // silence them here, not in Settings.
+                                        showsMuteButton: model != nil,
+                                        onClose: { closeRun() }) {
                     drillContent
                 }
             }
