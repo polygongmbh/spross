@@ -2,6 +2,25 @@
 
 ## Unreleased
 
+- **Every word an area holds gets its mark on the tree.** How many marks a crown could
+  carry fell out of how often it had branched, so a tree whose words outran its branching
+  simply left some of them undrawn, and one that had branched a generation further drew a
+  third of its twigs bare. The slots follow the words now, with enough headroom that a full
+  canopy keeps its gaps where a real tree has them — on the limbs nearest the trunk. Large
+  trees also stop losing the top of their canopy: leaves and blossom hang off the ends of
+  the wood, and the crown was being fitted as though they did not.
+
+- **The tree on a session summary rises whatever the round did, and the line beneath it
+  describes that tree.** A round that promoted no word drew the same picture before and
+  after, so the screen meant to celebrate what you just did showed a photograph. The tree
+  now grows out of the ground every time, and the round's own work arrives on top of it — a
+  new mark out of nothing, a word swelling where it already hung. The line was worse: it
+  was chosen from the whole round's tallies while the tree shows one area, so a word that
+  blossomed at the doctor's could print a blossom line over a kitchen tree that had gained
+  nothing. It reads the area it draws now — which is what lets it say "hier" at all — it
+  tells apart an area you have just opened for the first time, and it says what you can now
+  do with the words rather than reporting on a shrub while you stand outside the sentence.
+
 - **The hour said exactly is a card now.** "Punkt zwölf Uhr mittags", "twelve noon sharp",
   "las doce del mediodía en punto", "saa sita mchana kamili" and "рівно о дванадцятій дня"
   all insist the hour is exact rather than say which hour it is, which is why the hours
