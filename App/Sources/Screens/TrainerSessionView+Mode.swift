@@ -24,14 +24,21 @@ extension TrainerSessionView {
 
         init(variants: [DrillVariant], language: String, phraseSource: String? = nil,
              templates: [PhraseTemplate] = [], modifiers: Set<DrillModifier> = []) {
+            #if DEBUG
+            let asked = Self.uitestVariants ?? variants
+            let played = modifiers.union(Self.uitestModifiers)
+            #else
+            let asked = variants
+            let played = modifiers
+            #endif
             // why: Phrases without frames would draw from an empty list — the
             // selection drops it rather than letting a task crash on the draw.
-            let offered = variants.filter { $0 != .phrases || !templates.isEmpty }
+            let offered = asked.filter { $0 != .phrases || !templates.isEmpty }
             self.variants = offered.isEmpty ? [.numbers] : offered
             self.language = language
             self.phraseSource = phraseSource
             self.templates = templates
-            self.modifiers = modifiers
+            self.modifiers = played
         }
 
         /// One slot variant, played plain — the hub's entry until the overview lands.
@@ -156,6 +163,32 @@ private extension TrainerSessionView.Mode {
     /// the run is climbing one. Without Numbers selected, Forms keeps its own ladder.
     var mixesForms: Bool { modifiers.contains(.mix) && variants.contains(.numbers) }
 }
+
+#if DEBUG
+private extension TrainerSessionView.Mode {
+    /// Run-through hooks, applied wherever a Mode is built: the hub launches one
+    /// plain variant, so `-uitest-variants numbers,clock,forms,phrases` and
+    /// `-uitest-modifiers rev,fast,mix` are the only way to reach a selection or a
+    /// modifier until the overview offers them. An unknown word is simply ignored.
+    static var uitestVariants: [DrillVariant]? {
+        let known: [String: DrillVariant] = ["numbers": .numbers, "clock": .clock,
+                                             "phrases": .phrases, "forms": .forms]
+        let picked = uitestWords("uitest-variants").compactMap { known[$0] }
+        return picked.isEmpty ? nil : picked
+    }
+
+    static var uitestModifiers: Set<DrillModifier> {
+        let known: [String: DrillModifier] = ["rev": .reverse, "fast": .fast, "mix": .mix]
+        return Set(uitestWords("uitest-modifiers").compactMap { known[$0] })
+    }
+
+    static func uitestWords(_ key: String) -> [String] {
+        (UserDefaults.standard.string(forKey: key) ?? "")
+            .split(separator: ",")
+            .map { $0.trimmingCharacters(in: .whitespaces).lowercased() }
+    }
+}
+#endif
 
 // MARK: - Variant ↔ slot kind
 
