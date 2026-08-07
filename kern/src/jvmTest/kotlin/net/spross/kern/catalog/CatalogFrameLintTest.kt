@@ -1,5 +1,6 @@
 package net.spross.kern.catalog
 
+import net.spross.kern.trainer.Trainer
 import net.spross.kern.trainer.TrainerKind
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -78,6 +79,32 @@ class CatalogFrameLintTest {
             if (frame.count != null) {
                 assertEquals(TrainerKind.Numbers, slots[slug], "$where: count on a non-numbers frame")
             }
+        }
+    }
+
+    /**
+     * The reference page's prose is authored per language and picked by the reader, so an
+     * unknown key is prose nobody will ever see. English is required of every language the
+     * Trainer can generate: it is the fallback every other reader lands on, and without it
+     * that language's overview shows a heading with nothing under it.
+     */
+    @Test
+    fun numberNotesAreReaderKeyedProseAndEveryDrillableLanguageAuthorsEnglish() {
+        for ((lang, byReader) in catalog.drillNotes) {
+            for ((reader, lines) in byReader) {
+                val where = "drills/$lang.json numberNotes.$reader"
+                assertTrue(reader in catalog.languages, "$where: unknown reader")
+                assertTrue(lines.isNotEmpty(), "$where: no lines")
+                for (line in lines) {
+                    assertTrue(line.isNotBlank() && line.trim() == line, "$where: untrimmed \"$line\"")
+                }
+            }
+        }
+        for (lang in catalog.languages.keys.filter { Trainer.supports(it) }) {
+            assertTrue(
+                catalog.numberNotes(lang, Catalog.FALLBACK_SOURCE).isNotEmpty(),
+                "drills/$lang.json: no English number notes, so every reader's overview is empty",
+            )
         }
     }
 

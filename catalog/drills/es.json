@@ -1,4 +1,18 @@
 {
+ "numberNotes": {
+  "de": [
+   "16 bis 29 sind ein Wort: dieciséis, veintidós. Ab 31 wieder getrennt: treinta y uno.",
+   "100 allein ist cien, mit Rest dahinter ciento: ciento uno.",
+   "Hunderter richten sich nach dem Geschlecht: doscientos / doscientas; 500, 700, 900 sind unregelmäßig.",
+   "Es gibt keine Milliarde: 10⁹ heißt mil millones. Und 1000 ist mil, nie un mil."
+  ],
+  "en": [
+   "16 to 29 are welded into one word: dieciséis, veintidós. From 31 it splits again: treinta y uno.",
+   "100 on its own is cien; with anything after it, ciento: ciento uno.",
+   "Hundreds agree in gender: doscientos / doscientas; 500, 700 and 900 are irregular.",
+   "There is no short-scale billion: 10⁹ is mil millones. And 1000 is mil, never un mil."
+  ]
+ },
  "frames": {
   "it-is-now": {
    "text": "Ahora {slot}.",

@@ -239,6 +239,31 @@ class CatalogFixtureTest {
         assertEquals(catalog.join("de", "sw").size, bare.join("de", "sw").size)
     }
 
+    /**
+     * The prose beside the reference table is content, so it rides the drills file and is
+     * picked by the reader — with an English fallback, unlike a card's note.
+     */
+    @Test
+    fun numberNotesFollowTheReaderAndFallBackToEnglish() {
+        assertEquals(listOf("Sechs, sieben und neun sind entlehnt."), catalog.numberNotes("sw", "de"))
+        assertEquals(listOf("Six, seven and nine are loans."), catalog.numberNotes("sw", "en"))
+        // uk authors English only: a reader without their own wording still gets the section.
+        assertEquals(listOf("The numeral sets the form."), catalog.numberNotes("uk", "de"))
+        // de authors none, and no other language's prose stands in for it.
+        assertTrue(catalog.numberNotes("de", "de").isEmpty())
+        assertTrue(catalog.numberNotes("xx", "de").isEmpty())
+    }
+
+    @Test
+    fun blankNumberNoteFailsTheParse() {
+        val broken = Fixture.files + mapOf(
+            "drills/uk.json" to Fixture.drills.getValue("drills/uk.json")
+                .replace("The numeral sets the form.", " "),
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("numberNotes.en" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
     @Test
     fun malformedFrameFileNamesThePath() {
         val broken = Fixture.files + mapOf(

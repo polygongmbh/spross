@@ -18,6 +18,8 @@ internal object Fixture {
      * Frame files, kept apart so a test can drop them wholesale and exercise the
      * absent-`drills/` case. `learning-since-year` is German-only (never joins), and `fr`
      * is realized although no trainer pack covers it (the availability gate).
+     * `numberNotes` covers all three reader cases: sw authors both readers, uk English
+     * only (the fallback), de and fr none at all.
      */
     val drills: Map<String, String> = mapOf(
         "drills/frames.json" to """
@@ -36,12 +38,16 @@ internal object Fixture {
             { "frames": { "bus-arrives-at": { "text": "Le bus arrive à {slot}." } } }
         """.trimIndent(),
         "drills/sw.json" to """
-            { "frames": {
+            { "numberNotes": {
+                "de": ["Sechs, sieben und neun sind entlehnt."],
+                "en": ["Six, seven and nine are loans."] },
+              "frames": {
                 "bus-arrives-at": { "text": "Basi linakuja {slot}." },
                 "i-have-n-keys": { "text": "Nina funguo {slot}." } } }
         """.trimIndent(),
         "drills/uk.json" to """
-            { "frames": {
+            { "numberNotes": { "en": ["The numeral sets the form."] },
+              "frames": {
                 "bus-arrives-at": { "text": "\u0410\u0432\u0442\u043e\u0431\u0443\u0441 {slot}." },
                 "i-have-n-keys": { "text": "\u0423 \u043c\u0435\u043d\u0435 \u0454 {slot} {count}.",
                                    "count": { "one": "\u043a\u043b\u044e\u0447", "few": "\u043a\u043b\u044e\u0447\u0456", "many": "\u043a\u043b\u044e\u0447\u0456\u0432" },

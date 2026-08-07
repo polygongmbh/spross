@@ -191,19 +191,31 @@ internal object CatalogParser {
         return frames
     }
 
-    /** Returns slug → frame realization; validates slugs and markers against [slots]. */
+    /**
+     * The language's number notes plus its frame realizations; validates slugs and markers
+     * against [slots]. `numberNotes` is a ROOT key, so it never enters the slug namespace —
+     * a frame may still be called that, and would be realized inside `frames` like any other.
+     */
     fun parseFrameLanguageFile(
         path: String,
         text: String,
         slots: Map<String, TrainerKind>,
-    ): Map<String, RawFrame> {
+    ): RawDrills {
         val root = parseJson(path, text).obj(path, "root")
-        root.rejectUnknownKeys(path, "root", setOf("frames"))
+        root.rejectUnknownKeys(path, "root", setOf("numberNotes", "frames"))
+        val notes = root.stringListMap(path, "root", "numberNotes")
+        for ((reader, lines) in notes) {
+            if (lines.isEmpty()) parseError(path, "numberNotes.$reader: no lines")
+            for (line in lines) {
+                if (line.isBlank() || line.trim() != line) parseError(path, "numberNotes.$reader: bad line \"$line\"")
+            }
+        }
         val framesObj = root["frames"]?.obj(path, "frames") ?: parseError(path, "missing \"frames\"")
-        return framesObj.entries.associate { (slug, el) ->
+        val frames = framesObj.entries.associate { (slug, el) ->
             val slot = slots[slug] ?: parseError(path, "frame for unknown slug \"$slug\"")
             slug to parseFrame(path, slug, slot, el.obj(path, slug))
         }
+        return RawDrills(numberNotes = notes, frames = frames)
     }
 
     private fun parseFrame(path: String, slug: String, slot: TrainerKind, o: JsonObject): RawFrame {

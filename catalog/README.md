@@ -416,6 +416,26 @@ The same frames on the Ukrainian side, carrying what only Ukrainian needs (`uk.j
     "it-costs-n-euros": { "text": "Це {slot} євро.", "masculineNumeral": true } } }
 ```
 
+**`numberNotes`** — the other root key of the same file:
+what trips a learner up in THIS language's numbers, two to four lines,
+keyed by explanation language exactly as a realization's `notes` are.
+It describes the language, not any one frame, which is why it sits beside `frames` rather than inside one
+(`sw.json`):
+```json
+{ "numberNotes": {
+    "de": ["6, 7 und 9 sind aus dem Arabischen entlehnt: sita, saba, tisa."],
+    "en": ["6, 7 and 9 are Arabic loans: sita, saba, tisa."] },
+  "frames": { "…": { "text": "…" } } }
+```
+The numbers overview prints them under its generated reading table —
+the table is derived from the trainer's own readings and can never be authored,
+so this is the only place a language's irregularities get said in words.
+Being a ROOT key it never enters the slug namespace: a frame may still be called `numberNotes`,
+and would be realized inside `frames` like any other.
+Selection is by READER with an English fallback, unlike a card's note, which has none:
+a note hangs off a card that carries itself without it, while this IS the section,
+so lint requires English of every language the trainer can generate.
+
 - `slot` is `numbers`, `years` or `clock` — which generator fills the frame.
 - **The drill is a symmetric runtime join**, like the card join:
   a frame realized in BOTH the learner's languages becomes one drill,

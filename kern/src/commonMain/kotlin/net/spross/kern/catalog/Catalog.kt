@@ -29,6 +29,8 @@ class Catalog internal constructor(
     internal val frames: List<CatalogFrame>,
     /** lang → frame slug → realization; only languages whose `drills/<lang>.json` exists. */
     internal val frameRealizations: Map<Language, Map<String, RawFrame>>,
+    /** lang → reader → the prose [numberNotes] serves; same file, same registry rule. */
+    internal val drillNotes: Map<Language, Map<Language, List<String>>>,
 ) {
     /** Flattened default area order (groups top-to-bottom, areas as listed). */
     val areaNames: List<String> = areas.map { it.name }
@@ -165,6 +167,21 @@ class Catalog internal constructor(
                 masculineNumeral = answer.masculineNumeral,
             )
         }
+    }
+
+    /**
+     * What trips a learner up in [language]'s numbers — authored prose from
+     * `drills/<lang>.json`, keyed by explanation language exactly as a realization's notes
+     * are, and selected here by whoever is READING.
+     *
+     * Unlike a realization note it does fall back to [FALLBACK_SOURCE]: a note hangs off a
+     * card that carries itself without it, while this IS the section, and a reference page
+     * a learner can read in English beats a heading with nothing under it. Empty where the
+     * language authors none at all.
+     */
+    fun numberNotes(language: Language, reader: Language): List<String> {
+        val byReader = drillNotes[language] ?: return emptyList()
+        return byReader[reader] ?: byReader[FALLBACK_SOURCE].orEmpty()
     }
 
     /**
@@ -366,12 +383,14 @@ class Catalog internal constructor(
             val frames = source.read("drills/frames.json")
                 ?.let { CatalogParser.parseFrames("drills/frames.json", it, conceptSlugs) }.orEmpty()
             val slots = frames.associate { it.slug to it.slot }
-            val frameRealizations = languages.keys.mapNotNull { lang ->
+            val drills = languages.keys.mapNotNull { lang ->
                 val path = "drills/$lang.json"
                 source.read(path)?.let { lang to CatalogParser.parseFrameLanguageFile(path, it, slots) }
             }.toMap()
             return Catalog(
-                groups, languages, areas, tracked.fingerprint(), audio, alphabets, frames, frameRealizations,
+                groups, languages, areas, tracked.fingerprint(), audio, alphabets, frames,
+                frameRealizations = drills.mapValues { (_, it) -> it.frames },
+                drillNotes = drills.mapValues { (_, it) -> it.numberNotes },
             )
         }
     }

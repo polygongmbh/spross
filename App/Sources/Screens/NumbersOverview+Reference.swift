@@ -20,12 +20,12 @@ extension NumbersOverview {
 
     // MARK: - What to watch out for
 
-    /// Two to four lines per language, in the reader's own language where one
-    /// was written and English otherwise — the same fallback the alphabet
-    /// sheet's teaching aids follow.
+    /// Two to four authored lines per language, straight from the catalog
+    /// (`drills/<lang>.json`), picked for the reader — kern falls back to
+    /// English where their own language carries no wording.
     @ViewBuilder
     var notesSection: some View {
-        let lines = NumbersOverviewNotes.lines(language: language, reader: model.sourceLanguage)
+        let lines = model.catalog?.numberNotes(language: language, reader: model.sourceLanguage) ?? []
         if !lines.isEmpty {
             VStack(alignment: .leading, spacing: DL.Space.l) {
                 heading("numbers.notes")

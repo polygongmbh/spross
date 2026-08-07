@@ -1,4 +1,18 @@
 {
+ "numberNotes": {
+  "de": [
+   "13 und 30, 15 und 50 klingen ähnlich: thirteen – thirty, fifteen – fifty.",
+   "Zehner und Einer bekommen einen Bindestrich: twenty-one.",
+   "hundred, thousand, million bleiben ohne -s: two hundred, three million.",
+   "Britisch steht and vor dem letzten Teil: three hundred and forty-seven."
+  ],
+  "en": [
+   "13 and 30, 15 and 50 sound alike: thirteen – thirty, fifteen – fifty.",
+   "Tens and units take a hyphen: twenty-one.",
+   "hundred, thousand, million never take -s after a number: two hundred.",
+   "British English puts and before the last part: three hundred and forty-seven."
+  ]
+ },
  "frames": {
   "train-departs-at": {
    "text": "The train departs at {slot}.",
