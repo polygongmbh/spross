@@ -116,7 +116,7 @@ class TrainerGoldenTests {
             val base = expected.split(" ").dropLast(1).joinToString(" ")
             assertEquals(base, task.accepted.first(), "t=$key")
             assertTrue(expected in task.accepted, "t=$key")
-            assertTrue(task.gloss?.contains("Saa") == true)
+            assertEquals("Saa ± 6h", task.gloss, "t=$key")
         }
     }
 }

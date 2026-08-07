@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **The Swahili clock reveal stops answering the next prompt.** It used to print the
+  fraction words and the countdown alongside every time, which is the very thing the drill
+  asks you to produce. It now names only what a reading cannot show: the saa hour is the
+  western one shifted by six.
+
 ## 3.10.1 — 2026-08-07
 
 - **The home-screen widgets are read at a glance instead of scanned.** A word and its meaning

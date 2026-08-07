@@ -27,7 +27,7 @@ class PhraseSlotTests {
             task.accepted,
         )
         assertTrue(task.kind == TrainerKind.Clock && task.language == "sw")
-        assertEquals("Saa ± 6h · na robo/nusu · kasoro/kasorobo · usiku optional", task.gloss)
+        assertEquals("Saa ± 6h", task.gloss)
     }
 
     @Test

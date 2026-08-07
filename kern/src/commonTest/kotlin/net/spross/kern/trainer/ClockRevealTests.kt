@@ -26,9 +26,9 @@ class ClockRevealTests {
     )
 
     /**
-     * Languages whose gloss is a rule hint ("Saa ± 6h · na robo/nusu"), not a list of
-     * readings — there is nothing in it to hold to the accepted set. Declaring them is
-     * what keeps a language missing from [alternativeMarkers] from passing quietly.
+     * Languages whose gloss is a rule hint ("Saa ± 6h"), not a list of readings — there is
+     * nothing in it to hold to the accepted set. Declaring them is what keeps a language
+     * missing from [alternativeMarkers] from passing quietly.
      */
     private val ruleHintGlosses = setOf("sw")
 

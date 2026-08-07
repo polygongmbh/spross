@@ -100,7 +100,7 @@ private object SwahiliPack : TrainerLanguagePack {
     override fun clock(hour: Int, minute: Int) = ClockReading(
         SwahiliClock.time(hour, minute),
         SwahiliClock.accepted(hour, minute),
-        SwahiliClock.gloss(hour),
+        SwahiliClock.gloss(),
     )
     override val placeValues = listOf(
         "kumi", "mia", "elfu", "elfu kumi", "elfu mia",

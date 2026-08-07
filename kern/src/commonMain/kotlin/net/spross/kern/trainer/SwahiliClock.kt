@@ -55,9 +55,8 @@ internal object SwahiliClock {
             .flatMap { core -> listOf(core) + dayParts(hours).map { "$core $it" } }
             .distinct()
 
-    /** Alternatives worth naming on the reveal, per time. */
-    fun gloss(hours: Int): String =
-        "Saa ± 6h · na robo/nusu · kasoro/kasorobo · ${dayParts(hours).joinToString("/")} optional"
+    /** The rule the reveal restates: the saa hour is the western one shifted by six. */
+    fun gloss(): String = "Saa ± 6h"
 
     /** Every reading of the time without a part of the day, canonical first. */
     private fun cores(hours: Int, minutes: Int): List<String> {
