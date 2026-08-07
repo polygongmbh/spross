@@ -150,10 +150,12 @@ extension TrainerHubView {
 
 #if DEBUG
 extension TrainerHubView {
-    /// UI-test hook: `-uitest-trainer numbers|years|clock|phrases|letters|alphabet`
+    /// UI-test hook: `-uitest-trainer numbers|clock|phrases|letters|alphabet`
     /// resolved against what this language actually offers.
     func uitestDestination(_ raw: String) -> HubDestination? {
-        let kinds: [String: TrainerKind] = ["numbers": .numbers, "years": .years, "clock": .clock]
+        // why: years dropped with the chip it opened — it has no rung on the
+        // ladder, so a run cannot be built on it and the hook would open numbers.
+        let kinds: [String: TrainerKind] = ["numbers": .numbers, "clock": .clock]
         if let kind = kinds[raw], let language = drillLanguage {
             return .slots(kind: kind, language: language)
         }

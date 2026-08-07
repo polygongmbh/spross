@@ -88,7 +88,7 @@ struct TrainerHubView: View, LanguageNaming {
         // why: drills grade word by word — no article forgiveness, one slip per
         // word, digits exact-only — so a sentence may fumble one word while no
         // number can ever pass for another.
-        model.languageInfo(mode.typedLanguage)
+        model.languageInfo(mode.language)
             .map { AnswerNormalizer(answerLanguage: $0, articleLeniency: false,
                                     maxTyposPerWord: KotlinInt(int: 1)) }
     }
@@ -227,6 +227,25 @@ extension TrainerKind {
         case .years: return "trainer.years"
         case .clock: return "trainer.clock"
         case .forms: return "trainer.forms"
+        }
+    }
+}
+
+/// What a RUN variant is called, wherever one has to be named on its own — the
+/// score line of a mixed run today, the overview's rows next. Numbers, Clock and
+/// Forms deliberately borrow the slot kind's face: they are the same exercise.
+extension DrillVariant {
+    var trainerEmoji: String {
+        switch self {
+        case .phrases: return "💬"
+        case .numbers, .clock, .forms: return slotKind?.trainerEmoji ?? "🔢"
+        }
+    }
+
+    var trainerTitleKey: LocalizedStringKey {
+        switch self {
+        case .phrases: return "trainer.phrases"
+        case .numbers, .clock, .forms: return slotKind?.trainerTitleKey ?? "trainer.numbers"
         }
     }
 }

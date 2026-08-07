@@ -28,7 +28,7 @@ struct TrainerSessionView: View, LanguageNaming {
 
     // why: internal, not private — the +UITest extension reseeds the run
     // at a preset rung.
-    @State var tasks: [TrainerTask]
+    @State var tasks: [DrawnTask]
     @State var index = 0
     @State var doneCount = 0
     @State var streak = 0
@@ -38,14 +38,17 @@ struct TrainerSessionView: View, LanguageNaming {
     @State var newRecord = false
     /// Per-task results for the segmented progress bar.
     @State private var outcomes: [SessionOutcome] = []
-    /// Adaptive difficulty (numbers: digit count). Two rights in a row at a
-    /// level ramp up; one miss steps down.
-    @State var level = 1
-    /// The highest rung this run ever stood on — what `TrainerProgress` books.
-    /// Tracked separately because `level` steps back down on a miss, and the
-    /// ladder rewards reaching a rung, not finishing on it.
-    @State private var bestLevel = 1
-    @State private var winsAtLevel = 0
+    /// Adaptive difficulty PER VARIANT (numbers: digit count), each starting at 1
+    /// however far the learner has climbed before — persisted progress drives
+    /// unlocks only, never the ramp, because the climb is the drill.
+    // why: internal, not private — the +UITest extension starts a run at a rung.
+    @State var levels: [DrillVariant: Int]
+    /// The highest rung each variant stood on in THIS run — what `TrainerProgress`
+    /// books on close. Tracked separately because a rung steps back down on a miss,
+    /// and the ladder rewards reaching one, not finishing on it. A variant the run
+    /// never drew stays absent: an unasked rung was never stood on.
+    @State private var bestLevels: [DrillVariant: Int] = [:]
+    @State private var winsAtLevel: [DrillVariant: Int] = [:]
     @State var showingSummary = false
     /// Digit counts already introduced with a place-value hint — each length
     /// is hinted only the first time it appears.
@@ -78,10 +81,12 @@ struct TrainerSessionView: View, LanguageNaming {
         self.normalizer = normalizer
         self.catalog = catalog
         self.model = model
-        _tasks = State(initialValue: [Self.sampleTask(mode: mode, level: 1, avoiding: nil)])
+        let start = Dictionary(uniqueKeysWithValues: mode.variants.map { ($0, 1) })
+        _levels = State(initialValue: start)
+        _tasks = State(initialValue: [Self.sampleTask(mode: mode, levels: start, avoiding: nil)])
     }
 
-    var language: String { mode.typedLanguage }
+    var language: String { mode.language }
 
     var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
 
@@ -123,48 +128,16 @@ struct TrainerSessionView: View, LanguageNaming {
         #endif
     }
 
-    // MARK: - Task sampling (lazy, endless)
+    // Task sampling and the ramp ceilings live in TrainerSessionView+Mode.swift.
 
-    /// One fresh random task at the current difficulty level; a prompt never
-    /// repeats back-to-back (resample once when it equals the previous one).
-    static func sampleTask(mode: Mode, level: Int, avoiding previousPrompt: String?) -> TrainerTask {
-        var task = sampleOnce(mode: mode, level: level)
-        if task.prompt == previousPrompt {
-            task = sampleOnce(mode: mode, level: level)
-        }
-        return task
-    }
+    var current: TrainerTask { tasks[index].task }
 
-    private static func sampleOnce(mode: Mode, level: Int) -> TrainerTask {
-        let rng = KotlinRandom.companion
-        switch mode {
-        case .slots(let kind, let language):
-            return Trainer.shared.sample(kind: kind, language: language,
-                                         level: Int32(level), rng: rng)
-        case .phrases(_, _, let templates):
-            // why: non-empty by construction — the hub resolves the pair's
-            // frames and only offers the chip when the catalog joined some.
-            let template = templates[Int.random(in: 0..<templates.count)]
-            // Leveled slot values — same ramp semantics as the plain drills;
-            // Kern clamps the level to each frame's own slot kind.
-            return PhraseSlots.shared.sample(template: template, level: Int32(level), rng: rng)
-        }
-    }
+    /// Which of the run's variants asked the question on screen — what a win, a
+    /// miss and the header line all apply to.
+    var currentVariant: DrillVariant { tasks[index].variant }
 
-    /// Ramp ceiling: slot drills per kind; the sentence drill ramps to the
-    /// highest ceiling among its frames' slot kinds.
-    var maxLevel: Int {
-        switch mode {
-        case .slots(let kind, _):
-            return Int(Trainer.shared.maxLevel(kind: kind))
-        case .phrases(_, _, let templates):
-            return templates
-                .map { Int(Trainer.shared.maxLevel(kind: $0.slotKind)) }
-                .max() ?? 1
-        }
-    }
-
-    var current: TrainerTask { tasks[index] }
+    /// The rung a variant is standing on right now. Every variant starts at 1.
+    func level(_ variant: DrillVariant) -> Int { levels[variant] ?? 1 }
 
     // Grading lives in TrainerSessionView+Grading.swift (file-size split).
 
@@ -184,17 +157,19 @@ struct TrainerSessionView: View, LanguageNaming {
             streak = 0
         }
         // The rung ramp is kern's, shared with the letter drill: clean wins climb,
-        // a miss steps down, an amber answer moves neither way.
-        let step = DrillRamp.shared.step(level: level, winsAtLevel: winsAtLevel,
+        // a miss steps down, an amber answer moves neither way. It applies to the
+        // variant that asked — the other variants of a mixed run stand where they were.
+        let variant = currentVariant
+        let step = DrillRamp.shared.step(level: level(variant), winsAtLevel: winsAtLevel[variant] ?? 0,
                                          correct: correct, clean: segment != .tough,
-                                         maxLevel: maxLevel,
-                                         winsRequired: Int(Trainer.shared.winsToAdvance(fast: false)))
-        level = step.nextLevel
-        winsAtLevel = step.wins
-        bestLevel = max(bestLevel, level)
+                                         maxLevel: maxLevel(variant),
+                                         winsRequired: Int(Trainer.shared.winsToAdvance(fast: mode.isFast)))
+        levels[variant] = step.nextLevel
+        winsAtLevel[variant] = step.wins
+        bestLevels[variant] = max(bestLevels[variant] ?? 1, step.nextLevel)
         outcomes.append(segment ?? (correct ? .right : .wrong))
         doneCount += 1
-        tasks.append(Self.sampleTask(mode: mode, level: level, avoiding: current.prompt))
+        tasks.append(Self.sampleTask(mode: mode, levels: levels, avoiding: current.prompt))
         // why: reset in the SAME transaction as the index switch — the next
         // prompt must never render one frame with the old revealed answer.
         input = ""
@@ -227,8 +202,12 @@ struct TrainerSessionView: View, LanguageNaming {
         answerFocused = false
         newRecord = TrainerRecords.record(bestStreak, for: mode.recordKey)
         // why: booked here, alongside the record, because a run that is still
-        // going can still climb — the rung is only final once the run closes.
-        TrainerProgress.record(bestLevel, for: mode.progressKey)
+        // going can still climb — a rung is only final once the run closes. Every
+        // variant the run asked, not only the one it ended on: the unlock ladder
+        // reads each variant's rung on its own.
+        for (variant, best) in bestLevels {
+            TrainerProgress.record(best, for: mode.progressKey(variant))
+        }
         // why: the cheer marks the record, not the end of a run — closing a
         // drill is a dozen-times-an-evening event and owes no fanfare.
         if newRecord { DLSound.cheer() }

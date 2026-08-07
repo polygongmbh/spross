@@ -4,15 +4,9 @@ import SprossKern
 /// Drill screen content + close summary of TrainerSessionView. State lives
 /// on TrainerSessionView; split out purely for file size.
 extension TrainerSessionView {
-    private var isPhrases: Bool {
-        if case .phrases = mode { return true }
-        return false
-    }
+    private var isPhrases: Bool { currentVariant == .phrases }
 
-    private var isNumbers: Bool {
-        if case .slots(.numbers, _) = mode { return true }
-        return false
-    }
+    private var isNumbers: Bool { currentVariant == .numbers }
 
     /// The card carries the answer whenever the learner did not produce it —
     /// a miss or "Aufdecken". A typo leaves it closed: the correction box
@@ -67,11 +61,17 @@ extension TrainerSessionView {
                         announcesRecord: true)
     }
 
-    /// The rung part of the score line: the numbers drill counts DIGITS, every
-    /// other kind counts plain levels — and a run with one rung shows none.
+    /// The rung part of the score line, for the variant that just asked: numbers
+    /// count DIGITS, everything else counts plain levels — and a variant with one
+    /// rung shows none. The emoji leads only where the run offers more than one
+    /// variant, since a run that asks one thing has already said what it asks.
     private var levelText: Text? {
-        guard maxLevel > 1 else { return nil }
-        return isNumbers ? Text("trainer.digits \(level)") : Text("trainer.level \(level.formatted())")
+        let variant = currentVariant
+        guard maxLevel(variant) > 1 else { return nil }
+        let rung = level(variant)
+        let text = isNumbers ? Text("trainer.digits \(rung)") : Text("trainer.level \(rung.formatted())")
+        guard mode.variants.count > 1 else { return text }
+        return Text(verbatim: "\(variant.trainerEmoji) ") + text
     }
 
     private var controls: some View {

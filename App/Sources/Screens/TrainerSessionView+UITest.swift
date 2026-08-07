@@ -9,8 +9,8 @@ import SprossKern
 extension TrainerSessionView {
 
     /// The shared answer hooks (`UITestAnswer`), plus:
-    /// `-uitest-level N` starts the run at that rung (numbers: digit count),
-    /// which is the only way to photograph a long prompt without playing up to it;
+    /// `-uitest-level N` starts the run's FIRST variant at that rung (numbers:
+    /// digit count), the only way to photograph a long prompt without playing up to it;
     /// `-uitest-streak N` presets a running streak;
     /// `-uitest-summary 1` jumps straight to the close-summary state — add
     /// `-uitest-record 1` to drop the stored record first, so the run books one
@@ -19,9 +19,11 @@ extension TrainerSessionView {
     func uitestStart() {
         let defaults = UserDefaults.standard
         let presetLevel = defaults.integer(forKey: "uitest-level")
-        if presetLevel > 0 {
-            level = min(presetLevel, maxLevel)
-            tasks = [Self.sampleTask(mode: mode, level: level, avoiding: nil)]
+        if presetLevel > 0, let variant = mode.variants.first {
+            var preset = levels
+            preset[variant] = min(presetLevel, maxLevel(variant))
+            levels = preset
+            tasks = [Self.sampleTask(mode: mode, levels: preset, avoiding: nil)]
         }
         if let prefill = UITestAnswer.prefill { input = prefill }
         UITestAnswer.submitAfterBeat { submit() }
