@@ -58,6 +58,9 @@ struct NumbersOverview: View {
                 }
                 .padding(DL.Space.xl)
             }
+            #if DEBUG
+            .defaultScrollAnchor(Self.uitestAnchor)
+            #endif
             .background(Color.dlBackground.ignoresSafeArea())
             .navigationTitle(Text("numbers.title \(languageName)"))
             .navigationBarTitleDisplayMode(.inline)
@@ -109,7 +112,14 @@ struct NumbersOverview: View {
         #endif
         progress = levels
         #if DEBUG
-        if launch == nil, UserDefaults.standard.bool(forKey: "uitest-run") { start() }
+        // why: a cover raised while the sheet under it is still animating in is
+        // dropped — the tap this stands in for always comes after that.
+        if launch == nil, UserDefaults.standard.bool(forKey: "uitest-run") {
+            Task { @MainActor in
+                try? await Task.sleep(for: .milliseconds(600))
+                start()
+            }
+        }
         #endif
     }
 
@@ -129,6 +139,20 @@ struct NumbersOverview: View {
 
 #if DEBUG
 extension NumbersOverview {
+    /// `-uitest-section practice|table` opens the page at the options or in the
+    /// middle of the table instead of at the top — both sit screens of reading
+    /// below the fold and no thumb drives a screenshot run.
+    static var uitestAnchor: UnitPoint {
+        switch UserDefaults.standard.string(forKey: "uitest-section") {
+        case "practice": return .bottom
+        // why: the table is twenty screens long — `center` is the only way to
+        // photograph a middle band, which is where the readings get long enough
+        // to test the wrap.
+        case "table": return .center
+        default: return .top
+        }
+    }
+
     /// `-uitest-progress Numbers=7,Forms=5` stands the ladder at a rung a
     /// screenshot cannot climb to by thumb. In MEMORY only: a photographed
     /// unlock must never become a stored one.
