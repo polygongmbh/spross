@@ -39,6 +39,14 @@ final class Speaker: NSObject {
     /// Swahili on iOS, which has no voice at any quality tier.
     func canSpeak(language: String) -> Bool { voice(for: language) != nil }
 
+    /// The tier of the voice that would actually answer for `language`, `nil`
+    /// where none would. iOS bundles only `.default` (compact) voices; the
+    /// `.enhanced` and `.premium` ones are a free download nobody is told
+    /// about, and the difference is not subtle — which is what the hint reads.
+    func voiceQuality(for language: String) -> AVSpeechSynthesisVoiceQuality? {
+        voice(for: language)?.quality
+    }
+
     /// Speaks `text` in `language`; a language with no installed voice is a
     /// silent no-op rather than a wrong-voice reading.
     func speak(_ text: String, language: String, onFinish: (@MainActor () -> Void)? = nil) {

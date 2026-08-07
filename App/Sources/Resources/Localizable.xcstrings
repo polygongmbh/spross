@@ -883,6 +883,22 @@
         }
       }
     },
+    "common.dismiss" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausblenden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dismiss"
+          }
+        }
+      }
+    },
     "common.done" : {
       "localizations" : {
         "de" : {
@@ -1695,6 +1711,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Today"
+          }
+        }
+      }
+    },
+    "heute.voiceUpgrade.path" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings › Accessibility › Spoken Content › Voices"
+          }
+        }
+      }
+    },
+    "heute.voiceUpgrade.title %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ klingt mit einer besseren Stimme deutlich klarer — gratis zum Laden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ sounds much clearer with a better voice — free to download."
           }
         }
       }
@@ -2719,6 +2767,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Read words aloud"
+          }
+        }
+      }
+    },
+    "settings.audio.voiceUpgrade %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ wird gerade von der einfachen Systemstimme gelesen. Eine deutlich klarere gibt es gratis unter Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ is being read by the basic system voice. A much clearer one is a free download under Settings › Accessibility › Spoken Content › Voices."
           }
         }
       }

@@ -14,6 +14,7 @@ struct HeuteView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: DL.Space.xl) {
                 header
+                voiceUpgradeBanner
                 if let failure = model.loadFailure {
                     stateCard(emoji: "🫤",
                               title: "error.title",
@@ -52,6 +53,57 @@ struct HeuteView: View {
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
         }
+    }
+
+    // MARK: - Voice upgrade
+
+    /// Said once, above the day's card: the words are being read by the compact
+    /// system voice and a much better one is a free download. It cannot be a
+    /// link — no public URL opens the Voices pane, and one that landed on the
+    /// app's own settings page instead would send the learner somewhere the
+    /// setting is not — so the path is spelled out and the banner is a notice,
+    /// not a button. Dismissing is permanent; the settings row keeps it.
+    @ViewBuilder
+    private var voiceUpgradeBanner: some View {
+        let hint = VoiceUpgradeHint.shared
+        if hint.suggestsBanner(language: model.targetLanguage,
+                               activeCards: model.stats?.activeCards ?? 0) {
+            HStack(alignment: .top, spacing: DL.Space.m) {
+                Image(systemName: "speaker.wave.2")
+                    .foregroundStyle(Color.dlAccent)
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: DL.Space.xs) {
+                    Text("heute.voiceUpgrade.title \(voiceUpgradeLanguage)")
+                        .font(DL.Fonts.headline)
+                        .foregroundStyle(Color.dlTextPrimary)
+                    Text("heute.voiceUpgrade.path")
+                        .font(DL.Fonts.caption)
+                        .foregroundStyle(Color.dlTextSecondary)
+                }
+                Spacer(minLength: 0)
+                Button {
+                    withAnimation { hint.dismissBanner() }
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.caption)
+                        .foregroundStyle(Color.dlTextSecondary)
+                }
+                .accessibilityLabel(Text("common.dismiss"))
+            }
+            .padding(DL.Space.l)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
+                    .fill(Color.dlSurface)
+            )
+            .dlCardShadow()
+        }
+    }
+
+    private var voiceUpgradeLanguage: String {
+        model.targetLanguage.map {
+            LanguageNames.display($0, locale: locale, catalog: model.catalog)
+        } ?? "?"
     }
 
     // MARK: - Session available

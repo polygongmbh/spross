@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **The app now says when a better voice is a free download away.** Every word without a
+  bundled recording is read by the system voice, and iOS ships only the compact one — the
+  clear, enhanced voices sit behind a download in Settings that nothing announces, so a
+  learner could spend months with a muffled reading and no idea it was optional. The app
+  asks the synthesizer which voice would actually answer for the language being learned:
+  when it is the compact one, the audio setting names the path to the better ones, and
+  Heute carries it once as a notice that can be waved away. Both vanish the moment a
+  better voice is installed, so nobody is told about a gap they have already closed.
+
 ## 3.11.0 — 2026-08-07
 
 - **Every word an area holds gets its mark on the tree.** How many marks a crown could
