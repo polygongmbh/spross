@@ -2955,6 +2955,22 @@
         }
       }
     },
+    "trainer.forms" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlformen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forms"
+          }
+        }
+      }
+    },
     "trainer.letters" : {
       "localizations" : {
         "de" : {

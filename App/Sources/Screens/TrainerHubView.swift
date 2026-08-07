@@ -218,6 +218,7 @@ extension TrainerKind {
         case .numbers: return "🔢"
         case .years: return "📅"
         case .clock: return "🕐"
+        case .forms: return "➗"
         }
     }
 
@@ -227,6 +228,7 @@ extension TrainerKind {
         case .numbers: return "trainer.numbers"
         case .years: return "trainer.years"
         case .clock: return "trainer.clock"
+        case .forms: return "trainer.forms"
         }
     }
 }
