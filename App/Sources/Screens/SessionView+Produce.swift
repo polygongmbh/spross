@@ -102,9 +102,10 @@ extension SessionView {
             case .almost:
                 // A typo or a heard-instead pauses here — the box above spells
                 // the owed form out and says it; this waits for the tap that
-                // books the card.
+                // books the card. Neither came back clean, so both book Hard,
+                // same as a finished retry (matches Android's ProduceCard).
                 Button {
-                    rate(.good)
+                    rate(.hard)
                 } label: {
                     DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
                 }
