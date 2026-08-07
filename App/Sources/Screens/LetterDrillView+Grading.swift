@@ -138,6 +138,17 @@ extension LetterDrillView {
                 submit(task)
             }
         }
+        // `-uitest-streak N` and `-uitest-summary 1`, the slot drill's two
+        // figures under the slot drill's two names: the close summary is the
+        // one state no argument could otherwise reach, because the X is the
+        // only way in and a screenshot run has no thumb.
+        let preset = defaults.integer(forKey: "uitest-streak")
+        if preset > 0 {
+            streak = preset
+            bestStreak = max(preset, 12)
+            doneCount = preset + 6
+        }
+        if defaults.bool(forKey: "uitest-summary") { showingSummary = true }
         if let pick = defaults.string(forKey: "uitest-letters-choose") { uitestChoose(pick) }
         if defaults.bool(forKey: "uitest-letters-replay") { uitestReplay() }
         if defaults.bool(forKey: "uitest-letters-probe") { uitestBox("open") }
