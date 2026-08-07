@@ -56,14 +56,12 @@ struct LetterDrillView: View, LanguageNaming {
         self.language = language
         let availability = LetterDrillAvailability(model: model, language: language)
         self.availability = availability
-        let consolidated = model.stats?.consolidatedCards ?? 0
-        let ceiling = LetterDrill.shared.ceiling(dictation: availability.dictationAvailable)
-        var start = min(LetterDrill.shared.entryLevel(consolidated: consolidated), ceiling)
+        var start = availability.entryLevel
         #if DEBUG
         // UI-test hook: `-uitest-letters-level N` opens the run at that rung,
         // which is how any stage is reached deterministically.
         let preset = UserDefaults.standard.integer(forKey: "uitest-letters-level")
-        if preset > 0 { start = min(preset, ceiling) }
+        if preset > 0 { start = min(preset, availability.maxLevel) }
         #endif
         _level = State(initialValue: start)
         _tasks = State(initialValue: [Self.sample(model: model, language: language,
@@ -72,7 +70,7 @@ struct LetterDrillView: View, LanguageNaming {
     }
 
     /// The rung ceiling: 9 where dictation exists, else 7.
-    var maxLevel: Int { LetterDrill.shared.ceiling(dictation: availability.dictationAvailable) }
+    var maxLevel: Int { availability.maxLevel }
 
     /// How long a rung is — one clean win for a consolidated vocabulary, the
     /// classic two below it (Kern's step function, not this view's).

@@ -2,28 +2,25 @@ import SwiftUI
 import SprossKern
 
 /// Compact "Training" card on the Heute screen: TWO entries — 🔢 Zahlen and
-/// 🔤 Buchstaben — plus the alphabet to read. Clock and sentences are not
-/// siblings of the numbers drill but variants of it, so they live as rows
-/// inside the numbers overview and are earned there; the chip row only has to
-/// name the two things a learner can practise. Offerings stay registry-driven:
-/// numbers appears only when Kern's trainer supports the learned language, the
-/// letter drill only where this device can sound a letter, the alphabet only
-/// where a file was authored — an empty card hides entirely. Trainers are
-/// stateless: they never touch BoxState or FSRS.
+/// 🔤 Buchstaben. Each opens an overview: what the language does with numbers
+/// or letters, and the run started from the same page. Clock and sentences are
+/// not siblings of the numbers drill but variants of it, and the alphabet is
+/// not a sibling of the letter drill but the page it is launched from, so the
+/// chip row only has to name the two things a learner can practise. Offerings
+/// stay registry-driven: numbers appears only when Kern's trainer supports the
+/// learned language, letters only where an alphabet file was authored — an
+/// empty card hides entirely. Trainers are stateless: they never touch BoxState
+/// or FSRS.
 struct TrainerHubView: View, LanguageNaming {
     let model: AppModel
 
     // why: internal, not private — LanguageNaming names the drilled
     // language through it.
     @Environment(\.locale) var locale
-    @Environment(\.scenePhase) private var scenePhase
 
     // why: internal, not private — TrainerHubView+Letters.swift (file-size
-    // split) reads the same three, and drives this state from its extension.
+    // split) drives this state from its extension.
     @State var destination: HubDestination?
-    /// What the letter drill can ask on THIS device — rebuilt on every
-    /// foreground (TrainerHubView+Letters.swift), never decided once.
-    @State var letterDrill: LetterDrillAvailability?
 
     /// The language being learned — every drill runs in it.
     var drillLanguage: String? { model.targetLanguage }
@@ -54,28 +51,13 @@ struct TrainerHubView: View, LanguageNaming {
                 card
             }
         }
-        .onAppear { refreshLetterDrill() }
-        // why: a voice installed in Settings while the app slept must bring
-        // the chip back on the next foreground, not on the next launch. On
-        // becoming ACTIVE, not on willEnterForeground: the speaker drops its
-        // cached voice table on that notification, and this has to read the
-        // table after it was dropped rather than the stale one.
-        .onChange(of: scenePhase) { _, phase in
-            if phase == .active { refreshLetterDrill() }
-        }
-        .fullScreenCover(item: drillDestination) { destination in
-            if let language = destination.lettersLanguage {
-                LetterDrillView(model: model, language: language)
-                    .environment(\.locale, model.knownLocale)
-            }
-        }
-        .sheet(item: sheetDestination) { destination in
+        .sheet(item: $destination) { destination in
             Group {
                 if let language = destination.numbersLanguage {
                     NumbersOverview(model: model, language: language,
                                     phraseDrill: phraseDrill.map { ($0.source, $0.templates) })
-                } else if let language = destination.alphabetLanguage {
-                    AlphabetSheetView(model: model, language: language)
+                } else if let language = destination.lettersLanguage {
+                    LettersOverview(model: model, language: language)
                 }
             }
             .environment(\.locale, model.knownLocale)
@@ -92,21 +74,13 @@ struct TrainerHubView: View, LanguageNaming {
             Text("trainer.subtitle")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
-            // why: gated as a whole — a language with an alphabet and no drills
-            // (the moment such a file lands) would otherwise open an empty row
-            // of chips above the Alphabet row.
-            if slotsAvailable || letterDrillAvailable {
-                HStack(spacing: DL.Space.m) {
-                    if slotsAvailable {
-                        numbersChip
-                    }
-                    if letterDrillAvailable {
-                        lettersChip
-                    }
+            HStack(spacing: DL.Space.m) {
+                if slotsAvailable {
+                    numbersChip
                 }
-            }
-            if alphabetAvailable {
-                alphabetRow
+                if alphabetAvailable {
+                    lettersChip
+                }
             }
         }
         .padding(DL.Space.xl)
@@ -117,7 +91,7 @@ struct TrainerHubView: View, LanguageNaming {
         )
         .dlCardShadow()
         #if DEBUG
-        // UI-test hook: `-uitest-trainer numbers|letters|alphabet`
+        // UI-test hook: `-uitest-trainer numbers|letters`
         // opens that surface (in the learned language, like the chips).
         // Attached HERE because the card only appears once the box is loaded;
         // resolved in TrainerHubView+Letters.swift.
@@ -167,8 +141,9 @@ struct TrainerHubView: View, LanguageNaming {
     }
 }
 
-/// Pressed-state feedback for the hub's chips and rows (mirrors DL button
-/// springs). Internal: the Alphabet row is a TrainerHubView+Letters.swift one.
+/// Pressed-state feedback for the hub's chips (mirrors DL button springs).
+/// Internal: the letters chip is a TrainerHubView+Letters.swift one, and the
+/// letter drill's answer tiles borrow the same press.
 struct TrainerChipButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

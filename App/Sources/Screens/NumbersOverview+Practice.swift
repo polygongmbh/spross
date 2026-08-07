@@ -8,7 +8,7 @@ extension NumbersOverview {
 
     var practiceSection: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
-            heading("numbers.practice")
+            heading("overview.practice")
             VStack(alignment: .leading, spacing: DL.Space.s) {
                 ForEach(offered, id: \.self) { variantRow($0) }
             }
@@ -130,7 +130,7 @@ extension NumbersOverview {
         Button {
             start()
         } label: {
-            Text("numbers.start")
+            Text("overview.start")
                 .frame(maxWidth: .infinity)
         }
         .buttonStyle(DLPrimaryButtonStyle())

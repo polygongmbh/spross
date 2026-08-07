@@ -337,22 +337,6 @@
         }
       }
     },
-    "alphabet.title %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alphabet · %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alphabet · %@"
-          }
-        }
-      }
-    },
     "box.cardsInProgress %@ %@" : {
       "localizations" : {
         "de" : {
@@ -1779,6 +1763,22 @@
         }
       }
     },
+    "letters.entry" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hier geht es los"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "your run starts here"
+          }
+        }
+      }
+    },
     "letters.hear" : {
       "localizations" : {
         "de" : {
@@ -1827,6 +1827,182 @@
         }
       }
     },
+    "letters.stage.choiceConfusable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ähnliche Kacheln"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lookalike tiles"
+          }
+        }
+      }
+    },
+    "letters.stage.choiceConfusable.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieselbe Wahl, aber mit Buchstaben, die leicht zu verwechseln sind"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The same choice, between letters that are easy to mix up"
+          }
+        }
+      }
+    },
+    "letters.stage.choiceEasy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vier Kacheln"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Four tiles"
+          }
+        }
+      }
+    },
+    "letters.stage.choiceEasy.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den gehörten Buchstaben unter vieren finden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find the letter you heard among four"
+          }
+        }
+      }
+    },
+    "letters.stage.dictation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diktat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dictation"
+          }
+        }
+      }
+    },
+    "letters.stage.dictation.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganze Wörter aus dem eigenen Kasten nach Gehör schreiben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write whole words from your own box by ear"
+          }
+        }
+      }
+    },
+    "letters.stage.dictation.locked" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Braucht mehr gefestigte Wörter, die dieses Gerät vorlesen kann"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Needs more consolidated words this device can read out"
+          }
+        }
+      }
+    },
+    "letters.stage.typed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typing"
+          }
+        }
+      }
+    },
+    "letters.stage.typed.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den Buchstaben selbst schreiben, ohne Auswahl"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write the letter yourself, with nothing to pick from"
+          }
+        }
+      }
+    },
+    "letters.title %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buchstaben · %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letters · %@"
+          }
+        }
+      }
+    },
+    "letters.unavailable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Gerät kann noch keinen Buchstaben vorsprechen — dafür braucht es eine Stimme für die Sprache."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This device cannot say a letter yet — that needs a voice for the language."
+          }
+        }
+      }
+    },
     "nav.box" : {
       "localizations" : {
         "de" : {
@@ -1855,22 +2031,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "What to watch out for"
-          }
-        }
-      }
-    },
-    "numbers.practice" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Üben"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Practice"
           }
         }
       }
@@ -2019,22 +2179,6 @@
         }
       }
     },
-    "numbers.start" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start"
-          }
-        }
-      }
-    },
     "numbers.title %@" : {
       "localizations" : {
         "de" : {
@@ -2159,6 +2303,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Welcome to Spross"
+          }
+        }
+      }
+    },
+    "overview.practice" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Üben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice"
+          }
+        }
+      }
+    },
+    "overview.start" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
           }
         }
       }

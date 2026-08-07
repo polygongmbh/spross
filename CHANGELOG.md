@@ -16,6 +16,15 @@
   every run starts at the bottom of the ladder however far you have come — the climb is the
   drill.
 
+- **Buchstaben is a page too, and the numbers table is a tap away inside a run.** The
+  alphabet sat in a row of its own, unconnected to the letter drill it prepares you for.
+  The two are one page now: the alphabet to read, then the stages a run walks through with
+  the one it will open on marked and dictation saying what it waits for, then the button
+  that starts it. And the "?" mid-drill — which produced a short list of Swahili tens and
+  nothing at all in any other language — now raises the whole numbers page the overview
+  shows, whatever language you are learning. Looking something up while you still owe an
+  answer costs the rung, exactly as it always did; reading it afterwards is free.
+
 - **A long number in the drill breaks into groups a reader can take in.** Ten digits arrived
   as one unbroken run that had to be counted a place at a time. The prompt breaks in threes
   from five digits up now — 9999 stays whole, 12 345 and 4 072 918 300 come apart — and the
