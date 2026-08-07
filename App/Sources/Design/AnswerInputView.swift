@@ -26,6 +26,17 @@ struct AnswerInputView: View {
         }
     }
 
+    /// Saying the correction out loud, asked BY the form rather than handed in
+    /// already resolved. All three surfaces derived the pair from `.almost` and
+    /// its correction; the box is the one place that knows which word it shows,
+    /// so it is the one place that may ask for a voice for it.
+    struct Voice {
+        /// nil back — nothing recorded and no voice for the language — drops
+        /// the speaker rather than showing a dead one.
+        let pronounce: (String) -> (() -> Void)?
+        let isPlaying: (String) -> Bool
+    }
+
     enum Feedback: Equatable {
         case neutral
         case correct
@@ -58,10 +69,9 @@ struct AnswerInputView: View {
     /// a produce miss keeps the field open so the learner can retype the
     /// word they just saw revealed.
     var locked: Bool?
-    /// Says the form the box below carries — nil where it can neither be played
-    /// nor spoken, which drops the speaker rather than showing a dead one.
-    var pronounceCorrection: (() -> Void)?
-    var correctionIsPlaying: Bool = false
+    /// How the correction box says the form it is carrying. Left off where a
+    /// surface has nothing to say it with.
+    var correctionVoice: Voice?
     var onSubmit: () -> Void = {}
 
     @FocusState private var fallbackFocus: Bool
@@ -190,10 +200,10 @@ struct AnswerInputView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)
-            if let pronounceCorrection {
+            if let correctionVoice, let pronounce = correctionVoice.pronounce(form) {
                 SpeakerIcon(size: .small,
-                            isPlaying: correctionIsPlaying,
-                            pronounce: pronounceCorrection)
+                            isPlaying: correctionVoice.isPlaying(form),
+                            pronounce: pronounce)
                     .accessibilityLabel("a11y.pronounce")
             }
         }
@@ -224,7 +234,7 @@ private struct AnswerInputPreviewHost: View {
             AnswerInputView(text: $right, feedback: .correct)
             AnswerInputView(text: $slip,
                             feedback: .almost(correctForm: "kisu", reason: .typo),
-                            pronounceCorrection: {})
+                            correctionVoice: .init(pronounce: { _ in {} }, isPlaying: { _ in false }))
             AnswerInputView(text: $wrong, feedback: .revealed)
             // Inert: revealed, locked and empty — the field renders nothing at
             // all, so this row is deliberately blank.

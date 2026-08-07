@@ -182,8 +182,11 @@ extension LetterDrillView {
                                                                         locale: locale),
                                                 languageName(task.language)),
                             focus: $answerFocused,
-                            pronounceCorrection: correctionPronounce(task),
-                            correctionIsPlaying: correctionPlaying(task)) {
+                            // Tap-to-replay for the correction box — the form
+                            // the slip owed, said in the drilled language.
+                            correctionVoice: .init(
+                                pronounce: { model.pronounceAction(for: $0, lang: task.language) },
+                                isPlaying: { model.isPronouncing($0, lang: task.language) })) {
                 submit(task)
             }
             switch feedback {
@@ -216,18 +219,6 @@ extension LetterDrillView {
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
-    }
-
-    /// Tap-to-replay for the correction box — the form the slip owed, said in
-    /// the drilled language.
-    private func correctionPronounce(_ task: LetterDrillTask) -> (() -> Void)? {
-        guard case .almost(let form, _) = feedback else { return nil }
-        return model.pronounceAction(for: form, lang: task.language)
-    }
-
-    private func correctionPlaying(_ task: LetterDrillTask) -> Bool {
-        guard case .almost(let form, _) = feedback else { return false }
-        return model.isPronouncing(form, lang: task.language)
     }
 
     var inputEmpty: Bool { input.trimmingCharacters(in: .whitespaces).isEmpty }

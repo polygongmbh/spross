@@ -85,8 +85,9 @@ extension TrainerSessionView {
                             placeholder: String(format: DLChrome.string("session.answer.placeholder %@", locale: locale),
                                                 languageName(language)),
                             focus: $answerFocused,
-                            pronounceCorrection: correctionPronounce,
-                            correctionIsPlaying: correctionPlaying) {
+                            correctionVoice: .init(
+                                pronounce: { model?.pronounceAction(for: $0, lang: language) },
+                                isPlaying: { model?.isPronouncing($0, lang: language) ?? false })) {
                 submit()
             }
             .onChange(of: input) { _, _ in approveWhenTyped() }

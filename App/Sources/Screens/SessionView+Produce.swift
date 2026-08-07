@@ -16,8 +16,8 @@ extension SessionView {
                         // why: a miss keeps typing — the retype IS the
                         // answer, so the field must not lock on reveal.
                         locked: false,
-                        pronounceCorrection: correctionPronounce,
-                        correctionIsPlaying: correctionPlaying) {
+                        correctionVoice: .init(pronounce: { pronounceAction(for: $0) },
+                                               isPlaying: { isPronouncing($0) })) {
             // why: Enter used to hit the "Next" button's default
             // action once revealed — a hardware keyboard still needs
             // a way to give up without finishing the retype.
@@ -45,22 +45,6 @@ extension SessionView {
     /// its checkmark, the same confirmation a first-try answer gets.
     var fieldFeedback: AnswerInputView.Feedback {
         retryApproved ? .correct : feedback
-    }
-
-    /// The form the correction box carries, if it is carrying one — the single
-    /// place the amber hold's word is named, so the box and its speaker can
-    /// never end up saying two different things.
-    var correctionForm: String? {
-        if case .almost(let form, _) = fieldFeedback { return form }
-        return nil
-    }
-
-    var correctionPronounce: (() -> Void)? {
-        correctionForm.flatMap { pronounceAction(for: $0) }
-    }
-
-    var correctionPlaying: Bool {
-        correctionForm.map { isPronouncing($0) } ?? false
     }
 
     /// True while produce has nothing to type into: the blank "Aufdecken"

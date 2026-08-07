@@ -22,19 +22,6 @@ extension TrainerSessionView {
         }
     }
 
-    /// Tap-to-replay for the correction box. The card's own speaker is wired
-    /// separately (`drillContent`) because it says the reading even when the
-    /// box is not on screen.
-    var correctionPronounce: (() -> Void)? {
-        guard case .almost(let form, _) = feedback else { return nil }
-        return model?.pronounceAction(for: form, lang: language)
-    }
-
-    var correctionPlaying: Bool {
-        guard case .almost(let form, _) = feedback else { return false }
-        return model?.isPronouncing(form, lang: language) ?? false
-    }
-
     /// Fires once when the answer comes out, however it came out. `.auto`, so
     /// the read-aloud switch and VoiceOver both still veto it — a tap on the
     /// speaker outranks the mute, this does not.
