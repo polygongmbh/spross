@@ -27,10 +27,9 @@ class TrainerFormLevelTests {
 
     @Test
     fun theFormsChipIsOfferedExactlyWhereAPackAuthorsForms() {
-        assertEquals(listOf("de", "en", "es", "uk"), authored)
-        for (language in listOf("sw")) {
-            assertFalse(Trainer.supportsForms(language), "$language authors no forms yet")
-        }
+        assertEquals(listOf("de", "en", "es", "sw", "uk"), authored)
+        // The gate still has to close: a language with no pack at all offers no Forms drill.
+        assertFalse(Trainer.supportsForms("fr"))
     }
 
     @Test
@@ -163,10 +162,17 @@ class TrainerFormLevelTests {
         assertEquals("999,1234", renderForm(NumberValue.Decimal(999, "1234"), ',', grouped = true))
     }
 
+    /**
+     * The mark is a claim about the language, not a fallback: East African maths writes
+     * 0.01 (TIE's Hisabati series), so Swahili takes the point deliberately.
+     */
     @Test
-    fun germanWritesTheCommaAndEnglishThePoint() {
+    fun eachPackWritesItsOwnDecimalMark() {
         assertEquals(',', Trainer.pack("de").decimalMark)
         assertEquals('.', Trainer.pack("en").decimalMark)
+        assertEquals(',', Trainer.pack("es").decimalMark)
+        assertEquals('.', Trainer.pack("sw").decimalMark)
+        assertEquals(',', Trainer.pack("uk").decimalMark)
     }
 
     // Sampling

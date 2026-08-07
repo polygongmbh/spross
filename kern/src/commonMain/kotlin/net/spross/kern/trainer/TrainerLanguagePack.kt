@@ -130,6 +130,8 @@ private object SwahiliPack : TrainerLanguagePack {
     )
     override val clockDayParts: Set<String> = (0..23).flatMapTo(mutableSetOf(), SwahiliClock::dayParts)
     override val tensReference get() = SwahiliNumbers.tensReference
+    override fun formReading(value: NumberValue) = SwahiliForms.reading(value)
+    override val formLimits = SwahiliForms.LIMITS
     override fun drillNumber(n: Long) = SwahiliNumbers.acceptedVariants(n)
 }
 
