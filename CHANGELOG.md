@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.10.1 — 2026-08-07
+
 - **The home-screen widgets are read at a glance instead of scanned.** A word and its meaning
   used to sit at opposite edges of the tile with a different gap between them on every line;
   they now meet at their picture in the middle of the row. The big tile shows a poster of
