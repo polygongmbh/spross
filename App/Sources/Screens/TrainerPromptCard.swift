@@ -30,7 +30,9 @@ struct TrainerPromptCard: View {
 
     var body: some View {
         VStack(spacing: DL.Space.m) {
-            Text(task.prompt)
+            // why: promptDisplay is the learner's form — grouped digits ("12 345")
+            // where `prompt` is the machine one the kern parses back with toLong().
+            Text(task.promptDisplay)
                 .font(.system(size: sentence ? 28 : 56, weight: .bold, design: .rounded))
                 .monospacedDigit()
                 .foregroundStyle(Color.dlTextPrimary)

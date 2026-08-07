@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **A long number in the drill breaks into groups a reader can take in.** Ten digits arrived
+  as one unbroken run that had to be counted a place at a time. The prompt breaks in threes
+  from five digits up now — 9999 stays whole, 12 345 and 4 072 918 300 come apart — and the
+  mark is a thin space rather than a dot or a comma: those two swap meaning between German
+  and English, so either would teach one convention as the truth to a learner of the other.
+  A sentence slot takes the separator alongside the bare digits, so copying the prompt as
+  written cannot cost the rung.
+
 ## 3.11.0 — 2026-08-07
 
 - **Every word an area holds gets its mark on the tree.** How many marks a crown could
