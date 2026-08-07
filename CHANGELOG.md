@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.11.0 — 2026-08-07
+
 - **Every word an area holds gets its mark on the tree.** How many marks a crown could
   carry fell out of how often it had branched, so a tree whose words outran its branching
   simply left some of them undrawn, and one that had branched a generation further drew a
