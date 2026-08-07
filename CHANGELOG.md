@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **The box list stops wearing "Neu" on almost every row.** A word or phrase with
+  no exposure yet always carried the badge, and its capsule padding was what pushed
+  long phrase titles into truncation. Absence now reads as new; the badge only shows
+  once a card has something to say (learning, review, or relearning).
+
 ## 3.11.0 — 2026-08-07
 
 - **Every word an area holds gets its mark on the tree.** How many marks a crown could

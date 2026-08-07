@@ -99,7 +99,15 @@ struct BoxCardRow: View {
                 .accessibilityLabel("box.packWord")
             }
         } else {
-            PhaseBadge(phase: badgePhase(sched), consolidated: model.isConsolidated(card.id))
+            // why: every unexposed card would otherwise wear "Neu" — in a list
+            // that's most rows, and the capsule's own padding was what pushed
+            // the phrase text into truncation. A card with no exposure yet
+            // reads as new by the badge's ABSENCE; only a badge that adds
+            // information (learning/review/relearning) earns its width here.
+            let phase = badgePhase(sched)
+            if phase != .new {
+                PhaseBadge(phase: phase, consolidated: model.isConsolidated(card.id))
+            }
         }
     }
 
