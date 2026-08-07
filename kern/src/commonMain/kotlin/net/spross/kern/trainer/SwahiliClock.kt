@@ -41,6 +41,10 @@ internal object SwahiliClock {
         else -> listOf("usiku")
     }
 
+    /** The shape every pack's clock is asked in, so the registry calls one thing. */
+    fun task(hours: Int, minutes: Int): ClockReading =
+        ClockReading(time(hours, minutes), accepted(hours, minutes), gloss())
+
     /** Canonical display string, with the primary part of the day appended. */
     fun time(hours: Int, minutes: Int): String =
         cores(hours, minutes).first() + " " + dayParts(hours)[0]

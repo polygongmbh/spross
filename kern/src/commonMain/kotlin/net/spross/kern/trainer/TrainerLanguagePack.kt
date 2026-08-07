@@ -119,11 +119,7 @@ private object SwahiliPack : TrainerLanguagePack {
         val cardinal = SwahiliNumbers.cardinal(y)
         return YearReading(cardinal, listOf(cardinal))
     }
-    override fun clock(hour: Int, minute: Int) = ClockReading(
-        SwahiliClock.time(hour, minute),
-        SwahiliClock.accepted(hour, minute),
-        SwahiliClock.gloss(),
-    )
+    override fun clock(hour: Int, minute: Int) = SwahiliClock.task(hour, minute)
     override val placeValues = listOf(
         "kumi", "mia", "elfu", "elfu kumi", "elfu mia",
         "milioni", "milioni kumi", "milioni mia", "bilioni",
