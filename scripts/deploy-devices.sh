@@ -10,6 +10,7 @@
 #   scripts/deploy-devices.sh --launch    also open the app on the iPhones
 #   scripts/deploy-devices.sh --no-build  reuse the last build, just reinstall
 #   scripts/deploy-devices.sh --dry-run   show which devices are reachable, do nothing
+#   scripts/deploy-devices.sh --debug     Debug build — for iterating, not for judging
 # Flags combine, e.g. --no-build --launch Pluto.
 # A bare name may be any paired device, listed above or not — watches are
 # recognised by model and get SprossWatch.app.
@@ -17,25 +18,30 @@ set -eu
 cd "$(dirname "$0")/.."
 
 SCHEME="Spross"
-CONFIG="Release"
 BUNDLE_ID="net.spross.app"
-DERIVED="${TMPDIR:-/tmp}/spross-deploy"
+# why: $TMPDIR is purged on reboot and under disk pressure, and every purge
+# costs a full Release rebuild — the deploy keeps its own gitignored tree.
+DERIVED="$PWD/.build/deploy"
 IPHONES="Mars Pluto"   # get Spross.app (opened with --launch)
 WATCHES="Ruby"         # gets SprossWatch.app (install only)
 
-IOS_APP="$DERIVED/Build/Products/$CONFIG-iphoneos/Spross.app"
-WATCH_APP="$DERIVED/Build/Products/$CONFIG-watchos/SprossWatch.app"
-
-DO_BUILD=1; DRY=0; LAUNCH=0; ONLY=''
+CONFIG="Release"; DO_BUILD=1; DRY=0; LAUNCH=0; ONLY=''
 for arg in "$@"; do
   case "$arg" in
     --no-build) DO_BUILD=0 ;;
     --dry-run)  DRY=1 ;;
     --launch)   LAUNCH=1 ;;
+    --debug)    CONFIG="Debug" ;;
     -*) echo "unknown option: $arg" >&2; exit 2 ;;
     *) ONLY="$arg" ;;
   esac
 done
+
+# Release optimizes the Kotlin/Native link (35s against 6s) and compiles Swift
+# whole-module, so a Debug deploy is minutes cheaper across an afternoon of
+# edits — at the cost of an app that no longer runs like the shipped one.
+IOS_APP="$DERIVED/Build/Products/$CONFIG-iphoneos/Spross.app"
+WATCH_APP="$DERIVED/Build/Products/$CONFIG-watchos/SprossWatch.app"
 
 echo "Paired devices:"
 xcrun devicectl list devices || true
