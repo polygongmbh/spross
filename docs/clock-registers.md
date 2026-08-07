@@ -180,15 +180,23 @@ At 00:00 and 12:00 `twelve a.m.` and `twelve p.m.` are accepted but never named:
 that pair is the one native speakers themselves get backwards,
 so the reveal keeps teaching `midnight` and `noon` there.
 
-## Rejected, with reasons
+## Rejected, and likely to be proposed again
+
+A reading earns a line here only if a plausible widening would put it back,
+and each line says what would then go wrong.
+Everything else the drill does not accept is answered by the commit that dropped it.
 
 - **English approximators** (`gone four`, `nearly four`) — an approximator names an interval,
-  so accepting it at 16:20 necessarily accepts it at 16:05.
+  so accepting it at 16:20 necessarily accepts it at 16:05,
+  and a reading accepted twice in one cycle is the bug the collision sweep exists to catch.
 - **German odd-minute relative readings** (`siebzehn nach drei`) —
-  the colloquial alternates exist on the five-minute grid only.
-- **Ukrainian `нуль годин`** — a calque, and one edit from a digital reading of another hour.
-- **Spanish `veinte a las tres`** — `a` never replaces `para`.
-- **Swahili `kasa`** — not a Swahili word (owner-confirmed);
+  the colloquial alternates exist on the five-minute grid only,
+  so generalizing the grid widens `accepted` to German nobody says.
+- **Ukrainian `нуль годин`** — a calque, and one edit from a digital reading of another hour,
+  which the one-slip-per-word budget would then grade correct.
+- **Spanish `veinte a las tres`** — `a` never replaces `para`:
+  which joiners are interchangeable is each language's own knowledge, and `a` is not on Spanish's list.
+- **Swahili `kasa`** — not a Swahili word (owner-confirmed), however plausible it looks beside `kasorobo`;
   the quarter words are `na robo` and `kasorobo`, and both are generated already.
 - **The emphatic full hour, in all five** — de `punkt sechs`, en `six o'clock sharp` / `on the dot` / `exactly six o'clock`,
   es `en punto`, sw `kamili`, uk `рівно`.

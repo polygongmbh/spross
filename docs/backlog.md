@@ -7,21 +7,17 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## Content & catalog
 
-- uk plural sweep unverified by a native speaker: the irregular forms authored in
-  `catalog/*/uk.json` (stem alternations, fleeting vowels, agreeing phrases) are
-  LLM-authored — the substantivized `лікарняні` and the phrase plurals most of all.
-- uk native-verification sweep pending for the 4 LLM-adapted twin realizations —
-  kitchen pot-on-stove, hall doorbell-rang, desk laptop-charge, desk wifi-gone
-  (method: `../../docs/sprachposter-learnings.md`).
 - Phrase→component auto-linking gaps: ~half of phrases carry no `components`
   (naive matcher — `catalog/README.md` § concepts.json).
-- The idiom catalog (`catalog/idioms/`, 9 concepts) is LLM-authored and owes a
-  native-speaker verification sweep in de, en and es alike — each pairing was chosen
-  for genuine meaning-equivalence, not just checked by a translator, and that
-  judgment call is exactly what a native speaker should confirm or correct
-  (method: `../../docs/sprachposter-learnings.md`). sw and uk idiom coverage is open
-  future work: it needs a native speaker to find real equivalents from scratch, not a
-  translation pass over the existing de/en/es set.
+- Each idiom pairing in `catalog/idioms/` (9 concepts) was chosen for genuine
+  meaning-equivalence in de, en and es, not just checked by a translator —
+  the candidates it beat are gone from the finished JSON,
+  so that judgment call is the one thing a reader cannot recover
+  and the one a native speaker should confirm or correct
+  (method: `../../docs/sprachposter-learnings.md`).
+  sw and uk idiom coverage is open future work:
+  it needs a native speaker to find real equivalents from scratch,
+  not a translation pass over the existing de/en/es set.
 - Pronunciation coverage is uneven across LANGUAGES and absent for phrases — the packs
   only ever matched single-word realizations, so no phrase carries a recording and every
   one falls to TTS (silent on sw-iOS, which has no voice). What Commons never had is
@@ -35,24 +31,24 @@ One line per item, with a file or context pointer, filed under the section it be
   29% of Spanish words have a second voice on Commons at all, uk and sw have effectively
   none, and the alternative is usually the noisier take — the fix for unevenness is a
   quality floor, not more voices.
-- The alphabet files are LLM-authored and await a native-speaker sweep of every hint and
-  every letter name (`catalog/alphabet/uk.json`, `catalog/alphabet/de.json`): 12 open
-  questions for uk (the name «йот» vs the older «ий», the в allophony and о raising
-  wording, the ч/щ anchors, ґудзик as an `exampleText`) and 11 for de (s→/z/ and -ig as
-  the variety anchor, the English respellings, the ẞ policy, the Vau/We/Jot/Zett/Eszett
-  strings against the de-DE voice — plus the three umlaut names minted here, A-Umlaut /
-  O-Umlaut / U-Umlaut, which no source prescribed). Each is written up with its evidence
-  in `data/orchestration/audio-langs-2026-07/alphabet-drafts/*-notes.md`; method as ever
-  in `../../docs/sprachposter-learnings.md`.
-- The es catalog (528 realizations in `catalog/*/es.json`) is LLM-authored against the
-  German anchor and owes its native-speaker sweep — explicit debt per the build's decision
-  record: a 20-pick priority queue the authors themselves flagged lowest-confidence
+- 23 open questions on the alphabet files, each one a call made where no source decided it
+  (`catalog/alphabet/uk.json`, `catalog/alphabet/de.json`):
+  12 for uk — the name «йот» vs the older «ий», the в allophony and о raising wording,
+  the ч/щ anchors, ґудзик as an `exampleText` —
+  and 11 for de: s→/z/ and -ig as the variety anchor, the English respellings, the ẞ policy,
+  the Vau/We/Jot/Zett/Eszett strings against the de-DE voice,
+  plus the three umlaut names MINTED here, A-Umlaut / O-Umlaut / U-Umlaut,
+  which no source prescribed.
+  Each is written up with its evidence in
+  `data/orchestration/audio-langs-2026-07/alphabet-drafts/*-notes.md`.
+- The es catalog (528 realizations in `catalog/*/es.json`) carries a review queue its build
+  recorded: a 20-pick priority queue the authors themselves flagged lowest-confidence
   (`admin/office`, `work/leave`, `kitchen/reheat`, `bedroom/cuddle` lead it), ~24 medium
   flags, and 49 recorded per-area disputes, the author's choice standing in the JSON in
   every case. Queue, disputes and evidence:
   `data/orchestration/audio-langs-2026-07/es-content/final/REPORT.md` §5 (hand a native
   speaker §5 A first) and the seven `drafts/*-notes.md` "Review disputes" sections;
-  method `../../docs/sprachposter-learnings.md`. Separate from the sweep, five
+  method `../../docs/sprachposter-learnings.md`. Separate from the queue, five
   cross-cutting rulings stay with the catalog owner (REPORT §5 C): C2 `desk/internet`
   ships without `gender` (deliberate), C3 cross-gender synonyms sit under the wrong
   article tint (15 pairs; 5 more lexemes were demoted to variants over it), C6 `variants`
@@ -60,8 +56,8 @@ One line per item, with a file or context pointer, filed under the section it be
   strings are banned, C8 cross-area accept-set overlaps. Already ruled and shipped:
   C1 (`los`/`las` on the three pluralia tantum), C4 (area titles as authored),
   C5 (a leading `¿`/`¡` folds away in grading and in the audio lookup).
-- The Spanish alphabet (`catalog/alphabet/es.json`) is the same LLM authoring and owes the
-  same sweep, with 15 questions of its own: whether the ll/y merger may be taught as flatly
+- 15 open questions on the Spanish alphabet (`catalog/alphabet/es.json`), several of them
+  pedagogical calls: whether the ll/y merger may be taught as flatly
   as it is (yeísmo is standard, but ʎ survives in rural Castile), which jota a Spanish voice
   really says ([x] or the northern [χ]), how far the vanishing final d may be simplified for
   a beginner, whether /s/ belongs in the after-l-n-s trill rule at all, and which letter
@@ -91,8 +87,7 @@ One line per item, with a file or context pointer, filed under the section it be
   name, and it authors no digraph to sweep. And every position-bound row (de `ch`×3,
   `s`×2, the final-devoicing trio, `er`; es `c`, `g`, `gu`, `r`, `d`) still rides its one
   authored example, because `context` is prose keyed by the reader rather than a rule the
-  engine can test. A machine-readable environment field would open both, and would owe the
-  same native-speaker sweep the hints already do.
+  engine can test. A machine-readable environment field would open both.
 - No field carries Ukrainian stress, which is unmarked in writing and load-bearing:
   учень, миша and одяг teach their vowel only if the sheet can show which syllable
   carries it. A `stress` field on realizations (`catalog/README.md`) is the shape the
