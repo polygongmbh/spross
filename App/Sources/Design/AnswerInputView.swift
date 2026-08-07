@@ -72,6 +72,10 @@ struct AnswerInputView: View {
     /// How the correction box says the form it is carrying. Left off where a
     /// surface has nothing to say it with.
     var correctionVoice: Voice?
+    /// Which keyboard the answer is written on. A question answered with a VALUE
+    /// asks for `.numbersAndPunctuation`, which — unlike `.numberPad` — has a
+    /// return key as well as the `, . / : -` a time, a decimal or a fraction needs.
+    var keyboard: UIKeyboardType = .default
     var onSubmit: () -> Void = {}
 
     @FocusState private var fallbackFocus: Bool
@@ -107,6 +111,7 @@ struct AnswerInputView: View {
                 .foregroundStyle(Color.dlTextPrimary)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
+                .keyboardType(keyboard)
                 .submitLabel(.done)
                 .focused(focus ?? $fallbackFocus)
                 .onSubmit(onSubmit)

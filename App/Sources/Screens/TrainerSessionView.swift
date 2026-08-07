@@ -136,6 +136,10 @@ struct TrainerSessionView: View, LanguageNaming {
     /// miss and the header line all apply to.
     var currentVariant: DrillVariant { tasks[index].variant }
 
+    /// The question on screen was flipped: the reading is the prompt and the value
+    /// is owed. The only thing the screen needs it for is the keyboard.
+    var currentReversed: Bool { tasks[index].reversed }
+
     /// The rung a variant is standing on right now. Every variant starts at 1.
     func level(_ variant: DrillVariant) -> Int { levels[variant] ?? 1 }
 

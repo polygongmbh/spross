@@ -47,6 +47,13 @@ extension TrainerSessionView {
         /// One clean win per rung instead of two.
         var isFast: Bool { modifiers.contains(.fast) }
 
+        /// Which way round the next task is asked. Mix flips per task — that, and
+        /// the widened form magnitudes, is what Mix adds over simply selecting
+        /// several variants; Reverse alone holds one direction for the whole run.
+        func drawsReversed() -> Bool {
+            modifiers.contains(.mix) ? Bool.random() : modifiers.contains(.reverse)
+        }
+
         /// Catalog key for the run title — the variant's own where the run asks
         /// one thing, and the trainer's own name where it asks several.
         var titleKey: LocalizedStringKey {
@@ -77,12 +84,15 @@ extension TrainerSessionView {
         }
     }
 
-    /// A drawn task and the variant that offered it. Carried rather than derived:
-    /// a phrase task's own `kind` names the slot generator behind the sentence, not
-    /// the variant the run picked, so the two can never be read back off the task.
+    /// A drawn task, the variant that offered it, and which way round it is asked.
+    /// Both are carried rather than derived: a phrase task's own `kind` names the
+    /// slot generator behind the sentence and not the variant the run picked, and a
+    /// reversed task is deliberately indistinguishable from a forward one — the
+    /// screen renders `prompt` and grades `accepted` whichever way it was built.
     struct DrawnTask {
         let variant: DrillVariant
         let task: TrainerTask
+        let reversed: Bool
     }
 
     // MARK: - Drawing a task
@@ -99,28 +109,34 @@ extension TrainerSessionView {
     }
 
     private static func sampleOnce(mode: Mode, levels: [DrillVariant: Int]) -> DrawnTask {
-        let rng = KotlinRandom.companion
         let variant = mode.variants.randomElement() ?? .numbers
-        let level = Int32(levels[variant] ?? 1)
+        let forward = drawForward(mode: mode, variant: variant, level: Int32(levels[variant] ?? 1),
+                                  magnitudeDigits: Int32(levels[.numbers] ?? 1))
+        let reversed = mode.drawsReversed()
+        // The flip happens HERE and nowhere else: kern hands back an ordinary task
+        // with the reading as its prompt, so no surface below asks the direction.
+        return DrawnTask(variant: variant,
+                         task: reversed ? Trainer.shared.reversed(task: forward) : forward,
+                         reversed: reversed)
+    }
+
+    private static func drawForward(mode: Mode, variant: DrillVariant,
+                                    level: Int32, magnitudeDigits: Int32) -> TrainerTask {
+        let rng = KotlinRandom.companion
         guard let kind = variant.slotKind else {
             // why: non-empty by construction (Mode.init drops a frameless Phrases).
             let template = mode.templates[Int.random(in: 0..<mode.templates.count)]
             // Leveled slot values — same ramp semantics as the plain drills;
             // Kern clamps the level to each frame's own slot kind.
-            return DrawnTask(variant: variant,
-                             task: PhraseSlots.shared.sample(template: template, level: level, rng: rng))
+            return PhraseSlots.shared.sample(template: template, level: level, rng: rng)
         }
         // Mix's second half: a form takes its magnitude from the numbers rung the
         // run is standing on, so a topped-out climb reads "−4 072 918", not "−7".
         if kind == .forms, mode.mixesForms {
-            return DrawnTask(variant: variant,
-                             task: Trainer.shared.sampleForms(language: mode.language, level: level,
-                                                              magnitudeDigits: Int32(levels[.numbers] ?? 1),
-                                                              rng: rng))
+            return Trainer.shared.sampleForms(language: mode.language, level: level,
+                                              magnitudeDigits: magnitudeDigits, rng: rng)
         }
-        return DrawnTask(variant: variant,
-                         task: Trainer.shared.sample(kind: kind, language: mode.language,
-                                                     level: level, rng: rng))
+        return Trainer.shared.sample(kind: kind, language: mode.language, level: level, rng: rng)
     }
 
     /// Ramp ceiling of one variant: kern's per-kind ceiling, and for sentences the

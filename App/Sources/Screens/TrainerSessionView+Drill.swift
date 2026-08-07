@@ -18,7 +18,10 @@ extension TrainerSessionView {
 
     /// Digit count of the current numeric prompt (nil outside the numbers
     /// drill). Internal: advance() marks each length as seen.
-    var currentDigits: Int? { isNumbers ? current.prompt.count : nil }
+    ///
+    /// Nil when the task is reversed: the prompt is then the reading, which already
+    /// names the place the hint would introduce.
+    var currentDigits: Int? { isNumbers && !currentReversed ? current.prompt.count : nil }
 
     /// Place word shown the first time a new number length appears — on the
     /// card itself, so the prompts that carry no hint sit exactly as high.
@@ -82,7 +85,8 @@ extension TrainerSessionView {
                             focus: $answerFocused,
                             correctionVoice: .init(
                                 pronounce: { model?.pronounceAction(for: $0, lang: language) },
-                                isPlaying: { model?.isPronouncing($0, lang: language) ?? false })) {
+                                isPlaying: { model?.isPronouncing($0, lang: language) ?? false }),
+                            keyboard: currentReversed ? .numbersAndPunctuation : .default) {
                 submit()
             }
             .onChange(of: input) { _, _ in approveWhenTyped() }
