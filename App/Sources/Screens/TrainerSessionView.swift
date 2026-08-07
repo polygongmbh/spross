@@ -7,57 +7,11 @@ import SprossKern
 /// the in-run streak. Tasks are generated lazily; the run ends only when
 /// the user closes it (X → summary).
 ///
-/// Screen content (drill + summary) lives in TrainerSessionView+Drill.swift;
-/// the prompt card is TrainerPromptCard.swift. State stays here — members are
-/// internal, not private, where the +Drill extension reaches them.
+/// The run spec is `Mode` (TrainerSessionView+Mode.swift), screen content
+/// lives in TrainerSessionView+Drill.swift, and the prompt card is
+/// TrainerPromptCard.swift. State stays here — members are internal, not
+/// private, where an extension reaches them.
 struct TrainerSessionView: View, LanguageNaming {
-    /// What a run drills: bare slot values, or full sentences composed from
-    /// the catalog's sentence frames + slot values. Languages are catalog
-    /// codes. The frames are carried, not looked up — a run samples from the
-    /// set it was opened with.
-    enum Mode {
-        case slots(TrainerKind, String)
-        case phrases(source: String, target: String, templates: [PhraseTemplate])
-
-        /// The language answers are typed in.
-        var typedLanguage: String {
-            switch self {
-            case .slots(_, let language): return language
-            case .phrases(_, let target, _): return target
-            }
-        }
-
-        /// Catalog key for the run title.
-        var titleKey: LocalizedStringKey {
-            switch self {
-            case .slots(let kind, _): return kind.trainerTitleKey
-            case .phrases: return "trainer.phrases"
-            }
-        }
-
-        /// Identity a record is kept under (`TrainerRecords`): what is drilled
-        /// and in which pair — a sentence run typed in German is not the same
-        /// feat as the same frames typed in Swahili.
-        var recordKey: String {
-            switch self {
-            case .slots(let kind, let language): return "\(kind.name).\(language)"
-            case .phrases(let source, let target, _): return "phrases.\(source)-\(target)"
-            }
-        }
-
-        /// Identity a rung is kept under (`TrainerProgress`): variant and the
-        /// language being learned. Deliberately NOT `recordKey` — a record
-        /// belongs to a run's whole selection, a rung to one variant, so the
-        /// sentence drill books against its answer language alone and the
-        /// unlock ladder can ask one language for every variant at once.
-        var progressKey: String {
-            switch self {
-            case .slots(let kind, let language): return "\(kind.name).\(language)"
-            case .phrases(_, let target, _): return "phrases.\(target)"
-            }
-        }
-    }
-
     let mode: Mode
     /// Kern grader for the typed language; nil (previews) falls back to a
     /// plain case/punctuation-insensitive comparison.
@@ -72,7 +26,9 @@ struct TrainerSessionView: View, LanguageNaming {
 
     @Environment(\.dismiss) var dismiss
 
-    @State private var tasks: [TrainerTask]
+    // why: internal, not private — the +UITest extension reseeds the run
+    // at a preset rung.
+    @State var tasks: [TrainerTask]
     @State var index = 0
     @State var doneCount = 0
     @State var streak = 0
@@ -163,39 +119,7 @@ struct TrainerSessionView: View, LanguageNaming {
             hushAnswer()
         }
         #if DEBUG
-        // UI-test hooks: the shared answer hooks (`UITestAnswer`),
-        // `-uitest-streak N` presets a running streak for screenshots,
-        // `-uitest-level N` starts the run at that rung (numbers: digit count),
-        // which is the only way to photograph a long prompt without playing up to it.
-        .onAppear {
-            let defaults = UserDefaults.standard
-            let presetLevel = defaults.integer(forKey: "uitest-level")
-            if presetLevel > 0 {
-                level = min(presetLevel, maxLevel)
-                tasks = [Self.sampleTask(mode: mode, level: level, avoiding: nil)]
-            }
-            if let prefill = UITestAnswer.prefill { input = prefill }
-            UITestAnswer.submitAfterBeat { submit() }
-            let preset = defaults.integer(forKey: "uitest-streak")
-            if preset > 0 {
-                streak = preset
-                bestStreak = max(preset, 12)
-                doneCount = preset + 6
-            }
-            // `-uitest-summary 1` jumps straight to the close-summary state;
-            // add `-uitest-record 1` to drop the stored record first, so the
-            // run books one and the summary shows its record state.
-            if defaults.bool(forKey: "uitest-summary") {
-                if defaults.bool(forKey: "uitest-record") { TrainerRecords.clear(mode.recordKey) }
-                newRecord = TrainerRecords.record(bestStreak, for: mode.recordKey)
-                showingSummary = true
-            }
-            // `-uitest-typo 1` renders the accepted-with-typo state.
-            if defaults.bool(forKey: "uitest-typo") {
-                feedback = .almost(correctForm: current.display, reason: .typo)
-                typoCorrection = current.display
-            }
-        }
+        .onAppear { uitestStart() }
         #endif
     }
 
@@ -203,7 +127,7 @@ struct TrainerSessionView: View, LanguageNaming {
 
     /// One fresh random task at the current difficulty level; a prompt never
     /// repeats back-to-back (resample once when it equals the previous one).
-    private static func sampleTask(mode: Mode, level: Int, avoiding previousPrompt: String?) -> TrainerTask {
+    static func sampleTask(mode: Mode, level: Int, avoiding previousPrompt: String?) -> TrainerTask {
         var task = sampleOnce(mode: mode, level: level)
         if task.prompt == previousPrompt {
             task = sampleOnce(mode: mode, level: level)
