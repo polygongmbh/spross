@@ -52,8 +52,9 @@ struct AreaTree: Identifiable {
 }
 
 /// One area's tree before and after something happened to it — a finished
-/// round, most often. What is drawn is the whole tree at some point between,
-/// so the learner sees what they already had and watches this round land on it.
+/// round, most often. The FINISHED tree is what gets drawn; what the transition
+/// says is which of its marks the round itself put there, so the animation can
+/// hand those the motion and leave the rest of the crown standing still.
 struct TreeTransition {
     let before: AreaTree
     let after: AreaTree
@@ -78,28 +79,26 @@ struct TreeTransition {
                  tendedToday: before.tendedToday)
     }
 
-    /// The tree partway between. Counts round rather than truncate, so a single
-    /// new leaf arrives halfway through rather than only at the very end.
-    func at(_ progress: Double) -> AreaTree {
-        let before = start
-        let t = min(1, max(0, progress))
-        func step(_ from: Int, _ to: Int) -> Int {
-            Int((Double(from) + (Double(to) - Double(from)) * t).rounded())
-        }
-        return AreaTree(
-            id: after.id, emoji: after.emoji, title: after.title,
-            leaves: step(before.leaves, after.leaves),
-            blossoms: step(before.blossoms, after.blossoms),
-            fruit: step(before.fruit, after.fruit),
-            growing: step(before.growing, after.growing),
-            fallen: step(before.fallen, after.fallen),
-            mass: before.mass + (after.mass - before.mass) * t,
-            tendedToday: after.tendedToday,
-            // why: the FINISHED tree's, always. Both lists run most-grown first,
-            // so a mark keeps its word as the count climbs; interpolating the
-            // list itself would slide every word's size along the canopy.
-            reaches: after.reaches
-        )
+    /// How many marks were already hanging when the round began. From this rank
+    /// on, a mark is one the round itself hung — it has to arrive out of
+    /// nothing, where a mark below this rank was already there and only changed.
+    var settledCount: Int { start.canopyCount }
+
+    /// The canopy ranks this round moved, in canopy order: a mark that appeared,
+    /// and a mark that changed tier where it hangs — a word maturing pushes the
+    /// blossom boundary out by one, so the leaf at that rank becomes a blossom
+    /// without anything else on the tree shifting.
+    var changedRanks: [Int] {
+        let was = start
+        return (0..<after.canopyCount).filter { tier($0, was) != tier($0, after) }
+    }
+
+    /// What a rank draws as: nothing, or one of the three marks.
+    private func tier(_ rank: Int, _ tree: AreaTree) -> Int {
+        if rank < tree.fruit { return 1 }
+        if rank < tree.fruit + tree.blossoms { return 2 }
+        if rank < tree.canopyCount { return 3 }
+        return 0
     }
 }
 
@@ -116,20 +115,36 @@ struct TreeMark {
     /// The ground line this tree's whole row shares.
     let baseline: CGFloat
 
-    /// The branches, grown from the area's name and this size alone — never
-    /// from a count, so the very same tree stands before and after a round and
-    /// only what hangs on it moves.
+    /// The branches, grown from the area's name and its standing — so the very
+    /// same tree stands before and after a round and only what hangs on it moves.
+    ///
+    /// Grown TWICE. `TreeSkeleton` fits the wood to the box it is given, and the
+    /// leaves hang off the ends of that wood — so a crown fitted flush reaches
+    /// past its own box by up to half a leaf, and at hero size that is a canopy
+    /// visibly sliced off along the top of the canvas. The first growing is
+    /// there to be measured: it says how far this crown's marks reach, and the
+    /// second is grown into a box holding that much back for them.
     var skeleton: TreeSkeleton {
-        TreeSkeleton.grown(
-            seed: SplitMix64(tree.id).seed,
-            // why: generations come from the TREE, never from the height it is
-            // being drawn at — a transition scales the height every frame, and a
-            // crown that grew a generation halfway through would reshuffle every
-            // slot under the marks already hanging on them.
-            depth: TreeSkeleton.generations(for: tree),
-            in: CGRect(x: foot.x - height * 0.72, y: foot.y - height,
-                       width: max(height * 1.44, 1), height: max(height, 1))
-        )
+        // why: both counts come from the TREE — the finished one, whatever
+        // moment is being drawn — and never from the height it is drawn at.
+        // A transition scales the height every frame, and a crown that grew
+        // a generation or a slot halfway through would reshuffle every slot
+        // under the marks already hanging on them.
+        let depth = TreeSkeleton.generations(for: tree)
+        let slots = TreeSkeleton.slots(for: tree)
+        let seed = SplitMix64(tree.id).seed
+        let box = CGRect(x: foot.x - height * 0.72, y: foot.y - height,
+                         width: max(height * 1.44, 1), height: max(height, 1))
+        let loose = TreeSkeleton.grown(seed: seed, depth: depth, slots: slots, in: box)
+        let spill = CanopyMark.spill(of: loose, tree, in: box)
+        guard spill > 0.2 else { return loose }
+        // Held back on three sides only: the trunk stands on the bottom edge,
+        // and a mark can never hang below the foot.
+        return TreeSkeleton.grown(
+            seed: seed, depth: depth, slots: slots,
+            in: CGRect(x: box.minX + spill, y: box.minY + spill,
+                       width: max(box.width - spill * 2, 1),
+                       height: max(box.height - spill, 1)))
     }
 }
 
@@ -234,11 +249,17 @@ enum ForestLayout {
 
     /// One tree alone, filling a box of its own — what a session summary draws.
     /// Far bigger than in the forest, where it shares the width with five others.
+    ///
+    /// The ground line sits a little clear of the bottom edge, because what a
+    /// tree puts BELOW it — the day's fresh earth, the leaves it dropped — is
+    /// drawn there and would otherwise be shaved off. Above it the tree takes
+    /// everything that is left: the crown holds its own marks back from the top
+    /// edge (`CanopyMark.spill`), so nothing here has to be guessed at.
     static func solitary(_ tree: AreaTree, in size: CGSize) -> TreeMark {
-        let baseline = size.height - 4
+        let baseline = size.height - 7
         return TreeMark(tree: tree,
                         foot: CGPoint(x: size.width / 2, y: baseline),
-                        height: min(size.height - 12, size.width * 0.8),
+                        height: min(baseline, size.width * 0.8),
                         cell: CGRect(origin: .zero, size: size),
                         baseline: baseline)
     }

@@ -23,15 +23,15 @@ import SwiftUI
 
 enum TreeShapes {
 
-    /// Draws `mark`, showing the counts of `showing` — normally the same tree.
+    /// Draws `mark` — always the FINISHED tree, whatever moment is being drawn.
     ///
-    /// They come apart during a transition: the SKELETON comes from `mark` and
-    /// never sees a count, so it is identical before and after; only how many
-    /// slots are filled, and with what, comes from `showing`. That is what lets
-    /// a leaf turn into a blossom in place while nothing else moves.
+    /// A transition never changes the counts: the skeleton and the marks it
+    /// carries are the same at every moment, and `arriving` says only how far
+    /// each of the round's own marks has come. That is what lets a new leaf
+    /// arrive, and a leaf turn into a blossom in place, while nothing else moves.
     static func draw(_ context: inout GraphicsContext, _ mark: TreeMark,
-                     showing: AreaTree? = nil) {
-        let shown = showing ?? mark.tree
+                     arriving: TreeArrival = .settled) {
+        let shown = mark.tree
         // why: an area nobody has opened draws NOTHING — not even ground. A mark
         // on every untouched area turns a catalog the learner did not choose
         // into a list of things they have not done, and its dimmed emoji already
@@ -43,7 +43,7 @@ enum TreeShapes {
 
         let skeleton = mark.skeleton
         branches(&context, skeleton, mark)
-        foliage(&context, skeleton, mark, shown)
+        foliage(&context, skeleton, mark, shown, arriving)
         fallen(&context, mark, shown)
         if shown.tendedToday { freshEarth(&context, mark) }
     }
@@ -137,20 +137,17 @@ enum TreeShapes {
     /// first slots, which the skeleton shuffled twig by twig, so they scatter
     /// through the crown rather than ringing it.
     private static func foliage(_ context: inout GraphicsContext, _ skeleton: TreeSkeleton,
-                                _ mark: TreeMark, _ shown: AreaTree) {
-        // why: marks get BROADER as the canopy thins, so a crown that is two
-        // thirds full still closes into foliage instead of showing sky between
-        // every mark. A tree only ever fills the band its generation count gives
-        // it — cross into the next generation and the same words are suddenly
-        // spread over twice the twigs — and sizing the marks against that fill
-        // is what keeps the two ends of a band looking equally worked.
+                                _ mark: TreeMark, _ shown: AreaTree, _ arriving: TreeArrival) {
+        // why: a mark is sized against the crown it has to help fill, not
+        // against the tree's height — pitch is the crown shared out over the
+        // words hanging in it, so thirty marks on a middling tree close into
+        // foliage exactly as sixty do on a large one.
         //
-        // Measured on the crown's hull rather than guessed: the marks used to
-        // cover ~42% of it at forty words, which is a twiggy tree with leaves on
-        // it, not a leafy one. This lands near 65%, where the gaps read as gaps
-        // in a canopy rather than as a canopy that never closed.
-        let fill = Double(shown.canopyCount) / Double(max(skeleton.slots.count, 1))
-        let base = max(2.4, skeleton.pitch * 0.90 * CGFloat(1 + 0.30 * (1 - min(1, fill))))
+        // No term for how full the canopy is any more. The pool is cut to the
+        // words, so that fraction is now the same on every tree — and being the
+        // one input that moved during the summary's animation, it quietly swelled
+        // every mark on the tree while the round's words were still arriving.
+        let base = CanopyMark.base(pitch: skeleton.pitch)
         var tones = [Path(), Path(), Path()]
 
         for (rank, slot) in skeleton.slots.prefix(shown.canopyCount).enumerated() {
@@ -160,24 +157,18 @@ enum TreeShapes {
             // better than one whose variation is noise.
             let grain = ForestLayout.noise("\(mark.tree.id)-\(rank)", 41)
             let reach = rank < shown.reaches.count ? shown.reaches[rank] : 0.4
-            let size = base * CGFloat(0.74 + 0.62 * reach)
-            // why: leaves point away from the twig and a little upward, which is
-            // what makes them read as attached rather than scattered.
-            let angle = slot.angle + slot.side * (0.78 + 0.34 * grain) - 0.26
+            // The round's own marks arrive; the rest of the crown is settled.
+            let size = CanopyMark.size(base: base, reach: reach) * arriving.scale(rank)
+            guard size > 0.2 else { continue }
+            let angle = CanopyMark.lean(slot, grain: grain)
 
             if rank < shown.fruit {
                 fruit(&context, at: slot.point, size: size)
             } else if rank < shown.fruit + shown.blossoms {
                 blossom(&context, at: slot.point, size: size, angle: angle)
             } else {
-                // A leaf runs BROADER than the base a fruit or a blossom is cut
-                // to. It is the only mark meant to merge with its neighbours —
-                // foliage is a mass, fruit is a countable thing — and the extra
-                // reach is what closes the gaps between twigs. Kept well under
-                // the step from leaf to blossom to fruit, so a word maturing
-                // never reads as its mark being taken away.
-                tones[Int(grain * 3) % 3].addPath(leafPath(at: slot.point, size: size * 1.24,
-                                                           angle: angle))
+                tones[Int(grain * 3) % 3].addPath(
+                    leafPath(at: slot.point, size: size * CanopyMark.leafStretch, angle: angle))
             }
         }
         // Three tones of the one green rather than two: at a canopy's worth of
@@ -208,7 +199,8 @@ enum TreeShapes {
     // MARK: Marks
 
     private static func leafPath(at point: CGPoint, size: CGFloat, angle: Double) -> Path {
-        let leaf = Path(ellipseIn: CGRect(x: 0, y: -size * 0.29, width: size, height: size * 0.58))
+        let waist = size * CanopyMark.leafWaist
+        let leaf = Path(ellipseIn: CGRect(x: 0, y: -waist, width: size, height: waist * 2))
         return leaf.applying(
             CGAffineTransform(translationX: point.x, y: point.y)
                 .rotated(by: CGFloat(angle))
@@ -266,5 +258,78 @@ enum TreeShapes {
     private static func circle(_ centre: CGPoint, _ radius: CGFloat) -> Path {
         Path(ellipseIn: CGRect(x: centre.x - radius, y: centre.y - radius,
                                width: radius * 2, height: radius * 2))
+    }
+}
+
+// MARK: - Mark geometry
+//
+// How big a mark is drawn and how far it reaches past the slot it hangs on —
+// pulled out of the drawing because the FIT needs the same numbers. A skeleton
+// fitted flush to its box hangs its outermost marks half outside that box, a
+// mark being centred on — or, for a leaf, running outward from — a slot that is
+// itself on the box's edge.
+
+enum CanopyMark {
+    /// The size a crown of this pitch cuts its marks to.
+    static func base(pitch: CGFloat) -> CGFloat { max(2.4, pitch * 0.93) }
+
+    /// One mark's size — its own word's standing, against that base.
+    static func size(base: CGFloat, reach: Double) -> CGFloat {
+        base * CGFloat(0.74 + 0.62 * reach)
+    }
+
+    /// Which way the mark leans off its twig: away from it and a little upward,
+    /// which is what makes it read as attached rather than scattered.
+    static func lean(_ slot: LeafSlot, grain: Double) -> Double {
+        slot.angle + slot.side * (0.78 + 0.34 * grain) - 0.26
+    }
+
+    /// A leaf runs BROADER than the base a fruit or a blossom is cut to. It is
+    /// the only mark meant to merge with its neighbours — foliage is a mass,
+    /// fruit is a countable thing — and the extra reach is what closes the gaps
+    /// between twigs. Kept well under the step from leaf to blossom to fruit, so
+    /// a word maturing never reads as its mark being taken away.
+    static let leafStretch: CGFloat = 1.24
+    static let leafWaist: CGFloat = 0.29
+
+    /// The most a mark is ever drawn over its settled size: an arriving mark
+    /// overshoots before it settles, and room has to be left for the overshoot
+    /// too, or the celebration is the part that gets clipped.
+    static let maxSwell: CGFloat = 1.25
+
+    /// How far this crown reaches outside `box`, on the three sides a tree can
+    /// be clipped on. Zero when it all fits.
+    static func spill(of skeleton: TreeSkeleton, _ tree: AreaTree, in box: CGRect) -> CGFloat {
+        let base = base(pitch: skeleton.pitch) * maxSwell
+        var spill: CGFloat = 0
+        for (rank, slot) in skeleton.slots.prefix(tree.canopyCount).enumerated() {
+            let reach = rank < tree.reaches.count ? tree.reaches[rank] : 0.4
+            let size = size(base: base, reach: reach)
+            let ink: CGRect
+            if rank < tree.fruit + tree.blossoms {
+                // Fruit and blossom sit ON their slot; the stalk is the furthest
+                // either gets from it.
+                let radius = size * 0.62
+                ink = CGRect(x: slot.point.x - radius, y: slot.point.y - radius,
+                             width: radius * 2, height: radius * 2)
+            } else {
+                ink = leafBounds(at: slot.point, size: size * leafStretch,
+                                 angle: lean(slot, grain: ForestLayout.noise("\(tree.id)-\(rank)", 41)))
+            }
+            spill = max(spill, max(box.minY - ink.minY,
+                                   max(box.minX - ink.minX, ink.maxX - box.maxX)))
+        }
+        return max(0, spill)
+    }
+
+    /// The leaf ellipse's bounding box: a leaf runs from its slot OUTWARD along
+    /// the lean, so its centre is half a leaf from the point it hangs on.
+    private static func leafBounds(at point: CGPoint, size: CGFloat, angle: Double) -> CGRect {
+        let cosine = CGFloat(cos(angle)), sine = CGFloat(sin(angle))
+        let long = size / 2, short = size * leafWaist
+        let centre = CGPoint(x: point.x + long * cosine, y: point.y + long * sine)
+        let wide = sqrt(long * long * cosine * cosine + short * short * sine * sine)
+        let tall = sqrt(long * long * sine * sine + short * short * cosine * cosine)
+        return CGRect(x: centre.x - wide, y: centre.y - tall, width: wide * 2, height: tall * 2)
     }
 }

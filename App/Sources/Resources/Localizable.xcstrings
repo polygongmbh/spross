@@ -2328,13 +2328,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hier kannst du jetzt mehr"
+            "value" : "Auch heute bleibt was hängen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You can say more here"
+            "value" : "Some of it sticks today too"
           }
         }
       }
@@ -2344,13 +2344,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Etwas ist aufgegangen"
+            "value" : "Jetzt sagst du, was du gesät hast"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Something's taken hold"
+            "value" : "Saying what you sowed"
           }
         }
       }
@@ -2360,13 +2360,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein Wissen blüht auf"
+            "value" : "Hier blüht, was du kannst"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your knowledge is blooming"
+            "value" : "You've brought this into bloom"
           }
         }
       }
@@ -2376,13 +2376,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Etwas trägt jetzt Blüten"
+            "value" : "Du hast es gepflegt, jetzt trägt's"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Something's in blossom now"
+            "value" : "Your tending shows"
           }
         }
       }
@@ -2392,13 +2392,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein Wissen ist gewachsen"
+            "value" : "Hier wächst dir was zu sagen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your knowledge has grown"
+            "value" : "You've grown what you can say"
           }
         }
       }
@@ -2408,13 +2408,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein Wissen wurzelt tiefer"
+            "value" : "Du hast tiefe Wurzeln geschlagen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your knowledge is rooting deeper"
+            "value" : "Your words root deeper now"
           }
         }
       }
@@ -2424,13 +2424,29 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein Wissen steht fester"
+            "value" : "Mittlerweile sitzt's bei dir"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your knowledge stands firmer"
+            "value" : "Words are settling in"
+          }
+        }
+      }
+    },
+    "session.finished.growth.opened" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine ersten Wörter in guter Erde"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your first words in good soil"
           }
         }
       }
@@ -2440,13 +2456,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neue Sprösslinge gesät"
+            "value" : "Du hast hier gesät"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fresh seeds in the ground"
+            "value" : "You've sown here"
           }
         }
       }
@@ -2456,13 +2472,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein Wissen keimt"
+            "value" : "Das keimt nun in dir"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your knowledge is sprouting"
+            "value" : "You've got this sprouting"
           }
         }
       }
@@ -2472,13 +2488,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Frisch gesät"
+            "value" : "Frisch von dir gesetzt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Freshly sown"
+            "value" : "You're planting, word by word"
           }
         }
       }
