@@ -7,6 +7,11 @@
   long phrase titles into truncation. Absence now reads as new; the badge only shows
   once a card has something to say (learning, review, or relearning).
 
+- **A box row speaks on a tap anywhere on it, instead of needing the speaker icon.**
+  The icon was one more thing competing with the phrase text and the wake/pack
+  controls for width; the row's own surface is the tap target now, freeing that
+  space up too.
+
 ## 3.11.0 — 2026-08-07
 
 - **Every word an area holds gets its mark on the tree.** How many marks a crown could
