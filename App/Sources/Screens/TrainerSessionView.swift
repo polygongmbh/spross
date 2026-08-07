@@ -180,21 +180,17 @@ struct TrainerSessionView: View, LanguageNaming {
         if correct {
             streak += 1
             bestStreak = max(bestStreak, streak)
-            // Ramp: two clean rights at a level earn the next one. A typo or
-            // hint-assisted answer (amber) never counts toward it.
-            if segment != .tough {
-                winsAtLevel += 1
-                if winsAtLevel >= 2, level < maxLevel {
-                    level += 1
-                    winsAtLevel = 0
-                }
-            }
         } else {
             streak = 0
-            // A miss steps difficulty down one notch.
-            level = max(1, level - 1)
-            winsAtLevel = 0
         }
+        // The rung ramp is kern's, shared with the letter drill: clean wins climb,
+        // a miss steps down, an amber answer moves neither way.
+        let step = DrillRamp.shared.step(level: level, winsAtLevel: winsAtLevel,
+                                         correct: correct, clean: segment != .tough,
+                                         maxLevel: maxLevel,
+                                         winsRequired: Int(Trainer.shared.winsToAdvance(fast: false)))
+        level = step.nextLevel
+        winsAtLevel = step.wins
         bestLevel = max(bestLevel, level)
         outcomes.append(segment ?? (correct ? .right : .wrong))
         doneCount += 1

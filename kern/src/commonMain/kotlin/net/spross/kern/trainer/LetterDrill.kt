@@ -83,38 +83,6 @@ object LetterDrill {
     }
 
     /**
-     * [winsRequired] clean wins up, one miss down, floor 1 — the slot drill's ramp with its
-     * stage length passed in ([winsToAdvance]) so the step stays a pure function of what
-     * the caller already knows.
-     *
-     * An amber answer ([clean] false: a typo, a revealed hint) moves NOTHING. It is neither
-     * a win to bank nor a miss to punish, and letting it count either way would make the
-     * ramp disagree with what the learner just saw on screen.
-     */
-    fun advance(
-        level: Int,
-        winsAtLevel: Int,
-        correct: Boolean,
-        clean: Boolean,
-        maxLevel: Int,
-        winsRequired: Int,
-    ): LetterDrillProgress {
-        val ceiling = maxOf(1, maxLevel)
-        val current = level.coerceIn(1, ceiling)
-        val wins = maxOf(0, winsAtLevel)
-        if (!correct) return LetterDrillProgress(maxOf(1, current - 1), 0)
-        if (!clean) return LetterDrillProgress(current, wins)
-        val earned = wins + 1
-        return if (earned >= maxOf(1, winsRequired) && current < ceiling) {
-            LetterDrillProgress(current + 1, 0)
-        } else {
-            LetterDrillProgress(current, earned)
-        }
-    }
-
-    data class LetterDrillProgress(val level: Int, val winsAtLevel: Int)
-
-    /**
      * An example word WITH its provenance: [slug] is null exactly when the text came from
      * the entry's `exampleText` escape hatch rather than a concept the target language
      * realizes. That distinction is the whole point of the type — it is what keeps a

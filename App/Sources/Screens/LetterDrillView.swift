@@ -210,9 +210,9 @@ struct LetterDrillView: View, LanguageNaming {
     func advance(correct: Bool, clean: Bool) {
         autoAdvance?.cancel()
         Pronouncer.shared.stop()
-        let step = LetterDrill.shared.step(level: level, winsAtLevel: winsAtLevel,
-                                           correct: correct, clean: clean,
-                                           maxLevel: maxLevel, winsRequired: winsRequired)
+        let step = DrillRamp.shared.step(level: level, winsAtLevel: winsAtLevel,
+                                         correct: correct, clean: clean,
+                                         maxLevel: maxLevel, winsRequired: winsRequired)
         let next = Self.sample(model: model, language: language, availability: availability,
                                level: step.nextLevel, avoiding: current?.answerRef,
                                avoidingWord: current?.gapText == nil ? nil : current?.promptText)

@@ -10,7 +10,10 @@ import kotlin.test.assertTrue
 import net.spross.kern.catalog.AlphabetEntry
 import net.spross.kern.trainer.LetterDrill.AlphabetExampleWord
 
-/** The ladder, the ramp, what may be asked at all, and how a typed glyph grades. */
+/**
+ * The ladder, what may be asked at all, and how a typed glyph grades.
+ * The rung ramp itself is shared with the slot drill and lives in [DrillProgressionTests].
+ */
 class LetterDrillTests {
     private val fixture = LetterDrillFixture
 
@@ -52,54 +55,6 @@ class LetterDrillTests {
         assertEquals(2, LetterDrill.winsToAdvance(59))
         assertEquals(1, LetterDrill.winsToAdvance(60))
         assertEquals(1, LetterDrill.winsToAdvance(200))
-    }
-
-    @Test
-    fun twoCleanWinsClimbOneRungAndAMissStepsBack() {
-        val first = LetterDrill.advance(3, 0, correct = true, clean = true, maxLevel = 9, winsRequired = 2)
-        assertEquals(LetterDrill.LetterDrillProgress(3, 1), first)
-        val second = LetterDrill.advance(3, 1, correct = true, clean = true, maxLevel = 9, winsRequired = 2)
-        assertEquals(LetterDrill.LetterDrillProgress(4, 0), second)
-        val missed = LetterDrill.advance(4, 1, correct = false, clean = true, maxLevel = 9, winsRequired = 2)
-        assertEquals(LetterDrill.LetterDrillProgress(3, 0), missed)
-        // The floor holds however long the run goes wrong.
-        assertEquals(
-            LetterDrill.LetterDrillProgress(1, 0),
-            LetterDrill.advance(1, 0, correct = false, clean = true, maxLevel = 9, winsRequired = 2),
-        )
-    }
-
-    @Test
-    fun aHeldVocabularyClimbsOnASingleWin() {
-        assertEquals(
-            LetterDrill.LetterDrillProgress(4, 0),
-            LetterDrill.advance(3, 0, correct = true, clean = true, maxLevel = 9, winsRequired = 1),
-        )
-        // The narrower stage does not change what a miss costs.
-        assertEquals(
-            LetterDrill.LetterDrillProgress(2, 0),
-            LetterDrill.advance(3, 0, correct = false, clean = true, maxLevel = 9, winsRequired = 1),
-        )
-    }
-
-    @Test
-    fun anAmberAnswerMovesNeitherWay() {
-        for (width in 1..2) {
-            assertEquals(
-                LetterDrill.LetterDrillProgress(3, 1),
-                LetterDrill.advance(3, 1, correct = true, clean = false, maxLevel = 9, winsRequired = width),
-            )
-        }
-    }
-
-    @Test
-    fun theCeilingHolds() {
-        val atTop = LetterDrill.advance(7, 1, correct = true, clean = true, maxLevel = 7, winsRequired = 2)
-        assertEquals(7, atTop.level)
-        val silent = LetterDrill.advance(9, 0, correct = true, clean = true, maxLevel = 9, winsRequired = 1)
-        assertEquals(9, silent.level)
-        // A level above the ceiling (dictation lost while the run was in it) drops into range.
-        assertEquals(7, LetterDrill.advance(9, 0, correct = true, clean = true, maxLevel = 7, winsRequired = 1).level)
     }
 
     @Test
