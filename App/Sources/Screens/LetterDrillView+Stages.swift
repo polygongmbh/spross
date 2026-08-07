@@ -75,20 +75,8 @@ extension LetterDrillView {
     }
 
     private var streakLine: some View {
-        streakText
-            .font(DL.Fonts.caption)
-            .foregroundStyle(streak > 0 ? Color.dlAccent : Color.dlTextSecondary)
-            .monospacedDigit()
-            .frame(maxWidth: .infinity)
-            .animation(.easeOut(duration: 0.2), value: streak)
-            .accessibilityLabel(Text("a11y.streakInARow \(streak.formatted())"))
-    }
-
-    private var streakText: Text {
-        var parts: [Text] = [Text("trainer.level \(level.formatted())")]
-        parts.append(Text("trainer.streak \(streak.formatted())"))
-        if bestStreak > streak { parts.append(Text("trainer.record \(bestStreak.formatted())")) }
-        return parts.joined() ?? Text(verbatim: "")
+        DrillStreakLine(level: Text("trainer.level \(level.formatted())"),
+                        streak: streak, bestStreak: bestStreak)
     }
 
     // MARK: - Multiple choice

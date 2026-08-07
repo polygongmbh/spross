@@ -62,34 +62,16 @@ extension TrainerSessionView {
         .scrollDismissesKeyboard(.never)
     }
 
-    /// Compact in-run score: current streak, plus the run record once it
-    /// exceeds the current streak.
     private var streakLine: some View {
-        streakText
-            .font(DL.Fonts.caption)
-            .foregroundStyle(streak > 0 ? Color.dlAccent : Color.dlTextSecondary)
-            .monospacedDigit()
-            .frame(maxWidth: .infinity)
-            .animation(.easeOut(duration: 0.2), value: streak)
-            .accessibilityLabel(streakAccessibility)
+        DrillStreakLine(level: levelText, streak: streak, bestStreak: bestStreak,
+                        announcesRecord: true)
     }
 
-    /// Composed as `Text` (not a joined String) so each part localizes via the
-    /// environment locale with catalog plural handling.
-    private var streakText: Text {
-        var parts: [Text] = []
-        if maxLevel > 1 {
-            parts.append(isNumbers ? Text("trainer.digits \(level)") : Text("trainer.level \(level.formatted())"))
-        }
-        parts.append(Text("trainer.streak \(streak.formatted())"))
-        if bestStreak > streak { parts.append(Text("trainer.record \(bestStreak.formatted())")) }
-        return parts.joined() ?? Text(verbatim: "")
-    }
-
-    private var streakAccessibility: Text {
-        var result = Text("a11y.streakInARow \(streak.formatted())")
-        if bestStreak > streak { result = result + Text("a11y.recordSuffix \(bestStreak.formatted())") }
-        return result
+    /// The rung part of the score line: the numbers drill counts DIGITS, every
+    /// other kind counts plain levels — and a run with one rung shows none.
+    private var levelText: Text? {
+        guard maxLevel > 1 else { return nil }
+        return isNumbers ? Text("trainer.digits \(level)") : Text("trainer.level \(level.formatted())")
     }
 
     private var inputEmpty: Bool {
