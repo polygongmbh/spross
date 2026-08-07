@@ -68,11 +68,19 @@ extension TrainerSessionView {
         }
 
         /// Identity a streak record is kept under (`TrainerRecords`): the whole
-        /// selection, because a run that interleaves numbers and clock times is a
-        /// different feat from either alone. A single-variant key is byte-identical
-        /// to the one that shipped, so no standing record is lost.
+        /// selection AND how it was played — "numbers+clock.rev.de". A run that
+        /// interleaves two variants is a different feat from either alone, and a
+        /// reversed or fast run a different feat again, so none of them may share a
+        /// standing record. A plain single-variant key is byte-identical to the one
+        /// that shipped, so nothing already earned is lost.
         var recordKey: String {
-            "\(variants.map(\.storageTag).joined(separator: "+")).\(recordLanguage)"
+            let selection = variants.map(\.storageTag).joined(separator: "+")
+            return ([selection] + playedTags + [recordLanguage]).joined(separator: ".")
+        }
+
+        /// Modifier tags in ladder order, so one set of modifiers has one key.
+        private var playedTags: [String] {
+            DrillModifier.allCases.filter(modifiers.contains).map(\.storageTag)
         }
 
         /// Identity a rung is kept under (`TrainerProgress`), per variant.
@@ -212,6 +220,18 @@ extension DrillVariant {
         switch self {
         case .numbers, .clock, .forms: return name
         case .phrases: return "phrases"
+        }
+    }
+}
+
+extension DrillModifier {
+    /// How a modifier is spelled in a record key. Short and fixed: it is stored,
+    /// so it may not follow whatever the modifier is called on screen.
+    var storageTag: String {
+        switch self {
+        case .reverse: return "rev"
+        case .fast: return "fast"
+        case .mix: return "mix"
         }
     }
 }
