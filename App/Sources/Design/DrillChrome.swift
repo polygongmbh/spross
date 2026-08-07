@@ -68,7 +68,87 @@ struct DrillStreakLine: View {
     }
 }
 
+// MARK: - Close summary
+
+/// What a closed run shows: how much was answered, the best streak it held,
+/// what was drilled — and the way out, in both corners a thumb looks in.
+struct DrillSummaryView: View {
+    let doneCount: Int
+    let bestStreak: Int
+    /// The run beat the drill's standing record. A drill that keeps no record
+    /// store leaves it false, which drops the record line and the confetti
+    /// with it — rather than forking this screen in two.
+    var newRecord = false
+    /// What was drilled …
+    let title: LocalizedStringKey
+    /// … and in which language, already named (the drill holds the catalog
+    /// that can name it; this screen does not).
+    let languageName: String
+    let onDone: () -> Void
+    let onPractice: () -> Void
+
+    var body: some View {
+        VStack(spacing: DL.Space.xl) {
+            Spacer()
+            Text(verbatim: summaryEmoji)
+                .font(.system(size: 72))
+                .dlSway(angle: 4, period: 3.4)
+                .accessibilityHidden(true)
+            Text("trainer.tasksDone \(doneCount)")
+                .font(DL.Fonts.hero)
+                .foregroundStyle(Color.dlTextPrimary)
+            VStack(spacing: DL.Space.s) {
+                Text("trainer.bestStreak \(bestStreak.formatted())")
+                    .font(DL.Fonts.body)
+                    .foregroundStyle(Color.dlTextPrimary)
+                if newRecord {
+                    Text("trainer.newRecord")
+                        .font(DL.Fonts.headline)
+                        .foregroundStyle(Color.dlAccent)
+                }
+            }
+            Text.joined(Text(title), Text(verbatim: languageName))
+                .font(DL.Fonts.body)
+                .foregroundStyle(Color.dlTextSecondary)
+            Spacer()
+            SessionExitButtons(onDone: onDone, onPractice: onPractice)
+        }
+        .padding(DL.Space.xl)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.dlBackground.ignoresSafeArea())
+        // why: confetti is what a record costs — a drill can be closed a dozen
+        // times an evening, and a screen that celebrates every close celebrates
+        // nothing. The run itself always sways; only the record rains.
+        .overlay {
+            if newRecord { ConfettiView().ignoresSafeArea() }
+        }
+        .sessionCloseCorner(label: "common.done", action: onDone)
+    }
+
+    /// The ladder the run's best streak earns.
+    private var summaryEmoji: String {
+        switch bestStreak {
+        case 10...: return "🏆"
+        case 5...: return "🎉"
+        case 2...: return "💪"
+        default: return "🌱"
+        }
+    }
+}
+
 // MARK: - Previews
+
+#Preview("Summary · record") {
+    DrillSummaryView(doneCount: 17, bestStreak: 12, newRecord: true,
+                     title: "trainer.numbers", languageName: "Swahili",
+                     onDone: {}, onPractice: {})
+}
+
+#Preview("Summary · no record store") {
+    DrillSummaryView(doneCount: 17, bestStreak: 12,
+                     title: "trainer.letters", languageName: "Ukrainisch",
+                     onDone: {}, onPractice: {})
+}
 
 #Preview("Streak line") {
     VStack(spacing: DL.Space.xl) {

@@ -204,52 +204,14 @@ extension TrainerSessionView {
     // MARK: - Close summary
 
     var summary: some View {
-        VStack(spacing: DL.Space.xl) {
-            Spacer()
-            Text(summaryEmoji)
-                .font(.system(size: 72))
-                .dlSway(angle: 4, period: 3.4)
-                .accessibilityHidden(true)
-            Text("trainer.tasksDone \(doneCount)")
-                .font(DL.Fonts.hero)
-                .foregroundStyle(Color.dlTextPrimary)
-            VStack(spacing: DL.Space.s) {
-                Text("trainer.bestStreak \(bestStreak.formatted())")
-                    .font(DL.Fonts.body)
-                    .foregroundStyle(Color.dlTextPrimary)
-                if newRecord {
-                    Text("trainer.newRecord")
-                        .font(DL.Fonts.headline)
-                        .foregroundStyle(Color.dlAccent)
-                }
-            }
-            Text.joined(Text(mode.titleKey), Text(verbatim: languageName(language)))
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextSecondary)
-            Spacer()
-            SessionExitButtons(
-                onDone: { dismiss() },
-                onPractice: { withAnimation(.easeOut(duration: 0.2)) { showingSummary = false } }
-            )
-        }
-        .padding(DL.Space.xl)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.dlBackground.ignoresSafeArea())
-        // why: confetti is what a record costs — a drill can be closed a dozen
-        // times an evening, and a screen that celebrates every close celebrates
-        // nothing. The run itself always sways; only the record rains.
-        .overlay {
-            if newRecord { ConfettiView().ignoresSafeArea() }
-        }
-        .sessionCloseCorner(label: "common.done") { dismiss() }
-    }
-
-    private var summaryEmoji: String {
-        switch bestStreak {
-        case 10...: return "🏆"
-        case 5...: return "🎉"
-        case 2...: return "💪"
-        default: return "🌱"
-        }
+        DrillSummaryView(
+            doneCount: doneCount,
+            bestStreak: bestStreak,
+            newRecord: newRecord,
+            title: mode.titleKey,
+            languageName: languageName(language),
+            onDone: { dismiss() },
+            onPractice: { withAnimation(.easeOut(duration: 0.2)) { showingSummary = false } }
+        )
     }
 }

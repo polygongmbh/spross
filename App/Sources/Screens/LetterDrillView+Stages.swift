@@ -242,40 +242,16 @@ extension LetterDrillView {
 
     // MARK: - Close summary
 
+    /// No `newRecord`: the letter drill keeps no record store (D12 — nothing it
+    /// asks is a review), so the record line and its confetti stay off.
     var summary: some View {
-        VStack(spacing: DL.Space.xl) {
-            Spacer()
-            Text(verbatim: summaryEmoji)
-                .font(.system(size: 72))
-                .dlSway(angle: 4, period: 3.4)
-                .accessibilityHidden(true)
-            Text("trainer.tasksDone \(doneCount)")
-                .font(DL.Fonts.hero)
-                .foregroundStyle(Color.dlTextPrimary)
-            Text("trainer.bestStreak \(bestStreak.formatted())")
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextPrimary)
-            Text.joined(Text("trainer.letters"), Text(verbatim: languageName(language)))
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextSecondary)
-            Spacer()
-            SessionExitButtons(
-                onDone: { dismiss() },
-                onPractice: { withAnimation(.easeOut(duration: 0.2)) { showingSummary = false } }
-            )
-        }
-        .padding(DL.Space.xl)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.dlBackground.ignoresSafeArea())
-        .sessionCloseCorner(label: "common.done") { dismiss() }
-    }
-
-    private var summaryEmoji: String {
-        switch bestStreak {
-        case 10...: return "🏆"
-        case 5...: return "🎉"
-        case 2...: return "💪"
-        default: return "🌱"
-        }
+        DrillSummaryView(
+            doneCount: doneCount,
+            bestStreak: bestStreak,
+            title: "trainer.letters",
+            languageName: languageName(language),
+            onDone: { dismiss() },
+            onPractice: { withAnimation(.easeOut(duration: 0.2)) { showingSummary = false } }
+        )
     }
 }
