@@ -140,21 +140,30 @@ struct SessionCompletionView: View {
         }
     }
 
-    /// What the round did to the learner, said through the growing metaphor.
+    /// What the round did, said about the tree standing above it.
     ///
-    /// The line turns on the round's SHAPE, never on the clock — the same rule
-    /// the session card's own three phrasings follow — so it cannot re-roll
-    /// between renders of one summary. Consolidation outranks a big new-word
-    /// round: it is the rarest thing that happens on this screen, and the tally
-    /// below names the new words anyway.
+    /// Read off THE PICTURE — what this area gained — and never off the round's
+    /// own tallies. Those are session-wide, so a round that graduated a word in
+    /// the bathroom while working mostly in the kitchen printed a blossom line
+    /// over a kitchen tree that had gained no blossom. The copy says "hier"; it
+    /// must be true of the tree the learner is looking at.
     ///
-    /// The subject is always the learner's knowledge, never the area. The area
-    /// did not grow, and it is labelled separately below for that reason.
+    /// The subject is always what the learner can say, never the area. The area
+    /// did not grow, and it is labelled separately below for that reason — which
+    /// is also what gives "hier" something to point at.
     private var growthHeadline: LocalizedStringKey {
         // why: a day the box itself is telling the learner to stop makes no
         // growth claim — a screen that celebrates and is contradicted two lines
-        // down teaches the learner not to believe it.
+        // down teaches the learner not to believe it. The vagueness of that one
+        // line is the point: on a bad day the box genuinely cannot say which
+        // words survived, and pretending otherwise is what the rest hint exists
+        // to prevent.
         guard !restSuggested else { return "session.finished.grew" }
+        guard let move = grownArea else { return "session.finished.growth.grown.0" }
+
+        // Ground where there had never been any: the most narratable thing the
+        // box does, and it used to read like any other round of new words.
+        if move.before.isBare { return "session.finished.growth.opened" }
 
         // why: the key is built as a STRING and only then wrapped. Interpolating
         // inside `LocalizedStringKey("…\(n)")` takes the string-INTERPOLATION
@@ -163,16 +172,19 @@ struct SessionCompletionView: View {
         let kind: String
         var variants = 3
         var offset = 0
-        if graduatedCount > 0 {
+        let landed = move.after.blossoms + move.after.fruit
+        let hadLanded = move.before.blossoms + move.before.fruit
+        if landed > hadLanded {
             kind = "blooming"
-        } else if newCount > graduatedCount + reviewCount {
+        } else if move.after.growing > move.before.growing,
+                  move.after.canopyCount <= move.before.canopyCount {
             kind = "sown"
         } else {
             kind = "grown"
             // A round that added no mark to the canopy can only honestly claim
             // depth — nothing visibly grew, what was there took a firmer hold.
-            // Those are variants 1 and 2; variant 0 says "gewachsen".
-            if grownArea.map({ $0.before.canopyCount == $0.after.canopyCount }) ?? false {
+            // Those are variants 1 and 2; variant 0 says "wächst".
+            if move.before.canopyCount == move.after.canopyCount {
                 variants = 2
                 offset = 1
             }
@@ -181,9 +193,14 @@ struct SessionCompletionView: View {
         return LocalizedStringKey(key)
     }
 
-    /// A stable choice among `count`, hashed from the round's own tallies.
+    /// A stable choice among `count`.
+    ///
+    /// Stability is only needed WITHIN one summary, so the streak joins the
+    /// round's tallies in the seed: a learner with a steady habit answers the
+    /// same shape of round every morning, and on the tallies alone would have
+    /// read the very same sentence every day forever.
     private func variant(of count: Int) -> Int {
-        let seed = SplitMix64("\(newCount):\(graduatedCount):\(reviewCount)").seed
+        let seed = SplitMix64("\(newCount):\(graduatedCount):\(reviewCount):\(streakDays)").seed
         return Int(SplitMix64.mix(seed) % UInt64(count))
     }
 

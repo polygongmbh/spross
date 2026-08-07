@@ -2360,13 +2360,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hier kannst du jetzt mehr"
+            "value" : "Auch heute bleibt was hängen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You can say more here"
+            "value" : "Some of it sticks today too"
           }
         }
       }
@@ -2376,13 +2376,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Etwas ist aufgegangen"
+            "value" : "Das sagst du jetzt selbst"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Something's taken hold"
+            "value" : "You can say this yourself now"
           }
         }
       }
@@ -2392,13 +2392,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein Wissen blüht auf"
+            "value" : "Hier fällt dir was ein"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your knowledge is blooming"
+            "value" : "The words come to you here"
           }
         }
       }
@@ -2408,13 +2408,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Etwas trägt jetzt Blüten"
+            "value" : "Hier hast du Worte parat"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Something's in blossom now"
+            "value" : "You're not stuck for words here"
           }
         }
       }
@@ -2424,13 +2424,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein Wissen ist gewachsen"
+            "value" : "Du sagst hier immer mehr"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your knowledge has grown"
+            "value" : "You can say more and more here"
           }
         }
       }
@@ -2440,13 +2440,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein Wissen wurzelt tiefer"
+            "value" : "Das bleibt dir jetzt länger"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your knowledge is rooting deeper"
+            "value" : "This stays with you longer now"
           }
         }
       }
@@ -2456,13 +2456,29 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein Wissen steht fester"
+            "value" : "Das setzt sich bei dir fest"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your knowledge stands firmer"
+            "value" : "This is sinking in deeper"
+          }
+        }
+      }
+    },
+    "session.finished.growth.opened" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast hier angefangen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You've made a start here"
           }
         }
       }
@@ -2472,13 +2488,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neue Sprösslinge gesät"
+            "value" : "Hier ist was Neues bei dir"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fresh seeds in the ground"
+            "value" : "Something new has come your way"
           }
         }
       }
@@ -2488,13 +2504,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein Wissen keimt"
+            "value" : "Du hast Neues kennengelernt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your knowledge is sprouting"
+            "value" : "You've met something new"
           }
         }
       }
@@ -2504,13 +2520,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Frisch gesät"
+            "value" : "Das wird dir bald vertraut"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Freshly sown"
+            "value" : "Soon this will feel familiar"
           }
         }
       }
