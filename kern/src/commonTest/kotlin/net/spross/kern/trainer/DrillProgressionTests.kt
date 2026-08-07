@@ -27,7 +27,8 @@ class DrillProgressionTests {
     fun everyRungOpensExactlyAtItsRequirement() {
         val variants = listOf(
             Triple(DrillVariant.Clock, DrillVariant.Numbers, 4),
-            Triple(DrillVariant.Phrases, DrillVariant.Clock, 3),
+            // The phrase gate rides the clock ceiling, so growing the ladder raises it.
+            Triple(DrillVariant.Phrases, DrillVariant.Clock, Trainer.maxLevel(TrainerKind.Clock)),
             Triple(DrillVariant.Forms, DrillVariant.Numbers, 7),
         )
         for ((locked, on, level) in variants) {

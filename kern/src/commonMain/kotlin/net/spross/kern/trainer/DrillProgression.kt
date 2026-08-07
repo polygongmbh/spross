@@ -31,7 +31,10 @@ object DrillUnlocks {
     private val variantRequirements: Map<DrillVariant, Map<DrillVariant, Int>> = mapOf(
         DrillVariant.Numbers to emptyMap(),
         DrillVariant.Clock to mapOf(DrillVariant.Numbers to 4),
-        DrillVariant.Phrases to mapOf(DrillVariant.Clock to 3),
+        // why: a sentence puts a time inside a clause, so it opens on a clock that is
+        // finished — the ladder's top rung, tracked by name so growing the ladder
+        // moves the gate with it instead of quietly cheapening it.
+        DrillVariant.Phrases to mapOf(DrillVariant.Clock to CLOCK_MAX_LEVEL),
         DrillVariant.Forms to mapOf(DrillVariant.Numbers to 7),
     )
 
