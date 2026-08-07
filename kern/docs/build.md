@@ -48,6 +48,10 @@ Engine contract: `../README.md`.
   that teaches neither as the truth.
   Years and clock times are never grouped — they keep the default by setting nothing.
   A sentence slot's grouped digits are accepted alongside the plain ones.
+  `Trainer.reference(language)` generates the numbers page from those same packs —
+  bands keyed `ones`/`teens`/`tens`/`twenties`/`compounds`/`hundreds`/`places`,
+  each key a stable identifier the app localizes into a heading — so the table cannot
+  drift from what the drill grades. It subsumes the Swahili-only `tensReference`.
   `PhraseSlots` samples level-aware — same per-kind ramp tables as the plain drills
   (a template's slot kind clamps the level).
   The unleveled `sample` overload keeps the prototype's biased full-difficulty draws

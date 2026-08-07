@@ -174,9 +174,23 @@ object Trainer {
     }
 
     /**
+     * The whole numbers page for a language: which values a reference shows and how
+     * this language reads them. Generated from the same packs the drill grades against,
+     * so the table can never drift from the answers.
+     *
+     * Sections carry a stable [ReferenceSection.key] the app localizes into a heading.
+     */
+    fun reference(language: Language): List<ReferenceSection> = buildReference(language)
+
+    /**
      * Tens look-up ("10 kumi" … "90 tisini") — Swahili only, whose tens are
      * the hardest part to recall. null for languages with regular tens.
      */
+    @Deprecated(
+        "Subsumed by reference(language), which offers every language a table. " +
+            "The in-run \"?\" is its last caller and is rewired next.",
+        ReplaceWith("reference(language)"),
+    )
     fun tensReference(language: Language): List<String>? = trainerPacks[language]?.tensReference
 
     /**
