@@ -155,14 +155,15 @@ object PhraseSlots {
     }
 
     /**
-     * Feminine numeral ENDING a variant (одна/дві) before a masculine counted
-     * noun would accept the exact agreement error [PhraseTemplate.masculineNumeral]
+     * A feminine numeral ENDING a variant before a masculine counted noun would
+     * accept the exact agreement error [PhraseTemplate.masculineNumeral]
      * templates train — drop it wherever accepted sentences are assembled.
+     * The rule is here; which words are feminine is Ukrainian's own business
+     * ([UkrainianNumbers.FEMININE_ONES]).
      */
     private fun isFilteredFeminine(template: PhraseTemplate, variant: String): Boolean {
         if (!template.masculineNumeralOnly) return false
-        val last = variant.substringAfterLast(' ')
-        return last == "одна" || last == "дві"
+        return variant.substringAfterLast(' ') in UkrainianNumbers.FEMININE_ONES
     }
 
     /**

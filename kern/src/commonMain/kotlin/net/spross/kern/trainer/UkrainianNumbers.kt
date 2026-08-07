@@ -13,6 +13,15 @@ internal object UkrainianNumbers {
     private val tens = listOf("", "", "двадцять", "тридцять", "сорок", "п'ятдесят", "шістдесят", "сімдесят", "вісімдесят", "дев'яносто")
     private val hundreds = listOf("", "сто", "двісті", "триста", "чотириста", "п'ятсот", "шістсот", "сімсот", "вісімсот", "дев'ятсот")
 
+    /**
+     * The two counting words that CARRY gender — the only ones a masculine
+     * counted noun rejects. Derived from [onesFem], so the pair cannot drift
+     * from the table that produces it, and read by the frame assembly that
+     * has to drop such an ending (`PhraseSlots`): the vocabulary belongs to
+     * the language, never to the language-neutral composer.
+     */
+    val FEMININE_ONES: Set<String> = setOf(onesFem[1], onesFem[2])
+
     /** Words for 1..999 (space-joined). [feminine] switches 1/2 to одна/дві. */
     private fun subThousand(n: Int, feminine: Boolean): List<String> {
         val words = mutableListOf<String>()
