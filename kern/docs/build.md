@@ -70,8 +70,9 @@ Engine contract: `../README.md`.
   only Clock's unleveled draw coincides with the leveled ceiling.
   **`LetterDrill` is a separate facade, not a `TrainerKind` case**: its registry is
   alphabet file presence in the catalog (adding a language edits no Kotlin), its ramp is
-  stateless and kern-owned (`entryLevel`/`winsToAdvance`/`advance` — both D11 halves in
-  one place so two platforms cannot drift), sampling takes an injected `Random` and an
+  stateless and kern-owned (`entryLevel`/`winsToAdvance`, then the `DrillRamp.step` every
+  drill shares — both D11 halves in one place so two platforms cannot drift),
+  sampling takes an injected `Random` and an
   app-computed promptable set (device voices are an app fact).
   A gap row draws its word from a POOL (`Catalog.alphabetExamples`, rules in
   `catalog/README.md` § Alphabet), the app narrowing it to what the device can say and
