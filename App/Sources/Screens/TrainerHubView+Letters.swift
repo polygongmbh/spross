@@ -17,43 +17,40 @@ import SprossKern
 /// reference sheet is a `.sheet` besides, so the choice is which of the two
 /// presenters this destination belongs to, not whether it is showing.
 enum HubDestination: Identifiable {
-    case slots(kind: TrainerKind, language: String)
-    case phrases(source: String, target: String, templates: [PhraseTemplate])
+    case numbers(language: String)
     case letters(language: String)
     case alphabet(language: String)
 
     var id: String {
         switch self {
-        case let .slots(kind, language): return "\(kind.name)-\(language)"
-        case let .phrases(source, target, _): return "phrases-\(source)-\(target)"
+        case let .numbers(language): return "numbers-\(language)"
         case let .letters(language): return "letters-\(language)"
         case let .alphabet(language): return "alphabet-\(language)"
         }
     }
 
-    /// The slot-drill run this opens — nil for the letter drill, which is its
-    /// own view, and for the sheet.
-    var drillMode: TrainerSessionView.Mode? {
+    /// The numbers overview's language — the run it starts is that screen's own
+    /// to present, so the hub never builds a slot-drill mode any more.
+    var numbersLanguage: String? {
         switch self {
-        case let .slots(kind, language): return .slots(kind, language)
-        case let .phrases(source, target, templates):
-            return .phrases(source: source, target: target, templates: templates)
+        case let .numbers(language): return language
         case .letters, .alphabet: return nil
         }
     }
 
-    /// The letter drill's language — nil for every other destination.
+    /// The letter drill's language — the last full-screen run the hub opens
+    /// directly, until the letters overview absorbs the alphabet sheet.
     var lettersLanguage: String? {
         switch self {
-        case .slots, .phrases, .alphabet: return nil
+        case .numbers, .alphabet: return nil
         case let .letters(language): return language
         }
     }
 
     /// The alphabet this opens as a sheet — nil for every full-screen run.
-    var sheetLanguage: String? {
+    var alphabetLanguage: String? {
         switch self {
-        case .slots, .phrases, .letters: return nil
+        case .numbers, .letters: return nil
         case let .alphabet(language): return language
         }
     }
@@ -88,12 +85,13 @@ extension TrainerHubView {
 
     // MARK: - Presentation
 
-    /// The full-screen half of the destination: every run, whatever view it
-    /// happens to be — only reference material is presented as a sheet.
-    var drillDestination: Binding<HubDestination?> { half { $0.sheetLanguage == nil } }
+    /// The full-screen half of the destination: a run the hub opens directly,
+    /// which is now only the letter drill.
+    var drillDestination: Binding<HubDestination?> { half { $0.lettersLanguage != nil } }
 
-    /// The sheet half — reference material, which leaves the hub behind it.
-    var sheetDestination: Binding<HubDestination?> { half { $0.sheetLanguage != nil } }
+    /// The sheet half — everything you READ from: the numbers overview (which
+    /// starts its own run) and the alphabet.
+    var sheetDestination: Binding<HubDestination?> { half { $0.lettersLanguage == nil } }
 
     private func half(_ belongs: @escaping (HubDestination) -> Bool) -> Binding<HubDestination?> {
         let destination = $destination
@@ -150,18 +148,15 @@ extension TrainerHubView {
 
 #if DEBUG
 extension TrainerHubView {
-    /// UI-test hook: `-uitest-trainer numbers|clock|phrases|letters|alphabet`
-    /// resolved against what this language actually offers.
+    /// UI-test hook: `-uitest-trainer numbers|letters|alphabet` resolved against
+    /// what this language actually offers.
+    ///
+    /// Clock and phrases are no longer surfaces of their own: reach them with
+    /// `-uitest-trainer numbers -uitest-variants clock -uitest-run 1`, which is
+    /// also the only way to photograph a modifier or a mixed selection.
     func uitestDestination(_ raw: String) -> HubDestination? {
-        // why: years dropped with the chip it opened — it has no rung on the
-        // ladder, so a run cannot be built on it and the hook would open numbers.
-        let kinds: [String: TrainerKind] = ["numbers": .numbers, "clock": .clock]
-        if let kind = kinds[raw], let language = drillLanguage {
-            return .slots(kind: kind, language: language)
-        }
-        if raw == "phrases", let drill = phraseDrill {
-            return .phrases(source: drill.source, target: drill.target,
-                            templates: drill.templates)
+        if raw == "numbers", slotsAvailable, let language = drillLanguage {
+            return .numbers(language: language)
         }
         if raw == "letters", let language = drillLanguage,
            // why: computed here rather than read off `letterDrill` — this hook

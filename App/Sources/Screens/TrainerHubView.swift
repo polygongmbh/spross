@@ -1,15 +1,15 @@
 import SwiftUI
 import SprossKern
 
-/// Compact "Training" card on the Heute screen: slot drills (Zahlen /
-/// Uhrzeit), the sentence drill, and the alphabet of the language being
-/// learned. Offerings are registry-driven: slot drills appear only when
-/// Kern's trainer supports the learned language, the sentence drill only
-/// where the catalog realizes a sentence frame in BOTH languages and the
-/// answer language has a trainer pack, the alphabet only where a file was
-/// authored — a language missing any of that hides its sections, an empty
-/// card hides entirely. Trainers are stateless — they never touch BoxState
-/// or FSRS.
+/// Compact "Training" card on the Heute screen: TWO entries — 🔢 Zahlen and
+/// 🔤 Buchstaben — plus the alphabet to read. Clock and sentences are not
+/// siblings of the numbers drill but variants of it, so they live as rows
+/// inside the numbers overview and are earned there; the chip row only has to
+/// name the two things a learner can practise. Offerings stay registry-driven:
+/// numbers appears only when Kern's trainer supports the learned language, the
+/// letter drill only where this device can sound a letter, the alphabet only
+/// where a file was authored — an empty card hides entirely. Trainers are
+/// stateless: they never touch BoxState or FSRS.
 struct TrainerHubView: View, LanguageNaming {
     let model: AppModel
 
@@ -17,10 +17,6 @@ struct TrainerHubView: View, LanguageNaming {
     // language through it.
     @Environment(\.locale) var locale
     @Environment(\.scenePhase) private var scenePhase
-
-    /// Standalone drills offered on the card — years is intentionally absent
-    /// (redundant with numbers), though it still backs phrase slots.
-    private static let drillKinds: [TrainerKind] = [.numbers, .clock]
 
     // why: internal, not private — TrainerHubView+Letters.swift (file-size
     // split) reads the same three, and drives this state from its extension.
@@ -32,7 +28,9 @@ struct TrainerHubView: View, LanguageNaming {
     /// The language being learned — every drill runs in it.
     var drillLanguage: String? { model.targetLanguage }
 
-    private var slotsAvailable: Bool {
+    // why: internal, not private — the UI-test hook in
+    // TrainerHubView+Letters.swift gates the numbers overview on it.
+    var slotsAvailable: Bool {
         drillLanguage.map { Trainer.shared.supports(language: $0) } ?? false
     }
 
@@ -52,7 +50,7 @@ struct TrainerHubView: View, LanguageNaming {
 
     var body: some View {
         Group {
-            if slotsAvailable || phraseDrill != nil || alphabetAvailable {
+            if slotsAvailable || alphabetAvailable {
                 card
             }
         }
@@ -66,31 +64,22 @@ struct TrainerHubView: View, LanguageNaming {
             if phase == .active { refreshLetterDrill() }
         }
         .fullScreenCover(item: drillDestination) { destination in
+            if let language = destination.lettersLanguage {
+                LetterDrillView(model: model, language: language)
+                    .environment(\.locale, model.knownLocale)
+            }
+        }
+        .sheet(item: sheetDestination) { destination in
             Group {
-                if let mode = destination.drillMode {
-                    TrainerSessionView(mode: mode, normalizer: normalizer(for: mode),
-                                       catalog: model.catalog, model: model)
-                } else if let language = destination.lettersLanguage {
-                    LetterDrillView(model: model, language: language)
+                if let language = destination.numbersLanguage {
+                    NumbersOverview(model: model, language: language,
+                                    phraseDrill: phraseDrill.map { ($0.source, $0.templates) })
+                } else if let language = destination.alphabetLanguage {
+                    AlphabetSheetView(model: model, language: language)
                 }
             }
             .environment(\.locale, model.knownLocale)
         }
-        .sheet(item: sheetDestination) { destination in
-            if let language = destination.sheetLanguage {
-                AlphabetSheetView(model: model, language: language)
-                    .environment(\.locale, model.knownLocale)
-            }
-        }
-    }
-
-    private func normalizer(for mode: TrainerSessionView.Mode) -> AnswerNormalizer? {
-        // why: drills grade word by word — no article forgiveness, one slip per
-        // word, digits exact-only — so a sentence may fumble one word while no
-        // number can ever pass for another.
-        model.languageInfo(mode.language)
-            .map { AnswerNormalizer(answerLanguage: $0, articleLeniency: false,
-                                    maxTyposPerWord: KotlinInt(int: 1)) }
     }
 
     // MARK: - Card
@@ -106,18 +95,10 @@ struct TrainerHubView: View, LanguageNaming {
             // why: gated as a whole — a language with an alphabet and no drills
             // (the moment such a file lands) would otherwise open an empty row
             // of chips above the Alphabet row.
-            if slotsAvailable || phraseDrill != nil || letterDrillAvailable {
+            if slotsAvailable || letterDrillAvailable {
                 HStack(spacing: DL.Space.m) {
-                    // why: years drill dropped — it's covered by the numbers
-                    // drill (identical reading in Swahili/Ukrainian). Years
-                    // live on only as a phrase slot.
                     if slotsAvailable {
-                        ForEach(Self.drillKinds, id: \.self) { kind in
-                            drillChip(kind)
-                        }
-                    }
-                    if phraseDrill != nil {
-                        phraseChip
+                        numbersChip
                     }
                     if letterDrillAvailable {
                         lettersChip
@@ -136,7 +117,7 @@ struct TrainerHubView: View, LanguageNaming {
         )
         .dlCardShadow()
         #if DEBUG
-        // UI-test hook: `-uitest-trainer numbers|years|clock|phrases|alphabet`
+        // UI-test hook: `-uitest-trainer numbers|letters|alphabet`
         // opens that surface (in the learned language, like the chips).
         // Attached HERE because the card only appears once the box is loaded;
         // resolved in TrainerHubView+Letters.swift.
@@ -150,29 +131,18 @@ struct TrainerHubView: View, LanguageNaming {
 
     var namingCatalog: Catalog? { model.catalog }
 
-    private func drillChip(_ kind: TrainerKind) -> some View {
+    /// The whole numbers progression behind one chip: the reference page, the
+    /// clock and the sentences, and whatever the ladder has opened so far.
+    private var numbersChip: some View {
         Button {
             guard let language = drillLanguage else { return }
-            destination = .slots(kind: kind, language: language)
+            destination = .numbers(language: language)
         } label: {
-            chipLabel(emoji: kind.trainerEmoji, title: Text(kind.trainerTitleKey))
+            chipLabel(emoji: TrainerKind.numbers.trainerEmoji, title: Text("trainer.numbers"))
         }
         .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel(Text(kind.trainerTitleKey)
+        .accessibilityLabel(Text("trainer.numbers")
             + Text("a11y.practiceSuffix \(languageName(drillLanguage ?? ""))"))
-    }
-
-    /// Sentence drill: composes phrase templates with slot values.
-    private var phraseChip: some View {
-        Button {
-            guard let drill = phraseDrill else { return }
-            destination = .phrases(source: drill.source, target: drill.target,
-                                   templates: drill.templates)
-        } label: {
-            chipLabel(emoji: "💬", title: Text("trainer.phrases"))
-        }
-        .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel("a11y.practicePhrases")
     }
 
     /// One chip's face — shared with the letters chip next door.

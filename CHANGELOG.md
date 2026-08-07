@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+- **Zahlen is now a numbers page you start the drill from, and the drill grows as you do.**
+  The training card offered a chip per exercise and no way to look anything up outside a
+  running drill. It offers two entries now — numbers and letters — and the numbers one opens
+  a page for the language being learned: every band a printed numbers page would show, from
+  zero to a billion, each value beside its reading and generated from the very readings the
+  drill grades against, then the few things that actually trip a learner up in that language.
+  Practice sits at the bottom of the same page: the clock and the sentence drill are no
+  longer siblings of the numbers drill but ways of being asked, and they open once the
+  climb reaches the place value that pays for them. So do the number forms, and asking the
+  other way round, and a faster climb, and a run that keeps changing its mind. What is still
+  locked says what it costs instead of going missing, several can be picked at once, and
+  every run starts at the bottom of the ladder however far you have come — the climb is the
+  drill.
+
 - **A long number in the drill breaks into groups a reader can take in.** Ten digits arrived
   as one unbroken run that had to be counted a place at a time. The prompt breaks in threes
   from five digits up now — 9999 stays whole, 12 345 and 4 072 918 300 come apart — and the
@@ -9,6 +23,16 @@
   and English, so either would teach one convention as the truth to a learner of the other.
   A sentence slot takes the separator alongside the bare digits, so copying the prompt as
   written cannot cost the rung.
+
+- **The hour said exactly now names nine in the morning, and the parts of the day moved in
+  with the clock.** "Punkt zwölf Uhr mittags" was a sentence nobody says; the card reads
+  "punkt neun Uhr morgens", "nine a.m. sharp", "a las nueve de la mañana en punto", "saa
+  tatu asubuhi kamili" and "рівно о дев'ятій ранку" now, and the Swahili third hour for
+  nine shows the six-hour shift where it surprises most. Morning, evening and night left
+  the bedroom and the living room for Time and dates, so the parts of the day stand
+  together and the sentence can be built out of them. Spanish gives up its own card for the
+  morning in the move: "mañana" is already tomorrow there, and one area cannot ask for one
+  word and mean two cards — Spanish still meets the morning inside "de la mañana".
 
 - **The clock drill climbs a step at a time, and never takes back a minute it taught.**
   Past the quarters it jumped straight to any minute at all, and the quarter to the hour
