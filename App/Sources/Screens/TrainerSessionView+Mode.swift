@@ -97,6 +97,16 @@ extension TrainerSessionView {
             guard let phraseSource else { return language }
             return "\(phraseSource)-\(language)"
         }
+
+        /// The grader this run is played with — one home, because both surfaces
+        /// that open a run owe it the same one. Drills grade word by word (no
+        /// article forgiveness, one slip per word, digits exact-only), so a
+        /// sentence may fumble one word while no number can pass for another.
+        @MainActor func normalizer(_ model: AppModel?) -> AnswerNormalizer? {
+            model?.languageInfo(language)
+                .map { AnswerNormalizer(answerLanguage: $0, articleLeniency: false,
+                                        maxTyposPerWord: KotlinInt(int: 1)) }
+        }
     }
 
     /// A drawn task, the variant that offered it, and which way round it is asked.

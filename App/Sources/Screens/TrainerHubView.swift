@@ -250,6 +250,27 @@ extension DrillVariant {
     }
 }
 
+/// How a run is PLAYED, as the overview offers it. A modifier has no face of its
+/// own: it changes every variant alike, so it is named and explained in words.
+extension DrillModifier {
+    var trainerTitleKey: LocalizedStringKey {
+        switch self {
+        case .reverse: return "trainer.modifier.reverse"
+        case .fast: return "trainer.modifier.fast"
+        case .mix: return "trainer.modifier.mix"
+        }
+    }
+
+    /// One line saying what it does to a run — the settings-row caption pattern.
+    var trainerHintKey: LocalizedStringKey {
+        switch self {
+        case .reverse: return "trainer.modifier.reverse.hint"
+        case .fast: return "trainer.modifier.fast.hint"
+        case .mix: return "trainer.modifier.mix.hint"
+        }
+    }
+}
+
 /// Resolves a catalog key against a specific UI-language bundle. Needed for
 /// runtime strings interpolated as `%@` arguments (e.g. a language name),
 /// where SwiftUI's environment locale — which only drives `Text` /
