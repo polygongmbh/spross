@@ -3,6 +3,7 @@ package net.spross.kern.session
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.LanguageInfo
+import net.spross.kern.model.Rating
 import net.spross.kern.model.nfcNormalized
 
 /** Grading verdict for a typed produce answer. */
@@ -25,6 +26,24 @@ sealed interface Match {
     data class OtherWord(val word: String, val meanings: List<String>) : Match
 
     data object Wrong : Match
+
+    /**
+     * The FSRS rating this match earns on its own, before any reveal/retry
+     * step takes over. [Exact] came back clean (Good); a [Typo] came back
+     * readable but imperfect — the same Hard a finished retype after a reveal
+     * earns, because neither came back on the first, unaided try. One rule
+     * here rather than in each platform's UI, so a produce screen never
+     * re-derives it and drifts from another (iOS graded a typo Good until
+     * 2026-08-07; Android never did).
+     * Null for [OtherWord] and [Wrong]: neither has a rating of its own —
+     * both route through reveal, where the eventual retype (Hard) or
+     * give-up (Again) decides it.
+     */
+    fun producedRating(): Rating? = when (this) {
+        Exact -> Rating.Good
+        is Typo -> Rating.Hard
+        is OtherWord, Wrong -> null
+    }
 }
 
 /**

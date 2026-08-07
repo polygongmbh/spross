@@ -23,6 +23,11 @@ struct SessionView: View {
     /// not the one that played. Amber like a typo: the word is right, it is
     /// simply not the one the learner heard, and the line says which was.
     @State var heardInstead: String?
+    /// The rating an amber hold (`typoCorrection`/`heardInstead`) already
+    /// earned, decided at grading time and applied when the pause's "Weiter"
+    /// is tapped — kern's `Match.producedRating()` where a `Match` decided it,
+    /// so the rule lives in one place instead of being re-derived at the tap.
+    @State var pendingRating: Rating?
     /// The rating a missed word already earned, held while it is written out
     /// (SessionView+Copy.swift). Non-nil ⇒ the copy step owns the controls.
     @State var copyPending: Rating?
@@ -374,6 +379,7 @@ struct SessionView: View {
         revealed = false
         typoCorrection = nil
         heardInstead = nil
+        pendingRating = nil
         otherWord = nil
         retryApproved = false
         copyPending = nil
