@@ -114,8 +114,8 @@ never the shape of the app.
 - **A word you have consolidated is sometimes asked by ear alone**: the prompt is the
   replay glyph and nothing else, and what is typed is what was heard. The card is still a
   produce card and still books its review — only the prompt side moved. It withholds the
-  meaning, so the reveal owes it back, and it needs the STRICTER consolidated bar rather
-  than the settled one every other presentation rule uses: taking a word's only cue away
+  meaning, so the reveal owes it back, and it waits for the landed bar the emoji reads from
+  the other side: taking a word's only cue away
   while it is still landing is not support. A synonym typed here is amber, never wrong —
   the reveal itself teaches those forms, it simply was not the one that played. Where the
   word cannot be heard right now — no recording and no voice, reading aloud off, a screen
@@ -127,7 +127,7 @@ never the shape of the app.
   giving up is an honest miss.
 - **A missed word is written out once before the session moves on.** A reveal followed by
   a single tap gives a word almost no encoding, which is how it comes back later and
-  passes for new again; a word that has not settled is typed with the answer in view.
+  passes for new again; a word that has not landed is typed with the answer in view.
   Encoding only, never a grade — the rating the self-grade already chose is applied
   unchanged, so self-grading still owns the schedule.
   Production asks for it, and so does a first exposure — the review that teaches the word,
@@ -209,7 +209,7 @@ never the shape of the app.
   and drawing each as an object made packing an area — forty words at once, a normal
   move — look like a spilled bag rather than like sowing. One tree can be looked at.
   **A tree is one organism its whole life**, never swapped for another at some rung: the
-  trunk is what the area has grown, the canopy IS its words that have settled, and blossom
+  trunk is what the area has grown, the canopy IS its words that have landed, and blossom
   and fruit appear ON that canopy. So the picture never starts over, and has no top rung
   at which it stops. A word is a leaf — a thing believed many of without being counted;
   which rung of `GrowthStage` (`../kern/README.md` §6) becomes which mark is decided in

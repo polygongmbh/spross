@@ -64,14 +64,8 @@ extension AppModel {
         (scheduling(for: cardID)?.reviewCount ?? 0) == 0
     }
 
-    /// Whether this card has settled — the fast bar behind presentation support.
-    func isSettled(_ cardID: String) -> Bool {
-        guard let box else { return false }
-        return BoxEngine.shared.isSettled(state: box, cardId: cardID)
-    }
-
-    /// Whether this card has genuinely consolidated — the stricter bar behind
-    /// the stats display and the session-summary "gefestigt" tally.
+    /// Whether this card has landed — the one bar behind the stats display, the
+    /// session-summary "gefestigt" tally, and the support a word gets on its way in.
     func isConsolidated(_ cardID: String) -> Bool {
         guard let box else { return false }
         return BoxEngine.shared.isConsolidated(state: box, cardId: cardID)
@@ -90,7 +84,7 @@ extension AppModel {
     /// answer away, otherwise the reveal (contract §3).
     func emojiCue(for card: Card) -> EmojiCue {
         SprossKern.emojiCue(role: presentationRole(for: card.id),
-                                  settled: isSettled(card.id),
+                                  consolidated: isConsolidated(card.id),
                                   reviewCount: scheduling(for: card.id)?.reviewCount ?? 0)
     }
 

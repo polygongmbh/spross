@@ -111,21 +111,21 @@ class PresentationTest {
     @Test
     fun emojiRidesThePromptOnlyWhereItCannotGiveTheAnswerAway() {
         // First exposure: on the prompt — the cue that makes a first attempt possible.
-        assertEquals(EmojiCue.Upfront, emojiCue(recognize, settled = false, reviewCount = 0))
+        assertEquals(EmojiCue.Upfront, emojiCue(recognize, consolidated = false, reviewCount = 0))
         // Produce while the word is still landing: the source prompt already names
         // the concept, so the picture adds support without leaking anything.
-        assertEquals(EmojiCue.Upfront, emojiCue(produce, settled = false, reviewCount = 1))
+        assertEquals(EmojiCue.Upfront, emojiCue(produce, consolidated = false, reviewCount = 1))
     }
 
     @Test
     fun emojiRidesTheRevealEverywhereElse() {
         // Recognition measurement reviews: the picture depicts the answer, so it
         // waits for the reveal rather than disappearing.
-        assertEquals(EmojiCue.OnReveal, emojiCue(recognize, settled = false, reviewCount = 1))
-        assertEquals(EmojiCue.OnReveal, emojiCue(recognize, settled = true, reviewCount = 4))
-        // Settled words get no prompt support in either role — but still bind on reveal.
-        assertEquals(EmojiCue.OnReveal, emojiCue(produce, settled = true, reviewCount = 4))
-        assertEquals(EmojiCue.OnReveal, emojiCue(produce, settled = true, reviewCount = 6))
+        assertEquals(EmojiCue.OnReveal, emojiCue(recognize, consolidated = false, reviewCount = 1))
+        assertEquals(EmojiCue.OnReveal, emojiCue(recognize, consolidated = true, reviewCount = 4))
+        // A word that has landed gets no prompt support in either role — but still binds on reveal.
+        assertEquals(EmojiCue.OnReveal, emojiCue(produce, consolidated = true, reviewCount = 4))
+        assertEquals(EmojiCue.OnReveal, emojiCue(produce, consolidated = true, reviewCount = 6))
     }
 
     // -- pronunciation policy ----------------------------------------------------------

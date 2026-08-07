@@ -37,7 +37,9 @@ class GrowthStageTests {
                 "w02" to GrowthStage.Queued,
                 "w03" to GrowthStage.Learning,
                 "w04" to GrowthStage.Fresh,
-                "w05" to GrowthStage.Settled,
+                // Past the retired settled bar of 2.0, still short of the one bar that
+                // remains: a word this far in is Fresh, and still gets its support.
+                "w05" to GrowthStage.Fresh,
                 "w06" to GrowthStage.Consolidated,
                 "w07" to GrowthStage.Matured,
                 "w08" to GrowthStage.Relearning,
@@ -48,19 +50,17 @@ class GrowthStageTests {
 
     @Test
     fun everyBarIsReachedAtItsOwnValue() {
-        // All three bars are `>=`, so a card sitting exactly on one has cleared it.
-        var state = Box.state((1..3).map { Box.word(it) })
-        state = Box.inject(state, Box.sched("w01", stability = 2.0, dueMillis = future, lastReviewMillis = now))
-        state = Box.inject(state, Box.sched("w02", stability = 6.0, dueMillis = future, lastReviewMillis = now))
+        // Both bars are `>=`, so a card sitting exactly on one has cleared it.
+        var state = Box.state((1..2).map { Box.word(it) })
+        state = Box.inject(state, Box.sched("w01", stability = 6.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(
             state,
-            Box.sched("w03", stability = MATURED_STABILITY, dueMillis = future, lastReviewMillis = now),
+            Box.sched("w02", stability = MATURED_STABILITY, dueMillis = future, lastReviewMillis = now),
         )
 
         val stages = stages(state)
-        assertEquals(GrowthStage.Settled, stages["w01"])
-        assertEquals(GrowthStage.Consolidated, stages["w02"])
-        assertEquals(GrowthStage.Matured, stages["w03"])
+        assertEquals(GrowthStage.Consolidated, stages["w01"])
+        assertEquals(GrowthStage.Matured, stages["w02"])
     }
 
     @Test

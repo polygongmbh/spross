@@ -319,7 +319,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 promptForm = promptForm,
                 producePrompt = prompt,
                 emojiCue = card.emoji?.let {
-                    emojiCue(role, BoxEngine.isSettled(state, card.id), count)
+                    emojiCue(role, isConsolidated(card.id), count)
                 },
                 // why: the KERN cue, never `role == Recognize` — one rule, consumed by
                 // both apps. The PROMPTED form, so a rotated synonym is heard as itself.

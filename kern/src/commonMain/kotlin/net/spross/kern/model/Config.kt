@@ -14,23 +14,24 @@ data class BoxConfig(
     val desiredRetention: Double = 0.8,
     val maximumIntervalDays: Int = 365,
     /**
-     * Days of stability at which a card has SETTLED — the threshold behind the
-     * presentation rules that support a word only while it is still landing
-     * (see [net.spross.kern.box.Statistics.isSettled]). FSRS-6 recalibrated.
-     * The stricter [consolidatedStability] governs the stats display and
-     * phrase unlock instead.
-     */
-    val settledStability: Double = 2.0,
-    /**
-     * Days of stability at which a card counts as CONSOLIDATED — a stricter bar than
-     * [settledStability], read by the stats display (fresh/consolidated split, the
-     * session-summary tally), phrase unlock (see [net.spross.kern.box.Growth.isComponentStable]),
-     * the drill pools, and [net.spross.kern.model.producePrompt], which WITHDRAWS the
-     * meaning from a prompt rather than adding support and so takes the stricter bar.
-     * In-session presentation SUPPORT keeps using [settledStability];
-     * this one exists so a merely-Good first answer doesn't read as "landed" while a
-     * genuinely known-on-sight Easy answer still does — set between S0(Good) = 2.3065
-     * and S0(Easy) = 8.2956.
+     * Days of stability at which a card counts as CONSOLIDATED — the ONE bar for
+     * "has this word landed", read by every rule that asks the question:
+     * the stats display (fresh/consolidated split, the session-summary tally),
+     * phrase unlock (see [net.spross.kern.box.Growth.isComponentStable]), the drill
+     * pools, [net.spross.kern.model.producePrompt] (which WITHDRAWS the meaning),
+     * and [net.spross.kern.model.emojiCue] (which ADDS support).
+     *
+     * Set between S0(Good) = 2.3065 and S0(Easy) = 8.2956, so a merely-Good first
+     * answer does not read as landed while a genuinely known-on-sight Easy one does.
+     * That gap is the whole point: a first answer of Good is as easily an emoji
+     * recognised as a word recalled, and the word keeps its support until a second
+     * answer says otherwise — where Easy, which only a fast learner-reported Knew
+     * can earn ([net.spross.kern.session.SelfGrading]), clears the bar on the spot.
+     *
+     * A separate, faster `settledStability` of 2.0 used to gate presentation support
+     * on its own. It sat BELOW S0(Good), so a single Good — the emoji-lucky case
+     * included — withdrew the emoji from the very next review, which is the first
+     * TYPED one and the first that can actually catch the guess.
      */
     val consolidatedStability: Double = 6.0,
     /**

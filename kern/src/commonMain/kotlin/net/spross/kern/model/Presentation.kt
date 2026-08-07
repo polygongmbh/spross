@@ -48,10 +48,10 @@ enum class ProducePrompt {
  * asked from its sound is still being produced — only the prompt side moves, so one FSRS
  * schedule still sees one kind of answer.
  *
- * Two gates and a rotation. [consolidated] is the STRICTER bar
- * ([net.spross.kern.model.BoxConfig.consolidatedStability]) rather than the settled one
- * every other presentation rule uses, because this withdraws the meaning rather than
- * adding support — a word still landing must not have its only cue taken away. [audible]
+ * Two gates and a rotation. [consolidated]
+ * ([net.spross.kern.model.BoxConfig.consolidatedStability]) is the same bar
+ * [emojiCue] reads, from the other side: a word that has landed can spare its meaning,
+ * and one still landing must not have its only cue taken away. [audible]
  * is the device's word (a recording, a voice, and reading aloud switched on), and false
  * falls back to the source prompt rather than blocking: review has another way to ask the
  * same question, so nothing is ever hidden behind a silent phone.
@@ -97,7 +97,7 @@ enum class EmojiCue {
 
 /**
  * Emoji policy. The picture is there from the START iff (first exposure) OR
- * (role == Produce && the word has not settled) — the two places it supports
+ * (role == Produce && the word has not consolidated) — the two places it supports
  * recall without revealing it, since a produce prompt already names the concept
  * in the source language. Everywhere else it waits for the reveal, in every
  * phase: once the answer is out the picture can leak nothing, and binding it to
@@ -105,10 +105,10 @@ enum class EmojiCue {
  */
 fun emojiCue(
     role: PresentationRole,
-    settled: Boolean,
+    consolidated: Boolean,
     reviewCount: Int,
 ): EmojiCue =
-    if (reviewCount == 0 || (role == PresentationRole.Produce && !settled)) {
+    if (reviewCount == 0 || (role == PresentationRole.Produce && !consolidated)) {
         EmojiCue.Upfront
     } else {
         EmojiCue.OnReveal

@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- **A new word keeps its help until it has actually landed.** The box used to hold two bars
+  for "this word has stuck" and support fell away at the lower one — which a single *Gut* on
+  a word's very first answer already cleared. So the picture disappeared from the next
+  review, and that next review is the first one that asks you to *type* the word: the help
+  went away exactly where it was first needed. There is one bar now, the one the progress
+  display and phrase unlock already used, and a word answered *Gut* once keeps its picture
+  and its write-it-out step until a later answer says it has landed. Answering *Einfach* —
+  which is earned by knowing a word on sight, never chosen — still clears it at once, so a
+  word you already knew is not slowed down.
+
 ## 3.10.1 — 2026-08-07
 
 - **The home-screen widgets are read at a glance instead of scanned.** A word and its meaning
