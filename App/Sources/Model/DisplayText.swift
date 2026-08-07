@@ -46,7 +46,40 @@ enum LanguageNames {
     }
 }
 
+/// Surfaces that name a language in their own chrome, and label a typed-answer
+/// field with it. One implementation, so two screens can never start naming the
+/// same language two different ways.
+// why: @MainActor — three of the four conformers read the name out of the
+// AppModel's catalog, which is main-actor isolated.
+@MainActor
+protocol LanguageNaming {
+    var locale: Locale { get }
+    /// Where a language with no chrome exonym finds its own name.
+    var namingCatalog: Catalog? { get }
+}
+
+extension LanguageNaming {
+    func languageName(_ code: String) -> String {
+        LanguageNames.display(code, locale: locale, catalog: namingCatalog)
+    }
+
+    /// "Auf Suaheli …" — what the answer field asks for. A runtime `%@`, so it
+    /// resolves through `DLChrome` rather than the environment locale.
+    func answerPlaceholder(_ code: String) -> String {
+        String(format: DLChrome.string("session.answer.placeholder %@", locale: locale),
+               languageName(code))
+    }
+}
+
 extension Card {
+    /// A form this card lists as a synonym or a variant — the right word, just
+    /// not the one that played. Amber, never wrong: the reveal itself teaches
+    /// these forms ("auch: …"), so failing one would contradict the card.
+    func alsoAccepts(_ input: String) -> Bool {
+        let typed = speechKey(form: input)
+        return (target.synonyms + target.variants).contains { speechKey(form: $0) == typed }
+    }
+
     /// Leading list marker: the seed emoji when present, else a neutral
     /// per-kind category glyph (verbs/phrases carry no seed emoji). Used only
     /// for row rhythm in lists — the card face shows the seed emoji or nothing.

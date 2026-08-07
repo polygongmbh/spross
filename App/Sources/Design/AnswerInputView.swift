@@ -95,7 +95,7 @@ struct AnswerInputView: View {
     /// Revealed, locked and empty: the card is carrying the answer and there is
     /// nothing of the learner's here to keep on screen.
     private var isInert: Bool {
-        isRevealed && (locked ?? true) && text.trimmingCharacters(in: .whitespaces).isEmpty
+        isRevealed && (locked ?? true) && text.isBlankAnswer
     }
 
     // MARK: Input field
@@ -216,6 +216,32 @@ struct AnswerInputView: View {
         // and a correction the learner cannot replay is the thing this box
         // exists to fix. Caption and form stay two stops.
         .accessibilityElement(children: .contain)
+    }
+}
+
+// MARK: - The field's two rules its callers need
+
+extension String {
+    /// Nothing but whitespace typed. The state where a typing-first surface's
+    /// ONE primary action reveals the answer instead of checking it.
+    var isBlankAnswer: Bool { trimmingCharacters(in: .whitespaces).isEmpty }
+}
+
+/// Asking whichever answer field is on screen for focus. The immediate request
+/// covers a field already mounted; the retry covers one mounting in the same
+/// frame — a request that arrives before its field exists is simply dropped,
+/// which is what left the keyboard down when a reveal started REMOVING the
+/// field rather than disabling it.
+@MainActor
+enum AnswerFocus {
+    static func claim(_ focused: FocusState<Bool>.Binding, retry: inout Task<Void, Never>?) {
+        focused.wrappedValue = true
+        retry?.cancel()
+        retry = Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(120))
+            guard !Task.isCancelled else { return }
+            focused.wrappedValue = true
+        }
     }
 }
 

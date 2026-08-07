@@ -10,7 +10,7 @@ import SprossKern
 /// Screen content (drill + summary) lives in TrainerSessionView+Drill.swift;
 /// the prompt card is TrainerPromptCard.swift. State stays here — members are
 /// internal, not private, where the +Drill extension reaches them.
-struct TrainerSessionView: View {
+struct TrainerSessionView: View, LanguageNaming {
     /// What a run drills: bare slot values, or full sentences composed from
     /// the catalog's sentence frames + slot values. Languages are catalog
     /// codes. The frames are carried, not looked up — a run samples from the
@@ -129,9 +129,7 @@ struct TrainerSessionView: View {
 
     var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
 
-    func languageName(_ code: String) -> String {
-        LanguageNames.display(code, locale: locale, catalog: catalog)
-    }
+    var namingCatalog: Catalog? { catalog }
 
     var body: some View {
         Group {

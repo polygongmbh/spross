@@ -97,17 +97,11 @@ extension LetterDrillView {
         // teaches these forms ("auch: …"), so a synonym of the dictated word is
         // never wrong and never somebody else's word. It simply is not what
         // played, and the correction box says which form did.
-        if alsoAccepted(trimmed, of: card) { return .heard(task.display) }
+        if card.alsoAccepts(trimmed) { return .heard(task.display) }
         switch onEnum(of: graded) {
         case .typo(let typo): return .typo(typo.corrected)
         case .exact, .otherWord, .wrong: return .wrong
         }
-    }
-
-    /// A form the REAL card lists as a synonym or a variant.
-    private func alsoAccepted(_ input: String, of card: Card) -> Bool {
-        let typed = speechKey(form: input)
-        return (card.target.synonyms + card.target.variants).contains { speechKey(form: $0) == typed }
     }
 
     /// The strict drill normalizer with the whole join in view: a per-word slip

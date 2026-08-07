@@ -50,21 +50,10 @@ extension TrainerSessionView {
         Pronouncer.shared.stop()
     }
 
-    /// Ask the field that is about to be on screen for focus. The immediate
-    /// request covers a field already mounted; the retry covers one mounting in
-    /// the same frame — a request that arrives before its field exists is
-    /// simply dropped (`SessionView.focusAnswerField`, same shape).
-    ///
     /// It began to matter here when "Aufdecken" started REMOVING the field
     /// rather than disabling it: the next task remounts one, and the plain
-    /// assignment raced it.
+    /// assignment raced it (`AnswerFocus`).
     func focusAnswerField() {
-        answerFocused = true
-        focusRetry?.cancel()
-        focusRetry = Task { @MainActor in
-            try? await Task.sleep(for: .milliseconds(120))
-            guard !Task.isCancelled else { return }
-            answerFocused = true
-        }
+        AnswerFocus.claim($answerFocused, retry: &focusRetry)
     }
 }

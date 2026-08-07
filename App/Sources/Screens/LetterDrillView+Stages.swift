@@ -178,9 +178,7 @@ extension LetterDrillView {
         VStack(spacing: DL.Space.m) {
             AnswerInputView(text: $input,
                             feedback: feedback,
-                            placeholder: String(format: DLChrome.string("session.answer.placeholder %@",
-                                                                        locale: locale),
-                                                languageName(task.language)),
+                            placeholder: answerPlaceholder(task.language),
                             focus: $answerFocused,
                             // Tap-to-replay for the correction box — the form
                             // the slip owed, said in the drilled language.
@@ -193,15 +191,15 @@ extension LetterDrillView {
             case .neutral:
                 // ONE primary action: an empty field reveals, a typed one checks.
                 Button {
-                    if inputEmpty { reveal(task) } else { submit(task) }
+                    if input.isBlankAnswer { reveal(task) } else { submit(task) }
                 } label: {
-                    Text(inputEmpty ? "session.reveal" : "common.check")
+                    Text(input.isBlankAnswer ? "session.reveal" : "common.check")
                         .frame(maxWidth: .infinity)
                         .contentTransition(.opacity)
                 }
                 .buttonStyle(DLPrimaryButtonStyle())
                 .keyboardShortcut(.defaultAction)
-                .animation(.easeOut(duration: 0.15), value: inputEmpty)
+                .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
             case .almost:
                 // The two amber holds — a slip, and a form the review flow
                 // teaches but the dictation did not play. The box above spells
@@ -220,8 +218,6 @@ extension LetterDrillView {
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
     }
-
-    var inputEmpty: Bool { input.trimmingCharacters(in: .whitespaces).isEmpty }
 
     private func nextButton(_ action: @escaping () -> Void) -> some View {
         Button(action: action) {

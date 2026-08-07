@@ -74,16 +74,11 @@ extension TrainerSessionView {
         return isNumbers ? Text("trainer.digits \(level)") : Text("trainer.level \(level.formatted())")
     }
 
-    private var inputEmpty: Bool {
-        input.trimmingCharacters(in: .whitespaces).isEmpty
-    }
-
     private var controls: some View {
         VStack(spacing: DL.Space.m) {
             AnswerInputView(text: $input,
                             feedback: feedback,
-                            placeholder: String(format: DLChrome.string("session.answer.placeholder %@", locale: locale),
-                                                languageName(language)),
+                            placeholder: answerPlaceholder(language),
                             focus: $answerFocused,
                             correctionVoice: .init(
                                 pronounce: { model?.pronounceAction(for: $0, lang: language) },
@@ -96,7 +91,7 @@ extension TrainerSessionView {
                 VStack(spacing: DL.Space.s) {
                     // ONE primary action: empty input reveals, typed input checks.
                     Button {
-                        if inputEmpty {
+                        if input.isBlankAnswer {
                             DLSound.reveal()
                             // why: the field stays empty — the card is where the
                             // answer stands, and typing it in for the learner
@@ -106,13 +101,13 @@ extension TrainerSessionView {
                             submit()
                         }
                     } label: {
-                        Text(inputEmpty ? "session.reveal" : "common.check")
+                        Text(input.isBlankAnswer ? "session.reveal" : "common.check")
                             .frame(maxWidth: .infinity)
                             .contentTransition(.opacity)
                     }
                     .buttonStyle(DLPrimaryButtonStyle())
                     .keyboardShortcut(.defaultAction)
-                    .animation(.easeOut(duration: 0.15), value: inputEmpty)
+                    .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
                     // "?" tens reference — using it marks the answer amber.
                     if tensReference != nil, !hintUsed {
                         Button {

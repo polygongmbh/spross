@@ -10,10 +10,12 @@ import SprossKern
 /// authored — a language missing any of that hides its sections, an empty
 /// card hides entirely. Trainers are stateless — they never touch BoxState
 /// or FSRS.
-struct TrainerHubView: View {
+struct TrainerHubView: View, LanguageNaming {
     let model: AppModel
 
-    @Environment(\.locale) private var locale
+    // why: internal, not private — LanguageNaming names the drilled
+    // language through it.
+    @Environment(\.locale) var locale
     @Environment(\.scenePhase) private var scenePhase
 
     /// Standalone drills offered on the card — years is intentionally absent
@@ -146,11 +148,7 @@ struct TrainerHubView: View {
         #endif
     }
 
-    // why: internal, not private — the letters chip in TrainerHubView+Letters
-    // labels itself the same way the drill chips do.
-    func languageName(_ code: String) -> String {
-        LanguageNames.display(code, locale: locale, catalog: model.catalog)
-    }
+    var namingCatalog: Catalog? { model.catalog }
 
     private func drillChip(_ kind: TrainerKind) -> some View {
         Button {

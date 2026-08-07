@@ -16,7 +16,7 @@ import SprossKern
 /// Stage bodies and grading live in LetterDrillView+Stages.swift; the prompt
 /// card is HearPromptCard.swift. State stays here — members are internal where
 /// the +Stages extension reaches them.
-struct LetterDrillView: View {
+struct LetterDrillView: View, LanguageNaming {
     let model: AppModel
     let language: String
     /// What this device can ask — resolved when the run opens, not per task.
@@ -87,9 +87,7 @@ struct LetterDrillView: View {
     /// user. Where either runs, an explicit "Weiter" replaces the beat.
     var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
 
-    func languageName(_ code: String) -> String {
-        LanguageNames.display(code, locale: locale, catalog: model.catalog)
-    }
+    var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
         Group {

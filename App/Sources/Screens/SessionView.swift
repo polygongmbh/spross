@@ -8,7 +8,7 @@ import SprossKern
 /// RECOGNIZE prompts one rotated target form and is reveal + self-grade
 /// only — never typed, bar the first exposure's write-it-out
 /// (SessionView+Copy.swift). Presented as a full-screen cover.
-struct SessionView: View {
+struct SessionView: View, LanguageNaming {
     @Bindable var model: AppModel
 
     // why: internal, not private — SessionView+Produce.swift (file-size
@@ -57,6 +57,7 @@ struct SessionView: View {
     @State var focusRetry: Task<Void, Never>?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.locale) var locale
+    var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
         Group {
@@ -292,19 +293,10 @@ struct SessionView: View {
         }
     }
 
-    /// Ask the field that is (or is about to be) on screen for focus. The
-    /// immediate request covers a field already mounted; the retry covers one
-    /// mounting in the same frame — a request that arrives before its field
-    /// exists is simply dropped, which is what left the keyboard down after
-    /// "Unbekannt" opened the write-it-out step.
+    /// It matters here for the step "Unbekannt" opens: the write-it-out field
+    /// mounts in the same frame as the request (`AnswerFocus`).
     func focusAnswerField() {
-        answerFocused = true
-        focusRetry?.cancel()
-        focusRetry = Task { @MainActor in
-            try? await Task.sleep(for: .milliseconds(120))
-            guard !Task.isCancelled else { return }
-            answerFocused = true
-        }
+        AnswerFocus.claim($answerFocused, retry: &focusRetry)
     }
 
     /// Comprehension check: reveal, then honest self-grade —
