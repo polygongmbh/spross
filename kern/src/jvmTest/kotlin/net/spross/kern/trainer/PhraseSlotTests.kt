@@ -3,6 +3,7 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 class PhraseSlotTests {
@@ -421,6 +422,31 @@ class PhraseSlotTests {
         for ((source, target) in RealFrames.all.map { it.source to it.target }.distinct()) {
             val ids = RealFrames.of(source, target).map { it.id }
             assertEquals(ids.size, ids.toSet().size, "duplicate frame id in $source→$target")
+        }
+    }
+
+    /**
+     * The Forms seal, checked where a frame is BUILT rather than where it is drawn:
+     * a number form has no phrase generator, and a template carrying one would only
+     * blow up at the first draw, in a run, with a catalog long since shipped.
+     */
+    @Test
+    fun aFormsSlotIsRejectedWhenTheTemplateIsBuilt() {
+        assertFailsWith<IllegalArgumentException> {
+            PhraseTemplate(
+                id = "n-th-place", source = "de", target = "en",
+                sourceTemplate = "Ich bin auf Platz {slot}.",
+                targetTemplate = "I am in {slot} place.",
+                slotKind = TrainerKind.Forms,
+            )
+        }
+    }
+
+    /** `copy` runs the same init, so the seal holds however a template is derived. */
+    @Test
+    fun aFormsSlotIsRejectedWhenATemplateIsCopiedIntoOne() {
+        assertFailsWith<IllegalArgumentException> {
+            RealFrames.frame("sw", "we-have-n-plates").copy(slotKind = TrainerKind.Forms)
         }
     }
 

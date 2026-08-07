@@ -248,6 +248,22 @@ class CatalogFixtureTest {
         assertTrue("drills/uk.json" in error.message.orEmpty(), "message: ${error.message}")
     }
 
+    /**
+     * `forms` is not a frame slot kind and must not quietly become one.
+     * A number form has no phrase generator — a fraction or an ordinal needs the frame to
+     * decline around it, and no agreement device runs that way (`docs/backlog.md`).
+     * The parser is the outer seal; `PhraseTemplate`'s init is the inner one.
+     */
+    @Test
+    fun formsIsNotAFrameSlotKind() {
+        val broken = Fixture.files + mapOf(
+            "drills/frames.json" to Fixture.drills.getValue("drills/frames.json")
+                .replace("\"slot\": \"clock\"", "\"slot\": \"forms\""),
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("unknown slot \"forms\"" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
     /** Frames ride the RAW source: editing one must not restamp a running box. */
     @Test
     fun frameEditsLeaveTheFingerprintAlone() {
