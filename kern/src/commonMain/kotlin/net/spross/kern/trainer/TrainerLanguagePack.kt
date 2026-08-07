@@ -63,6 +63,9 @@ private object GermanPack : TrainerLanguagePack {
         "Million", "zehn Millionen", "hundert Millionen", "Milliarde",
     )
     override val clockDayParts: Set<String> = (0..23).flatMapTo(mutableSetOf(), GermanClock::dayParts)
+    override fun formReading(value: NumberValue) = GermanForms.reading(value)
+    override val formLimits = GermanForms.LIMITS
+    override val decimalMark = ','
 }
 
 private object EnglishPack : TrainerLanguagePack {
@@ -78,6 +81,8 @@ private object EnglishPack : TrainerLanguagePack {
     )
     override val clockDayParts: Set<String> =
         (0..23).flatMapTo(mutableSetOf(), EnglishClockRegisters::dayParts)
+    override fun formReading(value: NumberValue) = EnglishForms.reading(value)
+    override val formLimits = EnglishForms.LIMITS
 }
 
 private object SpanishPack : TrainerLanguagePack {
