@@ -11,7 +11,6 @@ Focus is on breadth of exposure to the language for maximum fluency with minimum
 
 ```sh
 ./gradlew :kern:jvmTest      # core test suite — the fast gate, must be green before every commit
-xcodegen generate            # after adding/removing app source files
 xcodebuild -project Spross.xcodeproj -scheme Spross \
   -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build   # app build gate
 scripts/run-sim.sh           # build + install + launch on the simulator (--shot, --clean, -- <launch args>)

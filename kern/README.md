@@ -489,8 +489,8 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
 
 ## 7. Testing & gates
 
-- Fast gate: `./gradlew :kern:jvmTest`. iOS gate: xcodegen + `xcodebuild -scheme Spross
-  build` + simulator run-through. Release archive smoke.
+- Fast gate: `./gradlew :kern:jvmTest`. iOS gate: `xcodebuild -scheme Spross build` +
+  simulator run-through. Release archive smoke.
 - **Catalog tests split three ways, by who owns the expectation.**
   `CatalogFixtureTest` (commonTest, synthetic `Fixture.kt`) pins exact values —
   the test owns its input, so parser/join plumbing is asserted there.

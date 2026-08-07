@@ -58,7 +58,7 @@ language pair, `-uitest-screen box` opens the Box, `-uitest-autostart 1` starts
 the session, `-uitest-trainer numbers|years|clock|phrases` opens a drill
 (DEBUG only, read in `AppModel.start()`).
 
-Physical devices: `scripts/deploy-devices.sh`.
+Physical devices: `scripts/deploy-devices.sh` — Release, or `--debug` while iterating.
 
 Android builds Mac-free — commands, SDK setup, and install steps: `RUNBOOK-linux.md`.
 
