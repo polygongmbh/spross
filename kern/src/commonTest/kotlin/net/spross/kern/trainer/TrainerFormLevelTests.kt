@@ -27,8 +27,8 @@ class TrainerFormLevelTests {
 
     @Test
     fun theFormsChipIsOfferedExactlyWhereAPackAuthorsForms() {
-        assertEquals(listOf("de", "en"), authored)
-        for (language in listOf("es", "sw", "uk")) {
+        assertEquals(listOf("de", "en", "es"), authored)
+        for (language in listOf("sw", "uk")) {
             assertFalse(Trainer.supportsForms(language), "$language authors no forms yet")
         }
     }

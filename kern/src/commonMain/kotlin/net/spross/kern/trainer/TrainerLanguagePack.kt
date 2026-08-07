@@ -108,6 +108,9 @@ private object SpanishPack : TrainerLanguagePack {
             }
         }
     }
+    override fun formReading(value: NumberValue) = SpanishForms.reading(value)
+    override val formLimits = SpanishForms.LIMITS
+    override val decimalMark = ','
 }
 
 private object SwahiliPack : TrainerLanguagePack {

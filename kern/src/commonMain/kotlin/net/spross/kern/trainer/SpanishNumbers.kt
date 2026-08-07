@@ -16,10 +16,17 @@ internal object SpanishNumbers {
     private val hundreds = listOf("", "ciento", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos", "setecientos", "ochocientos", "novecientos")
 
     /** How a trailing "uno" and the -cientos ending agree with what is counted. */
-    private enum class Form { Masculine, Apocopated, Feminine }
+    internal enum class Form { Masculine, Apocopated, Feminine }
 
     /** Canonical (masculine, unapocopated) reading. 0..9_999_999_999. */
     fun cardinal(n: Long): String = compose(n, Form.Masculine)
+
+    /**
+     * The reading in a chosen agreement. The number forms need all three inside one
+     * pack — "uno por ciento" (unapocopated), "una vez" (vez is feminine), "un tercio"
+     * (apocopated before a masculine noun) — so a single "one" would be wrong twice.
+     */
+    fun cardinal(n: Long, form: Form): String = compose(n, form)
 
     /** Canonical first, then the apocopated and feminine agreements. */
     fun variants(n: Long): List<String> =
