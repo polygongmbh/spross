@@ -82,7 +82,9 @@ object PhraseSlots {
             value?.let(forms::form)
         }
 
-        val prompt = fillTarget(template.sourceTemplate, slot.prompt, sourceCountWord(template, value))
+        val sourceCount = sourceCountWord(template, value)
+        val prompt = fillTarget(template.sourceTemplate, slot.prompt, sourceCount)
+        val promptDisplay = fillTarget(template.sourceTemplate, slot.promptDisplay, sourceCount)
         val display = fillWords(template, template.targetTemplate, slot.display, countWord)
             ?: fillTarget(template.targetTemplate, slot.display, countWord)
         val words = slot.accepted.filterNot { isFilteredFeminine(template, it) }.distinct()
@@ -107,6 +109,7 @@ object PhraseSlots {
             kind = template.slotKind, language = template.target,
             prompt = prompt, accepted = accepted, display = display,
             gloss = gloss.ifEmpty { null },
+            promptDisplay = promptDisplay,
         )
     }
 
@@ -136,9 +139,14 @@ object PhraseSlots {
         return fillTarget(absorbed, words, countWord)
     }
 
-    /** Digit renderings of the slot ("347", "1978"; clock "08:05" and "8:05"). */
+    /**
+     * Digit renderings of the slot ("347", "1978"; clock "08:05" and "8:05").
+     * A grouped value is offered alongside the plain one: the prompt shows "12 345",
+     * so a learner who copies the separator into a sentence answer must not lose the
+     * rung to the word-count rule.
+     */
     private fun digitForms(slot: TrainerTask): List<String> {
-        if (slot.kind != TrainerKind.Clock) return listOf(slot.prompt)
+        if (slot.kind != TrainerKind.Clock) return listOf(slot.prompt, slot.promptDisplay).distinct()
         val bare = slot.prompt.substringBefore(':').toInt().toString() + ":" + slot.prompt.substringAfter(':')
         return listOf(slot.prompt, bare).distinct()
     }

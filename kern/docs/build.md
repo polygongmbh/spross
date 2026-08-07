@@ -38,6 +38,16 @@ Engine contract: `../README.md`.
   Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.
   An hour word directly before "Uhr" apocopates: "ein Uhr", never "eins Uhr";
   bare "eins" stays ("um eins", "halb eins").
+  A `TrainerTask` carries two prompt strings: **`prompt` is the machine form**
+  (`"347"`, `"14:35"`) that callers parse — `PhraseSlots` does `prompt.toLong()`, and a
+  Kotlin throw crossing the ObjC boundary crashes the app — while **`promptDisplay` is what
+  the UI shows**, defaulting to `prompt`.
+  Cardinals group their digits in threes with **U+202F narrow no-break space, from five
+  digits up** (`9999` unbroken, `12 345`, `4 072 918 300`):
+  dot and comma are inverted between German and English, so a neutral mark is the only one
+  that teaches neither as the truth.
+  Years and clock times are never grouped — they keep the default by setting nothing.
+  A sentence slot's grouped digits are accepted alongside the plain ones.
   `PhraseSlots` samples level-aware — same per-kind ramp tables as the plain drills
   (a template's slot kind clamps the level).
   The unleveled `sample` overload keeps the prototype's biased full-difficulty draws

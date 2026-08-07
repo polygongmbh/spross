@@ -63,6 +63,32 @@ class PhraseSlotTests {
         assertEquals(TrainerKind.Numbers, task.kind)
     }
 
+    // Grouped prompts inside a sentence
+
+    /**
+     * The sentence prompt is filled twice: once with the machine value everything parses,
+     * once with the grouped one the learner reads. Both digit forms grade, so copying the
+     * separator out of the prompt cannot cost the rung.
+     */
+    @Test
+    fun aLongSlotGroupsInTheDisplayedSentenceAndBothDigitFormsGrade() {
+        val task = PhraseSlots.instantiate(frame("sw", "we-have-n-plates"), value = 12345L)
+        assertEquals("Wir haben 12345 Teller.", task.prompt)
+        assertEquals("Wir haben 12\u202F345 Teller.", task.promptDisplay)
+        assertTrue("Tuna sahani 12345." in task.accepted, task.accepted.toString())
+        assertTrue("Tuna sahani 12\u202F345." in task.accepted, task.accepted.toString())
+    }
+
+    @Test
+    fun shortAndClockSlotsLeaveThePromptUntouched() {
+        val plates = PhraseSlots.instantiate(frame("sw", "we-have-n-plates"), value = 347L)
+        assertEquals(plates.prompt, plates.promptDisplay)
+        val departure = PhraseSlots.instantiate(frame("sw", "train-departs-at"), hour = 20, minute = 0)
+        assertEquals(departure.prompt, departure.promptDisplay)
+        val year = PhraseSlots.instantiate(frame("sw", "learning-since-year"), value = 2000L)
+        assertEquals(year.prompt, year.promptDisplay)
+    }
+
     @Test
     fun swahiliYearSince() {
         val task = PhraseSlots.instantiate(frame("sw", "learning-since-year"), value = 2000L)

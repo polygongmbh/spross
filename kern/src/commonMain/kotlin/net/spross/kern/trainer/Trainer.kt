@@ -12,13 +12,24 @@ enum class TrainerKind { Numbers, Years, Clock }
 data class TrainerTask(
     val kind: TrainerKind,
     val language: Language,
-    /** What the UI shows: "347", "1978", "14:35". */
+    /**
+     * The MACHINE form of the asked value: "347", "1978", "14:35" — never grouped,
+     * never prettified. Callers parse it ([PhraseSlots] does `prompt.toLong()`, and a
+     * Kotlin throw crossing the ObjC boundary is an app crash), so anything cosmetic
+     * belongs in [promptDisplay] instead.
+     */
     val prompt: String,
     /** All accepted answers, canonical reading first. */
     val accepted: List<String>,
     /** Canonical answer for the reveal. */
     val display: String,
     val gloss: String? = null,
+    /**
+     * What the UI shows — [prompt] with long runs of digits grouped ("4 072 918 300").
+     * Defaults to [prompt], so a kind that must never be grouped stays ungrouped by
+     * simply not setting it: that is why [year] and [clock] write no line for it.
+     */
+    val promptDisplay: String = prompt,
 )
 
 /**
@@ -39,7 +50,7 @@ object Trainer {
 
     fun number(n: Long, language: Language): TrainerTask {
         val accepted = pack(language).number(n)
-        return TrainerTask(TrainerKind.Numbers, language, n.toString(), accepted, accepted[0])
+        return numberTask(n, language, accepted)
     }
 
     /**
@@ -49,7 +60,16 @@ object Trainer {
      */
     internal fun drillNumber(n: Long, language: Language): TrainerTask {
         val accepted = pack(language).drillNumber(n)
-        return TrainerTask(TrainerKind.Numbers, language, n.toString(), accepted, accepted[0])
+        return numberTask(n, language, accepted)
+    }
+
+    /** The only place a cardinal prompt is built, so grouping cannot be forgotten on one path. */
+    private fun numberTask(n: Long, language: Language, accepted: List<String>): TrainerTask {
+        val prompt = n.toString()
+        return TrainerTask(
+            TrainerKind.Numbers, language, prompt, accepted, accepted[0],
+            promptDisplay = groupDigits(prompt),
+        )
     }
 
     /** de: hundred-style variants; sw/uk: plain number reading. */

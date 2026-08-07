@@ -60,6 +60,27 @@ class TrainerGoldenTests {
         }
     }
 
+    /**
+     * The golden vectors themselves are never touched — they are generated, so the
+     * grouped expectation is derived here from the same keys, by an independent
+     * right-to-left chunking rather than by calling the production grouper.
+     */
+    @Test
+    fun goldenNumberPromptsCarryTheGroupedDisplay() {
+        val separator = '\u202F'
+        for (key in fixture.germanNumbers.keys) {
+            val expected = if (key.length < 5) {
+                key
+            } else {
+                key.reversed().chunked(3).joinToString(separator.toString()).reversed()
+            }
+            assertEquals(expected, Trainer.number(key.toLong(), "de").promptDisplay, "n=$key")
+        }
+        assertEquals("15${separator}690", Trainer.number(15690, "de").promptDisplay)
+        assertEquals("999${separator}999", Trainer.number(999999, "de").promptDisplay)
+        assertEquals("2345", Trainer.number(2345, "de").promptDisplay)
+    }
+
     @Test
     fun germanYearsMatchGolden() {
         assertEquals(10, fixture.germanYears.size)
