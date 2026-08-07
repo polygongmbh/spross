@@ -109,12 +109,20 @@ class PhraseLevelTests {
                 repeat(30) {
                     val sampled = PhraseSlots.sample(template, level, a)
                     // Cross-check against the shared Trainer draw machinery.
-                    val expected = if (template.slotKind == TrainerKind.Clock) {
-                        val hour = b.nextInt(24)
-                        PhraseSlots.instantiate(template, hour = hour, minute = Trainer.clockMinute(level, b))
-                    } else {
-                        val slot = Trainer.sample(template.slotKind, template.target, level, b)
-                        PhraseSlots.instantiate(template, value = slot.prompt.toLong())
+                    val expected = when (template.slotKind) {
+                        TrainerKind.Clock -> {
+                            val hour = b.nextInt(24)
+                            PhraseSlots.instantiate(template, hour, Trainer.clockMinute(level, b))
+                        }
+                        TrainerKind.Fraction -> {
+                            val slot = Trainer.sample(template.slotKind, template.target, level, b)
+                            val parts = slot.prompt.split("/").map { it.toLong() }
+                            PhraseSlots.instantiate(template, parts[0], parts[1])
+                        }
+                        else -> {
+                            val slot = Trainer.sample(template.slotKind, template.target, level, b)
+                            PhraseSlots.instantiate(template, value = slot.prompt.toLong())
+                        }
                     }
                     assertEquals(expected, sampled, "${template.id} L$level")
                 }

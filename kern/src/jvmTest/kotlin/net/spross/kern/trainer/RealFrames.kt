@@ -26,4 +26,20 @@ internal object RealFrames {
     /** The one joined frame with [slug]; [source] defaults to the product's German prompt side. */
     fun frame(target: Language, slug: String, source: Language = "de"): PhraseTemplate =
         of(source, target).first { it.id == slug }
+
+    /**
+     * One hand-picked task per template, whatever its slot takes — what the structural
+     * sweeps want, and the reason they no longer spell every slot value as a [Long].
+     */
+    fun instantiate(
+        template: PhraseTemplate,
+        value: Long,
+        hour: Int = 9,
+        minute: Int = 45,
+        fraction: Pair<Long, Long> = 1L to 4L,
+    ): TrainerTask = when (template.slotKind) {
+        TrainerKind.Clock -> PhraseSlots.instantiate(template, hour, minute)
+        TrainerKind.Fraction -> PhraseSlots.instantiate(template, fraction.first, fraction.second)
+        else -> PhraseSlots.instantiate(template, value)
+    }
 }

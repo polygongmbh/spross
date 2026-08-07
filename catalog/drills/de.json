@@ -75,6 +75,9 @@
    "variants": [
     "Schreib bitte die Jahreszahl: {slot}."
    ]
+  },
+  "i-need-n-kilo-of-flour": {
+   "text": "Ich brauche {slot} Kilo Mehl."
   }
  }
 }

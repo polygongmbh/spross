@@ -249,12 +249,13 @@ extension DrillModifier {
 extension TrainerKind {
     /// The ladder variant a slot kind belongs to. Years maps onto Numbers because
     /// it has no rung of its own: the standalone years drill was dropped as
-    /// redundant, and years live on only as a phrase slot.
+    /// redundant, and years live on only as a phrase slot. Fraction is a phrase slot
+    /// too, and belongs to Forms — a fraction is one of the number forms.
     var drillVariant: DrillVariant {
         switch self {
         case .numbers, .years: return .numbers
         case .clock: return .clock
-        case .forms: return .forms
+        case .forms, .fraction: return .forms
         }
     }
 }

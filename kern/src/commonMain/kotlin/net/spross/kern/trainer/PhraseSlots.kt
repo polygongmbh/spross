@@ -32,26 +32,29 @@ object PhraseSlots {
             // why: drill accepted set — sw speakers routinely drop the "na" connectors
             TrainerKind.Numbers -> Trainer.drillNumber(value, template.target)
             TrainerKind.Years -> Trainer.year(value, template.target)
-            TrainerKind.Clock, TrainerKind.Forms ->
+            TrainerKind.Clock, TrainerKind.Forms, TrainerKind.Fraction ->
                 throw IllegalArgumentException("no phrase slot generator for ${template.slotKind}")
         }
         return compose(template, slot, value)
     }
 
     /**
+     * Fraction templates. Reduced, and never a half — the frame carries the reading as a
+     * bare noun and has no way to decline around an adjectival one ([SlotValue.Part]).
+     */
+    fun instantiate(template: PhraseTemplate, numerator: Long, denominator: Long): TrainerTask {
+        require(template.slotKind == TrainerKind.Fraction) { "only a fraction template takes n/d" }
+        val slot = Trainer.fraction(numerator, denominator, template.target)
+        return compose(template, slot, value = null)
+    }
+
+    /**
      * Full-difficulty sampling with the Trainer's ported biases
      * (numbers 10–9999 weighted to 2–3 digits, years around 1950–2050).
-     * Clock is the leveled sampler at max level: any hour and any minute.
+     * Clock is the whole face; fractions are everything the language reads.
      */
-    fun sample(template: PhraseTemplate, rng: Random): TrainerTask {
-        if (template.slotKind == TrainerKind.Clock) {
-            return sample(template, Trainer.maxLevel(TrainerKind.Clock), rng)
-        }
-        val slot = Trainer.sample(template.slotKind, template.target, rng)
-        // why: slot.prompt is the Trainer's numeric contract ("347"/"1978"),
-        // so instantiate rebuilds the identical task from the sampled value.
-        return instantiate(template, value = slot.prompt.toLong())
-    }
+    fun sample(template: PhraseTemplate, rng: Random): TrainerTask =
+        instantiate(template, drawSlot(template.slotKind, template.target, rng))
 
     /**
      * Level-aware sampling for the gentle sentence-drill ramp: the slot value
@@ -60,14 +63,19 @@ object PhraseSlots {
      * full hours → any minute — see the leveled [Trainer.sample]), then
      * instantiated, so accepted sentences stay identical to [instantiate].
      */
-    fun sample(template: PhraseTemplate, level: Int, rng: Random): TrainerTask {
-        if (template.slotKind == TrainerKind.Clock) {
-            return instantiate(template, rng.nextInt(24), Trainer.clockMinute(level, rng))
-        }
-        val slot = Trainer.sample(template.slotKind, template.target, level, rng)
-        // why: slot.prompt is the Trainer's numeric contract ("347"/"1978"),
-        // so counted-noun agreement can reuse the sampled value exactly.
-        return instantiate(template, value = slot.prompt.toLong())
+    fun sample(template: PhraseTemplate, level: Int, rng: Random): TrainerTask =
+        instantiate(template, drawSlot(template.slotKind, template.target, level, rng))
+
+    /**
+     * The drawn value, instantiated. Nothing here reads a value back out of a rendered
+     * prompt: `slot.prompt.toLong()` was only ever defined while every slot rendered as
+     * digits, and it is the fraction slot that ends that.
+     */
+    private fun instantiate(template: PhraseTemplate, value: SlotValue): TrainerTask = when (value) {
+        is SlotValue.Count -> instantiate(template, value.n)
+        is SlotValue.Year -> instantiate(template, value.y)
+        is SlotValue.Time -> instantiate(template, value.hour, value.minute)
+        is SlotValue.Part -> instantiate(template, value.numerator, value.denominator)
     }
 
     /**

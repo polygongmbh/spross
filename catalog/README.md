@@ -436,7 +436,17 @@ Selection is by READER with an English fallback, unlike a card's note, which has
 a note hangs off a card that carries itself without it, while this IS the section,
 so lint requires English of every language the trainer can generate.
 
-- `slot` is `numbers`, `years` or `clock` — which generator fills the frame.
+- `slot` is `numbers`, `years`, `clock` or `fraction` — which generator fills the frame.
+  A `fraction` slot draws a reduced `n/d` the answer language can read as a NOUN
+  (`ein Viertel Kilo Mehl`, `un tercio de kilo de harina`);
+  halves are never drawn, because German and Spanish read 1/2 adjectivally
+  (`ein halbes Kilo`, `medio kilo`) and the frame has no way to decline around it.
+  There is deliberately **no `forms` slot**, and one family per kind rather than one shared kind:
+  a frame is grammatically bound to the family it carries —
+  an ordinal frame needs the NUMERAL declined by the frame (`auf dem vierten Platz`),
+  and the only agreement device runs the other way, from the numeral to the noun (`count`).
+  Separate kinds also keep every `when` over them exhaustive,
+  so adding `ordinal` once that agreement field exists is a new arm, never a silent fallthrough.
 - **The drill is a symmetric runtime join**, like the card join:
   a frame realized in BOTH the learner's languages becomes one drill,
   and the profile decides which side prompts and which side is typed.
@@ -477,6 +487,11 @@ and editing one never restamps a learner's box.
 - Ukrainian counted nouns must be **masculine**,
   so the trainer's canonical masculine numeral stays grammatical.
 - Swahili needs "tangu mwaka …" for a year: a bare cardinal after `tangu` does not read as one.
+- A `fraction` frame must read naturally with EVERY fraction the language can draw,
+  which is what decides its shape per language:
+  German puts the noun straight against the measure ("Ich brauche ein Viertel Kilo Mehl."),
+  while English and Spanish need the partitive ("three quarters **of a** kilo of flour",
+  "un tercio **de** kilo de harina") — "one quarter kilo" is not what a recipe says.
 
 Every non-slot content word on the answer side is verified against the card join
 (`PhraseVocabAuditTests`); only documented function words go beyond it.

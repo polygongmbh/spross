@@ -182,6 +182,7 @@ internal object CatalogParser {
                 "numbers" -> TrainerKind.Numbers
                 "years" -> TrainerKind.Years
                 "clock" -> TrainerKind.Clock
+                "fraction" -> TrainerKind.Fraction
                 else -> parseError(path, "$slug: unknown slot \"$raw\"")
             }
             CatalogFrame(slug, slot)

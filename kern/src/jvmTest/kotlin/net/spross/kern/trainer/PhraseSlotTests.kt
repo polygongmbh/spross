@@ -106,19 +106,21 @@ class PhraseSlotTests {
         )
         assertEquals(listOf("08:05", "8:05"), departure.accepted)
 
+        val fraction = Trainer.reversed(
+            RealFrames.instantiate(RealFrames.frame("de", "i-need-n-kilo-of-flour", source = "en"), value = 0L),
+        )
+        assertEquals("Ich brauche ein Viertel Kilo Mehl.", fraction.prompt)
+        assertEquals(listOf("1/4"), fraction.accepted)
+
         for (template in RealFrames.all) {
-            val task = if (template.slotKind == TrainerKind.Clock) {
-                PhraseSlots.instantiate(template, hour = 9, minute = 45)
-            } else {
-                PhraseSlots.instantiate(template, value = 21L)
-            }
+            val task = RealFrames.instantiate(template, value = 21L)
             val back = Trainer.reversed(task)
             val where = "${template.source}→${template.target} ${template.id}"
             assertEquals(task.display, back.prompt, where)
             assertTrue(back.accepted.isNotEmpty(), where)
             assertTrue(back.display in back.accepted, where)
             assertTrue(
-                back.accepted.all { answer -> answer.all { c -> c.isDigit() || c == ':' } },
+                back.accepted.all { answer -> answer.all { c -> c.isDigit() || c == ':' || c == '/' } },
                 "$where: ${back.accepted}",
             )
         }
@@ -288,6 +290,60 @@ class PhraseSlotTests {
         )
     }
 
+    // Fraction slots — the recipe frame, where the fraction is a bare noun
+
+    @Test
+    fun germanRecipeFractionDropsInAsANoun() {
+        val task = PhraseSlots.instantiate(
+            RealFrames.frame("de", "i-need-n-kilo-of-flour", source = "en"), 1L, 4L,
+        )
+        assertEquals("I need 1/4 of a kilo of flour.", task.prompt)
+        assertEquals("Ich brauche ein Viertel Kilo Mehl.", task.display)
+        assertEquals(
+            listOf("Ich brauche ein Viertel Kilo Mehl.", "Ich brauche 1/4 Kilo Mehl."),
+            task.accepted,
+        )
+        assertEquals(TrainerKind.Fraction, task.kind)
+    }
+
+    @Test
+    fun englishAndSpanishRecipeFractionsKeepTheirOwnShape() {
+        val english = PhraseSlots.instantiate(RealFrames.frame("en", "i-need-n-kilo-of-flour"), 3L, 4L)
+        assertEquals("I need three quarters of a kilo of flour.", english.display)
+        assertTrue("I need three fourths of a kilo of flour." in english.accepted, english.accepted.toString())
+        val spanish = PhraseSlots.instantiate(RealFrames.frame("es", "i-need-n-kilo-of-flour"), 1L, 3L)
+        assertEquals("Necesito un tercio de kilo de harina.", spanish.display)
+    }
+
+    /**
+     * The one rule the slot draw adds over the Forms ladder's: no halves. German and Spanish
+     * read 1/2 adjectivally ("ein halb", "medio"), so it would have to agree with the noun
+     * beside it — and the only agreement device runs the other way round.
+     */
+    @Test
+    fun aFractionSlotNeverDrawsAHalfAndStaysReduced() {
+        val rng = Random(20260807)
+        val pattern = Regex("""(\d+)/(\d+)""")
+        for (template in RealFrames.all.filter { it.slotKind == TrainerKind.Fraction }) {
+            val unitOnly = mutableSetOf<Boolean>()
+            for (level in 1..Trainer.maxLevel(TrainerKind.Fraction)) {
+                repeat(80) {
+                    val task = PhraseSlots.sample(template, level, rng)
+                    val (n, d) = pattern.find(task.prompt)!!.destructured
+                    val where = "${template.target} L$level: $n/$d"
+                    assertTrue(d.toInt() >= 3, where)
+                    assertTrue(n.toInt() < d.toInt(), where)
+                    assertEquals(1, gcd(n.toInt(), d.toInt()), where)
+                    if (level == 1) assertTrue(n == "1" && d.toInt() <= 4, where)
+                    if (level == 2) unitOnly += n == "1"
+                }
+            }
+            assertTrue(false in unitOnly, "${template.target}: the top rung never left the unit fractions")
+        }
+    }
+
+    private tailrec fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
+
     // Variant frames
 
     /** A variant frame is graded, never displayed — one sentence per frame × slot rendering. */
@@ -373,6 +429,9 @@ class PhraseSlotTests {
                             PhraseSlots.instantiate(template, hour = h, minute = m)
                         }
                     }
+                TrainerKind.Fraction ->
+                    listOf(1L to 3L, 1L to 4L, 2L to 3L, 3L to 4L, 5L to 12L)
+                        .map { (n, d) -> PhraseSlots.instantiate(template, n, d) }
                 else ->
                     listOf(1L, 2L, 5L, 11L, 21L, 22L, 25L, 100L, 347L, 1000L, 1978L, 2026L)
                         .map { PhraseSlots.instantiate(template, value = it) }
@@ -393,14 +452,19 @@ class PhraseSlotTests {
             val b = Random(0xC0FFEE)
             repeat(50) {
                 val sampled = PhraseSlots.sample(template, a)
-                // Reconstruct with the same-seeded RNG draws.
-                val expected = if (template.slotKind == TrainerKind.Clock) {
-                    val slot = Trainer.sample(TrainerKind.Clock, template.target, b)
-                    val parts = slot.prompt.split(":").map { it.toInt() }
-                    PhraseSlots.instantiate(template, hour = parts[0], minute = parts[1])
-                } else {
-                    val slot = Trainer.sample(template.slotKind, template.target, b)
-                    PhraseSlots.instantiate(template, value = slot.prompt.toLong())
+                // Reconstruct with the same-seeded RNG draws, through the Trainer's own
+                // sampler — an independent path to the value the composition used.
+                val slot = Trainer.sample(template.slotKind, template.target, b)
+                val expected = when (template.slotKind) {
+                    TrainerKind.Clock -> {
+                        val parts = slot.prompt.split(":").map { it.toInt() }
+                        PhraseSlots.instantiate(template, hour = parts[0], minute = parts[1])
+                    }
+                    TrainerKind.Fraction -> {
+                        val parts = slot.prompt.split("/").map { it.toLong() }
+                        PhraseSlots.instantiate(template, parts[0], parts[1])
+                    }
+                    else -> PhraseSlots.instantiate(template, value = slot.prompt.toLong())
                 }
                 assertEquals(expected, sampled, template.id)
             }
@@ -459,12 +523,9 @@ class PhraseSlotTests {
     fun noMarkerSurvivesIntoAnythingTheLearnerSees() {
         val rng = Random(20260802)
         for (template in RealFrames.all) {
-            val tasks = if (template.slotKind == TrainerKind.Clock) {
-                listOf(PhraseSlots.instantiate(template, hour = 21, minute = 45))
-            } else {
-                // 21 and 13 straddle the Slavic agreement split (one / many).
-                listOf(21L, 13L).map { PhraseSlots.instantiate(template, it) }
-            } + listOf(PhraseSlots.sample(template, rng))
+            // 21 and 13 straddle the Slavic agreement split (one / many).
+            val tasks = listOf(21L, 13L).map { RealFrames.instantiate(template, it, hour = 21) } +
+                listOf(PhraseSlots.sample(template, rng))
 
             for (task in tasks) {
                 for (surface in listOf(task.prompt, task.display) + task.accepted) {

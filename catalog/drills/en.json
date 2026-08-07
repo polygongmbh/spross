@@ -124,6 +124,9 @@
     "Write the date, please: {slot}.",
     "Please write the year: {slot}."
    ]
+  },
+  "i-need-n-kilo-of-flour": {
+   "text": "I need {slot} of a kilo of flour."
   }
  }
 }

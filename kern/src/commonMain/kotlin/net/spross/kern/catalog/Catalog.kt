@@ -153,6 +153,9 @@ class Catalog internal constructor(
         return frames.mapNotNull { frame ->
             val prompt = sourceFrames[frame.slug] ?: return@mapNotNull null
             val answer = targetFrames[frame.slug] ?: return@mapNotNull null
+            // why: a fraction slot needs the pack to READ one — a frame the target cannot
+            // fill is dropped here rather than throwing on the first draw, in a live run.
+            if (!Trainer.supportsSlot(frame.slot, target)) return@mapNotNull null
             PhraseTemplate(
                 id = frame.slug,
                 source = source,

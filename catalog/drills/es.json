@@ -58,6 +58,9 @@
    "variants": [
     "Escriba, por favor, la fecha: {slot}."
    ]
+  },
+  "i-need-n-kilo-of-flour": {
+   "text": "Necesito {slot} de kilo de harina."
   }
  }
 }

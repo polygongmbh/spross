@@ -3,8 +3,12 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import net.spross.kern.model.Language
 
-/** Appended, never reordered — [Forms] is last because nothing serializes the ordinal. */
-enum class TrainerKind { Numbers, Years, Clock, Forms }
+/**
+ * Appended, never reordered — nothing serializes the ordinal, but the app switches on it.
+ * [Fraction] is a slot kind a FRAME takes, not a drill of its own: a fraction reads as a
+ * bare noun, so a sentence can carry one where a whole number form cannot.
+ */
+enum class TrainerKind { Numbers, Years, Clock, Forms, Fraction }
 
 /**
  * One procedural drill task. Pure data — the UI compares typed input against
@@ -94,32 +98,30 @@ object Trainer {
     }
 
     /**
+     * The value a fraction slot asks about, read as a bare noun ("ein Viertel") —
+     * frames only, which is why nothing here samples it standalone.
+     */
+    internal fun fraction(numerator: Long, denominator: Long, language: Language): TrainerTask {
+        val value = NumberValue.Fraction(numerator, denominator)
+        val accepted = pack(language).formReading(value)
+        require(accepted.isNotEmpty()) { "no fraction reading for $numerator/$denominator in \"$language\"" }
+        return TrainerTask(
+            TrainerKind.Fraction, language,
+            renderForm(value, pack(language).decimalMark, grouped = false), accepted, accepted[0],
+        )
+    }
+
+    /**
      * Deterministic sampling with an injected RNG. Biases ported from the
      * prototype: numbers favor 2–3 digits, years cluster around 1950–2050
      * with rarer historic outliers, clock uses any hour and any minute.
      */
-    fun sample(kind: TrainerKind, language: Language, rng: Random): TrainerTask = when (kind) {
-        TrainerKind.Numbers -> {
-            val r = rng.nextDouble()
-            val n = when {
-                r < 0.35 -> rng.nextLong(10, 100)
-                r < 0.75 -> rng.nextLong(100, 1_000)
-                else -> rng.nextLong(1_000, 10_000)
-            }
-            number(n, language)
-        }
-        TrainerKind.Years -> {
-            val r = rng.nextDouble()
-            val y = when {
-                r < 0.55 -> rng.nextLong(1950, 2051)
-                r < 0.85 -> rng.nextLong(1700, 2201)
-                else -> rng.nextLong(1000, 2200)
-            }
-            year(y, language)
-        }
-        TrainerKind.Clock -> clock(rng.nextInt(24), rng.nextInt(60), language)
+    fun sample(kind: TrainerKind, language: Language, rng: Random): TrainerTask {
         // Forms has no full-difficulty bias of its own: its ceiling IS its top rung.
-        TrainerKind.Forms -> sample(kind, language, maxLevel(kind), rng)
+        if (kind == TrainerKind.Forms) return sample(kind, language, maxLevel(kind), rng)
+        // why: the full-difficulty cardinal keeps the STRICT accepted set — the looser
+        // drill spellings belong to the leveled draw, which is what the drills run on.
+        return render(drawSlot(kind, language, rng), language, drill = false)
     }
 
     /** Whether the Forms drill has anything to offer in [language] — the app's chip gate. */
@@ -135,6 +137,19 @@ object Trainer {
         TrainerKind.Years -> 3
         TrainerKind.Clock -> CLOCK_MAX_LEVEL
         TrainerKind.Forms -> FORMS_MAX_LEVEL
+        TrainerKind.Fraction -> FRACTION_MAX_LEVEL
+    }
+
+    /**
+     * Whether [language] can fill this slot kind at all. A cardinal, a year and a clock
+     * come with every pack; a fraction needs the pack to READ one, so a frame taking that
+     * slot simply never joins where it cannot be answered — the registry rule again.
+     */
+    fun supportsSlot(kind: TrainerKind, language: Language): Boolean {
+        val pack = trainerPacks[language] ?: return false
+        if (kind != TrainerKind.Fraction) return kind != TrainerKind.Forms
+        return NumberForm.Fraction in pack.formLimits.forms &&
+            pack.formLimits.fractionDenominators.any { it >= 3 }
     }
 
     /**
@@ -149,20 +164,22 @@ object Trainer {
      */
     fun sample(kind: TrainerKind, language: Language, level: Int, rng: Random): TrainerTask {
         val l = level.coerceIn(1, maxLevel(kind))
-        return when (kind) {
-            TrainerKind.Numbers -> drillNumber(drawNumber(l, rng), language)
-            TrainerKind.Years -> {
-                val y = when (l) {
-                    1 -> rng.nextLong(1990, 2030)
-                    2 -> rng.nextLong(1900, 2100)
-                    else -> rng.nextLong(1100, 2100)
-                }
-                year(y, language)
-            }
-            TrainerKind.Clock -> clock(rng.nextInt(24), clockMinute(l, rng), language)
-            TrainerKind.Forms -> formTask(language, l, 0, rng)
-        }
+        if (kind == TrainerKind.Forms) return formTask(language, l, 0, rng)
+        return render(drawSlot(kind, language, l, rng), language, drill = true)
     }
+
+    /**
+     * The one place a drawn [SlotValue] becomes a task, so the drills and the phrase slots
+     * can never render the same draw two different ways. [drill] picks the looser accepted
+     * set the level drills grade against (sw's "na"-less spelling).
+     */
+    private fun render(value: SlotValue, language: Language, drill: Boolean): TrainerTask =
+        when (value) {
+            is SlotValue.Count -> if (drill) drillNumber(value.n, language) else number(value.n, language)
+            is SlotValue.Year -> year(value.y, language)
+            is SlotValue.Time -> clock(value.hour, value.minute, language)
+            is SlotValue.Part -> fraction(value.numerator, value.denominator, language)
+        }
 
     /**
      * A Forms task whose values are sized by a NUMBERS rung rather than by the forms
@@ -243,6 +260,8 @@ object Trainer {
             // why: a form is written, not just spelled — "3,7" and "3.7" are the same
             // number, "20." and "20" the same rank, so the notation must not cost the rung.
             TrainerKind.Forms -> formDigitForms(task.prompt, task.promptDisplay)
+            // A fraction has one notation and no separator to get wrong.
+            TrainerKind.Fraction -> listOf(value)
         }
         // The reveal shows the readable rendering, which is always one of the accepted ones.
         val reveal = when (task.kind) {
@@ -258,8 +277,9 @@ object Trainer {
     }
 
     /**
-     * The bare value a task asks about: a plain drill's whole prompt, and the digit
-     * run embedded in a phrase task's sentence ("Wir haben 347 Teller." → "347").
+     * The bare value a task asks about: a plain drill's whole prompt, and the value
+     * embedded in a phrase task's sentence ("Wir haben 347 Teller." → "347",
+     * "Ich brauche 1/4 Kilo Mehl." → "1/4").
      */
     private fun slotValue(task: TrainerTask): String =
         SLOT_VALUE.find(task.prompt)?.value ?: task.prompt
@@ -270,27 +290,8 @@ object Trainer {
         return listOf(time, bare).distinct()
     }
 
-    private val SLOT_VALUE = Regex("""\d+(?::\d+)?""")
-}
-
-/**
- * Level-sized number with zeros biased to ~40% on the non-leading digits,
- * so the drill favours rounder values (less tedious than typing arbitrary
- * long numbers). The leading digit stays 1–9 so the value keeps exactly
- * [digits] digits.
- *
- * Top-level rather than [Trainer]'s own, because the forms ladder draws its
- * Mix-sized magnitudes from it and a second copy would give the two drills
- * different-looking numbers.
- */
-internal fun drawNumber(digits: Int, rng: Random): Long {
-    if (digits <= 1) return rng.nextLong(0, 10)
-    var value = rng.nextLong(1, 10)
-    repeat(digits - 1) {
-        val d = if (rng.nextInt(10) < 4) 0L else rng.nextLong(1, 10)
-        value = value * 10 + d
-    }
-    return value
+    /** A clock time, a fraction, or a plain run of digits — whichever the sentence carries. */
+    private val SLOT_VALUE = Regex("""\d+(?:[:/]\d+)?""")
 }
 
 internal fun pad2(value: Int): String = value.toString().padStart(2, '0')

@@ -156,12 +156,14 @@ struct TrainerChipButtonStyle: ButtonStyle {
 // MARK: - Shared display names
 
 extension TrainerKind {
+    /// A fraction wears the Forms face: it is one of the number forms, and it is only
+    /// ever met inside a sentence, so it never names a drill of its own.
     var trainerEmoji: String {
         switch self {
         case .numbers: return "🔢"
         case .years: return "📅"
         case .clock: return "🕐"
-        case .forms: return "➗"
+        case .forms, .fraction: return "➗"
         }
     }
 
@@ -171,7 +173,7 @@ extension TrainerKind {
         case .numbers: return "trainer.numbers"
         case .years: return "trainer.years"
         case .clock: return "trainer.clock"
-        case .forms: return "trainer.forms"
+        case .forms, .fraction: return "trainer.forms"
         }
     }
 }

@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **The sentence drill now measures things out, not just counts them.** A frame could only be
+  filled with a whole number, a year or a time, so "a quarter kilo of flour" — what a recipe or a
+  market stall actually says — was unaskable. German, English and Spanish now carry a measuring
+  sentence whose slot is a fraction, read the way each language reads it as a noun ("Ich brauche
+  ein Viertel Kilo Mehl.", "I need three quarters of a kilo of flour.", "Necesito un tercio de
+  kilo de harina."), with the written "3/4" accepted alongside the words as everywhere else.
+  Halves stay out deliberately: "ein halb Kilo" is not German, and a fraction that has to agree
+  with the word beside it needs an agreement the sentences cannot express yet.
+
 - **Zahlen is now a numbers page you start the drill from, and the drill grows as you do.**
   The training card offered a chip per exercise and no way to look anything up outside a
   running drill. It offers two entries now — numbers and letters — and the numbers one opens

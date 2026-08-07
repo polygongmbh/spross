@@ -117,9 +117,16 @@ private fun drawFraction(limits: FormLimits, level: Int, rng: Random): NumberVal
  * Every fraction the language allows, REDUCED. Unreduced draws are excluded at the source
  * rather than filtered later: 2/4 would legitimately read both "zwei Viertel" and "ein halb",
  * and no pack should have to carry that equivalence to grade its own drill.
+ *
+ * [minDenominator] is what a phrase slot raises to 3 — see [drawFractionSlot], where a half
+ * would have to agree with the noun it stands before.
  */
-private fun fractionPool(limits: FormLimits, wide: Boolean): List<NumberValue.Fraction> {
-    val denominators = limits.fractionDenominators.filter { it in 2..12 }.sorted()
+internal fun fractionPool(
+    limits: FormLimits,
+    wide: Boolean,
+    minDenominator: Int = 2,
+): List<NumberValue.Fraction> {
+    val denominators = limits.fractionDenominators.filter { it in minDenominator..12 }.sorted()
     val allowed = if (wide) denominators else denominators.filter { it <= 4 }.ifEmpty { denominators }
     return allowed.flatMap { d ->
         val numerators = if (wide) (1 until d).filter { gcd(it, d) == 1 } else listOf(1)
