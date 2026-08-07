@@ -37,8 +37,9 @@ data class ReferenceSection(val key: String, val entries: List<ReferenceEntry>)
  *   de and es pluralize, 10^9 is where es leaves the short scale. 10^4 and 10^5 are
  *   omitted because every pack builds them as a plain multiple of the thousand row.
  *
- * A `forms` section — one worked example per number form — joins this table when the
- * forms themselves ship; until then the seven cardinal bands are the whole reference.
+ * A `forms` section — one worked example per number form — is the one band still missing:
+ * the Forms drill ships and the app already knows the heading, so emitting it here is all
+ * it takes (`docs/backlog.md`). The seven cardinal bands are the whole reference today.
  */
 private val REFERENCE_VALUES: List<Pair<String, List<Long>>> = listOf(
     "ones" to (0L..9L).toList(),

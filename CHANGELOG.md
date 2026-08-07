@@ -25,6 +25,18 @@
   every run starts at the bottom of the ladder however far you have come — the climb is the
   drill.
 
+- **The numbers drill asks the other ways a number gets written down.** It only ever wanted
+  a plain cardinal, though negatives, decimals, percentages, "three times", a quarter and
+  "the twentieth" are all numbers a learner meets in the first week and none of them appeared
+  anywhere in the app. They arrive as a rung of their own, climbing from small negatives
+  through decimals, percentages and multiples to fractions and the ordinals — and each
+  language reads them its own way rather than a translated one: German runs "dreimal" into
+  one word, English says "once" and "twice" before it says "three times", Spanish will not
+  take the shortened numeral in "veintiuno por ciento", Ukrainian declines the word being
+  counted, and Swahili puts "asilimia" in front of the number where the others put a sign
+  behind it. Where a language has no honest answer to a bare prompt — a Swahili ordinal
+  needs the noun it ranks — it is left unasked instead of invented.
+
 - **Buchstaben is a page too, and the numbers table is a tap away inside a run.** The
   alphabet sat in a row of its own, unconnected to the letter drill it prepares you for.
   The two are one page now: the alphabet to read, then the stages a run walks through with
