@@ -44,6 +44,18 @@ struct TrainerSessionView: View {
             case .phrases(let source, let target, _): return "phrases.\(source)-\(target)"
             }
         }
+
+        /// Identity a rung is kept under (`TrainerProgress`): variant and the
+        /// language being learned. Deliberately NOT `recordKey` — a record
+        /// belongs to a run's whole selection, a rung to one variant, so the
+        /// sentence drill books against its answer language alone and the
+        /// unlock ladder can ask one language for every variant at once.
+        var progressKey: String {
+            switch self {
+            case .slots(let kind, let language): return "\(kind.name).\(language)"
+            case .phrases(_, let target, _): return "phrases.\(target)"
+            }
+        }
     }
 
     let mode: Mode
@@ -73,6 +85,10 @@ struct TrainerSessionView: View {
     /// Adaptive difficulty (numbers: digit count). Two rights in a row at a
     /// level ramp up; one miss steps down.
     @State var level = 1
+    /// The highest rung this run ever stood on — what `TrainerProgress` books.
+    /// Tracked separately because `level` steps back down on a miss, and the
+    /// ladder rewards reaching a rung, not finishing on it.
+    @State private var bestLevel = 1
     @State private var winsAtLevel = 0
     @State var showingSummary = false
     /// Digit counts already introduced with a place-value hint — each length
@@ -271,6 +287,7 @@ struct TrainerSessionView: View {
             level = max(1, level - 1)
             winsAtLevel = 0
         }
+        bestLevel = max(bestLevel, level)
         outcomes.append(segment ?? (correct ? .right : .wrong))
         doneCount += 1
         tasks.append(Self.sampleTask(mode: mode, level: level, avoiding: current.prompt))
@@ -305,6 +322,9 @@ struct TrainerSessionView: View {
         }
         answerFocused = false
         newRecord = TrainerRecords.record(bestStreak, for: mode.recordKey)
+        // why: booked here, alongside the record, because a run that is still
+        // going can still climb — the rung is only final once the run closes.
+        TrainerProgress.record(bestLevel, for: mode.progressKey)
         // why: the cheer marks the record, not the end of a run — closing a
         // drill is a dozen-times-an-evening event and owes no fanfare.
         if newRecord { DLSound.cheer() }
