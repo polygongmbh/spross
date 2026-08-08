@@ -135,6 +135,10 @@ One line per item, with a file or context pointer, filed under the section it be
   es `evening` keeps `noche` as a variant beside `night`'s `noche`: a variant is graded and
   never prompted, so the two stay tellable apart where it counts.
 
+- No shipped join sets `promptAmbiguous` today (offline sweep over de→sw, en→de, en→sw,
+  de→uk, de→es found zero duplicate produce prompts), so the area-cue path on both
+  platforms is dormant and untestable against real content until a merge arrives.
+
 ## Engine & scheduling
 
 - A **defer** flag: a per-card opt-out that sinks a word behind the whole catalog rather
@@ -269,6 +273,15 @@ One line per item, with a file or context pointer, filed under the section it be
   browse rows, iOS box rows stay plain and tint only on the session card
   (`BoxCardRow.swift:43` vs `android/.../ui/BoxRows.kt`) — same palette, one design
   call on where the tint belongs; unify once decided.
+
+- The session headword breaks mid-word at narrow widths ("die Sprach/e" at 320dp):
+  the mirrored 52dp emoji slot plus the speaker glyph leave ~98dp for a 28sp headline
+  (`android/.../ui/CardFace.kt`, `ProduceCard.kt`). Every fix is a design call —
+  autosize clips long compounds, un-mirroring de-centres, a smaller slot changes the
+  emoji spec — so it wants an owner ruling, not a patch.
+- `AppModel.activate()` silently bootstraps a fresh box when decode fails
+  (`android/.../AppModel.kt:328-342`), so a corrupt or mis-pathed box reads as empty
+  with no trace — surface the failure (log + error card) before real devices.
 
 ## Localization
 
