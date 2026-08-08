@@ -15,9 +15,11 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import net.spross.app.audio.Pronouncer
+import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
+import net.spross.kern.box.streakWindow
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.model.BoxConfig
@@ -52,7 +54,20 @@ sealed interface Screen {
     data object Session : Screen
     data object About : Screen
     data object LetterDrill : Screen
+
+    /**
+     * The box browser. [area] is the shelf it opens UNFOLDED — the screen was reached by
+     * naming that area, from a search hit or a tree — and null opens where the learner
+     * left off ([net.spross.kern.box.BoxBrowser.defaultExpandedGroupId]).
+     */
+    data class Box(val area: String? = null) : Screen
 }
+
+/**
+ * How far back the activity strip looks. The window is the strip's whole subject, so the
+ * number lives with the state it shapes rather than with the drawing of it.
+ */
+const val ACTIVITY_WINDOW_DAYS: Int = 14
 
 data class SessionUi(
     val card: Card?,               // null ⇒ drained: show the summary
@@ -96,6 +111,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     var box by mutableStateOf<BoxState?>(null)
         private set
     var stats by mutableStateOf<BoxStatistics?>(null)
+        private set
+
+    /**
+     * The trailing fortnight the activity strip draws, oldest day first.
+     * Kern walks it beside the streak number, so a strip and a flame cannot disagree —
+     * refreshed with the rest of the numbers, never re-derived per composition.
+     */
+    var activityWindow by mutableStateOf<List<ActivityDay>>(emptyList())
         private set
     var sessionAvailable by mutableStateOf(false)
         private set
@@ -166,6 +189,20 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Heute
     }
 
+    /**
+     * The box browser. [area] names the shelf to open unfolded, for the surfaces that
+     * reach the box BY an area; null opens wherever the learner left off.
+     */
+    fun openBox(area: String? = null) {
+        screen = Screen.Box(area)
+    }
+
+    fun closeBox() {
+        // why: the browser's rows speak on tap — nothing may keep talking into Heute.
+        pronouncer.stop()
+        screen = Screen.Heute
+    }
+
     /** The letters drill; what it can ask is `letterDrillAvailable`, which gates the chip. */
     fun startLetterDrill() {
         screen = Screen.LetterDrill
@@ -204,6 +241,23 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         persist(state)
         refreshStats()
         screen = Screen.Heute
+    }
+
+    /**
+     * The one door a box SURFACE changes the box through — packing a shelf, waking a
+     * word, a word of one's own, a reset. The change itself is kern's: the caller hands
+     * back what a [BoxEngine] call returned, and this is the platform half of it, the
+     * observable state and the disk and the numbers Heute reads.
+     *
+     * Anything that touches a SCHEDULE goes through the run instead ([dispatch]) —
+     * every answer is a review, and only kern's session machine books one.
+     */
+    fun updateBox(change: (BoxState) -> BoxState) {
+        val state = box ?: return
+        val next = change(state)
+        box = next
+        persist(next)
+        refreshStats()
     }
 
     fun startSession() = begin(SessionIntent.Start)
@@ -345,6 +399,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     private fun refreshStats() {
         val state = box ?: return
         stats = BoxEngine.statistics(state, now(), tz())
+        activityWindow = streakWindow(state.dailyStats, ACTIVITY_WINDOW_DAYS, now(), tz())
         sessionAvailable = SessionOffers.sessionAvailable(state, now(), tz())
         canPracticeExtra = SessionOffers.canPracticeMore(state, now(), tz())
     }

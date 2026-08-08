@@ -18,6 +18,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.letterDrillAvailable
@@ -43,11 +45,20 @@ fun HeuteScreen(model: AppModel) {
                     "$sourceName → $targetName",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    // The pair yields space to the doors beside it rather than pushing
+                    // one off the edge; `fill = false` keeps it packed left as before.
+                    modifier = Modifier.weight(1f, fill = false),
                 )
                 TextButton(onClick = { model.editLanguages() }) { Text(chrome.changeLanguages) }
                 // The only other door out of Heute: version, the read-aloud switch
                 // and who spoke the recordings.
                 TextButton(onClick = { model.openAbout() }) { Text(chrome.aboutButton) }
+                // The box itself: every word the profile holds, packed or not. The icon
+                // carries the name rather than a label — the row is already full.
+                TextButton(
+                    onClick = { model.openBox() },
+                    modifier = Modifier.semantics { contentDescription = chrome.boxNav },
+                ) { Text("📦") }
             }
         }
 
@@ -64,6 +75,10 @@ fun HeuteScreen(model: AppModel) {
                 }
             }
         }
+
+        // Fortschritt: the same fortnight the streak above was counted from, on the very
+        // refresh that produced it — the strip reads kern's walk, never one of its own.
+        ActivityStrip(model.activityWindow, stats?.streak ?: 0, chrome)
 
         // The platform's first trainer. It appears by itself once the synthesizer has
         // bound (the predicate is observable — a cold start answers "no voice" for a

@@ -3,6 +3,10 @@ package net.spross.app
 /**
  * UI chrome strings, rendered in the KNOWN language when chrome exists
  * (de/en today), otherwise en — design.md "Profile & onboarding".
+ *
+ * The two tables live beside this file ([ChromeDe], [ChromeEn]); the data class is the
+ * contract, and adding a field here is what forces both of them to answer for it.
+ * Placeholders are java-format, rendered with `.format(...)`.
  */
 data class Chrome(
     val heuteTitle: String,
@@ -59,7 +63,7 @@ data class Chrome(
     val replayPrompt: String,      // the replay button's name
     val promptInLanguage: String,  // %s = target language name
     val level: String,             // %d
-    val streak: String,            // %d
+    val streak: String,            // %d — answers in a row, never days
     val typoCorrection: String,    // %s = the spelling the learner missed
     val heardInstead: String,      // %s = the form that actually played
     val audioOff: String,
@@ -69,144 +73,94 @@ data class Chrome(
     val answerCorrect: String,     // an answered tile's state, never colour alone
     val answerWrong: String,
     val correctAnswer: String,     // %s = what it was, on a miss or a reveal
+
+    // ── Box browse ──────────────────────────────────────────────────────────────
+    val boxTitle: String,
+    /** The door to the box, wherever a screen puts one — a name for an icon that has none. */
+    val boxNav: String,
+    val boxSubtitle: String,       // %1$d active of %2$d held
+    /**
+     * The learner's own shelf. Kern hands back the area KEY for it
+     * (`OwnWords.AREA`, in no group) and leaves the naming to the reader's chrome;
+     * catalog shelves name themselves, down to `BoxBrowser.sections`' own id fallback.
+     */
+    val ownWordsTitle: String,
+    val ownWordsExplainer: String,
+    val packArea: String,          // %d = what packing this shelf would add
+    val packDone: String,
+    val packWord: String,          // the single-word offer a search hit carries
+    val packedWord: String,
+    val suspended: String,         // the sleeping mark's name
+    val wake: String,
+    val phrasesLocked: String,     // %d = phrases still waiting on their components
+    // A card with nothing behind it has NO phase word: new is the absence of a badge.
+    val phaseLearning: String,
+    val phaseReview: String,
+    val phaseRelearning: String,
+
+    // ── Box search ──────────────────────────────────────────────────────────────
+    val search: String,
+    val searchPlaceholder: String,
+    val searchHint: String,        // what the field will look through, before anything is typed
+    val searchAreas: String,
+    val searchWords: String,
+    val searchNothing: String,     // %s = the query
+    val searchWriteOwn: String,    // %s = the query — the one door to writing a word
+    val searchClear: String,
+
+    // ── Own-word form ───────────────────────────────────────────────────────────
+    val ownWordTitle: String,
+    val ownWordInLanguage: String, // %s = language name — both fields ask it
+    val ownWordPicture: String,
+    val ownWordAdd: String,
+    val ownWordRemove: String,     // the app's only deletion; catalog words sleep instead
+
+    // ── Box settings ────────────────────────────────────────────────────────────
+    val settingsTitle: String,
+    val profileHint: String,
+    val resetButton: String,
+    val resetHint: String,
+    val resetConfirm: String,      // %s = the language being learnt, in its own name
+    val cancel: String,
+    val reset: String,
+
+    // ── Session turn ────────────────────────────────────────────────────────────
+    val copyPrompt: String,        // %s = target language name — the write-it-out field
+    val copyMismatch: String,      // the copy was another word: the card still holds the answer
+    /**
+     * Leaving a step that has already decided its rating: the write-out's skip, and
+     * giving up on an open retry. One word for both, as on iOS (`session.skipCopy`) —
+     * a step you cannot leave is a trap, and neither leaving costs the schedule anything.
+     */
+    val skipStep: String,
+
+    // ── The day's standing (Heute) ──────────────────────────────────────────────
+    /** Nothing due, and nothing done yet — never [doneToday], which the day must earn. */
+    val caughtUpTitle: String,
+    val dayReviews: String,        // %d
+    val dayNewCards: String,       // %d
+    val dayConsolidated: String,   // %d
+    val tomorrowPacked: String,
+    val tomorrowFresh: String,
+    val tomorrowDue: String,       // %d
+
+    // ── Round completion ────────────────────────────────────────────────────────
+    val roundNew: String,          // %d
+    val roundConsolidated: String, // %d
+    val roundReviewed: String,     // %d
+    val roundAllDone: String,      // the round had nothing nameable in it
+    val restHint: String,          // today's recall is strained; more reps buy little
+    val streakRecord: String,
+
+    // ── Activity strip ──────────────────────────────────────────────────────────
+    val progressTitle: String,
+    val last14Days: String,
+    val activityDays: String,      // %d = days worked inside the window
+    val streakDays: String,        // %d — days in a row, the strip's own label
+    val dayOne: String,            // the badge's unit word, by count
+    val dayMany: String,
 ) {
     companion object {
-        fun forSource(source: String): Chrome = if (source == "de") DE else EN
-
-        private val DE = Chrome(
-            heuteTitle = "Heute",
-            practice = "Üben",
-            extraRound = "Extra-Runde",
-            doneToday = "Für heute geschafft!",
-            emptyState = "Die Box wächst, während dein Material sitzt.",
-            dueLabel = "fällig",
-            newLabel = "neu",
-            consolidatedLabel = "gefestigt",
-            freshLabel = "frisch",
-            changeLanguages = "Sprachen ändern",
-            chooseTitle = "Was möchtest du lernen?",
-            iSpeak = "Ich spreche",
-            iLearn = "Ich lerne",
-            conceptsSuffix = "Begriffe",
-            letsGo = "Los geht's",
-            backLabel = "Zurück",
-            check = "Prüfen",
-            reveal = "Aufdecken",
-            next = "Weiter",
-            alsoPrefix = "auch:",
-            typoNote = "Kleiner Tippfehler – zählt!",
-            otherWordNote = "Übrigens: %1\$s heißt „%2\$s“",
-            answerPlaceholder = "In %s …",
-            again = "Nochmal",
-            hard = "Schwer",
-            good = "Gut",
-            easy = "Leicht",
-            sessionDone = "Geschafft!",
-            summaryLine = "%d neu · %d gefestigt · %d wiederholt",
-            keepPracticing = "Weiter üben",
-            finish = "Fertig",
-            pluralEquals = "= Pl.",
-            pluralOnly = "nur Pl.",
-            pluralPrefix = "Pl. ",
-            readAloud = "Aussprache vorlesen",
-            stateOn = "an",
-            stateOff = "aus",
-            pronounce = "Aussprechen",
-            aboutButton = "Info",
-            audioToggle = "Wörter vorlesen",
-            audioToggleHint = "Wörter beim Üben automatisch vorlesen. Tippen auf ein Wort " +
-                "spricht es erneut — auch bei ausgeschaltetem Vorlesen.",
-            creditsTitle = "Sprecher & Lizenzen",
-            creditsRecordings = "%d Aufnahmen",
-            creditsUnmodified = "Aufnahmen unverändert übernommen",
-            creditsCommons = "Aufnahmen von Wikimedia Commons",
-            trainingTitle = "Training",
-            lettersTitle = "Buchstaben",
-            lettersHear = "Welcher Buchstabe ist das?",
-            lettersSpell = "Was fehlt im Wort?",
-            lettersDictation = "Schreib, was du hörst",
-            letterChoice = "Buchstabe %s",
-            replayPrompt = "Noch einmal anhören",
-            promptInLanguage = "auf %s",
-            level = "Stufe %d",
-            streak = "🔥 %d in Folge",
-            typoCorrection = "Fast! Richtig geschrieben: %s",
-            heardInstead = "Gehört war: %s",
-            audioOff = "Ton ist aus",
-            enableSound = "Ton einschalten",
-            tasksDone = "%d Aufgaben 🎯",
-            bestStreak = "Beste Serie: 🔥 %d in Folge",
-            answerCorrect = "Richtig",
-            answerWrong = "Falsch",
-            correctAnswer = "Richtig: %s",
-        )
-
-        private val EN = Chrome(
-            heuteTitle = "Today",
-            practice = "Practice",
-            extraRound = "Extra round",
-            doneToday = "Done for today!",
-            emptyState = "The box grows while your material sits.",
-            dueLabel = "due",
-            newLabel = "new",
-            consolidatedLabel = "consolidated",
-            freshLabel = "fresh",
-            changeLanguages = "Change languages",
-            chooseTitle = "What do you want to learn?",
-            iSpeak = "I speak",
-            iLearn = "I learn",
-            conceptsSuffix = "terms",
-            letsGo = "Let's go",
-            backLabel = "Back",
-            check = "Check",
-            reveal = "Reveal",
-            next = "Next",
-            alsoPrefix = "also:",
-            typoNote = "Small typo – still counts!",
-            otherWordNote = "By the way: %1\$s means “%2\$s”",
-            answerPlaceholder = "In %s …",
-            again = "Again",
-            hard = "Hard",
-            good = "Good",
-            easy = "Easy",
-            sessionDone = "Done!",
-            summaryLine = "%d new · %d strengthened · %d reviewed",
-            keepPracticing = "Keep practicing",
-            finish = "Finish",
-            pluralEquals = "= pl.",
-            pluralOnly = "pl. only",
-            pluralPrefix = "pl. ",
-            readAloud = "Read words aloud",
-            stateOn = "on",
-            stateOff = "off",
-            pronounce = "Pronounce",
-            aboutButton = "About",
-            audioToggle = "Read words aloud",
-            audioToggleHint = "Read words aloud during review. Tapping a word speaks it " +
-                "again — even when read-aloud is off.",
-            creditsTitle = "Voices & licences",
-            creditsRecordings = "%d recordings",
-            creditsUnmodified = "Recordings shipped unmodified",
-            creditsCommons = "Recordings from Wikimedia Commons",
-            trainingTitle = "Training",
-            lettersTitle = "Letters",
-            lettersHear = "Which letter is this?",
-            lettersSpell = "What's missing in the word?",
-            lettersDictation = "Write what you hear",
-            letterChoice = "Letter %s",
-            replayPrompt = "Play it again",
-            promptInLanguage = "in %s",
-            level = "Level %d",
-            streak = "🔥 %d in a row",
-            typoCorrection = "Almost! Correct spelling: %s",
-            heardInstead = "You heard: %s",
-            audioOff = "Sound is off",
-            enableSound = "Turn sound on",
-            tasksDone = "%d tasks 🎯",
-            bestStreak = "Best streak: 🔥 %d in a row",
-            answerCorrect = "Correct",
-            answerWrong = "Wrong",
-            correctAnswer = "Correct: %s",
-        )
+        fun forSource(source: String): Chrome = if (source == "de") ChromeDe else ChromeEn
     }
 }

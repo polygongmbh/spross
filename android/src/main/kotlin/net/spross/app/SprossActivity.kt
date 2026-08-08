@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import net.spross.app.ui.AboutScreen
+import net.spross.app.ui.BoxScreen
 import net.spross.app.ui.HeuteScreen
 import net.spross.app.ui.LetterDrillScreen
 import net.spross.app.ui.OnboardingScreen
@@ -55,7 +56,9 @@ class SprossActivity : ComponentActivity() {
 
 @Composable
 private fun Root(model: AppModel = viewModel()) {
-    when (model.screen) {
+    // The screen is read into a local so the Box case can hand its area on: a
+    // `mutableStateOf` property is never smart-cast.
+    when (val screen = model.screen) {
         Screen.Loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
         }
@@ -64,5 +67,6 @@ private fun Root(model: AppModel = viewModel()) {
         Screen.Session -> SessionScreen(model)
         Screen.About -> AboutScreen(model)
         Screen.LetterDrill -> LetterDrillScreen(model)
+        is Screen.Box -> BoxScreen(model, openAt = screen.area)
     }
 }
