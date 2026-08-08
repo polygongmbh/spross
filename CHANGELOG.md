@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **Android reviews now run on the same turn rules as the iPhone.** Three honest verdicts,
+  with the long interval earned by answering fast rather than picked; a produce miss keeps
+  the field open primed with what was already right, and a word still being taught is
+  written out once with the answer in view before it moves on. A finished typed answer
+  books itself after a short beat, a near miss holds on the spelling it owes back and
+  speaks it on tap, and revealing no longer types the answer into the field. Verdicts are
+  felt as haptics, the field shows its own correctness, and with a screen reader running
+  nothing advances on a timer — an explicit button books exactly what the beat would have.
+
 - **Android can browse the box.** Shelves fold open to the words on them, each shelf says
   how much of it has landed and packs the rest in one tap, words can be put back to sleep
   or written by hand, and search reaches both sides of the pair — including writing a word

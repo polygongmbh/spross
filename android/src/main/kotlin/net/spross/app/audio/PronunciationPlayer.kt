@@ -5,6 +5,7 @@ import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.audiofx.LoudnessEnhancer
 import java.io.IOException
+import net.spross.kern.catalog.Playback
 
 /**
  * Plays one bundled recording at a time, under the catalog's ANALYSIS INDEX: `gainDb`
@@ -59,7 +60,7 @@ class PronunciationPlayer {
             // main one — so the guard needs no lock.
             if (current != request) return@setOnPreparedListener
             preparing = 0
-            head = playbackHeadMs(leadMs, prepared.duration.toLong())
+            head = Playback.headMs(leadMs, prepared.duration.toLong())
             sound(prepared)
         }
         player.setOnErrorListener { _, _, _ ->

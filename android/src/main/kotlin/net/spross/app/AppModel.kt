@@ -75,6 +75,10 @@ data class SessionUi(
     val promptForm: String?,       // rotated recognition prompt
     /** Whether a produce turn asks by meaning or by ear; [ProducePrompt.Source] elsewhere. */
     val producePrompt: ProducePrompt = ProducePrompt.Source,
+    /** `reviewCount == 0` — the word is being taught, so a miss is still written out. */
+    val firstExposure: Boolean = false,
+    /** A word that already sticks is never slowed down by a write-out. */
+    val settled: Boolean = false,
     /** Which face carries the picture; null when the word has none. */
     val emojiCue: EmojiCue?,
     /**
@@ -84,12 +88,21 @@ data class SessionUi(
     val promptPronunciation: Pronunciation?,
     val segments: List<AnswerTone>,
     val remaining: Int,
-    /** Summary tallies, in the order the chrome line formats them ([SessionRunState]'s buckets). */
+    /** What the round bought ([SessionRunState]'s buckets); the summary spells the non-zero parts. */
     val introduced: Int,
     val strengthened: Int,
     val reviewed: Int,
     /** Whether an endless refill would yield anything — what "Weiter üben" turns on. */
     val canPracticeMore: Boolean,
+    /** The day streak the finish names, and whether it stands at its all-time best. */
+    val streakDays: Int = 0,
+    val streakIsRecord: Boolean = false,
+    /**
+     * Today's recall is far enough under what the schedule expects that more reps buy
+     * little — the box saying so plainly, where a round that only celebrates would be
+     * contradicted by the next one.
+     */
+    val restSuggested: Boolean = false,
 )
 
 class AppModel(app: Application) : AndroidViewModel(app) {
@@ -361,20 +374,30 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 introduced = active.newCards, strengthened = active.graduated,
                 reviewed = active.reviews,
                 canPracticeMore = SessionOffers.canPracticeMore(state, now(), tz()),
+                // why: the day is folded and the numbers refreshed before this runs
+                // (`DayBooked` precedes it in [dispatch]), so the finish names the streak
+                // the answer just extended rather than the one it started with.
+                streakDays = stats?.streak ?: 0,
+                streakIsRecord = stats?.let { SessionRun.streakIsRecord(it) } == true,
+                restSuggested = BoxEngine.today(state, now(), tz()).recallStrained,
             )
         } else {
             val count = state.scheduling[card.id]?.reviewCount ?: 0
             val role = presentationRole(card.id, count)
             val promptForm = recognitionPromptForm(card, count)
             val prompt = producePrompt(card.id, count, isConsolidated(card.id), audible(card))
+            val settled = BoxEngine.isSettled(state, card.id)
             SessionUi(
                 card = card,
                 role = role,
                 promptForm = promptForm,
                 producePrompt = prompt,
-                emojiCue = card.emoji?.let {
-                    emojiCue(role, BoxEngine.isSettled(state, card.id), count)
-                },
+                // The two facts the turn's write-out rule is decided on, read where the
+                // count already is: a word being taught is written once as it is met,
+                // and one that already sticks is never slowed down.
+                firstExposure = count == 0,
+                settled = settled,
+                emojiCue = card.emoji?.let { emojiCue(role, settled, count) },
                 // why: the KERN cue, never `role == Recognize` — one rule, consumed by
                 // both apps. The PROMPTED form, so a rotated synonym is heard as itself.
                 promptPronunciation = catalog
