@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.12.0 — 2026-08-08
+
 - **A word that doesn't stick in two tries is now pushed out, not repeated.** Leech
   auto-suspend used to wait for eight review-phase lapses; the box is breadth-first, so it
   now suspends after two — and counts a struggle during the word's own learning steps
