@@ -18,9 +18,13 @@
   corners, the ✕ out on the left and the run in on the right, and the letter stages that
   looked like a radio nobody could pick are numbered steps: the run walks them itself.
 
-- **Asking the other way round has to be earned now.** Reverse was the one switch that
-  cost nothing, met before a learner had written a single number down. It opens at three
-  digits — the cheapest rung there is, below the clock.
+- **Asking the other way round has to be earned, and a mixed run costs less.** Reverse was
+  the one switch that cost nothing, met before a learner had written a single number down;
+  reading a number back is a different exercise from producing one, not an easier one, so
+  it now waits until the clock has been climbed a way — numbers first, then telling the
+  time, then decoding. The mixed run drops its second price: it asks for the number forms
+  and nothing else, and since the forms cannot open before seven digits, the climb through
+  the numbers is already paid for by the time anyone gets there.
 
 - **A trainer page opens on the run now, and one exercise at a time until the ladder is
   open.** Zahlen and Buchstaben both put their reading matter first, so starting the thing
