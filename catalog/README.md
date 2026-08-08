@@ -54,6 +54,12 @@ catalog/
       letters/u<hex>.mp3
 ```
 
+These files are hand-edited, and their shape is part of the review unit: an entry
+that fits on one line stays on one line (`{ "slug": "seventh-heaven", "kind": "idiom" }`,
+`"notes": { "en": "…" }`). Edit them in place — never round-trip a file through a
+serializer to change one field, which reflows every entry and buries the real change
+in a formatting diff.
+
 Adding a language is purely additive: drop a `<area>/<lang>.json` in each area for
 the slugs you can cover. It never edits an existing file.
 Reviewing a language is per area: `<area>/<lang>.json` is the contribution/review unit.
