@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.11.1 — 2026-08-08
+
 - **The parts of the day moved in with the clock.** Morning, evening and night were
   filed under the bedroom and the living room, where a word for when something happens
   had no business being; noon and the afternoon join them in Time and dates, and the
