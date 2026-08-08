@@ -58,7 +58,11 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         )
         if (ui.streakDays > 0) {
             Spacer(Modifier.height(16.dp))
-            Text("🔥 ${chrome.streakDays.format(ui.streakDays)}",
+            // why: the day unit declines with the count (1 Tag / 2 Tage) — the same
+            // dayOne/dayMany pair the Heute pill wears, so the two can never disagree;
+            // no "Serie:" prefix, matching the iOS summary's plain streak pill.
+            val unit = if (ui.streakDays == 1) chrome.dayOne else chrome.dayMany
+            Text("🔥 ${ui.streakDays} $unit",
                 style = MaterialTheme.typography.titleMedium)
             if (ui.streakIsRecord) {
                 Text(chrome.streakRecord, style = MaterialTheme.typography.titleMedium,
