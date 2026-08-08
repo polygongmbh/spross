@@ -18,6 +18,13 @@ kotlin {
         minSdk = 26
     }
 
+    js {
+        browser()
+        // why: one webpack bundle (jsBrowserDistribution) is what web/ deploys —
+        // the marketing page loads it as a single classic script, no module graph.
+        binaries.executable()
+    }
+
     val xcf = XCFramework("SprossKern")
     listOf(
         iosArm64(),
