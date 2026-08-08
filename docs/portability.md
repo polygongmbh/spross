@@ -94,11 +94,6 @@ No new kern dependency; data classes already cross the boundary.
    `LetterDrill.kt:94` already has the same shape, `Trainer.kt` does not.
 5. **`trainer/LetterDrillAvailability`** behind an audio-capability port
    (`LetterDrillAvailability.swift:16-131`) — deletes 176 hand-ported Kotlin lines.
-6. **`snapshot/WatchRun` + public snapshot DTOs** — the watch queue/ranking/recycling engine
-   (`WatchModel.swift:96-289`, ~150 lines, untested), the practice-lap ordering by remaining-span-over-stability,
-   `applyRemoteAnswers` idempotent replay (`PhoneConnectivity.swift:73-155`),
-   and `WatchSnapshotDoc`/`WatchEntryDto` made public so no consumer re-declares them
-   (`Shared/WatchSnapshot.swift:8-114`).
 
 ## Smaller — what is left
 

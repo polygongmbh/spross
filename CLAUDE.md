@@ -29,8 +29,9 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   one cohesive change per commit, never bundle unrelated changes or defer commits into one late batch.
 - **Commit as you go, unasked**: unrelated uncommitted work in the tree is never a reason to hold yours back.
 - **Every commit green**: tests + app build clean at each commit, not just at session end.
-  Green means YOUR commit's tree — with other work in flight, scope the gate to what you touched,
-  and read another party's red as theirs, not as a blocker.
+  Green means YOUR commit's content — with other work in flight, scope the gate to what you touched.
+  Also stay with tests appropriate to your change - a docs or copy change needs no full rebuild, a minor algorithm adjustment no emulator run.
+  Read another party's red as theirs, not as a blocker, only take time to test your changes in isolation if they have major chance of breakage.
 - **On red, attribute before escalating**: `git status`/`diff` the failing file first — if it's not
   one you touched, that's someone else's break. Don't rerun the same broad gate or reach for a
   bigger one hoping for a different answer; narrow instead (targeted tests, `compileKotlinJvm` over
