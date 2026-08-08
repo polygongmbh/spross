@@ -422,6 +422,55 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   two of them the same; what they look like is not the engine's answer. It is the whole-box
   read behind a surface that draws the box itself rather than the totals `statistics`
   aggregates it into, and the reason the app needs no schedule-reading rules of its own.
+- **`BoxBrowser`** is the box read as a browsable list,
+  and every rule in it is a box rule rather than a layout.
+  `areaNames` intersects the catalog's default area order with the areas this profile actually holds cards in,
+  and appends the learner's own words LAST, in no group:
+  the manifest cannot list an area the catalog does not own,
+  and their seed order puts them behind every catalog word anyway
+  (their heading is chrome — kern hands back the area key, the app names it).
+  `sections` groups those areas as `areas.json` groups them, in manifest order,
+  dropping a group left holding none of them,
+  with the heading read in the profile's source language, then `en`, then the group id —
+  a manifest that forgot one language still names its shelf, visibly wrong rather than blank.
+  `defaultExpandedGroupId` opens the first section holding an area with ACTIVE cards —
+  where the learner left off — else the first section, so the browser never opens fully folded.
+  `cardsInArea` is the shelf in seed order.
+  `enqueueableCardIds` is what packing that shelf would take in — unscheduled, not already queued,
+  which are `enqueue`'s own guards asked in advance — and `enqueueableCount` is its size,
+  so the number a shelf promises and the pack it performs cannot come from two different rules.
+  Missing components are the one thing it does not count:
+  enqueuing a phrase also prepends the components it lacks,
+  and where those live on another shelf a pack takes in more than the count said (`docs/backlog.md`).
+- **`CardRowState`** (`BoxBrowser.cardRowState`) is what one listed card states besides the word itself:
+  `Sleeping`, `PackOffered`, `Packed`, `Plain`, or `Standing(phase, consolidated)`.
+  `packOffered` is the caller's context — a surface that packs a SINGLE word,
+  which is a search hit the learner went looking for by name;
+  an area listing packs by the shelf, so an unexposed card there is `Plain`:
+  NEW is the ABSENCE of a standing, never a standing of its own.
+  `Standing.consolidated` travels beside the phase instead of being read out of it —
+  a card reaches Review well below `consolidatedStability`,
+  so a mark keyed to the phase would seal cards the area's consolidated count leaves out.
+  It is derived from `GrowthStage` and `Statistics.isConsolidated`, never from the raw phase:
+  a second derivation is a second answer waiting to disagree with the shelf above it.
+- **`TodayReport.worked` / `tallyParts()`, `completionTallyParts`, `tomorrowNote`** —
+  which parts a day or a finished round spells out, and in which order.
+  A day is `worked` once something was answered,
+  which is what separates "done for today" from "caught up":
+  nothing is due in either, and only one of them was earned.
+  `tallyParts()` is empty on an unworked day (a day has a state then, not a tally)
+  and otherwise leads with reviews, then today's first meetings, then the crossings —
+  the rarest part reads last.
+  `completionTallyParts(introduced, consolidated, reviews)` is the ROUND's own tally
+  in the order a summary reads it, non-zero parts only;
+  empty means the round bought nothing nameable and the surface says so plainly
+  rather than printing three zeros.
+  `tomorrowNote(hasPackedWords, tomorrowDue)` picks `Packed` / `Fresh` / `Due`:
+  a pack outranks the due count, because a finished day composes nothing
+  and the round after it is where those words arrive;
+  `tomorrowDue` is `dueNow` at `endOfTomorrow`, never a second local-midnight derivation.
+  The kinds and their order are the rule;
+  the words, plurals and separators for them stay in each platform's string tables.
 - **A composed session never refills** (user ruling 2026-07-29): the plan IS the run.
   Cards falling due while the learner sits there — a learning step maturing, most often —
   used to be drained straight in, so the count they were counting down to moved away from

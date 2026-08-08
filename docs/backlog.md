@@ -173,6 +173,10 @@ One line per item, with a file or context pointer, filed under the section it be
   so that closure is unheld, unlike the day parts' (`dayPartReadingsCloseTheTwelveHourCycle`).
 - FSRS parameter optimization from review logs —
   enabled by the full per-card logs, unbuilt (kern README §5).
+- Box pack control under-reports: `BoxBrowser.enqueueableCount` counts only the area's own
+  cards, while `BoxEngine.enqueue` also prepends a phrase's missing components — a phrase
+  whose components sit on another shelf packs more than the number promised
+  (`kern/src/commonMain/kotlin/net/spross/kern/box/BoxBrowser.kt` `enqueueableCardIds`).
 - Watch multiple-choice distractors carry no novelty or recency criterion
   (`kern/src/commonMain/kotlin/net/spross/kern/session/MultipleChoice.kt`):
   word class, area and shape rank them now, but the newest entry can still be the odd
@@ -235,6 +239,8 @@ One line per item, with a file or context pointer, filed under the section it be
 - Android carries its own unrelated palette (`android/.../ui/Theme.kt`) that never went
   through the contrast pass — it predates the ocean/forest re-cut and shares no values
   with `Design/Theme.swift`.
+- Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
+  deferred per user 2026-08-08.
 - Audio ships un-thinned: `catalog/audio/` is 26 MB (de 4.9, es 7.2, sw 5.2, uk 9.0) and
   BOTH installs carry all of it — the iOS folder reference and the Android catalog sync
   copy the tree whole — so a Swahili learner downloads 21 MB of German, Spanish and

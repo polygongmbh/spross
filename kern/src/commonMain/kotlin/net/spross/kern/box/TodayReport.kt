@@ -33,6 +33,28 @@ data class TodayReport(
     val expectedRecall: Double,
 ) {
     /**
+     * Whether the day was WORKED — the difference between a day finished and a day merely clear.
+     * Nothing is due in either, but only one of them was earned,
+     * and a surface must never claim a finish the learner never made.
+     */
+    val worked: Boolean get() = reviews > 0
+
+    /**
+     * The day's gain, spelled out — which counts a surface names, in which order.
+     * Empty on a day that was not [worked]: an unworked day has a state, not a tally.
+     * Reviews lead (the one count every worked day carries),
+     * then today's first meetings, then the crossings — the rarest part reads last.
+     * The words for each part are the platform's; which parts there are is not.
+     */
+    fun tallyParts(): List<TallyPart> {
+        if (!worked) return emptyList()
+        val parts = mutableListOf(TallyPart(TallyPartKind.Reviews, reviews))
+        if (introduced > 0) parts += TallyPart(TallyPartKind.Introduced, introduced)
+        if (consolidated > 0) parts += TallyPart(TallyPartKind.Consolidated, consolidated)
+        return parts
+    }
+
+    /**
      * Share of today's answers the learner got.
      * Null below [MIN_ANSWERS_FOR_RECALL] — a handful of answers says nothing
      * about how a day is going, and a number built on three of them invites
@@ -63,6 +85,67 @@ data class TodayReport(
          */
         const val RECALL_STRAIN_MARGIN: Double = 0.2
     }
+}
+
+/**
+ * Which count a spelled-out tally part names.
+ * The kinds are the rule; the words, the plurals and the separator between them are the platform's.
+ */
+enum class TallyPartKind {
+    /** Answers given — every answer is a review. */
+    Reviews,
+
+    /** Words met for the first time. */
+    Introduced,
+
+    /** Words that crossed the consolidated bar ([Statistics.isConsolidated]). */
+    Consolidated,
+}
+
+/** One part of a tally: which count, and how many. */
+data class TallyPart(val kind: TallyPartKind, val count: Int)
+
+/**
+ * What one finished ROUND bought, in the order a summary reads it:
+ * words started, words that landed, answers given.
+ *
+ * Non-zero parts only — a round that started nothing has nothing to say about first meetings,
+ * and a zero spelled out reads as a failure to reach a target the box never sets.
+ * An empty list means the round is over with nothing nameable in it,
+ * which is a surface's cue to say so plainly rather than to print three zeros.
+ */
+fun completionTallyParts(introduced: Int, consolidated: Int, reviews: Int): List<TallyPart> =
+    listOf(
+        TallyPart(TallyPartKind.Introduced, introduced),
+        TallyPart(TallyPartKind.Consolidated, consolidated),
+        TallyPart(TallyPartKind.Reviews, reviews),
+    ).filter { it.count > 0 }
+
+/** What a day with nothing left to do says about the next one. */
+enum class TomorrowNote {
+    /** Words are packed and waiting; the round they arrive in is the answer. */
+    Packed,
+
+    /** Nothing comes back tomorrow — the day ahead is open ground. */
+    Fresh,
+
+    /** Cards fall due inside tomorrow; the count is the caller's own. */
+    Due,
+}
+
+/**
+ * Which of the three the done day leaves the learner with.
+ *
+ * A pack outranks the due count: packing was the learner's own move,
+ * a finished day composes nothing, and so the next round is where those words turn up —
+ * said as a fact about that round, never as something waiting to be answered.
+ * [tomorrowDue] is what [BoxEngine.dueNow] reports at [endOfTomorrow],
+ * so the horizon is the engine's rather than a second local-midnight derivation.
+ */
+fun tomorrowNote(hasPackedWords: Boolean, tomorrowDue: Int): TomorrowNote = when {
+    hasPackedWords -> TomorrowNote.Packed
+    tomorrowDue == 0 -> TomorrowNote.Fresh
+    else -> TomorrowNote.Due
 }
 
 internal fun todayReport(state: BoxState, nowEpochMillis: Long, tzId: String): TodayReport {

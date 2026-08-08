@@ -7,13 +7,25 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.Rating
 
-/** The day's own report: what was answered, met, consolidated — and whether it is going badly. */
+/**
+ * The day's own report: what was answered, met, consolidated — whether it is going badly,
+ * and which parts of it a surface spells out.
+ */
 class TodayReportTests {
     private val now = Box.day1
 
     private fun boxOf(count: Int) = Box.state((1..count).map { Box.word(it) })
 
     private fun id(n: Int) = "w" + n.toString().padStart(2, '0')
+
+    private fun report(reviews: Int, introduced: Int = 0, consolidated: Int = 0) = TodayReport(
+        reviews = reviews,
+        introduced = introduced,
+        consolidated = consolidated,
+        stillFresh = 0,
+        missed = 0,
+        expectedRecall = 0.8,
+    )
 
     @Test
     fun countsAnswersMisesAndFirstMeetings() {
@@ -144,5 +156,61 @@ class TodayReportTests {
         state = Box.answered(state, "w01", Rating.Good, now)
         assertTrue(BoxEngine.isConsolidated(state, "w01"))
         assertEquals(1, BoxEngine.today(state, now, Box.TZ).consolidated)
+    }
+
+    /** A day nothing was answered on is clear, never finished — and it has no tally to show. */
+    @Test
+    fun theDayIsWorkedOnlyOnceSomethingHasBeenAnswered() {
+        var state = boxOf(2)
+        assertFalse(BoxEngine.today(state, now, Box.TZ).worked)
+        assertEquals(emptyList(), BoxEngine.today(state, now, Box.TZ).tallyParts())
+
+        state = Box.answered(state, "w01", Rating.Good, now)
+        assertTrue(BoxEngine.today(state, now, Box.TZ).worked)
+    }
+
+    @Test
+    fun theTallyLeadsWithReviewsAndReadsTheRarestPartLast() {
+        assertEquals(
+            listOf(
+                TallyPart(TallyPartKind.Reviews, 24),
+                TallyPart(TallyPartKind.Introduced, 3),
+                TallyPart(TallyPartKind.Consolidated, 2),
+            ),
+            report(reviews = 24, introduced = 3, consolidated = 2).tallyParts(),
+        )
+        // Reviews carry a worked day on their own; a part with nothing in it is left unsaid.
+        assertEquals(listOf(TallyPart(TallyPartKind.Reviews, 7)), report(reviews = 7).tallyParts())
+        assertEquals(
+            listOf(TallyPart(TallyPartKind.Reviews, 5), TallyPart(TallyPartKind.Consolidated, 2)),
+            report(reviews = 5, consolidated = 2).tallyParts(),
+        )
+    }
+
+    /** A round names what it bought, in the order it reads — and stays quiet about the rest. */
+    @Test
+    fun aFinishedRoundNamesOnlyItsNonZeroParts() {
+        assertEquals(
+            listOf(TallyPart(TallyPartKind.Introduced, 3), TallyPart(TallyPartKind.Reviews, 8)),
+            completionTallyParts(introduced = 3, consolidated = 0, reviews = 8),
+        )
+        assertEquals(
+            listOf(
+                TallyPart(TallyPartKind.Introduced, 1),
+                TallyPart(TallyPartKind.Consolidated, 2),
+                TallyPart(TallyPartKind.Reviews, 3),
+            ),
+            completionTallyParts(introduced = 1, consolidated = 2, reviews = 3),
+        )
+        // Nothing nameable: the surface says so plainly instead of printing three zeros.
+        assertEquals(emptyList(), completionTallyParts(introduced = 0, consolidated = 0, reviews = 0))
+    }
+
+    /** Packed words outrank the due count: the round they arrive in is the answer to them. */
+    @Test
+    fun theDayAheadIsNamedByWhatIsWaitingForIt() {
+        assertEquals(TomorrowNote.Packed, tomorrowNote(hasPackedWords = true, tomorrowDue = 5))
+        assertEquals(TomorrowNote.Fresh, tomorrowNote(hasPackedWords = false, tomorrowDue = 0))
+        assertEquals(TomorrowNote.Due, tomorrowNote(hasPackedWords = false, tomorrowDue = 5))
     }
 }
