@@ -10,6 +10,10 @@
   of leaving the pair standing empty. The onboarding screen already worked this way —
   settings now agrees with it.
 
+- **Answering a word asked by ear with exactly the form that played now counts as clean,**
+  even where the card lists that spelling among its own variants — it no longer books the
+  amber "auch gehört" hold for matching its own recording.
+
 - **The Android app wears the same colours and shapes as the iPhone app, and follows the
   system's light or dark setting.** Its palette predated the contrast re-cut and shared no
   values with iOS; now every screen reads from the same colour pairs in both modes, and

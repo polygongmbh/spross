@@ -1,5 +1,6 @@
 import Foundation
 import SprossKern
+import SwiftUI
 
 // Swift-side conveniences over the SprossKern (Kotlin) API. The engine
 // boundary speaks epochMillis + tzId (kern/README.md §7); everything Date-
@@ -117,7 +118,10 @@ extension DrillRamp.RungStep {
 // MARK: - Kern → Design value types
 //
 // `App/Sources/Design` is kern-free by design, so every rule it renders arrives
-// as one of its own value types. These are the only places the two meet.
+// as one of its own value types. These are the only places the two meet — bar
+// the Design files where the rendered thing IS kern's own value and a copy would
+// drift: `AutoAdvance` (the two beat lengths), `NumberReferenceTable` (the primer
+// rows) and `SessionCompletionView` (the round's tally parts).
 
 extension SessionOutcome {
     /// The bar segment one answer draws. The bucketing is kern's (`AnswerTone`).
@@ -126,6 +130,39 @@ extension SessionOutcome {
         case .right: self = .right
         case .tough: self = .tough
         case .wrong: self = .wrong
+        }
+    }
+
+    /// What the three self-grade buttons SAY. The rating it earns is kern's:
+    /// the clock behind `SelfGrading` decides whether a Knew came instantly.
+    var verdict: SelfGrading.Verdict {
+        switch self {
+        case .right: return .knew
+        case .tough: return .tough
+        case .wrong: return .unknown
+        }
+    }
+}
+
+extension AnswerInputView.Feedback {
+    /// The field's face for where kern says the answer stands. `almost` is the
+    /// only state carrying anything — the form the card owes back.
+    init(_ feedback: TurnFeedback) {
+        switch onEnum(of: feedback) {
+        case .neutral: self = .neutral
+        case .correct: self = .correct
+        case .almost(let hold): self = .almost(correctForm: hold.correctForm,
+                                               reason: .init(hold.reason))
+        case .revealed: self = .revealed
+        }
+    }
+}
+
+extension AnswerInputView.AlmostReason {
+    init(_ reason: SprossKern.AlmostReason) {
+        switch reason {
+        case .typo: self = .typo
+        case .heard: self = .heard
         }
     }
 }
