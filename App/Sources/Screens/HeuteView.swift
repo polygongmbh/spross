@@ -163,28 +163,23 @@ struct HeuteView: View {
         }
     }
 
+    /// "12 Wiederholungen · 5 neue Wörter" — which counts the round names and in
+    /// which order is the offer's own rule (`SessionOffer.summaryParts`); the words are ours.
     /// Built as `Text` (not a joined String) so each part localizes
     /// via the environment locale with catalog plural handling.
-    /// Words already met and words never seen read differently, so those stay apart —
-    /// but a pulled-forward card is the same act of recalling as a due one,
-    /// so it counts into the repetitions instead of standing as its own pile.
-    /// Only when it carries the round alone does it get named: Auffrischer.
     private func sessionSummary(_ offer: SessionOffer) -> Text {
-        // why: every count crosses into Int here — the engine counts in Int32, and
+        offer.summaryParts().map(offerPartText).joined() ?? Text("heute.session.someCards")
+    }
+
+    private func offerPartText(_ part: OfferPart) -> Text {
+        // why: the count crosses into Int here — the engine counts in Int32, and
         // a plural key only varies on a count the String Catalog recognises.
-        let reviews = Int(offer.reviews)
-        let ahead = Int(offer.ahead)
-        let fresh = Int(offer.fresh)
-        var parts: [Text] = []
-        if reviews > 0 {
-            parts.append(Text("heute.session.reviews \(reviews + ahead)"))
-        } else if ahead > 0 {
-            parts.append(Text("heute.session.ahead \(ahead)"))
+        let count = Int(part.count)
+        switch part.kind {
+        case .reviews: return Text("heute.session.reviews \(count)")
+        case .ahead: return Text("heute.session.ahead \(count)")
+        case .fresh: return Text("heute.session.newCards \(count)")
         }
-        if fresh > 0 {
-            parts.append(Text("heute.session.newCards \(fresh)"))
-        }
-        return parts.joined() ?? Text("heute.session.someCards")
     }
 
     // MARK: - Nothing due (done for today / caught up)
