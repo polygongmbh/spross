@@ -208,10 +208,6 @@ One line per item, with a file or context pointer, filed under the section it be
   (`App/Sources/Screens/NumbersOverview+Practice.swift`). A full-screen ceremony was
   rejected for something that happens a handful of times; a moment on the row itself was
   not considered and might be worth it.
-- The numbers reference stops at the cardinals: the `forms` band — one worked example per
-  number form — is the last piece of the numbers page that never shipped. Kern emits seven
-  bands (`NumberReference.kt`) and `NumberReferenceTable.bandTitle` already knows the eighth
-  key, so it is a row list and its readings.
 - The Werkstatt card's two chips are laid out as a row; a third would want the grid the
   hub used to have (`App/Sources/Screens/TrainerHubView.swift`).
 - The letter drill's typed and dictation stage has no live-check auto-advance —

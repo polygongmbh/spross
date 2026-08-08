@@ -2,6 +2,8 @@ package net.spross.kern.trainer
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
@@ -11,14 +13,14 @@ import kotlin.test.assertTrue
  */
 class NumberReferenceTests {
 
-    private val expectedKeys =
+    private val cardinalKeys =
         listOf("ones", "teens", "tens", "twenties", "compounds", "hundreds", "places")
 
     @Test
     fun everyAuthoredLanguageGetsTheSameSections() {
         for (language in Trainer.languages) {
             val table = Trainer.reference(language)
-            assertEquals(expectedKeys, table.map { it.key }, language)
+            assertEquals(cardinalKeys, table.map { it.key }.filterNot { it == "forms" }, language)
             for (section in table) {
                 assertTrue(section.entries.isNotEmpty(), "$language ${section.key}")
                 for (entry in section.entries) {
@@ -28,11 +30,53 @@ class NumberReferenceTests {
         }
     }
 
+    /**
+     * The forms band exists exactly where the Forms drill does, and never offers a form
+     * the language cannot read — the reach that keeps a form out of the drill keeps it
+     * off the page, so nothing is written down that could not also be asked.
+     */
+    @Test
+    fun theFormsBandFollowsTheLanguagesOwnReach() {
+        for (language in Trainer.languages) {
+            val band = Trainer.reference(language).firstOrNull { it.key == "forms" }
+            if (!Trainer.supportsForms(language)) {
+                assertNull(band, language)
+                continue
+            }
+            val rows = assertNotNull(band, language).entries
+            val reads = NumberForm.entries.count { it in Trainer.pack(language).formLimits.forms }
+            assertTrue(rows.isNotEmpty() && rows.size <= reads, "$language: ${rows.size} of $reads")
+            for (row in rows) assertTrue(row.reading.isNotBlank(), "$language ${row.value}")
+        }
+    }
+
+    /**
+     * What a learner actually reads there — one worked example per mark, and the mark is
+     * the point: the decimal row carries the language's own separator, so German's comma
+     * and English's point are two different rows of the same band.
+     */
+    @Test
+    fun theFormsBandNamesEveryMarkOnce() {
+        val de = Trainer.reference("de").first { it.key == "forms" }.entries
+        assertEquals(listOf("-7", "3,5", "25 %", "3×", "1/2", "1."), de.map { it.value })
+        assertEquals(
+            listOf("minus sieben", "drei Komma fünf", "fünfundzwanzig Prozent",
+                   "dreimal", "ein halb", "erste"),
+            de.map { it.reading },
+        )
+        val en = Trainer.reference("en").first { it.key == "forms" }.entries
+        assertEquals("3.5", en[1].value)
+        assertEquals("three point five", en[1].reading)
+        // Swahili ranks nothing without the noun it ranks, so it gets no ordinal row.
+        val sw = Trainer.reference("sw").first { it.key == "forms" }.entries
+        assertTrue(sw.none { it.value.endsWith(".") }, sw.joinToString { it.value })
+    }
+
     /** The table cannot drift from the generator, because it IS the generator. */
     @Test
     fun everyReadingIsWhatTheDrillWouldAsk() {
         for (language in Trainer.languages) {
-            for (section in Trainer.reference(language)) {
+            for (section in Trainer.reference(language).filterNot { it.key == "forms" }) {
                 for (entry in section.entries) {
                     val value = entry.value.filter { it.isDigit() }.toLong()
                     assertEquals(

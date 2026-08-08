@@ -44,7 +44,10 @@ auto-advance beats these share with it, are `design.md`'s.
   from the packs the drill grades against, so the page cannot claim one reading and mark
   another; kern names the bands and the app words their headings. It is one component,
   and the "?" on a numbers task raises the very same table, in every language — a look-up while the
-  answer is still owed books the task amber, and after the answer it is free. Beside it sit two to
+  answer is still owed books the task amber, and after the answer it is free. Its last band is
+  the FORMS one: a worked example per form the language reads, so the marks a Forms run asks
+  about are written down somewhere other than a failed task, and a form the language cannot
+  read has no row there either. Beside it sit two to
   four prose notes on what trips a learner up in that language. A variant the ladder has
   not opened keeps its row and states its price out of the same unlock table, because a
   ladder you can see is a reason to climb and an absence is not; a variant the pair cannot

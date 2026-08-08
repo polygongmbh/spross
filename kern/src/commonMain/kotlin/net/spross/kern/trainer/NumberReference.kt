@@ -37,9 +37,11 @@ data class ReferenceSection(val key: String, val entries: List<ReferenceEntry>)
  *   de and es pluralize, 10^9 is where es leaves the short scale. 10^4 and 10^5 are
  *   omitted because every pack builds them as a plain multiple of the thousand row.
  *
- * A `forms` section — one worked example per number form — is the one band still missing:
- * the Forms drill ships and the app already knows the heading, so emitting it here is all
- * it takes (`docs/backlog.md`). The seven cardinal bands are the whole reference today.
+ * - `forms` — one worked example per form the language reads, in ladder order, so the
+ *   notation a Forms run asks about (the minus, the decimal mark, the percent sign, the
+ *   fraction bar, the ordinal dot) is written down somewhere other than a failed task.
+ *   A form the language cannot read has no row: the same reach that keeps it out of the
+ *   drill keeps it off the page.
  */
 private val REFERENCE_VALUES: List<Pair<String, List<Long>>> = listOf(
     "ones" to (0L..9L).toList(),
@@ -53,10 +55,43 @@ private val REFERENCE_VALUES: List<Pair<String, List<Long>>> = listOf(
 
 internal fun buildReference(language: Language): List<ReferenceSection> {
     val pack = Trainer.pack(language)
-    return REFERENCE_VALUES.map { (key, values) ->
+    val cardinals = REFERENCE_VALUES.map { (key, values) ->
         ReferenceSection(
             key,
             values.map { ReferenceEntry(groupDigits(it.toString()), pack.number(it).first()) },
         )
     }
+    val forms = formExamples(pack.formLimits).mapNotNull { value ->
+        val reading = pack.formReading(value).firstOrNull() ?: return@mapNotNull null
+        ReferenceEntry(renderForm(value, pack.decimalMark, grouped = true), reading)
+    }
+    return if (forms.isEmpty()) cardinals else cardinals + ReferenceSection("forms", forms)
+}
+
+/**
+ * One example per form the language reads, in ladder order — the smallest value that
+ * shows the NOTATION rather than a hard number, because the row exists to say what the
+ * mark means, not to test the reading. The fraction and the ordinal take theirs from the
+ * language's own pool: a pack that starts its fractions at thirds must not be shown a half
+ * it would never ask for.
+ */
+private fun formExamples(limits: FormLimits): List<NumberValue> =
+    NumberForm.entries.filter { it in limits.forms }.mapNotNull { form ->
+        when (form) {
+            NumberForm.Negative -> NumberValue.Negative(7)
+            NumberForm.Decimal -> NumberValue.Decimal(3, "5")
+            NumberForm.Percent -> NumberValue.Percent(25)
+            NumberForm.Multiplicative -> NumberValue.Multiplicative(3)
+            NumberForm.Fraction -> fractionPool(limits, wide = false).firstOrNull()
+            NumberForm.Ordinal -> ordinalExample(limits)
+        }
+    }
+
+/**
+ * The lowest ordinal the language ranks — 1 wherever it is offered, since that is where
+ * the irregular stems live ("erste", "primero", "перший").
+ */
+private fun ordinalExample(limits: FormLimits): NumberValue.Ordinal? {
+    val first = maxOf(1L, limits.ordinalRange.first)
+    return if (first > limits.ordinalRange.last) null else NumberValue.Ordinal(first)
 }
