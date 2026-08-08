@@ -16,9 +16,6 @@ object LanguageChoices {
     /** The pair under edit; [target] is null until a target has been chosen. */
     data class Selection(val source: Language, val target: Language?)
 
-    /** One row of the target picker: the language, and how many concepts that pair joins. */
-    data class TargetChoice(val code: Language, val conceptCount: Int)
-
     /** The languages the apps carry chrome (UI string tables) for. */
     val CHROME_LANGUAGES: Set<Language> = setOf("de", "en")
 
@@ -26,26 +23,18 @@ object LanguageChoices {
      * The target picker's rows: every target learnable from [Selection.source],
      * plus the source itself so that picking it can swap the pair.
      *
-     * The swap row carries the SWAPPED pair's count (target → source),
-     * because that is the pair the tap would join —
-     * the two directions differ wherever one side realizes a feminine
-     * the other only knows through its base concept.
-     * It is offered only where that pair is actually joinable:
-     * a target that teaches nothing back is no swap to offer,
+     * The swap row is offered only where the SWAPPED pair (target → source) is
+     * actually joinable — a target that teaches nothing back is no swap to offer,
      * and there is nothing to swap at all while no target is chosen.
      * Rows sort by code, which the catalog's own order does not.
      */
-    fun targetChoices(catalog: Catalog, selection: Selection): List<TargetChoice> {
-        val choices = catalog.availableTargets(selection.source)
-            .map { TargetChoice(it.code, it.conceptCount) }
-            .toMutableList()
+    fun targetChoices(catalog: Catalog, selection: Selection): List<Language> {
+        val choices = catalog.availableTargets(selection.source).map { it.code }.toMutableList()
         val target = selection.target
-        if (target != null) {
-            catalog.availableTargets(target)
-                .firstOrNull { it.code == selection.source }
-                ?.let { choices += TargetChoice(selection.source, it.conceptCount) }
+        if (target != null && catalog.availableTargets(target).any { it.code == selection.source }) {
+            choices += selection.source
         }
-        return choices.sortedBy { it.code }
+        return choices.sorted()
     }
 
     /**

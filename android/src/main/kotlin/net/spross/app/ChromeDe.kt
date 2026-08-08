@@ -19,7 +19,6 @@ internal val ChromeDe = Chrome(
     chooseTitle = "Was möchtest du lernen?",
     iSpeak = "Ich spreche",
     iLearn = "Ich lerne",
-    conceptsSuffix = "Begriffe",
     letsGo = "Los geht's",
     backLabel = "Zurück",
     check = "Prüfen",

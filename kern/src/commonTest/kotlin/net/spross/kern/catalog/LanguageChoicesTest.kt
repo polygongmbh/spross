@@ -5,7 +5,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.catalog.LanguageChoices.Selection
-import net.spross.kern.catalog.LanguageChoices.TargetChoice
 import net.spross.kern.model.LanguageInfo
 
 /**
@@ -35,31 +34,30 @@ class LanguageChoicesTest {
         assertEquals("XX", LanguageChoices.pickerLabel("xx", null))
     }
 
-    /** The swap row's count is the pair the tap would join, which is not the one on screen. */
+    /** The chosen target's own row stays, and the source joins it as the swap. */
     @Test
-    fun targetChoicesIncludeTheCurrentSourceWithTheSwappedPairsCount() {
+    fun targetChoicesIncludeTheCurrentSourceAsTheSwapRow() {
         assertEquals(
-            listOf(
-                TargetChoice("de", 55), // en→de: the shared concepts plus de's feminines
-                TargetChoice("en", 50), // de→en: en realizes no feminine, so five fewer
-                TargetChoice("sw", 50),
-                TargetChoice("uk", 50),
-            ),
+            listOf("de", "en", "sw", "uk"),
             LanguageChoices.targetChoices(catalog, Selection("en", "de")),
         )
     }
 
     @Test
     fun targetChoicesOmitTheSourceWhileNoTargetIsChosen() {
-        val choices = LanguageChoices.targetChoices(catalog, Selection("en", null))
-        assertEquals(listOf("de", "sw", "uk"), choices.map { it.code })
+        assertEquals(
+            listOf("de", "sw", "uk"),
+            LanguageChoices.targetChoices(catalog, Selection("en", null)),
+        )
     }
 
     /** uk teaches nothing back, so there is no swapped pair to offer a row for. */
     @Test
     fun targetChoicesOmitTheSourceWhenTheSwappedPairIsNotJoinable() {
-        val choices = LanguageChoices.targetChoices(catalog, Selection("en", "uk"))
-        assertEquals(listOf("de", "sw", "uk"), choices.map { it.code })
+        assertEquals(
+            listOf("de", "sw", "uk"),
+            LanguageChoices.targetChoices(catalog, Selection("en", "uk")),
+        )
     }
 
     @Test

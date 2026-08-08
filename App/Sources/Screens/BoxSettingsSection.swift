@@ -242,7 +242,6 @@ struct BoxSettingsSection: View {
     private var targetChoices: [String] {
         guard let catalog = model.catalog else { return [] }
         return LanguageChoices.shared.targetChoices(catalog: catalog, selection: selection)
-            .map(\.code)
     }
 
     private var sourceBinding: Binding<String> {

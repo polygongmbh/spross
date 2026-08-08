@@ -24,7 +24,6 @@ data class Chrome(
     val chooseTitle: String,
     val iSpeak: String,
     val iLearn: String,
-    val conceptsSuffix: String,
     val letsGo: String,
     val backLabel: String,
     val check: String,

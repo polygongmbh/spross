@@ -49,7 +49,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
     var confirmingReset by remember { mutableStateOf(false) }
     val selection = LanguageChoices.Selection(box.joinStamp.source, box.joinStamp.target)
     val targets = remember(catalog, selection) {
-        LanguageChoices.targetChoices(catalog, selection).map { it.code }
+        LanguageChoices.targetChoices(catalog, selection)
     }
 
     fun apply(next: LanguageChoices.Selection) {

@@ -3,13 +3,12 @@ package net.spross.app.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -26,6 +25,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
@@ -62,71 +62,70 @@ fun OnboardingScreen(model: AppModel) {
 
     fun label(code: String) = LanguageChoices.pickerRow(code, catalog.languages[code])
 
+    // why: the whole picker fits one screen at default type — the scroll is the
+    // reachability floor for a large font scale, never a step of the flow.
     Column(
-        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp),
+        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
+            .padding(horizontal = 24.dp, vertical = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Spacer(Modifier.height(24.dp))
-        Text(chrome.chooseTitle, style = MaterialTheme.typography.headlineMedium)
+        Text(chrome.chooseTitle, style = MaterialTheme.typography.headlineSmall)
 
-        Text(chrome.iSpeak, style = MaterialTheme.typography.titleMedium)
-        // why: scrollable — a row names its language in its own words too, which is
-        // what makes it findable and what makes the strip wider than the screen.
-        Row(
-            modifier = Modifier.horizontalScroll(rememberScrollState()),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            catalog.coveredSources().forEach { code ->
-                if (code == source) {
-                    Button(
-                        onClick = {},
-                        shape = MaterialTheme.shapes.small,
-                        contentPadding = ButtonDefaults.TextButtonContentPadding,
-                    ) {
-                        Text(label(code), maxLines = 1)
-                    }
-                } else {
-                    OutlinedButton(
-                        onClick = {
-                            apply(
-                                LanguageChoices.pickSource(
-                                    catalog,
-                                    LanguageChoices.Selection(source, target),
-                                    code,
-                                )
-                            )
-                        },
-                        shape = MaterialTheme.shapes.small,
-                        contentPadding = ButtonDefaults.TextButtonContentPadding,
-                    ) {
-                        Text(label(code), maxLines = 1)
-                    }
-                }
-            }
-        }
-
-        Text(chrome.iLearn, style = MaterialTheme.typography.titleMedium)
-        choices.forEach { option ->
-            val pick = {
-                apply(LanguageChoices.pickTarget(LanguageChoices.Selection(source, target), option.code))
-            }
+        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Text(chrome.iSpeak, style = MaterialTheme.typography.titleSmall)
+            // why: scrollable — a row names its language in its own words too, which is
+            // what makes it findable and what makes the strip wider than the screen.
             Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.horizontalScroll(rememberScrollState()),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                RadioButton(selected = target == option.code, onClick = pick)
-                Column {
-                    Text(label(option.code), style = MaterialTheme.typography.bodyLarge)
-                    Text(
-                        "${option.conceptCount} ${chrome.conceptsSuffix}",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
+                catalog.coveredSources().forEach { code ->
+                    if (code == source) {
+                        Button(
+                            onClick = {},
+                            shape = MaterialTheme.shapes.small,
+                            contentPadding = ButtonDefaults.TextButtonContentPadding,
+                        ) {
+                            Text(label(code), maxLines = 1)
+                        }
+                    } else {
+                        OutlinedButton(
+                            onClick = {
+                                apply(
+                                    LanguageChoices.pickSource(
+                                        catalog,
+                                        LanguageChoices.Selection(source, target),
+                                        code,
+                                    )
+                                )
+                            },
+                            shape = MaterialTheme.shapes.small,
+                            contentPadding = ButtonDefaults.TextButtonContentPadding,
+                        ) {
+                            Text(label(code), maxLines = 1)
+                        }
+                    }
                 }
             }
         }
 
-        Spacer(Modifier.height(8.dp))
+        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Text(chrome.iLearn, style = MaterialTheme.typography.titleSmall)
+            choices.forEach { code ->
+                val pick = {
+                    apply(LanguageChoices.pickTarget(LanguageChoices.Selection(source, target), code))
+                }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                        .selectable(selected = target == code, role = Role.RadioButton, onClick = pick),
+                ) {
+                    RadioButton(selected = target == code, onClick = null)
+                    Text(label(code), style = MaterialTheme.typography.bodyLarge)
+                }
+            }
+        }
+
         Button(
             onClick = { target?.let { model.completeOnboarding(source, it) } },
             enabled = target != null,

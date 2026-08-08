@@ -2,7 +2,7 @@ import SwiftUI
 import SprossKern
 
 /// Tiny first-launch sheet: pick the language you already speak (source)
-/// and the one you want to learn (target, with its concept count).
+/// and the one you want to learn (target).
 /// Coverage-driven: sources are languages with at least one learnable
 /// target; targets come from `Catalog.availableTargets` (≥ 50 concepts).
 /// Chrome speaks the language being picked: the device language greets first
@@ -93,8 +93,8 @@ struct OnboardingView: View {
     // MARK: - Which language you want to learn
 
     /// Learnable targets, plus the current source where the swapped pair teaches
-    /// something — the rows and their counts are `LanguageChoices.targetChoices`.
-    private var targetChoices: [LanguageChoices.TargetChoice] {
+    /// something — the rows are `LanguageChoices.targetChoices`.
+    private var targetChoices: [String] {
         guard let catalog = model.catalog else { return [] }
         return LanguageChoices.shared.targetChoices(catalog: catalog, selection: selection)
     }
@@ -104,13 +104,12 @@ struct OnboardingView: View {
             Text("onboarding.target.question")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            ForEach(targetChoices, id: \.code) { candidate in
-                DLSelectionRow(title: Text(verbatim: languageName(candidate.code)),
-                               caption: Text("onboarding.termsCount \(Int(candidate.conceptCount).formatted())"),
+            ForEach(targetChoices, id: \.self) { candidate in
+                DLSelectionRow(title: Text(verbatim: languageName(candidate)),
                                mark: .one,
-                               selected: target == candidate.code) {
+                               selected: target == candidate) {
                     apply(LanguageChoices.shared.pickTarget(selection: selection,
-                                                            code: candidate.code))
+                                                            code: candidate))
                 }
             }
         }
