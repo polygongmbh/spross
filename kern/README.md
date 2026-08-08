@@ -716,6 +716,10 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
 - **Closing books exactly as Weiter would** — a pending answer keeps its earned tone,
   never upgraded (a hint-assisted clean answer closes amber) and never lost;
   a revealed-but-unconfirmed answer books nothing.
+- `LetterDrillAvailability.report(catalog, box, language, hasVoice)` is the one gate for
+  whether the letter drill exists, what it may prompt, and where a learner enters the ladder.
+  `hasVoice` is a plain Boolean — every call is single-language and it crosses ObjC free —
+  and kern caches nothing: rebuild triggers (voices arriving, foregrounding) stay platform-side.
 
 ## Rejected designs
 

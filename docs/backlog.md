@@ -204,6 +204,9 @@ One line per item, with a file or context pointer, filed under the section it be
   area — across word class and sub-cluster — and never across areas. Review is unaffected:
   once bound, contrasting near-neighbours is the useful case, and the catalog already
   teaches those apart (`promptAmbiguous`, `CatalogAnswerGrader.OtherWord`).
+- The letter drill's `exampleText` fallback is not audibility-filtered, so an inaudible
+  escape-hatch row stays promptable and shows a dead speaker — shared by both platforms
+  (`kern/.../trainer/LetterDrillAvailability.exampleWords` KDoc, pinned in its test).
 
 ## App & UX
 
