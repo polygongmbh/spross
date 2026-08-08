@@ -64,8 +64,13 @@ auto-advance beats these share with it, are `design.md`'s.
   price until enough of them can be played back. Their mark is the step NUMBER, not a
   circle — the run walks the ladder by itself, and a circle beside each row reads as a
   choice that never answers the tap.
+- **A closed run has no screen of its own.** Both drills hand their figures — answered,
+  best streak, whether the record fell — to the page that started them and leave; the page
+  wears them as one tile above the picks and scrolls up to meet it, and a record still
+  rains its confetti there. Three numbers do not earn a page, and a page they do not earn
+  is one more ✕ between a learner and their next run — which the `Los` button already is.
 - **Letter drill**: it shares the slot drill's chrome — the endless scaffold, the streak
-  line, the close summary (`DrillChrome.swift`) — and keeps its own state machine, which
+  line, the result tile (`DrillChrome.swift`) — and keeps its own state machine, which
   is the whole of what the two have in common: its rungs are stages that change what a
   question IS rather than how big the number is, and its verdict ladder carries a third
   outcome (a synonym of the dictated word) that no slot task can produce.

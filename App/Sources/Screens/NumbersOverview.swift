@@ -40,6 +40,11 @@ struct NumbersOverview: View {
     @State var picked: Set<DrillVariant> = [.numbers]
     @State var modifiers: Set<DrillModifier> = []
     @State private var launch: Launch?
+    /// What the run that just closed came to. Shown as one tile above the picks
+    /// instead of a screen of its own — three figures do not earn a page, and a
+    /// page they do not earn is one more ✕ before the next run.
+    // why: internal, not private — the DEBUG hook seeds it for screenshots.
+    @State var lastRun: DrillRunResult?
 
     /// The run the start button opens, wrapped so ONE `fullScreenCover(item:)`
     /// carries it. A cover rather than a push: a drill is a full screen with its
@@ -50,15 +55,33 @@ struct NumbersOverview: View {
         let id = UUID()
     }
 
+    /// Scroll target for the tile a closed run leaves.
+    static let resultAnchor = "result"
+
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
-                    practiceSection
-                    referenceSection
-                    notesSection
+            ScrollViewReader { scroll in
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
+                        if let lastRun {
+                            DrillResultTile(result: lastRun)
+                                .id(Self.resultAnchor)
+                        }
+                        practiceSection
+                        referenceSection
+                        notesSection
+                    }
+                    .padding(DL.Space.xl)
                 }
-                .padding(DL.Space.xl)
+                // why: a tile inserted ABOVE the content keeps the scroll offset,
+                // so what a run came back with would sit off the top of a page the
+                // learner is still looking at. The page comes up to meet it.
+                .onChange(of: lastRun) { _, run in
+                    guard run != nil else { return }
+                    withAnimation(.easeOut(duration: 0.25)) {
+                        scroll.scrollTo(Self.resultAnchor, anchor: .top)
+                    }
+                }
             }
             #if DEBUG
             .defaultScrollAnchor(Self.uitestAnchor)
@@ -74,8 +97,17 @@ struct NumbersOverview: View {
         // ladder behind it is stale the moment the cover comes down.
         .fullScreenCover(item: $launch, onDismiss: reloadProgress) { launch in
             TrainerSessionView(mode: launch.mode, normalizer: launch.mode.normalizer(model),
-                               catalog: model.catalog, model: model)
+                               catalog: model.catalog, model: model,
+                               onFinish: { result in
+                                   withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
+                               })
                 .environment(\.locale, model.knownLocale)
+        }
+        // why: the record is what the confetti is for, and it rains over the
+        // page the run came back to — a wave retires itself, so no dismissal
+        // and no state to clear.
+        .overlay {
+            if lastRun?.newRecord == true { ConfettiView().ignoresSafeArea().allowsHitTesting(false) }
         }
     }
 
@@ -112,8 +144,11 @@ struct NumbersOverview: View {
         normalizePicks()
         #if DEBUG
         // why: a cover raised while the sheet under it is still animating in is
-        // dropped — the tap this stands in for always comes after that.
-        if launch == nil, UserDefaults.standard.bool(forKey: "uitest-run") {
+        // dropped — the tap this stands in for always comes after that. ONCE:
+        // this also runs when the cover comes down, and a closing run that
+        // reopens itself is a screenshot run that never ends.
+        if launch == nil, !Self.uitestLaunched, UserDefaults.standard.bool(forKey: "uitest-run") {
+            Self.uitestLaunched = true
             Task { @MainActor in
                 try? await Task.sleep(for: .milliseconds(600))
                 start()
@@ -153,6 +188,9 @@ struct NumbersOverview: View {
 
 #if DEBUG
 extension NumbersOverview {
+    /// One auto-start per launch — see `reloadProgress`.
+    @MainActor static var uitestLaunched = false
+
     /// `-uitest-section table|notes` opens the page in the middle of the table
     /// or at the notes under it instead of at the top — the reading sits below
     /// the fold and no thumb drives a screenshot run. The options need no hook:

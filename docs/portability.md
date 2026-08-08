@@ -134,8 +134,8 @@ in-process, no such copy may exist.
   (`HeuteView.swift:99-217`, `SessionCompletionView.swift:43-49`).
   The strings stay platform-side; the rule choosing the key does not.
 - Rules with exactly one Swift home and no Kotlin one, so kern by default:
-  `Card.alsoAccepts` (`DisplayText.swift:78`) and the `summaryEmoji` thresholds 10/5/2
-  (`DrillChrome.swift:129`) — both were duplicated in iOS and are not any more, which is
+  `Card.alsoAccepts` (`DisplayText.swift:78`) and the result tile's emoji thresholds 10/5/2
+  (`DrillChrome.swift`) — both were duplicated in iOS and are not any more, which is
   what makes the move cheap. Still stated twice: the drill normalizer's strictness triple
   (`TrainerHubView.swift:92-93` = `LetterDrillView+Grading.swift:112-114`).
 

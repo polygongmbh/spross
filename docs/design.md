@@ -207,8 +207,9 @@ never the shape of the app.
 - **Stopping is the default at the end of a round**: the round that was planned is done,
   so "Fertig" is the primary button and going on the quiet one below it — an earned break
   needs no arguing for, and another round is still one tap away.
-  A session summary and a drill's end through the same pair of buttons, so they cannot
-  drift apart on which way out is the default.
+  That is the review session's shape; a drill has no end screen at all — it hands its
+  figures to the page that started it (`surfaces.md`), where the way on is the button
+  that was already there.
   A day that is going badly says so, and says why stopping is the better call.
 - **The forest** at the foot of Heute is a picture of the box, never a way around it:
   one tree per area, in catalog order, on ground its whole row shares. It answers the one

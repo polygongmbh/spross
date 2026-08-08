@@ -12,9 +12,9 @@ extension TrainerSessionView {
     /// `-uitest-level N` starts the run's FIRST variant at that rung (numbers:
     /// digit count), the only way to photograph a long prompt without playing up to it;
     /// `-uitest-streak N` presets a running streak;
-    /// `-uitest-summary 1` jumps straight to the close-summary state — add
-    /// `-uitest-record 1` to drop the stored record first, so the run books one
-    /// and the summary shows its record state;
+    /// `-uitest-close 1` closes the run the way the ✕ does, so the tile it leaves
+    /// on the page behind it can be photographed — add `-uitest-record 1` to drop
+    /// the stored record first, so the run books one and the tile shows it;
     /// `-uitest-typo 1` renders the accepted-with-typo state;
     /// `-uitest-reference 1` raises the numbers table the "?" opens.
     func uitestStart() {
@@ -34,10 +34,14 @@ extension TrainerSessionView {
             bestStreak = max(preset, 12)
             doneCount = preset + 6
         }
-        if defaults.bool(forKey: "uitest-summary") {
+        if defaults.bool(forKey: "uitest-close") {
             if defaults.bool(forKey: "uitest-record") { TrainerRecords.clear(mode.recordKey) }
-            newRecord = TrainerRecords.record(bestStreak, for: mode.recordKey)
-            showingSummary = true
+            // why: through closeRun, not by seeding the page — the tile is worth
+            // photographing only if the run really books what it claims to.
+            Task { @MainActor in
+                try? await Task.sleep(for: .milliseconds(400))
+                closeRun()
+            }
         }
         if defaults.bool(forKey: "uitest-typo") {
             feedback = .almost(correctForm: current.display, reason: .typo)

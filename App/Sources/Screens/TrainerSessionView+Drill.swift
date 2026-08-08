@@ -197,17 +197,4 @@ extension TrainerSessionView {
         .foregroundStyle(Color.dlTextSecondary)
     }
 
-    // MARK: - Close summary
-
-    var summary: some View {
-        DrillSummaryView(
-            doneCount: doneCount,
-            bestStreak: bestStreak,
-            newRecord: newRecord,
-            title: mode.titleKey,
-            languageName: languageName(language),
-            onDone: { dismiss() },
-            onPractice: { withAnimation(.easeOut(duration: 0.2)) { showingSummary = false } }
-        )
-    }
 }

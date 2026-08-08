@@ -33,6 +33,9 @@ struct LettersOverview: View {
     // why: internal, not private — +Practice.swift renders the ladder from it.
     @State var availability: LetterDrillAvailability?
     @State private var launch: Launch?
+    /// What the run that just closed came to — one tile above the stages, the
+    /// shape the numbers page uses, instead of a screen with a second ✕ on it.
+    @State private var lastRun: DrillRunResult?
 
     /// The run the start button opens, wrapped so ONE `fullScreenCover(item:)`
     /// carries it — the same shape the numbers overview uses.
@@ -41,14 +44,31 @@ struct LettersOverview: View {
         let id = UUID()
     }
 
+    /// Scroll target for the tile a closed run leaves.
+    static let resultAnchor = "result"
+
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
-                    practiceSection
-                    alphabetSection
+            ScrollViewReader { scroll in
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
+                        if let lastRun {
+                            DrillResultTile(result: lastRun)
+                                .id(Self.resultAnchor)
+                        }
+                        practiceSection
+                        alphabetSection
+                    }
+                    .padding(DL.Space.xl)
                 }
-                .padding(DL.Space.xl)
+                // why: the numbers page's rule — a tile inserted above the
+                // content keeps the offset, so the page comes up to meet it.
+                .onChange(of: lastRun) { _, run in
+                    guard run != nil else { return }
+                    withAnimation(.easeOut(duration: 0.25)) {
+                        scroll.scrollTo(Self.resultAnchor, anchor: .top)
+                    }
+                }
             }
             #if DEBUG
             .defaultScrollAnchor(Self.uitestAnchor)
@@ -78,7 +98,10 @@ struct LettersOverview: View {
             if phase == .active { refreshAvailability() }
         }
         .fullScreenCover(item: $launch) { launch in
-            LetterDrillView(model: model, language: launch.language)
+            LetterDrillView(model: model, language: launch.language,
+                            onFinish: { result in
+                                withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
+                            })
                 .environment(\.locale, model.knownLocale)
         }
     }
@@ -93,8 +116,11 @@ struct LettersOverview: View {
         availability = LetterDrillAvailability(model: model, language: language)
         #if DEBUG
         // why: a cover raised while the sheet under it is still animating in is
-        // dropped — the tap this stands in for always comes after that.
-        if launch == nil, UserDefaults.standard.bool(forKey: "uitest-run"), drillAvailable {
+        // dropped — the tap this stands in for always comes after that. ONCE:
+        // a run that reopens itself on every foreground never ends.
+        if launch == nil, !Self.uitestLaunched, UserDefaults.standard.bool(forKey: "uitest-run"),
+           drillAvailable {
+            Self.uitestLaunched = true
             Task { @MainActor in
                 try? await Task.sleep(for: .milliseconds(600))
                 start()
@@ -119,6 +145,9 @@ struct LettersOverview: View {
 
 #if DEBUG
 extension LettersOverview {
+    /// One auto-start per launch — see `refreshAvailability`.
+    @MainActor static var uitestLaunched = false
+
     /// `-uitest-section alphabet` opens the page at the table instead of at the
     /// top — the numbers overview's hook, reused, because on both pages the
     /// reading now sits below the fold and no tap driver is installed.
