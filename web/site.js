@@ -4,13 +4,13 @@
 // Buttondown-shaped: "https://buttondown.com/api/emails/embed-subscribe/<slug>"
 const SIGNUP_ENDPOINT = "";
 
-// Language rows mirror catalog/languages.json (name, flag); speech is a web-only fact.
+// Language rows mirror catalog/languages.json (name, flag, articles); speech is a web-only fact.
 const LANGS = [
-  { code: "de", name: "Deutsch", flag: "🇩🇪", speech: "de-DE" },
-  { code: "en", name: "English", flag: "🇬🇧", speech: "en-GB" },
-  { code: "es", name: "Español", flag: "🇪🇸", speech: "es-ES" },
-  { code: "sw", name: "Kiswahili", flag: "🇹🇿", speech: "sw" },
-  { code: "uk", name: "Українська", flag: "🇺🇦", speech: "uk-UA" },
+  { code: "de", name: "Deutsch", flag: "🇩🇪", speech: "de-DE", articles: ["der", "die", "das", "ein", "eine"] },
+  { code: "en", name: "English", flag: "🇬🇧", speech: "en-GB", articles: ["the", "a", "an"] },
+  { code: "es", name: "Español", flag: "🇪🇸", speech: "es-ES", articles: ["el", "la", "los", "las", "un", "una"] },
+  { code: "sw", name: "Kiswahili", flag: "🇹🇿", speech: "sw", articles: [] },
+  { code: "uk", name: "Українська", flag: "🇺🇦", speech: "uk-UA", articles: [] },
 ];
 
 const web = globalThis.kern.net.spross.kern.web;
@@ -18,9 +18,15 @@ const WebTrainer = web.WebTrainer;
 
 const MAX_LEVEL = 4; // the web taste stops at thousands; the app climbs to 10 digits
 const NUDGE_AFTER = 10;
+const ADVANCE_GRACE_MS = 350;
 
 const $ = (id) => document.getElementById(id);
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// The drill card and the signup form only work with JS — reveal them now that it runs
+// (no-JS visitors keep the noscript notes instead of dead controls).
+document.querySelector(".drill-card").hidden = false;
+$("signup-form").hidden = false;
 
 // ---------- language pick ----------
 
@@ -33,7 +39,10 @@ for (const l of LANGS) {
   chip.className = "chip";
   chip.type = "button";
   chip.setAttribute("aria-pressed", "false");
-  chip.textContent = `${l.flag} ${l.name}`;
+  const name = document.createElement("span");
+  name.lang = l.code;
+  name.textContent = l.name;
+  chip.append(`${l.flag} `, name);
   chip.addEventListener("click", () => pickLanguage(l, chip));
   chipsHost.appendChild(chip);
 }
@@ -54,7 +63,7 @@ function pickLanguage(l, chip) {
 
 function primerRows(values) {
   return values
-    .map((n) => `<tr><td class="n">${n}</td><td class="w">${WebTrainer.spellNumber(n, lang.code)}</td></tr>`)
+    .map((n) => `<tr><td class="n">${n}</td><td class="w" lang="${lang.code}">${WebTrainer.spellNumber(n, lang.code)}</td></tr>`)
     .join("");
 }
 
@@ -70,7 +79,7 @@ function renderPrimer() {
       <table><caption>The tens</caption>${primerRows(tens)}</table>
       <table><caption>Built numbers</caption>${primerRows(built)}</table>
     </div>
-    <p class="place">The place words to watch for: <strong>${hundred}</strong> (hundreds) and <strong>${thousand}</strong> (thousands).</p>`;
+    <p class="place">The place words to watch for: <strong lang="${lang.code}">${hundred}</strong> (hundreds) and <strong lang="${lang.code}">${thousand}</strong> (thousands).</p>`;
 }
 
 $("primer-toggle").addEventListener("click", () => {
@@ -94,13 +103,14 @@ const run = {
   hintUsed: false,
   nudged: false,
   muted: false,
+  advancedAt: 0,
 };
 
 $("start-drill").addEventListener("click", startRun);
 $("again").addEventListener("click", startRun);
 
 function startRun() {
-  drill = new web.NumbersDrill(lang.code, Date.now() % 0x7fffffff);
+  drill = new web.NumbersDrill(lang.code, Date.now() % 0x7fffffff, lang.articles);
   Object.assign(run, {
     level: 1, streak: 0, best: 0, cleanAtLevel: 0, outcomes: [],
     seenDigits: new Set(), task: null, prevPrompt: null,
@@ -108,6 +118,7 @@ function startRun() {
   });
   $("lang-pick").hidden = true;
   $("summary").hidden = true;
+  $("nudge").hidden = true;
   $("run").hidden = false;
   $("progress").innerHTML = "";
   $("tens-link").hidden = !WebTrainer.tensReference(lang.code);
@@ -121,16 +132,19 @@ function nextTask() {
   run.prevPrompt = task.prompt;
   run.locked = false;
   run.hintUsed = false;
+  run.advancedAt = performance.now();
 
   $("numeral").textContent = task.promptDisplay;
   $("reveal").hidden = true;
   $("correction").hidden = true;
   $("tens-card").hidden = true;
   $("answer").dataset.state = "idle";
-  $("feedback").textContent = "";
+  // why: the previous verdict stays in the live region across the swap —
+  // clearing it here raced screen readers out of ever announcing it.
   const input = $("answer-input");
   input.value = "";
-  input.disabled = false;
+  input.readOnly = false;
+  input.lang = lang.code;
   input.placeholder = `… in ${lang.name}`;
   input.focus({ preventScroll: true });
   setAction("Reveal");
@@ -154,6 +168,18 @@ function updateHead() {
 
 function setAction(label) {
   $("main-action").textContent = label;
+}
+
+/** English frame around a target-language word, tagged so screen readers switch voice. */
+function announce(prefix, word) {
+  const region = $("feedback");
+  region.textContent = prefix;
+  if (word) {
+    const span = document.createElement("span");
+    span.lang = lang.code;
+    span.textContent = word;
+    region.append(" ", span);
+  }
 }
 
 // ---------- answering ----------
@@ -189,6 +215,10 @@ function stillGrowing(typed) {
 
 $("main-action").addEventListener("click", () => {
   if (run.locked) { advance(); return; }
+  // why: a bounced Enter right after an advance would reveal-and-miss a task
+  // the visitor never saw — inside the grace window the press is the echo of
+  // the one that advanced, not a decision about the new number.
+  if (performance.now() - run.advancedAt < ADVANCE_GRACE_MS) return;
   const typed = input.value.trim();
   if (!typed) { settle("wrong", null, null); return; } // Reveal = a miss
   const verdict = drill.grade(typed, run.task);
@@ -199,17 +229,25 @@ $("main-action").addEventListener("click", () => {
 
 function settle(kind, corrected, autoAdvanceMs) {
   run.locked = true;
-  input.disabled = true;
+  // why: readOnly, never disabled — disabling blurs the field and takes the
+  // mobile keyboard with it, and a programmatic refocus cannot bring it back.
+  input.readOnly = true;
   $("hint").hidden = true;
+  const accepted = kind === "exact" || kind === "typo";
   const clean = kind === "exact" && !run.hintUsed;
+
+  if (accepted) {
+    // Any accepted answer extends the streak (as in the app); only a CLEAN
+    // exact counts toward ramping the level.
+    run.streak += 1;
+    run.best = Math.max(run.best, run.streak);
+  }
 
   if (kind === "exact") {
     run.outcomes.push(run.hintUsed ? "near" : "ok");
     $("answer").dataset.state = "exact";
-    $("feedback").textContent = "Right!";
+    announce("Right!", null);
     if (clean) {
-      run.streak += 1;
-      run.best = Math.max(run.best, run.streak);
       run.cleanAtLevel += 1;
       if (run.cleanAtLevel >= 2 && run.level < MAX_LEVEL) { run.level += 1; run.cleanAtLevel = 0; }
     }
@@ -218,8 +256,9 @@ function settle(kind, corrected, autoAdvanceMs) {
     $("answer").dataset.state = "typo";
     $("correction").hidden = false;
     $("correction").innerHTML = "";
+    $("correction").lang = lang.code;
     $("correction").append(speakable(corrected));
-    $("feedback").textContent = `Almost — ${corrected}`;
+    announce("Almost —", corrected);
     speak(corrected);
   } else {
     run.outcomes.push("miss");
@@ -229,8 +268,9 @@ function settle(kind, corrected, autoAdvanceMs) {
     $("answer").dataset.state = "wrong";
     $("reveal").hidden = false;
     $("reveal").innerHTML = "";
+    $("reveal").lang = lang.code;
     $("reveal").append(speakable(run.task.display));
-    $("feedback").textContent = `It reads: ${run.task.display}`;
+    announce("It reads:", run.task.display);
     if (!$("tens-link").hidden) showTens(false);
     speak(run.task.display);
   }
@@ -266,7 +306,10 @@ function maybeNudge() {
   $("nudge").hidden = false;
 }
 
-$("nudge-close").addEventListener("click", () => { $("nudge").hidden = true; });
+$("nudge-close").addEventListener("click", () => {
+  $("nudge").hidden = true;
+  input.focus({ preventScroll: true });
+});
 
 // ---------- tens reference (Swahili) ----------
 
@@ -276,6 +319,7 @@ function showTens(costsTheRamp) {
   const tens = WebTrainer.tensReference(lang.code);
   if (!tens) return;
   $("tens-card").hidden = false;
+  $("tens-card").lang = lang.code;
   $("tens-card").textContent = Array.from(tens).join(" · ");
   if (costsTheRamp && !run.locked) run.hintUsed = true; // a looked-up answer never ramps
 }
@@ -292,12 +336,14 @@ $("finish").addEventListener("click", () => {
   $("summary-best").textContent = run.best > 0 ? `Best streak: ${run.best}` : "Every seed starts somewhere.";
   $("summary-lang").textContent = `Numbers · ${lang.name}`;
   $("summary").hidden = false;
+  $("summary-count").focus({ preventScroll: true });
 });
 
 function backToPick() {
   $("run").hidden = true;
   $("summary").hidden = true;
   $("lang-pick").hidden = false;
+  chipsHost.querySelector('[aria-pressed="true"]')?.focus({ preventScroll: true });
 }
 
 $("switch-lang").addEventListener("click", backToPick);

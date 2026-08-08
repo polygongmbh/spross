@@ -37,10 +37,13 @@ class WebVerdict internal constructor(
  * hint gating — stays page-side, mirroring the app/kern split.
  */
 @JsExport
-class NumbersDrill(private val language: String, seed: Int) {
+class NumbersDrill(private val language: String, seed: Int, articles: Array<String> = arrayOf()) {
     private val rng = Random(seed)
+    // why: the page passes the language's articles from languages.json — without
+    // them the strict-article rule is inert and "ein tausend" grades typo where
+    // the app grades wrong.
     private val normalizer = AnswerNormalizer(
-        LanguageInfo(code = language, name = "", englishName = "", flag = ""),
+        LanguageInfo(code = language, name = "", englishName = "", flag = "", articles = articles.toList()),
         articleLeniency = false,
         maxTyposPerWord = 1,
     )
