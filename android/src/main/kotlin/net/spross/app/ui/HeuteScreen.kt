@@ -1,5 +1,6 @@
 package net.spross.app.ui
 
+import android.text.format.DateFormat
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,7 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -16,79 +18,111 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Locale
+import java.util.TimeZone
 import net.spross.app.AppModel
 import net.spross.app.letterDrillAvailable
+import net.spross.kern.catalog.LanguageChoices
+import net.spross.kern.session.SessionOfferKind
 
+/**
+ * The north star screen: one glance = what to do right now.
+ *
+ * Top to bottom: the date and the day's name, ONE state card, the trainers, and the
+ * fortnight behind it. Which state card is a strict precedence over the box's own answers
+ * ([heuteCard]) — an offer outranks a done state, and a box nothing has been packed into
+ * is not "caught up", it has never been opened.
+ */
 @Composable
 fun HeuteScreen(model: AppModel) {
     val chrome = model.chrome
     val stats = model.stats
-    val catalog = model.catalog
-    val stamp = model.box?.joinStamp
+    val box = model.box
+    val source = box?.joinStamp?.source ?: "en"
+    val locale = remember(source) {
+        Locale.forLanguageTag(LanguageChoices.chromeLanguage(source))
+    }
+    // why: each of these is a walk over the box, and they are read together so the card,
+    // its tally and its fine print describe one moment rather than three a frame apart.
+    val standing = remember(box) {
+        box?.let { HeuteStanding.of(it, System.currentTimeMillis(), TimeZone.getDefault().id) }
+    }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(24.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(DlSpace.xl),
+        verticalArrangement = Arrangement.spacedBy(DlSpace.xl),
     ) {
-        Spacer(Modifier.height(16.dp))
-        Text(chrome.heuteTitle, style = MaterialTheme.typography.headlineLarge)
-        if (catalog != null && stamp != null) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                val sourceName = catalog.languages[stamp.source]?.name ?: stamp.source
-                val targetName = catalog.languages[stamp.target]?.name ?: stamp.target
+        Spacer(Modifier.height(DlSpace.s))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Column(Modifier.weight(1f)) {
                 Text(
-                    "$sourceName → $targetName",
-                    style = MaterialTheme.typography.bodyMedium,
+                    todayLine(locale),
+                    style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    // The pair yields space to the doors beside it rather than pushing
-                    // one off the edge; `fill = false` keeps it packed left as before.
-                    modifier = Modifier.weight(1f, fill = false),
                 )
-                TextButton(onClick = { model.editLanguages() }) { Text(chrome.changeLanguages) }
-                // The only other door out of Heute: version, the read-aloud switch
-                // and who spoke the recordings.
-                TextButton(onClick = { model.openAbout() }) { Text(chrome.aboutButton) }
-                // The box itself: every word the profile holds, packed or not. The icon
-                // carries the name rather than a label — the row is already full.
-                TextButton(
-                    onClick = { model.openBox() },
-                    modifier = Modifier.semantics { contentDescription = chrome.boxNav },
-                ) { Text("📦") }
+                Text(chrome.heuteTitle, style = MaterialTheme.typography.headlineLarge)
             }
+            // The box itself: every word the profile holds, packed or not. The icon
+            // carries the name rather than a label — nothing else on this row does.
+            TextButton(
+                onClick = { model.openBox() },
+                modifier = Modifier.semantics { contentDescription = chrome.boxNav },
+            ) { Text("📦", style = MaterialTheme.typography.headlineSmall) }
         }
 
-        if (stats != null) {
-            Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
-                Row(
-                    modifier = Modifier.fillMaxWidth().padding(20.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                ) {
-                    Stat("${stats.dueCount}", chrome.dueLabel)
-                    Stat("${stats.consolidatedCount}", chrome.consolidatedLabel)
-                    Stat("${stats.learningCount}", chrome.freshLabel)
-                    Stat("🔥 ${stats.streak}", "Streak")
-                }
-            }
-        }
+        // Android surfaces no load failure of its own yet (the model has no such state),
+        // so the failure branch is unreachable here — the chrome for it stands ready.
+        val card = heuteCard(
+            failed = false,
+            offerKind = standing?.offer?.kind ?: SessionOfferKind.Nothing,
+            activeCards = stats?.activeCount ?: 0,
+        )
+        when (card) {
+            HeuteCard.Failure -> StateCard(
+                emoji = "🫤",
+                title = chrome.errorTitle,
+                message = chrome.errorCatalogMissing,
+            )
 
-        // Fortschritt: the same fortnight the streak above was counted from, on the very
-        // refresh that produced it — the strip reads kern's walk, never one of its own.
-        ActivityStrip(model.activityWindow, stats?.streak ?: 0, chrome)
+            HeuteCard.Session -> standing?.let {
+                SessionCard(model, it, stats?.streak ?: 0)
+            }
+
+            HeuteCard.Done -> standing?.let {
+                DoneCard(model, it, stats?.streak ?: 0)
+            }
+
+            HeuteCard.EmptyBox -> StateCard(
+                emoji = "📦",
+                title = chrome.emptyBoxTitle,
+                message = chrome.emptyBoxMessage,
+                action = Pair(chrome.emptyBoxAction, { model.openBox() }),
+            )
+        }
 
         // The platform's first trainer. It appears by itself once the synthesizer has
         // bound (the predicate is observable — a cold start answers "no voice" for a
         // moment), and stays put while reading aloud is switched off: the drill says so
         // and offers the one tap that undoes it, which hiding the chip would not.
         if (model.letterDrillAvailable) {
-            Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.medium,
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+            ) {
                 Column(
-                    modifier = Modifier.fillMaxWidth().padding(20.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier.fillMaxWidth().padding(DlSpace.l),
+                    verticalArrangement = Arrangement.spacedBy(DlSpace.m),
                 ) {
                     Text(chrome.trainingTitle, style = MaterialTheme.typography.titleMedium)
                     OutlinedButton(
@@ -101,45 +135,18 @@ fun HeuteScreen(model: AppModel) {
             }
         }
 
-        Spacer(Modifier.weight(1f))
-        if (model.sessionAvailable) {
-            Button(
-                onClick = { model.startSession() },
-                modifier = Modifier.fillMaxWidth(),
-                shape = MaterialTheme.shapes.small,
-            ) {
-                Text(chrome.practice, style = MaterialTheme.typography.titleMedium)
-            }
-        } else {
-            Text(
-                if ((stats?.activeCount ?: 0) > 0) chrome.doneToday else chrome.emptyState,
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.fillMaxWidth(),
-            )
-            // The round has to come back with something; active cards alone did not
-            // promise that.
-            if (model.canPracticeExtra) {
-                OutlinedButton(
-                    onClick = { model.startExtraSession() },
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = MaterialTheme.shapes.small,
-                ) {
-                    Text(chrome.extraRound)
-                }
-            }
+        Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+            Text(chrome.progressTitle, style = MaterialTheme.typography.titleLarge)
+            // Fortschritt: the same fortnight the streak was counted from, on the very
+            // refresh that produced it — the strip reads kern's walk, never one of its own.
+            ActivityStrip(model.activityWindow, stats?.streak ?: 0, chrome, locale)
         }
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(DlSpace.l))
     }
 }
 
-@Composable
-private fun Stat(value: String, label: String) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(value, style = MaterialTheme.typography.titleLarge)
-        Text(
-            label,
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-    }
+/** "Freitag, 8. August" in the chrome's language — the caption over the day's name. */
+private fun todayLine(locale: Locale): String {
+    val pattern = DateFormat.getBestDateTimePattern(locale, "EEEEdMMMM")
+    return LocalDate.now().format(DateTimeFormatter.ofPattern(pattern, locale)).uppercase(locale)
 }

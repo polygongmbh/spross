@@ -1,44 +1,219 @@
 package net.spross.app.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import net.spross.app.AppModel
+import net.spross.app.Chrome
+import net.spross.kern.box.AreaGroupSection
+import net.spross.kern.box.BoxBrowser
+import net.spross.kern.box.BoxState
+import net.spross.kern.box.BoxStatistics
+import net.spross.kern.box.OwnWords
+import net.spross.kern.catalog.Catalog
 
 /**
  * The box browser: the shelves, the words standing on them, and the settings under them.
  *
- * The shell only — the door in, the door out, and the heading. What the shelves show is
- * kern's to answer (`BoxBrowser.sections` / `cardsInArea` / `enqueueableCardIds` /
- * `cardRowState`), and this screen renders those answers; the box is changed through
- * [AppModel.updateBox], never by walking `state.cards` here.
+ * What the shelves show is kern's to answer ([BoxBrowser.sections] / [BoxBrowser.cardsInArea] /
+ * [BoxBrowser.enqueueableCardIds] / [BoxBrowser.cardRowState]), and this screen renders those
+ * answers; the box is changed through [AppModel.updateBox], never by walking `state.cards` here.
  *
- * [openAt] is the area the browser was reached BY — a search hit, later a tree — and it
- * says where the screen OPENS, not where it stands afterwards, which is why it arrives as
- * a parameter and is read once.
+ * [openAt] is the area the browser was reached BY — a search hit, later a tree — and it says
+ * where the screen OPENS, not where it stands afterwards, which is why it arrives as a
+ * parameter and is read once.
  */
 @Composable
 fun BoxScreen(model: AppModel, openAt: String? = null) {
-    val chrome = model.chrome
     BackHandler { model.closeBox() }
-
-    Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                chrome.boxTitle,
-                style = MaterialTheme.typography.headlineLarge,
-                modifier = Modifier.weight(1f),
-            )
-            TextButton(onClick = { model.closeBox() }) { Text("✕") }
+    val catalog = model.catalog
+    val box = model.box
+    val stats = model.stats
+    if (catalog == null || box == null || stats == null) {
+        Column(Modifier.fillMaxSize().padding(DlSpace.xl)) {
+            BoxTopBar(model.chrome, onSearch = null, onClose = model::closeBox)
         }
+        return
+    }
+    BoxBrowserScreen(model, catalog, box, stats, openAt)
+}
+
+/** One entry of the scrolling box; the flat list is what lets a reveal find its row. */
+private sealed interface BoxItem {
+    data class Group(val section: AreaGroupSection) : BoxItem
+    data class Area(val area: String) : BoxItem
+    data object Settings : BoxItem
+}
+
+@Composable
+private fun BoxBrowserScreen(
+    model: AppModel,
+    catalog: Catalog,
+    box: BoxState,
+    stats: BoxStatistics,
+    openAt: String?,
+) {
+    val chrome = model.chrome
+    val source = box.joinStamp.source
+    val sections = remember(catalog, stats, source) { BoxBrowser.sections(catalog, stats, source) }
+    val areaNames = remember(catalog, stats) { BoxBrowser.areaNames(catalog, stats) }
+    val naming = remember(catalog, chrome, source) {
+        AreaNaming(
+            chrome = chrome,
+            catalogTitle = { catalog.areaTitle(it, source) },
+            catalogSubtitle = { catalog.areaSubtitle(it, source) },
+            catalogEmoji = { catalog.areaEmoji(it) },
+        )
+    }
+    val areaStats = remember(stats) { stats.areas.associateBy { it.name } }
+
+    // why: the opening fold reads the box ONCE — a group that folded itself shut again as
+    // the learner works would be worse than one that opened on the wrong shelf. An area
+    // named on the way in opens INSTEAD of the default: the learner already said which.
+    var openGroups by remember {
+        mutableStateOf(
+            setOfNotNull(
+                openAt?.let { area -> sections.firstOrNull { area in it.areas }?.id }
+                    ?: BoxBrowser.defaultExpandedGroupId(sections, stats),
+            ),
+        )
+    }
+    var openAreas by remember { mutableStateOf(setOfNotNull(openAt)) }
+    var scrollTo by remember { mutableStateOf(openAt) }
+    var searching by remember { mutableStateOf(false) }
+    val listState = rememberLazyListState()
+
+    val items = remember(sections, openGroups, areaNames) {
+        buildList {
+            sections.forEach { section ->
+                add(BoxItem.Group(section))
+                if (section.id in openGroups) section.areas.forEach { add(BoxItem.Area(it)) }
+            }
+            // why: no manifest group owns the learner's own words, and none should — they
+            // stand on their own, after everything the catalog brought.
+            if (OwnWords.AREA in areaNames) add(BoxItem.Area(OwnWords.AREA))
+            add(BoxItem.Settings)
+        }
+    }
+
+    fun reveal(area: String) {
+        sections.firstOrNull { area in it.areas }?.let { openGroups = openGroups + it.id }
+        openAreas = openAreas + area
+        scrollTo = area
+    }
+
+    LaunchedEffect(scrollTo, items) {
+        val target = scrollTo ?: return@LaunchedEffect
+        val index = items.indexOfFirst { it is BoxItem.Area && it.area == target }
+        // why: revealing is two moves — unfold, then bring the shelf up to the thumb.
+        if (index >= 0) listState.animateScrollToItem(index)
+        scrollTo = null
+    }
+
+    if (searching) {
+        BoxSearchScreen(
+            model = model,
+            naming = naming,
+            areas = areaNames,
+            areaStats = areaStats,
+            onReveal = { area -> searching = false; reveal(area) },
+            onClose = { searching = false },
+        )
+        return
+    }
+
+    Column(Modifier.fillMaxSize().padding(horizontal = DlSpace.xl)) {
+        BoxTopBar(chrome, onSearch = { searching = true }, onClose = model::closeBox)
+        Text(
+            chrome.boxSubtitle.format(stats.activeCount, box.cards.size),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        LazyColumn(
+            state = listState,
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+            contentPadding = PaddingValues(vertical = DlSpace.l),
+        ) {
+            itemsIndexed(items, key = { _, item -> itemKey(item) }) { _, item ->
+                when (item) {
+                    is BoxItem.Group -> GroupHeader(
+                        section = item.section,
+                        emojis = item.section.areas.joinToString("") { naming.emoji(it) },
+                        open = item.section.id in openGroups,
+                        chrome = chrome,
+                        onToggle = {
+                            openGroups = if (item.section.id in openGroups) {
+                                openGroups - item.section.id
+                            } else {
+                                openGroups + item.section.id
+                            }
+                        },
+                    )
+
+                    is BoxItem.Area -> AreaSection(
+                        model = model,
+                        area = item.area,
+                        naming = naming,
+                        stats = areaStats[item.area],
+                        expanded = item.area in openAreas,
+                        onToggle = {
+                            openAreas = if (item.area in openAreas) {
+                                openAreas - item.area
+                            } else {
+                                openAreas + item.area
+                            }
+                        },
+                    )
+
+                    BoxItem.Settings -> BoxSettingsSection(model, catalog, box)
+                }
+            }
+        }
+    }
+}
+
+private fun itemKey(item: BoxItem): String = when (item) {
+    is BoxItem.Group -> "group:${item.section.id}"
+    is BoxItem.Area -> "area:${item.area}"
+    BoxItem.Settings -> "settings"
+}
+
+@Composable
+private fun BoxTopBar(chrome: Chrome, onSearch: (() -> Unit)?, onClose: () -> Unit) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text(
+            chrome.boxTitle,
+            style = MaterialTheme.typography.headlineLarge,
+            modifier = Modifier.weight(1f),
+        )
+        onSearch?.let {
+            TextButton(
+                onClick = it,
+                modifier = Modifier.semantics { contentDescription = chrome.search },
+            ) { Text("🔍") }
+        }
+        TextButton(onClick = onClose) { Text("✕") }
     }
 }

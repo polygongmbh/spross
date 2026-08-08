@@ -31,6 +31,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import net.spross.app.CardDisplay
 import net.spross.app.Chrome
+import net.spross.kern.box.AreaStatistics
+import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Language
 import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
@@ -62,6 +64,91 @@ fun SegmentsBar(segments: List<AnswerTone>, remaining: Int, modifier: Modifier =
                 Modifier.weight(1f).height(6.dp)
                     .background(palette.surfaceTint, RoundedCornerShape(3.dp))
             )
+        }
+    }
+}
+
+/**
+ * The one tinted capsule the app's standings wear: a word (never a colour alone) over its
+ * accent's own 14 % wash, so a badge reads the same on a card as on a recessed row.
+ */
+@Composable
+fun Pill(text: String, color: Color, modifier: Modifier = Modifier) {
+    Text(
+        text,
+        style = MaterialTheme.typography.bodySmall,
+        color = color,
+        maxLines = 1,
+        modifier = modifier
+            .background(Dl.colors.wash(color), RoundedCornerShape(percent = 50))
+            .padding(horizontal = DlSpace.m, vertical = DlSpace.xs + 1.dp),
+    )
+}
+
+/**
+ * Where one card stands on the ladder.
+ *
+ * The mark follows [consolidated] — kern's stricter bar — and NEVER the phase: a card
+ * reaches Review well below it, so a seal keyed to the phase would mark words the shelf
+ * above leaves out of its consolidated count, and the row would disagree with the shelf
+ * on sight. A card with nothing behind it gets no badge at all; that absence is what
+ * says "new" (kern `CardRowState.Plain`), so this is never asked about one.
+ */
+@Composable
+fun PhaseBadge(phase: CardPhase, consolidated: Boolean, chrome: Chrome) {
+    val palette = Dl.colors
+    val color = when (phase) {
+        CardPhase.Learning -> palette.der
+        CardPhase.Review -> palette.success
+        CardPhase.Relearning -> palette.amber
+        CardPhase.New -> palette.textSecondary
+    }
+    val word = when (phase) {
+        CardPhase.Learning -> chrome.phaseLearning
+        CardPhase.Review -> chrome.phaseReview
+        CardPhase.Relearning -> chrome.phaseRelearning
+        CardPhase.New -> chrome.newLabel
+    }
+    Pill("${if (consolidated) SEAL else LEAF} $word", color)
+}
+
+/** The consolidated mark; the same glyph the area's own count row leads with. */
+const val SEAL = "✔"
+
+/** …and the one for a word still on its way in. */
+const val LEAF = "🌱"
+
+/** Phrases waiting on their components — the only count that is not about a schedule. */
+const val LOCK = "🔒"
+
+/**
+ * An area's cards as three stretches: consolidated, still learning, never introduced —
+ * measured against the area's FULL card count, so the untouched rest of a shelf stays
+ * visible instead of a bar that always reads as full.
+ *
+ * The split and the denominator are the box's rulings ([AreaStatistics]); empty stretches
+ * are dropped, and an area with nothing in any of them draws one neutral rule rather than
+ * a full amber bar claiming everything is being learnt.
+ */
+@Composable
+fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
+    val palette = Dl.colors
+    val shape = RoundedCornerShape(percent = 50)
+    Row(
+        modifier = modifier.fillMaxWidth().height(6.dp),
+        horizontalArrangement = Arrangement.spacedBy(2.dp),
+    ) {
+        val stretches = listOf(
+            stats.consolidated to palette.success,
+            stats.learning to palette.amber,
+            stats.notIntroduced to palette.separator,
+        ).filter { it.first > 0 }
+        if (stretches.isEmpty()) {
+            Box(Modifier.weight(1f).height(6.dp).background(palette.separator, shape))
+            return@Row
+        }
+        stretches.forEach { (count, color) ->
+            Box(Modifier.weight(count.toFloat()).height(6.dp).background(color, shape))
         }
     }
 }

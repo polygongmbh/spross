@@ -33,6 +33,7 @@ internal val ChromeDe = Chrome(
     hard = "Schwer",
     good = "Gut",
     easy = "Leicht",
+    unknown = "Unbekannt",
     sessionDone = "Geschafft!",
     summaryLine = "%d neu · %d gefestigt · %d wiederholt",
     keepPracticing = "Weiter üben",
@@ -84,7 +85,11 @@ internal val ChromeDe = Chrome(
     packedWord = "Eingepackt",
     suspended = "Pausiert",
     wake = "Wecken",
+    progressFresh = "%d frisch",
     phrasesLocked = "%d Sätze",
+    phrasesLockedSpoken = "%d Sätze gesperrt",
+    stateExpanded = "ausgeklappt",
+    stateCollapsed = "eingeklappt",
     phaseLearning = "Lernt",
     phaseReview = "Sitzt",
     phaseRelearning = "Wackelt",
@@ -121,9 +126,39 @@ internal val ChromeDe = Chrome(
     dayReviews = "%d Wiederholungen",
     dayNewCards = "%d Frischlinge",
     dayConsolidated = "%d gefestigt",
+    dayAhead = "%d Auffrischer",
     tomorrowPacked = "Deine gepackten Wörter sind in der nächsten Runde dabei.",
     tomorrowFresh = "Morgen gibt es frische Karten. Bis dann! 👋",
     tomorrowDue = "Morgen kannst du %d Karten wiederholen.",
+
+    headlineReviews = listOf(
+        "Deine Runde ist startklar",
+        "Ein Stapel liegt bereit",
+        "Die Box hat was für dich",
+    ),
+    headlineWarmUp = listOf(
+        "Zeit zum Auffrischen",
+        "Ein Wiedersehen mit Bekanntem",
+        "Kurz durchs Bekannte",
+    ),
+    headlineFreshSet = listOf(
+        "Lust auf neue Wörter?",
+        "Frischlinge liegen bereit",
+        "Ein paar Frischlinge zum Kennenlernen",
+    ),
+    sessionSomeCards = "Ein paar Karten für dich.",
+    sessionHeldBack = "%d weitere Karten warten noch auf dich.",
+    sessionStart = "Los geht's!",
+
+    emptyBoxTitle = "Deine Box ist noch leer",
+    emptyBoxMessage = "Pack einen Bereich direkt hinein — die Box wächst, während dein Material sitzt.",
+    emptyBoxAction = "Zur Box",
+
+    errorTitle = "Ups",
+    errorCatalogMissing = "Die Inhalte konnten nicht geladen werden. (catalog fehlt in der App)",
+    errorContentUnavailable = "Die Inhalte konnten nicht geladen werden. (%s)",
+    errorUnknownProfile = "Unbekanntes Sprachprofil (%1\$s → %2\$s).",
+    errorResetFailed = "Zurücksetzen fehlgeschlagen. (%s)",
 
     roundNew = "%d neu",
     roundConsolidated = "%d gefestigt",
@@ -132,6 +167,24 @@ internal val ChromeDe = Chrome(
     restHint = "Heute sitzt wenig — ein Kopf, der müde ist, behält nichts mehr. " +
         "Morgen geht's leichter.",
     streakRecord = "Dein längster Lauf!",
+
+    growthGrew = "Auch heute bleibt was hängen",
+    growthOpened = "Deine ersten Wörter in guter Erde",
+    growthBlooming = listOf(
+        "Jetzt sagst du, was du gesät hast",
+        "Hier blüht, was du kannst",
+        "Du hast es gepflegt, jetzt trägt's",
+    ),
+    growthSown = listOf(
+        "Du hast hier gesät",
+        "Das keimt nun in dir",
+        "Frisch von dir gesetzt",
+    ),
+    growthGrown = listOf(
+        "Hier wächst dir was zu sagen",
+        "Du hast tiefe Wurzeln geschlagen",
+        "Mittlerweile sitzt's bei dir",
+    ),
 
     progressTitle = "Fortschritt",
     last14Days = "Letzte 14 Tage",

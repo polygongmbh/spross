@@ -32,6 +32,7 @@ internal val ChromeEn = Chrome(
     hard = "Hard",
     good = "Good",
     easy = "Easy",
+    unknown = "Unknown",
     sessionDone = "Done!",
     summaryLine = "%d new · %d strengthened · %d reviewed",
     keepPracticing = "Keep practicing",
@@ -83,7 +84,11 @@ internal val ChromeEn = Chrome(
     packedWord = "Packed",
     suspended = "Paused",
     wake = "Wake",
+    progressFresh = "%d fresh",
     phrasesLocked = "%d sentences",
+    phrasesLockedSpoken = "%d sentences locked",
+    stateExpanded = "expanded",
+    stateCollapsed = "collapsed",
     phaseLearning = "Learning",
     phaseReview = "Solid",
     phaseRelearning = "Shaky",
@@ -120,9 +125,39 @@ internal val ChromeEn = Chrome(
     dayReviews = "%d reviews",
     dayNewCards = "%d newbies",
     dayConsolidated = "%d solidified",
+    dayAhead = "%d refreshers",
     tomorrowPacked = "Your packed words are in the next round.",
     tomorrowFresh = "Fresh cards tomorrow. See you then! 👋",
     tomorrowDue = "Tomorrow you can review %d cards.",
+
+    headlineReviews = listOf(
+        "Your round is ready",
+        "A stack is ready",
+        "The box has something for you",
+    ),
+    headlineWarmUp = listOf(
+        "Time for a refresher",
+        "A reunion with familiar words",
+        "A quick pass through the familiar",
+    ),
+    headlineFreshSet = listOf(
+        "Up for some new words?",
+        "Newbies on the table",
+        "A few newbies to get to know",
+    ),
+    sessionSomeCards = "A few cards for you.",
+    sessionHeldBack = "%d more cards are still waiting for you.",
+    sessionStart = "Let's go!",
+
+    emptyBoxTitle = "Your box is still empty",
+    emptyBoxMessage = "Add an area directly — the box grows while your material sits.",
+    emptyBoxAction = "Go to box",
+
+    errorTitle = "Oops",
+    errorCatalogMissing = "The content could not be loaded. (catalog missing from the app)",
+    errorContentUnavailable = "The content could not be loaded. (%s)",
+    errorUnknownProfile = "Unknown language profile (%1\$s → %2\$s).",
+    errorResetFailed = "Reset failed. (%s)",
 
     roundNew = "%d new",
     roundConsolidated = "%d consolidated",
@@ -131,6 +166,24 @@ internal val ChromeEn = Chrome(
     restHint = "Not much is sticking today — a tired head keeps nothing. " +
         "Tomorrow will go easier.",
     streakRecord = "Your longest run yet!",
+
+    growthGrew = "Some of it sticks today too",
+    growthOpened = "Your first words in good soil",
+    growthBlooming = listOf(
+        "Saying what you sowed",
+        "You've brought this into bloom",
+        "Your tending shows",
+    ),
+    growthSown = listOf(
+        "You've sown here",
+        "You've got this sprouting",
+        "You're planting, word by word",
+    ),
+    growthGrown = listOf(
+        "You've grown what you can say",
+        "Your words root deeper now",
+        "Words are settling in",
+    ),
 
     progressTitle = "Progress",
     last14Days = "Last 14 days",

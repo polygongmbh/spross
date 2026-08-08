@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Android can browse the box.** Shelves fold open to the words on them, each shelf says
+  how much of it has landed and packs the rest in one tap, words can be put back to sleep
+  or written by hand, and search reaches both sides of the pair — including writing a word
+  of your own when the search comes up empty. Heute now names what the round holds, what
+  the day actually bought and what tomorrow leaves, over a fortnight of practice drawn
+  beneath it; the language switch and About moved into the box's settings, as on the iPhone.
+
 - **The language pair in Box settings can no longer be set to a pair that teaches nothing.**
   The learned-language menu listed the language you already speak whatever the catalog held,
   so picking it could swap you onto a direction with no words in it; it is now offered only

@@ -29,14 +29,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
-import net.spross.app.LanguagePicker
 import net.spross.app.Screen
+import net.spross.kern.catalog.LanguageChoices
 
 /**
  * First-launch (and "change languages") picker — iOS OnboardingView parity:
  * chrome is ENGLISH (it renders before the user's language is known), rows
  * are "🇩🇪 German", and neither side hides the other's pick — choosing it
- * swaps the two selections ([LanguagePicker]).
+ * swaps the two selections ([LanguageChoices]).
  */
 @Composable
 fun OnboardingScreen(model: AppModel) {
@@ -52,18 +52,15 @@ fun OnboardingScreen(model: AppModel) {
         )
     }
     val choices = remember(catalog, source, target) {
-        LanguagePicker.targetChoices(
-            LanguagePicker.Selection(source, target),
-            catalog::availableTargets,
-        )
+        LanguageChoices.targetChoices(catalog, LanguageChoices.Selection(source, target))
     }
 
-    fun apply(sel: LanguagePicker.Selection) {
+    fun apply(sel: LanguageChoices.Selection) {
         source = sel.source
         target = sel.target
     }
 
-    fun label(code: String) = LanguagePicker.rowLabel(code, catalog.languages[code])
+    fun label(code: String) = LanguageChoices.pickerRow(code, catalog.languages[code])
 
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp),
@@ -92,10 +89,10 @@ fun OnboardingScreen(model: AppModel) {
                     OutlinedButton(
                         onClick = {
                             apply(
-                                LanguagePicker.pickSource(
-                                    LanguagePicker.Selection(source, target),
+                                LanguageChoices.pickSource(
+                                    catalog,
+                                    LanguageChoices.Selection(source, target),
                                     code,
-                                    catalog::availableTargets,
                                 )
                             )
                         },
@@ -111,7 +108,7 @@ fun OnboardingScreen(model: AppModel) {
         Text(chrome.iLearn, style = MaterialTheme.typography.titleMedium)
         choices.forEach { option ->
             val pick = {
-                apply(LanguagePicker.pickTarget(LanguagePicker.Selection(source, target), option.code))
+                apply(LanguageChoices.pickTarget(LanguageChoices.Selection(source, target), option.code))
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically,

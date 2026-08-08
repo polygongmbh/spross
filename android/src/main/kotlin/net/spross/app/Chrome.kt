@@ -1,5 +1,7 @@
 package net.spross.app
 
+import net.spross.kern.catalog.LanguageChoices
+
 /**
  * UI chrome strings, rendered in the KNOWN language when chrome exists
  * (de/en today), otherwise en — design.md "Profile & onboarding".
@@ -36,6 +38,7 @@ data class Chrome(
     val hard: String,
     val good: String,
     val easy: String,
+    val unknown: String,           // the third verdict — a judgment, where [again] is an instruction
     val sessionDone: String,
     val summaryLine: String,       // %d neu · %d gefestigt · %d wiederholt
     val keepPracticing: String,
@@ -92,7 +95,17 @@ data class Chrome(
     val packedWord: String,
     val suspended: String,         // the sleeping mark's name
     val wake: String,
+    /** An area's fresh half, beside the leaf — the consolidated half reads [dayConsolidated]. */
+    val progressFresh: String,     // %d
     val phrasesLocked: String,     // %d = phrases still waiting on their components
+    /**
+     * The same count spelled out for a screen reader.
+     * [phrasesLocked] sits beside a padlock that carries the "locked"; spoken, the padlock is gone.
+     */
+    val phrasesLockedSpoken: String, // %d
+    /** A fold's state, never its label — the heading stays the heading whichever way it points. */
+    val stateExpanded: String,
+    val stateCollapsed: String,
     // A card with nothing behind it has NO phase word: new is the absence of a badge.
     val phaseLearning: String,
     val phaseReview: String,
@@ -140,9 +153,43 @@ data class Chrome(
     val dayReviews: String,        // %d
     val dayNewCards: String,       // %d
     val dayConsolidated: String,   // %d
+    /**
+     * Pull-aheads carrying the round on their own — the freshening-up.
+     * Named only in that case: everywhere else they count into [dayReviews]
+     * ([net.spross.kern.session.SessionOffer.summaryParts] decides which).
+     */
+    val dayAhead: String,          // %d
     val tomorrowPacked: String,
     val tomorrowFresh: String,
     val tomorrowDue: String,       // %d
+
+    // ── The session offer (Heute's one card) ────────────────────────────────────
+    /**
+     * The phrasings each offer kind carries, indexed by
+     * [net.spross.kern.session.SessionHeadline.variant] — kern picks which, from the
+     * round's shape, so the same round headlines the same on both platforms.
+     * Each list holds [net.spross.kern.session.SessionOffer.HEADLINE_VARIANTS] entries.
+     */
+    val headlineReviews: List<String>,
+    val headlineWarmUp: List<String>,
+    val headlineFreshSet: List<String>,
+    /** What a round with no nameable parts says instead of printing zeros. */
+    val sessionSomeCards: String,
+    /** The cap is a promise, not a loss: what it holds back is named. */
+    val sessionHeldBack: String,   // %d
+    val sessionStart: String,
+
+    // ── The box is still empty ──────────────────────────────────────────────────
+    val emptyBoxTitle: String,
+    val emptyBoxMessage: String,
+    val emptyBoxAction: String,
+
+    // ── Load failures ───────────────────────────────────────────────────────────
+    val errorTitle: String,
+    val errorCatalogMissing: String,
+    val errorContentUnavailable: String, // %s = what the system said
+    val errorUnknownProfile: String,     // %1$s = known, %2$s = learnt
+    val errorResetFailed: String,        // %s
 
     // ── Round completion ────────────────────────────────────────────────────────
     val roundNew: String,          // %d
@@ -151,6 +198,18 @@ data class Chrome(
     val roundAllDone: String,      // the round had nothing nameable in it
     val restHint: String,          // today's recall is strained; more reps buy little
     val streakRecord: String,
+
+    /**
+     * What the round's area GREW, read off the tree's own delta rather than the round's tallies.
+     * [growthGrew] is the one line a strained day gets — no growth claim on a bad day —
+     * and [growthOpened] the first ground broken in an area; the three lists are the
+     * variants a stable seeded pick chooses from.
+     */
+    val growthGrew: String,
+    val growthOpened: String,
+    val growthBlooming: List<String>,
+    val growthSown: List<String>,
+    val growthGrown: List<String>,
 
     // ── Activity strip ──────────────────────────────────────────────────────────
     val progressTitle: String,
@@ -161,6 +220,8 @@ data class Chrome(
     val dayMany: String,
 ) {
     companion object {
-        fun forSource(source: String): Chrome = if (source == "de") ChromeDe else ChromeEn
+        /** Which language carries the chrome — and the en fallback — is kern's rule; only the table map is ours. */
+        fun forSource(source: String): Chrome =
+            if (LanguageChoices.chromeLanguage(source) == "de") ChromeDe else ChromeEn
     }
 }
