@@ -60,7 +60,8 @@ the session, `-uitest-trainer numbers|years|clock|phrases` opens a drill
 
 Physical devices: `scripts/deploy-devices.sh` — Release, or `--debug` while iterating.
 
-Android builds Mac-free — commands, SDK setup, and install steps: `RUNBOOK-linux.md`.
+Android builds Mac-free — commands, SDK setup, emulator, install steps: `RUNBOOK-android.md`.
+`scripts/run-emu.sh` is the emulator counterpart of `run-sim.sh`.
 
 Framework mechanism: a pre-build phase stages `SprossKern.framework`
 via `scripts/build-kern.sh` (integration detail: `kern/docs/build.md`).
