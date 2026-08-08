@@ -3,6 +3,7 @@ package net.spross.app.ui
 import android.text.format.DateFormat
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,12 +13,13 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -76,12 +78,24 @@ fun HeuteScreen(model: AppModel) {
                 )
                 Text(chrome.heuteTitle, style = MaterialTheme.typography.headlineLarge)
             }
-            // The box itself: every word the profile holds, packed or not. The icon
-            // carries the name rather than a label — nothing else on this row does.
-            TextButton(
+            // The way out of Heute: the box holds every word the profile has, packed
+            // or not. Named rather than a bare glyph — an unlabelled emoji does not
+            // read as a control — and tonal on the clay wash, one step under the
+            // day's own call to action inside the card.
+            FilledTonalButton(
                 onClick = { model.openBox() },
-                modifier = Modifier.semantics { contentDescription = chrome.boxNav },
-            ) { Text("📦", style = MaterialTheme.typography.headlineSmall) }
+                modifier = Modifier
+                    .heightIn(min = 48.dp)
+                    .semantics { contentDescription = chrome.boxNav },
+                shape = MaterialTheme.shapes.small,
+                colors = ButtonDefaults.filledTonalButtonColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                ),
+                contentPadding = PaddingValues(horizontal = DlSpace.l, vertical = DlSpace.s),
+            ) {
+                Text("📦 ${chrome.boxNav}")
+            }
         }
 
         // Android surfaces no load failure of its own yet (the model has no such state),
