@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- **A trainer page opens on the run now, and one exercise at a time until the ladder is
+  open.** Zahlen and Buchstaben both put their reading matter first, so starting the thing
+  the page exists for meant scrolling past twenty screens of table; the picks and the start
+  button are what you land on, and the table and notes sit under them for when they are
+  wanted. What a run may ask changed with it: while any exercise on the list is still
+  locked, choosing one unchooses the last, because a first run should climb the rung it was
+  handed rather than dilute it — the line under the rows says so, and a fully open ladder is
+  what turns them into a list you can combine. The card these pages hang off is called
+  Werkstatt rather than Training: nothing here is a regimen.
+
 - **The sentence drill now measures things out, not just counts them.** A frame could only be
   filled with a whole number, a year or a time, so "a quarter kilo of flour" — what a recipe or a
   market stall actually says — was unaskable. German, English and Spanish now carry a measuring
