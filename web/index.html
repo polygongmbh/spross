@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spross — a growing box for your new language</title>
+<meta name="description" content="Spross keeps your vocabulary growing between conversations: a few new cards a day, spaced so they stay. German, English, Spanish, Swahili, Ukrainian.">
+<meta property="og:title" content="Spross — a growing box for your new language">
+<meta property="og:description" content="Vocabulary that grows while you rest. Try counting in a new language, right on this page.">
+<meta property="og:image" content="https://spross.net/assets/icon-512.png">
+<link rel="icon" href="assets/icon-512.png">
+<link rel="apple-touch-icon" href="assets/icon-512.png">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site">
+  <svg class="mark" viewBox="20 16 68 72" role="img" aria-label="Spross sprout">
+    <path fill="var(--stem)" d="M54,78 C54,66 54,58 54,50 C54,42 50,38 44,36 C50,40 52,46 52,52 C52,58 52,66 52,78 Z"/>
+    <path fill="var(--leaf-a)" d="M53,52 C46,52 38,48 36,40 C34,34 36,30 36,30 C42,30 50,32 53,40 C55,45 53,52 53,52 Z"/>
+    <path fill="var(--leaf-b)" d="M55,46 C62,46 70,42 72,34 C74,28 72,24 72,24 C66,24 58,26 55,34 C53,39 55,46 55,46 Z"/>
+    <path fill="var(--stem)" d="M40,78 L68,78 C68,82 64,85 60,85 L48,85 C44,85 40,82 40,78 Z"/>
+  </svg>
+  <span class="word">Spross</span>
+</header>
+
+<main>
+
+<section class="hero">
+  <div>
+    <h1>A growing box for your new&nbsp;language</h1>
+    <p class="sub">A few new cards a day, spaced so they stay.
+      Start by counting to ten — the novels can wait.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#sproessling">Become a Sprössling</a>
+      <a class="btn soft" href="#drill">Try counting</a>
+    </div>
+  </div>
+  <img class="art" src="assets/icon-512.png" alt="The Spross icon: a green sprout rising from soil, cupped by three seed shells carrying letters of different scripts." width="512" height="512">
+</section>
+
+<dl class="dictionary" aria-label="A small dictionary entry">
+  <div class="entry"><dt>Spross, <i>der</i></dt> <dd>— a sprout; a young shoot.</dd></div>
+  <div class="entry"><dt>Sprosse, <i>die</i></dt> <dd>— a rung of a ladder.</dd></div>
+  <p class="moral">One letter between growing and climbing. We mean both.</p>
+</dl>
+
+<p class="positioning">Spross doesn't replace your <strong>tandem partner</strong> or your <strong>course</strong> —
+it keeps your vocabulary growing between conversations.</p>
+
+<ul class="features">
+  <li>
+    <h3>Sown, not crammed</h3>
+    <p>A few new cards a day, in any pair of German, English, Spanish, Swahili, and Ukrainian.
+       New words arrive only while yesterday's are sitting well — FSRS-6 spacing does the timing.</p>
+  </li>
+  <li>
+    <h3>Phrases unlock from words</h3>
+    <p>A phrase stays closed until its component words are steady.
+       When it opens, it lands on ground that can hold it.</p>
+  </li>
+  <li>
+    <h3>A forest, not a chart</h3>
+    <p>Each topic is a tree, each word a leaf.
+       Leaves turn to blossom, then fruit, as the word ripens in your memory.</p>
+  </li>
+  <li>
+    <h3>No guilt in the garden</h3>
+    <p>No account, no ads, no streak to mourn. Celebration only for a real personal record —
+       and honest words when a tired head keeps nothing.</p>
+  </li>
+</ul>
+
+<section class="drill-section" id="drill">
+  <h2>How far can you count?</h2>
+  <p class="intro">In Spanish — or Swahili, or Ukrainian? Try it right here: a real drill from the app.
+     Endless numbers, typos forgiven — a near-miss earns amber, never red.</p>
+
+  <div class="drill-card">
+    <div id="lang-pick">
+      <div class="lang-chips" role="group" aria-label="Pick a language to count in"></div>
+      <div class="drill-controls">
+        <button class="btn soft" id="primer-toggle" hidden>Peek at the numbers first</button>
+        <button class="btn primary" id="start-drill" hidden>Start counting</button>
+      </div>
+      <div class="primer" id="primer" hidden></div>
+    </div>
+
+    <div id="run" hidden>
+      <div class="run-head">
+        <button class="icon-btn" id="finish" title="Finish this run" aria-label="Finish this run">✕</button>
+        <div class="progress" id="progress" aria-hidden="true"></div>
+        <span class="streak" id="streak-line"></span>
+        <button class="icon-btn" id="mute" aria-pressed="false" title="Read answers aloud" aria-label="Read answers aloud">🔊</button>
+      </div>
+      <div class="prompt-zone">
+        <div class="hint-pill" id="hint" hidden></div>
+        <div class="numeral" id="numeral"></div>
+        <div class="reveal" id="reveal" hidden></div>
+      </div>
+      <div class="answer" id="answer" data-state="idle">
+        <input id="answer-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="feedback">
+        <div class="correction" id="correction" hidden></div>
+      </div>
+      <div id="feedback" class="visually-hidden" aria-live="polite"></div>
+      <div class="drill-actions">
+        <button class="btn primary" id="main-action">Reveal</button>
+        <button class="tens-link" id="tens-link" hidden>? The tens, briefly</button>
+        <div class="tens-card" id="tens-card" hidden></div>
+      </div>
+      <div class="nudge" id="nudge" hidden>
+        <p>Ten numbers in — it grows on you, doesn't it?
+           The app takes it from counting to your whole vocabulary.</p>
+        <a class="btn primary" href="#sproessling">Become a Sprössling</a>
+        <button class="btn soft" id="nudge-close">Keep counting</button>
+      </div>
+    </div>
+
+    <div id="summary" class="summary" hidden>
+      <span class="emoji" id="summary-emoji">🌱</span>
+      <h3 id="summary-count"></h3>
+      <p id="summary-best"></p>
+      <p id="summary-lang"></p>
+      <div class="drill-controls" style="justify-content:center">
+        <button class="btn soft" id="again">Keep practicing</button>
+        <button class="btn soft" id="switch-lang">Another language</button>
+        <a class="btn primary" href="#sproessling">Become a Sprössling</a>
+      </div>
+    </div>
+  </div>
+  <noscript><p class="intro">The drill needs JavaScript — everything else here grows without it.</p></noscript>
+</section>
+
+<section class="signup" id="sproessling">
+  <h2>Ready to become a Sprössling?</h2>
+  <p>Leave your address and we'll write when something has actually grown —
+     releases, new languages, notes from the garden. Letters at a garden's pace.</p>
+  <form id="signup-form">
+    <input type="email" name="email" required placeholder="you@example.org" aria-label="Your email address">
+    <button class="btn primary" type="submit">Count me in</button>
+  </form>
+  <p class="note" id="signup-note"></p>
+</section>
+
+</main>
+
+<footer class="site">
+  <p>Sleep well — your words are still growing.</p>
+  <p><a href="mailto:feedback@spross.net">feedback@spross.net</a></p>
+</footer>
+
+</div>
+<script src="kern.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

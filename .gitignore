@@ -11,3 +11,4 @@ build/
 .gradle/
 .kotlin/
 local.properties
+web/dist/

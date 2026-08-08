@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Spross has a front door: spross.net.** A landing page that says what the growing box
+  is, invites you onto the mailing list, and lets you try the real numbers drill in the
+  browser — the same engine the app runs, compiled for the web, with the primer tables
+  it generates itself in any of the five languages.
+
 - **A word that doesn't stick in two tries is now pushed out, not repeated.** Leech
   auto-suspend used to wait for eight review-phase lapses; the box is breadth-first, so it
   now suspends after two — and counts a struggle during the word's own learning steps
