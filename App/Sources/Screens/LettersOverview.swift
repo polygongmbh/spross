@@ -4,10 +4,10 @@ import SprossKern
 /// The "Buchstaben" hub entry: the alphabet of the language being learned, and
 /// the place its drill is started from.
 ///
-/// Two sections, in the order the numbers page uses — reading first, options
-/// second, start last: the alphabet table (one card per row of
-/// `catalog/alphabet/<lang>.json`), then the stages the drill will walk through
-/// and the button that opens it. The table and the drill it prepares you for
+/// Two sections, in the order the numbers page uses — start first, reading
+/// after: the stages the drill will walk through and the button that opens it,
+/// then the alphabet table (one card per row of
+/// `catalog/alphabet/<lang>.json`). The table and the drill it prepares you for
 /// used to be two unrelated surfaces, one of them buried under a row of its own.
 ///
 /// Nothing here is graded and nothing is stored: the letter drill books no
@@ -45,8 +45,8 @@ struct LettersOverview: View {
         NavigationStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
-                    alphabetSection
                     practiceSection
+                    alphabetSection
                 }
                 .padding(DL.Space.xl)
             }
@@ -112,11 +112,11 @@ struct LettersOverview: View {
 
 #if DEBUG
 extension LettersOverview {
-    /// `-uitest-section practice` opens the page at the stage ladder instead of
-    /// at the top — the numbers overview's hook, reused, because both pages bury
-    /// their options under screens of reading and no tap driver is installed.
+    /// `-uitest-section alphabet` opens the page at the table instead of at the
+    /// top — the numbers overview's hook, reused, because on both pages the
+    /// reading now sits below the fold and no tap driver is installed.
     static var uitestAnchor: UnitPoint {
-        UserDefaults.standard.string(forKey: "uitest-section") == "practice" ? .bottom : .top
+        UserDefaults.standard.string(forKey: "uitest-section") == "alphabet" ? .bottom : .top
     }
 }
 #endif
