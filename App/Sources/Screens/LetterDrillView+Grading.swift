@@ -97,17 +97,11 @@ extension LetterDrillView {
         // teaches these forms ("auch: …"), so a synonym of the dictated word is
         // never wrong and never somebody else's word. It simply is not what
         // played, and the correction box says which form did.
-        if alsoAccepted(trimmed, of: card) { return .heard(task.display) }
+        if card.alsoAccepts(trimmed) { return .heard(task.display) }
         switch onEnum(of: graded) {
         case .typo(let typo): return .typo(typo.corrected)
         case .exact, .otherWord, .wrong: return .wrong
         }
-    }
-
-    /// A form the REAL card lists as a synonym or a variant.
-    private func alsoAccepted(_ input: String, of card: Card) -> Bool {
-        let typed = speechKey(form: input)
-        return (card.target.synonyms + card.target.variants).contains { speechKey(form: $0) == typed }
     }
 
     /// The strict drill normalizer with the whole join in view: a per-word slip
@@ -131,13 +125,19 @@ extension LetterDrillView {
 
     func uitestStart() {
         let defaults = UserDefaults.standard
-        if let prefill = defaults.string(forKey: "uitest-input") { input = prefill }
-        if defaults.bool(forKey: "uitest-submit"), let task = current {
-            Task { @MainActor in
-                try? await Task.sleep(for: .milliseconds(600))
-                submit(task)
-            }
+        if let prefill = UITestAnswer.prefill { input = prefill }
+        if let task = current { UITestAnswer.submitAfterBeat { submit(task) } }
+        // `-uitest-streak N` and `-uitest-summary 1`, the slot drill's two
+        // figures under the slot drill's two names: the close summary is the
+        // one state no argument could otherwise reach, because the X is the
+        // only way in and a screenshot run has no thumb.
+        let preset = defaults.integer(forKey: "uitest-streak")
+        if preset > 0 {
+            streak = preset
+            bestStreak = max(preset, 12)
+            doneCount = preset + 6
         }
+        if defaults.bool(forKey: "uitest-summary") { showingSummary = true }
         if let pick = defaults.string(forKey: "uitest-letters-choose") { uitestChoose(pick) }
         if defaults.bool(forKey: "uitest-letters-replay") { uitestReplay() }
         if defaults.bool(forKey: "uitest-letters-probe") { uitestBox("open") }

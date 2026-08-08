@@ -72,16 +72,29 @@ class PhraseLevelTests {
     }
 
     @Test
+    fun countdownLevelAddsTheLateFivesAndNothingOffGrid() {
+        val rng = Random(8)
+        for (template in templates(TrainerKind.Clock)) {
+            val seen = mutableSetOf<Int>()
+            repeat(200) {
+                seen += minuteOf(PhraseSlots.sample(template, level = 4, rng).prompt)
+            }
+            assertEquals((0..55 step 5).toSet(), seen, template.id)
+        }
+    }
+
+    @Test
     fun maxLevelReachesMinutesPastHalfPast() {
         val rng = Random(5)
+        val top = Trainer.maxLevel(TrainerKind.Clock)
         for (template in templates(TrainerKind.Clock)) {
             var sawPastHalf = false
             repeat(120) {
-                val minute = minuteOf(PhraseSlots.sample(template, level = 4, rng).prompt)
+                val minute = minuteOf(PhraseSlots.sample(template, level = top, rng).prompt)
                 assertTrue(minute in 0..59, "${template.id}: $minute")
                 if (minute > 30) sawPastHalf = true
             }
-            assertTrue(sawPastHalf, "${template.id}: expected countdown-form minutes at level 4")
+            assertTrue(sawPastHalf, "${template.id}: expected countdown-form minutes at level $top")
         }
     }
 
@@ -96,12 +109,20 @@ class PhraseLevelTests {
                 repeat(30) {
                     val sampled = PhraseSlots.sample(template, level, a)
                     // Cross-check against the shared Trainer draw machinery.
-                    val expected = if (template.slotKind == TrainerKind.Clock) {
-                        val hour = b.nextInt(24)
-                        PhraseSlots.instantiate(template, hour = hour, minute = Trainer.clockMinute(level, b))
-                    } else {
-                        val slot = Trainer.sample(template.slotKind, template.target, level, b)
-                        PhraseSlots.instantiate(template, value = slot.prompt.toLong())
+                    val expected = when (template.slotKind) {
+                        TrainerKind.Clock -> {
+                            val hour = b.nextInt(24)
+                            PhraseSlots.instantiate(template, hour, Trainer.clockMinute(level, b))
+                        }
+                        TrainerKind.Fraction -> {
+                            val slot = Trainer.sample(template.slotKind, template.target, level, b)
+                            val parts = slot.prompt.split("/").map { it.toLong() }
+                            PhraseSlots.instantiate(template, parts[0], parts[1])
+                        }
+                        else -> {
+                            val slot = Trainer.sample(template.slotKind, template.target, level, b)
+                            PhraseSlots.instantiate(template, value = slot.prompt.toLong())
+                        }
                     }
                     assertEquals(expected, sampled, "${template.id} L$level")
                 }

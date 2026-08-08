@@ -30,6 +30,58 @@
   controls for width; the row's own surface is the tap target now, freeing that
   space up too.
 
+- **The sentence drill now measures things out, not just counts them.** A frame could only be
+  filled with a whole number, a year or a time, so "a quarter kilo of flour" — what a recipe or a
+  market stall actually says — was unaskable. German, English and Spanish now carry a measuring
+  sentence whose slot is a fraction, read the way each language reads it as a noun ("Ich brauche
+  ein Viertel Kilo Mehl.", "I need three quarters of a kilo of flour.", "Necesito un tercio de
+  kilo de harina."), with the written "3/4" accepted alongside the words as everywhere else.
+  Halves stay out deliberately: "ein halb Kilo" is not German, and a fraction that has to agree
+  with the word beside it needs an agreement the sentences cannot express yet.
+
+- **Zahlen is now a numbers page you start the drill from, and the drill grows as you do.**
+  The training card offered a chip per exercise and no way to look anything up outside a
+  running drill. It offers two entries now — numbers and letters — and the numbers one opens
+  a page for the language being learned: every band a printed numbers page would show, from
+  zero to a billion, each value beside its reading and generated from the very readings the
+  drill grades against, then the few things that actually trip a learner up in that language.
+  Practice sits at the bottom of the same page: the clock and the sentence drill are no
+  longer siblings of the numbers drill but ways of being asked, and they open once the
+  climb reaches the place value that pays for them. So do the number forms, and asking the
+  other way round, and a faster climb, and a run that keeps changing its mind. What is still
+  locked says what it costs instead of going missing, several can be picked at once, and
+  every run starts at the bottom of the ladder however far you have come — the climb is the
+  drill.
+
+- **The numbers drill asks the other ways a number gets written down.** It only ever wanted
+  a plain cardinal, though negatives, decimals, percentages, "three times", a quarter and
+  "the twentieth" are all numbers a learner meets in the first week and none of them appeared
+  anywhere in the app. They arrive as a rung of their own, climbing from small negatives
+  through decimals, percentages and multiples to fractions and the ordinals — and each
+  language reads them its own way rather than a translated one: German runs "dreimal" into
+  one word, English says "once" and "twice" before it says "three times", Spanish will not
+  take the shortened numeral in "veintiuno por ciento", Ukrainian declines the word being
+  counted, and Swahili puts "asilimia" in front of the number where the others put a sign
+  behind it. Where a language has no honest answer to a bare prompt — a Swahili ordinal
+  needs the noun it ranks — it is left unasked instead of invented.
+
+- **Buchstaben is a page too, and the numbers table is a tap away inside a run.** The
+  alphabet sat in a row of its own, unconnected to the letter drill it prepares you for.
+  The two are one page now: the alphabet to read, then the stages a run walks through with
+  the one it will open on marked and dictation saying what it waits for, then the button
+  that starts it. And the "?" mid-drill — which produced a short list of Swahili tens and
+  nothing at all in any other language — now raises the whole numbers page the overview
+  shows, whatever language you are learning. Looking something up while you still owe an
+  answer costs the rung, exactly as it always did; reading it afterwards is free.
+
+- **The clock drill climbs a step at a time, and never takes back a minute it taught.**
+  Past the quarters it jumped straight to any minute at all, and the quarter to the hour
+  the learner had just earned quietly dropped out again on the way up. The climb now goes
+  from the full hours to the quarters, counts up in fives to the half, then adds the
+  countdown to the next hour, and only at the top is the face read out minute by minute —
+  each step keeping everything the one below it offered. Sentence drills ramp with it, and
+  the step that opens them is the five-minute one their unlock always claimed it was.
+
 ## 3.11.1 — 2026-08-08
 
 - **The parts of the day moved in with the clock.** Morning, evening and night were

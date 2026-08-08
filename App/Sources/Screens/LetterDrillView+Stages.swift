@@ -75,20 +75,8 @@ extension LetterDrillView {
     }
 
     private var streakLine: some View {
-        streakText
-            .font(DL.Fonts.caption)
-            .foregroundStyle(streak > 0 ? Color.dlAccent : Color.dlTextSecondary)
-            .monospacedDigit()
-            .frame(maxWidth: .infinity)
-            .animation(.easeOut(duration: 0.2), value: streak)
-            .accessibilityLabel(Text("a11y.streakInARow \(streak.formatted())"))
-    }
-
-    private var streakText: Text {
-        var parts: [Text] = [Text("trainer.level \(level.formatted())")]
-        parts.append(Text("trainer.streak \(streak.formatted())"))
-        if bestStreak > streak { parts.append(Text("trainer.record \(bestStreak.formatted())")) }
-        return parts.joined() ?? Text(verbatim: "")
+        DrillStreakLine(level: Text("trainer.level \(level.formatted())"),
+                        streak: streak, bestStreak: bestStreak)
     }
 
     // MARK: - Multiple choice
@@ -190,27 +178,28 @@ extension LetterDrillView {
         VStack(spacing: DL.Space.m) {
             AnswerInputView(text: $input,
                             feedback: feedback,
-                            placeholder: String(format: DLChrome.string("session.answer.placeholder %@",
-                                                                        locale: locale),
-                                                languageName(task.language)),
+                            placeholder: answerPlaceholder(task.language),
                             focus: $answerFocused,
-                            pronounceCorrection: correctionPronounce(task),
-                            correctionIsPlaying: correctionPlaying(task)) {
+                            // Tap-to-replay for the correction box — the form
+                            // the slip owed, said in the drilled language.
+                            correctionVoice: .init(
+                                pronounce: { model.pronounceAction(for: $0, lang: task.language) },
+                                isPlaying: { model.isPronouncing($0, lang: task.language) })) {
                 submit(task)
             }
             switch feedback {
             case .neutral:
                 // ONE primary action: an empty field reveals, a typed one checks.
                 Button {
-                    if inputEmpty { reveal(task) } else { submit(task) }
+                    if input.isBlankAnswer { reveal(task) } else { submit(task) }
                 } label: {
-                    Text(inputEmpty ? "session.reveal" : "common.check")
+                    Text(input.isBlankAnswer ? "session.reveal" : "common.check")
                         .frame(maxWidth: .infinity)
                         .contentTransition(.opacity)
                 }
                 .buttonStyle(DLPrimaryButtonStyle())
                 .keyboardShortcut(.defaultAction)
-                .animation(.easeOut(duration: 0.15), value: inputEmpty)
+                .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
             case .almost:
                 // The two amber holds — a slip, and a form the review flow
                 // teaches but the dictation did not play. The box above spells
@@ -230,20 +219,6 @@ extension LetterDrillView {
         .animation(.easeOut(duration: 0.25), value: feedback)
     }
 
-    /// Tap-to-replay for the correction box — the form the slip owed, said in
-    /// the drilled language.
-    private func correctionPronounce(_ task: LetterDrillTask) -> (() -> Void)? {
-        guard case .almost(let form, _) = feedback else { return nil }
-        return model.pronounceAction(for: form, lang: task.language)
-    }
-
-    private func correctionPlaying(_ task: LetterDrillTask) -> Bool {
-        guard case .almost(let form, _) = feedback else { return false }
-        return model.isPronouncing(form, lang: task.language)
-    }
-
-    var inputEmpty: Bool { input.trimmingCharacters(in: .whitespaces).isEmpty }
-
     private func nextButton(_ action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Text("common.next").frame(maxWidth: .infinity)
@@ -254,40 +229,16 @@ extension LetterDrillView {
 
     // MARK: - Close summary
 
+    /// No `newRecord`: the letter drill keeps no record store (D12 — nothing it
+    /// asks is a review), so the record line and its confetti stay off.
     var summary: some View {
-        VStack(spacing: DL.Space.xl) {
-            Spacer()
-            Text(verbatim: summaryEmoji)
-                .font(.system(size: 72))
-                .dlSway(angle: 4, period: 3.4)
-                .accessibilityHidden(true)
-            Text("trainer.tasksDone \(doneCount)")
-                .font(DL.Fonts.hero)
-                .foregroundStyle(Color.dlTextPrimary)
-            Text("trainer.bestStreak \(bestStreak.formatted())")
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextPrimary)
-            Text.joined(Text("trainer.letters"), Text(verbatim: languageName(language)))
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextSecondary)
-            Spacer()
-            SessionExitButtons(
-                onDone: { dismiss() },
-                onPractice: { withAnimation(.easeOut(duration: 0.2)) { showingSummary = false } }
-            )
-        }
-        .padding(DL.Space.xl)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.dlBackground.ignoresSafeArea())
-        .sessionCloseCorner(label: "common.done") { dismiss() }
-    }
-
-    private var summaryEmoji: String {
-        switch bestStreak {
-        case 10...: return "🏆"
-        case 5...: return "🎉"
-        case 2...: return "💪"
-        default: return "🌱"
-        }
+        DrillSummaryView(
+            doneCount: doneCount,
+            bestStreak: bestStreak,
+            title: "trainer.letters",
+            languageName: languageName(language),
+            onDone: { dismiss() },
+            onPractice: { withAnimation(.easeOut(duration: 0.2)) { showingSummary = false } }
+        )
     }
 }

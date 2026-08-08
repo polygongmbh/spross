@@ -5,12 +5,6 @@ internal object SwahiliNumbers {
     val ones = listOf("", "moja", "mbili", "tatu", "nne", "tano", "sita", "saba", "nane", "tisa")
     private val tens = listOf("", "kumi", "ishirini", "thelathini", "arobaini", "hamsini", "sitini", "sabini", "themanini", "tisini")
 
-    /**
-     * The tens as a labelled reference ("10 kumi" … "90 tisini") — Swahili tens
-     * are the least guessable part of the system, so the drill offers a look-up.
-     */
-    val tensReference: List<String> get() = (1..9).map { "${it}0 ${tens[it]}" }
-
     /** 0..9_999_999_999; values outside fall back to digits. */
     fun cardinal(n: Long): String {
         if (n < 0) return n.toString()

@@ -4,15 +4,13 @@ import SprossKern
 /// Drill screen content + close summary of TrainerSessionView. State lives
 /// on TrainerSessionView; split out purely for file size.
 extension TrainerSessionView {
-    private var isPhrases: Bool {
-        if case .phrases = mode { return true }
-        return false
-    }
+    private var isNumbers: Bool { currentVariant == .numbers }
 
-    private var isNumbers: Bool {
-        if case .slots(.numbers, _) = mode { return true }
-        return false
-    }
+    /// A prompt made of WORDS is laid out like one — smaller and wrapped — where a
+    /// numeral gets the one big line. Asked of the prompt rather than of the run, so
+    /// a composed sentence and a reversed reading are both read as what they are and
+    /// the card never learns which direction the run is running in.
+    private var wordyPrompt: Bool { current.promptDisplay.contains(where: \.isLetter) }
 
     /// The card carries the answer whenever the learner did not produce it —
     /// a miss or "Aufdecken". A typo leaves it closed: the correction box
@@ -24,7 +22,10 @@ extension TrainerSessionView {
 
     /// Digit count of the current numeric prompt (nil outside the numbers
     /// drill). Internal: advance() marks each length as seen.
-    var currentDigits: Int? { isNumbers ? current.prompt.count : nil }
+    ///
+    /// Nil when the task is reversed: the prompt is then the reading, which already
+    /// names the place the hint would introduce.
+    var currentDigits: Int? { isNumbers && !currentReversed ? current.prompt.count : nil }
 
     /// Place word shown the first time a new number length appears — on the
     /// card itself, so the prompts that carry no hint sit exactly as high.
@@ -35,11 +36,6 @@ extension TrainerSessionView {
         return .init(icon: "textformat.123", text: "trainer.newPlace \(place)")
     }
 
-    /// Tens look-up for the current drill (Swahili numbers only).
-    private var tensReference: [String]? {
-        isNumbers ? Trainer.shared.tensReference(language: language) : nil
-    }
-
     var drillContent: some View {
         ScrollView {
             VStack(spacing: DL.Space.m) {
@@ -47,7 +43,7 @@ extension TrainerSessionView {
                 // ZStack so outgoing and incoming prompt overlap during the
                 // flip; .id gives each run position its own view identity.
                 ZStack {
-                    TrainerPromptCard(task: current, sentence: isPhrases,
+                    TrainerPromptCard(task: current, sentence: wordyPrompt,
                                       hint: placeValueHint, revealed: cardRevealed,
                                       pronounce: model?.pronounceAction(for: current.display, lang: language),
                                       isPlaying: model?.isPronouncing(current.display, lang: language) ?? false)
@@ -60,51 +56,53 @@ extension TrainerSessionView {
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollDismissesKeyboard(.never)
-    }
-
-    /// Compact in-run score: current streak, plus the run record once it
-    /// exceeds the current streak.
-    private var streakLine: some View {
-        streakText
-            .font(DL.Fonts.caption)
-            .foregroundStyle(streak > 0 ? Color.dlAccent : Color.dlTextSecondary)
-            .monospacedDigit()
-            .frame(maxWidth: .infinity)
-            .animation(.easeOut(duration: 0.2), value: streak)
-            .accessibilityLabel(streakAccessibility)
-    }
-
-    /// Composed as `Text` (not a joined String) so each part localizes via the
-    /// environment locale with catalog plural handling.
-    private var streakText: Text {
-        var parts: [Text] = []
-        if maxLevel > 1 {
-            parts.append(isNumbers ? Text("trainer.digits \(level)") : Text("trainer.level \(level.formatted())"))
+        .sheet(isPresented: $showingReference) {
+            NumberReferenceSheet(language: language, catalog: catalog)
         }
-        parts.append(Text("trainer.streak \(streak.formatted())"))
-        if bestStreak > streak { parts.append(Text("trainer.record \(bestStreak.formatted())")) }
-        return parts.joined() ?? Text(verbatim: "")
     }
 
-    private var streakAccessibility: Text {
-        var result = Text("a11y.streakInARow \(streak.formatted())")
-        if bestStreak > streak { result = result + Text("a11y.recordSuffix \(bestStreak.formatted())") }
-        return result
+    private var streakLine: some View {
+        DrillStreakLine(level: levelText, streak: streak, bestStreak: bestStreak,
+                        announcesRecord: true)
     }
 
-    private var inputEmpty: Bool {
-        input.trimmingCharacters(in: .whitespaces).isEmpty
+    /// The rung part of the score line, for the variant that just asked: numbers
+    /// count DIGITS, everything else counts plain levels — and a variant with one
+    /// rung shows none. The emoji leads only where the run offers more than one
+    /// variant, since a run that asks one thing has already said what it asks.
+    private var levelText: Text? {
+        let variant = currentVariant
+        guard maxLevel(variant) > 1 else { return nil }
+        let rung = level(variant)
+        guard !isNumbers else {
+            // why: `trainer.digits` is the numbers drill's own wording and already
+            // wears 🔢 — putting the variant's face in front would double it.
+            return Text("trainer.digits \(rung)")
+        }
+        let text = Text("trainer.level \(rung.formatted())")
+        guard mode.variants.count > 1 else { return text }
+        return Text(verbatim: "\(variant.trainerEmoji) ") + text
+    }
+
+    /// What the field asks for. Naming the language is right only while the
+    /// answer is words — a reversed task wants the value written out, and
+    /// "Auf Swahili …" over a number pad asks for the wrong thing.
+    private var fieldPlaceholder: String {
+        currentReversed
+            ? DLChrome.string("trainer.answer.digits", locale: locale)
+            : answerPlaceholder(language)
     }
 
     private var controls: some View {
         VStack(spacing: DL.Space.m) {
             AnswerInputView(text: $input,
                             feedback: feedback,
-                            placeholder: String(format: DLChrome.string("session.answer.placeholder %@", locale: locale),
-                                                languageName(language)),
+                            placeholder: fieldPlaceholder,
                             focus: $answerFocused,
-                            pronounceCorrection: correctionPronounce,
-                            correctionIsPlaying: correctionPlaying) {
+                            correctionVoice: .init(
+                                pronounce: { model?.pronounceAction(for: $0, lang: language) },
+                                isPlaying: { model?.isPronouncing($0, lang: language) ?? false }),
+                            keyboard: currentReversed ? .numbersAndPunctuation : .default) {
                 submit()
             }
             .onChange(of: input) { _, _ in approveWhenTyped() }
@@ -113,7 +111,7 @@ extension TrainerSessionView {
                 VStack(spacing: DL.Space.s) {
                     // ONE primary action: empty input reveals, typed input checks.
                     Button {
-                        if inputEmpty {
+                        if input.isBlankAnswer {
                             DLSound.reveal()
                             // why: the field stays empty — the card is where the
                             // answer stands, and typing it in for the learner
@@ -123,24 +121,13 @@ extension TrainerSessionView {
                             submit()
                         }
                     } label: {
-                        Text(inputEmpty ? "session.reveal" : "common.check")
+                        Text(input.isBlankAnswer ? "session.reveal" : "common.check")
                             .frame(maxWidth: .infinity)
                             .contentTransition(.opacity)
                     }
                     .buttonStyle(DLPrimaryButtonStyle())
                     .keyboardShortcut(.defaultAction)
-                    .animation(.easeOut(duration: 0.15), value: inputEmpty)
-                    // "?" tens reference — using it marks the answer amber.
-                    if tensReference != nil, !hintUsed {
-                        Button {
-                            withAnimation { hintUsed = true }
-                        } label: {
-                            Label("trainer.tensLookup", systemImage: "questionmark.circle")
-                                .font(DL.Fonts.caption)
-                        }
-                        .buttonStyle(.plain)
-                        .foregroundStyle(Color.dlTextSecondary)
-                    }
+                    .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
                 }
             case .almost:
                 // A typo pauses — the box above spells the word out; this only
@@ -185,89 +172,42 @@ extension TrainerSessionView {
                 // why: Enter advances when revealed (hardware keyboards).
                 .keyboardShortcut(.defaultAction)
             }
-            if let visibleReference {
-                referenceCard(visibleReference)
-                    .transition(.opacity)
+            if isNumbers {
+                lookupButton
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
     }
 
-    /// Tens look-up shown once the learner taps "?" or after a wrong answer.
-    private var visibleReference: [String]? {
-        guard let tensReference else { return nil }
-        let afterWrong = { if case .revealed = feedback { return true }; return false }()
-        return (hintUsed || afterWrong) ? tensReference : nil
-    }
-
-    private func referenceCard(_ entries: [String]) -> some View {
-        VStack(alignment: .leading, spacing: DL.Space.xs) {
-            Text("trainer.tens")
+    /// The whole numbers page, one tap away mid-run — the overview's table, not
+    /// a second, smaller truth beside it. Outside the feedback switch because a
+    /// miss is exactly when a learner wants to look the word up.
+    private var lookupButton: some View {
+        Button {
+            // why: a look-up while the answer is still owed costs the rung, the
+            // way the tens list always did — the task books amber. Once the
+            // answer is in, nothing is owed and reading is free.
+            if case .neutral = feedback { hintUsed = true }
+            showingReference = true
+        } label: {
+            Label("trainer.lookup", systemImage: "questionmark.circle")
                 .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
-                .textCase(.uppercase)
-            Text(entries.joined(separator: " · "))
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlTextPrimary)
-                .fixedSize(horizontal: false, vertical: true)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(DL.Space.l)
-        .background(
-            RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                .fill(Color.dlSurfaceTint)
-        )
+        .buttonStyle(.plain)
+        .foregroundStyle(Color.dlTextSecondary)
     }
 
     // MARK: - Close summary
 
     var summary: some View {
-        VStack(spacing: DL.Space.xl) {
-            Spacer()
-            Text(summaryEmoji)
-                .font(.system(size: 72))
-                .dlSway(angle: 4, period: 3.4)
-                .accessibilityHidden(true)
-            Text("trainer.tasksDone \(doneCount)")
-                .font(DL.Fonts.hero)
-                .foregroundStyle(Color.dlTextPrimary)
-            VStack(spacing: DL.Space.s) {
-                Text("trainer.bestStreak \(bestStreak.formatted())")
-                    .font(DL.Fonts.body)
-                    .foregroundStyle(Color.dlTextPrimary)
-                if newRecord {
-                    Text("trainer.newRecord")
-                        .font(DL.Fonts.headline)
-                        .foregroundStyle(Color.dlAccent)
-                }
-            }
-            Text.joined(Text(mode.titleKey), Text(verbatim: languageName(language)))
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextSecondary)
-            Spacer()
-            SessionExitButtons(
-                onDone: { dismiss() },
-                onPractice: { withAnimation(.easeOut(duration: 0.2)) { showingSummary = false } }
-            )
-        }
-        .padding(DL.Space.xl)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.dlBackground.ignoresSafeArea())
-        // why: confetti is what a record costs — a drill can be closed a dozen
-        // times an evening, and a screen that celebrates every close celebrates
-        // nothing. The run itself always sways; only the record rains.
-        .overlay {
-            if newRecord { ConfettiView().ignoresSafeArea() }
-        }
-        .sessionCloseCorner(label: "common.done") { dismiss() }
-    }
-
-    private var summaryEmoji: String {
-        switch bestStreak {
-        case 10...: return "🏆"
-        case 5...: return "🎉"
-        case 2...: return "💪"
-        default: return "🌱"
-        }
+        DrillSummaryView(
+            doneCount: doneCount,
+            bestStreak: bestStreak,
+            newRecord: newRecord,
+            title: mode.titleKey,
+            languageName: languageName(language),
+            onDone: { dismiss() },
+            onPractice: { withAnimation(.easeOut(duration: 0.2)) { showingSummary = false } }
+        )
     }
 }

@@ -1,4 +1,18 @@
 {
+ "numberNotes": {
+  "de": [
+   "6, 7 und 9 sind aus dem Arabischen entlehnt: sita, saba, tisa — die Nachbarn sind Bantu.",
+   "Auch die Zehner ab 20 sind entlehnt und folgen keinem Muster: ishirini, thelathini, arobaini.",
+   "Teile verbindet na: ishirini na tano. In langen Zahlen fällt na oft weg — beides gilt.",
+   "Erst das Stufenwort, dann die Anzahl: mia mbili (200), elfu tatu (3000)."
+  ],
+  "en": [
+   "6, 7 and 9 are Arabic loans: sita, saba, tisa — their neighbours are Bantu.",
+   "The tens from 20 up are borrowed too and follow no pattern: ishirini, thelathini, arobaini.",
+   "Parts join with na: ishirini na tano. In long numbers na is often dropped — both count.",
+   "The scale word comes first, the count after: mia mbili (200), elfu tatu (3000)."
+  ]
+ },
  "frames": {
   "train-departs-at": {
    "text": "Treni inaondoka {slot}."

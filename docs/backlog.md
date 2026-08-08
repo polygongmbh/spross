@@ -104,18 +104,18 @@ One line per item, with a file or context pointer, filed under the section it be
   NUMERAL, not on the noun, and `count` inflects the noun — so `i-have-n-notebooks`
   and `we-have-n-chairs` are dropped from `catalog/drills/sw.json` rather than coined wrong.
   A numeral-side agreement field is what it would take to author them.
-- German clock readings lose their capital mid-sentence: the slot fill lowercases a
-  mid-sentence reading so Swahili's "Saa …" embeds, but German's nouns must keep theirs —
-  `train-departs-at` at 00:00 answers "Der Zug fährt um mitternacht ab.", and "Viertel",
-  "Dreiviertel" and "Mittag" go the same way (`PhraseSlots.adjustCase`). The rule is a
-  property of the language's readings, so it belongs on `TrainerLanguagePack`, not on
-  every call site.
+- Ordinal phrase frames ("Ich bin auf dem vierten Platz") wait on that same field in every
+  language: the frame must decline the NUMERAL, and the only agreement device runs the other
+  way (`PhraseTemplate.CountForms` inflects the noun from the numeral). Ordinals are drilled
+  bare meanwhile (`docs/number-forms.md`), and Swahili cannot drill them at all.
 - sw `repeat-the-year`/`write-the-year` render byte-identical to `repeat-please`/`write-please`
   — a bare cardinal with no head noun, so nothing tells the learner which frame was asked.
   uk re-cut its pair to name «дату»; sw still needs a heading word a speaker would actually use.
 - uk has no time-*when* clock frame (`о`/`об` + locative: "о шістнадцятій"): both shipped
-  frames are predicates, and the adverbial needs `PhraseSlots.fillWords`' German-only
-  `"um "` absorption generalized first (`clock-registers.md`).
+  frames are predicates. The composer side is ready — it takes the absorbed word and the
+  leading prepositions from the answer's pack (`TrainerLanguagePack.readingPrepositions`,
+  a list because uk alternates о/об) — so what is left is the READING: `UkrainianClock`
+  generates the nominative only, and «о» governs the locative (`clock-registers.md`).
 - de accepts no bare hour word ("Es ist acht.") though the German is right — with the
   drill's stray-word rescue gone it is now safe to add, but it wants its own sweep run.
 - The emphatic full hour is taught by `time/nine-am-sharp` now, and the phrase made three
@@ -148,9 +148,15 @@ One line per item, with a file or context pointer, filed under the section it be
   en `eight`↔`eighty`; es `sesenta`↔`setenta`, both with their compounds):
   at the drill's one-slip-per-word budget one can pass for the other —
   product call pending (no slips at all for number drills vs accept).
-- Spanish's gloss lead-in is `"auch: "` (`SpanishClock.kt:221`) against `ClockRevealTests`'
-  `"también: "`, so the es gloss — and sw's, which carries no `"pia: "` — is unasserted at
-  all 1440 times; the fix moves prefix, separator and the test's split set together.
+  `TrainerFormsTypoBridgeGuardTests` gates the same twins wearing form endings,
+  so the ruling covers both allowlists at once.
+- The number forms have no rung for prices/currency or digit-by-digit readings
+  (a phone number, a PIN) — two families a learner meets constantly and the ladder
+  never asks; adding one is an enum case, a `draw` arm, a `formReading` arm per pack
+  and a rung row (`kern/src/commonMain/kotlin/net/spross/kern/trainer/NumberForms.kt`).
+- `<pack>.cardinal(-n)` returns the digits rather than a reading: the negative reading
+  lives in `formReading` deliberately, so nothing needs it today, but a caller that
+  assumes `cardinal` covers every `Long` gets a digit string back with no error.
 - `UkrainianClock.gloss` (lines 159-173) rebuilds its candidates from `Forms` instead of
   selecting them out of `readings` the way es does, so uk carries a third encoding of its
   own minute grammar and needs `.filter { it in readings }` as a guard.
@@ -189,6 +195,17 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## App & UX
 
+- Nothing marks an unlock: a rung turning a locked row into a pickable one is the whole
+  event, and the learner only sees it next time the overview opens
+  (`App/Sources/Screens/NumbersOverview+Practice.swift`). A full-screen ceremony was
+  rejected for something that happens a handful of times; a moment on the row itself was
+  not considered and might be worth it.
+- The numbers reference stops at the cardinals: the `forms` band — one worked example per
+  number form — is the last piece of the numbers page that never shipped. Kern emits seven
+  bands (`NumberReference.kt`) and `NumberReferenceTable.bandTitle` already knows the eighth
+  key, so it is a row list and its readings.
+- The Training card's two chips are laid out as a row; a third would want the grid the
+  hub used to have (`App/Sources/Screens/TrainerHubView.swift`).
 - The letter drill's typed and dictation stage has no live-check auto-advance —
   finishing the word does not end the step the way it does in vocab review and the
   trainer drills (`App/Sources/Design/AutoAdvance.swift`) — deferred because its verdict

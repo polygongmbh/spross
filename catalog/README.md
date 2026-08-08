@@ -422,7 +422,37 @@ The same frames on the Ukrainian side, carrying what only Ukrainian needs (`uk.j
     "it-costs-n-euros": { "text": "Це {slot} євро.", "masculineNumeral": true } } }
 ```
 
-- `slot` is `numbers`, `years` or `clock` — which generator fills the frame.
+**`numberNotes`** — the other root key of the same file:
+what trips a learner up in THIS language's numbers, two to four lines,
+keyed by explanation language exactly as a realization's `notes` are.
+It describes the language, not any one frame, which is why it sits beside `frames` rather than inside one
+(`sw.json`):
+```json
+{ "numberNotes": {
+    "de": ["6, 7 und 9 sind aus dem Arabischen entlehnt: sita, saba, tisa."],
+    "en": ["6, 7 and 9 are Arabic loans: sita, saba, tisa."] },
+  "frames": { "…": { "text": "…" } } }
+```
+The numbers overview prints them under its generated reading table —
+the table is derived from the trainer's own readings and can never be authored,
+so this is the only place a language's irregularities get said in words.
+Being a ROOT key it never enters the slug namespace: a frame may still be called `numberNotes`,
+and would be realized inside `frames` like any other.
+Selection is by READER with an English fallback, unlike a card's note, which has none:
+a note hangs off a card that carries itself without it, while this IS the section,
+so lint requires English of every language the trainer can generate.
+
+- `slot` is `numbers`, `years`, `clock` or `fraction` — which generator fills the frame.
+  A `fraction` slot draws a reduced `n/d` the answer language can read as a NOUN
+  (`ein Viertel Kilo Mehl`, `un tercio de kilo de harina`);
+  halves are never drawn, because German and Spanish read 1/2 adjectivally
+  (`ein halbes Kilo`, `medio kilo`) and the frame has no way to decline around it.
+  There is deliberately **no `forms` slot**, and one family per kind rather than one shared kind:
+  a frame is grammatically bound to the family it carries —
+  an ordinal frame needs the NUMERAL declined by the frame (`auf dem vierten Platz`),
+  and the only agreement device runs the other way, from the numeral to the noun (`count`).
+  Separate kinds also keep every `when` over them exhaustive,
+  so adding `ordinal` once that agreement field exists is a new arm, never a silent fallthrough.
 - **The drill is a symmetric runtime join**, like the card join:
   a frame realized in BOTH the learner's languages becomes one drill,
   and the profile decides which side prompts and which side is typed.
@@ -463,6 +493,11 @@ and editing one never restamps a learner's box.
 - Ukrainian counted nouns must be **masculine**,
   so the trainer's canonical masculine numeral stays grammatical.
 - Swahili needs "tangu mwaka …" for a year: a bare cardinal after `tangu` does not read as one.
+- A `fraction` frame must read naturally with EVERY fraction the language can draw,
+  which is what decides its shape per language:
+  German puts the noun straight against the measure ("Ich brauche ein Viertel Kilo Mehl."),
+  while English and Spanish need the partitive ("three quarters **of a** kilo of flour",
+  "un tercio **de** kilo de harina") — "one quarter kilo" is not what a recipe says.
 
 Every non-slot content word on the answer side is verified against the card join
 (`PhraseVocabAuditTests`); only documented function words go beyond it.

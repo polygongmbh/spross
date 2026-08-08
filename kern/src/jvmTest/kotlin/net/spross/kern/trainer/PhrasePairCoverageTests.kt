@@ -22,6 +22,8 @@ class PhrasePairCoverageTests {
 
     private fun realized(lang: Language): Set<String> = catalog.frameRealizations[lang].orEmpty().keys
 
+    private fun slotOf(slug: String): TrainerKind = catalog.frames.first { it.slug == slug }.slot
+
     /** The availability rule, relationally: shared realizations, gated on the answer's pack. */
     @Test
     fun everyPairRealizingAFrameOnBothSidesJoinsIt() {
@@ -30,7 +32,13 @@ class PhrasePairCoverageTests {
             for (target in catalog.languages.keys) {
                 if (source == target) continue
                 val shared = realized(source) intersect realized(target)
-                val expected = if (Trainer.supports(target)) shared else emptySet()
+                // The answer side needs a pack AND a generator for the frame's slot —
+                // a fraction frame joins only where the pack can read one.
+                val expected = if (Trainer.supports(target)) {
+                    shared.filterTo(mutableSetOf()) { Trainer.supportsSlot(slotOf(it), target) }
+                } else {
+                    emptySet()
+                }
                 assertEquals(
                     expected,
                     catalog.phraseTemplates(source, target).map { it.id }.toSet(),

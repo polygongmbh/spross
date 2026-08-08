@@ -33,11 +33,48 @@ internal interface TrainerLanguagePack {
      */
     val clockDayParts: Set<String>
 
-    /** Tens look-up, authored only where tens are hard to recall (sw). */
-    val tensReference: List<String>? get() = null
+    /**
+     * Accepted readings of a number form, canonical first — empty where the language
+     * has no reading for it. Defaulted like [formLimits] and [decimalMark] so an
+     * unauthored language quietly offers no Forms drill instead of forcing every pack
+     * to change at once.
+     */
+    fun formReading(value: NumberValue): List<String> = emptyList()
+
+    /** Which forms this language can be drilled on, and how far each reaches. */
+    val formLimits: FormLimits get() = FormLimits()
+
+    /** The mark between whole and fraction, which the reading names ("Komma" · "point"). */
+    val decimalMark: Char get() = '.'
 
     /** Accepted spellings for the level drill (sw adds the "na"-less form). */
     fun drillNumber(n: Long): List<String> = number(n)
+
+    /**
+     * Whether a leading capital in this language's readings is PUNCTUATION rather than
+     * spelling. Swahili writes its clock standalone ("Saa mbili usiku") and lowercases it
+     * inside a sentence; German's readings begin on nouns — Mitternacht, Mittag, Viertel —
+     * whose capital is part of the word, so lowercasing one is a spelling mistake. Hence
+     * the default is to leave a reading's case alone, and only a language that writes its
+     * readings sentence-style says so.
+     */
+    val readingsCarrySentenceCapital: Boolean get() = false
+
+    /**
+     * A word a frame may carry right after the slot that a written-out reading already
+     * says: German "um {slot} Uhr" meets "achtzehn Uhr fünfunddreißig", and the frame's own
+     * "Uhr" gives way. Null where a frame can never double one — the digital rendering
+     * keeps it either way ("Es ist jetzt 18:35 Uhr.").
+     */
+    val slotEcho: String? get() = null
+
+    /**
+     * Prepositions some readings LEAD with ("um acht"). Such a reading composes only where
+     * the frame already carries that preposition — the duplicate is then dropped — and is
+     * skipped anywhere else: "Es ist jetzt um acht." is not a time statement. A list because
+     * one language may alternate by phonology (uk «о»/«об»).
+     */
+    val readingPrepositions: List<String> get() = emptyList()
 }
 
 private object GermanPack : TrainerLanguagePack {
@@ -49,6 +86,11 @@ private object GermanPack : TrainerLanguagePack {
         "Million", "zehn Millionen", "hundert Millionen", "Milliarde",
     )
     override val clockDayParts: Set<String> = (0..23).flatMapTo(mutableSetOf(), GermanClock::dayParts)
+    override fun formReading(value: NumberValue) = GermanForms.reading(value)
+    override val formLimits = GermanForms.LIMITS
+    override val decimalMark = ','
+    override val slotEcho = "Uhr"
+    override val readingPrepositions = listOf("um ")
 }
 
 private object EnglishPack : TrainerLanguagePack {
@@ -64,6 +106,8 @@ private object EnglishPack : TrainerLanguagePack {
     )
     override val clockDayParts: Set<String> =
         (0..23).flatMapTo(mutableSetOf(), EnglishClockRegisters::dayParts)
+    override fun formReading(value: NumberValue) = EnglishForms.reading(value)
+    override val formLimits = EnglishForms.LIMITS
 }
 
 private object SpanishPack : TrainerLanguagePack {
@@ -89,6 +133,9 @@ private object SpanishPack : TrainerLanguagePack {
             }
         }
     }
+    override fun formReading(value: NumberValue) = SpanishForms.reading(value)
+    override val formLimits = SpanishForms.LIMITS
+    override val decimalMark = ','
 }
 
 private object SwahiliPack : TrainerLanguagePack {
@@ -97,18 +144,18 @@ private object SwahiliPack : TrainerLanguagePack {
         val cardinal = SwahiliNumbers.cardinal(y)
         return YearReading(cardinal, listOf(cardinal))
     }
-    override fun clock(hour: Int, minute: Int) = ClockReading(
-        SwahiliClock.time(hour, minute),
-        SwahiliClock.accepted(hour, minute),
-        SwahiliClock.gloss(),
-    )
+    override fun clock(hour: Int, minute: Int) = SwahiliClock.task(hour, minute)
     override val placeValues = listOf(
         "kumi", "mia", "elfu", "elfu kumi", "elfu mia",
         "milioni", "milioni kumi", "milioni mia", "bilioni",
     )
     override val clockDayParts: Set<String> = (0..23).flatMapTo(mutableSetOf(), SwahiliClock::dayParts)
-    override val tensReference get() = SwahiliNumbers.tensReference
+    override fun formReading(value: NumberValue) = SwahiliForms.reading(value)
+    override val formLimits = SwahiliForms.LIMITS
     override fun drillNumber(n: Long) = SwahiliNumbers.acceptedVariants(n)
+    // why: "Saa mbili usiku" is written as a standalone answer — the capital is the
+    // sentence's, not the word's, and it drops the moment the reading goes mid-sentence.
+    override val readingsCarrySentenceCapital = true
 }
 
 private object UkrainianPack : TrainerLanguagePack {
@@ -124,6 +171,9 @@ private object UkrainianPack : TrainerLanguagePack {
     )
     override val clockDayParts: Set<String> =
         (0..23).flatMapTo(mutableSetOf(), UkrainianClockForms::dayParts)
+    override fun formReading(value: NumberValue) = UkrainianForms.reading(value)
+    override val formLimits = UkrainianForms.LIMITS
+    override val decimalMark = ','
 }
 
 /** The registry: de/en/es/sw/uk authored, insertion order is presentation order. */

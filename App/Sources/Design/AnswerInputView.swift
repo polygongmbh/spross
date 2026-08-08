@@ -26,6 +26,17 @@ struct AnswerInputView: View {
         }
     }
 
+    /// Saying the correction out loud, asked BY the form rather than handed in
+    /// already resolved. All three surfaces derived the pair from `.almost` and
+    /// its correction; the box is the one place that knows which word it shows,
+    /// so it is the one place that may ask for a voice for it.
+    struct Voice {
+        /// nil back — nothing recorded and no voice for the language — drops
+        /// the speaker rather than showing a dead one.
+        let pronounce: (String) -> (() -> Void)?
+        let isPlaying: (String) -> Bool
+    }
+
     enum Feedback: Equatable {
         case neutral
         case correct
@@ -58,10 +69,13 @@ struct AnswerInputView: View {
     /// a produce miss keeps the field open so the learner can retype the
     /// word they just saw revealed.
     var locked: Bool?
-    /// Says the form the box below carries — nil where it can neither be played
-    /// nor spoken, which drops the speaker rather than showing a dead one.
-    var pronounceCorrection: (() -> Void)?
-    var correctionIsPlaying: Bool = false
+    /// How the correction box says the form it is carrying. Left off where a
+    /// surface has nothing to say it with.
+    var correctionVoice: Voice?
+    /// Which keyboard the answer is written on. A question answered with a VALUE
+    /// asks for `.numbersAndPunctuation`, which — unlike `.numberPad` — has a
+    /// return key as well as the `, . / : -` a time, a decimal or a fraction needs.
+    var keyboard: UIKeyboardType = .default
     var onSubmit: () -> Void = {}
 
     @FocusState private var fallbackFocus: Bool
@@ -85,7 +99,7 @@ struct AnswerInputView: View {
     /// Revealed, locked and empty: the card is carrying the answer and there is
     /// nothing of the learner's here to keep on screen.
     private var isInert: Bool {
-        isRevealed && (locked ?? true) && text.trimmingCharacters(in: .whitespaces).isEmpty
+        isRevealed && (locked ?? true) && text.isBlankAnswer
     }
 
     // MARK: Input field
@@ -97,6 +111,7 @@ struct AnswerInputView: View {
                 .foregroundStyle(Color.dlTextPrimary)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
+                .keyboardType(keyboard)
                 .submitLabel(.done)
                 .focused(focus ?? $fallbackFocus)
                 .onSubmit(onSubmit)
@@ -190,10 +205,10 @@ struct AnswerInputView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)
-            if let pronounceCorrection {
+            if let correctionVoice, let pronounce = correctionVoice.pronounce(form) {
                 SpeakerIcon(size: .small,
-                            isPlaying: correctionIsPlaying,
-                            pronounce: pronounceCorrection)
+                            isPlaying: correctionVoice.isPlaying(form),
+                            pronounce: pronounce)
                     .accessibilityLabel("a11y.pronounce")
             }
         }
@@ -206,6 +221,32 @@ struct AnswerInputView: View {
         // and a correction the learner cannot replay is the thing this box
         // exists to fix. Caption and form stay two stops.
         .accessibilityElement(children: .contain)
+    }
+}
+
+// MARK: - The field's two rules its callers need
+
+extension String {
+    /// Nothing but whitespace typed. The state where a typing-first surface's
+    /// ONE primary action reveals the answer instead of checking it.
+    var isBlankAnswer: Bool { trimmingCharacters(in: .whitespaces).isEmpty }
+}
+
+/// Asking whichever answer field is on screen for focus. The immediate request
+/// covers a field already mounted; the retry covers one mounting in the same
+/// frame — a request that arrives before its field exists is simply dropped,
+/// which is what left the keyboard down when a reveal started REMOVING the
+/// field rather than disabling it.
+@MainActor
+enum AnswerFocus {
+    static func claim(_ focused: FocusState<Bool>.Binding, retry: inout Task<Void, Never>?) {
+        focused.wrappedValue = true
+        retry?.cancel()
+        retry = Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(120))
+            guard !Task.isCancelled else { return }
+            focused.wrappedValue = true
+        }
     }
 }
 
@@ -224,7 +265,7 @@ private struct AnswerInputPreviewHost: View {
             AnswerInputView(text: $right, feedback: .correct)
             AnswerInputView(text: $slip,
                             feedback: .almost(correctForm: "kisu", reason: .typo),
-                            pronounceCorrection: {})
+                            correctionVoice: .init(pronounce: { _ in {} }, isPlaying: { _ in false }))
             AnswerInputView(text: $wrong, feedback: .revealed)
             // Inert: revealed, locked and empty — the field renders nothing at
             // all, so this row is deliberately blank.

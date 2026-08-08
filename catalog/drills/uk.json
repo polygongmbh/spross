@@ -1,4 +1,18 @@
 {
+ "numberNotes": {
+  "de": [
+   "Das Zahlwort bestimmt die Form: 1 одна тисяча, 2–4 дві тисячі, ab 5 п'ять тисяч.",
+   "Alles, was auf 11–14 endet, nimmt trotzdem die 5+-Form: одинадцять тисяч.",
+   "40 сорок und 90 дев'яносто fallen aus dem Muster — kein -дцять, kein -десят.",
+   "тисяча ist feminin (одна, дві), мільйон maskulin (один). 1900 oft nur тисяча дев'ятсот."
+  ],
+  "en": [
+   "The numeral sets the form: 1 одна тисяча, 2-4 дві тисячі, 5+ п'ять тисяч.",
+   "Anything ending in 11-14 still takes the 5+ form: одинадцять тисяч.",
+   "40 сорок and 90 дев'яносто break the pattern — no -дцять, no -десят.",
+   "тисяча is feminine (одна, дві), мільйон masculine (один). 1900 is often just тисяча дев'ятсот."
+  ]
+ },
  "frames": {
   "it-is-now": {
    "text": "Зараз {slot}.",

@@ -95,16 +95,21 @@ extension LetterDrill {
     func winsToAdvance(consolidated: Int) -> Int { Int(winsToAdvance(consolidatedCards: Int32(consolidated))) }
 
     func stage(level: Int) -> LetterStage { stageFor(level: Int32(level)) }
+}
 
+/// The one rung ramp both drills answer to. How long a rung is stays theirs
+/// (`LetterDrill.winsToAdvance` counts a vocabulary, `Trainer.winsToAdvance`
+/// reads the Fast modifier); what a rung does with an answer is kern's.
+extension DrillRamp {
     func step(level: Int, winsAtLevel: Int, correct: Bool, clean: Bool,
-              maxLevel: Int, winsRequired: Int) -> LetterDrill.LetterDrillProgress {
-        advance(level: Int32(level), winsAtLevel: Int32(winsAtLevel),
-                correct: correct, clean: clean,
-                maxLevel: Int32(maxLevel), winsRequired: Int32(winsRequired))
+              maxLevel: Int, winsRequired: Int) -> DrillRamp.RungStep {
+        step(level: Int32(level), winsAtLevel: Int32(winsAtLevel),
+             correct: correct, clean: clean,
+             maxLevel: Int32(maxLevel), winsRequired: Int32(winsRequired))
     }
 }
 
-extension LetterDrill.LetterDrillProgress {
+extension DrillRamp.RungStep {
     var nextLevel: Int { Int(level) }
     var wins: Int { Int(winsAtLevel) }
 }

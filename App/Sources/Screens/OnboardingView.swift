@@ -79,9 +79,9 @@ struct OnboardingView: View {
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
             ForEach(sources, id: \.self) { candidate in
-                selectionRow(title: Text(verbatim: languageName(candidate)),
-                             caption: nil,
-                             selected: source == candidate) {
+                DLSelectionRow(title: Text(verbatim: languageName(candidate)),
+                               mark: .one,
+                               selected: source == candidate) {
                     if candidate == target {
                         swapSelections()
                         return
@@ -123,9 +123,10 @@ struct OnboardingView: View {
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
             ForEach(targetChoices) { candidate in
-                selectionRow(title: Text(verbatim: languageName(candidate.code)),
-                             caption: Text("onboarding.termsCount \(candidate.conceptCount.formatted())"),
-                             selected: target == candidate.code) {
+                DLSelectionRow(title: Text(verbatim: languageName(candidate.code)),
+                               caption: Text("onboarding.termsCount \(candidate.conceptCount.formatted())"),
+                               mark: .one,
+                               selected: target == candidate.code) {
                     if candidate.code == source {
                         swapSelections()
                     } else {
@@ -134,42 +135,6 @@ struct OnboardingView: View {
                 }
             }
         }
-    }
-
-    private func selectionRow(title: Text, caption: Text?, selected: Bool,
-                              action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            HStack(spacing: DL.Space.m) {
-                Image(systemName: selected ? "checkmark.circle.fill" : "circle")
-                    .font(.title3)
-                    .foregroundStyle(selected ? Color.dlAccent : Color.dlTextSecondary)
-                VStack(alignment: .leading, spacing: 2) {
-                    title
-                        .font(DL.Fonts.headline)
-                        .foregroundStyle(Color.dlTextPrimary)
-                    if let caption {
-                        caption
-                            .font(DL.Fonts.caption)
-                            .foregroundStyle(Color.dlTextSecondary)
-                    }
-                }
-                Spacer(minLength: 0)
-            }
-            .padding(DL.Space.m)
-            .background(selectionBackground(selected))
-        }
-        .buttonStyle(.plain)
-        .accessibilityAddTraits(selected ? .isSelected : [])
-    }
-
-    private func selectionBackground(_ selected: Bool) -> some View {
-        RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-            .fill(selected ? Color.dlSurfaceTint : Color.dlSurface)
-            .overlay(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .strokeBorder(selected ? Color.dlAccent : Color.dlSeparator,
-                                  lineWidth: selected ? 2 : 1)
-            )
     }
 
     private var startButton: some View {

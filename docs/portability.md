@@ -88,10 +88,10 @@ No new kern dependency; data classes already cross the boundary.
    `require` deliberately: the safe query is now the one a launch reaches for, and an unknown source
    stays a programming error rather than an empty answer. The rest of `activate` — bundle paths,
    `UserDefaults`, the observable plumbing — stayed iOS, correctly.
-4. **`trainer/LetterDrillRun` + `TrainerRun`** — the run drivers around kern's existing ramp
+4. **`trainer/LetterDrillRun` + `TrainerRun`** — the run drivers around kern's ramp
    (`LetterDrillView.swift:54-284`, `TrainerSessionView.swift:59-276`).
-   The trainer's adaptive ramp (two clean wins up, a miss down, amber neutral) exists *only* in Swift —
-   `LetterDrill.kt:94` already has the same shape, `Trainer.kt` does not.
+   The ramp itself is no longer among the duplications: both drills now step through
+   `DrillRamp.step`, and each passes in only its own rung length.
 5. **`trainer/LetterDrillAvailability`** behind an audio-capability port
    (`LetterDrillAvailability.swift:16-131`) — deletes 176 hand-ported Kotlin lines.
 6. **`snapshot/WatchRun` + public snapshot DTOs** — the watch queue/ranking/recycling engine
@@ -133,10 +133,11 @@ in-process, no such copy may exist.
 - `box/TodayReport` — which summary parts appear and the done-vs-caught-up choice
   (`HeuteView.swift:99-217`, `SessionCompletionView.swift:43-49`).
   The strings stay platform-side; the rule choosing the key does not.
-- Duplicated-in-iOS-already, so kern by default: `alsoAccepted`
-  (`SessionView+Produce.swift:261-264` = `LetterDrillView+Grading.swift:106-109`, byte-identical),
-  `summaryEmoji` thresholds 10/5/2 (`TrainerSessionView+Drill.swift:267-274` = `LetterDrillView+Stages.swift:268-275`),
-  the drill normalizer's strictness triple (`TrainerHubView.swift:85-92` = `LetterDrillView+Grading.swift:117-118`).
+- Rules with exactly one Swift home and no Kotlin one, so kern by default:
+  `Card.alsoAccepts` (`DisplayText.swift:78`) and the `summaryEmoji` thresholds 10/5/2
+  (`DrillChrome.swift:129`) — both were duplicated in iOS and are not any more, which is
+  what makes the move cheap. Still stated twice: the drill normalizer's strictness triple
+  (`TrainerHubView.swift:92-93` = `LetterDrillView+Grading.swift:112-114`).
 
 ## Stays native
 

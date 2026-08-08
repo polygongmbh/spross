@@ -55,8 +55,9 @@ scripts/run-sim.sh -- -uitest-source de -uitest-target sw   # skip onboarding
 
 Arguments after `--` reach the app: `-uitest-source`/`-uitest-target` pick a
 language pair, `-uitest-screen box` opens the Box, `-uitest-autostart 1` starts
-the session, `-uitest-trainer numbers|years|clock|phrases` opens a drill
-(DEBUG only, read in `AppModel.start()`).
+the session, `-uitest-trainer numbers|letters` opens a trainer overview
+(DEBUG only, read in `AppModel.start()`), and `-uitest-run 1` starts the run
+from it.
 
 Physical devices: `scripts/deploy-devices.sh` — Release, or `--debug` while iterating.
 

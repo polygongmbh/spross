@@ -31,7 +31,10 @@ object DrillUnlocks {
     private val variantRequirements: Map<DrillVariant, Map<DrillVariant, Int>> = mapOf(
         DrillVariant.Numbers to emptyMap(),
         DrillVariant.Clock to mapOf(DrillVariant.Numbers to 4),
-        DrillVariant.Phrases to mapOf(DrillVariant.Clock to 3),
+        // why: a sentence puts a time inside a clause, so it opens on a clock that is
+        // finished — the ladder's top rung, tracked by name so growing the ladder
+        // moves the gate with it instead of quietly cheapening it.
+        DrillVariant.Phrases to mapOf(DrillVariant.Clock to CLOCK_MAX_LEVEL),
         DrillVariant.Forms to mapOf(DrillVariant.Numbers to 7),
     )
 
@@ -62,4 +65,44 @@ object DrillUnlocks {
 
     private fun met(required: Map<DrillVariant, Int>, progress: Map<DrillVariant, Int>): Boolean =
         required.all { (variant, level) -> (progress[variant] ?: 0) >= level }
+}
+
+/**
+ * The rung ramp INSIDE a run — the other half of the progression, and the one every
+ * drill shares. How long a rung is stays the caller's rule
+ * ([LetterDrill.winsToAdvance] counts a held vocabulary, [Trainer.winsToAdvance]
+ * reads the Fast modifier); what a rung DOES with an answer is decided here once.
+ */
+object DrillRamp {
+
+    /**
+     * [winsRequired] clean wins up, one miss down, floor 1.
+     *
+     * An amber answer ([clean] false: a typo, a revealed hint, a synonym) moves NOTHING.
+     * It is neither a win to bank nor a miss to punish, and letting it count either way
+     * would make the ramp disagree with what the learner just saw on screen.
+     */
+    fun step(
+        level: Int,
+        winsAtLevel: Int,
+        correct: Boolean,
+        clean: Boolean,
+        maxLevel: Int,
+        winsRequired: Int,
+    ): RungStep {
+        val ceiling = maxOf(1, maxLevel)
+        val current = level.coerceIn(1, ceiling)
+        val wins = maxOf(0, winsAtLevel)
+        if (!correct) return RungStep(maxOf(1, current - 1), 0)
+        if (!clean) return RungStep(current, wins)
+        val earned = wins + 1
+        return if (earned >= maxOf(1, winsRequired) && current < ceiling) {
+            RungStep(current + 1, 0)
+        } else {
+            RungStep(current, earned)
+        }
+    }
+
+    /** Where the ramp leaves the run: the rung to ask at next, and the wins banked on it. */
+    data class RungStep(val level: Int, val winsAtLevel: Int)
 }
