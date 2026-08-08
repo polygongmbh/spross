@@ -70,27 +70,38 @@ a { color: var(--accent); }
 
 /* ---------- header / hero ---------- */
 
+/* Masthead and hero read as one block — the wordmark was adrift on its own band. */
 header.site {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 1.1rem 0;
+  gap: 0.55rem;
+  padding: 1rem 0 2.75rem;
 }
 
-header.site .mark { width: 2rem; height: 2rem; }
+header.site .mark { width: 2.1rem; height: 2.1rem; flex: none; }
 
 header.site .word {
-  font-size: 1.35rem;
+  font-size: 1.75rem;
   font-weight: 800;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.02em;
 }
+
+/* The band needs a right-hand weight, or the wordmark dangles in a corner. */
+header.site .mast-link {
+  margin-left: auto;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+header.site .mast-link:hover { text-decoration: underline; }
 
 .hero {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1fr auto;
   gap: 2rem;
   align-items: center;
-  padding: 2.5rem 0 3rem;
+  padding: 0 0 1.5rem;
 }
 
 .hero h1 {
@@ -131,8 +142,9 @@ header.site .word {
 .btn.primary { background: var(--accent); color: var(--on-color); }
 
 .btn.soft {
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
   color: var(--accent);
+  border: 1.5px solid color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 .btn:active { transform: scale(0.97); }
@@ -141,10 +153,11 @@ header.site .word {
 
 .positioning {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--text-2);
   max-width: 42rem;
-  margin: 0 auto 3.5rem;
+  margin: 0 auto 5rem;
+  text-wrap: balance;
 }
 
 .positioning strong { color: var(--text); }
@@ -158,16 +171,36 @@ header.site .word {
 
 /* ---------- features ---------- */
 
+/* The cards grow off one stem, alternating like leaves on a shoot —
+   each joined by a Sprosse of its own. */
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
   gap: 1.1rem;
-  padding: 0;
-  margin: 0 0 4rem;
+  padding: 0 2.5rem;
+  margin: 0 auto 4rem;
+  max-width: 46.5rem;
   list-style: none;
+  position: relative;
+}
+
+.features::before {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 1rem;
+  bottom: 1rem;
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--stem) 40%, transparent) 8%,
+    var(--stem) 100%
+  );
 }
 
 .features li {
+  position: relative;
   background: var(--surface);
   border: 1px solid color-mix(in srgb, var(--separator) 60%, transparent);
   border-radius: 20px;
@@ -175,18 +208,44 @@ header.site .word {
   padding: 1.25rem 1.35rem;
 }
 
-.features h2 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+.features li::before {
+  content: "";
+  position: absolute;
+  left: -1.95rem;
+  top: 2.05rem;
+  width: 1.95rem;
+  height: 2px;
+  background: color-mix(in srgb, var(--stem) 55%, transparent);
+}
 
-.features p { margin: 0; color: var(--text-2); font-size: 0.97rem; }
+.features li { margin-right: 2.5rem; }
+
+.features li:nth-child(even) { margin-left: 2.5rem; margin-right: 0; }
+
+.features li:nth-child(even)::before { left: -3.7rem; width: 3.7rem; }
+
+.features h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: -0.005em;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.features .leaf { font-size: 1.35rem; line-height: 1; flex: none; }
+
+.features p { margin: 0; color: var(--text-2); font-size: 1rem; }
 
 /* ---------- drill section ---------- */
 
 /* The drill is the page's centerpiece — a tinted stage, everything on one axis. */
 .drill-section {
-  margin: 0 0 4rem;
+  margin: 0 auto 4rem;
+  max-width: 46.5rem;
   background: var(--surface-tint);
   border-radius: 32px;
-  padding: 2.5rem 1.5rem;
+  padding: 2.5rem 2rem;
   text-align: center;
 }
 
@@ -310,34 +369,47 @@ header.site .word {
 
 /* run header */
 
+/* why: a flex row put the ✕ alone on the left against a dense right cluster —
+   the ink sat right of the card's axis and the whole card read as off-centre. */
 .run-head {
-  display: flex;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
   align-items: center;
   gap: 0.8rem;
   font-size: 0.9rem;
   color: var(--text-2);
+}
+
+.run-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  color: var(--text-2);
   font-variant-numeric: tabular-nums;
 }
 
-.run-head .streak[data-live="true"] { color: var(--accent); font-weight: 700; }
+.run-meta .streak[data-live="true"] { color: var(--accent); font-weight: 700; }
 
 /* A Sprosse is a rung: the level climbs one, and the ladder shows it —
    rails included, so it reads as a ladder and not as a menu icon. */
 .rungs {
   display: inline-grid;
-  gap: 3px;
-  width: 16px;
+  gap: 5px;
+  width: 14px;
   flex: none;
-  padding: 2px 2px;
-  border-left: 2px solid var(--separator);
-  border-right: 2px solid var(--separator);
+  padding: 3px 2px;
+  border-left: 2px solid color-mix(in srgb, var(--stem) 65%, transparent);
+  border-right: 2px solid color-mix(in srgb, var(--stem) 65%, transparent);
   border-radius: 2px;
 }
 
 .rungs span {
-  height: 2px;
+  height: 3px;
   border-radius: 1px;
-  background: var(--separator);
+  background: color-mix(in srgb, var(--separator) 85%, transparent);
 }
 
 .rungs span.on { background: var(--accent); }
@@ -367,7 +439,12 @@ header.site .word {
   cursor: pointer;
   font-size: 1.05rem;
   color: var(--text-2);
-  padding: 0.2rem;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  margin: -0.5rem 0;
 }
 
 /* prompt */
@@ -470,6 +547,9 @@ header.site .word {
 /* ---------- signup ---------- */
 
 .signup {
+  max-width: 46.5rem;
+  margin-left: auto;
+  margin-right: auto;
   background: var(--surface);
   border: 1px solid color-mix(in srgb, var(--separator) 60%, transparent);
   border-radius: 28px;
@@ -523,6 +603,24 @@ footer.site p { margin: 0.3rem 0; }
   .hero { grid-template-columns: 1fr; text-align: center; }
   .hero .art { order: -1; width: min(11rem, 45vw); }
   .cta-row { justify-content: center; }
+  header.site { justify-content: center; }
+
+  /* A phone keeps the stem — it is the page's one distinctive idea — and drops
+     only the alternation, which has no room to read. */
+  .features { padding: 0 0 0 1.25rem; }
+  .features::before { left: 0.2rem; }
+  .features li::before { left: -1.05rem; width: 1.05rem; }
+  .features li,
+  .features li:nth-child(even) { margin-left: 0; margin-right: 0; }
+  .features li:nth-child(even)::before { left: -1.05rem; width: 1.05rem; }
+
+  .cta-row .btn { flex: 1 1 100%; text-align: center; }
+}
+
+@media (max-width: 30rem) {
+  .lang-chips { display: grid; grid-template-columns: 1fr 1fr; }
+  .chip { justify-content: center; }
+  .lang-chips > :last-child { grid-column: 1 / -1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -541,4 +639,18 @@ footer.site p { margin: 0.3rem 0; }
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* why: on a near-black page --surface-tint sits ABOVE --surface, so the lit card
+   became a recess; the stage recedes instead and the card lifts in both themes. */
+@media (prefers-color-scheme: dark) {
+  .drill-section {
+    background: var(--bg);
+    border: 1px solid var(--separator);
+  }
+
+  .hero .art {
+    filter: brightness(0.93) saturate(0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  }
 }

@@ -13,6 +13,9 @@ built to sit beside native-speaker conversation or a structured course, never to
   It is played, never explained: the drill's level IS a "Sprosse" (with a small ladder beside it and one
   hoverable gloss on first mention), so a German reader gets the joke and everyone else still gets a ladder.
 - Copy names what the learner gets, never how the engine works — no FSRS, no scheduling internals on the page.
+- The six feature cards hang off one tapering stem (`--stem`, thickening downward), alternating left and right
+  like leaves on a shoot, each joined by its own Sprosse-tick. The page carries two measures only:
+  the hero's full width and 46.5rem for everything below it.
 - "Sprössling" is the site's name for a subscriber/learner (coined here, not used in-app).
 
 ## Architecture

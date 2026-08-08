@@ -23,6 +23,7 @@
     <path fill="var(--stem)" d="M40,78 L68,78 C68,82 64,85 60,85 L48,85 C44,85 40,82 40,78 Z"/>
   </svg>
   <span class="word">Spross</span>
+  <a class="mast-link" href="#drill">Try counting</a>
 </header>
 
 <main>
@@ -40,29 +41,40 @@
   <img class="art" src="assets/icon-512.png" alt="The Spross icon: a green sprout rising from soil, cupped by three seed shells carrying letters of different scripts." width="512" height="512">
 </section>
 
-<p class="positioning">Spross doesn't replace your <strong>tandem partner</strong> or your <strong>course</strong> —
-it keeps your vocabulary growing between conversations.</p>
+<p class="positioning">Following a conversation takes many words, not a few perfect ones.
+Spross doesn't replace your <strong>tandem partner</strong> or your <strong>course</strong> —
+it keeps your vocabulary growing between them.</p>
 
 <ul class="features">
   <li>
-    <h2>Sown, not crammed</h2>
+    <h2><span class="leaf" aria-hidden="true">🌱</span>Sown, not crammed</h2>
     <p>A few new words a day, in any pair of German, English, Spanish, Swahili, and Ukrainian.
        Each one comes back just before you would have lost it.</p>
   </li>
   <li>
-    <h2>Phrases unlock from words</h2>
-    <p>A phrase stays closed until its component words are steady.
-       When it opens, it lands on ground that can hold it.</p>
+    <h2><span class="leaf" aria-hidden="true">🌿</span>Sentences grow from what you've sown</h2>
+    <p>Whole phrases come up out of the words you've been tending.
+       You meet them once the ground can hold them.</p>
   </li>
   <li>
-    <h2>A forest, not a chart</h2>
+    <h2><span class="leaf" aria-hidden="true">⏰</span>It doesn't stop at numbers</h2>
+    <p>Clock times, years, the alphabet, dictation, whole sentences —
+       all generated fresh, so the practice never runs out.</p>
+  </li>
+  <li>
+    <h2><span class="leaf" aria-hidden="true">🗣️</span>Real voices, not a robot</h2>
+    <p>Hundreds of recordings from native speakers in German, Spanish, Swahili, and Ukrainian.
+       A word arrives with a sound, not just a spelling.</p>
+  </li>
+  <li>
+    <h2><span class="leaf" aria-hidden="true">✍️</span>Your own words, too</h2>
+    <p>The word your tandem partner just taught you goes into the box and grows there like the rest.
+       A growing catalog never touches what's yours.</p>
+  </li>
+  <li>
+    <h2><span class="leaf" aria-hidden="true">🌳</span>A forest, not a chart</h2>
     <p>Each topic is a tree, each word a leaf.
        Leaves turn to blossom, then fruit, as the word ripens in your memory.</p>
-  </li>
-  <li>
-    <h2>Wide before deep</h2>
-    <p>Following a conversation takes many words, not a few perfect ones.
-       Spross spends your minutes on range — so more of what you hear lands.</p>
   </li>
 </ul>
 
@@ -92,10 +104,12 @@ it keeps your vocabulary growing between conversations.</p>
       <div class="run-head">
         <button class="icon-btn" id="finish" title="Finish this run" aria-label="Finish this run">✕</button>
         <div class="progress" id="progress" aria-hidden="true"></div>
-        <span class="rungs" id="rungs" aria-hidden="true"></span>
-        <span class="streak" id="streak-line"></span>
         <button class="icon-btn" id="mute" aria-pressed="false" title="Mute" aria-label="Mute">🔊</button>
       </div>
+      <p class="run-meta">
+        <span class="rungs" id="rungs" aria-hidden="true"></span>
+        <span class="streak" id="streak-line"></span>
+      </p>
       <div class="prompt-zone">
         <div class="hint-pill" id="hint" hidden></div>
         <div class="numeral" id="numeral"></div>
