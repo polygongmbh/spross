@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **Android review cards carry what a word owes.** The answer opens the card itself
+  rather than appearing under the field, a prompt that could mean two things names the
+  area it is asked within, and a word that can be heard shows the speaker that says it.
+
 - **Android no longer freezes when a recording is slow to reach the speaker.** Loading
   and unloading the read-aloud clips happened on the thread that also answers taps, so
   an audio system taking seconds surfaced as "Spross isn't responding" mid-round; the

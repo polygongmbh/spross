@@ -15,6 +15,7 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import net.spross.app.audio.Pronouncer
+import net.spross.app.ui.AreaNaming
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
@@ -214,6 +215,22 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         // why: the browser's rows speak on tap — nothing may keep talking into Heute.
         pronouncer.stop()
         screen = Screen.Heute
+    }
+
+    /**
+     * What a shelf is CALLED to this learner — the browser's own rule ([AreaNaming]),
+     * so the cue an ambiguous prompt carries and the heading it stands under in the box
+     * can never disagree about the name of an area.
+     */
+    fun areaTitle(area: String): String {
+        val cat = catalog
+        val source = box?.joinStamp?.source
+        return AreaNaming(
+            chrome = chrome,
+            catalogTitle = { if (source == null) null else cat?.areaTitle(it, source) },
+            catalogSubtitle = { if (source == null) null else cat?.areaSubtitle(it, source) },
+            catalogEmoji = { cat?.areaEmoji(it) },
+        ).title(area)
     }
 
     /** The letters drill; what it can ask is `letterDrillAvailable`, which gates the chip. */

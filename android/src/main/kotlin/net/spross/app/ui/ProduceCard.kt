@@ -23,6 +23,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
@@ -31,7 +32,6 @@ import net.spross.app.TurnFlow
 import net.spross.app.audio.Pronouncer
 import net.spross.app.pronounceAction
 import net.spross.app.pronounceTarget
-import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.TurnFeedback
@@ -46,15 +46,30 @@ import net.spross.kern.session.TurnFeedback
  */
 @Composable
 fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
-    if (ui.card == null) return
+    val card = ui.card ?: return
     val chrome = model.chrome
     val heard = ui.producePrompt == ProducePrompt.Sound
+    val revealed = flow.answerRevealed
 
-    if (heard) ReplayPrompt(model, ui) else PromptWord(ui)
+    VocabCard(
+        emoji = card.emoji,
+        emojiShown = emojiShowing(ui.emojiCue, revealed),
+    ) {
+        if (heard) ReplayPrompt(model, ui) else PromptWord(model, ui)
+        // The card is what OPENS onto the answer — inline, growing downward, above the
+        // field the learner is still typing in. A near miss never reaches here: its
+        // correction stands at the field, beside the attempt it is correcting.
+        if (revealed) {
+            // The note is the card's last line whichever side authored it — a literal
+            // gloss belongs to the concept, not to one of its two faces.
+            CardReveal(note = card.target.note ?: card.source.note) {
+                ProduceReveal(model, ui)
+            }
+        }
+    }
 
     val step = flow.copyStep
     if (step != null) {
-        ProduceReveal(model, ui)
         WriteOutStep(model, flow, step, model.targetName(ui))
         return
     }
@@ -71,7 +86,6 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     }
     when (val feedback = flow.feedback) {
         TurnFeedback.Neutral -> if (flow.selfGrading) {
-            ProduceReveal(model, ui)
             VerdictButtons(chrome, flow)
         } else {
             // ONE primary action: an empty field reveals, a typed one checks.
@@ -92,16 +106,29 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     }
 }
 
-/** The source word, with the feminine marker where the card is a demoted feminine. */
+/**
+ * The source word, under the area it is asked within where the prompt would otherwise be
+ * ambiguous, and with the feminine marker where the card is a demoted feminine.
+ *
+ * The area label is the disambiguating cue, in the source language and never graded. It
+ * rides the PRODUCE prompt only: on a recognition prompt a cue precise enough to tell the
+ * two concepts apart would hand over the answer (kern `Card.promptAmbiguous`).
+ */
 @Composable
-private fun PromptWord(ui: SessionUi) {
+private fun PromptWord(model: AppModel, ui: SessionUi) {
     val card = ui.card ?: return
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Text(card.source.text, style = MaterialTheme.typography.headlineLarge)
-        if (card.promptFeminineMarker) {
-            Text(" ♀", style = MaterialTheme.typography.headlineLarge,
-                color = MaterialTheme.colorScheme.secondary)
-        }
+    if (card.promptAmbiguous) CardCue(model.areaTitle(card.area))
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+    ) {
+        Text(
+            card.source.text,
+            style = MaterialTheme.typography.headlineMedium,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.weight(1f, fill = false),
+        )
+        if (card.promptFeminineMarker) FeminineBadge()
     }
 }
 
@@ -172,7 +199,7 @@ private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         flow.otherWord?.let { other ->
             // why: the line says what the learner DID write; the word it speaks is the
-            // one they owed, the same one the reveal below carries.
+            // one they owed, the same one the card above has opened onto.
             Text(
                 chrome.otherWordNote.format(other.word, other.meanings.joinToString(", ")),
                 style = MaterialTheme.typography.bodyMedium,
@@ -180,7 +207,6 @@ private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                 modifier = Modifier.pronounceOnTap(model.pronounceAction(card.target.text), chrome),
             )
         }
-        ProduceReveal(model, ui)
         // why: the beat that books a finished retype never arms under a screen reader,
         // so without this a finished retype would have no way on but giving up — which
         // grades Again, not what it just earned.
@@ -194,27 +220,26 @@ private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     }
 }
 
-/** What a produce card shows once it has stopped asking: the picture, the meaning it
- * withheld, and the word's whole family. */
+/**
+ * What a produce card shows once it has stopped asking: the meaning it withheld, and the
+ * word with its whole family. The picture is the card's own slot, which was standing
+ * empty and only now fades in — nothing here moves it.
+ */
 @Composable
 private fun ProduceReveal(model: AppModel, ui: SessionUi) {
     val card = ui.card ?: return
     val chrome = model.chrome
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        if (ui.emojiCue == EmojiCue.OnReveal) {
-            Text(card.emoji.orEmpty(), fontSize = 64.sp)
-        }
-        // why: a sound-prompted card never said what the word MEANS, so the reveal owes
-        // it back — otherwise a miss teaches nothing but spelling.
-        if (ui.producePrompt == ProducePrompt.Sound) {
-            Text(
-                (listOf(card.source.text) + card.source.synonyms).joinToString(" / "),
-                style = MaterialTheme.typography.titleMedium,
-            )
-        }
-        TargetReveal(
-            card.target, chrome,
-            pronounce = model.pronounceAction(card.target.text),
+    // why: a sound-prompted card never said what the word MEANS, so the reveal owes
+    // it back — otherwise a miss teaches nothing but spelling.
+    if (ui.producePrompt == ProducePrompt.Sound) {
+        Text(
+            (listOf(card.source.text) + card.source.synonyms).joinToString(" / "),
+            style = MaterialTheme.typography.titleMedium,
+            textAlign = TextAlign.Center,
         )
     }
+    TargetReveal(
+        card.target, chrome,
+        pronounce = model.pronounceAction(card.target.text),
+    )
 }

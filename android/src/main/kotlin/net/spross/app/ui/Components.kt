@@ -5,12 +5,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -19,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.customActions
@@ -41,15 +43,22 @@ import net.spross.kern.session.AnswerTone
 /**
  * Answer-colored progress bar: one segment per answer, a recessed track for the rest.
  *
+ * ONE capsule carrying hairline-parted segments, never a row of loose dots — the round is
+ * a single stretch of work, and the bar is what says how much of it is behind the learner.
+ * The unanswered remainder is one undivided run, so a long round does not dissolve into
+ * specks; the parting closes entirely past the count where it stops reading as a gap.
+ *
  * The brick is the AGGREGATE's alone — this bar is the only place a wrong answer is shown
  * as one, and no card ever repeats it back at the learner.
  */
 @Composable
 fun SegmentsBar(segments: List<AnswerTone>, remaining: Int, modifier: Modifier = Modifier) {
     val palette = Dl.colors
+    val slots = segments.size + remaining
     Row(
-        modifier = modifier.fillMaxWidth().height(6.dp),
-        horizontalArrangement = Arrangement.spacedBy(2.dp),
+        modifier = modifier.fillMaxWidth().height(10.dp)
+            .clip(CircleShape).background(palette.separator),
+        horizontalArrangement = Arrangement.spacedBy(if (slots > 40) 0.dp else 1.dp),
     ) {
         segments.forEach { tone ->
             val color = when (tone) {
@@ -57,13 +66,10 @@ fun SegmentsBar(segments: List<AnswerTone>, remaining: Int, modifier: Modifier =
                 AnswerTone.Tough -> palette.amber
                 AnswerTone.Wrong -> palette.wrong
             }
-            Box(Modifier.weight(1f).height(6.dp).background(color, RoundedCornerShape(3.dp)))
+            Box(Modifier.weight(1f).fillMaxHeight().background(color))
         }
-        repeat(remaining) {
-            Box(
-                Modifier.weight(1f).height(6.dp)
-                    .background(palette.surfaceTint, RoundedCornerShape(3.dp))
-            )
+        if (remaining > 0) {
+            Box(Modifier.weight(remaining.toFloat()).fillMaxHeight().background(palette.separator))
         }
     }
 }
@@ -83,6 +89,17 @@ fun Pill(text: String, color: Color, modifier: Modifier = Modifier) {
             .background(Dl.colors.wash(color), RoundedCornerShape(percent = 50))
             .padding(horizontal = DlSpace.m, vertical = DlSpace.xs + 1.dp),
     )
+}
+
+/**
+ * The ♀ a demoted feminine wears beside its headword — decorative grammar, never graded.
+ *
+ * A badge rather than a bare glyph: it marks the word without joining it, so the headword
+ * is still read (and heard) as the word it is.
+ */
+@Composable
+fun FeminineBadge(modifier: Modifier = Modifier) {
+    Pill("♀", Dl.colors.die, modifier)
 }
 
 /**
@@ -241,42 +258,5 @@ fun DlColors.articleColoredText(realization: Realization): AnnotatedString {
     return buildAnnotatedString {
         withStyle(SpanStyle(color = articleTint(article) ?: Color.Unspecified)) { append(article) }
         append(" ${realization.text}")
-    }
-}
-
-/**
- * Target-side reveal: colored text, plural line, synonym family, note.
- *
- * [alsoShown] names forms of this word standing ELSEWHERE on the screen — a rotated
- * recognition prompt, say. The citation form is always one of them, since this very
- * composable draws it.
- */
-@Composable
-fun TargetReveal(
-    target: Realization,
-    chrome: Chrome,
-    modifier: Modifier = Modifier,
-    pronounce: (() -> Unit)? = null,
-    alsoShown: List<String> = emptyList(),
-) {
-    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Text(
-            localizedTarget(Dl.colors.articleColoredText(target), target.lang),
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.pronounceOnTap(pronounce, chrome),
-        )
-        CardDisplay.pluralLine(target, chrome)?.let {
-            Text(it, style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
-        CardDisplay.alsoLine(target, chrome, alsoShown + target.text)?.let {
-            Text(it, style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
-        target.note?.let {
-            Text(it, style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(top = 2.dp))
-        }
     }
 }

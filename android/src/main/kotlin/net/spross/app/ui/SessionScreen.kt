@@ -1,7 +1,8 @@
 package net.spross.app.ui
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,11 +16,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -28,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.semantics.Role
@@ -35,8 +37,8 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.CHIME_CLEARANCE_MS
@@ -48,7 +50,6 @@ import net.spross.app.autoplayPrompt
 import net.spross.app.newTurn
 import net.spross.app.pronounceAction
 import net.spross.app.pronounceTarget
-import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.shownArticle
 
@@ -57,15 +58,56 @@ fun SessionScreen(model: AppModel) {
     val ui = model.sessionUi ?: return
     BackHandler { model.finishSession() }
 
-    Column(modifier = Modifier.fillMaxSize().padding(20.dp)) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            SegmentsBar(ui.segments, ui.remaining, Modifier.weight(1f))
-            ReadAloudSwitch(model)
-            TextButton(onClick = { model.finishSession() }) { Text("✕") }
-        }
+    Column(
+        modifier = Modifier.fillMaxSize().padding(DlSpace.l),
+        verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+    ) {
+        SessionTopBar(model, ui)
         if (ui.card == null) SessionSummary(model, ui) else TurnCard(model, ui)
     }
 }
+
+/**
+ * The session's constant chrome, in the order the round is worked: the way OUT leading,
+ * where the thumb that started the round already is; the progress carrying the whole
+ * width between the two controls; the read-aloud switch trailing. Nothing up here varies
+ * with the card below it, so no card pays a point of layout for it.
+ */
+@Composable
+private fun SessionTopBar(model: AppModel, ui: SessionUi) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+    ) {
+        CloseSessionButton(model)
+        SegmentsBar(ui.segments, ui.remaining, Modifier.weight(1f))
+        ReadAloudSwitch(model)
+    }
+}
+
+/** The way out of a running round — first in the bar, so it is never hunted for. */
+@Composable
+private fun CloseSessionButton(model: AppModel) {
+    val chrome = model.chrome
+    Box(
+        modifier = Modifier
+            .chromeDisc()
+            .semantics(mergeDescendants = true) { contentDescription = chrome.finish }
+            .clickable(role = Role.Button) { model.finishSession() },
+        contentAlignment = Alignment.Center,
+    ) {
+        Text("✕", style = MaterialTheme.typography.titleMedium, color = Dl.colors.textSecondary)
+    }
+}
+
+/**
+ * The tinted disc both chrome controls sit in: one shape, one 48 dp target, so the pair
+ * reads as chrome rather than as two loose glyphs jostling in a corner.
+ */
+@Composable
+private fun Modifier.chromeDisc(): Modifier =
+    this.size(48.dp).clip(CircleShape).background(MaterialTheme.colorScheme.surfaceVariant)
 
 /**
  * The read-aloud switch, in constant chrome: the top bar never varies with the card
@@ -83,7 +125,7 @@ fun ReadAloudSwitch(model: AppModel) {
         // around it. ONE stable label with the state as its VALUE: a label that flips
         // leaves TalkBack announcing the action as though it were the condition.
         modifier = Modifier
-            .size(48.dp)
+            .chromeDisc()
             .toggleable(
                 value = !muted,
                 role = Role.Switch,
@@ -148,19 +190,15 @@ private fun TurnCard(model: AppModel, ui: SessionUi) {
     }
 
     Column(
-        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).animateContentSize(),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(DlSpace.m),
     ) {
-        Spacer(Modifier.height(24.dp))
-        if (ui.emojiCue == EmojiCue.Upfront) {
-            Text(card.emoji.orEmpty(), fontSize = 64.sp)
-        }
         if (ui.role == PresentationRole.Recognize) {
             RecognizeTurn(model, ui, flow)
         } else {
             ProduceCard(model, ui, flow)
         }
-        Spacer(Modifier.height(8.dp))
+        Spacer(Modifier.height(DlSpace.s))
     }
 }
 
@@ -180,23 +218,55 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     // rotated synonym is a different word and can carry a different gender, so the
     // article steps aside rather than mislabel it (kern `shownArticle`).
     val article = shownArticle(CardDisplay.article(card.target), promptForm, card.target.text)
-    Text(
-        localizedTarget(
-            if (article == null) AnnotatedString(promptForm) else Dl.colors.articleColoredText(card.target),
-            card.target.lang,
-        ),
-        style = MaterialTheme.typography.headlineLarge,
-        modifier = Modifier.pronounceOnTap(model.pronounceAction(promptForm), chrome),
-    )
-    if (article != null) {
-        CardDisplay.pluralLine(card.target, chrome)?.let {
-            Text(it, style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant)
+    val revealed = flow.answerRevealed
+
+    VocabCard(
+        emoji = card.emoji,
+        emojiShown = emojiShowing(ui.emojiCue, revealed),
+    ) {
+        SpokenWord(model.pronounceAction(promptForm), chrome) {
+            Text(
+                localizedTarget(
+                    if (article == null) {
+                        AnnotatedString(promptForm)
+                    } else {
+                        Dl.colors.articleColoredText(card.target)
+                    },
+                    card.target.lang,
+                ),
+                style = MaterialTheme.typography.headlineMedium,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.weight(1f, fill = false),
+            )
+        }
+        if (article != null) {
+            CardDisplay.pluralLine(card.target, chrome)?.let { CardLine(it) }
+        }
+        if (revealed) {
+            // The note is the card's last line whichever side authored it — a literal
+            // gloss belongs to the concept, not to one of its two faces.
+            CardReveal(note = card.target.note ?: card.source.note) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+                ) {
+                    Text(
+                        (listOf(card.source.text) + card.source.synonyms).joinToString(" / "),
+                        style = MaterialTheme.typography.headlineMedium,
+                        color = Dl.colors.accent,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.weight(1f, fill = false),
+                    )
+                    if (card.promptFeminineMarker) FeminineBadge()
+                }
+                // The prompt is still standing above the reveal — whatever form it
+                // rotated in is on screen and is no longer an alternative.
+                CardDisplay.alsoLine(card.target, chrome, promptForm)?.let { CardLine(it) }
+            }
         }
     }
-    val step = flow.copyStep
-    if (!flow.answerRevealed) {
-        Spacer(Modifier.height(8.dp))
+
+    if (!revealed) {
         Button(
             onClick = { flow.reveal() },
             modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
@@ -206,29 +276,7 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         }
         return
     }
-    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        if (ui.emojiCue == EmojiCue.OnReveal) {
-            Text(card.emoji.orEmpty(), fontSize = 64.sp)
-        }
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(card.source.text, style = MaterialTheme.typography.headlineMedium)
-            if (card.promptFeminineMarker) {
-                Text(" ♀", style = MaterialTheme.typography.headlineMedium,
-                    color = MaterialTheme.colorScheme.secondary)
-            }
-        }
-        CardDisplay.alsoLine(card.source, chrome, card.source.text)?.let {
-            Text(it, style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
-    }
-    TargetReveal(
-        card.target, chrome,
-        pronounce = model.pronounceAction(card.target.text),
-        // The prompt is still standing above the reveal — whatever form it
-        // rotated in is on screen and is no longer an alternative.
-        alsoShown = listOf(promptForm),
-    )
+    val step = flow.copyStep
     if (step == null) {
         VerdictButtons(chrome, flow)
     } else {
