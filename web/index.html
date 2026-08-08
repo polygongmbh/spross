@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spross — a growing box for your new language</title>
-<meta name="description" content="Spross keeps your vocabulary growing between conversations: a few new cards a day, spaced so they stay. German, English, Spanish, Swahili, Ukrainian.">
+<meta name="description" content="Spross keeps your vocabulary growing between conversations: a few new words a day, spaced so they stay. German, English, Spanish, Swahili, Ukrainian.">
 <meta property="og:title" content="Spross — a growing box for your new language">
 <meta property="og:description" content="Vocabulary that grows while you rest. Try counting in a new language, right on this page.">
 <meta property="og:image" content="https://spross.net/assets/icon-512.png">
@@ -30,7 +30,7 @@
 <section class="hero">
   <div>
     <h1>A growing box for your new&nbsp;language</h1>
-    <p class="sub">A few new cards a day, spaced so they stay.
+    <p class="sub">A few new words a day, spaced so they stay.
       Start by counting to ten — the novels can wait.</p>
     <div class="cta-row">
       <a class="btn primary" href="#sproessling">Become a Sprössling</a>
@@ -40,20 +40,14 @@
   <img class="art" src="assets/icon-512.png" alt="The Spross icon: a green sprout rising from soil, cupped by three seed shells carrying letters of different scripts." width="512" height="512">
 </section>
 
-<dl class="dictionary" aria-label="A small dictionary entry">
-  <div class="entry"><dt lang="de">Spross, <i>der</i></dt> <dd>— a sprout; a young shoot.</dd></div>
-  <div class="entry"><dt lang="de">Sprosse, <i>die</i></dt> <dd>— a rung of a ladder.</dd></div>
-  <p class="moral">One letter between growing and climbing. We mean both.</p>
-</dl>
-
 <p class="positioning">Spross doesn't replace your <strong>tandem partner</strong> or your <strong>course</strong> —
 it keeps your vocabulary growing between conversations.</p>
 
 <ul class="features">
   <li>
     <h2>Sown, not crammed</h2>
-    <p>A few new cards a day, in any pair of German, English, Spanish, Swahili, and Ukrainian.
-       FSRS-6 spacing brings each word back just before it would slip.</p>
+    <p>A few new words a day, in any pair of German, English, Spanish, Swahili, and Ukrainian.
+       Each one comes back just before you would have lost it.</p>
   </li>
   <li>
     <h2>Phrases unlock from words</h2>
@@ -66,16 +60,17 @@ it keeps your vocabulary growing between conversations.</p>
        Leaves turn to blossom, then fruit, as the word ripens in your memory.</p>
   </li>
   <li>
-    <h2>No guilt in the garden</h2>
-    <p>No account, no ads, no guilt trips. Celebration only for a real personal record —
-       and honest words when a tired head keeps nothing.</p>
+    <h2>Wide before deep</h2>
+    <p>Following a conversation takes many words, not a few perfect ones.
+       Spross spends your minutes on range — so more of what you hear lands.</p>
   </li>
 </ul>
 
 <section class="drill-section" id="drill">
   <h2>How far can you count?</h2>
   <p class="intro">In Spanish — or Swahili, or Ukrainian? Try it right here: a real drill from the app.
-     Endless numbers, typos forgiven — a near-miss earns amber, never red.</p>
+     Endless numbers, typos forgiven. Two clean answers take you up a
+     <span class="wink" lang="de" title="Sprosse: a rung of a ladder — one letter from Spross, a sprout">Sprosse</span>.</p>
 
   <div class="drill-card" hidden>
     <div id="lang-pick">
@@ -97,6 +92,7 @@ it keeps your vocabulary growing between conversations.</p>
       <div class="run-head">
         <button class="icon-btn" id="finish" title="Finish this run" aria-label="Finish this run">✕</button>
         <div class="progress" id="progress" aria-hidden="true"></div>
+        <span class="rungs" id="rungs" aria-hidden="true"></span>
         <span class="streak" id="streak-line"></span>
         <button class="icon-btn" id="mute" aria-pressed="false" title="Mute" aria-label="Mute">🔊</button>
       </div>
@@ -116,7 +112,7 @@ it keeps your vocabulary growing between conversations.</p>
         <div class="tens-card" id="tens-card" hidden></div>
       </div>
       <div class="nudge" id="nudge" hidden>
-        <p>Ten numbers in — it grows on you, doesn't it?
+        <p>Ten numbers and a few <span lang="de">Sprossen</span> in — it grows on you, doesn't it?
            The app takes it from counting to your whole vocabulary.</p>
         <a class="btn primary" href="#sproessling">Become a Sprössling</a>
         <button class="btn soft" id="nudge-close">Keep counting</button>

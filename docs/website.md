@@ -9,8 +9,10 @@ built to sit beside native-speaker conversation or a structured course, never to
 - Palette: `App/Sources/Design/Theme.swift` is the source of truth (stone-and-moss surfaces, clay accent, ocean/forest secondaries, ochre for near-miss — never red).
   `web/site.css` restates the hex pairs; when Theme.swift moves, the CSS follows.
 - Type: SF Rounded in-app → `ui-rounded` system stack on the web.
-- Wordplay: **Spross** (sprout) / **Sprosse** (ladder rung) — organic growth first, the rung as the progression wink
-  (phrases unlock from component words; drill levels climb a digit at a time).
+- Wordplay: **Spross** (sprout) / **Sprosse** (ladder rung) — organic growth first, the rung as the progression wink.
+  It is played, never explained: the drill's level IS a "Sprosse" (with a small ladder beside it and one
+  hoverable gloss on first mention), so a German reader gets the joke and everyone else still gets a ladder.
+- Copy names what the learner gets, never how the engine works — no FSRS, no scheduling internals on the page.
 - "Sprössling" is the site's name for a subscriber/learner (coined here, not used in-app).
 
 ## Architecture
@@ -28,7 +30,7 @@ built to sit beside native-speaker conversation or a structured course, never to
 - Language chips (de/en/es/sw/uk from `catalog/languages.json` data), optional generated primer
   (0–12, tens, 100/1000 with place-value words — spelled by the kern, so never wrong), then the drill.
 - Mechanics mirror iOS (`docs/surfaces.md` § Trainers): numeral → typed word, exact=green/typo=amber+correction/wrong=reveal,
-  any accepted answer extends the streak, two clean rights ramp a digit up, one miss steps down; level capped at 4 digits on the web.
+  any accepted answer extends the streak, two clean rights ramp a Sprosse (= a digit) up, one miss steps down; capped at 4 on the web.
 - Before a language is picked, the card cycles a numeral and its reading through the five languages — the kern spelling live.
 - The app's own chimes play on verdicts (`web/assets/sounds/`, copies of `App/Resources/Sounds/`);
   a per-language best streak lives in localStorage, and only beating it earns the cheer.

@@ -137,26 +137,6 @@ header.site .word {
 
 .btn:active { transform: scale(0.97); }
 
-/* ---------- dictionary pun card ---------- */
-
-.dictionary {
-  background: var(--surface);
-  border: 1px solid color-mix(in srgb, var(--separator) 60%, transparent);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  padding: 1.3rem 1.5rem;
-  margin: 0 0 3rem;
-  font-size: 1.05rem;
-}
-
-.dictionary dt { font-weight: 800; display: inline; }
-
-.dictionary dd { display: inline; margin: 0; color: var(--text-2); }
-
-.dictionary .entry + .entry { margin-top: 0.35rem; }
-
-.dictionary .moral { margin: 0.8rem 0 0; color: var(--text); }
-
 /* ---------- positioning strip ---------- */
 
 .positioning {
@@ -168,6 +148,13 @@ header.site .word {
 }
 
 .positioning strong { color: var(--text); }
+
+/* An insider word worth hovering: dotted, never shouted. */
+.wink {
+  border-bottom: 1px dotted currentColor;
+  cursor: help;
+  font-weight: 600;
+}
 
 /* ---------- features ---------- */
 
@@ -194,14 +181,26 @@ header.site .word {
 
 /* ---------- drill section ---------- */
 
-.drill-section { margin: 0 0 4rem; }
+/* The drill is the page's centerpiece — a tinted stage, everything on one axis. */
+.drill-section {
+  margin: 0 0 4rem;
+  background: var(--surface-tint);
+  border-radius: 32px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
 
 .drill-section > h2, .signup h2 {
   font-size: clamp(1.5rem, 3.5vw, 2rem);
   margin: 0 0 0.5rem;
 }
 
-.drill-section > p.intro { color: var(--text-2); margin: 0 0 1.5rem; max-width: 40rem; }
+.drill-section > p.intro {
+  color: var(--text-2);
+  margin: 0 auto 1.75rem;
+  max-width: 34rem;
+  text-wrap: pretty;
+}
 
 .drill-card {
   background: var(--surface);
@@ -210,9 +209,11 @@ header.site .word {
   box-shadow: var(--shadow);
   padding: 1.5rem;
   max-width: 34rem;
+  margin: 0 auto;
+  text-align: left;
 }
 
-.lang-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.lang-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
 
 .chip {
   display: inline-flex;
@@ -239,7 +240,11 @@ header.site .word {
   color: var(--accent);
 }
 
-.drill-controls { margin-top: 1.1rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.drill-controls { margin-top: 1.1rem; display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+
+#lang-pick { text-align: center; }
+
+#lang-pick .primer { text-align: left; }
 
 /* entry showcase — the drill introducing itself */
 
@@ -315,6 +320,27 @@ header.site .word {
 }
 
 .run-head .streak[data-live="true"] { color: var(--accent); font-weight: 700; }
+
+/* A Sprosse is a rung: the level climbs one, and the ladder shows it —
+   rails included, so it reads as a ladder and not as a menu icon. */
+.rungs {
+  display: inline-grid;
+  gap: 3px;
+  width: 16px;
+  flex: none;
+  padding: 2px 2px;
+  border-left: 2px solid var(--separator);
+  border-right: 2px solid var(--separator);
+  border-radius: 2px;
+}
+
+.rungs span {
+  height: 2px;
+  border-radius: 1px;
+  background: var(--separator);
+}
+
+.rungs span.on { background: var(--accent); }
 
 .progress {
   display: flex;

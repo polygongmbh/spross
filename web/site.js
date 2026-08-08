@@ -209,12 +209,24 @@ function nextTask() {
 }
 
 function updateHead() {
-  const bits = [`${run.level} ${run.level === 1 ? "digit" : "digits"}`];
+  const bits = [`Sprosse ${run.level}`]; // the level is a rung, and the pun is the point
   if (run.streak > 0) bits.push(`streak ${run.streak}`);
   if (run.best > run.streak) bits.push(`best ${run.best}`);
   const line = $("streak-line");
   line.textContent = bits.join(" · ");
   line.dataset.live = String(run.streak > 0);
+  renderRungs();
+}
+
+/** The ladder fills from the bottom up — top rung is the last one earned. */
+function renderRungs() {
+  const host = $("rungs");
+  host.innerHTML = "";
+  for (let i = MAX_LEVEL; i >= 1; i--) {
+    const rung = document.createElement("span");
+    if (i <= run.level) rung.className = "on";
+    host.appendChild(rung);
+  }
 }
 
 function setAction(label) {
