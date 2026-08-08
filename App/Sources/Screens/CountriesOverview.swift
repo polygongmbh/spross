@@ -1,0 +1,163 @@
+import SwiftUI
+import SprossKern
+
+/// The "Länder" hub entry: the world as the two languages name it, and the place
+/// its drill is started from.
+///
+/// Two sections, in the order the other two overviews use — start first, reading
+/// after: the rungs a run climbs and the button that opens it, then the atlas
+/// itself, both sides of every country beside each other.
+///
+/// The one surface here that is named in TWO languages: a country's name is a
+/// pair, not a property of the language being learned, and the reference table
+/// is the join the drill grades against (`CountryDrill.reference`) rather than a
+/// second table beside it.
+///
+/// Nothing on this page is earned. The drill is ungated — every run opens at
+/// rung 1 and climbs by itself — so the rung rows say what a rung ASKS and never
+/// carry a padlock. The one thing that persists is the highest rung reached,
+/// which this page reads and never writes.
+///
+/// The rungs and the toggle live in CountriesOverview+Practice.swift, the table
+/// in CountriesOverview+Reference.swift; split purely for file size.
+struct CountriesOverview: View {
+    let model: AppModel
+    /// The language the learner KNOWS — one half of every row.
+    let source: String
+    /// The language being learned — the other half, and what a forward run answers in.
+    let target: String
+
+    @Environment(\.dismiss) private var dismiss
+    // why: internal, not private — both extensions read the reader's locale.
+    @Environment(\.locale) var locale
+
+    /// The joined atlas. Held rather than recomputed per row: the join walks the
+    /// whole manifest, and the rungs and the table read the very same content.
+    // why: internal, not private — both extensions render from it.
+    @State var content: CountryDrillContent?
+    /// Which way round a run asks. Offered from the first run: nothing here is
+    /// bought, so there is no ladder for it to sit behind.
+    @State var reverse = false
+    /// The furthest rung any run has reached — read on every appearance, since a
+    /// closing run books its own.
+    @State var bestRung = 0
+    @State private var launch: Launch?
+    /// What the run that just closed came to — one tile above the rungs, the
+    /// shape both other overviews use.
+    @State private var lastRun: DrillRunResult?
+
+    /// The run the start button opens, wrapped so ONE `fullScreenCover(item:)`
+    /// carries it — the shape both other overviews use.
+    private struct Launch: Identifiable {
+        let reverse: Bool
+        let id = UUID()
+    }
+
+    /// Scroll target for the tile a closed run leaves.
+    static let resultAnchor = "result"
+
+    /// Where the rung and the record are kept — one key per PAIR, because the
+    /// atlas is a pair's material and not a language's.
+    var storageKey: String { "countries.\(source)-\(target)" }
+
+    var body: some View {
+        NavigationStack {
+            ScrollViewReader { scroll in
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
+                        if let lastRun {
+                            DrillResultTile(result: lastRun)
+                                .id(Self.resultAnchor)
+                        }
+                        practiceSection
+                        referenceSection
+                    }
+                    .padding(DL.Space.xl)
+                }
+                // why: the other overviews' rule — a tile inserted above the
+                // content keeps the offset, so the page comes up to meet it.
+                .onChange(of: lastRun) { _, run in
+                    guard run != nil else { return }
+                    withAnimation(.easeOut(duration: 0.25)) {
+                        scroll.scrollTo(Self.resultAnchor, anchor: .top)
+                    }
+                }
+            }
+            #if DEBUG
+            .defaultScrollAnchor(Self.uitestAnchor)
+            #endif
+            .background(Color.dlBackground.ignoresSafeArea())
+            .navigationTitle(Text("countries.title \(languageName)"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button { dismiss() } label: { Image(systemName: "xmark") }
+                        .accessibilityLabel(Text("common.close"))
+                }
+                // why: the app's corners — the way out left, the way in right,
+                // still in reach from inside the table.
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("overview.start") { start() }
+                        .disabled(content == nil)
+                }
+            }
+        }
+        .tint(.dlAccent)
+        .onAppear { reload() }
+    }
+
+    // MARK: - Starting a run
+
+    func start() {
+        launch = Launch(reverse: reverse)
+    }
+
+    /// Reads the join and the standing rung at once. Both change under this page
+    /// — the catalog when the profile does, the rung when a run closes.
+    func reload() {
+        content = model.catalog?.countryDrillContent(source: source, target: target)
+        bestRung = TrainerProgress.best(for: storageKey)
+        #if DEBUG
+        if launch == nil, !Self.uitestLaunched, UserDefaults.standard.bool(forKey: "uitest-run"),
+           content != nil {
+            // why: a cover raised while the sheet under it is still animating in
+            // is dropped — the tap this stands in for always comes after that.
+            // ONCE: a run that reopens itself on every foreground never ends.
+            Self.uitestLaunched = true
+            Task { @MainActor in
+                try? await Task.sleep(for: .milliseconds(600))
+                start()
+            }
+        }
+        #endif
+    }
+
+    // MARK: - Chrome
+
+    /// The language being LEARNED — the page is opened to practise it, however
+    /// evenly the table shows both sides.
+    var languageName: String {
+        LanguageNames.display(target, locale: locale, catalog: model.catalog)
+    }
+
+    func heading(_ key: LocalizedStringKey) -> some View {
+        Text(key)
+            .font(DL.Fonts.title)
+            .foregroundStyle(Color.dlTextPrimary)
+            .accessibilityAddTraits(.isHeader)
+    }
+}
+
+#if DEBUG
+extension CountriesOverview {
+    /// One auto-start per launch — see `reload`.
+    @MainActor static var uitestLaunched = false
+
+    /// `-uitest-section table` opens the page at the atlas instead of at the
+    /// top — the other overviews' hook, reused, because the reading sits below
+    /// the fold here too and no tap driver is installed.
+    static var uitestAnchor: UnitPoint {
+        UserDefaults.standard.string(forKey: "uitest-section") == "table" ? .bottom : .top
+    }
+}
+#endif
