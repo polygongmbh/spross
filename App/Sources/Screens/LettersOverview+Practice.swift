@@ -111,9 +111,7 @@ extension LettersOverview {
 
     /// The stage a run would open on, from the rung Kern derives out of the
     /// learner's consolidated words — never recomputed here.
-    private var entryStage: LetterStage? {
-        availability.map { LetterDrill.shared.stage(level: $0.entryLevel) }
-    }
+    private var entryStage: LetterStage? { availability?.entryStage }
 
     /// Dictation needs a pool of playable words the learner already holds; below
     /// that floor the ramp stops one rung short of it, so the row is a padlock

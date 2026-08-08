@@ -9,18 +9,18 @@ import SprossKern
 /// booked (D12 — transcription is not recall). The box is READ, for the pacing
 /// figures and the dictation pool, and never written. Closing shows a summary.
 ///
-/// A separate view, not a `TrainerSessionView.Mode`: an audio prompt with
-/// choice tiles shares no state machine with the typed slot drill, and the
-/// mode enum would carry edits through switches for no reuse at all.
+/// The RUN is kern's (`LetterDrillRun`): the draw, the stages, the verdict
+/// ladder and the ramp all live in `run`, and every event becomes a
+/// `LetterDrillIntent`. A separate machine from the slot drill's on purpose —
+/// an audio prompt with choice tiles shares no grammar with a typed numeral —
+/// and the two meet only in `DrillEffect` and `DrillRunSummary`.
 ///
-/// Stage bodies and grading live in LetterDrillView+Stages.swift; the prompt
-/// card is HearPromptCard.swift. State stays here — members are internal where
-/// the +Stages extension reaches them.
+/// The driver lives in LetterDrillView+Grading.swift, stage bodies in
+/// LetterDrillView+Stages.swift, the prompt card in HearPromptCard.swift. State
+/// stays here — members are internal where an extension reaches them.
 struct LetterDrillView: View, LanguageNaming {
     let model: AppModel
     let language: String
-    /// What this device can ask — resolved when the run opens, not per task.
-    let availability: LetterDrillAvailability
     /// Handed the run's figures just before it closes; the page that started it
     /// shows them (see `DrillResultTile`).
     var onFinish: (DrillRunResult) -> Void = { _ in }
@@ -29,29 +29,12 @@ struct LetterDrillView: View, LanguageNaming {
     @Environment(\.locale) var locale
     @Environment(\.accessibilityReduceMotion) var reduceMotion
 
-    @State private var tasks: [LetterDrillTask]
-    @State var index = 0
-    @State var doneCount = 0
-    @State var streak = 0
-    @State var bestStreak = 0
-    /// Misses in a row already booked — the one on screen is not among them, so
-    /// 1 while a miss shows means this is the second in a row (`DrillStopOffer`).
-    @State var missRun = 0
-    /// Per-task results for the segmented progress bar.
-    @State private var outcomes: [SessionOutcome] = []
-    @State var level: Int
-    @State private var winsAtLevel = 0
+    /// The whole run, kern's.
+    // why: internal, not private — +Grading and +Stages read and drive it.
+    @State var run: LetterDrillRunState
+    /// The learner's text; the run holds every rule that decides what it means.
     @State var input = ""
-    @State var feedback: AnswerInputView.Feedback = .neutral
-    /// Accepted with a small slip — the proper spelling waits for a tap.
-    @State var typoCorrection: String?
-    /// A synonym of the dictated word was typed: amber, and the line names
-    /// what actually played. Never wrong — the review flow teaches those forms.
-    @State var heardInstead: String?
-    /// The tile the learner picked, so the grid can mark both it and the
-    /// answer. Non-nil ⇒ this question is answered.
-    @State var chosen: String?
-    // why: internal, not private — the +Stages extension arms and cancels it.
+    // why: internal, not private — the +Grading extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
     @FocusState var answerFocused: Bool
     @AccessibilityFocusState var replayFocused: Bool
@@ -60,31 +43,35 @@ struct LetterDrillView: View, LanguageNaming {
         self.model = model
         self.language = language
         self.onFinish = onFinish
-        let availability = LetterDrillAvailability(model: model, language: language)
-        self.availability = availability
-        var start = availability.entryLevel
+        let config = LetterDrillRunConfig(
+            report: LetterDrillAvailability(model: model, language: language).report,
+            cards: model.box?.cards ?? [:],
+            dictationGrader: Self.dictationGrader(model: model, language: language)
+        )
         #if DEBUG
         // UI-test hook: `-uitest-letters-level N` opens the run at that rung,
-        // which is how any stage is reached deterministically.
+        // which is how any stage is reached deterministically. Kern clamps it.
         let preset = UserDefaults.standard.integer(forKey: "uitest-letters-level")
-        if preset > 0 { start = min(preset, availability.maxLevel) }
+        if preset > 0 {
+            _run = State(initialValue: LetterDrillRun.shared.openAt(config: config,
+                                                                    level: Int32(preset),
+                                                                    rng: drillRandom))
+        } else {
+            _run = State(initialValue: LetterDrillRun.shared.open(config: config, rng: drillRandom))
+        }
+        #else
+        _run = State(initialValue: LetterDrillRun.shared.open(config: config, rng: drillRandom))
         #endif
-        _level = State(initialValue: start)
-        _tasks = State(initialValue: [Self.sample(model: model, language: language,
-                                                  availability: availability, level: start,
-                                                  avoiding: nil, avoidingWord: nil)].compactMap { $0 })
     }
 
-    /// The rung ceiling: 9 where dictation exists, else 7.
-    var maxLevel: Int { availability.maxLevel }
+    /// The question on screen; nil only once this device can ask nothing more.
+    var current: LetterDrillTask? { run.task }
 
-    /// How long a rung is — one clean win for a consolidated vocabulary, the
-    /// classic two below it (Kern's step function, not this view's).
-    var winsRequired: Int {
-        LetterDrill.shared.winsToAdvance(consolidated: model.stats?.consolidatedCards ?? 0)
-    }
+    /// True on the stages that carry an input field.
+    var typing: Bool { run.typing }
 
-    var current: LetterDrillTask? { tasks.indices.contains(index) ? tasks[index] : nil }
+    /// The field's face for where kern says the answer stands.
+    var feedback: AnswerInputView.Feedback { .init(run.feedback) }
 
     /// VoiceOver and Switch Control both make a timed screen change hostile:
     /// it truncates the correctness announcement and moves the page under the
@@ -96,8 +83,8 @@ struct LetterDrillView: View, LanguageNaming {
     var body: some View {
         Group {
             if current != nil {
-                SessionScaffold.endless(answered: doneCount,
-                                        outcomes: outcomes,
+                SessionScaffold.endless(answered: Int(run.done),
+                                        outcomes: run.outcomes.map { SessionOutcome($0) },
                                         onClose: { closeRun() }) {
                     drillContent
                 }
@@ -113,7 +100,7 @@ struct LetterDrillView: View, LanguageNaming {
             playPrompt(trigger: .essential)
             answerFocused = !screenReaderOn && typing
         }
-        .onChange(of: index) { _, _ in
+        .onChange(of: run.index) { _, _ in
             Pronouncer.shared.stop()
             playPrompt(trigger: .essential)
             // The audio question, one action away, on every task.
@@ -130,12 +117,6 @@ struct LetterDrillView: View, LanguageNaming {
         #if DEBUG
         .onAppear { uitestStart() }
         #endif
-    }
-
-    /// True on the stages that carry an input field.
-    var typing: Bool {
-        guard let stage = current?.stage else { return false }
-        return stage == .typed || stage == .dictation
     }
 
     // MARK: - Audio
@@ -177,106 +158,6 @@ struct LetterDrillView: View, LanguageNaming {
         return Pronouncer.shared.playingKey == Pronouncer.key(for: pronunciation)
     }
 
-    // MARK: - Sampling
-
-    /// One question at the current rung. Dictation draws from the box, every
-    /// other stage from the alphabet; `avoiding` is the previous answer and
-    /// `avoidingWord` the word it gapped, each of which Kern resamples once.
-    static func sample(model: AppModel, language: String, availability: LetterDrillAvailability,
-                       level: Int, avoiding: String?, avoidingWord: String?) -> LetterDrillTask? {
-        let drill = LetterDrill.shared
-        let rng = KotlinRandom.companion
-        if drill.stage(level: level) == .dictation, !availability.dictationCandidates.isEmpty {
-            return drill.sampleDictation(candidates: availability.dictationCandidates,
-                                         alphabet: availability.alphabet,
-                                         level: Int32(level), avoidCardId: avoiding, rng: rng)
-        }
-        guard let alphabet = availability.alphabet, !availability.promptableRefs.isEmpty else {
-            return nil
-        }
-        return drill.sample(alphabet: alphabet,
-                            targetExamples: { availability.examples($0) },
-                            level: Int32(level),
-                            promptableRefs: availability.promptableRefs,
-                            avoidRef: avoiding,
-                            avoidWord: avoidingWord,
-                            rng: rng)
-    }
-
-    // MARK: - Ramp
-
-    /// Books the answer, steps the rung through Kern, and puts the next
-    /// question up. `clean` false (a typo, a reveal-assisted or synonym answer)
-    /// is amber: it moves the rung neither way.
-    func advance(correct: Bool, clean: Bool) {
-        autoAdvance?.cancel()
-        Pronouncer.shared.stop()
-        let step = DrillRamp.shared.step(level: level, winsAtLevel: winsAtLevel,
-                                         correct: correct, clean: clean,
-                                         maxLevel: maxLevel, winsRequired: winsRequired)
-        let next = Self.sample(model: model, language: language, availability: availability,
-                               level: step.nextLevel, avoiding: current?.answerRef,
-                               avoidingWord: current?.gapText == nil ? nil : current?.promptText)
-        level = step.nextLevel
-        winsAtLevel = step.wins
-        if correct {
-            streak += 1
-            bestStreak = max(bestStreak, streak)
-            missRun = 0
-        } else {
-            streak = 0
-            missRun += 1
-        }
-        outcomes.append(correct ? (clean ? .right : .tough) : .wrong)
-        doneCount += 1
-        #if DEBUG
-        // The no-FSRS proof, printed where a review would have been booked.
-        uitestBox("answered")
-        #endif
-        // why: cleared in the SAME transaction as the index switch — the next
-        // question must never render one frame with the last one's answer.
-        input = ""
-        feedback = .neutral
-        typoCorrection = nil
-        heardInstead = nil
-        chosen = nil
-        guard let next else {
-            // Nothing left to ask: hand the run back, never sit on a blank card.
-            finish()
-            return
-        }
-        tasks.append(next)
-        withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip) {
-            index += 1
-        }
-    }
-
-    // MARK: - Close → back to the page that opened it
-
-    /// X during a run: book a pending correct answer, then close. An untouched
-    /// run leaves nothing to report.
-    func closeRun() {
-        autoAdvance?.cancel()
-        Pronouncer.shared.stop()
-        if feedback.isAccepted {
-            // why: a pending pause books amber, exactly as answering would —
-            // closing must not upgrade it to a clean win.
-            advance(correct: true, clean: typoCorrection == nil && heardInstead == nil)
-        }
-        guard doneCount > 0 else {
-            dismiss()
-            return
-        }
-        answerFocused = false
-        finish()
-    }
-
-    /// Hands the run's figures to the page that opened it and leaves. No record
-    /// line: the letter drill keeps no record store (D12 — nothing it asks is a
-    /// review), so nothing here can beat one.
-    private func finish() {
-        onFinish(DrillRunResult(doneCount: doneCount, bestStreak: bestStreak,
-                                title: "trainer.letters"))
-        dismiss()
-    }
+    // The draw, the ramp and the verdict ladder are kern's; the driver that
+    // reaches them — and the close — is LetterDrillView+Grading.swift.
 }

@@ -86,34 +86,9 @@ extension DayStats {
     var reviewCount: Int { Int(reviews) }
 }
 
-/// Levels are `Int` everywhere in the drill UI; the ladder is Kotlin `Int`.
-/// Bridged HERE so no view ever writes `Int32(…)` around a rung number.
-extension LetterDrill {
-    func ceiling(dictation: Bool) -> Int { Int(maxLevel(dictationAvailable: dictation)) }
-
-    func entryLevel(consolidated: Int) -> Int { Int(entryLevel(consolidatedCards: Int32(consolidated))) }
-
-    func winsToAdvance(consolidated: Int) -> Int { Int(winsToAdvance(consolidatedCards: Int32(consolidated))) }
-
-    func stage(level: Int) -> LetterStage { stageFor(level: Int32(level)) }
-}
-
-/// The one rung ramp both drills answer to. How long a rung is stays theirs
-/// (`LetterDrill.winsToAdvance` counts a vocabulary, `Trainer.winsToAdvance`
-/// reads the Fast modifier); what a rung does with an answer is kern's.
-extension DrillRamp {
-    func step(level: Int, winsAtLevel: Int, correct: Bool, clean: Bool,
-              maxLevel: Int, winsRequired: Int) -> DrillRamp.RungStep {
-        step(level: Int32(level), winsAtLevel: Int32(winsAtLevel),
-             correct: correct, clean: clean,
-             maxLevel: Int32(maxLevel), winsRequired: Int32(winsRequired))
-    }
-}
-
-extension DrillRamp.RungStep {
-    var nextLevel: Int { Int(level) }
-    var wins: Int { Int(winsAtLevel) }
-}
+/// Kotlin's own `Random`, which every draw in a run is spent out of. Named for
+/// what it is at the call site: the drills never seed one of their own.
+var drillRandom: KotlinRandom { KotlinRandom.companion }
 
 // MARK: - Kern → Design value types
 //
@@ -141,6 +116,16 @@ extension SessionOutcome {
         case .tough: return .tough
         case .wrong: return .unknown
         }
+    }
+}
+
+extension DrillRunResult {
+    /// The figures a closed run leaves, as the tile above the picks wears them.
+    /// Which of them there are is kern's (`DrillRunSummary`); what the run was
+    /// CALLED is chrome, so it arrives beside them.
+    init(_ summary: DrillRunSummary, title: LocalizedStringKey) {
+        self.init(doneCount: Int(summary.done), bestStreak: Int(summary.bestStreak),
+                  newRecord: summary.newRecord, title: title)
     }
 }
 

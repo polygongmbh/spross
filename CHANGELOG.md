@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **Leaving a drill mid-answer now books what you actually earned:** a reading looked up
+  while the answer was still owed keeps the answer amber instead of counting as a clean
+  win on the way out.
+
 - **Android review cards carry what a word owes.** The answer opens the card itself
   rather than appearing under the field, a prompt that could mean two things names the
   area it is asked within, and a word that can be heard shows the speaker that says it.

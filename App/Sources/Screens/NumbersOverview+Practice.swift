@@ -32,18 +32,12 @@ extension NumbersOverview {
         }
     }
 
-    /// What this pair can be asked at all — the registry rule, not the ladder.
-    /// A language with no forms reading and a pair the catalog realizes no frame
-    /// for have nothing to unlock, so their rows are absent rather than locked:
-    /// a padlock is a promise, and one that can never open is a lie.
+    /// What this pair can be asked at all — kern's registry rule, not the
+    /// ladder. A language with no forms reading and a pair the catalog realizes
+    /// no frame for have nothing to unlock, so their rows are absent rather than
+    /// locked: a padlock is a promise, and one that can never open is a lie.
     private var offered: [DrillVariant] {
-        DrillVariant.allCases.filter { variant in
-            switch variant {
-            case .numbers, .clock: return true
-            case .phrases: return phraseDrill != nil
-            case .forms: return Trainer.shared.supportsForms(language: language)
-            }
-        }
+        DrillSelection.shared.offered(language: language, phrasesRealized: phraseDrill != nil)
     }
 
     // MARK: - What a run asks
@@ -52,7 +46,11 @@ extension NumbersOverview {
     /// variant is still locked the list is a radio — one exercise at a time —
     /// and it turns into checkboxes only once the ladder is fully open. A learner
     /// who has just met the clock is asked to climb it, not to dilute it.
-    var combining: Bool { offered.allSatisfy(unlocked) }
+    var combining: Bool { DrillSelection.shared.combining(offered: offered, progress: ladder) }
+
+    /// The picks in kern's own order. It hands them back ordered too, so the
+    /// same state always collapses the same way on both platforms.
+    private var orderedPicks: [DrillVariant] { DrillVariant.allCases.filter(picked.contains) }
 
     private func variantRow(_ variant: DrillVariant) -> some View {
         let open = unlocked(variant)
@@ -62,17 +60,10 @@ extension NumbersOverview {
             mark: open ? (combining ? .many : .one) : .locked,
             selected: open && picked.contains(variant)
         ) {
-            guard combining else {
-                // why: a radio never empties — `Los` would have nothing to open,
-                // so tapping the chosen row leaves it chosen.
-                picked = [variant]
-                return
-            }
-            if picked.contains(variant) {
-                picked.remove(variant)
-            } else {
-                picked.insert(variant)
-            }
+            // why: while the ladder is closed the picks are a radio that never
+            // empties — `Los` would otherwise have nothing to open. Kern's rule.
+            picked = Set(DrillSelection.shared.toggled(picked: orderedPicks, tapped: variant,
+                                                       combining: combining))
         }
     }
 
@@ -81,12 +72,8 @@ extension NumbersOverview {
     /// Called whenever the ladder is (re)read — a run can open a rung, and a
     /// screenshot seed can hand the page a ladder the picks predate.
     func normalizePicks() {
-        picked = picked.filter(unlocked)
-        guard !combining else { return }
-        // why: a Set has no first — the ladder's own order decides which of
-        // several survives, so the same state always collapses the same way.
-        let one = offered.first { picked.contains($0) } ?? offered.first(where: unlocked)
-        picked = one.map { [$0] } ?? []
+        picked = Set(DrillSelection.shared.normalized(picked: orderedPicks, offered: offered,
+                                                      progress: ladder))
     }
 
     // MARK: - How it is played
