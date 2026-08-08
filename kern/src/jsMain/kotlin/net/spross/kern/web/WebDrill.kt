@@ -96,8 +96,14 @@ object WebTrainer {
     fun placeValueHint(digits: Int, language: String): String? =
         Trainer.placeValueHint(digits, language)
 
+    /**
+     * The tens band of the generated reference table, "20 zwanzig" style.
+     * why: `Trainer.tensReference` (sw-only) left with the merge — the reference
+     * table now carries tens for every language, so the look-up link does too.
+     */
     fun tensReference(language: String): Array<String>? =
-        Trainer.tensReference(language)?.toTypedArray()
+        Trainer.reference(language).firstOrNull { it.key == "tens" }
+            ?.entries?.map { "${it.value} ${it.reading}" }?.toTypedArray()
 }
 
 private fun TrainerTask.web(): WebTask = WebTask(
