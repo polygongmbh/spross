@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.13.0 — 2026-08-08
+
 - **The number forms stop having to be learned in a failure.** The drill that asks for
   negatives, decimals, percentages, multiples, fractions and ordinals introduced none of
   them: the mark appeared, the answer was wrong, and that was the lesson. Three things
