@@ -2,7 +2,10 @@ import SwiftUI
 import SprossKern
 
 /// One word as the box lists it: its picture, the target citation over the word
-/// the learner already knows, a speaker where it can be heard, and its standing.
+/// the learner already knows, and its standing. The row itself is the audio
+/// control — no speaker icon competing with the wake/pack controls and the
+/// phrase text for width; tapping anywhere plain speaks it (`pronounceOnTap`,
+/// shared with the produce-narration lines in `SessionView+Audio`).
 ///
 /// `pack` is the row's one variation. Where a word can be packed on its own —
 /// a search hit, which the learner went looking for by name — the "new" badge
@@ -48,15 +51,6 @@ struct BoxCardRow: View {
                     .lineLimit(1)
             }
             Spacer(minLength: DL.Space.s)
-            // why: the speaker's 44pt tap target is taller than both lines of
-            // text — beside the word it stretched the row; its own column lets
-            // the row close to the height the words actually need.
-            if let pronounce {
-                SpeakerIcon(size: .small,
-                            isPlaying: model.isPronouncing(card.target.text, lang: card.target.lang),
-                            pronounce: pronounce)
-                    .accessibilityLabel("a11y.pronounce")
-            }
             standing(sched)
         }
         .padding(.horizontal, DL.Space.m)
@@ -67,6 +61,7 @@ struct BoxCardRow: View {
             RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
                 .fill(Color.dlSurfaceTint)
         )
+        .pronounceOnTap(pronounce)
     }
 
     /// The row's right edge: sleeping words offer waking, packable ones offer
@@ -99,7 +94,15 @@ struct BoxCardRow: View {
                 .accessibilityLabel("box.packWord")
             }
         } else {
-            PhaseBadge(phase: badgePhase(sched), consolidated: model.isConsolidated(card.id))
+            // why: every unexposed card would otherwise wear "Neu" — in a list
+            // that's most rows, and the capsule's own padding was what pushed
+            // the phrase text into truncation. A card with no exposure yet
+            // reads as new by the badge's ABSENCE; only a badge that adds
+            // information (learning/review/relearning) earns its width here.
+            let phase = badgePhase(sched)
+            if phase != .new {
+                PhaseBadge(phase: phase, consolidated: model.isConsolidated(card.id))
+            }
         }
     }
 

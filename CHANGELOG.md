@@ -15,6 +15,16 @@
   cleanly, so the box asks for it again sooner. Brings iOS in line with Android, which
   already graded both this way.
 
+- **The box list stops wearing "Neu" on almost every row.** A word or phrase with
+  no exposure yet always carried the badge, and its capsule padding was what pushed
+  long phrase titles into truncation. Absence now reads as new; the badge only shows
+  once a card has something to say (learning, review, or relearning).
+
+- **A box row speaks on a tap anywhere on it, instead of needing the speaker icon.**
+  The icon was one more thing competing with the phrase text and the wake/pack
+  controls for width; the row's own surface is the tap target now, freeing that
+  space up too.
+
 ## 3.11.1 — 2026-08-08
 
 - **The parts of the day moved in with the clock.** Morning, evening and night were
