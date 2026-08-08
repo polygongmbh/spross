@@ -66,11 +66,7 @@ struct NumbersOverview: View {
             .background(Color.dlBackground.ignoresSafeArea())
             .navigationTitle(Text("numbers.title \(languageName)"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("common.done") { dismiss() }
-                }
-            }
+            .toolbar { overviewToolbar }
         }
         .tint(.dlAccent)
         .onAppear { reloadProgress() }
@@ -127,6 +123,21 @@ struct NumbersOverview: View {
     }
 
     // MARK: - Chrome
+
+    /// The corners the rest of the app uses: the way out on the left, the way in
+    /// on the right. The right one repeats the `Los` button on purpose — it is
+    /// the one that stays reachable once the reading has been scrolled into.
+    @ToolbarContentBuilder
+    var overviewToolbar: some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            Button { dismiss() } label: { Image(systemName: "xmark") }
+                .accessibilityLabel(Text("common.close"))
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            Button("overview.start") { start() }
+                .disabled(picked.isEmpty)
+        }
+    }
 
     var languageName: String {
         LanguageNames.display(language, locale: locale, catalog: model.catalog)

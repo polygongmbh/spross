@@ -57,8 +57,15 @@ struct LettersOverview: View {
             .navigationTitle(Text("letters.title \(languageName)"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("common.done") { dismiss() }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button { dismiss() } label: { Image(systemName: "xmark") }
+                        .accessibilityLabel(Text("common.close"))
+                }
+                // why: the same corners as the numbers page — the way out left,
+                // the way in right, reachable from inside the alphabet table.
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("overview.start") { start() }
+                        .disabled(!drillAvailable)
                 }
             }
         }

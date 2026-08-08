@@ -819,6 +819,22 @@
         }
       }
     },
+    "common.close" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
     "common.dayMany" : {
       "localizations" : {
         "de" : {

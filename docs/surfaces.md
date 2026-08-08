@@ -32,7 +32,9 @@ auto-advance beats these share with it, are `design.md`'s.
   surface on purpose: a look-up that lives five taps inside a running drill is a look-up
   nobody makes, and a reference page you cannot start from is a page nobody returns to.
   The run comes first because it is what the page is opened for: twenty screens of table
-  above the button would make starting the thing a scroll.
+  above the button would make starting the thing a scroll. Both overviews wear the app's
+  corners — the ✕ out on the left, the run in on the right — and the right one repeats the
+  `Los` button on purpose: it is the one still in reach from inside the reading.
   Picking SEVERAL variants for one run is itself earned — while any offered variant is
   still locked the list is a radio and a run asks one thing at a time; a fully open ladder
   turns it into checkboxes, and the row of picks says so while it is closed.
