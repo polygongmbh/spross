@@ -108,9 +108,7 @@ extension LetterDrillView {
     /// opens — dictation is the only stage that consults it.
     @MainActor static func dictationGrader(model: AppModel, language: String) -> CatalogAnswerGrader? {
         guard let info = model.languageInfo(language), let box = model.box else { return nil }
-        let normalizer = AnswerNormalizer(answerLanguage: info,
-                                          articleLeniency: false,
-                                          maxTyposPerWord: KotlinInt(int: 1))
+        let normalizer = AnswerNormalizer.companion.drill(answerLanguage: info)
         return CatalogAnswerGrader(normalizer: normalizer, cards: Array(box.cards.values))
     }
 }

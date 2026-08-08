@@ -107,7 +107,7 @@ fun AppModel.newLetterDrill(
         // whole join in view — a per-word budget alone accepts `kufungua` for `kufunga`,
         // and only the catalog-wide grader withdraws that credit.
         dictationGrader = CatalogAnswerGrader(
-            AnswerNormalizer(info, articleLeniency = false, maxTyposPerWord = 1),
+            AnswerNormalizer.drill(info),
             state.cards.values.toList(),
         ),
     )

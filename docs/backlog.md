@@ -214,8 +214,6 @@ One line per item, with a file or context pointer, filed under the section it be
 - `TrainerRun` has no `openAt(mode:levels:rng:)` sibling of `LetterDrillRun.openAt` —
   its absence forces iOS's DEBUG-only `TrainerRunState.seeded` doCopy helper
   (`App/Sources/Screens/TrainerSessionView+UITest.swift`).
-- The drill normalizer's strictness triple wants a kern factory
-  (`docs/portability.md` § Smaller owns the four sites).
 
 ## App & UX
 

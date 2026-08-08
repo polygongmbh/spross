@@ -128,7 +128,7 @@ fun AppModel.newTrainerRun(
     val info = catalog?.languages?.get(mode.language) ?: return null
     return TrainerFlow(
         start = TrainerRun.open(mode, rng),
-        normalizer = AnswerNormalizer(info, articleLeniency = false, maxTyposPerWord = 1),
+        normalizer = AnswerNormalizer.drill(info),
         rng = rng,
         onTone = onTone,
         onReleaseFocus = onReleaseFocus,

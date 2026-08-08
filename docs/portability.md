@@ -11,8 +11,7 @@ the today report and the chrome-language rule are kern's, and both apps read the
 **Also shipped (2026-08-08, later the same day):** moves 4 and 5 — both drill runs and
 the letter-drill availability sweep are kern machines, and both apps drive them.
 What is left is watch territory only: move 6 (deferred per user 2026-08-08)
-and the watch bullets at the end of the small list, plus one drill remainder
-(the normalizer strictness triple) noted there.
+and the watch bullets at the end of the small list.
 
 The native layers should own aesthetics and device facts only:
 layout, animation, focus, haptics, audio engines, widget timelines, accessibility flags, string tables.
@@ -144,10 +143,8 @@ Still without the kern home the audit asked for (all watch-scoped, plus one dril
 - `session/MultipleChoice.question` — the watch samples and shuffles kern's ranked shortlist in Swift
   (`WatchPracticeQuestion.swift:24-49`); `RecognitionGrading` — latency→rating
   (`WatchGrading.swift:14-29`), the sibling of `SelfGrading.kt:33-51`.
-- The drill normalizer's strictness triple (`articleLeniency = false, maxTyposPerWord = 1`),
-  now stated twice per platform (iOS `TrainerSessionView+Mode.swift` + `LetterDrillView+Grading.swift`,
-  Android `TrainerFlow.kt` + `LetterDrillFlow.kt`) while kern's `TrainerRun` KDoc merely names it —
-  wants a kern factory. The streak-tier ladder itself is closed:
+- ~~The drill normalizer's strictness triple~~ — shipped as `AnswerNormalizer.drill`,
+  and all four platform sites call it. The streak-tier ladder itself is closed:
   kern owns it (`DrillRun.kt` `StreakTier`), Android reads it, and only the iOS tile
   still hand-codes the thresholds (backlog).
 

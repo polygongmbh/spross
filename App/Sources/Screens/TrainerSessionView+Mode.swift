@@ -55,8 +55,7 @@ extension TrainerMode {
     /// fumble one word while no number can pass for another.
     @MainActor func normalizer(_ model: AppModel?) -> AnswerNormalizer? {
         model?.languageInfo(language)
-            .map { AnswerNormalizer(answerLanguage: $0, articleLeniency: false,
-                                    maxTyposPerWord: KotlinInt(int: 1)) }
+            .map { AnswerNormalizer.companion.drill(answerLanguage: $0) }
     }
 }
 
