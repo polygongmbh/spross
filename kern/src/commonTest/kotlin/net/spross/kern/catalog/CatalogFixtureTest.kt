@@ -325,7 +325,7 @@ class CatalogFixtureTest {
     @Test
     fun framesJoinSymmetricallyInBothDirections() {
         val forward = catalog.phraseTemplates("de", "sw")
-        assertEquals(listOf("bus-arrives-at", "i-have-n-keys"), forward.map { it.id })
+        assertEquals(listOf("bus-arrives-at", "i-have-n-keys", "im-learning-since"), forward.map { it.id })
         assertEquals("Der Bus kommt um {slot} Uhr.", forward[0].sourceTemplate)
         assertEquals("Basi linakuja {slot}.", forward[0].targetTemplate)
         val reverse = catalog.phraseTemplates("sw", "de").first { it.id == "bus-arrives-at" }
@@ -366,6 +366,33 @@ class CatalogFixtureTest {
             listOf("Le bus arrive à {slot}."),
             catalog.phraseTemplates("fr", "sw").map { it.sourceTemplate },
         )
+    }
+
+    /**
+     * A frame resolves its marker exactly as a realization does, and BEFORE the template is
+     * built — so `{slot}` filling never meets one. A side that cannot name the target loses
+     * the frame for that pair and keeps the rest.
+     */
+    @Test
+    fun frameMarkersResolvePerSideAndDropWhereTheTableCannotName() {
+        val deSw = catalog.phraseTemplates("de", "sw").first { it.id == "im-learning-since" }
+        assertEquals("Ich lerne seit {slot} Suaheli.", deSw.sourceTemplate)
+        assertEquals("Ninajifunza Kiswahili tangu mwaka {slot}.", deSw.targetTemplate)
+        val deUk = catalog.phraseTemplates("de", "uk").first { it.id == "im-learning-since" }
+        assertEquals("Ich lerne seit {slot} Ukrainisch.", deUk.sourceTemplate)
+        assertEquals("Я вчу українську з {slot}.", deUk.targetTemplate)
+        // fr realizes the frame but names no language at all.
+        assertTrue(catalog.phraseTemplates("fr", "sw").none { it.id == "im-learning-since" })
+    }
+
+    @Test
+    fun aMalformedMarkerInAFrameFailsTheParse() {
+        val broken = Fixture.files + mapOf(
+            "drills/sw.json" to Fixture.drills.getValue("drills/sw.json")
+                .replace("{language} tangu", "{language-of} tangu"),
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("unknown language marker" in error.message.orEmpty(), "message: ${error.message}")
     }
 
     @Test

@@ -155,9 +155,14 @@ class Catalog internal constructor(
         if (!Trainer.supports(target)) return emptyList()
         val sourceFrames = frameRealizations[source].orEmpty()
         val targetFrames = frameRealizations[target].orEmpty()
+        // why: markers resolve before the template is built, so {slot}/{count} filling
+        // never sees one — same rule as [join], and a side that cannot name the target
+        // loses the frame for this pair rather than rendering the marker.
+        val sourceName = languageName(source, target)
+        val targetName = languageName(target, target)
         return frames.mapNotNull { frame ->
-            val prompt = sourceFrames[frame.slug] ?: return@mapNotNull null
-            val answer = targetFrames[frame.slug] ?: return@mapNotNull null
+            val prompt = sourceFrames[frame.slug]?.resolved(sourceName) ?: return@mapNotNull null
+            val answer = targetFrames[frame.slug]?.resolved(targetName) ?: return@mapNotNull null
             // why: a fraction slot needs the pack to READ one — a frame the target cannot
             // fill is dropped here rather than throwing on the first draw, in a live run.
             if (!Trainer.supportsSlot(frame.slot, target)) return@mapNotNull null
@@ -355,6 +360,18 @@ class Catalog internal constructor(
         LanguageNames.hasLanguageMarker(text) ||
             synonyms.any { LanguageNames.hasLanguageMarker(it) } ||
             variants.any { LanguageNames.hasLanguageMarker(it) }
+
+    /** The frames' half of [resolved]; agreement forms name a counted noun, never a language. */
+    private fun RawFrame.resolved(name: LanguageName?): RawFrame? {
+        val marked = LanguageNames.hasLanguageMarker(text) ||
+            variants.any { LanguageNames.hasLanguageMarker(it) }
+        if (!marked) return this
+        val named = name ?: return null
+        return copy(
+            text = LanguageNames.resolve(text, named),
+            variants = variants.map { LanguageNames.resolve(it, named) },
+        )
+    }
 
     private fun realize(lang: Language, raw: RawRealization, source: Language): Realization =
         Realization(

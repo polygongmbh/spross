@@ -284,6 +284,7 @@ class CatalogLintTest {
                     assertTrue(LanguageNames.markerError(form) == null, "$where: ${LanguageNames.markerError(form)}")
                 }
                 for ((reader, note) in frame.notes) unmarked("$where.notes.$reader", note)
+                frame.count?.let { unmarked("$where.count", "${it.one} ${it.few} ${it.many}") }
             }
         }
         for ((reader, table) in catalog.languageNames) {

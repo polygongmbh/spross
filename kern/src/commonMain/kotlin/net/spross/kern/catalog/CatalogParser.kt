@@ -269,6 +269,7 @@ internal object CatalogParser {
         }
         for (frame in listOf(text) + variants) {
             if (frame.isBlank()) parseError(path, "$slug: blank frame")
+            LanguageNames.markerError(frame)?.let { parseError(path, "$slug: $it") }
             if (occurrences(frame, PhraseTemplate.SLOT_MARKER) != 1) {
                 parseError(path, "$slug: \"$frame\" needs exactly one ${PhraseTemplate.SLOT_MARKER}")
             }

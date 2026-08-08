@@ -70,6 +70,10 @@ Engine contract: `../README.md`.
   string-initial) fail the load like any other; `CatalogLintTest`
   (`languageMarkersOnlyAppearWhereTheyResolve`) additionally pins that no `{language…`
   reaches a note, a grammar value, a heading or a name table, where nothing would resolve it.
+  A frame text may carry one too: `phraseTemplates` resolves before the `PhraseTemplate` is
+  built, so `{slot}`/`{count}` filling never meets a marker, and `CatalogFrameLintTest` adds
+  the two rules only a frame can break — text and variants agree on carrying one, and a
+  marked frame joins every pair its realizations otherwise allow.
 - `catalog/drills/` — the sentence frames, a top-level sibling outside `areas.json`
   (format owned by `catalog/README.md`). A frame is a concept + per-language realizations,
   joined at runtime like a card, but it is not a card: no area, no `seedIndex`, outside the

@@ -26,17 +26,22 @@ internal object Fixture {
         "drills/frames.json" to """
             [ { "slug": "bus-arrives-at", "slot": "clock" },
               { "slug": "i-have-n-keys", "slot": "numbers" },
-              { "slug": "learning-since-year", "slot": "years" } ]
+              { "slug": "learning-since-year", "slot": "years" },
+              { "slug": "im-learning-since", "slot": "years" } ]
         """.trimIndent(),
         "drills/de.json" to """
             { "frames": {
                 "bus-arrives-at": { "text": "Der Bus kommt um {slot} Uhr." },
                 "i-have-n-keys": { "text": "Ich habe {slot} Schl\u00fcssel.",
                                    "variants": ["Ich habe {slot} Schluessel."] },
-                "learning-since-year": { "text": "Ich lerne seit {slot}." } } }
+                "learning-since-year": { "text": "Ich lerne seit {slot}." },
+                "im-learning-since": { "text": "Ich lerne seit {slot} {language}." } } }
         """.trimIndent(),
+        // why: fr realizes the marked frame but authors no name table, so every pair drops
+        // it and keeps the rest — the frame half of the coverage drop.
         "drills/fr.json" to """
-            { "frames": { "bus-arrives-at": { "text": "Le bus arrive à {slot}." } } }
+            { "frames": { "bus-arrives-at": { "text": "Le bus arrive à {slot}." },
+                          "im-learning-since": { "text": "J'apprends {language} depuis {slot}." } } }
         """.trimIndent(),
         "drills/sw.json" to """
             { "numberNotes": {
@@ -44,12 +49,14 @@ internal object Fixture {
                 "en": ["Six, seven and nine are loans."] },
               "frames": {
                 "bus-arrives-at": { "text": "Basi linakuja {slot}." },
-                "i-have-n-keys": { "text": "Nina funguo {slot}." } } }
+                "i-have-n-keys": { "text": "Nina funguo {slot}." },
+                "im-learning-since": { "text": "Ninajifunza {language} tangu mwaka {slot}." } } }
         """.trimIndent(),
         "drills/uk.json" to """
             { "numberNotes": { "en": ["The numeral sets the form."] },
               "frames": {
                 "bus-arrives-at": { "text": "\u0410\u0432\u0442\u043e\u0431\u0443\u0441 {slot}." },
+                "im-learning-since": { "text": "\u042f \u0432\u0447\u0443 {language-learn} \u0437 {slot}." },
                 "i-have-n-keys": { "text": "\u0423 \u043c\u0435\u043d\u0435 \u0454 {slot} {count}.",
                                    "count": { "one": "\u043a\u043b\u044e\u0447", "few": "\u043a\u043b\u044e\u0447\u0456", "many": "\u043a\u043b\u044e\u0447\u0456\u0432" },
                                    "masculineNumeral": true,

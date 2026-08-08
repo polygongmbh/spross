@@ -108,6 +108,48 @@ class CatalogFrameLintTest {
         }
     }
 
+    /**
+     * A variant is graded against the same sentence the canonical frame produces, so the two
+     * must agree on naming the language: a variant that spells one language out while the
+     * text resolves the profile's would silently accept "learning German" from a Swahili
+     * learner — the exact bug the marker exists to remove.
+     */
+    @Test
+    fun textAndVariantsAgreeOnCarryingALanguageMarker() {
+        forEachFrame { lang, slug, frame ->
+            val where = "drills/$lang.json $slug"
+            val marked = LanguageNames.hasLanguageMarker(frame.text)
+            for (variant in frame.variants) {
+                assertEquals(
+                    marked,
+                    LanguageNames.hasLanguageMarker(variant),
+                    "$where: \"$variant\" disagrees with \"${frame.text}\" on the language marker",
+                )
+            }
+        }
+    }
+
+    /**
+     * The pair join is where a marker resolves, so a frame that names the language must do
+     * it in EVERY pair it otherwise joins — otherwise a language table gap silently thins
+     * the drill instead of failing anywhere.
+     */
+    @Test
+    fun markedFramesJoinEveryPairTheirRealizationsAllow() {
+        val marked = catalog.frameRealizations.mapValues { (_, frames) ->
+            frames.filterValues { LanguageNames.hasLanguageMarker(it.text) }.keys
+        }
+        for ((source, sourceMarked) in marked) {
+            for ((target, targetMarked) in marked) {
+                if (source == target || !Trainer.supports(target)) continue
+                val joined = catalog.phraseTemplates(source, target).map { it.id }.toSet()
+                for (slug in sourceMarked intersect targetMarked) {
+                    assertTrue(slug in joined, "$source→$target: \"$slug\" dropped — no name for $target")
+                }
+            }
+        }
+    }
+
     @Test
     fun frameNotesKeyedByDeclaredLanguages() {
         forEachFrame { lang, slug, frame ->
