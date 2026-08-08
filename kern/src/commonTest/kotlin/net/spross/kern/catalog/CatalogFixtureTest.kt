@@ -239,6 +239,31 @@ class CatalogFixtureTest {
         assertEquals(catalog.join("de", "sw").size, bare.join("de", "sw").size)
     }
 
+    /**
+     * The prose beside the reference table is content, so it rides the drills file and is
+     * picked by the reader — with an English fallback, unlike a card's note.
+     */
+    @Test
+    fun numberNotesFollowTheReaderAndFallBackToEnglish() {
+        assertEquals(listOf("Sechs, sieben und neun sind entlehnt."), catalog.numberNotes("sw", "de"))
+        assertEquals(listOf("Six, seven and nine are loans."), catalog.numberNotes("sw", "en"))
+        // uk authors English only: a reader without their own wording still gets the section.
+        assertEquals(listOf("The numeral sets the form."), catalog.numberNotes("uk", "de"))
+        // de authors none, and no other language's prose stands in for it.
+        assertTrue(catalog.numberNotes("de", "de").isEmpty())
+        assertTrue(catalog.numberNotes("xx", "de").isEmpty())
+    }
+
+    @Test
+    fun blankNumberNoteFailsTheParse() {
+        val broken = Fixture.files + mapOf(
+            "drills/uk.json" to Fixture.drills.getValue("drills/uk.json")
+                .replace("The numeral sets the form.", " "),
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("numberNotes.en" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
     @Test
     fun malformedFrameFileNamesThePath() {
         val broken = Fixture.files + mapOf(
@@ -246,6 +271,22 @@ class CatalogFixtureTest {
         )
         val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
         assertTrue("drills/uk.json" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    /**
+     * `forms` is not a frame slot kind and must not quietly become one.
+     * A number form has no phrase generator — a fraction or an ordinal needs the frame to
+     * decline around it, and no agreement device runs that way (`docs/backlog.md`).
+     * The parser is the outer seal; `PhraseTemplate`'s init is the inner one.
+     */
+    @Test
+    fun formsIsNotAFrameSlotKind() {
+        val broken = Fixture.files + mapOf(
+            "drills/frames.json" to Fixture.drills.getValue("drills/frames.json")
+                .replace("\"slot\": \"clock\"", "\"slot\": \"forms\""),
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("unknown slot \"forms\"" in error.message.orEmpty(), "message: ${error.message}")
     }
 
     /** Frames ride the RAW source: editing one must not restamp a running box. */

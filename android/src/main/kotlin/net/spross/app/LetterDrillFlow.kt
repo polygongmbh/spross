@@ -9,6 +9,7 @@ import net.spross.kern.model.Card
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.Match
+import net.spross.kern.trainer.DrillRamp
 import net.spross.kern.trainer.LetterDrill
 import net.spross.kern.trainer.LetterDrillTask
 import net.spross.kern.trainer.LetterStage
@@ -133,7 +134,7 @@ class LetterDrillFlow(
      */
     fun advance(correct: Boolean, clean: Boolean) {
         silence()
-        val step = LetterDrill.advance(level, winsAtLevel, correct, clean, maxLevel, winsRequired)
+        val step = DrillRamp.step(level, winsAtLevel, correct, clean, maxLevel, winsRequired)
         val following = sample(
             step.level,
             task?.answerRef,

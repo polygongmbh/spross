@@ -26,7 +26,8 @@ class PhraseVocabAuditTests {
      * drifted into. A language with more function words than another gets a bigger figure
      * and has to say so here.
      */
-    private val allowlistSize: Map<Language, Int> = mapOf("de" to 14, "en" to 2, "sw" to 4, "uk" to 2)
+    private val allowlistSize: Map<Language, Int> =
+        mapOf("de" to 15, "en" to 3, "es" to 1, "sw" to 4, "uk" to 2)
 
     /** Documented allowlist — function words and international words only. */
     private val allowlist: Map<Language, Set<String>> = mapOf(
@@ -39,11 +40,17 @@ class PhraseVocabAuditTests {
             "ist", "haben", "habe", // Kopula sein + Possessiv haben
             "auf", "ab",         // trennbare Verbpartikeln (wache … auf, fährt … ab)
             "euro",              // internationale Währung, wie in sw/uk
+            "kilo",              // internationale Maßeinheit, in de/en/es dasselbe Wort — wie euro
         ),
         // --- English ---------------------------------------------------------------
         "en" to setOf(
             "euros", // internationale Währung, wie in de/sw/uk — im Plural, weil „euro“ selbst kein Kartenwort ist
             "been",  // Hilfsverb: „since“ erzwingt have been + -ing, ein Präsens ist hier ungrammatisch
+            "kilo",  // internationale Maßeinheit, wie in de/es
+        ),
+        // --- Spanish ---------------------------------------------------------------
+        "es" to setOf(
+            "kilo", // internationale Maßeinheit, wie in de/en
         ),
         // --- Swahili --------------------------------------------------------------
         "sw" to setOf(
@@ -70,6 +77,7 @@ class PhraseVocabAuditTests {
             "wache" to "aufwachen", "lerne" to "lernen", // 1. Person Singular
             "zeigt" to "zeigen",
             "schreib" to "schreiben",                    // Imperativ
+            "brauche" to "brauchen",
             "hefte" to "Heft", "stühle" to "Stuhl",      // Plural
         ),
         // --- English ---------------------------------------------------------------
@@ -80,8 +88,9 @@ class PhraseVocabAuditTests {
         ),
         // --- Spanish ---------------------------------------------------------------
         "es" to mapOf(
-            "repita" to "repetir",   // Imperativ der Höflichkeitsform (usted)
-            "escribe" to "escribir", // Imperativ der Du-Form
+            "repita" to "repetir",       // Imperativ der Höflichkeitsform (usted)
+            "escribe" to "escribir",     // Imperativ der Du-Form
+            "necesito" to "necesitar",   // 1. Person Singular
         ),
         // --- Swahili --------------------------------------------------------------
         "sw" to mapOf(

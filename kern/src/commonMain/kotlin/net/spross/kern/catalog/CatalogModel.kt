@@ -73,6 +73,17 @@ internal data class CatalogFrame(
     val slot: TrainerKind,
 )
 
+/**
+ * One `drills/<lang>.json` as authored: what this language does with numbers, and the
+ * frames it renders. The notes describe the LANGUAGE, not any one frame, which is why
+ * they sit beside [frames] rather than inside one.
+ */
+internal data class RawDrills(
+    /** Keyed by explanation language, like a realization's notes; a few lines each. */
+    val numberNotes: Map<Language, List<String>>,
+    val frames: Map<String, RawFrame>,
+)
+
 /** One frame rendered in one language, as authored in `drills/<lang>.json`. */
 internal data class RawFrame(
     /** Carries exactly one `{slot}`, and `{count}` iff [count] is authored. */

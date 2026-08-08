@@ -15,19 +15,32 @@ class DrillProgressionTests {
 
     private fun progress(vararg pairs: Pair<DrillVariant, Int>) = mapOf(*pairs)
 
+    /** Counting is the one thing nothing has to be earned for — every other row is bought. */
     @Test
-    fun numbersAndReverseAreAlwaysAvailable() {
+    fun numbersIsTheOnlyThingOpenFromTheStart() {
         assertTrue(DrillUnlocks.requirements(DrillVariant.Numbers).isEmpty())
-        assertTrue(DrillUnlocks.requirements(DrillModifier.Reverse).isEmpty())
         assertTrue(DrillUnlocks.unlocked(DrillVariant.Numbers, emptyMap()))
-        assertTrue(DrillUnlocks.unlocked(DrillModifier.Reverse, emptyMap()))
+        for (modifier in DrillModifier.entries) {
+            assertFalse(DrillUnlocks.unlocked(modifier, emptyMap()), "$modifier with no progress")
+        }
+    }
+
+    /** Decoding waits for the clock to have been worked, not merely opened. */
+    @Test
+    fun reverseWaitsForTheClockToBeClimbed() {
+        assertEquals(mapOf(DrillVariant.Clock to 3), DrillUnlocks.requirements(DrillModifier.Reverse))
+        assertFalse(DrillUnlocks.unlocked(DrillModifier.Reverse, progress(DrillVariant.Clock to 2)))
+        assertTrue(DrillUnlocks.unlocked(DrillModifier.Reverse, progress(DrillVariant.Clock to 3)))
+        // The numbers climb rides along: the clock does not open before four digits.
+        assertFalse(DrillUnlocks.unlocked(DrillVariant.Clock, progress(DrillVariant.Numbers to 3)))
     }
 
     @Test
     fun everyRungOpensExactlyAtItsRequirement() {
         val variants = listOf(
             Triple(DrillVariant.Clock, DrillVariant.Numbers, 4),
-            Triple(DrillVariant.Phrases, DrillVariant.Clock, 3),
+            // The phrase gate rides the clock ceiling, so growing the ladder raises it.
+            Triple(DrillVariant.Phrases, DrillVariant.Clock, Trainer.maxLevel(TrainerKind.Clock)),
             Triple(DrillVariant.Forms, DrillVariant.Numbers, 7),
         )
         for ((locked, on, level) in variants) {
@@ -41,35 +54,81 @@ class DrillProgressionTests {
         assertTrue(DrillUnlocks.unlocked(DrillModifier.Fast, progress(DrillVariant.Numbers to 10)))
     }
 
-    /** Mix takes two rungs at once, and neither alone opens it. */
+    /**
+     * Mix rides on the forms rung alone. It needs no numbers rung of its own: Forms
+     * cannot open below seven digits, so the climb is already paid for by the time
+     * this can be reached.
+     */
     @Test
-    fun mixNeedsBothTheNumbersCeilingAndTheFormsMidpoint() {
-        assertEquals(
-            mapOf(DrillVariant.Numbers to 10, DrillVariant.Forms to 5),
-            DrillUnlocks.requirements(DrillModifier.Mix),
-        )
-        assertFalse(DrillUnlocks.unlocked(DrillModifier.Mix, progress(DrillVariant.Numbers to 10)))
-        assertFalse(DrillUnlocks.unlocked(DrillModifier.Mix, progress(DrillVariant.Forms to 5)))
-        assertFalse(
-            DrillUnlocks.unlocked(DrillModifier.Mix, progress(DrillVariant.Numbers to 10, DrillVariant.Forms to 4)),
-        )
-        assertTrue(
-            DrillUnlocks.unlocked(DrillModifier.Mix, progress(DrillVariant.Numbers to 10, DrillVariant.Forms to 5)),
-        )
+    fun mixRidesOnTheFormsRungAlone() {
+        assertEquals(mapOf(DrillVariant.Forms to 5), DrillUnlocks.requirements(DrillModifier.Mix))
+        assertFalse(DrillUnlocks.unlocked(DrillModifier.Mix, progress(DrillVariant.Forms to 4)))
+        assertTrue(DrillUnlocks.unlocked(DrillModifier.Mix, progress(DrillVariant.Forms to 5)))
+        assertFalse(DrillUnlocks.unlocked(DrillVariant.Forms, progress(DrillVariant.Numbers to 6)))
     }
 
-    /** Clock and Phrases stay out of the Mix gate — a pair's phrase ceiling is catalog-dependent. */
+    /** No modifier prices Phrases — a pair's phrase ceiling is catalog-dependent. */
     @Test
-    fun mixIgnoresClockAndPhraseProgress() {
-        val requirement = DrillUnlocks.requirements(DrillModifier.Mix)
-        assertFalse(DrillVariant.Clock in requirement)
-        assertFalse(DrillVariant.Phrases in requirement)
+    fun noModifierPricesPhraseProgress() {
+        for (modifier in DrillModifier.entries) {
+            assertFalse(DrillVariant.Phrases in DrillUnlocks.requirements(modifier), "$modifier")
+        }
     }
 
     @Test
     fun fastModeHalvesTheRung() {
         assertEquals(2, Trainer.winsToAdvance(fast = false))
         assertEquals(1, Trainer.winsToAdvance(fast = true))
+    }
+
+    // The ramp — one rule for every drill, whatever it asks.
+
+    @Test
+    fun twoCleanWinsClimbOneRungAndAMissStepsBack() {
+        val first = DrillRamp.step(3, 0, correct = true, clean = true, maxLevel = 9, winsRequired = 2)
+        assertEquals(DrillRamp.RungStep(3, 1), first)
+        val second = DrillRamp.step(3, 1, correct = true, clean = true, maxLevel = 9, winsRequired = 2)
+        assertEquals(DrillRamp.RungStep(4, 0), second)
+        val missed = DrillRamp.step(4, 1, correct = false, clean = true, maxLevel = 9, winsRequired = 2)
+        assertEquals(DrillRamp.RungStep(3, 0), missed)
+        // The floor holds however long the run goes wrong.
+        assertEquals(
+            DrillRamp.RungStep(1, 0),
+            DrillRamp.step(1, 0, correct = false, clean = true, maxLevel = 9, winsRequired = 2),
+        )
+    }
+
+    @Test
+    fun aShorterRungClimbsOnASingleWin() {
+        assertEquals(
+            DrillRamp.RungStep(4, 0),
+            DrillRamp.step(3, 0, correct = true, clean = true, maxLevel = 9, winsRequired = 1),
+        )
+        // The narrower stage does not change what a miss costs.
+        assertEquals(
+            DrillRamp.RungStep(2, 0),
+            DrillRamp.step(3, 0, correct = false, clean = true, maxLevel = 9, winsRequired = 1),
+        )
+    }
+
+    @Test
+    fun anAmberAnswerMovesNeitherWay() {
+        for (width in 1..2) {
+            assertEquals(
+                DrillRamp.RungStep(3, 1),
+                DrillRamp.step(3, 1, correct = true, clean = false, maxLevel = 9, winsRequired = width),
+            )
+        }
+    }
+
+    @Test
+    fun theCeilingHolds() {
+        val atTop = DrillRamp.step(7, 1, correct = true, clean = true, maxLevel = 7, winsRequired = 2)
+        assertEquals(7, atTop.level)
+        val silent = DrillRamp.step(9, 0, correct = true, clean = true, maxLevel = 9, winsRequired = 1)
+        assertEquals(9, silent.level)
+        // A level above the ceiling (dictation lost while the run was in it) drops into range.
+        assertEquals(7, DrillRamp.step(9, 0, correct = true, clean = true, maxLevel = 7, winsRequired = 1).level)
     }
 
     // Direction

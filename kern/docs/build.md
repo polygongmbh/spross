@@ -33,6 +33,9 @@ Engine contract: `../README.md`.
   Nothing pair-shaped is stored, so authoring one language file lights up every pair it
   makes. Availability gate: **empty unless `Trainer.supports(target)`** — sampling generates
   the answer side's number words, so a language without a pack can only ever supply prompts.
+  A frame whose slot the target cannot fill drops out on the same rule
+  (`Trainer.supportsSlot`): a cardinal, a year and a clock come with every pack,
+  a `fraction` needs the pack to READ one.
   Reverse mode is the same template read the other way, for any pair, not only `target == de`.
   German clock ACCEPTS 24-hour readings ("achtzehn Uhr fünfunddreißig", "null/vierundzwanzig
   Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.
@@ -47,7 +50,35 @@ Engine contract: `../README.md`.
   dot and comma are inverted between German and English, so a neutral mark is the only one
   that teaches neither as the truth.
   Years and clock times are never grouped — they keep the default by setting nothing.
+  `TrainerKind.Forms` asks the other ways a number is written — negatives, decimals,
+  percentages, multiplicatives, fractions, ordinals — over a ten-rung ladder where each
+  rung keeps everything below it, and its own `internal` model (`NumberValue`, `FormLimits`)
+  never reaches the ObjC header. The rung's forms are intersected with the language's, so a
+  pack that cannot read one never draws it, and a pack that authors none offers no Forms
+  drill at all (`Trainer.supportsForms`). **A Forms prompt is the one language-dependent
+  prompt**: German shows `3,7` where English shows `3.7`, because the reading names the mark
+  (`Komma` · `point`) and a shared prompt would lie about the answer it grades — everything
+  else stays neutral, including the ordinal mark `20.` and the `45 %` thin space.
+  Fractions are drawn REDUCED: `2/4` would legitimately read both "zwei Viertel" and
+  "ein halb", and no pack should carry that equivalence to grade its own drill.
+  What each language reads for each form, with its source and its exclusions,
+  is `../../docs/number-forms.md`.
   A sentence slot's grouped digits are accepted alongside the plain ones.
+  **`DrillVariant` is what a RUN offers, `TrainerKind` is what fills a SLOT** — a Phrases
+  run draws tasks whose kind is Numbers, Years or Clock — and the two must not be
+  collapsed, because progress is kept per variant. `DrillUnlocks` holds the whole ladder
+  as two tables of variant → level reached (empty = always available), reading a
+  progress map the APP persists; kern stores nothing. `DrillRamp.step` is the rung ramp
+  every drill shares (clean wins up, a miss down, floor 1, amber moves nothing), with how
+  long a rung is left to the caller — `Trainer.winsToAdvance(fast)` reads the Fast
+  modifier, `LetterDrill.winsToAdvance` counts a held vocabulary.
+  `Trainer.reversed(task)` inverts the direction (words shown, the value typed) for any
+  kind, so the app stays direction-agnostic: it always shows the prompt and grades
+  against `accepted`.
+  `Trainer.reference(language)` generates the numbers page from those same packs —
+  bands keyed `ones`/`teens`/`tens`/`twenties`/`compounds`/`hundreds`/`places`,
+  each key a stable identifier the app localizes into a heading — so the table cannot
+  drift from what the drill grades.
   `PhraseSlots` samples level-aware — same per-kind ramp tables as the plain drills
   (a template's slot kind clamps the level).
   The unleveled `sample` overload keeps the prototype's biased full-difficulty draws
@@ -55,8 +86,9 @@ Engine contract: `../README.md`.
   only Clock's unleveled draw coincides with the leveled ceiling.
   **`LetterDrill` is a separate facade, not a `TrainerKind` case**: its registry is
   alphabet file presence in the catalog (adding a language edits no Kotlin), its ramp is
-  stateless and kern-owned (`entryLevel`/`winsToAdvance`/`advance` — both D11 halves in
-  one place so two platforms cannot drift), sampling takes an injected `Random` and an
+  stateless and kern-owned (`entryLevel`/`winsToAdvance`, then the `DrillRamp.step` every
+  drill shares — both D11 halves in one place so two platforms cannot drift),
+  sampling takes an injected `Random` and an
   app-computed promptable set (device voices are an app fact).
   A gap row draws its word from a POOL (`Catalog.alphabetExamples`, rules in
   `catalog/README.md` § Alphabet), the app narrowing it to what the device can say and

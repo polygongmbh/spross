@@ -66,5 +66,9 @@
  {
   "slug": "write-the-year",
   "slot": "years"
+ },
+ {
+  "slug": "i-need-n-kilo-of-flour",
+  "slot": "fraction"
  }
 ]

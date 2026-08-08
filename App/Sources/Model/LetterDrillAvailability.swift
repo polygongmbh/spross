@@ -31,6 +31,13 @@ struct LetterDrillAvailability {
     /// flagged. Built ONCE per run: it is a catalog sweep, and a per-question
     /// rebuild would re-audit every candidate's audio for a single draw.
     private let gapWords: [String: [LetterDrill.AlphabetExampleWord]]
+    /// Which rung a run OPENS on — Kern's step from the words the learner
+    /// already holds, capped by [maxLevel]. Derived here rather than at the run,
+    /// so the overview naming the stage and the run that starts there read one
+    /// number.
+    let entryLevel: Int
+    /// The rung ceiling: 9 where dictation exists, else 7.
+    let maxLevel: Int
 
     var drillAvailable: Bool { alphabet != nil && !promptableRefs.isEmpty }
     var dictationAvailable: Bool { dictationCandidates.count >= Self.dictationFloor }
@@ -47,6 +54,8 @@ struct LetterDrillAvailability {
             promptableRefs = []
             dictationCandidates = []
             gapWords = [:]
+            entryLevel = 1
+            maxLevel = LetterDrill.shared.ceiling(dictation: false)
             return
         }
         self.alphabet = alphabet
@@ -78,6 +87,10 @@ struct LetterDrillAvailability {
                     lapses: memory?.lapses ?? 0
                 )
             }
+        maxLevel = LetterDrill.shared
+            .ceiling(dictation: dictationCandidates.count >= Self.dictationFloor)
+        entryLevel = min(LetterDrill.shared.entryLevel(consolidated: model.stats?.consolidatedCards ?? 0),
+                         maxLevel)
     }
 
     /// Every word Kern may gap for an entry, WITH its provenance: a slug only

@@ -2,6 +2,105 @@
 
 ## Unreleased
 
+- **The number forms stop having to be learned in a failure.** The drill that asks for
+  negatives, decimals, percentages, multiples, fractions and ordinals introduced none of
+  them: the mark appeared, the answer was wrong, and that was the lesson. Three things
+  changed together. The numbers page gained a last band writing out one worked example per
+  form the language reads — German's comma where English has its point, no ordinal at all
+  for Swahili, which cannot rank anything without the noun it ranks. The "?" that opens
+  that page mid-run now appears in a forms run too, on the same terms as everywhere else:
+  reading while you still owe an answer costs the rung, reading after it is free. And the
+  card itself hands over the word the first time it asks a form — "Neu: menos", "Neu:
+  coma", "Neu: asilimia" — the way a new digit length has always announced its place word.
+  It is the word in the language being learned, not a name for the category: what a
+  learner has to say, at the moment they are asked to say it.
+
+- **A run that is going badly offers you the door.** A drill runs until you close it, and
+  the only way out was the ✕ in the corner — which reads as walking out on something
+  rather than finishing it. Miss twice in a row and "Fertig" appears under the button that
+  goes on; answer one cleanly and it goes away again. Nothing ends by itself,
+  and nothing is counted differently — it is the same close, offered at the moment it is
+  actually being weighed.
+
+- **Finishing a drill drops you back where you started it, with what the run came to.**
+  Closing a run raised a screen holding three numbers and two buttons, and leaving from
+  there took a second ✕ on the page behind it. The figures ride back with the run instead
+  — answered, best streak, and the record if it fell — as a tile above the picks that the
+  page comes up to meet, so going again is the button that was already there and leaving
+  is one tap. A record still rains its confetti. The pages themselves now carry the app's
+  corners, the ✕ out on the left and the run in on the right, and the letter stages that
+  looked like a radio nobody could pick are numbered steps: the run walks them itself.
+
+- **Asking the other way round has to be earned, and a mixed run costs less.** Reverse was
+  the one switch that cost nothing, met before a learner had written a single number down;
+  reading a number back is a different exercise from producing one, not an easier one, so
+  it now waits until the clock has been climbed a way — numbers first, then telling the
+  time, then decoding. The mixed run drops its second price: it asks for the number forms
+  and nothing else, and since the forms cannot open before seven digits, the climb through
+  the numbers is already paid for by the time anyone gets there.
+
+- **A trainer page opens on the run now, and one exercise at a time until the ladder is
+  open.** Zahlen and Buchstaben both put their reading matter first, so starting the thing
+  the page exists for meant scrolling past twenty screens of table; the picks and the start
+  button are what you land on, and the table and notes sit under them for when they are
+  wanted. What a run may ask changed with it: while any exercise on the list is still
+  locked, choosing one unchooses the last, because a first run should climb the rung it was
+  handed rather than dilute it — the line under the rows says so, and a fully open ladder is
+  what turns them into a list you can combine. The card these pages hang off is called
+  Werkstatt rather than Training: nothing here is a regimen.
+
+- **The sentence drill now measures things out, not just counts them.** A frame could only be
+  filled with a whole number, a year or a time, so "a quarter kilo of flour" — what a recipe or a
+  market stall actually says — was unaskable. German, English and Spanish now carry a measuring
+  sentence whose slot is a fraction, read the way each language reads it as a noun ("Ich brauche
+  ein Viertel Kilo Mehl.", "I need three quarters of a kilo of flour.", "Necesito un tercio de
+  kilo de harina."), with the written "3/4" accepted alongside the words as everywhere else.
+  Halves stay out deliberately: "ein halb Kilo" is not German, and a fraction that has to agree
+  with the word beside it needs an agreement the sentences cannot express yet.
+
+- **Zahlen is now a numbers page you start the drill from, and the drill grows as you do.**
+  The training card offered a chip per exercise and no way to look anything up outside a
+  running drill. It offers two entries now — numbers and letters — and the numbers one opens
+  a page for the language being learned: every band a printed numbers page would show, from
+  zero to a billion, each value beside its reading and generated from the very readings the
+  drill grades against, then the few things that actually trip a learner up in that language.
+  Practice sits at the bottom of the same page: the clock and the sentence drill are no
+  longer siblings of the numbers drill but ways of being asked, and they open once the
+  climb reaches the place value that pays for them. So do the number forms, and asking the
+  other way round, and a faster climb, and a run that keeps changing its mind. What is still
+  locked says what it costs instead of going missing, several can be picked at once, and
+  every run starts at the bottom of the ladder however far you have come — the climb is the
+  drill.
+
+- **The numbers drill asks the other ways a number gets written down.** It only ever wanted
+  a plain cardinal, though negatives, decimals, percentages, "three times", a quarter and
+  "the twentieth" are all numbers a learner meets in the first week and none of them appeared
+  anywhere in the app. They arrive as a rung of their own, climbing from small negatives
+  through decimals, percentages and multiples to fractions and the ordinals — and each
+  language reads them its own way rather than a translated one: German runs "dreimal" into
+  one word, English says "once" and "twice" before it says "three times", Spanish will not
+  take the shortened numeral in "veintiuno por ciento", Ukrainian declines the word being
+  counted, and Swahili puts "asilimia" in front of the number where the others put a sign
+  behind it. Where a language has no honest answer to a bare prompt — a Swahili ordinal
+  needs the noun it ranks — it is left unasked instead of invented.
+
+- **Buchstaben is a page too, and the numbers table is a tap away inside a run.** The
+  alphabet sat in a row of its own, unconnected to the letter drill it prepares you for.
+  The two are one page now: the alphabet to read, then the stages a run walks through with
+  the one it will open on marked and dictation saying what it waits for, then the button
+  that starts it. And the "?" mid-drill — which produced a short list of Swahili tens and
+  nothing at all in any other language — now raises the whole numbers page the overview
+  shows, whatever language you are learning. Looking something up while you still owe an
+  answer costs the rung, exactly as it always did; reading it afterwards is free.
+
+- **The clock drill climbs a step at a time, and never takes back a minute it taught.**
+  Past the quarters it jumped straight to any minute at all, and the quarter to the hour
+  the learner had just earned quietly dropped out again on the way up. The climb now goes
+  from the full hours to the quarters, counts up in fives to the half, then adds the
+  countdown to the next hour, and only at the top is the face read out minute by minute —
+  each step keeping everything the one below it offered. Sentence drills ramp with it, and
+  the step that opens them is the five-minute one their unlock always claimed it was.
+
 ## 3.12.0 — 2026-08-08
 
 - **A word that doesn't stick in two tries is now pushed out, not repeated.** Leech

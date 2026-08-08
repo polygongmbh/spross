@@ -52,6 +52,13 @@ data class PhraseTemplate(
      */
     val masculineNumeral: Boolean = false,
 ) {
+    init {
+        // Forms readings are not sentence slots: a fraction or ordinal needs the frame to
+        // decline around it, and no agreement device runs that way (docs/backlog.md).
+        // Failing here means catalog build time, not the draw that would have thrown.
+        require(slotKind != TrainerKind.Forms) { "$id: frames cannot carry a ${TrainerKind.Forms} slot" }
+    }
+
     /** Effective masculine-numeral rule — implied for all [countForms] templates. */
     val masculineNumeralOnly: Boolean get() = masculineNumeral || countForms != null
 

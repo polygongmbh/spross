@@ -470,6 +470,17 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   through the real drill normalizer and proves none is accepted for another;
   audited exceptions — sw `nne`↔`nane` (4↔8, incl. tens compounds)
   and uk `дев'ять`↔`десять` (9↔10) — are gated explicitly in the sweep.
+  `TrainerFormsTypoBridgeGuardTests` runs the same machinery (`TypoBridgeSweep`) over the
+  **forms answer space only** — negatives, decimals, percentages, multiplicatives, fractions
+  and ordinals, each pack over its own limits.
+  Scoping it there is the point: two prompts can only be confused if one run grades both
+  against one accepted set, and a run asks one task at a time,
+  so sweeping form readings against plain cardinals would fail on `acht`↔`achte`
+  for a confusion no run can produce.
+  Its allowlist adds the same twins wearing form endings
+  (uk `дев'ята`↔`десята` and the other three, en `eight ninths`↔`eighty ninth`)
+  plus es `un décimo`↔`undécimo`, a space-only minimal pair of the language.
+  Everything else the sweep found was a reading bug and was fixed there instead.
   `ClockCollisionSweepTests` is its clock half, over all 1440 times in all five languages;
   which readings a clock may share and which it may not is `../docs/clock-registers.md`.
   Vocab reviews (`maxTyposPerWord = null`, the default) keep one budget over the whole form.

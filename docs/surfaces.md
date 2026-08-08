@@ -5,22 +5,93 @@ auto-advance beats these share with it, are `design.md`'s.
 
 ## Trainers & the letter drill
 
-- **Trainers**: number, clock and phrase drills, registry-driven from kern, so the hub
-  offers only languages with authored content. Drills grade word by word and ramp with
-  the learner instead of sitting at one level.
+- **Trainers**: the Werkstatt card offers TWO entries, Zahlen and Buchstaben. Clock,
+  sentences and number forms are not siblings of the numbers drill but ways of being
+  asked, so they are variants a run selects rather than chips, and the modifiers
+  (reverse, fast, mix) are how it is played. A chip apiece was the alternative and it
+  was rejected twice over: chips are peers, so a row of them says the negatives and the
+  clock are alternatives to counting rather than what counting earns you, and a hub that
+  grows a chip per exercise has no way to say that one is not open yet — the ladder is
+  the reward, and only a list that can hold a locked row can show it. What each language
+  reads for those forms, with its sources, is `number-forms.md`. Which of them a learner may pick is derived
+  from one stored number per variant — the highest rung ever reached — through kern's
+  unlock table; everything else is registry-driven from kern and the catalog, so the hub
+  offers only languages with authored content. Every run starts at rung 1 however far the
+  learner has climbed: persisted progress buys access, never a head start.
+  Drills grade word by word and ramp with the learner instead of sitting at one level.
   A drill card is a review card — same face, same reveal, and the revealed reading is
   spoken and replayable like any other answer (`read-aloud.md`) — and carries nothing but
   the prompt: the run's header line already names what is drilled and how far the ramp has
-  come, and the field's placeholder names the language to answer in, so a badge or a
-  "Zahl · auf Spanisch" caption would be the third telling of what one tap said.
-  The one thing it does carry is the place-value hint the first time a length appears —
-  a fact about THIS number, and the reveal takes its place rather than stacking under it.
-- **Letter drill & alphabet sheet**: the Training card shows when slots, phrases OR an
-  alphabet exist for the target (the third predicate is catalog file presence, recomputed
-  on foreground/readiness — a voice installed in Settings brings the chip back). The
-  sheet renders every row (glyph, name, IPA, context, hint, example with meaning where
-  the reader's language knows the word) and ships even where the drill cannot — audio is
-  the drill's precondition, not the sheet's. The drill asks everything by ear: letter
+  come, and the field's placeholder names what is owed — the language to answer in, or
+  digits where the task was reversed — so a badge or a "Zahl · auf Spanisch" caption would
+  be the third telling of what one tap said.
+  The one thing it does carry is the FIRST-SIGHT hint, and it is always a word in the
+  language being LEARNED: the place word the first time a length appears, the word a form
+  adds the first time a mark does ("Neu: menos", "Neu: Komma"). One slot, the form winning
+  where both could fire. Naming the category in the reader's language instead ("Neu:
+  Kommazahl") taught nothing — a learner cannot say it, and the card is where saying it is
+  owed. The word is DERIVED, never authored: `formMarker` takes the reference band's
+  worked example and removes the cardinal's own words, including a cardinal welded to the
+  front of one ("dreimal" → "mal"); where nothing can be removed the whole reading stands,
+  which is the honest answer for an ordinal ("erste") or a half ("nusu"). A reversed task
+  gets no hint at all: the prompt is then the reading, which says it in words already.
+- **Zahlen overview**: the numbers entry opens a page, not a run — options and start
+  first, reference under them. Reading matter and the run it prepares you for are ONE
+  surface on purpose: a look-up that lives five taps inside a running drill is a look-up
+  nobody makes, and a reference page you cannot start from is a page nobody returns to.
+  The run comes first because it is what the page is opened for: twenty screens of table
+  above the button would make starting the thing a scroll. Both overviews wear the app's
+  corners — the ✕ out on the left, the run in on the right — and the right one repeats the
+  `Los` button on purpose: it is the one still in reach from inside the reading.
+  Picking SEVERAL variants for one run is itself earned — while any offered variant is
+  still locked the list is a radio and a run asks one thing at a time; a fully open ladder
+  turns it into checkboxes, and the row of picks says so while it is closed.
+  Being one surface also closes the drift — the table is drawn from the packs the run
+  grades against, and a rung the run just earned unlocks its row on the way back out.
+  The reference table is GENERATED by `Trainer.reference`
+  from the packs the drill grades against, so the page cannot claim one reading and mark
+  another; kern names the bands and the app words their headings. It is one component,
+  and the "?" on a numbers task raises the very same table, in every language — a look-up while the
+  answer is still owed books the task amber, and after the answer it is free. Its last band is
+  the FORMS one: a worked example per form the language reads, so the marks a Forms run asks
+  about are written down somewhere other than a failed task, and a form the language cannot
+  read has no row there either. Beside it sit two to
+  four prose notes on what trips a learner up in that language. A variant the ladder has
+  not opened keeps its row and states its price out of the same unlock table, because a
+  ladder you can see is a reason to climb and an absence is not; a variant the pair cannot
+  offer at all (no forms reading, no realized frames) has no row, since a padlock that can
+  never open is a lie.
+- **Buchstaben overview**: the letters entry opens the same shape as the numbers one —
+  the drill's stages and start first, the alphabet table under them. The Werkstatt card shows
+  when slots OR an alphabet exist for the target (the second predicate is catalog file
+  presence), and the letters chip on the second alone: the table renders every row (glyph,
+  name, IPA, context, hint, example with meaning where the reader's language knows the
+  word) and ships even where the drill cannot — audio is the drill's precondition, not the
+  table's, so where this device can sound nothing the stages are out of reach and the page
+  is the alphabet alone. What the drill can ask is recomputed on foreground — a voice
+  installed in Settings turns the start button on without a relaunch. The stage rows carry
+  no earned ladder (the drill books no review and keeps no record): they say which stage a
+  run OPENS on, derived from the learner's consolidated words, and dictation states its
+  price until enough of them can be played back. Their mark is the step NUMBER, not a
+  circle — the run walks the ladder by itself, and a circle beside each row reads as a
+  choice that never answers the tap.
+- **An endless run offers its exit where it is wanted, not on a schedule.** "Fertig"
+  appears under the button that goes on, and only on the SECOND miss in a row: one
+  miss is what a drill is made of, two is where carrying on stops feeling like a choice.
+  A clean answer takes the offer away again. Nothing about the run ends by itself — the
+  corner ✕ still works, and the offer is the same close, worded as finishing rather than
+  abandoning.
+- **A closed run has no screen of its own.** Both drills hand their figures — answered,
+  best streak, whether the record fell — to the page that started them and leave; the page
+  wears them as one tile above the picks and scrolls up to meet it, and a record still
+  rains its confetti there. Three numbers do not earn a page, and a page they do not earn
+  is one more ✕ between a learner and their next run — which the `Los` button already is.
+- **Letter drill**: it shares the slot drill's chrome — the endless scaffold, the streak
+  line, the result tile (`DrillChrome.swift`) — and keeps its own state machine, which
+  is the whole of what the two have in common: its rungs are stages that change what a
+  question IS rather than how big the number is, and its verdict ladder carries a third
+  outcome (a synonym of the dictated word) that no slot task can produce.
+  The drill asks everything by ear: letter
   NAME or gap word — and a gap word is drawn from the whole catalog wherever the glyph
   says its own sound, words the learner already holds first, so a rung stops meaning one
   memorized blank (`catalog/README.md` § Alphabet owns which rows may draw). Tiles first

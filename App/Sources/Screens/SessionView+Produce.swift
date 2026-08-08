@@ -16,8 +16,8 @@ extension SessionView {
                         // why: a miss keeps typing — the retype IS the
                         // answer, so the field must not lock on reveal.
                         locked: false,
-                        pronounceCorrection: correctionPronounce,
-                        correctionIsPlaying: correctionPlaying) {
+                        correctionVoice: .init(pronounce: { pronounceAction(for: $0) },
+                                               isPlaying: { isPronouncing($0) })) {
             // why: Enter used to hit the "Next" button's default
             // action once revealed — a hardware keyboard still needs
             // a way to give up without finishing the retype.
@@ -47,22 +47,6 @@ extension SessionView {
         retryApproved ? .correct : feedback
     }
 
-    /// The form the correction box carries, if it is carrying one — the single
-    /// place the amber hold's word is named, so the box and its speaker can
-    /// never end up saying two different things.
-    var correctionForm: String? {
-        if case .almost(let form, _) = fieldFeedback { return form }
-        return nil
-    }
-
-    var correctionPronounce: (() -> Void)? {
-        correctionForm.flatMap { pronounceAction(for: $0) }
-    }
-
-    var correctionPlaying: Bool {
-        correctionForm.map { isPronouncing($0) } ?? false
-    }
-
     /// True while produce has nothing to type into: the blank "Aufdecken"
     /// self-grade hides its own field and hands over the rating buttons.
     var produceFieldHidden: Bool {
@@ -81,7 +65,7 @@ extension SessionView {
             case .neutral:
                 // ONE primary action: empty input reveals, typed input checks.
                 Button {
-                    if inputEmpty {
+                    if input.isBlankAnswer {
                         DLSound.reveal()
                         markRecallEnded()
                         // why: answerField stays mounted and focused — this
@@ -92,13 +76,13 @@ extension SessionView {
                         submit(card)
                     }
                 } label: {
-                    Text(inputEmpty ? "session.reveal" : "common.check")
+                    Text(input.isBlankAnswer ? "session.reveal" : "common.check")
                         .frame(maxWidth: .infinity)
                         .contentTransition(.opacity)
                 }
                 .buttonStyle(DLPrimaryButtonStyle())
                 .keyboardShortcut(.defaultAction)
-                .animation(.easeOut(duration: 0.15), value: inputEmpty)
+                .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
             case .almost:
                 // A typo or a heard-instead pauses here — the box above spells
                 // the owed form out and says it; this waits for the tap that
@@ -169,14 +153,8 @@ extension SessionView {
 
     // MARK: - Grading (produce only — recognize is button self-grade)
 
-    private var inputEmpty: Bool {
-        input.trimmingCharacters(in: .whitespaces).isEmpty
-    }
-
     private var inputPlaceholder: String {
-        guard let target = model.targetLanguage else { return "" }
-        let name = LanguageNames.display(target, locale: locale, catalog: model.catalog)
-        return String(format: DLChrome.string("session.answer.placeholder %@", locale: locale), name)
+        model.targetLanguage.map { answerPlaceholder($0) } ?? ""
     }
 
     /// Take a word typed out exactly right as the answer, without a "Prüfen" tap:
@@ -254,14 +232,6 @@ extension SessionView {
         return spokenOnly(card: card, spokenForm: card.target.text)
     }
 
-    /// A form the REAL card lists as a synonym or a variant — right word, not
-    /// the one that played. Amber, never wrong: the reveal itself teaches these
-    /// forms ("auch: …"), so failing one would contradict the card.
-    private func alsoAccepted(_ input: String, of card: Card) -> Bool {
-        let typed = speechKey(form: input)
-        return (card.target.synonyms + card.target.variants).contains { speechKey(form: $0) == typed }
-    }
-
     func submit(_ card: Card) {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard feedback == .neutral, !trimmed.isEmpty,
@@ -273,7 +243,7 @@ extension SessionView {
         // why: BEFORE the verdict, and only where the card was asked by ear —
         // the narrowed answer set would otherwise fail a synonym the reveal
         // itself teaches. It is not wrong, it simply is not what played.
-        if model.producePrompt(for: card) == .sound, alsoAccepted(trimmed, of: card) {
+        if model.producePrompt(for: card) == .sound, card.alsoAccepts(trimmed) {
             // why: not a kern Match (the narrowed spoken-only card would grade
             // this Wrong) — the amber override is this screen's own ear-mode
             // rule, so unlike the branches below its Hard is a plain literal,

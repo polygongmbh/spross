@@ -1,4 +1,18 @@
 {
+ "numberNotes": {
+  "de": [
+   "Ab 21 steht der Einer vorn: einundzwanzig, „eins-und-zwanzig“ — so bis 99.",
+   "Alles unter einer Million ist ein einziges Wort: einhundertsiebenundvierzig.",
+   "6 und 7 verkürzen sich: sechzehn, siebzehn, sechzig, siebzig.",
+   "Im Zahlwort heißt die 1 immer ein-: einhundert, eintausend. Allein steht eins."
+  ],
+  "en": [
+   "From 21 the unit comes first: einundzwanzig, 'one-and-twenty' — and so on to 99.",
+   "Everything below a million is a single word: einhundertsiebenundvierzig.",
+   "6 and 7 shorten: sechzehn, siebzehn, sechzig, siebzig.",
+   "Inside a numeral 1 is always ein-: einhundert, eintausend. Alone it is eins."
+  ]
+ },
  "frames": {
   "train-departs-at": {
    "text": "Der Zug fährt um {slot} Uhr ab."
@@ -61,6 +75,9 @@
    "variants": [
     "Schreib bitte die Jahreszahl: {slot}."
    ]
+  },
+  "i-need-n-kilo-of-flour": {
+   "text": "Ich brauche {slot} Kilo Mehl."
   }
  }
 }

@@ -153,22 +153,6 @@
         }
       }
     },
-    "a11y.practicePhrases" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sätze üben"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Practice sentences"
-          }
-        }
-      }
-    },
     "a11y.practiceSuffix %@" : {
       "localizations" : {
         "de" : {
@@ -349,22 +333,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hear the name"
-          }
-        }
-      }
-    },
-    "alphabet.title %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alphabet · %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alphabet · %@"
           }
         }
       }
@@ -847,6 +815,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Check"
+          }
+        }
+      }
+    },
+    "common.close" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
           }
         }
       }
@@ -1843,6 +1827,22 @@
         }
       }
     },
+    "letters.entry" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hier geht es los"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "your run starts here"
+          }
+        }
+      }
+    },
     "letters.hear" : {
       "localizations" : {
         "de" : {
@@ -1875,6 +1875,182 @@
         }
       }
     },
+    "letters.stage.choiceConfusable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ähnliche Kacheln"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lookalike tiles"
+          }
+        }
+      }
+    },
+    "letters.stage.choiceConfusable.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieselbe Wahl, aber mit Buchstaben, die leicht zu verwechseln sind"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The same choice, between letters that are easy to mix up"
+          }
+        }
+      }
+    },
+    "letters.stage.choiceEasy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vier Kacheln"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Four tiles"
+          }
+        }
+      }
+    },
+    "letters.stage.choiceEasy.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den gehörten Buchstaben unter vieren finden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find the letter you heard among four"
+          }
+        }
+      }
+    },
+    "letters.stage.dictation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diktat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dictation"
+          }
+        }
+      }
+    },
+    "letters.stage.dictation.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganze Wörter aus dem eigenen Kasten nach Gehör schreiben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write whole words from your own box by ear"
+          }
+        }
+      }
+    },
+    "letters.stage.dictation.locked" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Braucht mehr gefestigte Wörter, die dieses Gerät vorlesen kann"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Needs more consolidated words this device can read out"
+          }
+        }
+      }
+    },
+    "letters.stage.typed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typing"
+          }
+        }
+      }
+    },
+    "letters.stage.typed.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den Buchstaben selbst schreiben, ohne Auswahl"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write the letter yourself, with nothing to pick from"
+          }
+        }
+      }
+    },
+    "letters.title %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buchstaben · %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letters · %@"
+          }
+        }
+      }
+    },
+    "letters.unavailable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Gerät kann noch keinen Buchstaben vorsprechen — dafür braucht es eine Stimme für die Sprache."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This device cannot say a letter yet — that needs a voice for the language."
+          }
+        }
+      }
+    },
     "nav.box" : {
       "localizations" : {
         "de" : {
@@ -1887,6 +2063,214 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Box"
+          }
+        }
+      }
+    },
+    "numbers.combine.locked" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mehreres in einem Lauf, sobald alles freigeschaltet ist."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Several in one run, once everything is unlocked."
+          }
+        }
+      }
+    },
+    "numbers.notes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darauf kommt es an"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What to watch out for"
+          }
+        }
+      }
+    },
+    "numbers.reference" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie diese Sprache zählt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How this language counts"
+          }
+        }
+      }
+    },
+    "numbers.section.compounds" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zusammengesetzt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Put together"
+          }
+        }
+      }
+    },
+    "numbers.section.forms" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Andere Schreibweisen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other notations"
+          }
+        }
+      }
+    },
+    "numbers.section.hundreds" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Hunderter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The hundreds"
+          }
+        }
+      }
+    },
+    "numbers.section.ones" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Null bis neun"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zero to nine"
+          }
+        }
+      }
+    },
+    "numbers.section.places" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tausend, Million, Milliarde"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thousand, million, billion"
+          }
+        }
+      }
+    },
+    "numbers.section.teens" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zehn bis neunzehn"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten to nineteen"
+          }
+        }
+      }
+    },
+    "numbers.section.tens" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Zehner"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The tens"
+          }
+        }
+      }
+    },
+    "numbers.section.twenties" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Zwanziger"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The twenties"
+          }
+        }
+      }
+    },
+    "numbers.title %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlen · %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numbers · %@"
+          }
+        }
+      }
+    },
+    "numbers.unlock" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Freischalten:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlocks at:"
           }
         }
       }
@@ -1983,6 +2367,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Welcome to Spross"
+          }
+        }
+      }
+    },
+    "overview.practice" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Üben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice"
+          }
+        }
+      }
+    },
+    "overview.start" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
           }
         }
       }
@@ -2867,6 +3283,22 @@
         }
       }
     },
+    "trainer.answer.digits" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In Ziffern …"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In digits …"
+          }
+        }
+      }
+    },
     "trainer.bestStreak %@" : {
       "localizations" : {
         "de" : {
@@ -2939,6 +3371,22 @@
         }
       }
     },
+    "trainer.forms" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlformen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forms"
+          }
+        }
+      }
+    },
     "trainer.letters" : {
       "localizations" : {
         "de" : {
@@ -2967,6 +3415,134 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Level %@"
+          }
+        }
+      }
+    },
+    "trainer.lookup" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlen nachschlagen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Look up numbers"
+          }
+        }
+      }
+    },
+    "trainer.modifier.fast" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schnell"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast"
+          }
+        }
+      }
+    },
+    "trainer.modifier.fast.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine saubere Antwort pro Stufe statt zwei."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One clean answer per rung instead of two."
+          }
+        }
+      }
+    },
+    "trainer.modifier.mix" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bunt gemischt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mixed up"
+          }
+        }
+      }
+    },
+    "trainer.modifier.mix.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Richtung wechselt bei jeder Aufgabe, und Formen werden so groß wie die Zahlen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The direction flips every task, and forms grow to the size the numbers reached."
+          }
+        }
+      }
+    },
+    "trainer.modifier.reverse" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Umgekehrt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed"
+          }
+        }
+      }
+    },
+    "trainer.modifier.reverse.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Zahlwort steht da, die Ziffern sind gefragt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The reading is shown, the digits are owed."
+          }
+        }
+      }
+    },
+    "trainer.newForm %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neu: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New: %@"
           }
         }
       }
@@ -3139,50 +3715,18 @@
         }
       }
     },
-    "trainer.tens" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zehner"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tens"
-          }
-        }
-      }
-    },
-    "trainer.tensLookup" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zehner nachschlagen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Look up tens"
-          }
-        }
-      }
-    },
     "trainer.title" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Training"
+            "value" : "Werkstatt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Training"
+            "value" : "Workshop"
           }
         }
       }

@@ -132,6 +132,9 @@ German has no cores at all, and English hangs its parts of the day on two readin
 rule, and those are shared outright.
 `TrainerLanguagePack.clockDayParts` shares the SLOT and nothing else:
 the words are a language's own vocabulary and each pack derives its set from its own `dayParts`.
+The five derivations do not collapse into a shared helper either, though four of them look alike:
+those four enumerate the hours, while Spanish's words decide on hour, minute and direction,
+so its union runs over all three and a sentinel minute would miss a word a future rule keys on.
 The fraction and half words are not shareable for exactly that reason:
 the word is never the emitted unit, the frame is,
 and the five frames agree on word order, on which hour is named, and on case in no combination.

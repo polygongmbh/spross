@@ -1,72 +1,60 @@
 import SwiftUI
 import SprossKern
 
-/// The alphabet of the language being learned, one card per row of
-/// `catalog/alphabet/<lang>.json`: the glyph with its capital, the letter's
-/// own name, its IPA, when it takes that value, what it sounds like, and an
-/// example word — the name and the word each with a speaker beside them.
-/// Reading matter, not a drill: nothing here is graded, and nothing plays
-/// unasked. Every tap is a request, so it sounds even while reading aloud is
-/// switched off — nobody opens a reference sheet by accident.
+/// The alphabet half of the letters overview, one card per row of
+/// `catalog/alphabet/<lang>.json`: the glyph with its capital, the letter's own
+/// name, its IPA, when it takes that value, what it sounds like, and an example
+/// word — the name and the word each with a speaker beside them. Reading matter,
+/// not a drill: nothing here is graded, and nothing plays unasked. Every tap is
+/// a request, so it sounds even while reading aloud is switched off — nobody
+/// opens a reference sheet by accident.
 ///
 /// Rows are whatever the file holds, in authored order: single letters,
 /// digraphs (`sch`), the same glyph twice under different ids (`ch-ich` /
-/// `ch-ach`), and prose `rule` rows that state an orthography rule rather
-/// than a grapheme. Where the file declares `sections`, they head their runs
-/// of rows; where it declares none (uk, whose order IS its alphabet) the
-/// sheet is the flat list it always was.
+/// `ch-ach`), and prose `rule` rows that state an orthography rule rather than a
+/// grapheme. Where the file declares `sections`, they head their runs of rows;
+/// where it declares none (uk, whose order IS its alphabet) the table is the
+/// flat list it always was.
 ///
 /// Teaching aids follow the READER, with one fallback rule for both maps:
 /// `hints[source] ?? hints["en"]`, `context[source] ?? context["en"]`. The
-/// Ukrainian rows carry en-only hints while their contextual rows carry de+en
-/// — a reader of neither must not be handed a hint whose context silently
+/// Ukrainian rows carry en-only hints while their contextual rows carry de+en —
+/// a reader of neither must not be handed a hint whose context silently
 /// vanished.
-struct AlphabetSheetView: View {
-    let model: AppModel
-    /// Which alphabet — the language being learned, never the reader's.
-    let language: String
+///
+/// State lives on LettersOverview; split out purely for file size.
+extension LettersOverview {
 
-    @Environment(\.dismiss) private var dismiss
-    @Environment(\.locale) private var locale
-
-    var body: some View {
-        NavigationStack {
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: DL.Space.m) {
+    @ViewBuilder
+    var alphabetSection: some View {
+        if alphabet != nil {
+            VStack(alignment: .leading, spacing: DL.Space.l) {
+                heading("trainer.alphabet")
+                VStack(alignment: .leading, spacing: DL.Space.m) {
                     if sections.isEmpty {
                         ForEach(entries) { entry in
                             row(entry)
                         }
                     } else {
                         ForEach(sections, id: \.id) { section in
-                            heading(section)
+                            sectionHeading(section)
                             ForEach(alphabet?.entries(of: section.id) ?? []) { entry in
                                 row(entry)
                             }
                         }
                     }
                 }
-                .padding(DL.Space.xl)
-            }
-            .background(Color.dlBackground.ignoresSafeArea())
-            .navigationTitle(Text("alphabet.title \(languageName)"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("common.done") { dismiss() }
-                }
             }
         }
-        .tint(.dlAccent)
     }
 
     // MARK: - One section
 
     /// A section title, on the same reader fallback its rows' hints use. Sections are
     /// authored per file: a language whose order IS its alphabet (uk) declares none and
-    /// the sheet stays the flat list it always was.
+    /// the table stays the flat list it always was.
     @ViewBuilder
-    private func heading(_ section: AlphabetSection) -> some View {
+    private func sectionHeading(_ section: AlphabetSection) -> some View {
         if let title = reader(section.titles) {
             Text(verbatim: title)
                 .font(DL.Fonts.title)
@@ -259,7 +247,9 @@ struct AlphabetSheetView: View {
 
     // MARK: - Catalog reads
 
-    private var alphabet: Alphabet? { model.catalog?.alphabet(lang: language) }
+    // why: internal — LettersOverview gates the whole section on the file
+    // existing, which is the same registry rule the hub's chip reads.
+    var alphabet: Alphabet? { model.catalog?.alphabet(lang: language) }
 
     private var sections: [AlphabetSection] { alphabet?.sections ?? [] }
 
@@ -274,9 +264,5 @@ struct AlphabetSheetView: View {
 
     private func reader(_ aid: [String: String]) -> String? {
         aid[model.sourceLanguage] ?? aid["en"]
-    }
-
-    private var languageName: String {
-        LanguageNames.display(language, locale: locale, catalog: model.catalog)
     }
 }
