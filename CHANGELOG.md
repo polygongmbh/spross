@@ -25,6 +25,26 @@
   controls for width; the row's own surface is the tap target now, freeing that
   space up too.
 
+- **A word you are meeting for the first time is shown and spoken, not illustrated.** The
+  picture used to sit on that very first card, where the only thing asked of you is to say
+  whether you knew it — and an obvious emoji answers that question for you. *Bett* next to
+  🛏️ was a word you had learned; 🛏️ next to a Ukrainian word you had never seen was a
+  picture you had read, and both reached *Gut* the same way, buying the same weeks-long
+  interval. The first card now carries the word itself and its pronunciation, and the
+  picture arrives with the meaning when you reveal it. It comes back on the review after —
+  the one that asks you to type the word — where it helps you produce something rather than
+  confirm something, and where guessing from the picture is not possible.
+
+- **A new word keeps its help until it has actually landed.** The box used to hold two bars
+  for "this word has stuck" and support fell away at the lower one — which a single *Gut* on
+  a word's very first answer already cleared. So the picture disappeared from the next
+  review, and that next review is the first one that asks you to *type* the word: the help
+  went away exactly where it was first needed. There is one bar now, the one the progress
+  display and phrase unlock already used, and a word answered *Gut* once keeps its picture
+  and its write-it-out step until a later answer says it has landed. Answering *Einfach* —
+  which is earned by knowing a word on sight, never chosen — still clears it at once, so a
+  word you already knew is not slowed down.
+
 ## 3.11.1 — 2026-08-08
 
 - **The parts of the day moved in with the clock.** Morning, evening and night were

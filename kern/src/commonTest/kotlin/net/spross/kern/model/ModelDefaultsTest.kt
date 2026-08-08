@@ -18,7 +18,6 @@ class ModelDefaultsTest {
         assertEquals(25, config.sessionCap)
         assertEquals(0.8, config.desiredRetention)
         assertEquals(365, config.maximumIntervalDays)
-        assertEquals(2.0, config.settledStability)
         assertEquals(6.0, config.consolidatedStability)
         // FSRS-6 reference step defaults — no in-session lapse retry.
         assertEquals(listOf(120L), config.learningStepsSeconds)

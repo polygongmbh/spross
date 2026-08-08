@@ -16,7 +16,6 @@ class CalibrationTest {
             sessionCap = 9,
             desiredRetention = 0.95,
             maximumIntervalDays = 30,
-            settledStability = 1.0,
             consolidatedStability = 3.0,
             learningStepsSeconds = listOf(60L, 600L),
             relearningStepsSeconds = listOf(60L),

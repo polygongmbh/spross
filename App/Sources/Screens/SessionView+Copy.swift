@@ -8,7 +8,7 @@ import SprossKern
 /// It is an encoding step, never a grade: the rating was already chosen by the
 /// self-grade buttons and is applied unchanged afterwards, so the 2026-07-22
 /// "self-grade only" ruling still owns the schedule (kern README §3). Only words
-/// that have not settled take this path, so it never slows a word down that
+/// that have not consolidated take this path, so it never slows a word down that
 /// already sticks, and only Again triggers it — Easy/Good/Hard advance straight
 /// away, which is how "I already knew this" stays one tap.
 extension SessionView {
@@ -123,6 +123,6 @@ extension SessionView {
         guard let card, rating == .again, !copyText.isEmpty else { return false }
         guard model.presentationRole(for: card.id) == .produce
                 || model.isFirstExposure(card.id) else { return false }
-        return !model.isSettled(card.id)
+        return !model.isConsolidated(card.id)
     }
 }

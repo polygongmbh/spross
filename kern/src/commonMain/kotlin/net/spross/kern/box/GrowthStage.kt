@@ -7,8 +7,7 @@ import net.spross.kern.model.CardScheduling
  * Days of stability at which a card counts as MATURED — the third and last bar,
  * a month out from the next sight of the word.
  *
- * Unlike [net.spross.kern.model.BoxConfig.settledStability] and
- * [net.spross.kern.model.BoxConfig.consolidatedStability] this one gates NOTHING:
+ * Unlike [net.spross.kern.model.BoxConfig.consolidatedStability] this one gates NOTHING:
  * no presentation support, no phrase unlock, no budget. It exists so the ladder has
  * a top rung to report, which is why it is a constant here rather than a config
  * field — there is no product decision to tune behind it.
@@ -36,11 +35,8 @@ enum class GrowthStage {
     /** Scheduled and still walking the learning steps — introduction is the first ANSWER. */
     Learning,
 
-    /** In Review, still under [net.spross.kern.model.BoxConfig.settledStability]. */
+    /** In Review, still under [net.spross.kern.model.BoxConfig.consolidatedStability]. */
     Fresh,
-
-    /** Settled: see [Statistics.isSettled] — the support bar. */
-    Settled,
 
     /** Consolidated: see [Statistics.isConsolidated] — the "has this word landed" bar. */
     Consolidated,
@@ -84,7 +80,6 @@ internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage = when
     sched.phase != CardPhase.Review -> GrowthStage.Learning
     (sched.memory?.stability ?: 0.0) >= MATURED_STABILITY -> GrowthStage.Matured
     Statistics.isConsolidated(state, sched) -> GrowthStage.Consolidated
-    Statistics.isSettled(state, sched) -> GrowthStage.Settled
     else -> GrowthStage.Fresh
 }
 

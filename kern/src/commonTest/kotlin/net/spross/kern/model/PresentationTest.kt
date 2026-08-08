@@ -110,22 +110,22 @@ class PresentationTest {
 
     @Test
     fun emojiRidesThePromptOnlyWhereItCannotGiveTheAnswerAway() {
-        // First exposure: on the prompt — the cue that makes a first attempt possible.
-        assertEquals(EmojiCue.Upfront, emojiCue(recognize, settled = false, reviewCount = 0))
         // Produce while the word is still landing: the source prompt already names
-        // the concept, so the picture adds support without leaking anything.
-        assertEquals(EmojiCue.Upfront, emojiCue(produce, settled = false, reviewCount = 1))
+        // the concept, so the picture adds support without leaking anything. This is
+        // the ONLY prompt it rides, and by role resolution the second review is one.
+        assertEquals(EmojiCue.Upfront, emojiCue(produce, consolidated = false))
     }
 
     @Test
     fun emojiRidesTheRevealEverywhereElse() {
-        // Recognition measurement reviews: the picture depicts the answer, so it
-        // waits for the reveal rather than disappearing.
-        assertEquals(EmojiCue.OnReveal, emojiCue(recognize, settled = false, reviewCount = 1))
-        assertEquals(EmojiCue.OnReveal, emojiCue(recognize, settled = true, reviewCount = 4))
-        // Settled words get no prompt support in either role — but still bind on reveal.
-        assertEquals(EmojiCue.OnReveal, emojiCue(produce, settled = true, reviewCount = 4))
-        assertEquals(EmojiCue.OnReveal, emojiCue(produce, settled = true, reviewCount = 6))
+        // Every recognition prompt, the FIRST EXPOSURE included: the picture depicts
+        // the very thing being asked for, and a self-grade cannot tell "I knew the
+        // word" from "the picture was obvious". It waits for the reveal, which is
+        // where a first sight teaches the word anyway.
+        assertEquals(EmojiCue.OnReveal, emojiCue(recognize, consolidated = false))
+        assertEquals(EmojiCue.OnReveal, emojiCue(recognize, consolidated = true))
+        // A word that has landed gets no prompt support in either role — but still binds on reveal.
+        assertEquals(EmojiCue.OnReveal, emojiCue(produce, consolidated = true))
     }
 
     // -- pronunciation policy ----------------------------------------------------------
