@@ -120,8 +120,8 @@ object BoxEngine {
      * Apply one answer to a card. Introduction = the card's first answer: creates its
      * schedule, counts it introduced, and dequeues it. Introductions re-check
      * eligibility at answer time ([AnswerStatus.DroppedIneligible]) — plans
-     * outlive phase changes. Review-phase
-     * Again answers count lapses; 8 lapses auto-suspend the card (leech). Non-joining
+     * outlive phase changes. Any
+     * Again past introduction counts a lapse; 2 lapses auto-suspend the card (leech). Non-joining
      * or unknown ids are a defined no-op ([AnswerStatus.StaleCard]).
      */
     fun answer(
