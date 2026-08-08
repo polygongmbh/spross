@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **A third thing to practise in the Werkstatt: the world.** 🌍 Länder opens an atlas —
+  every country the two languages both have a name for, with what its people are called
+  and what is spoken there, on one page you can look things up on and start a run from.
+  The run begins with the countries your own two languages are at home in and widens
+  outward from there, asking for the country, the language, the people, and which of them
+  belongs where; a switch turns the whole thing round, so the question can just as well
+  come in the language you are learning. Where a name can be said out loud, the answer is.
+
 - **The phrases about the language you are learning now say which language that is.** Every
   file spelled it out: "Ich lerne Deutsch", "Ninajifunza Kijerumani", "I have been learning
   German since 1998" — so a German speaker learning Swahili was taught to say, in Swahili,

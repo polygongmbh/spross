@@ -931,6 +931,86 @@
         }
       }
     },
+    "countries.ask.country" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie heißt dieses Land?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What is this country called?"
+          }
+        }
+      }
+    },
+    "countries.ask.language" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie heißt diese Sprache?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What is this language called?"
+          }
+        }
+      }
+    },
+    "countries.ask.nationality" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie heißen die Leute von dort?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What are its people called?"
+          }
+        }
+      }
+    },
+    "countries.ask.spokenIn" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welche Sprache spricht man dort?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which language is spoken there?"
+          }
+        }
+      }
+    },
+    "countries.ask.spokenWhere" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wo spricht man diese Sprache?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Where is this language spoken?"
+          }
+        }
+      }
+    },
     "countries.best %@" : {
       "localizations" : {
         "de" : {

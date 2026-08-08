@@ -32,7 +32,7 @@ extension CountriesOverview {
     /// Every rung the ladder has, in the order it is climbed — kern's ceiling,
     /// never a count written down beside it.
     private static var rungs: [Int] {
-        Array(1...max(1, Int(CountryDrill.shared.MAX_LEVEL)))
+        Array(1...max(1, CountryDrill.shared.ceiling))
     }
 
     // MARK: - What a run asks

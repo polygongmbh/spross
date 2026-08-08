@@ -104,6 +104,26 @@ struct CountriesOverview: View {
         }
         .tint(.dlAccent)
         .onAppear { reload() }
+        // why: a closing run books the rung it reached, so the line under the
+        // ladder is stale the moment the cover comes down.
+        .fullScreenCover(item: $launch, onDismiss: reload) { launch in
+            Group {
+                if let content {
+                    CountryDrillView(model: model, content: content, reverse: launch.reverse,
+                                     storageKey: storageKey,
+                                     onFinish: { result in
+                                         withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
+                                     })
+                }
+            }
+            .environment(\.locale, model.knownLocale)
+        }
+        // why: the record is what the confetti is for, and it rains over the
+        // page the run came back to — a wave retires itself, so no dismissal
+        // and no state to clear.
+        .overlay {
+            if lastRun?.newRecord == true { ConfettiView().ignoresSafeArea().allowsHitTesting(false) }
+        }
     }
 
     // MARK: - Starting a run
