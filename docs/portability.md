@@ -8,8 +8,11 @@ the run, the turn, the offer and its summary, the covered languages, the calibra
 the article table, the streak walk, the area buckets, the day helpers, the box browser,
 the today report and the chrome-language rule are kern's, and both apps read them.
 `android/SessionFlow.kt` is gone.
-What is left is drill/watch territory only: moves 4, 5 and 6 (6 deferred per user 2026-08-08)
-and the drill/watch bullets at the end of the small list.
+**Also shipped (2026-08-08, later the same day):** moves 4 and 5 — both drill runs and
+the letter-drill availability sweep are kern machines, and both apps drive them.
+What is left is watch territory only: move 6 (deferred per user 2026-08-08)
+and the watch bullets at the end of the small list, plus one drill remainder
+(the normalizer strictness triple) noted there.
 
 The native layers should own aesthetics and device facts only:
 layout, animation, focus, haptics, audio engines, widget timelines, accessibility flags, string tables.
@@ -55,6 +58,8 @@ Three screens are their own uncontrolled view models — 47 `@State` between the
 `SessionView` (16, including a parked un-applied `Rating`), `LetterDrillView` (15, the whole drill run,
 with a reducer named `advance` living inside a `View`), `TrainerSessionView` (16, and it writes persistent records).
 There is no Swift test target, so none of it is testable.
+The two drill screens now each hold one kern run state (`TrainerRunState` / `LetterDrillRunState`)
+plus input and focus; the rest stands.
 
 `android/` did better: `AndroidViewModel` + a `SessionUi` state DTO + flow logic extracted
 into Android-free testable classes (`SessionFlow`, `LetterDrillFlow`, `CardDisplay`, `LanguagePicker`).
@@ -93,12 +98,13 @@ No new kern dependency; data classes already cross the boundary.
    `require` deliberately: the safe query is now the one a launch reaches for, and an unknown source
    stays a programming error rather than an empty answer. The rest of `activate` — bundle paths,
    `UserDefaults`, the observable plumbing — stayed iOS, correctly.
-4. **`trainer/LetterDrillRun` + `TrainerRun`** — the run drivers around kern's ramp
-   (`LetterDrillView.swift:54-284`, `TrainerSessionView.swift:59-276`).
-   The ramp itself is no longer among the duplications: both drills now step through
-   `DrillRamp.step`, and each passes in only its own rung length.
-5. **`trainer/LetterDrillAvailability`** behind an audio-capability port
-   (`LetterDrillAvailability.swift:16-131`) — deletes 176 hand-ported Kotlin lines.
+4. ~~**`trainer/LetterDrillRun` + `TrainerRun`**~~ — shipped as
+   `trainer/TrainerRun.kt` + `TrainerRunState.kt` and `LetterDrillRun.kt` + `LetterDrillRunState.kt`
+   over the shared `DrillRun.kt` effects; both apps dispatch intents and render the returned state,
+   keeping only input, focus, audio and the auto-advance timers.
+5. ~~**`trainer/LetterDrillAvailability`**~~ — shipped behind a has-voice flag
+   (`LetterDrillAvailability.report(catalog, box, language, hasVoice)`);
+   Android's 176 hand-ported lines are gone and iOS keeps a thin adapter.
 6. **`snapshot/WatchRun` + public snapshot DTOs** — the watch queue/ranking/recycling engine
    (`WatchModel.swift:96-289`, ~150 lines, untested), the practice-lap ordering by remaining-span-over-stability,
    `applyRemoteAnswers` idempotent replay (`PhoneConnectivity.swift:73-155`),
@@ -133,14 +139,17 @@ do not link Kotlin, so the duplication is forced there and only there. Their com
 `model/Article.kt` and `box/Statistics.kt` as the canonical version. On Android, where widgets are
 in-process, no such copy may exist.
 
-Still without the kern home the audit asked for (all drill/watch-scoped):
+Still without the kern home the audit asked for (all watch-scoped, plus one drill remainder):
 
 - `session/MultipleChoice.question` — the watch samples and shuffles kern's ranked shortlist in Swift
   (`WatchPracticeQuestion.swift:24-49`); `RecognitionGrading` — latency→rating
   (`WatchGrading.swift:14-29`), the sibling of `SelfGrading.kt:33-51`.
-- The `summaryEmoji` thresholds 10/5/2 (`DrillChrome.swift`), and the drill normalizer's
-  strictness triple, still stated twice
-  (`TrainerHubView.swift:92-93` = `LetterDrillView+Grading.swift:112-114`).
+- The drill normalizer's strictness triple (`articleLeniency = false, maxTyposPerWord = 1`),
+  now stated twice per platform (iOS `TrainerSessionView+Mode.swift` + `LetterDrillView+Grading.swift`,
+  Android `TrainerFlow.kt` + `LetterDrillFlow.kt`) while kern's `TrainerRun` KDoc merely names it —
+  wants a kern factory. The streak-tier ladder itself is closed:
+  kern owns it (`DrillRun.kt` `StreakTier`), Android reads it, and only the iOS tile
+  still hand-codes the thresholds (backlog).
 
 ## Stays native
 

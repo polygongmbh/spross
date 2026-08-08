@@ -207,6 +207,15 @@ One line per item, with a file or context pointer, filed under the section it be
 - The letter drill's `exampleText` fallback is not audibility-filtered, so an inaudible
   escape-hatch row stays promptable and shows a dead speaker — shared by both platforms
   (`kern/.../trainer/LetterDrillAvailability.exampleWords` KDoc, pinned in its test).
+- Same class: kern's audibility test is "the catalog names a recording path OR a voice
+  exists", never whether the file resolves in the bundle — on a voiceless language, a row
+  or dictation candidate whose authored recording is missing ships promptable with a dead
+  speaker (`kern/.../trainer/LetterDrillAvailability.kt`).
+- `TrainerRun` has no `openAt(mode:levels:rng:)` sibling of `LetterDrillRun.openAt` —
+  its absence forces iOS's DEBUG-only `TrainerRunState.seeded` doCopy helper
+  (`App/Sources/Screens/TrainerSessionView+UITest.swift`).
+- The drill normalizer's strictness triple wants a kern factory
+  (`docs/portability.md` § Smaller owns the four sites).
 
 ## App & UX
 
@@ -231,7 +240,25 @@ One line per item, with a file or context pointer, filed under the section it be
   trainer drills (`App/Sources/Design/AutoAdvance.swift`) — deferred because its verdict
   ladder carries a third `heard` outcome (a synonym of the dictated word) that the
   un-arm-on-further-typing logic would need a new case for, so it is a design call rather
-  than a mechanical port (`LetterDrillView+Grading.swift` `verdict(_:task:)`).
+  than a mechanical port (the ladder is kern's now: `kern/.../trainer/LetterDrillRun.kt`).
+- The iOS result tile still hand-codes the 10/5/2 emoji ladder kern now owns —
+  `DrillRunResult` wants to carry `DrillRunSummary.tier` the way Android's `tierEmoji` reads it
+  (`App/Sources/Design/DrillChrome.swift` vs `android/.../ui/DrillChrome.kt`).
+- `NumbersOverview.swift` holds its picks as `Set<DrillVariant>` where `DrillSelection`
+  hands back ordered lists (converted at both boundaries), and hand-spells its progress key
+  `"\(variant.storageTag).\(language)"` — `TrainerMode.companion.progressKey(variant:language:)`
+  is the public spelling; `DrillVariant.storageTag`/`.slotKind` stay `internal` in kern over it.
+- `TrainerRecords.swift` hard-codes `"trainer.record."`; `TrainerMode.companion.RECORD_PREFIX`
+  now exists.
+- `AppModel+Queries.swift` `consolidatedCards()` has no caller left and its doc comment
+  points at deleted Swift filters — prune.
+- `TrainerSessionView+Grading.swift` and `LetterDrillView+Grading.swift` now hold the run
+  DRIVERS (dispatch/effects/close), not grading — rename to `+Run.swift` in a pass that
+  regenerates the Xcode project.
+- `android/.../AppModel.kt` sits at 544 lines (guide ~300); extracting the Werkstatt doors
+  needs widening `screen`'s private setter.
+- Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
+  fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
 
 - The watch quiz tells correctness to the EYE only — tile tint, red wash and the rating
   emoji are all visual, and the emoji is `accessibilityHidden` because VoiceOver reading
@@ -314,6 +341,9 @@ One line per item, with a file or context pointer, filed under the section it be
 - On the emulator with a hardware keyboard, Enter after `input text` could walk focus onto
   the session top-bar mute toggle and flip it; probably an emulator artifact — check once
   on hardware before chasing (`android/.../ui/SessionScreen.kt` top bar).
+- `TrainerStore`'s read/write plumbing is untested (needs `SharedPreferences`, no Robolectric
+  in the module; the key rules are kern's and tested there) — one emulator check that a rung
+  survives an app restart (`android/.../TrainerStore.kt`).
 - Resolved 2026-08-01 — the analysis index has its PEAK term: every `gain` is capped at the
   file's own measured headroom less 1 dB (`scripts/audio-catalog.py` [ANALYSIS]), so nothing
   reaches full scale and the iOS-clips / `LoudnessEnhancer`-compresses split has nothing

@@ -88,6 +88,8 @@ never the shape of the app.
   the answer away. Never graded.
 - Grammar — plural line, article color — renders TARGET-side only;
   prompt and reveal are styled by role, not by language.
+- A drill card wears this same face — same slot, same reveal
+  (the rule's home is `surfaces.md` § Trainers).
 
 ## Review UX rules
 
@@ -300,6 +302,8 @@ engine gates and the behavioral test inventory: kern README.
 Couple mode, accounts/sync, sw/uk UI chrome (those sources fall back to en).
 Android has the core loop on the full kern turn (write-out, retry, the earned Easy),
 Box browse with search, own words and the settings block, the 14-day activity strip,
-and ONE trainer, the letter drill (a chip on Heute — the platform has no trainer hub) —
-no other trainers, alphabet sheet, widget, forest canvas or growth headline,
-and verdict cues are haptic-only (no chime assets ship in the APK).
+and the whole Werkstatt — both drills on kern's runs, each behind its overview page
+with the generated numbers reference and the alphabet table (`surfaces.md`) —
+but no widget, forest canvas or growth headline;
+verdict cues are haptic-only (no chime assets ship in the APK)
+and a new record celebrates in words, without confetti.

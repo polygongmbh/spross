@@ -76,7 +76,7 @@ auto-advance beats these share with it, are `design.md`'s.
   rains its confetti there. Three numbers do not earn a page, and a page they do not earn
   is one more ✕ between a learner and their next run — which the `Los` button already is.
 - **Letter drill**: it shares the slot drill's chrome — the endless scaffold, the streak
-  line, the result tile (`DrillChrome.swift`) — and keeps its own state machine, which
+  line, the result tile (each platform's `DrillChrome`) — and keeps its own state machine, which
   is the whole of what the two have in common: its rungs are stages that change what a
   question IS rather than how big the number is, and its verdict ladder carries a third
   outcome (a synonym of the dictated word) that no slot task can produce.
@@ -94,14 +94,19 @@ auto-advance beats these share with it, are `design.md`'s.
   itself the request to hear one (`read-aloud.md`), so no run of it can open on a card with
   nothing to answer.
 
-## Android companion (core loop)
+## Android companion
 
 `android/` renders THIS contract with Compose — same engine facades, and since the turn
-moved into kern the same review rules by construction, not by porting discipline.
+and both drill runs moved into kern the same rules by construction, not by porting discipline.
+The Werkstatt ships there whole: both overview pages, both drills, the generated
+numbers reference and the alphabet table.
 Platform deltas only: the catalog ships as APK assets synced from `catalog/`,
 the box is app-private and written after every answer rather than debounced,
-and verdict cues are haptic where iOS also chimes.
-Its scope is `design.md` § Not yet.
+verdict cues are haptic where iOS also chimes,
+runs are full screens rather than covers — Back mirrors ✕ everywhere, and inside a run
+the reference panel eats Back first — and a fallen record celebrates in the tile's own
+words, without confetti.
+What has not landed there is `design.md` § Not yet.
 
 ## Watch & widgets (decode-only)
 
