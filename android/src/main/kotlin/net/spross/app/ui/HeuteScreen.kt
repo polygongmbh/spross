@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -23,12 +24,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.dp
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
 import net.spross.app.AppModel
-import net.spross.app.letterDrillAvailable
+import net.spross.app.lettersOffered
+import net.spross.app.numbersOffered
+import net.spross.app.werkstattOffered
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.session.SessionOfferKind
 
@@ -110,30 +114,7 @@ fun HeuteScreen(model: AppModel) {
             )
         }
 
-        // The platform's first trainer. It appears by itself once the synthesizer has
-        // bound (the predicate is observable — a cold start answers "no voice" for a
-        // moment), and stays put while reading aloud is switched off: the drill says so
-        // and offers the one tap that undoes it, which hiding the chip would not.
-        if (model.letterDrillAvailable) {
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = MaterialTheme.shapes.medium,
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-            ) {
-                Column(
-                    modifier = Modifier.fillMaxWidth().padding(DlSpace.l),
-                    verticalArrangement = Arrangement.spacedBy(DlSpace.m),
-                ) {
-                    Text(chrome.trainingTitle, style = MaterialTheme.typography.titleMedium)
-                    OutlinedButton(
-                        onClick = { model.startLetterDrill() },
-                        shape = MaterialTheme.shapes.small,
-                    ) {
-                        Text("🔤 ${chrome.lettersTitle}")
-                    }
-                }
-            }
-        }
+        WerkstattCard(model)
 
         Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
             Text(chrome.progressTitle, style = MaterialTheme.typography.titleLarge)
@@ -142,6 +123,57 @@ fun HeuteScreen(model: AppModel) {
             ActivityStrip(model.activityWindow, stats?.streak ?: 0, chrome, locale)
         }
         Spacer(Modifier.height(DlSpace.l))
+    }
+}
+
+/**
+ * The Werkstatt: free practice, with no schedule and no limit.
+ *
+ * TWO entries, and each opens a PAGE rather than a run — the reading and the drill it
+ * prepares you for are one surface. Zahlen stands where the pair has counting content;
+ * Buchstaben on the alphabet FILE alone, because the table ships even where this device
+ * can sound nothing, and a card with neither is absent rather than empty.
+ */
+@Composable
+private fun WerkstattCard(model: AppModel) {
+    val chrome = model.chrome
+    if (!model.werkstattOffered) return
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = MaterialTheme.shapes.medium,
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth().padding(DlSpace.l),
+            verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+        ) {
+            Text(chrome.trainingTitle, style = MaterialTheme.typography.titleMedium)
+            Text(
+                chrome.trainingSubtitle,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+                if (model.numbersOffered) {
+                    OutlinedButton(
+                        onClick = { model.openNumbers() },
+                        modifier = Modifier.weight(1f).heightIn(min = 48.dp),
+                        shape = MaterialTheme.shapes.small,
+                    ) {
+                        Text("🔢 ${chrome.numbersTitle}", maxLines = 1)
+                    }
+                }
+                if (model.lettersOffered) {
+                    OutlinedButton(
+                        onClick = { model.openLetters() },
+                        modifier = Modifier.weight(1f).heightIn(min = 48.dp),
+                        shape = MaterialTheme.shapes.small,
+                    ) {
+                        Text("🔤 ${chrome.lettersTitle}", maxLines = 1)
+                    }
+                }
+            }
+        }
     }
 }
 

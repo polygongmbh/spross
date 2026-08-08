@@ -58,6 +58,7 @@ data class Chrome(
     val creditsUnmodified: String,
     val creditsCommons: String,
     val trainingTitle: String,
+    val trainingSubtitle: String,  // what the Werkstatt is, under its name
     val lettersTitle: String,
     val lettersHear: String,       // the question a letter-name prompt asks
     val lettersSpell: String,      // …and the one a gap word asks
@@ -71,11 +72,68 @@ data class Chrome(
     val heardInstead: String,      // %s = the form that actually played
     val audioOff: String,
     val enableSound: String,
+    val tasksDoneOne: String,      // the count-of-one line, verbatim
     val tasksDone: String,         // %d
     val bestStreak: String,        // %d
     val answerCorrect: String,     // an answered tile's state, never colour alone
     val answerWrong: String,
-    val correctAnswer: String,     // %s = what it was, on a miss or a reveal
+
+    // ── The two overview pages ──────────────────────────────────────────────────
+    /** The ✕'s name — the corner both pages and every run wear on the left. */
+    val close: String,
+    val numbersTitle: String,      // the Werkstatt entry, and the variant's own name
+    val numbersPage: String,       // %s = the language being learnt
+    val lettersPage: String,       // %s
+    val overviewPractice: String,  // the heading the picks stand under
+    val overviewStart: String,     // the button both pages open a run with
+    val numbersReference: String,
+    val numbersNotes: String,
+    /**
+     * Kern's band key → the heading it takes. A map, because the bands are kern's to
+     * grow: one it has no wording for still gets its rows rather than printing a key.
+     */
+    val numberSections: Map<String, String>,
+    val variantClock: String,
+    val variantPhrases: String,
+    val variantForms: String,
+    val modifierReverse: String,
+    val modifierReverseHint: String,
+    val modifierFast: String,
+    val modifierFastHint: String,
+    val modifierMix: String,
+    val modifierMixHint: String,
+    /** Why the picks are a radio: mixing several exercises into one run is itself earned. */
+    val combineLocked: String,
+    /** What a locked row costs, before kern's table words the rungs themselves. */
+    val unlockPrefix: String,
+
+    // ── Inside a run ────────────────────────────────────────────────────────────
+    val digitsOne: String,         // the numbers rung, which counts digits
+    val digitsMany: String,        // %d
+    val record: String,            // %d — the standing streak the run has not beaten yet
+    val streakSpoken: String,      // %d — the score line as a screen reader hears it
+    val recordSpoken: String,      // %d — appended to it
+    val answerDigits: String,      // a reversed task owes digits, never a language
+    val newPlace: String,          // %s = the place word, the first time a length appears
+    val lookUp: String,            // the "?" that raises the numbers page mid-run
+    val newRecord: String,
+
+    // ── The letter drill's stages, as the overview lists them ───────────────────
+    val stageChoiceEasy: String,
+    val stageChoiceEasyHint: String,
+    val stageChoiceConfusable: String,
+    val stageChoiceConfusableHint: String,
+    val stageTyped: String,
+    val stageTypedHint: String,
+    val stageDictation: String,
+    val stageDictationHint: String,
+    val stageDictationLocked: String,
+    /** The one stage row that says where THIS learner's run opens. */
+    val stageEntry: String,
+    val lettersUnavailable: String,
+    val alphabetTitle: String,
+    val alphabetSpeakName: String,
+    val alphabetSpeakExample: String,
 
     // ── Box browse ──────────────────────────────────────────────────────────────
     val boxTitle: String,

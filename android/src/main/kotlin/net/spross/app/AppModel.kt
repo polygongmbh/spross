@@ -47,6 +47,8 @@ import net.spross.kern.session.SessionRunState
 import net.spross.kern.store.StoreCodec
 import net.spross.kern.store.StoreFormatException
 import net.spross.kern.store.withProductCalibration
+import net.spross.kern.trainer.DrillRunSummary
+import net.spross.kern.trainer.TrainerMode
 
 sealed interface Screen {
     data object Loading : Screen
@@ -54,6 +56,16 @@ sealed interface Screen {
     data object Heute : Screen
     data object Session : Screen
     data object About : Screen
+
+    /** The Zahlen page: the picks and the button first, the reference under them. */
+    data object Numbers : Screen
+
+    /** The Buchstaben page: the stages and the button first, the alphabet under them. */
+    data object Letters : Screen
+
+    /** A slot run, carrying the spec the page it was started from spelled. */
+    data class Trainer(val mode: TrainerMode) : Screen
+
     data object LetterDrill : Screen
 
     /**
@@ -115,8 +127,15 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     /** The run kern steps; null between sessions. The screen reads [sessionUi] instead. */
     private var sessionRun: SessionRunState? = null
 
-    /** The one door to a spoken target word — review cards now, the drills later. */
+    /** The one door to a spoken target word — review cards and both drills. */
     val pronouncer = Pronouncer(app, prefs)
+
+    /**
+     * The Werkstatt's standing: the climbed ladder, what the letter drill can ask here, and
+     * what the last run came to. Its store is kern-keyed SharedPreferences — a drill touches
+     * no card and no schedule, so none of it is box state.
+     */
+    val werkstatt = Werkstatt(TrainerStore(prefs))
 
     var screen by mutableStateOf<Screen>(Screen.Loading)
         private set
@@ -233,16 +252,68 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         ).title(area)
     }
 
-    /** The letters drill; what it can ask is `letterDrillAvailable`, which gates the chip. */
+    /**
+     * The Werkstatt's two entries. Each opens a PAGE, never a run: reading matter and the
+     * drill it prepares you for are one surface, and the run is what the page is opened
+     * for, so the picks and the button sit above the reading.
+     *
+     * The ladder is re-read on the way in — a run closed earlier may have opened a rung —
+     * and last night's figures are not news, so the result tile starts clear.
+     */
+    fun openNumbers() {
+        werkstatt.clearResult()
+        refreshWerkstatt()
+        screen = Screen.Numbers
+    }
+
+    fun openLetters() {
+        werkstatt.clearResult()
+        refreshWerkstatt()
+        screen = Screen.Letters
+    }
+
+    /** Back to Heute from either page — nothing may keep talking into it. */
+    fun closeOverview() {
+        pronouncer.stop()
+        screen = Screen.Heute
+    }
+
+    fun startTrainerRun(mode: TrainerMode) {
+        screen = Screen.Trainer(mode)
+    }
+
     fun startLetterDrill() {
         screen = Screen.LetterDrill
     }
 
-    fun closeLetterDrill() {
-        // why: nothing may keep talking into Heute — the drill's own screen stops
-        // playback as it leaves, and this is the door it leaves by.
+    /**
+     * A closed run has no screen of its own: its figures travel back to the page that
+     * started it, which wears them as one tile above the picks.
+     *
+     * [summary] null ⇒ nothing was answered; the run simply closes. The ladder is re-read
+     * because a closing run books the rungs it stood on, and the rows behind it are stale
+     * the moment it leaves.
+     */
+    fun finishDrill(back: Screen, summary: DrillRunSummary?, title: String) {
         pronouncer.stop()
-        screen = Screen.Heute
+        werkstatt.show(summary, title)
+        refreshWerkstatt()
+        screen = back
+    }
+
+    /**
+     * What the two pages read: the climbed ladder, and what the letter drill can ask on
+     * THIS device. Recomputed rather than cached — a rung opens as a run closes, and a
+     * voice may be installed in Settings while the app sleeps
+     * (`SprossActivity.onResume` calls this too).
+     *
+     * Never on the way to Heute: the Werkstatt card gates on file presence alone, and this
+     * is a catalog sweep no start-up should pay for.
+     */
+    fun refreshWerkstatt() {
+        val language = box?.joinStamp?.target ?: return
+        werkstatt.readLadder(language)
+        werkstatt.seeLetters(letterReport())
     }
 
     fun cancelOnboarding() {

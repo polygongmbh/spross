@@ -18,9 +18,12 @@ import net.spross.app.ui.AboutScreen
 import net.spross.app.ui.BoxScreen
 import net.spross.app.ui.HeuteScreen
 import net.spross.app.ui.LetterDrillScreen
+import net.spross.app.ui.LettersOverviewScreen
+import net.spross.app.ui.NumbersOverviewScreen
 import net.spross.app.ui.OnboardingScreen
 import net.spross.app.ui.SessionScreen
 import net.spross.app.ui.SprossTheme
+import net.spross.app.ui.TrainerSessionScreen
 
 class SprossActivity : ComponentActivity() {
 
@@ -52,6 +55,16 @@ class SprossActivity : ComponentActivity() {
         super.onStop()
         model.foldPartialSession()
     }
+
+    /**
+     * why: what the letter drill can ASK changes while the app sleeps — a voice installed
+     * in Settings must turn the start button on without a relaunch, and the sweep behind it
+     * is a catalog walk, so it is asked here rather than per composition.
+     */
+    override fun onResume() {
+        super.onResume()
+        model.refreshWerkstatt()
+    }
 }
 
 @Composable
@@ -66,6 +79,9 @@ private fun Root(model: AppModel = viewModel()) {
         Screen.Heute -> HeuteScreen(model)
         Screen.Session -> SessionScreen(model)
         Screen.About -> AboutScreen(model)
+        Screen.Numbers -> NumbersOverviewScreen(model)
+        Screen.Letters -> LettersOverviewScreen(model)
+        is Screen.Trainer -> TrainerSessionScreen(model, screen.mode)
         Screen.LetterDrill -> LetterDrillScreen(model)
         is Screen.Box -> BoxScreen(model, openAt = screen.area)
     }

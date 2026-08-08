@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- **Android has the Werkstatt.** Zahlen and Buchstaben on Heute, each opening a page
+  where the picks and the start button sit above the reading rather than behind it. The
+  numbers page offers what the ladder has opened — the clock, sentences and number forms
+  as ways of being asked rather than separate drills — states what a locked row costs,
+  and carries the generated table of how the language counts with the notes on what trips
+  a learner up. The letters page says which stage a run will open on and lays out the
+  whole alphabet, hearable row by row, even where the device can say nothing. Runs are
+  endless and grade nothing into the box; a closed one hands its figures back to the page
+  that started it instead of taking a screen of its own.
+
 - **Leaving a drill mid-answer now books what you actually earned:** a reading looked up
   while the answer was still owed keeps the answer amber instead of counting as a clean
   win on the way out.
