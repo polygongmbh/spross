@@ -79,6 +79,12 @@ it keeps your vocabulary growing between conversations.</p>
 
   <div class="drill-card" hidden>
     <div id="lang-pick">
+      <div class="showcase" id="showcase" aria-hidden="true">
+        <span class="showcase-flag" id="showcase-flag"></span>
+        <span class="showcase-numeral" id="showcase-numeral"></span>
+        <span class="showcase-word" id="showcase-word"></span>
+      </div>
+      <p class="pick-line">Pick a language to count in:</p>
       <div class="lang-chips" role="group" aria-label="Pick a language to count in"></div>
       <div class="drill-controls">
         <button class="btn soft" id="primer-toggle" hidden>Peek at the numbers first</button>
@@ -120,6 +126,7 @@ it keeps your vocabulary growing between conversations.</p>
     <div id="summary" class="summary" hidden>
       <span class="emoji" id="summary-emoji">🌱</span>
       <p class="stat" id="summary-count" tabindex="-1"></p>
+      <p class="record" id="summary-record" hidden>A new personal best!</p>
       <p id="summary-best"></p>
       <p id="summary-lang"></p>
       <div class="drill-controls" style="justify-content:center">
