@@ -63,9 +63,9 @@ Strict dependency direction: App → SprossKern, never the reverse.
 
 **Practice means typing.** Writing the word is the recall the box is scheduling, so that
 is what a card asks for. Revealing is the way out of it, for the three cases where typing
-is not the question: a word met for the first time (with the emoji as its cue), a target
-form to be recognized rather than produced, and a learner who does not want to type right
-now — one hand on the phone is reason enough.
+is not the question: a word met for the first time (heard and read, its picture waiting for
+the reveal), a target form to be recognized rather than produced, and a learner who does not
+want to type right now — one hand on the phone is reason enough.
 The grade buttons live on that path only; they are the way back to the deck,
 never the shape of the app.
 
@@ -116,8 +116,8 @@ never the shape of the app.
 - **A word you have consolidated is sometimes asked by ear alone**: the prompt is the
   replay glyph and nothing else, and what is typed is what was heard. The card is still a
   produce card and still books its review — only the prompt side moved. It withholds the
-  meaning, so the reveal owes it back, and it needs the STRICTER consolidated bar rather
-  than the settled one every other presentation rule uses: taking a word's only cue away
+  meaning, so the reveal owes it back, and it waits for the landed bar the emoji reads from
+  the other side: taking a word's only cue away
   while it is still landing is not support. A synonym typed here is amber, never wrong —
   the reveal itself teaches those forms, it simply was not the one that played. Where the
   word cannot be heard right now — no recording and no voice, reading aloud off, a screen
@@ -129,7 +129,7 @@ never the shape of the app.
   giving up is an honest miss.
 - **A missed word is written out once before the session moves on.** A reveal followed by
   a single tap gives a word almost no encoding, which is how it comes back later and
-  passes for new again; a word that has not settled is typed with the answer in view.
+  passes for new again; a word that has not landed is typed with the answer in view.
   Encoding only, never a grade — the rating the self-grade already chose is applied
   unchanged, so self-grading still owns the schedule.
   Production asks for it, and so does a first exposure — the review that teaches the word,
@@ -207,8 +207,9 @@ never the shape of the app.
 - **Stopping is the default at the end of a round**: the round that was planned is done,
   so "Fertig" is the primary button and going on the quiet one below it — an earned break
   needs no arguing for, and another round is still one tap away.
-  A session summary and a drill's end through the same pair of buttons, so they cannot
-  drift apart on which way out is the default.
+  That is the review session's shape; a drill has no end screen at all — it hands its
+  figures to the page that started it (`surfaces.md`), where the way on is the button
+  that was already there.
   A day that is going badly says so, and says why stopping is the better call.
 - **The forest** at the foot of Heute is a picture of the box, never a way around it:
   one tree per area, in catalog order, on ground its whole row shares. It answers the one
@@ -219,7 +220,7 @@ never the shape of the app.
   and drawing each as an object made packing an area — forty words at once, a normal
   move — look like a spilled bag rather than like sowing. One tree can be looked at.
   **A tree is one organism its whole life**, never swapped for another at some rung: the
-  trunk is what the area has grown, the canopy IS its words that have settled, and blossom
+  trunk is what the area has grown, the canopy IS its words that have landed, and blossom
   and fruit appear ON that canopy. So the picture never starts over, and has no top rung
   at which it stops. A word is a leaf — a thing believed many of without being counted;
   which rung of `GrowthStage` (`../kern/README.md` §6) becomes which mark is decided in

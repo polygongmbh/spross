@@ -4,10 +4,10 @@ import SprossKern
 /// The "Buchstaben" hub entry: the alphabet of the language being learned, and
 /// the place its drill is started from.
 ///
-/// Two sections, in the order the numbers page uses — reading first, options
-/// second, start last: the alphabet table (one card per row of
-/// `catalog/alphabet/<lang>.json`), then the stages the drill will walk through
-/// and the button that opens it. The table and the drill it prepares you for
+/// Two sections, in the order the numbers page uses — start first, reading
+/// after: the stages the drill will walk through and the button that opens it,
+/// then the alphabet table (one card per row of
+/// `catalog/alphabet/<lang>.json`). The table and the drill it prepares you for
 /// used to be two unrelated surfaces, one of them buried under a row of its own.
 ///
 /// Nothing here is graded and nothing is stored: the letter drill books no
@@ -33,6 +33,9 @@ struct LettersOverview: View {
     // why: internal, not private — +Practice.swift renders the ladder from it.
     @State var availability: LetterDrillAvailability?
     @State private var launch: Launch?
+    /// What the run that just closed came to — one tile above the stages, the
+    /// shape the numbers page uses, instead of a screen with a second ✕ on it.
+    @State private var lastRun: DrillRunResult?
 
     /// The run the start button opens, wrapped so ONE `fullScreenCover(item:)`
     /// carries it — the same shape the numbers overview uses.
@@ -41,14 +44,31 @@ struct LettersOverview: View {
         let id = UUID()
     }
 
+    /// Scroll target for the tile a closed run leaves.
+    static let resultAnchor = "result"
+
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
-                    alphabetSection
-                    practiceSection
+            ScrollViewReader { scroll in
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
+                        if let lastRun {
+                            DrillResultTile(result: lastRun)
+                                .id(Self.resultAnchor)
+                        }
+                        practiceSection
+                        alphabetSection
+                    }
+                    .padding(DL.Space.xl)
                 }
-                .padding(DL.Space.xl)
+                // why: the numbers page's rule — a tile inserted above the
+                // content keeps the offset, so the page comes up to meet it.
+                .onChange(of: lastRun) { _, run in
+                    guard run != nil else { return }
+                    withAnimation(.easeOut(duration: 0.25)) {
+                        scroll.scrollTo(Self.resultAnchor, anchor: .top)
+                    }
+                }
             }
             #if DEBUG
             .defaultScrollAnchor(Self.uitestAnchor)
@@ -57,8 +77,15 @@ struct LettersOverview: View {
             .navigationTitle(Text("letters.title \(languageName)"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("common.done") { dismiss() }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button { dismiss() } label: { Image(systemName: "xmark") }
+                        .accessibilityLabel(Text("common.close"))
+                }
+                // why: the same corners as the numbers page — the way out left,
+                // the way in right, reachable from inside the alphabet table.
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("overview.start") { start() }
+                        .disabled(!drillAvailable)
                 }
             }
         }
@@ -71,7 +98,10 @@ struct LettersOverview: View {
             if phase == .active { refreshAvailability() }
         }
         .fullScreenCover(item: $launch) { launch in
-            LetterDrillView(model: model, language: launch.language)
+            LetterDrillView(model: model, language: launch.language,
+                            onFinish: { result in
+                                withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
+                            })
                 .environment(\.locale, model.knownLocale)
         }
     }
@@ -86,8 +116,11 @@ struct LettersOverview: View {
         availability = LetterDrillAvailability(model: model, language: language)
         #if DEBUG
         // why: a cover raised while the sheet under it is still animating in is
-        // dropped — the tap this stands in for always comes after that.
-        if launch == nil, UserDefaults.standard.bool(forKey: "uitest-run"), drillAvailable {
+        // dropped — the tap this stands in for always comes after that. ONCE:
+        // a run that reopens itself on every foreground never ends.
+        if launch == nil, !Self.uitestLaunched, UserDefaults.standard.bool(forKey: "uitest-run"),
+           drillAvailable {
+            Self.uitestLaunched = true
             Task { @MainActor in
                 try? await Task.sleep(for: .milliseconds(600))
                 start()
@@ -112,11 +145,14 @@ struct LettersOverview: View {
 
 #if DEBUG
 extension LettersOverview {
-    /// `-uitest-section practice` opens the page at the stage ladder instead of
-    /// at the top — the numbers overview's hook, reused, because both pages bury
-    /// their options under screens of reading and no tap driver is installed.
+    /// One auto-start per launch — see `refreshAvailability`.
+    @MainActor static var uitestLaunched = false
+
+    /// `-uitest-section alphabet` opens the page at the table instead of at the
+    /// top — the numbers overview's hook, reused, because on both pages the
+    /// reading now sits below the fold and no tap driver is installed.
     static var uitestAnchor: UnitPoint {
-        UserDefaults.standard.string(forKey: "uitest-section") == "practice" ? .bottom : .top
+        UserDefaults.standard.string(forKey: "uitest-section") == "alphabet" ? .bottom : .top
     }
 }
 #endif

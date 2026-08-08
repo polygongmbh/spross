@@ -7,7 +7,10 @@ import SprossKern
 ///
 /// It is an encoding step, never a grade: the rating was already chosen by the
 /// self-grade buttons and is applied unchanged afterwards, so the 2026-07-22
-/// "self-grade only" ruling still owns the schedule (kern README §6).
+/// "self-grade only" ruling still owns the schedule (kern README §3). Only words
+/// that have not consolidated take this path, so it never slows a word down that
+/// already sticks, and only Again triggers it — Easy/Good/Hard advance straight
+/// away, which is how "I already knew this" stays one tap.
 extension SessionView {
 
     @ViewBuilder

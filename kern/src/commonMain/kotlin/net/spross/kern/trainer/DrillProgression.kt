@@ -44,7 +44,10 @@ object DrillUnlocks {
      * for it, so a fixed rung there would be unreachable for some pairs.
      */
     private val modifierRequirements: Map<DrillModifier, Map<DrillVariant, Int>> = mapOf(
-        DrillModifier.Reverse to emptyMap(),
+        // why: reading a number back is the other half of writing one, so it is the
+        // first thing the ladder hands out — but not on the opening task, where a
+        // learner who has produced nothing yet would be asked to recognize it.
+        DrillModifier.Reverse to mapOf(DrillVariant.Numbers to 3),
         DrillModifier.Fast to mapOf(DrillVariant.Numbers to 10),
         DrillModifier.Mix to mapOf(DrillVariant.Numbers to 10, DrillVariant.Forms to 5),
     )

@@ -127,17 +127,22 @@ extension LetterDrillView {
         let defaults = UserDefaults.standard
         if let prefill = UITestAnswer.prefill { input = prefill }
         if let task = current { UITestAnswer.submitAfterBeat { submit(task) } }
-        // `-uitest-streak N` and `-uitest-summary 1`, the slot drill's two
-        // figures under the slot drill's two names: the close summary is the
-        // one state no argument could otherwise reach, because the X is the
-        // only way in and a screenshot run has no thumb.
+        // `-uitest-streak N`, the slot drill's figure under the slot drill's
+        // name: a run mid-streak, which a screenshot run has no thumb to reach.
         let preset = defaults.integer(forKey: "uitest-streak")
         if preset > 0 {
             streak = preset
             bestStreak = max(preset, 12)
             doneCount = preset + 6
         }
-        if defaults.bool(forKey: "uitest-summary") { showingSummary = true }
+        // `-uitest-close 1`: leave the way the ✕ leaves, so the tile the run
+        // drops on the page behind it can be photographed.
+        if defaults.bool(forKey: "uitest-close") {
+            Task { @MainActor in
+                try? await Task.sleep(for: .milliseconds(400))
+                closeRun()
+            }
+        }
         if let pick = defaults.string(forKey: "uitest-letters-choose") { uitestChoose(pick) }
         if defaults.bool(forKey: "uitest-letters-replay") { uitestReplay() }
         if defaults.bool(forKey: "uitest-letters-probe") { uitestBox("open") }

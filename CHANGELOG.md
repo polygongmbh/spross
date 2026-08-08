@@ -48,28 +48,35 @@
   browser — the same engine the app runs, compiled for the web, with the primer tables
   it generates itself in any of the five languages.
 
-- **A word that doesn't stick in two tries is now pushed out, not repeated.** Leech
-  auto-suspend used to wait for eight review-phase lapses; the box is breadth-first, so it
-  now suspends after two — and counts a struggle during the word's own learning steps
-  toward that, not only failures after it had graduated. A suspended word is exactly as
-  reversible as before: revive it from the Box whenever you want another run at it.
+- **A run that is going badly offers you the door.** A drill runs until you close it, and
+  the only way out was the ✕ in the corner — which reads as walking out on something
+  rather than finishing it. Miss twice in a row and "Fertig" appears under the button that
+  goes on; answer one cleanly and it goes away again. Nothing ends by itself,
+  and nothing is counted differently — it is the same close, offered at the moment it is
+  actually being weighed.
 
-- **A typo, or a synonym heard instead of the recorded word, now books Hard, not Good, on
-  iOS.** The typing field kept its checkmark either way — a near miss was never treated as
-  wrong — but the FSRS rating behind it didn't say the answer had come back imperfectly. It
-  now grades the same as finishing a retype after a reveal: the word stands, but not
-  cleanly, so the box asks for it again sooner. Brings iOS in line with Android, which
-  already graded both this way.
+- **Finishing a drill drops you back where you started it, with what the run came to.**
+  Closing a run raised a screen holding three numbers and two buttons, and leaving from
+  there took a second ✕ on the page behind it. The figures ride back with the run instead
+  — answered, best streak, and the record if it fell — as a tile above the picks that the
+  page comes up to meet, so going again is the button that was already there and leaving
+  is one tap. A record still rains its confetti. The pages themselves now carry the app's
+  corners, the ✕ out on the left and the run in on the right, and the letter stages that
+  looked like a radio nobody could pick are numbered steps: the run walks them itself.
 
-- **The box list stops wearing "Neu" on almost every row.** A word or phrase with
-  no exposure yet always carried the badge, and its capsule padding was what pushed
-  long phrase titles into truncation. Absence now reads as new; the badge only shows
-  once a card has something to say (learning, review, or relearning).
+- **Asking the other way round has to be earned now.** Reverse was the one switch that
+  cost nothing, met before a learner had written a single number down. It opens at three
+  digits — the cheapest rung there is, below the clock.
 
-- **A box row speaks on a tap anywhere on it, instead of needing the speaker icon.**
-  The icon was one more thing competing with the phrase text and the wake/pack
-  controls for width; the row's own surface is the tap target now, freeing that
-  space up too.
+- **A trainer page opens on the run now, and one exercise at a time until the ladder is
+  open.** Zahlen and Buchstaben both put their reading matter first, so starting the thing
+  the page exists for meant scrolling past twenty screens of table; the picks and the start
+  button are what you land on, and the table and notes sit under them for when they are
+  wanted. What a run may ask changed with it: while any exercise on the list is still
+  locked, choosing one unchooses the last, because a first run should climb the rung it was
+  handed rather than dilute it — the line under the rows says so, and a fully open ladder is
+  what turns them into a list you can combine. The card these pages hang off is called
+  Werkstatt rather than Training: nothing here is a regimen.
 
 - **The sentence drill now measures things out, not just counts them.** A frame could only be
   filled with a whole number, a year or a time, so "a quarter kilo of flour" — what a recipe or a
@@ -122,6 +129,71 @@
   countdown to the next hour, and only at the top is the face read out minute by minute —
   each step keeping everything the one below it offered. Sentence drills ramp with it, and
   the step that opens them is the five-minute one their unlock always claimed it was.
+
+- **A word you are meeting for the first time is shown and spoken, not illustrated.** The
+  picture used to sit on that very first card, where the only thing asked of you is to say
+  whether you knew it — and an obvious emoji answers that question for you. *Bett* next to
+  🛏️ was a word you had learned; 🛏️ next to a Ukrainian word you had never seen was a
+  picture you had read, and both reached *Gut* the same way, buying the same weeks-long
+  interval. The first card now carries the word itself and its pronunciation, and the
+  picture arrives with the meaning when you reveal it. It comes back on the review after —
+  the one that asks you to type the word — where it helps you produce something rather than
+  confirm something, and where guessing from the picture is not possible.
+
+- **A new word keeps its help until it has actually landed.** The box used to hold two bars
+  for "this word has stuck" and support fell away at the lower one — which a single *Gut* on
+  a word's very first answer already cleared. So the picture disappeared from the next
+  review, and that next review is the first one that asks you to *type* the word: the help
+  went away exactly where it was first needed. There is one bar now, the one the progress
+  display and phrase unlock already used, and a word answered *Gut* once keeps its picture
+  and its write-it-out step until a later answer says it has landed. Answering *Einfach* —
+  which is earned by knowing a word on sight, never chosen — still clears it at once, so a
+  word you already knew is not slowed down.
+
+## 3.12.0 — 2026-08-08
+
+- **A word that doesn't stick in two tries is now pushed out, not repeated.** Leech
+  auto-suspend used to wait for eight review-phase lapses; the box is breadth-first, so it
+  now suspends after two — and counts a struggle during the word's own learning steps
+  toward that, not only failures after it had graduated. A suspended word is exactly as
+  reversible as before: revive it from the Box whenever you want another run at it.
+
+- **A typo, or a synonym heard instead of the recorded word, now books Hard, not Good, on
+  iOS.** The typing field kept its checkmark either way — a near miss was never treated as
+  wrong — but the FSRS rating behind it didn't say the answer had come back imperfectly. It
+  now grades the same as finishing a retype after a reveal: the word stands, but not
+  cleanly, so the box asks for it again sooner. Brings iOS in line with Android, which
+  already graded both this way.
+
+- **The box list stops wearing "Neu" on almost every row.** A word or phrase with
+  no exposure yet always carried the badge, and its capsule padding was what pushed
+  long phrase titles into truncation. Absence now reads as new; the badge only shows
+  once a card has something to say (learning, review, or relearning).
+
+- **A box row speaks on a tap anywhere on it, instead of needing the speaker icon.**
+  The icon was one more thing competing with the phrase text and the wake/pack
+  controls for width; the row's own surface is the tap target now, freeing that
+  space up too.
+
+- **A word you are meeting for the first time is shown and spoken, not illustrated.** The
+  picture used to sit on that very first card, where the only thing asked of you is to say
+  whether you knew it — and an obvious emoji answers that question for you. *Bett* next to
+  🛏️ was a word you had learned; 🛏️ next to a Ukrainian word you had never seen was a
+  picture you had read, and both reached *Gut* the same way, buying the same weeks-long
+  interval. The first card now carries the word itself and its pronunciation, and the
+  picture arrives with the meaning when you reveal it. It comes back on the review after —
+  the one that asks you to type the word — where it helps you produce something rather than
+  confirm something, and where guessing from the picture is not possible.
+
+- **A new word keeps its help until it has actually landed.** The box used to hold two bars
+  for "this word has stuck" and support fell away at the lower one — which a single *Gut* on
+  a word's very first answer already cleared. So the picture disappeared from the next
+  review, and that next review is the first one that asks you to *type* the word: the help
+  went away exactly where it was first needed. There is one bar now, the one the progress
+  display and phrase unlock already used, and a word answered *Gut* once keeps its picture
+  and its write-it-out step until a later answer says it has landed. Answering *Einfach* —
+  which is earned by knowing a word on sight, never chosen — still clears it at once, so a
+  word you already knew is not slowed down.
 
 ## 3.11.1 — 2026-08-08
 

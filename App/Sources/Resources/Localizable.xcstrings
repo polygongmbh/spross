@@ -819,6 +819,22 @@
         }
       }
     },
+    "common.close" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
     "common.dayMany" : {
       "localizations" : {
         "de" : {
@@ -2047,6 +2063,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Box"
+          }
+        }
+      }
+    },
+    "numbers.combine.locked" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mehreres in einem Lauf, sobald alles freigeschaltet ist."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Several in one run, once everything is unlocked."
           }
         }
       }
@@ -3672,13 +3704,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Training"
+            "value" : "Werkstatt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Training"
+            "value" : "Workshop"
           }
         }
       }

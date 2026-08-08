@@ -385,8 +385,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             val count = state.scheduling[card.id]?.reviewCount ?: 0
             val role = presentationRole(card.id, count)
             val promptForm = recognitionPromptForm(card, count)
-            val prompt = producePrompt(card.id, count, isConsolidated(card.id), audible(card))
-            val settled = BoxEngine.isSettled(state, card.id)
+            val consolidated = isConsolidated(card.id)
+            val prompt = producePrompt(card.id, count, consolidated, audible(card))
             SessionUi(
                 card = card,
                 role = role,
@@ -394,10 +394,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 producePrompt = prompt,
                 // The two facts the turn's write-out rule is decided on, read where the
                 // count already is: a word being taught is written once as it is met,
-                // and one that already sticks is never slowed down.
+                // and one that already sticks — consolidated, the one landed bar — is
+                // never slowed down.
                 firstExposure = count == 0,
-                settled = settled,
-                emojiCue = card.emoji?.let { emojiCue(role, settled, count) },
+                settled = consolidated,
+                emojiCue = card.emoji?.let { emojiCue(role, consolidated) },
                 // why: the KERN cue, never `role == Recognize` — one rule, consumed by
                 // both apps. The PROMPTED form, so a rotated synonym is heard as itself.
                 promptPronunciation = catalog

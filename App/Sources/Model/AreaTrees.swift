@@ -62,9 +62,9 @@ struct AreaGrowth {
         switch entry.stage {
         case .unscheduled: break
         case .queued, .learning, .fresh: growing += 1
-        // The canopy is green because most of a worked area IS green: settled
-        // and consolidated words are the bulk of any box that is being used.
-        case .settled, .consolidated:
+        // The canopy is green because most of a worked area IS green: words that
+        // have landed are the bulk of any box that is being used.
+        case .consolidated:
             leaves += 1
             reaches.append(reach)
         case .matured:

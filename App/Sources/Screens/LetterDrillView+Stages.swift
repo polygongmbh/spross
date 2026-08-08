@@ -213,7 +213,10 @@ extension LetterDrillView {
                     nextButton { advance(correct: true, clean: true) }
                 }
             case .revealed:
-                nextButton { advance(correct: false, clean: true) }
+                VStack(spacing: DL.Space.s) {
+                    nextButton { advance(correct: false, clean: true) }
+                    if missRun >= 1 { DrillStopOffer { closeRun() } }
+                }
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
@@ -227,18 +230,4 @@ extension LetterDrillView {
         .keyboardShortcut(.defaultAction)
     }
 
-    // MARK: - Close summary
-
-    /// No `newRecord`: the letter drill keeps no record store (D12 — nothing it
-    /// asks is a review), so the record line and its confetti stay off.
-    var summary: some View {
-        DrillSummaryView(
-            doneCount: doneCount,
-            bestStreak: bestStreak,
-            title: "trainer.letters",
-            languageName: languageName(language),
-            onDone: { dismiss() },
-            onPractice: { withAnimation(.easeOut(duration: 0.2)) { showingSummary = false } }
-        )
-    }
 }

@@ -137,6 +137,14 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## Engine & scheduling
 
+- A **defer** flag: a per-card opt-out that sinks a word behind the whole catalog rather
+  than switching it off, so a learner can skip words they judge unimportant without them
+  vanishing. Distinct from `setSuspended`, which is hard off until revived by hand — defer
+  would stay in seed order, just last, and only surface once nothing unseen is left.
+  Wants a `BoxState` field (not a `GrowthStage` rung — it is an intent, not a standing), a
+  `BoxEngine` verb, a Box-screen affordance, and a decision on where it sorts against
+  `OwnWords.SEED_BASE`, which is already "behind every catalog concept".
+
 - Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch,
   but revisit the cap if the active box outgrows it (`../kern/docs/snapshots.md`).
 - `AnswerNormalizer.strayLeadingWordRecovery` tests the RAW leading token for letters,
@@ -208,7 +216,7 @@ One line per item, with a file or context pointer, filed under the section it be
   number form — is the last piece of the numbers page that never shipped. Kern emits seven
   bands (`NumberReference.kt`) and `NumberReferenceTable.bandTitle` already knows the eighth
   key, so it is a row list and its readings.
-- The Training card's two chips are laid out as a row; a third would want the grid the
+- The Werkstatt card's two chips are laid out as a row; a third would want the grid the
   hub used to have (`App/Sources/Screens/TrainerHubView.swift`).
 - `SessionView.swift` sits at 432 lines (guide ~300); the natural cut is a new
   `SessionView+Turn.swift`, which needs the xcodegen regen a new file costs.

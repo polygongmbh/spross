@@ -23,6 +23,10 @@ struct TrainerSessionView: View, LanguageNaming {
     /// run out of nothing but a kind and a language — a drill with no model is
     /// silent rather than broken.
     var model: AppModel?
+    /// Handed what the run came to — its figures and whether it took the record
+    /// — just before the run closes. The page that started it shows them; this
+    /// screen never does (see `DrillResultTile`).
+    var onFinish: (DrillRunResult) -> Void = { _ in }
 
     @Environment(\.dismiss) var dismiss
 
@@ -33,8 +37,12 @@ struct TrainerSessionView: View, LanguageNaming {
     @State var doneCount = 0
     @State var streak = 0
     @State var bestStreak = 0
-    /// This run beat the drill's standing record (`TrainerRecords`), booked
-    /// once when the summary opens — the summary's confetti and its record line.
+    /// Misses in a row already BOOKED — the one on screen is not among them, so
+    /// a value of 1 while a miss is showing means this is the second in a row.
+    // why: internal, not private — the +Drill extension offers the way out on it.
+    @State var missRun = 0
+    /// This run beat the drill's standing record (`TrainerRecords`), booked once
+    /// as the run closes — the result tile's record line and its confetti.
     @State var newRecord = false
     /// Per-task results for the segmented progress bar.
     @State private var outcomes: [SessionOutcome] = []
@@ -49,7 +57,6 @@ struct TrainerSessionView: View, LanguageNaming {
     /// never drew stays absent: an unasked rung was never stood on.
     @State private var bestLevels: [DrillVariant: Int] = [:]
     @State private var winsAtLevel: [DrillVariant: Int] = [:]
-    @State var showingSummary = false
     /// Digit counts already introduced with a place-value hint — each length
     /// is hinted only the first time it appears.
     @State var seenDigitCounts: Set<Int> = []
@@ -79,11 +86,12 @@ struct TrainerSessionView: View, LanguageNaming {
     }
 
     init(mode: Mode, normalizer: AnswerNormalizer? = nil, catalog: Catalog? = nil,
-         model: AppModel? = nil) {
+         model: AppModel? = nil, onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
         self.mode = mode
         self.normalizer = normalizer
         self.catalog = catalog
         self.model = model
+        self.onFinish = onFinish
         let start = Dictionary(uniqueKeysWithValues: mode.variants.map { ($0, 1) })
         _levels = State(initialValue: start)
         _tasks = State(initialValue: [Self.sampleTask(mode: mode, levels: start, avoiding: nil)])
@@ -96,26 +104,17 @@ struct TrainerSessionView: View, LanguageNaming {
     var namingCatalog: Catalog? { catalog }
 
     var body: some View {
-        Group {
-            if showingSummary {
-                summary
-            } else {
-                SessionScaffold.endless(answered: doneCount,
-                                        outcomes: outcomes,
-                                        // why: the run says its answers out loud
-                                        // now, so it owes the learner a way to
-                                        // silence them here, not in Settings.
-                                        showsMuteButton: model != nil,
-                                        onClose: { closeRun() }) {
-                    drillContent
-                }
-            }
+        SessionScaffold.endless(answered: doneCount,
+                                outcomes: outcomes,
+                                // why: the run says its answers out loud
+                                // now, so it owes the learner a way to
+                                // silence them here, not in Settings.
+                                showsMuteButton: model != nil,
+                                onClose: { closeRun() }) {
+            drillContent
         }
         .onAppear { focusAnswerField() }
         .onChange(of: index) { _, _ in focusAnswerField() }
-        .onChange(of: showingSummary) { _, summarizing in
-            if !summarizing { focusAnswerField() }
-        }
         // why: one fire per answer — the trigger is "is a form owed", so a slip
         // and a miss both speak once, and the neutral state resets it.
         .onChange(of: spokenAnswer) { _, form in
@@ -160,8 +159,10 @@ struct TrainerSessionView: View, LanguageNaming {
         if correct {
             streak += 1
             bestStreak = max(bestStreak, streak)
+            missRun = 0
         } else {
             streak = 0
+            missRun += 1
         }
         // The rung ramp is kern's, shared with the letter drill: clean wins climb,
         // a miss steps down, an amber answer moves neither way. It applies to the
@@ -192,10 +193,9 @@ struct TrainerSessionView: View, LanguageNaming {
 
     /// X during a run: count a pending correct answer, then show the
     /// summary. An untouched run (nothing answered) just closes.
-    private func closeRun() {
+    // why: internal, not private — the +UITest hook closes a run the way the ✕ does.
+    func closeRun() {
         autoAdvance?.cancel()
-        // why: the summary swaps in WITHIN this view, so .onDisappear never
-        // fires — without this the answer reads on over the summary.
         hushAnswer()
         if feedback.isAccepted {
             // why: a pending typo pause books amber, same as answering —
@@ -218,7 +218,9 @@ struct TrainerSessionView: View, LanguageNaming {
         // why: the cheer marks the record, not the end of a run — closing a
         // drill is a dozen-times-an-evening event and owes no fanfare.
         if newRecord { DLSound.cheer() }
-        withAnimation(.easeOut(duration: 0.2)) { showingSummary = true }
+        onFinish(DrillRunResult(doneCount: doneCount, bestStreak: bestStreak,
+                                newRecord: newRecord, title: mode.titleKey))
+        dismiss()
     }
 }
 

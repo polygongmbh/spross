@@ -20,8 +20,7 @@ internal object Growth {
 
     // Phrase unlock reads component schedules RAW BY CARD ID — join- and
     // source-independent, so a source switch can never re-lock a phrase.
-    // Uses the stricter isConsolidated (not isSettled/budget's bar): a phrase
-    // should wait for its components to have genuinely landed.
+    // isConsolidated: a phrase waits for its components to have genuinely landed.
     fun isComponentStable(state: BoxState, componentId: String): Boolean {
         val sched = state.scheduling[componentId] ?: return false
         return !sched.suspended && Statistics.isConsolidated(state, sched)

@@ -138,7 +138,7 @@ Still without the kern home the audit asked for (all drill/watch-scoped):
 - `session/MultipleChoice.question` — the watch samples and shuffles kern's ranked shortlist in Swift
   (`WatchPracticeQuestion.swift:24-49`); `RecognitionGrading` — latency→rating
   (`WatchGrading.swift:14-29`), the sibling of `SelfGrading.kt:33-51`.
-- The `summaryEmoji` thresholds 10/5/2 (`DrillChrome.swift:129`), and the drill normalizer's
+- The `summaryEmoji` thresholds 10/5/2 (`DrillChrome.swift`), and the drill normalizer's
   strictness triple, still stated twice
   (`TrainerHubView.swift:92-93` = `LetterDrillView+Grading.swift:112-114`).
 

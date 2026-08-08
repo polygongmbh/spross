@@ -164,9 +164,10 @@ No config flag, no user-facing direction anywhere.
 - **Role resolution** is a pure render-time function of `(cardId, log.count)`:
   - First exposure (`count == 0`) is ALWAYS recognition — the learner cannot produce a
     word never seen; the target is PROMPTED first (a learner who already knows it deserves
-    the moment to recall it) WITH its emoji as the cue, and the reveal teaches the meaning,
-    self-graded. An honest Again lands in the single learning step (§5), so the word returns
-    at the END of the session — as the typed production attempt below.
+    the moment to recall it), spoken but WITHOUT its emoji (the cue rule above), and the
+    reveal teaches the meaning, self-graded. An honest Again lands in the single learning
+    step (§5), so the word returns at the END of the session — as the typed production
+    attempt below, which is where the picture supports it.
   - The second review (`count == 1`) is ALWAYS production — seen once, now attempt it
     (ruling 2026-07-22: "returns the same session as production", both hash parities).
   - From `count == 2` role = parity(`count` + FNV-1a-64(cardId)):
@@ -191,18 +192,28 @@ No config flag, no user-facing direction anywhere.
   one card's produce turns. Grading narrows to the form that played (`session.spokenOnly`,
   shared with the letter drill's dictation); a synonym of the same card is amber, never
   wrong, since the reveal itself teaches those forms.
-- **Emoji cue**: `emojiCue(role, settled, reviewCount)` answers WHEN the picture appears,
+- **Emoji cue**: `emojiCue(role, consolidated)` answers WHEN the picture appears,
   never whether it appears at all and never where (that is the renderer's, and it is fixed).
-  **Upfront** iff (first exposure) OR (role == Produce ∧ the word has not settled, §5) —
-  the two places it supports recall without giving the answer away, since a produce prompt
-  already names the concept in the source language;
-  **OnReveal** everywhere else, in every phase.
-  The first exposure is the one recognition prompt that carries it, deliberately:
-  it is the cue that makes a first recall attempt possible at all.
+  **Upfront** iff role == Produce ∧ the word has not landed (§5) — the one prompt it can
+  support recall on without giving the answer away, since a produce prompt already names
+  the concept in the source language and asks for the other one;
+  **OnReveal** everywhere else, in every phase and on every recognition prompt.
+  Having landed, not the FSRS phase, is what "still landing" means here.
   Hiding it outright once a word was learned took it away from exactly the reviews where a
   word is still matched on novelty rather than on meaning; once the answer is out there is
   nothing left to leak, and binding the picture to the meaning is what those reviews need.
-  Settledness, not the FSRS phase, is what "still landing" means here.
+  **The first exposure does not carry it** (ruling 2026-08-07). It used to, as the cue that
+  made a first recall attempt possible — but a first exposure is recognition, and the
+  picture depicts the very concept being asked for, so on a self-graded card it is not a
+  cue but the answer. "The emoji was obvious" and "I knew the word" reach the button
+  identically, and the schedule cannot tell them apart; a first exposure is where that
+  costs most, because that answer decides how long the word goes away for.
+  Nothing is withheld from a learner meeting the word: the target form is on screen, its
+  sound plays (`pronunciationCue` is Upfront on every recognition prompt), and the reveal
+  brings meaning and picture together, which is where a first sight teaches. What moved is
+  WHERE the picture lands — off a prompt no one can grade honestly, onto the typed produce
+  turn that follows it, which by role resolution is the very next review and the first one
+  that asks the learner to actually know the word.
 - **♀** is a labeled badge, never graded: the production prompt shows source base + badge;
   the recognition reveal decorates the source answer with the badge.
   A base-word answer typed on a feminine produce card grades as typo, not failure
@@ -269,23 +280,28 @@ this to every loaded box).
   pushed outward rather than repeating on the learner indefinitely; suspension is the same
   reversible state `setSuspended` uses everywhere else — the learner can always revive it
   from the Box.
-- **Two "has this word landed" thresholds**, both Review phase AND stability ≥ the
-  threshold, so a lapse un-lands a card either way — the point: it needs the support again.
-  A third, `MATURED_STABILITY` = 30 days (`GrowthStage.Matured`), gates NOTHING and is a
-  constant rather than a `BoxConfig` field: it exists so the ladder below has a top rung
+- **ONE "has this word landed" threshold**: `consolidatedStability` = 6.0 days
+  (`Statistics.isConsolidated`, facade `BoxEngine.isConsolidated(state, cardId)`),
+  Review phase AND stability ≥ the bar, so a lapse un-lands a card — the point: it needs
+  the support again. It gates phrase unlock and the drill pools (§6), splits consolidated
+  from fresh in the progress UI, and picks the support a word gets while it is still on
+  its way in (§3) — the emoji that props recall up, and the sound prompt that withdraws
+  the meaning, read the same bar from opposite sides.
+  A second, `MATURED_STABILITY` = 30 days (`GrowthStage.Matured`), gates NOTHING and is a
+  constant rather than a `BoxConfig` field: it exists so the ladder has a top rung
   to report, and there is no product decision to tune behind it.
-  - `settledStability` = 2.0 days (`Statistics.isSettled`, facade
-    `BoxEngine.isSettled(state, cardId)`) gates the new-word budget (§6) and picks which
-    support a word gets while it is still on its way in (§3).
-  - `consolidatedStability` = 6.0 days (`Statistics.isConsolidated`, facade
-    `BoxEngine.isConsolidated(state, cardId)`) gates phrase unlock (§6) and splits consolidated
-    from fresh in the progress UI — set strictly between S0(Good) and S0(Easy) so a single
-    Good answer no longer reads as "landed" while a single Easy still does.
-  Recalibrated for FSRS-6: at retention 0.8 the interval is 3.316 × stability, so
-  S0(Good) = 2.3065 crosses `settledStability` at graduation
-  (≈ 7.6 days out, Easy ≈ 27.5) while S0(Hard) = 1.2931 does not — a word answered Good on
-  sight settles (budget/presentation) but does not consolidate (stats/unlock) on its first
-  answer; S0(Easy) = 8.2956 clears both.
+  Calibrated for FSRS-6: at retention 0.8 the interval is 3.316 × stability, and the bar
+  sits in the gap between the two first answers that pass — S0(Good) = 2.3065 stays under
+  it while S0(Easy) = 8.2956 clears it. That gap is the whole point. A first Good is as
+  easily an emoji recognised as a word recalled, so the word keeps its support until a
+  second answer says otherwise; Easy is earned by a fast learner-reported Knew
+  (`SelfGrading`, §6) and never picked, so a word genuinely known on sight still lands at
+  once — the learner met where they are, without the guess riding along.
+  A separate `settledStability` = 2.0 used to gate presentation support on its own.
+  It sat BELOW S0(Good), so a single Good — the emoji-lucky case included — withdrew the
+  support one review early, and that next review is the first TYPED one, the first that
+  can actually catch the guess. The two bars were never separable in practice either:
+  the forest drew `Settled` and `Consolidated` with the same mark.
 - Golden vectors copied verbatim from the pinned releases with PROVENANCE (repo/tag/SHA).
   Weight optimization stays out.
 
@@ -372,9 +388,10 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   including enqueued cards, since a packed queue overloads the same way.
   Nothing is withdrawn, only deferred: the next round offers the rest again.
   There is no cap on how much may be *in flight*. `maxUnsettled` used to impose one, read off
-  how many active cards sat below `settledStability`; that bar is cleared by a single Good,
-  so it counted the words answered WRONG and throttled breadth on a difficulty signal that
-  does not predict retention (`docs/growth-evidence.md`).
+  how many active cards sat below the landed bar of the day (`settledStability`, 2.0, since
+  merged away); that bar was cleared by a single Good, so it counted the words answered WRONG
+  and throttled breadth on a difficulty signal that does not predict retention
+  (`docs/growth-evidence.md`).
   `growthReserve` (≤ 5) reserves slots against a full due queue, and only for candidates that
   will actually appear — a box with nothing left to introduce hands every slot back to reviews.
 - **Backlog steers nothing either**, and the reserve is why it does not need to. At
@@ -448,7 +465,7 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   ratio — and `recallStrained` names the rule "today is going badly", not the remedy:
   what a surface does with it is the app's call.
 - **`GrowthStage`** (`BoxEngine.growth`) is the same box told per card instead of per count:
-  one rung each for unscheduled / queued / learning / fresh / settled / consolidated /
+  one rung each for unscheduled / queued / learning / fresh / consolidated /
   matured / relearning / suspended, in seed order, with the card's raw stability and whether
   today's answer touched it. Suspension and a lapse outrank every bar — a rung says where a
   card stands now, never how far it once got. The rungs name the RULE, so a surface may draw

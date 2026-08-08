@@ -21,6 +21,9 @@ struct LetterDrillView: View, LanguageNaming {
     let language: String
     /// What this device can ask — resolved when the run opens, not per task.
     let availability: LetterDrillAvailability
+    /// Handed the run's figures just before it closes; the page that started it
+    /// shows them (see `DrillResultTile`).
+    var onFinish: (DrillRunResult) -> Void = { _ in }
 
     @Environment(\.dismiss) var dismiss
     @Environment(\.locale) var locale
@@ -31,11 +34,13 @@ struct LetterDrillView: View, LanguageNaming {
     @State var doneCount = 0
     @State var streak = 0
     @State var bestStreak = 0
+    /// Misses in a row already booked — the one on screen is not among them, so
+    /// 1 while a miss shows means this is the second in a row (`DrillStopOffer`).
+    @State var missRun = 0
     /// Per-task results for the segmented progress bar.
     @State private var outcomes: [SessionOutcome] = []
     @State var level: Int
     @State private var winsAtLevel = 0
-    @State var showingSummary = false
     @State var input = ""
     @State var feedback: AnswerInputView.Feedback = .neutral
     /// Accepted with a small slip — the proper spelling waits for a tap.
@@ -51,9 +56,10 @@ struct LetterDrillView: View, LanguageNaming {
     @FocusState var answerFocused: Bool
     @AccessibilityFocusState var replayFocused: Bool
 
-    init(model: AppModel, language: String) {
+    init(model: AppModel, language: String, onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
         self.model = model
         self.language = language
+        self.onFinish = onFinish
         let availability = LetterDrillAvailability(model: model, language: language)
         self.availability = availability
         var start = availability.entryLevel
@@ -89,9 +95,7 @@ struct LetterDrillView: View, LanguageNaming {
 
     var body: some View {
         Group {
-            if showingSummary {
-                summary
-            } else if current != nil {
+            if current != nil {
                 SessionScaffold.endless(answered: doneCount,
                                         outcomes: outcomes,
                                         onClose: { closeRun() }) {
@@ -125,7 +129,6 @@ struct LetterDrillView: View, LanguageNaming {
         }
         #if DEBUG
         .onAppear { uitestStart() }
-        .onChange(of: showingSummary) { _, done in if done { uitestBox("summary") } }
         #endif
     }
 
@@ -219,8 +222,10 @@ struct LetterDrillView: View, LanguageNaming {
         if correct {
             streak += 1
             bestStreak = max(bestStreak, streak)
+            missRun = 0
         } else {
             streak = 0
+            missRun += 1
         }
         outcomes.append(correct ? (clean ? .right : .tough) : .wrong)
         doneCount += 1
@@ -236,8 +241,8 @@ struct LetterDrillView: View, LanguageNaming {
         heardInstead = nil
         chosen = nil
         guard let next else {
-            // Nothing left to ask: end on the summary, never on a blank card.
-            withAnimation(.easeOut(duration: 0.2)) { showingSummary = true }
+            // Nothing left to ask: hand the run back, never sit on a blank card.
+            finish()
             return
         }
         tasks.append(next)
@@ -246,10 +251,10 @@ struct LetterDrillView: View, LanguageNaming {
         }
     }
 
-    // MARK: - Close → summary
+    // MARK: - Close → back to the page that opened it
 
-    /// X during a run: book a pending correct answer, then summarise. An
-    /// untouched run just closes.
+    /// X during a run: book a pending correct answer, then close. An untouched
+    /// run leaves nothing to report.
     func closeRun() {
         autoAdvance?.cancel()
         Pronouncer.shared.stop()
@@ -263,6 +268,15 @@ struct LetterDrillView: View, LanguageNaming {
             return
         }
         answerFocused = false
-        withAnimation(.easeOut(duration: 0.2)) { showingSummary = true }
+        finish()
+    }
+
+    /// Hands the run's figures to the page that opened it and leaves. No record
+    /// line: the letter drill keeps no record store (D12 — nothing it asks is a
+    /// review), so nothing here can beat one.
+    private func finish() {
+        onFinish(DrillRunResult(doneCount: doneCount, bestStreak: bestStreak,
+                                title: "trainer.letters"))
+        dismiss()
     }
 }

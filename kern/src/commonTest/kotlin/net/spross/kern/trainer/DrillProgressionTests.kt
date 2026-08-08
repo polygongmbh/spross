@@ -15,12 +15,24 @@ class DrillProgressionTests {
 
     private fun progress(vararg pairs: Pair<DrillVariant, Int>) = mapOf(*pairs)
 
+    /** Counting is the one thing nothing has to be earned for — every other row is bought. */
     @Test
-    fun numbersAndReverseAreAlwaysAvailable() {
+    fun numbersIsTheOnlyThingOpenFromTheStart() {
         assertTrue(DrillUnlocks.requirements(DrillVariant.Numbers).isEmpty())
-        assertTrue(DrillUnlocks.requirements(DrillModifier.Reverse).isEmpty())
         assertTrue(DrillUnlocks.unlocked(DrillVariant.Numbers, emptyMap()))
-        assertTrue(DrillUnlocks.unlocked(DrillModifier.Reverse, emptyMap()))
+        for (modifier in DrillModifier.entries) {
+            assertFalse(DrillUnlocks.unlocked(modifier, emptyMap()), "$modifier with no progress")
+        }
+    }
+
+    /** Reverse is the cheapest rung on the ladder — earned before the clock. */
+    @Test
+    fun reverseOpensBelowEveryOtherGate() {
+        assertEquals(mapOf(DrillVariant.Numbers to 3), DrillUnlocks.requirements(DrillModifier.Reverse))
+        assertFalse(DrillUnlocks.unlocked(DrillModifier.Reverse, progress(DrillVariant.Numbers to 2)))
+        assertTrue(DrillUnlocks.unlocked(DrillModifier.Reverse, progress(DrillVariant.Numbers to 3)))
+        val clockGate = DrillUnlocks.requirements(DrillVariant.Clock).getValue(DrillVariant.Numbers)
+        assertTrue(DrillUnlocks.requirements(DrillModifier.Reverse).getValue(DrillVariant.Numbers) < clockGate)
     }
 
     @Test
