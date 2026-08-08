@@ -229,6 +229,11 @@ One line per item, with a file or context pointer, filed under the section it be
   for its letter drill ("correctness is never color alone", `surfaces.md`), so the watch owes
   a spoken equivalent — an accessibility label or value on the answered tile, not a mark.
 
+- Article tints reach the two Box screens unevenly: Android tints the article on its
+  browse rows, iOS box rows stay plain and tint only on the session card
+  (`BoxCardRow.swift:43` vs `android/.../ui/BoxRows.kt`) — same palette, one design
+  call on where the tint belongs; unify once decided.
+
 ## Localization
 
 - Watch, widget, and complication chrome is hardcoded German with no string catalog
@@ -288,13 +293,18 @@ One line per item, with a file or context pointer, filed under the section it be
   no lint can pin «йот» to what `letters/u0439.mp3` actually says — the names were
   authored from the 1993 orthography, and wherever a clip says something else it is the
   `name` FIELD that has to change, never the audio. One listening pass, 32 clips.
-- The Android pronunciation player has never been HEARD. `PronunciationPlayer` moved to
-  MediaPlayer + `LoudnessEnhancer` to carry the analysis index (SoundPool can neither seek
-  nor boost); the arithmetic is unit-pinned (`PlaybackIndexTest`) and the build is green,
-  but no emulator image and no device were at hand when it landed, so the boost, the lead
-  skip and the async request guard have only ever been reasoned about. One letter-drill
-  run on hardware settles all three — and it is the only way to learn whether
-  `MODIFY_AUDIO_SETTINGS` is really needed for a session-scoped effect (it is declared).
+- The Android pronunciation player has been heard on the EMULATOR only (2026-08-08:
+  session rounds play, and the ANR it caused is fixed — the MediaPlayer/`LoudnessEnhancer`
+  lifecycle now lives on its own thread, verified over a full unmuted round).
+  Still open, and only real hardware can answer them: how the boost and the lead skip
+  actually sound, one letter-drill run end to end, and whether `MODIFY_AUDIO_SETTINGS`
+  is really needed for a session-scoped effect (it is declared).
+- Android cold-start with an existing box showed the loading spinner 20–90 s on the
+  emulator (fresh install loads in seconds) — likely the 787-card decode+join; profile
+  before real devices (`android/.../AppModel.kt` restore path).
+- On the emulator with a hardware keyboard, Enter after `input text` could walk focus onto
+  the session top-bar mute toggle and flip it; probably an emulator artifact — check once
+  on hardware before chasing (`android/.../ui/SessionScreen.kt` top bar).
 - Resolved 2026-08-01 — the analysis index has its PEAK term: every `gain` is capped at the
   file's own measured headroom less 1 dB (`scripts/audio-catalog.py` [ANALYSIS]), so nothing
   reaches full scale and the iOS-clips / `LoudnessEnhancer`-compresses split has nothing
