@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Spross has a front door: spross.net.** A landing page that says what the growing box
+  is, invites you onto the mailing list, and lets you try the real numbers drill in the
+  browser — the same engine the app runs, compiled for the web, with the primer tables
+  it generates itself in any of the five languages.
+
 - **The numbers page shows a language its own hard part.** The bands were the same
   everywhere, so English readers of the twenties got nine rows spelling out a rule they had
   already read, while German's sechzehn and siebzehn were filed under a plain "ten to
