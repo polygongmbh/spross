@@ -61,6 +61,15 @@ Engine contract: `../README.md`.
   Lint: **`CatalogLanguageNamesLintTest`** (declared-language files only, every declared
   language names every declared language including itself, forms trimmed and non-blank,
   `in` present, note keys are declared readers).
+- **Language markers** (`{language}`, `{language-in}`, `{language-speak}`, `{language-learn}`)
+  in a realization's text/synonyms/variants. No schema field declares them: the marker's
+  presence is the declaration, and it always names the profile's TARGET, so each side of
+  `join` resolves against ITS OWN table's target entry. A side that cannot name the target
+  drops the concept — the honest-out a missing realization already has, extended to the
+  join predicate. Parse rules (one marker per string, known forms only, never
+  string-initial) fail the load like any other; `CatalogLintTest`
+  (`languageMarkersOnlyAppearWhereTheyResolve`) additionally pins that no `{language…`
+  reaches a note, a grammar value, a heading or a name table, where nothing would resolve it.
 - `catalog/drills/` — the sentence frames, a top-level sibling outside `areas.json`
   (format owned by `catalog/README.md`). A frame is a concept + per-language realizations,
   joined at runtime like a card, but it is not a card: no area, no `seedIndex`, outside the

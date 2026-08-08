@@ -9,7 +9,8 @@ internal class MapCatalogSource(private val files: Map<String, String>) : Catalo
  * Sie/du variants, sparse coverage, "to " prefix, missing language files
  * (beta has no sw/en), seedIndex flattening across two groups,
  * decomposed-Unicode forms (gamma/de door), area subtitles (gamma authors them,
- * alpha and beta none), the [drills] frames and the [names] tables.
+ * alpha and beta none), the [drills] frames, the [names] tables and the language markers
+ * gamma's phrases carry.
  */
 internal object Fixture {
     private val du = "u\u0308" // decomposed u-umlaut: u + combining diaeresis
@@ -177,21 +178,41 @@ internal object Fixture {
                 "royal-f": { "text": "княгиня" } } }
         """.trimIndent(),
         "gamma/concepts.json" to """
-            [ { "slug": "door", "kind": "noun", "emoji": "🚪" } ]
+            [ { "slug": "door", "kind": "noun", "emoji": "🚪" },
+              { "slug": "im-learning", "kind": "phrase", "components": [] },
+              { "slug": "i-speak-a-little", "kind": "phrase", "components": [] },
+              { "slug": "how-do-you-say-this", "kind": "phrase", "components": [] } ]
         """.trimIndent(),
         "gamma/de.json" to """
             { "title": "Gamma", "subtitle": "Alles dreht sich.",
               "words": {
                 "door": { "text": "T${du}r", "synonyms": ["die  T${du}re"],
-                          "grammar": { "gender": "die", "plural": "-en" } } } }
+                          "grammar": { "gender": "die", "plural": "-en" } },
+                "im-learning": { "text": "Ich lerne {language}." },
+                "i-speak-a-little": { "text": "Ich spreche ein bisschen {language}." },
+                "how-do-you-say-this": { "text": "Wie sagt man das {language-in}?" } } }
+        """.trimIndent(),
+        // why: en authors realizations but NO languages/en.json — every pair with en as a
+        // side must drop the marked concepts, which is the coverage-drop case.
+        "gamma/en.json" to """
+            { "title": "Gamma",
+              "words": { "im-learning": { "text": "I'm learning {language}." } } }
         """.trimIndent(),
         "gamma/sw.json" to """
             { "title": "Gamma", "subtitle": "Kila kitu kinazunguka.",
-              "words": { "door": { "text": "mlango" } } }
+              "words": {
+                "door": { "text": "mlango" },
+                "im-learning": { "text": "Ninajifunza {language}." },
+                "i-speak-a-little": { "text": "Ninazungumza {language} kidogo." },
+                "how-do-you-say-this": { "text": "Hii inasemwaje {language-in}?" } } }
         """.trimIndent(),
         "gamma/uk.json" to """
             { "title": "Гамма", "subtitle": "Усе обертається.",
-              "words": { "door": { "text": "двері", "grammar": { "plural": "only" } } } }
+              "words": {
+                "door": { "text": "двері", "grammar": { "plural": "only" } },
+                "im-learning": { "text": "Я вчу {language-learn}." },
+                "i-speak-a-little": { "text": "Я трохи розмовляю {language-speak}." },
+                "how-do-you-say-this": { "text": "Як це сказати {language-in}?" } } }
         """.trimIndent(),
     ) + drills + names
 

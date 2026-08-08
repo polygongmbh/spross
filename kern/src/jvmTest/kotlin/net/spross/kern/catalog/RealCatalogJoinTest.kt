@@ -22,7 +22,8 @@ class RealCatalogJoinTest {
 
     /**
      * The join RULE, asserted relationally: a concept emits a card iff the target
-     * realizes it and the source realizes either it or — for a feminine — its base.
+     * realizes it and the source realizes either it or — for a feminine — its base,
+     * and whichever realization is used can name the target language where it says so.
      * Deriving the expectation from the catalog keeps this green across ordinary
      * content edits while still catching join regressions (dropped feminine
      * fallback, duplicates, wrong seed order). Pinned totals would only ever
@@ -31,13 +32,19 @@ class RealCatalogJoinTest {
     @Test
     fun joinEmitsExactlyTheConceptsBothLanguagesRealize() {
         for (target in listOf("en", "es", "sw", "uk")) {
+            fun RawRealization?.resolvable(reader: String): Boolean {
+                if (this == null) return false
+                val marked = (listOf(text) + synonyms + variants).any { LanguageNames.hasLanguageMarker(it) }
+                return !marked || catalog.languageName(reader, target) != null
+            }
             val expected = catalog.areas.flatMap { area ->
                 val sourceWords = area.realizations["de"].orEmpty()
                 val targetWords = area.realizations[target].orEmpty()
-                area.concepts
-                    .filter { it.slug in targetWords }
-                    .filter { it.slug in sourceWords || it.feminineOf?.let { b -> b in sourceWords } == true }
-                    .map { it.id }
+                area.concepts.filter { concept ->
+                    val prompt = sourceWords[concept.slug]
+                        ?: concept.feminineOf?.let { base -> sourceWords[base] }
+                    targetWords[concept.slug].resolvable(target) && prompt.resolvable("de")
+                }.map { it.id }
             }
             assertEquals(expected, catalog.join("de", target).map { it.id }, "de→$target join")
         }

@@ -299,10 +299,15 @@ internal object CatalogParser {
         o.rejectUnknownKeys(path, slug, setOf("text", "synonyms", "variants", "grammar", "notes"))
         val text = o.requireString(path, slug, "text")
         if (text.isBlank()) parseError(path, "$slug: blank text")
+        val synonyms = o.stringList(path, slug, "synonyms")
+        val variants = o.stringList(path, slug, "variants")
+        for (form in listOf(text) + synonyms + variants) {
+            LanguageNames.markerError(form)?.let { parseError(path, "$slug: $it") }
+        }
         return RawRealization(
             text = text,
-            synonyms = o.stringList(path, slug, "synonyms"),
-            variants = o.stringList(path, slug, "variants"),
+            synonyms = synonyms,
+            variants = variants,
             grammar = o.stringMap(path, slug, "grammar"),
             notes = o.stringMap(path, slug, "notes"),
         )

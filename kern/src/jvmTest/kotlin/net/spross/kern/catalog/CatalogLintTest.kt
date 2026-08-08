@@ -254,6 +254,46 @@ class CatalogLintTest {
         }
     }
 
+    /**
+     * `{language…}` resolves in realization and frame forms and NOWHERE else: one in a note,
+     * a grammar value, a heading or a name table would ship to the learner verbatim. Where it
+     * does resolve, it has to be one of the four forms, exactly once, and never string-initial
+     * — `markerError` is the same predicate the parser applies, pinned here over every file.
+     */
+    @Test
+    fun languageMarkersOnlyAppearWhereTheyResolve() {
+        fun unmarked(where: String, text: String) =
+            assertTrue(!LanguageNames.hasLanguageMarker(text), "$where: language marker in \"$text\"")
+
+        for (area in catalog.areas) {
+            for ((lang, title) in area.titles) unmarked("${area.name}/$lang.json title", title)
+            for ((lang, subtitle) in area.subtitles) unmarked("${area.name}/$lang.json subtitle", subtitle)
+        }
+        forEachRealization { area, lang, slug, raw ->
+            val where = "$area/$lang.json $slug"
+            for (form in listOf(raw.text) + raw.synonyms + raw.variants) {
+                assertTrue(LanguageNames.markerError(form) == null, "$where: ${LanguageNames.markerError(form)}")
+            }
+            for ((key, value) in raw.grammar) unmarked("$where.$key", value)
+            for ((reader, note) in raw.notes) unmarked("$where.notes.$reader", note)
+        }
+        for ((lang, frames) in catalog.frameRealizations) {
+            for ((slug, frame) in frames) {
+                val where = "drills/$lang.json $slug"
+                for (form in listOf(frame.text) + frame.variants) {
+                    assertTrue(LanguageNames.markerError(form) == null, "$where: ${LanguageNames.markerError(form)}")
+                }
+                for ((reader, note) in frame.notes) unmarked("$where.notes.$reader", note)
+            }
+        }
+        for ((reader, table) in catalog.languageNames) {
+            for ((named, name) in table) {
+                val where = "languages/$reader.json $named"
+                for (form in listOf(name.name, name.inForm) + name.variants) unmarked(where, form)
+            }
+        }
+    }
+
     @Test
     fun notesKeyedByDeclaredLanguages() {
         forEachRealization { area, lang, slug, raw ->

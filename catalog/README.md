@@ -531,6 +531,25 @@ Not to be confused with `languages.json` beside it, which is per-language app me
 - `variants` — accept-only alternates, never displayed (de "Kisuaheli" beside "Suaheli").
 - `notes` — keyed by explanation language, exactly as a realization's `notes` are.
 
+**Language markers.** A realization may name the language being LEARNED instead of hardcoding
+one, with `{language}`, `{language-in}`, `{language-speak}` or `{language-learn}`:
+```json
+"im-learning-your-language": { "text": "Ich lerne {language}." },
+"how-do-you-say-this":       { "text": "Wie sagt man das {language-in}?" }
+```
+Both sides of a pair resolve against **their own** table's entry for the **target** language,
+so a de→sw learner reads "Ich lerne Suaheli." and answers "Ninajifunza Kiswahili."
+The marker's presence IS the declaration — no concept field says a text is language-dependent.
+
+Pick the marker whose form keeps the sentence grammatical for **every** named language.
+Where a language needs a preposition no form carries (Spanish "un poco **de** alemán"),
+author it in the sentence around `{language}`.
+
+Rules, enforced at load: at most one marker per string, only the four forms above, and never
+at the start of a string — nothing re-capitalizes what a marker inserts. A side whose table
+has no entry for the target drops that concept from the join,
+the same honest-out as a missing realization.
+
 ## What earns a slot, and how it is worded
 
 Two content rules that cut across every language file.

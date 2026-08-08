@@ -81,27 +81,30 @@ class Catalog internal constructor(
      * Emits one [Card] per joinable concept, in catalog order. A concept joins iff the
      * TARGET realizes it AND a source prompt exists: its source realization, else
      * (feminineOf only) the base concept's source realization with `promptFeminineMarker`;
-     * skipped when neither exists.
+     * skipped when neither exists — or when either side names the target language
+     * ([LanguageMarker]) and its own table cannot.
      */
     fun join(source: Language, target: Language): List<Card> {
         require(source != target) { "source == target ($source)" }
         require(source in languages) { "unknown source language \"$source\"" }
         require(target in languages) { "unknown target language \"$target\"" }
+        // why: a marker always names the TARGET, and each side resolves it against its OWN
+        // table — the prompt reads "Ich lerne Suaheli", the answer "Ninajifunza Kiswahili".
+        val sourceName = languageName(source, target)
+        val targetName = languageName(target, target)
         val cards = mutableListOf<Card>()
         for (area in areas) {
             val sourceWords = area.realizations[source].orEmpty()
             val targetWords = area.realizations[target].orEmpty()
 
-            fun joins(concept: CatalogConcept): Boolean {
-                if (concept.slug !in targetWords) return false
-                if (concept.slug in sourceWords) return true
-                return concept.feminineOf?.let { it in sourceWords } ?: false
-            }
+            fun targetRealization(slug: String): RawRealization? =
+                targetWords[slug]?.resolved(targetName)
 
             for (concept in area.concepts) {
-                if (!joins(concept)) continue
+                val targetRaw = targetRealization(concept.slug) ?: continue
                 val ownSource = sourceWords[concept.slug]
-                val promptRaw = ownSource ?: sourceWords.getValue(concept.feminineOf!!)
+                val promptRaw = (ownSource ?: concept.feminineOf?.let { sourceWords[it] })
+                    ?.resolved(sourceName) ?: continue
                 cards += Card(
                     id = concept.id,
                     kind = concept.kind,
@@ -112,16 +115,16 @@ class Catalog internal constructor(
                     seedIndex = concept.seedIndex,
                     // why: components without a target realization can never be studied —
                     // filtering here keeps the phrase-unlock gate a plain all-components check.
-                    components = concept.components.filter { it in targetWords },
+                    components = concept.components.filter { targetRealization(it) != null },
                     feminineOf = concept.feminineOf,
                     // why: grading needs the base concept's TARGET texts (answer side)
                     // to demote a base-word answer — absent when the target never
                     // realizes the base, and the demotion simply has nothing to match.
                     baseAccepted = concept.feminineOf?.let { base ->
-                        targetWords[base]?.let { listOf(it.text) + it.synonyms + it.variants }
+                        targetRealization(base)?.let { listOf(it.text) + it.synonyms + it.variants }
                     }.orEmpty(),
                     source = realize(source, promptRaw, source),
-                    target = realize(target, targetWords.getValue(concept.slug), source),
+                    target = realize(target, targetRaw, source),
                     promptFeminineMarker = ownSource == null,
                 )
             }
@@ -332,6 +335,26 @@ class Catalog internal constructor(
             AudioCredit(key.language, key.author, key.licence, deeds[key], rows)
         }
     }
+
+    /**
+     * [this] with its language markers filled in from [name], or null when it carries one
+     * and [name] is absent: a side that cannot name the target drops the concept, the same
+     * honest-out as a missing realization. Marker-free realizations pass through untouched.
+     */
+    private fun RawRealization.resolved(name: LanguageName?): RawRealization? {
+        if (!carriesLanguageMarker()) return this
+        val named = name ?: return null
+        return copy(
+            text = LanguageNames.resolve(text, named),
+            synonyms = synonyms.map { LanguageNames.resolve(it, named) },
+            variants = variants.map { LanguageNames.resolve(it, named) },
+        )
+    }
+
+    private fun RawRealization.carriesLanguageMarker(): Boolean =
+        LanguageNames.hasLanguageMarker(text) ||
+            synonyms.any { LanguageNames.hasLanguageMarker(it) } ||
+            variants.any { LanguageNames.hasLanguageMarker(it) }
 
     private fun realize(lang: Language, raw: RawRealization, source: Language): Realization =
         Realization(

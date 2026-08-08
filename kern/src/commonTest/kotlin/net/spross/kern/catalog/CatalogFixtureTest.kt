@@ -51,14 +51,20 @@ class CatalogFixtureTest {
     @Test
     fun sparseTargetCoverageSkipsConcepts() {
         val ids = catalog.join("de", "uk").map { it.id }
-        assertEquals(listOf("waiter", "waiter-f", "mouse", "the-mouse-sprints", "royal-f", "door"), ids)
+        assertEquals(
+            listOf(
+                "waiter", "waiter-f", "mouse", "the-mouse-sprints", "royal-f",
+                "door", "im-learning", "i-speak-a-little", "how-do-you-say-this",
+            ),
+            ids,
+        )
     }
 
     @Test
     fun nonFeminineConceptWithoutSourceRealizationSkipped() {
         // sw realizes cook but source uk does not — no prompt, no card.
         assertEquals(
-            listOf("waiter", "mouse", "door"),
+            listOf("waiter", "mouse", "door", "im-learning", "i-speak-a-little", "how-do-you-say-this"),
             catalog.join("uk", "sw").map { it.id },
         )
     }
@@ -164,7 +170,7 @@ class CatalogFixtureTest {
         assertEquals("Alles dreht sich.", catalog.areaSubtitle("gamma", "de"))
         assertEquals("Усе обертається.", catalog.areaSubtitle("gamma", "uk"))
         assertEquals("Gamma", catalog.areaTitle("gamma", "de"))
-        assertNull(catalog.areaSubtitle("gamma", "en")) // no gamma/en.json at all
+        assertNull(catalog.areaSubtitle("gamma", "en")) // gamma/en.json authors none
         assertNull(catalog.areaSubtitle("alpha", "de"))
         assertNull(catalog.areaSubtitle("delta", "de"))
     }
@@ -238,6 +244,80 @@ class CatalogFixtureTest {
         )
         val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
         assertTrue("missing \"in\"" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    // -- language markers --------------------------------------------------------------
+
+    /**
+     * The whole rule in one pair: BOTH sides name the TARGET, each out of its own table.
+     * The German prompt therefore says which language is being learned, and the Swahili
+     * answer says the same thing about itself.
+     */
+    @Test
+    fun bothSidesResolveTheMarkerAgainstTheirOwnNameForTheTarget() {
+        val card = catalog.join("de", "sw").byId("im-learning")
+        assertEquals("Ich lerne Suaheli.", card.source.text)
+        assertEquals("Ninajifunza Kiswahili.", card.target.text)
+        val reverse = catalog.join("sw", "de").byId("im-learning")
+        assertEquals("Ninajifunza Kijerumani.", reverse.source.text)
+        assertEquals("Ich lerne Deutsch.", reverse.target.text)
+    }
+
+    /** Each marker picks its own form, and an unauthored one falls back to the name. */
+    @Test
+    fun everyMarkerFormResolvesInTheSentenceThatAsksForIt() {
+        val toUk = catalog.join("de", "uk")
+        assertEquals("Я вчу українську.", toUk.byId("im-learning").target.text)
+        assertEquals("Я трохи розмовляю українською.", toUk.byId("i-speak-a-little").target.text)
+        assertEquals("Як це сказати українською?", toUk.byId("how-do-you-say-this").target.text)
+        assertEquals("Wie sagt man das auf Ukrainisch?", toUk.byId("how-do-you-say-this").source.text)
+        assertEquals(
+            "Hii inasemwaje kwa Kiswahili?",
+            catalog.join("de", "sw").byId("how-do-you-say-this").target.text,
+        )
+        // uk names суахілі without a speak form: the citation form stands in.
+        assertEquals(
+            "Я трохи розмовляю суахілі.",
+            catalog.join("uk", "sw").byId("i-speak-a-little").source.text,
+        )
+    }
+
+    /** No table entry for the target, no sentence: the same honest-out as a missing word. */
+    @Test
+    fun aSideThatCannotNameTheTargetDropsTheConcept() {
+        // en authors no table at all, so it drops as a target (its own name)…
+        assertTrue(catalog.join("de", "en").none { it.id == "im-learning" })
+        // …and as a source (its name for the target).
+        assertTrue(catalog.join("en", "sw").none { it.id == "im-learning" })
+        // The unmarked concepts of the same area are untouched.
+        assertEquals("mlango", catalog.join("de", "sw").byId("door").target.text)
+    }
+
+    @Test
+    fun aSecondMarkerInOneStringFailsTheParse() {
+        val error = loadWithGammaDeText("Ich lerne {language} auf {language}.")
+        assertTrue("second language marker" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    @Test
+    fun anUnknownMarkerFormFailsTheParse() {
+        val error = loadWithGammaDeText("Ich lerne {language-of}.")
+        assertTrue("unknown language marker" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    /** Nothing re-capitalizes what a marker inserts, so a sentence may never open with one. */
+    @Test
+    fun aStringInitialMarkerFailsTheParse() {
+        val error = loadWithGammaDeText("{language} lerne ich.")
+        assertTrue("language marker opens" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    private fun loadWithGammaDeText(text: String): CatalogFormatException {
+        val broken = Fixture.files + mapOf(
+            "gamma/de.json" to Fixture.files.getValue("gamma/de.json")
+                .replace("Ich lerne {language}.", text),
+        )
+        return assertFailsWith { Catalog.load(MapCatalogSource(broken)) }
     }
 
     // -- drill frames ------------------------------------------------------------------
