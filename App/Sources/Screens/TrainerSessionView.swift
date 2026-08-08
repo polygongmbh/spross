@@ -60,6 +60,9 @@ struct TrainerSessionView: View, LanguageNaming {
     /// Digit counts already introduced with a place-value hint — each length
     /// is hinted only the first time it appears.
     @State var seenDigitCounts: Set<Int> = []
+    /// Number forms already introduced by name, keyed as kern names them. Same rule
+    /// as the lengths: the mark is announced once, then the run just asks.
+    @State var seenForms: Set<String> = []
     /// The learner looked the numbers up while owing this answer: it marks the
     /// answer amber (no level progress).
     @State var hintUsed = false
@@ -154,8 +157,9 @@ struct TrainerSessionView: View, LanguageNaming {
         // why: the reading belongs to the task being left — without this it
         // keeps sounding over the prompt that replaces it.
         hushAnswer()
-        // Mark this length as introduced so its place-value hint shows once.
+        // Mark what this prompt introduced, so each is announced exactly once.
         if let currentDigits { seenDigitCounts.insert(currentDigits) }
+        if let currentForm { seenForms.insert(currentForm) }
         if correct {
             streak += 1
             bestStreak = max(bestStreak, streak)

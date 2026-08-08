@@ -6,6 +6,11 @@ import SprossKern
 extension TrainerSessionView {
     private var isNumbers: Bool { currentVariant == .numbers }
 
+    /// Which tasks the numbers page can answer a question about: counting and the
+    /// forms, whose marks the page's last band writes out. The clock and a sentence
+    /// are asking something the table does not hold.
+    private var opensReference: Bool { currentVariant == .numbers || currentVariant == .forms }
+
     /// A prompt made of WORDS is laid out like one — smaller and wrapped — where a
     /// numeral gets the one big line. Asked of the prompt rather than of the run, so
     /// a composed sentence and a reversed reading are both read as what they are and
@@ -27,13 +32,39 @@ extension TrainerSessionView {
     /// names the place the hint would introduce.
     var currentDigits: Int? { isNumbers && !currentReversed ? current.prompt.count : nil }
 
-    /// Place word shown the first time a new number length appears — on the
-    /// card itself, so the prompts that carry no hint sit exactly as high.
-    private var placeValueHint: TrainerPromptCard.Hint? {
+    /// The form this task asks, the first time the run asks it (nil after that, and
+    /// nil when the task was reversed — the prompt is then the reading, which names
+    /// the form in words already). Internal: advance() marks each form as seen.
+    var currentForm: String? {
+        guard !currentReversed, let key = current.formKey, !seenForms.contains(key) else { return nil }
+        return key
+    }
+
+    /// What the card says the first time a prompt carries something new: a place word
+    /// for a length never seen, the NAME of a form for a mark never seen. One slot, so
+    /// the prompts that carry no hint sit exactly as high.
+    ///
+    /// The form hint wins where both could fire: a decimal's whole part is not the
+    /// lesson on the card that introduces the comma.
+    private var promptHint: TrainerPromptCard.Hint? {
+        if let form = currentForm, let name = formName(form) {
+            return .init(icon: "number.square", text: "trainer.newForm \(name)")
+        }
         guard let digits = currentDigits, !seenDigitCounts.contains(digits),
               let place = Trainer.shared.placeValueHint(digits: Int32(digits), language: language)
         else { return nil }
         return .init(icon: "textformat.123", text: "trainer.newPlace \(place)")
+    }
+
+    /// Kern's form key in the reader's own language — the app names it, kern names the
+    /// rule. Resolved through DLChrome because the name is an interpolated argument, which
+    /// the environment locale cannot reach. An unknown key drops the hint rather than
+    /// printing a slug.
+    private func formName(_ key: String) -> String? {
+        let names = ["negative": "trainer.form.negative", "decimal": "trainer.form.decimal",
+                     "percent": "trainer.form.percent", "multiplicative": "trainer.form.multiplicative",
+                     "fraction": "trainer.form.fraction", "ordinal": "trainer.form.ordinal"]
+        return names[key].map { DLChrome.string($0, locale: locale) }
     }
 
     var drillContent: some View {
@@ -44,7 +75,7 @@ extension TrainerSessionView {
                 // flip; .id gives each run position its own view identity.
                 ZStack {
                     TrainerPromptCard(task: current, sentence: wordyPrompt,
-                                      hint: placeValueHint, revealed: cardRevealed,
+                                      hint: promptHint, revealed: cardRevealed,
                                       pronounce: model?.pronounceAction(for: current.display, lang: language),
                                       isPlaying: model?.isPronouncing(current.display, lang: language) ?? false)
                         .id(index)
@@ -175,7 +206,7 @@ extension TrainerSessionView {
                     if missRun >= 1 { DrillStopOffer { closeRun() } }
                 }
             }
-            if isNumbers {
+            if opensReference {
                 lookupButton
             }
         }

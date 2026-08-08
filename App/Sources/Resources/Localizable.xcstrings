@@ -3371,6 +3371,102 @@
         }
       }
     },
+    "trainer.form.decimal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kommazahl"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "decimal"
+          }
+        }
+      }
+    },
+    "trainer.form.fraction" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bruch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fraction"
+          }
+        }
+      }
+    },
+    "trainer.form.multiplicative" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vervielfachung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "multiple"
+          }
+        }
+      }
+    },
+    "trainer.form.negative" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "negative Zahl"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "negative number"
+          }
+        }
+      }
+    },
+    "trainer.form.ordinal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordnungszahl"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ordinal"
+          }
+        }
+      }
+    },
+    "trainer.form.percent" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prozent"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "percentage"
+          }
+        }
+      }
+    },
     "trainer.forms" : {
       "localizations" : {
         "de" : {
@@ -3527,6 +3623,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The reading is shown, the digits are owed."
+          }
+        }
+      }
+    },
+    "trainer.newForm %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neu: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New: %@"
           }
         }
       }
