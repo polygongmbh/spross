@@ -8,6 +8,13 @@
   toward that, not only failures after it had graduated. A suspended word is exactly as
   reversible as before: revive it from the Box whenever you want another run at it.
 
+- **A typo, or a synonym heard instead of the recorded word, now books Hard, not Good, on
+  iOS.** The typing field kept its checkmark either way — a near miss was never treated as
+  wrong — but the FSRS rating behind it didn't say the answer had come back imperfectly. It
+  now grades the same as finishing a retype after a reveal: the word stands, but not
+  cleanly, so the box asks for it again sooner. Brings iOS in line with Android, which
+  already graded both this way.
+
 ## 3.11.1 — 2026-08-08
 
 - **The parts of the day moved in with the clock.** Morning, evening and night were

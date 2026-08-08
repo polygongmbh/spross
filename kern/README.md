@@ -460,6 +460,13 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   leading whole words already match, each within its own single-word budget — so a miss's
   retry field can keep the words already right and drop only the wrong tail; it never
   feeds a rating, only what the retry field starts from.
+- **`Match.producedRating()`** is the one place a produce match becomes an FSRS rating:
+  `Exact` → Good, `Typo` → Hard (readable but imperfect, the same Hard a finished retype
+  after a reveal earns), `OtherWord`/`Wrong` → null, because neither has a rating of its
+  own — both route through a reveal, where the eventual retype or give-up decides it.
+  Both apps call it rather than re-deciding the mapping in their own UI layer; that
+  duplication is exactly how iOS and Android's produce screens drifted apart on a typo's
+  rating before this existed (iOS graded it Good, Android already graded it Hard).
 - **Catalog-wide produce grading** — `CatalogAnswerGrader(normalizer, cards)`, the app's
   produce path. One card at a time the normalizer cannot tell a slip from a different word,
   so another concept's answer lands inside this card's typo budget:

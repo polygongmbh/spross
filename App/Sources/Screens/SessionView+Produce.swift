@@ -102,9 +102,11 @@ extension SessionView {
             case .almost:
                 // A typo or a heard-instead pauses here — the box above spells
                 // the owed form out and says it; this waits for the tap that
-                // books the card.
+                // books the card. `pendingRating` was decided at grading time
+                // (Hard for both — neither came back clean); `.hard` is only
+                // the fallback for an unreachable nil.
                 Button {
-                    rate(.good)
+                    rate(pendingRating ?? .hard)
                 } label: {
                     DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
                 }
@@ -198,7 +200,7 @@ extension SessionView {
         }
         if feedback != .correct { DLSound.correct() }
         withAnimation { feedback = .correct }
-        AutoAdvance.scheduleLive(&autoAdvance) { rate(.good) }
+        AutoAdvance.scheduleLive(&autoAdvance) { rate(Match.Exact.producedRating() ?? .good) }
     }
 
     /// Finishing the retype after a miss is the self-grade: reaching the
@@ -272,9 +274,14 @@ extension SessionView {
         // the narrowed answer set would otherwise fail a synonym the reveal
         // itself teaches. It is not wrong, it simply is not what played.
         if model.producePrompt(for: card) == .sound, alsoAccepted(trimmed, of: card) {
+            // why: not a kern Match (the narrowed spoken-only card would grade
+            // this Wrong) — the amber override is this screen's own ear-mode
+            // rule, so unlike the branches below its Hard is a plain literal,
+            // not something producedRating() could ever have decided.
             feedback = .almost(correctForm: card.target.text, reason: .heard)
             DLSound.correct()
             heardInstead = card.target.text
+            pendingRating = .hard
             focusRetry?.cancel()
             answerFocused = false
             return
@@ -286,7 +293,7 @@ extension SessionView {
             // why: AutoAdvance skips the timer under a screen reader — it
             // truncates the correctness announcement and moves the screen
             // under the user (produceButtons renders "Weiter" there instead).
-            AutoAdvance.scheduleExplicit(&autoAdvance) { rate(.good) }
+            AutoAdvance.scheduleExplicit(&autoAdvance) { rate(graded.producedRating() ?? .good) }
         case .typo(let typo):
             // why: don't auto-advance on a typo — pause (keeping the typed
             // text visible) so the learner reviews the slip. Still counts as
@@ -294,6 +301,11 @@ extension SessionView {
             feedback = .almost(correctForm: typo.corrected, reason: .typo)
             DLSound.correct()
             typoCorrection = typo.corrected
+            // why: the rating comes from kern (Match.producedRating()) rather
+            // than a literal here, so the rule stays in one place instead of
+            // being re-derived per platform (that's exactly how iOS drifted
+            // from Android before).
+            pendingRating = graded.producedRating()
             // why: a pause that waits for a tap must not hold the keyboard —
             // it covers the button the pause is waiting for. The pending
             // retry is cancelled first, or it re-focuses 120 ms later.

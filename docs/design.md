@@ -107,6 +107,8 @@ never the shape of the app.
   A typo and a dictation's other form are graded correct and keep the checkmark;
   the colour says how cleanly, never whether the answer counted,
   so the green glow stays the clean answer's alone.
+  Neither counts as clean for FSRS either: both book Hard, same as a finished
+  retry, because neither came back on the first, unaided try.
 - A near miss does NOT auto-advance: the typed word stays in the field
   with the form it missed in the box below, so the slip is seen before the card goes.
 - A wrong answer that IS another word of the catalog **names that word** instead of

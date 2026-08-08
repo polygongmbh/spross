@@ -83,6 +83,11 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
     val targetName = model.catalog?.languages?.get(card.target.lang)?.name ?: card.target.lang
     var input by remember(card.id) { mutableStateOf("") }
     var mode by remember(card.id) { mutableStateOf<ProduceMode>(ProduceMode.Idle) }
+    // The rating an amber hold (Typo/Heard) already earned, decided at grading
+    // time from kern's Match.producedRating() and applied when its "Weiter" is
+    // tapped — so the rule lives in kern once, not re-derived per platform
+    // (this is exactly how iOS drifted from Android before it was moved there).
+    var pendingRating by remember(card.id) { mutableStateOf<Rating?>(null) }
 
     val heard = ui.producePrompt == ProducePrompt.Sound
 
@@ -95,11 +100,15 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
         // concept owns is that word, not a forgiven slip of this one (kern §6).
         val match = model.produceGrader?.grade(input, graded) ?: return
         // why: BEFORE the verdict — the narrowed answer set would otherwise fail a
-        // synonym the reveal itself teaches ("auch: …"). Amber, never wrong.
+        // synonym the reveal itself teaches ("auch: …"). Amber, never wrong. Not a
+        // kern Match (the narrowed spoken-only card would grade this Wrong) — this
+        // screen's own ear-mode rule, so its Hard is a plain literal.
         if (heard && match !is Match.Exact && alsoAccepted(input, card)) {
             mode = ProduceMode.Heard(card.target.text)
+            pendingRating = Rating.Hard
             return
         }
+        pendingRating = match.producedRating()
         mode = when (match) {
             is Match.Exact -> ProduceMode.Correct
             is Match.Typo -> ProduceMode.Typo(match.corrected)
@@ -122,7 +131,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
             // played, and the next recognition of the card says it in full (§6.2).
             ProduceMode.Correct -> {
                 delay(1200)
-                model.answerCurrent(Rating.Good)
+                model.answerCurrent(pendingRating ?: Rating.Good)
             }
             // The paths that HOLD the learner on the answer, and the only ones that
             // speak: the beat lets the feedback chime finish first, and the effect
@@ -186,7 +195,8 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
             keyboardActions = KeyboardActions(onDone = {
                 when (mode) {
                     ProduceMode.Idle -> check()
-                    is ProduceMode.Typo, is ProduceMode.Heard -> model.answerCurrent(Rating.Hard)
+                    is ProduceMode.Typo, is ProduceMode.Heard ->
+                        model.answerCurrent(pendingRating ?: Rating.Hard)
                     ProduceMode.Wrong, is ProduceMode.OtherWord -> model.answerCurrent(Rating.Again)
                     else -> Unit
                 }
@@ -235,7 +245,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                     pronounce = model.pronounceAction(current.corrected),
                 )
                 Button(
-                    onClick = { model.answerCurrent(Rating.Hard) },
+                    onClick = { model.answerCurrent(pendingRating ?: Rating.Hard) },
                     modifier = Modifier.fillMaxWidth(),
                 ) {
                     Text(chrome.next)
@@ -250,7 +260,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                     pronounce = model.pronounceAction(current.spoken),
                 )
                 Button(
-                    onClick = { model.answerCurrent(Rating.Hard) },
+                    onClick = { model.answerCurrent(pendingRating ?: Rating.Hard) },
                     modifier = Modifier.fillMaxWidth(),
                 ) {
                     Text(chrome.next)
