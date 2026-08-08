@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- **The number forms stop having to be learned in a failure.** The drill that asks for
+  negatives, decimals, percentages, multiples, fractions and ordinals introduced none of
+  them: the mark appeared, the answer was wrong, and that was the lesson. Three things
+  changed together. The numbers page gained a last band writing out one worked example per
+  form the language reads — German's comma where English has its point, no ordinal at all
+  for Swahili, which cannot rank anything without the noun it ranks. The "?" that opens
+  that page mid-run now appears in a forms run too, on the same terms as everywhere else:
+  reading while you still owe an answer costs the rung, reading after it is free. And the
+  card itself names a form the first time it asks one — "Neu: Kommazahl" — the way a new
+  digit length has always announced its place word.
+
 - **A run that is going badly offers you the door.** A drill runs until you close it, and
   the only way out was the ✕ in the corner — which reads as walking out on something
   rather than finishing it. Miss twice in a row and "Fertig" appears under the button that
