@@ -74,6 +74,14 @@ final class Pronouncer {
     /// has none — those words are silent unless a recording matches).
     func canSpeak(language: String) -> Bool { speaker.canSpeak(language: language) }
 
+    /// A voice exists for `language`, and it is the compact one iOS ships with
+    /// — the only state where pointing at the voice download helps. A language
+    /// with no voice at all has nothing to upgrade to, and one already on
+    /// `.enhanced`/`.premium` is done.
+    func hasOnlyBasicVoice(language: String) -> Bool {
+        speaker.voiceQuality(for: language) == .default
+    }
+
     /// Whether this form can be heard at all — gates the tap-to-replay
     /// affordance so a word with neither a recording nor a voice grows no
     /// gesture that does nothing.

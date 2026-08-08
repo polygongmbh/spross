@@ -150,7 +150,9 @@ struct BoxSettingsSection: View {
 
     /// The same switch the session's top bar carries, and the place the
     /// tap-to-replay gesture is disclosed — the card itself grows no
-    /// affordance for it, so the hint line is where it is named.
+    /// affordance for it, so the hint line is where it is named. It is also the
+    /// standing home of the voice-download pointer, which the Heute banner only
+    /// borrows once: dismissed there, it is still findable here.
     private var audioRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
             Toggle(isOn: readAloudBinding) {
@@ -162,6 +164,13 @@ struct BoxSettingsSection: View {
             Text("settings.audio.hint")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
+            if VoiceUpgradeHint.shared.suggests(language: model.targetLanguage) {
+                Label("settings.audio.voiceUpgrade \(targetChromeName)",
+                      systemImage: "speaker.wave.2")
+                    .font(DL.Fonts.caption)
+                    .foregroundStyle(Color.dlAccent)
+                    .padding(.top, DL.Space.xs)
+            }
         }
     }
 
@@ -206,6 +215,15 @@ struct BoxSettingsSection: View {
 
     private var targetName: String {
         model.targetLanguage.map { LanguageNames.native($0, catalog: model.catalog) } ?? "?"
+    }
+
+    /// The target named in the CHROME's language, not its own — the voice hint
+    /// is a sentence about the phone's settings, and it reads in the language
+    /// the rest of the block does.
+    private var targetChromeName: String {
+        model.targetLanguage.map {
+            LanguageNames.display($0, locale: locale, catalog: model.catalog)
+        } ?? "?"
     }
 
     /// ALL covered sources — including the current target: picking it swaps.

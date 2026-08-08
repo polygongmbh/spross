@@ -184,21 +184,6 @@
     "gender": "el"
    }
   },
-  "night": {
-   "text": "noche",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "morning": {
-   "text": "mañana",
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "mit Artikel la mañana = der Morgen (por la mañana = morgens); ohne Artikel heißt mañana morgen"
-   }
-  },
   "make-bed": {
    "text": "hacer la cama"
   },

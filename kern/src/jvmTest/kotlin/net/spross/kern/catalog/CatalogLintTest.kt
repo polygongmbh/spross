@@ -331,10 +331,6 @@ class CatalogLintTest {
             .toSortedSet()
         assertEquals(
             sortedSetOf(
-                // Reviewed 2026-07-31: es merges what de distinguishes by capitalization
-                // alone (der Morgen / morgen); en/sw/uk all keep the two apart, so no
-                // concept pair collides twice. The area disambiguates the produce prompt.
-                "es mañana: bedroom/morning, time/tomorrow",
                 // Reviewed 2026-07-31: `el tiempo` is both Zeit and Wetter. de/en/sw/uk
                 // all split it; `clima` is das Klima in Spain, so there is no alternative.
                 "es tiempo: nature/weather, time/time",

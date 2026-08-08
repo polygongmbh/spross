@@ -64,17 +64,38 @@ class WatchSnapshotBuilderTests {
         assertEquals("Serviererin", entry.promptForm) // count 3 rotation → the synonym
     }
 
+    /** Having LANDED is what withdraws the support, never merely leaving the learning steps. */
     @Test
-    fun produceEmojiIsHiddenAfterLearning() {
+    fun produceEmojiIsHiddenOnceTheWordHasLanded() {
         var state = Snap.state(listOf(fem))
         state = Box.inject(
             state,
-            Box.sched("wf", phase = CardPhase.Review, dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = 2),
+            Box.sched(
+                "wf", phase = CardPhase.Review, stability = 10.0,
+                dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = 2,
+            ),
         )
         val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single()
         assertEquals("produce", entry.nextRole)
         assertNull(entry.emoji)
         assertEquals("👩", entry.revealEmoji)
+    }
+
+    /** A produce card in Review but still short of the bar keeps its picture. */
+    @Test
+    fun produceEmojiSurvivesGraduationUntilTheWordLands() {
+        var state = Snap.state(listOf(fem))
+        state = Box.inject(
+            state,
+            Box.sched(
+                "wf", phase = CardPhase.Review, stability = 3.0,
+                dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = 2,
+            ),
+        )
+        val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single()
+        assertEquals("produce", entry.nextRole)
+        assertEquals("👩", entry.emoji)
+        assertNull(entry.revealEmoji)
     }
 
     // The picture rides on the key that names when it may be seen, so a surface

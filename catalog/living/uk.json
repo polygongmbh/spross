@@ -92,12 +92,6 @@
   "movie": {
    "text": "фільм"
   },
-  "evening": {
-   "text": "вечір",
-   "grammar": {
-    "plural": "вечори"
-   }
-  },
   "sit": {
    "text": "сидіти"
   },

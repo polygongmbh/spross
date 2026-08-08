@@ -171,10 +171,11 @@ to predict retention (Nakata & Webb above; Healy et al. 2025; Kornell's 90 %-bet
 believed-otherwise result). **A scheduler tuned to maximize in-session correctness is optimizing
 the illusion of a good round.**
 
-This is exactly what the retired `maxUnsettled` throttle did. `isSettled` is
-`phase == Review && stability >= settledStability`, a bar a single **Good** clears
+This is exactly what the retired `maxUnsettled` throttle did. `isSettled` was
+`phase == Review && stability >= settledStability` — a bar a single **Good** cleared
 (S₀(Good) = 2.3065 > 2.0), so `unsettledLoad` counted the words recently answered *wrong* and
-narrowed breadth in response. A breadth-first box can pick a metric that makes removing a cap
+narrowed breadth in response. That the bar sat below S₀(Good) is also what eventually retired
+the threshold itself, merged into the one landed bar (`kern/README.md` §5). A breadth-first box can pick a metric that makes removing a cap
 look good just as easily as a depth-first one can pick one that makes keeping it look good;
 neither is a finding.
 

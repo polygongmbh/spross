@@ -139,21 +139,11 @@ internal object Statistics {
     }
 
     /**
-     * A card has settled once it sits in Review at or above [BoxConfig.settledStability].
-     * The support bar: it decides which presentation still props a word up while it is
-     * on its way in. A card that just lapsed is back in Relearning, so it stops being
-     * settled — which is the point: it needs the support again. The stricter
-     * [isConsolidated] is what "has this word landed" means everywhere else.
-     */
-    fun isSettled(state: BoxState, sched: CardScheduling): Boolean =
-        sched.phase == CardPhase.Review &&
-            (sched.memory?.stability ?: 0.0) >= state.config.settledStability
-
-    /**
-     * The stricter "really landed" bar: Review phase at or above
-     * [BoxConfig.consolidatedStability]. Feeds the fresh/consolidated stats split, the
-     * session-summary tally, and phrase unlock — never in-session presentation
-     * support, which stays on the faster [isSettled].
+     * "Has this word landed": Review phase at or above [BoxConfig.consolidatedStability].
+     * The ONE bar — the stats split, the session-summary tally, phrase unlock, the drill
+     * pools, and the in-session presentation rules all ask it. A card that just lapsed is
+     * back in Relearning, so it stops being consolidated, which is the point: it needs the
+     * support again and has to earn the reach back.
      */
     fun isConsolidated(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&

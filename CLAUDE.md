@@ -14,12 +14,14 @@ Focus is on breadth of exposure to the language for maximum fluency with minimum
 xcodebuild -project Spross.xcodeproj -scheme Spross \
   -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build   # app build gate
 scripts/run-sim.sh           # build + install + launch on the simulator (--shot, --clean, -- <launch args>)
+scripts/run-emu.sh           # same for Android: boots the AVD, builds, installs, launches (--shot, --clean)
 scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodegen
 scripts/strings.py --fix     # clear the stale flags Xcode writes into the String Catalog
 ```
 
 Xcode/`xcodegen`/simctl lines above are Mac-only — never present, never installable, on Linux/cloud sessions.
-There, `./gradlew :kern:jvmTest` is the gate; see `RUNBOOK-linux.md` for the rest.
+There, `./gradlew :kern:jvmTest` is the gate; see `RUNBOOK-android.md` for the rest.
+The emulator needs a GPU and virtualization, so it is local-only too — cloud sessions have no `/dev/kvm`.
 
 ## Commit & release rules
 
@@ -83,3 +85,4 @@ There, `./gradlew :kern:jvmTest` is the gate; see `RUNBOOK-linux.md` for the res
   is `docs/audio-licensing.md`; no other doc restates a licence term.
 - Write plans into docs/ and delete them once shipped, even if you did not write the plan
 - Whenever you are corrected or do extensive research, find or create an appropriate docs/ file to note insights
+- Do not document a removal or absence of something beyond the commits message unless it is likely to be accidentally reintroduced

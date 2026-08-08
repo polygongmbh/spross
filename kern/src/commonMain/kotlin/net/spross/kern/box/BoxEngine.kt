@@ -120,8 +120,8 @@ object BoxEngine {
      * Apply one answer to a card. Introduction = the card's first answer: creates its
      * schedule, counts it introduced, and dequeues it. Introductions re-check
      * eligibility at answer time ([AnswerStatus.DroppedIneligible]) — plans
-     * outlive phase changes. Review-phase
-     * Again answers count lapses; 8 lapses auto-suspend the card (leech). Non-joining
+     * outlive phase changes. Any
+     * Again past introduction counts a lapse; 2 lapses auto-suspend the card (leech). Non-joining
      * or unknown ids are a defined no-op ([AnswerStatus.StaleCard]).
      */
     fun answer(
@@ -175,18 +175,10 @@ object BoxEngine {
         boxGrowth(state, nowEpochMillis, tzId)
 
     /**
-     * Has this card settled? See [Statistics.isSettled] — the fast threshold
-     * behind budget pacing and the presentation support a word gets while it is
-     * still landing. Unknown ids read as false: a card with no schedule has
-     * certainly not landed.
-     */
-    fun isSettled(state: BoxState, cardId: String): Boolean =
-        state.scheduling[cardId]?.let { Statistics.isSettled(state, it) } ?: false
-
-    /**
-     * Has this card genuinely consolidated? See [Statistics.isConsolidated] —
-     * the stricter threshold behind the fresh/consolidated stats split and phrase
-     * unlock. Unknown ids read as false.
+     * Has this card landed? See [Statistics.isConsolidated] — the one threshold
+     * behind the fresh/consolidated stats split, phrase unlock, the drill pools and
+     * the presentation support a word gets while it is still on its way in.
+     * Unknown ids read as false: a card with no schedule has certainly not landed.
      */
     fun isConsolidated(state: BoxState, cardId: String): Boolean =
         state.scheduling[cardId]?.let { Statistics.isConsolidated(state, it) } ?: false

@@ -92,6 +92,27 @@
     "plural": "-e"
    }
   },
+  "morning": {
+   "text": "Morgen",
+   "grammar": {
+    "gender": "der",
+    "plural": "="
+   }
+  },
+  "evening": {
+   "text": "Abend",
+   "grammar": {
+    "gender": "der",
+    "plural": "-e"
+   }
+  },
+  "night": {
+   "text": "Nacht",
+   "grammar": {
+    "gender": "die",
+    "plural": "Nächte"
+   }
+  },
   "i-have-no-time": {
    "text": "Ich habe keine Zeit."
   },
@@ -101,8 +122,8 @@
   "two-in-the-afternoon": {
    "text": "zwei Uhr nachmittags"
   },
-  "twelve-noon-sharp": {
-   "text": "punkt zwölf Uhr mittags"
+  "nine-am-sharp": {
+   "text": "punkt neun Uhr morgens"
   }
  }
 }

@@ -46,24 +46,6 @@
   shows, whatever language you are learning. Looking something up while you still owe an
   answer costs the rung, exactly as it always did; reading it afterwards is free.
 
-- **A long number in the drill breaks into groups a reader can take in.** Ten digits arrived
-  as one unbroken run that had to be counted a place at a time. The prompt breaks in threes
-  from five digits up now — 9999 stays whole, 12 345 and 4 072 918 300 come apart — and the
-  mark is a thin space rather than a dot or a comma: those two swap meaning between German
-  and English, so either would teach one convention as the truth to a learner of the other.
-  A sentence slot takes the separator alongside the bare digits, so copying the prompt as
-  written cannot cost the rung.
-
-- **The hour said exactly now names nine in the morning, and the parts of the day moved in
-  with the clock.** "Punkt zwölf Uhr mittags" was a sentence nobody says; the card reads
-  "punkt neun Uhr morgens", "nine a.m. sharp", "a las nueve de la mañana en punto", "saa
-  tatu asubuhi kamili" and "рівно о дев'ятій ранку" now, and the Swahili third hour for
-  nine shows the six-hour shift where it surprises most. Morning, evening and night left
-  the bedroom and the living room for Time and dates, so the parts of the day stand
-  together and the sentence can be built out of them. Spanish gives up its own card for the
-  morning in the move: "mañana" is already tomorrow there, and one area cannot ask for one
-  word and mean two cards — Spanish still meets the morning inside "de la mañana".
-
 - **The clock drill climbs a step at a time, and never takes back a minute it taught.**
   Past the quarters it jumped straight to any minute at all, and the quarter to the hour
   the learner had just earned quietly dropped out again on the way up. The climb now goes
@@ -72,6 +54,79 @@
   each step keeping everything the one below it offered. Sentence drills ramp with it, and
   the step that opens them is the five-minute one their unlock always claimed it was.
 
+## 3.12.0 — 2026-08-08
+
+- **A word that doesn't stick in two tries is now pushed out, not repeated.** Leech
+  auto-suspend used to wait for eight review-phase lapses; the box is breadth-first, so it
+  now suspends after two — and counts a struggle during the word's own learning steps
+  toward that, not only failures after it had graduated. A suspended word is exactly as
+  reversible as before: revive it from the Box whenever you want another run at it.
+
+- **A typo, or a synonym heard instead of the recorded word, now books Hard, not Good, on
+  iOS.** The typing field kept its checkmark either way — a near miss was never treated as
+  wrong — but the FSRS rating behind it didn't say the answer had come back imperfectly. It
+  now grades the same as finishing a retype after a reveal: the word stands, but not
+  cleanly, so the box asks for it again sooner. Brings iOS in line with Android, which
+  already graded both this way.
+
+- **The box list stops wearing "Neu" on almost every row.** A word or phrase with
+  no exposure yet always carried the badge, and its capsule padding was what pushed
+  long phrase titles into truncation. Absence now reads as new; the badge only shows
+  once a card has something to say (learning, review, or relearning).
+
+- **A box row speaks on a tap anywhere on it, instead of needing the speaker icon.**
+  The icon was one more thing competing with the phrase text and the wake/pack
+  controls for width; the row's own surface is the tap target now, freeing that
+  space up too.
+
+- **A word you are meeting for the first time is shown and spoken, not illustrated.** The
+  picture used to sit on that very first card, where the only thing asked of you is to say
+  whether you knew it — and an obvious emoji answers that question for you. *Bett* next to
+  🛏️ was a word you had learned; 🛏️ next to a Ukrainian word you had never seen was a
+  picture you had read, and both reached *Gut* the same way, buying the same weeks-long
+  interval. The first card now carries the word itself and its pronunciation, and the
+  picture arrives with the meaning when you reveal it. It comes back on the review after —
+  the one that asks you to type the word — where it helps you produce something rather than
+  confirm something, and where guessing from the picture is not possible.
+
+- **A new word keeps its help until it has actually landed.** The box used to hold two bars
+  for "this word has stuck" and support fell away at the lower one — which a single *Gut* on
+  a word's very first answer already cleared. So the picture disappeared from the next
+  review, and that next review is the first one that asks you to *type* the word: the help
+  went away exactly where it was first needed. There is one bar now, the one the progress
+  display and phrase unlock already used, and a word answered *Gut* once keeps its picture
+  and its write-it-out step until a later answer says it has landed. Answering *Einfach* —
+  which is earned by knowing a word on sight, never chosen — still clears it at once, so a
+  word you already knew is not slowed down.
+
+## 3.11.1 — 2026-08-08
+
+- **The parts of the day moved in with the clock.** Morning, evening and night were
+  filed under the bedroom and the living room, where a word for when something happens
+  had no business being; noon and the afternoon join them in Time and dates, and the
+  sentence that teaches the exact hour is "punkt neun Uhr morgens" now rather than the
+  stilted noon one. Nothing you have learned starts over — a card that changes shelves
+  keeps everything it knew about you. Spanish loses its card for the morning, because
+  "mañana" is the same word as tomorrow and the shelf was the only thing telling the two
+  apart; Spanish still meets it inside the sentence, where "de la mañana" says which one
+  is meant.
+
+- **The app now says when a better voice is a free download away.** Every word without a
+  bundled recording is read by the system voice, and iOS ships only the compact one — the
+  clear, enhanced voices sit behind a download in Settings that nothing announces, so a
+  learner could spend months with a muffled reading and no idea it was optional. The app
+  asks the synthesizer which voice would actually answer for the language being learned:
+  when it is the compact one, the audio setting names the path to the better ones, and
+  Heute carries it once as a notice that can be waved away. Both vanish the moment a
+  better voice is installed, so nobody is told about a gap they have already closed.
+
+- **A long number in the drill breaks into groups a reader can take in.** Ten digits arrived
+  as one unbroken run that had to be counted a place at a time. The prompt breaks in threes
+  from five digits up now — 9999 stays whole, 12 345 and 4 072 918 300 come apart — and the
+  mark is a thin space rather than a dot or a comma: those two swap meaning between German
+  and English, so either would teach one convention as the truth to a learner of the other.
+  A sentence slot takes the separator alongside the bare digits, so copying the prompt as
+  written cannot cost the rung.
 ## 3.11.0 — 2026-08-07
 
 - **Every word an area holds gets its mark on the tree.** How many marks a crown could

@@ -151,13 +151,6 @@
     "plural": "-e"
    }
   },
-  "evening": {
-   "text": "Abend",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
   "sit": {
    "text": "sitzen"
   },

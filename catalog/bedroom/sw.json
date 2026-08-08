@@ -134,18 +134,6 @@
     "plural": "mikanda"
    }
   },
-  "night": {
-   "text": "usiku",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "morning": {
-   "text": "asubuhi",
-   "grammar": {
-    "plural": "="
-   }
-  },
   "make-bed": {
    "text": "kutandika kitanda"
   },

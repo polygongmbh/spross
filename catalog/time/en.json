@@ -53,6 +53,15 @@
   "afternoon": {
    "text": "afternoon"
   },
+  "morning": {
+   "text": "morning"
+  },
+  "evening": {
+   "text": "evening"
+  },
+  "night": {
+   "text": "night"
+  },
   "i-have-no-time": {
    "text": "I have no time."
   },
@@ -62,8 +71,8 @@
   "two-in-the-afternoon": {
    "text": "two in the afternoon"
   },
-  "twelve-noon-sharp": {
-   "text": "twelve noon sharp"
+  "nine-am-sharp": {
+   "text": "nine a.m. sharp"
   }
  }
 }

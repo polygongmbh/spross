@@ -2,11 +2,15 @@ import SwiftUI
 
 // MARK: - SpeakerIcon
 //
-// The one audio affordance: the icon IS the control, everywhere it appears —
-// beside a word on a card or in the box list, or standing alone (big, never
-// circled or filled, so it never LOOKS like a button) on a pure-listening
-// drill. One tap target instead of three different ones (a word, a row, a
-// whole card) is the simpler rule to learn once and reuse.
+// The one audio affordance: the icon IS the control, beside a word on a card
+// or standing alone (big, never circled or filled, so it never LOOKS like a
+// button) on a pure-listening drill. One tap target instead of three
+// different ones (a word, a row, a whole card) is the simpler rule to learn
+// once and reuse.
+//
+// Exception: the box list (`BoxCardRow`) has no icon at all — a row already
+// carries a wake/pack control competing for width, so there the whole row is
+// the tap target instead (`pronounceOnTap`, `SessionView+Audio.swift`).
 //
 // Pulses gently while its word is sounding, the shape Duolingo's speaker
 // rides; Reduce Motion drops the pulse and just snaps.

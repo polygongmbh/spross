@@ -13,6 +13,16 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   The drills lean on that fallback entirely: they GENERATE their readings
   ("dreihundertsiebenundvierzig", "son las tres y cuarto"), so no catalog lists them
   and the voice is what says them.
+- **Which voice answers is the device's business, and its tier is worth naming.** iOS bundles
+  the compact voice for a language and nothing else; the enhanced and premium ones are a free
+  download under Settings › Accessibility › Spoken Content › Voices that no API announces and
+  no system prompt offers. The gap is large enough to hear, and it lands on every generated
+  reading — so the app asks what would actually answer (`Speaker.voiceQuality`) and points at
+  the download while, and only while, the compact voice is the one speaking: a line in the
+  audio setting, and one dismissible notice on Heute once the box has cards. Never a link —
+  no public URL opens that pane, and the one that exists lands on the app's own settings page,
+  which is not where the setting is. The voice table is dropped on every foreground, so a
+  download made in Settings is picked up on return and the pointer goes with it.
 - **Only the headword is ever spoken.** Article, ♀ badge, plural line and alternates are
   grammar decoration: gender is taught by the article color, and the recordings say bare
   words — speaking the article in the synthesized branch alone would make a word's

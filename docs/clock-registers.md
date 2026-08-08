@@ -206,6 +206,6 @@ Everything else the drill does not accept is answered by the commit that dropped
   They say the hour is EXACT, which is a different claim from what time it is,
   and no learner answering "18:00" volunteers the suffix —
   so the coverage never paid for the branch each of the five carried at `m == 0`.
-  They are taught in the catalog instead, by `time/twelve-noon-sharp`:
+  They are taught in the catalog instead, by `time/nine-am-sharp`:
   the knowledge is WHERE the word sits — de and uk prepose it, en, es and sw postpose it,
-  and sw puts it after the part of the day — which a sentence carries and a word card cannot.
+  and es and sw put it after the part of the day — which a sentence carries and a word card cannot.

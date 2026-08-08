@@ -14,7 +14,7 @@ options:
 settings:
   base:
     CURRENT_PROJECT_VERSION: 1
-    MARKETING_VERSION: 3.11.0
+    MARKETING_VERSION: 3.12.0
     SWIFT_VERSION: "6.0"
     CODE_SIGN_STYLE: Automatic
     DEVELOPMENT_TEAM: 2LDZV9286Q
@@ -85,7 +85,7 @@ targets:
       base:
         # why: extension bundle ids must be prefixed by the host app's id,
         # or simctl/App Store installs fail with "Mismatched bundle IDs".
-        PRODUCT_BUNDLE_IDENTIFIER: net.spross.app.Widgets
+        PRODUCT_BUNDLE_IDENTIFIER: net.spross.app.widgets
         TARGETED_DEVICE_FAMILY: "1"
   SprossWatch:
     type: application
@@ -138,5 +138,5 @@ targets:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: net.spross.app.watchkitapp.Widgets
+        PRODUCT_BUNDLE_IDENTIFIER: net.spross.app.watchkitapp.widgets
         TARGETED_DEVICE_FAMILY: "4"

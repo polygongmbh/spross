@@ -7,6 +7,7 @@ import kotlin.test.assertTrue
 import net.spross.kern.catalog.Fixture
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
 
 /**
@@ -297,5 +298,17 @@ class AnswerNormalizerTests {
         assertEquals(1, de.matchingPrefixWordCount("Der", "Der Kühlschrank"))
         // Empty input matches nothing.
         assertEquals(0, de.matchingPrefixWordCount("", "Der Kühlschrank"))
+    }
+
+    @Test
+    fun producedRatingIsTheOneRuleEveryPlatformShares() {
+        // Exact came back clean.
+        assertEquals(Rating.Good, Match.Exact.producedRating())
+        // A slip is readable but imperfect — same Hard a finished retype earns.
+        assertEquals(Rating.Hard, Match.Typo("Kühlschrank").producedRating())
+        // Neither has a rating of its own: both route through reveal, where the
+        // eventual retype (Hard) or give-up (Again) decides it — never Good.
+        assertEquals(null, Match.OtherWord("wort", listOf("bedeutung")).producedRating())
+        assertEquals(null, Match.Wrong.producedRating())
     }
 }

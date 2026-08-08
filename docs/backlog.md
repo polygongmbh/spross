@@ -118,16 +118,32 @@ One line per item, with a file or context pointer, filed under the section it be
   generates the nominative only, and «о» governs the locative (`clock-registers.md`).
 - de accepts no bare hour word ("Es ist acht.") though the German is right — with the
   drill's stray-word rescue gone it is now safe to add, but it wants its own sweep run.
-- The emphatic full hour is taught by `time/twelve-noon-sharp` now, and the phrase made two
+- The emphatic full hour is taught by `time/nine-am-sharp` now, and the phrase made three
   calls the finished JSON cannot show: sw hangs `kamili` after the part of the day
-  (`saa sita mchana kamili`), where `saa sita kamili mchana` composes just as well,
+  (`saa tatu asubuhi kamili`), where `saa tatu kamili asubuhi` composes just as well;
+  en took the meridiem (`nine a.m. sharp`) over the part of the day
+  (`nine o'clock in the morning sharp`), which is the shape the other four use —
+  `EnglishClockRegisters` reads both registers at 09:00, and only the meridiem stays short;
   and sw `afternoon` took `mchana` — the word the greeting uses — over `alasiri`,
-  which is the late afternoon only.
+  which is the late afternoon only, so `time/two-in-the-afternoon` rests on it.
 - `time` has no `midnight`, though the clock reveal teaches it at 00:00 beside `noon`
-  (`docs/clock-registers.md` §English a.m./p.m.); es and uk carry no `afternoon` on purpose,
-  es because `tarde` is already `living/evening` and uk because it has no plain noun for it.
+  (`docs/clock-registers.md` §English a.m./p.m.). es carries no `morning`, no `afternoon`
+  and no `late`, uk no `afternoon`: `mañana` is already `time/tomorrow` and `tarde` already
+  `time/evening`, so each of them would now prompt one form for two cards INSIDE one area —
+  the collision the lint calls unfixable at runtime — while uk simply has no plain noun for
+  the afternoon. Spanish still meets the morning as `de la mañana` in `time/nine-am-sharp`.
+  es `evening` keeps `noche` as a variant beside `night`'s `noche`: a variant is graded and
+  never prompted, so the two stay tellable apart where it counts.
 
 ## Engine & scheduling
+
+- A **defer** flag: a per-card opt-out that sinks a word behind the whole catalog rather
+  than switching it off, so a learner can skip words they judge unimportant without them
+  vanishing. Distinct from `setSuspended`, which is hard off until revived by hand — defer
+  would stay in seed order, just last, and only surface once nothing unseen is left.
+  Wants a `BoxState` field (not a `GrowthStage` rung — it is an intent, not a standing), a
+  `BoxEngine` verb, a Box-screen affordance, and a decision on where it sorts against
+  `OwnWords.SEED_BASE`, which is already "behind every catalog concept".
 
 - Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch,
   but revisit the cap if the active box outgrows it (`../kern/docs/snapshots.md`).

@@ -68,6 +68,24 @@
     "plural": "полудні"
    }
   },
+  "morning": {
+   "text": "ранок",
+   "grammar": {
+    "plural": "ранки"
+   }
+  },
+  "evening": {
+   "text": "вечір",
+   "grammar": {
+    "plural": "вечори"
+   }
+  },
+  "night": {
+   "text": "ніч",
+   "grammar": {
+    "plural": "ночі"
+   }
+  },
   "i-have-no-time": {
    "text": "У мене немає часу."
   },
@@ -77,10 +95,10 @@
   "two-in-the-afternoon": {
    "text": "друга дня"
   },
-  "twelve-noon-sharp": {
-   "text": "рівно о дванадцятій дня",
+  "nine-am-sharp": {
+   "text": "рівно о дев'ятій ранку",
    "notes": {
-    "de": "«о» + Lokativ sagt, WANN etwas passiert; die bloße Uhrzeit steht im Nominativ (друга дня)."
+    "de": "«о» + Lokativ sagt, WANN etwas passiert; die bloße Uhrzeit steht im Nominativ (дев'ята ранку)."
    }
   }
  }

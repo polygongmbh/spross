@@ -38,7 +38,7 @@ class BoxAnswerTests {
         assertEquals(CardPhase.Learning, sched.phase)
         assertEquals(0, sched.stepIndex)
         assertEquals(Box.instant(now) + 120.seconds, sched.due)
-        assertEquals(0, sched.lapses) // lapses only count for review-phase cards
+        assertEquals(0, sched.lapses) // lapses never count introduction, only tries after it
 
         assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 119)).isEmpty())
         assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, 120)))
@@ -130,12 +130,14 @@ class BoxAnswerTests {
         assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, 600)))
     }
 
+    // Breadth over retention: two tries that don't stick push the word out rather
+    // than let it keep coming back (LEECH_LAPSE_THRESHOLD = 2, user ruling 2026-08-07).
     @Test
-    fun leechEighthLapseAutoSuspends() {
+    fun leechSecondLapseAutoSuspends() {
         var state = Box.state(listOf(Box.word(1), Box.word(2)))
         state = Box.inject(
             state,
-            Box.sched("w01", dueMillis = now - 3_600_000, lastReviewMillis = Box.plusDays(now, -5.0), lapses = 7),
+            Box.sched("w01", dueMillis = now - 3_600_000, lastReviewMillis = Box.plusDays(now, -5.0), lapses = 1),
         )
         state = Box.inject(
             state,
@@ -144,13 +146,33 @@ class BoxAnswerTests {
 
         state = Box.answered(state, "w01", Rating.Again, now)
         val sched = state.scheduling.getValue("w01")
-        assertEquals(8, sched.lapses)
+        assertEquals(2, sched.lapses)
         assertTrue(sched.suspended)
 
         assertEquals(listOf("w02"), BoxEngine.dueNow(state, now))
         val stats = BoxEngine.statistics(state, now, Box.TZ)
         assertEquals(1, stats.activeCount)
         assertEquals(1, stats.suspendedCount)
+    }
+
+    // A word still struggling through its learning steps counts too — lapses are not
+    // gated to review phase, so a word that never even graduates still gets pushed out.
+    @Test
+    fun againOnTheStepCountsTowardTheLeechAndCanSuspend() {
+        var state = Box.state(listOf(Box.word(1)))
+        state = Box.answered(state, "w01", Rating.Again, now) // introduction: exempt
+        val retry1 = Box.plusSeconds(now, 120)
+        state = Box.answered(state, "w01", Rating.Again, retry1) // 1st lapse, still Learning
+        var sched = state.scheduling.getValue("w01")
+        assertEquals(CardPhase.Learning, sched.phase)
+        assertEquals(1, sched.lapses)
+        assertFalse(sched.suspended)
+
+        val retry2 = Box.plusSeconds(retry1, 120)
+        state = Box.answered(state, "w01", Rating.Again, retry2) // 2nd lapse: suspend
+        sched = state.scheduling.getValue("w01")
+        assertEquals(2, sched.lapses)
+        assertTrue(sched.suspended)
     }
 
     @Test

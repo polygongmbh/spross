@@ -175,18 +175,6 @@
     "gender": "la"
    }
   },
-  "evening": {
-   "text": "tarde",
-   "variants": [
-    "noche"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "kein eigenes Wort für Abend: bis zum Dunkelwerden la tarde, danach la noche — Guten Abend = buenas tardes bzw. buenas noches."
-   }
-  },
   "sit": {
    "text": "sentarse",
    "variants": [

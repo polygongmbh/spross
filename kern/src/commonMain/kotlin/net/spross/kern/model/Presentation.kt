@@ -48,10 +48,10 @@ enum class ProducePrompt {
  * asked from its sound is still being produced — only the prompt side moves, so one FSRS
  * schedule still sees one kind of answer.
  *
- * Two gates and a rotation. [consolidated] is the STRICTER bar
- * ([net.spross.kern.model.BoxConfig.consolidatedStability]) rather than the settled one
- * every other presentation rule uses, because this withdraws the meaning rather than
- * adding support — a word still landing must not have its only cue taken away. [audible]
+ * Two gates and a rotation. [consolidated]
+ * ([net.spross.kern.model.BoxConfig.consolidatedStability]) is the same bar
+ * [emojiCue] reads, from the other side: a word that has landed can spare its meaning,
+ * and one still landing must not have its only cue taken away. [audible]
  * is the device's word (a recording, a voice, and reading aloud switched on), and false
  * falls back to the source prompt rather than blocking: review has another way to ask the
  * same question, so nothing is ever hidden behind a silent phone.
@@ -96,19 +96,33 @@ enum class EmojiCue {
 }
 
 /**
- * Emoji policy. The picture is there from the START iff (first exposure) OR
- * (role == Produce && the word has not settled) — the two places it supports
- * recall without revealing it, since a produce prompt already names the concept
- * in the source language. Everywhere else it waits for the reveal, in every
- * phase: once the answer is out the picture can leak nothing, and binding it to
- * the meaning is exactly what a word still being recognised by novelty needs.
+ * Emoji policy. The picture is there from the START iff role == Produce and the word
+ * has not landed — the one place it supports recall without giving the answer away,
+ * since a produce prompt already names the concept in the source language and asks
+ * for the other one. Everywhere else it waits for the reveal, in every phase: once
+ * the answer is out the picture can leak nothing, and binding it to the meaning is
+ * exactly what a word still matched on novelty needs.
+ *
+ * A RECOGNITION prompt never carries it, the first exposure included. There the
+ * picture depicts the very thing being asked for, so on a self-graded card it is not
+ * a cue but the answer — and "the emoji was obvious" is a verdict about the picture
+ * that the schedule cannot tell apart from one about the word. First exposure is
+ * where that costs most: it is the answer that decides how long the word goes away
+ * for, and a Good bought off an obvious picture buys the same interval a real recall
+ * does.
+ *
+ * Nothing is withheld from a learner meeting the word. The target form is on screen,
+ * its sound plays ([pronunciationCue] is Upfront on every recognition prompt), and
+ * the reveal brings meaning and picture together — which is where a first sight
+ * teaches. Only WHERE the picture lands moved: off the prompt no one can grade
+ * honestly, onto the typed produce turn that comes next, which is the first review
+ * that actually asks the learner to know the word.
  */
 fun emojiCue(
     role: PresentationRole,
-    settled: Boolean,
-    reviewCount: Int,
+    consolidated: Boolean,
 ): EmojiCue =
-    if (reviewCount == 0 || (role == PresentationRole.Produce && !settled)) {
+    if (role == PresentationRole.Produce && !consolidated) {
         EmojiCue.Upfront
     } else {
         EmojiCue.OnReveal

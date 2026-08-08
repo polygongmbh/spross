@@ -66,13 +66,15 @@ class FsrsBehavioralTest {
         assertEquals(365, fsrs.intervalDays(36500.0))
     }
 
-    // FSRS-6 S0(Good) = 2.3065 crosses the settled threshold (2.0) on the first
-    // Good, which with a single learning step is also graduation; S0(Hard) = 1.2931
-    // does not — so a word you knew settles at once and one you struggled with does not.
+    // The bar sits in the gap between the two first answers that pass: FSRS-6
+    // S0(Good) = 2.3065 stays UNDER it while S0(Easy) = 8.2956 clears it. That gap is
+    // what the one landed bar is calibrated for — a first Good is as easily an emoji
+    // recognised as a word recalled, so the word keeps its support into the next
+    // review, and only an Easy (earned by a fast Knew, never picked) lands on sight.
     @Test
-    fun settledThresholdCrossesOnAGoodFirstAnswer() {
+    fun theLandedBarSeparatesAGoodFirstAnswerFromAnEasyOne() {
         val fsrs = Fsrs(productParameters)
-        assertTrue(fsrs.nextMemory(null, 0.0, Rating.Good).stability >= 2.0)
-        assertTrue(fsrs.nextMemory(null, 0.0, Rating.Hard).stability < 2.0)
+        assertTrue(fsrs.nextMemory(null, 0.0, Rating.Good).stability < 6.0)
+        assertTrue(fsrs.nextMemory(null, 0.0, Rating.Easy).stability >= 6.0)
     }
 }
