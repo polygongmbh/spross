@@ -81,7 +81,11 @@ fun OnboardingScreen(model: AppModel) {
         ) {
             catalog.coveredSources().forEach { code ->
                 if (code == source) {
-                    Button(onClick = {}, contentPadding = ButtonDefaults.TextButtonContentPadding) {
+                    Button(
+                        onClick = {},
+                        shape = MaterialTheme.shapes.small,
+                        contentPadding = ButtonDefaults.TextButtonContentPadding,
+                    ) {
                         Text(label(code), maxLines = 1)
                     }
                 } else {
@@ -95,6 +99,7 @@ fun OnboardingScreen(model: AppModel) {
                                 )
                             )
                         },
+                        shape = MaterialTheme.shapes.small,
                         contentPadding = ButtonDefaults.TextButtonContentPadding,
                     ) {
                         Text(label(code), maxLines = 1)
@@ -129,6 +134,7 @@ fun OnboardingScreen(model: AppModel) {
             onClick = { target?.let { model.completeOnboarding(source, it) } },
             enabled = target != null,
             modifier = Modifier.fillMaxWidth(),
+            shape = MaterialTheme.shapes.small,
         ) {
             Text(chrome.letsGo)
         }

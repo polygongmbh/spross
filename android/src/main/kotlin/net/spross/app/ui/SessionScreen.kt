@@ -122,7 +122,11 @@ private fun RecognizeCard(model: AppModel, ui: SessionUi) {
         )
         if (!revealed) {
             Spacer(Modifier.weight(1f))
-            Button(onClick = { revealed = true }, modifier = Modifier.fillMaxWidth()) {
+            Button(
+                onClick = { revealed = true },
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.small,
+            ) {
                 Text(chrome.reveal)
             }
         } else {
@@ -177,12 +181,20 @@ private fun Summary(model: AppModel, ui: SessionUi) {
         // The offer stands only while there is something behind it: a refill that would
         // come back dry leaves the button doing nothing when tapped.
         if (ui.canPracticeMore) {
-            OutlinedButton(onClick = { model.continueEndless() }, modifier = Modifier.fillMaxWidth()) {
+            OutlinedButton(
+                onClick = { model.continueEndless() },
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.small,
+            ) {
                 Text(chrome.keepPracticing)
             }
             Spacer(Modifier.height(8.dp))
         }
-        Button(onClick = { model.finishSession() }, modifier = Modifier.fillMaxWidth()) {
+        Button(
+            onClick = { model.finishSession() },
+            modifier = Modifier.fillMaxWidth(),
+            shape = MaterialTheme.shapes.small,
+        ) {
             Text(chrome.finish)
         }
     }

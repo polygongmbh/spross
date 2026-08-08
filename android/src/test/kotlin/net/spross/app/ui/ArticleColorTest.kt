@@ -8,7 +8,8 @@ import net.spross.kern.model.Realization
 
 /**
  * The article device: which article each hue answers for, and where the article on a
- * card comes from. Both are pure functions, so neither needs a device to be pinned.
+ * card comes from. Both are pure functions, so neither needs a device to be pinned —
+ * the palette they resolve against is passed in rather than read from a composition.
  */
 class ArticleColorTest {
 
@@ -20,30 +21,47 @@ class ArticleColorTest {
 
     @Test
     fun spanishSharesTheGermanHues() {
-        assertEquals(articleTint("der"), articleTint("el"))
-        assertEquals(articleTint("die"), articleTint("la"))
+        assertEquals(DlLight.articleTint("der"), DlLight.articleTint("el"))
+        assertEquals(DlLight.articleTint("die"), DlLight.articleTint("la"))
     }
 
     @Test
     fun pluralAndIndefiniteArticlesFollowTheirGender() {
-        assertEquals(articleTint("el"), articleTint("los"))
-        assertEquals(articleTint("el"), articleTint("un"))
-        assertEquals(articleTint("la"), articleTint("las"))
-        assertEquals(articleTint("la"), articleTint("una"))
+        assertEquals(DlLight.articleTint("el"), DlLight.articleTint("los"))
+        assertEquals(DlLight.articleTint("el"), DlLight.articleTint("un"))
+        assertEquals(DlLight.articleTint("la"), DlLight.articleTint("las"))
+        assertEquals(DlLight.articleTint("la"), DlLight.articleTint("una"))
     }
 
     @Test
     fun twoGenderLanguagesNeverReachTheNeuter() {
-        val neuter = articleTint("das")
+        val neuter = DlLight.articleTint("das")
         for (article in listOf("el", "la", "los", "las", "un", "una")) {
-            assertTrue(articleTint(article) != neuter, "$article took the neuter hue")
+            assertTrue(DlLight.articleTint(article) != neuter, "$article took the neuter hue")
         }
     }
 
     @Test
     fun anUnknownOrAbsentArticleIsNeutral() {
-        assertNull(articleTint(null))
-        assertNull(articleTint("the"))
+        assertNull(DlLight.articleTint(null))
+        assertNull(DlLight.articleTint("the"))
+    }
+
+    /**
+     * Each gender reaches for its own token, in whichever scheme it is asked.
+     * The hexes those tokens carry belong to `App/Sources/Design/Theme.swift` and are
+     * held to it by kern's `PaletteParityTest`; what is this test's is the mapping.
+     */
+    @Test
+    fun eachGenderReachesForItsOwnTokenInBothSchemes() {
+        for (palette in listOf(DlLight, DlDark)) {
+            assertEquals(palette.der, palette.articleTint("der"))
+            assertEquals(palette.die, palette.articleTint("die"))
+            assertEquals(palette.das, palette.articleTint("das"))
+        }
+        // The two columns really are two: a tint that ignored its palette would satisfy
+        // every mapping above while painting light hues onto a dark screen.
+        assertTrue(DlLight.articleTint("der") != DlDark.articleTint("der"))
     }
 
     /**
@@ -52,29 +70,29 @@ class ArticleColorTest {
      */
     @Test
     fun theArticleComesFromGrammarNotFromTheFirstWord() {
-        val toothpaste = articleColoredText(noun("es", "pasta de dientes", "la"))
+        val toothpaste = DlLight.articleColoredText(noun("es", "pasta de dientes", "la"))
         assertEquals("la pasta de dientes", toothpaste.text)
         assertEquals(listOf(0 to 2), toothpaste.spanStyles.map { it.start to it.end })
-        assertEquals(articleTint("la"), toothpaste.spanStyles.single().item.color)
+        assertEquals(DlLight.articleTint("la"), toothpaste.spanStyles.single().item.color)
     }
 
     @Test
     fun aSingleWordNounStillGetsItsArticle() {
-        val fridge = articleColoredText(noun("de", "Kühlschrank", "der"))
+        val fridge = DlLight.articleColoredText(noun("de", "Kühlschrank", "der"))
         assertEquals("der Kühlschrank", fridge.text)
-        assertEquals(articleTint("der"), fridge.spanStyles.single().item.color)
+        assertEquals(DlLight.articleTint("der"), fridge.spanStyles.single().item.color)
     }
 
     @Test
     fun aPluraliaTantumNounShowsThePluralArticle() {
-        val holiday = articleColoredText(noun("es", "vacaciones", "las"))
+        val holiday = DlLight.articleColoredText(noun("es", "vacaciones", "las"))
         assertEquals("las vacaciones", holiday.text)
-        assertEquals(articleTint("la"), holiday.spanStyles.single().item.color)
+        assertEquals(DlLight.articleTint("la"), holiday.spanStyles.single().item.color)
     }
 
     @Test
     fun aGenderlessTargetRendersTheTextAndNothingElse() {
-        val house = articleColoredText(noun("sw", "nyumba"))
+        val house = DlLight.articleColoredText(noun("sw", "nyumba"))
         assertEquals("nyumba", house.text)
         assertTrue(house.spanStyles.isEmpty())
     }
@@ -82,6 +100,6 @@ class ArticleColorTest {
     /** es `internet` is the one noun that deliberately carries no gender (RAE). */
     @Test
     fun aNounWithoutAGenderRendersLikeAGenderlessLanguage() {
-        assertEquals("internet", articleColoredText(noun("es", "internet")).text)
+        assertEquals("internet", DlLight.articleColoredText(noun("es", "internet")).text)
     }
 }

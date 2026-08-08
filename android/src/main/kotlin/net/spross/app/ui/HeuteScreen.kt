@@ -76,7 +76,10 @@ fun HeuteScreen(model: AppModel) {
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     Text(chrome.trainingTitle, style = MaterialTheme.typography.titleMedium)
-                    OutlinedButton(onClick = { model.startLetterDrill() }) {
+                    OutlinedButton(
+                        onClick = { model.startLetterDrill() },
+                        shape = MaterialTheme.shapes.small,
+                    ) {
                         Text("🔤 ${chrome.lettersTitle}")
                     }
                 }
@@ -85,7 +88,11 @@ fun HeuteScreen(model: AppModel) {
 
         Spacer(Modifier.weight(1f))
         if (model.sessionAvailable) {
-            Button(onClick = { model.startSession() }, modifier = Modifier.fillMaxWidth()) {
+            Button(
+                onClick = { model.startSession() },
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.small,
+            ) {
                 Text(chrome.practice, style = MaterialTheme.typography.titleMedium)
             }
         } else {
@@ -100,6 +107,7 @@ fun HeuteScreen(model: AppModel) {
                 OutlinedButton(
                     onClick = { model.startExtraSession() },
                     modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.small,
                 ) {
                     Text(chrome.extraRound)
                 }

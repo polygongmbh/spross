@@ -236,9 +236,6 @@ One line per item, with a file or context pointer, filed under the section it be
 
 - Android not yet ported: Box browse, trainers, widget, 14-day strip, confetti/haptics
   (`surfaces.md` § Android companion).
-- Android carries its own unrelated palette (`android/.../ui/Theme.kt`) that never went
-  through the contrast pass — it predates the ocean/forest re-cut and shares no values
-  with `Design/Theme.swift`.
 - Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
   deferred per user 2026-08-08.
 - Audio ships un-thinned: `catalog/audio/` is 26 MB (de 4.9, es 7.2, sw 5.2, uk 9.0) and

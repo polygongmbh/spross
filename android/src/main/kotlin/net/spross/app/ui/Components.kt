@@ -36,23 +36,32 @@ import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
 import net.spross.kern.session.AnswerTone
 
-/** Answer-colored progress bar: one segment per answer, grey track for the rest. */
+/**
+ * Answer-colored progress bar: one segment per answer, a recessed track for the rest.
+ *
+ * The brick is the AGGREGATE's alone — this bar is the only place a wrong answer is shown
+ * as one, and no card ever repeats it back at the learner.
+ */
 @Composable
 fun SegmentsBar(segments: List<AnswerTone>, remaining: Int, modifier: Modifier = Modifier) {
+    val palette = Dl.colors
     Row(
         modifier = modifier.fillMaxWidth().height(6.dp),
         horizontalArrangement = Arrangement.spacedBy(2.dp),
     ) {
         segments.forEach { tone ->
             val color = when (tone) {
-                AnswerTone.Right -> ToneRight
-                AnswerTone.Tough -> ToneTough
-                AnswerTone.Wrong -> ToneWrong
+                AnswerTone.Right -> palette.success
+                AnswerTone.Tough -> palette.amber
+                AnswerTone.Wrong -> palette.wrong
             }
             Box(Modifier.weight(1f).height(6.dp).background(color, RoundedCornerShape(3.dp)))
         }
         repeat(remaining) {
-            Box(Modifier.weight(1f).height(6.dp).background(TrackGrey, RoundedCornerShape(3.dp)))
+            Box(
+                Modifier.weight(1f).height(6.dp)
+                    .background(palette.surfaceTint, RoundedCornerShape(3.dp))
+            )
         }
     }
 }
@@ -60,11 +69,14 @@ fun SegmentsBar(segments: List<AnswerTone>, remaining: Int, modifier: Modifier =
 /** Again/Hard/Good/Easy self-grade row (recognize + produce fallback). */
 @Composable
 fun RatingButtons(chrome: Chrome, onRate: (Rating) -> Unit, modifier: Modifier = Modifier) {
+    val palette = Dl.colors
     Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        RatingButton(chrome.again, ToneWrong, Modifier.weight(1f)) { onRate(Rating.Again) }
-        RatingButton(chrome.hard, ToneTough, Modifier.weight(1f)) { onRate(Rating.Hard) }
-        RatingButton(chrome.good, ToneRight, Modifier.weight(1f)) { onRate(Rating.Good) }
-        RatingButton(chrome.easy, Color(0xFF3B6FCB), Modifier.weight(1f)) { onRate(Rating.Easy) }
+        RatingButton(chrome.again, palette.wrong, Modifier.weight(1f)) { onRate(Rating.Again) }
+        RatingButton(chrome.hard, palette.amber, Modifier.weight(1f)) { onRate(Rating.Hard) }
+        RatingButton(chrome.good, palette.success, Modifier.weight(1f)) { onRate(Rating.Good) }
+        // The fourth verdict this platform still offers takes the secondary accent: the
+        // article blue is the grammar's, and a rating must never borrow it.
+        RatingButton(chrome.easy, palette.teal, Modifier.weight(1f)) { onRate(Rating.Easy) }
     }
 }
 
@@ -73,7 +85,13 @@ private fun RatingButton(label: String, color: Color, modifier: Modifier, onClic
     Button(
         onClick = onClick,
         modifier = modifier,
-        colors = ButtonDefaults.buttonColors(containerColor = color, contentColor = Color.White),
+        shape = MaterialTheme.shapes.small,
+        // The ink cut for accent fills, never white: in the dark the accents are pastels
+        // and white sinks to about 1.8:1 on them.
+        colors = ButtonDefaults.buttonColors(
+            containerColor = color,
+            contentColor = Dl.colors.onColor,
+        ),
         contentPadding = ButtonDefaults.TextButtonContentPadding,
     ) {
         Text(label, maxLines = 1)
@@ -131,7 +149,7 @@ fun localizedTarget(text: String, lang: Language): AnnotatedString =
  * *pasta de dientes* would have rendered its own head tinted as though *pasta* were an
  * article. Genderless targets render exactly the text and nothing else.
  */
-fun articleColoredText(realization: Realization): AnnotatedString {
+fun DlColors.articleColoredText(realization: Realization): AnnotatedString {
     val article = CardDisplay.article(realization) ?: return AnnotatedString(realization.text)
     return buildAnnotatedString {
         withStyle(SpanStyle(color = articleTint(article) ?: Color.Unspecified)) { append(article) }
@@ -156,7 +174,7 @@ fun TargetReveal(
 ) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Text(
-            localizedTarget(articleColoredText(target), target.lang),
+            localizedTarget(Dl.colors.articleColoredText(target), target.lang),
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.pronounceOnTap(pronounce, chrome),
         )

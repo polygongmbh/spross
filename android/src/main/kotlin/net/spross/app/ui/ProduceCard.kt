@@ -214,6 +214,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                         mode = ProduceMode.SelfGrade
                     },
                     modifier = Modifier.weight(1f),
+                    shape = MaterialTheme.shapes.small,
                 ) {
                     Text(chrome.reveal)
                 }
@@ -221,6 +222,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                     onClick = { check() },
                     enabled = input.isNotBlank(),
                     modifier = Modifier.weight(1f),
+                    shape = MaterialTheme.shapes.small,
                 ) {
                     Text(chrome.check)
                 }
@@ -234,11 +236,11 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                 Text(
                     localizedTarget("✓ ${card.target.text}", card.target.lang),
                     style = MaterialTheme.typography.titleLarge,
-                    color = ToneRight,
+                    color = Dl.colors.success,
                 )
             }
             is ProduceMode.Typo -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(chrome.typoNote, color = ToneTough,
+                Text(chrome.typoNote, color = Dl.colors.amber,
                     style = MaterialTheme.typography.bodyMedium)
                 TargetReveal(
                     card.target, chrome,
@@ -247,13 +249,14 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                 Button(
                     onClick = { model.answerCurrent(pendingRating ?: Rating.Hard) },
                     modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.small,
                 ) {
                     Text(chrome.next)
                 }
             }
             is ProduceMode.Heard -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 // why: same slot as the typo note — both say what became of the answer.
-                Text(chrome.heardInstead.format(current.spoken), color = ToneTough,
+                Text(chrome.heardInstead.format(current.spoken), color = Dl.colors.amber,
                     style = MaterialTheme.typography.bodyMedium)
                 TargetReveal(
                     card.target, chrome,
@@ -262,6 +265,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                 Button(
                     onClick = { model.answerCurrent(pendingRating ?: Rating.Hard) },
                     modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.small,
                 ) {
                     Text(chrome.next)
                 }
@@ -280,6 +284,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                 Button(
                     onClick = { model.answerCurrent(Rating.Again) },
                     modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.small,
                 ) {
                     Text(chrome.next)
                 }
@@ -292,6 +297,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi) {
                 Button(
                     onClick = { model.answerCurrent(Rating.Again) },
                     modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.small,
                 ) {
                     Text(chrome.next)
                 }

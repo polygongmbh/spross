@@ -232,10 +232,13 @@ private fun UnmuteRow(model: AppModel, task: LetterDrillTask, chrome: Chrome) {
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        OutlinedButton(onClick = {
-            model.pronouncer.muted = false
-            model.playLetterPrompt(task, Pronouncer.Trigger.TAP)
-        }) {
+        OutlinedButton(
+            onClick = {
+                model.pronouncer.muted = false
+                model.playLetterPrompt(task, Pronouncer.Trigger.TAP)
+            },
+            shape = MaterialTheme.shapes.small,
+        ) {
             Text(chrome.enableSound)
         }
     }
@@ -262,6 +265,7 @@ private fun Summary(model: AppModel, flow: LetterDrillFlow, chrome: Chrome) {
         Button(
             onClick = { model.closeLetterDrill() },
             modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+            shape = MaterialTheme.shapes.small,
         ) {
             Text(chrome.finish)
         }

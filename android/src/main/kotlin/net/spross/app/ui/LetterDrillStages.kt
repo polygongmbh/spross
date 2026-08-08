@@ -82,14 +82,18 @@ private fun ChoiceTile(
         answered && isChosen -> "✗"
         else -> null
     }
+    val palette = Dl.colors
     val fill = when {
-        answered && isAnswer -> ToneRight.copy(alpha = 0.18f)
-        answered && isChosen -> ToneWrong.copy(alpha = 0.18f)
-        else -> MaterialTheme.colorScheme.surface
+        answered && isAnswer -> palette.wash(palette.success)
+        answered && isChosen -> palette.wash(palette.wrong)
+        // A tile is a recessed slot, not a card: it takes the chip fill, so an
+        // unanswered one still reads as a tile against the paper behind it.
+        else -> palette.surfaceTint
     }
     OutlinedButton(
         onClick = onClick,
         enabled = !answered,
+        shape = MaterialTheme.shapes.medium,
         modifier = modifier.heightIn(min = 72.dp).semantics {
             contentDescription = chrome.letterChoice.format(glyph)
             if (answered && isAnswer) stateDescription = chrome.answerCorrect
@@ -138,6 +142,7 @@ fun TypedStage(
             Button(
                 onClick = { if (flow.input.isBlank()) flow.reveal() else flow.submit() },
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+                shape = MaterialTheme.shapes.small,
             ) {
                 Text(if (flow.input.isBlank()) chrome.reveal else chrome.check)
             }
@@ -175,9 +180,14 @@ private fun AnswerLine(flow: LetterDrillFlow, chrome: Chrome, screenReader: Bool
         }
         LetterFeedback.Idle -> null
     }
+    val palette = Dl.colors
     val tone = when (feedback) {
-        is LetterFeedback.Revealed -> ToneWrong
-        else -> if ((feedback as LetterFeedback.Correct).correction == null) ToneRight else ToneTough
+        is LetterFeedback.Revealed -> palette.wrong
+        else -> if ((feedback as LetterFeedback.Correct).correction == null) {
+            palette.success
+        } else {
+            palette.amber
+        }
     }
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         note?.let {
@@ -197,6 +207,7 @@ private fun AnswerLine(flow: LetterDrillFlow, chrome: Chrome, screenReader: Bool
             Button(
                 onClick = { flow.next() },
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+                shape = MaterialTheme.shapes.small,
             ) {
                 Text(chrome.next)
             }
