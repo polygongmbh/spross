@@ -76,10 +76,12 @@ auto-advance beats these share with it, are `design.md`'s.
 
 ## Android companion (core loop)
 
-`android/` renders THIS contract with Compose — same engine facades, same review UX
-rules. Platform deltas only: the catalog ships as APK assets synced from `catalog/`,
-and the box is app-private and written after every answer rather than debounced.
-Its scope is § Not yet.
+`android/` renders THIS contract with Compose — same engine facades, and since the turn
+moved into kern the same review rules by construction, not by porting discipline.
+Platform deltas only: the catalog ships as APK assets synced from `catalog/`,
+the box is app-private and written after every answer rather than debounced,
+and verdict cues are haptic where iOS also chimes.
+Its scope is `design.md` § Not yet.
 
 ## Watch & widgets (decode-only)
 

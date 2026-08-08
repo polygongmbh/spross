@@ -3,16 +3,13 @@
 Audit of 2026-08-03, sweeping `App/`, `Watch/`, `Widgets/`, `Shared/` against `kern/` and `android/`.
 Delete this file once the moves it lists have shipped.
 
-**Shipped:** moves 1 and 3, and every "smaller" bullet except the ones still listed below.
-The four drifts are closed — the run, the offer, the covered languages, the calibration,
-the article table, the streak walk, the area buckets and the day helpers are kern's,
-and both apps read them. `android/SessionFlow.kt` is gone.
-What is left is moves 2, 4, 5, 6 and the remainder of the small list.
-
-**Half-shipped (2026-08-08):** move 2 and most of the small list now have kern homes
-and iOS reads them — Android still restates each,
-so nothing new is struck: the bar for shipped is both apps reading kern.
-The per-item status is annotated below.
+**Shipped (2026-08-08):** moves 1, 2 and 3, and the whole vocab-loop small list —
+the run, the turn, the offer and its summary, the covered languages, the calibration,
+the article table, the streak walk, the area buckets, the day helpers, the box browser,
+the today report and the chrome-language rule are kern's, and both apps read them.
+`android/SessionFlow.kt` is gone.
+What is left is drill/watch territory only: moves 4, 5 and 6 (6 deferred per user 2026-08-08)
+and the drill/watch bullets at the end of the small list.
 
 The native layers should own aesthetics and device facts only:
 layout, animation, focus, haptics, audio engines, widget timelines, accessibility flags, string tables.
@@ -83,14 +80,14 @@ No new kern dependency; data classes already cross the boundary.
 
 1. ~~**`session/SessionRun`**~~ — shipped. `canPracticeMore`/`canPracticeExtra`/`sessionAvailable`
    landed in `SessionOffer.kt` rather than `SessionRun.kt`: they are box queries, not run state.
-2. **`session/Turn`** — kern-side shipped as `session/TurnMachine.kt` + `TurnWriteOut.kt`:
+2. ~~**`session/Turn`**~~ — shipped as `session/TurnMachine.kt` + `TurnWriteOut.kt`:
    feedback state × revealed × typo × heardInstead × otherWord × retry,
    which rating each branch fires, the copy-step predicate and the recall-timing capture,
    folding in `SelfGrading` + `CatalogAnswerGrader`.
-   iOS now dispatches every turn intent through it and keeps only input, focus, animation, sound.
-   Android still restates the turn in its session screen —
-   its four divergences (pickable Easy, no write-out, no retry, answer shown in the field on reveal)
-   disappear by construction once it adopts.
+   Both apps dispatch every turn intent through it and keep only input, focus, animation
+   and cues (iOS `SessionView+Turn.swift`, Android `TurnFlow.kt`);
+   Android's four divergences (pickable Easy, no write-out, no retry,
+   answer shown in the field on reveal) disappeared by construction on adoption.
 3. ~~**Profile activation + `BoxConfig.product()`**~~ — shipped as `coveredSources()`/`defaultSource()`
    plus `BoxConfig.product()` and `BoxState.withProductCalibration()`. `availableTargets` keeps its
    `require` deliberately: the safe query is now the one a launch reaches for, and an unknown source
@@ -110,38 +107,34 @@ No new kern dependency; data classes already cross the boundary.
 
 ## Smaller — what is left
 
-Shipped from this list: `session/SessionOffer` (its FNV now hashes UTF-8 bytes, so a round may pick a
-different one of its three phrasings than Swift's per-process hash did — intended),
-`model/Article.kt` (`articleGender` + `shownArticle`), `box/Statistics` (`streakWindow`, `learningCount`,
-the area buckets), `box/Time` (`dayKey`/`endOfTomorrow` public).
+Shipped from this list, both apps reading kern:
+
+- `session/SessionOffer` (its FNV now hashes UTF-8 bytes, so a round may pick a
+  different one of its three phrasings than Swift's per-process hash did — intended),
+  including `summaryParts()` — the reviews+ahead merge / Auffrischer / fresh-append rule;
+  its empty list is deliberately each surface's own fallback phrase, the `tallyParts` contract.
+- `model/Article.kt` (`articleGender` + `shownArticle`), `box/Statistics` (`streakWindow`,
+  `learningCount`, the area buckets), `box/Time` (`dayKey`/`endOfTomorrow` public).
+- `catalog/LanguageChoices` — the swap rule (`targetChoices`/`pickSource`/`pickTarget`),
+  `pickerRow`/`pickerLabel`, and `chromeLanguage`/`hasChrome`:
+  all three copies are gone (`android/LanguagePicker.kt` deleted;
+  iOS `AppModel` and Android `Chrome.forSource` both read kern for the en fallback).
+- `catalog/Playback` (`gainDb`/`headMs`) and `catalog/VoiceSelection`
+  (`select` on iOS, `preferredTag` on Android — two halves of the same object).
+- `model` plural sentinel and alternates-minus-shown as `pluralForm`/`alternates`;
+  `Card.alsoAccepts` as `session/SpokenAnswer.kt` (iOS keeps a one-line wrapper).
+- `box/BoxBrowser` — grouping/ordering/`enqueueableCount`/`enqueueableCardIds`
+  (the count and the enqueue share one predicate) and `CardRowState`,
+  whose `Standing` owns the seal-follows-consolidated invariant `PhaseBadge` used to state.
+- `box/TodayReport` — `worked`, `tallyParts`, `tomorrowNote`, `completionTallyParts`.
 
 `Watch/`, `Widgets/` and `WatchWidgets/` keep their gender-table and streak-walk copies — those targets
 do not link Kotlin, so the duplication is forced there and only there. Their comments should point at
 `model/Article.kt` and `box/Statistics.kt` as the canonical version. On Android, where widgets are
 in-process, no such copy may exist.
 
-Kern-side landed and adopted on iOS (2026-08-08) — Android's restatements are what keeps each listed:
+Still without the kern home the audit asked for (all drill/watch-scoped):
 
-- `catalog/LanguageChoices` — `targetChoices`/`pickSource`/`pickTarget` deleted both Swift statements
-  of the swap rule (`OnboardingView` + `BoxSettingsSection`); Kotlin's lossy third copy is what remains.
-  `pickerRow`/`pickerLabel` likewise.
-- `catalog/Playback` — `gainDb`/`headMs` (iOS reads them; `android/audio/PlaybackIndex.kt` still copies).
-  `catalog/VoiceSelection` — iOS reads `select`, which carries the `es ⇒ es-ES` distinción rule;
-  `preferredTag` is deliberately the Android half of the same object, not an unfinished adoption.
-- `model` — plural sentinel and alternates-minus-shown are `pluralForm`/`alternates` now,
-  `Card.alsoAccepts` is `session/SpokenAnswer.kt` (iOS keeps a one-line wrapper);
-  Android's `CardDisplay.kt` still agrees in a second file.
-- `box/BoxBrowser` — grouping/ordering/`enqueueableCount`/`enqueueableCardIds`
-  (the count and the enqueue share one predicate now) and `CardRowState`,
-  whose `Standing` also owns the seal-follows-consolidated invariant `PhaseBadge` used to state.
-- `box/TodayReport` — `worked`, `tallyParts`, `tomorrowNote`, `completionTallyParts`.
-
-Still without the kern home the audit asked for:
-
-- `SessionOffer.summaryParts()` — never landed: `HeuteView.sessionSummary(_:)` still states the
-  reviews+ahead merge / Auffrischer / fresh-append / fallback rule in Swift, and Android restates it lossily.
-- `chromeLanguage(source)` — kern has `LanguageChoices.CHROME_LANGUAGES`/`chromeLanguage`/`hasChrome`,
-  but iOS (`AppModel.swift:85,260-277`) and Android both still hold their own copies.
 - `session/MultipleChoice.question` — the watch samples and shuffles kern's ranked shortlist in Swift
   (`WatchPracticeQuestion.swift:24-49`); `RecognitionGrading` — latency→rating
   (`WatchGrading.swift:14-29`), the sibling of `SelfGrading.kt:33-51`.

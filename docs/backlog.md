@@ -239,11 +239,18 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## Platform reach
 
-- Android not yet ported: Box browse, trainers, widget, 14-day strip, confetti/haptics
-  (`surfaces.md` § Android companion).
-- Android Heute now carries a 📦 door to a stub Box screen; if the box body slips a release,
-  remove that one TextButton first (`android/.../ui/HeuteScreen.kt`) —
-  a door to a blank screen is worse than no door.
+- Android surfaces still unported: `design.md` § Not yet owns the list; chimes additionally
+  need `res/raw/` assets, a small player and a licence line in `audio-licensing.md`.
+- Android produce prompts show no area cue on `card.promptAmbiguous` — AppModel lacks an
+  `areaTitle` lookup (iOS `SessionView.swift:193`).
+- Android back doors land on Heute even when opened from the box: `closeAbout()`,
+  `cancelOnboarding()` and `activate()` all end at `Screen.Heute` (`android/.../AppModel.kt`).
+- Android Heute's failure card and the `error*`/`growth*` chrome are wired but unreachable:
+  AppModel has no load-failure state yet and the round summary does not render growth.
+- Dead after the wave-3 Android sweep, prune in one pass: Chrome `easy`/`again`/`summaryLine`/
+  `typoNote`/`practice`/`emptyState`/`dueLabel`/`consolidatedLabel`/`freshLabel`,
+  `ui/Components.kt` `RatingButtons`, and `AppModel.sessionAvailable`/`canPracticeExtra`
+  (unread since `HeuteStanding`).
 - `ic_launcher_background` still holds retired-palette `#FF2E6B34`
   (`android/src/main/res/values/colors.xml`) — the adaptive-icon plate, not the window.
 - Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
