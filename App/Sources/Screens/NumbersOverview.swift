@@ -113,6 +113,7 @@ struct NumbersOverview: View {
         levels.merge(Self.uitestProgress) { _, seeded in seeded }
         #endif
         progress = levels
+        normalizePicks()
         #if DEBUG
         // why: a cover raised while the sheet under it is still animating in is
         // dropped — the tap this stands in for always comes after that.

@@ -11,6 +11,13 @@ extension NumbersOverview {
             heading("overview.practice")
             VStack(alignment: .leading, spacing: DL.Space.s) {
                 ForEach(offered, id: \.self) { variantRow($0) }
+                if !combining {
+                    Text("numbers.combine.locked")
+                        .font(DL.Fonts.caption)
+                        .foregroundStyle(Color.dlTextSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.horizontal, DL.Space.m)
+                }
             }
             VStack(alignment: .leading, spacing: DL.Space.l) {
                 ForEach(DrillModifier.allCases, id: \.self) { modifierRow($0) }
@@ -41,20 +48,45 @@ extension NumbersOverview {
 
     // MARK: - What a run asks
 
+    /// Mixing several exercises into one run is itself earned: while any offered
+    /// variant is still locked the list is a radio — one exercise at a time —
+    /// and it turns into checkboxes only once the ladder is fully open. A learner
+    /// who has just met the clock is asked to climb it, not to dilute it.
+    var combining: Bool { offered.allSatisfy(unlocked) }
+
     private func variantRow(_ variant: DrillVariant) -> some View {
         let open = unlocked(variant)
         return DLSelectionRow(
             title: Text(verbatim: "\(variant.trainerEmoji) ") + Text(variant.trainerTitleKey),
             caption: open ? nil : unlockCaption(DrillUnlocks.shared.requirements(variant: variant)),
-            mark: open ? .many : .locked,
+            mark: open ? (combining ? .many : .one) : .locked,
             selected: open && picked.contains(variant)
         ) {
+            guard combining else {
+                // why: a radio never empties — `Los` would have nothing to open,
+                // so tapping the chosen row leaves it chosen.
+                picked = [variant]
+                return
+            }
             if picked.contains(variant) {
                 picked.remove(variant)
             } else {
                 picked.insert(variant)
             }
         }
+    }
+
+    /// Keeps the picks answerable by the list as it now stands: one of them
+    /// while the ladder is a radio, and never one whose row is a padlock.
+    /// Called whenever the ladder is (re)read — a run can open a rung, and a
+    /// screenshot seed can hand the page a ladder the picks predate.
+    func normalizePicks() {
+        picked = picked.filter(unlocked)
+        guard !combining else { return }
+        // why: a Set has no first — the ladder's own order decides which of
+        // several survives, so the same state always collapses the same way.
+        let one = offered.first { picked.contains($0) } ?? offered.first(where: unlocked)
+        picked = one.map { [$0] } ?? []
     }
 
     // MARK: - How it is played
