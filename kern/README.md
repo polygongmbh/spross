@@ -689,6 +689,34 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   and Gradle does not track those Swift/Kotlin sources as test inputs:
   after a palette-only edit, run with `--rerun-tasks`.
 
+## 8. Trainer & drill runs   (package `net.spross.kern.trainer`)
+
+- A drill run is a **pure machine** shaped like §6's turn machine:
+  `open(mode, rng) → state`, `reduce(state, intent, rng) → state + effects`,
+  `close(state, …) → summary + bookings`.
+  `TrainerRun` drives the numbers/clock/forms/phrases trainer, `LetterDrillRun` the letter drill;
+  platforms keep field, keyboard, focus, timers and audio, and text reaches the machine only inside intents —
+  never as state.
+- **One injected `Random` per run** feeds every draw — task, variant, phrase frame, direction flip —
+  so a seeded run is reproducible end to end and identical on both platforms.
+- Feedback and cues reuse §6's vocabulary
+  (`TurnFeedback`, `AlmostReason`, `AnswerTone`, `AdvanceTier`, `ToneKind`);
+  nothing new is minted where kern already names a rule.
+  `StreakTier` names the summary ladder (≥10 / ≥5 / ≥2 / else);
+  which glyph a tier wears is chrome.
+  The clean counter is `cleanCount` over `done` — the "2/3" string is rendering.
+- **Storage contract**: the streak record under `trainer.record.<key>`,
+  per-variant rung progress under `trainer.level.<key>`
+  (`TrainerMode.RECORD_PREFIX` / `PROGRESS_PREFIX`, keys byte-identical across the two stores).
+  `close` returns only bookings that beat the standing value (strictly greater);
+  the platform writes blindly.
+  Pinned quirk: a non-null `phraseSource` suffixes the record language with the
+  `<source>-<target>` pair even when the run asks no sentence,
+  because the overview passes the source whenever the pair realizes frames.
+- **Closing books exactly as Weiter would** — a pending answer keeps its earned tone,
+  never upgraded (a hint-assisted clean answer closes amber) and never lost;
+  a revealed-but-unconfirmed answer books nothing.
+
 ## Rejected designs
 
 Roads not taken — never built, so there is no diff to find them in.
