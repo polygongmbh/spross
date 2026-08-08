@@ -88,7 +88,7 @@ struct OwnWordFormView: View {
             Text(label)
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
-            TextField("", text: text)
+            TextField(text: text) { EmptyView() }
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextPrimary)
                 .autocorrectionDisabled()

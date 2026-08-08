@@ -54,7 +54,16 @@ UNEXTRACTABLE = {
     # no extractor follows an accessibilityLabel built at runtime either way.
     'a11y.letterChoice %@',
     'lang.de', 'lang.en', 'lang.es', 'lang.sw', 'lang.uk',
+    # The Box's own-words area title, resolved through DLChrome like the above.
+    'box.ownWords',
 }
+# Whole families built at runtime — a stem plus the variant kern picked this round
+# (`AppModel+Queries.headlineKey`, `SessionCompletionView.growthKey`). The words are
+# ours, the choice is not, so no call site ever spells the key out.
+COMPOSED = (
+    'heute.session.reviews.', 'heute.session.warmUp.', 'heute.session.freshSet.',
+    'session.finished.growth.',
+)
 
 
 def compiler_keys():
@@ -124,6 +133,8 @@ def main():
             for key in sorted(emitted - set(strings)):
                 problems.append('%s: in the code, missing from the catalog' % key)
             for key in sorted(set(strings) - emitted):
+                if key.startswith(COMPOSED):
+                    continue
                 problems.append('%s: in the catalog, no longer in the code' % key)
 
     if stale:

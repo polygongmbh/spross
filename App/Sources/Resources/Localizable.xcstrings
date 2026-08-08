@@ -1859,22 +1859,6 @@
         }
       }
     },
-    "letters.heardInstead %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gehört war: %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You heard: %@"
-          }
-        }
-      }
-    },
     "letters.spell" : {
       "localizations" : {
         "de" : {
@@ -2099,22 +2083,6 @@
         }
       }
     },
-    "progress.consolidated" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gefestigt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Consolidated"
-          }
-        }
-      }
-    },
     "progress.consolidatedCount %@" : {
       "localizations" : {
         "de" : {
@@ -2127,22 +2095,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ consolidated"
-          }
-        }
-      }
-    },
-    "progress.fresh" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Frisch"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fresh"
           }
         }
       }
@@ -2191,22 +2143,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Progress"
-          }
-        }
-      }
-    },
-    "progress.today %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "+%@ heute"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "+%@ today"
           }
         }
       }
@@ -2719,22 +2655,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ reviewed"
-          }
-        }
-      }
-    },
-    "session.typoCorrection %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fast! Richtig geschrieben: %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Almost! Correct spelling: %@"
           }
         }
       }
