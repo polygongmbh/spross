@@ -43,7 +43,15 @@
   }
 }
 
-:root { color-scheme: light dark; }
+:root {
+  color-scheme: light dark;
+  /* a rail with notches — flat colour cannot show that you are climbing it */
+  --rail: repeating-linear-gradient(
+    to bottom,
+    var(--stem) 0 18px,
+    color-mix(in srgb, var(--stem) 68%, transparent) 18px 26px
+  );
+}
 
 * { box-sizing: border-box; }
 
@@ -171,8 +179,33 @@ header.site .mast-link:hover { text-decoration: underline; }
 
 /* ---------- features ---------- */
 
-/* The section IS the ladder: two rails down the sides, and each idea stands
-   in the gap between two Sprossen. No boxes — a ladder has none. */
+/* One ladder for the whole climb: the rails start under the hero, carry the
+   Sprossen, and keep going — behind the drill and the signup, never stopping
+   at a section edge. The notches in the rails drift as you scroll (below). */
+.climb { position: relative; }
+
+.climb > * { position: relative; z-index: 1; }
+
+.climb::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 46.5rem;
+  max-width: 100%;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--rail), var(--rail);
+  background-size: 3px 100%, 3px 100%;
+  background-position: left var(--climb-shift, 0px), right var(--climb-shift, 0px);
+  background-repeat: no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 3.5rem);
+  mask-image: linear-gradient(to bottom, transparent, #000 3.5rem);
+}
+
+/* The section is the ladder: each idea stands between two Sprossen, no boxes. */
 .features {
   display: grid;
   gap: 0;
@@ -180,12 +213,16 @@ header.site .mast-link:hover { text-decoration: underline; }
   margin: 0 auto 4rem;
   max-width: 46.5rem;
   list-style: none;
-  background-image:
-    linear-gradient(to bottom, transparent, var(--stem) 9%, var(--stem) 91%, transparent),
-    linear-gradient(to bottom, transparent, var(--stem) 9%, var(--stem) 91%, transparent);
-  background-size: 3px 100%, 3px 100%;
-  background-position: left top, right top;
-  background-repeat: no-repeat;
+}
+
+.rung-label {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin: 0 0 1.4rem;
 }
 
 .features li { padding: 1.6rem 2rem; }
@@ -196,7 +233,7 @@ header.site .mast-link:hover { text-decoration: underline; }
   border-top: 2px solid color-mix(in srgb, var(--stem) 55%, transparent);
 }
 
-.features h2 {
+.features h3 {
   margin: 0 0 0.5rem;
   font-size: 1.2rem;
   letter-spacing: -0.005em;

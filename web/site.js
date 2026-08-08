@@ -1,6 +1,6 @@
 "use strict";
 
-// Mailing-list endpoint — empty until an account exists; wiring notes in docs/website.md.
+// Mailing-list endpoint — empty until an account exists; wiring notes in web/README.md.
 // Buttondown-shaped: "https://buttondown.com/api/emails/embed-subscribe/<slug>"
 const SIGNUP_ENDPOINT = "";
 
@@ -41,6 +41,26 @@ function chime(name) {
 // (no-JS visitors keep the noscript notes instead of dead controls).
 document.querySelector(".drill-card").hidden = false;
 $("signup-form").hidden = false;
+
+// ---------- the ladder climbs with you ----------
+
+// why: the rails' notches drift at a fraction of the scroll, so the page reads
+// as something you are climbing rather than scrolling past.
+const climb = document.querySelector(".climb");
+if (climb && !reducedMotion) {
+  let ticking = false;
+  const drift = () => {
+    ticking = false;
+    const seen = window.scrollY + innerHeight - climb.offsetTop;
+    climb.style.setProperty("--climb-shift", `${Math.max(-90, Math.min(0, -seen * 0.05))}px`);
+  };
+  addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(drift);
+  }, { passive: true });
+  drift();
+}
 
 // ---------- language pick ----------
 
