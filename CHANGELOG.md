@@ -18,7 +18,9 @@
   system's light or dark setting.** Its palette predated the contrast re-cut and shared no
   values with iOS; now every screen reads from the same colour pairs in both modes, and
   buttons, tiles and cards take the same rounded shapes. The iPhone widget and the watch
-  complication article tints, which had drifted off that same canon, are back on it too.
+  complication article tints, which had drifted off that same canon, are back on it too —
+  and the home-screen widget now follows light and dark like every other surface, instead
+  of drawing paper-mode colours on a dark tile.
 
 - **Spross has a front door: spross.net.** A landing page that says what the growing box
   is, invites you onto the mailing list, and lets you try the real numbers drill in the

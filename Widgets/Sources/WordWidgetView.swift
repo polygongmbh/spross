@@ -1,5 +1,6 @@
 import WidgetKit
 import SwiftUI
+import UIKit
 
 /// Widget rendering. Self-contained styling — a widget extension does not link the
 /// app's design tokens, so the handful it needs are copied below from the canonical
@@ -198,19 +199,32 @@ struct WordWidgetView: View {
     }
 }
 
-// Article tints, copied from the canonical table in `App/Sources/Design/Theme.swift` —
-// kern's `PaletteParityTest` fails the fast gate when this copy drifts from it. The
-// light column: a home-screen widget is read on paper, not on the watch's black.
-private extension Color {
-    init(wgHex hex: UInt32) {
-        self.init(red: Double((hex >> 16) & 0xFF) / 255,
-                  green: Double((hex >> 8) & 0xFF) / 255,
-                  blue: Double(hex & 0xFF) / 255)
+// The widget target's palette, copied from the canonical table in
+// `App/Sources/Design/Theme.swift` because a widget extension links neither the app's
+// design tokens nor Kotlin — kern's `PaletteParityTest` fails the fast gate when this
+// copy drifts from it. Both columns, resolved the way `Theme.swift` resolves them: a
+// home-screen widget follows the phone into dark mode like anything else on that screen.
+extension Color {
+    init(wgLight: UInt32, wgDark: UInt32) {
+        self.init(uiColor: UIColor { trait in
+            UIColor(wgHex: trait.userInterfaceStyle == .dark ? wgDark : wgLight)
+        })
     }
 
-    static let wgDer = Color(wgHex: 0x134E85)
-    static let wgDie = Color(wgHex: 0x9A2050)
-    static let wgDas = Color(wgHex: 0x18602C)
+    static let wgAccent = Color(wgLight: 0xA23B0B, wgDark: 0xFF9A6B)
+    static let wgSuccess = Color(wgLight: 0x256232, wgDark: 0x8AE39B)
+    static let wgDer = Color(wgLight: 0x134E85, wgDark: 0x90CBFF)
+    static let wgDie = Color(wgLight: 0x9A2050, wgDark: 0xFF9EC0)
+    static let wgDas = Color(wgLight: 0x18602C, wgDark: 0x6FDC85)
+}
+
+private extension UIColor {
+    convenience init(wgHex hex: UInt32) {
+        self.init(red: CGFloat((hex >> 16) & 0xFF) / 255,
+                  green: CGFloat((hex >> 8) & 0xFF) / 255,
+                  blue: CGFloat(hex & 0xFF) / 255,
+                  alpha: 1)
+    }
 }
 
 // Placing a widget on a simulator home screen is the only other way to see these,

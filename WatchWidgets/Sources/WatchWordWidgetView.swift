@@ -73,9 +73,8 @@ struct WatchWordWidgetView: View {
 }
 
 // Article tints, copied from the canonical table in `App/Sources/Design/Theme.swift` —
-// kern's `PaletteParityTest` fails the fast gate when this copy drifts from it. The dark
-// column, as the watch renders on black; a complication extension links neither the
-// app's design tokens nor the watch app's.
+// kern's `PaletteParityTest` fails the fast gate when this copy drifts from it. A
+// complication extension links neither the app's design tokens nor the watch app's.
 private extension Color {
     init(wwHex hex: UInt32) {
         self.init(red: Double((hex >> 16) & 0xFF) / 255,
@@ -83,7 +82,15 @@ private extension Color {
                   blue: Double(hex & 0xFF) / 255)
     }
 
-    static let wwDer = Color(wwHex: 0x90CBFF)
-    static let wwDie = Color(wwHex: 0xFF9EC0)
-    static let wwDas = Color(wwHex: 0x6FDC85)
+    /// Both canonical columns, resolved to the dark one at build time: a
+    /// complication always sits on the watch's black, and watchOS has no dynamic
+    /// UIColor provider to pick with. The light half is carried so this copy can
+    /// be held to the WHOLE table rather than to half of it.
+    init(wwLight: UInt32, wwDark: UInt32) {
+        self.init(wwHex: wwDark)
+    }
+
+    static let wwDer = Color(wwLight: 0x134E85, wwDark: 0x90CBFF)
+    static let wwDie = Color(wwLight: 0x9A2050, wwDark: 0xFF9EC0)
+    static let wwDas = Color(wwLight: 0x18602C, wwDark: 0x6FDC85)
 }

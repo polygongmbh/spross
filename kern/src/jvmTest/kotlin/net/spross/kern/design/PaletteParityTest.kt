@@ -17,10 +17,14 @@ import kotlin.test.fail
  * thing that drifts. This test reads all five files as text and holds every copied value
  * to `App/Sources/Design/Theme.swift`.
  *
- * A copy keeps only the tokens it uses — the phone widget needs three hues and nothing
- * else — so the check runs the other way round: every token a file DECLARES must name a
- * canonical token and carry its hex. The Android cut is the exception, being a full
+ * A copy keeps only the tokens it uses — the phone widget needs a handful of hues and
+ * nothing else — so the check runs the other way round: every token a file DECLARES must
+ * name a canonical token and carry its hex. The Android cut is the exception, being a full
  * re-cut of both columns rather than a handful of borrowed hues.
+ *
+ * The watch APP is the one copy that is a single column: it renders on black and says so.
+ * Both widget copies declare PAIRS and are held to both columns, even the complication
+ * that only ever wears the dark half — a half-checked table is where the other half drifts.
  *
  * Gradle does not track these Swift and Kotlin sources as test inputs (the same caveat
  * the real-catalog lints carry): after a palette-only edit, run with `--rerun-tasks`.
@@ -58,22 +62,27 @@ class PaletteParityTest {
         }
     }
 
-    /** watchOS renders on black, so the watch app copies the dark column. */
+    /** watchOS renders on black, so the watch app copies the dark column and only it. */
     @Test
     fun theWatchAppCarriesTheDarkColumn() {
         assertColumn(WATCH, swiftCopy(WATCH), DARK)
     }
 
-    /** A home-screen widget is read on paper, so it copies the light column. */
+    /** A home-screen widget follows the phone's scheme, so it copies both columns. */
     @Test
-    fun thePhoneWidgetCarriesTheLightColumn() {
-        assertColumn(WIDGET, swiftCopy(WIDGET), LIGHT)
+    fun thePhoneWidgetCarriesBothColumns() {
+        assertPairs(WIDGET, swiftPairs(WIDGET))
     }
 
-    /** A complication sits on the same black the watch app does. */
+    /** A complication wears the dark half; it carries the light one so this can check it. */
     @Test
-    fun theWatchComplicationCarriesTheDarkColumn() {
-        assertColumn(WATCH_WIDGET, swiftCopy(WATCH_WIDGET), DARK)
+    fun theWatchComplicationCarriesBothColumns() {
+        assertPairs(WATCH_WIDGET, swiftPairs(WATCH_WIDGET))
+    }
+
+    private fun assertPairs(where: String, tokens: Map<String, Pair<String, String>>) {
+        assertColumn(where, tokens.mapValues { it.value.first }, LIGHT)
+        assertColumn(where, tokens.mapValues { it.value.second }, DARK)
     }
 
     private fun assertColumn(
@@ -108,9 +117,15 @@ private val DARK: (Pair<String, String>) -> String = { it.second }
 private val CANON_TOKEN =
     Regex("""static let dl(\w+) = Color\(light: 0x([0-9A-Fa-f]{6}), dark: 0x([0-9A-Fa-f]{6})\)""")
 
-/** `static let wlDer = Color(watchHex: 0x90CBFF)` — the shape every Swift copy declares. */
+/** `static let wlDer = Color(watchHex: 0x90CBFF)` — a single-column Swift copy. */
 private val COPY_TOKEN =
     Regex("""static let [a-z]{2}(\w+) = Color\(\w+: 0x([0-9A-Fa-f]{6})\)""")
+
+/** `static let wgDer = Color(wgLight: 0x134E85, wgDark: 0x90CBFF)` — a two-column one. */
+private val COPY_PAIR =
+    Regex(
+        """static let [a-z]{2}(\w+) = Color\(\w+: 0x([0-9A-Fa-f]{6}), \w+: 0x([0-9A-Fa-f]{6})\)"""
+    )
 
 /** `der = Color(0xFF134E85)` — the shape the Compose table declares. */
 private val COMPOSE_TOKEN = Regex("""(\w+) = Color\(0xFF([0-9A-Fa-f]{6})\)""")
@@ -125,6 +140,12 @@ private val canon: Map<String, Pair<String, String>> by lazy {
 private fun swiftCopy(path: String): Map<String, String> =
     COPY_TOKEN.findAll(read(path))
         .associate { it.groupValues[1].lowercase() to it.groupValues[2].uppercase() }
+
+/** Token name → light hex to dark hex, for the copies that declare both. */
+private fun swiftPairs(path: String): Map<String, Pair<String, String>> =
+    COPY_PAIR.findAll(read(path)).associate {
+        it.groupValues[1].lowercase() to (it.groupValues[2].uppercase() to it.groupValues[3].uppercase())
+    }
 
 private fun composeTable(name: String): Map<String, String> {
     val source = read(ANDROID)
