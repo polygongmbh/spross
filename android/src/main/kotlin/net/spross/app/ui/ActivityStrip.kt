@@ -32,6 +32,7 @@ import java.time.ZoneId
 import java.time.format.TextStyle
 import java.util.Locale
 import net.spross.app.Chrome
+import net.spross.app.countLine
 import net.spross.kern.box.ActivityDay
 
 /** The gutter between two columns; a joined run rules straight across it. */
@@ -66,7 +67,11 @@ fun ActivityStrip(
     val palette = Dl.colors
     val label = remember(bars, streakDays, chrome) {
         val activity = chrome.activityDays.format(ActivityBars.activeDays(bars))
-        if (streakDays > 0) "$activity. ${chrome.streakDays.format(streakDays)}" else activity
+        if (streakDays > 0) {
+            "$activity. ${countLine(chrome.streakDaysOne, chrome.streakDays, streakDays)}"
+        } else {
+            activity
+        }
     }
 
     Card(

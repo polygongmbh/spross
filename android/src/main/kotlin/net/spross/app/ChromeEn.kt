@@ -123,9 +123,12 @@ internal val ChromeEn = Chrome(
 
     caughtUpTitle = "Nothing's due right now",
     dayReviews = "%d reviews",
+    dayReviewsOne = "1 review",
     dayNewCards = "%d newbies",
+    dayNewCardsOne = "1 newbie",
     dayConsolidated = "%d solidified",
     dayAhead = "%d refreshers",
+    dayAheadOne = "1 refresher",
     tomorrowPacked = "Your packed words are in the next round.",
     tomorrowFresh = "Fresh cards tomorrow. See you then! 👋",
     tomorrowDue = "Tomorrow you can review %d cards.",
@@ -189,6 +192,7 @@ internal val ChromeEn = Chrome(
     last14Days = "Last 14 days",
     activityDays = "Activity over the last 14 days: practiced on %d days",
     streakDays = "Streak: %d days",
+    streakDaysOne = "Streak: 1 day",
     dayOne = "day",
     dayMany = "days",
 )

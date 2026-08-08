@@ -1,6 +1,7 @@
 package net.spross.app.ui
 
 import net.spross.app.Chrome
+import net.spross.app.countLine
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.TallyPartKind
@@ -101,9 +102,9 @@ fun headlineText(chrome: Chrome, headline: SessionHeadline): String {
 fun offerSummary(chrome: Chrome, offer: SessionOffer): String {
     val parts = offer.summaryParts().map { part ->
         when (part.kind) {
-            OfferPartKind.Reviews -> chrome.dayReviews.format(part.count)
-            OfferPartKind.Ahead -> chrome.dayAhead.format(part.count)
-            OfferPartKind.Fresh -> chrome.dayNewCards.format(part.count)
+            OfferPartKind.Reviews -> countLine(chrome.dayReviewsOne, chrome.dayReviews, part.count)
+            OfferPartKind.Ahead -> countLine(chrome.dayAheadOne, chrome.dayAhead, part.count)
+            OfferPartKind.Fresh -> countLine(chrome.dayNewCardsOne, chrome.dayNewCards, part.count)
         }
     }
     return if (parts.isEmpty()) chrome.sessionSomeCards else parts.joinToString(PART_JOIN)
@@ -116,8 +117,8 @@ fun offerSummary(chrome: Chrome, offer: SessionOffer): String {
 fun todayTally(chrome: Chrome, report: TodayReport): String? {
     val parts = report.tallyParts().map { part ->
         when (part.kind) {
-            TallyPartKind.Reviews -> chrome.dayReviews.format(part.count)
-            TallyPartKind.Introduced -> chrome.dayNewCards.format(part.count)
+            TallyPartKind.Reviews -> countLine(chrome.dayReviewsOne, chrome.dayReviews, part.count)
+            TallyPartKind.Introduced -> countLine(chrome.dayNewCardsOne, chrome.dayNewCards, part.count)
             TallyPartKind.Consolidated -> chrome.dayConsolidated.format(part.count)
         }
     }

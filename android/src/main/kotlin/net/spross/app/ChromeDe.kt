@@ -124,9 +124,12 @@ internal val ChromeDe = Chrome(
 
     caughtUpTitle = "Gerade ist nichts dran",
     dayReviews = "%d Wiederholungen",
+    dayReviewsOne = "1 Wiederholung",
     dayNewCards = "%d Frischlinge",
+    dayNewCardsOne = "1 Frischling",
     dayConsolidated = "%d gefestigt",
     dayAhead = "%d Auffrischer",
+    dayAheadOne = "1 Auffrischer",
     tomorrowPacked = "Deine gepackten Wörter sind in der nächsten Runde dabei.",
     tomorrowFresh = "Morgen gibt es frische Karten. Bis dann! 👋",
     tomorrowDue = "Morgen kannst du %d Karten wiederholen.",
@@ -190,6 +193,7 @@ internal val ChromeDe = Chrome(
     last14Days = "Letzte 14 Tage",
     activityDays = "Aktivität der letzten 14 Tage: an %d Tagen gelernt",
     streakDays = "Serie: %d Tage",
+    streakDaysOne = "Serie: 1 Tag",
     dayOne = "Tag",
     dayMany = "Tage",
 )

@@ -57,6 +57,13 @@ class HeuteStandingTest {
     }
 
     @Test
+    fun aCountOfOneDeclinesItsNoun() {
+        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 1, dueHeldBack = 0, ahead = 0, fresh = 1)
+
+        assertEquals("1 Wiederholung · 1 Frischling", offerSummary(chrome, offer))
+    }
+
+    @Test
     fun aheadIsNamedOnlyWhenItCarriesTheRoundAlone() {
         val offer = SessionOffer(SessionOfferKind.WarmUp, reviews = 0, dueHeldBack = 0, ahead = 4, fresh = 0)
 

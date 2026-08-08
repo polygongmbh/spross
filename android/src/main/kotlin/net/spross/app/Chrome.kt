@@ -151,14 +151,17 @@ data class Chrome(
     /** Nothing due, and nothing done yet — never [doneToday], which the day must earn. */
     val caughtUpTitle: String,
     val dayReviews: String,        // %d
+    val dayReviewsOne: String,     // the count-of-one line, verbatim
     val dayNewCards: String,       // %d
-    val dayConsolidated: String,   // %d
+    val dayNewCardsOne: String,
+    val dayConsolidated: String,   // %d — "gefestigt" needs no declining
     /**
      * Pull-aheads carrying the round on their own — the freshening-up.
      * Named only in that case: everywhere else they count into [dayReviews]
      * ([net.spross.kern.session.SessionOffer.summaryParts] decides which).
      */
     val dayAhead: String,          // %d
+    val dayAheadOne: String,
     val tomorrowPacked: String,
     val tomorrowFresh: String,
     val tomorrowDue: String,       // %d
@@ -216,6 +219,7 @@ data class Chrome(
     val last14Days: String,
     val activityDays: String,      // %d = days worked inside the window
     val streakDays: String,        // %d — days in a row, the strip's own label
+    val streakDaysOne: String,
     val dayOne: String,            // the badge's unit word, by count
     val dayMany: String,
 ) {
@@ -225,3 +229,7 @@ data class Chrome(
             if (LanguageChoices.chromeLanguage(source) == "de") ChromeDe else ChromeEn
     }
 }
+
+/** The declining count line: [one] verbatim at exactly 1, else [many] with the count. */
+fun countLine(one: String, many: String, count: Int): String =
+    if (count == 1) one else many.format(count)
