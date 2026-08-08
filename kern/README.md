@@ -38,7 +38,31 @@ The engine's own semantics are below. Four domains have their own pages:
   That query is `coveredSources()`: every language with at least one learnable target, sorted;
   `defaultSource(device)` picks the device language when it is covered, else `en`
   (else, for a catalog that cannot teach from English, its first covered source).
-  So no device locale can throw at launch. (Picker display is an app rule.)
+  So no device locale can throw at launch.
+- `LanguageChoices` (`catalog/LanguageChoices.kt`) owns the pair a learner picks and how the two pickers name it.
+  `Selection(source, target?)` is the pair under edit; `target` is null until one is chosen.
+  - `pickerRow(code, info)` → "🇺🇦 Українська · Ukrainian": flag, the language's own name, the English exonym.
+    Both names, because a flag beside a script the reader cannot read is easy to mistake for a neighbouring language,
+    while the endonym is how a speaker of it finds their own row.
+    Collapsed where the two agree ("🇬🇧 English"), uppercased code where the catalog knows no such language.
+  - `pickerLabel(code, info)` → "🇺🇦 Ukrainian": the collapsed form a dropdown wears as its own label, having half a row to live in.
+    Localized exonyms and sentence chrome stay app-side — they read the platform's string tables, not the catalog.
+  - `targetChoices(catalog, selection)` — every target learnable from the source, plus the source itself so that picking it can swap the pair, sorted by code.
+    The swap row carries the SWAPPED pair's count (target → source): that is the pair the tap would join,
+    and it differs from the count on screen wherever one side realizes a feminine the other knows only through its base.
+    It is offered only where that pair is actually joinable — a target that teaches nothing back is no swap to offer —
+    and never while no target is chosen.
+  - `pickSource(catalog, selection, code)` / `pickTarget(selection, code)` — neither side hides the other's pick:
+    choosing the language the other side holds SWAPS the selections instead of refusing the tap,
+    so a pair set backwards is fixed in one move.
+    A source change keeps the target where it stays learnable under the new source,
+    else falls back to that source's first available target (catalog order), so a tap never leaves the pair half-chosen.
+    Swapping while no target is chosen is a no-op — there is nothing to exchange yet.
+  - `chromeLanguage(source)` / `hasChrome(lang)` over `CHROME_LANGUAGES = {"de", "en"}`, the languages the apps carry string tables for.
+    Chrome reads the profile's KNOWN language where it is covered, else English.
+    The immersion subtitle — an action button captioned in the language being LEARNED — asks `hasChrome` instead,
+    because it has no fallback by design: absent means no subtitle, never an English one.
+    Mapping the returned code to a `Locale` or a chrome table is the platform's.
 
 ## 2. Card — derived, language-symmetric
 
@@ -96,11 +120,20 @@ data class Realization(
   figurative" from the glyph alone before reading either language's text. Idioms also
   carry no `components`/`feminineOf` (structurally forbidden) and so no unlock gate —
   see `catalog/README.md` "Idioms are the exception".
-- **Grammar display is target-side only**: plural line and article coloring render only for
-  the target realization.
-  Every real plural carries the "Pl. " label, suffixes resolved against the word
-  ("-nen" → "Pl. Lehrerinnen"); sentinels "=" → "= Pl.", "only" → "nur Pl."
-  via localized chrome strings, not hardcoded German.
+- **Grammar display is target-side only**: the plural line and article colouring render only for the target realization.
+  `pluralForm(realization)` (`model/DisplayText.kt`) resolves what the catalog authored:
+  absent AND empty both answer null — an authored-but-empty value is not a form,
+  and a surface that took it for one would print a bare label with nothing behind it;
+  `"="` → `SameAsSingular`, `"only"` → `PluralOnly`;
+  a leading `-` is a dictionary suffix resolved against the word ("-nen" on "die Lehrerin" → `Form("die Lehrerinnen")`);
+  anything else is the full form as authored.
+  The words a surface prints for each sentinel ("= Pl.", "nur Pl.") are chrome.
+- **The reveal's family line**: `alternates(realization, shown)` — the canonical `text` plus `synonyms`, minus every form already standing on screen.
+  The exclusion is the whole point: a recognition prompt rotates a synonym in,
+  so without it the reveal offers the learner the very word they are looking at as though it were another one,
+  while dropping the citation form they have not seen.
+  Empty means the surface draws no line.
+  Variants never appear — they grade an answer, they do not teach a form.
 
 ## 3. One schedule per card, alternating presentation   (user ruling 2026-07-22)
 

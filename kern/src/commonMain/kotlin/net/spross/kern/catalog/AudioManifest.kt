@@ -106,9 +106,6 @@ internal object AudioManifestParser {
               "gain", "lead", "snr")
     private val LETTER_KEYS = WORD_KEYS - "matches"
 
-    /** The converter clamps here: past 10× amplitude the index is likelier wrong than the file. */
-    private const val GAIN_LIMIT_DB = 20.0
-
     /** Five seconds of dead air is not a lead-in, it is the wrong recording. */
     private const val LEAD_LIMIT_MS = 5_000L
 
@@ -159,11 +156,16 @@ internal object AudioManifestParser {
             if (it.isBlank()) parseError(path, "$context: blank \"$key\"")
         }
 
-    /** Absent means the recording already sits at the analysis target. */
+    /**
+     * Absent means the recording already sits at the analysis target.
+     * The bound is playback's own ([Playback.GAIN_LIMIT_DB]): rejecting here and clamping
+     * there are one rule about what a measurement may claim.
+     */
     private fun JsonObject.gain(path: String, context: String): Double {
         val gain = optionalDouble(path, context, "gain") ?: return 0.0
-        if (gain !in -GAIN_LIMIT_DB..GAIN_LIMIT_DB) {
-            parseError(path, "$context: gain $gain dB is outside ±$GAIN_LIMIT_DB")
+        val limit = Playback.GAIN_LIMIT_DB
+        if (gain !in -limit..limit) {
+            parseError(path, "$context: gain $gain dB is outside ±$limit")
         }
         return gain
     }

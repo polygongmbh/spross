@@ -64,3 +64,20 @@ Engine contract: `../README.md`.
   because re-encoding is an adaptation under BY-SA — and no author is a placeholder.
 - The manifest's own schema (fields, naming rules, provenance) is `catalog/README.md`'s:
   this section owns the engine rule, not the file format.
+- **Playback trusts the index only so far** (`catalog/Playback.kt`).
+  `Playback.GAIN_LIMIT_DB = 20.0` is the converter's own clamp and now the single home of the number:
+  the manifest parser rejects a gain outside ±it and `Playback.gainDb(measured)` clamps into it,
+  which are one rule about what a measurement may claim, not two that happen to agree.
+  `Playback.headMs(leadMs, durationMs)` answers the lead only where `0 < leadMs < durationMs`, else 0:
+  a lead that would swallow the whole recording is a broken measurement,
+  and the recording is still worth playing whole — as is one whose duration the platform will not report.
+  Everything in device units — linear volume, millibels, sample frames — stays app-side.
+- **Which voice speaks a language** (`catalog/VoiceSelection.kt`).
+  `preferredTag(lang)` widens "es" to "es-ES" and leaves every other code as it is:
+  Spanish is taught in the peninsular variety (distinción), and a Latin-American voice would teach seseo.
+  `select(lang, candidates)` is the same rule where an inventory can be searched —
+  candidates are the voices whose tag IS the code or a region of it ("de" takes "de-AT"),
+  the Spanish pool narrows to peninsular voices wherever the device has any (the variety outranks quality),
+  and within the pool the highest quality wins with ties going to the lower identifier,
+  so one device picks the same voice every time.
+  Enumerating voices, and mapping a platform's quality scale onto `Candidate.quality`, stays app-side.
