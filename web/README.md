@@ -30,8 +30,11 @@ built to sit beside native-speaker conversation or a structured course, never to
 
 ## Drill scope (the "taste")
 
-- Language chips (de/en/es/sw/uk from `catalog/languages.json` data), optional generated primer
-  (0–12, tens, 100/1000 with place-value words — spelled by the kern, so never wrong), then the drill.
+- Language chips (de/en/es/sw/uk from `catalog/languages.json` data), an optional primer, then the drill.
+- The primer IS the app's numbers page: `Trainer.reference(language)` band by band
+  (`ones`/`teens`/`tens`/`twenties`/`compounds`/`hundreds`/`places`/`forms`), the page supplying only
+  the English headings. Every reading is generated from the packs the drill grades against,
+  so the table cannot drift from it. The mid-run "?" shows the `tens` band, in every language.
 - Mechanics mirror iOS (`docs/surfaces.md` § Trainers): numeral → typed word, exact=green/typo=amber+correction/wrong=reveal,
   any accepted answer extends the streak, two clean rights ramp a Sprosse (= a digit) up, one miss steps down; capped at 4 on the web.
 - Before a language is picked, the card cycles a numeral and its reading through the five languages — the kern spelling live.
