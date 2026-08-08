@@ -9,6 +9,11 @@ the article table, the streak walk, the area buckets and the day helpers are ker
 and both apps read them. `android/SessionFlow.kt` is gone.
 What is left is moves 2, 4, 5, 6 and the remainder of the small list.
 
+**Half-shipped (2026-08-08):** move 2 and most of the small list now have kern homes
+and iOS reads them — Android still restates each,
+so nothing new is struck: the bar for shipped is both apps reading kern.
+The per-item status is annotated below.
+
 The native layers should own aesthetics and device facts only:
 layout, animation, focus, haptics, audio engines, widget timelines, accessibility flags, string tables.
 Everything below is currently Swift but is a *rule*, and Android has to re-derive it or copy it.
@@ -78,11 +83,14 @@ No new kern dependency; data classes already cross the boundary.
 
 1. ~~**`session/SessionRun`**~~ — shipped. `canPracticeMore`/`canPracticeExtra`/`sessionAvailable`
    landed in `SessionOffer.kt` rather than `SessionRun.kt`: they are box queries, not run state.
-2. **`session/Turn`** — the produce/recognize turn: feedback state × revealed × typo × heardInstead × otherWord × retry,
-   and which rating each branch fires (`SessionView+Produce.swift:26-316`, ~180 lines).
-   Folds in `SelfGrading` + `CatalogAnswerGrader`; the view keeps input, focus, animation, sound.
-   Includes the copy-step predicate (`SessionView+Copy.swift:122-127`) and the recall-timing capture
-   (`SessionView.swift:409-428`).
+2. **`session/Turn`** — kern-side shipped as `session/TurnMachine.kt` + `TurnWriteOut.kt`:
+   feedback state × revealed × typo × heardInstead × otherWord × retry,
+   which rating each branch fires, the copy-step predicate and the recall-timing capture,
+   folding in `SelfGrading` + `CatalogAnswerGrader`.
+   iOS now dispatches every turn intent through it and keeps only input, focus, animation, sound.
+   Android still restates the turn in its session screen —
+   its four divergences (pickable Easy, no write-out, no retry, answer shown in the field on reveal)
+   disappear by construction once it adopts.
 3. ~~**Profile activation + `BoxConfig.product()`**~~ — shipped as `coveredSources()`/`defaultSource()`
    plus `BoxConfig.product()` and `BoxState.withProductCalibration()`. `availableTargets` keeps its
    `require` deliberately: the safe query is now the one a launch reaches for, and an unknown source
@@ -112,31 +120,33 @@ do not link Kotlin, so the duplication is forced there and only there. Their com
 `model/Article.kt` and `box/Statistics.kt` as the canonical version. On Android, where widgets are
 in-process, no such copy may exist.
 
-- `catalog` — `LanguagePicker.choices/apply` (the swap rule is written twice in Swift,
-  `OnboardingView.swift:69-119` and `BoxSettingsSection.swift:207-248`, and a third, lossier time in Kotlin),
-  `LanguageInfo.pickerRow/pickerLabel` (`DisplayText.swift:7-47`; Android's picker was showing exonyms
-  only and is fixed in place, so this is now a two-file agreement rather than a bug),
-  `chromeLanguage(source)` (`AppModel.swift:259-276`),
-  audio resolution: `clampedGain` / `headMs` (the `20.0 dB` limit and the lead-validity rule exist
-  in three places: `PronunciationPlayer.swift:26,102-106`, `AudioManifest.kt:110,113`, `android/audio/PlaybackIndex.kt`),
-  `VoiceSelection.preferredTag` (the `es ⇒ es-ES` distinción rule, `Speaker.swift:69-86`, already re-stated in Kotlin).
-- `model` — plural sentinel resolution and the alternates-minus-shown-form rule (`DisplayText.swift:67-104`).
-  Android's `CardDisplay.kt` had omitted the exclusion, the empty-plural guard and the canonical form
-  itself; fixed in place, so the two now agree — but they agree in two files, which is the thing to close.
+Kern-side landed and adopted on iOS (2026-08-08) — Android's restatements are what keeps each listed:
+
+- `catalog/LanguageChoices` — `targetChoices`/`pickSource`/`pickTarget` deleted both Swift statements
+  of the swap rule (`OnboardingView` + `BoxSettingsSection`); Kotlin's lossy third copy is what remains.
+  `pickerRow`/`pickerLabel` likewise.
+- `catalog/Playback` — `gainDb`/`headMs` (iOS reads them; `android/audio/PlaybackIndex.kt` still copies).
+  `catalog/VoiceSelection` — iOS reads `select`, which carries the `es ⇒ es-ES` distinción rule;
+  `preferredTag` is deliberately the Android half of the same object, not an unfinished adoption.
+- `model` — plural sentinel and alternates-minus-shown are `pluralForm`/`alternates` now,
+  `Card.alsoAccepts` is `session/SpokenAnswer.kt` (iOS keeps a one-line wrapper);
+  Android's `CardDisplay.kt` still agrees in a second file.
+- `box/BoxBrowser` — grouping/ordering/`enqueueableCount`/`enqueueableCardIds`
+  (the count and the enqueue share one predicate now) and `CardRowState`,
+  whose `Standing` also owns the seal-follows-consolidated invariant `PhaseBadge` used to state.
+- `box/TodayReport` — `worked`, `tallyParts`, `tomorrowNote`, `completionTallyParts`.
+
+Still without the kern home the audit asked for:
+
+- `SessionOffer.summaryParts()` — never landed: `HeuteView.sessionSummary(_:)` still states the
+  reviews+ahead merge / Auffrischer / fresh-append / fallback rule in Swift, and Android restates it lossily.
+- `chromeLanguage(source)` — kern has `LanguageChoices.CHROME_LANGUAGES`/`chromeLanguage`/`hasChrome`,
+  but iOS (`AppModel.swift:85,260-277`) and Android both still hold their own copies.
 - `session/MultipleChoice.question` — the watch samples and shuffles kern's ranked shortlist in Swift
   (`WatchPracticeQuestion.swift:24-49`); `RecognitionGrading` — latency→rating
   (`WatchGrading.swift:14-29`), the sibling of `SelfGrading.kt:33-51`.
-- `box` — browser grouping/ordering/`enqueueableCount` (`AppModel+Queries.swift`,
-  which restates half of `BoxEngine.enqueue`'s skip rules), `CardRowState` (`BoxCardRow.swift:59-98`),
-  and the `PhaseBadge` invariant that the seal follows `consolidated`, not phase (`ProgressComponents.swift`) —
-  a domain rule currently stated only in a view.
-- `box/TodayReport` — which summary parts appear and the done-vs-caught-up choice
-  (`HeuteView.swift:99-217`, `SessionCompletionView.swift:43-49`).
-  The strings stay platform-side; the rule choosing the key does not.
-- Rules with exactly one Swift home and no Kotlin one, so kern by default:
-  `Card.alsoAccepts` (`DisplayText.swift:78`) and the `summaryEmoji` thresholds 10/5/2
-  (`DrillChrome.swift:129`) — both were duplicated in iOS and are not any more, which is
-  what makes the move cheap. Still stated twice: the drill normalizer's strictness triple
+- The `summaryEmoji` thresholds 10/5/2 (`DrillChrome.swift:129`), and the drill normalizer's
+  strictness triple, still stated twice
   (`TrainerHubView.swift:92-93` = `LetterDrillView+Grading.swift:112-114`).
 
 ## Stays native

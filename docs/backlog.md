@@ -210,6 +210,11 @@ One line per item, with a file or context pointer, filed under the section it be
   key, so it is a row list and its readings.
 - The Training card's two chips are laid out as a row; a third would want the grid the
   hub used to have (`App/Sources/Screens/TrainerHubView.swift`).
+- `SessionView.swift` sits at 432 lines (guide ~300); the natural cut is a new
+  `SessionView+Turn.swift`, which needs the xcodegen regen a new file costs.
+- The iPhone widget header pairs a system-orange flame with the clay `wgAccent` bar —
+  the ruling named only the strip, so the flame kept `.orange`
+  (`Widgets/Sources/WordWidgetView.swift`; `wgAccent` is declared and internal, one-line close).
 - The letter drill's typed and dictation stage has no live-check auto-advance —
   finishing the word does not end the step the way it does in vocab review and the
   trainer drills (`App/Sources/Design/AutoAdvance.swift`) — deferred because its verdict
@@ -236,6 +241,11 @@ One line per item, with a file or context pointer, filed under the section it be
 
 - Android not yet ported: Box browse, trainers, widget, 14-day strip, confetti/haptics
   (`surfaces.md` § Android companion).
+- Android Heute now carries a 📦 door to a stub Box screen; if the box body slips a release,
+  remove that one TextButton first (`android/.../ui/HeuteScreen.kt`) —
+  a door to a blank screen is worse than no door.
+- `ic_launcher_background` still holds retired-palette `#FF2E6B34`
+  (`android/src/main/res/values/colors.xml`) — the adaptive-icon plate, not the window.
 - Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
   deferred per user 2026-08-08.
 - Audio ships un-thinned: `catalog/audio/` is 26 MB (de 4.9, es 7.2, sw 5.2, uk 9.0) and
@@ -260,6 +270,12 @@ One line per item, with a file or context pointer, filed under the section it be
 
 - Watch pairing untested on real hardware;
   complication rendering never screenshot-verified (no simctl affordance).
+- The `SprossWatchWidgets` auto-scheme resolves destinations erratically
+  (project.yml declares no schemes, and an extension auto-scheme flip-flops between
+  iOS and watchOS destination lists): a named iPhone destination may not match.
+  Reliable gates: the `Spross` scheme (builds the whole embed chain, watch app and both
+  widget extensions included) or `-scheme SprossWatchWidgets -destination
+  'generic/platform=iOS Simulator'`.
 - The 32 uk letter recordings have never been heard against the names the alphabet file
   speaks. `letters{}` carries no `matches` field (`catalog/audio/uk/manifest.json`), so
   no lint can pin «йот» to what `letters/u0439.mp3` actually says — the names were
