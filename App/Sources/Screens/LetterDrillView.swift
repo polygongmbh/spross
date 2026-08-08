@@ -34,6 +34,9 @@ struct LetterDrillView: View, LanguageNaming {
     @State var doneCount = 0
     @State var streak = 0
     @State var bestStreak = 0
+    /// Misses in a row already booked — the one on screen is not among them, so
+    /// 1 while a miss shows means this is the second in a row (`DrillStopOffer`).
+    @State var missRun = 0
     /// Per-task results for the segmented progress bar.
     @State private var outcomes: [SessionOutcome] = []
     @State var level: Int
@@ -219,8 +222,10 @@ struct LetterDrillView: View, LanguageNaming {
         if correct {
             streak += 1
             bestStreak = max(bestStreak, streak)
+            missRun = 0
         } else {
             streak = 0
+            missRun += 1
         }
         outcomes.append(correct ? (clean ? .right : .tough) : .wrong)
         doneCount += 1

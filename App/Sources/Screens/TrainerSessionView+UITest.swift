@@ -12,6 +12,7 @@ extension TrainerSessionView {
     /// `-uitest-level N` starts the run's FIRST variant at that rung (numbers:
     /// digit count), the only way to photograph a long prompt without playing up to it;
     /// `-uitest-streak N` presets a running streak;
+    /// `-uitest-misses N` presets the run's booked miss streak;
     /// `-uitest-close 1` closes the run the way the ✕ does, so the tile it leaves
     /// on the page behind it can be photographed — add `-uitest-record 1` to drop
     /// the stored record first, so the run books one and the tile shows it;
@@ -34,6 +35,9 @@ extension TrainerSessionView {
             bestStreak = max(preset, 12)
             doneCount = preset + 6
         }
+        // `-uitest-misses N` presets misses ALREADY booked, so a wrong answer on
+        // top of it lands on the state where the way out is offered.
+        missRun = max(0, defaults.integer(forKey: "uitest-misses"))
         if defaults.bool(forKey: "uitest-close") {
             if defaults.bool(forKey: "uitest-record") { TrainerRecords.clear(mode.recordKey) }
             // why: through closeRun, not by seeding the page — the tile is worth

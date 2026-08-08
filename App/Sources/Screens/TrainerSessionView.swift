@@ -37,6 +37,10 @@ struct TrainerSessionView: View, LanguageNaming {
     @State var doneCount = 0
     @State var streak = 0
     @State var bestStreak = 0
+    /// Misses in a row already BOOKED — the one on screen is not among them, so
+    /// a value of 1 while a miss is showing means this is the second in a row.
+    // why: internal, not private — the +Drill extension offers the way out on it.
+    @State var missRun = 0
     /// This run beat the drill's standing record (`TrainerRecords`), booked once
     /// as the run closes — the result tile's record line and its confetti.
     @State var newRecord = false
@@ -155,8 +159,10 @@ struct TrainerSessionView: View, LanguageNaming {
         if correct {
             streak += 1
             bestStreak = max(bestStreak, streak)
+            missRun = 0
         } else {
             streak = 0
+            missRun += 1
         }
         // The rung ramp is kern's, shared with the letter drill: clean wins climb,
         // a miss steps down, an amber answer moves neither way. It applies to the

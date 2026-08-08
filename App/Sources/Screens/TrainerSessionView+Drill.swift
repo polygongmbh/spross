@@ -162,15 +162,18 @@ extension TrainerSessionView {
                 // why: no "Wusste ich" here — drills are generated, so
                 // self-reporting after seeing the answer proves nothing;
                 // revealed simply counts as a miss and moves on.
-                Button {
-                    advance(correct: false)
-                } label: {
-                    Text("common.next")
-                        .frame(maxWidth: .infinity)
+                VStack(spacing: DL.Space.s) {
+                    Button {
+                        advance(correct: false)
+                    } label: {
+                        Text("common.next")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(DLPrimaryButtonStyle())
+                    // why: Enter advances when revealed (hardware keyboards).
+                    .keyboardShortcut(.defaultAction)
+                    if missRun >= 1 { DrillStopOffer { closeRun() } }
                 }
-                .buttonStyle(DLPrimaryButtonStyle())
-                // why: Enter advances when revealed (hardware keyboards).
-                .keyboardShortcut(.defaultAction)
             }
             if isNumbers {
                 lookupButton

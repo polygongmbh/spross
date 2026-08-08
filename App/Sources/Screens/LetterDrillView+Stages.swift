@@ -213,7 +213,10 @@ extension LetterDrillView {
                     nextButton { advance(correct: true, clean: true) }
                 }
             case .revealed:
-                nextButton { advance(correct: false, clean: true) }
+                VStack(spacing: DL.Space.s) {
+                    nextButton { advance(correct: false, clean: true) }
+                    if missRun >= 1 { DrillStopOffer { closeRun() } }
+                }
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
