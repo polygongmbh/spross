@@ -212,7 +212,7 @@ One line per item, with a file or context pointer, filed under the section it be
   number form — is the last piece of the numbers page that never shipped. Kern emits seven
   bands (`NumberReference.kt`) and `NumberReferenceTable.bandTitle` already knows the eighth
   key, so it is a row list and its readings.
-- The Training card's two chips are laid out as a row; a third would want the grid the
+- The Werkstatt card's two chips are laid out as a row; a third would want the grid the
   hub used to have (`App/Sources/Screens/TrainerHubView.swift`).
 - The letter drill's typed and dictation stage has no live-check auto-advance —
   finishing the word does not end the step the way it does in vocab review and the

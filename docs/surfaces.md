@@ -5,7 +5,7 @@ auto-advance beats these share with it, are `design.md`'s.
 
 ## Trainers & the letter drill
 
-- **Trainers**: the Training card offers TWO entries, Zahlen and Buchstaben. Clock,
+- **Trainers**: the Werkstatt card offers TWO entries, Zahlen and Buchstaben. Clock,
   sentences and number forms are not siblings of the numbers drill but ways of being
   asked, so they are variants a run selects rather than chips, and the modifiers
   (reverse, fast, mix) are how it is played. A chip apiece was the alternative and it

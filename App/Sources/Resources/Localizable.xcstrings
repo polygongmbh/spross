@@ -3672,13 +3672,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Training"
+            "value" : "Werkstatt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Training"
+            "value" : "Workshop"
           }
         }
       }

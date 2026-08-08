@@ -1,7 +1,7 @@
 import SwiftUI
 import SprossKern
 
-/// Compact "Training" card on the Heute screen: TWO entries — 🔢 Zahlen and
+/// Compact "Werkstatt" card on the Heute screen: TWO entries — 🔢 Zahlen and
 /// 🔤 Buchstaben. Each opens an overview: what the language does with numbers
 /// or letters, and the run started from the same page. Clock and sentences are
 /// not siblings of the numbers drill but variants of it, and the alphabet is
