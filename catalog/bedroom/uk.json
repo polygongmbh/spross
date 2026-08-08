@@ -89,18 +89,6 @@
     "plural": "ремені"
    }
   },
-  "night": {
-   "text": "ніч",
-   "grammar": {
-    "plural": "ночі"
-   }
-  },
-  "morning": {
-   "text": "ранок",
-   "grammar": {
-    "plural": "ранки"
-   }
-  },
   "make-bed": {
    "text": "застеляти ліжко"
   },

@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- **The parts of the day moved in with the clock.** Morning, evening and night were
+  filed under the bedroom and the living room, where a word for when something happens
+  had no business being; noon and the afternoon join them in Time and dates, and the
+  sentence that teaches the exact hour is "punkt neun Uhr morgens" now rather than the
+  stilted noon one. Nothing you have learned starts over — a card that changes shelves
+  keeps everything it knew about you. Spanish loses its card for the morning, because
+  "mañana" is the same word as tomorrow and the shelf was the only thing telling the two
+  apart; Spanish still meets it inside the sentence, where "de la mañana" says which one
+  is meant.
+
 - **The app now says when a better voice is a free download away.** Every word without a
   bundled recording is read by the system voice, and iOS ships only the compact one — the
   clear, enhanced voices sit behind a download in Settings that nothing announces, so a

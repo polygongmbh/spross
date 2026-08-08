@@ -71,6 +71,21 @@
   "kind": "noun"
  },
  {
+  "slug": "morning",
+  "kind": "noun",
+  "emoji": "🌅"
+ },
+ {
+  "slug": "evening",
+  "kind": "noun",
+  "emoji": "🌆"
+ },
+ {
+  "slug": "night",
+  "kind": "noun",
+  "emoji": "🌙"
+ },
+ {
   "slug": "i-have-no-time",
   "kind": "phrase",
   "emoji": "⏰",
@@ -96,12 +111,12 @@
   ]
  },
  {
-  "slug": "twelve-noon-sharp",
+  "slug": "nine-am-sharp",
   "kind": "phrase",
-  "emoji": "🕛",
+  "emoji": "🕘",
   "components": [
    "hour",
-   "noon"
+   "morning"
   ]
  }
 ]

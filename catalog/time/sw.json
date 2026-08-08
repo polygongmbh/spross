@@ -89,6 +89,24 @@
     "de": "mchana ist auch der helle Tag — der Nachmittagsgruß lautet „Habari za mchana“."
    }
   },
+  "morning": {
+   "text": "asubuhi",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "evening": {
+   "text": "jioni",
+   "grammar": {
+    "plural": "="
+   }
+  },
+  "night": {
+   "text": "usiku",
+   "grammar": {
+    "plural": "="
+   }
+  },
   "i-have-no-time": {
    "text": "Sina muda."
   },
@@ -104,8 +122,11 @@
     "de": "Die Saa-Zählung liegt sechs Stunden versetzt: 14 Uhr ist die achte Stunde des Tages."
    }
   },
-  "twelve-noon-sharp": {
-   "text": "saa sita mchana kamili"
+  "nine-am-sharp": {
+   "text": "saa tatu asubuhi kamili",
+   "notes": {
+    "de": "Die Saa-Zählung liegt sechs Stunden versetzt: 9 Uhr morgens ist die dritte Stunde des Tages."
+   }
   }
  }
 }

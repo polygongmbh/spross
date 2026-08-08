@@ -129,16 +129,6 @@
   "emoji": "🪢"
  },
  {
-  "slug": "night",
-  "kind": "noun",
-  "emoji": "🌙"
- },
- {
-  "slug": "morning",
-  "kind": "noun",
-  "emoji": "🌅"
- },
- {
   "slug": "make-bed",
   "kind": "verb",
   "emoji": "🛏️"

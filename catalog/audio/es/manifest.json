@@ -3212,18 +3212,6 @@
       "snr": 82.7,
       "source": "LL-Q1321 (spa)-Precision27-más.wav"
     },
-    "morning": {
-      "author": "GlyphEnjoyer",
-      "file": "morning.mp3",
-      "gain": 5.8,
-      "lead": 183,
-      "licence": "CC0",
-      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "matches": "mañana",
-      "sha256": "546cfea382bcdaff7e294fbb7b77a1a2702d2e2394869c05db85ebb59d1a863e",
-      "snr": 64.4,
-      "source": "LL-Q1321 (spa)-GlyphEnjoyer-mañana.wav"
-    },
     "mosque": {
       "author": "AdrianAbdulBaha",
       "file": "mosque.mp3",

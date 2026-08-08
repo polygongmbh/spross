@@ -74,6 +74,24 @@
     "gender": "el"
    }
   },
+  "evening": {
+   "text": "tarde",
+   "variants": [
+    "noche"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "kein eigenes Wort für Abend: bis zum Dunkelwerden la tarde, danach la noche — Guten Abend = buenas tardes bzw. buenas noches."
+   }
+  },
+  "night": {
+   "text": "noche",
+   "grammar": {
+    "gender": "la"
+   }
+  },
   "i-have-no-time": {
    "text": "No tengo tiempo."
   },
@@ -86,8 +104,8 @@
   "two-in-the-afternoon": {
    "text": "las dos de la tarde"
   },
-  "twelve-noon-sharp": {
-   "text": "las doce del mediodía en punto"
+  "nine-am-sharp": {
+   "text": "a las nueve de la mañana en punto"
   }
  }
 }
