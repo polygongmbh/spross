@@ -1,4 +1,5 @@
 import AVFoundation
+import SprossKern
 
 /// Plays one bundled recording at a time, under the catalog's ANALYSIS INDEX:
 /// `gainDb` decibels from the analysis target, and `leadMs` of dead air to
@@ -20,11 +21,6 @@ import AVFoundation
 /// `warmUp(url:)` for where the first one is paid.
 @MainActor
 final class PronunciationPlayer {
-
-    /// Where the catalog's converter clamps its measurements, and well inside
-    /// the EQ's own ±24 dB: a wilder number is a broken measurement, never a
-    /// recording to obey.
-    private static let gainLimitDb = 20.0
 
     /// How often one word may be put back. A tap costs one rebuild; a second is
     /// a device changing route under a learner, and a third is a fight nobody
@@ -99,11 +95,13 @@ final class PronunciationPlayer {
         guard let file = try? AVAudioFile(forReading: url), file.length > 0, running()
         else { return }
         pending = request
-        let lead = AVAudioFramePosition(Double(request.leadMs) / 1000 * file.processingFormat.sampleRate)
-        // why: a lead that would swallow the whole file is a broken
-        // measurement — the recording is still worth playing whole.
-        let head = (0..<file.length).contains(lead) ? lead : 0
-        equalizer.globalGain = Float(min(Self.gainLimitDb, max(-Self.gainLimitDb, request.gainDb)))
+        let rate = file.processingFormat.sampleRate
+        // How far a player may trust the analysis index is kern's (`catalog/Playback.kt`);
+        // frames and the EQ's own ±24 dB headroom are this device's business.
+        let headMs = Playback.shared.headMs(leadMs: request.leadMs,
+                                            durationMs: Int64(Double(file.length) / rate * 1000))
+        let head = AVAudioFramePosition(Double(headMs) / 1000 * rate)
+        equalizer.globalGain = Float(Playback.shared.gainDb(measured: request.gainDb))
         self.onFinish = onFinish
         let current = playback
         node.scheduleSegment(file, startingFrame: head,

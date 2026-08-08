@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **The language pair in Box settings can no longer be set to a pair that teaches nothing.**
+  The learned-language menu listed the language you already speak whatever the catalog held,
+  so picking it could swap you onto a direction with no words in it; it is now offered only
+  where that swapped pair is one Spross can teach. And switching your known language to one
+  that does not teach your current learning language now moves you to one it does, instead
+  of leaving the pair standing empty. The onboarding screen already worked this way —
+  settings now agrees with it.
+
 - **The Android app wears the same colours and shapes as the iPhone app, and follows the
   system's light or dark setting.** Its palette predated the contrast re-cut and shared no
   values with iOS; now every screen reads from the same colour pairs in both modes, and

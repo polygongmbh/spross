@@ -1,4 +1,5 @@
 import AVFoundation
+import SprossKern
 import UIKit
 
 /// Live speech synthesis for a target form — the fallback branch of
@@ -72,25 +73,22 @@ final class Speaker: NSObject {
         return resolved
     }
 
-    /// The best voice for a bare language code: highest quality wins, ties go
-    /// to the lower identifier so one device always picks the same voice.
+    /// The voice a bare language code is spoken in. WHICH candidate wins — the
+    /// peninsular narrowing for Spanish included — is kern's
+    /// (`catalog/VoiceSelection.kt`); enumerating the device's voices and
+    /// reading Apple's own quality scale is ours.
     private static func bestVoice(for language: String) -> AVSpeechSynthesisVoice? {
-        let code = language.lowercased()
-        let candidates = AVSpeechSynthesisVoice.speechVoices().filter {
-            let voiceCode = $0.language.lowercased()
-            return voiceCode == code || voiceCode.hasPrefix(code + "-")
-        }
-        // why: Spanish is taught in the peninsular variety (distinción) — a
-        // Latin-American voice would teach seseo, so es-ES outranks quality.
-        let peninsular = code == "es"
-            ? candidates.filter { $0.language.lowercased() == "es-es" }
-            : []
-        let pool = peninsular.isEmpty ? candidates : peninsular
-        return pool.sorted { lhs, rhs in
-            lhs.quality.rawValue == rhs.quality.rawValue
-                ? lhs.identifier < rhs.identifier
-                : lhs.quality.rawValue > rhs.quality.rawValue
-        }.first
+        let installed = AVSpeechSynthesisVoice.speechVoices()
+        let chosen = VoiceSelection.shared.select(
+            language: language,
+            candidates: installed.map {
+                VoiceSelection.Candidate(languageTag: $0.language,
+                                         quality: Int32($0.quality.rawValue),
+                                         identifier: $0.identifier)
+            }
+        )
+        guard let chosen else { return nil }
+        return installed.first { $0.identifier == chosen.identifier }
     }
 }
 

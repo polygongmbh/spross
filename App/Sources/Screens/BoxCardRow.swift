@@ -32,7 +32,6 @@ struct BoxCardRow: View {
 
     @ViewBuilder
     private var row: some View {
-        let sched = model.scheduling(for: card.id)
         let pronounce = model.pronounceAction(for: card.target.text, lang: card.target.lang)
 
         HStack(spacing: DL.Space.m) {
@@ -51,7 +50,7 @@ struct BoxCardRow: View {
                     .lineLimit(1)
             }
             Spacer(minLength: DL.Space.s)
-            standing(sched)
+            standing
         }
         .padding(.horizontal, DL.Space.m)
         .padding(.vertical, DL.Space.xs + 2)
@@ -64,11 +63,16 @@ struct BoxCardRow: View {
         .pronounceOnTap(pronounce)
     }
 
-    /// The row's right edge: sleeping words offer waking, packable ones offer
-    /// packing, everything else states the phase it is in.
+    /// The row's right edge, drawn. WHICH of the five things a row has to state
+    /// is the box's ruling (`BoxBrowser.cardRowState`) — including that an
+    /// unexposed card states nothing at all, since in a shelf of unstarted words
+    /// a "Neu" badge would be most of the rows and its capsule was what pushed
+    /// the phrase text into truncation. The icons, the pill and the capsule are
+    /// this row's own.
     @ViewBuilder
-    private func standing(_ sched: CardScheduling?) -> some View {
-        if sched?.suspended == true {
+    private var standing: some View {
+        switch onEnum(of: model.cardRowState(card.id, packOffered: pack != nil)) {
+        case .sleeping:
             Text(verbatim: "💤")
                 .accessibilityLabel("box.suspended")
             Button("box.wake") {
@@ -79,39 +83,37 @@ struct BoxCardRow: View {
             .padding(.horizontal, DL.Space.m)
             .padding(.vertical, DL.Space.xs + 1)
             .background(Color.dlAccent.opacity(0.14), in: Capsule())
-        } else if let pack, sched == nil {
-            if model.isQueued(card.id) {
-                Image(systemName: "checkmark.circle.fill")
-                    .font(DL.Fonts.headline)
-                    .foregroundStyle(Color.dlSuccess)
-                    .frame(width: 40, height: 40)
-                    .accessibilityLabel("box.packedWord")
-            } else {
+        case .packOffered:
+            if let pack {
                 Button(action: pack) {
                     Image(systemName: "plus")
                 }
                 .buttonStyle(DLIconButtonStyle())
                 .accessibilityLabel("box.packWord")
             }
-        } else {
-            // why: every unexposed card would otherwise wear "Neu" — in a list
-            // that's most rows, and the capsule's own padding was what pushed
-            // the phrase text into truncation. A card with no exposure yet
-            // reads as new by the badge's ABSENCE; only a badge that adds
-            // information (learning/review/relearning) earns its width here.
-            let phase = badgePhase(sched)
-            if phase != .new {
-                PhaseBadge(phase: phase, consolidated: model.isConsolidated(card.id))
-            }
+        case .packed:
+            Image(systemName: "checkmark.circle.fill")
+                .font(DL.Fonts.headline)
+                .foregroundStyle(Color.dlSuccess)
+                .frame(width: 40, height: 40)
+                .accessibilityLabel("box.packedWord")
+        case .plain:
+            EmptyView()
+        case .standing(let standing):
+            PhaseBadge(phase: Self.badgePhase(standing.phase),
+                       consolidated: standing.consolidated)
         }
     }
 
-    private func badgePhase(_ sched: CardScheduling?) -> PhaseBadge.Phase {
-        switch sched?.phase {
-        case nil, .theNew?: return .new
-        case .learning?: return .learning
-        case .review?: return .review
-        case .relearning?: return .relearning
+    /// Kern's phase in the palette's own terms. `.theNew` never arrives — a card
+    /// with nothing behind it reads `.plain` above — but the case is what makes
+    /// the switch exhaustive.
+    private static func badgePhase(_ phase: CardPhase) -> PhaseBadge.Phase {
+        switch phase {
+        case .theNew: return .new
+        case .learning: return .learning
+        case .review: return .review
+        case .relearning: return .relearning
         }
     }
 }

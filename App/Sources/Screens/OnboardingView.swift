@@ -28,8 +28,14 @@ struct OnboardingView: View {
         model.catalog?.coveredSources() ?? []
     }
 
-    private var targets: [AvailableTarget] {
-        model.catalog?.availableTargets(source: source) ?? []
+    /// The pair as the two lists see it, before anything is persisted.
+    private var selection: LanguageChoices.Selection {
+        LanguageChoices.Selection(source: source, target: target)
+    }
+
+    private func apply(_ next: LanguageChoices.Selection) {
+        source = next.source
+        target = next.target
     }
 
     var body: some View {
@@ -64,13 +70,6 @@ struct OnboardingView: View {
         LanguageNames.pickerRow(code, catalog: model.catalog)
     }
 
-    /// Tapping the language the other side holds exchanges the two selections.
-    private func swapSelections() {
-        guard let oldTarget = target else { return }
-        target = source
-        source = oldTarget
-    }
-
     // MARK: - Which language you already speak
 
     private var sourceSection: some View {
@@ -82,16 +81,10 @@ struct OnboardingView: View {
                 DLSelectionRow(title: Text(verbatim: languageName(candidate)),
                                mark: .one,
                                selected: source == candidate) {
-                    if candidate == target {
-                        swapSelections()
-                        return
-                    }
-                    source = candidate
-                    // why: the target list is source-dependent — keep the
-                    // pick valid under the new source.
-                    if !targets.contains(where: { $0.code == target }) {
-                        target = targets.first?.code
-                    }
+                    guard let catalog = model.catalog else { return }
+                    apply(LanguageChoices.shared.pickSource(catalog: catalog,
+                                                            selection: selection,
+                                                            code: candidate))
                 }
             }
         }
@@ -99,22 +92,11 @@ struct OnboardingView: View {
 
     // MARK: - Which language you want to learn
 
-    /// Learnable targets PLUS the current source — picking it swaps the pair
-    /// (its count is the swapped pair's, which is symmetric).
-    private struct TargetChoice: Identifiable {
-        let code: String
-        let conceptCount: Int
-        var id: String { code }
-    }
-
-    private var targetChoices: [TargetChoice] {
-        var choices = targets.map { TargetChoice(code: $0.code, conceptCount: Int($0.conceptCount)) }
-        if let target,
-           let swapped = model.catalog?.availableTargets(source: target)
-               .first(where: { $0.code == source }) {
-            choices.append(TargetChoice(code: source, conceptCount: Int(swapped.conceptCount)))
-        }
-        return choices.sorted { $0.code < $1.code }
+    /// Learnable targets, plus the current source where the swapped pair teaches
+    /// something — the rows and their counts are `LanguageChoices.targetChoices`.
+    private var targetChoices: [LanguageChoices.TargetChoice] {
+        guard let catalog = model.catalog else { return [] }
+        return LanguageChoices.shared.targetChoices(catalog: catalog, selection: selection)
     }
 
     private var targetSection: some View {
@@ -122,16 +104,13 @@ struct OnboardingView: View {
             Text("onboarding.target.question")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            ForEach(targetChoices) { candidate in
+            ForEach(targetChoices, id: \.code) { candidate in
                 DLSelectionRow(title: Text(verbatim: languageName(candidate.code)),
-                               caption: Text("onboarding.termsCount \(candidate.conceptCount.formatted())"),
+                               caption: Text("onboarding.termsCount \(Int(candidate.conceptCount).formatted())"),
                                mark: .one,
                                selected: target == candidate.code) {
-                    if candidate.code == source {
-                        swapSelections()
-                    } else {
-                        target = candidate.code
-                    }
+                    apply(LanguageChoices.shared.pickTarget(selection: selection,
+                                                            code: candidate.code))
                 }
             }
         }
