@@ -10,8 +10,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -32,6 +34,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.SessionUi
@@ -151,7 +154,17 @@ private fun VerdictButton(label: String, color: Color, modifier: Modifier, onCli
         ),
         contentPadding = ButtonDefaults.TextButtonContentPadding,
     ) {
-        Text(label, maxLines = 1)
+        // why: "✗ Unbekannt" outruns a third of a 320dp row and lost its name to
+        // maxLines = 1 — the label now steps down to fit instead (the iOS rating
+        // buttons scale the same way); the cap keeps the short verdicts at full size.
+        Text(
+            label,
+            maxLines = 1,
+            autoSize = TextAutoSize.StepBased(
+                minFontSize = 9.sp,
+                maxFontSize = LocalTextStyle.current.fontSize,
+            ),
+        )
     }
 }
 
