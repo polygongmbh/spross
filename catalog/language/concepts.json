@@ -137,9 +137,9 @@
   ]
  },
  {
-  "slug": "i-speak-a-little-german",
+  "slug": "i-speak-a-little",
   "kind": "phrase",
-  "emoji": "🇩🇪",
+  "emoji": "💬",
   "components": [
    "speak"
   ]
@@ -151,15 +151,15 @@
   "components": []
  },
  {
-  "slug": "how-do-you-say-this-in-german",
+  "slug": "how-do-you-say-this",
   "kind": "phrase",
   "emoji": "🗣️",
   "components": []
  },
  {
-  "slug": "im-learning-german",
+  "slug": "im-learning-your-language",
   "kind": "phrase",
-  "emoji": "🇩🇪",
+  "emoji": "📚",
   "components": []
  },
  {

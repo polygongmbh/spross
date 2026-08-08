@@ -80,17 +80,17 @@
   "do-you-speak-english": {
    "text": "Do you speak English?"
   },
-  "i-speak-a-little-german": {
-   "text": "I only speak a little German."
+  "i-speak-a-little": {
+   "text": "I only speak a little {language}."
   },
   "what-does-this-word-mean": {
    "text": "What does this word mean?"
   },
-  "how-do-you-say-this-in-german": {
-   "text": "How do you say this in German?"
+  "how-do-you-say-this": {
+   "text": "How do you say this {language-in}?"
   },
-  "im-learning-german": {
-   "text": "I'm learning German."
+  "im-learning-your-language": {
+   "text": "I'm learning {language}."
   },
   "i-have-a-question": {
    "text": "I have a question."

@@ -100,17 +100,17 @@
   "do-you-speak-english": {
    "text": "Ви розмовляєте англійською?"
   },
-  "i-speak-a-little-german": {
-   "text": "Я лише трохи розмовляю німецькою."
+  "i-speak-a-little": {
+   "text": "Я лише трохи розмовляю {language-speak}."
   },
   "what-does-this-word-mean": {
    "text": "Що означає це слово?"
   },
-  "how-do-you-say-this-in-german": {
-   "text": "Як це сказати німецькою?"
+  "how-do-you-say-this": {
+   "text": "Як це сказати {language-in}?"
   },
-  "im-learning-german": {
-   "text": "Я вчу німецьку."
+  "im-learning-your-language": {
+   "text": "Я вчу {language-learn}."
   },
   "i-have-a-question": {
    "text": "У мене є запитання."

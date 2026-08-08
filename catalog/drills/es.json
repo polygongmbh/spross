@@ -39,9 +39,9 @@
    ]
   },
   "learning-since-year": {
-   "text": "Aprendo alemán desde {slot}.",
+   "text": "Aprendo {language} desde {slot}.",
    "variants": [
-    "Estoy aprendiendo alemán desde {slot}."
+    "Estoy aprendiendo {language} desde {slot}."
    ],
    "notes": {
     "de": "Jahreszahl als Kardinalzahl gelesen: „mil novecientos setenta y ocho“"

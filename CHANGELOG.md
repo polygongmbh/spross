@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **The phrases about the language you are learning now say which language that is.** Every
+  file spelled it out: "Ich lerne Deutsch", "Ninajifunza Kijerumani", "I have been learning
+  German since 1998" — so a German speaker learning Swahili was taught to say, in Swahili,
+  that they were learning German. Those cards and the year drill's sentence now name the
+  language the profile is actually studying, on both sides at once: the prompt reads "Ich
+  lerne Suaheli.", the answer "Ninajifunza Kiswahili.", and Ukrainian inflects it the way
+  each verb demands. "Do you speak English?" is untouched — that one means English on purpose.
+
 ## 3.13.0 — 2026-08-08
 
 - **The number forms stop having to be learned in a failure.** The drill that asks for

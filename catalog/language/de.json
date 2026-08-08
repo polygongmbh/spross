@@ -107,17 +107,17 @@
     "Sprichst du Englisch?"
    ]
   },
-  "i-speak-a-little-german": {
-   "text": "Ich spreche nur ein bisschen Deutsch."
+  "i-speak-a-little": {
+   "text": "Ich spreche nur ein bisschen {language}."
   },
   "what-does-this-word-mean": {
    "text": "Was bedeutet dieses Wort?"
   },
-  "how-do-you-say-this-in-german": {
-   "text": "Wie sagt man das auf Deutsch?"
+  "how-do-you-say-this": {
+   "text": "Wie sagt man das {language-in}?"
   },
-  "im-learning-german": {
-   "text": "Ich lerne Deutsch."
+  "im-learning-your-language": {
+   "text": "Ich lerne {language}."
   },
   "i-have-a-question": {
    "text": "Ich habe eine Frage."
