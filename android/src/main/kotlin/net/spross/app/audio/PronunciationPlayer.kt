@@ -4,7 +4,10 @@ import android.content.res.AssetFileDescriptor
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.audiofx.LoudnessEnhancer
+import android.os.Handler
+import android.os.HandlerThread
 import java.io.IOException
+import java.util.concurrent.atomic.AtomicInteger
 import net.spross.kern.catalog.Playback
 
 /**
@@ -22,11 +25,32 @@ import net.spross.kern.catalog.Playback
  * The prepared player is KEPT until the next word or a [stop], which is what makes
  * [replay] instant. It reads the mp3 straight out of the APK, which needs the entry
  * STORED rather than deflated — see the `noCompress` pin in android/build.gradle.kts.
+ *
+ * why a worker thread: create/setDataSource/prepare/release and the enhancer's init are
+ * binder calls into audioserver — seconds each when that process wedges — and they used
+ * to run on the main thread at every reveal autoplay, which is an ANR at a tap. One
+ * [HandlerThread] owns the whole player lifecycle; the main thread only posts requests.
  */
 class PronunciationPlayer {
 
-    /** Bumped by every play and every stop: the id of the newest request. */
-    private var request = 0
+    private val thread = HandlerThread("pronunciation").apply { start() }
+    private val handler = Handler(thread.looper)
+
+    /**
+     * Bumped by every play and every stop: the id of the newest request. Atomic because
+     * the main thread bumps it and the worker both reads it (the stale-prepare guard)
+     * and bumps it on a decode error.
+     */
+    private val request = AtomicInteger(0)
+
+    /**
+     * Whether a play stands unstopped — what [replay] answers without waiting on the
+     * worker. A decode error clears it, after which the caller loads afresh.
+     */
+    @Volatile private var held = false
+
+    // Everything below is owned by [thread]: the worker builds the player there, so
+    // MediaPlayer's callbacks land there too and the guards need no lock.
 
     /** Which request the prepare in flight belongs to; 0 once it has landed. */
     private var preparing = 0
@@ -42,12 +66,49 @@ class PronunciationPlayer {
 
     /**
      * Plays [afd] under its analysis index, replacing whatever was sounding. The
-     * descriptor is consumed here. A file that will not open simply stays silent — a
-     * word is never worth an error surface.
+     * descriptor is consumed on the worker. A file that will not open simply stays
+     * silent — a word is never worth an error surface.
      */
     fun play(afd: AssetFileDescriptor, gainDb: Double, leadMs: Long) {
+        val current = request.incrementAndGet()
+        held = true
+        handler.post {
+            clear()
+            load(current, afd, gainDb, leadMs)
+        }
+    }
+
+    /**
+     * Plays the clip already held — the instant answer to a second tap on the same word.
+     * False when nothing is loaded and the caller has to hand over a descriptor.
+     */
+    fun replay(): Boolean {
+        if (!held) return false
+        handler.post {
+            // why: a prepare still on its way ends in this very clip sounding, so a
+            // second ask while it lands is answered by letting it land, not twice.
+            player?.takeIf { preparing == 0 }?.let(::sound)
+        }
+        return true
+    }
+
+    /** Stops the word in the air and strands any prepare still on its way. */
+    fun stop() {
+        request.incrementAndGet()
+        held = false
+        handler.post { clear() }
+    }
+
+    /** From `AppModel.onCleared()`. Nothing outlives a stop, so this is one. */
+    fun release() {
         stop()
-        val current = request
+        // why: quitSafely drains what stop() just posted — the release of the clip in
+        // hand — before the worker ends; a plain quit would leak the player.
+        thread.quitSafely()
+    }
+
+    /** Builds and prepares the player for [current] — worker side of [play]. */
+    private fun load(current: Int, afd: AssetFileDescriptor, gainDb: Double, leadMs: Long) {
         val player = MediaPlayer()
         this.player = player
         preparing = current
@@ -56,15 +117,14 @@ class PronunciationPlayer {
             // gone before it lands — stop() and the next word both bump the request id,
             // so only the newest one is ever allowed to sound. A stale callback touches
             // nothing at all: the marks it would clear belong to the request that
-            // overtook it. Callbacks arrive on the thread that built the player — the
-            // main one — so the guard needs no lock.
-            if (current != request) return@setOnPreparedListener
+            // overtook it, and the newer request's own clear() already released its player.
+            if (current != request.get()) return@setOnPreparedListener
             preparing = 0
             head = Playback.headMs(leadMs, prepared.duration.toLong())
             sound(prepared)
         }
         player.setOnErrorListener { _, _, _ ->
-            if (current == request) stop()
+            fail(current)
             true // handled: a file that will not decode is a silent word, never a crash
         }
         try {
@@ -78,26 +138,22 @@ class PronunciationPlayer {
             boost(player, playbackBoostMillibels(gainDb))
             player.prepareAsync()
         } catch (_: IOException) {
-            stop() // nothing readable behind the descriptor
+            fail(current) // nothing readable behind the descriptor
         }
     }
 
     /**
-     * Plays the clip already held — the instant answer to a second tap on the same word.
-     * False when nothing is loaded and the caller has to hand over a descriptor.
+     * An error stop, scoped to the request it happened to: only the newest request may
+     * end itself — a failure the next word already overtook has nothing left to clear.
      */
-    fun replay(): Boolean {
-        val player = player ?: return false
-        // why: a prepare still on its way ends in this very clip sounding, so a second
-        // ask while it lands is answered by letting it land, not by decoding it twice.
-        if (preparing != 0) return true
-        sound(player)
-        return true
+    private fun fail(current: Int) {
+        if (!request.compareAndSet(current, current + 1)) return
+        held = false
+        clear()
     }
 
-    /** Stops the word in the air and strands any prepare still on its way. */
-    fun stop() {
-        request++
+    /** Releases whatever is in hand — the worker-side body of [stop]. */
+    private fun clear() {
         preparing = 0
         head = 0
         // why: the enhancer first — it hangs on the session this player owns. And release
@@ -108,9 +164,6 @@ class PronunciationPlayer {
         player?.release()
         player = null
     }
-
-    /** From `AppModel.onCleared()`. Nothing outlives a stop, so this is one. */
-    fun release() = stop()
 
     /**
      * Starts [player] at the measured head — always by way of a seek, which is also what

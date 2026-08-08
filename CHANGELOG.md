@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Android no longer freezes when a recording is slow to reach the speaker.** Loading
+  and unloading the read-aloud clips happened on the thread that also answers taps, so
+  an audio system taking seconds surfaced as "Spross isn't responding" mid-round; the
+  clips now live on their own worker and a tap never waits on one.
+
 - **Android reviews now run on the same turn rules as the iPhone.** Three honest verdicts,
   with the long interval earned by answering fast rather than picked; a produce miss keeps
   the field open primed with what was already right, and a word still being taught is
