@@ -147,8 +147,7 @@ object PhraseSlots {
      */
     private fun digitForms(slot: TrainerTask): List<String> {
         if (slot.kind != TrainerKind.Clock) return listOf(slot.prompt, slot.promptDisplay).distinct()
-        val bare = slot.prompt.substringBefore(':').toInt().toString() + ":" + slot.prompt.substringAfter(':')
-        return listOf(slot.prompt, bare).distinct()
+        return Trainer.clockDigitForms(slot.prompt)
     }
 
     /**

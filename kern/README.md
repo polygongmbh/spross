@@ -230,7 +230,12 @@ this to every loaded box).
   what a learning step is for, not what an already-graduated schedule should ask.
 - Desired retention: engine default 0.9 (vector anchor); product `BoxConfig` 0.8, no slider.
   Product maximum interval 365.
-- Leech: lapse counted iff `phase == review && rating == again`; 8 → auto-suspend (per card).
+- **Leech: breadth over retention** (user ruling 2026-08-07). A lapse is any `Again` past
+  introduction — learning- and relearning-step retries count too, not just review-phase
+  ones — and 2 lapses auto-suspend the card. A word that has not stuck in two tries is
+  pushed outward rather than repeating on the learner indefinitely; suspension is the same
+  reversible state `setSuspended` uses everywhere else — the learner can always revive it
+  from the Box.
 - **Two "has this word landed" thresholds**, both Review phase AND stability ≥ the
   threshold, so a lapse un-lands a card either way — the point: it needs the support again.
   A third, `MATURED_STABILITY` = 30 days (`GrowthStage.Matured`), gates NOTHING and is a

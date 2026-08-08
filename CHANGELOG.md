@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **A word that doesn't stick in two tries is now pushed out, not repeated.** Leech
+  auto-suspend used to wait for eight review-phase lapses; the box is breadth-first, so it
+  now suspends after two — and counts a struggle during the word's own learning steps
+  toward that, not only failures after it had graduated. A suspended word is exactly as
+  reversible as before: revive it from the Box whenever you want another run at it.
+
 ## 3.11.1 — 2026-08-08
 
 - **The parts of the day moved in with the clock.** Morning, evening and night were
@@ -30,7 +36,6 @@
   and English, so either would teach one convention as the truth to a learner of the other.
   A sentence slot takes the separator alongside the bare digits, so copying the prompt as
   written cannot cost the rung.
-
 ## 3.11.0 — 2026-08-07
 
 - **Every word an area holds gets its mark on the tree.** How many marks a crown could

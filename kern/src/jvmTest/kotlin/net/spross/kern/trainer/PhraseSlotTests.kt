@@ -89,6 +89,40 @@ class PhraseSlotTests {
         assertEquals(year.prompt, year.promptDisplay)
     }
 
+    /**
+     * Reversed, a phrase shows the target sentence and asks for the bare value —
+     * never for the source sentence, which is a translation exercise the drill
+     * does not grade.
+     */
+    @Test
+    fun reversingAPhraseAsksForTheSlotValueOnly() {
+        val plates = Trainer.reversed(PhraseSlots.instantiate(frame("sw", "we-have-n-plates"), value = 347L))
+        assertEquals("Tuna sahani mia tatu na arobaini na saba.", plates.prompt)
+        assertEquals(listOf("347"), plates.accepted)
+
+        val departure = Trainer.reversed(
+            PhraseSlots.instantiate(frame("sw", "train-departs-at"), hour = 8, minute = 5),
+        )
+        assertEquals(listOf("08:05", "8:05"), departure.accepted)
+
+        for (template in RealFrames.all) {
+            val task = if (template.slotKind == TrainerKind.Clock) {
+                PhraseSlots.instantiate(template, hour = 9, minute = 45)
+            } else {
+                PhraseSlots.instantiate(template, value = 21L)
+            }
+            val back = Trainer.reversed(task)
+            val where = "${template.source}→${template.target} ${template.id}"
+            assertEquals(task.display, back.prompt, where)
+            assertTrue(back.accepted.isNotEmpty(), where)
+            assertTrue(back.display in back.accepted, where)
+            assertTrue(
+                back.accepted.all { answer -> answer.all { c -> c.isDigit() || c == ':' } },
+                "$where: ${back.accepted}",
+            )
+        }
+    }
+
     @Test
     fun swahiliYearSince() {
         val task = PhraseSlots.instantiate(frame("sw", "learning-since-year"), value = 2000L)
