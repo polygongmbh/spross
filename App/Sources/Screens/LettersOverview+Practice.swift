@@ -43,11 +43,16 @@ extension LettersOverview {
     /// One stage: what it asks, and whether this run will get there. The stage
     /// the run OPENS on is marked and says so — every learner starts somewhere
     /// different, and the page should not make them guess where.
+    ///
+    /// The mark is the stage's NUMBER, not a circle: these rows are a ladder the
+    /// run walks by itself, and an empty circle beside each one reads as a choice
+    /// that never answers the tap.
     private func stageRow(_ stage: LetterStage) -> some View {
         let open = reachable(stage)
         let entry = open && stage == entryStage
+        let step = (Self.stages.firstIndex(of: stage) ?? 0) + 1
         return HStack(alignment: .firstTextBaseline, spacing: DL.Space.m) {
-            Image(systemName: open ? (entry ? "play.circle.fill" : "circle") : "lock.fill")
+            Image(systemName: open ? "\(step).circle\(entry ? ".fill" : "")" : "lock.fill")
                 .font(.title3)
                 .foregroundStyle(entry ? Color.dlAccent : Color.dlTextSecondary)
             VStack(alignment: .leading, spacing: 2) {

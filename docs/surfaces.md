@@ -59,7 +59,9 @@ auto-advance beats these share with it, are `design.md`'s.
   installed in Settings turns the start button on without a relaunch. The stage rows carry
   no earned ladder (the drill books no review and keeps no record): they say which stage a
   run OPENS on, derived from the learner's consolidated words, and dictation states its
-  price until enough of them can be played back.
+  price until enough of them can be played back. Their mark is the step NUMBER, not a
+  circle — the run walks the ladder by itself, and a circle beside each row reads as a
+  choice that never answers the tap.
 - **Letter drill**: it shares the slot drill's chrome — the endless scaffold, the streak
   line, the close summary (`DrillChrome.swift`) — and keeps its own state machine, which
   is the whole of what the two have in common: its rungs are stages that change what a
