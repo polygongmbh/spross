@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+- **Finishing a drill drops you back where you started it, with what the run came to.**
+  Closing a run raised a screen holding three numbers and two buttons, and leaving from
+  there took a second ✕ on the page behind it. The figures ride back with the run instead
+  — answered, best streak, and the record if it fell — as a tile above the picks that the
+  page comes up to meet, so going again is the button that was already there and leaving
+  is one tap. A record still rains its confetti. The pages themselves now carry the app's
+  corners, the ✕ out on the left and the run in on the right, and the letter stages that
+  looked like a radio nobody could pick are numbered steps: the run walks them itself.
+
+- **Asking the other way round has to be earned now.** Reverse was the one switch that
+  cost nothing, met before a learner had written a single number down. It opens at three
+  digits — the cheapest rung there is, below the clock.
+
 - **A trainer page opens on the run now, and one exercise at a time until the ladder is
   open.** Zahlen and Buchstaben both put their reading matter first, so starting the thing
   the page exists for meant scrolling past twenty screens of table; the picks and the start
