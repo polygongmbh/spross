@@ -63,7 +63,7 @@ class TurnWiringTest {
         card: Card,
         role: PresentationRole = PresentationRole.Produce,
         prompt: ProducePrompt = ProducePrompt.Source,
-        settled: Boolean = false,
+        consolidated: Boolean = false,
         firstExposure: Boolean = false,
         platform: Platform = Platform(),
     ): Pair<TurnFlow, Platform> {
@@ -80,7 +80,7 @@ class TurnWiringTest {
                 else -> card.source.text
             },
             firstExposure = firstExposure,
-            settled = settled,
+            consolidated = consolidated,
             nowEpochMillis = T0,
         )
         var now = T0

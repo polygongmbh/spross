@@ -100,10 +100,7 @@ extension SessionView {
                              promptForm: role == .recognize ? model.promptForm(for: card)
                                  : (prompt == .sound ? card.target.text : card.source.text),
                              firstExposure: model.isFirstExposure(card.id),
-                             // why: the one landed bar — support (write-out, upfront
-                             // emoji) lasts until a word consolidates, per the merged
-                             // one-bar rule; kern's `settled` field carries it.
-                             settled: model.isConsolidated(card.id),
+                             consolidated: model.isConsolidated(card.id),
                              nowEpochMillis: Date().epochMillis)
     }
 

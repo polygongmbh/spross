@@ -257,7 +257,7 @@ class TurnTest {
         assertEquals(start, TurnFixture.state(start, TurnIntent.Submit("kisu")))
     }
 
-    /** A produce miss on an unsettled word: the field stays open, the answer stands on the card. */
+    /** A produce miss on a word not yet consolidated: the field stays open, the answer stands on the card. */
     private fun missedLanguage(): TurnState =
         TurnFixture.state(TurnFixture.produce(TurnFixture.language), TurnIntent.Submit("neno"))
 

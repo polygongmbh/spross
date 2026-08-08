@@ -32,7 +32,7 @@ class TurnMachine(
         prompt: ProducePrompt,
         promptForm: String,
         firstExposure: Boolean,
-        settled: Boolean,
+        consolidated: Boolean,
         nowEpochMillis: Long,
     ): TurnState = TurnState(
         card = card,
@@ -40,7 +40,7 @@ class TurnMachine(
         prompt = prompt,
         promptForm = promptForm,
         firstExposure = firstExposure,
-        settled = settled,
+        consolidated = consolidated,
         feedback = TurnFeedback.Neutral,
         revealed = false,
         pendingRating = null,

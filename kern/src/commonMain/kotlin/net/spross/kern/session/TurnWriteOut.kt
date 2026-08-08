@@ -27,7 +27,7 @@ internal class TurnWriteOut(private val normalizer: AnswerNormalizer) {
         rating == Rating.Again &&
             state.card.target.text.isNotEmpty() &&
             (state.role == PresentationRole.Produce || state.firstExposure) &&
-            !state.settled
+            !state.consolidated
 
     fun reduce(state: TurnState, step: CopyStep, intent: TurnIntent): TurnReduction = when (intent) {
         is TurnIntent.InputChanged -> writing(state, step, intent.text)

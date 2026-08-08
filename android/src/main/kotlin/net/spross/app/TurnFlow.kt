@@ -240,7 +240,7 @@ fun AppModel.newTurn(
                 else -> card.source.text
             },
             firstExposure = ui.firstExposure,
-            settled = ui.settled,
+            consolidated = ui.consolidated,
             nowEpochMillis = System.currentTimeMillis(),
         ),
         nowMillis = { System.currentTimeMillis() },

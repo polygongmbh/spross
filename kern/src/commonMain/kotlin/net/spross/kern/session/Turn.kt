@@ -97,8 +97,8 @@ data class TurnState(
     val promptForm: String,
     /** `reviewCount == 0`: the word is being taught, so a miss is still written out. */
     val firstExposure: Boolean,
-    /** A word that already sticks is never slowed down by a write-out. */
-    val settled: Boolean,
+    /** A word that already sticks — consolidated, the one landed bar — is never slowed down by a write-out. */
+    val consolidated: Boolean,
     val feedback: TurnFeedback,
     /** The learner asked to see the answer without producing it — the self-grade path. */
     val revealed: Boolean,

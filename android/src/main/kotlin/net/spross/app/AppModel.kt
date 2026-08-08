@@ -78,7 +78,7 @@ data class SessionUi(
     /** `reviewCount == 0` — the word is being taught, so a miss is still written out. */
     val firstExposure: Boolean = false,
     /** A word that already sticks is never slowed down by a write-out. */
-    val settled: Boolean = false,
+    val consolidated: Boolean = false,
     /** Which face carries the picture; null when the word has none. */
     val emojiCue: EmojiCue?,
     /**
@@ -397,7 +397,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 // and one that already sticks — consolidated, the one landed bar — is
                 // never slowed down.
                 firstExposure = count == 0,
-                settled = consolidated,
+                consolidated = consolidated,
                 emojiCue = card.emoji?.let { emojiCue(role, consolidated) },
                 // why: the KERN cue, never `role == Recognize` — one rule, consumed by
                 // both apps. The PROMPTED form, so a rotated synonym is heard as itself.
