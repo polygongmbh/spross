@@ -274,6 +274,55 @@ this to every loaded box).
   The elapsed span is the recall attempt (prompt shown → answer asked for),
   not the time spent choosing afterwards.
 
+- **A turn is a machine, not a screen** (`session.TurnMachine`, state `TurnState`):
+  one produce/recognize turn is immutable state plus `reduce(state, intent, nowEpochMillis)` —
+  `SessionRun`'s shape, one step further in.
+  It is opened with a card, its role, its produce prompt, the prompted form,
+  whether this is the first exposure and whether the word has settled;
+  it answers with the next state plus `TurnEffect`s —
+  `Answer` (the rating leaves for the run), `ArmAdvance`/`CancelAdvance`,
+  `PrimeField`, `Tone` and `ReleaseFocus`.
+  The learner's TEXT is never in the state:
+  the platform owns the field, the keyboard, focus, animation and playback,
+  and hands text in through intents.
+  Every rule about what that text is worth is here,
+  because it lived twice before and drifted both ways —
+  a pickable Easy on one platform, no retype after a miss on the other.
+  - **What each branch earns**: a clean answer is `Match.Exact.producedRating()`;
+    a typo and a heard-instead are `TurnFeedback.Almost`, holding the rating grading decided
+    until the owed form has been seen; finishing the retype after a miss is
+    recalled-with-help (Hard); giving up on it is an honest Again;
+    a self-grade is `SelfGrading` over the recall span and the prompt length.
+  - **The beats belong to the engine** (`ADVANCE_LIVE_MS` 450, `ADVANCE_EXPLICIT_MS` 1200,
+    carried by `AdvanceTier`): finishing the word IS the answer, so a live-typed exact gets
+    the short beat and an explicit Check the longer one, while an amber hold gets none at all.
+    WHETHER a timer may run is the platform's fact — a screen reader makes a timed change
+    hostile — but that an explicit button REPLACES it, and books exactly what the beat would
+    have booked, is the rule (`TurnIntent.ConfirmPending`).
+  - **Live approval is exact-only where an explicit submit forgives a slip**:
+    the typo budget would fire a letter early and grade a word before it was finished,
+    and a real slip has to pause on its correction anyway.
+    Backing out of a finished word takes the acceptance and its parked rating with it.
+  - **A miss keeps the field open**: the retype IS the answer, primed to the whole words
+    already right (`AnswerNormalizer.matchingPrefixWordCount`),
+    so nothing already correct is typed twice.
+  - **The write-out** (`CopyStep`): a missed word is typed once with the answer in view.
+    Only Again asks for it, only for a word that has not settled,
+    and only where writing it is more than copying it off the prompt —
+    production, or the first exposure, where the word is being taught.
+    A later recognition miss does not qualify:
+    the target has stood in the prompt since the first frame.
+    The rating is HELD and applied unchanged — encoding, never a grade —
+    and a produce retry that was given up on never opens one,
+    because that field already was the one write-out the word gets.
+  - **The recall span** is prompt-shown until the learner asks to see the answer, closed once;
+    a typed answer never closes it, because it never reaches self-grading.
+  - **Asked by ear**, the answer grades against `spokenOnly`,
+    but a form the card itself lists (`alsoAccepts`, compared by `speechKey`)
+    is amber rather than wrong — the reveal teaches those forms, it simply was not what played.
+    Being exactly what played wins over that:
+    a card that also lists its own spoken form was still answered exactly.
+
 The engine also owns budgets and the growth-reserve formula, the silent answer drop, the
 extra round, endless, exposure tiers, statistics, streak forgiveness, the `endSession` fold
 and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:

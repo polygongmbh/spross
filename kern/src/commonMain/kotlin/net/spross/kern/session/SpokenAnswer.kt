@@ -1,5 +1,6 @@
 package net.spross.kern.session
 
+import net.spross.kern.catalog.speechKey
 import net.spross.kern.model.Card
 
 /**
@@ -24,3 +25,21 @@ fun spokenOnly(card: Card, spokenForm: String): Card = card.copy(
         variants = emptyList(),
     ),
 )
+
+/**
+ * Whether [input] is a form this card lists as a synonym or a variant — the right word,
+ * just not the one that played.
+ *
+ * The other half of the ear rule [spokenOnly] states: grading narrows to what was spoken,
+ * and this names what the narrowing then has to forgive. Amber, never wrong — the reveal
+ * itself teaches these forms ("auch: …"), so failing one would contradict the card that is
+ * about to show it.
+ *
+ * Compared by [speechKey], because a learner writing down what they heard carries none of
+ * the spelling edges the catalog authors — the stem dash of `-zuri`, the `¡…!` of a Spanish
+ * citation, or the case of a noun.
+ */
+fun alsoAccepts(card: Card, input: String): Boolean {
+    val typed = speechKey(input)
+    return (card.target.synonyms + card.target.variants).any { speechKey(it) == typed }
+}
