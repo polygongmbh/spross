@@ -9,7 +9,7 @@ internal class MapCatalogSource(private val files: Map<String, String>) : Catalo
  * Sie/du variants, sparse coverage, "to " prefix, missing language files
  * (beta has no sw/en), seedIndex flattening across two groups,
  * decomposed-Unicode forms (gamma/de door), area subtitles (gamma authors them,
- * alpha and beta none), and the [drills] frames.
+ * alpha and beta none), the [drills] frames and the [names] tables.
  */
 internal object Fixture {
     private val du = "u\u0308" // decomposed u-umlaut: u + combining diaeresis
@@ -53,6 +53,37 @@ internal object Fixture {
                                    "count": { "one": "\u043a\u043b\u044e\u0447", "few": "\u043a\u043b\u044e\u0447\u0456", "many": "\u043a\u043b\u044e\u0447\u0456\u0432" },
                                    "masculineNumeral": true,
                                    "notes": { "de": "Zahlwort-Kongruenz." } } } }
+        """.trimIndent(),
+    )
+
+    /**
+     * Inflected language names, kept apart like [drills] so a test can drop them. Coverage
+     * is deliberately partial: en and fr author no table at all, sw names no fr, and uk's
+     * sw entry omits `speak` (the fallback to `name`).
+     */
+    val names: Map<String, String> = mapOf(
+        "languages/de.json" to """
+            { "languageNames": {
+                "de": { "name": "Deutsch", "in": "auf Deutsch" },
+                "en": { "name": "Englisch", "in": "auf Englisch" },
+                "fr": { "name": "Französisch", "in": "auf Französisch" },
+                "sw": { "name": "Suaheli", "in": "auf Suaheli", "variants": ["Kisuaheli"] },
+                "uk": { "name": "Ukrainisch", "in": "auf Ukrainisch" } } }
+        """.trimIndent(),
+        "languages/sw.json" to """
+            { "languageNames": {
+                "de": { "name": "Kijerumani", "in": "kwa Kijerumani" },
+                "en": { "name": "Kiingereza", "in": "kwa Kiingereza" },
+                "sw": { "name": "Kiswahili", "in": "kwa Kiswahili" },
+                "uk": { "name": "Kiukreni", "in": "kwa Kiukreni" } } }
+        """.trimIndent(),
+        "languages/uk.json" to """
+            { "languageNames": {
+                "de": { "name": "німецька", "in": "німецькою",
+                        "speak": "німецькою", "learn": "німецьку" },
+                "sw": { "name": "суахілі", "in": "мовою суахілі", "learn": "суахілі" },
+                "uk": { "name": "українська", "in": "українською",
+                        "speak": "українською", "learn": "українську" } } }
         """.trimIndent(),
     )
 
@@ -162,7 +193,7 @@ internal object Fixture {
             { "title": "Гамма", "subtitle": "Усе обертається.",
               "words": { "door": { "text": "двері", "grammar": { "plural": "only" } } } }
         """.trimIndent(),
-    ) + drills
+    ) + drills + names
 
     fun catalog(): Catalog = Catalog.load(MapCatalogSource(files))
 }

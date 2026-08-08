@@ -53,6 +53,14 @@ Engine contract: `../README.md`.
   letters, exactly-one-gap on gap rows, letters-manifest glyph collision).
   `letters{}.matches == name` is WAIVED — the audio manifest schema rejects the field, so
   the name↔recording check is a manual listening pass (backlog).
+- `catalog/languages/<lang>.json` → `LanguageName` (`CatalogParser.parseLanguageNames`), read
+  via `Catalog.languageName(reader, named) -> LanguageName?`. The registry is file presence,
+  as it is for an alphabet, and the reads are **TRACKED** — a name lands inside joined card
+  texts, so editing one restamps a running box exactly as a realization does (the audio and
+  frame exemptions do not apply). `in` is Kotlin's keyword, so the field is `inForm`.
+  Lint: **`CatalogLanguageNamesLintTest`** (declared-language files only, every declared
+  language names every declared language including itself, forms trimmed and non-blank,
+  `in` present, note keys are declared readers).
 - `catalog/drills/` — the sentence frames, a top-level sibling outside `areas.json`
   (format owned by `catalog/README.md`). A frame is a concept + per-language realizations,
   joined at runtime like a card, but it is not a card: no area, no `seedIndex`, outside the

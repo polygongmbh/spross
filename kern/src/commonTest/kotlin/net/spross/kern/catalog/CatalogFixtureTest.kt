@@ -184,6 +184,62 @@ class CatalogFixtureTest {
         assertNull(catalog.areaEmoji("delta"))
     }
 
+    // -- language names ----------------------------------------------------------------
+
+    @Test
+    fun languageNamesCarryTheAuthoredFormsAndFallBackToTheCitationForm() {
+        val suaheli = catalog.languageName("de", "sw")!!
+        assertEquals("Suaheli", suaheli.name)
+        assertEquals("auf Suaheli", suaheli.inForm)
+        assertEquals(listOf("Kisuaheli"), suaheli.variants)
+        // speak/learn unauthored: German's object form IS the citation form.
+        assertEquals("Suaheli", suaheli.form(LanguageMarker.Speak))
+        assertEquals("Suaheli", suaheli.form(LanguageMarker.Learn))
+        val german = catalog.languageName("uk", "de")!!
+        assertEquals("німецькою", german.form(LanguageMarker.Speak))
+        assertEquals("німецьку", german.form(LanguageMarker.Learn))
+        // uk names суахілі without a speak form — the fallback is the name, not the adverbial.
+        assertEquals("суахілі", catalog.languageName("uk", "sw")!!.form(LanguageMarker.Speak))
+        assertEquals("мовою суахілі", catalog.languageName("uk", "sw")!!.inForm)
+    }
+
+    /** File presence is the registry, exactly as it is for an alphabet. */
+    @Test
+    fun aLanguageWithoutATableNamesNothingAndIsNamedAnyway() {
+        assertNull(catalog.languageName("en", "de"))
+        assertNull(catalog.languageName("sw", "fr")) // table present, entry absent
+        assertEquals("Französisch", catalog.languageName("de", "fr")?.name)
+    }
+
+    @Test
+    fun languageNameEditsRestampTheFingerprint() {
+        val edited = Fixture.files + mapOf(
+            "languages/de.json" to Fixture.names.getValue("languages/de.json")
+                .replace("Suaheli", "Swahili"),
+        )
+        assertTrue(Catalog.load(MapCatalogSource(edited)).fingerprint != catalog.fingerprint)
+    }
+
+    @Test
+    fun anUndeclaredNamedLanguageFailsTheParse() {
+        val broken = Fixture.files + mapOf(
+            "languages/sw.json" to Fixture.names.getValue("languages/sw.json")
+                .replace("\"uk\":", "\"xx\":"),
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("undeclared language \"xx\"" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    @Test
+    fun aLanguageNameWithoutAnInFormFailsTheParse() {
+        val broken = Fixture.files + mapOf(
+            "languages/de.json" to Fixture.names.getValue("languages/de.json")
+                .replace("\"in\": \"auf Suaheli\", ", ""),
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("missing \"in\"" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
     // -- drill frames ------------------------------------------------------------------
 
     @Test

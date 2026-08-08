@@ -38,6 +38,8 @@ crowdsourced per-language contribution, and a slow default learning progression.
 catalog/
   areas.json            # ordered GROUPS → ordered areas: the default progression
   languages.json        # per-language metadata (display name, verb citation prefix)
+  languages/            # what each language calls the languages, inflected
+    <lang>.json         # { languageNames: { code: { name, in, speak?, learn? } } }
   <area>/               # one folder per area (basics, kitchen, …)
     concepts.json       # ordered [{slug, kind, emoji?}] — order IS introduction order
     de.json             # { title, words: { slug: realization } }
@@ -501,6 +503,33 @@ and editing one never restamps a learner's box.
 
 Every non-slot content word on the answer side is verified against the card join
 (`PhraseVocabAuditTests`); only documented function words go beyond it.
+
+## Language names (`catalog/languages/`)
+
+What each language calls the languages, in the forms a sentence needs.
+One file per **naming** language, keyed by the language being **named** —
+`languages/de.json` says how German names Swahili, `languages/sw.json` how Swahili does.
+Every declared language names every declared language, itself included.
+
+Not to be confused with `languages.json` beside it, which is per-language app metadata
+(the picker's self-name, the flag, the articles). This directory is content the learner reads.
+
+```json
+{ "languageNames": {
+    "sw": { "name": "Suaheli", "in": "auf Suaheli", "variants": ["Kisuaheli"] },
+    "uk": { "name": "Ukrainisch", "in": "auf Ukrainisch" } } }
+```
+- `name` — the citation form, and what `{language}` resolves to.
+- `in` — the "in X" adverbial **including its adposition**
+  (de "auf Deutsch", es "en alemán", sw "kwa Kijerumani", uk instrumental "німецькою").
+  Required: a sentence carrying `{language-in}` supplies no preposition of its own,
+  because which one it is, and whether there is one at all, is what differs between languages.
+- `speak` / `learn` — the verb-object forms, optional;
+  a language whose object looks like the citation form authors neither.
+  Ukrainian is the one that needs them: instrumental "німецькою" after *розмовляти*,
+  accusative "німецьку" after *вчити*.
+- `variants` — accept-only alternates, never displayed (de "Kisuaheli" beside "Suaheli").
+- `notes` — keyed by explanation language, exactly as a realization's `notes` are.
 
 ## What earns a slot, and how it is worded
 

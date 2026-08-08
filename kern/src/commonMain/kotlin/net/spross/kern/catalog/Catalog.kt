@@ -31,6 +31,8 @@ class Catalog internal constructor(
     internal val frameRealizations: Map<Language, Map<String, RawFrame>>,
     /** lang → reader → the prose [numberNotes] serves; same file, same registry rule. */
     internal val drillNotes: Map<Language, Map<Language, List<String>>>,
+    /** reader → named language → its inflected names, from `languages/<reader>.json`. */
+    internal val languageNames: Map<Language, Map<Language, LanguageName>>,
 ) {
     /** Flattened default area order (groups top-to-bottom, areas as listed). */
     val areaNames: List<String> = areas.map { it.name }
@@ -182,6 +184,14 @@ class Catalog internal constructor(
      * a learner can read in English beats a heading with nothing under it. Empty where the
      * language authors none at all.
      */
+    /**
+     * How [reader] says the name of [named], in every form a sentence can ask for. Null
+     * where the reader's table is missing or has no entry — the caller's cue to leave the
+     * material out rather than to invent a name for it.
+     */
+    fun languageName(reader: Language, named: Language): LanguageName? =
+        languageNames[reader]?.get(named)
+
     fun numberNotes(language: Language, reader: Language): List<String> {
         val byReader = drillNotes[language] ?: return emptyList()
         return byReader[reader] ?: byReader[FALLBACK_SOURCE].orEmpty()
@@ -367,6 +377,12 @@ class Catalog internal constructor(
                 }
                 CatalogArea(name, concepts, titles, subtitles, realizations)
             }
+            // why: TRACKED — a language name lands inside joined card texts, so editing one
+            // changes the join and must restamp a running box exactly as a realization does.
+            val languageNames = languages.keys.mapNotNull { lang ->
+                val path = "languages/$lang.json"
+                tracked.read(path)?.let { lang to CatalogParser.parseLanguageNames(path, it, languages.keys) }
+            }.toMap()
             // why: read through the RAW source, never the fingerprinting wrapper — audio
             // can never change the join, so a refreshed pack must not restamp (and
             // recompose) a session that is already running.
@@ -394,6 +410,7 @@ class Catalog internal constructor(
                 groups, languages, areas, tracked.fingerprint(), audio, alphabets, frames,
                 frameRealizations = drills.mapValues { (_, it) -> it.frames },
                 drillNotes = drills.mapValues { (_, it) -> it.numberNotes },
+                languageNames = languageNames,
             )
         }
     }

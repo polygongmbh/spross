@@ -38,6 +38,17 @@ internal fun JsonObject.requireString(path: String, context: String, key: String
 internal fun JsonObject.optionalString(path: String, context: String, key: String): String? =
     this[key]?.str(path, "$context.$key")
 
+/** Required, non-blank, and already trimmed in the file — the shape lint would demand anyway. */
+internal fun JsonObject.trimmedString(path: String, context: String, key: String): String =
+    requireString(path, context, key).also { checkTrimmed(path, context, key, it) }
+
+internal fun JsonObject.optionalTrimmedString(path: String, context: String, key: String): String? =
+    optionalString(path, context, key)?.also { checkTrimmed(path, context, key, it) }
+
+private fun checkTrimmed(path: String, context: String, key: String, value: String) {
+    if (value.isBlank() || value.trim() != value) parseError(path, "$context: bad \"$key\" (\"$value\")")
+}
+
 internal fun JsonObject.stringList(path: String, context: String, key: String): List<String> =
     this[key]?.arr(path, "$context.$key")?.mapIndexed { i, el ->
         el.str(path, "$context.$key[$i]")

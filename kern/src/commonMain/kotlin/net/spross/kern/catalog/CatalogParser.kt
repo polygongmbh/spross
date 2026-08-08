@@ -86,6 +86,40 @@ internal object CatalogParser {
         }
     }
 
+    /**
+     * `catalog/languages/<lang>.json` → what THIS language calls the others, keyed by the
+     * language being named. [nameable] bounds both those codes and the readers `notes`
+     * addresses, so a typo'd code is a parse failure rather than a table entry nobody hits.
+     */
+    fun parseLanguageNames(path: String, text: String, nameable: Set<Language>): Map<Language, LanguageName> {
+        val root = parseJson(path, text).obj(path, "root")
+        root.rejectUnknownKeys(path, "root", setOf("languageNames"))
+        val entries = root["languageNames"]?.obj(path, "languageNames")
+            ?: parseError(path, "missing \"languageNames\"")
+        return entries.entries.associate { (code, el) ->
+            if (code !in nameable) parseError(path, "name for undeclared language \"$code\"")
+            val o = el.obj(path, code)
+            o.rejectUnknownKeys(path, code, setOf("name", "in", "speak", "learn", "variants", "notes"))
+            val variants = o.stringList(path, code, "variants")
+            for (variant in variants) {
+                if (variant.isBlank() || variant.trim() != variant) parseError(path, "$code: bad variant \"$variant\"")
+            }
+            val notes = o.stringMap(path, code, "notes")
+            for ((reader, note) in notes) {
+                if (reader !in nameable) parseError(path, "$code: note for undeclared language \"$reader\"")
+                if (note.isBlank()) parseError(path, "$code: blank note.$reader")
+            }
+            code to LanguageName(
+                name = o.trimmedString(path, code, "name"),
+                inForm = o.trimmedString(path, code, "in"),
+                speak = o.optionalTrimmedString(path, code, "speak"),
+                learn = o.optionalTrimmedString(path, code, "learn"),
+                variants = variants,
+                notes = notes,
+            )
+        }
+    }
+
     /** Exactly two regional-indicator code points (each a surrogate pair in UTF-16). */
     private fun isEmojiFlagSequence(s: String): Boolean {
         if (s.length != 4) return false

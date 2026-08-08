@@ -1,0 +1,9 @@
+{
+ "languageNames": {
+  "de": { "name": "German", "in": "in German" },
+  "en": { "name": "English", "in": "in English" },
+  "es": { "name": "Spanish", "in": "in Spanish" },
+  "sw": { "name": "Swahili", "in": "in Swahili", "variants": ["Kiswahili"] },
+  "uk": { "name": "Ukrainian", "in": "in Ukrainian" }
+ }
+}
