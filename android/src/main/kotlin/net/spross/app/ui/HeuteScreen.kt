@@ -12,11 +12,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -27,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -174,7 +177,7 @@ private fun WerkstattCard(model: AppModel) {
                         modifier = Modifier.weight(1f).heightIn(min = 48.dp),
                         shape = MaterialTheme.shapes.small,
                     ) {
-                        Text("🔢 ${chrome.numbersTitle}", maxLines = 1)
+                        EntryLabel("🔢 ${chrome.numbersTitle}")
                     }
                 }
                 if (model.lettersOffered) {
@@ -183,12 +186,29 @@ private fun WerkstattCard(model: AppModel) {
                         modifier = Modifier.weight(1f).heightIn(min = 48.dp),
                         shape = MaterialTheme.shapes.small,
                     ) {
-                        Text("🔤 ${chrome.lettersTitle}", maxLines = 1)
+                        EntryLabel("🔤 ${chrome.lettersTitle}")
                     }
                 }
             }
         }
     }
+}
+
+/**
+ * A Werkstatt entry's name beside its glyph, on ONE line however narrow the shared row:
+ * `maxLines = 1` alone WRAPS at the space and drops the word, leaving a bare emoji —
+ * so the label steps down instead, the fix the verdict buttons already wear.
+ */
+@Composable
+private fun EntryLabel(text: String) {
+    Text(
+        text,
+        maxLines = 1,
+        autoSize = TextAutoSize.StepBased(
+            minFontSize = 9.sp,
+            maxFontSize = LocalTextStyle.current.fontSize,
+        ),
+    )
 }
 
 /** "Freitag, 8. August" in the chrome's language — the caption over the day's name. */
