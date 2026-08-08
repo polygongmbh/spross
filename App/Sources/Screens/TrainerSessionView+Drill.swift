@@ -40,31 +40,24 @@ extension TrainerSessionView {
         return key
     }
 
-    /// What the card says the first time a prompt carries something new: a place word
-    /// for a length never seen, the NAME of a form for a mark never seen. One slot, so
-    /// the prompts that carry no hint sit exactly as high.
+    /// What the card says the first time a prompt carries something new — always a word
+    /// in the language being learned: the place word for a length never seen, the word
+    /// the form ADDS for a mark never seen ("Neu: menos"). One slot, so the prompts that
+    /// carry no hint sit exactly as high.
     ///
-    /// The form hint wins where both could fire: a decimal's whole part is not the
-    /// lesson on the card that introduces the comma.
+    /// Naming the category instead ("negative Zahl") was the first try and taught
+    /// nothing: a learner cannot say it, and the card is where saying it is owed.
+    /// The form wins where both could fire — a decimal's whole part is not the lesson
+    /// on the card that introduces the comma.
     private var promptHint: TrainerPromptCard.Hint? {
-        if let form = currentForm, let name = formName(form) {
-            return .init(icon: "number.square", text: "trainer.newForm \(name)")
+        if let form = currentForm,
+           let marker = Trainer.shared.formHint(formKey: form, language: language) {
+            return .init(icon: "number.square", text: "trainer.newForm \(marker)")
         }
         guard let digits = currentDigits, !seenDigitCounts.contains(digits),
               let place = Trainer.shared.placeValueHint(digits: Int32(digits), language: language)
         else { return nil }
         return .init(icon: "textformat.123", text: "trainer.newPlace \(place)")
-    }
-
-    /// Kern's form key in the reader's own language — the app names it, kern names the
-    /// rule. Resolved through DLChrome because the name is an interpolated argument, which
-    /// the environment locale cannot reach. An unknown key drops the hint rather than
-    /// printing a slug.
-    private func formName(_ key: String) -> String? {
-        let names = ["negative": "trainer.form.negative", "decimal": "trainer.form.decimal",
-                     "percent": "trainer.form.percent", "multiplicative": "trainer.form.multiplicative",
-                     "fraction": "trainer.form.fraction", "ordinal": "trainer.form.ordinal"]
-        return names[key].map { DLChrome.string($0, locale: locale) }
     }
 
     var drillContent: some View {

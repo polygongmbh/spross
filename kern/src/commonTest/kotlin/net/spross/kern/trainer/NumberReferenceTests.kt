@@ -134,4 +134,37 @@ class NumberReferenceTests {
         assertTrue(es["101"]!!.startsWith("ciento"), es["101"]!!)
         assertEquals("treinta y uno", es["31"])
     }
+
+    /**
+     * The word a form ADDS, per language — what the drill shows the first time it asks
+     * one. These are claims about the language, so they are written out rather than
+     * derived twice: the rule that produces them is in `formMarker`, and a change here
+     * means a language reads a mark differently, not that the code moved.
+     *
+     * Swahili ranks nothing without the noun it ranks, so it has no ordinal to name.
+     */
+    @Test
+    fun everyFormNamesTheWordItsLanguageAdds() {
+        val expected = mapOf(
+            "de" to listOf("minus", "Komma", "Prozent", "mal", "ein halb", "erste"),
+            "en" to listOf("minus", "point", "percent", "times", "half", "first"),
+            "es" to listOf("menos", "coma", "por ciento", "veces", "un medio", "primero"),
+            "sw" to listOf("hasi", "nukta", "asilimia", "mara", "nusu", null),
+            "uk" to listOf("мінус", "цілих десятих", "відсотків", "рази", "одна друга", "перший"),
+        )
+        for ((language, words) in expected) {
+            assertEquals(
+                words,
+                NumberForm.entries.map { Trainer.formHint(it.key, language) },
+                language,
+            )
+        }
+    }
+
+    /** A key kern never emits names nothing — the app must not print a slug. */
+    @Test
+    fun anUnknownFormKeyNamesNothing() {
+        assertNull(Trainer.formHint("cardinal", "de"))
+        assertNull(Trainer.formHint("", "de"))
+    }
 }

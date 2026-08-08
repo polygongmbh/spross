@@ -238,6 +238,15 @@ object Trainer {
     }
 
     /**
+     * The word this language adds for a number form ("minus", "Komma", "por ciento"),
+     * shown the first time a run asks that form — the [placeValueHint] rule, for marks
+     * instead of lengths. Keyed as [TrainerTask.formKey] names it; null for an unknown
+     * key or a form this language does not read.
+     */
+    fun formHint(formKey: String, language: Language): String? =
+        NumberForm.entries.firstOrNull { it.key == formKey }?.let { formMarker(language, it) }
+
+    /**
      * The whole numbers page for a language: which values a reference shows and how
      * this language reads them. Generated from the same packs the drill grades against,
      * so the table can never drift from the answers.

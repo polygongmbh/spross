@@ -88,6 +88,55 @@ private fun formExamples(limits: FormLimits): List<NumberValue> =
     }
 
 /**
+ * What this language ADDS for a form, in the language itself: "minus", "Komma",
+ * "por ciento", "mara". Derived, never authored — the worked example's reading with the
+ * cardinal's own words taken out of it, including where the cardinal is welded to the
+ * front of one ("dreimal" → "mal").
+ *
+ * Where nothing can be taken out, the whole reading stands, and that is the honest
+ * answer rather than a failure: an ordinal IS its own word ("erste", "primero"), and a
+ * half is not the cardinal one with something added ("ein halb", "nusu"). Either way the
+ * learner is handed target-language material, which naming the category never does.
+ *
+ * Returns null for a form this language does not read.
+ */
+internal fun formMarker(language: Language, form: NumberForm): String? {
+    val pack = Trainer.pack(language)
+    val value = formExamples(pack.formLimits).firstOrNull { it.form == form } ?: return null
+    val reading = pack.formReading(value).firstOrNull() ?: return null
+    val cardinals = value.components
+        .flatMap { pack.number(it).firstOrNull()?.words().orEmpty() }
+        .map { it.lowercase() }
+        .toSet()
+    // why: matched case-insensitively but emitted as written — German capitalizes the
+    // very words this returns ("Komma", "Prozent"), and a hint is shown, not compared.
+    val kept = reading.words().mapNotNull { word ->
+        val lower = word.lowercase()
+        when {
+            lower in cardinals -> null
+            else -> cardinals.firstOrNull { lower.length > it.length && lower.startsWith(it) }
+                ?.let { word.drop(it.length) } ?: word
+        }
+    }
+    return kept.joinToString(" ").ifBlank { reading }
+}
+
+/** Words of a reading, stripped of the marks a reading can carry. */
+private fun String.words(): List<String> =
+    split(' ', '-').map { it.trim(',', '.') }.filter { it.isNotBlank() }
+
+/** The plain numbers a form is built from — what its reading says besides the mark. */
+private val NumberValue.components: List<Long>
+    get() = when (this) {
+        is NumberValue.Negative -> listOf(magnitude)
+        is NumberValue.Decimal -> listOf(whole) + fractionDigits.map { it.digitToInt().toLong() }
+        is NumberValue.Percent -> listOf(n)
+        is NumberValue.Multiplicative -> listOf(n)
+        is NumberValue.Fraction -> listOf(numerator, denominator)
+        is NumberValue.Ordinal -> listOf(n)
+    }
+
+/**
  * The lowest ordinal the language ranks — 1 wherever it is offered, since that is where
  * the irregular stems live ("erste", "primero", "перший").
  */

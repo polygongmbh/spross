@@ -25,13 +25,16 @@ auto-advance beats these share with it, are `design.md`'s.
   come, and the field's placeholder names what is owed — the language to answer in, or
   digits where the task was reversed — so a badge or a "Zahl · auf Spanisch" caption would
   be the third telling of what one tap said.
-  The one thing it does carry is the FIRST-SIGHT hint: the place word the first time a
-  length appears, the name of a form the first time a mark does ("Neu: Kommazahl"), one
-  slot and the form winning where both could fire. A fact about THIS prompt, and the
-  reveal takes its place rather than stacking under it. Kern names the form with a stable
-  key and the app names it in the reader's language, so no view reads notation off a
-  prompt string. A reversed task gets neither: the prompt is then the reading, which says
-  both in words.
+  The one thing it does carry is the FIRST-SIGHT hint, and it is always a word in the
+  language being LEARNED: the place word the first time a length appears, the word a form
+  adds the first time a mark does ("Neu: menos", "Neu: Komma"). One slot, the form winning
+  where both could fire. Naming the category in the reader's language instead ("Neu:
+  Kommazahl") taught nothing — a learner cannot say it, and the card is where saying it is
+  owed. The word is DERIVED, never authored: `formMarker` takes the reference band's
+  worked example and removes the cardinal's own words, including a cardinal welded to the
+  front of one ("dreimal" → "mal"); where nothing can be removed the whole reading stands,
+  which is the honest answer for an ordinal ("erste") or a half ("nusu"). A reversed task
+  gets no hint at all: the prompt is then the reading, which says it in words already.
 - **Zahlen overview**: the numbers entry opens a page, not a run — options and start
   first, reference under them. Reading matter and the run it prepares you for are ONE
   surface on purpose: a look-up that lives five taps inside a running drill is a look-up

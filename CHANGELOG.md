@@ -10,8 +10,10 @@
   for Swahili, which cannot rank anything without the noun it ranks. The "?" that opens
   that page mid-run now appears in a forms run too, on the same terms as everywhere else:
   reading while you still owe an answer costs the rung, reading after it is free. And the
-  card itself names a form the first time it asks one — "Neu: Kommazahl" — the way a new
-  digit length has always announced its place word.
+  card itself hands over the word the first time it asks a form — "Neu: menos", "Neu:
+  coma", "Neu: asilimia" — the way a new digit length has always announced its place word.
+  It is the word in the language being learned, not a name for the category: what a
+  learner has to say, at the moment they are asked to say it.
 
 - **A run that is going badly offers you the door.** A drill runs until you close it, and
   the only way out was the ✕ in the corner — which reads as walking out on something
