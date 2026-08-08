@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **The Android app wears the same colours and shapes as the iPhone app, and follows the
+  system's light or dark setting.** Its palette predated the contrast re-cut and shared no
+  values with iOS; now every screen reads from the same colour pairs in both modes, and
+  buttons, tiles and cards take the same rounded shapes. The iPhone widget and the watch
+  complication article tints, which had drifted off that same canon, are back on it too.
+
 - **Spross has a front door: spross.net.** A landing page that says what the growing box
   is, invites you onto the mailing list, and lets you try the real numbers drill in the
   browser — the same engine the app runs, compiled for the web, with the primer tables

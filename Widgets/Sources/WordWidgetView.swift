@@ -1,8 +1,9 @@
 import WidgetKit
 import SwiftUI
 
-/// Widget rendering. Self-contained styling (the app's design tokens live in
-/// the app target); article-tint colors mirror Theme.swift.
+/// Widget rendering. Self-contained styling — a widget extension does not link the
+/// app's design tokens, so the handful it needs are copied below from the canonical
+/// table (`App/Sources/Design/Theme.swift`).
 struct WordWidgetView: View {
     let entry: WordEntry
     @Environment(\.widgetFamily) private var family
@@ -189,12 +190,27 @@ struct WordWidgetView: View {
     /// indefinite articles with it) and never reaches the neuter.
     private func tintColor(_ tint: String) -> Color {
         switch tint.lowercased() {
-        case "der", "el", "los", "un": Color(red: 0.10, green: 0.44, blue: 0.76)
-        case "die", "la", "las", "una": Color(red: 0.76, green: 0.15, blue: 0.36)
-        case "das": Color(red: 0.12, green: 0.48, blue: 0.20)
+        case "der", "el", "los", "un": .wgDer
+        case "die", "la", "las", "una": .wgDie
+        case "das": .wgDas
         default: .secondary
         }
     }
+}
+
+// Article tints, copied from the canonical table in `App/Sources/Design/Theme.swift` —
+// kern's `PaletteParityTest` fails the fast gate when this copy drifts from it. The
+// light column: a home-screen widget is read on paper, not on the watch's black.
+private extension Color {
+    init(wgHex hex: UInt32) {
+        self.init(red: Double((hex >> 16) & 0xFF) / 255,
+                  green: Double((hex >> 8) & 0xFF) / 255,
+                  blue: Double(hex & 0xFF) / 255)
+    }
+
+    static let wgDer = Color(wgHex: 0x134E85)
+    static let wgDie = Color(wgHex: 0x9A2050)
+    static let wgDas = Color(wgHex: 0x18602C)
 }
 
 // Placing a widget on a simulator home screen is the only other way to see these,

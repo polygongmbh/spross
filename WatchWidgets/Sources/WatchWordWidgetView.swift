@@ -59,15 +59,31 @@ struct WatchWordWidgetView: View {
             }
     }
 
-    /// Article-tint colors, dark variants of the phone palette; the article set
-    /// each hue answers for is `Theme.swift`'s (a two-gender language folds onto
-    /// masculine-blue and feminine-berry, and never reaches the neuter).
+    /// Article-tint colors; the article set each hue answers for is `Theme.swift`'s
+    /// (a two-gender language folds onto masculine-blue and feminine-berry, and
+    /// never reaches the neuter).
     private func tintColor(_ tint: String) -> Color {
         switch tint.lowercased() {
-        case "der", "el", "los", "un": return Color(red: 0x74 / 255.0, green: 0xC0 / 255.0, blue: 0xFC / 255.0)
-        case "die", "la", "las", "una": return Color(red: 0xF7 / 255.0, green: 0x83 / 255.0, blue: 0xAC / 255.0)
-        case "das": return Color(red: 0x69 / 255.0, green: 0xDB / 255.0, blue: 0x7C / 255.0)
+        case "der", "el", "los", "un": return .wwDer
+        case "die", "la", "las", "una": return .wwDie
+        case "das": return .wwDas
         default: return .white
         }
     }
+}
+
+// Article tints, copied from the canonical table in `App/Sources/Design/Theme.swift` —
+// kern's `PaletteParityTest` fails the fast gate when this copy drifts from it. The dark
+// column, as the watch renders on black; a complication extension links neither the
+// app's design tokens nor the watch app's.
+private extension Color {
+    init(wwHex hex: UInt32) {
+        self.init(red: Double((hex >> 16) & 0xFF) / 255,
+                  green: Double((hex >> 8) & 0xFF) / 255,
+                  blue: Double(hex & 0xFF) / 255)
+    }
+
+    static let wwDer = Color(wwHex: 0x90CBFF)
+    static let wwDie = Color(wwHex: 0xFF9EC0)
+    static let wwDas = Color(wwHex: 0x6FDC85)
 }
