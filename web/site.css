@@ -171,58 +171,30 @@ header.site .mast-link:hover { text-decoration: underline; }
 
 /* ---------- features ---------- */
 
-/* The cards grow off one stem, alternating like leaves on a shoot —
-   each joined by a Sprosse of its own. */
+/* The section IS the ladder: two rails down the sides, and each idea stands
+   in the gap between two Sprossen. No boxes — a ladder has none. */
 .features {
   display: grid;
-  gap: 1.1rem;
-  padding: 0 2.5rem;
+  gap: 0;
+  padding: 0;
   margin: 0 auto 4rem;
   max-width: 46.5rem;
   list-style: none;
-  position: relative;
+  background-image:
+    linear-gradient(to bottom, transparent, var(--stem) 9%, var(--stem) 91%, transparent),
+    linear-gradient(to bottom, transparent, var(--stem) 9%, var(--stem) 91%, transparent);
+  background-size: 3px 100%, 3px 100%;
+  background-position: left top, right top;
+  background-repeat: no-repeat;
 }
 
-.features::before {
-  content: "";
-  position: absolute;
-  left: 0.5rem;
-  top: 1rem;
-  bottom: 1rem;
-  width: 3px;
-  border-radius: 2px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    color-mix(in srgb, var(--stem) 40%, transparent) 8%,
-    var(--stem) 100%
-  );
+.features li { padding: 1.6rem 2rem; }
+
+/* the rungs — between the ideas, never above the first or below the last,
+   so the rails read as a ladder that carries on past the view */
+.features li + li {
+  border-top: 2px solid color-mix(in srgb, var(--stem) 55%, transparent);
 }
-
-.features li {
-  position: relative;
-  background: var(--surface);
-  border: 1px solid color-mix(in srgb, var(--separator) 60%, transparent);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  padding: 1.25rem 1.35rem;
-}
-
-.features li::before {
-  content: "";
-  position: absolute;
-  left: -1.95rem;
-  top: 2.05rem;
-  width: 1.95rem;
-  height: 2px;
-  background: color-mix(in srgb, var(--stem) 55%, transparent);
-}
-
-.features li { margin-right: 2.5rem; }
-
-.features li:nth-child(even) { margin-left: 2.5rem; margin-right: 0; }
-
-.features li:nth-child(even)::before { left: -3.7rem; width: 3.7rem; }
 
 .features h2 {
   margin: 0 0 0.5rem;
@@ -605,14 +577,8 @@ footer.site p { margin: 0.3rem 0; }
   .cta-row { justify-content: center; }
   header.site { justify-content: center; }
 
-  /* A phone keeps the stem — it is the page's one distinctive idea — and drops
-     only the alternation, which has no room to read. */
-  .features { padding: 0 0 0 1.25rem; }
-  .features::before { left: 0.2rem; }
-  .features li::before { left: -1.05rem; width: 1.05rem; }
-  .features li,
-  .features li:nth-child(even) { margin-left: 0; margin-right: 0; }
-  .features li:nth-child(even)::before { left: -1.05rem; width: 1.05rem; }
+  /* The rails stay on a phone — they are the page's one distinctive idea. */
+  .features li { padding: 1.3rem 1.15rem; }
 
   .cta-row .btn { flex: 1 1 100%; text-align: center; }
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Assemble the deployable spross.net site into web/dist (docs/website.md).
+# Assemble the deployable spross.net site into web/dist (web/README.md).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 

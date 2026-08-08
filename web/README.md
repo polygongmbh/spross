@@ -1,6 +1,6 @@
 # spross.net — marketing site
 
-Static landing page in `web/`, advertising Spross and letting visitors try the real numbers drill in the browser.
+Static landing page advertising Spross and letting visitors try the real numbers drill in the browser.
 Positioning: fun, playful, easy, effective breadth-first vocabulary growth —
 built to sit beside native-speaker conversation or a structured course, never to replace them.
 
@@ -13,14 +13,14 @@ built to sit beside native-speaker conversation or a structured course, never to
   It is played, never explained: the drill's level IS a "Sprosse" (with a small ladder beside it and one
   hoverable gloss on first mention), so a German reader gets the joke and everyone else still gets a ladder.
 - Copy names what the learner gets, never how the engine works — no FSRS, no scheduling internals on the page.
-- The six feature cards hang off one tapering stem (`--stem`, thickening downward), alternating left and right
-  like leaves on a shoot, each joined by its own Sprosse-tick. The page carries two measures only:
-  the hero's full width and 46.5rem for everything below it.
+- The feature section is drawn as a ladder: two tapering rails (`--stem`) down the sides, a rung between
+  each idea, and no card boxes — the content stands in the gaps, the way a Sprosse carries you.
+  The page carries two measures only: the hero's full width and 46.5rem for everything below it.
 - "Sprössling" is the site's name for a subscriber/learner (coined here, not used in-app).
 
 ## Architecture
 
-- `web/index.html` + `web/site.css` + `web/site.js` — hand-authored, no framework, light+dark via `prefers-color-scheme`.
+- `index.html` + `site.css` + `site.js` — hand-authored, no framework, light+dark via `prefers-color-scheme`.
 - The drill runs on the real kern: `:kern` has a `js { browser() }` target whose `jsMain` facade
   (`net.spross.kern.web`) exports numbers-drill entry points over `Trainer` + `AnswerNormalizer`
   (target/pin details: `kern/docs/build.md`).
