@@ -200,7 +200,7 @@ extension SessionView {
         }
         if feedback != .correct { DLSound.correct() }
         withAnimation { feedback = .correct }
-        AutoAdvance.scheduleLive(&autoAdvance) { rate(Match.Exact.producedRating() ?? .good) }
+        AutoAdvance.scheduleLive(&autoAdvance) { rate(MatchExact.shared.producedRating() ?? .good) }
     }
 
     /// Finishing the retype after a miss is the self-grade: reaching the
