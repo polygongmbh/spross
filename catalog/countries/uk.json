@@ -1,0 +1,12 @@
+{
+ "germany": {"text": "Німеччина", "nationality": {"text": "німець", "variants": ["німкеня", "німкиня"]}},
+ "austria": {"text": "Австрія", "nationality": {"text": "австрієць", "variants": ["австрійка"]}},
+ "switzerland": {"text": "Швейцарія", "nationality": {"text": "швейцарець", "variants": ["швейцарка"]}},
+ "united-kingdom": {"text": "Велика Британія", "variants": ["Сполучене Королівство", "Великобританія", "Британія"], "nationality": {"text": "британець", "variants": ["британка", "англієць", "англійка"]}},
+ "usa": {"text": "США", "variants": ["Сполучені Штати", "Сполучені Штати Америки", "Америка"], "nationality": {"text": "американець", "variants": ["американка"]}},
+ "spain": {"text": "Іспанія", "nationality": {"text": "іспанець", "variants": ["іспанка"]}},
+ "mexico": {"text": "Мексика", "nationality": {"text": "мексиканець", "variants": ["мексиканка"]}},
+ "kenya": {"text": "Кенія", "nationality": {"text": "кенієць", "variants": ["кенійка"]}},
+ "tanzania": {"text": "Танзанія", "nationality": {"text": "танзанієць", "variants": ["танзанійка"]}},
+ "ukraine": {"text": "Україна", "nationality": {"text": "українець", "variants": ["українка"]}}
+}

@@ -1,0 +1,12 @@
+{
+ "germany": {"text": "Germany", "nationality": {"text": "German"}},
+ "austria": {"text": "Austria", "nationality": {"text": "Austrian"}},
+ "switzerland": {"text": "Switzerland", "nationality": {"text": "Swiss"}},
+ "united-kingdom": {"text": "the United Kingdom", "variants": ["United Kingdom", "UK", "the UK", "Britain", "Great Britain"], "nationality": {"text": "Briton", "variants": ["British", "Brit"]}},
+ "usa": {"text": "the United States", "variants": ["United States", "the USA", "USA", "the US", "US", "America"], "nationality": {"text": "American"}},
+ "spain": {"text": "Spain", "nationality": {"text": "Spaniard", "variants": ["Spanish"]}},
+ "mexico": {"text": "Mexico", "nationality": {"text": "Mexican"}},
+ "kenya": {"text": "Kenya", "nationality": {"text": "Kenyan"}},
+ "tanzania": {"text": "Tanzania", "nationality": {"text": "Tanzanian"}},
+ "ukraine": {"text": "Ukraine", "nationality": {"text": "Ukrainian"}}
+}

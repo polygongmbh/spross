@@ -90,6 +90,8 @@ internal object CatalogParser {
      * `catalog/languages/<lang>.json` → what THIS language calls the others, keyed by the
      * language being named. [nameable] bounds both those codes and the readers `notes`
      * addresses, so a typo'd code is a parse failure rather than a table entry nobody hits.
+     * It is the declared languages PLUS every language the country atlas knows — the table
+     * is the atlas drill's vocabulary as much as it is the phrases' ([CountryAtlas]).
      */
     fun parseLanguageNames(path: String, text: String, nameable: Set<Language>): Map<Language, LanguageName> {
         val root = parseJson(path, text).obj(path, "root")
@@ -121,7 +123,7 @@ internal object CatalogParser {
     }
 
     /** Exactly two regional-indicator code points (each a surrogate pair in UTF-16). */
-    private fun isEmojiFlagSequence(s: String): Boolean {
+    internal fun isEmojiFlagSequence(s: String): Boolean {
         if (s.length != 4) return false
         return (0..2 step 2).all { i ->
             s[i] == '\uD83C' && s[i + 1] in '\uDDE6'..'\uDDFF'

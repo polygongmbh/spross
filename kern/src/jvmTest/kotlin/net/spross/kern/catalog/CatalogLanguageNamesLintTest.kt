@@ -43,6 +43,9 @@ class CatalogLanguageNamesLintTest {
      * Every declared language names every declared language, ITSELF included: a de→sw
      * learner reads "Suaheli" on the German side and "Kiswahili" on the Swahili one, so
      * the self entry is as load-bearing as the foreign ones.
+     *
+     * Containment, not equality: the table also carries every language the country atlas
+     * knows, which reaches far past the five the app teaches from.
      */
     @Test
     fun everyLanguageNamesEveryLanguageIncludingItself() {
@@ -50,7 +53,30 @@ class CatalogLanguageNamesLintTest {
         for (reader in declared) {
             val table = catalog.languageNames[reader]
             assertNotNull(table, "languages/$reader.json: missing")
-            assertEquals(declared, table.keys, "languages/$reader.json: incomplete table")
+            assertEquals(
+                emptySet(),
+                declared - table.keys,
+                "languages/$reader.json: incomplete table",
+            )
+        }
+    }
+
+    /**
+     * The atlas half of the same totality: the drill names a language in BOTH directions,
+     * so a code the manifest lists and one table misses is a row that silently leaves the
+     * drill for every pair that reader is on.
+     */
+    @Test
+    fun everyLanguageTheAtlasKnowsIsNamedByEveryReader() {
+        val atlas = catalog.countryAtlas?.languages?.map { it.code }.orEmpty().toSet()
+        assertTrue(atlas.isNotEmpty(), "no country atlas — the drill series shipped one")
+        for (reader in catalog.languages.keys) {
+            val table = catalog.languageNames[reader].orEmpty()
+            assertEquals(
+                emptySet(),
+                atlas - table.keys,
+                "languages/$reader.json: atlas languages unnamed",
+            )
         }
     }
 

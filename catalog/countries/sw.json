@@ -1,0 +1,12 @@
+{
+ "germany": {"text": "Ujerumani", "nationality": {"text": "Mjerumani"}},
+ "austria": {"text": "Austria", "nationality": {"text": "Mwaustria"}},
+ "switzerland": {"text": "Uswisi", "variants": ["Uswizi"], "nationality": {"text": "Mswisi", "variants": ["Mswizi"]}},
+ "united-kingdom": {"text": "Uingereza", "variants": ["Ufalme wa Muungano"], "nationality": {"text": "Mwingereza"}},
+ "usa": {"text": "Marekani", "nationality": {"text": "Mmarekani"}},
+ "spain": {"text": "Uhispania", "nationality": {"text": "Mhispania"}},
+ "mexico": {"text": "Meksiko", "nationality": {"text": "Mmeksiko"}},
+ "kenya": {"text": "Kenya", "nationality": {"text": "Mkenya"}},
+ "tanzania": {"text": "Tanzania", "nationality": {"text": "Mtanzania"}},
+ "ukraine": {"text": "Ukraini", "nationality": {"text": "Mkraini"}}
+}

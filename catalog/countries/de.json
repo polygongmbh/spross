@@ -1,0 +1,12 @@
+{
+ "germany": {"text": "Deutschland", "nationality": {"text": "Deutscher", "variants": ["Deutsche"]}},
+ "austria": {"text": "Österreich", "nationality": {"text": "Österreicher", "variants": ["Österreicherin"]}},
+ "switzerland": {"text": "die Schweiz", "variants": ["Schweiz"], "grammar": {"gender": "die"}, "nationality": {"text": "Schweizer", "variants": ["Schweizerin"]}},
+ "united-kingdom": {"text": "Großbritannien", "variants": ["das Vereinigte Königreich", "Vereinigtes Königreich", "England"], "nationality": {"text": "Brite", "variants": ["Britin", "Engländer", "Engländerin"]}},
+ "usa": {"text": "die USA", "variants": ["USA", "die Vereinigten Staaten", "Vereinigte Staaten", "Amerika"], "grammar": {"gender": "die", "plural": "only"}, "nationality": {"text": "Amerikaner", "variants": ["Amerikanerin", "US-Amerikaner"]}},
+ "spain": {"text": "Spanien", "nationality": {"text": "Spanier", "variants": ["Spanierin"]}},
+ "mexico": {"text": "Mexiko", "nationality": {"text": "Mexikaner", "variants": ["Mexikanerin"]}},
+ "kenya": {"text": "Kenia", "nationality": {"text": "Kenianer", "variants": ["Kenianerin"]}},
+ "tanzania": {"text": "Tansania", "variants": ["Tanzania"], "nationality": {"text": "Tansanier", "variants": ["Tansanierin"]}},
+ "ukraine": {"text": "die Ukraine", "variants": ["Ukraine"], "grammar": {"gender": "die"}, "nationality": {"text": "Ukrainer", "variants": ["Ukrainerin"]}}
+}

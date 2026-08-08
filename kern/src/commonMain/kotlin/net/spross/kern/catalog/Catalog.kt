@@ -33,6 +33,10 @@ class Catalog internal constructor(
     internal val drillNotes: Map<Language, Map<Language, List<String>>>,
     /** reader → named language → its inflected names, from `languages/<reader>.json`. */
     internal val languageNames: Map<Language, Map<Language, LanguageName>>,
+    /** `countries/atlas.json`, or null without the folder — the atlas drill's registry. */
+    internal val countryAtlas: CountryAtlas?,
+    /** lang → slug → country name; only languages whose `countries/<lang>.json` exists. */
+    internal val countryNames: Map<Language, Map<String, CountryName>>,
 ) {
     /** Flattened default area order (groups top-to-bottom, areas as listed). */
     val areaNames: List<String> = areas.map { it.name }
@@ -199,6 +203,43 @@ class Catalog internal constructor(
      */
     fun languageName(reader: Language, named: Language): LanguageName? =
         languageNames[reader]?.get(named)
+
+    /**
+     * The atlas joined for one profile, or null where this pair has no drill at all: no
+     * manifest, a side with no `countries/<lang>.json`, or a join neither side realizes.
+     * File presence IS the registry, exactly as [alphabet]'s is.
+     *
+     * Rows only survive where BOTH sides name them, so nothing downstream has to ask
+     * whether a name exists — and the tiers come out EFFECTIVE, with the profile's own
+     * languages and their countries lowered to 1 ([CountryAtlas]).
+     */
+    fun countryDrillContent(source: Language, target: Language): CountryDrillContent? {
+        require(source != target) { "source == target ($source)" }
+        val atlas = countryAtlas ?: return null
+        val sourceNames = countryNames[source] ?: return null
+        val targetNames = countryNames[target] ?: return null
+        val profile = setOf(source, target)
+        val joinedLanguages = atlas.languages.mapNotNull { row ->
+            AtlasLanguageEntry(
+                code = row.code,
+                tier = if (row.code in profile) 1 else row.tier,
+                source = languageName(source, row.code) ?: return@mapNotNull null,
+                target = languageName(target, row.code) ?: return@mapNotNull null,
+            )
+        }
+        val joinedCountries = atlas.countries.mapNotNull { row ->
+            AtlasCountryEntry(
+                slug = row.slug,
+                flag = row.flag,
+                tier = if (row.languages.any { it in profile }) 1 else row.tier,
+                languages = row.languages,
+                source = sourceNames[row.slug] ?: return@mapNotNull null,
+                target = targetNames[row.slug] ?: return@mapNotNull null,
+            )
+        }
+        if (joinedCountries.isEmpty()) return null
+        return CountryDrillContent(source, target, joinedCountries, joinedLanguages)
+    }
 
     fun numberNotes(language: Language, reader: Language): List<String> {
         val byReader = drillNotes[language] ?: return emptyList()
@@ -417,11 +458,24 @@ class Catalog internal constructor(
                 }
                 CatalogArea(name, concepts, titles, subtitles, realizations)
             }
+            // why: read through the RAW source, like audio — the atlas drills, it never
+            // joins a card, so editing it must not restamp a running box.
+            val atlas = source.read("countries/atlas.json")
+                ?.let { CountryAtlasParser.parseAtlas("countries/atlas.json", it) }
+            val countrySlugs = atlas?.countries?.map { it.slug }.orEmpty().toSet()
+            val countryNames = languages.keys.mapNotNull { lang ->
+                val path = "countries/$lang.json"
+                source.read(path)?.let {
+                    lang to CountryAtlasParser.parseNames(path, it, countrySlugs, languages.keys)
+                }
+            }.toMap()
             // why: TRACKED — a language name lands inside joined card texts, so editing one
             // changes the join and must restamp a running box exactly as a realization does.
+            // The table names every ATLAS language too, far beyond the app's own five.
+            val nameable = languages.keys + atlas?.languages?.map { it.code }.orEmpty()
             val languageNames = languages.keys.mapNotNull { lang ->
                 val path = "languages/$lang.json"
-                tracked.read(path)?.let { lang to CatalogParser.parseLanguageNames(path, it, languages.keys) }
+                tracked.read(path)?.let { lang to CatalogParser.parseLanguageNames(path, it, nameable) }
             }.toMap()
             // why: read through the RAW source, never the fingerprinting wrapper — audio
             // can never change the join, so a refreshed pack must not restamp (and
@@ -451,6 +505,8 @@ class Catalog internal constructor(
                 frameRealizations = drills.mapValues { (_, it) -> it.frames },
                 drillNotes = drills.mapValues { (_, it) -> it.numberNotes },
                 languageNames = languageNames,
+                countryAtlas = atlas,
+                countryNames = countryNames,
             )
         }
     }

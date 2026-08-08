@@ -1,0 +1,12 @@
+{
+ "germany": {"text": "Alemania", "nationality": {"text": "alemán", "variants": ["alemana"]}},
+ "austria": {"text": "Austria", "nationality": {"text": "austriaco", "variants": ["austriaca", "austríaco", "austríaca"]}},
+ "switzerland": {"text": "Suiza", "nationality": {"text": "suizo", "variants": ["suiza"]}},
+ "united-kingdom": {"text": "Reino Unido", "variants": ["el Reino Unido", "Gran Bretaña"], "nationality": {"text": "británico", "variants": ["británica"]}},
+ "usa": {"text": "Estados Unidos", "variants": ["los Estados Unidos", "EE. UU.", "EEUU", "Estados Unidos de América"], "nationality": {"text": "estadounidense", "variants": ["norteamericano", "norteamericana", "americano", "americana"]}},
+ "spain": {"text": "España", "nationality": {"text": "español", "variants": ["española"]}},
+ "mexico": {"text": "México", "variants": ["Méjico"], "nationality": {"text": "mexicano", "variants": ["mexicana", "mejicano", "mejicana"]}},
+ "kenya": {"text": "Kenia", "variants": ["Kenya"], "nationality": {"text": "keniano", "variants": ["keniana", "keniata"]}},
+ "tanzania": {"text": "Tanzania", "variants": ["Tanzanía"], "nationality": {"text": "tanzano", "variants": ["tanzana", "tanzaniano", "tanzaniana"]}},
+ "ukraine": {"text": "Ucrania", "nationality": {"text": "ucraniano", "variants": ["ucraniana"]}}
+}

@@ -1,0 +1,21 @@
+{
+ "languages": [
+  {"code": "de", "tier": 2},
+  {"code": "en", "tier": 2},
+  {"code": "es", "tier": 2},
+  {"code": "sw", "tier": 2},
+  {"code": "uk", "tier": 2}
+ ],
+ "countries": [
+  {"slug": "germany", "flag": "🇩🇪", "languages": ["de"], "tier": 2},
+  {"slug": "austria", "flag": "🇦🇹", "languages": ["de"], "tier": 2},
+  {"slug": "switzerland", "flag": "🇨🇭", "languages": ["de"], "tier": 2},
+  {"slug": "united-kingdom", "flag": "🇬🇧", "languages": ["en"], "tier": 2},
+  {"slug": "usa", "flag": "🇺🇸", "languages": ["en"], "tier": 2},
+  {"slug": "spain", "flag": "🇪🇸", "languages": ["es"], "tier": 2},
+  {"slug": "mexico", "flag": "🇲🇽", "languages": ["es"], "tier": 2},
+  {"slug": "kenya", "flag": "🇰🇪", "languages": ["sw", "en"], "tier": 2},
+  {"slug": "tanzania", "flag": "🇹🇿", "languages": ["sw", "en"], "tier": 2},
+  {"slug": "ukraine", "flag": "🇺🇦", "languages": ["uk"], "tier": 2}
+ ]
+}
