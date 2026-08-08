@@ -43,6 +43,8 @@
   }
 }
 
+:root { color-scheme: light dark; }
+
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -171,7 +173,7 @@ header.site .word {
 
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
   gap: 1.1rem;
   padding: 0;
   margin: 0 0 4rem;
@@ -186,7 +188,7 @@ header.site .word {
   padding: 1.25rem 1.35rem;
 }
 
-.features h3 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+.features h2 { margin: 0 0 0.4rem; font-size: 1.05rem; }
 
 .features p { margin: 0; color: var(--text-2); font-size: 0.97rem; }
 
@@ -291,20 +293,22 @@ header.site .word {
 
 .progress {
   display: flex;
+  align-items: center;
   gap: 3px;
   flex: 1;
   height: 6px;
   border-radius: 3px;
-  overflow: hidden;
 }
 
-.progress span { flex: 1; border-radius: 3px; background: var(--surface-tint); }
+.progress span { flex: 1; height: 6px; border-radius: 3px; background: var(--surface-tint); }
 
 .progress span.ok { background: var(--forest); }
 
 .progress span.near { background: var(--ochre); }
 
-.progress span.miss { background: var(--brick); }
+/* why: a second channel beside hue — under deuteranopia forest and brick
+   converge, so a miss is also the thin segment. */
+.progress span.miss { background: var(--brick); height: 2px; }
 
 .icon-btn {
   border: 0;
@@ -401,7 +405,7 @@ header.site .word {
 
 .summary .emoji { font-size: 3rem; display: inline-block; animation: sway 2.2s ease-in-out infinite; }
 
-.summary h3 { margin: 0.4rem 0 0.2rem; font-size: 1.4rem; }
+.summary .stat { margin: 0.4rem 0 0.2rem; font-size: 1.4rem; font-weight: 700; outline: none; }
 
 .summary p { color: var(--text-2); margin: 0.2rem 0; }
 
@@ -438,7 +442,8 @@ header.site .word {
   color: var(--text);
   font: inherit;
   padding: 0.8rem 1rem;
-  min-width: min(18rem, 70vw);
+  min-width: min(18rem, 100%);
+  max-width: 100%;
 }
 
 .signup input[type="email"]:focus { border-color: var(--border-strong); outline: none; }
@@ -481,4 +486,5 @@ footer.site p { margin: 0.3rem 0; }
   height: 1px;
   overflow: hidden;
   clip-path: inset(50%);
+  white-space: nowrap;
 }
