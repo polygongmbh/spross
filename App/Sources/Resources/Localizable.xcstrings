@@ -3627,22 +3627,6 @@
         }
       }
     },
-    "trainer.stopForNow" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fertig für jetzt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Done for now"
-          }
-        }
-      }
-    },
     "trainer.streak %@" : {
       "localizations" : {
         "de" : {

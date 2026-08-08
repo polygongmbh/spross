@@ -4,8 +4,8 @@
 
 - **A run that is going badly offers you the door.** A drill runs until you close it, and
   the only way out was the ✕ in the corner — which reads as walking out on something
-  rather than finishing it. Miss twice in a row and "Fertig für jetzt" appears under the
-  button that goes on; answer one cleanly and it goes away again. Nothing ends by itself,
+  rather than finishing it. Miss twice in a row and "Fertig" appears under the button that
+  goes on; answer one cleanly and it goes away again. Nothing ends by itself,
   and nothing is counted differently — it is the same close, offered at the moment it is
   actually being weighed.
 

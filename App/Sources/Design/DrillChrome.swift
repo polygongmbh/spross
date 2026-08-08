@@ -70,16 +70,17 @@ struct DrillStreakLine: View {
 
 // MARK: - The way out, offered where it is wanted
 
-/// "Fertig für jetzt", under the button that goes on. An endless run has no
-/// natural end, so the offer is tied to the one moment a learner is actually
-/// weighing it: the SECOND miss in a row. One miss is what a drill is made of;
-/// two is where carrying on stops feeling like a choice, and the corner ✕ reads
-/// as abandoning something rather than finishing it.
+/// "Fertig", under the button that goes on. An endless run has no natural end,
+/// so the offer is tied to the one moment a learner is actually weighing it: the
+/// SECOND miss in a row. One miss is what a drill is made of; two is where
+/// carrying on stops feeling like a choice, and the corner ✕ reads as abandoning
+/// something rather than finishing it. The same word the session summary stops
+/// on — where it sits says "for now", so the words need not.
 struct DrillStopOffer: View {
     let action: () -> Void
 
     var body: some View {
-        Button("trainer.stopForNow", action: action)
+        Button("common.done", action: action)
             .buttonStyle(DLSoftButtonStyle())
             .transition(.opacity)
     }

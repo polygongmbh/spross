@@ -64,8 +64,8 @@ auto-advance beats these share with it, are `design.md`'s.
   price until enough of them can be played back. Their mark is the step NUMBER, not a
   circle — the run walks the ladder by itself, and a circle beside each row reads as a
   choice that never answers the tap.
-- **An endless run offers its exit where it is wanted, not on a schedule.** "Fertig für
-  jetzt" appears under the button that goes on, and only on the SECOND miss in a row: one
+- **An endless run offers its exit where it is wanted, not on a schedule.** "Fertig"
+  appears under the button that goes on, and only on the SECOND miss in a row: one
   miss is what a drill is made of, two is where carrying on stops feeling like a choice.
   A clean answer takes the offer away again. Nothing about the run ends by itself — the
   corner ✕ still works, and the offer is the same close, worded as finishing rather than
