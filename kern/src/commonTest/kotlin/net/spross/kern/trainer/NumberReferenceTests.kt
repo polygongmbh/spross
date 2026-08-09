@@ -13,14 +13,18 @@ import kotlin.test.assertTrue
  */
 class NumberReferenceTests {
 
-    private val cardinalKeys =
-        listOf("ones", "teens", "tens", "twenties", "compounds", "hundreds", "places")
+    /** The bands every language gets, in order; "irregulars" slots in after "tens". */
+    private val cardinalKeys = listOf("base", "tens", "compounds", "hundreds", "places")
 
     @Test
     fun everyAuthoredLanguageGetsTheSameSections() {
         for (language in Trainer.languages) {
             val table = Trainer.reference(language)
-            assertEquals(cardinalKeys, table.map { it.key }.filterNot { it == "forms" }, language)
+            assertEquals(
+                cardinalKeys,
+                table.map { it.key }.filterNot { it == "forms" || it == "irregulars" },
+                language,
+            )
             for (section in table) {
                 assertTrue(section.entries.isNotEmpty(), "$language ${section.key}")
                 for (entry in section.entries) {
@@ -92,10 +96,9 @@ class NumberReferenceTests {
     @Test
     fun theBandsCoverTheValuesTheLadderReaches() {
         val values = Trainer.reference("de").associate { it.key to it.entries.map { e -> e.value } }
-        assertEquals((0..9).map { it.toString() }, values["ones"])
-        assertEquals((10..19).map { it.toString() }, values["teens"])
+        assertEquals((0..15).map { it.toString() }, values["base"])
         assertEquals((2..9).map { "${it}0" }, values["tens"])
-        assertEquals((21..29).map { it.toString() }, values["twenties"])
+        assertEquals((16..30).map { it.toString() }, values["irregulars"])
         assertEquals(listOf("31", "45", "99"), values["compounds"])
         assertEquals(listOf("100", "101") + (2..9).map { "${it}00" }, values["hundreds"])
         // Long values are written the way a prompt writes them.
@@ -106,9 +109,29 @@ class NumberReferenceTests {
     }
 
     /**
+     * The band a language only gets when it needs it: 16–30 is shown where the language
+     * does not simply combine what the bands above it already spell out, and nowhere
+     * else. es welds the whole run, de clips two teen stems (sechzehn, siebzehn), uk
+     * drops the soft sign (шість → шістнадцять); en and sw compose the band from parts
+     * a learner has already read, and are spared fifteen rows that teach nothing.
+     */
+    @Test
+    fun theIrregularBandIsOfferedOnlyWhereTheLanguageIsIrregular() {
+        val shown = Trainer.languages.filter { language ->
+            Trainer.reference(language).any { it.key == "irregulars" }
+        }
+        assertEquals(listOf("de", "es", "uk"), shown.sorted())
+        val es = Trainer.reference("es").first { it.key == "irregulars" }.entries
+        assertEquals("dieciséis", es.first().reading)
+        assertEquals("veintiséis", es.first { it.value == "26" }.reading)
+        assertEquals("sechzehn", Trainer.reference("de").first { it.key == "irregulars" }
+            .entries.first().reading)
+    }
+
+    /**
      * The Swahili tens — the one look-up the app used to offer, and the reason the
      * table exists at all — read exactly as they always did, now inside a page every
-     * language gets. 10 sits one band up, which is where its own generator puts it.
+     * language gets. 10 sits in the base band, which is where its own generator puts it.
      */
     @Test
     fun swahilisTensLookUpSurvivesInsideTheTable() {

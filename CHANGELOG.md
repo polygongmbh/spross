@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **The numbers page shows a language its own hard part.** The bands were the same
+  everywhere, so English readers of the twenties got nine rows spelling out a rule they had
+  already read, while German's sechzehn and siebzehn were filed under a plain "ten to
+  nineteen". Everything a learner has to memorize outright now stands together up to
+  fifteen, and sixteen to thirty is offered only where the language does not simply put its
+  own words together — Spanish, German and Ukrainian get it, English and Swahili are spared
+  it. The last band, where the minus, the comma and the ordinal are read, says what it is:
+  more than counting.
+
 - **The widget owns up when it has nothing of yours to show.** An app update can leave it
   holding a box it cannot read, and until now it filled the tile with the sample words from
   the gallery — a Swahili fridge sitting there as if you were learning it. It shows the

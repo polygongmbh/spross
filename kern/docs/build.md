@@ -76,9 +76,10 @@ Engine contract: `../README.md`.
   kind, so the app stays direction-agnostic: it always shows the prompt and grades
   against `accepted`.
   `Trainer.reference(language)` generates the numbers page from those same packs —
-  bands keyed `ones`/`teens`/`tens`/`twenties`/`compounds`/`hundreds`/`places`,
+  bands keyed `base`/`tens`/`irregulars`/`compounds`/`hundreds`/`places`,
   each key a stable identifier the app localizes into a heading — so the table cannot
-  drift from what the drill grades.
+  drift from what the drill grades. `irregulars` (16–30) is offered only to a language
+  whose readings there are not what its own siblings predict, so a band count varies.
   `PhraseSlots` samples level-aware — same per-kind ramp tables as the plain drills
   (a template's slot kind clamps the level).
   The unleveled `sample` overload keeps the prototype's biased full-difficulty draws

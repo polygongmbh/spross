@@ -21,14 +21,16 @@ data class ReferenceSection(val key: String, val entries: List<ReferenceEntry>)
  * what a learner is graded against.
  *
  * The bands follow where the languages are actually irregular, not the number line:
- * - `ones` — the atoms, 0 included because it appears nowhere else above level 1.
- * - `teens` — 10 sits here, not in `tens`, because every pack but Swahili defines
- *   10–19 as one list; it is the most irregular band in four of five languages.
+ * - `base` — everything a learner memorizes outright, 0–15: the atoms plus the teens
+ *   every pack authors as a list, which is where the stems that no rule predicts live
+ *   (elf, zwölf, once, quince, fifteen). 0 appears nowhere else above level 1.
  * - `tens` — the successor to Swahili's tens look-up, now offered to every language
  *   (uk сорок, de the only ß, en forty losing the u of four).
- * - `twenties` — the combination rule as a run: Spanish welds a second time here and
- *   German's reversal appears nine times over, which is what makes it stick.
- * - `compounds` — three rows proving the rule survives the irregular twenties;
+ * - `irregulars` — 16–30, the run where composition starts, offered ONLY to the
+ *   languages that do not compose it plainly (see [readsSixteenToThirtyPlainly]):
+ *   es welds it twice over, de and uk clip the stem (sechzehn, шістнадцять).
+ *   en and sw build the whole band out of parts already shown, and get no rows for it.
+ * - `compounds` — three rows proving the rule survives that band;
  *   load-bearing for es, where 31 unwelds into "treinta y uno".
  * - `hundreds` — the irregular es stems and the uk -сот series, plus 101, the one
  *   non-round value: es switches cien→ciento there and de yields "einhunderteins".
@@ -43,11 +45,12 @@ data class ReferenceSection(val key: String, val entries: List<ReferenceEntry>)
  *   A form the language cannot read has no row: the same reach that keeps it out of the
  *   drill keeps it off the page.
  */
+private const val IRREGULARS = "irregulars"
+
 private val REFERENCE_VALUES: List<Pair<String, List<Long>>> = listOf(
-    "ones" to (0L..9L).toList(),
-    "teens" to (10L..19L).toList(),
+    "base" to (0L..15L).toList(),
     "tens" to (2L..9L).map { it * 10 },
-    "twenties" to (21L..29L).toList(),
+    IRREGULARS to (16L..30L).toList(),
     "compounds" to listOf(31L, 45L, 99L),
     "hundreds" to listOf(100L, 101L) + (2L..9L).map { it * 100 },
     "places" to listOf(1_000L, 2_000L, 5_000L, 1_000_000L, 2_000_000L, 1_000_000_000L),
@@ -55,7 +58,10 @@ private val REFERENCE_VALUES: List<Pair<String, List<Long>>> = listOf(
 
 internal fun buildReference(language: Language): List<ReferenceSection> {
     val pack = Trainer.pack(language)
-    val cardinals = REFERENCE_VALUES.map { (key, values) ->
+    val bands = REFERENCE_VALUES.filterNot { (key, _) ->
+        key == IRREGULARS && readsSixteenToThirtyPlainly(pack)
+    }
+    val cardinals = bands.map { (key, values) ->
         ReferenceSection(
             key,
             values.map { ReferenceEntry(groupDigits(it.toString()), pack.number(it).first()) },
@@ -67,6 +73,52 @@ internal fun buildReference(language: Language): List<ReferenceSection> {
     }
     return if (forms.isEmpty()) cardinals else cardinals + ReferenceSection("forms", forms)
 }
+
+/**
+ * Whether 16–30 is nothing but what the language's own composition already predicts —
+ * the question that decides if the band is shown at all. Asked of the readings, never
+ * declared by a pack, so a language cannot claim regularity the generator contradicts.
+ *
+ * A value is predicted when SOME sibling built the same way yields it once the one part
+ * that differs is swapped in: a teen from another teen with its unit word exchanged, a
+ * twenty from a higher decade with its tens word exchanged. Some sibling, not a chosen
+ * one, because the model may be the irregular member itself (es catorce, de siebzehn) —
+ * and a language is only asked about its own words, never about "ten" plus "six": the
+ * teen suffix is bound everywhere, and English reads 18 as eight + -teen either way.
+ *
+ * A reading no sibling can even be built from counts as unpredicted: an irregularity too
+ * deep to model is still an irregularity.
+ */
+private fun readsSixteenToThirtyPlainly(pack: TrainerLanguagePack): Boolean {
+    val teens = (16L..19L).all { n ->
+        (13L..19L).filter { it != n }.any { model ->
+            pack.reads(model).swapping(pack.reads(model % 10), pack.reads(n % 10))
+                .seamless() == pack.reads(n).seamless()
+        }
+    }
+    val twenties = (21L..29L).all { n ->
+        (30L..90L step 10).any { decade ->
+            pack.reads(decade + n % 10).swapping(pack.reads(decade), pack.reads(20))
+                .seamless() == pack.reads(n).seamless()
+        }
+    }
+    return teens && twenties
+}
+
+/** The reading the drill would grade — the same one the table prints. */
+private fun TrainerLanguagePack.reads(n: Long): String = number(n).first()
+
+/** Null where [from] does not occur, so an unmodellable reading matches nothing. */
+private fun String.swapping(from: String, to: String): String? =
+    if (contains(from)) replace(from, to) else null
+
+/**
+ * A letter the seam writes twice, written once: "eight" + "teen" is spelled "eighteen",
+ * and a learner who can spell both parts has not met an irregular number. Applied to both
+ * sides of every comparison, so it can only forgive the join, never a different word.
+ */
+private fun String?.seamless(): String? =
+    this?.filterIndexed { i, c -> i == 0 || c != this[i - 1] }
 
 /**
  * One example per form the language reads, in ladder order — the smallest value that

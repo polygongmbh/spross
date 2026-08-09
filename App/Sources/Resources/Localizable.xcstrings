@@ -2547,6 +2547,22 @@
         }
       }
     },
+    "numbers.section.base" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Null bis fünfzehn"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zero to fifteen"
+          }
+        }
+      }
+    },
     "numbers.section.compounds" : {
       "localizations" : {
         "de" : {
@@ -2568,13 +2584,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Andere Schreibweisen"
+            "value" : "Mehr als Zählen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Other notations"
+            "value" : "Beyond counting"
           }
         }
       }
@@ -2595,18 +2611,18 @@
         }
       }
     },
-    "numbers.section.ones" : {
+    "numbers.section.irregulars" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Null bis neun"
+            "value" : "Sechzehn bis dreißig"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zero to nine"
+            "value" : "Sixteen to thirty"
           }
         }
       }
@@ -2627,22 +2643,6 @@
         }
       }
     },
-    "numbers.section.teens" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zehn bis neunzehn"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ten to nineteen"
-          }
-        }
-      }
-    },
     "numbers.section.tens" : {
       "localizations" : {
         "de" : {
@@ -2655,22 +2655,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The tens"
-          }
-        }
-      }
-    },
-    "numbers.section.twenties" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die Zwanziger"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The twenties"
           }
         }
       }
