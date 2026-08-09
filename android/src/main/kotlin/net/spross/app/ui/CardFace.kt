@@ -27,12 +27,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.draw.dropShadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.CardDisplay
@@ -62,7 +65,7 @@ fun CardFace(modifier: Modifier = Modifier, content: @Composable ColumnScope.() 
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .shadow(CARD_SHADOW, shape)
+            .dropShadow(shape, CARD_SHADOW)
             .background(MaterialTheme.colorScheme.surface, shape)
             // The hairline is deliberately faint — the fill and the shadow carry the
             // boundary, and the edge only closes it (iOS `dlCardSurface`, separator @ 0.6).
@@ -293,5 +296,17 @@ private val SPEAKER_GLYPH = 16.sp
  */
 private val REVIEW_CARD = 120.dp
 
-/** The one card shadow — soft and low, so the card lifts without casting a box. */
-private val CARD_SHADOW = 6.dp
+/**
+ * The one card shadow — soft and low, so the card LIFTS rather than casting a box.
+ *
+ * An elevation shadow is the platform's, cut for the platform's own depth ladder: tight,
+ * dark, and hard at the edge. The canonical one is a wide bloom at 8 % black, dropped six
+ * below the card (iOS `dlCardShadow`), and it is drawn here rather than asked for so the
+ * two cuts lift their cards the same amount.
+ */
+private val CARD_SHADOW = Shadow(
+    radius = 16.dp,
+    color = Color.Black,
+    offset = DpOffset(0.dp, 6.dp),
+    alpha = 0.08f,
+)
