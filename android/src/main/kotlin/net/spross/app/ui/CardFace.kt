@@ -136,7 +136,13 @@ private fun EmojiSlot(emoji: String, shown: Boolean, size: Dp) {
     // every line of the card down at the moment the answer needs reading.
     val fade by animateFloatAsState(if (shown) 1f else 0f, label = "emojiSlot")
     Box(
-        modifier = Modifier.size(size).clip(CircleShape)
+        // why: the fade takes the DISC with it, not just the picture in it. Fading the
+        // glyph alone leaves an empty grey circle sitting on every held-back card until
+        // the answer lands, which reads as a picture that failed to load rather than as
+        // one deliberately withheld. Alpha does not measure, so the slot is still held
+        // and nothing below it moves when the picture arrives (iOS fades the whole
+        // illustration for the same reason).
+        modifier = Modifier.size(size).alpha(fade).clip(CircleShape)
             .background(MaterialTheme.colorScheme.surfaceVariant),
         contentAlignment = Alignment.Center,
     ) {
@@ -145,7 +151,7 @@ private fun EmojiSlot(emoji: String, shown: Boolean, size: Dp) {
             fontSize = EMOJI_GLYPH,
             // Decorative: the headword beside it carries the content, and a screen
             // reader announcing "thinking face" before the word helps nobody.
-            modifier = Modifier.alpha(fade).clearAndSetSemantics { },
+            modifier = Modifier.clearAndSetSemantics { },
         )
     }
 }
