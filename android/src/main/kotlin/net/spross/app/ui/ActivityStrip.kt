@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -74,12 +72,10 @@ fun ActivityStrip(
         }
     }
 
-    Card(
-        modifier = modifier.fillMaxWidth().semantics(mergeDescendants = true) {
+    Column(
+        modifier = modifier.fillMaxWidth().panel().semantics(mergeDescendants = true) {
             contentDescription = label
         },
-        shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
     ) {
         Column(
             modifier = Modifier.fillMaxWidth().padding(DlSpace.l),

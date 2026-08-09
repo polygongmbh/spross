@@ -30,6 +30,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -63,21 +64,35 @@ import net.spross.kern.model.Realization
  */
 @Composable
 fun CardFace(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
-    val shape = MaterialTheme.shapes.large
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .dropShadow(shape, CARD_SHADOW)
-            .background(MaterialTheme.colorScheme.surface, shape)
-            // The hairline is deliberately faint — the fill and the shadow carry the
-            // boundary, and the edge only closes it (iOS `dlCardSurface`, separator @ 0.6).
-            .border(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.6f), shape)
+            .panel(MaterialTheme.shapes.large)
             .padding(DlSpace.l),
         verticalArrangement = Arrangement.spacedBy(DlSpace.s),
         horizontalAlignment = Alignment.CenterHorizontally,
         content = content,
     )
 }
+
+/**
+ * The ONE raised surface: the card fill, a soft shadow under it, and the hairline that
+ * closes the edge.
+ *
+ * Every panel in the app wears this, not just the card a session asks its question on —
+ * paper at `#FBFBF6` on paper at `#F2F1EA` is a four-percent step, so a panel with no
+ * shadow under it is not a panel, it is a rectangle nobody can find. M3's own `Card`
+ * defaults to zero elevation and the theme deliberately kills its tonal tint
+ * (`surfaceTint = Transparent`), which left every surface but this one perfectly flat.
+ *
+ * The hairline is deliberately faint: the fill and the shadow carry the boundary and the
+ * edge only closes it (iOS `dlCardSurface`, separator @ 0.6).
+ */
+@Composable
+fun Modifier.panel(shape: Shape = MaterialTheme.shapes.medium): Modifier = this
+    .dropShadow(shape, CARD_SHADOW)
+    .background(MaterialTheme.colorScheme.surface, shape)
+    .border(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.6f), shape)
 
 /**
  * A review card: the picture in a slot BESIDE the words, the words in the middle.

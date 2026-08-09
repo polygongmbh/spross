@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -162,7 +160,7 @@ private fun LanguageHeading(model: AppModel, language: String) {
 private fun CreditGroup(credit: AudioCredit, chrome: Chrome) {
     var expanded by remember(credit) { mutableStateOf(false) }
     val uris = LocalUriHandler.current
-    Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
+    Column(modifier = Modifier.panel()) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()

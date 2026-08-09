@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
@@ -62,10 +60,8 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
 
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.l)) {
         Text(chrome.settingsTitle, style = MaterialTheme.typography.headlineSmall)
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            shape = MaterialTheme.shapes.medium,
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        Column(
+            modifier = Modifier.fillMaxWidth().panel(),
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth().padding(DlSpace.l),

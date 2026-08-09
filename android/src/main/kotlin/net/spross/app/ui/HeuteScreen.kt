@@ -15,8 +15,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -156,10 +154,8 @@ fun HeuteScreen(model: AppModel) {
 private fun WerkstattCard(model: AppModel) {
     val chrome = model.chrome
     if (!model.werkstattOffered) return
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+    Column(
+        modifier = Modifier.fillMaxWidth().panel(),
     ) {
         Column(
             modifier = Modifier.fillMaxWidth().padding(DlSpace.l),
