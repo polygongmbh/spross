@@ -1,7 +1,7 @@
 package net.spross.app.ui
 
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -24,7 +24,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -70,7 +71,11 @@ fun CardFace(modifier: Modifier = Modifier, content: @Composable ColumnScope.() 
             .fillMaxWidth()
             .panel(MaterialTheme.shapes.large)
             .padding(DlSpace.l),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.s),
+        // why: a card holds a reserved minimum height, so before the reveal its content is
+        // shorter than the card it sits in. Arranged from the top, the question hung off
+        // the ceiling with the reserve pooled underneath it; the block is read from the
+        // middle out, so it is centred in whatever height the card currently has.
+        verticalArrangement = Arrangement.spacedBy(DlSpace.s, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
         content = content,
     )
@@ -152,7 +157,13 @@ fun emojiShowing(cue: EmojiCue?, revealed: Boolean): Boolean =
 private fun EmojiSlot(emoji: String, shown: Boolean, size: Dp) {
     // why: the picture FADES into a slot that was already there — appearing would push
     // every line of the card down at the moment the answer needs reading.
-    val fade by animateFloatAsState(if (shown) 1f else 0f, label = "emojiSlot")
+    //
+    // Keyed on the picture itself, so a NEW word starts wherever that word belongs rather
+    // than inheriting the last one's opacity. Animating across the swap fades the incoming
+    // picture out: the glyph is already the next card's while the alpha is still travelling
+    // down from the card that has gone, which shows the answer to a question not yet asked.
+    val fade = remember(emoji) { Animatable(if (shown) 1f else 0f) }
+    LaunchedEffect(emoji, shown) { fade.animateTo(if (shown) 1f else 0f) }
     Box(
         // why: the fade takes the DISC with it, not just the picture in it. Fading the
         // glyph alone leaves an empty grey circle sitting on every held-back card until
@@ -160,7 +171,7 @@ private fun EmojiSlot(emoji: String, shown: Boolean, size: Dp) {
         // one deliberately withheld. Alpha does not measure, so the slot is still held
         // and nothing below it moves when the picture arrives (iOS fades the whole
         // illustration for the same reason).
-        modifier = Modifier.size(size).alpha(fade).clip(CircleShape)
+        modifier = Modifier.size(size).alpha(fade.value).clip(CircleShape)
             .background(MaterialTheme.colorScheme.surfaceVariant),
         contentAlignment = Alignment.Center,
     ) {
@@ -192,8 +203,12 @@ fun SpokenWord(
     Row(
         modifier = modifier.pronounceOnTap(pronounce, chrome),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
+        horizontalArrangement = Arrangement.spacedBy(DlSpace.xs, Alignment.CenterHorizontally),
     ) {
+        // why: a hidden, inert copy of the glyph on the LEADING edge. Without the ballast
+        // the word sits half a speaker left of centre — off the plural line under it and
+        // off the same word on the card's other face, since only the target side is heard.
+        if (pronounce != null) Spacer(Modifier.size(SPEAKER_GLYPH))
         word()
         if (pronounce != null) {
             // Decorative: the tap and the action naming it live on the row around it,
