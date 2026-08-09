@@ -186,25 +186,13 @@ struct VocabCardView: View {
         }
     }
 
-    @ViewBuilder
+    /// The headline as VoiceOver should hear it: tagged with the language it is
+    /// written in (`dlSpoken`), article included, because that is how the line
+    /// reads on screen.
     private func headlineWord(_ side: Side, emphasized: Bool) -> some View {
-        let word = headlineText(side, emphasized: emphasized)
-        if let label = spokenLabel(side) {
-            word.accessibilityLabel(label)
-        } else {
-            word
-        }
-    }
-
-    /// The headline as VoiceOver should hear it, tagged with the language it is
-    /// written in. It matters most where autoplay is off by design: a VoiceOver
-    /// session never autoplays (nothing may speak over the screen reader), so
-    /// this reading is the only pronunciation the learner gets.
-    private func spokenLabel(_ side: Side) -> Text? {
-        guard let language = side.language else { return nil }
-        var label = AttributedString(side.article.map { "\($0.text) \(side.text)" } ?? side.text)
-        label.languageIdentifier = language
-        return Text(label)
+        headlineText(side, emphasized: emphasized)
+            .dlSpoken(side.article.map { "\($0.text) \(side.text)" } ?? side.text,
+                      language: side.language)
     }
 
     /// Both sides use the same font so a word never changes size just

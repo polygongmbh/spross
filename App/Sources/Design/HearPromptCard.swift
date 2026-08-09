@@ -22,6 +22,11 @@ import SwiftUI
 struct HearPromptCard: View {
     /// What is being asked ("Welcher Buchstabe ist das?" …).
     let question: LocalizedStringKey
+    /// BCP-47 code of the language everything written on this card is in — the
+    /// gap word, and the answer that closes it. Never shown: it tags them for
+    /// VoiceOver (`dlSpoken`), which is the only reading a screen-reader
+    /// session gets, since nothing may autoplay over one.
+    let language: String
     /// `Na＿t` for a gap question; nil where a letter's name is spoken.
     var gapText: String?
     /// The answer, once it is out. A gap question closes over its blank with
@@ -61,6 +66,7 @@ struct HearPromptCard: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
                     .contentTransition(.opacity)
+                    .dlSpoken(word, language: language)
             }
             // A dictation has no gap to close — the word grows below instead,
             // the same reveal a vocabulary card shows.
@@ -72,6 +78,7 @@ struct HearPromptCard: View {
                             .foregroundStyle(Color.dlAccent)
                             .multilineTextAlignment(.center)
                             .minimumScaleFactor(0.6)
+                            .dlSpoken(revealed.word, language: language)
                     }
                 }
                 .transition(.opacity.combined(with: .move(edge: .top)))
@@ -125,15 +132,16 @@ private struct HearPromptPreviewHost: View {
 
     var body: some View {
         VStack(spacing: DL.Space.xl) {
-            HearPromptCard(question: "letters.hear", replay: {}, replayFocus: $focus)
-            HearPromptCard(question: "letters.spell",
+            HearPromptCard(question: "letters.hear", language: "uk",
+                           replay: {}, replayFocus: $focus)
+            HearPromptCard(question: "letters.spell", language: "de",
                            gapText: "Na＿t", replay: {}, replayFocus: $focus)
             // The gap closed: the whole word stands where the blank did.
-            HearPromptCard(question: "letters.spell",
+            HearPromptCard(question: "letters.spell", language: "de",
                            gapText: "Na＿t", revealed: .init(word: "Nacht", pronounce: {}),
                            replay: {}, replayFocus: $focus)
             // Dictation: no gap to close, so the word grows below the glyph.
-            HearPromptCard(question: "letters.dictation",
+            HearPromptCard(question: "letters.dictation", language: "sw",
                            revealed: .init(word: "lugha", note: "Sprache", pronounce: {}),
                            replay: {}, replayFocus: $focus)
         }

@@ -19,6 +19,9 @@ extension CountryDrillView {
                         CountryPromptCard(ask: Self.ask(task.kind),
                                           emoji: task.promptEmoji,
                                           text: task.promptText,
+                                          // A flag is written in no language,
+                                          // so it is tagged with none.
+                                          language: task.promptText == nil ? nil : promptLanguage,
                                           revealed: cardReveal(task))
                             .id(index)
                             .transition(reduceMotion ? .opacity : .dlCardFlip)
@@ -61,6 +64,7 @@ extension CountryDrillView {
         case .almost, .revealed:
             return .init(word: task.display,
                          note: task.gloss,
+                         language: answerLanguage,
                          pronounce: model.pronounceAction(for: task.display, lang: answerLanguage),
                          isPlaying: model.isPronouncing(task.display, lang: answerLanguage))
         }

@@ -21,6 +21,10 @@ struct CountryPromptCard: View {
     var emoji: String?
     /// The name asked about; nil where the flag alone is the question.
     var text: String?
+    /// BCP-47 code of the language [text] is WRITTEN in. Never shown — it tags
+    /// the name for VoiceOver (`dlSpoken`), which the caption no longer does
+    /// and which the placeholder cannot: a11y metadata is not a caption.
+    var language: String?
     /// The answer, once the learner has stopped owing it.
     var revealed: Reveal?
 
@@ -29,6 +33,9 @@ struct CountryPromptCard: View {
         /// The answer side's neighbouring form — the people beside the country,
         /// the country beside the language. Never shown before the answer is in.
         var note: String?
+        /// BCP-47 code of the language the ANSWER is in — the other side of the
+        /// pair from the card's, and the reveal's half of the same tagging.
+        var language: String?
         var pronounce: (() -> Void)?
         var isPlaying = false
     }
@@ -50,6 +57,7 @@ struct CountryPromptCard: View {
                         .multilineTextAlignment(.center)
                         .lineLimit(3)
                         .minimumScaleFactor(0.5)
+                        .dlSpoken(text, language: language)
                 } else if let emoji {
                     // why: no side slot here — the flag is not the picture beside
                     // the question, it IS the question, so it takes the place and
@@ -67,6 +75,7 @@ struct CountryPromptCard: View {
                                 .foregroundStyle(Color.dlAccent)
                                 .multilineTextAlignment(.center)
                                 .minimumScaleFactor(0.6)
+                                .dlSpoken(revealed.word, language: revealed.language)
                         }
                     }
                     .transition(.opacity.combined(with: .move(edge: .top)))
@@ -100,11 +109,13 @@ struct CountryPromptCard: View {
 
 #Preview("Country prompt") {
     VStack(spacing: DL.Space.xl) {
-        CountryPromptCard(ask: "countries.ask.country", emoji: "🇰🇪", text: "Kenia")
+        CountryPromptCard(ask: "countries.ask.country", emoji: "🇰🇪",
+                          text: "Kenia", language: "de")
         CountryPromptCard(ask: "countries.ask.spokenIn",
-                          emoji: "🇨🇭", text: "die Schweiz",
-                          revealed: .init(word: "Kijerumani", note: "Uswisi", pronounce: {}))
-        CountryPromptCard(ask: "countries.ask.language", text: "Kiswahili")
+                          emoji: "🇨🇭", text: "die Schweiz", language: "de",
+                          revealed: .init(word: "Kijerumani", note: "Uswisi",
+                                          language: "sw", pronounce: {}))
+        CountryPromptCard(ask: "countries.ask.language", text: "Kiswahili", language: "sw")
         // The flag alone: no name anywhere on the card until the answer is in.
         CountryPromptCard(ask: "countries.ask.flag", emoji: "🇺🇦")
     }
