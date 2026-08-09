@@ -104,6 +104,57 @@ class BoxStatisticsTests {
     }
 
     @Test
+    fun streakCombinesReviewsFromOtherTargetLanguages() {
+        // This language's own box only has day 4; the streak-earning activity on
+        // 1, 2 and 3 happened in sibling target-language boxes.
+        val thisLanguage = statsState(listOf(4))
+        val sibling1 = mapOf("2026-07-01" to DayStats(reviews = 5))
+        val sibling2 = mapOf("2026-07-02" to DayStats(reviews = 5), "2026-07-03" to DayStats(reviews = 5))
+
+        val alone = BoxEngine.statistics(thisLanguage, Box.millis(2026, 7, 4), Box.TZ)
+        assertEquals(1, alone.streak)
+
+        val combined = BoxEngine.statistics(
+            thisLanguage,
+            Box.millis(2026, 7, 4),
+            Box.TZ,
+            otherLanguagesDailyStats = listOf(sibling1, sibling2),
+        )
+        assertEquals(4, combined.streak)
+        assertEquals(4, combined.longestStreak)
+    }
+
+    @Test
+    fun streakMergeSumsSameDayReviewsAcrossLanguages() {
+        // Day 1 alone in either language would not be enough on its own; combined
+        // reviews on the same calendar day still count as one earned day.
+        val thisLanguage = statsState(emptyList()).copy(
+            dailyStats = mapOf("2026-07-01" to DayStats(reviews = 2)),
+        )
+        val sibling = mapOf("2026-07-01" to DayStats(reviews = 3))
+
+        val stats = BoxEngine.statistics(
+            thisLanguage,
+            Box.millis(2026, 7, 1),
+            Box.TZ,
+            otherLanguagesDailyStats = listOf(sibling),
+        )
+        assertEquals(1, stats.streak)
+    }
+
+    @Test
+    fun mergeDailyStatsSumsEveryBucketPerDay() {
+        val a = mapOf("2026-07-01" to DayStats(reviews = 2, introduced = 1, consolidated = 1, activeCount = 3))
+        val b = mapOf(
+            "2026-07-01" to DayStats(reviews = 5, introduced = 0, consolidated = 2, activeCount = 4),
+            "2026-07-02" to DayStats(reviews = 1),
+        )
+        val merged = mergeDailyStats(listOf(a, b))
+        assertEquals(DayStats(reviews = 7, introduced = 1, consolidated = 3, activeCount = 7), merged["2026-07-01"])
+        assertEquals(DayStats(reviews = 1), merged["2026-07-02"])
+    }
+
+    @Test
     fun headlineNumbersReflectClockAndSuspension() {
         var state = Box.state((1..4).map { Box.word(it) })
         state = Box.inject(state, Box.sched("w01", dueMillis = now - 60_000, lastReviewMillis = Box.plusDays(now, -1.0)))

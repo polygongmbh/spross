@@ -22,6 +22,7 @@ import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
+import net.spross.kern.model.DayStats
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.Rating
@@ -109,6 +110,15 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
     var normalizer: AnswerNormalizer? = null
         private set
+
+    /**
+     * `dailyStats` from every OTHER target-language box on disk — the box's streak
+     * is one commitment across every language the learner studies, not one per
+     * language ([net.spross.kern.box.mergeDailyStats]). Reloaded whenever [activate]
+     * switches languages; those files only change while THEY are the active target,
+     * so a per-answer disk read for each of them would be wasted work.
+     */
+    private var otherLanguagesDailyStats: List<Map<String, DayStats>> = emptyList()
 
     /**
      * Produce grading with the whole join in view: a form the catalog owns
@@ -202,9 +212,27 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         box = state
         normalizer = AnswerNormalizer(cat.languages.getValue(target))
         persist(state)
+        otherLanguagesDailyStats = withContext(Dispatchers.IO) { loadOtherLanguagesDailyStats(cat, target) }
         refreshStats()
         screen = Screen.Heute
     }
+
+    /**
+     * `dailyStats` for every catalog language except [target], read straight off
+     * disk (no catalog join needed for a day tally). A sibling box that is missing
+     * or fails to decode is skipped — its own load path surfaces the real error
+     * when the learner switches to it.
+     */
+    private fun loadOtherLanguagesDailyStats(cat: Catalog, target: String): List<Map<String, DayStats>> =
+        cat.languages.keys.filter { it != target }.mapNotNull { language ->
+            boxFiles.read(language)?.let { json ->
+                try {
+                    StoreCodec.decode(json).dailyStats
+                } catch (_: StoreFormatException) {
+                    null
+                }
+            }
+        }
 
     fun startSession() = begin(SessionIntent.Start)
 
@@ -342,7 +370,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     private fun refreshStats() {
         val state = box ?: return
-        stats = BoxEngine.statistics(state, now(), tz())
+        stats = BoxEngine.statistics(state, now(), tz(), otherLanguagesDailyStats)
         sessionAvailable = SessionOffers.sessionAvailable(state, now(), tz())
         canPracticeExtra = SessionOffers.canPracticeMore(state, now(), tz())
     }

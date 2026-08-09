@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **The streak counts the day, not the language.** Studying German today and Swahili
+  yesterday used to read as two broken streaks instead of one that held — each target
+  language kept its own flame, because each one's progress lives in its own file. The
+  flame, the record, and the 14-day strip now add up review days across every language
+  in the box, on iOS and Android alike; a day counts the moment any language was worked.
+
 ## 3.13.0 — 2026-08-08
 
 - **The number forms stop having to be learned in a failure.** The drill that asks for

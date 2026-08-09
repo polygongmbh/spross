@@ -297,6 +297,14 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   rule the current streak walks back with, over the whole (never pruned) `dailyStats`.
   An unfinished today can extend a run but never end one, so it is always ≥ `streak` —
   equality is what says today's run IS the record.
+- **The streak is one commitment across every target language, not one per language.**
+  `dailyStats` persists per (source, target) box (§7), so `BoxEngine.statistics` and
+  `BoxEngine.growth`'s siblings take `otherLanguagesDailyStats` — every OTHER target
+  language's `dailyStats`, gathered by the caller — and fold them into THIS state's own
+  via `Statistics.mergeDailyStats` before walking the streak. A day earns the streak
+  whichever language(s) it was spent on; every other bucket (`activeCount`, `dueCount`,
+  the areas) stays scoped to the join in view. `WidgetSnapshotBuilder.build` takes the
+  same parameter so the widget's own (deliberately duplicated) streak walk agrees.
 - **Introduction is the card's first answer.** `enqueued` holds card ids;
   enqueued cards lead composition, respect the per-round cap, and dequeue at introduction.
   Zero-component phrases follow seed order, never the unlock fast path.

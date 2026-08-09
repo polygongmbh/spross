@@ -112,6 +112,20 @@ class WidgetSnapshotBuilderTests {
     }
 
     @Test
+    fun dailyStatsMergeInOtherTargetLanguagesReviews() {
+        val state = Snap.state(emptyList()).copy(dailyStats = mapOf("2026-01-01" to DayStats(reviews = 2)))
+        val sibling = mapOf("2026-01-01" to DayStats(reviews = 3), "2026-01-02" to DayStats(reviews = 1))
+
+        val doc = WidgetSnapshotBuilder.doc(
+            state, Box.day1, exposureLimit = 5,
+            otherLanguagesDailyStats = listOf(sibling),
+        )
+
+        assertEquals(5, doc.dailyStats.getValue("2026-01-01").reviews)
+        assertEquals(1, doc.dailyStats.getValue("2026-01-02").reviews)
+    }
+
+    @Test
     fun schemaVersionIsPinned() {
         assertEquals(2, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, 5).schemaVersion)
     }

@@ -240,9 +240,13 @@ extension AppModel {
 
     /// The trailing days with their review counts AND their place in the current
     /// streak — one walk in kern, so the strip and the flame cannot disagree.
+    /// Merges in every OTHER target language's `dailyStats` first: the streak is
+    /// one commitment across languages, not one per language (`AppModel.swift`'s
+    /// `otherLanguagesDailyStats`, `Statistics.mergeDailyStats`).
     func activityWindow(days: Int = 14, now: Date = Date()) -> [ActivityDay] {
         guard let box else { return [] }
-        return streakWindow(dailyStats: box.dailyStats, days: Int32(days),
+        let combined = mergeDailyStats(dailyStatsByLanguage: otherLanguagesDailyStats + [box.dailyStats])
+        return streakWindow(dailyStats: combined, days: Int32(days),
                             nowEpochMillis: now.epochMillis, tzId: currentTzId())
     }
 }
