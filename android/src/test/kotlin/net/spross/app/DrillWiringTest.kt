@@ -9,6 +9,12 @@ import kotlin.test.assertTrue
 import net.spross.kern.catalog.Alphabet
 import net.spross.kern.catalog.AlphabetEntry
 import net.spross.kern.catalog.AlphabetKind
+import net.spross.kern.catalog.AtlasCountryEntry
+import net.spross.kern.catalog.AtlasLanguageEntry
+import net.spross.kern.catalog.CountryDrillContent
+import net.spross.kern.catalog.CountryName
+import net.spross.kern.catalog.LanguageName
+import net.spross.kern.catalog.NationalityName
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -20,12 +26,12 @@ import net.spross.kern.trainer.TrainerMode
 import net.spross.kern.trainer.TrainerRun
 
 /**
- * What the APP does with kern's two drill runs — which intent each affordance sends, which
- * acts an effect asks for, and what the screen reads back. The rules themselves (the ramp,
- * the draw, the verdict ladder, when the way out is offered) belong to `:kern:jvmTest`;
- * nothing here re-tests them.
+ * What the APP does with kern's drill runs — which intent each affordance sends, which acts
+ * an effect asks for, and what the screen reads back. The rules themselves (the ramp, the
+ * draw, the verdict ladder, when the way out is offered) belong to `:kern:jvmTest`; nothing
+ * here re-tests them.
  *
- * The harness is the two flows with the platform stripped out: record the tones, the focus
+ * The harness is the three flows with the platform stripped out: record the tones, the focus
  * releases and the silences, and read the beat off the flow instead of running one.
  */
 class DrillWiringTest {
@@ -190,5 +196,105 @@ class DrillWiringTest {
         assertEquals(1, summary.done)
         // The letter drill keeps no record store, so nothing it does can beat one.
         assertTrue(!summary.newRecord)
+    }
+
+    // MARK: - The atlas run
+
+    private fun place(slug: String, flag: String, spoken: List<String>, known: String, learnt: String) =
+        AtlasCountryEntry(
+            slug = slug,
+            flag = flag,
+            tier = 1,
+            languages = spoken,
+            source = CountryName(text = known, nationality = NationalityName("${known}er")),
+            target = CountryName(text = learnt, nationality = NationalityName("Wa$learnt")),
+        )
+
+    private val atlas = CountryDrillContent(
+        source = "de",
+        target = "sw",
+        countries = listOf(
+            place("germany", "🇩🇪", listOf("de"), "Deutschland", "Ujerumani"),
+            place("tanzania", "🇹🇿", listOf("sw"), "Tansania", "Tanzania"),
+        ),
+        languages = listOf(
+            AtlasLanguageEntry(
+                code = "de",
+                tier = 1,
+                source = LanguageName("Deutsch", "auf Deutsch"),
+                target = LanguageName("Kijerumani", "kwa Kijerumani"),
+            ),
+            AtlasLanguageEntry(
+                code = "sw",
+                tier = 1,
+                source = LanguageName("Suaheli", "auf Suaheli"),
+                target = LanguageName("Kiswahili", "kwa Kiswahili"),
+            ),
+        ),
+    )
+
+    private fun countries(platform: Platform, reverse: Boolean = false, seed: Int = 5) =
+        CountryDrillFlow(
+            content = atlas,
+            reverse = reverse,
+            fast = false,
+            // A run with no language info grades plainly — enough to drive the wiring.
+            normalizer = null,
+            rng = Random(seed),
+            onTone = { platform.tones += it },
+            onReleaseFocus = { platform.focusReleases += 1 },
+            onSilence = { platform.silences += 1 },
+            screenReaderOn = { platform.screenReader },
+        )
+
+    /**
+     * Writing the name out IS the answer — the review loop's rule, which the letter drill
+     * does not offer and this one does.
+     */
+    @Test
+    fun finishingTheNameArmsTheLiveBeatWithoutACheckTap() {
+        val platform = Platform()
+        val flow = countries(platform)
+        flow.type(flow.task.display)
+        assertEquals(TurnFeedback.Correct, flow.feedback)
+        assertEquals(listOf(ToneKind.Correct), platform.tones)
+        assertEquals(AdvanceTier.Live, flow.armedBeat)
+    }
+
+    /** Typing PAST a finished name takes the green with it, so it is never booked. */
+    @Test
+    fun backingOutOfAFinishedNameDropsTheBeat() {
+        val flow = countries(Platform())
+        flow.type(flow.task.display)
+        flow.type(flow.task.display + "x")
+        assertEquals(TurnFeedback.Neutral, flow.feedback)
+        assertNull(flow.armedBeat)
+    }
+
+    /** The way out belongs to the SECOND miss in a row, not to the first. */
+    @Test
+    fun theWayOutIsOfferedOnTheSecondMissInARow() {
+        val flow = countries(Platform())
+        flow.primary()
+        assertEquals(TurnFeedback.Revealed, flow.feedback)
+        assertTrue(!flow.offersFinish, "one miss is not yet a run worth leaving")
+        flow.confirm()
+        flow.primary()
+        assertTrue(flow.offersFinish)
+    }
+
+    @Test
+    fun aClosedAtlasRunReportsItsFiguresAndTheRungItReached() {
+        val untouched = countries(Platform()).close(standingRecord = 0)
+        assertNull(untouched.summary)
+
+        val flow = countries(Platform())
+        flow.type(flow.task.display)
+        val closed = flow.close(standingRecord = 0)
+        val summary = assertNotNull(closed.summary)
+        // The pending clean answer books on the way out, exactly as the tap would.
+        assertEquals(1, summary.done)
+        assertTrue(summary.newRecord, "a first streak beats a standing record of none")
+        assertEquals(flow.bestLevel, closed.bestLevel)
     }
 }

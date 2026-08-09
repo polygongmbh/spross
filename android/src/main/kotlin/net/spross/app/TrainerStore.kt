@@ -58,17 +58,40 @@ class TrainerStore(private val prefs: SharedPreferences) {
         edit.apply()
     }
 
+    /** The highest rung ever reached under [key], 0 where it was never run. */
+    fun best(key: String): Int = rung(key)
+
+    /**
+     * Books [level] as the furthest rung reached. Strictly greater, so a run re-closed
+     * over its own figures never re-claims a rung that was already standing.
+     */
+    fun bookRung(key: String, level: Int) {
+        if (level <= rung(key)) return
+        prefs.edit().putInt(TrainerMode.PROGRESS_PREFIX + key, level).apply()
+    }
+
     private fun rung(key: String): Int = prefs.getInt(TrainerMode.PROGRESS_PREFIX + key, 0)
+
+    companion object {
+        /**
+         * Where the atlas ladder and its record are filed — one key per PAIR, because the
+         * atlas is a pair's material and not a language's. Kern spells every other drill's
+         * identity ([TrainerMode.progressKey]); this one it does not, so the two platforms
+         * agree on it by both writing the string the iOS twin authored
+         * (`CountriesOverview.storageKey`).
+         */
+        fun countriesKey(source: Language, target: Language): String = "countries.$source-$target"
+    }
 }
 
 /**
- * The Werkstatt's standing, as the two overview pages read it: how far the ladder has been
- * climbed, what the letter drill can ask on THIS device, and what the run that just closed
- * came to.
+ * The free-practice standing, as the three overview pages read it: how far the ladder has
+ * been climbed, what the letter drill can ask on THIS device, how far up the atlas any run
+ * has come, and what the run that just closed came to.
  *
- * Held apart from the run itself because all three outlive it: the ladder is what a closing
- * run books INTO, the availability is recomputed on every foreground, and the result is
- * shown by the page the run came back to rather than by a screen of its own.
+ * Held apart from the run itself because all of it outlives one: the ladder is what a
+ * closing run books INTO, the availability is recomputed on every foreground, and the
+ * result is shown by the page the run came back to rather than by a screen of its own.
  */
 class Werkstatt(val store: TrainerStore) {
 
@@ -82,6 +105,14 @@ class Werkstatt(val store: TrainerStore) {
      * relaunch.
      */
     var letters by mutableStateOf<LetterDrillAvailability.Report?>(null)
+        private set
+
+    /**
+     * The furthest rung any atlas run ever reached for this PAIR; 0 where none has.
+     * The atlas page only reads it — nothing on that page is earned — except that Fast is
+     * priced against it ([net.spross.kern.trainer.CountryDrill.fastUnlocked]).
+     */
+    var countriesBest by mutableStateOf(0)
         private set
 
     /** The figures the last closed run handed back; null while no run has closed. */
@@ -98,6 +129,10 @@ class Werkstatt(val store: TrainerStore) {
 
     fun seeLetters(report: LetterDrillAvailability.Report?) {
         letters = report
+    }
+
+    fun readCountries(source: Language, target: Language) {
+        countriesBest = store.best(TrainerStore.countriesKey(source, target))
     }
 
     fun show(summary: DrillRunSummary?, title: String) {

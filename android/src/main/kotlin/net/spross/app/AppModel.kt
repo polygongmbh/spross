@@ -23,6 +23,7 @@ import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
 import net.spross.kern.box.streakWindow
 import net.spross.kern.catalog.Catalog
+import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
@@ -151,6 +152,17 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
 
     /**
+     * The atlas joined for this profile, or null where the pair has no drill at all —
+     * kern's registry by file, and the whole of what the Länder chip gates on.
+     *
+     * Joined ONCE, as the profile activates: the hub, the page and the run read the very
+     * same rows, so the manifest is never walked per composition and the table can never
+     * drift from what the run grades against.
+     */
+    var atlas by mutableStateOf<CountryDrillContent?>(null)
+        private set
+
+    /**
      * The trailing fortnight the activity strip draws, oldest day first.
      * Kern walks it beside the streak number, so a strip and a flame cannot disagree —
      * refreshed with the rest of the numbers, never re-derived per composition.
@@ -257,7 +269,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * The Werkstatt's two entries. Each opens a PAGE, never a run: reading matter and the
+     * The hub's entries. Each opens a PAGE, never a run: reading matter and the
      * drill it prepares you for are one surface, and the run is what the page is opened
      * for, so the picks and the button sit above the reading.
      *
@@ -276,7 +288,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Letters
     }
 
-    /** Back to Heute from either page — nothing may keep talking into it. */
+    /** Back to Heute from any of them — nothing may keep talking into it. */
     fun closeOverview() {
         pronouncer.stop()
         screen = Screen.Heute
@@ -315,9 +327,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * is a catalog sweep no start-up should pay for.
      */
     fun refreshWerkstatt() {
-        val language = box?.joinStamp?.target ?: return
-        werkstatt.readLadder(language)
+        val stamp = box?.joinStamp ?: return
+        werkstatt.readLadder(stamp.target)
         werkstatt.seeLetters(letterReport())
+        werkstatt.readCountries(stamp.source, stamp.target)
     }
 
     fun cancelOnboarding() {
@@ -342,6 +355,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         }
         val state = restored ?: BoxEngine.bootstrap(cards, BoxConfig.product(), stamp)
         box = state
+        // why: the join walks the manifest, and the pair only changes here — the hub reads
+        // this on every composition, and a sweep per frame is one no start-up should pay.
+        atlas = cat.countryDrillContent(source, target)
         normalizer = AnswerNormalizer(cat.languages.getValue(target))
         persist(state)
         refreshStats()
