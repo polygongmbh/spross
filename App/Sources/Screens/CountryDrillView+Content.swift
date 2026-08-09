@@ -18,6 +18,7 @@ extension CountryDrillView {
                     ZStack {
                         CountryPromptCard(ask: Self.ask(task.kind),
                                           emoji: task.promptEmoji,
+                                          emojiIsGiveaway: task.emojiIsGiveaway,
                                           text: task.promptText,
                                           // A flag is written in no language,
                                           // so it is tagged with none.

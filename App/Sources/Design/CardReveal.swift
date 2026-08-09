@@ -51,12 +51,28 @@ struct DLCardEmoji: View {
         var glyph: CGFloat { self == .compact ? 28 : 52 }
     }
 
+    /// WHEN the picture appears. `upfront` from the first frame; `onReveal`
+    /// holds it back while the answer is still owed, which is what a picture
+    /// that would ANSWER the question has to do — the word's own emoji on a
+    /// produce card, a country's flag on a reversed atlas card.
+    ///
+    /// There is deliberately no third case. A slot handed a picture always ends
+    /// up showing it: withholding one PAST the reveal would leave the learner
+    /// never seeing the thing they were asked about, and that is the card's
+    /// rule to keep rather than each caller's to remember (`docs/design.md`).
+    enum Cue { case upfront, onReveal }
+
     let emoji: String
     var size: Size = .compact
+    var cue: Cue = .upfront
+    /// Whether the card has given its answer — `onReveal`'s other half.
+    var revealed: Bool = false
 
-    init(_ emoji: String, size: Size = .compact) {
+    init(_ emoji: String, size: Size = .compact, cue: Cue = .upfront, revealed: Bool = false) {
         self.emoji = emoji
         self.size = size
+        self.cue = cue
+        self.revealed = revealed
     }
 
     var body: some View {
@@ -65,7 +81,14 @@ struct DLCardEmoji: View {
             .frame(width: size.diameter, height: size.diameter)
             .background(Circle().fill(Color.dlSurfaceTint))
             .accessibilityHidden(true) // why: decorative; the headword carries the content
+            // why: faded rather than removed — the slot is already the right
+            // size, so a held-back picture arrives without moving the words.
+            .opacity(shows ? 1 : 0)
+            .animation(.easeOut(duration: 0.25), value: shows)
     }
+
+    /// The invariant the slot exists to keep: held back only until the reveal.
+    private var shows: Bool { cue == .upfront || revealed }
 
     /// The mirror of the slot on the card's other edge, so the words stay
     /// centred in the card rather than in what is left of it. One point tall:

@@ -59,9 +59,10 @@ struct VocabCardView: View {
         }
     }
 
-    /// WHEN the picture appears. Its place never changes, so `onReveal` fades it
-    /// into a slot that was already there — nothing on the card moves either way.
-    enum EmojiCue { case upfront, onReveal }
+    /// WHEN the picture appears — the shared slot's rule, named here for the
+    /// call sites that already speak of a card's emoji cue. Its place never
+    /// changes, so `onReveal` fades it into a slot that was already there.
+    typealias EmojiCue = DLCardEmoji.Cue
 
     /// Per-word illustration; nil for verbs/phrases with no seed emoji —
     /// the card then drops the slot and centers on the word itself.
@@ -82,8 +83,7 @@ struct VocabCardView: View {
     var body: some View {
         HStack(spacing: DL.Space.m) {
             if hasEmoji {
-                DLCardEmoji(emoji ?? "", size: emojiSize)
-                    .opacity(emojiCue == .upfront || revealed ? 1 : 0)
+                DLCardEmoji(emoji ?? "", size: emojiSize, cue: emojiCue, revealed: revealed)
             }
             VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
                 sideBlock(prompt, emphasized: false)

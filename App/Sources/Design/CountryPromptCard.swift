@@ -14,11 +14,22 @@ import SwiftUI
 ///
 /// One question has no name on it at all: where kern hands over a flag and no
 /// [text], the flag IS the question and stands where the name would.
+///
+/// The other way round, a flag can be the ANSWER — a reversed run is answered
+/// in the learner's own language, so showing it would settle the question. It
+/// is held to the reveal rather than dropped ([emojiIsGiveaway]): the learner
+/// still finds out which country they were asked about, which is the whole
+/// point of having carried the picture at all.
 struct CountryPromptCard: View {
     /// What is being asked ("Wie heißt dieses Land?" …).
     let ask: LocalizedStringKey
     /// The country's flag; nil where the question is about a language.
     var emoji: String?
+    /// Whether showing [emoji] while the answer is owed would ANSWER the
+    /// question — kern's `emojiIsGiveaway`, true of a reversed run's country
+    /// questions. The flag is then held to the reveal rather than dropped: the
+    /// card says WHEN a picture appears and never loses one.
+    var emojiIsGiveaway: Bool = false
     /// The name asked about; nil where the flag alone is the question.
     var text: String?
     /// BCP-47 code of the language [text] is WRITTEN in. Never shown — it tags
@@ -46,7 +57,9 @@ struct CountryPromptCard: View {
     var body: some View {
         HStack(spacing: DL.Space.m) {
             if let emoji, text != nil {
-                DLCardEmoji(emoji)
+                DLCardEmoji(emoji,
+                            cue: emojiIsGiveaway ? .onReveal : .upfront,
+                            revealed: revealed != nil)
             }
             VStack(spacing: DL.Space.m) {
                 caption
@@ -64,6 +77,10 @@ struct CountryPromptCard: View {
                     // the size the name would have had. It is NOT hidden from
                     // VoiceOver either, for the same reason: hiding it would
                     // leave the screen reader nothing to read but the ask.
+                    //
+                    // Nor is it ever a giveaway: a question whose whole content
+                    // is the flag has nothing left to show if the flag is held
+                    // back, which is why kern builds it forward only.
                     Text(verbatim: emoji)
                         .font(.system(size: 64))
                 }
@@ -118,6 +135,14 @@ struct CountryPromptCard: View {
         CountryPromptCard(ask: "countries.ask.language", text: "Kiswahili", language: "sw")
         // The flag alone: no name anywhere on the card until the answer is in.
         CountryPromptCard(ask: "countries.ask.flag", emoji: "🇺🇦")
+        // Reversed: the flag would answer the question, so the slot stands
+        // empty while it is owed — and fills the moment the answer is in.
+        CountryPromptCard(ask: "countries.ask.country", emoji: "🇦🇹",
+                          emojiIsGiveaway: true, text: "Austria", language: "sw")
+        CountryPromptCard(ask: "countries.ask.country", emoji: "🇦🇹",
+                          emojiIsGiveaway: true, text: "Austria", language: "sw",
+                          revealed: .init(word: "Österreich", note: "Österreicher",
+                                          language: "de", pronounce: {}))
     }
     .padding(DL.Space.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)

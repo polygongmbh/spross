@@ -84,6 +84,10 @@ never the shape of the app.
   **beside the words**, never above them, and that holds for every card face the app has:
   vertical space is the scarce axis — card, input, button and keyboard share one screen —
   and the slot is held for the card's whole life, so a reveal moves nothing.
+  A picture that would ANSWER the question is **withheld as a hint, never dropped**: it is
+  held back while the answer is owed and appears at the reveal, so the learner always ends
+  up seeing what they were asked about. The slot itself keeps this (`DLCardEmoji.Cue`) —
+  there is no way for a card face to say "hide it for good".
 - Ambiguous prompts (the target merges two source concepts) carry an **area label**.
   Produce only: on a recognition prompt a cue precise enough to disambiguate would give
   the answer away. Never graded.
