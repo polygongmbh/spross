@@ -23,9 +23,9 @@ because both asked the same box for it.
 | **iOS** | ![Spross on iOS — the Today screen](docs/screenshots/ios-heute.png) | ![Spross on iOS — a review card](docs/screenshots/ios-session.png) | ![Spross on iOS — the box](docs/screenshots/ios-box.png) |
 | **Android** | ![Spross on Android — the Today screen](docs/screenshots/android-heute.png) | ![Spross on Android — a review card](docs/screenshots/android-session.png) | ![Spross on Android — the box](docs/screenshots/android-box.png) |
 
-The Workshop rungs are where the two still differ:
-iOS offers Countries alongside Numbers and Letters, Android does not yet
-(`docs/backlog.md`).
+The rungs match now too: Numbers, Letters and Countries stand on both
+phones, each run on kern's rules — what still parts the platforms is listed
+in `docs/design.md`.
 
 ## Structure
 
