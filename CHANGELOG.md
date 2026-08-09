@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+- **Android learns the world too: Länder joins Zahlen and Buchstaben.** Name the country,
+  the people and the language, and say which is spoken where — typed, in either direction,
+  and starting from the two languages you already have before it widens outward. Nine
+  rungs, each bringing exactly one new thing, and every run opens at the first one and
+  climbs by itself: nothing on the page is locked except Fast, which is what topping the
+  ladder once buys you. The flag sits beside the question rather than above it, a flag
+  that would give a reversed answer away waits for the reveal instead of vanishing, and a
+  question that is nothing but a flag shows it big. Under it all, the atlas itself — every
+  country both languages name, in both languages at once, drawn from the very rows the run
+  grades against. Finishing a name is the answer, with no Check tap to confirm what you
+  already wrote.
+
+- **The free-practice card is called Sprossen now, and its levels are rungs** — the words
+  the iPhone already uses, so the same surface reads the same on either phone.
+
 - **Android answers out loud now.** The same three chimes the iPhone has always played —
   rising for a hit, falling for a miss, one flat note for a revealed answer — sound on
   review cards and in both drills, and a new record closes on the cheer. They follow the
@@ -9,7 +24,7 @@
   punctuation, not speech. The buzz that used to stand in for them is now kept for a
   miss alone.
 
-- **Android has the Werkstatt.** Zahlen and Buchstaben on Heute, each opening a page
+- **Android has free practice.** Zahlen and Buchstaben on Heute, each opening a page
   where the picks and the start button sit above the reading rather than behind it. The
   numbers page offers what the ladder has opened — the clock, sentences and number forms
   as ways of being asked rather than separate drills — states what a locked row costs,

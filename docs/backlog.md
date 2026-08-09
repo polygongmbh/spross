@@ -301,9 +301,6 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## Localization
 
-- Android chrome still says "Werkstatt" and "Stufe" where iOS now says "Sprossen" and "Sprosse" —
-  left untouched because the parity worktree is restructuring that exact table
-  (`android/.../Chrome.kt:122,129,196`); the rename rides along when that series lands.
 - Watch, widget, and complication chrome is hardcoded German with no string catalog
   (`Watch/Sources/WatchHomeView.swift`, `Widgets/Sources/WordWidgetView.swift`,
   `WatchWidgets/Sources/WatchWordWidgetView.swift`) —
@@ -324,10 +321,6 @@ One line per item, with a file or context pointer, filed under the section it be
   (`android/src/main/res/values/colors.xml`) — the adaptive-icon plate, not the window.
 - Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
   deferred per user 2026-08-08.
-- The atlas drill's Android port waits on the android parity branch landing, and is UI ONLY:
-  the ladder, the pools, the accepted sets, the reference rows and the availability
-  predicate are all in kern commonMain already (`kern/.../trainer/CountryDrill.kt`), so the
-  port clones the `LetterDrill` split — a screen plus a progress store, no decisions.
 - Audio ships un-thinned: `catalog/audio/` is 26 MB (de 4.9, es 7.2, sw 5.2, uk 9.0) and
   BOTH installs carry all of it — the iOS folder reference and the Android catalog sync
   copy the tree whole — so a Swahili learner downloads 21 MB of German, Spanish and

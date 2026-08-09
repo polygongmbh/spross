@@ -309,7 +309,7 @@ engine gates and the behavioral test inventory: kern README.
 Couple mode, accounts/sync, sw/uk UI chrome (those sources fall back to en).
 Android has the core loop on the full kern turn (write-out, retry, the earned Easy),
 Box browse with search, own words and the settings block, the 14-day activity strip,
-and the whole Werkstatt — both drills on kern's runs, each behind its overview page
-with the generated numbers reference and the alphabet table (`surfaces.md`) —
-but no widget, forest canvas or growth headline;
-a new record celebrates in words, without confetti.
+and the whole of Sprossen — all three drills on kern's rules, each behind its overview page
+with the generated numbers reference, the alphabet table and the joined atlas
+(`surfaces.md`) — but no widget, forest canvas or growth headline;
+a new record celebrates in words and a cheer, without confetti.
