@@ -45,6 +45,10 @@ Strict dependency direction: App → SprossKern, never the reverse.
   the catalog decides which targets a source can reach.
 - Default source = device language when covered, else en.
   Either picker may hold the other side's language — picking it swaps the pair.
+- One list is open at a time; the other stands folded on its pick and opens at a tap,
+  and picking a source hands the screen to the target. Onboarding opens with the known
+  side folded — the device language is a good guess already — so the picker is one
+  screen with one open question, no scrolling.
 - Picker rows carry the flag, the language's own name, and the English exonym
   ("🇺🇦 Українська · Ukrainian"): a flag beside an unreadable script is easy to
   mistake for a neighbouring language.

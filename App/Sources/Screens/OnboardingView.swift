@@ -9,11 +9,17 @@ import SprossKern
 /// (it seeds the source pick), and every later tap re-renders in that pick —
 /// English for a source we have no chrome for yet.
 /// Neither side hides the other's pick: choosing it swaps the selections.
+///
+/// One side is open at a time and the other stands folded on its pick: both lists
+/// at once is more of the screen than the two questions are worth, and a pick answers
+/// its own question — so choosing a source hands the screen to the target.
+/// The known side opens folded, the device language being a good guess already.
 struct OnboardingView: View {
     let model: AppModel
 
     @State private var source: String
     @State private var target: String?
+    @State private var pickingSource = false
     @State private var starting = false
 
     init(model: AppModel) {
@@ -73,20 +79,16 @@ struct OnboardingView: View {
     // MARK: - Which language you already speak
 
     private var sourceSection: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("onboarding.source.question")
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
-            ForEach(sources, id: \.self) { candidate in
-                DLSelectionRow(title: Text(verbatim: languageName(candidate)),
-                               mark: .one,
-                               selected: source == candidate) {
-                    guard let catalog = model.catalog else { return }
-                    apply(LanguageChoices.shared.pickSource(catalog: catalog,
-                                                            selection: selection,
-                                                            code: candidate))
-                }
-            }
+        picker(question: "onboarding.source.question",
+               open: pickingSource,
+               options: sources,
+               selected: source,
+               onOpen: { pickingSource = true }) { candidate in
+            guard let catalog = model.catalog else { return }
+            apply(LanguageChoices.shared.pickSource(catalog: catalog,
+                                                    selection: selection,
+                                                    code: candidate))
+            withAnimation(.easeInOut(duration: 0.2)) { pickingSource = false }
         }
     }
 
@@ -100,16 +102,40 @@ struct OnboardingView: View {
     }
 
     private var targetSection: some View {
+        picker(question: "onboarding.target.question",
+               open: !pickingSource,
+               options: targetChoices,
+               selected: target,
+               onOpen: { pickingSource = false }) { candidate in
+            apply(LanguageChoices.shared.pickTarget(selection: selection, code: candidate))
+        }
+    }
+
+    // MARK: - One side of the pair
+
+    /// The question, and either the languages to choose from or the chosen one as
+    /// the row that opens them again.
+    private func picker(question: LocalizedStringKey,
+                        open: Bool,
+                        options: [String],
+                        selected: String?,
+                        onOpen: @escaping () -> Void,
+                        onPick: @escaping (String) -> Void) -> some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("onboarding.target.question")
+            Text(question)
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            ForEach(targetChoices, id: \.self) { candidate in
-                DLSelectionRow(title: Text(verbatim: languageName(candidate)),
-                               mark: .one,
-                               selected: target == candidate) {
-                    apply(LanguageChoices.shared.pickTarget(selection: selection,
-                                                            code: candidate))
+            if open {
+                ForEach(options, id: \.self) { candidate in
+                    DLSelectionRow(title: Text(verbatim: languageName(candidate)),
+                                   mark: .one,
+                                   selected: selected == candidate) { onPick(candidate) }
+                }
+            } else if let selected {
+                DLSelectionRow(title: Text(verbatim: languageName(selected)),
+                               mark: .fold,
+                               selected: false) {
+                    withAnimation(.easeInOut(duration: 0.2)) { onOpen() }
                 }
             }
         }
