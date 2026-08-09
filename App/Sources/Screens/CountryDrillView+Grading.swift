@@ -70,8 +70,7 @@ extension CountryDrillView {
         }
     }
 
-    /// What a typed answer earns. Amber (`typo`) moves the ramp neither way — it
-    /// is neither a win to bank nor a miss to step down for.
+    /// What a typed answer earns; what the ramp does with it is `DrillProgression.step`.
     private enum Verdict {
         case clean
         case typo(String)
