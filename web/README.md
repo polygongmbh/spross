@@ -12,9 +12,13 @@ built to sit beside native-speaker conversation or a structured course, never to
 - Wordplay: **Spross** (sprout) / **Sprosse** (ladder rung) — organic growth first, the rung as the progression wink.
   It is played, never explained: the drill's level IS a "Sprosse" (with a small ladder beside it and one
   hoverable gloss on first mention), so a German reader gets the joke and everyone else still gets a ladder.
+  The footer signs off with it — "Sechs Sprossen, ein Spross." — as a colophon, never as a heading.
 - Copy names what the learner gets, never how the engine works — no FSRS, no scheduling internals on the page.
-- The feature section is drawn as a ladder: two tapering rails (`--stem`) down the sides, a rung between
-  each idea, and no card boxes — the content stands in the gaps, the way a Sprosse carries you.
+- Everything below the positioning line is drawn as one ladder: two tapering rails (`--stem`) down the sides,
+  a rung between each feature idea and one above and below the drill, and no card boxes —
+  the content stands in the gaps, the way a Sprosse carries you.
+  Only the drill card and the signup lift off the ladder, because those are the things you touch;
+  every other section is a compartment between the rails, with no stage of its own.
   The page carries two measures only: the hero's full width and 46.5rem for everything below it.
 - "Sprössling" is the site's name for a subscriber/learner (coined here, not used in-app).
 
