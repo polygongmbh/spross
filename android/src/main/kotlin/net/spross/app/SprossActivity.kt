@@ -28,6 +28,8 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.lifecycle.viewmodel.compose.viewModel
 import net.spross.app.ui.AboutScreen
 import net.spross.app.ui.BoxScreen
+import net.spross.app.ui.CountriesOverviewScreen
+import net.spross.app.ui.CountryDrillScreen
 import net.spross.app.ui.HeuteScreen
 import net.spross.app.ui.LetterDrillScreen
 import net.spross.app.ui.LettersOverviewScreen
@@ -148,8 +150,10 @@ private fun Root(model: AppModel = viewModel()) {
             Screen.About -> AboutScreen(model)
             Screen.Numbers -> NumbersOverviewScreen(model)
             Screen.Letters -> LettersOverviewScreen(model)
+            Screen.Countries -> CountriesOverviewScreen(model)
             is Screen.Trainer -> TrainerSessionScreen(model, screen.mode)
             Screen.LetterDrill -> LetterDrillScreen(model)
+            is Screen.CountryDrill -> CountryDrillScreen(model, screen.reverse, screen.fast)
             is Screen.Box -> BoxScreen(model, openAt = screen.area)
         }
     }

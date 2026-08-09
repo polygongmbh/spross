@@ -65,10 +65,19 @@ sealed interface Screen {
     /** The Buchstaben page: the stages and the button first, the alphabet under them. */
     data object Letters : Screen
 
+    /** The Länder page: the rungs and the button first, the atlas table under them. */
+    data object Countries : Screen
+
     /** A slot run, carrying the spec the page it was started from spelled. */
     data class Trainer(val mode: TrainerMode) : Screen
 
     data object LetterDrill : Screen
+
+    /**
+     * An atlas run, carrying the two things the page settled before it opened: which way
+     * round the questions are asked, and whether a rung falls on one clean win.
+     */
+    data class CountryDrill(val reverse: Boolean, val fast: Boolean) : Screen
 
     /**
      * The box browser. [area] is the shelf it opens UNFOLDED — the screen was reached by
@@ -269,7 +278,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * The hub's entries. Each opens a PAGE, never a run: reading matter and the
+     * The hub's three entries. Each opens a PAGE, never a run: reading matter and the
      * drill it prepares you for are one surface, and the run is what the page is opened
      * for, so the picks and the button sit above the reading.
      *
@@ -288,6 +297,12 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Letters
     }
 
+    fun openCountries() {
+        werkstatt.clearResult()
+        refreshWerkstatt()
+        screen = Screen.Countries
+    }
+
     /** Back to Heute from any of them — nothing may keep talking into it. */
     fun closeOverview() {
         pronouncer.stop()
@@ -300,6 +315,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     fun startLetterDrill() {
         screen = Screen.LetterDrill
+    }
+
+    /**
+     * An atlas run. Both switches are the page's to settle — Fast has a price and the page
+     * has already checked it — so the run only obeys them.
+     */
+    fun startCountryDrill(reverse: Boolean, fast: Boolean) {
+        screen = Screen.CountryDrill(reverse, fast)
     }
 
     /**

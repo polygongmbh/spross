@@ -3,13 +3,8 @@ package net.spross.app.ui
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,11 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.badge
@@ -181,9 +172,8 @@ private fun VariantRow(
 }
 
 /**
- * How the run is played. A switch with a line under it saying what it does — the settings
- * pattern, because a modifier changes the whole run rather than adding to what it asks. A
- * locked one keeps its switch, off and untappable, and swaps the line for its price.
+ * How the run is played, in the shared modifier row: the price comes out of kern's own
+ * unlock table, and the row itself is the one the atlas page wears too.
  */
 @Composable
 private fun ModifierRow(
@@ -194,30 +184,11 @@ private fun ModifierRow(
     onChange: (Boolean) -> Unit,
 ) {
     val open = DrillUnlocks.unlocked(modifier, ladder)
-    val caption = if (open) chrome.hint(modifier) else chrome.unlockPrice(DrillUnlocks.requirements(modifier))
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(min = 48.dp)
-            // why: the ROW is the switch — a control beside a label it does not own leaves
-            // TalkBack two stops for one thing, and the smaller of them is the tappable one.
-            .toggleable(value = on, enabled = open, role = Role.Switch, onValueChange = onChange),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
-    ) {
-        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-            Text(
-                if (open) chrome.name(modifier) else "$LOCK ${chrome.name(modifier)}",
-                style = MaterialTheme.typography.titleMedium,
-                color = if (open) Dl.colors.textPrimary else Dl.colors.textSecondary,
-            )
-            Text(caption, style = MaterialTheme.typography.bodySmall, color = Dl.colors.textSecondary)
-        }
-        Switch(
-            checked = on,
-            onCheckedChange = null,
-            enabled = open,
-            modifier = Modifier.clearAndSetSemantics { },
-        )
-    }
+    ModifierSwitchRow(
+        title = chrome.name(modifier),
+        caption = if (open) chrome.hint(modifier) else chrome.unlockPrice(DrillUnlocks.requirements(modifier)),
+        open = open,
+        on = on,
+        onChange = onChange,
+    )
 }

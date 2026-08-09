@@ -33,6 +33,7 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
 import net.spross.app.AppModel
+import net.spross.app.countriesOffered
 import net.spross.app.lettersOffered
 import net.spross.app.numbersOffered
 import net.spross.app.werkstattOffered
@@ -143,12 +144,13 @@ fun HeuteScreen(model: AppModel) {
 }
 
 /**
- * The Werkstatt: free practice, with no schedule and no limit.
+ * Sprossen: free practice, with no schedule and no limit.
  *
- * TWO entries, and each opens a PAGE rather than a run — the reading and the drill it
- * prepares you for are one surface. Zahlen stands where the pair has counting content;
- * Buchstaben on the alphabet FILE alone, because the table ships even where this device
- * can sound nothing, and a card with neither is absent rather than empty.
+ * THREE entries on ONE row, and each opens a PAGE rather than a run — the reading and the
+ * drill it prepares you for are one surface. Each is its own SKILL, which is the only thing
+ * that earns a chip. Zahlen stands where the pair has counting content; Buchstaben on the
+ * alphabet FILE alone, because the table ships even where this device can sound nothing;
+ * Länder on the joined atlas. A card with none of the three is absent rather than empty.
  */
 @Composable
 private fun WerkstattCard(model: AppModel) {
@@ -184,6 +186,15 @@ private fun WerkstattCard(model: AppModel) {
                         shape = MaterialTheme.shapes.small,
                     ) {
                         EntryLabel("🔤 ${chrome.lettersTitle}")
+                    }
+                }
+                if (model.countriesOffered) {
+                    OutlinedButton(
+                        onClick = { model.openCountries() },
+                        modifier = Modifier.weight(1f).heightIn(min = 48.dp).pressSpring(),
+                        shape = MaterialTheme.shapes.small,
+                    ) {
+                        EntryLabel("🌍 ${chrome.countriesTitle}")
                     }
                 }
             }

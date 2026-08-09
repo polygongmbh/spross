@@ -19,6 +19,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -160,6 +161,49 @@ fun SelectionRow(
                 Text(it, style = MaterialTheme.typography.bodySmall, color = Dl.colors.textSecondary)
             }
         }
+    }
+}
+
+/**
+ * How a run is PLAYED. A switch with a line under it saying what it does — the settings
+ * pattern, because a modifier changes the whole run rather than adding to what it asks.
+ *
+ * A LOCKED one keeps its switch, off and untappable, and swaps the line for its price: a
+ * ladder you can see is a reason to climb it, and an absence is not. What that price says
+ * is the caller's, since each ladder prices its own rung.
+ */
+@Composable
+fun ModifierSwitchRow(
+    title: String,
+    caption: String,
+    open: Boolean,
+    on: Boolean,
+    onChange: (Boolean) -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = 48.dp)
+            // why: the ROW is the switch — a control beside a label it does not own leaves
+            // TalkBack two stops for one thing, and the smaller of them is the tappable one.
+            .toggleable(value = on, enabled = open, role = Role.Switch, onValueChange = onChange),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+    ) {
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            Text(
+                if (open) title else "$LOCK $title",
+                style = MaterialTheme.typography.titleMedium,
+                color = if (open) Dl.colors.textPrimary else Dl.colors.textSecondary,
+            )
+            Text(caption, style = MaterialTheme.typography.bodySmall, color = Dl.colors.textSecondary)
+        }
+        Switch(
+            checked = on,
+            onCheckedChange = null,
+            enabled = open,
+            modifier = Modifier.clearAndSetSemantics { },
+        )
     }
 }
 
