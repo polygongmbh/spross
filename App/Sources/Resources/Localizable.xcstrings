@@ -980,17 +980,18 @@
       }
     },
     "countries.ask.nationality" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wie heißen die Leute von dort?"
+            "value" : "Wie heißen diese Leute?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "What are its people called?"
+            "value" : "What are these people called?"
           }
         }
       }
