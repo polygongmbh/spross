@@ -1,5 +1,13 @@
 # spross.net — design brief
 
+The standing reference for the marketing site of **Spross**,
+a vocabulary app for iPhone and Android.
+
+It is written to be worked from on its own: every fact it relies on is stated here,
+not left to be looked up in a checkout.
+Where reading the source would still help, it is linked —
+the app lives at <https://github.com/polygongmbh/spross>.
+
 Everything under *Ideas*, *Voice*, *Colour and type* and *Constraints* is fixed;
 everything under *Shapes the page could take* is a suggestion to argue with.
 
@@ -116,7 +124,7 @@ Whatever the layout, protect these:
 - **It is the real engine, and the page may say so.** Nothing on it is a mock-up.
 - **A visitor reaches it without a decision they cannot make** — picking a language is the only gate,
   and the drill should show what it is before they pick.
-- **The forgiving grade is visible.** Amber correction, never a red slap. A visitor should feel it, once.
+- **The forgiving grade is visible.** A one-letter slip is accepted and shown corrected in ochre.
 - **It never blocks.** No signup wall, no limit on how long someone plays.
 - **It hands off.** After a stretch of play there is a natural moment to invite the signup —
   offered, never sprung, and dismissible without ending the run.
@@ -127,21 +135,36 @@ Any layout that treats it as one more section among many is wasting it.
 
 ## Colour and type
 
-`App/Sources/Design/Theme.swift` is the source of truth for colour; the site restates its tokens
-and follows when it moves.
 Stone-and-moss paper rather than white, deep forest ink rather than black,
 clay as the voice of the brand, ocean and forest as secondaries.
 
-The accents carry fixed meanings, and the page should not reassign them:
+The palette is the app's, and the app's copy of it governs —
+[`App/Sources/Design/Theme.swift`](https://github.com/polygongmbh/spross/blob/main/App/Sources/Design/Theme.swift).
+The values are repeated here so this brief can be designed from without a checkout;
+when that file moves, they follow.
 
-| token | role |
-|---|---|
-| clay (`--accent`) | the brand's own voice: headline, primary action |
-| forest (`--success`) | a clean, correct answer |
-| ochre (`--ochre`) | a near miss, a correction, a hint — never a failure state |
-| brick (`--brick`) | a miss; used sparingly, never as a warning colour |
-| ocean (`--teal`) | teaching asides: place words, references |
+| token | light | dark | role |
+|---|---|---|---|
+| `--bg` | `#F2F1EA` | `#121714` | the page itself |
+| `--surface` | `#FBFBF6` | `#1C231E` | a lifted card |
+| `--surface-tint` | `#E5E8DE` | `#27302A` | a grouped or recessed area |
+| `--separator` | `#D3D6CA` | `#3A443D` | hairlines |
+| `--border-strong` | `#868D7C` | `#707C72` | a control's edge, where 3:1 is owed |
+| `--text` | `#1E2620` | `#E9F0EA` | body text |
+| `--text-2` | `#4F584E` | `#ADBBAF` | secondary text |
+| `--on-color` | `#FBFBF6` | `#121714` | text on a saturated fill — never pure white |
+| `--accent` | `#A23B0B` | `#FF9A6B` | clay: the brand's own voice, headline, primary action |
+| `--forest` | `#256232` | `#8AE39B` | a clean, correct answer |
+| `--ochre` | `#87510A` | `#F2C078` | a near miss, a correction, a hint |
+| `--brick` | `#99322E` | `#F08D86` | a miss |
+| `--ocean` | `#0D566E` | `#6FCFE8` | teaching asides: place words, references |
+| `--stem` | `#8A6F4D` | `#C9B08C` | woody structure, where the page draws any |
+| `--leaf-a` / `--leaf-b` | `#6FA659` / `#4C8A3F` | `#8FD07A` / `#B9E4A6` | the sprout mark |
 
+The last two rows are the site's own; everything above them comes from the app.
+The accents carry fixed meanings and a layout should not reassign them.
+Every pairing clears WCAG AA in both schemes, and the light values are cut at ink strength —
+dark enough to read as text on paper and on their own 14% wash.
 Dark is not an afterthought: every pairing is designed twice, and a lifted surface must read as lifted
 in both, not merely inverted.
 
@@ -194,13 +217,14 @@ Not suggestions.
 - **No analytics, no cookies, no trackers.** The product's privacy stance applies to its own front door.
 - **The mailing list** posts to one configurable endpoint; until one exists the form says so honestly
   rather than pretending to succeed.
-- **The drill's engine is built from this repo** (`:kern`'s browser target) and its content —
+- **The drill's engine is built from the app's own source**
+  (the `:kern` module's browser target, in the repository linked at the top) and its content —
   the primer's bands and their keys — comes from the engine, not from copy typed into the page.
   When the engine's bands change, the page follows.
 
 ## Open questions
 
-- **Screenshots.** There is no app imagery in the repo beyond the icon.
+- **Screenshots.** No app imagery exists yet beyond the icon.
   The forest is the app's best idea and the page can currently only describe it.
   Producing a few real device shots would change what the page can be.
 - **Timing.** Does the site go live before the app is listed, or alongside it?
