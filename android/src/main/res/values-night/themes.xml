@@ -7,7 +7,5 @@
          style is not an inherited one. -->
     <style name="Theme.Spross" parent="android:Theme.Material.NoActionBar">
         <item name="android:windowBackground">@color/spross_window_background</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>

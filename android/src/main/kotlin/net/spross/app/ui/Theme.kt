@@ -162,8 +162,13 @@ private val SprossLight = lightColorScheme(
     surfaceTint = Color.Transparent,
     outline = DlLight.borderStrong, outlineVariant = DlLight.separator,
     surfaceContainerLowest = DlLight.surface, surfaceContainerLow = DlLight.surface,
-    surfaceContainer = DlLight.background,
-    surfaceContainerHigh = DlLight.surfaceTint, surfaceContainerHighest = DlLight.surfaceTint,
+    // why: the container tiers are what a MENU and a DIALOG are drawn on, and nothing else
+    // reads them now that every panel takes the card recipe directly. Pointed at the paper
+    // a card is cut from: `surfaceContainer` was the page background itself, so an open
+    // language menu was invisible but for its shadow, and the reset dialog arrived in the
+    // recessed mint the chips wear.
+    surfaceContainer = DlLight.surface,
+    surfaceContainerHigh = DlLight.surface, surfaceContainerHighest = DlLight.surfaceTint,
     surfaceBright = DlLight.surface, surfaceDim = DlLight.surfaceTint,
 )
 
@@ -183,7 +188,7 @@ private val SprossDark = darkColorScheme(
     outline = DlDark.borderStrong, outlineVariant = DlDark.separator,
     surfaceContainerLowest = DlDark.background, surfaceContainerLow = DlDark.surface,
     surfaceContainer = DlDark.surface,
-    surfaceContainerHigh = DlDark.surfaceTint, surfaceContainerHighest = DlDark.surfaceTint,
+    surfaceContainerHigh = DlDark.surface, surfaceContainerHighest = DlDark.surfaceTint,
     surfaceBright = DlDark.surfaceTint, surfaceDim = DlDark.background,
 )
 

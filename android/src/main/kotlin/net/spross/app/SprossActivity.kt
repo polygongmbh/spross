@@ -3,6 +3,7 @@ package net.spross.app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.tween
@@ -40,6 +41,13 @@ class SprossActivity : ComponentActivity() {
     private val model: AppModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // why: the window's own theme resolves the status-bar icon polarity ONCE, at
+        // creation — and the manifest declares configChanges for uiMode, so a light/dark
+        // switch never recreates this activity. Compose recoloured underneath while the
+        // icons kept the old polarity. This owns both bars and re-applies on the change,
+        // and it is also the only thing that ever sets the NAVIGATION bar's icons, which
+        // the themes never named at all.
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             SprossTheme {

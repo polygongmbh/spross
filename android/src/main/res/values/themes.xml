@@ -9,7 +9,5 @@
          background hex follows @color/spross_window_background, which is qualified. -->
     <style name="Theme.Spross" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@color/spross_window_background</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>
