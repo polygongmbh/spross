@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.14.0 — 2026-08-09
+
 - **The numbers page shows a language its own hard part.** The bands were the same
   everywhere, so English readers of the twenties got nine rows spelling out a rule they had
   already read, while German's sechzehn and siebzehn were filed under a plain "ten to
