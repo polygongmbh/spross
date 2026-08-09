@@ -9,7 +9,7 @@ A point-in-time critique of what is built today: `design-brief.md` — delete it
 
 ## Brand carry-over
 
-- Palette: `App/Sources/Design/Theme.swift` is the source of truth (stone-and-moss surfaces, clay accent, ocean/forest secondaries, ochre for near-miss — never red).
+- Palette: `App/Sources/Design/Theme.swift` is the source of truth (stone-and-moss surfaces, clay accent, ocean/forest secondaries, ochre for a near miss).
   `web/site.css` restates the hex pairs; when Theme.swift moves, the CSS follows.
 - Type: SF Rounded in-app → `ui-rounded` system stack on the web.
 - Wordplay: **Spross** (sprout) / **Sprosse** (ladder rung) — organic growth first, the rung as the progression wink.
