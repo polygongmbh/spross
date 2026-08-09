@@ -55,6 +55,8 @@ struct CountryDrillView: View, LanguageNaming {
     @State var typoCorrection: String?
     // why: internal, not private — the +Content extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
+    /// The beat between the chime and the answer being said (`autoplayAnswer`).
+    @State private var answerVoice: Task<Void, Never>?
     @FocusState var answerFocused: Bool
 
     init(model: AppModel, content: CountryDrillContent, reverse: Bool, storageKey: String,
@@ -99,6 +101,9 @@ struct CountryDrillView: View, LanguageNaming {
     var body: some View {
         SessionScaffold.endless(answered: doneCount,
                                 outcomes: outcomes,
+                                // why: the run says its answers out loud, so it
+                                // owes the learner a way to silence them here.
+                                showsMuteButton: true,
                                 onClose: { closeRun() }) {
             drillContent
         }
@@ -111,11 +116,63 @@ struct CountryDrillView: View, LanguageNaming {
         .onChange(of: index) { _, _ in
             answerFocused = !screenReaderOn
         }
+        // why: one fire per answer — the trigger is "is a form owed", so a slip
+        // and a miss both speak once, and the neutral state resets it.
+        .onChange(of: spokenAnswer) { _, form in
+            if form != nil { autoplayAnswer() }
+        }
         .onDisappear {
             autoAdvance?.cancel()
             // D5: leaving mid-word must silence.
-            Pronouncer.shared.stop()
+            hushAnswer()
         }
+    }
+
+    // MARK: - Saying the answer
+
+    /// The form currently owed to the learner: the correction after a slip,
+    /// otherwise the revealed name. nil while the answer is still theirs to
+    /// produce — nothing may speak an answer to a question still standing.
+    ///
+    /// nil on a REVERSED run too, whichever way it ended: the side answered
+    /// there is the learner's own language, and every autoplay `read-aloud.md`
+    /// describes says a target-language form. The speaker beside the reveal
+    /// still says it on request — a tap outranks the rule, as it outranks both
+    /// mutes.
+    var spokenAnswer: String? {
+        guard !reverse else { return nil }
+        switch feedback {
+        case .almost(let form, _): return form
+        case .revealed: return current?.display
+        case .neutral, .correct: return nil
+        }
+    }
+
+    /// Fires once when the answer comes out, however it came out. `.auto`, so
+    /// the read-aloud switch and VoiceOver both still veto it.
+    ///
+    /// Held rather than fired and forgotten: the wait outlives a fast tap, and
+    /// a reveal closed within it would otherwise speak over whatever screen
+    /// replaced the run.
+    private func autoplayAnswer() {
+        guard let form = spokenAnswer else { return }
+        answerVoice?.cancel()
+        answerVoice = Task { @MainActor in
+            // why: the correct/wrong chime lands first — the same 300 ms the
+            // review session waits, or the word starts under the chime.
+            try? await Task.sleep(for: .milliseconds(300))
+            guard !Task.isCancelled else { return }
+            model.pronounceAloud(form, lang: answerLanguage)
+        }
+    }
+
+    /// Silence, and drop a wait that has not fired yet. Every way out of a task
+    /// goes through here — the next question, the door — because a name belongs
+    /// to the task that revealed it and to nothing after.
+    func hushAnswer() {
+        answerVoice?.cancel()
+        answerVoice = nil
+        Pronouncer.shared.stop()
     }
 
     // MARK: - Sampling
@@ -135,7 +192,9 @@ struct CountryDrillView: View, LanguageNaming {
     /// way.
     func advance(correct: Bool, clean: Bool) {
         autoAdvance?.cancel()
-        Pronouncer.shared.stop()
+        // why: the name belongs to the question being left — without this it
+        // keeps sounding over the one that replaces it.
+        hushAnswer()
         let step = CountryDrill.shared.step(level: level, winsAtLevel: winsAtLevel,
                                             correct: correct, clean: clean)
         let next = Self.sample(content: content, level: step.nextLevel,
@@ -170,7 +229,7 @@ struct CountryDrillView: View, LanguageNaming {
     /// run leaves nothing to report.
     func closeRun() {
         autoAdvance?.cancel()
-        Pronouncer.shared.stop()
+        hushAnswer()
         if feedback.isAccepted {
             // why: a pending pause books amber, exactly as answering would —
             // closing must not upgrade it to a clean win.
@@ -190,6 +249,9 @@ struct CountryDrillView: View, LanguageNaming {
     private func finish() {
         TrainerProgress.record(bestLevel, for: storageKey)
         let record = TrainerRecords.record(bestStreak, for: storageKey)
+        // why: the cheer marks the record, not the end of a run — confetti and
+        // cheer are one thing (`docs/design.md`), and the tile rains the one.
+        if record { DLSound.cheer() }
         onFinish(DrillRunResult(doneCount: doneCount, bestStreak: bestStreak,
                                 newRecord: record, title: "trainer.countries"))
         dismiss()
