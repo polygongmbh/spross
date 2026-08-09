@@ -57,7 +57,6 @@ data class Chrome(
     val lettersDictation: String,
     val letterChoice: String,      // %s = the glyph — a tile's spoken name
     val replayPrompt: String,      // the replay button's name
-    val promptInLanguage: String,  // %s = target language name
     val level: String,             // %d
     val streak: String,            // %d
     val typoCorrection: String,    // %s = the spelling the learner missed
@@ -127,7 +126,6 @@ data class Chrome(
             lettersDictation = "Schreib, was du hörst",
             letterChoice = "Buchstabe %s",
             replayPrompt = "Noch einmal anhören",
-            promptInLanguage = "auf %s",
             level = "Stufe %d",
             streak = "🔥 %d in Folge",
             typoCorrection = "Fast! Richtig geschrieben: %s",
@@ -195,7 +193,6 @@ data class Chrome(
             lettersDictation = "Write what you hear",
             letterChoice = "Letter %s",
             replayPrompt = "Play it again",
-            promptInLanguage = "in %s",
             level = "Level %d",
             streak = "🔥 %d in a row",
             typoCorrection = "Almost! Correct spelling: %s",

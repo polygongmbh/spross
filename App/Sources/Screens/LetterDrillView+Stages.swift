@@ -15,7 +15,6 @@ extension LetterDrillView {
                     // during the flip; .id gives each position its identity.
                     ZStack {
                         HearPromptCard(question: question(for: task),
-                                       language: task.language,
                                        gapText: task.gapText,
                                        revealed: cardReveal(task),
                                        replay: replayAction,

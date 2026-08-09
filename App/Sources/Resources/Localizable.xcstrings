@@ -4059,22 +4059,6 @@
         }
       }
     },
-    "trainer.prompt.inLanguage %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "auf %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "in %@"
-          }
-        }
-      }
-    },
     "trainer.record %@" : {
       "localizations" : {
         "de" : {

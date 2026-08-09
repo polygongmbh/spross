@@ -2,9 +2,13 @@ import SwiftUI
 
 /// The audio question, on the same card face as every other session card: a
 /// caption naming what is being asked, one large replay glyph, and — for a gap
-/// question — the example word with the asked grapheme blanked. The caption
-/// stays here where the slot drills dropped theirs: a sound has nothing on
-/// screen to say what it is asking for.
+/// question — the example word with the asked grapheme blanked.
+///
+/// The caption stays here where the slot drill dropped its own, because a sound
+/// has nothing on screen to say what it wants back: the same glyph asks for a
+/// letter, for the grapheme missing from a word, or for the whole word. WHICH
+/// language it is owed in is not its business — the field's placeholder already
+/// says that, and a clause here would be the third telling (docs/surfaces.md).
 ///
 /// No answer renders here WHILE THE QUESTION STANDS, and that is the whole
 /// point: everything the learner is given is the sound, plus whatever the gap
@@ -18,8 +22,6 @@ import SwiftUI
 struct HearPromptCard: View {
     /// What is being asked ("Welcher Buchstabe ist das?" …).
     let question: LocalizedStringKey
-    /// The language the prompt is spoken in — named in the caption.
-    let language: String
     /// `Na＿t` for a gap question; nil where a letter's name is spoken.
     var gapText: String?
     /// The answer, once it is out. A gap question closes over its blank with
@@ -45,8 +47,6 @@ struct HearPromptCard: View {
     /// VoiceOver lands here on every task change: the question is one action
     /// away rather than somewhere below the caption.
     var replayFocus: AccessibilityFocusState<Bool>.Binding
-
-    @Environment(\.locale) private var locale
 
     var body: some View {
         VStack(spacing: DL.Space.m) {
@@ -96,8 +96,7 @@ struct HearPromptCard: View {
     }
 
     private var caption: some View {
-        Text.joined(Text(question),
-                    Text("trainer.prompt.inLanguage \(LanguageNames.display(language, locale: locale, catalog: nil))"))
+        Text(question)
             .font(DL.Fonts.caption)
             .foregroundStyle(Color.dlTextSecondary)
             .textCase(.uppercase)
@@ -126,16 +125,15 @@ private struct HearPromptPreviewHost: View {
 
     var body: some View {
         VStack(spacing: DL.Space.xl) {
-            HearPromptCard(question: "letters.hear", language: "uk",
-                           replay: {}, replayFocus: $focus)
-            HearPromptCard(question: "letters.spell", language: "de",
+            HearPromptCard(question: "letters.hear", replay: {}, replayFocus: $focus)
+            HearPromptCard(question: "letters.spell",
                            gapText: "Na＿t", replay: {}, replayFocus: $focus)
             // The gap closed: the whole word stands where the blank did.
-            HearPromptCard(question: "letters.spell", language: "de",
+            HearPromptCard(question: "letters.spell",
                            gapText: "Na＿t", revealed: .init(word: "Nacht", pronounce: {}),
                            replay: {}, replayFocus: $focus)
             // Dictation: no gap to close, so the word grows below the glyph.
-            HearPromptCard(question: "letters.dictation", language: "sw",
+            HearPromptCard(question: "letters.dictation",
                            revealed: .init(word: "lugha", note: "Sprache", pronounce: {}),
                            replay: {}, replayFocus: $focus)
         }

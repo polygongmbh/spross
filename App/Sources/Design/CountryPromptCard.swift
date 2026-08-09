@@ -1,24 +1,22 @@
 import SwiftUI
 
 /// The atlas question, on the same card face as every other session card: a
-/// caption naming what is asked and in which language, the flag BESIDE the
-/// words where the question is about a country, and the name itself — then the
-/// answer growing below it once it is out.
+/// caption naming what is asked, the flag BESIDE the words where the question
+/// is about a country, and the name itself — then the answer growing below it
+/// once it is out.
 ///
 /// The caption stays here rather than on the field, because a bare name says
 /// nothing about which of the four things is being asked: "Deutschland" is the
 /// prompt whether the answer owed is the country, its people or its language.
+/// It says THAT and no more — which language the answer is owed in is the
+/// field's placeholder's to say, and saying it here too would be the third
+/// telling of what one tap already settled (docs/surfaces.md).
 ///
 /// One question has no name on it at all: where kern hands over a flag and no
 /// [text], the flag IS the question and stands where the name would.
 struct CountryPromptCard: View {
     /// What is being asked ("Wie heißt dieses Land?" …).
     let ask: LocalizedStringKey
-    /// The language the PROMPT is written in — named in the caption, so the
-    /// reversed run never has to be guessed at. nil where the prompt is a flag,
-    /// which is written in no language; the field's placeholder then carries
-    /// the only language that matters, the one the answer is owed in.
-    var promptLanguage: String?
     /// The country's flag; nil where the question is about a language.
     var emoji: String?
     /// The name asked about; nil where the flag alone is the question.
@@ -34,8 +32,6 @@ struct CountryPromptCard: View {
         var pronounce: (() -> Void)?
         var isPlaying = false
     }
-
-    @Environment(\.locale) private var locale
 
     /// The flag rides in the card's leading slot (`DLCardEmoji`) exactly as a
     /// word's picture does on a review card — never above the words, where it
@@ -90,14 +86,9 @@ struct CountryPromptCard: View {
         .animation(.easeOut(duration: 0.25), value: revealed?.word)
     }
 
-    /// The ask, and — where the prompt is written in a language at all — which
-    /// one. A flag belongs to no language, so it names none.
+    /// The ask alone — the one thing the card face cannot say for itself.
     private var caption: some View {
-        var parts = [Text(ask)]
-        if let promptLanguage {
-            parts.append(Text("trainer.prompt.inLanguage \(LanguageNames.display(promptLanguage, locale: locale, catalog: nil))"))
-        }
-        return (parts.joined() ?? Text(ask))
+        Text(ask)
             .font(DL.Fonts.caption)
             .foregroundStyle(Color.dlTextSecondary)
             .textCase(.uppercase)
@@ -109,13 +100,11 @@ struct CountryPromptCard: View {
 
 #Preview("Country prompt") {
     VStack(spacing: DL.Space.xl) {
-        CountryPromptCard(ask: "countries.ask.country", promptLanguage: "de",
-                          emoji: "🇰🇪", text: "Kenia")
-        CountryPromptCard(ask: "countries.ask.spokenIn", promptLanguage: "de",
+        CountryPromptCard(ask: "countries.ask.country", emoji: "🇰🇪", text: "Kenia")
+        CountryPromptCard(ask: "countries.ask.spokenIn",
                           emoji: "🇨🇭", text: "die Schweiz",
                           revealed: .init(word: "Kijerumani", note: "Uswisi", pronounce: {}))
-        CountryPromptCard(ask: "countries.ask.language", promptLanguage: "sw",
-                          text: "Kiswahili")
+        CountryPromptCard(ask: "countries.ask.language", text: "Kiswahili")
         // The flag alone: no name anywhere on the card until the answer is in.
         CountryPromptCard(ask: "countries.ask.flag", emoji: "🇺🇦")
     }

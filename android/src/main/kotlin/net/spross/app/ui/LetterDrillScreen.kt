@@ -161,7 +161,6 @@ private fun HearPrompt(
     chrome: Chrome,
     replayFocus: FocusRequester,
 ) {
-    val language = model.catalog?.languages?.get(task.language)?.name ?: task.language
     val question = when {
         task.stage == LetterStage.Dictation -> chrome.lettersDictation
         task.gapText == null -> chrome.lettersHear
@@ -175,7 +174,7 @@ private fun HearPrompt(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
-                "$question · ${chrome.promptInLanguage.format(language)}",
+                question,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,

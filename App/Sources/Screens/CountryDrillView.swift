@@ -85,9 +85,6 @@ struct CountryDrillView: View, LanguageNaming {
     /// where the run was turned round.
     var answerLanguage: String { reverse ? content.source : content.target }
 
-    /// The language the prompt is written in — the other side of the same pair.
-    var promptLanguage: String { reverse ? content.target : content.source }
-
     /// VoiceOver and Switch Control both make a timed screen change hostile: it
     /// truncates the correctness announcement and moves the page under the user.
     /// Where either runs, an explicit "Weiter" replaces the beat.

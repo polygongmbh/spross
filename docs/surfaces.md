@@ -96,7 +96,9 @@ auto-advance beats these share with it, are `design.md`'s.
   padlock or a price; the stored best rung is read here and never spent. The reverse
   modifier is offered from the first run for the same reason — there is no ladder for it to
   sit behind — and it flips which side asks: forward the learner answers in the language
-  being learned, reversed in their own.
+  being learned, reversed in their own. Which side that is the placeholder says, not the
+  card: its caption carries the ask — a bare "Deutschland" cannot say whether the country,
+  its people or its language is owed — and, like the letter drill's, no language.
   The table under it is GENERATED from the joined atlas the run grades against, so the page
   cannot show one exonym and mark another, and a country only one side names has neither a
   row nor a task. It is the one surface here written in TWO languages at once: a country's
@@ -117,6 +119,9 @@ auto-advance beats these share with it, are `design.md`'s.
   is the whole of what the two have in common: its rungs are stages that change what a
   question IS rather than how big the number is, and its verdict ladder carries a third
   outcome (a synonym of the dictated word) that no slot task can produce.
+  Its card is the one that keeps a caption, because a sound cannot say whether it wants a
+  letter, a missing grapheme or the whole word — but the caption names the ask alone, since
+  no drill card names a language while the placeholder below it is already saying one.
   The drill asks everything by ear: letter
   NAME or gap word — and a gap word is drawn from the whole catalog wherever the glyph
   says its own sound, words the learner already holds first, so a rung stops meaning one
