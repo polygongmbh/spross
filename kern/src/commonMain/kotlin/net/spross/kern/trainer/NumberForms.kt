@@ -8,7 +8,12 @@ package net.spross.kern.trainer
  * All of this is `internal` on purpose — none of it belongs in the ObjC header,
  * because the app only ever sees the rendered [TrainerTask].
  */
-internal enum class NumberForm { Negative, Decimal, Percent, Multiplicative, Fraction, Ordinal }
+internal enum class NumberForm {
+    Negative, Decimal, Percent, Multiplicative, Fraction, Ordinal;
+
+    /** Stable identifier for the app to localize — the [ReferenceSection.key] pattern. */
+    val key: String get() = name.lowercase()
+}
 
 /** One drawn value, in the shape its reading needs — never a pre-rendered string. */
 internal sealed interface NumberValue {

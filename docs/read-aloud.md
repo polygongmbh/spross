@@ -47,6 +47,7 @@ mutes interact. The engine's half — whether a form may be heard at all — is
 | produce revealed — Aufdecken, wrong, other word | yes, after the chime | the bare target word |
 | trainer drill prompt — a numeral, a clock face | no | there is nothing to say yet: the reading IS the answer |
 | trainer drill reading revealed or corrected | yes, after the chime | the reading itself, generated, so usually the voice |
+| a drill answer owed in the learner's OWN language — a reversed atlas run | no | nothing: every autoplay above says a form in the language being LEARNED, and the speaker beside the reveal still says this one on request |
 
 - **Tapping a word says it again — past both mutes.** A tap is a request, so it outranks
   the app's own switch (mute has to stay usable as the accessibility affordance) and the

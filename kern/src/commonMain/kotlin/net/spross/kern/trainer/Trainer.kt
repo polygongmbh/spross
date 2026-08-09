@@ -35,6 +35,16 @@ data class TrainerTask(
      * simply not setting it: that is why [year] and [clock] write no line for it.
      */
     val promptDisplay: String = prompt,
+    /**
+     * Which of the number forms this task asks, as a stable key ("negative", "decimal",
+     * "percent", "multiplicative", "fraction", "ordinal"); null for every other kind.
+     *
+     * A key, not a word: kern names the rule and the app names it in the reader's own
+     * language. It exists so the first sight of a form can be introduced the way a new
+     * digit length is ([placeValueHint]) — without the app reading the mark back off the
+     * prompt string, which would put the notation rule in a view.
+     */
+    val formKey: String? = null,
 )
 
 /**
@@ -209,6 +219,7 @@ object Trainer {
         return TrainerTask(
             TrainerKind.Forms, language, prompt, accepted, accepted[0],
             promptDisplay = renderForm(value, pack.decimalMark, grouped = true),
+            formKey = value.form.key,
         )
     }
 
@@ -225,6 +236,15 @@ object Trainer {
         if (digits !in 2..10) return null
         return trainerPacks[language]?.placeValues?.get(digits - 2)
     }
+
+    /**
+     * The word this language adds for a number form ("minus", "Komma", "por ciento"),
+     * shown the first time a run asks that form — the [placeValueHint] rule, for marks
+     * instead of lengths. Keyed as [TrainerTask.formKey] names it; null for an unknown
+     * key or a form this language does not read.
+     */
+    fun formHint(formKey: String, language: Language): String? =
+        NumberForm.entries.firstOrNull { it.key == formKey }?.let { formMarker(language, it) }
 
     /**
      * The whole numbers page for a language: which values a reference shows and how

@@ -97,6 +97,13 @@ One line per item, with a file or context pointer, filed under the section it be
   becomes a base language, each needs its own hint pass, not a translation of the
   English: the German pivot prose for de is already parked in the drafts' notes, while
   sw needs authoring from scratch (sw `j` is /ɟ/, so the en "y in yes" anchor is wrong).
+- The country atlas ships exonyms and nationalities a native has never read
+  (`catalog/countries/*.json`, `catalog/languages/*.json`). Swahili was authored from
+  sw.wikipedia and sw.wiktionary and Ukrainian from uk.wikipedia, uk.wiktionary and SUM-11
+  with corpus checks, but a residue of judgment calls stayed open: which of two attested
+  Swahili stems is canonical, and which Ukrainian feminines exist at all. Every one of them
+  is listed, with its evidence, in the bodies of the two `feat(catalog): the atlas
+  reaches …` commits — that is the pointer, and nothing restates it.
 - Sentence-frame notes are authored for German readers only (`notes` in `catalog/drills/*.json`),
   so every other explanation language drills the frames with no gloss at all —
   the counted-noun agreement rules uk needs explained most of all.
@@ -226,17 +233,6 @@ One line per item, with a file or context pointer, filed under the section it be
   (`App/Sources/Screens/NumbersOverview+Practice.swift`). A full-screen ceremony was
   rejected for something that happens a handful of times; a moment on the row itself was
   not considered and might be worth it.
-- The numbers reference stops at the cardinals: the `forms` band — one worked example per
-  number form — is the last piece of the numbers page that never shipped. Kern emits seven
-  bands (`NumberReference.kt`) and `NumberReferenceTable.bandTitle` already knows the eighth
-  key, so it is a row list and its readings.
-- The Werkstatt card's two chips are laid out as a row; a third would want the grid the
-  hub used to have (`App/Sources/Screens/TrainerHubView.swift`).
-- `SessionView.swift` sits at 432 lines (guide ~300); the natural cut is a new
-  `SessionView+Turn.swift`, which needs the xcodegen regen a new file costs.
-- The iPhone widget header pairs a system-orange flame with the clay `wgAccent` bar —
-  the ruling named only the strip, so the flame kept `.orange`
-  (`Widgets/Sources/WordWidgetView.swift`; `wgAccent` is declared and internal, one-line close).
 - The letter drill's typed and dictation stage has no live-check auto-advance —
   finishing the word does not end the step the way it does in vocab review and the
   trainer drills (`App/Sources/Design/AutoAdvance.swift`) — deferred because its verdict
@@ -261,6 +257,26 @@ One line per item, with a file or context pointer, filed under the section it be
   needs widening `screen`'s private setter.
 - Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
   fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
+  than a mechanical port (`LetterDrillView+Grading.swift` `verdict(_:task:)`).
+- A drill's typed-answer controls — the field, the one primary action that reveals or
+  checks, the amber hold, the revealed branch with its stop offer, the screen-reader
+  "Weiter" — stand verbatim in three files (`TrainerSessionView+Drill.swift`,
+  `LetterDrillView+Stages.swift`, `CountryDrillView+Content.swift`), and the live check
+  that arms them is wired per copy. One component owning the branch and the
+  `onChange(of: input)` beside it would make a fourth drill's auto-confirm structural
+  rather than remembered.
+- Drill prompt cards size their word in fixed points (`CountryPromptCard`,
+  `HearPromptCard`, `TrainerPromptCard`), where review cards use the scaling `DL.Fonts`
+  styles — Dynamic Type does not reach a drill prompt.
+- The atlas run books a record but never sounds the cheer that goes with the confetti
+  (`CountryDrillView.finish()`; `TrainerSessionView.closeRun()` does).
+- Neither prompt nor reveal on `CountryPromptCard` and `HearPromptCard` is tagged with the
+  language VoiceOver should read it in, the way `VocabCardView.spokenLabel` is — and that
+  reading is the only pronunciation a screen-reader session ever gets.
+- The atlas is the first drill whose PROMPT is a word rather than a numeral or a played
+  sound: it can be heard neither by tap nor by autoplay, and its revealed answer does not
+  autoplay the way a slot drill's reading does — `read-aloud.md`'s table has no row for a
+  spoken-word drill prompt, so the rule is owed before the code (`CountryDrillView+Content.swift`).
 
 - The watch quiz tells correctness to the EYE only — tile tint, red wash and the rating
   emoji are all visual, and the emoji is `accessibilityHidden` because VoiceOver reading
@@ -285,6 +301,9 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## Localization
 
+- Android chrome still says "Werkstatt" and "Stufe" where iOS now says "Sprossen" and "Sprosse" —
+  left untouched because the parity worktree is restructuring that exact table
+  (`android/.../Chrome.kt:122,129,196`); the rename rides along when that series lands.
 - Watch, widget, and complication chrome is hardcoded German with no string catalog
   (`Watch/Sources/WatchHomeView.swift`, `Widgets/Sources/WordWidgetView.swift`,
   `WatchWidgets/Sources/WatchWordWidgetView.swift`) —
@@ -299,13 +318,16 @@ One line per item, with a file or context pointer, filed under the section it be
 - Android Heute's failure card and the `error*`/`growth*` chrome are wired but unreachable:
   AppModel has no load-failure state yet and the round summary does not render growth.
 - Dead after the wave-3 Android sweep, prune in one pass: Chrome `easy`/`again`/`summaryLine`/
-  `typoNote`/`practice`/`emptyState`/`dueLabel`/`consolidatedLabel`/`freshLabel`,
-  `ui/Components.kt` `RatingButtons`, and `AppModel.sessionAvailable`/`canPracticeExtra`
-  (unread since `HeuteStanding`).
+  `typoNote`/`practice`/`emptyState`/`dueLabel`/`consolidatedLabel`/`freshLabel`, and
+  `AppModel.sessionAvailable`/`canPracticeExtra` (unread since `HeuteStanding`).
 - `ic_launcher_background` still holds retired-palette `#FF2E6B34`
   (`android/src/main/res/values/colors.xml`) — the adaptive-icon plate, not the window.
 - Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
   deferred per user 2026-08-08.
+- The atlas drill's Android port waits on the android parity branch landing, and is UI ONLY:
+  the ladder, the pools, the accepted sets, the reference rows and the availability
+  predicate are all in kern commonMain already (`kern/.../trainer/CountryDrill.kt`), so the
+  port clones the `LetterDrill` split — a screen plus a progress store, no decisions.
 - Audio ships un-thinned: `catalog/audio/` is 26 MB (de 4.9, es 7.2, sw 5.2, uk 9.0) and
   BOTH installs carry all of it — the iOS folder reference and the Android catalog sync
   copy the tree whole — so a Swahili learner downloads 21 MB of German, Spanish and

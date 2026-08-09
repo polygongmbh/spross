@@ -25,9 +25,22 @@ class TrainerNamingTest {
     }
 
     @Test
-    fun aModifierPricesEveryVariantItsTableNames() {
+    fun aModifierPricesWhateverItsTableAsks() {
         val mix = ChromeEn.unlockPrice(DrillUnlocks.requirements(DrillModifier.Mix))
-        assertEquals("Unlocks at: 🔢 10 digits · ➗ Forms Level 5", mix)
+        assertEquals("Unlocks at: ➗ Forms Level 5", mix)
+    }
+
+    /**
+     * The join, on a map built by hand: no rung in kern's table costs two variants at
+     * once today, so reading one out of it would assert nothing about the separator —
+     * and the day one does, this is the line that already covers it.
+     */
+    @Test
+    fun aPriceOfTwoVariantsNamesBothAroundOneSeparator() {
+        val both = ChromeEn.unlockPrice(
+            mapOf(DrillVariant.Numbers to 10, DrillVariant.Forms to 5),
+        )
+        assertEquals("Unlocks at: 🔢 10 digits · ➗ Forms Level 5", both)
     }
 
     /** Nothing to buy, nothing to say — the prefix stands alone rather than trailing a gap. */

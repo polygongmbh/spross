@@ -39,17 +39,21 @@ object DrillUnlocks {
     )
 
     /**
-     * Clock and Phrases are deliberately absent from the [DrillModifier.Mix] gate:
-     * a pair's phrase ceiling depends on which frames the catalog happens to realize
-     * for it, so a fixed rung there would be unreachable for some pairs.
+     * Phrases is deliberately absent from every modifier gate: a pair's phrase ceiling
+     * depends on which frames the catalog happens to realize for it, so a fixed rung
+     * there would be unreachable for some pairs.
      */
     private val modifierRequirements: Map<DrillModifier, Map<DrillVariant, Int>> = mapOf(
-        // why: reading a number back is the other half of writing one, so it is the
-        // first thing the ladder hands out — but not on the opening task, where a
-        // learner who has produced nothing yet would be asked to recognize it.
-        DrillModifier.Reverse to mapOf(DrillVariant.Numbers to 3),
+        // why: decoding is a different exercise from producing, not an easier one —
+        // it waits until numbers and the clock have both been worked a while. The
+        // clock carries the gate because reaching its third rung already means the
+        // numbers below it were climbed.
+        DrillModifier.Reverse to mapOf(DrillVariant.Clock to 3),
         DrillModifier.Fast to mapOf(DrillVariant.Numbers to 10),
-        DrillModifier.Mix to mapOf(DrillVariant.Numbers to 10, DrillVariant.Forms to 5),
+        // why: the forms rung alone — Forms costs seven digits to open at all, so it
+        // carries the numbers climb with it, and asking for the billions on top would
+        // price a way of PLAYING a run above the exercises it plays.
+        DrillModifier.Mix to mapOf(DrillVariant.Forms to 5),
     )
 
     /** What [variant] costs, as variant → level reached. Empty = always available. */

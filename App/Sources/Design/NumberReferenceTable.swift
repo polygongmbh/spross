@@ -93,10 +93,9 @@ struct NumberReferenceTable: View {
     /// a new band must be able to land in kern first.
     private static func bandTitle(_ key: String) -> LocalizedStringKey? {
         switch key {
-        case "ones": return "numbers.section.ones"
-        case "teens": return "numbers.section.teens"
+        case "base": return "numbers.section.base"
         case "tens": return "numbers.section.tens"
-        case "twenties": return "numbers.section.twenties"
+        case "irregulars": return "numbers.section.irregulars"
         case "compounds": return "numbers.section.compounds"
         case "hundreds": return "numbers.section.hundreds"
         case "places": return "numbers.section.places"

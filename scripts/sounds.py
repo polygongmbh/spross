@@ -12,7 +12,7 @@ Design grammar, from how the space already trains people:
   correct — ASCENDING major third; the standard positive confirmation
             (Duolingo's chime, Apple Pay's approval tone).
   wrong   — DESCENDING minor third; direction says "down" while the interval
-            stays consonant, so it reads as mild "aw" and not as a buzzer.
+            stays consonant, so it reads as a mild "aw".
   reveal  — one neutral note, no direction: revealing is not a verdict.
   cheer   — the same ascending major third, carried on up through the triad to
             the octave: the finish is the correct sound arriving somewhere.
@@ -28,18 +28,16 @@ string fixes its pitch the instant it is excited — so a percussive attack
 that then slides describes no object that has ever existed, and the ear knows
 it. Two notes also read as deliberate where a glide slides past unnoticed.
 
-Low profile is the point. These play many times per session, often in public,
-and a wrong answer is the productive event in retrieval practice — not a
-failure to punish. So no dissonance on wrong (the textbook error intervals,
-tritone and minor second, are harsh on purpose), nothing loud, and nothing
-that outstays the moment — length is what turns a chime into a doorbell.
-Direction and register carry the meaning; loudness and harshness do not.
+Low profile is the point: these play many times per session, often in public.
+Nothing loud and nothing that outstays the moment —
+length is what turns a chime into a doorbell.
+Direction and register carry the meaning.
 
-Floor on how deep it can go: phone speakers roll off below ~250 Hz, where the
-fundamental survives only through its harmonics. E4 (330) is about the bottom.
+Floor on how deep it can go: phone speakers roll off below ~250 Hz,
+where the fundamental survives only through its harmonics. E4 (330) is about the bottom.
 
-Everything below is meant to be re-tuned by ear — edit, re-run, afplay. Levels are the one
-thing ear alone got wrong, so re-check them against the words after a re-tune:
+Everything below is meant to be re-tuned by ear — edit, re-run, afplay.
+Levels are the one thing ear alone got wrong, so re-check them against the words after a re-tune:
 
     ffmpeg -i App/Resources/Sounds/correct.wav \
       -af 'adelay=500|500,apad=pad_dur=0.5,ebur128=peak=none' -f null -   # read `I:`

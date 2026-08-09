@@ -102,10 +102,10 @@
    ]
   },
   "learning-since-year": {
-   "text": "I have been learning German since {slot}.",
+   "text": "I have been learning {language} since {slot}.",
    "variants": [
-    "I've been learning German since {slot}.",
-    "I have been studying German since {slot}."
+    "I've been learning {language} since {slot}.",
+    "I have been studying {language} since {slot}."
    ],
    "notes": {
     "de": "„seit“ verlangt im Englischen have been + -ing, nie das Präsens"

@@ -181,7 +181,7 @@ struct AnswerInputView: View {
         }
     }
 
-    // MARK: Correction box (warm, never red)
+    // MARK: Correction box
 
     /// The form the learner owed, at a size worth reading and with the speaker
     /// that says it. This is the whole point of the box over a subtitle line: a

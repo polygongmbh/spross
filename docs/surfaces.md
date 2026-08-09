@@ -5,7 +5,9 @@ auto-advance beats these share with it, are `design.md`'s.
 
 ## Trainers & the letter drill
 
-- **Trainers**: the Werkstatt card offers TWO entries, Zahlen and Buchstaben. Clock,
+- **Trainers**: the Sprossen card offers THREE entries — Zahlen, Buchstaben and Länder —
+  on ONE row, which all three sit on comfortably. Each is its own SKILL,
+  which is the only thing that earns a chip. Clock,
   sentences and number forms are not siblings of the numbers drill but ways of being
   asked, so they are variants a run selects rather than chips, and the modifiers
   (reverse, fast, mix) are how it is played. A chip apiece was the alternative and it
@@ -25,8 +27,16 @@ auto-advance beats these share with it, are `design.md`'s.
   come, and the field's placeholder names what is owed — the language to answer in, or
   digits where the task was reversed — so a badge or a "Zahl · auf Spanisch" caption would
   be the third telling of what one tap said.
-  The one thing it does carry is the place-value hint the first time a length appears —
-  a fact about THIS number, and the reveal takes its place rather than stacking under it.
+  The one thing it does carry is the FIRST-SIGHT hint, and it is always a word in the
+  language being LEARNED: the place word the first time a length appears, the word a form
+  adds the first time a mark does ("Neu: menos", "Neu: Komma"). One slot, the form winning
+  where both could fire. Naming the category in the reader's language instead ("Neu:
+  Kommazahl") taught nothing — a learner cannot say it, and the card is where saying it is
+  owed. The word is DERIVED, never authored: `formMarker` takes the reference band's
+  worked example and removes the cardinal's own words, including a cardinal welded to the
+  front of one ("dreimal" → "mal"); where nothing can be removed the whole reading stands,
+  which is the honest answer for an ordinal ("erste") or a half ("nusu"). A reversed task
+  gets no hint at all: the prompt is then the reading, which says it in words already.
 - **Zahlen overview**: the numbers entry opens a page, not a run — options and start
   first, reference under them. Reading matter and the run it prepares you for are ONE
   surface on purpose: a look-up that lives five taps inside a running drill is a look-up
@@ -44,14 +54,17 @@ auto-advance beats these share with it, are `design.md`'s.
   from the packs the drill grades against, so the page cannot claim one reading and mark
   another; kern names the bands and the app words their headings. It is one component,
   and the "?" on a numbers task raises the very same table, in every language — a look-up while the
-  answer is still owed books the task amber, and after the answer it is free. Beside it sit two to
+  answer is still owed books the task amber, and after the answer it is free. Its last band is
+  the FORMS one: a worked example per form the language reads, so the marks a Forms run asks
+  about are written down somewhere other than a failed task, and a form the language cannot
+  read has no row there either. Beside it sit two to
   four prose notes on what trips a learner up in that language. A variant the ladder has
   not opened keeps its row and states its price out of the same unlock table, because a
   ladder you can see is a reason to climb and an absence is not; a variant the pair cannot
   offer at all (no forms reading, no realized frames) has no row, since a padlock that can
   never open is a lie.
 - **Buchstaben overview**: the letters entry opens the same shape as the numbers one —
-  the drill's stages and start first, the alphabet table under them. The Werkstatt card shows
+  the drill's stages and start first, the alphabet table under them. The Sprossen card shows
   when slots OR an alphabet exist for the target (the second predicate is catalog file
   presence), and the letters chip on the second alone: the table renders every row (glyph,
   name, IPA, context, hint, example with meaning where the reader's language knows the
@@ -64,6 +77,45 @@ auto-advance beats these share with it, are `design.md`'s.
   price until enough of them can be played back. Their mark is the step NUMBER, not a
   circle — the run walks the ladder by itself, and a circle beside each row reads as a
   choice that never answers the tap.
+- **Länder overview**: the atlas entry opens the run-first shape the other two use — the
+  rungs and the start above, the table under them. Its rungs are POOLS rather than stages:
+  rung 1 is the two languages the profile already has and the countries they are at home
+  in, and every rung after keeps everything below it, so climbing widens the world instead
+  of replacing it. NINE rungs, each bringing exactly ONE new thing — either a question or a
+  tier, never both: country names, then language names, then the people; then tier 2; then
+  which language is spoken there; then tier 3; then the country behind a flag alone; then
+  tier 4; and at the top the reverse of the spoken-in question, where a language is spoken.
+  Bundling the two (the old rung 4 opened a tier AND the flag question at once) left a
+  learner who slipped unable to say what had got harder. A tier nobody has
+  authored yet costs the learner nothing: the pool is the join intersected with the rung's
+  ceiling, so an empty tier just repeats the one below.
+  A country the two languages call the SAME is not asked by name — the prompt would be the
+  answer — and that is exactly the country the flag question brings back, since a card with
+  no name written on it gives nothing away. Which names count as the same is kern's
+  (`CountryDrill`), compared over every accepted form and blind to case and accents.
+  A REVERSED run shows no flag anywhere, and has no flag question at all: the answer is
+  then owed in the learner's OWN language, so a flag beside the prompt gives it away and a
+  flag alone asks them to recognize their own and write a name they have said all their
+  life. That leaves the flag rung adding nothing in that direction, where it stands on the
+  pool below exactly as an unauthored tier does.
+  The RUNGS are not earned. The drill books no review and keeps no schedule, exactly
+  as the letter drill does not, so the rung rows say what a rung ASKS and never carry a
+  padlock or a price. The reverse
+  modifier is offered from the first run for the same reason — there is no ladder for it to
+  sit behind — and it flips which side asks: forward the learner answers in the language
+  being learned, reversed in their own. Which side that is the placeholder says, not the
+  card: its caption carries the ask — a bare "Deutschland" cannot say whether the country,
+  its people or its language is owed — and, like the letter drill's, no language.
+  FAST is the one thing here with a price, and it is a way of PLAYING rather than something
+  to be asked: a rung falls on one clean win instead of the three it costs by default, and
+  it is offered only once the top rung has EVER been stood on. So the stored best rung is
+  no longer only read — it is what buys fast — and until it is paid the row keeps its
+  switch, dimmed behind a padlock, with the price where its line would be, out of kern's
+  own ceiling rather than a rung number authored beside it.
+  The table under it is GENERATED from the joined atlas the run grades against, so the page
+  cannot show one exonym and mark another, and a country only one side names has neither a
+  row nor a task. It is the one surface here written in TWO languages at once: a country's
+  name is a pair, not a property of the language being learned.
 - **An endless run offers its exit where it is wanted, not on a schedule.** "Fertig"
   appears under the button that goes on, and only on the SECOND miss in a row: one
   miss is what a drill is made of, two is where carrying on stops feeling like a choice.
@@ -80,6 +132,9 @@ auto-advance beats these share with it, are `design.md`'s.
   is the whole of what the two have in common: its rungs are stages that change what a
   question IS rather than how big the number is, and its verdict ladder carries a third
   outcome (a synonym of the dictated word) that no slot task can produce.
+  Its card is the one that keeps a caption, because a sound cannot say whether it wants a
+  letter, a missing grapheme or the whole word — but the caption names the ask alone, since
+  no drill card names a language while the placeholder below it is already saying one.
   The drill asks everything by ear: letter
   NAME or gap word — and a gap word is drawn from the whole catalog wherever the glyph
   says its own sound, words the learner already holds first, so a rung stops meaning one
@@ -121,6 +176,12 @@ What has not landed there is `design.md` § Not yet.
   and cells run shortest pair first; which cards travel is kern's attention ranking, where
   they land is the tile's. Both list families carry the fortnight's review bars in the
   header, which has the room the bottom of a tile does not.
+- **A widget with no readable snapshot draws the sprout, never sample words.** The gallery
+  advertises with a sample box, but a placed tile only ever shows the learner's own — so
+  when the App Group holds no snapshot this version can decode (what an app update leaves
+  behind until the app next runs), the tile says where the words come from instead of
+  inventing a box, and the launch that follows writes the snapshot and reloads the timeline.
+  Every family names its tap destination, so the tile opens the app in that state too.
 - Watch: one graded **multiple-choice** loop — the watch never types, and the options
   arrive ranked from kern so that nothing but meaning tells the answer from its company:
   word class, then how the sentence closes, then area, then string shape

@@ -2,9 +2,13 @@ import SwiftUI
 
 /// The audio question, on the same card face as every other session card: a
 /// caption naming what is being asked, one large replay glyph, and — for a gap
-/// question — the example word with the asked grapheme blanked. The caption
-/// stays here where the slot drills dropped theirs: a sound has nothing on
-/// screen to say what it is asking for.
+/// question — the example word with the asked grapheme blanked.
+///
+/// The caption stays here where the slot drill dropped its own, because a sound
+/// has nothing on screen to say what it wants back: the same glyph asks for a
+/// letter, for the grapheme missing from a word, or for the whole word. WHICH
+/// language it is owed in is not its business — the field's placeholder already
+/// says that, and a clause here would be the third telling (docs/surfaces.md).
 ///
 /// No answer renders here WHILE THE QUESTION STANDS, and that is the whole
 /// point: everything the learner is given is the sound, plus whatever the gap
@@ -18,7 +22,10 @@ import SwiftUI
 struct HearPromptCard: View {
     /// What is being asked ("Welcher Buchstabe ist das?" …).
     let question: LocalizedStringKey
-    /// The language the prompt is spoken in — named in the caption.
+    /// BCP-47 code of the language everything written on this card is in — the
+    /// gap word, and the answer that closes it. Never shown: it tags them for
+    /// VoiceOver (`dlSpoken`), which is the only reading a screen-reader
+    /// session gets, since nothing may autoplay over one.
     let language: String
     /// `Na＿t` for a gap question; nil where a letter's name is spoken.
     var gapText: String?
@@ -46,8 +53,6 @@ struct HearPromptCard: View {
     /// away rather than somewhere below the caption.
     var replayFocus: AccessibilityFocusState<Bool>.Binding
 
-    @Environment(\.locale) private var locale
-
     var body: some View {
         VStack(spacing: DL.Space.m) {
             caption
@@ -61,6 +66,7 @@ struct HearPromptCard: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
                     .contentTransition(.opacity)
+                    .dlSpoken(word, language: language)
             }
             // A dictation has no gap to close — the word grows below instead,
             // the same reveal a vocabulary card shows.
@@ -72,6 +78,7 @@ struct HearPromptCard: View {
                             .foregroundStyle(Color.dlAccent)
                             .multilineTextAlignment(.center)
                             .minimumScaleFactor(0.6)
+                            .dlSpoken(revealed.word, language: language)
                     }
                 }
                 .transition(.opacity.combined(with: .move(edge: .top)))
@@ -96,8 +103,7 @@ struct HearPromptCard: View {
     }
 
     private var caption: some View {
-        Text.joined(Text(question),
-                    Text("trainer.prompt.inLanguage \(LanguageNames.display(language, locale: locale, catalog: nil))"))
+        Text(question)
             .font(DL.Fonts.caption)
             .foregroundStyle(Color.dlTextSecondary)
             .textCase(.uppercase)

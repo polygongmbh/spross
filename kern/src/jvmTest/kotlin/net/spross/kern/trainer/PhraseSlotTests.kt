@@ -129,10 +129,12 @@ class PhraseSlotTests {
     @Test
     fun swahiliYearSince() {
         val task = PhraseSlots.instantiate(frame("sw", "learning-since-year"), value = 2000L)
-        assertEquals("Ich lerne seit 2000 Deutsch.", task.prompt)
+        // Both sides name the TARGET out of their own table: the German prompt says which
+        // language is being learned, and the Swahili answer says the same about itself.
+        assertEquals("Ich lerne seit 2000 Suaheli.", task.prompt)
         // "tangu mwaka …" — bare cardinal after tangu doesn't read as a year
         // (language-review fix).
-        assertEquals("Ninajifunza Kijerumani tangu mwaka elfu mbili.", task.display)
+        assertEquals("Ninajifunza Kiswahili tangu mwaka elfu mbili.", task.display)
         assertEquals(TrainerKind.Years, task.kind)
         assertEquals("Jahreszahl als Kardinalzahl gelesen — mwaka = Jahr", task.gloss)
     }

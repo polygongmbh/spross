@@ -31,6 +31,12 @@ class Catalog internal constructor(
     internal val frameRealizations: Map<Language, Map<String, RawFrame>>,
     /** lang → reader → the prose [numberNotes] serves; same file, same registry rule. */
     internal val drillNotes: Map<Language, Map<Language, List<String>>>,
+    /** reader → named language → its inflected names, from `languages/<reader>.json`. */
+    internal val languageNames: Map<Language, Map<Language, LanguageName>>,
+    /** `countries/atlas.json`, or null without the folder — the atlas drill's registry. */
+    internal val countryAtlas: CountryAtlas?,
+    /** lang → slug → country name; only languages whose `countries/<lang>.json` exists. */
+    internal val countryNames: Map<Language, Map<String, CountryName>>,
 ) {
     /** Flattened default area order (groups top-to-bottom, areas as listed). */
     val areaNames: List<String> = areas.map { it.name }
@@ -79,27 +85,30 @@ class Catalog internal constructor(
      * Emits one [Card] per joinable concept, in catalog order. A concept joins iff the
      * TARGET realizes it AND a source prompt exists: its source realization, else
      * (feminineOf only) the base concept's source realization with `promptFeminineMarker`;
-     * skipped when neither exists.
+     * skipped when neither exists — or when either side names the target language
+     * ([LanguageMarker]) and its own table cannot.
      */
     fun join(source: Language, target: Language): List<Card> {
         require(source != target) { "source == target ($source)" }
         require(source in languages) { "unknown source language \"$source\"" }
         require(target in languages) { "unknown target language \"$target\"" }
+        // why: a marker always names the TARGET, and each side resolves it against its OWN
+        // table — the prompt reads "Ich lerne Suaheli", the answer "Ninajifunza Kiswahili".
+        val sourceName = languageName(source, target)
+        val targetName = languageName(target, target)
         val cards = mutableListOf<Card>()
         for (area in areas) {
             val sourceWords = area.realizations[source].orEmpty()
             val targetWords = area.realizations[target].orEmpty()
 
-            fun joins(concept: CatalogConcept): Boolean {
-                if (concept.slug !in targetWords) return false
-                if (concept.slug in sourceWords) return true
-                return concept.feminineOf?.let { it in sourceWords } ?: false
-            }
+            fun targetRealization(slug: String): RawRealization? =
+                targetWords[slug]?.resolved(targetName)
 
             for (concept in area.concepts) {
-                if (!joins(concept)) continue
+                val targetRaw = targetRealization(concept.slug) ?: continue
                 val ownSource = sourceWords[concept.slug]
-                val promptRaw = ownSource ?: sourceWords.getValue(concept.feminineOf!!)
+                val promptRaw = (ownSource ?: concept.feminineOf?.let { sourceWords[it] })
+                    ?.resolved(sourceName) ?: continue
                 cards += Card(
                     id = concept.id,
                     kind = concept.kind,
@@ -110,16 +119,16 @@ class Catalog internal constructor(
                     seedIndex = concept.seedIndex,
                     // why: components without a target realization can never be studied —
                     // filtering here keeps the phrase-unlock gate a plain all-components check.
-                    components = concept.components.filter { it in targetWords },
+                    components = concept.components.filter { targetRealization(it) != null },
                     feminineOf = concept.feminineOf,
                     // why: grading needs the base concept's TARGET texts (answer side)
                     // to demote a base-word answer — absent when the target never
                     // realizes the base, and the demotion simply has nothing to match.
                     baseAccepted = concept.feminineOf?.let { base ->
-                        targetWords[base]?.let { listOf(it.text) + it.synonyms + it.variants }
+                        targetRealization(base)?.let { listOf(it.text) + it.synonyms + it.variants }
                     }.orEmpty(),
                     source = realize(source, promptRaw, source),
-                    target = realize(target, targetWords.getValue(concept.slug), source),
+                    target = realize(target, targetRaw, source),
                     promptFeminineMarker = ownSource == null,
                 )
             }
@@ -150,9 +159,14 @@ class Catalog internal constructor(
         if (!Trainer.supports(target)) return emptyList()
         val sourceFrames = frameRealizations[source].orEmpty()
         val targetFrames = frameRealizations[target].orEmpty()
+        // why: markers resolve before the template is built, so {slot}/{count} filling
+        // never sees one — same rule as [join], and a side that cannot name the target
+        // loses the frame for this pair rather than rendering the marker.
+        val sourceName = languageName(source, target)
+        val targetName = languageName(target, target)
         return frames.mapNotNull { frame ->
-            val prompt = sourceFrames[frame.slug] ?: return@mapNotNull null
-            val answer = targetFrames[frame.slug] ?: return@mapNotNull null
+            val prompt = sourceFrames[frame.slug]?.resolved(sourceName) ?: return@mapNotNull null
+            val answer = targetFrames[frame.slug]?.resolved(targetName) ?: return@mapNotNull null
             // why: a fraction slot needs the pack to READ one — a frame the target cannot
             // fill is dropped here rather than throwing on the first draw, in a live run.
             if (!Trainer.supportsSlot(frame.slot, target)) return@mapNotNull null
@@ -182,6 +196,51 @@ class Catalog internal constructor(
      * a learner can read in English beats a heading with nothing under it. Empty where the
      * language authors none at all.
      */
+    /**
+     * How [reader] says the name of [named], in every form a sentence can ask for. Null
+     * where the reader's table is missing or has no entry — the caller's cue to leave the
+     * material out rather than to invent a name for it.
+     */
+    fun languageName(reader: Language, named: Language): LanguageName? =
+        languageNames[reader]?.get(named)
+
+    /**
+     * The atlas joined for one profile, or null where this pair has no drill at all: no
+     * manifest, a side with no `countries/<lang>.json`, or a join neither side realizes.
+     * File presence IS the registry, exactly as [alphabet]'s is.
+     *
+     * Rows only survive where BOTH sides name them, so nothing downstream has to ask
+     * whether a name exists — and the tiers come out EFFECTIVE, with the profile's own
+     * languages and their countries lowered to 1 ([CountryAtlas]).
+     */
+    fun countryDrillContent(source: Language, target: Language): CountryDrillContent? {
+        require(source != target) { "source == target ($source)" }
+        val atlas = countryAtlas ?: return null
+        val sourceNames = countryNames[source] ?: return null
+        val targetNames = countryNames[target] ?: return null
+        val profile = setOf(source, target)
+        val joinedLanguages = atlas.languages.mapNotNull { row ->
+            AtlasLanguageEntry(
+                code = row.code,
+                tier = if (row.code in profile) 1 else row.tier,
+                source = languageName(source, row.code) ?: return@mapNotNull null,
+                target = languageName(target, row.code) ?: return@mapNotNull null,
+            )
+        }
+        val joinedCountries = atlas.countries.mapNotNull { row ->
+            AtlasCountryEntry(
+                slug = row.slug,
+                flag = row.flag,
+                tier = if (row.languages.any { it in profile }) 1 else row.tier,
+                languages = row.languages,
+                source = sourceNames[row.slug] ?: return@mapNotNull null,
+                target = targetNames[row.slug] ?: return@mapNotNull null,
+            )
+        }
+        if (joinedCountries.isEmpty()) return null
+        return CountryDrillContent(source, target, joinedCountries, joinedLanguages)
+    }
+
     fun numberNotes(language: Language, reader: Language): List<String> {
         val byReader = drillNotes[language] ?: return emptyList()
         return byReader[reader] ?: byReader[FALLBACK_SOURCE].orEmpty()
@@ -323,6 +382,38 @@ class Catalog internal constructor(
         }
     }
 
+    /**
+     * [this] with its language markers filled in from [name], or null when it carries one
+     * and [name] is absent: a side that cannot name the target drops the concept, the same
+     * honest-out as a missing realization. Marker-free realizations pass through untouched.
+     */
+    private fun RawRealization.resolved(name: LanguageName?): RawRealization? {
+        if (!carriesLanguageMarker()) return this
+        val named = name ?: return null
+        return copy(
+            text = LanguageNames.resolve(text, named),
+            synonyms = synonyms.map { LanguageNames.resolve(it, named) },
+            variants = variants.map { LanguageNames.resolve(it, named) },
+        )
+    }
+
+    private fun RawRealization.carriesLanguageMarker(): Boolean =
+        LanguageNames.hasLanguageMarker(text) ||
+            synonyms.any { LanguageNames.hasLanguageMarker(it) } ||
+            variants.any { LanguageNames.hasLanguageMarker(it) }
+
+    /** The frames' half of [resolved]; agreement forms name a counted noun, never a language. */
+    private fun RawFrame.resolved(name: LanguageName?): RawFrame? {
+        val marked = LanguageNames.hasLanguageMarker(text) ||
+            variants.any { LanguageNames.hasLanguageMarker(it) }
+        if (!marked) return this
+        val named = name ?: return null
+        return copy(
+            text = LanguageNames.resolve(text, named),
+            variants = variants.map { LanguageNames.resolve(it, named) },
+        )
+    }
+
     private fun realize(lang: Language, raw: RawRealization, source: Language): Realization =
         Realization(
             lang = lang,
@@ -367,6 +458,25 @@ class Catalog internal constructor(
                 }
                 CatalogArea(name, concepts, titles, subtitles, realizations)
             }
+            // why: read through the RAW source, like audio — the atlas drills, it never
+            // joins a card, so editing it must not restamp a running box.
+            val atlas = source.read("countries/atlas.json")
+                ?.let { CountryAtlasParser.parseAtlas("countries/atlas.json", it) }
+            val countrySlugs = atlas?.countries?.map { it.slug }.orEmpty().toSet()
+            val countryNames = languages.keys.mapNotNull { lang ->
+                val path = "countries/$lang.json"
+                source.read(path)?.let {
+                    lang to CountryAtlasParser.parseNames(path, it, countrySlugs, languages.keys)
+                }
+            }.toMap()
+            // why: TRACKED — a language name lands inside joined card texts, so editing one
+            // changes the join and must restamp a running box exactly as a realization does.
+            // The table names every ATLAS language too, far beyond the app's own five.
+            val nameable = languages.keys + atlas?.languages?.map { it.code }.orEmpty()
+            val languageNames = languages.keys.mapNotNull { lang ->
+                val path = "languages/$lang.json"
+                tracked.read(path)?.let { lang to CatalogParser.parseLanguageNames(path, it, nameable) }
+            }.toMap()
             // why: read through the RAW source, never the fingerprinting wrapper — audio
             // can never change the join, so a refreshed pack must not restamp (and
             // recompose) a session that is already running.
@@ -394,6 +504,9 @@ class Catalog internal constructor(
                 groups, languages, areas, tracked.fingerprint(), audio, alphabets, frames,
                 frameRealizations = drills.mapValues { (_, it) -> it.frames },
                 drillNotes = drills.mapValues { (_, it) -> it.numberNotes },
+                languageNames = languageNames,
+                countryAtlas = atlas,
+                countryNames = countryNames,
             )
         }
     }

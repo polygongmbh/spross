@@ -269,7 +269,7 @@ Sources: [Український правопис 2019 §107](https://slovnyk.ua
   Everything else is attributive *namba hasi*, which does not settle the bare-numeral case.
   It wants a native check, and the reference page is where a wrong answer would be most public.
   The mirror order grades meanwhile,
-  so a learner applying the ordinary noun-adjective rule is not punished either way.
+  so a learner applying the ordinary noun-adjective rule is accepted either way.
 - **Swahili `mara moja` for 1×** is genuinely ambiguous:
   its commonest everyday sense is "immediately".
   A multiplicative floor of 2 for sw would settle it,

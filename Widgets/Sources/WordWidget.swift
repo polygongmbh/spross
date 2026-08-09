@@ -16,6 +16,10 @@ struct WordWidget: Widget {
         StaticConfiguration(kind: "SprossWordWidget", provider: WordProvider()) { entry in
             WordWidgetView(entry: entry)
                 .containerBackground(Color(.systemBackground), for: .widget)
+                // why: names the tap's destination instead of leaning on the default
+                // host-app launch, so the tile still opens the app in the states where
+                // it has nothing of the learner's to show.
+                .widgetURL(URL(string: "spross://widget"))
         }
         .configurationDisplayName("Wort des Moments")
         .description("Zeigt alle 15 Minuten eine Vokabel aus deiner Box.")
@@ -57,6 +61,19 @@ struct WordEntry: TimelineEntry {
     var word: String { primary.word }
     var meaning: String { primary.meaning }
 
+    /// Nothing readable in the App Group yet: no file, or one this version cannot
+    /// decode (a schema the app has not rewritten since the update). Sample words
+    /// would pass for the learner's box here, so the sprout stands in instead.
+    static let awaitingContent = WordEntry(
+        date: .now,
+        primary: WidgetWord(emoji: "🌱", tint: nil, word: "", meaning: ""),
+        words: [], dueCount: 0, streak: 0, flameState: .unlit,
+        consolidated: 0, activityDays: [])
+
+    /// A timeline entry never carries an empty window otherwise — the provider
+    /// drops out to `awaitingContent` before building one.
+    var isAwaitingContent: Bool { words.isEmpty }
+
     static let placeholder = WordEntry(
         date: .now,
         primary: WidgetWord(emoji: "🧊", tint: nil, word: "friji", meaning: "Kühlschrank"),
@@ -93,11 +110,20 @@ struct WordProvider: TimelineProvider {
     func placeholder(in context: Context) -> WordEntry { .placeholder }
 
     func getSnapshot(in context: Context, completion: @escaping (WordEntry) -> Void) {
-        completion(timelineEntries(from: .now).first ?? .placeholder)
+        // why: the gallery advertises what the widget does, so it keeps the sample
+        // box even on a phone whose app has never written a snapshot.
+        if context.isPreview { return completion(.placeholder) }
+        completion(timelineEntries(from: .now)?.first ?? .awaitingContent)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WordEntry>) -> Void) {
-        let entries = timelineEntries(from: .now)
+        guard let entries = timelineEntries(from: .now) else {
+            // why: `.atEnd` on a single entry dated now asks for a reload at once and
+            // burns the refresh budget; the app rewriting the snapshot reloads the
+            // timeline itself, so this is only the fallback for a phone never opened.
+            return completion(Timeline(entries: [.awaitingContent],
+                                       policy: .after(Date.now.addingTimeInterval(3600))))
+        }
         completion(Timeline(entries: entries, policy: .atEnd))
     }
 
@@ -107,9 +133,10 @@ struct WordProvider: TimelineProvider {
     /// Up to 6 h of 15-minute entries cycling through attention-worthy cards.
     /// The compact families see one rotating card; the list families see a
     /// rotating window of up to `listSize` cards plus box stats.
-    private func timelineEntries(from start: Date) -> [WordEntry] {
+    /// `nil` when there is no box to render — the caller falls back to the sprout.
+    private func timelineEntries(from start: Date) -> [WordEntry]? {
         guard let snapshot = WidgetSnapshotReader.load(),
-              !snapshot.entries.isEmpty else { return [.placeholder] }
+              !snapshot.entries.isEmpty else { return nil }
         let words = snapshot.entries.map {
             WidgetWord(emoji: $0.emoji ?? "🗂️", tint: $0.articleTint,
                        word: $0.text, meaning: $0.sourceText)

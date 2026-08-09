@@ -931,6 +931,570 @@
         }
       }
     },
+    "countries.ask.country" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie heißt dieses Land?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What is this country called?"
+          }
+        }
+      }
+    },
+    "countries.ask.flag" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welches Land ist das?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which country is this?"
+          }
+        }
+      }
+    },
+    "countries.ask.language" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie heißt diese Sprache?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What is this language called?"
+          }
+        }
+      }
+    },
+    "countries.ask.nationality" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie heißen diese Leute?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What are these people called?"
+          }
+        }
+      }
+    },
+    "countries.ask.spokenIn" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welche Sprache spricht man dort?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which language is spoken there?"
+          }
+        }
+      }
+    },
+    "countries.ask.spokenWhere" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wo spricht man diese Sprache?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Where is this language spoken?"
+          }
+        }
+      }
+    },
+    "countries.best %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Am weitesten gekommen: Sprosse %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Furthest so far: rung %@"
+          }
+        }
+      }
+    },
+    "countries.fast.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine saubere Antwort pro Sprosse statt drei."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One clean answer per rung instead of three."
+          }
+        }
+      }
+    },
+    "countries.pace" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeder Durchgang beginnt bei Sprosse 1 und klettert von selbst weiter."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every run opens at rung 1 and climbs on by itself."
+          }
+        }
+      }
+    },
+    "countries.reference" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Atlas"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The atlas"
+          }
+        }
+      }
+    },
+    "countries.reverse.hint %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gefragt wird auf %@, geantwortet auf %@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The question comes in %@, the answer is owed in %@."
+          }
+        }
+      }
+    },
+    "countries.rung.1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Länder eurer Sprachen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The countries of your languages"
+          }
+        }
+      }
+    },
+    "countries.rung.1.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie heißt das Land, in dem eine eurer Sprachen zu Hause ist?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What is a country one of your languages is at home in called?"
+          }
+        }
+      }
+    },
+    "countries.rung.2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Namen der Sprachen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The names of the languages"
+          }
+        }
+      }
+    },
+    "countries.rung.2.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dazu: wie heißt die Sprache selbst?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus: what is the language itself called?"
+          }
+        }
+      }
+    },
+    "countries.rung.3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Leute"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The people"
+          }
+        }
+      }
+    },
+    "countries.rung.3.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dazu: wie heißen die Menschen von dort?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus: what are the people from there called?"
+          }
+        }
+      }
+    },
+    "countries.rung.4" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Sprachen der App"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app's languages"
+          }
+        }
+      }
+    },
+    "countries.rung.4.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Kreis wird größer – dieselben Fragen, mehr Länder."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The circle widens — the same questions, more countries."
+          }
+        }
+      }
+    },
+    "countries.rung.5" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wo spricht man was?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What is spoken there?"
+          }
+        }
+      }
+    },
+    "countries.rung.5.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dazu: welche Sprache spricht man in diesem Land?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus: which language is spoken in this country?"
+          }
+        }
+      }
+    },
+    "countries.rung.6" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häufige Sprachen der Welt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Common languages of the world"
+          }
+        }
+      }
+    },
+    "countries.rung.6.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch mehr Länder, dieselben Fragen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More countries again, the same questions."
+          }
+        }
+      }
+    },
+    "countries.rung.7" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur die Flagge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The flag alone"
+          }
+        }
+      }
+    },
+    "countries.rung.7.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dazu: welches Land ist das, nur an der Flagge? Umgekehrt entfällt das."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus: which country is this, from its flag alone? Not in a reversed run."
+          }
+        }
+      }
+    },
+    "countries.rung.8" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seltenere Länder und Sprachen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Less common countries and languages"
+          }
+        }
+      }
+    },
+    "countries.rung.8.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was der Atlas sonst noch kennt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The rest of what the atlas knows."
+          }
+        }
+      }
+    },
+    "countries.rung.9" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Von der Sprache zum Land"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From language to country"
+          }
+        }
+      }
+    },
+    "countries.rung.9.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dazu: wo spricht man diese Sprache?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus: where is this language spoken?"
+          }
+        }
+      }
+    },
+    "countries.tier.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eure Sprachen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your languages"
+          }
+        }
+      }
+    },
+    "countries.tier.2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Sprachen der App"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app's languages"
+          }
+        }
+      }
+    },
+    "countries.tier.3" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häufige Sprachen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Common languages"
+          }
+        }
+      }
+    },
+    "countries.tier.4" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seltenere Sprachen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Less common languages"
+          }
+        }
+      }
+    },
+    "countries.title %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Länder · %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Countries · %@"
+          }
+        }
+      }
+    },
     "credits.commonsNote" : {
       "localizations" : {
         "de" : {
@@ -1784,7 +2348,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Swahili"
+            "value" : "Suaheli"
           }
         },
         "en" : {
@@ -2115,6 +2679,22 @@
         }
       }
     },
+    "numbers.section.base" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Null bis fünfzehn"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zero to fifteen"
+          }
+        }
+      }
+    },
     "numbers.section.compounds" : {
       "localizations" : {
         "de" : {
@@ -2136,13 +2716,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Andere Schreibweisen"
+            "value" : "Mehr als Zählen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Other notations"
+            "value" : "Beyond counting"
           }
         }
       }
@@ -2163,18 +2743,18 @@
         }
       }
     },
-    "numbers.section.ones" : {
+    "numbers.section.irregulars" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Null bis neun"
+            "value" : "Sechzehn bis dreißig"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zero to nine"
+            "value" : "Sixteen to thirty"
           }
         }
       }
@@ -2195,22 +2775,6 @@
         }
       }
     },
-    "numbers.section.teens" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zehn bis neunzehn"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ten to nineteen"
-          }
-        }
-      }
-    },
     "numbers.section.tens" : {
       "localizations" : {
         "de" : {
@@ -2223,22 +2787,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The tens"
-          }
-        }
-      }
-    },
-    "numbers.section.twenties" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die Zwanziger"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The twenties"
           }
         }
       }
@@ -3315,6 +3863,22 @@
         }
       }
     },
+    "trainer.countries" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Länder"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Countries"
+          }
+        }
+      }
+    },
     "trainer.digits %lld" : {
       "localizations" : {
         "de" : {
@@ -3392,13 +3956,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stufe %@"
+            "value" : "Sprosse %@"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Level %@"
+            "value" : "Rung %@"
           }
         }
       }
@@ -3440,7 +4004,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eine saubere Antwort pro Stufe statt zwei."
+            "value" : "Eine saubere Antwort pro Sprosse statt zwei."
           }
         },
         "en" : {
@@ -3515,6 +4079,22 @@
         }
       }
     },
+    "trainer.newForm %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neu: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New: %@"
+          }
+        }
+      }
+    },
     "trainer.newPlace %@" : {
       "localizations" : {
         "de" : {
@@ -3575,22 +4155,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sentences"
-          }
-        }
-      }
-    },
-    "trainer.prompt.inLanguage %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "auf %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "in %@"
           }
         }
       }
@@ -3688,13 +4252,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Werkstatt"
+            "value" : "Sprossen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Workshop"
+            "value" : "Rungs"
           }
         }
       }

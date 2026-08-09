@@ -73,6 +73,58 @@
   browser — the same engine the app runs, compiled for the web, with the primer tables
   it generates itself in any of the five languages.
 
+## 3.14.0 — 2026-08-09
+
+- **The numbers page shows a language its own hard part.** The bands were the same
+  everywhere, so English readers of the twenties got nine rows spelling out a rule they had
+  already read, while German's sechzehn and siebzehn were filed under a plain "ten to
+  nineteen". Everything a learner has to memorize outright now stands together up to
+  fifteen, and sixteen to thirty is offered only where the language does not simply put its
+  own words together — Spanish, German and Ukrainian get it, English and Swahili are spared
+  it. The last band, where the minus, the comma and the ordinal are read, says what it is:
+  more than counting.
+
+- **The widget owns up when it has nothing of yours to show.** An app update can leave it
+  holding a box it cannot read, and until now it filled the tile with the sample words from
+  the gallery — a Swahili fridge sitting there as if you were learning it. It shows the
+  sprout instead, and opening the app hands the words straight back over. Tapping the tile
+  now names where it goes, so it reaches the app from that state as well.
+
+- **A third thing to practise in the Sprossen: the world.** 🌍 Länder opens an atlas —
+  every country the two languages both have a name for, with what its people are called
+  and what is spoken there, on one page you can look things up on and start a run from.
+  The run begins with the countries your own two languages are at home in and widens
+  outward from there over nine rungs, each adding ONE new thing rather than two at once —
+  the country, the language, the people, a wider circle, which of them belongs where, and
+  further out the country behind a flag with no name beside it; a switch
+  turns the whole thing round, so the question can just as well come in the language you
+  are learning, and then no flag is shown at all, since recognizing your own is no
+  question. Standing on the top rung once earns Schnell, which shortens every rung after.
+  Where a name can be said out loud, the answer is.
+
+- **The phrases about the language you are learning now say which language that is.** Every
+  file spelled it out: "Ich lerne Deutsch", "Ninajifunza Kijerumani", "I have been learning
+  German since 1998" — so a German speaker learning Swahili was taught to say, in Swahili,
+  that they were learning German. Those cards and the year drill's sentence now name the
+  language the profile is actually studying, on both sides at once: the prompt reads "Ich
+  lerne Suaheli.", the answer "Ninajifunza Kiswahili.", and Ukrainian inflects it the way
+  each verb demands. "Do you speak English?" is untouched — that one means English on purpose.
+
+## 3.13.0 — 2026-08-08
+
+- **The number forms stop having to be learned in a failure.** The drill that asks for
+  negatives, decimals, percentages, multiples, fractions and ordinals introduced none of
+  them: the mark appeared, the answer was wrong, and that was the lesson. Three things
+  changed together. The numbers page gained a last band writing out one worked example per
+  form the language reads — German's comma where English has its point, no ordinal at all
+  for Swahili, which cannot rank anything without the noun it ranks. The "?" that opens
+  that page mid-run now appears in a forms run too, on the same terms as everywhere else:
+  reading while you still owe an answer costs the rung, reading after it is free. And the
+  card itself hands over the word the first time it asks a form — "Neu: menos", "Neu:
+  coma", "Neu: asilimia" — the way a new digit length has always announced its place word.
+  It is the word in the language being learned, not a name for the category: what a
+  learner has to say, at the moment they are asked to say it.
+
 - **A run that is going badly offers you the door.** A drill runs until you close it, and
   the only way out was the ✕ in the corner — which reads as walking out on something
   rather than finishing it. Miss twice in a row and "Fertig" appears under the button that
@@ -89,9 +141,13 @@
   corners, the ✕ out on the left and the run in on the right, and the letter stages that
   looked like a radio nobody could pick are numbered steps: the run walks them itself.
 
-- **Asking the other way round has to be earned now.** Reverse was the one switch that
-  cost nothing, met before a learner had written a single number down. It opens at three
-  digits — the cheapest rung there is, below the clock.
+- **Asking the other way round has to be earned, and a mixed run costs less.** Reverse was
+  the one switch that cost nothing, met before a learner had written a single number down;
+  reading a number back is a different exercise from producing one, not an easier one, so
+  it now waits until the clock has been climbed a way — numbers first, then telling the
+  time, then decoding. The mixed run drops its second price: it asks for the number forms
+  and nothing else, and since the forms cannot open before seven digits, the climb through
+  the numbers is already paid for by the time anyone gets there.
 
 - **A trainer page opens on the run now, and one exercise at a time until the ladder is
   open.** Zahlen and Buchstaben both put their reading matter first, so starting the thing

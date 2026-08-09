@@ -63,7 +63,7 @@
    ]
   },
   "learning-since-year": {
-   "text": "Ninajifunza Kijerumani tangu mwaka {slot}.",
+   "text": "Ninajifunza {language} tangu mwaka {slot}.",
    "notes": {
     "de": "Jahreszahl als Kardinalzahl gelesen — mwaka = Jahr"
    }

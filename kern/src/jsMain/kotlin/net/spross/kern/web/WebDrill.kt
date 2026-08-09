@@ -97,14 +97,30 @@ object WebTrainer {
         Trainer.placeValueHint(digits, language)
 
     /**
-     * The tens band of the generated reference table, "20 zwanzig" style.
-     * why: `Trainer.tensReference` (sw-only) left with the merge — the reference
-     * table now carries tens for every language, so the look-up link does too.
+     * The numbers page the app shows, band by band — every reading generated from
+     * the packs the drill grades against, so the primer cannot drift from it.
+     */
+    fun reference(language: String): Array<WebRefBand> =
+        Trainer.reference(language)
+            .map { band ->
+                WebRefBand(band.key, band.entries.map { WebRefRow(it.value, it.reading) }.toTypedArray())
+            }
+            .toTypedArray()
+
+    /**
+     * The tens band of that same table, "20 zwanzig" style — the one band the look-up
+     * link beside the drill offers on its own.
      */
     fun tensReference(language: String): Array<String>? =
         Trainer.reference(language).firstOrNull { it.key == "tens" }
             ?.entries?.map { "${it.value} ${it.reading}" }?.toTypedArray()
 }
+
+@JsExport
+class WebRefRow internal constructor(val value: String, val reading: String)
+
+@JsExport
+class WebRefBand internal constructor(val key: String, val entries: Array<WebRefRow>)
 
 private fun TrainerTask.web(): WebTask = WebTask(
     prompt = prompt,

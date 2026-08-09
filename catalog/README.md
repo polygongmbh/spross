@@ -38,6 +38,8 @@ crowdsourced per-language contribution, and a slow default learning progression.
 catalog/
   areas.json            # ordered GROUPS → ordered areas: the default progression
   languages.json        # per-language metadata (display name, verb citation prefix)
+  languages/            # what each language calls the languages, inflected
+    <lang>.json         # { languageNames: { code: { name, in, speak?, learn? } } }
   <area>/               # one folder per area (basics, kitchen, …)
     concepts.json       # ordered [{slug, kind, emoji?}] — order IS introduction order
     de.json             # { title, words: { slug: realization } }
@@ -501,6 +503,96 @@ and editing one never restamps a learner's box.
 
 Every non-slot content word on the answer side is verified against the card join
 (`PhraseVocabAuditTests`); only documented function words go beyond it.
+
+## Language names (`catalog/languages/`)
+
+What each language calls the languages, in the forms a sentence needs.
+One file per **naming** language, keyed by the language being **named** —
+`languages/de.json` says how German names Swahili, `languages/sw.json` how Swahili does.
+Every declared language names every declared language, itself included.
+
+Not to be confused with `languages.json` beside it, which is per-language app metadata
+(the picker's self-name, the flag, the articles). This directory is content the learner reads.
+
+```json
+{ "languageNames": {
+    "sw": { "name": "Suaheli", "in": "auf Suaheli", "variants": ["Kisuaheli"] },
+    "uk": { "name": "Ukrainisch", "in": "auf Ukrainisch" } } }
+```
+- `name` — the citation form, and what `{language}` resolves to.
+- `in` — the "in X" adverbial **including its adposition**
+  (de "auf Deutsch", es "en alemán", sw "kwa Kijerumani", uk instrumental "німецькою").
+  Required: a sentence carrying `{language-in}` supplies no preposition of its own,
+  because which one it is, and whether there is one at all, is what differs between languages.
+- `speak` / `learn` — the verb-object forms, optional;
+  a language whose object looks like the citation form authors neither.
+  Ukrainian is the one that needs them: instrumental "німецькою" after *розмовляти*,
+  accusative "німецьку" after *вчити*.
+- `variants` — accept-only alternates, never displayed (de "Kisuaheli" beside "Suaheli").
+- `notes` — keyed by explanation language, exactly as a realization's `notes` are.
+
+**Language markers.** A realization may name the language being LEARNED instead of hardcoding
+one, with `{language}`, `{language-in}`, `{language-speak}` or `{language-learn}`:
+```json
+"im-learning-your-language": { "text": "Ich lerne {language}." },
+"how-do-you-say-this":       { "text": "Wie sagt man das {language-in}?" }
+```
+Both sides of a pair resolve against **their own** table's entry for the **target** language,
+so a de→sw learner reads "Ich lerne Suaheli." and answers "Ninajifunza Kiswahili."
+The marker's presence IS the declaration — no concept field says a text is language-dependent.
+
+Pick the marker whose form keeps the sentence grammatical for **every** named language.
+Where a language needs a preposition no form carries (Spanish "un poco **de** alemán"),
+author it in the sentence around `{language}`.
+
+Rules, enforced at load: at most one marker per string, only the four forms above, and never
+at the start of a string — nothing re-capitalizes what a marker inserts. A side whose table
+has no entry for the target drops that concept from the join,
+the same honest-out as a missing realization.
+
+## Country atlas (`catalog/countries/`)
+
+The atlas drill's own content: which countries exist, which languages they carry,
+and what each declared language calls them.
+Drill-only — nothing here ever joins a card, so editing it never restamps a running box.
+**File presence is the registry**, like the alphabet's:
+no `atlas.json`, no drill; a language without `countries/<lang>.json` has no atlas for any pair it is on.
+
+`atlas.json` is language-neutral:
+
+```json
+{ "languages": [ { "code": "de", "tier": 2 }, { "code": "fr", "tier": 3 } ],
+  "countries": [ { "slug": "switzerland", "flag": "🇨🇭", "languages": ["de", "fr", "it"], "tier": 2 } ] }
+```
+
+- `tier` says how far from home a row sits, and is authored **2–4**:
+  2 is the app's own five languages and their home countries, 3 the common world, 4 the regional rest.
+  **Tier 1 is never authored** — it is derived per profile from the learner's own source and target,
+  and the countries that carry them.
+- `languages` on a country resolve into the manifest's own list, in authored order (most widely spoken first);
+  the relation is many-to-many, and a country reusing an already-authored language is a cheap row.
+- Language codes are ISO 639-1 and reach far past the five the app teaches from —
+  every one of them needs an entry in **every** `catalog/languages/<lang>.json` (see above),
+  because that table, not this one, is where language names live.
+
+`countries/<lang>.json` is keyed by the manifest's slugs:
+
+```json
+{ "switzerland": { "text": "die Schweiz", "variants": ["Schweiz"], "grammar": { "gender": "die" },
+                   "nationality": { "text": "Schweizer", "variants": ["Schweizerin"] } } }
+```
+
+- `text` is the citation form and `variants` are accept-only, exactly as a realization's are.
+  German authors the article in `text` and the bare form as a variant; Spanish does the reverse,
+  because RAE treats *los* Estados Unidos as the optional one.
+- `nationality` is REQUIRED — each entry teaches the triple
+  **country, nationality, language**: "Germany, being a German, speaking German".
+  The masculine is `text` and the feminine a variant; a common-gender word (es *belga*) carries none.
+- `grammar` and `notes` follow the realization schema.
+
+Every country is realized in **every** declared language, and every manifest language is
+named by every declared language — `CountryAtlasLintTest` holds both, plus the slugs'
+disjointness from concepts and frames.
 
 ## What earns a slot, and how it is worded
 

@@ -1,6 +1,7 @@
 import Foundation
 import Observation
 import SprossKern
+import WidgetKit
 
 /// A failure worth showing as error chrome on Heute. The model names the
 /// case only — the view localizes it (`HeuteView`), so the message follows
@@ -197,6 +198,10 @@ final class AppModel {
             box = state
             try await store.saveNow(json: StoreCodec.shared.encode(state: state), target: target)
             await store.saveWidgetSnapshot(json: widgetSnapshotJSON(for: state))
+            // why: a widget left without a readable snapshot by an update shows the
+            // sprout until its timeline is rebuilt — launching is what the sprout
+            // asks for, so the handover happens then, not up to six hours later.
+            WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
             UserDefaults.standard.set(source, forKey: Self.sourceLanguageKey)
             UserDefaults.standard.set(target, forKey: Self.targetLanguageKey)
             loadFailure = nil

@@ -104,17 +104,17 @@
   "do-you-speak-english": {
    "text": "Unazungumza Kiingereza?"
   },
-  "i-speak-a-little-german": {
-   "text": "Ninazungumza Kijerumani kidogo tu."
+  "i-speak-a-little": {
+   "text": "Ninazungumza {language} kidogo tu."
   },
   "what-does-this-word-mean": {
    "text": "Neno hili lina maana gani?"
   },
-  "how-do-you-say-this-in-german": {
-   "text": "Hii inasemwaje kwa Kijerumani?"
+  "how-do-you-say-this": {
+   "text": "Hii inasemwaje {language-in}?"
   },
-  "im-learning-german": {
-   "text": "Ninajifunza Kijerumani."
+  "im-learning-your-language": {
+   "text": "Ninajifunza {language}."
   },
   "i-have-a-question": {
    "text": "Nina swali."

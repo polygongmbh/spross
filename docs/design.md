@@ -84,9 +84,14 @@ never the shape of the app.
   The recall clock runs from the prompt appearing to "Aufdecken" — the time spent choosing
   a button afterwards is thumb travel, not memory.
   The reveal carries the source meaning plus the full synonym family.
-- The emoji sits in a fixed slot **beside the headword**, never above it:
+- A picture on a card — a word's emoji, a country's flag — sits in a fixed slot
+  **beside the words**, never above them, and that holds for every card face the app has:
   vertical space is the scarce axis — card, input, button and keyboard share one screen —
   and the slot is held for the card's whole life, so a reveal moves nothing.
+  A picture that would ANSWER the question is **withheld as a hint, never dropped**: it is
+  held back while the answer is owed and appears at the reveal, so the learner always ends
+  up seeing what they were asked about. The slot itself keeps this (`DLCardEmoji.Cue`) —
+  there is no way for a card face to say "hide it for good".
 - Ambiguous prompts (the target merges two source concepts) carry an **area label**.
   Produce only: on a recognition prompt a cue precise enough to disambiguate would give
   the answer away. Never graded.
@@ -97,8 +102,12 @@ never the shape of the app.
 
 ## Review UX rules
 
-- A wrong answer reveals **inline**, expanding the card DOWNWARD;
-  no space is reserved for it beforehand.
+These bind every surface that asks the learner for an answer, the drills with the review
+loop (`surfaces.md`): they are rules about the asking, not about the box behind it.
+A new surface reads what it owes here, and reads what is already filed against whatever
+it was copied from (`backlog.md`) —
+a clone inherits its sibling's gaps, never the rules.
+
 - **The answer is never on screen twice, and never in the field** —
   the field carries what the LEARNER typed and nothing else.
   The card expands only when the word was not produced — a wrong answer or "Aufdecken";
@@ -129,38 +138,33 @@ never the shape of the app.
   word cannot be heard right now — no recording and no voice, reading aloud off, a screen
   reader running — the card falls back to its source prompt rather than blocking, because
   unlike the letter drill review has another way to ask the same question.
-- **A produce miss keeps the field open for a retry, not a self-grade tap.** The reveal
-  trims the field back to the words already right, so the learner finishes the word
-  against the answer standing on the card. Reaching it counts as recalled-with-help;
-  giving up is an honest miss.
-- **A missed word is written out once before the session moves on.** A reveal followed by
-  a single tap gives a word almost no encoding, which is how it comes back later and
-  passes for new again; a word that has not landed is typed with the answer in view.
-  Encoding only, never a grade — the rating the self-grade already chose is applied
-  unchanged, so self-grading still owns the schedule.
+- **A produce miss keeps the field open for a retry, not a self-grade tap.** 
+  The reveal trims the field back to the words already right, 
+  so the learner finishes the word against the answer standing on the card.
+  Reaching it counts as recalled-with-help; giving up is an honest miss.
+- **A missed word is written out once before the session moves on.** 
+  A reveal followed by a single tap gives a word almost no encoding,
+  which is how it comes back later and passes for new again;
+  a word that has not landed is typed with the answer in view.
+  Encoding only, never a grade — the rating the self-grade already chose is applied unchanged,
+  so self-grading still owns the schedule.
   Production asks for it, and so does a first exposure — the review that teaches the word,
   written once as it is met. A later recognition miss does not: the target has stood in
   the prompt since the first frame, so copying it teaches nothing the reading did not,
   and the next review asks for the word properly.
-  One write-out per miss, never two: giving up on a produce retry ends the card, because
-  that field already was the write-out.
-- **Finishing the word IS the answer**, when producing, when writing out, and in the
-  trainer drills alike:
-  the field confirms itself the moment the letters line up and the card flips a beat
-  later, so there is **no confirm button** to reach for. Backing out of a finished word
-  takes the confirmation with it. Every step keeps a way out — a step you cannot leave
-  is a trap.
-- A field is on screen only where there is something to type, and is focused the moment
-  it is there — typing never costs a tap first.
-  A reveal that leaves it locked with nothing of the learner's in it takes the field away
-  entirely: a placeholder and a border are an invitation it cannot honour.
-  **A pause that waits for a tap gives the keyboard back**, everywhere one exists — the
-  amber holds (a typo's spelling, a dictation's other form) end in a button, and a keyboard
-  left standing covers the button being waited for. A beat that advances on its own keeps
-  it: a keyboard that drops and returns within the 1.2 s is worse than one that never moved.
+  One write-out per miss, never two:
+  giving up on a produce retry ends the card, because that field already was the write-out.
+- **Finishing the word IS the answer**, 
+  when producing, when writing out, and in the trainer drills alike:
+  the field confirms itself the moment the letters line up and the card flips a beat later, so there is no need to confirm.
+  Backing out of a finished word takes the confirmation with it. 
+  Every step keeps a way out — a step you cannot leave is a trap.
+- The textfield is on screen only where there is something to type, 
+  and is focused the moment it is there — typing never costs a tap first.
 - Progress bar: one segment per answer, colored by its outcome.
 - A miss is stated where the learner is already looking;
   the streak survives a missed day, but not two in a row.
+
 ## Counts & sessions
 
 - Sessions are composed, never configured.
@@ -202,8 +206,7 @@ never the shape of the app.
   A day the learner has not worked is never called done —
   and neither is one with work still coming back, which the engine answers by composing
   the round rather than the finish (`../kern/README.md` §6).
-  A screen that celebrates and is overturned minutes later teaches the learner not to
-  believe it.
+  A screen that celebrates and is overturned minutes later teaches the learner not to believe it.
   The done state is ordered like every other celebration in the app —
   mark, headline, what the day bought, the way on, then fine print —
   and its mark IS the streak badge: two elements sandwiched the prose between them,

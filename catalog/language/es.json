@@ -145,10 +145,10 @@
     "¿Hablas inglés?"
    ]
   },
-  "i-speak-a-little-german": {
-   "text": "Solo hablo un poco de alemán.",
+  "i-speak-a-little": {
+   "text": "Solo hablo un poco de {language}.",
    "variants": [
-    "Hablo solo un poco de alemán."
+    "Hablo solo un poco de {language}."
    ]
   },
   "what-does-this-word-mean": {
@@ -157,16 +157,16 @@
     "¿Qué quiere decir esta palabra?"
    ]
   },
-  "how-do-you-say-this-in-german": {
-   "text": "¿Cómo se dice esto en alemán?",
+  "how-do-you-say-this": {
+   "text": "¿Cómo se dice esto {language-in}?",
    "variants": [
-    "¿Cómo se dice eso en alemán?"
+    "¿Cómo se dice eso {language-in}?"
    ]
   },
-  "im-learning-german": {
-   "text": "Estoy aprendiendo alemán.",
+  "im-learning-your-language": {
+   "text": "Estoy aprendiendo {language}.",
    "variants": [
-    "Aprendo alemán."
+    "Aprendo {language}."
    ]
   },
   "i-have-a-question": {

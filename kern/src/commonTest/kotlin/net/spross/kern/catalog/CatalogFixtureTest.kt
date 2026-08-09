@@ -51,14 +51,20 @@ class CatalogFixtureTest {
     @Test
     fun sparseTargetCoverageSkipsConcepts() {
         val ids = catalog.join("de", "uk").map { it.id }
-        assertEquals(listOf("waiter", "waiter-f", "mouse", "the-mouse-sprints", "royal-f", "door"), ids)
+        assertEquals(
+            listOf(
+                "waiter", "waiter-f", "mouse", "the-mouse-sprints", "royal-f",
+                "door", "im-learning", "i-speak-a-little", "how-do-you-say-this",
+            ),
+            ids,
+        )
     }
 
     @Test
     fun nonFeminineConceptWithoutSourceRealizationSkipped() {
         // sw realizes cook but source uk does not — no prompt, no card.
         assertEquals(
-            listOf("waiter", "mouse", "door"),
+            listOf("waiter", "mouse", "door", "im-learning", "i-speak-a-little", "how-do-you-say-this"),
             catalog.join("uk", "sw").map { it.id },
         )
     }
@@ -164,7 +170,7 @@ class CatalogFixtureTest {
         assertEquals("Alles dreht sich.", catalog.areaSubtitle("gamma", "de"))
         assertEquals("Усе обертається.", catalog.areaSubtitle("gamma", "uk"))
         assertEquals("Gamma", catalog.areaTitle("gamma", "de"))
-        assertNull(catalog.areaSubtitle("gamma", "en")) // no gamma/en.json at all
+        assertNull(catalog.areaSubtitle("gamma", "en")) // gamma/en.json authors none
         assertNull(catalog.areaSubtitle("alpha", "de"))
         assertNull(catalog.areaSubtitle("delta", "de"))
     }
@@ -184,12 +190,142 @@ class CatalogFixtureTest {
         assertNull(catalog.areaEmoji("delta"))
     }
 
+    // -- language names ----------------------------------------------------------------
+
+    @Test
+    fun languageNamesCarryTheAuthoredFormsAndFallBackToTheCitationForm() {
+        val suaheli = catalog.languageName("de", "sw")!!
+        assertEquals("Suaheli", suaheli.name)
+        assertEquals("auf Suaheli", suaheli.inForm)
+        assertEquals(listOf("Kisuaheli"), suaheli.variants)
+        // speak/learn unauthored: German's object form IS the citation form.
+        assertEquals("Suaheli", suaheli.form(LanguageMarker.Speak))
+        assertEquals("Suaheli", suaheli.form(LanguageMarker.Learn))
+        val german = catalog.languageName("uk", "de")!!
+        assertEquals("німецькою", german.form(LanguageMarker.Speak))
+        assertEquals("німецьку", german.form(LanguageMarker.Learn))
+        // uk names суахілі without a speak form — the fallback is the name, not the adverbial.
+        assertEquals("суахілі", catalog.languageName("uk", "sw")!!.form(LanguageMarker.Speak))
+        assertEquals("мовою суахілі", catalog.languageName("uk", "sw")!!.inForm)
+    }
+
+    /** File presence is the registry, exactly as it is for an alphabet. */
+    @Test
+    fun aLanguageWithoutATableNamesNothingAndIsNamedAnyway() {
+        assertNull(catalog.languageName("en", "de"))
+        assertNull(catalog.languageName("sw", "fr")) // table present, entry absent
+        assertEquals("Französisch", catalog.languageName("de", "fr")?.name)
+    }
+
+    @Test
+    fun languageNameEditsRestampTheFingerprint() {
+        val edited = Fixture.files + mapOf(
+            "languages/de.json" to Fixture.names.getValue("languages/de.json")
+                .replace("Suaheli", "Swahili"),
+        )
+        assertTrue(Catalog.load(MapCatalogSource(edited)).fingerprint != catalog.fingerprint)
+    }
+
+    @Test
+    fun anUndeclaredNamedLanguageFailsTheParse() {
+        val broken = Fixture.files + mapOf(
+            "languages/sw.json" to Fixture.names.getValue("languages/sw.json")
+                .replace("\"uk\":", "\"xx\":"),
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("undeclared language \"xx\"" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    @Test
+    fun aLanguageNameWithoutAnInFormFailsTheParse() {
+        val broken = Fixture.files + mapOf(
+            "languages/de.json" to Fixture.names.getValue("languages/de.json")
+                .replace("\"in\": \"auf Suaheli\", ", ""),
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("missing \"in\"" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    // -- language markers --------------------------------------------------------------
+
+    /**
+     * The whole rule in one pair: BOTH sides name the TARGET, each out of its own table.
+     * The German prompt therefore says which language is being learned, and the Swahili
+     * answer says the same thing about itself.
+     */
+    @Test
+    fun bothSidesResolveTheMarkerAgainstTheirOwnNameForTheTarget() {
+        val card = catalog.join("de", "sw").byId("im-learning")
+        assertEquals("Ich lerne Suaheli.", card.source.text)
+        assertEquals("Ninajifunza Kiswahili.", card.target.text)
+        val reverse = catalog.join("sw", "de").byId("im-learning")
+        assertEquals("Ninajifunza Kijerumani.", reverse.source.text)
+        assertEquals("Ich lerne Deutsch.", reverse.target.text)
+    }
+
+    /** Each marker picks its own form, and an unauthored one falls back to the name. */
+    @Test
+    fun everyMarkerFormResolvesInTheSentenceThatAsksForIt() {
+        val toUk = catalog.join("de", "uk")
+        assertEquals("Я вчу українську.", toUk.byId("im-learning").target.text)
+        assertEquals("Я трохи розмовляю українською.", toUk.byId("i-speak-a-little").target.text)
+        assertEquals("Як це сказати українською?", toUk.byId("how-do-you-say-this").target.text)
+        assertEquals("Wie sagt man das auf Ukrainisch?", toUk.byId("how-do-you-say-this").source.text)
+        assertEquals(
+            "Hii inasemwaje kwa Kiswahili?",
+            catalog.join("de", "sw").byId("how-do-you-say-this").target.text,
+        )
+        // uk names суахілі without a speak form: the citation form stands in.
+        assertEquals(
+            "Я трохи розмовляю суахілі.",
+            catalog.join("uk", "sw").byId("i-speak-a-little").source.text,
+        )
+    }
+
+    /** No table entry for the target, no sentence: the same honest-out as a missing word. */
+    @Test
+    fun aSideThatCannotNameTheTargetDropsTheConcept() {
+        // en authors no table at all, so it drops as a target (its own name)…
+        assertTrue(catalog.join("de", "en").none { it.id == "im-learning" })
+        // …and as a source (its name for the target).
+        assertTrue(catalog.join("en", "sw").none { it.id == "im-learning" })
+        // The unmarked concepts of the same area are untouched.
+        assertEquals("mlango", catalog.join("de", "sw").byId("door").target.text)
+    }
+
+    @Test
+    fun aSecondMarkerInOneStringFailsTheParse() {
+        val error = loadWithGammaDeText("Ich lerne {language} auf {language}.")
+        assertTrue("second language marker" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    @Test
+    fun anUnknownMarkerFormFailsTheParse() {
+        val error = loadWithGammaDeText("Ich lerne {language-of}.")
+        assertTrue("unknown language marker" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    /** Nothing re-capitalizes what a marker inserts, so a sentence may never open with one. */
+    @Test
+    fun aStringInitialMarkerFailsTheParse() {
+        val error = loadWithGammaDeText("{language} lerne ich.")
+        assertTrue("language marker opens" in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    private fun loadWithGammaDeText(text: String): CatalogFormatException {
+        val broken = Fixture.files + mapOf(
+            "gamma/de.json" to Fixture.files.getValue("gamma/de.json")
+                .replace("Ich lerne {language}.", text),
+        )
+        return assertFailsWith { Catalog.load(MapCatalogSource(broken)) }
+    }
+
     // -- drill frames ------------------------------------------------------------------
 
     @Test
     fun framesJoinSymmetricallyInBothDirections() {
         val forward = catalog.phraseTemplates("de", "sw")
-        assertEquals(listOf("bus-arrives-at", "i-have-n-keys"), forward.map { it.id })
+        assertEquals(listOf("bus-arrives-at", "i-have-n-keys", "im-learning-since"), forward.map { it.id })
         assertEquals("Der Bus kommt um {slot} Uhr.", forward[0].sourceTemplate)
         assertEquals("Basi linakuja {slot}.", forward[0].targetTemplate)
         val reverse = catalog.phraseTemplates("sw", "de").first { it.id == "bus-arrives-at" }
@@ -230,6 +366,33 @@ class CatalogFixtureTest {
             listOf("Le bus arrive à {slot}."),
             catalog.phraseTemplates("fr", "sw").map { it.sourceTemplate },
         )
+    }
+
+    /**
+     * A frame resolves its marker exactly as a realization does, and BEFORE the template is
+     * built — so `{slot}` filling never meets one. A side that cannot name the target loses
+     * the frame for that pair and keeps the rest.
+     */
+    @Test
+    fun frameMarkersResolvePerSideAndDropWhereTheTableCannotName() {
+        val deSw = catalog.phraseTemplates("de", "sw").first { it.id == "im-learning-since" }
+        assertEquals("Ich lerne seit {slot} Suaheli.", deSw.sourceTemplate)
+        assertEquals("Ninajifunza Kiswahili tangu mwaka {slot}.", deSw.targetTemplate)
+        val deUk = catalog.phraseTemplates("de", "uk").first { it.id == "im-learning-since" }
+        assertEquals("Ich lerne seit {slot} Ukrainisch.", deUk.sourceTemplate)
+        assertEquals("Я вчу українську з {slot}.", deUk.targetTemplate)
+        // fr realizes the frame but names no language at all.
+        assertTrue(catalog.phraseTemplates("fr", "sw").none { it.id == "im-learning-since" })
+    }
+
+    @Test
+    fun aMalformedMarkerInAFrameFailsTheParse() {
+        val broken = Fixture.files + mapOf(
+            "drills/sw.json" to Fixture.drills.getValue("drills/sw.json")
+                .replace("{language} tangu", "{language-of} tangu"),
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("unknown language marker" in error.message.orEmpty(), "message: ${error.message}")
     }
 
     @Test

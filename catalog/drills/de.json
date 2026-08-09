@@ -60,7 +60,7 @@
    "text": "Schreib bitte: {slot}."
   },
   "learning-since-year": {
-   "text": "Ich lerne seit {slot} Deutsch."
+   "text": "Ich lerne seit {slot} {language}."
   },
   "repeat-the-year": {
    "text": "Wiederholen Sie bitte das Datum: {slot}.",

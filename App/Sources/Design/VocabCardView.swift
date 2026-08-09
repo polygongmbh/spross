@@ -59,9 +59,10 @@ struct VocabCardView: View {
         }
     }
 
-    /// WHEN the picture appears. Its place never changes, so `onReveal` fades it
-    /// into a slot that was already there — nothing on the card moves either way.
-    enum EmojiCue { case upfront, onReveal }
+    /// WHEN the picture appears — the shared slot's rule, named here for the
+    /// call sites that already speak of a card's emoji cue. Its place never
+    /// changes, so `onReveal` fades it into a slot that was already there.
+    typealias EmojiCue = DLCardEmoji.Cue
 
     /// Per-word illustration; nil for verbs/phrases with no seed emoji —
     /// the card then drops the slot and centers on the word itself.
@@ -76,17 +77,13 @@ struct VocabCardView: View {
     /// all fit on screen without scrolling. Previews keep the big card.
     var compact: Bool = false
 
-    /// The picture sits BESIDE the words, never above them: vertical space is the
-    /// scarce axis (card + input + button + keyboard share one screen), and a
-    /// fixed side slot means the reveal can fade it in without moving a thing.
-    /// It belongs to the CARD rather than the prompt line, so it stays centred
-    /// against prompt and reveal together instead of riding up as the card grows.
-    /// The slot is mirrored on the trailing edge so the words stay centred.
+    /// The picture (`DLCardEmoji`) belongs to the CARD rather than the prompt
+    /// line, so it stays centred against prompt and reveal together instead of
+    /// riding up as the card grows.
     var body: some View {
         HStack(spacing: DL.Space.m) {
             if hasEmoji {
-                emojiIllustration(emoji ?? "")
-                    .opacity(emojiCue == .upfront || revealed ? 1 : 0)
+                DLCardEmoji(emoji ?? "", size: emojiSize, cue: emojiCue, revealed: revealed)
             }
             VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
                 sideBlock(prompt, emphasized: false)
@@ -97,7 +94,7 @@ struct VocabCardView: View {
             }
             .frame(maxWidth: .infinity)
             if hasEmoji {
-                Color.clear.frame(width: emojiDiameter, height: 1)
+                DLCardEmoji.balance(emojiSize)
             }
         }
         .padding(compact ? DL.Space.l : DL.Space.xl)
@@ -116,15 +113,7 @@ struct VocabCardView: View {
         !(emoji ?? "").isEmpty
     }
 
-    private var emojiDiameter: CGFloat { compact ? 52 : 96 }
-
-    private func emojiIllustration(_ emoji: String) -> some View {
-        Text(emoji)
-            .font(.system(size: compact ? 28 : 52))
-            .frame(width: emojiDiameter, height: emojiDiameter)
-            .background(Circle().fill(Color.dlSurfaceTint))
-            .accessibilityHidden(true) // why: decorative; the headword carries the content
-    }
+    private var emojiSize: DLCardEmoji.Size { compact ? .compact : .hero }
 
     @ViewBuilder
     private var revealSection: some View {
@@ -197,25 +186,13 @@ struct VocabCardView: View {
         }
     }
 
-    @ViewBuilder
+    /// The headline as VoiceOver should hear it: tagged with the language it is
+    /// written in (`dlSpoken`), article included, because that is how the line
+    /// reads on screen.
     private func headlineWord(_ side: Side, emphasized: Bool) -> some View {
-        let word = headlineText(side, emphasized: emphasized)
-        if let label = spokenLabel(side) {
-            word.accessibilityLabel(label)
-        } else {
-            word
-        }
-    }
-
-    /// The headline as VoiceOver should hear it, tagged with the language it is
-    /// written in. It matters most where autoplay is off by design: a VoiceOver
-    /// session never autoplays (nothing may speak over the screen reader), so
-    /// this reading is the only pronunciation the learner gets.
-    private func spokenLabel(_ side: Side) -> Text? {
-        guard let language = side.language else { return nil }
-        var label = AttributedString(side.article.map { "\($0.text) \(side.text)" } ?? side.text)
-        label.languageIdentifier = language
-        return Text(label)
+        headlineText(side, emphasized: emphasized)
+            .dlSpoken(side.article.map { "\($0.text) \(side.text)" } ?? side.text,
+                      language: side.language)
     }
 
     /// Both sides use the same font so a word never changes size just

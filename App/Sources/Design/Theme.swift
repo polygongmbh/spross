@@ -158,10 +158,8 @@ extension Color {
     static let dlAccent = Color(light: 0xA23B0B, dark: 0xFF9A6B)   // clay
     static let dlTeal = Color(light: 0x0D566E, dark: 0x6FCFE8)     // ocean
     static let dlSuccess = Color(light: 0x256232, dark: 0x8AE39B)  // forest
-    static let dlAmber = Color(light: 0x87510A, dark: 0xF2C078)    // ochre "reveal", never red
-    // why: progress segments show wrong answers on explicit user request —
-    // a muted brick, only in the aggregate bar, never as card feedback.
-    static let dlWrong = Color(light: 0x99322E, dark: 0xF08D86)
+    static let dlAmber = Color(light: 0x87510A, dark: 0xF2C078)    // ochre — a near miss, or an answer shown
+    static let dlWrong = Color(light: 0x99322E, dark: 0xF08D86)   // brick — a miss
 
     // Article colors (poster palette).
     static let dlDer = Color(light: 0x134E85, dark: 0x90CBFF)

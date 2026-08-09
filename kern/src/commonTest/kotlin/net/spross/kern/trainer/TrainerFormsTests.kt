@@ -1,8 +1,11 @@
 package net.spross.kern.trainer
 
+import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
@@ -571,5 +574,24 @@ class TrainerFormsTests {
         assertFalse(NumberForm.Ordinal in limits.forms)
         assertEquals(emptyList(), readings("sw", NumberValue.Ordinal(3)))
         assertEquals(emptyList(), readings("sw", NumberValue.Fraction(1, 5)))
+    }
+
+    /**
+     * A forms task names the form it asks, so the app can introduce a mark the first time
+     * it appears instead of leaving it to be discovered in a failure. Every other kind
+     * leaves the key null — nothing else has a notation to introduce.
+     */
+    @Test
+    fun everyFormsTaskNamesItsForm() {
+        val rng = Random(41)
+        val keys = mutableSetOf<String>()
+        repeat(400) {
+            val task = Trainer.sample(TrainerKind.Forms, "de", FORMS_MAX_LEVEL, rng)
+            keys += assertNotNull(task.formKey, task.prompt)
+        }
+        assertEquals(NumberForm.entries.map { it.key }.toSet(), keys)
+        for (kind in listOf(TrainerKind.Numbers, TrainerKind.Years, TrainerKind.Clock)) {
+            assertNull(Trainer.sample(kind, "de", 1, Random(7)).formKey, "$kind")
+        }
     }
 }

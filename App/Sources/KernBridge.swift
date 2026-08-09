@@ -90,6 +90,57 @@ extension DayStats {
 /// what it is at the call site: the drills never seed one of their own.
 var drillRandom: KotlinRandom { KotlinRandom.companion }
 
+/// Levels are `Int` everywhere in the drill UI; the ladder is Kotlin `Int`.
+/// Bridged HERE so no view ever writes `Int32(…)` around a rung number.
+extension LetterDrill {
+    func ceiling(dictation: Bool) -> Int { Int(maxLevel(dictationAvailable: dictation)) }
+
+    func entryLevel(consolidated: Int) -> Int { Int(entryLevel(consolidatedCards: Int32(consolidated))) }
+
+    func winsToAdvance(consolidated: Int) -> Int { Int(winsToAdvance(consolidatedCards: Int32(consolidated))) }
+
+    func stage(level: Int) -> LetterStage { stageFor(level: Int32(level)) }
+}
+
+/// Same bridge for the atlas drill: its ladder is Kotlin `Int`, its ceiling and
+/// its rung length are its own, and no view of it writes `Int32(…)`.
+extension CountryDrill {
+    var ceiling: Int { Int(MAX_LEVEL) }
+
+    func step(level: Int, winsAtLevel: Int, correct: Bool, clean: Bool,
+              fast: Bool) -> DrillRamp.RungStep {
+        step(level: Int32(level), winsAtLevel: Int32(winsAtLevel),
+             correct: correct, clean: clean, fast: fast)
+    }
+
+    /// Whether the top rung has EVER been stood on — the whole price of fast
+    /// mode, kept in kern so the page never spells the number out itself.
+    func fastUnlocked(bestLevel: Int) -> Bool { fastUnlocked(bestLevel: Int32(bestLevel)) }
+
+    func sample(content: CountryDrillContent, level: Int, reverse: Bool,
+                avoidId: String?, rng: KotlinRandom) -> CountryDrillTask {
+        sample(content: content, level: Int32(level), reverse: reverse,
+               avoidId: avoidId, rng: rng)
+    }
+}
+
+/// The one rung ramp both drills answer to. How long a rung is stays theirs
+/// (`LetterDrill.winsToAdvance` counts a vocabulary, `Trainer.winsToAdvance`
+/// reads the Fast modifier); what a rung does with an answer is kern's.
+extension DrillRamp {
+    func step(level: Int, winsAtLevel: Int, correct: Bool, clean: Bool,
+              maxLevel: Int, winsRequired: Int) -> DrillRamp.RungStep {
+        step(level: Int32(level), winsAtLevel: Int32(winsAtLevel),
+             correct: correct, clean: clean,
+             maxLevel: Int32(maxLevel), winsRequired: Int32(winsRequired))
+    }
+}
+
+extension DrillRamp.RungStep {
+    var nextLevel: Int { Int(level) }
+    var wins: Int { Int(winsAtLevel) }
+}
+
 // MARK: - Kern → Design value types
 //
 // `App/Sources/Design` is kern-free by design, so every rule it renders arrives

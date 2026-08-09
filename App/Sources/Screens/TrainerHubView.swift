@@ -1,16 +1,16 @@
 import SwiftUI
 import SprossKern
 
-/// Compact "Werkstatt" card on the Heute screen: TWO entries — 🔢 Zahlen and
-/// 🔤 Buchstaben. Each opens an overview: what the language does with numbers
-/// or letters, and the run started from the same page. Clock and sentences are
-/// not siblings of the numbers drill but variants of it, and the alphabet is
-/// not a sibling of the letter drill but the page it is launched from, so the
-/// chip row only has to name the two things a learner can practise. Offerings
-/// stay registry-driven: numbers appears only when Kern's trainer supports the
-/// learned language, letters only where an alphabet file was authored — an
-/// empty card hides entirely. Trainers are stateless: they never touch BoxState
-/// or FSRS.
+/// Compact "Sprossen" card on the Heute screen: 🔢 Zahlen, 🔤 Buchstaben and
+/// 🌍 Länder. Each opens an overview: what the language does with numbers or
+/// letters, or what the world is called in it, and the run started from the same
+/// page. Clock and sentences are not siblings of the numbers drill but variants
+/// of it, and the alphabet is not a sibling of the letter drill but the page it
+/// is launched from, so the chips only have to name the things a learner can
+/// practise. Offerings stay registry-driven: numbers appears only when Kern's
+/// trainer supports the learned language, letters only where an alphabet file
+/// was authored, and the atlas only where the pair joins one — an empty card
+/// hides entirely. Trainers are stateless: they never touch BoxState or FSRS.
 struct TrainerHubView: View, LanguageNaming {
     let model: AppModel
 
@@ -45,9 +45,24 @@ struct TrainerHubView: View, LanguageNaming {
         return templates.isEmpty ? nil : (source: source, target: target, templates: templates)
     }
 
+    /// The pair whose atlas this profile can drill, or nil where the catalog
+    /// joins none — registry by FILE, exactly as the alphabet's is. Kern is the
+    /// only judge of that, so nothing here counts countries.
+    var atlasPair: (source: String, target: String)? {
+        guard let catalog = model.catalog, let target = drillLanguage else { return nil }
+        let source = model.sourceLanguage
+        // why: kern REQUIRES a real pair and a Kotlin throw crossing back is a
+        // crash — the same guard the phrase drill takes.
+        guard source != target,
+              catalog.countryDrillContent(source: source, target: target) != nil else { return nil }
+        return (source: source, target: target)
+    }
+
+    var atlasAvailable: Bool { atlasPair != nil }
+
     var body: some View {
         Group {
-            if slotsAvailable || alphabetAvailable {
+            if slotsAvailable || alphabetAvailable || atlasAvailable {
                 card
             }
         }
@@ -58,6 +73,8 @@ struct TrainerHubView: View, LanguageNaming {
                                     phraseDrill: phraseDrill.map { ($0.source, $0.templates) })
                 } else if let language = destination.lettersLanguage {
                     LettersOverview(model: model, language: language)
+                } else if let pair = destination.countriesPair {
+                    CountriesOverview(model: model, source: pair.source, target: pair.target)
                 }
             }
             .environment(\.locale, model.knownLocale)
@@ -74,12 +91,18 @@ struct TrainerHubView: View, LanguageNaming {
             Text("trainer.subtitle")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
+            // ONE row: three chips sit on it comfortably on every device, and a
+            // grid that wrapped the third onto a line of its own would spend a
+            // whole row saying what fits beside its siblings.
             HStack(spacing: DL.Space.m) {
                 if slotsAvailable {
                     numbersChip
                 }
                 if alphabetAvailable {
                     lettersChip
+                }
+                if atlasAvailable {
+                    countriesChip
                 }
             }
         }
@@ -116,6 +139,20 @@ struct TrainerHubView: View, LanguageNaming {
         }
         .buttonStyle(TrainerChipButtonStyle())
         .accessibilityLabel(Text("trainer.numbers")
+            + Text("a11y.practiceSuffix \(languageName(drillLanguage ?? ""))"))
+    }
+
+    /// The atlas: the countries of the two languages first, then the world
+    /// outward — read on the page, drilled from it.
+    private var countriesChip: some View {
+        Button {
+            guard let pair = atlasPair else { return }
+            destination = .countries(source: pair.source, target: pair.target)
+        } label: {
+            chipLabel(emoji: "🌍", title: Text("trainer.countries"))
+        }
+        .buttonStyle(TrainerChipButtonStyle())
+        .accessibilityLabel(Text("trainer.countries")
             + Text("a11y.practiceSuffix \(languageName(drillLanguage ?? ""))"))
     }
 

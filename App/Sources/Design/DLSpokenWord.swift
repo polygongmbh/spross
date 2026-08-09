@@ -52,6 +52,38 @@ struct DLSpokenWord<Word: View>: View {
     }
 }
 
+// MARK: - The language a word is written in
+
+extension Text {
+    /// The word, tagged with the language it is written in, so VoiceOver says
+    /// it in that language's voice instead of spelling a Ukrainian word out in
+    /// German. nil where the caller knows no language to tag it with.
+    ///
+    /// It matters most where autoplay is off by design: a VoiceOver session
+    /// never autoplays (nothing may speak over the screen reader), so this
+    /// reading is the only pronunciation the learner gets.
+    static func spoken(_ text: String, language: String?) -> Text? {
+        guard let language else { return nil }
+        var label = AttributedString(text)
+        label.languageIdentifier = language
+        return Text(label)
+    }
+}
+
+extension View {
+    /// Reads this view as `text` said in `language` — every card that puts a
+    /// word on screen tags it the same way. Untagged where no language is
+    /// known: a label repeating what is already written buys nothing.
+    @ViewBuilder
+    func dlSpoken(_ text: String, language: String?) -> some View {
+        if let label = Text.spoken(text, language: language) {
+            accessibilityLabel(label)
+        } else {
+            self
+        }
+    }
+}
+
 // MARK: - Previews
 
 #Preview("Spoken word") {
