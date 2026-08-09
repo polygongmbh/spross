@@ -82,6 +82,9 @@ extension CountryDrillView {
                                 isPlaying: { model.isPronouncing($0, lang: answerLanguage) })) {
                 submit(task)
             }
+            // why: writing the name out is the answer — the review session's
+            // rule, so a country you know never asks for a confirming tap.
+            .onChange(of: input) { _, _ in approveWhenTyped(task) }
             switch feedback {
             case .neutral:
                 // ONE primary action: an empty field reveals, a typed one checks.

@@ -23,6 +23,29 @@ extension CountryDrillView {
         withAnimation { feedback = .revealed }
     }
 
+    /// Take a name typed out exactly right as the answer, without a "Prüfen"
+    /// tap: the field turns green with its checkmark and the card flips a beat
+    /// later. The review session's rule (`SessionView.approveWhenTyped`) and
+    /// the one a learner arrives here already knowing — writing the word out IS
+    /// the answer.
+    ///
+    /// EXACT only, where Return still forgives a slip: the typo budget would
+    /// fire a letter early and grade the name before it was finished, and a real
+    /// slip has to pause on its correction anyway. Backing out of a finished
+    /// name takes the green with it, so typing past the answer never books it.
+    func approveWhenTyped(_ task: CountryDrillTask) {
+        guard feedback == .neutral || feedback == .correct else { return }
+        autoAdvance?.cancel()
+        let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty, case .clean = verdict(trimmed, task: task) else {
+            if feedback == .correct { withAnimation { feedback = .neutral } }
+            return
+        }
+        if feedback != .correct { DLSound.correct() }
+        withAnimation { feedback = .correct }
+        AutoAdvance.scheduleLive(&autoAdvance) { advance(correct: true, clean: true) }
+    }
+
     func submit(_ task: CountryDrillTask) {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard feedback == .neutral, !trimmed.isEmpty else { return }
