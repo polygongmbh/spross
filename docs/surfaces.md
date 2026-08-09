@@ -125,6 +125,12 @@ Its scope is § Not yet.
   and cells run shortest pair first; which cards travel is kern's attention ranking, where
   they land is the tile's. Both list families carry the fortnight's review bars in the
   header, which has the room the bottom of a tile does not.
+- **A widget with no readable snapshot draws the sprout, never sample words.** The gallery
+  advertises with a sample box, but a placed tile only ever shows the learner's own — so
+  when the App Group holds no snapshot this version can decode (what an app update leaves
+  behind until the app next runs), the tile says where the words come from instead of
+  inventing a box, and the launch that follows writes the snapshot and reloads the timeline.
+  Every family names its tap destination, so the tile opens the app in that state too.
 - Watch: one graded **multiple-choice** loop — the watch never types, and the options
   arrive ranked from kern so that nothing but meaning tells the answer from its company:
   word class, then how the sentence closes, then area, then string shape

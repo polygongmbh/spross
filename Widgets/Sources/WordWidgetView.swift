@@ -8,12 +8,46 @@ struct WordWidgetView: View {
     @Environment(\.widgetFamily) private var family
 
     var body: some View {
+        if entry.isAwaitingContent {
+            awaitingContent
+        } else {
+            switch family {
+            case .accessoryRectangular: lockScreen
+            case .accessoryInline: inline
+            case .systemLarge: large
+            case .systemMedium: medium
+            default: small
+            }
+        }
+    }
+
+    /// The box lives in the app; the widget only reads what the app last handed
+    /// over, and an update can leave that unreadable until the app next runs.
+    /// The sprout keeps the tile recognisably Spross and names the way back in —
+    /// stats and sample words would both be inventions here.
+    @ViewBuilder
+    private var awaitingContent: some View {
         switch family {
-        case .accessoryRectangular: lockScreen
-        case .accessoryInline: inline
-        case .systemLarge: large
-        case .systemMedium: medium
-        default: small
+        case .accessoryInline:
+            Text(verbatim: "🌱 Spross öffnen")
+        case .accessoryRectangular:
+            VStack(alignment: .leading, spacing: 1) {
+                Text("Spross öffnen").font(.headline)
+                Text("für frische Wörter").font(.caption).foregroundStyle(.secondary)
+            }
+        default:
+            VStack(spacing: 4) {
+                Spacer(minLength: 0)
+                Text(verbatim: "🌱").font(.system(size: 44))
+                Text("Spross öffnen")
+                    .font(.title3.bold())
+                Text("für frische Wörter")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                Spacer(minLength: 0)
+            }
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity)
         }
     }
 
@@ -216,4 +250,10 @@ struct WordWidgetView: View {
     WordWidget()
 } timeline: {
     WordEntry.placeholder
+}
+
+#Preview("Ohne Box", as: .systemSmall) {
+    WordWidget()
+} timeline: {
+    WordEntry.awaitingContent
 }

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **The widget owns up when it has nothing of yours to show.** An app update can leave it
+  holding a box it cannot read, and until now it filled the tile with the sample words from
+  the gallery — a Swahili fridge sitting there as if you were learning it. It shows the
+  sprout instead, and opening the app hands the words straight back over. Tapping the tile
+  now names where it goes, so it reaches the app from that state as well.
+
 - **A third thing to practise in the Werkstatt: the world.** 🌍 Länder opens an atlas —
   every country the two languages both have a name for, with what its people are called
   and what is spoken there, on one page you can look things up on and start a run from.
