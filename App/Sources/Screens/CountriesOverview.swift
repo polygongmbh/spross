@@ -61,6 +61,9 @@ struct CountriesOverview: View {
     /// Scroll target for the tile a closed run leaves.
     static let resultAnchor = "result"
 
+    /// Scroll target for the tile carrying the reverse and fast switches.
+    static let modifierAnchor = "modifiers"
+
     /// Where the rung and the record are kept — one key per PAIR, because the
     /// atlas is a pair's material and not a language's.
     var storageKey: String { "countries.\(source)-\(target)" }
@@ -87,6 +90,15 @@ struct CountriesOverview: View {
                         scroll.scrollTo(Self.resultAnchor, anchor: .top)
                     }
                 }
+                #if DEBUG
+                // why: after the first layout — a scrollTo issued while the
+                // LazyVStack is still building has nothing to scroll to.
+                .task {
+                    guard Self.uitestWantsModifiers else { return }
+                    try? await Task.sleep(for: .milliseconds(400))
+                    scroll.scrollTo(Self.modifierAnchor, anchor: .center)
+                }
+                #endif
             }
             #if DEBUG
             .defaultScrollAnchor(Self.uitestAnchor)
@@ -151,6 +163,14 @@ struct CountriesOverview: View {
         // never outlive the price that bought it.
         if !fastUnlocked { fast = false }
         #if DEBUG
+        Self.uitestSeedProgress(key: storageKey)
+        bestRung = max(bestRung, TrainerProgress.best(for: storageKey))
+        // why: the numbers page's `-uitest-modifiers` hook — a toggle nobody can
+        // tap from a script is a surface no screenshot can reach. Fast still
+        // answers to its price, so seeding the rung is what opens it.
+        let asked = Self.uitestModifiers
+        if asked.contains("rev") { reverse = true }
+        if asked.contains("fast"), fastUnlocked { fast = true }
         if launch == nil, !Self.uitestLaunched, UserDefaults.standard.bool(forKey: "uitest-run"),
            content != nil {
             // why: a cover raised while the sheet under it is still animating in
@@ -191,6 +211,30 @@ extension CountriesOverview {
     /// the fold here too and no tap driver is installed.
     static var uitestAnchor: UnitPoint {
         UserDefaults.standard.string(forKey: "uitest-section") == "table" ? .bottom : .top
+    }
+
+    /// `-uitest-section modifiers` brings the switches into view. A fraction of
+    /// the page would not do it: the atlas under them is dozens of rows long, so
+    /// where the tile falls depends on how much content the pair has. Scrolling
+    /// to the tile's own id lands on it whatever the table's length.
+    static var uitestWantsModifiers: Bool {
+        UserDefaults.standard.string(forKey: "uitest-section") == "modifiers"
+    }
+
+    /// `-uitest-modifiers rev,fast` — the numbers page's hook, worded the same,
+    /// because neither switch can be tapped from a launch argument otherwise.
+    static var uitestModifiers: Set<String> {
+        Set((UserDefaults.standard.string(forKey: "uitest-modifiers") ?? "")
+            .split(whereSeparator: { $0 == "," || $0 == " " }).map(String.init))
+    }
+
+    /// `-uitest-countries-best 9` stands the ladder at a rung a fresh install
+    /// has not climbed, which is the only way to photograph fast mode OPEN.
+    /// Booked through `TrainerProgress` so it meets exactly the rule a real run
+    /// would have written, rather than a second door into the same state.
+    static func uitestSeedProgress(key: String) {
+        let best = UserDefaults.standard.integer(forKey: "uitest-countries-best")
+        if best > 0 { TrainerProgress.record(best, for: key) }
     }
 }
 #endif

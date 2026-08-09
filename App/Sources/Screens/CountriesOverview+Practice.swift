@@ -29,7 +29,7 @@ extension CountriesOverview {
                     .fill(Color.dlSurface)
             )
             pace
-            modifierTile
+            modifierTile.id(CountriesOverview.modifierAnchor)
             startButton
         }
     }
