@@ -13,6 +13,20 @@ and everything is scheduled by a golden-vector-tested FSRS-6 engine.
 Each card keeps ONE memory — reviews alternate between typed production
 and self-graded recognition of the same schedule.
 
+## What it looks like
+
+One engine, one palette, two native surfaces — the same word on both,
+because both asked the same box for it.
+
+| | Today | A card | The box |
+|---|---|---|---|
+| **iOS** | ![Spross on iOS — the Today screen](docs/screenshots/ios-heute.png) | ![Spross on iOS — a review card](docs/screenshots/ios-session.png) | ![Spross on iOS — the box](docs/screenshots/ios-box.png) |
+| **Android** | ![Spross on Android — the Today screen](docs/screenshots/android-heute.png) | ![Spross on Android — a review card](docs/screenshots/android-session.png) | ![Spross on Android — the box](docs/screenshots/android-box.png) |
+
+The Workshop rungs are where the two still differ:
+iOS offers Countries alongside Numbers and Letters, Android does not yet
+(`docs/backlog.md`).
+
 ## Structure
 
 - `kern/` — **SprossKern**, the Kotlin Multiplatform core (`net.spross.kern`):
