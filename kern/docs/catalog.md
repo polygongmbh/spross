@@ -58,9 +58,29 @@ Engine contract: `../README.md`.
   as it is for an alphabet, and the reads are **TRACKED** — a name lands inside joined card
   texts, so editing one restamps a running box exactly as a realization does (the audio and
   frame exemptions do not apply). `in` is Kotlin's keyword, so the field is `inForm`.
+  The table reaches PAST the five the app teaches: it also names every language the country
+  atlas lists, which is what the atlas drill's language vocabulary is made of.
   Lint: **`CatalogLanguageNamesLintTest`** (declared-language files only, every declared
-  language names every declared language including itself, forms trimmed and non-blank,
-  `in` present, note keys are declared readers).
+  language names every declared language including itself, every atlas code named by every
+  reader, forms trimmed and non-blank, `in` present, note keys are declared readers).
+- `catalog/countries/` → `CountryAtlas` + `CountryName` (`CountryAtlasParser`, hand-parsed on
+  the same conventions): `atlas.json` is the language-neutral manifest (slug, flag, the
+  languages spoken there, tier 2..4) and `<lang>.json` the realizations beside it. Read
+  through the **RAW** source, not the fingerprinting wrapper — the atlas joins no card, so
+  editing it must not restamp a running box (the frames' exemption, for the frames' reason).
+  Language names are not repeated here; they come from `catalog/languages/`, which is why a
+  manifest code no table names is a contradiction lint reports rather than a blank the drill
+  renders. Tier 1 is in no file — it is derived per profile from the pair being learned.
+  `Catalog.countryDrillContent(source, target)` joins a pair in manifest order and is null
+  where either side has no file or the join is empty.
+  Parse-shape rules (unknown keys, slug/code charset, duplicate rows, a tier outside 2..4,
+  a country naming an undeclared language) hard-fail the load, so lint carries only what
+  CONTENT alone can break: **`CountryAtlasLintTest`** (declared-language files only, every
+  slug realized in every declared language, every manifest code named by every reader, every
+  code spoken in some listed country, the five app languages entering at tier 2, slugs
+  disjoint from concepts and frames, a flag and a nationality on every row, forms
+  trimmed/deduped/never echoing their text, note keys are declared readers, and every
+  ordered pair joining an atlas with a tier-1 country in it).
 - **Language markers** (`{language}`, `{language-in}`, `{language-speak}`, `{language-learn}`)
   in a realization's text/synonyms/variants. No schema field declares them: the marker's
   presence is the declaration, and it always names the profile's TARGET, so each side of

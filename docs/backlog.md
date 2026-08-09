@@ -97,6 +97,13 @@ One line per item, with a file or context pointer, filed under the section it be
   becomes a base language, each needs its own hint pass, not a translation of the
   English: the German pivot prose for de is already parked in the drafts' notes, while
   sw needs authoring from scratch (sw `j` is /ɟ/, so the en "y in yes" anchor is wrong).
+- The country atlas ships exonyms and nationalities a native has never read
+  (`catalog/countries/*.json`, `catalog/languages/*.json`). Swahili was authored from
+  sw.wikipedia and sw.wiktionary and Ukrainian from uk.wikipedia, uk.wiktionary and SUM-11
+  with corpus checks, but a residue of judgment calls stayed open: which of two attested
+  Swahili stems is canonical, and which Ukrainian feminines exist at all. Every one of them
+  is listed, with its evidence, in the bodies of the two `feat(catalog): the atlas
+  reaches …` commits — that is the pointer, and nothing restates it.
 - Sentence-frame notes are authored for German readers only (`notes` in `catalog/drills/*.json`),
   so every other explanation language drills the frames with no gloss at all —
   the counted-noun agreement rules uk needs explained most of all.
@@ -208,8 +215,6 @@ One line per item, with a file or context pointer, filed under the section it be
   (`App/Sources/Screens/NumbersOverview+Practice.swift`). A full-screen ceremony was
   rejected for something that happens a handful of times; a moment on the row itself was
   not considered and might be worth it.
-- The Werkstatt card's two chips are laid out as a row; a third would want the grid the
-  hub used to have (`App/Sources/Screens/TrainerHubView.swift`).
 - The letter drill's typed and dictation stage has no live-check auto-advance —
   finishing the word does not end the step the way it does in vocab review and the
   trainer drills (`App/Sources/Design/AutoAdvance.swift`) — deferred because its verdict
@@ -236,6 +241,10 @@ One line per item, with a file or context pointer, filed under the section it be
 
 - Android not yet ported: Box browse, trainers, widget, 14-day strip, confetti/haptics
   (`surfaces.md` § Android companion).
+- The atlas drill's Android port waits on the android parity branch landing, and is UI ONLY:
+  the ladder, the pools, the accepted sets, the reference rows and the availability
+  predicate are all in kern commonMain already (`kern/.../trainer/CountryDrill.kt`), so the
+  port clones the `LetterDrill` split — a screen plus a progress store, no decisions.
 - Android carries its own unrelated palette (`android/.../ui/Theme.kt`) that never went
   through the contrast pass — it predates the ocean/forest re-cut and shares no values
   with `Design/Theme.swift`.

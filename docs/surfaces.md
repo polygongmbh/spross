@@ -5,7 +5,9 @@ auto-advance beats these share with it, are `design.md`'s.
 
 ## Trainers & the letter drill
 
-- **Trainers**: the Werkstatt card offers TWO entries, Zahlen and Buchstaben. Clock,
+- **Trainers**: the Werkstatt card offers THREE entries — Zahlen, Buchstaben and Länder —
+  in a grid rather than a row, which is what the third one costs. Each is its own SKILL,
+  which is the only thing that earns a chip. Clock,
   sentences and number forms are not siblings of the numbers drill but ways of being
   asked, so they are variants a run selects rather than chips, and the modifiers
   (reverse, fast, mix) are how it is played. A chip apiece was the alternative and it
@@ -75,6 +77,25 @@ auto-advance beats these share with it, are `design.md`'s.
   price until enough of them can be played back. Their mark is the step NUMBER, not a
   circle — the run walks the ladder by itself, and a circle beside each row reads as a
   choice that never answers the tap.
+- **Länder overview**: the atlas entry opens the run-first shape the other two use — the
+  rungs and the start above, the table under them. Its rungs are POOLS rather than stages:
+  rung 1 is the two languages the profile already has and the countries they are at home
+  in, and every rung after keeps everything below it and reaches one tier further out, so
+  climbing widens the world instead of replacing it. Each rung also adds a question — the
+  country's name, then its language and its people, then which language is spoken there,
+  and at the top the reverse of that, where a language is spoken. A tier nobody has
+  authored yet costs the learner nothing: the pool is the join intersected with the rung's
+  ceiling, so an empty tier just repeats the one below.
+  Nothing on the page is earned. The drill books no review and keeps no schedule, exactly
+  as the letter drill does not, so the rung rows say what a rung ASKS and never carry a
+  padlock or a price; the stored best rung is read here and never spent. The reverse
+  modifier is offered from the first run for the same reason — there is no ladder for it to
+  sit behind — and it flips which side asks: forward the learner answers in the language
+  being learned, reversed in their own.
+  The table under it is GENERATED from the joined atlas the run grades against, so the page
+  cannot show one exonym and mark another, and a country only one side names has neither a
+  row nor a task. It is the one surface here written in TWO languages at once: a country's
+  name is a pair, not a property of the language being learned.
 - **An endless run offers its exit where it is wanted, not on a schedule.** "Fertig"
   appears under the button that goes on, and only on the SECOND miss in a row: one
   miss is what a drill is made of, two is where carrying on stops feeling like a choice.
