@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,6 +33,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -198,6 +200,45 @@ fun SpokenWord(
  * recognition prompt, say. The citation form is always one of them, since this very
  * composable draws it.
  */
+/**
+ * THE headword of a card — the one word the whole card is about, on either side of it.
+ *
+ * It steps down to fit rather than breaking a word in half. The line bound is what makes
+ * the step-down bite: with lines unbounded, a word wider than the card simply wraps
+ * mid-word ("Sprach" / "e") and the paragraph reports no overflow at all, so the step
+ * search would leave it at full size. A single token gets ONE line, because the only wrap
+ * available to it IS a broken word; anything with a space keeps a second line and breaks
+ * there. The verdict labels and the Werkstatt entries already wear the same pair.
+ *
+ * The floor is where iOS bottoms out — `minimumScaleFactor(0.85)` on its own headword
+ * (`VocabCardView.swift`) — so a shrunken word never lands smaller here than it can there.
+ * Both cuts treat this as insurance for the rare long word, not as the way words are sized.
+ */
+@Composable
+fun Headword(
+    text: AnnotatedString,
+    modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+) {
+    val style = MaterialTheme.typography.headlineMedium
+    Text(
+        text,
+        modifier = modifier,
+        style = style,
+        color = color,
+        textAlign = TextAlign.Center,
+        maxLines = if (text.text.any(Char::isWhitespace)) 2 else 1,
+        autoSize = TextAutoSize.StepBased(
+            minFontSize = HEADWORD_FLOOR,
+            maxFontSize = style.fontSize,
+        ),
+    )
+}
+
+@Composable
+fun Headword(text: String, modifier: Modifier = Modifier, color: Color = Color.Unspecified) =
+    Headword(AnnotatedString(text), modifier, color)
+
 @Composable
 fun TargetReveal(
     target: Realization,
@@ -212,11 +253,9 @@ fun TargetReveal(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         SpokenWord(pronounce, chrome) {
-            Text(
+            Headword(
                 localizedTarget(Dl.colors.articleColoredText(target), target.lang),
-                style = MaterialTheme.typography.headlineMedium,
                 color = Dl.colors.accent,
-                textAlign = TextAlign.Center,
                 modifier = Modifier.weight(1f, fill = false),
             )
         }
@@ -301,6 +340,12 @@ private val SPEAKER_GLYPH = 16.sp
  * an area label, or the replay glyph of a question asked by ear.
  */
 private val REVIEW_CARD = 120.dp
+
+/**
+ * Where a shrinking headword stops. iOS bottoms out at 0.85 of a 22 pt headword; this
+ * lands no smaller, so the same long word is never tinier here than it is there.
+ */
+private val HEADWORD_FLOOR = 19.sp
 
 /**
  * The one card shadow — soft and low, so the card LIFTS rather than casting a box.

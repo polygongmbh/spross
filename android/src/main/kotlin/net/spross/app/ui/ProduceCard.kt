@@ -122,12 +122,7 @@ private fun PromptWord(model: AppModel, ui: SessionUi) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
     ) {
-        Text(
-            card.source.text,
-            style = MaterialTheme.typography.headlineMedium,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.weight(1f, fill = false),
-        )
+        Headword(card.source.text, modifier = Modifier.weight(1f, fill = false))
         if (card.promptFeminineMarker) FeminineBadge()
     }
 }

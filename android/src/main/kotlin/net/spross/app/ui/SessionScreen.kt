@@ -225,7 +225,7 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         emojiShown = emojiShowing(ui.emojiCue, revealed),
     ) {
         SpokenWord(model.pronounceAction(promptForm), chrome) {
-            Text(
+            Headword(
                 localizedTarget(
                     if (article == null) {
                         AnnotatedString(promptForm)
@@ -234,8 +234,6 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                     },
                     card.target.lang,
                 ),
-                style = MaterialTheme.typography.headlineMedium,
-                textAlign = TextAlign.Center,
                 modifier = Modifier.weight(1f, fill = false),
             )
         }
@@ -250,11 +248,9 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
                 ) {
-                    Text(
+                    Headword(
                         (listOf(card.source.text) + card.source.synonyms).joinToString(" / "),
-                        style = MaterialTheme.typography.headlineMedium,
                         color = Dl.colors.accent,
-                        textAlign = TextAlign.Center,
                         modifier = Modifier.weight(1f, fill = false),
                     )
                     if (card.promptFeminineMarker) FeminineBadge()

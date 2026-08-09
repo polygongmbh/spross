@@ -292,7 +292,11 @@ private val SprossTypography: Typography by lazy {
             displaySmall = displaySmall.rounded(),
             // hero — screen titles.
             headlineLarge = headlineLarge.rounded(FontWeight.Bold, 34.sp),
-            // hero, compact — the card headword.
+            // The card headword, and the one slot with NO iOS counterpart: it sits between
+            // `title` and `hero`, above the 22 pt the iOS card actually sets. Kept there
+            // because the headword is the whole point of a card and Android has the room —
+            // but it is this cut's own call, not a token copied across, and a word too wide
+            // for its card steps down instead of breaking ([Headword]).
             headlineMedium = headlineMedium.rounded(FontWeight.Bold),
             // statValue — section headings and the numbers on a stat tile. Bold is the
             // point of it: a stat set Regular is the one thing on the screen that has to
