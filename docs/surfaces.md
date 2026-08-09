@@ -6,7 +6,7 @@ auto-advance beats these share with it, are `design.md`'s.
 ## Trainers & the letter drill
 
 - **Trainers**: the Werkstatt card offers THREE entries — Zahlen, Buchstaben and Länder —
-  in a grid rather than a row, which is what the third one costs. Each is its own SKILL,
+  on ONE row, which all three sit on comfortably. Each is its own SKILL,
   which is the only thing that earns a chip. Clock,
   sentences and number forms are not siblings of the numbers drill but ways of being
   asked, so they are variants a run selects rather than chips, and the modifiers

@@ -91,11 +91,10 @@ struct TrainerHubView: View, LanguageNaming {
             Text("trainer.subtitle")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
-            // why: a GRID, not a row — a third chip is where a row starts
-            // squeezing its labels, and an adaptive column lets the card wrap
-            // rather than shrink whatever the device and the type size are.
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: DL.Space.m)],
-                      spacing: DL.Space.m) {
+            // ONE row: three chips sit on it comfortably on every device, and a
+            // grid that wrapped the third onto a line of its own would spend a
+            // whole row saying what fits beside its siblings.
+            HStack(spacing: DL.Space.m) {
                 if slotsAvailable {
                     numbersChip
                 }
