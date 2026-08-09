@@ -4,6 +4,9 @@ Static landing page advertising Spross and letting visitors try the real numbers
 Positioning: fun, playful, easy, effective breadth-first vocabulary growth —
 built to sit beside native-speaker conversation or a structured course, never to replace them.
 
+Design brief (standing reference: the job, the ideas, the voice, the constraints): `design.md`.
+A point-in-time critique of what is built today: `design-brief.md` — delete it once its rebuild ships.
+
 ## Brand carry-over
 
 - Palette: `App/Sources/Design/Theme.swift` is the source of truth (stone-and-moss surfaces, clay accent, ocean/forest secondaries, ochre for near-miss — never red).
