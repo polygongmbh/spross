@@ -1032,7 +1032,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Am weitesten gekommen: Stufe %@"
+            "value" : "Am weitesten gekommen: Sprosse %@"
           }
         },
         "en" : {
@@ -1048,7 +1048,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jeder Durchgang beginnt bei Stufe 1 und klettert von selbst weiter."
+            "value" : "Jeder Durchgang beginnt bei Sprosse 1 und klettert von selbst weiter."
           }
         },
         "en" : {
@@ -3856,13 +3856,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stufe %@"
+            "value" : "Sprosse %@"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Level %@"
+            "value" : "Rung %@"
           }
         }
       }
@@ -3904,7 +3904,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eine saubere Antwort pro Stufe statt zwei."
+            "value" : "Eine saubere Antwort pro Sprosse statt zwei."
           }
         },
         "en" : {
@@ -4152,13 +4152,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Minispiele"
+            "value" : "Sprossen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mini games"
+            "value" : "Rungs"
           }
         }
       }

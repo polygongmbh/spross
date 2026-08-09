@@ -5,7 +5,7 @@ auto-advance beats these share with it, are `design.md`'s.
 
 ## Trainers & the letter drill
 
-- **Trainers**: the Minispiele card offers THREE entries — Zahlen, Buchstaben and Länder —
+- **Trainers**: the Sprossen card offers THREE entries — Zahlen, Buchstaben and Länder —
   on ONE row, which all three sit on comfortably. Each is its own SKILL,
   which is the only thing that earns a chip. Clock,
   sentences and number forms are not siblings of the numbers drill but ways of being
@@ -64,7 +64,7 @@ auto-advance beats these share with it, are `design.md`'s.
   offer at all (no forms reading, no realized frames) has no row, since a padlock that can
   never open is a lie.
 - **Buchstaben overview**: the letters entry opens the same shape as the numbers one —
-  the drill's stages and start first, the alphabet table under them. The Minispiele card shows
+  the drill's stages and start first, the alphabet table under them. The Sprossen card shows
   when slots OR an alphabet exist for the target (the second predicate is catalog file
   presence), and the letters chip on the second alone: the table renders every row (glyph,
   name, IPA, context, hint, example with meaning where the reader's language knows the
