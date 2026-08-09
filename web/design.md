@@ -1,23 +1,12 @@
 # spross.net — design brief
 
-The standing reference for the site: what it is for, the ideas it carries, how it should sound,
-and what it may not do.
-It describes no particular layout.
 Everything under *Ideas*, *Voice*, *Colour and type* and *Constraints* is fixed;
 everything under *Shapes the page could take* is a suggestion to argue with.
 
-A point-in-time critique of whatever is currently built lives in `design-brief.md` and expires;
-this file does not.
-
 ## The job
 
-One page that makes a stranger want the app, and gives the ones who do a way to hear about it.
-
-The visitor is someone already learning a language —
-they have a tandem partner, a course, an evening class, a friend who switched languages on them —
-and they are losing vocabulary between those meetings.
-They are not looking for another course.
-They are looking for the thing that makes the course stick.
+One page that makes a stranger want the app,
+and gives the ones who do a way to hear about it and get an idea about it.
 
 The one action is the mailing-list signup.
 Everything else on the page exists to earn it.
@@ -25,58 +14,41 @@ Everything else on the page exists to earn it.
 ## What a visitor must understand in ten seconds
 
 1. **Spross is an app you install** — native, on iPhone and Android.
-   A page that never says this leaves the reader unsure what is being offered.
-2. **It grows vocabulary in a language they are learning**, a few words a day, on its own schedule.
+2. **It grows vocabulary in a language they are learning**, a few words a day, on your own schedule.
 3. **They can try the real thing right now, on this page, without installing anything.**
-
-If a layout hides any of the three below the fold, it is the wrong layout.
 
 ## Ideas
 
 These are the substance of the page.
-Each is true of the shipping app; each is stated as what the learner gets, never as how the engine works.
+Each is true of the shipping app; each is stated as what the learner gets.
 
 **The growing box.**
-Words come back just before they would have been lost, and the box only takes in new ones while
-the old ones are sitting well.
+Words come back just before they would have been lost, 
+and the box only takes in new ones while the old ones are sitting well.
 A few a day, indefinitely.
 Say: material that grows while you rest.
-Don't say: FSRS-6, scheduling intervals, stability and difficulty.
+internal jargon that should be avoided: FSRS-6, scheduling intervals, stability and difficulty.
 
 **Breadth before depth.**
 Following a conversation takes many words, not a few perfect ones.
 Spross spends the learner's minutes on range, and accepts imperfect recall as the price.
-This is the thesis that separates it from every flashcard app that optimises retention of a small set.
+This is separates it from a flashcard app that optimises retention of a small set.
 
 **A companion, not a replacement.**
 It sits beside a tandem partner or a course and keeps vocabulary growing between them.
 It teaches no grammar course and pretends to no curriculum.
 This framing is load-bearing: it sets the expectation the product can actually meet.
 
-**Phrases stand on words.**
-A phrase stays closed until the words inside it are steady, then opens onto ground that can hold it.
-The learner meets whole sentences only when nothing in them is new but the shape.
-
 **A forest, not a chart.**
 Each topic area is a tree, each word a leaf that becomes blossom, then fruit, as it matures.
 Progress is something you look at, not a percentage.
-This is the app's most distinctive screen and the hardest thing to convey in text —
-if any screenshot is ever produced, make it this one.
 
 **Practice that never runs out.**
-Numbers, clock times, years, the other ways a number is written, the alphabet, dictation,
-and whole sentences — all generated, so there is no deck to exhaust.
-
-**A near miss is amber, never red.**
-One slip per word is forgiven and shown corrected, in ochre.
-Nothing on the page — or in the app — punishes a wrong answer;
-a wrong answer is the productive event in retrieval practice.
-This is a feeling to reproduce in the page's own colour and copy, not only a feature to describe.
+Numbers, clock times, years, the alphabet, letters and whole sentences — all generated, so there is almost endless content.
 
 **Real voices.**
-Hundreds of recordings from native speakers back the words in German, Spanish, Swahili and Ukrainian.
+Hundreds of recordings from native speakers back the words,
 Where no recording exists the device speaks.
-Name the four languages that have recordings; English does not, yet.
 
 **Your own words.**
 Whatever the learner picks up in the wild goes into the same box and grows there,
@@ -89,16 +61,12 @@ No account, no ads.
 True and worth knowing — but it is a relief, not a headline.
 Put it where a reader who is already interested will find it, not where it competes with the ideas above.
 
-Two things the page must never claim:
-that new words are withheld when reviews are going badly (they are not — intake is bounded per round and by nothing else),
-and that there is no streak to lose (a day streak exists; it survives one missed day, not two).
-
 ## The name
 
 *Spross* is German for a sprout.
 *Sprosse* is a rung of a ladder.
 One letter apart, and the product is both: something that grows on its own, and something you climb a step at a time.
-A subscriber is a *Sprössling* — a seedling, and affectionately a kid.
+A subscriber is a *Sprössling* — a seedling, and affectionately a kid in the language.
 
 Rules for the wordplay:
 
@@ -106,16 +74,13 @@ Rules for the wordplay:
   Let the word do a job — name a level, label a step, sign off a footer — and let the reader find it.
 - **Once, well.** One place where a German reader smiles is worth more than three where everyone groans.
 - **Never at the cost of clarity.** A reader with no German must lose nothing by not getting it.
-- Offer the meaning to the curious (a title attribute, a quiet gloss), never to everyone.
-- Growth is the primary identity; the rung is the wink. Not the other way round.
+- Offer the meaning to the curious (a title attribute, a quiet gloss)
+- Growth is the primary identity; the rung is the wink
 
 ## Voice
 
-Warm, plain, a little playful, never breathless.
-Short sentences.
+Warm and a little playful.
 The garden metaphor kept honest — it describes a real mechanic every time it appears.
-Sparse emoji.
-Honest about limits, which is what makes the rest believable.
 
 The app's own strings are the reference:
 
