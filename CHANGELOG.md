@@ -8,7 +8,7 @@
   sprout instead, and opening the app hands the words straight back over. Tapping the tile
   now names where it goes, so it reaches the app from that state as well.
 
-- **A third thing to practise in the Werkstatt: the world.** 🌍 Länder opens an atlas —
+- **A third thing to practise in the Minispiele: the world.** 🌍 Länder opens an atlas —
   every country the two languages both have a name for, with what its people are called
   and what is spoken there, on one page you can look things up on and start a run from.
   The run begins with the countries your own two languages are at home in and widens

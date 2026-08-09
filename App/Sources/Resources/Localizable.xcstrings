@@ -4152,13 +4152,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Werkstatt"
+            "value" : "Minispiele"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Workshop"
+            "value" : "Mini games"
           }
         }
       }
