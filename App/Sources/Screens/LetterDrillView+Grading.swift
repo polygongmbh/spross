@@ -74,7 +74,7 @@ extension LetterDrillView {
     }
 
     /// What a typed answer earns. Amber (`typo`, `heard`) moves the ramp
-    /// neither way — it is neither a win to bank nor a miss to punish.
+    /// neither way — it is neither a win to bank nor a miss to step down for.
     private enum Verdict {
         case clean
         case typo(String)

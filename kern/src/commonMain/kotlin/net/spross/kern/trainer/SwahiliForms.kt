@@ -51,7 +51,7 @@ internal object SwahiliForms {
      * nothing blocks it before the numeral, and every corpus instance of a spelled-out
      * negative VALUE puts it first ("Jumla ya namba mbili ni hasi kumi na nne") — but the
      * only such corpus is a translation of unverified provenance. The mirror order grades so
-     * a learner applying the ordinary noun-adjective rule is not punished; kasoro does not,
+     * a learner applying the ordinary noun-adjective rule is accepted; kasoro does not,
      * because it is subtractive "less" (saa tatu kasorobo) and the glossaries map "minus"
      * to kutoa, i.e. to the operation. The English loan "minus" is heard in East African
      * maths speech and grades, but no source cites it, so it is never the reading shown.
