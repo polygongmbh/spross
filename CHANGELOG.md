@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Android answers out loud now.** The same three chimes the iPhone has always played —
+  rising for a hit, falling for a miss, one flat note for a revealed answer — sound on
+  review cards and in both drills, and a new record closes on the cheer. They follow the
+  media volume beside the spoken words, not the read-aloud switch: a verdict is
+  punctuation, not speech. The buzz that used to stand in for them is now kept for a
+  miss alone.
+
 - **Android has the Werkstatt.** Zahlen and Buchstaben on Heute, each opening a page
   where the picks and the start button sit above the reading rather than behind it. The
   numbers page offers what the ladder has opened — the clock, sentences and number forms

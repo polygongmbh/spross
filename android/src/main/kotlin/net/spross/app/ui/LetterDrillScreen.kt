@@ -74,7 +74,7 @@ fun LetterDrillScreen(model: AppModel) {
     // foreground that re-sweeps availability must not restart the run underneath it.
     val flow = remember {
         model.newLetterDrill(
-            onTone = { view.cueTone(it) },
+            onTone = { view.cueTone(it, model.cues) },
             onReleaseFocus = { focusManager.clearFocus() },
         )
     }

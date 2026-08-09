@@ -293,8 +293,7 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## Platform reach
 
-- Android surfaces still unported: `design.md` § Not yet owns the list; chimes additionally
-  need `res/raw/` assets, a small player and a licence line in `audio-licensing.md`.
+- Android surfaces still unported: `design.md` § Not yet owns the list.
 - Android back doors land on Heute even when opened from the box: `closeAbout()`,
   `cancelOnboarding()` and `activate()` all end at `Screen.Heute` (`android/.../AppModel.kt`).
 - Android Heute's failure card and the `error*`/`growth*` chrome are wired but unreachable:

@@ -38,19 +38,23 @@ android {
     }
 
     androidResources {
-        // why: the pronunciation player reads the recordings straight out of the APK
-        // (openFd), which answers only for a STORED entry — pinned here rather than
-        // left to whatever AAPT's default no-compress list happens to carry.
-        noCompress += "mp3"
+        // why: the pronunciation player and the cue pool read their clips straight out of
+        // the APK (openFd), which answers only for a STORED entry — pinned here rather
+        // than left to whatever AAPT's default no-compress list happens to carry.
+        noCompress += listOf("mp3", "wav")
     }
 }
 
-// why: catalog/ is the single in-repo content master — bundling goes through
-// this task so the APK can never drift from it (mirrors the iOS folder resource).
-abstract class SyncCatalogAssetsTask : DefaultTask() {
+// why: catalog/ and the feedback sounds are in-repo masters authored once for both
+// platforms — bundling goes through this task so the APK can never drift from either.
+abstract class SyncAssetsTask : DefaultTask() {
     @get:InputFiles
     @get:PathSensitive(PathSensitivity.RELATIVE)
-    abstract val catalogDir: ConfigurableFileCollection
+    abstract val sourceDir: ConfigurableFileCollection
+
+    /** Where under `assets/` the copy lands — what the app opens it by. */
+    @get:Input
+    abstract val subdir: Property<String>
 
     @get:OutputDirectory
     abstract val outputDir: DirectoryProperty
@@ -61,8 +65,8 @@ abstract class SyncCatalogAssetsTask : DefaultTask() {
     @TaskAction
     fun run() {
         fs.sync {
-            from(catalogDir) { exclude("README.md") }
-            into(outputDir.dir("catalog"))
+            from(sourceDir) { exclude("README.md") }
+            into(outputDir.dir(subdir.get()))
         }
     }
 }
@@ -70,10 +74,20 @@ abstract class SyncCatalogAssetsTask : DefaultTask() {
 androidComponents {
     onVariants { variant ->
         val variantName = variant.name.replaceFirstChar { it.uppercase() }
-        val syncTask = tasks.register<SyncCatalogAssetsTask>("sync${variantName}CatalogAssets") {
-            catalogDir.from(rootProject.layout.projectDirectory.dir("catalog"))
+        val assets = variant.sources.assets
+        val syncCatalog = tasks.register<SyncAssetsTask>("sync${variantName}CatalogAssets") {
+            sourceDir.from(rootProject.layout.projectDirectory.dir("catalog"))
+            subdir.set("catalog")
         }
-        variant.sources.assets?.addGeneratedSourceDirectory(syncTask, SyncCatalogAssetsTask::outputDir)
+        assets?.addGeneratedSourceDirectory(syncCatalog, SyncAssetsTask::outputDir)
+        // The chimes `scripts/sounds.py` writes; they live under the iOS app's resources
+        // because that is where the script has always put them, and CueSounds plays those
+        // very bytes so a re-tune by ear reaches both platforms at once.
+        val syncSounds = tasks.register<SyncAssetsTask>("sync${variantName}SoundAssets") {
+            sourceDir.from(rootProject.layout.projectDirectory.dir("App/Resources/Sounds"))
+            subdir.set("sounds")
+        }
+        assets?.addGeneratedSourceDirectory(syncSounds, SyncAssetsTask::outputDir)
     }
 }
 

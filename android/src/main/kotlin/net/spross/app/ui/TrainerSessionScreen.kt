@@ -61,7 +61,7 @@ fun TrainerSessionScreen(model: AppModel, mode: TrainerMode) {
     val flow = remember(mode) {
         model.newTrainerRun(
             mode,
-            onTone = { view.cueTone(it) },
+            onTone = { view.cueTone(it, model.cues) },
             // why: a pause that waits for a tap must not hold the keyboard — it covers
             // the very button the pause is waiting for.
             onReleaseFocus = { focusManager.clearFocus() },
@@ -83,7 +83,14 @@ fun TrainerSessionScreen(model: AppModel, mode: TrainerMode) {
     val leave = {
         val closed = flow.close(store.record(mode.recordKey), store.standing(mode.language))
         store.book(closed.progressBookings)
-        closed.summary?.let { if (it.newRecord) store.bookRecord(closed.recordKey, it.bestStreak) }
+        closed.summary?.let {
+            if (it.newRecord) {
+                store.bookRecord(closed.recordKey, it.bestStreak)
+                // why: the run's own reward, sounded as it closes — the result tile the
+                // learner lands on already carries the words, but not until they look.
+                model.cues.cheer()
+            }
+        }
         model.finishDrill(Screen.Numbers, closed.summary, title)
     }
     BackHandler(enabled = !flow.showingReference) { leave() }

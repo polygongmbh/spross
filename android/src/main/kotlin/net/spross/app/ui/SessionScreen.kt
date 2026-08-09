@@ -163,7 +163,7 @@ private fun TurnCard(model: AppModel, ui: SessionUi) {
     val flow = remember(card.id, ui.segments.size) {
         model.newTurn(
             ui,
-            onTone = { view.cueTone(it) },
+            onTone = { view.cueTone(it, model.cues) },
             // why: a pause that waits for a tap must not hold the keyboard — it covers
             // the very button the pause is waiting for.
             onReleaseFocus = { focusManager.clearFocus() },

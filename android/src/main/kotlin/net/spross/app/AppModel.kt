@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import net.spross.app.audio.CueSounds
 import net.spross.app.audio.Pronouncer
 import net.spross.app.ui.AreaNaming
 import net.spross.kern.box.ActivityDay
@@ -129,6 +130,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     /** The one door to a spoken target word — review cards and both drills. */
     val pronouncer = Pronouncer(app, prefs)
+
+    /** The verdict chimes, loaded here so the first answer of a session pays no decode. */
+    val cues = CueSounds(app)
 
     /**
      * The Werkstatt's standing: the climbed ladder, what the letter drill can ask here, and
@@ -518,9 +522,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     override fun onCleared() {
         super.onCleared()
-        // why: the synthesizer holds a binding to another process and the player a
-        // decoded clip — neither may outlive the model that opened them.
+        // why: the synthesizer holds a binding to another process and the players their
+        // decoded clips — none of it may outlive the model that opened them.
         pronouncer.release()
+        cues.release()
     }
 
     /**

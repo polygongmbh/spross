@@ -309,5 +309,4 @@ Box browse with search, own words and the settings block, the 14-day activity st
 and the whole Werkstatt — both drills on kern's runs, each behind its overview page
 with the generated numbers reference and the alphabet table (`surfaces.md`) —
 but no widget, forest canvas or growth headline;
-verdict cues are haptic-only (no chime assets ship in the APK)
-and a new record celebrates in words, without confetti.
+a new record celebrates in words, without confetti.

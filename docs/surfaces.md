@@ -100,9 +100,9 @@ auto-advance beats these share with it, are `design.md`'s.
 and both drill runs moved into kern the same rules by construction, not by porting discipline.
 The Werkstatt ships there whole: both overview pages, both drills, the generated
 numbers reference and the alphabet table.
-Platform deltas only: the catalog ships as APK assets synced from `catalog/`,
+Platform deltas only: the catalog and the chimes ship as APK assets synced from
+`catalog/` and `App/Resources/Sounds/`,
 the box is app-private and written after every answer rather than debounced,
-verdict cues are haptic where iOS also chimes,
 runs are full screens rather than covers — Back mirrors ✕ everywhere, and inside a run
 the reference panel eats Back first — and a fallen record celebrates in the tile's own
 words, without confetti.

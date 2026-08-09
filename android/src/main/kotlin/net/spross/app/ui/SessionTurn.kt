@@ -47,6 +47,7 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
+import net.spross.app.audio.CueSounds
 import net.spross.kern.session.CopyStep
 import net.spross.kern.session.SelfGrading
 import net.spross.kern.session.ToneKind
@@ -260,31 +261,26 @@ fun ConfirmButton(chrome: Chrome, onClick: () -> Unit) {
 }
 
 /**
- * What kern's verdict cue becomes on this platform: a haptic, and nothing audible.
+ * What kern's verdict cue becomes on this platform: the chime [CueSounds] holds, and — on
+ * a wrong answer alone — a haptic under it.
  *
- * The chimes are iOS resources (`App/Resources/Sounds/`) and this app bundles none, so
- * the verdict is FELT rather than heard — the one channel that is free of the
- * read-aloud switch and of the media volume both, exactly as a chime is meant to be.
+ * The three sounds carried the verdict on iOS from the start while this surface only ever
+ * buzzed, which is why the buzz used to answer all three: it was standing in for them.
+ * With the clips bundled it no longer stands in for anything, so the haptic falls back to
+ * the one place iOS puts it — a gentle wake-up on a miss, never on a reveal or a hit.
  */
-fun View.cueTone(kind: ToneKind) {
-    val constant = when (kind) {
-        // why: the expressive pair only exists from API 30 — an older device falls back to
-        // the key press it has always had rather than going silent about the verdict.
-        ToneKind.Correct ->
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                HapticFeedbackConstants.CONFIRM
-            } else {
-                HapticFeedbackConstants.VIRTUAL_KEY
-            }
-        ToneKind.Wrong ->
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                HapticFeedbackConstants.REJECT
-            } else {
-                HapticFeedbackConstants.LONG_PRESS
-            }
-        ToneKind.Reveal -> HapticFeedbackConstants.VIRTUAL_KEY
-    }
-    performHapticFeedback(constant)
+fun View.cueTone(kind: ToneKind, sounds: CueSounds) {
+    sounds.play(kind)
+    if (kind != ToneKind.Wrong) return
+    // why: the expressive constant only exists from API 30 — an older device taps with the
+    // long press it has always had rather than letting a miss pass unfelt.
+    performHapticFeedback(
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            HapticFeedbackConstants.REJECT
+        } else {
+            HapticFeedbackConstants.LONG_PRESS
+        },
+    )
 }
 
 /** The target language as the learner's chrome names it — what a field asks for by name. */
