@@ -359,3 +359,9 @@ One line per item, with a file or context pointer, filed under the section it be
   file's own measured headroom less 1 dB (`scripts/audio-catalog.py` [ANALYSIS]), so nothing
   reaches full scale and the iOS-clips / `LoudnessEnhancer`-compresses split has nothing
   left to act on; 70 entries sit under the loudness target to buy it.
+- A headword too wide for its card breaks MID-WORD on a 320 dp screen ("Sprach / e"),
+  because the emoji slot is mirrored on both edges and takes ~40 % of the card's width
+  there. Pre-existing, and not the font's doing — Roboto broke it in the same place.
+  iOS shrinks instead (`minimumScaleFactor(0.85)`, `VocabCardView.swift`); Compose needs
+  `BasicText(autoSize = TextAutoSize.StepBased(…))` plus a line bound to do the same
+  (`android/.../ui/CardFace.kt` headword, `SessionScreen.kt` prompt).
