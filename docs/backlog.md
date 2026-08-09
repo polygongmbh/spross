@@ -250,6 +250,9 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## Localization
 
+- Android chrome still says "Werkstatt" and "Stufe" where iOS now says "Sprossen" and "Sprosse" —
+  left untouched because the parity worktree is restructuring that exact table
+  (`android/.../Chrome.kt:122,129,196`); the rename rides along when that series lands.
 - Watch, widget, and complication chrome is hardcoded German with no string catalog
   (`Watch/Sources/WatchHomeView.swift`, `Widgets/Sources/WordWidgetView.swift`,
   `WatchWidgets/Sources/WatchWordWidgetView.swift`) —
