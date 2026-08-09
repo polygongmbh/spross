@@ -80,7 +80,8 @@ never the shape of the app.
   The recall clock runs from the prompt appearing to "Aufdecken" — the time spent choosing
   a button afterwards is thumb travel, not memory.
   The reveal carries the source meaning plus the full synonym family.
-- The emoji sits in a fixed slot **beside the headword**, never above it:
+- A picture on a card — a word's emoji, a country's flag — sits in a fixed slot
+  **beside the words**, never above them, and that holds for every card face the app has:
   vertical space is the scarce axis — card, input, button and keyboard share one screen —
   and the slot is held for the card's whole life, so a reveal moves nothing.
 - Ambiguous prompts (the target merges two source concepts) carry an **area label**.
@@ -90,6 +91,12 @@ never the shape of the app.
   prompt and reveal are styled by role, not by language.
 
 ## Review UX rules
+
+These bind every surface that asks the learner for an answer, the drills with the review
+loop (`surfaces.md`): they are rules about the asking, not about the box behind it.
+A new surface reads what it owes here, and reads what is already filed against whatever
+it was copied from (`backlog.md`) —
+a clone inherits its sibling's gaps, never the rules.
 
 - **The answer is never on screen twice, and never in the field** —
   the field carries what the LEARNER typed and nothing else.

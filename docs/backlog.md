@@ -221,6 +221,28 @@ One line per item, with a file or context pointer, filed under the section it be
   ladder carries a third `heard` outcome (a synonym of the dictated word) that the
   un-arm-on-further-typing logic would need a new case for, so it is a design call rather
   than a mechanical port (`LetterDrillView+Grading.swift` `verdict(_:task:)`).
+- A drill's typed-answer controls — the field, the one primary action that reveals or
+  checks, the amber hold, the revealed branch with its stop offer, the screen-reader
+  "Weiter" — stand verbatim in three files (`TrainerSessionView+Drill.swift`,
+  `LetterDrillView+Stages.swift`, `CountryDrillView+Content.swift`), and the live check
+  that arms them is wired per copy. One component owning the branch and the
+  `onChange(of: input)` beside it would make a fourth drill's auto-confirm structural
+  rather than remembered.
+- The card illustration slot is private to `VocabCardView` (`emojiIllustration`, its
+  mirrored spacer and the reserved diameter), so every further card face re-decides where
+  a picture goes instead of inheriting the slot.
+- Drill prompt cards size their word in fixed points (`CountryPromptCard`,
+  `HearPromptCard`, `TrainerPromptCard`), where review cards use the scaling `DL.Fonts`
+  styles — Dynamic Type does not reach a drill prompt.
+- The atlas run books a record but never sounds the cheer that goes with the confetti
+  (`CountryDrillView.finish()`; `TrainerSessionView.closeRun()` does).
+- Neither prompt nor reveal on `CountryPromptCard` and `HearPromptCard` is tagged with the
+  language VoiceOver should read it in, the way `VocabCardView.spokenLabel` is — and that
+  reading is the only pronunciation a screen-reader session ever gets.
+- The atlas is the first drill whose PROMPT is a word rather than a numeral or a played
+  sound: it can be heard neither by tap nor by autoplay, and its revealed answer does not
+  autoplay the way a slot drill's reading does — `read-aloud.md`'s table has no row for a
+  spoken-word drill prompt, so the rule is owed before the code (`CountryDrillView+Content.swift`).
 
 - The watch quiz tells correctness to the EYE only — tile tint, red wash and the rating
   emoji are all visual, and the emoji is `accessibilityHidden` because VoiceOver reading
