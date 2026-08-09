@@ -24,6 +24,10 @@ struct CountryDrillView: View, LanguageNaming {
     let content: CountryDrillContent
     /// Which way round the questions are asked, settled before a task is built.
     let reverse: Bool
+    /// Whether a rung falls on ONE clean win instead of three. Earned by having
+    /// topped the ladder once (`CountryDrill.fastUnlocked`); the page that opens
+    /// the run has already checked the price, so it is only obeyed here.
+    let fast: Bool
     /// Where the rung and the record are kept — the overview's key, so the two
     /// surfaces cannot book a run under two names.
     let storageKey: String
@@ -59,11 +63,12 @@ struct CountryDrillView: View, LanguageNaming {
     @State private var answerVoice: Task<Void, Never>?
     @FocusState var answerFocused: Bool
 
-    init(model: AppModel, content: CountryDrillContent, reverse: Bool, storageKey: String,
-         onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
+    init(model: AppModel, content: CountryDrillContent, reverse: Bool, fast: Bool = false,
+         storageKey: String, onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
         self.model = model
         self.content = content
         self.reverse = reverse
+        self.fast = fast
         self.storageKey = storageKey
         self.onFinish = onFinish
         // Every run opens at rung 1 however far the learner has climbed: what
@@ -196,7 +201,7 @@ struct CountryDrillView: View, LanguageNaming {
         // keeps sounding over the one that replaces it.
         hushAnswer()
         let step = CountryDrill.shared.step(level: level, winsAtLevel: winsAtLevel,
-                                            correct: correct, clean: clean)
+                                            correct: correct, clean: clean, fast: fast)
         let next = Self.sample(content: content, level: step.nextLevel,
                                reverse: reverse, avoiding: current?.id)
         level = step.nextLevel

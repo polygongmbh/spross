@@ -102,9 +102,15 @@ extension LetterDrill {
 extension CountryDrill {
     var ceiling: Int { Int(MAX_LEVEL) }
 
-    func step(level: Int, winsAtLevel: Int, correct: Bool, clean: Bool) -> DrillRamp.RungStep {
-        step(level: Int32(level), winsAtLevel: Int32(winsAtLevel), correct: correct, clean: clean)
+    func step(level: Int, winsAtLevel: Int, correct: Bool, clean: Bool,
+              fast: Bool) -> DrillRamp.RungStep {
+        step(level: Int32(level), winsAtLevel: Int32(winsAtLevel),
+             correct: correct, clean: clean, fast: fast)
     }
+
+    /// Whether the top rung has EVER been stood on — the whole price of fast
+    /// mode, kept in kern so the page never spells the number out itself.
+    func fastUnlocked(bestLevel: Int) -> Bool { fastUnlocked(bestLevel: Int32(bestLevel)) }
 
     func sample(content: CountryDrillContent, level: Int, reverse: Bool,
                 avoidId: String?, rng: KotlinRandom) -> CountryDrillTask {

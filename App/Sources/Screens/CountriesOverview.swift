@@ -38,6 +38,10 @@ struct CountriesOverview: View {
     /// Which way round a run asks. Offered from the first run: nothing here is
     /// bought, so there is no ladder for it to sit behind.
     @State var reverse = false
+    /// Whether a rung falls on one clean win instead of three. Unlike reverse
+    /// this one IS earned — the top rung has to have been stood on once — so it
+    /// stays off, and out of reach, until `bestRung` says otherwise.
+    @State var fast = false
     /// The furthest rung any run has reached — read on every appearance, since a
     /// closing run books its own.
     @State var bestRung = 0
@@ -50,6 +54,7 @@ struct CountriesOverview: View {
     /// carries it — the shape both other overviews use.
     private struct Launch: Identifiable {
         let reverse: Bool
+        let fast: Bool
         let id = UUID()
     }
 
@@ -110,7 +115,7 @@ struct CountriesOverview: View {
             Group {
                 if let content {
                     CountryDrillView(model: model, content: content, reverse: launch.reverse,
-                                     storageKey: storageKey,
+                                     fast: launch.fast, storageKey: storageKey,
                                      onFinish: { result in
                                          withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
                                      })
@@ -129,14 +134,22 @@ struct CountriesOverview: View {
     // MARK: - Starting a run
 
     func start() {
-        launch = Launch(reverse: reverse)
+        launch = Launch(reverse: reverse, fast: fast && fastUnlocked)
     }
+
+    /// Whether fast mode may be picked at all — kern's rule on the stored best,
+    /// never a rung number written down beside it.
+    var fastUnlocked: Bool { CountryDrill.shared.fastUnlocked(bestLevel: bestRung) }
 
     /// Reads the join and the standing rung at once. Both change under this page
     /// — the catalog when the profile does, the rung when a run closes.
     func reload() {
         content = model.catalog?.countryDrillContent(source: source, target: target)
         bestRung = TrainerProgress.best(for: storageKey)
+        // why: the numbers page's `normalizePicks` rule — a ladder that grew
+        // under a stored best puts fast back out of reach, and a toggle must
+        // never outlive the price that bought it.
+        if !fastUnlocked { fast = false }
         #if DEBUG
         if launch == nil, !Self.uitestLaunched, UserDefaults.standard.bool(forKey: "uitest-run"),
            content != nil {

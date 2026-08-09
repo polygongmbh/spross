@@ -1043,6 +1043,23 @@
         }
       }
     },
+    "countries.fast.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine saubere Antwort pro Sprosse statt drei."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One clean answer per rung instead of three."
+          }
+        }
+      }
+    },
     "countries.pace" : {
       "localizations" : {
         "de" : {
@@ -1092,6 +1109,7 @@
       }
     },
     "countries.rung.1" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1108,6 +1126,7 @@
       }
     },
     "countries.rung.1.hint" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1124,38 +1143,75 @@
       }
     },
     "countries.rung.2" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sprache und Leute"
+            "value" : "Die Namen der Sprachen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Language and people"
+            "value" : "The names of the languages"
           }
         }
       }
     },
     "countries.rung.2.hint" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dazu, wie die Sprache selbst heißt und wie ihre Leute heißen."
+            "value" : "Dazu: wie heißt die Sprache selbst?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Plus what the language itself is called, and its people."
+            "value" : "Plus: what is the language itself called?"
           }
         }
       }
     },
     "countries.rung.3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Leute"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The people"
+          }
+        }
+      }
+    },
+    "countries.rung.3.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dazu: wie heißen die Menschen von dort?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus: what are the people from there called?"
+          }
+        }
+      }
+    },
+    "countries.rung.4" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1171,23 +1227,59 @@
         }
       }
     },
-    "countries.rung.3.hint" : {
+    "countries.rung.4.hint" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Kreis wird größer – und: welche Sprache spricht man dort?"
+            "value" : "Der Kreis wird größer – dieselben Fragen, mehr Länder."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The circle widens — and: which language is spoken there?"
+            "value" : "The circle widens — the same questions, more countries."
           }
         }
       }
     },
-    "countries.rung.4" : {
+    "countries.rung.5" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wo spricht man was?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What is spoken there?"
+          }
+        }
+      }
+    },
+    "countries.rung.5.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dazu: welche Sprache spricht man in diesem Land?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus: which language is spoken in this country?"
+          }
+        }
+      }
+    },
+    "countries.rung.6" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1203,23 +1295,59 @@
         }
       }
     },
-    "countries.rung.4.hint" : {
+    "countries.rung.6.hint" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mehr Länder – und: welches Land ist das, nur an der Flagge?"
+            "value" : "Noch mehr Länder, dieselben Fragen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "More countries — and: which country is this, from its flag alone?"
+            "value" : "More countries again, the same questions."
           }
         }
       }
     },
-    "countries.rung.5" : {
+    "countries.rung.7" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur die Flagge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The flag alone"
+          }
+        }
+      }
+    },
+    "countries.rung.7.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dazu: welches Land ist das, nur an der Flagge? Umgekehrt entfällt das."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus: which country is this, from its flag alone? Not in a reversed run."
+          }
+        }
+      }
+    },
+    "countries.rung.8" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1235,7 +1363,8 @@
         }
       }
     },
-    "countries.rung.5.hint" : {
+    "countries.rung.8.hint" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1251,7 +1380,8 @@
         }
       }
     },
-    "countries.rung.6" : {
+    "countries.rung.9" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1267,18 +1397,19 @@
         }
       }
     },
-    "countries.rung.6.hint" : {
+    "countries.rung.9.hint" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alles aus dem Atlas – und: wo spricht man diese Sprache?"
+            "value" : "Dazu: wo spricht man diese Sprache?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Everything the atlas holds — and: where is this language spoken?"
+            "value" : "Plus: where is this language spoken?"
           }
         }
       }

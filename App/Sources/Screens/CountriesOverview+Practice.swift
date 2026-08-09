@@ -1,14 +1,19 @@
 import SwiftUI
 import SprossKern
 
-/// The drilling half of the atlas overview: the six rungs a run climbs, which
-/// way round it asks, and the button that starts it. State lives on
-/// CountriesOverview; split out purely for file size.
+/// The drilling half of the atlas overview: the nine rungs a run climbs, which
+/// way round it asks, how fast it climbs, and the button that starts it. State
+/// lives on CountriesOverview; split out purely for file size.
 ///
-/// There is no ladder to earn here. The drill is ungated — the atlas is reading
-/// matter, and material a learner may look up on the same page is material they
-/// may be asked — so the rows never carry a padlock: they say what a rung ASKS,
-/// and the run walks them by itself from rung 1 every time.
+/// The RUNGS are not earned. The drill is ungated — the atlas is reading matter,
+/// and material a learner may look up on the same page is material they may be
+/// asked — so those rows never carry a padlock: they say what a rung ASKS, and
+/// the run walks them by itself from rung 1 every time. Each names ONE new
+/// thing, because that is all a rung brings (`CountryDrill`).
+///
+/// Fast is the one thing here with a price, and it is a way of PLAYING rather
+/// than something to be asked: it is the reward for having topped the ladder the
+/// hard way, so it wears the numbers page's locked-modifier row until then.
 extension CountriesOverview {
 
     var practiceSection: some View {
@@ -24,7 +29,7 @@ extension CountriesOverview {
                     .fill(Color.dlSurface)
             )
             pace
-            reverseTile
+            modifierTile
             startButton
         }
     }
@@ -62,6 +67,9 @@ extension CountriesOverview {
         .accessibilityElement(children: .combine)
     }
 
+    // why: spelled out rather than interpolated — a key built with `\(rung)`
+    // becomes the format string "countries.rung.%lld" and localizes nothing,
+    // and these keys would stop being greppable from the catalog.
     private static func title(_ rung: Int) -> LocalizedStringKey {
         switch rung {
         case 1: return "countries.rung.1"
@@ -69,7 +77,10 @@ extension CountriesOverview {
         case 3: return "countries.rung.3"
         case 4: return "countries.rung.4"
         case 5: return "countries.rung.5"
-        default: return "countries.rung.6"
+        case 6: return "countries.rung.6"
+        case 7: return "countries.rung.7"
+        case 8: return "countries.rung.8"
+        default: return "countries.rung.9"
         }
     }
 
@@ -80,7 +91,10 @@ extension CountriesOverview {
         case 3: return "countries.rung.3.hint"
         case 4: return "countries.rung.4.hint"
         case 5: return "countries.rung.5.hint"
-        default: return "countries.rung.6.hint"
+        case 6: return "countries.rung.6.hint"
+        case 7: return "countries.rung.7.hint"
+        case 8: return "countries.rung.8.hint"
+        default: return "countries.rung.9.hint"
         }
     }
 
@@ -90,7 +104,12 @@ extension CountriesOverview {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
             Text("countries.pace")
             if bestRung > 0 {
-                Text("countries.best \(bestRung.formatted())")
+                // why: clamped to the ladder's own ceiling. A best booked under
+                // an older, shorter ladder means something else now, and one
+                // booked under a LONGER one would print a rung that is not
+                // there — neither is worth a migration before release, but
+                // neither may show the learner a number off the page either.
+                Text("countries.best \(min(bestRung, CountryDrill.shared.ceiling).formatted())")
             }
         }
         .font(DL.Fonts.caption)
@@ -100,21 +119,26 @@ extension CountriesOverview {
 
     // MARK: - How it is played
 
-    /// The numbers page's modifier row: a switch with a line under it saying
-    /// what it does to a run. It names the two languages outright, because
-    /// "reversed" alone leaves the learner to work out which side is which.
-    private var reverseTile: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
-            Toggle(isOn: $reverse) {
-                Text("trainer.modifier.reverse")
-                    .font(DL.Fonts.headline)
-                    .foregroundStyle(Color.dlTextPrimary)
+    /// How a run is PLAYED, in the numbers page's modifier tile: a switch apiece
+    /// with a line under it saying what it does. Reverse is free (nothing here
+    /// is bought by asking a question the other way round); fast is earned, and
+    /// keeps its switch — dimmed, beside a padlock — with its price where the
+    /// line would be, because a ladder you can see is a reason to climb it.
+    private var modifierTile: some View {
+        VStack(alignment: .leading, spacing: DL.Space.l) {
+            VStack(alignment: .leading, spacing: DL.Space.s) {
+                Toggle(isOn: $reverse) {
+                    Text("trainer.modifier.reverse")
+                        .font(DL.Fonts.headline)
+                        .foregroundStyle(Color.dlTextPrimary)
+                }
+                .tint(.dlAccent)
+                Text(verbatim: reverseHint)
+                    .font(DL.Fonts.caption)
+                    .foregroundStyle(Color.dlTextSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            .tint(.dlAccent)
-            Text(verbatim: reverseHint)
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
-                .fixedSize(horizontal: false, vertical: true)
+            fastRow
         }
         .padding(DL.Space.l)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -122,6 +146,37 @@ extension CountriesOverview {
             RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
                 .fill(Color.dlSurface)
         )
+    }
+
+    /// Fast, priced out of kern's own rule: the top rung, stood on once. The
+    /// caption follows the numbers page's unlock line ("Freischalten: Sprosse
+    /// 9") rather than authoring a second price beside the ladder that sets it.
+    private var fastRow: some View {
+        let open = fastUnlocked
+        return VStack(alignment: .leading, spacing: DL.Space.s) {
+            Toggle(isOn: $fast) {
+                HStack(spacing: DL.Space.s) {
+                    if !open {
+                        Image(systemName: "lock.fill")
+                            .font(DL.Fonts.caption)
+                            .foregroundStyle(Color.dlTextSecondary)
+                    }
+                    Text("trainer.modifier.fast")
+                        .font(DL.Fonts.headline)
+                        .foregroundStyle(open ? Color.dlTextPrimary : Color.dlTextSecondary)
+                }
+            }
+            .tint(.dlAccent)
+            .disabled(!open)
+            // why: the atlas rung costs THREE clean wins, so the shared
+            // "statt zwei" hint would misprice it — this ladder says its own.
+            (open ? Text("countries.fast.hint")
+                  : Text("numbers.unlock") + Text(verbatim: " ")
+                      + Text("trainer.level \(CountryDrill.shared.ceiling.formatted())"))
+                .font(DL.Fonts.caption)
+                .foregroundStyle(Color.dlTextSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
     }
 
     /// Which side asks and which side answers, as the switch stands right now —
