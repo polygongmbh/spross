@@ -1,5 +1,6 @@
 package net.spross.app
 
+import net.spross.kern.trainer.CountryTaskKind
 import net.spross.kern.trainer.DrillModifier
 import net.spross.kern.trainer.DrillVariant
 import net.spross.kern.trainer.LetterStage
@@ -63,6 +64,37 @@ fun Chrome.hint(stage: LetterStage): String = when (stage) {
     LetterStage.Typed -> stageTypedHint
     LetterStage.Dictation -> stageDictationHint
 }
+
+/**
+ * What an atlas question ASKS. The kind names the rule, and this is the only place it turns
+ * into words — none of which names a language, because the field's placeholder says which
+ * side is owed.
+ */
+fun Chrome.countryAsk(kind: CountryTaskKind): String = when (kind) {
+    CountryTaskKind.CountryName -> countryAskCountry
+    CountryTaskKind.FlagCountry -> countryAskFlag
+    CountryTaskKind.LanguageName -> countryAskLanguage
+    CountryTaskKind.Nationality -> countryAskNationality
+    CountryTaskKind.SpokenIn -> countryAskSpokenIn
+    CountryTaskKind.SpokenWhere -> countryAskSpokenWhere
+}
+
+/** What a rung of the atlas ladder is called, and the line under it. */
+fun Chrome.countryRung(rung: Int): String = countryRungs.rowFor(rung)
+
+fun Chrome.countryRungHint(rung: Int): String = countryRungHints.rowFor(rung)
+
+/** How far from home a reference group sits — kern hands the tier over already effective. */
+fun Chrome.countryTier(tier: Int): String = countryTiers.rowFor(tier)
+
+/**
+ * The wording for a 1-based row of a kern-length ladder. A ladder that grew past the table
+ * takes the last wording rather than printing nothing: kern is free to add a rung before the
+ * chrome has a sentence for it, and a rung with no name at all would be worse than a
+ * repeated one — the same fallback the iOS catalog's `default:` case makes.
+ */
+private fun List<String>.rowFor(index: Int): String =
+    getOrNull(index - 1) ?: lastOrNull() ?: ""
 
 /**
  * What a locked row costs, straight out of kern's unlock table — never a price authored

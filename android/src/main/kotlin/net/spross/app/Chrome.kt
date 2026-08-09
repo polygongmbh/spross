@@ -56,8 +56,9 @@ data class Chrome(
     val creditsRecordings: String, // %d = how many files the speaker contributed
     val creditsUnmodified: String,
     val creditsCommons: String,
+    /** The free-practice card's own name — the ladder both drills climb, not a workshop. */
     val trainingTitle: String,
-    val trainingSubtitle: String,  // what the Werkstatt is, under its name
+    val trainingSubtitle: String,  // what free practice is, under its name
     val lettersTitle: String,
     val lettersHear: String,       // the question a letter-name prompt asks
     val lettersSpell: String,      // …and the one a gap word asks
@@ -65,7 +66,7 @@ data class Chrome(
     val letterChoice: String,      // %s = the glyph — a tile's spoken name
     val replayPrompt: String,      // the replay button's name
     val promptInLanguage: String,  // %s = target language name
-    val level: String,             // %d
+    val level: String,             // %d — the rung a run stands on
     val streak: String,            // %d — answers in a row, never days
     val typoCorrection: String,    // %s = the spelling the learner missed
     val heardInstead: String,      // %s = the form that actually played
@@ -77,10 +78,10 @@ data class Chrome(
     val answerCorrect: String,     // an answered tile's state, never colour alone
     val answerWrong: String,
 
-    // ── The two overview pages ──────────────────────────────────────────────────
-    /** The ✕'s name — the corner both pages and every run wear on the left. */
+    // ── The three overview pages ────────────────────────────────────────────────
+    /** The ✕'s name — the corner every page and every run wears on the left. */
     val close: String,
-    val numbersTitle: String,      // the Werkstatt entry, and the variant's own name
+    val numbersTitle: String,      // the hub entry, and the variant's own name
     val numbersPage: String,       // %s = the language being learnt
     val lettersPage: String,       // %s
     val overviewPractice: String,  // the heading the picks stand under
@@ -133,6 +134,34 @@ data class Chrome(
     val alphabetTitle: String,
     val alphabetSpeakName: String,
     val alphabetSpeakExample: String,
+
+    // ── The atlas: the Länder page and its run ──────────────────────────────────
+    val countriesTitle: String,    // the hub entry, and what the result tile says was drilled
+    val countriesPage: String,     // %s = the language being learnt
+    val countriesReference: String,
+    /** How the ladder is walked, said once instead of marked on every rung row. */
+    val countriesPace: String,
+    val countriesBest: String,     // %d = the furthest rung any run reached
+    val countriesFastHint: String, // this ladder costs THREE clean wins, so it prices its own
+    val countriesReverseHint: String, // %1$s = the side asked in, %2$s = the side owed
+    /**
+     * The rungs, in the order they are climbed — one entry per rung of kern's own ladder
+     * ([net.spross.kern.trainer.CountryDrill.MAX_LEVEL]), read through [countryRung].
+     */
+    val countryRungs: List<String>,
+    val countryRungHints: List<String>,
+    /** How far from home a reference group sits, innermost first — read through [countryTier]. */
+    val countryTiers: List<String>,
+    /**
+     * What a question ASKS. None of them names a language: the field's placeholder says
+     * which side is owed, and saying it here too would be the third telling.
+     */
+    val countryAskCountry: String,
+    val countryAskFlag: String,
+    val countryAskLanguage: String,
+    val countryAskNationality: String,
+    val countryAskSpokenIn: String,
+    val countryAskSpokenWhere: String,
 
     // ── Box browse ──────────────────────────────────────────────────────────────
     val boxTitle: String,

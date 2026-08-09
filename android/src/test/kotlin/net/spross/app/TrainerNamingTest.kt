@@ -21,13 +21,13 @@ class TrainerNamingTest {
         assertEquals("Freischalten: 🔢 4 Stellen", clock)
 
         val phrases = ChromeDe.unlockPrice(DrillUnlocks.requirements(DrillVariant.Phrases))
-        assertTrue(phrases.startsWith("Freischalten: 🕐 Uhrzeit Stufe "), phrases)
+        assertTrue(phrases.startsWith("Freischalten: 🕐 Uhrzeit Sprosse "), phrases)
     }
 
     @Test
     fun aModifierPricesWhateverItsTableAsks() {
         val mix = ChromeEn.unlockPrice(DrillUnlocks.requirements(DrillModifier.Mix))
-        assertEquals("Unlocks at: ➗ Forms Level 5", mix)
+        assertEquals("Unlocks at: ➗ Forms Rung 5", mix)
     }
 
     /**
@@ -40,7 +40,7 @@ class TrainerNamingTest {
         val both = ChromeEn.unlockPrice(
             mapOf(DrillVariant.Numbers to 10, DrillVariant.Forms to 5),
         )
-        assertEquals("Unlocks at: 🔢 10 digits · ➗ Forms Level 5", both)
+        assertEquals("Unlocks at: 🔢 10 digits · ➗ Forms Rung 5", both)
     }
 
     /** Nothing to buy, nothing to say — the prefix stands alone rather than trailing a gap. */
