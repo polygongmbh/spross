@@ -1,8 +1,11 @@
 package net.spross.app
 
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedContent
@@ -47,7 +50,20 @@ class SprossActivity : ComponentActivity() {
         // icons kept the old polarity. This owns both bars and re-applies on the change,
         // and it is also the only thing that ever sets the NAVIGATION bar's icons, which
         // the themes never named at all.
-        enableEdgeToEdge()
+        // Both bars fully transparent: the default styles lay a light SCRIM under the
+        // navigation bar, which paints a white band across the bottom of a stone-paper
+        // app. The window background is the paper (`@color/spross_window_background`),
+        // so with no scrim the bars simply show it.
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT),
+        )
+        // why: asking for a transparent navigation bar is not enough — since API 29 the
+        // system re-imposes its own scrim unless contrast enforcement is switched off,
+        // and that scrim is white, which is a band across the bottom of a stone-paper app.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            window.isNavigationBarContrastEnforced = false
+        }
         super.onCreate(savedInstanceState)
         setContent {
             SprossTheme {
