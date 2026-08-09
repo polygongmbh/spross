@@ -228,9 +228,6 @@ One line per item, with a file or context pointer, filed under the section it be
   that arms them is wired per copy. One component owning the branch and the
   `onChange(of: input)` beside it would make a fourth drill's auto-confirm structural
   rather than remembered.
-- The card illustration slot is private to `VocabCardView` (`emojiIllustration`, its
-  mirrored spacer and the reserved diameter), so every further card face re-decides where
-  a picture goes instead of inheriting the slot.
 - Drill prompt cards size their word in fixed points (`CountryPromptCard`,
   `HearPromptCard`, `TrainerPromptCard`), where review cards use the scaling `DL.Fonts`
   styles — Dynamic Type does not reach a drill prompt.
