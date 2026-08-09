@@ -89,7 +89,8 @@ fun HeuteScreen(model: AppModel) {
                 onClick = { model.openBox() },
                 modifier = Modifier
                     .heightIn(min = 48.dp)
-                    .semantics { contentDescription = chrome.boxNav },
+                    .semantics { contentDescription = chrome.boxNav }
+                    .pressSpring(),
                 shape = MaterialTheme.shapes.small,
                 colors = ButtonDefaults.filledTonalButtonColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -174,7 +175,7 @@ private fun WerkstattCard(model: AppModel) {
                 if (model.numbersOffered) {
                     OutlinedButton(
                         onClick = { model.openNumbers() },
-                        modifier = Modifier.weight(1f).heightIn(min = 48.dp),
+                        modifier = Modifier.weight(1f).heightIn(min = 48.dp).pressSpring(),
                         shape = MaterialTheme.shapes.small,
                     ) {
                         EntryLabel("🔢 ${chrome.numbersTitle}")
@@ -183,7 +184,7 @@ private fun WerkstattCard(model: AppModel) {
                 if (model.lettersOffered) {
                     OutlinedButton(
                         onClick = { model.openLetters() },
-                        modifier = Modifier.weight(1f).heightIn(min = 48.dp),
+                        modifier = Modifier.weight(1f).heightIn(min = 48.dp).pressSpring(),
                         shape = MaterialTheme.shapes.small,
                     ) {
                         EntryLabel("🔤 ${chrome.lettersTitle}")

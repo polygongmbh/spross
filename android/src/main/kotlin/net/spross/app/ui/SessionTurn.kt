@@ -144,7 +144,7 @@ fun VerdictButtons(chrome: Chrome, flow: TurnFlow, modifier: Modifier = Modifier
 private fun VerdictButton(label: String, color: Color, modifier: Modifier, onClick: () -> Unit) {
     Button(
         onClick = onClick,
-        modifier = modifier.heightIn(min = 48.dp),
+        modifier = modifier.heightIn(min = 48.dp).pressSpring(),
         shape = MaterialTheme.shapes.small,
         // The ink cut for accent fills, never white: in the dark the accents are pastels
         // and white sinks to about 1.8:1 on them.
@@ -213,7 +213,7 @@ fun WriteOutStep(model: AppModel, flow: TurnFlow, step: CopyStep, targetName: St
 fun ConfirmButton(chrome: Chrome, onClick: () -> Unit) {
     Button(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
         shape = MaterialTheme.shapes.small,
     ) {
         Text(chrome.next)

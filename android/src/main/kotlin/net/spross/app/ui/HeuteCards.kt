@@ -113,7 +113,7 @@ fun SessionCard(model: AppModel, standing: HeuteStanding, streak: Int) {
         }
         Button(
             onClick = { model.startSession() },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) {
             Text(chrome.sessionStart, style = MaterialTheme.typography.titleMedium)
@@ -150,7 +150,7 @@ fun DoneCard(model: AppModel, standing: HeuteStanding, streak: Int) {
         if (standing.canPracticeMore) {
             OutlinedButton(
                 onClick = { model.startExtraSession() },
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) { Text(chrome.extraRound) }
         }
@@ -185,7 +185,7 @@ fun StateCard(
         action?.let { (label, run) ->
             OutlinedButton(
                 onClick = run,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) { Text(label) }
         }

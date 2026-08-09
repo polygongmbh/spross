@@ -154,7 +154,8 @@ private fun LanguageMenu(
                 shape = MaterialTheme.shapes.small,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .semantics { contentDescription = title },
+                    .semantics { contentDescription = title }
+                    .pressSpring(),
             ) {
                 Text(
                     LanguageChoices.pickerLabel(selected, catalog.languages[selected]),

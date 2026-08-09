@@ -125,6 +125,7 @@ fun BoxSearchScreen(
                         SearchNote(chrome.searchNothing.format(query))
                         Button(
                             onClick = { writing = true },
+                            modifier = Modifier.pressSpring(),
                             shape = MaterialTheme.shapes.small,
                         ) { Text(chrome.searchWriteOwn.format(query)) }
                     }

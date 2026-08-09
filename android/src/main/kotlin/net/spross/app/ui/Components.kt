@@ -188,7 +188,7 @@ fun RatingButtons(chrome: Chrome, onRate: (Rating) -> Unit, modifier: Modifier =
 private fun RatingButton(label: String, color: Color, modifier: Modifier, onClick: () -> Unit) {
     Button(
         onClick = onClick,
-        modifier = modifier,
+        modifier = modifier.pressSpring(),
         shape = MaterialTheme.shapes.small,
         // The ink cut for accent fills, never white: in the dark the accents are pastels
         // and white sinks to about 1.8:1 on them.

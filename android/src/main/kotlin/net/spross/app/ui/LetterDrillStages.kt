@@ -94,7 +94,7 @@ private fun ChoiceTile(
             contentDescription = chrome.letterChoice.format(glyph)
             if (answered && isAnswer) stateDescription = chrome.answerCorrect
             if (answered && isChosen && !isAnswer) stateDescription = chrome.answerWrong
-        },
+        }.pressSpring(),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = fill,
             disabledContainerColor = fill,
@@ -131,7 +131,7 @@ fun TypedStage(
         if (flow.state.owesAnswer) {
             Button(
                 onClick = { flow.primary() },
-                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) {
                 Text(if (flow.input.isBlank()) chrome.reveal else chrome.check)

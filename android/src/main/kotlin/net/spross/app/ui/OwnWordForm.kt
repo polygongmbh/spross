@@ -113,7 +113,7 @@ fun OwnWordForm(
                 onAdded()
             },
             enabled = draft.isComplete,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) { Text(chrome.ownWordAdd) }
     }

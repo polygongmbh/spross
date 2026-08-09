@@ -250,7 +250,7 @@ private fun UnmuteRow(model: AppModel, task: LetterDrillTask, chrome: Chrome) {
                 model.pronouncer.muted = false
                 model.playLetterPrompt(task, Pronouncer.Trigger.TAP)
             },
-            modifier = Modifier.heightIn(min = 48.dp),
+            modifier = Modifier.heightIn(min = 48.dp).pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) {
             Text(chrome.enableSound)

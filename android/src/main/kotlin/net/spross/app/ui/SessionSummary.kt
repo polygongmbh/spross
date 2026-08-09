@@ -83,7 +83,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         if (ui.canPracticeMore) {
             OutlinedButton(
                 onClick = { model.continueEndless() },
-                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) {
                 Text(chrome.keepPracticing)
@@ -92,7 +92,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         }
         Button(
             onClick = { model.finishSession() },
-            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) {
             Text(chrome.finish)

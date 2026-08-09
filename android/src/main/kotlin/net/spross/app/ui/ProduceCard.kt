@@ -91,7 +91,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
             // ONE primary action: an empty field reveals, a typed one checks.
             Button(
                 onClick = { flow.primary() },
-                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) {
                 Text(if (flow.input.isBlank()) chrome.reveal else chrome.check)

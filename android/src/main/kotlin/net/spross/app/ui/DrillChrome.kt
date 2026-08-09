@@ -134,7 +134,7 @@ fun DrillStreakLine(
 fun DrillStopOffer(chrome: Chrome, onClick: () -> Unit) {
     OutlinedButton(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
         shape = MaterialTheme.shapes.small,
     ) {
         Text(chrome.finish)

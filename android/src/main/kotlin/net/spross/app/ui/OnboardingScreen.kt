@@ -106,7 +106,7 @@ fun OnboardingScreen(model: AppModel) {
         Button(
             onClick = { target?.let { model.completeOnboarding(source, it) } },
             enabled = target != null,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) {
             Text(chrome.letsGo)
