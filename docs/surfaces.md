@@ -80,25 +80,38 @@ auto-advance beats these share with it, are `design.md`'s.
 - **Länder overview**: the atlas entry opens the run-first shape the other two use — the
   rungs and the start above, the table under them. Its rungs are POOLS rather than stages:
   rung 1 is the two languages the profile already has and the countries they are at home
-  in, and every rung after keeps everything below it and reaches one tier further out, so
-  climbing widens the world instead of replacing it. Each rung also adds a question — the
-  country's name, then its language and its people, then which language is spoken there,
-  then the country behind a flag alone, and at the top the reverse of the spoken-in
-  question, where a language is spoken. A tier nobody has
+  in, and every rung after keeps everything below it, so climbing widens the world instead
+  of replacing it. NINE rungs, each bringing exactly ONE new thing — either a question or a
+  tier, never both: country names, then language names, then the people; then tier 2; then
+  which language is spoken there; then tier 3; then the country behind a flag alone; then
+  tier 4; and at the top the reverse of the spoken-in question, where a language is spoken.
+  Bundling the two (the old rung 4 opened a tier AND the flag question at once) left a
+  learner who slipped unable to say what had got harder. A tier nobody has
   authored yet costs the learner nothing: the pool is the join intersected with the rung's
   ceiling, so an empty tier just repeats the one below.
   A country the two languages call the SAME is not asked by name — the prompt would be the
   answer — and that is exactly the country the flag question brings back, since a card with
   no name written on it gives nothing away. Which names count as the same is kern's
   (`CountryDrill`), compared over every accepted form and blind to case and accents.
-  Nothing on the page is earned. The drill books no review and keeps no schedule, exactly
+  A REVERSED run shows no flag anywhere, and has no flag question at all: the answer is
+  then owed in the learner's OWN language, so a flag beside the prompt gives it away and a
+  flag alone asks them to recognize their own and write a name they have said all their
+  life. That leaves the flag rung adding nothing in that direction, where it stands on the
+  pool below exactly as an unauthored tier does.
+  The RUNGS are not earned. The drill books no review and keeps no schedule, exactly
   as the letter drill does not, so the rung rows say what a rung ASKS and never carry a
-  padlock or a price; the stored best rung is read here and never spent. The reverse
+  padlock or a price. The reverse
   modifier is offered from the first run for the same reason — there is no ladder for it to
   sit behind — and it flips which side asks: forward the learner answers in the language
   being learned, reversed in their own. Which side that is the placeholder says, not the
   card: its caption carries the ask — a bare "Deutschland" cannot say whether the country,
   its people or its language is owed — and, like the letter drill's, no language.
+  FAST is the one thing here with a price, and it is a way of PLAYING rather than something
+  to be asked: a rung falls on one clean win instead of the three it costs by default, and
+  it is offered only once the top rung has EVER been stood on. So the stored best rung is
+  no longer only read — it is what buys fast — and until it is paid the row keeps its
+  switch, dimmed behind a padlock, with the price where its line would be, out of kern's
+  own ceiling rather than a rung number authored beside it.
   The table under it is GENERATED from the joined atlas the run grades against, so the page
   cannot show one exonym and mark another, and a country only one side names has neither a
   row nor a task. It is the one surface here written in TWO languages at once: a country's
