@@ -39,12 +39,14 @@ class CountryDrillTests {
         languages: List<String>,
         source: String,
         target: String,
+        sourceVariants: List<String> = emptyList(),
     ) = AtlasCountryEntry(
         slug = slug,
         flag = "🏳",
         tier = tier,
         languages = languages,
-        source = CountryName(text = source, nationality = NationalityName("$source-person")),
+        source = CountryName(text = source, variants = sourceVariants,
+                             nationality = NationalityName("$source-person")),
         target = CountryName(
             text = target,
             nationality = NationalityName("$target-person", listOf("$target-woman")),
@@ -134,6 +136,37 @@ class CountryDrillTests {
     fun aTierWithNothingInItIsSkippedRatherThanAsked() {
         val gapped = content.copy(countries = content.countries.filter { it.tier != 1 })
         assertEquals(setOf("neighbour"), CountryDrill.tasks(gapped, 1).map { it.id }.toSet())
+    }
+
+    /**
+     * A name both languages spell alike is no question: the prompt would be the answer.
+     * Accents do not make two names ("Peru"/"Perú"), a different spelling does
+     * ("Kenia"/"Kenya"), and a form the other side accepts counts as the same name.
+     */
+    @Test
+    fun aCountryBothLanguagesCallTheSameIsNotAskedByName() {
+        val twinned = content.copy(
+            countries = content.countries + listOf(
+                country("same", 1, listOf("de"), "Malta", "Malta"),
+                country("accented", 1, listOf("de"), "Peru", "Perú"),
+                country("variant-match", 1, listOf("de"), "die Schweiz", "Schweiz",
+                        sourceVariants = listOf("Schweiz")),
+            ),
+        )
+        assertEquals(
+            home,
+            CountryDrill.tasks(twinned, 1).map { it.id }.toSet(),
+            "a name the two languages share was asked anyway",
+        )
+    }
+
+    /** A pair that agrees on EVERY name still owes rung 1 a question, easy or not. */
+    @Test
+    fun aPairThatAgreesOnEveryNameKeepsItsRung() {
+        val twins = content.copy(
+            countries = listOf(country("same", 1, listOf("de"), "Malta", "Malta")),
+        )
+        assertEquals(listOf("same"), CountryDrill.tasks(twins, 1).map { it.id })
     }
 
     /** Every language of a country answers it, including ones the rung has not opened. */

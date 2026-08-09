@@ -35,6 +35,34 @@ class RealCatalogCountryDrillTest {
     }
 
     /**
+     * The names the two languages share are filtered out of the name questions, and no
+     * real pair loses its opening rung to that (which is what the fallback would rescue —
+     * it must stay unreached, or a pair is silently drilling "Venezuela" → "Venezuela").
+     *
+     * A plain lowercase comparison, deliberately weaker than the accent-blind rule the
+     * drill filters on: this states what a learner must never see, not how it is computed.
+     */
+    @Test
+    fun noRungAsksForAnAnswerItsOwnPromptAlreadyGives() {
+        for ((source, target) in pairs()) {
+            val content = assertNotNull(catalog.countryDrillContent(source, target))
+            for (level in 1..CountryDrill.MAX_LEVEL) {
+                for (reverse in listOf(false, true)) {
+                    val named = CountryDrill.tasks(content, level, reverse)
+                        .filter { it.kind == CountryTaskKind.CountryName }
+                    assertTrue(named.isNotEmpty(), "$source→$target rung $level: no name question left")
+                    for (task in named) {
+                        assertTrue(
+                            task.accepted.none { it.lowercase() == task.promptText.lowercase() },
+                            "$source→$target rung $level: ${task.id} asks for the name it shows",
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Two hundred draws a rung, both directions, every pair: what this catches is a pool
      * that empties out or a task the builder cannot finish — the failures that would land
      * mid-run rather than on the overview.

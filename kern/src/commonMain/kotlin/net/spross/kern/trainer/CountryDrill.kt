@@ -22,7 +22,7 @@ import net.spross.kern.catalog.CountryDrillContent
  *
  * | rung | pool | asks |
  * |---|---|---|
- * | 1 | the profile's own languages and their countries (tier 1) | the country's name |
+ * | 1 | the profile's own languages and their countries (tier 1) | the country's name, where the two languages differ on it |
  * | 2 | tier 1 | + the language's, + the people's |
  * | 3 | + tier 2 | + which language is spoken there |
  * | 4 | + tier 3 | |
@@ -134,7 +134,12 @@ object CountryDrill {
         val languages = content.languages.filter { it.tier <= ceiling }
         return kinds.flatMap { kind ->
             when (kind) {
-                CountryTaskKind.CountryName -> countries.map { countryName(it, reverse) }
+                // why: a name both sides spell alike is no question — the prompt IS the
+                // answer. The fallback holds a pair whose every name matches: a rung with
+                // nothing in it would be worse than an easy one.
+                CountryTaskKind.CountryName ->
+                    countries.filter { it.namesDiffer() }.ifEmpty { countries }
+                        .map { countryName(it, reverse) }
                 CountryTaskKind.Nationality -> countries.map { nationality(it, reverse) }
                 CountryTaskKind.LanguageName -> languages.map { languageName(it, reverse) }
                 CountryTaskKind.SpokenIn -> countries.mapNotNull { spokenIn(content, it, ceiling, reverse) }
@@ -228,6 +233,55 @@ object CountryDrill {
             display = display,
             gloss = language.answer(reverse).name,
         )
+    }
+
+    /**
+     * Whether the two languages actually call this country something DIFFERENT. Asking a
+     * de→es learner for "Venezuela" teaches nothing: the prompt is already the answer, and
+     * typing it straight back would be graded correct.
+     *
+     * Compared over every accepted form on both sides — so a name that differs only by an
+     * article the other side also accepts counts as the same — and blind to case and to
+     * accents, which makes "Peru"/"Perú" one name and "Kenia"/"Kenya" two.
+     */
+    private fun AtlasCountryEntry.namesDiffer(): Boolean {
+        val known = (listOf(source.text) + source.variants).mapTo(mutableSetOf()) { fold(it) }
+        return (listOf(target.text) + target.variants).none { fold(it) in known }
+    }
+
+    /** Casefolded, stripped of accents and of everything that is not a letter or a digit. */
+    private fun fold(raw: String): String = buildString {
+        for (char in raw.lowercase()) {
+            val plain = ACCENTS[char] ?: char.toString()
+            for (letter in plain) if (letter.isLetterOrDigit()) append(letter)
+        }
+    }
+
+    /**
+     * The accents the atlas actually carries, plus the Latin ones a new language would
+     * bring. Kotlin common has no Unicode decomposition, so the map IS the rule.
+     */
+    private val ACCENTS: Map<Char, String> = buildMap {
+        fun spread(plain: String, accented: String) = accented.forEach { put(it, plain) }
+        spread("a", "áàâãäåā")
+        spread("c", "çćč")
+        spread("e", "éèêëē")
+        spread("i", "íìîïīı")
+        spread("n", "ñń")
+        spread("o", "óòôõöøō")
+        spread("u", "úùûüū")
+        spread("y", "ýÿ")
+        spread("s", "śšș")
+        spread("z", "źżž")
+        spread("g", "ğ")
+        spread("l", "ł")
+        spread("d", "đð")
+        spread("r", "ř")
+        spread("t", "ț")
+        put('ß', "ss")
+        put('æ', "ae")
+        put('œ', "oe")
+        put('þ', "th")
     }
 
     private fun AtlasCountryEntry.prompt(reverse: Boolean) = if (reverse) target else source
