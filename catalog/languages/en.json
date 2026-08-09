@@ -18,6 +18,22 @@
   "zh": { "name": "Chinese", "in": "in Chinese", "variants": ["Mandarin"] },
   "ja": { "name": "Japanese", "in": "in Japanese" },
   "hi": { "name": "Hindi", "in": "in Hindi" },
-  "ar": { "name": "Arabic", "in": "in Arabic" }
+  "ar": { "name": "Arabic", "in": "in Arabic" },
+  "ko": { "name": "Korean", "in": "in Korean" },
+  "vi": { "name": "Vietnamese", "in": "in Vietnamese" },
+  "he": { "name": "Hebrew", "in": "in Hebrew" },
+  "fi": { "name": "Finnish", "in": "in Finnish" },
+  "hu": { "name": "Hungarian", "in": "in Hungarian" },
+  "no": { "name": "Norwegian", "in": "in Norwegian" },
+  "da": { "name": "Danish", "in": "in Danish" },
+  "ro": { "name": "Romanian", "in": "in Romanian" },
+  "hr": { "name": "Croatian", "in": "in Croatian" },
+  "sr": { "name": "Serbian", "in": "in Serbian" },
+  "bg": { "name": "Bulgarian", "in": "in Bulgarian" },
+  "sk": { "name": "Slovak", "in": "in Slovak", "variants": ["Slovakian"] },
+  "th": { "name": "Thai", "in": "in Thai" },
+  "id": { "name": "Indonesian", "in": "in Indonesian", "variants": ["Bahasa Indonesia"] },
+  "fa": { "name": "Persian", "in": "in Persian", "variants": ["Farsi"] },
+  "am": { "name": "Amharic", "in": "in Amharic" }
  }
 }

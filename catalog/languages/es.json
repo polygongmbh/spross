@@ -18,6 +18,22 @@
   "zh": { "name": "chino", "in": "en chino", "variants": ["mandarín"] },
   "ja": { "name": "japonés", "in": "en japonés" },
   "hi": { "name": "hindi", "in": "en hindi" },
-  "ar": { "name": "árabe", "in": "en árabe" }
+  "ar": { "name": "árabe", "in": "en árabe" },
+  "ko": { "name": "coreano", "in": "en coreano" },
+  "vi": { "name": "vietnamita", "in": "en vietnamita" },
+  "he": { "name": "hebreo", "in": "en hebreo" },
+  "fi": { "name": "finlandés", "in": "en finlandés", "variants": ["finés"] },
+  "hu": { "name": "húngaro", "in": "en húngaro" },
+  "no": { "name": "noruego", "in": "en noruego" },
+  "da": { "name": "danés", "in": "en danés" },
+  "ro": { "name": "rumano", "in": "en rumano" },
+  "hr": { "name": "croata", "in": "en croata" },
+  "sr": { "name": "serbio", "in": "en serbio" },
+  "bg": { "name": "búlgaro", "in": "en búlgaro" },
+  "sk": { "name": "eslovaco", "in": "en eslovaco" },
+  "th": { "name": "tailandés", "in": "en tailandés" },
+  "id": { "name": "indonesio", "in": "en indonesio", "variants": ["bahasa indonesia"] },
+  "fa": { "name": "persa", "in": "en persa", "variants": ["farsi"] },
+  "am": { "name": "amárico", "in": "en amárico" }
  }
 }

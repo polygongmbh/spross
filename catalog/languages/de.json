@@ -18,6 +18,22 @@
   "zh": { "name": "Chinesisch", "in": "auf Chinesisch", "variants": ["Mandarin", "Hochchinesisch"] },
   "ja": { "name": "Japanisch", "in": "auf Japanisch" },
   "hi": { "name": "Hindi", "in": "auf Hindi" },
-  "ar": { "name": "Arabisch", "in": "auf Arabisch" }
+  "ar": { "name": "Arabisch", "in": "auf Arabisch" },
+  "ko": { "name": "Koreanisch", "in": "auf Koreanisch" },
+  "vi": { "name": "Vietnamesisch", "in": "auf Vietnamesisch" },
+  "he": { "name": "Hebräisch", "in": "auf Hebräisch", "variants": ["Iwrit", "Ivrit"] },
+  "fi": { "name": "Finnisch", "in": "auf Finnisch" },
+  "hu": { "name": "Ungarisch", "in": "auf Ungarisch" },
+  "no": { "name": "Norwegisch", "in": "auf Norwegisch" },
+  "da": { "name": "Dänisch", "in": "auf Dänisch" },
+  "ro": { "name": "Rumänisch", "in": "auf Rumänisch" },
+  "hr": { "name": "Kroatisch", "in": "auf Kroatisch" },
+  "sr": { "name": "Serbisch", "in": "auf Serbisch" },
+  "bg": { "name": "Bulgarisch", "in": "auf Bulgarisch" },
+  "sk": { "name": "Slowakisch", "in": "auf Slowakisch" },
+  "th": { "name": "Thailändisch", "in": "auf Thailändisch", "variants": ["Thai"] },
+  "id": { "name": "Indonesisch", "in": "auf Indonesisch", "variants": ["Bahasa Indonesia"] },
+  "fa": { "name": "Persisch", "in": "auf Persisch", "variants": ["Farsi"] },
+  "am": { "name": "Amharisch", "in": "auf Amharisch" }
  }
 }

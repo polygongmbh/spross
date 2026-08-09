@@ -18,6 +18,22 @@
   "zh": { "name": "Kichina", "in": "kwa Kichina", "variants": ["Kimandarini"] },
   "ja": { "name": "Kijapani", "in": "kwa Kijapani" },
   "hi": { "name": "Kihindi", "in": "kwa Kihindi" },
-  "ar": { "name": "Kiarabu", "in": "kwa Kiarabu" }
+  "ar": { "name": "Kiarabu", "in": "kwa Kiarabu" },
+  "ko": { "name": "Kikorea", "in": "kwa Kikorea" },
+  "vi": { "name": "Kivietnam", "in": "kwa Kivietnam", "variants": ["Kivietnamu"] },
+  "he": { "name": "Kiebrania", "in": "kwa Kiebrania" },
+  "fi": { "name": "Kifini", "in": "kwa Kifini" },
+  "hu": { "name": "Kihungaria", "in": "kwa Kihungaria" },
+  "no": { "name": "Kinorwei", "in": "kwa Kinorwei" },
+  "da": { "name": "Kideni", "in": "kwa Kideni" },
+  "ro": { "name": "Kiromania", "in": "kwa Kiromania" },
+  "hr": { "name": "Kikroatia", "in": "kwa Kikroatia" },
+  "sr": { "name": "Kiserbia", "in": "kwa Kiserbia" },
+  "bg": { "name": "Kibulgaria", "in": "kwa Kibulgaria" },
+  "sk": { "name": "Kislovakia", "in": "kwa Kislovakia" },
+  "th": { "name": "Kithai", "in": "kwa Kithai" },
+  "id": { "name": "Kiindonesia", "in": "kwa Kiindonesia" },
+  "fa": { "name": "Kiajemi", "in": "kwa Kiajemi", "variants": ["Kifarsi"] },
+  "am": { "name": "Kiamhari", "in": "kwa Kiamhari", "variants": ["Kiamhara"] }
  }
 }
