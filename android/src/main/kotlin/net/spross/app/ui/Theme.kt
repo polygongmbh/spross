@@ -21,7 +21,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontVariation
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.sp
 import net.spross.app.R
 import net.spross.kern.model.Gender
@@ -247,20 +249,36 @@ private fun weightedNunito(weight: FontWeight) =
  * Tracking goes to zero everywhere. M3 cuts Roboto with up to +0.5 sp, which is the single
  * loudest "stock Android" tell in the whole ramp, and the canonical ramp is set solid — the
  * iOS cut inherits SF's own near-zero tracking without asking for it.
- * A null [weight] keeps whatever the M3 slot already carries.
+ *
+ * A null [weight] or [size] keeps whatever the M3 slot already carries. A resized slot takes
+ * its leading with it: M3's line heights are cut for M3's sizes, and holding one while moving
+ * the other tightens the block instead of just growing the letters.
  */
-private fun TextStyle.rounded(weight: FontWeight? = null) = copy(
+private fun TextStyle.rounded(weight: FontWeight? = null, size: TextUnit? = null) = copy(
     fontFamily = Nunito,
     fontWeight = weight ?: fontWeight,
+    fontSize = size ?: fontSize,
+    lineHeight = if (size == null || !lineHeight.isSpecified) {
+        lineHeight
+    } else {
+        (lineHeight.value + (size.value - fontSize.value)).sp
+    },
     letterSpacing = 0.sp,
 )
 
 /**
- * The canonical ramp's WEIGHTS on the rounded face.
+ * The canonical ramp's WEIGHTS and SIZES on the rounded face.
  *
  * The emphasis pattern is the iOS one: bold heroes and stat values, bold titles, semibold
  * headlines, medium captions, bold badges. Every slot is listed, including the ones that
- * keep their M3 weight — a slot left out is a slot still set in Roboto.
+ * keep their M3 value — a slot left out is a slot still set in Roboto.
+ *
+ * Each slot below names the `DL.Fonts` token it answers for, and is cut to match it. M3's
+ * own ramp runs a step under the canonical one across the middle of the range, which is why
+ * the Android cut read denser and paler than the iOS one at the same palette: its two
+ * workhorses were 14 sp and 16 sp Regular where the canonical ramp sets body and headline
+ * a size up. The point sizes are Android's own — only the ROLE mapping is shared, and the
+ * numbers themselves live in `App/Sources/Design/Theme.swift` for the iOS cut.
  *
  * Built on first composition rather than on class load, so a plain JVM unit test can read
  * the token tables in this file without a type ramp being raised behind it.
@@ -270,19 +288,33 @@ private val SprossTypography: Typography by lazy {
         copy(
             displayLarge = displayLarge.rounded(),
             displayMedium = displayMedium.rounded(),
+            // The emoji face of a Heute card; a glyph, not a ramp entry.
             displaySmall = displaySmall.rounded(),
-            headlineLarge = headlineLarge.rounded(FontWeight.Bold),
+            // hero — screen titles.
+            headlineLarge = headlineLarge.rounded(FontWeight.Bold, 34.sp),
+            // hero, compact — the card headword.
             headlineMedium = headlineMedium.rounded(FontWeight.Bold),
-            headlineSmall = headlineSmall.rounded(),
+            // statValue — section headings and the numbers on a stat tile. Bold is the
+            // point of it: a stat set Regular is the one thing on the screen that has to
+            // be read at a glance and reads as body copy instead.
+            headlineSmall = headlineSmall.rounded(FontWeight.Bold),
+            // title — a card's own heading.
             titleLarge = titleLarge.rounded(FontWeight.Bold),
-            titleMedium = titleMedium.rounded(FontWeight.SemiBold),
-            titleSmall = titleSmall.rounded(),
-            bodyLarge = bodyLarge.rounded(),
-            bodyMedium = bodyMedium.rounded(),
+            // headline — the workhorse row label.
+            titleMedium = titleMedium.rounded(FontWeight.SemiBold, 17.sp),
+            // headline, minor.
+            titleSmall = titleSmall.rounded(FontWeight.SemiBold, 15.sp),
+            // body — real copy.
+            bodyLarge = bodyLarge.rounded(size = 17.sp),
+            // subheadline — supporting copy under a heading.
+            bodyMedium = bodyMedium.rounded(size = 15.sp),
+            // caption.
             bodySmall = bodySmall.rounded(FontWeight.Medium),
-            labelLarge = labelLarge.rounded(),
-            labelMedium = labelMedium.rounded(FontWeight.Bold),
-            labelSmall = labelSmall.rounded(),
+            // headline — button text, which M3 leaves at body weight.
+            labelLarge = labelLarge.rounded(FontWeight.SemiBold, 15.sp),
+            // badge.
+            labelMedium = labelMedium.rounded(FontWeight.Bold, 13.sp),
+            labelSmall = labelSmall.rounded(FontWeight.Medium),
         )
     }
 }
