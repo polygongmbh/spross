@@ -81,6 +81,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - **One fact, one home**: each topic owned by exactly one doc; narrative docs (history, status, plans) link into it, never restate it.
 - Docs carry foundations; what the running app or the code answers faster stays out, and a needed cross-link means it is filed wrong.
 - Negations and hardlines only where the opposite is what would otherwise happen.
+- A doc states its content, never its own properties.
 - Out-of-scope discoveries go to `docs/backlog.md` (one-liners with pointers); prune on fix.
 - Whose the bundled recordings are and what their licences oblige — the ship/legal record —
   is `docs/audio-licensing.md`; no other doc restates a licence term.
