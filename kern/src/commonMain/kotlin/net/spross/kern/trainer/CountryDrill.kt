@@ -81,6 +81,10 @@ object CountryDrill {
      * the learner's OWN language, so a flag alone asks them to recognize their own flag and
      * write down a name they have said all their life. Rung 7, whose whole novelty that is,
      * simply repeats the pool below it there — the same nothing an unauthored tier costs.
+     *
+     * The OTHER country questions keep their flag in reverse; it is merely held back while
+     * the answer is owed, which is [CountryDrillTask.emojiIsGiveaway]'s business rather than
+     * this list's.
      */
     fun kinds(level: Int, reverse: Boolean = false): List<CountryTaskKind> = when (level.coerceIn(1, MAX_LEVEL)) {
         1 -> listOf(CountryTaskKind.CountryName)
@@ -198,7 +202,8 @@ object CountryDrill {
             kind = CountryTaskKind.CountryName,
             id = country.slug,
             promptText = country.prompt(reverse).text,
-            promptEmoji = country.promptFlag(reverse),
+            promptEmoji = country.flag,
+            emojiIsGiveaway = reverse,
             accepted = listOf(answer.text) + answer.variants,
             display = answer.text,
             gloss = answer.nationality.text,
@@ -231,7 +236,8 @@ object CountryDrill {
             kind = CountryTaskKind.Nationality,
             id = country.slug,
             promptText = country.prompt(reverse).nationality.text,
-            promptEmoji = country.promptFlag(reverse),
+            promptEmoji = country.flag,
+            emojiIsGiveaway = reverse,
             accepted = listOf(answer.text) + answer.variants,
             display = answer.text,
             gloss = country.answer(reverse).text,
@@ -270,7 +276,8 @@ object CountryDrill {
             kind = CountryTaskKind.SpokenIn,
             id = country.slug,
             promptText = country.prompt(reverse).text,
-            promptEmoji = country.promptFlag(reverse),
+            promptEmoji = country.flag,
+            emojiIsGiveaway = reverse,
             accepted = (listOf(display) + forms).distinct(),
             display = display,
             gloss = country.answer(reverse).text,
@@ -347,13 +354,6 @@ object CountryDrill {
         put('œ', "oe")
         put('þ', "th")
     }
-
-    /**
-     * The flag beside the prompt — and NOTHING in a reversed run, where the answer is owed
-     * in the learner's own language: a flag there turns "Ujerumani → ?" into recognizing
-     * your own flag, which is not the question the rung means to ask.
-     */
-    private fun AtlasCountryEntry.promptFlag(reverse: Boolean): String? = flag.takeIf { !reverse }
 
     private fun AtlasCountryEntry.prompt(reverse: Boolean) = if (reverse) target else source
 

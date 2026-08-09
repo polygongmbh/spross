@@ -55,11 +55,24 @@ data class CountryDrillTask(
      */
     val promptText: String?,
     /**
-     * The country's flag, where the question is about one; null for a language — and null
-     * throughout a REVERSED run, whose answer is owed in the learner's own language and
-     * would be given away by the flag ([CountryDrill]).
+     * The country's flag, where the question is about one; null for a language. It is
+     * carried in BOTH directions — whether it may be shown while the answer is still owed
+     * is [emojiIsGiveaway]'s business, not a reason to drop the picture from the task.
      */
     val promptEmoji: String?,
+    /**
+     * Whether showing [promptEmoji] while ASKING would hand the learner the answer.
+     *
+     * True for the country questions of a REVERSED run: the answer is then owed in the
+     * learner's own language, so the flag turns "name this country" into "recognize your
+     * own flag" and the question stops being one. It is never true forward, and never for
+     * [CountryTaskKind.FlagCountry], where the flag IS the question.
+     *
+     * A rule, not a rendering: the card withholds the picture while the answer is owed and
+     * shows it at the reveal, because an illustration a learner never gets to see is one
+     * the task might as well not have carried (`docs/design.md`).
+     */
+    val emojiIsGiveaway: Boolean = false,
     /** Everything graded correct, [display] first — every accepted form of every valid answer. */
     val accepted: List<String>,
     /** The canonical answer, for the reveal. */

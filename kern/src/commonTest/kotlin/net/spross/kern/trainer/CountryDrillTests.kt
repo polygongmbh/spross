@@ -294,18 +294,42 @@ class CountryDrillTests {
     }
 
     /**
-     * A reversed run answers in the learner's OWN language, so a flag on the card would ask
-     * them to recognize their own — nothing carries one, at any rung.
+     * A reversed run answers in the learner's OWN language, so showing the flag while the
+     * answer is owed would hand it over. The task still CARRIES it — a picture the learner
+     * never gets to see is one the task might as well not have had — and says so with
+     * [CountryDrillTask.emojiIsGiveaway], which the card obeys by holding it to the reveal.
      */
     @Test
-    fun aReversedRunNeverShowsAFlag() {
+    fun aReversedCountryQuestionKeepsItsFlagAndCallsItAGiveaway() {
         for (level in 1..CountryDrill.MAX_LEVEL) {
             for (task in CountryDrill.tasks(content, level, reverse = true)) {
-                assertEquals(null, task.promptEmoji, "rung $level flew a flag on a reversed ${task.kind}")
+                if (task.kind == CountryTaskKind.LanguageName ||
+                    task.kind == CountryTaskKind.SpokenWhere
+                ) {
+                    // A language has no flag to hold back in the first place.
+                    assertEquals(null, task.promptEmoji, "rung $level: a language flew a flag")
+                    assertTrue(!task.emojiIsGiveaway, "rung $level: nothing to give away")
+                    continue
+                }
+                assertEquals("🏳", task.promptEmoji, "rung $level dropped a reversed ${task.kind}'s flag")
+                assertTrue(task.emojiIsGiveaway, "rung $level: reversed ${task.kind} may show its flag")
             }
         }
-        // Forward, the same rungs do fly one — otherwise the assertion above proves nothing.
+    }
+
+    /** Forward, the flag is no giveaway — it is context, and shown from the first frame. */
+    @Test
+    fun aForwardQuestionShowsItsFlagOutright() {
+        for (level in 1..CountryDrill.MAX_LEVEL) {
+            for (task in CountryDrill.tasks(content, level)) {
+                assertTrue(!task.emojiIsGiveaway, "rung $level withheld a forward ${task.kind}'s flag")
+            }
+        }
         assertTrue(CountryDrill.tasks(content, 1).all { it.promptEmoji != null })
+        // The flag question's own flag is the QUESTION — never withheld, in any direction.
+        val flags = CountryDrill.tasks(content, 7).filter { it.kind == CountryTaskKind.FlagCountry }
+        assertTrue(flags.isNotEmpty())
+        assertTrue(flags.none { it.emojiIsGiveaway }, "the flag question hid its own flag")
     }
 
     /** The flag KIND is not merely emptied in reverse — it is never built there. */

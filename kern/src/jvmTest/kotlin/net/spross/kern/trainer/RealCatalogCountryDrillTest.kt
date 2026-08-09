@@ -88,13 +88,21 @@ class RealCatalogCountryDrillTest {
                             task.display in task.accepted,
                             "$source→$target rung $level: ${task.id} does not accept its own reveal",
                         )
-                        // A reversed run is answered in the learner's OWN language, so a
-                        // flag on the card would hand the answer over: no rung flies one,
-                        // and the flag question is not built in that direction at all.
+                        // A reversed run is answered in the learner's OWN language, so the
+                        // flag may not be SHOWN while the answer is owed. The task still
+                        // carries it and says so; what it may never be is showable.
                         assertTrue(
-                            !reverse || (task.promptEmoji == null &&
-                                task.kind != CountryTaskKind.FlagCountry),
-                            "$source→$target rung $level: ${task.id} showed a flag in reverse",
+                            !reverse || task.promptEmoji == null || task.emojiIsGiveaway,
+                            "$source→$target rung $level: ${task.id} would show a flag in reverse",
+                        )
+                        assertTrue(
+                            !reverse || task.kind != CountryTaskKind.FlagCountry,
+                            "$source→$target rung $level: a flag question in reverse",
+                        )
+                        // Forward, nothing is ever held back from the learner.
+                        assertTrue(
+                            reverse || !task.emojiIsGiveaway,
+                            "$source→$target rung $level: ${task.id} withheld a forward flag",
                         )
                         last = task.id
                     }
