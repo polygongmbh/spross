@@ -32,6 +32,49 @@ struct DLCardReveal<Content: View>: View {
     }
 }
 
+// MARK: - DLCardEmoji
+//
+// The picture on a card, and it always sits BESIDE the words, never above
+// them: vertical space is the scarce axis (card + input + button + keyboard
+// share one screen), and a fixed side slot means a reveal can fade one in
+// without moving a thing. One definition, so the review card and the drill
+// cards cannot drift into two ideas of what a card's picture looks like.
+
+struct DLCardEmoji: View {
+    enum Size {
+        /// A session or drill card, where the keyboard shares the screen.
+        case compact
+        /// The full-height review card (previews, big type).
+        case hero
+
+        var diameter: CGFloat { self == .compact ? 52 : 96 }
+        var glyph: CGFloat { self == .compact ? 28 : 52 }
+    }
+
+    let emoji: String
+    var size: Size = .compact
+
+    init(_ emoji: String, size: Size = .compact) {
+        self.emoji = emoji
+        self.size = size
+    }
+
+    var body: some View {
+        Text(emoji)
+            .font(.system(size: size.glyph))
+            .frame(width: size.diameter, height: size.diameter)
+            .background(Circle().fill(Color.dlSurfaceTint))
+            .accessibilityHidden(true) // why: decorative; the headword carries the content
+    }
+
+    /// The mirror of the slot on the card's other edge, so the words stay
+    /// centred in the card rather than in what is left of it. One point tall:
+    /// it owes the layout a width, never a height.
+    static func balance(_ size: Size = .compact) -> some View {
+        Color.clear.frame(width: size.diameter, height: 1)
+    }
+}
+
 extension View {
     /// The line an amber hold pauses on — a typo's proper spelling, the word
     /// that was heard instead, the other word the answer turned out to be.

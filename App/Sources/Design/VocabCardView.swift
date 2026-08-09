@@ -76,16 +76,13 @@ struct VocabCardView: View {
     /// all fit on screen without scrolling. Previews keep the big card.
     var compact: Bool = false
 
-    /// The picture sits BESIDE the words, never above them: vertical space is the
-    /// scarce axis (card + input + button + keyboard share one screen), and a
-    /// fixed side slot means the reveal can fade it in without moving a thing.
-    /// It belongs to the CARD rather than the prompt line, so it stays centred
-    /// against prompt and reveal together instead of riding up as the card grows.
-    /// The slot is mirrored on the trailing edge so the words stay centred.
+    /// The picture (`DLCardEmoji`) belongs to the CARD rather than the prompt
+    /// line, so it stays centred against prompt and reveal together instead of
+    /// riding up as the card grows.
     var body: some View {
         HStack(spacing: DL.Space.m) {
             if hasEmoji {
-                emojiIllustration(emoji ?? "")
+                DLCardEmoji(emoji ?? "", size: emojiSize)
                     .opacity(emojiCue == .upfront || revealed ? 1 : 0)
             }
             VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
@@ -97,7 +94,7 @@ struct VocabCardView: View {
             }
             .frame(maxWidth: .infinity)
             if hasEmoji {
-                Color.clear.frame(width: emojiDiameter, height: 1)
+                DLCardEmoji.balance(emojiSize)
             }
         }
         .padding(compact ? DL.Space.l : DL.Space.xl)
@@ -116,15 +113,7 @@ struct VocabCardView: View {
         !(emoji ?? "").isEmpty
     }
 
-    private var emojiDiameter: CGFloat { compact ? 52 : 96 }
-
-    private func emojiIllustration(_ emoji: String) -> some View {
-        Text(emoji)
-            .font(.system(size: compact ? 28 : 52))
-            .frame(width: emojiDiameter, height: emojiDiameter)
-            .background(Circle().fill(Color.dlSurfaceTint))
-            .accessibilityHidden(true) // why: decorative; the headword carries the content
-    }
+    private var emojiSize: DLCardEmoji.Size { compact ? .compact : .hero }
 
     @ViewBuilder
     private var revealSection: some View {

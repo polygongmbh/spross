@@ -1,9 +1,9 @@
 import SwiftUI
 
 /// The atlas question, on the same card face as every other session card: a
-/// caption naming what is asked and in which language, the flag where the
-/// question is about a country, and the name itself — then the answer growing
-/// below it once it is out.
+/// caption naming what is asked and in which language, the flag BESIDE the
+/// words where the question is about a country, and the name itself — then the
+/// answer growing below it once it is out.
 ///
 /// The caption stays here rather than on the field, because a bare name says
 /// nothing about which of the four things is being asked: "Deutschland" is the
@@ -31,31 +31,38 @@ struct CountryPromptCard: View {
 
     @Environment(\.locale) private var locale
 
+    /// The flag rides in the card's leading slot (`DLCardEmoji`) exactly as a
+    /// word's picture does on a review card — never above the words, where it
+    /// pushes the name into the space the reveal needs.
     var body: some View {
-        VStack(spacing: DL.Space.m) {
-            caption
+        HStack(spacing: DL.Space.m) {
             if let emoji {
-                Text(verbatim: emoji)
-                    .font(.system(size: 44))
-                    .accessibilityHidden(true)
+                DLCardEmoji(emoji)
             }
-            Text(verbatim: text)
-                .font(.system(size: 32, weight: .bold, design: .rounded))
-                .foregroundStyle(Color.dlTextPrimary)
-                .multilineTextAlignment(.center)
-                .lineLimit(3)
-                .minimumScaleFactor(0.5)
-            if let revealed {
-                DLCardReveal(note: revealed.note) {
-                    DLSpokenWord(pronounce: revealed.pronounce, isPlaying: revealed.isPlaying) {
-                        Text(verbatim: revealed.word)
-                            .font(DL.Fonts.title)
-                            .foregroundStyle(Color.dlAccent)
-                            .multilineTextAlignment(.center)
-                            .minimumScaleFactor(0.6)
+            VStack(spacing: DL.Space.m) {
+                caption
+                Text(verbatim: text)
+                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                    .foregroundStyle(Color.dlTextPrimary)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(3)
+                    .minimumScaleFactor(0.5)
+                if let revealed {
+                    DLCardReveal(note: revealed.note) {
+                        DLSpokenWord(pronounce: revealed.pronounce, isPlaying: revealed.isPlaying) {
+                            Text(verbatim: revealed.word)
+                                .font(DL.Fonts.title)
+                                .foregroundStyle(Color.dlAccent)
+                                .multilineTextAlignment(.center)
+                                .minimumScaleFactor(0.6)
+                        }
                     }
+                    .transition(.opacity.combined(with: .move(edge: .top)))
                 }
-                .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+            .frame(maxWidth: .infinity)
+            if emoji != nil {
+                DLCardEmoji.balance()
             }
         }
         .padding(DL.Space.l)
