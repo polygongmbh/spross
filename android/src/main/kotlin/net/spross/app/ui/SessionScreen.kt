@@ -19,6 +19,7 @@ import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -97,7 +98,7 @@ private fun CloseSessionButton(model: AppModel) {
             .clickable(role = Role.Button) { model.finishSession() },
         contentAlignment = Alignment.Center,
     ) {
-        Text("✕", style = MaterialTheme.typography.titleMedium, color = Dl.colors.textSecondary)
+        Icon(SprossIcons.Close, contentDescription = null, tint = Dl.colors.textSecondary)
     }
 }
 
@@ -139,7 +140,11 @@ fun ReadAloudSwitch(model: AppModel) {
             },
         contentAlignment = Alignment.Center,
     ) {
-        Text(if (muted) "🔇" else "🔊")
+        Icon(
+            if (muted) SprossIcons.SpeakerOff else SprossIcons.Speaker,
+            contentDescription = null,
+            tint = Dl.colors.textSecondary,
+        )
     }
 }
 

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -49,7 +50,11 @@ internal fun GroupHeader(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
         ) {
-            Text(if (open) "⌄" else "›", color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Icon(
+                if (open) SprossIcons.ChevronDown else SprossIcons.ChevronRight,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
             Text(
                 section.title,
                 style = MaterialTheme.typography.titleMedium,
@@ -129,7 +134,7 @@ internal fun PackControl(chrome: Chrome, count: Int, onPack: () -> Unit) {
             onClick = onPack,
             modifier = Modifier.semantics { contentDescription = chrome.packArea.format(count) },
         ) {
-            Text("＋", style = MaterialTheme.typography.titleLarge)
+            Icon(SprossIcons.Plus, contentDescription = null)
         }
     } else {
         Text(

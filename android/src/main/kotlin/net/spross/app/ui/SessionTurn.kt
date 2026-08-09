@@ -3,17 +3,21 @@ package net.spross.app.ui
 import android.os.Build
 import android.view.HapticFeedbackConstants
 import android.view.View
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -23,11 +27,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.withFrameNanos
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -81,7 +89,7 @@ fun AnswerField(
     // why: correctness is never colour alone — the mark says it on screen, the state
     // description says it to TalkBack, and the tint is the third telling of the same thing.
     val mark: (@Composable () -> Unit)? = if (feedback == TurnFeedback.Correct) {
-        { Text("✓", color = palette.success) }
+        { Icon(SprossIcons.Check, contentDescription = null, tint = palette.success) }
     } else {
         null
     }
@@ -127,46 +135,77 @@ fun AnswerField(
 @Composable
 fun VerdictButtons(chrome: Chrome, flow: TurnFlow, modifier: Modifier = Modifier) {
     val palette = Dl.colors
-    Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        VerdictButton("✓ ${chrome.good}", palette.success, Modifier.weight(1f)) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+    ) {
+        VerdictTile(SprossIcons.Check, chrome.good, palette.success, Modifier.weight(1f)) {
             flow.selfGrade(SelfGrading.Verdict.Knew)
         }
-        VerdictButton("~ ${chrome.hard}", palette.amber, Modifier.weight(1f)) {
+        VerdictTile(SprossIcons.Dot, chrome.hard, palette.amber, Modifier.weight(1f)) {
             flow.selfGrade(SelfGrading.Verdict.Tough)
         }
-        VerdictButton("✗ ${chrome.unknown}", palette.wrong, Modifier.weight(1f)) {
+        VerdictTile(SprossIcons.Close, chrome.unknown, palette.wrong, Modifier.weight(1f)) {
             flow.selfGrade(SelfGrading.Verdict.Unknown)
         }
     }
 }
 
+/**
+ * One verdict: its mark over its name, both in the verdict's own colour on that colour's
+ * own wash.
+ *
+ * A TINTED tile, never a saturated slab. Three solid blocks of forest, ochre and brick is
+ * the loudest thing on a screen whose whole job is one quiet word — and a filled button
+ * reads as "do this", which is wrong for a row where the learner picks the true one rather
+ * than the recommended one. The wash and the edge say the same thing at a tenth the volume
+ * (iOS `GradeButton`, same 14 % fill and 35 % edge).
+ *
+ * The mark sits in a fixed-height slot because the three glyphs are not the same height,
+ * and without it the names sit off each other's line.
+ */
 @Composable
-private fun VerdictButton(label: String, color: Color, modifier: Modifier, onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        modifier = modifier.heightIn(min = 48.dp).pressSpring(),
-        shape = MaterialTheme.shapes.small,
-        // The ink cut for accent fills, never white: in the dark the accents are pastels
-        // and white sinks to about 1.8:1 on them.
-        colors = ButtonDefaults.buttonColors(
-            containerColor = color,
-            contentColor = Dl.colors.onColor,
-        ),
-        contentPadding = ButtonDefaults.TextButtonContentPadding,
+private fun VerdictTile(
+    icon: ImageVector,
+    label: String,
+    color: Color,
+    modifier: Modifier,
+    onClick: () -> Unit,
+) {
+    val shape = MaterialTheme.shapes.small
+    Column(
+        modifier = modifier
+            .heightIn(min = VERDICT_TILE)
+            .background(Dl.colors.wash(color), shape)
+            .border(1.dp, color.copy(alpha = 0.35f), shape)
+            .clip(shape)
+            .clickable(role = Role.Button, onClick = onClick)
+            .pressSpring()
+            .padding(horizontal = DlSpace.xs, vertical = DlSpace.s),
+        verticalArrangement = Arrangement.spacedBy(DlSpace.xs, Alignment.CenterVertically),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // why: "✗ Unbekannt" outruns a third of a 320dp row and lost its name to
-        // maxLines = 1 — the label now steps down to fit instead (the iOS rating
-        // buttons scale the same way); the cap keeps the short verdicts at full size.
+        // Decorative: the name under it is the label, and TalkBack reading "checkmark"
+        // before "Gewusst" says the same thing twice.
+        Icon(icon, contentDescription = null, tint = color, modifier = Modifier.height(22.dp))
+        // why: "Unbekannt" outruns a third of a narrow row — the name steps down to fit
+        // rather than losing its tail (the iOS tiles scale the same way).
         Text(
             label,
-            maxLines = 1,
+            style = MaterialTheme.typography.bodySmall,
+            color = color,
+            maxLines = 2,
+            textAlign = TextAlign.Center,
             autoSize = TextAutoSize.StepBased(
                 minFontSize = 9.sp,
-                maxFontSize = LocalTextStyle.current.fontSize,
+                maxFontSize = MaterialTheme.typography.bodySmall.fontSize,
             ),
         )
     }
 }
+
+/** The iOS tile's own floor — a verdict is a target for a resting thumb, not a link. */
+private val VERDICT_TILE = 60.dp
 
 /**
  * The write-it-out step: a word you MISSED is typed once with the answer in view.

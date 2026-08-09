@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -142,7 +143,7 @@ private fun CardStanding(
                 onClick = it,
                 modifier = Modifier.semantics { contentDescription = chrome.packWord },
             ) {
-                Text("＋", style = MaterialTheme.typography.titleMedium)
+                Icon(SprossIcons.Plus, contentDescription = null)
             }
         }
 

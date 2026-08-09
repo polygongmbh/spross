@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -214,8 +215,11 @@ private fun ReplayButton(chrome: Chrome, replay: (() -> Unit)?, focus: FocusRequ
         modifier = Modifier
             .size(72.dp)
             .focusRequester(focus)
+            // The wash, not the accent at full strength: this is the thing the drill
+            // asks you to LISTEN to, and a solid clay disc reads as the button to press
+            // next. Disabled keeps the recessed chip fill, so the state still shows.
             .background(
-                if (enabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
+                if (enabled) Dl.colors.wash(Dl.colors.accent) else MaterialTheme.colorScheme.surfaceVariant,
                 CircleShape,
             )
             // why: focusable in BOTH states — a disabled clickable carries no focus target,
@@ -230,7 +234,12 @@ private fun ReplayButton(chrome: Chrome, replay: (() -> Unit)?, focus: FocusRequ
             },
         contentAlignment = Alignment.Center,
     ) {
-        Text("🔊", fontSize = 30.sp)
+        Icon(
+            SprossIcons.Speaker,
+            contentDescription = null,
+            tint = if (enabled) Dl.colors.accent else Dl.colors.textSecondary,
+            modifier = Modifier.size(40.dp),
+        )
     }
 }
 

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -88,7 +89,7 @@ fun BoxSearchScreen(
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.weight(1f),
             )
-            TextButton(onClick = onClose) { Text("✕") }
+            TextButton(onClick = onClose) { Icon(SprossIcons.Close, contentDescription = null) }
         }
         OutlinedTextField(
             value = query,
@@ -100,7 +101,7 @@ fun BoxSearchScreen(
                     TextButton(
                         onClick = { query = "" },
                         modifier = Modifier.semantics { contentDescription = chrome.searchClear },
-                    ) { Text("✕") }
+                    ) { Icon(SprossIcons.Close, contentDescription = null) }
                 }
             },
             keyboardOptions = KeyboardOptions(
@@ -208,7 +209,11 @@ private fun AreaHit(
                 chrome = chrome,
                 modifier = Modifier.weight(1f),
             )
-            Text("›", color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Icon(
+                SprossIcons.ChevronRight,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }

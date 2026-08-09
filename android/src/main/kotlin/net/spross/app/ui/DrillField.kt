@@ -3,6 +3,7 @@ package net.spross.app.ui
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -61,7 +62,7 @@ fun DrillAnswerField(
         // why: correctness is never colour alone — the mark says it on screen, the state
         // description says it to TalkBack, and the tint is the third telling.
         trailingIcon = if (feedback == TurnFeedback.Correct) {
-            { Text("✓", color = palette.success) }
+            { Icon(SprossIcons.Check, contentDescription = null, tint = palette.success) }
         } else {
             null
         },

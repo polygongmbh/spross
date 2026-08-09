@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -190,8 +191,10 @@ private fun AlphabetExample(
  */
 @Composable
 private fun SpeakerButton(speak: () -> Unit) {
-    Text(
-        "🔊",
+    Icon(
+        SprossIcons.Speaker,
+        contentDescription = null,
+        tint = Dl.colors.teal,
         modifier = Modifier
             .size(44.dp)
             .clickable(onClick = speak)

@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,7 +34,6 @@ import net.spross.app.Chrome
 import net.spross.kern.box.AreaStatistics
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Language
-import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
 import net.spross.kern.session.AnswerTone
 
@@ -167,38 +164,6 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
         stretches.forEach { (count, color) ->
             Box(Modifier.weight(count.toFloat()).height(6.dp).background(color, shape))
         }
-    }
-}
-
-/** Again/Hard/Good/Easy self-grade row (recognize + produce fallback). */
-@Composable
-fun RatingButtons(chrome: Chrome, onRate: (Rating) -> Unit, modifier: Modifier = Modifier) {
-    val palette = Dl.colors
-    Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        RatingButton(chrome.again, palette.wrong, Modifier.weight(1f)) { onRate(Rating.Again) }
-        RatingButton(chrome.hard, palette.amber, Modifier.weight(1f)) { onRate(Rating.Hard) }
-        RatingButton(chrome.good, palette.success, Modifier.weight(1f)) { onRate(Rating.Good) }
-        // The fourth verdict this platform still offers takes the secondary accent: the
-        // article blue is the grammar's, and a rating must never borrow it.
-        RatingButton(chrome.easy, palette.teal, Modifier.weight(1f)) { onRate(Rating.Easy) }
-    }
-}
-
-@Composable
-private fun RatingButton(label: String, color: Color, modifier: Modifier, onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        modifier = modifier.pressSpring(),
-        shape = MaterialTheme.shapes.small,
-        // The ink cut for accent fills, never white: in the dark the accents are pastels
-        // and white sinks to about 1.8:1 on them.
-        colors = ButtonDefaults.buttonColors(
-            containerColor = color,
-            contentColor = Dl.colors.onColor,
-        ),
-        contentPadding = ButtonDefaults.TextButtonContentPadding,
-    ) {
-        Text(label, maxLines = 1)
     }
 }
 

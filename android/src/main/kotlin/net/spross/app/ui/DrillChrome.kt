@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -87,7 +88,7 @@ fun DrillCloseButton(chrome: Chrome, onClose: () -> Unit) {
             .clickable(role = Role.Button, onClick = onClose),
         contentAlignment = Alignment.Center,
     ) {
-        Text("✕", style = MaterialTheme.typography.titleMedium, color = Dl.colors.textSecondary)
+        Icon(SprossIcons.Close, contentDescription = null, tint = Dl.colors.textSecondary)
     }
 }
 

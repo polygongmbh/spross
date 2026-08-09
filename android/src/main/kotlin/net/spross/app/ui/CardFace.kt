@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -197,7 +198,12 @@ fun SpokenWord(
         if (pronounce != null) {
             // Decorative: the tap and the action naming it live on the row around it,
             // so TalkBack reads the word and its action, never a loudspeaker picture.
-            Text(SPEAKER, fontSize = SPEAKER_GLYPH, modifier = Modifier.clearAndSetSemantics { })
+            Icon(
+                SprossIcons.Speaker,
+                contentDescription = null,
+                tint = Dl.colors.teal,
+                modifier = Modifier.size(SPEAKER_GLYPH),
+            )
         }
     }
 }
@@ -347,8 +353,8 @@ private val EMOJI_SLOT = 52.sp
 private val EMOJI_GLYPH = 28.sp
 
 /** The mark on a word that can be heard — the same glyph the chrome switch wears. */
-private const val SPEAKER = "🔊"
-private val SPEAKER_GLYPH = 16.sp
+/** The replay glyph beside a headword — big enough to find, never big enough to shout. */
+private val SPEAKER_GLYPH = 18.dp
 
 /**
  * The floor a review card holds: one height whether the prompt is a word, a word under

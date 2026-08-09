@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -214,6 +215,6 @@ private fun BoxTopBar(chrome: Chrome, onSearch: (() -> Unit)?, onClose: () -> Un
                 modifier = Modifier.semantics { contentDescription = chrome.search },
             ) { Text("🔍") }
         }
-        TextButton(onClick = onClose) { Text("✕") }
+        TextButton(onClick = onClose) { Icon(SprossIcons.Close, contentDescription = null) }
     }
 }
