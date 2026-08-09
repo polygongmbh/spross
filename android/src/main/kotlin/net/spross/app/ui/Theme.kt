@@ -14,8 +14,16 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontVariation
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import net.spross.app.R
 import net.spross.kern.model.Gender
 import net.spross.kern.model.articleGender
 
@@ -194,11 +202,65 @@ val SprossShapes = Shapes(
 )
 
 /**
- * The canonical ramp's WEIGHTS on Android's own font.
+ * The rounded face the canonical ramp asks for, in the nearest thing Android has.
  *
- * SF Rounded has no counterpart here and the type ramp stays native, so Roboto keeps the
- * voice while the emphasis pattern carries over: bold heroes and stat values, bold titles,
- * semibold headlines, medium captions, bold badges.
+ * SF Rounded is Apple's and ships with no counterpart here, so the ramp stayed on Roboto —
+ * and Roboto at M3's stock tracking is what made this cut read a decade older than the iOS
+ * one. Nunito carries the same voice: humanist, rounded terminals, apertures wide enough to
+ * hold up at caption size. It covers Latin, Latin-ext and Cyrillic, so a Ukrainian target is
+ * set in the same face as a German one, and ONE variable file (`wght` 200–1000) serves every
+ * weight the ramp names. Its licence is `android/licenses/Nunito-OFL.txt`.
+ *
+ * `♀` and `✔` fall outside its coverage and drop to the platform's symbol font. That is where
+ * those two belong anyway — they are marks, not text.
+ */
+private val Nunito: FontFamily by lazy {
+    FontFamily(
+        weightedNunito(FontWeight.Normal),
+        weightedNunito(FontWeight.Medium),
+        weightedNunito(FontWeight.SemiBold),
+        weightedNunito(FontWeight.Bold),
+    )
+}
+
+/**
+ * One instance of the variable file, pinned to one point on its weight axis.
+ *
+ * Both halves are needed and they are not the same thing: the [FontWeight] is what the ramp
+ * is MATCHED on, `variationSettings` is what actually cuts the outline. Register the four
+ * without the settings and every one of them renders at the file's default — ExtraLight.
+ *
+ * The variation-settings overload is still marked experimental; it is the only way to cut a
+ * variable file from Compose, and the alternative is four static faces at three times the size.
+ */
+@OptIn(ExperimentalTextApi::class)
+private fun weightedNunito(weight: FontWeight) =
+    Font(
+        R.font.nunito,
+        weight,
+        variationSettings = FontVariation.Settings(weight, FontStyle.Normal),
+    )
+
+/**
+ * A ramp entry on the rounded face, set SOLID.
+ *
+ * Tracking goes to zero everywhere. M3 cuts Roboto with up to +0.5 sp, which is the single
+ * loudest "stock Android" tell in the whole ramp, and the canonical ramp is set solid — the
+ * iOS cut inherits SF's own near-zero tracking without asking for it.
+ * A null [weight] keeps whatever the M3 slot already carries.
+ */
+private fun TextStyle.rounded(weight: FontWeight? = null) = copy(
+    fontFamily = Nunito,
+    fontWeight = weight ?: fontWeight,
+    letterSpacing = 0.sp,
+)
+
+/**
+ * The canonical ramp's WEIGHTS on the rounded face.
+ *
+ * The emphasis pattern is the iOS one: bold heroes and stat values, bold titles, semibold
+ * headlines, medium captions, bold badges. Every slot is listed, including the ones that
+ * keep their M3 weight — a slot left out is a slot still set in Roboto.
  *
  * Built on first composition rather than on class load, so a plain JVM unit test can read
  * the token tables in this file without a type ramp being raised behind it.
@@ -206,12 +268,21 @@ val SprossShapes = Shapes(
 private val SprossTypography: Typography by lazy {
     Typography().run {
         copy(
-            headlineLarge = headlineLarge.copy(fontWeight = FontWeight.Bold),
-            headlineMedium = headlineMedium.copy(fontWeight = FontWeight.Bold),
-            titleLarge = titleLarge.copy(fontWeight = FontWeight.Bold),
-            titleMedium = titleMedium.copy(fontWeight = FontWeight.SemiBold),
-            bodySmall = bodySmall.copy(fontWeight = FontWeight.Medium),
-            labelMedium = labelMedium.copy(fontWeight = FontWeight.Bold),
+            displayLarge = displayLarge.rounded(),
+            displayMedium = displayMedium.rounded(),
+            displaySmall = displaySmall.rounded(),
+            headlineLarge = headlineLarge.rounded(FontWeight.Bold),
+            headlineMedium = headlineMedium.rounded(FontWeight.Bold),
+            headlineSmall = headlineSmall.rounded(),
+            titleLarge = titleLarge.rounded(FontWeight.Bold),
+            titleMedium = titleMedium.rounded(FontWeight.SemiBold),
+            titleSmall = titleSmall.rounded(),
+            bodyLarge = bodyLarge.rounded(),
+            bodyMedium = bodyMedium.rounded(),
+            bodySmall = bodySmall.rounded(FontWeight.Medium),
+            labelLarge = labelLarge.rounded(),
+            labelMedium = labelMedium.rounded(FontWeight.Bold),
+            labelSmall = labelSmall.rounded(),
         )
     }
 }
