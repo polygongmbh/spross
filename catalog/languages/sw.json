@@ -4,6 +4,20 @@
   "en": { "name": "Kiingereza", "in": "kwa Kiingereza" },
   "es": { "name": "Kihispania", "in": "kwa Kihispania" },
   "sw": { "name": "Kiswahili", "in": "kwa Kiswahili" },
-  "uk": { "name": "Kiukreni", "in": "kwa Kiukreni" }
+  "uk": { "name": "Kiukreni", "in": "kwa Kiukreni", "variants": ["Kiukraini"] },
+  "fr": { "name": "Kifaransa", "in": "kwa Kifaransa" },
+  "it": { "name": "Kiitaliano", "in": "kwa Kiitaliano", "variants": ["Kiitalia", "Kitaliano"] },
+  "pt": { "name": "Kireno", "in": "kwa Kireno" },
+  "nl": { "name": "Kiholanzi", "in": "kwa Kiholanzi" },
+  "pl": { "name": "Kipolandi", "in": "kwa Kipolandi", "variants": ["Kipolishi", "Kipoland"] },
+  "tr": { "name": "Kituruki", "in": "kwa Kituruki" },
+  "el": { "name": "Kigiriki", "in": "kwa Kigiriki" },
+  "sv": { "name": "Kiswidi", "in": "kwa Kiswidi" },
+  "cs": { "name": "Kicheki", "in": "kwa Kicheki" },
+  "ru": { "name": "Kirusi", "in": "kwa Kirusi" },
+  "zh": { "name": "Kichina", "in": "kwa Kichina", "variants": ["Kimandarini"] },
+  "ja": { "name": "Kijapani", "in": "kwa Kijapani" },
+  "hi": { "name": "Kihindi", "in": "kwa Kihindi" },
+  "ar": { "name": "Kiarabu", "in": "kwa Kiarabu" }
  }
 }

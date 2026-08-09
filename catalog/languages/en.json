@@ -2,8 +2,22 @@
  "languageNames": {
   "de": { "name": "German", "in": "in German" },
   "en": { "name": "English", "in": "in English" },
-  "es": { "name": "Spanish", "in": "in Spanish" },
+  "es": { "name": "Spanish", "in": "in Spanish", "variants": ["Castilian"] },
   "sw": { "name": "Swahili", "in": "in Swahili", "variants": ["Kiswahili"] },
-  "uk": { "name": "Ukrainian", "in": "in Ukrainian" }
+  "uk": { "name": "Ukrainian", "in": "in Ukrainian" },
+  "fr": { "name": "French", "in": "in French" },
+  "it": { "name": "Italian", "in": "in Italian" },
+  "pt": { "name": "Portuguese", "in": "in Portuguese" },
+  "nl": { "name": "Dutch", "in": "in Dutch" },
+  "pl": { "name": "Polish", "in": "in Polish" },
+  "tr": { "name": "Turkish", "in": "in Turkish" },
+  "el": { "name": "Greek", "in": "in Greek" },
+  "sv": { "name": "Swedish", "in": "in Swedish" },
+  "cs": { "name": "Czech", "in": "in Czech" },
+  "ru": { "name": "Russian", "in": "in Russian" },
+  "zh": { "name": "Chinese", "in": "in Chinese", "variants": ["Mandarin"] },
+  "ja": { "name": "Japanese", "in": "in Japanese" },
+  "hi": { "name": "Hindi", "in": "in Hindi" },
+  "ar": { "name": "Arabic", "in": "in Arabic" }
  }
 }

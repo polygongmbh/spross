@@ -2,8 +2,22 @@
  "languageNames": {
   "de": { "name": "Deutsch", "in": "auf Deutsch" },
   "en": { "name": "Englisch", "in": "auf Englisch" },
-  "es": { "name": "Spanisch", "in": "auf Spanisch" },
-  "sw": { "name": "Suaheli", "in": "auf Suaheli", "variants": ["Kisuaheli"] },
-  "uk": { "name": "Ukrainisch", "in": "auf Ukrainisch" }
+  "es": { "name": "Spanisch", "in": "auf Spanisch", "variants": ["Kastilisch"] },
+  "sw": { "name": "Suaheli", "in": "auf Suaheli", "variants": ["Kisuaheli", "Swahili", "Kiswahili"] },
+  "uk": { "name": "Ukrainisch", "in": "auf Ukrainisch" },
+  "fr": { "name": "Französisch", "in": "auf Französisch" },
+  "it": { "name": "Italienisch", "in": "auf Italienisch" },
+  "pt": { "name": "Portugiesisch", "in": "auf Portugiesisch" },
+  "nl": { "name": "Niederländisch", "in": "auf Niederländisch", "variants": ["Holländisch"] },
+  "pl": { "name": "Polnisch", "in": "auf Polnisch" },
+  "tr": { "name": "Türkisch", "in": "auf Türkisch" },
+  "el": { "name": "Griechisch", "in": "auf Griechisch", "variants": ["Neugriechisch"] },
+  "sv": { "name": "Schwedisch", "in": "auf Schwedisch" },
+  "cs": { "name": "Tschechisch", "in": "auf Tschechisch" },
+  "ru": { "name": "Russisch", "in": "auf Russisch" },
+  "zh": { "name": "Chinesisch", "in": "auf Chinesisch", "variants": ["Mandarin", "Hochchinesisch"] },
+  "ja": { "name": "Japanisch", "in": "auf Japanisch" },
+  "hi": { "name": "Hindi", "in": "auf Hindi" },
+  "ar": { "name": "Arabisch", "in": "auf Arabisch" }
  }
 }
