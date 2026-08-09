@@ -125,8 +125,10 @@ class CountryDrillTests {
             countries = content.countries.filter { it.tier <= 2 },
             languages = content.languages.filter { it.tier <= 2 },
         )
+        // Rungs 4 and 5 ask the same kinds, so what is left between them is the tier —
+        // and with nothing authored out there, the pool below is what both stand on.
         assertEquals(
-            CountryDrill.tasks(shallow, 3).map { it.kind to it.id },
+            CountryDrill.tasks(shallow, 4).map { it.kind to it.id },
             CountryDrill.tasks(shallow, 5).map { it.kind to it.id },
         )
     }
@@ -158,6 +160,30 @@ class CountryDrillTests {
             CountryDrill.tasks(twinned, 1).map { it.id }.toSet(),
             "a name the two languages share was asked anyway",
         )
+    }
+
+    /**
+     * The flag question is the outer rungs' own, and it takes the WHOLE pool: a card with no
+     * name on it gives nothing away, so the countries the two languages agree on come back.
+     */
+    @Test
+    fun theFlagQuestionArrivesOnRungFourAndAsksEveryCountry() {
+        val twinned = content.copy(
+            countries = content.countries + country("same", 1, listOf("de"), "Malta", "Malta"),
+        )
+        for (level in 1..3) {
+            assertTrue(
+                CountryDrill.tasks(twinned, level).none { it.kind == CountryTaskKind.FlagCountry },
+                "rung $level shows a bare flag",
+            )
+        }
+        val flags = CountryDrill.tasks(twinned, 4).filter { it.kind == CountryTaskKind.FlagCountry }
+        assertContains(flags.map { it.id }, "same")
+        val task = assertNotNull(flags.firstOrNull { it.id == "homeland" })
+        assertEquals(null, task.promptText, "the flag question wrote a name on the card")
+        assertEquals("🏳", task.promptEmoji)
+        assertEquals("Ujerumani", task.display)
+        assertEquals("Deutschland", task.gloss, "the reveal names the country on the asking side")
     }
 
     /** A pair that agrees on EVERY name still owes rung 1 a question, easy or not. */

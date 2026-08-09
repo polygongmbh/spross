@@ -16,8 +16,11 @@ extension CountryDrillView {
                     // ZStack so the outgoing and incoming question overlap
                     // during the flip; .id gives each position its identity.
                     ZStack {
+                        // why: a flag question is written in no language, so the
+                        // caption names none — the field's placeholder still
+                        // says which one the answer is owed in.
                         CountryPromptCard(ask: Self.ask(task.kind),
-                                          promptLanguage: promptLanguage,
+                                          promptLanguage: task.promptText == nil ? nil : promptLanguage,
                                           emoji: task.promptEmoji,
                                           text: task.promptText,
                                           revealed: cardReveal(task))
@@ -38,6 +41,7 @@ extension CountryDrillView {
     static func ask(_ kind: CountryTaskKind) -> LocalizedStringKey {
         switch kind {
         case .countryName: return "countries.ask.country"
+        case .flagCountry: return "countries.ask.flag"
         case .languageName: return "countries.ask.language"
         case .nationality: return "countries.ask.nationality"
         case .spokenIn: return "countries.ask.spokenIn"

@@ -83,9 +83,14 @@ auto-advance beats these share with it, are `design.md`'s.
   in, and every rung after keeps everything below it and reaches one tier further out, so
   climbing widens the world instead of replacing it. Each rung also adds a question — the
   country's name, then its language and its people, then which language is spoken there,
-  and at the top the reverse of that, where a language is spoken. A tier nobody has
+  then the country behind a flag alone, and at the top the reverse of the spoken-in
+  question, where a language is spoken. A tier nobody has
   authored yet costs the learner nothing: the pool is the join intersected with the rung's
   ceiling, so an empty tier just repeats the one below.
+  A country the two languages call the SAME is not asked by name — the prompt would be the
+  answer — and that is exactly the country the flag question brings back, since a card with
+  no name written on it gives nothing away. Which names count as the same is kern's
+  (`CountryDrill`), compared over every accepted form and blind to case and accents.
   Nothing on the page is earned. The drill books no review and keeps no schedule, exactly
   as the letter drill does not, so the rung rows say what a rung ASKS and never carry a
   padlock or a price; the stored best rung is read here and never spent. The reverse

@@ -53,7 +53,7 @@ class RealCatalogCountryDrillTest {
                     assertTrue(named.isNotEmpty(), "$source→$target rung $level: no name question left")
                     for (task in named) {
                         assertTrue(
-                            task.accepted.none { it.lowercase() == task.promptText.lowercase() },
+                            task.accepted.none { it.lowercase() == task.promptText?.lowercase() },
                             "$source→$target rung $level: ${task.id} asks for the name it shows",
                         )
                     }
@@ -77,8 +77,11 @@ class RealCatalogCountryDrillTest {
                     var last: String? = null
                     repeat(200) {
                         val task = CountryDrill.sample(content, level, reverse, last, rng)
+                        // A flag question shows no name at all, so what every task owes is
+                        // SOMETHING to go on: a name, or the flag standing in for one.
                         assertTrue(
-                            task.promptText.isNotBlank() && task.display.isNotBlank(),
+                            (task.promptText?.isNotBlank() ?: (task.promptEmoji != null)) &&
+                                task.display.isNotBlank(),
                             "$source→$target rung $level: blank question",
                         )
                         assertTrue(

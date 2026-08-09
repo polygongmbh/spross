@@ -947,6 +947,22 @@
         }
       }
     },
+    "countries.ask.flag" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welches Land ist das?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which country is this?"
+          }
+        }
+      }
+    },
     "countries.ask.language" : {
       "localizations" : {
         "de" : {
@@ -1192,13 +1208,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mehr Länder, dieselben Fragen."
+            "value" : "Mehr Länder – und: welches Land ist das, nur an der Flagge?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "More countries, the same questions."
+            "value" : "More countries — and: which country is this, from its flag alone?"
           }
         }
       }

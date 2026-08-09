@@ -25,7 +25,7 @@ import net.spross.kern.catalog.CountryDrillContent
  * | 1 | the profile's own languages and their countries (tier 1) | the country's name, where the two languages differ on it |
  * | 2 | tier 1 | + the language's, + the people's |
  * | 3 | + tier 2 | + which language is spoken there |
- * | 4 | + tier 3 | |
+ * | 4 | + tier 3 | + the country behind a flag alone |
  * | 5 | + tier 4 | |
  * | 6 | everything | + where a language is spoken |
  *
@@ -54,10 +54,17 @@ object CountryDrill {
     fun kinds(level: Int): List<CountryTaskKind> = when (level.coerceIn(1, MAX_LEVEL)) {
         1 -> listOf(CountryTaskKind.CountryName)
         2 -> listOf(CountryTaskKind.CountryName, CountryTaskKind.LanguageName, CountryTaskKind.Nationality)
-        3, 4, 5 -> listOf(
+        3 -> listOf(
             CountryTaskKind.CountryName,
             CountryTaskKind.LanguageName,
             CountryTaskKind.Nationality,
+            CountryTaskKind.SpokenIn,
+        )
+        4, 5 -> listOf(
+            CountryTaskKind.CountryName,
+            CountryTaskKind.LanguageName,
+            CountryTaskKind.Nationality,
+            CountryTaskKind.FlagCountry,
             CountryTaskKind.SpokenIn,
         )
         else -> CountryTaskKind.entries
@@ -141,6 +148,7 @@ object CountryDrill {
                     countries.filter { it.namesDiffer() }.ifEmpty { countries }
                         .map { countryName(it, reverse) }
                 CountryTaskKind.Nationality -> countries.map { nationality(it, reverse) }
+                CountryTaskKind.FlagCountry -> countries.map { flagCountry(it, reverse) }
                 CountryTaskKind.LanguageName -> languages.map { languageName(it, reverse) }
                 CountryTaskKind.SpokenIn -> countries.mapNotNull { spokenIn(content, it, ceiling, reverse) }
                 CountryTaskKind.SpokenWhere -> languages.mapNotNull { spokenWhere(content, it, ceiling, reverse) }
@@ -158,6 +166,26 @@ object CountryDrill {
             accepted = listOf(answer.text) + answer.variants,
             display = answer.text,
             gloss = answer.nationality.text,
+        )
+    }
+
+    /**
+     * The flag alone, with no name on the card at all — the outer rungs' recognition game.
+     * Every country stands here, including the ones [namesDiffer] keeps out of the name
+     * questions: nothing is written down to give the answer away, so "Venezuela" is a
+     * question again. The reveal names the country on the asking side too, or a miss would
+     * leave the learner not knowing which flag that was.
+     */
+    private fun flagCountry(country: AtlasCountryEntry, reverse: Boolean): CountryDrillTask {
+        val answer = country.answer(reverse)
+        return CountryDrillTask(
+            kind = CountryTaskKind.FlagCountry,
+            id = country.slug,
+            promptText = null,
+            promptEmoji = country.flag,
+            accepted = listOf(answer.text) + answer.variants,
+            display = answer.text,
+            gloss = country.prompt(reverse).text,
         )
     }
 

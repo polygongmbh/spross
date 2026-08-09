@@ -8,15 +8,21 @@ import SwiftUI
 /// The caption stays here rather than on the field, because a bare name says
 /// nothing about which of the four things is being asked: "Deutschland" is the
 /// prompt whether the answer owed is the country, its people or its language.
+///
+/// One question has no name on it at all: where kern hands over a flag and no
+/// [text], the flag IS the question and stands where the name would.
 struct CountryPromptCard: View {
     /// What is being asked ("Wie heißt dieses Land?" …).
     let ask: LocalizedStringKey
     /// The language the PROMPT is written in — named in the caption, so the
-    /// reversed run never has to be guessed at.
-    let promptLanguage: String
+    /// reversed run never has to be guessed at. nil where the prompt is a flag,
+    /// which is written in no language; the field's placeholder then carries
+    /// the only language that matters, the one the answer is owed in.
+    var promptLanguage: String?
     /// The country's flag; nil where the question is about a language.
     var emoji: String?
-    let text: String
+    /// The name asked about; nil where the flag alone is the question.
+    var text: String?
     /// The answer, once the learner has stopped owing it.
     var revealed: Reveal?
 
@@ -36,17 +42,27 @@ struct CountryPromptCard: View {
     /// pushes the name into the space the reveal needs.
     var body: some View {
         HStack(spacing: DL.Space.m) {
-            if let emoji {
+            if let emoji, text != nil {
                 DLCardEmoji(emoji)
             }
             VStack(spacing: DL.Space.m) {
                 caption
-                Text(verbatim: text)
-                    .font(.system(size: 32, weight: .bold, design: .rounded))
-                    .foregroundStyle(Color.dlTextPrimary)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(3)
-                    .minimumScaleFactor(0.5)
+                if let text {
+                    Text(verbatim: text)
+                        .font(.system(size: 32, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.dlTextPrimary)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(3)
+                        .minimumScaleFactor(0.5)
+                } else if let emoji {
+                    // why: no side slot here — the flag is not the picture beside
+                    // the question, it IS the question, so it takes the place and
+                    // the size the name would have had. It is NOT hidden from
+                    // VoiceOver either, for the same reason: hiding it would
+                    // leave the screen reader nothing to read but the ask.
+                    Text(verbatim: emoji)
+                        .font(.system(size: 64))
+                }
                 if let revealed {
                     DLCardReveal(note: revealed.note) {
                         DLSpokenWord(pronounce: revealed.pronounce, isPlaying: revealed.isPlaying) {
@@ -61,7 +77,7 @@ struct CountryPromptCard: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            if emoji != nil {
+            if emoji != nil, text != nil {
                 DLCardEmoji.balance()
             }
         }
@@ -74,9 +90,14 @@ struct CountryPromptCard: View {
         .animation(.easeOut(duration: 0.25), value: revealed?.word)
     }
 
+    /// The ask, and — where the prompt is written in a language at all — which
+    /// one. A flag belongs to no language, so it names none.
     private var caption: some View {
-        Text.joined(Text(ask),
-                    Text("trainer.prompt.inLanguage \(LanguageNames.display(promptLanguage, locale: locale, catalog: nil))"))
+        var parts = [Text(ask)]
+        if let promptLanguage {
+            parts.append(Text("trainer.prompt.inLanguage \(LanguageNames.display(promptLanguage, locale: locale, catalog: nil))"))
+        }
+        return (parts.joined() ?? Text(ask))
             .font(DL.Fonts.caption)
             .foregroundStyle(Color.dlTextSecondary)
             .textCase(.uppercase)
@@ -95,6 +116,8 @@ struct CountryPromptCard: View {
                           revealed: .init(word: "Kijerumani", note: "Uswisi", pronounce: {}))
         CountryPromptCard(ask: "countries.ask.language", promptLanguage: "sw",
                           text: "Kiswahili")
+        // The flag alone: no name anywhere on the card until the answer is in.
+        CountryPromptCard(ask: "countries.ask.flag", emoji: "🇺🇦")
     }
     .padding(DL.Space.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
