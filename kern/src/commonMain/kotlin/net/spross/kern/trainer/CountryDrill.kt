@@ -18,56 +18,92 @@ import net.spross.kern.catalog.CountryDrillContent
  * the ladder is pinned in tests rather than described twice in two UI layers.
  *
  * The ladder widens OUTWARD from the learner's own two languages, each rung keeping
- * everything below it:
+ * everything below it — and each rung brings exactly ONE new thing, either a question or a
+ * tier, never both at once:
  *
  * | rung | pool | asks |
  * |---|---|---|
  * | 1 | the profile's own languages and their countries (tier 1) | the country's name, where the two languages differ on it |
- * | 2 | tier 1 | + the language's, + the people's |
- * | 3 | + tier 2 | + which language is spoken there |
- * | 4 | + tier 3 | + the country behind a flag alone |
- * | 5 | + tier 4 | |
- * | 6 | everything | + where a language is spoken |
+ * | 2 | tier 1 | + the language's name |
+ * | 3 | tier 1 | + the people's name |
+ * | 4 | + tier 2 | |
+ * | 5 | tier 2 | + which language is spoken there |
+ * | 6 | + tier 3 | |
+ * | 7 | tier 3 | + the country behind a flag alone (forward runs only) |
+ * | 8 | + tier 4 | |
+ * | 9 | everything | + where a language is spoken |
  *
  * A tier the catalog has not authored yet costs nothing: the pool is the join intersected
- * with the ceiling, so an empty new tier simply repeats the pool below it.
+ * with the ceiling, so an empty new tier simply repeats the pool below it. Rung 7 is that
+ * same nothing in a REVERSED run, where the flag question does not exist — see [kinds].
  */
 object CountryDrill {
-    const val MAX_LEVEL = 6
+    const val MAX_LEVEL = 9
 
-    /** Two clean wins a rung — the classic, with no held-vocabulary shortcut to earn. */
-    const val WINS_TO_ADVANCE = 2
+    /** Three clean wins a rung: more rungs, and more rows standing on each of them. */
+    const val WINS_TO_ADVANCE = 3
+
+    /**
+     * How LONG a rung is. Fast spends one clean win instead of the three, and is the reward
+     * for having topped the ladder the hard way ([fastUnlocked]) — the numbers drill's rule
+     * ([Trainer.winsToAdvance]), read off this ladder's own pacing.
+     */
+    fun winsToAdvance(fast: Boolean): Int = if (fast) 1 else WINS_TO_ADVANCE
+
+    /**
+     * Whether the Fast modifier is on offer at all. Having EVER stood on the top rung is the
+     * price — [bestLevel] is the highest rung any run reached, which is what the app keeps.
+     */
+    fun fastUnlocked(bestLevel: Int): Boolean = bestLevel >= MAX_LEVEL
 
     /** The rung ramp, on the ladder's own ceiling and rung length ([DrillRamp.step]). */
-    fun step(level: Int, winsAtLevel: Int, correct: Boolean, clean: Boolean): DrillRamp.RungStep =
-        DrillRamp.step(level, winsAtLevel, correct, clean, MAX_LEVEL, WINS_TO_ADVANCE)
+    fun step(
+        level: Int,
+        winsAtLevel: Int,
+        correct: Boolean,
+        clean: Boolean,
+        fast: Boolean = false,
+    ): DrillRamp.RungStep =
+        DrillRamp.step(level, winsAtLevel, correct, clean, MAX_LEVEL, winsToAdvance(fast))
 
     /** How far out [level] reaches — tier 1 is the profile's own, 4 the regional rest. */
     fun tierCeiling(level: Int): Int = when (level.coerceIn(1, MAX_LEVEL)) {
-        1, 2 -> 1
-        3 -> 2
-        4 -> 3
+        1, 2, 3 -> 1
+        4, 5 -> 2
+        6, 7 -> 3
         else -> 4
     }
 
-    /** What [level] may ask, in ladder order. */
-    fun kinds(level: Int): List<CountryTaskKind> = when (level.coerceIn(1, MAX_LEVEL)) {
+    /**
+     * What [level] may ask, in ladder order.
+     *
+     * A REVERSED run has no [CountryTaskKind.FlagCountry] at all: the answer is then owed in
+     * the learner's OWN language, so a flag alone asks them to recognize their own flag and
+     * write down a name they have said all their life. Rung 7, whose whole novelty that is,
+     * simply repeats the pool below it there — the same nothing an unauthored tier costs.
+     */
+    fun kinds(level: Int, reverse: Boolean = false): List<CountryTaskKind> = when (level.coerceIn(1, MAX_LEVEL)) {
         1 -> listOf(CountryTaskKind.CountryName)
-        2 -> listOf(CountryTaskKind.CountryName, CountryTaskKind.LanguageName, CountryTaskKind.Nationality)
-        3 -> listOf(
+        2 -> listOf(CountryTaskKind.CountryName, CountryTaskKind.LanguageName)
+        3, 4 -> listOf(
+            CountryTaskKind.CountryName,
+            CountryTaskKind.LanguageName,
+            CountryTaskKind.Nationality,
+        )
+        5, 6 -> listOf(
             CountryTaskKind.CountryName,
             CountryTaskKind.LanguageName,
             CountryTaskKind.Nationality,
             CountryTaskKind.SpokenIn,
         )
-        4, 5 -> listOf(
+        7, 8 -> listOfNotNull(
             CountryTaskKind.CountryName,
             CountryTaskKind.LanguageName,
             CountryTaskKind.Nationality,
-            CountryTaskKind.FlagCountry,
+            CountryTaskKind.FlagCountry.takeIf { !reverse },
             CountryTaskKind.SpokenIn,
         )
-        else -> CountryTaskKind.entries
+        else -> CountryTaskKind.entries.filter { !reverse || it != CountryTaskKind.FlagCountry }
     }
 
     /**
@@ -80,7 +116,7 @@ object CountryDrill {
      * not a rung the learner can climb off.
      */
     fun tasks(content: CountryDrillContent, level: Int, reverse: Boolean = false): List<CountryDrillTask> {
-        val kinds = kinds(level)
+        val kinds = kinds(level, reverse)
         var ceiling = tierCeiling(level)
         while (true) {
             val built = build(content, ceiling, kinds, reverse)
@@ -162,7 +198,7 @@ object CountryDrill {
             kind = CountryTaskKind.CountryName,
             id = country.slug,
             promptText = country.prompt(reverse).text,
-            promptEmoji = country.flag,
+            promptEmoji = country.promptFlag(reverse),
             accepted = listOf(answer.text) + answer.variants,
             display = answer.text,
             gloss = answer.nationality.text,
@@ -195,7 +231,7 @@ object CountryDrill {
             kind = CountryTaskKind.Nationality,
             id = country.slug,
             promptText = country.prompt(reverse).nationality.text,
-            promptEmoji = country.flag,
+            promptEmoji = country.promptFlag(reverse),
             accepted = listOf(answer.text) + answer.variants,
             display = answer.text,
             gloss = country.answer(reverse).text,
@@ -234,7 +270,7 @@ object CountryDrill {
             kind = CountryTaskKind.SpokenIn,
             id = country.slug,
             promptText = country.prompt(reverse).text,
-            promptEmoji = country.flag,
+            promptEmoji = country.promptFlag(reverse),
             accepted = (listOf(display) + forms).distinct(),
             display = display,
             gloss = country.answer(reverse).text,
@@ -311,6 +347,13 @@ object CountryDrill {
         put('œ', "oe")
         put('þ', "th")
     }
+
+    /**
+     * The flag beside the prompt — and NOTHING in a reversed run, where the answer is owed
+     * in the learner's own language: a flag there turns "Ujerumani → ?" into recognizing
+     * your own flag, which is not the question the rung means to ask.
+     */
+    private fun AtlasCountryEntry.promptFlag(reverse: Boolean): String? = flag.takeIf { !reverse }
 
     private fun AtlasCountryEntry.prompt(reverse: Boolean) = if (reverse) target else source
 

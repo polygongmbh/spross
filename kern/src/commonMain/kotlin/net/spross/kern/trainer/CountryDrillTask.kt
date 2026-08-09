@@ -16,13 +16,16 @@ enum class CountryTaskKind {
     /** The language: "Deutsch" → "Kijerumani". */
     LanguageName,
 
-    /** The person: "Deutscher" → "Mjerumani". */
+    /** The people: "Deutsche" → "Wajerumani" — the canonical form is the PLURAL. */
     Nationality,
 
     /**
      * The flag ALONE names the country asked about — no name is shown at all. It is the one
      * kind the same-name filter does not apply to ([CountryDrill]): where nothing is
      * written on the card, "Venezuela" is a question again.
+     *
+     * FORWARD runs only. Reversed, the answer is owed in the learner's own language, so the
+     * flag would ask them to recognize their own — no rung builds this kind there.
      */
     FlagCountry,
 
@@ -51,7 +54,11 @@ data class CountryDrillTask(
      * then the whole of what the learner is given.
      */
     val promptText: String?,
-    /** The country's flag, where the question is about one; null for a language. */
+    /**
+     * The country's flag, where the question is about one; null for a language — and null
+     * throughout a REVERSED run, whose answer is owed in the learner's own language and
+     * would be given away by the flag ([CountryDrill]).
+     */
     val promptEmoji: String?,
     /** Everything graded correct, [display] first — every accepted form of every valid answer. */
     val accepted: List<String>,

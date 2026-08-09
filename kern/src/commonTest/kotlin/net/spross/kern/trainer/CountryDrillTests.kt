@@ -85,12 +85,54 @@ class CountryDrillTests {
         assertEquals(home, tasks.map { it.id }.toSet())
     }
 
+    /**
+     * The ladder's whole shape, rung by rung: what each one may ask and how far out it
+     * reaches. ONE of the two columns moves per step and never both — a rung that brought a
+     * question AND a tier would leave the learner unable to say what got harder.
+     */
     @Test
-    fun rungTwoAddsLanguagesAndPeopleOnTheSamePool() {
+    fun eachRungBringsExactlyOneNewThing() {
+        val expected = listOf(
+            1 to setOf(CountryTaskKind.CountryName),
+            1 to setOf(CountryTaskKind.CountryName, CountryTaskKind.LanguageName),
+            1 to setOf(CountryTaskKind.CountryName, CountryTaskKind.LanguageName,
+                       CountryTaskKind.Nationality),
+            2 to setOf(CountryTaskKind.CountryName, CountryTaskKind.LanguageName,
+                       CountryTaskKind.Nationality),
+            2 to setOf(CountryTaskKind.CountryName, CountryTaskKind.LanguageName,
+                       CountryTaskKind.Nationality, CountryTaskKind.SpokenIn),
+            3 to setOf(CountryTaskKind.CountryName, CountryTaskKind.LanguageName,
+                       CountryTaskKind.Nationality, CountryTaskKind.SpokenIn),
+            3 to setOf(CountryTaskKind.CountryName, CountryTaskKind.LanguageName,
+                       CountryTaskKind.Nationality, CountryTaskKind.SpokenIn,
+                       CountryTaskKind.FlagCountry),
+            4 to setOf(CountryTaskKind.CountryName, CountryTaskKind.LanguageName,
+                       CountryTaskKind.Nationality, CountryTaskKind.SpokenIn,
+                       CountryTaskKind.FlagCountry),
+            4 to CountryTaskKind.entries.toSet(),
+        )
+        assertEquals(9, CountryDrill.MAX_LEVEL)
+        assertEquals(expected.size, CountryDrill.MAX_LEVEL)
+        for ((index, want) in expected.withIndex()) {
+            val level = index + 1
+            assertEquals(want.first, CountryDrill.tierCeiling(level), "rung $level reaches wrong")
+            assertEquals(want.second, CountryDrill.kinds(level).toSet(), "rung $level asks wrong")
+        }
+        for ((below, above) in expected.zipWithNext()) {
+            assertTrue(
+                (below.first == above.first) != (below.second == above.second),
+                "a rung moved both the pool and the questions, or neither",
+            )
+        }
+    }
+
+    @Test
+    fun rungTwoAddsTheLanguagesAndRungThreeThePeople() {
         assertEquals(home, ids(2, CountryTaskKind.CountryName))
-        assertEquals(home, ids(2, CountryTaskKind.Nationality))
         assertEquals(setOf("de", "sw"), ids(2, CountryTaskKind.LanguageName))
-        assertTrue(CountryDrill.tasks(content, 2).none { it.kind == CountryTaskKind.SpokenIn })
+        assertTrue(CountryDrill.tasks(content, 2).none { it.kind == CountryTaskKind.Nationality })
+        assertEquals(home, ids(3, CountryTaskKind.Nationality))
+        assertTrue(CountryDrill.tasks(content, 3).none { it.kind == CountryTaskKind.SpokenIn })
     }
 
     @Test
@@ -101,8 +143,8 @@ class CountryDrillTests {
         for ((below, above) in pools.zipWithNext()) {
             assertTrue(below.all { it in above }, "a rung dropped what the one below it opened")
         }
-        assertEquals(home + setOf("neighbour", "far"), ids(6, CountryTaskKind.CountryName))
-        assertEquals(setOf("de", "sw", "es", "fr"), ids(6, CountryTaskKind.SpokenWhere))
+        assertEquals(home + setOf("neighbour", "far"), ids(9, CountryTaskKind.CountryName))
+        assertEquals(setOf("de", "sw", "es", "fr"), ids(9, CountryTaskKind.SpokenWhere))
     }
 
     @Test
@@ -122,14 +164,14 @@ class CountryDrillTests {
     @Test
     fun aLadderTallerThanTheContentRepeatsThePoolBelow() {
         val shallow = content.copy(
-            countries = content.countries.filter { it.tier <= 2 },
-            languages = content.languages.filter { it.tier <= 2 },
+            countries = content.countries.filter { it.tier <= 1 },
+            languages = content.languages.filter { it.tier <= 1 },
         )
-        // Rungs 4 and 5 ask the same kinds, so what is left between them is the tier —
+        // Rungs 3 and 4 ask the same kinds, so what is left between them is the tier —
         // and with nothing authored out there, the pool below is what both stand on.
         assertEquals(
+            CountryDrill.tasks(shallow, 3).map { it.kind to it.id },
             CountryDrill.tasks(shallow, 4).map { it.kind to it.id },
-            CountryDrill.tasks(shallow, 5).map { it.kind to it.id },
         )
     }
 
@@ -167,17 +209,17 @@ class CountryDrillTests {
      * name on it gives nothing away, so the countries the two languages agree on come back.
      */
     @Test
-    fun theFlagQuestionArrivesOnRungFourAndAsksEveryCountry() {
+    fun theFlagQuestionArrivesOnRungSevenAndAsksEveryCountry() {
         val twinned = content.copy(
             countries = content.countries + country("same", 1, listOf("de"), "Malta", "Malta"),
         )
-        for (level in 1..3) {
+        for (level in 1..6) {
             assertTrue(
                 CountryDrill.tasks(twinned, level).none { it.kind == CountryTaskKind.FlagCountry },
                 "rung $level shows a bare flag",
             )
         }
-        val flags = CountryDrill.tasks(twinned, 4).filter { it.kind == CountryTaskKind.FlagCountry }
+        val flags = CountryDrill.tasks(twinned, 7).filter { it.kind == CountryTaskKind.FlagCountry }
         assertContains(flags.map { it.id }, "same")
         val task = assertNotNull(flags.firstOrNull { it.id == "homeland" })
         assertEquals(null, task.promptText, "the flag question wrote a name on the card")
@@ -199,7 +241,7 @@ class CountryDrillTests {
     @Test
     fun spokenInAcceptsEveryLanguageTheCountryCarries() {
         val task = assertNotNull(
-            CountryDrill.tasks(content, 3).firstOrNull {
+            CountryDrill.tasks(content, 5).firstOrNull {
                 it.kind == CountryTaskKind.SpokenIn && it.id == "second-home"
             },
         )
@@ -213,7 +255,7 @@ class CountryDrillTests {
     @Test
     fun spokenWhereAcceptsEveryCountryTheLanguageReaches() {
         val task = assertNotNull(
-            CountryDrill.tasks(content, 6).firstOrNull {
+            CountryDrill.tasks(content, 9).firstOrNull {
                 it.kind == CountryTaskKind.SpokenWhere && it.id == "de"
             },
         )
@@ -226,7 +268,7 @@ class CountryDrillTests {
     @Test
     fun theNationalityKindAsksThePersonAndRevealsTheCountry() {
         val task = assertNotNull(
-            CountryDrill.tasks(content, 2).firstOrNull {
+            CountryDrill.tasks(content, 3).firstOrNull {
                 it.kind == CountryTaskKind.Nationality && it.id == "homeland"
             },
         )
@@ -246,9 +288,83 @@ class CountryDrillTests {
         assertEquals("Ujerumani", back.promptText)
         assertEquals("Deutschland", back.display)
         assertEquals(
-            CountryDrill.tasks(content, 4).map { it.kind to it.id },
-            CountryDrill.tasks(content, 4, reverse = true).map { it.kind to it.id },
+            CountryDrill.tasks(content, 6).map { it.kind to it.id },
+            CountryDrill.tasks(content, 6, reverse = true).map { it.kind to it.id },
         )
+    }
+
+    /**
+     * A reversed run answers in the learner's OWN language, so a flag on the card would ask
+     * them to recognize their own — nothing carries one, at any rung.
+     */
+    @Test
+    fun aReversedRunNeverShowsAFlag() {
+        for (level in 1..CountryDrill.MAX_LEVEL) {
+            for (task in CountryDrill.tasks(content, level, reverse = true)) {
+                assertEquals(null, task.promptEmoji, "rung $level flew a flag on a reversed ${task.kind}")
+            }
+        }
+        // Forward, the same rungs do fly one — otherwise the assertion above proves nothing.
+        assertTrue(CountryDrill.tasks(content, 1).all { it.promptEmoji != null })
+    }
+
+    /** The flag KIND is not merely emptied in reverse — it is never built there. */
+    @Test
+    fun theFlagQuestionDoesNotExistInReverse() {
+        for (level in 1..CountryDrill.MAX_LEVEL) {
+            assertTrue(
+                CountryDrill.kinds(level, reverse = true).none { it == CountryTaskKind.FlagCountry },
+                "rung $level lists the flag question in reverse",
+            )
+            assertTrue(
+                CountryDrill.tasks(content, level, reverse = true)
+                    .none { it.kind == CountryTaskKind.FlagCountry },
+                "rung $level built a flag question in reverse",
+            )
+        }
+    }
+
+    /**
+     * Rung 7's whole novelty is the flag, which reverse does not have — so there it is a
+     * rung that adds nothing and legally stands on the pool below, exactly as an unauthored
+     * tier does. The ladder stays climbable; it just has one flat step in that direction.
+     */
+    @Test
+    fun theFlagRungRepeatsThePoolBelowItInReverse() {
+        assertEquals(
+            CountryDrill.tasks(content, 6, reverse = true).map { it.kind to it.id },
+            CountryDrill.tasks(content, 7, reverse = true).map { it.kind to it.id },
+        )
+        assertTrue(CountryDrill.tasks(content, 7, reverse = true).isNotEmpty())
+    }
+
+    /**
+     * Fast is earned by having STOOD on the top rung, not by standing there now: the app
+     * keeps the highest rung any run reached, and that is what buys the modifier.
+     */
+    @Test
+    fun fastIsOfferedOnlyOnceTheTopRungHasBeenReached() {
+        for (best in 0 until CountryDrill.MAX_LEVEL) {
+            assertTrue(!CountryDrill.fastUnlocked(best), "rung $best bought fast mode")
+        }
+        assertTrue(CountryDrill.fastUnlocked(CountryDrill.MAX_LEVEL))
+        assertTrue(CountryDrill.fastUnlocked(CountryDrill.MAX_LEVEL + 3), "a stored best above the top")
+    }
+
+    /** Three clean wins a rung, or one where fast was earned. */
+    @Test
+    fun aRungCostsThreeCleanWinsAndFastSpendsOne() {
+        assertEquals(3, CountryDrill.winsToAdvance(fast = false))
+        assertEquals(1, CountryDrill.winsToAdvance(fast = true))
+
+        var step = DrillRamp.RungStep(1, 0)
+        repeat(2) { step = CountryDrill.step(step.level, step.winsAtLevel, correct = true, clean = true) }
+        assertEquals(1, step.level, "two wins moved a three-win rung")
+        step = CountryDrill.step(step.level, step.winsAtLevel, correct = true, clean = true)
+        assertEquals(2, step.level)
+
+        val quick = CountryDrill.step(1, 0, correct = true, clean = true, fast = true)
+        assertEquals(2, quick.level, "fast still asked for more than one win")
     }
 
     @Test
