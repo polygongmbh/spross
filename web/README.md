@@ -39,8 +39,9 @@ A point-in-time critique of what is built today: `design-brief.md` — delete it
 
 - Language chips (de/en/es/sw/uk from `catalog/languages.json` data), an optional primer, then the drill.
 - The primer IS the app's numbers page: `Trainer.reference(language)` band by band
-  (`ones`/`teens`/`tens`/`twenties`/`compounds`/`hundreds`/`places`/`forms`), the page supplying only
-  the English headings. Every reading is generated from the packs the drill grades against,
+  (`base`/`tens`/`irregulars`/`compounds`/`hundreds`/`places`/`forms`), the page supplying only
+  the English headings — `irregulars` and `forms` are offered only to the languages that need them.
+  Every reading is generated from the packs the drill grades against,
   so the table cannot drift from it. The mid-run "?" shows the `tens` band, in every language.
 - Mechanics mirror iOS (`docs/surfaces.md` § Trainers): numeral → typed word, exact=green/typo=amber+correction/wrong=reveal,
   any accepted answer extends the streak, two clean rights ramp a Sprosse (= a digit) up, one miss steps down; capped at 4 on the web.

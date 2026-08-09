@@ -133,10 +133,9 @@ startShowcase();
 
 // The kern names each band; the page gives it a heading in the site's voice.
 const BAND_TITLES = {
-  ones: "The seeds",
-  teens: "Ten to nineteen",
+  base: "Zero to fifteen",
   tens: "The tens",
-  twenties: "The twenties",
+  irregulars: "Sixteen to thirty",
   compounds: "Put together",
   hundreds: "Hundreds",
   places: "The big places",
@@ -147,7 +146,8 @@ function bandTable(band) {
   const rows = Array.from(band.entries)
     .map((e) => `<tr><td class="n">${e.value}</td><td class="w" lang="${lang.code}">${e.reading}</td></tr>`)
     .join("");
-  return `<table><caption>${BAND_TITLES[band.key] ?? band.key}</caption>${rows}</table>`;
+  const title = BAND_TITLES[band.key] ?? "More numbers";
+  return `<table><caption>${title}</caption>${rows}</table>`;
 }
 
 function renderPrimer() {
