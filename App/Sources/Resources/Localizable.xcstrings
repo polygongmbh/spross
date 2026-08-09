@@ -1208,13 +1208,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seltenere Sprachen"
+            "value" : "Seltenere Länder und Sprachen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Less common languages"
+            "value" : "Less common countries and languages"
           }
         }
       }
@@ -1224,13 +1224,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der ganze Atlas, bis in die Ecken."
+            "value" : "Was der Atlas sonst noch kennt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The whole atlas, out to its corners."
+            "value" : "The rest of what the atlas knows."
           }
         }
       }
@@ -1256,13 +1256,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alles – und: wo spricht man diese Sprache?"
+            "value" : "Alles aus dem Atlas – und: wo spricht man diese Sprache?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Everything — and: where is this language spoken?"
+            "value" : "Everything the atlas holds — and: where is this language spoken?"
           }
         }
       }
