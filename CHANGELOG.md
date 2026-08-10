@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 4.0.0 — 2026-08-10
+
 - **Android learns the world too: Länder joins Zahlen and Buchstaben.** Name the country,
   the people and the language, and say which is spoken where — typed, in either direction,
   and starting from the two languages you already have before it widens outward. Nine
