@@ -1,8 +1,10 @@
 import WidgetKit
 import SwiftUI
+import UIKit
 
-/// Widget rendering. Self-contained styling (the app's design tokens live in
-/// the app target); article-tint colors mirror Theme.swift.
+/// Widget rendering. Self-contained styling — a widget extension does not link the
+/// app's design tokens, so the handful it needs are copied below from the canonical
+/// table (`App/Sources/Design/Theme.swift`).
 struct WordWidgetView: View {
     let entry: WordEntry
     @Environment(\.widgetFamily) private var family
@@ -223,11 +225,39 @@ struct WordWidgetView: View {
     /// indefinite articles with it) and never reaches the neuter.
     private func tintColor(_ tint: String) -> Color {
         switch tint.lowercased() {
-        case "der", "el", "los", "un": Color(red: 0.10, green: 0.44, blue: 0.76)
-        case "die", "la", "las", "una": Color(red: 0.76, green: 0.15, blue: 0.36)
-        case "das": Color(red: 0.12, green: 0.48, blue: 0.20)
+        case "der", "el", "los", "un": .wgDer
+        case "die", "la", "las", "una": .wgDie
+        case "das": .wgDas
         default: .secondary
         }
+    }
+}
+
+// The widget target's palette, copied from the canonical table in
+// `App/Sources/Design/Theme.swift` because a widget extension links neither the app's
+// design tokens nor Kotlin — kern's `PaletteParityTest` fails the fast gate when this
+// copy drifts from it. Both columns, resolved the way `Theme.swift` resolves them: a
+// home-screen widget follows the phone into dark mode like anything else on that screen.
+extension Color {
+    init(wgLight: UInt32, wgDark: UInt32) {
+        self.init(uiColor: UIColor { trait in
+            UIColor(wgHex: trait.userInterfaceStyle == .dark ? wgDark : wgLight)
+        })
+    }
+
+    static let wgAccent = Color(wgLight: 0xA23B0B, wgDark: 0xFF9A6B)
+    static let wgSuccess = Color(wgLight: 0x256232, wgDark: 0x8AE39B)
+    static let wgDer = Color(wgLight: 0x134E85, wgDark: 0x90CBFF)
+    static let wgDie = Color(wgLight: 0x9A2050, wgDark: 0xFF9EC0)
+    static let wgDas = Color(wgLight: 0x18602C, wgDark: 0x6FDC85)
+}
+
+private extension UIColor {
+    convenience init(wgHex hex: UInt32) {
+        self.init(red: CGFloat((hex >> 16) & 0xFF) / 255,
+                  green: CGFloat((hex >> 8) & 0xFF) / 255,
+                  blue: CGFloat(hex & 0xFF) / 255,
+                  alpha: 1)
     }
 }
 

@@ -39,7 +39,7 @@ struct BoxView: View {
                 LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
                     header
                     // Areas grouped under their areas.json groups, manifest order.
-                    ForEach(model.areaGroupSections) { group in
+                    ForEach(model.areaGroupSections, id: \.id) { group in
                         VStack(alignment: .leading, spacing: DL.Space.l) {
                             groupHeader(group)
                             if expandedGroups.contains(group.id) {
@@ -120,7 +120,7 @@ struct BoxView: View {
 
     /// Foldable group row — a hairline rule and no card of its own, so the
     /// area cards below it stay the heaviest thing on the screen.
-    private func groupHeader(_ group: AppModel.AreaGroupSection) -> some View {
+    private func groupHeader(_ group: AreaGroupSection) -> some View {
         let open = expandedGroups.contains(group.id)
         return VStack(alignment: .leading, spacing: DL.Space.xs) {
             Button {

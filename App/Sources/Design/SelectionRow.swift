@@ -19,6 +19,9 @@ struct DLSelectionRow: View {
         case many
         /// Not yet unlocked: a padlock, and no response to a tap.
         case locked
+        /// The whole list, folded shut onto the choice already made:
+        /// a chevron where the mark would be, and a tap that opens it again.
+        case fold
     }
 
     let title: Text
@@ -30,9 +33,11 @@ struct DLSelectionRow: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: DL.Space.m) {
-                Image(systemName: symbol)
-                    .font(.title3)
-                    .foregroundStyle(markColor)
+                if let symbol {
+                    Image(systemName: symbol)
+                        .font(.title3)
+                        .foregroundStyle(markColor)
+                }
                 VStack(alignment: .leading, spacing: 2) {
                     title
                         .font(DL.Fonts.headline)
@@ -46,6 +51,11 @@ struct DLSelectionRow: View {
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: false, vertical: true)
                 Spacer(minLength: 0)
+                if isFold {
+                    Image(systemName: "chevron.right")
+                        .font(.caption2)
+                        .foregroundStyle(Color.dlTextSecondary)
+                }
             }
             .padding(DL.Space.m)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -58,11 +68,14 @@ struct DLSelectionRow: View {
 
     private var isLocked: Bool { if case .locked = mark { return true }; return false }
 
-    private var symbol: String {
+    private var isFold: Bool { if case .fold = mark { return true }; return false }
+
+    private var symbol: String? {
         switch mark {
         case .one: return selected ? "checkmark.circle.fill" : "circle"
         case .many: return selected ? "checkmark.square.fill" : "square"
         case .locked: return "lock.fill"
+        case .fold: return nil
         }
     }
 

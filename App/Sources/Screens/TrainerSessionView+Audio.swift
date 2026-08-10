@@ -15,9 +15,9 @@ extension TrainerSessionView {
     /// otherwise the revealed reading. nil while the answer is still theirs to
     /// produce — nothing may speak the answer to a question still standing.
     var spokenAnswer: String? {
-        switch feedback {
-        case .almost(let form, _): return form
-        case .revealed: return current.display
+        switch onEnum(of: run.feedback) {
+        case .almost(let hold): return hold.correctForm
+        case .revealed: return run.currentTask.display
         case .neutral, .correct: return nil
         }
     }

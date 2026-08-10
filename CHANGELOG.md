@@ -2,6 +2,92 @@
 
 ## Unreleased
 
+- **Android learns the world too: Länder joins Zahlen and Buchstaben.** Name the country,
+  the people and the language, and say which is spoken where — typed, in either direction,
+  and starting from the two languages you already have before it widens outward. Nine
+  rungs, each bringing exactly one new thing, and every run opens at the first one and
+  climbs by itself: nothing on the page is locked except Fast, which is what topping the
+  ladder once buys you. The flag sits beside the question rather than above it, a flag
+  that would give a reversed answer away waits for the reveal instead of vanishing, and a
+  question that is nothing but a flag shows it big. Under it all, the atlas itself — every
+  country both languages name, in both languages at once, drawn from the very rows the run
+  grades against. Finishing a name is the answer, with no Check tap to confirm what you
+  already wrote.
+
+- **The free-practice card is called Sprossen now, and its levels are rungs** — the words
+  the iPhone already uses, so the same surface reads the same on either phone.
+
+- **Android answers out loud now.** The same three chimes the iPhone has always played —
+  rising for a hit, falling for a miss, one flat note for a revealed answer — sound on
+  review cards and in both drills, and a new record closes on the cheer. They follow the
+  media volume beside the spoken words, not the read-aloud switch: a verdict is
+  punctuation, not speech. The buzz that used to stand in for them is now kept for a
+  miss alone.
+
+- **Android has free practice.** Zahlen and Buchstaben on Heute, each opening a page
+  where the picks and the start button sit above the reading rather than behind it. The
+  numbers page offers what the ladder has opened — the clock, sentences and number forms
+  as ways of being asked rather than separate drills — states what a locked row costs,
+  and carries the generated table of how the language counts with the notes on what trips
+  a learner up. The letters page says which stage a run will open on and lays out the
+  whole alphabet, hearable row by row, even where the device can say nothing. Runs are
+  endless and grade nothing into the box; a closed one hands its figures back to the page
+  that started it instead of taking a screen of its own.
+
+- **Leaving a drill mid-answer now books what you actually earned:** a reading looked up
+  while the answer was still owed keeps the answer amber instead of counting as a clean
+  win on the way out.
+
+- **Android review cards carry what a word owes.** The answer opens the card itself
+  rather than appearing under the field, a prompt that could mean two things names the
+  area it is asked within, and a word that can be heard shows the speaker that says it.
+
+- **Android no longer freezes when a recording is slow to reach the speaker.** Loading
+  and unloading the read-aloud clips happened on the thread that also answers taps, so
+  an audio system taking seconds surfaced as "Spross isn't responding" mid-round; the
+  clips now live on their own worker and a tap never waits on one.
+
+- **Android reviews now run on the same turn rules as the iPhone.** Three honest verdicts,
+  with the long interval earned by answering fast rather than picked; a produce miss keeps
+  the field open primed with what was already right, and a word still being taught is
+  written out once with the answer in view before it moves on. A finished typed answer
+  books itself after a short beat, a near miss holds on the spelling it owes back and
+  speaks it on tap, and revealing no longer types the answer into the field. Verdicts are
+  felt as haptics, the field shows its own correctness, and with a screen reader running
+  nothing advances on a timer — an explicit button books exactly what the beat would have.
+
+- **Android can browse the box.** Shelves fold open to the words on them, each shelf says
+  how much of it has landed and packs the rest in one tap, words can be put back to sleep
+  or written by hand, and search reaches both sides of the pair — including writing a word
+  of your own when the search comes up empty. Heute now names what the round holds, what
+  the day actually bought and what tomorrow leaves, over a fortnight of practice drawn
+  beneath it; the language switch and About moved into the box's settings, as on the iPhone.
+
+- **The language pair in Box settings can no longer be set to a pair that teaches nothing.**
+  The learned-language menu listed the language you already speak whatever the catalog held,
+  so picking it could swap you onto a direction with no words in it; it is now offered only
+  where that swapped pair is one Spross can teach. And switching your known language to one
+  that does not teach your current learning language now moves you to one it does, instead
+  of leaving the pair standing empty. The onboarding screen already worked this way —
+  settings now agrees with it.
+
+- **Answering a word asked by ear with exactly the form that played now counts as clean,**
+  even where the card lists that spelling among its own variants — it no longer books the
+  amber "auch gehört" hold for matching its own recording.
+
+- **The Android app wears the same colours and shapes as the iPhone app, and follows the
+  system's light or dark setting.** Its palette predated the contrast re-cut and shared no
+  values with iOS; now every screen reads from the same colour pairs in both modes, and
+  buttons, tiles and cards take the same rounded shapes. The iPhone widget and the watch
+  complication article tints, which had drifted off that same canon, are back on it too —
+  and the home-screen widget now follows light and dark like every other surface, instead
+  of drawing paper-mode colours on a dark tile.
+
+- **Spross has a front door: spross.net.** A landing page that says what the growing box
+  is, invites you onto the mailing list, and lets you try the real numbers drill in the
+  browser — the same engine the app runs, compiled for the web, with the primer tables
+  it generates itself in any of the five languages.
+
 ## 3.14.0 — 2026-08-09
 
 - **The numbers page shows a language its own hard part.** The bands were the same
@@ -139,6 +225,26 @@
   countdown to the next hour, and only at the top is the face read out minute by minute —
   each step keeping everything the one below it offered. Sentence drills ramp with it, and
   the step that opens them is the five-minute one their unlock always claimed it was.
+
+- **A word you are meeting for the first time is shown and spoken, not illustrated.** The
+  picture used to sit on that very first card, where the only thing asked of you is to say
+  whether you knew it — and an obvious emoji answers that question for you. *Bett* next to
+  🛏️ was a word you had learned; 🛏️ next to a Ukrainian word you had never seen was a
+  picture you had read, and both reached *Gut* the same way, buying the same weeks-long
+  interval. The first card now carries the word itself and its pronunciation, and the
+  picture arrives with the meaning when you reveal it. It comes back on the review after —
+  the one that asks you to type the word — where it helps you produce something rather than
+  confirm something, and where guessing from the picture is not possible.
+
+- **A new word keeps its help until it has actually landed.** The box used to hold two bars
+  for "this word has stuck" and support fell away at the lower one — which a single *Gut* on
+  a word's very first answer already cleared. So the picture disappeared from the next
+  review, and that next review is the first one that asks you to *type* the word: the help
+  went away exactly where it was first needed. There is one bar now, the one the progress
+  display and phrase unlock already used, and a word answered *Gut* once keeps its picture
+  and its write-it-out step until a later answer says it has landed. Answering *Einfach* —
+  which is earned by knowing a word on sight, never chosen — still clears it at once, so a
+  word you already knew is not slowed down.
 
 ## 3.12.0 — 2026-08-08
 

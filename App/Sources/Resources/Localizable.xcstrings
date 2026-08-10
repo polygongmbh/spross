@@ -2887,22 +2887,6 @@
         }
       }
     },
-    "onboarding.termsCount %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ Begriffe"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ terms"
-          }
-        }
-      }
-    },
     "onboarding.welcome" : {
       "localizations" : {
         "de" : {

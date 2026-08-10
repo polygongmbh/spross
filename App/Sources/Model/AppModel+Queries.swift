@@ -111,11 +111,12 @@ extension AppModel {
 
     // MARK: - Box actions
 
-    /// "Pack in die Box": enqueue the area's unscheduled cards in seed order.
+    /// "Pack in die Box": enqueue exactly the cards the shelf's own count
+    /// promised. One predicate answers both (`BoxBrowser.enqueueableCardIds`),
+    /// so a control can never name a number the pack does not add.
     func enqueueArea(_ area: String) {
-        let ids = cards(inArea: area)
-            .filter { scheduling(for: $0.id) == nil }
-            .map(\.id)
+        guard let box else { return }
+        let ids = BoxBrowser.shared.enqueueableCardIds(state: box, area: area)
         guard !ids.isEmpty else { return }
         mutate { $0 = BoxEngine.shared.enqueue(state: $0, cardIds: ids) }
     }
@@ -147,7 +148,8 @@ extension AppModel {
 
     // MARK: - Box queries
 
-    /// Area keys in catalog default order (groups top-to-bottom).
+    /// Area keys in catalog default order, the learner's own words last —
+    /// which areas the browser lists is `BoxBrowser.areaNames`.
     var areaNames: [String] {
         #if DEBUG
         // UI-test hook: `-uitest-noareas 1` hides the area sections so the
@@ -155,13 +157,7 @@ extension AppModel {
         if UserDefaults.standard.bool(forKey: "uitest-noareas") { return [] }
         #endif
         guard let catalog, let stats else { return [] }
-        let present = Set(stats.areas.map(\.name))
-        let fromCatalog = catalog.areaNames.filter(present.contains)
-        // why: the manifest cannot list an area the catalog does not own, so the
-        // learner's own words follow every catalog area — where their seed order
-        // puts them anyway.
-        guard present.contains(ownArea) else { return fromCatalog }
-        return fromCatalog + [ownArea]
+        return BoxBrowser.shared.areaNames(catalog: catalog, stats: stats)
     }
 
     /// Area heading in the profile's source language, catalog-provided. The
@@ -186,37 +182,21 @@ extension AppModel {
         return catalog?.areaEmoji(area: area) ?? "📦"
     }
 
-    /// One Box browser section: an areas.json group with its present areas.
-    struct AreaGroupSection: Identifiable {
-        let id: String
-        let title: String
-        let areas: [String]
-    }
-
-    /// Manifest-ordered groups (title in the SOURCE language, en fallback),
-    /// filtered to the areas actually present in this profile's box —
-    /// mirrors `areaNames` (incl. its uitest hook); empty groups drop out.
+    /// The manifest's groups with the areas this box holds — `BoxBrowser.sections`.
+    ///
+    /// why: the empty `areaNames` carries the `-uitest-noareas` hook through to
+    /// the groups, which is a test affordance kern has no business knowing about;
+    /// with areas present the guard changes nothing (an empty box drops every
+    /// group anyway).
     var areaGroupSections: [AreaGroupSection] {
-        guard let catalog else { return [] }
-        let present = Set(areaNames)
-        return catalog.groups.compactMap { group in
-            let areas = group.areas.filter(present.contains)
-            guard !areas.isEmpty else { return nil }
-            let title = group.titles[sourceLanguage] ?? group.titles["en"] ?? group.id.capitalized
-            return AreaGroupSection(id: group.id, title: title, areas: areas)
-        }
+        guard let catalog, let stats, !areaNames.isEmpty else { return [] }
+        return BoxBrowser.shared.sections(catalog: catalog, stats: stats, source: sourceLanguage)
     }
 
-    /// The group the Box browser opens on: the first one holding cards already
-    /// in learning — where the learner left off, and the only group whose
-    /// numbers have anything to say. A box nothing has been started in falls
-    /// back to the first group, so the screen never opens fully folded.
+    /// The group the Box browser opens on — `BoxBrowser.defaultExpandedGroupId`.
     var defaultExpandedGroupID: String? {
-        let sections = areaGroupSections
-        let started = sections.first { section in
-            section.areas.contains { (areaStats($0)?.activeCards ?? 0) > 0 }
-        }
-        return started?.id ?? sections.first?.id
+        guard let stats else { return nil }
+        return BoxBrowser.shared.defaultExpandedGroupId(sections: areaGroupSections, stats: stats)
     }
 
     func areaStats(_ name: String) -> AreaStatistics? {
@@ -225,19 +205,22 @@ extension AppModel {
 
     func cards(inArea area: String) -> [Card] {
         guard let box else { return [] }
-        return box.cards.values
-            .filter { $0.area == area }
-            .sorted { $0.seedIndex < $1.seedIndex }
+        return BoxBrowser.shared.cardsInArea(state: box, area: area)
     }
 
-    /// Unscheduled cards in the area that are not already queued —
-    /// what "Pack in die Box" would actually add.
+    /// What "Pack in die Box" would actually add to this shelf.
     func enqueueableCount(area: String) -> Int {
         guard let box else { return 0 }
-        let queued = Set(box.enqueued)
-        return cards(inArea: area)
-            .filter { scheduling(for: $0.id) == nil && !queued.contains($0.id) }
-            .count
+        return Int(BoxBrowser.shared.enqueueableCount(state: box, area: area))
+    }
+
+    /// What one listed card's row has to state about itself. `packOffered` is
+    /// the row's context, not the card's: a search hit packs a single word, an
+    /// area listing leaves that to the shelf's own control.
+    func cardRowState(_ cardID: String, packOffered: Bool) -> CardRowState {
+        guard let box else { return CardRowState.Plain.shared }
+        return BoxBrowser.shared.cardRowState(state: box, cardId: cardID,
+                                              packOffered: packOffered)
     }
 
     // MARK: - Fortschritt

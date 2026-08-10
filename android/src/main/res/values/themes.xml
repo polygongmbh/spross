@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Compose draws everything; the platform theme only styles the window. -->
+    <!-- Compose draws everything; the platform theme only styles the window — the paper
+         behind the first frame, and the ink the status bar's icons are drawn in.
+
+         This file and values-night/themes.xml are a PAIR: a style is replaced whole by a
+         qualified copy, never merged into, so every item here has a counterpart there.
+         The status-bar icons follow the scheme (dark icons only on light paper); the
+         background hex follows @color/spross_window_background, which is qualified. -->
     <style name="Theme.Spross" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@color/spross_window_background</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

@@ -38,7 +38,31 @@ The engine's own semantics are below. Four domains have their own pages:
   That query is `coveredSources()`: every language with at least one learnable target, sorted;
   `defaultSource(device)` picks the device language when it is covered, else `en`
   (else, for a catalog that cannot teach from English, its first covered source).
-  So no device locale can throw at launch. (Picker display is an app rule.)
+  So no device locale can throw at launch.
+- `LanguageChoices` (`catalog/LanguageChoices.kt`) owns the pair a learner picks and how the two pickers name it.
+  `Selection(source, target?)` is the pair under edit; `target` is null until one is chosen.
+  - `pickerRow(code, info)` → "🇺🇦 Українська · Ukrainian": flag, the language's own name, the English exonym.
+    Both names, because a flag beside a script the reader cannot read is easy to mistake for a neighbouring language,
+    while the endonym is how a speaker of it finds their own row.
+    Collapsed where the two agree ("🇬🇧 English"), uppercased code where the catalog knows no such language.
+  - `pickerLabel(code, info)` → "🇺🇦 Ukrainian": the collapsed form a dropdown wears as its own label, having half a row to live in.
+    Localized exonyms and sentence chrome stay app-side — they read the platform's string tables, not the catalog.
+  - `targetChoices(catalog, selection)` — every target learnable from the source, plus the source itself so that picking it can swap the pair, sorted by code.
+    The swap row carries the SWAPPED pair's count (target → source): that is the pair the tap would join,
+    and it differs from the count on screen wherever one side realizes a feminine the other knows only through its base.
+    It is offered only where that pair is actually joinable — a target that teaches nothing back is no swap to offer —
+    and never while no target is chosen.
+  - `pickSource(catalog, selection, code)` / `pickTarget(selection, code)` — neither side hides the other's pick:
+    choosing the language the other side holds SWAPS the selections instead of refusing the tap,
+    so a pair set backwards is fixed in one move.
+    A source change keeps the target where it stays learnable under the new source,
+    else falls back to that source's first available target (catalog order), so a tap never leaves the pair half-chosen.
+    Swapping while no target is chosen is a no-op — there is nothing to exchange yet.
+  - `chromeLanguage(source)` / `hasChrome(lang)` over `CHROME_LANGUAGES = {"de", "en"}`, the languages the apps carry string tables for.
+    Chrome reads the profile's KNOWN language where it is covered, else English.
+    The immersion subtitle — an action button captioned in the language being LEARNED — asks `hasChrome` instead,
+    because it has no fallback by design: absent means no subtitle, never an English one.
+    Mapping the returned code to a `Locale` or a chrome table is the platform's.
 
 ## 2. Card — derived, language-symmetric
 
@@ -96,11 +120,20 @@ data class Realization(
   figurative" from the glyph alone before reading either language's text. Idioms also
   carry no `components`/`feminineOf` (structurally forbidden) and so no unlock gate —
   see `catalog/README.md` "Idioms are the exception".
-- **Grammar display is target-side only**: plural line and article coloring render only for
-  the target realization.
-  Every real plural carries the "Pl. " label, suffixes resolved against the word
-  ("-nen" → "Pl. Lehrerinnen"); sentinels "=" → "= Pl.", "only" → "nur Pl."
-  via localized chrome strings, not hardcoded German.
+- **Grammar display is target-side only**: the plural line and article colouring render only for the target realization.
+  `pluralForm(realization)` (`model/DisplayText.kt`) resolves what the catalog authored:
+  absent AND empty both answer null — an authored-but-empty value is not a form,
+  and a surface that took it for one would print a bare label with nothing behind it;
+  `"="` → `SameAsSingular`, `"only"` → `PluralOnly`;
+  a leading `-` is a dictionary suffix resolved against the word ("-nen" on "die Lehrerin" → `Form("die Lehrerinnen")`);
+  anything else is the full form as authored.
+  The words a surface prints for each sentinel ("= Pl.", "nur Pl.") are chrome.
+- **The reveal's family line**: `alternates(realization, shown)` — the canonical `text` plus `synonyms`, minus every form already standing on screen.
+  The exclusion is the whole point: a recognition prompt rotates a synonym in,
+  so without it the reveal offers the learner the very word they are looking at as though it were another one,
+  while dropping the citation form they have not seen.
+  Empty means the surface draws no line.
+  Variants never appear — they grade an answer, they do not teach a form.
 
 ## 3. One schedule per card, alternating presentation   (user ruling 2026-07-22)
 
@@ -290,6 +323,55 @@ this to every loaded box).
   The elapsed span is the recall attempt (prompt shown → answer asked for),
   not the time spent choosing afterwards.
 
+- **A turn is a machine, not a screen** (`session.TurnMachine`, state `TurnState`):
+  one produce/recognize turn is immutable state plus `reduce(state, intent, nowEpochMillis)` —
+  `SessionRun`'s shape, one step further in.
+  It is opened with a card, its role, its produce prompt, the prompted form,
+  whether this is the first exposure and whether the word has settled;
+  it answers with the next state plus `TurnEffect`s —
+  `Answer` (the rating leaves for the run), `ArmAdvance`/`CancelAdvance`,
+  `PrimeField`, `Tone` and `ReleaseFocus`.
+  The learner's TEXT is never in the state:
+  the platform owns the field, the keyboard, focus, animation and playback,
+  and hands text in through intents.
+  Every rule about what that text is worth is here,
+  because it lived twice before and drifted both ways —
+  a pickable Easy on one platform, no retype after a miss on the other.
+  - **What each branch earns**: a clean answer is `Match.Exact.producedRating()`;
+    a typo and a heard-instead are `TurnFeedback.Almost`, holding the rating grading decided
+    until the owed form has been seen; finishing the retype after a miss is
+    recalled-with-help (Hard); giving up on it is an honest Again;
+    a self-grade is `SelfGrading` over the recall span and the prompt length.
+  - **The beats belong to the engine** (`ADVANCE_LIVE_MS` 450, `ADVANCE_EXPLICIT_MS` 1200,
+    carried by `AdvanceTier`): finishing the word IS the answer, so a live-typed exact gets
+    the short beat and an explicit Check the longer one, while an amber hold gets none at all.
+    WHETHER a timer may run is the platform's fact — a screen reader makes a timed change
+    hostile — but that an explicit button REPLACES it, and books exactly what the beat would
+    have booked, is the rule (`TurnIntent.ConfirmPending`).
+  - **Live approval is exact-only where an explicit submit forgives a slip**:
+    the typo budget would fire a letter early and grade a word before it was finished,
+    and a real slip has to pause on its correction anyway.
+    Backing out of a finished word takes the acceptance and its parked rating with it.
+  - **A miss keeps the field open**: the retype IS the answer, primed to the whole words
+    already right (`AnswerNormalizer.matchingPrefixWordCount`),
+    so nothing already correct is typed twice.
+  - **The write-out** (`CopyStep`): a missed word is typed once with the answer in view.
+    Only Again asks for it, only for a word that has not settled,
+    and only where writing it is more than copying it off the prompt —
+    production, or the first exposure, where the word is being taught.
+    A later recognition miss does not qualify:
+    the target has stood in the prompt since the first frame.
+    The rating is HELD and applied unchanged — encoding, never a grade —
+    and a produce retry that was given up on never opens one,
+    because that field already was the one write-out the word gets.
+  - **The recall span** is prompt-shown until the learner asks to see the answer, closed once;
+    a typed answer never closes it, because it never reaches self-grading.
+  - **Asked by ear**, the answer grades against `spokenOnly`,
+    but a form the card itself lists (`alsoAccepts`, compared by `speechKey`)
+    is amber rather than wrong — the reveal teaches those forms, it simply was not what played.
+    Being exactly what played wins over that:
+    a card that also lists its own spoken form was still answered exactly.
+
 The engine also owns budgets and the growth-reserve formula, the silent answer drop, the
 extra round, endless, exposure tiers, statistics, streak forgiveness, the `endSession` fold
 and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
@@ -390,6 +472,55 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   two of them the same; what they look like is not the engine's answer. It is the whole-box
   read behind a surface that draws the box itself rather than the totals `statistics`
   aggregates it into, and the reason the app needs no schedule-reading rules of its own.
+- **`BoxBrowser`** is the box read as a browsable list,
+  and every rule in it is a box rule rather than a layout.
+  `areaNames` intersects the catalog's default area order with the areas this profile actually holds cards in,
+  and appends the learner's own words LAST, in no group:
+  the manifest cannot list an area the catalog does not own,
+  and their seed order puts them behind every catalog word anyway
+  (their heading is chrome — kern hands back the area key, the app names it).
+  `sections` groups those areas as `areas.json` groups them, in manifest order,
+  dropping a group left holding none of them,
+  with the heading read in the profile's source language, then `en`, then the group id —
+  a manifest that forgot one language still names its shelf, visibly wrong rather than blank.
+  `defaultExpandedGroupId` opens the first section holding an area with ACTIVE cards —
+  where the learner left off — else the first section, so the browser never opens fully folded.
+  `cardsInArea` is the shelf in seed order.
+  `enqueueableCardIds` is what packing that shelf would take in — unscheduled, not already queued,
+  which are `enqueue`'s own guards asked in advance — and `enqueueableCount` is its size,
+  so the number a shelf promises and the pack it performs cannot come from two different rules.
+  Missing components are the one thing it does not count:
+  enqueuing a phrase also prepends the components it lacks,
+  and where those live on another shelf a pack takes in more than the count said (`docs/backlog.md`).
+- **`CardRowState`** (`BoxBrowser.cardRowState`) is what one listed card states besides the word itself:
+  `Sleeping`, `PackOffered`, `Packed`, `Plain`, or `Standing(phase, consolidated)`.
+  `packOffered` is the caller's context — a surface that packs a SINGLE word,
+  which is a search hit the learner went looking for by name;
+  an area listing packs by the shelf, so an unexposed card there is `Plain`:
+  NEW is the ABSENCE of a standing, never a standing of its own.
+  `Standing.consolidated` travels beside the phase instead of being read out of it —
+  a card reaches Review well below `consolidatedStability`,
+  so a mark keyed to the phase would seal cards the area's consolidated count leaves out.
+  It is derived from `GrowthStage` and `Statistics.isConsolidated`, never from the raw phase:
+  a second derivation is a second answer waiting to disagree with the shelf above it.
+- **`TodayReport.worked` / `tallyParts()`, `completionTallyParts`, `tomorrowNote`** —
+  which parts a day or a finished round spells out, and in which order.
+  A day is `worked` once something was answered,
+  which is what separates "done for today" from "caught up":
+  nothing is due in either, and only one of them was earned.
+  `tallyParts()` is empty on an unworked day (a day has a state then, not a tally)
+  and otherwise leads with reviews, then today's first meetings, then the crossings —
+  the rarest part reads last.
+  `completionTallyParts(introduced, consolidated, reviews)` is the ROUND's own tally
+  in the order a summary reads it, non-zero parts only;
+  empty means the round bought nothing nameable and the surface says so plainly
+  rather than printing three zeros.
+  `tomorrowNote(hasPackedWords, tomorrowDue)` picks `Packed` / `Fresh` / `Due`:
+  a pack outranks the due count, because a finished day composes nothing
+  and the round after it is where those words arrive;
+  `tomorrowDue` is `dueNow` at `endOfTomorrow`, never a second local-midnight derivation.
+  The kinds and their order are the rule;
+  the words, plurals and separators for them stay in each platform's string tables.
 - **A composed session never refills** (user ruling 2026-07-29): the plan IS the run.
   Cards falling due while the learner sits there — a learning step maturing, most often —
   used to be drained straight in, so the count they were counting down to moved away from
@@ -542,6 +673,53 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   then reads as a join regression, and the assertion measures content, not code.
   A test that restates the mapping it asserts — comparing `RawRealization` to `Realization`
   field by field — is a change-detector for a copy function, not coverage.
+- **The design tokens are not kern's; their AGREEMENT is.**
+  The spacing, the type ramp and the hex pairs stay native on each platform
+  (`docs/portability.md` § Stays native),
+  but four surfaces keep hand-written copies of the palette
+  because none of them links the app's design tokens —
+  the watch app, the phone widget, the complication, and the Android app.
+  `PaletteParityTest` (jvmTest) reads all five files as text
+  and holds every copied value to `App/Sources/Design/Theme.swift`, which is the truth.
+  A copy keeps only the tokens it uses, so the check runs copy-first:
+  every token a file declares must name a canonical token and carry its hex —
+  and the Android cut, being a full re-cut rather than a few borrowed hues,
+  owes both columns whole.
+  Like the real-catalog lints it is content-coupled,
+  and Gradle does not track those Swift/Kotlin sources as test inputs:
+  after a palette-only edit, run with `--rerun-tasks`.
+
+## 8. Trainer & drill runs   (package `net.spross.kern.trainer`)
+
+- A drill run is a **pure machine** shaped like §6's turn machine:
+  `open(mode, rng) → state`, `reduce(state, intent, rng) → state + effects`,
+  `close(state, …) → summary + bookings`.
+  `TrainerRun` drives the numbers/clock/forms/phrases trainer, `LetterDrillRun` the letter drill;
+  platforms keep field, keyboard, focus, timers and audio, and text reaches the machine only inside intents —
+  never as state.
+- **One injected `Random` per run** feeds every draw — task, variant, phrase frame, direction flip —
+  so a seeded run is reproducible end to end and identical on both platforms.
+- Feedback and cues reuse §6's vocabulary
+  (`TurnFeedback`, `AlmostReason`, `AnswerTone`, `AdvanceTier`, `ToneKind`);
+  nothing new is minted where kern already names a rule.
+  `StreakTier` names the summary ladder (≥10 / ≥5 / ≥2 / else);
+  which glyph a tier wears is chrome.
+  The clean counter is `cleanCount` over `done` — the "2/3" string is rendering.
+- **Storage contract**: the streak record under `trainer.record.<key>`,
+  per-variant rung progress under `trainer.level.<key>`
+  (`TrainerMode.RECORD_PREFIX` / `PROGRESS_PREFIX`, keys byte-identical across the two stores).
+  `close` returns only bookings that beat the standing value (strictly greater);
+  the platform writes blindly.
+  Pinned quirk: a non-null `phraseSource` suffixes the record language with the
+  `<source>-<target>` pair even when the run asks no sentence,
+  because the overview passes the source whenever the pair realizes frames.
+- **Closing books exactly as Weiter would** — a pending answer keeps its earned tone,
+  never upgraded (a hint-assisted clean answer closes amber) and never lost;
+  a revealed-but-unconfirmed answer books nothing.
+- `LetterDrillAvailability.report(catalog, box, language, hasVoice)` is the one gate for
+  whether the letter drill exists, what it may prompt, and where a learner enters the ladder.
+  `hasVoice` is a plain Boolean — every call is single-language and it crosses ObjC free —
+  and kern caches nothing: rebuild triggers (voices arriving, foregrounding) stay platform-side.
 
 ## Rejected designs
 

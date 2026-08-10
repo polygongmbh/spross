@@ -52,6 +52,30 @@ data class SessionOffer(
         )
 
     /**
+     * What the day's card SAYS this round holds — which counts it names, in reading order.
+     *
+     * Words already met and words never seen read differently, so those stay apart.
+     * A pulled-forward card is the same act of recalling as a due one,
+     * so it counts INTO the repetitions rather than standing as its own pile;
+     * only when it carries the round alone does it get named as what it is
+     * ([OfferPartKind.Ahead] — the freshening-up round).
+     *
+     * Empty where the round names nothing at all — a surface says so in one plain phrase
+     * instead of printing zeros, the same contract [net.spross.kern.box.TodayReport.tallyParts]
+     * keeps. The words, the plurals and the separator between them are the platform's.
+     */
+    fun summaryParts(): List<OfferPart> {
+        val parts = mutableListOf<OfferPart>()
+        if (reviews > 0) {
+            parts += OfferPart(OfferPartKind.Reviews, reviews + ahead)
+        } else if (ahead > 0) {
+            parts += OfferPart(OfferPartKind.Ahead, ahead)
+        }
+        if (fresh > 0) parts += OfferPart(OfferPartKind.Fresh, fresh)
+        return parts
+    }
+
+    /**
      * FNV-1a over the counts, never a runtime-seeded hash: Swift seeds `hashValue` per process
      * and Kotlin's `hashCode` is no contract either, so the same round would headline differently
      * on the next launch — or differently on the two platforms.
@@ -71,6 +95,24 @@ data class SessionOffer(
         const val HEADLINE_VARIANTS: Int = 3
     }
 }
+
+/**
+ * Which count a spelled-out offer part names.
+ * The kinds are the rule; the words and their plurals are the platform's.
+ */
+enum class OfferPartKind {
+    /** Cards to recall — due work with any pull-ahead already folded in. */
+    Reviews,
+
+    /** Pull-aheads carrying the round on their own: nothing is due, this is a freshening-up. */
+    Ahead,
+
+    /** Entries the learner has never answered. */
+    Fresh,
+}
+
+/** One part of the day's offer: which count, and how many. */
+data class OfferPart(val kind: OfferPartKind, val count: Int)
 
 /** Round classification and the "is there anything to do" questions, over one live box. */
 object SessionOffers {

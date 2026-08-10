@@ -3,6 +3,7 @@ package net.spross.app
 import net.spross.app.audio.Pronouncer
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.utterance
+import net.spross.kern.model.Language
 import net.spross.kern.trainer.LetterDrillTask
 import net.spross.kern.trainer.LetterPromptKind
 
@@ -19,18 +20,7 @@ fun AppModel.letterPrompt(task: LetterDrillTask): Pronunciation? = when (task.pr
     // why: the ONE lookup NOT keyed by the visible form — what is written (р) and what is
     // said («ер») are different strings, so the manifest is addressed by the glyph.
     LetterPromptKind.Name -> task.promptGlyph?.let { glyph ->
-        // why: the whole recording, not just its path — the letters are the quietest and
-        // latest-starting files we ship, and the drill is where that is heard, so the
-        // analysis index travels with them.
-        val recording = catalog?.letterRecording(task.language, glyph)
-        Pronunciation(
-            form = task.promptText,
-            utterance = utterance(task.promptText),
-            lang = task.language,
-            recordingPath = recording?.path,
-            gain = recording?.gain ?: 0.0,
-            leadMs = recording?.leadMs ?: 0,
-        )
+        letterName(task.promptText, glyph, task.language)
     }
     // A word the catalog owns: the matched-form lookup the review cards use.
     LetterPromptKind.Word -> catalog?.pronunciation(task.language, task.promptText)
@@ -60,3 +50,24 @@ fun AppModel.letterReplay(task: LetterDrillTask): (() -> Unit)? {
     if (!pronouncer.canPronounce(pronunciation)) return null
     return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP) }
 }
+
+/**
+ * A letter's own NAME — «ер», never the bare glyph, which a synthesizer reads as anything
+ * from a spelling alphabet to a pause. The letters pack answers it where a recording
+ * exists; the voice where it does not.
+ *
+ * why: the whole recording, not just its path — the letters are the quietest and
+ * latest-starting files we ship, so the analysis index travels with them.
+ */
+fun AppModel.letterName(name: String, glyph: String, lang: Language): Pronunciation {
+    val recording = catalog?.letterRecording(lang, glyph)
+    return Pronunciation(
+        form = name,
+        utterance = utterance(name),
+        lang = lang,
+        recordingPath = recording?.path,
+        gain = recording?.gain ?: 0.0,
+        leadMs = recording?.leadMs ?: 0,
+    )
+}
+

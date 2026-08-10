@@ -1,116 +1,114 @@
 import SwiftUI
 import SprossKern
 
-/// Grading of the letter drill — and the run-through hooks that drive it.
-/// State lives on LetterDrillView; split out purely for file size, the way the
-/// slot drill splits its own grading off.
+/// The RUN half of the letter drill: how an event reaches kern, what comes
+/// back, and what a close leaves behind — plus the run-through hooks that drive
+/// it. State lives on LetterDrillView; split out purely for file size.
 ///
-/// A tile and a typed glyph are Kern's business (`gradeLetter`, exact after
-/// normalization — a one-glyph answer with a typo budget grades nothing).
-/// Dictation is not: what was SPOKEN is the only right answer, so the whole
-/// catalog has to be in view to tell a slip of that word from a different word
-/// entirely (`kufunga` / `kufungua`), and the card the grader is handed keeps
-/// the REAL card's identity so the learner's own concept is never reported back
-/// to them as somebody else's.
+/// Grading itself is `LetterDrillRun.verdict`'s: a tile and a typed glyph are
+/// exact after normalization, and dictation runs the whole catalog, because only
+/// a catalog-wide grader can tell a slip of the played word from a different
+/// word entirely (`kufunga` / `kufungua`). All this side still owes is the
+/// grader itself — one strict normalizer over the learner's own cards.
 extension LetterDrillView {
 
+    // MARK: - Driving the run
+
+    func dispatch(_ intent: LetterDrillIntent) {
+        let reduction = LetterDrillRun.shared.reduce(state: run, intent: intent, rng: drillRandom)
+        let moved = reduction.state.index != run.index
+        if moved {
+            // why: cleared in the SAME transaction as the question — the next
+            // one must never render a frame carrying the last one's answer.
+            input = ""
+            #if DEBUG
+            // The no-FSRS proof, printed where a review would have been booked.
+            uitestBox("answered")
+            #endif
+        }
+        let animation: Animation = moved
+            ? (reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip)
+            : .easeOut(duration: 0.25)
+        withAnimation(animation) { run = reduction.state }
+        for effect in reduction.effects { apply(effect) }
+        // Nothing left to ask: hand the run back, never sit on a blank card.
+        if reduction.state.finished { closeRun() }
+    }
+
+    private func apply(_ effect: DrillEffect) {
+        switch onEnum(of: effect) {
+        case .armAdvance(let beat):
+            // why: AutoAdvance skips the timer under a screen reader — it
+            // truncates the correctness announcement and moves the screen under
+            // the user, and the branches render "Weiter" there instead.
+            AutoAdvance.schedule(beat.tier, &autoAdvance) {
+                dispatch(LetterDrillIntent.AdvanceElapsed.shared)
+            }
+        case .cancelAdvance:
+            autoAdvance?.cancel()
+        case .tone(let cue):
+            switch cue.kind {
+            case .correct: DLSound.correct()
+            case .wrong: DLSound.wrong()
+            case .reveal: DLSound.reveal()
+            }
+        case .releaseFocus:
+            // why: both amber holds wait for a tap, and a held keyboard covers
+            // the button they wait for.
+            answerFocused = false
+        case .silence:
+            // D5: the clip belongs to the question being left.
+            Pronouncer.shared.stop()
+        }
+    }
+
+    // MARK: - What the learner does
+
     /// One attempt per tile question — a second tap after the answer is in
-    /// would be a retry, and the ramp has no verdict for that.
-    func choose(_ glyph: String, answer: String) {
-        guard chosen == nil, feedback == .neutral else { return }
-        Pronouncer.shared.stop()
-        chosen = glyph
-        guard glyph == answer else {
-            feedback = .revealed
-            DLSound.wrong()
+    /// would be a retry, and the ramp has no verdict for that (kern's guard).
+    func choose(_ glyph: String) {
+        dispatch(LetterDrillIntent.Choose(glyph: glyph))
+    }
+
+    func submit() {
+        dispatch(LetterDrillIntent.Submit(text: input))
+    }
+
+    /// ONE primary action: an empty field reveals — the CARD carries the answer
+    /// and the question books a miss — a typed one checks.
+    func checkOrReveal() {
+        if input.isBlankAnswer {
+            dispatch(LetterDrillIntent.Reveal.shared)
+        } else {
+            submit()
+        }
+    }
+
+    // MARK: - Close → back to the page that opened it
+
+    /// X during a run: kern books a pending answer exactly as the tap would,
+    /// then hands the figures back. An untouched run leaves nothing to report,
+    /// and no record line — the letter drill keeps no record store (D12).
+    func closeRun() {
+        let closed = LetterDrillRun.shared.close(state: run)
+        run = closed.state
+        for effect in closed.effects { apply(effect) }
+        guard let summary = closed.summary else {
+            dismiss()
             return
         }
-        feedback = .correct
-        DLSound.correct()
-        // why: AutoAdvance skips the timer under a screen reader — it
-        // truncates the correctness announcement and moves the screen under
-        // the user (§6.1 renders "Weiter" there instead).
-        AutoAdvance.scheduleExplicit(&autoAdvance) { advance(correct: true, clean: true) }
+        answerFocused = false
+        onFinish(DrillRunResult(summary, title: "trainer.letters"))
+        dismiss()
     }
 
-    /// "Aufdecken" on an empty field: the CARD carries the answer — the gap
-    /// closes over it — and the question books as a miss. The field stays
-    /// empty, which is what makes it disappear: it has nothing of the
-    /// learner's to show, and typing the answer in for them would put the same
-    /// word on screen twice.
-    func reveal(_ task: LetterDrillTask) {
-        Pronouncer.shared.stop()
-        DLSound.reveal()
-        withAnimation { feedback = .revealed }
-    }
-
-    func submit(_ task: LetterDrillTask) {
-        let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard feedback == .neutral, !trimmed.isEmpty else { return }
-        Pronouncer.shared.stop()
-        switch verdict(trimmed, task: task) {
-        case .clean:
-            feedback = .correct
-            DLSound.correct()
-            AutoAdvance.scheduleExplicit(&autoAdvance) { advance(correct: true, clean: true) }
-        case .typo(let corrected):
-            // why: no auto-advance on a slip — the pause shows the proper
-            // spelling, and "Weiter" then books it amber.
-            feedback = .almost(correctForm: corrected, reason: .typo)
-            DLSound.correct()
-            typoCorrection = corrected
-            answerFocused = false
-        case .heard(let spoken):
-            feedback = .almost(correctForm: spoken, reason: .heard)
-            DLSound.correct()
-            heardInstead = spoken
-            // why: both amber holds wait for a tap, and a held keyboard
-            // covers the button they wait for.
-            answerFocused = false
-        case .wrong:
-            feedback = .revealed
-            DLSound.wrong()
-        }
-    }
-
-    /// What a typed answer earns; what the ramp does with it is `DrillProgression.step`.
-    private enum Verdict {
-        case clean
-        case typo(String)
-        /// A form this very card accepts, but not the one that played.
-        case heard(String)
-        case wrong
-    }
-
-    private func verdict(_ trimmed: String, task: LetterDrillTask) -> Verdict {
-        guard task.stage == .dictation else {
-            return LetterDrill.shared.gradeLetter(input: trimmed, task: task) ? .clean : .wrong
-        }
-        guard let card = model.box?.cards[task.answerRef], let grader = dictationGrader else {
-            return LetterDrill.shared.gradeLetter(input: trimmed, task: task) ? .clean : .wrong
-        }
-        let graded = grader.grade(input: trimmed,
-                                  card: LetterDrill.shared.dictationGradingCard(card: card, task: task))
-        if case .exact = onEnum(of: graded) { return .clean }
-        // why: BEFORE the grader's own verdict — the review flow explicitly
-        // teaches these forms ("auch: …"), so a synonym of the dictated word is
-        // never wrong and never somebody else's word. It simply is not what
-        // played, and the correction box says which form did.
-        if card.alsoAccepts(trimmed) { return .heard(task.display) }
-        switch onEnum(of: graded) {
-        case .typo(let typo): return .typo(typo.corrected)
-        case .exact, .otherWord, .wrong: return .wrong
-        }
-    }
-
-    /// The strict drill normalizer with the whole join in view: a per-word slip
+    /// The STRICT drill grader with the whole join in view: a per-word slip
     /// budget alone would accept `kufungua` for `kufunga`, and only the
-    /// catalog-wide grader withdraws that credit.
-    private var dictationGrader: CatalogAnswerGrader? {
+    /// catalog-wide grader withdraws that credit. Resolved once, when the run
+    /// opens — dictation is the only stage that consults it.
+    @MainActor static func dictationGrader(model: AppModel, language: String) -> CatalogAnswerGrader? {
         guard let info = model.languageInfo(language), let box = model.box else { return nil }
-        let normalizer = AnswerNormalizer(answerLanguage: info,
-                                          articleLeniency: false,
-                                          maxTyposPerWord: KotlinInt(int: 1))
+        let normalizer = AnswerNormalizer.companion.drill(answerLanguage: info)
         return CatalogAnswerGrader(normalizer: normalizer, cards: Array(box.cards.values))
     }
 }
@@ -125,14 +123,17 @@ extension LetterDrillView {
     func uitestStart() {
         let defaults = UserDefaults.standard
         if let prefill = UITestAnswer.prefill { input = prefill }
-        if let task = current { UITestAnswer.submitAfterBeat { submit(task) } }
+        if current != nil { UITestAnswer.submitAfterBeat { submit() } }
         // `-uitest-streak N`, the slot drill's figure under the slot drill's
         // name: a run mid-streak, which a screenshot run has no thumb to reach.
         let preset = defaults.integer(forKey: "uitest-streak")
         if preset > 0 {
-            streak = preset
-            bestStreak = max(preset, 12)
-            doneCount = preset + 6
+            run = run.doCopy(config: run.config, task: run.task, index: run.index,
+                             level: run.level, winsAtLevel: run.winsAtLevel,
+                             done: Int32(preset + 6), streak: Int32(preset),
+                             bestStreak: Int32(max(preset, 12)), missRun: run.missRun,
+                             outcomes: run.outcomes, chosen: run.chosen,
+                             feedback: run.feedback, finished: run.finished)
         }
         // `-uitest-close 1`: leave the way the ✕ leaves, so the tile the run
         // drops on the page behind it can be photographed.
@@ -164,7 +165,7 @@ extension LetterDrillView {
         else { return }
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(600))
-            choose(glyph, answer: task.display)
+            choose(glyph)
         }
     }
 
@@ -184,7 +185,7 @@ extension LetterDrillView {
         // it exists for, and this is where a run shows it reached the player.
         print("""
             LetterDrill probe: play \(name) \
-            stage \(task.stage.name) level \(level) kind \(task.promptKind.name) \
+            stage \(task.stage.name) level \(run.level) kind \(task.promptKind.name) \
             text "\(task.promptText)" recording \(pronunciation.recordingPath ?? "none") \
             index \(pronunciation.gain) dB/\(pronunciation.leadMs) ms \
             screenReader \(screenReaderOn) \

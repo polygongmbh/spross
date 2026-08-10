@@ -1,7 +1,9 @@
 import SwiftUI
 
-// Watch design tokens — dark-mode variants of the phone palette
-// (Theme.swift); watchOS renders on black, so only the dark set is needed.
+// Watch design tokens — the dark column of the canonical table in
+// `App/Sources/Design/Theme.swift`, copied because the watch target links neither the
+// app's design tokens nor Kotlin. kern's `PaletteParityTest` fails the fast gate when
+// this copy drifts from it. watchOS renders on black, so only the dark set is needed.
 
 extension Color {
     init(watchHex hex: UInt32) {

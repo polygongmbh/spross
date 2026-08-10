@@ -184,10 +184,9 @@ struct PhaseBadge: View {
     }
 
     let phase: Phase
-    /// Whether this card counts as consolidated in its area's tally. The icon
-    /// follows THIS, not the phase: a card reaches Review well below the
-    /// consolidated threshold, so a seal keyed to the phase would mark cards
-    /// the "gefestigt" count above it does not include.
+    /// Whether this card counts as consolidated in its area's tally — the bar it
+    /// has cleared, handed over beside the phase rather than read out of it
+    /// (kern `CardRowState.Standing` states why).
     var consolidated: Bool = false
 
     /// The area row's own two icons, so a badge and that row agree on sight.

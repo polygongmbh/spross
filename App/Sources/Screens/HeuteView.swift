@@ -163,28 +163,23 @@ struct HeuteView: View {
         }
     }
 
+    /// "12 Wiederholungen · 5 neue Wörter" — which counts the round names and in
+    /// which order is the offer's own rule (`SessionOffer.summaryParts`); the words are ours.
     /// Built as `Text` (not a joined String) so each part localizes
     /// via the environment locale with catalog plural handling.
-    /// Words already met and words never seen read differently, so those stay apart —
-    /// but a pulled-forward card is the same act of recalling as a due one,
-    /// so it counts into the repetitions instead of standing as its own pile.
-    /// Only when it carries the round alone does it get named: Auffrischer.
     private func sessionSummary(_ offer: SessionOffer) -> Text {
-        // why: every count crosses into Int here — the engine counts in Int32, and
+        offer.summaryParts().map(offerPartText).joined() ?? Text("heute.session.someCards")
+    }
+
+    private func offerPartText(_ part: OfferPart) -> Text {
+        // why: the count crosses into Int here — the engine counts in Int32, and
         // a plural key only varies on a count the String Catalog recognises.
-        let reviews = Int(offer.reviews)
-        let ahead = Int(offer.ahead)
-        let fresh = Int(offer.fresh)
-        var parts: [Text] = []
-        if reviews > 0 {
-            parts.append(Text("heute.session.reviews \(reviews + ahead)"))
-        } else if ahead > 0 {
-            parts.append(Text("heute.session.ahead \(ahead)"))
+        let count = Int(part.count)
+        switch part.kind {
+        case .reviews: return Text("heute.session.reviews \(count)")
+        case .ahead: return Text("heute.session.ahead \(count)")
+        case .fresh: return Text("heute.session.newCards \(count)")
         }
-        if fresh > 0 {
-            parts.append(Text("heute.session.newCards \(fresh)"))
-        }
-        return parts.joined() ?? Text("heute.session.someCards")
     }
 
     // MARK: - Nothing due (done for today / caught up)
@@ -199,7 +194,7 @@ struct HeuteView: View {
     /// counts the run says one thing, not two.
     private var doneCard: some View {
         let today = model.today
-        let worked = (today?.reviews ?? 0) > 0
+        let worked = today?.worked ?? false
         return VStack(spacing: DL.Space.l) {
             doneMark(worked: worked)
             Text(worked ? "heute.done.title" : "heute.caughtUp.title")
@@ -256,27 +251,32 @@ struct HeuteView: View {
     }
 
     /// "24 Wiederholungen · 3 Frischlinge · 2 gefestigt" — the day's gain, not just
-    /// that it happened. Consolidated crossings lead nothing: they are the rarest part
-    /// and the one worth reading last.
+    /// that it happened. Which counts the day names and in which order is the day's
+    /// own report (`TodayReport.tallyParts`); the words are ours.
     private func todayTally(_ report: TodayReport) -> Text {
-        var parts: [Text] = [Text("heute.session.reviews \(Int(report.reviews))")]
-        if report.introduced > 0 {
-            parts.append(Text("heute.session.newCards \(Int(report.introduced))"))
+        report.tallyParts().map(tallyText).joined() ?? Text("heute.session.someCards")
+    }
+
+    private func tallyText(_ part: TallyPart) -> Text {
+        let count = Int(part.count)
+        switch part.kind {
+        case .reviews: return Text("heute.session.reviews \(count)")
+        case .introduced: return Text("heute.session.newCards \(count)")
+        case .consolidated: return Text("heute.done.consolidated \(count.formatted())")
         }
-        if report.consolidated > 0 {
-            parts.append(Text("heute.done.consolidated \(Int(report.consolidated).formatted())"))
-        }
-        return parts.joined() ?? Text("heute.session.someCards")
     }
 
     /// A finished day composes nothing, so words packed on one only arrive through the round
     /// above — said as a fact about that round, in the smallest type on the card, because
-    /// the pack was the learner's move and does not need answering.
+    /// the pack was the learner's move and does not need answering. Which of the three
+    /// notes a done day leaves is kern's (`tomorrowNote`).
     private var tomorrowText: Text {
-        if model.hasPackedWords { return Text("heute.done.packed") }
-        return model.tomorrowDueCount == 0
-            ? Text("heute.done.tomorrowFresh")
-            : Text("heute.done.tomorrowDue \(model.tomorrowDueCount)")
+        switch tomorrowNote(hasPackedWords: model.hasPackedWords,
+                            tomorrowDue: Int32(model.tomorrowDueCount)) {
+        case .packed: return Text("heute.done.packed")
+        case .fresh: return Text("heute.done.tomorrowFresh")
+        case .due: return Text("heute.done.tomorrowDue \(model.tomorrowDueCount)")
+        }
     }
 
     // MARK: - Generic state card (error / empty box)

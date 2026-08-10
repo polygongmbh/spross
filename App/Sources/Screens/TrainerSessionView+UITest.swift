@@ -6,6 +6,10 @@ import SprossKern
 /// shape the letter drill already uses: they drive the screen into a state a
 /// screenshot run cannot reach with a thumb. State lives on TrainerSessionView;
 /// split out purely for file size.
+///
+/// The hooks that stand a run somewhere it did not play to write kern's state
+/// directly (`seeded`), which is the whole of the licence they take: everything
+/// a thumb could do goes through an intent, exactly as a finger would.
 extension TrainerSessionView {
 
     /// The shared answer hooks (`UITestAnswer`), plus:
@@ -22,22 +26,23 @@ extension TrainerSessionView {
         let defaults = UserDefaults.standard
         let presetLevel = defaults.integer(forKey: "uitest-level")
         if presetLevel > 0, let variant = mode.variants.first {
-            var preset = levels
-            preset[variant] = min(presetLevel, maxLevel(variant))
-            levels = preset
-            tasks = [Self.sampleTask(mode: mode, levels: preset, avoiding: nil)]
+            let capped = min(presetLevel, Int(mode.maxLevel(variant: variant)))
+            var levels = run.levels
+            levels[variant] = KotlinInt(int: Int32(capped))
+            run = run.seeded(current: mode.draw(levels: levels, avoiding: nil, rng: drillRandom),
+                             levels: levels)
         }
         if let prefill = UITestAnswer.prefill { input = prefill }
         UITestAnswer.submitAfterBeat { submit() }
         let preset = defaults.integer(forKey: "uitest-streak")
         if preset > 0 {
-            streak = preset
-            bestStreak = max(preset, 12)
-            doneCount = preset + 6
+            run = run.seeded(done: Int32(preset + 6), streak: Int32(preset),
+                             bestStreak: Int32(max(preset, 12)))
         }
         // `-uitest-misses N` presets misses ALREADY booked, so a wrong answer on
         // top of it lands on the state where the way out is offered.
-        missRun = max(0, defaults.integer(forKey: "uitest-misses"))
+        let misses = max(0, defaults.integer(forKey: "uitest-misses"))
+        if misses > 0 { run = run.seeded(missRun: Int32(misses)) }
         if defaults.bool(forKey: "uitest-close") {
             if defaults.bool(forKey: "uitest-record") { TrainerRecords.clear(mode.recordKey) }
             // why: through closeRun, not by seeding the page — the tile is worth
@@ -48,18 +53,46 @@ extension TrainerSessionView {
             }
         }
         if defaults.bool(forKey: "uitest-typo") {
-            feedback = .almost(correctForm: current.display, reason: .typo)
-            typoCorrection = current.display
+            run = run.seeded(feedback: TurnFeedbackAlmost(correctForm: run.currentTask.display,
+                                                         reason: .typo))
         }
         if defaults.bool(forKey: "uitest-reference") {
             // why: a sheet raised while the run under it is still animating in is
             // dropped — the tap this stands in for always comes after that.
             Task { @MainActor in
                 try? await Task.sleep(for: .milliseconds(600))
-                hintUsed = true
-                showingReference = true
+                lookUp()
             }
         }
+    }
+}
+
+extension TrainerRunState {
+    /// kern's `copy` with the run's own values standing in for everything a hook
+    /// does not touch. No default argument crosses the ObjC boundary, so the
+    /// fifteen unchanged fields are written once here rather than at four call sites.
+    func seeded(current: DrawnTask? = nil,
+                levels: [DrillVariant: KotlinInt]? = nil,
+                done: Int32? = nil,
+                streak: Int32? = nil,
+                bestStreak: Int32? = nil,
+                missRun: Int32? = nil,
+                feedback: (any TurnFeedback)? = nil) -> TrainerRunState {
+        doCopy(mode: mode,
+               current: current ?? self.current,
+               index: index,
+               levels: levels ?? self.levels,
+               winsAtLevel: winsAtLevel,
+               bestLevels: bestLevels,
+               done: done ?? self.done,
+               streak: streak ?? self.streak,
+               bestStreak: bestStreak ?? self.bestStreak,
+               missRun: missRun ?? self.missRun,
+               outcomes: outcomes,
+               seenDigitCounts: seenDigitCounts,
+               hintUsed: hintUsed,
+               feedback: feedback ?? self.feedback,
+               finished: finished)
     }
 }
 #endif

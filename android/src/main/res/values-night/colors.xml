@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- `DlDark.background` from ui/Theme.kt — see the light column in values/colors.xml. -->
+    <color name="spross_window_background">#FF121714</color>
+</resources>

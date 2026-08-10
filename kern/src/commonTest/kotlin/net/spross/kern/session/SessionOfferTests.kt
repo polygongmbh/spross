@@ -107,6 +107,70 @@ class SessionOfferTests {
         assertEquals(listOf(1, 2, 0), listOf(variant(0, 0, 0), variant(1, 0, 0), variant(20, 0, 5)))
     }
 
+    private fun summary(reviews: Int, ahead: Int, fresh: Int) =
+        SessionOffer(SessionOfferKind.Reviews, reviews, dueHeldBack = 0, ahead = ahead, fresh = fresh)
+            .summaryParts()
+
+    /**
+     * A pulled-forward card is the same act of recalling as a due one, so it counts
+     * INTO the repetitions instead of standing as a pile of its own.
+     */
+    @Test
+    fun recallAbsorbsWhatWasPulledForward() {
+        assertEquals(
+            listOf(OfferPart(OfferPartKind.Reviews, 8), OfferPart(OfferPartKind.Fresh, 5)),
+            summary(reviews = 6, ahead = 2, fresh = 5),
+        )
+        assertEquals(listOf(OfferPart(OfferPartKind.Reviews, 8)), summary(reviews = 6, ahead = 2, fresh = 0))
+        assertEquals(listOf(OfferPart(OfferPartKind.Reviews, 6)), summary(reviews = 6, ahead = 0, fresh = 0))
+    }
+
+    /** Carrying the round alone is the one thing that gets pull-ahead named as itself. */
+    @Test
+    fun pullAheadIsNamedOnlyWhenItCarriesTheRoundAlone() {
+        assertEquals(
+            listOf(OfferPart(OfferPartKind.Ahead, 4), OfferPart(OfferPartKind.Fresh, 3)),
+            summary(reviews = 0, ahead = 4, fresh = 3),
+        )
+        assertEquals(listOf(OfferPart(OfferPartKind.Ahead, 4)), summary(reviews = 0, ahead = 4, fresh = 0))
+    }
+
+    /** First sights are their own part wherever there are any, and can stand alone. */
+    @Test
+    fun firstSightsStayApartFromRecall() {
+        assertEquals(listOf(OfferPart(OfferPartKind.Fresh, 7)), summary(reviews = 0, ahead = 0, fresh = 7))
+    }
+
+    /** A round that names no count says so in one plain phrase — kern hands back nothing to spell. */
+    @Test
+    fun aRoundWithNothingNameableSpellsNothing() {
+        assertEquals(emptyList<OfferPart>(), summary(reviews = 0, ahead = 0, fresh = 0))
+        assertEquals(
+            emptyList<OfferPart>(),
+            SessionOffers.offer(Box.state(emptyList()), now, Box.TZ).summaryParts(),
+        )
+    }
+
+    /** The same rule over live compositions, not just hand-built counts. */
+    @Test
+    fun theSummaryReadsOffALiveRound() {
+        // A token couple of due cards still absorbs the pull-ahead behind it.
+        assertEquals(
+            listOf(OfferPart(OfferPartKind.Reviews, 5)),
+            SessionOffers.offer(state(due = 2, ahead = 3, catalog = 5, sessionCap = 25), now, Box.TZ).summaryParts(),
+        )
+        // A caught-up box has only pull-ahead to offer, so it is named.
+        assertEquals(
+            listOf(OfferPart(OfferPartKind.Ahead, 4)),
+            SessionOffers.offer(state(due = 0, ahead = 4, catalog = 4, sessionCap = 25), now, Box.TZ).summaryParts(),
+        )
+        // A rested box offers first sights and nothing to recall.
+        assertEquals(
+            listOf(OfferPart(OfferPartKind.Fresh, SessionComposer.NEW_CARDS_PER_ROUND)),
+            SessionOffers.offer(state(due = 0, ahead = 0, catalog = 30, sessionCap = 25), now, Box.TZ).summaryParts(),
+        )
+    }
+
     /** Nothing composed and nothing due: the day has nothing to offer. */
     @Test
     fun anEmptyBoxOffersNothing() {

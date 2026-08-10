@@ -18,6 +18,12 @@ settings:
     SWIFT_VERSION: "6.0"
     CODE_SIGN_STYLE: Automatic
     DEVELOPMENT_TEAM: 2LDZV9286Q
+    # why: SprossKern ships ONE simulator slice, arm64 (scripts/build-kern.sh).
+    # A scheme built without a concrete destination — the watch-widgets scheme is
+    # one — falls back to the generic simulator, whose standard ARCHS adds
+    # x86_64; that slice finds no kern module and every Kotlin type goes missing
+    # at once. The watch SDKs never match this condition and are unaffected.
+    "EXCLUDED_ARCHS[sdk=iphonesimulator*]": x86_64
 targets:
   Spross:
     type: application

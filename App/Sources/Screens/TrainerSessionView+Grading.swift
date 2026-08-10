@@ -1,126 +1,118 @@
 import SwiftUI
 import SprossKern
 
-/// Typed-answer grading of TrainerSessionView (run streak only, no FSRS).
-/// Routed through Kern's AnswerNormalizer so drills get the same
-/// Damerau-Levenshtein typo tolerance as vocab reviews. State lives on
-/// TrainerSessionView; split out purely for file size.
+/// The RUN half of TrainerSessionView: how an event reaches kern, what comes
+/// back, and what a close books. Nothing here decides a rule — grading, the
+/// ramp, the amber verdicts and the two store writes are `TrainerRun`'s. Every
+/// event becomes a `TrainerIntent`, kern's next state replaces the run whole,
+/// and its effects are the only things allowed to reach outside it (the pattern
+/// SessionView+Turn.swift sets for the review session).
 extension TrainerSessionView {
 
-    func submit() {
-        let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard feedback == .neutral, !trimmed.isEmpty else { return }
-        switch grade(trimmed) {
-        case .exact:
-            feedback = .correct
-            DLSound.correct()
-            // A hint-assisted answer stays amber (no level progress).
-            let segment: SessionOutcome = hintUsed ? .tough : .right
-            AutoAdvance.scheduleExplicit(&autoAdvance) { advance(correct: true, segment: segment) }
-        case .typo(let corrected):
-            // why: no auto-advance on a typo — the pause shows the proper
-            // spelling; "Weiter" then books it amber (no level progress).
-            feedback = .almost(correctForm: corrected, reason: .typo)
-            DLSound.correct()
-            typoCorrection = corrected
+    // MARK: - Driving the run
+
+    func dispatch(_ intent: TrainerIntent) {
+        let reduction = TrainerRun.shared.reduce(state: run, intent: intent,
+                                                 normalizer: normalizer, rng: drillRandom)
+        let moved = reduction.state.index != run.index
+        // why: the field is ours, so kern cannot clear it — and the text has to
+        // go in the SAME transaction as the question, or the next prompt renders
+        // one frame carrying the last one's answer.
+        if moved { input = "" }
+        let animation: Animation = moved
+            ? (reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip)
+            : .easeOut(duration: 0.25)
+        withAnimation(animation) { run = reduction.state }
+        for effect in reduction.effects { apply(effect) }
+    }
+
+    private func apply(_ effect: DrillEffect) {
+        switch onEnum(of: effect) {
+        case .armAdvance(let beat):
+            // why: AutoAdvance skips the timer under a screen reader (it
+            // truncates the announcement and moves the screen), and the branch
+            // renders "Weiter" there — same booking, through ConfirmPending.
+            AutoAdvance.schedule(beat.tier, &autoAdvance) {
+                dispatch(TrainerIntent.AdvanceElapsed.shared)
+            }
+        case .cancelAdvance:
+            autoAdvance?.cancel()
+        case .tone(let cue):
+            switch cue.kind {
+            case .correct: DLSound.correct()
+            case .wrong: DLSound.wrong()
+            case .reveal: DLSound.reveal()
+            }
+        case .releaseFocus:
             // why: a pause that waits for a tap must not hold the keyboard —
-            // it covers the button the pause is waiting for.
+            // it covers the button the pause is waiting for. The pending retry
+            // is cancelled first, or it re-focuses 120 ms later.
+            focusRetry?.cancel()
             answerFocused = false
-        case .wrong:
-            feedback = .revealed
-            DLSound.wrong()
+        case .silence:
+            hushAnswer()
         }
     }
 
-    /// Take a word typed out exactly right as the answer, without a "Prüfen"
-    /// tap — same rule vocab review's produce field uses ("Finishing the word
-    /// IS the answer"). Drills have no reveal-then-retype step (`.revealed`
-    /// locks the field), so the guard only needs to keep clear of an in-flight
-    /// typo pause — and of an answer still being written, see `stillGrowing`.
-    func approveWhenTyped() {
-        guard typoCorrection == nil else { return }
-        if case .revealed = feedback { return }
-        autoAdvance?.cancel()
-        let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !stillGrowing(trimmed) else {
-            if feedback == .correct { withAnimation { feedback = .neutral } }
+    // MARK: - What the learner does
+
+    /// "Finishing the word IS the answer" — every keystroke is offered to kern,
+    /// which decides whether it approves, withdraws an approval, or is ignored
+    /// because an amber hold is standing.
+    func typed() {
+        dispatch(TrainerIntent.InputChanged(text: input))
+    }
+
+    func submit() {
+        dispatch(TrainerIntent.Submit(text: input))
+    }
+
+    /// ONE primary action: an empty field reveals, a typed one checks.
+    func checkOrReveal() {
+        if input.isBlankAnswer {
+            dispatch(TrainerIntent.Reveal.shared)
+        } else {
+            submit()
+        }
+    }
+
+    /// The whole numbers page, one tap away mid-run. Kern is told first: a
+    /// look-up while the answer is still owed costs the rung.
+    func lookUp() {
+        dispatch(TrainerIntent.LookUp.shared)
+        showingReference = true
+    }
+
+    // MARK: - Close → summary
+
+    /// X during a run: kern books whatever was pending, hands back the figures
+    /// and the two store writes, and an untouched run just closes.
+    // why: internal, not private — the +UITest hook closes a run the way the ✕ does.
+    func closeRun() {
+        let closed = TrainerRun.shared.close(state: run,
+                                             standingRecord: Int32(TrainerRecords.best(for: mode.recordKey)),
+                                             standingProgress: standingProgress)
+        run = closed.state
+        for effect in closed.effects { apply(effect) }
+        guard let summary = closed.summary else {
+            dismiss()
             return
         }
-        guard !trimmed.isEmpty, case .exact = grade(trimmed) else {
-            if feedback == .correct { withAnimation { feedback = .neutral } }
-            return
-        }
-        if feedback != .correct { DLSound.correct() }
-        withAnimation { feedback = .correct }
-        let segment: SessionOutcome = hintUsed ? .tough : .right
-        AutoAdvance.scheduleLive(&autoAdvance) { advance(correct: true, segment: segment) }
+        answerFocused = false
+        TrainerRecords.record(Int(summary.bestStreak), for: closed.recordKey)
+        // why: booked here, alongside the record, because a run that is still
+        // going can still climb — a rung is only final once the run closes.
+        TrainerProgress.book(closed.progressBookings)
+        // why: the cheer marks the record, not the end of a run — closing a
+        // drill is a dozen-times-an-evening event and owes no fanfare.
+        if summary.newRecord { DLSound.cheer() }
+        onFinish(DrillRunResult(summary, title: mode.titleKey))
+        dismiss()
     }
 
-    /// Is the learner mid-way through a longer accepted answer? A clock reading is
-    /// accepted with and without the part of the day, so "son las nueve" is both a
-    /// finished answer and the first half of "son las nueve de la noche" — and a field
-    /// that confirms itself on the shorter one takes the fuller answer away before it
-    /// can be typed. Only the reading the reveal TEACHES confirms on its own here;
-    /// anything shorter that another reading continues waits for "Prüfen".
-    private func stillGrowing(_ trimmed: String) -> Bool {
-        let typed = fallbackNormalized(trimmed)
-        guard !typed.isEmpty, typed != fallbackNormalized(current.display) else { return false }
-        return current.accepted.contains { fallbackNormalized($0).hasPrefix(typed + " ") }
-    }
-
-    /// Drill grading verdict (mirrors the vocab Match ladder).
-    private enum Grade {
-        case exact
-        case typo(String)
-        case wrong
-    }
-
-    /// Kern-graded against EVERY accepted variant, best result wins
-    /// (exact > typo > wrong). Drills grade word by word — one slip per word,
-    /// none inside a digit — so a sentence may fumble while no German number
-    /// can ever pass for another (kern's pairwise guard proves it; sw/uk
-    /// carry gated near-twin pairs — see docs/backlog.md).
-    private func grade(_ trimmed: String) -> Grade {
-        guard let normalizer else {
-            // Previews: plain case/punctuation-insensitive comparison.
-            let typed = fallbackNormalized(trimmed)
-            return current.accepted.contains { fallbackNormalized($0) == typed }
-                ? .exact : .wrong
-        }
-        switch onEnum(of: normalizer.evaluate(input: trimmed, card: gradingCard())) {
-        case .exact:
-            return .exact
-        case .typo(let typo):
-            return .typo(typo.corrected)
-        // Drills grade against one synthetic card, never the catalog join —
-        // the other-word verdict cannot arise here.
-        case .otherWord, .wrong:
-            return .wrong
-        }
-    }
-
-    /// The accepted variants wrapped as a synthetic card for Kern's evaluate.
-    /// Strictness comes from the normalizer construction (articleLeniency
-    /// false, one slip per word — TrainerHubView); the non-verb kind keeps the
-    /// verb-prefix option off and empty baseAccepted skips feminine demotion.
-    private func gradingCard() -> Card {
-        let accepted = current.accepted
-        let side = Realization(lang: language,
-                               text: accepted.first ?? current.display,
-                               synonyms: Array(accepted.dropFirst()),
-                               variants: [],
-                               grammar: [:],
-                               note: nil)
-        return Card(id: "drill", kind: .noun, area: "drill", emoji: nil,
-                    seedIndex: 0, components: [], feminineOf: nil,
-                    baseAccepted: [], source: side, target: side,
-                    promptFeminineMarker: false, promptAmbiguous: false)
-    }
-
-    private func fallbackNormalized(_ raw: String) -> String {
-        raw.lowercased()
-            .components(separatedBy: CharacterSet.alphanumerics.inverted)
-            .filter { !$0.isEmpty }
-            .joined(separator: " ")
+    /// What the rung store holds now for every variant this run could book —
+    /// kern compares against it so a rung already earned is not fresh progress.
+    private var standingProgress: [String: KotlinInt] {
+        TrainerProgress.standing(mode.variants.map { mode.progressKey(variant: $0) })
     }
 }

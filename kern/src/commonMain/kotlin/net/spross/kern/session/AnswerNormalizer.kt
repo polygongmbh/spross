@@ -326,14 +326,22 @@ class AnswerNormalizer(
     private fun normalizedPrefix(raw: String): String =
         cleaned(raw).replace(whitespaceRun, " ")
 
-    private companion object {
+    companion object {
+        /**
+         * The drill's strictness in one place: no article leniency (a wrong or
+         * missing article grades Wrong), one slip per word flatly. Both drills on
+         * both platforms grade through this, so the triple can never drift apart.
+         */
+        fun drill(answerLanguage: LanguageInfo): AnswerNormalizer =
+            AnswerNormalizer(answerLanguage, articleLeniency = false, maxTyposPerWord = 1)
+
         /**
          * A stray leading word this short (letters only) is treated as a mistyped
          * article/particle rather than part of the answer.
          */
-        const val MAX_LEADING_SLIP_LENGTH = 4
+        private const val MAX_LEADING_SLIP_LENGTH = 4
 
-        val whitespaceRun = Regex("\\s+")
+        private val whitespaceRun = Regex("\\s+")
 
         /**
          * ~⅙ of letters, but never for words under [MIN_TYPO_LENGTH].
@@ -343,11 +351,11 @@ class AnswerNormalizer(
          * typed form is really another concept's word (RealCatalogGradingTest
          * sweeps the shipping catalog for exactly that).
          */
-        fun allowedTypos(letters: Int): Int =
+        private fun allowedTypos(letters: Int): Int =
             if (letters < MIN_TYPO_LENGTH) 0 else maxOf(1, letters / TYPO_LETTERS_PER_SLIP)
 
         /** Below this many letters an answer is graded exact-only. */
-        const val MIN_TYPO_LENGTH = 4
+        private const val MIN_TYPO_LENGTH = 4
 
         const val TYPO_LETTERS_PER_SLIP = 6
 

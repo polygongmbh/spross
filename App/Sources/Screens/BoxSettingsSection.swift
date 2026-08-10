@@ -91,10 +91,11 @@ struct BoxSettingsSection: View {
 
     // MARK: Rows
 
-    /// The pair, side by side. Both menus list every covered language, so
-    /// picking the one the OTHER side holds swaps them; switching the known
-    /// language re-joins in place (schedules are keyed by card id, so all
-    /// progress survives), and each target keeps its own box.
+    /// The pair, side by side. Neither side hides the other's pick — choosing the
+    /// language the OTHER side holds swaps them, wherever that swapped pair is
+    /// one the catalog can teach (`LanguageChoices`). Switching the known language
+    /// re-joins in place (schedules are keyed by card id, so all progress
+    /// survives), and each target keeps its own box.
     private var profileRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
             HStack(alignment: .top, spacing: DL.Space.l) {
@@ -226,28 +227,31 @@ struct BoxSettingsSection: View {
         } ?? "?"
     }
 
+    /// The pair as the pickers see it.
+    private var selection: LanguageChoices.Selection {
+        LanguageChoices.Selection(source: model.sourceLanguage, target: model.targetLanguage)
+    }
+
     /// ALL covered sources — including the current target: picking it swaps.
     private var sourceChoices: [String] {
         model.catalog?.coveredSources() ?? []
     }
 
-    /// Learnable targets from the current source PLUS the source itself —
-    /// picking the language you speak swaps the pair (mirrors onboarding).
+    /// The target picker's rows — `LanguageChoices.targetChoices`, which offers
+    /// the swap row only where the swapped pair actually teaches something.
     private var targetChoices: [String] {
-        let targets = model.catalog?.availableTargets(source: model.sourceLanguage)
-            .map(\.code) ?? []
-        return (targets + [model.sourceLanguage]).sorted()
+        guard let catalog = model.catalog else { return [] }
+        return LanguageChoices.shared.targetChoices(catalog: catalog, selection: selection)
     }
 
     private var sourceBinding: Binding<String> {
         Binding(
             get: { model.sourceLanguage },
             set: { candidate in
-                if candidate == model.targetLanguage {
-                    model.swapLanguages()
-                } else {
-                    model.switchSource(candidate)
-                }
+                guard let catalog = model.catalog else { return }
+                apply(LanguageChoices.shared.pickSource(catalog: catalog,
+                                                        selection: selection,
+                                                        code: candidate))
             }
         )
     }
@@ -256,12 +260,24 @@ struct BoxSettingsSection: View {
         Binding(
             get: { model.targetLanguage ?? "" },
             set: { candidate in
-                if candidate == model.sourceLanguage {
-                    model.swapLanguages()
-                } else {
-                    model.switchTarget(candidate)
-                }
+                apply(LanguageChoices.shared.pickTarget(selection: selection, code: candidate))
             }
         )
+    }
+
+    /// The pair kern picked, carried into the app's own persistence: an exchanged
+    /// pair is one move (both boxes survive), a new known language re-joins in
+    /// place, a new learned language opens that target's own box.
+    private func apply(_ next: LanguageChoices.Selection) {
+        let current = selection
+        if next.source == current.target, next.target == current.source {
+            model.swapLanguages()
+            return
+        }
+        if next.source != current.source { model.switchSource(next.source) }
+        // why: the target list is source-dependent, so a source tap can carry a
+        // fallback target with it — that target has to follow into the box, or
+        // the pair stays on one the new source cannot teach.
+        if let target = next.target, target != current.target { model.switchTarget(target) }
     }
 }

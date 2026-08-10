@@ -83,8 +83,15 @@ SDK=$(sed -n 's/^sdk\.dir=//p' local.properties)
 sdkmanager --sdk_root="$SDK" emulator "system-images;android-36;default;arm64-v8a"
 sdkmanager --sdk_root="$SDK" "cmdline-tools;latest"   # avdmanager, see § One SDK
 "$SDK/cmdline-tools/latest/bin/avdmanager" create avd \
-  -n spross -k "system-images;android-36;default;arm64-v8a"
+  -n spross -k "system-images;android-36;default;arm64-v8a" -d medium_phone
 ```
+
+**`-d` is not optional.** Without a device profile `avdmanager` falls back to a generic
+320×640 at **160 dpi** — one pixel per dp, a screen no phone has shipped since about 2011.
+Type renders unantialiased-looking and every width budget on the narrow end of the app is
+wrong, so a screen judged there is not a screen anyone will see. `avdmanager list device`
+names the rest; `medium_phone` is 1080×2400 at 420 dpi (411 dp wide), which is the modern
+middle. Check an existing AVD with `grep hw.lcd config.ini` before trusting a screenshot.
 
 Then in the new AVD's `config.ini` (`$ANDROID_PREFS_ROOT/.android/avd/spross.avd/`):
 `hw.sdCard=no` — nothing in the app reads external storage, and an SD card is

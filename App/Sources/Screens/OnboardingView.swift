@@ -2,18 +2,24 @@ import SwiftUI
 import SprossKern
 
 /// Tiny first-launch sheet: pick the language you already speak (source)
-/// and the one you want to learn (target, with its concept count).
+/// and the one you want to learn (target).
 /// Coverage-driven: sources are languages with at least one learnable
 /// target; targets come from `Catalog.availableTargets` (≥ 50 concepts).
 /// Chrome speaks the language being picked: the device language greets first
 /// (it seeds the source pick), and every later tap re-renders in that pick —
 /// English for a source we have no chrome for yet.
 /// Neither side hides the other's pick: choosing it swaps the selections.
+///
+/// One side is open at a time and the other stands folded on its pick: both lists
+/// at once is more of the screen than the two questions are worth, and a pick answers
+/// its own question — so choosing a source hands the screen to the target.
+/// The known side opens folded, the device language being a good guess already.
 struct OnboardingView: View {
     let model: AppModel
 
     @State private var source: String
     @State private var target: String?
+    @State private var pickingSource = false
     @State private var starting = false
 
     init(model: AppModel) {
@@ -28,8 +34,14 @@ struct OnboardingView: View {
         model.catalog?.coveredSources() ?? []
     }
 
-    private var targets: [AvailableTarget] {
-        model.catalog?.availableTargets(source: source) ?? []
+    /// The pair as the two lists see it, before anything is persisted.
+    private var selection: LanguageChoices.Selection {
+        LanguageChoices.Selection(source: source, target: target)
+    }
+
+    private func apply(_ next: LanguageChoices.Selection) {
+        source = next.source
+        target = next.target
     }
 
     var body: some View {
@@ -64,74 +76,66 @@ struct OnboardingView: View {
         LanguageNames.pickerRow(code, catalog: model.catalog)
     }
 
-    /// Tapping the language the other side holds exchanges the two selections.
-    private func swapSelections() {
-        guard let oldTarget = target else { return }
-        target = source
-        source = oldTarget
-    }
-
     // MARK: - Which language you already speak
 
     private var sourceSection: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("onboarding.source.question")
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
-            ForEach(sources, id: \.self) { candidate in
-                DLSelectionRow(title: Text(verbatim: languageName(candidate)),
-                               mark: .one,
-                               selected: source == candidate) {
-                    if candidate == target {
-                        swapSelections()
-                        return
-                    }
-                    source = candidate
-                    // why: the target list is source-dependent — keep the
-                    // pick valid under the new source.
-                    if !targets.contains(where: { $0.code == target }) {
-                        target = targets.first?.code
-                    }
-                }
-            }
+        picker(question: "onboarding.source.question",
+               open: pickingSource,
+               options: sources,
+               selected: source,
+               onOpen: { pickingSource = true }) { candidate in
+            guard let catalog = model.catalog else { return }
+            apply(LanguageChoices.shared.pickSource(catalog: catalog,
+                                                    selection: selection,
+                                                    code: candidate))
+            withAnimation(.easeInOut(duration: 0.2)) { pickingSource = false }
         }
     }
 
     // MARK: - Which language you want to learn
 
-    /// Learnable targets PLUS the current source — picking it swaps the pair
-    /// (its count is the swapped pair's, which is symmetric).
-    private struct TargetChoice: Identifiable {
-        let code: String
-        let conceptCount: Int
-        var id: String { code }
-    }
-
-    private var targetChoices: [TargetChoice] {
-        var choices = targets.map { TargetChoice(code: $0.code, conceptCount: Int($0.conceptCount)) }
-        if let target,
-           let swapped = model.catalog?.availableTargets(source: target)
-               .first(where: { $0.code == source }) {
-            choices.append(TargetChoice(code: source, conceptCount: Int(swapped.conceptCount)))
-        }
-        return choices.sorted { $0.code < $1.code }
+    /// Learnable targets, plus the current source where the swapped pair teaches
+    /// something — the rows are `LanguageChoices.targetChoices`.
+    private var targetChoices: [String] {
+        guard let catalog = model.catalog else { return [] }
+        return LanguageChoices.shared.targetChoices(catalog: catalog, selection: selection)
     }
 
     private var targetSection: some View {
+        picker(question: "onboarding.target.question",
+               open: !pickingSource,
+               options: targetChoices,
+               selected: target,
+               onOpen: { pickingSource = false }) { candidate in
+            apply(LanguageChoices.shared.pickTarget(selection: selection, code: candidate))
+        }
+    }
+
+    // MARK: - One side of the pair
+
+    /// The question, and either the languages to choose from or the chosen one as
+    /// the row that opens them again.
+    private func picker(question: LocalizedStringKey,
+                        open: Bool,
+                        options: [String],
+                        selected: String?,
+                        onOpen: @escaping () -> Void,
+                        onPick: @escaping (String) -> Void) -> some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("onboarding.target.question")
+            Text(question)
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
-            ForEach(targetChoices) { candidate in
-                DLSelectionRow(title: Text(verbatim: languageName(candidate.code)),
-                               caption: Text("onboarding.termsCount \(candidate.conceptCount.formatted())"),
-                               mark: .one,
-                               selected: target == candidate.code) {
-                    if candidate.code == source {
-                        swapSelections()
-                    } else {
-                        target = candidate.code
-                    }
+            if open {
+                ForEach(options, id: \.self) { candidate in
+                    DLSelectionRow(title: Text(verbatim: languageName(candidate)),
+                                   mark: .one,
+                                   selected: selected == candidate) { onPick(candidate) }
+                }
+            } else if let selected {
+                DLSelectionRow(title: Text(verbatim: languageName(selected)),
+                               mark: .fold,
+                               selected: false) {
+                    withAnimation(.easeInOut(duration: 0.2)) { onOpen() }
                 }
             }
         }

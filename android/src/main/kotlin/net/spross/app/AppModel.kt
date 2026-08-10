@@ -14,11 +14,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import net.spross.app.audio.CueSounds
 import net.spross.app.audio.Pronouncer
+import net.spross.app.ui.AreaNaming
+import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
+import net.spross.kern.box.streakWindow
 import net.spross.kern.catalog.Catalog
+import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
@@ -44,6 +49,8 @@ import net.spross.kern.session.SessionRunState
 import net.spross.kern.store.StoreCodec
 import net.spross.kern.store.StoreFormatException
 import net.spross.kern.store.withProductCalibration
+import net.spross.kern.trainer.DrillRunSummary
+import net.spross.kern.trainer.TrainerMode
 
 sealed interface Screen {
     data object Loading : Screen
@@ -51,8 +58,40 @@ sealed interface Screen {
     data object Heute : Screen
     data object Session : Screen
     data object About : Screen
+
+    /** The Zahlen page: the picks and the button first, the reference under them. */
+    data object Numbers : Screen
+
+    /** The Buchstaben page: the stages and the button first, the alphabet under them. */
+    data object Letters : Screen
+
+    /** The Länder page: the rungs and the button first, the atlas table under them. */
+    data object Countries : Screen
+
+    /** A slot run, carrying the spec the page it was started from spelled. */
+    data class Trainer(val mode: TrainerMode) : Screen
+
     data object LetterDrill : Screen
+
+    /**
+     * An atlas run, carrying the two things the page settled before it opened: which way
+     * round the questions are asked, and whether a rung falls on one clean win.
+     */
+    data class CountryDrill(val reverse: Boolean, val fast: Boolean) : Screen
+
+    /**
+     * The box browser. [area] is the shelf it opens UNFOLDED — the screen was reached by
+     * naming that area, from a search hit or a tree — and null opens where the learner
+     * left off ([net.spross.kern.box.BoxBrowser.defaultExpandedGroupId]).
+     */
+    data class Box(val area: String? = null) : Screen
 }
+
+/**
+ * How far back the activity strip looks. The window is the strip's whole subject, so the
+ * number lives with the state it shapes rather than with the drawing of it.
+ */
+const val ACTIVITY_WINDOW_DAYS: Int = 14
 
 data class SessionUi(
     val card: Card?,               // null ⇒ drained: show the summary
@@ -60,6 +99,10 @@ data class SessionUi(
     val promptForm: String?,       // rotated recognition prompt
     /** Whether a produce turn asks by meaning or by ear; [ProducePrompt.Source] elsewhere. */
     val producePrompt: ProducePrompt = ProducePrompt.Source,
+    /** `reviewCount == 0` — the word is being taught, so a miss is still written out. */
+    val firstExposure: Boolean = false,
+    /** A word that already sticks is never slowed down by a write-out. */
+    val consolidated: Boolean = false,
     /** Which face carries the picture; null when the word has none. */
     val emojiCue: EmojiCue?,
     /**
@@ -69,12 +112,21 @@ data class SessionUi(
     val promptPronunciation: Pronunciation?,
     val segments: List<AnswerTone>,
     val remaining: Int,
-    /** Summary tallies, in the order the chrome line formats them ([SessionRunState]'s buckets). */
+    /** What the round bought ([SessionRunState]'s buckets); the summary spells the non-zero parts. */
     val introduced: Int,
     val strengthened: Int,
     val reviewed: Int,
     /** Whether an endless refill would yield anything — what "Weiter üben" turns on. */
     val canPracticeMore: Boolean,
+    /** The day streak the finish names, and whether it stands at its all-time best. */
+    val streakDays: Int = 0,
+    val streakIsRecord: Boolean = false,
+    /**
+     * Today's recall is far enough under what the schedule expects that more reps buy
+     * little — the box saying so plainly, where a round that only celebrates would be
+     * contradicted by the next one.
+     */
+    val restSuggested: Boolean = false,
 )
 
 class AppModel(app: Application) : AndroidViewModel(app) {
@@ -86,8 +138,18 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     /** The run kern steps; null between sessions. The screen reads [sessionUi] instead. */
     private var sessionRun: SessionRunState? = null
 
-    /** The one door to a spoken target word — review cards now, the drills later. */
+    /** The one door to a spoken target word — review cards and both drills. */
     val pronouncer = Pronouncer(app, prefs)
+
+    /** The verdict chimes, loaded here so the first answer of a session pays no decode. */
+    val cues = CueSounds(app)
+
+    /**
+     * The Werkstatt's standing: the climbed ladder, what the letter drill can ask here, and
+     * what the last run came to. Its store is kern-keyed SharedPreferences — a drill touches
+     * no card and no schedule, so none of it is box state.
+     */
+    val werkstatt = Werkstatt(TrainerStore(prefs))
 
     var screen by mutableStateOf<Screen>(Screen.Loading)
         private set
@@ -96,6 +158,25 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     var box by mutableStateOf<BoxState?>(null)
         private set
     var stats by mutableStateOf<BoxStatistics?>(null)
+        private set
+
+    /**
+     * The atlas joined for this profile, or null where the pair has no drill at all —
+     * kern's registry by file, and the whole of what the Länder chip gates on.
+     *
+     * Joined ONCE, as the profile activates: the hub, the page and the run read the very
+     * same rows, so the manifest is never walked per composition and the table can never
+     * drift from what the run grades against.
+     */
+    var atlas by mutableStateOf<CountryDrillContent?>(null)
+        private set
+
+    /**
+     * The trailing fortnight the activity strip draws, oldest day first.
+     * Kern walks it beside the streak number, so a strip and a flame cannot disagree —
+     * refreshed with the rest of the numbers, never re-derived per composition.
+     */
+    var activityWindow by mutableStateOf<List<ActivityDay>>(emptyList())
         private set
     var sessionAvailable by mutableStateOf(false)
         private set
@@ -166,16 +247,113 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Heute
     }
 
-    /** The letters drill; what it can ask is `letterDrillAvailable`, which gates the chip. */
+    /**
+     * The box browser. [area] names the shelf to open unfolded, for the surfaces that
+     * reach the box BY an area; null opens wherever the learner left off.
+     */
+    fun openBox(area: String? = null) {
+        screen = Screen.Box(area)
+    }
+
+    fun closeBox() {
+        // why: the browser's rows speak on tap — nothing may keep talking into Heute.
+        pronouncer.stop()
+        screen = Screen.Heute
+    }
+
+    /**
+     * What a shelf is CALLED to this learner — the browser's own rule ([AreaNaming]),
+     * so the cue an ambiguous prompt carries and the heading it stands under in the box
+     * can never disagree about the name of an area.
+     */
+    fun areaTitle(area: String): String {
+        val cat = catalog
+        val source = box?.joinStamp?.source
+        return AreaNaming(
+            chrome = chrome,
+            catalogTitle = { if (source == null) null else cat?.areaTitle(it, source) },
+            catalogSubtitle = { if (source == null) null else cat?.areaSubtitle(it, source) },
+            catalogEmoji = { cat?.areaEmoji(it) },
+        ).title(area)
+    }
+
+    /**
+     * The hub's three entries. Each opens a PAGE, never a run: reading matter and the
+     * drill it prepares you for are one surface, and the run is what the page is opened
+     * for, so the picks and the button sit above the reading.
+     *
+     * The ladder is re-read on the way in — a run closed earlier may have opened a rung —
+     * and last night's figures are not news, so the result tile starts clear.
+     */
+    fun openNumbers() {
+        werkstatt.clearResult()
+        refreshWerkstatt()
+        screen = Screen.Numbers
+    }
+
+    fun openLetters() {
+        werkstatt.clearResult()
+        refreshWerkstatt()
+        screen = Screen.Letters
+    }
+
+    fun openCountries() {
+        werkstatt.clearResult()
+        refreshWerkstatt()
+        screen = Screen.Countries
+    }
+
+    /** Back to Heute from any of them — nothing may keep talking into it. */
+    fun closeOverview() {
+        pronouncer.stop()
+        screen = Screen.Heute
+    }
+
+    fun startTrainerRun(mode: TrainerMode) {
+        screen = Screen.Trainer(mode)
+    }
+
     fun startLetterDrill() {
         screen = Screen.LetterDrill
     }
 
-    fun closeLetterDrill() {
-        // why: nothing may keep talking into Heute — the drill's own screen stops
-        // playback as it leaves, and this is the door it leaves by.
+    /**
+     * An atlas run. Both switches are the page's to settle — Fast has a price and the page
+     * has already checked it — so the run only obeys them.
+     */
+    fun startCountryDrill(reverse: Boolean, fast: Boolean) {
+        screen = Screen.CountryDrill(reverse, fast)
+    }
+
+    /**
+     * A closed run has no screen of its own: its figures travel back to the page that
+     * started it, which wears them as one tile above the picks.
+     *
+     * [summary] null ⇒ nothing was answered; the run simply closes. The ladder is re-read
+     * because a closing run books the rungs it stood on, and the rows behind it are stale
+     * the moment it leaves.
+     */
+    fun finishDrill(back: Screen, summary: DrillRunSummary?, title: String) {
         pronouncer.stop()
-        screen = Screen.Heute
+        werkstatt.show(summary, title)
+        refreshWerkstatt()
+        screen = back
+    }
+
+    /**
+     * What the two pages read: the climbed ladder, and what the letter drill can ask on
+     * THIS device. Recomputed rather than cached — a rung opens as a run closes, and a
+     * voice may be installed in Settings while the app sleeps
+     * (`SprossActivity.onResume` calls this too).
+     *
+     * Never on the way to Heute: the Werkstatt card gates on file presence alone, and this
+     * is a catalog sweep no start-up should pay for.
+     */
+    fun refreshWerkstatt() {
+        val stamp = box?.joinStamp ?: return
+        werkstatt.readLadder(stamp.target)
+        werkstatt.seeLetters(letterReport())
+        werkstatt.readCountries(stamp.source, stamp.target)
     }
 
     fun cancelOnboarding() {
@@ -200,10 +378,30 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         }
         val state = restored ?: BoxEngine.bootstrap(cards, BoxConfig.product(), stamp)
         box = state
+        // why: the join walks the manifest, and the pair only changes here — the hub reads
+        // this on every composition, and a sweep per frame is one no start-up should pay.
+        atlas = cat.countryDrillContent(source, target)
         normalizer = AnswerNormalizer(cat.languages.getValue(target))
         persist(state)
         refreshStats()
         screen = Screen.Heute
+    }
+
+    /**
+     * The one door a box SURFACE changes the box through — packing a shelf, waking a
+     * word, a word of one's own, a reset. The change itself is kern's: the caller hands
+     * back what a [BoxEngine] call returned, and this is the platform half of it, the
+     * observable state and the disk and the numbers Heute reads.
+     *
+     * Anything that touches a SCHEDULE goes through the run instead ([dispatch]) —
+     * every answer is a review, and only kern's session machine books one.
+     */
+    fun updateBox(change: (BoxState) -> BoxState) {
+        val state = box ?: return
+        val next = change(state)
+        box = next
+        persist(next)
+        refreshStats()
     }
 
     fun startSession() = begin(SessionIntent.Start)
@@ -307,18 +505,31 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 introduced = active.newCards, strengthened = active.graduated,
                 reviewed = active.reviews,
                 canPracticeMore = SessionOffers.canPracticeMore(state, now(), tz()),
+                // why: the day is folded and the numbers refreshed before this runs
+                // (`DayBooked` precedes it in [dispatch]), so the finish names the streak
+                // the answer just extended rather than the one it started with.
+                streakDays = stats?.streak ?: 0,
+                streakIsRecord = stats?.let { SessionRun.streakIsRecord(it) } == true,
+                restSuggested = BoxEngine.today(state, now(), tz()).recallStrained,
             )
         } else {
             val count = state.scheduling[card.id]?.reviewCount ?: 0
             val role = presentationRole(card.id, count)
             val promptForm = recognitionPromptForm(card, count)
-            val prompt = producePrompt(card.id, count, isConsolidated(card.id), audible(card))
+            val consolidated = isConsolidated(card.id)
+            val prompt = producePrompt(card.id, count, consolidated, audible(card))
             SessionUi(
                 card = card,
                 role = role,
                 promptForm = promptForm,
                 producePrompt = prompt,
-                emojiCue = card.emoji?.let { emojiCue(role, isConsolidated(card.id)) },
+                // The two facts the turn's write-out rule is decided on, read where the
+                // count already is: a word being taught is written once as it is met,
+                // and one that already sticks — consolidated, the one landed bar — is
+                // never slowed down.
+                firstExposure = count == 0,
+                consolidated = consolidated,
+                emojiCue = card.emoji?.let { emojiCue(role, consolidated) },
                 // why: the KERN cue, never `role == Recognize` — one rule, consumed by
                 // both apps. The PROMPTED form, so a rotated synonym is heard as itself.
                 promptPronunciation = catalog
@@ -343,15 +554,17 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     private fun refreshStats() {
         val state = box ?: return
         stats = BoxEngine.statistics(state, now(), tz())
+        activityWindow = streakWindow(state.dailyStats, ACTIVITY_WINDOW_DAYS, now(), tz())
         sessionAvailable = SessionOffers.sessionAvailable(state, now(), tz())
         canPracticeExtra = SessionOffers.canPracticeMore(state, now(), tz())
     }
 
     override fun onCleared() {
         super.onCleared()
-        // why: the synthesizer holds a binding to another process and the player a
-        // decoded clip — neither may outlive the model that opened them.
+        // why: the synthesizer holds a binding to another process and the players their
+        // decoded clips — none of it may outlive the model that opened them.
         pronouncer.release()
+        cues.release()
     }
 
     /**

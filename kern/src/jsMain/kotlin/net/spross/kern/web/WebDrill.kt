@@ -106,6 +106,14 @@ object WebTrainer {
                 WebRefBand(band.key, band.entries.map { WebRefRow(it.value, it.reading) }.toTypedArray())
             }
             .toTypedArray()
+
+    /**
+     * The tens band of that same table, "20 zwanzig" style — the one band the look-up
+     * link beside the drill offers on its own.
+     */
+    fun tensReference(language: String): Array<String>? =
+        Trainer.reference(language).firstOrNull { it.key == "tens" }
+            ?.entries?.map { "${it.value} ${it.reading}" }?.toTypedArray()
 }
 
 @JsExport

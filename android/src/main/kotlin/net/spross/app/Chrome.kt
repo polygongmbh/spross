@@ -1,8 +1,14 @@
 package net.spross.app
 
+import net.spross.kern.catalog.LanguageChoices
+
 /**
  * UI chrome strings, rendered in the KNOWN language when chrome exists
  * (de/en today), otherwise en — design.md "Profile & onboarding".
+ *
+ * The two tables live beside this file ([ChromeDe], [ChromeEn]); the data class is the
+ * contract, and adding a field here is what forces both of them to answer for it.
+ * Placeholders are java-format, rendered with `.format(...)`.
  */
 data class Chrome(
     val heuteTitle: String,
@@ -18,7 +24,6 @@ data class Chrome(
     val chooseTitle: String,
     val iSpeak: String,
     val iLearn: String,
-    val conceptsSuffix: String,
     val letsGo: String,
     val backLabel: String,
     val check: String,
@@ -32,6 +37,7 @@ data class Chrome(
     val hard: String,
     val good: String,
     val easy: String,
+    val unknown: String,           // the third verdict — a judgment, where [again] is an instruction
     val sessionDone: String,
     val summaryLine: String,       // %d neu · %d gefestigt · %d wiederholt
     val keepPracticing: String,
@@ -50,160 +56,266 @@ data class Chrome(
     val creditsRecordings: String, // %d = how many files the speaker contributed
     val creditsUnmodified: String,
     val creditsCommons: String,
+    /** The free-practice card's own name — the ladder both drills climb, not a workshop. */
     val trainingTitle: String,
+    val trainingSubtitle: String,  // what free practice is, under its name
     val lettersTitle: String,
     val lettersHear: String,       // the question a letter-name prompt asks
     val lettersSpell: String,      // …and the one a gap word asks
     val lettersDictation: String,
     val letterChoice: String,      // %s = the glyph — a tile's spoken name
     val replayPrompt: String,      // the replay button's name
-    val level: String,             // %d
-    val streak: String,            // %d
+    val promptInLanguage: String,  // %s = target language name
+    val level: String,             // %d — the rung a run stands on
+    val streak: String,            // %d — answers in a row, never days
     val typoCorrection: String,    // %s = the spelling the learner missed
     val heardInstead: String,      // %s = the form that actually played
     val audioOff: String,
     val enableSound: String,
+    val tasksDoneOne: String,      // the count-of-one line, verbatim
     val tasksDone: String,         // %d
     val bestStreak: String,        // %d
     val answerCorrect: String,     // an answered tile's state, never colour alone
     val answerWrong: String,
-    val correctAnswer: String,     // %s = what it was, on a miss or a reveal
+
+    // ── The three overview pages ────────────────────────────────────────────────
+    /** The ✕'s name — the corner every page and every run wears on the left. */
+    val close: String,
+    val numbersTitle: String,      // the hub entry, and the variant's own name
+    val numbersPage: String,       // %s = the language being learnt
+    val lettersPage: String,       // %s
+    val overviewPractice: String,  // the heading the picks stand under
+    val overviewStart: String,     // the button both pages open a run with
+    val numbersReference: String,
+    val numbersNotes: String,
+    /**
+     * Kern's band key → the heading it takes. A map, because the bands are kern's to
+     * grow: one it has no wording for still gets its rows rather than printing a key.
+     */
+    val numberSections: Map<String, String>,
+    val variantClock: String,
+    val variantPhrases: String,
+    val variantForms: String,
+    val modifierReverse: String,
+    val modifierReverseHint: String,
+    val modifierFast: String,
+    val modifierFastHint: String,
+    val modifierMix: String,
+    val modifierMixHint: String,
+    /** Why the picks are a radio: mixing several exercises into one run is itself earned. */
+    val combineLocked: String,
+    /** What a locked row costs, before kern's table words the rungs themselves. */
+    val unlockPrefix: String,
+
+    // ── Inside a run ────────────────────────────────────────────────────────────
+    val digitsOne: String,         // the numbers rung, which counts digits
+    val digitsMany: String,        // %d
+    val record: String,            // %d — the standing streak the run has not beaten yet
+    val streakSpoken: String,      // %d — the score line as a screen reader hears it
+    val recordSpoken: String,      // %d — appended to it
+    val answerDigits: String,      // a reversed task owes digits, never a language
+    val newPlace: String,          // %s = the place word, the first time a length appears
+    val lookUp: String,            // the "?" that raises the numbers page mid-run
+    val newRecord: String,
+
+    // ── The letter drill's stages, as the overview lists them ───────────────────
+    val stageChoiceEasy: String,
+    val stageChoiceEasyHint: String,
+    val stageChoiceConfusable: String,
+    val stageChoiceConfusableHint: String,
+    val stageTyped: String,
+    val stageTypedHint: String,
+    val stageDictation: String,
+    val stageDictationHint: String,
+    val stageDictationLocked: String,
+    /** The one stage row that says where THIS learner's run opens. */
+    val stageEntry: String,
+    val lettersUnavailable: String,
+    val alphabetTitle: String,
+    val alphabetSpeakName: String,
+    val alphabetSpeakExample: String,
+
+    // ── The atlas: the Länder page and its run ──────────────────────────────────
+    val countriesTitle: String,    // the hub entry, and what the result tile says was drilled
+    val countriesPage: String,     // %s = the language being learnt
+    val countriesReference: String,
+    /** How the ladder is walked, said once instead of marked on every rung row. */
+    val countriesPace: String,
+    val countriesBest: String,     // %d = the furthest rung any run reached
+    val countriesFastHint: String, // this ladder costs THREE clean wins, so it prices its own
+    val countriesReverseHint: String, // %1$s = the side asked in, %2$s = the side owed
+    /**
+     * The rungs, in the order they are climbed — one entry per rung of kern's own ladder
+     * ([net.spross.kern.trainer.CountryDrill.MAX_LEVEL]), read through [countryRung].
+     */
+    val countryRungs: List<String>,
+    val countryRungHints: List<String>,
+    /** How far from home a reference group sits, innermost first — read through [countryTier]. */
+    val countryTiers: List<String>,
+    /**
+     * What a question ASKS. None of them names a language: the field's placeholder says
+     * which side is owed, and saying it here too would be the third telling.
+     */
+    val countryAskCountry: String,
+    val countryAskFlag: String,
+    val countryAskLanguage: String,
+    val countryAskNationality: String,
+    val countryAskSpokenIn: String,
+    val countryAskSpokenWhere: String,
+
+    // ── Box browse ──────────────────────────────────────────────────────────────
+    val boxTitle: String,
+    /** The door to the box, wherever a screen puts one — a name for an icon that has none. */
+    val boxNav: String,
+    val boxSubtitle: String,       // %1$d active of %2$d held
+    /**
+     * The learner's own shelf. Kern hands back the area KEY for it
+     * (`OwnWords.AREA`, in no group) and leaves the naming to the reader's chrome;
+     * catalog shelves name themselves, down to `BoxBrowser.sections`' own id fallback.
+     */
+    val ownWordsTitle: String,
+    val ownWordsExplainer: String,
+    val packArea: String,          // %d = what packing this shelf would add
+    val packDone: String,
+    val packWord: String,          // the single-word offer a search hit carries
+    val packedWord: String,
+    val suspended: String,         // the sleeping mark's name
+    val wake: String,
+    /** An area's fresh half, beside the leaf — the consolidated half reads [dayConsolidated]. */
+    val progressFresh: String,     // %d
+    val phrasesLocked: String,     // %d = phrases still waiting on their components
+    /**
+     * The same count spelled out for a screen reader.
+     * [phrasesLocked] sits beside a padlock that carries the "locked"; spoken, the padlock is gone.
+     */
+    val phrasesLockedSpoken: String, // %d
+    /** A fold's state, never its label — the heading stays the heading whichever way it points. */
+    val stateExpanded: String,
+    val stateCollapsed: String,
+    // A card with nothing behind it has NO phase word: new is the absence of a badge.
+    val phaseLearning: String,
+    val phaseReview: String,
+    val phaseRelearning: String,
+
+    // ── Box search ──────────────────────────────────────────────────────────────
+    val search: String,
+    val searchPlaceholder: String,
+    val searchHint: String,        // what the field will look through, before anything is typed
+    val searchAreas: String,
+    val searchWords: String,
+    val searchNothing: String,     // %s = the query
+    val searchWriteOwn: String,    // %s = the query — the one door to writing a word
+    val searchClear: String,
+
+    // ── Own-word form ───────────────────────────────────────────────────────────
+    val ownWordTitle: String,
+    val ownWordInLanguage: String, // %s = language name — both fields ask it
+    val ownWordPicture: String,
+    val ownWordAdd: String,
+    val ownWordRemove: String,     // the app's only deletion; catalog words sleep instead
+
+    // ── Box settings ────────────────────────────────────────────────────────────
+    val settingsTitle: String,
+    val profileHint: String,
+    val resetButton: String,
+    val resetHint: String,
+    val resetConfirm: String,      // %s = the language being learnt, in its own name
+    val cancel: String,
+    val reset: String,
+
+    // ── Session turn ────────────────────────────────────────────────────────────
+    val copyPrompt: String,        // %s = target language name — the write-it-out field
+    val copyMismatch: String,      // the copy was another word: the card still holds the answer
+    /**
+     * Leaving a step that has already decided its rating: the write-out's skip, and
+     * giving up on an open retry. One word for both, as on iOS (`session.skipCopy`) —
+     * a step you cannot leave is a trap, and neither leaving costs the schedule anything.
+     */
+    val skipStep: String,
+
+    // ── The day's standing (Heute) ──────────────────────────────────────────────
+    /** Nothing due, and nothing done yet — never [doneToday], which the day must earn. */
+    val caughtUpTitle: String,
+    val dayReviews: String,        // %d
+    val dayReviewsOne: String,     // the count-of-one line, verbatim
+    val dayNewCards: String,       // %d
+    val dayNewCardsOne: String,
+    val dayConsolidated: String,   // %d — "gefestigt" needs no declining
+    /**
+     * Pull-aheads carrying the round on their own — the freshening-up.
+     * Named only in that case: everywhere else they count into [dayReviews]
+     * ([net.spross.kern.session.SessionOffer.summaryParts] decides which).
+     */
+    val dayAhead: String,          // %d
+    val dayAheadOne: String,
+    val tomorrowPacked: String,
+    val tomorrowFresh: String,
+    val tomorrowDue: String,       // %d
+
+    // ── The session offer (Heute's one card) ────────────────────────────────────
+    /**
+     * The phrasings each offer kind carries, indexed by
+     * [net.spross.kern.session.SessionHeadline.variant] — kern picks which, from the
+     * round's shape, so the same round headlines the same on both platforms.
+     * Each list holds [net.spross.kern.session.SessionOffer.HEADLINE_VARIANTS] entries.
+     */
+    val headlineReviews: List<String>,
+    val headlineWarmUp: List<String>,
+    val headlineFreshSet: List<String>,
+    /** What a round with no nameable parts says instead of printing zeros. */
+    val sessionSomeCards: String,
+    /** The cap is a promise, not a loss: what it holds back is named. */
+    val sessionHeldBack: String,   // %d
+    val sessionStart: String,
+
+    // ── The box is still empty ──────────────────────────────────────────────────
+    val emptyBoxTitle: String,
+    val emptyBoxMessage: String,
+    val emptyBoxAction: String,
+
+    // ── Load failures ───────────────────────────────────────────────────────────
+    val errorTitle: String,
+    val errorCatalogMissing: String,
+    val errorContentUnavailable: String, // %s = what the system said
+    val errorUnknownProfile: String,     // %1$s = known, %2$s = learnt
+    val errorResetFailed: String,        // %s
+
+    // ── Round completion ────────────────────────────────────────────────────────
+    val roundNew: String,          // %d
+    val roundConsolidated: String, // %d
+    val roundReviewed: String,     // %d
+    val roundAllDone: String,      // the round had nothing nameable in it
+    val restHint: String,          // today's recall is strained; more reps buy little
+    val streakRecord: String,
+
+    /**
+     * What the round's area GREW, read off the tree's own delta rather than the round's tallies.
+     * [growthGrew] is the one line a strained day gets — no growth claim on a bad day —
+     * and [growthOpened] the first ground broken in an area; the three lists are the
+     * variants a stable seeded pick chooses from.
+     */
+    val growthGrew: String,
+    val growthOpened: String,
+    val growthBlooming: List<String>,
+    val growthSown: List<String>,
+    val growthGrown: List<String>,
+
+    // ── Activity strip ──────────────────────────────────────────────────────────
+    val progressTitle: String,
+    val last14Days: String,
+    val activityDays: String,      // %d = days worked inside the window
+    val streakDays: String,        // %d — days in a row, the strip's own label
+    val streakDaysOne: String,
+    val dayOne: String,            // the badge's unit word, by count
+    val dayMany: String,
 ) {
     companion object {
-        fun forSource(source: String): Chrome = if (source == "de") DE else EN
-
-        private val DE = Chrome(
-            heuteTitle = "Heute",
-            practice = "Üben",
-            extraRound = "Extra-Runde",
-            doneToday = "Für heute geschafft!",
-            emptyState = "Die Box wächst, während dein Material sitzt.",
-            dueLabel = "fällig",
-            newLabel = "neu",
-            consolidatedLabel = "gefestigt",
-            freshLabel = "frisch",
-            changeLanguages = "Sprachen ändern",
-            chooseTitle = "Was möchtest du lernen?",
-            iSpeak = "Ich spreche",
-            iLearn = "Ich lerne",
-            conceptsSuffix = "Begriffe",
-            letsGo = "Los geht's",
-            backLabel = "Zurück",
-            check = "Prüfen",
-            reveal = "Aufdecken",
-            next = "Weiter",
-            alsoPrefix = "auch:",
-            typoNote = "Kleiner Tippfehler – zählt!",
-            otherWordNote = "Übrigens: %1\$s heißt „%2\$s“",
-            answerPlaceholder = "In %s …",
-            again = "Nochmal",
-            hard = "Schwer",
-            good = "Gut",
-            easy = "Leicht",
-            sessionDone = "Geschafft!",
-            summaryLine = "%d neu · %d gefestigt · %d wiederholt",
-            keepPracticing = "Weiter üben",
-            finish = "Fertig",
-            pluralEquals = "= Pl.",
-            pluralOnly = "nur Pl.",
-            pluralPrefix = "Pl. ",
-            readAloud = "Aussprache vorlesen",
-            stateOn = "an",
-            stateOff = "aus",
-            pronounce = "Aussprechen",
-            aboutButton = "Info",
-            audioToggle = "Wörter vorlesen",
-            audioToggleHint = "Wörter beim Üben automatisch vorlesen. Tippen auf ein Wort " +
-                "spricht es erneut — auch bei ausgeschaltetem Vorlesen.",
-            creditsTitle = "Sprecher & Lizenzen",
-            creditsRecordings = "%d Aufnahmen",
-            creditsUnmodified = "Aufnahmen unverändert übernommen",
-            creditsCommons = "Aufnahmen von Wikimedia Commons",
-            trainingTitle = "Werkstatt",
-            lettersTitle = "Buchstaben",
-            lettersHear = "Welcher Buchstabe ist das?",
-            lettersSpell = "Was fehlt im Wort?",
-            lettersDictation = "Schreib, was du hörst",
-            letterChoice = "Buchstabe %s",
-            replayPrompt = "Noch einmal anhören",
-            level = "Stufe %d",
-            streak = "🔥 %d in Folge",
-            typoCorrection = "Fast! Richtig geschrieben: %s",
-            heardInstead = "Gehört war: %s",
-            audioOff = "Ton ist aus",
-            enableSound = "Ton einschalten",
-            tasksDone = "%d Aufgaben 🎯",
-            bestStreak = "Beste Serie: 🔥 %d in Folge",
-            answerCorrect = "Richtig",
-            answerWrong = "Falsch",
-            correctAnswer = "Richtig: %s",
-        )
-
-        private val EN = Chrome(
-            heuteTitle = "Today",
-            practice = "Practice",
-            extraRound = "Extra round",
-            doneToday = "Done for today!",
-            emptyState = "The box grows while your material sits.",
-            dueLabel = "due",
-            newLabel = "new",
-            consolidatedLabel = "consolidated",
-            freshLabel = "fresh",
-            changeLanguages = "Change languages",
-            chooseTitle = "What do you want to learn?",
-            iSpeak = "I speak",
-            iLearn = "I learn",
-            conceptsSuffix = "terms",
-            letsGo = "Let's go",
-            backLabel = "Back",
-            check = "Check",
-            reveal = "Reveal",
-            next = "Next",
-            alsoPrefix = "also:",
-            typoNote = "Small typo – still counts!",
-            otherWordNote = "By the way: %1\$s means “%2\$s”",
-            answerPlaceholder = "In %s …",
-            again = "Again",
-            hard = "Hard",
-            good = "Good",
-            easy = "Easy",
-            sessionDone = "Done!",
-            summaryLine = "%d new · %d strengthened · %d reviewed",
-            keepPracticing = "Keep practicing",
-            finish = "Finish",
-            pluralEquals = "= pl.",
-            pluralOnly = "pl. only",
-            pluralPrefix = "pl. ",
-            readAloud = "Read words aloud",
-            stateOn = "on",
-            stateOff = "off",
-            pronounce = "Pronounce",
-            aboutButton = "About",
-            audioToggle = "Read words aloud",
-            audioToggleHint = "Read words aloud during review. Tapping a word speaks it " +
-                "again — even when read-aloud is off.",
-            creditsTitle = "Voices & licences",
-            creditsRecordings = "%d recordings",
-            creditsUnmodified = "Recordings shipped unmodified",
-            creditsCommons = "Recordings from Wikimedia Commons",
-            trainingTitle = "Workshop",
-            lettersTitle = "Letters",
-            lettersHear = "Which letter is this?",
-            lettersSpell = "What's missing in the word?",
-            lettersDictation = "Write what you hear",
-            letterChoice = "Letter %s",
-            replayPrompt = "Play it again",
-            level = "Level %d",
-            streak = "🔥 %d in a row",
-            typoCorrection = "Almost! Correct spelling: %s",
-            heardInstead = "You heard: %s",
-            audioOff = "Sound is off",
-            enableSound = "Turn sound on",
-            tasksDone = "%d tasks 🎯",
-            bestStreak = "Best streak: 🔥 %d in a row",
-            answerCorrect = "Correct",
-            answerWrong = "Wrong",
-            correctAnswer = "Correct: %s",
-        )
+        /** Which language carries the chrome — and the en fallback — is kern's rule; only the table map is ours. */
+        fun forSource(source: String): Chrome =
+            if (LanguageChoices.chromeLanguage(source) == "de") ChromeDe else ChromeEn
     }
 }
+
+/** The declining count line: [one] verbatim at exactly 1, else [many] with the count. */
+fun countLine(one: String, many: String, count: Int): String =
+    if (count == 1) one else many.format(count)

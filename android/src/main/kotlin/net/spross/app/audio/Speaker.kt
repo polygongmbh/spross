@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import java.util.Locale
+import net.spross.kern.catalog.VoiceSelection
 import net.spross.kern.model.Language
 
 /**
@@ -60,10 +61,11 @@ class Speaker(context: Context) {
         tts.shutdown()
     }
 
-    // why: Spanish is taught in the peninsular variety (distinción) — a Latin-American
-    // voice would teach seseo, so the bare code is widened to es-ES.
+    // why: kern picks the variety a language is taught in (Spanish peninsular, so a
+    // Latin-American voice cannot teach seseo); this engine cannot search its voices,
+    // and asking for the right tag is all the say it has in which one answers.
     private fun localeFor(lang: Language): Locale =
-        Locale.forLanguageTag(if (lang == "es") "es-ES" else lang)
+        Locale.forLanguageTag(VoiceSelection.preferredTag(lang))
 
     private companion object {
         /** The TTS engine with offline Swahili (data/reference/audio/README.md). */

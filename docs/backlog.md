@@ -142,6 +142,10 @@ One line per item, with a file or context pointer, filed under the section it be
   es `evening` keeps `noche` as a variant beside `night`'s `noche`: a variant is graded and
   never prompted, so the two stay tellable apart where it counts.
 
+- No shipped join sets `promptAmbiguous` today (offline sweep over de→sw, en→de, en→sw,
+  de→uk, de→es found zero duplicate produce prompts), so the area-cue path on both
+  platforms is dormant and untestable against real content until a merge arrives.
+
 ## Engine & scheduling
 
 - A **defer** flag: a per-card opt-out that sinks a word behind the whole catalog rather
@@ -188,6 +192,10 @@ One line per item, with a file or context pointer, filed under the section it be
   so that closure is unheld, unlike the day parts' (`dayPartReadingsCloseTheTwelveHourCycle`).
 - FSRS parameter optimization from review logs —
   enabled by the full per-card logs, unbuilt (kern README §5).
+- Box pack control under-reports: `BoxBrowser.enqueueableCount` counts only the area's own
+  cards, while `BoxEngine.enqueue` also prepends a phrase's missing components — a phrase
+  whose components sit on another shelf packs more than the number promised
+  (`kern/src/commonMain/kotlin/net/spross/kern/box/BoxBrowser.kt` `enqueueableCardIds`).
 - Watch multiple-choice distractors carry no novelty or recency criterion
   (`kern/src/commonMain/kotlin/net/spross/kern/session/MultipleChoice.kt`):
   word class, area and shape rank them now, but the newest entry can still be the odd
@@ -207,6 +215,16 @@ One line per item, with a file or context pointer, filed under the section it be
   area — across word class and sub-cluster — and never across areas. Review is unaffected:
   once bound, contrasting near-neighbours is the useful case, and the catalog already
   teaches those apart (`promptAmbiguous`, `CatalogAnswerGrader.OtherWord`).
+- The letter drill's `exampleText` fallback is not audibility-filtered, so an inaudible
+  escape-hatch row stays promptable and shows a dead speaker — shared by both platforms
+  (`kern/.../trainer/LetterDrillAvailability.exampleWords` KDoc, pinned in its test).
+- Same class: kern's audibility test is "the catalog names a recording path OR a voice
+  exists", never whether the file resolves in the bundle — on a voiceless language, a row
+  or dictation candidate whose authored recording is missing ships promptable with a dead
+  speaker (`kern/.../trainer/LetterDrillAvailability.kt`).
+- `TrainerRun` has no `openAt(mode:levels:rng:)` sibling of `LetterDrillRun.openAt` —
+  its absence forces iOS's DEBUG-only `TrainerRunState.seeded` doCopy helper
+  (`App/Sources/Screens/TrainerSessionView+UITest.swift`).
 
 ## App & UX
 
@@ -220,6 +238,25 @@ One line per item, with a file or context pointer, filed under the section it be
   trainer drills (`App/Sources/Design/AutoAdvance.swift`) — deferred because its verdict
   ladder carries a third `heard` outcome (a synonym of the dictated word) that the
   un-arm-on-further-typing logic would need a new case for, so it is a design call rather
+  than a mechanical port (the ladder is kern's now: `kern/.../trainer/LetterDrillRun.kt`).
+- The iOS result tile still hand-codes the 10/5/2 emoji ladder kern now owns —
+  `DrillRunResult` wants to carry `DrillRunSummary.tier` the way Android's `tierEmoji` reads it
+  (`App/Sources/Design/DrillChrome.swift` vs `android/.../ui/DrillChrome.kt`).
+- `NumbersOverview.swift` holds its picks as `Set<DrillVariant>` where `DrillSelection`
+  hands back ordered lists (converted at both boundaries), and hand-spells its progress key
+  `"\(variant.storageTag).\(language)"` — `TrainerMode.companion.progressKey(variant:language:)`
+  is the public spelling; `DrillVariant.storageTag`/`.slotKind` stay `internal` in kern over it.
+- `TrainerRecords.swift` hard-codes `"trainer.record."`; `TrainerMode.companion.RECORD_PREFIX`
+  now exists.
+- `AppModel+Queries.swift` `consolidatedCards()` has no caller left and its doc comment
+  points at deleted Swift filters — prune.
+- `TrainerSessionView+Grading.swift` and `LetterDrillView+Grading.swift` now hold the run
+  DRIVERS (dispatch/effects/close), not grading — rename to `+Run.swift` in a pass that
+  regenerates the Xcode project.
+- `android/.../AppModel.kt` sits at 544 lines (guide ~300); extracting the Werkstatt doors
+  needs widening `screen`'s private setter.
+- Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
+  fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
   than a mechanical port (`LetterDrillView+Grading.swift` `verdict(_:task:)`).
 - A drill's typed-answer controls — the field, the one primary action that reveals or
   checks, the amber hold, the revealed branch with its stop offer, the screen-reader
@@ -248,11 +285,22 @@ One line per item, with a file or context pointer, filed under the section it be
   for its letter drill ("correctness is never color alone", `surfaces.md`), so the watch owes
   a spoken equivalent — an accessibility label or value on the answered tile, not a mark.
 
+- Article tints reach the two Box screens unevenly: Android tints the article on its
+  browse rows, iOS box rows stay plain and tint only on the session card
+  (`BoxCardRow.swift:43` vs `android/.../ui/BoxRows.kt`) — same palette, one design
+  call on where the tint belongs; unify once decided.
+
+- The session headword breaks mid-word at narrow widths ("die Sprach/e" at 320dp):
+  the mirrored 52dp emoji slot plus the speaker glyph leave ~98dp for a 28sp headline
+  (`android/.../ui/CardFace.kt`, `ProduceCard.kt`). Every fix is a design call —
+  autosize clips long compounds, un-mirroring de-centres, a smaller slot changes the
+  emoji spec — so it wants an owner ruling, not a patch.
+- `AppModel.activate()` silently bootstraps a fresh box when decode fails
+  (`android/.../AppModel.kt:328-342`), so a corrupt or mis-pathed box reads as empty
+  with no trace — surface the failure (log + error card) before real devices.
+
 ## Localization
 
-- Android chrome still says "Werkstatt" and "Stufe" where iOS now says "Sprossen" and "Sprosse" —
-  left untouched because the parity worktree is restructuring that exact table
-  (`android/.../Chrome.kt:122,129,196`); the rename rides along when that series lands.
 - Watch, widget, and complication chrome is hardcoded German with no string catalog
   (`Watch/Sources/WatchHomeView.swift`, `Widgets/Sources/WordWidgetView.swift`,
   `WatchWidgets/Sources/WatchWordWidgetView.swift`) —
@@ -261,15 +309,18 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## Platform reach
 
-- Android not yet ported: Box browse, trainers, widget, 14-day strip, confetti/haptics
-  (`surfaces.md` § Android companion).
-- The atlas drill's Android port waits on the android parity branch landing, and is UI ONLY:
-  the ladder, the pools, the accepted sets, the reference rows and the availability
-  predicate are all in kern commonMain already (`kern/.../trainer/CountryDrill.kt`), so the
-  port clones the `LetterDrill` split — a screen plus a progress store, no decisions.
-- Android carries its own unrelated palette (`android/.../ui/Theme.kt`) that never went
-  through the contrast pass — it predates the ocean/forest re-cut and shares no values
-  with `Design/Theme.swift`.
+- Android surfaces still unported: `design.md` § Not yet owns the list.
+- Android back doors land on Heute even when opened from the box: `closeAbout()`,
+  `cancelOnboarding()` and `activate()` all end at `Screen.Heute` (`android/.../AppModel.kt`).
+- Android Heute's failure card and the `error*`/`growth*` chrome are wired but unreachable:
+  AppModel has no load-failure state yet and the round summary does not render growth.
+- Dead after the wave-3 Android sweep, prune in one pass: Chrome `easy`/`again`/`summaryLine`/
+  `typoNote`/`practice`/`emptyState`/`dueLabel`/`consolidatedLabel`/`freshLabel`, and
+  `AppModel.sessionAvailable`/`canPracticeExtra` (unread since `HeuteStanding`).
+- `ic_launcher_background` still holds retired-palette `#FF2E6B34`
+  (`android/src/main/res/values/colors.xml`) — the adaptive-icon plate, not the window.
+- Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
+  deferred per user 2026-08-08.
 - Audio ships un-thinned: `catalog/audio/` is 26 MB (de 4.9, es 7.2, sw 5.2, uk 9.0) and
   BOTH installs carry all of it — the iOS folder reference and the Android catalog sync
   copy the tree whole — so a Swahili learner downloads 21 MB of German, Spanish and
@@ -292,18 +343,32 @@ One line per item, with a file or context pointer, filed under the section it be
 
 - Watch pairing untested on real hardware;
   complication rendering never screenshot-verified (no simctl affordance).
+- The `SprossWatchWidgets` auto-scheme resolves destinations erratically
+  (project.yml declares no schemes, and an extension auto-scheme flip-flops between
+  iOS and watchOS destination lists): a named iPhone destination may not match.
+  Reliable gates: the `Spross` scheme (builds the whole embed chain, watch app and both
+  widget extensions included) or `-scheme SprossWatchWidgets -destination
+  'generic/platform=iOS Simulator'`.
 - The 32 uk letter recordings have never been heard against the names the alphabet file
   speaks. `letters{}` carries no `matches` field (`catalog/audio/uk/manifest.json`), so
   no lint can pin «йот» to what `letters/u0439.mp3` actually says — the names were
   authored from the 1993 orthography, and wherever a clip says something else it is the
   `name` FIELD that has to change, never the audio. One listening pass, 32 clips.
-- The Android pronunciation player has never been HEARD. `PronunciationPlayer` moved to
-  MediaPlayer + `LoudnessEnhancer` to carry the analysis index (SoundPool can neither seek
-  nor boost); the arithmetic is unit-pinned (`PlaybackIndexTest`) and the build is green,
-  but no emulator image and no device were at hand when it landed, so the boost, the lead
-  skip and the async request guard have only ever been reasoned about. One letter-drill
-  run on hardware settles all three — and it is the only way to learn whether
-  `MODIFY_AUDIO_SETTINGS` is really needed for a session-scoped effect (it is declared).
+- The Android pronunciation player has been heard on the EMULATOR only (2026-08-08:
+  session rounds play, and the ANR it caused is fixed — the MediaPlayer/`LoudnessEnhancer`
+  lifecycle now lives on its own thread, verified over a full unmuted round).
+  Still open, and only real hardware can answer them: how the boost and the lead skip
+  actually sound, one letter-drill run end to end, and whether `MODIFY_AUDIO_SETTINGS`
+  is really needed for a session-scoped effect (it is declared).
+- Android cold-start with an existing box showed the loading spinner 20–90 s on the
+  emulator (fresh install loads in seconds) — likely the 787-card decode+join; profile
+  before real devices (`android/.../AppModel.kt` restore path).
+- On the emulator with a hardware keyboard, Enter after `input text` could walk focus onto
+  the session top-bar mute toggle and flip it; probably an emulator artifact — check once
+  on hardware before chasing (`android/.../ui/SessionScreen.kt` top bar).
+- `TrainerStore`'s read/write plumbing is untested (needs `SharedPreferences`, no Robolectric
+  in the module; the key rules are kern's and tested there) — one emulator check that a rung
+  survives an app restart (`android/.../TrainerStore.kt`).
 - Resolved 2026-08-01 — the analysis index has its PEAK term: every `gain` is capped at the
   file's own measured headroom less 1 dB (`scripts/audio-catalog.py` [ANALYSIS]), so nothing
   reaches full scale and the iOS-clips / `LoudnessEnhancer`-compresses split has nothing

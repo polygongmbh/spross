@@ -3,11 +3,15 @@
 Audit of 2026-08-03, sweeping `App/`, `Watch/`, `Widgets/`, `Shared/` against `kern/` and `android/`.
 Delete this file once the moves it lists have shipped.
 
-**Shipped:** moves 1 and 3, and every "smaller" bullet except the ones still listed below.
-The four drifts are closed — the run, the offer, the covered languages, the calibration,
-the article table, the streak walk, the area buckets and the day helpers are kern's,
-and both apps read them. `android/SessionFlow.kt` is gone.
-What is left is moves 2, 4, 5, 6 and the remainder of the small list.
+**Shipped (2026-08-08):** moves 1, 2 and 3, and the whole vocab-loop small list —
+the run, the turn, the offer and its summary, the covered languages, the calibration,
+the article table, the streak walk, the area buckets, the day helpers, the box browser,
+the today report and the chrome-language rule are kern's, and both apps read them.
+`android/SessionFlow.kt` is gone.
+**Also shipped (2026-08-08, later the same day):** moves 4 and 5 — both drill runs and
+the letter-drill availability sweep are kern machines, and both apps drive them.
+What is left is watch territory only: move 6 (deferred per user 2026-08-08)
+and the watch bullets at the end of the small list.
 
 The native layers should own aesthetics and device facts only:
 layout, animation, focus, haptics, audio engines, widget timelines, accessibility flags, string tables.
@@ -53,6 +57,8 @@ Three screens are their own uncontrolled view models — 47 `@State` between the
 `SessionView` (16, including a parked un-applied `Rating`), `LetterDrillView` (15, the whole drill run,
 with a reducer named `advance` living inside a `View`), `TrainerSessionView` (16, and it writes persistent records).
 There is no Swift test target, so none of it is testable.
+The two drill screens now each hold one kern run state (`TrainerRunState` / `LetterDrillRunState`)
+plus input and focus; the rest stands.
 
 `android/` did better: `AndroidViewModel` + a `SessionUi` state DTO + flow logic extracted
 into Android-free testable classes (`SessionFlow`, `LetterDrillFlow`, `CardDisplay`, `LanguagePicker`).
@@ -78,61 +84,69 @@ No new kern dependency; data classes already cross the boundary.
 
 1. ~~**`session/SessionRun`**~~ — shipped. `canPracticeMore`/`canPracticeExtra`/`sessionAvailable`
    landed in `SessionOffer.kt` rather than `SessionRun.kt`: they are box queries, not run state.
-2. **`session/Turn`** — the produce/recognize turn: feedback state × revealed × typo × heardInstead × otherWord × retry,
-   and which rating each branch fires (`SessionView+Produce.swift:26-316`, ~180 lines).
-   Folds in `SelfGrading` + `CatalogAnswerGrader`; the view keeps input, focus, animation, sound.
-   Includes the copy-step predicate (`SessionView+Copy.swift:122-127`) and the recall-timing capture
-   (`SessionView.swift:409-428`).
+2. ~~**`session/Turn`**~~ — shipped as `session/TurnMachine.kt` + `TurnWriteOut.kt`:
+   feedback state × revealed × typo × heardInstead × otherWord × retry,
+   which rating each branch fires, the copy-step predicate and the recall-timing capture,
+   folding in `SelfGrading` + `CatalogAnswerGrader`.
+   Both apps dispatch every turn intent through it and keep only input, focus, animation
+   and cues (iOS `SessionView+Turn.swift`, Android `TurnFlow.kt`);
+   Android's four divergences (pickable Easy, no write-out, no retry,
+   answer shown in the field on reveal) disappeared by construction on adoption.
 3. ~~**Profile activation + `BoxConfig.product()`**~~ — shipped as `coveredSources()`/`defaultSource()`
    plus `BoxConfig.product()` and `BoxState.withProductCalibration()`. `availableTargets` keeps its
    `require` deliberately: the safe query is now the one a launch reaches for, and an unknown source
    stays a programming error rather than an empty answer. The rest of `activate` — bundle paths,
    `UserDefaults`, the observable plumbing — stayed iOS, correctly.
-4. **`trainer/LetterDrillRun` + `TrainerRun`** — the run drivers around kern's ramp
-   (`LetterDrillView.swift:54-284`, `TrainerSessionView.swift:59-276`).
-   The ramp itself is no longer among the duplications: both drills now step through
-   `DrillRamp.step`, and each passes in only its own rung length.
-5. **`trainer/LetterDrillAvailability`** behind an audio-capability port
-   (`LetterDrillAvailability.swift:16-131`) — deletes 176 hand-ported Kotlin lines.
+4. ~~**`trainer/LetterDrillRun` + `TrainerRun`**~~ — shipped as
+   `trainer/TrainerRun.kt` + `TrainerRunState.kt` and `LetterDrillRun.kt` + `LetterDrillRunState.kt`
+   over the shared `DrillRun.kt` effects; both apps dispatch intents and render the returned state,
+   keeping only input, focus, audio and the auto-advance timers.
+5. ~~**`trainer/LetterDrillAvailability`**~~ — shipped behind a has-voice flag
+   (`LetterDrillAvailability.report(catalog, box, language, hasVoice)`);
+   Android's 176 hand-ported lines are gone and iOS keeps a thin adapter.
+6. **`snapshot/WatchRun` + public snapshot DTOs** — the watch queue/ranking/recycling engine
+   (`WatchModel.swift:96-289`, ~150 lines, untested), the practice-lap ordering by remaining-span-over-stability,
+   `applyRemoteAnswers` idempotent replay (`PhoneConnectivity.swift:73-155`),
+   and `WatchSnapshotDoc`/`WatchEntryDto` made public so no consumer re-declares them
+   (`Shared/WatchSnapshot.swift:8-114`).
 
 ## Smaller — what is left
 
-Shipped from this list: `session/SessionOffer` (its FNV now hashes UTF-8 bytes, so a round may pick a
-different one of its three phrasings than Swift's per-process hash did — intended),
-`model/Article.kt` (`articleGender` + `shownArticle`), `box/Statistics` (`streakWindow`, `learningCount`,
-the area buckets), `box/Time` (`dayKey`/`endOfTomorrow` public).
+Shipped from this list, both apps reading kern:
+
+- `session/SessionOffer` (its FNV now hashes UTF-8 bytes, so a round may pick a
+  different one of its three phrasings than Swift's per-process hash did — intended),
+  including `summaryParts()` — the reviews+ahead merge / Auffrischer / fresh-append rule;
+  its empty list is deliberately each surface's own fallback phrase, the `tallyParts` contract.
+- `model/Article.kt` (`articleGender` + `shownArticle`), `box/Statistics` (`streakWindow`,
+  `learningCount`, the area buckets), `box/Time` (`dayKey`/`endOfTomorrow` public).
+- `catalog/LanguageChoices` — the swap rule (`targetChoices`/`pickSource`/`pickTarget`),
+  `pickerRow`/`pickerLabel`, and `chromeLanguage`/`hasChrome`:
+  all three copies are gone (`android/LanguagePicker.kt` deleted;
+  iOS `AppModel` and Android `Chrome.forSource` both read kern for the en fallback).
+- `catalog/Playback` (`gainDb`/`headMs`) and `catalog/VoiceSelection`
+  (`select` on iOS, `preferredTag` on Android — two halves of the same object).
+- `model` plural sentinel and alternates-minus-shown as `pluralForm`/`alternates`;
+  `Card.alsoAccepts` as `session/SpokenAnswer.kt` (iOS keeps a one-line wrapper).
+- `box/BoxBrowser` — grouping/ordering/`enqueueableCount`/`enqueueableCardIds`
+  (the count and the enqueue share one predicate) and `CardRowState`,
+  whose `Standing` owns the seal-follows-consolidated invariant `PhaseBadge` used to state.
+- `box/TodayReport` — `worked`, `tallyParts`, `tomorrowNote`, `completionTallyParts`.
 
 `Watch/`, `Widgets/` and `WatchWidgets/` keep their gender-table and streak-walk copies — those targets
 do not link Kotlin, so the duplication is forced there and only there. Their comments should point at
 `model/Article.kt` and `box/Statistics.kt` as the canonical version. On Android, where widgets are
 in-process, no such copy may exist.
 
-- `catalog` — `LanguagePicker.choices/apply` (the swap rule is written twice in Swift,
-  `OnboardingView.swift:69-119` and `BoxSettingsSection.swift:207-248`, and a third, lossier time in Kotlin),
-  `LanguageInfo.pickerRow/pickerLabel` (`DisplayText.swift:7-47`; Android's picker was showing exonyms
-  only and is fixed in place, so this is now a two-file agreement rather than a bug),
-  `chromeLanguage(source)` (`AppModel.swift:259-276`),
-  audio resolution: `clampedGain` / `headMs` (the `20.0 dB` limit and the lead-validity rule exist
-  in three places: `PronunciationPlayer.swift:26,102-106`, `AudioManifest.kt:110,113`, `android/audio/PlaybackIndex.kt`),
-  `VoiceSelection.preferredTag` (the `es ⇒ es-ES` distinción rule, `Speaker.swift:69-86`, already re-stated in Kotlin).
-- `model` — plural sentinel resolution and the alternates-minus-shown-form rule (`DisplayText.swift:67-104`).
-  Android's `CardDisplay.kt` had omitted the exclusion, the empty-plural guard and the canonical form
-  itself; fixed in place, so the two now agree — but they agree in two files, which is the thing to close.
+Still without the kern home the audit asked for (all watch-scoped, plus one drill remainder):
+
 - `session/MultipleChoice.question` — the watch samples and shuffles kern's ranked shortlist in Swift
   (`WatchPracticeQuestion.swift:24-49`); `RecognitionGrading` — latency→rating
   (`WatchGrading.swift:14-29`), the sibling of `SelfGrading.kt:33-51`.
-- `box` — browser grouping/ordering/`enqueueableCount` (`AppModel+Queries.swift`,
-  which restates half of `BoxEngine.enqueue`'s skip rules), `CardRowState` (`BoxCardRow.swift:59-98`),
-  and the `PhaseBadge` invariant that the seal follows `consolidated`, not phase (`ProgressComponents.swift`) —
-  a domain rule currently stated only in a view.
-- `box/TodayReport` — which summary parts appear and the done-vs-caught-up choice
-  (`HeuteView.swift:99-217`, `SessionCompletionView.swift:43-49`).
-  The strings stay platform-side; the rule choosing the key does not.
-- Rules with exactly one Swift home and no Kotlin one, so kern by default:
-  `Card.alsoAccepts` (`DisplayText.swift:78`) and the result tile's emoji thresholds 10/5/2
-  (`DrillChrome.swift`) — both were duplicated in iOS and are not any more, which is
-  what makes the move cheap. Still stated twice: the drill normalizer's strictness triple
-  (`TrainerHubView.swift:92-93` = `LetterDrillView+Grading.swift:112-114`).
+- ~~The drill normalizer's strictness triple~~ — shipped as `AnswerNormalizer.drill`,
+  and all four platform sites call it. The streak-tier ladder itself is closed:
+  kern owns it (`DrillRun.kt` `StreakTier`), Android reads it, and only the iOS tile
+  still hand-codes the thresholds (backlog).
 
 ## Stays native
 

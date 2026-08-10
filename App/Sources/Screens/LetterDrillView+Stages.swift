@@ -2,8 +2,9 @@ import SwiftUI
 import SprossKern
 
 /// Screen content of the letter drill: the four glyph tiles, the typed and
-/// dictated stages, and the close summary. State lives on LetterDrillView;
-/// split out purely for file size.
+/// dictated stages, and the controls under them. Everything it shows is read
+/// off `run` and every control dispatches an intent. State lives on
+/// LetterDrillView; split out purely for file size.
 extension LetterDrillView {
 
     var drillContent: some View {
@@ -21,7 +22,7 @@ extension LetterDrillView {
                                        replay: replayAction,
                                        isPlaying: promptIsPlaying,
                                        replayFocus: $replayFocused)
-                            .id(index)
+                            .id(run.index)
                             .transition(reduceMotion ? .opacity : .dlCardFlip)
                     }
                     switch task.stage {
@@ -52,31 +53,23 @@ extension LetterDrillView {
     /// its blank with the word Kern already handed over (`gloss`); a dictation
     /// grows the transcription with its meaning below.
     ///
-    /// The two amber holds reveal too: a slip and a heard-instead both leave a
-    /// spelling worth seeing whole, and the box under the field says which of
-    /// the two it was.
+    /// WHETHER the card opens is kern's `showsAnswer`: unlike the slot drill
+    /// both amber holds reveal too, because a slip and a heard-instead each
+    /// leave a spelling worth seeing whole.
     private func cardReveal(_ task: LetterDrillTask) -> HearPromptCard.Reveal? {
-        switch feedback {
-        case .neutral:
-            return nil
-        case .correct:
-            // why: a clean answer flips in ~1.2 s — opening the card for a beat
-            // reads as a correction the learner did not earn.
-            return nil
-        case .almost, .revealed:
-            guard let word = task.gapText == nil ? task.display : task.gloss else { return nil }
-            return .init(word: word,
-                         // why: the meaning is a REVEAL, never a cue — and a gap
-                         // question's gloss IS the word, so it would repeat it.
-                         note: task.gapText == nil ? task.gloss : nil,
-                         pronounce: model.pronounceAction(for: word, lang: task.language),
-                         isPlaying: model.isPronouncing(word, lang: task.language))
-        }
+        guard run.showsAnswer,
+              let word = task.gapText == nil ? task.display : task.gloss else { return nil }
+        return .init(word: word,
+                     // why: the meaning is a REVEAL, never a cue — and a gap
+                     // question's gloss IS the word, so it would repeat it.
+                     note: task.gapText == nil ? task.gloss : nil,
+                     pronounce: model.pronounceAction(for: word, lang: task.language),
+                     isPlaying: model.isPronouncing(word, lang: task.language))
     }
 
     private var streakLine: some View {
-        DrillStreakLine(level: Text("trainer.level \(level.formatted())"),
-                        streak: streak, bestStreak: bestStreak)
+        DrillStreakLine(level: Text("trainer.level \(Int(run.level).formatted())"),
+                        streak: Int(run.streak), bestStreak: Int(run.bestStreak))
     }
 
     // MARK: - Multiple choice
@@ -91,15 +84,15 @@ extension LetterDrillView {
                 tile(glyph, answer: task.display)
             }
         }
-        .animation(.easeOut(duration: 0.2), value: chosen)
+        .animation(.easeOut(duration: 0.2), value: run.chosen)
     }
 
     private func tile(_ glyph: String, answer: String) -> some View {
-        let answered = chosen != nil
+        let answered = run.chosen != nil
         let isAnswer = glyph == answer
-        let isChosen = glyph == chosen
+        let isChosen = glyph == run.chosen
         return Button {
-            choose(glyph, answer: answer)
+            choose(glyph)
         } label: {
             Text(verbatim: glyph)
                 .font(.system(size: 44, weight: .bold, design: .rounded))
@@ -159,15 +152,13 @@ extension LetterDrillView {
         case .neutral:
             EmptyView()
         case .correct:
-            if screenReaderOn {
-                nextButton { advance(correct: true, clean: true) }
-            }
+            if screenReaderOn { nextButton }
         // why: tiles grade exact-only (no typo budget), so this cannot arise
         // here — it books like any other accepted answer if it ever does.
         case .almost:
-            nextButton { advance(correct: true, clean: false) }
+            nextButton
         case .revealed:
-            nextButton { advance(correct: false, clean: true) }
+            nextButton
         }
     }
 
@@ -185,13 +176,13 @@ extension LetterDrillView {
                             correctionVoice: .init(
                                 pronounce: { model.pronounceAction(for: $0, lang: task.language) },
                                 isPlaying: { model.isPronouncing($0, lang: task.language) })) {
-                submit(task)
+                submit()
             }
             switch feedback {
             case .neutral:
                 // ONE primary action: an empty field reveals, a typed one checks.
                 Button {
-                    if input.isBlankAnswer { reveal(task) } else { submit(task) }
+                    checkOrReveal()
                 } label: {
                     Text(input.isBlankAnswer ? "session.reveal" : "common.check")
                         .frame(maxWidth: .infinity)
@@ -204,30 +195,31 @@ extension LetterDrillView {
                 // The two amber holds — a slip, and a form the review flow
                 // teaches but the dictation did not play. The box above spells
                 // either one out; this waits for the tap that books it amber.
-                nextButton { advance(correct: true, clean: false) }
+                nextButton
                     .transition(.opacity)
             case .correct:
                 // why: the timer never arms under a screen reader, so a clean
                 // hit would otherwise have nothing to move on with.
-                if screenReaderOn {
-                    nextButton { advance(correct: true, clean: true) }
-                }
+                if screenReaderOn { nextButton }
             case .revealed:
                 VStack(spacing: DL.Space.s) {
-                    nextButton { advance(correct: false, clean: true) }
-                    if missRun >= 1 { DrillStopOffer { closeRun() } }
+                    nextButton
+                    if run.offersFinish { DrillStopOffer { closeRun() } }
                 }
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
     }
 
-    private func nextButton(_ action: @escaping () -> Void) -> some View {
-        Button(action: action) {
+    /// The one button that books whatever the feedback already said — which of
+    /// the ladder's outcomes that is stays kern's.
+    private var nextButton: some View {
+        Button {
+            dispatch(LetterDrillIntent.ConfirmPending.shared)
+        } label: {
             Text("common.next").frame(maxWidth: .infinity)
         }
         .buttonStyle(DLPrimaryButtonStyle())
         .keyboardShortcut(.defaultAction)
     }
-
 }

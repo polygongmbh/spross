@@ -11,8 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -56,7 +55,7 @@ fun AboutScreen(model: AppModel) {
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier.weight(1f),
             )
-            TextButton(onClick = { model.closeAbout() }) { Text("✕") }
+            TextButton(onClick = { model.closeAbout() }) { Icon(SprossIcons.Close, contentDescription = null) }
         }
         LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
             item { Spacer(Modifier.height(4.dp)) }
@@ -162,7 +161,7 @@ private fun LanguageHeading(model: AppModel, language: String) {
 private fun CreditGroup(credit: AudioCredit, chrome: Chrome) {
     var expanded by remember(credit) { mutableStateOf(false) }
     val uris = LocalUriHandler.current
-    Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
+    Column(modifier = Modifier.panel()) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()

@@ -42,15 +42,15 @@ extension SessionView {
     /// after a rotated synonym was prompted, the one thing the matched-form
     /// lookup exists to prevent, and say it twice besides.
     ///
-    /// Deliberately WITHOUT `feedback == .correct`: a typed-exact answer flips
-    /// in 450 ms and a checked one in 1200 ms, less than a recording lasts, and
-    /// `feedback` swings back and forth on every keystroke past the answer. A
-    /// word cut off every time is worse than a word not played — the next
-    /// recognition of it speaks in full, and a tap always does.
+    /// Deliberately WITHOUT `feedback == .correct`: an accepted answer flips on
+    /// a beat shorter than a recording lasts, and `feedback` swings back and
+    /// forth on every keystroke past the answer. A word cut off every time is
+    /// worse than a word not played — the next recognition of it speaks in
+    /// full, and a tap always does.
     var produceAudioTrigger: Bool {
         guard let card = model.currentCard,
               model.presentationRole(for: card.id) == .produce else { return false }
-        return cardRevealed || typoCorrection != nil || heardInstead != nil
+        return cardRevealed || almostHold != nil
     }
 
     /// Says the produce card's word once its transition has landed.

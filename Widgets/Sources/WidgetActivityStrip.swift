@@ -38,7 +38,9 @@ struct WidgetActivityStrip: View {
             ? (Double(entry.reviews) / Double(maxReviews)).squareRoot()
             : 0
         let height = entry.reviews > 0 ? max(3, Self.maxHeight * scaled) : 1.5
-        let hue = entry.isToday ? Color.orange : Color.green
+        // Same two hues the app's strip keys to: today takes the accent, every
+        // other worked day the forest green (`WordWidgetView`'s palette copy).
+        let hue = entry.isToday ? Color.wgAccent : Color.wgSuccess
         return Capsule()
             .fill(entry.reviews > 0 ? hue.opacity(0.45 + 0.55 * scaled) : Color.secondary.opacity(0.3))
             .frame(width: Self.barWidth, height: height)

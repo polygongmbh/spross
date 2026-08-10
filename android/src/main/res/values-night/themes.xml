@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The dark half of the pair described in values/themes.xml. The parent changes with
+         it: a Light platform theme in the dark hands light defaults to anything Compose
+         does not draw itself. Light status-bar icons are the platform's default, so the
+         flag is switched OFF here rather than dropped — a missing item in a replaced
+         style is not an inherited one. -->
+    <style name="Theme.Spross" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/spross_window_background</item>
+    </style>
+</resources>

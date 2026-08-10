@@ -5,6 +5,11 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 import net.spross.kern.model.Realization
 
+/**
+ * The WORDS this platform wraps around kern's reveal rules. Which authored plural is a
+ * sentinel, what a suffix resolves to and which forms are left to offer are
+ * `model/DisplayText.kt`'s and tested there — what is checked here is the labelling.
+ */
 class CardDisplayTest {
 
     private val chrome = Chrome.forSource("de")
@@ -25,58 +30,31 @@ class CardDisplayTest {
     )
 
     @Test
-    fun pluralSentinelsUseChromeStrings() {
+    fun eachPluralFormWearsItsOwnChromeWord() {
         assertEquals("= Pl.", CardDisplay.pluralLine(realization("der Lehrer", plural = "="), chrome))
         assertEquals("nur Pl.", CardDisplay.pluralLine(realization("die Eltern", plural = "only"), chrome))
-    }
-
-    @Test
-    fun suffixPluralResolvesAgainstTheWord() {
         assertEquals(
             "Pl. die Lehrerinnen",
             CardDisplay.pluralLine(realization("die Lehrerin", plural = "-nen"), chrome),
         )
     }
 
+    /** No form, no line — a label with nothing behind it is not a plural. */
     @Test
-    fun fullWordPluralGetsPrefix() {
-        assertEquals(
-            "Pl. die Häuser",
-            CardDisplay.pluralLine(realization("das Haus", plural = "die Häuser"), chrome),
-        )
-    }
-
-    /** An authored-but-empty plural is not a form — it used to render a bare "Pl. ". */
-    @Test
-    fun anEmptyPluralIsNoPluralAtAll() {
+    fun aWordWithNoPluralGetsNoLine() {
+        assertNull(CardDisplay.pluralLine(realization("nyumba"), chrome))
         assertNull(CardDisplay.pluralLine(realization("nyumba", plural = ""), chrome))
     }
 
     @Test
-    fun missingPluralAndSynonymsGiveNull() {
-        assertNull(CardDisplay.pluralLine(realization("nyumba"), chrome))
-        assertNull(CardDisplay.alsoLine(realization("nyumba"), chrome, "nyumba"))
-    }
-
-    @Test
-    fun alsoLineJoinsTheFamilyBeyondTheFormOnScreen() {
+    fun theAlsoLineNamesTheFamilyKernLeftStanding() {
         val word = realization("die Verwaltung", synonyms = listOf("das Amt", "die Behörde"))
         assertEquals("auch: das Amt / die Behörde", CardDisplay.alsoLine(word, chrome, "die Verwaltung"))
     }
 
-    /**
-     * The regression: a rotated recognition prompt puts a SYNONYM on screen, and the line
-     * used to offer it back as though it were another word — while dropping the citation
-     * form the learner had not seen.
-     */
-    @Test
-    fun theFormOnScreenNeverAppearsAmongItsOwnAlternatives() {
-        val word = realization("die Verwaltung", synonyms = listOf("das Amt", "die Behörde"))
-        assertEquals("auch: die Verwaltung / die Behörde", CardDisplay.alsoLine(word, chrome, "das Amt"))
-    }
-
     @Test
     fun aWordWithNothingLeftToOfferHasNoLine() {
+        assertNull(CardDisplay.alsoLine(realization("nyumba"), chrome, "nyumba"))
         assertNull(
             CardDisplay.alsoLine(
                 realization("das Amt", synonyms = listOf("die Behörde")),

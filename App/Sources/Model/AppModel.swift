@@ -82,8 +82,6 @@ final class AppModel {
     let watchBridge = PhoneConnectivity()
     static let sourceLanguageKey = "sourceLanguage"
     static let targetLanguageKey = "targetLanguage"
-    /// UI chrome exists only for these languages; other sources fall back to en.
-    static let chromeLanguages: Set<String> = ["de", "en"]
 
     init(store: BoxStore = BoxStore()) {
         self.store = store
@@ -260,8 +258,9 @@ final class AppModel {
     // MARK: - UI-chrome locale
 
     /// Locale for UI chrome, derived from the profile's KNOWN language when
-    /// chrome exists for it (de/en); other sources read English until their
-    /// UIs are authored.
+    /// chrome exists for it; other sources read English until their UIs are
+    /// authored. Which languages those are, and the fallback, is kern's
+    /// (`LanguageChoices`).
     var knownLocale: Locale { Self.chromeLocale(source: sourceLanguage) }
 
     /// The chrome language for a known language. Onboarding uses it too —
@@ -269,14 +268,17 @@ final class AppModel {
     /// catalog covers it), so the very first screen greets in it and then
     /// follows whatever the user picks.
     static func chromeLocale(source: String) -> Locale {
-        Locale(identifier: chromeLanguages.contains(source) ? source : "en")
+        Locale(identifier: LanguageChoices.shared.chromeLanguage(source: source))
     }
 
     /// Immersion: the language being LEARNED, but only when we have chrome for
-    /// it (de/en) — so an action button can show its word in the target
-    /// language as a subtitle. nil = no immersion subtitle.
+    /// it — so an action button can show its word in the target language as a
+    /// subtitle. nil = no immersion subtitle, which is why this asks
+    /// `hasChrome` rather than `chromeLanguage`: the fallback would caption a
+    /// button in the wrong language.
     var targetChromeLocale: Locale? {
-        guard let target = targetLanguage, Self.chromeLanguages.contains(target)
+        guard let target = targetLanguage,
+              LanguageChoices.shared.hasChrome(language: target)
         else { return nil }
         return Locale(identifier: target)
     }

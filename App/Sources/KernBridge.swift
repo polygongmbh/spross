@@ -1,5 +1,6 @@
 import Foundation
 import SprossKern
+import SwiftUI
 
 // Swift-side conveniences over the SprossKern (Kotlin) API. The engine
 // boundary speaks epochMillis + tzId (kern/README.md §7); everything Date-
@@ -85,6 +86,10 @@ extension DayStats {
     var reviewCount: Int { Int(reviews) }
 }
 
+/// Kotlin's own `Random`, which every draw in a run is spent out of. Named for
+/// what it is at the call site: the drills never seed one of their own.
+var drillRandom: KotlinRandom { KotlinRandom.companion }
+
 /// Levels are `Int` everywhere in the drill UI; the ladder is Kotlin `Int`.
 /// Bridged HERE so no view ever writes `Int32(…)` around a rung number.
 extension LetterDrill {
@@ -139,7 +144,10 @@ extension DrillRamp.RungStep {
 // MARK: - Kern → Design value types
 //
 // `App/Sources/Design` is kern-free by design, so every rule it renders arrives
-// as one of its own value types. These are the only places the two meet.
+// as one of its own value types. These are the only places the two meet — bar
+// the Design files where the rendered thing IS kern's own value and a copy would
+// drift: `AutoAdvance` (the two beat lengths), `NumberReferenceTable` (the primer
+// rows) and `SessionCompletionView` (the round's tally parts).
 
 extension SessionOutcome {
     /// The bar segment one answer draws. The bucketing is kern's (`AnswerTone`).
@@ -148,6 +156,49 @@ extension SessionOutcome {
         case .right: self = .right
         case .tough: self = .tough
         case .wrong: self = .wrong
+        }
+    }
+
+    /// What the three self-grade buttons SAY. The rating it earns is kern's:
+    /// the clock behind `SelfGrading` decides whether a Knew came instantly.
+    var verdict: SelfGrading.Verdict {
+        switch self {
+        case .right: return .knew
+        case .tough: return .tough
+        case .wrong: return .unknown
+        }
+    }
+}
+
+extension DrillRunResult {
+    /// The figures a closed run leaves, as the tile above the picks wears them.
+    /// Which of them there are is kern's (`DrillRunSummary`); what the run was
+    /// CALLED is chrome, so it arrives beside them.
+    init(_ summary: DrillRunSummary, title: LocalizedStringKey) {
+        self.init(doneCount: Int(summary.done), bestStreak: Int(summary.bestStreak),
+                  newRecord: summary.newRecord, title: title)
+    }
+}
+
+extension AnswerInputView.Feedback {
+    /// The field's face for where kern says the answer stands. `almost` is the
+    /// only state carrying anything — the form the card owes back.
+    init(_ feedback: TurnFeedback) {
+        switch onEnum(of: feedback) {
+        case .neutral: self = .neutral
+        case .correct: self = .correct
+        case .almost(let hold): self = .almost(correctForm: hold.correctForm,
+                                               reason: .init(hold.reason))
+        case .revealed: self = .revealed
+        }
+    }
+}
+
+extension AnswerInputView.AlmostReason {
+    init(_ reason: SprossKern.AlmostReason) {
+        switch reason {
+        case .typo: self = .typo
+        case .heard: self = .heard
         }
     }
 }

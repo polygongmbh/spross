@@ -45,6 +45,10 @@ Strict dependency direction: App → SprossKern, never the reverse.
   the catalog decides which targets a source can reach.
 - Default source = device language when covered, else en.
   Either picker may hold the other side's language — picking it swaps the pair.
+- One list is open at a time; the other stands folded on its pick and opens at a tap,
+  and picking a source hands the screen to the target. Onboarding opens with the known
+  side folded — the device language is a good guess already — so the picker is one
+  screen with one open question, no scrolling.
 - Picker rows carry the flag, the language's own name, and the English exonym
   ("🇺🇦 Українська · Ukrainian"): a flag beside an unreadable script is easy to
   mistake for a neighbouring language.
@@ -93,6 +97,8 @@ never the shape of the app.
   the answer away. Never graded.
 - Grammar — plural line, article color — renders TARGET-side only;
   prompt and reveal are styled by role, not by language.
+- A drill card wears this same face — same slot, same reveal
+  (the rule's home is `surfaces.md` § Trainers).
 
 ## Review UX rules
 
@@ -268,11 +274,12 @@ a clone inherits its sibling's gaps, never the rules.
   clean answer waits above is those two tiers — 450 ms when the typing itself went exactly
   correct, 1200 ms when the learner tapped Check, Enter or a tile. Vocab review, the
   trainer drills and the letter drill's tile and explicit-submit stages all schedule off
-  the one shared helper (`App/Sources/Design/AutoAdvance.swift`) rather than each screen
-  carrying its own timer, so both numbers and the accessibility guard — under VoiceOver
-  and Switch Control no timer runs at all and an explicit "Weiter" takes its place — live
-  in a single place. The letter drill's typed and dictation stage is the deliberate
-  holdout with no live tier (`backlog.md` § App & UX).
+  the one tier kern names (`AdvanceTier`, `../kern/src/commonMain/kotlin/net/spross/kern/session/Turn.kt`)
+  rather than each screen carrying its own timer, so neither number can be minted a second
+  time — nor differ between the platforms. The accessibility guard rides with it in each
+  platform's scheduling helper: under VoiceOver and Switch Control no timer runs at all and
+  an explicit "Weiter" takes its place. The letter drill's typed and dictation stage is the
+  deliberate holdout with no live tier (`backlog.md` § App & UX).
 
 Design language: warm, card-centric, emoji as illustration, article color coding
 der=blue / die=berry / das=green — degrading to neutral for languages without gendered
@@ -300,8 +307,9 @@ engine gates and the behavioral test inventory: kern README.
 ## Not yet
 
 Couple mode, accounts/sync, sw/uk UI chrome (those sources fall back to en).
-Android has the core loop and ONE trainer, the letter drill (a chip on Heute — the
-platform has no trainer hub) — no Box browse, other trainers, alphabet sheet, widget,
-14-day strip or write-it-out step, and its settings are a language switch and an About
-screen (version, read-aloud, credits — where iOS carries the read-aloud row in Box
-settings).
+Android has the core loop on the full kern turn (write-out, retry, the earned Easy),
+Box browse with search, own words and the settings block, the 14-day activity strip,
+and the whole of Sprossen — all three drills on kern's rules, each behind its overview page
+with the generated numbers reference, the alphabet table and the joined atlas
+(`surfaces.md`) — but no widget, forest canvas or growth headline;
+a new record celebrates in words and a cheer, without confetti.
