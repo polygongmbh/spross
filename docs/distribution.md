@@ -64,18 +64,19 @@ APK outright — there is no unknown-sources toggle for it, and every APK on eve
 Play Store ones included, carries a self-signed key. Debug builds and the test gates are
 unaffected; the demand lands on `packageRelease` alone.
 
-## The app id is frozen
+## The app id, and when it stops being free
 
 `net.spross.app`, the same string on both platforms — the reversed domain plus the
 app-name slot, which is what every cross-platform toolchain seeds into both anyway.
+Nothing is published and no release has reached anyone's device, so both halves can
+still move. What ends that, on each side:
 
-Direct distribution froze the Android half the moment the first APK was installed:
-on Android the `applicationId` *is* the app's identity, so a renamed one is a second,
-unrelated app — installed alongside, unable to read the old data directory, and invisible
-to Obtainium until every user re-adds it by hand. No store publication is needed for
-that to bind. The iOS bundle id is still free until an App Store Connect record exists,
-but moving it alone would break the match and orphan the `group.net.spross.app`
-container the widget and the watch share.
+- **Android** — the first installed release APK. The `applicationId` *is* the app's
+  identity there, so a renamed one is a second, unrelated app: installed alongside the
+  first, unable to reach its data directory, and invisible to Obtainium until every
+  user re-adds it by hand. No store publication is needed for this to bind.
+- **iOS** — the first App Store Connect record. Moving that one alone would also break
+  the match and orphan `group.net.spross.app`, the container the widget and watch share.
 
 ## Android — Obtainium
 
@@ -95,8 +96,19 @@ Signing is automatic — `-allowProvisioningUpdates` with the API key lets Xcode
 the profile covering the app, the widget and both watch targets, so no certificate or
 profile is kept as a secret. `scripts/ExportOptions.plist` holds the export settings.
 
-Adding a tester: register the device UDID in the portal, then re-run the tag's workflow.
-The profile is minted per build, so a device added afterwards is not in the released IPA.
+Adding a tester means registering their device, not signing them up for anything —
+they never need an Apple developer account. Three steps:
+
+1. **Get the UDID.** Settings does not show it. On a Mac with the phone plugged in:
+   Finder's sidebar, then click the line under the device name until it reads UDID,
+   right-click to copy — or Xcode › Window › Devices and Simulators, field "Identifier".
+   For a tester you cannot plug in, a UDID-capture page installs a configuration profile
+   and reads it back, at the cost of handing a stranger the device identity.
+2. **Register it** at developer.apple.com › Devices › `+`. A device your own Mac builds
+   to is registered by Xcode on the spot. The cap is 100 iPhones per membership year,
+   and the list can only be pruned at renewal.
+3. **Re-run the tag's workflow.** The profile is minted per build, so a device added
+   after a build is not in that build's IPA.
 
 Install goes through the `itms-services://` link in the release notes, opened in Safari
 on the device. It points at `manifest.plist`, an asset of the same release naming the IPA's
