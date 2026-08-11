@@ -15,6 +15,27 @@ java {
     }
 }
 
+// why: one tag cuts both surfaces, so the marketing version keeps one home —
+// project.yml's MARKETING_VERSION, which Xcode already reads. SPROSS_VERSION wins
+// when set, which is how the release workflow hands the tag to this build.
+val marketingVersion: String =
+    System.getenv("SPROSS_VERSION")?.takeIf { it.isNotBlank() }
+        ?: Regex("""^\s*MARKETING_VERSION:\s*([0-9]+(?:\.[0-9]+)*)""", RegexOption.MULTILINE)
+            .find(providers.fileContents(rootProject.layout.projectDirectory.file("project.yml")).asText.get())
+            ?.groupValues?.get(1)
+        ?: error("MARKETING_VERSION not found in project.yml — Android has no version to build with")
+
+// Rises with the name as long as minor and patch stay under 100. A code that does not
+// rise is an update the package manager and Obtainium both refuse to install.
+val versionCodeFromName: Int = marketingVersion.split(".").let { parts ->
+    parts[0].toInt() * 10000 + (parts.getOrNull(1)?.toInt() ?: 0) * 100 + (parts.getOrNull(2)?.toInt() ?: 0)
+}
+
+// why: the release key never lives in the repo — CI writes it out of a secret and
+// names it here. With no key named the release build stays unsigned, as before.
+val releaseKeystore: java.io.File? =
+    System.getenv("SPROSS_KEYSTORE")?.takeIf { it.isNotBlank() }?.let(::file)
+
 android {
     namespace = "net.spross.app"
     compileSdk = 36
@@ -27,13 +48,24 @@ android {
         applicationId = "net.spross.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.1.0" // Android surface versions independently for now
+        versionCode = versionCodeFromName
+        versionName = marketingVersion
+    }
+
+    signingConfigs {
+        if (releaseKeystore != null) create("release") {
+            storeFile = releaseKeystore
+            storePassword = System.getenv("SPROSS_KEYSTORE_PASSWORD")
+            keyAlias = System.getenv("SPROSS_KEY_ALIAS") ?: "spross"
+            keyPassword = System.getenv("SPROSS_KEY_PASSWORD")
+                ?: System.getenv("SPROSS_KEYSTORE_PASSWORD")
+        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.findByName("release")
         }
     }
 

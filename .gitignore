@@ -11,4 +11,6 @@ build/
 .gradle/
 .kotlin/
 local.properties
+*.jks
+*.p8
 web/dist/
