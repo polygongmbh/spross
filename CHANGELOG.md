@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Spross installs from its own releases now, on either phone.** Every tagged version
+  publishes a signed Android APK — add the repository in Obtainium once and each new one
+  is offered like any other update — alongside an iPhone build that installs over the air
+  on registered test devices. No store, no cable.
+
 ## 4.0.0 — 2026-08-10
 
 - **Android learns the world too: Länder joins Zahlen and Buchstaben.** Name the country,

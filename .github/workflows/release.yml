@@ -1,0 +1,197 @@
+name: release
+
+# why: the tag is both the trigger and the version — every artifact below reads
+# ${GITHUB_REF_NAME#v}, so cutting a build never means bumping a number twice.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  android:
+    name: APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v6
+
+      - name: Version from tag
+        run: echo "SPROSS_VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
+
+      - name: Release key from secret
+        env:
+          KEYSTORE_BASE64: ${{ secrets.SPROSS_KEYSTORE_BASE64 }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "::error::SPROSS_KEYSTORE_BASE64 is unset — the APK would install once and never update"
+            exit 1
+          fi
+          printf '%s' "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+
+      - name: Test and assemble
+        env:
+          SPROSS_KEYSTORE: ${{ runner.temp }}/release.jks
+          SPROSS_KEYSTORE_PASSWORD: ${{ secrets.SPROSS_KEYSTORE_PASSWORD }}
+          SPROSS_KEY_ALIAS: ${{ secrets.SPROSS_KEY_ALIAS }}
+        run: ./gradlew --console=plain -q :kern:jvmTest :android:testDebugUnitTest :android:assembleRelease
+
+      - name: Name it after the release
+        run: |
+          mkdir -p dist
+          cp android/build/outputs/apk/release/*-release.apk "dist/spross-$SPROSS_VERSION.apk"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: apk
+          path: dist/*.apk
+          if-no-files-found: error
+
+  ios:
+    name: IPA
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v7
+
+      # why: the project is authored against Swift 6.0 and a pinned Kotlin/SKIE pair.
+      # The image's default Xcode moves with the image, so the version is named here —
+      # a missing one fails loudly instead of silently shifting the language mode.
+      - run: sudo xcode-select -switch /Applications/Xcode_16.4.app
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v6
+      # The Kotlin/Native toolchain is a ~1.5 GB download the release framework needs.
+      - uses: actions/cache@v6
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}-${{ hashFiles('gradle/libs.versions.toml') }}
+
+      - name: Version from tag
+        run: echo "SPROSS_VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
+
+      # Spross.xcodeproj is generated, never committed.
+      - run: brew install xcodegen
+      - run: scripts/gen.sh
+
+      - name: App Store Connect API key from secret
+        env:
+          ASC_PRIVATE_KEY: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+        run: |
+          if [ -z "$ASC_PRIVATE_KEY" ]; then
+            echo "::error::APPSTORE_API_PRIVATE_KEY is unset — signing cannot fetch a profile"
+            exit 1
+          fi
+          printf '%s' "$ASC_PRIVATE_KEY" | base64 -d > "$RUNNER_TEMP/asc.p8"
+
+      # why: -allowProvisioningUpdates plus the API key lets Xcode mint the ad-hoc
+      # profile itself, covering the app, the widget and both watch targets — the
+      # alternative is four provisioning profiles and a .p12 kept as secrets.
+      - name: Archive
+        env:
+          ASC_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APPSTORE_API_ISSUER_ID }}
+        run: |
+          xcodebuild -project Spross.xcodeproj -scheme Spross \
+            -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/Spross.xcarchive" \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$RUNNER_TEMP/asc.p8" \
+            -authenticationKeyID "$ASC_KEY_ID" \
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            MARKETING_VERSION="$SPROSS_VERSION" \
+            CURRENT_PROJECT_VERSION="$GITHUB_RUN_NUMBER" \
+            -quiet archive
+
+      - name: Export ad-hoc IPA
+        env:
+          ASC_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APPSTORE_API_ISSUER_ID }}
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath "$RUNNER_TEMP/Spross.xcarchive" \
+            -exportPath "$RUNNER_TEMP/export" \
+            -exportOptionsPlist scripts/ExportOptions.plist \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$RUNNER_TEMP/asc.p8" \
+            -authenticationKeyID "$ASC_KEY_ID" \
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            -quiet
+          mkdir -p dist
+          cp "$RUNNER_TEMP/export/Spross.ipa" "dist/spross-$SPROSS_VERSION.ipa"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ipa
+          path: dist/*.ipa
+          if-no-files-found: error
+
+  publish:
+    name: GitHub Release
+    needs: [android, ios]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          name: apk
+          path: dist
+      - uses: actions/download-artifact@v8
+        with:
+          name: ipa
+          path: dist
+
+      - name: Version from tag
+        run: echo "SPROSS_VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
+
+      # why: an iPhone installs an ad-hoc build from an itms-services link, and that
+      # link points at a manifest rather than the payload — so the manifest has to
+      # name the asset URL the release is about to have.
+      - name: Over-the-air install manifest
+        run: |
+          base="https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}"
+          cat > "dist/manifest.plist" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict><key>items</key><array><dict>
+            <key>assets</key><array><dict>
+              <key>kind</key><string>software-package</string>
+              <key>url</key><string>${base}/spross-${SPROSS_VERSION}.ipa</string>
+            </dict></array>
+            <key>metadata</key><dict>
+              <key>bundle-identifier</key><string>net.spross.app</string>
+              <key>bundle-version</key><string>${SPROSS_VERSION}</string>
+              <key>kind</key><string>software</string>
+              <key>title</key><string>Spross</string>
+            </dict>
+          </dict></array></dict></plist>
+          PLIST
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          scripts/release-notes.sh "$SPROSS_VERSION" > notes.md
+          manifest="https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/manifest.plist"
+          cat >> notes.md <<NOTES
+
+          ## Install
+
+          **Android** — [\`spross-$SPROSS_VERSION.apk\`](https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/spross-$SPROSS_VERSION.apk),
+          or add \`https://github.com/${GITHUB_REPOSITORY}\` in [Obtainium](https://github.com/ImranR98/Obtainium) to be offered every release from here on.
+
+          **iPhone** — registered test devices only. Open this in Safari on the device:
+
+          \`itms-services://?action=download-manifest&url=$manifest\`
+          NOTES
+          gh release create "$GITHUB_REF_NAME" \
+            --title "Spross $SPROSS_VERSION" \
+            --notes-file notes.md \
+            dist/spross-*.apk dist/spross-*.ipa dist/manifest.plist

@@ -373,3 +373,7 @@ One line per item, with a file or context pointer, filed under the section it be
   file's own measured headroom less 1 dB (`scripts/audio-catalog.py` [ANALYSIS]), so nothing
   reaches full scale and the iOS-clips / `LoudnessEnhancer`-compresses split has nothing
   left to act on; 70 entries sit under the loudness target to buy it.
+- The iPhone install link is an `itms-services://` URL in the release notes, which GitHub
+  renders as code rather than a tappable link. A one-page `web/install.html` taking `?v=`
+  and building the link would make it a button once spross.net is live
+  (`.github/workflows/release.yml` publish step, `docs/website.md`).
