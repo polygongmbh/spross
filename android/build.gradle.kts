@@ -31,10 +31,30 @@ val versionCodeFromName: Int = marketingVersion.split(".").let { parts ->
     parts[0].toInt() * 10000 + (parts.getOrNull(1)?.toInt() ?: 0) * 100 + (parts.getOrNull(2)?.toInt() ?: 0)
 }
 
-// why: the release key never lives in the repo — CI writes it out of a secret and
-// names it here. With no key named the release build stays unsigned, as before.
-val releaseKeystore: java.io.File? =
-    System.getenv("SPROSS_KEYSTORE")?.takeIf { it.isNotBlank() }?.let(::file)
+// why: the release key never lives in the repo, and the environment is the only place
+// this build looks for it — CI writes it out of a secret, a local build sources it from
+// wherever the key is kept. One route, so a locally cut APK is signed like a released one.
+fun signingEnv(name: String): String? = System.getenv(name)?.takeIf { it.isNotBlank() }
+
+val releaseKeystore: java.io.File? = signingEnv("SPROSS_KEYSTORE")?.let(::file)
+
+// why: an unsigned APK is not a weakly signed one — Android's installer rejects it
+// outright, so a release build with no key produces a file nobody can install. The
+// demand lands on the packaging task rather than at configuration time, where it would
+// take the debug build and the test gates down with it.
+tasks.matching { it.name == "packageRelease" }.configureEach {
+    val keystore = releaseKeystore
+    doFirst {
+        when {
+            keystore == null -> error(
+                "SPROSS_KEYSTORE is unset — set it to the release keystore, plus " +
+                    "SPROSS_KEYSTORE_PASSWORD (and SPROSS_KEY_ALIAS if not 'spross'). " +
+                    "scripts/release-keystore.sh writes an env file to source; see docs/distribution.md."
+            )
+            !keystore.isFile -> error("SPROSS_KEYSTORE points at no file: $keystore")
+        }
+    }
+}
 
 android {
     namespace = "net.spross.app"
@@ -55,10 +75,9 @@ android {
     signingConfigs {
         if (releaseKeystore != null) create("release") {
             storeFile = releaseKeystore
-            storePassword = System.getenv("SPROSS_KEYSTORE_PASSWORD")
-            keyAlias = System.getenv("SPROSS_KEY_ALIAS") ?: "spross"
-            keyPassword = System.getenv("SPROSS_KEY_PASSWORD")
-                ?: System.getenv("SPROSS_KEYSTORE_PASSWORD")
+            storePassword = signingEnv("SPROSS_KEYSTORE_PASSWORD")
+            keyAlias = signingEnv("SPROSS_KEY_ALIAS") ?: "spross"
+            keyPassword = signingEnv("SPROSS_KEY_PASSWORD") ?: signingEnv("SPROSS_KEYSTORE_PASSWORD")
         }
     }
 
@@ -68,6 +87,7 @@ android {
             signingConfig = signingConfigs.findByName("release")
         }
     }
+
 
     androidResources {
         // why: the pronunciation player and the cue pool read their clips straight out of

@@ -38,15 +38,31 @@ Set once, in Settings › Secrets and variables › Actions.
 | `APPSTORE_API_KEY_ID` | that key's ID |
 | `APPSTORE_API_ISSUER_ID` | the issuer UUID, one per Apple team |
 
-`scripts/release-keystore.sh` creates the Android key and writes the first three
-into `~/.spross/github-secrets.txt` ready to paste.
+`scripts/release-keystore.sh <dir>` creates the Android key wherever you keep key
+files and writes the first three into `<dir>/github-secrets.txt` ready to paste.
 The App Store Connect key is generated in App Store Connect › Users and Access › Integrations
 with the **App Manager** role, downloadable exactly once;
 `base64 -i AuthKey_XXX.p8 | pbcopy` turns it into the secret.
 
 **The Android key is unrepeatable.** Android pins an app's signature: a differently-signed
 APK is a different app to every device that already has this one, with uninstall as the only
-path across. Back up `~/.spross/release.jks` off the machine.
+path across. Back the keystore up off the machine.
+
+## Signing a release APK locally
+
+The environment names the key — the same three variables CI sets, so there is one route
+in and a locally cut APK installs over a released one:
+
+```sh
+. ~/keys/spross/release.env      # what release-keystore.sh wrote
+./gradlew :android:assembleRelease
+```
+
+Without `SPROSS_KEYSTORE` the packaging task fails and names what is missing, rather than
+leaving an `android-release-unsigned.apk` behind: Android's installer rejects an unsigned
+APK outright — there is no unknown-sources toggle for it, and every APK on every device,
+Play Store ones included, carries a self-signed key. Debug builds and the test gates are
+unaffected; the demand lands on `packageRelease` alone.
 
 ## Android — Obtainium
 

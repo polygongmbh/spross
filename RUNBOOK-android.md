@@ -146,8 +146,8 @@ see the cloud section below.
   Normal configuration and all tasks above work without them.
 - First build downloads Gradle + dependencies (~2–3 GB into `~/.gradle`);
   plan disk accordingly.
-- `:android:assembleRelease` signs only when `SPROSS_KEYSTORE` names a keystore;
-  without it the output stays `android-release-unsigned.apk`, which no device installs.
+- `:android:assembleRelease` requires `SPROSS_KEYSTORE` and its password in the
+  environment and fails without them — an unsigned APK is one no device will install.
   The release pipeline and the key it uses: `docs/distribution.md`.
 
 ## Claude Code on the web / cloud containers
