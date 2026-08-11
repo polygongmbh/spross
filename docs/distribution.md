@@ -64,6 +64,19 @@ APK outright — there is no unknown-sources toggle for it, and every APK on eve
 Play Store ones included, carries a self-signed key. Debug builds and the test gates are
 unaffected; the demand lands on `packageRelease` alone.
 
+## The app id is frozen
+
+`net.spross.app`, the same string on both platforms — the reversed domain plus the
+app-name slot, which is what every cross-platform toolchain seeds into both anyway.
+
+Direct distribution froze the Android half the moment the first APK was installed:
+on Android the `applicationId` *is* the app's identity, so a renamed one is a second,
+unrelated app — installed alongside, unable to read the old data directory, and invisible
+to Obtainium until every user re-adds it by hand. No store publication is needed for
+that to bind. The iOS bundle id is still free until an App Store Connect record exists,
+but moving it alone would break the match and orphan the `group.net.spross.app`
+container the widget and the watch share.
+
 ## Android — Obtainium
 
 Add `https://github.com/polygongmbh/spross` as a GitHub app in
