@@ -22,6 +22,13 @@ class CatalogAudioLintTest {
 
     /** Authorship values that name nobody — a BY/BY-SA file carrying one cannot ship. */
     private val junkAuthors = setOf("own work", "myself", "")
+
+    /**
+     * Commons' wording for a file whose authorship nobody recorded: the name is the
+     * uploader, inferred from the copyright tag. It reads like a credit and is a guess,
+     * which is the one thing a BY/BY-SA notice may not be.
+     */
+    private val assumedAuthor = Regex("assumed \\(based on copyright claims\\)", RegexOption.IGNORE_CASE)
     private val letterFileName = Regex("^letters/(u[0-9a-f]{4})+\\.mp3$")
 
     private fun forEachEntry(action: (lang: String, id: String, recording: AudioRecording) -> Unit) {
@@ -187,7 +194,8 @@ class CatalogAudioLintTest {
     fun noAudioAuthorIsUnattributable() {
         forEachEntry { lang, id, recording ->
             assertTrue(
-                recording.author.trim().lowercase() !in junkAuthors,
+                recording.author.trim().lowercase() !in junkAuthors &&
+                    !assumedAuthor.containsMatchIn(recording.author),
                 "audio/$lang/$id: unattributable author \"${recording.author}\"",
             )
         }
@@ -278,7 +286,7 @@ class CatalogAudioLintTest {
      * over an unimprovable file is a rule that gets suppressed. What a rebuild must not do
      * is quietly undo the sweep that removed the hiss — a whole pack sliding down, or the
      * bad tail growing. Both are visible in the shape and neither goes stale as content
-     * grows. Today: medians de 84, es 56, uk 45, sw 50; worst tail de at 3.2%.
+     * grows. Today: medians de 85, es 57, sw 51, uk 45; worst tail de at 3.7%.
      *
      * `snr` changes no playback. It is carried purely so this can be asserted.
      */

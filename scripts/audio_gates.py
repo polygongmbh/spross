@@ -16,9 +16,10 @@ A pack row ships only once it survives all five, each decision printed by the ca
   · no two entries claim one speech key with differing bytes: the runtime cannot pick
     between de `husten` cough/to-cough, so the first slug wins and the others lose a
     credit line, not a sound;
-  · the author names somebody. "Own work"/"myself" credit nobody while BY and BY-SA
-    both require naming, so those rows are re-resolved against the Commons API and
-    dropped only when even that comes back empty.
+  · the author names somebody. "Own work"/"myself" credit nobody, and Commons' "X assumed
+    (based on copyright claims)" credits a bot's guess at the uploader, while BY and BY-SA
+    both require naming — so those rows are re-resolved against the Commons API and
+    dropped only when even that comes back with no name of its own.
 
 Every gate appends its rejections to a shared `drops` list rather than printing: the
 caller owns the report, and the gates stay pure enough to chain.
@@ -39,6 +40,12 @@ UA = 'duolernen-audio-catalog/1.0 (educational vocab app; contact feedback@spros
 # Authorship values that name nobody. Matched trimmed and case-insensitively, and
 # ONLY as a whole: `User:Tosca` is a name Commons can resolve, not a placeholder.
 JUNK_AUTHORS = {'own work', 'myself', ''}
+
+# Commons' wording for a file whose authorship nobody recorded: the name it carries is
+# the UPLOADER, inferred by a bot from the copyright tag, and the page says as much. A BY
+# or BY-SA notice has to name the author, not a guess about them — so this reads as a
+# placeholder however much it looks like a credit, and takes the same path.
+ASSUMED_AUTHOR = re.compile(r'assumed \(based on copyright claims\)', re.IGNORECASE)
 
 # Kept in step with kern's speechKey (kern/README.md §11) — the index this script
 # writes and the lookup that reads it have to fold the same things away.
@@ -165,7 +172,7 @@ def commons_authors(sources):
 def attribute(rows, drops):
     """Gate 4: re-resolve placeholder authorship against Commons, drop what stays anonymous."""
     def unnamed(author):
-        return author.strip().lower() in JUNK_AUTHORS
+        return author.strip().lower() in JUNK_AUTHORS or bool(ASSUMED_AUTHOR.search(author))
 
     files = sorted({row['file'] for row in rows if unnamed(row['author'])})
     if not files:
