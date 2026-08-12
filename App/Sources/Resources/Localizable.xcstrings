@@ -1556,13 +1556,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sprecher & Lizenzen"
+            "value" : "Impressum & Lizenzen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voices & licences"
+            "value" : "Legal & licences"
           }
         }
       }
@@ -2371,6 +2371,230 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ukrainian"
+          }
+        }
+      }
+    },
+    "legal.address.label" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anschrift"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Address"
+          }
+        }
+      }
+    },
+    "legal.address.value" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TODO: Straße Hausnummer\nTODO: PLZ Ort\nDeutschland"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TODO: street and number\nTODO: postcode and city\nGermany"
+          }
+        }
+      }
+    },
+    "legal.company" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "polygon GmbH"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "polygon GmbH"
+          }
+        }
+      }
+    },
+    "legal.contact.label" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontakt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contact"
+          }
+        }
+      }
+    },
+    "legal.court.label" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registergericht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register court"
+          }
+        }
+      }
+    },
+    "legal.court.value" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TODO: Amtsgericht Ort"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TODO: local court, city"
+          }
+        }
+      }
+    },
+    "legal.director.label" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vertreten durch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Represented by"
+          }
+        }
+      }
+    },
+    "legal.director.value" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TODO: Geschäftsführung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TODO: managing director"
+          }
+        }
+      }
+    },
+    "legal.privacy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenschutzerklärung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy policy"
+          }
+        }
+      }
+    },
+    "legal.register.label" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registernummer"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register number"
+          }
+        }
+      }
+    },
+    "legal.register.value" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TODO: HRB Nummer"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TODO: commercial register number"
+          }
+        }
+      }
+    },
+    "legal.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impressum"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legal notice"
+          }
+        }
+      }
+    },
+    "legal.vat.label" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "USt-IdNr."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VAT ID"
+          }
+        }
+      }
+    },
+    "legal.vat.value" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TODO: DE und neun Ziffern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TODO: DE plus nine digits"
           }
         }
       }
@@ -3660,13 +3884,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sprecher & Lizenzen"
+            "value" : "Impressum & Lizenzen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voices & licences"
+            "value" : "Legal & licences"
           }
         }
       }

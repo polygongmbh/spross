@@ -6,6 +6,10 @@ import SprossKern
 /// The list comes from `Catalog.audioCredits()`, derived from the shipped
 /// manifests, so it can neither credit what is not bundled nor miss what is.
 /// BY and BY-SA stay separate groups: one notice cannot carry both.
+///
+/// The same screen carries the app's own legal identity below the credits
+/// (`CreditsView+Legal.swift`) — the two obligations are read alike and are
+/// looked for in the same place.
 struct CreditsView: View {
     let model: AppModel
 
@@ -19,6 +23,7 @@ struct CreditsView: View {
                     ForEach(sections) { section in
                         languageSection(section)
                     }
+                    legalSection
                 }
                 .padding(DL.Space.xl)
             }

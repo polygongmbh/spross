@@ -38,8 +38,6 @@ struct BoxSettingsSection: View {
 
     // MARK: About / feedback
 
-    private static let feedbackAddress = "feedback@spross.net"
-
     private var versionText: String {
         // why: the build number is always 1 here — showing "(1)" reads odd;
         // the marketing version alone identifies feedback mails fine.
@@ -73,12 +71,13 @@ struct BoxSettingsSection: View {
 
     /// Attribution for the bundled pronunciation recordings — a licence
     /// obligation, not a courtesy: BY and BY-SA both ask for the speaker
-    /// by name, so the surface ships with the audio.
+    /// by name, so the surface ships with the audio. The same sheet carries the
+    /// Impressum and the privacy policy, which is why the row names both.
     private var creditsButton: some View {
         Button {
             creditsPresented = true
         } label: {
-            Label("settings.credits", systemImage: "waveform")
+            Label("settings.credits", systemImage: "info.circle")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlAccent)
         }
@@ -86,7 +85,7 @@ struct BoxSettingsSection: View {
 
     private var feedbackURL: URL? {
         let subject = versionText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        return URL(string: "mailto:\(Self.feedbackAddress)?subject=\(subject)")
+        return URL(string: "mailto:\(Legal.contactAddress)?subject=\(subject)")
     }
 
     // MARK: Rows

@@ -78,6 +78,21 @@ still move. What ends that, on each side:
 - **iOS** — the first App Store Connect record. Moving that one alone would also break
   the match and orphan `group.net.spross.app`, the container the widget and watch share.
 
+## Impressum and privacy policy — the gate before anyone outside sees a build
+
+Both live in the app itself, under the credits sheet (Box settings → Impressum & Lizenzen):
+the provider identification § 5 DDG asks a German company for, and a link to
+`https://spross.net/privacy`, which App Review wants reachable in-app as well as in
+App Store Connect. Neither is optional once a build leaves the team.
+
+Every field except the company name is still a `TODO:` placeholder in
+`App/Sources/Resources/Localizable.xcstrings` — address, managing director, register
+court, register number, VAT id. A plausible-looking invented Impressum is a false
+statement of identity, so the placeholders stay visible until the real values are known.
+`grep TODO App/Sources/Resources/Localizable.xcstrings` is therefore a release check,
+and the release that fills them is the one that gets the CHANGELOG entry.
+The privacy page has to exist at that URL by then too.
+
 ## Android — Obtainium
 
 Add `https://github.com/polygongmbh/spross` as a GitHub app in
