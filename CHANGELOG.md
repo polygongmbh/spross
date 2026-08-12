@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 4.1.0 — 2026-08-12
+
 - **German speaks in one voice now, and the credits list is a fraction of its length.**
   Words that had been left with whichever stranger happened to record them once are spoken
   by the same people as the words around them — Commons had the same word from those
