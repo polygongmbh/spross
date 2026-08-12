@@ -23,6 +23,12 @@ carry the specifier, so a unit label standing apart from the figure it counts
     scripts/strings.py            # report
     scripts/strings.py --fix      # drop the stale flags and %@ twins, sort, rewrite
 
+Edit the catalog however you like — Xcode, an editor, a script — then run --fix,
+which restores Xcode's formatting without touching your values. Python's json
+defaults omit the space Xcode puts before every colon, so a script that writes the
+file and stops leaves a one-value edit inside a 4500-line diff. The report says so,
+and scripts/hooks/pre-commit refuses the commit.
+
 Pass --built to also diff the catalog against the keys the compiler actually
 emitted, which is the check that catches REAL drift. Needs a build first:
 
@@ -95,11 +101,46 @@ def plural_problems(key, lang, localization):
     return ['%s (%s): plural is missing "%s"' % (key, lang, '", "'.join(missing))] if missing else []
 
 
+def serialize(catalog):
+    """The catalog byte-for-byte as Xcode writes it: keys sorted, and a space
+    before every colon, which Python's default separator omits.
+
+    Nothing edits values through here — this only settles how the file is spelled,
+    which is why --fix is something you run after an edit rather than instead of one.
+    """
+    ordered = dict(catalog, strings=dict(sorted(catalog['strings'].items())))
+    return json.dumps(ordered, ensure_ascii=False, indent=2, separators=(',', ' : ')) + '\n'
+
+
+def check_format(path):
+    """Formatting alone, for the pre-commit hook: the other checks answer to a
+    build and to keys in flight, and neither should stand between anyone and a
+    commit. Exit code is the whole answer.
+    """
+    on_disk = open(path).read()
+    if on_disk == serialize(json.loads(on_disk)):
+        return 0
+    print('%s: not written by scripts/strings.py — run `scripts/strings.py --fix`, '
+          'which restores Xcode\'s formatting and leaves your values alone' % path,
+          file=sys.stderr)
+    return 1
+
+
 def main():
+    if '--check-format' in sys.argv:
+        args = [a for a in sys.argv[1:] if not a.startswith('--')]
+        return check_format(args[0] if args else CATALOG)
+
     fix = '--fix' in sys.argv
-    catalog = json.load(open(CATALOG))
+    on_disk = open(CATALOG).read()
+    catalog = json.loads(on_disk)
     strings = catalog['strings']
     problems = []
+
+    # Caught before any edit below mutates the parse: a catalog someone wrote with
+    # a plain json.dump still holds the right strings, and only the diff shows it.
+    if on_disk != serialize(json.loads(on_disk)):
+        problems.append('formatting is not Xcode\'s — run --fix before committing')
 
     stale = sorted(k for k, v in strings.items() if v.get('extractionState') == 'stale')
     for key in stale:
@@ -140,10 +181,8 @@ def main():
     if stale:
         print('%d key(s) Xcode flagged stale%s' % (len(stale), ' — cleared' if fix else ''))
     if fix:
-        catalog['strings'] = dict(sorted(strings.items()))
         with open(CATALOG, 'w') as f:
-            json.dump(catalog, f, ensure_ascii=False, indent=2, separators=(',', ' : '))
-            f.write('\n')
+            f.write(serialize(catalog))
     for problem in problems:
         print(problem)
     print('%d keys%s' % (len(strings), '' if problems else ' — clean'))

@@ -1,0 +1,25 @@
+#!/bin/sh
+# Refuse a String Catalog that was written by anything other than scripts/strings.py.
+#
+# Python's json defaults omit the space Xcode puts before every colon, so a writer
+# that reaches for json.dump rewrites all 4500 lines and buries a one-value edit in
+# a diff nobody can review. The catalog is the only file with this trap, so this is
+# the only thing the hook looks at — it must never be the reason a commit is hard.
+#
+# Installed by scripts/bootstrap.sh (`git config core.hooksPath scripts/hooks`).
+set -e
+cd "$(git rev-parse --show-toplevel)"
+
+CATALOG=App/Sources/Resources/Localizable.xcstrings
+git diff --cached --name-only | grep -qx "$CATALOG" || exit 0
+
+# The staged bytes, not the working tree's — those are what the commit would carry.
+STAGED=$(mktemp)
+trap 'rm -f "$STAGED"' EXIT
+git show ":$CATALOG" > "$STAGED"
+
+if ! scripts/strings.py --check-format "$STAGED" >/dev/null 2>&1; then
+  echo "error: $CATALOG is staged in some other formatting than Xcode's." >&2
+  echo "       Run 'scripts/strings.py --fix', then stage it again — your values are kept." >&2
+  exit 1
+fi

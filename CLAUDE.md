@@ -16,7 +16,7 @@ xcodebuild -project Spross.xcodeproj -scheme Spross \
 scripts/run-sim.sh           # build + install + launch on the simulator (--shot, --clean, -- <launch args>)
 scripts/run-emu.sh           # same for Android: boots the AVD, builds, installs, launches (--shot, --clean)
 scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodegen
-scripts/strings.py --fix     # clear the stale flags Xcode writes into the String Catalog
+scripts/strings.py --fix     # run after ANY String Catalog edit — restores Xcode's formatting, clears its stale flags
 ```
 
 Xcode/`xcodegen`/simctl lines above are Mac-only — never present, never installable, on Linux/cloud sessions.
