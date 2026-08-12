@@ -133,6 +133,26 @@ jobs:
           path: dist/*.ipa
           if-no-files-found: error
 
+      # why: the same archive, re-signed and handed to App Store Connect — internal
+      # testers have it minutes later without any review, while external review runs
+      # on its own clock. continue-on-error because the GitHub release is the primary
+      # delivery: a missing app record or an ASC outage must not sink the APK with it.
+      - name: Upload to TestFlight
+        continue-on-error: true
+        env:
+          ASC_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APPSTORE_API_ISSUER_ID }}
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath "$RUNNER_TEMP/Spross.xcarchive" \
+            -exportPath "$RUNNER_TEMP/testflight" \
+            -exportOptionsPlist scripts/ExportOptions-testflight.plist \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$RUNNER_TEMP/asc.p8" \
+            -authenticationKeyID "$ASC_KEY_ID" \
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            -quiet
+
   publish:
     name: GitHub Release
     needs: [android, ios]

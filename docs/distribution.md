@@ -115,8 +115,30 @@ on the device. It points at `manifest.plist`, an asset of the same release namin
 URL. GitHub strips the scheme from rendered links, so the link is code to copy, not tap.
 
 The build expires when its profile does — a year at most, and immediately if the
-certificate is revoked. TestFlight is the way out of that, and out of the UDID list;
-it costs App Store Connect review of the first build.
+certificate is revoked.
+
+## iPhone — TestFlight
+
+The same tag also re-signs the same archive and hands it to App Store Connect, which is
+the way past both the UDID list and the 100-device cap. The two audiences run on separate
+clocks:
+
+- **Internal testers** — up to 100 people holding a role on the App Store Connect team.
+  No Beta App Review: the build is installable minutes after processing.
+- **External testers** — up to 10 000, reachable by a public link, no UDID and no team
+  role. The first build of a version needs Beta App Review, historically about a day
+  and lately often several. Submitting is a step in the App Store Connect UI, not
+  something the tag does.
+
+A build queued for external review is already live for internal testers, so there is no
+reason to wait on the review before testing. Builds expire after 90 days.
+
+The upload needs an app record to exist in App Store Connect, and it is the step that
+freezes the bundle id. It is also the one step allowed to fail without taking the
+release down — the GitHub release is the delivery that must not depend on Apple being
+up, so a failed upload shows as a warning on the run and the APK and IPA publish anyway.
+`CFBundleVersion` is the workflow's run number, which never repeats, because App Store
+Connect rejects a build number it has already seen for a version.
 
 ## What the runners do
 
