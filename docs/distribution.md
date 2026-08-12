@@ -85,13 +85,15 @@ the provider identification § 5 DDG asks a German company for, and a link to
 `https://spross.net/privacy`, which App Review wants reachable in-app as well as in
 App Store Connect. Neither is optional once a build leaves the team.
 
-Every field except the company name is still a `TODO:` placeholder in
-`App/Sources/Resources/Localizable.xcstrings` — address, managing director, register
-court, register number, VAT id. A plausible-looking invented Impressum is a false
-statement of identity, so the placeholders stay visible until the real values are known.
-`grep TODO App/Sources/Resources/Localizable.xcstrings` is therefore a release check,
-and the release that fills them is the one that gets the CHANGELOG entry.
-The privacy page has to exist at that URL by then too.
+The Impressum carries the registry facts themselves — company, address, managing
+director, register entry, VAT id — in
+`App/Sources/Resources/Localizable.xcstrings` under `legal.*`.
+They are the same values the DSA trader declaration publishes on the App Store product
+page, so the two say one thing or they contradict each other.
+
+What is still missing is the page the privacy link points at:
+`https://spross.net/privacy` has to answer before a build reaches anyone outside the
+team, and App Store Connect demands the same URL for external TestFlight testers.
 
 ## Android — Obtainium
 

@@ -11,10 +11,9 @@ enum Legal {
 /// a German provider (§ 5 DDG) and App Review both ask to be findable in the
 /// app itself. Split out of CreditsView purely for file size.
 ///
-/// Every field except the company name is a TODO placeholder in the String
-/// Catalog: an address, a register entry or a VAT id invented to look plausible
-/// would be a false statement of identity, which is worse than an obviously
-/// unfinished one. `grep TODO` over the catalog is the pre-submission gate.
+/// Laid out the way a German Impressum reads: the company over its address,
+/// then one labelled line per registry fact. Nothing here is a link except the
+/// two that lead somewhere, so the block stays a block.
 extension CreditsView {
 
     var legalSection: some View {
@@ -23,21 +22,26 @@ extension CreditsView {
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
             imprintCard
-            privacyLink
         }
     }
 
     private var imprintCard: some View {
-        VStack(alignment: .leading, spacing: DL.Space.l) {
-            Text("legal.company")
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
-            field("legal.address.label", "legal.address.value")
-            field("legal.director.label", "legal.director.value")
-            field("legal.court.label", "legal.court.value")
-            field("legal.register.label", "legal.register.value")
-            field("legal.vat.label", "legal.vat.value")
-            contactField
+        VStack(alignment: .leading, spacing: DL.Space.m) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text("legal.company")
+                    .font(DL.Fonts.headline)
+                Text("legal.address.value")
+                    .font(DL.Fonts.body)
+            }
+            .foregroundStyle(Color.dlTextPrimary)
+
+            VStack(alignment: .leading, spacing: 2) {
+                line("legal.director.label") { Text("legal.director.value") }
+                line("legal.register.label") { Text("legal.register.value") }
+                line("legal.vat.label") { Text("legal.vat.value") }
+                line("legal.contact.label") { contactValue }
+            }
+            privacyLink
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(DL.Space.l)
@@ -47,42 +51,31 @@ extension CreditsView {
         )
     }
 
-    private func field(_ label: LocalizedStringKey, _ value: LocalizedStringKey) -> some View {
-        fieldRow(label) {
-            Text(value)
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextPrimary)
-        }
-    }
-
-    /// The one field that is a live address rather than a line of text, so it
-    /// is written once (`Legal.contactAddress`) and offered as a mail.
-    private var contactField: some View {
-        fieldRow("legal.contact.label") {
-            if let url = URL(string: "mailto:\(Legal.contactAddress)") {
-                Link(destination: url) {
-                    Text(verbatim: Legal.contactAddress)
-                        .font(DL.Fonts.body)
-                        .foregroundStyle(Color.dlAccent)
-                }
-            } else {
-                Text(verbatim: Legal.contactAddress)
-                    .font(DL.Fonts.body)
-                    .foregroundStyle(Color.dlTextPrimary)
-            }
-        }
-    }
-
-    private func fieldRow<Content: View>(_ label: LocalizedStringKey,
-                                         @ViewBuilder value: () -> Content) -> some View {
-        VStack(alignment: .leading, spacing: 2) {
+    /// "Registergericht: Amtsgericht Coburg, HRB 7580" — label and fact on one
+    /// line, which is how the notice is read and half the height of stacking them.
+    private func line<Value: View>(_ label: LocalizedStringKey,
+                                   @ViewBuilder value: () -> Value) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: DL.Space.xs) {
             Text(label)
-                .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
             value()
+                .foregroundStyle(Color.dlTextPrimary)
         }
+        .font(DL.Fonts.caption)
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    /// The one fact that is a live address rather than a line of text, so it is
+    /// written once (`Legal.contactAddress`) and offered as a mail.
+    @ViewBuilder
+    private var contactValue: some View {
+        if let url = URL(string: "mailto:\(Legal.contactAddress)") {
+            Link(Legal.contactAddress, destination: url)
+                .foregroundStyle(Color.dlAccent)
+        } else {
+            Text(verbatim: Legal.contactAddress)
+        }
     }
 
     @ViewBuilder
@@ -90,10 +83,9 @@ extension CreditsView {
         if let url = URL(string: Legal.privacyUrl) {
             Link(destination: url) {
                 Label("legal.privacy", systemImage: "hand.raised")
-                    .font(DL.Fonts.subheadline)
+                    .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlAccent)
             }
-            .padding(.horizontal, DL.Space.xs)
         }
     }
 }

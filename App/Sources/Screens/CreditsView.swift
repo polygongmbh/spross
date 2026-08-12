@@ -20,10 +20,10 @@ struct CreditsView: View {
         NavigationStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
+                    legalSection
                     ForEach(sections) { section in
                         languageSection(section)
                     }
-                    legalSection
                 }
                 .padding(DL.Space.xl)
             }
@@ -103,18 +103,18 @@ private struct CreditGroupRow: View {
 
     var body: some View {
         DisclosureGroup(isExpanded: $expanded) {
-            VStack(alignment: .leading, spacing: DL.Space.s) {
+            VStack(alignment: .leading, spacing: DL.Space.xs) {
                 // why: one Commons recording fetched for two slugs ships twice,
                 // so neither the label nor the source is a unique identity.
                 ForEach(credit.files.indices, id: \.self) { index in
                     fileRow(credit.files[index])
                 }
             }
-            .padding(.top, DL.Space.m)
+            .padding(.top, DL.Space.s)
         } label: {
             header
         }
-        .tint(.dlTeal)
+        .tint(.dlTextSecondary)
         .padding(DL.Space.l)
         .background(
             RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
@@ -156,35 +156,28 @@ private struct CreditGroupRow: View {
     }
 
     /// The word the recording speaks (a letter's glyph for the alphabet files)
-    /// over its Commons filename.
+    /// over its Commons filename. The whole row leads to the file's page rather
+    /// than the filename alone: a column of tinted filenames reads as a wall of
+    /// links, and the row is the easier tap target either way.
+    @ViewBuilder
     private func fileRow(_ file: AudioCreditFile) -> some View {
-        VStack(alignment: .leading, spacing: 2) {
+        let row = VStack(alignment: .leading, spacing: 0) {
             Text(verbatim: file.label)
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextPrimary)
-            commonsLink(file.source)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-    }
-
-    /// The file's page on Commons — where the licence and its author stand at
-    /// the source. Percent-encoded: those names carry spaces and Cyrillic.
-    @ViewBuilder
-    private func commonsLink(_ source: String) -> some View {
-        let encoded = source.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-        if let encoded,
-           let url = URL(string: "https://commons.wikimedia.org/wiki/File:\(encoded)") {
-            Link(destination: url) {
-                Text(verbatim: source)
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTeal)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        } else {
-            Text(verbatim: source)
+            Text(verbatim: file.source)
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
+        }
+        .multilineTextAlignment(.leading)
+        .frame(maxWidth: .infinity, alignment: .leading)
+
+        // Percent-encoded: those names carry spaces and Cyrillic.
+        if let encoded = file.source.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
+           let url = URL(string: "https://commons.wikimedia.org/wiki/File:\(encoded)") {
+            Link(destination: url) { row }
+        } else {
+            row
         }
     }
 }
