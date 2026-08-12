@@ -35,6 +35,11 @@ targets:
       - path: catalog
         type: folder
         buildPhase: resources
+      # why: the required-reason API declaration is read off the bundle root, so
+      # every shipped bundle carries its own — the app's does not cover the
+      # widget or the watch app, which are separate bundles to App Store Connect.
+      - path: App/PrivacyInfo.xcprivacy
+        buildPhase: resources
     dependencies:
       - target: SprossWidgets
         embed: true
@@ -80,6 +85,8 @@ targets:
     platform: iOS
     sources:
       - Widgets/Sources
+      - path: Widgets/PrivacyInfo.xcprivacy
+        buildPhase: resources
     entitlements:
       path: Widgets/SprossWidgets.entitlements
       properties:
@@ -110,6 +117,8 @@ targets:
       - Shared/Sources
       - path: Watch/Fixtures
         buildPhase: resources
+      - path: Watch/PrivacyInfo.xcprivacy
+        buildPhase: resources
     dependencies:
       - target: SprossWatchWidgets
         embed: true
@@ -135,6 +144,8 @@ targets:
     sources:
       - WatchWidgets/Sources
       - Shared/Sources
+      - path: WatchWidgets/PrivacyInfo.xcprivacy
+        buildPhase: resources
     entitlements:
       path: WatchWidgets/SprossWatchWidgets.entitlements
       properties:

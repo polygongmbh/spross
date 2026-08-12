@@ -95,6 +95,17 @@ What is still missing is the page the privacy link points at:
 `https://spross.net/privacy` has to answer before a build reaches anyone outside the
 team, and App Store Connect demands the same URL for external TestFlight testers.
 
+## The privacy manifest
+
+Each shipped bundle carries its own `PrivacyInfo.xcprivacy` at its root —
+app, widget, watch app, watch complication —
+because App Store Connect scans every binary in the package
+and the app's manifest does not speak for the ones beside it.
+Only the app reaches a required-reason API, `UserDefaults`.
+Reaching for another one — a file timestamp, free disk space, the boot time, the active keyboards —
+obliges the manifest of the bundle that calls it to name the category and a reason code,
+or the upload comes back as ITMS-91053.
+
 ## Android — Obtainium
 
 Add `https://github.com/polygongmbh/spross` as a GitHub app in
