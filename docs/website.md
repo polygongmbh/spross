@@ -21,7 +21,7 @@ built to sit beside native-speaker conversation or a structured course, never to
   (target/pin details: `kern/docs/build.md`).
 - `scripts/build-web.sh` assembles a deployable `web/dist/` (gitignored):
   runs `:kern:jsBrowserDistribution`, copies the bundle beside the static files.
-  It copies them by name, so a page added to `web/` ships only once it is on that list.
+  Every `web/*.html` ships, so a new page needs no edit there.
 - Deploy: upload `web/dist/` to any static host, point spross.net at it. No server code.
 
 ## Legal pages

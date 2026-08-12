@@ -7,7 +7,10 @@ cd "$(dirname "$0")/.."
 
 rm -rf web/dist
 mkdir -p web/dist
-cp web/index.html web/site.css web/site.js web/dist/
+# why: every page, not a list of them — a legal page that exists but was never
+# added to a copy line is a link the site answers 404 for, and nothing says so
+# until someone follows it.
+cp web/*.html web/site.css web/site.js web/dist/
 cp -R web/assets web/dist/assets
 cp kern/build/dist/js/productionExecutable/kern.js web/dist/
 
