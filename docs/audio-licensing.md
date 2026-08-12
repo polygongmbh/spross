@@ -12,30 +12,30 @@ lives outside the repo in `data/reference/audio/README.md`.
 
 ## 1. What ships, and under what
 
-2032 mp3 files, ~43 MB, all of them Wikimedia Commons transcodes:
-**1313 CC BY-SA · 526 CC BY · 193 CC0 or public domain**.
+2069 mp3 files, ~44 MB, all of them Wikimedia Commons transcodes:
+**1446 CC BY-SA · 531 CC BY · 92 CC0**.
 
 | Pack | Files | Source | Licences | Speakers | Obligation |
 |---|---|---|---|---|---|
-| `audio/de/` | 559 words | Commons `De-*.ogg`, Lingua Libre `LL-Q188 (deu)` | BY-SA 4.0 384 · BY-SA 3.0 76 · BY-SA 2.5 1 · CC0 92 · BY 3.0 us 3 · BY 3.0 1 · PD 2 | 27 credit groups, Jeuwre 317 | credit all but the CC0; share-alike on 461 |
+| `audio/de/` | 570 words | Commons `De-*.ogg` | BY-SA 4.0 371 · BY-SA 3.0 199 | 8 credit groups, Jeuwre 356 | credit + share-alike, whole pack |
 | `audio/de/letters/` | 8 letters | Commons `De-<letter>.ogg` | BY-SA 4.0 6 · BY-SA 3.0 2 | Jeuwre 6, T.Voekler 2 | credit + share-alike |
-| `audio/de/texts/` | 2 words | Commons `De-*.ogg` | BY-SA 4.0 1 · BY-SA 3.0 1 | 2 groups | credit + share-alike |
-| `audio/es/` | 480 words | Lingua Libre, via Commons, plus one Commons `Es-*.ogg` | BY-SA 4.0 346 · CC0 95 · BY 4.0 38 · BY-SA 2.5 1 | 24 credit groups (AdrianAbdulBaha 185, Marreromarco 86) | credit all but the 95 CC0; share-alike on 347 |
+| `audio/de/texts/` | 2 words | Commons `De-*.ogg` | BY-SA 4.0 1 · BY-SA 3.0 1 | Jeuwre 1, joni 1 | credit + share-alike |
+| `audio/es/` | 488 words | Lingua Libre, via Commons | BY-SA 4.0 363 · CC0 88 · BY 4.0 37 | 15 credit groups (AdrianAbdulBaha 195, Marreromarco 88) | credit all but the 88 CC0; share-alike on 363 |
 | `audio/es/letters/` | 6 letters | Lingua Libre, via Commons | CC0 2 · BY 4.0 2 · BY-SA 4.0 2 | 4 groups | credit all but the CC0 |
 | `audio/es/texts/` | 4 words | Lingua Libre, via Commons | CC0 2 · BY 4.0 1 · BY-SA 4.0 1 | 4 groups | credit all but the CC0 |
-| `audio/sw/` | 458 words | Commons `Sw-ke-*.flac` | BY-SA 4.0, whole pack | Waithera Were 456, Goethe-Institut Cameroon 1, Lucyin 1 | credit + share-alike, whole pack |
-| `audio/uk/` words | 481 words | Commons `Uk-*.ogg` (Shtooka), one Lingua Libre | BY 3.0 us 479 · BY 2.0 fr 1 · BY-SA 4.0 1 | Галя Раптова / Nicolas Vion 465, 4 further groups | credit every group; share-alike on the one BY-SA file |
+| `audio/sw/` | 467 words | Commons `Sw-ke-*.flac` | BY-SA 4.0, whole pack | Waithera Were 466, Goethe-Institut Cameroon 1 | credit + share-alike, whole pack |
+| `audio/uk/` words | 490 words | Commons `Uk-*.ogg` (Shtooka) | BY 3.0 us 489 · BY 2.0 fr 1 | Галя Раптова / Nicolas Vion 476, 2 further groups | attribution only |
 | `audio/uk/letters/` | 33 letters | Commons `Аа – ukrainian.ogg`, one Lingua Libre | BY-SA 4.0 | Tabrus 32, Tohaomg 1 | credit + share-alike |
 | `audio/uk/texts/` | 1 word | Commons `Uk-*.ogg` | BY 3.0 us | Галя Раптова / Nicolas Vion | attribution only |
 
 Share-alike reaches the **audio files only**.
 CC carries no GPL-style linking clause,
 so bundling BY-SA recordings leaves the Kotlin core, the UI and the catalog data unaffected.
-The Ukrainian WORDS were long the one pack free of share-alike entirely;
-`фен` ended that — one BY-SA 4.0 file, taken because the alphabet's `е` row had no
-recorded example otherwise. The obligation was already carried by every other pack,
-uk's own letters included, so it costs nothing new; it is noted because the property
-was worth something while it lasted, and a future re-cut should not assume it back.
+The Ukrainian WORDS are the one pack free of share-alike entirely, and that is one
+recording deep: a single BY-SA file taken for a gap the alphabet needed would end it,
+as one already did once before being re-cut away. Nothing else depends on the property,
+since every other pack carries the obligation anyway — but it is worth spending
+deliberately rather than by accident.
 
 ## 2. How the obligations are discharged
 
@@ -57,7 +57,9 @@ was worth something while it lasted, and a future re-cut should not assume it ba
   so the gate is what keeps the packs' loudness differences a playback problem (§3) rather than a licence one.
 - **No file ships without a nameable author.**
   `noAudioAuthorIsUnattributable` rejects the placeholder set (`Own work`, `myself`, empty),
-  which BY and BY-SA both make useless.
+  which BY and BY-SA both make useless,
+  and Commons' `… assumed (based on copyright claims)` wording with it:
+  that names a bot's inference about the uploader, which reads as a credit and is a guess.
   `everyAudioFileShipsAndIsReferencedExactlyOnce` keeps uncredited bytes out of the bundle.
 - **The converter drops rather than guesses** (`scripts/audio-catalog.py` + `scripts/audio_gates.py`,
   every decision printed): rows whose slug the catalog does not realize;
@@ -140,7 +142,7 @@ Notable rejections, one line each:
 1. **BY-SA §2(a)(5)(B) versus App Store DRM — the pre-submission gate.**
    The licence forbids applying "Effective Technological Measures" to the shared material,
    and every App Store binary is FairPlay-encrypted;
-   1313 of the 2032 files are BY-SA — all 458 sw, 34 of 515 uk, 471 of 569 de, 350 of 490 es.
+   1446 of the 2069 files are BY-SA — all 467 sw, all 580 de, 33 of 524 uk, 366 of 498 es.
    Attribution, the other obligation, is already covered (§2).
    **Mitigation on record:** additionally publish the same recordings at a public un-DRM'd URL
    under the same licences, in **separate per-language files** —

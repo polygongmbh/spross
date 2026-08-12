@@ -2906,15 +2906,16 @@
       "source": "Sw-ke-maana.flac"
     },
     "meat": {
-      "author": "Lucyin",
+      "author": "Waithera Were",
       "file": "meat.mp3",
-      "gain": -8.6,
+      "gain": -6.9,
+      "lead": 44,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nyama",
-      "sha256": "7a461593ff5d210f0baa7c59427356165d4b1768310c9441fb4a9a7b1b02f643",
-      "snr": 20.5,
-      "source": "Sw-nyama.oga"
+      "sha256": "c22aeba05a05841a0de30368b40f96a59d2505576d35fa6810021e2a0336abfd",
+      "snr": 51.8,
+      "source": "Sw-ke-nyama.flac"
     },
     "medicine": {
       "author": "Waithera Were",

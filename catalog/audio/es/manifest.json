@@ -92,16 +92,16 @@
       "source": "LL-Q1321 (spa)-Precision27-pero.wav"
     },
     "perro": {
-      "author": "Akhram",
+      "author": "Sinaloa",
       "file": "texts/perro.mp3",
-      "gain": 6.4,
-      "lead": 191,
+      "gain": 7.9,
+      "lead": 193,
       "licence": "CC0",
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "perro",
-      "sha256": "1bd7813a476cf729e13102aaf012e6a13400bdeef6185e5242af7b53eb0ea43a",
-      "snr": 41.5,
-      "source": "LL-Q1321 (spa)-Akhram-perro.wav"
+      "sha256": "e103516bd0b914fb39c299eec693258dfe02e3cbdbcfd4c4495e97bfb9986471",
+      "snr": 75.1,
+      "source": "LL-Q1321 (spa)-Sinaloa-perro.wav"
     },
     "pingüino": {
       "author": "AdrianAbdulBaha",
@@ -977,16 +977,16 @@
       "source": "LL-Q1321 (spa)-Emanuelps27-yuca.wav"
     },
     "cat": {
-      "author": "Wikimedia Chile",
+      "author": "Eavqwiki",
       "file": "cat.mp3",
-      "gain": 5.1,
-      "lead": 210,
-      "licence": "CC BY 4.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "gain": 7.5,
+      "lead": 203,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gato",
-      "sha256": "ef4c42f378d46e517380e5df1a200e580f14d1679f1a7a6160c5a82ce40c6354",
-      "snr": 43.4,
-      "source": "LL-Q1321 (spa)-Wikimedia Chile (Pcartes)-Gato.wav"
+      "sha256": "c0a64bcea9c4a9a5c5fda1dbc4829dfabb8de4f08c4f8a8fa4ba5d9a4df4ad8f",
+      "snr": 59.1,
+      "source": "LL-Q1321 (spa)-Eavqwiki-gato.wav"
     },
     "certificate": {
       "author": "Marreromarco",
@@ -2080,15 +2080,16 @@
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-nevera.wav"
     },
     "friend": {
-      "author": "Alejandra",
+      "author": "AdrianAbdulBaha",
       "file": "friend.mp3",
-      "gain": 8.0,
-      "licence": "CC0",
-      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "gain": 6.0,
+      "lead": 250,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "amigo",
-      "sha256": "774aaabc403b76dc8f1f081269131ac7c4d1b28ff1430083dc2527674a6537e1",
-      "snr": 24.0,
-      "source": "LL-Q1321 (spa)-Alejandra (LinguaLibreBooth)-amigo.wav"
+      "sha256": "2aaf24e0448b13d1303c9c612aeb3eda7067dfeed2874ae5872b20b283786fa2",
+      "snr": 60.2,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-amigo.wav"
     },
     "friend-f": {
       "author": "AdrianAbdulBaha",
@@ -2640,16 +2641,15 @@
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-enfermedad.wav"
     },
     "important": {
-      "author": "Rachlel",
+      "author": "Precision27",
       "file": "important.mp3",
-      "gain": 6.8,
-      "lead": 196,
-      "licence": "CC0",
-      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "gain": 4.5,
+      "lead": 197,
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
       "matches": "importante",
-      "sha256": "c17ace05c7125c848847f5c32698606b14820560c86a03abb2d1f3aa2656078e",
-      "snr": 56.7,
-      "source": "LL-Q1321 (spa)-Rachlel-importante.wav"
+      "sha256": "b9b46c789b32cfdfb50a8a1806db7f805371f2d0278723e985b40a7fedfd58e3",
+      "source": "LL-Q1321 (spa)-Precision27-importante.wav"
     },
     "inside": {
       "author": "GlyphEnjoyer",
@@ -2891,16 +2891,16 @@
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-carta.wav"
     },
     "library": {
-      "author": "Centenoyespelta",
+      "author": "AdrianAbdulBaha",
       "file": "library.mp3",
-      "gain": 6.6,
-      "lead": 194,
-      "licence": "CC0",
-      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "gain": 3.6,
+      "lead": 184,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "biblioteca",
-      "sha256": "e4f7e7a2ab9e4e893a1e6b602ecd1168b5505c5c4b63247ca8908ed3016723d4",
-      "snr": 37.6,
-      "source": "LL-Q1321 (spa)-Centenoyespelta-biblioteca.wav"
+      "sha256": "cbec4ca6bc840427ff6a7f4b0267171eb9aa164c86f995c4ce15cf83b5557bd5",
+      "snr": 46.6,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-biblioteca.wav"
     },
     "light": {
       "author": "Rodrigo5260",
@@ -3155,15 +3155,16 @@
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-minuto.wav"
     },
     "mirror": {
-      "author": "Mentxuwiki",
+      "author": "AdrianAbdulBaha",
       "file": "mirror.mp3",
-      "gain": 10.3,
-      "lead": 259,
-      "licence": "CC0",
-      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "gain": 5.0,
+      "lead": 246,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "espejo",
-      "sha256": "c8b35ced7aec871c9cc951faa6d21c9e97eef378968e99b0a102f8246fbb2eca",
-      "source": "LL-Q1321 (spa)-Mentxuwiki-Espejo.wav"
+      "sha256": "16e6285a2e4dd7298a3d00aefe27e1e8ab20695fe7e920601c775472223fa955",
+      "snr": 53.3,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-espejo.wav"
     },
     "money": {
       "author": "Rodrigo5260",
@@ -3366,15 +3367,16 @@
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-vecino.wav"
     },
     "neighbourhood": {
-      "author": "Mentxuwiki",
+      "author": "AdrianAbdulBaha",
       "file": "neighbourhood.mp3",
-      "gain": 4.5,
-      "lead": 158,
-      "licence": "CC0",
-      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "gain": 3.5,
+      "lead": 117,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "barrio",
-      "sha256": "49b5816ba53f02b22cc0ce8627829bad402971572bc6069d09bdcaf85bc02c37",
-      "source": "LL-Q1321 (spa)-Mentxuwiki-Barrio.wav"
+      "sha256": "31311cc6a775a8da496b6cd36ba45d8d7c06db4572657b9880f7556d59a50f98",
+      "snr": 60.9,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-barrio.wav"
     },
     "never": {
       "author": "Precision27",
@@ -3471,15 +3473,16 @@
       "source": "LL-Q1321 (spa)-Marreromarco-resolución.wav"
     },
     "now": {
-      "author": "Alejandra",
+      "author": "AdrianAbdulBaha",
       "file": "now.mp3",
-      "gain": 8.5,
-      "licence": "CC0",
-      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "gain": 3.8,
+      "lead": 270,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ahora",
-      "sha256": "f8910885445f4208ffd16fa324b873abd02c6ee01d3b193844e5331eb80f5111",
-      "snr": 25.1,
-      "source": "LL-Q1321 (spa)-Alejandra (LinguaLibreBooth)-ahora.wav"
+      "sha256": "df58ec0d7ce0900ba712e0c32d766d65f032fd28777ad4418cfd6fd498fe49e1",
+      "snr": 56.1,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-ahora.wav"
     },
     "nurse": {
       "author": "Marreromarco",
@@ -4247,16 +4250,15 @@
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-guardar.wav"
     },
     "say": {
-      "author": "Rachlel",
+      "author": "Rodelar",
       "file": "say.mp3",
-      "gain": 3.2,
-      "lead": 191,
-      "licence": "CC0",
-      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "gain": 2.7,
+      "lead": 249,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "decir",
-      "sha256": "511cb88400e25310925b6f937cd83429aae72da4081fb034a5011a1b39ae01d6",
-      "snr": 56.6,
-      "source": "LL-Q1321 (spa)-Rachlel-decir.wav"
+      "sha256": "ad0829ed58125362008465ff62756282c7a1c75544170f06c6c7ebceb75ee823",
+      "source": "LL-Q1321 (spa)-Rodelar-decir.wav"
     },
     "say-goodbye": {
       "author": "Marreromarco",
@@ -5198,16 +5200,16 @@
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-horario.wav"
     },
     "tin": {
-      "author": "Rubýñ",
+      "author": "Marreromarco",
       "file": "tin.mp3",
-      "gain": 12.0,
-      "lead": 187,
-      "licence": "CC0",
-      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "gain": 1.1,
+      "lead": 207,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "lata",
-      "sha256": "8ce9a610bb785911ed197587b71d8f8739f8d2dd25eb9f447bf275dd36c47e99",
-      "snr": 55.4,
-      "source": "LL-Q1321 (spa)-Rubýñ-lata.wav"
+      "sha256": "0b798767528cf1ca220e6ab05056a7a4f503531a7079f894fe7de5061d3c3a4c",
+      "snr": 53.6,
+      "source": "LL-Q1321 (spa)-Marreromarco-lata.wav"
     },
     "tired": {
       "author": "AdrianAbdulBaha",
@@ -5672,16 +5674,16 @@
       "source": "LL-Q1321 (spa)-Precision27-semana.wav"
     },
     "welcome": {
-      "author": "Faelune",
+      "author": "AdrianAbdulBaha",
       "file": "welcome.mp3",
-      "gain": 3.8,
-      "lead": 148,
-      "licence": "CC BY 4.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "gain": 5.9,
+      "lead": 153,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bienvenido",
-      "sha256": "a66ca5a240b906a89166f21ec540b3599c5247e2816c0ccd3a7c23f2ab894064",
-      "snr": 48.6,
-      "source": "LL-Q1321 (spa)-Faelune-Bienvenido.wav"
+      "sha256": "a1354d35042905f2ccd33f28b4aa7d82bda1a07ca857f9306b483d0eaae90a9a",
+      "snr": 54.9,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-bienvenido.wav"
     },
     "what": {
       "author": "Precision27",
@@ -5815,16 +5817,16 @@
       "source": "LL-Q1321 (spa)-Sinaloa-mujer.wav"
     },
     "word": {
-      "author": "Akrit0mythos",
+      "author": "AdrianAbdulBaha",
       "file": "word.mp3",
-      "gain": 5.2,
-      "lead": 191,
-      "licence": "CC0",
-      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "gain": 4.8,
+      "lead": 216,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "palabra",
-      "sha256": "b6a197726ee0e874adec8bfcd0685a416c36d9c37e9d71d6971633e6f581c5cb",
-      "snr": 57.3,
-      "source": "LL-Q1321 (spa)-Akrit0mythos-palabra.wav"
+      "sha256": "443054ae33f0e449a61eb6f235a9cf28fb4ea9fac66ce05e81712df8d04ff1cb",
+      "snr": 58.8,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-palabra.wav"
     },
     "work": {
       "author": "Precision27",

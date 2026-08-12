@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **German speaks in one voice now, and the credits list is a fraction of its length.**
+  Words that had been left with whichever stranger happened to record them once are spoken
+  by the same people as the words around them — Commons had the same word from those
+  speakers all along, filed one page over from the one that got picked. The hiss went with
+  them, because the one-off recordings were also the noisiest in the pack, and the quietest
+  and the only two that clipped. Spanish and Swahili narrow the same way wherever a bigger
+  voice could say the word without giving up the freer licence. No recording is credited to
+  a guess about who spoke it any more.
+
 - **Spross installs from its own releases now, on either phone.** Every tagged version
   publishes a signed Android APK — add the repository in Obtainium once and each new one
   is offered like any other update — alongside an iPhone build that reaches testers

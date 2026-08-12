@@ -234,16 +234,16 @@
       "source": "De-und.ogg"
     },
     "animal": {
-      "author": "Pill",
+      "author": "Jeuwre",
       "file": "animal.mp3",
-      "gain": 11.4,
-      "lead": 256,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": -0.7,
+      "lead": 443,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tier",
-      "sha256": "207e163569e398bc3fd8b320b0926b3fd58e43af8b2cd4dc2eb9c7cf45337b0a",
-      "snr": 53.1,
-      "source": "De-Tier.ogg"
+      "sha256": "0cae0f5580beef16ca68f223abd3b02937ab2b7ea740c1d6dbae9ab134094286",
+      "snr": 86.6,
+      "source": "De-Tier2.ogg"
     },
     "answer": {
       "author": "Jeuwre",
@@ -436,14 +436,14 @@
     "bag": {
       "author": "Jeuwre",
       "file": "bag.mp3",
-      "gain": 2.4,
-      "lead": 558,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": -0.3,
+      "lead": 448,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "tasche",
-      "sha256": "06d44ba824578a7d438e5c58d854d805133e922235d646807d0904f07ee6f104",
-      "snr": 86.2,
-      "source": "De-Tasche.ogg"
+      "sha256": "d6dc8383f941e0185f35da5b830f18b102d644cf73a6d7b0d1b322cea6a63cd1",
+      "snr": 86.9,
+      "source": "De-Tasche2.ogg"
     },
     "bake": {
       "author": "Jeuwre",
@@ -482,16 +482,16 @@
       "source": "De-verband.ogg"
     },
     "bank": {
-      "author": "No machine-readable author provided. Cyrotux assumed (based on copyright claims).",
+      "author": "Jeuwre",
       "file": "bank.mp3",
-      "gain": 5.5,
-      "lead": 274,
-      "licence": "CC BY-SA 2.5",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+      "gain": -1.3,
+      "lead": 444,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bank",
-      "sha256": "e4d402fd64db7969b5ddfcc4c7b29fa099190075ea992ea88a09b2e86a41911f",
-      "snr": 56.1,
-      "source": "De-Bank.ogg"
+      "sha256": "f8f4f396b528366277bf4c1528cb6f1e3866293094c9d497ef2addfcca5b55b1",
+      "snr": 87.2,
+      "source": "De-Bank2.ogg"
     },
     "basket": {
       "author": "Jeuwre",
@@ -541,16 +541,16 @@
       "source": "De-Strand.ogg"
     },
     "because": {
-      "author": "Katrin Boxberger, Bernadette Perrin-Riou",
+      "author": "Jeuwre",
       "file": "because.mp3",
-      "gain": -2.8,
-      "lead": 165,
-      "licence": "CC BY 3.0 us",
-      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+      "gain": -1.7,
+      "lead": 382,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "weil",
-      "sha256": "c3f3afb1e21159db6fa9e329b0d78269c54673e87d6c614da9e4c4b4476a4f37",
-      "snr": 52.5,
-      "source": "De-weil.ogg"
+      "sha256": "6a4b6eb0afdc265dc6a513981766154890d9d8df4f89dea5648c56f385ce35b9",
+      "snr": 86.7,
+      "source": "De-weil3.ogg"
     },
     "bed": {
       "author": "Jeuwre",
@@ -1183,16 +1183,16 @@
       "source": "De-Brust.ogg"
     },
     "chicken": {
-      "author": "Fojhtirf",
+      "author": "Jeuwre",
       "file": "chicken.mp3",
-      "gain": 5.3,
-      "lead": 21,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 0.7,
+      "lead": 394,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "hähnchen",
-      "sha256": "fdf7508c815fe8d14b4de7e53c0e6af0883df222a5038072250b9c1651fd7158",
-      "snr": 34.6,
-      "source": "De-Hähnchen.ogg"
+      "sha256": "6ab746f6690420578360523013801fba6b2149f72bed9311b1dc1ad7ca5af825",
+      "snr": 83.2,
+      "source": "De-Hähnchen2.ogg"
     },
     "child": {
       "author": "joni",
@@ -1230,14 +1230,16 @@
       "source": "De-Kino.ogg"
     },
     "city": {
-      "author": "T.Voekler",
+      "author": "Jeuwre",
       "file": "city.mp3",
-      "gain": -0.8,
-      "licence": "Public domain",
+      "gain": 1.9,
+      "lead": 400,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "stadt",
-      "sha256": "41a4866e9f6dabf84ea67efbefbe6067e642e912374120b68e3abe25f62a0b21",
-      "snr": 48.2,
-      "source": "De-Stadt.ogg"
+      "sha256": "830a376671b2203d2f6d8f7fb9a8ea818ca49df19f54c5f98f7c57f9106c6a2a",
+      "snr": 86.4,
+      "source": "De-Stadt2.ogg"
     },
     "classroom": {
       "author": "Jeuwre",
@@ -1439,16 +1441,16 @@
       "source": "De-vertrag.ogg"
     },
     "cook": {
-      "author": "StMH",
+      "author": "Jeuwre",
       "file": "cook.mp3",
-      "gain": 4.8,
-      "lead": 203,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": -2.0,
+      "lead": 445,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kochen",
-      "sha256": "4255808a091cc8977c1bb1a4c4b44144418c1a623b0df3dbea439890dd2a0687",
-      "snr": 59.8,
-      "source": "De-kochen.ogg"
+      "sha256": "bbd1c7fb4ce221e9e0b8ebad6c88481120c2d5fba098e15637b618262f64e7ef",
+      "snr": 86.8,
+      "source": "De-kochen2.ogg"
     },
     "copy": {
       "author": "Wikimedia Commons user Jakob.scholbach",
@@ -1522,15 +1524,16 @@
       "source": "De-creme.ogg"
     },
     "cuddle": {
-      "author": "Lars Engelmann",
+      "author": "Jeuwre",
       "file": "cuddle.mp3",
-      "gain": 2.3,
-      "lead": 675,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": -3.1,
+      "lead": 448,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "kuscheln",
-      "sha256": "c2024d62e994f74e18356eebc4eae498485bd059bf4a85be8251905616c62e05",
-      "source": "De-kuscheln.ogg"
+      "sha256": "c33883ef9bb96e68b4771c6a7e3f7117bc9a474dacfaace26abea571df199f27",
+      "snr": 87.3,
+      "source": "De-kuscheln2.ogg"
     },
     "cup": {
       "author": "Kampy",
@@ -1568,16 +1571,16 @@
       "source": "De-Kunde.ogg"
     },
     "cut": {
-      "author": "Katrin Boxberger, Bernadette Perrin-Riou",
+      "author": "Jeuwre",
       "file": "cut.mp3",
-      "gain": -2.1,
-      "lead": 75,
-      "licence": "CC BY 3.0 us",
-      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+      "gain": 1.6,
+      "lead": 412,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schneiden",
-      "sha256": "d5814ff8d3deda6a250d9be6c8998adcaf6c3858784568ffd091d7d7653aeced",
-      "snr": 52.8,
-      "source": "De-schneiden.ogg"
+      "sha256": "76e7243338bee0afc44bf0d056cbb9c8e4713fe3c74f2582b7754d1646252238",
+      "snr": 87.4,
+      "source": "De-schneiden2.ogg"
     },
     "cv": {
       "author": "Jeuwre",
@@ -1841,16 +1844,16 @@
       "source": "De-klingel.ogg"
     },
     "dream": {
-      "author": "Leni Berlin",
+      "author": "Jeuwre",
       "file": "dream.mp3",
-      "gain": 2.2,
-      "lead": 205,
-      "licence": "CC BY-SA 2.5",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+      "gain": -1.0,
+      "lead": 500,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "träumen",
-      "sha256": "65b933f85feae28dfc43d2ec64bd5fe41923c1e6de6148430bade5bbed70838b",
-      "snr": 62.1,
-      "source": "De-träumen.ogg"
+      "sha256": "26265e51130a9e5a212e5332bbf79c5419f4c0a87d050450969b83335bdece97",
+      "snr": 87.1,
+      "source": "De-träumen2.ogg"
     },
     "dress": {
       "author": "Jeuwre",
@@ -2021,16 +2024,16 @@
       "source": "De-hereinkommen.ogg"
     },
     "evening": {
-      "author": "Arnim Faryn",
+      "author": "Jeuwre",
       "file": "evening.mp3",
-      "gain": 4.6,
-      "lead": 186,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 0.7,
+      "lead": 402,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "abend",
-      "sha256": "5a879f04fbdb1a6b2eb5c1f791f2ecb3f96cee1e1b3c5c2c3a10e921024bd5d0",
-      "snr": 58.7,
-      "source": "De-Abend.ogg"
+      "sha256": "a995fdec38516c12100dcbfe585839b23e7246ebb4785e9b743f88741304c37c",
+      "snr": 86.5,
+      "source": "De-Abend2.ogg"
     },
     "exam": {
       "author": "Jeuwre",
@@ -2044,16 +2047,16 @@
       "source": "De-Prüfung.ogg"
     },
     "examine": {
-      "author": "Katrin Boxberger, Bernadette Perrin-Riou",
+      "author": "Jeuwre",
       "file": "examine.mp3",
-      "gain": 0.2,
-      "lead": 263,
-      "licence": "CC BY 3.0 us",
-      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+      "gain": -0.5,
+      "lead": 495,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "untersuchen",
-      "sha256": "c1aa3b02aeb8077d1d4ba9fb5290b97294a873b0d418dcfcbc33185b356be041",
-      "snr": 56.8,
-      "source": "De-untersuchen.ogg"
+      "sha256": "4ae18492da979f79a1e7bec0013223afc6462b61bd35f311324b96392fd708da",
+      "snr": 86.5,
+      "source": "De-untersuchen2.ogg"
     },
     "excuse-me": {
       "author": "Jeuwre",
@@ -2092,16 +2095,16 @@
       "source": "De-verlängern.ogg"
     },
     "eye": {
-      "author": "Edward Montgomery Harrington",
+      "author": "Jeuwre",
       "file": "eye.mp3",
-      "gain": 9.3,
-      "lead": 231,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": -2.1,
+      "lead": 441,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "auge",
-      "sha256": "c03b38c61eb665bf9f2bd83031d71214c287e64944a83ac5a470d6c6e8684550",
-      "snr": 66.4,
-      "source": "De-Auge.ogg"
+      "sha256": "08e8efc90d116b49c68d943032451b5009c0119c758b78ca0a50541be7450678",
+      "snr": 87.0,
+      "source": "De-Auge2.ogg"
     },
     "face": {
       "author": "Kampy",
@@ -2377,16 +2380,16 @@
       "source": "De-obst.ogg"
     },
     "fry": {
-      "author": "Gbeckmann",
+      "author": "Jeuwre",
       "file": "fry.mp3",
-      "gain": 20.0,
-      "lead": 344,
+      "gain": 0.7,
+      "lead": 443,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "braten",
-      "sha256": "2982b9aa372d32e8a7bb649c34e6386be3d6943609709bdd0c2dd02d3eee41de",
-      "snr": 45.8,
-      "source": "De-braten.ogg"
+      "sha256": "bcae64e39afd89e344ad15239d0f91bf8b541eaaa24741abd75c2d93d5db5453",
+      "snr": 87.5,
+      "source": "De-braten2.ogg"
     },
     "full-time": {
       "author": "Jeuwre",
@@ -2484,15 +2487,16 @@
       "source": "De-Handschuh.ogg"
     },
     "go": {
-      "author": "Hschier",
+      "author": "Jeuwre",
       "file": "go.mp3",
-      "gain": -6.7,
-      "licence": "CC BY 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "gain": -1.0,
+      "lead": 437,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "gehen",
-      "sha256": "fb287a46ea18d6f389f162b46306ee054b33b919c6e3ea9d8e625c718855f4c6",
-      "snr": 55.4,
-      "source": "De-gehen.ogg"
+      "sha256": "b63354aed05918b64ee6d49339f773120b73b6919a7593e65d6a71196e7d30ae",
+      "snr": 86.3,
+      "source": "De-gehen2.ogg"
     },
     "good": {
       "author": "Kampy",
@@ -2662,16 +2666,16 @@
       "source": "De-Mütze.ogg"
     },
     "have": {
-      "author": "Leni Berlin",
+      "author": "Jeuwre",
       "file": "have.mp3",
-      "gain": 9.8,
-      "lead": 21,
-      "licence": "CC BY-SA 2.5",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+      "gain": 1.1,
+      "lead": 397,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "haben",
-      "sha256": "34e7d28e4bb706f7e289f31468fc1d1996ff7ebefd9e8a7334833ae799348343",
-      "snr": 34.6,
-      "source": "De-haben.ogg"
+      "sha256": "5ce3ece5d0ed8e1a97d07926056db3f395fb14c12be685cfa3b29454570808e1",
+      "snr": 86.7,
+      "source": "De-haben3.ogg"
     },
     "head": {
       "author": "Jeuwre",
@@ -3198,15 +3202,16 @@
       "source": "De-Lampe.ogg"
     },
     "language": {
-      "author": "Edward Montgomery Harrington",
+      "author": "Jeuwre",
       "file": "language.mp3",
-      "gain": -0.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 1.1,
+      "lead": 386,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "sprache",
-      "sha256": "17b45e469b28d6a8e8778326bd291e5dde413a4967e7c760939d8c20a75453a9",
-      "snr": 61.4,
-      "source": "De-Sprache.ogg"
+      "sha256": "fc3f4b66b4711a8b21102ba172a7f7163e423ee3aceb97e38d295bd3dd061ac0",
+      "snr": 86.3,
+      "source": "De-Sprache2.ogg"
     },
     "laptop": {
       "author": "User:Tosca",
@@ -3232,16 +3237,16 @@
       "source": "De-spät.ogg"
     },
     "laugh": {
-      "author": "Hschier",
+      "author": "Jeuwre",
       "file": "laugh.mp3",
-      "gain": -0.2,
-      "lead": 77,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 1.9,
+      "lead": 431,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "lachen",
-      "sha256": "aa6cb0bd8c27e8ac75dc8f915b28e51fec813ad4b407eb119b2d3a14be127fca",
-      "snr": 69.1,
-      "source": "De-lachen.ogg"
+      "sha256": "bc4f04f376c16d92037d6c3222c75bbb9027f70c488a0dddc009bf2abc87307a",
+      "snr": 86.8,
+      "source": "De-lachen2.ogg"
     },
     "laundry": {
       "author": "Jeuwre",
@@ -3303,16 +3308,16 @@
       "source": "De-Bein.ogg"
     },
     "less": {
-      "author": "Anhezu",
+      "author": "Jeuwre",
       "file": "less.mp3",
-      "gain": 5.5,
-      "lead": 229,
-      "licence": "CC BY 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "gain": -2.0,
+      "lead": 413,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "weniger",
-      "sha256": "de6a55dede844857ac4d8beea1f8756469cfebb83e538f6b8156687f85e89654",
-      "snr": 63.1,
-      "source": "De-weniger.ogg"
+      "sha256": "6ce58b9788fbfb7204d48c93dabd6684f544fc046d983194e900485f6ee0a61d",
+      "snr": 86.7,
+      "source": "De-weniger2.ogg"
     },
     "lesson": {
       "author": "Jeuwre",
@@ -3339,15 +3344,16 @@
       "source": "De-brief.ogg"
     },
     "library": {
-      "author": "Fojhtirf",
+      "author": "Jeuwre",
       "file": "library.mp3",
-      "gain": 1.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": -2.0,
+      "lead": 445,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bibliothek",
-      "sha256": "61ca52176322da0f7b38548b9edcd90bcad4a5f35ec77d6d3acbe8f0f0eea754",
-      "snr": 39.4,
-      "source": "De-Bibliothek.ogg"
+      "sha256": "e4313642ed291a90b051ff2624f710f80a6eab18efeb28db67a7c5551ae366ef",
+      "snr": 86.9,
+      "source": "De-Bibliothek2.ogg"
     },
     "light": {
       "author": "Jeuwre",
@@ -3373,16 +3379,16 @@
       "source": "De-leicht.ogg"
     },
     "like": {
-      "author": "Leni Berlin",
+      "author": "Jeuwre",
       "file": "like.mp3",
-      "gain": -0.8,
-      "lead": 278,
-      "licence": "CC BY-SA 2.5",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+      "gain": -4.2,
+      "lead": 442,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "mögen",
-      "sha256": "1453d3eb98e0cd7f98f315b194372620a9078a85de6b896b126179575864b6c9",
-      "snr": 54.5,
-      "source": "De-mögen.ogg"
+      "sha256": "1d7aaa3dc67367260cc6380c24f3f28180bcb9dad81ac34c91fcfbe9cd1e985e",
+      "snr": 86.6,
+      "source": "De-mögen2.ogg"
     },
     "lip": {
       "author": "Kampy",
@@ -3574,16 +3580,16 @@
       "source": "De-vielleicht.ogg"
     },
     "meaning": {
-      "author": "Anhezu",
+      "author": "Jeuwre",
       "file": "meaning.mp3",
-      "gain": 5.4,
-      "lead": 189,
-      "licence": "CC BY 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "gain": -0.8,
+      "lead": 440,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "bedeutung",
-      "sha256": "78527fd17c26f905e372ca8d85f395d5240527de7fe6c86ccb76ceed1be6f045",
-      "snr": 61.0,
-      "source": "De-Bedeutung.ogg"
+      "sha256": "e6fe27e8ed2e11d936c0da9374e49bfcb7c60b01b99b4e9e6aaa210a03aa1998",
+      "snr": 87.0,
+      "source": "De-Bedeutung2.ogg"
     },
     "meat": {
       "author": "Kampy",
@@ -3752,16 +3758,16 @@
       "source": "De-Motorrad.ogg"
     },
     "mountain": {
-      "author": "Hans-Joachim Fröde; alias Acf; native speaker",
+      "author": "Jeuwre",
       "file": "mountain.mp3",
-      "gain": 13.1,
-      "lead": 208,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": -3.3,
+      "lead": 427,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "berg",
-      "sha256": "a304dd58e17723a0b11d837c860848ab552037bc4543f7d57f29695900df2224",
-      "snr": 52.7,
-      "source": "De-Berg.ogg"
+      "sha256": "ef1ec6ef397e45949f1e8a4a7bf9e06c688edf605f945af24526e81b04a22152",
+      "snr": 87.5,
+      "source": "De-Berg2.ogg"
     },
     "mouse": {
       "author": "Jeuwre",
@@ -3942,15 +3948,16 @@
       "source": "De-Nachttisch.ogg"
     },
     "no": {
-      "author": "Lars Engelmann",
+      "author": "Jeuwre",
       "file": "no.mp3",
-      "gain": 2.9,
-      "lead": 752,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 1.0,
+      "lead": 423,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "nein",
-      "sha256": "a413c14adea6844251574ce881c5c2e3f3ab1c4ecc4296fab155d1322d6acece",
-      "source": "De-nein.ogg"
+      "sha256": "bef8934d6981de1f22e3c4422ad0870d2e283c059f3e0873860c7c1f4ccd6793",
+      "snr": 86.8,
+      "source": "De-nein2.ogg"
     },
     "nose": {
       "author": "Kampy",
@@ -4097,16 +4104,16 @@
       "source": "De-öl.ogg"
     },
     "old": {
-      "author": "Oceancetaceen Alice Chodura",
+      "author": "Jeuwre",
       "file": "old.mp3",
-      "gain": 3.3,
-      "lead": 170,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 0.9,
+      "lead": 413,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "alt",
-      "sha256": "c4c4c1dda088e8dded30c5bd59645f998933f50e93edec101142a920795c647c",
-      "snr": 57.0,
-      "source": "De-alt.ogg"
+      "sha256": "5b73174880d6f63b91c40b912f1e1ba93ed3b327815941ed0b2b936342ceaae7",
+      "snr": 87.3,
+      "source": "De-alt2.ogg"
     },
     "onion": {
       "author": "Jeuwre",
@@ -4251,15 +4258,16 @@
       "source": "De-Teilzeit.ogg"
     },
     "passenger": {
-      "author": "Holunder Gabriel",
+      "author": "Jeuwre",
       "file": "passenger.mp3",
-      "gain": 1.3,
+      "gain": -0.2,
+      "lead": 448,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "passagier",
-      "sha256": "b4e5395745fd39accab2df91de7190949972b0ba00bcdf5a44f2f86b447431f4",
-      "snr": 26.3,
-      "source": "De-Passagier.ogg"
+      "sha256": "8ebde43f55d4bd8fe2dddca46c16e631c1fed9b6d7a48d906fa3ce576a8c6bbd",
+      "snr": 86.9,
+      "source": "De-Passagier2.ogg"
     },
     "passport": {
       "author": "Jeuwre",
@@ -5316,15 +5324,16 @@
       "source": "De-schnarchen.ogg"
     },
     "snow": {
-      "author": "No machine-readable author provided. S.~commonswiki assumed (based on copyright claims).",
+      "author": "Jeuwre",
       "file": "snow.mp3",
-      "gain": 11.2,
-      "lead": 247,
-      "licence": "Public domain",
+      "gain": -1.1,
+      "lead": 433,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "schnee",
-      "sha256": "23b75aa1af406c4bf754ea043362d7535355aaac2f49dfc7278fd051e95fd515",
-      "snr": 58.9,
-      "source": "De-Schnee.ogg"
+      "sha256": "453aa284db6241f2fea57c253bd5010fb9fd54ca8218fe31dd448c45db6a8988",
+      "snr": 84.4,
+      "source": "De-Schnee2.ogg"
     },
     "so-that": {
       "author": "Dinock90",
@@ -5493,16 +5502,16 @@
       "source": "De-Treppe.ogg"
     },
     "star": {
-      "author": "Bleibein",
+      "author": "Jeuwre",
       "file": "star.mp3",
-      "gain": 5.0,
-      "lead": 206,
+      "gain": 0.8,
+      "lead": 497,
       "licence": "CC BY-SA 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "stern",
-      "sha256": "e0493b98a258667697dd765a38eca3c80bd4dd714c3c221c7ea1cbe34b94cb3d",
-      "snr": 61.5,
-      "source": "De-Stern.ogg"
+      "sha256": "a127d7aa866516d705b581e5ca27332efbb41435f246d7b050c6d285dd6b79d2",
+      "snr": 87.8,
+      "source": "De-Stern2.ogg"
     },
     "start": {
       "author": "Jeuwre",
@@ -5739,15 +5748,16 @@
       "source": "De-steuer.ogg"
     },
     "taxi": {
-      "author": "Pill",
+      "author": "Jeuwre",
       "file": "taxi.mp3",
-      "gain": 1.9,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 2.1,
+      "lead": 440,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "taxi",
-      "sha256": "4c9ede0bfa93a94a70b92b2de4d88fd8f0d2af88843cbda3dfe74d12b1649e8c",
-      "snr": 29.8,
-      "source": "De-Taxi.ogg"
+      "sha256": "0e36f8f9dcbed8fa4279e62ee8341e650e1f3a423b3d2164028973cfafacbfd6",
+      "snr": 86.0,
+      "source": "De-Taxi2.ogg"
     },
     "tea": {
       "author": "Kampy",
@@ -6144,15 +6154,16 @@
       "source": "De-Ampel.ogg"
     },
     "train": {
-      "author": "Gestumblindi",
+      "author": "Jeuwre",
       "file": "train.mp3",
-      "gain": 2.6,
-      "lead": 22,
-      "licence": "Public domain",
+      "gain": -0.9,
+      "lead": 433,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "zug",
-      "sha256": "8ad8db166509ab5b229b9595b8ba8c567dfb0284b913f2b705f40e88f74eab11",
-      "snr": 46.5,
-      "source": "De-Zug.ogg"
+      "sha256": "e784a2b0b148cc8c36ee99b11b7bd8e7e7033cb79911b5d91a110c59f0fe25b3",
+      "snr": 87.2,
+      "source": "De-Zug2.ogg"
     },
     "train-station": {
       "author": "T.Voekler",
@@ -6355,16 +6366,16 @@
       "source": "De-dringend.ogg"
     },
     "vaccination": {
-      "author": "Thegurke",
+      "author": "Jeuwre",
       "file": "vaccination.mp3",
-      "gain": 19.6,
-      "lead": 457,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": -0.9,
+      "lead": 427,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "impfung",
-      "sha256": "efa612f83dd2ccf0aff8c5d8d7ce0b502262fd74577275c2248cc866ae33c330",
-      "snr": 38.8,
-      "source": "De-Impfung.ogg"
+      "sha256": "890eb0a2a1a01732f4f32a9e4ac7088acd1882868a5abfc0a98d8de91e502cef",
+      "snr": 86.9,
+      "source": "De-Impfung2.ogg"
     },
     "vegetable": {
       "author": "Kampy",
@@ -6819,15 +6830,16 @@
       "source": "De-gähnen.ogg"
     },
     "year": {
-      "author": "Pajz",
+      "author": "Jeuwre",
       "file": "year.mp3",
-      "gain": 4.2,
-      "lead": 161,
-      "licence": "Public domain",
+      "gain": -1.2,
+      "lead": 415,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "jahr",
-      "sha256": "a11de94fbcc48ff43049d2deb124c749f0cb5d565b80d094d5590042b080effa",
-      "snr": 54.3,
-      "source": "De-Jahr.ogg"
+      "sha256": "2f1c1a62870ec5c2f12926e780515419ea98b3deeb43d052cb702292982c76fa",
+      "snr": 87.0,
+      "source": "De-Jahr2.ogg"
     },
     "yellow": {
       "author": "Kampy",
@@ -6842,16 +6854,16 @@
       "source": "De-gelb.ogg"
     },
     "yes": {
-      "author": "MiER",
+      "author": "Jeuwre",
       "file": "yes.mp3",
-      "gain": 4.4,
-      "lead": 177,
-      "licence": "CC BY-SA 3.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "gain": 0.4,
+      "lead": 437,
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ja",
-      "sha256": "f0eae6349da2b2f47c890beda5d353ffc3d6f178d867afb2b4ca395a1eb5f5a9",
-      "snr": 65.3,
-      "source": "De-ja.ogg"
+      "sha256": "48c43c721c9496e3d9751a64d14a752cab2c090bc787b864b3deee65cf0a8cdd",
+      "snr": 86.8,
+      "source": "De-Ja.ogg"
     },
     "yesterday": {
       "author": "Kampy",
