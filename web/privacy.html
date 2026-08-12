@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Spross</title>
+<meta name="description" content="What Spross does with your data: the app sends nothing off your device, and the website keeps to server logs, one browser entry and an optional mailing-list address.">
+<meta name="robots" content="index, follow">
+<link rel="alternate" hreflang="de" href="privacy.de.html">
+<link rel="alternate" hreflang="en" href="privacy.html">
+<link rel="icon" href="assets/icon-512.png">
+<link rel="apple-touch-icon" href="assets/icon-512.png">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site">
+  <svg class="mark" viewBox="20 16 68 72" role="img" aria-label="Spross sprout">
+    <path fill="var(--stem)" d="M54,78 C54,66 54,58 54,50 C54,42 50,38 44,36 C50,40 52,46 52,52 C52,58 52,66 52,78 Z"/>
+    <path fill="var(--leaf-a)" d="M53,52 C46,52 38,48 36,40 C34,34 36,30 36,30 C42,30 50,32 53,40 C55,45 53,52 53,52 Z"/>
+    <path fill="var(--leaf-b)" d="M55,46 C62,46 70,42 72,34 C74,28 72,24 72,24 C66,24 58,26 55,34 C53,39 55,46 55,46 Z"/>
+    <path fill="var(--stem)" d="M40,78 L68,78 C68,82 64,85 60,85 L48,85 C44,85 40,82 40,78 Z"/>
+  </svg>
+  <a class="word" href="index.html">Spross</a>
+</header>
+
+<main class="legal">
+
+<p class="lang-switch"><a href="privacy.de.html" hreflang="de" lang="de">Diese Seite auf Deutsch</a></p>
+
+<h1>Privacy Policy</h1>
+<p class="updated">Last updated: 12 August 2026</p>
+
+<div class="card">
+  <p><strong>The short version.</strong>
+    The Spross app contains no networking code at all.
+    Nothing you learn, type or answer leaves your phone —
+    there is no account, no analytics, no crash reporting, no advertising and no third-party SDK,
+    and the app asks for no device permissions.</p>
+  <p>This website is almost as quiet.
+    It sets no cookies, runs no analytics and loads nothing from other servers.
+    The only personal data involved is the request your browser makes to our host,
+    an email address if you choose to join the mailing list,
+    and whatever you write to us yourself.</p>
+</div>
+
+<h2>1. Who is responsible</h2>
+
+<p>The controller for the processing described here, in the sense of Art. 4(7) GDPR:</p>
+
+<div class="card">
+  <p class="name">Polygon GmbH<br>
+    <span class="addr">Bamberger Str. 43, 96215 Lichtenfels, Germany</span></p>
+  <dl class="facts">
+    <div><dt>Represented by</dt> <dd>Janek Janetzko, managing director (Geschäftsführer)</dd></div>
+    <div><dt>Commercial register (Handelsregister)</dt> <dd>Amtsgericht Coburg, HRB 7580</dd></div>
+    <div><dt>VAT ID (Umsatzsteuer-Identifikationsnummer)</dt> <dd>DE457826625</dd></div>
+    <div><dt>Contact</dt> <dd><a href="mailto:feedback@spross.net">feedback@spross.net</a></dd></div>
+  </dl>
+</div>
+
+<p>The full provider identification under § 5 DDG is on the <a href="impressum.html">legal notice (Impressum)</a> page.
+  We have not appointed a data protection officer, as we are not required to under Art. 37 GDPR and § 38 BDSG;
+  data protection questions go to the contact address above.</p>
+
+<h2>2. The app: everything stays on your phone</h2>
+
+<p>Spross is an offline app.
+  It has no server behind it, and the code that would talk to one does not exist:
+  the iOS and watchOS sources contain no network API of any kind,
+  and the Android app does not even declare the <code>INTERNET</code> permission,
+  which means the operating system itself blocks it from opening a connection.</p>
+
+<h3>What is stored, and where</h3>
+
+<p>Your cards, your answers, your review history and your settings are written to your own device only:</p>
+<ul>
+  <li>on iPhone and Apple Watch, into the shared app container <code>group.net.spross.app</code>,
+    which is what lets the widget and the watch app show the same box as the phone;</li>
+  <li>on Android, into the app's private storage.</li>
+</ul>
+<p>We never see any of it.
+  Deleting the app removes this data from the device along with it,
+  and there is no copy anywhere else for us to delete on request —
+  which also means the app itself is your only backup unless your device makes one (see below).</p>
+
+<h3>What the app does not do</h3>
+<ul>
+  <li>no user accounts, no login, no email address, no name;</li>
+  <li>no analytics, usage statistics or telemetry;</li>
+  <li>no crash or diagnostics reporting to us;</li>
+  <li>no advertising, no advertising identifier, no tracking of any kind;</li>
+  <li>no third-party SDKs — the only library the app links is our own learning engine;</li>
+  <li>no camera, microphone, location, contacts or photo access; the app requests no permissions at all.</li>
+</ul>
+
+<h3>Between your own two devices</h3>
+
+<p>iPhone and Apple Watch keep each other up to date through Apple's WatchConnectivity,
+  which passes the data directly between the two paired devices over Bluetooth or the local network.
+  It does not travel over the internet and it does not reach a server of ours or of Apple's.</p>
+
+<h3>Saying words out loud</h3>
+
+<p>Recorded pronunciations ship inside the app and are played from it.
+  Where no recording exists, the word is spoken by your device's own speech synthesis:</p>
+<ul>
+  <li><strong>iOS/watchOS</strong> synthesises on the device.
+    Spross only uses voices already installed; it downloads nothing.
+    If you install a higher-quality voice, iOS itself fetches it from Apple, outside the app.</li>
+  <li><strong>Android</strong> hands the word to whichever text-to-speech engine you have installed.
+    Some engines, including Google's, may synthesise over the network,
+    in which case the word being practised is sent to that engine's provider under its own privacy policy.
+    Spross makes no such request and cannot observe it —
+    but we would rather name it than let you assume otherwise.
+    Your Android speech settings decide which engine is used.</li>
+</ul>
+
+<h3>Device backups</h3>
+
+<p>The app sends nothing, but your device's backup may carry the app's data along with everything else:</p>
+<ul>
+  <li><strong>iOS</strong> includes the app container in an iCloud or encrypted local backup if you have backups switched on.</li>
+  <li><strong>Android</strong> currently allows Auto Backup, so Android may copy the app's data into your Google Drive.</li>
+</ul>
+<p>Both are your device's own function, under your setting and under Apple's or Google's terms —
+  not a transmission by Spross.
+  Turning the backup off, in the operating system's settings, stops it.</p>
+
+<h2>3. Getting the app: Apple, Google and GitHub</h2>
+
+<p>Spross is distributed outside the app stores at the moment:
+  the Android package is downloaded from our GitHub release page,
+  and the iPhone build reaches testers through Apple's TestFlight or as a direct over-the-air install.</p>
+
+<p>Whoever hands you that download processes data about it —
+  your IP address, the request, and with Apple an account and device identity —
+  as their <strong>own controller</strong>, under their own privacy policy, not ours.
+  That is true of Apple Inc. and GitHub, Inc. today,
+  and it would equally be true of the App Store or Google Play, including any purchase data,
+  if Spross is ever offered there: that processing is Apple's or Google's, not Polygon GmbH's.</p>
+
+<p>Two things do reach us through those channels, and you should know about them:</p>
+<ul>
+  <li>if you take part in the <strong>TestFlight</strong> beta, Apple shows us the email address you joined with,
+    which builds you installed, and any feedback or crash report you choose to send through TestFlight.
+    We use that only to run the beta and answer you.</li>
+  <li>download counts from GitHub and Apple, which are aggregate numbers and identify nobody.</li>
+</ul>
+
+<h2>4. This website (spross.net)</h2>
+
+<h3>Server logs</h3>
+
+<p>spross.net is a set of static files with no application server behind them.
+  Like every web server, the host records each request:
+  IP address, date and time, the file requested, the status and size of the response,
+  and the browser's user-agent and referrer.
+  This is processed to deliver the page and to keep the server secure and functioning,
+  on the basis of our legitimate interest under Art. 6(1)(f) GDPR,
+  and is kept only for the short period the host needs for that purpose.
+  Our hosting provider processes these logs on our behalf as a processor under Art. 28 GDPR.</p>
+
+<h3>No cookies, no analytics</h3>
+
+<p>The site sets <strong>no cookies</strong>.
+  There is no analytics, no tag manager, no tracking pixel and no advertising.
+  Every file the page loads — stylesheet, script, images, sounds, the learning engine — comes from spross.net itself;
+  no fonts, no CDN and no other external resource is fetched,
+  so no third party learns that you visited.
+  That is also why you are not asked to consent to anything on arrival: there is nothing to consent to.</p>
+
+<h3>The counting drill</h3>
+
+<p>The drill on the landing page is the app's real engine compiled to JavaScript,
+  and it runs entirely inside your browser.
+  The numbers, your answers and your mistakes are never sent anywhere.</p>
+
+<p>The drill stores one thing in your browser's local storage: your best streak per language,
+  under keys of the form <code>spross.record.numbers.de</code>.
+  It is a number, it contains no identifier, it is never transmitted, and it is only read to tell you when you beat it.
+  We regard this as storage strictly necessary to provide the function you asked for
+  (§ 25(2) no. 2 TDDDG); clearing the site data in your browser removes it.</p>
+
+<h3>Speech in the browser</h3>
+
+<p>If your browser offers a voice for the language, the drill can read an answer aloud
+  using the browser's built-in speech synthesis.
+  Whether that happens on your device or through your browser or operating-system vendor's service
+  depends on that vendor, not on us; we send nothing ourselves.</p>
+
+<h3>The mailing list</h3>
+
+<p>The signup form is not connected to a mailing-list provider yet.
+  Submitting it today transmits nothing at all —
+  it only shows a note asking you to write to us instead.</p>
+
+<p>When the list opens, the address you enter will be used solely to send the Spross newsletter,
+  on the basis of your consent under Art. 6(1)(a) GDPR, confirmed by a double opt-in email.
+  The list will be run by a specialist email service provider as our processor under Art. 28 GDPR;
+  we will name that provider here before any address is transmitted to it.
+  You can withdraw your consent at any time, with effect for the future,
+  through the unsubscribe link in every issue or by writing to us,
+  and the address is deleted when you do.</p>
+
+<h3>Writing to us</h3>
+
+<p>If you email <a href="mailto:feedback@spross.net">feedback@spross.net</a>,
+  we process your address and whatever you write in order to answer you —
+  Art. 6(1)(b) GDPR where it concerns the app you use, otherwise Art. 6(1)(f).
+  Our email is hosted by a provider acting as our processor under Art. 28 GDPR.
+  We keep correspondence as long as the matter is live and any statutory retention period runs, then delete it.</p>
+
+<h2>5. Recipients and transfers outside the EU</h2>
+
+<p>We pass personal data to no one for their own purposes.
+  The only recipients are the service providers named by category above —
+  our hosting provider, our email provider, and in future a mailing-list provider —
+  each bound by a data processing agreement under Art. 28 GDPR.
+  Where such a provider processes data outside the EU or EEA,
+  we rely on an adequacy decision of the European Commission or on
+  standard contractual clauses under Art. 46(2)(c) GDPR.
+  Apple, Google and GitHub are not our processors:
+  as described in section 3, they act as their own controllers for what they do.</p>
+
+<h2>6. How long we keep things</h2>
+
+<ul>
+  <li><strong>App data:</strong> we never receive it; it lives on your device until you delete the app.</li>
+  <li><strong>Server logs:</strong> the short technical period our host needs for delivery and security.</li>
+  <li><strong>Mailing list:</strong> until you unsubscribe.</li>
+  <li><strong>Correspondence:</strong> until the matter is settled, subject to statutory retention periods.</li>
+</ul>
+
+<h2>7. Your rights</h2>
+
+<p>You have, in respect of the personal data we process about you:</p>
+<ul>
+  <li>the right of access, Art. 15 GDPR;</li>
+  <li>the right to rectification, Art. 16 GDPR;</li>
+  <li>the right to erasure, Art. 17 GDPR;</li>
+  <li>the right to restriction of processing, Art. 18 GDPR;</li>
+  <li>the right to data portability, Art. 20 GDPR;</li>
+  <li>the <strong>right to object</strong>, Art. 21 GDPR, to processing based on Art. 6(1)(f) —
+    on grounds relating to your particular situation, and at any time and without reason where it is direct marketing;</li>
+  <li>the right to withdraw a consent you have given, Art. 7(3) GDPR,
+    at any time and with effect for the future, without affecting the lawfulness of what came before.</li>
+</ul>
+
+<p>To exercise any of them, one email to <a href="mailto:feedback@spross.net">feedback@spross.net</a> is enough;
+  no form and no particular wording is required.
+  We answer within one month, as Art. 12(3) GDPR requires.
+  Note that for the learning data in the app there is nothing for us to disclose, correct or erase,
+  because we hold none of it — it is on your device, and deleting the app deletes it.</p>
+
+<h2>8. Right to complain</h2>
+
+<p>You can lodge a complaint with a supervisory authority, Art. 77 GDPR,
+  in particular in the Member State of your residence or workplace or of the alleged infringement.
+  The authority responsible for us is:</p>
+
+<div class="card">
+  <p><strong>Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)</strong><br>
+    Promenade 18, 91522 Ansbach, Germany<br>
+    <a href="https://www.lda.bayern.de">www.lda.bayern.de</a></p>
+</div>
+
+<h2>9. No automated decision-making</h2>
+
+<p>We carry out no automated decision-making or profiling within the meaning of Art. 22 GDPR.
+  The app's spacing algorithm does schedule your cards from your own answers,
+  but it runs on your device, produces no decision about you with legal or similarly significant effect,
+  and its results are never seen by us.</p>
+
+<h2>10. Changes to this policy</h2>
+
+<p>We update this page when the app or the site changes what it does with data —
+  for instance when the mailing list opens.
+  The date at the top always tells you which version you are reading.</p>
+
+</main>
+
+<footer class="site">
+  <p>Sleep well — your words are still growing.</p>
+  <p><a href="mailto:feedback@spross.net">feedback@spross.net</a></p>
+  <nav>
+    <a href="index.html">Home</a>·<a href="impressum.html">Legal notice</a>·<a href="privacy.de.html" hreflang="de" lang="de">Deutsch</a>
+  </nav>
+</footer>
+
+</div>
+</body>
+</html>

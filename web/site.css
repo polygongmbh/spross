@@ -479,6 +479,80 @@ header.site .word {
 
 .signup .thanks { color: var(--forest); font-weight: 700; }
 
+/* ---------- legal pages (privacy, Impressum) ---------- */
+
+header.site a.word { color: var(--text); text-decoration: none; }
+
+.lang-switch {
+  margin: 0 0 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-2);
+}
+
+.legal { max-width: 44rem; margin: 0 auto 3rem; }
+
+.legal h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1.15;
+  color: var(--accent);
+  font-weight: 800;
+  margin: 0 0 0.3rem;
+}
+
+.legal .updated { color: var(--text-2); font-size: 0.9rem; margin: 0 0 1.5rem; }
+
+.legal h2 { font-size: 1.2rem; margin: 2.2rem 0 0.5rem; }
+
+.legal h3 { font-size: 1rem; margin: 1.5rem 0 0.4rem; }
+
+.legal p, .legal li { color: var(--text-2); }
+
+.legal strong { color: var(--text); }
+
+.legal ul { padding-left: 1.15rem; margin: 0.5rem 0; }
+
+.legal li { margin: 0.35rem 0; }
+
+.legal code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--surface-tint);
+  border-radius: 6px;
+  padding: 0.1rem 0.35rem;
+}
+
+.legal .card {
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--separator) 60%, transparent);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.4rem;
+  margin: 1.2rem 0 2rem;
+}
+
+.legal .card > :first-child { margin-top: 0; }
+
+.legal .card > :last-child { margin-bottom: 0; }
+
+.legal .name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 0.9rem;
+}
+
+.legal .name .addr { font-size: 1rem; font-weight: 400; color: var(--text-2); }
+
+.legal .facts { margin: 0; }
+
+.legal .facts div { margin: 0.3rem 0; }
+
+.legal .facts dt { display: inline; color: var(--text-2); }
+
+.legal .facts dt::after { content: ": "; }
+
+.legal .facts dd { display: inline; margin: 0; color: var(--text); font-weight: 600; }
+
 /* ---------- footer ---------- */
 
 footer.site {
@@ -490,6 +564,10 @@ footer.site {
 }
 
 footer.site p { margin: 0.3rem 0; }
+
+footer.site nav { margin-top: 0.6rem; }
+
+footer.site nav a { margin: 0 0.45rem; }
 
 /* ---------- small screens / motion ---------- */
 
