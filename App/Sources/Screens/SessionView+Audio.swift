@@ -130,21 +130,3 @@ extension SessionView {
     }
     #endif
 }
-
-extension View {
-    /// Tap-to-replay for the produce narration LINES — the typo correction and
-    /// the other-word reveal, where a correct or nearly-correct answer leaves
-    /// the card closed and the word stands nowhere else. No 44 pt floor here:
-    /// these are running text under the card, and growing them would move a
-    /// layout the reveal has just settled.
-    @ViewBuilder
-    func pronounceOnTap(_ pronounce: (() -> Void)?) -> some View {
-        if let pronounce {
-            contentShape(Rectangle())
-                .onTapGesture(perform: pronounce)
-                .accessibilityAction(named: Text("a11y.pronounce"), pronounce)
-        } else {
-            self
-        }
-    }
-}

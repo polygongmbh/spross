@@ -52,6 +52,37 @@ struct DLSpokenWord<Word: View>: View {
     }
 }
 
+// MARK: - DLVoice
+
+/// Saying a form out loud, asked BY the form rather than handed in already
+/// resolved — for the surfaces that hold MANY forms and cannot know in advance
+/// which one a tap will want: the correction box, a reference table's rows.
+///
+/// nil back — nothing recorded and no voice for the language — drops the
+/// speaker rather than showing a dead one.
+struct DLVoice {
+    let pronounce: (String) -> (() -> Void)?
+    let isPlaying: (String) -> Bool
+}
+
+extension View {
+    /// Tap-to-replay for a whole piece of content rather than a glyph beside it —
+    /// the produce narration lines (the typo correction, the other-word reveal),
+    /// a row of a reference table, the box list. No 44 pt floor: these are text
+    /// that is already bigger than one, and growing them would move the layout
+    /// around them.
+    @ViewBuilder
+    func pronounceOnTap(_ pronounce: (() -> Void)?) -> some View {
+        if let pronounce {
+            contentShape(Rectangle())
+                .onTapGesture(perform: pronounce)
+                .accessibilityAction(named: Text("a11y.pronounce"), pronounce)
+        } else {
+            self
+        }
+    }
+}
+
 // MARK: - The language a word is written in
 
 extension Text {

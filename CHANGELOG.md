@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **The reference pages speak, and the counting table is read at a glance.** Tap any row
+  of the numbers table or any country in the atlas and it is said out loud, in the language
+  being learned. The readings are set larger, the short bands stand in two columns instead
+  of one long list, and the rows sit closer together — the whole of zero to fifteen fits on
+  a screen with the tens under it.
+
 - **The German numbers drill takes the spelling people actually say.** "hundert" and
   "tausend" grade as readily as "einhundert" and "eintausend" — in the cardinals, in
   the years, and in the numbers a sentence carries. What the reveal and the table teach

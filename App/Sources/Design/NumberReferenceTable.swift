@@ -11,6 +11,13 @@ import SprossKern
 struct NumberReferenceTable: View {
     /// The language being learned — the one the table describes.
     let language: String
+    /// How a row is heard. Left off where a surface has nothing to say it with;
+    /// the readings are generated and no catalog lists them, so what answers is
+    /// almost always the live voice — and nothing at all where the language has
+    /// none, which drops the speaker rather than showing a dead one.
+    var voice: DLVoice?
+
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
@@ -37,11 +44,7 @@ struct NumberReferenceTable: View {
                     .textCase(.uppercase)
                     .accessibilityAddTraits(.isHeader)
             }
-            VStack(alignment: .leading, spacing: DL.Space.xs) {
-                ForEach(Array(section.entries.enumerated()), id: \.offset) { _, entry in
-                    row(entry)
-                }
-            }
+            columns(section.entries, count: columnCount(section.entries))
             .padding(DL.Space.l)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
@@ -51,39 +54,92 @@ struct NumberReferenceTable: View {
         }
     }
 
-    /// Value and reading on one line, and on two once the type grows.
-    /// `fixedSize` lets a long reading wrap instead of truncating — this is the
-    /// page a learner reads the language off.
-    private func row(_ entry: ReferenceEntry) -> some View {
-        ViewThatFits(in: .horizontal) {
-            HStack(alignment: .firstTextBaseline, spacing: DL.Space.m) {
-                value(entry)
-                reading(entry)
-                Spacer(minLength: 0)
-            }
-            VStack(alignment: .leading, spacing: 0) {
-                value(entry)
-                reading(entry)
+    /// Two columns for a band of short readings, one for everything else — the
+    /// counting words are read at a glance, and a page that spends a whole line
+    /// on "vier" is a page of scrolling.
+    ///
+    /// Decided on the LONGEST row rather than measured: a `ViewThatFits` pair
+    /// measures a row narrower than it renders (the trailing spacer), which
+    /// picks two columns and then wraps "dreizehn" inside one. The bound is the
+    /// widest row a phone fits twice at the default type size, and anything
+    /// larger — the accessibility sizes included — stays single-column, where a
+    /// reading has the whole width to grow into.
+    private func columnCount(_ entries: [ReferenceEntry]) -> Int {
+        guard typeSize <= .large, entries.count >= 6 else { return 1 }
+        let widest = entries.map { $0.value.count + $0.reading.count }.max() ?? 0
+        return widest <= 12 ? 2 : 1
+    }
+
+    /// A band's rows, split down [count] columns — filled column by column, so
+    /// each one still counts upward.
+    ///
+    /// The speaker glyph rides the single-column bands only: paired columns are
+    /// half as wide, and 26 pt of glyph there is 26 pt the reading needs. It
+    /// costs those rows nothing — the row itself is what says the word, and the
+    /// wide bands above and below carry the glyph that says so.
+    private func columns(_ entries: [ReferenceEntry], count: Int) -> some View {
+        let perColumn = (entries.count + count - 1) / count
+        return HStack(alignment: .top, spacing: DL.Space.xl) {
+            ForEach(0..<count, id: \.self) { column in
+                VStack(alignment: .leading, spacing: DL.Space.xs) {
+                    ForEach(Array(entries.dropFirst(column * perColumn).prefix(perColumn).enumerated()),
+                            id: \.offset) { _, entry in
+                        row(entry, showsSpeaker: count == 1)
+                    }
+                }
             }
         }
-        .padding(.vertical, 2)
+    }
+
+    /// Value and reading on one line. `fixedSize` lets a reading that outgrows
+    /// its column wrap instead of truncating — this is the page a learner reads
+    /// the language off.
+    ///
+    /// The WHOLE row says it, not a glyph at the end of it: a table is read by
+    /// running down the readings, and a speaker that has to be aimed at is a
+    /// detour per row. The glyph, where it fits, is the sign that there is
+    /// something to hear — and the same target it always was for anyone aiming.
+    private func row(_ entry: ReferenceEntry, showsSpeaker: Bool) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: DL.Space.m) {
+            value(entry)
+            reading(entry)
+            Spacer(minLength: 0)
+            if let speak = speak(entry), showsSpeaker {
+                SpeakerIcon(isPlaying: voice?.isPlaying(entry.reading) ?? false, pronounce: speak)
+                    // why: the glyph reserves its own size and no more — its 44 pt
+                    // target would set the height of every row in the table, and
+                    // the row already IS a target that size.
+                    .frame(width: 26, height: 22)
+                    // why: the row is one VoiceOver element and hearing it is
+                    // offered as its action — a target to hunt for inside the
+                    // label is not one.
+                    .accessibilityHidden(true)
+            }
+        }
         // why: one row is one VoiceOver stop — "1 000 → eintausend", not two
         // stops that have to be paired by ear.
         .accessibilityElement(children: .combine)
+        .pronounceOnTap(speak(entry))
+    }
+
+    /// Hearing one row — a tap, so it sounds even while reading aloud is off.
+    private func speak(_ entry: ReferenceEntry) -> (() -> Void)? {
+        voice?.pronounce(entry.reading)
     }
 
     private func value(_ entry: ReferenceEntry) -> some View {
         Text(verbatim: entry.value)
-            .font(DL.Fonts.body)
+            .font(DL.Fonts.subheadline)
             .monospacedDigit()
             .foregroundStyle(Color.dlTextSecondary)
     }
 
     private func reading(_ entry: ReferenceEntry) -> some View {
         Text(verbatim: entry.reading)
-            .font(DL.Fonts.headline)
+            .font(.system(.title3, design: .rounded, weight: .semibold))
             .foregroundStyle(Color.dlTextPrimary)
             .fixedSize(horizontal: false, vertical: true)
+            .dlSpoken(entry.reading, language: language)
     }
 
     /// Kern's band key → its heading. Spelled out rather than interpolated: a
@@ -111,6 +167,8 @@ struct NumberReferenceSheet: View {
     let language: String
     /// Names the language where no chrome exonym exists for it.
     var catalog: Catalog?
+    /// How a row is heard — passed straight through to the table.
+    var voice: DLVoice?
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.locale) private var locale
@@ -118,7 +176,7 @@ struct NumberReferenceSheet: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                NumberReferenceTable(language: language)
+                NumberReferenceTable(language: language, voice: voice)
                     .padding(DL.Space.xl)
             }
             .background(Color.dlBackground.ignoresSafeArea())

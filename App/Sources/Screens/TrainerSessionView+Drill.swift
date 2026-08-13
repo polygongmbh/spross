@@ -42,8 +42,16 @@ extension TrainerSessionView {
         .scrollBounceBehavior(.basedOnSize)
         .scrollDismissesKeyboard(.never)
         .sheet(isPresented: $showingReference) {
-            NumberReferenceSheet(language: language, catalog: catalog)
+            NumberReferenceSheet(language: language, catalog: catalog, voice: referenceVoice)
         }
+    }
+
+    /// How the look-up sheet says a row. nil with no model — a preview run has
+    /// nothing to look a voice up with, and the sheet then reads silently.
+    private var referenceVoice: DLVoice? {
+        guard let model else { return nil }
+        return DLVoice(pronounce: { model.pronounceAction(for: $0, lang: language) },
+                       isPlaying: { model.isPronouncing($0, lang: language) })
     }
 
     private var streakLine: some View {
