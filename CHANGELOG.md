@@ -2,11 +2,15 @@
 
 ## Unreleased
 
-- **The reference pages speak, and the counting table is read at a glance.** Tap any row
-  of the numbers table or any country in the atlas and it is said out loud, in the language
-  being learned. The readings are set larger, the short bands stand in two columns instead
-  of one long list, and the rows sit closer together — the whole of zero to fifteen fits on
-  a screen with the tens under it.
+- **The reference pages speak, and the counting table is read at a glance.**
+  Tap a row of the numbers table or a country in the atlas, on either phone,
+  and it is said out loud in the language being learned;
+  a letter's name and its example word answer a tap on the words themselves.
+  On the two tables the row itself is the target, with no speaker to aim at,
+  and a line under the page's heading says so,
+  shown only where this phone can really speak the language.
+  The counting table is easier on the eye besides: the readings are set larger,
+  and a band of short readings stands in two columns instead of one long list.
 
 - **The German numbers drill takes the spelling people actually say.** "hundert" and
   "tausend" grade as readily as "einhundert" and "eintausend" — in the cardinals, in

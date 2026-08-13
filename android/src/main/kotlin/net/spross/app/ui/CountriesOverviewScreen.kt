@@ -12,27 +12,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.countryRung
 import net.spross.app.countryRungHint
-import net.spross.app.countryTier
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.trainer.CountryDrill
-import net.spross.kern.trainer.CountryReferenceGroup
-import net.spross.kern.trainer.CountryReferenceRow
 
 /**
  * The "Länder" entry: the world as the two languages name it, and the place its drill is
@@ -77,7 +69,6 @@ fun CountriesOverviewScreen(model: AppModel) {
     LaunchedEffect(result) { if (result != null) scroll.animateScrollTo(0) }
 
     val start = { model.startCountryDrill(reverse, fast) }
-    val groups = remember(content) { CountryDrill.reference(content) }
 
     OverviewScaffold(
         title = chrome.countriesPage.format(model.languageName(content.target)),
@@ -129,8 +120,7 @@ fun CountriesOverviewScreen(model: AppModel) {
         }
         OverviewStartButton(chrome, true, start)
 
-        OverviewHeading(chrome.countriesReference)
-        for (group in groups) TierGroup(group, chrome)
+        CountryReferenceSection(model, content, chrome)
     }
 }
 
@@ -178,83 +168,4 @@ private fun reverseHint(
     val asked = if (reverse) content.target else content.source
     val owed = if (reverse) content.source else content.target
     return chrome.countriesReverseHint.format(model.languageName(asked), model.languageName(owed))
-}
-
-/** How far from home a group sits, and the countries standing there. */
-@Composable
-private fun TierGroup(group: CountryReferenceGroup, chrome: Chrome) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
-        Text(
-            chrome.countryTier(group.tier).uppercase(),
-            style = MaterialTheme.typography.bodySmall,
-            color = Dl.colors.textSecondary,
-            modifier = Modifier.semantics { heading() },
-        )
-        OverviewPanel {
-            for (row in group.rows) CountryRow(row)
-        }
-    }
-}
-
-/**
- * One country, twice: the known language on the left, the learned one on the right, each
- * with the people and the language(s) under the name — the triple the drill asks about,
- * written down in one place.
- */
-@Composable
-private fun CountryRow(row: CountryReferenceRow) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            // why: one country is one TalkBack stop — both names, the people and the
-            // languages are the same row of the table.
-            .semantics(mergeDescendants = true) { },
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
-    ) {
-        Text(row.flag, fontSize = 28.sp, modifier = Modifier.clearAndSetSemantics { })
-        CountrySide(
-            name = row.source,
-            under = row.sourceNationality,
-            languages = row.sourceLanguages,
-            tint = Dl.colors.textPrimary,
-            align = TextAlign.Start,
-            alignment = Alignment.Start,
-            modifier = Modifier.weight(1f),
-        )
-        CountrySide(
-            name = row.target,
-            under = row.targetNationality,
-            languages = row.targetLanguages,
-            tint = Dl.colors.accent,
-            align = TextAlign.End,
-            alignment = Alignment.End,
-            modifier = Modifier.weight(1f),
-        )
-    }
-}
-
-@Composable
-private fun CountrySide(
-    name: String,
-    under: String,
-    languages: List<String>,
-    tint: Color,
-    align: TextAlign,
-    alignment: Alignment.Horizontal,
-    modifier: Modifier = Modifier,
-) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(2.dp),
-        horizontalAlignment = alignment,
-    ) {
-        Text(name, style = MaterialTheme.typography.titleMedium, color = tint, textAlign = align)
-        Text(
-            (listOf(under) + languages).joinToString(" · "),
-            style = MaterialTheme.typography.bodySmall,
-            color = Dl.colors.textSecondary,
-            textAlign = align,
-        )
-    }
 }

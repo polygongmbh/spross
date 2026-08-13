@@ -2,6 +2,7 @@ package net.spross.app.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.customActions
@@ -35,7 +37,9 @@ import net.spross.kern.model.Language
 /**
  * The alphabet sheet, one card per row of `catalog/alphabet/<lang>.json`: the glyph with
  * its capital, the letter's own name, its IPA, when it takes that value, what it sounds
- * like, and an example word — the name and the word each with a speaker beside them.
+ * like, and an example word.
+ * The name line and the example line each say their sound when tapped,
+ * with the speaker beside them as the mark that says so.
  *
  * Reading matter, not a drill: nothing here is graded, and nothing plays unasked. Every tap
  * is a request, so it sounds even while reading aloud is switched off — nobody opens a
@@ -130,7 +134,7 @@ private fun AlphabetHeader(entry: AlphabetEntry, language: Language, speak: (() 
     // not the display size a single grapheme is set in.
     val glyphs = entry.upper?.let { "$it ${entry.glyph}" } ?: entry.glyph
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().speakOnLineTap(language to entry.glyph, speak),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
     ) {
@@ -171,7 +175,7 @@ private fun AlphabetExample(
     speak: (() -> Unit)?,
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().speakOnLineTap(language to text, speak),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
     ) {
@@ -184,6 +188,19 @@ private fun AlphabetExample(
         if (speak != null) SpeakerButton(speak)
     }
 }
+
+/**
+ * The whole line says its sound, the way every other reference page's row does —
+ * the glyph beside it is the mark that makes the gesture findable, never the only target.
+ *
+ * Deliberately semantics-free: the card is one merged TalkBack stop that already
+ * NAMES its two sounds as row actions, and a `clickable` (or [pronounceOnTap]) here
+ * would merge a third, unnamed "pronounce" into the same node.
+ * [key] names what will be said, so the gesture is rebuilt when the line changes
+ * rather than firing the letter of a language already left behind.
+ */
+private fun Modifier.speakOnLineTap(key: Any?, speak: (() -> Unit)?): Modifier =
+    if (speak == null) this else pointerInput(key) { detectTapGestures { speak() } }
 
 /**
  * Hidden from TalkBack on purpose: the row is one element, and hearing it is offered as a

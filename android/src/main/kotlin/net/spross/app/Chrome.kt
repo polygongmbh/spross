@@ -86,6 +86,7 @@ data class Chrome(
     val lettersPage: String,       // %s
     val overviewPractice: String,  // the heading the picks stand under
     val overviewStart: String,     // the button both pages open a run with
+    val tapToHear: String,         // the gesture a reference page discloses once, under its heading
     val numbersReference: String,
     val numbersNotes: String,
     /**

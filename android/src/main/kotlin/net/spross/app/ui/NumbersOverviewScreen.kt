@@ -19,6 +19,7 @@ import net.spross.app.Chrome
 import net.spross.app.badge
 import net.spross.app.hint
 import net.spross.app.name
+import net.spross.app.speakFormOnTap
 import net.spross.app.unlockPrice
 import net.spross.kern.trainer.DrillModifier
 import net.spross.kern.trainer.DrillSelection
@@ -127,7 +128,7 @@ fun NumbersOverviewScreen(model: AppModel) {
         OverviewStartButton(chrome, picked.isNotEmpty(), start)
 
         OverviewHeading(chrome.numbersReference)
-        NumberReferenceTable(language, chrome)
+        NumberReferenceTable(language, chrome, speak = { model.speakFormOnTap(it, language) })
 
         val notes = remember(stamp) {
             model.catalog?.numberNotes(language, stamp.source).orEmpty()

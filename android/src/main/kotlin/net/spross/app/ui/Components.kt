@@ -10,17 +10,21 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.CustomAccessibilityAction
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
@@ -28,6 +32,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.intl.LocaleList
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import net.spross.app.CardDisplay
 import net.spross.app.Chrome
@@ -172,13 +177,19 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
  * the word as the word it is, so the replay is a custom ACTION on the text and the
  * click carries no indication — no ripple over the hero of the card.
  *
- * The 48 dp floor is UNCONDITIONAL, so a card measures the same whether or not its
- * word can be heard; only the gesture and its action are conditional. Otherwise a
- * card would change height between reviews because the synonym rotation happened to
- * land on an unrecorded form.
+ * [minHeight] is applied whether or not the word can be heard, so a card measures the
+ * same between reviews when the synonym rotation lands on an unrecorded form;
+ * only the gesture and its action are conditional.
+ * A line of reading matter passes 0.dp:
+ * the row is already as tall as the text it carries,
+ * and a 48 dp floor per row would set the height of the whole table.
  */
 @Composable
-fun Modifier.pronounceOnTap(pronounce: (() -> Unit)?, chrome: Chrome): Modifier {
+fun Modifier.pronounceOnTap(
+    pronounce: (() -> Unit)?,
+    chrome: Chrome,
+    minHeight: Dp = 48.dp,
+): Modifier {
     val interaction = remember { MutableInteractionSource() }
     val tappable = if (pronounce == null) {
         Modifier
@@ -192,7 +203,41 @@ fun Modifier.pronounceOnTap(pronounce: (() -> Unit)?, chrome: Chrome): Modifier 
             }
             .clickable(interactionSource = interaction, indication = null, onClick = pronounce)
     }
-    return this.sizeIn(minHeight = 48.dp).then(tappable)
+    return this.sizeIn(minHeight = minHeight).then(tappable)
+}
+
+/** The speaker glyph text carries: beside a headword, and at the head of the hint line. */
+internal val SPEAKER_GLYPH = 18.dp
+
+/**
+ * The gesture a reference page discloses ONCE, under its heading, rather than on every row.
+ *
+ * A reference page is read by running down it,
+ * so the CONTENT is the target and no row carries a speaker of its own — this line says so.
+ * The numbers table and the atlas draw the same one (iOS `ReferenceTapHint`),
+ * and only where the device can actually answer.
+ */
+@Composable
+fun TapToHearHint(chrome: Chrome) {
+    Row(
+        // Every row below offers hearing as its own named action, so spoken this line is
+        // the same thing said a second time.
+        modifier = Modifier.clearAndSetSemantics { },
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+    ) {
+        Icon(
+            SprossIcons.Speaker,
+            contentDescription = null,
+            tint = Dl.colors.textSecondary,
+            modifier = Modifier.size(SPEAKER_GLYPH),
+        )
+        Text(
+            chrome.tapToHear,
+            style = MaterialTheme.typography.bodySmall,
+            color = Dl.colors.textSecondary,
+        )
+    }
 }
 
 /**

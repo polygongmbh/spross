@@ -367,10 +367,6 @@ fun CardCue(text: String, modifier: Modifier = Modifier) {
 private val EMOJI_SLOT = 52.sp
 private val EMOJI_GLYPH = 28.sp
 
-/** The mark on a word that can be heard — the same glyph the chrome switch wears. */
-/** The replay glyph beside a headword — big enough to find, never big enough to shout. */
-private val SPEAKER_GLYPH = 18.dp
-
 /**
  * The floor a review card holds: one height whether the prompt is a word, a word under
  * an area label, or the replay glyph of a question asked by ear.
