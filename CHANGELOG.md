@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **The German numbers drill takes the spelling people actually say.** "hundert" and
+  "tausend" grade as readily as "einhundert" and "eintausend" — in the cardinals, in
+  the years, and in the numbers a sentence carries. What the reveal and the table teach
+  is still the written form.
+
 ## 4.1.0 — 2026-08-12
 
 - **German speaks in one voice now, and the credits list is a fraction of its length.**

@@ -13,9 +13,11 @@ import kotlin.test.assertTrue
  */
 class TrainerTypoBridgeGuardTests {
 
+    /** Both German spellings per value — the bare-stem twin is graded too, so it is swept too. */
     @Test
     fun germanCardinals0To999NeverBridge() {
-        assertEquals(emptyList(), sweep("de", (0L..999L).map { GermanNumbers.cardinal(it) }))
+        val prompts = (0L..999L).map { TypoBridgeSweep.Prompt(GermanNumbers.variants(it)) }
+        assertEquals(emptyList(), TypoBridgeSweep.run("de", prompts))
     }
 
     @Test

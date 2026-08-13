@@ -56,6 +56,22 @@ internal object GermanNumbers {
     private fun scaleWord(count: Long, one: String, many: String): String =
         if (count == 1L) one else cardinal(count) + " " + many
 
+    /** Every accepted spelling of a cardinal, canonical first. */
+    fun variants(n: Long): List<String> = bareStems(cardinal(n))
+
+    /**
+     * "einhundert…"/"eintausend…" is what the generator writes and is not wrong, but bare
+     * "hundert"/"tausend" is what people say — and it is unreachable from the cardinal, so
+     * it is added here. The LEADING one only: "eintausendeinhundert" drops its first "ein"
+     * ("tausendeinhundert") and keeps the medial one, which no register drops.
+     */
+    fun bareStems(stem: String): List<String> =
+        if (stem.startsWith("einhundert") || stem.startsWith("eintausend")) {
+            listOf(stem, stem.removePrefix("ein"))
+        } else {
+            listOf(stem)
+        }
+
     /** "neunzehnhundertachtundsiebzig" style for years like 1978. */
     fun yearHundred(y: Long): String {
         val century = y / 100
@@ -73,6 +89,6 @@ internal object GermanNumbers {
         val variants = mutableListOf(cardinal(y))
         if (y in 1100..1999 && y % 1000 != 0L) variants += yearHundred(y)
         if (y >= 2000 && y % 1000 != 0L) variants += yearHundred(y)
-        return variants.distinct()
+        return variants.flatMap(::bareStems).distinct()
     }
 }

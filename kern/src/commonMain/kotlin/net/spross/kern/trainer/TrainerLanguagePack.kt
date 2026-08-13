@@ -78,7 +78,7 @@ internal interface TrainerLanguagePack {
 }
 
 private object GermanPack : TrainerLanguagePack {
-    override fun number(n: Long) = listOf(GermanNumbers.cardinal(n))
+    override fun number(n: Long) = GermanNumbers.variants(n)
     override fun year(y: Long) = YearReading(GermanNumbers.year(y), GermanNumbers.yearVariants(y))
     override fun clock(hour: Int, minute: Int) = GermanClock.task(hour, minute)
     override val placeValues = listOf(

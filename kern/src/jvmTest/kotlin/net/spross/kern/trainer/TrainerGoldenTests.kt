@@ -45,7 +45,10 @@ class TrainerGoldenTests {
         for ((key, expected) in fixture.germanNumbers) {
             val task = Trainer.number(key.toLong(), "de")
             assertEquals(expected, task.display, "n=$key")
-            assertEquals(listOf(expected), task.accepted, "n=$key")
+            // The golden vector is the CANONICAL reading; the bare-stem twin
+            // ("hundert" for "einhundert") rides beside it and is pinned in
+            // TrainerGermanNumberTests.
+            assertEquals(expected, task.accepted.first(), "n=$key")
             assertEquals(key, task.prompt)
         }
     }

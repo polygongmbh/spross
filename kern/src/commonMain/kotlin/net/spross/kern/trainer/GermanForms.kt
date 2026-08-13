@@ -18,7 +18,7 @@ internal object GermanForms {
     fun reading(value: NumberValue): List<String> = when (value) {
         is NumberValue.Negative -> listOf("minus " + GermanNumbers.cardinal(value.magnitude))
         is NumberValue.Decimal -> decimal(value.whole, value.fractionDigits)
-        is NumberValue.Percent -> bareStems(attributive(value.n)).map { "$it Prozent" }
+        is NumberValue.Percent -> GermanNumbers.bareStems(attributive(value.n)).map { "$it Prozent" }
         is NumberValue.Multiplicative -> multiplicative(value.n)
         is NumberValue.Fraction -> fraction(value.numerator, value.denominator)
         is NumberValue.Ordinal -> ordinal(value.n)
@@ -31,18 +31,6 @@ internal object GermanForms {
      */
     private fun attributive(n: Long): String =
         if (n == 1L) "ein" else GermanNumbers.cardinal(n)
-
-    /**
-     * "einhundert…"/"eintausend…" is what the generator writes and is not wrong, but bare
-     * "hundert Prozent"/"hundertmal"/"hundertste" is what people say — and it is unreachable
-     * from the cardinal, so it is added here.
-     */
-    private fun bareStems(stem: String): List<String> =
-        if (stem.startsWith("einhundert") || stem.startsWith("eintausend")) {
-            listOf(stem, stem.removePrefix("ein"))
-        } else {
-            listOf(stem)
-        }
 
     private fun decimal(whole: Long, fractionDigits: String): List<String> {
         val head = GermanNumbers.cardinal(whole) + " Komma "
@@ -64,7 +52,7 @@ internal object GermanForms {
      * stressed, so it grades too.
      */
     private fun multiplicative(n: Long): List<String> =
-        bareStems(attributive(n)).flatMap { listOf(it + "mal", "$it Mal") }
+        GermanNumbers.bareStems(attributive(n)).flatMap { listOf(it + "mal", "$it Mal") }
 
     /**
      * Numerator + denominator noun, the noun being the ordinal stem + "el"
@@ -88,7 +76,7 @@ internal object GermanForms {
         3L -> listOf("dritt")
         7L -> listOf("siebt", "siebent")
         8L -> listOf("acht")
-        else -> bareStems(GermanNumbers.cardinal(n)).map { it + if (n < 20) "t" else "st" }
+        else -> GermanNumbers.bareStems(GermanNumbers.cardinal(n)).map { it + if (n < 20) "t" else "st" }
     }
 
     /**
