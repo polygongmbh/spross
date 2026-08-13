@@ -157,7 +157,7 @@ struct WordWidgetView: View {
     }
 
     /// Word and meaning meet at the picture instead of at the tile's two edges,
-    /// and the equal side frames put every row's emoji on the same centre line.
+    /// and the equal side frames put every row's emoji on the same center line.
     private func wordRow(_ word: WidgetWord) -> some View {
         HStack(spacing: 8) {
             wordLine(for: word, font: .title3.weight(.semibold))

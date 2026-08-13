@@ -13,7 +13,7 @@
 #   scripts/deploy-devices.sh --debug     Debug build — for iterating, not for judging
 # Flags combine, e.g. --no-build --launch Pluto.
 # A bare name may be any paired device, listed above or not — watches are
-# recognised by model and get SprossWatch.app.
+# recognized by model and get SprossWatch.app.
 set -eu
 cd "$(dirname "$0")/.."
 

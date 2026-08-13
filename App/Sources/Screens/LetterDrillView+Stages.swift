@@ -105,7 +105,7 @@ extension LetterDrillView {
                     RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
                         .fill(tileFill(answered: answered, isAnswer: isAnswer, isChosen: isChosen))
                 )
-                // why: correctness is never colour alone — the mark carries it
+                // why: correctness is never color alone — the mark carries it
                 // for anyone who cannot tell the two tints apart.
                 .overlay(alignment: .topTrailing) {
                     tileMark(answered: answered, isAnswer: isAnswer, isChosen: isChosen)

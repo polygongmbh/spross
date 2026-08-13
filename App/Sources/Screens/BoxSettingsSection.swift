@@ -69,7 +69,7 @@ struct BoxSettingsSection: View {
         }
     }
 
-    /// Attribution for the bundled pronunciation recordings — a licence
+    /// Attribution for the bundled pronunciation recordings — a license
     /// obligation, not a courtesy: BY and BY-SA both ask for the speaker
     /// by name, so the surface ships with the audio. The same sheet carries the
     /// Impressum and the privacy policy, which is why the row names both.

@@ -247,7 +247,7 @@ final class WatchModel {
     /// One practice lap over the whole snapshot, closest to slipping first.
     /// The jitter is multiplicative and narrow, so it only reorders words that
     /// stand at the same point of their memory.
-    /// `avoiding` is the card just answered — swapped with its neighbour (not
+    /// `avoiding` is the card just answered — swapped with its neighbor (not
     /// sent to the back, which would demote the very word practice is for) so
     /// no card asks twice in a row across the lap edge.
     private func practiceLap(avoiding previous: String?) -> [String] {

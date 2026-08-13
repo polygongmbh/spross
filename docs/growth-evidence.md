@@ -245,7 +245,7 @@ The load-bearing findings above are from accessible primary sources. A few older
 not be confirmed at source and are cited only where the direction, not the number, carries the
 argument: the exact recall percentages in Kornell (2009), and the statistics inside Tinkham
 (1993/1997), Waring (1997) and Erten & Tekin (2008), all of which are paywalled and reached via
-named secondaries. Two supporting figures are deliberately weak evidence and are labelled as
+named secondaries. Two supporting figures are deliberately weak evidence and are labeled as
 such where they appear: the overdue-review penalty is one practitioner's own history (n = 1,
 not peer-reviewed), and Welbers et al. (2019) is a single field experiment on a study app rather
 than a vocabulary SRS.

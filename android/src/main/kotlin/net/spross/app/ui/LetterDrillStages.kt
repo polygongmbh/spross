@@ -70,7 +70,7 @@ private fun ChoiceTile(
     val answered = chosen != null
     val isAnswer = glyph == answer
     val isChosen = glyph == chosen
-    // why: correctness is never colour alone — the mark carries it on screen, the state
+    // why: correctness is never color alone — the mark carries it on screen, the state
     // description carries it to TalkBack, and a bare Cyrillic glyph read by a German engine
     // is a guess where "Buchstabe ч" is not.
     val mark = when {

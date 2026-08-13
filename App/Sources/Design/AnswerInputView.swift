@@ -74,7 +74,7 @@ struct AnswerInputView: View {
         VStack(spacing: DL.Space.m) {
             // why: a locked, empty field is not an input — it has nothing of the
             // learner's to show and cannot be typed into, so the placeholder and
-            // the border were an invitation the field could not honour.
+            // the border were an invitation the field could not honor.
             if !isInert {
                 inputField
             }
@@ -126,7 +126,7 @@ struct AnswerInputView: View {
             radius: 10
         )
         // why: the amber edge is the only thing left marking a reveal once the
-        // lightbulb is gone, and a colour alone says nothing to a screen reader
+        // lightbulb is gone, and a color alone says nothing to a screen reader
         // (WCAG 1.4.1). The state is spoken instead of drawn.
         .accessibilityValue(statusValue)
     }
@@ -139,7 +139,7 @@ struct AnswerInputView: View {
         }
     }
 
-    /// The checkmark says ACCEPTED and rides both correct states; its colour
+    /// The checkmark says ACCEPTED and rides both correct states; its color
     /// says how cleanly. A reveal gets no mark at all — the amber edge already
     /// carries the state, and the lightbulb that used to sit here read as a
     /// button it never was.
@@ -179,7 +179,7 @@ struct AnswerInputView: View {
     /// and a 12 pt italic afterthought is not how that lands.
     ///
     /// Leading-aligned, so no mirrored ballast is needed — `DLSpokenWord`
-    /// centres, which is a different problem.
+    /// centers, which is a different problem.
     private func correctionBox(form: String, caption: LocalizedStringKey) -> some View {
         HStack(spacing: DL.Space.m) {
             Image(systemName: "arrow.turn.down.right")

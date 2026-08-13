@@ -66,7 +66,7 @@ private struct GradeButton: View {
                 Image(systemName: outcome.icon)
                     .font(.body.weight(.bold))
                     // why: the glyphs differ in height, which pushed the labels
-                    // of neighbouring buttons off each other's line.
+                    // of neighboring buttons off each other's line.
                     .frame(height: 22)
                 Text(outcome.label)
                     .font(DL.Fonts.caption)

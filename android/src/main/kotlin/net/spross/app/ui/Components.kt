@@ -77,7 +77,7 @@ fun SegmentsBar(segments: List<AnswerTone>, remaining: Int, modifier: Modifier =
 }
 
 /**
- * The one tinted capsule the app's standings wear: a word (never a colour alone) over its
+ * The one tinted capsule the app's standings wear: a word (never a color alone) over its
  * accent's own 14 % wash, so a badge reads the same on a card as on a recessed row.
  */
 @Composable

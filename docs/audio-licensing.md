@@ -1,7 +1,7 @@
 # Audio & content licensing
 
 The record for the ship/legal questions the bundled audio raises:
-what is in the app, whose it is, what each licence asks for, and where the app answers it.
+what is in the app, whose it is, what each license asks for, and where the app answers it.
 Successor to `docs/pronunciation-plan.md`, deleted once the feature shipped.
 
 The engine rule is `../kern/docs/audio.md`, the file format `../catalog/README.md` § Audio,
@@ -15,7 +15,7 @@ lives outside the repo in `data/reference/audio/README.md`.
 2069 mp3 files, ~44 MB, all of them Wikimedia Commons transcodes:
 **1446 CC BY-SA · 531 CC BY · 92 CC0**.
 
-| Pack | Files | Source | Licences | Speakers | Obligation |
+| Pack | Files | Source | Licenses | Speakers | Obligation |
 |---|---|---|---|---|---|
 | `audio/de/` | 570 words | Commons `De-*.ogg` | BY-SA 4.0 371 · BY-SA 3.0 199 | 8 credit groups, Jeuwre 356 | credit + share-alike, whole pack |
 | `audio/de/letters/` | 8 letters | Commons `De-<letter>.ogg` | BY-SA 4.0 6 · BY-SA 3.0 2 | Jeuwre 6, T.Voekler 2 | credit + share-alike |
@@ -39,11 +39,11 @@ deliberately rather than by accident.
 
 ## 2. How the obligations are discharged
 
-- **Provenance is versioned per file.** Every manifest entry carries `licence`, `licenceUrl`,
+- **Provenance is versioned per file.** Every manifest entry carries `license`, `licenseUrl`,
   `author`, the original Commons filename as `source`, and the `sha256` of the shipped bytes.
   The unversioned pack workspace is research input; `catalog/audio/` is the record that ships.
 - **Credits derive from the shipped manifests**, never from a hand-kept list:
-  `Catalog.audioCredits()` groups per (language, author, licence) with per-file rows,
+  `Catalog.audioCredits()` groups per (language, author, license) with per-file rows,
   rendered by `App/Sources/Screens/CreditsView.swift` (sheet off Box settings)
   and `android/.../ui/AboutScreen.kt` (About screen) from that one API.
   A group expands to its recordings, each linking `File:<source>` on Commons,
@@ -54,7 +54,7 @@ deliberately rather than by accident.
   `CatalogAudioLintTest.audioFilesMatchTheirManifestHashes` re-hashes every committed mp3
   against its manifest entry; the converter verified the same digest right after the byte-copy.
   Re-encoding — loudness normalization included — would be an adaptation under BY-SA,
-  so the gate is what keeps the packs' loudness differences a playback problem (§3) rather than a licence one.
+  so the gate is what keeps the packs' loudness differences a playback problem (§3) rather than a license one.
 - **No file ships without a nameable author.**
   `noAudioAuthorIsUnattributable` rejects the placeholder set (`Own work`, `myself`, empty),
   which BY and BY-SA both make useless,
@@ -85,7 +85,7 @@ Consequences, and this was the deciding argument:
 - The credits' "Aufnahmen unverändert übernommen" / "Recordings shipped unmodified" line stays **accurate**.
 - The `sha256` gate keeps meaning exactly what it says.
 - A measurement of a file is our own factual data:
-  it carries no licence of its own, and it grants nobody anything.
+  it carries no license of its own, and it grants nobody anything.
 
 What was measured, against which target and under which scheme is `scripts/audio-catalog.py`'s `ANALYSIS`.
 The player-side mechanics are the platforms' business, not this doc's.
@@ -135,26 +135,26 @@ Notable rejections, one line each:
 - **eSpeak NG / piper1-gpl / sherpa-onnx v1.x** — GPL-3.0, or statically linking something that is;
   fatal for a closed App Store binary (build-time phonemizing is fine, shipping it is not).
 - **Piper `sw_CD-lanfrica`** — finetuned from research-only voice data over a non-profit-restricted audio Bible.
-- **OPUS OpenSubtitles** — no explicit licence at all; grey however good the volume.
+- **OPUS OpenSubtitles** — no explicit license at all; gray however good the volume.
 
 ## 6. Open items for the owner
 
 1. **BY-SA §2(a)(5)(B) versus App Store DRM — the pre-submission gate.**
-   The licence forbids applying "Effective Technological Measures" to the shared material,
+   The license forbids applying "Effective Technological Measures" to the shared material,
    and every App Store binary is FairPlay-encrypted;
    1446 of the 2069 files are BY-SA — all 467 sw, all 580 de, 33 of 524 uk, 366 of 498 es.
    Attribution, the other obligation, is already covered (§2).
    **Mitigation on record:** additionally publish the same recordings at a public un-DRM'd URL
-   under the same licences, in **separate per-language files** —
+   under the same licenses, in **separate per-language files** —
    the `catalog/audio/<lang>/` split already prepares exactly that shape.
    This needs a legal read before the first submission, not an engineering one.
 2. **The es accent caveat.**
    The catalog and the alphabet file are authored in Peninsular Spanish (distinción),
-   and the pack **does not claim to match it**: Commons states a licence, a speaker and a recorder per file
+   and the pack **does not claim to match it**: Commons states a license, a speaker and a recorder per file
    and no country or variety, so nothing about accent is asserted anywhere.
    Read each es file as "a native speaker says this word".
    The consequence is audible where the two meet — an es-MX voice speaks /s/ where the alphabet's c and z rows
-   promise /θ/ — which is a content decision tracked in `backlog.md`, not a licence one.
+   promise /θ/ — which is a content decision tracked in `backlog.md`, not a license one.
 3. **Azure S0 terms, if the gaps are ever filled by synthesis.**
    Azure AI Speech is the only provider covering every target language including native `sw-KE`
    with an express commercial grant to the output (~$1–4 for the whole catalog, one-off).

@@ -119,7 +119,7 @@ enum CardDisplay {
         return "\(article) \(realization.text)"
     }
 
-    /// Labelled plural line. Which authored value is a sentinel and which resolves
+    /// Labeled plural line. Which authored value is a sentinel and which resolves
     /// against the word is kern's (`model/DisplayText.kt`); the labels each one
     /// wears ("Pl. …", "= Pl.", "nur Pl.") are chrome.
     static func plural(of realization: Realization, locale: Locale) -> String? {

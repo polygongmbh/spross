@@ -72,7 +72,7 @@ struct AreaProgress {
 struct AreaChip: View {
     let emoji: String
     let name: String
-    /// The area's flavour clause, where the catalog authors one — never louder
+    /// The area's flavor clause, where the catalog authors one — never louder
     /// than the name it sits under, and simply absent otherwise.
     var subtitle: String?
     let progress: AreaProgress

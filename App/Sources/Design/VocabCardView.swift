@@ -78,7 +78,7 @@ struct VocabCardView: View {
     var compact: Bool = false
 
     /// The picture (`DLCardEmoji`) belongs to the CARD rather than the prompt
-    /// line, so it stays centred against prompt and reveal together instead of
+    /// line, so it stays centered against prompt and reveal together instead of
     /// riding up as the card grows.
     var body: some View {
         HStack(spacing: DL.Space.m) {

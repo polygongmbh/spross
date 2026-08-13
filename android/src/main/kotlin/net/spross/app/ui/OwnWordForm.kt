@@ -120,7 +120,7 @@ fun OwnWordForm(
 }
 
 /**
- * One labelled field.
+ * One labeled field.
  *
  * why: no autocapitalization and no autocorrect — a word is not a sentence, and the
  * automatic capital puts one on a Swahili noun, which is simply the wrong spelling of the

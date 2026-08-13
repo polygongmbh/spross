@@ -25,7 +25,7 @@ import net.spross.kern.trainer.DrillEffect
  */
 class DrillBeat(private val screenReaderOn: () -> Boolean) {
 
-    /** The tier waiting to elapse; null once it fired or was cancelled. */
+    /** The tier waiting to elapse; null once it fired or was canceled. */
     var tier by mutableStateOf<AdvanceTier?>(null)
         private set
 

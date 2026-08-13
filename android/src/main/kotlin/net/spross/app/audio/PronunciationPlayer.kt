@@ -113,7 +113,7 @@ class PronunciationPlayer {
         this.player = player
         preparing = current
         player.setOnPreparedListener { prepared ->
-            // why: a prepare cannot be cancelled, and the card it was meant for can be
+            // why: a prepare cannot be canceled, and the card it was meant for can be
             // gone before it lands — stop() and the next word both bump the request id,
             // so only the newest one is ever allowed to sound. A stale callback touches
             // nothing at all: the marks it would clear belong to the request that

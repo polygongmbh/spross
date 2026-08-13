@@ -7,7 +7,7 @@ import SwiftUI
 //
 // Only ever applied to decoration — emoji, never text or controls: a thing
 // that carries meaning has to hold still to be read. Nothing here changes
-// layout, so a swaying piece never nudges its neighbours.
+// layout, so a swaying piece never nudges its neighbors.
 
 private struct DLSway: ViewModifier {
     let angle: Double
@@ -30,7 +30,7 @@ private struct DLSway: ViewModifier {
 }
 
 extension View {
-    /// Rocks between ±`angle` forever. Give neighbouring pieces different
+    /// Rocks between ±`angle` forever. Give neighboring pieces different
     /// periods — one shared clock reads as a single rigid object rocking,
     /// which is the opposite of several light things hanging in the air.
     /// Reduce Motion drops it entirely: it is decoration that never stops.

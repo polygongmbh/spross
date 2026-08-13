@@ -87,7 +87,7 @@ fun AnswerField(
         is TurnFeedback.Almost -> palette.amber
         else -> null
     }
-    // why: correctness is never colour alone — the mark says it on screen, the state
+    // why: correctness is never color alone — the mark says it on screen, the state
     // description says it to TalkBack, and the tint is the third telling of the same thing.
     val mark: (@Composable () -> Unit)? = if (feedback == TurnFeedback.Correct) {
         { Icon(SprossIcons.Check, contentDescription = null, tint = palette.success) }
@@ -131,7 +131,7 @@ fun AnswerField(
  * interval — Easy is EARNED by answering fast, which is why it is not on screen.
  *
  * Ordered best to worst, so the miss ends up under a resting thumb with the middle
- * verdict keeping the two opposites apart. Each carries a mark as well as its colour.
+ * verdict keeping the two opposites apart. Each carries a mark as well as its color.
  */
 @Composable
 fun VerdictButtons(chrome: Chrome, flow: TurnFlow, modifier: Modifier = Modifier) {
@@ -153,7 +153,7 @@ fun VerdictButtons(chrome: Chrome, flow: TurnFlow, modifier: Modifier = Modifier
 }
 
 /**
- * One verdict: its mark over its name, both in the verdict's own colour on that colour's
+ * One verdict: its mark over its name, both in the verdict's own color on that color's
  * own wash.
  *
  * A TINTED tile, never a saturated slab. Three solid blocks of forest, ochre and brick is

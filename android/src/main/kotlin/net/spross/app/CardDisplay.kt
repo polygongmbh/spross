@@ -21,7 +21,7 @@ object CardDisplay {
      */
     fun article(realization: Realization): String? = realization.grammar["gender"]
 
-    /** Labelled plural line for the TARGET side only (grammar is target-side, contract §2). */
+    /** Labeled plural line for the TARGET side only (grammar is target-side, contract §2). */
     fun pluralLine(realization: Realization, chrome: Chrome): String? =
         when (val plural = pluralForm(realization)) {
             null -> null

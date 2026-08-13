@@ -177,7 +177,7 @@ extension View {
 
 struct SessionExitButtons: View {
     var onDone: () -> Void
-    /// Left out when there is nothing more to practise.
+    /// Left out when there is nothing more to practice.
     var onPractice: (() -> Void)?
 
     var body: some View {

@@ -457,7 +457,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * Step the run and honour what it asks for. The whole session machine is kern's;
+     * Step the run and honor what it asks for. The whole session machine is kern's;
      * this is the platform half — the clock, the disk, and the observable state.
      */
     private fun dispatch(intent: SessionIntent): SessionRunState? {

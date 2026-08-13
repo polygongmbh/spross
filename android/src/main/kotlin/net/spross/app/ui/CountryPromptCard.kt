@@ -91,11 +91,11 @@ fun CountryPromptCard(
     }
 }
 
-/** The answer an atlas card grows, and the neighbouring form kern hands over beside it. */
+/** The answer an atlas card grows, and the neighboring form kern hands over beside it. */
 data class CountryReveal(
     val word: String,
     /**
-     * The answer side's neighbouring form — the people beside the country, the country
+     * The answer side's neighboring form — the people beside the country, the country
      * beside the language. Never shown before the answer is in.
      */
     val note: String?,

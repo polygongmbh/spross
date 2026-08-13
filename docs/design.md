@@ -51,7 +51,7 @@ Strict dependency direction: App → SprossKern, never the reverse.
   screen with one open question, no scrolling.
 - Picker rows carry the flag, the language's own name, and the English exonym
   ("🇺🇦 Українська · Ukrainian"): a flag beside an unreadable script is easy to
-  mistake for a neighbouring language.
+  mistake for a neighboring language.
 - UI chrome renders in the KNOWN language when chrome exists (de/en today), otherwise en.
   Onboarding follows the source being PICKED — device language first, re-rendering on
   each tap — so the greeting is already in the user's language.
@@ -60,7 +60,7 @@ Strict dependency direction: App → SprossKern, never the reverse.
   additive. How a key is written and kept honest: `scripts/strings.py`.
 - Area titles and area emoji both come from the catalog; the app carries no map of its own.
   A title is a plain name, so it can serve as the produce prompt's area cue unedited;
-  the catalog's optional area subtitle is the flavour line, shown under the title
+  the catalog's optional area subtitle is the flavor line, shown under the title
   in the box and nowhere a cue is wanted.
 
 ## Presentation model in the UI
@@ -120,7 +120,7 @@ a clone inherits its sibling's gaps, never the rules.
   and a caption squeezed under the field is not how it lands.
 - **A near miss runs amber throughout** — field edge, checkmark and box agree.
   A typo and a dictation's other form are graded correct and keep the checkmark;
-  the colour says how cleanly, never whether the answer counted,
+  the color says how cleanly, never whether the answer counted,
   so the green glow stays the clean answer's alone.
   Neither counts as clean for FSRS either: both book Hard, same as a finished
   retry, because neither came back on the first, unaided try.
@@ -250,7 +250,7 @@ a clone inherits its sibling's gaps, never the rules.
   what a lapse costs. A suspended word is owed no space at all — waking it is the box's.
   The picture is never the only telling — the canvas is hidden from accessibility, each
   tree carries the tap target and the spoken split as one element, blossom differs from
-  leaf in shape before colour, and the standing figures are spelled out beneath.
+  leaf in shape before color, and the standing figures are spelled out beneath.
   Nothing in it moves: a box grows over weeks, and motion would claim a change the
   picture is not showing.
 - **Box** (📦 from Heute): browse the catalog by area, pack words in, revive suspended

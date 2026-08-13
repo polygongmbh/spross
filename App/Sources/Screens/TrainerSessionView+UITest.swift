@@ -8,7 +8,7 @@ import SprossKern
 /// split out purely for file size.
 ///
 /// The hooks that stand a run somewhere it did not play to write kern's state
-/// directly (`seeded`), which is the whole of the licence they take: everything
+/// directly (`seeded`), which is the whole of the license they take: everything
 /// a thumb could do goes through an intent, exactly as a finger would.
 extension TrainerSessionView {
 

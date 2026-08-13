@@ -8,7 +8,7 @@ import net.spross.kern.model.Realization
 /**
  * The WORDS this platform wraps around kern's reveal rules. Which authored plural is a
  * sentinel, what a suffix resolves to and which forms are left to offer are
- * `model/DisplayText.kt`'s and tested there — what is checked here is the labelling.
+ * `model/DisplayText.kt`'s and tested there — what is checked here is the labeling.
  */
 class CardDisplayTest {
 

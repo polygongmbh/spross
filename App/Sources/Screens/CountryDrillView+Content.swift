@@ -49,7 +49,7 @@ extension CountryDrillView {
         }
     }
 
-    /// The answer, once the learner has stopped owing it — with the neighbouring
+    /// The answer, once the learner has stopped owing it — with the neighboring
     /// form kern hands over beside it, so a question about the country teaches
     /// its people too.
     ///

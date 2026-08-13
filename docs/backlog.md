@@ -204,7 +204,7 @@ One line per item, with a file or context pointer, filed under the section it be
 - Rating labels carry more weight on a first exposure now that Good sends a word about a week
   out (kern README §5) — the button wording deserves a look
   (`App/Sources/Design/RatingButtonsView.swift`).
-- Automatic growth walks seed order, so a round's first sights are seed neighbours
+- Automatic growth walks seed order, so a round's first sights are seed neighbors
   (`Growth.newCandidates` step 2b) — and seed order inside an area is written in co-hyponym
   runs (kitchen: four appliances, then six utensils, then the cooking verbs), so a
   `NEW_CARDS_PER_ROUND` round lands inside ONE run. The interference finding is about
@@ -213,7 +213,7 @@ One line per item, with a file or context pointer, filed under the section it be
   form–meaning bond is still forming. The area itself is a THEMATIC set (mixed classes, one
   scene), which the same literature finds neutral-to-helpful, so the fix spreads WITHIN the
   area — across word class and sub-cluster — and never across areas. Review is unaffected:
-  once bound, contrasting near-neighbours is the useful case, and the catalog already
+  once bound, contrasting near-neighbors is the useful case, and the catalog already
   teaches those apart (`promptAmbiguous`, `CatalogAnswerGrader.OtherWord`).
 - The letter drill's `exampleText` fallback is not audibility-filtered, so an inaudible
   escape-hatch row stays promptable and shows a dead speaker — shared by both platforms
@@ -301,7 +301,7 @@ One line per item, with a file or context pointer, filed under the section it be
 - The session headword breaks mid-word at narrow widths ("die Sprach/e" at 320dp):
   the mirrored 52dp emoji slot plus the speaker glyph leave ~98dp for a 28sp headline
   (`android/.../ui/CardFace.kt`, `ProduceCard.kt`). Every fix is a design call —
-  autosize clips long compounds, un-mirroring de-centres, a smaller slot changes the
+  autosize clips long compounds, un-mirroring de-centers, a smaller slot changes the
   emoji spec — so it wants an owner ruling, not a patch.
 - `AppModel.activate()` silently bootstraps a fresh box when decode fails
   (`android/.../AppModel.kt:328-342`), so a corrupt or mis-pathed box reads as empty

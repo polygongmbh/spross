@@ -12,7 +12,7 @@ import SprossKern
 /// Everything the hub presents, as ONE item — and every one of them is an
 /// overview you READ from, each starting its own run, so one `.sheet(item:)`
 /// carries them all. A second `fullScreenCover(isPresented:)` stacked on the
-/// same view is not reliably honoured by SwiftUI (the symptom is a chip that
+/// same view is not reliably honored by SwiftUI (the symptom is a chip that
 /// does nothing), which is why the hub presents no run itself any more.
 enum HubDestination: Identifiable {
     case numbers(language: String)

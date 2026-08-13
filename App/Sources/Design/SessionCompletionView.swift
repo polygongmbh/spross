@@ -21,7 +21,7 @@ struct SessionCompletionView: View {
     var grownArea: TreeTransition?
     var canPracticeMore: Bool = false
     /// Today's recall has fallen far below what the box schedules for
-    /// (`TodayReport.recallStrained`). Practising on stays available either
+    /// (`TodayReport.recallStrained`). Practicing on stays available either
     /// way — this only adds the line saying why stopping is the better call.
     var restSuggested: Bool = false
     var onPractice: () -> Void = {}
@@ -125,7 +125,7 @@ struct SessionCompletionView: View {
     }
 
     /// The area the round moved most, as it stood before this round and as it
-    /// stands now. The area is LABELLED rather than named in a sentence: the
+    /// stands now. The area is LABELED rather than named in a sentence: the
     /// area did not grow — what the learner can say did — and a sentence that
     /// swallowed "Die Küche" would claim the opposite while reading badly.
     @ViewBuilder
@@ -160,7 +160,7 @@ struct SessionCompletionView: View {
     /// must be true of the tree the learner is looking at.
     ///
     /// The subject is always what the learner can say, never the area. The area
-    /// did not grow, and it is labelled separately below for that reason — which
+    /// did not grow, and it is labeled separately below for that reason — which
     /// is also what gives "hier" something to point at.
     private var growthHeadline: LocalizedStringKey {
         // why: a day the box itself is telling the learner to stop makes no

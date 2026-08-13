@@ -155,7 +155,7 @@ struct ActivityStripView: View {
         Capsule()
             .fill(run.color ?? .clear)
             .frame(height: 2.5)
-            // why: a full-gutter overhang makes neighbours overlap, so the rounded
+            // why: a full-gutter overhang makes neighbors overlap, so the rounded
             // caps hide inside the run instead of pinching it into dashes.
             .padding(.leading, joinsLeft ? -Self.barSpacing : 0)
             .padding(.trailing, joinsRight ? -Self.barSpacing : 0)

@@ -7,7 +7,7 @@ import SwiftUI
 // their own layer and animation, where a Canvas is a single redraw per frame.
 //
 // Nothing is stored per piece. Every property — lane, speed, sway, spin,
-// colour — is derived from (index, wave) through a hash, so the pieces are
+// color — is derived from (index, wave) through a hash, so the pieces are
 // varied but reproducible, and no state has to survive a redraw.
 //
 // Motion is deliberately not uniform: real confetti falls at different rates,
@@ -34,7 +34,7 @@ struct ConfettiView: View {
         let start: Date
     }
 
-    /// Poster palette, minus the wrong-answer brick. Paper, not signal colour.
+    /// Poster palette, minus the wrong-answer brick. Paper, not signal color.
     private static let palette: [Color] = [
         .dlAccent, .dlTeal, .dlSuccess, .dlAmber, .dlDer, .dlDie, .dlDas,
     ]
@@ -126,7 +126,7 @@ struct ConfettiView: View {
     }
 
     /// Stable 0..<1 noise for one (wave, piece, property) — SplitMix64 finish,
-    /// which decorrelates neighbouring indices well enough that the pieces
+    /// which decorrelates neighboring indices well enough that the pieces
     /// never fall in visible rows.
     private func random(_ wave: Int, _ index: Int, _ salt: Int) -> Double {
         var x = UInt64(bitPattern: Int64(index &* 0x9E37_79B1 &+ salt &* 0x85EB_CA77 &+ wave &* 0x2545_F491))

@@ -29,7 +29,7 @@ import Foundation
 // generator that is right on average still produces the occasional ugly tree —
 // and there is no art director between the hash and the screen.
 
-/// One length of branch: a bowed centre line that tapers along its length.
+/// One length of branch: a bowed center line that tapers along its length.
 struct TreeSegment {
     let start: CGPoint
     let control: CGPoint
@@ -65,7 +65,7 @@ struct TreeSkeleton {
     /// one never moves those already placed — the property the summary's
     /// before/after animation is built on.
     let slots: [LeafSlot]
-    /// The typical gap between neighbouring slots — what a mark is sized
+    /// The typical gap between neighboring slots — what a mark is sized
     /// against, and with the pool cut to the canopy, what carries the fullness:
     /// crown over words, so twenty marks on a small tree and sixty on a large
     /// one cover the same share of their own crown. Sized against the tree's
@@ -153,7 +153,7 @@ struct TreeSkeleton {
 
     /// Root of (crown area / slots): the side of the square each slot gets if
     /// the crown were shared out evenly — a stand-in for the mean distance to a
-    /// neighbour that, unlike the real thing, is O(n).
+    /// neighbor that, unlike the real thing, is O(n).
     private static func pitch(of slots: [LeafSlot]) -> CGFloat {
         guard slots.count > 1 else { return 1 }
         let xs = slots.map(\.point.x), ys = slots.map(\.point.y)

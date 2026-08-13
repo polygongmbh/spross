@@ -71,7 +71,7 @@ HARMONICS = ((1, 1.0), (2, 0.12), (3, -1 / 9), (5, 1 / 25), (7, -1 / 49))
 DECAY_SPREAD = 0.65  # partial n rings off n**SPREAD times faster than the
                      # fundamental, so the tone darkens as it decays. This is
                      # what keeps a two-note chime off the front door: a doorbell
-                     # is a long ring that holds ONE bright colour to the end.
+                     # is a long ring that holds ONE bright color to the end.
 
 # Equal temperament, A4 = 440. Nothing goes below ~E4 — phone speakers roll off
 # under ~250 Hz, where the fundamental survives only through its harmonics.

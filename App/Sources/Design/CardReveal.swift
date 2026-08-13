@@ -91,7 +91,7 @@ struct DLCardEmoji: View {
     private var shows: Bool { cue == .upfront || revealed }
 
     /// The mirror of the slot on the card's other edge, so the words stay
-    /// centred in the card rather than in what is left of it. One point tall:
+    /// centered in the card rather than in what is left of it. One point tall:
     /// it owes the layout a width, never a height.
     static func balance(_ size: Size = .compact) -> some View {
         Color.clear.frame(width: size.diameter, height: 1)

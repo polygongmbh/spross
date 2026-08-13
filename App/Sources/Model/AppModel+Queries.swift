@@ -167,7 +167,7 @@ extension AppModel {
         return catalog?.areaTitle(area: area, lang: sourceLanguage) ?? area.capitalized
     }
 
-    /// The flavour clause under the heading, in the same language — optional content,
+    /// The flavor clause under the heading, in the same language — optional content,
     /// so nil is the ordinary answer for an area that authors none. The learner's own
     /// area has no author to write one.
     func areaSubtitle(_ area: String) -> String? {

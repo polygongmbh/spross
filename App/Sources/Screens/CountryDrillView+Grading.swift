@@ -9,7 +9,7 @@ import SprossKern
 /// spelling of each valid answer, and for the union kinds every language a
 /// country speaks). This grades against that set through the STRICT drill
 /// normalizer — no article leniency, one slip per word — so "die Schweiz" and
-/// "Schweiz" both stand where the atlas authored both, and a neighbouring
+/// "Schweiz" both stand where the atlas authored both, and a neighboring
 /// country's name never passes for this one.
 extension CountryDrillView {
 

@@ -2,7 +2,7 @@ import SwiftUI
 
 // MARK: - DLSpokenWord
 //
-// A centred word with the speaker that says it. Every surface that reveals a
+// A centered word with the speaker that says it. Every surface that reveals a
 // target-language answer renders it through here — a review card, a drill card,
 // a dictation — so "the answer" is one thing with one affordance rather than a
 // treatment each screen reinvents.
@@ -14,7 +14,7 @@ import SwiftUI
 
 struct DLSpokenWord<Word: View>: View {
     /// nil where the word can neither be played nor spoken — the icon and its
-    /// ballast both drop, so a word with nothing to hear centres on its own
+    /// ballast both drop, so a word with nothing to hear centers on its own
     /// instead of leaning against an affordance that does nothing.
     var pronounce: (() -> Void)?
     var isPlaying: Bool = false
@@ -151,7 +151,7 @@ extension View {
                 .foregroundStyle(Color.dlAccent)
                 .multilineTextAlignment(.center)
         }
-        // Nothing to hear: no icon, no ballast — the word centres on its own.
+        // Nothing to hear: no icon, no ballast — the word centers on its own.
         DLSpokenWord {
             Text(verbatim: "elfu mbili")
                 .font(DL.Fonts.title)

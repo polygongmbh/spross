@@ -112,7 +112,7 @@ enum TreeShapes {
                        style: StrokeStyle(lineWidth: 0.7, lineCap: .round))
     }
 
-    /// One segment as a closed shape: both edges bow with the centre line, and
+    /// One segment as a closed shape: both edges bow with the center line, and
     /// the far end is narrower than the near one.
     private static func taper(_ segment: TreeSegment) -> Path {
         let angle = atan2(segment.end.y - segment.start.y, segment.end.x - segment.start.x)
@@ -255,8 +255,8 @@ enum TreeShapes {
         context.fill(circle(point, span * 0.17), with: .color(.dlAmber))
     }
 
-    private static func circle(_ centre: CGPoint, _ radius: CGFloat) -> Path {
-        Path(ellipseIn: CGRect(x: centre.x - radius, y: centre.y - radius,
+    private static func circle(_ center: CGPoint, _ radius: CGFloat) -> Path {
+        Path(ellipseIn: CGRect(x: center.x - radius, y: center.y - radius,
                                width: radius * 2, height: radius * 2))
     }
 }
@@ -266,7 +266,7 @@ enum TreeShapes {
 // How big a mark is drawn and how far it reaches past the slot it hangs on —
 // pulled out of the drawing because the FIT needs the same numbers. A skeleton
 // fitted flush to its box hangs its outermost marks half outside that box, a
-// mark being centred on — or, for a leaf, running outward from — a slot that is
+// mark being centered on — or, for a leaf, running outward from — a slot that is
 // itself on the box's edge.
 
 enum CanopyMark {
@@ -285,7 +285,7 @@ enum CanopyMark {
     }
 
     /// A leaf runs BROADER than the base a fruit or a blossom is cut to. It is
-    /// the only mark meant to merge with its neighbours — foliage is a mass,
+    /// the only mark meant to merge with its neighbors — foliage is a mass,
     /// fruit is a countable thing — and the extra reach is what closes the gaps
     /// between twigs. Kept well under the step from leaf to blossom to fruit, so
     /// a word maturing never reads as its mark being taken away.
@@ -323,13 +323,13 @@ enum CanopyMark {
     }
 
     /// The leaf ellipse's bounding box: a leaf runs from its slot OUTWARD along
-    /// the lean, so its centre is half a leaf from the point it hangs on.
+    /// the lean, so its center is half a leaf from the point it hangs on.
     private static func leafBounds(at point: CGPoint, size: CGFloat, angle: Double) -> CGRect {
         let cosine = CGFloat(cos(angle)), sine = CGFloat(sin(angle))
         let long = size / 2, short = size * leafWaist
-        let centre = CGPoint(x: point.x + long * cosine, y: point.y + long * sine)
+        let center = CGPoint(x: point.x + long * cosine, y: point.y + long * sine)
         let wide = sqrt(long * long * cosine * cosine + short * short * sine * sine)
         let tall = sqrt(long * long * sine * sine + short * short * cosine * cosine)
-        return CGRect(x: centre.x - wide, y: centre.y - tall, width: wide * 2, height: tall * 2)
+        return CGRect(x: center.x - wide, y: center.y - tall, width: wide * 2, height: tall * 2)
     }
 }

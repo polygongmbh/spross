@@ -2,7 +2,7 @@
 
 How the app speaks a word: which sound plays, when autoplay fires, and how the two
 mutes interact. The engine's half — whether a form may be heard at all — is
-`../kern/docs/audio.md`; whose the recordings are and what their licences oblige is
+`../kern/docs/audio.md`; whose the recordings are and what their licenses oblige is
 `audio-licensing.md`.
 
 - **Words are read aloud, and a recording is only played for the word it actually says.**
@@ -74,7 +74,7 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   so a tapped word speaks on every reference page.
   A smaller glyph per row is not the middle way it looks like:
   a speaker keeps its 44 pt hit region however small the frame around it is drawn,
-  so on rows four points apart it overhangs its neighbour
+  so on rows four points apart it overhangs its neighbor
   and a tap in a row's bottom sliver speaks the row below —
   two targets for one action, one of them wrong.
 - **The letters drill is the one autoplay no mute reaches, and it carries no switch of its
@@ -110,5 +110,5 @@ mutes interact. The engine's half — whether a form may be heard at all — is
 - VoiceOver never gets autoplay talking over it. The headword is labeled with the language
   it is written in instead, so the screen reader says it in the right voice, and the replay
   is an action ON the word rather than a button around it.
-- Whose the voices are, what their licences ask of the app, and why a credits screen has to
+- Whose the voices are, what their licenses ask of the app, and why a credits screen has to
   stand before a word may be heard: `audio-licensing.md`.

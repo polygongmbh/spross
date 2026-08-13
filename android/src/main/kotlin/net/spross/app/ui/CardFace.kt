@@ -61,7 +61,7 @@ import net.spross.kern.model.Realization
  * that lets content compose flat. Everything a session puts a question on wears it, so a
  * screen never shows two cards cut from different cloth.
  *
- * Content is centred and evenly spaced, because a card is read as one block from the
+ * Content is centered and evenly spaced, because a card is read as one block from the
  * middle out — a caller that wants a row lays one out inside.
  */
 @Composable
@@ -74,7 +74,7 @@ fun CardFace(modifier: Modifier = Modifier, content: @Composable ColumnScope.() 
         // why: a card holds a reserved minimum height, so before the reveal its content is
         // shorter than the card it sits in. Arranged from the top, the question hung off
         // the ceiling with the reserve pooled underneath it; the block is read from the
-        // middle out, so it is centred in whatever height the card currently has.
+        // middle out, so it is centered in whatever height the card currently has.
         verticalArrangement = Arrangement.spacedBy(DlSpace.s, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
         content = content,
@@ -107,9 +107,9 @@ fun Modifier.panel(shape: Shape = MaterialTheme.shapes.medium): Modifier = this
  * so the picture never sits above the headword. The slot is held for the card's whole
  * life and only its contents fade in, which is what lets a reveal grow the card downward
  * without moving a line that was already there. It is mirrored on the trailing edge so
- * the words stay centred in the card rather than pushed off by the picture.
+ * the words stay centered in the card rather than pushed off by the picture.
  *
- * A word with no picture drops the slot entirely and centres on itself.
+ * A word with no picture drops the slot entirely and centers on itself.
  */
 @Composable
 fun VocabCard(
@@ -160,13 +160,13 @@ private fun EmojiSlot(emoji: String, shown: Boolean, size: Dp) {
     //
     // Keyed on the picture itself, so a NEW word starts wherever that word belongs rather
     // than inheriting the last one's opacity. Animating across the swap fades the incoming
-    // picture out: the glyph is already the next card's while the alpha is still travelling
+    // picture out: the glyph is already the next card's while the alpha is still traveling
     // down from the card that has gone, which shows the answer to a question not yet asked.
     val fade = remember(emoji) { Animatable(if (shown) 1f else 0f) }
     LaunchedEffect(emoji, shown) { fade.animateTo(if (shown) 1f else 0f) }
     Box(
         // why: the fade takes the DISC with it, not just the picture in it. Fading the
-        // glyph alone leaves an empty grey circle sitting on every held-back card until
+        // glyph alone leaves an empty gray circle sitting on every held-back card until
         // the answer lands, which reads as a picture that failed to load rather than as
         // one deliberately withheld. Alpha does not measure, so the slot is still held
         // and nothing below it moves when the picture arrives (iOS fades the whole
@@ -206,7 +206,7 @@ fun SpokenWord(
         horizontalArrangement = Arrangement.spacedBy(DlSpace.xs, Alignment.CenterHorizontally),
     ) {
         // why: a hidden, inert copy of the glyph on the LEADING edge. Without the ballast
-        // the word sits half a speaker left of centre — off the plural line under it and
+        // the word sits half a speaker left of center — off the plural line under it and
         // off the same word on the card's other face, since only the target side is heard.
         if (pronounce != null) Spacer(Modifier.size(SPEAKER_GLYPH))
         word()

@@ -50,7 +50,7 @@ class ActivityBarsTest {
         assertEquals(ActivityBars.STUB_DP, bars[0].heightDp)
         assertTrue(!bars[0].isEmptyToday)
         assertTrue(bars[2].isToday)
-        assertTrue(bars[2].isEmptyToday, "an empty today is 'nothing yet', never a grey gap")
+        assertTrue(bars[2].isEmptyToday, "an empty today is 'nothing yet', never a gray gap")
     }
 
     @Test

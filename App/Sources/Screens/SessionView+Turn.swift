@@ -50,7 +50,7 @@ extension SessionView {
         case .releaseFocus:
             // why: a pause that waits for a tap must not hold the keyboard —
             // it covers the button the pause is waiting for. The pending
-            // retry is cancelled first, or it re-focuses 120 ms later.
+            // retry is canceled first, or it re-focuses 120 ms later.
             focusRetry?.cancel()
             answerFocused = false
         }

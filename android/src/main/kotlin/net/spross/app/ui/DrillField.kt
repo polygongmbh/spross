@@ -59,7 +59,7 @@ fun DrillAnswerField(
                 if (feedback == TurnFeedback.Correct) stateDescription = chrome.answerCorrect
             },
         placeholder = { Text(placeholder) },
-        // why: correctness is never colour alone — the mark says it on screen, the state
+        // why: correctness is never color alone — the mark says it on screen, the state
         // description says it to TalkBack, and the tint is the third telling.
         trailingIcon = if (feedback == TurnFeedback.Correct) {
             { Icon(SprossIcons.Check, contentDescription = null, tint = palette.success) }

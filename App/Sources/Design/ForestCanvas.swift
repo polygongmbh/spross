@@ -16,7 +16,7 @@ import SwiftUI
 // The canvas is hidden from accessibility. Each tree carries a real button on
 // the very cell the layout gave it, so what a sighted learner taps and what
 // VoiceOver reads are one element, and the counts are spoken rather than left
-// to colour.
+// to color.
 
 struct ForestCanvas: View {
     let trees: [AreaTree]

@@ -55,7 +55,7 @@ class TurnFlow(
     var copyInput by mutableStateOf("")
         private set
 
-    /** The beat kern armed and nobody has spent yet; null once it fired or was cancelled. */
+    /** The beat kern armed and nobody has spent yet; null once it fired or was canceled. */
     var beat by mutableStateOf<AdvanceTier?>(null)
         private set
 

@@ -10,8 +10,8 @@ import net.spross.kern.box.StreakRole
  *
  * Two runs, not one: the streak the flame counts is the learner's CURRENT run and takes the
  * accent, while an older stretch of active days is history and takes the bars' own hue.
- * Drawn as one continuous rule wherever neighbours agree — which is why this is a value
- * a column can be compared on rather than a colour picked at paint time.
+ * Drawn as one continuous rule wherever neighbors agree — which is why this is a value
+ * a column can be compared on rather than a color picked at paint time.
  */
 enum class StripRun { None, Current, Past }
 
@@ -34,7 +34,7 @@ data class ActivityBar(
     val isToday: Boolean,
     val run: StripRun,
 ) {
-    /** Today with nothing on it yet: outlined rather than filled, and never a grey gap. */
+    /** Today with nothing on it yet: outlined rather than filled, and never a gray gap. */
     val isEmptyToday: Boolean get() = reviews == 0 && isToday
 }
 
@@ -80,7 +80,7 @@ object ActivityBars {
                 scaled = scaled,
                 heightDp = if (day.reviews > 0) max(MIN_BAR_DP, MAX_HEIGHT_DP * scaled) else STUB_DP,
                 // Clamped: float arithmetic can carry the busiest day a hair past 1,
-                // and an alpha outside 0..1 is not a colour.
+                // and an alpha outside 0..1 is not a color.
                 fillOpacity = (BASE_OPACITY + OPACITY_RANGE * scaled).coerceIn(0f, 1f),
                 isToday = index == lastIndex,
                 // Earned and Bridged are both inside the run: a bridged gap stalls the

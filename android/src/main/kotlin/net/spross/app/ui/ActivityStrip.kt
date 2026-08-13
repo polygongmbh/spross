@@ -136,7 +136,7 @@ private fun BarRow(bars: List<ActivityBar>, palette: DlColors) {
 /**
  * The runs under the bars, drawn as one rule per stretch rather than one tick per column:
  * a canvas spanning the whole row can cross the gutters, which a weighted child cannot do
- * without taking the width back out of its neighbour.
+ * without taking the width back out of its neighbor.
  */
 @Composable
 private fun RunRule(bars: List<ActivityBar>, palette: DlColors) {

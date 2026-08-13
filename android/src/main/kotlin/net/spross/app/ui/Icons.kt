@@ -16,11 +16,11 @@ import androidx.compose.ui.unit.dp
  * used to be a character in a `Text`: `✕ › ✓ ✗` and the 🔊/🔇 emoji. Two things were wrong
  * with that. The glyphs are not in Nunito (the theme's own note says so for `♀` and `✔`), so
  * they dropped to the platform symbol font and sat at a different optical weight beside every
- * word around them; and an emoji is multi-colour artwork that cannot take a tint, so the one
+ * word around them; and an emoji is multi-color artwork that cannot take a tint, so the one
  * speaker on a stone-and-moss card was rendered in Noto's blues.
  *
  * These are cut to one system instead: a 24 unit box, a 2 unit stroke, round caps and joins.
- * They are drawn in black and TINTED at the call site — `Icon` colour-filters the whole
+ * They are drawn in black and TINTED at the call site — `Icon` color-filters the whole
  * vector — so every glyph takes `Dl.colors` like the text it sits with.
  *
  * PICTURES are not affordances and stay emoji: the card's own illustration, the sprout, the

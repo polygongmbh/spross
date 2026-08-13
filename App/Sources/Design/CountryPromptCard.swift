@@ -41,7 +41,7 @@ struct CountryPromptCard: View {
 
     struct Reveal {
         let word: String
-        /// The answer side's neighbouring form — the people beside the country,
+        /// The answer side's neighboring form — the people beside the country,
         /// the country beside the language. Never shown before the answer is in.
         var note: String?
         /// BCP-47 code of the language the ANSWER is in — the other side of the

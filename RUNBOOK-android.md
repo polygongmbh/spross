@@ -134,7 +134,7 @@ rather than keeping a second SDK on `PATH`.
 
 Same commands, plus KVM: the host needs `/dev/kvm` readable
 (`sudo usermod -aG kvm $USER`, then log back in) or the emulator falls back to
-software emulation and is too slow to judge timing-sensitive behaviour.
+software emulation and is too slow to judge timing-sensitive behavior.
 Most cloud containers do not expose nested virtualization at all —
 see the cloud section below.
 

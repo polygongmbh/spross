@@ -163,7 +163,7 @@ private fun CardStanding(
 }
 
 /**
- * Per-area heading: emoji, name, the catalog's own flavour clause where it authors one,
+ * Per-area heading: emoji, name, the catalog's own flavor clause where it authors one,
  * the two (or three) counts, and the bar underneath them.
  *
  * Plain content, no card chrome of its own: it sits inside the area's card, and a second

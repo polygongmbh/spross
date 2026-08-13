@@ -167,7 +167,7 @@ enum ForestLayout {
     /// what lets two areas be compared at a glance, and that is the only thing
     /// held rigid. Everything else gives — a tree claims room in proportion to
     /// its own size, a row is only as tall as its tallest, the slack left over
-    /// is spread between them, and each stands a little off its slot's centre.
+    /// is spread between them, and each stands a little off its slot's center.
     /// Equal cells in equal columns read as planting rather than as growth.
     static func marks(_ trees: [AreaTree], width: CGFloat) -> [TreeMark] {
         guard width > 0, !trees.isEmpty else { return [] }
@@ -203,7 +203,7 @@ enum ForestLayout {
                 let drift = CGFloat(noise(trees[index].id, 31) - 0.5) * min(gap, 10)
                 // why: every second tree drops half a row, and which half a row
                 // starts on flips with the row — so the forest tiles diagonally
-                // and a tree always has neighbours above and below it as well as
+                // and a tree always has neighbors above and below it as well as
                 // beside it. Fixed rather than random: an even lattice broken
                 // only by the widths and the drift reads as an orchard, where
                 // the wave it replaces read as a wave.
