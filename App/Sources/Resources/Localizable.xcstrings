@@ -1039,7 +1039,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Furthest so far: rung %@"
+            "value" : "Furthest so far: Sprosse %@"
           }
         }
       }
@@ -1056,7 +1056,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "One clean answer per rung instead of three."
+            "value" : "One clean answer per Sprosse instead of three."
           }
         }
       }
@@ -1072,7 +1072,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Every run opens at rung 1 and climbs on by itself."
+            "value" : "Every run opens at Sprosse 1 and climbs on by itself."
           }
         }
       }
@@ -4138,7 +4138,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rung %@"
+            "value" : "Sprosse %@"
           }
         }
       }
@@ -4186,7 +4186,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "One clean answer per rung instead of two."
+            "value" : "One clean answer per Sprosse instead of two."
           }
         }
       }
@@ -4434,7 +4434,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rungs"
+            "value" : "Sprossen"
           }
         }
       }

@@ -6,7 +6,10 @@ auto-advance beats these share with it, are `design.md`'s.
 ## Trainers & the letter drill
 
 - **Trainers**: the Sprossen card offers THREE entries — Zahlen, Buchstaben and Länder —
-  on ONE row, which all three sit on comfortably. Each is its own SKILL,
+  on ONE row, which all three sit on comfortably. A step of the ladder is a **Sprosse**
+  in EVERY interface language, plural Sprossen: it is the brand word (`website.md`),
+  so English chrome says "Sprosse 5" where the code and these docs still say rung.
+  Each is its own SKILL,
   which is the only thing that earns a chip. Clock,
   sentences and number forms are not siblings of the numbers drill but ways of being
   asked, so they are variants a run selects rather than chips, and the modifiers
