@@ -49,7 +49,7 @@ class TurnTest {
         val backed = TurnFixture.step(green, TurnIntent.InputChanged("kis"))
         assertEquals(TurnFeedback.Neutral, backed.state.feedback)
         assertEquals(listOf(TurnEffect.CancelAdvance), backed.effects)
-        // The beat it cancelled cannot book afterwards either.
+        // The beat it canceled cannot book afterwards either.
         assertTrue(TurnFixture.step(backed.state, TurnIntent.AdvanceElapsed).effects.isEmpty())
     }
 

@@ -16,7 +16,7 @@ sealed class SessionStep {
     data object Completed : SessionStep()
 }
 
-/** How an answer reads back: the grouping is the rule, the colour each tone wears is the platform's. */
+/** How an answer reads back: the grouping is the rule, the color each tone wears is the platform's. */
 enum class AnswerTone { Right, Tough, Wrong }
 
 /** What the learner (or the app's lifecycle) does to a run. */
@@ -28,7 +28,7 @@ sealed class SessionIntent {
     data object StartExtra : SessionIntent()
     data class Answer(val rating: Rating) : SessionIntent()
 
-    /** "Keep practising": switch a finished run into endless and pull one refill. */
+    /** "Keep practicing": switch a finished run into endless and pull one refill. */
     data object ContinueEndless : SessionIntent()
 
     /** The join moved under a running session — recompose against the live one. */

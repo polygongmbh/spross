@@ -2,7 +2,7 @@
  "title": "Los colores",
  "subtitle": "Rojo, azul y todo lo demás.",
  "words": {
-  "colour": {
+  "color": {
    "text": "color",
    "grammar": {
     "gender": "el"
@@ -48,7 +48,7 @@
     "de": "in Lateinamerika meist café, bei Haaren castaño."
    }
   },
-  "grey": {
+  "gray": {
    "text": "gris"
   },
   "purple": {
@@ -58,7 +58,7 @@
     "violeta"
    ]
   },
-  "what-colour-is-it": {
+  "what-color-is-it": {
    "text": "¿De qué color es?"
   },
   "a-white-car": {

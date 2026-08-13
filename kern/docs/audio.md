@@ -12,7 +12,7 @@ Engine contract: `../README.md`.
   Which transitions actually fire, and how autoplay sits beside the auto-advance timers, is `../docs/design.md`'s.
 - **What is spoken is the bare headword** — the form the card teaches, never its rendering.
   The inline article, the ♀ badge, the plural line and the area cue are grammar decoration and never reach a synthesizer;
-  gender is taught by the article-colour device, not by audio.
+  gender is taught by the article-color device, not by audio.
   The recordings speak bare headwords, so this is the only rule that holds for the recorded and the synthesized branch alike.
 - **Two normalizations, both normative** (`catalog/Pronunciation.kt`):
   `speechKey(form)` — trim whitespace, strip ONE leading `-` (the Swahili adjective stem citation `-zuri`),
@@ -52,8 +52,8 @@ Engine contract: `../README.md`.
   `Catalog.letterRecording(lang, glyph) -> LetterRecording(path, gain, leadMs)` for the letter drill,
   and `Catalog.letterRecordingPath` for the callers that only ask whether a letter can be played at all
   (the recording speaks the letter's NAME — the name string itself is the alphabet file's, and the manifest's
-  `letters` section is the only home of letter audio and its licence data);
-  `Catalog.audioCredits() -> [AudioCredit]`, grouped per (language, author, licence) with per-file rows.
+  `letters` section is the only home of letter audio and its license data);
+  `Catalog.audioCredits() -> [AudioCredit]`, grouped per (language, author, license) with per-file rows.
   BY and BY-SA cannot share one notice, so the groups ARE the credit rows,
   and they derive from the shipped manifests, so the screen can never credit what is not bundled.
 - Lint (`CatalogAudioLintTest`, real catalog, vacuously green while `catalog/audio/` is empty):

@@ -62,7 +62,7 @@ internal object Inventory {
      * The id is folded to its own hash BEFORE the day re-hashes it: FNV-1a
      * barely avalanches the last bytes it consumes, so hashing day and raw id
      * concatenated leaves whichever part trails poorly mixed — a trailing day
-     * yields the same order every day, a trailing id keeps seed neighbours
+     * yields the same order every day, a trailing id keeps seed neighbors
      * adjacent within the day. Both halves must arrive well spread.
      */
     private val dueOrder: Comparator<CardScheduling> = compareBy(

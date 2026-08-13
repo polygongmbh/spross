@@ -12,7 +12,7 @@ enum Legal {
 /// app itself. Split out of CreditsView purely for file size.
 ///
 /// Laid out the way a German Impressum reads: the company over its address,
-/// then one labelled line per registry fact. Nothing here is a link except the
+/// then one labeled line per registry fact. Nothing here is a link except the
 /// two that lead somewhere, so the block stays a block.
 extension CreditsView {
 

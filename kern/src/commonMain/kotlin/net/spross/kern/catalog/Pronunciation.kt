@@ -86,14 +86,14 @@ data class AudioCreditFile(
 )
 
 /**
- * Every recording one author contributed to one language under one licence.
- * BY and BY-SA never share a notice, so the licence is part of the grouping key.
+ * Every recording one author contributed to one language under one license.
+ * BY and BY-SA never share a notice, so the license is part of the grouping key.
  */
 data class AudioCredit(
     val language: Language,
     val author: String,
-    val licence: String,
+    val license: String,
     /** Canonical deed URL; null for public-domain files, which have no deed to link. */
-    val licenceUrl: String?,
+    val licenseUrl: String?,
     val files: List<AudioCreditFile>,
 )

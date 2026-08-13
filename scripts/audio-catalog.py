@@ -12,7 +12,7 @@ never `catalog/audio/`.
 
 Three stages. Four GATES decide which pack rows may ship and who is credited, each
 decision printed (`audio_gates.py`). Survivors are COPIED byte-for-byte, and the copy
-that landed is then ANALYSED (`audio_measure.py`) into the optional `gain`/`lead`
+that landed is then ANALYZED (`audio_measure.py`) into the optional `gain`/`lead`
 playback fields — see [ANALYSIS], which also decides the players' scheme.
 
 Deterministic: sorted keys, 2-space indent, unchanged packs give byte-identical output.
@@ -40,7 +40,7 @@ FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 # both the quietest and the latest to start speaking. Re-encoding them is out — that is an
 # adaptation under BY-SA, and it would break the untouched-transcode gate — so what
 # corrects them is our own MEASUREMENT of the untouched bytes, carried in the manifest and
-# applied by the player. Measurement data carries no licence of its own, the credits'
+# applied by the player. Measurement data carries no license of its own, the credits'
 # "unmodified" claim stays true, and `sha256` keeps meaning exactly what it says.
 #
 # Measured over all 1126 shipped files: the word packs sit at a median -16.7 LUFS
@@ -94,9 +94,9 @@ GAIN_LIMIT_DB = 20.0
 # stages add their own ringing on top of it.
 PEAK_CEILING_DBFS = -1.0
 
-# Every licence the packs actually carry → its canonical deed. An unlisted one is a
+# Every license the packs actually carry → its canonical deed. An unlisted one is a
 # hard stop: the credits screen links what it names, and PD has no deed to link.
-LICENCE_URLS = {
+LICENSE_URLS = {
     'CC BY-SA 4.0': 'https://creativecommons.org/licenses/by-sa/4.0/',
     'CC BY-SA 3.0': 'https://creativecommons.org/licenses/by-sa/3.0/',
     'CC BY-SA 2.5': 'https://creativecommons.org/licenses/by-sa/2.5/',
@@ -140,21 +140,21 @@ def load_catalog():
     return slugs, forms
 
 
-def licence_url(licence, where):
-    if licence not in LICENCE_URLS:
-        sys.exit('%s: unknown licence "%s" — add its deed to LICENCE_URLS' % (where, licence))
-    return LICENCE_URLS[licence]
+def license_url(license, where):
+    if license not in LICENSE_URLS:
+        sys.exit('%s: unknown license "%s" — add its deed to LICENSE_URLS' % (where, license))
+    return LICENSE_URLS[license]
 
 
-def entry(file, licence, author, source, digest, index, matches=None):
-    """One manifest value; `licenceUrl` is absent exactly where there is no deed."""
-    record = {'file': file, 'licence': licence, 'author': author,
+def entry(file, license, author, source, digest, index, matches=None):
+    """One manifest value; `licenseUrl` is absent exactly where there is no deed."""
+    record = {'file': file, 'license': license, 'author': author,
               'source': source, 'sha256': digest, **index}
     if matches is not None:
         record['matches'] = matches
-    url = licence_url(licence, source)
+    url = license_url(license, source)
     if url:
-        record['licenceUrl'] = url
+        record['licenseUrl'] = url
     return record
 
 
@@ -209,15 +209,15 @@ def copy_and_analyze(copies, lensed=False):
     """
     digests = {id: copy_verified(source, target) for id, source, target in copies}
     measured = audio_measure.measure_all(FFMPEG, [target for _, _, target in copies])
-    analysed = {}
+    analyzed = {}
     for id, _, target in copies:
         loudness, speaker, leading, peak, floor = measured[target]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % target)
         if lensed and speaker is None:
             sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % target)
-        analysed[id] = (digests[id], playback_index(loudness, speaker, leading, peak, floor, lensed))
-    return analysed
+        analyzed[id] = (digests[id], playback_index(loudness, speaker, leading, peak, floor, lensed))
+    return analyzed
 
 
 def convert_words(lang, pack, out_dir, slugs, forms):
@@ -227,13 +227,13 @@ def convert_words(lang, pack, out_dir, slugs, forms):
     rows = read_rows(os.path.join(pack, 'manifest.tsv'))
     reachable = keep_named_by_its_file(keep_reachable(rows, lang, slugs, forms, drops), drops)
     kept = attribute(keep_unambiguous(reachable, mp3_dir, drops), drops)
-    analysed = copy_and_analyze([(row['slug'], os.path.join(mp3_dir, row['slug'] + '.mp3'),
+    analyzed = copy_and_analyze([(row['slug'], os.path.join(mp3_dir, row['slug'] + '.mp3'),
                                   os.path.join(out_dir, row['slug'] + '.mp3')) for row in kept],
                                 lensed=lang in ANALYSIS['lensed'])
     words = {}
     for row in kept:
-        digest, index = analysed[row['slug']]
-        words[row['slug']] = entry(row['slug'] + '.mp3', row['licence'], row['author'],
+        digest, index = analyzed[row['slug']]
+        words[row['slug']] = entry(row['slug'] + '.mp3', row['license'], row['author'],
                                    row['file'], digest, index, matches=row['matched_word'])
     for reason, slug, detail in sorted(drops):
         print('  drop %-15s %-22s %s' % (reason, slug, detail))
@@ -259,12 +259,12 @@ def convert_letters(pack, out_dir):
     """The alphabet section: codepoint-named files, because glyph names decompose on APFS."""
     rows = read_rows(os.path.join(pack, 'manifest.tsv'))
     names = {row['letter']: letter_file(row['letter']) for row in rows}
-    analysed = copy_and_analyze([(row['letter'], os.path.join(pack, 'mp3', row['local_file']),
+    analyzed = copy_and_analyze([(row['letter'], os.path.join(pack, 'mp3', row['local_file']),
                                   os.path.join(out_dir, names[row['letter']])) for row in rows])
     letters = {}
     for row in rows:
-        digest, index = analysed[row['letter']]
-        letters[row['letter']] = entry(names[row['letter']], row['licence'], row['author'],
+        digest, index = analyzed[row['letter']]
+        letters[row['letter']] = entry(names[row['letter']], row['license'], row['author'],
                                        row['file'], digest, index)
     print('  letters: %d recorded' % len(letters))
     return letters
@@ -282,12 +282,12 @@ def convert_texts(pack, out_dir):
     """
     rows = read_rows(os.path.join(pack, 'manifest.tsv'))
     names = {row['text']: 'texts/' + row['local_file'] for row in rows}
-    analysed = copy_and_analyze([(row['text'], os.path.join(pack, 'mp3', row['local_file']),
+    analyzed = copy_and_analyze([(row['text'], os.path.join(pack, 'mp3', row['local_file']),
                                   os.path.join(out_dir, names[row['text']])) for row in rows])
     texts = {}
     for row in rows:
-        digest, index = analysed[row['text']]
-        texts[row['text']] = entry(names[row['text']], row['licence'], row['author'],
+        digest, index = analyzed[row['text']]
+        texts[row['text']] = entry(names[row['text']], row['license'], row['author'],
                                    row['file'], digest, index, matches=row['text'])
     print('  texts: %d recorded' % len(texts))
     return texts

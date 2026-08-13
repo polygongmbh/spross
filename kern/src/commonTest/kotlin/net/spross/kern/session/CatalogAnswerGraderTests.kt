@@ -109,7 +109,7 @@ class CatalogAnswerGraderTests {
         val grader = CatalogAnswerGrader(uk, deToUk)
         val waiterF = joined(deToUk, "waiter-f")
         // §3 leniency: the base concept's word demotes to the feminine spelling,
-        // it is never re-labelled as another concept's word.
+        // it is never re-labeled as another concept's word.
         val verdict = grader.grade("офіціант", waiterF)
         assertIs<Match.Typo>(verdict)
         assertEquals("офіціантка", verdict.corrected)

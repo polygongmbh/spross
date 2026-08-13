@@ -79,7 +79,7 @@ data class CountryDrillTask(
     val display: String,
     /**
      * The reveal's second line — never shown before the answer is in. It is the answer
-     * side's neighbouring form: the nationality beside the country, the country beside the
+     * side's neighboring form: the nationality beside the country, the country beside the
      * language, so a run teaches the triple rather than one edge of it. A flag question,
      * which showed no name at all, names the country on the ASKING side instead — otherwise
      * a miss leaves the learner not knowing which country they got wrong.

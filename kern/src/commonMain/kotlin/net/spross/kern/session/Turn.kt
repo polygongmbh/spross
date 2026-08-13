@@ -8,7 +8,7 @@ import net.spross.kern.model.Rating
 /**
  * Where one answer stands inside a turn.
  *
- * Named by what it says about the ANSWER, never by the colour a field wears for it:
+ * Named by what it says about the ANSWER, never by the color a field wears for it:
  * the same four states drive a text field, a card face and a screen reader announcement.
  */
 sealed interface TurnFeedback {

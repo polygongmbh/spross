@@ -1,11 +1,11 @@
 {
- "title": "Colours",
+ "title": "Colors",
  "subtitle": "Red, blue and everything between.",
  "words": {
-  "colour": {
-   "text": "colour",
+  "color": {
+   "text": "color",
    "variants": [
-    "color"
+    "colour"
    ]
   },
   "white": {
@@ -29,17 +29,20 @@
   "brown": {
    "text": "brown"
   },
-  "grey": {
-   "text": "grey",
+  "gray": {
+   "text": "gray",
    "variants": [
-    "gray"
+    "grey"
    ]
   },
   "purple": {
    "text": "purple"
   },
-  "what-colour-is-it": {
-   "text": "What colour is it?"
+  "what-color-is-it": {
+   "text": "What color is it?",
+   "variants": [
+    "What colour is it?"
+   ]
   },
   "a-white-car": {
    "text": "A white car."

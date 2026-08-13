@@ -2,7 +2,7 @@
  "title": "Кольори",
  "subtitle": "Червоний, синій і все між ними.",
  "words": {
-  "colour": {
+  "color": {
    "text": "колір",
    "grammar": {
     "plural": "кольори"
@@ -35,13 +35,13 @@
   "brown": {
    "text": "коричневий"
   },
-  "grey": {
+  "gray": {
    "text": "сірий"
   },
   "purple": {
    "text": "фіолетовий"
   },
-  "what-colour-is-it": {
+  "what-color-is-it": {
    "text": "Якого це кольору?"
   },
   "a-white-car": {

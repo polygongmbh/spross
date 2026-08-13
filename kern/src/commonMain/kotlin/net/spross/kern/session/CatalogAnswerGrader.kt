@@ -37,7 +37,7 @@ class CatalogAnswerGrader(
 
     private fun otherWord(input: String, card: Card): Match.OtherWord? {
         // why: the base concept's word is deliberately lenient on a feminine card
-        // (§3 demotes it to the feminine correction) — it must not be re-labelled
+        // (§3 demotes it to the feminine correction) — it must not be re-labeled
         // as somebody else's word.
         val skipped = setOfNotNull(card.id, card.feminineOf)
         val typed = normalizer.comparisonForms(input, verbLeniency = false)

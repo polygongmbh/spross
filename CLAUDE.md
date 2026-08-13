@@ -49,6 +49,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Max ~300 lines per file; split at natural boundaries. Modularity over bloat.
 - Comments only for non-obvious constraints;
   side-effectful effects get a one-line `// why:` (trigger + observable result).
+- English is American spelling everywhere — docs, comments, chrome copy, and catalog content
+  (where British spellings are accepted `variants`, never `text`; see `catalog/README.md`).
 - ALWAYS use **Semantic linebreaks** for text - in docs, markdown files, documentation comments: one sentence/clause per line.
 - Tests: behavior over implementation detail; extract pure logic so it's testable without the framework.
 - Engine APIs name the rule, never the rendering: no screen positions in kern types.
@@ -83,8 +85,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Negations and hardlines only where the opposite is what would otherwise happen.
 - A doc states its content, never its own properties.
 - Out-of-scope discoveries go to `docs/backlog.md` (one-liners with pointers); prune on fix.
-- Whose the bundled recordings are and what their licences oblige — the ship/legal record —
-  is `docs/audio-licensing.md`; no other doc restates a licence term.
+- Whose the bundled recordings are and what their licenses oblige — the ship/legal record —
+  is `docs/audio-licensing.md`; no other doc restates a license term.
 - Write plans into docs/ and delete them once shipped, even if you did not write the plan
 - Whenever you are corrected or do extensive research, find or create an appropriate docs/ file to note insights
 - Do not document a removal or absence of something beyond the commits message unless it is likely to be accidentally reintroduced

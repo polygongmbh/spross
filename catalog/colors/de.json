@@ -2,7 +2,7 @@
  "title": "Die Farben",
  "subtitle": "Rot, blau und alles dazwischen.",
  "words": {
-  "colour": {
+  "color": {
    "text": "Farbe",
    "grammar": {
     "gender": "die",
@@ -30,13 +30,13 @@
   "brown": {
    "text": "braun"
   },
-  "grey": {
+  "gray": {
    "text": "grau"
   },
   "purple": {
    "text": "lila"
   },
-  "what-colour-is-it": {
+  "what-color-is-it": {
    "text": "Welche Farbe ist das?"
   },
   "a-white-car": {

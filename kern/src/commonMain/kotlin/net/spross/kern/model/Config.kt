@@ -24,7 +24,7 @@ data class BoxConfig(
      * Set between S0(Good) = 2.3065 and S0(Easy) = 8.2956, so a merely-Good first
      * answer does not read as landed while a genuinely known-on-sight Easy one does.
      * That gap is the whole point: a first answer of Good is as easily an emoji
-     * recognised as a word recalled, and the word keeps its support until a second
+     * recognized as a word recalled, and the word keeps its support until a second
      * answer says otherwise — where Easy, which only a fast learner-reported Knew
      * can earn ([net.spross.kern.session.SelfGrading]), clears the bar on the spot.
      *

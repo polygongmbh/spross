@@ -61,7 +61,7 @@ object LanguageChoices {
      * A picker ROW: "🇺🇦 Українська · Ukrainian" — the flag, the language's own name, and the English exonym.
      *
      * Both names, because a flag beside a script the reader cannot read is easy to mistake
-     * for a neighbouring language, while the endonym is how a speaker of it finds their own row.
+     * for a neighboring language, while the endonym is how a speaker of it finds their own row.
      * Collapsed to one name where the two agree ("🇬🇧 English"),
      * and to the uppercased code where the catalog knows no such language.
      */

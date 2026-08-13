@@ -41,7 +41,7 @@
     "gender": "el"
    }
   },
-  "neighbourhood": {
+  "neighborhood": {
    "text": "barrio",
    "grammar": {
     "gender": "el"
@@ -158,7 +158,7 @@
     "Nos vemos en el mercado."
    ]
   },
-  "i-live-in-this-neighbourhood": {
+  "i-live-in-this-neighborhood": {
    "text": "Vivo en este barrio."
   },
   "how-much-does-this-cost": {

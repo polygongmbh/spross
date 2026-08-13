@@ -11,8 +11,8 @@ internal data class AudioRecording(
     val file: String,
     /** The exact surface form the recording speaks; null for letters (they speak a name). */
     val matches: String?,
-    val licence: String,
-    val licenceUrl: String?,
+    val license: String,
+    val licenseUrl: String?,
     val author: String,
     val source: String,
     /** Hex digest of the shipped bytes — lint re-hashes the file against it. */
@@ -80,7 +80,7 @@ internal class AudioManifest(
     fun path(recording: AudioRecording): String = "audio/$language/${recording.file}"
 
     /**
-     * (label, recording) for the credits screen, manifest order: words labelled by the
+     * (label, recording) for the credits screen, manifest order: words labeled by the
      * form they speak, then letters by their glyph, then the alphabet's own example words.
      */
     fun creditRows(): List<Pair<String, AudioRecording>> =
@@ -102,7 +102,7 @@ internal class AudioManifest(
 
 internal object AudioManifestParser {
     private val WORD_KEYS =
-        setOf("file", "matches", "licence", "licenceUrl", "author", "source", "sha256",
+        setOf("file", "matches", "license", "licenseUrl", "author", "source", "sha256",
               "gain", "lead", "snr")
     private val LETTER_KEYS = WORD_KEYS - "matches"
 
@@ -139,8 +139,8 @@ internal object AudioManifestParser {
             id to AudioRecording(
                 file = entry.requireNonBlank(path, context, "file"),
                 matches = if ("matches" in known) entry.requireNonBlank(path, context, "matches") else null,
-                licence = entry.requireNonBlank(path, context, "licence"),
-                licenceUrl = entry.optionalString(path, context, "licenceUrl"),
+                license = entry.requireNonBlank(path, context, "license"),
+                licenseUrl = entry.optionalString(path, context, "licenseUrl"),
                 author = entry.requireNonBlank(path, context, "author"),
                 source = entry.requireNonBlank(path, context, "source"),
                 sha256 = entry.requireNonBlank(path, context, "sha256"),

@@ -29,8 +29,11 @@
   "pass-exam": {
    "text": "to pass the exam"
   },
-  "practise": {
-   "text": "to practise"
+  "to-practice": {
+   "text": "to practice",
+   "variants": [
+    "to practise"
+   ]
   },
   "raise-hand": {
    "text": "to raise your hand"

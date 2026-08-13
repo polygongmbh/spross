@@ -30,7 +30,7 @@
   "emoji": "🏘️"
  },
  {
-  "slug": "neighbourhood",
+  "slug": "neighborhood",
   "kind": "noun"
  },
  {
@@ -149,10 +149,10 @@
   ]
  },
  {
-  "slug": "i-live-in-this-neighbourhood",
+  "slug": "i-live-in-this-neighborhood",
   "kind": "phrase",
   "components": [
-   "neighbourhood"
+   "neighborhood"
   ]
  },
  {

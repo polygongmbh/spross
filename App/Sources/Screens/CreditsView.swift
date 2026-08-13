@@ -1,7 +1,7 @@
 import SwiftUI
 import SprossKern
 
-/// Who spoke the bundled pronunciation recordings, under which licence, and —
+/// Who spoke the bundled pronunciation recordings, under which license, and —
 /// once a group is unfolded — every single file with its page on Commons.
 /// The list comes from `Catalog.audioCredits()`, derived from the shipped
 /// manifests, so it can neither credit what is not bundled nor miss what is.
@@ -51,7 +51,7 @@ struct CreditsView: View {
         }
     }
 
-    /// The second licence obligation, beside naming the speaker: the files are
+    /// The second license obligation, beside naming the speaker: the files are
     /// the Commons transcodes, and nothing here re-encoded them.
     private var footer: some View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
@@ -91,9 +91,9 @@ private struct CreditSection: Identifiable {
     var id: String { language }
 }
 
-// MARK: - One (author, licence) group
+// MARK: - One (author, license) group
 
-/// One speaker under one licence, foldable open to the recordings themselves:
+/// One speaker under one license, foldable open to the recordings themselves:
 /// a bare count is weaker attribution than the files, and both BY and BY-SA
 /// ask for a link to the work where giving one is reasonable.
 private struct CreditGroupRow: View {
@@ -130,28 +130,28 @@ private struct CreditGroupRow: View {
             HStack(spacing: DL.Space.xs) {
                 Text("credits.recordings \(credit.files.count)")
                 Text(verbatim: "·")
-                licence
+                license
             }
             .font(DL.Fonts.caption)
             .foregroundStyle(Color.dlTextSecondary)
         }
-        // why: a button centres a label that wraps, and this one is the
+        // why: a button centers a label that wraps, and this one is the
         // fold-open control — "Wikimedia Commons user …" breaks over two lines.
         // The rule does not cross into a label, so it is set inside each.
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    /// The deed itself where the licence has one — public-domain files have none.
+    /// The deed itself where the license has one — public-domain files have none.
     @ViewBuilder
-    private var licence: some View {
-        if let url = credit.licenceUrl.flatMap(URL.init(string:)) {
+    private var license: some View {
+        if let url = credit.licenseUrl.flatMap(URL.init(string:)) {
             Link(destination: url) {
-                Text(verbatim: credit.licence)
+                Text(verbatim: credit.license)
                     .foregroundStyle(Color.dlAccent)
             }
         } else {
-            Text(verbatim: credit.licence)
+            Text(verbatim: credit.license)
         }
     }
 

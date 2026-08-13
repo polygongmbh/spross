@@ -185,7 +185,7 @@ object BoxEngine {
 
     /**
      * Every consolidated card id, in seed order — the words the box may hand to a
-     * drill that practises only material the learner already holds (letter-drill
+     * drill that practices only material the learner already holds (letter-drill
      * dictation is the first caller).
      *
      * Which words those are is an ENGINE rule, not a caller's filter: this reads

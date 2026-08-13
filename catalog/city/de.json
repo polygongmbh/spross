@@ -40,7 +40,7 @@
     "plural": "Dörfer"
    }
   },
-  "neighbourhood": {
+  "neighborhood": {
    "text": "Viertel",
    "variants": [
     "Stadtviertel"
@@ -162,7 +162,7 @@
   "lets-meet-at-the-market": {
    "text": "Treffen wir uns am Markt."
   },
-  "i-live-in-this-neighbourhood": {
+  "i-live-in-this-neighborhood": {
    "text": "Ich wohne in diesem Viertel."
   },
   "how-much-does-this-cost": {

@@ -127,7 +127,7 @@
     "plural": "-en"
    }
   },
-  "neighbour": {
+  "neighbor": {
    "text": "Nachbar",
    "grammar": {
     "gender": "der",

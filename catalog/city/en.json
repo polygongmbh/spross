@@ -23,10 +23,10 @@
   "village": {
    "text": "village"
   },
-  "neighbourhood": {
-   "text": "neighbourhood",
+  "neighborhood": {
+   "text": "neighborhood",
    "variants": [
-    "neighborhood"
+    "neighbourhood"
    ]
   },
   "building": {
@@ -71,8 +71,8 @@
   "cinema": {
    "text": "cinema",
    "variants": [
-    "movie theatre",
-    "movie theater"
+    "movie theater",
+    "movie theatre"
    ]
   },
   "bridge": {
@@ -102,8 +102,11 @@
   "lets-meet-at-the-market": {
    "text": "Let's meet at the market."
   },
-  "i-live-in-this-neighbourhood": {
-   "text": "I live in this neighbourhood."
+  "i-live-in-this-neighborhood": {
+   "text": "I live in this neighborhood.",
+   "variants": [
+    "I live in this neighbourhood."
+   ]
   },
   "how-much-does-this-cost": {
    "text": "How much does this cost?"

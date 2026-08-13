@@ -152,7 +152,7 @@ private fun LanguageHeading(model: AppModel, language: String) {
 }
 
 /**
- * One speaker under one licence, folding open to the recordings themselves: a bare
+ * One speaker under one license, folding open to the recordings themselves: a bare
  * count is weaker attribution than the files, and both BY and BY-SA ask for a link to
  * the work where giving one is reasonable. BY and BY-SA stay separate groups by
  * construction — one notice cannot carry both.
@@ -177,15 +177,15 @@ private fun CreditGroup(credit: AudioCredit, chrome: Chrome) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Text(
-                    credit.licence,
+                    credit.license,
                     style = MaterialTheme.typography.bodySmall,
-                    color = if (credit.licenceUrl == null) {
+                    color = if (credit.licenseUrl == null) {
                         MaterialTheme.colorScheme.onSurfaceVariant
                     } else {
                         MaterialTheme.colorScheme.primary
                     },
                     // why: public-domain files have no deed to link to.
-                    modifier = credit.licenceUrl?.let { url ->
+                    modifier = credit.licenseUrl?.let { url ->
                         Modifier.clickable { uris.openUri(url) }
                     } ?: Modifier,
                 )
@@ -209,7 +209,7 @@ private fun CreditGroup(credit: AudioCredit, chrome: Chrome) {
     }
 }
 
-/** The second licence obligation beside naming the speaker: nothing was re-encoded. */
+/** The second license obligation beside naming the speaker: nothing was re-encoded. */
 @Composable
 private fun CreditFooter(chrome: Chrome) {
     Column {

@@ -234,7 +234,7 @@ class CatalogLintTest {
     }
 
     /**
-     * A subtitle is flavour, so an area may carry none — but half a set is worse than
+     * A subtitle is flavor, so an area may carry none — but half a set is worse than
      * none: the clause would stand in one reader's box and be a hole in the next. It is
      * also not the title again, in any form, and never the `·`-glued tail it replaced,
      * which is the shape the whole field exists to retire.

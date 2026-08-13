@@ -151,7 +151,7 @@ internal object Statistics {
 
     /**
      * Walk back from today: a missed day is bridged, two in a row end the run. Forgiveness
-     * is a property of the neighbourhood, not a budget — showing up restores it, so a
+     * is a property of the neighborhood, not a budget — showing up restores it, so a
      * second miss weeks later never takes back the days built before the first. A bridged
      * day does not increment the count: the streak stalls for a day instead of dying.
      *

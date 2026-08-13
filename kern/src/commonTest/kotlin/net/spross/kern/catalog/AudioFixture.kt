@@ -21,49 +21,49 @@ internal object AudioFixture {
         "audio/de/manifest.json" to """
             { "language": "de",
               "words": {
-                "cook":   { "file": "cook.mp3", "matches": "kochen", "licence": "CC BY-SA 4.0",
-                            "licenceUrl": "$BY_SA", "author": "Anna", "source": "De-kochen.ogg", "sha256": "d1" },
-                "door":   { "file": "door.mp3", "matches": "Tür", "licence": "CC BY-SA 4.0",
-                            "licenceUrl": "$BY_SA", "author": "Anna", "source": "De-Tür.ogg", "sha256": "d2" },
-                "greet":  { "file": "greet.mp3", "matches": "Morgen!", "licence": "CC BY-SA 4.0",
-                            "licenceUrl": "$BY_SA", "author": "Bert", "source": "De-Morgen.ogg", "sha256": "d3" },
-                "hello":  { "file": "hello.mp3", "matches": "hallo", "licence": "CC BY 3.0 us",
-                            "licenceUrl": "$BY", "author": "Bert", "source": "De-hallo.ogg", "sha256": "d4" },
-                "royal":  { "file": "royal.mp3", "matches": "morgen", "licence": "CC BY-SA 4.0",
-                            "licenceUrl": "$BY_SA", "author": "Bert", "source": "De-morgen.ogg", "sha256": "d5" },
-                "waiter": { "file": "waiter.mp3", "matches": "kellner", "licence": "CC BY 3.0 us",
-                            "licenceUrl": "$BY", "author": "Anna", "source": "De-Kellner.ogg", "sha256": "d6" } } }
+                "cook":   { "file": "cook.mp3", "matches": "kochen", "license": "CC BY-SA 4.0",
+                            "licenseUrl": "$BY_SA", "author": "Anna", "source": "De-kochen.ogg", "sha256": "d1" },
+                "door":   { "file": "door.mp3", "matches": "Tür", "license": "CC BY-SA 4.0",
+                            "licenseUrl": "$BY_SA", "author": "Anna", "source": "De-Tür.ogg", "sha256": "d2" },
+                "greet":  { "file": "greet.mp3", "matches": "Morgen!", "license": "CC BY-SA 4.0",
+                            "licenseUrl": "$BY_SA", "author": "Bert", "source": "De-Morgen.ogg", "sha256": "d3" },
+                "hello":  { "file": "hello.mp3", "matches": "hallo", "license": "CC BY 3.0 us",
+                            "licenseUrl": "$BY", "author": "Bert", "source": "De-hallo.ogg", "sha256": "d4" },
+                "royal":  { "file": "royal.mp3", "matches": "morgen", "license": "CC BY-SA 4.0",
+                            "licenseUrl": "$BY_SA", "author": "Bert", "source": "De-morgen.ogg", "sha256": "d5" },
+                "waiter": { "file": "waiter.mp3", "matches": "kellner", "license": "CC BY 3.0 us",
+                            "licenseUrl": "$BY", "author": "Anna", "source": "De-Kellner.ogg", "sha256": "d6" } } }
         """.trimIndent(),
         // mouse/waiter are ONE recording fetched under two slugs (the sw slow/slower
         // shape): identical bytes, so the shared speech key still resolves.
         "audio/sw/manifest.json" to """
             { "language": "sw",
               "words": {
-                "door":   { "file": "door.mp3", "matches": "mlango", "licence": "CC BY-SA 4.0",
-                            "licenceUrl": "$BY_SA", "author": "Juma", "source": "Sw-mlango.ogg", "sha256": "s1",
+                "door":   { "file": "door.mp3", "matches": "mlango", "license": "CC BY-SA 4.0",
+                            "licenseUrl": "$BY_SA", "author": "Juma", "source": "Sw-mlango.ogg", "sha256": "s1",
                             "gain": -5.4, "lead": 41, "snr": 62.3 },
-                "mouse":  { "file": "mouse.mp3", "matches": "panya", "licence": "CC BY-SA 4.0",
-                            "licenceUrl": "$BY_SA", "author": "Juma", "source": "Sw-panya.ogg", "sha256": "s2" },
-                "waiter": { "file": "waiter.mp3", "matches": "Panya", "licence": "CC BY-SA 4.0",
-                            "licenceUrl": "$BY_SA", "author": "Juma", "source": "Sw-panya.ogg", "sha256": "s2" } } }
+                "mouse":  { "file": "mouse.mp3", "matches": "panya", "license": "CC BY-SA 4.0",
+                            "licenseUrl": "$BY_SA", "author": "Juma", "source": "Sw-panya.ogg", "sha256": "s2" },
+                "waiter": { "file": "waiter.mp3", "matches": "Panya", "license": "CC BY-SA 4.0",
+                            "licenseUrl": "$BY_SA", "author": "Juma", "source": "Sw-panya.ogg", "sha256": "s2" } } }
         """.trimIndent(),
         "audio/uk/manifest.json" to """
             { "language": "uk",
               "words": {
-                "door":  { "file": "door.mp3", "matches": "двері", "licence": "Public domain",
+                "door":  { "file": "door.mp3", "matches": "двері", "license": "Public domain",
                            "author": "Ivan", "source": "Uk-двері.ogg", "sha256": "u1" },
-                "mouse": { "file": "mouse.mp3", "matches": "миша", "licence": "CC BY 3.0 us",
-                           "licenceUrl": "$BY", "author": "Halyna", "source": "Uk-миша.ogg", "sha256": "u2" } },
+                "mouse": { "file": "mouse.mp3", "matches": "миша", "license": "CC BY 3.0 us",
+                           "licenseUrl": "$BY", "author": "Halyna", "source": "Uk-миша.ogg", "sha256": "u2" } },
               "letters": {
-                "ж": { "file": "letters/u0436.mp3", "licence": "CC BY-SA 4.0", "licenceUrl": "$BY_SA",
+                "ж": { "file": "letters/u0436.mp3", "license": "CC BY-SA 4.0", "licenseUrl": "$BY_SA",
                        "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "u3",
                        "gain": 20.0, "lead": 1069 },
-                "і": { "file": "letters/u0456.mp3", "licence": "CC BY-SA 4.0", "licenceUrl": "$BY_SA",
+                "і": { "file": "letters/u0456.mp3", "license": "CC BY-SA 4.0", "licenseUrl": "$BY_SA",
                        "author": "Tabrus", "source": "Іі – ukrainian.ogg", "sha256": "u4",
                        "gain": 12.5, "lead": 604 } },
               "texts": {
                 "джерело": { "file": "texts/u0434u0436u0435u0440u0435u043bu043e.mp3", "matches": "джерело",
-                             "licence": "CC BY 3.0 us", "licenceUrl": "$BY", "author": "Halyna",
+                             "license": "CC BY 3.0 us", "licenseUrl": "$BY", "author": "Halyna",
                              "source": "Uk-джерело.ogg", "sha256": "u5", "lead": 88 } } }
         """.trimIndent(),
     )

@@ -69,7 +69,7 @@ class FsrsBehavioralTest {
     // The bar sits in the gap between the two first answers that pass: FSRS-6
     // S0(Good) = 2.3065 stays UNDER it while S0(Easy) = 8.2956 clears it. That gap is
     // what the one landed bar is calibrated for — a first Good is as easily an emoji
-    // recognised as a word recalled, so the word keeps its support into the next
+    // recognized as a word recalled, so the word keeps its support into the next
     // review, and only an Easy (earned by a fast Knew, never picked) lands on sight.
     @Test
     fun theLandedBarSeparatesAGoodFirstAnswerFromAnEasyOne() {

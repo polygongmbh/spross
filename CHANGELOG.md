@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **English is taught in American spelling, with the British form still accepted.**
+  The card now shows "color", "gray", "neighbor", "to practice" and "movie theater",
+  and an answer in the British spelling ("colour", "grey", "neighbour", "practise")
+  still grades as correct — it is just no longer the form the reveal teaches.
+
 - **The reference pages speak, and the counting table is read at a glance.**
   Tap a row of the numbers table or a country in the atlas, on either phone,
   and it is said out loud in the language being learned;
@@ -25,7 +30,7 @@
   speakers all along, filed one page over from the one that got picked. The hiss went with
   them, because the one-off recordings were also the noisiest in the pack, and the quietest
   and the only two that clipped. Spanish and Swahili narrow the same way wherever a bigger
-  voice could say the word without giving up the freer licence. No recording is credited to
+  voice could say the word without giving up the freer license. No recording is credited to
   a guess about who spoke it any more.
 
 - **Spross installs from its own releases now, on either phone.** Every tagged version
@@ -108,13 +113,13 @@
   even where the card lists that spelling among its own variants — it no longer books the
   amber "auch gehört" hold for matching its own recording.
 
-- **The Android app wears the same colours and shapes as the iPhone app, and follows the
+- **The Android app wears the same colors and shapes as the iPhone app, and follows the
   system's light or dark setting.** Its palette predated the contrast re-cut and shared no
-  values with iOS; now every screen reads from the same colour pairs in both modes, and
+  values with iOS; now every screen reads from the same color pairs in both modes, and
   buttons, tiles and cards take the same rounded shapes. The iPhone widget and the watch
   complication article tints, which had drifted off that same canon, are back on it too —
   and the home-screen widget now follows light and dark like every other surface, instead
-  of drawing paper-mode colours on a dark tile.
+  of drawing paper-mode colors on a dark tile.
 
 - **Spross has a front door: spross.net.** A landing page that says what the growing box
   is, invites you onto the mailing list, and lets you try the real numbers drill in the
@@ -138,7 +143,7 @@
   sprout instead, and opening the app hands the words straight back over. Tapping the tile
   now names where it goes, so it reaches the app from that state as well.
 
-- **A third thing to practise in the Sprossen: the world.** 🌍 Länder opens an atlas —
+- **A third thing to practice in the Sprossen: the world.** 🌍 Länder opens an atlas —
   every country the two languages both have a name for, with what its people are called
   and what is spoken there, on one page you can look things up on and start a run from.
   The run begins with the countries your own two languages are at home in and widens
@@ -466,7 +471,7 @@
   with it — a number you could not act on from the lock screen. The flame is lit once today's
   review is in, dwindling while today is still open but yesterday was fine, and hollow when
   yesterday was already the streak's one forgiven miss, so a glance tells you not just whether
-  you are due but how urgent it is. With no streak yet it shows hollow and grey.
+  you are due but how urgent it is. With no streak yet it shows hollow and gray.
 
 - **Your box is a forest now, and it grows on the first screen.** Where Heute ended in two
   numbers there is a tree for every area — and every tree is made of your words. Packing
@@ -507,7 +512,7 @@
 - **The words that were already spoken aloud finally have cards.** The bundled Swahili
   recordings had long been saying words the box never taught — chakula, mkono, duka, kitabu —
   because they only ever appeared inside a sentence. They are cards now, along with the
-  family, the body from head to foot, food and drink, the town and the road, the colours, the
+  family, the body from head to foot, food and drink, the town and the road, the colors, the
   months and the year, and the small words a beginner reaches for constantly and the catalog
   simply lacked: if, and, or, because, when, why. Most of them arrive with a human voice
   already attached.
@@ -523,7 +528,7 @@
   sights, no practice mixed through, over before it began. A finished day now stays finished,
   and the pack is offered by "Noch eine Runde?" — which composes the way every round does,
   practice when words are coming back, new ones when little is, and both when the box holds
-  both. Practising on from the summary follows the same rule, so it keeps going for as long as
+  both. Practicing on from the summary follows the same rule, so it keeps going for as long as
   you want it to instead of running dry on a box you have caught up with. The done screen
   mentions the pack, quietly.
 
@@ -706,7 +711,7 @@
 - **The screen that ends a round can be left from the same corner the round could.** The
   close cross now sits top left on the finish screen and on a drill's summary too, so the
   thumb that closed one round early finds the next one's way out where it left it, instead
-  of travelling to the bottom of the screen and back.
+  of traveling to the bottom of the screen and back.
 
 - **The feedback chimes are heard beside the spoken words instead of under them.** They
   used to play on the phone's ringer volume while every word played on the media volume,
@@ -760,7 +765,7 @@
   would be the answer. Tapping a word speaks it again, even with read-aloud switched off.
   Turn it off with the speaker at the top of a round or in the settings; the phone's silent
   switch keeps covering everything, as before. And who spoke the recordings, under which
-  licence, now stands under "Sprecher & Lizenzen" in the settings.
+  license, now stands under "Sprecher & Lizenzen" in the settings.
 
 - **On Android the words are read aloud too**: the same rule as on the iPhone — a card
   speaks the word it shows, with recordings of real speakers where they exist and the
@@ -769,7 +774,7 @@
   it would be the answer. Tapping a word speaks it again, even with read-aloud off. Turn it
   off with the speaker at the top of a round; the phone's media volume keeps covering
   everything, as before. New beside "Sprachen ändern" stands "Info": the same switch once
-  more, the version — and who spoke the recordings, under which licence, with a link to
+  more, the version — and who spoke the recordings, under which license, with a link to
   every single file on Wikimedia Commons.
 
 - **You can learn Spanish now**: the language choice offers, beside English, Kiswahili and
@@ -790,7 +795,7 @@
   recording, from *¡Hola!* to *mañana*; everything else speaks with the device's voice, as
   before. Unlike Kiswahili and Ukrainian it isn't one voice but many — and where the
   speakers are from, Wikimedia Commons doesn't say, so none of these recordings should be
-  taken as a model of the Spanish of Spain. Who speaks, and under which licence, stands
+  taken as a model of the Spanish of Spain. Who speaks, and under which license, stands
   under "Sprecher & Lizenzen".
 
 - **You can now recognize letters by their sound**: beside numbers, clock and sentences
@@ -855,7 +860,7 @@
 
 ## 2.4.1## 2.4.1 — 2026-08-01
 
-- **A word you are only asked to recognise is no longer typed back at you**: saying you
+- **A word you are only asked to recognize is no longer typed back at you**: saying you
   did not know a target word asked for its spelling before moving on — with that same
   word standing in the prompt above the field, so the answer was copied off the screen it
   came from. Recognition now ends at the reveal and the self-grade, and the writing is
@@ -890,7 +895,7 @@
   the end screen used to nudge a few emoji outwards in silence and put "Weiter üben"
   under your thumb, so stopping — the thing the finished round has earned — was the
   choice you had to reach past. Confetti now falls across the whole screen with a cheer
-  to match, "Fertig" is the button waiting for your thumb, and practising on sits quietly
+  to match, "Fertig" is the button waiting for your thumb, and practicing on sits quietly
   below it for the days you want it — on a finished drill just as on a finished round.
   Tapping anywhere still replays the whole thing.
 
@@ -949,7 +954,7 @@
   and how many finally sat down. The progress tiles carry the same movement under their
   totals, so the numbers show the day shifting them rather than just standing there.
   And when a day is clearly not going in — far more slipping than the box plans for — the
-  finish screen says so and quietly stops pushing you onward; practising more is still
+  finish screen says so and quietly stops pushing you onward; practicing more is still
   right there, it just is not the button leaning on you any more.
 
 ## 2.1.1 — 2026-07-29
@@ -966,7 +971,7 @@
   streak competed for the same run, and the counter could not be trusted — it stopped at the
   last due card while the quiz kept handing out more. The cards that are due are a run with a
   finish line: the counter reaches it, a short burst says how many you did, and the watch
-  takes you back to the start screen by itself, where practising on is one tap away.
+  takes you back to the start screen by itself, where practicing on is one tap away.
   Practice keeps going as long as you do, and counts how many you have got right in a row
   instead — the flame no longer crowds the word it sat next to.
   It also starts where you are weakest: the words closest to slipping come first — how far
@@ -1005,7 +1010,7 @@
   which is "fast, express".
 
 - **A word you miss comes back where you can actually recall it**: it used to return a minute
-  later, a handful of cards along, and got through on being recognised as "that new one"
+  later, a handful of cards along, and got through on being recognized as "that new one"
   rather than on the word and its meaning having bound — and since words learned in one
   sitting kept near-identical due times, they arrived side by side in every session
   afterwards, so *jung* was answered by knowing it comes right before *alt*.
@@ -1027,7 +1032,7 @@
 - **Writing the word out is the answer**: a word typed correctly still asked for a
   "Prüfen" tap before anything happened, and the copy step after a missed word gave no
   sign at all that what you had written was right — you typed the last letter into the
-  same grey box you started in.
+  same gray box you started in.
   The field now says so itself: it goes green with a checkmark the moment the letters
   line up, and the card moves on a beat later, with no button in the way. It answers the
   same way every time you write the word, so a retry after a miss reads exactly like a
@@ -1095,9 +1100,9 @@
 
 - **The reveal's small print can actually be read**: the plural, the "auch: …" alternates,
   the literal gloss and the spelling shown after a typo were set too small and too faint
-  to take in — they are now sized and coloured to be read, not squinted at.
+  to take in — they are now sized and colored to be read, not squinted at.
   The palette moved with them: paper and ink re-grounded on the growing box,
-  ocean and forest alongside the clay, and every colour the app puts on screen
+  ocean and forest alongside the clay, and every color the app puts on screen
   now carries enough contrast to be legible in both light and dark.
 
 - **A new word asks before it teaches**: the first time a word comes up it now waits

@@ -77,7 +77,7 @@ internal object LetterDrillFixture {
      * back to plain text here, which is what stamps it [LetterPromptKind.PlainText].
      *
      * One word per row on purpose: the pooled draw has to reproduce the single-example
-     * behaviour exactly, which is what the golden sequences pin.
+     * behavior exactly, which is what the golden sequences pin.
      */
     val example: (AlphabetEntry) -> List<LetterDrill.AlphabetExampleWord> = { entry ->
         listOfNotNull(

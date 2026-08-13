@@ -47,7 +47,7 @@ internal val ChromeEn = Chrome(
     audioToggle = "Read words aloud",
     audioToggleHint = "Read words aloud during review. Tapping a word speaks it " +
         "again — even when read-aloud is off.",
-    creditsTitle = "Voices & licences",
+    creditsTitle = "Voices & licenses",
     creditsRecordings = "%d recordings",
     creditsUnmodified = "Recordings shipped unmodified",
     creditsCommons = "Recordings from Wikimedia Commons",

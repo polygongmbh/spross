@@ -23,16 +23,16 @@ import net.spross.kern.session.Match
  * open and the drill may not close it. A reading that names the part of the day does
  * close it, and [dayPartReadingsCloseTheTwelveHourCycle] holds it to that.
  *
- * Candidate pairs are found by word count and by the single-deletion neighbourhoods of
+ * Candidate pairs are found by word count and by the single-deletion neighborhoods of
  * their outer words: under the drill rule two readings bridge only if every aligned word
  * pair is within one edit, and two words are within one edit only if their deletion
- * neighbourhoods intersect (transposition included — `cuarto` and `cuatro` both reach
+ * neighborhoods intersect (transposition included — `cuarto` and `cuatro` both reach
  * `cuato`). Only survivors are graded.
  *
  * What that indexing cannot reach: readings of DIFFERENT word counts, which the
  * normalizer grades on one whole-form budget instead (`AnswerNormalizer.withinBudget`).
  * That path has been probed clean across all five languages, but it is not held here —
- * closing the gap means a second index keyed on the whole shape's deletion neighbourhood.
+ * closing the gap means a second index keyed on the whole shape's deletion neighborhood.
  */
 class ClockCollisionSweepTests {
 
@@ -153,7 +153,7 @@ class ClockCollisionSweepTests {
 
     /**
      * Cross-cycle pairs worth grading: equal word count, every aligned word within one
-     * edit. Forms are indexed by the deletion neighbourhoods of their first and last
+     * edit. Forms are indexed by the deletion neighborhoods of their first and last
      * words, which no bridging pair can disagree on, so the join stays near-linear
      * where the plain quadratic would not fit on the fast gate.
      */
@@ -176,7 +176,7 @@ class ClockCollisionSweepTests {
         return out
     }
 
-    /** (first word, last word) deletion-neighbourhood keys — one entry per combination. */
+    /** (first word, last word) deletion-neighborhood keys — one entry per combination. */
     private fun outerKeys(shape: String): List<Pair<String, String>> {
         val words = shape.split(' ')
         val head = deletions(words.first())

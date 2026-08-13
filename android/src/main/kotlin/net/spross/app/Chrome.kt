@@ -75,7 +75,7 @@ data class Chrome(
     val tasksDoneOne: String,      // the count-of-one line, verbatim
     val tasksDone: String,         // %d
     val bestStreak: String,        // %d
-    val answerCorrect: String,     // an answered tile's state, never colour alone
+    val answerCorrect: String,     // an answered tile's state, never color alone
     val answerWrong: String,
 
     // ── The three overview pages ────────────────────────────────────────────────

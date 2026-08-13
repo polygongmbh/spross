@@ -2,7 +2,7 @@
  "title": "Rangi",
  "subtitle": "Nyekundu, buluu na mengine yote.",
  "words": {
-  "colour": {
+  "color": {
    "text": "rangi",
    "grammar": {
     "plural": "="
@@ -75,13 +75,13 @@
     "hudhurungi"
    ]
   },
-  "grey": {
+  "gray": {
    "text": "kijivu"
   },
   "purple": {
    "text": "zambarau"
   },
-  "what-colour-is-it": {
+  "what-color-is-it": {
    "text": "Ni rangi gani?"
   },
   "a-white-car": {

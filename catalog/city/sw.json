@@ -38,7 +38,7 @@
     "plural": "vijiji"
    }
   },
-  "neighbourhood": {
+  "neighborhood": {
    "text": "mtaa",
    "grammar": {
     "plural": "mitaa"
@@ -143,7 +143,7 @@
   "lets-meet-at-the-market": {
    "text": "Tukutane sokoni."
   },
-  "i-live-in-this-neighbourhood": {
+  "i-live-in-this-neighborhood": {
    "text": "Ninaishi katika mtaa huu."
   },
   "how-much-does-this-cost": {

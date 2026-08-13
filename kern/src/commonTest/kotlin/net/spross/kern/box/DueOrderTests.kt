@@ -6,7 +6,7 @@ import kotlin.test.assertNotEquals
 
 /**
  * Due ordering: overdue days first, de-correlated inside the day so cards
- * introduced together stop travelling as a block the learner can answer from
+ * introduced together stop traveling as a block the learner can answer from
  * sequence rather than from memory.
  */
 class DueOrderTests {

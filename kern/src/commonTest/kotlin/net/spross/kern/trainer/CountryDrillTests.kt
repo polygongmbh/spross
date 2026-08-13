@@ -53,7 +53,7 @@ class CountryDrillTests {
         ),
     )
 
-    /** A de→sw profile: tier 1 is its own, tier 2 the neighbour, tier 3 two rungs out. */
+    /** A de→sw profile: tier 1 is its own, tier 2 the neighbor, tier 3 two rungs out. */
     private val content = CountryDrillContent(
         source = "de",
         target = "sw",
@@ -61,7 +61,7 @@ class CountryDrillTests {
             country("homeland", 1, listOf("de"), "Deutschland", "Ujerumani"),
             country("second-home", 1, listOf("de", "fr"), "Österreich", "Austria"),
             country("islands", 1, listOf("sw"), "Kenia", "Kenya"),
-            country("neighbour", 2, listOf("es"), "Spanien", "Uhispania"),
+            country("neighbor", 2, listOf("es"), "Spanien", "Uhispania"),
             country("far", 3, listOf("fr"), "Frankreich", "Ufaransa"),
         ),
         languages = listOf(
@@ -143,7 +143,7 @@ class CountryDrillTests {
         for ((below, above) in pools.zipWithNext()) {
             assertTrue(below.all { it in above }, "a rung dropped what the one below it opened")
         }
-        assertEquals(home + setOf("neighbour", "far"), ids(9, CountryTaskKind.CountryName))
+        assertEquals(home + setOf("neighbor", "far"), ids(9, CountryTaskKind.CountryName))
         assertEquals(setOf("de", "sw", "es", "fr"), ids(9, CountryTaskKind.SpokenWhere))
     }
 
@@ -179,7 +179,7 @@ class CountryDrillTests {
     @Test
     fun aTierWithNothingInItIsSkippedRatherThanAsked() {
         val gapped = content.copy(countries = content.countries.filter { it.tier != 1 })
-        assertEquals(setOf("neighbour"), CountryDrill.tasks(gapped, 1).map { it.id }.toSet())
+        assertEquals(setOf("neighbor"), CountryDrill.tasks(gapped, 1).map { it.id }.toSet())
     }
 
     /**

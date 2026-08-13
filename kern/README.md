@@ -42,7 +42,7 @@ The engine's own semantics are below. Four domains have their own pages:
 - `LanguageChoices` (`catalog/LanguageChoices.kt`) owns the pair a learner picks and how the two pickers name it.
   `Selection(source, target?)` is the pair under edit; `target` is null until one is chosen.
   - `pickerRow(code, info)` → "🇺🇦 Українська · Ukrainian": flag, the language's own name, the English exonym.
-    Both names, because a flag beside a script the reader cannot read is easy to mistake for a neighbouring language,
+    Both names, because a flag beside a script the reader cannot read is easy to mistake for a neighboring language,
     while the endonym is how a speaker of it finds their own row.
     Collapsed where the two agree ("🇬🇧 English"), uppercased code where the catalog knows no such language.
   - `pickerLabel(code, info)` → "🇺🇦 Ukrainian": the collapsed form a dropdown wears as its own label, having half a row to live in.
@@ -120,7 +120,7 @@ data class Realization(
   figurative" from the glyph alone before reading either language's text. Idioms also
   carry no `components`/`feminineOf` (structurally forbidden) and so no unlock gate —
   see `catalog/README.md` "Idioms are the exception".
-- **Grammar display is target-side only**: the plural line and article colouring render only for the target realization.
+- **Grammar display is target-side only**: the plural line and article coloring render only for the target realization.
   `pluralForm(realization)` (`model/DisplayText.kt`) resolves what the catalog authored:
   absent AND empty both answer null — an authored-but-empty value is not a form,
   and a surface that took it for one would print a bare label with nothing behind it;
@@ -254,7 +254,7 @@ this to every loaded box).
   `relearning [10m]`) so the golden vectors run verbatim.
   **The product runs ONE learning step, `[2m]`** (`relearning [10m]` unchanged).
   Two minute-scale steps put a missed word back in front of the learner half a dozen cards
-  later, where it passes on being recognised as "that new one" rather than on the
+  later, where it passes on being recognized as "that new one" rather than on the
   source↔target pair having bound. What keeps the retry out of THIS sitting is the run
   boundary, not the clock — a composed session never refills (§6) — so the step only has to
   be short enough that the word is there for the next one: a follow-up sitting or "Weiter
@@ -293,7 +293,7 @@ this to every loaded box).
   Calibrated for FSRS-6: at retention 0.8 the interval is 3.316 × stability, and the bar
   sits in the gap between the two first answers that pass — S0(Good) = 2.3065 stays under
   it while S0(Easy) = 8.2956 clears it. That gap is the whole point. A first Good is as
-  easily an emoji recognised as a word recalled, so the word keeps its support until a
+  easily an emoji recognized as a word recalled, so the word keeps its support until a
   second answer says otherwise; Easy is earned by a fast learner-reported Knew
   (`SelfGrading`, §6) and never picked, so a word genuinely known on sight still lands at
   once — the learner met where they are, without the guess riding along.
@@ -408,7 +408,7 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
 - **Due order is day-bucketed, then shuffled**: reviews drain oldest overdue DAY first
   (backlog fairness), but inside a day the order is `fnv1a64("<dueEpochDay>:<fnv1a64(cardId)>")`,
   card id last as the collision tie-break.
-  A plain timestamp sort kept cards introduced together — seed neighbours, so often related
+  A plain timestamp sort kept cards introduced together — seed neighbors, so often related
   concepts — adjacent for the life of the box, and the learner answered from sequence.
   Seeding the hash with the card's OWN due day keeps the function pure (no clock read) while
   reshuffling the bucket differently from one day to the next.
@@ -547,14 +547,14 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   no-op (`AnswerStatus.StaleCard`) the UI skips past. `SessionPlan` carries a
   `joinStamp` (source, target, catalog fingerprint); the app recomposes when stale.
 - `setSuspended(cardId)` — per card.
-- **`BoxEngine.consolidatedCardIds(state)`** — the words a drill may practise, in seed order.
+- **`BoxEngine.consolidatedCardIds(state)`** — the words a drill may practice, in seed order.
   It reads through the join-filtered active inventory (scheduled, joining, not suspended) and
   keeps what `Statistics.isConsolidated` accepts, so a lapse takes a card off the list on its
   own: consolidation wants the Review phase, and a lapsed card sits in Relearning until it
   earns the stability back.
   The rule lives here rather than in each app because "which words does the learner already
   hold" is an engine question — restated over `box.cards` on two platforms it would drift,
-  and it would drift silently, since a drill that practises a word too early only feels
+  and it would drift silently, since a drill that practices a word too early only feels
   slightly harder.
   Seed order, not the due shuffle: a drill samples with its own `Random` and needs a list
   that is stable under it, not a second ordering rule; the seedIndex tie-break on card id

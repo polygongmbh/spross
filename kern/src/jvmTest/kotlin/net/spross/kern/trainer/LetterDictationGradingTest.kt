@@ -41,7 +41,7 @@ class LetterDictationGradingTest {
         firstOrNull { it.target.text == text } ?: throw AssertionError("no card answers \"$text\"")
 
     @Test
-    fun theNeighbouringVerbIsNamedAsItselfNotForgivenAsASlip() {
+    fun theNeighboringVerbIsNamedAsItselfNotForgivenAsASlip() {
         val cards = catalog.join("de", "sw")
         val spoken = grading(cards.byText("kufungua"))
         // One card at a time the missing "u" fits the drill's per-word budget — the bug.

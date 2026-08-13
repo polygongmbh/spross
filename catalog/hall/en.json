@@ -77,8 +77,11 @@
   "apartment": {
    "text": "apartment"
   },
-  "neighbour": {
-   "text": "neighbour"
+  "neighbor": {
+   "text": "neighbor",
+   "variants": [
+    "neighbour"
+   ]
   },
   "guest": {
    "text": "guest"

@@ -1,6 +1,6 @@
 [
  {
-  "slug": "colour",
+  "slug": "color",
   "kind": "noun",
   "emoji": "🌈"
  },
@@ -40,7 +40,7 @@
   "emoji": "🤎"
  },
  {
-  "slug": "grey",
+  "slug": "gray",
   "kind": "adjective",
   "emoji": "🩶"
  },
@@ -50,11 +50,11 @@
   "emoji": "💜"
  },
  {
-  "slug": "what-colour-is-it",
+  "slug": "what-color-is-it",
   "kind": "phrase",
   "emoji": "🌈",
   "components": [
-   "colour"
+   "color"
   ]
  },
  {

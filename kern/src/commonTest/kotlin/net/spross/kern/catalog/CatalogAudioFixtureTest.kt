@@ -42,8 +42,8 @@ class CatalogAudioFixtureTest {
         val word = catalog.audio.getValue("uk").words.getValue("mouse")
         assertEquals("mouse.mp3", word.file)
         assertEquals("миша", word.matches)
-        assertEquals("CC BY 3.0 us", word.licence)
-        assertEquals("https://creativecommons.org/licenses/by/3.0/us/", word.licenceUrl)
+        assertEquals("CC BY 3.0 us", word.license)
+        assertEquals("https://creativecommons.org/licenses/by/3.0/us/", word.licenseUrl)
         assertEquals("Halyna", word.author)
         assertEquals("Uk-миша.ogg", word.source)
         assertEquals("u2", word.sha256)
@@ -53,7 +53,7 @@ class CatalogAudioFixtureTest {
         assertNull(letter.matches)
         assertEquals("Tabrus", letter.author)
         // Public-domain files have no deed to link.
-        assertNull(catalog.audio.getValue("uk").words.getValue("door").licenceUrl)
+        assertNull(catalog.audio.getValue("uk").words.getValue("door").licenseUrl)
     }
 
     // -- the analysis index ------------------------------------------------------------
@@ -121,7 +121,7 @@ class CatalogAudioFixtureTest {
     private fun letterManifest(index: String): String =
         """
         { "language": "uk",
-          "letters": { "ж": { "file": "letters/u0436.mp3", "licence": "Public domain",
+          "letters": { "ж": { "file": "letters/u0436.mp3", "license": "Public domain",
                               "author": "Tabrus", "source": "s.ogg", "sha256": "u3", $index } } }
         """.trimIndent()
 
@@ -132,7 +132,7 @@ class CatalogAudioFixtureTest {
                 "audio/uk/manifest.json",
                 """
                 { "language": "uk",
-                  "words": { "mouse": { "file": "mouse.mp3", "matches": "миша", "licence": "Public domain",
+                  "words": { "mouse": { "file": "mouse.mp3", "matches": "миша", "license": "Public domain",
                                         "author": "Halyna", "source": "s.ogg", "sha256": "u2", "voice": "alto" } } }
                 """.trimIndent(),
             )
@@ -159,7 +159,7 @@ class CatalogAudioFixtureTest {
                 "audio/uk/manifest.json",
                 """
                 { "language": "uk",
-                  "letters": { "ж": { "file": "letters/u0436.mp3", "matches": "же", "licence": "Public domain",
+                  "letters": { "ж": { "file": "letters/u0436.mp3", "matches": "же", "license": "Public domain",
                                       "author": "Tabrus", "source": "s.ogg", "sha256": "u3" } } }
                 """.trimIndent(),
             )
@@ -245,7 +245,7 @@ class CatalogAudioFixtureTest {
     // -- credits -----------------------------------------------------------------------
 
     @Test
-    fun creditsGroupPerLanguageAuthorAndLicence() {
+    fun creditsGroupPerLanguageAuthorAndLicense() {
         val credits = catalog.audioCredits()
         assertEquals(
             listOf(
@@ -258,13 +258,13 @@ class CatalogAudioFixtureTest {
                 "uk|Halyna|CC BY 3.0 us",
                 "uk|Tabrus|CC BY-SA 4.0",
             ),
-            credits.map { "${it.language}|${it.author}|${it.licence}" },
+            credits.map { "${it.language}|${it.author}|${it.license}" },
         )
         assertEquals(
             listOf(AudioCreditFile("kochen", "De-kochen.ogg"), AudioCreditFile("Tür", "De-Tür.ogg")),
             credits.first().files,
         )
-        assertNull(credits.first { it.licence == "Public domain" }.licenceUrl)
+        assertNull(credits.first { it.license == "Public domain" }.licenseUrl)
     }
 
     @Test

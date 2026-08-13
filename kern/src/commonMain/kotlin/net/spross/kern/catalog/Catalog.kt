@@ -67,7 +67,7 @@ class Catalog internal constructor(
         areas.firstOrNull { it.name == area }?.titles?.get(lang)
 
     /**
-     * The area's flavour clause, the same shape as [areaTitle]. Optional content: null
+     * The area's flavor clause, the same shape as [areaTitle]. Optional content: null
      * says this area authors none (in any language), never that the reader's is missing —
      * a subtitle is authored in every declared language or in none.
      */
@@ -362,7 +362,7 @@ class Catalog internal constructor(
         slugIndex[slug]?.realizations?.get(lang)?.text
 
     /**
-     * Attribution for every bundled recording, grouped by (language, author, licence) —
+     * Attribution for every bundled recording, grouped by (language, author, license) —
      * BY and BY-SA cannot share a notice, so the groups ARE the credit rows. Derived from
      * the shipped manifests, so the surface can never credit what is not bundled. Order is
      * stable: languages as declared, entries as the manifest lists them.
@@ -372,13 +372,13 @@ class Catalog internal constructor(
         val deeds = mutableMapOf<CreditKey, String?>()
         for ((lang, manifest) in audio) {
             for ((label, recording) in manifest.creditRows()) {
-                val key = CreditKey(lang, recording.author, recording.licence)
+                val key = CreditKey(lang, recording.author, recording.license)
                 files.getOrPut(key) { mutableListOf() } += AudioCreditFile(label, recording.source)
-                if (key !in deeds) deeds[key] = recording.licenceUrl
+                if (key !in deeds) deeds[key] = recording.licenseUrl
             }
         }
         return files.map { (key, rows) ->
-            AudioCredit(key.language, key.author, key.licence, deeds[key], rows)
+            AudioCredit(key.language, key.author, key.license, deeds[key], rows)
         }
     }
 
@@ -512,5 +512,5 @@ class Catalog internal constructor(
     }
 }
 
-/** Credit identity: one author's work in one language under one licence. */
-private data class CreditKey(val language: Language, val author: String, val licence: String)
+/** Credit identity: one author's work in one language under one license. */
+private data class CreditKey(val language: Language, val author: String, val license: String)

@@ -152,7 +152,7 @@ object SessionOffers {
 
     /**
      * Whether a round the learner asks for would yield anything — what both the summary's
-     * "keep practising" and the done card's extra round turn on, since both open the same
+     * "keep practicing" and the done card's extra round turn on, since both open the same
      * [SessionComposer.composeRound]. It counts pull-aheads, so it holds in every done state
      * with active cards; only a box with nothing left at all answers no.
      */

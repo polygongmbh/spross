@@ -140,14 +140,14 @@ class CatalogAudioLintTest {
             val where = "audio/$lang/manifest.json $id"
             val required = mapOf(
                 "file" to recording.file,
-                "licence" to recording.licence,
+                "license" to recording.license,
                 "author" to recording.author,
                 "source" to recording.source,
                 "sha256" to recording.sha256,
             )
             for ((field, value) in required) assertTrue(value.isNotBlank(), "$where: blank $field")
-            if (recording.licence != "Public domain") {
-                assertTrue(!recording.licenceUrl.isNullOrBlank(), "$where: ${recording.licence} needs a deed URL")
+            if (recording.license != "Public domain") {
+                assertTrue(!recording.licenseUrl.isNullOrBlank(), "$where: ${recording.license} needs a deed URL")
             }
         }
         for ((lang, manifest) in catalog.audio) {
@@ -229,7 +229,7 @@ class CatalogAudioLintTest {
      * [Catalog.audioCredits] and nothing else, so a pack the grouping never reaches is a
      * BY-SA notice no user can read — and bundling the files discharges nothing. A rule,
      * not a roster: every letter recording has to find its own (language, author,
-     * licence) group carrying its glyph and its Commons filename. The uk pack is asserted
+     * license) group carrying its glyph and its Commons filename. The uk pack is asserted
      * present first, so the rule can never pass by having nothing to check.
      */
     @Test
@@ -241,9 +241,9 @@ class CatalogAudioLintTest {
                 val where = "audio/$lang letter \"$glyph\""
                 val group = assertNotNull(
                     credits.singleOrNull {
-                        it.language == lang && it.author == recording.author && it.licence == recording.licence
+                        it.language == lang && it.author == recording.author && it.license == recording.license
                     },
-                    "$where: no single ${recording.licence} group for ${recording.author}",
+                    "$where: no single ${recording.license} group for ${recording.author}",
                 )
                 assertTrue(
                     AudioCreditFile(glyph, recording.source) in group.files,
@@ -313,11 +313,11 @@ class CatalogAudioLintTest {
      * every pack would then be corrected toward a level no one chose.
      */
     @Test
-    fun theWordPacksStayCentredOnTheAnalysisTarget() {
+    fun theWordPacksStayCenteredOnTheAnalysisTarget() {
         val gains = catalog.audio.values.flatMap { manifest -> manifest.words.values.map { it.gain } }.sorted()
         assertTrue(gains.isNotEmpty(), "no word recordings ship")
         val median = gains[gains.size / 2]
-        assertTrue(median in -1.0..1.0, "word gains centre on $median dB, not on the analysis target")
+        assertTrue(median in -1.0..1.0, "word gains center on $median dB, not on the analysis target")
     }
 
     /**

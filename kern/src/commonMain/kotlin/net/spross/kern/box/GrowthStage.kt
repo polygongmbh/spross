@@ -21,7 +21,7 @@ const val MATURED_STABILITY: Double = 30.0
  * likes, and free to draw two of them the same — which bars a card has cleared is
  * the engine's answer, what that looks like is not.
  *
- * Ordered as growth runs, so neighbouring rungs compare. The three off-path rungs
+ * Ordered as growth runs, so neighboring rungs compare. The three off-path rungs
  * ([Unscheduled], [Relearning], [Suspended]) say where the card stands now, never
  * how far it once got: a lapsed card reports [Relearning] whatever it had reached.
  */

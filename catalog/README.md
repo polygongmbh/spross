@@ -1,6 +1,6 @@
 # Content catalog format (v2.1)
 
-Language learning content organised **one folder per area**.
+Language learning content organized **one folder per area**.
 Designed for reuse (any language pair is a runtime join of shared parts),
 crowdsourced per-language contribution, and a slow default learning progression.
 
@@ -179,9 +179,9 @@ so rename deliberately, never just to polish a lemma.
     "the-fridge-is-empty": { "text": "Der Kühlschrank ist leer." } } }
 ```
 - `title` — the area's plain NAME, nothing appended. It doubles as the disambiguating
-  cue on an ambiguous produce prompt, where a flavour tail glued on with `·` would
+  cue on an ambiguous produce prompt, where a flavor tail glued on with `·` would
   turn a label into a sentence.
-- `subtitle` — OPTIONAL flavour clause rendered under the title, one short line.
+- `subtitle` — OPTIONAL flavor clause rendered under the title, one short line.
   Never the title again and never a fragment of it, and per area it is **all-or-nothing
   across the declared languages**: a clause only one language carries reads as a hole
   in every other reader's box. Lint holds both.
@@ -212,6 +212,10 @@ Realization fields — only `text` is required:
   and that is the whole of it — `text` is the form prompted on recognize and the form the
   reveal teaches, and `synonyms` are what rotate beside it.
   Author them for reach, not for display: a form that deserves to be seen is a synonym.
+  **English is authored in American spelling.** `text` carries the American form and the
+  British spelling is a `variants` entry, accept-only like any other (`color`/`colour`,
+  `gray`/`grey`, `neighbor`/`neighbour`, `to practice`/`to practise`); slugs and
+  realization prose follow the same American spelling.
   **A register pair is a swap, not a rewrite**: the du-form differs from the Sie-form in the
   address alone, and a `bitte` the Sie-form never had makes it a second sentence the slug
   no longer names (`can-you-repeat-that` says nothing about please). Lint holds the
@@ -260,20 +264,20 @@ Bundled pronunciation recordings, one folder per language, **generated** by
 `app/scripts/audio-catalog.py --packs <workspace>` — edit packs, not this directory.
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
 unversioned research input; what is committed here is the shipped bytes and the
-licence record that has to travel with them. Both apps bundle the whole tree as it
+license record that has to travel with them. Both apps bundle the whole tree as it
 stands (iOS folder reference, the Android catalog sync), so nothing needs registering.
 
 ```json
 { "language": "uk",
   "words": {
     "office": { "file": "office.mp3", "matches": "установа",
-                "licence": "CC BY 3.0 us",
-                "licenceUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+                "license": "CC BY 3.0 us",
+                "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
                 "author": "Галя Раптова, Nicolas Vion",
                 "source": "Uk-установа.ogg", "sha256": "1c44…" } },
   "letters": {
-    "ж": { "file": "letters/u0436.mp3", "licence": "CC BY-SA 4.0",
-           "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "ж": { "file": "letters/u0436.mp3", "license": "CC BY-SA 4.0",
+           "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
            "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "77b0…",
            "gain": 20.0, "lead": 1069 } } }
 ```
@@ -281,7 +285,7 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
 - `language` must equal the folder name, and a folder for a language `languages.json`
   does not declare is never read — adding one is dropping a directory in, nothing else.
 - `words` is keyed by concept slug, `letters` (optional, uk only today) by lowercase
-  glyph. Every field is required except `licenceUrl`, which is absent exactly for
+  glyph. Every field is required except `licenseUrl`, which is absent exactly for
   public-domain files, having no deed to link, and `gain`/`lead`, absent where they
   would be zero.
 - `matches` — the surface form the recording actually SPEAKS, and the lookup key:
@@ -651,7 +655,7 @@ governs it.
 **An area holds a few dozen cards.** It is a shelf a learner can hold in their head and
 choose to pull forward, not a drawer everything vaguely related falls into — so an area
 growing past roughly forty asks to be cut along the seam a learner would name
-(the doctor's visit out of health, the clock out of the everyday words, the colours out
+(the doctor's visit out of health, the clock out of the everyday words, the colors out
 before they ever land there). The cut is cheap: the slug is the card id and carries no
 area, so nobody's schedule notices.
 
@@ -660,7 +664,7 @@ refill, because every word that fits nowhere fits there — which is exactly wha
 to the area once called `essentials`, "Das Wichtigste im Alltag", until it had to be
 dissolved into the scenes it was holding. Every area's name must therefore answer *what
 gets in*, and the answer must be able to say no: a room (`kitchen`), an errand (`admin`),
-a kind of word (`colours`, `qualities`), or — for the words that belong to no scene at
+a kind of word (`colors`, `qualities`), or — for the words that belong to no scene at
 all — the deliberately narrow `verbs`, which admits a word only when no scene claims it.
 A word that fits none of them is not homeless; it is evidence that a shelf is missing.
 
