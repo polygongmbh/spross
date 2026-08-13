@@ -40,9 +40,9 @@ html, body {
 
 /* A piece is a cut-size rectangle. Its font-size is the design unit.
 
-   --edge is how close coloured ink may come to a trim line. On the imposed home sheets
+   --edge is how close colored ink may come to a trim line. On the imposed home sheets
    pieces abut, the cut is by hand and no home printer reaches the paper edge, so ink stops
-   short and a mis-cut shows paper instead of a sliver of the neighbour. The shop exports
+   short and a mis-cut shows paper instead of a sliver of the neighbor. The shop exports
    set --edge to 0 and --bleed to 3mm, and the same blocks run out past the trim instead. */
 .piece {
   --edge: 5mm;

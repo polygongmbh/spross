@@ -18,12 +18,14 @@ python3 build.py             # everything, into out/
 python3 build.py --lang de   # one language
 python3 build.py --html      # stop at html/, skip Chrome
 python3 check.py             # verify out/ before sending anything to a printer
+python3 check.py --self-test # confirm the gate still catches a broken file
 ```
 
-`build.py` needs `qrencode` and Chrome; `check.py` needs `poppler` (`pdfinfo`, `pdffonts`,
-`pdfimages`), ImageMagick, and Swift for the decoder.
-`pikepdf`, if installed, is what stamps the trim and bleed boxes onto the shop exports —
-without it they still carry trim marks, and `check.py` says so.
+`build.py` needs `qrencode` and Chrome, and nothing from PyPI — the trim and bleed boxes
+are appended to Chrome's output as a PDF incremental update, so a checkout with a stock
+Python still produces the file a shop expects.
+`check.py` needs `poppler` (`pdfinfo`, `pdffonts`, `pdfimages`), ImageMagick, and Swift
+for the decoder.
 
 ## What comes out
 
@@ -64,23 +66,23 @@ Cut along the ticks in the sheet margin; the A5 sheet is one cut across the midd
 the A6 sheet is quartered, and those two carry no ticks because a full sheet of pieces
 leaves no margin to put them in.
 
-Colour is held clear of every cut on these sheets, so a crooked cut or a printer that
-cannot reach the paper edge shows paper, never a slice of the neighbouring piece.
+Color is held clear of every cut on these sheets, so a crooked cut or a printer that
+cannot reach the paper edge shows paper, never a slice of the neighboring piece.
 
 **At a shop.** Send the `-shop` files and ask them not to scale.
 They are sRGB with no output intent; a shop converting to CMYK is expected, and it is worth
-asking for black text to convert to K only so small type does not print in four colours.
+asking for black text to convert to K only so small type does not print in four colors.
 
 ## The parts
 
 - **The QR** encodes `https://spross.net` at error-correction level Q with a four-module
   quiet zone — the address fits a 25×25 symbol there, so the printed module stays at or
   above 0.64mm on the smallest piece. `check.py` decodes every code back out of a
-  rasterised page, one piece at a time, the way a phone meets it.
+  rasterized page, one piece at a time, the way a phone meets it.
 - **The icon** is the app's own `icon-1024.png`, placed so it stays at or above 300dpi.
 - **The type** is Nunito, bundled in `assets/fonts/` and embedded in each PDF.
   The app's own SF Pro Rounded is licensed for interfaces, not for print; Nunito is the
-  rounded face the site already names next to it, and its licence (`assets/fonts/OFL.txt`)
+  rounded face the site already names next to it, and its license (`assets/fonts/OFL.txt`)
   permits embedding. The three static weights are instances cut from the variable font,
   because Chrome cannot subset-embed a variable face and falls back to Type 3 glyphs,
   which shop preflight rejects.

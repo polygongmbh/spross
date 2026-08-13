@@ -34,9 +34,9 @@ ICON = REPO / "App/Resources/Assets.xcassets/AppIcon.appiconset/icon-1024.png"
 # Trim sizes in mm. A5/A6 halve A4 exactly (148.5 / 105 x 148.5) so a cut sheet leaves
 # no waste; that is 0.5mm over nominal ISO, well inside hand-cut tolerance.
 # `base` is the design unit: the piece's font-size, from which every internal em derives.
-# `edge` is how far coloured ink stays clear of a trim line on the home sheets: pieces there
+# `edge` is how far colored ink stays clear of a trim line on the home sheets: pieces there
 # abut, cutting is by hand and no home printer reaches the paper edge, so a mis-cut shows
-# paper rather than a sliver of a neighbour's colour. The shop exports set it to 0 and bleed.
+# paper rather than a sliver of a neighbor's color. The shop exports set it to 0 and bleed.
 # `qr` is the code's whole footprint including its four-module quiet zone; at 37 modules
 # across, these all keep a module at or above 0.59mm, which scans off an inkjet by hand.
 SIZES = {
@@ -54,7 +54,7 @@ HAIRLINE = 0.25
 CARD_TOP = 8.0       # the card grid sits high on the sheet: a classic inkjet cannot print
 CARD_BOTTOM = 14.0   # the last 12.7mm at the bottom, ticks and all
 
-# The sprout from the site header, as flat print colours (viewBox 20 16 68 72).
+# The sprout from the site header, as flat print colors (viewBox 20 16 68 72).
 MARK = """<svg class="mark" viewBox="20 16 68 72" xmlns="http://www.w3.org/2000/svg">
 <path fill="#8A6F4D" d="M54,78 C54,66 54,58 54,50 C54,42 50,38 44,36 C50,40 52,46 52,52 C52,58 52,66 52,78 Z"/>
 <path fill="#6FA659" d="M53,52 C46,52 38,48 36,40 C34,34 36,30 36,30 C42,30 50,32 53,40 C55,45 53,52 53,52 Z"/>
@@ -85,7 +85,7 @@ def data_uri(path: Path, mime: str) -> str:
 
 def fonts_css() -> str:
     """Nunito, embedded. The site already names it in the brand stack, and unlike the macOS
-    system faces its OFL licence permits embedding in a PDF sent to a printer.
+    system faces its OFL license permits embedding in a PDF sent to a printer.
 
     Static instances, not the variable font: Chrome cannot subset-embed a variable face and
     falls back to dumping every glyph as a Type 3 charproc, which shop preflight rejects.
@@ -284,7 +284,7 @@ def card_back(c: dict, personal: bool) -> str:
 
 def piece(size: str, inner: str, extra: str = "", bleed: bool = False) -> str:
     """One cut-size rectangle. In bleed mode it grows by the bleed on every side and its
-    edge-hugging colour runs out to the new edge, so the trim can land anywhere in the ring."""
+    edge-hugging color runs out to the new edge, so the trim can land anywhere in the ring."""
     s = SIZES[size]
     b = BLEED if bleed else 0.0
     cls = "piece bleed" if bleed else "piece"
@@ -337,10 +337,10 @@ def ticks(xs: list[float], ys: list[float], x0: float, y0: float,
 
 
 def grid_sheet(size: str, cells: list[str], cols: int, rows: int, back: bool = False) -> str:
-    """Abutting pieces on a grid, horizontally centred, with ticks in the margins.
+    """Abutting pieces on a grid, horizontally centered, with ticks in the margins.
 
     A portrait sheet flipped on its long (vertical) edge mirrors left to right, so a back
-    page has to swap its columns. The grid stays centred horizontally, which is what makes
+    page has to swap its columns. The grid stays centered horizontally, which is what makes
     that swap land exactly on the fronts.
     """
     s = SIZES[size]
@@ -429,9 +429,6 @@ def write(name: str, html: str) -> Path:
 PT = 72 / 25.4
 
 
-_warned_boxes = False
-
-
 def set_boxes(pdf: Path, trim: tuple[float, float]) -> None:
     """Declare where the trim and the bleed sit on a shop export.
 
@@ -439,23 +436,53 @@ def set_boxes(pdf: Path, trim: tuple[float, float]) -> None:
     210×297 of the sheet is the flyer, and preflight fails the file on that alone.
     Ghostscript's pdfmark route is not usable here — pdfwrite answers it by setting every
     box to the MediaBox, which would tell the shop to trim at the marks.
+
+    Written as a PDF incremental update instead of through a library, so that a checkout
+    with nothing but Chrome and Python still produces the file a shop expects: the amended
+    page objects are appended, and a new cross-reference section points at them and chains
+    to the old one. Chrome writes a classic xref table and no object streams, which is what
+    makes that append safe; anything else is refused rather than quietly half-written.
     """
-    global _warned_boxes
-    try:
-        import pikepdf
-    except ImportError:
-        if not _warned_boxes:
-            print("  (no pikepdf: shop exports carry trim marks but no TrimBox — "
-                  "pip install pikepdf)", file=sys.stderr)
-            _warned_boxes = True
-        return
+    data = pdf.read_bytes()
+    tail = data[-2048:]
+    if b"/ObjStm" in data or b"\nxref" not in data or b"trailer" not in tail:
+        raise RuntimeError(f"{pdf.name}: not the classic-xref PDF this expects")
+
     ring, b = (BLEED + MARK_LEN) * PT, BLEED * PT
     w, h = trim[0] * PT, trim[1] * PT
-    with pikepdf.open(pdf, allow_overwriting_input=True) as doc:
-        for page in doc.pages:
-            page.TrimBox = [ring, ring, ring + w, ring + h]
-            page.BleedBox = [ring - b, ring - b, ring + w + b, ring + h + b]
-        doc.save(pdf)
+    boxes = (f"/TrimBox [{ring:.4f} {ring:.4f} {ring + w:.4f} {ring + h:.4f}] "
+             f"/BleedBox [{ring - b:.4f} {ring - b:.4f} {ring + w + b:.4f} "
+             f"{ring + h + b:.4f}] ").encode()
+
+    out = bytearray(data)
+    if not out.endswith(b"\n"):
+        out += b"\n"
+    offsets: dict[int, int] = {}
+    for m in re.finditer(rb"(\d+)\s+(\d+)\s+obj\b", data):
+        body = data[m.end():data.index(b"endobj", m.end())]
+        if not re.search(rb"/Type\s*/Page(?![a-zA-Z])", body):
+            continue
+        stripped = re.sub(rb"/(?:Trim|Bleed)Box\s*\[[^\]]*\]\s*", b"", body)
+        opened = stripped.index(b"<<") + 2
+        num, gen = int(m.group(1)), int(m.group(2))
+        offsets[num] = len(out)
+        out += (f"{num} {gen} obj".encode() + stripped[:opened] + b" " + boxes
+                + stripped[opened:] + b"endobj\n")
+    if not offsets:
+        raise RuntimeError(f"{pdf.name}: found no page objects to amend")
+
+    trailer = re.search(rb"trailer\s*<<(.*?)>>\s*startxref\s*(\d+)", tail, re.S)
+    if not trailer:
+        raise RuntimeError(f"{pdf.name}: no readable trailer")
+    keep = re.sub(rb"/Prev\s+\d+", b"", trailer.group(1))
+
+    xref_at = len(out)
+    out += b"xref\n"
+    for num in sorted(offsets):  # one subsection per object: no renumbering to get wrong
+        out += f"{num} 1\n".encode() + b"%010d %05d n \n" % (offsets[num], 0)
+    out += b"trailer << " + keep.strip() + f" /Prev {trailer.group(2).decode()} ".encode()
+    out += b">>\nstartxref\n" + str(xref_at).encode() + b"\n%%EOF\n"
+    pdf.write_bytes(bytes(out))
 
 
 def to_pdf(name: str, trim: tuple[float, float] | None = None) -> None:
