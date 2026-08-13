@@ -47,6 +47,7 @@ struct TrainerPromptCard: View {
                             .foregroundStyle(Color.dlAccent)
                             .multilineTextAlignment(.center)
                             .minimumScaleFactor(0.6)
+                            .dlSpoken(task.display, language: task.language)
                     }
                 }
                 .transition(.opacity.combined(with: .move(edge: .top)))
