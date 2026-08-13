@@ -68,8 +68,11 @@
     "plural": "universities"
    }
   },
-  "timetable": {
-   "text": "timetable"
+  "class-schedule": {
+   "text": "class schedule",
+   "variants": [
+    "timetable"
+   ]
   },
   "to-count": {
    "text": "to count"
@@ -83,8 +86,11 @@
   "the-exam-is-tomorrow": {
    "text": "The exam is tomorrow."
   },
-  "look-at-the-timetable": {
-   "text": "Look at the timetable."
+  "look-at-the-class-schedule": {
+   "text": "Look at the class schedule.",
+   "variants": [
+    "Look at the timetable."
+   ]
   },
   "the-break-is-over": {
    "text": "The break is over."

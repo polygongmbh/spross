@@ -112,7 +112,7 @@
   "emoji": "🏛️"
  },
  {
-  "slug": "timetable",
+  "slug": "class-schedule",
   "kind": "noun",
   "emoji": "🗓️"
  },
@@ -142,11 +142,11 @@
   ]
  },
  {
-  "slug": "look-at-the-timetable",
+  "slug": "look-at-the-class-schedule",
   "kind": "phrase",
   "emoji": "🗓️",
   "components": [
-   "timetable"
+   "class-schedule"
   ]
  },
  {

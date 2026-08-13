@@ -2,10 +2,12 @@
 
 ## Unreleased
 
-- **English is taught in American spelling, with the British form still accepted.**
-  The card now shows "color", "gray", "neighbor", "to practice" and "movie theater",
-  and an answer in the British spelling ("colour", "grey", "neighbour", "practise")
-  still grades as correct — it is just no longer the form the reveal teaches.
+- **English is taught in American spelling and vocabulary, with the British form still
+  accepted.** The card now shows "color", "gray", "neighbor", "to practice" and "movie
+  theater", and where the two Englishes use different words altogether it teaches the
+  American one — truck, pants, faucet, trash can, vacation, class schedule, store.
+  A British answer ("colour", "grey", "lorry", "trousers", "holiday") still grades as
+  correct; it is just no longer the form the reveal teaches.
 
 - **The reference pages speak, and the counting table is read at a glance.**
   Tap a row of the numbers table or a country in the atlas, on either phone,

@@ -123,7 +123,7 @@
     "plural": "Körbe"
    }
   },
-  "tin": {
+  "tin-can": {
    "text": "Dose",
    "grammar": {
     "gender": "die",

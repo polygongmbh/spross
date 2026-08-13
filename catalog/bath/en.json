@@ -83,11 +83,17 @@
   "cream": {
    "text": "cream"
   },
-  "tap": {
-   "text": "tap"
+  "faucet": {
+   "text": "faucet",
+   "variants": [
+    "tap"
+   ]
   },
-  "bin": {
-   "text": "bin"
+  "trash-can": {
+   "text": "trash can",
+   "variants": [
+    "bin"
+   ]
   },
   "bucket": {
    "text": "bucket"

@@ -35,7 +35,7 @@
   "sock": {
    "text": "шкарпетка"
   },
-  "trousers": {
+  "pants": {
    "text": "штани",
    "grammar": {
     "plural": "only"

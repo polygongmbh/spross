@@ -33,9 +33,9 @@
    "text": "building"
   },
   "store": {
-   "text": "shop",
+   "text": "store",
    "variants": [
-    "store"
+    "shop"
    ]
   },
   "bank": {
@@ -93,8 +93,11 @@
   "is-there-a-bank-here": {
    "text": "Is there a bank here?"
   },
-  "the-shop-is-still-open": {
-   "text": "The shop is still open."
+  "the-store-is-still-open": {
+   "text": "The store is still open.",
+   "variants": [
+    "The shop is still open."
+   ]
   },
   "im-looking-for-a-hotel": {
    "text": "I'm looking for a hotel."

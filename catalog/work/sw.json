@@ -50,7 +50,7 @@
     "plural": "="
    }
   },
-  "holiday": {
+  "vacation": {
    "text": "likizo",
    "grammar": {
     "plural": "="
@@ -167,7 +167,7 @@
     "de": "6 Uhr morgens = saa 12 (saa kumi na mbili) — Sonnenaufgang, Start der Swahili-Stunde!"
    }
   },
-  "ill-send-the-sick-note-right-away": {
+  "ill-send-the-doctors-note-right-away": {
    "text": "Nitakutumia cheti cha daktari mara moja."
   },
   "have-a-nice-evening-off": {

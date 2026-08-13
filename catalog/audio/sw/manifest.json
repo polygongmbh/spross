@@ -921,6 +921,18 @@
       "snr": 48.7,
       "source": "Sw-ke-mji.flac"
     },
+    "class-schedule": {
+      "author": "Waithera Were",
+      "file": "class-schedule.mp3",
+      "gain": -5.7,
+      "lead": 216,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "ratiba",
+      "sha256": "0a2474dd306ac0e2af06f6e2a4b9158dd6c25265f5f57885c56d2318be7a14bf",
+      "snr": 85.1,
+      "source": "Sw-ke-ratiba.flac"
+    },
     "classroom": {
       "author": "Waithera Were",
       "file": "classroom.mp3",
@@ -2260,18 +2272,6 @@
       "snr": 48.6,
       "source": "Sw-ke-kuajiri.flac"
     },
-    "holiday": {
-      "author": "Waithera Were",
-      "file": "holiday.mp3",
-      "gain": 0.2,
-      "lead": 37,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "likizo",
-      "sha256": "b125713affea13465a75075c73570eed6a9844c03001b301c9cf5945e52b4a27",
-      "snr": 50.7,
-      "source": "Sw-ke-likizo.flac"
-    },
     "hospital": {
       "author": "Waithera Were",
       "file": "hospital.mp3",
@@ -2797,18 +2797,6 @@
       "sha256": "841b933568fe6d843212daecec6600933d0c2a4a27e4bb62428e01340644edc0",
       "snr": 48.5,
       "source": "Sw-ke-refu.flac"
-    },
-    "lorry": {
-      "author": "Waithera Were",
-      "file": "lorry.mp3",
-      "gain": -5.2,
-      "lead": 42,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "lori",
-      "sha256": "2288f10c9f946d09c15f50de5bd69b4b7f0d500c84946309e9e991e246de9b1d",
-      "snr": 58.7,
-      "source": "Sw-ke-lori.flac"
     },
     "luggage": {
       "author": "Waithera Were",
@@ -3405,6 +3393,18 @@
       "sha256": "5928329bea890112714d422b18fd0070a40f9f0b99bcebb3134dd1d9fd27a853",
       "snr": 55.2,
       "source": "Sw-ke-kikaango.flac"
+    },
+    "pants": {
+      "author": "Waithera Were",
+      "file": "pants.mp3",
+      "gain": -3.3,
+      "lead": 26,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "suruali",
+      "sha256": "ca1af91204037cd66ff565ca6dac8a2545c490c96dca0c0571a0932cc47dd545",
+      "snr": 58.1,
+      "source": "Sw-ke-suruali.flac"
     },
     "paper": {
       "author": "Waithera Were",
@@ -4843,21 +4843,9 @@
       "snr": 50.7,
       "source": "Sw-ke-wakati.flac"
     },
-    "timetable": {
+    "tin-can": {
       "author": "Waithera Were",
-      "file": "timetable.mp3",
-      "gain": -5.7,
-      "lead": 216,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "ratiba",
-      "sha256": "0a2474dd306ac0e2af06f6e2a4b9158dd6c25265f5f57885c56d2318be7a14bf",
-      "snr": 85.1,
-      "source": "Sw-ke-ratiba.flac"
-    },
-    "tin": {
-      "author": "Waithera Were",
-      "file": "tin.mp3",
+      "file": "tin-can.mp3",
       "gain": -1.1,
       "lead": 38,
       "license": "CC BY-SA 4.0",
@@ -5095,17 +5083,17 @@
       "snr": 51.6,
       "source": "Sw-ke-mti.flac"
     },
-    "trousers": {
+    "truck": {
       "author": "Waithera Were",
-      "file": "trousers.mp3",
-      "gain": -3.3,
-      "lead": 26,
+      "file": "truck.mp3",
+      "gain": -5.2,
+      "lead": 42,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "suruali",
-      "sha256": "ca1af91204037cd66ff565ca6dac8a2545c490c96dca0c0571a0932cc47dd545",
-      "snr": 58.1,
-      "source": "Sw-ke-suruali.flac"
+      "matches": "lori",
+      "sha256": "2288f10c9f946d09c15f50de5bd69b4b7f0d500c84946309e9e991e246de9b1d",
+      "snr": 58.7,
+      "source": "Sw-ke-lori.flac"
     },
     "tv": {
       "author": "Waithera Were",
@@ -5189,6 +5177,18 @@
       "sha256": "f7f709317fecae3de1f1c088b96a6947cf779ff3b63b262ca0f4fff9e4b1e124",
       "snr": 57.1,
       "source": "Sw-ke-mpaka.flac"
+    },
+    "vacation": {
+      "author": "Waithera Were",
+      "file": "vacation.mp3",
+      "gain": 0.2,
+      "lead": 37,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "likizo",
+      "sha256": "b125713affea13465a75075c73570eed6a9844c03001b301c9cf5945e52b4a27",
+      "snr": 50.7,
+      "source": "Sw-ke-likizo.flac"
     },
     "vaccination": {
       "author": "Waithera Were",

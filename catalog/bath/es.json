@@ -197,7 +197,7 @@
     "gender": "la"
    }
   },
-  "tap": {
+  "faucet": {
    "text": "grifo",
    "variants": [
     "canilla",
@@ -207,7 +207,7 @@
     "gender": "el"
    }
   },
-  "bin": {
+  "trash-can": {
    "text": "cubo de la basura",
    "variants": [
     "papelera",

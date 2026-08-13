@@ -212,10 +212,13 @@ Realization fields — only `text` is required:
   and that is the whole of it — `text` is the form prompted on recognize and the form the
   reveal teaches, and `synonyms` are what rotate beside it.
   Author them for reach, not for display: a form that deserves to be seen is a synonym.
-  **English is authored in American spelling.** `text` carries the American form and the
-  British spelling is a `variants` entry, accept-only like any other (`color`/`colour`,
-  `gray`/`grey`, `neighbor`/`neighbour`, `to practice`/`to practise`); slugs and
-  realization prose follow the same American spelling.
+  **English is authored in American spelling AND vocabulary.** `text` carries the American
+  form and the British one is a `variants` entry, accept-only like any other — spelling
+  (`color`/`colour`, `gray`/`grey`, `to practice`/`to practise`) and, where the two
+  Englishes use different words outright, the word itself (`truck`/`lorry`,
+  `pants`/`trousers`, `faucet`/`tap`, `vacation`/`holiday`). Slugs and realization prose
+  follow the American form too, and a slug picks the unambiguous one where the everyday
+  word already names another card (`tin-can`, beside the modal `can`).
   **A register pair is a swap, not a rewrite**: the du-form differs from the Sie-form in the
   address alone, and a `bitte` the Sie-form never had makes it a second sentence the slug
   no longer names (`can-you-repeat-that` says nothing about please). Lint holds the

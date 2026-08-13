@@ -75,10 +75,10 @@
     "motorcycle"
    ]
   },
-  "lorry": {
-   "text": "lorry",
+  "truck": {
+   "text": "truck",
    "variants": [
-    "truck"
+    "lorry"
    ],
    "grammar": {
     "plural": "lorries"

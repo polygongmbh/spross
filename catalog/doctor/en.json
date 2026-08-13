@@ -35,8 +35,11 @@
     "plural": "emergencies"
    }
   },
-  "sick-note": {
-   "text": "sick note"
+  "doctors-note": {
+   "text": "doctor's note",
+   "variants": [
+    "sick note"
+   ]
   },
   "examine": {
    "text": "to examine"

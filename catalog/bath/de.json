@@ -147,14 +147,14 @@
     "plural": "-s"
    }
   },
-  "tap": {
+  "faucet": {
    "text": "Wasserhahn",
    "grammar": {
     "gender": "der",
     "plural": "Wasserhähne"
    }
   },
-  "bin": {
+  "trash-can": {
    "text": "Mülleimer",
    "grammar": {
     "gender": "der",

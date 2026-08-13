@@ -86,7 +86,7 @@
     "gender": "el"
    }
   },
-  "holiday": {
+  "vacation": {
    "text": "vacaciones",
    "grammar": {
     "gender": "las",
@@ -287,7 +287,7 @@
   "my-shift-starts-at-six": {
    "text": "Mi turno empieza a las seis."
   },
-  "ill-send-the-sick-note-right-away": {
+  "ill-send-the-doctors-note-right-away": {
    "text": "Le envío la baja enseguida.",
    "variants": [
     "Te envío la baja enseguida.",

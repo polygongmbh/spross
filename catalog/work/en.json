@@ -36,8 +36,11 @@
   "shift": {
    "text": "shift"
   },
-  "holiday": {
-   "text": "holiday"
+  "vacation": {
+   "text": "vacation",
+   "variants": [
+    "holiday"
+   ]
   },
   "company": {
    "text": "company",
@@ -120,8 +123,11 @@
   "my-shift-starts-at-six": {
    "text": "My shift starts at six."
   },
-  "ill-send-the-sick-note-right-away": {
-   "text": "I'll send you the sick note right away."
+  "ill-send-the-doctors-note-right-away": {
+   "text": "I'll send you the doctor's note right away.",
+   "variants": [
+    "I'll send you the sick note right away."
+   ]
   },
   "have-a-nice-evening-off": {
    "text": "Have a nice evening off!"

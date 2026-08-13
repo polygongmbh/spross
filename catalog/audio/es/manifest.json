@@ -1094,6 +1094,18 @@
       "snr": 73.1,
       "source": "LL-Q1321 (spa)-Precision27-ciudad.wav"
     },
+    "class-schedule": {
+      "author": "AdrianAbdulBaha",
+      "file": "class-schedule.mp3",
+      "gain": 5.2,
+      "lead": 249,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "horario",
+      "sha256": "65a9c72e849dec04f5bbb13814ec6c90200981b258ee1d27e327d17fb2ebb246",
+      "snr": 58.9,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-horario.wav"
+    },
     "classroom": {
       "author": "Marreromarco",
       "file": "classroom.mp3",
@@ -1594,6 +1606,18 @@
       "snr": 46.4,
       "source": "LL-Q1321 (spa)-Marreromarco-médica.wav"
     },
+    "doctors-note": {
+      "author": "GlyphEnjoyer",
+      "file": "doctors-note.mp3",
+      "gain": 2.9,
+      "lead": 194,
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "baja",
+      "sha256": "a9e6812333205d6e4e148a0933412767acd05cf345bb190869d85ce3efd4d690",
+      "snr": 67.4,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-baja.wav"
+    },
     "documents": {
       "author": "Marreromarco",
       "file": "documents.mp3",
@@ -1913,6 +1937,18 @@
       "sha256": "8ac2719d963028e53efa5c1584ad537fc39d9c1d52c777e9a0f2602e1527e03f",
       "snr": 84.3,
       "source": "LL-Q1321 (spa)-Rodelar-padre.wav"
+    },
+    "faucet": {
+      "author": "Millars",
+      "file": "faucet.mp3",
+      "gain": 1.4,
+      "lead": 224,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "grifo",
+      "sha256": "8e7b9504011af4d190ace8fafe5d9e15596e9a33fce6d5f101029d09771dbd6c",
+      "snr": 72.4,
+      "source": "LL-Q1321 (spa)-Millars-grifo.wav"
     },
     "fee": {
       "author": "AdrianAbdulBaha",
@@ -2509,18 +2545,6 @@
       "snr": 48.3,
       "source": "LL-Q1321 (spa)-Marreromarco-contratar.wav"
     },
-    "holiday": {
-      "author": "Marreromarco",
-      "file": "holiday.mp3",
-      "gain": 2.2,
-      "lead": 265,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "vacaciones",
-      "sha256": "75e130450c0de36c5db932206a398eb6ac21214c8ff163e536682e718058e8e6",
-      "snr": 51.2,
-      "source": "LL-Q1321 (spa)-Marreromarco-vacaciones.wav"
-    },
     "hospital": {
       "author": "Rubýñ",
       "file": "hospital.mp3",
@@ -2985,18 +3009,6 @@
       "sha256": "ec388b96c194ca9b36e988b17eb71402c95836a6e3775ab7887795d00a6b3211",
       "snr": 66.9,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-largo.wav"
-    },
-    "lorry": {
-      "author": "AdrianAbdulBaha",
-      "file": "lorry.mp3",
-      "gain": 8.0,
-      "lead": 143,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "camión",
-      "sha256": "4e5e32e67bc192fcb21cbd5fb836914746776e472be4f54621b8421fcc60a23d",
-      "snr": 56.3,
-      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-camión.wav"
     },
     "loud": {
       "author": "GlyphEnjoyer",
@@ -3602,6 +3614,18 @@
       "sha256": "c46005a938f2e0de9c807db62855692cdb35ff08fb0e364266417ac3b7623302",
       "snr": 60.5,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-sartén.wav"
+    },
+    "pants": {
+      "author": "AdrianAbdulBaha",
+      "file": "pants.mp3",
+      "gain": 5.6,
+      "lead": 214,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pantalón",
+      "sha256": "a30c3767abef6ff399a5ba17f3547d01e83b1929830f8b349870e71bf0d2e476",
+      "snr": 58.2,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pantalón.wav"
     },
     "paper": {
       "author": "GlyphEnjoyer",
@@ -4474,18 +4498,6 @@
       "snr": 59.0,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-enfermo.wav"
     },
-    "sick-note": {
-      "author": "GlyphEnjoyer",
-      "file": "sick-note.mp3",
-      "gain": 2.9,
-      "lead": 194,
-      "license": "CC0",
-      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "matches": "baja",
-      "sha256": "a9e6812333205d6e4e148a0933412767acd05cf345bb190869d85ce3efd4d690",
-      "snr": 67.4,
-      "source": "LL-Q1321 (spa)-GlyphEnjoyer-baja.wav"
-    },
     "sign": {
       "author": "AdrianAbdulBaha",
       "file": "sign.mp3",
@@ -4972,18 +4984,6 @@
       "snr": 60.3,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-charlar.wav"
     },
-    "tap": {
-      "author": "Millars",
-      "file": "tap.mp3",
-      "gain": 1.4,
-      "lead": 224,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "grifo",
-      "sha256": "8e7b9504011af4d190ace8fafe5d9e15596e9a33fce6d5f101029d09771dbd6c",
-      "snr": 72.4,
-      "source": "LL-Q1321 (spa)-Millars-grifo.wav"
-    },
     "taste": {
       "author": "Marreromarco",
       "file": "taste.mp3",
@@ -5175,21 +5175,9 @@
       "snr": 75.4,
       "source": "LL-Q1321 (spa)-Precision27-tiempo.wav"
     },
-    "timetable": {
-      "author": "AdrianAbdulBaha",
-      "file": "timetable.mp3",
-      "gain": 5.2,
-      "lead": 249,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "horario",
-      "sha256": "65a9c72e849dec04f5bbb13814ec6c90200981b258ee1d27e327d17fb2ebb246",
-      "snr": 58.9,
-      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-horario.wav"
-    },
-    "tin": {
+    "tin-can": {
       "author": "Marreromarco",
-      "file": "tin.mp3",
+      "file": "tin-can.mp3",
       "gain": 1.1,
       "lead": 207,
       "license": "CC BY-SA 4.0",
@@ -5423,17 +5411,17 @@
       "sha256": "b9f856ef5def674038c505cf3d52db2627a4c8e0b9db63d0b27298cd95a5e4b3",
       "source": "LL-Q1321 (spa)-Rodelar-árbol.wav"
     },
-    "trousers": {
+    "truck": {
       "author": "AdrianAbdulBaha",
-      "file": "trousers.mp3",
-      "gain": 5.6,
-      "lead": 214,
+      "file": "truck.mp3",
+      "gain": 8.0,
+      "lead": 143,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "pantalón",
-      "sha256": "a30c3767abef6ff399a5ba17f3547d01e83b1929830f8b349870e71bf0d2e476",
-      "snr": 58.2,
-      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pantalón.wav"
+      "matches": "camión",
+      "sha256": "4e5e32e67bc192fcb21cbd5fb836914746776e472be4f54621b8421fcc60a23d",
+      "snr": 56.3,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-camión.wav"
     },
     "tv": {
       "author": "AdrianAbdulBaha",
@@ -5518,6 +5506,18 @@
       "sha256": "0495813ef7f883d2fb98fef7f55fdc3a2fd6614e4729dacf911f811e40b91bf8",
       "snr": 50.3,
       "source": "LL-Q1321 (spa)-Marreromarco-urgente.wav"
+    },
+    "vacation": {
+      "author": "Marreromarco",
+      "file": "vacation.mp3",
+      "gain": 2.2,
+      "lead": 265,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "vacaciones",
+      "sha256": "75e130450c0de36c5db932206a398eb6ac21214c8ff163e536682e718058e8e6",
+      "snr": 51.2,
+      "source": "LL-Q1321 (spa)-Marreromarco-vacaciones.wav"
     },
     "vaccination": {
       "author": "Marreromarco",

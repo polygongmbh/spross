@@ -24,7 +24,10 @@
    "text": "signature"
   },
   "ticket-number": {
-   "text": "queue number"
+   "text": "number ticket",
+   "variants": [
+    "queue number"
+   ]
   },
   "case-worker": {
    "text": "case worker"
@@ -125,8 +128,11 @@
   "fill-out-the-form": {
    "text": "Fill out the form."
   },
-  "take-a-queue-number": {
-   "text": "Take a queue number!"
+  "take-a-number": {
+   "text": "Take a number!",
+   "variants": [
+    "Take a queue number!"
+   ]
   },
   "i-need-an-interpreter-for-the-application": {
    "text": "I need an interpreter for the application."

@@ -72,7 +72,7 @@
     "plural": "-en"
    }
   },
-  "holiday": {
+  "vacation": {
    "text": "Urlaub",
    "grammar": {
     "gender": "der",
@@ -201,7 +201,7 @@
   "my-shift-starts-at-six": {
    "text": "Meine Schicht fängt um sechs Uhr an."
   },
-  "ill-send-the-sick-note-right-away": {
+  "ill-send-the-doctors-note-right-away": {
    "text": "Ich schicke Ihnen die Krankmeldung sofort.",
    "variants": [
     "Ich schicke dir die Krankmeldung sofort."

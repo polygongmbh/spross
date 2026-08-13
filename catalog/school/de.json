@@ -145,7 +145,7 @@
     "plural": "-en"
    }
   },
-  "timetable": {
+  "class-schedule": {
    "text": "Stundenplan",
    "grammar": {
     "gender": "der",
@@ -164,7 +164,7 @@
   "the-exam-is-tomorrow": {
    "text": "Morgen ist die Prüfung."
   },
-  "look-at-the-timetable": {
+  "look-at-the-class-schedule": {
    "text": "Schau auf den Stundenplan.",
    "variants": [
     "Schauen Sie auf den Stundenplan."

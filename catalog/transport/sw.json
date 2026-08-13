@@ -116,7 +116,7 @@
     "de": "Das Motorradtaxi heißt bodaboda."
    }
   },
-  "lorry": {
+  "truck": {
    "text": "lori",
    "grammar": {
     "plural": "malori"

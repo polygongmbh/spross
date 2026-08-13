@@ -72,7 +72,7 @@
     "plural": "Notfälle"
    }
   },
-  "sick-note": {
+  "doctors-note": {
    "text": "Krankmeldung",
    "grammar": {
     "gender": "die",

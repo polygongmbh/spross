@@ -74,10 +74,11 @@
   "basket": {
    "text": "basket"
   },
-  "tin": {
-   "text": "tin",
+  "tin-can": {
+   "text": "tin can",
    "variants": [
-    "can"
+    "can",
+    "tin"
    ]
   },
   "the-knife-is-sharp": {

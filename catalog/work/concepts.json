@@ -50,7 +50,7 @@
   "emoji": "🕗"
  },
  {
-  "slug": "holiday",
+  "slug": "vacation",
   "kind": "noun",
   "emoji": "🏖️"
  },
@@ -181,7 +181,7 @@
   ]
  },
  {
-  "slug": "ill-send-the-sick-note-right-away",
+  "slug": "ill-send-the-doctors-note-right-away",
   "kind": "phrase",
   "emoji": "📄",
   "components": []
@@ -205,7 +205,7 @@
   "kind": "phrase",
   "emoji": "🏖️",
   "components": [
-   "holiday"
+   "vacation"
   ]
  },
  {

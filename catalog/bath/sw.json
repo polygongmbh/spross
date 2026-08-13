@@ -122,13 +122,13 @@
     "plural": "="
    }
   },
-  "tap": {
+  "faucet": {
    "text": "bomba la maji",
    "grammar": {
     "plural": "mabomba ya maji"
    }
   },
-  "bin": {
+  "trash-can": {
    "text": "pipa la taka",
    "grammar": {
     "plural": "mapipa ya taka"

@@ -159,7 +159,7 @@
     "de": "la moto ist die Kurzform von la motocicleta und behält deren Femininum."
    }
   },
-  "lorry": {
+  "truck": {
    "text": "camión",
    "grammar": {
     "gender": "el"

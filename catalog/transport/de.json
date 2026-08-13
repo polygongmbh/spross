@@ -126,7 +126,7 @@
     "plural": "Motorräder"
    }
   },
-  "lorry": {
+  "truck": {
    "text": "Lastwagen",
    "variants": [
     "Lkw",

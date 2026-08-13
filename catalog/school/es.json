@@ -191,7 +191,7 @@
     "gender": "la"
    }
   },
-  "timetable": {
+  "class-schedule": {
    "text": "horario",
    "grammar": {
     "gender": "el"
@@ -218,7 +218,7 @@
   "the-exam-is-tomorrow": {
    "text": "El examen es mañana."
   },
-  "look-at-the-timetable": {
+  "look-at-the-class-schedule": {
    "text": "Mira el horario.",
    "variants": [
     "Mire el horario."

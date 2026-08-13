@@ -110,7 +110,7 @@
     "plural": "vyuo vikuu"
    }
   },
-  "timetable": {
+  "class-schedule": {
    "text": "ratiba",
    "grammar": {
     "plural": "="
@@ -128,7 +128,7 @@
   "the-exam-is-tomorrow": {
    "text": "Mtihani ni kesho."
   },
-  "look-at-the-timetable": {
+  "look-at-the-class-schedule": {
    "text": "Angalia ratiba."
   },
   "the-break-is-over": {

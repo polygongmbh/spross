@@ -38,11 +38,14 @@
   "sock": {
    "text": "sock"
   },
-  "trousers": {
-   "text": "trousers",
+  "pants": {
+   "text": "pants",
    "grammar": {
     "plural": "only"
-   }
+   },
+   "variants": [
+    "trousers"
+   ]
   },
   "t-shirt": {
    "text": "t-shirt"

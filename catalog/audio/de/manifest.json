@@ -623,18 +623,6 @@
       "snr": 57.8,
       "source": "De-groß.ogg"
     },
-    "bin": {
-      "author": "Jeuwre",
-      "file": "bin.mp3",
-      "gain": -3.1,
-      "lead": 234,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "mülleimer",
-      "sha256": "89afdcbf61b3dbe1c67611765b6cd004975d7a4aeddb7d3484965a0d7c69ee3f",
-      "snr": 64.9,
-      "source": "De-Mülleimer.ogg"
-    },
     "bird": {
       "author": "T.Voekler",
       "file": "bird.mp3",
@@ -1241,6 +1229,18 @@
       "snr": 86.4,
       "source": "De-Stadt2.ogg"
     },
+    "class-schedule": {
+      "author": "Jeuwre",
+      "file": "class-schedule.mp3",
+      "gain": -0.3,
+      "lead": 283,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "stundenplan",
+      "sha256": "fe5aebd3ee757327965181a5775cc74503c0e5a625fcf79d4f7480f1091d6c99",
+      "snr": 94.2,
+      "source": "De-Stundenplan.ogg"
+    },
     "classroom": {
       "author": "Jeuwre",
       "file": "classroom.mp3",
@@ -1795,6 +1795,18 @@
       "snr": 86.4,
       "source": "De-Ärztin.ogg"
     },
+    "doctors-note": {
+      "author": "Jeuwre",
+      "file": "doctors-note.mp3",
+      "gain": -2.9,
+      "lead": 448,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "krankmeldung",
+      "sha256": "f4421c069866fcf4db86bb8c852ee5a0b6f9539d6c3dac5c25252816e277f5c2",
+      "snr": 87.5,
+      "source": "De-Krankmeldung.ogg"
+    },
     "documents": {
       "author": "Jeuwre",
       "file": "documents.mp3",
@@ -2163,6 +2175,18 @@
       "sha256": "a88263e6cf1940ed8bdedd2bf9ff32e4d79cd00503a1dfd5aea209e9c94c6f84",
       "snr": 86.9,
       "source": "De-vater.ogg"
+    },
+    "faucet": {
+      "author": "Jeuwre",
+      "file": "faucet.mp3",
+      "gain": 0.3,
+      "lead": 438,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "wasserhahn",
+      "sha256": "a3aa2be9451d51645c8d1ebfa2d4a4e96376e10751f33ecb8969a5805317c8ad",
+      "snr": 86.0,
+      "source": "De-Wasserhahn.ogg"
     },
     "fee": {
       "author": "Jeuwre",
@@ -2830,18 +2854,6 @@
       "snr": 86.5,
       "source": "De-einstellen.ogg"
     },
-    "holiday": {
-      "author": "Jeuwre",
-      "file": "holiday.mp3",
-      "gain": -1.1,
-      "lead": 445,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "urlaub",
-      "sha256": "4c5e62861f38cd600a8a546df8c899614adc89d3069608546afd7c6e8926501f",
-      "snr": 87.1,
-      "source": "De-urlaub.ogg"
-    },
     "homework": {
       "author": "Jeuwre",
       "file": "homework.mp3",
@@ -3447,18 +3459,6 @@
       "sha256": "2e6bfe2be9de0061779634fd84275a767360af9c4b93f1442b416ff5e5d84615",
       "snr": 31.7,
       "source": "De-lang.ogg"
-    },
-    "lorry": {
-      "author": "Jeuwre",
-      "file": "lorry.mp3",
-      "gain": 0.8,
-      "lead": 436,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "lastwagen",
-      "sha256": "c252b6f8eca215244a730ed2d8b57f30be573626af22ac47df0dc947d8c69aa2",
-      "snr": 87.0,
-      "source": "De-Lastwagen.ogg"
     },
     "loud": {
       "author": "Kampy",
@@ -4210,6 +4210,18 @@
       "sha256": "634cf8f22e12cd45304193e28407ac70da107ccba9774d887c8392f29b51292e",
       "snr": 86.9,
       "source": "De-Pfanne.ogg"
+    },
+    "pants": {
+      "author": "Jeuwre",
+      "file": "pants.mp3",
+      "gain": -1.0,
+      "lead": 424,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "hose",
+      "sha256": "6d86d4bcc3a04b37d9412a237ac0f0cdc3e69dd98a5a832d41a8a76a268d4e91",
+      "snr": 87.3,
+      "source": "De-hose.ogg"
     },
     "paper": {
       "author": "Kampy",
@@ -5157,18 +5169,6 @@
       "snr": 35.9,
       "source": "De-krank.ogg"
     },
-    "sick-note": {
-      "author": "Jeuwre",
-      "file": "sick-note.mp3",
-      "gain": -2.9,
-      "lead": 448,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "krankmeldung",
-      "sha256": "f4421c069866fcf4db86bb8c852ee5a0b6f9539d6c3dac5c25252816e277f5c2",
-      "snr": 87.5,
-      "source": "De-Krankmeldung.ogg"
-    },
     "sign": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "sign.mp3",
@@ -5699,18 +5699,6 @@
       "snr": 83.6,
       "source": "De-reden.ogg"
     },
-    "tap": {
-      "author": "Jeuwre",
-      "file": "tap.mp3",
-      "gain": 0.3,
-      "lead": 438,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "wasserhahn",
-      "sha256": "a3aa2be9451d51645c8d1ebfa2d4a4e96376e10751f33ecb8969a5805317c8ad",
-      "snr": 86.0,
-      "source": "De-Wasserhahn.ogg"
-    },
     "taste": {
       "author": "Jeuwre",
       "file": "taste.mp3",
@@ -5878,21 +5866,9 @@
       "snr": 86.7,
       "source": "De-zeit.ogg"
     },
-    "timetable": {
+    "tin-can": {
       "author": "Jeuwre",
-      "file": "timetable.mp3",
-      "gain": -0.3,
-      "lead": 283,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "stundenplan",
-      "sha256": "fe5aebd3ee757327965181a5775cc74503c0e5a625fcf79d4f7480f1091d6c99",
-      "snr": 94.2,
-      "source": "De-Stundenplan.ogg"
-    },
-    "tin": {
-      "author": "Jeuwre",
-      "file": "tin.mp3",
+      "file": "tin-can.mp3",
       "gain": -4.8,
       "lead": 245,
       "license": "CC BY-SA 4.0",
@@ -6201,6 +6177,18 @@
       "snr": 69.7,
       "source": "De-übersetzen.ogg"
     },
+    "trash-can": {
+      "author": "Jeuwre",
+      "file": "trash-can.mp3",
+      "gain": -3.1,
+      "lead": 234,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "mülleimer",
+      "sha256": "89afdcbf61b3dbe1c67611765b6cd004975d7a4aeddb7d3484965a0d7c69ee3f",
+      "snr": 64.9,
+      "source": "De-Mülleimer.ogg"
+    },
     "travel": {
       "author": "Kampy",
       "file": "travel.mp3",
@@ -6224,17 +6212,17 @@
       "snr": 86.7,
       "source": "De-baum.ogg"
     },
-    "trousers": {
+    "truck": {
       "author": "Jeuwre",
-      "file": "trousers.mp3",
-      "gain": -1.0,
-      "lead": 424,
+      "file": "truck.mp3",
+      "gain": 0.8,
+      "lead": 436,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "hose",
-      "sha256": "6d86d4bcc3a04b37d9412a237ac0f0cdc3e69dd98a5a832d41a8a76a268d4e91",
-      "snr": 87.3,
-      "source": "De-hose.ogg"
+      "matches": "lastwagen",
+      "sha256": "c252b6f8eca215244a730ed2d8b57f30be573626af22ac47df0dc947d8c69aa2",
+      "snr": 87.0,
+      "source": "De-Lastwagen.ogg"
     },
     "tv": {
       "author": "Kampy",
@@ -6364,6 +6352,18 @@
       "sha256": "c337d7b512d2d829e4779e488914ab5efd5af291c6ddf15d9a796737c3243547",
       "snr": 55.0,
       "source": "De-dringend.ogg"
+    },
+    "vacation": {
+      "author": "Jeuwre",
+      "file": "vacation.mp3",
+      "gain": -1.1,
+      "lead": 445,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "urlaub",
+      "sha256": "4c5e62861f38cd600a8a546df8c899614adc89d3069608546afd7c6e8926501f",
+      "snr": 87.1,
+      "source": "De-urlaub.ogg"
     },
     "vaccination": {
       "author": "Jeuwre",
