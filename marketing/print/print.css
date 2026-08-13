@@ -1,0 +1,343 @@
+/* Spross print materials — trim-size pieces composed onto A4 sheets.
+   Every piece scales from one `font-size` on `.piece`; all internals are em. */
+
+:root {
+  --paper: #FBFBF6;
+  --sand: #EECE9E;
+  --sand-soft: #F6E7CE;
+  --tint: #E5E8DE;
+  --line: #D3D6CA;
+  --text: #1E2620;
+  --text-2: #4F584E;
+  --accent: #A23B0B;
+  --ocean: #0D566E;
+  --forest: #256232;
+  --leaf-a: #6FA659;
+  --leaf-b: #4C8A3F;
+  --stem: #8A6F4D;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #fff;
+  color: var(--text);
+  font-family: "Nunito", "Avenir Next", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+@page { margin: 0; }
+
+.sheet {
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  background: #fff;
+}
+.sheet:last-child { page-break-after: auto; }
+
+/* A piece is a cut-size rectangle. Its font-size is the design unit.
+
+   --edge is how close coloured ink may come to a trim line. On the imposed home sheets
+   pieces abut, the cut is by hand and no home printer reaches the paper edge, so ink stops
+   short and a mis-cut shows paper instead of a sliver of the neighbour. The shop exports
+   set --edge to 0 and --bleed to 3mm, and the same blocks run out past the trim instead. */
+.piece {
+  --edge: 5mm;
+  --bleed: 0mm;
+  position: relative;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--text);
+  line-height: 1.34;
+}
+
+/* --- grid of pieces on a sheet ------------------------------------------ */
+.grid {
+  position: absolute;
+  display: grid;
+  gap: 0;
+}
+
+/* Trim ticks live in the sheet margin, never inside a piece. */
+.tick {
+  position: absolute;
+  background: #1E2620;
+}
+.tick.v { width: 0.25mm; }
+.tick.h { height: 0.25mm; }
+
+/* Every layout root fills its piece, so footers sit on the trim edge and not
+   wherever the copy happens to end. */
+.flyer, .back, .mini, .mini-back, .card { height: 100%; }
+
+/* --- shared piece furniture --------------------------------------------- */
+.mark { display: block; }
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.42em;
+}
+.wordmark .mark { width: 1.9em; height: 2em; }
+.wordmark .word {
+  font-size: 1.62em;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  line-height: 1;
+}
+
+.strapline {
+  color: var(--text-2);
+  font-size: 0.92em;
+  letter-spacing: 0.012em;
+}
+
+.headline {
+  font-size: 2.35em;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+}
+
+.sub {
+  font-size: 1.06em;
+  color: var(--text-2);
+  line-height: 1.42;
+  text-wrap: pretty;
+}
+
+/* No shadow: a soft shadow forces the whole tile through a raster, and Chrome then writes it
+   into the PDF as a lossy JPEG. A hairline keeps the tile off the paper and stays vector. */
+.tile {
+  display: block;
+  border-radius: 22%;
+  border: 0.25mm solid #E2CFAA;
+}
+
+/* the call to action: QR + address, always as one block */
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.cta .qr {
+  display: block;
+  background: #fff;
+  flex: none;
+}
+.cta .url {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.cta .invite {
+  font-size: 0.88em;
+  color: var(--text-2);
+  margin-top: 0.3em;
+  line-height: 1.35;
+}
+
+.langs {
+  font-size: 0.85em;
+  color: var(--text-2);
+  letter-spacing: 0.02em;
+}
+.langs b { color: var(--forest); font-weight: 600; }
+
+.rule { height: 0.06em; background: var(--line); border: 0; }
+
+/* --- the dictionary block (back side) ----------------------------------- */
+.dict {
+  background: var(--tint);
+  border-radius: 0.7em;
+  padding: 1em 1.15em;
+}
+.dict .entry { display: block; font-size: 0.95em; }
+.dict .entry dt { display: inline; font-weight: 700; }
+.dict .entry dd { display: inline; color: var(--text-2); }
+.dict .moral { margin-top: 0.5em; font-size: 0.95em; font-weight: 600; }
+
+/* --- feature grid (back side) ------------------------------------------- */
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1em 1.3em;
+  list-style: none;
+}
+.features h3 {
+  font-size: 1.02em;
+  font-weight: 700;
+  margin-bottom: 0.18em;
+  color: var(--forest);
+}
+.features p { font-size: 0.88em; color: var(--text-2); line-height: 1.38; }
+
+/* --- A4 / A5 flyer front ------------------------------------------------ */
+.flyer {
+  --pad-x: 3.2em;
+  display: flex;
+  flex-direction: column;
+  padding: calc(3.4em + var(--bleed)) calc(var(--pad-x) + var(--bleed)) 0;
+}
+.top { display: flex; flex-direction: column; gap: 0.55em; }
+.flyer .lede { margin-top: 2.1em; display: flex; flex-direction: column; gap: 0.8em; }
+.flyer .art {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.6em 0;
+}
+/* 47% of the A4 content width places the 1024px icon at 300dpi — the shop floor. */
+.flyer .art .tile { width: 47%; }
+
+/* The address band: a panel held clear of the cut at home, a bled band for the shop. */
+.foot {
+  margin: 0 calc(var(--edge) - var(--pad-x) - var(--bleed)) var(--edge);
+  padding: 1.5em calc(var(--pad-x) + var(--bleed) - var(--edge)) calc(1.5em + var(--bleed));
+  background: var(--sand-soft);
+  border: 0.06em solid #E2CFAA;
+  border-radius: calc(var(--edge) * 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+/* --- A4 / A5 flyer back ------------------------------------------------- */
+.back {
+  --pad-x: 3.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3em;
+  padding: calc(3.4em + var(--bleed)) calc(var(--pad-x) + var(--bleed)) 0;
+}
+.back .head { display: flex; align-items: baseline; justify-content: space-between; gap: 1em; }
+.grow { flex: 1; }
+.back .art, .mini-back .art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8em 0;
+}
+.back .art .tile { width: 24%; }
+.mini-back .art .tile { width: 34%; }
+.back .contact { font-size: 0.85em; color: var(--text-2); }
+.back .contact b { color: var(--text); font-weight: 600; }
+
+.back-title {
+  font-size: 1.25em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.foot-plain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4em;
+}
+.foot-plain .contact { text-align: right; line-height: 1.5; white-space: nowrap; }
+.closing {
+  margin: 1.4em calc(var(--edge) - var(--pad-x) - var(--bleed)) var(--edge);
+  padding: 0.9em calc(var(--pad-x) + var(--bleed) - var(--edge)) calc(0.9em + var(--bleed));
+  background: var(--sand-soft);
+  border-radius: calc(var(--edge) * 0.9);
+  color: var(--text-2);
+  text-align: center;
+}
+/* The size change lives on the text, not the panel: --pad-x holds an em value, and a custom
+   property resolves against the font-size of whatever uses it — shrinking the box with it. */
+.closing span { font-size: 0.9em; }
+
+/* --- A6 handbill (its own, shorter, layout) ----------------------------- */
+.mini {
+  --pad-x: 2.2em;
+  display: flex;
+  flex-direction: column;
+  padding: calc(2.4em + var(--bleed)) calc(var(--pad-x) + var(--bleed)) 0;
+  gap: 0.9em;
+}
+.mini .headline { font-size: 1.7em; }
+.mini .art { flex: 1; display: flex; align-items: center; justify-content: center; }
+.mini .art .tile { width: 46%; }
+.mini .foot { padding-top: 1.1em; }
+.mini-back {
+  --pad-x: 2.2em;
+  display: flex;
+  flex-direction: column;
+  padding: calc(2.4em + var(--bleed)) calc(var(--pad-x) + var(--bleed)) 0;
+  gap: 0.85em;
+}
+.mini-back .points { list-style: none; display: flex; flex-direction: column; gap: 0.5em; }
+.mini-back .points li { font-size: 0.92em; padding-left: 1.35em; position: relative; color: var(--text-2); }
+.mini-back .points b { color: var(--text); font-weight: 700; }
+.mini-back .points .leaf {
+  position: absolute; left: 0; top: 0.16em; width: 0.95em; height: 0.95em;
+}
+
+.mini-back .moral-mini { font-size: 0.9em; font-weight: 600; }
+.mini-back .foot-mini {
+  margin: 0.2em calc(var(--edge) - var(--pad-x) - var(--bleed)) var(--edge);
+  padding: 1.1em calc(var(--pad-x) + var(--bleed) - var(--edge)) calc(1.1em + var(--bleed));
+  background: var(--sand-soft);
+  border: 0.06em solid #E2CFAA;
+  border-radius: calc(var(--edge) * 0.9);
+}
+.mini-back .langs { margin-top: 0.1em; }
+
+/* --- business card ------------------------------------------------------ */
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: calc(3.6em + var(--bleed)) calc(3.6em + var(--bleed));
+}
+.card.front { justify-content: center; gap: 0.9em; background: var(--paper); }
+.card.front .wordmark .word { font-size: 2.15em; }
+.card.front .wordmark .mark { width: 2em; height: 2.1em; }
+.card.front .strapline { font-size: 1.15em; }
+.card.front .card-langs { font-size: 0.92em; color: var(--forest); letter-spacing: 0.03em; margin-top: 0.1em; }
+/* The sand rule down the card's left. Held off the trim at home, run to the edge for a shop. */
+.card.front .edge {
+  position: absolute;
+  left: var(--edge); top: var(--edge); bottom: var(--edge);
+  /* the bleed is extra width, not part of the bar: without it the rule would start at the
+     media edge and the trim would take all but a sliver of it */
+  width: calc(1.4em - var(--edge) * 0.35 + var(--bleed));
+  background: var(--sand);
+  border-radius: calc(var(--edge) * 0.5);
+}
+.card.front .inner { padding-left: 1.5em; }
+
+/* Single-sided card: the name and the way to reach the site share one face. */
+.card.solo .inner { display: flex; align-items: center; gap: 1.4em; height: 100%; }
+.card.solo .left { flex: 1; display: flex; flex-direction: column; height: 100%; justify-content: center; }
+.card.solo .left .who { font-size: 1.35em; font-weight: 700; margin-top: 0.35em; }
+.card.solo .left .role { font-size: 0.9em; color: var(--text-2); }
+.card.solo .left .addr { font-size: 0.85em; color: var(--text-2); margin-top: 0.3em; }
+.card.solo .left .mail { font-size: 0.9em; color: var(--ocean); font-weight: 600; margin-top: 0.35em; }
+.card.solo .left .strapline { font-size: 1em; margin-top: 0.2em; }
+.card.solo .wordmark.small .word { font-size: 1.35em; }
+.card.solo .wordmark.small .mark { width: 1.5em; height: 1.6em; }
+.card.solo .right { flex: none; text-align: center; }
+.card.solo .right .qr { display: block; background: #fff; }
+.card.solo .right .url {
+  font-size: 1.05em; font-weight: 700; color: var(--accent); margin-top: 0.3em;
+}
+
+.card.back { justify-content: space-between; background: var(--paper); }
+.card.back .row { display: flex; align-items: center; gap: 1.5em; }
+.card.back .qr { flex: none; background: #fff; }
+.card.back .url { font-size: 1.7em; font-weight: 700; color: var(--accent); line-height: 1.1; }
+.card.back .invite { font-size: 0.95em; color: var(--text-2); margin-top: 0.35em; line-height: 1.35; }
+.card.back.personal { justify-content: space-between; }
+.card.back.personal .row { gap: 1.1em; }
+.card.back.personal .url { font-size: 1.35em; }
+.card.back .who { font-size: 1.25em; font-weight: 700; }
+.card.back .role { font-size: 0.95em; color: var(--text-2); }
+.card.back .addr { font-size: 0.9em; color: var(--text-2); line-height: 1.4; margin-top: 0.55em; }
+.card.back .mail { font-size: 0.95em; color: var(--ocean); font-weight: 600; }

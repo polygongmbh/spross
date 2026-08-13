@@ -14,3 +14,6 @@ local.properties
 *.jks
 *.p8
 web/dist/
+marketing/print/out/
+marketing/print/html/
+marketing/print/preview/

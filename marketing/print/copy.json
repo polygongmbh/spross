@@ -1,0 +1,92 @@
+{
+  "de": {
+    "strapline": "Dein Begleiter beim Sprachenlernen",
+    "headline": "Eine Box, in der deine Sprache wächst",
+    "sub": "Jeden Tag ein paar neue Karten, so verteilt, dass sie bleiben. Es fängt beim Zählen bis zehn an — die Romane haben Zeit.",
+    "invite": "Im Browser zählen — und hören, wenn etwas gewachsen ist.",
+    "positioning": "Spross ersetzt weder dein Tandem noch deinen Kurs — er lässt deinen Wortschatz weiterwachsen, auch zwischen den Gesprächen.",
+    "back_title": "Wie dein Wortschatz wächst",
+    "features": [
+      {
+        "title": "Gesät, nicht gepaukt",
+        "body": "Jeden Tag ein paar neue Karten, im Sprachpaar deiner Wahl. FSRS-6 bringt ein Wort zurück, kurz bevor es dir entfallen würde."
+      },
+      {
+        "title": "Sätze gehen aus Wörtern auf",
+        "body": "Ein Satz bleibt zu, bis seine Wörter sitzen. Wenn er aufgeht, fällt er auf Boden, der ihn trägt."
+      },
+      {
+        "title": "Ein Wald, kein Diagramm",
+        "body": "Jedes Thema ein Baum, jedes Wort ein Blatt. Aus Blättern werden Blüten und schließlich Früchte, wie das Wort in dir reift."
+      },
+      {
+        "title": "Im Garten mahnt niemand",
+        "body": "Kein Konto, keine Werbung, kein Zeigefinger. Gefeiert wird nur ein echter persönlicher Rekord — und an müden Tagen fällt ein ehrliches Wort."
+      }
+    ],
+    "dict": {
+      "term_a": "Spross, der",
+      "gloss_a": "— ein junger Trieb, frisch aus der Erde.",
+      "term_b": "Sprosse, die",
+      "gloss_b": "— die Stufe einer Leiter.",
+      "moral": "Ein Buchstabe zwischen Wachsen und Klettern. Wir meinen beides."
+    },
+    "contact_line": "Offline · ohne Konto · ohne Werbung",
+    "mini_headline": "Wortschatz, der wächst",
+    "mini_sub": "Jeden Tag ein paar Karten — sie wachsen weiter, während du ruhst.",
+    "mini_points": [
+      "Ein paar neue Karten am Tag, wieder da, kurz bevor sie dir entfallen",
+      "Ein Satz geht erst auf, wenn seine Wörter sitzen",
+      "Offline auf dem Telefon, ohne Konto, ohne Werbung"
+    ],
+    "card_strapline": "Begleiter beim Sprachenlernen",
+    "card_invite": "Zählen im Browser, / und ein Platz auf der Liste",
+    "role": "Geschäftsführer",
+    "closing_line": "Schlaf gut — deine Wörter wachsen weiter."
+  },
+  "en": {
+    "strapline": "Your language-learning companion",
+    "headline": "A growing box for your new language",
+    "sub": "A few new cards a day, spaced so they stay. It begins with counting to ten — the novels can wait.",
+    "invite": "The counting drill in your browser, and a place on the list.",
+    "positioning": "Spross doesn’t replace your tandem partner or your course — it keeps your vocabulary growing between conversations.",
+    "back_title": "What grows in the box",
+    "features": [
+      {
+        "title": "Sown, not crammed",
+        "body": "A few new cards a day, in any language pair you choose. FSRS-6 brings a word back just before it would slip."
+      },
+      {
+        "title": "Phrases unlock from words",
+        "body": "A phrase stays closed until its component words are steady. When it opens, it lands on ground that can hold it."
+      },
+      {
+        "title": "A forest, not a chart",
+        "body": "Each topic is a tree, each word a leaf. Leaves turn to blossom, then fruit, as the word ripens in your memory."
+      },
+      {
+        "title": "No guilt in the garden",
+        "body": "No account, no ads, no guilt trips. Celebration only for a real personal record — and honest words when a tired head keeps nothing."
+      }
+    ],
+    "dict": {
+      "term_a": "Spross, der",
+      "gloss_a": "— a sprout; a young shoot.",
+      "term_b": "Sprosse, die",
+      "gloss_b": "— a rung of a ladder.",
+      "moral": "One letter between growing and climbing. We mean both."
+    },
+    "contact_line": "Works offline · no account · no ads",
+    "mini_headline": "A growing box for your words",
+    "mini_sub": "A few cards a day — they keep growing while you rest.",
+    "mini_points": [
+      "A few new cards a day, brought back just before they would slip",
+      "Phrases open once their words are steady, onto ground that can hold them",
+      "Offline on your phone, no account, no ads"
+    ],
+    "card_strapline": "Language-learning companion",
+    "card_invite": "The counting drill, / and a place on the list",
+    "role": "Managing director",
+    "closing_line": "Sleep well — your words are still growing."
+  }
+}
