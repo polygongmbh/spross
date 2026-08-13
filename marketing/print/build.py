@@ -37,8 +37,9 @@ ICON = REPO / "App/Resources/Assets.xcassets/AppIcon.appiconset/icon-1024.png"
 # `edge` is how far colored ink stays clear of a trim line on the home sheets: pieces there
 # abut, cutting is by hand and no home printer reaches the paper edge, so a mis-cut shows
 # paper rather than a sliver of a neighbor's color. The shop exports set it to 0 and bleed.
-# `qr` is the code's whole footprint including its four-module quiet zone; at 37 modules
-# across, these all keep a module at or above 0.59mm, which scans off an inkjet by hand.
+# `qr` is the code's whole footprint including its four-module quiet zone. At level Q that
+# is 33 modules across, so the smallest of these prints a 0.64mm module — comfortably over
+# the ~0.5mm floor for a phone reading an inkjet page by hand.
 SIZES = {
     "a4": dict(w=210.0, h=297.0, base=4.3, qr=36.0, edge=5.0),
     "a5": dict(w=148.5, h=210.0, base=3.05, qr=26.0, edge=5.0),
