@@ -257,7 +257,15 @@ One line per item, with a file or context pointer, filed under the section it be
   needs widening `screen`'s private setter.
 - Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
   fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
-  than a mechanical port (`LetterDrillView+Grading.swift` `verdict(_:task:)`).
+- The credits screen names the target-language word every bundled recording says and offers
+  no way to hear one: the row tap is already spent on the file's Commons page
+  (`App/Sources/Screens/CreditsView.swift` `fileRow`), so playing a pack from the list that
+  credits it wants a second control per row.
+- A row that speaks is a gesture on content rather than a control (`pronounceOnTap`,
+  `App/Sources/Design/DLSpokenWord.swift`; `clickable` on Android), so VoiceOver reaches it
+  as a named action while Switch Control and Full Keyboard Access, which scan for focusable
+  controls, reach nothing — shared by every surface on that modifier: the reference rows,
+  `BoxCardRow.swift`, the produce narration lines.
 - A drill's typed-answer controls — the field, the one primary action that reveals or
   checks, the amber hold, the revealed branch with its stop offer, the screen-reader
   "Weiter" — stand verbatim in three files (`TrainerSessionView+Drill.swift`,

@@ -3319,6 +3319,22 @@
         }
       }
     },
+    "reference.tapToHear" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jede Zeile spricht beim Antippen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every row speaks when tapped"
+          }
+        }
+      }
+    },
     "search.clear" : {
       "localizations" : {
         "de" : {

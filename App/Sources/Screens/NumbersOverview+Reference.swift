@@ -21,7 +21,7 @@ extension NumbersOverview {
     /// Every reading on the page, said on request. The readings are generated
     /// and no recording carries them, so what answers is the live voice — and
     /// where the language has none, `pronounceAction` hands back nil and the
-    /// row keeps no speaker.
+    /// table offers nothing to tap for.
     var numberVoice: DLVoice {
         DLVoice(pronounce: { model.pronounceAction(for: $0, lang: language) },
                 isPlaying: { model.isPronouncing($0, lang: language) })

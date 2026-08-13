@@ -14,17 +14,28 @@ struct NumberReferenceTable: View {
     /// How a row is heard. Left off where a surface has nothing to say it with;
     /// the readings are generated and no catalog lists them, so what answers is
     /// almost always the live voice — and nothing at all where the language has
-    /// none, which drops the speaker rather than showing a dead one.
+    /// none, which drops the hint rather than promising a sound.
     var voice: DLVoice?
 
     @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
+        let bands = sections
         VStack(alignment: .leading, spacing: DL.Space.l) {
-            ForEach(Array(sections.enumerated()), id: \.offset) { _, section in
+            if bands.contains(where: canBeHeard) {
+                ReferenceTapHint()
+            }
+            ForEach(Array(bands.enumerated()), id: \.offset) { _, section in
                 band(section)
             }
         }
+    }
+
+    /// Whether the device can actually say a band's rows — `DLVoice` hands back
+    /// nil where it can neither play nor speak, and a page that stays silent
+    /// must not offer to sound.
+    private func canBeHeard(_ section: ReferenceSection) -> Bool {
+        section.entries.contains { speak($0) != nil }
     }
 
     /// Empty for a language kern has no pack for: `reference` requires one and
@@ -44,7 +55,7 @@ struct NumberReferenceTable: View {
                     .textCase(.uppercase)
                     .accessibilityAddTraits(.isHeader)
             }
-            columns(section.entries, count: columnCount(section.entries))
+            bandPanel(section)
             .padding(DL.Space.l)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
@@ -54,29 +65,52 @@ struct NumberReferenceTable: View {
         }
     }
 
-    /// Two columns for a band of short readings, one for everything else — the
-    /// counting words are read at a glance, and a page that spends a whole line
-    /// on "vier" is a page of scrolling.
+    /// The widest row a paired column still fits on one line, in characters,
+    /// and the narrowest panel it fits in — the panel's INNER width, inside its padding.
+    /// A 375 pt phone leaves 295 pt there and a 320 pt one only 240 pt,
+    /// where even a ten-character row wraps mid-word.
+    /// Android holds both as `PAIRED_ROW_CHARS` / `PAIRED_MIN_WIDTH` in `NumberReference.kt`;
+    /// the two platforms move together.
+    private static let pairedRowChars = 10
+    private static let pairedMinWidth: CGFloat = 288
+
+    /// A band of short readings stands in two columns where the page is wide enough to hold
+    /// them — the counting words are read at a glance,
+    /// and a page that spends a whole line on "vier" is a page of scrolling.
     ///
-    /// Decided on the LONGEST row rather than measured: a `ViewThatFits` pair
-    /// measures a row narrower than it renders (the trailing spacer), which
-    /// picks two columns and then wraps "dreizehn" inside one. The bound is the
-    /// widest row a phone fits twice at the default type size, and anything
-    /// larger — the accessibility sizes included — stays single-column, where a
-    /// reading has the whole width to grow into.
+    /// Two tests, because either alone gets it wrong.
+    /// The characters are counted rather than measured:
+    /// a `ViewThatFits` pair measures a row narrower than it renders (the trailing spacer),
+    /// which picks two columns and then wraps "dreizehn" inside one.
+    /// But a count knows nothing of how wide the page is,
+    /// so the pair is also proposed at [pairedMinWidth] and kept only where that much fits —
+    /// a narrower phone, or a sliver of one beside another app, gets the single column.
+    /// Anything past the character bound — the accessibility sizes included — stays single-column too,
+    /// where a reading has the whole width to grow into.
     private func columnCount(_ entries: [ReferenceEntry]) -> Int {
         guard typeSize <= .large, entries.count >= 6 else { return 1 }
         let widest = entries.map { $0.value.count + $0.reading.count }.max() ?? 0
-        return widest <= 12 ? 2 : 1
+        return widest <= Self.pairedRowChars ? 2 : 1
+    }
+
+    /// The band's rows, paired where they fit. `ViewThatFits` is asked one question only —
+    /// is there [pairedMinWidth] to work with — since the pair's own ideal width is
+    /// unmeasurable through the rows' trailing spacer.
+    @ViewBuilder
+    private func bandPanel(_ section: ReferenceSection) -> some View {
+        if columnCount(section.entries) == 2 {
+            ViewThatFits(in: .horizontal) {
+                columns(section.entries, count: 2)
+                    .frame(minWidth: Self.pairedMinWidth)
+                columns(section.entries, count: 1)
+            }
+        } else {
+            columns(section.entries, count: 1)
+        }
     }
 
     /// A band's rows, split down [count] columns — filled column by column, so
     /// each one still counts upward.
-    ///
-    /// The speaker glyph rides the single-column bands only: paired columns are
-    /// half as wide, and 26 pt of glyph there is 26 pt the reading needs. It
-    /// costs those rows nothing — the row itself is what says the word, and the
-    /// wide bands above and below carry the glyph that says so.
     private func columns(_ entries: [ReferenceEntry], count: Int) -> some View {
         let perColumn = (entries.count + count - 1) / count
         return HStack(alignment: .top, spacing: DL.Space.xl) {
@@ -84,7 +118,7 @@ struct NumberReferenceTable: View {
                 VStack(alignment: .leading, spacing: DL.Space.xs) {
                     ForEach(Array(entries.dropFirst(column * perColumn).prefix(perColumn).enumerated()),
                             id: \.offset) { _, entry in
-                        row(entry, showsSpeaker: count == 1)
+                        row(entry)
                     }
                 }
             }
@@ -95,26 +129,16 @@ struct NumberReferenceTable: View {
     /// its column wrap instead of truncating — this is the page a learner reads
     /// the language off.
     ///
-    /// The WHOLE row says it, not a glyph at the end of it: a table is read by
-    /// running down the readings, and a speaker that has to be aimed at is a
-    /// detour per row. The glyph, where it fits, is the sign that there is
-    /// something to hear — and the same target it always was for anyone aiming.
-    private func row(_ entry: ReferenceEntry, showsSpeaker: Bool) -> some View {
+    /// The WHOLE row says it, and nothing on the row says so: a table is read by
+    /// running down the readings, and a glyph to aim at is a detour per row. The
+    /// hint above the bands discloses the gesture once, for the page.
+    private func row(_ entry: ReferenceEntry) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: DL.Space.m) {
             value(entry)
             reading(entry)
+            // why: the row stretches to its column, so the tap target is the
+            // whole line and not just the width of the words on it.
             Spacer(minLength: 0)
-            if let speak = speak(entry), showsSpeaker {
-                SpeakerIcon(isPlaying: voice?.isPlaying(entry.reading) ?? false, pronounce: speak)
-                    // why: the glyph reserves its own size and no more — its 44 pt
-                    // target would set the height of every row in the table, and
-                    // the row already IS a target that size.
-                    .frame(width: 26, height: 22)
-                    // why: the row is one VoiceOver element and hearing it is
-                    // offered as its action — a target to hunt for inside the
-                    // label is not one.
-                    .accessibilityHidden(true)
-            }
         }
         // why: one row is one VoiceOver stop — "1 000 → eintausend", not two
         // stops that have to be paired by ear.
@@ -158,6 +182,25 @@ struct NumberReferenceTable: View {
         case "forms": return "numbers.section.forms"
         default: return nil
         }
+    }
+}
+
+/// What tells a reference page's reader that the rows sound: on a page of
+/// reading matter the content is the control, so the gesture is disclosed once
+/// for the whole page instead of by a glyph on every row. Drawn by the numbers
+/// table and the atlas, and only where the device can say the language.
+///
+/// Silent to VoiceOver: every row already offers hearing it as an action, and a
+/// line that exists to be seen is noise when it is read out.
+struct ReferenceTapHint: View {
+    var body: some View {
+        HStack(spacing: DL.Space.s) {
+            Image(systemName: "speaker.wave.2.fill")
+            Text("reference.tapToHear")
+        }
+        .font(DL.Fonts.caption)
+        .foregroundStyle(Color.dlTextSecondary)
+        .accessibilityHidden(true)
     }
 }
 

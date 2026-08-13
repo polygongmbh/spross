@@ -2,22 +2,23 @@ import SwiftUI
 
 // MARK: - SpeakerIcon
 //
-// The one audio affordance: the icon IS the control, beside a word on a card
-// or standing alone (big, never circled or filled, so it never LOOKS like a
-// button) on a pure-listening drill. One tap target instead of three
-// different ones (a word, a row, a whole card) is the simpler rule to learn
-// once and reuse.
+// Where there is a row or a line to run down, the CONTENT is the control
+// (`pronounceOnTap`, `DLSpokenWord.swift`) and no icon is drawn at all —
+// the reference tables, the box list, the produce narration lines.
+// Where there is not — a card headline, the big glyph of a pure-listening
+// drill, the correction box — the icon IS the control.
 //
-// Exception: the box list (`BoxCardRow`) has no icon at all — a row already
-// carries a wake/pack control competing for width, so there the whole row is
-// the tap target instead (`pronounceOnTap`, `SessionView+Audio.swift`).
+// One reference page keeps it a control: an alphabet row holds TWO sounds,
+// the letter's name and its example word, so which one a tap wants has to be
+// aimed at.
 //
+// Never circled or filled, so it never LOOKS like a button.
 // Pulses gently while its word is sounding, the shape Duolingo's speaker
 // rides; Reduce Motion drops the pulse and just snaps.
 
 struct SpeakerIcon: View {
     enum Size {
-        /// Beside a word: card headline, catalog row.
+        /// Beside a word: a card headline, the correction box, an alphabet row.
         case small
         /// Alone on a pure-listening drill — the card's only content.
         case large
@@ -43,8 +44,9 @@ struct SpeakerIcon: View {
     var isPlaying: Bool = false
     /// nil where nothing can be heard — renders dimmed and inert rather than
     /// vanishing, on a card where the glyph is the only content
-    /// (`HearPromptCard`). Callers that only ever show the icon when audio
-    /// exists (`VocabCardView`, the box list) never pass nil.
+    /// (`HearPromptCard`).
+    /// Callers that draw the icon only where audio exists —
+    /// the correction box, `DLSpokenWord`, an alphabet row — never pass nil.
     var pronounce: (() -> Void)?
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion

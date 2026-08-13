@@ -57,8 +57,12 @@ auto-advance beats these share with it, are `design.md`'s.
   from the packs the drill grades against, so the page cannot claim one reading and mark
   another; kern names the bands and the app words their headings. It is one component,
   and the "?" on a numbers task raises the very same table, in every language — a look-up while the
-  answer is still owed books the task amber, and after the answer it is free. Its last band is
-  the FORMS one: a worked example per form the language reads, so the marks a Forms run asks
+  answer is still owed books the task amber, and after the answer it is free.
+  Every row of it is READ by tapping the row itself,
+  the reading spoken in the language being learned (`read-aloud.md`),
+  and a band of short readings stands in TWO columns,
+  which is what puts the counting words and the tens under them on one screen.
+  Its last band is the FORMS one: a worked example per form the language reads, so the marks a Forms run asks
   about are written down somewhere other than a failed task, and a form the language cannot
   read has no row there either. Beside it sit two to
   four prose notes on what trips a learner up in that language. A variant the ladder has
@@ -119,6 +123,9 @@ auto-advance beats these share with it, are `design.md`'s.
   cannot show one exonym and mark another, and a country only one side names has neither a
   row nor a task. It is the one surface here written in TWO languages at once: a country's
   name is a pair, not a property of the language being learned.
+  Tapping a country says it — the row is the control here as in the numbers table (`read-aloud.md`) —
+  and what is said is the name in the language being learned,
+  the half of the pair a run would ask for.
 - **An endless run offers its exit where it is wanted, not on a schedule.** "Fertig"
   appears under the button that goes on, and only on the SECOND miss in a row: one
   miss is what a drill is made of, two is where carrying on stops feeling like a choice.

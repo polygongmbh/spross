@@ -14,13 +14,23 @@ extension CountriesOverview {
     @ViewBuilder
     var referenceSection: some View {
         if let content {
+            let groups = CountryDrill.shared.reference(content: content)
             VStack(alignment: .leading, spacing: DL.Space.l) {
                 heading("countries.reference")
-                ForEach(CountryDrill.shared.reference(content: content), id: \.tier) { group in
+                if groups.contains(where: canBeHeard) {
+                    ReferenceTapHint()
+                }
+                ForEach(groups, id: \.tier) { group in
                     tierGroup(group)
                 }
             }
         }
+    }
+
+    /// Whether the device can actually say a group's countries — the page must
+    /// not offer a sound it has no voice for.
+    private func canBeHeard(_ group: CountryReferenceGroup) -> Bool {
+        group.rows.contains { speak($0.target) != nil }
     }
 
     private func tierGroup(_ group: CountryReferenceGroup) -> some View {
@@ -46,9 +56,10 @@ extension CountriesOverview {
     /// the right, each with the people and the language(s) under the name — the
     /// triple the drill asks about, written down in one place.
     ///
-    /// The speaker sits on the LEARNED side only: the other column is the
-    /// reader's own language, and a reference sheet is read to hear what one
-    /// cannot yet say.
+    /// A tap says the LEARNED side only: the other column is the reader's own
+    /// language, and a reference sheet is read to hear what one cannot yet say.
+    /// The whole row is that target, the numbers table's rule — the hint under
+    /// the heading is where the page says so.
     private func countryRow(_ row: CountryReferenceRow) -> some View {
         HStack(alignment: .top, spacing: DL.Space.m) {
             Text(verbatim: row.flag)
@@ -61,28 +72,16 @@ extension CountriesOverview {
             side(name: row.target, nationality: row.targetNationality,
                  languages: row.targetLanguages, tint: Color.dlAccent,
                  alignment: .trailing, language: target)
-            if let speak = speak(row.target) {
-                SpeakerIcon(isPlaying: model.isPronouncing(row.target, lang: target),
-                            pronounce: speak)
-                    // why: the glyph reserves its own size and no more — its 44 pt
-                    // target would take that width off the names beside it, and
-                    // the row already IS a target that size.
-                    .frame(width: 26, height: 22)
-                    // why: the row is one VoiceOver element and hearing it is a
-                    // row ACTION — the alphabet sheet's rule.
-                    .accessibilityHidden(true)
-            }
         }
         // why: one country is one VoiceOver stop — both names, the people and
         // the languages are the same row of the table.
         .accessibilityElement(children: .combine)
-        // The whole row says it, the numbers table's rule — the glyph is the
-        // sign that there is something to hear, not the only way to hear it.
         .pronounceOnTap(speak(row.target))
     }
 
     /// Hearing a country's name in the language being learned — nil where the
-    /// device can neither play nor say it, so no dead speaker is drawn.
+    /// device can neither play nor say it, so the page offers no sound it
+    /// cannot make.
     private func speak(_ name: String) -> (() -> Void)? {
         model.pronounceAction(for: name, lang: target)
     }

@@ -9,6 +9,12 @@ import SprossKern
 /// a request, so it sounds even while reading aloud is switched off — nobody
 /// opens a reference sheet by accident.
 ///
+/// The name line and the example line each say their own word wherever they are
+/// tapped.
+/// Their speakers stay, where the reference tables dropped theirs:
+/// a row here holds TWO sounds and the prose `rule` rows hold none,
+/// so a glyph standing beside a line is what says which line has one.
+///
 /// Rows are whatever the file holds, in authored order: single letters,
 /// digraphs (`sch`), the same glyph twice under different ids (`ch-ich` /
 /// `ch-ach`), and prose `rule` rows that state an orthography rule rather than a
@@ -115,8 +121,8 @@ extension LettersOverview {
                     .font(DL.Fonts.body)
                     .foregroundStyle(Color.dlTextSecondary)
             }
-            if let speak = speakName(entry) {
-                speakButton(speak)
+            if let name = entry.name, let speak = speakName(entry) {
+                speaker(form: name, speak)
             }
             Spacer(minLength: 0)
             if let ipa = entry.ipa {
@@ -128,6 +134,7 @@ extension LettersOverview {
                     .accessibilityHidden(true)
             }
         }
+        .saysOnTap(speakName(entry))
     }
 
     /// The name, unless the glyph column already says it: German Ü is NAMED "Ü" and
@@ -161,36 +168,28 @@ extension LettersOverview {
     /// carries the row alone.
     @ViewBuilder
     private func example(_ entry: AlphabetEntry) -> some View {
-        if let example = model.catalog?.alphabetExample(entry: entry, lang: language) {
+        let catalogued = model.catalog?.alphabetExample(entry: entry, lang: language)
+        if let text = catalogued?.text ?? entry.exampleText {
             HStack(alignment: .firstTextBaseline, spacing: DL.Space.s) {
-                if let emoji = example.emoji {
+                if let emoji = catalogued?.emoji {
                     Text(verbatim: emoji)
                         .font(DL.Fonts.body)
                         .accessibilityHidden(true)
                 }
-                Text(verbatim: example.text)
+                Text(verbatim: text)
                     .font(DL.Fonts.headline)
                     .foregroundStyle(Color.dlTextPrimary)
-                if let meaning = meaning(of: example.slug) {
+                if let slug = catalogued?.slug, let meaning = meaning(of: slug) {
                     Text(verbatim: "· \(meaning)")
                         .font(DL.Fonts.subheadline)
                         .foregroundStyle(Color.dlTextSecondary)
                 }
                 Spacer(minLength: 0)
                 if let speak = speakExample(entry) {
-                    speakButton(speak)
+                    speaker(form: text, speak)
                 }
             }
-        } else if let text = entry.exampleText {
-            HStack(alignment: .firstTextBaseline, spacing: DL.Space.s) {
-                Text(verbatim: text)
-                    .font(DL.Fonts.headline)
-                    .foregroundStyle(Color.dlTextPrimary)
-                Spacer(minLength: 0)
-                if let speak = speakExample(entry) {
-                    speakButton(speak)
-                }
-            }
+            .saysOnTap(speakExample(entry))
         }
     }
 
@@ -231,18 +230,18 @@ extension LettersOverview {
         return { Pronouncer.shared.pronounce(pronunciation, recordingURL: url, trigger: .tap) }
     }
 
+    /// The sign that this line has a sound, and the aimed target for it.
+    /// It keeps the full 44 pt target:
+    /// the row's two speakers sit far enough apart to afford one.
+    ///
     /// Hidden from VoiceOver on purpose: the row is one element, and hearing
     /// it is offered as a row action instead (`accessibilityActions`).
-    private func speakButton(_ action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Image(systemName: "speaker.wave.2.fill")
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlAccent)
-                .frame(width: 44, height: 44)
-                .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .accessibilityHidden(true)
+    /// [form] is what the tap plays, so the pulse follows the sound it started.
+    private func speaker(form: String, _ speak: @escaping () -> Void) -> some View {
+        SpeakerIcon(size: .small,
+                    isPlaying: model.isPronouncing(form, lang: language),
+                    pronounce: speak)
+            .accessibilityHidden(true)
     }
 
     // MARK: - Catalog reads

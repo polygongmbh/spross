@@ -66,17 +66,38 @@ struct DLVoice {
 }
 
 extension View {
-    /// Tap-to-replay for a whole piece of content rather than a glyph beside it —
-    /// the produce narration lines (the typo correction, the other-word reveal),
-    /// a row of a reference table, the box list. No 44 pt floor: these are text
-    /// that is already bigger than one, and growing them would move the layout
-    /// around them.
+    /// Tap-to-replay where the row or the line IS the target, rather than a glyph
+    /// beside it — a reference table's rows, the box list, the produce narration lines.
+    ///
+    /// For the view that IS the accessibility element:
+    /// attach it AFTER the row has combined
+    /// (`accessibilityElement(children: .combine)`),
+    /// so the action lands on the one element the row became
+    /// instead of on a child it swallows.
+    /// A line INSIDE such a row takes `saysOnTap` instead —
+    /// the element above it already names the sound,
+    /// and a second copy only offers the rotor the same action twice.
+    ///
+    /// No 44 pt floor: a floor per line would set the height of every row
+    /// and space the whole table out.
     @ViewBuilder
     func pronounceOnTap(_ pronounce: (() -> Void)?) -> some View {
         if let pronounce {
+            saysOnTap(pronounce)
+                .accessibilityAction(named: Text("a11y.pronounce"), pronounce)
+        } else {
+            self
+        }
+    }
+
+    /// The tap alone, for a line that is NOT the accessibility element —
+    /// the alphabet's name and example lines,
+    /// whose row combines them and names both sounds itself.
+    @ViewBuilder
+    func saysOnTap(_ pronounce: (() -> Void)?) -> some View {
+        if let pronounce {
             contentShape(Rectangle())
                 .onTapGesture(perform: pronounce)
-                .accessibilityAction(named: Text("a11y.pronounce"), pronounce)
         } else {
             self
         }

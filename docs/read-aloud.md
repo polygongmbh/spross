@@ -54,10 +54,29 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   phone's silent switch alike: that one sound plays under `.playback`, which the hardware
   switch cannot reach. Everything the app fires by ITSELF stays `.ambient`, where the phone
   keeps its authority — the whole rule is `AudioSession`, one category chosen per sound.
-  The gesture is disclosed by the settings row's hint line and by the speaker standing
-  beside the word; a form that can be heard neither way drops the icon, and the card holds
-  its height regardless, so a synonym rotation landing on an unrecorded form never
-  resizes it.
+  The audio setting's hint line names the gesture once for the app as a whole.
+- **What answers the tap, and what discloses it, follows the surface.**
+  On a card or in a drill there is nothing else to hit,
+  so the speaker beside the word IS the control;
+  a form that can be heard neither way drops the icon,
+  and the card holds its height regardless,
+  so a synonym rotation landing on an unrecorded form never resizes it.
+  A reference page is reading matter, read by running DOWN it,
+  so there the CONTENT is the control:
+  a numbers row and an atlas country hold one reading each,
+  say it wherever they are tapped, and draw no speaker at all —
+  the page discloses the gesture once instead, in a hint line under its heading,
+  shown only where this device can actually say the language.
+  The alphabet sheet keeps its glyphs, because its rows disagree about what they hold:
+  the letter's name and its example word are two readings, a prose rule row has neither,
+  and only a glyph per line can say which line answers a tap —
+  those two lines are tap targets themselves besides,
+  so a tapped word speaks on every reference page.
+  A smaller glyph per row is not the middle way it looks like:
+  a speaker keeps its 44 pt hit region however small the frame around it is drawn,
+  so on rows four points apart it overhangs its neighbour
+  and a tap in a row's bottom sliver speaks the row below —
+  two targets for one action, one of them wrong.
 - **The letters drill is the one autoplay no mute reaches, and it carries no switch of its
   own.** Entering a screen whose only content is a sound is itself the request to hear one,
   so its question plays under `.playback` like a tap does — the exception to "app-fired
