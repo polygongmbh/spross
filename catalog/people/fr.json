@@ -1,0 +1,258 @@
+{
+ "title": "La famille",
+ "subtitle": "Les personnes les plus proches de toi.",
+ "words": {
+  "person": {
+   "text": "personne",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "personne ist auch das Negationswort niemand: je ne vois personne."
+   }
+  },
+  "human": {
+   "text": "être humain",
+   "variants": [
+    "l'être humain"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "être humain = Mensch als Gattung · personne = der einzelne Mensch."
+   }
+  },
+  "family": {
+   "text": "famille",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "mother": {
+   "text": "mère",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "father": {
+   "text": "père",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "parents": {
+   "text": "parents",
+   "grammar": {
+    "gender": "les"
+   },
+   "notes": {
+    "de": "les parents sind die Eltern; ein einzelnes un parent ist auch ein Verwandter."
+   }
+  },
+  "child": {
+   "text": "enfant",
+   "variants": [
+    "l'enfant"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "son": {
+   "text": "fils",
+   "grammar": {
+    "gender": "le",
+    "plural": "="
+   }
+  },
+  "daughter": {
+   "text": "fille",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "fille heißt Tochter und Mädchen: ma fille = meine Tochter, une petite fille = ein kleines Mädchen."
+   }
+  },
+  "brother": {
+   "text": "frère",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "sister": {
+   "text": "sœur",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "man": {
+   "text": "homme",
+   "variants": [
+    "l'homme"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "woman": {
+   "text": "femme",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "femme heißt Frau und Ehefrau: ma femme = meine Frau."
+   }
+  },
+  "boy": {
+   "text": "garçon",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "baby": {
+   "text": "bébé",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "friend": {
+   "text": "ami",
+   "variants": [
+    "l'ami",
+    "copain"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "friend-f": {
+   "text": "amie",
+   "variants": [
+    "l'amie",
+    "copine"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "grandmother": {
+   "text": "grand-mère",
+   "variants": [
+    "mamie"
+   ],
+   "grammar": {
+    "gender": "la",
+    "plural": "grands-mères"
+   }
+  },
+  "grandfather": {
+   "text": "grand-père",
+   "variants": [
+    "papi"
+   ],
+   "grammar": {
+    "gender": "le",
+    "plural": "grands-pères"
+   }
+  },
+  "husband": {
+   "text": "mari",
+   "synonyms": [
+    "époux"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "wife": {
+   "text": "épouse",
+   "variants": [
+    "l'épouse",
+    "femme"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Im Alltag sagt man ma femme; épouse ist die förmliche Form."
+   }
+  },
+  "uncle": {
+   "text": "oncle",
+   "variants": [
+    "l'oncle"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "aunt": {
+   "text": "tante",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "this-is-my-mother": {
+   "text": "C'est ma mère."
+  },
+  "where-is-your-father": {
+   "text": "Où est ton père ?",
+   "variants": [
+    "Où est votre père ?"
+   ]
+  },
+  "i-have-two-children": {
+   "text": "J'ai deux enfants."
+  },
+  "my-family-is-big": {
+   "text": "Ma famille est grande."
+  },
+  "i-have-a-brother": {
+   "text": "J'ai un frère."
+  },
+  "my-parents-live-here": {
+   "text": "Mes parents habitent ici.",
+   "variants": [
+    "Mes parents vivent ici."
+   ]
+  },
+  "how-is-your-grandmother": {
+   "text": "Comment va ta grand-mère ?",
+   "variants": [
+    "Comment va votre grand-mère ?"
+   ]
+  },
+  "a-good-friend": {
+   "text": "un bon ami"
+  },
+  "my-girlfriend": {
+   "text": "ma copine",
+   "variants": [
+    "ma petite amie"
+   ]
+  },
+  "her-boyfriend": {
+   "text": "son copain",
+   "variants": [
+    "son petit ami"
+   ],
+   "notes": {
+    "de": "son richtet sich nach copain, nicht nach der Besitzerin: son copain = ihr Freund."
+   }
+  },
+  "old-people": {
+   "text": "personnes âgées",
+   "variants": [
+    "les gens âgés"
+   ],
+   "notes": {
+    "de": "vieux klingt bei Menschen abwertend — im Alltag âgé."
+   }
+  },
+  "many-friends": {
+   "text": "beaucoup d'amis"
+  }
+ }
+}

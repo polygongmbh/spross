@@ -1,0 +1,612 @@
+{
+ "sections": [
+  {
+   "id": "accents",
+   "title": {
+    "de": "Die Akzente",
+    "en": "The accent marks"
+   }
+  },
+  {
+   "id": "nasals",
+   "title": {
+    "de": "Die Nasalvokale",
+    "en": "The nasal vowels"
+   }
+  },
+  {
+   "id": "vowel-teams",
+   "title": {
+    "de": "Vokalpaare",
+    "en": "Vowel teams"
+   }
+  },
+  {
+   "id": "consonants",
+   "title": {
+    "de": "Konsonanten mit eigener Regel",
+    "en": "Consonants with a rule of their own"
+   }
+  },
+  {
+   "id": "silent",
+   "title": {
+    "de": "Was stumm bleibt",
+    "en": "What stays silent"
+   }
+  },
+  {
+   "id": "single-letters",
+   "title": {
+    "de": "Einzelbuchstaben mit Überraschung",
+    "en": "Single letters that surprise"
+   }
+  }
+ ],
+ "entries": [
+  {
+   "glyph": "é",
+   "upper": "É",
+   "name": "e accent aigu",
+   "section": "accents",
+   "ipa": "e",
+   "example": "school",
+   "hints": {
+    "de": "geschlossenes e wie in Tee: école = „ekol“ — der Akzent ist kein Betonungszeichen, er sagt nur, welches e du sprichst",
+    "en": "a tight, closed e like the ay in “day” without the glide: école = “ay-kol” — the accent marks the sound, never the stress"
+   },
+   "confusable": {
+    "look": ["è", "ê", "e-mute"]
+   }
+  },
+  {
+   "glyph": "è",
+   "upper": "È",
+   "name": "e accent grave",
+   "section": "accents",
+   "ipa": "ɛ",
+   "example": "mother",
+   "hints": {
+    "de": "offenes e wie in hätte: mère, père, frère — der Mund steht weiter offen als bei é",
+    "en": "an open e as in “bed”: mère, père, frère — jaw lower than for é"
+   },
+   "confusable": {
+    "look": ["ê"]
+   }
+  },
+  {
+   "glyph": "ê",
+   "upper": "Ê",
+   "name": "e accent circonflexe",
+   "section": "accents",
+   "ipa": "ɛ",
+   "example": "head",
+   "hints": {
+    "de": "klingt wie è, offenes e: tête. Das Dach steht meist für ein verlorenes s — forêt (Forst), hôpital (Hospital), fenêtre (Fenster): denk das s dazu, dann erkennst du das Wort. Auf â, î, ô, û ändert es am Laut fast nichts.",
+    "en": "sounds exactly like è: tête. The hat usually marks a lost s — forêt (forest), hôpital (hospital), île (isle): put the s back and the English word appears. On â, î, ô, û it changes almost nothing."
+   }
+  },
+  {
+   "glyph": "à ù",
+   "kind": "rule",
+   "section": "accents",
+   "example": "there",
+   "hints": {
+    "de": "Auf a und u ändert der Accent grave den Laut nicht — er hält Wörter auseinander: a (hat) / à (nach, in), la (die) / là (dort), ou (oder) / où (wo). ù kommt nur in où vor.",
+    "en": "On a and u the grave changes no sound — it keeps look-alike words apart: a (has) / à (to), la (the) / là (there), ou (or) / où (where). ù exists in one word only: où."
+   }
+  },
+  {
+   "glyph": "ë ï",
+   "kind": "rule",
+   "section": "accents",
+   "exampleText": "Noël",
+   "hints": {
+    "de": "Die zwei Punkte trennen ein Vokalpaar: beide Vokale werden einzeln gesprochen — Noël = „no-el“ (nicht wie eau), maïs = „ma-iss“ (nicht wie ai in lait), naïf.",
+    "en": "The two dots split a vowel team so each vowel is said on its own — Noël = “no-el”, never the eau sound; maïs = “ma-eess”, never the ai of lait."
+   }
+  },
+  {
+   "glyph": "an",
+   "kind": "contextual",
+   "section": "nasals",
+   "ipa": "ɑ̃",
+   "context": {
+    "de": "vor einem Konsonanten oder am Wortende (am genauso)",
+    "en": "before a consonant or at the end of a word (am too)"
+   },
+   "example": "big",
+   "hints": {
+    "de": "EIN Laut, nicht a + n: Mund wie für a, Luft durch die Nase, das n wird nie berührt — grand endet auf dem Nasal, nicht auf „nd“; am macht dasselbe: champ, jambe",
+    "en": "one nasal vowel, not a plus n: hold your mouth for “ah”, send the air through your nose, never touch the n — grand ends on the vowel; am does the same: champ, jambe"
+   },
+   "confusable": {
+    "look": ["en", "on"]
+   }
+  },
+  {
+   "glyph": "en",
+   "kind": "contextual",
+   "section": "nasals",
+   "ipa": "ɑ̃",
+   "context": {
+    "de": "vor einem Konsonanten oder am Wortende (em genauso)",
+    "en": "before a consonant or at the end of a word (em too)"
+   },
+   "example": "wind",
+   "hints": {
+    "de": "derselbe Nasal wie an, kein e-Laut: vent, temps — enfant fängt an und hört auf mit genau demselben Laut. Die Verbendung -ent bleibt dagegen ganz stumm: ils parlent = „parl“.",
+    "en": "the same nasal as an, with no e in it: vent, temps — enfant begins and ends on the identical sound. The verb ending -ent is silent instead: ils parlent = “parl”."
+   },
+   "confusable": {
+    "look": ["an", "in"]
+   }
+  },
+  {
+   "glyph": "on",
+   "kind": "contextual",
+   "section": "nasals",
+   "ipa": "ɔ̃",
+   "context": {
+    "de": "vor einem Konsonanten oder am Wortende (om genauso)",
+    "en": "before a consonant or at the end of a word (om too)"
+   },
+   "example": "bridge",
+   "hints": {
+    "de": "Nasal-o: die Lippen rund wie für o, das n bleibt unhörbar — pont, bonjour, maison; om genauso: nom, tomber",
+    "en": "a nasal o: round your lips as for o and let no n out — pont, bonjour, maison; om does the same: nom, tomber"
+   },
+   "confusable": {
+    "look": ["an", "un"]
+   }
+  },
+  {
+   "glyph": "in",
+   "kind": "contextual",
+   "section": "nasals",
+   "ipa": "ɛ̃",
+   "context": {
+    "de": "vor einem Konsonanten oder am Wortende (im genauso)",
+    "en": "before a consonant or at the end of a word (im too)"
+   },
+   "example": "morning",
+   "hints": {
+    "de": "Nasal-ä: Mund wie für ä in hätte, Luft durch die Nase — matin, vin, jardin. Genau gleich klingen ain, ein, aim: pain, main, plein, faim.",
+    "en": "a nasal a as in “cat”, pushed through the nose — matin, vin, jardin. ain, ein and aim sound identical: pain, main, plein, faim."
+   },
+   "confusable": {
+    "look": ["un", "an"],
+    "sound": ["un"]
+   }
+  },
+  {
+   "glyph": "un",
+   "kind": "contextual",
+   "section": "nasals",
+   "ipa": "œ̃",
+   "context": {
+    "de": "vor einem Konsonanten oder am Wortende (um genauso)",
+    "en": "before a consonant or at the end of a word (um too)"
+   },
+   "exampleText": "lundi",
+   "hints": {
+    "de": "gerundeter Nasal, wie in mit vorgestülpten Lippen: lundi, brun, parfum. Die meisten Sprecher machen daraus heute schlicht in — das ist überall verständlich.",
+    "en": "a rounded nasal — say in with your lips pushed forward: lundi, brun, parfum. Most speakers now merge it into in, which is safe everywhere."
+   }
+  },
+  {
+   "glyph": "n m",
+   "kind": "rule",
+   "section": "nasals",
+   "context": {
+    "de": "wenn ein Vokal oder ein zweites n/m folgt",
+    "en": "when a vowel or a second n/m follows"
+   },
+   "example": "person",
+   "hints": {
+    "de": "Dann ist der Vokal NICHT nasal und das n wird gesprochen: bon → bonne, un → une, an → année, personne. Genau daran hört man das Femininum: italien / italienne.",
+    "en": "The vowel then stops being nasal and the n is sounded: bon → bonne, un → une, an → année, personne. That break is what you hear in the feminine: italien / italienne."
+   }
+  },
+  {
+   "glyph": "ou",
+   "kind": "digraph",
+   "section": "vowel-teams",
+   "ipa": "u",
+   "example": "red",
+   "hints": {
+    "de": "immer ein u wie in Schule: rouge, jour, beaucoup — nie getrennt „o-u“ und nie wie das deutsche au",
+    "en": "always oo as in “food”: rouge, jour, beaucoup — never the ow of “house”"
+   },
+   "confusable": {
+    "look": ["oi", "au", "eu"],
+    "sound": ["u"]
+   }
+  },
+  {
+   "glyph": "oi",
+   "kind": "digraph",
+   "section": "vowel-teams",
+   "ipa": "wa",
+   "example": "black",
+   "hints": {
+    "de": "gesprochen „ua“: noir = „nuar“, moi, voiture, trois. Vor n wird daraus ein Nasal: moins, loin. Ein Sonderling: oignon klingt wie „onjon“.",
+    "en": "says “wah”: noir = “nwar”, moi, voiture, trois. Before n it turns nasal: moins, loin. One oddity: oignon sounds like “ognon”."
+   }
+  },
+  {
+   "glyph": "eu",
+   "kind": "digraph",
+   "section": "vowel-teams",
+   "ipa": "ø",
+   "example": "hair",
+   "hints": {
+    "de": "wie ö in schön: cheveux, feu, deux — nie „e-u“ nacheinander. Vor einem gesprochenen r öffnet es sich wie das ö in können: fleur, heure.",
+    "en": "the German ö — say “ay” and round your lips: cheveux, feu, deux; never “ee-oo”. Before a sounded r it opens up: fleur, heure."
+   },
+   "confusable": {
+    "look": ["eau"],
+    "sound": ["u"]
+   }
+  },
+  {
+   "glyph": "au",
+   "kind": "digraph",
+   "section": "vowel-teams",
+   "ipa": "o",
+   "example": "yellow",
+   "hints": {
+    "de": "ein einfaches o wie in Boot: jaune, restaurant, chaussure — nie wie das au in Haus",
+    "en": "a plain o as in “boat”: jaune, restaurant, chaussure — never the ow of “now”"
+   },
+   "confusable": {
+    "look": ["eau"]
+   }
+  },
+  {
+   "glyph": "eau",
+   "kind": "digraph",
+   "section": "vowel-teams",
+   "ipa": "o",
+   "example": "ship",
+   "hints": {
+    "de": "drei Buchstaben, ein Laut: o. bateau, couteau, tableau — und das Wort eau (Wasser) ist einfach „o“.",
+    "en": "three letters, one sound: o. bateau, couteau, tableau — and the word eau (water) is just “o”."
+   }
+  },
+  {
+   "glyph": "ai",
+   "kind": "digraph",
+   "section": "vowel-teams",
+   "ipa": "ɛ",
+   "context": {
+    "de": "außer vor n und m",
+    "en": "except before n or m"
+   },
+   "example": "milk",
+   "hints": {
+    "de": "offenes e wie è: lait, maison, semaine, j'aime — nie wie das ai in Mai. Vor n oder m wird daraus der Nasal in: pain, main, faim.",
+    "en": "an open e, the same sound as è: lait rhymes with “let”, maison, semaine — never the English “eye”. Before n or m it becomes the nasal in: pain, main, faim."
+   },
+   "confusable": {
+    "look": ["in", "oi"]
+   }
+  },
+  {
+   "glyph": "c",
+   "kind": "contextual",
+   "id": "c-soft",
+   "section": "consonants",
+   "ipa": "s",
+   "context": {
+    "de": "vor e, i und y",
+    "en": "before e, i and y"
+   },
+   "example": "cinema",
+   "hints": {
+    "de": "scharfes s: cinéma, ceci, merci, place — vor a, o, u dagegen k",
+    "en": "an s sound: cinéma, ceci, merci, place — before a, o and u it is k instead"
+   },
+   "confusable": {
+    "look": ["c-hard", "ç"]
+   }
+  },
+  {
+   "glyph": "c",
+   "kind": "contextual",
+   "id": "c-hard",
+   "section": "consonants",
+   "ipa": "k",
+   "context": {
+    "de": "vor a, o, u und vor einem Konsonanten",
+    "en": "before a, o, u and before a consonant"
+   },
+   "example": "coffee",
+   "hints": {
+    "de": "wie k, ohne Hauch: café, couleur, classe — vor e und i dagegen ein scharfes s",
+    "en": "k with no puff of air: café, couleur, classe — before e and i it is s instead"
+   },
+   "confusable": {
+    "look": ["ç"]
+   }
+  },
+  {
+   "glyph": "ç",
+   "upper": "Ç",
+   "name": "c cédille",
+   "section": "consonants",
+   "ipa": "s",
+   "example": "boy",
+   "hints": {
+    "de": "der Haken hält das c weich, wo es hart würde: garçon, français, reçu — deshalb steht ç nur vor a, o, u; vor e und i ist das c von selbst ein s",
+    "en": "the hook keeps c soft where it would go hard: garçon, français, reçu — so it only ever appears before a, o, u; before e and i c is already s"
+   }
+  },
+  {
+   "glyph": "g",
+   "kind": "contextual",
+   "id": "g-soft",
+   "section": "consonants",
+   "ipa": "ʒ",
+   "context": {
+    "de": "vor e, i und y",
+    "en": "before e, i and y"
+   },
+   "example": "money",
+   "hints": {
+    "de": "wie das J in Journal: argent, âge, gilet — nie das deutsche g und nie wie das englische g in gin",
+    "en": "like the s in “measure”: argent, âge, gilet — never the hard g of “go”, never the j of “gin”"
+   },
+   "confusable": {
+    "look": ["g-hard", "j"]
+   }
+  },
+  {
+   "glyph": "g",
+   "kind": "contextual",
+   "id": "g-hard",
+   "section": "consonants",
+   "ipa": "ɡ",
+   "context": {
+    "de": "vor a, o, u und vor einem Konsonanten",
+    "en": "before a, o, u and before a consonant"
+   },
+   "example": "train-station",
+   "hints": {
+    "de": "hartes g wie in Garten: gare, gâteau, grand",
+    "en": "a hard g as in “go”: gare, gâteau, grand"
+   },
+   "confusable": {
+    "look": ["gu"]
+   }
+  },
+  {
+   "glyph": "gu",
+   "kind": "digraph",
+   "section": "consonants",
+   "ipa": "ɡ",
+   "context": {
+    "de": "vor e und i",
+    "en": "before e and i"
+   },
+   "example": "language",
+   "hints": {
+    "de": "das u ist ein Schild, kein Laut: es hält das g hart und wird nicht gesprochen — langue, guérir, guitare",
+    "en": "the u is a shield, not a sound: it keeps g hard and stays silent — langue, guérir, guitare"
+   },
+   "confusable": {
+    "look": ["g-soft"]
+   }
+  },
+  {
+   "glyph": "gn",
+   "kind": "digraph",
+   "section": "consonants",
+   "ipa": "ɲ",
+   "example": "mountain",
+   "hints": {
+    "de": "wie nj in Tanja oder gn in Champagner: montagne, signer, gagner — nie g und n getrennt",
+    "en": "like ny in “canyon”: montagne, signer, gagner — never a separate g and n"
+   },
+   "confusable": {
+    "sound": ["ill"]
+   }
+  },
+  {
+   "glyph": "ch",
+   "kind": "digraph",
+   "section": "consonants",
+   "ipa": "ʃ",
+   "example": "cat",
+   "hints": {
+    "de": "wie sch in Schule: chat, chien, chercher — nie wie das ch in Bach und nie wie tsch",
+    "en": "like sh in “shoe”: chat, chien, chercher — never the ch of “cheese”"
+   }
+  },
+  {
+   "glyph": "qu",
+   "kind": "digraph",
+   "section": "consonants",
+   "ipa": "k",
+   "example": "who",
+   "hints": {
+    "de": "einfach k, das u ist stumm: qui = „ki“, quatre, banque — nie „kw“ wie in Quelle",
+    "en": "just k, the u is silent: qui = “kee”, quatre, banque — never the “kw” of “queen”"
+   },
+   "confusable": {
+    "look": ["gu"]
+   }
+  },
+  {
+   "glyph": "ill",
+   "kind": "digraph",
+   "section": "consonants",
+   "ipa": "j",
+   "example": "ear",
+   "mine": false,
+   "hints": {
+    "de": "nach einem Vokal ein j: oreille, travailler, famille — das l wird nicht gesprochen. Ein paar Wörter behalten ein echtes l: ville, village, mille, tranquille.",
+    "en": "after a vowel it is a y-sound: oreille, travailler, famille — no l at all. A handful keep a real l: ville, village, mille, tranquille."
+   },
+   "confusable": {
+    "sound": ["y"]
+   }
+  },
+  {
+   "glyph": "tion",
+   "kind": "digraph",
+   "section": "consonants",
+   "ipa": "sjɔ̃",
+   "example": "careful",
+   "hints": {
+    "de": "gesprochen „ßjon“ mit Nasal am Ende: attention, administration, inscription — das t klingt wie ein s. Nach einem s bleibt es ein t: question.",
+    "en": "says “syon” with a nasal ending: attention, administration, inscription — the t is an s. After an s it stays a t: question."
+   }
+  },
+  {
+   "glyph": "s",
+   "kind": "contextual",
+   "id": "s-voiced",
+   "section": "consonants",
+   "ipa": "z",
+   "context": {
+    "de": "zwischen zwei Vokalen",
+    "en": "between two vowels"
+   },
+   "example": "house",
+   "hints": {
+    "de": "stimmhaft wie das s in Rose: maison, chaise, cousin — sonst scharf. Genau daran hängt der Unterschied zwischen poison (Gift) und poisson (Fisch).",
+    "en": "voiced like z: maison, chaise, cousin — sharp everywhere else. This one rule is the whole difference between poison and poisson."
+   },
+   "confusable": {
+    "look": ["ss"]
+   }
+  },
+  {
+   "glyph": "ss",
+   "kind": "digraph",
+   "section": "consonants",
+   "ipa": "s",
+   "example": "fish",
+   "hints": {
+    "de": "doppeltes s bleibt scharf: poisson, tasse, adresse — deshalb schreibt man es zwischen Vokalen doppelt",
+    "en": "a doubled s stays sharp: poisson, tasse, adresse — which is exactly why it is doubled between vowels"
+   }
+  },
+  {
+   "glyph": "s t d x z p",
+   "kind": "rule",
+   "section": "silent",
+   "context": {
+    "de": "am Wortende",
+    "en": "at the end of a word"
+   },
+   "example": "small",
+   "hints": {
+    "de": "meist stumm: petit, grand, trois, nez, beaucoup — auch das Plural-s hört man nie (le livre und les livres klingen gleich). Gesprochen werden dagegen oft c, r, f, l: avec, bonjour, neuf, mal. Vor einem Vokal wacht der stumme Buchstabe auf und hängt sich ans nächste Wort: les amis, un petit enfant.",
+    "en": "usually silent: petit, grand, trois, nez, beaucoup — the plural -s is never heard either (le livre and les livres sound alike). c, r, f and l often DO sound: avec, bonjour, neuf, mal. Before a vowel the silent letter wakes up and links onto the next word: les amis = “lay-zah-mee”."
+   }
+  },
+  {
+   "glyph": "er",
+   "kind": "contextual",
+   "section": "silent",
+   "ipa": "e",
+   "context": {
+    "de": "am Wortende, vor allem im Infinitiv auf -er",
+    "en": "at the end of a word, above all the -er infinitive"
+   },
+   "example": "eat",
+   "hints": {
+    "de": "das r ist stumm, übrig bleibt é: manger, parler, écouter — die Endung -ez klingt genauso: vous parlez",
+    "en": "the r is silent and what is left is é: manger = “mahn-ZHAY”, parler, écouter — the ending -ez sounds the same: vous parlez"
+   },
+   "confusable": {
+    "look": ["e-mute"]
+   }
+  },
+  {
+   "glyph": "e",
+   "kind": "contextual",
+   "id": "e-mute",
+   "section": "silent",
+   "ipa": "ə",
+   "context": {
+    "de": "ohne Akzent am Wortende und in unbetonten Silben",
+    "en": "unaccented at the end of a word and in unstressed syllables"
+   },
+   "example": "dress",
+   "hints": {
+    "de": "am Wortende stumm — robe = „rob“ — aber es macht den Konsonanten davor hörbar: grand / grande, petit / petite. In der Wortmitte ein kurzes ö oder ganz weg: petit = „pti“, samedi = „samdi“.",
+    "en": "silent at the end — robe = “rob” — but it makes the consonant before it sound: grand / grande, petit / petite. Inside a word it is a short uh or drops out entirely: petit = “ptee”, samedi = “sam-dee”."
+   },
+   "drill": false,
+   "confusable": {
+    "look": ["é", "è"]
+   }
+  },
+  {
+   "glyph": "h",
+   "upper": "H",
+   "name": "ache",
+   "section": "silent",
+   "example": "hour",
+   "hints": {
+    "de": "nie hörbar: heure, hôtel, hôpital. Meist zählt es gar nicht mit, das Wort beginnt für die Grammatik mit dem Vokal — l'heure, l'hôtel. Ein paar Wörter haben ein h aspiré, das genau das blockiert: le haricot, en haut.",
+    "en": "never sounded: heure, hôtel, hôpital. Usually it does not count at all — the word starts on its vowel: l'heure, l'hôtel. A few words carry an “aspirate h” that blocks the link: le haricot, en haut."
+   },
+   "drill": false,
+   "confusable": {
+    "look": ["ch"]
+   }
+  },
+  {
+   "glyph": "r",
+   "upper": "R",
+   "name": "erre",
+   "section": "single-letters",
+   "ipa": "ʁ",
+   "example": "rice",
+   "hints": {
+    "de": "ganz hinten im Rachen, fast gegurgelt — verwandt mit dem deutschen r in rot, aber kräftiger; die Zungenspitze bleibt unten: riz, rue, Paris",
+    "en": "made far back in the throat, close to a gargle — never the English r, and never rolled with the tip of the tongue: riz, rue, Paris"
+   }
+  },
+  {
+   "glyph": "u",
+   "upper": "U",
+   "name": "u",
+   "section": "single-letters",
+   "ipa": "y",
+   "example": "street",
+   "hints": {
+    "de": "wie ü in über: rue, tu, salut — nie wie das u in Schule; diesen Laut schreibt Französisch ou",
+    "en": "the German ü — say “ee” and round your lips: rue, tu, salut — never “oo”; the oo sound is spelled ou"
+   }
+  },
+  {
+   "glyph": "y",
+   "upper": "Y",
+   "name": "i grec",
+   "section": "single-letters",
+   "ipa": "i",
+   "example": "pen",
+   "hints": {
+    "de": "meist ein einfaches i: stylo, système; der Buchstabe heißt „i grec“, griechisches i. Zwischen zwei Vokalen zählt er doppelt und wird zum j: voyage, payer.",
+    "en": "usually a plain i: stylo, système; the letter is called “i grec”, Greek i. Between two vowels it counts double and turns into a y-sound: voyage, payer."
+   }
+  },
+  {
+   "glyph": "j",
+   "upper": "J",
+   "name": "ji",
+   "section": "single-letters",
+   "ipa": "ʒ",
+   "example": "day",
+   "hints": {
+    "de": "wie das J in Journal, nie wie das deutsche j in ja: jour, jaune, déjà. Beim Buchstabieren aufpassen: j heißt „ji“, g heißt „gé“ — im Englischen ist es genau umgekehrt.",
+    "en": "like the s in “measure”, never the j of “jam”: jour, jaune, déjà. When spelling aloud, watch out: j is called “ji” and g is called “gé” — the reverse of English."
+   }
+  }
+ ]
+}

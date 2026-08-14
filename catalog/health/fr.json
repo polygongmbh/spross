@@ -1,0 +1,178 @@
+{
+ "title": "La santé",
+ "subtitle": "Comment tu te sens aujourd'hui.",
+ "words": {
+  "pain": {
+   "text": "douleur",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "fever": {
+   "text": "fièvre",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "cough": {
+   "text": "toux",
+   "grammar": {
+    "gender": "la",
+    "plural": "="
+   }
+  },
+  "cold": {
+   "text": "rhume",
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "Erkältet sein heißt être enrhumé: je suis enrhumé."
+   }
+  },
+  "hurt": {
+   "text": "faire mal",
+   "notes": {
+    "de": "Meist mit avoir und dem Körperteil: j'ai mal à la tête. faire mal steht dort, wo das Körperteil selbst Subjekt ist: la blessure fait mal."
+   }
+  },
+  "to-cough": {
+   "text": "tousser"
+  },
+  "rest": {
+   "text": "se reposer"
+  },
+  "sick": {
+   "text": "malade"
+  },
+  "feel": {
+   "text": "se sentir"
+  },
+  "health": {
+   "text": "santé",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "illness": {
+   "text": "maladie",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "healthy": {
+   "text": "sain",
+   "synonyms": [
+    "en bonne santé"
+   ],
+   "variants": [
+    "saine"
+   ],
+   "notes": {
+    "de": "Über Menschen sagt man meist être en bonne santé; sain beschreibt vor allem Essen und Lebensweise: une alimentation saine."
+   }
+  },
+  "tired": {
+   "text": "fatigué",
+   "variants": [
+    "fatiguée"
+   ]
+  },
+  "weak": {
+   "text": "faible"
+  },
+  "dizziness": {
+   "text": "vertige",
+   "variants": [
+    "vertiges"
+   ],
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "Meist im Plural: j'ai des vertiges = mir ist schwindlig."
+   }
+  },
+  "wound": {
+   "text": "blessure",
+   "variants": [
+    "plaie"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "hurt-oneself": {
+   "text": "se blesser",
+   "variants": [
+    "se faire mal"
+   ]
+  },
+  "bandage": {
+   "text": "pansement",
+   "variants": [
+    "bandage"
+   ],
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "le pansement ist Verband und Pflaster zugleich; un bandage ist die elastische Binde."
+   }
+  },
+  "breathe": {
+   "text": "respirer"
+  },
+  "recover": {
+   "text": "guérir",
+   "variants": [
+    "se remettre"
+   ],
+   "notes": {
+    "de": "guérir steht auch ohne Objekt für gesund werden: je guéris vite."
+   }
+  },
+  "allergy": {
+   "text": "allergie",
+   "variants": [
+    "l'allergie"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "my-throat-hurts-a-lot": {
+   "text": "J'ai très mal à la gorge.",
+   "variants": [
+    "Ma gorge me fait très mal."
+   ]
+  },
+  "ive-had-a-fever-since-yesterday": {
+   "text": "J'ai de la fièvre depuis hier."
+  },
+  "get-well-soon": {
+   "text": "Bon rétablissement !",
+   "variants": [
+    "Remets-toi vite !"
+   ]
+  },
+  "i-dont-feel-well": {
+   "text": "Je ne me sens pas bien."
+  },
+  "the-wound-hurts": {
+   "text": "La blessure fait mal.",
+   "variants": [
+    "Ma blessure me fait mal."
+   ]
+  },
+  "i-cant-breathe-well": {
+   "text": "Je ne peux pas bien respirer.",
+   "variants": [
+    "Je n'arrive pas à bien respirer."
+   ]
+  },
+  "i-have-to-rest": {
+   "text": "Je dois me reposer."
+  }
+ }
+}

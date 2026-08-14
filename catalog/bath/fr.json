@@ -1,0 +1,247 @@
+{
+ "title": "La salle de bains",
+ "subtitle": "Frais et propre.",
+ "words": {
+  "washing-machine": {
+   "text": "machine à laver",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "laundry": {
+   "text": "linge",
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "le linge sind die Wäschestücke selbst; der Waschgang und das Waschmittel heißen la lessive"
+   }
+  },
+  "toilet": {
+   "text": "toilettes",
+   "variants": [
+    "WC"
+   ],
+   "grammar": {
+    "gender": "les",
+    "plural": "only"
+   },
+   "notes": {
+    "de": "die Toilette steht immer im Plural: les toilettes; la toilette im Singular ist die Körperpflege"
+   }
+  },
+  "shower": {
+   "text": "douche",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "sink": {
+   "text": "lavabo",
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "le lavabo ist das Waschbecken im Bad; die Spüle in der Küche heißt l'évier"
+   }
+  },
+  "mirror": {
+   "text": "miroir",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "toothbrush": {
+   "text": "brosse à dents",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "toothpaste": {
+   "text": "dentifrice",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "towel": {
+   "text": "serviette",
+   "variants": [
+    "serviette de bain"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la serviette ist auch die Serviette bei Tisch; wo es darauf ankommt, sagt man serviette de bain"
+   }
+  },
+  "soap": {
+   "text": "savon",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "shampoo": {
+   "text": "shampooing",
+   "variants": [
+    "shampoing"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "hairdryer": {
+   "text": "sèche-cheveux",
+   "grammar": {
+    "gender": "le",
+    "plural": "="
+   }
+  },
+  "take-shower": {
+   "text": "se doucher",
+   "variants": [
+    "prendre une douche"
+   ]
+  },
+  "do-laundry": {
+   "text": "laver le linge",
+   "synonyms": [
+    "faire la lessive"
+   ]
+  },
+  "brush-teeth": {
+   "text": "se brosser les dents"
+  },
+  "dry-off": {
+   "text": "se sécher",
+   "variants": [
+    "s'essuyer"
+   ]
+  },
+  "hang-up-laundry": {
+   "text": "étendre le linge",
+   "variants": [
+    "étendre la lessive",
+    "suspendre le linge"
+   ]
+  },
+  "clean": {
+   "text": "nettoyer"
+  },
+  "shave": {
+   "text": "se raser"
+  },
+  "comb-hair": {
+   "text": "se peigner",
+   "variants": [
+    "se peigner les cheveux",
+    "se coiffer"
+   ]
+  },
+  "apply-lotion": {
+   "text": "se mettre de la crème",
+   "variants": [
+    "mettre de la crème",
+    "se crémer"
+   ]
+  },
+  "bathtub": {
+   "text": "baignoire",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "toilet-paper": {
+   "text": "papier toilette",
+   "variants": [
+    "papier hygiénique"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "razor": {
+   "text": "rasoir",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "sponge": {
+   "text": "éponge",
+   "variants": [
+    "l'éponge"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "cream": {
+   "text": "crème",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "faucet": {
+   "text": "robinet",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "trash-can": {
+   "text": "poubelle",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "bucket": {
+   "text": "seau",
+   "grammar": {
+    "gender": "le",
+    "plural": "-x"
+   }
+  },
+  "dirty": {
+   "text": "sale"
+  },
+  "im-taking-a-quick-shower": {
+   "text": "Je vais vite me doucher.",
+   "variants": [
+    "Je vais me doucher rapidement.",
+    "Je vais prendre une douche rapide."
+   ]
+  },
+  "the-bathroom-is-occupied": {
+   "text": "La salle de bains est occupée !",
+   "variants": [
+    "La salle de bain est occupée !",
+    "C'est occupé !"
+   ]
+  },
+  "the-laundry-is-done": {
+   "text": "Le linge est prêt.",
+   "variants": [
+    "La lessive est terminée.",
+    "La lessive est finie."
+   ]
+  },
+  "wheres-my-towel": {
+   "text": "Où est ma serviette ?"
+  },
+  "can-you-hang-the-laundry": {
+   "text": "Tu peux étendre le linge ?",
+   "variants": [
+    "Peux-tu étendre le linge ?",
+    "Tu peux étendre la lessive ?"
+   ]
+  },
+  "dont-forget-to-brush-teeth": {
+   "text": "N'oublie pas de te brosser les dents !"
+  },
+  "wash-your-hands": {
+   "text": "Lave-toi les mains."
+  },
+  "the-water-is-cold": {
+   "text": "L'eau est froide !"
+  }
+ }
+}

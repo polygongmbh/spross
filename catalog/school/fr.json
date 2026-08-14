@@ -1,0 +1,255 @@
+{
+ "title": "L'école",
+ "subtitle": "Une journée de classe ordinaire.",
+ "words": {
+  "school": {
+   "text": "école",
+   "variants": [
+    "l'école"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Vorsicht: le collège ist die Mittelstufe, nicht die Schule allgemein."
+   }
+  },
+  "classroom": {
+   "text": "salle de classe",
+   "variants": [
+    "salle de cours"
+   ],
+   "grammar": {
+    "gender": "la",
+    "plural": "salles de classe"
+   }
+  },
+  "teacher": {
+   "text": "professeur",
+   "synonyms": [
+    "enseignant"
+   ],
+   "variants": [
+    "prof"
+   ],
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "In der Grundschule heißt die Lehrkraft l'instituteur, ab dem collège le professeur (ugs. le prof)."
+   }
+  },
+  "teacher-f": {
+   "text": "professeure",
+   "synonyms": [
+    "enseignante"
+   ],
+   "variants": [
+    "prof"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "board": {
+   "text": "tableau",
+   "variants": [
+    "tableau noir",
+    "tableau blanc"
+   ],
+   "grammar": {
+    "gender": "le",
+    "plural": "-x"
+   }
+  },
+  "exercise-book": {
+   "text": "cahier",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "homework": {
+   "text": "devoirs",
+   "grammar": {
+    "gender": "les",
+    "plural": "only"
+   },
+   "notes": {
+    "de": "Nur im Plural: les devoirs — faire ses devoirs = Hausaufgaben machen."
+   }
+  },
+  "exam": {
+   "text": "examen",
+   "variants": [
+    "l'examen",
+    "contrôle"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Die Klassenarbeit heißt le contrôle; l'examen ist die große Prüfung."
+   }
+  },
+  "break": {
+   "text": "pause",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Die Pause zwischen den Schulstunden heißt la récréation, ugs. la récré."
+   }
+  },
+  "pass-exam": {
+   "text": "réussir l'examen",
+   "notes": {
+    "de": "réussir heißt bestehen. passer un examen bedeutet nur „eine Prüfung ablegen“; durchfallen ist rater oder échouer.",
+    "en": "réussir is to pass; passer un examen only means to sit it, and to fail is rater or échouer."
+   }
+  },
+  "to-practice": {
+   "text": "s'entraîner",
+   "variants": [
+    "s'exercer",
+    "pratiquer"
+   ]
+  },
+  "raise-hand": {
+   "text": "lever la main",
+   "variants": [
+    "lever le doigt"
+   ]
+  },
+  "pupil": {
+   "text": "élève",
+   "variants": [
+    "l'élève"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "l'élève geht zur Schule; an der Uni heißt man l'étudiant."
+   }
+  },
+  "course": {
+   "text": "cours",
+   "grammar": {
+    "gender": "le",
+    "plural": "="
+   }
+  },
+  "lesson": {
+   "text": "leçon",
+   "variants": [
+    "classe"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Der laufende Unterricht heißt les cours: j'ai cours aujourd'hui = heute habe ich Unterricht."
+   }
+  },
+  "course-book": {
+   "text": "manuel",
+   "variants": [
+    "manuel scolaire",
+    "livre de cours"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "page": {
+   "text": "page",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "grade": {
+   "text": "note",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "correct": {
+   "text": "corriger"
+  },
+  "book": {
+   "text": "livre",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "university": {
+   "text": "université",
+   "variants": [
+    "l'université",
+    "fac"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Umgangssprachlich la fac: je vais à la fac."
+   }
+  },
+  "class-schedule": {
+   "text": "emploi du temps",
+   "variants": [
+    "l'emploi du temps"
+   ],
+   "grammar": {
+    "gender": "l'",
+    "plural": "emplois du temps"
+   }
+  },
+  "to-count": {
+   "text": "compter"
+  },
+  "to-try": {
+   "text": "essayer",
+   "variants": [
+    "tenter"
+   ]
+  },
+  "do-the-homework": {
+   "text": "Je fais mes devoirs."
+  },
+  "the-exam-is-tomorrow": {
+   "text": "L'examen est demain.",
+   "variants": [
+    "L'examen a lieu demain."
+   ]
+  },
+  "look-at-the-class-schedule": {
+   "text": "Regarde l'emploi du temps.",
+   "variants": [
+    "Regardez l'emploi du temps."
+   ]
+  },
+  "the-break-is-over": {
+   "text": "La pause est finie.",
+   "variants": [
+    "La pause est terminée."
+   ]
+  },
+  "ask-the-teacher": {
+   "text": "Demande au professeur.",
+   "variants": [
+    "Demandez au professeur.",
+    "Demande au prof."
+   ]
+  },
+  "i-have-a-good-grade": {
+   "text": "J'ai une bonne note."
+  },
+  "we-go-to-the-classroom": {
+   "text": "Nous allons dans la salle de classe.",
+   "variants": [
+    "On va dans la salle de classe."
+   ]
+  }
+ }
+}

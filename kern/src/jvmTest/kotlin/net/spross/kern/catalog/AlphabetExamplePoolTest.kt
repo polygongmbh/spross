@@ -98,6 +98,7 @@ class AlphabetExamplePoolTest {
         val plain = mapOf(
             "de" to listOf("ei", "ie", "sch", "ss"),
             "es" to listOf("ll", "ch", "rr"),
+            "fr" to listOf("ou", "ch", "ss"),
             "it" to listOf("gn", "gli"),
         )
         for ((lang, refs) in plain) {

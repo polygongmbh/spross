@@ -228,9 +228,10 @@ One line per item, with a file or context pointer, filed under the section it be
 
 ## App & UX
 
-- Italian articles render un-hued: `articleGender` (`kern/.../model/Article.kt`) maps
+- Italian and French articles render un-hued: `articleGender` (`kern/.../model/Article.kt`) maps
   de/es articles only, so il/lo/i/gli/le/uno fall to null and the reveal shows them
-  uncolored (`l'` stays null rightly — it marks both genders).
+  uncolored; French is worse — half-hued — because la/un hue via their es homographs
+  while le/les/une fall to null (`l'` stays null rightly — it marks both genders).
 - Both reveals join article + text with a plain space (`android/.../ui/Components.kt`
   `articleColoredText` and the iOS twin), so an elided `l'` renders "l' acqua" —
   an apostrophe-final article should write onto its noun, the citation

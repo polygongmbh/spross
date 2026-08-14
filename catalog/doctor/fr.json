@@ -1,0 +1,231 @@
+{
+ "title": "Chez le médecin",
+ "subtitle": "Du rendez-vous à l'ordonnance.",
+ "words": {
+  "doctor": {
+   "text": "médecin",
+   "variants": [
+    "docteur"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "doctor-f": {
+   "text": "docteure",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Der Berufsname le médecin gilt für beide; für eine Ärztin sagt man la docteure oder une médecin."
+   }
+  },
+  "practice": {
+   "text": "cabinet",
+   "variants": [
+    "cabinet médical"
+   ],
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "le cabinet ist die Praxis als Raum; die Sprechstunde selbst heißt la consultation."
+   }
+  },
+  "pill": {
+   "text": "comprimé",
+   "variants": [
+    "cachet"
+   ],
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "la pilule meint fast immer die Antibabypille — die Tablette ist le comprimé oder le cachet."
+   }
+  },
+  "prescription": {
+   "text": "ordonnance",
+   "variants": [
+    "l'ordonnance"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Der Zettel vom Arzt heißt l'ordonnance: le médecin fait une ordonnance."
+   }
+  },
+  "pharmacy": {
+   "text": "pharmacie",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "insurance-card": {
+   "text": "carte Vitale",
+   "variants": [
+    "carte d'assurance maladie"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "In Frankreich ist es la carte Vitale, die Chipkarte der gesetzlichen Krankenversicherung."
+   }
+  },
+  "health-insurance": {
+   "text": "assurance maladie",
+   "variants": [
+    "l'assurance maladie"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Die gesetzliche Kasse heißt la Sécurité sociale (kurz la Sécu); die private Zusatzversicherung ist la mutuelle."
+   }
+  },
+  "hospital": {
+   "text": "hôpital",
+   "variants": [
+    "l'hôpital"
+   ],
+   "grammar": {
+    "gender": "l'",
+    "plural": "hôpitaux"
+   }
+  },
+  "emergency": {
+   "text": "urgence",
+   "variants": [
+    "l'urgence"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Die Notaufnahme heißt les urgences: aller aux urgences."
+   }
+  },
+  "doctors-note": {
+   "text": "arrêt de travail",
+   "variants": [
+    "l'arrêt de travail",
+    "arrêt maladie"
+   ],
+   "grammar": {
+    "gender": "l'",
+    "plural": "arrêts de travail"
+   },
+   "notes": {
+    "de": "Der Arzt stellt un arrêt de travail aus; damit ist man en arrêt maladie."
+   }
+  },
+  "examine": {
+   "text": "examiner",
+   "variants": [
+    "ausculter"
+   ]
+  },
+  "prescribe-medicine": {
+   "text": "prescrire des médicaments",
+   "variants": [
+    "faire une ordonnance"
+   ]
+  },
+  "take-medicine": {
+   "text": "prendre des médicaments"
+  },
+  "call-in-sick": {
+   "text": "se mettre en arrêt maladie",
+   "variants": [
+    "prendre un arrêt maladie"
+   ],
+   "notes": {
+    "de": "Krankmelden läuft über den arrêt de travail vom Arzt: je me mets en arrêt maladie."
+   }
+  },
+  "medicine": {
+   "text": "médicament",
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "le médicament ist das Medikament; la médecine ist die Heilkunde."
+   }
+  },
+  "nurse": {
+   "text": "infirmier",
+   "variants": [
+    "l'infirmier"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "nurse-f": {
+   "text": "infirmière",
+   "variants": [
+    "l'infirmière"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "dentist": {
+   "text": "dentiste",
+   "variants": [
+    "chirurgien-dentiste"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "vaccination": {
+   "text": "vaccination",
+   "variants": [
+    "vaccin"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la vaccination ist der Vorgang, le vaccin der Impfstoff; geimpft wird man mit se faire vacciner."
+   }
+  },
+  "ambulance": {
+   "text": "ambulance",
+   "variants": [
+    "l'ambulance"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "take-the-pills-twice-daily": {
+   "text": "Prenez les comprimés deux fois par jour.",
+   "variants": [
+    "Prends les comprimés deux fois par jour."
+   ]
+  },
+  "show-me-your-insurance-card": {
+   "text": "Montrez-moi votre carte Vitale.",
+   "variants": [
+    "Montre-moi ta carte Vitale."
+   ]
+  },
+  "the-practice-is-closed": {
+   "text": "Le cabinet est fermé."
+  },
+  "i-have-to-see-a-doctor": {
+   "text": "Je dois aller chez le médecin."
+  },
+  "call-an-ambulance": {
+   "text": "Appelez une ambulance !",
+   "variants": [
+    "Appelle une ambulance !"
+   ]
+  }
+ }
+}

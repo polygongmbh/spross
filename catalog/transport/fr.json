@@ -1,0 +1,221 @@
+{
+ "title": "Les transports",
+ "subtitle": "En route !",
+ "words": {
+  "traffic-light": {
+   "text": "feu",
+   "variants": [
+    "feu rouge",
+    "feu de signalisation"
+   ],
+   "grammar": {
+    "gender": "le",
+    "plural": "-x"
+   }
+  },
+  "bicycle": {
+   "text": "vélo",
+   "variants": [
+    "bicyclette"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "bus": {
+   "text": "bus",
+   "variants": [
+    "autobus"
+   ],
+   "grammar": {
+    "gender": "le",
+    "plural": "="
+   }
+  },
+  "bus-stop": {
+   "text": "arrêt de bus",
+   "variants": [
+    "arrêt",
+    "l'arrêt de bus"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "train": {
+   "text": "train",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "car": {
+   "text": "voiture",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "taxi": {
+   "text": "taxi",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "train-station": {
+   "text": "gare",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "ticket": {
+   "text": "billet",
+   "variants": [
+    "ticket"
+   ],
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "le billet gilt für Zug und Flugzeug, le ticket für Bus und Metro."
+   }
+  },
+  "way": {
+   "text": "chemin",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "ride-bike": {
+   "text": "faire du vélo",
+   "variants": [
+    "aller à vélo",
+    "rouler à vélo"
+   ]
+  },
+  "take-bus": {
+   "text": "prendre le bus"
+  },
+  "depart": {
+   "text": "partir",
+   "notes": {
+    "de": "Züge und Busse „fahren ab“ mit partir: Le train part à huit heures."
+   }
+  },
+  "journey": {
+   "text": "voyage",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "travel": {
+   "text": "voyager"
+  },
+  "driver": {
+   "text": "conducteur",
+   "variants": [
+    "chauffeur"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "plane": {
+   "text": "avion",
+   "variants": [
+    "l'avion"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "airport": {
+   "text": "aéroport",
+   "variants": [
+    "l'aéroport"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "ship": {
+   "text": "bateau",
+   "grammar": {
+    "gender": "le",
+    "plural": "-x"
+   }
+  },
+  "motorbike": {
+   "text": "moto",
+   "variants": [
+    "motocyclette"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "truck": {
+   "text": "camion",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "passenger": {
+   "text": "passager",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "luggage": {
+   "text": "bagages",
+   "grammar": {
+    "gender": "les",
+    "plural": "only"
+   },
+   "notes": {
+    "de": "Gepäck steht im Französischen im Plural: les bagages; ein einzelnes Stück ist un bagage."
+   }
+  },
+  "fare": {
+   "text": "tarif",
+   "variants": [
+    "prix du billet"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "get-off": {
+   "text": "descendre",
+   "notes": {
+    "de": "aussteigen ist descendre mit de: Je descends du bus."
+   }
+  },
+  "the-bus-is-coming-soon": {
+   "text": "Le bus arrive bientôt.",
+   "variants": [
+    "Le bus arrive tout de suite."
+   ]
+  },
+  "when-does-the-train-leave": {
+   "text": "Quand part le train ?",
+   "variants": [
+    "Le train part quand ?",
+    "À quelle heure part le train ?"
+   ]
+  },
+  "have-a-good-journey": {
+   "text": "Bon voyage !"
+  },
+  "where-is-the-airport": {
+   "text": "Où est l'aéroport ?"
+  },
+  "how-much-is-the-fare": {
+   "text": "Quel est le tarif ?",
+   "variants": [
+    "Combien coûte le billet ?"
+   ]
+  },
+  "i-get-off-here": {
+   "text": "Je descends ici."
+  }
+ }
+}

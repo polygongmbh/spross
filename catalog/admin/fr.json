@@ -1,0 +1,352 @@
+{
+ "title": "À l'administration",
+ "subtitle": "Pas à pas dans la paperasse.",
+ "words": {
+  "office": {
+   "text": "administration",
+   "variants": [
+    "l'administration"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Für ein bestimmtes Amt sagt man in Frankreich den Namen: la mairie (Rathaus), la préfecture (Aufenthalt und Ausweise)."
+   }
+  },
+  "form": {
+   "text": "formulaire",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "application": {
+   "text": "demande",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Der Antrag heißt la demande: faire une demande de titre de séjour."
+   }
+  },
+  "id-card": {
+   "text": "carte d'identité",
+   "variants": [
+    "carte nationale d'identité",
+    "CNI"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Der französische Ausweis ist la carte nationale d'identité (CNI); Ausländer bekommen stattdessen un titre de séjour."
+   }
+  },
+  "residence-permit": {
+   "text": "titre de séjour",
+   "synonyms": [
+    "carte de séjour"
+   ],
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "le titre de séjour ist das Aufenthaltsrecht, la carte de séjour die Karte, die man dafür bekommt."
+   }
+  },
+  "signature": {
+   "text": "signature",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "ticket-number": {
+   "text": "numéro d'attente",
+   "variants": [
+    "ticket d'attente",
+    "numéro"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "case-worker": {
+   "text": "employé",
+   "synonyms": [
+    "agent"
+   ],
+   "variants": [
+    "l'employé",
+    "l'agent"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Am Schalter sitzt l'employé oder l'agent; wer den Antrag bearbeitet, ist le gestionnaire du dossier."
+   }
+  },
+  "case-worker-f": {
+   "text": "employée",
+   "variants": [
+    "l'employée"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "registration": {
+   "text": "inscription",
+   "variants": [
+    "l'inscription"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "In Frankreich gibt es keine Meldepflicht; l'inscription ist die Eintragung in ein Register, etwa auf der Wählerliste oder bei der Krankenkasse."
+   }
+  },
+  "documents": {
+   "text": "documents",
+   "synonyms": [
+    "papiers"
+   ],
+   "grammar": {
+    "gender": "les"
+   },
+   "notes": {
+    "de": "Am Schalter heißt es meist vos papiers; les documents ist das neutrale Wort."
+   }
+  },
+  "fill-in": {
+   "text": "remplir"
+  },
+  "sign": {
+   "text": "signer"
+  },
+  "apply-for": {
+   "text": "faire une demande",
+   "variants": [
+    "solliciter",
+    "demander"
+   ],
+   "notes": {
+    "de": "beantragen ist faire une demande de … ; demander allein heißt fragen."
+   }
+  },
+  "submit": {
+   "text": "déposer"
+  },
+  "hand-in": {
+   "text": "remettre",
+   "variants": [
+    "soumettre"
+   ]
+  },
+  "pick-up": {
+   "text": "retirer la carte d'identité",
+   "variants": [
+    "récupérer la carte d'identité",
+    "aller chercher la carte d'identité"
+   ]
+  },
+  "extend": {
+   "text": "renouveler",
+   "variants": [
+    "prolonger"
+   ]
+  },
+  "bring": {
+   "text": "apporter",
+   "notes": {
+    "de": "apporter für Sachen, amener für Personen."
+   }
+  },
+  "copy": {
+   "text": "copier",
+   "variants": [
+    "photocopier"
+   ]
+  },
+  "passport": {
+   "text": "passeport",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "address": {
+   "text": "adresse",
+   "variants": [
+    "l'adresse"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "certificate": {
+   "text": "attestation",
+   "variants": [
+    "l'attestation",
+    "certificat"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Die Bescheinigung heißt l'attestation; ein certificat stellt eine Fachperson aus, etwa le certificat médical."
+   }
+  },
+  "birth-certificate": {
+   "text": "acte de naissance",
+   "variants": [
+    "l'acte de naissance",
+    "extrait de naissance"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "notification": {
+   "text": "décision",
+   "synonyms": [
+    "notification"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la décision ist die Entscheidung selbst, la notification ihre Zustellung."
+   }
+  },
+  "fee": {
+   "text": "frais",
+   "variants": [
+    "frais de dossier"
+   ],
+   "grammar": {
+    "gender": "les",
+    "plural": "only"
+   },
+   "notes": {
+    "de": "les frais stehen immer im Plural; die Bearbeitungsgebühr heißt les frais de dossier."
+   }
+  },
+  "office-hours": {
+   "text": "horaires d'accueil",
+   "variants": [
+    "heures d'accueil",
+    "horaires d'ouverture"
+   ],
+   "grammar": {
+    "gender": "les"
+   },
+   "notes": {
+    "de": "Ämter geben ihre horaires d'accueil du public an; ein einzelner Sprechtag heißt la permanence."
+   }
+  },
+  "waiting-room": {
+   "text": "salle d'attente",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "reject": {
+   "text": "refuser",
+   "synonyms": [
+    "rejeter"
+   ]
+  },
+  "approve": {
+   "text": "approuver",
+   "variants": [
+    "accorder",
+    "autoriser"
+   ]
+  },
+  "law": {
+   "text": "loi",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "visa": {
+   "text": "visa",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "fine": {
+   "text": "amende",
+   "variants": [
+    "l'amende"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "receipt": {
+   "text": "reçu",
+   "variants": [
+    "récépissé"
+   ],
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "Für einen eingereichten Antrag bekommt man un récépissé; der Kassenzettel im Laden ist le ticket de caisse."
+   }
+  },
+  "where-do-i-sign": {
+   "text": "Où dois-je signer ?",
+   "variants": [
+    "Où est-ce que je dois signer ?",
+    "Je signe où ?"
+   ]
+  },
+  "i-want-to-extend-my-residence-permit": {
+   "text": "Je voudrais renouveler mon titre de séjour.",
+   "variants": [
+    "Je veux renouveler mon titre de séjour.",
+    "Je voudrais renouveler ma carte de séjour."
+   ]
+  },
+  "fill-out-the-form": {
+   "text": "Remplissez le formulaire.",
+   "variants": [
+    "Remplis le formulaire."
+   ]
+  },
+  "take-a-number": {
+   "text": "Prenez un numéro d'attente !",
+   "variants": [
+    "Prends un numéro d'attente !",
+    "Prenez un ticket !"
+   ]
+  },
+  "i-need-an-interpreter-for-the-application": {
+   "text": "J'ai besoin d'un interprète pour la demande."
+  },
+  "did-you-bring-all-the-documents": {
+   "text": "Avez-vous apporté tous les documents ?",
+   "variants": [
+    "As-tu apporté tous les documents ?",
+    "Avez-vous apporté tous les papiers ?"
+   ]
+  },
+  "the-decision-comes-by-mail": {
+   "text": "La décision arrive par courrier.",
+   "variants": [
+    "La notification arrive par courrier.",
+    "La décision arrive par la poste."
+   ]
+  },
+  "when-does-my-id-expire": {
+   "text": "Quand expire ma carte d'identité ?",
+   "variants": [
+    "Quand est-ce que ma carte d'identité expire ?",
+    "Ma carte d'identité expire quand ?"
+   ]
+  }
+ }
+}

@@ -1,0 +1,68 @@
+{
+ "title": "Expressions idiomatiques",
+ "words": {
+  "buy-a-pig-in-a-poke": {
+   "text": "N'achète pas chat en poche !",
+   "notes": {
+    "de": "Fast dasselbe Bild: wörtlich „Kauf keine Katze in der Tasche.“",
+    "en": "Nearly the same image: literally \"Don't buy a cat in a bag.\""
+   }
+  },
+  "cross-your-fingers": {
+   "text": "Je croise les doigts pour toi.",
+   "notes": {
+    "de": "Wörtlich: „Ich kreuze die Finger für dich.“",
+    "en": "Literally: \"I cross my fingers for you.\""
+   }
+  },
+  "put-your-foot-in-it": {
+   "text": "J'ai mis les pieds dans le plat.",
+   "notes": {
+    "de": "Wörtlich: „Ich habe die Füße in die Schüssel gesetzt.“",
+    "en": "Literally: \"I put my feet in the dish.\""
+   }
+  },
+  "pull-someones-leg": {
+   "text": "Il m'a fait marcher.",
+   "notes": {
+    "de": "Wörtlich: „Er hat mich laufen lassen.“",
+    "en": "Literally: \"He made me walk.\""
+   }
+  },
+  "fed-up-to-here": {
+   "text": "J'en ai par-dessus la tête.",
+   "notes": {
+    "de": "Wörtlich: „Ich habe davon über den Kopf.“",
+    "en": "Literally: \"I have it over the head.\""
+   }
+  },
+  "turn-a-blind-eye": {
+   "text": "Il a fermé les yeux.",
+   "notes": {
+    "de": "Wörtlich: „Er hat die Augen geschlossen.“",
+    "en": "Literally: \"He closed his eyes.\""
+   }
+  },
+  "seventh-heaven": {
+   "text": "Elle est au septième ciel.",
+   "notes": {
+    "de": "Wörtlich dasselbe Bild.",
+    "en": "Literally the same image."
+   }
+  },
+  "bite-the-bullet": {
+   "text": "Serre les dents !",
+   "notes": {
+    "de": "Wörtlich: „Beiß die Zähne zusammen!“",
+    "en": "Literally: \"Clench your teeth!\""
+   }
+  },
+  "raining-cats-and-dogs": {
+   "text": "Il pleut des cordes.",
+   "notes": {
+    "de": "Wörtlich: „Es regnet Seile.“",
+    "en": "Literally: \"It's raining ropes.\""
+   }
+  }
+ }
+}

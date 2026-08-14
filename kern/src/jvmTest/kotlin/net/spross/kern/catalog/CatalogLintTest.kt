@@ -22,6 +22,7 @@ class CatalogLintTest {
         "de" to Regex("\\bbitte\\b", RegexOption.IGNORE_CASE),
         "en" to Regex("\\bplease\\b", RegexOption.IGNORE_CASE),
         "es" to Regex("\\bpor favor\\b", RegexOption.IGNORE_CASE),
+        "fr" to Regex("\\bs[’']il (te|vous) plaît\\b", RegexOption.IGNORE_CASE),
         "it" to Regex("\\bper (favore|piacere|cortesia)\\b", RegexOption.IGNORE_CASE),
         "sw" to Regex("\\btafadhali\\b", RegexOption.IGNORE_CASE),
         "uk" to Regex("\\bбудь ласка\\b", RegexOption.IGNORE_CASE),
@@ -37,7 +38,7 @@ class CatalogLintTest {
 
     @Test
     fun catalogParsesClean() {
-        assertEquals(setOf("de", "en", "es", "it", "sw", "uk"), catalog.languages.keys)
+        assertEquals(setOf("de", "en", "es", "fr", "it", "sw", "uk"), catalog.languages.keys)
         assertTrue(catalog.groups.isNotEmpty())
         assertTrue(catalog.areaNames.isNotEmpty())
     }
@@ -385,6 +386,19 @@ class CatalogLintTest {
                 // Reviewed 2026-07-31: `el tiempo` is both Zeit and Wetter. de/en/sw/uk
                 // all split it; `clima` is das Klima in Spain, so there is no alternative.
                 "es tiempo: nature/weather, time/time",
+                // Reviewed 2026-08-15: `le tableau` is the picture on the wall AND the
+                // classroom board — genuine French polysemy, one word both areas need
+                // as their first pick. Repicking picture as `cadre` would teach the
+                // frame; the living/picture card carries a de note naming the second
+                // sense, the ndege treatment. Every other language splits the pair,
+                // so it stays one-language.
+                "fr tableau: living/picture, school/board",
+                // Reviewed 2026-08-15: `le temps` is Zeit and Wetter alike — the same
+                // Romance merge `es tiempo` and `it tempo` pin here; `la météo` names
+                // the forecast and `le climat` the climate, so there is no honest
+                // alternative. The concept pair is allowlisted in
+                // [noConceptPairCollidesInTwoLanguages] as the reviewed family-wide merge.
+                "fr temps: nature/weather, time/time",
                 // Reviewed 2026-08-15: `perché` is warum and weil in one word — the
                 // interrogative and the causal conjunction genuinely merge in Italian
                 // (Perché non vieni? — Perché piove.). Every other language splits them,
@@ -427,6 +441,7 @@ class CatalogLintTest {
     private val pluralArticles = mapOf(
         "de" to setOf("die"),
         "es" to setOf("los", "las"),
+        "fr" to setOf("les"),
         "it" to setOf("i", "gli", "le"),
     )
 

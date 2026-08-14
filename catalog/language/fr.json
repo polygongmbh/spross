@@ -1,0 +1,172 @@
+{
+ "title": "Apprendre la langue",
+ "subtitle": "Demander, comprendre, rester dans la conversation.",
+ "words": {
+  "hear": {
+   "text": "entendre",
+   "notes": {
+    "de": "entendre = wahrnehmen · écouter = bewusst zuhören."
+   }
+  },
+  "understand": {
+   "text": "comprendre"
+  },
+  "speak": {
+   "text": "parler"
+  },
+  "repeat-word": {
+   "text": "répéter le mot"
+  },
+  "loud": {
+   "text": "fort",
+   "variants": [
+    "forte"
+   ],
+   "notes": {
+    "de": "Lautstärke: parle plus fort · fort heißt auch stark."
+   }
+  },
+  "ask": {
+   "text": "demander",
+   "notes": {
+    "de": "demander heißt fragen und um etwas bitten: demander l'addition · eine Frage stellen ist poser une question."
+   }
+  },
+  "question": {
+   "text": "question",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "answer": {
+   "text": "réponse",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "reply": {
+   "text": "répondre",
+   "notes": {
+    "de": "mit à: répondre à la question, répondre à quelqu'un."
+   }
+  },
+  "meaning": {
+   "text": "sens",
+   "grammar": {
+    "gender": "le",
+    "plural": "="
+   }
+  },
+  "to-pronounce": {
+   "text": "prononcer"
+  },
+  "translate": {
+   "text": "traduire"
+  },
+  "read-aloud": {
+   "text": "lire à voix haute"
+  },
+  "learn-by-heart": {
+   "text": "apprendre par cœur",
+   "synonyms": [
+    "mémoriser"
+   ]
+  },
+  "dictionary": {
+   "text": "dictionnaire",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "sentence": {
+   "text": "phrase",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "mother-tongue": {
+   "text": "langue maternelle",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "i-dont-understand": {
+   "text": "Je ne comprends pas.",
+   "variants": [
+    "Je comprends pas."
+   ]
+  },
+  "i-understand": {
+   "text": "Je comprends."
+  },
+  "can-you-repeat-that": {
+   "text": "Pouvez-vous le répéter ?",
+   "variants": [
+    "Pouvez-vous répéter ?",
+    "Peux-tu le répéter ?",
+    "Tu peux le répéter ?",
+    "Tu peux répéter ?"
+   ]
+  },
+  "slower": {
+   "text": "Plus lentement !",
+   "variants": [
+    "Moins vite !"
+   ]
+  },
+  "i-cant-hear-you": {
+   "text": "Je ne vous entends pas.",
+   "variants": [
+    "Je ne t'entends pas."
+   ]
+  },
+  "louder": {
+   "text": "Plus fort !"
+  },
+  "do-you-speak-english": {
+   "text": "Parlez-vous anglais ?",
+   "variants": [
+    "Vous parlez anglais ?",
+    "Parles-tu anglais ?",
+    "Tu parles anglais ?"
+   ]
+  },
+  "i-speak-a-little": {
+   "text": "Je parle seulement un peu {language}.",
+   "variants": [
+    "Je ne parle qu'un peu {language}.",
+    "Je parle juste un peu {language}."
+   ]
+  },
+  "what-does-this-word-mean": {
+   "text": "Que veut dire ce mot ?",
+   "variants": [
+    "Que signifie ce mot ?",
+    "Qu'est-ce que ce mot veut dire ?"
+   ]
+  },
+  "how-do-you-say-this": {
+   "text": "Comment dit-on ça {language-in} ?",
+   "variants": [
+    "Comment on dit ça {language-in} ?"
+   ]
+  },
+  "im-learning-your-language": {
+   "text": "J'apprends {language-learn}.",
+   "variants": [
+    "Je suis en train d'apprendre {language-learn}."
+   ]
+  },
+  "i-have-a-question": {
+   "text": "J'ai une question."
+  },
+  "you-can-do-it": {
+   "text": "Tu vas y arriver !",
+   "variants": [
+    "Tu vas sûrement y arriver !",
+    "Tu y arriveras !",
+    "Tu peux le faire !"
+   ]
+  }
+ }
+}

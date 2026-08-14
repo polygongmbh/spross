@@ -1,0 +1,229 @@
+{
+ "title": "Le corps",
+ "subtitle": "De la tête aux pieds.",
+ "words": {
+  "head": {
+   "text": "tête",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "hair": {
+   "text": "cheveux",
+   "grammar": {
+    "gender": "les",
+    "plural": "only"
+   },
+   "notes": {
+    "de": "Kopfhaar steht im Französischen immer im Plural: j'ai les cheveux longs."
+   }
+  },
+  "face": {
+   "text": "visage",
+   "variants": [
+    "figure"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "eye": {
+   "text": "œil",
+   "variants": [
+    "l'œil",
+    "oeil",
+    "l'oeil"
+   ],
+   "grammar": {
+    "gender": "l'",
+    "plural": "yeux"
+   }
+  },
+  "ear": {
+   "text": "oreille",
+   "variants": [
+    "l'oreille"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "nose": {
+   "text": "nez",
+   "grammar": {
+    "gender": "le",
+    "plural": "="
+   }
+  },
+  "mouth": {
+   "text": "bouche",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "tooth": {
+   "text": "dent",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "lip": {
+   "text": "lèvre",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "hand": {
+   "text": "main",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "arm": {
+   "text": "bras",
+   "grammar": {
+    "gender": "le",
+    "plural": "="
+   }
+  },
+  "foot": {
+   "text": "pied",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "leg": {
+   "text": "jambe",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "stomach": {
+   "text": "ventre",
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "Bauchweh heißt j'ai mal au ventre; l'estomac meint den Magen selbst."
+   }
+  },
+  "back": {
+   "text": "dos",
+   "grammar": {
+    "gender": "le",
+    "plural": "="
+   }
+  },
+  "throat": {
+   "text": "gorge",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Französisch trennt, was „Hals“ zusammenfasst: la gorge ist der Rachen (Halsschmerzen), le cou der äußere Hals."
+   }
+  },
+  "shoulder": {
+   "text": "épaule",
+   "variants": [
+    "l'épaule"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "knee": {
+   "text": "genou",
+   "grammar": {
+    "gender": "le",
+    "plural": "genoux"
+   }
+  },
+  "chest": {
+   "text": "poitrine",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "heart": {
+   "text": "cœur",
+   "variants": [
+    "coeur"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "blood": {
+   "text": "sang",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "skin": {
+   "text": "peau",
+   "grammar": {
+    "gender": "la",
+    "plural": "-x"
+   }
+  },
+  "bone": {
+   "text": "os",
+   "variants": [
+    "l'os"
+   ],
+   "grammar": {
+    "gender": "l'",
+    "plural": "="
+   }
+  },
+  "finger": {
+   "text": "doigt",
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "le doigt ist der Finger; die Zehe heißt un orteil oder un doigt de pied."
+   }
+  },
+  "neck": {
+   "text": "cou",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "my-head-hurts": {
+   "text": "J'ai mal à la tête.",
+   "variants": [
+    "Ma tête me fait mal."
+   ]
+  },
+  "give-me-your-hand": {
+   "text": "Donne-moi la main.",
+   "variants": [
+    "Donne-moi ta main."
+   ]
+  },
+  "open-your-mouth": {
+   "text": "Ouvre la bouche."
+  },
+  "close-your-eyes": {
+   "text": "Ferme les yeux."
+  },
+  "i-have-long-hair": {
+   "text": "J'ai les cheveux longs."
+  },
+  "my-feet-are-cold": {
+   "text": "J'ai les pieds froids.",
+   "variants": [
+    "J'ai froid aux pieds."
+   ]
+  },
+  "my-heart-is-beating-fast": {
+   "text": "Mon cœur bat vite.",
+   "variants": [
+    "Mon coeur bat vite."
+   ]
+  }
+ }
+}

@@ -1,0 +1,305 @@
+{
+ "title": "L'entrée",
+ "subtitle": "Arriver et repartir.",
+ "words": {
+  "hallway": {
+   "text": "entrée",
+   "synonyms": [
+    "couloir"
+   ],
+   "variants": [
+    "l'entrée"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "l'entrée ist der Eingangsbereich hinter der Wohnungstür; der Gang dahinter heißt le couloir",
+    "en": "l'entrée is the entryway just inside the front door; the corridor itself is le couloir"
+   }
+  },
+  "door": {
+   "text": "porte",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "key": {
+   "text": "clé",
+   "variants": [
+    "clef"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "jacket": {
+   "text": "veste",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "coat": {
+   "text": "manteau",
+   "grammar": {
+    "gender": "le",
+    "plural": "-x"
+   }
+  },
+  "shoe-rack": {
+   "text": "meuble à chaussures",
+   "variants": [
+    "range-chaussures",
+    "étagère à chaussures"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "umbrella": {
+   "text": "parapluie",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "hat": {
+   "text": "bonnet",
+   "synonyms": [
+    "casquette"
+   ],
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "le bonnet ist die Mütze ohne Schirm; die Schirmmütze heißt la casquette, ein Hut mit Krempe le chapeau",
+    "en": "le bonnet is the knit cap with no brim; a peaked cap is la casquette and a brimmed hat le chapeau"
+   }
+  },
+  "mailbox": {
+   "text": "boîte aux lettres",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "doorbell": {
+   "text": "sonnette",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "stairs": {
+   "text": "escalier",
+   "variants": [
+    "l'escalier",
+    "escaliers"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "bag": {
+   "text": "sac",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "lock": {
+   "text": "fermer à clé",
+   "variants": [
+    "verrouiller"
+   ]
+  },
+  "ring": {
+   "text": "sonner",
+   "variants": [
+    "sonner à la porte"
+   ],
+   "notes": {
+    "de": "sonner deckt beides ab: die Klingel klingelt (ça sonne) und jemand klingelt an der Tür (il sonne à la porte)"
+   }
+  },
+  "take-off-shoes": {
+   "text": "enlever ses chaussures",
+   "variants": [
+    "retirer ses chaussures",
+    "se déchausser"
+   ]
+  },
+  "set-off": {
+   "text": "partir de chez soi",
+   "variants": [
+    "partir de la maison"
+   ]
+  },
+  "unlock": {
+   "text": "déverrouiller",
+   "variants": [
+    "ouvrir à clé"
+   ]
+  },
+  "get-dressed": {
+   "text": "s'habiller"
+  },
+  "arrive": {
+   "text": "arriver"
+  },
+  "greet": {
+   "text": "saluer"
+  },
+  "say-goodbye": {
+   "text": "dire au revoir",
+   "variants": [
+    "prendre congé"
+   ]
+  },
+  "shoe": {
+   "text": "chaussure",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "apartment": {
+   "text": "appartement",
+   "variants": [
+    "l'appartement",
+    "appart"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "neighbor": {
+   "text": "voisin",
+   "variants": [
+    "voisine"
+   ],
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "guest": {
+   "text": "invité",
+   "variants": [
+    "l'invité",
+    "invitée"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "wallet": {
+   "text": "portefeuille",
+   "synonyms": [
+    "porte-monnaie"
+   ],
+   "grammar": {
+    "gender": "le"
+   },
+   "notes": {
+    "de": "le portefeuille ist die Brieftasche für Scheine und Karten, le porte-monnaie die Münzbörse"
+   }
+  },
+  "glove": {
+   "text": "gant",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "letter": {
+   "text": "lettre",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "knock-on-door": {
+   "text": "frapper à la porte",
+   "variants": [
+    "toquer à la porte"
+   ]
+  },
+  "enter": {
+   "text": "entrer",
+   "notes": {
+    "de": "Wer jemanden hereinbittet, sagt Entre ! (du) beziehungsweise Entrez ! (Sie)"
+   }
+  },
+  "inside": {
+   "text": "dedans",
+   "variants": [
+    "à l'intérieur"
+   ],
+   "notes": {
+    "de": "dedans steht für sich (Il est dedans); vor einem Nomen sagt man dans oder à l'intérieur de"
+   }
+  },
+  "house": {
+   "text": "maison",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "live": {
+   "text": "habiter",
+   "notes": {
+    "de": "habiter heißt wohnen; leben im Sinne von am Leben sein ist vivre"
+   }
+  },
+  "do-you-have-the-keys": {
+   "text": "Tu as les clés ?",
+   "variants": [
+    "As-tu les clés ?"
+   ]
+  },
+  "ill-be-right-back": {
+   "text": "Je reviens tout de suite !",
+   "variants": [
+    "Je reviens vite !"
+   ]
+  },
+  "take-off-your-shoes": {
+   "text": "Enlève tes chaussures.",
+   "variants": [
+    "Retire tes chaussures."
+   ]
+  },
+  "hurry-were-late": {
+   "text": "Dépêche-toi, on est en retard !",
+   "variants": [
+    "Dépêche-toi, nous sommes en retard !"
+   ]
+  },
+  "see-you-later": {
+   "text": "À plus tard !",
+   "variants": [
+    "À tout à l'heure !",
+    "À plus !"
+   ]
+  },
+  "welcome-home": {
+   "text": "Bienvenue à la maison !"
+  },
+  "the-doorbell-suddenly-rang": {
+   "text": "La sonnette a sonné tout à coup.",
+   "variants": [
+    "La sonnette a soudain sonné.",
+    "Ça a sonné tout à coup."
+   ]
+  },
+  "dont-forget-your-jacket": {
+   "text": "N'oublie pas ta veste !"
+  },
+  "put-on-the-jacket": {
+   "text": "mettre la veste",
+   "variants": [
+    "mettre sa veste",
+    "enfiler la veste"
+   ]
+  },
+  "i-live-here": {
+   "text": "J'habite ici."
+  },
+  "the-house-is-big": {
+   "text": "La maison est grande."
+  }
+ }
+}

@@ -23,7 +23,7 @@ class RealCatalogGradingTest {
 
     @Test
     fun noCatalogWordIsEverAForgivenSlipOfAnother() {
-        for (target in listOf("en", "es", "it", "sw", "uk")) {
+        for (target in listOf("en", "es", "fr", "it", "sw", "uk")) {
             val cards = catalog.join("de", target)
             val normalizer = AnswerNormalizer(catalog.languages.getValue(target))
             val grader = CatalogAnswerGrader(normalizer, cards)
@@ -104,6 +104,20 @@ class RealCatalogGradingTest {
         val sugar = cards.first { it.id == "sugar" }
         assertEquals(Match.Exact, normalizer.evaluate("zucchero", sugar))
         assertEquals(Match.Exact, normalizer.evaluate("lo zucchero", sugar))
+    }
+
+    /** The same ruling in French: l'eau grades Exact, la eau demotes, le sucre strips. */
+    @Test
+    fun theElidedFrenchArticleNeverDemotesACorrectAnswer() {
+        val cards = catalog.join("de", "fr")
+        val normalizer = AnswerNormalizer(catalog.languages.getValue("fr"))
+        val water = cards.first { it.id == "water" }
+        assertEquals(Match.Exact, normalizer.evaluate("eau", water))
+        assertEquals(Match.Exact, normalizer.evaluate("l'eau", water))
+        assertIs<Match.Typo>(normalizer.evaluate("la eau", water))
+        val sugar = cards.first { it.id == "sugar" }
+        assertEquals(Match.Exact, normalizer.evaluate("sucre", sugar))
+        assertEquals(Match.Exact, normalizer.evaluate("le sucre", sugar))
     }
 
     /** The named pair, end to end on the shipping catalog. */
