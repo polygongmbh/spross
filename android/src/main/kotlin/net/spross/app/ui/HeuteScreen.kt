@@ -1,10 +1,13 @@
 package net.spross.app.ui
 
 import android.text.format.DateFormat
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,14 +19,15 @@ import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -171,31 +175,13 @@ private fun WerkstattCard(model: AppModel) {
             )
             Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
                 if (model.numbersOffered) {
-                    OutlinedButton(
-                        onClick = { model.openNumbers() },
-                        modifier = Modifier.weight(1f).heightIn(min = 48.dp).pressSpring(),
-                        shape = MaterialTheme.shapes.small,
-                    ) {
-                        EntryLabel("🔢 ${chrome.numbersTitle}")
-                    }
+                    EntryChip("🔢", chrome.numbersTitle) { model.openNumbers() }
                 }
                 if (model.lettersOffered) {
-                    OutlinedButton(
-                        onClick = { model.openLetters() },
-                        modifier = Modifier.weight(1f).heightIn(min = 48.dp).pressSpring(),
-                        shape = MaterialTheme.shapes.small,
-                    ) {
-                        EntryLabel("🔤 ${chrome.lettersTitle}")
-                    }
+                    EntryChip("🔤", chrome.lettersTitle) { model.openLetters() }
                 }
                 if (model.countriesOffered) {
-                    OutlinedButton(
-                        onClick = { model.openCountries() },
-                        modifier = Modifier.weight(1f).heightIn(min = 48.dp).pressSpring(),
-                        shape = MaterialTheme.shapes.small,
-                    ) {
-                        EntryLabel("🌍 ${chrome.countriesTitle}")
-                    }
+                    EntryChip("🌍", chrome.countriesTitle) { model.openCountries() }
                 }
             }
         }
@@ -203,20 +189,39 @@ private fun WerkstattCard(model: AppModel) {
 }
 
 /**
- * A Werkstatt entry's name beside its glyph, on ONE line however narrow the shared row:
- * `maxLines = 1` alone WRAPS at the space and drops the word, leaving a bare emoji —
- * so the label steps down instead, the fix the verdict buttons already wear.
+ * One Werkstatt entry: the glyph large on top, the name at full caption size under it —
+ * the iOS chip's face, stacked so three names share the row without shrinking to fit
+ * beside their glyphs. The label still steps down rather than wrapping, but only where
+ * a name alone outgrows a third of the screen.
  */
 @Composable
-private fun EntryLabel(text: String) {
-    Text(
-        text,
-        maxLines = 1,
-        autoSize = TextAutoSize.StepBased(
-            minFontSize = 9.sp,
-            maxFontSize = LocalTextStyle.current.fontSize,
-        ),
-    )
+private fun RowScope.EntryChip(emoji: String, title: String, onClick: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .weight(1f)
+            // why: the spring sits OUTSIDE the fill — a press must shrink the tile,
+            // not just the label inside it.
+            .pressSpring()
+            .clip(MaterialTheme.shapes.medium)
+            .background(Dl.colors.surfaceTint)
+            .clickable(role = Role.Button, onClick = onClick)
+            .heightIn(min = 72.dp)
+            .padding(horizontal = DlSpace.xs, vertical = DlSpace.s),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(DlSpace.s, Alignment.CenterVertically),
+    ) {
+        // why: the name is the label — TalkBack reading "Zahlen", not "Eingabesymbol Zahlen".
+        Text(emoji, fontSize = 30.sp, modifier = Modifier.clearAndSetSemantics { })
+        Text(
+            title,
+            style = MaterialTheme.typography.bodySmall,
+            maxLines = 1,
+            autoSize = TextAutoSize.StepBased(
+                minFontSize = 9.sp,
+                maxFontSize = MaterialTheme.typography.bodySmall.fontSize,
+            ),
+        )
+    }
 }
 
 /** "Freitag, 8. August" in the chrome's language — the caption over the day's name. */
