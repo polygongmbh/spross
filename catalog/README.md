@@ -202,6 +202,11 @@ Realization fields — only `text` is required:
   one schedule, never as a unit of its own (kern README §3).
   NOT a home for distinct learnable items: feminine nouns belong to `feminineOf`
   concepts, and different-meaning words belong to their own concept.
+  **Spell the alternate out.** An abbreviation of a form the card already carries teaches
+  nothing the long form does not, so it grades as a `variants` entry and the full word is
+  what gets shown (en `résumé` names *curriculum vitae*, not CV). An abbreviation that IS
+  the everyday word is a synonym like any other (es `id-card` DNI, whose expansion nobody
+  says).
 - `variants` — ACCEPTED surface forms of the SAME knowledge (array; omit if none):
   alternate renderings a learner already knows if they know `text` — register pairs
   (de Sie-form in `text`, du-form here), gender-agreement forms of a phrase
