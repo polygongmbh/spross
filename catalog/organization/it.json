@@ -1,0 +1,175 @@
+{
+ "title": "Appuntamenti e scadenze",
+ "subtitle": "Così non ti sfugge niente.",
+ "words": {
+  "appointment": {
+   "text": "appuntamento",
+   "variants": [
+    "l'appuntamento"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "date": {
+   "text": "data",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "opening-hours": {
+   "text": "orario di apertura",
+   "variants": [
+    "l'orario di apertura",
+    "orari di apertura",
+    "orario"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Italienisch hat keinen festen Plural wie „die Öffnungszeiten“: meist l'orario di apertura, im Alltag oft nur l'orario."
+   }
+  },
+  "deadline": {
+   "text": "scadenza",
+   "variants": [
+    "termine",
+    "data di scadenza"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "confirmation": {
+   "text": "conferma",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "plan": {
+   "text": "piano",
+   "variants": [
+    "programma"
+   ],
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "waiting-time": {
+   "text": "tempo di attesa",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "arrange": {
+   "text": "fissare",
+   "synonyms": [
+    "concordare"
+   ],
+   "variants": [
+    "stabilire"
+   ],
+   "notes": {
+    "de": "Einen Termin vereinbart man mit fissare oder prendere: fissare un appuntamento."
+   }
+  },
+  "confirm": {
+   "text": "confermare"
+  },
+  "cancel": {
+   "text": "annullare",
+   "synonyms": [
+    "disdire"
+   ],
+   "variants": [
+    "cancellare"
+   ]
+  },
+  "postpone": {
+   "text": "rimandare",
+   "synonyms": [
+    "rinviare"
+   ],
+   "variants": [
+    "spostare",
+    "posticipare"
+   ]
+  },
+  "register": {
+   "text": "iscriversi",
+   "synonyms": [
+    "registrarsi"
+   ]
+  },
+  "be-late": {
+   "text": "essere in ritardo",
+   "synonyms": [
+    "fare tardi"
+   ],
+   "variants": [
+    "arrivare in ritardo"
+   ]
+  },
+  "punctual": {
+   "text": "puntuale"
+  },
+  "urgent": {
+   "text": "urgente"
+  },
+  "list": {
+   "text": "lista",
+   "variants": [
+    "elenco"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "to-finish": {
+   "text": "finire",
+   "synonyms": [
+    "terminare"
+   ],
+   "variants": [
+    "concludere"
+   ]
+  },
+  "i-would-like-to-arrange-an-appointment": {
+   "text": "Vorrei fissare un appuntamento.",
+   "variants": [
+    "Vorrei prendere un appuntamento.",
+    "Voglio fissare un appuntamento."
+   ]
+  },
+  "i-have-to-cancel-the-appointment": {
+   "text": "Devo annullare l'appuntamento.",
+   "variants": [
+    "Devo disdire l'appuntamento."
+   ]
+  },
+  "the-deadline-is-tomorrow": {
+   "text": "La scadenza è domani.",
+   "variants": [
+    "Il termine scade domani."
+   ]
+  },
+  "what-are-the-opening-hours": {
+   "text": "Qual è l'orario di apertura?",
+   "variants": [
+    "Quali sono gli orari di apertura?",
+    "Qual è l'orario?"
+   ]
+  },
+  "can-we-postpone-the-appointment": {
+   "text": "Possiamo rimandare l'appuntamento?",
+   "variants": [
+    "Possiamo spostare l'appuntamento?",
+    "Possiamo rinviare l'appuntamento?"
+   ]
+  },
+  "i-have-an-appointment-at-ten": {
+   "text": "Ho un appuntamento alle dieci."
+  }
+ }
+}

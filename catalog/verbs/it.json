@@ -1,0 +1,82 @@
+{
+ "title": "I verbi essenziali",
+ "subtitle": "Quello che ti serve dappertutto.",
+ "words": {
+  "go": {
+   "text": "andare",
+   "notes": {
+    "de": "andare = gehen und fahren · zu Fuß betont: andare a piedi."
+   }
+  },
+  "come": {
+   "text": "venire"
+  },
+  "have": {
+   "text": "avere"
+  },
+  "give": {
+   "text": "dare"
+  },
+  "take": {
+   "text": "prendere",
+   "notes": {
+    "de": "prendere nimmt auch Verkehrsmittel und Getränke: prendere l'autobus, prendere un caffè."
+   }
+  },
+  "see": {
+   "text": "vedere",
+   "notes": {
+    "de": "vedere = sehen · guardare = anschauen."
+   }
+  },
+  "make": {
+   "text": "fare",
+   "notes": {
+    "de": "fare deckt machen und tun ab: fare la spesa, fare i compiti."
+   }
+  },
+  "like": {
+   "text": "piacere",
+   "notes": {
+    "de": "umgekehrt gebaut: Mi piace il caffè = Ich mag Kaffee · lieben ist amare oder voler bene."
+   }
+  },
+  "can": {
+   "text": "potere",
+   "notes": {
+    "de": "unregelmäßig: posso, puoi, può, possiamo."
+   }
+  },
+  "think": {
+   "text": "pensare",
+   "notes": {
+    "de": "pensare a qualcosa = an etwas denken · pensare che = glauben, dass."
+   }
+  },
+  "wait": {
+   "text": "aspettare",
+   "notes": {
+    "de": "aspettare heißt auch erwarten; hoffen ist sperare."
+   }
+  },
+  "do-you-have-water": {
+   "text": "Ha acqua?",
+   "variants": [
+    "Ha dell'acqua?",
+    "Avete acqua?",
+    "Hai acqua?"
+   ]
+  },
+  "where-are-you-from": {
+   "text": "Di dov'è?",
+   "variants": [
+    "Da dove viene?",
+    "Di dove sei?",
+    "Da dove vieni?"
+   ],
+   "notes": {
+    "de": "Italienisch fragt die Herkunft meist mit essere: Di dov'è? · Da dove viene? geht ebenso."
+   }
+  }
+ }
+}

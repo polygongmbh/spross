@@ -23,7 +23,7 @@ class RealCatalogGradingTest {
 
     @Test
     fun noCatalogWordIsEverAForgivenSlipOfAnother() {
-        for (target in listOf("en", "es", "sw", "uk")) {
+        for (target in listOf("en", "es", "it", "sw", "uk")) {
             val cards = catalog.join("de", target)
             val normalizer = AnswerNormalizer(catalog.languages.getValue(target))
             val grader = CatalogAnswerGrader(normalizer, cards)
@@ -66,7 +66,12 @@ class RealCatalogGradingTest {
             for (target in catalog.availableTargets(source).map { it.code }) {
                 val normalizer = AnswerNormalizer(catalog.languages.getValue(target))
                 for (card in catalog.join(source, target)) {
-                    val citation = "${card.target.grammar["gender"] ?: continue} ${card.target.text}"
+                    val gender = card.target.grammar["gender"] ?: continue
+                    // why: an elided article writes onto its noun — the citation an
+                    // it/fr reveal teaches is "l'acqua", never a spaced "l' acqua",
+                    // and the authored elided variant is what accepts it.
+                    val citation =
+                        if (gender.endsWith("'")) "$gender${card.target.text}" else "$gender ${card.target.text}"
                     examined++
                     assertEquals(
                         Match.Exact,
@@ -77,6 +82,28 @@ class RealCatalogGradingTest {
             }
         }
         assertTrue(examined > 0, "no gendered card was swept at all")
+    }
+
+    /**
+     * The elision ruling, end to end on the shipping catalog (content brief): the
+     * tokenizer deletes apostrophes, so an elided article is one token that can never
+     * be stripped or read back — the l'-noun therefore authors gender `l'` and carries
+     * its elided surface as a variant, and a correct typed answer is never demoted.
+     */
+    @Test
+    fun theElidedItalianArticleNeverDemotesACorrectAnswer() {
+        val cards = catalog.join("de", "it")
+        val normalizer = AnswerNormalizer(catalog.languages.getValue("it"))
+        val water = cards.first { it.id == "water" }
+        assertEquals(Match.Exact, normalizer.evaluate("acqua", water))
+        // One token via the authored variant; no leading article exists to read back.
+        assertEquals(Match.Exact, normalizer.evaluate("l'acqua", water))
+        // A spaced article IS readable — and `la` disagrees with the authored `l'`.
+        assertIs<Match.Typo>(normalizer.evaluate("la acqua", water))
+        // Spaced articles need no variant: stripping and the read-back just work.
+        val sugar = cards.first { it.id == "sugar" }
+        assertEquals(Match.Exact, normalizer.evaluate("zucchero", sugar))
+        assertEquals(Match.Exact, normalizer.evaluate("lo zucchero", sugar))
     }
 
     /** The named pair, end to end on the shipping catalog. */

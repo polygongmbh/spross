@@ -1,0 +1,293 @@
+{
+ "title": "Il cibo",
+ "subtitle": "Quello che arriva in tavola.",
+ "words": {
+  "bread": {
+   "text": "pane",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "milk": {
+   "text": "latte",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "coffee": {
+   "text": "caffè",
+   "grammar": {
+    "gender": "il",
+    "plural": "="
+   }
+  },
+  "tea": {
+   "text": "tè",
+   "grammar": {
+    "gender": "il",
+    "plural": "="
+   }
+  },
+  "egg": {
+   "text": "uovo",
+   "variants": [
+    "l'uovo"
+   ],
+   "grammar": {
+    "gender": "l'",
+    "plural": "uova"
+   },
+   "notes": {
+    "de": "Im Plural wird das Wort feminin: le uova."
+   }
+  },
+  "cheese": {
+   "text": "formaggio",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "salt": {
+   "text": "sale",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "sugar": {
+   "text": "zucchero",
+   "grammar": {
+    "gender": "lo"
+   }
+  },
+  "rice": {
+   "text": "riso",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "hunger": {
+   "text": "fame",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Hunger haben = avere fame."
+   }
+  },
+  "thirst": {
+   "text": "sete",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "food": {
+   "text": "cibo",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "meat": {
+   "text": "carne",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "fish": {
+   "text": "pesce",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "chicken": {
+   "text": "pollo",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "fruit": {
+   "text": "frutta",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la frutta ist Obst als Ganzes; die einzelne Frucht heißt il frutto."
+   }
+  },
+  "vegetable": {
+   "text": "verdura",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "potato": {
+   "text": "patata",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "onion": {
+   "text": "cipolla",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "tomato": {
+   "text": "pomodoro",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "banana": {
+   "text": "banana",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "apple": {
+   "text": "mela",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "oil": {
+   "text": "olio",
+   "variants": [
+    "l'olio"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "flour": {
+   "text": "farina",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "butter": {
+   "text": "burro",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "soup": {
+   "text": "zuppa",
+   "variants": [
+    "minestra"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "sauce": {
+   "text": "salsa",
+   "synonyms": [
+    "sugo"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "il sugo ist die Soße zur Pasta, la salsa die Soße allgemein."
+   }
+  },
+  "juice": {
+   "text": "succo",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "cooked-rice": {
+   "text": "riso cotto",
+   "variants": [
+    "riso bollito"
+   ]
+  },
+  "cassava": {
+   "text": "manioca",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "breakfast": {
+   "text": "colazione",
+   "variants": [
+    "prima colazione"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "dinner": {
+   "text": "cena",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "water": {
+   "text": "acqua",
+   "variants": [
+    "l'acqua",
+    "un'acqua"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "eat": {
+   "text": "mangiare"
+  },
+  "drink": {
+   "text": "bere"
+  },
+  "im-hungry": {
+   "text": "Ho fame."
+  },
+  "whats-for-dinner": {
+   "text": "Cosa c'è per cena?",
+   "variants": [
+    "Che cosa c'è per cena?",
+    "Cosa si mangia stasera?"
+   ]
+  },
+  "i-dont-eat-meat": {
+   "text": "Non mangio carne.",
+   "variants": [
+    "Non mangio la carne."
+   ]
+  },
+  "bread-with-butter": {
+   "text": "pane con burro",
+   "variants": [
+    "pane con il burro",
+    "pane e burro"
+   ]
+  },
+  "fruit-and-vegetables": {
+   "text": "frutta e verdura",
+   "variants": [
+    "frutta e verdure"
+   ]
+  },
+  "i-eat-rice-with-sauce": {
+   "text": "Mangio il riso con la salsa.",
+   "variants": [
+    "Mangio riso con la salsa.",
+    "Mangio il riso con il sugo."
+   ]
+  },
+  "without-salt-please": {
+   "text": "Senza sale, per favore."
+  },
+  "the-food-is-ready": {
+   "text": "Il cibo è pronto!",
+   "variants": [
+    "È pronto!",
+    "È pronto in tavola!"
+   ],
+   "notes": {
+    "de": "Am Tisch ruft man meist „È pronto!“ oder „A tavola!“."
+   }
+  }
+ }
+}

@@ -1,0 +1,340 @@
+{
+ "title": "Il lavoro",
+ "subtitle": "Buon lavoro!",
+ "words": {
+  "work": {
+   "text": "lavoro",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "job-application": {
+   "text": "candidatura",
+   "variants": [
+    "domanda di lavoro",
+    "domanda di assunzione"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "cv": {
+   "text": "curriculum",
+   "variants": [
+    "curriculum vitae",
+    "CV"
+   ],
+   "grammar": {
+    "gender": "il",
+    "plural": "="
+   }
+  },
+  "contract": {
+   "text": "contratto",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "salary": {
+   "text": "stipendio",
+   "synonyms": [
+    "salario"
+   ],
+   "grammar": {
+    "gender": "lo"
+   },
+   "notes": {
+    "de": "lo stipendio ist das monatliche Gehalt, il salario der Lohn nach geleisteter Arbeit."
+   }
+  },
+  "colleague": {
+   "text": "collega",
+   "grammar": {
+    "gender": "il",
+    "plural": "colleghi"
+   },
+   "notes": {
+    "de": "collega hat nur eine Form; das Geschlecht steht im Artikel: il collega, la collega."
+   }
+  },
+  "boss": {
+   "text": "capo",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "shift": {
+   "text": "turno",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "vacation": {
+   "text": "ferie",
+   "synonyms": [
+    "vacanze"
+   ],
+   "grammar": {
+    "gender": "le",
+    "plural": "only"
+   },
+   "notes": {
+    "de": "Bezahlter Urlaub vom Job heißt le ferie, immer im Plural; le vacanze sind Ferien und Reisen allgemein."
+   }
+  },
+  "company": {
+   "text": "azienda",
+   "synonyms": [
+    "ditta"
+   ],
+   "variants": [
+    "l'azienda",
+    "un'azienda",
+    "società"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Vorsicht: la firma ist die Unterschrift; „die Firma“ heißt l'azienda oder la ditta."
+   }
+  },
+  "apply": {
+   "text": "candidarsi",
+   "variants": [
+    "fare domanda",
+    "presentare la candidatura"
+   ],
+   "notes": {
+    "de": "candidarsi a un posto = sich auf eine Stelle bewerben; fare domanda passt auch für Anträge."
+   }
+  },
+  "introduce-oneself": {
+   "text": "presentarsi"
+  },
+  "earn": {
+   "text": "guadagnare",
+   "variants": [
+    "prendere"
+   ],
+   "notes": {
+    "de": "Nach dem Verdienst fragt man mit prendere: Quanto prendi? = Wie viel verdienst du?"
+   }
+  },
+  "start": {
+   "text": "cominciare",
+   "synonyms": [
+    "iniziare"
+   ]
+  },
+  "leave": {
+   "text": "lasciare",
+   "synonyms": [
+    "abbandonare"
+   ],
+   "notes": {
+    "de": "lasciare il lavoro heißt kündigen. Einen Ort verlässt man dagegen mit uscire da oder andarsene da."
+   }
+  },
+  "quit": {
+   "text": "licenziarsi",
+   "variants": [
+    "dare le dimissioni",
+    "lasciare il lavoro"
+   ],
+   "notes": {
+    "de": "licenziarsi heißt selbst kündigen; licenziare qualcuno ist jemanden entlassen."
+   }
+  },
+  "hire": {
+   "text": "assumere"
+  },
+  "to-help": {
+   "text": "aiutare"
+  },
+  "work-overtime": {
+   "text": "fare gli straordinari",
+   "variants": [
+    "fare straordinari"
+   ]
+  },
+  "profession": {
+   "text": "professione",
+   "synonyms": [
+    "mestiere"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la professione ist der erlernte Beruf, il mestiere das Handwerk, das man ausübt."
+   }
+  },
+  "interview": {
+   "text": "colloquio di lavoro",
+   "variants": [
+    "colloquio"
+   ],
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "working-hours": {
+   "text": "orario di lavoro",
+   "variants": [
+    "l'orario di lavoro"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "full-time": {
+   "text": "tempo pieno",
+   "variants": [
+    "a tempo pieno",
+    "full-time"
+   ],
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "part-time": {
+   "text": "tempo parziale",
+   "variants": [
+    "a tempo parziale",
+    "part-time"
+   ],
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "Im Vertrag steht a tempo pieno bzw. a tempo parziale; im Alltag sagt man meist full-time und part-time."
+   }
+  },
+  "tax": {
+   "text": "imposta",
+   "variants": [
+    "l'imposta",
+    "un'imposta",
+    "tassa"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "l'imposta ist die Steuer (imposta sul reddito); la tassa ist die Gebühr für eine bestimmte Leistung."
+   }
+  },
+  "work-permit": {
+   "text": "permesso di lavoro",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "training": {
+   "text": "formazione professionale",
+   "variants": [
+    "formazione"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Die italienische Berufsausbildung heißt formazione professionale; die betriebliche Lehre ist l'apprendistato."
+   }
+  },
+  "notice": {
+   "text": "licenziamento",
+   "variants": [
+    "lettera di licenziamento"
+   ],
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "il licenziamento ist die Kündigung durch den Arbeitgeber; kündigt man selbst, sind es le dimissioni."
+   }
+  },
+  "worker": {
+   "text": "lavoratore",
+   "synonyms": [
+    "operaio"
+   ],
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "il lavoratore ist der Arbeitnehmer allgemein, l'operaio der Arbeiter im Betrieb."
+   }
+  },
+  "employer": {
+   "text": "datore di lavoro",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "customer": {
+   "text": "cliente",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "tomorrow-i-have-a-job-interview": {
+   "text": "Domani mi presento in azienda.",
+   "variants": [
+    "Domani mi presento in ditta.",
+    "Domani mi presento all'azienda."
+   ]
+  },
+  "my-shift-starts-at-six": {
+   "text": "Il mio turno comincia alle sei.",
+   "variants": [
+    "Il mio turno inizia alle sei."
+   ]
+  },
+  "ill-send-the-doctors-note-right-away": {
+   "text": "Le mando subito il certificato medico.",
+   "variants": [
+    "Ti mando subito il certificato medico.",
+    "Le invio subito il certificato medico."
+   ]
+  },
+  "have-a-nice-evening-off": {
+   "text": "Buona serata!",
+   "variants": [
+    "Buon riposo!"
+   ],
+   "notes": {
+    "de": "Für „Feierabend“ gibt es kein italienisches Wort. Beim Abschied nach der Arbeit sagt man Buona serata!"
+   }
+  },
+  "can-you-help-me-briefly": {
+   "text": "Può aiutarmi un momento?",
+   "variants": [
+    "Puoi aiutarmi un momento?",
+    "Mi può aiutare un momento?"
+   ]
+  },
+  "i-want-vacation-next-week": {
+   "text": "Vorrei prendere le ferie la settimana prossima.",
+   "variants": [
+    "Voglio prendere le ferie la settimana prossima.",
+    "Vorrei prendere le ferie la prossima settimana."
+   ]
+  },
+  "read-the-contract": {
+   "text": "Legga bene il contratto.",
+   "variants": [
+    "Leggi bene il contratto.",
+    "Legga attentamente il contratto."
+   ]
+  },
+  "whats-the-salary": {
+   "text": "Qual è lo stipendio?",
+   "variants": [
+    "Quant'è lo stipendio?",
+    "Qual è il salario?"
+   ]
+  }
+ }
+}

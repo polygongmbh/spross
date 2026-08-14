@@ -1,0 +1,239 @@
+{
+ "title": "La cucina",
+ "subtitle": "Qui c'è profumo di cena.",
+ "words": {
+  "fridge": {
+   "text": "frigorifero",
+   "variants": [
+    "frigo"
+   ],
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "stove": {
+   "text": "fornello",
+   "variants": [
+    "cucina",
+    "piano cottura"
+   ],
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "il fornello ist die Kochstelle, il forno der Backofen; „auf dem Herd“ heißt sul fornello oder sul fuoco. Das Gerät selbst heißt auch la cucina — wie der Raum."
+   }
+  },
+  "oven": {
+   "text": "forno",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "dishwasher": {
+   "text": "lavastoviglie",
+   "variants": [
+    "lavapiatti"
+   ],
+   "grammar": {
+    "gender": "la",
+    "plural": "="
+   }
+  },
+  "pot": {
+   "text": "pentola",
+   "variants": [
+    "casseruola"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "pan": {
+   "text": "padella",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "knife": {
+   "text": "coltello",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "spoon": {
+   "text": "cucchiaio",
+   "grammar": {
+    "gender": "il",
+    "plural": "cucchiai"
+   }
+  },
+  "fork": {
+   "text": "forchetta",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "plate": {
+   "text": "piatto",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "cook": {
+   "text": "cucinare",
+   "notes": {
+    "de": "cucinare = Essen zubereiten; Wasser kochen heißt bollire."
+   }
+  },
+  "bake": {
+   "text": "cuocere al forno",
+   "variants": [
+    "fare al forno",
+    "infornare"
+   ],
+   "notes": {
+    "de": "Italienisch hat kein eigenes Verb dafür: cuocere al forno; infornare heißt „in den Ofen schieben“."
+   }
+  },
+  "cut": {
+   "text": "tagliare"
+  },
+  "wash-the-dishes": {
+   "text": "lavare i piatti",
+   "variants": [
+    "lavare le stoviglie"
+   ]
+  },
+  "taste": {
+   "text": "assaggiare"
+  },
+  "fry": {
+   "text": "friggere"
+  },
+  "reheat": {
+   "text": "riscaldare",
+   "variants": [
+    "scaldare"
+   ]
+  },
+  "stir": {
+   "text": "mescolare",
+   "variants": [
+    "rimescolare",
+    "girare"
+   ]
+  },
+  "take-out-trash": {
+   "text": "portare fuori la spazzatura",
+   "variants": [
+    "portare fuori l'immondizia",
+    "buttare la spazzatura"
+   ]
+  },
+  "careful": {
+   "text": "attenzione"
+  },
+  "cup": {
+   "text": "tazza",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "bowl": {
+   "text": "ciotola",
+   "variants": [
+    "scodella"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "basket": {
+   "text": "cesto",
+   "variants": [
+    "cesta"
+   ],
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "tin-can": {
+   "text": "barattolo",
+   "synonyms": [
+    "lattina"
+   ],
+   "variants": [
+    "scatoletta"
+   ],
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "il barattolo ist die Konservendose oder das Glas, la lattina die Getränkedose."
+   }
+  },
+  "the-knife-is-sharp": {
+   "text": "Il coltello è affilato!",
+   "variants": [
+    "Il coltello taglia bene!"
+   ]
+  },
+  "this-is-very-tasty": {
+   "text": "Questo è molto buono!",
+   "variants": [
+    "È molto buono!",
+    "È buonissimo!",
+    "Questo è squisito!"
+   ]
+  },
+  "are-you-cooking-rice-today": {
+   "text": "Cucini il riso oggi?",
+   "variants": [
+    "Oggi cucini il riso?",
+    "Cucini riso oggi?",
+    "Fai il riso oggi?"
+   ]
+  },
+  "the-pot-is-still-on-the-stove": {
+   "text": "La pentola è ancora sul fornello.",
+   "variants": [
+    "La pentola è ancora sul fuoco."
+   ]
+  },
+  "wash-the-dishes-in-the-sink": {
+   "text": "Lava i piatti nel lavello!",
+   "variants": [
+    "Lava i piatti nel lavandino!"
+   ]
+  },
+  "the-fridge-is-empty": {
+   "text": "Il frigorifero è vuoto.",
+   "variants": [
+    "Il frigo è vuoto."
+   ]
+  },
+  "can-you-set-the-table": {
+   "text": "Puoi apparecchiare la tavola?",
+   "variants": [
+    "Puoi apparecchiare?"
+   ],
+   "notes": {
+    "de": "Beim Decken heißt es la tavola; das Möbelstück selbst ist il tavolo."
+   }
+  },
+  "the-water-is-boiling-hot": {
+   "text": "L'acqua bolle.",
+   "variants": [
+    "L'acqua sta bollendo."
+   ]
+  },
+  "careful-very-hot": {
+   "text": "Attenzione, molto caldo!",
+   "variants": [
+    "Attenzione, è molto caldo!",
+    "Attenzione, scotta!"
+   ]
+  }
+ }
+}

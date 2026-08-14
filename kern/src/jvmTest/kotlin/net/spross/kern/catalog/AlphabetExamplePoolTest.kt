@@ -95,7 +95,12 @@ class AlphabetExamplePoolTest {
      */
     @Test
     fun thePlainDigraphsDrawFromTheWholeCatalog() {
-        for ((lang, refs) in mapOf("de" to listOf("ei", "ie", "sch", "ss"), "es" to listOf("ll", "ch", "rr"))) {
+        val plain = mapOf(
+            "de" to listOf("ei", "ie", "sch", "ss"),
+            "es" to listOf("ll", "ch", "rr"),
+            "it" to listOf("gn", "gli"),
+        )
+        for ((lang, refs) in plain) {
             val alphabet = assertNotNull(catalog.alphabet(lang), "no $lang alphabet")
             for (ref in refs) {
                 val entry = assertNotNull(alphabet.entry(ref), "$lang $ref went missing")

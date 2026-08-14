@@ -22,6 +22,7 @@ class CatalogLintTest {
         "de" to Regex("\\bbitte\\b", RegexOption.IGNORE_CASE),
         "en" to Regex("\\bplease\\b", RegexOption.IGNORE_CASE),
         "es" to Regex("\\bpor favor\\b", RegexOption.IGNORE_CASE),
+        "it" to Regex("\\bper (favore|piacere|cortesia)\\b", RegexOption.IGNORE_CASE),
         "sw" to Regex("\\btafadhali\\b", RegexOption.IGNORE_CASE),
         "uk" to Regex("\\bбудь ласка\\b", RegexOption.IGNORE_CASE),
     )
@@ -36,7 +37,7 @@ class CatalogLintTest {
 
     @Test
     fun catalogParsesClean() {
-        assertEquals(setOf("de", "en", "es", "sw", "uk"), catalog.languages.keys)
+        assertEquals(setOf("de", "en", "es", "it", "sw", "uk"), catalog.languages.keys)
         assertTrue(catalog.groups.isNotEmpty())
         assertTrue(catalog.areaNames.isNotEmpty())
     }
@@ -354,7 +355,16 @@ class CatalogLintTest {
                 }
             }
         }
-        val duplicated = langsByPair.filterValues { it.size > 1 }
+        // Reviewed 2026-08-15: weather/time is the Romance family merge (es tiempo,
+        // fr temps, it tempo) — one linguistic fact per language, each pinned in
+        // [crossAreaPromptCollisionsAreKnown], not the same meaning authored twice.
+        // Re-realizing weather as meteo/météo would teach the forecast, not the weather.
+        val reviewedPairs = mapOf(
+            ("nature/weather" to "time/time") to setOf("es", "fr", "it"),
+        )
+        val duplicated = langsByPair
+            .mapValues { (pair, langs) -> langs - reviewedPairs[pair].orEmpty() }
+            .filterValues { it.size > 1 }
         assertTrue(duplicated.isEmpty(), "same meaning authored twice: $duplicated")
     }
 
@@ -375,6 +385,18 @@ class CatalogLintTest {
                 // Reviewed 2026-07-31: `el tiempo` is both Zeit and Wetter. de/en/sw/uk
                 // all split it; `clima` is das Klima in Spain, so there is no alternative.
                 "es tiempo: nature/weather, time/time",
+                // Reviewed 2026-08-15: `perché` is warum and weil in one word — the
+                // interrogative and the causal conjunction genuinely merge in Italian
+                // (Perché non vieni? — Perché piove.). Every other language splits them,
+                // so the pair stays one-language; repicking poiché/siccome for `because`
+                // would teach a formal register no one answers a question in.
+                "it perché: connectors/because, questions/why",
+                // Reviewed 2026-08-15: `il tempo` is Zeit and Wetter alike — the same
+                // Romance merge `es tiempo` pins above; `meteo` names the forecast and
+                // `clima` the climate, so there is no honest alternative. The concept
+                // pair is allowlisted in [noConceptPairCollidesInTwoLanguages] as the
+                // reviewed family-wide merge.
+                "it tempo: nature/weather, time/time",
                 // Reviewed 2026-07-25: the textbook homonym, and the only entry here that
                 // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
                 // not one word covering two German ones. Same treatment either way.
@@ -402,7 +424,11 @@ class CatalogLintTest {
      * Plural articles, per language that authors `gender` — not derivable, since German's
      * is homographic with the feminine singular and no shipped noun tells the uses apart.
      */
-    private val pluralArticles = mapOf("de" to setOf("die"), "es" to setOf("los", "las"))
+    private val pluralArticles = mapOf(
+        "de" to setOf("die"),
+        "es" to setOf("los", "las"),
+        "it" to setOf("i", "gli", "le"),
+    )
 
     /**
      * Bare values, no labels — plus the closed domain `gender` carries. It IS the article

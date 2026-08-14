@@ -1,0 +1,135 @@
+{
+ "title": "Parole di collegamento",
+ "subtitle": "Quelle che uniscono una frase alla successiva.",
+ "words": {
+  "higher": {
+   "text": "più alto"
+  },
+  "lower": {
+   "text": "più basso"
+  },
+  "more": {
+   "text": "più"
+  },
+  "less": {
+   "text": "meno"
+  },
+  "always": {
+   "text": "sempre"
+  },
+  "never": {
+   "text": "mai",
+   "notes": {
+    "de": "im Satz steht non davor: Non bevo mai caffè."
+   }
+  },
+  "maybe": {
+   "text": "forse"
+  },
+  "sometimes": {
+   "text": "a volte",
+   "variants": [
+    "qualche volta",
+    "talvolta"
+   ]
+  },
+  "often": {
+   "text": "spesso"
+  },
+  "but": {
+   "text": "ma",
+   "variants": [
+    "però"
+   ]
+  },
+  "also": {
+   "text": "anche"
+  },
+  "and": {
+   "text": "e",
+   "variants": [
+    "ed"
+   ],
+   "notes": {
+    "de": "vor Vokal wird e oft zu ed, vor e- fast immer: ed ecco."
+   }
+  },
+  "or": {
+   "text": "o",
+   "variants": [
+    "oppure"
+   ]
+  },
+  "if": {
+   "text": "se"
+  },
+  "because": {
+   "text": "perché"
+  },
+  "so-that": {
+   "text": "affinché",
+   "variants": [
+    "perché",
+    "in modo che"
+   ],
+   "notes": {
+    "de": "gesprochen meist perché mit Konjunktiv: perché tu capisca."
+   }
+  },
+  "before": {
+   "text": "prima di",
+   "variants": [
+    "prima"
+   ]
+  },
+  "after": {
+   "text": "dopo"
+  },
+  "until": {
+   "text": "fino a",
+   "variants": [
+    "finché"
+   ]
+  },
+  "without": {
+   "text": "senza"
+  },
+  "again": {
+   "text": "di nuovo",
+   "variants": [
+    "un'altra volta",
+    "ancora"
+   ]
+  },
+  "still": {
+   "text": "ancora"
+  },
+  "more-or-less": {
+   "text": "più o meno"
+  },
+  "i-am-always-there": {
+   "text": "Ci sono sempre."
+  },
+  "hang-it-higher": {
+   "text": "Appendilo più in alto.",
+   "variants": [
+    "Appendilo più alto."
+   ]
+  },
+  "hang-it-lower": {
+   "text": "Appendilo più in basso.",
+   "variants": [
+    "Appendilo più basso."
+   ]
+  },
+  "if-you-want": {
+   "text": "Se vuole.",
+   "variants": [
+    "Se vuoi."
+   ]
+  },
+  "tea-or-coffee": {
+   "text": "Tè o caffè?"
+  }
+ }
+}

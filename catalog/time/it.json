@@ -1,0 +1,153 @@
+{
+ "title": "L'ora e la data",
+ "subtitle": "Quando succede qualcosa e quanto dura.",
+ "words": {
+  "time": {
+   "text": "tempo",
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "tempo heißt auch Wetter: Che tempo fa? · das einzelne Mal ist una volta."
+   }
+  },
+  "day": {
+   "text": "giorno",
+   "variants": [
+    "giornata"
+   ],
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "week": {
+   "text": "settimana",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "hour": {
+   "text": "ora",
+   "variants": [
+    "l'ora",
+    "un'ora"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "minute": {
+   "text": "minuto",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "month": {
+   "text": "mese",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "year": {
+   "text": "anno",
+   "variants": [
+    "l'anno"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "now": {
+   "text": "adesso",
+   "variants": [
+    "ora"
+   ],
+   "notes": {
+    "de": "adesso und ora sind gleichwertig; ora ist zugleich die Stunde."
+   }
+  },
+  "today": {
+   "text": "oggi"
+  },
+  "tomorrow": {
+   "text": "domani"
+  },
+  "yesterday": {
+   "text": "ieri"
+  },
+  "early": {
+   "text": "presto",
+   "variants": [
+    "in anticipo"
+   ]
+  },
+  "late": {
+   "text": "tardi",
+   "variants": [
+    "in ritardo"
+   ]
+  },
+  "soon": {
+   "text": "tra poco",
+   "variants": [
+    "fra poco",
+    "presto"
+   ],
+   "notes": {
+    "de": "presto heißt sowohl früh als auch bald; tra poco meint nur die nahe Zukunft."
+   }
+  },
+  "noon": {
+   "text": "mezzogiorno",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "afternoon": {
+   "text": "pomeriggio",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "morning": {
+   "text": "mattina",
+   "variants": [
+    "mattino"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "evening": {
+   "text": "sera",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "night": {
+   "text": "notte",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "i-have-no-time": {
+   "text": "Non ho tempo."
+  },
+  "a-new-day": {
+   "text": "un nuovo giorno",
+   "variants": [
+    "un giorno nuovo"
+   ]
+  },
+  "two-in-the-afternoon": {
+   "text": "le due del pomeriggio"
+  },
+  "nine-am-sharp": {
+   "text": "alle nove in punto del mattino",
+   "variants": [
+    "alle nove del mattino in punto",
+    "alle nove in punto di mattina"
+   ]
+  }
+ }
+}

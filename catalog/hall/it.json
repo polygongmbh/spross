@@ -1,0 +1,322 @@
+{
+ "title": "L'ingresso",
+ "subtitle": "Si entra e si esce.",
+ "words": {
+  "hallway": {
+   "text": "ingresso",
+   "synonyms": [
+    "corridoio"
+   ],
+   "variants": [
+    "l'ingresso"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "l'ingresso ist der Bereich gleich hinter der Wohnungstür; il corridoio ist der Gang, der die Zimmer verbindet."
+   }
+  },
+  "door": {
+   "text": "porta",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "key": {
+   "text": "chiave",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "jacket": {
+   "text": "giacca",
+   "grammar": {
+    "gender": "la",
+    "plural": "giacche"
+   }
+  },
+  "coat": {
+   "text": "cappotto",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "shoe-rack": {
+   "text": "scarpiera",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "umbrella": {
+   "text": "ombrello",
+   "variants": [
+    "l'ombrello"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "hat": {
+   "text": "berretto",
+   "synonyms": [
+    "cappello"
+   ],
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "il berretto ist die Mütze, mit oder ohne Schirm; il cappello ist der Hut mit Krempe."
+   }
+  },
+  "mailbox": {
+   "text": "cassetta della posta",
+   "variants": [
+    "cassetta delle lettere",
+    "buca delle lettere"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "doorbell": {
+   "text": "campanello",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "stairs": {
+   "text": "scale",
+   "variants": [
+    "scala"
+   ],
+   "grammar": {
+    "gender": "le",
+    "plural": "only"
+   },
+   "notes": {
+    "de": "die Treppe steht im Plural: le scale; la scala allein ist die Leiter."
+   }
+  },
+  "bag": {
+   "text": "borsa",
+   "variants": [
+    "borsetta"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la borsa ist die Trage- und die Handtasche; die Einkaufstüte heißt il sacchetto, der Rucksack lo zaino."
+   }
+  },
+  "lock": {
+   "text": "chiudere a chiave",
+   "variants": [
+    "chiudere la porta a chiave"
+   ]
+  },
+  "ring": {
+   "text": "suonare",
+   "variants": [
+    "suonare il campanello"
+   ],
+   "notes": {
+    "de": "suonare gilt für beides: il campanello suona, und man selbst suona il campanello."
+   }
+  },
+  "take-off-shoes": {
+   "text": "togliersi le scarpe",
+   "variants": [
+    "levarsi le scarpe"
+   ]
+  },
+  "set-off": {
+   "text": "uscire di casa"
+  },
+  "unlock": {
+   "text": "aprire con la chiave",
+   "notes": {
+    "de": "für aufschließen gibt es kein eigenes Verb; man sagt aprire con la chiave."
+   }
+  },
+  "get-dressed": {
+   "text": "vestirsi"
+  },
+  "arrive": {
+   "text": "arrivare"
+  },
+  "greet": {
+   "text": "salutare"
+  },
+  "say-goodbye": {
+   "text": "dire arrivederci",
+   "variants": [
+    "salutare",
+    "congedarsi"
+   ],
+   "notes": {
+    "de": "salutare heißt begrüßen und sich verabschieden zugleich; eindeutig ist dire arrivederci."
+   }
+  },
+  "shoe": {
+   "text": "scarpa",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "apartment": {
+   "text": "appartamento",
+   "variants": [
+    "l'appartamento"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "neighbor": {
+   "text": "vicino",
+   "variants": [
+    "vicina",
+    "vicino di casa"
+   ],
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "il vicino ist der Nachbar; weil vicino auch nah heißt, sagt man oft il vicino di casa."
+   }
+  },
+  "guest": {
+   "text": "ospite",
+   "variants": [
+    "l'ospite",
+    "invitato",
+    "invitata"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "l'ospite meint den Gast und, seltener, den Gastgeber; der Eingeladene heißt l'invitato."
+   }
+  },
+  "wallet": {
+   "text": "portafoglio",
+   "synonyms": [
+    "portamonete"
+   ],
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "il portafoglio ist die Brieftasche für Scheine und Karten, il portamonete die Münzbörse."
+   }
+  },
+  "glove": {
+   "text": "guanto",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "letter": {
+   "text": "lettera",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "knock-on-door": {
+   "text": "bussare alla porta"
+  },
+  "enter": {
+   "text": "entrare",
+   "notes": {
+    "de": "Wer jemanden hereinbittet, sagt Entra! (du) oder Prego, si accomodi! (Sie)."
+   }
+  },
+  "inside": {
+   "text": "dentro",
+   "variants": [
+    "all'interno"
+   ]
+  },
+  "house": {
+   "text": "casa",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "live": {
+   "text": "abitare",
+   "variants": [
+    "vivere"
+   ],
+   "notes": {
+    "de": "abitare heißt wohnen; vivere heißt leben und kann auch wohnen bedeuten."
+   }
+  },
+  "do-you-have-the-keys": {
+   "text": "Hai le chiavi?",
+   "variants": [
+    "Hai preso le chiavi?"
+   ]
+  },
+  "ill-be-right-back": {
+   "text": "Torno subito!",
+   "variants": [
+    "Torno tra un attimo!"
+   ]
+  },
+  "take-off-your-shoes": {
+   "text": "Togliti le scarpe.",
+   "variants": [
+    "Levati le scarpe."
+   ]
+  },
+  "hurry-were-late": {
+   "text": "Sbrigati, siamo in ritardo!",
+   "variants": [
+    "Fai presto, siamo in ritardo!"
+   ]
+  },
+  "see-you-later": {
+   "text": "A dopo!",
+   "variants": [
+    "Ci vediamo dopo!",
+    "A più tardi!"
+   ]
+  },
+  "welcome-home": {
+   "text": "Benvenuto a casa!",
+   "variants": [
+    "Benvenuta a casa!"
+   ]
+  },
+  "the-doorbell-suddenly-rang": {
+   "text": "Il campanello ha suonato all'improvviso.",
+   "variants": [
+    "All'improvviso ha suonato il campanello.",
+    "Il campanello è suonato all'improvviso."
+   ]
+  },
+  "dont-forget-your-jacket": {
+   "text": "Non dimenticare la tua giacca!",
+   "variants": [
+    "Non dimenticarti la giacca!",
+    "Non dimenticare la giacca!"
+   ]
+  },
+  "put-on-the-jacket": {
+   "text": "mettersi la giacca"
+  },
+  "i-live-here": {
+   "text": "Abito qui.",
+   "variants": [
+    "Vivo qui."
+   ]
+  },
+  "the-house-is-big": {
+   "text": "La casa è grande."
+  }
+ }
+}

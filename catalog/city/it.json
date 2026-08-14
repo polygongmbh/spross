@@ -1,0 +1,232 @@
+{
+ "title": "La città",
+ "subtitle": "C'è sempre movimento.",
+ "words": {
+  "street": {
+   "text": "strada",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "market": {
+   "text": "mercato",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "park": {
+   "text": "parco",
+   "grammar": {
+    "gender": "il",
+    "plural": "parchi"
+   }
+  },
+  "shop": {
+   "text": "fare la spesa",
+   "synonyms": [
+    "fare spese"
+   ],
+   "variants": [
+    "fare shopping"
+   ],
+   "notes": {
+    "de": "fare la spesa ist der Lebensmitteleinkauf, fare spese der Bummel durch die Läden."
+   }
+  },
+  "city": {
+   "text": "città",
+   "grammar": {
+    "gender": "la",
+    "plural": "="
+   }
+  },
+  "village": {
+   "text": "paese",
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "il paese ist das Dorf und zugleich das Land als Staat."
+   }
+  },
+  "neighborhood": {
+   "text": "quartiere",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "building": {
+   "text": "edificio",
+   "variants": [
+    "l'edificio"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "store": {
+   "text": "negozio",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "bank": {
+   "text": "banca",
+   "grammar": {
+    "gender": "la",
+    "plural": "banche"
+   }
+  },
+  "post-office": {
+   "text": "posta",
+   "synonyms": [
+    "ufficio postale"
+   ],
+   "variants": [
+    "l'ufficio postale"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "restaurant": {
+   "text": "ristorante",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "hotel": {
+   "text": "albergo",
+   "synonyms": [
+    "hotel"
+   ],
+   "variants": [
+    "l'albergo",
+    "l'hotel"
+   ],
+   "grammar": {
+    "gender": "l'",
+    "plural": "alberghi"
+   }
+  },
+  "church": {
+   "text": "chiesa",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "mosque": {
+   "text": "moschea",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "library": {
+   "text": "biblioteca",
+   "grammar": {
+    "gender": "la",
+    "plural": "biblioteche"
+   }
+  },
+  "police": {
+   "text": "polizia",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "cinema": {
+   "text": "cinema",
+   "grammar": {
+    "gender": "il",
+    "plural": "="
+   }
+  },
+  "bridge": {
+   "text": "ponte",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "money": {
+   "text": "soldi",
+   "synonyms": [
+    "denaro"
+   ],
+   "grammar": {
+    "gender": "i",
+    "plural": "only"
+   },
+   "notes": {
+    "de": "soldi steht immer im Plural; denaro ist der formellere, abstrakte Begriff."
+   }
+  },
+  "buy": {
+   "text": "comprare"
+  },
+  "pay": {
+   "text": "pagare"
+  },
+  "where-is-the-post-office": {
+   "text": "Dov'è la posta?",
+   "variants": [
+    "Dov'è l'ufficio postale?"
+   ]
+  },
+  "is-there-a-bank-here": {
+   "text": "C'è una banca qui?",
+   "variants": [
+    "C'è una banca qui vicino?",
+    "Qui c'è una banca?"
+   ]
+  },
+  "the-store-is-still-open": {
+   "text": "Il negozio è ancora aperto."
+  },
+  "im-looking-for-a-hotel": {
+   "text": "Cerco un albergo.",
+   "variants": [
+    "Sto cercando un albergo.",
+    "Cerco un hotel."
+   ]
+  },
+  "lets-meet-at-the-market": {
+   "text": "Ci vediamo al mercato.",
+   "variants": [
+    "Incontriamoci al mercato."
+   ]
+  },
+  "i-live-in-this-neighborhood": {
+   "text": "Abito in questo quartiere.",
+   "variants": [
+    "Vivo in questo quartiere."
+   ]
+  },
+  "how-much-does-this-cost": {
+   "text": "Quanto costa questo?",
+   "variants": [
+    "Quanto costa?",
+    "Quanto viene?"
+   ]
+  },
+  "that-is-too-expensive": {
+   "text": "Questo è troppo caro.",
+   "variants": [
+    "È troppo caro.",
+    "Costa troppo."
+   ]
+  },
+  "i-have-no-money": {
+   "text": "Non ho soldi.",
+   "variants": [
+    "Non ho denaro."
+   ]
+  },
+  "a-lot-of-money": {
+   "text": "molti soldi",
+   "variants": [
+    "tanti soldi",
+    "un sacco di soldi"
+   ]
+  }
+ }
+}

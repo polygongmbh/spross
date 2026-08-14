@@ -1,0 +1,346 @@
+{
+ "title": "Agli uffici pubblici",
+ "subtitle": "Passo dopo passo tra le scartoffie.",
+ "words": {
+  "office": {
+   "text": "ufficio pubblico",
+   "synonyms": [
+    "pubblica amministrazione"
+   ],
+   "variants": [
+    "l'ufficio pubblico"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Ein bestimmtes Amt nennt man beim Namen: il comune (Rathaus), l'anagrafe (Meldeamt), la questura (Ausländerbehörde)."
+   }
+  },
+  "form": {
+   "text": "modulo",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "application": {
+   "text": "richiesta",
+   "variants": [
+    "domanda",
+    "istanza"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la richiesta und la domanda sind beide der Antrag; einen Antrag stellen heißt presentare domanda."
+   }
+  },
+  "id-card": {
+   "text": "carta d'identità",
+   "variants": [
+    "carta di identità"
+   ],
+   "grammar": {
+    "gender": "la",
+    "plural": "carte d'identità"
+   },
+   "notes": {
+    "de": "Der italienische Personalausweis ist la carta d'identità; Ausländer brauchen zusätzlich il permesso di soggiorno."
+   }
+  },
+  "residence-permit": {
+   "text": "permesso di soggiorno",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "signature": {
+   "text": "firma",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "ticket-number": {
+   "text": "numero di attesa",
+   "variants": [
+    "numero",
+    "numerino"
+   ],
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "case-worker": {
+   "text": "impiegato",
+   "synonyms": [
+    "funzionario"
+   ],
+   "variants": [
+    "l'impiegato"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Am Schalter sitzt l'impiegato; il funzionario ist der Beamte, der den Vorgang entscheidet."
+   }
+  },
+  "case-worker-f": {
+   "text": "impiegata",
+   "synonyms": [
+    "funzionaria"
+   ],
+   "variants": [
+    "l'impiegata",
+    "un'impiegata"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "registration": {
+   "text": "iscrizione anagrafica",
+   "variants": [
+    "l'iscrizione anagrafica",
+    "un'iscrizione anagrafica",
+    "residenza",
+    "cambio di residenza"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Die Wohnsitzanmeldung heißt iscrizione anagrafica; im Alltag sagt man fare la residenza, angemeldet wird man beim comune."
+   }
+  },
+  "documents": {
+   "text": "documenti",
+   "grammar": {
+    "gender": "i"
+   },
+   "notes": {
+    "de": "i documenti sind auch die Ausweispapiere: Documenti! heißt „Papiere, bitte!“"
+   }
+  },
+  "fill-in": {
+   "text": "compilare",
+   "variants": [
+    "riempire"
+   ]
+  },
+  "sign": {
+   "text": "firmare"
+  },
+  "apply-for": {
+   "text": "richiedere",
+   "variants": [
+    "chiedere"
+   ]
+  },
+  "submit": {
+   "text": "consegnare"
+  },
+  "hand-in": {
+   "text": "presentare"
+  },
+  "pick-up": {
+   "text": "ritirare la carta d'identità",
+   "variants": [
+    "ritirare la carta di identità",
+    "ritirare il documento"
+   ]
+  },
+  "extend": {
+   "text": "rinnovare",
+   "variants": [
+    "prolungare"
+   ],
+   "notes": {
+    "de": "Ein Dokument wird rinnovato (erneuert); prolungare verlängert eine Frist oder einen Aufenthalt."
+   }
+  },
+  "bring": {
+   "text": "portare"
+  },
+  "copy": {
+   "text": "copiare",
+   "variants": [
+    "fotocopiare"
+   ]
+  },
+  "passport": {
+   "text": "passaporto",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "address": {
+   "text": "indirizzo",
+   "variants": [
+    "l'indirizzo"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "certificate": {
+   "text": "certificato",
+   "variants": [
+    "attestato"
+   ],
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "birth-certificate": {
+   "text": "certificato di nascita",
+   "synonyms": [
+    "atto di nascita"
+   ],
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "notification": {
+   "text": "comunicazione",
+   "synonyms": [
+    "provvedimento"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la comunicazione ist das Schreiben, das ankommt; die amtliche Entscheidung selbst heißt il provvedimento."
+   }
+  },
+  "fee": {
+   "text": "tassa",
+   "variants": [
+    "contributo"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la tassa ist die Gebühr für eine Leistung; die Steuer heißt l'imposta."
+   }
+  },
+  "office-hours": {
+   "text": "orario di ricevimento",
+   "variants": [
+    "l'orario di ricevimento",
+    "orario di ricevimento al pubblico"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "l'orario di ricevimento sind die Sprechzeiten für Publikum; die allgemeinen Öffnungszeiten heißen l'orario di apertura."
+   }
+  },
+  "waiting-room": {
+   "text": "sala d'attesa",
+   "variants": [
+    "sala di attesa"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "reject": {
+   "text": "respingere",
+   "synonyms": [
+    "rifiutare"
+   ],
+   "notes": {
+    "de": "Ein Antrag wird respinto; rifiutare ist eher etwas ausschlagen."
+   }
+  },
+  "approve": {
+   "text": "approvare",
+   "variants": [
+    "autorizzare",
+    "concedere"
+   ]
+  },
+  "law": {
+   "text": "legge",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "visa": {
+   "text": "visto",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "fine": {
+   "text": "multa",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "receipt": {
+   "text": "ricevuta",
+   "variants": [
+    "scontrino"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "where-do-i-sign": {
+   "text": "Dove devo firmare?",
+   "variants": [
+    "Dove si firma?"
+   ]
+  },
+  "i-want-to-extend-my-residence-permit": {
+   "text": "Vorrei rinnovare il permesso di soggiorno.",
+   "variants": [
+    "Voglio rinnovare il permesso di soggiorno."
+   ]
+  },
+  "fill-out-the-form": {
+   "text": "Compili il modulo.",
+   "variants": [
+    "Compila il modulo.",
+    "Riempia il modulo."
+   ]
+  },
+  "take-a-number": {
+   "text": "Prenda un numero di attesa!",
+   "variants": [
+    "Prendi un numero di attesa!",
+    "Prenda il numero!"
+   ]
+  },
+  "i-need-an-interpreter-for-the-application": {
+   "text": "Ho bisogno di un interprete per la richiesta.",
+   "variants": [
+    "Mi serve un interprete per la richiesta.",
+    "Ho bisogno di un interprete per la domanda."
+   ]
+  },
+  "did-you-bring-all-the-documents": {
+   "text": "Ha portato tutti i documenti?",
+   "variants": [
+    "Hai portato tutti i documenti?"
+   ]
+  },
+  "the-decision-comes-by-mail": {
+   "text": "La comunicazione arriva per posta.",
+   "variants": [
+    "Il provvedimento arriva per posta."
+   ]
+  },
+  "when-does-my-id-expire": {
+   "text": "Quando scade la mia carta d'identità?",
+   "variants": [
+    "Quando scade la carta d'identità?"
+   ]
+  }
+ }
+}

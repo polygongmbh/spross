@@ -1,0 +1,173 @@
+{
+ "title": "La salute",
+ "subtitle": "Come ti senti oggi.",
+ "words": {
+  "pain": {
+   "text": "dolore",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "fever": {
+   "text": "febbre",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "cough": {
+   "text": "tosse",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "cold": {
+   "text": "raffreddore",
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "Erkältet sein heißt essere raffreddato: sono raffreddato."
+   }
+  },
+  "hurt": {
+   "text": "fare male",
+   "notes": {
+    "de": "Der Körperteil ist das Subjekt, die Person steht im Dativ: mi fa male la testa = mir tut der Kopf weh."
+   }
+  },
+  "to-cough": {
+   "text": "tossire"
+  },
+  "rest": {
+   "text": "riposare",
+   "variants": [
+    "riposarsi"
+   ]
+  },
+  "sick": {
+   "text": "malato",
+   "variants": [
+    "malata"
+   ]
+  },
+  "feel": {
+   "text": "sentirsi",
+   "notes": {
+    "de": "Beim Arzt fragt man come si sente? = Wie fühlen Sie sich?"
+   }
+  },
+  "health": {
+   "text": "salute",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "illness": {
+   "text": "malattia",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "healthy": {
+   "text": "sano",
+   "variants": [
+    "sana"
+   ]
+  },
+  "tired": {
+   "text": "stanco",
+   "variants": [
+    "stanca"
+   ]
+  },
+  "weak": {
+   "text": "debole"
+  },
+  "dizziness": {
+   "text": "capogiro",
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "Schwindlig ist einem mit ho un capogiro, ho le vertigini oder mi gira la testa."
+   }
+  },
+  "wound": {
+   "text": "ferita",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "hurt-oneself": {
+   "text": "farsi male",
+   "variants": [
+    "ferirsi"
+   ]
+  },
+  "bandage": {
+   "text": "benda",
+   "variants": [
+    "fasciatura"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "das kleine Pflaster ist il cerotto."
+   }
+  },
+  "breathe": {
+   "text": "respirare"
+  },
+  "recover": {
+   "text": "guarire",
+   "variants": [
+    "rimettersi"
+   ]
+  },
+  "allergy": {
+   "text": "allergia",
+   "variants": [
+    "l'allergia",
+    "un'allergia"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "my-throat-hurts-a-lot": {
+   "text": "Mi fa molto male la gola."
+  },
+  "ive-had-a-fever-since-yesterday": {
+   "text": "Ho la febbre da ieri."
+  },
+  "get-well-soon": {
+   "text": "Guarisci presto!",
+   "variants": [
+    "Guarisca presto!",
+    "Rimettiti presto!"
+   ]
+  },
+  "i-dont-feel-well": {
+   "text": "Non mi sento bene."
+  },
+  "the-wound-hurts": {
+   "text": "La ferita fa male.",
+   "variants": [
+    "Mi fa male la ferita."
+   ]
+  },
+  "i-cant-breathe-well": {
+   "text": "Non riesco a respirare bene.",
+   "variants": [
+    "Non posso respirare bene."
+   ]
+  },
+  "i-have-to-rest": {
+   "text": "Devo riposare.",
+   "variants": [
+    "Devo riposarmi."
+   ]
+  }
+ }
+}

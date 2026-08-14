@@ -1,0 +1,244 @@
+{
+ "title": "Dal medico",
+ "subtitle": "Dall'appuntamento alla ricetta.",
+ "words": {
+  "doctor": {
+   "text": "medico",
+   "variants": [
+    "dottore"
+   ],
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "doctor-f": {
+   "text": "dottoressa",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Zur Ärztin sagt man la dottoressa; il medico bleibt auch für Frauen üblich: è un bravo medico."
+   }
+  },
+  "practice": {
+   "text": "ambulatorio",
+   "synonyms": [
+    "studio medico"
+   ],
+   "variants": [
+    "l'ambulatorio"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "l'ambulatorio ist die Sprechstunde des Hausarztes oder der Poliklinik; die Privatpraxis heißt lo studio medico."
+   }
+  },
+  "pill": {
+   "text": "pastiglia",
+   "variants": [
+    "compressa",
+    "pillola"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Alltagswort ist la pastiglia; auf der Packung steht la compressa, und la pillola meint meist die Antibabypille."
+   }
+  },
+  "prescription": {
+   "text": "ricetta",
+   "variants": [
+    "ricetta medica"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la ricetta ist das Rezept vom Arzt und das Kochrezept."
+   }
+  },
+  "pharmacy": {
+   "text": "farmacia",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "insurance-card": {
+   "text": "tessera sanitaria",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "In Italien ist es die tessera sanitaria des staatlichen Gesundheitsdienstes; auf ihr steht auch der codice fiscale."
+   }
+  },
+  "health-insurance": {
+   "text": "assicurazione sanitaria",
+   "variants": [
+    "l'assicurazione sanitaria",
+    "un'assicurazione sanitaria"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Eine Krankenkasse wie in Deutschland gibt es nicht: versorgt wird man über den staatlichen Servizio Sanitario Nazionale; un'assicurazione sanitaria ist meist eine private Zusatzversicherung."
+   }
+  },
+  "hospital": {
+   "text": "ospedale",
+   "variants": [
+    "l'ospedale"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "emergency": {
+   "text": "emergenza",
+   "variants": [
+    "l'emergenza",
+    "un'emergenza"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "Die Notaufnahme heißt il pronto soccorso — andare al pronto soccorso."
+   }
+  },
+  "doctors-note": {
+   "text": "certificato medico",
+   "variants": [
+    "certificato di malattia"
+   ],
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "Der Arzt schickt das certificato medico elektronisch an Kasse und Arbeitgeber; man selbst behält nur die numero di protocollo."
+   }
+  },
+  "examine": {
+   "text": "visitare",
+   "notes": {
+    "de": "Den Patienten untersuchen heißt visitare, und la visita ist die Untersuchung beim Arzt."
+   }
+  },
+  "prescribe-medicine": {
+   "text": "prescrivere medicine",
+   "variants": [
+    "prescrivere farmaci",
+    "prescrivere le medicine"
+   ]
+  },
+  "take-medicine": {
+   "text": "prendere le medicine",
+   "variants": [
+    "prendere i farmaci",
+    "prendere medicine"
+   ]
+  },
+  "call-in-sick": {
+   "text": "mettersi in malattia",
+   "variants": [
+    "andare in malattia"
+   ],
+   "notes": {
+    "de": "essere in malattia heißt krankgeschrieben sein; ohne certificato medico vom Arzt gibt es keine Krankmeldung."
+   }
+  },
+  "medicine": {
+   "text": "medicina",
+   "synonyms": [
+    "farmaco"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "la medicina ist das Medikament und die Medizin als Fach; auf der Packung steht il farmaco."
+   }
+  },
+  "nurse": {
+   "text": "infermiere",
+   "variants": [
+    "l'infermiere"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "nurse-f": {
+   "text": "infermiera",
+   "variants": [
+    "l'infermiera",
+    "un'infermiera"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "dentist": {
+   "text": "dentista",
+   "variants": [
+    "odontoiatra"
+   ],
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "il dentista, la dentista — die Endung -a bleibt, nur der Artikel wechselt."
+   }
+  },
+  "vaccination": {
+   "text": "vaccino",
+   "synonyms": [
+    "vaccinazione"
+   ],
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "il vaccino ist der Impfstoff und im Alltag die Impfung: fare il vaccino; la vaccinazione ist der formale Vorgang."
+   }
+  },
+  "ambulance": {
+   "text": "ambulanza",
+   "variants": [
+    "l'ambulanza",
+    "un'ambulanza"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "take-the-pills-twice-daily": {
+   "text": "Prenda le pastiglie due volte al giorno.",
+   "variants": [
+    "Prendi le pastiglie due volte al giorno."
+   ]
+  },
+  "show-me-your-insurance-card": {
+   "text": "Mi mostri la sua tessera sanitaria.",
+   "variants": [
+    "Mostrami la tua tessera sanitaria."
+   ]
+  },
+  "the-practice-is-closed": {
+   "text": "L'ambulatorio è chiuso."
+  },
+  "i-have-to-see-a-doctor": {
+   "text": "Devo andare dal medico."
+  },
+  "call-an-ambulance": {
+   "text": "Chiami un'ambulanza!",
+   "variants": [
+    "Chiama un'ambulanza!"
+   ]
+  }
+ }
+}

@@ -1,0 +1,68 @@
+{
+ "title": "Modi di dire",
+ "words": {
+  "buy-a-pig-in-a-poke": {
+   "text": "Non comprare a scatola chiusa!",
+   "notes": {
+    "de": "Wörtlich: „Kauf nicht bei geschlossener Schachtel!“",
+    "en": "Literally: \"Don't buy with the box closed!\""
+   }
+  },
+  "cross-your-fingers": {
+   "text": "Incrocio le dita per te.",
+   "notes": {
+    "de": "Wörtlich: „Ich kreuze die Finger für dich.“",
+    "en": "Literally: \"I cross my fingers for you.\""
+   }
+  },
+  "put-your-foot-in-it": {
+   "text": "Ho fatto una gaffe.",
+   "notes": {
+    "de": "Wörtlich: „Ich habe einen Fauxpas gemacht.“ — la gaffe ist der Fehltritt selbst.",
+    "en": "Literally: \"I made a gaffe.\" — la gaffe is the blunder itself."
+   }
+  },
+  "pull-someones-leg": {
+   "text": "Mi ha preso in giro.",
+   "notes": {
+    "de": "Wörtlich: „Er hat mich herumgeführt.“",
+    "en": "Literally: \"He took me around.\""
+   }
+  },
+  "fed-up-to-here": {
+   "text": "Ne ho fin sopra i capelli.",
+   "notes": {
+    "de": "Wörtlich: „Ich habe davon bis über die Haare.“",
+    "en": "Literally: \"I've had it up over my hair.\""
+   }
+  },
+  "turn-a-blind-eye": {
+   "text": "Ha chiuso un occhio.",
+   "notes": {
+    "de": "Wörtlich dasselbe Bild: „Er hat ein Auge geschlossen.“",
+    "en": "Literally: \"He closed one eye.\""
+   }
+  },
+  "seventh-heaven": {
+   "text": "È al settimo cielo.",
+   "notes": {
+    "de": "Wörtlich dasselbe Bild.",
+    "en": "Literally the same image."
+   }
+  },
+  "bite-the-bullet": {
+   "text": "Stringi i denti!",
+   "notes": {
+    "de": "Wörtlich: „Beiß die Zähne zusammen!“",
+    "en": "Literally: \"Clench your teeth!\""
+   }
+  },
+  "raining-cats-and-dogs": {
+   "text": "Piove a catinelle.",
+   "notes": {
+    "de": "Wörtlich: „Es regnet waschschüsselweise.“",
+    "en": "Literally: \"It's raining by the washbasin.\""
+   }
+  }
+ }
+}

@@ -1,0 +1,727 @@
+{
+ "sections": [
+  {
+   "id": "vowels",
+   "title": {
+    "de": "Die fünf Vokale",
+    "en": "The five vowels"
+   }
+  },
+  {
+   "id": "hard-soft",
+   "title": {
+    "de": "Hart oder weich: c und g",
+    "en": "Hard or soft: c and g"
+   }
+  },
+  {
+   "id": "clusters",
+   "title": {
+    "de": "Buchstabengruppen mit eigenem Laut",
+    "en": "Letter groups with a sound of their own"
+   }
+  },
+  {
+   "id": "s-z",
+   "title": {
+    "de": "s, z und die Doppelkonsonanten",
+    "en": "s, z and the double consonants"
+   }
+  },
+  {
+   "id": "letters",
+   "title": {
+    "de": "Die übrigen Buchstaben",
+    "en": "The remaining letters"
+   }
+  },
+  {
+   "id": "foreign",
+   "title": {
+    "de": "Die fünf fremden Buchstaben",
+    "en": "The five foreign letters"
+   }
+  }
+ ],
+ "entries": [
+  {
+   "glyph": "a",
+   "upper": "A",
+   "name": "a",
+   "section": "vowels",
+   "ipa": "a",
+   "example": "hand",
+   "hints": {
+    "de": "immer ein klares, offenes a wie in Wasser — auch unbetont: banana klingt dreimal gleich, nie zu einem gemurmelten e abgeschwächt",
+    "en": "always a clear, open ah as in father — even unstressed: banana has the same vowel three times, never the three different ones English gives it"
+   }
+  },
+  {
+   "glyph": "e",
+   "upper": "E",
+   "name": "e",
+   "section": "vowels",
+   "ipa": "e",
+   "example": "bread",
+   "hints": {
+    "de": "ein reines e — offen wie in Bett (sette) oder geschlossen wie in Beere (pesce); am Wortende nie stumm und nie gemurmelt: pane = „PA-ne“",
+    "en": "a pure e — open as in bed (sette) or closer as in they but without the y-glide; a final -e is always spoken: pane = “PAH-neh”, never “payn”"
+   }
+  },
+  {
+   "glyph": "i",
+   "upper": "I",
+   "name": "i",
+   "section": "vowels",
+   "ipa": "i",
+   "example": "book",
+   "hints": {
+    "de": "immer gespannt wie das i in Miete, nie das lockere i in Tisch: libro; vor einem anderen Vokal wird es zum j: ieri, piede",
+    "en": "always the ee of see, never the i of sit: libro; before another vowel it turns into a y-glide: ieri, piede"
+   }
+  },
+  {
+   "glyph": "o",
+   "upper": "O",
+   "name": "o",
+   "section": "vowels",
+   "ipa": "o",
+   "example": "eye",
+   "hints": {
+    "de": "ein reines, rundes o — offen wie in Sonne (occhio) oder geschlossen wie in Ofen (sole); nie ein Diphthong wie im englischen go",
+    "en": "a pure, rounded o — open as in law (occhio) or closer as in note but without the w-glide: sole = “SO-leh”, never “SOH-oo-leh”"
+   }
+  },
+  {
+   "glyph": "u",
+   "upper": "U",
+   "name": "u",
+   "section": "vowels",
+   "ipa": "u",
+   "example": "moon",
+   "hints": {
+    "de": "immer wie das u in Schule — nie ü und nie das englische „ju“: luna = „LU-na“, università beginnt mit „u-ni“",
+    "en": "always oo as in moon — never the “yoo” of university: università starts “oo-nee-”"
+   }
+  },
+  {
+   "glyph": "à è é ì ò ù",
+   "kind": "rule",
+   "section": "vowels",
+   "context": {
+    "de": "auf dem letzten Vokal eines Wortes",
+    "en": "on the last vowel of a word"
+   },
+   "example": "city",
+   "hints": {
+    "de": "der Akzent sagt nur, dass die letzte Silbe betont ist: città, caffè, perché — der Buchstabe bleibt derselbe. Der Strich zeigt die Klangfarbe: è offen, é geschlossen. Zwei Wörter trennt er nur bei è (ist) gegen e (und).",
+    "en": "the accent only says the last syllable is stressed: città, caffè, perché — the letter itself does not change. Its direction shows the quality: è open, é close. The one pair it tells apart is è (is) against e (and)."
+   }
+  },
+  {
+   "glyph": "c",
+   "upper": "C",
+   "kind": "contextual",
+   "id": "c-hard",
+   "name": "ci",
+   "section": "hard-soft",
+   "ipa": "k",
+   "context": {
+    "de": "vor a, o, u und vor Konsonanten",
+    "en": "before a, o, u and before consonants"
+   },
+   "example": "dog",
+   "hints": {
+    "de": "wie k: cane, come, cucina — vor e und i wird derselbe Buchstabe weich",
+    "en": "like k: cane, come, cucina — before e and i the same letter goes soft"
+   },
+   "confusable": {
+    "look": [
+     "c-soft"
+    ],
+    "sound": [
+     "ch",
+     "q",
+     "k"
+    ]
+   }
+  },
+  {
+   "glyph": "c",
+   "kind": "contextual",
+   "id": "c-soft",
+   "section": "hard-soft",
+   "ipa": "t͡ʃ",
+   "context": {
+    "de": "vor e und i",
+    "en": "before e and i"
+   },
+   "example": "dinner",
+   "hints": {
+    "de": "wie tsch in Tschüss: cena, cinema, dolce — ein hartes k schreibt man hier ch: che, chi",
+    "en": "like ch in cheese: cena, cinema, dolce — the hard k sound is spelled ch here: che, chi"
+   },
+   "confusable": {
+    "look": [
+     "c-hard",
+     "ci"
+    ],
+    "sound": [
+     "sc"
+    ]
+   }
+  },
+  {
+   "glyph": "ch",
+   "kind": "digraph",
+   "section": "hard-soft",
+   "ipa": "k",
+   "context": {
+    "de": "vor e und i",
+    "en": "before e and i"
+   },
+   "example": "key",
+   "hints": {
+    "de": "immer hartes k — nie tsch und nie das deutsche ch: chiave = „KJA-we“, chi = „ki“",
+    "en": "always a hard k — never the ch of cheese and never the throaty German ch: chiave = “KYAH-veh”, chi = “kee”"
+   },
+   "confusable": {
+    "look": [
+     "c-soft",
+     "gh",
+     "sch"
+    ]
+   }
+  },
+  {
+   "glyph": "ci",
+   "kind": "digraph",
+   "section": "hard-soft",
+   "ipa": "t͡ʃ",
+   "context": {
+    "de": "vor a, o und u",
+    "en": "before a, o and u"
+   },
+   "example": "shirt",
+   "hints": {
+    "de": "das i ist hier stumm und macht nur das c weich: camicia = „ka-MI-tscha“, ciao = „tschau“ — vor einem Konsonanten ist es ein echter Vokal: cinque",
+    "en": "the i is silent here and only softens the c: camicia = “ka-MEE-cha”, ciao = “chow” — before a consonant it is a real vowel: cinque"
+   },
+   "confusable": {
+    "look": [
+     "ch",
+     "gi",
+     "sci"
+    ]
+   }
+  },
+  {
+   "glyph": "g",
+   "upper": "G",
+   "kind": "contextual",
+   "id": "g-hard",
+   "name": "gi",
+   "section": "hard-soft",
+   "ipa": "ɡ",
+   "context": {
+    "de": "vor a, o, u und vor Konsonanten",
+    "en": "before a, o, u and before consonants"
+   },
+   "example": "cat",
+   "hints": {
+    "de": "wie g in gut: gatto, guanto, grande — vor e und i wird derselbe Buchstabe weich",
+    "en": "like g in go: gatto, guanto, grande — before e and i the same letter goes soft"
+   },
+   "confusable": {
+    "look": [
+     "g-soft"
+    ],
+    "sound": [
+     "gh"
+    ]
+   }
+  },
+  {
+   "glyph": "g",
+   "kind": "contextual",
+   "id": "g-soft",
+   "section": "hard-soft",
+   "ipa": "d͡ʒ",
+   "context": {
+    "de": "vor e und i",
+    "en": "before e and i"
+   },
+   "example": "parents",
+   "hints": {
+    "de": "wie dsch in Dschungel: genitori, gelato, ginocchio — ein hartes g schreibt man hier gh: spaghetti",
+    "en": "like j in jeans: genitori, gelato, ginocchio — the hard g sound is spelled gh here: spaghetti"
+   },
+   "confusable": {
+    "look": [
+     "g-hard",
+     "gi",
+     "gn",
+     "gli"
+    ],
+    "sound": [
+     "j"
+    ]
+   }
+  },
+  {
+   "glyph": "gh",
+   "kind": "digraph",
+   "section": "hard-soft",
+   "ipa": "ɡ",
+   "context": {
+    "de": "vor e und i",
+    "en": "before e and i"
+   },
+   "exampleText": "spaghetti",
+   "hints": {
+    "de": "das h hält das g hart: spaghetti, funghi, ghiaccio — nie dsch, und das h selbst hört man nie",
+    "en": "the h keeps the g hard: spaghetti, funghi, ghiaccio — never a j sound, and the h itself is never heard"
+   },
+   "confusable": {
+    "look": [
+     "ch",
+     "g-soft"
+    ]
+   }
+  },
+  {
+   "glyph": "gi",
+   "kind": "digraph",
+   "section": "hard-soft",
+   "ipa": "d͡ʒ",
+   "context": {
+    "de": "vor a, o und u",
+    "en": "before a, o and u"
+   },
+   "example": "jacket",
+   "hints": {
+    "de": "das i ist stumm und macht nur das g weich: giacca = „DSCHAK-ka“, giorno = „DSCHOR-no“ — vor einem Konsonanten ist es ein echter Vokal: ginocchio",
+    "en": "the i is silent and only softens the g: giacca = “JAHK-ka”, giorno = “JOR-no” — before a consonant it is a real vowel: ginocchio"
+   },
+   "confusable": {
+    "look": [
+     "ci",
+     "gn",
+     "gli"
+    ]
+   }
+  },
+  {
+   "glyph": "gn",
+   "kind": "digraph",
+   "section": "clusters",
+   "ipa": "ɲ",
+   "example": "board",
+   "hints": {
+    "de": "ein einziger Laut wie gn in Champagner oder nj in Tanja: lavagna, montagna, sognare — nie g und n getrennt",
+    "en": "one sound, like ny in canyon: lavagna, montagna, sognare — never a g followed by a separate n"
+   },
+   "confusable": {
+    "look": [
+     "gli",
+     "gi"
+    ]
+   }
+  },
+  {
+   "glyph": "gli",
+   "kind": "digraph",
+   "section": "clusters",
+   "ipa": "ʎ",
+   "example": "wife",
+   "hints": {
+    "de": "auch ein einziger Laut: der Zungenrücken liegt flach am Gaumen, etwa wie das lj in Familie — moglie, famiglia, figlio; ein einzelnes l hört man nie",
+    "en": "one sound too, the tongue flat against the palate — like the lli in million: moglie, famiglia, figlio; you never hear a separate l"
+   },
+   "confusable": {
+    "look": [
+     "gn",
+     "gi"
+    ]
+   }
+  },
+  {
+   "glyph": "sc",
+   "kind": "digraph",
+   "section": "clusters",
+   "ipa": "ʃ",
+   "context": {
+    "de": "vor e und i",
+    "en": "before e and i"
+   },
+   "example": "fish",
+   "hints": {
+    "de": "wie sch in Schule: pesce, scendere, uscire — vor a, o und u dagegen sk: scuola, bosco",
+    "en": "like sh in shoe: pesce, scendere, uscire — before a, o and u it is sk instead: scuola, bosco"
+   },
+   "confusable": {
+    "look": [
+     "sch",
+     "sci"
+    ],
+    "sound": [
+     "c-soft"
+    ]
+   }
+  },
+  {
+   "glyph": "sci",
+   "kind": "digraph",
+   "section": "clusters",
+   "ipa": "ʃ",
+   "context": {
+    "de": "vor a, o und u",
+    "en": "before a, o and u"
+   },
+   "example": "towel",
+   "hints": {
+    "de": "dasselbe sch, und das i ist wieder stumm: asciugamano = „a-schu-ga-MA-no“, lasciare, prosciutto",
+    "en": "the same sh, and the i is silent again: asciugamano = “ah-shoo-gah-MAH-no”, lasciare, prosciutto"
+   },
+   "confusable": {
+    "look": [
+     "sc",
+     "ci"
+    ]
+   }
+  },
+  {
+   "glyph": "sch",
+   "kind": "digraph",
+   "section": "clusters",
+   "ipa": "sk",
+   "context": {
+    "de": "vor e und i",
+    "en": "before e and i"
+   },
+   "example": "back",
+   "hints": {
+    "de": "nicht sch, sondern sk: schiena = „SKJE-na“, schermo, moschea — das h hält das c hart, genau wie bei ch",
+    "en": "not sh but sk: schiena = “SKYEH-na”, schermo, moschea — the h keeps the c hard, exactly as in ch"
+   },
+   "confusable": {
+    "look": [
+     "sc",
+     "ch"
+    ]
+   }
+  },
+  {
+   "glyph": "s",
+   "upper": "S",
+   "kind": "contextual",
+   "id": "s-sorda",
+   "name": "esse",
+   "section": "s-z",
+   "ipa": "s",
+   "context": {
+    "de": "am Wortanfang, vor stimmlosen Konsonanten und als ss",
+    "en": "at the start of a word, before voiceless consonants and as ss"
+   },
+   "example": "sun",
+   "hints": {
+    "de": "scharf wie das ß in Straße: sole, studente, rosso — nie stimmhaft wie das s in Sonne",
+    "en": "hissed like the s in sun: sole, studente, rosso"
+   },
+   "confusable": {
+    "look": [
+     "s-sonora"
+    ],
+    "sound": [
+     "z"
+    ]
+   }
+  },
+  {
+   "glyph": "s",
+   "kind": "contextual",
+   "id": "s-sonora",
+   "section": "s-z",
+   "ipa": "z",
+   "context": {
+    "de": "zwischen zwei Vokalen und vor b, d, g, l, m, n, r, v",
+    "en": "between two vowels and before b, d, g, l, m, n, r, v"
+   },
+   "example": "nose",
+   "hints": {
+    "de": "stimmhaft wie das s in Rose: naso, chiesa, sbagliare — im Süden bleibt es hier oft trotzdem scharf",
+    "en": "voiced like the s in rose: naso, chiesa, sbagliare — southern speakers often keep it hissed"
+   },
+   "confusable": {
+    "look": [
+     "s-sorda"
+    ],
+    "sound": [
+     "z"
+    ]
+   }
+  },
+  {
+   "glyph": "z",
+   "upper": "Z",
+   "name": "zeta",
+   "section": "s-z",
+   "ipa": "t͡s",
+   "example": "uncle",
+   "hints": {
+    "de": "zwei mögliche Laute, und die Schreibung verrät nicht welcher: meist ts wie in Zahl (zio, grazie), manchmal ds (zaino, mezzo); zwischen Vokalen klingt sie immer doppelt: pizza",
+    "en": "two possible sounds, and the spelling never says which: usually ts as in cats (zio, grazie), sometimes dz as in adds (zaino, mezzo); between vowels it always sounds doubled: pizza"
+   },
+   "confusable": {
+    "sound": [
+     "s-sorda",
+     "s-sonora"
+    ]
+   }
+  },
+  {
+   "glyph": "cc ll nn rr ss tt zz",
+   "kind": "rule",
+   "section": "s-z",
+   "context": {
+    "de": "zwischen zwei Vokalen",
+    "en": "between two vowels"
+   },
+   "example": "grandfather",
+   "hints": {
+    "de": "ein doppelter Konsonant wird wirklich länger gehalten, und er unterscheidet Wörter: nonno (Großvater) gegen nono (neunter), cane (Hund) gegen canne (Rohre), sete (Durst) gegen sette (sieben). Außer h kann jeder Konsonant doppelt stehen; der Vokal davor bleibt kurz.",
+    "en": "a doubled consonant is really held longer, and it tells words apart: nonno (grandfather) against nono (ninth), cane (dog) against canne (reeds), sete (thirst) against sette (seven). Every consonant but h can double, and the vowel in front of it stays short."
+   }
+  },
+  {
+   "glyph": "b",
+   "upper": "B",
+   "name": "bi",
+   "section": "letters",
+   "ipa": "b",
+   "example": "mouth"
+  },
+  {
+   "glyph": "d",
+   "upper": "D",
+   "name": "di",
+   "section": "letters",
+   "ipa": "d",
+   "example": "tooth",
+   "hints": {
+    "de": "die Zungenspitze berührt die Zähne, nicht den Damm dahinter — dasselbe gilt für t, n und l",
+    "en": "the tongue tip touches the teeth, not the ridge behind them — the same goes for t, n and l"
+   }
+  },
+  {
+   "glyph": "f",
+   "upper": "F",
+   "name": "effe",
+   "section": "letters",
+   "ipa": "f",
+   "example": "flower"
+  },
+  {
+   "glyph": "h",
+   "upper": "H",
+   "name": "acca",
+   "section": "letters",
+   "exampleText": "hanno",
+   "hints": {
+    "de": "immer stumm: hanno (sie haben) klingt genau wie anno (Jahr). Sie steht nur in ho, hai, ha, hanno — und hinter c und g, um sie hart zu machen.",
+    "en": "always silent: hanno (they have) sounds exactly like anno (year). It appears only in ho, hai, ha, hanno — and after c and g to keep them hard."
+   },
+   "confusable": {
+    "look": [
+     "ch",
+     "gh"
+    ]
+   }
+  },
+  {
+   "glyph": "l",
+   "upper": "L",
+   "name": "elle",
+   "section": "letters",
+   "ipa": "l",
+   "example": "milk",
+   "hints": {
+    "de": "immer hell wie das l in Liebe — nie das dunkle l des Englischen in full",
+    "en": "always light and clear as in leaf — never the dark l of full or milk"
+   }
+  },
+  {
+   "glyph": "m",
+   "upper": "M",
+   "name": "emme",
+   "section": "letters",
+   "ipa": "m",
+   "example": "mother"
+  },
+  {
+   "glyph": "n",
+   "upper": "N",
+   "name": "enne",
+   "section": "letters",
+   "ipa": "n",
+   "example": "snow",
+   "hints": {
+    "de": "vor c, g und q klingt sie wie ng in lange: banca, lungo, cinque",
+    "en": "before c, g and q it turns into the ng of sing: banca, lungo, cinque"
+   }
+  },
+  {
+   "glyph": "p",
+   "upper": "P",
+   "name": "pi",
+   "section": "letters",
+   "ipa": "p",
+   "example": "father",
+   "hints": {
+    "de": "ohne Hauch — kein Luftstoß wie im deutschen Panne, eher wie das p in Spiel",
+    "en": "no puff of air — unlike English pie, more like the p after s in spin"
+   }
+  },
+  {
+   "glyph": "q",
+   "upper": "Q",
+   "name": "cu",
+   "section": "letters",
+   "ipa": "kw",
+   "example": "water",
+   "hints": {
+    "de": "steht immer vor u und klingt kw: quattro, questo, quando; nach einem Vokal wird daraus cqu: acqua = „AK-kwa“. Achtung: cuore und scuola haben denselben Laut, aber cu.",
+    "en": "always stands before u and sounds kw: quattro, questo, quando; after a vowel it doubles as cqu: acqua = “AHK-kwah”. Watch out: cuore and scuola have that same sound spelled cu."
+   },
+   "confusable": {
+    "sound": [
+     "c-hard",
+     "ch",
+     "k"
+    ]
+   }
+  },
+  {
+   "glyph": "r",
+   "upper": "R",
+   "name": "erre",
+   "section": "letters",
+   "ipa": "r",
+   "example": "rice",
+   "hints": {
+    "de": "mit der Zungenspitze gerollt — nie das deutsche Rachen-r; doppeltes rr wird länger gerollt und unterscheidet Wörter: caro (teuer) gegen carro (Karren)",
+    "en": "rolled with the tip of the tongue — never the throaty English, French or German r; a double rr rolls longer and tells words apart: caro (dear) against carro (cart)"
+   }
+  },
+  {
+   "glyph": "t",
+   "upper": "T",
+   "name": "ti",
+   "section": "letters",
+   "ipa": "t",
+   "example": "tea",
+   "hints": {
+    "de": "ohne Hauch und an den Zähnen gebildet: tè klingt trocken wie das t in Stein",
+    "en": "no puff of air, and formed against the teeth: tè is a crisp “teh”, like the t after s in stop"
+   }
+  },
+  {
+   "glyph": "v",
+   "upper": "V",
+   "name": "vu",
+   "section": "letters",
+   "ipa": "v",
+   "example": "wind",
+   "hints": {
+    "de": "wie das deutsche w in Wasser — nie f wie in Vater: vento, vino, uva",
+    "en": "like the v in van: vento, vino, uva"
+   },
+   "confusable": {
+    "sound": [
+     "w"
+    ]
+   }
+  },
+  {
+   "glyph": "j",
+   "upper": "J",
+   "name": "i lunga",
+   "section": "foreign",
+   "ipa": "d͡ʒ",
+   "exampleText": "jeans",
+   "hints": {
+    "de": "gehört nicht zum italienischen Alphabet: jeans und jazz behalten das englische dsch, ältere italienische Namen sprechen sie wie j in ja: Jacopo = „Iacopo“",
+    "en": "not part of the Italian alphabet: jeans and jazz keep their English j, while older Italian names give it the y of yes: Jacopo = “Yacopo”"
+   },
+   "confusable": {
+    "sound": [
+     "g-soft"
+    ]
+   }
+  },
+  {
+   "glyph": "k",
+   "upper": "K",
+   "name": "cappa",
+   "section": "foreign",
+   "ipa": "k",
+   "exampleText": "kiwi",
+   "hints": {
+    "de": "nur in Fremdwörtern: kiwi, karate, koala — den eigenen k-Laut schreibt Italienisch c oder ch",
+    "en": "only in loanwords: kiwi, karate, koala — Italian writes its own k sound as c or ch"
+   },
+   "confusable": {
+    "sound": [
+     "c-hard",
+     "ch",
+     "q"
+    ]
+   }
+  },
+  {
+   "glyph": "w",
+   "upper": "W",
+   "name": "doppia vu",
+   "section": "foreign",
+   "exampleText": "wifi",
+   "hints": {
+    "de": "nur in Fremdwörtern, und der Laut kommt aus der Herkunftssprache mit: wifi und weekend wie englisch w, würstel und water (die Toilette) wie deutsch w, also v",
+    "en": "only in loanwords, and the sound comes along from the source language: wifi and weekend keep the English w, while würstel and water (Italian for toilet) sound like a v"
+   },
+   "confusable": {
+    "sound": [
+     "v"
+    ]
+   }
+  },
+  {
+   "glyph": "x",
+   "upper": "X",
+   "name": "ics",
+   "section": "foreign",
+   "ipa": "ks",
+   "example": "taxi",
+   "hints": {
+    "de": "nur in Fremd- und Fachwörtern, gesprochen ks: taxi, extra, xilofono",
+    "en": "only in loanwords and technical terms, pronounced ks: taxi, extra, xilofono"
+   }
+  },
+  {
+   "glyph": "y",
+   "upper": "Y",
+   "name": "ipsilon",
+   "section": "foreign",
+   "ipa": "j",
+   "exampleText": "yogurt",
+   "hints": {
+    "de": "nur in Fremdwörtern: am Wortanfang wie j in ja (yogurt, yoga), am Ende englischer Lehnwörter wie i (hobby, whisky); sie heißt auch i greca, das „griechische i“",
+    "en": "only in loanwords: at the start of a word it is the y of yes (yogurt, yoga), at the end of English loans it is an ee (hobby, whisky); it is also called i greca, the Greek i"
+   },
+   "confusable": {
+    "look": [
+     "i"
+    ]
+   }
+  }
+ ]
+}

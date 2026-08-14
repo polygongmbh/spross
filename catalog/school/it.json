@@ -1,0 +1,255 @@
+{
+ "title": "La scuola",
+ "subtitle": "Una normale giornata di lezione.",
+ "words": {
+  "school": {
+   "text": "scuola",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "classroom": {
+   "text": "aula",
+   "variants": [
+    "l'aula",
+    "un'aula"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "aula ist feminin: l'aula, Plural le aule. la classe ist die Schulklasse, also die Gruppe."
+   }
+  },
+  "teacher": {
+   "text": "professore",
+   "synonyms": [
+    "insegnante",
+    "maestro"
+   ],
+   "variants": [
+    "prof"
+   ],
+   "grammar": {
+    "gender": "il"
+   },
+   "notes": {
+    "de": "il maestro unterrichtet in der Grundschule, il professore an weiterführenden Schulen und im Sprachkurs; l'insegnante gilt für beide."
+   }
+  },
+  "teacher-f": {
+   "text": "professoressa",
+   "synonyms": [
+    "maestra"
+   ],
+   "variants": [
+    "prof"
+   ],
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Für Frauen sagt man auch l'insegnante — dieses Wort hat keine eigene weibliche Form."
+   }
+  },
+  "board": {
+   "text": "lavagna",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "exercise-book": {
+   "text": "quaderno",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "homework": {
+   "text": "compiti",
+   "variants": [
+    "compiti a casa"
+   ],
+   "grammar": {
+    "gender": "i",
+    "plural": "only"
+   },
+   "notes": {
+    "de": "Nur im Plural: i compiti — fare i compiti = Hausaufgaben machen."
+   }
+  },
+  "exam": {
+   "text": "esame",
+   "variants": [
+    "l'esame",
+    "prova"
+   ],
+   "grammar": {
+    "gender": "l'"
+   }
+  },
+  "break": {
+   "text": "pausa",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Die Pause zwischen den Schulstunden heißt l'intervallo, in der Grundschule la ricreazione."
+   }
+  },
+  "pass-exam": {
+   "text": "superare l'esame",
+   "variants": [
+    "passare l'esame"
+   ],
+   "notes": {
+    "de": "superare = bestehen; durchfallen heißt essere bocciato."
+   }
+  },
+  "to-practice": {
+   "text": "esercitarsi",
+   "variants": [
+    "fare esercizi",
+    "fare pratica"
+   ]
+  },
+  "raise-hand": {
+   "text": "alzare la mano"
+  },
+  "pupil": {
+   "text": "studente",
+   "synonyms": [
+    "alunno"
+   ],
+   "grammar": {
+    "gender": "lo"
+   },
+   "notes": {
+    "de": "l'alunno geht zur Schule, lo studente auch zur Universität."
+   }
+  },
+  "pupil-f": {
+   "text": "studentessa",
+   "synonyms": [
+    "alunna"
+   ],
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "course": {
+   "text": "corso",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "lesson": {
+   "text": "lezione",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "Meist im Singular: oggi ho lezione = heute habe ich Unterricht."
+   }
+  },
+  "course-book": {
+   "text": "libro di testo",
+   "variants": [
+    "manuale",
+    "libro del corso"
+   ],
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "page": {
+   "text": "pagina",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "grade": {
+   "text": "voto",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "correct": {
+   "text": "correggere"
+  },
+  "book": {
+   "text": "libro",
+   "grammar": {
+    "gender": "il"
+   }
+  },
+  "university": {
+   "text": "università",
+   "variants": [
+    "l'università",
+    "un'università",
+    "uni"
+   ],
+   "grammar": {
+    "gender": "l'",
+    "plural": "="
+   }
+  },
+  "class-schedule": {
+   "text": "orario",
+   "variants": [
+    "l'orario",
+    "orario delle lezioni"
+   ],
+   "grammar": {
+    "gender": "l'"
+   },
+   "notes": {
+    "de": "l'orario ist jeder Zeitplan; der Stundenplan der Schule heißt genauer l'orario delle lezioni."
+   }
+  },
+  "to-count": {
+   "text": "contare"
+  },
+  "to-try": {
+   "text": "provare",
+   "variants": [
+    "tentare"
+   ]
+  },
+  "do-the-homework": {
+   "text": "Faccio i compiti."
+  },
+  "the-exam-is-tomorrow": {
+   "text": "L'esame è domani."
+  },
+  "look-at-the-class-schedule": {
+   "text": "Guarda l'orario.",
+   "variants": [
+    "Guardi l'orario.",
+    "Guarda l'orario delle lezioni."
+   ]
+  },
+  "the-break-is-over": {
+   "text": "La pausa è finita."
+  },
+  "ask-the-teacher": {
+   "text": "Chiedi al professore.",
+   "variants": [
+    "Chieda al professore.",
+    "Chiedi all'insegnante."
+   ]
+  },
+  "i-have-a-good-grade": {
+   "text": "Ho un buon voto.",
+   "variants": [
+    "Ho un bel voto."
+   ]
+  },
+  "we-go-to-the-classroom": {
+   "text": "Andiamo in aula.",
+   "variants": [
+    "Andiamo in classe."
+   ]
+  }
+ }
+}
