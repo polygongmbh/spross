@@ -3,12 +3,11 @@
 ## Unreleased
 
 - **English is taught in American spelling and vocabulary, and the British word is named
-  beside it.** The card now shows "color", "gray", "neighbor", "pajamas" and "to practice",
-  and where the two Englishes use different words altogether it leads with the American
-  one — truck, pants, faucet, trash can, vacation, class schedule, store. The British word
-  is not hidden: the reveal names it under "also", and it takes its turn as the prompt once
-  the card is familiar, so both are learned from one card. British spellings ("colour",
-  "grey", "pyjamas") still grade as correct without ever being taught as the form.
+  beside it.** Every English card now leads with the American form. Where the two Englishes
+  merely spell a word differently, the British spelling still grades as correct and is
+  never taught; where they use a different word altogether, that word is no longer hidden —
+  the reveal names it under "also" and it takes its turn as the prompt once the card is
+  familiar, so one card teaches both.
 
 - **The reference pages speak, and the counting table is read at a glance.**
   Tap a row of the numbers table or a country in the atlas, on either phone,

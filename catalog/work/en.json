@@ -9,10 +9,13 @@
    "text": "job application"
   },
   "cv": {
-   "text": "curriculum vitae",
+   "text": "résumé",
+   "synonyms": [
+    "CV"
+   ],
    "variants": [
-    "CV",
-    "resume"
+    "resume",
+    "curriculum vitae"
    ]
   },
   "contract": {
