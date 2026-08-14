@@ -3603,6 +3603,18 @@
       "snr": 50.3,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-dolor.wav"
     },
+    "pajamas": {
+      "author": "Eavqwiki",
+      "file": "pajamas.mp3",
+      "gain": 13.1,
+      "lead": 239,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "pijama",
+      "sha256": "e0a0e9c26023665abde1a8d405ae77908a19a946fc443ac0b13755e1bf86a474",
+      "snr": 50.5,
+      "source": "LL-Q1321 (spa)-Eavqwiki-pijama.wav"
+    },
     "pan": {
       "author": "AdrianAbdulBaha",
       "file": "pan.mp3",
@@ -3996,18 +4008,6 @@
       "sha256": "adffb2be08ed6e89a066aff0dab2e3ecf93506980cc52c5e242da62efbc7e757",
       "snr": 60.0,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-morado.wav"
-    },
-    "pyjamas": {
-      "author": "Eavqwiki",
-      "file": "pyjamas.mp3",
-      "gain": 13.1,
-      "lead": 239,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "pijama",
-      "sha256": "e0a0e9c26023665abde1a8d405ae77908a19a946fc443ac0b13755e1bf86a474",
-      "snr": 50.5,
-      "source": "LL-Q1321 (spa)-Eavqwiki-pijama.wav"
     },
     "question": {
       "author": "AdrianAbdulBaha",

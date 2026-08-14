@@ -4199,6 +4199,18 @@
       "snr": 86.7,
       "source": "De-schmerz.ogg"
     },
+    "pajamas": {
+      "author": "Jeuwre",
+      "file": "pajamas.mp3",
+      "gain": 2.1,
+      "lead": 186,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "schlafanzug",
+      "sha256": "b9b8370e980158e9ef869f893092799f87f1b301ca1801135291c11437129d9c",
+      "snr": 71.5,
+      "source": "De-Schlafanzug.ogg"
+    },
     "pan": {
       "author": "Jeuwre",
       "file": "pan.mp3",
@@ -4637,18 +4649,6 @@
       "sha256": "491c149cc225b76d3d897e65b68d0e3525a75c4e58356bd220eb6ddb83abcbe5",
       "snr": 69.9,
       "source": "De-lila.ogg"
-    },
-    "pyjamas": {
-      "author": "Jeuwre",
-      "file": "pyjamas.mp3",
-      "gain": 2.1,
-      "lead": 186,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "schlafanzug",
-      "sha256": "b9b8370e980158e9ef869f893092799f87f1b301ca1801135291c11437129d9c",
-      "snr": 71.5,
-      "source": "De-Schlafanzug.ogg"
     },
     "question": {
       "author": "Jeuwre",

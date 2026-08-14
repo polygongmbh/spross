@@ -2,12 +2,13 @@
 
 ## Unreleased
 
-- **English is taught in American spelling and vocabulary, with the British form still
-  accepted.** The card now shows "color", "gray", "neighbor", "to practice" and "movie
-  theater", and where the two Englishes use different words altogether it teaches the
-  American one — truck, pants, faucet, trash can, vacation, class schedule, store.
-  A British answer ("colour", "grey", "lorry", "trousers", "holiday") still grades as
-  correct; it is just no longer the form the reveal teaches.
+- **English is taught in American spelling and vocabulary, and the British word is named
+  beside it.** The card now shows "color", "gray", "neighbor", "pajamas" and "to practice",
+  and where the two Englishes use different words altogether it leads with the American
+  one — truck, pants, faucet, trash can, vacation, class schedule, store. The British word
+  is not hidden: the reveal names it under "also", and it takes its turn as the prompt once
+  the card is familiar, so both are learned from one card. British spellings ("colour",
+  "grey", "pyjamas") still grade as correct without ever being taught as the form.
 
 - **The reference pages speak, and the counting table is read at a glance.**
   Tap a row of the numbers table or a country in the atlas, on either phone,

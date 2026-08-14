@@ -85,13 +85,13 @@
   },
   "faucet": {
    "text": "faucet",
-   "variants": [
+   "synonyms": [
     "tap"
    ]
   },
   "trash-can": {
    "text": "trash can",
-   "variants": [
+   "synonyms": [
     "bin"
    ]
   },

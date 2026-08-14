@@ -25,7 +25,7 @@
   },
   "ticket-number": {
    "text": "number ticket",
-   "variants": [
+   "synonyms": [
     "queue number"
    ]
   },

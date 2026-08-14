@@ -3774,6 +3774,18 @@
       "snr": 45.2,
       "source": "Uk-біль.ogg"
     },
+    "pajamas": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "pajamas.mp3",
+      "gain": -1.1,
+      "lead": 17,
+      "license": "CC BY 3.0 us",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+      "matches": "піжама",
+      "sha256": "3d827bccf8107da907108e239c7fddb300255a0cf5faac6da823f203cd873e9c",
+      "snr": 45.4,
+      "source": "Uk-піжама.ogg"
+    },
     "pan": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "pan.mp3",
@@ -4126,18 +4138,6 @@
       "sha256": "90e5e22691df576cf7533cccfc4edb81b2bce3538ed42f6c76fd6a02d0c0fca4",
       "snr": 40.8,
       "source": "Uk-учениця.ogg"
-    },
-    "pyjamas": {
-      "author": "Галя Раптова, Nicolas Vion",
-      "file": "pyjamas.mp3",
-      "gain": -1.1,
-      "lead": 17,
-      "license": "CC BY 3.0 us",
-      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
-      "matches": "піжама",
-      "sha256": "3d827bccf8107da907108e239c7fddb300255a0cf5faac6da823f203cd873e9c",
-      "snr": 45.4,
-      "source": "Uk-піжама.ogg"
     },
     "question": {
       "author": "Галя Раптова, Nicolas Vion",

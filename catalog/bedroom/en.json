@@ -29,23 +29,26 @@
   "nightstand": {
    "text": "nightstand"
   },
-  "pyjamas": {
-   "text": "pyjamas",
+  "pajamas": {
+   "text": "pajamas",
    "grammar": {
     "plural": "only"
-   }
+   },
+   "variants": [
+    "pyjamas"
+   ]
   },
   "sock": {
    "text": "sock"
   },
   "pants": {
    "text": "pants",
+   "synonyms": [
+    "trousers"
+   ],
    "grammar": {
     "plural": "only"
-   },
-   "variants": [
-    "trousers"
-   ]
+   }
   },
   "t-shirt": {
    "text": "t-shirt"

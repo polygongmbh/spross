@@ -49,8 +49,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Max ~300 lines per file; split at natural boundaries. Modularity over bloat.
 - Comments only for non-obvious constraints;
   side-effectful effects get a one-line `// why:` (trigger + observable result).
-- English is American spelling and vocabulary everywhere — docs, comments, chrome copy, and
-  catalog content (British forms are accepted `variants`, never `text`; see `catalog/README.md`).
+- English is American spelling and vocabulary everywhere — docs, comments, chrome copy, catalog
+  content (a British spelling is a `variant`, a British word a `synonym`; `catalog/README.md`).
 - ALWAYS use **Semantic linebreaks** for text - in docs, markdown files, documentation comments: one sentence/clause per line.
 - Tests: behavior over implementation detail; extract pure logic so it's testable without the framework.
 - Engine APIs name the rule, never the rendering: no screen positions in kern types.

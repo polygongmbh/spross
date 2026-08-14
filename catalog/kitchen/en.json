@@ -76,9 +76,11 @@
   },
   "tin-can": {
    "text": "tin can",
-   "variants": [
-    "can",
+   "synonyms": [
     "tin"
+   ],
+   "variants": [
+    "can"
    ]
   },
   "the-knife-is-sharp": {

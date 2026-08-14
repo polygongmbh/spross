@@ -34,7 +34,7 @@
   },
   "store": {
    "text": "store",
-   "variants": [
+   "synonyms": [
     "shop"
    ]
   },
@@ -70,8 +70,10 @@
   },
   "cinema": {
    "text": "cinema",
+   "synonyms": [
+    "movie theater"
+   ],
    "variants": [
-    "movie theater",
     "movie theatre"
    ]
   },

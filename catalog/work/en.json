@@ -38,7 +38,7 @@
   },
   "vacation": {
    "text": "vacation",
-   "variants": [
+   "synonyms": [
     "holiday"
    ]
   },
