@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 4.2.0 — 2026-08-14
+
 - **English is taught in American spelling and vocabulary, and the British word is named
   beside it.** Every English card now leads with the American form. Where the two Englishes
   merely spell a word differently, the British spelling still grades as correct and is
