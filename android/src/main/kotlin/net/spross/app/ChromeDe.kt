@@ -85,6 +85,7 @@ internal val ChromeDe = Chrome(
     tasksDone = "%d Aufgaben 🎯",
     bestStreak = "Beste Serie: 🔥 %s in Folge",
     answerCorrect = "Richtig",
+    answerAlmost = "Fast richtig",
     answerWrong = "Falsch",
     close = "Schließen",
     numbersTitle = "Zahlen",

@@ -57,6 +57,7 @@ MAPPING = {
     'alphabetSpeakName': 'alphabet.speakName',
     'alphabetTitle': 'trainer.alphabet',
     'also': 'grammar.also %@',
+    'answerAlmost': 'a11y.almost',
     'answerCorrect': 'a11y.correct',
     'answerDigits': 'trainer.answer.digits',
     'answerPlaceholder': 'session.answer.placeholder %@',

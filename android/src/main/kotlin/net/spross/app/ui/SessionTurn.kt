@@ -108,7 +108,13 @@ fun AnswerField(
             .fillMaxWidth()
             .focusRequester(focus)
             .semantics {
-                if (feedback == TurnFeedback.Correct) stateDescription = chrome.answerCorrect
+                when (feedback) {
+                    TurnFeedback.Correct -> stateDescription = chrome.answerCorrect
+                    // why: the amber edge is the whole of what tells a near miss from a
+                    // clean answer, and a color says nothing to TalkBack (WCAG 1.4.1).
+                    is TurnFeedback.Almost -> stateDescription = chrome.answerAlmost
+                    else -> {}
+                }
             },
         placeholder = { Text(placeholder) },
         trailingIcon = mark,

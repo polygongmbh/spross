@@ -85,6 +85,7 @@ internal val ChromeEn = Chrome(
     tasksDone = "%d tasks 🎯",
     bestStreak = "Best streak: 🔥 %s in a row",
     answerCorrect = "Correct",
+    answerAlmost = "Almost correct",
     answerWrong = "Wrong",
     close = "Close",
     numbersTitle = "Numbers",

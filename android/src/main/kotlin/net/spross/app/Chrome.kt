@@ -92,6 +92,7 @@ data class Chrome(
     val tasksDone: String,         // %d
     val bestStreak: String,        // %d
     val answerCorrect: String,     // an answered tile's state, never color alone
+    val answerAlmost: String,      // the near miss's own — amber is not a state a reader hears
     val answerWrong: String,
 
     // ── The three overview pages ────────────────────────────────────────────────
