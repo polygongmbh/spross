@@ -5,7 +5,9 @@ import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.Inventory
 import net.spross.kern.box.Statistics
+import net.spross.kern.box.mergeDailyStats
 import net.spross.kern.model.Card
+import net.spross.kern.model.DayStats
 import net.spross.kern.store.DayStatsDto
 import net.spross.kern.store.StoreJson
 import net.spross.kern.store.dayStatsDto
@@ -36,14 +38,30 @@ object WidgetSnapshotBuilder {
      */
     const val MAX_TEXT_CHARS: Int = 20
 
+    /**
+     * [otherLanguagesDailyStats]: `dailyStats` from every OTHER target-language box —
+     * the widget's own streak walk (`WidgetSnapshot.swift`, DELIBERATE duplication of
+     * [Statistics.streak]) reads whatever [WidgetSnapshotDoc.dailyStats] carries, so
+     * merging cross-language activity in here is the whole fix; the widget target
+     * itself needs no change.
+     */
     fun build(
         state: BoxState,
         nowEpochMillis: Long,
         exposureLimit: Int = DEFAULT_EXPOSURE_LIMIT,
+        otherLanguagesDailyStats: List<Map<String, DayStats>> = emptyList(),
     ): String =
-        StoreJson.encodeSorted(WidgetSnapshotDoc.serializer(), doc(state, nowEpochMillis, exposureLimit))
+        StoreJson.encodeSorted(
+            WidgetSnapshotDoc.serializer(),
+            doc(state, nowEpochMillis, exposureLimit, otherLanguagesDailyStats),
+        )
 
-    internal fun doc(state: BoxState, nowEpochMillis: Long, exposureLimit: Int): WidgetSnapshotDoc {
+    internal fun doc(
+        state: BoxState,
+        nowEpochMillis: Long,
+        exposureLimit: Int,
+        otherLanguagesDailyStats: List<Map<String, DayStats>> = emptyList(),
+    ): WidgetSnapshotDoc {
         val entries = BoxEngine.exposureCards(state, nowEpochMillis, exposureLimit, ::fitsOnWidget).map { card ->
             WidgetEntryDto(
                 cardId = card.id,
@@ -58,14 +76,15 @@ object WidgetSnapshotBuilder {
             val due = sched.due ?: return@mapNotNull null
             WidgetCardDto(cardId = sched.cardId, due = due.toEpochMilliseconds())
         }
+        val combinedDailyStats = mergeDailyStats(otherLanguagesDailyStats + state.dailyStats)
         // why: yyyy-MM-dd keys sort chronologically as strings — the tail is a plain sort.
-        val tailKeys = state.dailyStats.keys.sorted().takeLast(DAILY_STATS_TAIL_DAYS)
+        val tailKeys = combinedDailyStats.keys.sorted().takeLast(DAILY_STATS_TAIL_DAYS)
         return WidgetSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             entries = entries,
             cards = cards,
             consolidatedCount = active.count { Statistics.isConsolidated(state, it) },
-            dailyStats = tailKeys.associateWith { dayStatsDto(state.dailyStats.getValue(it)) },
+            dailyStats = tailKeys.associateWith { dayStatsDto(combinedDailyStats.getValue(it)) },
         )
     }
 

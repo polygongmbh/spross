@@ -63,6 +63,31 @@ data class AreaStatistics(
     val progressTotal: Int get() = maxOf(total, consolidated + learning, 1)
 }
 
+/**
+ * Sum of daily activity across independent `dailyStats` maps — one per TARGET
+ * language box. Growing is one commitment, not one per language the learner
+ * happens to be studying, so a day earns the streak whichever language(s) it
+ * was spent on; every count here (not just [DayStats.reviews]) sums the same
+ * way, so a caller reading any bucket off the result sees the whole box.
+ * A day present in only some maps still merges cleanly — the rest read as
+ * [DayStats]'s all-zero default for that day.
+ */
+fun mergeDailyStats(dailyStatsByLanguage: List<Map<String, DayStats>>): Map<String, DayStats> {
+    if (dailyStatsByLanguage.size <= 1) return dailyStatsByLanguage.firstOrNull() ?: emptyMap()
+    val days = dailyStatsByLanguage.asSequence().flatMap { it.keys }.toSet()
+    return days.associateWith { day ->
+        dailyStatsByLanguage.fold(DayStats()) { sum, byDay ->
+            val d = byDay[day] ?: return@fold sum
+            DayStats(
+                reviews = sum.reviews + d.reviews,
+                introduced = sum.introduced + d.introduced,
+                consolidated = sum.consolidated + d.consolidated,
+                activeCount = sum.activeCount + d.activeCount,
+            )
+        }
+    }
+}
+
 /** How the streak rule reads one day of the trailing window. */
 enum class StreakRole {
     /** Reviews were done; the day is part of the current run and counts toward it. */
@@ -124,16 +149,24 @@ fun streakWindow(
 
 internal object Statistics {
 
-    fun statistics(state: BoxState, nowEpochMillis: Long, tzId: String): BoxStatistics {
+    fun statistics(
+        state: BoxState,
+        nowEpochMillis: Long,
+        tzId: String,
+        otherLanguagesDailyStats: List<Map<String, DayStats>> = emptyList(),
+    ): BoxStatistics {
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         val active = Inventory.active(state)
+        // why: the streak is a box-wide commitment, not a per-target-language one —
+        // see [mergeDailyStats] — everything else here stays scoped to THIS join.
+        val combinedDailyStats = mergeDailyStats(otherLanguagesDailyStats + state.dailyStats)
         return BoxStatistics(
             activeCount = active.size,
             consolidatedCount = active.count { isConsolidated(state, it) },
             dueCount = active.count { it.due != null && it.due <= now },
             suspendedCount = Inventory.scheduled(state).count { it.suspended },
-            streak = streak(state.dailyStats, nowEpochMillis, tzId),
-            longestStreak = longestStreak(state.dailyStats, nowEpochMillis, tzId),
+            streak = streak(combinedDailyStats, nowEpochMillis, tzId),
+            longestStreak = longestStreak(combinedDailyStats, nowEpochMillis, tzId),
             areas = areaStatistics(state),
         )
     }

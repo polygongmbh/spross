@@ -82,6 +82,13 @@ final class AppModel {
     #endif
 
     let store: BoxStore
+    /// `dailyStats` from every OTHER target-language box on disk — the box's
+    /// streak is one commitment across every language the learner studies, not
+    /// one per language (`Statistics.mergeDailyStats`). Reloaded whenever
+    /// `activate` switches languages; a per-answer disk read for every OTHER
+    /// language's box would be wasteful since those files only change while
+    /// THEY are the active target.
+    private(set) var otherLanguagesDailyStats: [[String: DayStats]] = []
     /// Watch sync bridge (PhoneConnectivity.swift): snapshot down, events up.
     let watchBridge = PhoneConnectivity()
     static let sourceLanguageKey = "sourceLanguage"
@@ -211,6 +218,7 @@ final class AppModel {
             }
             box = state
             try await store.saveNow(json: StoreCodec.shared.encode(state: state), target: target)
+            await reloadOtherLanguagesDailyStats(excluding: target)
             await store.saveWidgetSnapshot(json: widgetSnapshotJSON(for: state))
             // why: a widget left without a readable snapshot by an update shows the
             // sprout until its timeline is rebuilt — launching is what the sprout
@@ -302,11 +310,28 @@ final class AppModel {
     func refreshStats() {
         let now = Date().epochMillis
         stats = box.map {
-            BoxEngine.shared.statistics(state: $0, nowEpochMillis: now, tzId: currentTzId())
+            BoxEngine.shared.statistics(state: $0, nowEpochMillis: now, tzId: currentTzId(),
+                                         otherLanguagesDailyStats: otherLanguagesDailyStats)
         }
         growth = box.map {
             BoxEngine.shared.growth(state: $0, nowEpochMillis: now, tzId: currentTzId())
         } ?? []
+    }
+
+    /// Reload `otherLanguagesDailyStats` for every catalog language except
+    /// `target`. A sibling box that is missing or fails to decode is simply
+    /// skipped — its own load path surfaces the real error when the learner
+    /// switches to it; the streak merge only wants what is readable.
+    private func reloadOtherLanguagesDailyStats(excluding target: String) async {
+        guard let catalog else { otherLanguagesDailyStats = []; return }
+        var gathered: [[String: DayStats]] = []
+        for language in catalog.languages.keys where language != target {
+            guard let json = try? await store.load(target: language),
+                  let decoded = try? StoreCodec.shared.decode(json: json)
+            else { continue }
+            gathered.append(decoded.dailyStats)
+        }
+        otherLanguagesDailyStats = gathered
     }
 
     /// Scene went to background → fold any mid-session reviews into dailyStats
@@ -343,7 +368,8 @@ final class AppModel {
     func widgetSnapshotJSON(for state: BoxState) -> String {
         WidgetSnapshotBuilder.shared.build(
             state: state, nowEpochMillis: Date().epochMillis,
-            exposureLimit: WidgetSnapshotBuilder.shared.DEFAULT_EXPOSURE_LIMIT)
+            exposureLimit: WidgetSnapshotBuilder.shared.DEFAULT_EXPOSURE_LIMIT,
+            otherLanguagesDailyStats: otherLanguagesDailyStats)
     }
 
     /// Apply a change to the box, persist immediately, refresh statistics.

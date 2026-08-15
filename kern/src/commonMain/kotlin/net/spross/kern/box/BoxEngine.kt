@@ -159,8 +159,18 @@ object BoxEngine {
     fun dueNow(state: BoxState, nowEpochMillis: Long): List<String> =
         Inventory.due(state, nowEpochMillis).map { it.cardId }
 
-    fun statistics(state: BoxState, nowEpochMillis: Long, tzId: String): BoxStatistics =
-        Statistics.statistics(state, nowEpochMillis, tzId)
+    /**
+     * [otherLanguagesDailyStats]: `dailyStats` from every OTHER target-language box
+     * the learner has (each keyed by its own day, THIS state's own [BoxState.dailyStats]
+     * added in here) — the streak counts the day, not which language it was spent on.
+     * Everything else stays scoped to this join.
+     */
+    fun statistics(
+        state: BoxState,
+        nowEpochMillis: Long,
+        tzId: String,
+        otherLanguagesDailyStats: List<Map<String, DayStats>> = emptyList(),
+    ): BoxStatistics = Statistics.statistics(state, nowEpochMillis, tzId, otherLanguagesDailyStats)
 
     /** What the learner did today, live from the logs and the day counters. */
     fun today(state: BoxState, nowEpochMillis: Long, tzId: String): TodayReport =
