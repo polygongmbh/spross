@@ -3,18 +3,23 @@ package net.spross.app.ui
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -25,10 +30,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.Legal
@@ -94,9 +103,6 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                     )
                 }
                 SettingHint(chrome.profileHint)
-                // The same pair, on the full picker: it lists how many words each pairing
-                // joins, which two collapsed dropdowns have no room to say.
-                TextButton(onClick = { model.editLanguages() }) { Text(chrome.changeLanguages) }
                 HorizontalDivider(color = Dl.colors.separator)
                 ReadAloudSetting(model)
                 HorizontalDivider(color = Dl.colors.separator)
@@ -176,6 +182,11 @@ private fun Context.openFeedbackMail(subject: String) {
 /**
  * One side of the pair. The collapsed label carries the flag and the English exonym — it
  * has half a row to live in — while the open menu has room for "🇺🇦 Українська · Ukrainian".
+ *
+ * A recessed field with a chevron, the iOS cut's shape: an outlined BUTTON drew the pick in
+ * accent ink and centered it, so the name read as an action and a label too wide for half a
+ * row was clipped from both ends down to its flag. Here the name is text on a control — ink
+ * on the recessed fill, left where a value belongs, stepping down before it is cut.
  */
 @Composable
 private fun LanguageMenu(
@@ -187,20 +198,43 @@ private fun LanguageMenu(
     modifier: Modifier = Modifier,
 ) {
     var open by remember { mutableStateOf(false) }
+    val label = LanguageChoices.pickerLabel(selected, catalog.languages[selected])
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
         Text(title, style = MaterialTheme.typography.titleMedium)
         Box {
-            OutlinedButton(
-                onClick = { open = true },
-                shape = MaterialTheme.shapes.small,
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .semantics { contentDescription = title }
-                    .pressSpring(),
+                    // why: the spring sits OUTSIDE the fill — a press shrinks the field,
+                    // not just the name inside it.
+                    .pressSpring()
+                    .clip(MaterialTheme.shapes.small)
+                    .background(Dl.colors.surfaceTint)
+                    .clickable(role = Role.DropdownList) { open = true }
+                    // why: one stable label, the pick as its VALUE — the field's own text is
+                    // a merged child, so without this TalkBack announces which language but
+                    // never which of the two questions it answers.
+                    .semantics { contentDescription = title; stateDescription = label }
+                    .heightIn(min = 48.dp)
+                    .padding(horizontal = DlSpace.m, vertical = DlSpace.s),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
             ) {
                 Text(
-                    LanguageChoices.pickerLabel(selected, catalog.languages[selected]),
+                    label,
+                    style = MaterialTheme.typography.bodyMedium,
                     maxLines = 1,
+                    modifier = Modifier.weight(1f),
+                    autoSize = TextAutoSize.StepBased(
+                        minFontSize = PICKER_FLOOR,
+                        maxFontSize = MaterialTheme.typography.bodyMedium.fontSize,
+                    ),
+                )
+                Icon(
+                    SprossIcons.ChevronDown,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(16.dp),
                 )
             }
             DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
@@ -214,6 +248,9 @@ private fun LanguageMenu(
         }
     }
 }
+
+/** Where an exonym too wide for half a row bottoms out; iOS scales its own to 0.8. */
+private val PICKER_FLOOR = 12.sp
 
 /**
  * The same one device-scoped flag the session's top bar switches, and a standing home for

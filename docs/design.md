@@ -49,6 +49,9 @@ Strict dependency direction: App → SprossKern, never the reverse.
   and picking a source hands the screen to the target. Onboarding opens with the known
   side folded — the device language is a good guess already — so the picker is one
   screen with one open question, no scrolling.
+- The chooser is the FIRST-LAUNCH screen — it is what a device with no profile yet opens on.
+  Afterwards the pair is changed on the box's own two pickers, beside everything else the box
+  is configured by, so there is one place to change it and the chooser never reopens.
 - Picker rows carry the flag, the language's own name, and the English exonym
   ("🇺🇦 Українська · Ukrainian"): a flag beside an unreadable script is easy to
   mistake for a neighboring language.

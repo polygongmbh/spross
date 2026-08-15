@@ -16,7 +16,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,14 +30,16 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
-import net.spross.app.Screen
 import net.spross.kern.catalog.LanguageChoices
 
 /**
- * First-launch (and "change languages") picker — iOS OnboardingView parity:
- * chrome is ENGLISH (it renders before the user's language is known), rows
- * are "🇩🇪 German", and neither side hides the other's pick — choosing it
- * swaps the two selections ([LanguageChoices]).
+ * First-launch picker — iOS OnboardingView parity: chrome is ENGLISH (it renders before
+ * the user's language is known), rows are "🇩🇪 German", and neither side hides the other's
+ * pick — choosing it swaps the two selections ([LanguageChoices]).
+ *
+ * It is reached once, on a device with no profile yet: a learner who wants another pair
+ * later changes it in the box's own settings, where the pickers stand beside everything
+ * else the box is configured by.
  *
  * One side is open at a time and the other shows its pick as a row that opens it:
  * both lists at once is more of the screen than the two questions are worth, and a
@@ -49,14 +50,10 @@ import net.spross.kern.catalog.LanguageChoices
 fun OnboardingScreen(model: AppModel) {
     val catalog = model.catalog ?: return
     val chrome = remember { Chrome.forSource("en") }
-    val editing = (model.screen as? Screen.Onboarding)?.editing == true
-    val initialSource = model.box?.joinStamp?.source ?: model.defaultSource(catalog)
+    val initialSource = model.defaultSource(catalog)
     var source by rememberSaveable { mutableStateOf(initialSource) }
     var target by rememberSaveable {
-        mutableStateOf(
-            model.box?.joinStamp?.target
-                ?: catalog.availableTargets(initialSource).firstOrNull()?.code
-        )
+        mutableStateOf(catalog.availableTargets(initialSource).firstOrNull()?.code)
     }
     var pickingSource by rememberSaveable { mutableStateOf(false) }
     val choices = remember(catalog, source, target) {
@@ -111,11 +108,6 @@ fun OnboardingScreen(model: AppModel) {
             shape = MaterialTheme.shapes.small,
         ) {
             Text(chrome.letsGo)
-        }
-        if (editing) {
-            TextButton(onClick = { model.cancelOnboarding() }, modifier = Modifier.fillMaxWidth()) {
-                Text(chrome.backLabel)
-            }
         }
     }
 }

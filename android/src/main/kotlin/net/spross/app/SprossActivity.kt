@@ -110,7 +110,7 @@ class SprossActivity : ComponentActivity() {
  * way in is through the box's own settings.
  */
 private fun Screen.depth(): Int = when (this) {
-    Screen.Loading, is Screen.Onboarding, Screen.Heute -> 0
+    Screen.Loading, Screen.Onboarding, Screen.Heute -> 0
     Screen.About -> 2
     else -> 1
 }
@@ -144,7 +144,7 @@ private fun Root(model: AppModel = viewModel()) {
             Screen.Loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator()
             }
-            is Screen.Onboarding -> OnboardingScreen(model)
+            Screen.Onboarding -> OnboardingScreen(model)
             Screen.Heute -> HeuteScreen(model)
             Screen.Session -> SessionScreen(model)
             Screen.About -> AboutScreen(model)

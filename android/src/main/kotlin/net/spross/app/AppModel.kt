@@ -54,7 +54,7 @@ import net.spross.kern.trainer.TrainerMode
 
 sealed interface Screen {
     data object Loading : Screen
-    data class Onboarding(val editing: Boolean) : Screen
+    data object Onboarding : Screen
     data object Heute : Screen
     data object Session : Screen
     data object About : Screen
@@ -218,7 +218,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 activate(source, target)
             } else {
                 chrome = Chrome.forSource(defaultSource(loaded))
-                screen = Screen.Onboarding(editing = false)
+                screen = Screen.Onboarding
             }
         }
     }
@@ -233,10 +233,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     fun completeOnboarding(source: String, target: String) {
         profile.set(source, target)
         viewModelScope.launch { activate(source, target) }
-    }
-
-    fun editLanguages() {
-        screen = Screen.Onboarding(editing = true)
     }
 
     fun openAbout() {
@@ -354,10 +350,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         werkstatt.readLadder(stamp.target)
         werkstatt.seeLetters(letterReport())
         werkstatt.readCountries(stamp.source, stamp.target)
-    }
-
-    fun cancelOnboarding() {
-        if (box != null) screen = Screen.Heute
     }
 
     private suspend fun activate(source: String, target: String) {
