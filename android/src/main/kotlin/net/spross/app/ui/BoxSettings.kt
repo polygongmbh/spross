@@ -1,5 +1,8 @@
 package net.spross.app.ui
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,11 +25,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.Legal
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.catalog.Catalog
@@ -103,7 +108,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                 }
             }
         }
-        TextButton(onClick = { model.openAbout() }) { Text(chrome.aboutButton) }
+        AboutFooter(model)
     }
 
     if (confirmingReset) {
@@ -126,6 +131,46 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
             },
         )
     }
+}
+
+/**
+ * The box's foot: which build is installed, the address that answers for it, and the door
+ * to voices and licenses. The address is printed rather than hidden behind a verb, so it
+ * is readable on a device that carries no mail app at all.
+ */
+@Composable
+private fun AboutFooter(model: AppModel) {
+    val context = LocalContext.current
+    // why: read off the installed package rather than BuildConfig — the app declares no
+    // buildConfig feature, and this is the version the store actually shipped.
+    val version = remember(context) {
+        "Spross v" + context.packageManager.getPackageInfo(context.packageName, 0).versionName
+    }
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
+    ) {
+        Text(
+            version,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        TextButton(onClick = { context.openFeedbackMail(version) }) {
+            Text(Legal.CONTACT_ADDRESS)
+        }
+        TextButton(onClick = { model.openAbout() }) { Text(model.chrome.aboutButton) }
+    }
+}
+
+/**
+ * A mailto: through ACTION_SENDTO, so only mail apps answer it. The build rides in the
+ * subject — a report is actionable once it names the version it came from — and a device
+ * with no mail client stays put instead of crashing.
+ */
+private fun Context.openFeedbackMail(subject: String) {
+    val uri = Uri.parse("mailto:${Legal.CONTACT_ADDRESS}?subject=${Uri.encode(subject)}")
+    runCatching { startActivity(Intent(Intent.ACTION_SENDTO, uri)) }
 }
 
 /**

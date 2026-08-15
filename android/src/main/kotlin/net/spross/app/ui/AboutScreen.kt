@@ -23,7 +23,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -35,9 +34,9 @@ import net.spross.app.Chrome
 import net.spross.kern.catalog.AudioCredit
 
 /**
- * Android's only settings surface beyond the language switch: the app's version, the
- * read-aloud row (iOS carries this one in Box settings — Android has no settings
- * screen, a deliberate delta) and who spoke the bundled recordings.
+ * The read-aloud row and who spoke the bundled recordings. Which build is installed and
+ * the address that answers for it stand in the box's own footer, where the door to this
+ * screen is.
  *
  * The credits come from `Catalog.audioCredits()`, derived from the SHIPPED manifests,
  * so this screen can neither credit what is not bundled nor miss what is — and it
@@ -59,7 +58,6 @@ fun AboutScreen(model: AppModel) {
         }
         LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
             item { Spacer(Modifier.height(4.dp)) }
-            item { VersionLine() }
             item { ReadAloudRow(model) }
             item {
                 Text(chrome.creditsTitle, style = MaterialTheme.typography.titleLarge)
@@ -84,21 +82,6 @@ private fun creditSections(model: AppModel): List<Pair<String, List<AudioCredit>
         sections.getOrPut(credit.language) { mutableListOf() } += credit
     }
     return sections.map { (language, credits) -> language to credits.toList() }
-}
-
-@Composable
-private fun VersionLine() {
-    val context = LocalContext.current
-    // why: read off the installed package rather than BuildConfig — the app declares
-    // no buildConfig feature, and this is the version the store actually shipped.
-    val version = remember(context) {
-        context.packageManager.getPackageInfo(context.packageName, 0).versionName
-    }
-    Text(
-        "Spross v$version",
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-    )
 }
 
 /**
