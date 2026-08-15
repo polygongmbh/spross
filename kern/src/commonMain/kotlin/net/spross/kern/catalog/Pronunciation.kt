@@ -12,9 +12,18 @@ import net.spross.kern.model.nfcNormalized
 private const val EDGE_PUNCTUATION = "!?¡¿.,;:…\"'«»„“”‘’‹›"
 
 /**
+ * Typewriter, curly, and the modifier letter — the same apostrophe class the alphabet
+ * grading folds: an INNER apostrophe is part of the word (uk ім'я, fr s'habiller), but
+ * which codepoint spells it is typography — Commons titles French elision with U+2019
+ * while the catalog writes U+0027, and the two must key one sound.
+ */
+private val APOSTROPHES = setOf('\u0027', '\u2019', '\u02bc')
+
+/**
  * The normative speech normalization (README §11): trim whitespace, strip ONE leading
  * `-` (the adjective stem citation Swahili authors as `-zuri`), strip leading and
- * trailing sentence punctuation, NFC, lowercase.
+ * trailing sentence punctuation, NFC, lowercase, and fold the inner apostrophe class
+ * to U+02BC.
  *
  * Applied IDENTICALLY to a manifest's `matches` when the index is built and to the
  * visible form at lookup, so a recording of "hallo" answers a card showing "Hallo!"
@@ -23,7 +32,9 @@ private const val EDGE_PUNCTUATION = "!?¡¿.,;:…\"'«»„“”‘’‹›"
  */
 fun speechKey(form: String): String {
     val stem = form.trim().removePrefix("-")
-    return nfcNormalized(stem.trim { it.isWhitespace() || it in EDGE_PUNCTUATION }).lowercase()
+    val key = nfcNormalized(stem.trim { it.isWhitespace() || it in EDGE_PUNCTUATION }).lowercase()
+    return if (key.none { it in APOSTROPHES }) key
+    else key.map { if (it in APOSTROPHES) '\u02bc' else it }.joinToString("")
 }
 
 /**

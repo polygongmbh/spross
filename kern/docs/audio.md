@@ -16,7 +16,9 @@ Engine contract: `../README.md`.
   The recordings speak bare headwords, so this is the only rule that holds for the recorded and the synthesized branch alike.
 - **Two normalizations, both normative** (`catalog/Pronunciation.kt`):
   `speechKey(form)` — trim whitespace, strip ONE leading `-` (the Swahili adjective stem citation `-zuri`),
-  strip leading/trailing sentence punctuation and quote marks — `¡`/`¿` among them, because Spanish writes them and no one says them —, NFC, lowercase.
+  strip leading/trailing sentence punctuation and quote marks — `¡`/`¿` among them, because Spanish writes them and no one says them —, NFC, lowercase,
+  and fold the INNER apostrophe class (U+0027, U+2019, U+02BC) to U+02BC — the class the alphabet grading already folds,
+  because Commons titles French elision with `’` while the catalog writes `'`, and the two must key one sound.
   `utterance(form)` — what a synthesizer is handed: the leading `-` gone (it gets vocalized as "minus"),
   terminal punctuation KEPT, because it carries prosody.
   `speechKey` is applied identically to a manifest's `matches` and to the visible form; nothing else folds.

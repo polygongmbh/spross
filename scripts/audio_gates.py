@@ -51,9 +51,18 @@ ASSUMED_AUTHOR = re.compile(r'assumed \(based on copyright claims\)', re.IGNOREC
 # writes and the lookup that reads it have to fold the same things away.
 EDGE_PUNCTUATION = '!?¡¿.,;:…"\'«»„“”‘’‹›'
 
+# The inner apostrophe class, folded to U+02BC exactly as kern folds it: Commons titles
+# French elision with U+2019 while the catalog writes U+0027, and the two must key one sound.
+APOSTROPHES = '\u0027\u2019\u02bc'
+
+
+def apostrophe_folded(text):
+    return ''.join('\u02bc' if char in APOSTROPHES else char for char in text)
+
 
 def speech_key(form):
-    """Port of kern's `speechKey`: strip a leading stem dash and edge punctuation, NFC, lower."""
+    """Port of kern's `speechKey`: strip a leading stem dash and edge punctuation, NFC,
+    lower, fold the inner apostrophe class to U+02BC."""
     stem = form.strip()
     if stem.startswith('-'):
         stem = stem[1:]
@@ -61,7 +70,7 @@ def speech_key(form):
         stem = stem[1:]
     while stem and (stem[-1].isspace() or stem[-1] in EDGE_PUNCTUATION):
         stem = stem[:-1]
-    return unicodedata.normalize('NFC', stem).lower()
+    return apostrophe_folded(unicodedata.normalize('NFC', stem).lower())
 
 
 def digest_of(path):
@@ -112,8 +121,10 @@ def keep_named_by_its_file(rows, drops):
     kept = []
     for row in rows:
         match = LINGUA_LIBRE.match(unicodedata.normalize("NFC", row["file"]))
-        author = row["author"].strip().lower()
-        rest = unicodedata.normalize("NFC", match.group("rest")).lower() if match else ""
+        author = apostrophe_folded(row["author"].strip().lower())
+        # why: the tail is apostrophe-folded like the speech key it is compared against —
+        # Commons titles French elision with U+2019 while the catalog writes U+0027.
+        rest = apostrophe_folded(unicodedata.normalize("NFC", match.group("rest")).lower()) if match else ""
         if not match or not author or not rest.startswith(author + "-"):
             kept.append(row)
         elif rest[len(author) + 1:] == speech_key(row["matched_word"]):

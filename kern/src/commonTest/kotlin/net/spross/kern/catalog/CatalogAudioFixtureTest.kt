@@ -176,7 +176,10 @@ class CatalogAudioFixtureTest {
         assertEquals("hola", speechKey("¡Hola!")) // Spanish opens what it closes
         assertEquals(speechKey("zuri"), speechKey("-zuri"))
         assertEquals("tür", speechKey("Tu\u0308r")) // decomposed input, composed key
-        assertEquals("ім'я", speechKey("ім'я")) // an INNER apostrophe is part of the word
+        // an INNER apostrophe is part of the word — one class, three spellings, one key:
+        // Commons titles French elision with U+2019, the catalog writes U+0027.
+        assertEquals("ім\u02bcя", speechKey("ім'я"))
+        assertEquals(speechKey("s'habiller"), speechKey("s\u2019habiller"))
     }
 
     @Test
