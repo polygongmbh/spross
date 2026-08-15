@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.0.0 — 2026-08-15
+
 - **The streak counts the day, not the language.** Studying German today and Swahili
   yesterday used to read as two broken streaks instead of one that held — each target
   language kept its own flame, because each one's progress lives in its own file. The
@@ -36,11 +38,12 @@
   says "How well did you know it?", and the three buttons answer in words —
   *Knew it · Shaky · Not at all* — instead of the scheduler's own vocabulary.
 
-- **Android says where a newer version comes from.** The foot of the box, under the
-  build it is running, opens Obtainium on this app's releases so every future one is
-  offered by itself — and where Obtainium is not installed, offers it or a direct
-  download instead. Nothing is checked in the background; the app still asks the
-  network for nothing at all.
+- **Android says where a newer version comes from.** The build the box names at its
+  foot is now the way to the next one: tapping it opens Obtainium on this app's
+  releases, so every future version is offered by itself — and where Obtainium is not
+  installed, it offers that or a direct download instead. The feedback address and the
+  info page moved up into a row of their own above it. Nothing is checked in the
+  background; the app still asks the network for nothing at all.
 
 - **Both phones say the same sentence.** The Android wording had drifted from the
   iPhone's on a long tail of surfaces — a different name on the licenses page, a
