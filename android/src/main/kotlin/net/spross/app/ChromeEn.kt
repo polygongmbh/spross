@@ -219,7 +219,8 @@ internal val ChromeEn = Chrome(
     profileHint = "Switching the language you speak keeps all your progress; each language " +
         "you learn has its own box.",
     resetButton = "Reset box …",
-    resetHint = "Deletes this box's progress and history — the content stays.",
+    resetHint = "Deletes progress and history for %s only — your own words and your other " +
+        "languages stay.",
     resetConfirm = "Delete all learning progress for %s and start over with the first words?",
     cancel = "Cancel",
     reset = "Reset",

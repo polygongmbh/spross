@@ -4247,18 +4247,18 @@
         }
       }
     },
-    "settings.reset.hint" : {
+    "settings.reset.hint %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Löscht Fortschritt und Verlauf dieser Box — die Inhalte bleiben."
+            "value" : "Löscht nur Fortschritt und Verlauf für %@ — deine eigenen Wörter und deine anderen Sprachen bleiben."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deletes this box's progress and history — the content stays."
+            "value" : "Deletes progress and history for %@ only — your own words and your other languages stay."
           }
         }
       }

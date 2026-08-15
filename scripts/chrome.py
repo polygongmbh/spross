@@ -185,7 +185,7 @@ MAPPING = {
     'reset': 'common.reset',
     'resetButton': 'settings.reset.button',
     'resetConfirm': 'settings.reset.confirm %@',
-    'resetHint': 'settings.reset.hint',
+    'resetHint': 'settings.reset.hint %@',
     'restHint': 'session.finished.restHint',
     'reveal': 'session.reveal',
     'roundAllDone': 'session.summary.allDone',

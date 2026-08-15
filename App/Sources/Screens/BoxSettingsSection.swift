@@ -205,7 +205,7 @@ struct BoxSettingsSection: View {
                 }
                 Button("common.cancel", role: .cancel) {}
             }
-            Text("settings.reset.hint")
+            Text("settings.reset.hint \(targetName)")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }

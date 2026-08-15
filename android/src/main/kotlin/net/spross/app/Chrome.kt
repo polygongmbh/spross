@@ -236,7 +236,7 @@ data class Chrome(
     val settingsTitle: String,
     val profileHint: String,
     val resetButton: String,
-    val resetHint: String,
+    val resetHint: String,         // %s = the language being learnt, in its own name
     val resetConfirm: String,      // %s = the language being learnt, in its own name
     val cancel: String,
     val reset: String,

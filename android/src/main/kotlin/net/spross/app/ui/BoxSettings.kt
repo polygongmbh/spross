@@ -63,6 +63,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
     val targets = remember(catalog, selection) {
         LanguageChoices.targetChoices(catalog, selection)
     }
+    val targetName = catalog.languages[box.joinStamp.target]?.name ?: box.joinStamp.target
 
     fun apply(next: LanguageChoices.Selection) {
         // why: a tap on the row already in force must not rebuild the box — re-joining is
@@ -110,7 +111,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                     TextButton(onClick = { confirmingReset = true }) {
                         Text(chrome.resetButton, color = Dl.colors.wrong)
                     }
-                    SettingHint(chrome.resetHint)
+                    SettingHint(chrome.resetHint.format(targetName))
                 }
             }
         }
@@ -118,11 +119,10 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
     }
 
     if (confirmingReset) {
-        val native = catalog.languages[box.joinStamp.target]?.name ?: box.joinStamp.target
         AlertDialog(
             onDismissRequest = { confirmingReset = false },
             title = { Text(chrome.resetButton) },
-            text = { Text(chrome.resetConfirm.format(native)) },
+            text = { Text(chrome.resetConfirm.format(targetName)) },
             confirmButton = {
                 TextButton(onClick = {
                     confirmingReset = false
