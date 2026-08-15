@@ -63,7 +63,11 @@ data class SessionRunState(
     val step: SessionStep,
     /** Card ids still to answer, front first. */
     val queue: List<String>,
-    /** The promise on screen; it moves only on an endless refill or a dropped answer. */
+    /**
+     * The promise on screen; it moves only on an endless refill or a dropped answer,
+     * and never below [answered] — [segments] holds one part per rating, so a total
+     * under it would be a run drawing more parts than it claims to have.
+     */
     val total: Int,
     val answered: Int,
     /** Answers already booked into `dailyStats`; later folds add the delta only. */
@@ -182,8 +186,10 @@ object SessionRun {
             )
         } else {
             // Stale or dropped answers leave the run silently — shrink the total so the
-            // progress counter stays honest.
-            state.copy(box = outcome.state, total = max(1, state.total - 1))
+            // progress counter stays honest, but never past what the run has already
+            // answered: the ratings are the progress bar's segments, and a run claiming
+            // fewer cards than it booked draws more of them than it says it holds.
+            state.copy(box = outcome.state, total = maxOf(1, state.answered, state.total - 1))
         }
         return advance(next.copy(queue = next.queue.drop(1)), listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
     }
