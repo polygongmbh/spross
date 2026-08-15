@@ -1,0 +1,75 @@
+{
+ "title": "Demandvortoj",
+ "subtitle": "Kiu, kio, kiam kaj kial.",
+ "words": {
+  "where": {
+   "text": "kie"
+  },
+  "who": {
+   "text": "kiu",
+   "notes": {
+    "de": "kiu heißt auch „welcher“ — Esperanto trennt beides nicht: Kiu libro? — Welches Buch?"
+   }
+  },
+  "what": {
+   "text": "kio"
+  },
+  "here": {
+   "text": "ĉi tie",
+   "variants": [
+    "tie ĉi"
+   ],
+   "notes": {
+    "de": "ĉi rückt heran: tie → ĉi tie, tio → ĉi tio · die Stellung ĉi tie oder tie ĉi ist frei."
+   }
+  },
+  "there": {
+   "text": "tie"
+  },
+  "this": {
+   "text": "ĉi tio",
+   "variants": [
+    "tio ĉi"
+   ]
+  },
+  "that": {
+   "text": "tio"
+  },
+  "when": {
+   "text": "kiam"
+  },
+  "why": {
+   "text": "kial"
+  },
+  "how": {
+   "text": "kiel"
+  },
+  "how-many": {
+   "text": "kiom"
+  },
+  "where-are-they": {
+   "text": "Kie ili estas?"
+  },
+  "who-is-there": {
+   "text": "Kiu estas tie?"
+  },
+  "do-you-need-this": {
+   "text": "Ĉu vi bezonas ĉi tion?"
+  },
+  "when-does-it-start": {
+   "text": "Kiam ĝi komenciĝas?",
+   "notes": {
+    "de": "komenci ist transitiv — man beginnt etwas · von selbst anfangen heißt komenciĝi."
+   }
+  },
+  "what-time-is-it": {
+   "text": "Kioma horo estas?",
+   "variants": [
+    "Kiom estas la horo?"
+   ],
+   "notes": {
+    "de": "kioma = der wievielte — gefragt ist die Nummer der Stunde, nicht die Menge."
+   }
+  }
+ }
+}

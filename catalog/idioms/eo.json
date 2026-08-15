@@ -1,0 +1,26 @@
+{
+ "title": "Idiomaĵoj",
+ "words": {
+  "buy-a-pig-in-a-poke": {
+   "text": "Ne aĉetu katon en sako!",
+   "notes": {
+    "de": "Wörtlich dasselbe Bild: „Kauf keine Katze im Sack!“",
+    "en": "Literally: \"Don't buy a cat in a sack!\""
+   }
+  },
+  "turn-a-blind-eye": {
+   "text": "Li fermis la okulojn pri tio.",
+   "notes": {
+    "de": "Wörtlich: „Er schloss die Augen darüber.“",
+    "en": "Literally: \"He closed his eyes about it.\""
+   }
+  },
+  "seventh-heaven": {
+   "text": "Ŝi estas en la sepa ĉielo.",
+   "notes": {
+    "de": "Wörtlich dasselbe Bild.",
+    "en": "Literally the same image."
+   }
+  }
+ }
+}

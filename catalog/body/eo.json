@@ -1,0 +1,133 @@
+{
+ "title": "La korpo",
+ "subtitle": "De la kapo ĝis la piedoj.",
+ "words": {
+  "head": {
+   "text": "kapo"
+  },
+  "hair": {
+   "text": "haroj",
+   "variants": [
+    "haro",
+    "hararo"
+   ],
+   "notes": {
+    "de": "haro ist ein einzelnes Haar; die Haare auf dem Kopf sind haroj, zusammen als Schopf hararo."
+   }
+  },
+  "face": {
+   "text": "vizaĝo"
+  },
+  "eye": {
+   "text": "okulo"
+  },
+  "ear": {
+   "text": "orelo"
+  },
+  "nose": {
+   "text": "nazo"
+  },
+  "mouth": {
+   "text": "buŝo"
+  },
+  "tooth": {
+   "text": "dento"
+  },
+  "lip": {
+   "text": "lipo"
+  },
+  "hand": {
+   "text": "mano"
+  },
+  "arm": {
+   "text": "brako"
+  },
+  "foot": {
+   "text": "piedo"
+  },
+  "leg": {
+   "text": "kruro",
+   "variants": [
+    "gambo"
+   ]
+  },
+  "stomach": {
+   "text": "ventro",
+   "notes": {
+    "de": "ventro ist der Bauch von außen; der Magen selbst heißt stomako."
+   }
+  },
+  "back": {
+   "text": "dorso"
+  },
+  "throat": {
+   "text": "gorĝo"
+  },
+  "shoulder": {
+   "text": "ŝultro"
+  },
+  "knee": {
+   "text": "genuo"
+  },
+  "chest": {
+   "text": "brusto"
+  },
+  "heart": {
+   "text": "koro"
+  },
+  "blood": {
+   "text": "sango"
+  },
+  "skin": {
+   "text": "haŭto"
+  },
+  "bone": {
+   "text": "osto"
+  },
+  "finger": {
+   "text": "fingro",
+   "notes": {
+    "de": "fingro heißt Finger und Zehe; die Zehe ist piedfingro."
+   }
+  },
+  "tongue": {
+   "text": "lango",
+   "notes": {
+    "de": "lango ist nur die Zunge im Mund; die Sprache heißt lingvo."
+   }
+  },
+  "neck": {
+   "text": "kolo"
+  },
+  "my-head-hurts": {
+   "text": "Mia kapo doloras.",
+   "variants": [
+    "Doloras al mi la kapo."
+   ]
+  },
+  "give-me-your-hand": {
+   "text": "Donu al mi vian manon."
+  },
+  "open-your-mouth": {
+   "text": "Malfermu la buŝon.",
+   "variants": [
+    "Malfermu vian buŝon."
+   ]
+  },
+  "close-your-eyes": {
+   "text": "Fermu la okulojn.",
+   "variants": [
+    "Fermu viajn okulojn."
+   ]
+  },
+  "i-have-long-hair": {
+   "text": "Mi havas longajn harojn."
+  },
+  "my-feet-are-cold": {
+   "text": "Miaj piedoj estas malvarmaj."
+  },
+  "my-heart-is-beating-fast": {
+   "text": "Mia koro batas rapide."
+  }
+ }
+}

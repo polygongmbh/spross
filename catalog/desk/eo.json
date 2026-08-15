@@ -1,0 +1,229 @@
+{
+ "title": "La skribotablo",
+ "subtitle": "Tempo por koncentriĝi.",
+ "words": {
+  "desk": {
+   "text": "skribotablo",
+   "variants": [
+    "skribtablo"
+   ]
+  },
+  "laptop": {
+   "text": "tekokomputilo",
+   "variants": [
+    "portebla komputilo",
+    "tekkomputilo"
+   ]
+  },
+  "keyboard": {
+   "text": "klavaro"
+  },
+  "screen": {
+   "text": "ekrano"
+  },
+  "mouse": {
+   "text": "muso"
+  },
+  "cable": {
+   "text": "kablo"
+  },
+  "headphones": {
+   "text": "aŭskultiloj",
+   "variants": [
+    "kapaŭskultiloj",
+    "orelaŭskultiloj"
+   ],
+   "notes": {
+    "de": "Im Plural: la aŭskultiloj; ein einzelner Hörer heißt aŭskultilo."
+   }
+  },
+  "pen": {
+   "text": "skribilo",
+   "synonyms": [
+    "globkrajono"
+   ],
+   "notes": {
+    "de": "skribilo ist jedes Schreibgerät; der Kugelschreiber heißt globkrajono, der Bleistift krajono."
+   }
+  },
+  "notebook": {
+   "text": "notlibro",
+   "variants": [
+    "notkajero",
+    "notbloko"
+   ]
+  },
+  "printer": {
+   "text": "presilo",
+   "variants": [
+    "printilo"
+   ]
+  },
+  "socket": {
+   "text": "ŝtopilingo",
+   "notes": {
+    "de": "ŝtopilingo ist die Dose, ŝtopilo der Stecker."
+   }
+  },
+  "office-chair": {
+   "text": "oficeja seĝo",
+   "variants": [
+    "labora seĝo"
+   ]
+  },
+  "to-work": {
+   "text": "labori"
+  },
+  "type": {
+   "text": "tajpi"
+  },
+  "print": {
+   "text": "presi",
+   "variants": [
+    "printi"
+   ]
+  },
+  "save": {
+   "text": "konservi"
+  },
+  "take-break": {
+   "text": "fari paŭzon",
+   "variants": [
+    "paŭzi"
+   ]
+  },
+  "write": {
+   "text": "skribi"
+  },
+  "call": {
+   "text": "telefoni",
+   "notes": {
+    "de": "Mit al: mi telefonas al la kuracisto = ich rufe den Arzt an."
+   }
+  },
+  "delete": {
+   "text": "forigi",
+   "variants": [
+    "forviŝi",
+    "viŝi"
+   ]
+  },
+  "study": {
+   "text": "studi",
+   "variants": [
+    "lerni"
+   ],
+   "notes": {
+    "de": "Für Kurs oder Prüfung lernen = studi; etwas Neues erlernen = lerni."
+   }
+  },
+  "phone": {
+   "text": "poŝtelefono",
+   "variants": [
+    "telefono"
+   ],
+   "notes": {
+    "de": "poŝtelefono ist das Handy; telefono allein ist jedes Telefon."
+   }
+  },
+  "email": {
+   "text": "retpoŝto",
+   "synonyms": [
+    "retmesaĝo"
+   ],
+   "variants": [
+    "retletero",
+    "retpoŝtaĵo"
+   ],
+   "notes": {
+    "de": "retpoŝto ist die elektronische Post insgesamt; die einzelne Nachricht heißt genauer retmesaĝo."
+   }
+  },
+  "paper": {
+   "text": "papero"
+  },
+  "folder": {
+   "text": "dosierujo",
+   "variants": [
+    "dokumentujo"
+   ]
+  },
+  "password": {
+   "text": "pasvorto"
+  },
+  "internet": {
+   "text": "interreto"
+  },
+  "charger": {
+   "text": "ŝargilo",
+   "variants": [
+    "ŝarga kablo"
+   ]
+  },
+  "calendar": {
+   "text": "kalendaro"
+  },
+  "important": {
+   "text": "grava"
+  },
+  "ready": {
+   "text": "preta",
+   "variants": [
+    "finita"
+   ]
+  },
+  "im-in-a-meeting": {
+   "text": "Mi estas en kunsido.",
+   "variants": [
+    "Mi estas en renkontiĝo."
+   ]
+  },
+  "dont-disturb-me": {
+   "text": "Ne ĝenu min!",
+   "variants": [
+    "Ne ĝeni!"
+   ]
+  },
+  "the-laptop-wont-charge-anymore": {
+   "text": "La tekokomputilo ne plu ŝargiĝas.",
+   "variants": [
+    "La portebla komputilo ne plu ŝargiĝas."
+   ]
+  },
+  "the-internet-is-gone": {
+   "text": "La interreto malaperis.",
+   "variants": [
+    "Ne estas interreto.",
+    "La sendrata reto malaperis."
+   ]
+  },
+  "coffee-break": {
+   "text": "Kafopaŭzo?",
+   "variants": [
+    "Ĉu kafopaŭzo?"
+   ]
+  },
+  "i-have-a-lot-to-do": {
+   "text": "Mi havas multon por fari.",
+   "variants": [
+    "Mi havas multe da laboro."
+   ]
+  },
+  "end-of-workday": {
+   "text": "Sufiĉe por hodiaŭ!",
+   "variants": [
+    "Finite por hodiaŭ!",
+    "La labortago finiĝis!"
+   ],
+   "notes": {
+    "de": "Für „Feierabend“ gibt es kein eigenes Wort — man sagt: „Für heute ist Schluss!“"
+   }
+  },
+  "send-me-the-email": {
+   "text": "Sendu al mi la retpoŝton.",
+   "variants": [
+    "Sendu al mi la retmesaĝon."
+   ]
+  }
+ }
+}

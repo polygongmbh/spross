@@ -87,6 +87,10 @@ class CountryAtlasLintTest {
     fun everyAppLanguageEntersAtTierTwo() {
         val tiers = atlas.languages.associate { it.code to it.tier }
         for (lang in catalog.languages.keys) {
+            // Reviewed 2026-08-15: eo has no country, so it has no atlas row at all —
+            // a manifest language with no country never surfaces, and every eo pair
+            // still opens through the partner language's own tier-1 countries.
+            if (lang == "eo") continue
             assertEquals(2, tiers[lang], "atlas.json: app language \"$lang\" is not a tier-2 entry")
         }
     }

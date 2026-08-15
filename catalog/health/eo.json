@@ -1,0 +1,131 @@
+{
+ "title": "La sano",
+ "subtitle": "Kiel vi fartas hodiaŭ.",
+ "words": {
+  "pain": {
+   "text": "doloro"
+  },
+  "fever": {
+   "text": "febro"
+  },
+  "cough": {
+   "text": "tuso"
+  },
+  "cold": {
+   "text": "malvarmumo",
+   "notes": {
+    "de": "aus malvarma (kalt) mit dem Suffix -um-; sich erkälten heißt malvarmumi."
+   }
+  },
+  "hurt": {
+   "text": "dolori",
+   "notes": {
+    "de": "dolori steht beim Körperteil, nicht bei der Person: Mia kapo doloras oder Doloras al mi la kapo."
+   }
+  },
+  "to-cough": {
+   "text": "tusi"
+  },
+  "rest": {
+   "text": "ripozi"
+  },
+  "sick": {
+   "text": "malsana"
+  },
+  "feel": {
+   "text": "senti sin",
+   "synonyms": [
+    "farti"
+   ],
+   "variants": [
+    "sin senti"
+   ],
+   "notes": {
+    "de": "farti fragt nach dem Befinden: Kiel vi fartas? · senti sin beschreibt es mit einem Wort dazu: Mi sentas min malbone."
+   }
+  },
+  "health": {
+   "text": "sano"
+  },
+  "illness": {
+   "text": "malsano"
+  },
+  "healthy": {
+   "text": "sana"
+  },
+  "tired": {
+   "text": "laca"
+  },
+  "weak": {
+   "text": "malforta"
+  },
+  "dizziness": {
+   "text": "kapturno",
+   "synonyms": [
+    "vertiĝo"
+   ]
+  },
+  "wound": {
+   "text": "vundo"
+  },
+  "hurt-oneself": {
+   "text": "vundi sin",
+   "variants": [
+    "sin vundi",
+    "vundiĝi"
+   ],
+   "notes": {
+    "de": "vundi ist transitiv: vundi la manon. Ohne Objekt heißt „sich verletzen“ vundi sin oder vundiĝi."
+   }
+  },
+  "bandage": {
+   "text": "bandaĝo"
+  },
+  "breathe": {
+   "text": "spiri"
+  },
+  "recover": {
+   "text": "resaniĝi",
+   "variants": [
+    "saniĝi"
+   ]
+  },
+  "allergy": {
+   "text": "alergio"
+  },
+  "my-throat-hurts-a-lot": {
+   "text": "Mia gorĝo tre doloras.",
+   "variants": [
+    "Tre doloras al mi la gorĝo."
+   ]
+  },
+  "ive-had-a-fever-since-yesterday": {
+   "text": "Mi havas febron ekde hieraŭ.",
+   "variants": [
+    "Mi havas febron de hieraŭ."
+   ]
+  },
+  "get-well-soon": {
+   "text": "Rapidan resaniĝon!",
+   "variants": [
+    "Baldaŭan resaniĝon!",
+    "Resaniĝu baldaŭ!"
+   ]
+  },
+  "i-dont-feel-well": {
+   "text": "Mi ne fartas bone.",
+   "variants": [
+    "Mi ne sentas min bone."
+   ]
+  },
+  "the-wound-hurts": {
+   "text": "La vundo doloras."
+  },
+  "i-cant-breathe-well": {
+   "text": "Mi ne povas bone spiri."
+  },
+  "i-have-to-rest": {
+   "text": "Mi devas ripozi."
+  }
+ }
+}

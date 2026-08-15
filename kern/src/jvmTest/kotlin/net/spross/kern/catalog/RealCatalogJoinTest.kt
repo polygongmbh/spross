@@ -31,7 +31,7 @@ class RealCatalogJoinTest {
      */
     @Test
     fun joinEmitsExactlyTheConceptsBothLanguagesRealize() {
-        for (target in listOf("en", "es", "fr", "it", "sw", "uk")) {
+        for (target in listOf("en", "eo", "es", "fr", "it", "sw", "uk")) {
             fun RawRealization?.resolvable(reader: String): Boolean {
                 if (this == null) return false
                 val marked = (listOf(text) + synonyms + variants).any { LanguageNames.hasLanguageMarker(it) }
@@ -53,7 +53,7 @@ class RealCatalogJoinTest {
     /** Catastrophe guard: a loose floor, deliberately NOT a pinned per-pair count. */
     @Test
     fun everyGermanPairJoinsSubstantialCoverage() {
-        for (target in listOf("en", "es", "fr", "it", "sw", "uk")) {
+        for (target in listOf("en", "eo", "es", "fr", "it", "sw", "uk")) {
             val size = catalog.join("de", target).size
             assertTrue(size > 300, "de→$target joined only $size cards")
         }
@@ -62,7 +62,7 @@ class RealCatalogJoinTest {
     @Test
     fun availableTargetsFromGermanCarryConceptCounts() {
         val targets = catalog.availableTargets("de")
-        assertEquals(listOf("en", "es", "fr", "it", "sw", "uk"), targets.map { it.code })
+        assertEquals(listOf("en", "eo", "es", "fr", "it", "sw", "uk"), targets.map { it.code })
         // Agreement with the join, not magic numbers.
         assertEquals(targets.map { catalog.join("de", it.code).size }, targets.map { it.conceptCount })
         assertEquals("Kiswahili", targets.first { it.code == "sw" }.name)
@@ -109,7 +109,7 @@ class RealCatalogJoinTest {
         val id = "the-pot-is-still-on-the-stove"
         assertEquals("The pot is still on the stove.", catalog.join("de", "en").byId(id).target.text)
         assertEquals("Каструля ще стоїть на плиті.", catalog.join("de", "uk").byId(id).target.text)
-        for (target in listOf("en", "es", "fr", "it", "uk")) {
+        for (target in listOf("en", "eo", "es", "fr", "it", "uk")) {
             assertFalse(catalog.join("de", target).any { it.id == "the-big-pot-is-on-the-stove" })
         }
     }

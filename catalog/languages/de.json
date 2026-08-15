@@ -7,6 +7,7 @@
   "uk": { "name": "Ukrainisch", "in": "auf Ukrainisch" },
   "fr": { "name": "Französisch", "in": "auf Französisch" },
   "it": { "name": "Italienisch", "in": "auf Italienisch" },
+  "eo": { "name": "Esperanto", "in": "auf Esperanto" },
   "pt": { "name": "Portugiesisch", "in": "auf Portugiesisch" },
   "nl": { "name": "Niederländisch", "in": "auf Niederländisch", "variants": ["Holländisch"] },
   "pl": { "name": "Polnisch", "in": "auf Polnisch" },

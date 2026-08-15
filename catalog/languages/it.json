@@ -7,6 +7,7 @@
   "uk": { "name": "ucraino", "in": "in ucraino", "learn": "l'ucraino" },
   "fr": { "name": "francese", "in": "in francese", "learn": "il francese" },
   "it": { "name": "italiano", "in": "in italiano", "learn": "l'italiano" },
+  "eo": { "name": "esperanto", "in": "in esperanto", "learn": "l'esperanto" },
   "pt": { "name": "portoghese", "in": "in portoghese", "learn": "il portoghese" },
   "nl": { "name": "olandese", "in": "in olandese", "learn": "l'olandese", "variants": ["neerlandese", "nederlandese"] },
   "pl": { "name": "polacco", "in": "in polacco", "learn": "il polacco" },

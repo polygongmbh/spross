@@ -74,7 +74,12 @@ internal object CatalogParser {
             val englishName = o.requireString(path, code, "englishName")
             if (englishName.isBlank()) parseError(path, "$code: blank englishName")
             val flag = o.requireString(path, code, "flag")
-            if (!isEmojiFlagSequence(flag)) parseError(path, "$code: flag must be one emoji flag sequence")
+            // why: Esperanto has no country, so no RIS flag exists — its badge is the
+            // community's green heart; every other language keeps the strict flag rule.
+            val esperantoBadge = code == "eo" && flag == "💚"
+            if (!isEmojiFlagSequence(flag) && !esperantoBadge) {
+                parseError(path, "$code: flag must be one emoji flag sequence")
+            }
             code to LanguageInfo(
                 code = code,
                 name = name,

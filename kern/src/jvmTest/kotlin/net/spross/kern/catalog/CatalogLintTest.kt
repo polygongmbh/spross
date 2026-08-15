@@ -21,6 +21,7 @@ class CatalogLintTest {
     private val politenessParticle = mapOf(
         "de" to Regex("\\bbitte\\b", RegexOption.IGNORE_CASE),
         "en" to Regex("\\bplease\\b", RegexOption.IGNORE_CASE),
+        "eo" to Regex("\\bbonvolu\\b|\\bmi petas\\b", RegexOption.IGNORE_CASE),
         "es" to Regex("\\bpor favor\\b", RegexOption.IGNORE_CASE),
         "fr" to Regex("\\bs[’']il (te|vous) plaît\\b", RegexOption.IGNORE_CASE),
         "it" to Regex("\\bper (favore|piacere|cortesia)\\b", RegexOption.IGNORE_CASE),
@@ -38,7 +39,7 @@ class CatalogLintTest {
 
     @Test
     fun catalogParsesClean() {
-        assertEquals(setOf("de", "en", "es", "fr", "it", "sw", "uk"), catalog.languages.keys)
+        assertEquals(setOf("de", "en", "eo", "es", "fr", "it", "sw", "uk"), catalog.languages.keys)
         assertTrue(catalog.groups.isNotEmpty())
         assertTrue(catalog.areaNames.isNotEmpty())
     }
@@ -157,6 +158,12 @@ class CatalogLintTest {
         for ((code, info) in catalog.languages) {
             assertTrue(info.englishName.isNotBlank(), "$code: blank englishName")
             val codePoints = info.flag.codePoints().toArray()
+            if (code == "eo") {
+                // Esperanto has no country, so no flag emoji exists; the community's badge
+                // is the green heart — the one language allowed a single non-RIS emoji.
+                assertEquals(listOf(0x1F49A), codePoints.toList(), "eo: badge must be the green heart")
+                continue
+            }
             assertEquals(2, codePoints.size, "$code: flag \"${info.flag}\" is not one flag sequence")
             assertTrue(
                 codePoints.all { it in 0x1F1E6..0x1F1FF },

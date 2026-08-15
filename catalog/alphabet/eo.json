@@ -1,0 +1,355 @@
+{
+ "entries": [
+  {
+   "glyph": "a e i o u",
+   "kind": "rule",
+   "context": {
+    "de": "in jedem Wort",
+    "en": "in every word"
+   },
+   "example": "sugar",
+   "hints": {
+    "de": "Esperanto wird gelesen, wie es geschrieben steht: jeder Buchstabe klingt immer gleich, keiner ist stumm, keiner ändert sich nach seiner Stellung. Die fünf Vokale behalten ihren vollen Wert auch unbetont — nie ein Schwa wie das e in „bitte“ —, und jeder Vokal ist eine eigene Silbe. Betont wird immer die vorletzte: su-KE-ro, fa-mi-LI-o.",
+    "en": "Esperanto is read exactly as it is written: every letter always has the same value, none is silent, none changes with its position. The five vowels keep their full value even unstressed — never a schwa — and every vowel is a syllable of its own. The stress always falls on the second-to-last one: su-KE-ro, fa-mi-LI-o."
+   }
+  },
+  {
+   "glyph": "a",
+   "upper": "A",
+   "name": "a",
+   "ipa": "a",
+   "example": "water",
+   "hints": {
+    "de": "immer offen wie das a in Vater — betont oder unbetont derselbe Laut",
+    "en": "always ah as in father — never the a of cat and never the ay of name"
+   }
+  },
+  {
+   "glyph": "b",
+   "upper": "B",
+   "name": "bo",
+   "ipa": "b",
+   "example": "bird"
+  },
+  {
+   "glyph": "c",
+   "upper": "C",
+   "name": "co",
+   "ipa": "t͡s",
+   "example": "onion",
+   "hints": {
+    "de": "wie z in Zahl — nie k und nie s: cepo klingt „tsepo“",
+    "en": "ts as in cats, even at the start of a word: cepo = “TSEH-po” — never k, never s"
+   },
+   "confusable": {
+    "look": ["ĉ"],
+    "sound": ["ĉ", "s", "z"]
+   }
+  },
+  {
+   "glyph": "ĉ",
+   "upper": "Ĉ",
+   "name": "ĉo",
+   "ipa": "t͡ʃ",
+   "example": "room",
+   "hints": {
+    "de": "wie tsch in Tschüss — c mit Hut, ein eigener Buchstabe mit eigenem Platz im Wörterbuch",
+    "en": "like ch in church — c with a hat, and a letter in its own right"
+   },
+   "confusable": {
+    "sound": ["ŝ", "ĝ"]
+   }
+  },
+  {
+   "glyph": "d",
+   "upper": "D",
+   "name": "do",
+   "ipa": "d",
+   "example": "house",
+   "hints": {
+    "de": "am Wortende bleibt es ein d: sed endet auf einem echten d, nie wie „set“"
+   }
+  },
+  {
+   "glyph": "e",
+   "upper": "E",
+   "name": "e",
+   "ipa": "e",
+   "example": "husband",
+   "hints": {
+    "de": "immer voll wie das e in Bett — auch am Wortende: bone endet auf einem echten e, nie auf dem stummen e von „Sonne“",
+    "en": "always the e of bed, never the ay of day and never a schwa: bone = “BO-neh”"
+   }
+  },
+  {
+   "glyph": "f",
+   "upper": "F",
+   "name": "fo",
+   "ipa": "f",
+   "example": "flower"
+  },
+  {
+   "glyph": "g",
+   "upper": "G",
+   "name": "go",
+   "ipa": "ɡ",
+   "example": "knee",
+   "hints": {
+    "de": "immer hart wie in geben — auch vor e und i: genuo = „ge-NU-o“",
+    "en": "always hard as in go, even before e and i: genuo = “geh-NOO-o” — never the g of gem"
+   },
+   "confusable": {
+    "look": ["ĝ"],
+    "sound": ["ĝ"]
+   }
+  },
+  {
+   "glyph": "ĝ",
+   "upper": "Ĝ",
+   "name": "ĝo",
+   "ipa": "d͡ʒ",
+   "example": "bye",
+   "hints": {
+    "de": "wie dsch in Dschungel oder das g in Gin — g mit Hut",
+    "en": "like j in jam or the g in gin — g with a hat"
+   },
+   "confusable": {
+    "sound": ["ĵ"]
+   }
+  },
+  {
+   "glyph": "h",
+   "upper": "H",
+   "name": "ho",
+   "ipa": "h",
+   "example": "dog",
+   "hints": {
+    "de": "immer gehaucht wie in Haus — ein h dehnt hier nie einen Vokal, und stumm ist es nie",
+    "en": "always a breathed h as in house — never silent, and never the throaty sound; that one is ĥ"
+   },
+   "confusable": {
+    "look": ["ĥ"],
+    "sound": ["ĥ"]
+   }
+  },
+  {
+   "glyph": "ĥ",
+   "upper": "Ĥ",
+   "name": "ĥo",
+   "ipa": "x",
+   "exampleText": "eĥo",
+   "hints": {
+    "de": "wie ch in Bach — der seltenste Buchstabe; viele Wörter dürfen ihn heute durch k ersetzen: teĥniko = tekniko",
+    "en": "like ch in Scottish loch — the rarest letter; many words now allow a k instead: teĥniko = tekniko"
+   },
+   "confusable": {
+    "sound": ["k"]
+   }
+  },
+  {
+   "glyph": "i",
+   "upper": "I",
+   "name": "i",
+   "ipa": "i",
+   "example": "child",
+   "hints": {
+    "de": "immer gespannt wie das i in Kino — auch kurz und unbetont: infano = „in-FA-no“",
+    "en": "always ee as in machine, never the i of bit"
+   }
+  },
+  {
+   "glyph": "j",
+   "upper": "J",
+   "name": "jo",
+   "ipa": "j",
+   "example": "year",
+   "hints": {
+    "de": "wie j in ja; nach einem Vokal der Nachklang wie in Mai — die Mehrzahl -oj klingt wie das „oi“ in Konvoi: vortoj",
+    "en": "like y in yes; after a vowel it is the glide of boy — the plural -oj is “oy”: vortoj = “VOR-toy”"
+   },
+   "confusable": {
+    "look": ["ĵ"],
+    "sound": ["ĵ"]
+   }
+  },
+  {
+   "glyph": "ĵ",
+   "upper": "Ĵ",
+   "name": "ĵo",
+   "ipa": "ʒ",
+   "example": "pajamas",
+   "hints": {
+    "de": "wie das J in Journal oder das g in Garage — j mit Hut",
+    "en": "like the s in measure or the g in mirage — j with a hat"
+   },
+   "confusable": {
+    "sound": ["ŝ"]
+   }
+  },
+  {
+   "glyph": "k",
+   "upper": "K",
+   "name": "ko",
+   "ipa": "k",
+   "example": "coffee"
+  },
+  {
+   "glyph": "l",
+   "upper": "L",
+   "name": "lo",
+   "ipa": "l",
+   "example": "milk",
+   "hints": {
+    "en": "always the clear l of leaf, never the dark l of full"
+   },
+   "confusable": {
+    "sound": ["r"]
+   }
+  },
+  {
+   "glyph": "m",
+   "upper": "M",
+   "name": "mo",
+   "ipa": "m",
+   "example": "hand"
+  },
+  {
+   "glyph": "n",
+   "upper": "N",
+   "name": "no",
+   "ipa": "n",
+   "example": "name"
+  },
+  {
+   "glyph": "o",
+   "upper": "O",
+   "name": "o",
+   "ipa": "o",
+   "example": "eye",
+   "hints": {
+    "de": "immer ein volles, rundes o wie in rot — auch unbetont: nomo endet auf einem echten o, nie auf einem Schwa",
+    "en": "always a pure o as in more — never the “oh-oo” glide of go, and never reduced: nomo = “NO-mo”"
+   }
+  },
+  {
+   "glyph": "p",
+   "upper": "P",
+   "name": "po",
+   "ipa": "p",
+   "example": "bread"
+  },
+  {
+   "glyph": "r",
+   "upper": "R",
+   "name": "ro",
+   "ipa": "r",
+   "example": "rice",
+   "hints": {
+    "de": "mit der Zungenspitze gerollt wie im Italienischen — nie das deutsche Rachen-r, und am Wortende nie zu einem „a“ verschluckt",
+    "en": "a rolled tongue-tip r as in Spanish or Italian — never the English r, and always sounded, also at the end of a word"
+   }
+  },
+  {
+   "glyph": "s",
+   "upper": "S",
+   "name": "so",
+   "ipa": "s",
+   "example": "soap",
+   "hints": {
+    "de": "immer scharf wie das ß in Straße — nie stimmhaft wie das s in Sonne: sapo = „ßapo“",
+    "en": "always hissed like the s in sun — never the z-sound English gives it between vowels"
+   },
+   "confusable": {
+    "look": ["ŝ"],
+    "sound": ["ŝ", "z"]
+   }
+  },
+  {
+   "glyph": "ŝ",
+   "upper": "Ŝ",
+   "name": "ŝo",
+   "ipa": "ʃ",
+   "example": "shoe",
+   "hints": {
+    "de": "wie sch in Schuh — s mit Hut",
+    "en": "like sh in shoe — s with a hat"
+   }
+  },
+  {
+   "glyph": "t",
+   "upper": "T",
+   "name": "to",
+   "ipa": "t",
+   "example": "tea"
+  },
+  {
+   "glyph": "u",
+   "upper": "U",
+   "name": "u",
+   "ipa": "u",
+   "example": "city",
+   "hints": {
+    "de": "immer wie das u in Schule — nie ü und nie „ju“: universitato beginnt mit einem klaren u",
+    "en": "always oo as in moon — never the “yoo” of use: universitato starts “oo-”"
+   }
+  },
+  {
+   "glyph": "ŭ",
+   "upper": "Ŭ",
+   "name": "ŭo",
+   "ipa": "u̯",
+   "context": {
+    "de": "nur nach a und e, als zweiter Teil eines Zwielauts",
+    "en": "only after a or e, as the second half of a diphthong"
+   },
+   "example": "car",
+   "hints": {
+    "de": "keine eigene Silbe: aŭ klingt wie au in Haus, eŭ wie e und u in einem Rutsch — und das Zeichen ist ein Bogen, kein Hut",
+    "en": "never a syllable of its own: aŭ is the ow of how, eŭ is “eh-oo” run together — and the mark is a breve, not a circumflex"
+   },
+   "confusable": {
+    "look": ["u"],
+    "sound": ["u", "v"]
+   }
+  },
+  {
+   "glyph": "v",
+   "upper": "V",
+   "name": "vo",
+   "ipa": "v",
+   "example": "word",
+   "hints": {
+    "de": "wie das deutsche w in Wasser — nie wie das v in Vater: vorto = „worto“",
+    "en": "like v in van — the w sound belongs to ŭ"
+   }
+  },
+  {
+   "glyph": "z",
+   "upper": "Z",
+   "name": "zo",
+   "ipa": "z",
+   "example": "nose",
+   "hints": {
+    "de": "stimmhaftes s wie in Rose — nie ts: der ts-Laut ist c",
+    "en": "like z in zoo — never ts; the ts sound is c"
+   }
+  },
+  {
+   "glyph": "ĉ ĝ ĥ ĵ ŝ ŭ",
+   "kind": "rule",
+   "exampleText": "Eĥoŝanĝo ĉiuĵaŭde",
+   "hints": {
+    "de": "Diese sechs Zeichen gibt es nur im Esperanto: fünf mit Hut und das ŭ mit Bogen. Jedes ist ein eigener Buchstabe und steht im Alphabet direkt hinter seinem Zwilling ohne Zeichen. Der Merksatz Eĥoŝanĝo ĉiuĵaŭde („Echowechsel jeden Donnerstag“) enthält alle sechs. Fehlen sie auf der Tastatur, behilft man sich im Netz mit cx, gx … (x-System) oder ch, gh … (h-System) — Eingabetricks, keine Schreibweisen: Spross erwartet den echten Buchstaben.",
+    "en": "These six belong to Esperanto alone: five hats and the ŭ with a breve. Each is a letter in its own right and stands in the alphabet right after its plain twin. The memory phrase Eĥoŝanĝo ĉiuĵaŭde (“an echo-change every Thursday”) carries all six. Where a keyboard cannot make them, people type cx, gx … (the x-system) or ch, gh … (the h-system) — input workarounds, not spellings: Spross wants the real letter."
+   }
+  },
+  {
+   "glyph": "q w x y",
+   "kind": "rule",
+   "hints": {
+    "de": "Diese vier gehören nicht zum Alphabet — es hat 28 Buchstaben und keine Ausnahmen. Man trifft sie nur in Formeln, in nicht angepassten Fremdnamen und als Notbehelf im x-System; sonst werden Namen umgeschrieben: Ŝekspiro, Nov-Jorko.",
+    "en": "These four are not in the alphabet — 28 letters, no exceptions. You meet them only in formulas, in foreign names left unadapted, and as the x-system workaround; otherwise names get respelled: Ŝekspiro, Nov-Jorko."
+   }
+  }
+ ]
+}

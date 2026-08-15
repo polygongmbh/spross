@@ -1,0 +1,132 @@
+{
+ "title": "La familio",
+ "subtitle": "La homoj plej proksimaj al vi.",
+ "words": {
+  "person": {
+   "text": "persono"
+  },
+  "human": {
+   "text": "homo",
+   "notes": {
+    "de": "homo = Mensch als Gattung · persono = der einzelne Mensch."
+   }
+  },
+  "family": {
+   "text": "familio"
+  },
+  "mother": {
+   "text": "patrino",
+   "notes": {
+    "de": "-ino bildet die weibliche Form: patro → patrino, frato → fratino."
+   }
+  },
+  "father": {
+   "text": "patro"
+  },
+  "parents": {
+   "text": "gepatroj",
+   "notes": {
+    "de": "ge- fasst beide Geschlechter zusammen; patroj wären nur die Väter."
+   }
+  },
+  "child": {
+   "text": "infano"
+  },
+  "son": {
+   "text": "filo"
+  },
+  "daughter": {
+   "text": "filino"
+  },
+  "brother": {
+   "text": "frato"
+  },
+  "sister": {
+   "text": "fratino"
+  },
+  "man": {
+   "text": "viro"
+  },
+  "woman": {
+   "text": "virino"
+  },
+  "boy": {
+   "text": "knabo"
+  },
+  "girl": {
+   "text": "knabino"
+  },
+  "baby": {
+   "text": "bebo"
+  },
+  "friend": {
+   "text": "amiko"
+  },
+  "friend-f": {
+   "text": "amikino"
+  },
+  "grandmother": {
+   "text": "avino"
+  },
+  "grandfather": {
+   "text": "avo"
+  },
+  "husband": {
+   "text": "edzo"
+  },
+  "wife": {
+   "text": "edzino"
+  },
+  "uncle": {
+   "text": "onklo"
+  },
+  "aunt": {
+   "text": "onklino"
+  },
+  "this-is-my-mother": {
+   "text": "Tiu estas mia patrino.",
+   "variants": [
+    "Tio estas mia patrino."
+   ]
+  },
+  "where-is-your-father": {
+   "text": "Kie estas via patro?"
+  },
+  "i-have-two-children": {
+   "text": "Mi havas du infanojn."
+  },
+  "my-family-is-big": {
+   "text": "Mia familio estas granda."
+  },
+  "i-have-a-brother": {
+   "text": "Mi havas fraton."
+  },
+  "my-parents-live-here": {
+   "text": "Miaj gepatroj loĝas ĉi tie."
+  },
+  "how-is-your-grandmother": {
+   "text": "Kiel fartas via avino?"
+  },
+  "a-good-friend": {
+   "text": "bona amiko"
+  },
+  "my-girlfriend": {
+   "text": "mia koramikino",
+   "notes": {
+    "de": "koramikino ist die Partnerin; die Freundin ohne Romantik bleibt amikino."
+   }
+  },
+  "her-boyfriend": {
+   "text": "ŝia koramiko"
+  },
+  "old-people": {
+   "text": "maljunaj homoj",
+   "variants": [
+    "maljunuloj"
+   ]
+  },
+  "many-friends": {
+   "text": "multaj amikoj"
+  }
+ }
+}

@@ -1,0 +1,133 @@
+{
+ "title": "Ligvortoj",
+ "subtitle": "Vortoj, kiuj kunligas la frazon.",
+ "words": {
+  "higher": {
+   "text": "pli alte",
+   "variants": [
+    "pli alta"
+   ]
+  },
+  "lower": {
+   "text": "pli malalte",
+   "variants": [
+    "pli malalta"
+   ]
+  },
+  "more": {
+   "text": "pli",
+   "notes": {
+    "de": "pli vergleicht: pli granda · vor einem Substantiv steht pli da: pli da tempo."
+   }
+  },
+  "less": {
+   "text": "malpli"
+  },
+  "always": {
+   "text": "ĉiam"
+  },
+  "never": {
+   "text": "neniam",
+   "notes": {
+    "de": "verneint allein — kein zweites ne: Mi neniam iras."
+   }
+  },
+  "maybe": {
+   "text": "eble"
+  },
+  "sometimes": {
+   "text": "kelkfoje",
+   "variants": [
+    "iafoje"
+   ]
+  },
+  "often": {
+   "text": "ofte"
+  },
+  "but": {
+   "text": "sed"
+  },
+  "also": {
+   "text": "ankaŭ",
+   "notes": {
+    "de": "steht direkt vor dem Wort, das es betrifft: ankaŭ mi = ich auch, mi ankaŭ venos = ich komme auch."
+   }
+  },
+  "and": {
+   "text": "kaj"
+  },
+  "or": {
+   "text": "aŭ"
+  },
+  "if": {
+   "text": "se",
+   "notes": {
+    "de": "se = falls · das zeitliche „wenn“ ist kiam · das indirekte „ob“ ist ĉu."
+   }
+  },
+  "because": {
+   "text": "ĉar"
+  },
+  "so-that": {
+   "text": "por ke",
+   "notes": {
+    "de": "das Verb danach endet auf -u: por ke vi komprenu."
+   }
+  },
+  "before": {
+   "text": "antaŭ",
+   "notes": {
+    "de": "vor einem Nebensatz wird daraus antaŭ ol · bei post entsprechend post kiam."
+   }
+  },
+  "after": {
+   "text": "post"
+  },
+  "until": {
+   "text": "ĝis"
+  },
+  "without": {
+   "text": "sen"
+  },
+  "again": {
+   "text": "denove",
+   "variants": [
+    "refoje",
+    "ree"
+   ]
+  },
+  "still": {
+   "text": "ankoraŭ",
+   "notes": {
+    "de": "ankoraŭ (noch) und ankaŭ (auch) nicht verwechseln."
+   }
+  },
+  "more-or-less": {
+   "text": "pli-malpli",
+   "variants": [
+    "pli aŭ malpli"
+   ]
+  },
+  "i-am-always-there": {
+   "text": "Mi ĉiam estas tie."
+  },
+  "hang-it-higher": {
+   "text": "Pendigu ĝin pli alte.",
+   "notes": {
+    "de": "pendi hängt selbst · etwas aufhängen ist pendigi."
+   }
+  },
+  "hang-it-lower": {
+   "text": "Pendigu ĝin pli malalte."
+  },
+  "if-you-want": {
+   "text": "Se vi volas."
+  },
+  "tea-or-coffee": {
+   "text": "Teo aŭ kafo?",
+   "variants": [
+    "Ĉu teon aŭ kafon?"
+   ]
+  }
+ }
+}

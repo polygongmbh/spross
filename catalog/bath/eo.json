@@ -1,0 +1,219 @@
+{
+ "title": "La banĉambro",
+ "subtitle": "Freŝa kaj pura.",
+ "words": {
+  "washing-machine": {
+   "text": "lavmaŝino",
+   "variants": [
+    "lavomaŝino"
+   ]
+  },
+  "laundry": {
+   "text": "tolaĵo",
+   "synonyms": [
+    "lavotaĵo"
+   ],
+   "notes": {
+    "de": "tolaĵo ist die Wäsche als Stück und als Ladung, die man wäscht oder aufhängt; lavotaĵo meint eigens den schmutzigen Stapel, der noch gewaschen werden muss."
+   }
+  },
+  "toilet": {
+   "text": "necesejo",
+   "variants": [
+    "klozeto"
+   ],
+   "notes": {
+    "de": "necesejo ist der Raum und im Alltag auch die Schüssel; wer nur die Schüssel meint, sagt klozeto."
+   }
+  },
+  "shower": {
+   "text": "duŝo",
+   "variants": [
+    "duŝejo"
+   ]
+  },
+  "sink": {
+   "text": "lavabo",
+   "variants": [
+    "lavujo"
+   ]
+  },
+  "mirror": {
+   "text": "spegulo"
+  },
+  "toothbrush": {
+   "text": "dentobroso",
+   "variants": [
+    "dentbroso"
+   ]
+  },
+  "toothpaste": {
+   "text": "dentopasto",
+   "variants": [
+    "dentpasto",
+    "dentokremo"
+   ]
+  },
+  "towel": {
+   "text": "mantuko",
+   "variants": [
+    "bantuko"
+   ],
+   "notes": {
+    "de": "mantuko ist das Handtuch, bantuko das große Badetuch."
+   }
+  },
+  "soap": {
+   "text": "sapo"
+  },
+  "shampoo": {
+   "text": "ŝampuo"
+  },
+  "hairdryer": {
+   "text": "harsekigilo"
+  },
+  "take-shower": {
+   "text": "duŝi sin",
+   "variants": [
+    "sin duŝi",
+    "duŝiĝi"
+   ]
+  },
+  "do-laundry": {
+   "text": "lavi la tolaĵon",
+   "variants": [
+    "lavi tolaĵon",
+    "lavi la tolaĵojn"
+   ]
+  },
+  "brush-teeth": {
+   "text": "brosi la dentojn",
+   "variants": [
+    "brosi al si la dentojn",
+    "purigi la dentojn"
+   ]
+  },
+  "dry-off": {
+   "text": "sekigi sin",
+   "variants": [
+    "sin sekigi",
+    "viŝi sin"
+   ],
+   "notes": {
+    "de": "sekigi sin = sich abtrocknen; sekiĝi allein heißt trocken werden, ohne dass jemand etwas tut."
+   }
+  },
+  "hang-up-laundry": {
+   "text": "pendigi la tolaĵon",
+   "variants": [
+    "pendigi la tolaĵojn",
+    "pendigi tolaĵon"
+   ]
+  },
+  "clean": {
+   "text": "purigi"
+  },
+  "shave": {
+   "text": "razi sin",
+   "variants": [
+    "sin razi",
+    "raziĝi"
+   ]
+  },
+  "comb-hair": {
+   "text": "kombi la harojn",
+   "variants": [
+    "kombi al si la harojn",
+    "kombi sin"
+   ]
+  },
+  "apply-lotion": {
+   "text": "surŝmiri kremon",
+   "variants": [
+    "ŝmiri kremon",
+    "surŝmiri al si kremon"
+   ]
+  },
+  "bathtub": {
+   "text": "bankuvo",
+   "variants": [
+    "banujo"
+   ]
+  },
+  "toilet-paper": {
+   "text": "tualetpapero",
+   "variants": [
+    "tualeta papero",
+    "neceseja papero"
+   ]
+  },
+  "razor": {
+   "text": "razilo"
+  },
+  "sponge": {
+   "text": "spongo"
+  },
+  "cream": {
+   "text": "kremo"
+  },
+  "faucet": {
+   "text": "krano",
+   "variants": [
+    "akvokrano"
+   ]
+  },
+  "trash-can": {
+   "text": "rubujo",
+   "variants": [
+    "rubkorbo"
+   ]
+  },
+  "bucket": {
+   "text": "sitelo"
+  },
+  "dirty": {
+   "text": "malpura"
+  },
+  "im-taking-a-quick-shower": {
+   "text": "Mi iras rapide duŝi min.",
+   "variants": [
+    "Mi rapide duŝas min.",
+    "Mi iras duŝi min."
+   ]
+  },
+  "the-bathroom-is-occupied": {
+   "text": "La banĉambro estas okupata!",
+   "variants": [
+    "La necesejo estas okupata!"
+   ]
+  },
+  "the-laundry-is-done": {
+   "text": "La tolaĵo estas preta.",
+   "variants": [
+    "La tolaĵo pretas."
+   ]
+  },
+  "wheres-my-towel": {
+   "text": "Kie estas mia mantuko?"
+  },
+  "can-you-hang-the-laundry": {
+   "text": "Ĉu vi povas pendigi la tolaĵon?"
+  },
+  "dont-forget-to-brush-teeth": {
+   "text": "Ne forgesu brosi la dentojn!",
+   "variants": [
+    "Ne forgesu brosi viajn dentojn!"
+   ]
+  },
+  "wash-your-hands": {
+   "text": "Lavu viajn manojn.",
+   "variants": [
+    "Lavu la manojn.",
+    "Lavu al vi la manojn."
+   ]
+  },
+  "the-water-is-cold": {
+   "text": "La akvo estas malvarma!"
+  }
+ }
+}

@@ -1,0 +1,142 @@
+{
+ "title": "La unuaj vortoj",
+ "subtitle": "Ĉi tie ĉio komenciĝas.",
+ "words": {
+  "language": {
+   "text": "lingvo"
+  },
+  "word": {
+   "text": "vorto"
+  },
+  "name": {
+   "text": "nomo"
+  },
+  "help": {
+   "text": "helpo"
+  },
+  "be-called": {
+   "text": "nomiĝi",
+   "notes": {
+    "de": "nomi heißt jemanden benennen · sich selbst so nennen ist nomiĝi: Mi nomiĝas Anna."
+   }
+  },
+  "say": {
+   "text": "diri"
+  },
+  "know": {
+   "text": "scii",
+   "notes": {
+    "de": "wissen = scii · kennen (Personen, Orte) = koni."
+   }
+  },
+  "need": {
+   "text": "bezoni"
+  },
+  "thank": {
+   "text": "danki"
+  },
+  "together": {
+   "text": "kune"
+  },
+  "hello": {
+   "text": "Saluton!"
+  },
+  "good-day": {
+   "text": "Bonan tagon!",
+   "notes": {
+    "de": "gilt den ganzen Tag · morgens Bonan matenon!, abends Bonan vesperon!, zur Nacht Bonan nokton!"
+   }
+  },
+  "thank-you": {
+   "text": "Multan dankon!",
+   "variants": [
+    "Dankon!",
+    "Koran dankon!"
+   ]
+  },
+  "please": {
+   "text": "Bonvolu!",
+   "variants": [
+    "Mi petas!"
+   ],
+   "notes": {
+    "de": "steht vor dem Verb: Bonvolu ripeti. · die Antwort auf „Dankon“ ist „Ne dankinde“."
+   }
+  },
+  "excuse-me": {
+   "text": "Pardonu!",
+   "variants": [
+    "Pardonon!",
+    "Pardonu min!"
+   ]
+  },
+  "yes": {
+   "text": "Jes."
+  },
+  "no": {
+   "text": "Ne."
+  },
+  "whats-your-name": {
+   "text": "Kiel vi nomiĝas?",
+   "variants": [
+    "Kio estas via nomo?"
+   ],
+   "notes": {
+    "de": "vi ist die einzige Anrede — Esperanto unterscheidet kein du/Sie."
+   }
+  },
+  "my-name-is": {
+   "text": "Mi nomiĝas …"
+  },
+  "i-dont-know": {
+   "text": "Mi ne scias."
+  },
+  "pardon": {
+   "text": "Kion vi diris?",
+   "variants": [
+    "Pardonon?"
+   ]
+  },
+  "i-need-help": {
+   "text": "Mi bezonas helpon."
+  },
+  "all-good": {
+   "text": "Ĉio en ordo.",
+   "variants": [
+    "Ĉio bonas.",
+    "Ĉio bone."
+   ]
+  },
+  "goodbye": {
+   "text": "Ĝis revido!"
+  },
+  "what-is-this-called": {
+   "text": "Kiel oni nomas tion?",
+   "variants": [
+    "Kiel tio nomiĝas?"
+   ]
+  },
+  "how-are-you": {
+   "text": "Kiel vi fartas?"
+  },
+  "bye": {
+   "text": "Ĝis!"
+  },
+  "welcome": {
+   "text": "Bonvenon!"
+  },
+  "may-i-come-in": {
+   "text": "Ĉu mi rajtas eniri?",
+   "variants": [
+    "Ĉu mi povas eniri?"
+   ]
+  },
+  "sorry-to-hear-that": {
+   "text": "Mi bedaŭras!",
+   "variants": [
+    "Mi tre bedaŭras!",
+    "Kiel bedaŭrinde!"
+   ]
+  }
+ }
+}

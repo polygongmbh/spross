@@ -1,0 +1,162 @@
+{
+ "title": "La kuirejo",
+ "subtitle": "Ĉi tie odoras je vespermanĝo.",
+ "words": {
+  "fridge": {
+   "text": "fridujo"
+  },
+  "stove": {
+   "text": "fornelo",
+   "variants": [
+    "kuirfornelo"
+   ],
+   "notes": {
+    "de": "fornelo ist der Herd zum Kochen; der Backofen heißt forno."
+   }
+  },
+  "oven": {
+   "text": "forno",
+   "variants": [
+    "bakforno"
+   ]
+  },
+  "dishwasher": {
+   "text": "vazlavilo",
+   "variants": [
+    "vazlavmaŝino",
+    "telerlavilo"
+   ]
+  },
+  "pot": {
+   "text": "poto",
+   "variants": [
+    "kuirpoto"
+   ]
+  },
+  "pan": {
+   "text": "pato",
+   "variants": [
+    "fritpato"
+   ],
+   "notes": {
+    "de": "pato ist die Pfanne, poto der Topf — die beiden unterscheiden sich nur im Vokal."
+   }
+  },
+  "knife": {
+   "text": "tranĉilo"
+  },
+  "spoon": {
+   "text": "kulero"
+  },
+  "fork": {
+   "text": "forko",
+   "variants": [
+    "forketo"
+   ]
+  },
+  "plate": {
+   "text": "telero"
+  },
+  "cook": {
+   "text": "kuiri",
+   "notes": {
+    "de": "kuiri heißt Essen zubereiten; Wasser kocht heißt la akvo bolas."
+   }
+  },
+  "bake": {
+   "text": "baki"
+  },
+  "cut": {
+   "text": "tranĉi"
+  },
+  "wash-the-dishes": {
+   "text": "lavi la vazaron",
+   "variants": [
+    "lavi la telerojn"
+   ]
+  },
+  "taste": {
+   "text": "gustumi"
+  },
+  "fry": {
+   "text": "friti"
+  },
+  "reheat": {
+   "text": "revarmigi"
+  },
+  "stir": {
+   "text": "kirli"
+  },
+  "take-out-trash": {
+   "text": "elporti la rubon",
+   "variants": [
+    "elporti la rubaĵon"
+   ]
+  },
+  "careful": {
+   "text": "atentu",
+   "variants": [
+    "singardu"
+   ]
+  },
+  "cup": {
+   "text": "taso"
+  },
+  "bowl": {
+   "text": "bovlo"
+  },
+  "basket": {
+   "text": "korbo"
+  },
+  "tin-can": {
+   "text": "ladskatolo",
+   "variants": [
+    "lada skatolo",
+    "konservujo"
+   ]
+  },
+  "the-knife-is-sharp": {
+   "text": "La tranĉilo estas akra!"
+  },
+  "this-is-very-tasty": {
+   "text": "Tio estas tre bongusta!",
+   "variants": [
+    "Ĉi tio estas tre bongusta!"
+   ]
+  },
+  "are-you-cooking-rice-today": {
+   "text": "Ĉu vi hodiaŭ kuiras rizon?",
+   "variants": [
+    "Ĉu vi kuiras rizon hodiaŭ?"
+   ]
+  },
+  "the-pot-is-still-on-the-stove": {
+   "text": "La poto ankoraŭ staras sur la fornelo."
+  },
+  "wash-the-dishes-in-the-sink": {
+   "text": "Lavu la vazaron en la lavujo!",
+   "variants": [
+    "Lavu la telerojn en la lavujo!"
+   ]
+  },
+  "the-fridge-is-empty": {
+   "text": "La fridujo estas malplena."
+  },
+  "can-you-set-the-table": {
+   "text": "Ĉu vi povas kovri la tablon?",
+   "variants": [
+    "Ĉu vi povas aranĝi la tablon?",
+    "Ĉu vi povas pretigi la tablon?"
+   ],
+   "notes": {
+    "de": "den Tisch decken heißt kovri la tablon; kovri allein heißt bedecken."
+   }
+  },
+  "the-water-is-boiling-hot": {
+   "text": "La akvo bolas."
+  },
+  "careful-very-hot": {
+   "text": "Atentu, tre varmega!"
+  }
+ }
+}

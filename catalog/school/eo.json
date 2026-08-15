@@ -1,0 +1,179 @@
+{
+ "title": "La lernejo",
+ "subtitle": "Tute ordinara lerneja tago.",
+ "words": {
+  "school": {
+   "text": "lernejo"
+  },
+  "classroom": {
+   "text": "klasĉambro",
+   "variants": [
+    "lernoĉambro"
+   ]
+  },
+  "teacher": {
+   "text": "instruisto"
+  },
+  "teacher-f": {
+   "text": "instruistino",
+   "notes": {
+    "de": "Die weibliche Form bildet immer das Suffix -in-: instruisto → instruistino."
+   }
+  },
+  "board": {
+   "text": "tabulo",
+   "variants": [
+    "nigra tabulo",
+    "lerneja tabulo"
+   ]
+  },
+  "exercise-book": {
+   "text": "kajero",
+   "variants": [
+    "ekzercokajero"
+   ]
+  },
+  "homework": {
+   "text": "hejmtasko",
+   "variants": [
+    "hejma tasko",
+    "hejmlaboro"
+   ]
+  },
+  "exam": {
+   "text": "ekzameno"
+  },
+  "break": {
+   "text": "paŭzo",
+   "variants": [
+    "lerneja paŭzo"
+   ]
+  },
+  "pass-exam": {
+   "text": "sukcesi en la ekzameno",
+   "variants": [
+    "sukcesi la ekzamenon",
+    "sukcese trapasi la ekzamenon"
+   ],
+   "notes": {
+    "de": "sukcesi = bestehen, malsukcesi = durchfallen; trapasi la ekzamenon heißt nur, sie abzulegen."
+   }
+  },
+  "to-practice": {
+   "text": "ekzerci",
+   "variants": [
+    "sin ekzerci",
+    "ekzerciĝi"
+   ],
+   "notes": {
+    "de": "ekzerci ist transitiv: ekzerci la vortojn. Ohne Objekt heißt „üben“ sin ekzerci oder ekzerciĝi."
+   }
+  },
+  "raise-hand": {
+   "text": "levi la manon"
+  },
+  "pupil": {
+   "text": "lernanto",
+   "variants": [
+    "lernejano"
+   ]
+  },
+  "pupil-f": {
+   "text": "lernantino",
+   "variants": [
+    "lernejanino"
+   ]
+  },
+  "course": {
+   "text": "kurso"
+  },
+  "lesson": {
+   "text": "leciono",
+   "synonyms": [
+    "instruado"
+   ],
+   "notes": {
+    "de": "leciono ist die einzelne Unterrichtsstunde; der Unterricht als Ganzes heißt instruado."
+   }
+  },
+  "course-book": {
+   "text": "lernolibro",
+   "variants": [
+    "kurslibro"
+   ]
+  },
+  "page": {
+   "text": "paĝo"
+  },
+  "grade": {
+   "text": "noto",
+   "notes": {
+    "de": "noto ist die Schulnote und die Notiz zugleich; der Zusammenhang unterscheidet sie."
+   }
+  },
+  "correct": {
+   "text": "korekti"
+  },
+  "book": {
+   "text": "libro"
+  },
+  "university": {
+   "text": "universitato"
+  },
+  "class-schedule": {
+   "text": "horaro",
+   "variants": [
+    "lerneja horaro"
+   ]
+  },
+  "to-count": {
+   "text": "kalkuli",
+   "notes": {
+    "de": "kalkuli heißt zählen und rechnen; erzählen heißt rakonti."
+   }
+  },
+  "to-try": {
+   "text": "provi",
+   "variants": [
+    "klopodi",
+    "peni"
+   ]
+  },
+  "do-the-homework": {
+   "text": "Mi faras la hejmtaskojn.",
+   "variants": [
+    "Mi faras la hejmtaskon."
+   ]
+  },
+  "the-exam-is-tomorrow": {
+   "text": "Morgaŭ estas la ekzameno.",
+   "variants": [
+    "La ekzameno estas morgaŭ."
+   ]
+  },
+  "look-at-the-class-schedule": {
+   "text": "Rigardu la horaron."
+  },
+  "the-break-is-over": {
+   "text": "La paŭzo finiĝis.",
+   "variants": [
+    "La paŭzo estas finita."
+   ]
+  },
+  "ask-the-teacher": {
+   "text": "Demandu la instruiston.",
+   "variants": [
+    "Demandu al la instruisto."
+   ]
+  },
+  "i-have-a-good-grade": {
+   "text": "Mi havas bonan noton."
+  },
+  "we-go-to-the-classroom": {
+   "text": "Ni iras en la klasĉambron.",
+   "notes": {
+    "de": "Richtung bekommt das -n: en la klasĉambron = in das Klassenzimmer hinein, en la klasĉambro = darin."
+   }
+  }
+ }
+}

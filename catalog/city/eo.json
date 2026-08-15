@@ -1,0 +1,146 @@
+{
+ "title": "La urbo",
+ "subtitle": "Ĉi tie ĉiam io moviĝas.",
+ "words": {
+  "street": {
+   "text": "strato"
+  },
+  "market": {
+   "text": "bazaro",
+   "notes": {
+    "de": "bazaro ist der Marktplatz zum Einkaufen · merkato ist der Markt als Wirtschaftsbegriff."
+   }
+  },
+  "park": {
+   "text": "parko"
+  },
+  "shop": {
+   "text": "butikumi",
+   "variants": [
+    "fari aĉetojn"
+   ],
+   "notes": {
+    "de": "butikumi heißt von Laden zu Laden gehen · eine einzelne Sache kauft man mit aĉeti."
+   }
+  },
+  "city": {
+   "text": "urbo"
+  },
+  "village": {
+   "text": "vilaĝo"
+  },
+  "neighborhood": {
+   "text": "kvartalo"
+  },
+  "building": {
+   "text": "konstruaĵo"
+  },
+  "store": {
+   "text": "vendejo",
+   "synonyms": [
+    "butiko"
+   ]
+  },
+  "bank": {
+   "text": "banko"
+  },
+  "post-office": {
+   "text": "poŝtoficejo",
+   "variants": [
+    "poŝtejo",
+    "poŝto"
+   ]
+  },
+  "restaurant": {
+   "text": "restoracio"
+  },
+  "hotel": {
+   "text": "hotelo"
+  },
+  "church": {
+   "text": "preĝejo"
+  },
+  "mosque": {
+   "text": "moskeo"
+  },
+  "library": {
+   "text": "biblioteko"
+  },
+  "police": {
+   "text": "polico"
+  },
+  "cinema": {
+   "text": "kinejo",
+   "variants": [
+    "kino"
+   ]
+  },
+  "bridge": {
+   "text": "ponto"
+  },
+  "money": {
+   "text": "mono"
+  },
+  "buy": {
+   "text": "aĉeti"
+  },
+  "pay": {
+   "text": "pagi"
+  },
+  "where-is-the-post-office": {
+   "text": "Kie estas la poŝtoficejo?",
+   "variants": [
+    "Kie estas la poŝtejo?"
+   ]
+  },
+  "is-there-a-bank-here": {
+   "text": "Ĉu estas banko ĉi tie?",
+   "variants": [
+    "Ĉu ĉi tie estas banko?",
+    "Ĉu troviĝas banko ĉi tie?"
+   ]
+  },
+  "the-store-is-still-open": {
+   "text": "La vendejo ankoraŭ estas malfermita.",
+   "variants": [
+    "La vendejo estas ankoraŭ malfermita.",
+    "La butiko ankoraŭ estas malfermita."
+   ]
+  },
+  "im-looking-for-a-hotel": {
+   "text": "Mi serĉas hotelon."
+  },
+  "lets-meet-at-the-market": {
+   "text": "Ni renkontiĝu ĉe la bazaro.",
+   "variants": [
+    "Ni renkontiĝu en la bazaro."
+   ]
+  },
+  "i-live-in-this-neighborhood": {
+   "text": "Mi loĝas en ĉi tiu kvartalo.",
+   "variants": [
+    "Mi loĝas en tiu ĉi kvartalo."
+   ]
+  },
+  "how-much-does-this-cost": {
+   "text": "Kiom kostas tio?",
+   "variants": [
+    "Kiom tio kostas?",
+    "Kiom kostas ĉi tio?"
+   ]
+  },
+  "that-is-too-expensive": {
+   "text": "Tio estas tro multekosta.",
+   "variants": [
+    "Tio estas tro kara.",
+    "Tio tro multekostas."
+   ]
+  },
+  "i-have-no-money": {
+   "text": "Mi ne havas monon."
+  },
+  "a-lot-of-money": {
+   "text": "multe da mono"
+  }
+ }
+}

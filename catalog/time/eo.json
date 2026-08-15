@@ -1,0 +1,97 @@
+{
+ "title": "Tempo kaj dato",
+ "subtitle": "Kiam io okazas kaj kiom longe ĝi daŭras.",
+ "words": {
+  "time": {
+   "text": "tempo",
+   "notes": {
+    "de": "das einzelne Mal ist fojo: tri fojojn heißt dreimal."
+   }
+  },
+  "day": {
+   "text": "tago"
+  },
+  "week": {
+   "text": "semajno"
+  },
+  "hour": {
+   "text": "horo"
+  },
+  "minute": {
+   "text": "minuto"
+  },
+  "month": {
+   "text": "monato"
+  },
+  "year": {
+   "text": "jaro"
+  },
+  "now": {
+   "text": "nun"
+  },
+  "today": {
+   "text": "hodiaŭ"
+  },
+  "tomorrow": {
+   "text": "morgaŭ"
+  },
+  "yesterday": {
+   "text": "hieraŭ"
+  },
+  "early": {
+   "text": "frue",
+   "variants": [
+    "frua"
+   ],
+   "notes": {
+    "de": "frue ist das Adverb (früh), frua das Adjektiv (der frühe Zug: la frua trajno)."
+   }
+  },
+  "late": {
+   "text": "malfrue",
+   "variants": [
+    "malfrua"
+   ]
+  },
+  "soon": {
+   "text": "baldaŭ"
+  },
+  "noon": {
+   "text": "tagmezo"
+  },
+  "afternoon": {
+   "text": "posttagmezo"
+  },
+  "morning": {
+   "text": "mateno"
+  },
+  "evening": {
+   "text": "vespero"
+  },
+  "night": {
+   "text": "nokto"
+  },
+  "i-have-no-time": {
+   "text": "Mi ne havas tempon."
+  },
+  "a-new-day": {
+   "text": "nova tago"
+  },
+  "two-in-the-afternoon": {
+   "text": "la dua posttagmeze",
+   "variants": [
+    "la dua horo posttagmeze"
+   ],
+   "notes": {
+    "de": "die Uhrzeit steht als Ordnungszahl: la dua = zwei Uhr, la naŭa = neun Uhr."
+   }
+  },
+  "nine-am-sharp": {
+   "text": "precize je la naŭa matene",
+   "variants": [
+    "ĝuste je la naŭa matene",
+    "je la naŭa matene precize"
+   ]
+  }
+ }
+}

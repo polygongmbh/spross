@@ -23,7 +23,7 @@ class RealCatalogGradingTest {
 
     @Test
     fun noCatalogWordIsEverAForgivenSlipOfAnother() {
-        for (target in listOf("en", "es", "fr", "it", "sw", "uk")) {
+        for (target in listOf("en", "eo", "es", "fr", "it", "sw", "uk")) {
             val cards = catalog.join("de", target)
             val normalizer = AnswerNormalizer(catalog.languages.getValue(target))
             val grader = CatalogAnswerGrader(normalizer, cards)

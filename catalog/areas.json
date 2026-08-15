@@ -4,6 +4,7 @@
   "titles": {
    "en": "First steps",
    "de": "Erste Schritte",
+   "eo": "Unuaj paŝoj",
    "es": "Primeros pasos",
    "fr": "Premiers pas",
    "it": "Primi passi",
@@ -50,6 +51,7 @@
   "titles": {
    "en": "People & health",
    "de": "Mensch & Gesundheit",
+   "eo": "Homoj kaj sano",
    "es": "Personas y salud",
    "fr": "Personnes et santé",
    "it": "Persone e salute",
@@ -80,6 +82,7 @@
   "titles": {
    "en": "At home",
    "de": "Zuhause",
+   "eo": "Hejme",
    "es": "En casa",
    "fr": "À la maison",
    "it": "A casa",
@@ -122,6 +125,7 @@
   "titles": {
    "en": "Out and about",
    "de": "Draußen",
+   "eo": "Survoje",
    "es": "Fuera de casa",
    "fr": "En vadrouille",
    "it": "In giro",
@@ -148,6 +152,7 @@
   "titles": {
    "en": "Offices & work",
    "de": "Ämter & Beruf",
+   "eo": "Oficejoj kaj laboro",
    "es": "Oficinas y trabajo",
    "fr": "Démarches et travail",
    "it": "Uffici e lavoro",
@@ -178,6 +183,7 @@
   "titles": {
    "en": "Idioms & expressions",
    "de": "Redewendungen",
+   "eo": "Parolturnoj kaj esprimoj",
    "es": "Modismos y expresiones",
    "fr": "Expressions et tournures",
    "it": "Modi di dire ed espressioni",
