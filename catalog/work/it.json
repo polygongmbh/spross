@@ -41,7 +41,8 @@
     "salario"
    ],
    "grammar": {
-    "gender": "lo"
+    "gender": "lo",
+    "plural": "stipendi"
    },
    "notes": {
     "de": "lo stipendio ist das monatliche Gehalt, il salario der Lohn nach geleisteter Arbeit."
@@ -176,7 +177,8 @@
     "colloquio"
    ],
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "colloqui di lavoro"
    }
   },
   "working-hours": {
@@ -185,7 +187,8 @@
     "l'orario di lavoro"
    ],
    "grammar": {
-    "gender": "l'"
+    "gender": "l'",
+    "plural": "orari di lavoro"
    }
   },
   "full-time": {

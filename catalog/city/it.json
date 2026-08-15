@@ -61,13 +61,15 @@
     "l'edificio"
    ],
    "grammar": {
-    "gender": "l'"
+    "gender": "l'",
+    "plural": "edifici"
    }
   },
   "store": {
    "text": "negozio",
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "negozi"
    }
   },
   "bank": {

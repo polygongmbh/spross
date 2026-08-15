@@ -44,7 +44,8 @@
   "cheese": {
    "text": "formaggio",
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "formaggi"
    }
   },
   "salt": {
@@ -155,7 +156,8 @@
     "l'olio"
    ],
    "grammar": {
-    "gender": "l'"
+    "gender": "l'",
+    "plural": "oli"
    }
   },
   "flour": {
@@ -194,7 +196,8 @@
   "juice": {
    "text": "succo",
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "succhi"
    }
   },
   "cooked-rice": {
@@ -280,10 +283,11 @@
    "text": "Senza sale, per favore."
   },
   "the-food-is-ready": {
-   "text": "Il cibo è pronto!",
+   "text": "È pronto!",
    "variants": [
-    "È pronto!",
-    "È pronto in tavola!"
+    "Il cibo è pronto!",
+    "È pronto in tavola!",
+    "A tavola!"
    ],
    "notes": {
     "de": "Am Tisch ruft man meist „È pronto!“ oder „A tavola!“."

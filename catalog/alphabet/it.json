@@ -114,8 +114,8 @@
    },
    "example": "city",
    "hints": {
-    "de": "der Akzent sagt nur, dass die letzte Silbe betont ist: città, caffè, perché — der Buchstabe bleibt derselbe. Der Strich zeigt die Klangfarbe: è offen, é geschlossen. Zwei Wörter trennt er nur bei è (ist) gegen e (und).",
-    "en": "the accent only says the last syllable is stressed: città, caffè, perché — the letter itself does not change. Its direction shows the quality: è open, é close. The one pair it tells apart is è (is) against e (and)."
+    "de": "der Akzent sagt nur, dass die letzte Silbe betont ist: città, caffè, perché — der Buchstabe bleibt derselbe. Der Strich zeigt die Klangfarbe: è offen, é geschlossen. Er unterscheidet auch einsilbige Wörter: è (ist) gegen e (und), sì (ja) gegen si, là (dort) gegen la.",
+    "en": "the accent only says the last syllable is stressed: città, caffè, perché — the letter itself does not change. Its direction shows the quality: è open, é close. It also tells one-syllable words apart: è (is) against e (and), sì (yes) against si, là (there) against la."
    }
   },
   {
@@ -528,8 +528,8 @@
    "section": "letters",
    "exampleText": "hanno",
    "hints": {
-    "de": "immer stumm: hanno (sie haben) klingt genau wie anno (Jahr). Sie steht nur in ho, hai, ha, hanno — und hinter c und g, um sie hart zu machen.",
-    "en": "always silent: hanno (they have) sounds exactly like anno (year). It appears only in ho, hai, ha, hanno — and after c and g to keep them hard."
+    "de": "immer stumm: hanno (sie haben) klingt genau wie anno (Jahr). Sie steht in ho, hai, ha, hanno, hinter c und g, um sie hart zu machen — und in Fremdwörtern wie hotel und hobby.",
+    "en": "always silent: hanno (they have) sounds exactly like anno (year). It appears in ho, hai, ha, hanno, after c and g to keep them hard — and in loanwords like hotel and hobby."
    },
    "confusable": {
     "look": [

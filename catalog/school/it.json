@@ -201,7 +201,8 @@
     "orario delle lezioni"
    ],
    "grammar": {
-    "gender": "l'"
+    "gender": "l'",
+    "plural": "orari"
    },
    "notes": {
     "de": "l'orario ist jeder Zeitplan; der Stundenplan der Schule heißt genauer l'orario delle lezioni."

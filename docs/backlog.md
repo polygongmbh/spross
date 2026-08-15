@@ -393,3 +393,9 @@ One line per item, with a file or context pointer, filed under the section it be
   renders as code rather than a tappable link. A one-page `web/install.html` taking `?v=`
   and building the link would make it a button once spross.net is live
   (`.github/workflows/release.yml` publish step, `docs/website.md`).
+- A fully correct typed answer carrying a matched synonym's own article demotes Exact→Typo:
+  `AnswerNormalizer.evaluate` reads the leading article back against the card's single
+  `grammar.gender` instead of the accepted form it actually matched
+  (`kern/.../session/AnswerNormalizer.kt`). Italian promotes many cross-article synonyms
+  (la vaccinazione on il vaccino, il farmaco on la medicina, il salario on lo stipendio),
+  so the reveal teaches forms the grader then punishes; es only ever hid such forms in variants.

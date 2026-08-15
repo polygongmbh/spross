@@ -25,7 +25,8 @@
     "orario"
    ],
    "grammar": {
-    "gender": "l'"
+    "gender": "l'",
+    "plural": "orari di apertura"
    },
    "notes": {
     "de": "Italienisch hat keinen festen Plural wie „die Öffnungszeiten“: meist l'orario di apertura, im Alltag oft nur l'orario."

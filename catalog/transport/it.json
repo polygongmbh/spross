@@ -116,7 +116,8 @@
   "journey": {
    "text": "viaggio",
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "viaggi"
    }
   },
   "travel": {
@@ -187,7 +188,8 @@
   "luggage": {
    "text": "bagaglio",
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "bagagli"
    }
   },
   "fare": {

@@ -56,7 +56,8 @@
   "son": {
    "text": "figlio",
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "figli"
    }
   },
   "daughter": {
@@ -159,13 +160,15 @@
   "wife": {
    "text": "moglie",
    "grammar": {
-    "gender": "la"
+    "gender": "la",
+    "plural": "mogli"
    }
   },
   "uncle": {
    "text": "zio",
    "grammar": {
-    "gender": "lo"
+    "gender": "lo",
+    "plural": "zii"
    }
   },
   "aunt": {

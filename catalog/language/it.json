@@ -74,7 +74,8 @@
   "dictionary": {
    "text": "dizionario",
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "dizionari"
    }
   },
   "sentence": {

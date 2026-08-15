@@ -38,7 +38,8 @@
     "l'armadio"
    ],
    "grammar": {
-    "gender": "l'"
+    "gender": "l'",
+    "plural": "armadi"
    }
   },
   "alarm-clock": {

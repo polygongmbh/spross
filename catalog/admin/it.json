@@ -11,7 +11,8 @@
     "l'ufficio pubblico"
    ],
    "grammar": {
-    "gender": "l'"
+    "gender": "l'",
+    "plural": "uffici pubblici"
    },
    "notes": {
     "de": "Ein bestimmtes Amt nennt man beim Namen: il comune (Rathaus), l'anagrafe (Meldeamt), la questura (Ausländerbehörde)."
@@ -65,7 +66,8 @@
    "text": "numero di attesa",
    "variants": [
     "numero",
-    "numerino"
+    "numerino",
+    "numero d'attesa"
    ],
    "grammar": {
     "gender": "il"
@@ -233,7 +235,8 @@
     "orario di ricevimento al pubblico"
    ],
    "grammar": {
-    "gender": "l'"
+    "gender": "l'",
+    "plural": "orari di ricevimento"
    },
    "notes": {
     "de": "l'orario di ricevimento sind die Sprechzeiten für Publikum; die allgemeinen Öffnungszeiten heißen l'orario di apertura."

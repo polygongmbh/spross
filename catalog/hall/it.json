@@ -207,7 +207,8 @@
     "portamonete"
    ],
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "portafogli"
    },
    "notes": {
     "de": "il portafoglio ist die Brieftasche für Scheine und Karten, il portamonete die Münzbörse."
@@ -300,10 +301,10 @@
    ]
   },
   "dont-forget-your-jacket": {
-   "text": "Non dimenticare la tua giacca!",
+   "text": "Non dimenticare la giacca!",
    "variants": [
     "Non dimenticarti la giacca!",
-    "Non dimenticare la giacca!"
+    "Non dimenticare la tua giacca!"
    ]
   },
   "put-on-the-jacket": {

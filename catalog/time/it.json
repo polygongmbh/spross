@@ -106,7 +106,8 @@
   "afternoon": {
    "text": "pomeriggio",
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "pomeriggi"
    }
   },
   "morning": {

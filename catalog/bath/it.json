@@ -54,7 +54,8 @@
   "mirror": {
    "text": "specchio",
    "grammar": {
-    "gender": "lo"
+    "gender": "lo",
+    "plural": "specchi"
    }
   },
   "toothbrush": {
@@ -69,7 +70,8 @@
   "toothpaste": {
    "text": "dentifricio",
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "dentifrici"
    }
   },
   "towel": {
@@ -96,10 +98,12 @@
   },
   "hairdryer": {
    "text": "asciugacapelli",
+   "synonyms": [
+    "phon"
+   ],
    "variants": [
     "l'asciugacapelli",
-    "fon",
-    "phon"
+    "fon"
    ],
    "grammar": {
     "gender": "l'",
@@ -174,7 +178,8 @@
   "razor": {
    "text": "rasoio",
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "rasoi"
    }
   },
   "sponge": {
@@ -212,7 +217,8 @@
   "bucket": {
    "text": "secchio",
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "secchi"
    }
   },
   "dirty": {

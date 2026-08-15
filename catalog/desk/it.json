@@ -230,7 +230,8 @@
     "agenda"
    ],
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "calendari"
    },
    "notes": {
     "de": "il calendario hängt an der Wand; der Terminkalender heißt l'agenda."
@@ -242,6 +243,7 @@
   "ready": {
    "text": "pronto",
    "variants": [
+    "pronta",
     "finito"
    ],
    "notes": {

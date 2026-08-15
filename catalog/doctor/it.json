@@ -29,7 +29,8 @@
     "l'ambulatorio"
    ],
    "grammar": {
-    "gender": "l'"
+    "gender": "l'",
+    "plural": "ambulatori"
    },
    "notes": {
     "de": "l'ambulatorio ist die Sprechstunde des Hausarztes oder der Poliklinik; die Privatpraxis heißt lo studio medico."
@@ -119,7 +120,7 @@
     "gender": "il"
    },
    "notes": {
-    "de": "Der Arzt schickt das certificato medico elektronisch an Kasse und Arbeitgeber; man selbst behält nur die numero di protocollo."
+    "de": "Der Arzt schickt das certificato medico elektronisch an Kasse und Arbeitgeber; man selbst behält nur il numero di protocollo."
    }
   },
   "examine": {
@@ -188,7 +189,8 @@
     "odontoiatra"
    ],
    "grammar": {
-    "gender": "il"
+    "gender": "il",
+    "plural": "dentisti"
    },
    "notes": {
     "de": "il dentista, la dentista — die Endung -a bleibt, nur der Artikel wechselt."

@@ -203,6 +203,7 @@
   "quiet": {
    "text": "silenzioso",
    "variants": [
+    "silenziosa",
     "piano",
     "sottovoce",
     "a bassa voce"
@@ -213,8 +214,12 @@
   },
   "furniture": {
    "text": "mobili",
+   "variants": [
+    "mobile"
+   ],
    "grammar": {
-    "gender": "i"
+    "gender": "i",
+    "plural": "only"
    },
    "notes": {
     "de": "meist im Plural: i mobili; un mobile ist ein einzelnes Möbelstück."
