@@ -7,9 +7,8 @@ used to be kept in step by hand and had drifted on some fifty strings — the sa
 button reading "Sprecher & Lizenzen" on one phone and "Impressum & Lizenzen" on the
 other — which is exactly what a generator cannot let happen.
 
-    python3 scripts/chrome.py            # report drift
-    python3 scripts/chrome.py --fix      # rewrite both tables
-    python3 scripts/chrome.py --check    # exit 1 if they are not what the catalog says
+No flag reports drift and exits non-zero on it; --fix rewrites both tables, and --check
+is the same report under the name the pre-commit hook calls it by.
 
 The catalog is the source in both directions of work: a new Android string is added
 there (and named in ANDROID_ONLY in scripts/strings.py, so the iOS drift check knows
