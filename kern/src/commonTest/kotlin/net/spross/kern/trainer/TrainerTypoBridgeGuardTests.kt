@@ -41,6 +41,19 @@ class TrainerTypoBridgeGuardTests {
     }
 
     /**
+     * The six/dix pair, alone and inside the two compounds that carry it — and only those:
+     * the rectified all-hyphen spelling welds a whole numeral, so it reproduces the same
+     * pair as one word per hundred it sits under and teaches the sweep nothing the
+     * traditional spelling it is derived from has not already shown.
+     */
+    @Test
+    fun frenchCardinals0To999BridgeOnlyTheKnownSixTenPairs() {
+        val known = sweep("fr", (0L..999L).map { FrenchNumbers.cardinal(it) })
+        assertEquals(30, known.size, "expected the thirty six ↔ dix pairs, got $known")
+        assertTrue(known.all { "six\"" in it && "dix\"" in it }, "unexpected pair in $known")
+    }
+
+    /**
      * Both Italian spellings per value, the hiatus twin of the cento seam included — it is
      * graded, so it is swept. The one pair that bridges is the elision itself: `ventotto`
      * and `centotto` are `otto` welded onto two words that differ in one letter.

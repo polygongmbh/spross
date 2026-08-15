@@ -213,8 +213,8 @@ class CatalogFixtureTest {
     @Test
     fun aLanguageWithoutATableNamesNothingAndIsNamedAnyway() {
         assertNull(catalog.languageName("en", "de"))
-        assertNull(catalog.languageName("sw", "fr")) // table present, entry absent
-        assertEquals("Französisch", catalog.languageName("de", "fr")?.name)
+        assertNull(catalog.languageName("sw", "pt")) // table present, entry absent
+        assertEquals("Portugiesisch", catalog.languageName("de", "pt")?.name)
     }
 
     @Test
@@ -361,10 +361,10 @@ class CatalogFixtureTest {
     /** Only the ANSWER side needs generated number words — a pack-less language still prompts. */
     @Test
     fun targetWithoutATrainerPackHasNoFrames() {
-        assertTrue(catalog.phraseTemplates("de", "fr").isEmpty())
+        assertTrue(catalog.phraseTemplates("de", "pt").isEmpty())
         assertEquals(
-            listOf("Le bus arrive à {slot}."),
-            catalog.phraseTemplates("fr", "sw").map { it.sourceTemplate },
+            listOf("O autocarro chega às {slot}."),
+            catalog.phraseTemplates("pt", "sw").map { it.sourceTemplate },
         )
     }
 
@@ -381,8 +381,8 @@ class CatalogFixtureTest {
         val deUk = catalog.phraseTemplates("de", "uk").first { it.id == "im-learning-since" }
         assertEquals("Ich lerne seit {slot} Ukrainisch.", deUk.sourceTemplate)
         assertEquals("Я вчу українську з {slot}.", deUk.targetTemplate)
-        // fr realizes the frame but names no language at all.
-        assertTrue(catalog.phraseTemplates("fr", "sw").none { it.id == "im-learning-since" })
+        // pt realizes the frame but names no language at all.
+        assertTrue(catalog.phraseTemplates("pt", "sw").none { it.id == "im-learning-since" })
     }
 
     @Test

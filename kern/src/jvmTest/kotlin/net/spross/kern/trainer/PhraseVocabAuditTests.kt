@@ -27,7 +27,7 @@ class PhraseVocabAuditTests {
      * and has to say so here.
      */
     private val allowlistSize: Map<Language, Int> =
-        mapOf("de" to 15, "en" to 3, "es" to 1, "it" to 2, "sw" to 4, "uk" to 2)
+        mapOf("de" to 15, "en" to 3, "es" to 1, "fr" to 1, "it" to 2, "sw" to 4, "uk" to 2)
 
     /** Documented allowlist — function words and international words only. */
     private val allowlist: Map<Language, Set<String>> = mapOf(
@@ -51,6 +51,10 @@ class PhraseVocabAuditTests {
         // --- Spanish ---------------------------------------------------------------
         "es" to setOf(
             "kilo", // internationale Maßeinheit, wie in de/en
+        ),
+        // --- French ---------------------------------------------------------------
+        "fr" to setOf(
+            "kilo", // internationale Maßeinheit, wie in de/en/es
         ),
         // --- Italian ---------------------------------------------------------------
         "it" to setOf(
@@ -96,6 +100,12 @@ class PhraseVocabAuditTests {
             "repita" to "repetir",       // Imperativ der Höflichkeitsform (usted)
             "escribe" to "escribir",     // Imperativ der Du-Form
             "necesito" to "necesitar",   // 1. Person Singular
+        ),
+        // --- French ---------------------------------------------------------------
+        "fr" to mapOf(
+            "réveille" to "réveiller",  // reflexives se réveiller, 1. Person Singular
+            "répétez" to "répéter",     // Höflichkeitsimperativ
+            "écrivez" to "écrire",      // Höflichkeitsimperativ
         ),
         // --- Italian ---------------------------------------------------------------
         "it" to mapOf(
@@ -170,7 +180,7 @@ class PhraseVocabAuditTests {
     fun everyLanguageWithAPackAndFramesIsAudited() {
         val audited = joinedPairs().map { it.second }.toSet()
         assertTrue(
-            listOf("de", "en", "es", "it", "sw", "uk").all { it in audited },
+            listOf("de", "en", "es", "fr", "it", "sw", "uk").all { it in audited },
             "audited: $audited",
         )
         for (target in audited) assertTrue(Trainer.supports(target), "$target answers without a pack")

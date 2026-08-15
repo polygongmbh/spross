@@ -30,6 +30,7 @@ the canonical and refused readings below are pinned by `TrainerFormsTests`.
 | de | all six | 2–12 | 1–100 | `,` |
 | en | all six | 2–12 | 1–100 | `.` |
 | es | all six | 2–12 | **1–12** | `,` |
+| fr | all six | 2–12 | 1–100 | `,` |
 | it | all six | 2–12 | 1–100 | `,` |
 | sw | five — **no ordinal** | **2–4** | — | `.` |
 | uk | all six | 2–12 | 1–100 | `,` |
@@ -146,6 +147,80 @@ Sources: [RAE, veintiuna personas / veintiuno por ciento](https://www.rae.es/esp
 · [RAE, los números decimales y el separador decimal](https://www.rae.es/ortograf%C3%ADa/los-n%C3%BAmeros-decimales-y-el-separador-decimal)
 · [RAE, la expresión de los porcentajes](https://www.rae.es/ortograf%C3%ADa/la-expresi%C3%B3n-de-los-porcentajes)
 · [Nueva gramática, numerales ordinales](https://www.rae.es/gram%C3%A1tica/sintaxis/numerales-ordinales-i-aspectos-l%C3%A9xicos-y-morfol%C3%B3gicos).
+
+## French
+
+| Form | Canonical | Also graded | Refused |
+|---|---|---|---|
+| Negative | `moins sept` | — | — |
+| Decimal | `trois virgule quatre cinq` | the run-together `trois virgule quarante-cinq` | `trois point sept` |
+| Percent | `quarante-cinq pour cent` | the regional decades (`septante pour cent`) | `pourcent` |
+| Multiplicative | `une fois`, `vingt et une fois` | — | `un fois`, `vingt et un fois` |
+| Fraction | `un tiers`, `trois quarts`, `cinq douzièmes` | `demi`, `la moitié`, `une demie` | `un troisième`, `un quatrième` |
+| Ordinal | `premier`, `vingt et unième`, `quatre-vingt-dixième` | `première`, `second`/`seconde` | bare `unième` |
+
+Every reading above also grades in the two spellings the cardinal has —
+see the spelling rule below — so `moins quarante cinq` and `vingt-et-un pour cent` are correct answers.
+
+- **70, 80 and 90 are counted on twenty**, and standard French is what the reference teaches:
+  `soixante-dix` (60+10), `quatre-vingts` (4×20), `quatre-vingt-dix` (4×20+10).
+  The Belgian and Swiss `septante` and `nonante` and the Swiss `huitante` grade beside them
+  with their regular compounds (`septante-deux`, `nonante-neuf`, `huitante et un`).
+  **`octante` is left out**: regionally near-extinct, and an accepted-but-dead form
+  teaches a register nobody uses — the `thrice` rule, inverted.
+- **The canonical spelling is the traditional orthography**,
+  because that is what dictionaries, schoolbooks and published French still print
+  and the reference table teaches what a learner will meet:
+  a hyphen inside a compound below a hundred, spaces around `cent` and `mille`,
+  and `et` instead of a hyphen where `et` appears (`vingt et un`, `mille neuf cent quatre-vingts`).
+  The 1990-rectified all-hyphen spelling (`vingt-et-un`, `mille-neuf-cent-quatre-vingts`) grades beside it,
+  and so does the **fully spaced twin** of both.
+  That last one is not cosmetic: the comparison pipeline DELETES hyphens rather than spacing them,
+  so `quatre-vingt-dix` is one word and `quatre vingt dix` is three,
+  and a learner who spaces a compound would otherwise book a right answer amber.
+  The 1990 hyphens tie a run of numerals together and stop at `million`/`milliard`,
+  which are nouns rather than numeral adjectives.
+- **`et` reaches 21, 31, 41, 51, 61 and 71 and stops there** —
+  `quatre-vingt-un` and `quatre-vingt-onze` take none.
+- **The plural -s of a multiplied `vingt` or `cent` falls before another NUMERAL and stands before a NOUN:**
+  `quatre-vingts` but `quatre-vingt-deux` and `quatre-vingt mille`,
+  `deux cents` but `deux cent un` and `deux cent mille` — while `quatre-vingts millions`
+  and `deux cents millions` keep it, because `million` is a noun and not a numeral.
+  `mille` never inflects; `million` and `milliard` are nouns and pluralize, and take `un` where `mille` does not.
+- **Years** read as the plain cardinal (`mille neuf cent soixante-dix-huit`),
+  with the hundred-counting `dix-neuf cent soixante-dix-huit` and the date spelling `mil neuf cent …` accepted.
+  `mil` belongs to dates of the Christian era, so it grades for 1001–1999 and nowhere else.
+- **`fois` is feminine**, so a count ending in one agrees with it:
+  `une fois`, `vingt et une fois`, `quatre-vingt-une fois`.
+  The masculine forms are the error the drill exists to catch and never grade.
+  The same agreement is what makes the clock's minute count `deux heures vingt et une`.
+- **A fraction is the ordinal noun**, with thirds and quarters suppletive (`un tiers`, `trois quarts`)
+  and `-ième` from a fifth on (`cinq douzièmes`); `tiers` already ends in -s and takes no plural mark.
+  Reading 1/3 as `un troisième` is the mistake the suppletion exists to teach, so it grades wrong.
+  A half is `un demi`, with the feminine noun `la moitié` beside it;
+  since 1 ≤ n < d, d == 2 forces n == 1, so no plural of `demi` is reachable.
+- **Ordinals reach the drill's own 100** rather than stopping early:
+  `-ième` is fully productive and lands on the LAST segment of the cardinal,
+  so every value derives — `premier` is the only suppletive form,
+  the plural mark of a multiplied `vingt` goes with it (`quatre-vingts` → `quatre-vingtième`)
+  while the -s of `trois` is part of the word (`troisième`),
+  and `cinq`/`neuf` shift for the sound (`cinquième`, `neuvième`).
+  `unième` never stands alone — it exists only inside a compound — so a bare `unième` is refused,
+  and `second`/`seconde` belong to a series of exactly two and grade without being taught.
+- **The decimal mark is named `virgule`.**
+  Digit-by-digit leads and the run-together reading of the fractional part grades beside it,
+  as it does in German and Spanish; it is suppressed on a leading zero, where it would name a different number.
+
+Sources: [Académie française, Questions de langue](https://www.academie-francaise.fr/questions-de-langue)
+(the `vingt`/`cent` agreement, the invariable `mille`, `mil` in dates, the 1990 hyphen rule)
+· [Vitrine linguistique de l'OQLF](https://vitrinelinguistique.oqlf.gouv.qc.ca/)
+(writing numbers out, the two hyphen systems)
+· Grevisse & Goosse, *Le bon usage*, «Les numéraux» (the vigesimal decades, `et` at 21–71, the fraction nouns)
+· [fr.wikipedia, Noms des nombres en français](https://fr.wikipedia.org/wiki/Noms_des_nombres_en_fran%C3%A7ais)
+· [fr.wiktionary, septante](https://fr.wiktionary.org/wiki/septante)
+· [nonante](https://fr.wiktionary.org/wiki/nonante)
+· [huitante](https://fr.wiktionary.org/wiki/huitante)
+· [octante](https://fr.wiktionary.org/wiki/octante) (marked regional and dated — the reason it is not accepted).
 
 ## Italian
 

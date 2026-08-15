@@ -57,6 +57,10 @@ class ClockCollisionSweepTests {
     fun swahiliClockBridgesOnlyTheKnownFourEightPair() =
         sweep("sw", gated = listOf("[nane, nne]"))
 
+    /** `six` ↔ `dix` reaches the clock as the hour count and as the minute count. */
+    @Test
+    fun frenchClockBridgesOnlyTheKnownSixTenPair() = sweep("fr", gated = listOf("[dix, six]"))
+
     /** `дев'ять` ↔ `десять` reaches the clock as the minute count and as every hour ordinal case. */
     @Test
     fun ukrainianClockBridgesOnlyTheKnownNineTenPairs() = sweep(
@@ -242,11 +246,14 @@ class ClockCollisionSweepTests {
          * Ukrainian ordinal cases are listed each on their own — the comparison
          * pipeline has already deleted the apostrophe). `cuarto`/`cuatro` is the
          * clock's own: the quarter word and the number four are a transposition
-         * apart, so :15 and :04 read alike under a one-slip budget.
+         * apart, so :15 and :04 read alike under a one-slip budget. `six`/`dix` is
+         * [TrainerTypoBridgeGuardTests]' French pair reaching the clock as an hour
+         * word and as a minute count.
          */
         val KNOWN_BRIDGES = listOf(
             setOf("nne", "nane"),
             setOf("cuarto", "cuatro"),
+            setOf("six", "dix"),
             setOf("девять", "десять"),
             setOf("девята", "десята"),
             setOf("девяту", "десяту"),

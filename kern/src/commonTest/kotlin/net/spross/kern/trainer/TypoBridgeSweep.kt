@@ -42,6 +42,10 @@ internal object TypoBridgeSweep {
      *   is deleted by the comparison pipeline;
      * - en `eight` (8) ↔ `eighty` (80), one insertion;
      * - es `sesenta` (60) ↔ `setenta` (70), one deletion;
+     * - fr `six` (6) ↔ `dix` (10), one substitution — and again welded, because a French
+     *   compound hyphenates and the pipeline deletes the hyphen: `soixante-six` ↔
+     *   `soixante-dix` and `quatre-vingt-six` ↔ `quatre-vingt-dix` are one word each by
+     *   the time they are compared.
      * - it `ventotto` (28) ↔ `centotto` (108), one substitution — two elisions of the
      *   same `otto` onto tens and hundreds that differ in their first letter alone.
      * Every compound built on one of them bridges too ("kumi na nne" ↔ "kumi na nane",
@@ -52,6 +56,9 @@ internal object TypoBridgeSweep {
         setOf("девять", "десять"),
         setOf("eight", "eighty"),
         setOf("sesenta", "setenta"),
+        setOf("six", "dix"),
+        setOf("soixantesix", "soixantedix"),
+        setOf("quatrevingtsix", "quatrevingtdix"),
         setOf("ventotto", "centotto"),
     )
 

@@ -17,10 +17,10 @@ internal object Fixture {
 
     /**
      * Frame files, kept apart so a test can drop them wholesale and exercise the
-     * absent-`drills/` case. `learning-since-year` is German-only (never joins), and `fr`
+     * absent-`drills/` case. `learning-since-year` is German-only (never joins), and `pt`
      * is realized although no trainer pack covers it (the availability gate).
      * `numberNotes` covers all three reader cases: sw authors both readers, uk English
-     * only (the fallback), de and fr none at all.
+     * only (the fallback), de and pt none at all.
      */
     val drills: Map<String, String> = mapOf(
         "drills/frames.json" to """
@@ -37,11 +37,11 @@ internal object Fixture {
                 "learning-since-year": { "text": "Ich lerne seit {slot}." },
                 "im-learning-since": { "text": "Ich lerne seit {slot} {language}." } } }
         """.trimIndent(),
-        // why: fr realizes the marked frame but authors no name table, so every pair drops
+        // why: pt realizes the marked frame but authors no name table, so every pair drops
         // it and keeps the rest — the frame half of the coverage drop.
-        "drills/fr.json" to """
-            { "frames": { "bus-arrives-at": { "text": "Le bus arrive à {slot}." },
-                          "im-learning-since": { "text": "J'apprends {language} depuis {slot}." } } }
+        "drills/pt.json" to """
+            { "frames": { "bus-arrives-at": { "text": "O autocarro chega às {slot}." },
+                          "im-learning-since": { "text": "Aprendo {language} desde {slot}." } } }
         """.trimIndent(),
         "drills/sw.json" to """
             { "numberNotes": {
@@ -66,7 +66,7 @@ internal object Fixture {
 
     /**
      * Inflected language names, kept apart like [drills] so a test can drop them. Coverage
-     * is deliberately partial: en and fr author no table at all, sw names no fr, and uk's
+     * is deliberately partial: en and pt author no table at all, sw names no pt, and uk's
      * sw entry omits `speak` (the fallback to `name`).
      */
     val names: Map<String, String> = mapOf(
@@ -74,7 +74,7 @@ internal object Fixture {
             { "languageNames": {
                 "de": { "name": "Deutsch", "in": "auf Deutsch" },
                 "en": { "name": "Englisch", "in": "auf Englisch" },
-                "fr": { "name": "Französisch", "in": "auf Französisch" },
+                "pt": { "name": "Portugiesisch", "in": "auf Portugiesisch" },
                 "sw": { "name": "Suaheli", "in": "auf Suaheli", "variants": ["Kisuaheli"] },
                 "uk": { "name": "Ukrainisch", "in": "auf Ukrainisch" } } }
         """.trimIndent(),
@@ -110,7 +110,7 @@ internal object Fixture {
                      "articles": ["der", "die", "das", "ein", "eine"] },
              "en": { "name": "English", "englishName": "English", "flag": "🇬🇧",
                      "optionalVerbPrefixes": ["to "], "articles": ["the", "a", "an"] },
-             "fr": { "name": "Français", "englishName": "French", "flag": "🇫🇷" },
+             "pt": { "name": "Português", "englishName": "Portuguese", "flag": "🇵🇹" },
              "sw": { "name": "Kiswahili", "englishName": "Swahili", "flag": "🇹🇿",
                      "optionalVerbPrefixes": ["ku", "kw"] },
              "uk": { "name": "Українська", "englishName": "Ukrainian", "flag": "🇺🇦" }

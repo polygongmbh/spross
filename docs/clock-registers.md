@@ -24,7 +24,8 @@ A `ClockReading` carries three things, and they are not interchangeable.
   Naming what NOT to say is a warning rather than an alternative, and a warning repeated
   at every reveal of every hour past twelve is not worth the line it takes.
   The lead-in and the separator are words of the answer language too —
-  `auch: `, `also: `, `también: `, `також: ` — never the authoring language's.
+  `auch: `, `also: `, `también: `, `також: `, `aussi : ` — never the authoring language's,
+  down to the space French puts before its colon.
 
 ## What a reveal names
 
@@ -55,6 +56,12 @@ Three rules sit on top of that, and none of them is derivable from the words alo
   and below thirteen it is the only line left — the official ordinal is the colloquial one there.
   Italian goes further and generates no timetable reading below thirteen at all:
   `sono le undici e trenta` is what both registers say, so there is nothing there for a second line to teach.
+  French names its 24-hour register and nothing else, and that is not a thin gloss but the whole set:
+  the count-up and the countdown are its two constructions,
+  whichever one the grid step calls for IS the display,
+  and the other one says the same clock in the register the line already carries.
+  Below thirteen the two registers coincide off the grid (`trois heures cinq` is both),
+  and the gloss is then absent rather than empty.
 
 Spanish is where a REGISTER earns a line of its own.
 At a minute off the round steps, `son las nueve y diecisiete minutos` spells the noun out,
@@ -74,6 +81,7 @@ Where a reading counts toward the COMING hour, the part of the day belongs to th
 not to the one on the clock.
 
 - 19:45 is `son las ocho menos cuarto` — eight in the evening, so `de la noche`, while the clock still says seven.
+- 19:45 is `huit heures moins le quart du soir` for the same reason.
 - 11:45 is `за чверть дванадцята дня` — it names noon, and `дванадцята ранку` is not a thing.
 - 11:30 is `пів на дванадцяту дня` for the same reason.
 
@@ -83,9 +91,10 @@ takes the morning and the afternoon respectively.
 
 ## Parts of the day
 
-Which words fit which hour is authored once, in one `dayParts` function per language —
+Which words fit which hour is authored once, in the per-language `dayParts` functions —
 `GermanClock.dayParts`, `EnglishClockRegisters.dayParts`, `SpanishClockForms.dayParts`,
-`ItalianClockForms.dayParts`, `SwahiliClock.dayParts`, `UkrainianClockForms.dayParts`.
+`FrenchClockForms.dayParts`, `ItalianClockForms.dayParts`,
+`SwahiliClock.dayParts`, `UkrainianClockForms.dayParts`.
 Those functions ARE the grid; each carries its own non-derivable notes in its KDoc,
 and each pack's `clockDayParts` is the union over that language's own function —
 one set per language, never one pooled across them,
@@ -97,7 +106,9 @@ and WHERE a language may attach one is its own rule, which the functions alone d
 German's is in `GermanClock.dayParts`' KDoc;
 Spanish attaches it to the conversational readings and to the shortest `para` form,
 not to the timetable register, which names 0–23 already;
-Ukrainian's official register does the same, and so does Italian's.
+Ukrainian's official register does the same, and so do French's and Italian's.
+French has one exclusion of its own: `midi` and `minuit` name the half of the day themselves,
+so nothing is hung on them and `midi de l'après-midi` never exists.
 
 Italian is the one language here that leaves an hour with no part of the day at all.
 `mezzogiorno` and `mezzanotte` are the words that separate the two noons,
@@ -118,9 +129,10 @@ A reading that NAMES the part of the day must close it —
 naming it is the whole point — and `dayPartReadingsCloseTheTwelveHourCycle` holds it to that.
 
 Everything else is a bug: no reading may be accepted for a second time in the same cycle.
-Three word pairs sit one slip apart and are gated as audited exceptions —
-`nne`/`nane`, `cuarto`/`cuatro`, and `дев'ять`/`десять`,
+Four word pairs sit one slip apart and are gated as audited exceptions —
+`nne`/`nane`, `cuarto`/`cuatro`, `six`/`dix`, and `дев'ять`/`десять`,
 the last listed once per Ukrainian ordinal case it reaches the clock in.
+The French pair reaches the clock twice over, as an hour word and as a minute count.
 
 Two exclusions are load-bearing and are commented at the point they are made:
 
@@ -129,14 +141,15 @@ Two exclusions are load-bearing and are commented at the point they are made:
 - English's 24-hour hour word keeps its hyphen: spaced,
   `twenty two eleven` comes within a slip per word of `twenty to eleven`.
 
-## Why a generator per language and not one
+## Why one generator per language, and not one for all
 
 The files rhyme because clocks are one object, not because they run one computation.
-The past/to pivot is `:31` everywhere but German, which counts against the HALF hour
-rather than the coming one — 6:25 is "fünf vor halb sieben";
-the half hour names the coming hour in de and uk and the current one in en, es, it and sw;
+The past/to pivot is `:31` in most of them and `:25` in German,
+which counts against the HALF hour rather than the coming one — 6:25 is "fünf vor halb sieben";
+the half hour names the coming hour in de and uk and the current one in en, es, it, sw and fr;
 Swahili's hours are offset by six and its display is assembled outside its accepted list;
-German has no cores at all, and English hangs its parts of the day on two readings after every bare one.
+German has no cores at all, English hangs its parts of the day on two readings after every bare one,
+and French dresses each core in a copula instead — `il est` is a reading, not a frame word.
 `leadWith` (`ClockReadings.kt`) and the empty-gloss rule (`ClockGloss.line`) carry no language
 rule, and those are shared outright.
 `TrainerLanguagePack.clockDayParts` shares the SLOT and nothing else:
@@ -194,6 +207,28 @@ At 00:00 and 12:00 `twelve a.m.` and `twelve p.m.` are accepted but never named:
 that pair is the one native speakers themselves get backwards,
 so the reveal keeps teaching `midnight` and `noon` there.
 
+## French's bare reading, and the copula beside it
+
+The French reading is BARE — `deux heures et quart`, `midi`, `minuit` —
+and `il est deux heures et quart` grades beside it as a reading of its own.
+That split is what keeps French's prepositional frames:
+`à` never contracts with an hour word, so `à deux heures et quart` composes for every draw
+where Ukrainian's «о» + locative cannot,
+and French realizes the five `à`-frames Ukrainian has to drop for predicate ones.
+The copula is declared in `TrainerLanguagePack.readingPrepositions`, which is what makes it composable:
+it is dropped where a frame already says it (`Le réveil dit qu'il est deux heures.`)
+and the reading is skipped where a frame would double it (`Le train part à il est deux heures.` is not French).
+
+Two agreements are the drill's own content and not decoration.
+The hour is a counted noun, so it is `une heure` against `deux heures`,
+and the timetable register counts it the same way up to `vingt et une heures`.
+`midi` and `minuit` replace that noun outright — they never take `heures` —
+and being masculine they take `et demi` where an hour takes `et demie`.
+
+Every reading also grades fully spaced, because the comparison pipeline deletes hyphens:
+`deux heures quarante-cinq` and `deux heures quarante cinq` are otherwise unrelated strings
+(`docs/number-forms.md` § French owns that rule; the clock only obeys it).
+
 ## Rejected, and likely to be proposed again
 
 A reading earns a line here only if a plausible widening would put it back,
@@ -212,12 +247,13 @@ Everything else the drill does not accept is answered by the commit that dropped
   which joiners are interchangeable is each language's own knowledge, and `a` is not on Spanish's list.
 - **Swahili `kasa`** — not a Swahili word (owner-confirmed), however plausible it looks beside `kasorobo`;
   the quarter words are `na robo` and `kasorobo`, and both are generated already.
-- **The emphatic full hour, in every one** — de `punkt sechs`, en `six o'clock sharp` / `on the dot` / `exactly six o'clock`,
-  es `en punto`, it `in punto`, sw `kamili`, uk `рівно`.
+- **The emphatic full hour, in every language** — de `punkt sechs`, en `six o'clock sharp` / `on the dot` / `exactly six o'clock`,
+  es `en punto`, fr `six heures pile` / `précises`, it `in punto`, sw `kamili`, uk `рівно`.
   They say the hour is EXACT, which is a different claim from what time it is,
   and no learner answering "18:00" volunteers the suffix —
-  so the coverage never paid for the branch each pack would carry at `m == 0`.
+  so the coverage never paid for the branch each generator carried at `m == 0`.
   They are taught in the catalog instead, by `time/nine-am-sharp`:
-  the knowledge is WHERE the word sits — de and uk prepose it, en, es, it and sw postpose it,
-  es and sw put it after the part of the day, and Italian's canonical puts it before one
-  (`alle nove in punto del mattino`) — which a sentence carries and a word card cannot.
+  the knowledge is WHERE the word sits — de and uk prepose it, en, es, fr, it and sw postpose it,
+  es and sw put it after the part of the day, French agrees `précises` with the hour it follows
+  (`midi précis` against `deux heures précises`), and Italian's canonical puts it before
+  the part of the day (`alle nove in punto del mattino`) — which a sentence carries and a word card cannot.

@@ -72,6 +72,26 @@ class PhraseAcceptedFormsTests {
         assertFalse(train.accepted.any { "eins Uhr" in it }, "wrong 'eins Uhr' in ${train.accepted}")
     }
 
+    // French as the ANSWER side: the reading is bare and its copula is a reading of its own
+
+    /**
+     * The bare reading is what lets French keep a PREPOSITIONAL frame — `à` never contracts
+     * with an hour word — and the copula rides along only where the frame itself says it.
+     */
+    @Test
+    fun frenchAnswerComposesTheCopulaOnlyWhereTheFrameSaysIt() {
+        val train = PhraseSlots.instantiate(RealFrames.frame("fr", "train-departs-at", source = "en"), 14, 45)
+        assertEquals("Le train part à trois heures moins le quart.", train.display)
+        assertTrue("Le train part à quatorze heures quarante-cinq." in train.accepted)
+        assertTrue("Le train part à 14:45." in train.accepted)
+        assertFalse(train.accepted.any { "à il est" in it }, train.accepted.toString())
+
+        // The frame supplies the copula, so the reading that carries one merges into it.
+        val alarm = PhraseSlots.instantiate(RealFrames.frame("fr", "alarm-clock-shows"), 14, 45)
+        assertEquals("Le réveil dit qu'il est trois heures moins le quart.", alarm.display)
+        assertFalse(alarm.accepted.any { "est il est" in it }, alarm.accepted.toString())
+    }
+
     // masculineNumeral filter holds across the widened accepted assembly
 
     @Test

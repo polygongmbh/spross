@@ -1,0 +1,91 @@
+{
+ "numberNotes": {
+  "de": [
+   "70, 80, 90 werden auf zwanzig gezählt: soixante-dix (60+10), quatre-vingts (4×20), quatre-vingt-dix (4×20+10).",
+   "In Belgien und der Schweiz heißen sie septante, huitante, nonante — beides zählt.",
+   "et steht nur bei 21, 31, 41, 51, 61 und 71; quatre-vingt-un bekommt keins.",
+   "quatre-vingts und deux cents verlieren das -s, sobald eine Zahl folgt: quatre-vingt-deux, deux cent mille. mille bleibt immer gleich, million und milliard sind Nomen und werden gezählt."
+  ],
+  "en": [
+   "70, 80 and 90 are counted on twenty: soixante-dix (60+10), quatre-vingts (4×20), quatre-vingt-dix (4×20+10).",
+   "Belgium and Switzerland say septante, huitante and nonante instead — both grade.",
+   "et joins only 21, 31, 41, 51, 61 and 71; quatre-vingt-un takes none.",
+   "quatre-vingts and deux cents drop the -s as soon as another numeral follows: quatre-vingt-deux, deux cent mille. mille never changes, while million and milliard are nouns and are counted."
+  ]
+ },
+ "frames": {
+  "train-departs-at": {
+   "text": "Le train part à {slot}."
+  },
+  "bus-arrives-at": {
+   "text": "Le bus arrive à {slot}."
+  },
+  "i-wake-up-at": {
+   "text": "Je me réveille à {slot}."
+  },
+  "we-eat-at": {
+   "text": "On mange à {slot}.",
+   "variants": [
+    "Nous mangeons à {slot}."
+   ]
+  },
+  "meeting-is-at": {
+   "text": "La réunion est à {slot}."
+  },
+  "it-is-now": {
+   "text": "Il est maintenant {slot}.",
+   "variants": [
+    "Il est {slot} maintenant."
+   ],
+   "notes": {
+    "de": "Die französische Uhrzeit steht blank („deux heures et quart“); den Rahmen trägt „il est“.",
+    "en": "The French reading is bare („deux heures et quart“) and the frame supplies the copula."
+   }
+  },
+  "alarm-clock-shows": {
+   "text": "Le réveil dit qu'il est {slot}.",
+   "notes": {
+    "de": "wörtl.: „Der Wecker sagt, dass es … ist“ — hier trägt der Rahmen die Kopula, die die Uhrzeit selbst nicht mitbringt.",
+    "en": "literally „The alarm clock says that it is …“ — the frame carries the copula the reading leaves out."
+   }
+  },
+  "repeat-please": {
+   "text": "Répétez, s'il vous plaît : {slot}.",
+   "variants": [
+    "Répète, s'il te plaît : {slot}."
+   ]
+  },
+  "write-please": {
+   "text": "Écrivez, s'il vous plaît : {slot}.",
+   "variants": [
+    "Écris, s'il te plaît : {slot}."
+   ]
+  },
+  "learning-since-year": {
+   "text": "J'apprends {language-learn} depuis {slot}.",
+   "notes": {
+    "de": "Jahreszahl als Kardinalzahl gelesen: „mille neuf cent soixante-dix-huit“ — oder „dix-neuf cent …“",
+    "en": "The year is read as a plain cardinal: „mille neuf cent soixante-dix-huit“ — or „dix-neuf cent …“"
+   }
+  },
+  "repeat-the-year": {
+   "text": "Répétez, s'il vous plaît, la date : {slot}.",
+   "variants": [
+    "Répète, s'il te plaît, la date : {slot}."
+   ]
+  },
+  "write-the-year": {
+   "text": "Écrivez, s'il vous plaît, la date : {slot}.",
+   "variants": [
+    "Écris, s'il te plaît, la date : {slot}."
+   ]
+  },
+  "i-need-n-kilo-of-flour": {
+   "text": "Je prends {slot} de kilo de farine.",
+   "notes": {
+    "de": "„de“ steht hinter dem Bruch, nicht davor: vor „un quart“ würde es zu „d'un quart“ elidieren, und der Rahmen kann das nicht wissen.",
+    "en": "The „de“ sits after the fraction, not before it: against „un quart“ it would elide to „d'un quart“, and a frame cannot know that."
+   }
+  }
+ }
+}

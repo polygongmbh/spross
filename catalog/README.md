@@ -513,13 +513,24 @@ and editing one never restamps a learner's box.
   so they use dictation framing, where the bare cardinal reading is natural.
 - Ukrainian counted nouns must be **masculine**,
   so the trainer's canonical masculine numeral stays grammatical.
+- French counted nouns would need the same, and its plural -s besides
+  (`vingt et une assiettes`, `un euro` against `deux euros`),
+  which no numeral-side agreement field can supply —
+  so French carries no counted-noun frame at all, the way Spanish does not.
+- French clock frames stay PREPOSITIONAL, which is the Ukrainian constraint from the other side:
+  `à` never contracts with an hour word and the reading is bare,
+  so `Le train part à {slot}.` composes for every draw.
+  Its copula rides along as an accepted reading and is dropped where a frame does not say it
+  (`docs/clock-registers.md` § French's bare reading).
 - Swahili needs "tangu mwaka …" for a year: a bare cardinal after `tangu` does not read as one.
 - A `fraction` frame must read naturally with EVERY fraction the language can draw,
   which is what decides its shape per language:
   German puts the noun straight against the measure ("Ich brauche ein Viertel Kilo Mehl."),
-  while English, Spanish and Italian need the partitive ("three quarters **of a** kilo of flour",
-  "un tercio **de** kilo de harina", "un quarto **di** chilo di farina") —
+  while English, Spanish, French and Italian need the partitive ("three quarters **of a** kilo of flour",
+  "un tercio **de** kilo de harina", "un quart **de** kilo de farine", "un quarto **di** chilo di farina") —
   "one quarter kilo" is not what a recipe says.
+  In French that `de` may only stand AFTER the slot: before it, `de` + `un quart` elides to `d'un quart`,
+  and a frame cannot know which draw is coming.
   The frame's VERB must not agree with the drawn fraction either:
   Italian's "mi serve/mi servono" would, so its frame is built on "Ho bisogno di …".
 

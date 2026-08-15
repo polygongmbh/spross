@@ -48,6 +48,23 @@ class TrainerLargeNumberTests {
     }
 
     @Test
+    fun frenchMillionsAndBillions() {
+        assertEquals("un million", display(1_000_000, "fr"))
+        assertEquals("deux millions", display(2_000_000, "fr"))
+        assertEquals("vingt et un millions", display(21_000_000, "fr"))
+        // A multiplied "vingt"/"cent" keeps its -s before a scale NOUN and loses it
+        // before another numeral — "quatre-vingts millions" against "quatre-vingt mille".
+        assertEquals("quatre-vingts millions", display(80_000_000, "fr"))
+        assertEquals("quatre-vingt mille", display(80_000, "fr"))
+        assertEquals("un milliard", display(1_000_000_000, "fr"))
+        assertEquals("trois milliards", display(3_000_000_000L, "fr"))
+        assertEquals(
+            "un million deux cent trente-quatre mille cinq cent soixante-sept",
+            display(1_234_567, "fr"),
+        )
+    }
+
+    @Test
     fun italianMillionsAndBillions() {
         assertEquals("un milione", display(1_000_000, "it"))
         assertEquals("due milioni", display(2_000_000, "it"))

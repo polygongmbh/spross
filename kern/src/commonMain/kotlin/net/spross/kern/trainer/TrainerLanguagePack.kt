@@ -69,10 +69,11 @@ internal interface TrainerLanguagePack {
     val slotEcho: String? get() = null
 
     /**
-     * Prepositions some readings LEAD with ("um acht"). Such a reading composes only where
-     * the frame already carries that preposition — the duplicate is then dropped — and is
-     * skipped anywhere else: "Es ist jetzt um acht." is not a time statement. A list because
-     * one language may alternate by phonology (uk «о»/«об»).
+     * Function words some readings LEAD with — German's adverbial "um acht", French's
+     * copula "il est deux heures". Such a reading composes only where the frame already
+     * carries that word — the duplicate is then dropped — and is skipped anywhere else:
+     * "Es ist jetzt um acht." is not a time statement, and neither is "Le train part à il
+     * est deux heures." A list because one language may alternate by phonology (uk «о»/«об»).
      */
     val readingPrepositions: List<String> get() = emptyList()
 }
@@ -176,6 +177,27 @@ private object UkrainianPack : TrainerLanguagePack {
     override val decimalMark = ','
 }
 
+private object FrenchPack : TrainerLanguagePack {
+    override fun number(n: Long) = FrenchNumbers.variants(n)
+    override fun year(y: Long): YearReading {
+        val variants = FrenchNumbers.yearVariants(y)
+        return YearReading(variants[0], variants)
+    }
+    override fun clock(hour: Int, minute: Int) = FrenchClock.task(hour, minute)
+    override val placeValues = listOf(
+        "dix", "cent", "mille", "dix mille", "cent mille",
+        "million", "dix millions", "cent millions", "milliard",
+    )
+    override val clockDayParts: Set<String> =
+        (0..23).flatMapTo(mutableSetOf(), FrenchClockForms::dayParts)
+    override fun formReading(value: NumberValue) = FrenchForms.reading(value)
+    override val formLimits = FrenchForms.LIMITS
+    override val decimalMark = ','
+    // why: "il est deux heures" is a whole statement — it answers the bare drill, and it
+    // belongs in a frame only where the frame itself supplies the copula.
+    override val readingPrepositions = listOf("il est ")
+}
+
 private object ItalianPack : TrainerLanguagePack {
     override fun number(n: Long) = ItalianNumbers.variants(n)
     override fun year(y: Long): YearReading {
@@ -195,12 +217,13 @@ private object ItalianPack : TrainerLanguagePack {
     override val decimalMark = ','
 }
 
-/** The registry: de/en/es/sw/uk/it authored, insertion order is presentation order. */
+/** The registry: de/en/es/sw/uk/fr/it authored, insertion order is presentation order. */
 internal val trainerPacks: Map<Language, TrainerLanguagePack> = linkedMapOf(
     "de" to GermanPack,
     "en" to EnglishPack,
     "es" to SpanishPack,
     "sw" to SwahiliPack,
     "uk" to UkrainianPack,
+    "fr" to FrenchPack,
     "it" to ItalianPack,
 )

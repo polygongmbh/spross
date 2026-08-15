@@ -72,6 +72,14 @@ class TrainerFormsTypoBridgeGuardTests {
         assertTrue(known.all { "nne" in it && "nane" in it }, "unexpected pair in $known")
     }
 
+    /** six/dix wearing the -ième the forms add, plus the one fraction ↔ ordinal pair. */
+    @Test
+    fun frenchFormsBridgeOnlyTheKnownSixTenPairs() {
+        val known = sweep("fr")
+        assertEquals(103, known.size, "expected the six ↔ dix pairs, got ${known.size}")
+        assertTrue(known.all { "six" in it && "dix" in it }, "unexpected pair in $known")
+    }
+
     @Test
     fun ukrainianFormsBridgeOnlyTheKnownNineTenPairs() {
         val known = sweep("uk")
@@ -133,6 +141,10 @@ class TrainerFormsTypoBridgeGuardTests {
          *   a fraction plural. It needs BOTH entries and bridges on neither alone.
          * - **es** — "un décimo" (1/10) ↔ "undécimo" (11.), the language's own space-only
          *   minimal pair, and the one entry a word-by-word comparison cannot express.
+         * - **fr** — the six/dix twin wearing -ième, as a bare ordinal and welded inside the
+         *   two compounds that carry it; and "six septièmes" (6/7) ↔ "dix-septième" (17.),
+         *   the eight/eighty shape again — it needs the six/dix entry AND the septième one,
+         *   and bridges on neither alone.
          * - **it** — the ventotto/centotto twin of the cardinals wearing the ordinal
          *   suffix: `venti` and `cento` differ in their first letter, and `-esimo` welds
          *   onto both the same way, in the masculine and in the feminine alike.
@@ -144,6 +156,10 @@ class TrainerFormsTypoBridgeGuardTests {
             setOf("девятих", "десятих"),
             setOf("ninths", "ninth"),
             setOf("un décimo", "undécimo"),
+            setOf("sixième", "dixième"),
+            setOf("soixantesixième", "soixantedixième"),
+            setOf("quatrevingtsixième", "quatrevingtdixième"),
+            setOf("septièmes", "septième"),
             setOf("ventesimo", "centesimo"),
             setOf("ventesima", "centesima"),
         )

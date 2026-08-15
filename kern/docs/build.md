@@ -25,7 +25,7 @@ Engine contract: `../README.md`.
   App/Sources adds `Date ↔ epochMillis` helpers and `Identifiable`/`Equatable`
   conformances; Kotlin `Int` surfaces as `Int32` — bridge there, not at call sites.
 - Trainer: single `:kern` module, `Long` cardinals everywhere (Kotlin `Int` is 32-bit on
-  all platforms). Trainer registry: de/en/es/sw/uk/it
+  all platforms). Trainer registry: de/en/es/sw/uk/fr/it
   authored; a language outside it has no drills (the hub's handling of that is an app rule).
   `Catalog.phraseTemplates(source, target)` is the frames' half of the card join:
   one `PhraseTemplate` per frame realized in BOTH languages, directional like a `Card`,
