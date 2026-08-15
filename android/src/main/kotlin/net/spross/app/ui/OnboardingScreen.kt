@@ -46,11 +46,14 @@ import net.spross.kern.catalog.LanguageChoices
  * pick answers its own question — so choosing a source hands the screen to the target.
  * The known side opens folded, the device language being a good guess already.
  */
+private enum class Page { Languages, HowItWorks }
+
 @Composable
 fun OnboardingScreen(model: AppModel) {
     val catalog = model.catalog ?: return
     val chrome = remember { Chrome.forSource("en") }
     val initialSource = model.defaultSource(catalog)
+    var page by rememberSaveable { mutableStateOf(Page.Languages) }
     var source by rememberSaveable { mutableStateOf(initialSource) }
     var target by rememberSaveable {
         mutableStateOf(catalog.availableTargets(initialSource).firstOrNull()?.code)
@@ -66,6 +69,13 @@ fun OnboardingScreen(model: AppModel) {
     }
 
     val label: (String) -> String = { LanguageChoices.pickerRow(it, catalog.languages[it]) }
+
+    if (page == Page.HowItWorks) {
+        HowItWorksPage(model, source) {
+            target?.let { model.completeOnboarding(source, it, thenPractice = true) }
+        }
+        return
+    }
 
     // why: one list open at a time keeps the picker on one screen — the scroll is the
     // reachability floor for a large font scale, never a step of the flow.
@@ -102,8 +112,42 @@ fun OnboardingScreen(model: AppModel) {
         }
 
         Button(
-            onClick = { target?.let { model.completeOnboarding(source, it) } },
+            onClick = { if (target != null) page = Page.HowItWorks },
             enabled = target != null,
+            modifier = Modifier.fillMaxWidth().pressSpring(),
+            shape = MaterialTheme.shapes.small,
+        ) {
+            Text(chrome.next)
+        }
+    }
+}
+
+/**
+ * The picker's second page: what a round asks of you, before the first one starts.
+ *
+ * It stands BETWEEN the pick and the box being built, which is the only place it can —
+ * activating the profile leaves this screen for Heute — and reading it covers the join,
+ * so the wait for a first box is spent on something.
+ *
+ * Three lines, in the order the learner will meet them: recall, grade, write. Nothing
+ * about scheduling — the one job here is that a blank card is not a test you can fail.
+ * By this page the known language IS picked, so unlike the picker it speaks it.
+ */
+@Composable
+private fun HowItWorksPage(model: AppModel, source: String, onStart: () -> Unit) {
+    val chrome = remember(source) { Chrome.forSource(source) }
+    Column(
+        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
+            .padding(horizontal = 24.dp, vertical = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        Text("🌱", style = MaterialTheme.typography.displaySmall)
+        Text(chrome.howItWorksTitle, style = MaterialTheme.typography.headlineSmall)
+        Text(chrome.howItWorksRecall, style = MaterialTheme.typography.bodyLarge)
+        Text(chrome.howItWorksGrade, style = MaterialTheme.typography.bodyLarge)
+        Text(chrome.howItWorksWrite, style = MaterialTheme.typography.bodyLarge)
+        Button(
+            onClick = onStart,
             modifier = Modifier.fillMaxWidth().pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) {

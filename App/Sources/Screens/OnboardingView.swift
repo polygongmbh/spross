@@ -14,13 +14,23 @@ import SprossKern
 /// at once is more of the screen than the two questions are worth, and a pick answers
 /// its own question — so choosing a source hands the screen to the target.
 /// The known side opens folded, the device language being a good guess already.
+///
+/// Two pages: the pair, then what a round asks of you
+/// (`OnboardingView+HowItWorks.swift`). Only the second one commits — the first
+/// merely turns the page — so the box is joined once, behind something worth reading.
+/// This view is the FIRST-RUN path alone (`RootView` binds it to `phase == .onboarding`);
+/// a later language change is the box's own settings, and takes neither page.
 struct OnboardingView: View {
     let model: AppModel
+
+    enum Page { case languages, howItWorks }
 
     @State private var source: String
     @State private var target: String?
     @State private var pickingSource = false
     @State private var starting = false
+    // why: internal, not private — the second page lives in an extension of its own.
+    @State var page: Page = .languages
 
     init(model: AppModel) {
         self.model = model
@@ -46,11 +56,18 @@ struct OnboardingView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: DL.Space.l) {
-                header
-                sourceSection
-                targetSection
-                startButton
+            Group {
+                switch page {
+                case .languages:
+                    VStack(alignment: .leading, spacing: DL.Space.l) {
+                        header
+                        sourceSection
+                        targetSection
+                        nextButton
+                    }
+                case .howItWorks:
+                    howItWorksPage
+                }
             }
             .padding(DL.Space.l)
         }
@@ -141,7 +158,25 @@ struct OnboardingView: View {
         }
     }
 
-    private var startButton: some View {
+    /// The pair's own button: it commits nothing, it turns the page.
+    private var nextButton: some View {
+        Button {
+            guard target != nil else { return }
+            withAnimation(.easeInOut(duration: 0.2)) { page = .howItWorks }
+        } label: {
+            Text("common.next")
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(DLPrimaryButtonStyle())
+        .disabled(target == nil)
+        .padding(.top, DL.Space.l)
+    }
+
+    /// The one button that commits: it joins the box AND opens the round it was
+    /// picked for, so the spinner covers the join rather than a blank screen.
+    // why: internal, not private — the page it sits on is an extension of its own.
+    @ViewBuilder
+    var startButton: some View {
         Button {
             guard !starting, let target else { return }
             starting = true
@@ -159,7 +194,6 @@ struct OnboardingView: View {
             .frame(maxWidth: .infinity)
         }
         .buttonStyle(DLPrimaryButtonStyle())
-        .disabled(target == nil)
         .padding(.top, DL.Space.l)
     }
 }

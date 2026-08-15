@@ -45,6 +45,12 @@ Strict dependency direction: App → SprossKern, never the reverse.
   the catalog decides which targets a source can reach.
 - Default source = device language when covered, else en.
   Either picker may hold the other side's language — picking it swaps the pair.
+- Onboarding is two pages, and ends INSIDE the first round: the pair, then what a round
+  asks of you, and the button on that second page joins the box and opens the session.
+  Only the second page commits, so the join happens once, behind something worth reading;
+  the first round is never something the learner has to go and find on Heute.
+  It is the first-run path alone — a later language change is the box's own settings,
+  which take neither page and open no session over the screen you were on.
 - One list is open at a time; the other stands folded on its pick and opens at a tap,
   and picking a source hands the screen to the target. Onboarding opens with the known
   side folded — the device language is a good guess already — so the picker is one

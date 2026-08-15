@@ -166,8 +166,14 @@ final class AppModel {
         return Catalog.companion.load(source: BundleCatalogSource(directory: directory))
     }
 
+    /// The end of the ONLY first-run path — the pick, then the round it was made for.
+    /// Not `activate`, which every later language change goes through too: a switch in
+    /// the box's settings must not raise a session over the screen you were reading.
     func completeOnboarding(source: String, target: String) async {
         await activate(source: source, target: target)
+        // why: the picker is the last question the app asks. Landing on Heute to press
+        // one more button makes the first round something you have to go and find.
+        if sessionAvailable { startSession() }
     }
 
     /// Load the target's box from disk (re-joined for the profile), or

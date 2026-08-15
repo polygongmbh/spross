@@ -20,6 +20,13 @@ internal val ChromeDe = Chrome(
     iSpeak = "Ich spreche",
     iLearn = "Ich lerne",
     letsGo = "Los geht's!",
+    howItWorksTitle = "So läuft eine Runde",
+    howItWorksRecall = "Du siehst ein Wort. Nimm dir einen Moment, um dich zu erinnern — " +
+        "erzwing es nicht.",
+    howItWorksGrade = "Dann deckst du auf und sagst, wie gut du es wusstest. Ehrlich schlägt " +
+        "großzügig: es entscheidet, wann das Wort wiederkommt.",
+    howItWorksWrite = "Ein Wort, das du nicht wusstest, schreibst du einmal — und wenn es " +
+        "wiederkommt, tippst du es aus dem Gedächtnis.",
     check = "Prüfen",
     reveal = "Aufdecken",
     next = "Weiter",

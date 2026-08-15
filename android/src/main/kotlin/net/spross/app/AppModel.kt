@@ -230,9 +230,18 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     fun defaultSource(cat: Catalog): String = cat.defaultSource(Locale.getDefault().language)
 
-    fun completeOnboarding(source: String, target: String) {
+    /**
+     * The pair is settled. [thenPractice] is the FIRST-RUN path only — the picker is the
+     * last question the app asks, so the round it was made for opens straight away rather
+     * than behind one more button on Heute. A language change from the box's settings
+     * passes false: it must not raise a session over the screen you were reading.
+     */
+    fun completeOnboarding(source: String, target: String, thenPractice: Boolean = false) {
         profile.set(source, target)
-        viewModelScope.launch { activate(source, target) }
+        viewModelScope.launch {
+            activate(source, target)
+            if (thenPractice && sessionAvailable) startSession()
+        }
     }
 
     fun openAbout() {

@@ -22,6 +22,12 @@ internal val ChromeEn = Chrome(
     iSpeak = "I speak",
     iLearn = "I'm learning",
     letsGo = "Let's go!",
+    howItWorksTitle = "How a round works",
+    howItWorksRecall = "You see a word. Take a moment to try to remember it — don't force it.",
+    howItWorksGrade = "Then you reveal, and say how well you knew it. Honest beats generous " +
+        "— it decides when you see the word again.",
+    howItWorksWrite = "A word you didn't know, you write once — and when it turns up again, " +
+        "you type it from memory.",
     check = "Check",
     reveal = "Reveal",
     next = "Next",

@@ -3143,6 +3143,70 @@
         }
       }
     },
+    "onboarding.howItWorks.grade" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dann deckst du auf und sagst, wie gut du es wusstest. Ehrlich schlägt großzügig: es entscheidet, wann das Wort wiederkommt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Then you reveal, and say how well you knew it. Honest beats generous — it decides when you see the word again."
+          }
+        }
+      }
+    },
+    "onboarding.howItWorks.recall" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du siehst ein Wort. Nimm dir einen Moment, um dich zu erinnern — erzwing es nicht."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You see a word. Take a moment to try to remember it — don't force it."
+          }
+        }
+      }
+    },
+    "onboarding.howItWorks.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So läuft eine Runde"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How a round works"
+          }
+        }
+      }
+    },
+    "onboarding.howItWorks.write" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Wort, das du nicht wusstest, schreibst du einmal — und wenn es wiederkommt, tippst du es aus dem Gedächtnis."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A word you didn't know, you write once — and when it turns up again, you type it from memory."
+          }
+        }
+      }
+    },
     "onboarding.source.question" : {
       "localizations" : {
         "de" : {

@@ -26,6 +26,11 @@ data class Chrome(
     val iSpeak: String,
     val iLearn: String,
     val letsGo: String,
+    /** The picker's second page: what a round asks of you, before the first one runs. */
+    val howItWorksTitle: String,
+    val howItWorksRecall: String,
+    val howItWorksGrade: String,
+    val howItWorksWrite: String,
     val check: String,
     val reveal: String,
     val next: String,
