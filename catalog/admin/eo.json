@@ -21,9 +21,11 @@
    ]
   },
   "id-card": {
-   "text": "identigilo",
+   "text": "legitimilo",
    "variants": [
+    "identigilo",
     "identkarto",
+    "identiga karto",
     "persona dokumento"
    ]
   },
@@ -92,8 +94,9 @@
    ]
   },
   "pick-up": {
-   "text": "preni la identigilon",
+   "text": "preni la legitimilon",
    "variants": [
+    "preni la identigilon",
     "forpreni la identigilon",
     "preni la identkarton"
    ]
@@ -140,9 +143,9 @@
    ]
   },
   "fee": {
-   "text": "kotizo",
+   "text": "pago",
    "variants": [
-    "pago",
+    "kotizo",
     "tarifo"
    ]
   },
@@ -225,13 +228,15 @@
   "the-decision-comes-by-mail": {
    "text": "La decido venas per la poŝto.",
    "variants": [
+    "La decido venas per poŝto.",
     "La decido venos per la poŝto.",
     "La oficiala decido venas per la poŝto."
    ]
   },
   "when-does-my-id-expire": {
-   "text": "Kiam eksvalidiĝas mia identigilo?",
+   "text": "Kiam eksvalidiĝas mia legitimilo?",
    "variants": [
+    "Kiam eksvalidiĝas mia identigilo?",
     "Ĝis kiam validas mia identigilo?",
     "Kiam eksvalidiĝas mia identkarto?"
    ]

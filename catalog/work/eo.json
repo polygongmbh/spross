@@ -1,6 +1,6 @@
 {
  "title": "La laboro",
- "subtitle": "Multe da sukceso!",
+ "subtitle": "Multan sukceson!",
  "words": {
   "work": {
    "text": "laboro"
@@ -48,10 +48,11 @@
    ]
   },
   "vacation": {
-   "text": "ferio",
+   "text": "ferioj",
    "variants": [
-    "ferioj",
-    "forpermeso"
+    "ferio",
+    "forpermeso",
+    "libertempo"
    ]
   },
   "company": {
@@ -173,6 +174,7 @@
   "employer": {
    "text": "dunganto",
    "variants": [
+    "labordonanto",
     "laborodonanto"
    ]
   },
@@ -192,10 +194,12 @@
    ]
   },
   "ill-send-the-doctors-note-right-away": {
-   "text": "Mi tuj sendos al vi la kuracistan atestilon.",
+   "text": "Mi tuj sendos al vi la malsanateston.",
    "variants": [
+    "Mi tuj sendos al vi la kuracistan atestilon.",
     "Mi tuj sendos al vi la malsanatestilon.",
-    "Mi sendos al vi la kuracistan atestilon tuj."
+    "Mi sendos al vi la kuracistan atestilon tuj.",
+    "Mi sendos al vi la malsanateston tuj."
    ]
   },
   "have-a-nice-evening-off": {

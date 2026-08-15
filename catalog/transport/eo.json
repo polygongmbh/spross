@@ -5,6 +5,7 @@
   "traffic-light": {
    "text": "trafiklumo",
    "variants": [
+    "semaforo",
     "trafiksemaforo",
     "lumsignalo"
    ]

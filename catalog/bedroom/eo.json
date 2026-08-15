@@ -148,7 +148,7 @@
   "soft": {
    "text": "mola",
    "notes": {
-    "de": "mola = nachgiebig weich (Matratze, Kissen); sanft und glatt (Haut, Stoff) heißt glata."
+    "de": "mola = weich, auch für Haut und Stoff; glatt (eben, ohne Rauheit) heißt glata."
    }
   },
   "good-night-sleep-well": {
@@ -158,6 +158,7 @@
    "text": "Bonan matenon, mia amo!",
    "variants": [
     "Bonan matenon, karulo!",
+    "Bonan matenon, karulino!",
     "Bonan matenon, mia kara!"
    ]
   },

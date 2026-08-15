@@ -12,8 +12,9 @@
    "text": "dato"
   },
   "opening-hours": {
-   "text": "malfermaj horoj",
+   "text": "malfermohoroj",
    "variants": [
+    "malfermaj horoj",
     "malfermhoroj",
     "malfermtempo"
    ]
@@ -118,8 +119,9 @@
    ]
   },
   "what-are-the-opening-hours": {
-   "text": "Kiuj estas la malfermaj horoj?",
+   "text": "Kiuj estas la malfermohoroj?",
    "variants": [
+    "Kiuj estas la malfermaj horoj?",
     "Kia estas la malfermtempo?"
    ]
   },

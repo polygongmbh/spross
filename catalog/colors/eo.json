@@ -30,15 +30,15 @@
    "text": "griza"
   },
   "purple": {
-   "text": "purpura",
-   "variants": [
-    "viola"
+   "text": "viola",
+   "synonyms": [
+    "purpura"
    ]
   },
   "what-color-is-it": {
    "text": "Kian koloron ĝi havas?",
    "variants": [
-    "Kia koloro estas tio?"
+    "Kiun koloron ĝi havas?"
    ]
   },
   "a-white-car": {

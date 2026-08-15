@@ -50,7 +50,7 @@
   "also": {
    "text": "ankaŭ",
    "notes": {
-    "de": "steht direkt vor dem Wort, das es betrifft: ankaŭ mi = ich auch, mi ankaŭ venos = ich komme auch."
+    "de": "steht direkt vor dem Wort, das es betrifft: ankaŭ mi venos = auch ich komme · mi manĝas ankaŭ panon = ich esse auch Brot."
    }
   },
   "and": {
@@ -105,7 +105,8 @@
   "more-or-less": {
    "text": "pli-malpli",
    "variants": [
-    "pli aŭ malpli"
+    "pli aŭ malpli",
+    "pli malpli"
    ]
   },
   "i-am-always-there": {

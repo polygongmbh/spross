@@ -23,7 +23,7 @@
  "russia": {"text": "Rusio", "variants": ["Rusujo", "Ruslando"], "nationality": {"text": "rusoj", "variants": ["ruso", "rusino"]}},
  "china": {"text": "Ĉinio", "variants": ["Ĉinujo"], "nationality": {"text": "ĉinoj", "variants": ["ĉino", "ĉinino"]}},
  "japan": {"text": "Japanio", "variants": ["Japanujo"], "nationality": {"text": "japanoj", "variants": ["japano", "japanino"]}},
- "india": {"text": "Hindio", "variants": ["Hindujo", "Barato"], "nationality": {"text": "hindoj", "variants": ["hindo", "hindino", "baratanoj", "baratano"]}},
+ "india": {"text": "Barato", "variants": ["Hindio", "Hindujo"], "nationality": {"text": "baratanoj", "variants": ["baratano", "baratanino", "hindoj", "hindo", "hindino"]}},
  "argentina": {"text": "Argentino", "nationality": {"text": "argentinanoj", "variants": ["argentinano", "argentinanino"]}},
  "canada": {"text": "Kanado", "nationality": {"text": "kanadanoj", "variants": ["kanadano", "kanadanino"]}},
  "egypt": {"text": "Egiptio", "variants": ["Egiptujo", "Egipto"], "nationality": {"text": "egiptoj", "variants": ["egipto", "egiptino"]}},
