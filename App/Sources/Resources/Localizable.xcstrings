@@ -3420,13 +3420,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gut"
+            "value" : "Wusste ich"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Good"
+            "value" : "Knew it"
           }
         }
       }
@@ -3436,13 +3436,29 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schwer"
+            "value" : "Knapp"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hard"
+            "value" : "Barely"
+          }
+        }
+      }
+    },
+    "rating.question" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie gut wusstest du es?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How well did you know it?"
           }
         }
       }
@@ -3452,13 +3468,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unbekannt"
+            "value" : "Gar nicht"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unknown"
+            "value" : "Not at all"
           }
         }
       }

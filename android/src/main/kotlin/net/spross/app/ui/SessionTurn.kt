@@ -124,31 +124,44 @@ fun AnswerField(
 }
 
 /**
- * The self-grade row: three verdicts, never four.
+ * The self-grade row: three verdicts, never four — under the question they answer.
  *
  * The learner says whether the word came; the clock behind them decides whether one that
  * came, came instantly (kern's `SelfGrading`). Nobody can pick their way to a long
  * interval — Easy is EARNED by answering fast, which is why it is not on screen.
  *
- * Ordered best to worst, so the miss ends up under a resting thumb with the middle
- * verdict keeping the two opposites apart. Each carries a mark as well as its color.
+ * The labels name what the LEARNER knows, never what the scheduler will do, so none of
+ * them wears an FSRS rating's name. Ordered best to worst, so the miss ends up under a
+ * resting thumb with the middle verdict keeping the two opposites apart. Each carries a
+ * mark as well as its color.
+ *
+ * [caption] is the standing question; the first round's coaching passes its own, so only
+ * ever one line stands there.
  */
 @Composable
-fun VerdictButtons(chrome: Chrome, flow: TurnFlow, modifier: Modifier = Modifier) {
+fun VerdictButtons(
+    chrome: Chrome,
+    flow: TurnFlow,
+    modifier: Modifier = Modifier,
+    caption: String = chrome.ratingQuestion,
+) {
     val palette = Dl.colors
-    Row(
+    Column(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+        verticalArrangement = Arrangement.spacedBy(DlSpace.s),
     ) {
-        VerdictTile(SprossIcons.Check, chrome.good, palette.success, Modifier.weight(1f)) {
-            flow.selfGrade(SelfGrading.Verdict.Knew)
+        Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.s)) {
+            VerdictTile(SprossIcons.Check, chrome.good, palette.success, Modifier.weight(1f)) {
+                flow.selfGrade(SelfGrading.Verdict.Knew)
+            }
+            VerdictTile(SprossIcons.Dot, chrome.hard, palette.amber, Modifier.weight(1f)) {
+                flow.selfGrade(SelfGrading.Verdict.Tough)
+            }
+            VerdictTile(SprossIcons.Close, chrome.unknown, palette.wrong, Modifier.weight(1f)) {
+                flow.selfGrade(SelfGrading.Verdict.Unknown)
+            }
         }
-        VerdictTile(SprossIcons.Dot, chrome.hard, palette.amber, Modifier.weight(1f)) {
-            flow.selfGrade(SelfGrading.Verdict.Tough)
-        }
-        VerdictTile(SprossIcons.Close, chrome.unknown, palette.wrong, Modifier.weight(1f)) {
-            flow.selfGrade(SelfGrading.Verdict.Unknown)
-        }
+        PauseLine(caption)
     }
 }
 
@@ -187,9 +200,9 @@ private fun VerdictTile(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // Decorative: the name under it is the label, and TalkBack reading "checkmark"
-        // before "Gewusst" says the same thing twice.
+        // before "Wusste ich" says the same thing twice.
         Icon(icon, contentDescription = null, tint = color, modifier = Modifier.height(22.dp))
-        // why: "Unbekannt" outruns a third of a narrow row — the name steps down to fit
+        // why: "Gar nicht" outruns a third of a narrow row — the name steps down to fit
         // rather than losing its tail (the iOS tiles scale the same way).
         Text(
             label,

@@ -170,6 +170,7 @@ MAPPING = {
     'progressTitle': 'progress.title',
     'promptInLanguage': 'trainer.promptInLanguage %@',
     'pronounce': 'a11y.pronounce',
+    'ratingQuestion': 'rating.question',
     'readAloud': 'a11y.readAloud',
     'record': 'trainer.record %@',
     'recordSpoken': 'a11y.recordSuffix %@',

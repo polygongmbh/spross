@@ -37,7 +37,6 @@ import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
@@ -321,16 +320,7 @@ fun CardReveal(
                 .background(Dl.colors.separator, RoundedCornerShape(1.dp))
         )
         content()
-        note?.let {
-            // why: body size, not caption — a post-reveal line is meant to be READ, and
-            // secondary text a step smaller is where legibility broke on the iOS card.
-            Text(
-                it,
-                style = MaterialTheme.typography.bodyMedium.copy(fontStyle = FontStyle.Italic),
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center,
-            )
-        }
+        note?.let { PauseLine(it) }
     }
 }
 

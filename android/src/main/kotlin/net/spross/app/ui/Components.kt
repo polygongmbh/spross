@@ -29,6 +29,8 @@ import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.intl.LocaleList
 import androidx.compose.ui.text.withStyle
@@ -238,6 +240,26 @@ fun TapToHearHint(chrome: Chrome) {
             color = Dl.colors.textSecondary,
         )
     }
+}
+
+/**
+ * The quiet line a screen pauses on: the note under a reveal, what became of an answer,
+ * the question the verdicts answer. Italic and secondary, never a heading — it explains
+ * what is already on screen, and every such line on either phone wears this one face
+ * (iOS `dlPauseLine`).
+ *
+ * Body size, not caption: a post-reveal line is meant to be READ, and secondary text a
+ * step smaller is where legibility broke on the iOS card.
+ */
+@Composable
+fun PauseLine(text: String, modifier: Modifier = Modifier) {
+    Text(
+        text,
+        style = MaterialTheme.typography.bodyMedium.copy(fontStyle = FontStyle.Italic),
+        color = Dl.colors.textSecondary,
+        textAlign = TextAlign.Center,
+        modifier = modifier.fillMaxWidth(),
+    )
 }
 
 /**

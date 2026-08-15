@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **The grading row asks a question and takes a plain answer.** After a reveal it
+  says "How well did you know it?", and the three buttons answer in words —
+  *Knew it · Barely · Not at all* — instead of the scheduler's own vocabulary.
+
 - **Android says where a newer version comes from.** The foot of the box, under the
   build it is running, opens Obtainium on this app's releases so every future one is
   offered by itself — and where Obtainium is not installed, offers it or a direct

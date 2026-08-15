@@ -33,6 +33,8 @@ data class Chrome(
     val typoNote: String,
     val otherWordNote: String,     // %1$s = the word typed, %2$s = what it means
     val answerPlaceholder: String, // %s = target language name
+    /** The question the three verdicts answer, standing under them. */
+    val ratingQuestion: String,
     val hard: String,
     val good: String,
     val unknown: String,           // the third verdict — a judgment, not an instruction

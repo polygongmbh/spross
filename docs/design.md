@@ -89,7 +89,9 @@ never the shape of the app.
   graded against a language the word was not learned with.
   The learner reports one of three outcomes, and the engine turns that plus how long the
   recall took into the rating: Easy is earned by answering fast, never picked.
-  The buttons name what the learner knows, never what the scheduler will do.
+  The buttons name what the learner knows, never what the scheduler will do —
+  so none of them wears an FSRS rating's name, and the row stands under the question
+  it answers, in the same quiet line every other post-reveal hint uses.
   The recall clock runs from the prompt appearing to "Aufdecken" — the time spent choosing
   a button afterwards is thumb travel, not memory.
   The reveal carries the source meaning plus the full synonym family.

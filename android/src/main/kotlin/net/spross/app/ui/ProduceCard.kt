@@ -200,10 +200,8 @@ private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         flow.otherWord?.let { other ->
             // why: the line says what the learner DID write; the word it speaks is the
             // one they owed, the same one the card above has opened onto.
-            Text(
+            PauseLine(
                 chrome.otherWordNote.format(other.word, other.meanings.joinToString(", ")),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.pronounceOnTap(model.pronounceAction(card.target.text), chrome),
             )
         }

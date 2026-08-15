@@ -2,17 +2,20 @@ import SwiftUI
 
 // MARK: - RatingButtonsView
 //
-// Self-grade row for recognition mode.
+// Self-grade row, under the question it answers:
 //
-//     Gut   Schwer   Unbekannt
+//         How well did you know it?
+//     Knew it    Barely    Not at all
 //
 // Three buttons, not four: the learner says whether the word came, and the
 // clock behind them decides whether one that came, came instantly (the rule
 // and its reasoning: kern `SelfGrading`). Nobody can pick their way to a long
 // interval — Easy is earned by answering fast.
 //
-// Ordered best to worst, so Unbekannt ends up under a resting thumb and the
-// two opposite verdicts are kept apart by Schwer between them.
+// The labels name what the LEARNER knows, never what the scheduler will do
+// (design §Presentation model) — which is why none of them is an FSRS rating's
+// name. Ordered best to worst, so the miss ends up under a resting thumb and
+// the two opposite verdicts are kept apart by the middle one.
 //
 // They emit `SessionOutcome`, the same three the progress bar draws, in the
 // same three colors — the button you press is the segment you get.
@@ -22,12 +25,19 @@ import SwiftUI
 struct RatingButtonsView: View {
 
     var onGrade: (SessionOutcome) -> Void
+    /// What stands under the row. The standing question by default; the first
+    /// round's coaching replaces it, so only ever one line sits there.
+    var caption: LocalizedStringKey = "rating.question"
 
     var body: some View {
-        HStack(spacing: DL.Space.s) {
-            button(.right)
-            button(.tough)
-            button(.wrong)
+        VStack(spacing: DL.Space.s) {
+            HStack(spacing: DL.Space.s) {
+                button(.right)
+                button(.tough)
+                button(.wrong)
+            }
+            Text(caption)
+                .dlPauseLine()
         }
     }
 
