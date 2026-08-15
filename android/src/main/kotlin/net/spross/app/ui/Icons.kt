@@ -64,6 +64,12 @@ object SprossIcons {
         moveTo(5f, 12f); lineTo(19f, 12f)
     }
 
+    /** What the answer owes back: the turn from what was written down to the form beside it. */
+    val CornerDownRight = stroked("CornerDownRight") {
+        moveTo(6f, 5f); lineTo(6f, 15f); lineTo(18f, 15f)
+        moveTo(14f, 11f); lineTo(18f, 15f); lineTo(14f, 19f)
+    }
+
     /** Hear it. The cone is filled and the waves are stroked, as one glyph. */
     val Speaker = ImageVector.Builder(
         name = "Speaker",

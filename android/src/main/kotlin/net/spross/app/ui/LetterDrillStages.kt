@@ -14,9 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
@@ -25,7 +23,6 @@ import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
-import net.spross.app.almostLine
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.LetterDrillTask
@@ -154,23 +151,17 @@ fun TypedStage(
 private fun AnswerLine(flow: LetterDrillFlow, chrome: Chrome) {
     val feedback = flow.state.feedback
     if (feedback == TurnFeedback.Neutral) return
-    val note = (feedback as? TurnFeedback.Almost)?.let {
-        when (it.reason) {
-            AlmostReason.Typo -> almostLine(chrome.almostTypo, it.correctForm)
-            AlmostReason.Heard -> almostLine(chrome.almostHeard, it.correctForm)
-        }
-    }
+    val hold = feedback as? TurnFeedback.Almost
     val waits = feedback != TurnFeedback.Correct || flow.awaitsConfirm
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
-        note?.let {
-            Text(
-                it,
-                style = MaterialTheme.typography.titleMedium,
-                color = Dl.colors.amber,
-                // why: TalkBack has no autoplay to tell it what happened — the verdict
-                // announces itself where the learner's focus already is.
-                modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
-            )
+        hold?.let {
+            val caption = when (it.reason) {
+                AlmostReason.Typo -> chrome.almostTypo
+                AlmostReason.Heard -> chrome.almostHeard
+            }
+            // The letter drill has no voice of its own to replay, so the box carries no
+            // speaker here rather than one that would do nothing.
+            AlmostCorrection(caption, it.correctForm, chrome, pronounce = null)
         }
         if (waits) ConfirmButton(chrome) { flow.confirm() }
     }

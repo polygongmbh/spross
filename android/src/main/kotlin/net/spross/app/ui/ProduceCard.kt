@@ -17,10 +17,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -28,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.SessionUi
-import net.spross.app.almostLine
 import net.spross.app.TurnFlow
 import net.spross.app.audio.Pronouncer
 import net.spross.app.pronounceAction
@@ -161,27 +158,18 @@ private fun ReplayPrompt(model: AppModel, ui: SessionUi) {
 /**
  * An accepted answer that was not clean pauses on what it owes back — a slip's proper
  * spelling, or the form that actually played where the card accepts the one written.
- * The line IS the correction, so it carries the word and says it on tap; the card itself
- * stays closed, and nothing is on screen twice.
+ * The box IS the correction, so it carries the word and the speaker that says it; the card
+ * itself stays closed, and nothing is on screen twice.
  */
 @Composable
 private fun AlmostHold(model: AppModel, flow: TurnFlow, hold: TurnFeedback.Almost) {
     val chrome = model.chrome
-    val note = when (hold.reason) {
-        AlmostReason.Typo -> almostLine(chrome.almostTypo, hold.correctForm)
-        AlmostReason.Heard -> almostLine(chrome.almostHeard, hold.correctForm)
+    val caption = when (hold.reason) {
+        AlmostReason.Typo -> chrome.almostTypo
+        AlmostReason.Heard -> chrome.almostHeard
     }
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(
-            note,
-            style = MaterialTheme.typography.titleMedium,
-            color = Dl.colors.amber,
-            // why: TalkBack has no autoplay to tell it what became of the answer — the
-            // correction announces itself where the learner's focus already is.
-            modifier = Modifier
-                .semantics { liveRegion = LiveRegionMode.Polite }
-                .pronounceOnTap(model.pronounceAction(hold.correctForm), chrome),
-        )
+        AlmostCorrection(caption, hold.correctForm, chrome, model.pronounceAction(hold.correctForm))
         ConfirmButton(chrome) { flow.confirm() }
     }
 }

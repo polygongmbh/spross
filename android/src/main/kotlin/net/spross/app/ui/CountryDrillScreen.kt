@@ -26,9 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.semantics.LiveRegionMode
-import androidx.compose.ui.semantics.liveRegion
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
@@ -36,7 +33,6 @@ import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.Chrome
 import net.spross.app.CountryDrillFlow
 import net.spross.app.Screen
-import net.spross.app.almostLine
 import net.spross.app.TrainerStore
 import net.spross.app.countryAsk
 import net.spross.app.newCountryDrill
@@ -239,15 +235,11 @@ private fun Controls(
 @Composable
 private fun AlmostLine(model: AppModel, flow: CountryDrillFlow, form: String, chrome: Chrome) {
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
-        Text(
-            almostLine(chrome.almostTypo, form),
-            style = MaterialTheme.typography.titleMedium,
-            color = Dl.colors.amber,
-            modifier = Modifier
-                .pronounceOnTap(model.speakFormOnTap(form, flow.answerLanguage), chrome)
-                // why: TalkBack has no autoplay to tell it what happened — the verdict
-                // announces itself where the learner's focus already is.
-                .semantics { liveRegion = LiveRegionMode.Polite },
+        AlmostCorrection(
+            chrome.almostTypo,
+            form,
+            chrome,
+            model.speakFormOnTap(form, flow.answerLanguage),
         )
         ConfirmButton(chrome) { flow.confirm() }
     }
