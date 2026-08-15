@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -24,9 +23,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import java.net.URLEncoder
 import net.spross.app.AppModel
@@ -34,9 +30,9 @@ import net.spross.app.Chrome
 import net.spross.kern.catalog.AudioCredit
 
 /**
- * The read-aloud row and who spoke the bundled recordings. Which build is installed and
- * the address that answers for it stand in the box's own footer, where the door to this
- * screen is.
+ * Who spoke the bundled recordings. Which build is installed, the address that answers for
+ * it and the read-aloud switch stand in the box's own settings, where the door to this
+ * screen is — this page only credits.
  *
  * The credits come from `Catalog.audioCredits()`, derived from the SHIPPED manifests,
  * so this screen can neither credit what is not bundled nor miss what is — and it
@@ -58,7 +54,6 @@ fun AboutScreen(model: AppModel) {
         }
         LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
             item { Spacer(Modifier.height(4.dp)) }
-            item { ReadAloudRow(model) }
             item {
                 Text(chrome.creditsTitle, style = MaterialTheme.typography.titleLarge)
             }
@@ -82,46 +77,6 @@ private fun creditSections(model: AppModel): List<Pair<String, List<AudioCredit>
         sections.getOrPut(credit.language) { mutableListOf() } += credit
     }
     return sections.map { (language, credits) -> language to credits.toList() }
-}
-
-/**
- * The same one device-scoped flag the session's top bar switches, and the place the
- * tap-to-replay gesture is disclosed — the card grows no mark for it, so the hint
- * line is where it is named, including that a tap speaks even when this is off.
- */
-@Composable
-private fun ReadAloudRow(model: AppModel) {
-    val chrome = model.chrome
-    val muted = model.pronouncer.muted
-    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                chrome.audioToggle,
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.weight(1f),
-            )
-            Switch(
-                checked = !muted,
-                onCheckedChange = { model.pronouncer.muted = !it },
-                // why: one stable label, the state as its VALUE — the same rule the
-                // top bar's switch follows. The label is set HERE, not left to the
-                // row's text: that text is a sibling node, so without this TalkBack
-                // would announce a switch with no name at all.
-                modifier = Modifier.semantics {
-                    contentDescription = chrome.audioToggle
-                    stateDescription = if (muted) chrome.stateOff else chrome.stateOn
-                },
-            )
-        }
-        Text(
-            chrome.audioToggleHint,
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-    }
 }
 
 @Composable

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **The box names the pair it is teaching, and is the one place to change it.**
+  Its two language fields say which language is set instead of showing a bare flag,
+  and the pair is switched right there — the opening chooser is asked once, on a fresh
+  install, and the switch for reading words aloud stands with the other settings
+  rather than being repeated on the credits page.
+
 - **The first words open with the words you actually say first** — hello, good day,
   thank you, please, yes, no — instead of nouns about language itself.
   *Sprache* and *Wort* moved to the learning area, where asking and understanding live,
