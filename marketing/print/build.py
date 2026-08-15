@@ -74,7 +74,7 @@ IMPRINT = dict(
     company="Polygon GmbH",
     street="Bamberger Str. 43",
     city="96215 Lichtenfels",
-    mail="feedback@spross.net",
+    mail="spross@polygon.gmbh",
 )
 
 

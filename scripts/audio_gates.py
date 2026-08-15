@@ -35,7 +35,7 @@ import urllib.parse
 import urllib.request
 
 API = 'https://commons.wikimedia.org/w/api.php'
-UA = 'duolernen-audio-catalog/1.0 (educational vocab app; contact feedback@spross.net)'
+UA = 'duolernen-audio-catalog/1.0 (educational vocab app; contact spross@polygon.gmbh)'
 
 # Authorship values that name nobody. Matched trimmed and case-insensitively, and
 # ONLY as a whole: `User:Tosca` is a name Commons can resolve, not a placeholder.

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **One address answers for Spross everywhere: spross@polygon.gmbh.**
+  The app, the website, the Impressum and the privacy policy all name it,
+  and the Android box now prints it under the version it is running,
+  so a report leaves with the build it came from.
+
 - **Italian, French and Esperanto join the catalog — each whole, and already spoken.**
   Every new language arrives with the full set of areas,
   its own alphabet page, the country atlas in its own words,

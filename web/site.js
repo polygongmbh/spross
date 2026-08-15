@@ -469,7 +469,7 @@ $("signup-form").addEventListener("submit", async (e) => {
   const note = $("signup-note");
   const email = new FormData(e.target).get("email");
   if (!SIGNUP_ENDPOINT) {
-    note.textContent = "The list isn't open quite yet — write to feedback@spross.net and we'll plant you in by hand.";
+    note.textContent = "The list isn't open quite yet — write to spross@polygon.gmbh and we'll plant you in by hand.";
     return;
   }
   try {
@@ -483,6 +483,6 @@ $("signup-form").addEventListener("submit", async (e) => {
     note.className = "note thanks";
     e.target.hidden = true;
   } catch {
-    note.textContent = "That didn't take root — please try again, or write to feedback@spross.net.";
+    note.textContent = "That didn't take root — please try again, or write to spross@polygon.gmbh.";
   }
 });

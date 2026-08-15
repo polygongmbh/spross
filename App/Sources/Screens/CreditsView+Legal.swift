@@ -3,7 +3,7 @@ import SwiftUI
 /// One home for the addresses the app publishes: the feedback mail is also the
 /// Impressum's contact line, and both surfaces have to name the same one.
 enum Legal {
-    static let contactAddress = "feedback@spross.net"
+    static let contactAddress = "spross@polygon.gmbh"
     static let privacyUrl = "https://spross.net/privacy"
 }
 
