@@ -523,6 +523,14 @@ and editing one never restamps a learner's box.
   Its copula rides along as an accepted reading and is dropped where a frame does not say it
   (`docs/clock-registers.md` § French's bare reading).
 - Swahili needs "tangu mwaka …" for a year: a bare cardinal after `tangu` does not read as one.
+- Esperanto reads the clock as a bare nominative noun phrase (`la tria`) and `je` does not contract,
+  so it is the one language whose clock frames may carry the preposition
+  ("La trajno ekveturas je {slot}.") for every reading the ladder draws.
+- An Esperanto slot in OBJECT position is wrong: the readings are nominative and a fraction noun
+  would need the accusative `-n` ("Mi bezonas kvaronon…"),
+  so its fraction frame puts the slot in a prepositional phrase instead ("… el {slot} de kilogramo …").
+  A counted-noun frame is out for a second reason — `miliono` is a NOUN and takes `da` before what
+  it counts, so no one frame can hold both `dudek unu teleroj` and `unu miliono da teleroj`.
 - A `fraction` frame must read naturally with EVERY fraction the language can draw,
   which is what decides its shape per language:
   German puts the noun straight against the measure ("Ich brauche ein Viertel Kilo Mehl."),

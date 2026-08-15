@@ -612,7 +612,7 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   (uk `дев'ята`↔`десята` and the other three, en `eight ninths`↔`eighty ninth`)
   plus es `un décimo`↔`undécimo`, a space-only minimal pair of the language.
   Everything else the sweep found was a reading bug and was fixed there instead.
-  `ClockCollisionSweepTests` is its clock half, over all 1440 times in all five languages;
+  `ClockCollisionSweepTests` is its clock half, over all 1440 times in every authored language;
   which readings a clock may share and which it may not is `../docs/clock-registers.md`.
   Vocab reviews (`maxTyposPerWord = null`, the default) keep one budget over the whole form.
   `matchingPrefixWordCount(input, answer)` is a UI-only sibling of `evaluate` — how many

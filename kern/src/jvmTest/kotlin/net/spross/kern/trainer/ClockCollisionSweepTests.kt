@@ -71,6 +71,13 @@ class ClockCollisionSweepTests {
         ),
     )
 
+    /** `ses` ↔ `sep` reaches the clock as the minute count and as the hour ordinal. */
+    @Test
+    fun esperantoClockBridgesOnlyTheKnownSixSevenPairs() = sweep(
+        "eo",
+        gated = listOf("[deksepa, deksesa]", "[sep, ses]", "[sepa, sesa]"),
+    )
+
     /**
      * The day part is what tells 04:45 from 16:45, so a reading carrying one must be
      * refused for the time twelve hours away — a crossed mapping would teach the
@@ -248,12 +255,18 @@ class ClockCollisionSweepTests {
          * clock's own: the quarter word and the number four are a transposition
          * apart, so :15 and :04 read alike under a one-slip budget. `six`/`dix` is
          * [TrainerTypoBridgeGuardTests]' French pair reaching the clock as an hour
-         * word and as a minute count.
+         * word and as a minute count. `ses`/`sep` is
+         * the Esperanto cardinal pair reaching the clock as a minute count, as the
+         * hour ordinal (`la sesa`) and welded into the timetable one (`dek-sesa`,
+         * whose hyphen the comparison pipeline has already deleted).
          */
         val KNOWN_BRIDGES = listOf(
             setOf("nne", "nane"),
             setOf("cuarto", "cuatro"),
             setOf("six", "dix"),
+            setOf("ses", "sep"),
+            setOf("sesa", "sepa"),
+            setOf("deksesa", "deksepa"),
             setOf("девять", "десять"),
             setOf("девята", "десята"),
             setOf("девяту", "десяту"),

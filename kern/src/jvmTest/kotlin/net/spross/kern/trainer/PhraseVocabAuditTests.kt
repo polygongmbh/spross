@@ -27,7 +27,7 @@ class PhraseVocabAuditTests {
      * and has to say so here.
      */
     private val allowlistSize: Map<Language, Int> =
-        mapOf("de" to 15, "en" to 3, "es" to 1, "fr" to 1, "it" to 2, "sw" to 4, "uk" to 2)
+        mapOf("de" to 15, "en" to 3, "es" to 1, "fr" to 1, "it" to 2, "sw" to 4, "uk" to 2, "eo" to 1)
 
     /** Documented allowlist — function words and international words only. */
     private val allowlist: Map<Language, Set<String>> = mapOf(
@@ -72,6 +72,10 @@ class PhraseVocabAuditTests {
         "uk" to setOf(
             "нас",   // Personalpronomen „uns“ («у нас є» = wir haben)
             "євро",  // internationale Währung, unveränderlich
+        ),
+        // --- Esperanto ------------------------------------------------------------
+        "eo" to setOf(
+            "kilogramo", // internationale Maßeinheit, wie „kilo“ in de/en/es
         ),
     )
 
@@ -130,6 +134,12 @@ class PhraseVocabAuditTests {
             "стільці" to "стілець", "стільців" to "стілець", // Zählformen
             "ключів" to "ключ",                              // Zählform (ключі steht verbatim im Katalog)
         ),
+        // --- Esperanto ------------------------------------------------------------
+        "eo" to mapOf(
+            "alvenas" to "alveni", "vekiĝas" to "vekiĝi", // Präsens zum I-Verb des Katalogs
+            "bakas" to "baki",
+            "daton" to "dato", "panon" to "pano",         // Akkusativ des Objekts
+        ),
     )
 
     @Test
@@ -180,7 +190,7 @@ class PhraseVocabAuditTests {
     fun everyLanguageWithAPackAndFramesIsAudited() {
         val audited = joinedPairs().map { it.second }.toSet()
         assertTrue(
-            listOf("de", "en", "es", "fr", "it", "sw", "uk").all { it in audited },
+            listOf("de", "en", "eo", "es", "fr", "it", "sw", "uk").all { it in audited },
             "audited: $audited",
         )
         for (target in audited) assertTrue(Trainer.supports(target), "$target answers without a pack")

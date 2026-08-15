@@ -23,7 +23,7 @@ class ClockRevealTests {
      */
     private val alternativeMarkers = mapOf(
         "de" to "auch: ", "en" to "also: ", "es" to "también: ", "it" to "anche: ",
-        "uk" to "також: ", "fr" to "aussi : ",
+        "uk" to "також: ", "fr" to "aussi : ", "eo" to "ankaŭ: ",
     )
 
     /**
@@ -68,7 +68,7 @@ class ClockRevealTests {
      */
     @Test
     fun everyReadingSetStaysWithinItsCapAndCarriesNoDuplicates() {
-        val caps = mapOf("de" to 14, "en" to 27, "es" to 42, "fr" to 28, "it" to 38, "sw" to 22, "uk" to 24)
+        val caps = mapOf("de" to 14, "en" to 27, "es" to 42, "fr" to 28, "it" to 38, "sw" to 22, "uk" to 24, "eo" to 22)
         for (language in Trainer.languages) {
             var widest = 0
             var widestAt = ""

@@ -1,0 +1,84 @@
+{
+ "numberNotes": {
+  "de": [
+   "Alles ist regelmäßig: dek unu, dudek unu, cent unu — keine Sonderformen, keine Ausnahmen.",
+   "Zehner und Hunderter werden zusammengeschrieben (sepdek, naŭcent), alles andere getrennt: du mil.",
+   "cent und mil stehen ohne unu; miliono und miliardo sind Substantive: unu miliono, du milionoj.",
+   "Wer kein ŭ tippen kann, schreibt naux statt naŭ — beides wird gewertet."
+  ],
+  "en": [
+   "Everything is regular: dek unu, dudek unu, cent unu — no special forms, no exceptions.",
+   "Tens and hundreds are written as one word (sepdek, naŭcent); everything else stays apart: du mil.",
+   "cent and mil take no unu, while miliono and miliardo are nouns: unu miliono, du milionoj.",
+   "Without a ŭ on the keyboard, write naux for naŭ — both are graded."
+  ]
+ },
+ "frames": {
+  "train-departs-at": {
+   "text": "La trajno ekveturas je {slot}.",
+   "notes": {
+    "en": "je never contracts, so an Esperanto clock frame can carry the preposition for every reading it draws."
+   }
+  },
+  "bus-arrives-at": {
+   "text": "La aŭtobuso alvenas je {slot}."
+  },
+  "i-wake-up-at": {
+   "text": "Mi vekiĝas je {slot}."
+  },
+  "we-eat-at": {
+   "text": "Ni manĝas je {slot}."
+  },
+  "meeting-is-at": {
+   "text": "La kunsido estas je {slot}."
+  },
+  "it-is-now": {
+   "text": "Nun estas {slot}."
+  },
+  "alarm-clock-shows": {
+   "text": "La vekhorloĝo diras, ke estas {slot}.",
+   "notes": {
+    "de": "wörtl.: „Der Wecker sagt, dass es … ist“",
+    "en": "literally „The alarm clock says that it is …“ — the reading is a bare noun phrase, so it needs the copula around it."
+   }
+  },
+  "repeat-please": {
+   "text": "Bonvolu ripeti: {slot}.",
+   "variants": [
+    "Ripetu, mi petas: {slot}."
+   ]
+  },
+  "write-please": {
+   "text": "Bonvolu skribi: {slot}.",
+   "variants": [
+    "Skribu, mi petas: {slot}."
+   ]
+  },
+  "learning-since-year": {
+   "text": "Mi lernas {language-learn} ekde {slot}.",
+   "notes": {
+    "de": "Jahreszahl als reine Kardinalzahl gelesen: „mil naŭcent sepdek ok“",
+    "en": "The year is read as a plain cardinal: „mil naŭcent sepdek ok“."
+   }
+  },
+  "repeat-the-year": {
+   "text": "Bonvolu ripeti la daton: {slot}.",
+   "variants": [
+    "Ripetu la daton, mi petas: {slot}."
+   ]
+  },
+  "write-the-year": {
+   "text": "Bonvolu skribi la daton: {slot}.",
+   "variants": [
+    "Skribu la daton, mi petas: {slot}."
+   ]
+  },
+  "i-need-n-kilo-of-flour": {
+   "text": "Mi bakas panon el {slot} de kilogramo da faruno.",
+   "notes": {
+    "de": "Der Bruch steht in einer Präpositionalphrase und bleibt damit im Nominativ; als Objekt („Mi bezonas kvaronon“) bräuchte er das Akkusativ-n.",
+    "en": "The fraction sits in a prepositional phrase and so stays nominative — as an object („Mi bezonas kvaronon“) it would need the accusative -n the reading cannot carry."
+   }
+  }
+ }
+}

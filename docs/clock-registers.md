@@ -24,7 +24,7 @@ A `ClockReading` carries three things, and they are not interchangeable.
   Naming what NOT to say is a warning rather than an alternative, and a warning repeated
   at every reveal of every hour past twelve is not worth the line it takes.
   The lead-in and the separator are words of the answer language too —
-  `auch: `, `also: `, `también: `, `також: `, `aussi : ` — never the authoring language's,
+  `auch: `, `also: `, `también: `, `також: `, `aussi : `, `ankaŭ: ` — never the authoring language's,
   down to the space French puts before its colon.
 
 ## What a reveal names
@@ -56,6 +56,9 @@ Three rules sit on top of that, and none of them is derivable from the words alo
   and below thirteen it is the only line left — the official ordinal is the colloquial one there.
   Italian goes further and generates no timetable reading below thirteen at all:
   `sono le undici e trenta` is what both registers say, so there is nothing there for a second line to teach.
+  Esperanto's timetable ordinal is the colloquial one below thirteen too, so what it offers there
+  is only the spelled-out `la tria horo kaj dek sep minutoj`, which the subsequence rule drops
+  wherever the display already counted the minute — and the reveal then goes bare, correctly.
   French names its 24-hour register and nothing else, and that is not a thin gloss but the whole set:
   the count-up and the countdown are its two constructions,
   whichever one the grid step calls for IS the display,
@@ -88,17 +91,21 @@ not to the one on the clock.
 Counting DOWN to noon or to one is the exception Spanish makes:
 `son las doce menos cuarto del día` is not said, so a countdown core naming 12 or 13
 takes the morning and the afternoon respectively.
+Esperanto makes the same exception at noon — 11:45 is `kvarono antaŭ la dek-dua antaŭtagmeze` —
+which is why its `dayParts` takes the direction as an argument and Ukrainian's does not.
 
 ## Parts of the day
 
 Which words fit which hour is authored once, in the per-language `dayParts` functions —
 `GermanClock.dayParts`, `EnglishClockRegisters.dayParts`, `SpanishClockForms.dayParts`,
 `FrenchClockForms.dayParts`, `ItalianClockForms.dayParts`,
-`SwahiliClock.dayParts`, `UkrainianClockForms.dayParts`.
+`SwahiliClock.dayParts`, `UkrainianClockForms.dayParts`, `EsperantoClockForms.dayParts`.
 Those functions ARE the grid; each carries its own non-derivable notes in its KDoc,
 and each pack's `clockDayParts` is the union over that language's own function —
 one set per language, never one pooled across them,
 so `dayPartReadingsCloseTheTwelveHourCycle` grades German readings against German markers.
+Esperanto's markers are adverbs (`matene`, `posttagmeze`, `nokte`) and its set carries
+their x-system twins too, or a reading spelled without `ŭ` would read as period-less there.
 Boundaries overlap where speakers do, and both readings are accepted across an overlap.
 
 Naming the part is optional everywhere — every reading is accepted bare —
@@ -129,10 +136,12 @@ A reading that NAMES the part of the day must close it —
 naming it is the whole point — and `dayPartReadingsCloseTheTwelveHourCycle` holds it to that.
 
 Everything else is a bug: no reading may be accepted for a second time in the same cycle.
-Four word pairs sit one slip apart and are gated as audited exceptions —
-`nne`/`nane`, `cuarto`/`cuatro`, `six`/`dix`, and `дев'ять`/`десять`,
+The word pairs that sit one slip apart are gated as audited exceptions —
+`nne`/`nane`, `cuarto`/`cuatro`, `six`/`dix`, `ses`/`sep`, and `дев'ять`/`десять`,
 the last listed once per Ukrainian ordinal case it reaches the clock in.
-The French pair reaches the clock twice over, as an hour word and as a minute count.
+The French pair reaches the clock twice over, as an hour word and as a minute count,
+and `ses`/`sep` reaches the Esperanto clock as a minute count, as the hour ordinal
+(`la sesa`) and welded into the timetable one (`dek-sesa`, whose hyphen the pipeline deletes).
 
 Two exclusions are load-bearing and are commented at the point they are made:
 
@@ -146,7 +155,7 @@ Two exclusions are load-bearing and are commented at the point they are made:
 The files rhyme because clocks are one object, not because they run one computation.
 The past/to pivot is `:31` in most of them and `:25` in German,
 which counts against the HALF hour rather than the coming one — 6:25 is "fünf vor halb sieben";
-the half hour names the coming hour in de and uk and the current one in en, es, it, sw and fr;
+the half hour names the coming hour in de and uk and the current one in en, es, it, sw, fr and eo;
 Swahili's hours are offset by six and its display is assembled outside its accepted list;
 German has no cores at all, English hangs its parts of the day on two readings after every bare one,
 and French dresses each core in a copula instead — `il est` is a reading, not a frame word.
@@ -155,14 +164,26 @@ rule, and those are shared outright.
 `TrainerLanguagePack.clockDayParts` shares the SLOT and nothing else:
 the words are a language's own vocabulary and each pack derives its set from its own `dayParts`.
 The derivations do not collapse into a shared helper either, though most of them look alike:
-those enumerate the hours, while Spanish's words decide on hour, minute and direction,
-so its union runs over all three and a sentinel minute would miss a word a future rule keys on.
+those enumerate the hours, while Spanish's words decide on hour, minute and direction and
+Esperanto's on hour and direction, so their unions run over more than the hour
+and a sentinel argument would miss a word a future rule keys on.
 The fraction and half words are not shareable for exactly that reason:
 the word is never the emitted unit, the frame is,
 and the frames agree on word order, on which hour is named, and on case in no combination —
 Italian's `e mezza` sits where Spanish's `y media` does and takes a different agreement,
 and its countdown says `meno` where the Spanish one may also say `para`.
 The reusable artifact is otherwise this document, not a base class.
+
+Esperanto is the one clock whose readings compose into a PREPOSITIONAL frame.
+`la tria` is a bare nominative noun phrase carrying its own article and no copula,
+and `je` does not contract, so `je la tria`, `je tagmezo` and `je kvarono antaŭ la kvara`
+all read as written — where Italian's `alle`/`all'` and Ukrainian's `о` + locative cannot
+(`../catalog/README.md` § "Language constraints").
+The hour is an ordinal with `horo` elided, and both spellings of it grade;
+the countdown is `kvarono antaŭ la kvara`, with `la kvara minus kvarono` accepted and never shown —
+it is a calque, and one register of it (the quarter) is as far as it is attested,
+so off the quarter the countdown says `antaŭ` alone.
+
 
 A further language takes all of:
 

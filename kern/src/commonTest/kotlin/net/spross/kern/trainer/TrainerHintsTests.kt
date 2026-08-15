@@ -30,6 +30,10 @@ class TrainerHintsTests {
         assertEquals("billion", Trainer.placeValueHint(10, "en"))
         // Spanish counts 10^9 as "mil millones" — no short-scale billion.
         assertEquals("mil millones", Trainer.placeValueHint(10, "es"))
+        // Esperanto's scale words are nouns, so the place hint is the counted plural.
+        assertEquals("cent", Trainer.placeValueHint(3, "eo"))
+        assertEquals("dek milionoj", Trainer.placeValueHint(8, "eo"))
+        assertEquals("miliardo", Trainer.placeValueHint(10, "eo"))
         // French has the milliard, so 10^9 is one word again.
         assertEquals("milliard", Trainer.placeValueHint(10, "fr"))
         // Italian does have one, and calls it miliardo.
@@ -41,6 +45,6 @@ class TrainerHintsTests {
     fun unauthoredLanguagesHaveNoHintsAndNoTrainer() {
         assertNull(Trainer.placeValueHint(3, "pt"))
         assertTrue(!Trainer.supports("pt"))
-        assertEquals(listOf("de", "en", "es", "sw", "uk", "fr", "it"), Trainer.languages)
+        assertEquals(listOf("de", "en", "es", "sw", "uk", "eo", "fr", "it"), Trainer.languages)
     }
 }

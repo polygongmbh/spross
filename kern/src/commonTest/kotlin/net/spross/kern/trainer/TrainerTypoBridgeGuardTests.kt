@@ -74,6 +74,17 @@ class TrainerTypoBridgeGuardTests {
         assertTrue(known.all { "nne" in it && "nane" in it }, "unexpected pair in $known")
     }
 
+    /** Every accepted spelling per value — the x-system twin is graded, so it is swept too. */
+    @Test
+    fun esperantoCardinals0To999BridgeOnlyTheKnownSixSevenPairs() {
+        val prompts = (0L..999L).map { TypoBridgeSweep.Prompt(EsperantoNumbers.variants(it)) }
+        val known = TypoBridgeSweep.run("eo", prompts)
+        assertTrue(
+            known.all { pair -> listOf("ses", "sep").all { it in pair } },
+            "unexpected pair in $known",
+        )
+    }
+
     /** One canonical spelling per number: the cardinal drill's own answer space. */
     private fun sweep(language: String, words: List<String>): List<String> =
         TypoBridgeSweep.run(language, TypoBridgeSweep.single(words))

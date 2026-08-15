@@ -48,6 +48,9 @@ internal object TypoBridgeSweep {
      *   the time they are compared.
      * - it `ventotto` (28) ↔ `centotto` (108), one substitution — two elisions of the
      *   same `otto` onto tens and hundreds that differ in their first letter alone.
+     * - eo `ses` (6) ↔ `sep` (7), one substitution — and once more welded into the ten
+     *   and the hundred, which are single words there (`sesdek`/`sepdek`,
+     *   `sescent`/`sepcent`) and therefore differ in a word the split cannot reach into.
      * Every compound built on one of them bridges too ("kumi na nne" ↔ "kumi na nane",
      * "sesenta y uno" ↔ "setenta y uno"), which is what [isKnownBridge] recognizes.
      */
@@ -60,6 +63,9 @@ internal object TypoBridgeSweep {
         setOf("soixantesix", "soixantedix"),
         setOf("quatrevingtsix", "quatrevingtdix"),
         setOf("ventotto", "centotto"),
+        setOf("ses", "sep"),
+        setOf("sesdek", "sepdek"),
+        setOf("sescent", "sepcent"),
     )
 
     /**

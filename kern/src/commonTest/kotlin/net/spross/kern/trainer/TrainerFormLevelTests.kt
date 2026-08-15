@@ -27,7 +27,7 @@ class TrainerFormLevelTests {
 
     @Test
     fun theFormsChipIsOfferedExactlyWhereAPackAuthorsForms() {
-        assertEquals(listOf("de", "en", "es", "sw", "uk", "fr", "it"), authored)
+        assertEquals(listOf("de", "en", "es", "sw", "uk", "eo", "fr", "it"), authored)
         // The gate still has to close: a language with no pack at all offers no Forms drill.
         assertFalse(Trainer.supportsForms("pt"))
     }
@@ -221,6 +221,7 @@ class TrainerFormLevelTests {
         assertEquals(',', Trainer.pack("es").decimalMark)
         assertEquals('.', Trainer.pack("sw").decimalMark)
         assertEquals(',', Trainer.pack("uk").decimalMark)
+        assertEquals(',', Trainer.pack("eo").decimalMark)
         assertEquals(',', Trainer.pack("fr").decimalMark)
         assertEquals(',', Trainer.pack("it").decimalMark)
     }

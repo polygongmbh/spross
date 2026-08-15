@@ -114,7 +114,7 @@ class NumberReferenceTests {
      * else. es welds the whole run, de clips two teen stems (sechzehn, siebzehn), uk
      * drops the soft sign (шість → шістнадцять), it turns the seam around at sixteen
      * (sedici against diciassette), fr has a suppletive seize before the dix- compounds
-     * start at seventeen; en and sw compose the band from parts a learner has already
+     * start at seventeen; en, sw and eo compose the band from parts a learner has already
      * read, and are spared fifteen rows that teach nothing.
      */
     @Test
@@ -180,6 +180,9 @@ class NumberReferenceTests {
             "it" to listOf("meno", "virgola", "per cento", "volte", "un mezzo", "primo"),
             "sw" to listOf("hasi", "nukta", "asilimia", "mara", "nusu", null),
             "uk" to listOf("мінус", "цілих десятих", "відсотків", "рази", "одна друга", "перший"),
+            // Esperanto adds affixes, not words: -ono makes a fraction and -a an ordinal,
+            // and the derivation hands the learner exactly those.
+            "eo" to listOf("minus", "komo", "procentoj", "fojojn", "ono", "a"),
             "fr" to listOf("moins", "virgule", "pour cent", "fois", "demi", "premier"),
         )
         for ((language, words) in expected) {

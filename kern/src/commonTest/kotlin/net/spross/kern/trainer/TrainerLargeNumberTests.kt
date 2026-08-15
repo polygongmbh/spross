@@ -47,6 +47,22 @@ class TrainerLargeNumberTests {
         assertEquals("три мільярди", display(3_000_000_000L, "uk"))
     }
 
+    /** The scale words are nouns, so a numeral counts them and they take the plural -j. */
+    @Test
+    fun esperantoMillionsAndBillions() {
+        assertEquals("unu miliono", display(1_000_000, "eo"))
+        assertEquals("du milionoj", display(2_000_000, "eo"))
+        assertEquals("kvin milionoj", display(5_000_000, "eo"))
+        assertEquals("dudek unu milionoj", display(21_000_000, "eo"))
+        assertEquals("unu miliardo", display(1_000_000_000, "eo"))
+        assertEquals("tri miliardoj", display(3_000_000_000L, "eo"))
+        assertEquals("unu miliono mil", display(1_001_000, "eo"))
+        assertEquals(
+            "unu miliono ducent tridek kvar mil kvincent sesdek sep",
+            display(1_234_567, "eo"),
+        )
+    }
+
     @Test
     fun frenchMillionsAndBillions() {
         assertEquals("un million", display(1_000_000, "fr"))

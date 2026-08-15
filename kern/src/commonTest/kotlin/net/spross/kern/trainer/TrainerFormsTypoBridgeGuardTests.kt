@@ -90,12 +90,42 @@ class TrainerFormsTypoBridgeGuardTests {
         )
     }
 
-    private fun sweep(language: String): List<String> {
+    /**
+     * One substitution separates `ses` from `sep`, and Esperanto closes a numeral up into a
+     * single word before every ending — so that one pair comes back inside every ordinal
+     * (`sesa`, `dek-sesa`, `sesdek-kvina`), every `-ono` noun and every `-foje` adverb built
+     * on six or seven. The family is DERIVED by that substitution instead of listed, because
+     * the derivation IS the finding: forty literals would bury it, and a derived entry can
+     * gate nothing else, since it differs from its twin in exactly those three letters.
+     */
+    @Test
+    fun esperantoFormsBridgeOnlyTheKnownSixSevenPairs() {
+        val known = sweep("eo", sixSevenTwins("eo"))
+        assertEquals(976, known.size, "expected the ses ↔ sep family, got ${known.size}")
+        assertTrue(known.all { "ses" in it && "sep" in it }, "unexpected pair in $known")
+    }
+
+    private fun sixSevenTwins(language: String): List<Set<String>> {
+        val pack = trainerPacks.getValue(language)
+        return drawableValues(pack.formLimits)
+            .flatMap(pack::formReading)
+            .flatMap { it.split(' ') }
+            .map(TypoBridgeSweep::comparisonShape)
+            .distinct()
+            .flatMap { word ->
+                word.indices
+                    .filter { word.startsWith("ses", it) }
+                    .map { at -> setOf(word, word.replaceRange(at, at + 3, "sep")) }
+            }
+            .distinct()
+    }
+
+    private fun sweep(language: String, extra: List<Set<String>> = emptyList()): List<String> {
         val pack = trainerPacks.getValue(language)
         val prompts = drawableValues(pack.formLimits)
             .map { TypoBridgeSweep.Prompt(pack.formReading(it)) }
             .filter { it.readings.isNotEmpty() }
-        return TypoBridgeSweep.run(language, prompts, FORM_BRIDGES)
+        return TypoBridgeSweep.run(language, prompts, FORM_BRIDGES + extra)
     }
 
     /** Every value the bounded enumeration offers, for the forms this pack reads. */

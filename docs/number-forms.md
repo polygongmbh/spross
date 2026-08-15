@@ -29,6 +29,7 @@ the canonical and refused readings below are pinned by `TrainerFormsTests`.
 |---|---|---|---|---|
 | de | all six | 2–12 | 1–100 | `,` |
 | en | all six | 2–12 | 1–100 | `.` |
+| eo | all six | 2–12 | 1–100 | `,` |
 | es | all six | 2–12 | **1–12** | `,` |
 | fr | all six | 2–12 | 1–100 | `,` |
 | it | all six | 2–12 | 1–100 | `,` |
@@ -104,6 +105,63 @@ Sources: [Wikipedia, English numerals](https://en.wikipedia.org/wiki/English_num
 (the point-then-digits rule, the ordinal/partitive identity, `thrice`)
 · [Wiktionary, per cent](https://en.wiktionary.org/wiki/per_cent)
 · [Names for the number 0 in English](https://en.wikipedia.org/wiki/Names_for_the_number_0_in_English).
+
+## Esperanto
+
+| Form | Canonical | Also graded | Refused |
+|---|---|---|---|
+| Negative | `minus sep` | — | `malplus sep`, `negativa sep` |
+| Decimal | `tri komo kvar kvin` | the run-together `tri komo kvardek kvin` | — |
+| Percent | `dudek kvin procentoj` | `elcento` / `elcentoj` | `dudek kvin procento` |
+| Multiplicative | `tri fojojn` | `trifoje` | `tri fojoj`, `trioble` |
+| Fraction | `kvarono`, `du trionoj`, `dek-duono` | an explicit `unu kvarono` | `dek duono` |
+| Ordinal | `unua`, `dudek-unua` | the x-system `nauxa` | `dudek unua` |
+
+Esperanto is the one pack that names no reach of its own,
+and the empty `FormLimits` is the claim rather than an omission:
+`-ono` and `-a` are productive over every numeral,
+so nothing runs out at a denominator or a hundredth rank the way it does in de, es and sw.
+
+- **Two spelling rules decide every table cell**, and both are PMEG's.
+  Composing: *"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.
+  Ĉio alia estu skribata kiel apartaj vortoj, ankaŭ miloj"* —
+  so `sepdek` and `naŭcent` close up while `dek unu`, `cent unu` and `du mil` stay apart.
+  Deriving: a numeral that takes an ending closes up again,
+  *"oni tamen povas aŭ devas kunskribi, eventuale kun dividostrekoj"* —
+  hence `dudek-unua` and `dek-duono`.
+- The two rules point opposite ways, and the comparison pipeline is why that costs nothing:
+  it DELETES the hyphen, so the fully closed-up `dudekunua` a writer may prefer grades exact
+  without being emitted, while the spaced `dudek unua` — the spelling the deriving rule rules out —
+  is one space from the reading and books amber with the correction shown.
+  A welded `dumil` is corrected the same way, which is why it is not accepted:
+  *"Tion, kion oni elparolas kiel apartajn vortojn, oni ne skribu kiel unu vorton."*
+- **The x-system twin is emitted, not left to the typo budget.**
+  `naux` sits two edits from `naŭ` (one substitution and one insertion) and would grade wrong,
+  and a keyboard without `ŭ` is the ordinary case rather than an edge one.
+  It rides behind every form word, so `minus naux` and `nauxa` grade like the bare cardinal does.
+- `miliono` and `miliardo` are NOUNS: `unu miliono`, `du milionoj`,
+  and before what they count they take `da` (*unu miliono da homoj*) —
+  which is what keeps a counted-noun frame away from the numbers slot (`../catalog/README.md`).
+  `cent` and `mil` are numerals and take no `unu`.
+- `nul` is the numeral and `nulo` the noun; a bare 0 is written both ways, so both grade.
+- **What the app names as the word each form adds is an AFFIX here** — `-ono` for the fraction,
+  `-a` for the ordinal — because the derivation strips the cardinal out of the reading
+  and Esperanto's whole answer is the ending. That is the honest hint and also the teaching point.
+- `-obl-` is a factor (*trioble* = threefold), not a count of occasions,
+  so it is refused for the same reason Ukrainian refuses `утричі`.
+  `elcento` is the other way round: PIV registers it beside `procento` as the better-built word,
+  and usage prefers `procento` — so it grades and is never shown.
+- **`ses` and `sep` are the language's one minimal pair**, and Esperanto's regularity multiplies it:
+  the pair comes back inside every ten, ordinal, `-ono` noun and `-foje` adverb built on six or seven.
+  The sweeps gate the family by that one substitution rather than by listing it.
+
+Sources: [PMEG, Nombraj vortetoj — Formoj](https://bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html)
+(both spelling rules, verbatim)
+· [PMEG, Miksitaj nombroj](https://bertilow.com/pmeg/gramatiko/nombroj/miksitaj.html)
+(`unu komo kvin milionoj da homoj`, and `miliono` as a noun taking `da`)
+· [PMEG, Matematikaj esprimoj](https://bertilow.com/pmeg/gramatiko/nombroj/matematiko.html)
+(`minus` as the sign, and `-oble` as the factor family)
+· [Wiktionary, elcento](https://en.wiktionary.org/wiki/elcento) (PIV registers it beside `procento`).
 
 ## Spanish
 

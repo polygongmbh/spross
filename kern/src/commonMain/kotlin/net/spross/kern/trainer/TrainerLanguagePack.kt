@@ -177,6 +177,32 @@ private object UkrainianPack : TrainerLanguagePack {
     override val decimalMark = ','
 }
 
+private object EsperantoPack : TrainerLanguagePack {
+    override fun number(n: Long) = EsperantoNumbers.variants(n)
+    override fun year(y: Long): YearReading {
+        val variants = EsperantoNumbers.variants(y)
+        return YearReading(variants[0], variants)
+    }
+    override fun clock(hour: Int, minute: Int) = EsperantoClock.task(hour, minute)
+    override val placeValues = listOf(
+        "dek", "cent", "mil", "dek mil", "cent mil",
+        "miliono", "dek milionoj", "cent milionoj", "miliardo",
+    )
+    // why: the countdown decides which hour a part of the day belongs to, so the
+    // vocabulary is the union over both directions — and over the x-system twins, or a
+    // reading spelled without ŭ would read as period-less to the cycle check.
+    override val clockDayParts: Set<String> = buildSet {
+        for (h in 0..23) {
+            for (countdown in listOf(false, true)) {
+                addAll(EsperantoNumbers.spellings(EsperantoClockForms.dayParts(h, countdown)))
+            }
+        }
+    }
+    override fun formReading(value: NumberValue) = EsperantoForms.reading(value)
+    override val formLimits = EsperantoForms.LIMITS
+    override val decimalMark = ','
+}
+
 private object FrenchPack : TrainerLanguagePack {
     override fun number(n: Long) = FrenchNumbers.variants(n)
     override fun year(y: Long): YearReading {
@@ -217,13 +243,14 @@ private object ItalianPack : TrainerLanguagePack {
     override val decimalMark = ','
 }
 
-/** The registry: de/en/es/sw/uk/fr/it authored, insertion order is presentation order. */
+/** The registry: de/en/es/sw/uk/eo/fr/it authored, insertion order is presentation order. */
 internal val trainerPacks: Map<Language, TrainerLanguagePack> = linkedMapOf(
     "de" to GermanPack,
     "en" to EnglishPack,
     "es" to SpanishPack,
     "sw" to SwahiliPack,
     "uk" to UkrainianPack,
+    "eo" to EsperantoPack,
     "fr" to FrenchPack,
     "it" to ItalianPack,
 )
