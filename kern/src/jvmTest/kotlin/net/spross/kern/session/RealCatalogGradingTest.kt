@@ -25,17 +25,29 @@ class RealCatalogGradingTest {
     fun noCatalogWordIsEverAForgivenSlipOfAnother() {
         for (target in listOf("en", "eo", "es", "fr", "it", "sw", "uk")) {
             val cards = catalog.join("de", target)
-            val normalizer = AnswerNormalizer(catalog.languages.getValue(target))
+            val language = catalog.languages.getValue(target)
+            val normalizer = AnswerNormalizer(language)
             val grader = CatalogAnswerGrader(normalizer, cards)
             val forms = cards.map { normalizer.normalize(it.target.text) }
+            // A fumbled article, the one stray token the peel reads back: one slip off a
+            // listed one, since an article typed correctly is stripped before grading and
+            // never reaches the recovery. Null where the language lists none — nothing is
+            // peeled there at all, and a token in front of a word is then simply a
+            // different string for the ordinary budget to rule on.
+            val stray = language.articles.firstOrNull()?.let { it.dropLast(1) + "x" }
 
             var examined = 0
+            var bridged = 0
             for ((i, card) in cards.withIndex()) {
                 for ((j, other) in cards.withIndex()) {
                     if (i == j || forms[i] == forms[j]) continue
                     // why: §3 keeps the base concept's word lenient on a feminine
                     // card on purpose — that demotion is the one wanted typo.
                     if (other.id == card.feminineOf) continue
+                    // why: a form the prompted card accepts ITSELF is not a confusion to
+                    // guard — es `talk` lists `hablar` beside `charlar`, so writing it is
+                    // right here and right for `speak`, article fumbled or not.
+                    if (normalizer.evaluate(other.target.text, card) == Match.Exact) continue
                     if (!near(forms[i], forms[j])) continue
                     examined++
                     val verdict = grader.grade(other.target.text, card)
@@ -44,10 +56,28 @@ class RealCatalogGradingTest {
                         "de→$target: \"${other.target.text}\" (${other.id}) " +
                             "graded as a typo of ${card.id} (\"${card.target.text}\")",
                     )
+                    // The same word behind a fumbled article: the normalizer peels the
+                    // stray token and grades the rest, so the withdrawal has to see the
+                    // remainder rather than the string that was typed.
+                    if (stray != null) {
+                        val prefixed = "$stray ${other.target.text}"
+                        val peeledVerdict = grader.grade(prefixed, card)
+                        if (peeledVerdict is Match.OtherWord) bridged++
+                        assertFalse(
+                            peeledVerdict is Match.Typo,
+                            "de→$target: \"$prefixed\" (${other.id}) " +
+                                "graded as a typo of ${card.id} (\"${card.target.text}\")",
+                        )
+                    }
                 }
             }
             // Non-vacuity: every language does carry near-twins to grade.
             assertTrue(examined > 0, "de→$target swept no near pairs at all")
+            // And the prefixed pass really reaches the recovery, rather than dying on
+            // the length pre-filter and proving nothing.
+            if (stray != null) {
+                assertTrue(bridged > 0, "de→$target never named the word behind the stray token")
+            }
         }
     }
 
@@ -137,6 +167,20 @@ class RealCatalogGradingTest {
             verdict.meanings.any { it == unlock.source.text },
             "naming the prompted meaning would give the answer away: ${verdict.meanings}",
         )
+    }
+
+    /**
+     * The screenshot, end to end on the shipping catalog: Swahili lists no article, so
+     * "muda nini" keeps its first word and stays a miss — where peeling it left "nini",
+     * itself the catalog's word for "was", one slip from "lini".
+     */
+    @Test
+    fun aStrayWordIsNeverEatenInALanguageWithoutArticles() {
+        val cards = catalog.join("de", "sw")
+        val normalizer = AnswerNormalizer(catalog.languages.getValue("sw"))
+        val whenCard = cards.byTargetText("lini")
+        assertEquals(Match.Wrong, normalizer.evaluate("muda nini", whenCard))
+        assertEquals(Match.Wrong, CatalogAnswerGrader(normalizer, cards).grade("muda nini", whenCard))
     }
 
     private fun List<Card>.byTargetText(text: String): Card =

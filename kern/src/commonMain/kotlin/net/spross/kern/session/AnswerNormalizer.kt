@@ -244,8 +244,12 @@ class AnswerNormalizer(
      * "fünf vor halb sieben" minus its first word is 18:30, not a misspelling of it —
      * and the recovery RECURSES, peeling one word per level ("son las doce y uno" →
      * "uno"), so a reading decayed onto four other times' answers.
+     *
+     * [CatalogAnswerGrader] probes this remainder against its owner index, so the form
+     * a peeled answer really wrote is read through the rule that peeled it and the two
+     * can never drift apart.
      */
-    private fun articlePeeledRemainder(input: String): String? {
+    internal fun articlePeeledRemainder(input: String): String? {
         if (maxTyposPerWord != null) return null
         val tokens = input.split(whitespaceRun).filter { it.isNotEmpty() }
         val first = tokens.firstOrNull() ?: return null

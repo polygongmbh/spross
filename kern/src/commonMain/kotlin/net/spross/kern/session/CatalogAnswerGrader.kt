@@ -15,6 +15,11 @@ import net.spross.kern.model.CardKind
  * Exactness is the whole test: only forms the owning concept would itself accept
  * exactly count, so the check never widens what counts as wrong — it re-labels a
  * miss, and withdraws typo credit where the catalog can prove the word is taken.
+ *
+ * What the learner WROTE is not always the whole string: where the normalizer reached
+ * its verdict by peeling a mistyped article, the remainder is the form that matched,
+ * so it is probed too ([AnswerNormalizer.articlePeeledRemainder]) — otherwise a slip
+ * behind a fumbled article bridges one concept's word to another unchallenged.
  */
 class CatalogAnswerGrader(
     private val normalizer: AnswerNormalizer,
@@ -40,15 +45,14 @@ class CatalogAnswerGrader(
         // (§3 demotes it to the feminine correction) — it must not be re-labeled
         // as somebody else's word.
         val skipped = setOfNotNull(card.id, card.feminineOf)
-        val typed = normalizer.comparisonForms(input, verbLeniency = false)
-        // why: dropping a citation prefix off the INPUT is the verb rule, so it
-        // may only reach verb owners — a noun that happens to start like a stem
-        // does not own "kupika".
-        val stemmed = normalizer.comparisonForms(input, verbLeniency = true).drop(1)
-        val hits = (
-            typed.flatMap { owners[it].orEmpty() } +
-                stemmed.flatMap { owners[it].orEmpty() }.filter { it.kind == CardKind.Verb }
-            )
+        // why: a form the prompted card accepts belongs to it first (see [grade]), and a
+        // fumbled article in front of it changes nothing about that — otherwise a word
+        // two concepts share would be withdrawn from the one that was asked for.
+        val peeled = normalizer.articlePeeledRemainder(input)
+            ?.takeIf { normalizer.evaluate(it, card) != Match.Exact }
+        // The whole string first, so a form owned outright names itself before the
+        // remainder a mistyped article leaves behind does.
+        val hits = (ownersOf(input) + ownersOf(peeled))
             .filter { it.id !in skipped }
             .distinctBy { it.id }
         if (hits.isEmpty()) return null
@@ -56,6 +60,20 @@ class CatalogAnswerGrader(
             word = hits.first().target.text,
             meanings = hits.map { it.source.text }.distinct(),
         )
+    }
+
+    /**
+     * Every concept that accepts [text] exactly. Null (nothing was peeled) owns nothing.
+     *
+     * why: dropping a citation prefix off the INPUT is the verb rule, so it may only
+     * reach verb owners — a noun that happens to start like a stem does not own "kupika".
+     */
+    private fun ownersOf(text: String?): List<Card> {
+        if (text == null) return emptyList()
+        val typed = normalizer.comparisonForms(text, verbLeniency = false)
+        val stemmed = normalizer.comparisonForms(text, verbLeniency = true).drop(1)
+        return typed.flatMap { owners[it].orEmpty() } +
+            stemmed.flatMap { owners[it].orEmpty() }.filter { it.kind == CardKind.Verb }
     }
 
     private fun buildOwners(cards: List<Card>): Map<String, List<Card>> {

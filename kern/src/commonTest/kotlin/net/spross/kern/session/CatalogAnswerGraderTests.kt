@@ -15,10 +15,12 @@ import net.spross.kern.model.Realization
  */
 class CatalogAnswerGraderTests {
     private val catalog = Fixture.catalog()
+    private val de = AnswerNormalizer(catalog.languages.getValue("de"))
     private val sw = AnswerNormalizer(catalog.languages.getValue("sw"))
     private val uk = AnswerNormalizer(catalog.languages.getValue("uk"))
     private val deToSw = catalog.join("de", "sw")
     private val deToUk = catalog.join("de", "uk")
+    private val swToDe = catalog.join("sw", "de")
 
     private fun joined(cards: List<Card>, id: String): Card = cards.first { it.id == id }
 
@@ -28,11 +30,12 @@ class CatalogAnswerGraderTests {
         target: String,
         kind: CardKind = CardKind.Verb,
         seedIndex: Int = 0,
+        lang: String = "sw",
     ): Card = Card(
         id = id, kind = kind, area = "test", emoji = null, seedIndex = seedIndex,
         components = emptyList(), feminineOf = null,
         source = Realization(lang = "de", text = source),
-        target = Realization(lang = "sw", text = target),
+        target = Realization(lang = lang, text = target),
         promptFeminineMarker = false,
     )
 
@@ -118,6 +121,32 @@ class CatalogAnswerGraderTests {
         val named = grader.grade("офіціантка", joined(deToUk, "waiter"))
         assertIs<Match.OtherWord>(named)
         assertEquals(listOf("Kellnerin"), named.meanings)
+    }
+
+    /**
+     * The normalizer can reach its verdict by peeling a mistyped article, and then the
+     * remainder — not the string that was typed — is the form that matched. The owner
+     * index has to be asked about it, or a slip behind a fumbled article bridges one
+     * concept's word to another with nobody looking.
+     */
+    @Test
+    fun aFumbledArticleNeverBridgesOneWordToAnother() {
+        // "Keller" sits one edit from the fixture's "Kellner".
+        val cellar = card("cellar", "pishi", "Keller", kind = CardKind.Noun, seedIndex = 99, lang = "de")
+        assertIs<Match.Typo>(de.evaluate("dee Kellner", cellar))
+
+        val verdict = CatalogAnswerGrader(de, swToDe + cellar).grade("dee Kellner", cellar)
+        assertIs<Match.OtherWord>(verdict)
+        assertEquals("Kellner", verdict.word)
+    }
+
+    /** And the prompted card keeps a form it accepts itself, fumbled article and all. */
+    @Test
+    fun theRightAnswerBehindAFumbledArticleStaysThePromptedCardsOwn() {
+        val shared = card("shared", "mtumishi", "Kellner", kind = CardKind.Noun, seedIndex = 98, lang = "de")
+        val verdict = CatalogAnswerGrader(de, swToDe + shared).grade("dee Kellner", shared)
+        assertIs<Match.Typo>(verdict)
+        assertEquals("Kellner", verdict.corrected)
     }
 
     @Test
