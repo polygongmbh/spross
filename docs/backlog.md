@@ -340,8 +340,6 @@ One line per item, with a file or context pointer, filed under the section it be
 - Dead after the wave-3 Android sweep, prune in one pass: Chrome `easy`/`again`/`summaryLine`/
   `typoNote`/`practice`/`emptyState`/`dueLabel`/`consolidatedLabel`/`freshLabel`, and
   `AppModel.sessionAvailable`/`canPracticeExtra` (unread since `HeuteStanding`).
-- `ic_launcher_background` still holds retired-palette `#FF2E6B34`
-  (`android/src/main/res/values/colors.xml`) — the adaptive-icon plate, not the window.
 - Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
   deferred per user 2026-08-08.
 - Audio ships un-thinned: `catalog/audio/` is 76 MB (8–14 MB per language) and

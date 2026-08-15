@@ -120,6 +120,12 @@ so a green preflight is not the answer.
 
 Audio reaches the host speakers by default, so a letter drill can be heard as well as seen.
 
+## Launcher icon
+
+The launcher wears the iOS icon's artwork; `scripts/android-icon.py` re-derives the
+adaptive foregrounds from it, and prints the plate color `ic_launcher_background` has to
+carry. Run it whenever `App/Resources/Assets.xcassets/AppIcon.appiconset` is repainted.
+
 ## One SDK
 
 `local.properties` names the SDK, and everything else must resolve to that same root.

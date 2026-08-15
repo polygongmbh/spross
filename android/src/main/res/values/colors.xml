@@ -5,5 +5,8 @@
          Compose, and a value picked here rather than copied is a flash of the wrong app.
          The dark column stands in values-night/. -->
     <color name="spross_window_background">#FFF2F1EA</color>
-    <color name="ic_launcher_background">#FF2E6B34</color>
+    <!-- The plate the icon artwork is painted on, so a mask cutting the foreground's
+         square exposes the same color the art sits on. Read off the source by
+         `scripts/android-icon.py` — change it there, not here. -->
+    <color name="ic_launcher_background">#FFEECE9E</color>
 </resources>
