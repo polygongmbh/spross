@@ -134,26 +134,36 @@ struct AnswerInputView: View {
     private var statusValue: Text {
         switch feedback {
         case .neutral: return Text(verbatim: "")
-        case .correct, .almost: return Text("a11y.correct")
+        case .correct: return Text("a11y.correct")
+        // why: amber is all that separates a near miss from a clean answer, and
+        // a color says nothing to a screen reader (WCAG 1.4.1) — spoken as
+        // "richtig" it would not even be a downgrade, it would be wrong.
+        case .almost: return Text("a11y.almost")
         case .revealed: return Text("a11y.notAnswered")
         }
     }
 
     /// The checkmark says ACCEPTED and rides both correct states; its color
-    /// says how cleanly. A reveal gets no mark at all — the amber edge already
-    /// carries the state, and the lightbulb that used to sit here read as a
-    /// button it never was.
+    /// says how cleanly, and its label says the same in words. A reveal gets no
+    /// mark at all — the amber edge already carries the state, and the lightbulb
+    /// that used to sit here read as a button it never was.
     @ViewBuilder
     private var statusIcon: some View {
         switch feedback {
         case .neutral, .revealed:
             EmptyView()
-        case .correct, .almost:
-            Image(systemName: "checkmark.circle.fill")
-                .font(.title3)
-                .foregroundStyle(borderColor)
-                .accessibilityLabel("a11y.correct")
+        case .correct:
+            statusCheck(label: "a11y.correct")
+        case .almost:
+            statusCheck(label: "a11y.almost")
         }
+    }
+
+    private func statusCheck(label: LocalizedStringKey) -> some View {
+        Image(systemName: "checkmark.circle.fill")
+            .font(.title3)
+            .foregroundStyle(borderColor)
+            .accessibilityLabel(label)
     }
 
     private var isRevealed: Bool {

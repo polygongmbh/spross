@@ -41,6 +41,22 @@
         }
       }
     },
+    "a11y.almost" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast richtig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Almost correct"
+          }
+        }
+      }
+    },
     "a11y.collapsed" : {
       "localizations" : {
         "de" : {
