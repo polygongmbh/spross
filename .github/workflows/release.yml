@@ -155,7 +155,11 @@ jobs:
 
   publish:
     name: GitHub Release
+    # why: it waits for the IPA but does not depend on it — an expired Apple credential
+    # or a macOS runner outage used to skip this job and take the Android release with
+    # it, and Obtainium can only offer what a release actually carries.
     needs: [android, ios]
+    if: always() && needs.android.result == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -164,17 +168,23 @@ jobs:
           name: apk
           path: dist
       - uses: actions/download-artifact@v8
+        continue-on-error: true
         with:
           name: ipa
           path: dist
 
       - name: Version from tag
-        run: echo "SPROSS_VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
+        run: |
+          echo "SPROSS_VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
+          # why: the IPA is optional now, so everything iPhone-shaped below is written
+          # only when its artifact actually arrived.
+          ls dist/spross-*.ipa >/dev/null 2>&1 && echo "HAS_IPA=1" >> "$GITHUB_ENV" || true
 
       # why: an iPhone installs an ad-hoc build from an itms-services link, and that
       # link points at a manifest rather than the payload — so the manifest has to
       # name the asset URL the release is about to have.
       - name: Over-the-air install manifest
+        if: env.HAS_IPA
         run: |
           base="https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}"
           cat > "dist/manifest.plist" <<PLIST
@@ -199,19 +209,29 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           scripts/release-notes.sh "$SPROSS_VERSION" > notes.md
-          manifest="https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/manifest.plist"
           cat >> notes.md <<NOTES
 
           ## Install
 
           **Android** — [\`spross-$SPROSS_VERSION.apk\`](https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/spross-$SPROSS_VERSION.apk),
           or add \`https://github.com/${GITHUB_REPOSITORY}\` in [Obtainium](https://github.com/ImranR98/Obtainium) to be offered every release from here on.
+          NOTES
+
+          assets=(dist/spross-*.apk)
+          # The heredoc body sits at column 0 on purpose — leading spaces would survive
+          # into the release notes as markdown indentation.
+          if [ -n "${HAS_IPA:-}" ]; then
+            manifest="https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/manifest.plist"
+            cat >> notes.md <<NOTES
 
           **iPhone** — registered test devices only. Open this in Safari on the device:
 
           \`itms-services://?action=download-manifest&url=$manifest\`
           NOTES
+            assets+=(dist/spross-*.ipa dist/manifest.plist)
+          fi
+
           gh release create "$GITHUB_REF_NAME" \
             --title "Spross $SPROSS_VERSION" \
             --notes-file notes.md \
-            dist/spross-*.apk dist/spross-*.ipa dist/manifest.plist
+            "${assets[@]}"
