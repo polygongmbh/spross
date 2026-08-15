@@ -95,17 +95,12 @@ extension AppModel {
         sessionPresented = false
         // why: one round is what the coaching is for, and leaving is what says it was
         // read — a learner who quits after two cards still comes back to a quiet screen.
-        if coachPending {
-            coachPending = false
-            UserDefaults.standard.set(false, forKey: Self.coachPendingKey)
-        }
+        coachPending = false
     }
 
-    /// Whether the round on screen still owes its coaching lines
-    /// (`SessionCoach`) — the first round, for its opening cards.
-    var coachActive: Bool {
-        coachPending && sessionPosition <= SessionCoach.cards
-    }
+    /// Whether the round on screen still owes its coaching lines (`SessionCoach`) —
+    /// the round onboarding opened, from its first card to the last one it hands out.
+    var coachActive: Bool { coachPending }
 
     // MARK: - What the session screen reads
 

@@ -45,12 +45,14 @@ Strict dependency direction: App → SprossKern, never the reverse.
   the catalog decides which targets a source can reach.
 - Default source = device language when covered, else en.
   Either picker may hold the other side's language — picking it swaps the pair.
-- The first round teaches itself: for its opening cards it carries one line per moment —
+- The first round teaches itself: it carries one line per moment —
   give the word a moment, answer honestly, write the one you missed — in the quiet line
   every other aside uses, and the grade line takes the standing question's slot rather
   than stacking under it. Copy only: no step is added and nothing waits on it.
-  The flag is persisted, so a round abandoned halfway still has its lines coming;
-  closing the round spends it.
+  The lines last that whole round, whatever "keep practicing" adds to the same run included,
+  and closing the round spends them. The flag arms with the round onboarding opens —
+  never ahead of one nothing can open — and lives in memory,
+  so an app killed mid-round comes back to a quiet screen.
 - Onboarding is two pages, and ends INSIDE the first round: the pair, then what a round
   asks of you, and the button on that second page joins the box and opens the session.
   Only the second page commits, so the join happens once, behind something worth reading;
