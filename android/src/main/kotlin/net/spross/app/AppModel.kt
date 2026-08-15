@@ -184,6 +184,29 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     /** Whether the done card's extra round would come back with anything. */
     var canPracticeExtra by mutableStateOf(false)
         private set
+
+    /**
+     * Whether a round still owes the learner the three lines that teach it
+     * ([SessionCoach]). Mirrors [ProfileStore.coachPending] so composition can read it;
+     * the disk copy is what survives a kill mid-round.
+     */
+    var coachPending by mutableStateOf(false)
+        private set
+
+    /**
+     * Whether the round on screen still owes its coaching lines — the first round, for
+     * its opening cards ([SessionCoach]).
+     */
+    val coachActive: Boolean
+        get() = coachPending && (sessionRun?.position ?: 1) <= SessionCoach.CARDS
+
+    /**
+     * What the self-grade row stands under: the first round's coaching while it is owed,
+     * else the standing question. One slot, one line — both paths to the row (recognize,
+     * and produce's blank reveal) read it.
+     */
+    val gradeCaption: String
+        get() = if (coachActive) chrome.coachGrade else chrome.ratingQuestion
     var sessionUi by mutableStateOf<SessionUi?>(null)
         private set
     var chrome by mutableStateOf(Chrome.forSource("en"))
@@ -214,6 +237,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             catalog = loaded
             val source = profile.source
             val target = profile.target
+            coachPending = profile.coachPending
             if (source != null && target != null) {
                 activate(source, target)
             } else {
@@ -240,7 +264,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         profile.set(source, target)
         viewModelScope.launch {
             activate(source, target)
-            if (thenPractice && sessionAvailable) startSession()
+            if (!thenPractice) return@launch
+            profile.coachPending = true
+            coachPending = true
+            if (sessionAvailable) startSession()
         }
     }
 
@@ -455,6 +482,12 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         sessionRun = null
         sessionUi = null
         screen = Screen.Heute
+        // why: one round is what the coaching is for, and leaving is what says it was
+        // read — a learner who quits after two cards still comes back to a quiet screen.
+        if (coachPending) {
+            coachPending = false
+            profile.coachPending = false
+        }
     }
 
     /**

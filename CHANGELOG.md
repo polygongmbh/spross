@@ -5,6 +5,8 @@
 - **Choosing your two languages now leads straight into your first round**, past a
   page that says what a round asks of you: look at the word and give it a moment,
   reveal, say how well you knew it, and write once the ones you didn't.
+  That first round then says each of those where it applies, and goes quiet after
+  a few cards.
 
 - **The grading row asks a question and takes a plain answer.** After a reveal it
   says "How well did you know it?", and the three buttons answer in words —

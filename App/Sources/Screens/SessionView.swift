@@ -167,6 +167,10 @@ struct SessionView: View, LanguageNaming {
                     .id(card.id)
                     .transition(reduceMotion ? .opacity : .dlCardFlip)
                 }
+                if model.coachActive,
+                   let line = SessionCoach.recallLine(role: role, revealed: revealed) {
+                    Text(line).dlPauseLine()
+                }
                 controls(card, role: role)
             }
             .padding(.bottom, DL.Space.l)
@@ -266,6 +270,14 @@ struct SessionView: View, LanguageNaming {
         }
     }
 
+    /// What the self-grade row stands under: the first round's coaching while it is
+    /// owed, else the standing question. One slot, one line — both paths to the row
+    /// (recognize, and produce's blank reveal) read it.
+    // why: internal, not private — SessionView+Produce mounts the same row.
+    var gradeCaption: LocalizedStringKey {
+        model.coachActive ? SessionCoach.gradeCaption : "rating.question"
+    }
+
     /// It matters here for the step "Unbekannt" opens: the write-it-out field
     /// mounts in the same frame as the request (`AnswerFocus`).
     func focusAnswerField() {
@@ -280,7 +292,8 @@ struct SessionView: View, LanguageNaming {
     @ViewBuilder
     private var recognizeControls: some View {
         if revealed {
-            RatingButtonsView { dispatch(TurnIntent.SelfGrade(verdict: $0.verdict)) }
+            RatingButtonsView(onGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0.verdict)) },
+                              caption: gradeCaption)
         } else {
             Button {
                 dispatch(TurnIntent.Reveal.shared)

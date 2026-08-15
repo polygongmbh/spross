@@ -241,6 +241,9 @@ fun WriteOutStep(model: AppModel, flow: TurnFlow, step: CopyStep, targetName: St
             chrome = chrome,
             onDone = { flow.submitCopy() },
         )
+        // why: the field opened by itself after a miss — the first round says what it is
+        // FOR, or copying a word off the card reads as busywork.
+        if (model.coachActive) PauseLine(chrome.coachWrite)
         if (step.missed) {
             Text(
                 chrome.copyMismatch,

@@ -40,6 +40,10 @@ data class Chrome(
     val answerPlaceholder: String, // %s = target language name
     /** The question the three verdicts answer, standing under them. */
     val ratingQuestion: String,
+    /** The three the FIRST round teaches itself with, one per moment ([SessionCoach]). */
+    val coachRecall: String,
+    val coachGrade: String,
+    val coachWrite: String,
     val hard: String,
     val good: String,
     val unknown: String,           // the third verdict — a judgment, not an instruction

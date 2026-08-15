@@ -45,6 +45,12 @@ Strict dependency direction: App → SprossKern, never the reverse.
   the catalog decides which targets a source can reach.
 - Default source = device language when covered, else en.
   Either picker may hold the other side's language — picking it swaps the pair.
+- The first round teaches itself: for its opening cards it carries one line per moment —
+  give the word a moment, answer honestly, write the one you missed — in the quiet line
+  every other aside uses, and the grade line takes the standing question's slot rather
+  than stacking under it. Copy only: no step is added and nothing waits on it.
+  The flag is persisted, so a round abandoned halfway still has its lines coming;
+  closing the round spends it.
 - Onboarding is two pages, and ends INSIDE the first round: the pair, then what a round
   asks of you, and the button on that second page joins the box and opens the session.
   Only the second page commits, so the join happens once, behind something worth reading;

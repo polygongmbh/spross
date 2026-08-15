@@ -44,6 +44,7 @@ import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.CardDisplay
+import net.spross.app.SessionCoach
 import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
 import net.spross.app.audio.Pronouncer
@@ -267,6 +268,9 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         }
     }
 
+    if (model.coachActive) {
+        SessionCoach.recallLine(chrome, ui.role, revealed)?.let { PauseLine(it) }
+    }
     if (!revealed) {
         Button(
             onClick = { flow.reveal() },
@@ -279,7 +283,7 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     }
     val step = flow.copyStep
     if (step == null) {
-        VerdictButtons(chrome, flow)
+        VerdictButtons(chrome, flow, caption = model.gradeCaption)
     } else {
         WriteOutStep(model, flow, step, model.targetName(ui))
     }

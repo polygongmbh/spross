@@ -28,7 +28,7 @@ fi
 # The Android tables are generated FROM the catalog, so a catalog edit that does not
 # carry them along would ship the two phones saying different things — the one drift
 # the generator exists to make impossible.
-if ! scripts/chrome.py >/dev/null 2>&1; then
+if ! python3 scripts/chrome.py >/dev/null; then
   echo "error: the Android chrome tables are not what $CATALOG says." >&2
   echo "       Run 'scripts/chrome.py --fix' and stage ChromeDe.kt/ChromeEn.kt too." >&2
   exit 1

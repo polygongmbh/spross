@@ -30,6 +30,11 @@ extension SessionView {
             // why: this field replaces the one the rating buttons sat under, so
             // it has to claim focus itself — the tap that opened it fired first.
             .onAppear { focusAnswerField() }
+            if model.coachActive {
+                // why: the field opened by itself after a miss — the first round says
+                // what it is FOR, or copying a word off the card reads as busywork.
+                Text(SessionCoach.writeLine).dlPauseLine()
+            }
             if step.missed {
                 // why: the answer is already on the card, so this points back to it.
                 Text("session.copyMismatch")

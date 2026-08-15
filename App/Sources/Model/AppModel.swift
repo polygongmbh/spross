@@ -66,6 +66,10 @@ final class AppModel {
     // MARK: Session presentation (iOS-only; the run itself lives in `run`)
 
     var sessionPresented = false
+    /// Whether a round still owes the learner the three lines that teach it
+    /// (`SessionCoach`). Set when onboarding hands over, spent by the round that
+    /// follows — surviving a kill in between, which is why it is on disk.
+    var coachPending = UserDefaults.standard.bool(forKey: AppModel.coachPendingKey)
     private(set) var autostartSession = false
     /// DEBUG hook: `-uitest-screen box` pushes the Box screen after launch,
     /// `finish` jumps a fresh session to its finish screen.
@@ -82,6 +86,7 @@ final class AppModel {
     let watchBridge = PhoneConnectivity()
     static let sourceLanguageKey = "sourceLanguage"
     static let targetLanguageKey = "targetLanguage"
+    static let coachPendingKey = "sessionCoachPending"
 
     init(store: BoxStore = BoxStore()) {
         self.store = store
@@ -171,6 +176,10 @@ final class AppModel {
     /// the box's settings must not raise a session over the screen you were reading.
     func completeOnboarding(source: String, target: String) async {
         await activate(source: source, target: target)
+        // why: persisted, not held in memory — an app killed mid-first-round would
+        // otherwise cost the learner the one round that explains itself.
+        UserDefaults.standard.set(true, forKey: Self.coachPendingKey)
+        coachPending = true
         // why: the picker is the last question the app asks. Landing on Heute to press
         // one more button makes the first round something you have to go and find.
         if sessionAvailable { startSession() }

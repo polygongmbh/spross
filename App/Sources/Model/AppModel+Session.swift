@@ -93,6 +93,18 @@ extension AppModel {
     func closeSession() {
         reduce(SessionIntent.Close.shared)
         sessionPresented = false
+        // why: one round is what the coaching is for, and leaving is what says it was
+        // read — a learner who quits after two cards still comes back to a quiet screen.
+        if coachPending {
+            coachPending = false
+            UserDefaults.standard.set(false, forKey: Self.coachPendingKey)
+        }
+    }
+
+    /// Whether the round on screen still owes its coaching lines
+    /// (`SessionCoach`) — the first round, for its opening cards.
+    var coachActive: Bool {
+        coachPending && sessionPosition <= SessionCoach.cards
     }
 
     // MARK: - What the session screen reads

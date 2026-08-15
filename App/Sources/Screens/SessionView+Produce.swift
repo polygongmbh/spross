@@ -67,7 +67,8 @@ extension SessionView {
             switch feedback {
             case .neutral where revealed:
                 // Revealed without typing → honest self-grade.
-                RatingButtonsView { dispatch(TurnIntent.SelfGrade(verdict: $0.verdict)) }
+                RatingButtonsView(onGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0.verdict)) },
+                                  caption: gradeCaption)
             case .neutral:
                 // ONE primary action: empty input reveals, typed input checks.
                 // kern's Submit is inert on blank text, so which of the two a
