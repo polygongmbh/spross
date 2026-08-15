@@ -38,6 +38,10 @@ Set once, in Settings › Secrets and variables › Actions.
 | `APPSTORE_API_KEY_ID` | that key's ID |
 | `APPSTORE_API_ISSUER_ID` | the issuer UUID, one per Apple team |
 
+The first three are enough to ship Android: the release job waits for the iPhone build
+but does not depend on it, so an Apple credential that is missing or expired costs the
+IPA and its install manifest, not the release.
+
 `scripts/release-keystore.sh <dir>` creates the Android key wherever you keep key
 files and writes the first three into `<dir>/github-secrets.txt` ready to paste.
 The App Store Connect key is generated in App Store Connect › Users and Access › Integrations
@@ -112,6 +116,16 @@ Add `https://github.com/polygongmbh/spross` as a GitHub app in
 [Obtainium](https://github.com/ImranR98/Obtainium); it picks `spross-<version>.apk`
 off each release and offers the update. The repo being public is what makes this
 work without a token. Direct download from the release page installs the same file.
+
+The box's own footer carries that door: it fires `obtainium://add/<repo url>`, which
+lands on Obtainium's prefilled Add-App screen, and offers the choice between Obtainium
+and a direct download when nothing answers the scheme. The app checks for nothing
+itself — it declares no `INTERNET` permission and hands every URL to another app.
+
+Obtainium reads the tag as the version and reconciles it against the APK's
+`versionName`, which is why the workflow derives one from the other. A tag whose shape
+stops matching the name would leave it unable to tell the two apart, and it disables
+update detection for the app rather than guessing.
 
 ## iPhone — ad-hoc
 

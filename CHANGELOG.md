@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Android says where a newer version comes from.** The foot of the box, under the
+  build it is running, opens Obtainium on this app's releases so every future one is
+  offered by itself — and where Obtainium is not installed, offers it or a direct
+  download instead. Nothing is checked in the background; the app still asks the
+  network for nothing at all.
+
 - **Both phones say the same sentence.** The Android wording had drifted from the
   iPhone's on a long tail of surfaces — a different name on the licenses page, a
   different line under the read-aloud switch, a German answer field that asked in
