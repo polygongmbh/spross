@@ -4,7 +4,7 @@
     "j": {
       "author": "Jeuwre",
       "file": "letters/u006a.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 433,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -15,7 +15,7 @@
     "v": {
       "author": "T.Voekler",
       "file": "letters/u0076.mp3",
-      "gain": -7.4,
+      "gain": -8.7,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "sha256": "665359a6bc269a8a81884142cc3838bb8f2b1b1b207e4cd458dfe5d2b6f716e2",
@@ -25,7 +25,7 @@
     "w": {
       "author": "Jeuwre",
       "file": "letters/u0077.mp3",
-      "gain": -0.9,
+      "gain": -2.2,
       "lead": 403,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -36,7 +36,7 @@
     "z": {
       "author": "T.Voekler",
       "file": "letters/u007a.mp3",
-      "gain": -1.0,
+      "gain": -2.3,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "sha256": "a478799fdf43a0e236b4cf8fa0cf1cd99cdef5337a0da6b50cee5c9c92c25c61",
@@ -46,7 +46,7 @@
     "ß": {
       "author": "Jeuwre",
       "file": "letters/u00df.mp3",
-      "gain": -0.1,
+      "gain": -1.4,
       "lead": 362,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -57,7 +57,7 @@
     "ä": {
       "author": "Jeuwre",
       "file": "letters/u00e4.mp3",
-      "gain": -1.0,
+      "gain": -2.3,
       "lead": 444,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -68,7 +68,7 @@
     "ö": {
       "author": "Jeuwre",
       "file": "letters/u00f6.mp3",
-      "gain": -3.4,
+      "gain": -4.7,
       "lead": 421,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -79,7 +79,7 @@
     "ü": {
       "author": "Jeuwre",
       "file": "letters/u00fc.mp3",
-      "gain": -3.7,
+      "gain": -5.0,
       "lead": 429,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -92,7 +92,7 @@
     "Quittung": {
       "author": "Jeuwre",
       "file": "texts/quittung.mp3",
-      "gain": -1.6,
+      "gain": -2.9,
       "lead": 448,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -104,7 +104,7 @@
     "sechs": {
       "author": "joni",
       "file": "texts/sechs.mp3",
-      "gain": 7.2,
+      "gain": 5.9,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "sechs",
@@ -117,7 +117,7 @@
     "address": {
       "author": "Jeuwre",
       "file": "address.mp3",
-      "gain": 4.0,
+      "gain": 2.7,
       "lead": 145,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -129,7 +129,7 @@
     "after": {
       "author": "joni",
       "file": "after.mp3",
-      "gain": 7.0,
+      "gain": 5.7,
       "lead": 253,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -141,7 +141,7 @@
     "again": {
       "author": "Dinock90",
       "file": "again.mp3",
-      "gain": 9.2,
+      "gain": 7.9,
       "lead": 235,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -153,7 +153,7 @@
     "airport": {
       "author": "Kampy",
       "file": "airport.mp3",
-      "gain": 4.9,
+      "gain": 4.3,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "flughafen",
@@ -164,7 +164,7 @@
     "alarm-clock": {
       "author": "Jeuwre",
       "file": "alarm-clock.mp3",
-      "gain": -2.2,
+      "gain": -3.5,
       "lead": 432,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -176,7 +176,7 @@
     "allergy": {
       "author": "Jeuwre",
       "file": "allergy.mp3",
-      "gain": -1.6,
+      "gain": -2.9,
       "lead": 253,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -188,7 +188,7 @@
     "also": {
       "author": "joni",
       "file": "also.mp3",
-      "gain": 5.3,
+      "gain": 4.0,
       "lead": 239,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -200,7 +200,7 @@
     "always": {
       "author": "Dinock90",
       "file": "always.mp3",
-      "gain": 5.0,
+      "gain": 3.7,
       "lead": 373,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -212,7 +212,7 @@
     "ambulance": {
       "author": "Jeuwre",
       "file": "ambulance.mp3",
-      "gain": -0.9,
+      "gain": -2.2,
       "lead": 201,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -236,7 +236,7 @@
     "animal": {
       "author": "Jeuwre",
       "file": "animal.mp3",
-      "gain": -0.7,
+      "gain": -2.0,
       "lead": 443,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -248,7 +248,7 @@
     "answer": {
       "author": "Jeuwre",
       "file": "answer.mp3",
-      "gain": 1.1,
+      "gain": -0.2,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -260,7 +260,7 @@
     "apartment": {
       "author": "Kampy",
       "file": "apartment.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "wohnung",
@@ -283,7 +283,7 @@
     "application": {
       "author": "Jeuwre",
       "file": "application.mp3",
-      "gain": 0.3,
+      "gain": -1.0,
       "lead": 4,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -295,6 +295,7 @@
     "apply-for": {
       "author": "Jeuwre",
       "file": "apply-for.mp3",
+      "gain": -1.3,
       "lead": 339,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -306,7 +307,7 @@
     "apply-lotion": {
       "author": "Jeuwre",
       "file": "apply-lotion.mp3",
-      "gain": -1.8,
+      "gain": -3.1,
       "lead": 241,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -318,7 +319,7 @@
     "appointment": {
       "author": "Jeuwre",
       "file": "appointment.mp3",
-      "gain": -2.9,
+      "gain": -4.2,
       "lead": 241,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -330,7 +331,7 @@
     "approve": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "approve.mp3",
-      "gain": 3.7,
+      "gain": 2.4,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "genehmigen",
@@ -341,7 +342,7 @@
     "arm": {
       "author": "Kampy",
       "file": "arm.mp3",
-      "gain": 3.2,
+      "gain": 1.9,
       "lead": 236,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -353,7 +354,7 @@
     "arrange": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "arrange.mp3",
-      "gain": 6.5,
+      "gain": 5.2,
       "lead": 16,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -365,7 +366,7 @@
     "arrive": {
       "author": "Kampy",
       "file": "arrive.mp3",
-      "gain": 6.1,
+      "gain": 4.8,
       "lead": 143,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -377,7 +378,7 @@
     "ask": {
       "author": "User:Tosca",
       "file": "ask.mp3",
-      "gain": 8.5,
+      "gain": 8.4,
       "lead": 99,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -400,7 +401,7 @@
     "baby": {
       "author": "Jeuwre",
       "file": "baby.mp3",
-      "gain": -3.5,
+      "gain": -4.8,
       "lead": 354,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -424,7 +425,7 @@
     "bad": {
       "author": "Kampy",
       "file": "bad.mp3",
-      "gain": 2.7,
+      "gain": 1.4,
       "lead": 222,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -436,7 +437,7 @@
     "bag": {
       "author": "Jeuwre",
       "file": "bag.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 448,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -448,7 +449,7 @@
     "bake": {
       "author": "Jeuwre",
       "file": "bake.mp3",
-      "gain": 3.5,
+      "gain": 2.2,
       "lead": 107,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -460,7 +461,7 @@
     "banana": {
       "author": "Kampy",
       "file": "banana.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 442,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -472,7 +473,7 @@
     "bandage": {
       "author": "Jeuwre",
       "file": "bandage.mp3",
-      "gain": -0.4,
+      "gain": -1.7,
       "lead": 393,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -484,7 +485,7 @@
     "bank": {
       "author": "Jeuwre",
       "file": "bank.mp3",
-      "gain": -1.3,
+      "gain": -2.6,
       "lead": 444,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -496,7 +497,7 @@
     "basket": {
       "author": "Jeuwre",
       "file": "basket.mp3",
-      "gain": -2.6,
+      "gain": -3.9,
       "lead": 449,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -508,7 +509,7 @@
     "bathtub": {
       "author": "Jeuwre",
       "file": "bathtub.mp3",
-      "gain": -1.0,
+      "gain": -2.3,
       "lead": 348,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -520,7 +521,7 @@
     "be-called": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "be-called.mp3",
-      "gain": 9.0,
+      "gain": 7.7,
       "lead": 184,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -532,7 +533,7 @@
     "beach": {
       "author": "Kampy",
       "file": "beach.mp3",
-      "gain": 1.6,
+      "gain": 0.3,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "strand",
@@ -543,7 +544,7 @@
     "because": {
       "author": "Jeuwre",
       "file": "because.mp3",
-      "gain": -1.7,
+      "gain": -3.0,
       "lead": 382,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -555,7 +556,7 @@
     "bed": {
       "author": "Jeuwre",
       "file": "bed.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 447,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -567,7 +568,7 @@
     "bedding": {
       "author": "Jeuwre",
       "file": "bedding.mp3",
-      "gain": -0.7,
+      "gain": -2.0,
       "lead": 346,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -579,7 +580,7 @@
     "before": {
       "author": "Kampy",
       "file": "before.mp3",
-      "gain": 3.5,
+      "gain": 2.2,
       "lead": 186,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -591,7 +592,7 @@
     "belt": {
       "author": "Jeuwre",
       "file": "belt.mp3",
-      "gain": -2.3,
+      "gain": -3.6,
       "lead": 331,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -615,7 +616,7 @@
     "big": {
       "author": "Kampy",
       "file": "big.mp3",
-      "gain": 14.9,
+      "gain": 13.6,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "groß",
@@ -626,7 +627,7 @@
     "bird": {
       "author": "T.Voekler",
       "file": "bird.mp3",
-      "gain": 5.9,
+      "gain": 4.6,
       "lead": 156,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -638,6 +639,7 @@
     "birth-certificate": {
       "author": "Jeuwre",
       "file": "birth-certificate.mp3",
+      "gain": -1.3,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -649,7 +651,7 @@
     "black": {
       "author": "User:Tosca",
       "file": "black.mp3",
-      "gain": 11.1,
+      "gain": 9.8,
       "lead": 220,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -661,7 +663,7 @@
     "blanket": {
       "author": "Jeuwre",
       "file": "blanket.mp3",
-      "gain": 2.4,
+      "gain": 1.7,
       "lead": 503,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -673,7 +675,7 @@
     "blood": {
       "author": "Kampy",
       "file": "blood.mp3",
-      "gain": 7.9,
+      "gain": 6.6,
       "lead": 209,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -685,7 +687,7 @@
     "blue": {
       "author": "Kampy",
       "file": "blue.mp3",
-      "gain": 2.7,
+      "gain": 1.4,
       "lead": 199,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -697,7 +699,7 @@
     "board": {
       "author": "Jeuwre",
       "file": "board.mp3",
-      "gain": -1.1,
+      "gain": -2.4,
       "lead": 447,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -709,7 +711,7 @@
     "bone": {
       "author": "Kampy",
       "file": "bone.mp3",
-      "gain": 7.4,
+      "gain": 7.2,
       "lead": 231,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -721,7 +723,7 @@
     "book": {
       "author": "Jeuwre",
       "file": "book.mp3",
-      "gain": -2.7,
+      "gain": -4.0,
       "lead": 440,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -733,7 +735,7 @@
     "boss": {
       "author": "Jeuwre",
       "file": "boss.mp3",
-      "gain": 2.7,
+      "gain": 1.4,
       "lead": 139,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -744,7 +746,7 @@
     "boss-f": {
       "author": "Jeuwre",
       "file": "boss-f.mp3",
-      "gain": 3.2,
+      "gain": 1.9,
       "lead": 127,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -755,7 +757,7 @@
     "bowl": {
       "author": "Jeuwre",
       "file": "bowl.mp3",
-      "gain": -1.4,
+      "gain": -2.7,
       "lead": 428,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -767,7 +769,7 @@
     "boy": {
       "author": "Jeuwre",
       "file": "boy.mp3",
-      "gain": -1.4,
+      "gain": -2.7,
       "lead": 443,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -779,7 +781,7 @@
     "bread": {
       "author": "Kampy",
       "file": "bread.mp3",
-      "gain": 4.0,
+      "gain": 2.7,
       "lead": 191,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -791,7 +793,7 @@
     "break": {
       "author": "Jeuwre",
       "file": "break.mp3",
-      "gain": -1.5,
+      "gain": -2.8,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -803,7 +805,7 @@
     "breakfast": {
       "author": "Jeuwre",
       "file": "breakfast.mp3",
-      "gain": -0.5,
+      "gain": -1.8,
       "lead": 392,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -815,7 +817,7 @@
     "breathe": {
       "author": "Jeuwre",
       "file": "breathe.mp3",
-      "gain": 1.9,
+      "gain": 0.9,
       "lead": 345,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -827,7 +829,7 @@
     "bridge": {
       "author": "Jeuwre",
       "file": "bridge.mp3",
-      "gain": 1.9,
+      "gain": 1.0,
       "lead": 446,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -839,7 +841,7 @@
     "bring": {
       "author": "Kampy",
       "file": "bring.mp3",
-      "gain": 5.5,
+      "gain": 4.2,
       "lead": 208,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -851,7 +853,7 @@
     "brother": {
       "author": "joni",
       "file": "brother.mp3",
-      "gain": 7.5,
+      "gain": 6.2,
       "lead": 241,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -863,7 +865,7 @@
     "brown": {
       "author": "Kampy",
       "file": "brown.mp3",
-      "gain": 7.5,
+      "gain": 6.2,
       "lead": 150,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -875,7 +877,7 @@
     "bucket": {
       "author": "Jeuwre",
       "file": "bucket.mp3",
-      "gain": -1.9,
+      "gain": -3.2,
       "lead": 235,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -887,7 +889,7 @@
     "building": {
       "author": "Jeuwre",
       "file": "building.mp3",
-      "gain": -0.5,
+      "gain": -1.8,
       "lead": 439,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -899,7 +901,7 @@
     "bus": {
       "author": "Kampy",
       "file": "bus.mp3",
-      "gain": -3.7,
+      "gain": -5.0,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "bus",
@@ -910,7 +912,7 @@
     "bus-stop": {
       "author": "Jeuwre",
       "file": "bus-stop.mp3",
-      "gain": -1.3,
+      "gain": -2.6,
       "lead": 280,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -922,7 +924,7 @@
     "but": {
       "author": "Jeuwre",
       "file": "but.mp3",
-      "gain": 1.9,
+      "gain": 0.6,
       "lead": 449,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -934,7 +936,7 @@
     "butter": {
       "author": "Jeuwre",
       "file": "butter.mp3",
-      "gain": 0.9,
+      "gain": -0.4,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -946,7 +948,7 @@
     "buy": {
       "author": "Kampy",
       "file": "buy.mp3",
-      "gain": 1.4,
+      "gain": 0.1,
       "lead": 194,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -958,7 +960,7 @@
     "bye": {
       "author": "Jeuwre",
       "file": "bye.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 347,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -970,7 +972,7 @@
     "cable": {
       "author": "Jeuwre",
       "file": "cable.mp3",
-      "gain": 0.3,
+      "gain": -1.0,
       "lead": 441,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -982,7 +984,7 @@
     "calendar": {
       "author": "Kampy",
       "file": "calendar.mp3",
-      "gain": 5.7,
+      "gain": 4.4,
       "lead": 259,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -994,7 +996,7 @@
     "call": {
       "author": "Jeuwre",
       "file": "call.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 436,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1006,7 +1008,7 @@
     "can": {
       "author": "Bleibein",
       "file": "can.mp3",
-      "gain": 6.5,
+      "gain": 5.2,
       "lead": 201,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1029,7 +1031,7 @@
     "car": {
       "author": "Kampy",
       "file": "car.mp3",
-      "gain": 3.5,
+      "gain": 2.2,
       "lead": 256,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1041,7 +1043,7 @@
     "careful": {
       "author": "Jeuwre",
       "file": "careful.mp3",
-      "gain": -0.4,
+      "gain": -1.7,
       "lead": 387,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1053,7 +1055,7 @@
     "carpet": {
       "author": "Jeuwre",
       "file": "carpet.mp3",
-      "gain": 0.1,
+      "gain": -1.2,
       "lead": 449,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1065,7 +1067,7 @@
     "case-worker": {
       "author": "Jeuwre",
       "file": "case-worker.mp3",
-      "gain": 2.0,
+      "gain": 0.7,
       "lead": 435,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1077,7 +1079,7 @@
     "case-worker-f": {
       "author": "Jeuwre",
       "file": "case-worker-f.mp3",
-      "gain": 1.9,
+      "gain": 0.6,
       "lead": 429,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1089,7 +1091,7 @@
     "cassava": {
       "author": "Jeuwre",
       "file": "cassava.mp3",
-      "gain": -3.0,
+      "gain": -4.3,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1101,7 +1103,7 @@
     "cat": {
       "author": "Kampy",
       "file": "cat.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 202,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1113,7 +1115,7 @@
     "certificate": {
       "author": "Jeuwre",
       "file": "certificate.mp3",
-      "gain": -1.8,
+      "gain": -3.1,
       "lead": 341,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1125,7 +1127,7 @@
     "chair": {
       "author": "Jeuwre",
       "file": "chair.mp3",
-      "gain": -0.6,
+      "gain": -1.9,
       "lead": 424,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1137,7 +1139,7 @@
     "charger": {
       "author": "Jeuwre",
       "file": "charger.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 424,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1149,7 +1151,7 @@
     "cheese": {
       "author": "Jeuwre",
       "file": "cheese.mp3",
-      "gain": 1.2,
+      "gain": -0.1,
       "lead": 441,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1161,7 +1163,7 @@
     "chest": {
       "author": "Kampy",
       "file": "chest.mp3",
-      "gain": 13.8,
+      "gain": 12.5,
       "lead": 149,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1173,7 +1175,7 @@
     "chicken": {
       "author": "Jeuwre",
       "file": "chicken.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 394,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1197,7 +1199,7 @@
     "church": {
       "author": "Kampy",
       "file": "church.mp3",
-      "gain": -4.4,
+      "gain": -5.7,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kirche",
@@ -1208,7 +1210,7 @@
     "cinema": {
       "author": "Jeuwre",
       "file": "cinema.mp3",
-      "gain": -0.9,
+      "gain": -2.2,
       "lead": 440,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1220,7 +1222,7 @@
     "city": {
       "author": "Jeuwre",
       "file": "city.mp3",
-      "gain": 1.9,
+      "gain": 0.6,
       "lead": 400,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1232,7 +1234,7 @@
     "class-schedule": {
       "author": "Jeuwre",
       "file": "class-schedule.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 283,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1244,7 +1246,7 @@
     "classroom": {
       "author": "Jeuwre",
       "file": "classroom.mp3",
-      "gain": -1.5,
+      "gain": -2.8,
       "lead": 255,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1256,7 +1258,7 @@
     "clean": {
       "author": "Kampy",
       "file": "clean.mp3",
-      "gain": 2.1,
+      "gain": 0.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "putzen",
@@ -1267,7 +1269,7 @@
     "clean-adj": {
       "author": "Kampy",
       "file": "clean-adj.mp3",
-      "gain": 3.8,
+      "gain": 2.5,
       "lead": 26,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1279,7 +1281,7 @@
     "clothes": {
       "author": "Kampy",
       "file": "clothes.mp3",
-      "gain": 2.0,
+      "gain": 0.7,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kleidung",
@@ -1302,7 +1304,7 @@
     "coat": {
       "author": "Jeuwre",
       "file": "coat.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 433,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1314,7 +1316,7 @@
     "coffee": {
       "author": "Kampy",
       "file": "coffee.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kaffee",
@@ -1325,7 +1327,7 @@
     "coffee-break": {
       "author": "Jeuwre",
       "file": "coffee-break.mp3",
-      "gain": 1.6,
+      "gain": 0.3,
       "lead": 446,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1337,7 +1339,7 @@
     "cold": {
       "author": "Jeuwre",
       "file": "cold.mp3",
-      "gain": 0.1,
+      "gain": -1.2,
       "lead": 410,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1349,7 +1351,7 @@
     "colleague": {
       "author": "Bleibein",
       "file": "colleague.mp3",
-      "gain": -3.6,
+      "gain": -4.9,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kollege",
@@ -1360,7 +1362,7 @@
     "colleague-f": {
       "author": "Jeuwre",
       "file": "colleague-f.mp3",
-      "gain": -2.7,
+      "gain": -4.0,
       "lead": 290,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1372,6 +1374,7 @@
     "color": {
       "author": "Jeuwre",
       "file": "color.mp3",
+      "gain": -1.3,
       "lead": 265,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1395,7 +1398,7 @@
     "company": {
       "author": "Jeuwre",
       "file": "company.mp3",
-      "gain": -2.1,
+      "gain": -3.4,
       "lead": 433,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1407,7 +1410,7 @@
     "confirm": {
       "author": "User:Tosca",
       "file": "confirm.mp3",
-      "gain": 7.8,
+      "gain": 6.5,
       "lead": 67,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1419,7 +1422,7 @@
     "confirmation": {
       "author": "Jeuwre",
       "file": "confirmation.mp3",
-      "gain": -1.7,
+      "gain": -3.0,
       "lead": 347,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1431,7 +1434,7 @@
     "contract": {
       "author": "Jeuwre",
       "file": "contract.mp3",
-      "gain": 2.6,
+      "gain": 1.3,
       "lead": 412,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1443,7 +1446,7 @@
     "cook": {
       "author": "Jeuwre",
       "file": "cook.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1455,7 +1458,7 @@
     "copy": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "copy.mp3",
-      "gain": 4.7,
+      "gain": 3.4,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kopieren",
@@ -1466,7 +1469,7 @@
     "correct": {
       "author": "Jeuwre",
       "file": "correct.mp3",
-      "gain": -1.7,
+      "gain": -3.0,
       "lead": 329,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1478,7 +1481,7 @@
     "cough": {
       "author": "Jeuwre",
       "file": "cough.mp3",
-      "gain": -2.5,
+      "gain": -3.8,
       "lead": 386,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1490,7 +1493,7 @@
     "course": {
       "author": "Jeuwre",
       "file": "course.mp3",
-      "gain": -2.8,
+      "gain": -4.1,
       "lead": 213,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1502,7 +1505,7 @@
     "course-book": {
       "author": "Jeuwre",
       "file": "course-book.mp3",
-      "gain": -1.4,
+      "gain": -2.7,
       "lead": 440,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1514,7 +1517,7 @@
     "cream": {
       "author": "Jeuwre",
       "file": "cream.mp3",
-      "gain": -2.9,
+      "gain": -4.2,
       "lead": 344,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1526,7 +1529,7 @@
     "cuddle": {
       "author": "Jeuwre",
       "file": "cuddle.mp3",
-      "gain": -3.1,
+      "gain": -4.4,
       "lead": 448,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1538,7 +1541,7 @@
     "cup": {
       "author": "Kampy",
       "file": "cup.mp3",
-      "gain": -1.1,
+      "gain": -1.4,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "tasse",
@@ -1549,7 +1552,7 @@
     "curtain": {
       "author": "Jeuwre",
       "file": "curtain.mp3",
-      "gain": -0.7,
+      "gain": -2.0,
       "lead": 398,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1561,7 +1564,7 @@
     "customer": {
       "author": "Kampy",
       "file": "customer.mp3",
-      "gain": -2.8,
+      "gain": -4.1,
       "lead": 448,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1573,7 +1576,7 @@
     "cut": {
       "author": "Jeuwre",
       "file": "cut.mp3",
-      "gain": 1.6,
+      "gain": 0.3,
       "lead": 412,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1585,7 +1588,7 @@
     "cv": {
       "author": "Jeuwre",
       "file": "cv.mp3",
-      "gain": -2.4,
+      "gain": -3.7,
       "lead": 414,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1597,7 +1600,7 @@
     "date": {
       "author": "Kampy",
       "file": "date.mp3",
-      "gain": 1.9,
+      "gain": 0.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "datum",
@@ -1608,7 +1611,7 @@
     "daughter": {
       "author": "Jeuwre",
       "file": "daughter.mp3",
-      "gain": 4.3,
+      "gain": 3.0,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1632,7 +1635,7 @@
     "deadline": {
       "author": "Jeuwre",
       "file": "deadline.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 413,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1644,7 +1647,7 @@
     "delete": {
       "author": "User:Tosca",
       "file": "delete.mp3",
-      "gain": 5.4,
+      "gain": 4.1,
       "lead": 229,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1656,7 +1659,7 @@
     "dentist": {
       "author": "Kampy",
       "file": "dentist.mp3",
-      "gain": 2.7,
+      "gain": 1.4,
       "lead": 53,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1668,7 +1671,7 @@
     "depart": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "depart.mp3",
-      "gain": 8.8,
+      "gain": 7.5,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "abfahren",
@@ -1679,7 +1682,7 @@
     "desk": {
       "author": "Kampy",
       "file": "desk.mp3",
-      "gain": -1.1,
+      "gain": -2.4,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "schreibtisch",
@@ -1690,7 +1693,7 @@
     "dictionary": {
       "author": "Jeuwre",
       "file": "dictionary.mp3",
-      "gain": 0.1,
+      "gain": -1.2,
       "lead": 171,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1702,7 +1705,7 @@
     "difficult": {
       "author": "Jeuwre",
       "file": "difficult.mp3",
-      "gain": 1.0,
+      "gain": -0.3,
       "lead": 431,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1714,7 +1717,7 @@
     "dining-table": {
       "author": "Jeuwre",
       "file": "dining-table.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 144,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1726,7 +1729,7 @@
     "dinner": {
       "author": "Jeuwre",
       "file": "dinner.mp3",
-      "gain": 0.1,
+      "gain": -1.2,
       "lead": 345,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1738,7 +1741,7 @@
     "dirty": {
       "author": "Kampy",
       "file": "dirty.mp3",
-      "gain": 12.5,
+      "gain": 11.2,
       "lead": 100,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1750,7 +1753,7 @@
     "dishwasher": {
       "author": "Jeuwre",
       "file": "dishwasher.mp3",
-      "gain": -2.7,
+      "gain": -4.0,
       "lead": 478,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1762,7 +1765,7 @@
     "dizziness": {
       "author": "Jeuwre",
       "file": "dizziness.mp3",
-      "gain": -1.3,
+      "gain": -2.6,
       "lead": 413,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1774,7 +1777,7 @@
     "doctor": {
       "author": "Jeuwre",
       "file": "doctor.mp3",
-      "gain": 0.1,
+      "gain": -1.2,
       "lead": 439,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1786,7 +1789,7 @@
     "doctor-f": {
       "author": "Jeuwre",
       "file": "doctor-f.mp3",
-      "gain": -0.1,
+      "gain": -1.4,
       "lead": 343,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1798,7 +1801,7 @@
     "doctors-note": {
       "author": "Jeuwre",
       "file": "doctors-note.mp3",
-      "gain": -2.9,
+      "gain": -4.2,
       "lead": 448,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1810,7 +1813,7 @@
     "documents": {
       "author": "Jeuwre",
       "file": "documents.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 436,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1822,7 +1825,7 @@
     "dog": {
       "author": "Kampy",
       "file": "dog.mp3",
-      "gain": 3.0,
+      "gain": 1.7,
       "lead": 180,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1834,7 +1837,7 @@
     "door": {
       "author": "Jeuwre",
       "file": "door.mp3",
-      "gain": -4.6,
+      "gain": -5.9,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1846,7 +1849,7 @@
     "doorbell": {
       "author": "Jeuwre",
       "file": "doorbell.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1858,7 +1861,7 @@
     "dream": {
       "author": "Jeuwre",
       "file": "dream.mp3",
-      "gain": -1.0,
+      "gain": -2.3,
       "lead": 500,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1870,7 +1873,7 @@
     "dress": {
       "author": "Jeuwre",
       "file": "dress.mp3",
-      "gain": -2.5,
+      "gain": -3.8,
       "lead": 448,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1882,7 +1885,7 @@
     "drink": {
       "author": "Kampy",
       "file": "drink.mp3",
-      "gain": 4.9,
+      "gain": 3.6,
       "lead": 208,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1894,7 +1897,7 @@
     "driver": {
       "author": "Jeuwre",
       "file": "driver.mp3",
-      "gain": 1.1,
+      "gain": -0.2,
       "lead": 395,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1906,7 +1909,7 @@
     "ear": {
       "author": "Kampy",
       "file": "ear.mp3",
-      "gain": 5.5,
+      "gain": 4.2,
       "lead": 243,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1918,7 +1921,7 @@
     "early": {
       "author": "Jeuwre",
       "file": "early.mp3",
-      "gain": -4.8,
+      "gain": -6.1,
       "lead": 389,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1930,7 +1933,7 @@
     "earn": {
       "author": "Kampy",
       "file": "earn.mp3",
-      "gain": 10.4,
+      "gain": 9.1,
       "lead": 170,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1942,7 +1945,7 @@
     "easy": {
       "author": "Jeuwre",
       "file": "easy.mp3",
-      "gain": 2.1,
+      "gain": 0.8,
       "lead": 82,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1954,7 +1957,6 @@
     "eat": {
       "author": "Kampy",
       "file": "eat.mp3",
-      "gain": 1.3,
       "lead": 262,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -1978,7 +1980,7 @@
     "email": {
       "author": "Jeuwre",
       "file": "email.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 440,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1990,7 +1992,7 @@
     "emergency": {
       "author": "Jeuwre",
       "file": "emergency.mp3",
-      "gain": -2.7,
+      "gain": -4.0,
       "lead": 304,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2002,7 +2004,7 @@
     "employer": {
       "author": "Jeuwre",
       "file": "employer.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 338,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2014,7 +2016,7 @@
     "end-of-workday": {
       "author": "Jeuwre",
       "file": "end-of-workday.mp3",
-      "gain": -0.5,
+      "gain": -1.8,
       "lead": 406,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2026,7 +2028,7 @@
     "enter": {
       "author": "Jeuwre",
       "file": "enter.mp3",
-      "gain": 2.0,
+      "gain": 0.7,
       "lead": 281,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2038,7 +2040,7 @@
     "evening": {
       "author": "Jeuwre",
       "file": "evening.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 402,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2050,6 +2052,7 @@
     "exam": {
       "author": "Jeuwre",
       "file": "exam.mp3",
+      "gain": -1.3,
       "lead": 440,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2061,7 +2064,7 @@
     "examine": {
       "author": "Jeuwre",
       "file": "examine.mp3",
-      "gain": -0.5,
+      "gain": -1.8,
       "lead": 495,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2073,7 +2076,7 @@
     "excuse-me": {
       "author": "Jeuwre",
       "file": "excuse-me.mp3",
-      "gain": -3.0,
+      "gain": -4.3,
       "lead": 129,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2085,7 +2088,7 @@
     "exercise-book": {
       "author": "Jeuwre",
       "file": "exercise-book.mp3",
-      "gain": 2.5,
+      "gain": 1.2,
       "lead": 407,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2097,7 +2100,7 @@
     "extend": {
       "author": "Jeuwre",
       "file": "extend.mp3",
-      "gain": -2.5,
+      "gain": -3.8,
       "lead": 272,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2109,7 +2112,7 @@
     "eye": {
       "author": "Jeuwre",
       "file": "eye.mp3",
-      "gain": -2.1,
+      "gain": -3.4,
       "lead": 441,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2121,7 +2124,7 @@
     "face": {
       "author": "Kampy",
       "file": "face.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "gesicht",
@@ -2132,7 +2135,7 @@
     "family": {
       "author": "T.Voekler",
       "file": "family.mp3",
-      "gain": 1.1,
+      "gain": -0.2,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "familie",
@@ -2143,7 +2146,7 @@
     "fare": {
       "author": "Jeuwre",
       "file": "fare.mp3",
-      "gain": 3.0,
+      "gain": 1.7,
       "lead": 412,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2155,7 +2158,7 @@
     "fast": {
       "author": "Kampy",
       "file": "fast.mp3",
-      "gain": 3.7,
+      "gain": 2.4,
       "lead": 132,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2167,7 +2170,7 @@
     "father": {
       "author": "Jeuwre",
       "file": "father.mp3",
-      "gain": -0.7,
+      "gain": -2.0,
       "lead": 428,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2179,7 +2182,7 @@
     "faucet": {
       "author": "Jeuwre",
       "file": "faucet.mp3",
-      "gain": 0.3,
+      "gain": -1.0,
       "lead": 438,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2191,7 +2194,7 @@
     "fee": {
       "author": "Jeuwre",
       "file": "fee.mp3",
-      "gain": -2.4,
+      "gain": -3.7,
       "lead": 446,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2203,7 +2206,7 @@
     "fever": {
       "author": "Jeuwre",
       "file": "fever.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 407,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2215,7 +2218,7 @@
     "fill-in": {
       "author": "Jeuwre",
       "file": "fill-in.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 433,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2227,7 +2230,7 @@
     "fine": {
       "author": "Jeuwre",
       "file": "fine.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 329,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2239,7 +2242,7 @@
     "finger": {
       "author": "Jeuwre",
       "file": "finger.mp3",
-      "gain": -1.5,
+      "gain": -2.8,
       "lead": 396,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2251,7 +2254,7 @@
     "fish": {
       "author": "Jeuwre",
       "file": "fish.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 432,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2263,7 +2266,7 @@
     "flour": {
       "author": "Jeuwre",
       "file": "flour.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 439,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2275,7 +2278,7 @@
     "flower": {
       "author": "T.Voekler",
       "file": "flower.mp3",
-      "gain": 5.1,
+      "gain": 3.8,
       "lead": 245,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2287,7 +2290,7 @@
     "folder": {
       "author": "Jeuwre",
       "file": "folder.mp3",
-      "gain": -0.1,
+      "gain": -1.4,
       "lead": 443,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2299,7 +2302,6 @@
     "food": {
       "author": "Kampy",
       "file": "food.mp3",
-      "gain": 1.3,
       "lead": 262,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2311,7 +2313,7 @@
     "foot": {
       "author": "Jeuwre",
       "file": "foot.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 407,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2323,7 +2325,7 @@
     "forest": {
       "author": "Jeuwre",
       "file": "forest.mp3",
-      "gain": -1.1,
+      "gain": -2.4,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2335,7 +2337,7 @@
     "fork": {
       "author": "Kampy",
       "file": "fork.mp3",
-      "gain": 3.5,
+      "gain": 2.9,
       "lead": 68,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2347,7 +2349,7 @@
     "form": {
       "author": "Jeuwre",
       "file": "form.mp3",
-      "gain": -1.1,
+      "gain": -2.4,
       "lead": 382,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2359,7 +2361,7 @@
     "fridge": {
       "author": "Kampy",
       "file": "fridge.mp3",
-      "gain": -4.5,
+      "gain": -5.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kühlschrank",
@@ -2370,7 +2372,7 @@
     "friend": {
       "author": "Jeuwre",
       "file": "friend.mp3",
-      "gain": -0.7,
+      "gain": -2.0,
       "lead": 407,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2382,7 +2384,7 @@
     "friend-f": {
       "author": "Jeuwre",
       "file": "friend-f.mp3",
-      "gain": -1.8,
+      "gain": -3.1,
       "lead": 228,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2394,7 +2396,7 @@
     "fruit": {
       "author": "Jeuwre",
       "file": "fruit.mp3",
-      "gain": 0.1,
+      "gain": -1.2,
       "lead": 444,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2406,7 +2408,7 @@
     "fry": {
       "author": "Jeuwre",
       "file": "fry.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 443,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2418,7 +2420,7 @@
     "full-time": {
       "author": "Jeuwre",
       "file": "full-time.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 427,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2430,7 +2432,7 @@
     "furniture": {
       "author": "Jeuwre",
       "file": "furniture.mp3",
-      "gain": -4.1,
+      "gain": -5.4,
       "lead": 331,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2442,7 +2444,7 @@
     "game": {
       "author": "Jeuwre",
       "file": "game.mp3",
-      "gain": 2.3,
+      "gain": 1.0,
       "lead": 424,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2454,7 +2456,7 @@
     "get-off": {
       "author": "Jeuwre",
       "file": "get-off.mp3",
-      "gain": -1.4,
+      "gain": -2.7,
       "lead": 443,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2466,7 +2468,7 @@
     "get-up": {
       "author": "Kampy",
       "file": "get-up.mp3",
-      "gain": 5.2,
+      "gain": 3.9,
       "lead": 262,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2478,7 +2480,7 @@
     "girl": {
       "author": "joni",
       "file": "girl.mp3",
-      "gain": 13.5,
+      "gain": 12.2,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "mädchen",
@@ -2489,7 +2491,7 @@
     "give": {
       "author": "Kampy",
       "file": "give.mp3",
-      "gain": 15.8,
+      "gain": 15.1,
       "lead": 281,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2501,7 +2503,7 @@
     "glove": {
       "author": "Kampy",
       "file": "glove.mp3",
-      "gain": 9.8,
+      "gain": 8.5,
       "lead": 204,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2513,7 +2515,7 @@
     "go": {
       "author": "Jeuwre",
       "file": "go.mp3",
-      "gain": -1.0,
+      "gain": -2.3,
       "lead": 437,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2525,7 +2527,7 @@
     "good": {
       "author": "Kampy",
       "file": "good.mp3",
-      "gain": 9.2,
+      "gain": 7.9,
       "lead": 201,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2537,7 +2539,7 @@
     "grade": {
       "author": "Jeuwre",
       "file": "grade.mp3",
-      "gain": -1.6,
+      "gain": -2.9,
       "lead": 429,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2549,7 +2551,7 @@
     "grandfather": {
       "author": "Dinock90",
       "file": "grandfather.mp3",
-      "gain": 18.4,
+      "gain": 17.1,
       "lead": 498,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2561,7 +2563,7 @@
     "grandmother": {
       "author": "Dinock90",
       "file": "grandmother.mp3",
-      "gain": 9.7,
+      "gain": 8.4,
       "lead": 518,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2573,7 +2575,7 @@
     "gray": {
       "author": "Kampy",
       "file": "gray.mp3",
-      "gain": 4.1,
+      "gain": 2.8,
       "lead": 248,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2585,7 +2587,7 @@
     "green": {
       "author": "Kampy",
       "file": "green.mp3",
-      "gain": 17.3,
+      "gain": 16.0,
       "lead": 185,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2597,7 +2599,7 @@
     "greet": {
       "author": "Kampy",
       "file": "greet.mp3",
-      "gain": 11.3,
+      "gain": 10.0,
       "lead": 254,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2609,7 +2611,7 @@
     "guest": {
       "author": "Jeuwre",
       "file": "guest.mp3",
-      "gain": 1.2,
+      "gain": -0.1,
       "lead": 430,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2621,7 +2623,7 @@
     "hair": {
       "author": "Jeuwre",
       "file": "hair.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 407,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2633,7 +2635,7 @@
     "hairdryer": {
       "author": "Jeuwre",
       "file": "hairdryer.mp3",
-      "gain": -1.6,
+      "gain": -2.9,
       "lead": 378,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2645,7 +2647,7 @@
     "hallway": {
       "author": "Jeuwre",
       "file": "hallway.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 398,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2669,7 +2671,7 @@
     "hand-in": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "hand-in.mp3",
-      "gain": 3.5,
+      "gain": 2.2,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "einreichen",
@@ -2680,7 +2682,7 @@
     "hat": {
       "author": "Kampy",
       "file": "hat.mp3",
-      "gain": 7.4,
+      "gain": 6.1,
       "lead": 198,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2692,7 +2694,7 @@
     "have": {
       "author": "Jeuwre",
       "file": "have.mp3",
-      "gain": 1.1,
+      "gain": -0.2,
       "lead": 397,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2704,7 +2706,7 @@
     "head": {
       "author": "Jeuwre",
       "file": "head.mp3",
-      "gain": 1.4,
+      "gain": 0.1,
       "lead": 440,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2716,7 +2718,7 @@
     "headphones": {
       "author": "Jeuwre",
       "file": "headphones.mp3",
-      "gain": 2.6,
+      "gain": 1.3,
       "lead": 448,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2728,7 +2730,7 @@
     "health": {
       "author": "Kampy",
       "file": "health.mp3",
-      "gain": 11.5,
+      "gain": 10.2,
       "lead": 210,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2740,7 +2742,7 @@
     "health-insurance": {
       "author": "Jeuwre",
       "file": "health-insurance.mp3",
-      "gain": -1.5,
+      "gain": -2.8,
       "lead": 203,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2752,7 +2754,7 @@
     "healthy": {
       "author": "Jeuwre",
       "file": "healthy.mp3",
-      "gain": 2.1,
+      "gain": 0.8,
       "lead": 112,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2763,7 +2765,7 @@
     "hear": {
       "author": "Kampy",
       "file": "hear.mp3",
-      "gain": -3.0,
+      "gain": -4.3,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "hören",
@@ -2774,7 +2776,7 @@
     "heart": {
       "author": "Jeuwre",
       "file": "heart.mp3",
-      "gain": -1.1,
+      "gain": -2.4,
       "lead": 402,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2786,7 +2788,7 @@
     "heavy": {
       "author": "Kampy",
       "file": "heavy.mp3",
-      "gain": -5.9,
+      "gain": -7.2,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "schwer",
@@ -2797,7 +2799,7 @@
     "hello": {
       "author": "Jeuwre",
       "file": "hello.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 427,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2809,7 +2811,7 @@
     "help": {
       "author": "Jeuwre",
       "file": "help.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 412,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2821,7 +2823,7 @@
     "here": {
       "author": "Dinock90",
       "file": "here.mp3",
-      "gain": 7.3,
+      "gain": 6.0,
       "lead": 350,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2833,7 +2835,7 @@
     "higher": {
       "author": "Kampy",
       "file": "higher.mp3",
-      "gain": 3.8,
+      "gain": 2.5,
       "lead": 272,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2845,7 +2847,7 @@
     "hire": {
       "author": "Jeuwre",
       "file": "hire.mp3",
-      "gain": -1.0,
+      "gain": -2.3,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2857,7 +2859,7 @@
     "homework": {
       "author": "Jeuwre",
       "file": "homework.mp3",
-      "gain": 5.2,
+      "gain": 3.9,
       "lead": 166,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2881,7 +2883,7 @@
     "hotel": {
       "author": "Kampy",
       "file": "hotel.mp3",
-      "gain": 7.6,
+      "gain": 6.3,
       "lead": 207,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2893,7 +2895,7 @@
     "hour": {
       "author": "Jeuwre",
       "file": "hour.mp3",
-      "gain": -3.8,
+      "gain": -5.1,
       "lead": 432,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2905,7 +2907,7 @@
     "house": {
       "author": "Jeuwre",
       "file": "house.mp3",
-      "gain": 1.6,
+      "gain": 0.3,
       "lead": 412,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2917,7 +2919,7 @@
     "how": {
       "author": "Kampy",
       "file": "how.mp3",
-      "gain": 15.0,
+      "gain": 14.5,
       "lead": 173,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2929,7 +2931,7 @@
     "human": {
       "author": "Jeuwre",
       "file": "human.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 441,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2941,7 +2943,7 @@
     "hunger": {
       "author": "Kampy",
       "file": "hunger.mp3",
-      "gain": 1.9,
+      "gain": 0.6,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "hunger",
@@ -2952,7 +2954,7 @@
     "hurt": {
       "author": "Jeuwre",
       "file": "hurt.mp3",
-      "gain": -1.3,
+      "gain": -2.6,
       "lead": 415,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2964,7 +2966,7 @@
     "husband": {
       "author": "User:Tosca",
       "file": "husband.mp3",
-      "gain": 3.6,
+      "gain": 2.3,
       "lead": 75,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -2976,7 +2978,7 @@
     "id-card": {
       "author": "Jeuwre",
       "file": "id-card.mp3",
-      "gain": -1.5,
+      "gain": -2.8,
       "lead": 282,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2988,7 +2990,7 @@
     "if": {
       "author": "Dinock90",
       "file": "if.mp3",
-      "gain": 9.1,
+      "gain": 7.8,
       "lead": 43,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3000,7 +3002,7 @@
     "illness": {
       "author": "Jeuwre",
       "file": "illness.mp3",
-      "gain": 1.9,
+      "gain": 0.9,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3012,7 +3014,7 @@
     "important": {
       "author": "Jeuwre",
       "file": "important.mp3",
-      "gain": -0.2,
+      "gain": -1.5,
       "lead": 440,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3024,7 +3026,7 @@
     "inside": {
       "author": "Jeuwre",
       "file": "inside.mp3",
-      "gain": -2.1,
+      "gain": -3.4,
       "lead": 247,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3036,7 +3038,7 @@
     "insurance-card": {
       "author": "Jeuwre",
       "file": "insurance-card.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 494,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3048,7 +3050,7 @@
     "internet": {
       "author": "Jeuwre",
       "file": "internet.mp3",
-      "gain": -0.7,
+      "gain": -2.0,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3060,7 +3062,7 @@
     "interview": {
       "author": "Jeuwre",
       "file": "interview.mp3",
-      "gain": 0.9,
+      "gain": -0.4,
       "lead": 395,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3084,7 +3086,7 @@
     "job-application": {
       "author": "Jeuwre",
       "file": "job-application.mp3",
-      "gain": -2.7,
+      "gain": -4.0,
       "lead": 340,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3096,7 +3098,7 @@
     "jog": {
       "author": "Jeuwre",
       "file": "jog.mp3",
-      "gain": -0.8,
+      "gain": -2.1,
       "lead": 420,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3108,7 +3110,7 @@
     "journey": {
       "author": "Jeuwre",
       "file": "journey.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 439,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3120,7 +3122,7 @@
     "juice": {
       "author": "Jeuwre",
       "file": "juice.mp3",
-      "gain": 3.0,
+      "gain": 2.0,
       "lead": 419,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3132,7 +3134,7 @@
     "key": {
       "author": "Jeuwre",
       "file": "key.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 431,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3144,7 +3146,7 @@
     "keyboard": {
       "author": "Jeuwre",
       "file": "keyboard.mp3",
-      "gain": -1.8,
+      "gain": -3.1,
       "lead": 404,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3156,7 +3158,7 @@
     "knee": {
       "author": "Jeuwre",
       "file": "knee.mp3",
-      "gain": -2.8,
+      "gain": -4.1,
       "lead": 435,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3168,7 +3170,7 @@
     "knife": {
       "author": "Jeuwre",
       "file": "knife.mp3",
-      "gain": 7.4,
+      "gain": 6.1,
       "lead": 441,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3180,7 +3182,7 @@
     "know": {
       "author": "Jeuwre",
       "file": "know.mp3",
-      "gain": 5.2,
+      "gain": 3.9,
       "lead": 218,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3192,7 +3194,7 @@
     "lake": {
       "author": "Kampy",
       "file": "lake.mp3",
-      "gain": 12.4,
+      "gain": 11.1,
       "lead": 103,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3204,7 +3206,7 @@
     "lamp": {
       "author": "Kampy",
       "file": "lamp.mp3",
-      "gain": 11.8,
+      "gain": 11.4,
       "lead": 261,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3216,7 +3218,7 @@
     "language": {
       "author": "Jeuwre",
       "file": "language.mp3",
-      "gain": 1.1,
+      "gain": -0.2,
       "lead": 386,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3239,7 +3241,7 @@
     "late": {
       "author": "Kampy",
       "file": "late.mp3",
-      "gain": 2.2,
+      "gain": 0.9,
       "lead": 105,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3263,7 +3265,7 @@
     "laundry": {
       "author": "Jeuwre",
       "file": "laundry.mp3",
-      "gain": -0.9,
+      "gain": -2.2,
       "lead": 439,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3275,7 +3277,7 @@
     "law": {
       "author": "Jeuwre",
       "file": "law.mp3",
-      "gain": 0.4,
+      "gain": -0.9,
       "lead": 426,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3287,7 +3289,7 @@
     "leave": {
       "author": "Kampy",
       "file": "leave.mp3",
-      "gain": -0.6,
+      "gain": -1.9,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "verlassen",
@@ -3298,7 +3300,7 @@
     "left": {
       "author": "Jeuwre",
       "file": "left.mp3",
-      "gain": -1.5,
+      "gain": -2.8,
       "lead": 438,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3310,7 +3312,7 @@
     "leg": {
       "author": "joni",
       "file": "leg.mp3",
-      "gain": 7.5,
+      "gain": 6.3,
       "lead": 238,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3322,7 +3324,7 @@
     "less": {
       "author": "Jeuwre",
       "file": "less.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 413,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3334,7 +3336,7 @@
     "lesson": {
       "author": "Jeuwre",
       "file": "lesson.mp3",
-      "gain": -2.8,
+      "gain": -4.1,
       "lead": 435,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3346,7 +3348,7 @@
     "letter": {
       "author": "Jeuwre",
       "file": "letter.mp3",
-      "gain": -0.2,
+      "gain": -1.5,
       "lead": 446,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3358,7 +3360,7 @@
     "library": {
       "author": "Jeuwre",
       "file": "library.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3370,7 +3372,7 @@
     "light": {
       "author": "Jeuwre",
       "file": "light.mp3",
-      "gain": -0.7,
+      "gain": -2.0,
       "lead": 368,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3382,7 +3384,7 @@
     "lightweight": {
       "author": "Kampy",
       "file": "lightweight.mp3",
-      "gain": -2.2,
+      "gain": -3.5,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "leicht",
@@ -3393,7 +3395,7 @@
     "like": {
       "author": "Jeuwre",
       "file": "like.mp3",
-      "gain": -4.2,
+      "gain": -5.5,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3405,7 +3407,7 @@
     "lip": {
       "author": "Kampy",
       "file": "lip.mp3",
-      "gain": -1.5,
+      "gain": -2.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "lippe",
@@ -3416,7 +3418,7 @@
     "list": {
       "author": "Jeuwre",
       "file": "list.mp3",
-      "gain": 2.5,
+      "gain": 1.2,
       "lead": 331,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3428,7 +3430,7 @@
     "live": {
       "author": "Kampy",
       "file": "live.mp3",
-      "gain": 2.0,
+      "gain": 0.7,
       "lead": 270,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3440,7 +3442,7 @@
     "lock": {
       "author": "Jeuwre",
       "file": "lock.mp3",
-      "gain": 2.4,
+      "gain": 2.2,
       "lead": 509,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3452,7 +3454,7 @@
     "long": {
       "author": "Bleibein",
       "file": "long.mp3",
-      "gain": 4.7,
+      "gain": 3.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "lang",
@@ -3463,7 +3465,7 @@
     "loud": {
       "author": "Kampy",
       "file": "loud.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "laut",
@@ -3474,7 +3476,7 @@
     "louder": {
       "author": "Jeuwre",
       "file": "louder.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 430,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3486,7 +3488,7 @@
     "lower": {
       "author": "Dinock90",
       "file": "lower.mp3",
-      "gain": 8.3,
+      "gain": 7.0,
       "lead": 290,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3498,7 +3500,7 @@
     "luggage": {
       "author": "Jeuwre",
       "file": "luggage.mp3",
-      "gain": -0.7,
+      "gain": -2.0,
       "lead": 444,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3510,7 +3512,7 @@
     "mailbox": {
       "author": "Jeuwre",
       "file": "mailbox.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 338,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3522,7 +3524,7 @@
     "make": {
       "author": "Kampy",
       "file": "make.mp3",
-      "gain": 9.6,
+      "gain": 8.3,
       "lead": 200,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3534,7 +3536,7 @@
     "man": {
       "author": "Jeuwre",
       "file": "man.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 434,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3546,7 +3548,7 @@
     "market": {
       "author": "Jeuwre",
       "file": "market.mp3",
-      "gain": -0.9,
+      "gain": -2.2,
       "lead": 441,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3558,7 +3560,7 @@
     "mattress": {
       "author": "Jeuwre",
       "file": "mattress.mp3",
-      "gain": 1.2,
+      "gain": -0.1,
       "lead": 439,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3570,7 +3572,7 @@
     "maybe": {
       "author": "Jeuwre",
       "file": "maybe.mp3",
-      "gain": -0.8,
+      "gain": -2.1,
       "lead": 401,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3582,7 +3584,7 @@
     "meaning": {
       "author": "Jeuwre",
       "file": "meaning.mp3",
-      "gain": -0.8,
+      "gain": -2.1,
       "lead": 440,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3594,7 +3596,7 @@
     "meat": {
       "author": "Kampy",
       "file": "meat.mp3",
-      "gain": -1.3,
+      "gain": -2.6,
       "lead": 18,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3606,7 +3608,6 @@
     "medicine": {
       "author": "Jeuwre",
       "file": "medicine.mp3",
-      "gain": 1.3,
       "lead": 433,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3618,7 +3619,7 @@
     "milk": {
       "author": "Kampy",
       "file": "milk.mp3",
-      "gain": -2.5,
+      "gain": -3.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "milch",
@@ -3629,7 +3630,7 @@
     "minute": {
       "author": "Kampy",
       "file": "minute.mp3",
-      "gain": 12.6,
+      "gain": 11.3,
       "lead": 254,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3641,7 +3642,7 @@
     "mirror": {
       "author": "Jeuwre",
       "file": "mirror.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 429,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3653,7 +3654,7 @@
     "money": {
       "author": "Kampy",
       "file": "money.mp3",
-      "gain": 3.9,
+      "gain": 3.3,
       "lead": 229,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3665,7 +3666,7 @@
     "month": {
       "author": "Kampy",
       "file": "month.mp3",
-      "gain": 7.4,
+      "gain": 6.1,
       "lead": 274,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3677,7 +3678,7 @@
     "moon": {
       "author": "Jeuwre",
       "file": "moon.mp3",
-      "gain": -0.6,
+      "gain": -1.9,
       "lead": 340,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3689,7 +3690,7 @@
     "more": {
       "author": "Kampy",
       "file": "more.mp3",
-      "gain": 5.0,
+      "gain": 3.7,
       "lead": 160,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3701,7 +3702,7 @@
     "morning": {
       "author": "Jeuwre",
       "file": "morning.mp3",
-      "gain": -1.7,
+      "gain": -3.0,
       "lead": 438,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3713,7 +3714,7 @@
     "mosque": {
       "author": "Jeuwre",
       "file": "mosque.mp3",
-      "gain": -1.4,
+      "gain": -2.7,
       "lead": 433,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3725,7 +3726,7 @@
     "mother": {
       "author": "Jeuwre",
       "file": "mother.mp3",
-      "gain": -1.7,
+      "gain": -3.0,
       "lead": 436,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3737,7 +3738,7 @@
     "mother-tongue": {
       "author": "Jeuwre",
       "file": "mother-tongue.mp3",
-      "gain": 0.9,
+      "gain": -0.4,
       "lead": 441,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3749,7 +3750,7 @@
     "motorbike": {
       "author": "Kampy",
       "file": "motorbike.mp3",
-      "gain": -4.0,
+      "gain": -5.3,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "motorrad",
@@ -3760,7 +3761,7 @@
     "mountain": {
       "author": "Jeuwre",
       "file": "mountain.mp3",
-      "gain": -3.3,
+      "gain": -4.6,
       "lead": 427,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3772,7 +3773,7 @@
     "mouse": {
       "author": "Jeuwre",
       "file": "mouse.mp3",
-      "gain": -1.1,
+      "gain": -2.4,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3784,7 +3785,7 @@
     "mouth": {
       "author": "Jeuwre",
       "file": "mouth.mp3",
-      "gain": -3.2,
+      "gain": -4.5,
       "lead": 443,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3796,7 +3797,7 @@
     "movie": {
       "author": "Jeuwre",
       "file": "movie.mp3",
-      "gain": -2.6,
+      "gain": -3.9,
       "lead": 386,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3808,7 +3809,7 @@
     "much": {
       "author": "Kampy",
       "file": "much.mp3",
-      "gain": 4.0,
+      "gain": 2.7,
       "lead": 146,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3820,7 +3821,7 @@
     "music": {
       "author": "Jeuwre",
       "file": "music.mp3",
-      "gain": -3.2,
+      "gain": -4.5,
       "lead": 436,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3832,7 +3833,7 @@
     "name": {
       "author": "T.Voekler",
       "file": "name.mp3",
-      "gain": -2.2,
+      "gain": -3.5,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "name",
@@ -3843,7 +3844,7 @@
     "neck": {
       "author": "Jeuwre",
       "file": "neck.mp3",
-      "gain": 2.1,
+      "gain": 0.9,
       "lead": 212,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3855,7 +3856,7 @@
     "need": {
       "author": "Kampy",
       "file": "need.mp3",
-      "gain": 6.4,
+      "gain": 5.1,
       "lead": 124,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3867,7 +3868,7 @@
     "neighbor": {
       "author": "Kampy",
       "file": "neighbor.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "nachbar",
@@ -3878,7 +3879,7 @@
     "neighborhood": {
       "author": "Jeuwre",
       "file": "neighborhood.mp3",
-      "gain": -3.5,
+      "gain": -4.8,
       "lead": 321,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3890,7 +3891,7 @@
     "never": {
       "author": "Jeuwre",
       "file": "never.mp3",
-      "gain": -1.3,
+      "gain": -2.6,
       "lead": 438,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3902,7 +3903,7 @@
     "new": {
       "author": "Kampy",
       "file": "new.mp3",
-      "gain": 12.0,
+      "gain": 10.7,
       "lead": 224,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3914,7 +3915,7 @@
     "newspaper": {
       "author": "Jeuwre",
       "file": "newspaper.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 249,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3926,7 +3927,7 @@
     "night": {
       "author": "Kampy",
       "file": "night.mp3",
-      "gain": 9.1,
+      "gain": 8.7,
       "lead": 241,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3938,7 +3939,7 @@
     "nightstand": {
       "author": "Jeuwre",
       "file": "nightstand.mp3",
-      "gain": 3.3,
+      "gain": 2.0,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3950,7 +3951,7 @@
     "no": {
       "author": "Jeuwre",
       "file": "no.mp3",
-      "gain": 1.0,
+      "gain": -0.3,
       "lead": 423,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3962,7 +3963,7 @@
     "nose": {
       "author": "Kampy",
       "file": "nose.mp3",
-      "gain": 8.4,
+      "gain": 7.1,
       "lead": 140,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -3974,7 +3975,7 @@
     "notebook": {
       "author": "Jeuwre",
       "file": "notebook.mp3",
-      "gain": -0.4,
+      "gain": -1.7,
       "lead": 346,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3986,7 +3987,7 @@
     "notice": {
       "author": "Jeuwre",
       "file": "notice.mp3",
-      "gain": -1.4,
+      "gain": -2.7,
       "lead": 448,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3998,7 +3999,7 @@
     "notification": {
       "author": "Jeuwre",
       "file": "notification.mp3",
-      "gain": -2.7,
+      "gain": -4.0,
       "lead": 449,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4010,7 +4011,7 @@
     "now": {
       "author": "Kampy",
       "file": "now.mp3",
-      "gain": 8.8,
+      "gain": 7.5,
       "lead": 216,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4022,7 +4023,7 @@
     "nurse": {
       "author": "Jeuwre",
       "file": "nurse.mp3",
-      "gain": 2.1,
+      "gain": 0.8,
       "lead": 503,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4034,7 +4035,7 @@
     "nurse-f": {
       "author": "Jeuwre",
       "file": "nurse-f.mp3",
-      "gain": 0.5,
+      "gain": -0.8,
       "lead": 501,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4046,7 +4047,7 @@
     "office": {
       "author": "Jeuwre",
       "file": "office.mp3",
-      "gain": -1.7,
+      "gain": -3.0,
       "lead": 239,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4058,7 +4059,7 @@
     "office-chair": {
       "author": "Jeuwre",
       "file": "office-chair.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 94,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4070,7 +4071,7 @@
     "office-hours": {
       "author": "Jeuwre",
       "file": "office-hours.mp3",
-      "gain": 0.5,
+      "gain": -0.8,
       "lead": 418,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4082,7 +4083,7 @@
     "often": {
       "author": "Jeuwre",
       "file": "often.mp3",
-      "gain": 0.5,
+      "gain": -0.8,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4094,7 +4095,7 @@
     "oil": {
       "author": "Jeuwre",
       "file": "oil.mp3",
-      "gain": -5.0,
+      "gain": -6.3,
       "lead": 444,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4106,7 +4107,7 @@
     "old": {
       "author": "Jeuwre",
       "file": "old.mp3",
-      "gain": 0.9,
+      "gain": -0.4,
       "lead": 413,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4118,7 +4119,7 @@
     "onion": {
       "author": "Jeuwre",
       "file": "onion.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 443,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4130,7 +4131,7 @@
     "opening-hours": {
       "author": "Jeuwre",
       "file": "opening-hours.mp3",
-      "gain": 1.5,
+      "gain": 0.2,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4142,7 +4143,7 @@
     "or": {
       "author": "joni",
       "file": "or.mp3",
-      "gain": 2.5,
+      "gain": 1.2,
       "lead": 230,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4154,7 +4155,7 @@
     "outdoors": {
       "author": "Jeuwre",
       "file": "outdoors.mp3",
-      "gain": -2.9,
+      "gain": -4.2,
       "lead": 244,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4178,7 +4179,7 @@
     "page": {
       "author": "Dinock90",
       "file": "page.mp3",
-      "gain": 10.9,
+      "gain": 9.6,
       "lead": 332,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4190,7 +4191,7 @@
     "pain": {
       "author": "Jeuwre",
       "file": "pain.mp3",
-      "gain": -0.4,
+      "gain": -1.7,
       "lead": 432,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4202,7 +4203,7 @@
     "pajamas": {
       "author": "Jeuwre",
       "file": "pajamas.mp3",
-      "gain": 2.1,
+      "gain": 0.8,
       "lead": 186,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4214,7 +4215,7 @@
     "pan": {
       "author": "Jeuwre",
       "file": "pan.mp3",
-      "gain": -1.5,
+      "gain": -2.8,
       "lead": 235,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4226,7 +4227,7 @@
     "pants": {
       "author": "Jeuwre",
       "file": "pants.mp3",
-      "gain": -1.0,
+      "gain": -2.3,
       "lead": 424,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4238,7 +4239,7 @@
     "paper": {
       "author": "Kampy",
       "file": "paper.mp3",
-      "gain": -2.5,
+      "gain": -3.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "papier",
@@ -4249,7 +4250,7 @@
     "parents": {
       "author": "Kampy",
       "file": "parents.mp3",
-      "gain": -0.7,
+      "gain": -1.0,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "eltern",
@@ -4272,7 +4273,7 @@
     "part-time": {
       "author": "Jeuwre",
       "file": "part-time.mp3",
-      "gain": -3.0,
+      "gain": -4.3,
       "lead": 447,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4284,7 +4285,7 @@
     "passenger": {
       "author": "Jeuwre",
       "file": "passenger.mp3",
-      "gain": -0.2,
+      "gain": -1.5,
       "lead": 448,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4296,7 +4297,7 @@
     "passport": {
       "author": "Jeuwre",
       "file": "passport.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 439,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4308,7 +4309,7 @@
     "password": {
       "author": "Jeuwre",
       "file": "password.mp3",
-      "gain": 3.1,
+      "gain": 2.1,
       "lead": 447,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4320,7 +4321,7 @@
     "pay": {
       "author": "Jeuwre",
       "file": "pay.mp3",
-      "gain": -2.5,
+      "gain": -3.8,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4332,7 +4333,7 @@
     "pen": {
       "author": "Jeuwre",
       "file": "pen.mp3",
-      "gain": -1.9,
+      "gain": -3.2,
       "lead": 431,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4344,7 +4345,7 @@
     "person": {
       "author": "joni",
       "file": "person.mp3",
-      "gain": 5.2,
+      "gain": 3.9,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "person",
@@ -4355,7 +4356,7 @@
     "pharmacy": {
       "author": "Jeuwre",
       "file": "pharmacy.mp3",
-      "gain": 1.9,
+      "gain": 1.5,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4367,7 +4368,7 @@
     "phone": {
       "author": "Jeuwre",
       "file": "phone.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 328,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4379,7 +4380,7 @@
     "picture": {
       "author": "Jeuwre",
       "file": "picture.mp3",
-      "gain": -3.0,
+      "gain": -4.3,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4391,7 +4392,7 @@
     "pill": {
       "author": "Jeuwre",
       "file": "pill.mp3",
-      "gain": 0.9,
+      "gain": -0.4,
       "lead": 309,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4403,7 +4404,7 @@
     "pillow": {
       "author": "Jeuwre",
       "file": "pillow.mp3",
-      "gain": -0.9,
+      "gain": -2.2,
       "lead": 434,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4415,7 +4416,7 @@
     "plan": {
       "author": "Jeuwre",
       "file": "plan.mp3",
-      "gain": -0.6,
+      "gain": -1.9,
       "lead": 444,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4427,7 +4428,7 @@
     "plane": {
       "author": "Kampy",
       "file": "plane.mp3",
-      "gain": -4.0,
+      "gain": -5.3,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "flugzeug",
@@ -4438,7 +4439,7 @@
     "plant": {
       "author": "Jeuwre",
       "file": "plant.mp3",
-      "gain": -1.9,
+      "gain": -3.2,
       "lead": 448,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4450,7 +4451,7 @@
     "plate": {
       "author": "Jeuwre",
       "file": "plate.mp3",
-      "gain": -0.7,
+      "gain": -2.0,
       "lead": 294,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4462,7 +4463,7 @@
     "play": {
       "author": "Kampy",
       "file": "play.mp3",
-      "gain": 4.9,
+      "gain": 3.6,
       "lead": 170,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4474,7 +4475,7 @@
     "please": {
       "author": "Bleibein",
       "file": "please.mp3",
-      "gain": 0.9,
+      "gain": -0.4,
       "lead": 442,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4486,7 +4487,7 @@
     "police": {
       "author": "Jeuwre",
       "file": "police.mp3",
-      "gain": -2.6,
+      "gain": -3.9,
       "lead": 199,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4498,7 +4499,7 @@
     "post-office": {
       "author": "Jeuwre",
       "file": "post-office.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 444,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4510,7 +4511,7 @@
     "postpone": {
       "author": "Jeuwre",
       "file": "postpone.mp3",
-      "gain": -2.3,
+      "gain": -3.6,
       "lead": 544,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4522,7 +4523,7 @@
     "pot": {
       "author": "Jeuwre",
       "file": "pot.mp3",
-      "gain": 1.4,
+      "gain": 0.1,
       "lead": 363,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4534,7 +4535,7 @@
     "potato": {
       "author": "Jeuwre",
       "file": "potato.mp3",
-      "gain": 1.9,
+      "gain": 0.8,
       "lead": 448,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4546,7 +4547,7 @@
     "practice": {
       "author": "Jeuwre",
       "file": "practice.mp3",
-      "gain": 2.4,
+      "gain": 2.2,
       "lead": 349,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4558,7 +4559,7 @@
     "prescription": {
       "author": "Jeuwre",
       "file": "prescription.mp3",
-      "gain": 2.2,
+      "gain": 1.4,
       "lead": 405,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4570,7 +4571,7 @@
     "print": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "print.mp3",
-      "gain": 9.9,
+      "gain": 9.0,
       "lead": 13,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4582,7 +4583,7 @@
     "printer": {
       "author": "Jeuwre",
       "file": "printer.mp3",
-      "gain": -1.3,
+      "gain": -2.6,
       "lead": 150,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4594,7 +4595,7 @@
     "profession": {
       "author": "Jeuwre",
       "file": "profession.mp3",
-      "gain": -2.7,
+      "gain": -4.0,
       "lead": 441,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4606,7 +4607,7 @@
     "punctual": {
       "author": "Jeuwre",
       "file": "punctual.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 121,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4617,7 +4618,7 @@
     "pupil": {
       "author": "Kampy",
       "file": "pupil.mp3",
-      "gain": 10.1,
+      "gain": 8.8,
       "lead": 235,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4629,7 +4630,7 @@
     "pupil-f": {
       "author": "Jeuwre",
       "file": "pupil-f.mp3",
-      "gain": -2.9,
+      "gain": -4.2,
       "lead": 325,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4641,7 +4642,7 @@
     "purple": {
       "author": "Jeuwre",
       "file": "purple.mp3",
-      "gain": -2.7,
+      "gain": -4.0,
       "lead": 418,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4653,7 +4654,7 @@
     "question": {
       "author": "Jeuwre",
       "file": "question.mp3",
-      "gain": -0.5,
+      "gain": -1.8,
       "lead": 414,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4665,7 +4666,7 @@
     "quiet": {
       "author": "Kampy",
       "file": "quiet.mp3",
-      "gain": 7.6,
+      "gain": 6.3,
       "lead": 264,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4677,7 +4678,7 @@
     "quit": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "quit.mp3",
-      "gain": 6.2,
+      "gain": 4.9,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kündigen",
@@ -4688,7 +4689,7 @@
     "rain": {
       "author": "Jeuwre",
       "file": "rain.mp3",
-      "gain": 2.4,
+      "gain": 1.1,
       "lead": 449,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4700,7 +4701,7 @@
     "razor": {
       "author": "Jeuwre",
       "file": "razor.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 133,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4712,7 +4713,7 @@
     "read": {
       "author": "Kampy",
       "file": "read.mp3",
-      "gain": 3.0,
+      "gain": 1.7,
       "lead": 221,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4724,7 +4725,7 @@
     "read-aloud": {
       "author": "Kampy",
       "file": "read-aloud.mp3",
-      "gain": -0.5,
+      "gain": -1.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "vorlesen",
@@ -4735,7 +4736,7 @@
     "ready": {
       "author": "Jeuwre",
       "file": "ready.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 387,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4747,7 +4748,7 @@
     "receipt": {
       "author": "Jeuwre",
       "file": "receipt.mp3",
-      "gain": -1.6,
+      "gain": -2.9,
       "lead": 448,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4759,7 +4760,7 @@
     "red": {
       "author": "Bleibein",
       "file": "red.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "rot",
@@ -4770,7 +4771,7 @@
     "registration": {
       "author": "Jeuwre",
       "file": "registration.mp3",
-      "gain": -2.6,
+      "gain": -3.9,
       "lead": 240,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4782,7 +4783,7 @@
     "reheat": {
       "author": "Jeuwre",
       "file": "reheat.mp3",
-      "gain": 2.0,
+      "gain": 0.7,
       "lead": 243,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4794,7 +4795,7 @@
     "reject": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "reject.mp3",
-      "gain": 8.4,
+      "gain": 7.1,
       "lead": 50,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4806,7 +4807,7 @@
     "remote": {
       "author": "Jeuwre",
       "file": "remote.mp3",
-      "gain": -0.6,
+      "gain": -1.9,
       "lead": 389,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4818,7 +4819,7 @@
     "reply": {
       "author": "User:Tosca",
       "file": "reply.mp3",
-      "gain": 5.1,
+      "gain": 3.8,
       "lead": 268,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4830,7 +4831,7 @@
     "residence-permit": {
       "author": "Jeuwre",
       "file": "residence-permit.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 333,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4842,7 +4843,7 @@
     "restaurant": {
       "author": "Kampy",
       "file": "restaurant.mp3",
-      "gain": 2.2,
+      "gain": 1.0,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "restaurant",
@@ -4853,7 +4854,7 @@
     "rice": {
       "author": "Jeuwre",
       "file": "rice.mp3",
-      "gain": 1.5,
+      "gain": 0.2,
       "lead": 436,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4865,7 +4866,7 @@
     "right": {
       "author": "Jeuwre",
       "file": "right.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 446,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4877,7 +4878,7 @@
     "ring": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "ring.mp3",
-      "gain": 3.0,
+      "gain": 1.7,
       "lead": 343,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4889,7 +4890,7 @@
     "river": {
       "author": "Kampy",
       "file": "river.mp3",
-      "gain": 7.4,
+      "gain": 6.1,
       "lead": 178,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4901,7 +4902,7 @@
     "room": {
       "author": "Jeuwre",
       "file": "room.mp3",
-      "gain": -2.9,
+      "gain": -4.2,
       "lead": 403,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4913,7 +4914,7 @@
     "salary": {
       "author": "Kampy",
       "file": "salary.mp3",
-      "gain": -0.5,
+      "gain": -1.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "gehalt",
@@ -4924,7 +4925,7 @@
     "salt": {
       "author": "Jeuwre",
       "file": "salt.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 435,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4936,7 +4937,7 @@
     "sauce": {
       "author": "Jeuwre",
       "file": "sauce.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 433,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4948,7 +4949,7 @@
     "save": {
       "author": "User:Tosca",
       "file": "save.mp3",
-      "gain": 5.9,
+      "gain": 5.3,
       "lead": 232,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4960,7 +4961,7 @@
     "say": {
       "author": "Kampy",
       "file": "say.mp3",
-      "gain": 11.2,
+      "gain": 9.9,
       "lead": 230,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -4972,7 +4973,7 @@
     "school": {
       "author": "Jeuwre",
       "file": "school.mp3",
-      "gain": -1.9,
+      "gain": -3.2,
       "lead": 423,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4984,7 +4985,7 @@
     "screen": {
       "author": "Jeuwre",
       "file": "screen.mp3",
-      "gain": -1.7,
+      "gain": -3.0,
       "lead": 439,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4996,7 +4997,7 @@
     "sea": {
       "author": "Kampy",
       "file": "sea.mp3",
-      "gain": 6.5,
+      "gain": 5.2,
       "lead": 145,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5008,7 +5009,7 @@
     "see": {
       "author": "Kampy",
       "file": "see.mp3",
-      "gain": 3.0,
+      "gain": 1.7,
       "lead": 183,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5020,7 +5021,7 @@
     "shampoo": {
       "author": "Jeuwre",
       "file": "shampoo.mp3",
-      "gain": 4.3,
+      "gain": 3.0,
       "lead": 422,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5032,7 +5033,7 @@
     "sharp": {
       "author": "User:Tosca",
       "file": "sharp.mp3",
-      "gain": 5.1,
+      "gain": 3.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "scharf",
@@ -5043,7 +5044,7 @@
     "shelf": {
       "author": "Jeuwre",
       "file": "shelf.mp3",
-      "gain": -0.9,
+      "gain": -2.2,
       "lead": 298,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5055,7 +5056,6 @@
     "shift": {
       "author": "Jeuwre",
       "file": "shift.mp3",
-      "gain": 1.3,
       "lead": 433,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5067,7 +5067,7 @@
     "ship": {
       "author": "Jeuwre",
       "file": "ship.mp3",
-      "gain": -2.7,
+      "gain": -4.0,
       "lead": 408,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5090,7 +5090,7 @@
     "shoe": {
       "author": "Jeuwre",
       "file": "shoe.mp3",
-      "gain": -2.3,
+      "gain": -3.6,
       "lead": 424,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5102,7 +5102,7 @@
     "shoe-rack": {
       "author": "Jeuwre",
       "file": "shoe-rack.mp3",
-      "gain": -1.6,
+      "gain": -2.9,
       "lead": 410,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5114,7 +5114,7 @@
     "shop": {
       "author": "Jeuwre",
       "file": "shop.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 449,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5126,7 +5126,7 @@
     "short": {
       "author": "Kampy",
       "file": "short.mp3",
-      "gain": -4.2,
+      "gain": -5.5,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "kurz",
@@ -5137,7 +5137,7 @@
     "shoulder": {
       "author": "Jeuwre",
       "file": "shoulder.mp3",
-      "gain": -4.2,
+      "gain": -5.5,
       "lead": 431,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5149,7 +5149,7 @@
     "shower": {
       "author": "Jeuwre",
       "file": "shower.mp3",
-      "gain": -4.0,
+      "gain": -5.3,
       "lead": 447,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5161,7 +5161,7 @@
     "sick": {
       "author": "Kampy",
       "file": "sick.mp3",
-      "gain": -0.5,
+      "gain": -1.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "krank",
@@ -5172,7 +5172,7 @@
     "sign": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "sign.mp3",
-      "gain": 5.9,
+      "gain": 4.6,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "unterschreiben",
@@ -5183,7 +5183,7 @@
     "signature": {
       "author": "Jeuwre",
       "file": "signature.mp3",
-      "gain": -2.6,
+      "gain": -3.9,
       "lead": 448,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5195,7 +5195,7 @@
     "sink": {
       "author": "Jeuwre",
       "file": "sink.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 437,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5207,7 +5207,7 @@
     "sister": {
       "author": "joni",
       "file": "sister.mp3",
-      "gain": 2.8,
+      "gain": 1.5,
       "lead": 239,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5219,7 +5219,7 @@
     "sit": {
       "author": "Kampy",
       "file": "sit.mp3",
-      "gain": 1.2,
+      "gain": -0.1,
       "lead": 237,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5231,7 +5231,7 @@
     "skin": {
       "author": "Jeuwre",
       "file": "skin.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 420,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5243,7 +5243,7 @@
     "sky": {
       "author": "Jeuwre",
       "file": "sky.mp3",
-      "gain": -3.1,
+      "gain": -4.4,
       "lead": 377,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5267,7 +5267,7 @@
     "slow": {
       "author": "Kampy",
       "file": "slow.mp3",
-      "gain": 5.6,
+      "gain": 4.3,
       "lead": 248,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5279,7 +5279,7 @@
     "slower": {
       "author": "Jeuwre",
       "file": "slower.mp3",
-      "gain": -0.1,
+      "gain": -1.4,
       "lead": 229,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5291,7 +5291,7 @@
     "small": {
       "author": "Kampy",
       "file": "small.mp3",
-      "gain": 4.3,
+      "gain": 3.4,
       "lead": 283,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5303,7 +5303,7 @@
     "snore": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "snore.mp3",
-      "gain": 1.9,
+      "gain": 0.6,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "schnarchen",
@@ -5314,7 +5314,7 @@
     "snow": {
       "author": "Jeuwre",
       "file": "snow.mp3",
-      "gain": -1.1,
+      "gain": -2.4,
       "lead": 433,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5326,7 +5326,7 @@
     "so-that": {
       "author": "Dinock90",
       "file": "so-that.mp3",
-      "gain": 9.1,
+      "gain": 7.8,
       "lead": 79,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5338,7 +5338,7 @@
     "soap": {
       "author": "Jeuwre",
       "file": "soap.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 436,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5350,7 +5350,7 @@
     "sock": {
       "author": "Jeuwre",
       "file": "sock.mp3",
-      "gain": 2.7,
+      "gain": 1.4,
       "lead": 437,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5362,7 +5362,7 @@
     "socket": {
       "author": "Jeuwre",
       "file": "socket.mp3",
-      "gain": -0.5,
+      "gain": -1.8,
       "lead": 545,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5374,7 +5374,7 @@
     "sofa": {
       "author": "Kampy",
       "file": "sofa.mp3",
-      "gain": 7.6,
+      "gain": 6.3,
       "lead": 222,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5386,7 +5386,7 @@
     "soft": {
       "author": "Kampy",
       "file": "soft.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 224,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5398,7 +5398,7 @@
     "sometimes": {
       "author": "Jeuwre",
       "file": "sometimes.mp3",
-      "gain": 1.2,
+      "gain": -0.1,
       "lead": 436,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5410,7 +5410,7 @@
     "son": {
       "author": "Jeuwre",
       "file": "son.mp3",
-      "gain": -2.8,
+      "gain": -4.1,
       "lead": 430,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5422,7 +5422,7 @@
     "soon": {
       "author": "Dinock90",
       "file": "soon.mp3",
-      "gain": 8.2,
+      "gain": 6.9,
       "lead": 280,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5434,6 +5434,7 @@
     "soup": {
       "author": "Jeuwre",
       "file": "soup.mp3",
+      "gain": -1.3,
       "lead": 440,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5445,7 +5446,7 @@
     "speak": {
       "author": "Kampy",
       "file": "speak.mp3",
-      "gain": 3.7,
+      "gain": 2.4,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "sprechen",
@@ -5456,7 +5457,7 @@
     "sponge": {
       "author": "Jeuwre",
       "file": "sponge.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 413,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5468,7 +5469,7 @@
     "spoon": {
       "author": "Jeuwre",
       "file": "spoon.mp3",
-      "gain": 0.3,
+      "gain": -1.0,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5480,7 +5481,7 @@
     "stairs": {
       "author": "Jeuwre",
       "file": "stairs.mp3",
-      "gain": 0.9,
+      "gain": -0.4,
       "lead": 95,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5492,7 +5493,7 @@
     "star": {
       "author": "Jeuwre",
       "file": "star.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 497,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5504,6 +5505,7 @@
     "start": {
       "author": "Jeuwre",
       "file": "start.mp3",
+      "gain": -1.3,
       "lead": 447,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5515,7 +5517,7 @@
     "still": {
       "author": "Dinock90",
       "file": "still.mp3",
-      "gain": 9.0,
+      "gain": 7.7,
       "lead": 38,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5527,7 +5529,7 @@
     "stir": {
       "author": "Jeuwre",
       "file": "stir.mp3",
-      "gain": -3.4,
+      "gain": -4.7,
       "lead": 441,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5539,7 +5541,7 @@
     "stomach": {
       "author": "Jeuwre",
       "file": "stomach.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5551,7 +5553,7 @@
     "stone": {
       "author": "Jeuwre",
       "file": "stone.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 423,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5563,7 +5565,7 @@
     "store": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "store.mp3",
-      "gain": 2.0,
+      "gain": 0.7,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "laden",
@@ -5574,7 +5576,7 @@
     "stove": {
       "author": "Jeuwre",
       "file": "stove.mp3",
-      "gain": -2.1,
+      "gain": -3.4,
       "lead": 305,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5586,7 +5588,7 @@
     "street": {
       "author": "Kampy",
       "file": "street.mp3",
-      "gain": 7.6,
+      "gain": 6.3,
       "lead": 207,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5598,7 +5600,7 @@
     "study": {
       "author": "Kampy",
       "file": "study.mp3",
-      "gain": 7.7,
+      "gain": 6.4,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "lernen",
@@ -5620,7 +5622,7 @@
     "sugar": {
       "author": "Jeuwre",
       "file": "sugar.mp3",
-      "gain": -1.1,
+      "gain": -2.4,
       "lead": 434,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5632,7 +5634,7 @@
     "sun": {
       "author": "Jeuwre",
       "file": "sun.mp3",
-      "gain": -0.4,
+      "gain": -1.7,
       "lead": 435,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5644,7 +5646,7 @@
     "sweater": {
       "author": "Kampy",
       "file": "sweater.mp3",
-      "gain": 6.3,
+      "gain": 5.0,
       "lead": 273,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5656,7 +5658,7 @@
     "t-shirt": {
       "author": "Jeuwre",
       "file": "t-shirt.mp3",
-      "gain": -3.5,
+      "gain": -4.8,
       "lead": 145,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5668,7 +5670,7 @@
     "take": {
       "author": "Kampy",
       "file": "take.mp3",
-      "gain": 6.5,
+      "gain": 5.2,
       "lead": 199,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5680,7 +5682,7 @@
     "take-shower": {
       "author": "Kampy",
       "file": "take-shower.mp3",
-      "gain": -7.2,
+      "gain": -8.5,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "duschen",
@@ -5691,6 +5693,7 @@
     "talk": {
       "author": "Jeuwre",
       "file": "talk.mp3",
+      "gain": -1.3,
       "lead": 443,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5702,7 +5705,7 @@
     "taste": {
       "author": "Jeuwre",
       "file": "taste.mp3",
-      "gain": -1.4,
+      "gain": -2.7,
       "lead": 449,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5714,7 +5717,7 @@
     "tax": {
       "author": "Jeuwre",
       "file": "tax.mp3",
-      "gain": -2.8,
+      "gain": -4.1,
       "lead": 439,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5738,7 +5741,7 @@
     "tea": {
       "author": "Kampy",
       "file": "tea.mp3",
-      "gain": -4.6,
+      "gain": -5.9,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "tee",
@@ -5749,7 +5752,7 @@
     "teacher": {
       "author": "Kampy",
       "file": "teacher.mp3",
-      "gain": 8.0,
+      "gain": 6.7,
       "lead": 233,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5761,7 +5764,7 @@
     "teacher-f": {
       "author": "Jeuwre",
       "file": "teacher-f.mp3",
-      "gain": -1.4,
+      "gain": -2.7,
       "lead": 432,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5773,7 +5776,7 @@
     "thank": {
       "author": "Kampy",
       "file": "thank.mp3",
-      "gain": 8.4,
+      "gain": 7.1,
       "lead": 238,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5785,7 +5788,7 @@
     "there": {
       "author": "Bleibein",
       "file": "there.mp3",
-      "gain": 14.6,
+      "gain": 13.3,
       "lead": 257,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5797,7 +5800,7 @@
     "think": {
       "author": "Kampy",
       "file": "think.mp3",
-      "gain": -0.6,
+      "gain": -1.9,
       "lead": 446,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5809,7 +5812,7 @@
     "thirst": {
       "author": "Jeuwre",
       "file": "thirst.mp3",
-      "gain": -0.2,
+      "gain": -1.5,
       "lead": 422,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5821,7 +5824,7 @@
     "throat": {
       "author": "Jeuwre",
       "file": "throat.mp3",
-      "gain": 1.6,
+      "gain": 0.3,
       "lead": 421,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5833,7 +5836,7 @@
     "ticket": {
       "author": "Jeuwre",
       "file": "ticket.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 416,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5845,7 +5848,7 @@
     "tidy-up": {
       "author": "Jeuwre",
       "file": "tidy-up.mp3",
-      "gain": -0.8,
+      "gain": -2.1,
       "lead": 430,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5857,7 +5860,7 @@
     "time": {
       "author": "Jeuwre",
       "file": "time.mp3",
-      "gain": 1.9,
+      "gain": 0.6,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5869,7 +5872,7 @@
     "tin-can": {
       "author": "Jeuwre",
       "file": "tin-can.mp3",
-      "gain": -4.8,
+      "gain": -6.1,
       "lead": 245,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5881,7 +5884,7 @@
     "tired": {
       "author": "Kampy",
       "file": "tired.mp3",
-      "gain": 5.6,
+      "gain": 4.3,
       "lead": 61,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5893,7 +5896,7 @@
     "to-cough": {
       "author": "Jeuwre",
       "file": "to-cough.mp3",
-      "gain": -2.5,
+      "gain": -3.8,
       "lead": 386,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5905,7 +5908,7 @@
     "to-count": {
       "author": "T.Voekler",
       "file": "to-count.mp3",
-      "gain": -4.8,
+      "gain": -6.1,
       "lead": 31,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5917,7 +5920,7 @@
     "to-finish": {
       "author": "Jeuwre",
       "file": "to-finish.mp3",
-      "gain": 0.1,
+      "gain": -1.2,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5929,7 +5932,7 @@
     "to-help": {
       "author": "Kampy",
       "file": "to-help.mp3",
-      "gain": 6.5,
+      "gain": 5.2,
       "lead": 135,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5941,7 +5944,7 @@
     "to-practice": {
       "author": "Jeuwre",
       "file": "to-practice.mp3",
-      "gain": -2.7,
+      "gain": -4.0,
       "lead": 444,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5953,7 +5956,7 @@
     "to-pronounce": {
       "author": "Kampy",
       "file": "to-pronounce.mp3",
-      "gain": -0.8,
+      "gain": -1.1,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "aussprechen",
@@ -5964,7 +5967,7 @@
     "to-try": {
       "author": "Kampy",
       "file": "to-try.mp3",
-      "gain": 2.5,
+      "gain": 1.2,
       "lead": 104,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -5988,7 +5991,7 @@
     "today": {
       "author": "Kampy",
       "file": "today.mp3",
-      "gain": 8.1,
+      "gain": 6.8,
       "lead": 200,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6000,7 +6003,7 @@
     "together": {
       "author": "Jeuwre",
       "file": "together.mp3",
-      "gain": -2.3,
+      "gain": -3.6,
       "lead": 414,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6012,7 +6015,7 @@
     "toilet": {
       "author": "Jeuwre",
       "file": "toilet.mp3",
-      "gain": -2.3,
+      "gain": -3.6,
       "lead": 368,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6024,7 +6027,7 @@
     "toilet-paper": {
       "author": "Jeuwre",
       "file": "toilet-paper.mp3",
-      "gain": -1.9,
+      "gain": -3.2,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6036,7 +6039,7 @@
     "tomato": {
       "author": "Jeuwre",
       "file": "tomato.mp3",
-      "gain": -0.7,
+      "gain": -2.0,
       "lead": 426,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6048,7 +6051,7 @@
     "tomorrow": {
       "author": "Jeuwre",
       "file": "tomorrow.mp3",
-      "gain": -1.7,
+      "gain": -3.0,
       "lead": 438,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6060,7 +6063,7 @@
     "tongue": {
       "author": "Kampy",
       "file": "tongue.mp3",
-      "gain": -1.3,
+      "gain": -2.6,
       "lead": 503,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6072,7 +6075,7 @@
     "tooth": {
       "author": "Jeuwre",
       "file": "tooth.mp3",
-      "gain": 4.5,
+      "gain": 3.2,
       "lead": 440,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6084,7 +6087,7 @@
     "toothbrush": {
       "author": "Jeuwre",
       "file": "toothbrush.mp3",
-      "gain": -1.6,
+      "gain": -2.9,
       "lead": 231,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6096,7 +6099,7 @@
     "toothpaste": {
       "author": "Jeuwre",
       "file": "toothpaste.mp3",
-      "gain": 1.1,
+      "gain": -0.2,
       "lead": 304,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6108,7 +6111,7 @@
     "towel": {
       "author": "Jeuwre",
       "file": "towel.mp3",
-      "gain": 1.0,
+      "gain": -0.3,
       "lead": 408,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6120,7 +6123,7 @@
     "traffic-light": {
       "author": "Jeuwre",
       "file": "traffic-light.mp3",
-      "gain": -3.0,
+      "gain": -4.3,
       "lead": 243,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6132,7 +6135,7 @@
     "train": {
       "author": "Jeuwre",
       "file": "train.mp3",
-      "gain": -0.9,
+      "gain": -2.2,
       "lead": 433,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6144,7 +6147,7 @@
     "train-station": {
       "author": "T.Voekler",
       "file": "train-station.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 237,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6156,7 +6159,7 @@
     "training": {
       "author": "Jeuwre",
       "file": "training.mp3",
-      "gain": -1.3,
+      "gain": -2.6,
       "lead": 338,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6168,7 +6171,7 @@
     "translate": {
       "author": "Kampy",
       "file": "translate.mp3",
-      "gain": 2.5,
+      "gain": 1.2,
       "lead": 258,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6180,7 +6183,7 @@
     "trash-can": {
       "author": "Jeuwre",
       "file": "trash-can.mp3",
-      "gain": -3.1,
+      "gain": -4.4,
       "lead": 234,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6192,7 +6195,7 @@
     "travel": {
       "author": "Kampy",
       "file": "travel.mp3",
-      "gain": 2.1,
+      "gain": 0.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "reisen",
@@ -6203,7 +6206,7 @@
     "tree": {
       "author": "Jeuwre",
       "file": "tree.mp3",
-      "gain": -0.5,
+      "gain": -1.8,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6215,7 +6218,7 @@
     "truck": {
       "author": "Jeuwre",
       "file": "truck.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 436,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6239,7 +6242,7 @@
     "type": {
       "author": "Jeuwre",
       "file": "type.mp3",
-      "gain": 1.6,
+      "gain": 0.3,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6251,7 +6254,7 @@
     "ugali": {
       "author": "Jeuwre",
       "file": "ugali.mp3",
-      "gain": 1.2,
+      "gain": -0.1,
       "lead": 503,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6263,7 +6266,7 @@
     "umbrella": {
       "author": "Jeuwre",
       "file": "umbrella.mp3",
-      "gain": 0.5,
+      "gain": -0.8,
       "lead": 438,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6275,7 +6278,7 @@
     "uncle": {
       "author": "Kampy",
       "file": "uncle.mp3",
-      "gain": 10.1,
+      "gain": 9.1,
       "lead": 243,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6287,7 +6290,7 @@
     "understand": {
       "author": "Kampy",
       "file": "understand.mp3",
-      "gain": 3.2,
+      "gain": 1.9,
       "lead": 124,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6299,7 +6302,7 @@
     "underwear": {
       "author": "Kampy",
       "file": "underwear.mp3",
-      "gain": 2.1,
+      "gain": 0.8,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "unterwäsche",
@@ -6310,7 +6313,7 @@
     "university": {
       "author": "Kampy",
       "file": "university.mp3",
-      "gain": -3.4,
+      "gain": -4.7,
       "lead": 436,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6333,7 +6336,7 @@
     "until": {
       "author": "Kampy",
       "file": "until.mp3",
-      "gain": 1.6,
+      "gain": 0.3,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "bis",
@@ -6344,7 +6347,7 @@
     "urgent": {
       "author": "Jeuwre",
       "file": "urgent.mp3",
-      "gain": 7.1,
+      "gain": 5.8,
       "lead": 183,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6356,7 +6359,7 @@
     "vacation": {
       "author": "Jeuwre",
       "file": "vacation.mp3",
-      "gain": -1.1,
+      "gain": -2.4,
       "lead": 445,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6368,7 +6371,7 @@
     "vaccination": {
       "author": "Jeuwre",
       "file": "vaccination.mp3",
-      "gain": -0.9,
+      "gain": -2.2,
       "lead": 427,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6380,7 +6383,7 @@
     "vegetable": {
       "author": "Kampy",
       "file": "vegetable.mp3",
-      "gain": -4.4,
+      "gain": -5.7,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "gemüse",
@@ -6391,7 +6394,7 @@
     "village": {
       "author": "T.Voekler",
       "file": "village.mp3",
-      "gain": 3.9,
+      "gain": 2.6,
       "lead": 226,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6403,7 +6406,7 @@
     "visa": {
       "author": "Jeuwre",
       "file": "visa.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 281,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6415,7 +6418,7 @@
     "wait": {
       "author": "Kampy",
       "file": "wait.mp3",
-      "gain": 1.5,
+      "gain": 0.2,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "matches": "warten",
@@ -6426,7 +6429,7 @@
     "waiting-room": {
       "author": "Jeuwre",
       "file": "waiting-room.mp3",
-      "gain": -2.2,
+      "gain": -3.5,
       "lead": 440,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6438,7 +6441,7 @@
     "waiting-time": {
       "author": "Jeuwre",
       "file": "waiting-time.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 386,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6450,7 +6453,7 @@
     "wake-up": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "wake-up.mp3",
-      "gain": 7.4,
+      "gain": 6.1,
       "lead": 200,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6462,7 +6465,7 @@
     "wall": {
       "author": "Jeuwre",
       "file": "wall.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 428,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6474,7 +6477,7 @@
     "wallet": {
       "author": "Jeuwre",
       "file": "wallet.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 447,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6486,7 +6489,7 @@
     "wardrobe": {
       "author": "Jeuwre",
       "file": "wardrobe.mp3",
-      "gain": -1.1,
+      "gain": -2.4,
       "lead": 245,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6498,7 +6501,7 @@
     "washing-machine": {
       "author": "Jeuwre",
       "file": "washing-machine.mp3",
-      "gain": 1.1,
+      "gain": -0.2,
       "lead": 431,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6510,7 +6513,7 @@
     "watch-tv": {
       "author": "Jeuwre",
       "file": "watch-tv.mp3",
-      "gain": -0.2,
+      "gain": -1.5,
       "lead": 414,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6522,7 +6525,7 @@
     "water": {
       "author": "Jeuwre",
       "file": "water.mp3",
-      "gain": -0.1,
+      "gain": -1.4,
       "lead": 437,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6534,7 +6537,7 @@
     "way": {
       "author": "Jeuwre",
       "file": "way.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 432,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6546,7 +6549,7 @@
     "weak": {
       "author": "Kampy",
       "file": "weak.mp3",
-      "gain": 4.5,
+      "gain": 3.2,
       "lead": 52,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6558,7 +6561,7 @@
     "weather": {
       "author": "Jeuwre",
       "file": "weather.mp3",
-      "gain": -1.3,
+      "gain": -2.6,
       "lead": 439,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6582,7 +6585,7 @@
     "welcome": {
       "author": "Jeuwre",
       "file": "welcome.mp3",
-      "gain": 2.3,
+      "gain": 1.0,
       "lead": 201,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6594,7 +6597,7 @@
     "what": {
       "author": "Dinock90",
       "file": "what.mp3",
-      "gain": 12.6,
+      "gain": 11.3,
       "lead": 229,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6606,7 +6609,7 @@
     "when": {
       "author": "Jeuwre",
       "file": "when.mp3",
-      "gain": 1.4,
+      "gain": 0.1,
       "lead": 435,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6618,7 +6621,7 @@
     "where": {
       "author": "Dinock90",
       "file": "where.mp3",
-      "gain": 13.7,
+      "gain": 12.4,
       "lead": 354,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6630,7 +6633,7 @@
     "which": {
       "author": "Dinock90",
       "file": "which.mp3",
-      "gain": 8.8,
+      "gain": 7.5,
       "lead": 436,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6642,7 +6645,7 @@
     "white": {
       "author": "Kampy",
       "file": "white.mp3",
-      "gain": 3.1,
+      "gain": 1.8,
       "lead": 250,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6654,7 +6657,7 @@
     "who": {
       "author": "Dinock90",
       "file": "who.mp3",
-      "gain": 8.1,
+      "gain": 6.8,
       "lead": 386,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6666,7 +6669,7 @@
     "why": {
       "author": "Jeuwre",
       "file": "why.mp3",
-      "gain": -1.4,
+      "gain": -2.7,
       "lead": 405,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6678,7 +6681,7 @@
     "wife": {
       "author": "User:Tosca",
       "file": "wife.mp3",
-      "gain": 6.2,
+      "gain": 4.9,
       "lead": 41,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6690,7 +6693,7 @@
     "wind": {
       "author": "Jeuwre",
       "file": "wind.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 431,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6702,7 +6705,7 @@
     "window": {
       "author": "Jeuwre",
       "file": "window.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 386,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6714,7 +6717,7 @@
     "without": {
       "author": "Kampy",
       "file": "without.mp3",
-      "gain": 5.5,
+      "gain": 4.2,
       "lead": 213,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6726,7 +6729,7 @@
     "woman": {
       "author": "joni",
       "file": "woman.mp3",
-      "gain": 5.4,
+      "gain": 4.6,
       "lead": 150,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6738,6 +6741,7 @@
     "word": {
       "author": "User:Tosca",
       "file": "word.mp3",
+      "gain": -1.3,
       "lead": 4,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6749,7 +6753,7 @@
     "work": {
       "author": "Jeuwre",
       "file": "work.mp3",
-      "gain": -0.8,
+      "gain": -2.1,
       "lead": 442,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6761,7 +6765,7 @@
     "work-permit": {
       "author": "Jeuwre",
       "file": "work-permit.mp3",
-      "gain": -1.5,
+      "gain": -2.8,
       "lead": 340,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6773,7 +6777,7 @@
     "worker": {
       "author": "Jeuwre",
       "file": "worker.mp3",
-      "gain": 0.1,
+      "gain": -1.2,
       "lead": 446,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6785,7 +6789,7 @@
     "working-hours": {
       "author": "Jeuwre",
       "file": "working-hours.mp3",
-      "gain": 2.2,
+      "gain": 0.9,
       "lead": 82,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6796,7 +6800,7 @@
     "wound": {
       "author": "Jeuwre",
       "file": "wound.mp3",
-      "gain": -2.9,
+      "gain": -4.2,
       "lead": 434,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6808,7 +6812,7 @@
     "write": {
       "author": "Kampy",
       "file": "write.mp3",
-      "gain": 3.8,
+      "gain": 2.8,
       "lead": 81,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -6820,7 +6824,7 @@
     "yawn": {
       "author": "Jeuwre",
       "file": "yawn.mp3",
-      "gain": -0.9,
+      "gain": -2.2,
       "lead": 389,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6832,7 +6836,7 @@
     "year": {
       "author": "Jeuwre",
       "file": "year.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 415,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6856,7 +6860,7 @@
     "yes": {
       "author": "Jeuwre",
       "file": "yes.mp3",
-      "gain": 0.4,
+      "gain": -0.9,
       "lead": 437,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -6868,7 +6872,7 @@
     "yesterday": {
       "author": "Kampy",
       "file": "yesterday.mp3",
-      "gain": 1.6,
+      "gain": 0.3,
       "lead": 149,
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",

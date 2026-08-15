@@ -4,7 +4,7 @@
     "b": {
       "author": "Marreromarco",
       "file": "letters/u0062.mp3",
-      "gain": 3.4,
+      "gain": 2.1,
       "lead": 221,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -15,7 +15,7 @@
     "ch": {
       "author": "Rodrigo5260",
       "file": "letters/u0063u0068.mp3",
-      "gain": 5.9,
+      "gain": 4.6,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "sha256": "a5b141db2eba4fc69cb5044681beb016cfdffa7e5d45e5596b76963fd028d130",
@@ -25,7 +25,7 @@
     "j": {
       "author": "Emanuelps27",
       "file": "letters/u006a.mp3",
-      "gain": 11.1,
+      "gain": 9.8,
       "lead": 196,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -36,7 +36,7 @@
     "r": {
       "author": "Emanuelps27",
       "file": "letters/u0072.mp3",
-      "gain": 9.9,
+      "gain": 8.6,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "sha256": "a25b9bc494a7ba3ee523e5baca19bb08fe28b4b7c37937575f3bcf0cbdbff77c",
@@ -57,7 +57,7 @@
     "z": {
       "author": "Marreromarco",
       "file": "letters/u007a.mp3",
-      "gain": 4.6,
+      "gain": 3.3,
       "lead": 265,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -82,7 +82,7 @@
     "pero": {
       "author": "Precision27",
       "file": "texts/pero.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 183,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -94,7 +94,7 @@
     "perro": {
       "author": "Sinaloa",
       "file": "texts/perro.mp3",
-      "gain": 7.9,
+      "gain": 6.6,
       "lead": 193,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -106,7 +106,7 @@
     "pingüino": {
       "author": "AdrianAbdulBaha",
       "file": "texts/pingu00fcino.mp3",
-      "gain": 7.3,
+      "gain": 6.0,
       "lead": 207,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -120,7 +120,7 @@
     "address": {
       "author": "AdrianAbdulBaha",
       "file": "address.mp3",
-      "gain": 4.0,
+      "gain": 2.7,
       "lead": 151,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -132,7 +132,7 @@
     "airport": {
       "author": "Rodrigo5260",
       "file": "airport.mp3",
-      "gain": 3.5,
+      "gain": 2.2,
       "lead": 223,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -144,7 +144,7 @@
     "alarm-clock": {
       "author": "AdrianAbdulBaha",
       "file": "alarm-clock.mp3",
-      "gain": 5.6,
+      "gain": 4.3,
       "lead": 217,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -156,7 +156,7 @@
     "allergy": {
       "author": "AdrianAbdulBaha",
       "file": "allergy.mp3",
-      "gain": 4.7,
+      "gain": 3.4,
       "lead": 233,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -168,7 +168,7 @@
     "also": {
       "author": "Precision27",
       "file": "also.mp3",
-      "gain": 2.1,
+      "gain": 0.8,
       "lead": 191,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -180,7 +180,7 @@
     "always": {
       "author": "GlyphEnjoyer",
       "file": "always.mp3",
-      "gain": 8.3,
+      "gain": 7.0,
       "lead": 163,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -192,7 +192,7 @@
     "ambulance": {
       "author": "AdrianAbdulBaha",
       "file": "ambulance.mp3",
-      "gain": 6.6,
+      "gain": 5.7,
       "lead": 207,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -204,7 +204,7 @@
     "and": {
       "author": "Precision27",
       "file": "and.mp3",
-      "gain": 6.0,
+      "gain": 4.7,
       "lead": 197,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -215,7 +215,7 @@
     "animal": {
       "author": "Rodelar",
       "file": "animal.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 215,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -227,7 +227,7 @@
     "answer": {
       "author": "AdrianAbdulBaha",
       "file": "answer.mp3",
-      "gain": 6.3,
+      "gain": 5.0,
       "lead": 219,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -239,7 +239,7 @@
     "apple": {
       "author": "Eavqwiki",
       "file": "apple.mp3",
-      "gain": 9.8,
+      "gain": 8.5,
       "lead": 252,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -251,7 +251,7 @@
     "application": {
       "author": "AdrianAbdulBaha",
       "file": "application.mp3",
-      "gain": 10.9,
+      "gain": 9.6,
       "lead": 179,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -263,7 +263,7 @@
     "apply-for": {
       "author": "Emanuelps27",
       "file": "apply-for.mp3",
-      "gain": 7.0,
+      "gain": 5.7,
       "lead": 201,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -275,7 +275,7 @@
     "appointment": {
       "author": "Eavqwiki",
       "file": "appointment.mp3",
-      "gain": 13.8,
+      "gain": 12.5,
       "lead": 65,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -287,7 +287,7 @@
     "approve": {
       "author": "AdrianAbdulBaha",
       "file": "approve.mp3",
-      "gain": 12.7,
+      "gain": 11.4,
       "lead": 243,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -299,7 +299,7 @@
     "arm": {
       "author": "AdrianAbdulBaha",
       "file": "arm.mp3",
-      "gain": 4.9,
+      "gain": 3.6,
       "lead": 155,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -323,7 +323,7 @@
     "arrive": {
       "author": "GlyphEnjoyer",
       "file": "arrive.mp3",
-      "gain": 4.9,
+      "gain": 4.3,
       "lead": 168,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -335,7 +335,7 @@
     "ask": {
       "author": "AdrianAbdulBaha",
       "file": "ask.mp3",
-      "gain": 3.6,
+      "gain": 2.3,
       "lead": 220,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -347,7 +347,7 @@
     "aunt": {
       "author": "AdrianAbdulBaha",
       "file": "aunt.mp3",
-      "gain": 2.4,
+      "gain": 1.1,
       "lead": 196,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -359,7 +359,7 @@
     "baby": {
       "author": "AdrianAbdulBaha",
       "file": "baby.mp3",
-      "gain": 3.6,
+      "gain": 2.3,
       "lead": 159,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -371,6 +371,7 @@
     "back": {
       "author": "Rodelar",
       "file": "back.mp3",
+      "gain": -1.3,
       "lead": 244,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -382,7 +383,7 @@
     "bad": {
       "author": "Rodelar",
       "file": "bad.mp3",
-      "gain": -0.8,
+      "gain": -2.1,
       "lead": 208,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -394,7 +395,7 @@
     "bag": {
       "author": "AdrianAbdulBaha",
       "file": "bag.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 106,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -406,7 +407,7 @@
     "banana": {
       "author": "AdrianAbdulBaha",
       "file": "banana.mp3",
-      "gain": 4.1,
+      "gain": 3.0,
       "lead": 224,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -418,7 +419,7 @@
     "bandage": {
       "author": "Marreromarco",
       "file": "bandage.mp3",
-      "gain": 2.6,
+      "gain": 1.3,
       "lead": 211,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -442,7 +443,7 @@
     "basket": {
       "author": "AdrianAbdulBaha",
       "file": "basket.mp3",
-      "gain": 6.3,
+      "gain": 5.4,
       "lead": 222,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -454,7 +455,7 @@
     "bathtub": {
       "author": "Marreromarco",
       "file": "bathtub.mp3",
-      "gain": -0.2,
+      "gain": -1.5,
       "lead": 222,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -466,7 +467,7 @@
     "be-called": {
       "author": "Marreromarco",
       "file": "be-called.mp3",
-      "gain": 4.3,
+      "gain": 3.0,
       "lead": 185,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -478,7 +479,7 @@
     "beach": {
       "author": "AdrianAbdulBaha",
       "file": "beach.mp3",
-      "gain": 3.2,
+      "gain": 1.9,
       "lead": 217,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -490,7 +491,7 @@
     "because": {
       "author": "Precision27",
       "file": "because.mp3",
-      "gain": -3.4,
+      "gain": -4.7,
       "lead": 197,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -502,7 +503,7 @@
     "bed": {
       "author": "AdrianAbdulBaha",
       "file": "bed.mp3",
-      "gain": 4.1,
+      "gain": 3.5,
       "lead": 263,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -514,7 +515,7 @@
     "belt": {
       "author": "Eavqwiki",
       "file": "belt.mp3",
-      "gain": 9.4,
+      "gain": 8.1,
       "lead": 203,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -526,7 +527,7 @@
     "bicycle": {
       "author": "AdrianAbdulBaha",
       "file": "bicycle.mp3",
-      "gain": 6.4,
+      "gain": 5.1,
       "lead": 257,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -538,7 +539,7 @@
     "big": {
       "author": "GlyphEnjoyer",
       "file": "big.mp3",
-      "gain": 5.6,
+      "gain": 4.3,
       "lead": 195,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -550,7 +551,7 @@
     "bird": {
       "author": "Sinaloa",
       "file": "bird.mp3",
-      "gain": 7.2,
+      "gain": 6.5,
       "lead": 196,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -562,7 +563,7 @@
     "black": {
       "author": "Rodelar",
       "file": "black.mp3",
-      "gain": 2.7,
+      "gain": 1.8,
       "lead": 245,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -573,7 +574,7 @@
     "blanket": {
       "author": "Marreromarco",
       "file": "blanket.mp3",
-      "gain": 2.9,
+      "gain": 1.6,
       "lead": 194,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -585,7 +586,7 @@
     "blood": {
       "author": "Sinaloa",
       "file": "blood.mp3",
-      "gain": 8.7,
+      "gain": 7.4,
       "lead": 143,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -609,7 +610,7 @@
     "board": {
       "author": "Marreromarco",
       "file": "board.mp3",
-      "gain": 2.3,
+      "gain": 1.0,
       "lead": 230,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -621,7 +622,7 @@
     "bone": {
       "author": "Rodelar",
       "file": "bone.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 264,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -632,7 +633,7 @@
     "book": {
       "author": "Eavqwiki",
       "file": "book.mp3",
-      "gain": 4.6,
+      "gain": 3.3,
       "lead": 250,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -644,7 +645,7 @@
     "boss": {
       "author": "GlyphEnjoyer",
       "file": "boss.mp3",
-      "gain": 8.0,
+      "gain": 7.0,
       "lead": 71,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -656,7 +657,7 @@
     "bowl": {
       "author": "Marreromarco",
       "file": "bowl.mp3",
-      "gain": 5.1,
+      "gain": 3.8,
       "lead": 185,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -668,7 +669,7 @@
     "boy": {
       "author": "AdrianAbdulBaha",
       "file": "boy.mp3",
-      "gain": 5.3,
+      "gain": 4.0,
       "lead": 173,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -680,7 +681,7 @@
     "bread": {
       "author": "Eavqwiki",
       "file": "bread.mp3",
-      "gain": 13.3,
+      "gain": 12.0,
       "lead": 189,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -704,7 +705,7 @@
     "breakfast": {
       "author": "Eavqwiki",
       "file": "breakfast.mp3",
-      "gain": 12.0,
+      "gain": 10.7,
       "lead": 223,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -716,7 +717,7 @@
     "breathe": {
       "author": "Rodelar",
       "file": "breathe.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 235,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -728,7 +729,7 @@
     "bridge": {
       "author": "AdrianAbdulBaha",
       "file": "bridge.mp3",
-      "gain": 5.5,
+      "gain": 4.2,
       "lead": 192,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -740,7 +741,7 @@
     "bring": {
       "author": "AdrianAbdulBaha",
       "file": "bring.mp3",
-      "gain": 3.1,
+      "gain": 1.8,
       "lead": 213,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -752,7 +753,7 @@
     "brother": {
       "author": "Rodrigo5260",
       "file": "brother.mp3",
-      "gain": 5.7,
+      "gain": 5.4,
       "lead": 223,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -764,7 +765,7 @@
     "brown": {
       "author": "AdrianAbdulBaha",
       "file": "brown.mp3",
-      "gain": 6.9,
+      "gain": 5.6,
       "lead": 169,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -776,7 +777,7 @@
     "bucket": {
       "author": "Marreromarco",
       "file": "bucket.mp3",
-      "gain": 2.4,
+      "gain": 1.1,
       "lead": 140,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -788,7 +789,7 @@
     "building": {
       "author": "Rodrigo5260",
       "file": "building.mp3",
-      "gain": 5.9,
+      "gain": 4.6,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "edificio",
@@ -799,7 +800,7 @@
     "bus": {
       "author": "Eavqwiki",
       "file": "bus.mp3",
-      "gain": 2.0,
+      "gain": 0.7,
       "lead": 211,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -811,7 +812,7 @@
     "bus-stop": {
       "author": "AdrianAbdulBaha",
       "file": "bus-stop.mp3",
-      "gain": 9.3,
+      "gain": 8.0,
       "lead": 216,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -823,7 +824,7 @@
     "but": {
       "author": "Precision27",
       "file": "but.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 183,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -835,7 +836,7 @@
     "butter": {
       "author": "AdrianAbdulBaha",
       "file": "butter.mp3",
-      "gain": 6.6,
+      "gain": 6.4,
       "lead": 182,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -847,7 +848,7 @@
     "buy": {
       "author": "AdrianAbdulBaha",
       "file": "buy.mp3",
-      "gain": 5.6,
+      "gain": 4.3,
       "lead": 210,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -859,7 +860,7 @@
     "cable": {
       "author": "Marreromarco",
       "file": "cable.mp3",
-      "gain": 1.5,
+      "gain": 0.2,
       "lead": 237,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -871,7 +872,7 @@
     "calendar": {
       "author": "AdrianAbdulBaha",
       "file": "calendar.mp3",
-      "gain": 4.7,
+      "gain": 3.4,
       "lead": 258,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -883,7 +884,7 @@
     "call": {
       "author": "AdrianAbdulBaha",
       "file": "call.mp3",
-      "gain": 2.9,
+      "gain": 1.6,
       "lead": 81,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -895,7 +896,7 @@
     "can": {
       "author": "Precision27",
       "file": "can.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 198,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -907,7 +908,7 @@
     "cancel": {
       "author": "Marreromarco",
       "file": "cancel.mp3",
-      "gain": 2.7,
+      "gain": 1.4,
       "lead": 258,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -919,7 +920,7 @@
     "car": {
       "author": "Eavqwiki",
       "file": "car.mp3",
-      "gain": 9.8,
+      "gain": 8.5,
       "lead": 187,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -931,7 +932,7 @@
     "careful": {
       "author": "Marreromarco",
       "file": "careful.mp3",
-      "gain": 3.6,
+      "gain": 2.3,
       "lead": 120,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -943,7 +944,7 @@
     "carpet": {
       "author": "AdrianAbdulBaha",
       "file": "carpet.mp3",
-      "gain": 2.0,
+      "gain": 0.7,
       "lead": 177,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -955,7 +956,7 @@
     "case-worker": {
       "author": "Marreromarco",
       "file": "case-worker.mp3",
-      "gain": -1.5,
+      "gain": -2.8,
       "lead": 201,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -967,7 +968,7 @@
     "cassava": {
       "author": "Emanuelps27",
       "file": "cassava.mp3",
-      "gain": 9.2,
+      "gain": 7.9,
       "lead": 6,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -979,7 +980,7 @@
     "cat": {
       "author": "Eavqwiki",
       "file": "cat.mp3",
-      "gain": 7.5,
+      "gain": 6.2,
       "lead": 203,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -991,7 +992,7 @@
     "certificate": {
       "author": "Marreromarco",
       "file": "certificate.mp3",
-      "gain": 5.2,
+      "gain": 3.9,
       "lead": 251,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1003,7 +1004,7 @@
     "chair": {
       "author": "Eavqwiki",
       "file": "chair.mp3",
-      "gain": 6.8,
+      "gain": 5.5,
       "lead": 91,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1015,7 +1016,7 @@
     "charger": {
       "author": "Emanuelps27",
       "file": "charger.mp3",
-      "gain": 9.4,
+      "gain": 8.1,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "matches": "cargador",
@@ -1026,7 +1027,7 @@
     "cheese": {
       "author": "Eavqwiki",
       "file": "cheese.mp3",
-      "gain": 3.3,
+      "gain": 2.0,
       "lead": 88,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1038,7 +1039,7 @@
     "chest": {
       "author": "Rodelar",
       "file": "chest.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 254,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1049,7 +1050,7 @@
     "child": {
       "author": "Sinaloa",
       "file": "child.mp3",
-      "gain": 12.8,
+      "gain": 11.5,
       "lead": 136,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -1061,7 +1062,7 @@
     "church": {
       "author": "AdrianAbdulBaha",
       "file": "church.mp3",
-      "gain": 5.2,
+      "gain": 3.9,
       "lead": 250,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1073,7 +1074,7 @@
     "cinema": {
       "author": "AdrianAbdulBaha",
       "file": "cinema.mp3",
-      "gain": 5.6,
+      "gain": 4.3,
       "lead": 183,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1085,7 +1086,7 @@
     "city": {
       "author": "Precision27",
       "file": "city.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 95,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -1097,7 +1098,7 @@
     "class-schedule": {
       "author": "AdrianAbdulBaha",
       "file": "class-schedule.mp3",
-      "gain": 5.2,
+      "gain": 3.9,
       "lead": 249,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1109,7 +1110,7 @@
     "classroom": {
       "author": "Marreromarco",
       "file": "classroom.mp3",
-      "gain": 1.9,
+      "gain": 0.6,
       "lead": 239,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1121,7 +1122,7 @@
     "clean": {
       "author": "Sinaloa",
       "file": "clean.mp3",
-      "gain": 8.1,
+      "gain": 6.8,
       "lead": 180,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -1133,7 +1134,7 @@
     "clean-adj": {
       "author": "AdrianAbdulBaha",
       "file": "clean-adj.mp3",
-      "gain": 7.4,
+      "gain": 6.1,
       "lead": 221,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1145,7 +1146,7 @@
     "clothes": {
       "author": "AdrianAbdulBaha",
       "file": "clothes.mp3",
-      "gain": 8.1,
+      "gain": 6.8,
       "lead": 240,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1157,7 +1158,7 @@
     "cloud": {
       "author": "Rodelar",
       "file": "cloud.mp3",
-      "gain": -1.0,
+      "gain": -2.3,
       "lead": 204,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1168,7 +1169,7 @@
     "coat": {
       "author": "AdrianAbdulBaha",
       "file": "coat.mp3",
-      "gain": 4.0,
+      "gain": 2.7,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "abrigo",
@@ -1179,7 +1180,7 @@
     "coffee": {
       "author": "AdrianAbdulBaha",
       "file": "coffee.mp3",
-      "gain": 5.7,
+      "gain": 4.4,
       "lead": 208,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1191,7 +1192,7 @@
     "cold": {
       "author": "AdrianAbdulBaha",
       "file": "cold.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 195,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1203,7 +1204,7 @@
     "colleague": {
       "author": "AdrianAbdulBaha",
       "file": "colleague.mp3",
-      "gain": 7.0,
+      "gain": 5.7,
       "lead": 191,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1215,7 +1216,7 @@
     "color": {
       "author": "AdrianAbdulBaha",
       "file": "color.mp3",
-      "gain": 3.8,
+      "gain": 2.5,
       "lead": 234,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1227,7 +1228,7 @@
     "come": {
       "author": "Rodelar",
       "file": "come.mp3",
-      "gain": 1.0,
+      "gain": -0.3,
       "lead": 216,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1238,7 +1239,7 @@
     "company": {
       "author": "Precision27",
       "file": "company.mp3",
-      "gain": 3.0,
+      "gain": 1.7,
       "lead": 197,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -1250,7 +1251,7 @@
     "confirm": {
       "author": "Marreromarco",
       "file": "confirm.mp3",
-      "gain": 5.8,
+      "gain": 4.5,
       "lead": 195,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1262,7 +1263,7 @@
     "confirmation": {
       "author": "Marreromarco",
       "file": "confirmation.mp3",
-      "gain": 2.4,
+      "gain": 1.1,
       "lead": 216,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1274,7 +1275,6 @@
     "contract": {
       "author": "Marreromarco",
       "file": "contract.mp3",
-      "gain": 1.3,
       "lead": 14,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1286,7 +1286,7 @@
     "cook": {
       "author": "AdrianAbdulBaha",
       "file": "cook.mp3",
-      "gain": 4.1,
+      "gain": 2.8,
       "lead": 249,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1298,7 +1298,7 @@
     "copy": {
       "author": "Marreromarco",
       "file": "copy.mp3",
-      "gain": 2.3,
+      "gain": 1.0,
       "lead": 220,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1310,7 +1310,7 @@
     "correct": {
       "author": "AdrianAbdulBaha",
       "file": "correct.mp3",
-      "gain": 5.9,
+      "gain": 4.6,
       "lead": 247,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1322,7 +1322,7 @@
     "cough": {
       "author": "Marreromarco",
       "file": "cough.mp3",
-      "gain": 3.5,
+      "gain": 2.2,
       "lead": 266,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1334,7 +1334,7 @@
     "course": {
       "author": "Marreromarco",
       "file": "course.mp3",
-      "gain": 4.9,
+      "gain": 3.6,
       "lead": 268,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1346,7 +1346,7 @@
     "cream": {
       "author": "Marreromarco",
       "file": "cream.mp3",
-      "gain": 2.6,
+      "gain": 1.3,
       "lead": 230,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1358,7 +1358,7 @@
     "cuddle": {
       "author": "Marreromarco",
       "file": "cuddle.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 196,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1382,7 +1382,7 @@
     "curtain": {
       "author": "AdrianAbdulBaha",
       "file": "curtain.mp3",
-      "gain": 3.2,
+      "gain": 1.9,
       "lead": 215,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1394,7 +1394,7 @@
     "customer": {
       "author": "Marreromarco",
       "file": "customer.mp3",
-      "gain": 3.1,
+      "gain": 1.8,
       "lead": 168,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1406,7 +1406,7 @@
     "cut": {
       "author": "Sinaloa",
       "file": "cut.mp3",
-      "gain": 7.3,
+      "gain": 6.0,
       "lead": 152,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -1418,7 +1418,7 @@
     "date": {
       "author": "AdrianAbdulBaha",
       "file": "date.mp3",
-      "gain": 3.2,
+      "gain": 1.9,
       "lead": 113,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1430,7 +1430,7 @@
     "daughter": {
       "author": "AdrianAbdulBaha",
       "file": "daughter.mp3",
-      "gain": 8.6,
+      "gain": 7.3,
       "lead": 238,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1442,7 +1442,7 @@
     "day": {
       "author": "Sinaloa",
       "file": "day.mp3",
-      "gain": 8.6,
+      "gain": 7.3,
       "lead": 130,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -1454,7 +1454,7 @@
     "deadline": {
       "author": "Marreromarco",
       "file": "deadline.mp3",
-      "gain": 1.2,
+      "gain": -0.1,
       "lead": 253,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1466,7 +1466,7 @@
     "delete": {
       "author": "AdrianAbdulBaha",
       "file": "delete.mp3",
-      "gain": 6.0,
+      "gain": 5.5,
       "lead": 114,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1478,7 +1478,7 @@
     "dentist": {
       "author": "Marreromarco",
       "file": "dentist.mp3",
-      "gain": 2.0,
+      "gain": 0.7,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "dentista",
@@ -1489,7 +1489,7 @@
     "depart": {
       "author": "GlyphEnjoyer",
       "file": "depart.mp3",
-      "gain": 11.2,
+      "gain": 9.9,
       "lead": 164,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -1501,7 +1501,7 @@
     "desk": {
       "author": "AdrianAbdulBaha",
       "file": "desk.mp3",
-      "gain": 8.3,
+      "gain": 7.0,
       "lead": 200,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1513,7 +1513,7 @@
     "dictionary": {
       "author": "Rodelar",
       "file": "dictionary.mp3",
-      "gain": 8.5,
+      "gain": 7.2,
       "lead": 228,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1525,7 +1525,7 @@
     "difficult": {
       "author": "AdrianAbdulBaha",
       "file": "difficult.mp3",
-      "gain": 5.7,
+      "gain": 4.4,
       "lead": 112,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1537,7 +1537,7 @@
     "dinner": {
       "author": "AdrianAbdulBaha",
       "file": "dinner.mp3",
-      "gain": 5.2,
+      "gain": 3.9,
       "lead": 222,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1549,7 +1549,7 @@
     "dirty": {
       "author": "Sinaloa",
       "file": "dirty.mp3",
-      "gain": 9.0,
+      "gain": 7.7,
       "lead": 193,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -1561,7 +1561,7 @@
     "dishwasher": {
       "author": "Marreromarco",
       "file": "dishwasher.mp3",
-      "gain": 1.9,
+      "gain": 0.6,
       "lead": 74,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1573,7 +1573,7 @@
     "dizziness": {
       "author": "AdrianAbdulBaha",
       "file": "dizziness.mp3",
-      "gain": 5.3,
+      "gain": 4.0,
       "lead": 192,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1585,7 +1585,7 @@
     "doctor": {
       "author": "AdrianAbdulBaha",
       "file": "doctor.mp3",
-      "gain": 4.2,
+      "gain": 2.9,
       "lead": 181,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1597,7 +1597,7 @@
     "doctor-f": {
       "author": "Marreromarco",
       "file": "doctor-f.mp3",
-      "gain": 2.4,
+      "gain": 1.1,
       "lead": 207,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1621,7 +1621,7 @@
     "documents": {
       "author": "Marreromarco",
       "file": "documents.mp3",
-      "gain": 3.1,
+      "gain": 1.8,
       "lead": 240,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1633,7 +1633,7 @@
     "dog": {
       "author": "Sinaloa",
       "file": "dog.mp3",
-      "gain": 7.9,
+      "gain": 6.6,
       "lead": 193,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -1645,7 +1645,7 @@
     "door": {
       "author": "AdrianAbdulBaha",
       "file": "door.mp3",
-      "gain": 4.8,
+      "gain": 3.5,
       "lead": 256,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1657,7 +1657,7 @@
     "doorbell": {
       "author": "AdrianAbdulBaha",
       "file": "doorbell.mp3",
-      "gain": 5.3,
+      "gain": 4.0,
       "lead": 212,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1669,7 +1669,7 @@
     "dream": {
       "author": "AdrianAbdulBaha",
       "file": "dream.mp3",
-      "gain": 4.8,
+      "gain": 3.5,
       "lead": 124,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1681,7 +1681,7 @@
     "dress": {
       "author": "AdrianAbdulBaha",
       "file": "dress.mp3",
-      "gain": 5.9,
+      "gain": 4.6,
       "lead": 201,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1693,7 +1693,7 @@
     "drink": {
       "author": "Rodelar",
       "file": "drink.mp3",
-      "gain": -0.1,
+      "gain": -1.4,
       "lead": 197,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1704,7 +1704,7 @@
     "driver": {
       "author": "AdrianAbdulBaha",
       "file": "driver.mp3",
-      "gain": 11.8,
+      "gain": 10.5,
       "lead": 186,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1716,7 +1716,7 @@
     "ear": {
       "author": "Eavqwiki",
       "file": "ear.mp3",
-      "gain": 9.1,
+      "gain": 7.8,
       "lead": 283,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1728,7 +1728,7 @@
     "early": {
       "author": "Marreromarco",
       "file": "early.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 197,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1740,7 +1740,7 @@
     "earn": {
       "author": "AdrianAbdulBaha",
       "file": "earn.mp3",
-      "gain": -0.1,
+      "gain": -1.4,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "ganar",
@@ -1751,7 +1751,7 @@
     "easy": {
       "author": "AdrianAbdulBaha",
       "file": "easy.mp3",
-      "gain": 2.6,
+      "gain": 2.0,
       "lead": 159,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1763,7 +1763,7 @@
     "eat": {
       "author": "Rodelar",
       "file": "eat.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 222,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1774,7 +1774,7 @@
     "egg": {
       "author": "Sinaloa",
       "file": "egg.mp3",
-      "gain": 3.4,
+      "gain": 2.1,
       "lead": 185,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -1786,7 +1786,7 @@
     "emergency": {
       "author": "AdrianAbdulBaha",
       "file": "emergency.mp3",
-      "gain": 1.6,
+      "gain": 0.3,
       "lead": 274,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1798,7 +1798,7 @@
     "enter": {
       "author": "AdrianAbdulBaha",
       "file": "enter.mp3",
-      "gain": 3.7,
+      "gain": 2.4,
       "lead": 194,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1810,7 +1810,7 @@
     "evening": {
       "author": "AdrianAbdulBaha",
       "file": "evening.mp3",
-      "gain": 2.8,
+      "gain": 1.5,
       "lead": 233,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1822,7 +1822,7 @@
     "exam": {
       "author": "Marreromarco",
       "file": "exam.mp3",
-      "gain": 2.8,
+      "gain": 1.5,
       "lead": 239,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1834,7 +1834,7 @@
     "examine": {
       "author": "AdrianAbdulBaha",
       "file": "examine.mp3",
-      "gain": 5.2,
+      "gain": 4.5,
       "lead": 236,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1846,7 +1846,7 @@
     "exercise-book": {
       "author": "AdrianAbdulBaha",
       "file": "exercise-book.mp3",
-      "gain": -0.4,
+      "gain": -1.7,
       "lead": 194,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1858,7 +1858,7 @@
     "extend": {
       "author": "AdrianAbdulBaha",
       "file": "extend.mp3",
-      "gain": 4.7,
+      "gain": 3.4,
       "lead": 175,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1870,7 +1870,7 @@
     "eye": {
       "author": "Rodelar",
       "file": "eye.mp3",
-      "gain": -0.2,
+      "gain": -1.5,
       "lead": 252,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1881,7 +1881,7 @@
     "face": {
       "author": "Eavqwiki",
       "file": "face.mp3",
-      "gain": 7.3,
+      "gain": 6.0,
       "lead": 248,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1893,7 +1893,7 @@
     "family": {
       "author": "Precision27",
       "file": "family.mp3",
-      "gain": 1.4,
+      "gain": 0.1,
       "lead": 169,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -1905,7 +1905,7 @@
     "fare": {
       "author": "Marreromarco",
       "file": "fare.mp3",
-      "gain": 3.1,
+      "gain": 1.8,
       "lead": 256,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1929,7 +1929,7 @@
     "father": {
       "author": "Rodelar",
       "file": "father.mp3",
-      "gain": -1.7,
+      "gain": -3.0,
       "lead": 262,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1941,7 +1941,7 @@
     "faucet": {
       "author": "Millars",
       "file": "faucet.mp3",
-      "gain": 1.4,
+      "gain": 0.1,
       "lead": 224,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1953,7 +1953,7 @@
     "fee": {
       "author": "AdrianAbdulBaha",
       "file": "fee.mp3",
-      "gain": 7.1,
+      "gain": 5.8,
       "lead": 194,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1965,7 +1965,7 @@
     "fever": {
       "author": "AdrianAbdulBaha",
       "file": "fever.mp3",
-      "gain": 1.4,
+      "gain": 0.1,
       "lead": 147,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1977,7 +1977,7 @@
     "fine": {
       "author": "AdrianAbdulBaha",
       "file": "fine.mp3",
-      "gain": 7.5,
+      "gain": 6.2,
       "lead": 217,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -1989,7 +1989,7 @@
     "finger": {
       "author": "AdrianAbdulBaha",
       "file": "finger.mp3",
-      "gain": 3.2,
+      "gain": 1.9,
       "lead": 59,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2001,7 +2001,7 @@
     "fish": {
       "author": "Sinaloa",
       "file": "fish.mp3",
-      "gain": 9.8,
+      "gain": 8.5,
       "lead": 194,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2013,7 +2013,7 @@
     "flour": {
       "author": "Millars",
       "file": "flour.mp3",
-      "gain": 8.0,
+      "gain": 6.7,
       "lead": 233,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2024,7 +2024,7 @@
     "flower": {
       "author": "Rodelar",
       "file": "flower.mp3",
-      "gain": -3.4,
+      "gain": -4.7,
       "lead": 190,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2036,7 +2036,7 @@
     "folder": {
       "author": "Marreromarco",
       "file": "folder.mp3",
-      "gain": 7.2,
+      "gain": 5.9,
       "lead": 228,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2048,7 +2048,7 @@
     "food": {
       "author": "AdrianAbdulBaha",
       "file": "food.mp3",
-      "gain": 6.4,
+      "gain": 5.1,
       "lead": 242,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2060,6 +2060,7 @@
     "foot": {
       "author": "Rodelar",
       "file": "foot.mp3",
+      "gain": -1.3,
       "lead": 248,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2070,7 +2071,7 @@
     "forest": {
       "author": "Sinaloa",
       "file": "forest.mp3",
-      "gain": 11.5,
+      "gain": 10.2,
       "lead": 158,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2082,7 +2083,7 @@
     "fork": {
       "author": "AdrianAbdulBaha",
       "file": "fork.mp3",
-      "gain": 5.9,
+      "gain": 4.6,
       "lead": 221,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2094,7 +2095,7 @@
     "form": {
       "author": "Marreromarco",
       "file": "form.mp3",
-      "gain": -1.7,
+      "gain": -3.0,
       "lead": 37,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2106,7 +2107,7 @@
     "fridge": {
       "author": "AdrianAbdulBaha",
       "file": "fridge.mp3",
-      "gain": 1.2,
+      "gain": -0.1,
       "lead": 231,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2118,7 +2119,7 @@
     "friend": {
       "author": "AdrianAbdulBaha",
       "file": "friend.mp3",
-      "gain": 6.0,
+      "gain": 5.6,
       "lead": 250,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2130,7 +2131,7 @@
     "friend-f": {
       "author": "AdrianAbdulBaha",
       "file": "friend-f.mp3",
-      "gain": 5.6,
+      "gain": 4.3,
       "lead": 228,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2142,7 +2143,7 @@
     "fruit": {
       "author": "Sinaloa",
       "file": "fruit.mp3",
-      "gain": 11.1,
+      "gain": 9.8,
       "lead": 193,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2154,7 +2155,7 @@
     "fry": {
       "author": "AdrianAbdulBaha",
       "file": "fry.mp3",
-      "gain": 7.2,
+      "gain": 5.9,
       "lead": 204,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2166,7 +2167,7 @@
     "game": {
       "author": "GlyphEnjoyer",
       "file": "game.mp3",
-      "gain": 8.5,
+      "gain": 7.2,
       "lead": 77,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2178,7 +2179,7 @@
     "get-dressed": {
       "author": "Marreromarco",
       "file": "get-dressed.mp3",
-      "gain": 2.3,
+      "gain": 1.0,
       "lead": 191,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2190,7 +2191,7 @@
     "get-up": {
       "author": "Anonymât",
       "file": "get-up.mp3",
-      "gain": 3.1,
+      "gain": 1.8,
       "lead": 253,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2202,7 +2203,7 @@
     "girl": {
       "author": "AdrianAbdulBaha",
       "file": "girl.mp3",
-      "gain": 4.8,
+      "gain": 3.5,
       "lead": 229,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2214,7 +2215,7 @@
     "give": {
       "author": "Rodelar",
       "file": "give.mp3",
-      "gain": -0.6,
+      "gain": -1.9,
       "lead": 254,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2226,7 +2227,7 @@
     "glove": {
       "author": "AdrianAbdulBaha",
       "file": "glove.mp3",
-      "gain": 4.4,
+      "gain": 3.1,
       "lead": 213,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2238,7 +2239,7 @@
     "go": {
       "author": "Rodrigo5260",
       "file": "go.mp3",
-      "gain": 8.5,
+      "gain": 7.2,
       "lead": 220,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2250,7 +2251,7 @@
     "go-for-walk": {
       "author": "AdrianAbdulBaha",
       "file": "go-for-walk.mp3",
-      "gain": 3.0,
+      "gain": 1.7,
       "lead": 235,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2262,7 +2263,7 @@
     "good": {
       "author": "Sinaloa",
       "file": "good.mp3",
-      "gain": 8.7,
+      "gain": 7.4,
       "lead": 125,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2274,7 +2275,7 @@
     "grade": {
       "author": "AdrianAbdulBaha",
       "file": "grade.mp3",
-      "gain": 8.4,
+      "gain": 7.1,
       "lead": 264,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2310,7 +2311,7 @@
     "gray": {
       "author": "AdrianAbdulBaha",
       "file": "gray.mp3",
-      "gain": 5.4,
+      "gain": 4.1,
       "lead": 146,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2322,7 +2323,7 @@
     "green": {
       "author": "Sinaloa",
       "file": "green.mp3",
-      "gain": 4.7,
+      "gain": 3.4,
       "lead": 159,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2334,7 +2335,7 @@
     "greet": {
       "author": "AdrianAbdulBaha",
       "file": "greet.mp3",
-      "gain": 0.5,
+      "gain": -0.8,
       "lead": 167,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2346,7 +2347,7 @@
     "guest": {
       "author": "Marreromarco",
       "file": "guest.mp3",
-      "gain": 1.6,
+      "gain": 0.3,
       "lead": 227,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2358,7 +2359,7 @@
     "hair": {
       "author": "Rodelar",
       "file": "hair.mp3",
-      "gain": -2.5,
+      "gain": -3.8,
       "lead": 256,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2369,7 +2370,7 @@
     "hallway": {
       "author": "Marreromarco",
       "file": "hallway.mp3",
-      "gain": 1.0,
+      "gain": -0.3,
       "lead": 231,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2381,7 +2382,7 @@
     "hand": {
       "author": "GlyphEnjoyer",
       "file": "hand.mp3",
-      "gain": 5.0,
+      "gain": 3.7,
       "lead": 169,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2393,7 +2394,7 @@
     "hand-in": {
       "author": "AdrianAbdulBaha",
       "file": "hand-in.mp3",
-      "gain": 4.6,
+      "gain": 3.3,
       "lead": 280,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2405,7 +2406,7 @@
     "hat": {
       "author": "Marreromarco",
       "file": "hat.mp3",
-      "gain": 1.2,
+      "gain": -0.1,
       "lead": 157,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2417,7 +2418,7 @@
     "have": {
       "author": "GlyphEnjoyer",
       "file": "have.mp3",
-      "gain": 5.0,
+      "gain": 3.9,
       "lead": 164,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2429,7 +2430,7 @@
     "head": {
       "author": "GlyphEnjoyer",
       "file": "head.mp3",
-      "gain": 5.3,
+      "gain": 4.0,
       "lead": 115,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2441,7 +2442,7 @@
     "health": {
       "author": "AdrianAbdulBaha",
       "file": "health.mp3",
-      "gain": 4.9,
+      "gain": 3.6,
       "lead": 169,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2453,7 +2454,7 @@
     "healthy": {
       "author": "AdrianAbdulBaha",
       "file": "healthy.mp3",
-      "gain": 4.8,
+      "gain": 4.7,
       "lead": 214,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2465,7 +2466,7 @@
     "hear": {
       "author": "Rodelar",
       "file": "hear.mp3",
-      "gain": 0.1,
+      "gain": -1.2,
       "lead": 187,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2476,7 +2477,7 @@
     "heart": {
       "author": "Sinaloa",
       "file": "heart.mp3",
-      "gain": 9.7,
+      "gain": 8.4,
       "lead": 191,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2488,7 +2489,7 @@
     "heavy": {
       "author": "Rodelar",
       "file": "heavy.mp3",
-      "gain": -2.7,
+      "gain": -4.0,
       "lead": 202,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2500,7 +2501,7 @@
     "hello": {
       "author": "CaroEspinoza",
       "file": "hello.mp3",
-      "gain": 4.8,
+      "gain": 3.5,
       "lead": 228,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2512,7 +2513,7 @@
     "help": {
       "author": "GlyphEnjoyer",
       "file": "help.mp3",
-      "gain": 9.6,
+      "gain": 8.3,
       "lead": 192,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2536,7 +2537,7 @@
     "hire": {
       "author": "Marreromarco",
       "file": "hire.mp3",
-      "gain": 2.6,
+      "gain": 1.3,
       "lead": 224,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2560,7 +2561,7 @@
     "hotel": {
       "author": "Eavqwiki",
       "file": "hotel.mp3",
-      "gain": 1.4,
+      "gain": 0.1,
       "lead": 199,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2572,7 +2573,7 @@
     "hour": {
       "author": "AdrianAbdulBaha",
       "file": "hour.mp3",
-      "gain": 5.6,
+      "gain": 4.3,
       "lead": 245,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2596,7 +2597,7 @@
     "how": {
       "author": "Precision27",
       "file": "how.mp3",
-      "gain": 2.5,
+      "gain": 1.2,
       "lead": 195,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -2620,7 +2621,7 @@
     "hurt": {
       "author": "Marreromarco",
       "file": "hurt.mp3",
-      "gain": 3.6,
+      "gain": 2.3,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "doler",
@@ -2631,7 +2632,7 @@
     "husband": {
       "author": "Sinaloa",
       "file": "husband.mp3",
-      "gain": 6.9,
+      "gain": 5.6,
       "lead": 162,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2643,7 +2644,7 @@
     "if": {
       "author": "Precision27",
       "file": "if.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 139,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -2655,7 +2656,7 @@
     "illness": {
       "author": "AdrianAbdulBaha",
       "file": "illness.mp3",
-      "gain": 5.3,
+      "gain": 4.0,
       "lead": 193,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2667,7 +2668,7 @@
     "important": {
       "author": "Precision27",
       "file": "important.mp3",
-      "gain": 4.5,
+      "gain": 3.2,
       "lead": 197,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -2678,7 +2679,7 @@
     "inside": {
       "author": "GlyphEnjoyer",
       "file": "inside.mp3",
-      "gain": 10.6,
+      "gain": 9.6,
       "lead": 186,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2690,7 +2691,7 @@
     "internet": {
       "author": "GlyphEnjoyer",
       "file": "internet.mp3",
-      "gain": 12.2,
+      "gain": 11.2,
       "lead": 63,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2702,7 +2703,7 @@
     "jacket": {
       "author": "AdrianAbdulBaha",
       "file": "jacket.mp3",
-      "gain": 5.9,
+      "gain": 4.8,
       "lead": 254,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2714,7 +2715,7 @@
     "journey": {
       "author": "AdrianAbdulBaha",
       "file": "journey.mp3",
-      "gain": 3.1,
+      "gain": 1.8,
       "lead": 186,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2726,7 +2727,7 @@
     "juice": {
       "author": "Marreromarco",
       "file": "juice.mp3",
-      "gain": 2.4,
+      "gain": 1.1,
       "lead": 197,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2738,7 +2739,7 @@
     "key": {
       "author": "Eavqwiki",
       "file": "key.mp3",
-      "gain": 10.5,
+      "gain": 9.2,
       "lead": 257,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2750,7 +2751,7 @@
     "keyboard": {
       "author": "AdrianAbdulBaha",
       "file": "keyboard.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 195,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2762,7 +2763,7 @@
     "knee": {
       "author": "Rodelar",
       "file": "knee.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 248,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2773,7 +2774,7 @@
     "knife": {
       "author": "AdrianAbdulBaha",
       "file": "knife.mp3",
-      "gain": 6.0,
+      "gain": 4.7,
       "lead": 196,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2785,7 +2786,7 @@
     "know": {
       "author": "GlyphEnjoyer",
       "file": "know.mp3",
-      "gain": 5.1,
+      "gain": 4.2,
       "lead": 149,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2797,7 +2798,7 @@
     "lake": {
       "author": "Sinaloa",
       "file": "lake.mp3",
-      "gain": 5.6,
+      "gain": 4.3,
       "lead": 170,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2809,7 +2810,7 @@
     "lamp": {
       "author": "AdrianAbdulBaha",
       "file": "lamp.mp3",
-      "gain": 4.7,
+      "gain": 4.3,
       "lead": 244,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2821,7 +2822,7 @@
     "language": {
       "author": "AdrianAbdulBaha",
       "file": "language.mp3",
-      "gain": 5.9,
+      "gain": 4.6,
       "lead": 104,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2833,7 +2834,7 @@
     "laptop": {
       "author": "Marreromarco",
       "file": "laptop.mp3",
-      "gain": 5.6,
+      "gain": 4.3,
       "lead": 194,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2845,7 +2846,7 @@
     "law": {
       "author": "GlyphEnjoyer",
       "file": "law.mp3",
-      "gain": 8.2,
+      "gain": 6.9,
       "lead": 148,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2857,7 +2858,7 @@
     "leave": {
       "author": "GlyphEnjoyer",
       "file": "leave.mp3",
-      "gain": 3.7,
+      "gain": 2.8,
       "lead": 68,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2869,7 +2870,7 @@
     "leg": {
       "author": "Sinaloa",
       "file": "leg.mp3",
-      "gain": 3.8,
+      "gain": 2.5,
       "lead": 193,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2881,7 +2882,7 @@
     "less": {
       "author": "Rodrigo5260",
       "file": "less.mp3",
-      "gain": 6.6,
+      "gain": 5.3,
       "lead": 164,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2893,7 +2894,7 @@
     "lesson": {
       "author": "AdrianAbdulBaha",
       "file": "lesson.mp3",
-      "gain": 5.0,
+      "gain": 4.2,
       "lead": 255,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2905,7 +2906,7 @@
     "letter": {
       "author": "AdrianAbdulBaha",
       "file": "letter.mp3",
-      "gain": 4.3,
+      "gain": 3.9,
       "lead": 216,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2917,7 +2918,7 @@
     "library": {
       "author": "AdrianAbdulBaha",
       "file": "library.mp3",
-      "gain": 3.6,
+      "gain": 2.3,
       "lead": 184,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2929,7 +2930,7 @@
     "light": {
       "author": "Rodrigo5260",
       "file": "light.mp3",
-      "gain": 8.7,
+      "gain": 7.4,
       "lead": 164,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2941,7 +2942,7 @@
     "lightweight": {
       "author": "Marreromarco",
       "file": "lightweight.mp3",
-      "gain": 3.6,
+      "gain": 2.3,
       "lead": 248,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2953,7 +2954,7 @@
     "like": {
       "author": "AdrianAbdulBaha",
       "file": "like.mp3",
-      "gain": 6.0,
+      "gain": 5.7,
       "lead": 128,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2965,7 +2966,7 @@
     "lip": {
       "author": "AdrianAbdulBaha",
       "file": "lip.mp3",
-      "gain": 4.1,
+      "gain": 2.8,
       "lead": 255,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -2977,7 +2978,7 @@
     "list": {
       "author": "GlyphEnjoyer",
       "file": "list.mp3",
-      "gain": 8.6,
+      "gain": 7.3,
       "lead": 185,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -2989,7 +2990,7 @@
     "live": {
       "author": "Rodelar",
       "file": "live.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 127,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3025,7 +3026,7 @@
     "luggage": {
       "author": "Marreromarco",
       "file": "luggage.mp3",
-      "gain": 6.1,
+      "gain": 4.8,
       "lead": 201,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3037,7 +3038,7 @@
     "mailbox": {
       "author": "Marreromarco",
       "file": "mailbox.mp3",
-      "gain": 3.2,
+      "gain": 1.9,
       "lead": 263,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3049,7 +3050,7 @@
     "make": {
       "author": "Precision27",
       "file": "make.mp3",
-      "gain": 1.4,
+      "gain": 0.1,
       "lead": 120,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -3073,7 +3074,7 @@
     "market": {
       "author": "Precision27",
       "file": "market.mp3",
-      "gain": 2.9,
+      "gain": 1.6,
       "lead": 196,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -3085,7 +3086,7 @@
     "mattress": {
       "author": "AdrianAbdulBaha",
       "file": "mattress.mp3",
-      "gain": 14.1,
+      "gain": 12.8,
       "lead": 195,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3097,7 +3098,7 @@
     "maybe": {
       "author": "Marreromarco",
       "file": "maybe.mp3",
-      "gain": 1.9,
+      "gain": 0.6,
       "lead": 39,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3109,7 +3110,7 @@
     "meaning": {
       "author": "AdrianAbdulBaha",
       "file": "meaning.mp3",
-      "gain": 4.6,
+      "gain": 3.3,
       "lead": 129,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3121,7 +3122,7 @@
     "meat": {
       "author": "Sinaloa",
       "file": "meat.mp3",
-      "gain": 8.5,
+      "gain": 7.2,
       "lead": 171,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -3133,7 +3134,7 @@
     "medicine": {
       "author": "AdrianAbdulBaha",
       "file": "medicine.mp3",
-      "gain": 5.4,
+      "gain": 4.1,
       "lead": 218,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3145,7 +3146,7 @@
     "milk": {
       "author": "Julie Samothrace",
       "file": "milk.mp3",
-      "gain": 3.3,
+      "gain": 2.0,
       "lead": 240,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3157,7 +3158,7 @@
     "minute": {
       "author": "AdrianAbdulBaha",
       "file": "minute.mp3",
-      "gain": 7.8,
+      "gain": 6.5,
       "lead": 156,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3169,7 +3170,7 @@
     "mirror": {
       "author": "AdrianAbdulBaha",
       "file": "mirror.mp3",
-      "gain": 5.0,
+      "gain": 3.7,
       "lead": 246,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3181,7 +3182,7 @@
     "money": {
       "author": "Rodrigo5260",
       "file": "money.mp3",
-      "gain": 4.4,
+      "gain": 3.1,
       "lead": 104,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -3193,7 +3194,7 @@
     "month": {
       "author": "GlyphEnjoyer",
       "file": "month.mp3",
-      "gain": 6.2,
+      "gain": 4.9,
       "lead": 161,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -3205,7 +3206,7 @@
     "moon": {
       "author": "Rodelar",
       "file": "moon.mp3",
-      "gain": -0.3,
+      "gain": -1.6,
       "lead": 237,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3216,7 +3217,7 @@
     "more": {
       "author": "Precision27",
       "file": "more.mp3",
-      "gain": -0.8,
+      "gain": -2.1,
       "lead": 195,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -3228,7 +3229,7 @@
     "mosque": {
       "author": "AdrianAbdulBaha",
       "file": "mosque.mp3",
-      "gain": 6.3,
+      "gain": 5.0,
       "lead": 240,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3240,7 +3241,7 @@
     "mother": {
       "author": "Rodelar",
       "file": "mother.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 239,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3252,7 +3253,7 @@
     "motorbike": {
       "author": "Marreromarco",
       "file": "motorbike.mp3",
-      "gain": 2.8,
+      "gain": 1.5,
       "lead": 255,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3264,7 +3265,7 @@
     "mountain": {
       "author": "Rodelar",
       "file": "mountain.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 224,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3275,7 +3276,7 @@
     "mouse": {
       "author": "Eavqwiki",
       "file": "mouse.mp3",
-      "gain": 12.5,
+      "gain": 11.2,
       "lead": 212,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3287,7 +3288,7 @@
     "mouth": {
       "author": "Sinaloa",
       "file": "mouth.mp3",
-      "gain": 9.8,
+      "gain": 8.5,
       "lead": 155,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -3299,7 +3300,7 @@
     "movie": {
       "author": "Eavqwiki",
       "file": "movie.mp3",
-      "gain": 1.8,
+      "gain": 0.5,
       "lead": 173,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3311,7 +3312,7 @@
     "much": {
       "author": "Precision27",
       "file": "much.mp3",
-      "gain": 3.0,
+      "gain": 1.7,
       "lead": 172,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -3323,7 +3324,7 @@
     "music": {
       "author": "GlyphEnjoyer",
       "file": "music.mp3",
-      "gain": 6.1,
+      "gain": 4.8,
       "lead": 192,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -3335,7 +3336,7 @@
     "name": {
       "author": "Rodelar",
       "file": "name.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 226,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3346,7 +3347,7 @@
     "neck": {
       "author": "Rodelar",
       "file": "neck.mp3",
-      "gain": 0.8,
+      "gain": -0.5,
       "lead": 235,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3357,7 +3358,7 @@
     "need": {
       "author": "AdrianAbdulBaha",
       "file": "need.mp3",
-      "gain": 4.6,
+      "gain": 3.3,
       "lead": 206,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3369,7 +3370,7 @@
     "neighbor": {
       "author": "AdrianAbdulBaha",
       "file": "neighbor.mp3",
-      "gain": 7.0,
+      "gain": 5.7,
       "lead": 195,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3381,7 +3382,7 @@
     "neighborhood": {
       "author": "AdrianAbdulBaha",
       "file": "neighborhood.mp3",
-      "gain": 3.5,
+      "gain": 2.2,
       "lead": 117,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3393,7 +3394,7 @@
     "never": {
       "author": "Precision27",
       "file": "never.mp3",
-      "gain": 1.9,
+      "gain": 0.6,
       "lead": 198,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -3404,7 +3405,7 @@
     "new": {
       "author": "Sinaloa",
       "file": "new.mp3",
-      "gain": 8.6,
+      "gain": 7.3,
       "lead": 116,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -3416,7 +3417,7 @@
     "newspaper": {
       "author": "AdrianAbdulBaha",
       "file": "newspaper.mp3",
-      "gain": 4.4,
+      "gain": 3.1,
       "lead": 223,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3428,7 +3429,7 @@
     "night": {
       "author": "GlyphEnjoyer",
       "file": "night.mp3",
-      "gain": 8.9,
+      "gain": 7.6,
       "lead": 164,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -3440,7 +3441,7 @@
     "no": {
       "author": "Sinaloa",
       "file": "no.mp3",
-      "gain": 9.1,
+      "gain": 7.8,
       "lead": 136,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -3452,7 +3453,7 @@
     "nose": {
       "author": "Rodelar",
       "file": "nose.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 190,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3463,7 +3464,7 @@
     "notebook": {
       "author": "Eavqwiki",
       "file": "notebook.mp3",
-      "gain": 10.6,
+      "gain": 9.3,
       "lead": 216,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3475,7 +3476,7 @@
     "notification": {
       "author": "Marreromarco",
       "file": "notification.mp3",
-      "gain": 2.2,
+      "gain": 0.9,
       "lead": 168,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3487,7 +3488,7 @@
     "now": {
       "author": "AdrianAbdulBaha",
       "file": "now.mp3",
-      "gain": 3.8,
+      "gain": 2.5,
       "lead": 270,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3499,7 +3500,7 @@
     "nurse": {
       "author": "Marreromarco",
       "file": "nurse.mp3",
-      "gain": 3.0,
+      "gain": 1.7,
       "lead": 134,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3511,7 +3512,7 @@
     "nurse-f": {
       "author": "Marreromarco",
       "file": "nurse-f.mp3",
-      "gain": 1.2,
+      "gain": -0.1,
       "lead": 276,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3523,7 +3524,7 @@
     "oil": {
       "author": "Millars",
       "file": "oil.mp3",
-      "gain": 6.8,
+      "gain": 5.5,
       "lead": 206,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3534,7 +3535,7 @@
     "old": {
       "author": "Rodelar",
       "file": "old.mp3",
-      "gain": 0.5,
+      "gain": -0.8,
       "lead": 233,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3546,7 +3547,7 @@
     "or": {
       "author": "Rodrigo5260",
       "file": "or.mp3",
-      "gain": 0.3,
+      "gain": -1.0,
       "lead": 203,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -3558,7 +3559,7 @@
     "outdoors": {
       "author": "GlyphEnjoyer",
       "file": "outdoors.mp3",
-      "gain": 7.3,
+      "gain": 6.0,
       "lead": 101,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -3570,7 +3571,7 @@
     "oven": {
       "author": "AdrianAbdulBaha",
       "file": "oven.mp3",
-      "gain": 7.7,
+      "gain": 6.4,
       "lead": 271,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3594,7 +3595,7 @@
     "pain": {
       "author": "AdrianAbdulBaha",
       "file": "pain.mp3",
-      "gain": 6.0,
+      "gain": 4.7,
       "lead": 172,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3606,7 +3607,7 @@
     "pajamas": {
       "author": "Eavqwiki",
       "file": "pajamas.mp3",
-      "gain": 13.1,
+      "gain": 11.8,
       "lead": 239,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3618,7 +3619,7 @@
     "pan": {
       "author": "AdrianAbdulBaha",
       "file": "pan.mp3",
-      "gain": 4.5,
+      "gain": 3.2,
       "lead": 189,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3630,7 +3631,7 @@
     "pants": {
       "author": "AdrianAbdulBaha",
       "file": "pants.mp3",
-      "gain": 5.6,
+      "gain": 4.6,
       "lead": 214,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3642,7 +3643,7 @@
     "paper": {
       "author": "GlyphEnjoyer",
       "file": "paper.mp3",
-      "gain": 9.1,
+      "gain": 8.5,
       "lead": 189,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -3654,7 +3655,7 @@
     "parents": {
       "author": "Marreromarco",
       "file": "parents.mp3",
-      "gain": 2.6,
+      "gain": 1.3,
       "lead": 258,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3666,7 +3667,7 @@
     "park": {
       "author": "AdrianAbdulBaha",
       "file": "park.mp3",
-      "gain": 4.2,
+      "gain": 2.9,
       "lead": 221,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3678,7 +3679,7 @@
     "passenger": {
       "author": "AdrianAbdulBaha",
       "file": "passenger.mp3",
-      "gain": 4.1,
+      "gain": 2.8,
       "lead": 224,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3690,7 +3691,7 @@
     "passport": {
       "author": "AdrianAbdulBaha",
       "file": "passport.mp3",
-      "gain": 6.7,
+      "gain": 5.4,
       "lead": 256,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3702,7 +3703,7 @@
     "password": {
       "author": "AdrianAbdulBaha",
       "file": "password.mp3",
-      "gain": 7.8,
+      "gain": 6.5,
       "lead": 193,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3714,7 +3715,7 @@
     "pen": {
       "author": "AdrianAbdulBaha",
       "file": "pen.mp3",
-      "gain": 4.6,
+      "gain": 3.3,
       "lead": 172,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3726,7 +3727,7 @@
     "person": {
       "author": "GlyphEnjoyer",
       "file": "person.mp3",
-      "gain": 9.0,
+      "gain": 7.7,
       "lead": 192,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -3738,7 +3739,7 @@
     "pharmacy": {
       "author": "AdrianAbdulBaha",
       "file": "pharmacy.mp3",
-      "gain": 5.4,
+      "gain": 4.1,
       "lead": 199,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3750,7 +3751,7 @@
     "phone": {
       "author": "Marreromarco",
       "file": "phone.mp3",
-      "gain": 1.1,
+      "gain": -0.2,
       "lead": 240,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3762,7 +3763,7 @@
     "picture": {
       "author": "AdrianAbdulBaha",
       "file": "picture.mp3",
-      "gain": 4.1,
+      "gain": 2.8,
       "lead": 233,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3774,7 +3775,7 @@
     "pill": {
       "author": "Emanuelps27",
       "file": "pill.mp3",
-      "gain": 1.0,
+      "gain": -0.3,
       "lead": 188,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -3786,7 +3787,7 @@
     "pillow": {
       "author": "AdrianAbdulBaha",
       "file": "pillow.mp3",
-      "gain": 5.2,
+      "gain": 3.9,
       "lead": 211,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3810,7 +3811,7 @@
     "plane": {
       "author": "AdrianAbdulBaha",
       "file": "plane.mp3",
-      "gain": 4.9,
+      "gain": 4.7,
       "lead": 232,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3822,7 +3823,7 @@
     "plant": {
       "author": "AdrianAbdulBaha",
       "file": "plant.mp3",
-      "gain": 5.0,
+      "gain": 4.0,
       "lead": 235,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3846,7 +3847,7 @@
     "play": {
       "author": "Rodelar",
       "file": "play.mp3",
-      "gain": -0.6,
+      "gain": -1.9,
       "lead": 244,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3858,7 +3859,6 @@
     "police": {
       "author": "Precision27",
       "file": "police.mp3",
-      "gain": 1.3,
       "lead": 197,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -3870,7 +3870,7 @@
     "postpone": {
       "author": "Marreromarco",
       "file": "postpone.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 247,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3882,7 +3882,7 @@
     "pot": {
       "author": "AdrianAbdulBaha",
       "file": "pot.mp3",
-      "gain": 4.1,
+      "gain": 2.8,
       "lead": 188,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3894,7 +3894,7 @@
     "potato": {
       "author": "Millars",
       "file": "potato.mp3",
-      "gain": 7.6,
+      "gain": 6.3,
       "lead": 251,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3905,7 +3905,7 @@
     "practice": {
       "author": "Marreromarco",
       "file": "practice.mp3",
-      "gain": 3.1,
+      "gain": 1.8,
       "lead": 159,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3917,7 +3917,7 @@
     "prescription": {
       "author": "AdrianAbdulBaha",
       "file": "prescription.mp3",
-      "gain": 1.1,
+      "gain": -0.2,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "receta",
@@ -3928,7 +3928,7 @@
     "print": {
       "author": "Marreromarco",
       "file": "print.mp3",
-      "gain": 2.7,
+      "gain": 1.4,
       "lead": 271,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3940,7 +3940,7 @@
     "printer": {
       "author": "AdrianAbdulBaha",
       "file": "printer.mp3",
-      "gain": 7.6,
+      "gain": 6.3,
       "lead": 273,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3952,7 +3952,7 @@
     "profession": {
       "author": "Marreromarco",
       "file": "profession.mp3",
-      "gain": -0.2,
+      "gain": -1.5,
       "lead": 262,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3964,7 +3964,7 @@
     "punctual": {
       "author": "Emanuelps27",
       "file": "punctual.mp3",
-      "gain": 9.4,
+      "gain": 8.1,
       "lead": 167,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -3976,7 +3976,7 @@
     "pupil": {
       "author": "AdrianAbdulBaha",
       "file": "pupil.mp3",
-      "gain": 4.4,
+      "gain": 3.5,
       "lead": 215,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -3988,7 +3988,7 @@
     "pupil-f": {
       "author": "Marreromarco",
       "file": "pupil-f.mp3",
-      "gain": -3.6,
+      "gain": -4.9,
       "lead": 212,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4000,7 +4000,7 @@
     "purple": {
       "author": "AdrianAbdulBaha",
       "file": "purple.mp3",
-      "gain": 2.2,
+      "gain": 0.9,
       "lead": 155,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4012,7 +4012,7 @@
     "question": {
       "author": "AdrianAbdulBaha",
       "file": "question.mp3",
-      "gain": 4.6,
+      "gain": 3.3,
       "lead": 206,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4024,7 +4024,7 @@
     "quiet": {
       "author": "Precision27",
       "file": "quiet.mp3",
-      "gain": 2.0,
+      "gain": 0.7,
       "lead": 101,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -4036,7 +4036,7 @@
     "rain": {
       "author": "Sinaloa",
       "file": "rain.mp3",
-      "gain": 1.6,
+      "gain": 0.3,
       "lead": 175,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -4048,7 +4048,7 @@
     "read": {
       "author": "AdrianAbdulBaha",
       "file": "read.mp3",
-      "gain": 3.1,
+      "gain": 1.8,
       "lead": 228,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4060,7 +4060,7 @@
     "ready": {
       "author": "Marreromarco",
       "file": "ready.mp3",
-      "gain": 3.2,
+      "gain": 1.9,
       "lead": 209,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4072,7 +4072,7 @@
     "receipt": {
       "author": "Marreromarco",
       "file": "receipt.mp3",
-      "gain": 1.0,
+      "gain": -0.3,
       "lead": 174,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4084,7 +4084,7 @@
     "red": {
       "author": "Sinaloa",
       "file": "red.mp3",
-      "gain": 12.3,
+      "gain": 11.0,
       "lead": 125,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -4096,7 +4096,7 @@
     "reheat": {
       "author": "AdrianAbdulBaha",
       "file": "reheat.mp3",
-      "gain": 4.4,
+      "gain": 3.1,
       "lead": 259,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4108,7 +4108,7 @@
     "reject": {
       "author": "Marreromarco",
       "file": "reject.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 224,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4120,7 +4120,7 @@
     "remote": {
       "author": "Marreromarco",
       "file": "remote.mp3",
-      "gain": 1.6,
+      "gain": 0.3,
       "lead": 212,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4132,7 +4132,7 @@
     "reply": {
       "author": "AdrianAbdulBaha",
       "file": "reply.mp3",
-      "gain": 8.7,
+      "gain": 7.4,
       "lead": 232,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4144,7 +4144,7 @@
     "rest": {
       "author": "Marreromarco",
       "file": "rest.mp3",
-      "gain": 3.9,
+      "gain": 2.6,
       "lead": 194,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4156,7 +4156,7 @@
     "restaurant": {
       "author": "AdrianAbdulBaha",
       "file": "restaurant.mp3",
-      "gain": 5.4,
+      "gain": 4.1,
       "lead": 169,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4168,7 +4168,7 @@
     "rice": {
       "author": "AdrianAbdulBaha",
       "file": "rice.mp3",
-      "gain": 3.9,
+      "gain": 2.6,
       "lead": 240,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4180,7 +4180,7 @@
     "ring": {
       "author": "Marreromarco",
       "file": "ring.mp3",
-      "gain": 1.9,
+      "gain": 0.6,
       "lead": 176,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4192,7 +4192,7 @@
     "river": {
       "author": "Sinaloa",
       "file": "river.mp3",
-      "gain": 9.1,
+      "gain": 7.8,
       "lead": 146,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -4204,7 +4204,7 @@
     "room": {
       "author": "AdrianAbdulBaha",
       "file": "room.mp3",
-      "gain": 6.6,
+      "gain": 5.4,
       "lead": 239,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4216,7 +4216,7 @@
     "salary": {
       "author": "Marreromarco",
       "file": "salary.mp3",
-      "gain": 2.1,
+      "gain": 0.8,
       "lead": 195,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4228,7 +4228,7 @@
     "salt": {
       "author": "Rodelar",
       "file": "salt.mp3",
-      "gain": 0.9,
+      "gain": -0.4,
       "lead": 220,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4240,7 +4240,7 @@
     "sauce": {
       "author": "AdrianAbdulBaha",
       "file": "sauce.mp3",
-      "gain": 3.9,
+      "gain": 3.3,
       "lead": 237,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4252,7 +4252,7 @@
     "save": {
       "author": "AdrianAbdulBaha",
       "file": "save.mp3",
-      "gain": 5.2,
+      "gain": 3.9,
       "lead": 201,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4264,7 +4264,7 @@
     "say": {
       "author": "Rodelar",
       "file": "say.mp3",
-      "gain": 2.7,
+      "gain": 1.4,
       "lead": 249,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4275,7 +4275,7 @@
     "say-goodbye": {
       "author": "Marreromarco",
       "file": "say-goodbye.mp3",
-      "gain": 0.2,
+      "gain": -1.1,
       "lead": 194,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4287,7 +4287,7 @@
     "school": {
       "author": "GlyphEnjoyer",
       "file": "school.mp3",
-      "gain": 9.3,
+      "gain": 8.0,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "matches": "escuela",
@@ -4298,7 +4298,7 @@
     "screen": {
       "author": "AdrianAbdulBaha",
       "file": "screen.mp3",
-      "gain": 3.2,
+      "gain": 1.9,
       "lead": 211,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4322,7 +4322,7 @@
     "see": {
       "author": "Precision27",
       "file": "see.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 109,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -4333,7 +4333,7 @@
     "sentence": {
       "author": "AdrianAbdulBaha",
       "file": "sentence.mp3",
-      "gain": 4.1,
+      "gain": 3.7,
       "lead": 208,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4345,7 +4345,7 @@
     "shampoo": {
       "author": "Marreromarco",
       "file": "shampoo.mp3",
-      "gain": 2.7,
+      "gain": 1.4,
       "lead": 213,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4357,7 +4357,7 @@
     "sharp": {
       "author": "Rodelar",
       "file": "sharp.mp3",
-      "gain": 0.4,
+      "gain": -0.9,
       "lead": 277,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4369,7 +4369,7 @@
     "shave": {
       "author": "Emanuelps27",
       "file": "shave.mp3",
-      "gain": 6.7,
+      "gain": 5.4,
       "lead": 184,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -4381,7 +4381,7 @@
     "shelf": {
       "author": "Marreromarco",
       "file": "shelf.mp3",
-      "gain": 1.9,
+      "gain": 0.6,
       "lead": 238,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4393,7 +4393,7 @@
     "shift": {
       "author": "Marreromarco",
       "file": "shift.mp3",
-      "gain": 1.0,
+      "gain": -0.3,
       "lead": 271,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4405,7 +4405,7 @@
     "ship": {
       "author": "AdrianAbdulBaha",
       "file": "ship.mp3",
-      "gain": 4.8,
+      "gain": 4.1,
       "lead": 135,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4417,7 +4417,7 @@
     "shirt": {
       "author": "AdrianAbdulBaha",
       "file": "shirt.mp3",
-      "gain": 7.2,
+      "gain": 5.9,
       "lead": 219,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4441,7 +4441,7 @@
     "shoe-rack": {
       "author": "AdrianAbdulBaha",
       "file": "shoe-rack.mp3",
-      "gain": 7.3,
+      "gain": 7.0,
       "lead": 160,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4453,7 +4453,7 @@
     "short": {
       "author": "Sinaloa",
       "file": "short.mp3",
-      "gain": 8.9,
+      "gain": 7.6,
       "lead": 187,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -4465,7 +4465,7 @@
     "shoulder": {
       "author": "AdrianAbdulBaha",
       "file": "shoulder.mp3",
-      "gain": 7.8,
+      "gain": 6.5,
       "lead": 268,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4477,7 +4477,7 @@
     "shower": {
       "author": "AdrianAbdulBaha",
       "file": "shower.mp3",
-      "gain": 5.9,
+      "gain": 4.6,
       "lead": 178,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4489,7 +4489,7 @@
     "sick": {
       "author": "AdrianAbdulBaha",
       "file": "sick.mp3",
-      "gain": 3.6,
+      "gain": 2.3,
       "lead": 278,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4501,7 +4501,7 @@
     "sign": {
       "author": "AdrianAbdulBaha",
       "file": "sign.mp3",
-      "gain": 6.1,
+      "gain": 4.8,
       "lead": 137,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4513,7 +4513,7 @@
     "signature": {
       "author": "AdrianAbdulBaha",
       "file": "signature.mp3",
-      "gain": 2.2,
+      "gain": 0.9,
       "lead": 118,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4525,7 +4525,7 @@
     "sink": {
       "author": "Marreromarco",
       "file": "sink.mp3",
-      "gain": 1.0,
+      "gain": -0.3,
       "lead": 197,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4537,7 +4537,7 @@
     "sister": {
       "author": "AdrianAbdulBaha",
       "file": "sister.mp3",
-      "gain": 9.5,
+      "gain": 8.2,
       "lead": 208,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4549,7 +4549,7 @@
     "sit": {
       "author": "Sinaloa",
       "file": "sit.mp3",
-      "gain": 8.6,
+      "gain": 7.3,
       "lead": 124,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -4561,7 +4561,7 @@
     "skin": {
       "author": "Sinaloa",
       "file": "skin.mp3",
-      "gain": 7.2,
+      "gain": 5.9,
       "lead": 186,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -4573,7 +4573,7 @@
     "sky": {
       "author": "Rodelar",
       "file": "sky.mp3",
-      "gain": -0.7,
+      "gain": -2.0,
       "lead": 196,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4585,7 +4585,7 @@
     "sleep": {
       "author": "Rodelar",
       "file": "sleep.mp3",
-      "gain": 1.4,
+      "gain": 0.1,
       "lead": 222,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4596,7 +4596,7 @@
     "slow": {
       "author": "AdrianAbdulBaha",
       "file": "slow.mp3",
-      "gain": 8.2,
+      "gain": 6.9,
       "lead": 218,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4608,7 +4608,7 @@
     "small": {
       "author": "Sinaloa",
       "file": "small.mp3",
-      "gain": 5.8,
+      "gain": 4.5,
       "lead": 193,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -4620,7 +4620,7 @@
     "snore": {
       "author": "Marreromarco",
       "file": "snore.mp3",
-      "gain": -1.2,
+      "gain": -2.5,
       "lead": 154,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4632,6 +4632,7 @@
     "snow": {
       "author": "Rodelar",
       "file": "snow.mp3",
+      "gain": -1.3,
       "lead": 227,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4643,7 +4644,7 @@
     "soap": {
       "author": "AdrianAbdulBaha",
       "file": "soap.mp3",
-      "gain": 4.6,
+      "gain": 4.2,
       "lead": 191,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4655,7 +4656,7 @@
     "sock": {
       "author": "Eavqwiki",
       "file": "sock.mp3",
-      "gain": 11.2,
+      "gain": 9.9,
       "lead": 178,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4667,7 +4668,7 @@
     "socket": {
       "author": "Marreromarco",
       "file": "socket.mp3",
-      "gain": 3.7,
+      "gain": 2.4,
       "lead": 176,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4679,7 +4680,7 @@
     "sofa": {
       "author": "AdrianAbdulBaha",
       "file": "sofa.mp3",
-      "gain": 4.1,
+      "gain": 2.8,
       "lead": 133,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4703,7 +4704,7 @@
     "son": {
       "author": "AdrianAbdulBaha",
       "file": "son.mp3",
-      "gain": 9.1,
+      "gain": 7.8,
       "lead": 269,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4715,7 +4716,7 @@
     "soon": {
       "author": "Marreromarco",
       "file": "soon.mp3",
-      "gain": 2.0,
+      "gain": 0.7,
       "lead": 209,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4727,7 +4728,7 @@
     "soup": {
       "author": "AdrianAbdulBaha",
       "file": "soup.mp3",
-      "gain": 1.5,
+      "gain": 0.2,
       "lead": 176,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4751,7 +4752,7 @@
     "sponge": {
       "author": "Marreromarco",
       "file": "sponge.mp3",
-      "gain": 2.2,
+      "gain": 0.9,
       "lead": 75,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4763,7 +4764,7 @@
     "spoon": {
       "author": "AdrianAbdulBaha",
       "file": "spoon.mp3",
-      "gain": 5.7,
+      "gain": 4.4,
       "lead": 172,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4775,7 +4776,7 @@
     "stairs": {
       "author": "AdrianAbdulBaha",
       "file": "stairs.mp3",
-      "gain": 4.3,
+      "gain": 3.0,
       "lead": 270,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4787,7 +4788,7 @@
     "star": {
       "author": "Rodelar",
       "file": "star.mp3",
-      "gain": 0.3,
+      "gain": -1.0,
       "lead": 224,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4798,7 +4799,7 @@
     "start": {
       "author": "AdrianAbdulBaha",
       "file": "start.mp3",
-      "gain": 5.0,
+      "gain": 3.8,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "empezar",
@@ -4809,7 +4810,7 @@
     "still": {
       "author": "GlyphEnjoyer",
       "file": "still.mp3",
-      "gain": 7.9,
+      "gain": 6.6,
       "lead": 179,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -4821,6 +4822,7 @@
     "stomach": {
       "author": "Rodelar",
       "file": "stomach.mp3",
+      "gain": -1.3,
       "lead": 267,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4831,7 +4833,7 @@
     "stone": {
       "author": "Sinaloa",
       "file": "stone.mp3",
-      "gain": 4.2,
+      "gain": 2.9,
       "lead": 182,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -4843,7 +4845,7 @@
     "store": {
       "author": "AdrianAbdulBaha",
       "file": "store.mp3",
-      "gain": 4.8,
+      "gain": 3.5,
       "lead": 213,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4855,7 +4857,7 @@
     "stove": {
       "author": "AdrianAbdulBaha",
       "file": "stove.mp3",
-      "gain": 7.2,
+      "gain": 5.9,
       "lead": 208,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4867,7 +4869,7 @@
     "street": {
       "author": "AdrianAbdulBaha",
       "file": "street.mp3",
-      "gain": 4.3,
+      "gain": 3.0,
       "lead": 252,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4879,7 +4881,7 @@
     "study": {
       "author": "AdrianAbdulBaha",
       "file": "study.mp3",
-      "gain": 5.7,
+      "gain": 4.4,
       "lead": 240,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4891,7 +4893,7 @@
     "submit": {
       "author": "Marreromarco",
       "file": "submit.mp3",
-      "gain": 0.9,
+      "gain": -0.4,
       "lead": 251,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4903,7 +4905,7 @@
     "sugar": {
       "author": "Julie Samothrace",
       "file": "sugar.mp3",
-      "gain": 5.7,
+      "gain": 4.4,
       "lead": 198,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4915,7 +4917,7 @@
     "sun": {
       "author": "Rodelar",
       "file": "sun.mp3",
-      "gain": -1.0,
+      "gain": -2.3,
       "lead": 145,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4927,7 +4929,7 @@
     "sweater": {
       "author": "Marreromarco",
       "file": "sweater.mp3",
-      "gain": 0.5,
+      "gain": -0.8,
       "lead": 264,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4939,7 +4941,7 @@
     "t-shirt": {
       "author": "AdrianAbdulBaha",
       "file": "t-shirt.mp3",
-      "gain": 14.6,
+      "gain": 14.2,
       "lead": 257,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4951,7 +4953,7 @@
     "take": {
       "author": "AdrianAbdulBaha",
       "file": "take.mp3",
-      "gain": 3.5,
+      "gain": 2.2,
       "lead": 181,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4975,7 +4977,7 @@
     "talk": {
       "author": "AdrianAbdulBaha",
       "file": "talk.mp3",
-      "gain": 5.1,
+      "gain": 3.8,
       "lead": 260,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4987,7 +4989,7 @@
     "taste": {
       "author": "Marreromarco",
       "file": "taste.mp3",
-      "gain": 1.4,
+      "gain": 0.1,
       "lead": 189,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -4999,7 +5001,7 @@
     "tax": {
       "author": "Marreromarco",
       "file": "tax.mp3",
-      "gain": 2.4,
+      "gain": 1.1,
       "lead": 231,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5011,7 +5013,7 @@
     "taxi": {
       "author": "AdrianAbdulBaha",
       "file": "taxi.mp3",
-      "gain": 4.1,
+      "gain": 3.6,
       "lead": 227,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5023,7 +5025,7 @@
     "tea": {
       "author": "Eavqwiki",
       "file": "tea.mp3",
-      "gain": 9.1,
+      "gain": 7.8,
       "lead": 258,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5035,7 +5037,7 @@
     "teacher": {
       "author": "AdrianAbdulBaha",
       "file": "teacher.mp3",
-      "gain": 5.9,
+      "gain": 4.6,
       "lead": 190,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5047,7 +5049,7 @@
     "teacher-f": {
       "author": "Marreromarco",
       "file": "teacher-f.mp3",
-      "gain": 2.4,
+      "gain": 1.1,
       "lead": 270,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5059,7 +5061,7 @@
     "thank": {
       "author": "AdrianAbdulBaha",
       "file": "thank.mp3",
-      "gain": 6.6,
+      "gain": 5.3,
       "lead": 270,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5071,7 +5073,7 @@
     "that": {
       "author": "Precision27",
       "file": "that.mp3",
-      "gain": 3.3,
+      "gain": 2.0,
       "lead": 197,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -5083,7 +5085,7 @@
     "there": {
       "author": "Rodelar",
       "file": "there.mp3",
-      "gain": -3.0,
+      "gain": -4.3,
       "lead": 233,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5094,7 +5096,7 @@
     "think": {
       "author": "Rodelar",
       "file": "think.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 228,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5106,7 +5108,7 @@
     "thirst": {
       "author": "AdrianAbdulBaha",
       "file": "thirst.mp3",
-      "gain": 3.3,
+      "gain": 2.0,
       "lead": 172,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5118,7 +5120,7 @@
     "this": {
       "author": "Rodrigo5260",
       "file": "this.mp3",
-      "gain": 8.7,
+      "gain": 7.4,
       "lead": 212,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -5130,7 +5132,6 @@
     "throat": {
       "author": "AdrianAbdulBaha",
       "file": "throat.mp3",
-      "gain": 1.3,
       "lead": 184,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5142,7 +5143,7 @@
     "ticket": {
       "author": "AdrianAbdulBaha",
       "file": "ticket.mp3",
-      "gain": 5.7,
+      "gain": 4.4,
       "lead": 168,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5154,7 +5155,7 @@
     "tidy-up": {
       "author": "AdrianAbdulBaha",
       "file": "tidy-up.mp3",
-      "gain": 4.3,
+      "gain": 3.0,
       "lead": 211,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5166,7 +5167,7 @@
     "time": {
       "author": "Precision27",
       "file": "time.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 196,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -5178,7 +5179,7 @@
     "tin-can": {
       "author": "Marreromarco",
       "file": "tin-can.mp3",
-      "gain": 1.1,
+      "gain": -0.2,
       "lead": 207,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5190,7 +5191,7 @@
     "tired": {
       "author": "AdrianAbdulBaha",
       "file": "tired.mp3",
-      "gain": 0.4,
+      "gain": -0.9,
       "lead": 220,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5202,7 +5203,7 @@
     "to-cough": {
       "author": "Marreromarco",
       "file": "to-cough.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 204,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5214,6 +5215,7 @@
     "to-count": {
       "author": "Rodelar",
       "file": "to-count.mp3",
+      "gain": -1.3,
       "lead": 212,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5225,7 +5227,7 @@
     "to-help": {
       "author": "GlyphEnjoyer",
       "file": "to-help.mp3",
-      "gain": 7.0,
+      "gain": 5.7,
       "lead": 171,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -5237,7 +5239,7 @@
     "to-practice": {
       "author": "Marreromarco",
       "file": "to-practice.mp3",
-      "gain": 3.2,
+      "gain": 1.9,
       "lead": 259,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5249,7 +5251,7 @@
     "to-pronounce": {
       "author": "Marreromarco",
       "file": "to-pronounce.mp3",
-      "gain": 0.1,
+      "gain": -1.2,
       "lead": 228,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5273,7 +5275,7 @@
     "to-work": {
       "author": "AdrianAbdulBaha",
       "file": "to-work.mp3",
-      "gain": 4.5,
+      "gain": 3.2,
       "lead": 250,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5285,7 +5287,7 @@
     "today": {
       "author": "Precision27",
       "file": "today.mp3",
-      "gain": -1.0,
+      "gain": -2.3,
       "lead": 196,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -5296,7 +5298,7 @@
     "toilet": {
       "author": "Marreromarco",
       "file": "toilet.mp3",
-      "gain": 0.3,
+      "gain": -1.0,
       "lead": 252,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5308,7 +5310,7 @@
     "tomato": {
       "author": "Millars",
       "file": "tomato.mp3",
-      "gain": 5.2,
+      "gain": 3.9,
       "lead": 250,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5319,7 +5321,7 @@
     "tomorrow": {
       "author": "GlyphEnjoyer",
       "file": "tomorrow.mp3",
-      "gain": 5.8,
+      "gain": 5.5,
       "lead": 183,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -5331,7 +5333,7 @@
     "tooth": {
       "author": "Sinaloa",
       "file": "tooth.mp3",
-      "gain": 10.2,
+      "gain": 8.9,
       "lead": 129,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -5343,7 +5345,7 @@
     "towel": {
       "author": "AdrianAbdulBaha",
       "file": "towel.mp3",
-      "gain": 2.5,
+      "gain": 1.2,
       "lead": 256,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5355,7 +5357,7 @@
     "traffic-light": {
       "author": "Marreromarco",
       "file": "traffic-light.mp3",
-      "gain": 2.7,
+      "gain": 1.4,
       "lead": 240,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5367,7 +5369,7 @@
     "train": {
       "author": "AdrianAbdulBaha",
       "file": "train.mp3",
-      "gain": 4.2,
+      "gain": 2.9,
       "lead": 246,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5379,7 +5381,7 @@
     "translate": {
       "author": "AdrianAbdulBaha",
       "file": "translate.mp3",
-      "gain": 4.9,
+      "gain": 3.6,
       "lead": 269,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5391,7 +5393,7 @@
     "travel": {
       "author": "AdrianAbdulBaha",
       "file": "travel.mp3",
-      "gain": 2.7,
+      "gain": 1.4,
       "lead": 133,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5403,7 +5405,7 @@
     "tree": {
       "author": "Rodelar",
       "file": "tree.mp3",
-      "gain": 1.2,
+      "gain": -0.1,
       "lead": 223,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5414,7 +5416,7 @@
     "truck": {
       "author": "AdrianAbdulBaha",
       "file": "truck.mp3",
-      "gain": 8.0,
+      "gain": 6.7,
       "lead": 143,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5426,7 +5428,7 @@
     "tv": {
       "author": "AdrianAbdulBaha",
       "file": "tv.mp3",
-      "gain": 5.4,
+      "gain": 4.1,
       "lead": 222,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5438,7 +5440,7 @@
     "umbrella": {
       "author": "Eavqwiki",
       "file": "umbrella.mp3",
-      "gain": 8.5,
+      "gain": 7.2,
       "lead": 253,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5450,7 +5452,7 @@
     "uncle": {
       "author": "AdrianAbdulBaha",
       "file": "uncle.mp3",
-      "gain": 4.1,
+      "gain": 2.8,
       "lead": 190,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5462,7 +5464,7 @@
     "understand": {
       "author": "AdrianAbdulBaha",
       "file": "understand.mp3",
-      "gain": 2.1,
+      "gain": 0.8,
       "lead": 248,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5474,7 +5476,7 @@
     "university": {
       "author": "AdrianAbdulBaha",
       "file": "university.mp3",
-      "gain": 4.7,
+      "gain": 3.4,
       "lead": 244,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5486,7 +5488,7 @@
     "until": {
       "author": "Precision27",
       "file": "until.mp3",
-      "gain": 2.1,
+      "gain": 0.8,
       "lead": 162,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -5498,7 +5500,7 @@
     "urgent": {
       "author": "Marreromarco",
       "file": "urgent.mp3",
-      "gain": 4.7,
+      "gain": 3.4,
       "lead": 246,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5510,7 +5512,7 @@
     "vacation": {
       "author": "Marreromarco",
       "file": "vacation.mp3",
-      "gain": 2.2,
+      "gain": 0.9,
       "lead": 265,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5522,7 +5524,7 @@
     "vaccination": {
       "author": "Marreromarco",
       "file": "vaccination.mp3",
-      "gain": 2.9,
+      "gain": 1.6,
       "lead": 276,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5534,7 +5536,7 @@
     "vegetable": {
       "author": "AdrianAbdulBaha",
       "file": "vegetable.mp3",
-      "gain": 6.3,
+      "gain": 5.0,
       "lead": 156,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5558,7 +5560,7 @@
     "wake-up": {
       "author": "Marreromarco",
       "file": "wake-up.mp3",
-      "gain": 4.8,
+      "gain": 3.5,
       "lead": 67,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5570,7 +5572,7 @@
     "wall": {
       "author": "AdrianAbdulBaha",
       "file": "wall.mp3",
-      "gain": 5.3,
+      "gain": 4.0,
       "lead": 225,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5582,7 +5584,7 @@
     "wallet": {
       "author": "Marreromarco",
       "file": "wallet.mp3",
-      "gain": 4.1,
+      "gain": 2.8,
       "lead": 224,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5594,7 +5596,7 @@
     "wardrobe": {
       "author": "AdrianAbdulBaha",
       "file": "wardrobe.mp3",
-      "gain": 3.4,
+      "gain": 2.1,
       "lead": 233,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5606,7 +5608,7 @@
     "washing-machine": {
       "author": "AdrianAbdulBaha",
       "file": "washing-machine.mp3",
-      "gain": 6.3,
+      "gain": 5.0,
       "lead": 216,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5618,7 +5620,7 @@
     "water": {
       "author": "Precision27",
       "file": "water.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 198,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -5629,7 +5631,7 @@
     "way": {
       "author": "Rodelar",
       "file": "way.mp3",
-      "gain": 1.0,
+      "gain": -0.3,
       "lead": 222,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5640,7 +5642,7 @@
     "weak": {
       "author": "AdrianAbdulBaha",
       "file": "weak.mp3",
-      "gain": 4.3,
+      "gain": 3.0,
       "lead": 121,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5652,7 +5654,7 @@
     "weather": {
       "author": "Precision27",
       "file": "weather.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 196,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -5664,7 +5666,7 @@
     "week": {
       "author": "Precision27",
       "file": "week.mp3",
-      "gain": 2.3,
+      "gain": 1.0,
       "lead": 66,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -5676,7 +5678,7 @@
     "welcome": {
       "author": "AdrianAbdulBaha",
       "file": "welcome.mp3",
-      "gain": 5.9,
+      "gain": 4.6,
       "lead": 153,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5688,7 +5690,7 @@
     "what": {
       "author": "Precision27",
       "file": "what.mp3",
-      "gain": 0.7,
+      "gain": -0.6,
       "lead": 197,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -5699,7 +5701,7 @@
     "when": {
       "author": "Rodelar",
       "file": "when.mp3",
-      "gain": -0.9,
+      "gain": -2.2,
       "lead": 226,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5711,7 +5713,7 @@
     "where": {
       "author": "Rodelar",
       "file": "where.mp3",
-      "gain": -2.0,
+      "gain": -3.3,
       "lead": 199,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5723,7 +5725,7 @@
     "which": {
       "author": "Marreromarco",
       "file": "which.mp3",
-      "gain": 3.4,
+      "gain": 2.1,
       "lead": 184,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5735,7 +5737,7 @@
     "white": {
       "author": "Sinaloa",
       "file": "white.mp3",
-      "gain": 9.6,
+      "gain": 8.3,
       "lead": 161,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -5747,7 +5749,7 @@
     "who": {
       "author": "GlyphEnjoyer",
       "file": "who.mp3",
-      "gain": 9.6,
+      "gain": 8.3,
       "lead": 130,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -5759,7 +5761,7 @@
     "wife": {
       "author": "Rodelar",
       "file": "wife.mp3",
-      "gain": -0.4,
+      "gain": -1.7,
       "lead": 266,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5771,7 +5773,7 @@
     "wind": {
       "author": "Rodelar",
       "file": "wind.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 213,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5783,7 +5785,7 @@
     "window": {
       "author": "AdrianAbdulBaha",
       "file": "window.mp3",
-      "gain": 5.1,
+      "gain": 3.8,
       "lead": 203,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5795,7 +5797,7 @@
     "without": {
       "author": "Precision27",
       "file": "without.mp3",
-      "gain": 0.3,
+      "gain": -1.0,
       "lead": 42,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -5807,7 +5809,7 @@
     "woman": {
       "author": "Sinaloa",
       "file": "woman.mp3",
-      "gain": 11.7,
+      "gain": 10.4,
       "lead": 146,
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -5819,7 +5821,7 @@
     "word": {
       "author": "AdrianAbdulBaha",
       "file": "word.mp3",
-      "gain": 4.8,
+      "gain": 3.5,
       "lead": 216,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5831,7 +5833,7 @@
     "work": {
       "author": "Precision27",
       "file": "work.mp3",
-      "gain": 1.7,
+      "gain": 0.4,
       "lead": 190,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -5843,7 +5845,7 @@
     "worker": {
       "author": "AdrianAbdulBaha",
       "file": "worker.mp3",
-      "gain": 6.9,
+      "gain": 5.6,
       "lead": 226,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5855,7 +5857,7 @@
     "wound": {
       "author": "AdrianAbdulBaha",
       "file": "wound.mp3",
-      "gain": 5.4,
+      "gain": 4.1,
       "lead": 261,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5867,7 +5869,7 @@
     "write": {
       "author": "AdrianAbdulBaha",
       "file": "write.mp3",
-      "gain": 6.4,
+      "gain": 5.1,
       "lead": 243,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5879,7 +5881,7 @@
     "yawn": {
       "author": "AdrianAbdulBaha",
       "file": "yawn.mp3",
-      "gain": 4.6,
+      "gain": 3.8,
       "lead": 232,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5891,7 +5893,7 @@
     "year": {
       "author": "Precision27",
       "file": "year.mp3",
-      "gain": 2.2,
+      "gain": 0.9,
       "lead": 195,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -5902,7 +5904,7 @@
     "yellow": {
       "author": "Rodelar",
       "file": "yellow.mp3",
-      "gain": 0.6,
+      "gain": -0.7,
       "lead": 273,
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5913,7 +5915,7 @@
     "yes": {
       "author": "Precision27",
       "file": "yes.mp3",
-      "gain": 0.3,
+      "gain": -1.0,
       "lead": 20,
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",

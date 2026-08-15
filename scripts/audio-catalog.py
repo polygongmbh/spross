@@ -43,11 +43,14 @@ FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 # applied by the player. Measurement data carries no license of its own, the credits'
 # "unmodified" claim stays true, and `sha256` keeps meaning exactly what it says.
 #
-# Measured over all 1126 shipped files: the word packs sit at a median -16.7 LUFS
-# (de -16.4, es -21.2, sw -11.4, uk -16.8) and the uk letters at -31.4 — a 14.7 dB deficit.
+# The TARGET is the shipped word packs' own median loudness, so it moves when the
+# population does: -16.7 LUFS over the first 1126 files, re-derived to -18.0 on
+# 2026-08-15 when it/fr/eo landed — 1466 further words, mostly Lingua Libre booth
+# recordings a few dB quieter (medians de -17.3, es -21.3, sw -11.7, uk -16.5,
+# it -21.3, fr -16.8, eo -22.6; uk letters -31.4, a 13.4 dB deficit).
 # The rule was ≤ 6 dB → attenuate everything down to the quietest class; past that the
 # whole app would whisper, so the scheme is BOOST against the word-pack median: letters
-# take up to +20 dB, the loud sw pack takes about -5, and the players need a boost path.
+# take up to +20 dB, the loud sw pack takes about -6, and the players need a boost path.
 # (Letters also open with a median 1077 ms of dead air, against 173 ms for words.)
 #
 # A boost is also a CLIPPING risk, so the loudness number never decides a gain alone: the
@@ -76,11 +79,12 @@ FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 # eventually re-indexed to has to be chosen with all four in view.
 ANALYSIS = {
     'scheme': 'boost',
-    'target_lufs': -16.7,
+    'target_lufs': -18.0,
     'speaker_lufs': -17.5,
     'lensed': ['sw'],
-    'deficit_db': 14.7,
-    'ffmpeg': 'ffmpeg version 8.1.2',
+    'deficit_db': 13.4,
+    # 9.0.1 reproduces 8.1.2's decimals exactly: a --reindex under it re-gained nothing.
+    'ffmpeg': 'ffmpeg version 9.0.1',
 }
 
 # A recording's first 50 ms of near-silence is its attack, not dead air — starting past it
@@ -100,6 +104,7 @@ LICENSE_URLS = {
     'CC BY-SA 4.0': 'https://creativecommons.org/licenses/by-sa/4.0/',
     'CC BY-SA 3.0': 'https://creativecommons.org/licenses/by-sa/3.0/',
     'CC BY-SA 2.5': 'https://creativecommons.org/licenses/by-sa/2.5/',
+    'CC BY-SA 2.0': 'https://creativecommons.org/licenses/by-sa/2.0/',
     'CC BY 4.0': 'https://creativecommons.org/licenses/by/4.0/',
     'CC BY 3.0 us': 'https://creativecommons.org/licenses/by/3.0/us/',
     'CC BY 3.0': 'https://creativecommons.org/licenses/by/3.0/',
