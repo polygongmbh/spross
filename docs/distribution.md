@@ -117,10 +117,12 @@ Add `https://github.com/polygongmbh/spross` as a GitHub app in
 off each release and offers the update. The repo being public is what makes this
 work without a token. Direct download from the release page installs the same file.
 
-The box's own footer carries that door: it fires `obtainium://add/<repo url>`, which
-lands on Obtainium's prefilled Add-App screen, and offers the choice between Obtainium
-and a direct download when nothing answers the scheme. The app checks for nothing
-itself — it declares no `INTERNET` permission and hands every URL to another app.
+The version at the foot of the box is that door — the build a learner is running is what
+an update is about, so it carries the link rather than a button beside it. It fires
+`obtainium://add/<repo url>`, which lands on Obtainium's prefilled Add-App screen, and
+offers the choice between Obtainium and a direct download when nothing answers the
+scheme. The app checks for nothing itself — it declares no `INTERNET` permission and
+hands every URL to another app.
 
 Obtainium reads the tag as the version and reconciles it against the APK's
 `versionName`, which is why the workflow derives one from the other. A tag whose shape

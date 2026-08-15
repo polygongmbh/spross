@@ -70,6 +70,26 @@ object SprossIcons {
         moveTo(14f, 11f); lineTo(18f, 15f); lineTo(14f, 19f)
     }
 
+    /** Write to the address the app answers on. The iOS cut spends `envelope` here. */
+    val Envelope = stroked("Envelope") {
+        moveTo(3.5f, 6f); lineTo(20.5f, 6f); lineTo(20.5f, 18f); lineTo(3.5f, 18f); close()
+        moveTo(3.5f, 6.5f); lineTo(12f, 13f); lineTo(20.5f, 6.5f)
+    }
+
+    /**
+     * What this build is made of — the voices, their licenses, the Impressum.
+     * `info.circle` on the other phone. The tittle is a capped hair of a stroke, which the
+     * round cap renders as the dot; a filled one would need a second path.
+     */
+    val Info = stroked("Info") {
+        moveTo(12f, 3.5f)
+        arcToRelative(8.5f, 8.5f, 0f, true, false, 0f, 17f)
+        arcToRelative(8.5f, 8.5f, 0f, true, false, 0f, -17f)
+        close()
+        moveTo(12f, 11f); lineTo(12f, 16.5f)
+        moveTo(12f, 7.6f); lineTo(12f, 7.7f)
+    }
+
     /** Hear it. The cone is filled and the waves are stroked, as one glyph. */
     val Speaker = ImageVector.Builder(
         name = "Speaker",
