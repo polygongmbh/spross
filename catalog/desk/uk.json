@@ -2,140 +2,44 @@
  "title": "Робоче місце",
  "subtitle": "Час зосередитися.",
  "words": {
-  "desk": {
-   "text": "письмовий стіл",
-   "grammar": {
-    "plural": "письмові столи"
-   }
-  },
-  "laptop": {
-   "text": "ноутбук"
-  },
-  "keyboard": {
-   "text": "клавіатура"
-  },
-  "screen": {
-   "text": "монітор"
-  },
-  "mouse": {
-   "text": "миша",
-   "variants": [
-    "мишка"
-   ]
-  },
-  "cable": {
-   "text": "кабель"
-  },
-  "headphones": {
-   "text": "навушники",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "pen": {
-   "text": "ручка"
-  },
-  "notebook": {
-   "text": "блокнот"
-  },
-  "printer": {
-   "text": "принтер"
-  },
-  "socket": {
-   "text": "розетка"
-  },
-  "office-chair": {
-   "text": "офісне крісло",
-   "grammar": {
-    "plural": "офісні крісла"
-   }
-  },
-  "to-work": {
-   "text": "працювати"
-  },
-  "type": {
-   "text": "друкувати"
-  },
-  "print": {
-   "text": "роздруковувати"
-  },
-  "save": {
-   "text": "зберігати"
-  },
-  "take-break": {
-   "text": "робити перерву"
-  },
-  "write": {
-   "text": "писати"
-  },
-  "call": {
-   "text": "телефонувати"
-  },
-  "delete": {
-   "text": "видаляти"
-  },
-  "study": {
-   "text": "вчитися"
-  },
-  "phone": {
-   "text": "телефон"
-  },
-  "email": {
-   "text": "імейл",
-   "synonyms": [
-    "електронна пошта"
-   ]
-  },
-  "paper": {
-   "text": "папір",
-   "grammar": {
-    "plural": "папери"
-   }
-  },
-  "folder": {
-   "text": "папка"
-  },
-  "password": {
-   "text": "пароль"
-  },
-  "internet": {
-   "text": "інтернет"
-  },
-  "charger": {
-   "text": "зарядка"
-  },
-  "calendar": {
-   "text": "календар"
-  },
-  "important": {
-   "text": "важливий"
-  },
-  "ready": {
-   "text": "готовий"
-  },
-  "im-in-a-meeting": {
-   "text": "Я на зустрічі."
-  },
-  "dont-disturb-me": {
-   "text": "Не заважай мені!"
-  },
-  "the-laptop-wont-charge-anymore": {
-   "text": "Ноутбук більше не заряджається."
-  },
-  "the-internet-is-gone": {
-   "text": "Інтернет зник."
-  },
-  "coffee-break": {
-   "text": "Перерва на каву?"
-  },
-  "i-have-a-lot-to-do": {
-   "text": "У мене багато справ."
-  },
-  "end-of-workday": {
-   "text": "На сьогодні все!"
-  },
-  "send-me-the-email": {
-   "text": "Надішли мені імейл."
-  }
+  "desk": { "text": "письмовий стіл", "grammar": { "plural": "письмові столи" } },
+  "laptop": { "text": "ноутбук" },
+  "keyboard": { "text": "клавіатура" },
+  "screen": { "text": "монітор" },
+  "mouse": { "text": "миша", "variants": ["мишка"] },
+  "cable": { "text": "кабель" },
+  "headphones": { "text": "навушники", "grammar": { "plural": "only" } },
+  "pen": { "text": "ручка" },
+  "notebook": { "text": "блокнот" },
+  "printer": { "text": "принтер" },
+  "socket": { "text": "розетка" },
+  "office-chair": { "text": "офісне крісло", "grammar": { "plural": "офісні крісла" } },
+  "to-work": { "text": "працювати" },
+  "type": { "text": "друкувати" },
+  "print": { "text": "роздруковувати" },
+  "save": { "text": "зберігати" },
+  "take-break": { "text": "робити перерву" },
+  "write": { "text": "писати" },
+  "call": { "text": "телефонувати" },
+  "delete": { "text": "видаляти" },
+  "study": { "text": "вчитися" },
+  "phone": { "text": "телефон" },
+  "email": { "text": "імейл", "synonyms": ["електронна пошта"] },
+  "paper": { "text": "папір", "grammar": { "plural": "папери" } },
+  "folder": { "text": "папка" },
+  "password": { "text": "пароль" },
+  "internet": { "text": "інтернет" },
+  "charger": { "text": "зарядка" },
+  "calendar": { "text": "календар" },
+  "important": { "text": "важливий" },
+  "ready": { "text": "готовий" },
+  "im-in-a-meeting": { "text": "Я на зустрічі." },
+  "dont-disturb-me": { "text": "Не заважай мені!" },
+  "the-laptop-wont-charge-anymore": { "text": "Ноутбук більше не заряджається." },
+  "the-internet-is-gone": { "text": "Інтернет зник." },
+  "coffee-break": { "text": "Перерва на каву?" },
+  "i-have-a-lot-to-do": { "text": "У мене багато справ." },
+  "end-of-workday": { "text": "На сьогодні все!" },
+  "send-me-the-email": { "text": "Надішли мені імейл." }
  }
 }

@@ -1,173 +1,31 @@
 [
- {
-  "slug": "hello",
-  "kind": "phrase",
-  "emoji": "👋",
-  "components": []
- },
- {
-  "slug": "good-day",
-  "kind": "phrase",
-  "emoji": "☀️",
-  "components": []
- },
- {
-  "slug": "thank-you",
-  "kind": "phrase",
-  "emoji": "🙏",
-  "components": []
- },
- {
-  "slug": "please",
-  "kind": "phrase",
-  "components": []
- },
- {
-  "slug": "yes",
-  "kind": "phrase",
-  "emoji": "✅",
-  "components": []
- },
- {
-  "slug": "no",
-  "kind": "phrase",
-  "emoji": "❌",
-  "components": []
- },
- {
-  "slug": "excuse-me",
-  "kind": "phrase",
-  "emoji": "🙇",
-  "components": []
- },
- {
-  "slug": "pardon",
-  "kind": "phrase",
-  "emoji": "👂",
-  "components": []
- },
- {
-  "slug": "how-are-you",
-  "kind": "phrase",
-  "emoji": "😊",
-  "components": []
- },
- {
-  "slug": "all-good",
-  "kind": "phrase",
-  "emoji": "👌",
-  "components": []
- },
- {
-  "slug": "goodbye",
-  "kind": "phrase",
-  "emoji": "👋",
-  "components": []
- },
- {
-  "slug": "bye",
-  "kind": "phrase",
-  "emoji": "👋",
-  "components": []
- },
- {
-  "slug": "name",
-  "kind": "noun",
-  "emoji": "🏷️"
- },
- {
-  "slug": "help",
-  "kind": "noun",
-  "emoji": "🤲"
- },
- {
-  "slug": "be-called",
-  "kind": "verb",
-  "emoji": "📛"
- },
- {
-  "slug": "say",
-  "kind": "verb",
-  "emoji": "🗨️"
- },
- {
-  "slug": "know",
-  "kind": "verb",
-  "emoji": "🧠"
- },
- {
-  "slug": "need",
-  "kind": "verb"
- },
- {
-  "slug": "thank",
-  "kind": "verb",
-  "emoji": "🙏"
- },
- {
-  "slug": "together",
-  "kind": "adjective",
-  "emoji": "👫"
- },
- {
-  "slug": "whats-your-name",
-  "kind": "phrase",
-  "components": [
-   "be-called"
-  ]
- },
- {
-  "slug": "my-name-is",
-  "kind": "phrase",
-  "components": [
-   "be-called"
-  ]
- },
- {
-  "slug": "i-dont-know",
-  "kind": "phrase",
-  "emoji": "🤷",
-  "components": [
-   "know"
-  ]
- },
- {
-  "slug": "i-need-help",
-  "kind": "phrase",
-  "emoji": "🆘",
-  "components": [
-   "need",
-   "help"
-  ]
- },
- {
-  "slug": "what-is-this-called",
-  "kind": "phrase",
-  "emoji": "❓",
-  "components": []
- },
- {
-  "slug": "welcome",
-  "kind": "phrase",
-  "emoji": "🤗",
-  "components": []
- },
- {
-  "slug": "may-i-come-in",
-  "kind": "phrase",
-  "emoji": "🚪",
-  "components": []
- },
- {
-  "slug": "sorry-to-hear-that",
-  "kind": "phrase",
-  "emoji": "🫂",
-  "components": []
- },
- {
-  "slug": "greetings-elder",
-  "kind": "phrase",
-  "emoji": "🧓",
-  "components": []
- }
+ { "slug": "hello", "kind": "phrase", "emoji": "👋", "components": [] },
+ { "slug": "good-day", "kind": "phrase", "emoji": "☀️", "components": [] },
+ { "slug": "thank-you", "kind": "phrase", "emoji": "🙏", "components": [] },
+ { "slug": "please", "kind": "phrase", "components": [] },
+ { "slug": "yes", "kind": "phrase", "emoji": "✅", "components": [] },
+ { "slug": "no", "kind": "phrase", "emoji": "❌", "components": [] },
+ { "slug": "excuse-me", "kind": "phrase", "emoji": "🙇", "components": [] },
+ { "slug": "pardon", "kind": "phrase", "emoji": "👂", "components": [] },
+ { "slug": "how-are-you", "kind": "phrase", "emoji": "😊", "components": [] },
+ { "slug": "all-good", "kind": "phrase", "emoji": "👌", "components": [] },
+ { "slug": "goodbye", "kind": "phrase", "emoji": "👋", "components": [] },
+ { "slug": "bye", "kind": "phrase", "emoji": "👋", "components": [] },
+ { "slug": "name", "kind": "noun", "emoji": "🏷️" },
+ { "slug": "help", "kind": "noun", "emoji": "🤲" },
+ { "slug": "be-called", "kind": "verb", "emoji": "📛" },
+ { "slug": "say", "kind": "verb", "emoji": "🗨️" },
+ { "slug": "know", "kind": "verb", "emoji": "🧠" },
+ { "slug": "need", "kind": "verb" },
+ { "slug": "thank", "kind": "verb", "emoji": "🙏" },
+ { "slug": "together", "kind": "adjective", "emoji": "👫" },
+ { "slug": "whats-your-name", "kind": "phrase", "components": ["be-called"] },
+ { "slug": "my-name-is", "kind": "phrase", "components": ["be-called"] },
+ { "slug": "i-dont-know", "kind": "phrase", "emoji": "🤷", "components": ["know"] },
+ { "slug": "i-need-help", "kind": "phrase", "emoji": "🆘", "components": ["need", "help"] },
+ { "slug": "what-is-this-called", "kind": "phrase", "emoji": "❓", "components": [] },
+ { "slug": "welcome", "kind": "phrase", "emoji": "🤗", "components": [] },
+ { "slug": "may-i-come-in", "kind": "phrase", "emoji": "🚪", "components": [] },
+ { "slug": "sorry-to-hear-that", "kind": "phrase", "emoji": "🫂", "components": [] },
+ { "slug": "greetings-elder", "kind": "phrase", "emoji": "🧓", "components": [] }
 ]

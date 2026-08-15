@@ -1,137 +1,50 @@
 [
- {
-  "slug": "appointment",
-  "kind": "noun",
-  "emoji": "📅"
- },
- {
-  "slug": "date",
-  "kind": "noun",
-  "emoji": "📆"
- },
- {
-  "slug": "opening-hours",
-  "kind": "noun",
-  "emoji": "🕘"
- },
- {
-  "slug": "deadline",
-  "kind": "noun",
-  "emoji": "⏳"
- },
- {
-  "slug": "confirmation",
-  "kind": "noun",
-  "emoji": "☑️"
- },
- {
-  "slug": "plan",
-  "kind": "noun",
-  "emoji": "📋"
- },
- {
-  "slug": "waiting-time",
-  "kind": "noun",
-  "emoji": "⌛"
- },
- {
-  "slug": "arrange",
-  "kind": "verb",
-  "emoji": "🤝"
- },
- {
-  "slug": "confirm",
-  "kind": "verb",
-  "emoji": "✅"
- },
- {
-  "slug": "cancel",
-  "kind": "verb",
-  "emoji": "❌"
- },
- {
-  "slug": "postpone",
-  "kind": "verb",
-  "emoji": "⏭️"
- },
- {
-  "slug": "register",
-  "kind": "verb",
-  "emoji": "📝"
- },
- {
-  "slug": "be-late",
-  "kind": "verb",
-  "emoji": "⏰"
- },
- {
-  "slug": "punctual",
-  "kind": "adjective",
-  "emoji": "⌚"
- },
- {
-  "slug": "urgent",
-  "kind": "adjective",
-  "emoji": "🚨"
- },
- {
-  "slug": "list",
-  "kind": "noun",
-  "emoji": "🗒️"
- },
- {
-  "slug": "to-finish",
-  "kind": "verb",
-  "emoji": "🏁"
- },
+ { "slug": "appointment", "kind": "noun", "emoji": "📅" },
+ { "slug": "date", "kind": "noun", "emoji": "📆" },
+ { "slug": "opening-hours", "kind": "noun", "emoji": "🕘" },
+ { "slug": "deadline", "kind": "noun", "emoji": "⏳" },
+ { "slug": "confirmation", "kind": "noun", "emoji": "☑️" },
+ { "slug": "plan", "kind": "noun", "emoji": "📋" },
+ { "slug": "waiting-time", "kind": "noun", "emoji": "⌛" },
+ { "slug": "arrange", "kind": "verb", "emoji": "🤝" },
+ { "slug": "confirm", "kind": "verb", "emoji": "✅" },
+ { "slug": "cancel", "kind": "verb", "emoji": "❌" },
+ { "slug": "postpone", "kind": "verb", "emoji": "⏭️" },
+ { "slug": "register", "kind": "verb", "emoji": "📝" },
+ { "slug": "be-late", "kind": "verb", "emoji": "⏰" },
+ { "slug": "punctual", "kind": "adjective", "emoji": "⌚" },
+ { "slug": "urgent", "kind": "adjective", "emoji": "🚨" },
+ { "slug": "list", "kind": "noun", "emoji": "🗒️" },
+ { "slug": "to-finish", "kind": "verb", "emoji": "🏁" },
  {
   "slug": "i-would-like-to-arrange-an-appointment",
   "kind": "phrase",
   "emoji": "📅",
-  "components": [
-   "appointment"
-  ]
+  "components": ["appointment"]
  },
  {
   "slug": "i-have-to-cancel-the-appointment",
   "kind": "phrase",
   "emoji": "❌",
-  "components": [
-   "appointment",
-   "cancel"
-  ]
+  "components": ["appointment", "cancel"]
  },
- {
-  "slug": "the-deadline-is-tomorrow",
-  "kind": "phrase",
-  "emoji": "⏳",
-  "components": [
-   "deadline"
-  ]
- },
+ { "slug": "the-deadline-is-tomorrow", "kind": "phrase", "emoji": "⏳", "components": ["deadline"] },
  {
   "slug": "what-are-the-opening-hours",
   "kind": "phrase",
   "emoji": "🕐",
-  "components": [
-   "opening-hours"
-  ]
+  "components": ["opening-hours"]
  },
  {
   "slug": "can-we-postpone-the-appointment",
   "kind": "phrase",
   "emoji": "⏭️",
-  "components": [
-   "appointment",
-   "postpone"
-  ]
+  "components": ["appointment", "postpone"]
  },
  {
   "slug": "i-have-an-appointment-at-ten",
   "kind": "phrase",
   "emoji": "🕙",
-  "components": [
-   "appointment"
-  ]
+  "components": ["appointment"]
  }
 ]

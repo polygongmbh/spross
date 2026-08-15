@@ -2,195 +2,42 @@
  "title": "Das Wohnzimmer",
  "subtitle": "Zeit zum Ausruhen.",
  "words": {
-  "sofa": {
-   "text": "Sofa",
-   "grammar": {
-    "gender": "das",
-    "plural": "-s"
-   }
-  },
-  "dining-table": {
-   "text": "Esstisch",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "chair": {
-   "text": "Stuhl",
-   "grammar": {
-    "gender": "der",
-    "plural": "Stühle"
-   }
-  },
-  "tv": {
-   "text": "Fernseher",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "remote": {
-   "text": "Fernbedienung",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "shelf": {
-   "text": "Regal",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
-  },
-  "plant": {
-   "text": "Pflanze",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "window": {
-   "text": "Fenster",
-   "grammar": {
-    "gender": "das",
-    "plural": "="
-   }
-  },
-  "curtain": {
-   "text": "Vorhang",
-   "grammar": {
-    "gender": "der",
-    "plural": "Vorhänge"
-   }
-  },
-  "carpet": {
-   "text": "Teppich",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "lamp": {
-   "text": "Lampe",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "picture": {
-   "text": "Bild",
-   "grammar": {
-    "gender": "das",
-    "plural": "-er"
-   }
-  },
-  "watch-tv": {
-   "text": "fernsehen"
-  },
-  "read": {
-   "text": "lesen"
-  },
-  "relax": {
-   "text": "sich entspannen"
-  },
-  "tidy-up": {
-   "text": "aufräumen"
-  },
-  "listen-to-music": {
-   "text": "Musik hören"
-  },
-  "water-plants": {
-   "text": "die Pflanzen gießen"
-  },
-  "play": {
-   "text": "spielen"
-  },
-  "talk": {
-   "text": "reden"
-  },
-  "room": {
-   "text": "Zimmer",
-   "grammar": {
-    "gender": "das",
-    "plural": "="
-   }
-  },
-  "newspaper": {
-   "text": "Zeitung",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "light": {
-   "text": "Licht",
-   "grammar": {
-    "gender": "das",
-    "plural": "-er"
-   }
-  },
-  "music": {
-   "text": "Musik",
-   "grammar": {
-    "gender": "die"
-   }
-  },
-  "wall": {
-   "text": "Wand",
-   "grammar": {
-    "gender": "die",
-    "plural": "Wände"
-   }
-  },
-  "movie": {
-   "text": "Film",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "sit": {
-   "text": "sitzen"
-  },
-  "laugh": {
-   "text": "lachen"
-  },
-  "quiet": {
-   "text": "leise"
-  },
-  "furniture": {
-   "text": "Möbel",
-   "grammar": {
-    "gender": "die",
-    "plural": "only"
-   }
-  },
-  "game": {
-   "text": "Spiel",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
-  },
-  "turn-on-the-tv": {
-   "text": "Mach den Fernseher an."
-  },
-  "come-sit-with-me": {
-   "text": "Komm, setz dich zu mir!"
-  },
-  "shall-we-watch-a-movie": {
-   "text": "Wollen wir einen Film schauen?"
-  },
-  "lets-hang-the-picture": {
-   "text": "Lass uns das Bild aufhängen!"
-  },
-  "the-curtains-hang-over-the-window": {
-   "text": "Die Vorhänge hängen vor dem Fenster."
-  },
-  "open-the-window-fresh-air": {
-   "text": "Mach das Fenster auf."
-  }
+  "sofa": { "text": "Sofa", "grammar": { "gender": "das", "plural": "-s" } },
+  "dining-table": { "text": "Esstisch", "grammar": { "gender": "der", "plural": "-e" } },
+  "chair": { "text": "Stuhl", "grammar": { "gender": "der", "plural": "Stühle" } },
+  "tv": { "text": "Fernseher", "grammar": { "gender": "der", "plural": "=" } },
+  "remote": { "text": "Fernbedienung", "grammar": { "gender": "die", "plural": "-en" } },
+  "shelf": { "text": "Regal", "grammar": { "gender": "das", "plural": "-e" } },
+  "plant": { "text": "Pflanze", "grammar": { "gender": "die", "plural": "-n" } },
+  "window": { "text": "Fenster", "grammar": { "gender": "das", "plural": "=" } },
+  "curtain": { "text": "Vorhang", "grammar": { "gender": "der", "plural": "Vorhänge" } },
+  "carpet": { "text": "Teppich", "grammar": { "gender": "der", "plural": "-e" } },
+  "lamp": { "text": "Lampe", "grammar": { "gender": "die", "plural": "-n" } },
+  "picture": { "text": "Bild", "grammar": { "gender": "das", "plural": "-er" } },
+  "watch-tv": { "text": "fernsehen" },
+  "read": { "text": "lesen" },
+  "relax": { "text": "sich entspannen" },
+  "tidy-up": { "text": "aufräumen" },
+  "listen-to-music": { "text": "Musik hören" },
+  "water-plants": { "text": "die Pflanzen gießen" },
+  "play": { "text": "spielen" },
+  "talk": { "text": "reden" },
+  "room": { "text": "Zimmer", "grammar": { "gender": "das", "plural": "=" } },
+  "newspaper": { "text": "Zeitung", "grammar": { "gender": "die", "plural": "-en" } },
+  "light": { "text": "Licht", "grammar": { "gender": "das", "plural": "-er" } },
+  "music": { "text": "Musik", "grammar": { "gender": "die" } },
+  "wall": { "text": "Wand", "grammar": { "gender": "die", "plural": "Wände" } },
+  "movie": { "text": "Film", "grammar": { "gender": "der", "plural": "-e" } },
+  "sit": { "text": "sitzen" },
+  "laugh": { "text": "lachen" },
+  "quiet": { "text": "leise" },
+  "furniture": { "text": "Möbel", "grammar": { "gender": "die", "plural": "only" } },
+  "game": { "text": "Spiel", "grammar": { "gender": "das", "plural": "-e" } },
+  "turn-on-the-tv": { "text": "Mach den Fernseher an." },
+  "come-sit-with-me": { "text": "Komm, setz dich zu mir!" },
+  "shall-we-watch-a-movie": { "text": "Wollen wir einen Film schauen?" },
+  "lets-hang-the-picture": { "text": "Lass uns das Bild aufhängen!" },
+  "the-curtains-hang-over-the-window": { "text": "Die Vorhänge hängen vor dem Fenster." },
+  "open-the-window-fresh-air": { "text": "Mach das Fenster auf." }
  }
 }

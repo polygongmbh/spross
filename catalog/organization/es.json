@@ -2,158 +2,50 @@
  "title": "Citas y plazos",
  "subtitle": "Para que nada se te escape.",
  "words": {
-  "appointment": {
-   "text": "cita",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "date": {
-   "text": "fecha",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "appointment": { "text": "cita", "grammar": { "gender": "la" } },
+  "date": { "text": "fecha", "grammar": { "gender": "la" } },
   "opening-hours": {
    "text": "horario de apertura",
-   "variants": [
-    "horario",
-    "horario comercial"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
+   "variants": ["horario", "horario comercial"],
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "Spanisch hat keinen Plural wie „die Öffnungszeiten“: el horario de apertura steht im Singular, im Alltag oft nur el horario."
    }
   },
-  "deadline": {
-   "text": "plazo",
-   "synonyms": [
-    "fecha límite"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "confirmation": {
-   "text": "confirmación",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "plan": {
-   "text": "plan",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "waiting-time": {
-   "text": "tiempo de espera",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "arrange": {
-   "text": "concertar",
-   "synonyms": [
-    "acordar"
-   ],
-   "variants": [
-    "pedir"
-   ]
-  },
-  "confirm": {
-   "text": "confirmar"
-  },
-  "cancel": {
-   "text": "cancelar",
-   "synonyms": [
-    "anular"
-   ]
-  },
-  "postpone": {
-   "text": "aplazar",
-   "synonyms": [
-    "posponer"
-   ],
-   "variants": [
-    "retrasar"
-   ]
-  },
-  "register": {
-   "text": "inscribirse",
-   "synonyms": [
-    "apuntarse"
-   ],
-   "variants": [
-    "registrarse"
-   ]
-  },
-  "be-late": {
-   "text": "llegar tarde",
-   "synonyms": [
-    "retrasarse"
-   ]
-  },
-  "punctual": {
-   "text": "puntual"
-  },
-  "urgent": {
-   "text": "urgente"
-  },
-  "list": {
-   "text": "lista",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "to-finish": {
-   "text": "terminar",
-   "synonyms": [
-    "acabar"
-   ]
-  },
+  "deadline": { "text": "plazo", "synonyms": ["fecha límite"], "grammar": { "gender": "el" } },
+  "confirmation": { "text": "confirmación", "grammar": { "gender": "la" } },
+  "plan": { "text": "plan", "grammar": { "gender": "el" } },
+  "waiting-time": { "text": "tiempo de espera", "grammar": { "gender": "el" } },
+  "arrange": { "text": "concertar", "synonyms": ["acordar"], "variants": ["pedir"] },
+  "confirm": { "text": "confirmar" },
+  "cancel": { "text": "cancelar", "synonyms": ["anular"] },
+  "postpone": { "text": "aplazar", "synonyms": ["posponer"], "variants": ["retrasar"] },
+  "register": { "text": "inscribirse", "synonyms": ["apuntarse"], "variants": ["registrarse"] },
+  "be-late": { "text": "llegar tarde", "synonyms": ["retrasarse"] },
+  "punctual": { "text": "puntual" },
+  "urgent": { "text": "urgente" },
+  "list": { "text": "lista", "grammar": { "gender": "la" } },
+  "to-finish": { "text": "terminar", "synonyms": ["acabar"] },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Quiero concertar una cita.",
-   "variants": [
-    "Quisiera concertar una cita.",
-    "Quiero pedir cita."
-   ]
+   "variants": ["Quisiera concertar una cita.", "Quiero pedir cita."]
   },
-  "i-have-to-cancel-the-appointment": {
-   "text": "Tengo que cancelar la cita.",
-   "variants": [
-    "Tengo que anular la cita."
-   ]
-  },
+  "i-have-to-cancel-the-appointment": { "text": "Tengo que cancelar la cita.", "variants": ["Tengo que anular la cita."] },
   "the-deadline-is-tomorrow": {
    "text": "El plazo termina mañana.",
-   "variants": [
-    "El plazo acaba mañana.",
-    "La fecha límite es mañana."
-   ]
+   "variants": ["El plazo acaba mañana.", "La fecha límite es mañana."]
   },
   "what-are-the-opening-hours": {
    "text": "¿Cuál es el horario de apertura?",
-   "variants": [
-    "¿Cuál es el horario?",
-    "¿Qué horario tienen?"
-   ]
+   "variants": ["¿Cuál es el horario?", "¿Qué horario tienen?"]
   },
   "can-we-postpone-the-appointment": {
    "text": "¿Podemos aplazar la cita?",
-   "variants": [
-    "¿Podemos posponer la cita?",
-    "¿Podemos cambiar la cita?"
-   ]
+   "variants": ["¿Podemos posponer la cita?", "¿Podemos cambiar la cita?"]
   },
   "i-have-an-appointment-at-ten": {
    "text": "Tengo cita a las diez.",
-   "variants": [
-    "Tengo una cita a las diez.",
-    "Tengo cita a las diez en punto."
-   ]
+   "variants": ["Tengo una cita a las diez.", "Tengo cita a las diez en punto."]
   }
  }
 }

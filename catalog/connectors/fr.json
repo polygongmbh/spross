@@ -2,106 +2,36 @@
  "title": "Les mots de liaison",
  "subtitle": "Ceux qui relient une phrase à la suivante.",
  "words": {
-  "higher": {
-   "text": "plus haut"
-  },
-  "lower": {
-   "text": "plus bas"
-  },
-  "more": {
-   "text": "plus"
-  },
-  "less": {
-   "text": "moins"
-  },
-  "always": {
-   "text": "toujours"
-  },
-  "never": {
-   "text": "jamais",
-   "notes": {
-    "de": "im Satz steht ne vor dem Verb: Je ne fume jamais."
-   }
-  },
-  "maybe": {
-   "text": "peut-être"
-  },
-  "sometimes": {
-   "text": "parfois",
-   "variants": [
-    "quelquefois"
-   ]
-  },
-  "often": {
-   "text": "souvent"
-  },
-  "but": {
-   "text": "mais"
-  },
-  "also": {
-   "text": "aussi"
-  },
-  "and": {
-   "text": "et"
-  },
-  "or": {
-   "text": "ou"
-  },
-  "if": {
-   "text": "si"
-  },
-  "because": {
-   "text": "parce que"
-  },
-  "so-that": {
-   "text": "pour que"
-  },
-  "before": {
-   "text": "avant"
-  },
-  "after": {
-   "text": "après"
-  },
-  "until": {
-   "text": "jusqu'à"
-  },
-  "without": {
-   "text": "sans"
-  },
-  "again": {
-   "text": "de nouveau",
-   "variants": [
-    "à nouveau",
-    "encore une fois",
-    "encore"
-   ]
-  },
+  "higher": { "text": "plus haut" },
+  "lower": { "text": "plus bas" },
+  "more": { "text": "plus" },
+  "less": { "text": "moins" },
+  "always": { "text": "toujours" },
+  "never": { "text": "jamais", "notes": { "de": "im Satz steht ne vor dem Verb: Je ne fume jamais." } },
+  "maybe": { "text": "peut-être" },
+  "sometimes": { "text": "parfois", "variants": ["quelquefois"] },
+  "often": { "text": "souvent" },
+  "but": { "text": "mais" },
+  "also": { "text": "aussi" },
+  "and": { "text": "et" },
+  "or": { "text": "ou" },
+  "if": { "text": "si" },
+  "because": { "text": "parce que" },
+  "so-that": { "text": "pour que" },
+  "before": { "text": "avant" },
+  "after": { "text": "après" },
+  "until": { "text": "jusqu'à" },
+  "without": { "text": "sans" },
+  "again": { "text": "de nouveau", "variants": ["à nouveau", "encore une fois", "encore"] },
   "still": {
    "text": "encore",
-   "notes": {
-    "de": "zeitliches noch: Il est encore là · dafür geht auch toujours."
-   }
+   "notes": { "de": "zeitliches noch: Il est encore là · dafür geht auch toujours." }
   },
-  "more-or-less": {
-   "text": "plus ou moins"
-  },
-  "i-am-always-there": {
-   "text": "Je suis toujours là."
-  },
-  "hang-it-higher": {
-   "text": "Accroche-le plus haut."
-  },
-  "hang-it-lower": {
-   "text": "Accroche-le plus bas."
-  },
-  "if-you-want": {
-   "text": "Si vous voulez.",
-   "variants": [
-    "Si tu veux."
-   ]
-  },
-  "tea-or-coffee": {
-   "text": "Thé ou café ?"
-  }
+  "more-or-less": { "text": "plus ou moins" },
+  "i-am-always-there": { "text": "Je suis toujours là." },
+  "hang-it-higher": { "text": "Accroche-le plus haut." },
+  "hang-it-lower": { "text": "Accroche-le plus bas." },
+  "if-you-want": { "text": "Si vous voulez.", "variants": ["Si tu veux."] },
+  "tea-or-coffee": { "text": "Thé ou café ?" }
  }
 }

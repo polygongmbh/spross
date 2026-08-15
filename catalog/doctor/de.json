@@ -2,169 +2,49 @@
  "title": "Beim Arzt",
  "subtitle": "Vom Termin bis zum Rezept.",
  "words": {
-  "doctor": {
-   "text": "Arzt",
-   "grammar": {
-    "gender": "der",
-    "plural": "Ärzte"
-   }
-  },
-  "doctor-f": {
-   "text": "Ärztin",
-   "grammar": {
-    "gender": "die",
-    "plural": "-nen"
-   }
-  },
-  "practice": {
-   "text": "Praxis",
-   "grammar": {
-    "gender": "die",
-    "plural": "Praxen"
-   }
-  },
-  "pill": {
-   "text": "Tablette",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "prescription": {
-   "text": "Rezept",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
-  },
-  "pharmacy": {
-   "text": "Apotheke",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "insurance-card": {
-   "text": "Versichertenkarte",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "health-insurance": {
-   "text": "Krankenkasse",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "hospital": {
-   "text": "Krankenhaus",
-   "grammar": {
-    "gender": "das",
-    "plural": "Krankenhäuser"
-   }
-  },
-  "emergency": {
-   "text": "Notfall",
-   "grammar": {
-    "gender": "der",
-    "plural": "Notfälle"
-   }
-  },
-  "doctors-note": {
-   "text": "Krankmeldung",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "examine": {
-   "text": "untersuchen"
-  },
-  "prescribe-medicine": {
-   "text": "Medikamente verschreiben"
-  },
-  "take-medicine": {
-   "text": "Medikamente einnehmen"
-  },
-  "call-in-sick": {
-   "text": "sich krankmelden"
-  },
+  "doctor": { "text": "Arzt", "grammar": { "gender": "der", "plural": "Ärzte" } },
+  "doctor-f": { "text": "Ärztin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "practice": { "text": "Praxis", "grammar": { "gender": "die", "plural": "Praxen" } },
+  "pill": { "text": "Tablette", "grammar": { "gender": "die", "plural": "-n" } },
+  "prescription": { "text": "Rezept", "grammar": { "gender": "das", "plural": "-e" } },
+  "pharmacy": { "text": "Apotheke", "grammar": { "gender": "die", "plural": "-n" } },
+  "insurance-card": { "text": "Versichertenkarte", "grammar": { "gender": "die", "plural": "-n" } },
+  "health-insurance": { "text": "Krankenkasse", "grammar": { "gender": "die", "plural": "-n" } },
+  "hospital": { "text": "Krankenhaus", "grammar": { "gender": "das", "plural": "Krankenhäuser" } },
+  "emergency": { "text": "Notfall", "grammar": { "gender": "der", "plural": "Notfälle" } },
+  "doctors-note": { "text": "Krankmeldung", "grammar": { "gender": "die", "plural": "-en" } },
+  "examine": { "text": "untersuchen" },
+  "prescribe-medicine": { "text": "Medikamente verschreiben" },
+  "take-medicine": { "text": "Medikamente einnehmen" },
+  "call-in-sick": { "text": "sich krankmelden" },
   "medicine": {
    "text": "Medikament",
-   "variants": [
-    "Arzneimittel"
-   ],
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
+   "variants": ["Arzneimittel"],
+   "grammar": { "gender": "das", "plural": "-e" }
   },
-  "nurse": {
-   "text": "Krankenpfleger",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
+  "nurse": { "text": "Krankenpfleger", "grammar": { "gender": "der", "plural": "=" } },
   "nurse-f": {
    "text": "Krankenpflegerin",
-   "synonyms": [
-    "Krankenschwester"
-   ],
-   "grammar": {
-    "gender": "die",
-    "plural": "-nen"
-   }
+   "synonyms": ["Krankenschwester"],
+   "grammar": { "gender": "die", "plural": "-nen" }
   },
-  "dentist": {
-   "text": "Zahnarzt",
-   "grammar": {
-    "gender": "der",
-    "plural": "Zahnärzte"
-   }
-  },
-  "vaccination": {
-   "text": "Impfung",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
+  "dentist": { "text": "Zahnarzt", "grammar": { "gender": "der", "plural": "Zahnärzte" } },
+  "vaccination": { "text": "Impfung", "grammar": { "gender": "die", "plural": "-en" } },
   "ambulance": {
    "text": "Krankenwagen",
-   "variants": [
-    "Rettungswagen"
-   ],
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
+   "variants": ["Rettungswagen"],
+   "grammar": { "gender": "der", "plural": "=" }
   },
   "take-the-pills-twice-daily": {
    "text": "Nehmen Sie die Tabletten zweimal täglich ein.",
-   "variants": [
-    "Nimm die Tabletten zweimal täglich ein."
-   ]
+   "variants": ["Nimm die Tabletten zweimal täglich ein."]
   },
   "show-me-your-insurance-card": {
    "text": "Zeigen Sie mir Ihre Versichertenkarte.",
-   "variants": [
-    "Zeig mir deine Versichertenkarte."
-   ]
+   "variants": ["Zeig mir deine Versichertenkarte."]
   },
-  "the-practice-is-closed": {
-   "text": "Die Praxis ist geschlossen."
-  },
-  "i-have-to-see-a-doctor": {
-   "text": "Ich muss zum Arzt."
-  },
-  "call-an-ambulance": {
-   "text": "Rufen Sie einen Krankenwagen!",
-   "variants": [
-    "Ruf einen Krankenwagen!"
-   ]
-  }
+  "the-practice-is-closed": { "text": "Die Praxis ist geschlossen." },
+  "i-have-to-see-a-doctor": { "text": "Ich muss zum Arzt." },
+  "call-an-ambulance": { "text": "Rufen Sie einen Krankenwagen!", "variants": ["Ruf einen Krankenwagen!"] }
  }
 }

@@ -2,166 +2,56 @@
  "title": "La naturo",
  "subtitle": "Eksteren, al la freŝa aero.",
  "words": {
-  "tree": {
-   "text": "arbo"
-  },
-  "flower": {
-   "text": "floro"
-  },
-  "sun": {
-   "text": "suno"
-  },
-  "rain": {
-   "text": "pluvo"
-  },
-  "weather": {
-   "text": "vetero"
-  },
-  "snow": {
-   "text": "neĝo"
-  },
-  "wind": {
-   "text": "vento"
-  },
-  "river": {
-   "text": "rivero"
-  },
-  "outdoors": {
-   "text": "ekstere",
-   "variants": [
-    "eksterdome"
-   ]
-  },
+  "tree": { "text": "arbo" },
+  "flower": { "text": "floro" },
+  "sun": { "text": "suno" },
+  "rain": { "text": "pluvo" },
+  "weather": { "text": "vetero" },
+  "snow": { "text": "neĝo" },
+  "wind": { "text": "vento" },
+  "river": { "text": "rivero" },
+  "outdoors": { "text": "ekstere", "variants": ["eksterdome"] },
   "left": {
    "text": "maldekstre",
-   "variants": [
-    "maldekstren"
-   ],
+   "variants": ["maldekstren"],
    "notes": {
     "de": "maldekstre sagt wo, maldekstren wohin — das -n zeigt die Richtung an: Turnu maldekstren."
    }
   },
-  "right": {
-   "text": "dekstre",
-   "variants": [
-    "dekstren"
-   ]
-  },
-  "go-for-walk": {
-   "text": "promeni",
-   "variants": [
-    "fari promenon"
-   ]
-  },
-  "sunbathe": {
-   "text": "sunbani sin",
-   "variants": [
-    "sin sunbani",
-    "sunumi sin"
-   ]
-  },
-  "plant-flowers": {
-   "text": "planti florojn"
-  },
-  "grill-meat": {
-   "text": "kradrosti viandon",
-   "variants": [
-    "rosti viandon",
-    "grili viandon"
-   ]
-  },
-  "animal": {
-   "text": "besto"
-  },
-  "dog": {
-   "text": "hundo"
-  },
-  "cat": {
-   "text": "kato"
-  },
-  "bird": {
-   "text": "birdo"
-  },
-  "sky": {
-   "text": "ĉielo"
-  },
-  "cloud": {
-   "text": "nubo"
-  },
-  "mountain": {
-   "text": "monto"
-  },
-  "sea": {
-   "text": "maro"
-  },
-  "beach": {
-   "text": "plaĝo"
-  },
-  "lake": {
-   "text": "lago"
-  },
-  "forest": {
-   "text": "arbaro"
-  },
-  "stone": {
-   "text": "ŝtono"
-  },
-  "moon": {
-   "text": "luno"
-  },
-  "star": {
-   "text": "stelo"
-  },
-  "hows-the-weather-today": {
-   "text": "Kia estas la vetero hodiaŭ?",
-   "variants": [
-    "Kia vetero estas hodiaŭ?"
-   ]
-  },
+  "right": { "text": "dekstre", "variants": ["dekstren"] },
+  "go-for-walk": { "text": "promeni", "variants": ["fari promenon"] },
+  "sunbathe": { "text": "sunbani sin", "variants": ["sin sunbani", "sunumi sin"] },
+  "plant-flowers": { "text": "planti florojn" },
+  "grill-meat": { "text": "kradrosti viandon", "variants": ["rosti viandon", "grili viandon"] },
+  "animal": { "text": "besto" },
+  "dog": { "text": "hundo" },
+  "cat": { "text": "kato" },
+  "bird": { "text": "birdo" },
+  "sky": { "text": "ĉielo" },
+  "cloud": { "text": "nubo" },
+  "mountain": { "text": "monto" },
+  "sea": { "text": "maro" },
+  "beach": { "text": "plaĝo" },
+  "lake": { "text": "lago" },
+  "forest": { "text": "arbaro" },
+  "stone": { "text": "ŝtono" },
+  "moon": { "text": "luno" },
+  "star": { "text": "stelo" },
+  "hows-the-weather-today": { "text": "Kia estas la vetero hodiaŭ?", "variants": ["Kia vetero estas hodiaŭ?"] },
   "its-raining": {
    "text": "Pluvas.",
-   "notes": {
-    "de": "Wetterverben stehen ohne Subjekt: Pluvas. Neĝas. Ventas."
-   }
+   "notes": { "de": "Wetterverben stehen ohne Subjekt: Pluvas. Neĝas. Ventas." }
   },
-  "the-sun-is-shining": {
-   "text": "La suno brilas!"
-  },
-  "shall-we-take-a-walk": {
-   "text": "Ĉu ni promenu?",
-   "variants": [
-    "Ĉu ni iru promeni?",
-    "Ĉu ni faru promenon?"
-   ]
-  },
-  "take-an-umbrella": {
-   "text": "Prenu ombrelon!",
-   "variants": [
-    "Kunprenu ombrelon!"
-   ]
-  },
-  "what-a-beautiful-day": {
-   "text": "Kia bela tago!"
-  },
-  "lets-go-to-the-beach": {
-   "text": "Ni iru al la plaĝo!"
-  },
+  "the-sun-is-shining": { "text": "La suno brilas!" },
+  "shall-we-take-a-walk": { "text": "Ĉu ni promenu?", "variants": ["Ĉu ni iru promeni?", "Ĉu ni faru promenon?"] },
+  "take-an-umbrella": { "text": "Prenu ombrelon!", "variants": ["Kunprenu ombrelon!"] },
+  "what-a-beautiful-day": { "text": "Kia bela tago!" },
+  "lets-go-to-the-beach": { "text": "Ni iru al la plaĝo!" },
   "we-are-going-to-the-mountains": {
    "text": "Ni veturas en la montaron.",
-   "variants": [
-    "Ni veturas al la montoj.",
-    "Ni iras en la montaron."
-   ]
+   "variants": ["Ni veturas al la montoj.", "Ni iras en la montaron."]
   },
-  "look-a-bird": {
-   "text": "Rigardu, birdo!",
-   "variants": [
-    "Jen birdo!",
-    "Rigardu, jen birdo!"
-   ]
-  },
-  "the-cat-is-sleeping": {
-   "text": "La kato dormas."
-  }
+  "look-a-bird": { "text": "Rigardu, birdo!", "variants": ["Jen birdo!", "Rigardu, jen birdo!"] },
+  "the-cat-is-sleeping": { "text": "La kato dormas." }
  }
 }

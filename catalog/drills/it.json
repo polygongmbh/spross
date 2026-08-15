@@ -28,18 +28,10 @@
     "en": "literally „The alarm clock says that …“ — the time brings its own copula."
    }
   },
-  "we-have-n-plates": {
-   "text": "Abbiamo {slot} piatti."
-  },
-  "i-have-n-notebooks": {
-   "text": "Ho {slot} taccuini."
-  },
-  "we-have-n-chairs": {
-   "text": "Abbiamo {slot} sedie."
-  },
-  "i-have-n-keys": {
-   "text": "Ho {slot} chiavi."
-  },
+  "we-have-n-plates": { "text": "Abbiamo {slot} piatti." },
+  "i-have-n-notebooks": { "text": "Ho {slot} taccuini." },
+  "we-have-n-chairs": { "text": "Abbiamo {slot} sedie." },
+  "i-have-n-keys": { "text": "Ho {slot} chiavi." },
   "it-costs-n-euros": {
    "text": "Costa {slot} euro.",
    "notes": {
@@ -47,23 +39,11 @@
     "en": "euro never inflects: venti euro, never „euri“."
    }
   },
-  "repeat-please": {
-   "text": "Ripeti, per favore: {slot}.",
-   "variants": [
-    "Ripeta, per favore: {slot}."
-   ]
-  },
-  "write-please": {
-   "text": "Scrivi, per favore: {slot}.",
-   "variants": [
-    "Scriva, per favore: {slot}."
-   ]
-  },
+  "repeat-please": { "text": "Ripeti, per favore: {slot}.", "variants": ["Ripeta, per favore: {slot}."] },
+  "write-please": { "text": "Scrivi, per favore: {slot}.", "variants": ["Scriva, per favore: {slot}."] },
   "learning-since-year": {
    "text": "Imparo {language-learn} dal {slot}.",
-   "variants": [
-    "Studio {language-learn} dal {slot}."
-   ],
+   "variants": ["Studio {language-learn} dal {slot}."],
    "notes": {
     "de": "Jahreszahl als Kardinalzahl gelesen: „dal millenovecentosettantotto“",
     "en": "The year is read as a plain cardinal: „dal millenovecentosettantotto“."
@@ -71,17 +51,11 @@
   },
   "repeat-the-year": {
    "text": "Ripeti, per favore, la data: {slot}.",
-   "variants": [
-    "Ripeta, per favore, la data: {slot}.",
-    "Ripeti, per favore: {slot}."
-   ]
+   "variants": ["Ripeta, per favore, la data: {slot}.", "Ripeti, per favore: {slot}."]
   },
   "write-the-year": {
    "text": "Scrivi, per favore, la data: {slot}.",
-   "variants": [
-    "Scriva, per favore, la data: {slot}.",
-    "Scrivi, per favore: {slot}."
-   ]
+   "variants": ["Scriva, per favore, la data: {slot}.", "Scrivi, per favore: {slot}."]
   },
   "i-need-n-kilo-of-flour": {
    "text": "Ho bisogno di {slot} di chilo di farina.",

@@ -2,125 +2,40 @@
  "title": "У спальні",
  "subtitle": "Час лягати.",
  "words": {
-  "bed": {
-   "text": "ліжко"
-  },
-  "mattress": {
-   "text": "матрац"
-  },
-  "pillow": {
-   "text": "подушка"
-  },
-  "blanket": {
-   "text": "ковдра"
-  },
-  "bedding": {
-   "text": "постільна білизна"
-  },
-  "wardrobe": {
-   "text": "шафа для одягу",
-   "grammar": {
-    "plural": "шафи для одягу"
-   }
-  },
-  "alarm-clock": {
-   "text": "будильник"
-  },
-  "nightstand": {
-   "text": "тумбочка"
-  },
-  "pajamas": {
-   "text": "піжама"
-  },
-  "sock": {
-   "text": "шкарпетка"
-  },
-  "pants": {
-   "text": "штани",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "t-shirt": {
-   "text": "футболка"
-  },
-  "sleep": {
-   "text": "спати"
-  },
-  "wake-up": {
-   "text": "прокидатися"
-  },
-  "dream": {
-   "text": "бачити сни"
-  },
-  "get-up": {
-   "text": "вставати"
-  },
-  "get-undressed": {
-   "text": "роздягатися"
-  },
-  "cuddle": {
-   "text": "обійматися"
-  },
-  "yawn": {
-   "text": "позіхати"
-  },
-  "snore": {
-   "text": "хропіти"
-  },
-  "clothes": {
-   "text": "одяг"
-  },
-  "shirt": {
-   "text": "сорочка"
-  },
-  "dress": {
-   "text": "сукня"
-  },
-  "sweater": {
-   "text": "светр"
-  },
-  "underwear": {
-   "text": "спідня білизна"
-  },
-  "belt": {
-   "text": "ремінь",
-   "grammar": {
-    "plural": "ремені"
-   }
-  },
-  "make-bed": {
-   "text": "застеляти ліжко"
-  },
-  "soft": {
-   "text": "м'який"
-  },
-  "good-night-sleep-well": {
-   "text": "Добраніч, спи солодко!"
-  },
-  "good-morning-my-love": {
-   "text": "Доброго ранку, моє сонечко!"
-  },
-  "im-tired": {
-   "text": "Я втомився.",
-   "variants": [
-    "Я втомилася."
-   ]
-  },
-  "did-you-set-the-alarm": {
-   "text": "Ти завів будильник?",
-   "variants": [
-    "Ти завела будильник?"
-   ]
-  },
-  "five-more-minutes": {
-   "text": "Ще п'ять хвилин…"
-  },
-  "turn-off-the-light": {
-   "text": "Вимкни світло."
-  },
-  "i-love-you": {
-   "text": "Я тебе кохаю."
-  }
+  "bed": { "text": "ліжко" },
+  "mattress": { "text": "матрац" },
+  "pillow": { "text": "подушка" },
+  "blanket": { "text": "ковдра" },
+  "bedding": { "text": "постільна білизна" },
+  "wardrobe": { "text": "шафа для одягу", "grammar": { "plural": "шафи для одягу" } },
+  "alarm-clock": { "text": "будильник" },
+  "nightstand": { "text": "тумбочка" },
+  "pajamas": { "text": "піжама" },
+  "sock": { "text": "шкарпетка" },
+  "pants": { "text": "штани", "grammar": { "plural": "only" } },
+  "t-shirt": { "text": "футболка" },
+  "sleep": { "text": "спати" },
+  "wake-up": { "text": "прокидатися" },
+  "dream": { "text": "бачити сни" },
+  "get-up": { "text": "вставати" },
+  "get-undressed": { "text": "роздягатися" },
+  "cuddle": { "text": "обійматися" },
+  "yawn": { "text": "позіхати" },
+  "snore": { "text": "хропіти" },
+  "clothes": { "text": "одяг" },
+  "shirt": { "text": "сорочка" },
+  "dress": { "text": "сукня" },
+  "sweater": { "text": "светр" },
+  "underwear": { "text": "спідня білизна" },
+  "belt": { "text": "ремінь", "grammar": { "plural": "ремені" } },
+  "make-bed": { "text": "застеляти ліжко" },
+  "soft": { "text": "м'який" },
+  "good-night-sleep-well": { "text": "Добраніч, спи солодко!" },
+  "good-morning-my-love": { "text": "Доброго ранку, моє сонечко!" },
+  "im-tired": { "text": "Я втомився.", "variants": ["Я втомилася."] },
+  "did-you-set-the-alarm": { "text": "Ти завів будильник?", "variants": ["Ти завела будильник?"] },
+  "five-more-minutes": { "text": "Ще п'ять хвилин…" },
+  "turn-off-the-light": { "text": "Вимкни світло." },
+  "i-love-you": { "text": "Я тебе кохаю." }
  }
 }

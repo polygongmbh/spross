@@ -2,59 +2,30 @@
  "title": "Vitenzi muhimu",
  "subtitle": "Unavyohitaji kila mahali.",
  "words": {
-  "go": {
-   "text": "kwenda"
-  },
-  "come": {
-   "text": "kuja"
-  },
+  "go": { "text": "kwenda" },
+  "come": { "text": "kuja" },
   "have": {
    "text": "kuwa na",
-   "notes": {
-    "de": "Präsens ohne „kuwa“: nina, una, ana … · verneint: sina = ich habe nicht."
-   }
+   "notes": { "de": "Präsens ohne „kuwa“: nina, una, ana … · verneint: sina = ich habe nicht." }
   },
   "give": {
    "text": "kupa",
-   "notes": {
-    "de": "Braucht ein Objekt-Infix: kunipa = mir geben, kumpa = ihm/ihr geben."
-   }
+   "notes": { "de": "Braucht ein Objekt-Infix: kunipa = mir geben, kumpa = ihm/ihr geben." }
   },
-  "take": {
-   "text": "kuchukua"
-  },
-  "see": {
-   "text": "kuona"
-  },
-  "make": {
-   "text": "kufanya"
-  },
+  "take": { "text": "kuchukua" },
+  "see": { "text": "kuona" },
+  "make": { "text": "kufanya" },
   "like": {
    "text": "kupenda",
-   "notes": {
-    "de": "deckt mögen und lieben ab: Napenda chai · Nakupenda = Ich liebe dich."
-   }
+   "notes": { "de": "deckt mögen und lieben ab: Napenda chai · Nakupenda = Ich liebe dich." }
   },
   "can": {
    "text": "kuweza",
-   "notes": {
-    "de": "Präsens: naweza, unaweza, anaweza · verneint: siwezi = ich kann nicht."
-   }
+   "notes": { "de": "Präsens: naweza, unaweza, anaweza · verneint: siwezi = ich kann nicht." }
   },
-  "think": {
-   "text": "kufikiri",
-   "notes": {
-    "de": "über etwas nachdenken: kufikiria jambo."
-   }
-  },
-  "wait": {
-   "text": "kusubiri"
-  },
-  "do-you-have-water": {
-   "text": "Una maji?"
-  },
-  "where-are-you-from": {
-   "text": "Unatoka wapi?"
-  }
+  "think": { "text": "kufikiri", "notes": { "de": "über etwas nachdenken: kufikiria jambo." } },
+  "wait": { "text": "kusubiri" },
+  "do-you-have-water": { "text": "Una maji?" },
+  "where-are-you-from": { "text": "Unatoka wapi?" }
  }
 }

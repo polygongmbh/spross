@@ -2,69 +2,22 @@
  "title": "Fragewörter",
  "subtitle": "Wer, was, wann und warum.",
  "words": {
-  "where": {
-   "text": "wo"
-  },
-  "who": {
-   "text": "wer"
-  },
-  "what": {
-   "text": "was"
-  },
-  "here": {
-   "text": "hier"
-  },
-  "there": {
-   "text": "dort"
-  },
-  "this": {
-   "text": "das hier"
-  },
-  "that": {
-   "text": "das dort",
-   "variants": [
-    "das da"
-   ]
-  },
-  "when": {
-   "text": "wann"
-  },
-  "why": {
-   "text": "warum"
-  },
-  "how": {
-   "text": "wie"
-  },
-  "which": {
-   "text": "welcher",
-   "variants": [
-    "welche",
-    "welches"
-   ]
-  },
-  "how-many": {
-   "text": "wie viele"
-  },
-  "where-are-they": {
-   "text": "Wo sind sie?"
-  },
-  "who-is-there": {
-   "text": "Wer ist da?"
-  },
-  "do-you-need-this": {
-   "text": "Brauchen Sie das hier?",
-   "variants": [
-    "Brauchst du das hier?"
-   ]
-  },
-  "when-does-it-start": {
-   "text": "Wann fängt es an?"
-  },
-  "what-time-is-it": {
-   "text": "Wie spät ist es?",
-   "variants": [
-    "Wie viel Uhr ist es?"
-   ]
-  }
+  "where": { "text": "wo" },
+  "who": { "text": "wer" },
+  "what": { "text": "was" },
+  "here": { "text": "hier" },
+  "there": { "text": "dort" },
+  "this": { "text": "das hier" },
+  "that": { "text": "das dort", "variants": ["das da"] },
+  "when": { "text": "wann" },
+  "why": { "text": "warum" },
+  "how": { "text": "wie" },
+  "which": { "text": "welcher", "variants": ["welche", "welches"] },
+  "how-many": { "text": "wie viele" },
+  "where-are-they": { "text": "Wo sind sie?" },
+  "who-is-there": { "text": "Wer ist da?" },
+  "do-you-need-this": { "text": "Brauchen Sie das hier?", "variants": ["Brauchst du das hier?"] },
+  "when-does-it-start": { "text": "Wann fängt es an?" },
+  "what-time-is-it": { "text": "Wie spät ist es?", "variants": ["Wie viel Uhr ist es?"] }
  }
 }

@@ -32,10 +32,7 @@
   },
   "turn-a-blind-eye": {
    "text": "Er hat ein Auge zugedrückt.",
-   "notes": {
-    "en": "Literally: \"He pressed one eye shut.\"",
-    "es": "Literalmente: «Cerró un ojo»."
-   }
+   "notes": { "en": "Literally: \"He pressed one eye shut.\"", "es": "Literalmente: «Cerró un ojo»." }
   },
   "seventh-heaven": {
    "text": "Sie ist im siebten Himmel.",

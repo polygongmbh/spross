@@ -2,127 +2,37 @@
  "title": "Вивчення мови",
  "subtitle": "Запитати, зрозуміти, залишитися в розмові.",
  "words": {
-  "hear": {
-   "text": "чути"
-  },
-  "understand": {
-   "text": "розуміти"
-  },
-  "speak": {
-   "text": "говорити"
-  },
-  "repeat-word": {
-   "text": "повторювати слово"
-  },
-  "loud": {
-   "text": "гучний",
-   "variants": [
-    "голосний",
-    "гучно",
-    "голосно"
-   ]
-  },
-  "ask": {
-   "text": "питати"
-  },
-  "question": {
-   "text": "запитання",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "answer": {
-   "text": "відповідь"
-  },
-  "reply": {
-   "text": "відповідати"
-  },
-  "meaning": {
-   "text": "значення",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "to-pronounce": {
-   "text": "вимовляти"
-  },
-  "translate": {
-   "text": "перекладати"
-  },
-  "read-aloud": {
-   "text": "читати вголос"
-  },
-  "learn-by-heart": {
-   "text": "вчити напам'ять"
-  },
-  "dictionary": {
-   "text": "словник"
-  },
-  "sentence": {
-   "text": "речення",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "word": {
-   "text": "слово"
-  },
-  "language": {
-   "text": "мова"
-  },
-  "mother-tongue": {
-   "text": "рідна мова",
-   "grammar": {
-    "plural": "рідні мови"
-   }
-  },
-  "i-dont-understand": {
-   "text": "Я не розумію."
-  },
-  "i-understand": {
-   "text": "Я розумію."
-  },
-  "can-you-repeat-that": {
-   "text": "Чи можете ви це повторити?",
-   "variants": [
-    "Можеш це повторити?"
-   ]
-  },
-  "slower": {
-   "text": "Повільніше!"
-  },
-  "i-cant-hear-you": {
-   "text": "Я вас не чую.",
-   "variants": [
-    "Я тебе не чую."
-   ]
-  },
-  "louder": {
-   "text": "Голосніше!",
-   "variants": [
-    "Гучніше!"
-   ]
-  },
-  "do-you-speak-english": {
-   "text": "Ви розмовляєте англійською?"
-  },
-  "i-speak-a-little": {
-   "text": "Я лише трохи розмовляю {language-speak}."
-  },
-  "what-does-this-word-mean": {
-   "text": "Що означає це слово?"
-  },
-  "how-do-you-say-this": {
-   "text": "Як це сказати {language-in}?"
-  },
-  "im-learning-your-language": {
-   "text": "Я вчу {language-learn}."
-  },
-  "i-have-a-question": {
-   "text": "У мене є запитання."
-  },
-  "you-can-do-it": {
-   "text": "Ти точно впораєшся!"
-  }
+  "hear": { "text": "чути" },
+  "understand": { "text": "розуміти" },
+  "speak": { "text": "говорити" },
+  "repeat-word": { "text": "повторювати слово" },
+  "loud": { "text": "гучний", "variants": ["голосний", "гучно", "голосно"] },
+  "ask": { "text": "питати" },
+  "question": { "text": "запитання", "grammar": { "plural": "=" } },
+  "answer": { "text": "відповідь" },
+  "reply": { "text": "відповідати" },
+  "meaning": { "text": "значення", "grammar": { "plural": "=" } },
+  "to-pronounce": { "text": "вимовляти" },
+  "translate": { "text": "перекладати" },
+  "read-aloud": { "text": "читати вголос" },
+  "learn-by-heart": { "text": "вчити напам'ять" },
+  "dictionary": { "text": "словник" },
+  "sentence": { "text": "речення", "grammar": { "plural": "=" } },
+  "word": { "text": "слово" },
+  "language": { "text": "мова" },
+  "mother-tongue": { "text": "рідна мова", "grammar": { "plural": "рідні мови" } },
+  "i-dont-understand": { "text": "Я не розумію." },
+  "i-understand": { "text": "Я розумію." },
+  "can-you-repeat-that": { "text": "Чи можете ви це повторити?", "variants": ["Можеш це повторити?"] },
+  "slower": { "text": "Повільніше!" },
+  "i-cant-hear-you": { "text": "Я вас не чую.", "variants": ["Я тебе не чую."] },
+  "louder": { "text": "Голосніше!", "variants": ["Гучніше!"] },
+  "do-you-speak-english": { "text": "Ви розмовляєте англійською?" },
+  "i-speak-a-little": { "text": "Я лише трохи розмовляю {language-speak}." },
+  "what-does-this-word-mean": { "text": "Що означає це слово?" },
+  "how-do-you-say-this": { "text": "Як це сказати {language-in}?" },
+  "im-learning-your-language": { "text": "Я вчу {language-learn}." },
+  "i-have-a-question": { "text": "У мене є запитання." },
+  "you-can-do-it": { "text": "Ти точно впораєшся!" }
  }
 }

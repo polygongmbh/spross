@@ -2,148 +2,39 @@
  "title": "Les premiers mots",
  "subtitle": "Tout commence ici.",
  "words": {
-  "name": {
-   "text": "nom",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "help": {
-   "text": "aide",
-   "variants": [
-    "l'aide"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "be-called": {
-   "text": "s'appeler"
-  },
-  "say": {
-   "text": "dire"
-  },
-  "know": {
-   "text": "savoir",
-   "notes": {
-    "de": "wissen = savoir · kennen (Personen, Orte) = connaître."
-   }
-  },
-  "need": {
-   "text": "avoir besoin de"
-  },
-  "thank": {
-   "text": "remercier"
-  },
-  "together": {
-   "text": "ensemble"
-  },
+  "name": { "text": "nom", "grammar": { "gender": "le" } },
+  "help": { "text": "aide", "variants": ["l'aide"], "grammar": { "gender": "l'" } },
+  "be-called": { "text": "s'appeler" },
+  "say": { "text": "dire" },
+  "know": { "text": "savoir", "notes": { "de": "wissen = savoir · kennen (Personen, Orte) = connaître." } },
+  "need": { "text": "avoir besoin de" },
+  "thank": { "text": "remercier" },
+  "together": { "text": "ensemble" },
   "hello": {
    "text": "Salut !",
-   "notes": {
-    "de": "nur informell unter Bekannten · im Laden und im Amt sagt man Bonjour !"
-   }
+   "notes": { "de": "nur informell unter Bekannten · im Laden und im Amt sagt man Bonjour !" }
   },
-  "good-day": {
-   "text": "Bonjour !",
-   "notes": {
-    "de": "gilt den ganzen Tag · ab dem frühen Abend Bonsoir !"
-   }
-  },
-  "thank-you": {
-   "text": "Merci beaucoup !",
-   "variants": [
-    "Merci !"
-   ]
-  },
-  "please": {
-   "text": "S'il vous plaît !",
-   "variants": [
-    "S'il te plaît !"
-   ]
-  },
-  "excuse-me": {
-   "text": "Excusez-moi !",
-   "variants": [
-    "Excuse-moi !",
-    "Pardon !"
-   ]
-  },
-  "yes": {
-   "text": "Oui.",
-   "notes": {
-    "de": "auf eine verneinte Frage antwortet man Si statt Oui."
-   }
-  },
-  "no": {
-   "text": "Non."
-  },
+  "good-day": { "text": "Bonjour !", "notes": { "de": "gilt den ganzen Tag · ab dem frühen Abend Bonsoir !" } },
+  "thank-you": { "text": "Merci beaucoup !", "variants": ["Merci !"] },
+  "please": { "text": "S'il vous plaît !", "variants": ["S'il te plaît !"] },
+  "excuse-me": { "text": "Excusez-moi !", "variants": ["Excuse-moi !", "Pardon !"] },
+  "yes": { "text": "Oui.", "notes": { "de": "auf eine verneinte Frage antwortet man Si statt Oui." } },
+  "no": { "text": "Non." },
   "whats-your-name": {
    "text": "Comment vous appelez-vous ?",
-   "variants": [
-    "Comment tu t'appelles ?",
-    "Comment t'appelles-tu ?"
-   ]
+   "variants": ["Comment tu t'appelles ?", "Comment t'appelles-tu ?"]
   },
-  "my-name-is": {
-   "text": "Je m'appelle …"
-  },
-  "i-dont-know": {
-   "text": "Je ne sais pas.",
-   "variants": [
-    "Je sais pas."
-   ]
-  },
-  "pardon": {
-   "text": "Pardon ?",
-   "variants": [
-    "Comment ?"
-   ]
-  },
-  "i-need-help": {
-   "text": "J'ai besoin d'aide."
-  },
-  "all-good": {
-   "text": "Tout va bien."
-  },
-  "goodbye": {
-   "text": "Au revoir !"
-  },
-  "what-is-this-called": {
-   "text": "Comment appelle-t-on ça ?",
-   "variants": [
-    "Comment ça s'appelle ?"
-   ]
-  },
-  "how-are-you": {
-   "text": "Comment allez-vous ?",
-   "variants": [
-    "Comment vas-tu ?",
-    "Ça va ?"
-   ]
-  },
-  "bye": {
-   "text": "À bientôt !",
-   "variants": [
-    "À plus !",
-    "Ciao !"
-   ]
-  },
-  "welcome": {
-   "text": "Bienvenue !"
-  },
-  "may-i-come-in": {
-   "text": "Puis-je entrer ?",
-   "variants": [
-    "Je peux entrer ?"
-   ]
-  },
-  "sorry-to-hear-that": {
-   "text": "Je suis désolé !",
-   "variants": [
-    "Je suis désolée !",
-    "Désolé !"
-   ]
-  }
+  "my-name-is": { "text": "Je m'appelle …" },
+  "i-dont-know": { "text": "Je ne sais pas.", "variants": ["Je sais pas."] },
+  "pardon": { "text": "Pardon ?", "variants": ["Comment ?"] },
+  "i-need-help": { "text": "J'ai besoin d'aide." },
+  "all-good": { "text": "Tout va bien." },
+  "goodbye": { "text": "Au revoir !" },
+  "what-is-this-called": { "text": "Comment appelle-t-on ça ?", "variants": ["Comment ça s'appelle ?"] },
+  "how-are-you": { "text": "Comment allez-vous ?", "variants": ["Comment vas-tu ?", "Ça va ?"] },
+  "bye": { "text": "À bientôt !", "variants": ["À plus !", "Ciao !"] },
+  "welcome": { "text": "Bienvenue !" },
+  "may-i-come-in": { "text": "Puis-je entrer ?", "variants": ["Je peux entrer ?"] },
+  "sorry-to-hear-that": { "text": "Je suis désolé !", "variants": ["Je suis désolée !", "Désolé !"] }
  }
 }

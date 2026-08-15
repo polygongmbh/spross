@@ -2,99 +2,31 @@
  "title": "Час і дати",
  "subtitle": "Коли щось стається і як довго триває.",
  "words": {
-  "time": {
-   "text": "час"
-  },
-  "day": {
-   "text": "день",
-   "grammar": {
-    "plural": "дні"
-   }
-  },
-  "week": {
-   "text": "тиждень",
-   "grammar": {
-    "plural": "тижні"
-   }
-  },
-  "hour": {
-   "text": "година"
-  },
-  "minute": {
-   "text": "хвилина"
-  },
-  "month": {
-   "text": "місяць"
-  },
+  "time": { "text": "час" },
+  "day": { "text": "день", "grammar": { "plural": "дні" } },
+  "week": { "text": "тиждень", "grammar": { "plural": "тижні" } },
+  "hour": { "text": "година" },
+  "minute": { "text": "хвилина" },
+  "month": { "text": "місяць" },
   "year": {
    "text": "рік",
-   "grammar": {
-    "plural": "роки"
-   },
-   "notes": {
-    "de": "nach Zahlen: 2 роки, aber 5 років."
-   }
+   "grammar": { "plural": "роки" },
+   "notes": { "de": "nach Zahlen: 2 роки, aber 5 років." }
   },
-  "now": {
-   "text": "зараз"
-  },
-  "today": {
-   "text": "сьогодні"
-  },
-  "tomorrow": {
-   "text": "завтра"
-  },
-  "yesterday": {
-   "text": "вчора",
-   "variants": [
-    "учора"
-   ]
-  },
-  "early": {
-   "text": "рано"
-  },
-  "late": {
-   "text": "пізно"
-  },
-  "soon": {
-   "text": "скоро",
-   "synonyms": [
-    "незабаром"
-   ]
-  },
-  "noon": {
-   "text": "полудень",
-   "grammar": {
-    "plural": "полудні"
-   }
-  },
-  "morning": {
-   "text": "ранок",
-   "grammar": {
-    "plural": "ранки"
-   }
-  },
-  "evening": {
-   "text": "вечір",
-   "grammar": {
-    "plural": "вечори"
-   }
-  },
-  "night": {
-   "text": "ніч",
-   "grammar": {
-    "plural": "ночі"
-   }
-  },
-  "i-have-no-time": {
-   "text": "У мене немає часу."
-  },
-  "a-new-day": {
-   "text": "новий день"
-  },
-  "two-in-the-afternoon": {
-   "text": "друга дня"
-  },
+  "now": { "text": "зараз" },
+  "today": { "text": "сьогодні" },
+  "tomorrow": { "text": "завтра" },
+  "yesterday": { "text": "вчора", "variants": ["учора"] },
+  "early": { "text": "рано" },
+  "late": { "text": "пізно" },
+  "soon": { "text": "скоро", "synonyms": ["незабаром"] },
+  "noon": { "text": "полудень", "grammar": { "plural": "полудні" } },
+  "morning": { "text": "ранок", "grammar": { "plural": "ранки" } },
+  "evening": { "text": "вечір", "grammar": { "plural": "вечори" } },
+  "night": { "text": "ніч", "grammar": { "plural": "ночі" } },
+  "i-have-no-time": { "text": "У мене немає часу." },
+  "a-new-day": { "text": "новий день" },
+  "two-in-the-afternoon": { "text": "друга дня" },
   "nine-am-sharp": {
    "text": "рівно о дев'ятій ранку",
    "notes": {

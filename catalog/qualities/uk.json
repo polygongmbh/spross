@@ -2,113 +2,30 @@
  "title": "Якості",
  "subtitle": "Великий чи малий, добрий чи поганий.",
  "words": {
-  "good": {
-   "text": "добрий",
-   "variants": [
-    "добре"
-   ]
-  },
-  "bad": {
-   "text": "поганий",
-   "variants": [
-    "погано"
-   ]
-  },
-  "big": {
-   "text": "великий"
-  },
-  "small": {
-   "text": "малий",
-   "variants": [
-    "маленький"
-   ]
-  },
-  "much": {
-   "text": "багато"
-  },
-  "new": {
-   "text": "новий"
-  },
-  "old": {
-   "text": "старий"
-  },
-  "slow": {
-   "text": "повільний",
-   "variants": [
-    "повільно"
-   ]
-  },
-  "fast": {
-   "text": "швидкий",
-   "variants": [
-    "швидко"
-   ]
-  },
-  "long": {
-   "text": "довгий",
-   "variants": [
-    "довго"
-   ]
-  },
-  "short": {
-   "text": "короткий",
-   "variants": [
-    "коротко"
-   ]
-  },
-  "heavy": {
-   "text": "важкий",
-   "variants": [
-    "важко"
-   ]
-  },
-  "lightweight": {
-   "text": "легкий",
-   "variants": [
-    "легко"
-   ]
-  },
+  "good": { "text": "добрий", "variants": ["добре"] },
+  "bad": { "text": "поганий", "variants": ["погано"] },
+  "big": { "text": "великий" },
+  "small": { "text": "малий", "variants": ["маленький"] },
+  "much": { "text": "багато" },
+  "new": { "text": "новий" },
+  "old": { "text": "старий" },
+  "slow": { "text": "повільний", "variants": ["повільно"] },
+  "fast": { "text": "швидкий", "variants": ["швидко"] },
+  "long": { "text": "довгий", "variants": ["довго"] },
+  "short": { "text": "короткий", "variants": ["коротко"] },
+  "heavy": { "text": "важкий", "variants": ["важко"] },
+  "lightweight": { "text": "легкий", "variants": ["легко"] },
   "difficult": {
    "text": "складний",
-   "variants": [
-    "важкий",
-    "складно"
-   ],
-   "notes": {
-    "de": "wie im Deutschen deckt важкий auch schwierig ab."
-   }
+   "variants": ["важкий", "складно"],
+   "notes": { "de": "wie im Deutschen deckt важкий auch schwierig ab." }
   },
-  "easy": {
-   "text": "простий",
-   "variants": [
-    "просто",
-    "легкий",
-    "легко"
-   ]
-  },
-  "clean-adj": {
-   "text": "чистий",
-   "variants": [
-    "чисто"
-   ]
-  },
-  "sharp": {
-   "text": "гострий",
-   "variants": [
-    "гостро"
-   ]
-  },
-  "a-lot-of-water": {
-   "text": "багато води"
-  },
-  "the-day-is-long": {
-   "text": "День довгий."
-  },
-  "that-is-too-heavy": {
-   "text": "Це занадто важке."
-  },
-  "the-water-is-clean": {
-   "text": "Вода чиста."
-  }
+  "easy": { "text": "простий", "variants": ["просто", "легкий", "легко"] },
+  "clean-adj": { "text": "чистий", "variants": ["чисто"] },
+  "sharp": { "text": "гострий", "variants": ["гостро"] },
+  "a-lot-of-water": { "text": "багато води" },
+  "the-day-is-long": { "text": "День довгий." },
+  "that-is-too-heavy": { "text": "Це занадто важке." },
+  "the-water-is-clean": { "text": "Вода чиста." }
  }
 }

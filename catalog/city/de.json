@@ -2,180 +2,37 @@
  "title": "Die Stadt",
  "subtitle": "Immer etwas los.",
  "words": {
-  "street": {
-   "text": "Straße",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "market": {
-   "text": "Markt",
-   "grammar": {
-    "gender": "der",
-    "plural": "Märkte"
-   }
-  },
-  "park": {
-   "text": "Park",
-   "grammar": {
-    "gender": "der",
-    "plural": "-s"
-   }
-  },
-  "shop": {
-   "text": "einkaufen"
-  },
-  "city": {
-   "text": "Stadt",
-   "grammar": {
-    "gender": "die",
-    "plural": "Städte"
-   }
-  },
-  "village": {
-   "text": "Dorf",
-   "grammar": {
-    "gender": "das",
-    "plural": "Dörfer"
-   }
-  },
-  "neighborhood": {
-   "text": "Viertel",
-   "variants": [
-    "Stadtviertel"
-   ],
-   "grammar": {
-    "gender": "das",
-    "plural": "="
-   }
-  },
-  "building": {
-   "text": "Gebäude",
-   "grammar": {
-    "gender": "das",
-    "plural": "="
-   }
-  },
-  "store": {
-   "text": "Laden",
-   "variants": [
-    "Geschäft"
-   ],
-   "grammar": {
-    "gender": "der",
-    "plural": "Läden"
-   }
-  },
-  "bank": {
-   "text": "Bank",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "post-office": {
-   "text": "Post",
-   "grammar": {
-    "gender": "die"
-   }
-  },
-  "restaurant": {
-   "text": "Restaurant",
-   "grammar": {
-    "gender": "das",
-    "plural": "-s"
-   }
-  },
-  "hotel": {
-   "text": "Hotel",
-   "grammar": {
-    "gender": "das",
-    "plural": "-s"
-   }
-  },
-  "church": {
-   "text": "Kirche",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "mosque": {
-   "text": "Moschee",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "library": {
-   "text": "Bibliothek",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "police": {
-   "text": "Polizei",
-   "grammar": {
-    "gender": "die"
-   }
-  },
-  "cinema": {
-   "text": "Kino",
-   "grammar": {
-    "gender": "das",
-    "plural": "-s"
-   }
-  },
-  "bridge": {
-   "text": "Brücke",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "money": {
-   "text": "Geld",
-   "grammar": {
-    "gender": "das"
-   }
-  },
-  "buy": {
-   "text": "kaufen"
-  },
-  "pay": {
-   "text": "bezahlen"
-  },
-  "where-is-the-post-office": {
-   "text": "Wo ist die Post?"
-  },
-  "is-there-a-bank-here": {
-   "text": "Gibt es hier eine Bank?"
-  },
-  "the-store-is-still-open": {
-   "text": "Der Laden ist noch offen."
-  },
-  "im-looking-for-a-hotel": {
-   "text": "Ich suche ein Hotel."
-  },
-  "lets-meet-at-the-market": {
-   "text": "Treffen wir uns am Markt."
-  },
-  "i-live-in-this-neighborhood": {
-   "text": "Ich wohne in diesem Viertel."
-  },
-  "how-much-does-this-cost": {
-   "text": "Wie viel kostet das?"
-  },
-  "that-is-too-expensive": {
-   "text": "Das ist zu teuer."
-  },
-  "i-have-no-money": {
-   "text": "Ich habe kein Geld."
-  },
-  "a-lot-of-money": {
-   "text": "viel Geld"
-  }
+  "street": { "text": "Straße", "grammar": { "gender": "die", "plural": "-n" } },
+  "market": { "text": "Markt", "grammar": { "gender": "der", "plural": "Märkte" } },
+  "park": { "text": "Park", "grammar": { "gender": "der", "plural": "-s" } },
+  "shop": { "text": "einkaufen" },
+  "city": { "text": "Stadt", "grammar": { "gender": "die", "plural": "Städte" } },
+  "village": { "text": "Dorf", "grammar": { "gender": "das", "plural": "Dörfer" } },
+  "neighborhood": { "text": "Viertel", "variants": ["Stadtviertel"], "grammar": { "gender": "das", "plural": "=" } },
+  "building": { "text": "Gebäude", "grammar": { "gender": "das", "plural": "=" } },
+  "store": { "text": "Laden", "variants": ["Geschäft"], "grammar": { "gender": "der", "plural": "Läden" } },
+  "bank": { "text": "Bank", "grammar": { "gender": "die", "plural": "-en" } },
+  "post-office": { "text": "Post", "grammar": { "gender": "die" } },
+  "restaurant": { "text": "Restaurant", "grammar": { "gender": "das", "plural": "-s" } },
+  "hotel": { "text": "Hotel", "grammar": { "gender": "das", "plural": "-s" } },
+  "church": { "text": "Kirche", "grammar": { "gender": "die", "plural": "-n" } },
+  "mosque": { "text": "Moschee", "grammar": { "gender": "die", "plural": "-n" } },
+  "library": { "text": "Bibliothek", "grammar": { "gender": "die", "plural": "-en" } },
+  "police": { "text": "Polizei", "grammar": { "gender": "die" } },
+  "cinema": { "text": "Kino", "grammar": { "gender": "das", "plural": "-s" } },
+  "bridge": { "text": "Brücke", "grammar": { "gender": "die", "plural": "-n" } },
+  "money": { "text": "Geld", "grammar": { "gender": "das" } },
+  "buy": { "text": "kaufen" },
+  "pay": { "text": "bezahlen" },
+  "where-is-the-post-office": { "text": "Wo ist die Post?" },
+  "is-there-a-bank-here": { "text": "Gibt es hier eine Bank?" },
+  "the-store-is-still-open": { "text": "Der Laden ist noch offen." },
+  "im-looking-for-a-hotel": { "text": "Ich suche ein Hotel." },
+  "lets-meet-at-the-market": { "text": "Treffen wir uns am Markt." },
+  "i-live-in-this-neighborhood": { "text": "Ich wohne in diesem Viertel." },
+  "how-much-does-this-cost": { "text": "Wie viel kostet das?" },
+  "that-is-too-expensive": { "text": "Das ist zu teuer." },
+  "i-have-no-money": { "text": "Ich habe kein Geld." },
+  "a-lot-of-money": { "text": "viel Geld" }
  }
 }

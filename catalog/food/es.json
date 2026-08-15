@@ -2,245 +2,58 @@
  "title": "La comida",
  "subtitle": "Lo que llega a la mesa.",
  "words": {
-  "bread": {
-   "text": "pan",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "milk": {
-   "text": "leche",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "coffee": {
-   "text": "café",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "tea": {
-   "text": "té",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "egg": {
-   "text": "huevo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "cheese": {
-   "text": "queso",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "salt": {
-   "text": "sal",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "sugar": {
-   "text": "azúcar",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "rice": {
-   "text": "arroz",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "bread": { "text": "pan", "grammar": { "gender": "el" } },
+  "milk": { "text": "leche", "grammar": { "gender": "la" } },
+  "coffee": { "text": "café", "grammar": { "gender": "el" } },
+  "tea": { "text": "té", "grammar": { "gender": "el" } },
+  "egg": { "text": "huevo", "grammar": { "gender": "el" } },
+  "cheese": { "text": "queso", "grammar": { "gender": "el" } },
+  "salt": { "text": "sal", "grammar": { "gender": "la" } },
+  "sugar": { "text": "azúcar", "grammar": { "gender": "el" } },
+  "rice": { "text": "arroz", "grammar": { "gender": "el" } },
   "hunger": {
    "text": "hambre",
-   "grammar": {
-    "gender": "el"
-   },
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "feminin, im Singular aber mit el: el hambre — trotzdem mucha hambre; Hunger haben = tener hambre."
    }
   },
-  "thirst": {
-   "text": "sed",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "food": {
-   "text": "comida",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "meat": {
-   "text": "carne",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "fish": {
-   "text": "pescado",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "chicken": {
-   "text": "pollo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "fruit": {
-   "text": "fruta",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "vegetable": {
-   "text": "verdura",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "potato": {
-   "text": "patata",
-   "synonyms": [
-    "papa"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "onion": {
-   "text": "cebolla",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "tomato": {
-   "text": "tomate",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "banana": {
-   "text": "plátano",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "apple": {
-   "text": "manzana",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "oil": {
-   "text": "aceite",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "flour": {
-   "text": "harina",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "butter": {
-   "text": "mantequilla",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "soup": {
-   "text": "sopa",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "sauce": {
-   "text": "salsa",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "juice": {
-   "text": "zumo",
-   "synonyms": [
-    "jugo"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "cooked-rice": {
-   "text": "arroz cocido"
-  },
-  "cassava": {
-   "text": "yuca",
-   "synonyms": [
-    "mandioca"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "breakfast": {
-   "text": "desayuno",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "dinner": {
-   "text": "cena",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "thirst": { "text": "sed", "grammar": { "gender": "la" } },
+  "food": { "text": "comida", "grammar": { "gender": "la" } },
+  "meat": { "text": "carne", "grammar": { "gender": "la" } },
+  "fish": { "text": "pescado", "grammar": { "gender": "el" } },
+  "chicken": { "text": "pollo", "grammar": { "gender": "el" } },
+  "fruit": { "text": "fruta", "grammar": { "gender": "la" } },
+  "vegetable": { "text": "verdura", "grammar": { "gender": "la" } },
+  "potato": { "text": "patata", "synonyms": ["papa"], "grammar": { "gender": "la" } },
+  "onion": { "text": "cebolla", "grammar": { "gender": "la" } },
+  "tomato": { "text": "tomate", "grammar": { "gender": "el" } },
+  "banana": { "text": "plátano", "grammar": { "gender": "el" } },
+  "apple": { "text": "manzana", "grammar": { "gender": "la" } },
+  "oil": { "text": "aceite", "grammar": { "gender": "el" } },
+  "flour": { "text": "harina", "grammar": { "gender": "la" } },
+  "butter": { "text": "mantequilla", "grammar": { "gender": "la" } },
+  "soup": { "text": "sopa", "grammar": { "gender": "la" } },
+  "sauce": { "text": "salsa", "grammar": { "gender": "la" } },
+  "juice": { "text": "zumo", "synonyms": ["jugo"], "grammar": { "gender": "el" } },
+  "cooked-rice": { "text": "arroz cocido" },
+  "cassava": { "text": "yuca", "synonyms": ["mandioca"], "grammar": { "gender": "la" } },
+  "breakfast": { "text": "desayuno", "grammar": { "gender": "el" } },
+  "dinner": { "text": "cena", "grammar": { "gender": "la" } },
   "water": {
    "text": "agua",
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "feminin, steht im Singular aber mit el: el agua fría · Plural las aguas."
-   }
+   "grammar": { "gender": "el" },
+   "notes": { "de": "feminin, steht im Singular aber mit el: el agua fría · Plural las aguas." }
   },
-  "eat": {
-   "text": "comer"
-  },
-  "drink": {
-   "text": "beber"
-  },
-  "im-hungry": {
-   "text": "Tengo hambre."
-  },
-  "whats-for-dinner": {
-   "text": "¿Qué hay para cenar?"
-  },
-  "i-dont-eat-meat": {
-   "text": "No como carne."
-  },
-  "bread-with-butter": {
-   "text": "pan con mantequilla"
-  },
-  "fruit-and-vegetables": {
-   "text": "fruta y verdura"
-  },
-  "i-eat-rice-with-sauce": {
-   "text": "Como arroz con salsa."
-  },
-  "without-salt-please": {
-   "text": "Sin sal, por favor."
-  },
-  "the-food-is-ready": {
-   "text": "¡La comida está lista!"
-  }
+  "eat": { "text": "comer" },
+  "drink": { "text": "beber" },
+  "im-hungry": { "text": "Tengo hambre." },
+  "whats-for-dinner": { "text": "¿Qué hay para cenar?" },
+  "i-dont-eat-meat": { "text": "No como carne." },
+  "bread-with-butter": { "text": "pan con mantequilla" },
+  "fruit-and-vegetables": { "text": "fruta y verdura" },
+  "i-eat-rice-with-sauce": { "text": "Como arroz con salsa." },
+  "without-salt-please": { "text": "Sin sal, por favor." },
+  "the-food-is-ready": { "text": "¡La comida está lista!" }
  }
 }

@@ -4,324 +4,112 @@
  "words": {
   "desk": {
    "text": "bureau",
-   "grammar": {
-    "gender": "le",
-    "plural": "-x"
-   },
-   "notes": {
-    "de": "le bureau ist der Schreibtisch und das Büro als Raum."
-   }
+   "grammar": { "gender": "le", "plural": "-x" },
+   "notes": { "de": "le bureau ist der Schreibtisch und das Büro als Raum." }
   },
   "laptop": {
    "text": "ordinateur portable",
-   "variants": [
-    "l'ordinateur portable",
-    "portable",
-    "PC portable"
-   ],
-   "grammar": {
-    "gender": "l'"
-   },
-   "notes": {
-    "de": "Im Alltag sagt man meist nur le portable — das heißt aber auch „Handy“."
-   }
+   "variants": ["l'ordinateur portable", "portable", "PC portable"],
+   "grammar": { "gender": "l'" },
+   "notes": { "de": "Im Alltag sagt man meist nur le portable — das heißt aber auch „Handy“." }
   },
-  "keyboard": {
-   "text": "clavier",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "screen": {
-   "text": "écran",
-   "variants": [
-    "l'écran"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "mouse": {
-   "text": "souris",
-   "grammar": {
-    "gender": "la",
-    "plural": "="
-   }
-  },
-  "cable": {
-   "text": "câble",
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "keyboard": { "text": "clavier", "grammar": { "gender": "le" } },
+  "screen": { "text": "écran", "variants": ["l'écran"], "grammar": { "gender": "l'" } },
+  "mouse": { "text": "souris", "grammar": { "gender": "la", "plural": "=" } },
+  "cable": { "text": "câble", "grammar": { "gender": "le" } },
   "headphones": {
    "text": "écouteurs",
-   "variants": [
-    "casque",
-    "casque audio"
-   ],
-   "grammar": {
-    "gender": "les",
-    "plural": "only"
-   },
-   "notes": {
-    "de": "Nur im Plural: les écouteurs sind die Ohrhörer; der Bügelkopfhörer heißt le casque."
-   }
+   "variants": ["casque", "casque audio"],
+   "grammar": { "gender": "les", "plural": "only" },
+   "notes": { "de": "Nur im Plural: les écouteurs sind die Ohrhörer; der Bügelkopfhörer heißt le casque." }
   },
   "pen": {
    "text": "stylo",
-   "grammar": {
-    "gender": "le"
-   },
-   "notes": {
-    "de": "„Stift“ ist hier der Kugelschreiber: le stylo. Der Bleistift heißt le crayon."
-   }
+   "grammar": { "gender": "le" },
+   "notes": { "de": "„Stift“ ist hier der Kugelschreiber: le stylo. Der Bleistift heißt le crayon." }
   },
-  "notebook": {
-   "text": "carnet",
-   "variants": [
-    "bloc-notes"
-   ],
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "printer": {
-   "text": "imprimante",
-   "variants": [
-    "l'imprimante"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
+  "notebook": { "text": "carnet", "variants": ["bloc-notes"], "grammar": { "gender": "le" } },
+  "printer": { "text": "imprimante", "variants": ["l'imprimante"], "grammar": { "gender": "l'" } },
   "socket": {
    "text": "prise",
-   "variants": [
-    "prise de courant",
-    "prise électrique"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
+   "variants": ["prise de courant", "prise électrique"],
+   "grammar": { "gender": "la" }
   },
   "office-chair": {
    "text": "chaise de bureau",
-   "variants": [
-    "fauteuil de bureau",
-    "siège de bureau"
-   ],
-   "grammar": {
-    "gender": "la",
-    "plural": "chaises de bureau"
-   },
-   "notes": {
-    "de": "Der Bürodrehstuhl mit Rollen heißt le fauteuil de bureau."
-   }
+   "variants": ["fauteuil de bureau", "siège de bureau"],
+   "grammar": { "gender": "la", "plural": "chaises de bureau" },
+   "notes": { "de": "Der Bürodrehstuhl mit Rollen heißt le fauteuil de bureau." }
   },
-  "to-work": {
-   "text": "travailler"
-  },
-  "type": {
-   "text": "taper",
-   "variants": [
-    "saisir",
-    "taper à l'ordinateur"
-   ]
-  },
-  "print": {
-   "text": "imprimer"
-  },
-  "save": {
-   "text": "enregistrer",
-   "synonyms": [
-    "sauvegarder"
-   ]
-  },
-  "take-break": {
-   "text": "faire une pause",
-   "variants": [
-    "prendre une pause"
-   ]
-  },
-  "write": {
-   "text": "écrire"
-  },
-  "call": {
-   "text": "appeler",
-   "variants": [
-    "téléphoner",
-    "passer un coup de fil"
-   ]
-  },
-  "delete": {
-   "text": "supprimer",
-   "synonyms": [
-    "effacer"
-   ]
-  },
+  "to-work": { "text": "travailler" },
+  "type": { "text": "taper", "variants": ["saisir", "taper à l'ordinateur"] },
+  "print": { "text": "imprimer" },
+  "save": { "text": "enregistrer", "synonyms": ["sauvegarder"] },
+  "take-break": { "text": "faire une pause", "variants": ["prendre une pause"] },
+  "write": { "text": "écrire" },
+  "call": { "text": "appeler", "variants": ["téléphoner", "passer un coup de fil"] },
+  "delete": { "text": "supprimer", "synonyms": ["effacer"] },
   "study": {
    "text": "étudier",
-   "variants": [
-    "réviser"
-   ],
-   "notes": {
-    "de": "Für eine Prüfung lernen = réviser oder étudier; etwas Neues lernen = apprendre."
-   }
+   "variants": ["réviser"],
+   "notes": { "de": "Für eine Prüfung lernen = réviser oder étudier; etwas Neues lernen = apprendre." }
   },
   "phone": {
    "text": "téléphone",
-   "variants": [
-    "portable",
-    "téléphone portable",
-    "mobile"
-   ],
-   "grammar": {
-    "gender": "le"
-   },
+   "variants": ["portable", "téléphone portable", "mobile"],
+   "grammar": { "gender": "le" },
    "notes": {
     "de": "Das Handy heißt le portable oder le téléphone portable; le téléphone ist jedes Telefon."
    }
   },
   "email": {
    "text": "e-mail",
-   "variants": [
-    "l'e-mail",
-    "mail",
-    "courriel",
-    "courrier électronique"
-   ],
-   "grammar": {
-    "gender": "l'"
-   },
-   "notes": {
-    "de": "In Frankreich sagt man le mail oder l'e-mail; le courriel ist die amtliche Form."
-   }
+   "variants": ["l'e-mail", "mail", "courriel", "courrier électronique"],
+   "grammar": { "gender": "l'" },
+   "notes": { "de": "In Frankreich sagt man le mail oder l'e-mail; le courriel ist die amtliche Form." }
   },
-  "paper": {
-   "text": "papier",
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "paper": { "text": "papier", "grammar": { "gender": "le" } },
   "folder": {
    "text": "dossier",
-   "grammar": {
-    "gender": "le"
-   },
-   "notes": {
-    "de": "le dossier ist der Ordner am Bildschirm ebenso wie die Akte auf dem Schreibtisch."
-   }
+   "grammar": { "gender": "le" },
+   "notes": { "de": "le dossier ist der Ordner am Bildschirm ebenso wie die Akte auf dem Schreibtisch." }
   },
-  "password": {
-   "text": "mot de passe",
-   "grammar": {
-    "gender": "le",
-    "plural": "mots de passe"
-   }
-  },
+  "password": { "text": "mot de passe", "grammar": { "gender": "le", "plural": "mots de passe" } },
   "internet": {
    "text": "internet",
-   "notes": {
-    "de": "Meist ohne Artikel: Il n'y a plus d'internet. · Je n'ai pas internet."
-   }
+   "notes": { "de": "Meist ohne Artikel: Il n'y a plus d'internet. · Je n'ai pas internet." }
   },
-  "charger": {
-   "text": "chargeur",
-   "variants": [
-    "câble de recharge"
-   ],
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "charger": { "text": "chargeur", "variants": ["câble de recharge"], "grammar": { "gender": "le" } },
   "calendar": {
    "text": "calendrier",
-   "synonyms": [
-    "agenda"
-   ],
-   "variants": [
-    "l'agenda"
-   ],
-   "grammar": {
-    "gender": "le"
-   },
-   "notes": {
-    "de": "le calendrier hängt an der Wand; der Terminkalender heißt l'agenda."
-   }
+   "synonyms": ["agenda"],
+   "variants": ["l'agenda"],
+   "grammar": { "gender": "le" },
+   "notes": { "de": "le calendrier hängt an der Wand; der Terminkalender heißt l'agenda." }
   },
-  "important": {
-   "text": "important",
-   "variants": [
-    "importante"
-   ]
-  },
+  "important": { "text": "important", "variants": ["importante"] },
   "ready": {
    "text": "prêt",
-   "variants": [
-    "prête",
-    "fini",
-    "finie",
-    "terminé",
-    "terminée"
-   ],
-   "notes": {
-    "de": "prêt heißt „bereit“: je suis prêt. Fertig im Sinne von beendet ist fini oder terminé."
-   }
+   "variants": ["prête", "fini", "finie", "terminé", "terminée"],
+   "notes": { "de": "prêt heißt „bereit“: je suis prêt. Fertig im Sinne von beendet ist fini oder terminé." }
   },
-  "im-in-a-meeting": {
-   "text": "Je suis en réunion."
-  },
-  "dont-disturb-me": {
-   "text": "Ne me dérange pas !",
-   "variants": [
-    "Ne pas déranger !"
-   ]
-  },
+  "im-in-a-meeting": { "text": "Je suis en réunion." },
+  "dont-disturb-me": { "text": "Ne me dérange pas !", "variants": ["Ne pas déranger !"] },
   "the-laptop-wont-charge-anymore": {
    "text": "L'ordinateur portable ne charge plus.",
-   "variants": [
-    "L'ordinateur portable ne se recharge plus.",
-    "Le portable ne charge plus."
-   ]
+   "variants": ["L'ordinateur portable ne se recharge plus.", "Le portable ne charge plus."]
   },
   "the-internet-is-gone": {
    "text": "Il n'y a plus d'internet.",
-   "variants": [
-    "Il n'y a plus internet.",
-    "Internet ne marche plus.",
-    "Il n'y a plus de wifi."
-   ]
+   "variants": ["Il n'y a plus internet.", "Internet ne marche plus.", "Il n'y a plus de wifi."]
   },
-  "coffee-break": {
-   "text": "Pause café ?",
-   "variants": [
-    "Une pause café ?",
-    "On prend un café ?"
-   ]
-  },
-  "i-have-a-lot-to-do": {
-   "text": "J'ai beaucoup à faire.",
-   "variants": [
-    "J'ai beaucoup de choses à faire."
-   ]
-  },
+  "coffee-break": { "text": "Pause café ?", "variants": ["Une pause café ?", "On prend un café ?"] },
+  "i-have-a-lot-to-do": { "text": "J'ai beaucoup à faire.", "variants": ["J'ai beaucoup de choses à faire."] },
   "end-of-workday": {
    "text": "C'est fini pour aujourd'hui !",
-   "variants": [
-    "La journée est finie !",
-    "C'est terminé pour aujourd'hui !"
-   ],
-   "notes": {
-    "de": "Für „Feierabend“ gibt es kein eigenes Wort — man sagt: „Für heute ist Schluss!“"
-   }
+   "variants": ["La journée est finie !", "C'est terminé pour aujourd'hui !"],
+   "notes": { "de": "Für „Feierabend“ gibt es kein eigenes Wort — man sagt: „Für heute ist Schluss!“" }
   },
-  "send-me-the-email": {
-   "text": "Envoie-moi l'e-mail.",
-   "variants": [
-    "Envoie-moi le mail.",
-    "Envoie-moi le courriel."
-   ]
-  }
+  "send-me-the-email": { "text": "Envoie-moi l'e-mail.", "variants": ["Envoie-moi le mail.", "Envoie-moi le courriel."] }
  }
 }

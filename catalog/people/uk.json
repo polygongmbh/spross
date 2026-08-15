@@ -2,143 +2,45 @@
  "title": "Родина",
  "subtitle": "Найближчі тобі люди.",
  "words": {
-  "person": {
-   "text": "людина",
-   "grammar": {
-    "plural": "люди"
-   }
-  },
-  "family": {
-   "text": "сім'я",
-   "variants": [
-    "родина"
-   ]
-  },
+  "person": { "text": "людина", "grammar": { "plural": "люди" } },
+  "family": { "text": "сім'я", "variants": ["родина"] },
   "mother": {
    "text": "мама",
-   "notes": {
-    "de": "Alltagswort ist мама; die förmliche Form мати ist zugleich das Verb „haben“."
-   }
+   "notes": { "de": "Alltagswort ist мама; die förmliche Form мати ist zugleich das Verb „haben“." }
   },
   "father": {
    "text": "тато",
-   "synonyms": [
-    "батько"
-   ],
-   "notes": {
-    "de": "тато ist familiär, батько förmlicher — beide sind alltäglich."
-   }
+   "synonyms": ["батько"],
+   "notes": { "de": "тато ist familiär, батько förmlicher — beide sind alltäglich." }
   },
-  "parents": {
-   "text": "батьки",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "child": {
-   "text": "дитина",
-   "grammar": {
-    "plural": "діти"
-   }
-  },
-  "son": {
-   "text": "син"
-  },
-  "daughter": {
-   "text": "дочка",
-   "variants": [
-    "донька"
-   ]
-  },
-  "brother": {
-   "text": "брат"
-  },
-  "sister": {
-   "text": "сестра"
-  },
-  "man": {
-   "text": "чоловік"
-  },
-  "woman": {
-   "text": "жінка"
-  },
-  "boy": {
-   "text": "хлопчик"
-  },
-  "girl": {
-   "text": "дівчинка"
-  },
-  "baby": {
-   "text": "немовля",
-   "grammar": {
-    "plural": "немовлята"
-   }
-  },
-  "friend": {
-   "text": "друг",
-   "grammar": {
-    "plural": "друзі"
-   }
-  },
-  "friend-f": {
-   "text": "подруга"
-  },
-  "grandmother": {
-   "text": "бабуся"
-  },
-  "grandfather": {
-   "text": "дідусь"
-  },
-  "uncle": {
-   "text": "дядько"
-  },
-  "aunt": {
-   "text": "тітка"
-  },
-  "this-is-my-mother": {
-   "text": "Це моя мама."
-  },
-  "where-is-your-father": {
-   "text": "Де твій тато?",
-   "variants": [
-    "Де ваш тато?"
-   ]
-  },
-  "i-have-two-children": {
-   "text": "У мене двоє дітей."
-  },
-  "my-family-is-big": {
-   "text": "Моя сім'я велика."
-  },
-  "i-have-a-brother": {
-   "text": "У мене є брат."
-  },
-  "my-parents-live-here": {
-   "text": "Мої батьки живуть тут."
-  },
-  "how-is-your-grandmother": {
-   "text": "Як справи у твоєї бабусі?",
-   "variants": [
-    "Як справи у вашої бабусі?"
-   ]
-  },
-  "a-good-friend": {
-   "text": "добрий друг",
-   "variants": [
-    "хороший друг"
-   ]
-  },
-  "my-girlfriend": {
-   "text": "моя дівчина"
-  },
-  "her-boyfriend": {
-   "text": "її хлопець"
-  },
-  "old-people": {
-   "text": "старі люди"
-  },
-  "many-friends": {
-   "text": "багато друзів"
-  }
+  "parents": { "text": "батьки", "grammar": { "plural": "only" } },
+  "child": { "text": "дитина", "grammar": { "plural": "діти" } },
+  "son": { "text": "син" },
+  "daughter": { "text": "дочка", "variants": ["донька"] },
+  "brother": { "text": "брат" },
+  "sister": { "text": "сестра" },
+  "man": { "text": "чоловік" },
+  "woman": { "text": "жінка" },
+  "boy": { "text": "хлопчик" },
+  "girl": { "text": "дівчинка" },
+  "baby": { "text": "немовля", "grammar": { "plural": "немовлята" } },
+  "friend": { "text": "друг", "grammar": { "plural": "друзі" } },
+  "friend-f": { "text": "подруга" },
+  "grandmother": { "text": "бабуся" },
+  "grandfather": { "text": "дідусь" },
+  "uncle": { "text": "дядько" },
+  "aunt": { "text": "тітка" },
+  "this-is-my-mother": { "text": "Це моя мама." },
+  "where-is-your-father": { "text": "Де твій тато?", "variants": ["Де ваш тато?"] },
+  "i-have-two-children": { "text": "У мене двоє дітей." },
+  "my-family-is-big": { "text": "Моя сім'я велика." },
+  "i-have-a-brother": { "text": "У мене є брат." },
+  "my-parents-live-here": { "text": "Мої батьки живуть тут." },
+  "how-is-your-grandmother": { "text": "Як справи у твоєї бабусі?", "variants": ["Як справи у вашої бабусі?"] },
+  "a-good-friend": { "text": "добрий друг", "variants": ["хороший друг"] },
+  "my-girlfriend": { "text": "моя дівчина" },
+  "her-boyfriend": { "text": "її хлопець" },
+  "old-people": { "text": "старі люди" },
+  "many-friends": { "text": "багато друзів" }
  }
 }

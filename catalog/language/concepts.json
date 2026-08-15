@@ -1,189 +1,34 @@
 [
- {
-  "slug": "hear",
-  "kind": "verb",
-  "emoji": "👂"
- },
- {
-  "slug": "understand",
-  "kind": "verb",
-  "emoji": "💡"
- },
- {
-  "slug": "speak",
-  "kind": "verb",
-  "emoji": "💬"
- },
- {
-  "slug": "repeat-word",
-  "kind": "verb",
-  "emoji": "🔁"
- },
- {
-  "slug": "loud",
-  "kind": "adjective",
-  "emoji": "🔊"
- },
- {
-  "slug": "ask",
-  "kind": "verb",
-  "emoji": "🙋"
- },
- {
-  "slug": "question",
-  "kind": "noun",
-  "emoji": "❓"
- },
- {
-  "slug": "answer",
-  "kind": "noun",
-  "emoji": "✅"
- },
- {
-  "slug": "reply",
-  "kind": "verb",
-  "emoji": "↩️"
- },
- {
-  "slug": "meaning",
-  "kind": "noun"
- },
- {
-  "slug": "to-pronounce",
-  "kind": "verb",
-  "emoji": "🗣️"
- },
- {
-  "slug": "translate",
-  "kind": "verb",
-  "emoji": "🔤"
- },
- {
-  "slug": "read-aloud",
-  "kind": "verb",
-  "emoji": "📢"
- },
- {
-  "slug": "learn-by-heart",
-  "kind": "verb",
-  "emoji": "🧠"
- },
- {
-  "slug": "dictionary",
-  "kind": "noun",
-  "emoji": "📖"
- },
- {
-  "slug": "sentence",
-  "kind": "noun",
-  "emoji": "📝"
- },
- {
-  "slug": "word",
-  "kind": "noun",
-  "emoji": "💬"
- },
- {
-  "slug": "language",
-  "kind": "noun",
-  "emoji": "🗣️"
- },
- {
-  "slug": "mother-tongue",
-  "kind": "noun"
- },
- {
-  "slug": "i-dont-understand",
-  "kind": "phrase",
-  "emoji": "😕",
-  "components": [
-   "understand"
-  ]
- },
- {
-  "slug": "i-understand",
-  "kind": "phrase",
-  "emoji": "💡",
-  "components": [
-   "understand"
-  ]
- },
- {
-  "slug": "can-you-repeat-that",
-  "kind": "phrase",
-  "emoji": "🔁",
-  "components": [
-   "repeat-word"
-  ]
- },
- {
-  "slug": "slower",
-  "kind": "phrase",
-  "emoji": "🐌",
-  "components": []
- },
- {
-  "slug": "i-cant-hear-you",
-  "kind": "phrase",
-  "emoji": "👂",
-  "components": [
-   "hear"
-  ]
- },
- {
-  "slug": "louder",
-  "kind": "phrase",
-  "emoji": "🔊",
-  "components": [
-   "loud"
-  ]
- },
- {
-  "slug": "do-you-speak-english",
-  "kind": "phrase",
-  "emoji": "🇬🇧",
-  "components": [
-   "speak"
-  ]
- },
- {
-  "slug": "i-speak-a-little",
-  "kind": "phrase",
-  "emoji": "💬",
-  "components": [
-   "speak"
-  ]
- },
- {
-  "slug": "what-does-this-word-mean",
-  "kind": "phrase",
-  "emoji": "📖",
-  "components": []
- },
- {
-  "slug": "how-do-you-say-this",
-  "kind": "phrase",
-  "emoji": "🗣️",
-  "components": []
- },
- {
-  "slug": "im-learning-your-language",
-  "kind": "phrase",
-  "emoji": "📚",
-  "components": []
- },
- {
-  "slug": "i-have-a-question",
-  "kind": "phrase",
-  "emoji": "❓",
-  "components": [
-   "question"
-  ]
- },
- {
-  "slug": "you-can-do-it",
-  "kind": "phrase",
-  "emoji": "💪",
-  "components": []
- }
+ { "slug": "hear", "kind": "verb", "emoji": "👂" },
+ { "slug": "understand", "kind": "verb", "emoji": "💡" },
+ { "slug": "speak", "kind": "verb", "emoji": "💬" },
+ { "slug": "repeat-word", "kind": "verb", "emoji": "🔁" },
+ { "slug": "loud", "kind": "adjective", "emoji": "🔊" },
+ { "slug": "ask", "kind": "verb", "emoji": "🙋" },
+ { "slug": "question", "kind": "noun", "emoji": "❓" },
+ { "slug": "answer", "kind": "noun", "emoji": "✅" },
+ { "slug": "reply", "kind": "verb", "emoji": "↩️" },
+ { "slug": "meaning", "kind": "noun" },
+ { "slug": "to-pronounce", "kind": "verb", "emoji": "🗣️" },
+ { "slug": "translate", "kind": "verb", "emoji": "🔤" },
+ { "slug": "read-aloud", "kind": "verb", "emoji": "📢" },
+ { "slug": "learn-by-heart", "kind": "verb", "emoji": "🧠" },
+ { "slug": "dictionary", "kind": "noun", "emoji": "📖" },
+ { "slug": "sentence", "kind": "noun", "emoji": "📝" },
+ { "slug": "word", "kind": "noun", "emoji": "💬" },
+ { "slug": "language", "kind": "noun", "emoji": "🗣️" },
+ { "slug": "mother-tongue", "kind": "noun" },
+ { "slug": "i-dont-understand", "kind": "phrase", "emoji": "😕", "components": ["understand"] },
+ { "slug": "i-understand", "kind": "phrase", "emoji": "💡", "components": ["understand"] },
+ { "slug": "can-you-repeat-that", "kind": "phrase", "emoji": "🔁", "components": ["repeat-word"] },
+ { "slug": "slower", "kind": "phrase", "emoji": "🐌", "components": [] },
+ { "slug": "i-cant-hear-you", "kind": "phrase", "emoji": "👂", "components": ["hear"] },
+ { "slug": "louder", "kind": "phrase", "emoji": "🔊", "components": ["loud"] },
+ { "slug": "do-you-speak-english", "kind": "phrase", "emoji": "🇬🇧", "components": ["speak"] },
+ { "slug": "i-speak-a-little", "kind": "phrase", "emoji": "💬", "components": ["speak"] },
+ { "slug": "what-does-this-word-mean", "kind": "phrase", "emoji": "📖", "components": [] },
+ { "slug": "how-do-you-say-this", "kind": "phrase", "emoji": "🗣️", "components": [] },
+ { "slug": "im-learning-your-language", "kind": "phrase", "emoji": "📚", "components": [] },
+ { "slug": "i-have-a-question", "kind": "phrase", "emoji": "❓", "components": ["question"] },
+ { "slug": "you-can-do-it", "kind": "phrase", "emoji": "💪", "components": [] }
 ]

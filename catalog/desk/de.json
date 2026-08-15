@@ -2,207 +2,44 @@
  "title": "Der Schreibtisch",
  "subtitle": "In Ruhe arbeiten.",
  "words": {
-  "desk": {
-   "text": "Schreibtisch",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "laptop": {
-   "text": "Laptop",
-   "grammar": {
-    "gender": "der",
-    "plural": "-s"
-   }
-  },
-  "keyboard": {
-   "text": "Tastatur",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "screen": {
-   "text": "Bildschirm",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "mouse": {
-   "text": "Maus",
-   "grammar": {
-    "gender": "die",
-    "plural": "Mäuse"
-   }
-  },
-  "cable": {
-   "text": "Kabel",
-   "grammar": {
-    "gender": "das",
-    "plural": "="
-   }
-  },
-  "headphones": {
-   "text": "Kopfhörer",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "pen": {
-   "text": "Stift",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "notebook": {
-   "text": "Notizbuch",
-   "grammar": {
-    "gender": "das",
-    "plural": "Notizbücher"
-   }
-  },
-  "printer": {
-   "text": "Drucker",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "socket": {
-   "text": "Steckdose",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "office-chair": {
-   "text": "Bürostuhl",
-   "grammar": {
-    "gender": "der",
-    "plural": "Bürostühle"
-   }
-  },
-  "to-work": {
-   "text": "arbeiten"
-  },
-  "type": {
-   "text": "tippen"
-  },
-  "print": {
-   "text": "drucken"
-  },
-  "save": {
-   "text": "speichern"
-  },
-  "take-break": {
-   "text": "Pause machen"
-  },
-  "write": {
-   "text": "schreiben"
-  },
-  "call": {
-   "text": "anrufen"
-  },
-  "delete": {
-   "text": "löschen"
-  },
-  "study": {
-   "text": "lernen"
-  },
-  "phone": {
-   "text": "Handy",
-   "grammar": {
-    "gender": "das",
-    "plural": "-s"
-   }
-  },
-  "email": {
-   "text": "E-Mail",
-   "grammar": {
-    "gender": "die",
-    "plural": "-s"
-   }
-  },
-  "paper": {
-   "text": "Papier",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
-  },
-  "folder": {
-   "text": "Ordner",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "password": {
-   "text": "Passwort",
-   "grammar": {
-    "gender": "das",
-    "plural": "Passwörter"
-   }
-  },
-  "internet": {
-   "text": "Internet",
-   "grammar": {
-    "gender": "das"
-   }
-  },
-  "charger": {
-   "text": "Ladekabel",
-   "grammar": {
-    "gender": "das",
-    "plural": "="
-   }
-  },
-  "calendar": {
-   "text": "Kalender",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "important": {
-   "text": "wichtig"
-  },
-  "ready": {
-   "text": "fertig"
-  },
-  "im-in-a-meeting": {
-   "text": "Ich bin in einem Meeting."
-  },
-  "dont-disturb-me": {
-   "text": "Stör mich nicht!",
-   "variants": [
-    "Nicht stören!"
-   ]
-  },
-  "the-laptop-wont-charge-anymore": {
-   "text": "Der Laptop lädt nicht mehr."
-  },
-  "the-internet-is-gone": {
-   "text": "Das Internet ist weg.",
-   "variants": [
-    "Das WLAN ist weg."
-   ]
-  },
-  "coffee-break": {
-   "text": "Kaffeepause?"
-  },
-  "i-have-a-lot-to-do": {
-   "text": "Ich habe viel zu tun."
-  },
-  "end-of-workday": {
-   "text": "Feierabend!"
-  },
-  "send-me-the-email": {
-   "text": "Schick mir die E-Mail."
-  }
+  "desk": { "text": "Schreibtisch", "grammar": { "gender": "der", "plural": "-e" } },
+  "laptop": { "text": "Laptop", "grammar": { "gender": "der", "plural": "-s" } },
+  "keyboard": { "text": "Tastatur", "grammar": { "gender": "die", "plural": "-en" } },
+  "screen": { "text": "Bildschirm", "grammar": { "gender": "der", "plural": "-e" } },
+  "mouse": { "text": "Maus", "grammar": { "gender": "die", "plural": "Mäuse" } },
+  "cable": { "text": "Kabel", "grammar": { "gender": "das", "plural": "=" } },
+  "headphones": { "text": "Kopfhörer", "grammar": { "gender": "der", "plural": "=" } },
+  "pen": { "text": "Stift", "grammar": { "gender": "der", "plural": "-e" } },
+  "notebook": { "text": "Notizbuch", "grammar": { "gender": "das", "plural": "Notizbücher" } },
+  "printer": { "text": "Drucker", "grammar": { "gender": "der", "plural": "=" } },
+  "socket": { "text": "Steckdose", "grammar": { "gender": "die", "plural": "-n" } },
+  "office-chair": { "text": "Bürostuhl", "grammar": { "gender": "der", "plural": "Bürostühle" } },
+  "to-work": { "text": "arbeiten" },
+  "type": { "text": "tippen" },
+  "print": { "text": "drucken" },
+  "save": { "text": "speichern" },
+  "take-break": { "text": "Pause machen" },
+  "write": { "text": "schreiben" },
+  "call": { "text": "anrufen" },
+  "delete": { "text": "löschen" },
+  "study": { "text": "lernen" },
+  "phone": { "text": "Handy", "grammar": { "gender": "das", "plural": "-s" } },
+  "email": { "text": "E-Mail", "grammar": { "gender": "die", "plural": "-s" } },
+  "paper": { "text": "Papier", "grammar": { "gender": "das", "plural": "-e" } },
+  "folder": { "text": "Ordner", "grammar": { "gender": "der", "plural": "=" } },
+  "password": { "text": "Passwort", "grammar": { "gender": "das", "plural": "Passwörter" } },
+  "internet": { "text": "Internet", "grammar": { "gender": "das" } },
+  "charger": { "text": "Ladekabel", "grammar": { "gender": "das", "plural": "=" } },
+  "calendar": { "text": "Kalender", "grammar": { "gender": "der", "plural": "=" } },
+  "important": { "text": "wichtig" },
+  "ready": { "text": "fertig" },
+  "im-in-a-meeting": { "text": "Ich bin in einem Meeting." },
+  "dont-disturb-me": { "text": "Stör mich nicht!", "variants": ["Nicht stören!"] },
+  "the-laptop-wont-charge-anymore": { "text": "Der Laptop lädt nicht mehr." },
+  "the-internet-is-gone": { "text": "Das Internet ist weg.", "variants": ["Das WLAN ist weg."] },
+  "coffee-break": { "text": "Kaffeepause?" },
+  "i-have-a-lot-to-do": { "text": "Ich habe viel zu tun." },
+  "end-of-workday": { "text": "Feierabend!" },
+  "send-me-the-email": { "text": "Schick mir die E-Mail." }
  }
 }

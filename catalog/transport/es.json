@@ -2,220 +2,65 @@
  "title": "El transporte",
  "subtitle": "¡En marcha!",
  "words": {
-  "traffic-light": {
-   "text": "semáforo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "bicycle": {
-   "text": "bicicleta",
-   "variants": [
-    "bici"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "bus": {
-   "text": "autobús",
-   "variants": [
-    "bus",
-    "guagua"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "bus-stop": {
-   "text": "parada",
-   "variants": [
-    "parada de autobús"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "train": {
-   "text": "tren",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "car": {
-   "text": "coche",
-   "variants": [
-    "carro",
-    "auto"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "taxi": {
-   "text": "taxi",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "traffic-light": { "text": "semáforo", "grammar": { "gender": "el" } },
+  "bicycle": { "text": "bicicleta", "variants": ["bici"], "grammar": { "gender": "la" } },
+  "bus": { "text": "autobús", "variants": ["bus", "guagua"], "grammar": { "gender": "el" } },
+  "bus-stop": { "text": "parada", "variants": ["parada de autobús"], "grammar": { "gender": "la" } },
+  "train": { "text": "tren", "grammar": { "gender": "el" } },
+  "car": { "text": "coche", "variants": ["carro", "auto"], "grammar": { "gender": "el" } },
+  "taxi": { "text": "taxi", "grammar": { "gender": "el" } },
   "train-station": {
    "text": "estación de tren",
-   "variants": [
-    "estación",
-    "estación de ferrocarril"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
+   "variants": ["estación", "estación de ferrocarril"],
+   "grammar": { "gender": "la" }
   },
   "ticket": {
    "text": "billete",
-   "variants": [
-    "boleto",
-    "pasaje"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
+   "variants": ["boleto", "pasaje"],
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "In Spanien el billete (auch der Geldschein); in Lateinamerika el boleto oder el pasaje."
    }
   },
-  "way": {
-   "text": "camino",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "way": { "text": "camino", "grammar": { "gender": "el" } },
   "ride-bike": {
    "text": "montar en bicicleta",
-   "variants": [
-    "montar en bici",
-    "ir en bici",
-    "andar en bicicleta"
-   ]
+   "variants": ["montar en bici", "ir en bici", "andar en bicicleta"]
   },
   "take-bus": {
    "text": "coger el autobús",
-   "variants": [
-    "tomar el autobús"
-   ],
-   "notes": {
-    "de": "In Spanien coger; in Lateinamerika sagt man tomar, weil coger dort vulgär ist."
-   }
+   "variants": ["tomar el autobús"],
+   "notes": { "de": "In Spanien coger; in Lateinamerika sagt man tomar, weil coger dort vulgär ist." }
   },
   "depart": {
    "text": "salir",
-   "notes": {
-    "de": "Züge und Busse „fahren ab“ mit salir: El tren sale a las ocho."
-   }
+   "notes": { "de": "Züge und Busse „fahren ab“ mit salir: El tren sale a las ocho." }
   },
-  "journey": {
-   "text": "viaje",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "travel": {
-   "text": "viajar"
-  },
-  "driver": {
-   "text": "conductor",
-   "variants": [
-    "chofer",
-    "chófer"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "plane": {
-   "text": "avión",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "airport": {
-   "text": "aeropuerto",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "ship": {
-   "text": "barco",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "journey": { "text": "viaje", "grammar": { "gender": "el" } },
+  "travel": { "text": "viajar" },
+  "driver": { "text": "conductor", "variants": ["chofer", "chófer"], "grammar": { "gender": "el" } },
+  "plane": { "text": "avión", "grammar": { "gender": "el" } },
+  "airport": { "text": "aeropuerto", "grammar": { "gender": "el" } },
+  "ship": { "text": "barco", "grammar": { "gender": "el" } },
   "motorbike": {
    "text": "moto",
-   "variants": [
-    "motocicleta"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "la moto ist die Kurzform von la motocicleta und behält deren Femininum."
-   }
+   "variants": ["motocicleta"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la moto ist die Kurzform von la motocicleta und behält deren Femininum." }
   },
-  "truck": {
-   "text": "camión",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "passenger": {
-   "text": "pasajero",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "luggage": {
-   "text": "equipaje",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "fare": {
-   "text": "tarifa",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "get-off": {
-   "text": "bajarse",
-   "variants": [
-    "bajar"
-   ]
-  },
+  "truck": { "text": "camión", "grammar": { "gender": "el" } },
+  "passenger": { "text": "pasajero", "grammar": { "gender": "el" } },
+  "luggage": { "text": "equipaje", "grammar": { "gender": "el" } },
+  "fare": { "text": "tarifa", "grammar": { "gender": "la" } },
+  "get-off": { "text": "bajarse", "variants": ["bajar"] },
   "the-bus-is-coming-soon": {
    "text": "El autobús llega enseguida.",
-   "variants": [
-    "El autobús viene enseguida.",
-    "Ahora viene el autobús."
-   ]
+   "variants": ["El autobús viene enseguida.", "Ahora viene el autobús."]
   },
-  "when-does-the-train-leave": {
-   "text": "¿Cuándo sale el tren?",
-   "variants": [
-    "¿A qué hora sale el tren?"
-   ]
-  },
-  "have-a-good-journey": {
-   "text": "¡Buen viaje!"
-  },
-  "where-is-the-airport": {
-   "text": "¿Dónde está el aeropuerto?"
-  },
-  "how-much-is-the-fare": {
-   "text": "¿Cuál es la tarifa?",
-   "variants": [
-    "¿Cuánto cuesta el pasaje?"
-   ]
-  },
-  "i-get-off-here": {
-   "text": "Me bajo aquí."
-  }
+  "when-does-the-train-leave": { "text": "¿Cuándo sale el tren?", "variants": ["¿A qué hora sale el tren?"] },
+  "have-a-good-journey": { "text": "¡Buen viaje!" },
+  "where-is-the-airport": { "text": "¿Dónde está el aeropuerto?" },
+  "how-much-is-the-fare": { "text": "¿Cuál es la tarifa?", "variants": ["¿Cuánto cuesta el pasaje?"] },
+  "i-get-off-here": { "text": "Me bajo aquí." }
  }
 }

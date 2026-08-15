@@ -2,94 +2,26 @@
  "title": "Parole interrogative",
  "subtitle": "Chi, che cosa, quando e perché.",
  "words": {
-  "where": {
-   "text": "dove"
-  },
-  "who": {
-   "text": "chi"
-  },
-  "what": {
-   "text": "che cosa",
-   "variants": [
-    "cosa",
-    "che"
-   ]
-  },
-  "here": {
-   "text": "qui",
-   "variants": [
-    "qua"
-   ]
-  },
-  "there": {
-   "text": "lì",
-   "variants": [
-    "là"
-   ]
-  },
-  "this": {
-   "text": "questo",
-   "variants": [
-    "questa"
-   ]
-  },
-  "that": {
-   "text": "quello",
-   "variants": [
-    "quella"
-   ]
-  },
-  "when": {
-   "text": "quando"
-  },
-  "why": {
-   "text": "perché"
-  },
-  "how": {
-   "text": "come"
-  },
-  "which": {
-   "text": "quale",
-   "variants": [
-    "quali"
-   ]
-  },
-  "how-many": {
-   "text": "quanti",
-   "variants": [
-    "quante",
-    "quanto"
-   ]
-  },
-  "where-are-they": {
-   "text": "Dove sono?"
-  },
+  "where": { "text": "dove" },
+  "who": { "text": "chi" },
+  "what": { "text": "che cosa", "variants": ["cosa", "che"] },
+  "here": { "text": "qui", "variants": ["qua"] },
+  "there": { "text": "lì", "variants": ["là"] },
+  "this": { "text": "questo", "variants": ["questa"] },
+  "that": { "text": "quello", "variants": ["quella"] },
+  "when": { "text": "quando" },
+  "why": { "text": "perché" },
+  "how": { "text": "come" },
+  "which": { "text": "quale", "variants": ["quali"] },
+  "how-many": { "text": "quanti", "variants": ["quante", "quanto"] },
+  "where-are-they": { "text": "Dove sono?" },
   "who-is-there": {
    "text": "Chi è?",
-   "variants": [
-    "Chi c'è?"
-   ],
-   "notes": {
-    "de": "an der Tür fragt man ohne Ortswort: Chi è?"
-   }
+   "variants": ["Chi c'è?"],
+   "notes": { "de": "an der Tür fragt man ohne Ortswort: Chi è?" }
   },
-  "do-you-need-this": {
-   "text": "Ha bisogno di questo?",
-   "variants": [
-    "Hai bisogno di questo?"
-   ]
-  },
-  "when-does-it-start": {
-   "text": "Quando comincia?",
-   "variants": [
-    "Quando inizia?"
-   ]
-  },
-  "what-time-is-it": {
-   "text": "Che ore sono?",
-   "variants": [
-    "Che ora è?"
-   ]
-  }
+  "do-you-need-this": { "text": "Ha bisogno di questo?", "variants": ["Hai bisogno di questo?"] },
+  "when-does-it-start": { "text": "Quando comincia?", "variants": ["Quando inizia?"] },
+  "what-time-is-it": { "text": "Che ore sono?", "variants": ["Che ora è?"] }
  }
 }

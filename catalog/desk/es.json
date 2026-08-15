@@ -2,297 +2,102 @@
  "title": "El escritorio",
  "subtitle": "Hora de concentrarse.",
  "words": {
-  "desk": {
-   "text": "escritorio",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "desk": { "text": "escritorio", "grammar": { "gender": "el" } },
   "laptop": {
    "text": "portátil",
-   "variants": [
-    "ordenador portátil",
-    "computadora portátil",
-    "laptop"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "Kurzform von el ordenador portátil; in Spanien sagt man fast immer nur el portátil."
-   }
+   "variants": ["ordenador portátil", "computadora portátil", "laptop"],
+   "grammar": { "gender": "el" },
+   "notes": { "de": "Kurzform von el ordenador portátil; in Spanien sagt man fast immer nur el portátil." }
   },
-  "keyboard": {
-   "text": "teclado",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "screen": {
-   "text": "pantalla",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "mouse": {
-   "text": "ratón",
-   "variants": [
-    "mouse"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "cable": {
-   "text": "cable",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "keyboard": { "text": "teclado", "grammar": { "gender": "el" } },
+  "screen": { "text": "pantalla", "grammar": { "gender": "la" } },
+  "mouse": { "text": "ratón", "variants": ["mouse"], "grammar": { "gender": "el" } },
+  "cable": { "text": "cable", "grammar": { "gender": "el" } },
   "headphones": {
    "text": "auriculares",
-   "synonyms": [
-    "cascos"
-   ],
-   "grammar": {
-    "gender": "los",
-    "plural": "only"
-   },
-   "notes": {
-    "de": "Nur im Plural: los auriculares; umgangssprachlich auch los cascos."
-   }
+   "synonyms": ["cascos"],
+   "grammar": { "gender": "los", "plural": "only" },
+   "notes": { "de": "Nur im Plural: los auriculares; umgangssprachlich auch los cascos." }
   },
   "pen": {
    "text": "bolígrafo",
-   "variants": [
-    "boli"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
+   "variants": ["boli"],
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "„Stift“ ist hier der Kugelschreiber: el bolígrafo, ugs. el boli. Der Bleistift heißt el lápiz."
    }
   },
-  "notebook": {
-   "text": "libreta",
-   "variants": [
-    "cuaderno"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "printer": {
-   "text": "impresora",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "notebook": { "text": "libreta", "variants": ["cuaderno"], "grammar": { "gender": "la" } },
+  "printer": { "text": "impresora", "grammar": { "gender": "la" } },
   "socket": {
    "text": "enchufe",
-   "variants": [
-    "toma de corriente",
-    "tomacorriente"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "enchufe ist die Steckdose und der Stecker zugleich."
-   }
+   "variants": ["toma de corriente", "tomacorriente"],
+   "grammar": { "gender": "el" },
+   "notes": { "de": "enchufe ist die Steckdose und der Stecker zugleich." }
   },
-  "office-chair": {
-   "text": "silla de oficina",
-   "variants": [
-    "silla de escritorio"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "to-work": {
-   "text": "trabajar"
-  },
-  "type": {
-   "text": "teclear",
-   "variants": [
-    "mecanografiar",
-    "escribir a máquina"
-   ]
-  },
-  "print": {
-   "text": "imprimir"
-  },
-  "save": {
-   "text": "guardar",
-   "variants": [
-    "almacenar"
-   ]
-  },
-  "take-break": {
-   "text": "hacer una pausa",
-   "variants": [
-    "hacer un descanso",
-    "tomarse un descanso"
-   ]
-  },
-  "write": {
-   "text": "escribir"
-  },
-  "call": {
-   "text": "llamar",
-   "variants": [
-    "llamar por teléfono",
-    "telefonear"
-   ]
-  },
-  "delete": {
-   "text": "borrar",
-   "synonyms": [
-    "eliminar"
-   ]
-  },
+  "office-chair": { "text": "silla de oficina", "variants": ["silla de escritorio"], "grammar": { "gender": "la" } },
+  "to-work": { "text": "trabajar" },
+  "type": { "text": "teclear", "variants": ["mecanografiar", "escribir a máquina"] },
+  "print": { "text": "imprimir" },
+  "save": { "text": "guardar", "variants": ["almacenar"] },
+  "take-break": { "text": "hacer una pausa", "variants": ["hacer un descanso", "tomarse un descanso"] },
+  "write": { "text": "escribir" },
+  "call": { "text": "llamar", "variants": ["llamar por teléfono", "telefonear"] },
+  "delete": { "text": "borrar", "synonyms": ["eliminar"] },
   "study": {
    "text": "estudiar",
-   "notes": {
-    "de": "Für eine Prüfung oder einen Kurs lernen = estudiar; etwas Neues erlernen = aprender."
-   }
+   "notes": { "de": "Für eine Prüfung oder einen Kurs lernen = estudiar; etwas Neues erlernen = aprender." }
   },
   "phone": {
    "text": "móvil",
-   "variants": [
-    "teléfono móvil",
-    "celular",
-    "teléfono celular"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
+   "variants": ["teléfono móvil", "celular", "teléfono celular"],
+   "grammar": { "gender": "el" }
   },
   "email": {
    "text": "correo electrónico",
-   "variants": [
-    "correo",
-    "email",
-    "mail"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
+   "variants": ["correo", "email", "mail"],
+   "grammar": { "gender": "el" }
   },
-  "paper": {
-   "text": "papel",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "folder": {
-   "text": "carpeta",
-   "variants": [
-    "archivador"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "password": {
-   "text": "contraseña",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "paper": { "text": "papel", "grammar": { "gender": "el" } },
+  "folder": { "text": "carpeta", "variants": ["archivador"], "grammar": { "gender": "la" } },
+  "password": { "text": "contraseña", "grammar": { "gender": "la" } },
   "internet": {
    "text": "internet",
-   "notes": {
-    "de": "Meist ohne Artikel: ¿Hay internet? · No tengo internet."
-   }
+   "notes": { "de": "Meist ohne Artikel: ¿Hay internet? · No tengo internet." }
   },
-  "charger": {
-   "text": "cargador",
-   "variants": [
-    "cable de carga"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "charger": { "text": "cargador", "variants": ["cable de carga"], "grammar": { "gender": "el" } },
   "calendar": {
    "text": "calendario",
-   "synonyms": [
-    "agenda"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "el calendario hängt an der Wand; der Terminkalender heißt la agenda."
-   }
+   "synonyms": ["agenda"],
+   "grammar": { "gender": "el" },
+   "notes": { "de": "el calendario hängt an der Wand; der Terminkalender heißt la agenda." }
   },
-  "important": {
-   "text": "importante"
-  },
+  "important": { "text": "importante" },
   "ready": {
    "text": "listo",
-   "variants": [
-    "terminado",
-    "acabado"
-   ],
-   "notes": {
-    "de": "Mit estar: ya estoy listo = ich bin fertig. ser listo heißt dagegen „schlau sein“."
-   }
+   "variants": ["terminado", "acabado"],
+   "notes": { "de": "Mit estar: ya estoy listo = ich bin fertig. ser listo heißt dagegen „schlau sein“." }
   },
-  "im-in-a-meeting": {
-   "text": "Estoy en una reunión."
-  },
-  "dont-disturb-me": {
-   "text": "¡No me molestes!",
-   "variants": [
-    "¡No molestar!"
-   ]
-  },
+  "im-in-a-meeting": { "text": "Estoy en una reunión." },
+  "dont-disturb-me": { "text": "¡No me molestes!", "variants": ["¡No molestar!"] },
   "the-laptop-wont-charge-anymore": {
    "text": "El portátil ya no carga.",
-   "variants": [
-    "El portátil ya no se carga.",
-    "El ordenador portátil ya no carga."
-   ]
+   "variants": ["El portátil ya no se carga.", "El ordenador portátil ya no carga."]
   },
   "the-internet-is-gone": {
    "text": "No hay internet.",
-   "variants": [
-    "Se ha cortado internet.",
-    "Se ha ido internet.",
-    "No hay wifi."
-   ]
+   "variants": ["Se ha cortado internet.", "Se ha ido internet.", "No hay wifi."]
   },
-  "coffee-break": {
-   "text": "¿Pausa para el café?",
-   "variants": [
-    "¿Nos tomamos un café?",
-    "¿Un café?"
-   ]
-  },
-  "i-have-a-lot-to-do": {
-   "text": "Tengo mucho que hacer."
-  },
+  "coffee-break": { "text": "¿Pausa para el café?", "variants": ["¿Nos tomamos un café?", "¿Un café?"] },
+  "i-have-a-lot-to-do": { "text": "Tengo mucho que hacer." },
   "end-of-workday": {
    "text": "¡Se acabó por hoy!",
-   "variants": [
-    "¡Por hoy hemos terminado!",
-    "¡Basta por hoy!"
-   ],
-   "notes": {
-    "de": "Für „Feierabend“ gibt es kein eigenes Wort — man sagt: „Für heute ist Schluss!“"
-   }
+   "variants": ["¡Por hoy hemos terminado!", "¡Basta por hoy!"],
+   "notes": { "de": "Für „Feierabend“ gibt es kein eigenes Wort — man sagt: „Für heute ist Schluss!“" }
   },
   "send-me-the-email": {
    "text": "Mándame el correo.",
-   "variants": [
-    "Envíame el correo.",
-    "Mándame el correo electrónico.",
-    "Mándame el email."
-   ]
+   "variants": ["Envíame el correo.", "Mándame el correo electrónico.", "Mándame el email."]
   }
  }
 }

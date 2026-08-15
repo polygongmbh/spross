@@ -2,50 +2,17 @@
  "title": "Colors",
  "subtitle": "Red, blue and everything between.",
  "words": {
-  "color": {
-   "text": "color",
-   "variants": [
-    "colour"
-   ]
-  },
-  "white": {
-   "text": "white"
-  },
-  "black": {
-   "text": "black"
-  },
-  "red": {
-   "text": "red"
-  },
-  "blue": {
-   "text": "blue"
-  },
-  "green": {
-   "text": "green"
-  },
-  "yellow": {
-   "text": "yellow"
-  },
-  "brown": {
-   "text": "brown"
-  },
-  "gray": {
-   "text": "gray",
-   "variants": [
-    "grey"
-   ]
-  },
-  "purple": {
-   "text": "purple"
-  },
-  "what-color-is-it": {
-   "text": "What color is it?",
-   "variants": [
-    "What colour is it?"
-   ]
-  },
-  "a-white-car": {
-   "text": "A white car."
-  }
+  "color": { "text": "color", "variants": ["colour"] },
+  "white": { "text": "white" },
+  "black": { "text": "black" },
+  "red": { "text": "red" },
+  "blue": { "text": "blue" },
+  "green": { "text": "green" },
+  "yellow": { "text": "yellow" },
+  "brown": { "text": "brown" },
+  "gray": { "text": "gray", "variants": ["grey"] },
+  "purple": { "text": "purple" },
+  "what-color-is-it": { "text": "What color is it?", "variants": ["What colour is it?"] },
+  "a-white-car": { "text": "A white car." }
  }
 }

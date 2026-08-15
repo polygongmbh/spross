@@ -2,163 +2,38 @@
  "title": "Die Küche",
  "subtitle": "Hier duftet es nach Abendessen.",
  "words": {
-  "fridge": {
-   "text": "Kühlschrank",
-   "grammar": {
-    "gender": "der",
-    "plural": "Kühlschränke"
-   }
-  },
-  "stove": {
-   "text": "Herd",
-   "grammar": {
-    "gender": "der",
-    "plural": "Herde"
-   }
-  },
-  "oven": {
-   "text": "Backofen",
-   "grammar": {
-    "gender": "der",
-    "plural": "Backöfen"
-   }
-  },
-  "dishwasher": {
-   "text": "Spülmaschine",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "pot": {
-   "text": "Topf",
-   "grammar": {
-    "gender": "der",
-    "plural": "Töpfe"
-   }
-  },
-  "pan": {
-   "text": "Pfanne",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "knife": {
-   "text": "Messer",
-   "grammar": {
-    "gender": "das",
-    "plural": "="
-   }
-  },
-  "spoon": {
-   "text": "Löffel",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "fork": {
-   "text": "Gabel",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "plate": {
-   "text": "Teller",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "cook": {
-   "text": "kochen"
-  },
-  "bake": {
-   "text": "backen"
-  },
-  "cut": {
-   "text": "schneiden"
-  },
-  "wash-the-dishes": {
-   "text": "Geschirr spülen"
-  },
-  "taste": {
-   "text": "probieren"
-  },
-  "fry": {
-   "text": "braten"
-  },
-  "reheat": {
-   "text": "aufwärmen"
-  },
-  "stir": {
-   "text": "umrühren"
-  },
-  "take-out-trash": {
-   "text": "Müll rausbringen"
-  },
-  "careful": {
-   "text": "Vorsicht"
-  },
-  "cup": {
-   "text": "Tasse",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "bowl": {
-   "text": "Schüssel",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "basket": {
-   "text": "Korb",
-   "grammar": {
-    "gender": "der",
-    "plural": "Körbe"
-   }
-  },
-  "tin-can": {
-   "text": "Dose",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "the-knife-is-sharp": {
-   "text": "Das Messer ist scharf!"
-  },
-  "this-is-very-tasty": {
-   "text": "Das ist sehr lecker!",
-   "variants": [
-    "Das schmeckt so lecker!"
-   ]
-  },
-  "are-you-cooking-rice-today": {
-   "text": "Kochst du heute Reis?"
-  },
-  "the-pot-is-still-on-the-stove": {
-   "text": "Der Topf steht noch auf dem Herd."
-  },
-  "wash-the-dishes-in-the-sink": {
-   "text": "Spül das Geschirr im Spülbecken!"
-  },
-  "the-fridge-is-empty": {
-   "text": "Der Kühlschrank ist leer."
-  },
-  "can-you-set-the-table": {
-   "text": "Kannst du den Tisch decken?"
-  },
-  "the-water-is-boiling-hot": {
-   "text": "Das Wasser kocht."
-  },
-  "careful-very-hot": {
-   "text": "Vorsicht, sehr heiß!"
-  }
+  "fridge": { "text": "Kühlschrank", "grammar": { "gender": "der", "plural": "Kühlschränke" } },
+  "stove": { "text": "Herd", "grammar": { "gender": "der", "plural": "Herde" } },
+  "oven": { "text": "Backofen", "grammar": { "gender": "der", "plural": "Backöfen" } },
+  "dishwasher": { "text": "Spülmaschine", "grammar": { "gender": "die", "plural": "-n" } },
+  "pot": { "text": "Topf", "grammar": { "gender": "der", "plural": "Töpfe" } },
+  "pan": { "text": "Pfanne", "grammar": { "gender": "die", "plural": "-n" } },
+  "knife": { "text": "Messer", "grammar": { "gender": "das", "plural": "=" } },
+  "spoon": { "text": "Löffel", "grammar": { "gender": "der", "plural": "=" } },
+  "fork": { "text": "Gabel", "grammar": { "gender": "die", "plural": "-n" } },
+  "plate": { "text": "Teller", "grammar": { "gender": "der", "plural": "=" } },
+  "cook": { "text": "kochen" },
+  "bake": { "text": "backen" },
+  "cut": { "text": "schneiden" },
+  "wash-the-dishes": { "text": "Geschirr spülen" },
+  "taste": { "text": "probieren" },
+  "fry": { "text": "braten" },
+  "reheat": { "text": "aufwärmen" },
+  "stir": { "text": "umrühren" },
+  "take-out-trash": { "text": "Müll rausbringen" },
+  "careful": { "text": "Vorsicht" },
+  "cup": { "text": "Tasse", "grammar": { "gender": "die", "plural": "-n" } },
+  "bowl": { "text": "Schüssel", "grammar": { "gender": "die", "plural": "-n" } },
+  "basket": { "text": "Korb", "grammar": { "gender": "der", "plural": "Körbe" } },
+  "tin-can": { "text": "Dose", "grammar": { "gender": "die", "plural": "-n" } },
+  "the-knife-is-sharp": { "text": "Das Messer ist scharf!" },
+  "this-is-very-tasty": { "text": "Das ist sehr lecker!", "variants": ["Das schmeckt so lecker!"] },
+  "are-you-cooking-rice-today": { "text": "Kochst du heute Reis?" },
+  "the-pot-is-still-on-the-stove": { "text": "Der Topf steht noch auf dem Herd." },
+  "wash-the-dishes-in-the-sink": { "text": "Spül das Geschirr im Spülbecken!" },
+  "the-fridge-is-empty": { "text": "Der Kühlschrank ist leer." },
+  "can-you-set-the-table": { "text": "Kannst du den Tisch decken?" },
+  "the-water-is-boiling-hot": { "text": "Das Wasser kocht." },
+  "careful-very-hot": { "text": "Vorsicht, sehr heiß!" }
  }
 }

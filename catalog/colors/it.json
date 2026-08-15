@@ -2,71 +2,23 @@
  "title": "I colori",
  "subtitle": "Rosso, blu e tutto il resto.",
  "words": {
-  "color": {
-   "text": "colore",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "white": {
-   "text": "bianco",
-   "variants": [
-    "bianca"
-   ]
-  },
-  "black": {
-   "text": "nero",
-   "variants": [
-    "nera"
-   ]
-  },
-  "red": {
-   "text": "rosso",
-   "variants": [
-    "rossa"
-   ]
-  },
+  "color": { "text": "colore", "grammar": { "gender": "il" } },
+  "white": { "text": "bianco", "variants": ["bianca"] },
+  "black": { "text": "nero", "variants": ["nera"] },
+  "red": { "text": "rosso", "variants": ["rossa"] },
   "blue": {
    "text": "blu",
-   "notes": {
-    "de": "blu ist das dunkle Blau · das helle Himmelblau heißt azzurro."
-   }
+   "notes": { "de": "blu ist das dunkle Blau · das helle Himmelblau heißt azzurro." }
   },
-  "green": {
-   "text": "verde"
-  },
-  "yellow": {
-   "text": "giallo",
-   "variants": [
-    "gialla"
-   ]
-  },
-  "brown": {
-   "text": "marrone",
-   "variants": [
-    "castano"
-   ],
-   "notes": {
-    "de": "bei Haaren und Augen castano."
-   }
-  },
-  "gray": {
-   "text": "grigio",
-   "variants": [
-    "grigia"
-   ]
-  },
+  "green": { "text": "verde" },
+  "yellow": { "text": "giallo", "variants": ["gialla"] },
+  "brown": { "text": "marrone", "variants": ["castano"], "notes": { "de": "bei Haaren und Augen castano." } },
+  "gray": { "text": "grigio", "variants": ["grigia"] },
   "purple": {
    "text": "viola",
-   "notes": {
-    "de": "viola bleibt unverändert: un vestito viola, una macchina viola."
-   }
+   "notes": { "de": "viola bleibt unverändert: un vestito viola, una macchina viola." }
   },
-  "what-color-is-it": {
-   "text": "Di che colore è?"
-  },
-  "a-white-car": {
-   "text": "Una macchina bianca."
-  }
+  "what-color-is-it": { "text": "Di che colore è?" },
+  "a-white-car": { "text": "Una macchina bianca." }
  }
 }

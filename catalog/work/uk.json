@@ -2,155 +2,47 @@
  "title": "На роботі",
  "subtitle": "Успіхів!",
  "words": {
-  "work": {
-   "text": "робота"
-  },
-  "job-application": {
-   "text": "заявка на роботу",
-   "grammar": {
-    "plural": "заявки на роботу"
-   }
-  },
-  "cv": {
-   "text": "резюме",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "contract": {
-   "text": "договір",
-   "variants": [
-    "контракт"
-   ],
-   "grammar": {
-    "plural": "договори"
-   }
-  },
-  "salary": {
-   "text": "зарплата"
-  },
-  "colleague": {
-   "text": "колега"
-  },
-  "boss": {
-   "text": "шеф",
-   "synonyms": [
-    "керівник"
-   ]
-  },
-  "shift": {
-   "text": "зміна"
-  },
-  "vacation": {
-   "text": "відпустка"
-  },
-  "company": {
-   "text": "фірма",
-   "variants": [
-    "компанія"
-   ]
-  },
+  "work": { "text": "робота" },
+  "job-application": { "text": "заявка на роботу", "grammar": { "plural": "заявки на роботу" } },
+  "cv": { "text": "резюме", "grammar": { "plural": "=" } },
+  "contract": { "text": "договір", "variants": ["контракт"], "grammar": { "plural": "договори" } },
+  "salary": { "text": "зарплата" },
+  "colleague": { "text": "колега" },
+  "boss": { "text": "шеф", "synonyms": ["керівник"] },
+  "shift": { "text": "зміна" },
+  "vacation": { "text": "відпустка" },
+  "company": { "text": "фірма", "variants": ["компанія"] },
   "apply": {
    "text": "подаватися",
-   "notes": {
-    "de": "mit «на»: подаватися на роботу = sich um eine Stelle bewerben"
-   }
+   "notes": { "de": "mit «на»: подаватися на роботу = sich um eine Stelle bewerben" }
   },
-  "introduce-oneself": {
-   "text": "представлятися"
-  },
-  "earn": {
-   "text": "заробляти"
-  },
-  "start": {
-   "text": "починати"
-  },
-  "leave": {
-   "text": "залишати",
-   "synonyms": [
-    "переставати"
-   ]
-  },
-  "quit": {
-   "text": "звільнятися"
-  },
-  "hire": {
-   "text": "наймати на роботу"
-  },
-  "to-help": {
-   "text": "допомагати"
-  },
-  "work-overtime": {
-   "text": "працювати понаднормово"
-  },
-  "profession": {
-   "text": "професія"
-  },
-  "interview": {
-   "text": "співбесіда"
-  },
-  "working-hours": {
-   "text": "робочий час"
-  },
-  "full-time": {
-   "text": "повна зайнятість"
-  },
-  "part-time": {
-   "text": "часткова зайнятість"
-  },
-  "tax": {
-   "text": "податок",
-   "grammar": {
-    "plural": "податки"
-   }
-  },
-  "work-permit": {
-   "text": "дозвіл на роботу",
-   "grammar": {
-    "plural": "дозволи на роботу"
-   }
-  },
-  "training": {
-   "text": "професійне навчання"
-  },
-  "notice": {
-   "text": "звільнення",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "worker": {
-   "text": "робітник"
-  },
-  "employer": {
-   "text": "роботодавець"
-  },
-  "customer": {
-   "text": "клієнт"
-  },
-  "tomorrow-i-have-a-job-interview": {
-   "text": "Завтра я представлюся у фірмі."
-  },
-  "my-shift-starts-at-six": {
-   "text": "Моя зміна починається о шостій."
-  },
-  "ill-send-the-doctors-note-right-away": {
-   "text": "Я одразу надішлю вам лікарняний."
-  },
-  "have-a-nice-evening-off": {
-   "text": "Гарного вечора після роботи!"
-  },
-  "can-you-help-me-briefly": {
-   "text": "Можете мені на хвилинку допомогти?"
-  },
-  "i-want-vacation-next-week": {
-   "text": "Наступного тижня я хочу взяти відпустку."
-  },
-  "read-the-contract": {
-   "text": "Прочитайте договір!"
-  },
-  "whats-the-salary": {
-   "text": "Яка зарплата?"
-  }
+  "introduce-oneself": { "text": "представлятися" },
+  "earn": { "text": "заробляти" },
+  "start": { "text": "починати" },
+  "leave": { "text": "залишати", "synonyms": ["переставати"] },
+  "quit": { "text": "звільнятися" },
+  "hire": { "text": "наймати на роботу" },
+  "to-help": { "text": "допомагати" },
+  "work-overtime": { "text": "працювати понаднормово" },
+  "profession": { "text": "професія" },
+  "interview": { "text": "співбесіда" },
+  "working-hours": { "text": "робочий час" },
+  "full-time": { "text": "повна зайнятість" },
+  "part-time": { "text": "часткова зайнятість" },
+  "tax": { "text": "податок", "grammar": { "plural": "податки" } },
+  "work-permit": { "text": "дозвіл на роботу", "grammar": { "plural": "дозволи на роботу" } },
+  "training": { "text": "професійне навчання" },
+  "notice": { "text": "звільнення", "grammar": { "plural": "=" } },
+  "worker": { "text": "робітник" },
+  "employer": { "text": "роботодавець" },
+  "customer": { "text": "клієнт" },
+  "tomorrow-i-have-a-job-interview": { "text": "Завтра я представлюся у фірмі." },
+  "my-shift-starts-at-six": { "text": "Моя зміна починається о шостій." },
+  "ill-send-the-doctors-note-right-away": { "text": "Я одразу надішлю вам лікарняний." },
+  "have-a-nice-evening-off": { "text": "Гарного вечора після роботи!" },
+  "can-you-help-me-briefly": { "text": "Можете мені на хвилинку допомогти?" },
+  "i-want-vacation-next-week": { "text": "Наступного тижня я хочу взяти відпустку." },
+  "read-the-contract": { "text": "Прочитайте договір!" },
+  "whats-the-salary": { "text": "Яка зарплата?" }
  }
 }

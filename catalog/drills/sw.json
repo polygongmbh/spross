@@ -14,74 +14,33 @@
   ]
  },
  "frames": {
-  "train-departs-at": {
-   "text": "Treni inaondoka {slot}."
-  },
-  "bus-arrives-at": {
-   "text": "Basi linakuja {slot}."
-  },
-  "i-wake-up-at": {
-   "text": "Ninaamka {slot}."
-  },
-  "we-eat-at": {
-   "text": "Tunakula {slot}."
-  },
-  "meeting-is-at": {
-   "text": "Mkutano ni {slot}."
-  },
-  "it-is-now": {
-   "text": "Sasa ni {slot}.",
-   "variants": [
-    "Ni {slot} sasa."
-   ]
-  },
-  "we-have-n-plates": {
-   "text": "Tuna sahani {slot}."
-  },
+  "train-departs-at": { "text": "Treni inaondoka {slot}." },
+  "bus-arrives-at": { "text": "Basi linakuja {slot}." },
+  "i-wake-up-at": { "text": "Ninaamka {slot}." },
+  "we-eat-at": { "text": "Tunakula {slot}." },
+  "meeting-is-at": { "text": "Mkutano ni {slot}." },
+  "it-is-now": { "text": "Sasa ni {slot}.", "variants": ["Ni {slot} sasa."] },
+  "we-have-n-plates": { "text": "Tuna sahani {slot}." },
   "i-have-n-keys": {
    "text": "Nina funguo {slot}.",
    "notes": {
     "de": "funguo ist der Plural von ufunguo und steht in der N-Klasse — die Zahlwörter bleiben unverändert (funguo mbili, funguo tano)."
    }
   },
-  "it-costs-n-euros": {
-   "text": "Ni euro {slot}.",
-   "notes": {
-    "de": "wörtl.: „Es sind … Euro.“"
-   }
-  },
-  "repeat-please": {
-   "text": "Rudia, tafadhali: {slot}.",
-   "variants": [
-    "Tafadhali rudia: {slot}."
-   ]
-  },
-  "write-please": {
-   "text": "Andika, tafadhali: {slot}.",
-   "variants": [
-    "Tafadhali andika: {slot}."
-   ]
-  },
+  "it-costs-n-euros": { "text": "Ni euro {slot}.", "notes": { "de": "wörtl.: „Es sind … Euro.“" } },
+  "repeat-please": { "text": "Rudia, tafadhali: {slot}.", "variants": ["Tafadhali rudia: {slot}."] },
+  "write-please": { "text": "Andika, tafadhali: {slot}.", "variants": ["Tafadhali andika: {slot}."] },
   "learning-since-year": {
    "text": "Ninajifunza {language} tangu mwaka {slot}.",
-   "notes": {
-    "de": "Jahreszahl als Kardinalzahl gelesen — mwaka = Jahr"
-   }
+   "notes": { "de": "Jahreszahl als Kardinalzahl gelesen — mwaka = Jahr" }
   },
   "repeat-the-year": {
    "text": "Rudia, tafadhali: {slot}.",
-   "variants": [
-    "Tafadhali rudia: {slot}."
-   ],
+   "variants": ["Tafadhali rudia: {slot}."],
    "notes": {
     "de": "Diktat-Rahmen ohne „Datum“: mwaka/tarehe vor der blanken Kardinalzahl liest sich nicht als Jahresangabe."
    }
   },
-  "write-the-year": {
-   "text": "Andika, tafadhali: {slot}.",
-   "variants": [
-    "Tafadhali andika: {slot}."
-   ]
-  }
+  "write-the-year": { "text": "Andika, tafadhali: {slot}.", "variants": ["Tafadhali andika: {slot}."] }
  }
 }

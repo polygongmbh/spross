@@ -4,177 +4,64 @@
  "words": {
   "hallway": {
    "text": "koridoro",
-   "synonyms": [
-    "antaŭĉambro"
-   ],
+   "synonyms": ["antaŭĉambro"],
    "notes": {
     "de": "koridoro ist der Gang in der Wohnung; der Eingangsbereich direkt hinter der Wohnungstür heißt antaŭĉambro."
    }
   },
-  "door": {
-   "text": "pordo"
-  },
-  "key": {
-   "text": "ŝlosilo"
-  },
-  "jacket": {
-   "text": "jako"
-  },
-  "coat": {
-   "text": "mantelo"
-  },
-  "shoe-rack": {
-   "text": "ŝuobreto",
-   "variants": [
-    "ŝubreto",
-    "breto por ŝuoj"
-   ]
-  },
-  "umbrella": {
-   "text": "ombrelo",
-   "variants": [
-    "pluvombrelo"
-   ]
-  },
+  "door": { "text": "pordo" },
+  "key": { "text": "ŝlosilo" },
+  "jacket": { "text": "jako" },
+  "coat": { "text": "mantelo" },
+  "shoe-rack": { "text": "ŝuobreto", "variants": ["ŝubreto", "breto por ŝuoj"] },
+  "umbrella": { "text": "ombrelo", "variants": ["pluvombrelo"] },
   "hat": {
    "text": "ĉapo",
-   "synonyms": [
-    "ĉapelo"
-   ],
+   "synonyms": ["ĉapelo"],
    "notes": {
     "de": "ĉapo ist die Mütze ohne Schirm; ĉapelo ist der Hut mit Krempe.",
     "en": "ĉapo is a brimless cap; ĉapelo is a hat with a brim."
    }
   },
-  "mailbox": {
-   "text": "leterkesto",
-   "variants": [
-    "poŝtkesto"
-   ]
-  },
-  "doorbell": {
-   "text": "pordosonorilo",
-   "variants": [
-    "sonorilo",
-    "pordsonorilo"
-   ]
-  },
-  "stairs": {
-   "text": "ŝtuparo",
-   "variants": [
-    "ŝtupoj"
-   ]
-  },
+  "mailbox": { "text": "leterkesto", "variants": ["poŝtkesto"] },
+  "doorbell": { "text": "pordosonorilo", "variants": ["sonorilo", "pordsonorilo"] },
+  "stairs": { "text": "ŝtuparo", "variants": ["ŝtupoj"] },
   "bag": {
    "text": "sako",
-   "variants": [
-    "mansako"
-   ],
-   "notes": {
-    "de": "sako ist die Trage- und Einkaufstasche; die Handtasche heißt mansako."
-   }
+   "variants": ["mansako"],
+   "notes": { "de": "sako ist die Trage- und Einkaufstasche; die Handtasche heißt mansako." }
   },
-  "lock": {
-   "text": "ŝlosi",
-   "variants": [
-    "fermi per ŝlosilo"
-   ]
-  },
+  "lock": { "text": "ŝlosi", "variants": ["fermi per ŝlosilo"] },
   "ring": {
    "text": "sonorigi",
-   "variants": [
-    "sonori"
-   ],
+   "variants": ["sonori"],
    "notes": {
     "de": "sonorigi = selbst klingeln, also auf den Knopf drücken; sonori heißt, dass die Klingel klingt.",
     "en": "sonorigi is you pressing the bell; sonori is the bell itself sounding."
    }
   },
-  "take-off-shoes": {
-   "text": "demeti la ŝuojn",
-   "variants": [
-    "demeti ŝuojn",
-    "senŝuiĝi"
-   ]
-  },
-  "set-off": {
-   "text": "foriri de hejme",
-   "variants": [
-    "eliri el la hejmo",
-    "ekiri de hejme"
-   ]
-  },
-  "unlock": {
-   "text": "malŝlosi"
-  },
-  "get-dressed": {
-   "text": "vesti sin",
-   "variants": [
-    "sin vesti",
-    "vestiĝi"
-   ]
-  },
-  "arrive": {
-   "text": "alveni"
-  },
-  "greet": {
-   "text": "saluti"
-  },
-  "say-goodbye": {
-   "text": "adiaŭi",
-   "variants": [
-    "diri adiaŭ"
-   ]
-  },
-  "shoe": {
-   "text": "ŝuo"
-  },
-  "apartment": {
-   "text": "loĝejo",
-   "variants": [
-    "apartamento"
-   ]
-  },
-  "neighbor": {
-   "text": "najbaro"
-  },
-  "guest": {
-   "text": "gasto"
-  },
-  "wallet": {
-   "text": "monujo"
-  },
-  "glove": {
-   "text": "ganto"
-  },
-  "letter": {
-   "text": "letero"
-  },
-  "knock-on-door": {
-   "text": "frapi sur la pordon",
-   "variants": [
-    "frapi la pordon",
-    "frapi ĉe la pordo"
-   ]
-  },
+  "take-off-shoes": { "text": "demeti la ŝuojn", "variants": ["demeti ŝuojn", "senŝuiĝi"] },
+  "set-off": { "text": "foriri de hejme", "variants": ["eliri el la hejmo", "ekiri de hejme"] },
+  "unlock": { "text": "malŝlosi" },
+  "get-dressed": { "text": "vesti sin", "variants": ["sin vesti", "vestiĝi"] },
+  "arrive": { "text": "alveni" },
+  "greet": { "text": "saluti" },
+  "say-goodbye": { "text": "adiaŭi", "variants": ["diri adiaŭ"] },
+  "shoe": { "text": "ŝuo" },
+  "apartment": { "text": "loĝejo", "variants": ["apartamento"] },
+  "neighbor": { "text": "najbaro" },
+  "guest": { "text": "gasto" },
+  "wallet": { "text": "monujo" },
+  "glove": { "text": "ganto" },
+  "letter": { "text": "letero" },
+  "knock-on-door": { "text": "frapi sur la pordon", "variants": ["frapi la pordon", "frapi ĉe la pordo"] },
   "enter": {
    "text": "eniri",
-   "variants": [
-    "enveni"
-   ],
-   "notes": {
-    "de": "Wer jemanden hereinbittet, sagt Eniru! oder höflicher Bonvolu eniri!"
-   }
+   "variants": ["enveni"],
+   "notes": { "de": "Wer jemanden hereinbittet, sagt Eniru! oder höflicher Bonvolu eniri!" }
   },
-  "inside": {
-   "text": "interne",
-   "variants": [
-    "ene"
-   ]
-  },
-  "house": {
-   "text": "domo"
-  },
+  "inside": { "text": "interne", "variants": ["ene"] },
+  "house": { "text": "domo" },
   "live": {
    "text": "loĝi",
    "notes": {
@@ -182,56 +69,16 @@
     "en": "loĝi is to live somewhere, to reside; being alive is vivi."
    }
   },
-  "do-you-have-the-keys": {
-   "text": "Ĉu vi havas la ŝlosilojn?"
-  },
-  "ill-be-right-back": {
-   "text": "Mi tuj revenos!",
-   "variants": [
-    "Mi revenos tuj!"
-   ]
-  },
-  "take-off-your-shoes": {
-   "text": "Demetu viajn ŝuojn.",
-   "variants": [
-    "Demetu la ŝuojn."
-   ]
-  },
-  "hurry-were-late": {
-   "text": "Rapidu, ni malfruas!",
-   "variants": [
-    "Rapidu, ni jam malfruas!"
-   ]
-  },
-  "see-you-later": {
-   "text": "Ĝis poste!",
-   "variants": [
-    "Ĝis baldaŭ!"
-   ]
-  },
-  "welcome-home": {
-   "text": "Bonvenon hejmen!"
-  },
-  "the-doorbell-suddenly-rang": {
-   "text": "La pordosonorilo subite sonoris.",
-   "variants": [
-    "Subite sonoris la pordosonorilo."
-   ]
-  },
-  "dont-forget-your-jacket": {
-   "text": "Ne forgesu vian jakon!"
-  },
-  "put-on-the-jacket": {
-   "text": "surmeti la jakon"
-  },
-  "i-live-here": {
-   "text": "Mi loĝas ĉi tie.",
-   "variants": [
-    "Mi loĝas tie ĉi."
-   ]
-  },
-  "the-house-is-big": {
-   "text": "La domo estas granda."
-  }
+  "do-you-have-the-keys": { "text": "Ĉu vi havas la ŝlosilojn?" },
+  "ill-be-right-back": { "text": "Mi tuj revenos!", "variants": ["Mi revenos tuj!"] },
+  "take-off-your-shoes": { "text": "Demetu viajn ŝuojn.", "variants": ["Demetu la ŝuojn."] },
+  "hurry-were-late": { "text": "Rapidu, ni malfruas!", "variants": ["Rapidu, ni jam malfruas!"] },
+  "see-you-later": { "text": "Ĝis poste!", "variants": ["Ĝis baldaŭ!"] },
+  "welcome-home": { "text": "Bonvenon hejmen!" },
+  "the-doorbell-suddenly-rang": { "text": "La pordosonorilo subite sonoris.", "variants": ["Subite sonoris la pordosonorilo."] },
+  "dont-forget-your-jacket": { "text": "Ne forgesu vian jakon!" },
+  "put-on-the-jacket": { "text": "surmeti la jakon" },
+  "i-live-here": { "text": "Mi loĝas ĉi tie.", "variants": ["Mi loĝas tie ĉi."] },
+  "the-house-is-big": { "text": "La domo estas granda." }
  }
 }

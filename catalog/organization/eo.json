@@ -8,131 +8,49 @@
     "de": "rendevuo ist jeder vereinbarte Termin — auch beim Amt oder beim Arzt, nicht nur ein Date."
    }
   },
-  "date": {
-   "text": "dato"
-  },
-  "opening-hours": {
-   "text": "malfermohoroj",
-   "variants": [
-    "malfermaj horoj",
-    "malfermhoroj",
-    "malfermtempo"
-   ]
-  },
+  "date": { "text": "dato" },
+  "opening-hours": { "text": "malfermohoroj", "variants": ["malfermaj horoj", "malfermhoroj", "malfermtempo"] },
   "deadline": {
    "text": "limdato",
-   "synonyms": [
-    "templimo"
-   ],
-   "notes": {
-    "de": "limdato ist der Stichtag im Kalender, templimo die Frist als Zeitraum."
-   }
+   "synonyms": ["templimo"],
+   "notes": { "de": "limdato ist der Stichtag im Kalender, templimo die Frist als Zeitraum." }
   },
-  "confirmation": {
-   "text": "konfirmo"
-  },
-  "plan": {
-   "text": "plano"
-  },
-  "waiting-time": {
-   "text": "atendotempo",
-   "variants": [
-    "atenda tempo",
-    "atendtempo"
-   ]
-  },
-  "arrange": {
-   "text": "aranĝi",
-   "synonyms": [
-    "interkonsenti"
-   ],
-   "variants": [
-    "fiksi"
-   ]
-  },
-  "confirm": {
-   "text": "konfirmi"
-  },
-  "cancel": {
-   "text": "nuligi",
-   "variants": [
-    "malmendi"
-   ]
-  },
-  "postpone": {
-   "text": "prokrasti"
-  },
+  "confirmation": { "text": "konfirmo" },
+  "plan": { "text": "plano" },
+  "waiting-time": { "text": "atendotempo", "variants": ["atenda tempo", "atendtempo"] },
+  "arrange": { "text": "aranĝi", "synonyms": ["interkonsenti"], "variants": ["fiksi"] },
+  "confirm": { "text": "konfirmi" },
+  "cancel": { "text": "nuligi", "variants": ["malmendi"] },
+  "postpone": { "text": "prokrasti" },
   "register": {
    "text": "registriĝi",
-   "synonyms": [
-    "aliĝi"
-   ],
-   "variants": [
-    "enskribiĝi"
-   ],
-   "notes": {
-    "de": "„sich anmelden“ ist registriĝi; registri heißt jemanden oder etwas eintragen."
-   }
+   "synonyms": ["aliĝi"],
+   "variants": ["enskribiĝi"],
+   "notes": { "de": "„sich anmelden“ ist registriĝi; registri heißt jemanden oder etwas eintragen." }
   },
-  "be-late": {
-   "text": "malfruiĝi",
-   "variants": [
-    "malfrui",
-    "esti malfrua"
-   ]
-  },
+  "be-late": { "text": "malfruiĝi", "variants": ["malfrui", "esti malfrua"] },
   "punctual": {
    "text": "akurata",
-   "variants": [
-    "ĝustatempa"
-   ],
-   "notes": {
-    "de": "akurata heißt pünktlich und sorgfältig; „genau“ im Sinne von exakt heißt preciza."
-   }
+   "variants": ["ĝustatempa"],
+   "notes": { "de": "akurata heißt pünktlich und sorgfältig; „genau“ im Sinne von exakt heißt preciza." }
   },
-  "urgent": {
-   "text": "urĝa"
-  },
-  "list": {
-   "text": "listo"
-  },
+  "urgent": { "text": "urĝa" },
+  "list": { "text": "listo" },
   "to-finish": {
    "text": "fini",
-   "notes": {
-    "de": "fini ist transitiv: fini la laboron. „Zu Ende gehen“ heißt finiĝi."
-   }
+   "notes": { "de": "fini ist transitiv: fini la laboron. „Zu Ende gehen“ heißt finiĝi." }
   },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Mi ŝatus aranĝi rendevuon.",
-   "variants": [
-    "Mi volus aranĝi rendevuon.",
-    "Mi ŝatus fiksi rendevuon."
-   ]
+   "variants": ["Mi volus aranĝi rendevuon.", "Mi ŝatus fiksi rendevuon."]
   },
-  "i-have-to-cancel-the-appointment": {
-   "text": "Mi devas nuligi la rendevuon."
-  },
-  "the-deadline-is-tomorrow": {
-   "text": "La limdato estas morgaŭ.",
-   "variants": [
-    "La templimo estas morgaŭ."
-   ]
-  },
+  "i-have-to-cancel-the-appointment": { "text": "Mi devas nuligi la rendevuon." },
+  "the-deadline-is-tomorrow": { "text": "La limdato estas morgaŭ.", "variants": ["La templimo estas morgaŭ."] },
   "what-are-the-opening-hours": {
    "text": "Kiuj estas la malfermohoroj?",
-   "variants": [
-    "Kiuj estas la malfermaj horoj?",
-    "Kia estas la malfermtempo?"
-   ]
+   "variants": ["Kiuj estas la malfermaj horoj?", "Kia estas la malfermtempo?"]
   },
-  "can-we-postpone-the-appointment": {
-   "text": "Ĉu ni povas prokrasti la rendevuon?"
-  },
-  "i-have-an-appointment-at-ten": {
-   "text": "Mi havas rendevuon je la deka.",
-   "variants": [
-    "Mi havas rendevuon je la deka horo."
-   ]
-  }
+  "can-we-postpone-the-appointment": { "text": "Ĉu ni povas prokrasti la rendevuon?" },
+  "i-have-an-appointment-at-ten": { "text": "Mi havas rendevuon je la deka.", "variants": ["Mi havas rendevuon je la deka horo."] }
  }
 }

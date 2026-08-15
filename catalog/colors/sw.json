@@ -2,90 +2,29 @@
  "title": "Rangi",
  "subtitle": "Nyekundu, buluu na mengine yote.",
  "words": {
-  "color": {
-   "text": "rangi",
-   "grammar": {
-    "plural": "="
-   }
-  },
+  "color": { "text": "rangi", "grammar": { "plural": "=" } },
   "white": {
    "text": "-eupe",
-   "variants": [
-    "nyeupe",
-    "mweupe",
-    "weupe",
-    "cheupe",
-    "vyeupe",
-    "jeupe",
-    "meupe",
-    "myeupe"
-   ],
+   "variants": ["nyeupe", "mweupe", "weupe", "cheupe", "vyeupe", "jeupe", "meupe", "myeupe"],
    "notes": {
     "de": "Farbstämme mit Bindestrich nehmen die Klassenvorsilbe: shati jeupe, nyanya nyekundu, mtu mweusi · kijani, buluu, njano, kahawia, kijivu und zambarau bleiben unverändert."
    }
   },
   "black": {
    "text": "-eusi",
-   "variants": [
-    "nyeusi",
-    "mweusi",
-    "weusi",
-    "cheusi",
-    "vyeusi",
-    "jeusi",
-    "meusi",
-    "myeusi"
-   ]
+   "variants": ["nyeusi", "mweusi", "weusi", "cheusi", "vyeusi", "jeusi", "meusi", "myeusi"]
   },
   "red": {
    "text": "-ekundu",
-   "variants": [
-    "nyekundu",
-    "mwekundu",
-    "wekundu",
-    "chekundu",
-    "vyekundu",
-    "jekundu",
-    "mekundu",
-    "myekundu"
-   ]
+   "variants": ["nyekundu", "mwekundu", "wekundu", "chekundu", "vyekundu", "jekundu", "mekundu", "myekundu"]
   },
-  "blue": {
-   "text": "buluu",
-   "variants": [
-    "bluu",
-    "samawati"
-   ]
-  },
-  "green": {
-   "text": "kijani",
-   "variants": [
-    "kijani kibichi"
-   ]
-  },
-  "yellow": {
-   "text": "njano",
-   "variants": [
-    "manjano"
-   ]
-  },
-  "brown": {
-   "text": "kahawia",
-   "variants": [
-    "hudhurungi"
-   ]
-  },
-  "gray": {
-   "text": "kijivu"
-  },
-  "purple": {
-   "text": "zambarau"
-  },
-  "what-color-is-it": {
-   "text": "Ni rangi gani?"
-  },
-  "a-white-car": {
-   "text": "Gari jeupe."
-  }
+  "blue": { "text": "buluu", "variants": ["bluu", "samawati"] },
+  "green": { "text": "kijani", "variants": ["kijani kibichi"] },
+  "yellow": { "text": "njano", "variants": ["manjano"] },
+  "brown": { "text": "kahawia", "variants": ["hudhurungi"] },
+  "gray": { "text": "kijivu" },
+  "purple": { "text": "zambarau" },
+  "what-color-is-it": { "text": "Ni rangi gani?" },
+  "a-white-car": { "text": "Gari jeupe." }
  }
 }

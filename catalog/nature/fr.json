@@ -2,263 +2,65 @@
  "title": "La nature",
  "subtitle": "Un bol d'air frais.",
  "words": {
-  "tree": {
-   "text": "arbre",
-   "variants": [
-    "l'arbre"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "flower": {
-   "text": "fleur",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "sun": {
-   "text": "soleil",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "rain": {
-   "text": "pluie",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "tree": { "text": "arbre", "variants": ["l'arbre"], "grammar": { "gender": "l'" } },
+  "flower": { "text": "fleur", "grammar": { "gender": "la" } },
+  "sun": { "text": "soleil", "grammar": { "gender": "le" } },
+  "rain": { "text": "pluie", "grammar": { "gender": "la" } },
   "weather": {
    "text": "temps",
-   "grammar": {
-    "gender": "le"
-   },
+   "grammar": { "gender": "le" },
    "notes": {
     "de": "le temps heißt auch „Zeit“. Nach dem Wetter fragt man mit faire: Quel temps fait-il ? — il fait beau, il fait chaud."
    }
   },
-  "snow": {
-   "text": "neige",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "wind": {
-   "text": "vent",
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "snow": { "text": "neige", "grammar": { "gender": "la" } },
+  "wind": { "text": "vent", "grammar": { "gender": "le" } },
   "river": {
    "text": "rivière",
-   "variants": [
-    "fleuve"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "la rivière ist der Fluss allgemein; ein Fluss, der ins Meer mündet, heißt le fleuve."
-   }
+   "variants": ["fleuve"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la rivière ist der Fluss allgemein; ein Fluss, der ins Meer mündet, heißt le fleuve." }
   },
-  "outdoors": {
-   "text": "dehors",
-   "variants": [
-    "à l'extérieur"
-   ]
-  },
-  "left": {
-   "text": "à gauche",
-   "variants": [
-    "gauche"
-   ]
-  },
-  "right": {
-   "text": "à droite",
-   "variants": [
-    "droite"
-   ]
-  },
-  "go-for-walk": {
-   "text": "se promener",
-   "synonyms": [
-    "faire une promenade"
-   ],
-   "variants": [
-    "se balader"
-   ]
-  },
-  "jog": {
-   "text": "faire du jogging",
-   "variants": [
-    "aller courir"
-   ]
-  },
-  "sunbathe": {
-   "text": "prendre le soleil",
-   "variants": [
-    "bronzer",
-    "se faire bronzer"
-   ]
-  },
-  "plant-flowers": {
-   "text": "planter des fleurs"
-  },
-  "grill-meat": {
-   "text": "griller de la viande",
-   "variants": [
-    "faire griller de la viande"
-   ]
-  },
-  "animal": {
-   "text": "animal",
-   "variants": [
-    "l'animal"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "animaux"
-   }
-  },
-  "dog": {
-   "text": "chien",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "cat": {
-   "text": "chat",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "bird": {
-   "text": "oiseau",
-   "variants": [
-    "l'oiseau"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "-x"
-   }
-  },
-  "sky": {
-   "text": "ciel",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "cloud": {
-   "text": "nuage",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "mountain": {
-   "text": "montagne",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "sea": {
-   "text": "mer",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "beach": {
-   "text": "plage",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "lake": {
-   "text": "lac",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "forest": {
-   "text": "forêt",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "stone": {
-   "text": "pierre",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "moon": {
-   "text": "lune",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "star": {
-   "text": "étoile",
-   "variants": [
-    "l'étoile"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "hows-the-weather-today": {
-   "text": "Quel temps fait-il aujourd'hui ?",
-   "variants": [
-    "Il fait quel temps aujourd'hui ?"
-   ]
-  },
-  "its-raining": {
-   "text": "Il pleut."
-  },
-  "the-sun-is-shining": {
-   "text": "Le soleil brille !",
-   "variants": [
-    "Il y a du soleil !"
-   ]
-  },
+  "outdoors": { "text": "dehors", "variants": ["à l'extérieur"] },
+  "left": { "text": "à gauche", "variants": ["gauche"] },
+  "right": { "text": "à droite", "variants": ["droite"] },
+  "go-for-walk": { "text": "se promener", "synonyms": ["faire une promenade"], "variants": ["se balader"] },
+  "jog": { "text": "faire du jogging", "variants": ["aller courir"] },
+  "sunbathe": { "text": "prendre le soleil", "variants": ["bronzer", "se faire bronzer"] },
+  "plant-flowers": { "text": "planter des fleurs" },
+  "grill-meat": { "text": "griller de la viande", "variants": ["faire griller de la viande"] },
+  "animal": { "text": "animal", "variants": ["l'animal"], "grammar": { "gender": "l'", "plural": "animaux" } },
+  "dog": { "text": "chien", "grammar": { "gender": "le" } },
+  "cat": { "text": "chat", "grammar": { "gender": "le" } },
+  "bird": { "text": "oiseau", "variants": ["l'oiseau"], "grammar": { "gender": "l'", "plural": "-x" } },
+  "sky": { "text": "ciel", "grammar": { "gender": "le" } },
+  "cloud": { "text": "nuage", "grammar": { "gender": "le" } },
+  "mountain": { "text": "montagne", "grammar": { "gender": "la" } },
+  "sea": { "text": "mer", "grammar": { "gender": "la" } },
+  "beach": { "text": "plage", "grammar": { "gender": "la" } },
+  "lake": { "text": "lac", "grammar": { "gender": "le" } },
+  "forest": { "text": "forêt", "grammar": { "gender": "la" } },
+  "stone": { "text": "pierre", "grammar": { "gender": "la" } },
+  "moon": { "text": "lune", "grammar": { "gender": "la" } },
+  "star": { "text": "étoile", "variants": ["l'étoile"], "grammar": { "gender": "l'" } },
+  "hows-the-weather-today": { "text": "Quel temps fait-il aujourd'hui ?", "variants": ["Il fait quel temps aujourd'hui ?"] },
+  "its-raining": { "text": "Il pleut." },
+  "the-sun-is-shining": { "text": "Le soleil brille !", "variants": ["Il y a du soleil !"] },
   "shall-we-take-a-walk": {
    "text": "On va se promener ?",
-   "variants": [
-    "Et si on allait se promener ?",
-    "On se promène ?"
-   ]
+   "variants": ["Et si on allait se promener ?", "On se promène ?"]
   },
   "take-an-umbrella": {
    "text": "Prends un parapluie !",
-   "variants": [
-    "Emporte un parapluie !",
-    "Prends un parapluie avec toi !"
-   ]
+   "variants": ["Emporte un parapluie !", "Prends un parapluie avec toi !"]
   },
-  "what-a-beautiful-day": {
-   "text": "Quelle belle journée !",
-   "variants": [
-    "Quelle journée magnifique !"
-   ]
-  },
-  "lets-go-to-the-beach": {
-   "text": "Allons à la plage !",
-   "variants": [
-    "On va à la plage !"
-   ]
-  },
+  "what-a-beautiful-day": { "text": "Quelle belle journée !", "variants": ["Quelle journée magnifique !"] },
+  "lets-go-to-the-beach": { "text": "Allons à la plage !", "variants": ["On va à la plage !"] },
   "we-are-going-to-the-mountains": {
    "text": "Nous allons à la montagne.",
-   "variants": [
-    "On va à la montagne.",
-    "Nous allons en montagne."
-   ]
+   "variants": ["On va à la montagne.", "Nous allons en montagne."]
   },
-  "look-a-bird": {
-   "text": "Regarde, un oiseau !"
-  },
-  "the-cat-is-sleeping": {
-   "text": "Le chat dort."
-  }
+  "look-a-bird": { "text": "Regarde, un oiseau !" },
+  "the-cat-is-sleeping": { "text": "Le chat dort." }
  }
 }

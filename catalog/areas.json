@@ -12,38 +12,14 @@
    "uk": "Перші кроки"
   },
   "areas": [
-   {
-    "area": "basics",
-    "emoji": "👋"
-   },
-   {
-    "area": "verbs",
-    "emoji": "🏃"
-   },
-   {
-    "area": "qualities",
-    "emoji": "📏"
-   },
-   {
-    "area": "colors",
-    "emoji": "🎨"
-   },
-   {
-    "area": "time",
-    "emoji": "🕒"
-   },
-   {
-    "area": "language",
-    "emoji": "🗣️"
-   },
-   {
-    "area": "connectors",
-    "emoji": "🔗"
-   },
-   {
-    "area": "questions",
-    "emoji": "❓"
-   }
+   { "area": "basics", "emoji": "👋" },
+   { "area": "verbs", "emoji": "🏃" },
+   { "area": "qualities", "emoji": "📏" },
+   { "area": "colors", "emoji": "🎨" },
+   { "area": "time", "emoji": "🕒" },
+   { "area": "language", "emoji": "🗣️" },
+   { "area": "connectors", "emoji": "🔗" },
+   { "area": "questions", "emoji": "❓" }
   ]
  },
  {
@@ -59,22 +35,10 @@
    "uk": "Людина і здоров'я"
   },
   "areas": [
-   {
-    "area": "people",
-    "emoji": "👪"
-   },
-   {
-    "area": "body",
-    "emoji": "🧍"
-   },
-   {
-    "area": "health",
-    "emoji": "🩺"
-   },
-   {
-    "area": "doctor",
-    "emoji": "🧑‍⚕️"
-   }
+   { "area": "people", "emoji": "👪" },
+   { "area": "body", "emoji": "🧍" },
+   { "area": "health", "emoji": "🩺" },
+   { "area": "doctor", "emoji": "🧑‍⚕️" }
   ]
  },
  {
@@ -90,34 +54,13 @@
    "uk": "Вдома"
   },
   "areas": [
-   {
-    "area": "kitchen",
-    "emoji": "🍳"
-   },
-   {
-    "area": "food",
-    "emoji": "🥖"
-   },
-   {
-    "area": "living",
-    "emoji": "🛋️"
-   },
-   {
-    "area": "bath",
-    "emoji": "🛁"
-   },
-   {
-    "area": "bedroom",
-    "emoji": "🛏️"
-   },
-   {
-    "area": "desk",
-    "emoji": "✏️"
-   },
-   {
-    "area": "hall",
-    "emoji": "🚪"
-   }
+   { "area": "kitchen", "emoji": "🍳" },
+   { "area": "food", "emoji": "🥖" },
+   { "area": "living", "emoji": "🛋️" },
+   { "area": "bath", "emoji": "🛁" },
+   { "area": "bedroom", "emoji": "🛏️" },
+   { "area": "desk", "emoji": "✏️" },
+   { "area": "hall", "emoji": "🚪" }
   ]
  },
  {
@@ -133,18 +76,9 @@
    "uk": "Надворі та в дорозі"
   },
   "areas": [
-   {
-    "area": "transport",
-    "emoji": "🚌"
-   },
-   {
-    "area": "city",
-    "emoji": "🏙️"
-   },
-   {
-    "area": "nature",
-    "emoji": "🌳"
-   }
+   { "area": "transport", "emoji": "🚌" },
+   { "area": "city", "emoji": "🏙️" },
+   { "area": "nature", "emoji": "🌳" }
   ]
  },
  {
@@ -160,22 +94,10 @@
    "uk": "Установи та робота"
   },
   "areas": [
-   {
-    "area": "school",
-    "emoji": "🎒"
-   },
-   {
-    "area": "work",
-    "emoji": "💼"
-   },
-   {
-    "area": "organization",
-    "emoji": "🗒️"
-   },
-   {
-    "area": "admin",
-    "emoji": "🗂️"
-   }
+   { "area": "school", "emoji": "🎒" },
+   { "area": "work", "emoji": "💼" },
+   { "area": "organization", "emoji": "🗒️" },
+   { "area": "admin", "emoji": "🗂️" }
   ]
  },
  {
@@ -190,11 +112,6 @@
    "sw": "Misemo",
    "uk": "Ідіоми та вирази"
   },
-  "areas": [
-   {
-    "area": "idioms",
-    "emoji": "🎭"
-   }
-  ]
+  "areas": [{ "area": "idioms", "emoji": "🎭" }]
  }
 ]

@@ -4,227 +4,71 @@
  "words": {
   "fridge": {
    "text": "nevera",
-   "synonyms": [
-    "frigorífico"
-   ],
-   "variants": [
-    "frigo",
-    "refrigerador",
-    "heladera"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
+   "synonyms": ["frigorífico"],
+   "variants": ["frigo", "refrigerador", "heladera"],
+   "grammar": { "gender": "la" }
   },
   "stove": {
    "text": "cocina",
-   "variants": [
-    "fogón",
-    "placa",
-    "estufa"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
+   "variants": ["fogón", "placa", "estufa"],
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "la cocina ist auch der Raum (Küche); die einzelne Kochplatte heißt la placa, „auf dem Herd“ heißt en el fuego."
    }
   },
-  "oven": {
-   "text": "horno",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "oven": { "text": "horno", "grammar": { "gender": "el" } },
   "dishwasher": {
    "text": "lavavajillas",
-   "variants": [
-    "lavaplatos"
-   ],
-   "grammar": {
-    "gender": "el",
-    "plural": "="
-   }
+   "variants": ["lavaplatos"],
+   "grammar": { "gender": "el", "plural": "=" }
   },
-  "pot": {
-   "text": "olla",
-   "variants": [
-    "cacerola"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "pan": {
-   "text": "sartén",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "knife": {
-   "text": "cuchillo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "spoon": {
-   "text": "cuchara",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "fork": {
-   "text": "tenedor",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "plate": {
-   "text": "plato",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "pot": { "text": "olla", "variants": ["cacerola"], "grammar": { "gender": "la" } },
+  "pan": { "text": "sartén", "grammar": { "gender": "la" } },
+  "knife": { "text": "cuchillo", "grammar": { "gender": "el" } },
+  "spoon": { "text": "cuchara", "grammar": { "gender": "la" } },
+  "fork": { "text": "tenedor", "grammar": { "gender": "el" } },
+  "plate": { "text": "plato", "grammar": { "gender": "el" } },
   "cook": {
    "text": "cocinar",
-   "notes": {
-    "de": "cocinar = Essen zubereiten; Wasser kochen heißt hervir."
-   }
+   "notes": { "de": "cocinar = Essen zubereiten; Wasser kochen heißt hervir." }
   },
-  "bake": {
-   "text": "hornear",
-   "variants": [
-    "cocer al horno",
-    "hacer al horno"
-   ]
-  },
-  "cut": {
-   "text": "cortar"
-  },
-  "wash-the-dishes": {
-   "text": "fregar los platos",
-   "synonyms": [
-    "lavar los platos"
-   ]
-  },
-  "taste": {
-   "text": "probar"
-  },
-  "fry": {
-   "text": "freír"
-  },
-  "reheat": {
-   "text": "calentar",
-   "synonyms": [
-    "recalentar"
-   ]
-  },
-  "stir": {
-   "text": "remover",
-   "variants": [
-    "revolver"
-   ]
-  },
-  "take-out-trash": {
-   "text": "sacar la basura"
-  },
-  "careful": {
-   "text": "cuidado",
-   "variants": [
-    "ojo"
-   ]
-  },
-  "cup": {
-   "text": "taza",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "bowl": {
-   "text": "cuenco",
-   "variants": [
-    "bol",
-    "tazón"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "basket": {
-   "text": "cesta",
-   "variants": [
-    "cesto",
-    "canasta"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "tin-can": {
-   "text": "lata",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "the-knife-is-sharp": {
-   "text": "¡El cuchillo está afilado!",
-   "variants": [
-    "¡El cuchillo corta mucho!"
-   ]
-  },
+  "bake": { "text": "hornear", "variants": ["cocer al horno", "hacer al horno"] },
+  "cut": { "text": "cortar" },
+  "wash-the-dishes": { "text": "fregar los platos", "synonyms": ["lavar los platos"] },
+  "taste": { "text": "probar" },
+  "fry": { "text": "freír" },
+  "reheat": { "text": "calentar", "synonyms": ["recalentar"] },
+  "stir": { "text": "remover", "variants": ["revolver"] },
+  "take-out-trash": { "text": "sacar la basura" },
+  "careful": { "text": "cuidado", "variants": ["ojo"] },
+  "cup": { "text": "taza", "grammar": { "gender": "la" } },
+  "bowl": { "text": "cuenco", "variants": ["bol", "tazón"], "grammar": { "gender": "el" } },
+  "basket": { "text": "cesta", "variants": ["cesto", "canasta"], "grammar": { "gender": "la" } },
+  "tin-can": { "text": "lata", "grammar": { "gender": "la" } },
+  "the-knife-is-sharp": { "text": "¡El cuchillo está afilado!", "variants": ["¡El cuchillo corta mucho!"] },
   "this-is-very-tasty": {
    "text": "¡Esto está muy rico!",
-   "variants": [
-    "¡Está muy rico!",
-    "¡Esto está muy bueno!",
-    "¡Esto está buenísimo!"
-   ]
+   "variants": ["¡Está muy rico!", "¡Esto está muy bueno!", "¡Esto está buenísimo!"]
   },
   "are-you-cooking-rice-today": {
    "text": "¿Cocinas arroz hoy?",
-   "variants": [
-    "¿Hoy cocinas arroz?",
-    "¿Vas a cocinar arroz hoy?",
-    "¿Haces arroz hoy?"
-   ]
+   "variants": ["¿Hoy cocinas arroz?", "¿Vas a cocinar arroz hoy?", "¿Haces arroz hoy?"]
   },
   "the-pot-is-still-on-the-stove": {
    "text": "La olla todavía está en el fuego.",
-   "variants": [
-    "La olla sigue en el fuego.",
-    "La olla todavía está al fuego."
-   ],
-   "notes": {
-    "de": "auf dem Herd = en el fuego; en la cocina hieße „in der Küche“."
-   }
+   "variants": ["La olla sigue en el fuego.", "La olla todavía está al fuego."],
+   "notes": { "de": "auf dem Herd = en el fuego; en la cocina hieße „in der Küche“." }
   },
   "wash-the-dishes-in-the-sink": {
    "text": "¡Friega los platos en el fregadero!",
-   "variants": [
-    "¡Lava los platos en el fregadero!"
-   ]
+   "variants": ["¡Lava los platos en el fregadero!"]
   },
-  "the-fridge-is-empty": {
-   "text": "La nevera está vacía.",
-   "variants": [
-    "El frigorífico está vacío."
-   ]
-  },
-  "can-you-set-the-table": {
-   "text": "¿Puedes poner la mesa?"
-  },
-  "the-water-is-boiling-hot": {
-   "text": "El agua está hirviendo.",
-   "variants": [
-    "El agua hierve."
-   ]
-  },
+  "the-fridge-is-empty": { "text": "La nevera está vacía.", "variants": ["El frigorífico está vacío."] },
+  "can-you-set-the-table": { "text": "¿Puedes poner la mesa?" },
+  "the-water-is-boiling-hot": { "text": "El agua está hirviendo.", "variants": ["El agua hierve."] },
   "careful-very-hot": {
    "text": "¡Cuidado, muy caliente!",
-   "variants": [
-    "¡Cuidado, está muy caliente!",
-    "¡Cuidado, que quema!"
-   ]
+   "variants": ["¡Cuidado, está muy caliente!", "¡Cuidado, que quema!"]
   }
  }
 }

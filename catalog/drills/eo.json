@@ -20,21 +20,11 @@
     "en": "je never contracts, so an Esperanto clock frame can carry the preposition for every reading it draws."
    }
   },
-  "bus-arrives-at": {
-   "text": "La aŭtobuso alvenas je {slot}."
-  },
-  "i-wake-up-at": {
-   "text": "Mi vekiĝas je {slot}."
-  },
-  "we-eat-at": {
-   "text": "Ni manĝas je {slot}."
-  },
-  "meeting-is-at": {
-   "text": "La kunsido estas je {slot}."
-  },
-  "it-is-now": {
-   "text": "Nun estas {slot}."
-  },
+  "bus-arrives-at": { "text": "La aŭtobuso alvenas je {slot}." },
+  "i-wake-up-at": { "text": "Mi vekiĝas je {slot}." },
+  "we-eat-at": { "text": "Ni manĝas je {slot}." },
+  "meeting-is-at": { "text": "La kunsido estas je {slot}." },
+  "it-is-now": { "text": "Nun estas {slot}." },
   "alarm-clock-shows": {
    "text": "La vekhorloĝo diras, ke estas {slot}.",
    "notes": {
@@ -42,18 +32,8 @@
     "en": "literally „The alarm clock says that it is …“ — the reading is a bare noun phrase, so it needs the copula around it."
    }
   },
-  "repeat-please": {
-   "text": "Bonvolu ripeti: {slot}.",
-   "variants": [
-    "Ripetu, mi petas: {slot}."
-   ]
-  },
-  "write-please": {
-   "text": "Bonvolu skribi: {slot}.",
-   "variants": [
-    "Skribu, mi petas: {slot}."
-   ]
-  },
+  "repeat-please": { "text": "Bonvolu ripeti: {slot}.", "variants": ["Ripetu, mi petas: {slot}."] },
+  "write-please": { "text": "Bonvolu skribi: {slot}.", "variants": ["Skribu, mi petas: {slot}."] },
   "learning-since-year": {
    "text": "Mi lernas {language-learn} ekde {slot}.",
    "notes": {
@@ -61,18 +41,8 @@
     "en": "The year is read as a plain cardinal: „mil naŭcent sepdek ok“."
    }
   },
-  "repeat-the-year": {
-   "text": "Bonvolu ripeti la daton: {slot}.",
-   "variants": [
-    "Ripetu la daton, mi petas: {slot}."
-   ]
-  },
-  "write-the-year": {
-   "text": "Bonvolu skribi la daton: {slot}.",
-   "variants": [
-    "Skribu la daton, mi petas: {slot}."
-   ]
-  },
+  "repeat-the-year": { "text": "Bonvolu ripeti la daton: {slot}.", "variants": ["Ripetu la daton, mi petas: {slot}."] },
+  "write-the-year": { "text": "Bonvolu skribi la daton: {slot}.", "variants": ["Skribu la daton, mi petas: {slot}."] },
   "i-need-n-kilo-of-flour": {
    "text": "Mi bakas panon el {slot} de kilogramo da faruno.",
    "notes": {

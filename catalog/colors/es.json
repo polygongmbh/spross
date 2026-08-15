@@ -2,67 +2,21 @@
  "title": "Los colores",
  "subtitle": "Rojo, azul y todo lo demás.",
  "words": {
-  "color": {
-   "text": "color",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "white": {
-   "text": "blanco",
-   "variants": [
-    "blanca"
-   ]
-  },
-  "black": {
-   "text": "negro",
-   "variants": [
-    "negra"
-   ]
-  },
-  "red": {
-   "text": "rojo",
-   "variants": [
-    "roja"
-   ]
-  },
-  "blue": {
-   "text": "azul"
-  },
-  "green": {
-   "text": "verde"
-  },
-  "yellow": {
-   "text": "amarillo",
-   "variants": [
-    "amarilla"
-   ]
-  },
+  "color": { "text": "color", "grammar": { "gender": "el" } },
+  "white": { "text": "blanco", "variants": ["blanca"] },
+  "black": { "text": "negro", "variants": ["negra"] },
+  "red": { "text": "rojo", "variants": ["roja"] },
+  "blue": { "text": "azul" },
+  "green": { "text": "verde" },
+  "yellow": { "text": "amarillo", "variants": ["amarilla"] },
   "brown": {
    "text": "marrón",
-   "variants": [
-    "café",
-    "castaño"
-   ],
-   "notes": {
-    "de": "in Lateinamerika meist café, bei Haaren castaño."
-   }
+   "variants": ["café", "castaño"],
+   "notes": { "de": "in Lateinamerika meist café, bei Haaren castaño." }
   },
-  "gray": {
-   "text": "gris"
-  },
-  "purple": {
-   "text": "morado",
-   "variants": [
-    "morada",
-    "violeta"
-   ]
-  },
-  "what-color-is-it": {
-   "text": "¿De qué color es?"
-  },
-  "a-white-car": {
-   "text": "Un coche blanco."
-  }
+  "gray": { "text": "gris" },
+  "purple": { "text": "morado", "variants": ["morada", "violeta"] },
+  "what-color-is-it": { "text": "¿De qué color es?" },
+  "a-white-car": { "text": "Un coche blanco." }
  }
 }

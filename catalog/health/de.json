@@ -2,128 +2,33 @@
  "title": "Die Gesundheit",
  "subtitle": "Wie es dir heute geht.",
  "words": {
-  "pain": {
-   "text": "Schmerz",
-   "grammar": {
-    "gender": "der",
-    "plural": "-en"
-   }
-  },
-  "fever": {
-   "text": "Fieber",
-   "grammar": {
-    "gender": "das"
-   }
-  },
-  "cough": {
-   "text": "Husten",
-   "grammar": {
-    "gender": "der"
-   }
-  },
-  "cold": {
-   "text": "Erkältung",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "hurt": {
-   "text": "wehtun"
-  },
-  "to-cough": {
-   "text": "husten"
-  },
-  "rest": {
-   "text": "sich ausruhen"
-  },
-  "sick": {
-   "text": "krank"
-  },
-  "feel": {
-   "text": "sich fühlen"
-  },
-  "health": {
-   "text": "Gesundheit",
-   "grammar": {
-    "gender": "die"
-   }
-  },
-  "illness": {
-   "text": "Krankheit",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "healthy": {
-   "text": "gesund"
-  },
-  "tired": {
-   "text": "müde"
-  },
-  "weak": {
-   "text": "schwach"
-  },
-  "dizziness": {
-   "text": "Schwindel",
-   "grammar": {
-    "gender": "der"
-   }
-  },
-  "wound": {
-   "text": "Wunde",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "hurt-oneself": {
-   "text": "sich verletzen"
-  },
-  "bandage": {
-   "text": "Verband",
-   "grammar": {
-    "gender": "der",
-    "plural": "Verbände"
-   }
-  },
-  "breathe": {
-   "text": "atmen"
-  },
-  "recover": {
-   "text": "gesund werden",
-   "variants": [
-    "genesen"
-   ]
-  },
-  "allergy": {
-   "text": "Allergie",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "my-throat-hurts-a-lot": {
-   "text": "Mein Hals tut sehr weh."
-  },
-  "ive-had-a-fever-since-yesterday": {
-   "text": "Ich habe seit gestern Fieber."
-  },
-  "get-well-soon": {
-   "text": "Gute Besserung!"
-  },
-  "i-dont-feel-well": {
-   "text": "Ich fühle mich nicht wohl."
-  },
-  "the-wound-hurts": {
-   "text": "Die Wunde tut weh."
-  },
-  "i-cant-breathe-well": {
-   "text": "Ich kann nicht gut atmen."
-  },
-  "i-have-to-rest": {
-   "text": "Ich muss mich ausruhen."
-  }
+  "pain": { "text": "Schmerz", "grammar": { "gender": "der", "plural": "-en" } },
+  "fever": { "text": "Fieber", "grammar": { "gender": "das" } },
+  "cough": { "text": "Husten", "grammar": { "gender": "der" } },
+  "cold": { "text": "Erkältung", "grammar": { "gender": "die", "plural": "-en" } },
+  "hurt": { "text": "wehtun" },
+  "to-cough": { "text": "husten" },
+  "rest": { "text": "sich ausruhen" },
+  "sick": { "text": "krank" },
+  "feel": { "text": "sich fühlen" },
+  "health": { "text": "Gesundheit", "grammar": { "gender": "die" } },
+  "illness": { "text": "Krankheit", "grammar": { "gender": "die", "plural": "-en" } },
+  "healthy": { "text": "gesund" },
+  "tired": { "text": "müde" },
+  "weak": { "text": "schwach" },
+  "dizziness": { "text": "Schwindel", "grammar": { "gender": "der" } },
+  "wound": { "text": "Wunde", "grammar": { "gender": "die", "plural": "-n" } },
+  "hurt-oneself": { "text": "sich verletzen" },
+  "bandage": { "text": "Verband", "grammar": { "gender": "der", "plural": "Verbände" } },
+  "breathe": { "text": "atmen" },
+  "recover": { "text": "gesund werden", "variants": ["genesen"] },
+  "allergy": { "text": "Allergie", "grammar": { "gender": "die", "plural": "-n" } },
+  "my-throat-hurts-a-lot": { "text": "Mein Hals tut sehr weh." },
+  "ive-had-a-fever-since-yesterday": { "text": "Ich habe seit gestern Fieber." },
+  "get-well-soon": { "text": "Gute Besserung!" },
+  "i-dont-feel-well": { "text": "Ich fühle mich nicht wohl." },
+  "the-wound-hurts": { "text": "Die Wunde tut weh." },
+  "i-cant-breathe-well": { "text": "Ich kann nicht gut atmen." },
+  "i-have-to-rest": { "text": "Ich muss mich ausruhen." }
  }
 }

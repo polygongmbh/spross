@@ -2,194 +2,48 @@
  "title": "Mlangoni",
  "subtitle": "Kuingia na kutoka.",
  "words": {
-  "door": {
-   "text": "mlango",
-   "grammar": {
-    "plural": "milango"
-   }
-  },
-  "key": {
-   "text": "ufunguo",
-   "grammar": {
-    "plural": "funguo"
-   }
-  },
-  "jacket": {
-   "text": "jaketi",
-   "grammar": {
-    "plural": "majaketi"
-   }
-  },
-  "coat": {
-   "text": "koti",
-   "grammar": {
-    "plural": "makoti"
-   }
-  },
-  "shoe-rack": {
-   "text": "rafu ya viatu",
-   "grammar": {
-    "plural": "rafu za viatu"
-   }
-  },
-  "umbrella": {
-   "text": "mwavuli",
-   "grammar": {
-    "plural": "miavuli"
-   }
-  },
-  "hat": {
-   "text": "kofia",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "mailbox": {
-   "text": "sanduku la barua",
-   "grammar": {
-    "plural": "masanduku ya barua"
-   }
-  },
-  "doorbell": {
-   "text": "kengele",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "stairs": {
-   "text": "ngazi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "bag": {
-   "text": "begi",
-   "synonyms": [
-    "mfuko"
-   ],
-   "grammar": {
-    "plural": "mabegi"
-   }
-  },
-  "lock": {
-   "text": "kufunga"
-  },
-  "ring": {
-   "text": "kupiga kengele"
-  },
-  "take-off-shoes": {
-   "text": "kuvua viatu"
-  },
-  "set-off": {
-   "text": "kuondoka nyumbani"
-  },
-  "unlock": {
-   "text": "kufungua"
-  },
-  "get-dressed": {
-   "text": "kuvaa"
-  },
-  "arrive": {
-   "text": "kufika"
-  },
-  "greet": {
-   "text": "kusalimia"
-  },
-  "say-goodbye": {
-   "text": "kuaga"
-  },
-  "shoe": {
-   "text": "kiatu",
-   "grammar": {
-    "plural": "viatu"
-   }
-  },
-  "apartment": {
-   "text": "fleti",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "neighbor": {
-   "text": "jirani",
-   "grammar": {
-    "plural": "majirani"
-   }
-  },
-  "guest": {
-   "text": "mgeni",
-   "grammar": {
-    "plural": "wageni"
-   }
-  },
-  "wallet": {
-   "text": "pochi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "glove": {
-   "text": "glavu",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "letter": {
-   "text": "barua",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "knock-on-door": {
-   "text": "kugonga mlango"
-  },
-  "enter": {
-   "text": "kuingia"
-  },
-  "inside": {
-   "text": "ndani"
-  },
-  "house": {
-   "text": "nyumba",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "live": {
-   "text": "kuishi"
-  },
-  "do-you-have-the-keys": {
-   "text": "Unazo funguo?"
-  },
-  "ill-be-right-back": {
-   "text": "Narudi sasa hivi!"
-  },
-  "hurry-were-late": {
-   "text": "Fanya haraka, tumechelewa!"
-  },
-  "see-you-later": {
-   "text": "Tutaonana baadaye!"
-  },
-  "welcome-home": {
-   "text": "Karibu nyumbani!"
-  },
-  "the-doorbell-suddenly-rang": {
-   "text": "Kengele imelia ghafla."
-  },
-  "dont-forget-your-jacket": {
-   "text": "Usisahau jaketi lako!"
-  },
-  "put-on-the-jacket": {
-   "text": "kuvaa jaketi"
-  },
-  "take-off-your-shoes": {
-   "text": "Vua viatu vyako."
-  },
-  "i-live-here": {
-   "text": "Ninaishi hapa."
-  },
-  "the-house-is-big": {
-   "text": "Nyumba ni kubwa."
-  }
+  "door": { "text": "mlango", "grammar": { "plural": "milango" } },
+  "key": { "text": "ufunguo", "grammar": { "plural": "funguo" } },
+  "jacket": { "text": "jaketi", "grammar": { "plural": "majaketi" } },
+  "coat": { "text": "koti", "grammar": { "plural": "makoti" } },
+  "shoe-rack": { "text": "rafu ya viatu", "grammar": { "plural": "rafu za viatu" } },
+  "umbrella": { "text": "mwavuli", "grammar": { "plural": "miavuli" } },
+  "hat": { "text": "kofia", "grammar": { "plural": "=" } },
+  "mailbox": { "text": "sanduku la barua", "grammar": { "plural": "masanduku ya barua" } },
+  "doorbell": { "text": "kengele", "grammar": { "plural": "=" } },
+  "stairs": { "text": "ngazi", "grammar": { "plural": "=" } },
+  "bag": { "text": "begi", "synonyms": ["mfuko"], "grammar": { "plural": "mabegi" } },
+  "lock": { "text": "kufunga" },
+  "ring": { "text": "kupiga kengele" },
+  "take-off-shoes": { "text": "kuvua viatu" },
+  "set-off": { "text": "kuondoka nyumbani" },
+  "unlock": { "text": "kufungua" },
+  "get-dressed": { "text": "kuvaa" },
+  "arrive": { "text": "kufika" },
+  "greet": { "text": "kusalimia" },
+  "say-goodbye": { "text": "kuaga" },
+  "shoe": { "text": "kiatu", "grammar": { "plural": "viatu" } },
+  "apartment": { "text": "fleti", "grammar": { "plural": "=" } },
+  "neighbor": { "text": "jirani", "grammar": { "plural": "majirani" } },
+  "guest": { "text": "mgeni", "grammar": { "plural": "wageni" } },
+  "wallet": { "text": "pochi", "grammar": { "plural": "=" } },
+  "glove": { "text": "glavu", "grammar": { "plural": "=" } },
+  "letter": { "text": "barua", "grammar": { "plural": "=" } },
+  "knock-on-door": { "text": "kugonga mlango" },
+  "enter": { "text": "kuingia" },
+  "inside": { "text": "ndani" },
+  "house": { "text": "nyumba", "grammar": { "plural": "=" } },
+  "live": { "text": "kuishi" },
+  "do-you-have-the-keys": { "text": "Unazo funguo?" },
+  "ill-be-right-back": { "text": "Narudi sasa hivi!" },
+  "hurry-were-late": { "text": "Fanya haraka, tumechelewa!" },
+  "see-you-later": { "text": "Tutaonana baadaye!" },
+  "welcome-home": { "text": "Karibu nyumbani!" },
+  "the-doorbell-suddenly-rang": { "text": "Kengele imelia ghafla." },
+  "dont-forget-your-jacket": { "text": "Usisahau jaketi lako!" },
+  "put-on-the-jacket": { "text": "kuvaa jaketi" },
+  "take-off-your-shoes": { "text": "Vua viatu vyako." },
+  "i-live-here": { "text": "Ninaishi hapa." },
+  "the-house-is-big": { "text": "Nyumba ni kubwa." }
  }
 }

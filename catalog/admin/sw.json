@@ -2,189 +2,50 @@
  "title": "Ofisini",
  "subtitle": "Hatua kwa hatua, subiri zamu yako.",
  "words": {
-  "office": {
-   "text": "ofisi ya serikali",
-   "grammar": {
-    "plural": "ofisi za serikali"
-   }
-  },
-  "form": {
-   "text": "fomu",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "application": {
-   "text": "ombi",
-   "grammar": {
-    "plural": "maombi"
-   }
-  },
-  "id-card": {
-   "text": "kitambulisho",
-   "grammar": {
-    "plural": "vitambulisho"
-   }
-  },
-  "residence-permit": {
-   "text": "kibali cha ukaaji",
-   "grammar": {
-    "plural": "vibali vya ukaaji"
-   }
-  },
-  "signature": {
-   "text": "sahihi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "ticket-number": {
-   "text": "namba ya foleni",
-   "grammar": {
-    "plural": "namba za foleni"
-   }
-  },
+  "office": { "text": "ofisi ya serikali", "grammar": { "plural": "ofisi za serikali" } },
+  "form": { "text": "fomu", "grammar": { "plural": "=" } },
+  "application": { "text": "ombi", "grammar": { "plural": "maombi" } },
+  "id-card": { "text": "kitambulisho", "grammar": { "plural": "vitambulisho" } },
+  "residence-permit": { "text": "kibali cha ukaaji", "grammar": { "plural": "vibali vya ukaaji" } },
+  "signature": { "text": "sahihi", "grammar": { "plural": "=" } },
+  "ticket-number": { "text": "namba ya foleni", "grammar": { "plural": "namba za foleni" } },
   "case-worker": {
    "text": "afisa mhusika",
-   "variants": [
-    "ofisa mhusika",
-    "afisa husika"
-   ],
-   "grammar": {
-    "plural": "maafisa wahusika"
-   },
+   "variants": ["ofisa mhusika", "afisa husika"],
+   "grammar": { "plural": "maafisa wahusika" },
    "notes": {
     "de": "„afisa“ allein heißt nur „Beamter“ — erst „mhusika“ macht daraus den zuständigen Bearbeiter."
    }
   },
-  "documents": {
-   "text": "nyaraka",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "fill-in": {
-   "text": "kujaza"
-  },
-  "sign": {
-   "text": "kutia sahihi"
-  },
-  "apply-for": {
-   "text": "kuomba"
-  },
-  "submit": {
-   "text": "kukabidhi"
-  },
-  "hand-in": {
-   "text": "kuwasilisha"
-  },
-  "pick-up": {
-   "text": "kuchukua kitambulisho"
-  },
-  "bring": {
-   "text": "kuleta"
-  },
-  "passport": {
-   "text": "pasipoti",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "address": {
-   "text": "anwani",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "certificate": {
-   "text": "cheti",
-   "grammar": {
-    "plural": "vyeti"
-   }
-  },
-  "birth-certificate": {
-   "text": "cheti cha kuzaliwa",
-   "grammar": {
-    "plural": "vyeti vya kuzaliwa"
-   }
-  },
-  "notification": {
-   "text": "barua ya uamuzi",
-   "grammar": {
-    "plural": "barua za uamuzi"
-   }
-  },
-  "fee": {
-   "text": "ada",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "office-hours": {
-   "text": "saa za huduma",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "waiting-room": {
-   "text": "chumba cha kusubiri",
-   "grammar": {
-    "plural": "vyumba vya kusubiri"
-   }
-  },
-  "reject": {
-   "text": "kukataa"
-  },
-  "approve": {
-   "text": "kuidhinisha"
-  },
-  "law": {
-   "text": "sheria",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "visa": {
-   "text": "viza",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "fine": {
-   "text": "faini",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "receipt": {
-   "text": "resiti",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "where-do-i-sign": {
-   "text": "Nitie sahihi wapi?"
-  },
-  "i-want-to-extend-my-residence-permit": {
-   "text": "Ningependa kuhuisha kibali cha ukaaji."
-  },
-  "fill-out-the-form": {
-   "text": "Jaza fomu."
-  },
-  "take-a-number": {
-   "text": "Chukua namba ya foleni!"
-  },
-  "i-need-an-interpreter-for-the-application": {
-   "text": "Nahitaji mkalimani kwa ombi."
-  },
-  "did-you-bring-all-the-documents": {
-   "text": "Umeleta nyaraka zote?"
-  },
-  "the-decision-comes-by-mail": {
-   "text": "Barua ya uamuzi itakuja kwa posta."
-  },
-  "when-does-my-id-expire": {
-   "text": "Kitambulisho changu kinaisha lini?"
-  }
+  "documents": { "text": "nyaraka", "grammar": { "plural": "only" } },
+  "fill-in": { "text": "kujaza" },
+  "sign": { "text": "kutia sahihi" },
+  "apply-for": { "text": "kuomba" },
+  "submit": { "text": "kukabidhi" },
+  "hand-in": { "text": "kuwasilisha" },
+  "pick-up": { "text": "kuchukua kitambulisho" },
+  "bring": { "text": "kuleta" },
+  "passport": { "text": "pasipoti", "grammar": { "plural": "=" } },
+  "address": { "text": "anwani", "grammar": { "plural": "=" } },
+  "certificate": { "text": "cheti", "grammar": { "plural": "vyeti" } },
+  "birth-certificate": { "text": "cheti cha kuzaliwa", "grammar": { "plural": "vyeti vya kuzaliwa" } },
+  "notification": { "text": "barua ya uamuzi", "grammar": { "plural": "barua za uamuzi" } },
+  "fee": { "text": "ada", "grammar": { "plural": "=" } },
+  "office-hours": { "text": "saa za huduma", "grammar": { "plural": "only" } },
+  "waiting-room": { "text": "chumba cha kusubiri", "grammar": { "plural": "vyumba vya kusubiri" } },
+  "reject": { "text": "kukataa" },
+  "approve": { "text": "kuidhinisha" },
+  "law": { "text": "sheria", "grammar": { "plural": "=" } },
+  "visa": { "text": "viza", "grammar": { "plural": "=" } },
+  "fine": { "text": "faini", "grammar": { "plural": "=" } },
+  "receipt": { "text": "resiti", "grammar": { "plural": "=" } },
+  "where-do-i-sign": { "text": "Nitie sahihi wapi?" },
+  "i-want-to-extend-my-residence-permit": { "text": "Ningependa kuhuisha kibali cha ukaaji." },
+  "fill-out-the-form": { "text": "Jaza fomu." },
+  "take-a-number": { "text": "Chukua namba ya foleni!" },
+  "i-need-an-interpreter-for-the-application": { "text": "Nahitaji mkalimani kwa ombi." },
+  "did-you-bring-all-the-documents": { "text": "Umeleta nyaraka zote?" },
+  "the-decision-comes-by-mail": { "text": "Barua ya uamuzi itakuja kwa posta." },
+  "when-does-my-id-expire": { "text": "Kitambulisho changu kinaisha lini?" }
  }
 }

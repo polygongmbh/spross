@@ -56,11 +56,12 @@ catalog/
       letters/u<hex>.mp3
 ```
 
-These files are hand-edited, and their shape is part of the review unit: an entry
-that fits on one line stays on one line (`{ "slug": "seventh-heaven", "kind": "idiom" }`,
-`"notes": { "en": "…" }`). Edit them in place — never round-trip a file through a
-serializer to change one field, which reflows every entry and buries the real change
-in a formatting diff.
+These files are hand-edited, and their shape is part of the review unit: an entry that
+fits on one line stays on one line (`{ "slug": "seventh-heaven", "kind": "idiom" }`,
+`"notes": { "en": "…" }`), so an area file reads as the word list it is and a reordering
+diff shows the new order rather than a reflow. `../scripts/catalog-format.py --fix`
+applies that layout and `--check` holds it; the rules it follows are in its own header,
+and it owns every catalog file except the generated `audio/` manifests.
 
 Adding a language is purely additive: drop a `<area>/<lang>.json` in each area for
 the slugs you can cover. It never edits an existing file.

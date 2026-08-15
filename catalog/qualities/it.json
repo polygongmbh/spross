@@ -4,142 +4,60 @@
  "words": {
   "good": {
    "text": "buono",
-   "variants": [
-    "buona",
-    "buon"
-   ],
-   "notes": {
-    "de": "vor männlichem Substantiv verkürzt: un buon amico · als Adverb bene: tutto bene."
-   }
+   "variants": ["buona", "buon"],
+   "notes": { "de": "vor männlichem Substantiv verkürzt: un buon amico · als Adverb bene: tutto bene." }
   },
   "bad": {
    "text": "cattivo",
-   "variants": [
-    "cattiva"
-   ],
-   "notes": {
-    "de": "als Adverb male: sto male · schlechtes Wetter und schlechtes Aussehen: brutto."
-   }
+   "variants": ["cattiva"],
+   "notes": { "de": "als Adverb male: sto male · schlechtes Wetter und schlechtes Aussehen: brutto." }
   },
   "big": {
    "text": "grande",
-   "variants": [
-    "gran"
-   ],
+   "variants": ["gran"],
    "notes": {
     "de": "gilt für beide Geschlechter · vor dem Substantiv oft gran: un gran giorno · Körpergröße: alto."
    }
   },
-  "small": {
-   "text": "piccolo",
-   "variants": [
-    "piccola"
-   ]
-  },
+  "small": { "text": "piccolo", "variants": ["piccola"] },
   "much": {
    "text": "molto",
-   "variants": [
-    "molta",
-    "molti",
-    "molte"
-   ],
+   "variants": ["molta", "molti", "molte"],
    "notes": {
     "de": "richtet sich nach dem Substantiv: molto pane, molta acqua, molti amici · vor Adjektiv oder Verb unveränderlich und heißt sehr: molto bene."
    }
   },
-  "new": {
-   "text": "nuovo",
-   "variants": [
-    "nuova"
-   ]
-  },
+  "new": { "text": "nuovo", "variants": ["nuova"] },
   "old": {
    "text": "vecchio",
-   "variants": [
-    "vecchia"
-   ],
-   "notes": {
-    "de": "bei Personen höflicher: anziano · antik, ehemalig: antico."
-   }
+   "variants": ["vecchia"],
+   "notes": { "de": "bei Personen höflicher: anziano · antik, ehemalig: antico." }
   },
   "slow": {
    "text": "lento",
-   "variants": [
-    "lenta"
-   ],
-   "notes": {
-    "de": "als Adverb lentamente oder piano: parla piano."
-   }
+   "variants": ["lenta"],
+   "notes": { "de": "als Adverb lentamente oder piano: parla piano." }
   },
-  "fast": {
-   "text": "veloce",
-   "variants": [
-    "rapido",
-    "rapida"
-   ]
-  },
-  "long": {
-   "text": "lungo",
-   "variants": [
-    "lunga"
-   ]
-  },
+  "fast": { "text": "veloce", "variants": ["rapido", "rapida"] },
+  "long": { "text": "lungo", "variants": ["lunga"] },
   "short": {
    "text": "corto",
-   "variants": [
-    "corta"
-   ],
-   "notes": {
-    "de": "kurze Dauer: breve · kleine Körpergröße: basso."
-   }
+   "variants": ["corta"],
+   "notes": { "de": "kurze Dauer: breve · kleine Körpergröße: basso." }
   },
-  "heavy": {
-   "text": "pesante"
-  },
-  "lightweight": {
-   "text": "leggero",
-   "variants": [
-    "leggera"
-   ]
-  },
-  "difficult": {
-   "text": "difficile"
-  },
-  "easy": {
-   "text": "facile"
-  },
-  "clean-adj": {
-   "text": "pulito",
-   "variants": [
-    "pulita"
-   ]
-  },
+  "heavy": { "text": "pesante" },
+  "lightweight": { "text": "leggero", "variants": ["leggera"] },
+  "difficult": { "text": "difficile" },
+  "easy": { "text": "facile" },
+  "clean-adj": { "text": "pulito", "variants": ["pulita"] },
   "sharp": {
    "text": "affilato",
-   "variants": [
-    "affilata"
-   ],
-   "notes": {
-    "de": "nur für Klingen; scharf im Geschmack ist piccante."
-   }
+   "variants": ["affilata"],
+   "notes": { "de": "nur für Klingen; scharf im Geschmack ist piccante." }
   },
-  "a-lot-of-water": {
-   "text": "molta acqua"
-  },
-  "the-day-is-long": {
-   "text": "Il giorno è lungo.",
-   "variants": [
-    "La giornata è lunga."
-   ]
-  },
-  "that-is-too-heavy": {
-   "text": "Questo è troppo pesante.",
-   "variants": [
-    "È troppo pesante."
-   ]
-  },
-  "the-water-is-clean": {
-   "text": "L'acqua è pulita."
-  }
+  "a-lot-of-water": { "text": "molta acqua" },
+  "the-day-is-long": { "text": "Il giorno è lungo.", "variants": ["La giornata è lunga."] },
+  "that-is-too-heavy": { "text": "Questo è troppo pesante.", "variants": ["È troppo pesante."] },
+  "the-water-is-clean": { "text": "L'acqua è pulita." }
  }
 }

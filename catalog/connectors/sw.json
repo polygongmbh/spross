@@ -2,104 +2,40 @@
  "title": "Maneno ya kuunganisha",
  "subtitle": "Maneno yanayoshikamanisha sentensi.",
  "words": {
-  "higher": {
-   "text": "juu zaidi"
-  },
-  "lower": {
-   "text": "chini zaidi"
-  },
-  "more": {
-   "text": "zaidi"
-  },
-  "less": {
-   "text": "pungufu"
-  },
-  "always": {
-   "text": "daima"
-  },
-  "never": {
-   "text": "kamwe"
-  },
-  "maybe": {
-   "text": "labda"
-  },
-  "sometimes": {
-   "text": "wakati mwingine"
-  },
-  "often": {
-   "text": "mara nyingi"
-  },
-  "but": {
-   "text": "lakini"
-  },
-  "also": {
-   "text": "pia"
-  },
-  "and": {
-   "text": "na",
-   "notes": {
-    "de": "na heißt auch „mit“: chai na maziwa · njoo na mimi."
-   }
-  },
-  "or": {
-   "text": "au"
-  },
+  "higher": { "text": "juu zaidi" },
+  "lower": { "text": "chini zaidi" },
+  "more": { "text": "zaidi" },
+  "less": { "text": "pungufu" },
+  "always": { "text": "daima" },
+  "never": { "text": "kamwe" },
+  "maybe": { "text": "labda" },
+  "sometimes": { "text": "wakati mwingine" },
+  "often": { "text": "mara nyingi" },
+  "but": { "text": "lakini" },
+  "also": { "text": "pia" },
+  "and": { "text": "na", "notes": { "de": "na heißt auch „mit“: chai na maziwa · njoo na mimi." } },
+  "or": { "text": "au" },
   "if": {
    "text": "kama",
-   "variants": [
-    "ikiwa"
-   ],
-   "notes": {
-    "de": "kama heißt auch „wie, als ob“ · die Frage „wann?“ ist lini."
-   }
+   "variants": ["ikiwa"],
+   "notes": { "de": "kama heißt auch „wie, als ob“ · die Frage „wann?“ ist lini." }
   },
-  "because": {
-   "text": "kwa sababu"
-  },
-  "so-that": {
-   "text": "ili"
-  },
-  "before": {
-   "text": "kabla ya"
-  },
-  "after": {
-   "text": "baada ya"
-  },
-  "until": {
-   "text": "mpaka",
-   "synonyms": [
-    "hadi"
-   ]
-  },
-  "without": {
-   "text": "bila"
-  },
-  "again": {
-   "text": "tena"
-  },
+  "because": { "text": "kwa sababu" },
+  "so-that": { "text": "ili" },
+  "before": { "text": "kabla ya" },
+  "after": { "text": "baada ya" },
+  "until": { "text": "mpaka", "synonyms": ["hadi"] },
+  "without": { "text": "bila" },
+  "again": { "text": "tena" },
   "still": {
    "text": "bado",
-   "notes": {
-    "de": "allein als Antwort heißt bado „noch nicht“: Umemaliza? — Bado."
-   }
+   "notes": { "de": "allein als Antwort heißt bado „noch nicht“: Umemaliza? — Bado." }
   },
-  "more-or-less": {
-   "text": "zaidi au pungufu"
-  },
-  "i-am-always-there": {
-   "text": "Niko pale daima."
-  },
-  "hang-it-higher": {
-   "text": "Itundike juu zaidi."
-  },
-  "hang-it-lower": {
-   "text": "Itundike chini zaidi."
-  },
-  "if-you-want": {
-   "text": "Kama unataka."
-  },
-  "tea-or-coffee": {
-   "text": "Chai au kahawa?"
-  }
+  "more-or-less": { "text": "zaidi au pungufu" },
+  "i-am-always-there": { "text": "Niko pale daima." },
+  "hang-it-higher": { "text": "Itundike juu zaidi." },
+  "hang-it-lower": { "text": "Itundike chini zaidi." },
+  "if-you-want": { "text": "Kama unataka." },
+  "tea-or-coffee": { "text": "Chai au kahawa?" }
  }
 }

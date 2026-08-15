@@ -2,213 +2,63 @@
  "title": "La chambre",
  "subtitle": "L'heure d'aller au lit.",
  "words": {
-  "bed": {
-   "text": "lit",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "mattress": {
-   "text": "matelas",
-   "grammar": {
-    "gender": "le",
-    "plural": "="
-   }
-  },
-  "pillow": {
-   "text": "oreiller",
-   "variants": [
-    "l'oreiller"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "blanket": {
-   "text": "couverture",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "bedding": {
-   "text": "linge de lit",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "wardrobe": {
-   "text": "armoire",
-   "variants": [
-    "l'armoire",
-    "penderie"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "alarm-clock": {
-   "text": "réveil",
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "bed": { "text": "lit", "grammar": { "gender": "le" } },
+  "mattress": { "text": "matelas", "grammar": { "gender": "le", "plural": "=" } },
+  "pillow": { "text": "oreiller", "variants": ["l'oreiller"], "grammar": { "gender": "l'" } },
+  "blanket": { "text": "couverture", "grammar": { "gender": "la" } },
+  "bedding": { "text": "linge de lit", "grammar": { "gender": "le" } },
+  "wardrobe": { "text": "armoire", "variants": ["l'armoire", "penderie"], "grammar": { "gender": "l'" } },
+  "alarm-clock": { "text": "réveil", "grammar": { "gender": "le" } },
   "nightstand": {
    "text": "table de nuit",
-   "variants": [
-    "table de chevet"
-   ],
-   "grammar": {
-    "gender": "la",
-    "plural": "tables de nuit"
-   }
+   "variants": ["table de chevet"],
+   "grammar": { "gender": "la", "plural": "tables de nuit" }
   },
-  "pajamas": {
-   "text": "pyjama",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "sock": {
-   "text": "chaussette",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "pants": {
-   "text": "pantalon",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "t-shirt": {
-   "text": "T-shirt",
-   "variants": [
-    "tee-shirt"
-   ],
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "sleep": {
-   "text": "dormir"
-  },
-  "wake-up": {
-   "text": "se réveiller"
-  },
-  "dream": {
-   "text": "rêver"
-  },
-  "get-up": {
-   "text": "se lever"
-  },
-  "get-undressed": {
-   "text": "se déshabiller",
-   "variants": [
-    "enlever ses vêtements"
-   ]
-  },
-  "cuddle": {
-   "text": "faire un câlin",
-   "variants": [
-    "se faire un câlin",
-    "câliner"
-   ]
-  },
-  "yawn": {
-   "text": "bâiller"
-  },
-  "snore": {
-   "text": "ronfler"
-  },
+  "pajamas": { "text": "pyjama", "grammar": { "gender": "le" } },
+  "sock": { "text": "chaussette", "grammar": { "gender": "la" } },
+  "pants": { "text": "pantalon", "grammar": { "gender": "le" } },
+  "t-shirt": { "text": "T-shirt", "variants": ["tee-shirt"], "grammar": { "gender": "le" } },
+  "sleep": { "text": "dormir" },
+  "wake-up": { "text": "se réveiller" },
+  "dream": { "text": "rêver" },
+  "get-up": { "text": "se lever" },
+  "get-undressed": { "text": "se déshabiller", "variants": ["enlever ses vêtements"] },
+  "cuddle": { "text": "faire un câlin", "variants": ["se faire un câlin", "câliner"] },
+  "yawn": { "text": "bâiller" },
+  "snore": { "text": "ronfler" },
   "clothes": {
    "text": "vêtements",
-   "grammar": {
-    "gender": "les"
-   },
+   "grammar": { "gender": "les" },
    "notes": {
     "de": "Kleidung steht im Französischen im Plural: les vêtements; ein einzelnes Kleidungsstück ist un vêtement."
    }
   },
-  "shirt": {
-   "text": "chemise",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "dress": {
-   "text": "robe",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "sweater": {
-   "text": "pull",
-   "variants": [
-    "pull-over",
-    "chandail"
-   ],
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "underwear": {
-   "text": "sous-vêtements",
-   "grammar": {
-    "gender": "les"
-   }
-  },
-  "belt": {
-   "text": "ceinture",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "make-bed": {
-   "text": "faire le lit"
-  },
+  "shirt": { "text": "chemise", "grammar": { "gender": "la" } },
+  "dress": { "text": "robe", "grammar": { "gender": "la" } },
+  "sweater": { "text": "pull", "variants": ["pull-over", "chandail"], "grammar": { "gender": "le" } },
+  "underwear": { "text": "sous-vêtements", "grammar": { "gender": "les" } },
+  "belt": { "text": "ceinture", "grammar": { "gender": "la" } },
+  "make-bed": { "text": "faire le lit" },
   "soft": {
    "text": "doux",
-   "variants": [
-    "douce"
-   ],
-   "notes": {
-    "de": "doux ist weich und sanft beim Anfassen; eine weiche Matratze ist un matelas moelleux."
-   }
+   "variants": ["douce"],
+   "notes": { "de": "doux ist weich und sanft beim Anfassen; eine weiche Matratze ist un matelas moelleux." }
   },
-  "good-night-sleep-well": {
-   "text": "Bonne nuit, dors bien !"
-  },
+  "good-night-sleep-well": { "text": "Bonne nuit, dors bien !" },
   "good-morning-my-love": {
    "text": "Bonjour, mon amour !",
-   "variants": [
-    "Bonjour, mon cœur !",
-    "Bonjour, chéri !"
-   ],
+   "variants": ["Bonjour, mon cœur !", "Bonjour, chéri !"],
    "notes": {
     "de": "Französisch grüßt auch morgens mit bonjour; bon matin ist québécois und in Frankreich unüblich."
    }
   },
-  "im-tired": {
-   "text": "Je suis fatigué.",
-   "variants": [
-    "Je suis fatiguée."
-   ]
-  },
+  "im-tired": { "text": "Je suis fatigué.", "variants": ["Je suis fatiguée."] },
   "did-you-set-the-alarm": {
    "text": "Tu as mis le réveil ?",
-   "variants": [
-    "As-tu mis le réveil ?",
-    "Tu as réglé le réveil ?"
-   ]
+   "variants": ["As-tu mis le réveil ?", "Tu as réglé le réveil ?"]
   },
-  "five-more-minutes": {
-   "text": "Encore cinq minutes…"
-  },
-  "turn-off-the-light": {
-   "text": "Éteins la lumière."
-  },
-  "i-love-you": {
-   "text": "Je t'aime."
-  }
+  "five-more-minutes": { "text": "Encore cinq minutes…" },
+  "turn-off-the-light": { "text": "Éteins la lumière." },
+  "i-love-you": { "text": "Je t'aime." }
  }
 }

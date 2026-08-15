@@ -2,187 +2,36 @@
  "title": "Unterwegs",
  "subtitle": "Auf geht's!",
  "words": {
-  "traffic-light": {
-   "text": "Ampel",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "bicycle": {
-   "text": "Fahrrad",
-   "grammar": {
-    "gender": "das",
-    "plural": "Fahrräder"
-   }
-  },
-  "bus": {
-   "text": "Bus",
-   "grammar": {
-    "gender": "der",
-    "plural": "-se"
-   }
-  },
-  "bus-stop": {
-   "text": "Haltestelle",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "train": {
-   "text": "Zug",
-   "grammar": {
-    "gender": "der",
-    "plural": "Züge"
-   }
-  },
-  "car": {
-   "text": "Auto",
-   "grammar": {
-    "gender": "das",
-    "plural": "-s"
-   }
-  },
-  "taxi": {
-   "text": "Taxi",
-   "grammar": {
-    "gender": "das",
-    "plural": "-s"
-   }
-  },
-  "train-station": {
-   "text": "Bahnhof",
-   "grammar": {
-    "gender": "der",
-    "plural": "Bahnhöfe"
-   }
-  },
-  "ticket": {
-   "text": "Fahrkarte",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "way": {
-   "text": "Weg",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "ride-bike": {
-   "text": "Rad fahren"
-  },
-  "take-bus": {
-   "text": "den Bus nehmen"
-  },
-  "depart": {
-   "text": "abfahren"
-  },
-  "journey": {
-   "text": "Reise",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "travel": {
-   "text": "reisen"
-  },
-  "driver": {
-   "text": "Fahrer",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "plane": {
-   "text": "Flugzeug",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
-  },
-  "airport": {
-   "text": "Flughafen",
-   "grammar": {
-    "gender": "der",
-    "plural": "Flughäfen"
-   }
-  },
-  "ship": {
-   "text": "Schiff",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
-  },
-  "motorbike": {
-   "text": "Motorrad",
-   "grammar": {
-    "gender": "das",
-    "plural": "Motorräder"
-   }
-  },
-  "truck": {
-   "text": "Lastwagen",
-   "variants": [
-    "Lkw",
-    "LKW"
-   ],
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "passenger": {
-   "text": "Passagier",
-   "variants": [
-    "Fahrgast"
-   ],
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "luggage": {
-   "text": "Gepäck",
-   "grammar": {
-    "gender": "das"
-   }
-  },
-  "fare": {
-   "text": "Fahrpreis",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "get-off": {
-   "text": "aussteigen"
-  },
-  "the-bus-is-coming-soon": {
-   "text": "Der Bus kommt gleich."
-  },
-  "when-does-the-train-leave": {
-   "text": "Wann fährt der Zug ab?"
-  },
-  "have-a-good-journey": {
-   "text": "Gute Reise!"
-  },
-  "where-is-the-airport": {
-   "text": "Wo ist der Flughafen?"
-  },
-  "how-much-is-the-fare": {
-   "text": "Wie hoch ist der Fahrpreis?",
-   "variants": [
-    "Was kostet die Fahrt?"
-   ]
-  },
-  "i-get-off-here": {
-   "text": "Ich steige hier aus."
-  }
+  "traffic-light": { "text": "Ampel", "grammar": { "gender": "die", "plural": "-n" } },
+  "bicycle": { "text": "Fahrrad", "grammar": { "gender": "das", "plural": "Fahrräder" } },
+  "bus": { "text": "Bus", "grammar": { "gender": "der", "plural": "-se" } },
+  "bus-stop": { "text": "Haltestelle", "grammar": { "gender": "die", "plural": "-n" } },
+  "train": { "text": "Zug", "grammar": { "gender": "der", "plural": "Züge" } },
+  "car": { "text": "Auto", "grammar": { "gender": "das", "plural": "-s" } },
+  "taxi": { "text": "Taxi", "grammar": { "gender": "das", "plural": "-s" } },
+  "train-station": { "text": "Bahnhof", "grammar": { "gender": "der", "plural": "Bahnhöfe" } },
+  "ticket": { "text": "Fahrkarte", "grammar": { "gender": "die", "plural": "-n" } },
+  "way": { "text": "Weg", "grammar": { "gender": "der", "plural": "-e" } },
+  "ride-bike": { "text": "Rad fahren" },
+  "take-bus": { "text": "den Bus nehmen" },
+  "depart": { "text": "abfahren" },
+  "journey": { "text": "Reise", "grammar": { "gender": "die", "plural": "-n" } },
+  "travel": { "text": "reisen" },
+  "driver": { "text": "Fahrer", "grammar": { "gender": "der", "plural": "=" } },
+  "plane": { "text": "Flugzeug", "grammar": { "gender": "das", "plural": "-e" } },
+  "airport": { "text": "Flughafen", "grammar": { "gender": "der", "plural": "Flughäfen" } },
+  "ship": { "text": "Schiff", "grammar": { "gender": "das", "plural": "-e" } },
+  "motorbike": { "text": "Motorrad", "grammar": { "gender": "das", "plural": "Motorräder" } },
+  "truck": { "text": "Lastwagen", "variants": ["Lkw", "LKW"], "grammar": { "gender": "der", "plural": "=" } },
+  "passenger": { "text": "Passagier", "variants": ["Fahrgast"], "grammar": { "gender": "der", "plural": "-e" } },
+  "luggage": { "text": "Gepäck", "grammar": { "gender": "das" } },
+  "fare": { "text": "Fahrpreis", "grammar": { "gender": "der", "plural": "-e" } },
+  "get-off": { "text": "aussteigen" },
+  "the-bus-is-coming-soon": { "text": "Der Bus kommt gleich." },
+  "when-does-the-train-leave": { "text": "Wann fährt der Zug ab?" },
+  "have-a-good-journey": { "text": "Gute Reise!" },
+  "where-is-the-airport": { "text": "Wo ist der Flughafen?" },
+  "how-much-is-the-fare": { "text": "Wie hoch ist der Fahrpreis?", "variants": ["Was kostet die Fahrt?"] },
+  "i-get-off-here": { "text": "Ich steige hier aus." }
  }
 }

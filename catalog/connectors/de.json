@@ -2,92 +2,33 @@
  "title": "Verbindungswörter",
  "subtitle": "Wörter, die einen Satz zusammenhalten.",
  "words": {
-  "higher": {
-   "text": "höher"
-  },
-  "lower": {
-   "text": "niedriger"
-  },
-  "more": {
-   "text": "mehr"
-  },
-  "less": {
-   "text": "weniger"
-  },
-  "always": {
-   "text": "immer"
-  },
-  "never": {
-   "text": "nie"
-  },
-  "maybe": {
-   "text": "vielleicht"
-  },
-  "sometimes": {
-   "text": "manchmal"
-  },
-  "often": {
-   "text": "oft"
-  },
-  "but": {
-   "text": "aber"
-  },
-  "also": {
-   "text": "auch"
-  },
-  "and": {
-   "text": "und"
-  },
-  "or": {
-   "text": "oder"
-  },
-  "if": {
-   "text": "wenn"
-  },
-  "because": {
-   "text": "weil"
-  },
-  "so-that": {
-   "text": "damit"
-  },
-  "before": {
-   "text": "vor"
-  },
-  "after": {
-   "text": "nach"
-  },
-  "until": {
-   "text": "bis"
-  },
-  "without": {
-   "text": "ohne"
-  },
-  "again": {
-   "text": "wieder"
-  },
-  "still": {
-   "text": "noch"
-  },
-  "more-or-less": {
-   "text": "mehr oder weniger"
-  },
-  "i-am-always-there": {
-   "text": "Ich bin immer da."
-  },
-  "hang-it-higher": {
-   "text": "Häng es höher."
-  },
-  "hang-it-lower": {
-   "text": "Häng es niedriger."
-  },
-  "if-you-want": {
-   "text": "Wenn Sie wollen.",
-   "variants": [
-    "Wenn du willst."
-   ]
-  },
-  "tea-or-coffee": {
-   "text": "Tee oder Kaffee?"
-  }
+  "higher": { "text": "höher" },
+  "lower": { "text": "niedriger" },
+  "more": { "text": "mehr" },
+  "less": { "text": "weniger" },
+  "always": { "text": "immer" },
+  "never": { "text": "nie" },
+  "maybe": { "text": "vielleicht" },
+  "sometimes": { "text": "manchmal" },
+  "often": { "text": "oft" },
+  "but": { "text": "aber" },
+  "also": { "text": "auch" },
+  "and": { "text": "und" },
+  "or": { "text": "oder" },
+  "if": { "text": "wenn" },
+  "because": { "text": "weil" },
+  "so-that": { "text": "damit" },
+  "before": { "text": "vor" },
+  "after": { "text": "nach" },
+  "until": { "text": "bis" },
+  "without": { "text": "ohne" },
+  "again": { "text": "wieder" },
+  "still": { "text": "noch" },
+  "more-or-less": { "text": "mehr oder weniger" },
+  "i-am-always-there": { "text": "Ich bin immer da." },
+  "hang-it-higher": { "text": "Häng es höher." },
+  "hang-it-lower": { "text": "Häng es niedriger." },
+  "if-you-want": { "text": "Wenn Sie wollen.", "variants": ["Wenn du willst."] },
+  "tea-or-coffee": { "text": "Tee oder Kaffee?" }
  }
 }

@@ -2,240 +2,85 @@
  "title": "Il corpo",
  "subtitle": "Dalla testa ai piedi.",
  "words": {
-  "head": {
-   "text": "testa",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "hair": {
-   "text": "capelli",
-   "grammar": {
-    "gender": "i",
-    "plural": "only"
-   }
-  },
-  "face": {
-   "text": "faccia",
-   "synonyms": [
-    "viso"
-   ],
-   "grammar": {
-    "gender": "la",
-    "plural": "facce"
-   }
-  },
-  "eye": {
-   "text": "occhio",
-   "variants": [
-    "l'occhio"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "occhi"
-   }
-  },
+  "head": { "text": "testa", "grammar": { "gender": "la" } },
+  "hair": { "text": "capelli", "grammar": { "gender": "i", "plural": "only" } },
+  "face": { "text": "faccia", "synonyms": ["viso"], "grammar": { "gender": "la", "plural": "facce" } },
+  "eye": { "text": "occhio", "variants": ["l'occhio"], "grammar": { "gender": "l'", "plural": "occhi" } },
   "ear": {
    "text": "orecchio",
-   "variants": [
-    "l'orecchio"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "orecchie"
-   },
-   "notes": {
-    "de": "Der Plural ist feminin: le orecchie."
-   }
+   "variants": ["l'orecchio"],
+   "grammar": { "gender": "l'", "plural": "orecchie" },
+   "notes": { "de": "Der Plural ist feminin: le orecchie." }
   },
-  "nose": {
-   "text": "naso",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "mouth": {
-   "text": "bocca",
-   "grammar": {
-    "gender": "la",
-    "plural": "bocche"
-   }
-  },
-  "tooth": {
-   "text": "dente",
-   "grammar": {
-    "gender": "il"
-   }
-  },
+  "nose": { "text": "naso", "grammar": { "gender": "il" } },
+  "mouth": { "text": "bocca", "grammar": { "gender": "la", "plural": "bocche" } },
+  "tooth": { "text": "dente", "grammar": { "gender": "il" } },
   "lip": {
    "text": "labbro",
-   "grammar": {
-    "gender": "il",
-    "plural": "labbra"
-   },
-   "notes": {
-    "de": "Der Plural ist feminin: le labbra."
-   }
+   "grammar": { "gender": "il", "plural": "labbra" },
+   "notes": { "de": "Der Plural ist feminin: le labbra." }
   },
   "hand": {
    "text": "mano",
-   "grammar": {
-    "gender": "la",
-    "plural": "mani"
-   },
-   "notes": {
-    "de": "la mano ist feminin trotz der Endung -o: la mano destra, le mani."
-   }
+   "grammar": { "gender": "la", "plural": "mani" },
+   "notes": { "de": "la mano ist feminin trotz der Endung -o: la mano destra, le mani." }
   },
   "arm": {
    "text": "braccio",
-   "grammar": {
-    "gender": "il",
-    "plural": "braccia"
-   },
-   "notes": {
-    "de": "Der Plural ist feminin: le braccia."
-   }
+   "grammar": { "gender": "il", "plural": "braccia" },
+   "notes": { "de": "Der Plural ist feminin: le braccia." }
   },
-  "foot": {
-   "text": "piede",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "leg": {
-   "text": "gamba",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "foot": { "text": "piede", "grammar": { "gender": "il" } },
+  "leg": { "text": "gamba", "grammar": { "gender": "la" } },
   "stomach": {
    "text": "pancia",
-   "variants": [
-    "ventre"
-   ],
-   "grammar": {
-    "gender": "la",
-    "plural": "pance"
-   },
+   "variants": ["ventre"],
+   "grammar": { "gender": "la", "plural": "pance" },
    "notes": {
     "de": "Bauchweh heißt mi fa male la pancia; lo stomaco meint den Magen selbst, il ventre ist gehoben."
    }
   },
-  "back": {
-   "text": "schiena",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "back": { "text": "schiena", "grammar": { "gender": "la" } },
   "throat": {
    "text": "gola",
-   "grammar": {
-    "gender": "la"
-   },
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "Italienisch trennt, was „Hals“ zusammenfasst: la gola ist der Rachen (Halsschmerzen), il collo der äußere Hals."
    }
   },
-  "shoulder": {
-   "text": "spalla",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "shoulder": { "text": "spalla", "grammar": { "gender": "la" } },
   "knee": {
    "text": "ginocchio",
-   "grammar": {
-    "gender": "il",
-    "plural": "ginocchia"
-   },
-   "notes": {
-    "de": "Der Plural ist feminin: le ginocchia."
-   }
+   "grammar": { "gender": "il", "plural": "ginocchia" },
+   "notes": { "de": "Der Plural ist feminin: le ginocchia." }
   },
-  "chest": {
-   "text": "petto",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "heart": {
-   "text": "cuore",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "blood": {
-   "text": "sangue",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "skin": {
-   "text": "pelle",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "chest": { "text": "petto", "grammar": { "gender": "il" } },
+  "heart": { "text": "cuore", "grammar": { "gender": "il" } },
+  "blood": { "text": "sangue", "grammar": { "gender": "il" } },
+  "skin": { "text": "pelle", "grammar": { "gender": "la" } },
   "bone": {
    "text": "osso",
-   "variants": [
-    "l'osso"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "ossa"
-   },
-   "notes": {
-    "de": "Der Plural ist feminin: le ossa; gli ossi sind einzelne Knochen, etwa für den Hund."
-   }
+   "variants": ["l'osso"],
+   "grammar": { "gender": "l'", "plural": "ossa" },
+   "notes": { "de": "Der Plural ist feminin: le ossa; gli ossi sind einzelne Knochen, etwa für den Hund." }
   },
   "finger": {
    "text": "dito",
-   "grammar": {
-    "gender": "il",
-    "plural": "dita"
-   },
+   "grammar": { "gender": "il", "plural": "dita" },
    "notes": {
     "de": "dito deckt Finger und Zehe ab; die Zehe ist il dito del piede. Der Plural ist feminin: le dita."
    }
   },
-  "neck": {
-   "text": "collo",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "my-head-hurts": {
-   "text": "Mi fa male la testa."
-  },
-  "give-me-your-hand": {
-   "text": "Dammi la mano.",
-   "variants": [
-    "Dammi la tua mano."
-   ]
-  },
-  "open-your-mouth": {
-   "text": "Apri la bocca."
-  },
-  "close-your-eyes": {
-   "text": "Chiudi gli occhi."
-  },
-  "i-have-long-hair": {
-   "text": "Ho i capelli lunghi."
-  },
-  "my-feet-are-cold": {
-   "text": "Ho i piedi freddi.",
-   "variants": [
-    "Ho freddo ai piedi."
-   ]
-  },
+  "neck": { "text": "collo", "grammar": { "gender": "il" } },
+  "my-head-hurts": { "text": "Mi fa male la testa." },
+  "give-me-your-hand": { "text": "Dammi la mano.", "variants": ["Dammi la tua mano."] },
+  "open-your-mouth": { "text": "Apri la bocca." },
+  "close-your-eyes": { "text": "Chiudi gli occhi." },
+  "i-have-long-hair": { "text": "Ho i capelli lunghi." },
+  "my-feet-are-cold": { "text": "Ho i piedi freddi.", "variants": ["Ho freddo ai piedi."] },
   "my-heart-is-beating-fast": {
    "text": "Il cuore mi batte veloce.",
-   "variants": [
-    "Il mio cuore batte veloce.",
-    "Il cuore mi batte velocemente."
-   ]
+   "variants": ["Il mio cuore batte veloce.", "Il cuore mi batte velocemente."]
   }
  }
 }

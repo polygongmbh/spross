@@ -1,39 +1,15 @@
 {
  "sections": [
-  {
-   "id": "y-sounds",
-   "title": {
-    "de": "ll und y klingen gleich",
-    "en": "ll and y sound alike"
-   }
-  },
-  {
-   "id": "throat",
-   "title": {
-    "de": "Der j-Laut",
-    "en": "The j sound"
-   }
-  },
+  { "id": "y-sounds", "title": { "de": "ll und y klingen gleich", "en": "ll and y sound alike" } },
+  { "id": "throat", "title": { "de": "Der j-Laut", "en": "The j sound" } },
   {
    "id": "s-sounds",
-   "title": {
-    "de": "c, z, s — und das harte k",
-    "en": "c, z, s — and the hard k"
-   }
+   "title": { "de": "c, z, s — und das harte k", "en": "c, z, s — and the hard k" }
   },
-  {
-   "id": "r-sounds",
-   "title": {
-    "de": "Die zwei r",
-    "en": "The two r sounds"
-   }
-  },
+  { "id": "r-sounds", "title": { "de": "Die zwei r", "en": "The two r sounds" } },
   {
    "id": "single-letters",
-   "title": {
-    "de": "Einzelbuchstaben mit Überraschung",
-    "en": "Single letters that surprise"
-   }
+   "title": { "de": "Einzelbuchstaben mit Überraschung", "en": "Single letters that surprise" }
   }
  ],
  "entries": [
@@ -44,10 +20,7 @@
    "section": "y-sounds",
    "ipa": "ʝ",
    "example": "street",
-   "hints": {
-    "de": "wie j in ja — nie wie l",
-    "en": "like y in yes — never like l"
-   }
+   "hints": { "de": "wie j in ja — nie wie l", "en": "like y in yes — never like l" }
   },
   {
    "glyph": "y",
@@ -61,11 +34,7 @@
     "de": "als Konsonant wie j in ja — derselbe Laut wie ll",
     "en": "as a consonant like y in yes — the same sound as ll"
    },
-   "confusable": {
-    "look": [
-     "y-vowel"
-    ]
-   }
+   "confusable": { "look": ["y-vowel"] }
   },
   {
    "glyph": "y",
@@ -73,10 +42,7 @@
    "id": "y-vowel",
    "section": "y-sounds",
    "ipa": "i",
-   "context": {
-    "de": "am Wortende und als das Wort y (= und)",
-    "en": "at word end and as the word y (= and)"
-   },
+   "context": { "de": "am Wortende und als das Wort y (= und)", "en": "at word end and as the word y (= and)" },
    "example": "today",
    "hints": {
     "de": "dort das i eines Diphthongs: hoy = „o-i“ in einer Silbe — nicht der eu-Laut von „heute“; das Wort y (= und) ist einfach „i“",
@@ -100,10 +66,7 @@
    "kind": "contextual",
    "section": "throat",
    "ipa": "x",
-   "context": {
-    "de": "vor e und i",
-    "en": "before e and i"
-   },
+   "context": { "de": "vor e und i", "en": "before e and i" },
    "example": "page",
    "hints": {
     "de": "wie ch in Bach — derselbe Laut wie j; sonst hartes g",
@@ -115,45 +78,26 @@
    "kind": "digraph",
    "section": "throat",
    "ipa": "ɡ",
-   "context": {
-    "de": "vor e und i",
-    "en": "before e and i"
-   },
+   "context": { "de": "vor e und i", "en": "before e and i" },
    "exampleText": "guitarra",
    "hints": {
     "de": "hartes g, das u ist stumm: guitarra = „gitarra“",
     "en": "hard g, the u is silent: guitarra = “ghee-tarra” — never a j-sound"
    },
-   "confusable": {
-    "look": [
-     "g",
-     "qu"
-    ],
-    "sound": [
-     "qu"
-    ]
-   }
+   "confusable": { "look": ["g", "qu"], "sound": ["qu"] }
   },
   {
    "glyph": "gü",
    "kind": "digraph",
    "section": "throat",
    "ipa": "ɡw",
-   "context": {
-    "de": "vor e und i (güe, güi)",
-    "en": "before e and i (güe, güi)"
-   },
+   "context": { "de": "vor e und i (güe, güi)", "en": "before e and i (güe, güi)" },
    "exampleText": "pingüino",
    "hints": {
     "de": "die zwei Punkte machen das u hörbar: pingüino ≈ „pin-gu-ino“ — das u klingt wie das w in englisch water, nie wie ein deutsches w",
     "en": "the two dots make the u audible: pingüino = “pin-gwee-no”"
    },
-   "confusable": {
-    "look": [
-     "gu",
-     "g"
-    ]
-   }
+   "confusable": { "look": ["gu", "g"] }
   },
   {
    "glyph": "c",
@@ -161,23 +105,13 @@
    "id": "c-soft",
    "section": "s-sounds",
    "ipa": "θ",
-   "context": {
-    "de": "vor e und i",
-    "en": "before e and i"
-   },
+   "context": { "de": "vor e und i", "en": "before e and i" },
    "example": "pharmacy",
    "hints": {
     "de": "wie englisches th in thing (europäisches Spanisch); sonst k — cocina hat beides",
     "en": "like th in thing (European Spanish); k elsewhere — cocina has both"
    },
-   "confusable": {
-    "look": [
-     "c-hard"
-    ],
-    "sound": [
-     "s"
-    ]
-   }
+   "confusable": { "look": ["c-hard"], "sound": ["s"] }
   },
   {
    "glyph": "c",
@@ -185,10 +119,7 @@
    "id": "c-hard",
    "section": "s-sounds",
    "ipa": "k",
-   "context": {
-    "de": "vor a, o und u",
-    "en": "before a, o and u"
-   },
+   "context": { "de": "vor a, o und u", "en": "before a, o and u" },
    "example": "house",
    "hints": {
     "de": "wie k — vor e und i dagegen wie englisches th",
@@ -206,11 +137,7 @@
     "de": "wie englisches th in thing — Zungenspitze locker zwischen die Zähne; nie ts wie im Deutschen (europäisches Spanisch)",
     "en": "like th in thing, never an English z (European Spanish)"
    },
-   "confusable": {
-    "sound": [
-     "s"
-    ]
-   }
+   "confusable": { "sound": ["s"] }
   },
   {
    "glyph": "s",
@@ -229,10 +156,7 @@
    "kind": "digraph",
    "section": "s-sounds",
    "ipa": "k",
-   "context": {
-    "de": "vor e und i",
-    "en": "before e and i"
-   },
+   "context": { "de": "vor e und i", "en": "before e and i" },
    "example": "cheese",
    "hints": {
     "de": "wie k, das u ist stumm: queso = „keßo“ (scharfes s)",
@@ -251,16 +175,7 @@
     "de": "ein kurzer Schlag der Zungenspitze, wie das tt in amerikanisch „butter“ — nie das deutsche Rachen-r",
     "en": "a single tongue-tip tap, like tt in American “butter”"
    },
-   "confusable": {
-    "look": [
-     "r-strong"
-    ],
-    "sound": [
-     "rr",
-     "r-strong",
-     "d"
-    ]
-   }
+   "confusable": { "look": ["r-strong"], "sound": ["rr", "r-strong", "d"] }
   },
   {
    "glyph": "rr",
@@ -273,12 +188,7 @@
     "de": "lang gerolltes Zungenspitzen-r — pero (aber) und perro (Hund) sind zwei verschiedene Wörter",
     "en": "a strongly rolled r — pero (but) and perro (dog) are different words"
    },
-   "confusable": {
-    "look": [
-     "r-tap",
-     "r-strong"
-    ]
-   }
+   "confusable": { "look": ["r-tap", "r-strong"] }
   },
   {
    "glyph": "r",
@@ -286,15 +196,9 @@
    "id": "r-strong",
    "section": "r-sounds",
    "ipa": "r",
-   "context": {
-    "de": "am Wortanfang und nach l, n, s",
-    "en": "at word start and after l, n, s"
-   },
+   "context": { "de": "am Wortanfang und nach l, n, s", "en": "at word start and after l, n, s" },
    "example": "river",
-   "hints": {
-    "de": "dort gerollt wie rr: río",
-    "en": "rolled like rr there: río"
-   }
+   "hints": { "de": "dort gerollt wie rr: río", "en": "rolled like rr there: río" }
   },
   {
    "glyph": "h",
@@ -307,12 +211,7 @@
     "en": "silent — hola sounds like “ola”; only in the digraph ch does it do any work"
    },
    "drill": false,
-   "confusable": {
-    "sound": [
-     "j",
-     "g"
-    ]
-   }
+   "confusable": { "sound": ["j", "g"] }
   },
   {
    "glyph": "ñ",
@@ -321,10 +220,7 @@
    "section": "single-letters",
    "ipa": "ɲ",
    "example": "tomorrow",
-   "hints": {
-    "de": "wie nj in Tanja oder gn in Champagner",
-    "en": "like ny in canyon"
-   }
+   "hints": { "de": "wie nj in Tanja oder gn in Champagner", "en": "like ny in canyon" }
   },
   {
    "glyph": "ch",
@@ -333,10 +229,7 @@
    "section": "single-letters",
    "ipa": "t͡ʃ",
    "example": "shower",
-   "hints": {
-    "de": "wie tsch in Tschüss — nie wie deutsches ch",
-    "en": "like ch in cheese"
-   }
+   "hints": { "de": "wie tsch in Tschüss — nie wie deutsches ch", "en": "like ch in cheese" }
   },
   {
    "glyph": "b",

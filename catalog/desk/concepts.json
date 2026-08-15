@@ -1,207 +1,46 @@
 [
- {
-  "slug": "desk",
-  "kind": "noun",
-  "emoji": "🗄️"
- },
- {
-  "slug": "laptop",
-  "kind": "noun",
-  "emoji": "💻"
- },
- {
-  "slug": "keyboard",
-  "kind": "noun",
-  "emoji": "⌨️"
- },
- {
-  "slug": "screen",
-  "kind": "noun",
-  "emoji": "🖥️"
- },
- {
-  "slug": "mouse",
-  "kind": "noun",
-  "emoji": "🖱️"
- },
- {
-  "slug": "cable",
-  "kind": "noun",
-  "emoji": "⚡"
- },
- {
-  "slug": "headphones",
-  "kind": "noun",
-  "emoji": "🎧"
- },
- {
-  "slug": "pen",
-  "kind": "noun",
-  "emoji": "✏️"
- },
- {
-  "slug": "notebook",
-  "kind": "noun",
-  "emoji": "📓"
- },
- {
-  "slug": "printer",
-  "kind": "noun",
-  "emoji": "🖨️"
- },
- {
-  "slug": "socket",
-  "kind": "noun",
-  "emoji": "🔌"
- },
- {
-  "slug": "office-chair",
-  "kind": "noun",
-  "emoji": "💺"
- },
- {
-  "slug": "to-work",
-  "kind": "verb",
-  "emoji": "💼"
- },
- {
-  "slug": "type",
-  "kind": "verb",
-  "emoji": "⌨️"
- },
- {
-  "slug": "print",
-  "kind": "verb",
-  "emoji": "🖨️"
- },
- {
-  "slug": "save",
-  "kind": "verb",
-  "emoji": "💾"
- },
- {
-  "slug": "take-break",
-  "kind": "verb",
-  "emoji": "☕"
- },
- {
-  "slug": "write",
-  "kind": "verb",
-  "emoji": "✍️"
- },
- {
-  "slug": "call",
-  "kind": "verb",
-  "emoji": "📞"
- },
- {
-  "slug": "delete",
-  "kind": "verb",
-  "emoji": "🗑️"
- },
- {
-  "slug": "study",
-  "kind": "verb",
-  "emoji": "📚"
- },
- {
-  "slug": "phone",
-  "kind": "noun",
-  "emoji": "📱"
- },
- {
-  "slug": "email",
-  "kind": "noun",
-  "emoji": "✉️"
- },
- {
-  "slug": "paper",
-  "kind": "noun",
-  "emoji": "📄"
- },
- {
-  "slug": "folder",
-  "kind": "noun",
-  "emoji": "📁"
- },
- {
-  "slug": "password",
-  "kind": "noun",
-  "emoji": "🔒"
- },
- {
-  "slug": "internet",
-  "kind": "noun",
-  "emoji": "🌐"
- },
- {
-  "slug": "charger",
-  "kind": "noun",
-  "emoji": "🔋"
- },
- {
-  "slug": "calendar",
-  "kind": "noun",
-  "emoji": "📅"
- },
- {
-  "slug": "important",
-  "kind": "adjective",
-  "emoji": "❗"
- },
- {
-  "slug": "ready",
-  "kind": "adjective",
-  "emoji": "✅"
- },
- {
-  "slug": "im-in-a-meeting",
-  "kind": "phrase",
-  "emoji": "👥",
-  "components": []
- },
- {
-  "slug": "dont-disturb-me",
-  "kind": "phrase",
-  "emoji": "🤫",
-  "components": []
- },
+ { "slug": "desk", "kind": "noun", "emoji": "🗄️" },
+ { "slug": "laptop", "kind": "noun", "emoji": "💻" },
+ { "slug": "keyboard", "kind": "noun", "emoji": "⌨️" },
+ { "slug": "screen", "kind": "noun", "emoji": "🖥️" },
+ { "slug": "mouse", "kind": "noun", "emoji": "🖱️" },
+ { "slug": "cable", "kind": "noun", "emoji": "⚡" },
+ { "slug": "headphones", "kind": "noun", "emoji": "🎧" },
+ { "slug": "pen", "kind": "noun", "emoji": "✏️" },
+ { "slug": "notebook", "kind": "noun", "emoji": "📓" },
+ { "slug": "printer", "kind": "noun", "emoji": "🖨️" },
+ { "slug": "socket", "kind": "noun", "emoji": "🔌" },
+ { "slug": "office-chair", "kind": "noun", "emoji": "💺" },
+ { "slug": "to-work", "kind": "verb", "emoji": "💼" },
+ { "slug": "type", "kind": "verb", "emoji": "⌨️" },
+ { "slug": "print", "kind": "verb", "emoji": "🖨️" },
+ { "slug": "save", "kind": "verb", "emoji": "💾" },
+ { "slug": "take-break", "kind": "verb", "emoji": "☕" },
+ { "slug": "write", "kind": "verb", "emoji": "✍️" },
+ { "slug": "call", "kind": "verb", "emoji": "📞" },
+ { "slug": "delete", "kind": "verb", "emoji": "🗑️" },
+ { "slug": "study", "kind": "verb", "emoji": "📚" },
+ { "slug": "phone", "kind": "noun", "emoji": "📱" },
+ { "slug": "email", "kind": "noun", "emoji": "✉️" },
+ { "slug": "paper", "kind": "noun", "emoji": "📄" },
+ { "slug": "folder", "kind": "noun", "emoji": "📁" },
+ { "slug": "password", "kind": "noun", "emoji": "🔒" },
+ { "slug": "internet", "kind": "noun", "emoji": "🌐" },
+ { "slug": "charger", "kind": "noun", "emoji": "🔋" },
+ { "slug": "calendar", "kind": "noun", "emoji": "📅" },
+ { "slug": "important", "kind": "adjective", "emoji": "❗" },
+ { "slug": "ready", "kind": "adjective", "emoji": "✅" },
+ { "slug": "im-in-a-meeting", "kind": "phrase", "emoji": "👥", "components": [] },
+ { "slug": "dont-disturb-me", "kind": "phrase", "emoji": "🤫", "components": [] },
  {
   "slug": "the-laptop-wont-charge-anymore",
   "kind": "phrase",
   "emoji": "🔋",
-  "components": [
-   "laptop"
-  ]
+  "components": ["laptop"]
  },
- {
-  "slug": "the-internet-is-gone",
-  "kind": "phrase",
-  "emoji": "📵",
-  "components": []
- },
- {
-  "slug": "coffee-break",
-  "kind": "phrase",
-  "emoji": "☕",
-  "components": []
- },
- {
-  "slug": "i-have-a-lot-to-do",
-  "kind": "phrase",
-  "emoji": "📋",
-  "components": []
- },
- {
-  "slug": "end-of-workday",
-  "kind": "phrase",
-  "emoji": "🎉",
-  "components": []
- },
- {
-  "slug": "send-me-the-email",
-  "kind": "phrase",
-  "emoji": "📧",
-  "components": []
- }
+ { "slug": "the-internet-is-gone", "kind": "phrase", "emoji": "📵", "components": [] },
+ { "slug": "coffee-break", "kind": "phrase", "emoji": "☕", "components": [] },
+ { "slug": "i-have-a-lot-to-do", "kind": "phrase", "emoji": "📋", "components": [] },
+ { "slug": "end-of-workday", "kind": "phrase", "emoji": "🎉", "components": [] },
+ { "slug": "send-me-the-email", "kind": "phrase", "emoji": "📧", "components": [] }
 ]

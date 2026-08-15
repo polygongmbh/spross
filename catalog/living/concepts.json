@@ -1,201 +1,44 @@
 [
- {
-  "slug": "sofa",
-  "kind": "noun",
-  "emoji": "🛋️"
- },
- {
-  "slug": "dining-table",
-  "kind": "noun",
-  "emoji": "🍽️"
- },
- {
-  "slug": "chair",
-  "kind": "noun",
-  "emoji": "🪑"
- },
- {
-  "slug": "tv",
-  "kind": "noun",
-  "emoji": "📺"
- },
- {
-  "slug": "remote",
-  "kind": "noun",
-  "emoji": "🎮"
- },
- {
-  "slug": "shelf",
-  "kind": "noun",
-  "emoji": "📚"
- },
- {
-  "slug": "plant",
-  "kind": "noun",
-  "emoji": "🪴"
- },
- {
-  "slug": "window",
-  "kind": "noun",
-  "emoji": "🪟"
- },
- {
-  "slug": "curtain",
-  "kind": "noun",
-  "emoji": "🎭"
- },
- {
-  "slug": "carpet",
-  "kind": "noun",
-  "emoji": "🧶"
- },
- {
-  "slug": "lamp",
-  "kind": "noun",
-  "emoji": "💡"
- },
- {
-  "slug": "picture",
-  "kind": "noun",
-  "emoji": "🖼️"
- },
- {
-  "slug": "watch-tv",
-  "kind": "verb",
-  "emoji": "📺"
- },
- {
-  "slug": "read",
-  "kind": "verb",
-  "emoji": "📖"
- },
- {
-  "slug": "relax",
-  "kind": "verb",
-  "emoji": "😌"
- },
- {
-  "slug": "tidy-up",
-  "kind": "verb",
-  "emoji": "🧹"
- },
- {
-  "slug": "listen-to-music",
-  "kind": "verb",
-  "emoji": "🎵"
- },
- {
-  "slug": "water-plants",
-  "kind": "verb",
-  "emoji": "🪴"
- },
- {
-  "slug": "play",
-  "kind": "verb",
-  "emoji": "🎲"
- },
- {
-  "slug": "talk",
-  "kind": "verb",
-  "emoji": "💬"
- },
- {
-  "slug": "room",
-  "kind": "noun",
-  "emoji": "🏠"
- },
- {
-  "slug": "newspaper",
-  "kind": "noun",
-  "emoji": "📰"
- },
- {
-  "slug": "light",
-  "kind": "noun",
-  "emoji": "🔆"
- },
- {
-  "slug": "music",
-  "kind": "noun",
-  "emoji": "🎵"
- },
- {
-  "slug": "wall",
-  "kind": "noun",
-  "emoji": "🧱"
- },
- {
-  "slug": "movie",
-  "kind": "noun",
-  "emoji": "🎬"
- },
- {
-  "slug": "sit",
-  "kind": "verb",
-  "emoji": "💺"
- },
- {
-  "slug": "laugh",
-  "kind": "verb",
-  "emoji": "😂"
- },
- {
-  "slug": "quiet",
-  "kind": "adjective",
-  "emoji": "🤫"
- },
- {
-  "slug": "furniture",
-  "kind": "noun"
- },
- {
-  "slug": "game",
-  "kind": "noun",
-  "emoji": "🎲"
- },
- {
-  "slug": "turn-on-the-tv",
-  "kind": "phrase",
-  "emoji": "📺",
-  "components": [
-   "tv"
-  ]
- },
- {
-  "slug": "come-sit-with-me",
-  "kind": "phrase",
-  "emoji": "💺",
-  "components": []
- },
- {
-  "slug": "shall-we-watch-a-movie",
-  "kind": "phrase",
-  "emoji": "🎬",
-  "components": []
- },
- {
-  "slug": "lets-hang-the-picture",
-  "kind": "phrase",
-  "emoji": "🖼️",
-  "components": [
-   "picture"
-  ]
- },
+ { "slug": "sofa", "kind": "noun", "emoji": "🛋️" },
+ { "slug": "dining-table", "kind": "noun", "emoji": "🍽️" },
+ { "slug": "chair", "kind": "noun", "emoji": "🪑" },
+ { "slug": "tv", "kind": "noun", "emoji": "📺" },
+ { "slug": "remote", "kind": "noun", "emoji": "🎮" },
+ { "slug": "shelf", "kind": "noun", "emoji": "📚" },
+ { "slug": "plant", "kind": "noun", "emoji": "🪴" },
+ { "slug": "window", "kind": "noun", "emoji": "🪟" },
+ { "slug": "curtain", "kind": "noun", "emoji": "🎭" },
+ { "slug": "carpet", "kind": "noun", "emoji": "🧶" },
+ { "slug": "lamp", "kind": "noun", "emoji": "💡" },
+ { "slug": "picture", "kind": "noun", "emoji": "🖼️" },
+ { "slug": "watch-tv", "kind": "verb", "emoji": "📺" },
+ { "slug": "read", "kind": "verb", "emoji": "📖" },
+ { "slug": "relax", "kind": "verb", "emoji": "😌" },
+ { "slug": "tidy-up", "kind": "verb", "emoji": "🧹" },
+ { "slug": "listen-to-music", "kind": "verb", "emoji": "🎵" },
+ { "slug": "water-plants", "kind": "verb", "emoji": "🪴" },
+ { "slug": "play", "kind": "verb", "emoji": "🎲" },
+ { "slug": "talk", "kind": "verb", "emoji": "💬" },
+ { "slug": "room", "kind": "noun", "emoji": "🏠" },
+ { "slug": "newspaper", "kind": "noun", "emoji": "📰" },
+ { "slug": "light", "kind": "noun", "emoji": "🔆" },
+ { "slug": "music", "kind": "noun", "emoji": "🎵" },
+ { "slug": "wall", "kind": "noun", "emoji": "🧱" },
+ { "slug": "movie", "kind": "noun", "emoji": "🎬" },
+ { "slug": "sit", "kind": "verb", "emoji": "💺" },
+ { "slug": "laugh", "kind": "verb", "emoji": "😂" },
+ { "slug": "quiet", "kind": "adjective", "emoji": "🤫" },
+ { "slug": "furniture", "kind": "noun" },
+ { "slug": "game", "kind": "noun", "emoji": "🎲" },
+ { "slug": "turn-on-the-tv", "kind": "phrase", "emoji": "📺", "components": ["tv"] },
+ { "slug": "come-sit-with-me", "kind": "phrase", "emoji": "💺", "components": [] },
+ { "slug": "shall-we-watch-a-movie", "kind": "phrase", "emoji": "🎬", "components": [] },
+ { "slug": "lets-hang-the-picture", "kind": "phrase", "emoji": "🖼️", "components": ["picture"] },
  {
   "slug": "the-curtains-hang-over-the-window",
   "kind": "phrase",
   "emoji": "🪟",
-  "components": [
-   "curtain",
-   "window"
-  ]
+  "components": ["curtain", "window"]
  },
- {
-  "slug": "open-the-window-fresh-air",
-  "kind": "phrase",
-  "emoji": "🌬️",
-  "components": [
-   "window"
-  ]
- }
+ { "slug": "open-the-window-fresh-air", "kind": "phrase", "emoji": "🌬️", "components": ["window"] }
 ]

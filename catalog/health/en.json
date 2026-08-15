@@ -2,105 +2,33 @@
  "title": "Health",
  "subtitle": "How you are feeling today.",
  "words": {
-  "pain": {
-   "text": "pain"
-  },
-  "fever": {
-   "text": "fever"
-  },
-  "cough": {
-   "text": "cough"
-  },
-  "cold": {
-   "text": "cold"
-  },
-  "hurt": {
-   "text": "to hurt"
-  },
-  "to-cough": {
-   "text": "to cough"
-  },
-  "rest": {
-   "text": "to rest"
-  },
-  "sick": {
-   "text": "sick"
-  },
-  "feel": {
-   "text": "to feel"
-  },
-  "health": {
-   "text": "health"
-  },
-  "illness": {
-   "text": "illness",
-   "synonyms": [
-    "disease"
-   ],
-   "grammar": {
-    "plural": "illnesses"
-   }
-  },
-  "healthy": {
-   "text": "healthy"
-  },
-  "tired": {
-   "text": "tired"
-  },
-  "weak": {
-   "text": "weak"
-  },
-  "dizziness": {
-   "text": "dizziness"
-  },
-  "wound": {
-   "text": "wound"
-  },
-  "hurt-oneself": {
-   "text": "to hurt oneself",
-   "variants": [
-    "to injure oneself",
-    "to hurt yourself"
-   ]
-  },
-  "bandage": {
-   "text": "bandage"
-  },
-  "breathe": {
-   "text": "to breathe"
-  },
-  "recover": {
-   "text": "to recover",
-   "variants": [
-    "to get better"
-   ]
-  },
-  "allergy": {
-   "text": "allergy",
-   "grammar": {
-    "plural": "allergies"
-   }
-  },
-  "my-throat-hurts-a-lot": {
-   "text": "My throat hurts a lot."
-  },
-  "ive-had-a-fever-since-yesterday": {
-   "text": "I've had a fever since yesterday."
-  },
-  "get-well-soon": {
-   "text": "Get well soon!"
-  },
-  "i-dont-feel-well": {
-   "text": "I don't feel well."
-  },
-  "the-wound-hurts": {
-   "text": "The wound hurts."
-  },
-  "i-cant-breathe-well": {
-   "text": "I can't breathe well."
-  },
-  "i-have-to-rest": {
-   "text": "I have to rest."
-  }
+  "pain": { "text": "pain" },
+  "fever": { "text": "fever" },
+  "cough": { "text": "cough" },
+  "cold": { "text": "cold" },
+  "hurt": { "text": "to hurt" },
+  "to-cough": { "text": "to cough" },
+  "rest": { "text": "to rest" },
+  "sick": { "text": "sick" },
+  "feel": { "text": "to feel" },
+  "health": { "text": "health" },
+  "illness": { "text": "illness", "synonyms": ["disease"], "grammar": { "plural": "illnesses" } },
+  "healthy": { "text": "healthy" },
+  "tired": { "text": "tired" },
+  "weak": { "text": "weak" },
+  "dizziness": { "text": "dizziness" },
+  "wound": { "text": "wound" },
+  "hurt-oneself": { "text": "to hurt oneself", "variants": ["to injure oneself", "to hurt yourself"] },
+  "bandage": { "text": "bandage" },
+  "breathe": { "text": "to breathe" },
+  "recover": { "text": "to recover", "variants": ["to get better"] },
+  "allergy": { "text": "allergy", "grammar": { "plural": "allergies" } },
+  "my-throat-hurts-a-lot": { "text": "My throat hurts a lot." },
+  "ive-had-a-fever-since-yesterday": { "text": "I've had a fever since yesterday." },
+  "get-well-soon": { "text": "Get well soon!" },
+  "i-dont-feel-well": { "text": "I don't feel well." },
+  "the-wound-hurts": { "text": "The wound hurts." },
+  "i-cant-breathe-well": { "text": "I can't breathe well." },
+  "i-have-to-rest": { "text": "I have to rest." }
  }
 }

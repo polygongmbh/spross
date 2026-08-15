@@ -2,131 +2,33 @@
  "title": "Kwa daktari",
  "subtitle": "Kutoka miadi hadi dawa.",
  "words": {
-  "doctor": {
-   "text": "daktari",
-   "grammar": {
-    "plural": "madaktari"
-   }
-  },
-  "practice": {
-   "text": "kliniki",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "pill": {
-   "text": "kidonge",
-   "grammar": {
-    "plural": "vidonge"
-   }
-  },
-  "prescription": {
-   "text": "cheti cha dawa",
-   "grammar": {
-    "plural": "vyeti vya dawa"
-   }
-  },
-  "pharmacy": {
-   "text": "duka la dawa",
-   "grammar": {
-    "plural": "maduka ya dawa"
-   }
-  },
-  "insurance-card": {
-   "text": "kadi ya bima ya afya",
-   "grammar": {
-    "plural": "kadi za bima ya afya"
-   }
-  },
-  "health-insurance": {
-   "text": "mfuko wa bima ya afya",
-   "grammar": {
-    "plural": "mifuko ya bima ya afya"
-   }
-  },
-  "hospital": {
-   "text": "hospitali",
-   "grammar": {
-    "plural": "mahospitali"
-   }
-  },
-  "emergency": {
-   "text": "dharura",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "doctors-note": {
-   "text": "cheti cha daktari",
-   "grammar": {
-    "plural": "vyeti vya daktari"
-   }
-  },
-  "examine": {
-   "text": "kuchunguza",
-   "variants": [
-    "kupima"
-   ]
-  },
-  "prescribe-medicine": {
-   "text": "kuandika dawa"
-  },
-  "take-medicine": {
-   "text": "kunywa dawa"
-  },
-  "call-in-sick": {
-   "text": "kutoa taarifa ya ugonjwa"
-  },
-  "medicine": {
-   "text": "dawa",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "nurse": {
-   "text": "muuguzi",
-   "grammar": {
-    "plural": "wauguzi"
-   }
-  },
-  "dentist": {
-   "text": "daktari wa meno",
-   "grammar": {
-    "plural": "madaktari wa meno"
-   }
-  },
-  "vaccination": {
-   "text": "chanjo",
-   "grammar": {
-    "plural": "="
-   }
-  },
+  "doctor": { "text": "daktari", "grammar": { "plural": "madaktari" } },
+  "practice": { "text": "kliniki", "grammar": { "plural": "=" } },
+  "pill": { "text": "kidonge", "grammar": { "plural": "vidonge" } },
+  "prescription": { "text": "cheti cha dawa", "grammar": { "plural": "vyeti vya dawa" } },
+  "pharmacy": { "text": "duka la dawa", "grammar": { "plural": "maduka ya dawa" } },
+  "insurance-card": { "text": "kadi ya bima ya afya", "grammar": { "plural": "kadi za bima ya afya" } },
+  "health-insurance": { "text": "mfuko wa bima ya afya", "grammar": { "plural": "mifuko ya bima ya afya" } },
+  "hospital": { "text": "hospitali", "grammar": { "plural": "mahospitali" } },
+  "emergency": { "text": "dharura", "grammar": { "plural": "=" } },
+  "doctors-note": { "text": "cheti cha daktari", "grammar": { "plural": "vyeti vya daktari" } },
+  "examine": { "text": "kuchunguza", "variants": ["kupima"] },
+  "prescribe-medicine": { "text": "kuandika dawa" },
+  "take-medicine": { "text": "kunywa dawa" },
+  "call-in-sick": { "text": "kutoa taarifa ya ugonjwa" },
+  "medicine": { "text": "dawa", "grammar": { "plural": "=" } },
+  "nurse": { "text": "muuguzi", "grammar": { "plural": "wauguzi" } },
+  "dentist": { "text": "daktari wa meno", "grammar": { "plural": "madaktari wa meno" } },
+  "vaccination": { "text": "chanjo", "grammar": { "plural": "=" } },
   "ambulance": {
    "text": "gari la wagonjwa",
-   "synonyms": [
-    "ambulensi"
-   ],
-   "grammar": {
-    "plural": "magari ya wagonjwa"
-   }
+   "synonyms": ["ambulensi"],
+   "grammar": { "plural": "magari ya wagonjwa" }
   },
-  "take-the-pills-twice-daily": {
-   "text": "Kunywa vidonge mara mbili kwa siku."
-  },
-  "show-me-your-insurance-card": {
-   "text": "Nionyeshe kadi yako ya bima ya afya."
-  },
-  "the-practice-is-closed": {
-   "text": "Kliniki imefungwa."
-  },
-  "i-have-to-see-a-doctor": {
-   "text": "Lazima niende kwa daktari."
-  },
-  "call-an-ambulance": {
-   "text": "Ita gari la wagonjwa!",
-   "variants": [
-    "Ita ambulensi!"
-   ]
-  }
+  "take-the-pills-twice-daily": { "text": "Kunywa vidonge mara mbili kwa siku." },
+  "show-me-your-insurance-card": { "text": "Nionyeshe kadi yako ya bima ya afya." },
+  "the-practice-is-closed": { "text": "Kliniki imefungwa." },
+  "i-have-to-see-a-doctor": { "text": "Lazima niende kwa daktari." },
+  "call-an-ambulance": { "text": "Ita gari la wagonjwa!", "variants": ["Ita ambulensi!"] }
  }
 }

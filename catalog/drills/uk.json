@@ -29,11 +29,7 @@
   },
   "i-have-n-notebooks": {
    "text": "У мене є {slot} {count}.",
-   "count": {
-    "one": "зошит",
-    "few": "зошити",
-    "many": "зошитів"
-   },
+   "count": { "one": "зошит", "few": "зошити", "many": "зошитів" },
    "notes": {
     "de": "Zahlwort-Kongruenz: 1 → зошит, 2–4 → зошити, 5+ → зошитів",
     "en": "Counted-noun agreement: 1 → зошит, 2–4 → зошити, 5+ → зошитів"
@@ -41,11 +37,7 @@
   },
   "we-have-n-chairs": {
    "text": "У нас є {slot} {count}.",
-   "count": {
-    "one": "стілець",
-    "few": "стільці",
-    "many": "стільців"
-   },
+   "count": { "one": "стілець", "few": "стільці", "many": "стільців" },
    "notes": {
     "de": "Zahlwort-Kongruenz: 1 → стілець, 2–4 → стільці, 5+ → стільців",
     "en": "Counted-noun agreement: 1 → стілець, 2–4 → стільці, 5+ → стільців"
@@ -53,11 +45,7 @@
   },
   "i-have-n-keys": {
    "text": "У мене є {slot} {count}.",
-   "count": {
-    "one": "ключ",
-    "few": "ключі",
-    "many": "ключів"
-   },
+   "count": { "one": "ключ", "few": "ключі", "many": "ключів" },
    "notes": {
     "de": "Zahlwort-Kongruenz: 1 → ключ, 2–4 → ключі, 5+ → ключів",
     "en": "Counted-noun agreement: 1 → ключ, 2–4 → ключі, 5+ → ключів"
@@ -71,18 +59,8 @@
     "en": "literally „That is … euros.“ — євро never inflects, and the numeral stays masculine (один, два)."
    }
   },
-  "repeat-please": {
-   "text": "Повторіть, будь ласка: {slot}.",
-   "variants": [
-    "Повтори, будь ласка: {slot}."
-   ]
-  },
-  "write-please": {
-   "text": "Напиши, будь ласка: {slot}.",
-   "variants": [
-    "Напишіть, будь ласка: {slot}."
-   ]
-  },
+  "repeat-please": { "text": "Повторіть, будь ласка: {slot}.", "variants": ["Повтори, будь ласка: {slot}."] },
+  "write-please": { "text": "Напиши, будь ласка: {slot}.", "variants": ["Напишіть, будь ласка: {slot}."] },
   "repeat-the-year": {
    "text": "Повторіть, будь ласка, дату: {slot}.",
    "variants": [
@@ -97,10 +75,7 @@
   },
   "write-the-year": {
    "text": "Напиши, будь ласка, дату: {slot}.",
-   "variants": [
-    "Напишіть, будь ласка, дату: {slot}.",
-    "Напиши, будь ласка: {slot}."
-   ],
+   "variants": ["Напишіть, будь ласка, дату: {slot}.", "Напиши, будь ласка: {slot}."],
    "notes": {
     "de": "Diktat-Rahmen: die Jahreszahl wird als reine Kardinalzahl geschrieben; „дату“ ist der Akkusativ von „дата“",
     "en": "Dictation frame: the year is written as a plain cardinal; „дату“ is the accusative of „дата“."

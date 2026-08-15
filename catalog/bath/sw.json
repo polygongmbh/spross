@@ -2,170 +2,42 @@
  "title": "Bafuni",
  "subtitle": "Safi kabisa.",
  "words": {
-  "washing-machine": {
-   "text": "mashine ya kufulia",
-   "grammar": {
-    "plural": "mashine za kufulia"
-   }
-  },
-  "laundry": {
-   "text": "nguo za kufua",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "toilet": {
-   "text": "choo",
-   "grammar": {
-    "plural": "vyoo"
-   }
-  },
-  "shower": {
-   "text": "shawa",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "sink": {
-   "text": "sinki la kunawa",
-   "grammar": {
-    "plural": "masinki ya kunawa"
-   }
-  },
-  "mirror": {
-   "text": "kioo",
-   "grammar": {
-    "plural": "vioo"
-   }
-  },
-  "toothbrush": {
-   "text": "mswaki",
-   "grammar": {
-    "plural": "miswaki"
-   }
-  },
-  "toothpaste": {
-   "text": "dawa ya meno",
-   "grammar": {
-    "plural": "dawa za meno"
-   }
-  },
-  "towel": {
-   "text": "taulo",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "soap": {
-   "text": "sabuni",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "shampoo": {
-   "text": "shampuu",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "hairdryer": {
-   "text": "kikausha nywele",
-   "grammar": {
-    "plural": "vikausha nywele"
-   }
-  },
-  "take-shower": {
-   "text": "kuoga"
-  },
-  "do-laundry": {
-   "text": "kufua nguo"
-  },
-  "brush-teeth": {
-   "text": "kupiga mswaki"
-  },
-  "dry-off": {
-   "text": "kujikausha"
-  },
-  "hang-up-laundry": {
-   "text": "kuanika nguo"
-  },
-  "clean": {
-   "text": "kusafisha"
-  },
-  "shave": {
-   "text": "kujinyoa"
-  },
-  "comb-hair": {
-   "text": "kuchana nywele"
-  },
-  "apply-lotion": {
-   "text": "kujipaka mafuta"
-  },
-  "toilet-paper": {
-   "text": "karatasi ya choo"
-  },
-  "razor": {
-   "text": "wembe",
-   "grammar": {
-    "plural": "nyembe"
-   }
-  },
-  "sponge": {
-   "text": "sifongo",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "cream": {
-   "text": "krimu",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "faucet": {
-   "text": "bomba la maji",
-   "grammar": {
-    "plural": "mabomba ya maji"
-   }
-  },
-  "trash-can": {
-   "text": "pipa la taka",
-   "grammar": {
-    "plural": "mapipa ya taka"
-   }
-  },
-  "bucket": {
-   "text": "ndoo",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "dirty": {
-   "text": "chafu"
-  },
-  "im-taking-a-quick-shower": {
-   "text": "Naenda kuoga kidogo."
-  },
-  "the-bathroom-is-occupied": {
-   "text": "Bafu inatumika!"
-  },
-  "the-laundry-is-done": {
-   "text": "Nguo ziko tayari."
-  },
-  "wheres-my-towel": {
-   "text": "Taulo langu liko wapi?"
-  },
-  "can-you-hang-the-laundry": {
-   "text": "Unaweza kuanika nguo?"
-  },
-  "dont-forget-to-brush-teeth": {
-   "text": "Usisahau kupiga mswaki!"
-  },
-  "wash-your-hands": {
-   "text": "Nawa mikono."
-  },
-  "the-water-is-cold": {
-   "text": "Maji ni baridi!"
-  }
+  "washing-machine": { "text": "mashine ya kufulia", "grammar": { "plural": "mashine za kufulia" } },
+  "laundry": { "text": "nguo za kufua", "grammar": { "plural": "only" } },
+  "toilet": { "text": "choo", "grammar": { "plural": "vyoo" } },
+  "shower": { "text": "shawa", "grammar": { "plural": "=" } },
+  "sink": { "text": "sinki la kunawa", "grammar": { "plural": "masinki ya kunawa" } },
+  "mirror": { "text": "kioo", "grammar": { "plural": "vioo" } },
+  "toothbrush": { "text": "mswaki", "grammar": { "plural": "miswaki" } },
+  "toothpaste": { "text": "dawa ya meno", "grammar": { "plural": "dawa za meno" } },
+  "towel": { "text": "taulo", "grammar": { "plural": "=" } },
+  "soap": { "text": "sabuni", "grammar": { "plural": "=" } },
+  "shampoo": { "text": "shampuu", "grammar": { "plural": "=" } },
+  "hairdryer": { "text": "kikausha nywele", "grammar": { "plural": "vikausha nywele" } },
+  "take-shower": { "text": "kuoga" },
+  "do-laundry": { "text": "kufua nguo" },
+  "brush-teeth": { "text": "kupiga mswaki" },
+  "dry-off": { "text": "kujikausha" },
+  "hang-up-laundry": { "text": "kuanika nguo" },
+  "clean": { "text": "kusafisha" },
+  "shave": { "text": "kujinyoa" },
+  "comb-hair": { "text": "kuchana nywele" },
+  "apply-lotion": { "text": "kujipaka mafuta" },
+  "toilet-paper": { "text": "karatasi ya choo" },
+  "razor": { "text": "wembe", "grammar": { "plural": "nyembe" } },
+  "sponge": { "text": "sifongo", "grammar": { "plural": "=" } },
+  "cream": { "text": "krimu", "grammar": { "plural": "=" } },
+  "faucet": { "text": "bomba la maji", "grammar": { "plural": "mabomba ya maji" } },
+  "trash-can": { "text": "pipa la taka", "grammar": { "plural": "mapipa ya taka" } },
+  "bucket": { "text": "ndoo", "grammar": { "plural": "=" } },
+  "dirty": { "text": "chafu" },
+  "im-taking-a-quick-shower": { "text": "Naenda kuoga kidogo." },
+  "the-bathroom-is-occupied": { "text": "Bafu inatumika!" },
+  "the-laundry-is-done": { "text": "Nguo ziko tayari." },
+  "wheres-my-towel": { "text": "Taulo langu liko wapi?" },
+  "can-you-hang-the-laundry": { "text": "Unaweza kuanika nguo?" },
+  "dont-forget-to-brush-teeth": { "text": "Usisahau kupiga mswaki!" },
+  "wash-your-hands": { "text": "Nawa mikono." },
+  "the-water-is-cold": { "text": "Maji ni baridi!" }
  }
 }

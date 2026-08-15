@@ -3,13 +3,23 @@
   "de": { "name": "tedesco", "in": "in tedesco", "learn": "il tedesco" },
   "en": { "name": "inglese", "in": "in inglese", "learn": "l'inglese" },
   "es": { "name": "spagnolo", "in": "in spagnolo", "learn": "lo spagnolo", "variants": ["castigliano"] },
-  "sw": { "name": "swahili", "in": "in swahili", "learn": "lo swahili", "variants": ["suahili", "kiswahili"] },
+  "sw": {
+   "name": "swahili",
+   "in": "in swahili",
+   "learn": "lo swahili",
+   "variants": ["suahili", "kiswahili"]
+  },
   "uk": { "name": "ucraino", "in": "in ucraino", "learn": "l'ucraino" },
   "fr": { "name": "francese", "in": "in francese", "learn": "il francese" },
   "it": { "name": "italiano", "in": "in italiano", "learn": "l'italiano" },
   "eo": { "name": "esperanto", "in": "in esperanto", "learn": "l'esperanto" },
   "pt": { "name": "portoghese", "in": "in portoghese", "learn": "il portoghese" },
-  "nl": { "name": "olandese", "in": "in olandese", "learn": "l'olandese", "variants": ["neerlandese", "nederlandese"] },
+  "nl": {
+   "name": "olandese",
+   "in": "in olandese",
+   "learn": "l'olandese",
+   "variants": ["neerlandese", "nederlandese"]
+  },
   "pl": { "name": "polacco", "in": "in polacco", "learn": "il polacco" },
   "tr": { "name": "turco", "in": "in turco", "learn": "il turco" },
   "el": { "name": "greco", "in": "in greco", "learn": "il greco", "variants": ["neogreco"] },
@@ -32,8 +42,18 @@
   "sr": { "name": "serbo", "in": "in serbo", "learn": "il serbo" },
   "bg": { "name": "bulgaro", "in": "in bulgaro", "learn": "il bulgaro" },
   "sk": { "name": "slovacco", "in": "in slovacco", "learn": "lo slovacco" },
-  "th": { "name": "thailandese", "in": "in thailandese", "learn": "il thailandese", "variants": ["tailandese", "thai"] },
-  "id": { "name": "indonesiano", "in": "in indonesiano", "learn": "l'indonesiano", "variants": ["bahasa indonesia"] },
+  "th": {
+   "name": "thailandese",
+   "in": "in thailandese",
+   "learn": "il thailandese",
+   "variants": ["tailandese", "thai"]
+  },
+  "id": {
+   "name": "indonesiano",
+   "in": "in indonesiano",
+   "learn": "l'indonesiano",
+   "variants": ["bahasa indonesia"]
+  },
   "fa": { "name": "persiano", "in": "in persiano", "learn": "il persiano", "variants": ["farsi"] },
   "am": { "name": "amarico", "in": "in amarico", "learn": "l'amarico" }
  }

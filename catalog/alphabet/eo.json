@@ -3,10 +3,7 @@
   {
    "glyph": "a e i o u",
    "kind": "rule",
-   "context": {
-    "de": "in jedem Wort",
-    "en": "in every word"
-   },
+   "context": { "de": "in jedem Wort", "en": "in every word" },
    "example": "sugar",
    "hints": {
     "de": "Esperanto wird gelesen, wie es geschrieben steht: jeder Buchstabe klingt immer gleich, keiner ist stumm, keiner ändert sich nach seiner Stellung. Die fünf Vokale behalten ihren vollen Wert auch unbetont — nie ein Schwa wie das e in „bitte“ —, und jeder Vokal ist eine eigene Silbe. Betont wird immer die vorletzte: su-KE-ro, fa-mi-LI-o.",
@@ -24,13 +21,7 @@
     "en": "always ah as in father — never the a of cat and never the ay of name"
    }
   },
-  {
-   "glyph": "b",
-   "upper": "B",
-   "name": "bo",
-   "ipa": "b",
-   "example": "bird"
-  },
+  { "glyph": "b", "upper": "B", "name": "bo", "ipa": "b", "example": "bird" },
   {
    "glyph": "c",
    "upper": "C",
@@ -41,10 +32,7 @@
     "de": "wie z in Zahl — nie k und nie s: cepo klingt „tsepo“",
     "en": "ts as in cats, even at the start of a word: cepo = “TSEH-po” — never k, never s"
    },
-   "confusable": {
-    "look": ["ĉ"],
-    "sound": ["ĉ", "s", "z"]
-   }
+   "confusable": { "look": ["ĉ"], "sound": ["ĉ", "s", "z"] }
   },
   {
    "glyph": "ĉ",
@@ -56,9 +44,7 @@
     "de": "wie tsch in Tschüss — c mit Hut, ein eigener Buchstabe mit eigenem Platz im Wörterbuch",
     "en": "like ch in church — c with a hat, and a letter in its own right"
    },
-   "confusable": {
-    "sound": ["ŝ", "ĝ"]
-   }
+   "confusable": { "sound": ["ŝ", "ĝ"] }
   },
   {
    "glyph": "d",
@@ -66,9 +52,7 @@
    "name": "do",
    "ipa": "d",
    "example": "house",
-   "hints": {
-    "de": "am Wortende bleibt es ein d: sed endet auf einem echten d, nie wie „set“"
-   }
+   "hints": { "de": "am Wortende bleibt es ein d: sed endet auf einem echten d, nie wie „set“" }
   },
   {
    "glyph": "e",
@@ -81,13 +65,7 @@
     "en": "always the e of bed, never the ay of day and never a schwa: bone = “BO-neh”"
    }
   },
-  {
-   "glyph": "f",
-   "upper": "F",
-   "name": "fo",
-   "ipa": "f",
-   "example": "flower"
-  },
+  { "glyph": "f", "upper": "F", "name": "fo", "ipa": "f", "example": "flower" },
   {
    "glyph": "g",
    "upper": "G",
@@ -98,10 +76,7 @@
     "de": "immer hart wie in geben — auch vor e und i: genuo = „ge-NU-o“",
     "en": "always hard as in go, even before e and i: genuo = “geh-NOO-o” — never the g of gem"
    },
-   "confusable": {
-    "look": ["ĝ"],
-    "sound": ["ĝ"]
-   }
+   "confusable": { "look": ["ĝ"], "sound": ["ĝ"] }
   },
   {
    "glyph": "ĝ",
@@ -113,9 +88,7 @@
     "de": "wie dsch in Dschungel oder das g in Gin — g mit Hut",
     "en": "like j in jam or the g in gin — g with a hat"
    },
-   "confusable": {
-    "sound": ["ĵ"]
-   }
+   "confusable": { "sound": ["ĵ"] }
   },
   {
    "glyph": "h",
@@ -127,10 +100,7 @@
     "de": "immer gehaucht wie in Haus — ein h dehnt hier nie einen Vokal, und stumm ist es nie",
     "en": "always a breathed h as in house — never silent, and never the throaty sound; that one is ĥ"
    },
-   "confusable": {
-    "look": ["ĥ"],
-    "sound": ["ĥ"]
-   }
+   "confusable": { "look": ["ĥ"], "sound": ["ĥ"] }
   },
   {
    "glyph": "ĥ",
@@ -142,9 +112,7 @@
     "de": "wie ch in Bach — der seltenste Buchstabe; viele Wörter dürfen ihn heute durch k ersetzen: teĥniko = tekniko",
     "en": "like ch in Scottish loch — the rarest letter; many words now allow a k instead: teĥniko = tekniko"
    },
-   "confusable": {
-    "sound": ["k"]
-   }
+   "confusable": { "sound": ["k"] }
   },
   {
    "glyph": "i",
@@ -167,10 +135,7 @@
     "de": "wie j in ja; nach einem Vokal der Nachklang wie in Mai — die Mehrzahl -oj klingt wie das „oi“ in Konvoi: vortoj",
     "en": "like y in yes; after a vowel it is the glide of boy — the plural -oj is “oy”: vortoj = “VOR-toy”"
    },
-   "confusable": {
-    "look": ["ĵ"],
-    "sound": ["ĵ"]
-   }
+   "confusable": { "look": ["ĵ"], "sound": ["ĵ"] }
   },
   {
    "glyph": "ĵ",
@@ -182,44 +147,20 @@
     "de": "wie das J in Journal oder das g in Garage — j mit Hut",
     "en": "like the s in measure or the g in mirage — j with a hat"
    },
-   "confusable": {
-    "sound": ["ŝ"]
-   }
+   "confusable": { "sound": ["ŝ"] }
   },
-  {
-   "glyph": "k",
-   "upper": "K",
-   "name": "ko",
-   "ipa": "k",
-   "example": "coffee"
-  },
+  { "glyph": "k", "upper": "K", "name": "ko", "ipa": "k", "example": "coffee" },
   {
    "glyph": "l",
    "upper": "L",
    "name": "lo",
    "ipa": "l",
    "example": "milk",
-   "hints": {
-    "en": "always the clear l of leaf, never the dark l of full"
-   },
-   "confusable": {
-    "sound": ["r"]
-   }
+   "hints": { "en": "always the clear l of leaf, never the dark l of full" },
+   "confusable": { "sound": ["r"] }
   },
-  {
-   "glyph": "m",
-   "upper": "M",
-   "name": "mo",
-   "ipa": "m",
-   "example": "hand"
-  },
-  {
-   "glyph": "n",
-   "upper": "N",
-   "name": "no",
-   "ipa": "n",
-   "example": "name"
-  },
+  { "glyph": "m", "upper": "M", "name": "mo", "ipa": "m", "example": "hand" },
+  { "glyph": "n", "upper": "N", "name": "no", "ipa": "n", "example": "name" },
   {
    "glyph": "o",
    "upper": "O",
@@ -231,13 +172,7 @@
     "en": "always a pure o as in more — never the “oh-oo” glide of go, and never reduced: nomo = “NO-mo”"
    }
   },
-  {
-   "glyph": "p",
-   "upper": "P",
-   "name": "po",
-   "ipa": "p",
-   "example": "bread"
-  },
+  { "glyph": "p", "upper": "P", "name": "po", "ipa": "p", "example": "bread" },
   {
    "glyph": "r",
    "upper": "R",
@@ -259,10 +194,7 @@
     "de": "immer scharf wie das ß in Straße — nie stimmhaft wie das s in Sonne: sapo = „ßapo“",
     "en": "always hissed like the s in sun — never the z-sound English gives it between vowels"
    },
-   "confusable": {
-    "look": ["ŝ"],
-    "sound": ["ŝ", "z"]
-   }
+   "confusable": { "look": ["ŝ"], "sound": ["ŝ", "z"] }
   },
   {
    "glyph": "ŝ",
@@ -270,18 +202,9 @@
    "name": "ŝo",
    "ipa": "ʃ",
    "example": "shoe",
-   "hints": {
-    "de": "wie sch in Schuh — s mit Hut",
-    "en": "like sh in shoe — s with a hat"
-   }
+   "hints": { "de": "wie sch in Schuh — s mit Hut", "en": "like sh in shoe — s with a hat" }
   },
-  {
-   "glyph": "t",
-   "upper": "T",
-   "name": "to",
-   "ipa": "t",
-   "example": "tea"
-  },
+  { "glyph": "t", "upper": "T", "name": "to", "ipa": "t", "example": "tea" },
   {
    "glyph": "u",
    "upper": "U",
@@ -307,10 +230,7 @@
     "de": "keine eigene Silbe: aŭ klingt wie au in Haus, eŭ wie e und u in einem Rutsch — und das Zeichen ist ein Bogen, kein Hut",
     "en": "never a syllable of its own: aŭ is the ow of how, eŭ is “eh-oo” run together — and the mark is a breve, not a circumflex"
    },
-   "confusable": {
-    "look": ["u"],
-    "sound": ["u", "v"]
-   }
+   "confusable": { "look": ["u"], "sound": ["u", "v"] }
   },
   {
    "glyph": "v",

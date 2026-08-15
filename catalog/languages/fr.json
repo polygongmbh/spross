@@ -3,13 +3,23 @@
   "de": { "name": "allemand", "in": "en allemand", "learn": "l'allemand" },
   "en": { "name": "anglais", "in": "en anglais", "learn": "l'anglais" },
   "es": { "name": "espagnol", "in": "en espagnol", "learn": "l'espagnol", "variants": ["castillan"] },
-  "sw": { "name": "swahili", "in": "en swahili", "learn": "le swahili", "variants": ["souahéli", "kiswahili"] },
+  "sw": {
+   "name": "swahili",
+   "in": "en swahili",
+   "learn": "le swahili",
+   "variants": ["souahéli", "kiswahili"]
+  },
   "uk": { "name": "ukrainien", "in": "en ukrainien", "learn": "l'ukrainien" },
   "fr": { "name": "français", "in": "en français", "learn": "le français" },
   "it": { "name": "italien", "in": "en italien", "learn": "l'italien" },
   "eo": { "name": "espéranto", "in": "en espéranto", "learn": "l'espéranto" },
   "pt": { "name": "portugais", "in": "en portugais", "learn": "le portugais" },
-  "nl": { "name": "néerlandais", "in": "en néerlandais", "learn": "le néerlandais", "variants": ["hollandais"] },
+  "nl": {
+   "name": "néerlandais",
+   "in": "en néerlandais",
+   "learn": "le néerlandais",
+   "variants": ["hollandais"]
+  },
   "pl": { "name": "polonais", "in": "en polonais", "learn": "le polonais" },
   "tr": { "name": "turc", "in": "en turc", "learn": "le turc" },
   "el": { "name": "grec", "in": "en grec", "learn": "le grec", "variants": ["grec moderne"] },
@@ -33,7 +43,12 @@
   "bg": { "name": "bulgare", "in": "en bulgare", "learn": "le bulgare" },
   "sk": { "name": "slovaque", "in": "en slovaque", "learn": "le slovaque" },
   "th": { "name": "thaï", "in": "en thaï", "learn": "le thaï", "variants": ["thaïlandais"] },
-  "id": { "name": "indonésien", "in": "en indonésien", "learn": "l'indonésien", "variants": ["bahasa indonesia"] },
+  "id": {
+   "name": "indonésien",
+   "in": "en indonésien",
+   "learn": "l'indonésien",
+   "variants": ["bahasa indonesia"]
+  },
   "fa": { "name": "persan", "in": "en persan", "learn": "le persan", "variants": ["farsi"] },
   "am": { "name": "amharique", "in": "en amharique", "learn": "l'amharique" }
  }

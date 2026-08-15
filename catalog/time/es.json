@@ -4,108 +4,34 @@
  "words": {
   "time": {
    "text": "tiempo",
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "tiempo heißt auch Wetter: ¿Qué tiempo hace? · das einzelne Mal ist una vez."
-   }
+   "grammar": { "gender": "el" },
+   "notes": { "de": "tiempo heißt auch Wetter: ¿Qué tiempo hace? · das einzelne Mal ist una vez." }
   },
-  "day": {
-   "text": "día",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "week": {
-   "text": "semana",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "hour": {
-   "text": "hora",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "minute": {
-   "text": "minuto",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "month": {
-   "text": "mes",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "year": {
-   "text": "año",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "now": {
-   "text": "ahora"
-  },
-  "today": {
-   "text": "hoy"
-  },
-  "tomorrow": {
-   "text": "mañana",
-   "notes": {
-    "de": "mañana heißt auch der Morgen: por la mañana = morgens."
-   }
-  },
-  "yesterday": {
-   "text": "ayer"
-  },
-  "early": {
-   "text": "temprano"
-  },
-  "soon": {
-   "text": "pronto"
-  },
-  "noon": {
-   "text": "mediodía",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "day": { "text": "día", "grammar": { "gender": "el" } },
+  "week": { "text": "semana", "grammar": { "gender": "la" } },
+  "hour": { "text": "hora", "grammar": { "gender": "la" } },
+  "minute": { "text": "minuto", "grammar": { "gender": "el" } },
+  "month": { "text": "mes", "grammar": { "gender": "el" } },
+  "year": { "text": "año", "grammar": { "gender": "el" } },
+  "now": { "text": "ahora" },
+  "today": { "text": "hoy" },
+  "tomorrow": { "text": "mañana", "notes": { "de": "mañana heißt auch der Morgen: por la mañana = morgens." } },
+  "yesterday": { "text": "ayer" },
+  "early": { "text": "temprano" },
+  "soon": { "text": "pronto" },
+  "noon": { "text": "mediodía", "grammar": { "gender": "el" } },
   "evening": {
    "text": "tarde",
-   "variants": [
-    "noche"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
+   "variants": ["noche"],
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "kein eigenes Wort für Abend: bis zum Dunkelwerden la tarde, danach la noche — Guten Abend = buenas tardes bzw. buenas noches."
    }
   },
-  "night": {
-   "text": "noche",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "i-have-no-time": {
-   "text": "No tengo tiempo."
-  },
-  "a-new-day": {
-   "text": "un nuevo día",
-   "variants": [
-    "un día nuevo"
-   ]
-  },
-  "two-in-the-afternoon": {
-   "text": "las dos de la tarde"
-  },
-  "nine-am-sharp": {
-   "text": "a las nueve de la mañana en punto"
-  }
+  "night": { "text": "noche", "grammar": { "gender": "la" } },
+  "i-have-no-time": { "text": "No tengo tiempo." },
+  "a-new-day": { "text": "un nuevo día", "variants": ["un día nuevo"] },
+  "two-in-the-afternoon": { "text": "las dos de la tarde" },
+  "nine-am-sharp": { "text": "a las nueve de la mañana en punto" }
  }
 }

@@ -2,68 +2,22 @@
  "title": "Palabras interrogativas",
  "subtitle": "Quién, qué, cuándo y por qué.",
  "words": {
-  "where": {
-   "text": "dónde"
-  },
-  "who": {
-   "text": "quién"
-  },
-  "what": {
-   "text": "qué"
-  },
-  "here": {
-   "text": "aquí",
-   "variants": [
-    "acá"
-   ]
-  },
-  "there": {
-   "text": "ahí"
-  },
-  "this": {
-   "text": "esto"
-  },
-  "that": {
-   "text": "eso"
-  },
-  "when": {
-   "text": "cuándo"
-  },
-  "why": {
-   "text": "por qué"
-  },
-  "how": {
-   "text": "cómo"
-  },
-  "which": {
-   "text": "cuál",
-   "variants": [
-    "cuáles"
-   ]
-  },
-  "how-many": {
-   "text": "cuántos",
-   "variants": [
-    "cuántas"
-   ]
-  },
-  "where-are-they": {
-   "text": "¿Dónde están?"
-  },
-  "who-is-there": {
-   "text": "¿Quién está ahí?"
-  },
-  "do-you-need-this": {
-   "text": "¿Necesita esto?",
-   "variants": [
-    "¿Necesitas esto?"
-   ]
-  },
-  "when-does-it-start": {
-   "text": "¿Cuándo empieza?"
-  },
-  "what-time-is-it": {
-   "text": "¿Qué hora es?"
-  }
+  "where": { "text": "dónde" },
+  "who": { "text": "quién" },
+  "what": { "text": "qué" },
+  "here": { "text": "aquí", "variants": ["acá"] },
+  "there": { "text": "ahí" },
+  "this": { "text": "esto" },
+  "that": { "text": "eso" },
+  "when": { "text": "cuándo" },
+  "why": { "text": "por qué" },
+  "how": { "text": "cómo" },
+  "which": { "text": "cuál", "variants": ["cuáles"] },
+  "how-many": { "text": "cuántos", "variants": ["cuántas"] },
+  "where-are-they": { "text": "¿Dónde están?" },
+  "who-is-there": { "text": "¿Quién está ahí?" },
+  "do-you-need-this": { "text": "¿Necesita esto?", "variants": ["¿Necesitas esto?"] },
+  "when-does-it-start": { "text": "¿Cuándo empieza?" },
+  "what-time-is-it": { "text": "¿Qué hora es?" }
  }
 }

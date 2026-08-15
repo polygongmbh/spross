@@ -1,68 +1,14 @@
 [
- {
-  "slug": "color",
-  "kind": "noun",
-  "emoji": "🌈"
- },
- {
-  "slug": "white",
-  "kind": "adjective",
-  "emoji": "🤍"
- },
- {
-  "slug": "black",
-  "kind": "adjective",
-  "emoji": "🖤"
- },
- {
-  "slug": "red",
-  "kind": "adjective",
-  "emoji": "❤️"
- },
- {
-  "slug": "blue",
-  "kind": "adjective",
-  "emoji": "💙"
- },
- {
-  "slug": "green",
-  "kind": "adjective",
-  "emoji": "💚"
- },
- {
-  "slug": "yellow",
-  "kind": "adjective",
-  "emoji": "💛"
- },
- {
-  "slug": "brown",
-  "kind": "adjective",
-  "emoji": "🤎"
- },
- {
-  "slug": "gray",
-  "kind": "adjective",
-  "emoji": "🩶"
- },
- {
-  "slug": "purple",
-  "kind": "adjective",
-  "emoji": "💜"
- },
- {
-  "slug": "what-color-is-it",
-  "kind": "phrase",
-  "emoji": "🌈",
-  "components": [
-   "color"
-  ]
- },
- {
-  "slug": "a-white-car",
-  "kind": "phrase",
-  "emoji": "🤍",
-  "components": [
-   "white"
-  ]
- }
+ { "slug": "color", "kind": "noun", "emoji": "🌈" },
+ { "slug": "white", "kind": "adjective", "emoji": "🤍" },
+ { "slug": "black", "kind": "adjective", "emoji": "🖤" },
+ { "slug": "red", "kind": "adjective", "emoji": "❤️" },
+ { "slug": "blue", "kind": "adjective", "emoji": "💙" },
+ { "slug": "green", "kind": "adjective", "emoji": "💚" },
+ { "slug": "yellow", "kind": "adjective", "emoji": "💛" },
+ { "slug": "brown", "kind": "adjective", "emoji": "🤎" },
+ { "slug": "gray", "kind": "adjective", "emoji": "🩶" },
+ { "slug": "purple", "kind": "adjective", "emoji": "💜" },
+ { "slug": "what-color-is-it", "kind": "phrase", "emoji": "🌈", "components": ["color"] },
+ { "slug": "a-white-car", "kind": "phrase", "emoji": "🤍", "components": ["white"] }
 ]

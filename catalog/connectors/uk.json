@@ -2,114 +2,37 @@
  "title": "Сполучні слова",
  "subtitle": "Слова, що тримають речення разом.",
  "words": {
-  "higher": {
-   "text": "вище"
-  },
-  "lower": {
-   "text": "нижче"
-  },
-  "more": {
-   "text": "більше"
-  },
-  "less": {
-   "text": "менше"
-  },
-  "always": {
-   "text": "завжди"
-  },
-  "never": {
-   "text": "ніколи"
-  },
-  "maybe": {
-   "text": "можливо",
-   "variants": [
-    "може"
-   ]
-  },
-  "sometimes": {
-   "text": "іноді"
-  },
-  "often": {
-   "text": "часто"
-  },
-  "but": {
-   "text": "але"
-  },
-  "also": {
-   "text": "також"
-  },
-  "and": {
-   "text": "і",
-   "variants": [
-    "та",
-    "й"
-   ]
-  },
-  "or": {
-   "text": "або"
-  },
-  "if": {
-   "text": "якщо"
-  },
-  "because": {
-   "text": "тому що",
-   "variants": [
-    "бо"
-   ]
-  },
-  "so-that": {
-   "text": "щоб"
-  },
-  "before": {
-   "text": "перед"
-  },
-  "after": {
-   "text": "після"
-  },
-  "until": {
-   "text": "до"
-  },
-  "without": {
-   "text": "без"
-  },
-  "again": {
-   "text": "знову",
-   "variants": [
-    "ще раз"
-   ]
-  },
-  "still": {
-   "text": "ще",
-   "variants": [
-    "досі"
-   ]
-  },
-  "more-or-less": {
-   "text": "більш-менш"
-  },
-  "i-am-always-there": {
-   "text": "Я завжди там."
-  },
-  "hang-it-higher": {
-   "text": "Повісь це вище."
-  },
-  "hang-it-lower": {
-   "text": "Повісь це нижче."
-  },
-  "if-you-want": {
-   "text": "Якщо хочете.",
-   "variants": [
-    "Якщо хочеш."
-   ]
-  },
+  "higher": { "text": "вище" },
+  "lower": { "text": "нижче" },
+  "more": { "text": "більше" },
+  "less": { "text": "менше" },
+  "always": { "text": "завжди" },
+  "never": { "text": "ніколи" },
+  "maybe": { "text": "можливо", "variants": ["може"] },
+  "sometimes": { "text": "іноді" },
+  "often": { "text": "часто" },
+  "but": { "text": "але" },
+  "also": { "text": "також" },
+  "and": { "text": "і", "variants": ["та", "й"] },
+  "or": { "text": "або" },
+  "if": { "text": "якщо" },
+  "because": { "text": "тому що", "variants": ["бо"] },
+  "so-that": { "text": "щоб" },
+  "before": { "text": "перед" },
+  "after": { "text": "після" },
+  "until": { "text": "до" },
+  "without": { "text": "без" },
+  "again": { "text": "знову", "variants": ["ще раз"] },
+  "still": { "text": "ще", "variants": ["досі"] },
+  "more-or-less": { "text": "більш-менш" },
+  "i-am-always-there": { "text": "Я завжди там." },
+  "hang-it-higher": { "text": "Повісь це вище." },
+  "hang-it-lower": { "text": "Повісь це нижче." },
+  "if-you-want": { "text": "Якщо хочете.", "variants": ["Якщо хочеш."] },
   "tea-or-coffee": {
    "text": "Чай чи кава?",
-   "variants": [
-    "Чай або кава?"
-   ],
-   "notes": {
-    "de": "in der Auswahlfrage steht чи, nicht або."
-   }
+   "variants": ["Чай або кава?"],
+   "notes": { "de": "in der Auswahlfrage steht чи, nicht або." }
   }
  }
 }

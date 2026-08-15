@@ -2,164 +2,40 @@
  "title": "Chumbani",
  "subtitle": "Wakati wa kulala.",
  "words": {
-  "bed": {
-   "text": "kitanda",
-   "grammar": {
-    "plural": "vitanda"
-   }
-  },
-  "mattress": {
-   "text": "godoro",
-   "grammar": {
-    "plural": "magodoro"
-   }
-  },
-  "pillow": {
-   "text": "mto",
-   "grammar": {
-    "plural": "mito"
-   }
-  },
-  "blanket": {
-   "text": "blanketi",
-   "grammar": {
-    "plural": "mablanketi"
-   }
-  },
-  "bedding": {
-   "text": "matandiko",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "wardrobe": {
-   "text": "kabati la nguo",
-   "grammar": {
-    "plural": "makabati ya nguo"
-   }
-  },
-  "alarm-clock": {
-   "text": "saa ya kengele",
-   "grammar": {
-    "plural": "saa za kengele"
-   }
-  },
-  "nightstand": {
-   "text": "meza ya kando",
-   "grammar": {
-    "plural": "meza za kando"
-   }
-  },
-  "pajamas": {
-   "text": "nguo za kulala",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "sock": {
-   "text": "soksi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "pants": {
-   "text": "suruali",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "t-shirt": {
-   "text": "fulana",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "sleep": {
-   "text": "kulala"
-  },
-  "wake-up": {
-   "text": "kuamka"
-  },
-  "dream": {
-   "text": "kuota ndoto"
-  },
-  "get-up": {
-   "text": "kuinuka"
-  },
-  "get-undressed": {
-   "text": "kuvua nguo"
-  },
-  "cuddle": {
-   "text": "kukumbatiana"
-  },
-  "yawn": {
-   "text": "kupiga miayo"
-  },
-  "snore": {
-   "text": "kukoroma"
-  },
-  "clothes": {
-   "text": "nguo",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "shirt": {
-   "text": "shati",
-   "grammar": {
-    "plural": "mashati"
-   }
-  },
-  "dress": {
-   "text": "gauni",
-   "grammar": {
-    "plural": "magauni"
-   }
-  },
-  "sweater": {
-   "text": "sweta",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "underwear": {
-   "text": "nguo za ndani",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "belt": {
-   "text": "mkanda",
-   "grammar": {
-    "plural": "mikanda"
-   }
-  },
-  "make-bed": {
-   "text": "kutandika kitanda"
-  },
-  "soft": {
-   "text": "laini"
-  },
-  "good-night-sleep-well": {
-   "text": "Usiku mwema, lala salama!"
-  },
-  "good-morning-my-love": {
-   "text": "Habari za asubuhi, mpenzi wangu!"
-  },
-  "im-tired": {
-   "text": "Nimechoka."
-  },
-  "did-you-set-the-alarm": {
-   "text": "Umeweka saa ya kengele?"
-  },
-  "five-more-minutes": {
-   "text": "Dakika tano zaidi …"
-  },
-  "turn-off-the-light": {
-   "text": "Zima taa."
-  },
-  "i-love-you": {
-   "text": "Nakupenda."
-  }
+  "bed": { "text": "kitanda", "grammar": { "plural": "vitanda" } },
+  "mattress": { "text": "godoro", "grammar": { "plural": "magodoro" } },
+  "pillow": { "text": "mto", "grammar": { "plural": "mito" } },
+  "blanket": { "text": "blanketi", "grammar": { "plural": "mablanketi" } },
+  "bedding": { "text": "matandiko", "grammar": { "plural": "only" } },
+  "wardrobe": { "text": "kabati la nguo", "grammar": { "plural": "makabati ya nguo" } },
+  "alarm-clock": { "text": "saa ya kengele", "grammar": { "plural": "saa za kengele" } },
+  "nightstand": { "text": "meza ya kando", "grammar": { "plural": "meza za kando" } },
+  "pajamas": { "text": "nguo za kulala", "grammar": { "plural": "only" } },
+  "sock": { "text": "soksi", "grammar": { "plural": "=" } },
+  "pants": { "text": "suruali", "grammar": { "plural": "=" } },
+  "t-shirt": { "text": "fulana", "grammar": { "plural": "=" } },
+  "sleep": { "text": "kulala" },
+  "wake-up": { "text": "kuamka" },
+  "dream": { "text": "kuota ndoto" },
+  "get-up": { "text": "kuinuka" },
+  "get-undressed": { "text": "kuvua nguo" },
+  "cuddle": { "text": "kukumbatiana" },
+  "yawn": { "text": "kupiga miayo" },
+  "snore": { "text": "kukoroma" },
+  "clothes": { "text": "nguo", "grammar": { "plural": "=" } },
+  "shirt": { "text": "shati", "grammar": { "plural": "mashati" } },
+  "dress": { "text": "gauni", "grammar": { "plural": "magauni" } },
+  "sweater": { "text": "sweta", "grammar": { "plural": "=" } },
+  "underwear": { "text": "nguo za ndani", "grammar": { "plural": "only" } },
+  "belt": { "text": "mkanda", "grammar": { "plural": "mikanda" } },
+  "make-bed": { "text": "kutandika kitanda" },
+  "soft": { "text": "laini" },
+  "good-night-sleep-well": { "text": "Usiku mwema, lala salama!" },
+  "good-morning-my-love": { "text": "Habari za asubuhi, mpenzi wangu!" },
+  "im-tired": { "text": "Nimechoka." },
+  "did-you-set-the-alarm": { "text": "Umeweka saa ya kengele?" },
+  "five-more-minutes": { "text": "Dakika tano zaidi …" },
+  "turn-off-the-light": { "text": "Zima taa." },
+  "i-love-you": { "text": "Nakupenda." }
  }
 }

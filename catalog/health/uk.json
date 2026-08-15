@@ -4,108 +4,35 @@
  "words": {
   "pain": {
    "text": "біль",
-   "grammar": {
-    "plural": "болі"
-   },
-   "notes": {
-    "de": "Achtung: «біль» ist maskulin!"
-   }
+   "grammar": { "plural": "болі" },
+   "notes": { "de": "Achtung: «біль» ist maskulin!" }
   },
-  "fever": {
-   "text": "температура",
-   "synonyms": [
-    "гарячка"
-   ]
-  },
-  "cough": {
-   "text": "кашель"
-  },
-  "cold": {
-   "text": "застуда"
-  },
-  "hurt": {
-   "text": "боліти"
-  },
-  "to-cough": {
-   "text": "кашляти"
-  },
-  "rest": {
-   "text": "відпочивати"
-  },
-  "sick": {
-   "text": "хворий"
-  },
-  "feel": {
-   "text": "почуватися"
-  },
-  "health": {
-   "text": "здоров'я"
-  },
-  "illness": {
-   "text": "хвороба"
-  },
-  "healthy": {
-   "text": "здоровий"
-  },
-  "tired": {
-   "text": "втомлений"
-  },
-  "weak": {
-   "text": "слабкий"
-  },
-  "dizziness": {
-   "text": "запаморочення",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "wound": {
-   "text": "рана"
-  },
-  "hurt-oneself": {
-   "text": "поранитися",
-   "synonyms": [
-    "травмуватися"
-   ]
-  },
-  "bandage": {
-   "text": "бинт"
-  },
-  "breathe": {
-   "text": "дихати"
-  },
-  "recover": {
-   "text": "одужувати",
-   "variants": [
-    "одужати"
-   ]
-  },
-  "allergy": {
-   "text": "алергія"
-  },
-  "my-throat-hurts-a-lot": {
-   "text": "У мене дуже болить горло."
-  },
-  "ive-had-a-fever-since-yesterday": {
-   "text": "У мене з учора температура."
-  },
-  "get-well-soon": {
-   "text": "Швидкого одужання!"
-  },
-  "i-dont-feel-well": {
-   "text": "Я почуваюся недобре.",
-   "variants": [
-    "Мені погано."
-   ]
-  },
-  "the-wound-hurts": {
-   "text": "Рана болить."
-  },
-  "i-cant-breathe-well": {
-   "text": "Я не можу добре дихати."
-  },
-  "i-have-to-rest": {
-   "text": "Мені треба відпочити."
-  }
+  "fever": { "text": "температура", "synonyms": ["гарячка"] },
+  "cough": { "text": "кашель" },
+  "cold": { "text": "застуда" },
+  "hurt": { "text": "боліти" },
+  "to-cough": { "text": "кашляти" },
+  "rest": { "text": "відпочивати" },
+  "sick": { "text": "хворий" },
+  "feel": { "text": "почуватися" },
+  "health": { "text": "здоров'я" },
+  "illness": { "text": "хвороба" },
+  "healthy": { "text": "здоровий" },
+  "tired": { "text": "втомлений" },
+  "weak": { "text": "слабкий" },
+  "dizziness": { "text": "запаморочення", "grammar": { "plural": "=" } },
+  "wound": { "text": "рана" },
+  "hurt-oneself": { "text": "поранитися", "synonyms": ["травмуватися"] },
+  "bandage": { "text": "бинт" },
+  "breathe": { "text": "дихати" },
+  "recover": { "text": "одужувати", "variants": ["одужати"] },
+  "allergy": { "text": "алергія" },
+  "my-throat-hurts-a-lot": { "text": "У мене дуже болить горло." },
+  "ive-had-a-fever-since-yesterday": { "text": "У мене з учора температура." },
+  "get-well-soon": { "text": "Швидкого одужання!" },
+  "i-dont-feel-well": { "text": "Я почуваюся недобре.", "variants": ["Мені погано."] },
+  "the-wound-hurts": { "text": "Рана болить." },
+  "i-cant-breathe-well": { "text": "Я не можу добре дихати." },
+  "i-have-to-rest": { "text": "Мені треба відпочити." }
  }
 }

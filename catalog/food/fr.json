@@ -2,288 +2,82 @@
  "title": "La nourriture",
  "subtitle": "Ce qui arrive sur la table.",
  "words": {
-  "bread": {
-   "text": "pain",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "milk": {
-   "text": "lait",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "coffee": {
-   "text": "café",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "tea": {
-   "text": "thé",
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "bread": { "text": "pain", "grammar": { "gender": "le" } },
+  "milk": { "text": "lait", "grammar": { "gender": "le" } },
+  "coffee": { "text": "café", "grammar": { "gender": "le" } },
+  "tea": { "text": "thé", "grammar": { "gender": "le" } },
   "egg": {
    "text": "œuf",
-   "variants": [
-    "l'œuf",
-    "oeuf",
-    "l'oeuf"
-   ],
-   "grammar": {
-    "gender": "l'"
-   },
-   "notes": {
-    "de": "un œuf spricht man [œf], des œufs aber [ø] — im Plural verstummt das f."
-   }
+   "variants": ["l'œuf", "oeuf", "l'oeuf"],
+   "grammar": { "gender": "l'" },
+   "notes": { "de": "un œuf spricht man [œf], des œufs aber [ø] — im Plural verstummt das f." }
   },
-  "cheese": {
-   "text": "fromage",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "salt": {
-   "text": "sel",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "sugar": {
-   "text": "sucre",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "rice": {
-   "text": "riz",
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "cheese": { "text": "fromage", "grammar": { "gender": "le" } },
+  "salt": { "text": "sel", "grammar": { "gender": "le" } },
+  "sugar": { "text": "sucre", "grammar": { "gender": "le" } },
+  "rice": { "text": "riz", "grammar": { "gender": "le" } },
   "hunger": {
    "text": "faim",
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "Hunger haben = avoir faim, ohne Artikel."
-   }
+   "grammar": { "gender": "la" },
+   "notes": { "de": "Hunger haben = avoir faim, ohne Artikel." }
   },
-  "thirst": {
-   "text": "soif",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "food": {
-   "text": "nourriture",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "meat": {
-   "text": "viande",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "thirst": { "text": "soif", "grammar": { "gender": "la" } },
+  "food": { "text": "nourriture", "grammar": { "gender": "la" } },
+  "meat": { "text": "viande", "grammar": { "gender": "la" } },
   "fish": {
    "text": "poisson",
-   "grammar": {
-    "gender": "le"
-   },
-   "notes": {
-    "de": "poisson mit zwei s ist der Fisch; le poison mit einem s ist das Gift."
-   }
+   "grammar": { "gender": "le" },
+   "notes": { "de": "poisson mit zwei s ist der Fisch; le poison mit einem s ist das Gift." }
   },
-  "chicken": {
-   "text": "poulet",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "fruit": {
-   "text": "fruit",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "vegetable": {
-   "text": "légume",
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "chicken": { "text": "poulet", "grammar": { "gender": "le" } },
+  "fruit": { "text": "fruit", "grammar": { "gender": "le" } },
+  "vegetable": { "text": "légume", "grammar": { "gender": "le" } },
   "potato": {
    "text": "pomme de terre",
-   "variants": [
-    "patate"
-   ],
-   "grammar": {
-    "gender": "la",
-    "plural": "pommes de terre"
-   }
+   "variants": ["patate"],
+   "grammar": { "gender": "la", "plural": "pommes de terre" }
   },
-  "onion": {
-   "text": "oignon",
-   "variants": [
-    "l'oignon"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "tomato": {
-   "text": "tomate",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "banana": {
-   "text": "banane",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "apple": {
-   "text": "pomme",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "oil": {
-   "text": "huile",
-   "variants": [
-    "l'huile"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "flour": {
-   "text": "farine",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "butter": {
-   "text": "beurre",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "soup": {
-   "text": "soupe",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "sauce": {
-   "text": "sauce",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "juice": {
-   "text": "jus",
-   "grammar": {
-    "gender": "le",
-    "plural": "="
-   }
-  },
-  "cooked-rice": {
-   "text": "riz cuit"
-  },
-  "cassava": {
-   "text": "manioc",
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "onion": { "text": "oignon", "variants": ["l'oignon"], "grammar": { "gender": "l'" } },
+  "tomato": { "text": "tomate", "grammar": { "gender": "la" } },
+  "banana": { "text": "banane", "grammar": { "gender": "la" } },
+  "apple": { "text": "pomme", "grammar": { "gender": "la" } },
+  "oil": { "text": "huile", "variants": ["l'huile"], "grammar": { "gender": "l'" } },
+  "flour": { "text": "farine", "grammar": { "gender": "la" } },
+  "butter": { "text": "beurre", "grammar": { "gender": "le" } },
+  "soup": { "text": "soupe", "grammar": { "gender": "la" } },
+  "sauce": { "text": "sauce", "grammar": { "gender": "la" } },
+  "juice": { "text": "jus", "grammar": { "gender": "le", "plural": "=" } },
+  "cooked-rice": { "text": "riz cuit" },
+  "cassava": { "text": "manioc", "grammar": { "gender": "le" } },
   "breakfast": {
    "text": "petit-déjeuner",
-   "variants": [
-    "petit déjeuner"
-   ],
-   "grammar": {
-    "gender": "le",
-    "plural": "petits-déjeuners"
-   }
+   "variants": ["petit déjeuner"],
+   "grammar": { "gender": "le", "plural": "petits-déjeuners" }
   },
-  "dinner": {
-   "text": "dîner",
-   "variants": [
-    "souper"
-   ],
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "water": {
-   "text": "eau",
-   "variants": [
-    "l'eau"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "eat": {
-   "text": "manger"
-  },
-  "drink": {
-   "text": "boire"
-  },
-  "im-hungry": {
-   "text": "J'ai faim."
-  },
+  "dinner": { "text": "dîner", "variants": ["souper"], "grammar": { "gender": "le" } },
+  "water": { "text": "eau", "variants": ["l'eau"], "grammar": { "gender": "l'" } },
+  "eat": { "text": "manger" },
+  "drink": { "text": "boire" },
+  "im-hungry": { "text": "J'ai faim." },
   "whats-for-dinner": {
    "text": "Qu'est-ce qu'il y a pour le dîner ?",
-   "variants": [
-    "Qu'y a-t-il pour le dîner ?",
-    "Qu'est-ce qu'on mange ce soir ?"
-   ]
+   "variants": ["Qu'y a-t-il pour le dîner ?", "Qu'est-ce qu'on mange ce soir ?"]
   },
   "i-dont-eat-meat": {
    "text": "Je ne mange pas de viande.",
-   "notes": {
-    "de": "Nach der Verneinung wird aus du/de la ein blankes de: pas de viande."
-   }
+   "notes": { "de": "Nach der Verneinung wird aus du/de la ein blankes de: pas de viande." }
   },
   "bread-with-butter": {
    "text": "du pain avec du beurre",
-   "notes": {
-    "de": "Der Teilungsartikel muss stehen: du pain, du beurre."
-   }
+   "notes": { "de": "Der Teilungsartikel muss stehen: du pain, du beurre." }
   },
-  "fruit-and-vegetables": {
-   "text": "fruits et légumes",
-   "variants": [
-    "des fruits et des légumes"
-   ]
-  },
-  "i-eat-rice-with-sauce": {
-   "text": "Je mange du riz avec de la sauce."
-  },
-  "without-salt-please": {
-   "text": "Sans sel, s'il vous plaît.",
-   "variants": [
-    "Sans sel, s'il te plaît."
-   ]
-  },
+  "fruit-and-vegetables": { "text": "fruits et légumes", "variants": ["des fruits et des légumes"] },
+  "i-eat-rice-with-sauce": { "text": "Je mange du riz avec de la sauce." },
+  "without-salt-please": { "text": "Sans sel, s'il vous plaît.", "variants": ["Sans sel, s'il te plaît."] },
   "the-food-is-ready": {
    "text": "Le repas est prêt !",
-   "variants": [
-    "C'est prêt !",
-    "À table !"
-   ],
-   "notes": {
-    "de": "Fertig ist le repas (die Mahlzeit), nicht la nourriture; am Tisch ruft man À table !"
-   }
+   "variants": ["C'est prêt !", "À table !"],
+   "notes": { "de": "Fertig ist le repas (die Mahlzeit), nicht la nourriture; am Tisch ruft man À table !" }
   }
  }
 }

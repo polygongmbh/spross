@@ -2,146 +2,49 @@
  "title": "The hallway",
  "subtitle": "Coming in, heading out.",
  "words": {
-  "hallway": {
-   "text": "hallway"
-  },
-  "door": {
-   "text": "door"
-  },
-  "key": {
-   "text": "key"
-  },
-  "jacket": {
-   "text": "jacket"
-  },
-  "coat": {
-   "text": "coat"
-  },
-  "shoe-rack": {
-   "text": "shoe rack"
-  },
-  "umbrella": {
-   "text": "umbrella"
-  },
-  "hat": {
-   "text": "hat"
-  },
-  "mailbox": {
-   "text": "mailbox",
-   "grammar": {
-    "plural": "mailboxes"
-   }
-  },
-  "doorbell": {
-   "text": "doorbell"
-  },
-  "stairs": {
-   "text": "stairs",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "bag": {
-   "text": "bag"
-  },
-  "lock": {
-   "text": "to lock"
-  },
-  "ring": {
-   "text": "to ring"
-  },
-  "take-off-shoes": {
-   "text": "to take off one's shoes"
-  },
-  "set-off": {
-   "text": "to set off from home"
-  },
-  "unlock": {
-   "text": "to unlock"
-  },
-  "get-dressed": {
-   "text": "to get dressed"
-  },
-  "arrive": {
-   "text": "to arrive"
-  },
-  "greet": {
-   "text": "to greet"
-  },
-  "say-goodbye": {
-   "text": "to say goodbye"
-  },
-  "shoe": {
-   "text": "shoe"
-  },
-  "apartment": {
-   "text": "apartment"
-  },
-  "neighbor": {
-   "text": "neighbor",
-   "variants": [
-    "neighbour"
-   ]
-  },
-  "guest": {
-   "text": "guest"
-  },
-  "wallet": {
-   "text": "wallet"
-  },
-  "glove": {
-   "text": "glove"
-  },
-  "letter": {
-   "text": "letter"
-  },
-  "knock-on-door": {
-   "text": "to knock on the door"
-  },
-  "enter": {
-   "text": "to come in"
-  },
-  "inside": {
-   "text": "inside"
-  },
-  "house": {
-   "text": "house"
-  },
-  "live": {
-   "text": "to live"
-  },
-  "do-you-have-the-keys": {
-   "text": "Do you have the keys?"
-  },
-  "ill-be-right-back": {
-   "text": "I'll be right back!"
-  },
-  "hurry-were-late": {
-   "text": "Hurry up, we're late!"
-  },
-  "see-you-later": {
-   "text": "See you later!"
-  },
-  "welcome-home": {
-   "text": "Welcome home!"
-  },
-  "the-doorbell-suddenly-rang": {
-   "text": "The doorbell suddenly rang."
-  },
-  "dont-forget-your-jacket": {
-   "text": "Don't forget your jacket!"
-  },
-  "put-on-the-jacket": {
-   "text": "to put on the jacket"
-  },
-  "take-off-your-shoes": {
-   "text": "Take off your shoes."
-  },
-  "i-live-here": {
-   "text": "I live here."
-  },
-  "the-house-is-big": {
-   "text": "The house is big."
-  }
+  "hallway": { "text": "hallway" },
+  "door": { "text": "door" },
+  "key": { "text": "key" },
+  "jacket": { "text": "jacket" },
+  "coat": { "text": "coat" },
+  "shoe-rack": { "text": "shoe rack" },
+  "umbrella": { "text": "umbrella" },
+  "hat": { "text": "hat" },
+  "mailbox": { "text": "mailbox", "grammar": { "plural": "mailboxes" } },
+  "doorbell": { "text": "doorbell" },
+  "stairs": { "text": "stairs", "grammar": { "plural": "only" } },
+  "bag": { "text": "bag" },
+  "lock": { "text": "to lock" },
+  "ring": { "text": "to ring" },
+  "take-off-shoes": { "text": "to take off one's shoes" },
+  "set-off": { "text": "to set off from home" },
+  "unlock": { "text": "to unlock" },
+  "get-dressed": { "text": "to get dressed" },
+  "arrive": { "text": "to arrive" },
+  "greet": { "text": "to greet" },
+  "say-goodbye": { "text": "to say goodbye" },
+  "shoe": { "text": "shoe" },
+  "apartment": { "text": "apartment" },
+  "neighbor": { "text": "neighbor", "variants": ["neighbour"] },
+  "guest": { "text": "guest" },
+  "wallet": { "text": "wallet" },
+  "glove": { "text": "glove" },
+  "letter": { "text": "letter" },
+  "knock-on-door": { "text": "to knock on the door" },
+  "enter": { "text": "to come in" },
+  "inside": { "text": "inside" },
+  "house": { "text": "house" },
+  "live": { "text": "to live" },
+  "do-you-have-the-keys": { "text": "Do you have the keys?" },
+  "ill-be-right-back": { "text": "I'll be right back!" },
+  "hurry-were-late": { "text": "Hurry up, we're late!" },
+  "see-you-later": { "text": "See you later!" },
+  "welcome-home": { "text": "Welcome home!" },
+  "the-doorbell-suddenly-rang": { "text": "The doorbell suddenly rang." },
+  "dont-forget-your-jacket": { "text": "Don't forget your jacket!" },
+  "put-on-the-jacket": { "text": "to put on the jacket" },
+  "take-off-your-shoes": { "text": "Take off your shoes." },
+  "i-live-here": { "text": "I live here." },
+  "the-house-is-big": { "text": "The house is big." }
  }
 }

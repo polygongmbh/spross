@@ -2,137 +2,41 @@
  "title": "Kujifunza lugha",
  "subtitle": "Kuuliza, kuelewa, kuendelea na mazungumzo.",
  "words": {
-  "hear": {
-   "text": "kusikia"
-  },
-  "understand": {
-   "text": "kuelewa"
-  },
-  "speak": {
-   "text": "kuzungumza"
-  },
-  "repeat-word": {
-   "text": "kurudia neno"
-  },
+  "hear": { "text": "kusikia" },
+  "understand": { "text": "kuelewa" },
+  "speak": { "text": "kuzungumza" },
+  "repeat-word": { "text": "kurudia neno" },
   "loud": {
    "text": "kwa sauti kubwa",
-   "variants": [
-    "kwa sauti ya juu"
-   ],
-   "notes": {
-    "de": "kein Adjektiv, sondern adverbial: Sema kwa sauti kubwa."
-   }
+   "variants": ["kwa sauti ya juu"],
+   "notes": { "de": "kein Adjektiv, sondern adverbial: Sema kwa sauti kubwa." }
   },
-  "ask": {
-   "text": "kuuliza"
-  },
-  "question": {
-   "text": "swali",
-   "grammar": {
-    "plural": "maswali"
-   }
-  },
-  "answer": {
-   "text": "jibu",
-   "grammar": {
-    "plural": "majibu"
-   }
-  },
-  "reply": {
-   "text": "kujibu"
-  },
-  "meaning": {
-   "text": "maana",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "to-pronounce": {
-   "text": "kutamka"
-  },
-  "translate": {
-   "text": "kutafsiri"
-  },
-  "read-aloud": {
-   "text": "kusoma kwa sauti"
-  },
-  "learn-by-heart": {
-   "text": "kukariri"
-  },
-  "dictionary": {
-   "text": "kamusi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "sentence": {
-   "text": "sentensi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "word": {
-   "text": "neno",
-   "grammar": {
-    "plural": "maneno"
-   }
-  },
-  "language": {
-   "text": "lugha",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "mother-tongue": {
-   "text": "lugha ya mama",
-   "grammar": {
-    "plural": "lugha za mama"
-   }
-  },
-  "i-dont-understand": {
-   "text": "Sielewi."
-  },
-  "i-understand": {
-   "text": "Naelewa."
-  },
-  "can-you-repeat-that": {
-   "text": "Unaweza kurudia?"
-  },
-  "slower": {
-   "text": "Polepole zaidi!"
-  },
-  "i-cant-hear-you": {
-   "text": "Sikusikii.",
-   "variants": [
-    "Siwezi kukusikia."
-   ]
-  },
-  "louder": {
-   "text": "Kwa sauti zaidi!",
-   "variants": [
-    "Kwa sauti kubwa zaidi!"
-   ]
-  },
-  "do-you-speak-english": {
-   "text": "Unazungumza Kiingereza?"
-  },
-  "i-speak-a-little": {
-   "text": "Ninazungumza {language} kidogo tu."
-  },
-  "what-does-this-word-mean": {
-   "text": "Neno hili lina maana gani?"
-  },
-  "how-do-you-say-this": {
-   "text": "Hii inasemwaje {language-in}?"
-  },
-  "im-learning-your-language": {
-   "text": "Ninajifunza {language}."
-  },
-  "i-have-a-question": {
-   "text": "Nina swali."
-  },
-  "you-can-do-it": {
-   "text": "Hakika utaweza!"
-  }
+  "ask": { "text": "kuuliza" },
+  "question": { "text": "swali", "grammar": { "plural": "maswali" } },
+  "answer": { "text": "jibu", "grammar": { "plural": "majibu" } },
+  "reply": { "text": "kujibu" },
+  "meaning": { "text": "maana", "grammar": { "plural": "=" } },
+  "to-pronounce": { "text": "kutamka" },
+  "translate": { "text": "kutafsiri" },
+  "read-aloud": { "text": "kusoma kwa sauti" },
+  "learn-by-heart": { "text": "kukariri" },
+  "dictionary": { "text": "kamusi", "grammar": { "plural": "=" } },
+  "sentence": { "text": "sentensi", "grammar": { "plural": "=" } },
+  "word": { "text": "neno", "grammar": { "plural": "maneno" } },
+  "language": { "text": "lugha", "grammar": { "plural": "=" } },
+  "mother-tongue": { "text": "lugha ya mama", "grammar": { "plural": "lugha za mama" } },
+  "i-dont-understand": { "text": "Sielewi." },
+  "i-understand": { "text": "Naelewa." },
+  "can-you-repeat-that": { "text": "Unaweza kurudia?" },
+  "slower": { "text": "Polepole zaidi!" },
+  "i-cant-hear-you": { "text": "Sikusikii.", "variants": ["Siwezi kukusikia."] },
+  "louder": { "text": "Kwa sauti zaidi!", "variants": ["Kwa sauti kubwa zaidi!"] },
+  "do-you-speak-english": { "text": "Unazungumza Kiingereza?" },
+  "i-speak-a-little": { "text": "Ninazungumza {language} kidogo tu." },
+  "what-does-this-word-mean": { "text": "Neno hili lina maana gani?" },
+  "how-do-you-say-this": { "text": "Hii inasemwaje {language-in}?" },
+  "im-learning-your-language": { "text": "Ninajifunza {language}." },
+  "i-have-a-question": { "text": "Nina swali." },
+  "you-can-do-it": { "text": "Hakika utaweza!" }
  }
 }

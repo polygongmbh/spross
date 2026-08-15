@@ -2,203 +2,69 @@
  "title": "Familia",
  "subtitle": "Watu wa karibu nawe.",
  "words": {
-  "person": {
-   "text": "mtu",
-   "grammar": {
-    "plural": "watu"
-   }
-  },
+  "person": { "text": "mtu", "grammar": { "plural": "watu" } },
   "human": {
    "text": "binadamu",
-   "grammar": {
-    "plural": "="
-   },
-   "notes": {
-    "de": "binadamu = Mensch als Gattungswesen · mtu = einzelne Person."
-   }
+   "grammar": { "plural": "=" },
+   "notes": { "de": "binadamu = Mensch als Gattungswesen · mtu = einzelne Person." }
   },
-  "family": {
-   "text": "familia",
-   "grammar": {
-    "plural": "="
-   }
-  },
+  "family": { "text": "familia", "grammar": { "plural": "=" } },
   "mother": {
    "text": "mama",
-   "grammar": {
-    "plural": "="
-   },
-   "notes": {
-    "de": "mama ist auch die höfliche Anrede für eine erwachsene Frau, baba für einen Mann."
-   }
+   "grammar": { "plural": "=" },
+   "notes": { "de": "mama ist auch die höfliche Anrede für eine erwachsene Frau, baba für einen Mann." }
   },
-  "father": {
-   "text": "baba",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "parents": {
-   "text": "wazazi",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "child": {
-   "text": "mtoto",
-   "grammar": {
-    "plural": "watoto"
-   }
-  },
-  "son": {
-   "text": "mwana",
-   "grammar": {
-    "plural": "wana"
-   }
-  },
-  "daughter": {
-   "text": "binti",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "brother": {
-   "text": "kaka",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "sister": {
-   "text": "dada",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "man": {
-   "text": "mwanaume",
-   "variants": [
-    "mwanamume"
-   ],
-   "grammar": {
-    "plural": "wanaume"
-   }
-  },
-  "woman": {
-   "text": "mwanamke",
-   "grammar": {
-    "plural": "wanawake"
-   }
-  },
-  "boy": {
-   "text": "mvulana",
-   "grammar": {
-    "plural": "wavulana"
-   }
-  },
-  "girl": {
-   "text": "msichana",
-   "grammar": {
-    "plural": "wasichana"
-   }
-  },
+  "father": { "text": "baba", "grammar": { "plural": "=" } },
+  "parents": { "text": "wazazi", "grammar": { "plural": "only" } },
+  "child": { "text": "mtoto", "grammar": { "plural": "watoto" } },
+  "son": { "text": "mwana", "grammar": { "plural": "wana" } },
+  "daughter": { "text": "binti", "grammar": { "plural": "=" } },
+  "brother": { "text": "kaka", "grammar": { "plural": "=" } },
+  "sister": { "text": "dada", "grammar": { "plural": "=" } },
+  "man": { "text": "mwanaume", "variants": ["mwanamume"], "grammar": { "plural": "wanaume" } },
+  "woman": { "text": "mwanamke", "grammar": { "plural": "wanawake" } },
+  "boy": { "text": "mvulana", "grammar": { "plural": "wavulana" } },
+  "girl": { "text": "msichana", "grammar": { "plural": "wasichana" } },
   "baby": {
    "text": "mtoto mchanga",
-   "grammar": {
-    "plural": "watoto wachanga"
-   },
-   "notes": {
-    "de": "Ein eigenes Wort für Baby gibt es nicht: mtoto mchanga ist der Säugling."
-   }
+   "grammar": { "plural": "watoto wachanga" },
+   "notes": { "de": "Ein eigenes Wort für Baby gibt es nicht: mtoto mchanga ist der Säugling." }
   },
-  "friend": {
-   "text": "rafiki",
-   "grammar": {
-    "plural": "marafiki"
-   }
-  },
-  "grandmother": {
-   "text": "nyanya",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "grandfather": {
-   "text": "babu",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "husband": {
-   "text": "mume",
-   "grammar": {
-    "plural": "waume"
-   }
-  },
-  "wife": {
-   "text": "mke",
-   "grammar": {
-    "plural": "wake"
-   }
-  },
+  "friend": { "text": "rafiki", "grammar": { "plural": "marafiki" } },
+  "grandmother": { "text": "nyanya", "grammar": { "plural": "=" } },
+  "grandfather": { "text": "babu", "grammar": { "plural": "=" } },
+  "husband": { "text": "mume", "grammar": { "plural": "waume" } },
+  "wife": { "text": "mke", "grammar": { "plural": "wake" } },
   "uncle": {
    "text": "mjomba",
-   "grammar": {
-    "plural": "wajomba"
-   },
+   "grammar": { "plural": "wajomba" },
    "notes": {
     "de": "mjomba ist der Bruder der Mutter; der Bruder des Vaters heißt baba mdogo oder baba mkubwa."
    }
   },
   "aunt": {
    "text": "shangazi",
-   "grammar": {
-    "plural": "="
-   },
+   "grammar": { "plural": "=" },
    "notes": {
     "de": "shangazi ist die Schwester des Vaters; die Schwester der Mutter heißt mama mdogo oder mama mkubwa."
    }
   },
-  "this-is-my-mother": {
-   "text": "Huyu ni mama yangu."
-  },
-  "where-is-your-father": {
-   "text": "Baba yako yuko wapi?"
-  },
-  "i-have-two-children": {
-   "text": "Nina watoto wawili."
-  },
-  "my-family-is-big": {
-   "text": "Familia yangu ni kubwa."
-  },
-  "i-have-a-brother": {
-   "text": "Nina kaka."
-  },
-  "my-parents-live-here": {
-   "text": "Wazazi wangu wanaishi hapa."
-  },
-  "how-is-your-grandmother": {
-   "text": "Nyanya yako hajambo?"
-  },
-  "a-good-friend": {
-   "text": "rafiki mzuri",
-   "grammar": {
-    "plural": "marafiki wazuri"
-   }
-  },
+  "this-is-my-mother": { "text": "Huyu ni mama yangu." },
+  "where-is-your-father": { "text": "Baba yako yuko wapi?" },
+  "i-have-two-children": { "text": "Nina watoto wawili." },
+  "my-family-is-big": { "text": "Familia yangu ni kubwa." },
+  "i-have-a-brother": { "text": "Nina kaka." },
+  "my-parents-live-here": { "text": "Wazazi wangu wanaishi hapa." },
+  "how-is-your-grandmother": { "text": "Nyanya yako hajambo?" },
+  "a-good-friend": { "text": "rafiki mzuri", "grammar": { "plural": "marafiki wazuri" } },
   "my-girlfriend": {
    "text": "mpenzi wangu",
    "notes": {
     "de": "mpenzi ist geschlechtsneutral: Freund wie Freundin. rafiki bleibt der platonische Freund."
    }
   },
-  "her-boyfriend": {
-   "text": "mpenzi wake"
-  },
-  "old-people": {
-   "text": "watu wazee"
-  },
-  "many-friends": {
-   "text": "marafiki wengi"
-  }
+  "her-boyfriend": { "text": "mpenzi wake" },
+  "old-people": { "text": "watu wazee" },
+  "many-friends": { "text": "marafiki wengi" }
  }
 }

@@ -4,146 +4,55 @@
  "words": {
   "good": {
    "text": "bueno",
-   "variants": [
-    "buena",
-    "buen"
-   ],
-   "notes": {
-    "de": "vor männlichem Substantiv verkürzt: un buen amigo · als Adverb bien: todo bien."
-   }
+   "variants": ["buena", "buen"],
+   "notes": { "de": "vor männlichem Substantiv verkürzt: un buen amigo · als Adverb bien: todo bien." }
   },
   "bad": {
    "text": "malo",
-   "variants": [
-    "mala",
-    "mal"
-   ],
-   "notes": {
-    "de": "vor männlichem Substantiv verkürzt: un mal día · als Adverb mal."
-   }
+   "variants": ["mala", "mal"],
+   "notes": { "de": "vor männlichem Substantiv verkürzt: un mal día · als Adverb mal." }
   },
   "big": {
    "text": "grande",
-   "variants": [
-    "gran"
-   ],
+   "variants": ["gran"],
    "notes": {
     "de": "vor dem Substantiv verkürzt zu gran und heißt dann eher großartig · Körpergröße: alto."
    }
   },
-  "small": {
-   "text": "pequeño",
-   "variants": [
-    "pequeña"
-   ]
-  },
+  "small": { "text": "pequeño", "variants": ["pequeña"] },
   "much": {
    "text": "mucho",
-   "variants": [
-    "mucha",
-    "muchos",
-    "muchas"
-   ],
-   "notes": {
-    "de": "richtet sich nach dem Substantiv: mucho dinero, mucha agua, muchos amigos."
-   }
+   "variants": ["mucha", "muchos", "muchas"],
+   "notes": { "de": "richtet sich nach dem Substantiv: mucho dinero, mucha agua, muchos amigos." }
   },
-  "new": {
-   "text": "nuevo",
-   "variants": [
-    "nueva"
-   ]
-  },
+  "new": { "text": "nuevo", "variants": ["nueva"] },
   "old": {
    "text": "viejo",
-   "variants": [
-    "vieja"
-   ],
-   "notes": {
-    "de": "bei Personen höflicher: mayor · antik, ehemalig: antiguo."
-   }
+   "variants": ["vieja"],
+   "notes": { "de": "bei Personen höflicher: mayor · antik, ehemalig: antiguo." }
   },
   "slow": {
    "text": "lento",
-   "synonyms": [
-    "despacio"
-   ],
-   "variants": [
-    "lenta"
-   ],
-   "notes": {
-    "de": "lento = Adjektiv · despacio = Adverb: habla despacio."
-   }
+   "synonyms": ["despacio"],
+   "variants": ["lenta"],
+   "notes": { "de": "lento = Adjektiv · despacio = Adverb: habla despacio." }
   },
-  "fast": {
-   "text": "rápido",
-   "variants": [
-    "rápida",
-    "deprisa"
-   ]
-  },
-  "long": {
-   "text": "largo",
-   "variants": [
-    "larga"
-   ]
-  },
-  "short": {
-   "text": "corto",
-   "variants": [
-    "corta"
-   ],
-   "notes": {
-    "de": "Körpergröße: bajo."
-   }
-  },
-  "heavy": {
-   "text": "pesado",
-   "variants": [
-    "pesada"
-   ]
-  },
-  "lightweight": {
-   "text": "ligero",
-   "variants": [
-    "ligera"
-   ]
-  },
-  "difficult": {
-   "text": "difícil"
-  },
-  "easy": {
-   "text": "fácil"
-  },
-  "clean-adj": {
-   "text": "limpio",
-   "variants": [
-    "limpia"
-   ]
-  },
+  "fast": { "text": "rápido", "variants": ["rápida", "deprisa"] },
+  "long": { "text": "largo", "variants": ["larga"] },
+  "short": { "text": "corto", "variants": ["corta"], "notes": { "de": "Körpergröße: bajo." } },
+  "heavy": { "text": "pesado", "variants": ["pesada"] },
+  "lightweight": { "text": "ligero", "variants": ["ligera"] },
+  "difficult": { "text": "difícil" },
+  "easy": { "text": "fácil" },
+  "clean-adj": { "text": "limpio", "variants": ["limpia"] },
   "sharp": {
    "text": "afilado",
-   "variants": [
-    "afilada"
-   ],
-   "notes": {
-    "de": "nur für Klingen; scharf im Geschmack ist picante."
-   }
+   "variants": ["afilada"],
+   "notes": { "de": "nur für Klingen; scharf im Geschmack ist picante." }
   },
-  "a-lot-of-water": {
-   "text": "mucha agua",
-   "notes": {
-    "de": "trotz el agua feminin: mucha agua."
-   }
-  },
-  "the-day-is-long": {
-   "text": "El día es largo."
-  },
-  "that-is-too-heavy": {
-   "text": "Eso es demasiado pesado."
-  },
-  "the-water-is-clean": {
-   "text": "El agua está limpia."
-  }
+  "a-lot-of-water": { "text": "mucha agua", "notes": { "de": "trotz el agua feminin: mucha agua." } },
+  "the-day-is-long": { "text": "El día es largo." },
+  "that-is-too-heavy": { "text": "Eso es demasiado pesado." },
+  "the-water-is-clean": { "text": "El agua está limpia." }
  }
 }

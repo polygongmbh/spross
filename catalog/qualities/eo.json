@@ -4,103 +4,40 @@
  "words": {
   "good": {
    "text": "bona",
-   "variants": [
-    "bone"
-   ],
-   "notes": {
-    "de": "Adjektive enden auf -a, Adverbien auf -e: bona tago · Ĉio bone."
-   }
+   "variants": ["bone"],
+   "notes": { "de": "Adjektive enden auf -a, Adverbien auf -e: bona tago · Ĉio bone." }
   },
   "bad": {
    "text": "malbona",
-   "variants": [
-    "malbone"
-   ],
-   "notes": {
-    "de": "mal- kehrt die Bedeutung um: bona → malbona, granda → malgranda."
-   }
+   "variants": ["malbone"],
+   "notes": { "de": "mal- kehrt die Bedeutung um: bona → malbona, granda → malgranda." }
   },
-  "big": {
-   "text": "granda"
-  },
-  "small": {
-   "text": "malgranda"
-  },
+  "big": { "text": "granda" },
+  "small": { "text": "malgranda" },
   "much": {
    "text": "multe",
-   "variants": [
-    "multa",
-    "multaj"
-   ],
-   "notes": {
-    "de": "vor dem Substantiv mit da: multe da akvo · als Adjektiv multa."
-   }
+   "variants": ["multa", "multaj"],
+   "notes": { "de": "vor dem Substantiv mit da: multe da akvo · als Adjektiv multa." }
   },
-  "new": {
-   "text": "nova"
-  },
+  "new": { "text": "nova" },
   "old": {
    "text": "maljuna",
-   "synonyms": [
-    "malnova"
-   ],
-   "notes": {
-    "de": "maljuna bei Lebewesen: maljuna viro · malnova bei Sachen: malnova aŭto."
-   }
+   "synonyms": ["malnova"],
+   "notes": { "de": "maljuna bei Lebewesen: maljuna viro · malnova bei Sachen: malnova aŭto." }
   },
-  "slow": {
-   "text": "malrapida",
-   "variants": [
-    "malrapide"
-   ]
-  },
-  "fast": {
-   "text": "rapida",
-   "variants": [
-    "rapide"
-   ]
-  },
-  "long": {
-   "text": "longa"
-  },
-  "short": {
-   "text": "mallonga"
-  },
-  "heavy": {
-   "text": "peza",
-   "notes": {
-    "de": "nur das Gewicht; schwierig ist malfacila."
-   }
-  },
-  "lightweight": {
-   "text": "malpeza",
-   "notes": {
-    "de": "nur das Gewicht; einfach ist facila."
-   }
-  },
-  "difficult": {
-   "text": "malfacila"
-  },
-  "easy": {
-   "text": "facila"
-  },
-  "clean-adj": {
-   "text": "pura"
-  },
-  "sharp": {
-   "text": "akra"
-  },
-  "a-lot-of-water": {
-   "text": "multe da akvo"
-  },
-  "the-day-is-long": {
-   "text": "La tago estas longa."
-  },
-  "that-is-too-heavy": {
-   "text": "Tio estas tro peza."
-  },
-  "the-water-is-clean": {
-   "text": "La akvo estas pura."
-  }
+  "slow": { "text": "malrapida", "variants": ["malrapide"] },
+  "fast": { "text": "rapida", "variants": ["rapide"] },
+  "long": { "text": "longa" },
+  "short": { "text": "mallonga" },
+  "heavy": { "text": "peza", "notes": { "de": "nur das Gewicht; schwierig ist malfacila." } },
+  "lightweight": { "text": "malpeza", "notes": { "de": "nur das Gewicht; einfach ist facila." } },
+  "difficult": { "text": "malfacila" },
+  "easy": { "text": "facila" },
+  "clean-adj": { "text": "pura" },
+  "sharp": { "text": "akra" },
+  "a-lot-of-water": { "text": "multe da akvo" },
+  "the-day-is-long": { "text": "La tago estas longa." },
+  "that-is-too-heavy": { "text": "Tio estas tro peza." },
+  "the-water-is-clean": { "text": "La akvo estas pura." }
  }
 }

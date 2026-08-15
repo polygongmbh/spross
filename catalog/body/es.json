@@ -2,210 +2,66 @@
  "title": "El cuerpo",
  "subtitle": "De la cabeza a los pies.",
  "words": {
-  "head": {
-   "text": "cabeza",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "hair": {
-   "text": "pelo",
-   "synonyms": [
-    "cabello"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "face": {
-   "text": "cara",
-   "variants": [
-    "rostro"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "eye": {
-   "text": "ojo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "head": { "text": "cabeza", "grammar": { "gender": "la" } },
+  "hair": { "text": "pelo", "synonyms": ["cabello"], "grammar": { "gender": "el" } },
+  "face": { "text": "cara", "variants": ["rostro"], "grammar": { "gender": "la" } },
+  "eye": { "text": "ojo", "grammar": { "gender": "el" } },
   "ear": {
    "text": "oído",
-   "variants": [
-    "oreja"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
+   "variants": ["oreja"],
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "Beim Arzt immer el oído (Innenohr, Gehör): me duele el oído. Die sichtbare Ohrmuschel ist la oreja."
    }
   },
-  "nose": {
-   "text": "nariz",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "mouth": {
-   "text": "boca",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "tooth": {
-   "text": "diente",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "lip": {
-   "text": "labio",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "nose": { "text": "nariz", "grammar": { "gender": "la" } },
+  "mouth": { "text": "boca", "grammar": { "gender": "la" } },
+  "tooth": { "text": "diente", "grammar": { "gender": "el" } },
+  "lip": { "text": "labio", "grammar": { "gender": "el" } },
   "hand": {
    "text": "mano",
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "la mano ist feminin trotz der Endung -o: la mano derecha."
-   }
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la mano ist feminin trotz der Endung -o: la mano derecha." }
   },
-  "arm": {
-   "text": "brazo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "foot": {
-   "text": "pie",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "leg": {
-   "text": "pierna",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "arm": { "text": "brazo", "grammar": { "gender": "el" } },
+  "foot": { "text": "pie", "grammar": { "gender": "el" } },
+  "leg": { "text": "pierna", "grammar": { "gender": "la" } },
   "stomach": {
    "text": "barriga",
-   "synonyms": [
-    "tripa"
-   ],
-   "variants": [
-    "vientre",
-    "panza"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
+   "synonyms": ["tripa"],
+   "variants": ["vientre", "panza"],
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "Bauchweh heißt me duele la barriga oder me duele la tripa; el vientre ist gehoben, el estómago meint den Magen selbst."
    }
   },
-  "back": {
-   "text": "espalda",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "back": { "text": "espalda", "grammar": { "gender": "la" } },
   "throat": {
    "text": "garganta",
-   "grammar": {
-    "gender": "la"
-   },
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "Spanisch trennt, was „Hals“ zusammenfasst: la garganta ist der Rachen (Halsschmerzen), el cuello der äußere Hals."
    }
   },
-  "shoulder": {
-   "text": "hombro",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "knee": {
-   "text": "rodilla",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "chest": {
-   "text": "pecho",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "heart": {
-   "text": "corazón",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "blood": {
-   "text": "sangre",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "skin": {
-   "text": "piel",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "bone": {
-   "text": "hueso",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "shoulder": { "text": "hombro", "grammar": { "gender": "el" } },
+  "knee": { "text": "rodilla", "grammar": { "gender": "la" } },
+  "chest": { "text": "pecho", "grammar": { "gender": "el" } },
+  "heart": { "text": "corazón", "grammar": { "gender": "el" } },
+  "blood": { "text": "sangre", "grammar": { "gender": "la" } },
+  "skin": { "text": "piel", "grammar": { "gender": "la" } },
+  "bone": { "text": "hueso", "grammar": { "gender": "el" } },
   "finger": {
    "text": "dedo",
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "dedo deckt Finger und Zehe ab; die Zehe ist el dedo del pie."
-   }
+   "grammar": { "gender": "el" },
+   "notes": { "de": "dedo deckt Finger und Zehe ab; die Zehe ist el dedo del pie." }
   },
-  "neck": {
-   "text": "cuello",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "my-head-hurts": {
-   "text": "Me duele la cabeza."
-  },
-  "give-me-your-hand": {
-   "text": "Dame la mano.",
-   "variants": [
-    "Dame tu mano."
-   ]
-  },
-  "open-your-mouth": {
-   "text": "Abre la boca."
-  },
-  "close-your-eyes": {
-   "text": "Cierra los ojos."
-  },
-  "i-have-long-hair": {
-   "text": "Tengo el pelo largo."
-  },
-  "my-feet-are-cold": {
-   "text": "Tengo los pies fríos."
-  },
-  "my-heart-is-beating-fast": {
-   "text": "El corazón me late rápido."
-  }
+  "neck": { "text": "cuello", "grammar": { "gender": "el" } },
+  "my-head-hurts": { "text": "Me duele la cabeza." },
+  "give-me-your-hand": { "text": "Dame la mano.", "variants": ["Dame tu mano."] },
+  "open-your-mouth": { "text": "Abre la boca." },
+  "close-your-eyes": { "text": "Cierra los ojos." },
+  "i-have-long-hair": { "text": "Tengo el pelo largo." },
+  "my-feet-are-cold": { "text": "Tengo los pies fríos." },
+  "my-heart-is-beating-fast": { "text": "El corazón me late rápido." }
  }
 }

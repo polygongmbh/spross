@@ -19,10 +19,7 @@
     "es": "Literalmente: 'Metí el pie en ello.'"
    }
   },
-  "pull-someones-leg": {
-   "text": "He was pulling my leg.",
-   "notes": { "de": "Wörtlich: „Er zog an meinem Bein.“" }
-  },
+  "pull-someones-leg": { "text": "He was pulling my leg.", "notes": { "de": "Wörtlich: „Er zog an meinem Bein.“" } },
   "fed-up-to-here": {
    "text": "I've had it up to here.",
    "notes": {
@@ -39,15 +36,9 @@
   },
   "seventh-heaven": {
    "text": "She's in seventh heaven.",
-   "notes": {
-    "de": "Wörtlich dasselbe Bild: „im siebten Himmel“.",
-    "es": "Literalmente la misma imagen."
-   }
+   "notes": { "de": "Wörtlich dasselbe Bild: „im siebten Himmel“.", "es": "Literalmente la misma imagen." }
   },
-  "bite-the-bullet": {
-   "text": "Just bite the bullet!",
-   "notes": { "de": "Wörtlich: „Beiß einfach in die Kugel!“" }
-  },
+  "bite-the-bullet": { "text": "Just bite the bullet!", "notes": { "de": "Wörtlich: „Beiß einfach in die Kugel!“" } },
   "raining-cats-and-dogs": {
    "text": "It's raining cats and dogs.",
    "notes": {

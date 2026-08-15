@@ -2,170 +2,53 @@
  "title": "В установі",
  "subtitle": "Крок за кроком через папери.",
  "words": {
-  "office": {
-   "text": "установа",
-   "synonyms": [
-    "відомство"
-   ]
-  },
-  "form": {
-   "text": "бланк",
-   "synonyms": [
-    "формуляр"
-   ]
-  },
-  "application": {
-   "text": "заява"
-  },
-  "id-card": {
-   "text": "посвідчення особи",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "residence-permit": {
-   "text": "посвідка на проживання",
-   "grammar": {
-    "plural": "посвідки на проживання"
-   }
-  },
-  "signature": {
-   "text": "підпис"
-  },
-  "ticket-number": {
-   "text": "номерок у черзі",
-   "grammar": {
-    "plural": "номерки у черзі"
-   }
-  },
-  "case-worker": {
-   "text": "працівник"
-  },
-  "case-worker-f": {
-   "text": "працівниця"
-  },
+  "office": { "text": "установа", "synonyms": ["відомство"] },
+  "form": { "text": "бланк", "synonyms": ["формуляр"] },
+  "application": { "text": "заява" },
+  "id-card": { "text": "посвідчення особи", "grammar": { "plural": "=" } },
+  "residence-permit": { "text": "посвідка на проживання", "grammar": { "plural": "посвідки на проживання" } },
+  "signature": { "text": "підпис" },
+  "ticket-number": { "text": "номерок у черзі", "grammar": { "plural": "номерки у черзі" } },
+  "case-worker": { "text": "працівник" },
+  "case-worker-f": { "text": "працівниця" },
   "registration": {
    "text": "реєстрація",
-   "notes": {
-    "de": "gemeint: Wohnsitzanmeldung — voll «реєстрація місця проживання»"
-   }
+   "notes": { "de": "gemeint: Wohnsitzanmeldung — voll «реєстрація місця проживання»" }
   },
-  "documents": {
-   "text": "документи",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "fill-in": {
-   "text": "заповнювати"
-  },
-  "sign": {
-   "text": "підписувати"
-  },
-  "apply-for": {
-   "text": "подавати заяву"
-  },
-  "submit": {
-   "text": "здавати"
-  },
+  "documents": { "text": "документи", "grammar": { "plural": "only" } },
+  "fill-in": { "text": "заповнювати" },
+  "sign": { "text": "підписувати" },
+  "apply-for": { "text": "подавати заяву" },
+  "submit": { "text": "здавати" },
   "hand-in": {
    "text": "подавати",
-   "notes": {
-    "de": "typisch mit Objekt: «подавати документи» = Dokumente einreichen"
-   }
+   "notes": { "de": "typisch mit Objekt: «подавати документи» = Dokumente einreichen" }
   },
-  "pick-up": {
-   "text": "забирати посвідчення"
-  },
-  "extend": {
-   "text": "продовжувати"
-  },
-  "bring": {
-   "text": "брати з собою"
-  },
-  "copy": {
-   "text": "копіювати"
-  },
-  "passport": {
-   "text": "паспорт"
-  },
-  "address": {
-   "text": "адреса"
-  },
-  "certificate": {
-   "text": "довідка"
-  },
-  "birth-certificate": {
-   "text": "свідоцтво про народження",
-   "grammar": {
-    "plural": "свідоцтва про народження"
-   }
-  },
-  "notification": {
-   "text": "рішення",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "fee": {
-   "text": "збір",
-   "grammar": {
-    "plural": "збори"
-   }
-  },
-  "office-hours": {
-   "text": "години прийому",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "waiting-room": {
-   "text": "зала очікування",
-   "grammar": {
-    "plural": "зали очікування"
-   }
-  },
-  "reject": {
-   "text": "відхиляти"
-  },
-  "approve": {
-   "text": "схвалювати"
-  },
-  "law": {
-   "text": "закон"
-  },
-  "visa": {
-   "text": "віза"
-  },
-  "fine": {
-   "text": "штраф"
-  },
-  "receipt": {
-   "text": "квитанція"
-  },
-  "where-do-i-sign": {
-   "text": "Де мені підписати?"
-  },
-  "i-want-to-extend-my-residence-permit": {
-   "text": "Я хотів би продовжити посвідку на проживання."
-  },
-  "fill-out-the-form": {
-   "text": "Заповніть бланк."
-  },
-  "take-a-number": {
-   "text": "Візьміть номерок у черзі!"
-  },
-  "i-need-an-interpreter-for-the-application": {
-   "text": "Для заяви мені потрібен перекладач."
-  },
-  "did-you-bring-all-the-documents": {
-   "text": "Ви принесли всі документи?"
-  },
-  "the-decision-comes-by-mail": {
-   "text": "Рішення надійде поштою."
-  },
-  "when-does-my-id-expire": {
-   "text": "Коли закінчується моє посвідчення?"
-  }
+  "pick-up": { "text": "забирати посвідчення" },
+  "extend": { "text": "продовжувати" },
+  "bring": { "text": "брати з собою" },
+  "copy": { "text": "копіювати" },
+  "passport": { "text": "паспорт" },
+  "address": { "text": "адреса" },
+  "certificate": { "text": "довідка" },
+  "birth-certificate": { "text": "свідоцтво про народження", "grammar": { "plural": "свідоцтва про народження" } },
+  "notification": { "text": "рішення", "grammar": { "plural": "=" } },
+  "fee": { "text": "збір", "grammar": { "plural": "збори" } },
+  "office-hours": { "text": "години прийому", "grammar": { "plural": "only" } },
+  "waiting-room": { "text": "зала очікування", "grammar": { "plural": "зали очікування" } },
+  "reject": { "text": "відхиляти" },
+  "approve": { "text": "схвалювати" },
+  "law": { "text": "закон" },
+  "visa": { "text": "віза" },
+  "fine": { "text": "штраф" },
+  "receipt": { "text": "квитанція" },
+  "where-do-i-sign": { "text": "Де мені підписати?" },
+  "i-want-to-extend-my-residence-permit": { "text": "Я хотів би продовжити посвідку на проживання." },
+  "fill-out-the-form": { "text": "Заповніть бланк." },
+  "take-a-number": { "text": "Візьміть номерок у черзі!" },
+  "i-need-an-interpreter-for-the-application": { "text": "Для заяви мені потрібен перекладач." },
+  "did-you-bring-all-the-documents": { "text": "Ви принесли всі документи?" },
+  "the-decision-comes-by-mail": { "text": "Рішення надійде поштою." },
+  "when-does-my-id-expire": { "text": "Коли закінчується моє посвідчення?" }
  }
 }

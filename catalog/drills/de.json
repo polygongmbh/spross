@@ -14,54 +14,21 @@
   ]
  },
  "frames": {
-  "train-departs-at": {
-   "text": "Der Zug fährt um {slot} Uhr ab."
-  },
-  "bus-arrives-at": {
-   "text": "Der Bus kommt um {slot} Uhr."
-  },
-  "i-wake-up-at": {
-   "text": "Ich wache um {slot} Uhr auf."
-  },
-  "we-eat-at": {
-   "text": "Wir essen um {slot} Uhr."
-  },
-  "meeting-is-at": {
-   "text": "Das Meeting ist um {slot} Uhr."
-  },
-  "it-is-now": {
-   "text": "Es ist jetzt {slot} Uhr."
-  },
-  "alarm-clock-shows": {
-   "text": "Der Wecker zeigt {slot} Uhr."
-  },
-  "we-have-n-plates": {
-   "text": "Wir haben {slot} Teller."
-  },
-  "i-have-n-notebooks": {
-   "text": "Ich habe {slot} Hefte."
-  },
-  "we-have-n-chairs": {
-   "text": "Wir haben {slot} Stühle."
-  },
-  "i-have-n-keys": {
-   "text": "Ich habe {slot} Schlüssel."
-  },
-  "it-costs-n-euros": {
-   "text": "Das kostet {slot} Euro."
-  },
-  "repeat-please": {
-   "text": "Wiederholen Sie bitte: {slot}.",
-   "variants": [
-    "Wiederhole bitte: {slot}."
-   ]
-  },
-  "write-please": {
-   "text": "Schreib bitte: {slot}."
-  },
-  "learning-since-year": {
-   "text": "Ich lerne seit {slot} {language}."
-  },
+  "train-departs-at": { "text": "Der Zug fährt um {slot} Uhr ab." },
+  "bus-arrives-at": { "text": "Der Bus kommt um {slot} Uhr." },
+  "i-wake-up-at": { "text": "Ich wache um {slot} Uhr auf." },
+  "we-eat-at": { "text": "Wir essen um {slot} Uhr." },
+  "meeting-is-at": { "text": "Das Meeting ist um {slot} Uhr." },
+  "it-is-now": { "text": "Es ist jetzt {slot} Uhr." },
+  "alarm-clock-shows": { "text": "Der Wecker zeigt {slot} Uhr." },
+  "we-have-n-plates": { "text": "Wir haben {slot} Teller." },
+  "i-have-n-notebooks": { "text": "Ich habe {slot} Hefte." },
+  "we-have-n-chairs": { "text": "Wir haben {slot} Stühle." },
+  "i-have-n-keys": { "text": "Ich habe {slot} Schlüssel." },
+  "it-costs-n-euros": { "text": "Das kostet {slot} Euro." },
+  "repeat-please": { "text": "Wiederholen Sie bitte: {slot}.", "variants": ["Wiederhole bitte: {slot}."] },
+  "write-please": { "text": "Schreib bitte: {slot}." },
+  "learning-since-year": { "text": "Ich lerne seit {slot} {language}." },
   "repeat-the-year": {
    "text": "Wiederholen Sie bitte das Datum: {slot}.",
    "variants": [
@@ -72,12 +39,8 @@
   },
   "write-the-year": {
    "text": "Schreib bitte das Datum: {slot}.",
-   "variants": [
-    "Schreib bitte die Jahreszahl: {slot}."
-   ]
+   "variants": ["Schreib bitte die Jahreszahl: {slot}."]
   },
-  "i-need-n-kilo-of-flour": {
-   "text": "Ich brauche {slot} Kilo Mehl."
-  }
+  "i-need-n-kilo-of-flour": { "text": "Ich brauche {slot} Kilo Mehl." }
  }
 }

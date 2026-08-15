@@ -2,112 +2,34 @@
  "title": "Die ersten Wörter",
  "subtitle": "Hier fängt alles an.",
  "words": {
-  "name": {
-   "text": "Name",
-   "grammar": {
-    "gender": "der",
-    "plural": "-n"
-   }
-  },
-  "help": {
-   "text": "Hilfe",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "be-called": {
-   "text": "heißen"
-  },
-  "say": {
-   "text": "sagen"
-  },
-  "know": {
-   "text": "wissen"
-  },
-  "need": {
-   "text": "brauchen"
-  },
-  "thank": {
-   "text": "danken"
-  },
-  "together": {
-   "text": "zusammen"
-  },
-  "hello": {
-   "text": "Hallo!"
-  },
-  "good-day": {
-   "text": "Guten Tag!"
-  },
-  "thank-you": {
-   "text": "Vielen Dank!",
-   "variants": [
-    "Danke schön!"
-   ]
-  },
-  "please": {
-   "text": "Bitte!"
-  },
-  "excuse-me": {
-   "text": "Entschuldigung!"
-  },
-  "yes": {
-   "text": "Ja."
-  },
-  "no": {
-   "text": "Nein."
-  },
-  "whats-your-name": {
-   "text": "Wie heißen Sie?",
-   "variants": [
-    "Wie heißt du?"
-   ]
-  },
-  "my-name-is": {
-   "text": "Ich heiße …"
-  },
-  "i-dont-know": {
-   "text": "Ich weiß nicht."
-  },
-  "pardon": {
-   "text": "Wie bitte?"
-  },
-  "i-need-help": {
-   "text": "Ich brauche Hilfe."
-  },
-  "all-good": {
-   "text": "Alles gut."
-  },
-  "goodbye": {
-   "text": "Auf Wiedersehen!"
-  },
-  "what-is-this-called": {
-   "text": "Wie nennt man das?"
-  },
-  "how-are-you": {
-   "text": "Wie geht es Ihnen?",
-   "variants": [
-    "Wie geht es dir?"
-   ]
-  },
-  "bye": {
-   "text": "Tschüss!"
-  },
-  "welcome": {
-   "text": "Willkommen!"
-  },
-  "may-i-come-in": {
-   "text": "Darf ich hereinkommen?",
-   "variants": [
-    "Darf ich reinkommen?"
-   ]
-  },
-  "sorry-to-hear-that": {
-   "text": "Das tut mir leid!"
-  },
-  "greetings-elder": {
-   "text": "Ich grüße Sie!"
-  }
+  "name": { "text": "Name", "grammar": { "gender": "der", "plural": "-n" } },
+  "help": { "text": "Hilfe", "grammar": { "gender": "die", "plural": "-n" } },
+  "be-called": { "text": "heißen" },
+  "say": { "text": "sagen" },
+  "know": { "text": "wissen" },
+  "need": { "text": "brauchen" },
+  "thank": { "text": "danken" },
+  "together": { "text": "zusammen" },
+  "hello": { "text": "Hallo!" },
+  "good-day": { "text": "Guten Tag!" },
+  "thank-you": { "text": "Vielen Dank!", "variants": ["Danke schön!"] },
+  "please": { "text": "Bitte!" },
+  "excuse-me": { "text": "Entschuldigung!" },
+  "yes": { "text": "Ja." },
+  "no": { "text": "Nein." },
+  "whats-your-name": { "text": "Wie heißen Sie?", "variants": ["Wie heißt du?"] },
+  "my-name-is": { "text": "Ich heiße …" },
+  "i-dont-know": { "text": "Ich weiß nicht." },
+  "pardon": { "text": "Wie bitte?" },
+  "i-need-help": { "text": "Ich brauche Hilfe." },
+  "all-good": { "text": "Alles gut." },
+  "goodbye": { "text": "Auf Wiedersehen!" },
+  "what-is-this-called": { "text": "Wie nennt man das?" },
+  "how-are-you": { "text": "Wie geht es Ihnen?", "variants": ["Wie geht es dir?"] },
+  "bye": { "text": "Tschüss!" },
+  "welcome": { "text": "Willkommen!" },
+  "may-i-come-in": { "text": "Darf ich hereinkommen?", "variants": ["Darf ich reinkommen?"] },
+  "sorry-to-hear-that": { "text": "Das tut mir leid!" },
+  "greetings-elder": { "text": "Ich grüße Sie!" }
  }
 }

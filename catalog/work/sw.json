@@ -2,191 +2,62 @@
  "title": "Kazini",
  "subtitle": "Tuchape kazi.",
  "words": {
-  "work": {
-   "text": "kazi",
-   "grammar": {
-    "plural": "="
-   }
-  },
+  "work": { "text": "kazi", "grammar": { "plural": "=" } },
   "job-application": {
    "text": "maombi ya kazi",
-   "grammar": {
-    "plural": "only"
-   },
-   "notes": {
-    "de": "formal Plural — Singular: ombi la kazi"
-   }
+   "grammar": { "plural": "only" },
+   "notes": { "de": "formal Plural — Singular: ombi la kazi" }
   },
-  "cv": {
-   "text": "wasifu"
-  },
-  "contract": {
-   "text": "mkataba",
-   "grammar": {
-    "plural": "mikataba"
-   }
-  },
-  "salary": {
-   "text": "mshahara",
-   "grammar": {
-    "plural": "mishahara"
-   }
-  },
-  "colleague": {
-   "text": "mfanyakazi mwenza",
-   "grammar": {
-    "plural": "wafanyakazi wenza"
-   }
-  },
-  "boss": {
-   "text": "bosi",
-   "grammar": {
-    "plural": "mabosi"
-   }
-  },
-  "shift": {
-   "text": "zamu",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "vacation": {
-   "text": "likizo",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "company": {
-   "text": "kampuni",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "apply": {
-   "text": "kuomba kazi"
-  },
-  "introduce-oneself": {
-   "text": "kujitambulisha"
-  },
-  "start": {
-   "text": "kuanza"
-  },
+  "cv": { "text": "wasifu" },
+  "contract": { "text": "mkataba", "grammar": { "plural": "mikataba" } },
+  "salary": { "text": "mshahara", "grammar": { "plural": "mishahara" } },
+  "colleague": { "text": "mfanyakazi mwenza", "grammar": { "plural": "wafanyakazi wenza" } },
+  "boss": { "text": "bosi", "grammar": { "plural": "mabosi" } },
+  "shift": { "text": "zamu", "grammar": { "plural": "=" } },
+  "vacation": { "text": "likizo", "grammar": { "plural": "=" } },
+  "company": { "text": "kampuni", "grammar": { "plural": "=" } },
+  "apply": { "text": "kuomba kazi" },
+  "introduce-oneself": { "text": "kujitambulisha" },
+  "start": { "text": "kuanza" },
   "leave": {
    "text": "kuacha",
-   "notes": {
-    "de": "kuacha = verlassen · auch aufhören (mit etwas) · kuacha kazi = kündigen"
-   }
+   "notes": { "de": "kuacha = verlassen · auch aufhören (mit etwas) · kuacha kazi = kündigen" }
   },
-  "quit": {
-   "text": "kuacha kazi"
-  },
-  "hire": {
-   "text": "kuajiri"
-  },
-  "to-help": {
-   "text": "kusaidia"
-  },
-  "work-overtime": {
-   "text": "kufanya saa za ziada"
-  },
+  "quit": { "text": "kuacha kazi" },
+  "hire": { "text": "kuajiri" },
+  "to-help": { "text": "kusaidia" },
+  "work-overtime": { "text": "kufanya saa za ziada" },
   "profession": {
    "text": "taaluma",
-   "grammar": {
-    "plural": "="
-   },
-   "notes": {
-    "de": "taaluma = Beruf/Fachgebiet; nach dem Beruf fragt man aber meist mit «kazi»"
-   }
+   "grammar": { "plural": "=" },
+   "notes": { "de": "taaluma = Beruf/Fachgebiet; nach dem Beruf fragt man aber meist mit «kazi»" }
   },
-  "interview": {
-   "text": "mahojiano ya kazi",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "working-hours": {
-   "text": "saa za kazi",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "full-time": {
-   "text": "kazi ya muda wote"
-  },
-  "part-time": {
-   "text": "kazi ya muda"
-  },
-  "tax": {
-   "text": "kodi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "work-permit": {
-   "text": "kibali cha kazi",
-   "grammar": {
-    "plural": "vibali vya kazi"
-   }
-  },
-  "training": {
-   "text": "mafunzo ya kazi",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "notice": {
-   "text": "notisi ya kuacha kazi",
-   "grammar": {
-    "plural": "notisi za kuacha kazi"
-   }
-  },
-  "worker": {
-   "text": "mfanyakazi",
-   "grammar": {
-    "plural": "wafanyakazi"
-   }
-  },
-  "employer": {
-   "text": "mwajiri",
-   "grammar": {
-    "plural": "waajiri"
-   }
-  },
-  "customer": {
-   "text": "mteja",
-   "grammar": {
-    "plural": "wateja"
-   }
-  },
-  "tomorrow-i-have-a-job-interview": {
-   "text": "Kesho nitajitambulisha kwenye kampuni."
-  },
+  "interview": { "text": "mahojiano ya kazi", "grammar": { "plural": "only" } },
+  "working-hours": { "text": "saa za kazi", "grammar": { "plural": "only" } },
+  "full-time": { "text": "kazi ya muda wote" },
+  "part-time": { "text": "kazi ya muda" },
+  "tax": { "text": "kodi", "grammar": { "plural": "=" } },
+  "work-permit": { "text": "kibali cha kazi", "grammar": { "plural": "vibali vya kazi" } },
+  "training": { "text": "mafunzo ya kazi", "grammar": { "plural": "only" } },
+  "notice": { "text": "notisi ya kuacha kazi", "grammar": { "plural": "notisi za kuacha kazi" } },
+  "worker": { "text": "mfanyakazi", "grammar": { "plural": "wafanyakazi" } },
+  "employer": { "text": "mwajiri", "grammar": { "plural": "waajiri" } },
+  "customer": { "text": "mteja", "grammar": { "plural": "wateja" } },
+  "tomorrow-i-have-a-job-interview": { "text": "Kesho nitajitambulisha kwenye kampuni." },
   "my-shift-starts-at-six": {
    "text": "Zamu yangu inaanza saa kumi na mbili.",
-   "notes": {
-    "de": "6 Uhr morgens = saa 12 (saa kumi na mbili) — Sonnenaufgang, Start der Swahili-Stunde!"
-   }
+   "notes": { "de": "6 Uhr morgens = saa 12 (saa kumi na mbili) — Sonnenaufgang, Start der Swahili-Stunde!" }
   },
-  "ill-send-the-doctors-note-right-away": {
-   "text": "Nitakutumia cheti cha daktari mara moja."
-  },
+  "ill-send-the-doctors-note-right-away": { "text": "Nitakutumia cheti cha daktari mara moja." },
   "have-a-nice-evening-off": {
    "text": "Pumzika vizuri baada ya kazi!",
    "notes": {
     "de": "„Feierabend“ gibt es auf Swahili nicht — man wünscht: „Ruh dich nach der Arbeit gut aus!“"
    }
   },
-  "can-you-help-me-briefly": {
-   "text": "Unaweza kunisaidia kidogo?"
-  },
-  "i-want-vacation-next-week": {
-   "text": "Ningependa kuchukua likizo wiki ijayo."
-  },
-  "read-the-contract": {
-   "text": "Soma mkataba!"
-  },
-  "whats-the-salary": {
-   "text": "Mshahara ni kiasi gani?"
-  }
+  "can-you-help-me-briefly": { "text": "Unaweza kunisaidia kidogo?" },
+  "i-want-vacation-next-week": { "text": "Ningependa kuchukua likizo wiki ijayo." },
+  "read-the-contract": { "text": "Soma mkataba!" },
+  "whats-the-salary": { "text": "Mshahara ni kiasi gani?" }
  }
 }

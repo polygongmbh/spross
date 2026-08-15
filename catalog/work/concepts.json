@@ -1,184 +1,48 @@
 [
- {
-  "slug": "work",
-  "kind": "noun",
-  "emoji": "💼"
- },
- {
-  "slug": "job-application",
-  "kind": "noun",
-  "emoji": "📩"
- },
- {
-  "slug": "cv",
-  "kind": "noun",
-  "emoji": "📜"
- },
- {
-  "slug": "contract",
-  "kind": "noun",
-  "emoji": "📑"
- },
- {
-  "slug": "salary",
-  "kind": "noun",
-  "emoji": "💶"
- },
- {
-  "slug": "colleague",
-  "kind": "noun",
-  "emoji": "👥"
- },
- {
-  "slug": "colleague-f",
-  "kind": "noun",
-  "feminineOf": "colleague"
- },
- {
-  "slug": "boss",
-  "kind": "noun",
-  "emoji": "👔"
- },
- {
-  "slug": "boss-f",
-  "kind": "noun",
-  "feminineOf": "boss"
- },
- {
-  "slug": "shift",
-  "kind": "noun",
-  "emoji": "🕗"
- },
- {
-  "slug": "vacation",
-  "kind": "noun",
-  "emoji": "🏖️"
- },
- {
-  "slug": "company",
-  "kind": "noun",
-  "emoji": "🏢"
- },
- {
-  "slug": "apply",
-  "kind": "verb",
-  "emoji": "📨"
- },
- {
-  "slug": "introduce-oneself",
-  "kind": "verb",
-  "emoji": "🙋"
- },
- {
-  "slug": "earn",
-  "kind": "verb",
-  "emoji": "💰"
- },
- {
-  "slug": "start",
-  "kind": "verb",
-  "emoji": "▶️"
- },
- {
-  "slug": "leave",
-  "kind": "verb",
-  "emoji": "🚪"
- },
- {
-  "slug": "quit",
-  "kind": "verb",
-  "emoji": "📃"
- },
- {
-  "slug": "hire",
-  "kind": "verb",
-  "emoji": "🧑‍💼"
- },
- {
-  "slug": "to-help",
-  "kind": "verb",
-  "emoji": "🤲"
- },
- {
-  "slug": "work-overtime",
-  "kind": "verb",
-  "emoji": "🕘"
- },
- {
-  "slug": "profession",
-  "kind": "noun",
-  "emoji": "🧑‍🔧"
- },
- {
-  "slug": "interview",
-  "kind": "noun",
-  "emoji": "🤝"
- },
- {
-  "slug": "working-hours",
-  "kind": "noun",
-  "emoji": "⏰"
- },
- {
-  "slug": "full-time",
-  "kind": "noun",
-  "emoji": "🕒"
- },
- {
-  "slug": "part-time",
-  "kind": "noun",
-  "emoji": "🕐"
- },
- {
-  "slug": "tax",
-  "kind": "noun",
-  "emoji": "🧮"
- },
- {
-  "slug": "work-permit",
-  "kind": "noun",
-  "emoji": "📗"
- },
- {
-  "slug": "training",
-  "kind": "noun",
-  "emoji": "🛠️"
- },
- {
-  "slug": "notice",
-  "kind": "noun",
-  "emoji": "📤"
- },
- {
-  "slug": "worker",
-  "kind": "noun"
- },
- {
-  "slug": "employer",
-  "kind": "noun"
- },
- {
-  "slug": "customer",
-  "kind": "noun",
-  "emoji": "🛍️"
- },
+ { "slug": "work", "kind": "noun", "emoji": "💼" },
+ { "slug": "job-application", "kind": "noun", "emoji": "📩" },
+ { "slug": "cv", "kind": "noun", "emoji": "📜" },
+ { "slug": "contract", "kind": "noun", "emoji": "📑" },
+ { "slug": "salary", "kind": "noun", "emoji": "💶" },
+ { "slug": "colleague", "kind": "noun", "emoji": "👥" },
+ { "slug": "colleague-f", "kind": "noun", "feminineOf": "colleague" },
+ { "slug": "boss", "kind": "noun", "emoji": "👔" },
+ { "slug": "boss-f", "kind": "noun", "feminineOf": "boss" },
+ { "slug": "shift", "kind": "noun", "emoji": "🕗" },
+ { "slug": "vacation", "kind": "noun", "emoji": "🏖️" },
+ { "slug": "company", "kind": "noun", "emoji": "🏢" },
+ { "slug": "apply", "kind": "verb", "emoji": "📨" },
+ { "slug": "introduce-oneself", "kind": "verb", "emoji": "🙋" },
+ { "slug": "earn", "kind": "verb", "emoji": "💰" },
+ { "slug": "start", "kind": "verb", "emoji": "▶️" },
+ { "slug": "leave", "kind": "verb", "emoji": "🚪" },
+ { "slug": "quit", "kind": "verb", "emoji": "📃" },
+ { "slug": "hire", "kind": "verb", "emoji": "🧑‍💼" },
+ { "slug": "to-help", "kind": "verb", "emoji": "🤲" },
+ { "slug": "work-overtime", "kind": "verb", "emoji": "🕘" },
+ { "slug": "profession", "kind": "noun", "emoji": "🧑‍🔧" },
+ { "slug": "interview", "kind": "noun", "emoji": "🤝" },
+ { "slug": "working-hours", "kind": "noun", "emoji": "⏰" },
+ { "slug": "full-time", "kind": "noun", "emoji": "🕒" },
+ { "slug": "part-time", "kind": "noun", "emoji": "🕐" },
+ { "slug": "tax", "kind": "noun", "emoji": "🧮" },
+ { "slug": "work-permit", "kind": "noun", "emoji": "📗" },
+ { "slug": "training", "kind": "noun", "emoji": "🛠️" },
+ { "slug": "notice", "kind": "noun", "emoji": "📤" },
+ { "slug": "worker", "kind": "noun" },
+ { "slug": "employer", "kind": "noun" },
+ { "slug": "customer", "kind": "noun", "emoji": "🛍️" },
  {
   "slug": "tomorrow-i-have-a-job-interview",
   "kind": "phrase",
   "emoji": "👔",
-  "components": [
-   "introduce-oneself",
-   "company"
-  ]
+  "components": ["introduce-oneself", "company"]
  },
  {
   "slug": "my-shift-starts-at-six",
   "kind": "phrase",
   "emoji": "🕕",
-  "components": [
-   "shift",
-   "start"
-  ]
+  "components": ["shift", "start"]
  },
  {
   "slug": "ill-send-the-doctors-note-right-away",
@@ -186,42 +50,14 @@
   "emoji": "📄",
   "components": []
  },
- {
-  "slug": "have-a-nice-evening-off",
-  "kind": "phrase",
-  "emoji": "🌆",
-  "components": []
- },
- {
-  "slug": "can-you-help-me-briefly",
-  "kind": "phrase",
-  "emoji": "🆘",
-  "components": [
-   "to-help"
-  ]
- },
+ { "slug": "have-a-nice-evening-off", "kind": "phrase", "emoji": "🌆", "components": [] },
+ { "slug": "can-you-help-me-briefly", "kind": "phrase", "emoji": "🆘", "components": ["to-help"] },
  {
   "slug": "i-want-vacation-next-week",
   "kind": "phrase",
   "emoji": "🏖️",
-  "components": [
-   "vacation"
-  ]
+  "components": ["vacation"]
  },
- {
-  "slug": "read-the-contract",
-  "kind": "phrase",
-  "emoji": "📋",
-  "components": [
-   "contract"
-  ]
- },
- {
-  "slug": "whats-the-salary",
-  "kind": "phrase",
-  "emoji": "💶",
-  "components": [
-   "salary"
-  ]
- }
+ { "slug": "read-the-contract", "kind": "phrase", "emoji": "📋", "components": ["contract"] },
+ { "slug": "whats-the-salary", "kind": "phrase", "emoji": "💶", "components": ["salary"] }
 ]

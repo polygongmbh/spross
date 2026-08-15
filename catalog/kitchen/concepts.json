@@ -1,192 +1,50 @@
 [
- {
-  "slug": "fridge",
-  "kind": "noun",
-  "emoji": "🧊"
- },
- {
-  "slug": "stove",
-  "kind": "noun",
-  "emoji": "♨️"
- },
- {
-  "slug": "oven",
-  "kind": "noun",
-  "emoji": "🥧"
- },
- {
-  "slug": "dishwasher",
-  "kind": "noun",
-  "emoji": "💦"
- },
- {
-  "slug": "pot",
-  "kind": "noun",
-  "emoji": "🫕"
- },
- {
-  "slug": "pan",
-  "kind": "noun",
-  "emoji": "🍳"
- },
- {
-  "slug": "knife",
-  "kind": "noun",
-  "emoji": "🔪"
- },
- {
-  "slug": "spoon",
-  "kind": "noun",
-  "emoji": "🥄"
- },
- {
-  "slug": "fork",
-  "kind": "noun",
-  "emoji": "🍴"
- },
- {
-  "slug": "plate",
-  "kind": "noun",
-  "emoji": "🍽️"
- },
- {
-  "slug": "cook",
-  "kind": "verb",
-  "emoji": "🧑‍🍳"
- },
- {
-  "slug": "bake",
-  "kind": "verb",
-  "emoji": "🧁"
- },
- {
-  "slug": "cut",
-  "kind": "verb",
-  "emoji": "✂️"
- },
- {
-  "slug": "wash-the-dishes",
-  "kind": "verb",
-  "emoji": "🧽"
- },
- {
-  "slug": "taste",
-  "kind": "verb",
-  "emoji": "😋"
- },
- {
-  "slug": "fry",
-  "kind": "verb",
-  "emoji": "🥘"
- },
- {
-  "slug": "reheat",
-  "kind": "verb",
-  "emoji": "♨️"
- },
- {
-  "slug": "stir",
-  "kind": "verb",
-  "emoji": "🌀"
- },
- {
-  "slug": "take-out-trash",
-  "kind": "verb",
-  "emoji": "🗑️"
- },
- {
-  "slug": "careful",
-  "kind": "adjective",
-  "emoji": "⚠️"
- },
- {
-  "slug": "cup",
-  "kind": "noun",
-  "emoji": "🍵"
- },
- {
-  "slug": "bowl",
-  "kind": "noun",
-  "emoji": "🥣"
- },
- {
-  "slug": "basket",
-  "kind": "noun",
-  "emoji": "🧺"
- },
- {
-  "slug": "tin-can",
-  "kind": "noun",
-  "emoji": "🥫"
- },
+ { "slug": "fridge", "kind": "noun", "emoji": "🧊" },
+ { "slug": "stove", "kind": "noun", "emoji": "♨️" },
+ { "slug": "oven", "kind": "noun", "emoji": "🥧" },
+ { "slug": "dishwasher", "kind": "noun", "emoji": "💦" },
+ { "slug": "pot", "kind": "noun", "emoji": "🫕" },
+ { "slug": "pan", "kind": "noun", "emoji": "🍳" },
+ { "slug": "knife", "kind": "noun", "emoji": "🔪" },
+ { "slug": "spoon", "kind": "noun", "emoji": "🥄" },
+ { "slug": "fork", "kind": "noun", "emoji": "🍴" },
+ { "slug": "plate", "kind": "noun", "emoji": "🍽️" },
+ { "slug": "cook", "kind": "verb", "emoji": "🧑‍🍳" },
+ { "slug": "bake", "kind": "verb", "emoji": "🧁" },
+ { "slug": "cut", "kind": "verb", "emoji": "✂️" },
+ { "slug": "wash-the-dishes", "kind": "verb", "emoji": "🧽" },
+ { "slug": "taste", "kind": "verb", "emoji": "😋" },
+ { "slug": "fry", "kind": "verb", "emoji": "🥘" },
+ { "slug": "reheat", "kind": "verb", "emoji": "♨️" },
+ { "slug": "stir", "kind": "verb", "emoji": "🌀" },
+ { "slug": "take-out-trash", "kind": "verb", "emoji": "🗑️" },
+ { "slug": "careful", "kind": "adjective", "emoji": "⚠️" },
+ { "slug": "cup", "kind": "noun", "emoji": "🍵" },
+ { "slug": "bowl", "kind": "noun", "emoji": "🥣" },
+ { "slug": "basket", "kind": "noun", "emoji": "🧺" },
+ { "slug": "tin-can", "kind": "noun", "emoji": "🥫" },
  {
   "slug": "the-knife-is-sharp",
   "kind": "phrase",
   "emoji": "🔪",
-  "components": [
-   "knife",
-   "careful"
-  ]
+  "components": ["knife", "careful"]
  },
- {
-  "slug": "this-is-very-tasty",
-  "kind": "phrase",
-  "emoji": "😋",
-  "components": []
- },
- {
-  "slug": "are-you-cooking-rice-today",
-  "kind": "phrase",
-  "emoji": "🍚",
-  "components": [
-   "cook"
-  ]
- },
+ { "slug": "this-is-very-tasty", "kind": "phrase", "emoji": "😋", "components": [] },
+ { "slug": "are-you-cooking-rice-today", "kind": "phrase", "emoji": "🍚", "components": ["cook"] },
  {
   "slug": "the-pot-is-still-on-the-stove",
   "kind": "phrase",
   "emoji": "🍲",
-  "components": [
-   "pot",
-   "stove"
-  ]
+  "components": ["pot", "stove"]
  },
  {
   "slug": "wash-the-dishes-in-the-sink",
   "kind": "phrase",
   "emoji": "🚰",
-  "components": [
-   "wash-the-dishes"
-  ]
+  "components": ["wash-the-dishes"]
  },
- {
-  "slug": "the-fridge-is-empty",
-  "kind": "phrase",
-  "emoji": "🧊",
-  "components": [
-   "fridge"
-  ]
- },
- {
-  "slug": "can-you-set-the-table",
-  "kind": "phrase",
-  "emoji": "🍽️",
-  "components": []
- },
- {
-  "slug": "the-water-is-boiling-hot",
-  "kind": "phrase",
-  "emoji": "🔥",
-  "components": [
-   "cook"
-  ]
- },
- {
-  "slug": "careful-very-hot",
-  "kind": "phrase",
-  "emoji": "🥵",
-  "components": [
-   "careful"
-  ]
- }
+ { "slug": "the-fridge-is-empty", "kind": "phrase", "emoji": "🧊", "components": ["fridge"] },
+ { "slug": "can-you-set-the-table", "kind": "phrase", "emoji": "🍽️", "components": [] },
+ { "slug": "the-water-is-boiling-hot", "kind": "phrase", "emoji": "🔥", "components": ["cook"] },
+ { "slug": "careful-very-hot", "kind": "phrase", "emoji": "🥵", "components": ["careful"] }
 ]

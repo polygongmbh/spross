@@ -2,267 +2,81 @@
  "title": "Il bagno",
  "subtitle": "Fresco e pulito.",
  "words": {
-  "washing-machine": {
-   "text": "lavatrice",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "washing-machine": { "text": "lavatrice", "grammar": { "gender": "la" } },
   "laundry": {
    "text": "bucato",
-   "variants": [
-    "panni sporchi"
-   ],
-   "grammar": {
-    "gender": "il"
-   },
+   "variants": ["panni sporchi"],
+   "grammar": { "gender": "il" },
    "notes": {
     "de": "il bucato ist die Wäsche als Ladung, die man wäscht oder aufhängt; Kleidung allgemein sind i vestiti."
    }
   },
   "toilet": {
    "text": "gabinetto",
-   "variants": [
-    "water",
-    "WC",
-    "tazza"
-   ],
-   "grammar": {
-    "gender": "il"
-   },
+   "variants": ["water", "WC", "tazza"],
+   "grammar": { "gender": "il" },
    "notes": {
     "de": "il gabinetto ist die Toilette selbst; im Alltag sagt man meist il water, italienisch ausgesprochen vater. Nach der Toilette fragt man mit Dov'è il bagno?",
     "en": "Italian il water (from water closet, said vater) is the toilet bowl, not water; ask for one with Dov'è il bagno?"
    }
   },
-  "shower": {
-   "text": "doccia",
-   "grammar": {
-    "gender": "la",
-    "plural": "docce"
-   }
-  },
-  "sink": {
-   "text": "lavandino",
-   "variants": [
-    "lavabo"
-   ],
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "mirror": {
-   "text": "specchio",
-   "grammar": {
-    "gender": "lo",
-    "plural": "specchi"
-   }
-  },
-  "toothbrush": {
-   "text": "spazzolino da denti",
-   "variants": [
-    "spazzolino"
-   ],
-   "grammar": {
-    "gender": "lo"
-   }
-  },
-  "toothpaste": {
-   "text": "dentifricio",
-   "grammar": {
-    "gender": "il",
-    "plural": "dentifrici"
-   }
-  },
-  "towel": {
-   "text": "asciugamano",
-   "variants": [
-    "l'asciugamano"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "soap": {
-   "text": "sapone",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "shampoo": {
-   "text": "shampoo",
-   "grammar": {
-    "gender": "lo",
-    "plural": "="
-   }
-  },
+  "shower": { "text": "doccia", "grammar": { "gender": "la", "plural": "docce" } },
+  "sink": { "text": "lavandino", "variants": ["lavabo"], "grammar": { "gender": "il" } },
+  "mirror": { "text": "specchio", "grammar": { "gender": "lo", "plural": "specchi" } },
+  "toothbrush": { "text": "spazzolino da denti", "variants": ["spazzolino"], "grammar": { "gender": "lo" } },
+  "toothpaste": { "text": "dentifricio", "grammar": { "gender": "il", "plural": "dentifrici" } },
+  "towel": { "text": "asciugamano", "variants": ["l'asciugamano"], "grammar": { "gender": "l'" } },
+  "soap": { "text": "sapone", "grammar": { "gender": "il" } },
+  "shampoo": { "text": "shampoo", "grammar": { "gender": "lo", "plural": "=" } },
   "hairdryer": {
    "text": "asciugacapelli",
-   "synonyms": [
-    "phon"
-   ],
-   "variants": [
-    "l'asciugacapelli",
-    "fon"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "="
-   }
+   "synonyms": ["phon"],
+   "variants": ["l'asciugacapelli", "fon"],
+   "grammar": { "gender": "l'", "plural": "=" }
   },
-  "take-shower": {
-   "text": "farsi la doccia",
-   "variants": [
-    "fare la doccia"
-   ]
-  },
-  "do-laundry": {
-   "text": "fare il bucato",
-   "variants": [
-    "lavare i panni"
-   ]
-  },
+  "take-shower": { "text": "farsi la doccia", "variants": ["fare la doccia"] },
+  "do-laundry": { "text": "fare il bucato", "variants": ["lavare i panni"] },
   "brush-teeth": {
    "text": "lavarsi i denti",
-   "notes": {
-    "de": "man wäscht sich die Zähne: lavarsi i denti; spazzolarsi i denti sagt kaum jemand."
-   }
+   "notes": { "de": "man wäscht sich die Zähne: lavarsi i denti; spazzolarsi i denti sagt kaum jemand." }
   },
-  "dry-off": {
-   "text": "asciugarsi"
-  },
-  "hang-up-laundry": {
-   "text": "stendere il bucato",
-   "variants": [
-    "stendere i panni"
-   ]
-  },
-  "clean": {
-   "text": "pulire"
-  },
-  "shave": {
-   "text": "radersi",
-   "variants": [
-    "farsi la barba"
-   ]
-  },
-  "comb-hair": {
-   "text": "pettinarsi i capelli",
-   "variants": [
-    "pettinarsi"
-   ]
-  },
-  "apply-lotion": {
-   "text": "mettersi la crema",
-   "variants": [
-    "darsi la crema",
-    "spalmarsi la crema"
-   ]
-  },
+  "dry-off": { "text": "asciugarsi" },
+  "hang-up-laundry": { "text": "stendere il bucato", "variants": ["stendere i panni"] },
+  "clean": { "text": "pulire" },
+  "shave": { "text": "radersi", "variants": ["farsi la barba"] },
+  "comb-hair": { "text": "pettinarsi i capelli", "variants": ["pettinarsi"] },
+  "apply-lotion": { "text": "mettersi la crema", "variants": ["darsi la crema", "spalmarsi la crema"] },
   "bathtub": {
    "text": "vasca da bagno",
-   "variants": [
-    "vasca"
-   ],
-   "grammar": {
-    "gender": "la",
-    "plural": "vasche da bagno"
-   }
+   "variants": ["vasca"],
+   "grammar": { "gender": "la", "plural": "vasche da bagno" }
   },
-  "toilet-paper": {
-   "text": "carta igienica",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "razor": {
-   "text": "rasoio",
-   "grammar": {
-    "gender": "il",
-    "plural": "rasoi"
-   }
-  },
-  "sponge": {
-   "text": "spugna",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "cream": {
-   "text": "crema",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "faucet": {
-   "text": "rubinetto",
-   "grammar": {
-    "gender": "il"
-   }
-  },
+  "toilet-paper": { "text": "carta igienica", "grammar": { "gender": "la" } },
+  "razor": { "text": "rasoio", "grammar": { "gender": "il", "plural": "rasoi" } },
+  "sponge": { "text": "spugna", "grammar": { "gender": "la" } },
+  "cream": { "text": "crema", "grammar": { "gender": "la" } },
+  "faucet": { "text": "rubinetto", "grammar": { "gender": "il" } },
   "trash-can": {
    "text": "pattumiera",
-   "variants": [
-    "cestino",
-    "secchio della spazzatura",
-    "bidone"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "la pattumiera ist der Mülleimer; der kleine Papierkorb im Bad heißt il cestino."
-   }
+   "variants": ["cestino", "secchio della spazzatura", "bidone"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la pattumiera ist der Mülleimer; der kleine Papierkorb im Bad heißt il cestino." }
   },
-  "bucket": {
-   "text": "secchio",
-   "grammar": {
-    "gender": "il",
-    "plural": "secchi"
-   }
-  },
-  "dirty": {
-   "text": "sporco",
-   "variants": [
-    "sporca"
-   ]
-  },
+  "bucket": { "text": "secchio", "grammar": { "gender": "il", "plural": "secchi" } },
+  "dirty": { "text": "sporco", "variants": ["sporca"] },
   "im-taking-a-quick-shower": {
    "text": "Vado a farmi una doccia veloce.",
-   "variants": [
-    "Mi faccio una doccia veloce.",
-    "Vado a fare una doccia veloce."
-   ]
+   "variants": ["Mi faccio una doccia veloce.", "Vado a fare una doccia veloce."]
   },
-  "the-bathroom-is-occupied": {
-   "text": "Il bagno è occupato!"
-  },
-  "the-laundry-is-done": {
-   "text": "Il bucato è pronto.",
-   "variants": [
-    "Il bucato è finito."
-   ]
-  },
-  "wheres-my-towel": {
-   "text": "Dov'è il mio asciugamano?"
-  },
-  "can-you-hang-the-laundry": {
-   "text": "Puoi stendere il bucato?",
-   "variants": [
-    "Puoi stendere i panni?"
-   ]
-  },
+  "the-bathroom-is-occupied": { "text": "Il bagno è occupato!" },
+  "the-laundry-is-done": { "text": "Il bucato è pronto.", "variants": ["Il bucato è finito."] },
+  "wheres-my-towel": { "text": "Dov'è il mio asciugamano?" },
+  "can-you-hang-the-laundry": { "text": "Puoi stendere il bucato?", "variants": ["Puoi stendere i panni?"] },
   "dont-forget-to-brush-teeth": {
    "text": "Non dimenticare di lavarti i denti!",
-   "variants": [
-    "Non dimenticarti di lavarti i denti!"
-   ]
+   "variants": ["Non dimenticarti di lavarti i denti!"]
   },
-  "wash-your-hands": {
-   "text": "Lavati le mani."
-  },
-  "the-water-is-cold": {
-   "text": "L'acqua è fredda!"
-  }
+  "wash-your-hands": { "text": "Lavati le mani." },
+  "the-water-is-cold": { "text": "L'acqua è fredda!" }
  }
 }

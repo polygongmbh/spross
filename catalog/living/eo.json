@@ -2,183 +2,61 @@
  "title": "La salono",
  "subtitle": "Tempo por ripozi.",
  "words": {
-  "sofa": {
-   "text": "sofo",
-   "variants": [
-    "kanapo"
-   ]
-  },
-  "dining-table": {
-   "text": "manĝotablo",
-   "variants": [
-    "manĝtablo"
-   ]
-  },
-  "chair": {
-   "text": "seĝo"
-  },
-  "tv": {
-   "text": "televidilo",
-   "variants": [
-    "televido"
-   ]
-  },
-  "remote": {
-   "text": "teleregilo"
-  },
-  "shelf": {
-   "text": "breto",
-   "variants": [
-    "bretaro"
-   ]
-  },
-  "plant": {
-   "text": "planto"
-  },
-  "window": {
-   "text": "fenestro"
-  },
-  "curtain": {
-   "text": "kurteno"
-  },
-  "carpet": {
-   "text": "tapiŝo"
-  },
-  "lamp": {
-   "text": "lampo"
-  },
-  "picture": {
-   "text": "bildo",
-   "variants": [
-    "pentraĵo"
-   ]
-  },
-  "watch-tv": {
-   "text": "televidi",
-   "variants": [
-    "rigardi televidon",
-    "spekti televidon"
-   ]
-  },
-  "read": {
-   "text": "legi"
-  },
-  "relax": {
-   "text": "malstreĉiĝi",
-   "variants": [
-    "senstreĉiĝi"
-   ]
-  },
-  "tidy-up": {
-   "text": "ordigi",
-   "variants": [
-    "enordigi"
-   ]
-  },
-  "listen-to-music": {
-   "text": "aŭskulti muzikon"
-  },
-  "water-plants": {
-   "text": "akvumi la plantojn"
-  },
-  "play": {
-   "text": "ludi"
-  },
+  "sofa": { "text": "sofo", "variants": ["kanapo"] },
+  "dining-table": { "text": "manĝotablo", "variants": ["manĝtablo"] },
+  "chair": { "text": "seĝo" },
+  "tv": { "text": "televidilo", "variants": ["televido"] },
+  "remote": { "text": "teleregilo" },
+  "shelf": { "text": "breto", "variants": ["bretaro"] },
+  "plant": { "text": "planto" },
+  "window": { "text": "fenestro" },
+  "curtain": { "text": "kurteno" },
+  "carpet": { "text": "tapiŝo" },
+  "lamp": { "text": "lampo" },
+  "picture": { "text": "bildo", "variants": ["pentraĵo"] },
+  "watch-tv": { "text": "televidi", "variants": ["rigardi televidon", "spekti televidon"] },
+  "read": { "text": "legi" },
+  "relax": { "text": "malstreĉiĝi", "variants": ["senstreĉiĝi"] },
+  "tidy-up": { "text": "ordigi", "variants": ["enordigi"] },
+  "listen-to-music": { "text": "aŭskulti muzikon" },
+  "water-plants": { "text": "akvumi la plantojn" },
+  "play": { "text": "ludi" },
   "talk": {
    "text": "babili",
-   "variants": [
-    "paroli",
-    "konversacii"
-   ],
-   "notes": {
-    "de": "babili = plaudern, sich unterhalten; sprechen allgemein ist paroli."
-   }
+   "variants": ["paroli", "konversacii"],
+   "notes": { "de": "babili = plaudern, sich unterhalten; sprechen allgemein ist paroli." }
   },
-  "room": {
-   "text": "ĉambro"
-  },
-  "newspaper": {
-   "text": "gazeto",
-   "synonyms": [
-    "ĵurnalo"
-   ]
-  },
-  "light": {
-   "text": "lumo"
-  },
-  "music": {
-   "text": "muziko"
-  },
-  "wall": {
-   "text": "muro"
-  },
-  "movie": {
-   "text": "filmo"
-  },
+  "room": { "text": "ĉambro" },
+  "newspaper": { "text": "gazeto", "synonyms": ["ĵurnalo"] },
+  "light": { "text": "lumo" },
+  "music": { "text": "muziko" },
+  "wall": { "text": "muro" },
+  "movie": { "text": "filmo" },
   "sit": {
    "text": "sidi",
-   "variants": [
-    "sidiĝi"
-   ],
-   "notes": {
-    "de": "sidi = sitzen (Zustand); sich hinsetzen heißt sidiĝi."
-   }
+   "variants": ["sidiĝi"],
+   "notes": { "de": "sidi = sitzen (Zustand); sich hinsetzen heißt sidiĝi." }
   },
-  "laugh": {
-   "text": "ridi"
-  },
+  "laugh": { "text": "ridi" },
   "quiet": {
    "text": "mallaŭta",
-   "variants": [
-    "kvieta",
-    "mallaŭte"
-   ],
-   "notes": {
-    "de": "mallaŭta ist die Lautstärke (parolu mallaŭte); ein stiller Raum ist kvieta."
-   }
+   "variants": ["kvieta", "mallaŭte"],
+   "notes": { "de": "mallaŭta ist die Lautstärke (parolu mallaŭte); ein stiller Raum ist kvieta." }
   },
   "furniture": {
    "text": "mebloj",
-   "variants": [
-    "meblaro"
-   ],
-   "notes": {
-    "de": "meblo ist ein einzelnes Möbelstück, die Möbel sind la mebloj."
-   }
+   "variants": ["meblaro"],
+   "notes": { "de": "meblo ist ein einzelnes Möbelstück, die Möbel sind la mebloj." }
   },
-  "game": {
-   "text": "ludo"
-  },
-  "turn-on-the-tv": {
-   "text": "Ŝaltu la televidilon.",
-   "variants": [
-    "Enŝaltu la televidilon."
-   ]
-  },
-  "come-sit-with-me": {
-   "text": "Venu, sidiĝu apud mi!",
-   "variants": [
-    "Venu, sidiĝu ĉe mi!"
-   ]
-  },
+  "game": { "text": "ludo" },
+  "turn-on-the-tv": { "text": "Ŝaltu la televidilon.", "variants": ["Enŝaltu la televidilon."] },
+  "come-sit-with-me": { "text": "Venu, sidiĝu apud mi!", "variants": ["Venu, sidiĝu ĉe mi!"] },
   "shall-we-watch-a-movie": {
    "text": "Ĉu ni spektu filmon?",
-   "variants": [
-    "Ĉu ni rigardu filmon?",
-    "Ĉu ni volas spekti filmon?"
-   ]
+   "variants": ["Ĉu ni rigardu filmon?", "Ĉu ni volas spekti filmon?"]
   },
-  "lets-hang-the-picture": {
-   "text": "Ni pendigu la bildon!",
-   "variants": [
-    "Ni alpendigu la bildon!"
-   ]
-  },
-  "the-curtains-hang-over-the-window": {
-   "text": "La kurtenoj pendas antaŭ la fenestro."
-  },
-  "open-the-window-fresh-air": {
-   "text": "Malfermu la fenestron."
-  }
+  "lets-hang-the-picture": { "text": "Ni pendigu la bildon!", "variants": ["Ni alpendigu la bildon!"] },
+  "the-curtains-hang-over-the-window": { "text": "La kurtenoj pendas antaŭ la fenestro." },
+  "open-the-window-fresh-air": { "text": "Malfermu la fenestron." }
  }
 }

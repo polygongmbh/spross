@@ -1,186 +1,39 @@
 [
- {
-  "slug": "street",
-  "kind": "noun",
-  "emoji": "🛣️"
- },
- {
-  "slug": "market",
-  "kind": "noun",
-  "emoji": "🛒"
- },
- {
-  "slug": "park",
-  "kind": "noun",
-  "emoji": "🏞️"
- },
- {
-  "slug": "shop",
-  "kind": "verb",
-  "emoji": "🛍️"
- },
- {
-  "slug": "city",
-  "kind": "noun",
-  "emoji": "🏙️"
- },
- {
-  "slug": "village",
-  "kind": "noun",
-  "emoji": "🏘️"
- },
- {
-  "slug": "neighborhood",
-  "kind": "noun"
- },
- {
-  "slug": "building",
-  "kind": "noun",
-  "emoji": "🏢"
- },
- {
-  "slug": "store",
-  "kind": "noun",
-  "emoji": "🏪"
- },
- {
-  "slug": "bank",
-  "kind": "noun",
-  "emoji": "🏦"
- },
- {
-  "slug": "post-office",
-  "kind": "noun",
-  "emoji": "🏤"
- },
- {
-  "slug": "restaurant",
-  "kind": "noun",
-  "emoji": "🍽️"
- },
- {
-  "slug": "hotel",
-  "kind": "noun",
-  "emoji": "🏨"
- },
- {
-  "slug": "church",
-  "kind": "noun",
-  "emoji": "⛪"
- },
- {
-  "slug": "mosque",
-  "kind": "noun",
-  "emoji": "🕌"
- },
- {
-  "slug": "library",
-  "kind": "noun",
-  "emoji": "📚"
- },
- {
-  "slug": "police",
-  "kind": "noun",
-  "emoji": "👮"
- },
- {
-  "slug": "cinema",
-  "kind": "noun",
-  "emoji": "🎬"
- },
- {
-  "slug": "bridge",
-  "kind": "noun",
-  "emoji": "🌉"
- },
- {
-  "slug": "money",
-  "kind": "noun",
-  "emoji": "💰"
- },
- {
-  "slug": "buy",
-  "kind": "verb",
-  "emoji": "🛒"
- },
- {
-  "slug": "pay",
-  "kind": "verb",
-  "emoji": "💳"
- },
+ { "slug": "street", "kind": "noun", "emoji": "🛣️" },
+ { "slug": "market", "kind": "noun", "emoji": "🛒" },
+ { "slug": "park", "kind": "noun", "emoji": "🏞️" },
+ { "slug": "shop", "kind": "verb", "emoji": "🛍️" },
+ { "slug": "city", "kind": "noun", "emoji": "🏙️" },
+ { "slug": "village", "kind": "noun", "emoji": "🏘️" },
+ { "slug": "neighborhood", "kind": "noun" },
+ { "slug": "building", "kind": "noun", "emoji": "🏢" },
+ { "slug": "store", "kind": "noun", "emoji": "🏪" },
+ { "slug": "bank", "kind": "noun", "emoji": "🏦" },
+ { "slug": "post-office", "kind": "noun", "emoji": "🏤" },
+ { "slug": "restaurant", "kind": "noun", "emoji": "🍽️" },
+ { "slug": "hotel", "kind": "noun", "emoji": "🏨" },
+ { "slug": "church", "kind": "noun", "emoji": "⛪" },
+ { "slug": "mosque", "kind": "noun", "emoji": "🕌" },
+ { "slug": "library", "kind": "noun", "emoji": "📚" },
+ { "slug": "police", "kind": "noun", "emoji": "👮" },
+ { "slug": "cinema", "kind": "noun", "emoji": "🎬" },
+ { "slug": "bridge", "kind": "noun", "emoji": "🌉" },
+ { "slug": "money", "kind": "noun", "emoji": "💰" },
+ { "slug": "buy", "kind": "verb", "emoji": "🛒" },
+ { "slug": "pay", "kind": "verb", "emoji": "💳" },
  {
   "slug": "where-is-the-post-office",
   "kind": "phrase",
   "emoji": "🏤",
-  "components": [
-   "post-office"
-  ]
+  "components": ["post-office"]
  },
- {
-  "slug": "is-there-a-bank-here",
-  "kind": "phrase",
-  "emoji": "🏦",
-  "components": [
-   "bank"
-  ]
- },
- {
-  "slug": "the-store-is-still-open",
-  "kind": "phrase",
-  "emoji": "🏪",
-  "components": [
-   "store"
-  ]
- },
- {
-  "slug": "im-looking-for-a-hotel",
-  "kind": "phrase",
-  "emoji": "🏨",
-  "components": [
-   "hotel"
-  ]
- },
- {
-  "slug": "lets-meet-at-the-market",
-  "kind": "phrase",
-  "emoji": "🛒",
-  "components": [
-   "market"
-  ]
- },
- {
-  "slug": "i-live-in-this-neighborhood",
-  "kind": "phrase",
-  "components": [
-   "neighborhood"
-  ]
- },
- {
-  "slug": "how-much-does-this-cost",
-  "kind": "phrase",
-  "emoji": "💶",
-  "components": []
- },
- {
-  "slug": "that-is-too-expensive",
-  "kind": "phrase",
-  "emoji": "💸",
-  "components": []
- },
- {
-  "slug": "i-have-no-money",
-  "kind": "phrase",
-  "emoji": "🪙",
-  "components": [
-   "money"
-  ]
- },
- {
-  "slug": "a-lot-of-money",
-  "kind": "phrase",
-  "emoji": "🤑",
-  "components": [
-   "money"
-  ]
- }
+ { "slug": "is-there-a-bank-here", "kind": "phrase", "emoji": "🏦", "components": ["bank"] },
+ { "slug": "the-store-is-still-open", "kind": "phrase", "emoji": "🏪", "components": ["store"] },
+ { "slug": "im-looking-for-a-hotel", "kind": "phrase", "emoji": "🏨", "components": ["hotel"] },
+ { "slug": "lets-meet-at-the-market", "kind": "phrase", "emoji": "🛒", "components": ["market"] },
+ { "slug": "i-live-in-this-neighborhood", "kind": "phrase", "components": ["neighborhood"] },
+ { "slug": "how-much-does-this-cost", "kind": "phrase", "emoji": "💶", "components": [] },
+ { "slug": "that-is-too-expensive", "kind": "phrase", "emoji": "💸", "components": [] },
+ { "slug": "i-have-no-money", "kind": "phrase", "emoji": "🪙", "components": ["money"] },
+ { "slug": "a-lot-of-money", "kind": "phrase", "emoji": "🤑", "components": ["money"] }
 ]

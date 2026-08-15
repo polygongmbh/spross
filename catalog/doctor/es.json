@@ -2,218 +2,82 @@
  "title": "En el médico",
  "subtitle": "De la cita a la receta.",
  "words": {
-  "doctor": {
-   "text": "médico",
-   "variants": [
-    "doctor"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "doctor-f": {
-   "text": "médica",
-   "variants": [
-    "doctora"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "doctor": { "text": "médico", "variants": ["doctor"], "grammar": { "gender": "el" } },
+  "doctor-f": { "text": "médica", "variants": ["doctora"], "grammar": { "gender": "la" } },
   "practice": {
    "text": "consulta",
-   "variants": [
-    "consultorio"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
+   "variants": ["consultorio"],
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "la consulta = das Sprechzimmer/die Praxis; die staatliche Hausarztstelle in Spanien heißt el centro de salud."
    }
   },
   "pill": {
    "text": "pastilla",
-   "variants": [
-    "comprimido",
-    "tableta"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "Alltagswort ist la pastilla; auf der Packung steht meist comprimido."
-   }
+   "variants": ["comprimido", "tableta"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "Alltagswort ist la pastilla; auf der Packung steht meist comprimido." }
   },
-  "prescription": {
-   "text": "receta",
-   "variants": [
-    "receta médica"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "pharmacy": {
-   "text": "farmacia",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "prescription": { "text": "receta", "variants": ["receta médica"], "grammar": { "gender": "la" } },
+  "pharmacy": { "text": "farmacia", "grammar": { "gender": "la" } },
   "insurance-card": {
    "text": "tarjeta sanitaria",
-   "grammar": {
-    "gender": "la"
-   },
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "In Spanien ist es die tarjeta sanitaria der öffentlichen Gesundheitsversorgung — sie ersetzt die Versichertenkarte."
    }
   },
   "health-insurance": {
    "text": "seguro médico",
-   "variants": [
-    "seguro de salud"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
+   "variants": ["seguro de salud"],
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "Eine Krankenkasse wie in Deutschland gibt es nicht: gesetzlich versichert ist man über la Seguridad Social; un seguro médico ist meist eine private Zusatzversicherung."
    }
   },
-  "hospital": {
-   "text": "hospital",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "hospital": { "text": "hospital", "grammar": { "gender": "el" } },
   "emergency": {
    "text": "emergencia",
-   "synonyms": [
-    "urgencia"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "Die Notaufnahme heißt urgencias — „ir a urgencias“ = in die Notaufnahme gehen."
-   }
+   "synonyms": ["urgencia"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "Die Notaufnahme heißt urgencias — „ir a urgencias“ = in die Notaufnahme gehen." }
   },
   "doctors-note": {
    "text": "baja",
-   "variants": [
-    "baja médica",
-    "parte de baja"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "kurz für la baja médica; das Papier, das der Arzt aushändigt, ist el parte de baja."
-   }
+   "variants": ["baja médica", "parte de baja"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "kurz für la baja médica; das Papier, das der Arzt aushändigt, ist el parte de baja." }
   },
-  "examine": {
-   "text": "examinar",
-   "variants": [
-    "explorar",
-    "reconocer"
-   ]
-  },
-  "prescribe-medicine": {
-   "text": "recetar medicamentos",
-   "variants": [
-    "prescribir medicamentos",
-    "recetar medicinas"
-   ]
-  },
-  "take-medicine": {
-   "text": "tomar medicamentos",
-   "variants": [
-    "tomar la medicación",
-    "tomar medicinas"
-   ]
-  },
+  "examine": { "text": "examinar", "variants": ["explorar", "reconocer"] },
+  "prescribe-medicine": { "text": "recetar medicamentos", "variants": ["prescribir medicamentos", "recetar medicinas"] },
+  "take-medicine": { "text": "tomar medicamentos", "variants": ["tomar la medicación", "tomar medicinas"] },
   "call-in-sick": {
    "text": "coger la baja",
-   "variants": [
-    "pedir la baja",
-    "darse de baja",
-    "ponerse de baja"
-   ],
+   "variants": ["pedir la baja", "darse de baja", "ponerse de baja"],
    "notes": {
     "de": "Krankmelden läuft in Spanien über la baja, die der Arzt ausstellt: coger la baja, estar de baja. coger ist in Spanien normal, in Lateinamerika vulgär."
    }
   },
-  "medicine": {
-   "text": "medicamento",
-   "variants": [
-    "medicina"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "nurse": {
-   "text": "enfermero",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "nurse-f": {
-   "text": "enfermera",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "dentist": {
-   "text": "dentista",
-   "variants": [
-    "odontólogo"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "medicine": { "text": "medicamento", "variants": ["medicina"], "grammar": { "gender": "el" } },
+  "nurse": { "text": "enfermero", "grammar": { "gender": "el" } },
+  "nurse-f": { "text": "enfermera", "grammar": { "gender": "la" } },
+  "dentist": { "text": "dentista", "variants": ["odontólogo"], "grammar": { "gender": "el" } },
   "vaccination": {
    "text": "vacuna",
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "la vacuna ist Impfung und Impfstoff; der Vorgang selbst heißt la vacunación."
-   }
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la vacuna ist Impfung und Impfstoff; der Vorgang selbst heißt la vacunación." }
   },
-  "ambulance": {
-   "text": "ambulancia",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "ambulance": { "text": "ambulancia", "grammar": { "gender": "la" } },
   "take-the-pills-twice-daily": {
    "text": "Tome las pastillas dos veces al día.",
-   "variants": [
-    "Toma las pastillas dos veces al día.",
-    "Tómese las pastillas dos veces al día."
-   ]
+   "variants": ["Toma las pastillas dos veces al día.", "Tómese las pastillas dos veces al día."]
   },
   "show-me-your-insurance-card": {
    "text": "Enséñeme su tarjeta sanitaria.",
-   "variants": [
-    "Enséñame tu tarjeta sanitaria.",
-    "Muéstreme su tarjeta sanitaria."
-   ]
+   "variants": ["Enséñame tu tarjeta sanitaria.", "Muéstreme su tarjeta sanitaria."]
   },
-  "the-practice-is-closed": {
-   "text": "La consulta está cerrada."
-  },
-  "i-have-to-see-a-doctor": {
-   "text": "Tengo que ir al médico."
-  },
-  "call-an-ambulance": {
-   "text": "¡Llame a una ambulancia!",
-   "variants": [
-    "¡Llama a una ambulancia!"
-   ]
-  }
+  "the-practice-is-closed": { "text": "La consulta está cerrada." },
+  "i-have-to-see-a-doctor": { "text": "Tengo que ir al médico." },
+  "call-an-ambulance": { "text": "¡Llame a una ambulancia!", "variants": ["¡Llama a una ambulancia!"] }
  }
 }

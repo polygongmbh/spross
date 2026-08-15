@@ -4,212 +4,70 @@
  "words": {
   "good": {
    "text": "-zuri",
-   "variants": [
-    "nzuri",
-    "mzuri",
-    "wazuri",
-    "kizuri",
-    "vizuri",
-    "mazuri",
-    "mizuri"
-   ],
+   "variants": ["nzuri", "mzuri", "wazuri", "kizuri", "vizuri", "mazuri", "mizuri"],
    "notes": {
     "de": "Adjektive bekommen die Vorsilbe der Nomenklasse: mtu mzuri, kitu kizuri, nyumba nzuri."
    }
   },
-  "bad": {
-   "text": "-baya",
-   "variants": [
-    "mbaya",
-    "wabaya",
-    "kibaya",
-    "vibaya",
-    "mabaya",
-    "mibaya"
-   ]
-  },
+  "bad": { "text": "-baya", "variants": ["mbaya", "wabaya", "kibaya", "vibaya", "mabaya", "mibaya"] },
   "big": {
    "text": "-kubwa",
-   "variants": [
-    "mkubwa",
-    "wakubwa",
-    "kikubwa",
-    "vikubwa",
-    "makubwa",
-    "mikubwa"
-   ]
+   "variants": ["mkubwa", "wakubwa", "kikubwa", "vikubwa", "makubwa", "mikubwa"]
   },
   "small": {
    "text": "-dogo",
-   "variants": [
-    "ndogo",
-    "mdogo",
-    "wadogo",
-    "kidogo",
-    "vidogo",
-    "madogo",
-    "midogo"
-   ]
+   "variants": ["ndogo", "mdogo", "wadogo", "kidogo", "vidogo", "madogo", "midogo"]
   },
   "much": {
    "text": "-ingi",
-   "variants": [
-    "nyingi",
-    "wengi",
-    "mengi",
-    "vingi",
-    "mingi",
-    "mwingi",
-    "kingi"
-   ],
-   "notes": {
-    "de": "Vorsilbe verschmilzt: watu wengi, maji mengi, pesa nyingi."
-   }
+   "variants": ["nyingi", "wengi", "mengi", "vingi", "mingi", "mwingi", "kingi"],
+   "notes": { "de": "Vorsilbe verschmilzt: watu wengi, maji mengi, pesa nyingi." }
   },
-  "new": {
-   "text": "-pya",
-   "variants": [
-    "mpya",
-    "wapya",
-    "jipya",
-    "kipya",
-    "vipya",
-    "mapya",
-    "mipya"
-   ]
-  },
+  "new": { "text": "-pya", "variants": ["mpya", "wapya", "jipya", "kipya", "vipya", "mapya", "mipya"] },
   "old": {
    "text": "-zee",
-   "synonyms": [
-    "kuukuu"
-   ],
-   "variants": [
-    "mzee",
-    "wazee"
-   ],
-   "notes": {
-    "de": "-zee bei Menschen: mtu mzee · kuukuu bei Sachen: gari kuukuu."
-   }
+   "synonyms": ["kuukuu"],
+   "variants": ["mzee", "wazee"],
+   "notes": { "de": "-zee bei Menschen: mtu mzee · kuukuu bei Sachen: gari kuukuu." }
   },
   "slow": {
    "text": "polepole",
-   "notes": {
-    "de": "unveränderlich — kein Klassenpräfix: anaenda polepole."
-   }
+   "notes": { "de": "unveränderlich — kein Klassenpräfix: anaenda polepole." }
   },
-  "fast": {
-   "text": "haraka",
-   "notes": {
-    "de": "unveränderlich · attributiv mit -a: gari la haraka."
-   }
-  },
+  "fast": { "text": "haraka", "notes": { "de": "unveränderlich · attributiv mit -a: gari la haraka." } },
   "long": {
    "text": "-refu",
-   "variants": [
-    "ndefu",
-    "mrefu",
-    "warefu",
-    "kirefu",
-    "virefu",
-    "marefu",
-    "mirefu"
-   ],
-   "notes": {
-    "de": "heißt bei Menschen groß gewachsen: mtu mrefu."
-   }
+   "variants": ["ndefu", "mrefu", "warefu", "kirefu", "virefu", "marefu", "mirefu"],
+   "notes": { "de": "heißt bei Menschen groß gewachsen: mtu mrefu." }
   },
   "short": {
    "text": "-fupi",
-   "variants": [
-    "fupi",
-    "mfupi",
-    "wafupi",
-    "kifupi",
-    "vifupi",
-    "mafupi",
-    "mifupi"
-   ]
+   "variants": ["fupi", "mfupi", "wafupi", "kifupi", "vifupi", "mafupi", "mifupi"]
   },
   "heavy": {
    "text": "-zito",
-   "variants": [
-    "nzito",
-    "mzito",
-    "wazito",
-    "kizito",
-    "vizito",
-    "mazito",
-    "mizito"
-   ]
+   "variants": ["nzito", "mzito", "wazito", "kizito", "vizito", "mazito", "mizito"]
   },
   "lightweight": {
    "text": "-epesi",
-   "variants": [
-    "nyepesi",
-    "mwepesi",
-    "wepesi",
-    "chepesi",
-    "vyepesi",
-    "mepesi",
-    "myepesi"
-   ],
-   "notes": {
-    "de": "Vorsilbe verschmilzt mit dem e: mzigo mwepesi, mizigo myepesi."
-   }
+   "variants": ["nyepesi", "mwepesi", "wepesi", "chepesi", "vyepesi", "mepesi", "myepesi"],
+   "notes": { "de": "Vorsilbe verschmilzt mit dem e: mzigo mwepesi, mizigo myepesi." }
   },
   "difficult": {
    "text": "-gumu",
-   "variants": [
-    "ngumu",
-    "mgumu",
-    "wagumu",
-    "kigumu",
-    "vigumu",
-    "magumu",
-    "migumu"
-   ],
-   "notes": {
-    "de": "heißt auch hart: mkate mgumu."
-   }
+   "variants": ["ngumu", "mgumu", "wagumu", "kigumu", "vigumu", "magumu", "migumu"],
+   "notes": { "de": "heißt auch hart: mkate mgumu." }
   },
-  "easy": {
-   "text": "rahisi",
-   "notes": {
-    "de": "unveränderlich · heißt auch billig: nguo rahisi."
-   }
-  },
-  "clean-adj": {
-   "text": "safi",
-   "notes": {
-    "de": "unveränderlich · als Ausruf auch prima: Safi!"
-   }
-  },
+  "easy": { "text": "rahisi", "notes": { "de": "unveränderlich · heißt auch billig: nguo rahisi." } },
+  "clean-adj": { "text": "safi", "notes": { "de": "unveränderlich · als Ausruf auch prima: Safi!" } },
   "sharp": {
    "text": "-kali",
-   "variants": [
-    "kali",
-    "mkali",
-    "wakali",
-    "kikali",
-    "vikali",
-    "makali",
-    "mikali"
-   ],
-   "notes": {
-    "de": "gilt auch für Menschen (streng) und Essen (scharf): mwalimu mkali, pilipili kali."
-   }
+   "variants": ["kali", "mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
+   "notes": { "de": "gilt auch für Menschen (streng) und Essen (scharf): mwalimu mkali, pilipili kali." }
   },
-  "a-lot-of-water": {
-   "text": "maji mengi"
-  },
-  "the-day-is-long": {
-   "text": "Siku ni ndefu."
-  },
-  "that-is-too-heavy": {
-   "text": "Hii ni nzito mno."
-  },
-  "the-water-is-clean": {
-   "text": "Maji ni safi."
-  }
+  "a-lot-of-water": { "text": "maji mengi" },
+  "the-day-is-long": { "text": "Siku ni ndefu." },
+  "that-is-too-heavy": { "text": "Hii ni nzito mno." },
+  "the-water-is-clean": { "text": "Maji ni safi." }
  }
 }

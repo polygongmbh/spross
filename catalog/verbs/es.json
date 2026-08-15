@@ -2,80 +2,37 @@
  "title": "Los verbos esenciales",
  "subtitle": "Lo que necesitas en cualquier sitio.",
  "words": {
-  "go": {
-   "text": "ir",
-   "notes": {
-    "de": "ir = gehen und fahren · zu Fuß betont: ir andando, caminar."
-   }
-  },
-  "come": {
-   "text": "venir"
-  },
+  "go": { "text": "ir", "notes": { "de": "ir = gehen und fahren · zu Fuß betont: ir andando, caminar." } },
+  "come": { "text": "venir" },
   "have": {
    "text": "tener",
-   "notes": {
-    "de": "haber ist Hilfsverb (he comido) und hay = es gibt — Besitz immer mit tener."
-   }
+   "notes": { "de": "haber ist Hilfsverb (he comido) und hay = es gibt — Besitz immer mit tener." }
   },
-  "give": {
-   "text": "dar"
-  },
+  "give": { "text": "dar" },
   "take": {
    "text": "coger",
-   "variants": [
-    "tomar",
-    "agarrar"
-   ],
+   "variants": ["tomar", "agarrar"],
    "notes": {
     "de": "in Spanien das Alltagswort (coger el autobús) · in Lateinamerika vulgär, dort tomar oder agarrar."
    }
   },
-  "see": {
-   "text": "ver"
-  },
-  "make": {
-   "text": "hacer"
-  },
+  "see": { "text": "ver" },
+  "make": { "text": "hacer" },
   "like": {
    "text": "gustar",
-   "notes": {
-    "de": "umgekehrt gebaut: Me gusta el café = Ich mag Kaffee · lieben ist amar oder querer."
-   }
+   "notes": { "de": "umgekehrt gebaut: Me gusta el café = Ich mag Kaffee · lieben ist amar oder querer." }
   },
-  "can": {
-   "text": "poder",
-   "notes": {
-    "de": "unregelmäßig: puedo, puedes, puede, podemos."
-   }
-  },
+  "can": { "text": "poder", "notes": { "de": "unregelmäßig: puedo, puedes, puede, podemos." } },
   "think": {
    "text": "pensar",
-   "notes": {
-    "de": "pensar en algo = an etwas denken · pensar que = glauben, dass."
-   }
+   "notes": { "de": "pensar en algo = an etwas denken · pensar que = glauben, dass." }
   },
-  "wait": {
-   "text": "esperar",
-   "notes": {
-    "de": "esperar heißt auch hoffen und erwarten."
-   }
-  },
-  "do-you-have-water": {
-   "text": "¿Tiene agua?",
-   "variants": [
-    "¿Tiene usted agua?",
-    "¿Tienes agua?"
-   ]
-  },
+  "wait": { "text": "esperar", "notes": { "de": "esperar heißt auch hoffen und erwarten." } },
+  "do-you-have-water": { "text": "¿Tiene agua?", "variants": ["¿Tiene usted agua?", "¿Tienes agua?"] },
   "where-are-you-from": {
    "text": "¿De dónde es usted?",
-   "variants": [
-    "¿De dónde es?",
-    "¿De dónde eres?"
-   ],
-   "notes": {
-    "de": "Spanisch fragt nach der Herkunft mit ser, nicht mit venir."
-   }
+   "variants": ["¿De dónde es?", "¿De dónde eres?"],
+   "notes": { "de": "Spanisch fragt nach der Herkunft mit ser, nicht mit venir." }
   }
  }
 }

@@ -17,10 +17,7 @@
   },
   "pull-someones-leg": {
    "text": "Il m'a fait marcher.",
-   "notes": {
-    "de": "Wörtlich: „Er hat mich laufen lassen.“",
-    "en": "Literally: \"He made me walk.\""
-   }
+   "notes": { "de": "Wörtlich: „Er hat mich laufen lassen.“", "en": "Literally: \"He made me walk.\"" }
   },
   "fed-up-to-here": {
    "text": "J'en ai par-dessus la tête.",
@@ -31,9 +28,7 @@
   },
   "turn-a-blind-eye": {
    "text": "Il a fermé les yeux là-dessus.",
-   "variants": [
-    "Il a fermé les yeux."
-   ],
+   "variants": ["Il a fermé les yeux."],
    "notes": {
     "de": "Wörtlich: „Er hat die Augen darüber geschlossen.“",
     "en": "Literally: \"He closed his eyes on it.\""
@@ -41,24 +36,15 @@
   },
   "seventh-heaven": {
    "text": "Elle est au septième ciel.",
-   "notes": {
-    "de": "Wörtlich dasselbe Bild.",
-    "en": "Literally the same image."
-   }
+   "notes": { "de": "Wörtlich dasselbe Bild.", "en": "Literally the same image." }
   },
   "bite-the-bullet": {
    "text": "Serre les dents !",
-   "notes": {
-    "de": "Wörtlich: „Beiß die Zähne zusammen!“",
-    "en": "Literally: \"Clench your teeth!\""
-   }
+   "notes": { "de": "Wörtlich: „Beiß die Zähne zusammen!“", "en": "Literally: \"Clench your teeth!\"" }
   },
   "raining-cats-and-dogs": {
    "text": "Il pleut des cordes.",
-   "notes": {
-    "de": "Wörtlich: „Es regnet Seile.“",
-    "en": "Literally: \"It's raining ropes.\""
-   }
+   "notes": { "de": "Wörtlich: „Es regnet Seile.“", "en": "Literally: \"It's raining ropes.\"" }
   }
  }
 }

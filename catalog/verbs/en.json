@@ -2,47 +2,18 @@
  "title": "The core verbs",
  "subtitle": "What you need in every room and on every errand.",
  "words": {
-  "go": {
-   "text": "to go"
-  },
-  "come": {
-   "text": "to come"
-  },
-  "have": {
-   "text": "to have"
-  },
-  "give": {
-   "text": "to give"
-  },
-  "take": {
-   "text": "to take"
-  },
-  "see": {
-   "text": "to see"
-  },
-  "make": {
-   "text": "to make"
-  },
-  "like": {
-   "text": "to like"
-  },
-  "can": {
-   "text": "can",
-   "variants": [
-    "to be able to"
-   ]
-  },
-  "think": {
-   "text": "to think"
-  },
-  "wait": {
-   "text": "to wait"
-  },
-  "do-you-have-water": {
-   "text": "Do you have water?"
-  },
-  "where-are-you-from": {
-   "text": "Where are you from?"
-  }
+  "go": { "text": "to go" },
+  "come": { "text": "to come" },
+  "have": { "text": "to have" },
+  "give": { "text": "to give" },
+  "take": { "text": "to take" },
+  "see": { "text": "to see" },
+  "make": { "text": "to make" },
+  "like": { "text": "to like" },
+  "can": { "text": "can", "variants": ["to be able to"] },
+  "think": { "text": "to think" },
+  "wait": { "text": "to wait" },
+  "do-you-have-water": { "text": "Do you have water?" },
+  "where-are-you-from": { "text": "Where are you from?" }
  }
 }

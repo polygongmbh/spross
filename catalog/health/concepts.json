@@ -1,158 +1,35 @@
 [
- {
-  "slug": "pain",
-  "kind": "noun",
-  "emoji": "🤕"
- },
- {
-  "slug": "fever",
-  "kind": "noun",
-  "emoji": "🌡️"
- },
- {
-  "slug": "cough",
-  "kind": "noun",
-  "emoji": "😷"
- },
- {
-  "slug": "cold",
-  "kind": "noun",
-  "emoji": "🤧"
- },
- {
-  "slug": "hurt",
-  "kind": "verb",
-  "emoji": "🤕"
- },
- {
-  "slug": "to-cough",
-  "kind": "verb",
-  "emoji": "😷"
- },
- {
-  "slug": "rest",
-  "kind": "verb",
-  "emoji": "🛌"
- },
- {
-  "slug": "sick",
-  "kind": "adjective",
-  "emoji": "🤒"
- },
- {
-  "slug": "feel",
-  "kind": "verb"
- },
- {
-  "slug": "health",
-  "kind": "noun",
-  "emoji": "💚"
- },
- {
-  "slug": "illness",
-  "kind": "noun",
-  "emoji": "🦠"
- },
- {
-  "slug": "healthy",
-  "kind": "adjective",
-  "emoji": "💪"
- },
- {
-  "slug": "tired",
-  "kind": "adjective",
-  "emoji": "😴"
- },
- {
-  "slug": "weak",
-  "kind": "adjective",
-  "emoji": "🪫"
- },
- {
-  "slug": "dizziness",
-  "kind": "noun",
-  "emoji": "😵‍💫"
- },
- {
-  "slug": "wound",
-  "kind": "noun",
-  "emoji": "🩸"
- },
- {
-  "slug": "hurt-oneself",
-  "kind": "verb"
- },
- {
-  "slug": "bandage",
-  "kind": "noun",
-  "emoji": "🩹"
- },
- {
-  "slug": "breathe",
-  "kind": "verb",
-  "emoji": "🫁"
- },
- {
-  "slug": "recover",
-  "kind": "verb"
- },
- {
-  "slug": "allergy",
-  "kind": "noun"
- },
- {
-  "slug": "my-throat-hurts-a-lot",
-  "kind": "phrase",
-  "emoji": "😣",
-  "components": [
-   "hurt"
-  ]
- },
+ { "slug": "pain", "kind": "noun", "emoji": "🤕" },
+ { "slug": "fever", "kind": "noun", "emoji": "🌡️" },
+ { "slug": "cough", "kind": "noun", "emoji": "😷" },
+ { "slug": "cold", "kind": "noun", "emoji": "🤧" },
+ { "slug": "hurt", "kind": "verb", "emoji": "🤕" },
+ { "slug": "to-cough", "kind": "verb", "emoji": "😷" },
+ { "slug": "rest", "kind": "verb", "emoji": "🛌" },
+ { "slug": "sick", "kind": "adjective", "emoji": "🤒" },
+ { "slug": "feel", "kind": "verb" },
+ { "slug": "health", "kind": "noun", "emoji": "💚" },
+ { "slug": "illness", "kind": "noun", "emoji": "🦠" },
+ { "slug": "healthy", "kind": "adjective", "emoji": "💪" },
+ { "slug": "tired", "kind": "adjective", "emoji": "😴" },
+ { "slug": "weak", "kind": "adjective", "emoji": "🪫" },
+ { "slug": "dizziness", "kind": "noun", "emoji": "😵‍💫" },
+ { "slug": "wound", "kind": "noun", "emoji": "🩸" },
+ { "slug": "hurt-oneself", "kind": "verb" },
+ { "slug": "bandage", "kind": "noun", "emoji": "🩹" },
+ { "slug": "breathe", "kind": "verb", "emoji": "🫁" },
+ { "slug": "recover", "kind": "verb" },
+ { "slug": "allergy", "kind": "noun" },
+ { "slug": "my-throat-hurts-a-lot", "kind": "phrase", "emoji": "😣", "components": ["hurt"] },
  {
   "slug": "ive-had-a-fever-since-yesterday",
   "kind": "phrase",
   "emoji": "🌡️",
-  "components": [
-   "fever"
-  ]
+  "components": ["fever"]
  },
- {
-  "slug": "get-well-soon",
-  "kind": "phrase",
-  "emoji": "💐",
-  "components": []
- },
- {
-  "slug": "i-dont-feel-well",
-  "kind": "phrase",
-  "emoji": "🤒",
-  "components": [
-   "feel"
-  ]
- },
- {
-  "slug": "the-wound-hurts",
-  "kind": "phrase",
-  "emoji": "🩸",
-  "components": [
-   "wound",
-   "hurt"
-  ]
- },
- {
-  "slug": "i-cant-breathe-well",
-  "kind": "phrase",
-  "emoji": "🫁",
-  "components": [
-   "breathe"
-  ]
- },
- {
-  "slug": "i-have-to-rest",
-  "kind": "phrase",
-  "emoji": "🛌",
-  "components": [
-   "rest"
-  ]
- }
+ { "slug": "get-well-soon", "kind": "phrase", "emoji": "💐", "components": [] },
+ { "slug": "i-dont-feel-well", "kind": "phrase", "emoji": "🤒", "components": ["feel"] },
+ { "slug": "the-wound-hurts", "kind": "phrase", "emoji": "🩸", "components": ["wound", "hurt"] },
+ { "slug": "i-cant-breathe-well", "kind": "phrase", "emoji": "🫁", "components": ["breathe"] },
+ { "slug": "i-have-to-rest", "kind": "phrase", "emoji": "🛌", "components": ["rest"] }
 ]

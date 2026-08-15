@@ -2,128 +2,42 @@
  "title": "The living room",
  "subtitle": "Time to unwind.",
  "words": {
-  "sofa": {
-   "text": "sofa"
-  },
-  "dining-table": {
-   "text": "dining table"
-  },
-  "chair": {
-   "text": "chair"
-  },
-  "tv": {
-   "text": "television",
-   "variants": [
-    "TV"
-   ]
-  },
-  "remote": {
-   "text": "remote control"
-  },
-  "shelf": {
-   "text": "shelf",
-   "grammar": {
-    "plural": "shelves"
-   }
-  },
-  "plant": {
-   "text": "plant"
-  },
-  "window": {
-   "text": "window"
-  },
-  "curtain": {
-   "text": "curtain"
-  },
-  "carpet": {
-   "text": "carpet"
-  },
-  "lamp": {
-   "text": "lamp"
-  },
-  "picture": {
-   "text": "picture"
-  },
-  "watch-tv": {
-   "text": "to watch television",
-   "variants": [
-    "to watch TV"
-   ]
-  },
-  "read": {
-   "text": "to read"
-  },
-  "relax": {
-   "text": "to relax"
-  },
-  "tidy-up": {
-   "text": "to tidy up"
-  },
-  "listen-to-music": {
-   "text": "to listen to music"
-  },
-  "water-plants": {
-   "text": "to water the plants"
-  },
-  "play": {
-   "text": "to play"
-  },
-  "talk": {
-   "text": "to talk"
-  },
-  "room": {
-   "text": "room"
-  },
-  "newspaper": {
-   "text": "newspaper"
-  },
-  "light": {
-   "text": "light"
-  },
-  "music": {
-   "text": "music"
-  },
-  "wall": {
-   "text": "wall"
-  },
-  "movie": {
-   "text": "movie"
-  },
-  "sit": {
-   "text": "to sit"
-  },
-  "laugh": {
-   "text": "to laugh"
-  },
-  "quiet": {
-   "text": "quiet"
-  },
-  "furniture": {
-   "text": "furniture"
-  },
-  "game": {
-   "text": "game"
-  },
-  "turn-on-the-tv": {
-   "text": "Turn on the television.",
-   "variants": [
-    "Turn on the TV."
-   ]
-  },
-  "come-sit-with-me": {
-   "text": "Come, sit with me!"
-  },
-  "shall-we-watch-a-movie": {
-   "text": "Shall we watch a movie?"
-  },
-  "lets-hang-the-picture": {
-   "text": "Let's hang the picture!"
-  },
-  "the-curtains-hang-over-the-window": {
-   "text": "The curtains hang in front of the window."
-  },
-  "open-the-window-fresh-air": {
-   "text": "Open the window."
-  }
+  "sofa": { "text": "sofa" },
+  "dining-table": { "text": "dining table" },
+  "chair": { "text": "chair" },
+  "tv": { "text": "television", "variants": ["TV"] },
+  "remote": { "text": "remote control" },
+  "shelf": { "text": "shelf", "grammar": { "plural": "shelves" } },
+  "plant": { "text": "plant" },
+  "window": { "text": "window" },
+  "curtain": { "text": "curtain" },
+  "carpet": { "text": "carpet" },
+  "lamp": { "text": "lamp" },
+  "picture": { "text": "picture" },
+  "watch-tv": { "text": "to watch television", "variants": ["to watch TV"] },
+  "read": { "text": "to read" },
+  "relax": { "text": "to relax" },
+  "tidy-up": { "text": "to tidy up" },
+  "listen-to-music": { "text": "to listen to music" },
+  "water-plants": { "text": "to water the plants" },
+  "play": { "text": "to play" },
+  "talk": { "text": "to talk" },
+  "room": { "text": "room" },
+  "newspaper": { "text": "newspaper" },
+  "light": { "text": "light" },
+  "music": { "text": "music" },
+  "wall": { "text": "wall" },
+  "movie": { "text": "movie" },
+  "sit": { "text": "to sit" },
+  "laugh": { "text": "to laugh" },
+  "quiet": { "text": "quiet" },
+  "furniture": { "text": "furniture" },
+  "game": { "text": "game" },
+  "turn-on-the-tv": { "text": "Turn on the television.", "variants": ["Turn on the TV."] },
+  "come-sit-with-me": { "text": "Come, sit with me!" },
+  "shall-we-watch-a-movie": { "text": "Shall we watch a movie?" },
+  "lets-hang-the-picture": { "text": "Let's hang the picture!" },
+  "the-curtains-hang-over-the-window": { "text": "The curtains hang in front of the window." },
+  "open-the-window-fresh-air": { "text": "Open the window." }
  }
 }

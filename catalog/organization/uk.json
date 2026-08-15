@@ -2,89 +2,28 @@
  "title": "Записи та терміни",
  "subtitle": "Щоб нічого не загубилося.",
  "words": {
-  "appointment": {
-   "text": "запис на прийом",
-   "synonyms": [
-    "візит"
-   ],
-   "grammar": {
-    "plural": "записи на прийом"
-   }
-  },
-  "date": {
-   "text": "дата"
-  },
-  "opening-hours": {
-   "text": "години роботи",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "deadline": {
-   "text": "строк",
-   "synonyms": [
-    "термін"
-   ]
-  },
-  "confirmation": {
-   "text": "підтвердження",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "plan": {
-   "text": "план"
-  },
-  "waiting-time": {
-   "text": "час очікування"
-  },
-  "arrange": {
-   "text": "домовлятися"
-  },
-  "confirm": {
-   "text": "підтверджувати"
-  },
-  "cancel": {
-   "text": "скасовувати"
-  },
-  "postpone": {
-   "text": "переносити"
-  },
-  "register": {
-   "text": "реєструватися"
-  },
-  "be-late": {
-   "text": "запізнюватися"
-  },
-  "punctual": {
-   "text": "пунктуальний"
-  },
-  "urgent": {
-   "text": "терміновий"
-  },
-  "list": {
-   "text": "список"
-  },
-  "to-finish": {
-   "text": "закінчувати"
-  },
-  "i-would-like-to-arrange-an-appointment": {
-   "text": "Я хочу записатися на прийом."
-  },
-  "i-have-to-cancel-the-appointment": {
-   "text": "Я мушу скасувати запис на прийом."
-  },
-  "the-deadline-is-tomorrow": {
-   "text": "Строк закінчується завтра."
-  },
-  "what-are-the-opening-hours": {
-   "text": "Які години роботи?"
-  },
-  "can-we-postpone-the-appointment": {
-   "text": "Чи можемо перенести запис на прийом?"
-  },
-  "i-have-an-appointment-at-ten": {
-   "text": "У мене запис на десяту годину."
-  }
+  "appointment": { "text": "запис на прийом", "synonyms": ["візит"], "grammar": { "plural": "записи на прийом" } },
+  "date": { "text": "дата" },
+  "opening-hours": { "text": "години роботи", "grammar": { "plural": "only" } },
+  "deadline": { "text": "строк", "synonyms": ["термін"] },
+  "confirmation": { "text": "підтвердження", "grammar": { "plural": "=" } },
+  "plan": { "text": "план" },
+  "waiting-time": { "text": "час очікування" },
+  "arrange": { "text": "домовлятися" },
+  "confirm": { "text": "підтверджувати" },
+  "cancel": { "text": "скасовувати" },
+  "postpone": { "text": "переносити" },
+  "register": { "text": "реєструватися" },
+  "be-late": { "text": "запізнюватися" },
+  "punctual": { "text": "пунктуальний" },
+  "urgent": { "text": "терміновий" },
+  "list": { "text": "список" },
+  "to-finish": { "text": "закінчувати" },
+  "i-would-like-to-arrange-an-appointment": { "text": "Я хочу записатися на прийом." },
+  "i-have-to-cancel-the-appointment": { "text": "Я мушу скасувати запис на прийом." },
+  "the-deadline-is-tomorrow": { "text": "Строк закінчується завтра." },
+  "what-are-the-opening-hours": { "text": "Які години роботи?" },
+  "can-we-postpone-the-appointment": { "text": "Чи можемо перенести запис на прийом?" },
+  "i-have-an-appointment-at-ten": { "text": "У мене запис на десяту годину." }
  }
 }

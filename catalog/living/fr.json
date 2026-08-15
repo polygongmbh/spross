@@ -2,262 +2,96 @@
  "title": "Le salon",
  "subtitle": "L'heure de se détendre.",
  "words": {
-  "sofa": {
-   "text": "canapé",
-   "variants": [
-    "sofa"
-   ],
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "sofa": { "text": "canapé", "variants": ["sofa"], "grammar": { "gender": "le" } },
   "dining-table": {
    "text": "table à manger",
-   "variants": [
-    "table de salle à manger"
-   ],
-   "grammar": {
-    "gender": "la",
-    "plural": "tables à manger"
-   }
+   "variants": ["table de salle à manger"],
+   "grammar": { "gender": "la", "plural": "tables à manger" }
   },
-  "chair": {
-   "text": "chaise",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "chair": { "text": "chaise", "grammar": { "gender": "la" } },
   "tv": {
    "text": "télévision",
-   "synonyms": [
-    "téléviseur"
-   ],
-   "variants": [
-    "télé"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
+   "synonyms": ["téléviseur"],
+   "variants": ["télé"],
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "im Alltag fast immer la télé; le téléviseur ist das Gerät, la télévision auch das Programm."
    }
   },
-  "remote": {
-   "text": "télécommande",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "shelf": {
-   "text": "étagère",
-   "variants": [
-    "l'étagère"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "plant": {
-   "text": "plante",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "window": {
-   "text": "fenêtre",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "curtain": {
-   "text": "rideau",
-   "grammar": {
-    "gender": "le",
-    "plural": "-x"
-   }
-  },
-  "carpet": {
-   "text": "tapis",
-   "grammar": {
-    "gender": "le",
-    "plural": "="
-   }
-  },
-  "lamp": {
-   "text": "lampe",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "remote": { "text": "télécommande", "grammar": { "gender": "la" } },
+  "shelf": { "text": "étagère", "variants": ["l'étagère"], "grammar": { "gender": "l'" } },
+  "plant": { "text": "plante", "grammar": { "gender": "la" } },
+  "window": { "text": "fenêtre", "grammar": { "gender": "la" } },
+  "curtain": { "text": "rideau", "grammar": { "gender": "le", "plural": "-x" } },
+  "carpet": { "text": "tapis", "grammar": { "gender": "le", "plural": "=" } },
+  "lamp": { "text": "lampe", "grammar": { "gender": "la" } },
   "picture": {
    "text": "tableau",
-   "grammar": {
-    "gender": "le",
-    "plural": "-x"
-   },
-   "notes": {
-    "de": "le tableau ist das Bild an der Wand — und in der Schule die Tafel."
-   }
+   "grammar": { "gender": "le", "plural": "-x" },
+   "notes": { "de": "le tableau ist das Bild an der Wand — und in der Schule die Tafel." }
   },
-  "watch-tv": {
-   "text": "regarder la télévision",
-   "variants": [
-    "regarder la télé"
-   ]
-  },
-  "read": {
-   "text": "lire"
-  },
-  "relax": {
-   "text": "se détendre",
-   "variants": [
-    "se relaxer"
-   ]
-  },
-  "tidy-up": {
-   "text": "ranger"
-  },
+  "watch-tv": { "text": "regarder la télévision", "variants": ["regarder la télé"] },
+  "read": { "text": "lire" },
+  "relax": { "text": "se détendre", "variants": ["se relaxer"] },
+  "tidy-up": { "text": "ranger" },
   "listen-to-music": {
    "text": "écouter de la musique",
-   "variants": [
-    "écouter la musique"
-   ],
-   "notes": {
-    "de": "vor unbestimmter Menge steht der Teilungsartikel: écouter de la musique."
-   }
+   "variants": ["écouter la musique"],
+   "notes": { "de": "vor unbestimmter Menge steht der Teilungsartikel: écouter de la musique." }
   },
-  "water-plants": {
-   "text": "arroser les plantes"
-  },
-  "play": {
-   "text": "jouer"
-  },
+  "water-plants": { "text": "arroser les plantes" },
+  "play": { "text": "jouer" },
   "talk": {
    "text": "bavarder",
-   "variants": [
-    "discuter",
-    "parler"
-   ],
-   "notes": {
-    "de": "bavarder = plaudern; sprechen allgemein ist parler, ein Gespräch führen discuter."
-   }
+   "variants": ["discuter", "parler"],
+   "notes": { "de": "bavarder = plaudern; sprechen allgemein ist parler, ein Gespräch führen discuter." }
   },
   "room": {
    "text": "pièce",
-   "grammar": {
-    "gender": "la"
-   },
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "la pièce ist der Raum in der Wohnung; la chambre ist das Schlafzimmer, la salle ein Saal."
    }
   },
-  "newspaper": {
-   "text": "journal",
-   "grammar": {
-    "gender": "le",
-    "plural": "journaux"
-   }
-  },
-  "light": {
-   "text": "lumière",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "music": {
-   "text": "musique",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "wall": {
-   "text": "mur",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "movie": {
-   "text": "film",
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "newspaper": { "text": "journal", "grammar": { "gender": "le", "plural": "journaux" } },
+  "light": { "text": "lumière", "grammar": { "gender": "la" } },
+  "music": { "text": "musique", "grammar": { "gender": "la" } },
+  "wall": { "text": "mur", "grammar": { "gender": "le" } },
+  "movie": { "text": "film", "grammar": { "gender": "le" } },
   "sit": {
    "text": "s'asseoir",
-   "variants": [
-    "être assis"
-   ],
-   "notes": {
-    "de": "s'asseoir = sich hinsetzen; sitzen als Zustand heißt être assis."
-   }
+   "variants": ["être assis"],
+   "notes": { "de": "s'asseoir = sich hinsetzen; sitzen als Zustand heißt être assis." }
   },
-  "laugh": {
-   "text": "rire"
-  },
+  "laugh": { "text": "rire" },
   "quiet": {
    "text": "bas",
-   "synonyms": [
-    "silencieux"
-   ],
-   "variants": [
-    "doucement",
-    "basse"
-   ],
+   "synonyms": ["silencieux"],
+   "variants": ["doucement", "basse"],
    "notes": {
     "de": "leise sprechen oder stellen = parler bas, mettre moins fort; ein leises Zimmer oder Gerät ist silencieux."
    }
   },
   "furniture": {
    "text": "meubles",
-   "grammar": {
-    "gender": "les"
-   },
-   "notes": {
-    "de": "meist im Plural: les meubles; un meuble ist ein einzelnes Möbelstück."
-   }
+   "grammar": { "gender": "les" },
+   "notes": { "de": "meist im Plural: les meubles; un meuble ist ein einzelnes Möbelstück." }
   },
-  "game": {
-   "text": "jeu",
-   "grammar": {
-    "gender": "le",
-    "plural": "-x"
-   }
-  },
-  "turn-on-the-tv": {
-   "text": "Allume la télévision.",
-   "variants": [
-    "Allume la télé.",
-    "Mets la télé."
-   ]
-  },
+  "game": { "text": "jeu", "grammar": { "gender": "le", "plural": "-x" } },
+  "turn-on-the-tv": { "text": "Allume la télévision.", "variants": ["Allume la télé.", "Mets la télé."] },
   "come-sit-with-me": {
    "text": "Viens, assieds-toi à côté de moi !",
-   "variants": [
-    "Viens t'asseoir à côté de moi !",
-    "Viens, assieds-toi près de moi !"
-   ]
+   "variants": ["Viens t'asseoir à côté de moi !", "Viens, assieds-toi près de moi !"]
   },
   "shall-we-watch-a-movie": {
    "text": "On regarde un film ?",
-   "variants": [
-    "Et si on regardait un film ?",
-    "Tu veux regarder un film ?"
-   ]
+   "variants": ["Et si on regardait un film ?", "Tu veux regarder un film ?"]
   },
-  "lets-hang-the-picture": {
-   "text": "Accrochons le tableau !",
-   "variants": [
-    "On accroche le tableau ?"
-   ]
-  },
+  "lets-hang-the-picture": { "text": "Accrochons le tableau !", "variants": ["On accroche le tableau ?"] },
   "the-curtains-hang-over-the-window": {
    "text": "Les rideaux pendent devant la fenêtre.",
-   "variants": [
-    "Les rideaux sont devant la fenêtre."
-   ]
+   "variants": ["Les rideaux sont devant la fenêtre."]
   },
-  "open-the-window-fresh-air": {
-   "text": "Ouvre la fenêtre."
-  }
+  "open-the-window-fresh-air": { "text": "Ouvre la fenêtre." }
  }
 }

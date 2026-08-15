@@ -2,150 +2,47 @@
  "title": "Work",
  "subtitle": "Good luck on the job.",
  "words": {
-  "work": {
-   "text": "work"
-  },
-  "job-application": {
-   "text": "job application"
-  },
-  "cv": {
-   "text": "résumé",
-   "synonyms": [
-    "curriculum vitae"
-   ],
-   "variants": [
-    "resume",
-    "CV"
-   ]
-  },
-  "contract": {
-   "text": "contract"
-  },
-  "salary": {
-   "text": "salary",
-   "grammar": {
-    "plural": "salaries"
-   }
-  },
-  "colleague": {
-   "text": "colleague"
-  },
-  "boss": {
-   "text": "boss",
-   "grammar": {
-    "plural": "bosses"
-   }
-  },
-  "shift": {
-   "text": "shift"
-  },
-  "vacation": {
-   "text": "vacation",
-   "synonyms": [
-    "holiday"
-   ]
-  },
-  "company": {
-   "text": "company",
-   "grammar": {
-    "plural": "companies"
-   }
-  },
-  "apply": {
-   "text": "to apply"
-  },
-  "introduce-oneself": {
-   "text": "to introduce oneself"
-  },
-  "earn": {
-   "text": "to earn"
-  },
-  "start": {
-   "text": "to start"
-  },
-  "leave": {
-   "text": "to leave"
-  },
-  "quit": {
-   "text": "to quit"
-  },
-  "hire": {
-   "text": "to hire"
-  },
-  "to-help": {
-   "text": "to help"
-  },
-  "work-overtime": {
-   "text": "to work overtime"
-  },
-  "profession": {
-   "text": "profession"
-  },
-  "interview": {
-   "text": "job interview"
-  },
-  "working-hours": {
-   "text": "working hours",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "full-time": {
-   "text": "full-time"
-  },
-  "part-time": {
-   "text": "part-time"
-  },
-  "tax": {
-   "text": "tax",
-   "grammar": {
-    "plural": "taxes"
-   }
-  },
-  "work-permit": {
-   "text": "work permit"
-  },
-  "training": {
-   "text": "vocational training"
-  },
-  "notice": {
-   "text": "notice of termination"
-  },
-  "worker": {
-   "text": "worker"
-  },
-  "employer": {
-   "text": "employer"
-  },
-  "customer": {
-   "text": "customer"
-  },
-  "tomorrow-i-have-a-job-interview": {
-   "text": "Tomorrow I will introduce myself at the company."
-  },
-  "my-shift-starts-at-six": {
-   "text": "My shift starts at six."
-  },
+  "work": { "text": "work" },
+  "job-application": { "text": "job application" },
+  "cv": { "text": "résumé", "synonyms": ["curriculum vitae"], "variants": ["resume", "CV"] },
+  "contract": { "text": "contract" },
+  "salary": { "text": "salary", "grammar": { "plural": "salaries" } },
+  "colleague": { "text": "colleague" },
+  "boss": { "text": "boss", "grammar": { "plural": "bosses" } },
+  "shift": { "text": "shift" },
+  "vacation": { "text": "vacation", "synonyms": ["holiday"] },
+  "company": { "text": "company", "grammar": { "plural": "companies" } },
+  "apply": { "text": "to apply" },
+  "introduce-oneself": { "text": "to introduce oneself" },
+  "earn": { "text": "to earn" },
+  "start": { "text": "to start" },
+  "leave": { "text": "to leave" },
+  "quit": { "text": "to quit" },
+  "hire": { "text": "to hire" },
+  "to-help": { "text": "to help" },
+  "work-overtime": { "text": "to work overtime" },
+  "profession": { "text": "profession" },
+  "interview": { "text": "job interview" },
+  "working-hours": { "text": "working hours", "grammar": { "plural": "only" } },
+  "full-time": { "text": "full-time" },
+  "part-time": { "text": "part-time" },
+  "tax": { "text": "tax", "grammar": { "plural": "taxes" } },
+  "work-permit": { "text": "work permit" },
+  "training": { "text": "vocational training" },
+  "notice": { "text": "notice of termination" },
+  "worker": { "text": "worker" },
+  "employer": { "text": "employer" },
+  "customer": { "text": "customer" },
+  "tomorrow-i-have-a-job-interview": { "text": "Tomorrow I will introduce myself at the company." },
+  "my-shift-starts-at-six": { "text": "My shift starts at six." },
   "ill-send-the-doctors-note-right-away": {
    "text": "I'll send you the doctor's note right away.",
-   "variants": [
-    "I'll send you the sick note right away."
-   ]
+   "variants": ["I'll send you the sick note right away."]
   },
-  "have-a-nice-evening-off": {
-   "text": "Have a nice evening off!"
-  },
-  "can-you-help-me-briefly": {
-   "text": "Can you help me briefly?"
-  },
-  "i-want-vacation-next-week": {
-   "text": "I would like to take vacation next week."
-  },
-  "read-the-contract": {
-   "text": "Read the contract!"
-  },
-  "whats-the-salary": {
-   "text": "What's the salary?"
-  }
+  "have-a-nice-evening-off": { "text": "Have a nice evening off!" },
+  "can-you-help-me-briefly": { "text": "Can you help me briefly?" },
+  "i-want-vacation-next-week": { "text": "I would like to take vacation next week." },
+  "read-the-contract": { "text": "Read the contract!" },
+  "whats-the-salary": { "text": "What's the salary?" }
  }
 }

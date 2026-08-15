@@ -2,131 +2,40 @@
  "title": "The bedroom",
  "subtitle": "Time for bed.",
  "words": {
-  "bed": {
-   "text": "bed"
-  },
-  "mattress": {
-   "text": "mattress",
-   "grammar": {
-    "plural": "mattresses"
-   }
-  },
-  "pillow": {
-   "text": "pillow"
-  },
-  "blanket": {
-   "text": "blanket"
-  },
-  "bedding": {
-   "text": "bedding"
-  },
-  "wardrobe": {
-   "text": "wardrobe"
-  },
-  "alarm-clock": {
-   "text": "alarm clock"
-  },
-  "nightstand": {
-   "text": "nightstand"
-  },
-  "pajamas": {
-   "text": "pajamas",
-   "grammar": {
-    "plural": "only"
-   },
-   "variants": [
-    "pyjamas"
-   ]
-  },
-  "sock": {
-   "text": "sock"
-  },
-  "pants": {
-   "text": "pants",
-   "synonyms": [
-    "trousers"
-   ],
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "t-shirt": {
-   "text": "t-shirt"
-  },
-  "sleep": {
-   "text": "to sleep"
-  },
-  "wake-up": {
-   "text": "to wake up"
-  },
-  "dream": {
-   "text": "to dream"
-  },
-  "get-up": {
-   "text": "to get up"
-  },
-  "get-undressed": {
-   "text": "to get undressed"
-  },
-  "cuddle": {
-   "text": "to cuddle"
-  },
-  "yawn": {
-   "text": "to yawn"
-  },
-  "snore": {
-   "text": "to snore"
-  },
-  "clothes": {
-   "text": "clothes",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "shirt": {
-   "text": "shirt"
-  },
-  "dress": {
-   "text": "dress",
-   "grammar": {
-    "plural": "dresses"
-   }
-  },
-  "sweater": {
-   "text": "sweater"
-  },
-  "underwear": {
-   "text": "underwear"
-  },
-  "belt": {
-   "text": "belt"
-  },
-  "make-bed": {
-   "text": "to make the bed"
-  },
-  "soft": {
-   "text": "soft"
-  },
-  "good-night-sleep-well": {
-   "text": "Good night, sleep well!"
-  },
-  "good-morning-my-love": {
-   "text": "Good morning, my love!"
-  },
-  "im-tired": {
-   "text": "I'm tired."
-  },
-  "did-you-set-the-alarm": {
-   "text": "Did you set the alarm?"
-  },
-  "five-more-minutes": {
-   "text": "Five more minutes…"
-  },
-  "turn-off-the-light": {
-   "text": "Turn off the light."
-  },
-  "i-love-you": {
-   "text": "I love you."
-  }
+  "bed": { "text": "bed" },
+  "mattress": { "text": "mattress", "grammar": { "plural": "mattresses" } },
+  "pillow": { "text": "pillow" },
+  "blanket": { "text": "blanket" },
+  "bedding": { "text": "bedding" },
+  "wardrobe": { "text": "wardrobe" },
+  "alarm-clock": { "text": "alarm clock" },
+  "nightstand": { "text": "nightstand" },
+  "pajamas": { "text": "pajamas", "grammar": { "plural": "only" }, "variants": ["pyjamas"] },
+  "sock": { "text": "sock" },
+  "pants": { "text": "pants", "synonyms": ["trousers"], "grammar": { "plural": "only" } },
+  "t-shirt": { "text": "t-shirt" },
+  "sleep": { "text": "to sleep" },
+  "wake-up": { "text": "to wake up" },
+  "dream": { "text": "to dream" },
+  "get-up": { "text": "to get up" },
+  "get-undressed": { "text": "to get undressed" },
+  "cuddle": { "text": "to cuddle" },
+  "yawn": { "text": "to yawn" },
+  "snore": { "text": "to snore" },
+  "clothes": { "text": "clothes", "grammar": { "plural": "only" } },
+  "shirt": { "text": "shirt" },
+  "dress": { "text": "dress", "grammar": { "plural": "dresses" } },
+  "sweater": { "text": "sweater" },
+  "underwear": { "text": "underwear" },
+  "belt": { "text": "belt" },
+  "make-bed": { "text": "to make the bed" },
+  "soft": { "text": "soft" },
+  "good-night-sleep-well": { "text": "Good night, sleep well!" },
+  "good-morning-my-love": { "text": "Good morning, my love!" },
+  "im-tired": { "text": "I'm tired." },
+  "did-you-set-the-alarm": { "text": "Did you set the alarm?" },
+  "five-more-minutes": { "text": "Five more minutes…" },
+  "turn-off-the-light": { "text": "Turn off the light." },
+  "i-love-you": { "text": "I love you." }
  }
 }

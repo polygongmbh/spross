@@ -2,188 +2,37 @@
  "title": "Die Schule",
  "subtitle": "Ein ganz normaler Schultag.",
  "words": {
-  "school": {
-   "text": "Schule",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "classroom": {
-   "text": "Klassenzimmer",
-   "grammar": {
-    "gender": "das",
-    "plural": "="
-   }
-  },
-  "teacher": {
-   "text": "Lehrer",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "teacher-f": {
-   "text": "Lehrerin",
-   "grammar": {
-    "gender": "die",
-    "plural": "-nen"
-   }
-  },
-  "board": {
-   "text": "Tafel",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "exercise-book": {
-   "text": "Heft",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
-  },
-  "homework": {
-   "text": "Hausaufgabe",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "exam": {
-   "text": "Prüfung",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "break": {
-   "text": "Pause",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "pass-exam": {
-   "text": "die Prüfung bestehen"
-  },
-  "to-practice": {
-   "text": "üben"
-  },
-  "raise-hand": {
-   "text": "die Hand heben",
-   "variants": [
-    "sich melden"
-   ]
-  },
-  "pupil": {
-   "text": "Schüler",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "pupil-f": {
-   "text": "Schülerin",
-   "grammar": {
-    "gender": "die",
-    "plural": "-nen"
-   }
-  },
-  "course": {
-   "text": "Kurs",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "lesson": {
-   "text": "Unterricht",
-   "grammar": {
-    "gender": "der"
-   }
-  },
-  "course-book": {
-   "text": "Kursbuch",
-   "grammar": {
-    "gender": "das",
-    "plural": "Kursbücher"
-   }
-  },
-  "page": {
-   "text": "Seite",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "grade": {
-   "text": "Note",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "correct": {
-   "text": "korrigieren"
-  },
-  "book": {
-   "text": "Buch",
-   "grammar": {
-    "gender": "das",
-    "plural": "Bücher"
-   }
-  },
-  "university": {
-   "text": "Universität",
-   "variants": [
-    "Uni"
-   ],
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "class-schedule": {
-   "text": "Stundenplan",
-   "grammar": {
-    "gender": "der",
-    "plural": "Stundenpläne"
-   }
-  },
-  "to-count": {
-   "text": "zählen"
-  },
-  "to-try": {
-   "text": "versuchen"
-  },
-  "do-the-homework": {
-   "text": "Ich mache die Hausaufgaben."
-  },
-  "the-exam-is-tomorrow": {
-   "text": "Morgen ist die Prüfung."
-  },
-  "look-at-the-class-schedule": {
-   "text": "Schau auf den Stundenplan.",
-   "variants": [
-    "Schauen Sie auf den Stundenplan."
-   ]
-  },
-  "the-break-is-over": {
-   "text": "Die Pause ist vorbei."
-  },
-  "ask-the-teacher": {
-   "text": "Frag den Lehrer.",
-   "variants": [
-    "Fragen Sie den Lehrer."
-   ]
-  },
-  "i-have-a-good-grade": {
-   "text": "Ich habe eine gute Note."
-  },
-  "we-go-to-the-classroom": {
-   "text": "Wir gehen ins Klassenzimmer."
-  }
+  "school": { "text": "Schule", "grammar": { "gender": "die", "plural": "-n" } },
+  "classroom": { "text": "Klassenzimmer", "grammar": { "gender": "das", "plural": "=" } },
+  "teacher": { "text": "Lehrer", "grammar": { "gender": "der", "plural": "=" } },
+  "teacher-f": { "text": "Lehrerin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "board": { "text": "Tafel", "grammar": { "gender": "die", "plural": "-n" } },
+  "exercise-book": { "text": "Heft", "grammar": { "gender": "das", "plural": "-e" } },
+  "homework": { "text": "Hausaufgabe", "grammar": { "gender": "die", "plural": "-n" } },
+  "exam": { "text": "Prüfung", "grammar": { "gender": "die", "plural": "-en" } },
+  "break": { "text": "Pause", "grammar": { "gender": "die", "plural": "-n" } },
+  "pass-exam": { "text": "die Prüfung bestehen" },
+  "to-practice": { "text": "üben" },
+  "raise-hand": { "text": "die Hand heben", "variants": ["sich melden"] },
+  "pupil": { "text": "Schüler", "grammar": { "gender": "der", "plural": "=" } },
+  "pupil-f": { "text": "Schülerin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "course": { "text": "Kurs", "grammar": { "gender": "der", "plural": "-e" } },
+  "lesson": { "text": "Unterricht", "grammar": { "gender": "der" } },
+  "course-book": { "text": "Kursbuch", "grammar": { "gender": "das", "plural": "Kursbücher" } },
+  "page": { "text": "Seite", "grammar": { "gender": "die", "plural": "-n" } },
+  "grade": { "text": "Note", "grammar": { "gender": "die", "plural": "-n" } },
+  "correct": { "text": "korrigieren" },
+  "book": { "text": "Buch", "grammar": { "gender": "das", "plural": "Bücher" } },
+  "university": { "text": "Universität", "variants": ["Uni"], "grammar": { "gender": "die", "plural": "-en" } },
+  "class-schedule": { "text": "Stundenplan", "grammar": { "gender": "der", "plural": "Stundenpläne" } },
+  "to-count": { "text": "zählen" },
+  "to-try": { "text": "versuchen" },
+  "do-the-homework": { "text": "Ich mache die Hausaufgaben." },
+  "the-exam-is-tomorrow": { "text": "Morgen ist die Prüfung." },
+  "look-at-the-class-schedule": { "text": "Schau auf den Stundenplan.", "variants": ["Schauen Sie auf den Stundenplan."] },
+  "the-break-is-over": { "text": "Die Pause ist vorbei." },
+  "ask-the-teacher": { "text": "Frag den Lehrer.", "variants": ["Fragen Sie den Lehrer."] },
+  "i-have-a-good-grade": { "text": "Ich habe eine gute Note." },
+  "we-go-to-the-classroom": { "text": "Wir gehen ins Klassenzimmer." }
  }
 }

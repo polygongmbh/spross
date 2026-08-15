@@ -1,72 +1,217 @@
 {
- "germany": {"text": "Ujerumani", "nationality": {"text": "Wajerumani", "variants": ["Mjerumani"]}},
- "austria": {"text": "Austria", "nationality": {"text": "Waaustria", "variants": ["Mwaustria"]}},
- "switzerland": {"text": "Uswisi", "variants": ["Uswizi"], "nationality": {"text": "Waswisi", "variants": ["Mswisi", "Mswizi", "Waswizi"]}},
- "united-kingdom": {"text": "Uingereza", "variants": ["Ufalme wa Muungano"], "nationality": {"text": "Waingereza", "variants": ["Mwingereza"]}},
- "usa": {"text": "Marekani", "nationality": {"text": "Wamarekani", "variants": ["Mmarekani"]}},
- "spain": {"text": "Uhispania", "nationality": {"text": "Wahispania", "variants": ["Mhispania"]}},
- "mexico": {"text": "Meksiko", "nationality": {"text": "Wameksiko", "variants": ["Mmeksiko"]}},
- "kenya": {"text": "Kenya", "nationality": {"text": "Wakenya", "variants": ["Mkenya"]}},
- "tanzania": {"text": "Tanzania", "nationality": {"text": "Watanzania", "variants": ["Mtanzania"]}},
- "ukraine": {"text": "Ukraini", "nationality": {"text": "Wakraini", "variants": ["Mkraini"]}},
- "france": {"text": "Ufaransa", "nationality": {"text": "Wafaransa", "variants": ["Mfaransa"]}},
- "italy": {"text": "Italia", "nationality": {"text": "Waitaliano", "variants": ["Mwitaliano", "Mwitalia", "Waitalia"]}},
- "portugal": {"text": "Ureno", "variants": ["Portugal"], "nationality": {"text": "Wareno", "variants": ["Mreno"]}},
- "brazil": {"text": "Brazili", "variants": ["Brazil"], "nationality": {"text": "Wabrazili", "variants": ["Mbrazili"]}},
- "netherlands": {"text": "Uholanzi", "nationality": {"text": "Waholanzi", "variants": ["Mholanzi"]}},
- "belgium": {"text": "Ubelgiji", "nationality": {"text": "Wabelgiji", "variants": ["Mbelgiji"]}},
- "poland": {"text": "Polandi", "nationality": {"text": "Wapoli", "variants": ["Mpoli", "Mpolandi", "Wapolandi"]}},
- "turkey": {"text": "Uturuki", "nationality": {"text": "Waturuki", "variants": ["Mturuki"]}},
- "greece": {"text": "Ugiriki", "nationality": {"text": "Wagiriki", "variants": ["Mgiriki"]}},
- "sweden": {"text": "Uswidi", "nationality": {"text": "Waswidi", "variants": ["Mswidi"]}},
- "czechia": {"text": "Ucheki", "variants": ["Jamhuri ya Cheki"], "nationality": {"text": "Wacheki", "variants": ["Mcheki"]}},
- "russia": {"text": "Urusi", "nationality": {"text": "Warusi", "variants": ["Mrusi"]}},
- "china": {"text": "Uchina", "variants": ["China", "Jamhuri ya Watu wa China"], "nationality": {"text": "Wachina", "variants": ["Mchina"]}},
- "japan": {"text": "Ujapani", "nationality": {"text": "Wajapani", "variants": ["Mjapani"]}},
- "india": {"text": "Uhindi", "variants": ["India"], "nationality": {"text": "Wahindi", "variants": ["Mhindi"]}},
- "argentina": {"text": "Argentina", "variants": ["Ajentina"], "nationality": {"text": "Waajentina", "variants": ["Mwajentina"]}},
- "canada": {"text": "Kanada", "nationality": {"text": "Wakanada", "variants": ["Mkanada"]}},
- "egypt": {"text": "Misri", "nationality": {"text": "Wamisri", "variants": ["Mmisri", "Mmisiri", "Wamisiri"]}},
- "morocco": {"text": "Moroko", "variants": ["Maroko"], "nationality": {"text": "Wamoroko", "variants": ["Mmoroko"]}},
- "colombia": {"text": "Kolombia", "variants": ["Kolumbia"], "nationality": {"text": "Wakolombia", "variants": ["Mkolombia"]}},
- "ireland": {"text": "Ayalandi", "variants": ["Eire", "Ireland"], "nationality": {"text": "Waayalandi", "variants": ["Mwayalandi"]}},
- "norway": {"text": "Norwei", "nationality": {"text": "Wanorwe", "variants": ["Mnorwe"]}},
- "denmark": {"text": "Udeni", "variants": ["Denmark"], "nationality": {"text": "Wadeni", "variants": ["Mdeni"]}},
- "finland": {"text": "Ufini", "nationality": {"text": "Wafini", "variants": ["Mfini"]}},
- "hungary": {"text": "Hungaria", "nationality": {"text": "Wahungaria", "variants": ["Mhungaria"]}},
- "romania": {"text": "Romania", "variants": ["Rumania"], "nationality": {"text": "Waromania", "variants": ["Mromania"]}},
- "bulgaria": {"text": "Bulgaria", "nationality": {"text": "Wabulgaria", "variants": ["Mbulgaria"]}},
- "croatia": {"text": "Kroatia", "nationality": {"text": "Wakroatia", "variants": ["Mkroatia", "Mkroasia", "Wakroasia"]}},
- "serbia": {"text": "Serbia", "nationality": {"text": "Waserbia", "variants": ["Mserbia"]}},
- "slovakia": {"text": "Slovakia", "nationality": {"text": "Waslovaki", "variants": ["Mslovaki"]}},
- "luxembourg": {"text": "Luxemburg", "variants": ["Lasembagi"], "nationality": {"text": "Walasembagi", "variants": ["Mlasembagi", "Mluxemburg", "Waluxemburg"]}},
- "south-korea": {"text": "Korea Kusini", "variants": ["Korea ya Kusini"], "nationality": {"text": "Wakorea", "variants": ["Mkorea"]}},
- "vietnam": {"text": "Vietnam", "variants": ["Vietinamu"], "nationality": {"text": "Wavietnamu", "variants": ["Mvietnamu"]}},
- "thailand": {"text": "Uthai", "variants": ["Thailand", "Tailandi"], "nationality": {"text": "Watai", "variants": ["Mtai"]}},
- "indonesia": {"text": "Indonesia", "nationality": {"text": "Waindonesia", "variants": ["Mwindonesia"]}},
- "israel": {"text": "Israeli", "variants": ["Israel"], "nationality": {"text": "Waisraeli", "variants": ["Mwisraeli"]}},
- "iran": {"text": "Irani", "variants": ["Iran", "Uajemi"], "nationality": {"text": "Wairani", "variants": ["Mwirani"]}},
- "saudi-arabia": {"text": "Saudia", "variants": ["Saudi Arabia", "Uarabuni Saudi"], "nationality": {"text": "Wasaudia", "variants": ["Msaudia"]}},
- "singapore": {"text": "Singapuri", "variants": ["Singapoo"], "nationality": {"text": "Wasingapuri", "variants": ["Msingapuri", "Msingapoo", "Wasingapoo"]}},
- "nigeria": {"text": "Nigeria", "nationality": {"text": "Wanijeria", "variants": ["Mnijeria", "Mnigeria", "Wanigeria"]}},
- "ethiopia": {"text": "Ethiopia", "variants": ["Uhabeshi"], "nationality": {"text": "Waethiopia", "variants": ["Muethiopia", "Mwethiopia", "Mhabeshi", "Wahabeshi"]}},
- "south-africa": {"text": "Afrika Kusini", "nationality": {"text": "Waafrika Kusini", "variants": ["Mwafrika Kusini"]}},
- "ghana": {"text": "Ghana", "variants": ["Gana"], "nationality": {"text": "Waghana", "variants": ["Mghana"]}},
- "uganda": {"text": "Uganda", "nationality": {"text": "Waganda", "variants": ["Mganda", "Muganda"]}},
- "rwanda": {"text": "Rwanda", "nationality": {"text": "Wanyarwanda", "variants": ["Mnyarwanda"]}},
- "senegal": {"text": "Senegal", "variants": ["Senegali"], "nationality": {"text": "Wasenegali", "variants": ["Msenegali"]}},
- "algeria": {"text": "Aljeria", "variants": ["Algeria"], "nationality": {"text": "Waaljeria", "variants": ["Mwaljeria"]}},
- "tunisia": {"text": "Tunisia", "nationality": {"text": "Watunisia", "variants": ["Mtunisia"]}},
- "dr-congo": {"text": "Jamhuri ya Kidemokrasia ya Kongo", "variants": ["JKK", "Kongo-Kinshasa"], "nationality": {"text": "Wakongo", "variants": ["Mkongo"]}},
- "mozambique": {"text": "Msumbiji", "nationality": {"text": "Wamsumbiji", "variants": ["Mumsumbiji", "Mmsumbiji"]}},
- "angola": {"text": "Angola", "nationality": {"text": "Waangola", "variants": ["Mwangola"]}},
- "chile": {"text": "Chile", "nationality": {"text": "Wachile", "variants": ["Mchile"]}},
- "peru": {"text": "Peru", "variants": ["Peruu"], "nationality": {"text": "Waperuu", "variants": ["Mperuu"]}},
- "cuba": {"text": "Kuba", "nationality": {"text": "Wakuba", "variants": ["Mkuba"]}},
- "venezuela": {"text": "Venezuela", "nationality": {"text": "Wavenezuela", "variants": ["Mvenezuela"]}},
- "ecuador": {"text": "Ekuador", "variants": ["Ekwado"], "nationality": {"text": "Waekwado", "variants": ["Mwekwado"]}},
- "uruguay": {"text": "Uruguay", "variants": ["Urugwai"], "nationality": {"text": "Warugwai", "variants": ["Mrugwai"]}},
- "costa-rica": {"text": "Kosta Rika", "variants": ["Kostarika", "Costa Rica"], "nationality": {"text": "Wakostarika", "variants": ["Mkostarika"]}},
- "australia": {"text": "Australia", "nationality": {"text": "Waaustralia", "variants": ["Mwaustralia"]}},
- "new-zealand": {"text": "Nyuzilandi", "variants": ["New Zealand"], "nationality": {"text": "Wanyuzilandi", "variants": ["Mnyuzilandi"]}}
+ "germany": { "text": "Ujerumani", "nationality": { "text": "Wajerumani", "variants": ["Mjerumani"] } },
+ "austria": { "text": "Austria", "nationality": { "text": "Waaustria", "variants": ["Mwaustria"] } },
+ "switzerland": {
+  "text": "Uswisi",
+  "variants": ["Uswizi"],
+  "nationality": { "text": "Waswisi", "variants": ["Mswisi", "Mswizi", "Waswizi"] }
+ },
+ "united-kingdom": {
+  "text": "Uingereza",
+  "variants": ["Ufalme wa Muungano"],
+  "nationality": { "text": "Waingereza", "variants": ["Mwingereza"] }
+ },
+ "usa": { "text": "Marekani", "nationality": { "text": "Wamarekani", "variants": ["Mmarekani"] } },
+ "spain": { "text": "Uhispania", "nationality": { "text": "Wahispania", "variants": ["Mhispania"] } },
+ "mexico": { "text": "Meksiko", "nationality": { "text": "Wameksiko", "variants": ["Mmeksiko"] } },
+ "kenya": { "text": "Kenya", "nationality": { "text": "Wakenya", "variants": ["Mkenya"] } },
+ "tanzania": { "text": "Tanzania", "nationality": { "text": "Watanzania", "variants": ["Mtanzania"] } },
+ "ukraine": { "text": "Ukraini", "nationality": { "text": "Wakraini", "variants": ["Mkraini"] } },
+ "france": { "text": "Ufaransa", "nationality": { "text": "Wafaransa", "variants": ["Mfaransa"] } },
+ "italy": {
+  "text": "Italia",
+  "nationality": { "text": "Waitaliano", "variants": ["Mwitaliano", "Mwitalia", "Waitalia"] }
+ },
+ "portugal": {
+  "text": "Ureno",
+  "variants": ["Portugal"],
+  "nationality": { "text": "Wareno", "variants": ["Mreno"] }
+ },
+ "brazil": {
+  "text": "Brazili",
+  "variants": ["Brazil"],
+  "nationality": { "text": "Wabrazili", "variants": ["Mbrazili"] }
+ },
+ "netherlands": { "text": "Uholanzi", "nationality": { "text": "Waholanzi", "variants": ["Mholanzi"] } },
+ "belgium": { "text": "Ubelgiji", "nationality": { "text": "Wabelgiji", "variants": ["Mbelgiji"] } },
+ "poland": {
+  "text": "Polandi",
+  "nationality": { "text": "Wapoli", "variants": ["Mpoli", "Mpolandi", "Wapolandi"] }
+ },
+ "turkey": { "text": "Uturuki", "nationality": { "text": "Waturuki", "variants": ["Mturuki"] } },
+ "greece": { "text": "Ugiriki", "nationality": { "text": "Wagiriki", "variants": ["Mgiriki"] } },
+ "sweden": { "text": "Uswidi", "nationality": { "text": "Waswidi", "variants": ["Mswidi"] } },
+ "czechia": {
+  "text": "Ucheki",
+  "variants": ["Jamhuri ya Cheki"],
+  "nationality": { "text": "Wacheki", "variants": ["Mcheki"] }
+ },
+ "russia": { "text": "Urusi", "nationality": { "text": "Warusi", "variants": ["Mrusi"] } },
+ "china": {
+  "text": "Uchina",
+  "variants": ["China", "Jamhuri ya Watu wa China"],
+  "nationality": { "text": "Wachina", "variants": ["Mchina"] }
+ },
+ "japan": { "text": "Ujapani", "nationality": { "text": "Wajapani", "variants": ["Mjapani"] } },
+ "india": {
+  "text": "Uhindi",
+  "variants": ["India"],
+  "nationality": { "text": "Wahindi", "variants": ["Mhindi"] }
+ },
+ "argentina": {
+  "text": "Argentina",
+  "variants": ["Ajentina"],
+  "nationality": { "text": "Waajentina", "variants": ["Mwajentina"] }
+ },
+ "canada": { "text": "Kanada", "nationality": { "text": "Wakanada", "variants": ["Mkanada"] } },
+ "egypt": {
+  "text": "Misri",
+  "nationality": { "text": "Wamisri", "variants": ["Mmisri", "Mmisiri", "Wamisiri"] }
+ },
+ "morocco": {
+  "text": "Moroko",
+  "variants": ["Maroko"],
+  "nationality": { "text": "Wamoroko", "variants": ["Mmoroko"] }
+ },
+ "colombia": {
+  "text": "Kolombia",
+  "variants": ["Kolumbia"],
+  "nationality": { "text": "Wakolombia", "variants": ["Mkolombia"] }
+ },
+ "ireland": {
+  "text": "Ayalandi",
+  "variants": ["Eire", "Ireland"],
+  "nationality": { "text": "Waayalandi", "variants": ["Mwayalandi"] }
+ },
+ "norway": { "text": "Norwei", "nationality": { "text": "Wanorwe", "variants": ["Mnorwe"] } },
+ "denmark": {
+  "text": "Udeni",
+  "variants": ["Denmark"],
+  "nationality": { "text": "Wadeni", "variants": ["Mdeni"] }
+ },
+ "finland": { "text": "Ufini", "nationality": { "text": "Wafini", "variants": ["Mfini"] } },
+ "hungary": { "text": "Hungaria", "nationality": { "text": "Wahungaria", "variants": ["Mhungaria"] } },
+ "romania": {
+  "text": "Romania",
+  "variants": ["Rumania"],
+  "nationality": { "text": "Waromania", "variants": ["Mromania"] }
+ },
+ "bulgaria": { "text": "Bulgaria", "nationality": { "text": "Wabulgaria", "variants": ["Mbulgaria"] } },
+ "croatia": {
+  "text": "Kroatia",
+  "nationality": { "text": "Wakroatia", "variants": ["Mkroatia", "Mkroasia", "Wakroasia"] }
+ },
+ "serbia": { "text": "Serbia", "nationality": { "text": "Waserbia", "variants": ["Mserbia"] } },
+ "slovakia": { "text": "Slovakia", "nationality": { "text": "Waslovaki", "variants": ["Mslovaki"] } },
+ "luxembourg": {
+  "text": "Luxemburg",
+  "variants": ["Lasembagi"],
+  "nationality": { "text": "Walasembagi", "variants": ["Mlasembagi", "Mluxemburg", "Waluxemburg"] }
+ },
+ "south-korea": {
+  "text": "Korea Kusini",
+  "variants": ["Korea ya Kusini"],
+  "nationality": { "text": "Wakorea", "variants": ["Mkorea"] }
+ },
+ "vietnam": {
+  "text": "Vietnam",
+  "variants": ["Vietinamu"],
+  "nationality": { "text": "Wavietnamu", "variants": ["Mvietnamu"] }
+ },
+ "thailand": {
+  "text": "Uthai",
+  "variants": ["Thailand", "Tailandi"],
+  "nationality": { "text": "Watai", "variants": ["Mtai"] }
+ },
+ "indonesia": { "text": "Indonesia", "nationality": { "text": "Waindonesia", "variants": ["Mwindonesia"] } },
+ "israel": {
+  "text": "Israeli",
+  "variants": ["Israel"],
+  "nationality": { "text": "Waisraeli", "variants": ["Mwisraeli"] }
+ },
+ "iran": {
+  "text": "Irani",
+  "variants": ["Iran", "Uajemi"],
+  "nationality": { "text": "Wairani", "variants": ["Mwirani"] }
+ },
+ "saudi-arabia": {
+  "text": "Saudia",
+  "variants": ["Saudi Arabia", "Uarabuni Saudi"],
+  "nationality": { "text": "Wasaudia", "variants": ["Msaudia"] }
+ },
+ "singapore": {
+  "text": "Singapuri",
+  "variants": ["Singapoo"],
+  "nationality": { "text": "Wasingapuri", "variants": ["Msingapuri", "Msingapoo", "Wasingapoo"] }
+ },
+ "nigeria": {
+  "text": "Nigeria",
+  "nationality": { "text": "Wanijeria", "variants": ["Mnijeria", "Mnigeria", "Wanigeria"] }
+ },
+ "ethiopia": {
+  "text": "Ethiopia",
+  "variants": ["Uhabeshi"],
+  "nationality": { "text": "Waethiopia", "variants": ["Muethiopia", "Mwethiopia", "Mhabeshi", "Wahabeshi"] }
+ },
+ "south-africa": {
+  "text": "Afrika Kusini",
+  "nationality": { "text": "Waafrika Kusini", "variants": ["Mwafrika Kusini"] }
+ },
+ "ghana": {
+  "text": "Ghana",
+  "variants": ["Gana"],
+  "nationality": { "text": "Waghana", "variants": ["Mghana"] }
+ },
+ "uganda": { "text": "Uganda", "nationality": { "text": "Waganda", "variants": ["Mganda", "Muganda"] } },
+ "rwanda": { "text": "Rwanda", "nationality": { "text": "Wanyarwanda", "variants": ["Mnyarwanda"] } },
+ "senegal": {
+  "text": "Senegal",
+  "variants": ["Senegali"],
+  "nationality": { "text": "Wasenegali", "variants": ["Msenegali"] }
+ },
+ "algeria": {
+  "text": "Aljeria",
+  "variants": ["Algeria"],
+  "nationality": { "text": "Waaljeria", "variants": ["Mwaljeria"] }
+ },
+ "tunisia": { "text": "Tunisia", "nationality": { "text": "Watunisia", "variants": ["Mtunisia"] } },
+ "dr-congo": {
+  "text": "Jamhuri ya Kidemokrasia ya Kongo",
+  "variants": ["JKK", "Kongo-Kinshasa"],
+  "nationality": { "text": "Wakongo", "variants": ["Mkongo"] }
+ },
+ "mozambique": {
+  "text": "Msumbiji",
+  "nationality": { "text": "Wamsumbiji", "variants": ["Mumsumbiji", "Mmsumbiji"] }
+ },
+ "angola": { "text": "Angola", "nationality": { "text": "Waangola", "variants": ["Mwangola"] } },
+ "chile": { "text": "Chile", "nationality": { "text": "Wachile", "variants": ["Mchile"] } },
+ "peru": {
+  "text": "Peru",
+  "variants": ["Peruu"],
+  "nationality": { "text": "Waperuu", "variants": ["Mperuu"] }
+ },
+ "cuba": { "text": "Kuba", "nationality": { "text": "Wakuba", "variants": ["Mkuba"] } },
+ "venezuela": { "text": "Venezuela", "nationality": { "text": "Wavenezuela", "variants": ["Mvenezuela"] } },
+ "ecuador": {
+  "text": "Ekuador",
+  "variants": ["Ekwado"],
+  "nationality": { "text": "Waekwado", "variants": ["Mwekwado"] }
+ },
+ "uruguay": {
+  "text": "Uruguay",
+  "variants": ["Urugwai"],
+  "nationality": { "text": "Warugwai", "variants": ["Mrugwai"] }
+ },
+ "costa-rica": {
+  "text": "Kosta Rika",
+  "variants": ["Kostarika", "Costa Rica"],
+  "nationality": { "text": "Wakostarika", "variants": ["Mkostarika"] }
+ },
+ "australia": { "text": "Australia", "nationality": { "text": "Waaustralia", "variants": ["Mwaustralia"] } },
+ "new-zealand": {
+  "text": "Nyuzilandi",
+  "variants": ["New Zealand"],
+  "nationality": { "text": "Wanyuzilandi", "variants": ["Mnyuzilandi"] }
+ }
 }

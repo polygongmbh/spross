@@ -1,90 +1,19 @@
 [
- {
-  "slug": "where",
-  "kind": "adjective"
- },
- {
-  "slug": "who",
-  "kind": "adjective"
- },
- {
-  "slug": "what",
-  "kind": "adjective"
- },
- {
-  "slug": "here",
-  "kind": "adjective"
- },
- {
-  "slug": "there",
-  "kind": "adjective"
- },
- {
-  "slug": "this",
-  "kind": "adjective"
- },
- {
-  "slug": "that",
-  "kind": "adjective"
- },
- {
-  "slug": "when",
-  "kind": "adjective"
- },
- {
-  "slug": "why",
-  "kind": "adjective"
- },
- {
-  "slug": "how",
-  "kind": "adjective"
- },
- {
-  "slug": "which",
-  "kind": "adjective"
- },
- {
-  "slug": "how-many",
-  "kind": "adjective"
- },
- {
-  "slug": "where-are-they",
-  "kind": "phrase",
-  "emoji": "🔍",
-  "components": [
-   "where"
-  ]
- },
- {
-  "slug": "who-is-there",
-  "kind": "phrase",
-  "emoji": "🚪",
-  "components": [
-   "who"
-  ]
- },
- {
-  "slug": "do-you-need-this",
-  "kind": "phrase",
-  "emoji": "👉",
-  "components": [
-   "this"
-  ]
- },
- {
-  "slug": "when-does-it-start",
-  "kind": "phrase",
-  "emoji": "⏰",
-  "components": [
-   "when"
-  ]
- },
- {
-  "slug": "what-time-is-it",
-  "kind": "phrase",
-  "emoji": "🕐",
-  "components": [
-   "how-many"
-  ]
- }
+ { "slug": "where", "kind": "adjective" },
+ { "slug": "who", "kind": "adjective" },
+ { "slug": "what", "kind": "adjective" },
+ { "slug": "here", "kind": "adjective" },
+ { "slug": "there", "kind": "adjective" },
+ { "slug": "this", "kind": "adjective" },
+ { "slug": "that", "kind": "adjective" },
+ { "slug": "when", "kind": "adjective" },
+ { "slug": "why", "kind": "adjective" },
+ { "slug": "how", "kind": "adjective" },
+ { "slug": "which", "kind": "adjective" },
+ { "slug": "how-many", "kind": "adjective" },
+ { "slug": "where-are-they", "kind": "phrase", "emoji": "🔍", "components": ["where"] },
+ { "slug": "who-is-there", "kind": "phrase", "emoji": "🚪", "components": ["who"] },
+ { "slug": "do-you-need-this", "kind": "phrase", "emoji": "👉", "components": ["this"] },
+ { "slug": "when-does-it-start", "kind": "phrase", "emoji": "⏰", "components": ["when"] },
+ { "slug": "what-time-is-it", "kind": "phrase", "emoji": "🕐", "components": ["how-many"] }
 ]

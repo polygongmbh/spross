@@ -2,152 +2,46 @@
  "title": "The public office",
  "subtitle": "Step by step through the paperwork.",
  "words": {
-  "office": {
-   "text": "public office"
-  },
-  "form": {
-   "text": "form"
-  },
-  "application": {
-   "text": "application"
-  },
-  "id-card": {
-   "text": "ID card",
-   "variants": [
-    "identity card"
-   ]
-  },
-  "residence-permit": {
-   "text": "residence permit"
-  },
-  "signature": {
-   "text": "signature"
-  },
-  "ticket-number": {
-   "text": "number ticket",
-   "synonyms": [
-    "queue number"
-   ]
-  },
-  "case-worker": {
-   "text": "case worker"
-  },
-  "registration": {
-   "text": "registration"
-  },
-  "documents": {
-   "text": "documents",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "fill-in": {
-   "text": "to fill in"
-  },
-  "sign": {
-   "text": "to sign"
-  },
-  "apply-for": {
-   "text": "to apply for"
-  },
-  "submit": {
-   "text": "to submit"
-  },
-  "hand-in": {
-   "text": "to hand in"
-  },
-  "pick-up": {
-   "text": "to pick up the ID card",
-   "variants": [
-    "to pick up the identity card"
-   ]
-  },
-  "extend": {
-   "text": "to extend"
-  },
-  "bring": {
-   "text": "to bring"
-  },
-  "copy": {
-   "text": "to copy"
-  },
-  "passport": {
-   "text": "passport"
-  },
-  "address": {
-   "text": "address",
-   "grammar": {
-    "plural": "addresses"
-   }
-  },
-  "certificate": {
-   "text": "certificate"
-  },
-  "birth-certificate": {
-   "text": "birth certificate"
-  },
-  "notification": {
-   "text": "official decision"
-  },
-  "fee": {
-   "text": "fee"
-  },
-  "office-hours": {
-   "text": "office hours",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "waiting-room": {
-   "text": "waiting room"
-  },
-  "reject": {
-   "text": "to reject"
-  },
-  "approve": {
-   "text": "to approve"
-  },
-  "law": {
-   "text": "law"
-  },
-  "visa": {
-   "text": "visa"
-  },
-  "fine": {
-   "text": "fine"
-  },
-  "receipt": {
-   "text": "receipt"
-  },
-  "where-do-i-sign": {
-   "text": "Where do I sign?"
-  },
-  "i-want-to-extend-my-residence-permit": {
-   "text": "I would like to extend the residence permit."
-  },
-  "fill-out-the-form": {
-   "text": "Fill out the form."
-  },
-  "take-a-number": {
-   "text": "Take a number!",
-   "variants": [
-    "Take a queue number!"
-   ]
-  },
-  "i-need-an-interpreter-for-the-application": {
-   "text": "I need an interpreter for the application."
-  },
-  "did-you-bring-all-the-documents": {
-   "text": "Did you bring all the documents?"
-  },
-  "the-decision-comes-by-mail": {
-   "text": "The decision comes by mail."
-  },
-  "when-does-my-id-expire": {
-   "text": "When does my ID card expire?",
-   "variants": [
-    "When does my identity card expire?"
-   ]
-  }
+  "office": { "text": "public office" },
+  "form": { "text": "form" },
+  "application": { "text": "application" },
+  "id-card": { "text": "ID card", "variants": ["identity card"] },
+  "residence-permit": { "text": "residence permit" },
+  "signature": { "text": "signature" },
+  "ticket-number": { "text": "number ticket", "synonyms": ["queue number"] },
+  "case-worker": { "text": "case worker" },
+  "registration": { "text": "registration" },
+  "documents": { "text": "documents", "grammar": { "plural": "only" } },
+  "fill-in": { "text": "to fill in" },
+  "sign": { "text": "to sign" },
+  "apply-for": { "text": "to apply for" },
+  "submit": { "text": "to submit" },
+  "hand-in": { "text": "to hand in" },
+  "pick-up": { "text": "to pick up the ID card", "variants": ["to pick up the identity card"] },
+  "extend": { "text": "to extend" },
+  "bring": { "text": "to bring" },
+  "copy": { "text": "to copy" },
+  "passport": { "text": "passport" },
+  "address": { "text": "address", "grammar": { "plural": "addresses" } },
+  "certificate": { "text": "certificate" },
+  "birth-certificate": { "text": "birth certificate" },
+  "notification": { "text": "official decision" },
+  "fee": { "text": "fee" },
+  "office-hours": { "text": "office hours", "grammar": { "plural": "only" } },
+  "waiting-room": { "text": "waiting room" },
+  "reject": { "text": "to reject" },
+  "approve": { "text": "to approve" },
+  "law": { "text": "law" },
+  "visa": { "text": "visa" },
+  "fine": { "text": "fine" },
+  "receipt": { "text": "receipt" },
+  "where-do-i-sign": { "text": "Where do I sign?" },
+  "i-want-to-extend-my-residence-permit": { "text": "I would like to extend the residence permit." },
+  "fill-out-the-form": { "text": "Fill out the form." },
+  "take-a-number": { "text": "Take a number!", "variants": ["Take a queue number!"] },
+  "i-need-an-interpreter-for-the-application": { "text": "I need an interpreter for the application." },
+  "did-you-bring-all-the-documents": { "text": "Did you bring all the documents?" },
+  "the-decision-comes-by-mail": { "text": "The decision comes by mail." },
+  "when-does-my-id-expire": { "text": "When does my ID card expire?", "variants": ["When does my identity card expire?"] }
  }
 }

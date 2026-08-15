@@ -1,184 +1,39 @@
 [
- {
-  "slug": "school",
-  "kind": "noun",
-  "emoji": "🏫"
- },
- {
-  "slug": "classroom",
-  "kind": "noun",
-  "emoji": "🎓"
- },
- {
-  "slug": "teacher",
-  "kind": "noun",
-  "emoji": "🧑‍🏫"
- },
- {
-  "slug": "teacher-f",
-  "kind": "noun",
-  "emoji": "👩‍🏫",
-  "feminineOf": "teacher"
- },
- {
-  "slug": "board",
-  "kind": "noun",
-  "emoji": "📝"
- },
- {
-  "slug": "exercise-book",
-  "kind": "noun",
-  "emoji": "📒"
- },
- {
-  "slug": "homework",
-  "kind": "noun",
-  "emoji": "✍️"
- },
- {
-  "slug": "exam",
-  "kind": "noun",
-  "emoji": "📋"
- },
- {
-  "slug": "break",
-  "kind": "noun",
-  "emoji": "☕"
- },
- {
-  "slug": "pass-exam",
-  "kind": "verb",
-  "emoji": "🏆"
- },
- {
-  "slug": "to-practice",
-  "kind": "verb",
-  "emoji": "🔁"
- },
- {
-  "slug": "raise-hand",
-  "kind": "verb",
-  "emoji": "✋"
- },
- {
-  "slug": "pupil",
-  "kind": "noun",
-  "emoji": "🧑‍🎓"
- },
- {
-  "slug": "pupil-f",
-  "kind": "noun",
-  "emoji": "👩‍🎓",
-  "feminineOf": "pupil"
- },
- {
-  "slug": "course",
-  "kind": "noun",
-  "emoji": "📚"
- },
- {
-  "slug": "lesson",
-  "kind": "noun",
-  "emoji": "🎒"
- },
- {
-  "slug": "course-book",
-  "kind": "noun",
-  "emoji": "📕"
- },
- {
-  "slug": "page",
-  "kind": "noun",
-  "emoji": "📄"
- },
- {
-  "slug": "grade",
-  "kind": "noun",
-  "emoji": "💯"
- },
- {
-  "slug": "correct",
-  "kind": "verb",
-  "emoji": "✏️"
- },
- {
-  "slug": "book",
-  "kind": "noun",
-  "emoji": "📖"
- },
- {
-  "slug": "university",
-  "kind": "noun",
-  "emoji": "🏛️"
- },
- {
-  "slug": "class-schedule",
-  "kind": "noun",
-  "emoji": "🗓️"
- },
- {
-  "slug": "to-count",
-  "kind": "verb",
-  "emoji": "🔢"
- },
- {
-  "slug": "to-try",
-  "kind": "verb"
- },
- {
-  "slug": "do-the-homework",
-  "kind": "phrase",
-  "emoji": "✍️",
-  "components": [
-   "homework"
-  ]
- },
- {
-  "slug": "the-exam-is-tomorrow",
-  "kind": "phrase",
-  "emoji": "📋",
-  "components": [
-   "exam"
-  ]
- },
+ { "slug": "school", "kind": "noun", "emoji": "🏫" },
+ { "slug": "classroom", "kind": "noun", "emoji": "🎓" },
+ { "slug": "teacher", "kind": "noun", "emoji": "🧑‍🏫" },
+ { "slug": "teacher-f", "kind": "noun", "emoji": "👩‍🏫", "feminineOf": "teacher" },
+ { "slug": "board", "kind": "noun", "emoji": "📝" },
+ { "slug": "exercise-book", "kind": "noun", "emoji": "📒" },
+ { "slug": "homework", "kind": "noun", "emoji": "✍️" },
+ { "slug": "exam", "kind": "noun", "emoji": "📋" },
+ { "slug": "break", "kind": "noun", "emoji": "☕" },
+ { "slug": "pass-exam", "kind": "verb", "emoji": "🏆" },
+ { "slug": "to-practice", "kind": "verb", "emoji": "🔁" },
+ { "slug": "raise-hand", "kind": "verb", "emoji": "✋" },
+ { "slug": "pupil", "kind": "noun", "emoji": "🧑‍🎓" },
+ { "slug": "pupil-f", "kind": "noun", "emoji": "👩‍🎓", "feminineOf": "pupil" },
+ { "slug": "course", "kind": "noun", "emoji": "📚" },
+ { "slug": "lesson", "kind": "noun", "emoji": "🎒" },
+ { "slug": "course-book", "kind": "noun", "emoji": "📕" },
+ { "slug": "page", "kind": "noun", "emoji": "📄" },
+ { "slug": "grade", "kind": "noun", "emoji": "💯" },
+ { "slug": "correct", "kind": "verb", "emoji": "✏️" },
+ { "slug": "book", "kind": "noun", "emoji": "📖" },
+ { "slug": "university", "kind": "noun", "emoji": "🏛️" },
+ { "slug": "class-schedule", "kind": "noun", "emoji": "🗓️" },
+ { "slug": "to-count", "kind": "verb", "emoji": "🔢" },
+ { "slug": "to-try", "kind": "verb" },
+ { "slug": "do-the-homework", "kind": "phrase", "emoji": "✍️", "components": ["homework"] },
+ { "slug": "the-exam-is-tomorrow", "kind": "phrase", "emoji": "📋", "components": ["exam"] },
  {
   "slug": "look-at-the-class-schedule",
   "kind": "phrase",
   "emoji": "🗓️",
-  "components": [
-   "class-schedule"
-  ]
+  "components": ["class-schedule"]
  },
- {
-  "slug": "the-break-is-over",
-  "kind": "phrase",
-  "emoji": "☕",
-  "components": [
-   "break"
-  ]
- },
- {
-  "slug": "ask-the-teacher",
-  "kind": "phrase",
-  "emoji": "🧑‍🏫",
-  "components": [
-   "teacher"
-  ]
- },
- {
-  "slug": "i-have-a-good-grade",
-  "kind": "phrase",
-  "emoji": "💯",
-  "components": [
-   "grade"
-  ]
- },
- {
-  "slug": "we-go-to-the-classroom",
-  "kind": "phrase",
-  "emoji": "🎓",
-  "components": [
-   "classroom"
-  ]
- }
+ { "slug": "the-break-is-over", "kind": "phrase", "emoji": "☕", "components": ["break"] },
+ { "slug": "ask-the-teacher", "kind": "phrase", "emoji": "🧑‍🏫", "components": ["teacher"] },
+ { "slug": "i-have-a-good-grade", "kind": "phrase", "emoji": "💯", "components": ["grade"] },
+ { "slug": "we-go-to-the-classroom", "kind": "phrase", "emoji": "🎓", "components": ["classroom"] }
 ]

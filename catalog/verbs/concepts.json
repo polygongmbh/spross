@@ -1,73 +1,15 @@
 [
- {
-  "slug": "go",
-  "kind": "verb",
-  "emoji": "➡️"
- },
- {
-  "slug": "come",
-  "kind": "verb",
-  "emoji": "⬅️"
- },
- {
-  "slug": "have",
-  "kind": "verb",
-  "emoji": "🤲"
- },
- {
-  "slug": "give",
-  "kind": "verb",
-  "emoji": "🫴"
- },
- {
-  "slug": "take",
-  "kind": "verb",
-  "emoji": "✊"
- },
- {
-  "slug": "see",
-  "kind": "verb",
-  "emoji": "👀"
- },
- {
-  "slug": "make",
-  "kind": "verb",
-  "emoji": "🛠️"
- },
- {
-  "slug": "like",
-  "kind": "verb",
-  "emoji": "❤️"
- },
- {
-  "slug": "can",
-  "kind": "verb",
-  "emoji": "💪"
- },
- {
-  "slug": "think",
-  "kind": "verb",
-  "emoji": "🤔"
- },
- {
-  "slug": "wait",
-  "kind": "verb",
-  "emoji": "⏳"
- },
- {
-  "slug": "do-you-have-water",
-  "kind": "phrase",
-  "emoji": "💧",
-  "components": [
-   "have"
-  ]
- },
- {
-  "slug": "where-are-you-from",
-  "kind": "phrase",
-  "emoji": "🌍",
-  "components": [
-   "come"
-  ]
- }
+ { "slug": "go", "kind": "verb", "emoji": "➡️" },
+ { "slug": "come", "kind": "verb", "emoji": "⬅️" },
+ { "slug": "have", "kind": "verb", "emoji": "🤲" },
+ { "slug": "give", "kind": "verb", "emoji": "🫴" },
+ { "slug": "take", "kind": "verb", "emoji": "✊" },
+ { "slug": "see", "kind": "verb", "emoji": "👀" },
+ { "slug": "make", "kind": "verb", "emoji": "🛠️" },
+ { "slug": "like", "kind": "verb", "emoji": "❤️" },
+ { "slug": "can", "kind": "verb", "emoji": "💪" },
+ { "slug": "think", "kind": "verb", "emoji": "🤔" },
+ { "slug": "wait", "kind": "verb", "emoji": "⏳" },
+ { "slug": "do-you-have-water", "kind": "phrase", "emoji": "💧", "components": ["have"] },
+ { "slug": "where-are-you-from", "kind": "phrase", "emoji": "🌍", "components": ["come"] }
 ]

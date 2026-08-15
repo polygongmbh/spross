@@ -2,269 +2,88 @@
  "title": "Il soggiorno",
  "subtitle": "È ora di rilassarsi.",
  "words": {
-  "sofa": {
-   "text": "divano",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "dining-table": {
-   "text": "tavolo da pranzo",
-   "variants": [
-    "tavolo"
-   ],
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "chair": {
-   "text": "sedia",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "sofa": { "text": "divano", "grammar": { "gender": "il" } },
+  "dining-table": { "text": "tavolo da pranzo", "variants": ["tavolo"], "grammar": { "gender": "il" } },
+  "chair": { "text": "sedia", "grammar": { "gender": "la" } },
   "tv": {
    "text": "televisione",
-   "synonyms": [
-    "televisore"
-   ],
-   "variants": [
-    "tv",
-    "tivù"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
+   "synonyms": ["televisore"],
+   "variants": ["tv", "tivù"],
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "Im Alltag sagt man la tv; il televisore ist das Gerät, la televisione auch das Programm."
    }
   },
-  "remote": {
-   "text": "telecomando",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "shelf": {
-   "text": "scaffale",
-   "grammar": {
-    "gender": "lo"
-   }
-  },
-  "plant": {
-   "text": "pianta",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "window": {
-   "text": "finestra",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "curtain": {
-   "text": "tenda",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "carpet": {
-   "text": "tappeto",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "lamp": {
-   "text": "lampada",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "picture": {
-   "text": "quadro",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "watch-tv": {
-   "text": "guardare la televisione",
-   "variants": [
-    "guardare la tv",
-    "vedere la televisione"
-   ]
-  },
-  "read": {
-   "text": "leggere"
-  },
-  "relax": {
-   "text": "rilassarsi"
-  },
-  "tidy-up": {
-   "text": "riordinare",
-   "variants": [
-    "mettere in ordine",
-    "fare ordine"
-   ]
-  },
-  "listen-to-music": {
-   "text": "ascoltare musica",
-   "variants": [
-    "ascoltare la musica"
-   ]
-  },
-  "water-plants": {
-   "text": "annaffiare le piante",
-   "variants": [
-    "innaffiare le piante",
-    "bagnare le piante"
-   ]
-  },
+  "remote": { "text": "telecomando", "grammar": { "gender": "il" } },
+  "shelf": { "text": "scaffale", "grammar": { "gender": "lo" } },
+  "plant": { "text": "pianta", "grammar": { "gender": "la" } },
+  "window": { "text": "finestra", "grammar": { "gender": "la" } },
+  "curtain": { "text": "tenda", "grammar": { "gender": "la" } },
+  "carpet": { "text": "tappeto", "grammar": { "gender": "il" } },
+  "lamp": { "text": "lampada", "grammar": { "gender": "la" } },
+  "picture": { "text": "quadro", "grammar": { "gender": "il" } },
+  "watch-tv": { "text": "guardare la televisione", "variants": ["guardare la tv", "vedere la televisione"] },
+  "read": { "text": "leggere" },
+  "relax": { "text": "rilassarsi" },
+  "tidy-up": { "text": "riordinare", "variants": ["mettere in ordine", "fare ordine"] },
+  "listen-to-music": { "text": "ascoltare musica", "variants": ["ascoltare la musica"] },
+  "water-plants": { "text": "annaffiare le piante", "variants": ["innaffiare le piante", "bagnare le piante"] },
   "play": {
    "text": "giocare",
-   "notes": {
-    "de": "giocare ist spielen im Sinn von Spiel; ein Instrument spielt man mit suonare."
-   }
+   "notes": { "de": "giocare ist spielen im Sinn von Spiel; ein Instrument spielt man mit suonare." }
   },
   "talk": {
    "text": "chiacchierare",
-   "variants": [
-    "parlare",
-    "conversare"
-   ],
-   "notes": {
-    "de": "chiacchierare = plaudern, sich unterhalten; sprechen allgemein ist parlare."
-   }
+   "variants": ["parlare", "conversare"],
+   "notes": { "de": "chiacchierare = plaudern, sich unterhalten; sprechen allgemein ist parlare." }
   },
   "room": {
    "text": "stanza",
-   "synonyms": [
-    "camera"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "la stanza ist der Raum allgemein, la camera vor allem das Schlaf- oder Hotelzimmer."
-   }
+   "synonyms": ["camera"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la stanza ist der Raum allgemein, la camera vor allem das Schlaf- oder Hotelzimmer." }
   },
-  "newspaper": {
-   "text": "giornale",
-   "synonyms": [
-    "quotidiano"
-   ],
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "light": {
-   "text": "luce",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "music": {
-   "text": "musica",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "newspaper": { "text": "giornale", "synonyms": ["quotidiano"], "grammar": { "gender": "il" } },
+  "light": { "text": "luce", "grammar": { "gender": "la" } },
+  "music": { "text": "musica", "grammar": { "gender": "la" } },
   "wall": {
    "text": "parete",
-   "variants": [
-    "muro"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "la parete ist die Wand im Raum, il muro die massive Mauer."
-   }
+   "variants": ["muro"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la parete ist die Wand im Raum, il muro die massive Mauer." }
   },
-  "movie": {
-   "text": "film",
-   "grammar": {
-    "gender": "il",
-    "plural": "="
-   }
-  },
+  "movie": { "text": "film", "grammar": { "gender": "il", "plural": "=" } },
   "sit": {
    "text": "sedersi",
-   "variants": [
-    "essere seduto"
-   ],
-   "notes": {
-    "de": "sedersi = sich hinsetzen; sitzen als Zustand heißt essere seduto."
-   }
+   "variants": ["essere seduto"],
+   "notes": { "de": "sedersi = sich hinsetzen; sitzen als Zustand heißt essere seduto." }
   },
-  "laugh": {
-   "text": "ridere"
-  },
+  "laugh": { "text": "ridere" },
   "quiet": {
    "text": "silenzioso",
-   "variants": [
-    "silenziosa",
-    "piano",
-    "sottovoce",
-    "a bassa voce"
-   ],
+   "variants": ["silenziosa", "piano", "sottovoce", "a bassa voce"],
    "notes": {
     "de": "silenzioso ist ein leises Zimmer oder Gerät; leise sprechen heißt parlare piano oder a bassa voce."
    }
   },
   "furniture": {
    "text": "mobili",
-   "variants": [
-    "mobile"
-   ],
-   "grammar": {
-    "gender": "i",
-    "plural": "only"
-   },
-   "notes": {
-    "de": "meist im Plural: i mobili; un mobile ist ein einzelnes Möbelstück."
-   }
+   "variants": ["mobile"],
+   "grammar": { "gender": "i", "plural": "only" },
+   "notes": { "de": "meist im Plural: i mobili; un mobile ist ein einzelnes Möbelstück." }
   },
-  "game": {
-   "text": "gioco",
-   "grammar": {
-    "gender": "il",
-    "plural": "giochi"
-   }
-  },
-  "turn-on-the-tv": {
-   "text": "Accendi la televisione.",
-   "variants": [
-    "Accendi la tv.",
-    "Accendi il televisore."
-   ]
-  },
+  "game": { "text": "gioco", "grammar": { "gender": "il", "plural": "giochi" } },
+  "turn-on-the-tv": { "text": "Accendi la televisione.", "variants": ["Accendi la tv.", "Accendi il televisore."] },
   "come-sit-with-me": {
    "text": "Vieni, siediti con me!",
-   "variants": [
-    "Vieni, siediti accanto a me!",
-    "Vieni, siediti vicino a me!"
-   ]
+   "variants": ["Vieni, siediti accanto a me!", "Vieni, siediti vicino a me!"]
   },
-  "shall-we-watch-a-movie": {
-   "text": "Guardiamo un film?",
-   "variants": [
-    "Vediamo un film?",
-    "Vuoi guardare un film?"
-   ]
-  },
-  "lets-hang-the-picture": {
-   "text": "Appendiamo il quadro!"
-  },
+  "shall-we-watch-a-movie": { "text": "Guardiamo un film?", "variants": ["Vediamo un film?", "Vuoi guardare un film?"] },
+  "lets-hang-the-picture": { "text": "Appendiamo il quadro!" },
   "the-curtains-hang-over-the-window": {
    "text": "Le tende sono appese davanti alla finestra.",
-   "variants": [
-    "Le tende pendono davanti alla finestra.",
-    "Le tende sono davanti alla finestra."
-   ]
+   "variants": ["Le tende pendono davanti alla finestra.", "Le tende sono davanti alla finestra."]
   },
-  "open-the-window-fresh-air": {
-   "text": "Apri la finestra."
-  }
+  "open-the-window-fresh-air": { "text": "Apri la finestra." }
  }
 }

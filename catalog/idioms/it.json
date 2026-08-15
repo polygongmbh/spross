@@ -24,10 +24,7 @@
   },
   "pull-someones-leg": {
    "text": "Mi ha preso in giro.",
-   "notes": {
-    "de": "Wörtlich: „Er hat mich herumgeführt.“",
-    "en": "Literally: \"He took me around.\""
-   }
+   "notes": { "de": "Wörtlich: „Er hat mich herumgeführt.“", "en": "Literally: \"He took me around.\"" }
   },
   "fed-up-to-here": {
    "text": "Ne ho fin sopra i capelli.",
@@ -45,17 +42,11 @@
   },
   "seventh-heaven": {
    "text": "È al settimo cielo.",
-   "notes": {
-    "de": "Wörtlich dasselbe Bild.",
-    "en": "Literally the same image."
-   }
+   "notes": { "de": "Wörtlich dasselbe Bild.", "en": "Literally the same image." }
   },
   "bite-the-bullet": {
    "text": "Stringi i denti!",
-   "notes": {
-    "de": "Wörtlich: „Beiß die Zähne zusammen!“",
-    "en": "Literally: \"Clench your teeth!\""
-   }
+   "notes": { "de": "Wörtlich: „Beiß die Zähne zusammen!“", "en": "Literally: \"Clench your teeth!\"" }
   },
   "raining-cats-and-dogs": {
    "text": "Piove a catinelle.",

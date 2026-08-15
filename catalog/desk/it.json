@@ -2,305 +2,101 @@
  "title": "La scrivania",
  "subtitle": "È ora di concentrarsi.",
  "words": {
-  "desk": {
-   "text": "scrivania",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "desk": { "text": "scrivania", "grammar": { "gender": "la" } },
   "laptop": {
    "text": "portatile",
-   "variants": [
-    "computer portatile",
-    "laptop"
-   ],
-   "grammar": {
-    "gender": "il"
-   },
-   "notes": {
-    "de": "Kurzform von il computer portatile; im Alltag sagt man fast immer nur il portatile."
-   }
+   "variants": ["computer portatile", "laptop"],
+   "grammar": { "gender": "il" },
+   "notes": { "de": "Kurzform von il computer portatile; im Alltag sagt man fast immer nur il portatile." }
   },
-  "keyboard": {
-   "text": "tastiera",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "screen": {
-   "text": "schermo",
-   "variants": [
-    "monitor"
-   ],
-   "grammar": {
-    "gender": "lo"
-   }
-  },
-  "mouse": {
-   "text": "mouse",
-   "grammar": {
-    "gender": "il",
-    "plural": "="
-   }
-  },
-  "cable": {
-   "text": "cavo",
-   "grammar": {
-    "gender": "il"
-   }
-  },
+  "keyboard": { "text": "tastiera", "grammar": { "gender": "la" } },
+  "screen": { "text": "schermo", "variants": ["monitor"], "grammar": { "gender": "lo" } },
+  "mouse": { "text": "mouse", "grammar": { "gender": "il", "plural": "=" } },
+  "cable": { "text": "cavo", "grammar": { "gender": "il" } },
   "headphones": {
    "text": "cuffie",
-   "synonyms": [
-    "auricolari"
-   ],
-   "grammar": {
-    "gender": "le",
-    "plural": "only"
-   },
-   "notes": {
-    "de": "Nur im Plural: le cuffie; gli auricolari sind die In-Ear-Hörer."
-   }
+   "synonyms": ["auricolari"],
+   "grammar": { "gender": "le", "plural": "only" },
+   "notes": { "de": "Nur im Plural: le cuffie; gli auricolari sind die In-Ear-Hörer." }
   },
   "pen": {
    "text": "penna",
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "„Stift“ ist hier der Kugelschreiber: la penna. Der Bleistift heißt la matita."
-   }
+   "grammar": { "gender": "la" },
+   "notes": { "de": "„Stift“ ist hier der Kugelschreiber: la penna. Der Bleistift heißt la matita." }
   },
-  "notebook": {
-   "text": "taccuino",
-   "variants": [
-    "blocco note"
-   ],
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "printer": {
-   "text": "stampante",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "notebook": { "text": "taccuino", "variants": ["blocco note"], "grammar": { "gender": "il" } },
+  "printer": { "text": "stampante", "grammar": { "gender": "la" } },
   "socket": {
    "text": "presa",
-   "variants": [
-    "presa di corrente"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "la presa ist die Steckdose, la spina der Stecker."
-   }
+   "variants": ["presa di corrente"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la presa ist die Steckdose, la spina der Stecker." }
   },
-  "office-chair": {
-   "text": "sedia da ufficio",
-   "variants": [
-    "poltrona da ufficio"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "to-work": {
-   "text": "lavorare"
-  },
-  "type": {
-   "text": "digitare",
-   "variants": [
-    "battere a macchina",
-    "scrivere a macchina"
-   ]
-  },
-  "print": {
-   "text": "stampare"
-  },
-  "save": {
-   "text": "salvare",
-   "variants": [
-    "memorizzare"
-   ]
-  },
-  "take-break": {
-   "text": "fare una pausa",
-   "variants": [
-    "prendersi una pausa"
-   ]
-  },
-  "write": {
-   "text": "scrivere"
-  },
-  "call": {
-   "text": "chiamare",
-   "variants": [
-    "telefonare",
-    "chiamare al telefono"
-   ]
-  },
-  "delete": {
-   "text": "cancellare",
-   "synonyms": [
-    "eliminare"
-   ]
-  },
+  "office-chair": { "text": "sedia da ufficio", "variants": ["poltrona da ufficio"], "grammar": { "gender": "la" } },
+  "to-work": { "text": "lavorare" },
+  "type": { "text": "digitare", "variants": ["battere a macchina", "scrivere a macchina"] },
+  "print": { "text": "stampare" },
+  "save": { "text": "salvare", "variants": ["memorizzare"] },
+  "take-break": { "text": "fare una pausa", "variants": ["prendersi una pausa"] },
+  "write": { "text": "scrivere" },
+  "call": { "text": "chiamare", "variants": ["telefonare", "chiamare al telefono"] },
+  "delete": { "text": "cancellare", "synonyms": ["eliminare"] },
   "study": {
    "text": "studiare",
-   "notes": {
-    "de": "Für eine Prüfung oder einen Kurs lernen = studiare; etwas Neues erlernen = imparare."
-   }
+   "notes": { "de": "Für eine Prüfung oder einen Kurs lernen = studiare; etwas Neues erlernen = imparare." }
   },
   "phone": {
    "text": "cellulare",
-   "variants": [
-    "telefonino",
-    "telefono cellulare",
-    "telefono"
-   ],
-   "grammar": {
-    "gender": "il"
-   }
+   "variants": ["telefonino", "telefono cellulare", "telefono"],
+   "grammar": { "gender": "il" }
   },
   "email": {
    "text": "e-mail",
-   "variants": [
-    "l'e-mail",
-    "un'e-mail",
-    "email",
-    "mail",
-    "posta elettronica"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "="
-   },
+   "variants": ["l'e-mail", "un'e-mail", "email", "mail", "posta elettronica"],
+   "grammar": { "gender": "l'", "plural": "=" },
    "notes": {
     "de": "l'e-mail ist feminin und unveränderlich: un'e-mail, le e-mail. Die förmliche Form ist la posta elettronica."
    }
   },
   "paper": {
    "text": "carta",
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "la carta ist das Papier als Material; ein einzelnes Blatt ist il foglio."
-   }
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la carta ist das Papier als Material; ein einzelnes Blatt ist il foglio." }
   },
-  "folder": {
-   "text": "cartella",
-   "variants": [
-    "raccoglitore"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "password": {
-   "text": "password",
-   "grammar": {
-    "gender": "la",
-    "plural": "="
-   }
-  },
-  "internet": {
-   "text": "internet",
-   "notes": {
-    "de": "Meist ohne Artikel: c'è internet? · Non ho internet."
-   }
-  },
+  "folder": { "text": "cartella", "variants": ["raccoglitore"], "grammar": { "gender": "la" } },
+  "password": { "text": "password", "grammar": { "gender": "la", "plural": "=" } },
+  "internet": { "text": "internet", "notes": { "de": "Meist ohne Artikel: c'è internet? · Non ho internet." } },
   "charger": {
    "text": "caricabatterie",
-   "variants": [
-    "caricatore",
-    "cavo di ricarica"
-   ],
-   "grammar": {
-    "gender": "il",
-    "plural": "="
-   }
+   "variants": ["caricatore", "cavo di ricarica"],
+   "grammar": { "gender": "il", "plural": "=" }
   },
   "calendar": {
    "text": "calendario",
-   "synonyms": [
-    "agenda"
-   ],
-   "grammar": {
-    "gender": "il",
-    "plural": "calendari"
-   },
-   "notes": {
-    "de": "il calendario hängt an der Wand; der Terminkalender heißt l'agenda."
-   }
+   "synonyms": ["agenda"],
+   "grammar": { "gender": "il", "plural": "calendari" },
+   "notes": { "de": "il calendario hängt an der Wand; der Terminkalender heißt l'agenda." }
   },
-  "important": {
-   "text": "importante"
-  },
+  "important": { "text": "importante" },
   "ready": {
    "text": "pronto",
-   "variants": [
-    "pronta",
-    "finito"
-   ],
-   "notes": {
-    "de": "sono pronto = ich bin fertig (bereit); ho finito = ich bin fertig (damit)."
-   }
+   "variants": ["pronta", "finito"],
+   "notes": { "de": "sono pronto = ich bin fertig (bereit); ho finito = ich bin fertig (damit)." }
   },
-  "im-in-a-meeting": {
-   "text": "Sono in riunione.",
-   "variants": [
-    "Sono in una riunione."
-   ]
-  },
-  "dont-disturb-me": {
-   "text": "Non disturbarmi!",
-   "variants": [
-    "Non disturbare!"
-   ]
-  },
+  "im-in-a-meeting": { "text": "Sono in riunione.", "variants": ["Sono in una riunione."] },
+  "dont-disturb-me": { "text": "Non disturbarmi!", "variants": ["Non disturbare!"] },
   "the-laptop-wont-charge-anymore": {
    "text": "Il portatile non si carica più.",
-   "variants": [
-    "Il portatile non carica più.",
-    "Il computer portatile non si carica più."
-   ]
+   "variants": ["Il portatile non carica più.", "Il computer portatile non si carica più."]
   },
-  "the-internet-is-gone": {
-   "text": "Non c'è internet.",
-   "variants": [
-    "Internet non funziona.",
-    "Non c'è il wifi."
-   ]
-  },
-  "coffee-break": {
-   "text": "Pausa caffè?",
-   "variants": [
-    "Andiamo a prendere un caffè?"
-   ]
-  },
-  "i-have-a-lot-to-do": {
-   "text": "Ho molto da fare."
-  },
+  "the-internet-is-gone": { "text": "Non c'è internet.", "variants": ["Internet non funziona.", "Non c'è il wifi."] },
+  "coffee-break": { "text": "Pausa caffè?", "variants": ["Andiamo a prendere un caffè?"] },
+  "i-have-a-lot-to-do": { "text": "Ho molto da fare." },
   "end-of-workday": {
    "text": "Per oggi ho finito!",
-   "variants": [
-    "Basta per oggi!",
-    "Per oggi è finita!"
-   ],
-   "notes": {
-    "de": "Für „Feierabend“ gibt es kein eigenes Wort — man sagt: Per oggi ho finito!"
-   }
+   "variants": ["Basta per oggi!", "Per oggi è finita!"],
+   "notes": { "de": "Für „Feierabend“ gibt es kein eigenes Wort — man sagt: Per oggi ho finito!" }
   },
-  "send-me-the-email": {
-   "text": "Mandami l'e-mail.",
-   "variants": [
-    "Inviami l'e-mail.",
-    "Mandami la mail."
-   ]
-  }
+  "send-me-the-email": { "text": "Mandami l'e-mail.", "variants": ["Inviami l'e-mail.", "Mandami la mail."] }
  }
 }

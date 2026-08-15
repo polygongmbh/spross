@@ -2,119 +2,37 @@
  "title": "У школі",
  "subtitle": "Звичайний шкільний день.",
  "words": {
-  "school": {
-   "text": "школа"
-  },
-  "classroom": {
-   "text": "клас"
-  },
-  "teacher": {
-   "text": "вчитель"
-  },
-  "teacher-f": {
-   "text": "вчителька"
-  },
-  "board": {
-   "text": "дошка"
-  },
-  "exercise-book": {
-   "text": "зошит"
-  },
-  "homework": {
-   "text": "домашнє завдання",
-   "grammar": {
-    "plural": "домашні завдання"
-   }
-  },
-  "exam": {
-   "text": "іспит"
-  },
-  "break": {
-   "text": "перерва"
-  },
-  "pass-exam": {
-   "text": "скласти іспит"
-  },
-  "to-practice": {
-   "text": "вправлятися"
-  },
-  "raise-hand": {
-   "text": "піднімати руку"
-  },
-  "pupil": {
-   "text": "учень",
-   "grammar": {
-    "plural": "учні"
-   }
-  },
-  "pupil-f": {
-   "text": "учениця"
-  },
-  "course": {
-   "text": "курс"
-  },
-  "lesson": {
-   "text": "урок"
-  },
-  "course-book": {
-   "text": "підручник"
-  },
-  "page": {
-   "text": "сторінка"
-  },
-  "grade": {
-   "text": "оцінка"
-  },
-  "correct": {
-   "text": "виправляти"
-  },
-  "book": {
-   "text": "книжка",
-   "variants": [
-    "книга"
-   ]
-  },
-  "university": {
-   "text": "університет"
-  },
-  "class-schedule": {
-   "text": "розклад"
-  },
-  "to-count": {
-   "text": "рахувати"
-  },
-  "to-try": {
-   "text": "намагатися",
-   "variants": [
-    "пробувати"
-   ]
-  },
-  "do-the-homework": {
-   "text": "Я роблю домашнє завдання."
-  },
-  "the-exam-is-tomorrow": {
-   "text": "Іспит завтра."
-  },
-  "look-at-the-class-schedule": {
-   "text": "Подивись на розклад.",
-   "variants": [
-    "Подивіться на розклад."
-   ]
-  },
-  "the-break-is-over": {
-   "text": "Перерва закінчилася."
-  },
-  "ask-the-teacher": {
-   "text": "Запитай вчителя.",
-   "variants": [
-    "Запитайте вчителя."
-   ]
-  },
-  "i-have-a-good-grade": {
-   "text": "У мене гарна оцінка."
-  },
-  "we-go-to-the-classroom": {
-   "text": "Ми йдемо до класу."
-  }
+  "school": { "text": "школа" },
+  "classroom": { "text": "клас" },
+  "teacher": { "text": "вчитель" },
+  "teacher-f": { "text": "вчителька" },
+  "board": { "text": "дошка" },
+  "exercise-book": { "text": "зошит" },
+  "homework": { "text": "домашнє завдання", "grammar": { "plural": "домашні завдання" } },
+  "exam": { "text": "іспит" },
+  "break": { "text": "перерва" },
+  "pass-exam": { "text": "скласти іспит" },
+  "to-practice": { "text": "вправлятися" },
+  "raise-hand": { "text": "піднімати руку" },
+  "pupil": { "text": "учень", "grammar": { "plural": "учні" } },
+  "pupil-f": { "text": "учениця" },
+  "course": { "text": "курс" },
+  "lesson": { "text": "урок" },
+  "course-book": { "text": "підручник" },
+  "page": { "text": "сторінка" },
+  "grade": { "text": "оцінка" },
+  "correct": { "text": "виправляти" },
+  "book": { "text": "книжка", "variants": ["книга"] },
+  "university": { "text": "університет" },
+  "class-schedule": { "text": "розклад" },
+  "to-count": { "text": "рахувати" },
+  "to-try": { "text": "намагатися", "variants": ["пробувати"] },
+  "do-the-homework": { "text": "Я роблю домашнє завдання." },
+  "the-exam-is-tomorrow": { "text": "Іспит завтра." },
+  "look-at-the-class-schedule": { "text": "Подивись на розклад.", "variants": ["Подивіться на розклад."] },
+  "the-break-is-over": { "text": "Перерва закінчилася." },
+  "ask-the-teacher": { "text": "Запитай вчителя.", "variants": ["Запитайте вчителя."] },
+  "i-have-a-good-grade": { "text": "У мене гарна оцінка." },
+  "we-go-to-the-classroom": { "text": "Ми йдемо до класу." }
  }
 }

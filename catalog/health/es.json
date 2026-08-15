@@ -2,38 +2,15 @@
  "title": "La salud",
  "subtitle": "Cómo te encuentras hoy.",
  "words": {
-  "pain": {
-   "text": "dolor",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "fever": {
-   "text": "fiebre",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "cough": {
-   "text": "tos",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "pain": { "text": "dolor", "grammar": { "gender": "el" } },
+  "fever": { "text": "fiebre", "grammar": { "gender": "la" } },
+  "cough": { "text": "tos", "grammar": { "gender": "la" } },
   "cold": {
    "text": "resfriado",
-   "synonyms": [
-    "catarro"
-   ],
-   "variants": [
-    "constipado"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "estar constipado heißt erkältet sein — nicht „verstopft“ (das ist estreñido)."
-   }
+   "synonyms": ["catarro"],
+   "variants": ["constipado"],
+   "grammar": { "gender": "el" },
+   "notes": { "de": "estar constipado heißt erkältet sein — nicht „verstopft“ (das ist estreñido)." }
   },
   "hurt": {
    "text": "doler",
@@ -41,132 +18,48 @@
     "de": "doler steht wie „gefallen“: nicht „ich tue weh“, sondern me duele la cabeza (mir schmerzt der Kopf)."
    }
   },
-  "to-cough": {
-   "text": "toser"
-  },
-  "rest": {
-   "text": "descansar"
-  },
-  "sick": {
-   "text": "enfermo",
-   "variants": [
-    "enferma"
-   ]
-  },
+  "to-cough": { "text": "toser" },
+  "rest": { "text": "descansar" },
+  "sick": { "text": "enfermo", "variants": ["enferma"] },
   "feel": {
    "text": "sentirse",
-   "variants": [
-    "encontrarse"
-   ],
-   "notes": {
-    "de": "Beim Arzt fragt man auch ¿Cómo se encuentra? = Wie fühlen Sie sich?"
-   }
+   "variants": ["encontrarse"],
+   "notes": { "de": "Beim Arzt fragt man auch ¿Cómo se encuentra? = Wie fühlen Sie sich?" }
   },
-  "health": {
-   "text": "salud",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "illness": {
-   "text": "enfermedad",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "health": { "text": "salud", "grammar": { "gender": "la" } },
+  "illness": { "text": "enfermedad", "grammar": { "gender": "la" } },
   "healthy": {
    "text": "sano",
-   "synonyms": [
-    "saludable"
-   ],
-   "variants": [
-    "sana"
-   ],
+   "synonyms": ["saludable"],
+   "variants": ["sana"],
    "notes": {
     "de": "sano beschreibt den Menschen: estoy sano · saludable eher Essen und Lebensweise: comida saludable."
    }
   },
-  "tired": {
-   "text": "cansado",
-   "variants": [
-    "cansada"
-   ]
-  },
-  "weak": {
-   "text": "débil"
-  },
+  "tired": { "text": "cansado", "variants": ["cansada"] },
+  "weak": { "text": "débil" },
   "dizziness": {
    "text": "mareo",
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "estar mareado heißt schwindlig sein — und ebenso reise- oder seekrank."
-   }
+   "grammar": { "gender": "el" },
+   "notes": { "de": "estar mareado heißt schwindlig sein — und ebenso reise- oder seekrank." }
   },
-  "wound": {
-   "text": "herida",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "hurt-oneself": {
-   "text": "hacerse daño",
-   "variants": [
-    "lesionarse"
-   ]
-  },
+  "wound": { "text": "herida", "grammar": { "gender": "la" } },
+  "hurt-oneself": { "text": "hacerse daño", "variants": ["lesionarse"] },
   "bandage": {
    "text": "venda",
-   "variants": [
-    "vendaje"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "das kleine Pflaster ist la tirita (Spanien), la curita (Lateinamerika)."
-   }
+   "variants": ["vendaje"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "das kleine Pflaster ist la tirita (Spanien), la curita (Lateinamerika)." }
   },
-  "breathe": {
-   "text": "respirar"
-  },
-  "recover": {
-   "text": "recuperarse",
-   "variants": [
-    "reponerse"
-   ]
-  },
-  "allergy": {
-   "text": "alergia",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "my-throat-hurts-a-lot": {
-   "text": "Me duele mucho la garganta."
-  },
-  "ive-had-a-fever-since-yesterday": {
-   "text": "Tengo fiebre desde ayer."
-  },
-  "get-well-soon": {
-   "text": "¡Que te mejores!",
-   "variants": [
-    "¡Que se mejore!",
-    "¡Mejórate pronto!"
-   ]
-  },
-  "i-dont-feel-well": {
-   "text": "No me siento bien."
-  },
-  "the-wound-hurts": {
-   "text": "Me duele la herida."
-  },
-  "i-cant-breathe-well": {
-   "text": "No puedo respirar bien."
-  },
-  "i-have-to-rest": {
-   "text": "Tengo que descansar."
-  }
+  "breathe": { "text": "respirar" },
+  "recover": { "text": "recuperarse", "variants": ["reponerse"] },
+  "allergy": { "text": "alergia", "grammar": { "gender": "la" } },
+  "my-throat-hurts-a-lot": { "text": "Me duele mucho la garganta." },
+  "ive-had-a-fever-since-yesterday": { "text": "Tengo fiebre desde ayer." },
+  "get-well-soon": { "text": "¡Que te mejores!", "variants": ["¡Que se mejore!", "¡Mejórate pronto!"] },
+  "i-dont-feel-well": { "text": "No me siento bien." },
+  "the-wound-hurts": { "text": "Me duele la herida." },
+  "i-cant-breathe-well": { "text": "No puedo respirar bien." },
+  "i-have-to-rest": { "text": "Tengo que descansar." }
  }
 }

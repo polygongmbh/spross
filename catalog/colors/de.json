@@ -2,45 +2,17 @@
  "title": "Die Farben",
  "subtitle": "Rot, blau und alles dazwischen.",
  "words": {
-  "color": {
-   "text": "Farbe",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "white": {
-   "text": "weiß"
-  },
-  "black": {
-   "text": "schwarz"
-  },
-  "red": {
-   "text": "rot"
-  },
-  "blue": {
-   "text": "blau"
-  },
-  "green": {
-   "text": "grün"
-  },
-  "yellow": {
-   "text": "gelb"
-  },
-  "brown": {
-   "text": "braun"
-  },
-  "gray": {
-   "text": "grau"
-  },
-  "purple": {
-   "text": "lila"
-  },
-  "what-color-is-it": {
-   "text": "Welche Farbe ist das?"
-  },
-  "a-white-car": {
-   "text": "Ein weißes Auto."
-  }
+  "color": { "text": "Farbe", "grammar": { "gender": "die", "plural": "-n" } },
+  "white": { "text": "weiß" },
+  "black": { "text": "schwarz" },
+  "red": { "text": "rot" },
+  "blue": { "text": "blau" },
+  "green": { "text": "grün" },
+  "yellow": { "text": "gelb" },
+  "brown": { "text": "braun" },
+  "gray": { "text": "grau" },
+  "purple": { "text": "lila" },
+  "what-color-is-it": { "text": "Welche Farbe ist das?" },
+  "a-white-car": { "text": "Ein weißes Auto." }
  }
 }

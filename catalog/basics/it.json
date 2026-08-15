@@ -2,168 +2,53 @@
  "title": "Le prime parole",
  "subtitle": "Qui comincia tutto.",
  "words": {
-  "name": {
-   "text": "nome",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "help": {
-   "text": "aiuto",
-   "variants": [
-    "l'aiuto"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "be-called": {
-   "text": "chiamarsi"
-  },
-  "say": {
-   "text": "dire"
-  },
-  "know": {
-   "text": "sapere",
-   "notes": {
-    "de": "wissen = sapere · Personen und Orte kennen = conoscere."
-   }
-  },
+  "name": { "text": "nome", "grammar": { "gender": "il" } },
+  "help": { "text": "aiuto", "variants": ["l'aiuto"], "grammar": { "gender": "l'" } },
+  "be-called": { "text": "chiamarsi" },
+  "say": { "text": "dire" },
+  "know": { "text": "sapere", "notes": { "de": "wissen = sapere · Personen und Orte kennen = conoscere." } },
   "need": {
    "text": "avere bisogno di",
-   "variants": [
-    "avere bisogno"
-   ],
-   "notes": {
-    "de": "Es gibt kein einzelnes Verb: das Gebrauchte steht nach di — Ho bisogno di aiuto."
-   }
+   "variants": ["avere bisogno"],
+   "notes": { "de": "Es gibt kein einzelnes Verb: das Gebrauchte steht nach di — Ho bisogno di aiuto." }
   },
-  "thank": {
-   "text": "ringraziare"
-  },
-  "together": {
-   "text": "insieme"
-  },
-  "hello": {
-   "text": "Ciao!",
-   "variants": [
-    "Salve!"
-   ]
-  },
+  "thank": { "text": "ringraziare" },
+  "together": { "text": "insieme" },
+  "hello": { "text": "Ciao!", "variants": ["Salve!"] },
   "good-day": {
    "text": "Buongiorno!",
-   "variants": [
-    "Buon giorno!"
-   ],
-   "notes": {
-    "de": "bis zum frühen Nachmittag · danach Buonasera!"
-   }
+   "variants": ["Buon giorno!"],
+   "notes": { "de": "bis zum frühen Nachmittag · danach Buonasera!" }
   },
-  "thank-you": {
-   "text": "Grazie mille!",
-   "variants": [
-    "Grazie!",
-    "Molte grazie!"
-   ]
-  },
+  "thank-you": { "text": "Grazie mille!", "variants": ["Grazie!", "Molte grazie!"] },
   "please": {
    "text": "Per favore!",
-   "variants": [
-    "Per piacere!"
-   ],
-   "notes": {
-    "de": "nur die Bitte — als Antwort auf „grazie“ sagt man Prego."
-   }
+   "variants": ["Per piacere!"],
+   "notes": { "de": "nur die Bitte — als Antwort auf „grazie“ sagt man Prego." }
   },
-  "excuse-me": {
-   "text": "Scusi!",
-   "variants": [
-    "Scusa!",
-    "Mi scusi!"
-   ]
-  },
-  "yes": {
-   "text": "Sì."
-  },
-  "no": {
-   "text": "No."
-  },
-  "whats-your-name": {
-   "text": "Come si chiama?",
-   "variants": [
-    "Come ti chiami?"
-   ]
-  },
-  "my-name-is": {
-   "text": "Mi chiamo …"
-  },
-  "i-dont-know": {
-   "text": "Non lo so.",
-   "variants": [
-    "Non so."
-   ]
-  },
-  "pardon": {
-   "text": "Come dice?",
-   "variants": [
-    "Come dici?",
-    "Come?",
-    "Prego?"
-   ]
-  },
-  "i-need-help": {
-   "text": "Ho bisogno di aiuto."
-  },
-  "all-good": {
-   "text": "Tutto bene."
-  },
-  "goodbye": {
-   "text": "Arrivederci!"
-  },
-  "what-is-this-called": {
-   "text": "Come si chiama questo?"
-  },
-  "how-are-you": {
-   "text": "Come sta?",
-   "variants": [
-    "Come stai?",
-    "Come va?"
-   ]
-  },
+  "excuse-me": { "text": "Scusi!", "variants": ["Scusa!", "Mi scusi!"] },
+  "yes": { "text": "Sì." },
+  "no": { "text": "No." },
+  "whats-your-name": { "text": "Come si chiama?", "variants": ["Come ti chiami?"] },
+  "my-name-is": { "text": "Mi chiamo …" },
+  "i-dont-know": { "text": "Non lo so.", "variants": ["Non so."] },
+  "pardon": { "text": "Come dice?", "variants": ["Come dici?", "Come?", "Prego?"] },
+  "i-need-help": { "text": "Ho bisogno di aiuto." },
+  "all-good": { "text": "Tutto bene." },
+  "goodbye": { "text": "Arrivederci!" },
+  "what-is-this-called": { "text": "Come si chiama questo?" },
+  "how-are-you": { "text": "Come sta?", "variants": ["Come stai?", "Come va?"] },
   "bye": {
    "text": "A presto!",
-   "variants": [
-    "Ciao!",
-    "A dopo!"
-   ],
-   "notes": {
-    "de": "unter Freunden sagt man zum Abschied auch einfach Ciao!"
-   }
+   "variants": ["Ciao!", "A dopo!"],
+   "notes": { "de": "unter Freunden sagt man zum Abschied auch einfach Ciao!" }
   },
-  "welcome": {
-   "text": "Benvenuto!",
-   "variants": [
-    "Benvenuta!",
-    "Benvenuti!",
-    "Benvenute!"
-   ]
-  },
+  "welcome": { "text": "Benvenuto!", "variants": ["Benvenuta!", "Benvenuti!", "Benvenute!"] },
   "may-i-come-in": {
    "text": "Posso entrare?",
-   "variants": [
-    "Si può entrare?",
-    "Permesso?"
-   ],
-   "notes": {
-    "de": "an der Tür genügt „Permesso?“ · die Antwort ist „Avanti!“ oder „Prego!“"
-   }
+   "variants": ["Si può entrare?", "Permesso?"],
+   "notes": { "de": "an der Tür genügt „Permesso?“ · die Antwort ist „Avanti!“ oder „Prego!“" }
   },
-  "sorry-to-hear-that": {
-   "text": "Mi dispiace!",
-   "variants": [
-    "Mi dispiace molto!",
-    "Che peccato!"
-   ]
-  }
+  "sorry-to-hear-that": { "text": "Mi dispiace!", "variants": ["Mi dispiace molto!", "Che peccato!"] }
  }
 }

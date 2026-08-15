@@ -2,85 +2,26 @@
  "title": "Les mots interrogatifs",
  "subtitle": "Qui, quoi, quand et pourquoi.",
  "words": {
-  "where": {
-   "text": "où"
-  },
-  "who": {
-   "text": "qui"
-  },
+  "where": { "text": "où" },
+  "who": { "text": "qui" },
   "what": {
    "text": "quoi",
-   "synonyms": [
-    "que"
-   ],
-   "notes": {
-    "de": "quoi steht allein oder nach einer Präposition · vor dem Verb steht que: Que fais-tu ?"
-   }
+   "synonyms": ["que"],
+   "notes": { "de": "quoi steht allein oder nach einer Präposition · vor dem Verb steht que: Que fais-tu ?" }
   },
-  "here": {
-   "text": "ici"
-  },
-  "there": {
-   "text": "là",
-   "variants": [
-    "là-bas"
-   ]
-  },
-  "this": {
-   "text": "ceci"
-  },
-  "that": {
-   "text": "cela",
-   "variants": [
-    "ça"
-   ]
-  },
-  "when": {
-   "text": "quand"
-  },
-  "why": {
-   "text": "pourquoi"
-  },
-  "how": {
-   "text": "comment"
-  },
-  "which": {
-   "text": "quel",
-   "variants": [
-    "quelle",
-    "quels",
-    "quelles"
-   ]
-  },
-  "how-many": {
-   "text": "combien",
-   "notes": {
-    "de": "vor dem Substantiv mit de: combien de livres."
-   }
-  },
-  "where-are-they": {
-   "text": "Où sont-ils ?",
-   "variants": [
-    "Où sont-elles ?"
-   ]
-  },
-  "who-is-there": {
-   "text": "Qui est là ?"
-  },
-  "do-you-need-this": {
-   "text": "Avez-vous besoin de ceci ?",
-   "variants": [
-    "As-tu besoin de ceci ?"
-   ]
-  },
-  "when-does-it-start": {
-   "text": "Quand est-ce que ça commence ?",
-   "variants": [
-    "Ça commence quand ?"
-   ]
-  },
-  "what-time-is-it": {
-   "text": "Quelle heure est-il ?"
-  }
+  "here": { "text": "ici" },
+  "there": { "text": "là", "variants": ["là-bas"] },
+  "this": { "text": "ceci" },
+  "that": { "text": "cela", "variants": ["ça"] },
+  "when": { "text": "quand" },
+  "why": { "text": "pourquoi" },
+  "how": { "text": "comment" },
+  "which": { "text": "quel", "variants": ["quelle", "quels", "quelles"] },
+  "how-many": { "text": "combien", "notes": { "de": "vor dem Substantiv mit de: combien de livres." } },
+  "where-are-they": { "text": "Où sont-ils ?", "variants": ["Où sont-elles ?"] },
+  "who-is-there": { "text": "Qui est là ?" },
+  "do-you-need-this": { "text": "Avez-vous besoin de ceci ?", "variants": ["As-tu besoin de ceci ?"] },
+  "when-does-it-start": { "text": "Quand est-ce que ça commence ?", "variants": ["Ça commence quand ?"] },
+  "what-time-is-it": { "text": "Quelle heure est-il ?" }
  }
 }

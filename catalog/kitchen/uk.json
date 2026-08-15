@@ -2,122 +2,45 @@
  "title": "На кухні",
  "subtitle": "Тут пахне вечерею.",
  "words": {
-  "fridge": {
-   "text": "холодильник"
-  },
-  "stove": {
-   "text": "плита"
-  },
-  "oven": {
-   "text": "духовка"
-  },
-  "dishwasher": {
-   "text": "посудомийна машина",
-   "grammar": {
-    "plural": "посудомийні машини"
-   }
-  },
-  "pot": {
-   "text": "каструля"
-  },
-  "pan": {
-   "text": "сковорідка"
-  },
-  "knife": {
-   "text": "ніж",
-   "grammar": {
-    "plural": "ножі"
-   }
-  },
-  "spoon": {
-   "text": "ложка"
-  },
-  "fork": {
-   "text": "виделка"
-  },
-  "plate": {
-   "text": "тарілка"
-  },
-  "cook": {
-   "text": "готувати"
-  },
-  "bake": {
-   "text": "пекти"
-  },
-  "cut": {
-   "text": "різати"
-  },
-  "wash-the-dishes": {
-   "text": "мити посуд"
-  },
-  "taste": {
-   "text": "куштувати"
-  },
-  "fry": {
-   "text": "смажити"
-  },
-  "reheat": {
-   "text": "розігрівати"
-  },
-  "stir": {
-   "text": "помішувати"
-  },
-  "take-out-trash": {
-   "text": "виносити сміття"
-  },
-  "careful": {
-   "text": "обережно"
-  },
-  "cup": {
-   "text": "чашка"
-  },
-  "bowl": {
-   "text": "миска"
-  },
-  "basket": {
-   "text": "кошик"
-  },
+  "fridge": { "text": "холодильник" },
+  "stove": { "text": "плита" },
+  "oven": { "text": "духовка" },
+  "dishwasher": { "text": "посудомийна машина", "grammar": { "plural": "посудомийні машини" } },
+  "pot": { "text": "каструля" },
+  "pan": { "text": "сковорідка" },
+  "knife": { "text": "ніж", "grammar": { "plural": "ножі" } },
+  "spoon": { "text": "ложка" },
+  "fork": { "text": "виделка" },
+  "plate": { "text": "тарілка" },
+  "cook": { "text": "готувати" },
+  "bake": { "text": "пекти" },
+  "cut": { "text": "різати" },
+  "wash-the-dishes": { "text": "мити посуд" },
+  "taste": { "text": "куштувати" },
+  "fry": { "text": "смажити" },
+  "reheat": { "text": "розігрівати" },
+  "stir": { "text": "помішувати" },
+  "take-out-trash": { "text": "виносити сміття" },
+  "careful": { "text": "обережно" },
+  "cup": { "text": "чашка" },
+  "bowl": { "text": "миска" },
+  "basket": { "text": "кошик" },
   "tin-can": {
    "text": "банка",
-   "variants": [
-    "бляшанка"
-   ],
-   "notes": {
-    "de": "банка ist auch das Einmachglas; die Blechdose allein heißt бляшанка."
-   }
+   "variants": ["бляшанка"],
+   "notes": { "de": "банка ist auch das Einmachglas; die Blechdose allein heißt бляшанка." }
   },
-  "the-knife-is-sharp": {
-   "text": "Ніж гострий!"
-  },
-  "this-is-very-tasty": {
-   "text": "Це дуже смачно!",
-   "variants": [
-    "Це так смачно!"
-   ]
-  },
+  "the-knife-is-sharp": { "text": "Ніж гострий!" },
+  "this-is-very-tasty": { "text": "Це дуже смачно!", "variants": ["Це так смачно!"] },
   "are-you-cooking-rice-today": {
    "text": "Ти вариш сьогодні рис?",
-   "notes": {
-    "de": "варити = im Wasser kochen · готувати = zubereiten"
-   }
+   "notes": { "de": "варити = im Wasser kochen · готувати = zubereiten" }
   },
-  "the-pot-is-still-on-the-stove": {
-   "text": "Каструля ще стоїть на плиті."
-  },
-  "wash-the-dishes-in-the-sink": {
-   "text": "Помий посуд у мийці!"
-  },
-  "the-fridge-is-empty": {
-   "text": "Холодильник порожній."
-  },
-  "can-you-set-the-table": {
-   "text": "Можеш накрити на стіл?"
-  },
-  "the-water-is-boiling-hot": {
-   "text": "Вода кипить."
-  },
-  "careful-very-hot": {
-   "text": "Обережно, дуже гаряче!"
-  }
+  "the-pot-is-still-on-the-stove": { "text": "Каструля ще стоїть на плиті." },
+  "wash-the-dishes-in-the-sink": { "text": "Помий посуд у мийці!" },
+  "the-fridge-is-empty": { "text": "Холодильник порожній." },
+  "can-you-set-the-table": { "text": "Можеш накрити на стіл?" },
+  "the-water-is-boiling-hot": { "text": "Вода кипить." },
+  "careful-very-hot": { "text": "Обережно, дуже гаряче!" }
  }
 }

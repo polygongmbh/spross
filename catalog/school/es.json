@@ -4,240 +4,87 @@
  "words": {
   "school": {
    "text": "escuela",
-   "synonyms": [
-    "colegio"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
+   "synonyms": ["colegio"],
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "el colegio ist die Schule der Kinder; la escuela ist allgemeiner: la escuela de idiomas = die Sprachschule."
    }
   },
   "classroom": {
    "text": "aula",
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "aula ist feminin, nimmt im Singular aber el (betontes a-): el aula, Plural las aulas."
-   }
+   "grammar": { "gender": "el" },
+   "notes": { "de": "aula ist feminin, nimmt im Singular aber el (betontes a-): el aula, Plural las aulas." }
   },
   "teacher": {
    "text": "profesor",
-   "synonyms": [
-    "maestro"
-   ],
-   "variants": [
-    "profe"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
+   "synonyms": ["maestro"],
+   "variants": ["profe"],
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "el maestro unterrichtet in der Grundschule, el profesor an weiterführenden Schulen und im Sprachkurs."
    }
   },
   "teacher-f": {
    "text": "profesora",
-   "synonyms": [
-    "maestra"
-   ],
-   "variants": [
-    "profe"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
+   "synonyms": ["maestra"],
+   "variants": ["profe"],
+   "grammar": { "gender": "la" }
   },
-  "board": {
-   "text": "pizarra",
-   "variants": [
-    "pizarrón"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "exercise-book": {
-   "text": "cuaderno",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "board": { "text": "pizarra", "variants": ["pizarrón"], "grammar": { "gender": "la" } },
+  "exercise-book": { "text": "cuaderno", "grammar": { "gender": "el" } },
   "homework": {
    "text": "deberes",
-   "variants": [
-    "tarea",
-    "tareas"
-   ],
-   "grammar": {
-    "gender": "los",
-    "plural": "only"
-   },
-   "notes": {
-    "de": "Nur im Plural: los deberes — hacer los deberes = Hausaufgaben machen."
-   }
+   "variants": ["tarea", "tareas"],
+   "grammar": { "gender": "los", "plural": "only" },
+   "notes": { "de": "Nur im Plural: los deberes — hacer los deberes = Hausaufgaben machen." }
   },
-  "exam": {
-   "text": "examen",
-   "variants": [
-    "prueba"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "exam": { "text": "examen", "variants": ["prueba"], "grammar": { "gender": "el" } },
   "break": {
    "text": "descanso",
-   "synonyms": [
-    "pausa"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "Die Pause zwischen den Schulstunden heißt el recreo."
-   }
+   "synonyms": ["pausa"],
+   "grammar": { "gender": "el" },
+   "notes": { "de": "Die Pause zwischen den Schulstunden heißt el recreo." }
   },
   "pass-exam": {
    "text": "aprobar el examen",
-   "variants": [
-    "pasar el examen"
-   ],
-   "notes": {
-    "de": "aprobar = bestehen, suspender = durchfallen."
-   }
+   "variants": ["pasar el examen"],
+   "notes": { "de": "aprobar = bestehen, suspender = durchfallen." }
   },
-  "to-practice": {
-   "text": "practicar",
-   "variants": [
-    "hacer ejercicios"
-   ]
-  },
-  "raise-hand": {
-   "text": "levantar la mano",
-   "variants": [
-    "alzar la mano"
-   ]
-  },
-  "pupil": {
-   "text": "alumno",
-   "variants": [
-    "estudiante"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "pupil-f": {
-   "text": "alumna",
-   "variants": [
-    "estudiante"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "course": {
-   "text": "curso",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "to-practice": { "text": "practicar", "variants": ["hacer ejercicios"] },
+  "raise-hand": { "text": "levantar la mano", "variants": ["alzar la mano"] },
+  "pupil": { "text": "alumno", "variants": ["estudiante"], "grammar": { "gender": "el" } },
+  "pupil-f": { "text": "alumna", "variants": ["estudiante"], "grammar": { "gender": "la" } },
+  "course": { "text": "curso", "grammar": { "gender": "el" } },
   "lesson": {
    "text": "clase",
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "Meist im Singular: hoy tengo clase = heute habe ich Unterricht."
-   }
+   "grammar": { "gender": "la" },
+   "notes": { "de": "Meist im Singular: hoy tengo clase = heute habe ich Unterricht." }
   },
   "course-book": {
    "text": "libro de texto",
-   "variants": [
-    "manual",
-    "libro del curso"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
+   "variants": ["manual", "libro del curso"],
+   "grammar": { "gender": "el" }
   },
-  "page": {
-   "text": "página",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "grade": {
-   "text": "nota",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "correct": {
-   "text": "corregir"
-  },
-  "book": {
-   "text": "libro",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "university": {
-   "text": "universidad",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "page": { "text": "página", "grammar": { "gender": "la" } },
+  "grade": { "text": "nota", "grammar": { "gender": "la" } },
+  "correct": { "text": "corregir" },
+  "book": { "text": "libro", "grammar": { "gender": "el" } },
+  "university": { "text": "universidad", "grammar": { "gender": "la" } },
   "class-schedule": {
    "text": "horario",
-   "grammar": {
-    "gender": "el"
-   },
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "el horario ist jeder Zeitplan; der Stundenplan der Schule heißt genauer el horario de clases."
    }
   },
-  "to-count": {
-   "text": "contar",
-   "notes": {
-    "de": "contar heißt auch erzählen: cuéntame = erzähl mir."
-   }
-  },
-  "to-try": {
-   "text": "intentar",
-   "variants": [
-    "probar"
-   ]
-  },
-  "do-the-homework": {
-   "text": "Hago los deberes."
-  },
-  "the-exam-is-tomorrow": {
-   "text": "El examen es mañana."
-  },
-  "look-at-the-class-schedule": {
-   "text": "Mira el horario.",
-   "variants": [
-    "Mire el horario."
-   ]
-  },
-  "the-break-is-over": {
-   "text": "El descanso ha terminado."
-  },
-  "ask-the-teacher": {
-   "text": "Pregunta al profesor.",
-   "variants": [
-    "Pregunte al profesor."
-   ]
-  },
-  "i-have-a-good-grade": {
-   "text": "Tengo una buena nota."
-  },
-  "we-go-to-the-classroom": {
-   "text": "Vamos al aula."
-  }
+  "to-count": { "text": "contar", "notes": { "de": "contar heißt auch erzählen: cuéntame = erzähl mir." } },
+  "to-try": { "text": "intentar", "variants": ["probar"] },
+  "do-the-homework": { "text": "Hago los deberes." },
+  "the-exam-is-tomorrow": { "text": "El examen es mañana." },
+  "look-at-the-class-schedule": { "text": "Mira el horario.", "variants": ["Mire el horario."] },
+  "the-break-is-over": { "text": "El descanso ha terminado." },
+  "ask-the-teacher": { "text": "Pregunta al profesor.", "variants": ["Pregunte al profesor."] },
+  "i-have-a-good-grade": { "text": "Tengo una buena nota." },
+  "we-go-to-the-classroom": { "text": "Vamos al aula." }
  }
 }

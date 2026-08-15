@@ -2,73 +2,23 @@
  "title": "Les couleurs",
  "subtitle": "Rouge, bleu et tout le reste.",
  "words": {
-  "color": {
-   "text": "couleur",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "white": {
-   "text": "blanc",
-   "variants": [
-    "blanche"
-   ]
-  },
-  "black": {
-   "text": "noir",
-   "variants": [
-    "noire"
-   ]
-  },
-  "red": {
-   "text": "rouge"
-  },
-  "blue": {
-   "text": "bleu",
-   "variants": [
-    "bleue"
-   ]
-  },
-  "green": {
-   "text": "vert",
-   "variants": [
-    "verte"
-   ]
-  },
-  "yellow": {
-   "text": "jaune"
-  },
+  "color": { "text": "couleur", "grammar": { "gender": "la" } },
+  "white": { "text": "blanc", "variants": ["blanche"] },
+  "black": { "text": "noir", "variants": ["noire"] },
+  "red": { "text": "rouge" },
+  "blue": { "text": "bleu", "variants": ["bleue"] },
+  "green": { "text": "vert", "variants": ["verte"] },
+  "yellow": { "text": "jaune" },
   "brown": {
    "text": "marron",
-   "variants": [
-    "brun",
-    "brune"
-   ],
+   "variants": ["brun", "brune"],
    "notes": {
     "de": "marron bleibt unverändert: une veste marron · brun/brune vor allem bei Haaren und Augen."
    }
   },
-  "gray": {
-   "text": "gris",
-   "variants": [
-    "grise"
-   ]
-  },
-  "purple": {
-   "text": "violet",
-   "variants": [
-    "violette",
-    "mauve"
-   ]
-  },
-  "what-color-is-it": {
-   "text": "De quelle couleur est-ce ?",
-   "variants": [
-    "C'est de quelle couleur ?"
-   ]
-  },
-  "a-white-car": {
-   "text": "Une voiture blanche."
-  }
+  "gray": { "text": "gris", "variants": ["grise"] },
+  "purple": { "text": "violet", "variants": ["violette", "mauve"] },
+  "what-color-is-it": { "text": "De quelle couleur est-ce ?", "variants": ["C'est de quelle couleur ?"] },
+  "a-white-car": { "text": "Une voiture blanche." }
  }
 }

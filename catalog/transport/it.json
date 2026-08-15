@@ -2,236 +2,68 @@
  "title": "I trasporti",
  "subtitle": "Si parte!",
  "words": {
-  "traffic-light": {
-   "text": "semaforo",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "bicycle": {
-   "text": "bicicletta",
-   "variants": [
-    "bici"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "traffic-light": { "text": "semaforo", "grammar": { "gender": "il" } },
+  "bicycle": { "text": "bicicletta", "variants": ["bici"], "grammar": { "gender": "la" } },
   "bus": {
    "text": "autobus",
-   "variants": [
-    "l'autobus",
-    "bus"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "="
-   }
+   "variants": ["l'autobus", "bus"],
+   "grammar": { "gender": "l'", "plural": "=" }
   },
-  "bus-stop": {
-   "text": "fermata",
-   "variants": [
-    "fermata dell'autobus"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "train": {
-   "text": "treno",
-   "grammar": {
-    "gender": "il"
-   }
-  },
+  "bus-stop": { "text": "fermata", "variants": ["fermata dell'autobus"], "grammar": { "gender": "la" } },
+  "train": { "text": "treno", "grammar": { "gender": "il" } },
   "car": {
    "text": "macchina",
-   "synonyms": [
-    "auto"
-   ],
-   "variants": [
-    "l'auto",
-    "un'auto",
-    "automobile"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "l'auto ist die Kurzform von automobile und bleibt feminin: le auto."
-   }
+   "synonyms": ["auto"],
+   "variants": ["l'auto", "un'auto", "automobile"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "l'auto ist die Kurzform von automobile und bleibt feminin: le auto." }
   },
-  "taxi": {
-   "text": "taxi",
-   "variants": [
-    "tassì"
-   ],
-   "grammar": {
-    "gender": "il",
-    "plural": "="
-   }
-  },
-  "train-station": {
-   "text": "stazione",
-   "variants": [
-    "stazione ferroviaria"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "ticket": {
-   "text": "biglietto",
-   "grammar": {
-    "gender": "il"
-   }
-  },
+  "taxi": { "text": "taxi", "variants": ["tassì"], "grammar": { "gender": "il", "plural": "=" } },
+  "train-station": { "text": "stazione", "variants": ["stazione ferroviaria"], "grammar": { "gender": "la" } },
+  "ticket": { "text": "biglietto", "grammar": { "gender": "il" } },
   "way": {
    "text": "cammino",
-   "grammar": {
-    "gender": "il"
-   },
-   "notes": {
-    "de": "il cammino ist der Weg, den man geht; nach dem Weg fragt man mit la strada."
-   }
+   "grammar": { "gender": "il" },
+   "notes": { "de": "il cammino ist der Weg, den man geht; nach dem Weg fragt man mit la strada." }
   },
-  "ride-bike": {
-   "text": "andare in bicicletta",
-   "variants": [
-    "andare in bici",
-    "pedalare"
-   ]
-  },
-  "take-bus": {
-   "text": "prendere l'autobus",
-   "variants": [
-    "prendere il bus"
-   ]
-  },
+  "ride-bike": { "text": "andare in bicicletta", "variants": ["andare in bici", "pedalare"] },
+  "take-bus": { "text": "prendere l'autobus", "variants": ["prendere il bus"] },
   "depart": {
    "text": "partire",
-   "notes": {
-    "de": "Züge und Busse „fahren ab“ mit partire: Il treno parte alle otto."
-   }
+   "notes": { "de": "Züge und Busse „fahren ab“ mit partire: Il treno parte alle otto." }
   },
-  "journey": {
-   "text": "viaggio",
-   "grammar": {
-    "gender": "il",
-    "plural": "viaggi"
-   }
-  },
-  "travel": {
-   "text": "viaggiare"
-  },
+  "journey": { "text": "viaggio", "grammar": { "gender": "il", "plural": "viaggi" } },
+  "travel": { "text": "viaggiare" },
   "driver": {
    "text": "autista",
-   "variants": [
-    "l'autista",
-    "conducente"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "autisti"
-   }
+   "variants": ["l'autista", "conducente"],
+   "grammar": { "gender": "l'", "plural": "autisti" }
   },
-  "plane": {
-   "text": "aereo",
-   "variants": [
-    "l'aereo",
-    "aeroplano"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "airport": {
-   "text": "aeroporto",
-   "variants": [
-    "l'aeroporto"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "ship": {
-   "text": "nave",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "plane": { "text": "aereo", "variants": ["l'aereo", "aeroplano"], "grammar": { "gender": "l'" } },
+  "airport": { "text": "aeroporto", "variants": ["l'aeroporto"], "grammar": { "gender": "l'" } },
+  "ship": { "text": "nave", "grammar": { "gender": "la" } },
   "motorbike": {
    "text": "moto",
-   "variants": [
-    "motocicletta"
-   ],
-   "grammar": {
-    "gender": "la",
-    "plural": "="
-   },
-   "notes": {
-    "de": "la moto ist die Kurzform von la motocicletta und behält deren Femininum."
-   }
+   "variants": ["motocicletta"],
+   "grammar": { "gender": "la", "plural": "=" },
+   "notes": { "de": "la moto ist die Kurzform von la motocicletta und behält deren Femininum." }
   },
-  "truck": {
-   "text": "camion",
-   "grammar": {
-    "gender": "il",
-    "plural": "="
-   }
-  },
-  "passenger": {
-   "text": "passeggero",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "luggage": {
-   "text": "bagaglio",
-   "grammar": {
-    "gender": "il",
-    "plural": "bagagli"
-   }
-  },
-  "fare": {
-   "text": "tariffa",
-   "variants": [
-    "prezzo del biglietto"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "get-off": {
-   "text": "scendere"
-  },
+  "truck": { "text": "camion", "grammar": { "gender": "il", "plural": "=" } },
+  "passenger": { "text": "passeggero", "grammar": { "gender": "il" } },
+  "luggage": { "text": "bagaglio", "grammar": { "gender": "il", "plural": "bagagli" } },
+  "fare": { "text": "tariffa", "variants": ["prezzo del biglietto"], "grammar": { "gender": "la" } },
+  "get-off": { "text": "scendere" },
   "the-bus-is-coming-soon": {
    "text": "L'autobus arriva tra poco.",
-   "variants": [
-    "L'autobus arriva fra poco.",
-    "Il bus arriva tra poco."
-   ]
+   "variants": ["L'autobus arriva fra poco.", "Il bus arriva tra poco."]
   },
-  "when-does-the-train-leave": {
-   "text": "Quando parte il treno?",
-   "variants": [
-    "A che ora parte il treno?"
-   ]
-  },
-  "have-a-good-journey": {
-   "text": "Buon viaggio!"
-  },
-  "where-is-the-airport": {
-   "text": "Dov'è l'aeroporto?"
-  },
+  "when-does-the-train-leave": { "text": "Quando parte il treno?", "variants": ["A che ora parte il treno?"] },
+  "have-a-good-journey": { "text": "Buon viaggio!" },
+  "where-is-the-airport": { "text": "Dov'è l'aeroporto?" },
   "how-much-is-the-fare": {
    "text": "Qual è la tariffa?",
-   "variants": [
-    "Quanto costa la corsa?",
-    "Quanto costa il biglietto?"
-   ]
+   "variants": ["Quanto costa la corsa?", "Quanto costa il biglietto?"]
   },
-  "i-get-off-here": {
-   "text": "Scendo qui."
-  }
+  "i-get-off-here": { "text": "Scendo qui." }
  }
 }

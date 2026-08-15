@@ -4,157 +4,75 @@
  "words": {
   "good": {
    "text": "bon",
-   "variants": [
-    "bonne"
-   ],
-   "notes": {
-    "de": "bon ist das Adjektiv; als Adverb heißt gut bien: ça va bien."
-   }
+   "variants": ["bonne"],
+   "notes": { "de": "bon ist das Adjektiv; als Adverb heißt gut bien: ça va bien." }
   },
   "bad": {
    "text": "mauvais",
-   "variants": [
-    "mauvaise"
-   ],
-   "notes": {
-    "de": "mauvais ist das Adjektiv; als Adverb heißt schlecht mal: ça va mal."
-   }
+   "variants": ["mauvaise"],
+   "notes": { "de": "mauvais ist das Adjektiv; als Adverb heißt schlecht mal: ça va mal." }
   },
   "big": {
    "text": "grand",
-   "variants": [
-    "grande"
-   ],
-   "notes": {
-    "de": "steht vor dem Substantiv: une grande maison — die meisten Adjektive stehen dahinter."
-   }
+   "variants": ["grande"],
+   "notes": { "de": "steht vor dem Substantiv: une grande maison — die meisten Adjektive stehen dahinter." }
   },
-  "small": {
-   "text": "petit",
-   "variants": [
-    "petite"
-   ]
-  },
+  "small": { "text": "petit", "variants": ["petite"] },
   "much": {
    "text": "beaucoup",
-   "notes": {
-    "de": "vor dem Substantiv immer mit de: beaucoup d'eau, beaucoup d'amis."
-   }
+   "notes": { "de": "vor dem Substantiv immer mit de: beaucoup d'eau, beaucoup d'amis." }
   },
   "new": {
    "text": "nouveau",
-   "variants": [
-    "nouvelle",
-    "nouvel"
-   ],
-   "notes": {
-    "de": "vor Vokal nouvel: un nouvel ami · fabrikneu ist neuf: une voiture neuve."
-   }
+   "variants": ["nouvelle", "nouvel"],
+   "notes": { "de": "vor Vokal nouvel: un nouvel ami · fabrikneu ist neuf: une voiture neuve." }
   },
   "old": {
    "text": "vieux",
-   "variants": [
-    "vieille",
-    "vieil"
-   ],
-   "notes": {
-    "de": "vor Vokal vieil: un vieil ami · bei Personen höflicher âgé."
-   }
+   "variants": ["vieille", "vieil"],
+   "notes": { "de": "vor Vokal vieil: un vieil ami · bei Personen höflicher âgé." }
   },
   "slow": {
    "text": "lent",
-   "variants": [
-    "lente",
-    "lentement"
-   ],
-   "notes": {
-    "de": "als Adverb lentement: parle lentement."
-   }
+   "variants": ["lente", "lentement"],
+   "notes": { "de": "als Adverb lentement: parle lentement." }
   },
   "fast": {
    "text": "rapide",
-   "variants": [
-    "vite"
-   ],
-   "notes": {
-    "de": "rapide ist das Adjektiv, vite das Adverb: roule moins vite."
-   }
+   "variants": ["vite"],
+   "notes": { "de": "rapide ist das Adjektiv, vite das Adverb: roule moins vite." }
   },
-  "long": {
-   "text": "long",
-   "variants": [
-    "longue"
-   ]
-  },
-  "short": {
-   "text": "court",
-   "variants": [
-    "courte"
-   ],
-   "notes": {
-    "de": "bei Körpergröße petit."
-   }
-  },
+  "long": { "text": "long", "variants": ["longue"] },
+  "short": { "text": "court", "variants": ["courte"], "notes": { "de": "bei Körpergröße petit." } },
   "heavy": {
    "text": "lourd",
-   "variants": [
-    "lourde"
-   ],
-   "notes": {
-    "de": "lourd meint nur das Gewicht; schwierig ist difficile."
-   }
+   "variants": ["lourde"],
+   "notes": { "de": "lourd meint nur das Gewicht; schwierig ist difficile." }
   },
   "lightweight": {
    "text": "léger",
-   "variants": [
-    "légère"
-   ],
-   "notes": {
-    "de": "léger meint nur das Gewicht; einfach ist facile."
-   }
+   "variants": ["légère"],
+   "notes": { "de": "léger meint nur das Gewicht; einfach ist facile." }
   },
-  "difficult": {
-   "text": "difficile"
-  },
-  "easy": {
-   "text": "facile"
-  },
+  "difficult": { "text": "difficile" },
+  "easy": { "text": "facile" },
   "clean-adj": {
    "text": "propre",
-   "notes": {
-    "de": "nach dem Substantiv sauber, davor eigen: ma propre chambre."
-   }
+   "notes": { "de": "nach dem Substantiv sauber, davor eigen: ma propre chambre." }
   },
   "sharp": {
    "text": "tranchant",
-   "synonyms": [
-    "aiguisé"
-   ],
-   "variants": [
-    "tranchante",
-    "aiguisée"
-   ],
-   "notes": {
-    "de": "nur für Klingen; scharf im Geschmack ist épicé."
-   }
+   "synonyms": ["aiguisé"],
+   "variants": ["tranchante", "aiguisée"],
+   "notes": { "de": "nur für Klingen; scharf im Geschmack ist épicé." }
   },
-  "a-lot-of-water": {
-   "text": "beaucoup d'eau"
-  },
+  "a-lot-of-water": { "text": "beaucoup d'eau" },
   "the-day-is-long": {
    "text": "La journée est longue.",
-   "variants": [
-    "Le jour est long."
-   ],
-   "notes": {
-    "de": "jour ist der Tag als Datum, journée der Tag in seiner Dauer: la journée est longue."
-   }
+   "variants": ["Le jour est long."],
+   "notes": { "de": "jour ist der Tag als Datum, journée der Tag in seiner Dauer: la journée est longue." }
   },
-  "that-is-too-heavy": {
-   "text": "C'est trop lourd."
-  },
-  "the-water-is-clean": {
-   "text": "L'eau est propre."
-  }
+  "that-is-too-heavy": { "text": "C'est trop lourd." },
+  "the-water-is-clean": { "text": "L'eau est propre." }
  }
 }

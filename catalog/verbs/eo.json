@@ -2,56 +2,21 @@
  "title": "La ĉefaj verboj",
  "subtitle": "Kion vi bezonas en ĉiu ĉambro kaj sur ĉiu vojo.",
  "words": {
-  "go": {
-   "text": "iri",
-   "notes": {
-    "de": "iri ist gehen allgemein · mit einem Fahrzeug: veturi."
-   }
-  },
-  "come": {
-   "text": "veni"
-  },
-  "have": {
-   "text": "havi"
-  },
-  "give": {
-   "text": "doni"
-  },
-  "take": {
-   "text": "preni"
-  },
-  "see": {
-   "text": "vidi"
-  },
-  "make": {
-   "text": "fari"
-  },
-  "like": {
-   "text": "ŝati",
-   "notes": {
-    "de": "ŝati = mögen · ami = lieben: Mi amas vin."
-   }
-  },
-  "can": {
-   "text": "povi",
-   "notes": {
-    "de": "povi = imstande sein · eine Sprache können ist scipovi."
-   }
-  },
+  "go": { "text": "iri", "notes": { "de": "iri ist gehen allgemein · mit einem Fahrzeug: veturi." } },
+  "come": { "text": "veni" },
+  "have": { "text": "havi" },
+  "give": { "text": "doni" },
+  "take": { "text": "preni" },
+  "see": { "text": "vidi" },
+  "make": { "text": "fari" },
+  "like": { "text": "ŝati", "notes": { "de": "ŝati = mögen · ami = lieben: Mi amas vin." } },
+  "can": { "text": "povi", "notes": { "de": "povi = imstande sein · eine Sprache können ist scipovi." } },
   "think": {
    "text": "pensi",
-   "notes": {
-    "de": "pensi pri io = an etwas denken · pensi ke = glauben, dass."
-   }
+   "notes": { "de": "pensi pri io = an etwas denken · pensi ke = glauben, dass." }
   },
-  "wait": {
-   "text": "atendi"
-  },
-  "do-you-have-water": {
-   "text": "Ĉu vi havas akvon?"
-  },
-  "where-are-you-from": {
-   "text": "De kie vi venas?"
-  }
+  "wait": { "text": "atendi" },
+  "do-you-have-water": { "text": "Ĉu vi havas akvon?" },
+  "where-are-you-from": { "text": "De kie vi venas?" }
  }
 }

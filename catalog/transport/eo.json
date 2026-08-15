@@ -2,173 +2,55 @@
  "title": "Transporto",
  "subtitle": "Ek al la vojo!",
  "words": {
-  "traffic-light": {
-   "text": "trafiklumo",
-   "variants": [
-    "semaforo",
-    "trafiksemaforo",
-    "lumsignalo"
-   ]
-  },
-  "bicycle": {
-   "text": "biciklo"
-  },
-  "bus": {
-   "text": "aŭtobuso",
-   "variants": [
-    "buso"
-   ]
-  },
-  "bus-stop": {
-   "text": "haltejo",
-   "variants": [
-    "bushaltejo",
-    "aŭtobusa haltejo"
-   ]
-  },
-  "train": {
-   "text": "trajno",
-   "synonyms": [
-    "vagonaro"
-   ]
-  },
-  "car": {
-   "text": "aŭto",
-   "variants": [
-    "aŭtomobilo"
-   ]
-  },
-  "taxi": {
-   "text": "taksio"
-  },
-  "train-station": {
-   "text": "stacidomo",
-   "variants": [
-    "stacio",
-    "trajnstacio"
-   ]
-  },
-  "ticket": {
-   "text": "bileto"
-  },
-  "way": {
-   "text": "vojo"
-  },
-  "ride-bike": {
-   "text": "bicikli",
-   "variants": [
-    "veturi per biciklo"
-   ]
-  },
-  "take-bus": {
-   "text": "preni la aŭtobuson",
-   "variants": [
-    "preni la buson",
-    "veturi per aŭtobuso"
-   ]
-  },
+  "traffic-light": { "text": "trafiklumo", "variants": ["semaforo", "trafiksemaforo", "lumsignalo"] },
+  "bicycle": { "text": "biciklo" },
+  "bus": { "text": "aŭtobuso", "variants": ["buso"] },
+  "bus-stop": { "text": "haltejo", "variants": ["bushaltejo", "aŭtobusa haltejo"] },
+  "train": { "text": "trajno", "synonyms": ["vagonaro"] },
+  "car": { "text": "aŭto", "variants": ["aŭtomobilo"] },
+  "taxi": { "text": "taksio" },
+  "train-station": { "text": "stacidomo", "variants": ["stacio", "trajnstacio"] },
+  "ticket": { "text": "bileto" },
+  "way": { "text": "vojo" },
+  "ride-bike": { "text": "bicikli", "variants": ["veturi per biciklo"] },
+  "take-bus": { "text": "preni la aŭtobuson", "variants": ["preni la buson", "veturi per aŭtobuso"] },
   "depart": {
    "text": "ekveturi",
-   "variants": [
-    "forveturi"
-   ],
-   "notes": {
-    "de": "ekveturi ist das Losfahren: La trajno ekveturas je la oka."
-   }
+   "variants": ["forveturi"],
+   "notes": { "de": "ekveturi ist das Losfahren: La trajno ekveturas je la oka." }
   },
-  "journey": {
-   "text": "vojaĝo"
-  },
-  "travel": {
-   "text": "vojaĝi"
-  },
-  "driver": {
-   "text": "ŝoforo",
-   "synonyms": [
-    "veturigisto"
-   ]
-  },
-  "plane": {
-   "text": "aviadilo",
-   "variants": [
-    "aeroplano"
-   ]
-  },
-  "airport": {
-   "text": "flughaveno"
-  },
-  "ship": {
-   "text": "ŝipo"
-  },
-  "motorbike": {
-   "text": "motorciklo",
-   "variants": [
-    "motorbiciklo"
-   ]
-  },
-  "truck": {
-   "text": "kamiono"
-  },
-  "passenger": {
-   "text": "pasaĝero"
-  },
-  "luggage": {
-   "text": "pakaĵo",
-   "variants": [
-    "bagaĝo",
-    "pakaĵaro"
-   ]
-  },
-  "fare": {
-   "text": "veturprezo",
-   "variants": [
-    "biletprezo",
-    "veturkosto"
-   ]
-  },
+  "journey": { "text": "vojaĝo" },
+  "travel": { "text": "vojaĝi" },
+  "driver": { "text": "ŝoforo", "synonyms": ["veturigisto"] },
+  "plane": { "text": "aviadilo", "variants": ["aeroplano"] },
+  "airport": { "text": "flughaveno" },
+  "ship": { "text": "ŝipo" },
+  "motorbike": { "text": "motorciklo", "variants": ["motorbiciklo"] },
+  "truck": { "text": "kamiono" },
+  "passenger": { "text": "pasaĝero" },
+  "luggage": { "text": "pakaĵo", "variants": ["bagaĝo", "pakaĵaro"] },
+  "fare": { "text": "veturprezo", "variants": ["biletprezo", "veturkosto"] },
   "get-off": {
    "text": "eliri",
-   "variants": [
-    "elbusiĝi",
-    "eliri el la buso"
-   ],
+   "variants": ["elbusiĝi", "eliri el la buso"],
    "notes": {
     "de": "aussteigen ist eliri, sobald der Zusammenhang das Fahrzeug nennt: Mi eliras ĉe la sekva haltejo."
    }
   },
   "the-bus-is-coming-soon": {
    "text": "La aŭtobuso tuj venas.",
-   "variants": [
-    "La aŭtobuso baldaŭ venas.",
-    "La buso tuj venas."
-   ]
+   "variants": ["La aŭtobuso baldaŭ venas.", "La buso tuj venas."]
   },
   "when-does-the-train-leave": {
    "text": "Kiam la trajno ekveturas?",
-   "variants": [
-    "Kiam ekveturas la trajno?",
-    "Kiam la vagonaro ekveturas?"
-   ]
+   "variants": ["Kiam ekveturas la trajno?", "Kiam la vagonaro ekveturas?"]
   },
-  "have-a-good-journey": {
-   "text": "Bonan vojaĝon!"
-  },
-  "where-is-the-airport": {
-   "text": "Kie estas la flughaveno?"
-  },
+  "have-a-good-journey": { "text": "Bonan vojaĝon!" },
+  "where-is-the-airport": { "text": "Kie estas la flughaveno?" },
   "how-much-is-the-fare": {
    "text": "Kiom kostas la veturo?",
-   "variants": [
-    "Kiom alta estas la veturprezo?",
-    "Kiom kostas la bileto?"
-   ]
+   "variants": ["Kiom alta estas la veturprezo?", "Kiom kostas la bileto?"]
   },
-  "i-get-off-here": {
-   "text": "Mi eliras ĉi tie.",
-   "variants": [
-    "Ĉi tie mi eliras.",
-    "Mi elbusiĝas ĉi tie."
-   ]
-  }
+  "i-get-off-here": { "text": "Mi eliras ĉi tie.", "variants": ["Ĉi tie mi eliras.", "Mi elbusiĝas ĉi tie."] }
  }
 }

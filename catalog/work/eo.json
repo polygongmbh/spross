@@ -2,196 +2,58 @@
  "title": "La laboro",
  "subtitle": "Multan sukceson!",
  "words": {
-  "work": {
-   "text": "laboro"
-  },
-  "job-application": {
-   "text": "kandidatiĝo",
-   "variants": [
-    "dungopeto",
-    "laborpeto"
-   ]
-  },
-  "cv": {
-   "text": "vivresumo",
-   "variants": [
-    "vivpriskribo",
-    "curriculum vitae",
-    "CV"
-   ]
-  },
-  "contract": {
-   "text": "kontrakto"
-  },
-  "salary": {
-   "text": "salajro"
-  },
-  "colleague": {
-   "text": "kolego"
-  },
-  "colleague-f": {
-   "text": "kolegino"
-  },
-  "boss": {
-   "text": "estro",
-   "synonyms": [
-    "ĉefo"
-   ]
-  },
-  "boss-f": {
-   "text": "estrino"
-  },
-  "shift": {
-   "text": "deĵoro",
-   "variants": [
-    "laborvico"
-   ]
-  },
-  "vacation": {
-   "text": "ferioj",
-   "variants": [
-    "ferio",
-    "forpermeso",
-    "libertempo"
-   ]
-  },
-  "company": {
-   "text": "firmao",
-   "synonyms": [
-    "entrepreno"
-   ],
-   "variants": [
-    "kompanio"
-   ]
-  },
-  "apply": {
-   "text": "kandidatiĝi",
-   "variants": [
-    "kandidatiĝi por posteno"
-   ]
-  },
-  "introduce-oneself": {
-   "text": "prezenti sin",
-   "variants": [
-    "sin prezenti"
-   ]
-  },
-  "earn": {
-   "text": "perlabori",
-   "variants": [
-    "enspezi"
-   ]
-  },
+  "work": { "text": "laboro" },
+  "job-application": { "text": "kandidatiĝo", "variants": ["dungopeto", "laborpeto"] },
+  "cv": { "text": "vivresumo", "variants": ["vivpriskribo", "curriculum vitae", "CV"] },
+  "contract": { "text": "kontrakto" },
+  "salary": { "text": "salajro" },
+  "colleague": { "text": "kolego" },
+  "colleague-f": { "text": "kolegino" },
+  "boss": { "text": "estro", "synonyms": ["ĉefo"] },
+  "boss-f": { "text": "estrino" },
+  "shift": { "text": "deĵoro", "variants": ["laborvico"] },
+  "vacation": { "text": "ferioj", "variants": ["ferio", "forpermeso", "libertempo"] },
+  "company": { "text": "firmao", "synonyms": ["entrepreno"], "variants": ["kompanio"] },
+  "apply": { "text": "kandidatiĝi", "variants": ["kandidatiĝi por posteno"] },
+  "introduce-oneself": { "text": "prezenti sin", "variants": ["sin prezenti"] },
+  "earn": { "text": "perlabori", "variants": ["enspezi"] },
   "start": {
    "text": "komenci",
    "notes": {
     "de": "komenci ist transitiv: komenci la laboron. Was von selbst anfängt, komenciĝas — Mia deĵoro komenciĝas je la sesa horo."
    }
   },
-  "leave": {
-   "text": "forlasi"
-  },
+  "leave": { "text": "forlasi" },
   "quit": {
    "text": "eksiĝi",
-   "variants": [
-    "eksiĝi el la laboro",
-    "demisii"
-   ],
-   "notes": {
-    "de": "eksiĝi heißt selbst kündigen; kündigt der Arbeitgeber, heißt es maldungi."
-   }
+   "variants": ["eksiĝi el la laboro", "demisii"],
+   "notes": { "de": "eksiĝi heißt selbst kündigen; kündigt der Arbeitgeber, heißt es maldungi." }
   },
-  "hire": {
-   "text": "dungi"
-  },
-  "to-help": {
-   "text": "helpi"
-  },
-  "work-overtime": {
-   "text": "fari kromhorojn",
-   "variants": [
-    "labori kromhorojn",
-    "fari kromlaborhorojn"
-   ]
-  },
-  "profession": {
-   "text": "profesio",
-   "variants": [
-    "metio"
-   ]
-  },
+  "hire": { "text": "dungi" },
+  "to-help": { "text": "helpi" },
+  "work-overtime": { "text": "fari kromhorojn", "variants": ["labori kromhorojn", "fari kromlaborhorojn"] },
+  "profession": { "text": "profesio", "variants": ["metio"] },
   "interview": {
    "text": "labora intervjuo",
-   "variants": [
-    "dunga intervjuo",
-    "intervjuo pri laboro",
-    "intervjuo"
-   ]
+   "variants": ["dunga intervjuo", "intervjuo pri laboro", "intervjuo"]
   },
-  "working-hours": {
-   "text": "laborhoroj",
-   "variants": [
-    "labortempo"
-   ]
-  },
-  "full-time": {
-   "text": "plentempa laboro",
-   "variants": [
-    "plena labortempo",
-    "plentempe"
-   ]
-  },
-  "part-time": {
-   "text": "parttempa laboro",
-   "variants": [
-    "duontempa laboro",
-    "parta labortempo"
-   ]
-  },
-  "tax": {
-   "text": "imposto"
-  },
-  "work-permit": {
-   "text": "laborpermeso"
-  },
-  "training": {
-   "text": "profesia trejnado",
-   "variants": [
-    "metilernado",
-    "profesia edukado"
-   ]
-  },
-  "notice": {
-   "text": "maldungo",
-   "variants": [
-    "eksigo",
-    "eksiĝo"
-   ]
-  },
-  "worker": {
-   "text": "laboristo"
-  },
-  "employer": {
-   "text": "dunganto",
-   "variants": [
-    "labordonanto",
-    "laborodonanto"
-   ]
-  },
-  "customer": {
-   "text": "kliento"
-  },
+  "working-hours": { "text": "laborhoroj", "variants": ["labortempo"] },
+  "full-time": { "text": "plentempa laboro", "variants": ["plena labortempo", "plentempe"] },
+  "part-time": { "text": "parttempa laboro", "variants": ["duontempa laboro", "parta labortempo"] },
+  "tax": { "text": "imposto" },
+  "work-permit": { "text": "laborpermeso" },
+  "training": { "text": "profesia trejnado", "variants": ["metilernado", "profesia edukado"] },
+  "notice": { "text": "maldungo", "variants": ["eksigo", "eksiĝo"] },
+  "worker": { "text": "laboristo" },
+  "employer": { "text": "dunganto", "variants": ["labordonanto", "laborodonanto"] },
+  "customer": { "text": "kliento" },
   "tomorrow-i-have-a-job-interview": {
    "text": "Morgaŭ mi prezentos min ĉe la firmao.",
-   "variants": [
-    "Morgaŭ mi prezentos min ĉe la entrepreno."
-   ]
+   "variants": ["Morgaŭ mi prezentos min ĉe la entrepreno."]
   },
   "my-shift-starts-at-six": {
    "text": "Mia deĵoro komenciĝas je la sesa horo.",
-   "variants": [
-    "Mia deĵoro komenciĝas je la sesa."
-   ]
+   "variants": ["Mia deĵoro komenciĝas je la sesa."]
   },
   "ill-send-the-doctors-note-right-away": {
    "text": "Mi tuj sendos al vi la malsanateston.",
@@ -204,40 +66,26 @@
   },
   "have-a-nice-evening-off": {
    "text": "Agrablan vesperon post la laboro!",
-   "variants": [
-    "Bonan vesperon post la laboro!"
-   ],
+   "variants": ["Bonan vesperon post la laboro!"],
    "notes": {
     "de": "Für „Feierabend“ gibt es kein Esperanto-Wort; zum Abschied wünscht man agrablan vesperon post la laboro."
    }
   },
   "can-you-help-me-briefly": {
    "text": "Ĉu vi povas helpi min momenton?",
-   "variants": [
-    "Ĉu vi povus helpi min momenton?",
-    "Ĉu vi povas mallonge helpi min?"
-   ]
+   "variants": ["Ĉu vi povus helpi min momenton?", "Ĉu vi povas mallonge helpi min?"]
   },
   "i-want-vacation-next-week": {
    "text": "Mi ŝatus preni feriojn la venontan semajnon.",
-   "variants": [
-    "Mi volas preni feriojn la venontan semajnon.",
-    "Mi ŝatus preni ferion la venontan semajnon."
-   ]
+   "variants": ["Mi volas preni feriojn la venontan semajnon.", "Mi ŝatus preni ferion la venontan semajnon."]
   },
   "read-the-contract": {
    "text": "Tralegu la kontrakton!",
-   "variants": [
-    "Legu atente la kontrakton!",
-    "Legu la kontrakton!"
-   ]
+   "variants": ["Legu atente la kontrakton!", "Legu la kontrakton!"]
   },
   "whats-the-salary": {
    "text": "Kiom alta estas la salajro?",
-   "variants": [
-    "Kiom altas la salajro?",
-    "Kia estas la salajro?"
-   ]
+   "variants": ["Kiom altas la salajro?", "Kia estas la salajro?"]
   }
  }
 }

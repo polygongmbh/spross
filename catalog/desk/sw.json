@@ -2,182 +2,48 @@
  "title": "Dawati",
  "subtitle": "Wakati wa kutulia.",
  "words": {
-  "desk": {
-   "text": "meza ya kazi",
-   "grammar": {
-    "plural": "meza za kazi"
-   }
-  },
-  "laptop": {
-   "text": "kompyuta mpakato",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "keyboard": {
-   "text": "kibodi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "screen": {
-   "text": "skrini",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "mouse": {
-   "text": "kipanya",
-   "grammar": {
-    "plural": "vipanya"
-   }
-  },
-  "cable": {
-   "text": "kebo",
-   "synonyms": [
-    "waya"
-   ],
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "headphones": {
-   "text": "hedfoni",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "pen": {
-   "text": "kalamu",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "notebook": {
-   "text": "daftari",
-   "grammar": {
-    "plural": "madaftari"
-   }
-  },
-  "printer": {
-   "text": "printa",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "socket": {
-   "text": "soketi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "office-chair": {
-   "text": "kiti cha ofisi",
-   "grammar": {
-    "plural": "viti vya ofisi"
-   }
-  },
-  "to-work": {
-   "text": "kufanya kazi"
-  },
-  "print": {
-   "text": "kuchapisha"
-  },
-  "save": {
-   "text": "kuhifadhi"
-  },
-  "take-break": {
-   "text": "kupumzika kazini"
-  },
-  "write": {
-   "text": "kuandika"
-  },
-  "call": {
-   "text": "kupiga simu"
-  },
-  "delete": {
-   "text": "kufuta"
-  },
-  "study": {
-   "text": "kujifunza"
-  },
-  "phone": {
-   "text": "simu",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "email": {
-   "text": "barua pepe",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "paper": {
-   "text": "karatasi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "folder": {
-   "text": "folda",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "password": {
-   "text": "nenosiri",
-   "grammar": {
-    "plural": "manenosiri"
-   }
-  },
-  "internet": {
-   "text": "intaneti"
-  },
-  "charger": {
-   "text": "chaja",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "calendar": {
-   "text": "kalenda",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "important": {
-   "text": "muhimu"
-  },
-  "ready": {
-   "text": "tayari"
-  },
-  "im-in-a-meeting": {
-   "text": "Niko kwenye mkutano."
-  },
-  "dont-disturb-me": {
-   "text": "Usinisumbue!"
-  },
-  "the-laptop-wont-charge-anymore": {
-   "text": "Kompyuta mpakato haichaji tena."
-  },
-  "the-internet-is-gone": {
-   "text": "Intaneti imekatika."
-  },
-  "coffee-break": {
-   "text": "Pumziko la kahawa?"
-  },
-  "i-have-a-lot-to-do": {
-   "text": "Nina mengi ya kufanya."
-  },
+  "desk": { "text": "meza ya kazi", "grammar": { "plural": "meza za kazi" } },
+  "laptop": { "text": "kompyuta mpakato", "grammar": { "plural": "=" } },
+  "keyboard": { "text": "kibodi", "grammar": { "plural": "=" } },
+  "screen": { "text": "skrini", "grammar": { "plural": "=" } },
+  "mouse": { "text": "kipanya", "grammar": { "plural": "vipanya" } },
+  "cable": { "text": "kebo", "synonyms": ["waya"], "grammar": { "plural": "=" } },
+  "headphones": { "text": "hedfoni", "grammar": { "plural": "=" } },
+  "pen": { "text": "kalamu", "grammar": { "plural": "=" } },
+  "notebook": { "text": "daftari", "grammar": { "plural": "madaftari" } },
+  "printer": { "text": "printa", "grammar": { "plural": "=" } },
+  "socket": { "text": "soketi", "grammar": { "plural": "=" } },
+  "office-chair": { "text": "kiti cha ofisi", "grammar": { "plural": "viti vya ofisi" } },
+  "to-work": { "text": "kufanya kazi" },
+  "print": { "text": "kuchapisha" },
+  "save": { "text": "kuhifadhi" },
+  "take-break": { "text": "kupumzika kazini" },
+  "write": { "text": "kuandika" },
+  "call": { "text": "kupiga simu" },
+  "delete": { "text": "kufuta" },
+  "study": { "text": "kujifunza" },
+  "phone": { "text": "simu", "grammar": { "plural": "=" } },
+  "email": { "text": "barua pepe", "grammar": { "plural": "=" } },
+  "paper": { "text": "karatasi", "grammar": { "plural": "=" } },
+  "folder": { "text": "folda", "grammar": { "plural": "=" } },
+  "password": { "text": "nenosiri", "grammar": { "plural": "manenosiri" } },
+  "internet": { "text": "intaneti" },
+  "charger": { "text": "chaja", "grammar": { "plural": "=" } },
+  "calendar": { "text": "kalenda", "grammar": { "plural": "=" } },
+  "important": { "text": "muhimu" },
+  "ready": { "text": "tayari" },
+  "im-in-a-meeting": { "text": "Niko kwenye mkutano." },
+  "dont-disturb-me": { "text": "Usinisumbue!" },
+  "the-laptop-wont-charge-anymore": { "text": "Kompyuta mpakato haichaji tena." },
+  "the-internet-is-gone": { "text": "Intaneti imekatika." },
+  "coffee-break": { "text": "Pumziko la kahawa?" },
+  "i-have-a-lot-to-do": { "text": "Nina mengi ya kufanya." },
   "end-of-workday": {
    "text": "Kazi imeisha kwa leo!",
    "notes": {
     "de": "„Feierabend“ gibt es auf Swahili nicht — man sagt: „Die Arbeit ist für heute zu Ende!“"
    }
   },
-  "send-me-the-email": {
-   "text": "Nitumie barua pepe."
-  }
+  "send-me-the-email": { "text": "Nitumie barua pepe." }
  }
 }

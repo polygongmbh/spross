@@ -2,219 +2,53 @@
  "title": "La familia",
  "subtitle": "Las personas más cercanas a ti.",
  "words": {
-  "person": {
-   "text": "persona",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "person": { "text": "persona", "grammar": { "gender": "la" } },
   "human": {
    "text": "ser humano",
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "ser humano = Mensch als Gattung · persona = der einzelne Mensch."
-   }
+   "grammar": { "gender": "el" },
+   "notes": { "de": "ser humano = Mensch als Gattung · persona = der einzelne Mensch." }
   },
-  "family": {
-   "text": "familia",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "mother": {
-   "text": "madre",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "father": {
-   "text": "padre",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "parents": {
-   "text": "padres",
-   "grammar": {
-    "gender": "los"
-   }
-  },
+  "family": { "text": "familia", "grammar": { "gender": "la" } },
+  "mother": { "text": "madre", "grammar": { "gender": "la" } },
+  "father": { "text": "padre", "grammar": { "gender": "el" } },
+  "parents": { "text": "padres", "grammar": { "gender": "los" } },
   "child": {
    "text": "niño",
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "niño ist das Kind allgemein; das eigene Kind ist hijo/hija."
-   }
+   "grammar": { "gender": "el" },
+   "notes": { "de": "niño ist das Kind allgemein; das eigene Kind ist hijo/hija." }
   },
-  "son": {
-   "text": "hijo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "daughter": {
-   "text": "hija",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "brother": {
-   "text": "hermano",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "sister": {
-   "text": "hermana",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "man": {
-   "text": "hombre",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "woman": {
-   "text": "mujer",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "boy": {
-   "text": "chico",
-   "variants": [
-    "muchacho"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "girl": {
-   "text": "chica",
-   "variants": [
-    "muchacha"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "baby": {
-   "text": "bebé",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "friend": {
-   "text": "amigo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "friend-f": {
-   "text": "amiga",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "grandmother": {
-   "text": "abuela",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "grandfather": {
-   "text": "abuelo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "husband": {
-   "text": "marido",
-   "synonyms": [
-    "esposo"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "wife": {
-   "text": "esposa",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "uncle": {
-   "text": "tío",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "aunt": {
-   "text": "tía",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "this-is-my-mother": {
-   "text": "Esta es mi madre."
-  },
-  "where-is-your-father": {
-   "text": "¿Dónde está tu padre?",
-   "variants": [
-    "¿Dónde está su padre?"
-   ]
-  },
-  "i-have-two-children": {
-   "text": "Tengo dos hijos.",
-   "variants": [
-    "Tengo dos niños."
-   ]
-  },
-  "my-family-is-big": {
-   "text": "Mi familia es grande."
-  },
-  "i-have-a-brother": {
-   "text": "Tengo un hermano."
-  },
-  "my-parents-live-here": {
-   "text": "Mis padres viven aquí."
-  },
-  "how-is-your-grandmother": {
-   "text": "¿Cómo está tu abuela?",
-   "variants": [
-    "¿Cómo está su abuela?"
-   ]
-  },
-  "a-good-friend": {
-   "text": "un buen amigo"
-  },
-  "my-girlfriend": {
-   "text": "mi novia"
-  },
-  "her-boyfriend": {
-   "text": "su novio"
-  },
+  "son": { "text": "hijo", "grammar": { "gender": "el" } },
+  "daughter": { "text": "hija", "grammar": { "gender": "la" } },
+  "brother": { "text": "hermano", "grammar": { "gender": "el" } },
+  "sister": { "text": "hermana", "grammar": { "gender": "la" } },
+  "man": { "text": "hombre", "grammar": { "gender": "el" } },
+  "woman": { "text": "mujer", "grammar": { "gender": "la" } },
+  "boy": { "text": "chico", "variants": ["muchacho"], "grammar": { "gender": "el" } },
+  "girl": { "text": "chica", "variants": ["muchacha"], "grammar": { "gender": "la" } },
+  "baby": { "text": "bebé", "grammar": { "gender": "el" } },
+  "friend": { "text": "amigo", "grammar": { "gender": "el" } },
+  "friend-f": { "text": "amiga", "grammar": { "gender": "la" } },
+  "grandmother": { "text": "abuela", "grammar": { "gender": "la" } },
+  "grandfather": { "text": "abuelo", "grammar": { "gender": "el" } },
+  "husband": { "text": "marido", "synonyms": ["esposo"], "grammar": { "gender": "el" } },
+  "wife": { "text": "esposa", "grammar": { "gender": "la" } },
+  "uncle": { "text": "tío", "grammar": { "gender": "el" } },
+  "aunt": { "text": "tía", "grammar": { "gender": "la" } },
+  "this-is-my-mother": { "text": "Esta es mi madre." },
+  "where-is-your-father": { "text": "¿Dónde está tu padre?", "variants": ["¿Dónde está su padre?"] },
+  "i-have-two-children": { "text": "Tengo dos hijos.", "variants": ["Tengo dos niños."] },
+  "my-family-is-big": { "text": "Mi familia es grande." },
+  "i-have-a-brother": { "text": "Tengo un hermano." },
+  "my-parents-live-here": { "text": "Mis padres viven aquí." },
+  "how-is-your-grandmother": { "text": "¿Cómo está tu abuela?", "variants": ["¿Cómo está su abuela?"] },
+  "a-good-friend": { "text": "un buen amigo" },
+  "my-girlfriend": { "text": "mi novia" },
+  "her-boyfriend": { "text": "su novio" },
   "old-people": {
    "text": "personas mayores",
-   "variants": [
-    "gente mayor",
-    "los mayores"
-   ],
-   "notes": {
-    "de": "personas viejas klingt abwertend — im Alltag mayores."
-   }
+   "variants": ["gente mayor", "los mayores"],
+   "notes": { "de": "personas viejas klingt abwertend — im Alltag mayores." }
   },
-  "many-friends": {
-   "text": "muchos amigos",
-   "variants": [
-    "muchas amigas"
-   ]
-  }
+  "many-friends": { "text": "muchos amigos", "variants": ["muchas amigas"] }
  }
 }

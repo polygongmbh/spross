@@ -2,128 +2,41 @@
  "title": "Rendez-vous et délais",
  "subtitle": "Pour ne rien laisser passer.",
  "words": {
-  "appointment": {
-   "text": "rendez-vous",
-   "variants": [
-    "rdv"
-   ],
-   "grammar": {
-    "gender": "le",
-    "plural": "="
-   }
-  },
-  "date": {
-   "text": "date",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "appointment": { "text": "rendez-vous", "variants": ["rdv"], "grammar": { "gender": "le", "plural": "=" } },
+  "date": { "text": "date", "grammar": { "gender": "la" } },
   "opening-hours": {
    "text": "heures d'ouverture",
-   "variants": [
-    "horaires d'ouverture"
-   ],
-   "grammar": {
-    "gender": "les",
-    "plural": "only"
-   }
+   "variants": ["horaires d'ouverture"],
+   "grammar": { "gender": "les", "plural": "only" }
   },
   "deadline": {
    "text": "délai",
-   "synonyms": [
-    "date limite"
-   ],
-   "grammar": {
-    "gender": "le"
-   },
-   "notes": {
-    "de": "le délai ist die Frist als Zeitraum; la date limite ist der letzte Tag."
-   }
+   "synonyms": ["date limite"],
+   "grammar": { "gender": "le" },
+   "notes": { "de": "le délai ist die Frist als Zeitraum; la date limite ist der letzte Tag." }
   },
-  "confirmation": {
-   "text": "confirmation",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "plan": {
-   "text": "plan",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "waiting-time": {
-   "text": "temps d'attente",
-   "grammar": {
-    "gender": "le",
-    "plural": "="
-   }
-  },
+  "confirmation": { "text": "confirmation", "grammar": { "gender": "la" } },
+  "plan": { "text": "plan", "grammar": { "gender": "le" } },
+  "waiting-time": { "text": "temps d'attente", "grammar": { "gender": "le", "plural": "=" } },
   "arrange": {
    "text": "fixer",
-   "variants": [
-    "convenir",
-    "organiser"
-   ],
+   "variants": ["convenir", "organiser"],
    "notes": {
     "de": "Einen Termin vereinbaren heißt prendre rendez-vous; fixer un rendez-vous legt ihn fest."
    }
   },
-  "confirm": {
-   "text": "confirmer"
-  },
-  "cancel": {
-   "text": "annuler",
-   "variants": [
-    "décommander"
-   ]
-  },
-  "postpone": {
-   "text": "reporter",
-   "synonyms": [
-    "repousser"
-   ],
-   "variants": [
-    "décaler"
-   ]
-  },
+  "confirm": { "text": "confirmer" },
+  "cancel": { "text": "annuler", "variants": ["décommander"] },
+  "postpone": { "text": "reporter", "synonyms": ["repousser"], "variants": ["décaler"] },
   "register": {
    "text": "s'inscrire",
-   "notes": {
-    "de": "Sich für einen Kurs anmelden = s'inscrire; sich einloggen heißt se connecter."
-   }
+   "notes": { "de": "Sich für einen Kurs anmelden = s'inscrire; sich einloggen heißt se connecter." }
   },
-  "be-late": {
-   "text": "être en retard",
-   "variants": [
-    "arriver en retard"
-   ]
-  },
-  "punctual": {
-   "text": "ponctuel",
-   "variants": [
-    "ponctuelle",
-    "à l'heure"
-   ]
-  },
-  "urgent": {
-   "text": "urgent",
-   "variants": [
-    "urgente"
-   ]
-  },
-  "list": {
-   "text": "liste",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "to-finish": {
-   "text": "finir",
-   "synonyms": [
-    "terminer"
-   ]
-  },
+  "be-late": { "text": "être en retard", "variants": ["arriver en retard"] },
+  "punctual": { "text": "ponctuel", "variants": ["ponctuelle", "à l'heure"] },
+  "urgent": { "text": "urgent", "variants": ["urgente"] },
+  "list": { "text": "liste", "grammar": { "gender": "la" } },
+  "to-finish": { "text": "finir", "synonyms": ["terminer"] },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Je voudrais prendre un rendez-vous.",
    "variants": [
@@ -132,38 +45,19 @@
     "Je voudrais fixer un rendez-vous."
    ]
   },
-  "i-have-to-cancel-the-appointment": {
-   "text": "Je dois annuler le rendez-vous.",
-   "variants": [
-    "Je dois annuler mon rendez-vous."
-   ]
-  },
+  "i-have-to-cancel-the-appointment": { "text": "Je dois annuler le rendez-vous.", "variants": ["Je dois annuler mon rendez-vous."] },
   "the-deadline-is-tomorrow": {
    "text": "Le délai expire demain.",
-   "variants": [
-    "La date limite est demain.",
-    "Le délai est demain."
-   ]
+   "variants": ["La date limite est demain.", "Le délai est demain."]
   },
   "what-are-the-opening-hours": {
    "text": "Quelles sont les heures d'ouverture ?",
-   "variants": [
-    "Quels sont les horaires d'ouverture ?",
-    "Quels sont vos horaires ?"
-   ]
+   "variants": ["Quels sont les horaires d'ouverture ?", "Quels sont vos horaires ?"]
   },
   "can-we-postpone-the-appointment": {
    "text": "Pouvons-nous reporter le rendez-vous ?",
-   "variants": [
-    "Peut-on reporter le rendez-vous ?",
-    "On peut reporter le rendez-vous ?"
-   ]
+   "variants": ["Peut-on reporter le rendez-vous ?", "On peut reporter le rendez-vous ?"]
   },
-  "i-have-an-appointment-at-ten": {
-   "text": "J'ai rendez-vous à dix heures.",
-   "variants": [
-    "J'ai un rendez-vous à dix heures."
-   ]
-  }
+  "i-have-an-appointment-at-ten": { "text": "J'ai rendez-vous à dix heures.", "variants": ["J'ai un rendez-vous à dix heures."] }
  }
 }

@@ -2,291 +2,123 @@
  "title": "Le travail",
  "subtitle": "Bon courage au boulot !",
  "words": {
-  "work": {
-   "text": "travail",
-   "variants": [
-    "boulot"
-   ],
-   "grammar": {
-    "gender": "le",
-    "plural": "travaux"
-   }
-  },
-  "job-application": {
-   "text": "candidature",
-   "variants": [
-    "demande d'emploi"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "work": { "text": "travail", "variants": ["boulot"], "grammar": { "gender": "le", "plural": "travaux" } },
+  "job-application": { "text": "candidature", "variants": ["demande d'emploi"], "grammar": { "gender": "la" } },
   "cv": {
    "text": "CV",
-   "synonyms": [
-    "curriculum vitae"
-   ],
-   "variants": [
-    "curriculum"
-   ],
-   "grammar": {
-    "gender": "le",
-    "plural": "="
-   },
-   "notes": {
-    "de": "Im Alltag sagt man immer le CV; ausgeschrieben le curriculum vitae."
-   }
+   "synonyms": ["curriculum vitae"],
+   "variants": ["curriculum"],
+   "grammar": { "gender": "le", "plural": "=" },
+   "notes": { "de": "Im Alltag sagt man immer le CV; ausgeschrieben le curriculum vitae." }
   },
-  "contract": {
-   "text": "contrat",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "salary": {
-   "text": "salaire",
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "contract": { "text": "contrat", "grammar": { "gender": "le" } },
+  "salary": { "text": "salaire", "grammar": { "gender": "le" } },
   "colleague": {
    "text": "collègue",
-   "grammar": {
-    "gender": "le"
-   },
-   "notes": {
-    "de": "collègue ist für Mann und Frau gleich: le collègue, la collègue."
-   }
+   "grammar": { "gender": "le" },
+   "notes": { "de": "collègue ist für Mann und Frau gleich: le collègue, la collègue." }
   },
-  "boss": {
-   "text": "chef",
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "boss": { "text": "chef", "grammar": { "gender": "le" } },
   "boss-f": {
    "text": "cheffe",
-   "variants": [
-    "chef"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "cheffe ist die heute empfohlene Form; man hört auch la chef."
-   }
+   "variants": ["chef"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "cheffe ist die heute empfohlene Form; man hört auch la chef." }
   },
   "shift": {
    "text": "service",
-   "variants": [
-    "poste"
-   ],
-   "grammar": {
-    "gender": "le"
-   },
+   "variants": ["poste"],
+   "grammar": { "gender": "le" },
    "notes": {
     "de": "Die Schicht ist le service: je prends mon service à six heures. In der Industrie sagt man le poste."
    }
   },
   "vacation": {
    "text": "vacances",
-   "synonyms": [
-    "congés"
-   ],
-   "grammar": {
-    "gender": "les",
-    "plural": "only"
-   },
+   "synonyms": ["congés"],
+   "grammar": { "gender": "les", "plural": "only" },
    "notes": {
     "de": "les vacances sind die Ferien allgemein; freie Tage vom Job nimmt man als congés: je prends des congés."
    }
   },
-  "company": {
-   "text": "entreprise",
-   "variants": [
-    "l'entreprise",
-    "boîte"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
+  "company": { "text": "entreprise", "variants": ["l'entreprise", "boîte"], "grammar": { "gender": "l'" } },
   "apply": {
    "text": "postuler",
-   "variants": [
-    "poser sa candidature"
-   ],
-   "notes": {
-    "de": "postuler steht mit à: postuler à un poste = sich auf eine Stelle bewerben."
-   }
+   "variants": ["poser sa candidature"],
+   "notes": { "de": "postuler steht mit à: postuler à un poste = sich auf eine Stelle bewerben." }
   },
-  "introduce-oneself": {
-   "text": "se présenter"
-  },
+  "introduce-oneself": { "text": "se présenter" },
   "earn": {
    "text": "gagner",
-   "notes": {
-    "de": "gagner heißt verdienen und gewinnen; nach dem Verdienst fragt man Tu gagnes combien ?"
-   }
+   "notes": { "de": "gagner heißt verdienen und gewinnen; nach dem Verdienst fragt man Tu gagnes combien ?" }
   },
-  "start": {
-   "text": "commencer",
-   "variants": [
-    "débuter"
-   ]
-  },
+  "start": { "text": "commencer", "variants": ["débuter"] },
   "leave": {
    "text": "quitter",
-   "notes": {
-    "de": "quitter braucht immer ein Objekt: quitter le travail, quitter la maison."
-   }
+   "notes": { "de": "quitter braucht immer ein Objekt: quitter le travail, quitter la maison." }
   },
-  "quit": {
-   "text": "démissionner",
-   "variants": [
-    "quitter son emploi"
-   ]
-  },
-  "hire": {
-   "text": "embaucher",
-   "variants": [
-    "recruter"
-   ]
-  },
-  "to-help": {
-   "text": "aider"
-  },
-  "work-overtime": {
-   "text": "faire des heures supplémentaires",
-   "variants": [
-    "faire des heures sup"
-   ]
-  },
+  "quit": { "text": "démissionner", "variants": ["quitter son emploi"] },
+  "hire": { "text": "embaucher", "variants": ["recruter"] },
+  "to-help": { "text": "aider" },
+  "work-overtime": { "text": "faire des heures supplémentaires", "variants": ["faire des heures sup"] },
   "profession": {
    "text": "métier",
-   "synonyms": [
-    "profession"
-   ],
-   "grammar": {
-    "gender": "le"
-   },
-   "notes": {
-    "de": "le métier ist der erlernte Beruf, la profession die Berufsangabe im Formular."
-   }
+   "synonyms": ["profession"],
+   "grammar": { "gender": "le" },
+   "notes": { "de": "le métier ist der erlernte Beruf, la profession die Berufsangabe im Formular." }
   },
   "interview": {
    "text": "entretien d'embauche",
-   "variants": [
-    "l'entretien d'embauche",
-    "entretien"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
+   "variants": ["l'entretien d'embauche", "entretien"],
+   "grammar": { "gender": "l'" }
   },
   "working-hours": {
    "text": "horaires de travail",
-   "variants": [
-    "horaire de travail",
-    "temps de travail"
-   ],
-   "grammar": {
-    "gender": "les"
-   },
+   "variants": ["horaire de travail", "temps de travail"],
+   "grammar": { "gender": "les" },
    "notes": {
     "de": "meist im Plural: les horaires de travail; die vertraglich vereinbarte Arbeitszeit heißt le temps de travail."
    }
   },
   "full-time": {
    "text": "temps plein",
-   "variants": [
-    "à temps plein",
-    "plein temps"
-   ],
-   "grammar": {
-    "gender": "le"
-   }
+   "variants": ["à temps plein", "plein temps"],
+   "grammar": { "gender": "le" }
   },
   "part-time": {
    "text": "temps partiel",
-   "variants": [
-    "à temps partiel",
-    "mi-temps"
-   ],
-   "grammar": {
-    "gender": "le"
-   }
+   "variants": ["à temps partiel", "mi-temps"],
+   "grammar": { "gender": "le" }
   },
   "tax": {
    "text": "impôt",
-   "variants": [
-    "l'impôt"
-   ],
-   "grammar": {
-    "gender": "l'"
-   },
+   "variants": ["l'impôt"],
+   "grammar": { "gender": "l'" },
    "notes": {
     "de": "l'impôt ist die Steuer auf Einkommen; eine einzelne Abgabe für eine Leistung heißt la taxe."
    }
   },
-  "work-permit": {
-   "text": "permis de travail",
-   "grammar": {
-    "gender": "le",
-    "plural": "="
-   }
-  },
+  "work-permit": { "text": "permis de travail", "grammar": { "gender": "le", "plural": "=" } },
   "training": {
    "text": "formation professionnelle",
-   "variants": [
-    "formation"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
+   "variants": ["formation"],
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "Die duale Ausbildung heißt in Frankreich l'apprentissage; la formation professionnelle ist die schulisch organisierte Berufsausbildung."
    }
   },
   "notice": {
    "text": "licenciement",
-   "grammar": {
-    "gender": "le"
-   },
+   "grammar": { "gender": "le" },
    "notes": {
     "de": "le licenciement ist die Kündigung durch den Arbeitgeber; kündigt man selbst, heißt das la démission."
    }
   },
-  "worker": {
-   "text": "travailleur",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "employer": {
-   "text": "employeur",
-   "variants": [
-    "l'employeur"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "customer": {
-   "text": "client",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "tomorrow-i-have-a-job-interview": {
-   "text": "Demain, je me présente à l'entreprise."
-  },
-  "my-shift-starts-at-six": {
-   "text": "Mon service commence à six heures.",
-   "variants": [
-    "Mon poste commence à six heures."
-   ]
-  },
+  "worker": { "text": "travailleur", "grammar": { "gender": "le" } },
+  "employer": { "text": "employeur", "variants": ["l'employeur"], "grammar": { "gender": "l'" } },
+  "customer": { "text": "client", "grammar": { "gender": "le" } },
+  "tomorrow-i-have-a-job-interview": { "text": "Demain, je me présente à l'entreprise." },
+  "my-shift-starts-at-six": { "text": "Mon service commence à six heures.", "variants": ["Mon poste commence à six heures."] },
   "ill-send-the-doctors-note-right-away": {
    "text": "Je vous envoie l'arrêt de travail tout de suite.",
    "variants": [
@@ -296,9 +128,7 @@
   },
   "have-a-nice-evening-off": {
    "text": "Bonne fin de journée !",
-   "variants": [
-    "Bonne soirée !"
-   ],
+   "variants": ["Bonne soirée !"],
    "notes": {
     "de": "Für „Feierabend“ gibt es kein französisches Wort. Beim Verlassen der Arbeit sagt man Bonne fin de journée !"
    }
@@ -320,16 +150,8 @@
   },
   "read-the-contract": {
    "text": "Lisez bien le contrat !",
-   "variants": [
-    "Lis bien le contrat !",
-    "Lisez attentivement le contrat !"
-   ]
+   "variants": ["Lis bien le contrat !", "Lisez attentivement le contrat !"]
   },
-  "whats-the-salary": {
-   "text": "Quel est le salaire ?",
-   "variants": [
-    "Le salaire est de combien ?"
-   ]
-  }
+  "whats-the-salary": { "text": "Quel est le salaire ?", "variants": ["Le salaire est de combien ?"] }
  }
 }

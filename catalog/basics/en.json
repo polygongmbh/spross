@@ -2,92 +2,34 @@
  "title": "First words",
  "subtitle": "Everything starts here.",
  "words": {
-  "name": {
-   "text": "name"
-  },
-  "help": {
-   "text": "help"
-  },
-  "be-called": {
-   "text": "to be called"
-  },
-  "say": {
-   "text": "to say"
-  },
-  "know": {
-   "text": "to know"
-  },
-  "need": {
-   "text": "to need"
-  },
-  "thank": {
-   "text": "to thank"
-  },
-  "together": {
-   "text": "together"
-  },
-  "hello": {
-   "text": "Hello!"
-  },
-  "good-day": {
-   "text": "Good day!"
-  },
-  "thank-you": {
-   "text": "Thank you very much!"
-  },
-  "please": {
-   "text": "Please!"
-  },
-  "excuse-me": {
-   "text": "Excuse me!"
-  },
-  "yes": {
-   "text": "Yes."
-  },
-  "no": {
-   "text": "No."
-  },
-  "whats-your-name": {
-   "text": "What is your name?"
-  },
-  "my-name-is": {
-   "text": "My name is …"
-  },
-  "i-dont-know": {
-   "text": "I don't know."
-  },
-  "pardon": {
-   "text": "Pardon?"
-  },
-  "i-need-help": {
-   "text": "I need help."
-  },
-  "all-good": {
-   "text": "All good."
-  },
-  "goodbye": {
-   "text": "Goodbye!"
-  },
-  "what-is-this-called": {
-   "text": "What is this called?"
-  },
-  "how-are-you": {
-   "text": "How are you?"
-  },
-  "bye": {
-   "text": "Bye!"
-  },
-  "welcome": {
-   "text": "Welcome!"
-  },
-  "may-i-come-in": {
-   "text": "May I come in?"
-  },
-  "sorry-to-hear-that": {
-   "text": "Sorry to hear that."
-  },
-  "greetings-elder": {
-   "text": "Greetings!"
-  }
+  "name": { "text": "name" },
+  "help": { "text": "help" },
+  "be-called": { "text": "to be called" },
+  "say": { "text": "to say" },
+  "know": { "text": "to know" },
+  "need": { "text": "to need" },
+  "thank": { "text": "to thank" },
+  "together": { "text": "together" },
+  "hello": { "text": "Hello!" },
+  "good-day": { "text": "Good day!" },
+  "thank-you": { "text": "Thank you very much!" },
+  "please": { "text": "Please!" },
+  "excuse-me": { "text": "Excuse me!" },
+  "yes": { "text": "Yes." },
+  "no": { "text": "No." },
+  "whats-your-name": { "text": "What is your name?" },
+  "my-name-is": { "text": "My name is …" },
+  "i-dont-know": { "text": "I don't know." },
+  "pardon": { "text": "Pardon?" },
+  "i-need-help": { "text": "I need help." },
+  "all-good": { "text": "All good." },
+  "goodbye": { "text": "Goodbye!" },
+  "what-is-this-called": { "text": "What is this called?" },
+  "how-are-you": { "text": "How are you?" },
+  "bye": { "text": "Bye!" },
+  "welcome": { "text": "Welcome!" },
+  "may-i-come-in": { "text": "May I come in?" },
+  "sorry-to-hear-that": { "text": "Sorry to hear that." },
+  "greetings-elder": { "text": "Greetings!" }
  }
 }

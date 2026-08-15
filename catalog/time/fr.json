@@ -4,142 +4,45 @@
  "words": {
   "time": {
    "text": "temps",
-   "grammar": {
-    "gender": "le"
-   },
-   "notes": {
-    "de": "le temps heißt auch Wetter: Quel temps fait-il ? · das einzelne Mal ist une fois."
-   }
+   "grammar": { "gender": "le" },
+   "notes": { "de": "le temps heißt auch Wetter: Quel temps fait-il ? · das einzelne Mal ist une fois." }
   },
   "day": {
    "text": "jour",
-   "variants": [
-    "journée"
-   ],
-   "grammar": {
-    "gender": "le"
-   },
+   "variants": ["journée"],
+   "grammar": { "gender": "le" },
    "notes": {
     "de": "le jour ist der Tag als Datum und Zeitpunkt, la journée der Tag als Zeitspanne: Bonne journée !"
    }
   },
-  "week": {
-   "text": "semaine",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "hour": {
-   "text": "heure",
-   "variants": [
-    "l'heure"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "minute": {
-   "text": "minute",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "month": {
-   "text": "mois",
-   "grammar": {
-    "gender": "le",
-    "plural": "="
-   }
-  },
+  "week": { "text": "semaine", "grammar": { "gender": "la" } },
+  "hour": { "text": "heure", "variants": ["l'heure"], "grammar": { "gender": "l'" } },
+  "minute": { "text": "minute", "grammar": { "gender": "la" } },
+  "month": { "text": "mois", "grammar": { "gender": "le", "plural": "=" } },
   "year": {
    "text": "an",
-   "variants": [
-    "l'an",
-    "année",
-    "l'année"
-   ],
-   "grammar": {
-    "gender": "l'"
-   },
-   "notes": {
-    "de": "l'an zählt Jahre: deux ans, l'an prochain. Als Zeitraum steht l'année: Bonne année !"
-   }
+   "variants": ["l'an", "année", "l'année"],
+   "grammar": { "gender": "l'" },
+   "notes": { "de": "l'an zählt Jahre: deux ans, l'an prochain. Als Zeitraum steht l'année: Bonne année !" }
   },
-  "now": {
-   "text": "maintenant"
-  },
-  "today": {
-   "text": "aujourd'hui"
-  },
-  "tomorrow": {
-   "text": "demain"
-  },
-  "yesterday": {
-   "text": "hier"
-  },
-  "early": {
-   "text": "tôt",
-   "variants": [
-    "de bonne heure"
-   ]
-  },
-  "late": {
-   "text": "tard"
-  },
-  "soon": {
-   "text": "bientôt"
-  },
-  "noon": {
-   "text": "midi",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "afternoon": {
-   "text": "après-midi",
-   "variants": [
-    "l'après-midi"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "morning": {
-   "text": "matin",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "evening": {
-   "text": "soir",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "night": {
-   "text": "nuit",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "i-have-no-time": {
-   "text": "Je n'ai pas le temps."
-  },
-  "a-new-day": {
-   "text": "un nouveau jour",
-   "variants": [
-    "une nouvelle journée"
-   ]
-  },
-  "two-in-the-afternoon": {
-   "text": "deux heures de l'après-midi"
-  },
+  "now": { "text": "maintenant" },
+  "today": { "text": "aujourd'hui" },
+  "tomorrow": { "text": "demain" },
+  "yesterday": { "text": "hier" },
+  "early": { "text": "tôt", "variants": ["de bonne heure"] },
+  "late": { "text": "tard" },
+  "soon": { "text": "bientôt" },
+  "noon": { "text": "midi", "grammar": { "gender": "le" } },
+  "afternoon": { "text": "après-midi", "variants": ["l'après-midi"], "grammar": { "gender": "l'" } },
+  "morning": { "text": "matin", "grammar": { "gender": "le" } },
+  "evening": { "text": "soir", "grammar": { "gender": "le" } },
+  "night": { "text": "nuit", "grammar": { "gender": "la" } },
+  "i-have-no-time": { "text": "Je n'ai pas le temps." },
+  "a-new-day": { "text": "un nouveau jour", "variants": ["une nouvelle journée"] },
+  "two-in-the-afternoon": { "text": "deux heures de l'après-midi" },
   "nine-am-sharp": {
    "text": "neuf heures du matin pile",
-   "variants": [
-    "neuf heures pile du matin",
-    "neuf heures précises du matin"
-   ]
+   "variants": ["neuf heures pile du matin", "neuf heures précises du matin"]
   }
  }
 }

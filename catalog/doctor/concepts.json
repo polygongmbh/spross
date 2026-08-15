@@ -1,148 +1,38 @@
 [
- {
-  "slug": "doctor",
-  "kind": "noun",
-  "emoji": "🧑‍⚕️"
- },
- {
-  "slug": "doctor-f",
-  "kind": "noun",
-  "emoji": "👩‍⚕️",
-  "feminineOf": "doctor"
- },
- {
-  "slug": "practice",
-  "kind": "noun",
-  "emoji": "🩺"
- },
- {
-  "slug": "pill",
-  "kind": "noun",
-  "emoji": "💊"
- },
- {
-  "slug": "prescription",
-  "kind": "noun",
-  "emoji": "📃"
- },
- {
-  "slug": "pharmacy",
-  "kind": "noun",
-  "emoji": "⚕️"
- },
- {
-  "slug": "insurance-card",
-  "kind": "noun",
-  "emoji": "💳"
- },
- {
-  "slug": "health-insurance",
-  "kind": "noun",
-  "emoji": "🛡️"
- },
- {
-  "slug": "hospital",
-  "kind": "noun",
-  "emoji": "🏥"
- },
- {
-  "slug": "emergency",
-  "kind": "noun",
-  "emoji": "🆘"
- },
- {
-  "slug": "doctors-note",
-  "kind": "noun",
-  "emoji": "🧾"
- },
- {
-  "slug": "examine",
-  "kind": "verb",
-  "emoji": "🔍"
- },
- {
-  "slug": "prescribe-medicine",
-  "kind": "verb",
-  "emoji": "📝"
- },
- {
-  "slug": "take-medicine",
-  "kind": "verb",
-  "emoji": "💊"
- },
- {
-  "slug": "call-in-sick",
-  "kind": "verb",
-  "emoji": "📞"
- },
- {
-  "slug": "medicine",
-  "kind": "noun"
- },
- {
-  "slug": "nurse",
-  "kind": "noun",
-  "emoji": "👨‍⚕️"
- },
- {
-  "slug": "nurse-f",
-  "kind": "noun",
-  "feminineOf": "nurse"
- },
- {
-  "slug": "dentist",
-  "kind": "noun",
-  "emoji": "🦷"
- },
- {
-  "slug": "vaccination",
-  "kind": "noun",
-  "emoji": "💉"
- },
- {
-  "slug": "ambulance",
-  "kind": "noun",
-  "emoji": "🚑"
- },
+ { "slug": "doctor", "kind": "noun", "emoji": "🧑‍⚕️" },
+ { "slug": "doctor-f", "kind": "noun", "emoji": "👩‍⚕️", "feminineOf": "doctor" },
+ { "slug": "practice", "kind": "noun", "emoji": "🩺" },
+ { "slug": "pill", "kind": "noun", "emoji": "💊" },
+ { "slug": "prescription", "kind": "noun", "emoji": "📃" },
+ { "slug": "pharmacy", "kind": "noun", "emoji": "⚕️" },
+ { "slug": "insurance-card", "kind": "noun", "emoji": "💳" },
+ { "slug": "health-insurance", "kind": "noun", "emoji": "🛡️" },
+ { "slug": "hospital", "kind": "noun", "emoji": "🏥" },
+ { "slug": "emergency", "kind": "noun", "emoji": "🆘" },
+ { "slug": "doctors-note", "kind": "noun", "emoji": "🧾" },
+ { "slug": "examine", "kind": "verb", "emoji": "🔍" },
+ { "slug": "prescribe-medicine", "kind": "verb", "emoji": "📝" },
+ { "slug": "take-medicine", "kind": "verb", "emoji": "💊" },
+ { "slug": "call-in-sick", "kind": "verb", "emoji": "📞" },
+ { "slug": "medicine", "kind": "noun" },
+ { "slug": "nurse", "kind": "noun", "emoji": "👨‍⚕️" },
+ { "slug": "nurse-f", "kind": "noun", "feminineOf": "nurse" },
+ { "slug": "dentist", "kind": "noun", "emoji": "🦷" },
+ { "slug": "vaccination", "kind": "noun", "emoji": "💉" },
+ { "slug": "ambulance", "kind": "noun", "emoji": "🚑" },
  {
   "slug": "take-the-pills-twice-daily",
   "kind": "phrase",
   "emoji": "💊",
-  "components": [
-   "pill",
-   "take-medicine"
-  ]
+  "components": ["pill", "take-medicine"]
  },
  {
   "slug": "show-me-your-insurance-card",
   "kind": "phrase",
   "emoji": "💳",
-  "components": [
-   "insurance-card"
-  ]
+  "components": ["insurance-card"]
  },
- {
-  "slug": "the-practice-is-closed",
-  "kind": "phrase",
-  "emoji": "🚪",
-  "components": [
-   "practice"
-  ]
- },
- {
-  "slug": "i-have-to-see-a-doctor",
-  "kind": "phrase",
-  "emoji": "🧑‍⚕️",
-  "components": [
-   "doctor"
-  ]
- },
- {
-  "slug": "call-an-ambulance",
-  "kind": "phrase",
-  "emoji": "🚑",
-  "components": [
-   "ambulance"
-  ]
- }
+ { "slug": "the-practice-is-closed", "kind": "phrase", "emoji": "🚪", "components": ["practice"] },
+ { "slug": "i-have-to-see-a-doctor", "kind": "phrase", "emoji": "🧑‍⚕️", "components": ["doctor"] },
+ { "slug": "call-an-ambulance", "kind": "phrase", "emoji": "🚑", "components": ["ambulance"] }
 ]

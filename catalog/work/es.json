@@ -2,314 +2,131 @@
  "title": "El trabajo",
  "subtitle": "¡Mucho éxito!",
  "words": {
-  "work": {
-   "text": "trabajo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "work": { "text": "trabajo", "grammar": { "gender": "el" } },
   "job-application": {
    "text": "solicitud de empleo",
-   "synonyms": [
-    "candidatura"
-   ],
-   "variants": [
-    "solicitud de trabajo"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
+   "synonyms": ["candidatura"],
+   "variants": ["solicitud de trabajo"],
+   "grammar": { "gender": "la" }
   },
   "cv": {
    "text": "currículum",
-   "variants": [
-    "currículum vítae",
-    "currículum vitae",
-    "CV"
-   ],
-   "grammar": {
-    "gender": "el",
-    "plural": "currículums"
-   }
+   "variants": ["currículum vítae", "currículum vitae", "CV"],
+   "grammar": { "gender": "el", "plural": "currículums" }
   },
-  "contract": {
-   "text": "contrato",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "salary": {
-   "text": "sueldo",
-   "synonyms": [
-    "salario"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "contract": { "text": "contrato", "grammar": { "gender": "el" } },
+  "salary": { "text": "sueldo", "synonyms": ["salario"], "grammar": { "gender": "el" } },
   "colleague": {
    "text": "compañero",
-   "synonyms": [
-    "colega"
-   ],
-   "variants": [
-    "compañero de trabajo"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
+   "synonyms": ["colega"],
+   "variants": ["compañero de trabajo"],
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "Der Arbeitskollege ist el compañero (de trabajo); colega heißt in Spanien umgangssprachlich auch „Kumpel“."
    }
   },
-  "colleague-f": {
-   "text": "compañera",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "boss": {
-   "text": "jefe",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "boss-f": {
-   "text": "jefa",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "shift": {
-   "text": "turno",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "colleague-f": { "text": "compañera", "grammar": { "gender": "la" } },
+  "boss": { "text": "jefe", "grammar": { "gender": "el" } },
+  "boss-f": { "text": "jefa", "grammar": { "gender": "la" } },
+  "shift": { "text": "turno", "grammar": { "gender": "el" } },
   "vacation": {
    "text": "vacaciones",
-   "grammar": {
-    "gender": "las",
-    "plural": "only"
-   },
-   "notes": {
-    "de": "immer im Plural: las vacaciones."
-   }
+   "grammar": { "gender": "las", "plural": "only" },
+   "notes": { "de": "immer im Plural: las vacaciones." }
   },
   "company": {
    "text": "empresa",
-   "variants": [
-    "compañía"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "Vorsicht: la firma ist vor allem die Unterschrift; „die Firma“ heißt la empresa."
-   }
+   "variants": ["compañía"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "Vorsicht: la firma ist vor allem die Unterschrift; „die Firma“ heißt la empresa." }
   },
   "apply": {
    "text": "solicitar un puesto",
-   "variants": [
-    "solicitar un empleo",
-    "presentarse a un puesto",
-    "echar el currículum"
-   ],
+   "variants": ["solicitar un empleo", "presentarse a un puesto", "echar el currículum"],
    "notes": {
     "de": "solicitar allein heißt beantragen; erst mit Objekt wird daraus „sich bewerben“: solicitar un puesto."
    }
   },
-  "introduce-oneself": {
-   "text": "presentarse"
-  },
+  "introduce-oneself": { "text": "presentarse" },
   "earn": {
    "text": "ganar",
-   "variants": [
-    "cobrar"
-   ],
-   "notes": {
-    "de": "Nach dem Verdienst fragt man mit cobrar: ¿Cuánto cobras? = Wie viel verdienst du?"
-   }
+   "variants": ["cobrar"],
+   "notes": { "de": "Nach dem Verdienst fragt man mit cobrar: ¿Cuánto cobras? = Wie viel verdienst du?" }
   },
-  "start": {
-   "text": "empezar",
-   "synonyms": [
-    "comenzar"
-   ]
-  },
+  "start": { "text": "empezar", "synonyms": ["comenzar"] },
   "leave": {
    "text": "dejar",
-   "synonyms": [
-    "abandonar"
-   ],
+   "synonyms": ["abandonar"],
    "notes": {
     "de": "dejar el trabajo = kündigen, dejar de + Infinitiv = aufhören zu … Einen Ort verlässt man dagegen mit salir de oder irse de."
    }
   },
-  "quit": {
-   "text": "dejar el trabajo",
-   "variants": [
-    "dimitir",
-    "renunciar al trabajo",
-    "dejar el empleo"
-   ]
-  },
-  "hire": {
-   "text": "contratar",
-   "variants": [
-    "emplear"
-   ]
-  },
-  "to-help": {
-   "text": "ayudar"
-  },
-  "work-overtime": {
-   "text": "hacer horas extra",
-   "variants": [
-    "hacer horas extras",
-    "hacer horas extraordinarias"
-   ]
-  },
-  "profession": {
-   "text": "profesión",
-   "variants": [
-    "oficio"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "quit": { "text": "dejar el trabajo", "variants": ["dimitir", "renunciar al trabajo", "dejar el empleo"] },
+  "hire": { "text": "contratar", "variants": ["emplear"] },
+  "to-help": { "text": "ayudar" },
+  "work-overtime": { "text": "hacer horas extra", "variants": ["hacer horas extras", "hacer horas extraordinarias"] },
+  "profession": { "text": "profesión", "variants": ["oficio"], "grammar": { "gender": "la" } },
   "interview": {
    "text": "entrevista de trabajo",
-   "variants": [
-    "entrevista laboral",
-    "entrevista"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
+   "variants": ["entrevista laboral", "entrevista"],
+   "grammar": { "gender": "la" }
   },
   "working-hours": {
    "text": "horario de trabajo",
-   "variants": [
-    "jornada laboral",
-    "horario laboral"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "el horario ist der Zeitplan; die vertragliche Arbeitszeit heißt la jornada laboral."
-   }
+   "variants": ["jornada laboral", "horario laboral"],
+   "grammar": { "gender": "el" },
+   "notes": { "de": "el horario ist der Zeitplan; die vertragliche Arbeitszeit heißt la jornada laboral." }
   },
   "full-time": {
    "text": "jornada completa",
-   "variants": [
-    "a jornada completa",
-    "tiempo completo"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
+   "variants": ["a jornada completa", "tiempo completo"],
+   "grammar": { "gender": "la" }
   },
   "part-time": {
    "text": "media jornada",
-   "variants": [
-    "a media jornada",
-    "jornada parcial",
-    "tiempo parcial"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
+   "variants": ["a media jornada", "jornada parcial", "tiempo parcial"],
+   "grammar": { "gender": "la" }
   },
-  "tax": {
-   "text": "impuesto",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "work-permit": {
-   "text": "permiso de trabajo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "tax": { "text": "impuesto", "grammar": { "gender": "el" } },
+  "work-permit": { "text": "permiso de trabajo", "grammar": { "gender": "el" } },
   "training": {
    "text": "formación profesional",
-   "variants": [
-    "FP",
-    "formación"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
+   "variants": ["FP", "formación"],
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "Die spanische Berufsausbildung ist die formación profesional (kurz FP) — schulisch organisiert, mit Praxisphasen im Betrieb."
    }
   },
   "notice": {
    "text": "despido",
-   "variants": [
-    "carta de despido"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
+   "variants": ["carta de despido"],
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "el despido ist die Kündigung durch den Arbeitgeber; kündigt man selbst, heißt das la dimisión bzw. la baja voluntaria."
    }
   },
-  "worker": {
-   "text": "trabajador",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "employer": {
-   "text": "empleador",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "customer": {
-   "text": "cliente",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "worker": { "text": "trabajador", "grammar": { "gender": "el" } },
+  "employer": { "text": "empleador", "grammar": { "gender": "el" } },
+  "customer": { "text": "cliente", "grammar": { "gender": "el" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Mañana me presento en la empresa.",
-   "variants": [
-    "Mañana me presento en la compañía."
-   ]
+   "variants": ["Mañana me presento en la compañía."]
   },
-  "my-shift-starts-at-six": {
-   "text": "Mi turno empieza a las seis."
-  },
+  "my-shift-starts-at-six": { "text": "Mi turno empieza a las seis." },
   "ill-send-the-doctors-note-right-away": {
    "text": "Le envío la baja enseguida.",
-   "variants": [
-    "Te envío la baja enseguida.",
-    "Le mando la baja enseguida."
-   ]
+   "variants": ["Te envío la baja enseguida.", "Le mando la baja enseguida."]
   },
   "have-a-nice-evening-off": {
    "text": "¡Que descanses!",
-   "variants": [
-    "¡Que descanse!",
-    "¡Descansa!"
-   ],
+   "variants": ["¡Que descanse!", "¡Descansa!"],
    "notes": {
     "de": "Für „Feierabend“ gibt es kein spanisches Wort. Zum Abschied nach der Arbeit wünscht man ¡Que descanses! („Ruh dich aus!“)."
    }
   },
   "can-you-help-me-briefly": {
    "text": "¿Puede ayudarme un momento?",
-   "variants": [
-    "¿Puedes ayudarme un momento?",
-    "¿Me puede ayudar un momento?"
-   ]
+   "variants": ["¿Puedes ayudarme un momento?", "¿Me puede ayudar un momento?"]
   },
   "i-want-vacation-next-week": {
    "text": "Quiero coger vacaciones la semana que viene.",
@@ -321,17 +138,8 @@
   },
   "read-the-contract": {
    "text": "Lea bien el contrato.",
-   "variants": [
-    "Lee bien el contrato.",
-    "Lea el contrato con atención."
-   ]
+   "variants": ["Lee bien el contrato.", "Lea el contrato con atención."]
   },
-  "whats-the-salary": {
-   "text": "¿Cuál es el sueldo?",
-   "variants": [
-    "¿Cuánto es el sueldo?",
-    "¿Cuál es el salario?"
-   ]
-  }
+  "whats-the-salary": { "text": "¿Cuál es el sueldo?", "variants": ["¿Cuánto es el sueldo?", "¿Cuál es el salario?"] }
  }
 }

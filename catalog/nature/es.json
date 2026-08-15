@@ -2,261 +2,57 @@
  "title": "La naturaleza",
  "subtitle": "Aire fresco y cielo abierto.",
  "words": {
-  "tree": {
-   "text": "árbol",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "flower": {
-   "text": "flor",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "sun": {
-   "text": "sol",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "rain": {
-   "text": "lluvia",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "tree": { "text": "árbol", "grammar": { "gender": "el" } },
+  "flower": { "text": "flor", "grammar": { "gender": "la" } },
+  "sun": { "text": "sol", "grammar": { "gender": "el" } },
+  "rain": { "text": "lluvia", "grammar": { "gender": "la" } },
   "weather": {
    "text": "tiempo",
-   "variants": [
-    "clima"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "el tiempo heißt auch „Zeit“. Nach dem Wetter fragt man mit hacer: ¿Qué tiempo hace?"
-   }
+   "variants": ["clima"],
+   "grammar": { "gender": "el" },
+   "notes": { "de": "el tiempo heißt auch „Zeit“. Nach dem Wetter fragt man mit hacer: ¿Qué tiempo hace?" }
   },
-  "snow": {
-   "text": "nieve",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "wind": {
-   "text": "viento",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "river": {
-   "text": "río",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "outdoors": {
-   "text": "fuera",
-   "variants": [
-    "afuera"
-   ]
-  },
-  "left": {
-   "text": "a la izquierda",
-   "variants": [
-    "izquierda"
-   ]
-  },
-  "right": {
-   "text": "a la derecha",
-   "variants": [
-    "derecha"
-   ]
-  },
-  "go-for-walk": {
-   "text": "pasear",
-   "synonyms": [
-    "dar un paseo"
-   ]
-  },
-  "jog": {
-   "text": "salir a correr",
-   "synonyms": [
-    "hacer footing"
-   ]
-  },
-  "sunbathe": {
-   "text": "tomar el sol",
-   "variants": [
-    "tomar sol",
-    "asolearse"
-   ]
-  },
-  "plant-flowers": {
-   "text": "plantar flores",
-   "variants": [
-    "sembrar flores"
-   ]
-  },
-  "grill-meat": {
-   "text": "asar carne",
-   "variants": [
-    "asar carne a la parrilla",
-    "hacer una barbacoa"
-   ]
-  },
-  "animal": {
-   "text": "animal",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "dog": {
-   "text": "perro",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "cat": {
-   "text": "gato",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "bird": {
-   "text": "pájaro",
-   "variants": [
-    "ave"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "sky": {
-   "text": "cielo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "cloud": {
-   "text": "nube",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "mountain": {
-   "text": "montaña",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "sea": {
-   "text": "mar",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "beach": {
-   "text": "playa",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "lake": {
-   "text": "lago",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "forest": {
-   "text": "bosque",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "stone": {
-   "text": "piedra",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "moon": {
-   "text": "luna",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "star": {
-   "text": "estrella",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "hows-the-weather-today": {
-   "text": "¿Qué tiempo hace hoy?",
-   "variants": [
-    "¿Cómo está el tiempo hoy?"
-   ]
-  },
-  "its-raining": {
-   "text": "Está lloviendo.",
-   "variants": [
-    "Llueve."
-   ]
-  },
+  "snow": { "text": "nieve", "grammar": { "gender": "la" } },
+  "wind": { "text": "viento", "grammar": { "gender": "el" } },
+  "river": { "text": "río", "grammar": { "gender": "el" } },
+  "outdoors": { "text": "fuera", "variants": ["afuera"] },
+  "left": { "text": "a la izquierda", "variants": ["izquierda"] },
+  "right": { "text": "a la derecha", "variants": ["derecha"] },
+  "go-for-walk": { "text": "pasear", "synonyms": ["dar un paseo"] },
+  "jog": { "text": "salir a correr", "synonyms": ["hacer footing"] },
+  "sunbathe": { "text": "tomar el sol", "variants": ["tomar sol", "asolearse"] },
+  "plant-flowers": { "text": "plantar flores", "variants": ["sembrar flores"] },
+  "grill-meat": { "text": "asar carne", "variants": ["asar carne a la parrilla", "hacer una barbacoa"] },
+  "animal": { "text": "animal", "grammar": { "gender": "el" } },
+  "dog": { "text": "perro", "grammar": { "gender": "el" } },
+  "cat": { "text": "gato", "grammar": { "gender": "el" } },
+  "bird": { "text": "pájaro", "variants": ["ave"], "grammar": { "gender": "el" } },
+  "sky": { "text": "cielo", "grammar": { "gender": "el" } },
+  "cloud": { "text": "nube", "grammar": { "gender": "la" } },
+  "mountain": { "text": "montaña", "grammar": { "gender": "la" } },
+  "sea": { "text": "mar", "grammar": { "gender": "el" } },
+  "beach": { "text": "playa", "grammar": { "gender": "la" } },
+  "lake": { "text": "lago", "grammar": { "gender": "el" } },
+  "forest": { "text": "bosque", "grammar": { "gender": "el" } },
+  "stone": { "text": "piedra", "grammar": { "gender": "la" } },
+  "moon": { "text": "luna", "grammar": { "gender": "la" } },
+  "star": { "text": "estrella", "grammar": { "gender": "la" } },
+  "hows-the-weather-today": { "text": "¿Qué tiempo hace hoy?", "variants": ["¿Cómo está el tiempo hoy?"] },
+  "its-raining": { "text": "Está lloviendo.", "variants": ["Llueve."] },
   "the-sun-is-shining": {
    "text": "¡Hace sol!",
-   "variants": [
-    "¡El sol brilla!",
-    "El sol está brillando."
-   ],
-   "notes": {
-    "de": "Wetter wird mit hacer ausgedrückt: hace sol, hace calor, hace frío."
-   }
+   "variants": ["¡El sol brilla!", "El sol está brillando."],
+   "notes": { "de": "Wetter wird mit hacer ausgedrückt: hace sol, hace calor, hace frío." }
   },
-  "shall-we-take-a-walk": {
-   "text": "¿Vamos a pasear?",
-   "variants": [
-    "¿Damos un paseo?",
-    "¿Vamos a dar un paseo?"
-   ]
-  },
-  "take-an-umbrella": {
-   "text": "¡Coge un paraguas!",
-   "variants": [
-    "¡Llévate un paraguas!",
-    "¡Toma un paraguas!"
-   ]
-  },
-  "what-a-beautiful-day": {
-   "text": "¡Qué día tan bonito!",
-   "variants": [
-    "¡Qué día más bonito!",
-    "¡Qué día tan hermoso!"
-   ]
-  },
-  "lets-go-to-the-beach": {
-   "text": "¡Vamos a la playa!",
-   "variants": [
-    "¡Vámonos a la playa!"
-   ]
-  },
+  "shall-we-take-a-walk": { "text": "¿Vamos a pasear?", "variants": ["¿Damos un paseo?", "¿Vamos a dar un paseo?"] },
+  "take-an-umbrella": { "text": "¡Coge un paraguas!", "variants": ["¡Llévate un paraguas!", "¡Toma un paraguas!"] },
+  "what-a-beautiful-day": { "text": "¡Qué día tan bonito!", "variants": ["¡Qué día más bonito!", "¡Qué día tan hermoso!"] },
+  "lets-go-to-the-beach": { "text": "¡Vamos a la playa!", "variants": ["¡Vámonos a la playa!"] },
   "we-are-going-to-the-mountains": {
    "text": "Vamos a la montaña.",
-   "variants": [
-    "Nos vamos a la montaña.",
-    "Vamos a las montañas."
-   ]
+   "variants": ["Nos vamos a la montaña.", "Vamos a las montañas."]
   },
-  "look-a-bird": {
-   "text": "¡Mira, un pájaro!"
-  },
-  "the-cat-is-sleeping": {
-   "text": "El gato está durmiendo.",
-   "variants": [
-    "El gato duerme."
-   ]
-  }
+  "look-a-bird": { "text": "¡Mira, un pájaro!" },
+  "the-cat-is-sleeping": { "text": "El gato está durmiendo.", "variants": ["El gato duerme."] }
  }
 }

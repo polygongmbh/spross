@@ -2,146 +2,35 @@
  "title": "Darasani",
  "subtitle": "Siku ya kawaida shuleni.",
  "words": {
-  "school": {
-   "text": "shule",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "classroom": {
-   "text": "darasa",
-   "grammar": {
-    "plural": "madarasa"
-   }
-  },
-  "teacher": {
-   "text": "mwalimu",
-   "grammar": {
-    "plural": "walimu"
-   }
-  },
-  "board": {
-   "text": "ubao",
-   "grammar": {
-    "plural": "mbao"
-   }
-  },
-  "exercise-book": {
-   "text": "daftari la mazoezi",
-   "grammar": {
-    "plural": "madaftari ya mazoezi"
-   }
-  },
-  "homework": {
-   "text": "kazi ya nyumbani",
-   "grammar": {
-    "plural": "kazi za nyumbani"
-   }
-  },
-  "exam": {
-   "text": "mtihani",
-   "grammar": {
-    "plural": "mitihani"
-   }
-  },
-  "break": {
-   "text": "pumziko",
-   "grammar": {
-    "plural": "mapumziko"
-   }
-  },
-  "pass-exam": {
-   "text": "kufaulu mtihani"
-  },
-  "to-practice": {
-   "text": "kufanya mazoezi"
-  },
-  "raise-hand": {
-   "text": "kuinua mkono"
-  },
-  "pupil": {
-   "text": "mwanafunzi",
-   "grammar": {
-    "plural": "wanafunzi"
-   }
-  },
-  "course": {
-   "text": "kozi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "lesson": {
-   "text": "somo",
-   "grammar": {
-    "plural": "masomo"
-   }
-  },
-  "course-book": {
-   "text": "kitabu cha kozi",
-   "grammar": {
-    "plural": "vitabu vya kozi"
-   }
-  },
-  "page": {
-   "text": "ukurasa",
-   "grammar": {
-    "plural": "kurasa"
-   }
-  },
-  "grade": {
-   "text": "alama",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "correct": {
-   "text": "kusahihisha"
-  },
-  "book": {
-   "text": "kitabu",
-   "grammar": {
-    "plural": "vitabu"
-   }
-  },
-  "university": {
-   "text": "chuo kikuu",
-   "grammar": {
-    "plural": "vyuo vikuu"
-   }
-  },
-  "class-schedule": {
-   "text": "ratiba",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "to-count": {
-   "text": "kuhesabu"
-  },
-  "to-try": {
-   "text": "kujaribu"
-  },
-  "do-the-homework": {
-   "text": "Ninafanya kazi ya nyumbani."
-  },
-  "the-exam-is-tomorrow": {
-   "text": "Mtihani ni kesho."
-  },
-  "look-at-the-class-schedule": {
-   "text": "Angalia ratiba."
-  },
-  "the-break-is-over": {
-   "text": "Pumziko limeisha."
-  },
-  "ask-the-teacher": {
-   "text": "Muulize mwalimu."
-  },
-  "i-have-a-good-grade": {
-   "text": "Nina alama nzuri."
-  },
-  "we-go-to-the-classroom": {
-   "text": "Tunaenda darasani."
-  }
+  "school": { "text": "shule", "grammar": { "plural": "=" } },
+  "classroom": { "text": "darasa", "grammar": { "plural": "madarasa" } },
+  "teacher": { "text": "mwalimu", "grammar": { "plural": "walimu" } },
+  "board": { "text": "ubao", "grammar": { "plural": "mbao" } },
+  "exercise-book": { "text": "daftari la mazoezi", "grammar": { "plural": "madaftari ya mazoezi" } },
+  "homework": { "text": "kazi ya nyumbani", "grammar": { "plural": "kazi za nyumbani" } },
+  "exam": { "text": "mtihani", "grammar": { "plural": "mitihani" } },
+  "break": { "text": "pumziko", "grammar": { "plural": "mapumziko" } },
+  "pass-exam": { "text": "kufaulu mtihani" },
+  "to-practice": { "text": "kufanya mazoezi" },
+  "raise-hand": { "text": "kuinua mkono" },
+  "pupil": { "text": "mwanafunzi", "grammar": { "plural": "wanafunzi" } },
+  "course": { "text": "kozi", "grammar": { "plural": "=" } },
+  "lesson": { "text": "somo", "grammar": { "plural": "masomo" } },
+  "course-book": { "text": "kitabu cha kozi", "grammar": { "plural": "vitabu vya kozi" } },
+  "page": { "text": "ukurasa", "grammar": { "plural": "kurasa" } },
+  "grade": { "text": "alama", "grammar": { "plural": "=" } },
+  "correct": { "text": "kusahihisha" },
+  "book": { "text": "kitabu", "grammar": { "plural": "vitabu" } },
+  "university": { "text": "chuo kikuu", "grammar": { "plural": "vyuo vikuu" } },
+  "class-schedule": { "text": "ratiba", "grammar": { "plural": "=" } },
+  "to-count": { "text": "kuhesabu" },
+  "to-try": { "text": "kujaribu" },
+  "do-the-homework": { "text": "Ninafanya kazi ya nyumbani." },
+  "the-exam-is-tomorrow": { "text": "Mtihani ni kesho." },
+  "look-at-the-class-schedule": { "text": "Angalia ratiba." },
+  "the-break-is-over": { "text": "Pumziko limeisha." },
+  "ask-the-teacher": { "text": "Muulize mwalimu." },
+  "i-have-a-good-grade": { "text": "Nina alama nzuri." },
+  "we-go-to-the-classroom": { "text": "Tunaenda darasani." }
  }
 }

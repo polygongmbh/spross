@@ -2,59 +2,21 @@
  "title": "Основні дієслова",
  "subtitle": "Те, що потрібне всюди.",
  "words": {
-  "go": {
-   "text": "йти",
-   "variants": [
-    "іти"
-   ],
-   "notes": {
-    "de": "zu Fuß — mit Fahrzeug: їхати."
-   }
-  },
-  "come": {
-   "text": "приходити",
-   "notes": {
-    "de": "zu Fuß — mit Fahrzeug: приїжджати."
-   }
-  },
-  "have": {
-   "text": "мати"
-  },
-  "give": {
-   "text": "давати"
-  },
-  "take": {
-   "text": "брати"
-  },
-  "see": {
-   "text": "бачити"
-  },
-  "make": {
-   "text": "робити"
-  },
+  "go": { "text": "йти", "variants": ["іти"], "notes": { "de": "zu Fuß — mit Fahrzeug: їхати." } },
+  "come": { "text": "приходити", "notes": { "de": "zu Fuß — mit Fahrzeug: приїжджати." } },
+  "have": { "text": "мати" },
+  "give": { "text": "давати" },
+  "take": { "text": "брати" },
+  "see": { "text": "бачити" },
+  "make": { "text": "робити" },
   "like": {
    "text": "любити",
-   "notes": {
-    "de": "deckt mögen und lieben ab · „mir gefällt“ ist мені подобається."
-   }
+   "notes": { "de": "deckt mögen und lieben ab · „mir gefällt“ ist мені подобається." }
   },
-  "can": {
-   "text": "могти"
-  },
-  "think": {
-   "text": "думати"
-  },
-  "wait": {
-   "text": "чекати"
-  },
-  "do-you-have-water": {
-   "text": "У вас є вода?",
-   "variants": [
-    "У тебе є вода?"
-   ]
-  },
-  "where-are-you-from": {
-   "text": "Звідки ви?"
-  }
+  "can": { "text": "могти" },
+  "think": { "text": "думати" },
+  "wait": { "text": "чекати" },
+  "do-you-have-water": { "text": "У вас є вода?", "variants": ["У тебе є вода?"] },
+  "where-are-you-from": { "text": "Звідки ви?" }
  }
 }

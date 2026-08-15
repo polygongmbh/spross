@@ -2,215 +2,53 @@
  "title": "Chakula",
  "subtitle": "Kinachokuja mezani.",
  "words": {
-  "bread": {
-   "text": "mkate",
-   "grammar": {
-    "plural": "mikate"
-   }
-  },
-  "milk": {
-   "text": "maziwa",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "coffee": {
-   "text": "kahawa"
-  },
-  "tea": {
-   "text": "chai",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "egg": {
-   "text": "yai",
-   "grammar": {
-    "plural": "mayai"
-   }
-  },
-  "cheese": {
-   "text": "jibini",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "salt": {
-   "text": "chumvi"
-  },
-  "sugar": {
-   "text": "sukari",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "rice": {
-   "text": "mchele",
-   "notes": {
-    "de": "mchele = roher Reis · wali = gekochter Reis"
-   }
-  },
-  "hunger": {
-   "text": "njaa"
-  },
-  "thirst": {
-   "text": "kiu"
-  },
-  "food": {
-   "text": "chakula",
-   "grammar": {
-    "plural": "vyakula"
-   }
-  },
-  "meat": {
-   "text": "nyama",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "fish": {
-   "text": "samaki",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "chicken": {
-   "text": "kuku",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "fruit": {
-   "text": "tunda",
-   "grammar": {
-    "plural": "matunda"
-   }
-  },
+  "bread": { "text": "mkate", "grammar": { "plural": "mikate" } },
+  "milk": { "text": "maziwa", "grammar": { "plural": "only" } },
+  "coffee": { "text": "kahawa" },
+  "tea": { "text": "chai", "grammar": { "plural": "=" } },
+  "egg": { "text": "yai", "grammar": { "plural": "mayai" } },
+  "cheese": { "text": "jibini", "grammar": { "plural": "=" } },
+  "salt": { "text": "chumvi" },
+  "sugar": { "text": "sukari", "grammar": { "plural": "=" } },
+  "rice": { "text": "mchele", "notes": { "de": "mchele = roher Reis · wali = gekochter Reis" } },
+  "hunger": { "text": "njaa" },
+  "thirst": { "text": "kiu" },
+  "food": { "text": "chakula", "grammar": { "plural": "vyakula" } },
+  "meat": { "text": "nyama", "grammar": { "plural": "=" } },
+  "fish": { "text": "samaki", "grammar": { "plural": "=" } },
+  "chicken": { "text": "kuku", "grammar": { "plural": "=" } },
+  "fruit": { "text": "tunda", "grammar": { "plural": "matunda" } },
   "vegetable": {
    "text": "mboga",
-   "grammar": {
-    "plural": "="
-   },
-   "notes": {
-    "de": "mboga ist das Gemüse und die Beilage, die zu Ugali oder Reis kommt."
-   }
+   "grammar": { "plural": "=" },
+   "notes": { "de": "mboga ist das Gemüse und die Beilage, die zu Ugali oder Reis kommt." }
   },
-  "potato": {
-   "text": "kiazi",
-   "grammar": {
-    "plural": "viazi"
-   }
-  },
-  "onion": {
-   "text": "kitunguu",
-   "grammar": {
-    "plural": "vitunguu"
-   }
-  },
-  "tomato": {
-   "text": "nyanya",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "banana": {
-   "text": "ndizi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "apple": {
-   "text": "tufaha",
-   "grammar": {
-    "plural": "matufaha"
-   }
-  },
-  "oil": {
-   "text": "mafuta",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "flour": {
-   "text": "unga"
-  },
-  "butter": {
-   "text": "siagi"
-  },
-  "soup": {
-   "text": "supu",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "sauce": {
-   "text": "mchuzi",
-   "grammar": {
-    "plural": "michuzi"
-   }
-  },
-  "juice": {
-   "text": "juisi",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "cooked-rice": {
-   "text": "wali"
-  },
-  "cassava": {
-   "text": "muhogo",
-   "grammar": {
-    "plural": "mihogo"
-   }
-  },
-  "ugali": {
-   "text": "ugali"
-  },
-  "breakfast": {
-   "text": "kifungua kinywa",
-   "synonyms": [
-    "kiamsha kinywa"
-   ]
-  },
-  "dinner": {
-   "text": "chakula cha jioni"
-  },
-  "water": {
-   "text": "maji",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "eat": {
-   "text": "kula"
-  },
-  "drink": {
-   "text": "kunywa"
-  },
-  "im-hungry": {
-   "text": "Nina njaa."
-  },
-  "whats-for-dinner": {
-   "text": "Chakula cha jioni ni nini?"
-  },
-  "i-dont-eat-meat": {
-   "text": "Sili nyama."
-  },
-  "bread-with-butter": {
-   "text": "mkate na siagi"
-  },
-  "fruit-and-vegetables": {
-   "text": "matunda na mboga"
-  },
-  "i-eat-rice-with-sauce": {
-   "text": "Ninakula wali na mchuzi."
-  },
-  "without-salt-please": {
-   "text": "Bila chumvi, tafadhali."
-  },
-  "the-food-is-ready": {
-   "text": "Chakula kiko tayari!"
-  }
+  "potato": { "text": "kiazi", "grammar": { "plural": "viazi" } },
+  "onion": { "text": "kitunguu", "grammar": { "plural": "vitunguu" } },
+  "tomato": { "text": "nyanya", "grammar": { "plural": "=" } },
+  "banana": { "text": "ndizi", "grammar": { "plural": "=" } },
+  "apple": { "text": "tufaha", "grammar": { "plural": "matufaha" } },
+  "oil": { "text": "mafuta", "grammar": { "plural": "only" } },
+  "flour": { "text": "unga" },
+  "butter": { "text": "siagi" },
+  "soup": { "text": "supu", "grammar": { "plural": "=" } },
+  "sauce": { "text": "mchuzi", "grammar": { "plural": "michuzi" } },
+  "juice": { "text": "juisi", "grammar": { "plural": "=" } },
+  "cooked-rice": { "text": "wali" },
+  "cassava": { "text": "muhogo", "grammar": { "plural": "mihogo" } },
+  "ugali": { "text": "ugali" },
+  "breakfast": { "text": "kifungua kinywa", "synonyms": ["kiamsha kinywa"] },
+  "dinner": { "text": "chakula cha jioni" },
+  "water": { "text": "maji", "grammar": { "plural": "only" } },
+  "eat": { "text": "kula" },
+  "drink": { "text": "kunywa" },
+  "im-hungry": { "text": "Nina njaa." },
+  "whats-for-dinner": { "text": "Chakula cha jioni ni nini?" },
+  "i-dont-eat-meat": { "text": "Sili nyama." },
+  "bread-with-butter": { "text": "mkate na siagi" },
+  "fruit-and-vegetables": { "text": "matunda na mboga" },
+  "i-eat-rice-with-sauce": { "text": "Ninakula wali na mchuzi." },
+  "without-salt-please": { "text": "Bila chumvi, tafadhali." },
+  "the-food-is-ready": { "text": "Chakula kiko tayari!" }
  }
 }

@@ -2,130 +2,40 @@
  "title": "Lerni la lingvon",
  "subtitle": "Demandi, kompreni, resti en la konversacio.",
  "words": {
-  "hear": {
-   "text": "aŭdi",
-   "notes": {
-    "de": "aŭdi = wahrnehmen · aŭskulti = bewusst zuhören."
-   }
-  },
-  "understand": {
-   "text": "kompreni"
-  },
-  "speak": {
-   "text": "paroli"
-  },
-  "repeat-word": {
-   "text": "ripeti la vorton"
-  },
-  "loud": {
-   "text": "laŭta",
-   "variants": [
-    "laŭte"
-   ]
-  },
+  "hear": { "text": "aŭdi", "notes": { "de": "aŭdi = wahrnehmen · aŭskulti = bewusst zuhören." } },
+  "understand": { "text": "kompreni" },
+  "speak": { "text": "paroli" },
+  "repeat-word": { "text": "ripeti la vorton" },
+  "loud": { "text": "laŭta", "variants": ["laŭte"] },
   "ask": {
    "text": "demandi",
-   "notes": {
-    "de": "demandi = eine Frage stellen · um etwas bitten ist peti."
-   }
+   "notes": { "de": "demandi = eine Frage stellen · um etwas bitten ist peti." }
   },
-  "question": {
-   "text": "demando"
-  },
-  "answer": {
-   "text": "respondo"
-  },
-  "reply": {
-   "text": "respondi"
-  },
-  "meaning": {
-   "text": "signifo"
-  },
-  "to-pronounce": {
-   "text": "elparoli",
-   "synonyms": [
-    "prononci"
-   ]
-  },
-  "translate": {
-   "text": "traduki"
-  },
-  "read-aloud": {
-   "text": "laŭte legi",
-   "variants": [
-    "legi laŭte",
-    "laŭtlegi"
-   ]
-  },
-  "learn-by-heart": {
-   "text": "parkere lerni",
-   "variants": [
-    "lerni parkere",
-    "parkerigi"
-   ]
-  },
-  "dictionary": {
-   "text": "vortaro"
-  },
-  "sentence": {
-   "text": "frazo"
-  },
-  "word": {
-   "text": "vorto"
-  },
-  "language": {
-   "text": "lingvo"
-  },
-  "mother-tongue": {
-   "text": "gepatra lingvo",
-   "variants": [
-    "denaska lingvo"
-   ]
-  },
-  "i-dont-understand": {
-   "text": "Mi ne komprenas."
-  },
-  "i-understand": {
-   "text": "Mi komprenas."
-  },
-  "can-you-repeat-that": {
-   "text": "Ĉu vi povas ripeti tion?"
-  },
-  "slower": {
-   "text": "Pli malrapide!"
-  },
-  "i-cant-hear-you": {
-   "text": "Mi ne povas aŭdi vin.",
-   "variants": [
-    "Mi ne aŭdas vin."
-   ]
-  },
-  "louder": {
-   "text": "Pli laŭte!"
-  },
-  "do-you-speak-english": {
-   "text": "Ĉu vi parolas la anglan?",
-   "variants": [
-    "Ĉu vi parolas angle?"
-   ]
-  },
-  "i-speak-a-little": {
-   "text": "Mi parolas nur iomete {language-speak}."
-  },
-  "what-does-this-word-mean": {
-   "text": "Kion signifas ĉi tiu vorto?"
-  },
-  "how-do-you-say-this": {
-   "text": "Kiel oni diras tion {language-in}?"
-  },
-  "im-learning-your-language": {
-   "text": "Mi lernas {language-learn}."
-  },
-  "i-have-a-question": {
-   "text": "Mi havas demandon."
-  },
-  "you-can-do-it": {
-   "text": "Vi certe sukcesos!"
-  }
+  "question": { "text": "demando" },
+  "answer": { "text": "respondo" },
+  "reply": { "text": "respondi" },
+  "meaning": { "text": "signifo" },
+  "to-pronounce": { "text": "elparoli", "synonyms": ["prononci"] },
+  "translate": { "text": "traduki" },
+  "read-aloud": { "text": "laŭte legi", "variants": ["legi laŭte", "laŭtlegi"] },
+  "learn-by-heart": { "text": "parkere lerni", "variants": ["lerni parkere", "parkerigi"] },
+  "dictionary": { "text": "vortaro" },
+  "sentence": { "text": "frazo" },
+  "word": { "text": "vorto" },
+  "language": { "text": "lingvo" },
+  "mother-tongue": { "text": "gepatra lingvo", "variants": ["denaska lingvo"] },
+  "i-dont-understand": { "text": "Mi ne komprenas." },
+  "i-understand": { "text": "Mi komprenas." },
+  "can-you-repeat-that": { "text": "Ĉu vi povas ripeti tion?" },
+  "slower": { "text": "Pli malrapide!" },
+  "i-cant-hear-you": { "text": "Mi ne povas aŭdi vin.", "variants": ["Mi ne aŭdas vin."] },
+  "louder": { "text": "Pli laŭte!" },
+  "do-you-speak-english": { "text": "Ĉu vi parolas la anglan?", "variants": ["Ĉu vi parolas angle?"] },
+  "i-speak-a-little": { "text": "Mi parolas nur iomete {language-speak}." },
+  "what-does-this-word-mean": { "text": "Kion signifas ĉi tiu vorto?" },
+  "how-do-you-say-this": { "text": "Kiel oni diras tion {language-in}?" },
+  "im-learning-your-language": { "text": "Mi lernas {language-learn}." },
+  "i-have-a-question": { "text": "Mi havas demandon." },
+  "you-can-do-it": { "text": "Vi certe sukcesos!" }
  }
 }

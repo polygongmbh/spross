@@ -2,155 +2,55 @@
  "title": "La manĝaĵo",
  "subtitle": "Kio venas sur la tablon.",
  "words": {
-  "bread": {
-   "text": "pano"
-  },
-  "milk": {
-   "text": "lakto"
-  },
-  "coffee": {
-   "text": "kafo"
-  },
-  "tea": {
-   "text": "teo"
-  },
-  "egg": {
-   "text": "ovo"
-  },
-  "cheese": {
-   "text": "fromaĝo"
-  },
-  "salt": {
-   "text": "salo"
-  },
-  "sugar": {
-   "text": "sukero"
-  },
-  "rice": {
-   "text": "rizo"
-  },
+  "bread": { "text": "pano" },
+  "milk": { "text": "lakto" },
+  "coffee": { "text": "kafo" },
+  "tea": { "text": "teo" },
+  "egg": { "text": "ovo" },
+  "cheese": { "text": "fromaĝo" },
+  "salt": { "text": "salo" },
+  "sugar": { "text": "sukero" },
+  "rice": { "text": "rizo" },
   "hunger": {
    "text": "malsato",
-   "notes": {
-    "de": "Hunger haben heißt mi malsatas; das Verb ist üblicher als havi malsaton."
-   }
+   "notes": { "de": "Hunger haben heißt mi malsatas; das Verb ist üblicher als havi malsaton." }
   },
-  "thirst": {
-   "text": "soifo"
-  },
-  "food": {
-   "text": "manĝaĵo",
-   "variants": [
-    "nutraĵo"
-   ]
-  },
-  "meat": {
-   "text": "viando"
-  },
-  "fish": {
-   "text": "fiŝo"
-  },
+  "thirst": { "text": "soifo" },
+  "food": { "text": "manĝaĵo", "variants": ["nutraĵo"] },
+  "meat": { "text": "viando" },
+  "fish": { "text": "fiŝo" },
   "chicken": {
    "text": "kokaĵo",
-   "variants": [
-    "kokidaĵo"
-   ],
-   "notes": {
-    "de": "kokaĵo ist das Fleisch; das lebende Tier heißt koko."
-   }
+   "variants": ["kokidaĵo"],
+   "notes": { "de": "kokaĵo ist das Fleisch; das lebende Tier heißt koko." }
   },
-  "fruit": {
-   "text": "frukto"
-  },
-  "vegetable": {
-   "text": "legomo"
-  },
-  "potato": {
-   "text": "terpomo"
-  },
-  "onion": {
-   "text": "cepo"
-  },
-  "tomato": {
-   "text": "tomato"
-  },
-  "banana": {
-   "text": "banano"
-  },
-  "apple": {
-   "text": "pomo"
-  },
-  "oil": {
-   "text": "oleo"
-  },
-  "flour": {
-   "text": "faruno"
-  },
-  "butter": {
-   "text": "butero"
-  },
-  "soup": {
-   "text": "supo"
-  },
-  "sauce": {
-   "text": "saŭco"
-  },
-  "juice": {
-   "text": "suko"
-  },
-  "cooked-rice": {
-   "text": "kuirita rizo"
-  },
-  "cassava": {
-   "text": "manioko"
-  },
-  "breakfast": {
-   "text": "matenmanĝo"
-  },
-  "dinner": {
-   "text": "vespermanĝo"
-  },
-  "water": {
-   "text": "akvo"
-  },
-  "eat": {
-   "text": "manĝi"
-  },
-  "drink": {
-   "text": "trinki"
-  },
-  "im-hungry": {
-   "text": "Mi malsatas.",
-   "variants": [
-    "Mi estas malsata."
-   ]
-  },
-  "whats-for-dinner": {
-   "text": "Kio estas por vespermanĝo?",
-   "variants": [
-    "Kio estas por la vespermanĝo?"
-   ]
-  },
-  "i-dont-eat-meat": {
-   "text": "Mi ne manĝas viandon."
-  },
-  "bread-with-butter": {
-   "text": "pano kun butero"
-  },
-  "fruit-and-vegetables": {
-   "text": "fruktoj kaj legomoj"
-  },
-  "i-eat-rice-with-sauce": {
-   "text": "Mi manĝas rizon kun saŭco."
-  },
-  "without-salt-please": {
-   "text": "Sen salo, mi petas."
-  },
-  "the-food-is-ready": {
-   "text": "La manĝaĵo estas preta!",
-   "variants": [
-    "La manĝo estas preta!"
-   ]
-  }
+  "fruit": { "text": "frukto" },
+  "vegetable": { "text": "legomo" },
+  "potato": { "text": "terpomo" },
+  "onion": { "text": "cepo" },
+  "tomato": { "text": "tomato" },
+  "banana": { "text": "banano" },
+  "apple": { "text": "pomo" },
+  "oil": { "text": "oleo" },
+  "flour": { "text": "faruno" },
+  "butter": { "text": "butero" },
+  "soup": { "text": "supo" },
+  "sauce": { "text": "saŭco" },
+  "juice": { "text": "suko" },
+  "cooked-rice": { "text": "kuirita rizo" },
+  "cassava": { "text": "manioko" },
+  "breakfast": { "text": "matenmanĝo" },
+  "dinner": { "text": "vespermanĝo" },
+  "water": { "text": "akvo" },
+  "eat": { "text": "manĝi" },
+  "drink": { "text": "trinki" },
+  "im-hungry": { "text": "Mi malsatas.", "variants": ["Mi estas malsata."] },
+  "whats-for-dinner": { "text": "Kio estas por vespermanĝo?", "variants": ["Kio estas por la vespermanĝo?"] },
+  "i-dont-eat-meat": { "text": "Mi ne manĝas viandon." },
+  "bread-with-butter": { "text": "pano kun butero" },
+  "fruit-and-vegetables": { "text": "fruktoj kaj legomoj" },
+  "i-eat-rice-with-sauce": { "text": "Mi manĝas rizon kun saŭco." },
+  "without-salt-please": { "text": "Sen salo, mi petas." },
+  "the-food-is-ready": { "text": "La manĝaĵo estas preta!", "variants": ["La manĝo estas preta!"] }
  }
 }

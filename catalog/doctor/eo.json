@@ -2,142 +2,46 @@
  "title": "Ĉe la kuracisto",
  "subtitle": "De la rendevuo ĝis la recepto.",
  "words": {
-  "doctor": {
-   "text": "kuracisto",
-   "variants": [
-    "doktoro"
-   ]
-  },
-  "doctor-f": {
-   "text": "kuracistino",
-   "variants": [
-    "doktorino"
-   ]
-  },
-  "practice": {
-   "text": "konsultejo",
-   "variants": [
-    "kuracista kabineto"
-   ]
-  },
+  "doctor": { "text": "kuracisto", "variants": ["doktoro"] },
+  "doctor-f": { "text": "kuracistino", "variants": ["doktorino"] },
+  "practice": { "text": "konsultejo", "variants": ["kuracista kabineto"] },
   "pill": {
    "text": "pilolo",
-   "synonyms": [
-    "tablojdo"
-   ],
+   "synonyms": ["tablojdo"],
    "notes": {
     "de": "pilolo ist das runde Kügelchen, tablojdo die gepresste Tablette; im Alltag sagt man beides für dieselbe Packung."
    }
   },
-  "prescription": {
-   "text": "recepto"
-  },
-  "pharmacy": {
-   "text": "apoteko"
-  },
-  "insurance-card": {
-   "text": "asekurkarto",
-   "variants": [
-    "asekura karto",
-    "sanasekura karto"
-   ]
-  },
+  "prescription": { "text": "recepto" },
+  "pharmacy": { "text": "apoteko" },
+  "insurance-card": { "text": "asekurkarto", "variants": ["asekura karto", "sanasekura karto"] },
   "health-insurance": {
    "text": "sanasekuro",
-   "synonyms": [
-    "malsanulkaso"
-   ],
+   "synonyms": ["malsanulkaso"],
    "notes": {
     "de": "sanasekuro ist die Krankenversicherung als Schutz; malsanulkaso benennt die Kasse als Einrichtung."
    }
   },
-  "hospital": {
-   "text": "malsanulejo",
-   "synonyms": [
-    "hospitalo"
-   ]
-  },
-  "emergency": {
-   "text": "urĝa okazo",
-   "variants": [
-    "urĝa kazo"
-   ]
-  },
-  "doctors-note": {
-   "text": "malsanatesto",
-   "variants": [
-    "malsanatestilo",
-    "kuracista atesto"
-   ]
-  },
-  "examine": {
-   "text": "ekzameni"
-  },
-  "prescribe-medicine": {
-   "text": "preskribi medikamentojn"
-  },
-  "take-medicine": {
-   "text": "preni medikamentojn",
-   "variants": [
-    "enpreni medikamentojn"
-   ]
-  },
-  "call-in-sick": {
-   "text": "anonci sin malsana",
-   "variants": [
-    "sin anonci malsana"
-   ]
-  },
-  "medicine": {
-   "text": "medikamento",
-   "synonyms": [
-    "kuracilo"
-   ]
-  },
-  "nurse": {
-   "text": "flegisto"
-  },
-  "nurse-f": {
-   "text": "flegistino"
-  },
-  "dentist": {
-   "text": "dentisto",
-   "variants": [
-    "dentokuracisto"
-   ]
-  },
+  "hospital": { "text": "malsanulejo", "synonyms": ["hospitalo"] },
+  "emergency": { "text": "urĝa okazo", "variants": ["urĝa kazo"] },
+  "doctors-note": { "text": "malsanatesto", "variants": ["malsanatestilo", "kuracista atesto"] },
+  "examine": { "text": "ekzameni" },
+  "prescribe-medicine": { "text": "preskribi medikamentojn" },
+  "take-medicine": { "text": "preni medikamentojn", "variants": ["enpreni medikamentojn"] },
+  "call-in-sick": { "text": "anonci sin malsana", "variants": ["sin anonci malsana"] },
+  "medicine": { "text": "medikamento", "synonyms": ["kuracilo"] },
+  "nurse": { "text": "flegisto" },
+  "nurse-f": { "text": "flegistino" },
+  "dentist": { "text": "dentisto", "variants": ["dentokuracisto"] },
   "vaccination": {
    "text": "vakcinado",
-   "notes": {
-    "de": "vakcinado ist das Impfen; der Impfstoff selbst heißt vakcino."
-   }
+   "notes": { "de": "vakcinado ist das Impfen; der Impfstoff selbst heißt vakcino." }
   },
-  "ambulance": {
-   "text": "ambulanco",
-   "variants": [
-    "ambulanca aŭto"
-   ]
-  },
-  "take-the-pills-twice-daily": {
-   "text": "Prenu la pilolojn dufoje tage.",
-   "variants": [
-    "Prenu la pilolojn dufoje ĉiutage."
-   ]
-  },
-  "show-me-your-insurance-card": {
-   "text": "Montru al mi vian asekurkarton."
-  },
-  "the-practice-is-closed": {
-   "text": "La konsultejo estas fermita."
-  },
-  "i-have-to-see-a-doctor": {
-   "text": "Mi devas iri al kuracisto.",
-   "variants": [
-    "Mi devas iri al la kuracisto."
-   ]
-  },
-  "call-an-ambulance": {
-   "text": "Voku ambulancon!"
-  }
+  "ambulance": { "text": "ambulanco", "variants": ["ambulanca aŭto"] },
+  "take-the-pills-twice-daily": { "text": "Prenu la pilolojn dufoje tage.", "variants": ["Prenu la pilolojn dufoje ĉiutage."] },
+  "show-me-your-insurance-card": { "text": "Montru al mi vian asekurkarton." },
+  "the-practice-is-closed": { "text": "La konsultejo estas fermita." },
+  "i-have-to-see-a-doctor": { "text": "Mi devas iri al kuracisto.", "variants": ["Mi devas iri al la kuracisto."] },
+  "call-an-ambulance": { "text": "Voku ambulancon!" }
  }
 }

@@ -2,228 +2,60 @@
  "title": "En la administrejo",
  "subtitle": "Paŝon post paŝo tra la paperoj.",
  "words": {
-  "office": {
-   "text": "publika oficejo",
-   "synonyms": [
-    "administrejo"
-   ],
-   "variants": [
-    "oficejo"
-   ]
-  },
-  "form": {
-   "text": "formularo"
-  },
-  "application": {
-   "text": "peto",
-   "variants": [
-    "petskribo"
-   ]
-  },
+  "office": { "text": "publika oficejo", "synonyms": ["administrejo"], "variants": ["oficejo"] },
+  "form": { "text": "formularo" },
+  "application": { "text": "peto", "variants": ["petskribo"] },
   "id-card": {
    "text": "legitimilo",
-   "variants": [
-    "identigilo",
-    "identkarto",
-    "identiga karto",
-    "persona dokumento"
-   ]
+   "variants": ["identigilo", "identkarto", "identiga karto", "persona dokumento"]
   },
-  "residence-permit": {
-   "text": "loĝpermeso",
-   "variants": [
-    "restadpermeso"
-   ]
-  },
-  "signature": {
-   "text": "subskribo"
-  },
-  "ticket-number": {
-   "text": "vicnumero",
-   "variants": [
-    "atendonumero",
-    "numero"
-   ]
-  },
-  "case-worker": {
-   "text": "oficisto",
-   "variants": [
-    "funkciulo",
-    "ofica komizo"
-   ]
-  },
-  "case-worker-f": {
-   "text": "oficistino"
-  },
-  "registration": {
-   "text": "registriĝo",
-   "variants": [
-    "enskribiĝo",
-    "anonciĝo"
-   ]
-  },
-  "documents": {
-   "text": "dokumentoj",
-   "variants": [
-    "dokumentaro",
-    "paperoj"
-   ]
-  },
-  "fill-in": {
-   "text": "plenigi",
-   "variants": [
-    "plenskribi"
-   ]
-  },
-  "sign": {
-   "text": "subskribi"
-  },
-  "apply-for": {
-   "text": "peti",
-   "variants": [
-    "petskribi"
-   ]
-  },
-  "submit": {
-   "text": "transdoni"
-  },
-  "hand-in": {
-   "text": "prezenti",
-   "variants": [
-    "enmanigi"
-   ]
-  },
+  "residence-permit": { "text": "loĝpermeso", "variants": ["restadpermeso"] },
+  "signature": { "text": "subskribo" },
+  "ticket-number": { "text": "vicnumero", "variants": ["atendonumero", "numero"] },
+  "case-worker": { "text": "oficisto", "variants": ["funkciulo", "ofica komizo"] },
+  "case-worker-f": { "text": "oficistino" },
+  "registration": { "text": "registriĝo", "variants": ["enskribiĝo", "anonciĝo"] },
+  "documents": { "text": "dokumentoj", "variants": ["dokumentaro", "paperoj"] },
+  "fill-in": { "text": "plenigi", "variants": ["plenskribi"] },
+  "sign": { "text": "subskribi" },
+  "apply-for": { "text": "peti", "variants": ["petskribi"] },
+  "submit": { "text": "transdoni" },
+  "hand-in": { "text": "prezenti", "variants": ["enmanigi"] },
   "pick-up": {
    "text": "preni la legitimilon",
-   "variants": [
-    "preni la identigilon",
-    "forpreni la identigilon",
-    "preni la identkarton"
-   ]
+   "variants": ["preni la identigilon", "forpreni la identigilon", "preni la identkarton"]
   },
-  "extend": {
-   "text": "plilongigi",
-   "variants": [
-    "renovigi",
-    "daŭrigi"
-   ]
-  },
-  "bring": {
-   "text": "kunporti"
-  },
-  "copy": {
-   "text": "kopii",
-   "variants": [
-    "fotokopii"
-   ]
-  },
-  "passport": {
-   "text": "pasporto"
-  },
-  "address": {
-   "text": "adreso"
-  },
-  "certificate": {
-   "text": "atestilo",
-   "variants": [
-    "atesto"
-   ]
-  },
-  "birth-certificate": {
-   "text": "naskiĝatestilo",
-   "variants": [
-    "atestilo pri naskiĝo"
-   ]
-  },
-  "notification": {
-   "text": "oficiala decido",
-   "variants": [
-    "decido",
-    "sciigo"
-   ]
-  },
-  "fee": {
-   "text": "pago",
-   "variants": [
-    "kotizo",
-    "tarifo"
-   ]
-  },
-  "office-hours": {
-   "text": "akceptohoroj",
-   "variants": [
-    "akcepthoroj",
-    "akceptotempo"
-   ]
-  },
-  "waiting-room": {
-   "text": "atendejo",
-   "variants": [
-    "atendoĉambro"
-   ]
-  },
-  "reject": {
-   "text": "malakcepti",
-   "synonyms": [
-    "rifuzi"
-   ]
-  },
-  "approve": {
-   "text": "aprobi",
-   "variants": [
-    "permesi",
-    "akcepti"
-   ]
-  },
-  "law": {
-   "text": "leĝo"
-  },
-  "visa": {
-   "text": "vizo"
-  },
-  "fine": {
-   "text": "monpuno"
-  },
-  "receipt": {
-   "text": "kvitanco"
-  },
-  "where-do-i-sign": {
-   "text": "Kie mi devas subskribi?",
-   "variants": [
-    "Kie mi subskribu?"
-   ]
-  },
+  "extend": { "text": "plilongigi", "variants": ["renovigi", "daŭrigi"] },
+  "bring": { "text": "kunporti" },
+  "copy": { "text": "kopii", "variants": ["fotokopii"] },
+  "passport": { "text": "pasporto" },
+  "address": { "text": "adreso" },
+  "certificate": { "text": "atestilo", "variants": ["atesto"] },
+  "birth-certificate": { "text": "naskiĝatestilo", "variants": ["atestilo pri naskiĝo"] },
+  "notification": { "text": "oficiala decido", "variants": ["decido", "sciigo"] },
+  "fee": { "text": "pago", "variants": ["kotizo", "tarifo"] },
+  "office-hours": { "text": "akceptohoroj", "variants": ["akcepthoroj", "akceptotempo"] },
+  "waiting-room": { "text": "atendejo", "variants": ["atendoĉambro"] },
+  "reject": { "text": "malakcepti", "synonyms": ["rifuzi"] },
+  "approve": { "text": "aprobi", "variants": ["permesi", "akcepti"] },
+  "law": { "text": "leĝo" },
+  "visa": { "text": "vizo" },
+  "fine": { "text": "monpuno" },
+  "receipt": { "text": "kvitanco" },
+  "where-do-i-sign": { "text": "Kie mi devas subskribi?", "variants": ["Kie mi subskribu?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Mi ŝatus plilongigi la loĝpermeson.",
-   "variants": [
-    "Mi volas plilongigi la loĝpermeson.",
-    "Mi ŝatus renovigi la loĝpermeson."
-   ]
+   "variants": ["Mi volas plilongigi la loĝpermeson.", "Mi ŝatus renovigi la loĝpermeson."]
   },
-  "fill-out-the-form": {
-   "text": "Plenigu la formularon.",
-   "variants": [
-    "Plenskribu la formularon."
-   ]
-  },
-  "take-a-number": {
-   "text": "Prenu vicnumeron!",
-   "variants": [
-    "Tiru vicnumeron!",
-    "Prenu numeron!"
-   ]
-  },
+  "fill-out-the-form": { "text": "Plenigu la formularon.", "variants": ["Plenskribu la formularon."] },
+  "take-a-number": { "text": "Prenu vicnumeron!", "variants": ["Tiru vicnumeron!", "Prenu numeron!"] },
   "i-need-an-interpreter-for-the-application": {
    "text": "Mi bezonas interpretiston por la peto.",
-   "variants": [
-    "Mi bezonas interpretiston por la petskribo."
-   ]
+   "variants": ["Mi bezonas interpretiston por la petskribo."]
   },
   "did-you-bring-all-the-documents": {
    "text": "Ĉu vi kunportis ĉiujn dokumentojn?",
-   "variants": [
-    "Ĉu vi kunportis la tutan dokumentaron?"
-   ]
+   "variants": ["Ĉu vi kunportis la tutan dokumentaron?"]
   },
   "the-decision-comes-by-mail": {
    "text": "La decido venas per la poŝto.",

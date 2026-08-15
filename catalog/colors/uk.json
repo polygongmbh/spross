@@ -2,50 +2,21 @@
  "title": "Кольори",
  "subtitle": "Червоний, синій і все між ними.",
  "words": {
-  "color": {
-   "text": "колір",
-   "grammar": {
-    "plural": "кольори"
-   }
-  },
-  "white": {
-   "text": "білий"
-  },
-  "black": {
-   "text": "чорний"
-  },
-  "red": {
-   "text": "червоний"
-  },
+  "color": { "text": "колір", "grammar": { "plural": "кольори" } },
+  "white": { "text": "білий" },
+  "black": { "text": "чорний" },
+  "red": { "text": "червоний" },
   "blue": {
    "text": "синій",
-   "variants": [
-    "блакитний"
-   ],
-   "notes": {
-    "de": "синій = dunkelblau, блакитний = hellblau — das Ukrainische trennt beide."
-   }
+   "variants": ["блакитний"],
+   "notes": { "de": "синій = dunkelblau, блакитний = hellblau — das Ukrainische trennt beide." }
   },
-  "green": {
-   "text": "зелений"
-  },
-  "yellow": {
-   "text": "жовтий"
-  },
-  "brown": {
-   "text": "коричневий"
-  },
-  "gray": {
-   "text": "сірий"
-  },
-  "purple": {
-   "text": "фіолетовий"
-  },
-  "what-color-is-it": {
-   "text": "Якого це кольору?"
-  },
-  "a-white-car": {
-   "text": "Біла машина."
-  }
+  "green": { "text": "зелений" },
+  "yellow": { "text": "жовтий" },
+  "brown": { "text": "коричневий" },
+  "gray": { "text": "сірий" },
+  "purple": { "text": "фіолетовий" },
+  "what-color-is-it": { "text": "Якого це кольору?" },
+  "a-white-car": { "text": "Біла машина." }
  }
 }

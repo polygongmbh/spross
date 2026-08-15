@@ -2,211 +2,57 @@
  "title": "La camera da letto",
  "subtitle": "Ora di andare a dormire.",
  "words": {
-  "bed": {
-   "text": "letto",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "mattress": {
-   "text": "materasso",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "pillow": {
-   "text": "cuscino",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "blanket": {
-   "text": "coperta",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "bedding": {
-   "text": "biancheria da letto",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "bed": { "text": "letto", "grammar": { "gender": "il" } },
+  "mattress": { "text": "materasso", "grammar": { "gender": "il" } },
+  "pillow": { "text": "cuscino", "grammar": { "gender": "il" } },
+  "blanket": { "text": "coperta", "grammar": { "gender": "la" } },
+  "bedding": { "text": "biancheria da letto", "grammar": { "gender": "la" } },
   "wardrobe": {
    "text": "armadio",
-   "variants": [
-    "l'armadio"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "armadi"
-   }
+   "variants": ["l'armadio"],
+   "grammar": { "gender": "l'", "plural": "armadi" }
   },
-  "alarm-clock": {
-   "text": "sveglia",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "nightstand": {
-   "text": "comodino",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "pajamas": {
-   "text": "pigiama",
-   "grammar": {
-    "gender": "il",
-    "plural": "pigiami"
-   }
-  },
-  "sock": {
-   "text": "calzino",
-   "grammar": {
-    "gender": "il"
-   }
-  },
+  "alarm-clock": { "text": "sveglia", "grammar": { "gender": "la" } },
+  "nightstand": { "text": "comodino", "grammar": { "gender": "il" } },
+  "pajamas": { "text": "pigiama", "grammar": { "gender": "il", "plural": "pigiami" } },
+  "sock": { "text": "calzino", "grammar": { "gender": "il" } },
   "pants": {
    "text": "pantaloni",
-   "variants": [
-    "pantalone"
-   ],
-   "grammar": {
-    "gender": "i",
-    "plural": "only"
-   },
-   "notes": {
-    "de": "wie die Hose im Deutschen, aber immer im Plural: i pantaloni."
-   }
+   "variants": ["pantalone"],
+   "grammar": { "gender": "i", "plural": "only" },
+   "notes": { "de": "wie die Hose im Deutschen, aber immer im Plural: i pantaloni." }
   },
-  "t-shirt": {
-   "text": "maglietta",
-   "variants": [
-    "t-shirt"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "sleep": {
-   "text": "dormire"
-  },
-  "wake-up": {
-   "text": "svegliarsi"
-  },
-  "dream": {
-   "text": "sognare"
-  },
-  "get-up": {
-   "text": "alzarsi"
-  },
-  "get-undressed": {
-   "text": "spogliarsi",
-   "variants": [
-    "svestirsi"
-   ]
-  },
-  "cuddle": {
-   "text": "coccolarsi",
-   "variants": [
-    "fare le coccole"
-   ]
-  },
-  "yawn": {
-   "text": "sbadigliare"
-  },
-  "snore": {
-   "text": "russare"
-  },
+  "t-shirt": { "text": "maglietta", "variants": ["t-shirt"], "grammar": { "gender": "la" } },
+  "sleep": { "text": "dormire" },
+  "wake-up": { "text": "svegliarsi" },
+  "dream": { "text": "sognare" },
+  "get-up": { "text": "alzarsi" },
+  "get-undressed": { "text": "spogliarsi", "variants": ["svestirsi"] },
+  "cuddle": { "text": "coccolarsi", "variants": ["fare le coccole"] },
+  "yawn": { "text": "sbadigliare" },
+  "snore": { "text": "russare" },
   "clothes": {
    "text": "vestiti",
-   "variants": [
-    "abiti",
-    "abbigliamento"
-   ],
-   "grammar": {
-    "gender": "i",
-    "plural": "only"
-   },
-   "notes": {
-    "de": "i vestiti ist die Kleidung insgesamt; im Singular heißt il vestito das Kleid."
-   }
+   "variants": ["abiti", "abbigliamento"],
+   "grammar": { "gender": "i", "plural": "only" },
+   "notes": { "de": "i vestiti ist die Kleidung insgesamt; im Singular heißt il vestito das Kleid." }
   },
-  "shirt": {
-   "text": "camicia",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "dress": {
-   "text": "vestito",
-   "variants": [
-    "abito"
-   ],
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "sweater": {
-   "text": "maglione",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "underwear": {
-   "text": "biancheria intima",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "belt": {
-   "text": "cintura",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "make-bed": {
-   "text": "fare il letto"
-  },
-  "soft": {
-   "text": "morbido",
-   "variants": [
-    "morbida",
-    "soffice"
-   ]
-  },
-  "good-night-sleep-well": {
-   "text": "Buonanotte, dormi bene!",
-   "variants": [
-    "Buona notte, dormi bene!"
-   ]
-  },
+  "shirt": { "text": "camicia", "grammar": { "gender": "la" } },
+  "dress": { "text": "vestito", "variants": ["abito"], "grammar": { "gender": "il" } },
+  "sweater": { "text": "maglione", "grammar": { "gender": "il" } },
+  "underwear": { "text": "biancheria intima", "grammar": { "gender": "la" } },
+  "belt": { "text": "cintura", "grammar": { "gender": "la" } },
+  "make-bed": { "text": "fare il letto" },
+  "soft": { "text": "morbido", "variants": ["morbida", "soffice"] },
+  "good-night-sleep-well": { "text": "Buonanotte, dormi bene!", "variants": ["Buona notte, dormi bene!"] },
   "good-morning-my-love": {
    "text": "Buongiorno, amore mio!",
-   "variants": [
-    "Buongiorno, tesoro mio!",
-    "Buon giorno, amore mio!"
-   ]
+   "variants": ["Buongiorno, tesoro mio!", "Buon giorno, amore mio!"]
   },
-  "im-tired": {
-   "text": "Sono stanco.",
-   "variants": [
-    "Sono stanca."
-   ]
-  },
-  "did-you-set-the-alarm": {
-   "text": "Hai messo la sveglia?",
-   "variants": [
-    "Hai puntato la sveglia?"
-   ]
-  },
-  "five-more-minutes": {
-   "text": "Ancora cinque minuti…"
-  },
-  "turn-off-the-light": {
-   "text": "Spegni la luce."
-  },
+  "im-tired": { "text": "Sono stanco.", "variants": ["Sono stanca."] },
+  "did-you-set-the-alarm": { "text": "Hai messo la sveglia?", "variants": ["Hai puntato la sveglia?"] },
+  "five-more-minutes": { "text": "Ancora cinque minuti…" },
+  "turn-off-the-light": { "text": "Spegni la luce." },
   "i-love-you": {
    "text": "Ti amo.",
    "notes": {

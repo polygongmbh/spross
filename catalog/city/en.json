@@ -2,128 +2,37 @@
  "title": "The city",
  "subtitle": "Always something going on.",
  "words": {
-  "street": {
-   "text": "street"
-  },
-  "market": {
-   "text": "market"
-  },
-  "park": {
-   "text": "park"
-  },
-  "shop": {
-   "text": "to go shopping"
-  },
-  "city": {
-   "text": "city",
-   "grammar": {
-    "plural": "cities"
-   }
-  },
-  "village": {
-   "text": "village"
-  },
-  "neighborhood": {
-   "text": "neighborhood",
-   "variants": [
-    "neighbourhood"
-   ]
-  },
-  "building": {
-   "text": "building"
-  },
-  "store": {
-   "text": "store",
-   "synonyms": [
-    "shop"
-   ]
-  },
-  "bank": {
-   "text": "bank"
-  },
-  "post-office": {
-   "text": "post office"
-  },
-  "restaurant": {
-   "text": "restaurant"
-  },
-  "hotel": {
-   "text": "hotel"
-  },
-  "church": {
-   "text": "church",
-   "grammar": {
-    "plural": "churches"
-   }
-  },
-  "mosque": {
-   "text": "mosque"
-  },
-  "library": {
-   "text": "library",
-   "grammar": {
-    "plural": "libraries"
-   }
-  },
-  "police": {
-   "text": "police"
-  },
-  "cinema": {
-   "text": "cinema",
-   "synonyms": [
-    "movie theater"
-   ],
-   "variants": [
-    "movie theatre"
-   ]
-  },
-  "bridge": {
-   "text": "bridge"
-  },
-  "money": {
-   "text": "money"
-  },
-  "buy": {
-   "text": "to buy"
-  },
-  "pay": {
-   "text": "to pay"
-  },
-  "where-is-the-post-office": {
-   "text": "Where is the post office?"
-  },
-  "is-there-a-bank-here": {
-   "text": "Is there a bank here?"
-  },
-  "the-store-is-still-open": {
-   "text": "The store is still open.",
-   "variants": [
-    "The shop is still open."
-   ]
-  },
-  "im-looking-for-a-hotel": {
-   "text": "I'm looking for a hotel."
-  },
-  "lets-meet-at-the-market": {
-   "text": "Let's meet at the market."
-  },
-  "i-live-in-this-neighborhood": {
-   "text": "I live in this neighborhood.",
-   "variants": [
-    "I live in this neighbourhood."
-   ]
-  },
-  "how-much-does-this-cost": {
-   "text": "How much does this cost?"
-  },
-  "that-is-too-expensive": {
-   "text": "That is too expensive."
-  },
-  "i-have-no-money": {
-   "text": "I have no money."
-  },
-  "a-lot-of-money": {
-   "text": "a lot of money"
-  }
+  "street": { "text": "street" },
+  "market": { "text": "market" },
+  "park": { "text": "park" },
+  "shop": { "text": "to go shopping" },
+  "city": { "text": "city", "grammar": { "plural": "cities" } },
+  "village": { "text": "village" },
+  "neighborhood": { "text": "neighborhood", "variants": ["neighbourhood"] },
+  "building": { "text": "building" },
+  "store": { "text": "store", "synonyms": ["shop"] },
+  "bank": { "text": "bank" },
+  "post-office": { "text": "post office" },
+  "restaurant": { "text": "restaurant" },
+  "hotel": { "text": "hotel" },
+  "church": { "text": "church", "grammar": { "plural": "churches" } },
+  "mosque": { "text": "mosque" },
+  "library": { "text": "library", "grammar": { "plural": "libraries" } },
+  "police": { "text": "police" },
+  "cinema": { "text": "cinema", "synonyms": ["movie theater"], "variants": ["movie theatre"] },
+  "bridge": { "text": "bridge" },
+  "money": { "text": "money" },
+  "buy": { "text": "to buy" },
+  "pay": { "text": "to pay" },
+  "where-is-the-post-office": { "text": "Where is the post office?" },
+  "is-there-a-bank-here": { "text": "Is there a bank here?" },
+  "the-store-is-still-open": { "text": "The store is still open.", "variants": ["The shop is still open."] },
+  "im-looking-for-a-hotel": { "text": "I'm looking for a hotel." },
+  "lets-meet-at-the-market": { "text": "Let's meet at the market." },
+  "i-live-in-this-neighborhood": { "text": "I live in this neighborhood.", "variants": ["I live in this neighbourhood."] },
+  "how-much-does-this-cost": { "text": "How much does this cost?" },
+  "that-is-too-expensive": { "text": "That is too expensive." },
+  "i-have-no-money": { "text": "I have no money." },
+  "a-lot-of-money": { "text": "a lot of money" }
  }
 }

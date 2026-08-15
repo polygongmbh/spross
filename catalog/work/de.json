@@ -2,231 +2,49 @@
  "title": "Die Arbeit",
  "subtitle": "Viel Erfolg im Job.",
  "words": {
-  "work": {
-   "text": "Arbeit",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "job-application": {
-   "text": "Bewerbung",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "cv": {
-   "text": "Lebenslauf",
-   "grammar": {
-    "gender": "der",
-    "plural": "Lebensläufe"
-   }
-  },
-  "contract": {
-   "text": "Vertrag",
-   "grammar": {
-    "gender": "der",
-    "plural": "Verträge"
-   }
-  },
-  "salary": {
-   "text": "Gehalt",
-   "grammar": {
-    "gender": "das",
-    "plural": "Gehälter"
-   }
-  },
-  "colleague": {
-   "text": "Kollege",
-   "grammar": {
-    "gender": "der",
-    "plural": "-n"
-   }
-  },
-  "colleague-f": {
-   "text": "Kollegin",
-   "grammar": {
-    "gender": "die",
-    "plural": "-nen"
-   }
-  },
-  "boss": {
-   "text": "Chef",
-   "grammar": {
-    "gender": "der",
-    "plural": "-s"
-   }
-  },
-  "boss-f": {
-   "text": "Chefin",
-   "grammar": {
-    "gender": "die",
-    "plural": "-nen"
-   }
-  },
-  "shift": {
-   "text": "Schicht",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "vacation": {
-   "text": "Urlaub",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "company": {
-   "text": "Firma",
-   "grammar": {
-    "gender": "die",
-    "plural": "Firmen"
-   }
-  },
-  "apply": {
-   "text": "sich bewerben"
-  },
-  "introduce-oneself": {
-   "text": "sich vorstellen"
-  },
-  "earn": {
-   "text": "verdienen"
-  },
-  "start": {
-   "text": "anfangen"
-  },
-  "leave": {
-   "text": "verlassen"
-  },
-  "quit": {
-   "text": "kündigen"
-  },
-  "hire": {
-   "text": "einstellen"
-  },
-  "to-help": {
-   "text": "helfen"
-  },
-  "work-overtime": {
-   "text": "Überstunden machen"
-  },
-  "profession": {
-   "text": "Beruf",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "interview": {
-   "text": "Vorstellungsgespräch",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
-  },
-  "working-hours": {
-   "text": "Arbeitszeit",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "full-time": {
-   "text": "Vollzeit",
-   "grammar": {
-    "gender": "die"
-   }
-  },
-  "part-time": {
-   "text": "Teilzeit",
-   "grammar": {
-    "gender": "die"
-   }
-  },
-  "tax": {
-   "text": "Steuer",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "work-permit": {
-   "text": "Arbeitserlaubnis",
-   "grammar": {
-    "gender": "die",
-    "plural": "-se"
-   }
-  },
-  "training": {
-   "text": "Ausbildung",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "notice": {
-   "text": "Kündigung",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "worker": {
-   "text": "Arbeiter",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "employer": {
-   "text": "Arbeitgeber",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "customer": {
-   "text": "Kunde",
-   "grammar": {
-    "gender": "der",
-    "plural": "-n"
-   }
-  },
-  "tomorrow-i-have-a-job-interview": {
-   "text": "Morgen stelle ich mich bei der Firma vor."
-  },
-  "my-shift-starts-at-six": {
-   "text": "Meine Schicht fängt um sechs Uhr an."
-  },
+  "work": { "text": "Arbeit", "grammar": { "gender": "die", "plural": "-en" } },
+  "job-application": { "text": "Bewerbung", "grammar": { "gender": "die", "plural": "-en" } },
+  "cv": { "text": "Lebenslauf", "grammar": { "gender": "der", "plural": "Lebensläufe" } },
+  "contract": { "text": "Vertrag", "grammar": { "gender": "der", "plural": "Verträge" } },
+  "salary": { "text": "Gehalt", "grammar": { "gender": "das", "plural": "Gehälter" } },
+  "colleague": { "text": "Kollege", "grammar": { "gender": "der", "plural": "-n" } },
+  "colleague-f": { "text": "Kollegin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "boss": { "text": "Chef", "grammar": { "gender": "der", "plural": "-s" } },
+  "boss-f": { "text": "Chefin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "shift": { "text": "Schicht", "grammar": { "gender": "die", "plural": "-en" } },
+  "vacation": { "text": "Urlaub", "grammar": { "gender": "der", "plural": "-e" } },
+  "company": { "text": "Firma", "grammar": { "gender": "die", "plural": "Firmen" } },
+  "apply": { "text": "sich bewerben" },
+  "introduce-oneself": { "text": "sich vorstellen" },
+  "earn": { "text": "verdienen" },
+  "start": { "text": "anfangen" },
+  "leave": { "text": "verlassen" },
+  "quit": { "text": "kündigen" },
+  "hire": { "text": "einstellen" },
+  "to-help": { "text": "helfen" },
+  "work-overtime": { "text": "Überstunden machen" },
+  "profession": { "text": "Beruf", "grammar": { "gender": "der", "plural": "-e" } },
+  "interview": { "text": "Vorstellungsgespräch", "grammar": { "gender": "das", "plural": "-e" } },
+  "working-hours": { "text": "Arbeitszeit", "grammar": { "gender": "die", "plural": "-en" } },
+  "full-time": { "text": "Vollzeit", "grammar": { "gender": "die" } },
+  "part-time": { "text": "Teilzeit", "grammar": { "gender": "die" } },
+  "tax": { "text": "Steuer", "grammar": { "gender": "die", "plural": "-n" } },
+  "work-permit": { "text": "Arbeitserlaubnis", "grammar": { "gender": "die", "plural": "-se" } },
+  "training": { "text": "Ausbildung", "grammar": { "gender": "die", "plural": "-en" } },
+  "notice": { "text": "Kündigung", "grammar": { "gender": "die", "plural": "-en" } },
+  "worker": { "text": "Arbeiter", "grammar": { "gender": "der", "plural": "=" } },
+  "employer": { "text": "Arbeitgeber", "grammar": { "gender": "der", "plural": "=" } },
+  "customer": { "text": "Kunde", "grammar": { "gender": "der", "plural": "-n" } },
+  "tomorrow-i-have-a-job-interview": { "text": "Morgen stelle ich mich bei der Firma vor." },
+  "my-shift-starts-at-six": { "text": "Meine Schicht fängt um sechs Uhr an." },
   "ill-send-the-doctors-note-right-away": {
    "text": "Ich schicke Ihnen die Krankmeldung sofort.",
-   "variants": [
-    "Ich schicke dir die Krankmeldung sofort."
-   ]
+   "variants": ["Ich schicke dir die Krankmeldung sofort."]
   },
-  "have-a-nice-evening-off": {
-   "text": "Schönen Feierabend!"
-  },
-  "can-you-help-me-briefly": {
-   "text": "Können Sie mir kurz helfen?",
-   "variants": [
-    "Kannst du mir kurz helfen?"
-   ]
-  },
-  "i-want-vacation-next-week": {
-   "text": "Ich möchte nächste Woche Urlaub nehmen."
-  },
-  "read-the-contract": {
-   "text": "Lesen Sie den Vertrag durch!",
-   "variants": [
-    "Lies den Vertrag genau durch!"
-   ]
-  },
-  "whats-the-salary": {
-   "text": "Wie hoch ist das Gehalt?"
-  }
+  "have-a-nice-evening-off": { "text": "Schönen Feierabend!" },
+  "can-you-help-me-briefly": { "text": "Können Sie mir kurz helfen?", "variants": ["Kannst du mir kurz helfen?"] },
+  "i-want-vacation-next-week": { "text": "Ich möchte nächste Woche Urlaub nehmen." },
+  "read-the-contract": { "text": "Lesen Sie den Vertrag durch!", "variants": ["Lies den Vertrag genau durch!"] },
+  "whats-the-salary": { "text": "Wie hoch ist das Gehalt?" }
  }
 }

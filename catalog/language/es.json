@@ -2,200 +2,52 @@
  "title": "Aprender el idioma",
  "subtitle": "Preguntar, entender, seguir en la conversación.",
  "words": {
-  "hear": {
-   "text": "oír",
-   "notes": {
-    "de": "oír = wahrnehmen · escuchar = bewusst zuhören."
-   }
-  },
-  "understand": {
-   "text": "entender",
-   "synonyms": [
-    "comprender"
-   ]
-  },
-  "speak": {
-   "text": "hablar"
-  },
-  "repeat-word": {
-   "text": "repetir la palabra"
-  },
+  "hear": { "text": "oír", "notes": { "de": "oír = wahrnehmen · escuchar = bewusst zuhören." } },
+  "understand": { "text": "entender", "synonyms": ["comprender"] },
+  "speak": { "text": "hablar" },
+  "repeat-word": { "text": "repetir la palabra" },
   "loud": {
    "text": "alto",
-   "synonyms": [
-    "fuerte"
-   ],
-   "variants": [
-    "alta"
-   ],
-   "notes": {
-    "de": "Lautstärke: habla alto oder habla fuerte · alto heißt auch hoch."
-   }
+   "synonyms": ["fuerte"],
+   "variants": ["alta"],
+   "notes": { "de": "Lautstärke: habla alto oder habla fuerte · alto heißt auch hoch." }
   },
-  "ask": {
-   "text": "preguntar"
-  },
-  "question": {
-   "text": "pregunta",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "answer": {
-   "text": "respuesta",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "reply": {
-   "text": "responder",
-   "synonyms": [
-    "contestar"
-   ]
-  },
-  "meaning": {
-   "text": "significado",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "to-pronounce": {
-   "text": "pronunciar"
-  },
-  "translate": {
-   "text": "traducir"
-  },
-  "read-aloud": {
-   "text": "leer en voz alta"
-  },
-  "learn-by-heart": {
-   "text": "aprender de memoria",
-   "synonyms": [
-    "memorizar"
-   ]
-  },
-  "dictionary": {
-   "text": "diccionario",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "sentence": {
-   "text": "frase",
-   "synonyms": [
-    "oración"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "word": {
-   "text": "palabra",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "ask": { "text": "preguntar" },
+  "question": { "text": "pregunta", "grammar": { "gender": "la" } },
+  "answer": { "text": "respuesta", "grammar": { "gender": "la" } },
+  "reply": { "text": "responder", "synonyms": ["contestar"] },
+  "meaning": { "text": "significado", "grammar": { "gender": "el" } },
+  "to-pronounce": { "text": "pronunciar" },
+  "translate": { "text": "traducir" },
+  "read-aloud": { "text": "leer en voz alta" },
+  "learn-by-heart": { "text": "aprender de memoria", "synonyms": ["memorizar"] },
+  "dictionary": { "text": "diccionario", "grammar": { "gender": "el" } },
+  "sentence": { "text": "frase", "synonyms": ["oración"], "grammar": { "gender": "la" } },
+  "word": { "text": "palabra", "grammar": { "gender": "la" } },
   "language": {
    "text": "idioma",
-   "synonyms": [
-    "lengua"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
+   "synonyms": ["lengua"],
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "idioma = die einzelne Sprache (el alemán, el español) · lengua bedeutet dasselbe, heißt aber auch Zunge."
    }
   },
-  "mother-tongue": {
-   "text": "lengua materna",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "i-dont-understand": {
-   "text": "No entiendo.",
-   "variants": [
-    "No lo entiendo.",
-    "No comprendo."
-   ]
-  },
-  "i-understand": {
-   "text": "Entiendo.",
-   "variants": [
-    "Lo entiendo.",
-    "Comprendo."
-   ]
-  },
+  "mother-tongue": { "text": "lengua materna", "grammar": { "gender": "la" } },
+  "i-dont-understand": { "text": "No entiendo.", "variants": ["No lo entiendo.", "No comprendo."] },
+  "i-understand": { "text": "Entiendo.", "variants": ["Lo entiendo.", "Comprendo."] },
   "can-you-repeat-that": {
    "text": "¿Puede repetirlo?",
-   "variants": [
-    "¿Puede usted repetirlo?",
-    "¿Puedes repetirlo?",
-    "¿Me lo puede repetir?",
-    "¿Puede repetir?"
-   ]
+   "variants": ["¿Puede usted repetirlo?", "¿Puedes repetirlo?", "¿Me lo puede repetir?", "¿Puede repetir?"]
   },
-  "slower": {
-   "text": "¡Más despacio!",
-   "variants": [
-    "¡Más lento!"
-   ]
-  },
-  "i-cant-hear-you": {
-   "text": "No le oigo.",
-   "variants": [
-    "No te oigo.",
-    "No lo oigo.",
-    "No la oigo."
-   ]
-  },
-  "louder": {
-   "text": "¡Más fuerte!",
-   "variants": [
-    "¡Más alto!"
-   ]
-  },
-  "do-you-speak-english": {
-   "text": "¿Habla usted inglés?",
-   "variants": [
-    "¿Habla inglés?",
-    "¿Hablas inglés?"
-   ]
-  },
-  "i-speak-a-little": {
-   "text": "Solo hablo un poco de {language}.",
-   "variants": [
-    "Hablo solo un poco de {language}."
-   ]
-  },
-  "what-does-this-word-mean": {
-   "text": "¿Qué significa esta palabra?",
-   "variants": [
-    "¿Qué quiere decir esta palabra?"
-   ]
-  },
-  "how-do-you-say-this": {
-   "text": "¿Cómo se dice esto {language-in}?",
-   "variants": [
-    "¿Cómo se dice eso {language-in}?"
-   ]
-  },
-  "im-learning-your-language": {
-   "text": "Estoy aprendiendo {language}.",
-   "variants": [
-    "Aprendo {language}."
-   ]
-  },
-  "i-have-a-question": {
-   "text": "Tengo una pregunta."
-  },
-  "you-can-do-it": {
-   "text": "¡Seguro que lo consigues!",
-   "variants": [
-    "¡Tú puedes!",
-    "¡Seguro que lo logras!"
-   ]
-  }
+  "slower": { "text": "¡Más despacio!", "variants": ["¡Más lento!"] },
+  "i-cant-hear-you": { "text": "No le oigo.", "variants": ["No te oigo.", "No lo oigo.", "No la oigo."] },
+  "louder": { "text": "¡Más fuerte!", "variants": ["¡Más alto!"] },
+  "do-you-speak-english": { "text": "¿Habla usted inglés?", "variants": ["¿Habla inglés?", "¿Hablas inglés?"] },
+  "i-speak-a-little": { "text": "Solo hablo un poco de {language}.", "variants": ["Hablo solo un poco de {language}."] },
+  "what-does-this-word-mean": { "text": "¿Qué significa esta palabra?", "variants": ["¿Qué quiere decir esta palabra?"] },
+  "how-do-you-say-this": { "text": "¿Cómo se dice esto {language-in}?", "variants": ["¿Cómo se dice eso {language-in}?"] },
+  "im-learning-your-language": { "text": "Estoy aprendiendo {language}.", "variants": ["Aprendo {language}."] },
+  "i-have-a-question": { "text": "Tengo una pregunta." },
+  "you-can-do-it": { "text": "¡Seguro que lo consigues!", "variants": ["¡Tú puedes!", "¡Seguro que lo logras!"] }
  }
 }

@@ -2,77 +2,28 @@
  "title": "Appointments & deadlines",
  "subtitle": "So nothing slips through.",
  "words": {
-  "appointment": {
-   "text": "appointment"
-  },
-  "date": {
-   "text": "date"
-  },
-  "opening-hours": {
-   "text": "opening hours",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "deadline": {
-   "text": "deadline"
-  },
-  "confirmation": {
-   "text": "confirmation"
-  },
-  "plan": {
-   "text": "plan"
-  },
-  "waiting-time": {
-   "text": "waiting time"
-  },
-  "arrange": {
-   "text": "to arrange"
-  },
-  "confirm": {
-   "text": "to confirm"
-  },
-  "cancel": {
-   "text": "to cancel"
-  },
-  "postpone": {
-   "text": "to postpone"
-  },
-  "register": {
-   "text": "to register"
-  },
-  "be-late": {
-   "text": "to be late"
-  },
-  "punctual": {
-   "text": "punctual"
-  },
-  "urgent": {
-   "text": "urgent"
-  },
-  "list": {
-   "text": "list"
-  },
-  "to-finish": {
-   "text": "to finish"
-  },
-  "i-would-like-to-arrange-an-appointment": {
-   "text": "I would like to arrange an appointment."
-  },
-  "i-have-to-cancel-the-appointment": {
-   "text": "I have to cancel the appointment."
-  },
-  "the-deadline-is-tomorrow": {
-   "text": "The deadline is tomorrow."
-  },
-  "what-are-the-opening-hours": {
-   "text": "What are the opening hours?"
-  },
-  "can-we-postpone-the-appointment": {
-   "text": "Can we postpone the appointment?"
-  },
-  "i-have-an-appointment-at-ten": {
-   "text": "I have an appointment at ten."
-  }
+  "appointment": { "text": "appointment" },
+  "date": { "text": "date" },
+  "opening-hours": { "text": "opening hours", "grammar": { "plural": "only" } },
+  "deadline": { "text": "deadline" },
+  "confirmation": { "text": "confirmation" },
+  "plan": { "text": "plan" },
+  "waiting-time": { "text": "waiting time" },
+  "arrange": { "text": "to arrange" },
+  "confirm": { "text": "to confirm" },
+  "cancel": { "text": "to cancel" },
+  "postpone": { "text": "to postpone" },
+  "register": { "text": "to register" },
+  "be-late": { "text": "to be late" },
+  "punctual": { "text": "punctual" },
+  "urgent": { "text": "urgent" },
+  "list": { "text": "list" },
+  "to-finish": { "text": "to finish" },
+  "i-would-like-to-arrange-an-appointment": { "text": "I would like to arrange an appointment." },
+  "i-have-to-cancel-the-appointment": { "text": "I have to cancel the appointment." },
+  "the-deadline-is-tomorrow": { "text": "The deadline is tomorrow." },
+  "what-are-the-opening-hours": { "text": "What are the opening hours?" },
+  "can-we-postpone-the-appointment": { "text": "Can we postpone the appointment?" },
+  "i-have-an-appointment-at-ten": { "text": "I have an appointment at ten." }
  }
 }

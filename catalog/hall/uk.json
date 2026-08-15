@@ -2,179 +2,58 @@
  "title": "У передпокої",
  "subtitle": "Тут заходять і виходять.",
  "words": {
-  "hallway": {
-   "text": "коридор",
-   "synonyms": [
-    "передпокій"
-   ]
-  },
-  "door": {
-   "text": "двері",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "key": {
-   "text": "ключ"
-  },
-  "jacket": {
-   "text": "куртка"
-  },
-  "coat": {
-   "text": "пальто",
-   "grammar": {
-    "plural": "пальта"
-   }
-  },
-  "shoe-rack": {
-   "text": "полиця для взуття",
-   "grammar": {
-    "plural": "полиці для взуття"
-   }
-  },
-  "umbrella": {
-   "text": "парасолька"
-  },
-  "hat": {
-   "text": "шапка"
-  },
-  "mailbox": {
-   "text": "поштова скринька",
-   "grammar": {
-    "plural": "поштові скриньки"
-   }
-  },
-  "doorbell": {
-   "text": "дзвінок",
-   "grammar": {
-    "plural": "дзвінки"
-   }
-  },
-  "stairs": {
-   "text": "сходи",
-   "grammar": {
-    "plural": "only"
-   }
-  },
-  "bag": {
-   "text": "сумка"
-  },
-  "lock": {
-   "text": "замикати на ключ"
-  },
-  "ring": {
-   "text": "дзвонити у двері"
-  },
-  "take-off-shoes": {
-   "text": "знімати взуття"
-  },
-  "set-off": {
-   "text": "виходити з дому"
-  },
-  "unlock": {
-   "text": "відмикати"
-  },
-  "get-dressed": {
-   "text": "одягатися"
-  },
-  "arrive": {
-   "text": "прибувати"
-  },
-  "greet": {
-   "text": "вітатися"
-  },
-  "say-goodbye": {
-   "text": "прощатися"
-  },
-  "shoe": {
-   "text": "черевик"
-  },
-  "apartment": {
-   "text": "квартира"
-  },
-  "neighbor": {
-   "text": "сусід"
-  },
-  "guest": {
-   "text": "гість"
-  },
-  "wallet": {
-   "text": "гаманець",
-   "grammar": {
-    "plural": "гаманці"
-   }
-  },
-  "glove": {
-   "text": "рукавичка"
-  },
-  "letter": {
-   "text": "лист"
-  },
-  "knock-on-door": {
-   "text": "стукати у двері"
-  },
-  "enter": {
-   "text": "заходити"
-  },
-  "inside": {
-   "text": "всередині"
-  },
+  "hallway": { "text": "коридор", "synonyms": ["передпокій"] },
+  "door": { "text": "двері", "grammar": { "plural": "only" } },
+  "key": { "text": "ключ" },
+  "jacket": { "text": "куртка" },
+  "coat": { "text": "пальто", "grammar": { "plural": "пальта" } },
+  "shoe-rack": { "text": "полиця для взуття", "grammar": { "plural": "полиці для взуття" } },
+  "umbrella": { "text": "парасолька" },
+  "hat": { "text": "шапка" },
+  "mailbox": { "text": "поштова скринька", "grammar": { "plural": "поштові скриньки" } },
+  "doorbell": { "text": "дзвінок", "grammar": { "plural": "дзвінки" } },
+  "stairs": { "text": "сходи", "grammar": { "plural": "only" } },
+  "bag": { "text": "сумка" },
+  "lock": { "text": "замикати на ключ" },
+  "ring": { "text": "дзвонити у двері" },
+  "take-off-shoes": { "text": "знімати взуття" },
+  "set-off": { "text": "виходити з дому" },
+  "unlock": { "text": "відмикати" },
+  "get-dressed": { "text": "одягатися" },
+  "arrive": { "text": "прибувати" },
+  "greet": { "text": "вітатися" },
+  "say-goodbye": { "text": "прощатися" },
+  "shoe": { "text": "черевик" },
+  "apartment": { "text": "квартира" },
+  "neighbor": { "text": "сусід" },
+  "guest": { "text": "гість" },
+  "wallet": { "text": "гаманець", "grammar": { "plural": "гаманці" } },
+  "glove": { "text": "рукавичка" },
+  "letter": { "text": "лист" },
+  "knock-on-door": { "text": "стукати у двері" },
+  "enter": { "text": "заходити" },
+  "inside": { "text": "всередині" },
   "house": {
    "text": "будинок",
-   "synonyms": [
-    "дім"
-   ],
-   "grammar": {
-    "plural": "будинки"
-   },
-   "notes": {
-    "de": "будинок = das Gebäude · дім = Heim, Zuhause."
-   }
+   "synonyms": ["дім"],
+   "grammar": { "plural": "будинки" },
+   "notes": { "de": "будинок = das Gebäude · дім = Heim, Zuhause." }
   },
   "live": {
    "text": "жити",
-   "synonyms": [
-    "мешкати"
-   ],
-   "notes": {
-    "de": "жити = leben und wohnen (Alltag) · мешкати = wohnen, amtlich."
-   }
+   "synonyms": ["мешкати"],
+   "notes": { "de": "жити = leben und wohnen (Alltag) · мешкати = wohnen, amtlich." }
   },
-  "do-you-have-the-keys": {
-   "text": "У тебе є ключі?"
-  },
-  "ill-be-right-back": {
-   "text": "Я скоро повернуся!"
-  },
-  "hurry-were-late": {
-   "text": "Поквапся, ми запізнюємось!"
-  },
-  "see-you-later": {
-   "text": "До зустрічі!"
-  },
-  "welcome-home": {
-   "text": "З поверненням!"
-  },
-  "the-doorbell-suddenly-rang": {
-   "text": "Раптом задзвонив дзвінок."
-  },
-  "dont-forget-your-jacket": {
-   "text": "Не забудь куртку!"
-  },
-  "put-on-the-jacket": {
-   "text": "одягати куртку"
-  },
-  "take-off-your-shoes": {
-   "text": "Зніми своє взуття.",
-   "variants": [
-    "Роззуйся."
-   ]
-  },
-  "i-live-here": {
-   "text": "Я живу тут."
-  },
-  "the-house-is-big": {
-   "text": "Будинок великий."
-  }
+  "do-you-have-the-keys": { "text": "У тебе є ключі?" },
+  "ill-be-right-back": { "text": "Я скоро повернуся!" },
+  "hurry-were-late": { "text": "Поквапся, ми запізнюємось!" },
+  "see-you-later": { "text": "До зустрічі!" },
+  "welcome-home": { "text": "З поверненням!" },
+  "the-doorbell-suddenly-rang": { "text": "Раптом задзвонив дзвінок." },
+  "dont-forget-your-jacket": { "text": "Не забудь куртку!" },
+  "put-on-the-jacket": { "text": "одягати куртку" },
+  "take-off-your-shoes": { "text": "Зніми своє взуття.", "variants": ["Роззуйся."] },
+  "i-live-here": { "text": "Я живу тут." },
+  "the-house-is-big": { "text": "Будинок великий." }
  }
 }

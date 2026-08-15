@@ -2,199 +2,57 @@
  "title": "La ville",
  "subtitle": "Il y a toujours de l'animation.",
  "words": {
-  "street": {
-   "text": "rue",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "market": {
-   "text": "marché",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "park": {
-   "text": "parc",
-   "grammar": {
-    "gender": "le"
-   }
-  },
+  "street": { "text": "rue", "grammar": { "gender": "la" } },
+  "market": { "text": "marché", "grammar": { "gender": "le" } },
+  "park": { "text": "parc", "grammar": { "gender": "le" } },
   "shop": {
    "text": "faire les courses",
-   "synonyms": [
-    "faire les magasins"
-   ],
+   "synonyms": ["faire les magasins"],
    "notes": {
     "de": "faire les courses ist der Lebensmitteleinkauf, faire les magasins der Bummel durch die Läden."
    }
   },
-  "city": {
-   "text": "ville",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "village": {
-   "text": "village",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "neighborhood": {
-   "text": "quartier",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "building": {
-   "text": "bâtiment",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "store": {
-   "text": "magasin",
-   "variants": [
-    "boutique"
-   ],
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "bank": {
-   "text": "banque",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "city": { "text": "ville", "grammar": { "gender": "la" } },
+  "village": { "text": "village", "grammar": { "gender": "le" } },
+  "neighborhood": { "text": "quartier", "grammar": { "gender": "le" } },
+  "building": { "text": "bâtiment", "grammar": { "gender": "le" } },
+  "store": { "text": "magasin", "variants": ["boutique"], "grammar": { "gender": "le" } },
+  "bank": { "text": "banque", "grammar": { "gender": "la" } },
   "post-office": {
    "text": "poste",
-   "variants": [
-    "bureau de poste"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "la poste ist die Post als Einrichtung; ein einzelnes Amt ist le bureau de poste."
-   }
+   "variants": ["bureau de poste"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la poste ist die Post als Einrichtung; ein einzelnes Amt ist le bureau de poste." }
   },
-  "restaurant": {
-   "text": "restaurant",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "hotel": {
-   "text": "hôtel",
-   "variants": [
-    "l'hôtel"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "church": {
-   "text": "église",
-   "variants": [
-    "l'église"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "mosque": {
-   "text": "mosquée",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "library": {
-   "text": "bibliothèque",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "police": {
-   "text": "police",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "cinema": {
-   "text": "cinéma",
-   "variants": [
-    "ciné"
-   ],
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "bridge": {
-   "text": "pont",
-   "grammar": {
-    "gender": "le"
-   }
-  },
-  "money": {
-   "text": "argent",
-   "variants": [
-    "l'argent"
-   ],
-   "grammar": {
-    "gender": "l'"
-   }
-  },
-  "buy": {
-   "text": "acheter"
-  },
-  "pay": {
-   "text": "payer"
-  },
-  "where-is-the-post-office": {
-   "text": "Où est la poste ?"
-  },
+  "restaurant": { "text": "restaurant", "grammar": { "gender": "le" } },
+  "hotel": { "text": "hôtel", "variants": ["l'hôtel"], "grammar": { "gender": "l'" } },
+  "church": { "text": "église", "variants": ["l'église"], "grammar": { "gender": "l'" } },
+  "mosque": { "text": "mosquée", "grammar": { "gender": "la" } },
+  "library": { "text": "bibliothèque", "grammar": { "gender": "la" } },
+  "police": { "text": "police", "grammar": { "gender": "la" } },
+  "cinema": { "text": "cinéma", "variants": ["ciné"], "grammar": { "gender": "le" } },
+  "bridge": { "text": "pont", "grammar": { "gender": "le" } },
+  "money": { "text": "argent", "variants": ["l'argent"], "grammar": { "gender": "l'" } },
+  "buy": { "text": "acheter" },
+  "pay": { "text": "payer" },
+  "where-is-the-post-office": { "text": "Où est la poste ?" },
   "is-there-a-bank-here": {
    "text": "Il y a une banque ici ?",
-   "variants": [
-    "Est-ce qu'il y a une banque ici ?",
-    "Y a-t-il une banque ici ?",
-    "Il y a une banque par ici ?"
-   ]
+   "variants": ["Est-ce qu'il y a une banque ici ?", "Y a-t-il une banque ici ?", "Il y a une banque par ici ?"]
   },
-  "the-store-is-still-open": {
-   "text": "Le magasin est encore ouvert."
-  },
-  "im-looking-for-a-hotel": {
-   "text": "Je cherche un hôtel."
-  },
+  "the-store-is-still-open": { "text": "Le magasin est encore ouvert." },
+  "im-looking-for-a-hotel": { "text": "Je cherche un hôtel." },
   "lets-meet-at-the-market": {
    "text": "On se retrouve au marché.",
-   "variants": [
-    "Retrouvons-nous au marché.",
-    "On se voit au marché."
-   ]
+   "variants": ["Retrouvons-nous au marché.", "On se voit au marché."]
   },
-  "i-live-in-this-neighborhood": {
-   "text": "J'habite dans ce quartier."
-  },
+  "i-live-in-this-neighborhood": { "text": "J'habite dans ce quartier." },
   "how-much-does-this-cost": {
    "text": "Combien ça coûte ?",
-   "variants": [
-    "Ça coûte combien ?",
-    "Combien est-ce que ça coûte ?",
-    "Combien cela coûte-t-il ?"
-   ]
+   "variants": ["Ça coûte combien ?", "Combien est-ce que ça coûte ?", "Combien cela coûte-t-il ?"]
   },
-  "that-is-too-expensive": {
-   "text": "C'est trop cher."
-  },
-  "i-have-no-money": {
-   "text": "Je n'ai pas d'argent."
-  },
-  "a-lot-of-money": {
-   "text": "beaucoup d'argent"
-  }
+  "that-is-too-expensive": { "text": "C'est trop cher." },
+  "i-have-no-money": { "text": "Je n'ai pas d'argent." },
+  "a-lot-of-money": { "text": "beaucoup d'argent" }
  }
 }

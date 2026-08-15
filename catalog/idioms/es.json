@@ -24,24 +24,15 @@
   },
   "turn-a-blind-eye": {
    "text": "Hizo la vista gorda.",
-   "notes": {
-    "de": "Wörtlich: „Er machte den dicken Blick.“",
-    "en": "Literally: \"He made the fat view.\""
-   }
+   "notes": { "de": "Wörtlich: „Er machte den dicken Blick.“", "en": "Literally: \"He made the fat view.\"" }
   },
   "seventh-heaven": {
    "text": "Está en el séptimo cielo.",
-   "notes": {
-    "de": "Wörtlich dasselbe Bild.",
-    "en": "Literally the same image."
-   }
+   "notes": { "de": "Wörtlich dasselbe Bild.", "en": "Literally the same image." }
   },
   "raining-cats-and-dogs": {
    "text": "Llueve a cántaros.",
-   "notes": {
-    "de": "Wörtlich: „Es regnet krugweise.“",
-    "en": "Literally: \"It's raining by the jugful.\""
-   }
+   "notes": { "de": "Wörtlich: „Es regnet krugweise.“", "en": "Literally: \"It's raining by the jugful.\"" }
   }
  }
 }

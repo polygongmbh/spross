@@ -1,72 +1,250 @@
 {
- "germany": {"text": "Alemania", "nationality": {"text": "alemanes", "variants": ["alemán", "alemana"]}},
- "austria": {"text": "Austria", "nationality": {"text": "austriacos", "variants": ["austriaco", "austriaca", "austríaco", "austríaca", "austríacos"]}},
- "switzerland": {"text": "Suiza", "nationality": {"text": "suizos", "variants": ["suizo", "suiza"]}},
- "united-kingdom": {"text": "Reino Unido", "variants": ["el Reino Unido", "Gran Bretaña"], "nationality": {"text": "británicos", "variants": ["británico", "británica"]}},
- "usa": {"text": "Estados Unidos", "variants": ["los Estados Unidos", "EE. UU.", "EEUU", "Estados Unidos de América"], "nationality": {"text": "estadounidenses", "variants": ["estadounidense", "norteamericano", "norteamericana", "norteamericanos", "americano", "americana", "americanos"]}},
- "spain": {"text": "España", "nationality": {"text": "españoles", "variants": ["español", "española"]}},
- "mexico": {"text": "México", "variants": ["Méjico"], "nationality": {"text": "mexicanos", "variants": ["mexicano", "mexicana", "mejicano", "mejicana", "mejicanos"]}},
- "kenya": {"text": "Kenia", "variants": ["Kenya"], "nationality": {"text": "kenianos", "variants": ["keniano", "keniana", "keniata", "keniatas"]}},
- "tanzania": {"text": "Tanzania", "variants": ["Tanzanía"], "nationality": {"text": "tanzanos", "variants": ["tanzano", "tanzana", "tanzaniano", "tanzaniana", "tanzanianos"]}},
- "ukraine": {"text": "Ucrania", "nationality": {"text": "ucranianos", "variants": ["ucraniano", "ucraniana"]}},
- "france": {"text": "Francia", "nationality": {"text": "franceses", "variants": ["francés", "francesa"]}},
- "italy": {"text": "Italia", "nationality": {"text": "italianos", "variants": ["italiano", "italiana"]}},
- "portugal": {"text": "Portugal", "nationality": {"text": "portugueses", "variants": ["portugués", "portuguesa"]}},
- "brazil": {"text": "Brasil", "variants": ["el Brasil"], "nationality": {"text": "brasileños", "variants": ["brasileño", "brasileña", "brasilero", "brasilera", "brasileros"]}},
- "netherlands": {"text": "Países Bajos", "variants": ["los Países Bajos", "Holanda"], "nationality": {"text": "neerlandeses", "variants": ["neerlandés", "neerlandesa", "holandés", "holandesa", "holandeses"]}},
- "belgium": {"text": "Bélgica", "nationality": {"text": "belgas", "variants": ["belga"]}},
- "poland": {"text": "Polonia", "nationality": {"text": "polacos", "variants": ["polaco", "polaca"]}},
- "turkey": {"text": "Turquía", "nationality": {"text": "turcos", "variants": ["turco", "turca"]}},
- "greece": {"text": "Grecia", "nationality": {"text": "griegos", "variants": ["griego", "griega"]}},
- "sweden": {"text": "Suecia", "nationality": {"text": "suecos", "variants": ["sueco", "sueca"]}},
- "czechia": {"text": "Chequia", "variants": ["República Checa", "la República Checa"], "nationality": {"text": "checos", "variants": ["checo", "checa"]}},
- "russia": {"text": "Rusia", "nationality": {"text": "rusos", "variants": ["ruso", "rusa"]}},
- "china": {"text": "China", "variants": ["la China"], "nationality": {"text": "chinos", "variants": ["chino", "china"]}},
- "japan": {"text": "Japón", "variants": ["el Japón"], "nationality": {"text": "japoneses", "variants": ["japonés", "japonesa"]}},
- "india": {"text": "India", "variants": ["la India"], "nationality": {"text": "indios", "variants": ["indio", "india", "hindú", "hindúes"]}},
- "argentina": {"text": "Argentina", "variants": ["la Argentina"], "nationality": {"text": "argentinos", "variants": ["argentino", "argentina"]}},
- "canada": {"text": "Canadá", "variants": ["el Canadá"], "nationality": {"text": "canadienses", "variants": ["canadiense"]}},
- "egypt": {"text": "Egipto", "nationality": {"text": "egipcios", "variants": ["egipcio", "egipcia"]}},
- "morocco": {"text": "Marruecos", "nationality": {"text": "marroquíes", "variants": ["marroquí"]}},
- "colombia": {"text": "Colombia", "nationality": {"text": "colombianos", "variants": ["colombiano", "colombiana"]}},
- "ireland": {"text": "Irlanda", "nationality": {"text": "irlandeses", "variants": ["irlandés", "irlandesa"]}},
- "norway": {"text": "Noruega", "nationality": {"text": "noruegos", "variants": ["noruego", "noruega"]}},
- "denmark": {"text": "Dinamarca", "nationality": {"text": "daneses", "variants": ["danés", "danesa"]}},
- "finland": {"text": "Finlandia", "nationality": {"text": "finlandeses", "variants": ["finlandés", "finlandesa", "finés", "finesa", "fineses"]}},
- "hungary": {"text": "Hungría", "nationality": {"text": "húngaros", "variants": ["húngaro", "húngara"]}},
- "romania": {"text": "Rumanía", "variants": ["Rumania"], "nationality": {"text": "rumanos", "variants": ["rumano", "rumana"]}},
- "bulgaria": {"text": "Bulgaria", "nationality": {"text": "búlgaros", "variants": ["búlgaro", "búlgara"]}},
- "croatia": {"text": "Croacia", "nationality": {"text": "croatas", "variants": ["croata"]}},
- "serbia": {"text": "Serbia", "nationality": {"text": "serbios", "variants": ["serbio", "serbia"]}},
- "slovakia": {"text": "Eslovaquia", "nationality": {"text": "eslovacos", "variants": ["eslovaco", "eslovaca"]}},
- "luxembourg": {"text": "Luxemburgo", "nationality": {"text": "luxemburgueses", "variants": ["luxemburgués", "luxemburguesa"]}},
- "south-korea": {"text": "Corea del Sur", "nationality": {"text": "surcoreanos", "variants": ["surcoreano", "surcoreana", "coreano", "coreana", "coreanos"]}},
- "vietnam": {"text": "Vietnam", "nationality": {"text": "vietnamitas", "variants": ["vietnamita"]}},
- "thailand": {"text": "Tailandia", "nationality": {"text": "tailandeses", "variants": ["tailandés", "tailandesa"]}},
- "indonesia": {"text": "Indonesia", "nationality": {"text": "indonesios", "variants": ["indonesio", "indonesia"]}},
- "israel": {"text": "Israel", "nationality": {"text": "israelíes", "variants": ["israelí"]}},
- "iran": {"text": "Irán", "variants": ["el Irán"], "nationality": {"text": "iraníes", "variants": ["iraní"]}},
- "saudi-arabia": {"text": "Arabia Saudí", "variants": ["Arabia Saudita"], "nationality": {"text": "saudíes", "variants": ["saudí", "saudita", "sauditas"]}},
- "singapore": {"text": "Singapur", "nationality": {"text": "singapurenses", "variants": ["singapurense"]}},
- "nigeria": {"text": "Nigeria", "nationality": {"text": "nigerianos", "variants": ["nigeriano", "nigeriana"]}},
- "ethiopia": {"text": "Etiopía", "nationality": {"text": "etíopes", "variants": ["etíope"]}},
- "south-africa": {"text": "Sudáfrica", "variants": ["República de Sudáfrica"], "nationality": {"text": "sudafricanos", "variants": ["sudafricano", "sudafricana"]}},
- "ghana": {"text": "Ghana", "nationality": {"text": "ghaneses", "variants": ["ghanés", "ghanesa", "ganés", "ganesa", "ganeses"]}},
- "uganda": {"text": "Uganda", "nationality": {"text": "ugandeses", "variants": ["ugandés", "ugandesa"]}},
- "rwanda": {"text": "Ruanda", "nationality": {"text": "ruandeses", "variants": ["ruandés", "ruandesa"]}},
- "senegal": {"text": "Senegal", "variants": ["el Senegal"], "nationality": {"text": "senegaleses", "variants": ["senegalés", "senegalesa"]}},
- "algeria": {"text": "Argelia", "nationality": {"text": "argelinos", "variants": ["argelino", "argelina"]}},
- "tunisia": {"text": "Túnez", "nationality": {"text": "tunecinos", "variants": ["tunecino", "tunecina"]}},
- "dr-congo": {"text": "República Democrática del Congo", "variants": ["la República Democrática del Congo", "RD Congo", "Congo"], "nationality": {"text": "congoleños", "variants": ["congoleño", "congoleña", "congolés", "congolesa", "congoleses"]}},
- "mozambique": {"text": "Mozambique", "nationality": {"text": "mozambiqueños", "variants": ["mozambiqueño", "mozambiqueña"]}},
- "angola": {"text": "Angola", "nationality": {"text": "angoleños", "variants": ["angoleño", "angoleña", "angolano", "angolana", "angolanos"]}},
- "chile": {"text": "Chile", "nationality": {"text": "chilenos", "variants": ["chileno", "chilena"]}},
- "peru": {"text": "Perú", "variants": ["el Perú"], "nationality": {"text": "peruanos", "variants": ["peruano", "peruana"]}},
- "cuba": {"text": "Cuba", "nationality": {"text": "cubanos", "variants": ["cubano", "cubana"]}},
- "venezuela": {"text": "Venezuela", "nationality": {"text": "venezolanos", "variants": ["venezolano", "venezolana"]}},
- "ecuador": {"text": "Ecuador", "variants": ["el Ecuador"], "nationality": {"text": "ecuatorianos", "variants": ["ecuatoriano", "ecuatoriana"]}},
- "uruguay": {"text": "Uruguay", "variants": ["el Uruguay"], "nationality": {"text": "uruguayos", "variants": ["uruguayo", "uruguaya"]}},
- "costa-rica": {"text": "Costa Rica", "nationality": {"text": "costarricenses", "variants": ["costarricense", "costarriqueño", "costarriqueña", "costarriqueños"]}},
- "australia": {"text": "Australia", "nationality": {"text": "australianos", "variants": ["australiano", "australiana"]}},
- "new-zealand": {"text": "Nueva Zelanda", "variants": ["Nueva Zelandia"], "nationality": {"text": "neozelandeses", "variants": ["neozelandés", "neozelandesa"]}}
+ "germany": { "text": "Alemania", "nationality": { "text": "alemanes", "variants": ["alemán", "alemana"] } },
+ "austria": {
+  "text": "Austria",
+  "nationality": {
+   "text": "austriacos",
+   "variants": ["austriaco", "austriaca", "austríaco", "austríaca", "austríacos"]
+  }
+ },
+ "switzerland": { "text": "Suiza", "nationality": { "text": "suizos", "variants": ["suizo", "suiza"] } },
+ "united-kingdom": {
+  "text": "Reino Unido",
+  "variants": ["el Reino Unido", "Gran Bretaña"],
+  "nationality": { "text": "británicos", "variants": ["británico", "británica"] }
+ },
+ "usa": {
+  "text": "Estados Unidos",
+  "variants": ["los Estados Unidos", "EE. UU.", "EEUU", "Estados Unidos de América"],
+  "nationality": {
+   "text": "estadounidenses",
+   "variants": [
+    "estadounidense",
+    "norteamericano",
+    "norteamericana",
+    "norteamericanos",
+    "americano",
+    "americana",
+    "americanos"
+   ]
+  }
+ },
+ "spain": { "text": "España", "nationality": { "text": "españoles", "variants": ["español", "española"] } },
+ "mexico": {
+  "text": "México",
+  "variants": ["Méjico"],
+  "nationality": { "text": "mexicanos", "variants": ["mexicano", "mexicana", "mejicano", "mejicana", "mejicanos"] }
+ },
+ "kenya": {
+  "text": "Kenia",
+  "variants": ["Kenya"],
+  "nationality": { "text": "kenianos", "variants": ["keniano", "keniana", "keniata", "keniatas"] }
+ },
+ "tanzania": {
+  "text": "Tanzania",
+  "variants": ["Tanzanía"],
+  "nationality": {
+   "text": "tanzanos",
+   "variants": ["tanzano", "tanzana", "tanzaniano", "tanzaniana", "tanzanianos"]
+  }
+ },
+ "ukraine": {
+  "text": "Ucrania",
+  "nationality": { "text": "ucranianos", "variants": ["ucraniano", "ucraniana"] }
+ },
+ "france": { "text": "Francia", "nationality": { "text": "franceses", "variants": ["francés", "francesa"] } },
+ "italy": { "text": "Italia", "nationality": { "text": "italianos", "variants": ["italiano", "italiana"] } },
+ "portugal": {
+  "text": "Portugal",
+  "nationality": { "text": "portugueses", "variants": ["portugués", "portuguesa"] }
+ },
+ "brazil": {
+  "text": "Brasil",
+  "variants": ["el Brasil"],
+  "nationality": {
+   "text": "brasileños",
+   "variants": ["brasileño", "brasileña", "brasilero", "brasilera", "brasileros"]
+  }
+ },
+ "netherlands": {
+  "text": "Países Bajos",
+  "variants": ["los Países Bajos", "Holanda"],
+  "nationality": {
+   "text": "neerlandeses",
+   "variants": ["neerlandés", "neerlandesa", "holandés", "holandesa", "holandeses"]
+  }
+ },
+ "belgium": { "text": "Bélgica", "nationality": { "text": "belgas", "variants": ["belga"] } },
+ "poland": { "text": "Polonia", "nationality": { "text": "polacos", "variants": ["polaco", "polaca"] } },
+ "turkey": { "text": "Turquía", "nationality": { "text": "turcos", "variants": ["turco", "turca"] } },
+ "greece": { "text": "Grecia", "nationality": { "text": "griegos", "variants": ["griego", "griega"] } },
+ "sweden": { "text": "Suecia", "nationality": { "text": "suecos", "variants": ["sueco", "sueca"] } },
+ "czechia": {
+  "text": "Chequia",
+  "variants": ["República Checa", "la República Checa"],
+  "nationality": { "text": "checos", "variants": ["checo", "checa"] }
+ },
+ "russia": { "text": "Rusia", "nationality": { "text": "rusos", "variants": ["ruso", "rusa"] } },
+ "china": {
+  "text": "China",
+  "variants": ["la China"],
+  "nationality": { "text": "chinos", "variants": ["chino", "china"] }
+ },
+ "japan": {
+  "text": "Japón",
+  "variants": ["el Japón"],
+  "nationality": { "text": "japoneses", "variants": ["japonés", "japonesa"] }
+ },
+ "india": {
+  "text": "India",
+  "variants": ["la India"],
+  "nationality": { "text": "indios", "variants": ["indio", "india", "hindú", "hindúes"] }
+ },
+ "argentina": {
+  "text": "Argentina",
+  "variants": ["la Argentina"],
+  "nationality": { "text": "argentinos", "variants": ["argentino", "argentina"] }
+ },
+ "canada": {
+  "text": "Canadá",
+  "variants": ["el Canadá"],
+  "nationality": { "text": "canadienses", "variants": ["canadiense"] }
+ },
+ "egypt": { "text": "Egipto", "nationality": { "text": "egipcios", "variants": ["egipcio", "egipcia"] } },
+ "morocco": { "text": "Marruecos", "nationality": { "text": "marroquíes", "variants": ["marroquí"] } },
+ "colombia": {
+  "text": "Colombia",
+  "nationality": { "text": "colombianos", "variants": ["colombiano", "colombiana"] }
+ },
+ "ireland": {
+  "text": "Irlanda",
+  "nationality": { "text": "irlandeses", "variants": ["irlandés", "irlandesa"] }
+ },
+ "norway": { "text": "Noruega", "nationality": { "text": "noruegos", "variants": ["noruego", "noruega"] } },
+ "denmark": { "text": "Dinamarca", "nationality": { "text": "daneses", "variants": ["danés", "danesa"] } },
+ "finland": {
+  "text": "Finlandia",
+  "nationality": { "text": "finlandeses", "variants": ["finlandés", "finlandesa", "finés", "finesa", "fineses"] }
+ },
+ "hungary": { "text": "Hungría", "nationality": { "text": "húngaros", "variants": ["húngaro", "húngara"] } },
+ "romania": {
+  "text": "Rumanía",
+  "variants": ["Rumania"],
+  "nationality": { "text": "rumanos", "variants": ["rumano", "rumana"] }
+ },
+ "bulgaria": { "text": "Bulgaria", "nationality": { "text": "búlgaros", "variants": ["búlgaro", "búlgara"] } },
+ "croatia": { "text": "Croacia", "nationality": { "text": "croatas", "variants": ["croata"] } },
+ "serbia": { "text": "Serbia", "nationality": { "text": "serbios", "variants": ["serbio", "serbia"] } },
+ "slovakia": {
+  "text": "Eslovaquia",
+  "nationality": { "text": "eslovacos", "variants": ["eslovaco", "eslovaca"] }
+ },
+ "luxembourg": {
+  "text": "Luxemburgo",
+  "nationality": { "text": "luxemburgueses", "variants": ["luxemburgués", "luxemburguesa"] }
+ },
+ "south-korea": {
+  "text": "Corea del Sur",
+  "nationality": {
+   "text": "surcoreanos",
+   "variants": ["surcoreano", "surcoreana", "coreano", "coreana", "coreanos"]
+  }
+ },
+ "vietnam": { "text": "Vietnam", "nationality": { "text": "vietnamitas", "variants": ["vietnamita"] } },
+ "thailand": {
+  "text": "Tailandia",
+  "nationality": { "text": "tailandeses", "variants": ["tailandés", "tailandesa"] }
+ },
+ "indonesia": {
+  "text": "Indonesia",
+  "nationality": { "text": "indonesios", "variants": ["indonesio", "indonesia"] }
+ },
+ "israel": { "text": "Israel", "nationality": { "text": "israelíes", "variants": ["israelí"] } },
+ "iran": {
+  "text": "Irán",
+  "variants": ["el Irán"],
+  "nationality": { "text": "iraníes", "variants": ["iraní"] }
+ },
+ "saudi-arabia": {
+  "text": "Arabia Saudí",
+  "variants": ["Arabia Saudita"],
+  "nationality": { "text": "saudíes", "variants": ["saudí", "saudita", "sauditas"] }
+ },
+ "singapore": { "text": "Singapur", "nationality": { "text": "singapurenses", "variants": ["singapurense"] } },
+ "nigeria": {
+  "text": "Nigeria",
+  "nationality": { "text": "nigerianos", "variants": ["nigeriano", "nigeriana"] }
+ },
+ "ethiopia": { "text": "Etiopía", "nationality": { "text": "etíopes", "variants": ["etíope"] } },
+ "south-africa": {
+  "text": "Sudáfrica",
+  "variants": ["República de Sudáfrica"],
+  "nationality": { "text": "sudafricanos", "variants": ["sudafricano", "sudafricana"] }
+ },
+ "ghana": {
+  "text": "Ghana",
+  "nationality": { "text": "ghaneses", "variants": ["ghanés", "ghanesa", "ganés", "ganesa", "ganeses"] }
+ },
+ "uganda": { "text": "Uganda", "nationality": { "text": "ugandeses", "variants": ["ugandés", "ugandesa"] } },
+ "rwanda": { "text": "Ruanda", "nationality": { "text": "ruandeses", "variants": ["ruandés", "ruandesa"] } },
+ "senegal": {
+  "text": "Senegal",
+  "variants": ["el Senegal"],
+  "nationality": { "text": "senegaleses", "variants": ["senegalés", "senegalesa"] }
+ },
+ "algeria": { "text": "Argelia", "nationality": { "text": "argelinos", "variants": ["argelino", "argelina"] } },
+ "tunisia": { "text": "Túnez", "nationality": { "text": "tunecinos", "variants": ["tunecino", "tunecina"] } },
+ "dr-congo": {
+  "text": "República Democrática del Congo",
+  "variants": ["la República Democrática del Congo", "RD Congo", "Congo"],
+  "nationality": {
+   "text": "congoleños",
+   "variants": ["congoleño", "congoleña", "congolés", "congolesa", "congoleses"]
+  }
+ },
+ "mozambique": {
+  "text": "Mozambique",
+  "nationality": { "text": "mozambiqueños", "variants": ["mozambiqueño", "mozambiqueña"] }
+ },
+ "angola": {
+  "text": "Angola",
+  "nationality": { "text": "angoleños", "variants": ["angoleño", "angoleña", "angolano", "angolana", "angolanos"] }
+ },
+ "chile": { "text": "Chile", "nationality": { "text": "chilenos", "variants": ["chileno", "chilena"] } },
+ "peru": {
+  "text": "Perú",
+  "variants": ["el Perú"],
+  "nationality": { "text": "peruanos", "variants": ["peruano", "peruana"] }
+ },
+ "cuba": { "text": "Cuba", "nationality": { "text": "cubanos", "variants": ["cubano", "cubana"] } },
+ "venezuela": {
+  "text": "Venezuela",
+  "nationality": { "text": "venezolanos", "variants": ["venezolano", "venezolana"] }
+ },
+ "ecuador": {
+  "text": "Ecuador",
+  "variants": ["el Ecuador"],
+  "nationality": { "text": "ecuatorianos", "variants": ["ecuatoriano", "ecuatoriana"] }
+ },
+ "uruguay": {
+  "text": "Uruguay",
+  "variants": ["el Uruguay"],
+  "nationality": { "text": "uruguayos", "variants": ["uruguayo", "uruguaya"] }
+ },
+ "costa-rica": {
+  "text": "Costa Rica",
+  "nationality": {
+   "text": "costarricenses",
+   "variants": ["costarricense", "costarriqueño", "costarriqueña", "costarriqueños"]
+  }
+ },
+ "australia": {
+  "text": "Australia",
+  "nationality": { "text": "australianos", "variants": ["australiano", "australiana"] }
+ },
+ "new-zealand": {
+  "text": "Nueva Zelanda",
+  "variants": ["Nueva Zelandia"],
+  "nationality": { "text": "neozelandeses", "variants": ["neozelandés", "neozelandesa"] }
+ }
 }

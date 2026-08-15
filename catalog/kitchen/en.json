@@ -2,116 +2,38 @@
  "title": "The kitchen",
  "subtitle": "It smells of dinner in here.",
  "words": {
-  "fridge": {
-   "text": "fridge"
-  },
-  "stove": {
-   "text": "stove"
-  },
-  "oven": {
-   "text": "oven"
-  },
-  "dishwasher": {
-   "text": "dishwasher"
-  },
-  "pot": {
-   "text": "pot"
-  },
-  "pan": {
-   "text": "pan"
-  },
-  "knife": {
-   "text": "knife",
-   "grammar": {
-    "plural": "knives"
-   }
-  },
-  "spoon": {
-   "text": "spoon"
-  },
-  "fork": {
-   "text": "fork"
-  },
-  "plate": {
-   "text": "plate"
-  },
-  "cook": {
-   "text": "to cook"
-  },
-  "bake": {
-   "text": "to bake"
-  },
-  "cut": {
-   "text": "to cut"
-  },
-  "wash-the-dishes": {
-   "text": "to do the dishes"
-  },
-  "taste": {
-   "text": "to taste"
-  },
-  "fry": {
-   "text": "to fry"
-  },
-  "reheat": {
-   "text": "to reheat"
-  },
-  "stir": {
-   "text": "to stir"
-  },
-  "take-out-trash": {
-   "text": "to take out the trash"
-  },
-  "careful": {
-   "text": "careful"
-  },
-  "cup": {
-   "text": "cup"
-  },
-  "bowl": {
-   "text": "bowl"
-  },
-  "basket": {
-   "text": "basket"
-  },
-  "tin-can": {
-   "text": "tin can",
-   "synonyms": [
-    "tin"
-   ],
-   "variants": [
-    "can"
-   ]
-  },
-  "the-knife-is-sharp": {
-   "text": "The knife is sharp!"
-  },
-  "this-is-very-tasty": {
-   "text": "This is very tasty!",
-   "variants": [
-    "This tastes so good!"
-   ]
-  },
-  "are-you-cooking-rice-today": {
-   "text": "Are you cooking rice today?"
-  },
-  "the-pot-is-still-on-the-stove": {
-   "text": "The pot is still on the stove."
-  },
-  "wash-the-dishes-in-the-sink": {
-   "text": "Wash the dishes in the sink!"
-  },
-  "the-fridge-is-empty": {
-   "text": "The fridge is empty."
-  },
-  "can-you-set-the-table": {
-   "text": "Can you set the table?"
-  },
-  "the-water-is-boiling-hot": {
-   "text": "The water is boiling."
-  },
-  "careful-very-hot": {
-   "text": "Careful, very hot!"
-  }
+  "fridge": { "text": "fridge" },
+  "stove": { "text": "stove" },
+  "oven": { "text": "oven" },
+  "dishwasher": { "text": "dishwasher" },
+  "pot": { "text": "pot" },
+  "pan": { "text": "pan" },
+  "knife": { "text": "knife", "grammar": { "plural": "knives" } },
+  "spoon": { "text": "spoon" },
+  "fork": { "text": "fork" },
+  "plate": { "text": "plate" },
+  "cook": { "text": "to cook" },
+  "bake": { "text": "to bake" },
+  "cut": { "text": "to cut" },
+  "wash-the-dishes": { "text": "to do the dishes" },
+  "taste": { "text": "to taste" },
+  "fry": { "text": "to fry" },
+  "reheat": { "text": "to reheat" },
+  "stir": { "text": "to stir" },
+  "take-out-trash": { "text": "to take out the trash" },
+  "careful": { "text": "careful" },
+  "cup": { "text": "cup" },
+  "bowl": { "text": "bowl" },
+  "basket": { "text": "basket" },
+  "tin-can": { "text": "tin can", "synonyms": ["tin"], "variants": ["can"] },
+  "the-knife-is-sharp": { "text": "The knife is sharp!" },
+  "this-is-very-tasty": { "text": "This is very tasty!", "variants": ["This tastes so good!"] },
+  "are-you-cooking-rice-today": { "text": "Are you cooking rice today?" },
+  "the-pot-is-still-on-the-stove": { "text": "The pot is still on the stove." },
+  "wash-the-dishes-in-the-sink": { "text": "Wash the dishes in the sink!" },
+  "the-fridge-is-empty": { "text": "The fridge is empty." },
+  "can-you-set-the-table": { "text": "Can you set the table?" },
+  "the-water-is-boiling-hot": { "text": "The water is boiling." },
+  "careful-very-hot": { "text": "Careful, very hot!" }
  }
 }

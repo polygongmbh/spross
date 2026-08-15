@@ -2,50 +2,20 @@
  "title": "La koloroj",
  "subtitle": "Ruĝa, blua kaj ĉio inter ili.",
  "words": {
-  "color": {
-   "text": "koloro"
-  },
-  "white": {
-   "text": "blanka"
-  },
-  "black": {
-   "text": "nigra"
-  },
-  "red": {
-   "text": "ruĝa"
-  },
-  "blue": {
-   "text": "blua"
-  },
-  "green": {
-   "text": "verda"
-  },
-  "yellow": {
-   "text": "flava"
-  },
-  "brown": {
-   "text": "bruna"
-  },
-  "gray": {
-   "text": "griza"
-  },
-  "purple": {
-   "text": "viola",
-   "synonyms": [
-    "purpura"
-   ]
-  },
-  "what-color-is-it": {
-   "text": "Kian koloron ĝi havas?",
-   "variants": [
-    "Kiun koloron ĝi havas?"
-   ]
-  },
+  "color": { "text": "koloro" },
+  "white": { "text": "blanka" },
+  "black": { "text": "nigra" },
+  "red": { "text": "ruĝa" },
+  "blue": { "text": "blua" },
+  "green": { "text": "verda" },
+  "yellow": { "text": "flava" },
+  "brown": { "text": "bruna" },
+  "gray": { "text": "griza" },
+  "purple": { "text": "viola", "synonyms": ["purpura"] },
+  "what-color-is-it": { "text": "Kian koloron ĝi havas?", "variants": ["Kiun koloron ĝi havas?"] },
   "a-white-car": {
    "text": "Blanka aŭto.",
-   "notes": {
-    "de": "Esperanto hat keinen unbestimmten Artikel — „ein“ bleibt unübersetzt; nur la gibt es."
-   }
+   "notes": { "de": "Esperanto hat keinen unbestimmten Artikel — „ein“ bleibt unübersetzt; nur la gibt es." }
   }
  }
 }

@@ -2,247 +2,65 @@
  "title": "La famiglia",
  "subtitle": "Le persone più vicine a te.",
  "words": {
-  "person": {
-   "text": "persona",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "person": { "text": "persona", "grammar": { "gender": "la" } },
   "human": {
    "text": "essere umano",
-   "variants": [
-    "l'essere umano"
-   ],
-   "grammar": {
-    "gender": "l'"
-   },
-   "notes": {
-    "de": "essere umano = Mensch als Gattung · persona = der einzelne Mensch."
-   }
+   "variants": ["l'essere umano"],
+   "grammar": { "gender": "l'" },
+   "notes": { "de": "essere umano = Mensch als Gattung · persona = der einzelne Mensch." }
   },
-  "family": {
-   "text": "famiglia",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "mother": {
-   "text": "madre",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "father": {
-   "text": "padre",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "parents": {
-   "text": "genitori",
-   "grammar": {
-    "gender": "i"
-   }
-  },
+  "family": { "text": "famiglia", "grammar": { "gender": "la" } },
+  "mother": { "text": "madre", "grammar": { "gender": "la" } },
+  "father": { "text": "padre", "grammar": { "gender": "il" } },
+  "parents": { "text": "genitori", "grammar": { "gender": "i" } },
   "child": {
    "text": "bambino",
-   "grammar": {
-    "gender": "il"
-   },
-   "notes": {
-    "de": "bambino ist das Kind allgemein; das eigene Kind ist figlio/figlia."
-   }
+   "grammar": { "gender": "il" },
+   "notes": { "de": "bambino ist das Kind allgemein; das eigene Kind ist figlio/figlia." }
   },
-  "son": {
-   "text": "figlio",
-   "grammar": {
-    "gender": "il",
-    "plural": "figli"
-   }
-  },
-  "daughter": {
-   "text": "figlia",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "brother": {
-   "text": "fratello",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "sister": {
-   "text": "sorella",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "man": {
-   "text": "uomo",
-   "variants": [
-    "l'uomo"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "uomini"
-   }
-  },
-  "woman": {
-   "text": "donna",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "boy": {
-   "text": "ragazzo",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "girl": {
-   "text": "ragazza",
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "son": { "text": "figlio", "grammar": { "gender": "il", "plural": "figli" } },
+  "daughter": { "text": "figlia", "grammar": { "gender": "la" } },
+  "brother": { "text": "fratello", "grammar": { "gender": "il" } },
+  "sister": { "text": "sorella", "grammar": { "gender": "la" } },
+  "man": { "text": "uomo", "variants": ["l'uomo"], "grammar": { "gender": "l'", "plural": "uomini" } },
+  "woman": { "text": "donna", "grammar": { "gender": "la" } },
+  "boy": { "text": "ragazzo", "grammar": { "gender": "il" } },
+  "girl": { "text": "ragazza", "grammar": { "gender": "la" } },
   "baby": {
    "text": "neonato",
-   "variants": [
-    "bebè"
-   ],
-   "grammar": {
-    "gender": "il"
-   },
+   "variants": ["bebè"],
+   "grammar": { "gender": "il" },
    "notes": {
     "de": "neonato ist genau genommen das Neugeborene; ein größeres Baby ist ein bambino piccolo."
    }
   },
-  "friend": {
-   "text": "amico",
-   "variants": [
-    "l'amico"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "amici"
-   }
-  },
+  "friend": { "text": "amico", "variants": ["l'amico"], "grammar": { "gender": "l'", "plural": "amici" } },
   "friend-f": {
    "text": "amica",
-   "variants": [
-    "l'amica",
-    "un'amica"
-   ],
-   "grammar": {
-    "gender": "l'",
-    "plural": "amiche"
-   }
+   "variants": ["l'amica", "un'amica"],
+   "grammar": { "gender": "l'", "plural": "amiche" }
   },
-  "grandmother": {
-   "text": "nonna",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "grandfather": {
-   "text": "nonno",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "husband": {
-   "text": "marito",
-   "grammar": {
-    "gender": "il"
-   }
-  },
-  "wife": {
-   "text": "moglie",
-   "grammar": {
-    "gender": "la",
-    "plural": "mogli"
-   }
-  },
-  "uncle": {
-   "text": "zio",
-   "grammar": {
-    "gender": "lo",
-    "plural": "zii"
-   }
-  },
-  "aunt": {
-   "text": "zia",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "this-is-my-mother": {
-   "text": "Questa è mia madre."
-  },
-  "where-is-your-father": {
-   "text": "Dov'è tuo padre?",
-   "variants": [
-    "Dov'è Suo padre?"
-   ]
-  },
-  "i-have-two-children": {
-   "text": "Ho due figli.",
-   "variants": [
-    "Ho due bambini."
-   ]
-  },
-  "my-family-is-big": {
-   "text": "La mia famiglia è grande.",
-   "variants": [
-    "La mia famiglia è numerosa."
-   ]
-  },
-  "i-have-a-brother": {
-   "text": "Ho un fratello."
-  },
-  "my-parents-live-here": {
-   "text": "I miei genitori abitano qui.",
-   "variants": [
-    "I miei genitori vivono qui."
-   ]
-  },
-  "how-is-your-grandmother": {
-   "text": "Come sta tua nonna?",
-   "variants": [
-    "Come sta Sua nonna?"
-   ]
-  },
-  "a-good-friend": {
-   "text": "un buon amico"
-  },
-  "my-girlfriend": {
-   "text": "la mia ragazza",
-   "variants": [
-    "la mia fidanzata"
-   ]
-  },
-  "her-boyfriend": {
-   "text": "il suo ragazzo",
-   "variants": [
-    "il suo fidanzato"
-   ]
-  },
+  "grandmother": { "text": "nonna", "grammar": { "gender": "la" } },
+  "grandfather": { "text": "nonno", "grammar": { "gender": "il" } },
+  "husband": { "text": "marito", "grammar": { "gender": "il" } },
+  "wife": { "text": "moglie", "grammar": { "gender": "la", "plural": "mogli" } },
+  "uncle": { "text": "zio", "grammar": { "gender": "lo", "plural": "zii" } },
+  "aunt": { "text": "zia", "grammar": { "gender": "la" } },
+  "this-is-my-mother": { "text": "Questa è mia madre." },
+  "where-is-your-father": { "text": "Dov'è tuo padre?", "variants": ["Dov'è Suo padre?"] },
+  "i-have-two-children": { "text": "Ho due figli.", "variants": ["Ho due bambini."] },
+  "my-family-is-big": { "text": "La mia famiglia è grande.", "variants": ["La mia famiglia è numerosa."] },
+  "i-have-a-brother": { "text": "Ho un fratello." },
+  "my-parents-live-here": { "text": "I miei genitori abitano qui.", "variants": ["I miei genitori vivono qui."] },
+  "how-is-your-grandmother": { "text": "Come sta tua nonna?", "variants": ["Come sta Sua nonna?"] },
+  "a-good-friend": { "text": "un buon amico" },
+  "my-girlfriend": { "text": "la mia ragazza", "variants": ["la mia fidanzata"] },
+  "her-boyfriend": { "text": "il suo ragazzo", "variants": ["il suo fidanzato"] },
   "old-people": {
    "text": "le persone anziane",
-   "variants": [
-    "gli anziani",
-    "la gente anziana"
-   ],
-   "notes": {
-    "de": "persone vecchie klingt abwertend — im Alltag anziane."
-   }
+   "variants": ["gli anziani", "la gente anziana"],
+   "notes": { "de": "persone vecchie klingt abwertend — im Alltag anziane." }
   },
-  "many-friends": {
-   "text": "molti amici",
-   "variants": [
-    "molte amiche"
-   ]
-  }
+  "many-friends": { "text": "molti amici", "variants": ["molte amiche"] }
  }
 }

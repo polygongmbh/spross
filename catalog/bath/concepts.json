@@ -1,210 +1,55 @@
 [
- {
-  "slug": "washing-machine",
-  "kind": "noun",
-  "emoji": "🌀"
- },
- {
-  "slug": "laundry",
-  "kind": "noun",
-  "emoji": "🧺"
- },
- {
-  "slug": "toilet",
-  "kind": "noun",
-  "emoji": "🚽"
- },
- {
-  "slug": "shower",
-  "kind": "noun",
-  "emoji": "🚿"
- },
- {
-  "slug": "sink",
-  "kind": "noun",
-  "emoji": "💧"
- },
- {
-  "slug": "mirror",
-  "kind": "noun",
-  "emoji": "🪞"
- },
- {
-  "slug": "toothbrush",
-  "kind": "noun",
-  "emoji": "🪥"
- },
- {
-  "slug": "toothpaste",
-  "kind": "noun",
-  "emoji": "🦷"
- },
- {
-  "slug": "towel",
-  "kind": "noun",
-  "emoji": "🧖"
- },
- {
-  "slug": "soap",
-  "kind": "noun",
-  "emoji": "🧼"
- },
- {
-  "slug": "shampoo",
-  "kind": "noun",
-  "emoji": "🧴"
- },
- {
-  "slug": "hairdryer",
-  "kind": "noun",
-  "emoji": "💨"
- },
- {
-  "slug": "take-shower",
-  "kind": "verb",
-  "emoji": "🚿"
- },
- {
-  "slug": "do-laundry",
-  "kind": "verb",
-  "emoji": "🧺"
- },
- {
-  "slug": "brush-teeth",
-  "kind": "verb",
-  "emoji": "🪥"
- },
- {
-  "slug": "dry-off",
-  "kind": "verb",
-  "emoji": "🧖"
- },
- {
-  "slug": "hang-up-laundry",
-  "kind": "verb",
-  "emoji": "👕"
- },
- {
-  "slug": "clean",
-  "kind": "verb",
-  "emoji": "✨"
- },
- {
-  "slug": "shave",
-  "kind": "verb",
-  "emoji": "🪒"
- },
- {
-  "slug": "comb-hair",
-  "kind": "verb",
-  "emoji": "💇"
- },
- {
-  "slug": "apply-lotion",
-  "kind": "verb",
-  "emoji": "💆"
- },
- {
-  "slug": "bathtub",
-  "kind": "noun",
-  "emoji": "🛁"
- },
- {
-  "slug": "toilet-paper",
-  "kind": "noun",
-  "emoji": "🧻"
- },
- {
-  "slug": "razor",
-  "kind": "noun",
-  "emoji": "🪒"
- },
- {
-  "slug": "sponge",
-  "kind": "noun",
-  "emoji": "🧽"
- },
- {
-  "slug": "cream",
-  "kind": "noun",
-  "emoji": "🧴"
- },
- {
-  "slug": "faucet",
-  "kind": "noun",
-  "emoji": "🚰"
- },
- {
-  "slug": "trash-can",
-  "kind": "noun",
-  "emoji": "🗑️"
- },
- {
-  "slug": "bucket",
-  "kind": "noun",
-  "emoji": "🪣"
- },
- {
-  "slug": "dirty",
-  "kind": "adjective"
- },
+ { "slug": "washing-machine", "kind": "noun", "emoji": "🌀" },
+ { "slug": "laundry", "kind": "noun", "emoji": "🧺" },
+ { "slug": "toilet", "kind": "noun", "emoji": "🚽" },
+ { "slug": "shower", "kind": "noun", "emoji": "🚿" },
+ { "slug": "sink", "kind": "noun", "emoji": "💧" },
+ { "slug": "mirror", "kind": "noun", "emoji": "🪞" },
+ { "slug": "toothbrush", "kind": "noun", "emoji": "🪥" },
+ { "slug": "toothpaste", "kind": "noun", "emoji": "🦷" },
+ { "slug": "towel", "kind": "noun", "emoji": "🧖" },
+ { "slug": "soap", "kind": "noun", "emoji": "🧼" },
+ { "slug": "shampoo", "kind": "noun", "emoji": "🧴" },
+ { "slug": "hairdryer", "kind": "noun", "emoji": "💨" },
+ { "slug": "take-shower", "kind": "verb", "emoji": "🚿" },
+ { "slug": "do-laundry", "kind": "verb", "emoji": "🧺" },
+ { "slug": "brush-teeth", "kind": "verb", "emoji": "🪥" },
+ { "slug": "dry-off", "kind": "verb", "emoji": "🧖" },
+ { "slug": "hang-up-laundry", "kind": "verb", "emoji": "👕" },
+ { "slug": "clean", "kind": "verb", "emoji": "✨" },
+ { "slug": "shave", "kind": "verb", "emoji": "🪒" },
+ { "slug": "comb-hair", "kind": "verb", "emoji": "💇" },
+ { "slug": "apply-lotion", "kind": "verb", "emoji": "💆" },
+ { "slug": "bathtub", "kind": "noun", "emoji": "🛁" },
+ { "slug": "toilet-paper", "kind": "noun", "emoji": "🧻" },
+ { "slug": "razor", "kind": "noun", "emoji": "🪒" },
+ { "slug": "sponge", "kind": "noun", "emoji": "🧽" },
+ { "slug": "cream", "kind": "noun", "emoji": "🧴" },
+ { "slug": "faucet", "kind": "noun", "emoji": "🚰" },
+ { "slug": "trash-can", "kind": "noun", "emoji": "🗑️" },
+ { "slug": "bucket", "kind": "noun", "emoji": "🪣" },
+ { "slug": "dirty", "kind": "adjective" },
  {
   "slug": "im-taking-a-quick-shower",
   "kind": "phrase",
   "emoji": "🚿",
-  "components": [
-   "take-shower"
-  ]
+  "components": ["take-shower"]
  },
- {
-  "slug": "the-bathroom-is-occupied",
-  "kind": "phrase",
-  "emoji": "🚽",
-  "components": []
- },
- {
-  "slug": "the-laundry-is-done",
-  "kind": "phrase",
-  "emoji": "✅",
-  "components": [
-   "laundry"
-  ]
- },
- {
-  "slug": "wheres-my-towel",
-  "kind": "phrase",
-  "emoji": "🧖",
-  "components": [
-   "towel"
-  ]
- },
+ { "slug": "the-bathroom-is-occupied", "kind": "phrase", "emoji": "🚽", "components": [] },
+ { "slug": "the-laundry-is-done", "kind": "phrase", "emoji": "✅", "components": ["laundry"] },
+ { "slug": "wheres-my-towel", "kind": "phrase", "emoji": "🧖", "components": ["towel"] },
  {
   "slug": "can-you-hang-the-laundry",
   "kind": "phrase",
   "emoji": "👕",
-  "components": [
-   "laundry",
-   "hang-up-laundry"
-  ]
+  "components": ["laundry", "hang-up-laundry"]
  },
  {
   "slug": "dont-forget-to-brush-teeth",
   "kind": "phrase",
   "emoji": "🪥",
-  "components": [
-   "brush-teeth"
-  ]
+  "components": ["brush-teeth"]
  },
- {
-  "slug": "wash-your-hands",
-  "kind": "phrase",
-  "emoji": "🧼",
-  "components": []
- },
- {
-  "slug": "the-water-is-cold",
-  "kind": "phrase",
-  "emoji": "🥶",
-  "components": []
- }
+ { "slug": "wash-your-hands", "kind": "phrase", "emoji": "🧼", "components": [] },
+ { "slug": "the-water-is-cold", "kind": "phrase", "emoji": "🥶", "components": [] }
 ]

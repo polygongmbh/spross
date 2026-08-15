@@ -2,226 +2,53 @@
  "title": "Der Flur",
  "subtitle": "Ankommen und wieder losgehen.",
  "words": {
-  "hallway": {
-   "text": "Flur",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "door": {
-   "text": "Tür",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "key": {
-   "text": "Schlüssel",
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
-  },
-  "jacket": {
-   "text": "Jacke",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "coat": {
-   "text": "Mantel",
-   "grammar": {
-    "gender": "der",
-    "plural": "Mäntel"
-   }
-  },
-  "shoe-rack": {
-   "text": "Schuhregal",
-   "grammar": {
-    "gender": "das",
-    "plural": "-e"
-   }
-  },
-  "umbrella": {
-   "text": "Regenschirm",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "hat": {
-   "text": "Mütze",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "mailbox": {
-   "text": "Briefkasten",
-   "grammar": {
-    "gender": "der",
-    "plural": "Briefkästen"
-   }
-  },
-  "doorbell": {
-   "text": "Klingel",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "stairs": {
-   "text": "Treppe",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "bag": {
-   "text": "Tasche",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "lock": {
-   "text": "abschließen"
-  },
-  "ring": {
-   "text": "klingeln"
-  },
-  "take-off-shoes": {
-   "text": "Schuhe ausziehen"
-  },
-  "set-off": {
-   "text": "von zu Hause losgehen"
-  },
-  "unlock": {
-   "text": "aufschließen"
-  },
-  "get-dressed": {
-   "text": "sich anziehen"
-  },
-  "arrive": {
-   "text": "ankommen"
-  },
-  "greet": {
-   "text": "begrüßen"
-  },
-  "say-goodbye": {
-   "text": "sich verabschieden"
-  },
-  "shoe": {
-   "text": "Schuh",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "apartment": {
-   "text": "Wohnung",
-   "grammar": {
-    "gender": "die",
-    "plural": "-en"
-   }
-  },
-  "neighbor": {
-   "text": "Nachbar",
-   "grammar": {
-    "gender": "der",
-    "plural": "-n"
-   }
-  },
-  "guest": {
-   "text": "Gast",
-   "grammar": {
-    "gender": "der",
-    "plural": "Gäste"
-   }
-  },
+  "hallway": { "text": "Flur", "grammar": { "gender": "der", "plural": "-e" } },
+  "door": { "text": "Tür", "grammar": { "gender": "die", "plural": "-en" } },
+  "key": { "text": "Schlüssel", "grammar": { "gender": "der", "plural": "=" } },
+  "jacket": { "text": "Jacke", "grammar": { "gender": "die", "plural": "-n" } },
+  "coat": { "text": "Mantel", "grammar": { "gender": "der", "plural": "Mäntel" } },
+  "shoe-rack": { "text": "Schuhregal", "grammar": { "gender": "das", "plural": "-e" } },
+  "umbrella": { "text": "Regenschirm", "grammar": { "gender": "der", "plural": "-e" } },
+  "hat": { "text": "Mütze", "grammar": { "gender": "die", "plural": "-n" } },
+  "mailbox": { "text": "Briefkasten", "grammar": { "gender": "der", "plural": "Briefkästen" } },
+  "doorbell": { "text": "Klingel", "grammar": { "gender": "die", "plural": "-n" } },
+  "stairs": { "text": "Treppe", "grammar": { "gender": "die", "plural": "-n" } },
+  "bag": { "text": "Tasche", "grammar": { "gender": "die", "plural": "-n" } },
+  "lock": { "text": "abschließen" },
+  "ring": { "text": "klingeln" },
+  "take-off-shoes": { "text": "Schuhe ausziehen" },
+  "set-off": { "text": "von zu Hause losgehen" },
+  "unlock": { "text": "aufschließen" },
+  "get-dressed": { "text": "sich anziehen" },
+  "arrive": { "text": "ankommen" },
+  "greet": { "text": "begrüßen" },
+  "say-goodbye": { "text": "sich verabschieden" },
+  "shoe": { "text": "Schuh", "grammar": { "gender": "der", "plural": "-e" } },
+  "apartment": { "text": "Wohnung", "grammar": { "gender": "die", "plural": "-en" } },
+  "neighbor": { "text": "Nachbar", "grammar": { "gender": "der", "plural": "-n" } },
+  "guest": { "text": "Gast", "grammar": { "gender": "der", "plural": "Gäste" } },
   "wallet": {
    "text": "Geldbeutel",
-   "variants": [
-    "Portemonnaie"
-   ],
-   "grammar": {
-    "gender": "der",
-    "plural": "="
-   }
+   "variants": ["Portemonnaie"],
+   "grammar": { "gender": "der", "plural": "=" }
   },
-  "glove": {
-   "text": "Handschuh",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "letter": {
-   "text": "Brief",
-   "grammar": {
-    "gender": "der",
-    "plural": "-e"
-   }
-  },
-  "knock-on-door": {
-   "text": "an die Tür klopfen"
-  },
-  "enter": {
-   "text": "hereinkommen",
-   "variants": [
-    "reinkommen"
-   ]
-  },
-  "inside": {
-   "text": "drinnen"
-  },
-  "house": {
-   "text": "Haus",
-   "grammar": {
-    "gender": "das",
-    "plural": "Häuser"
-   }
-  },
-  "live": {
-   "text": "wohnen"
-  },
-  "do-you-have-the-keys": {
-   "text": "Hast du die Schlüssel?"
-  },
-  "ill-be-right-back": {
-   "text": "Ich bin gleich zurück!"
-  },
-  "hurry-were-late": {
-   "text": "Beeil dich, wir sind spät dran!"
-  },
-  "see-you-later": {
-   "text": "Bis später!"
-  },
-  "welcome-home": {
-   "text": "Willkommen zu Hause!"
-  },
-  "the-doorbell-suddenly-rang": {
-   "text": "Die Klingel hat plötzlich geläutet.",
-   "variants": [
-    "Es hat plötzlich geklingelt."
-   ]
-  },
-  "dont-forget-your-jacket": {
-   "text": "Vergiss deine Jacke nicht!"
-  },
-  "put-on-the-jacket": {
-   "text": "die Jacke anziehen"
-  },
-  "take-off-your-shoes": {
-   "text": "Zieh deine Schuhe aus."
-  },
-  "i-live-here": {
-   "text": "Ich wohne hier."
-  },
-  "the-house-is-big": {
-   "text": "Das Haus ist groß."
-  }
+  "glove": { "text": "Handschuh", "grammar": { "gender": "der", "plural": "-e" } },
+  "letter": { "text": "Brief", "grammar": { "gender": "der", "plural": "-e" } },
+  "knock-on-door": { "text": "an die Tür klopfen" },
+  "enter": { "text": "hereinkommen", "variants": ["reinkommen"] },
+  "inside": { "text": "drinnen" },
+  "house": { "text": "Haus", "grammar": { "gender": "das", "plural": "Häuser" } },
+  "live": { "text": "wohnen" },
+  "do-you-have-the-keys": { "text": "Hast du die Schlüssel?" },
+  "ill-be-right-back": { "text": "Ich bin gleich zurück!" },
+  "hurry-were-late": { "text": "Beeil dich, wir sind spät dran!" },
+  "see-you-later": { "text": "Bis später!" },
+  "welcome-home": { "text": "Willkommen zu Hause!" },
+  "the-doorbell-suddenly-rang": { "text": "Die Klingel hat plötzlich geläutet.", "variants": ["Es hat plötzlich geklingelt."] },
+  "dont-forget-your-jacket": { "text": "Vergiss deine Jacke nicht!" },
+  "put-on-the-jacket": { "text": "die Jacke anziehen" },
+  "take-off-your-shoes": { "text": "Zieh deine Schuhe aus." },
+  "i-live-here": { "text": "Ich wohne hier." },
+  "the-house-is-big": { "text": "Das Haus ist groß." }
  }
 }

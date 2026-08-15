@@ -4,298 +4,101 @@
  "words": {
   "hallway": {
    "text": "pasillo",
-   "synonyms": [
-    "recibidor"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
+   "synonyms": ["recibidor"],
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "el pasillo ist der Gang in der Wohnung; der Eingangsbereich direkt hinter der Wohnungstür heißt el recibidor."
    }
   },
-  "door": {
-   "text": "puerta",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "key": {
-   "text": "llave",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "jacket": {
-   "text": "chaqueta",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "coat": {
-   "text": "abrigo",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "shoe-rack": {
-   "text": "zapatero",
-   "variants": [
-    "mueble zapatero"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "umbrella": {
-   "text": "paraguas",
-   "grammar": {
-    "gender": "el",
-    "plural": "="
-   }
-  },
+  "door": { "text": "puerta", "grammar": { "gender": "la" } },
+  "key": { "text": "llave", "grammar": { "gender": "la" } },
+  "jacket": { "text": "chaqueta", "grammar": { "gender": "la" } },
+  "coat": { "text": "abrigo", "grammar": { "gender": "el" } },
+  "shoe-rack": { "text": "zapatero", "variants": ["mueble zapatero"], "grammar": { "gender": "el" } },
+  "umbrella": { "text": "paraguas", "grammar": { "gender": "el", "plural": "=" } },
   "hat": {
    "text": "gorro",
-   "synonyms": [
-    "gorra"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
+   "synonyms": ["gorra"],
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "el gorro ist die Mütze ohne Schirm (Wollmütze); die Schirmmütze mit Schild heißt la gorra."
    }
   },
-  "mailbox": {
-   "text": "buzón",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "doorbell": {
-   "text": "timbre",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "stairs": {
-   "text": "escalera",
-   "variants": [
-    "escaleras"
-   ],
-   "grammar": {
-    "gender": "la"
-   }
-  },
+  "mailbox": { "text": "buzón", "grammar": { "gender": "el" } },
+  "doorbell": { "text": "timbre", "grammar": { "gender": "el" } },
+  "stairs": { "text": "escalera", "variants": ["escaleras"], "grammar": { "gender": "la" } },
   "bag": {
    "text": "bolsa",
-   "synonyms": [
-    "bolso"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
-   "notes": {
-    "de": "la bolsa ist die Trage- oder Einkaufstasche, el bolso die Handtasche."
-   }
+   "synonyms": ["bolso"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la bolsa ist die Trage- oder Einkaufstasche, el bolso die Handtasche." }
   },
-  "lock": {
-   "text": "cerrar con llave",
-   "variants": [
-    "echar la llave"
-   ]
-  },
+  "lock": { "text": "cerrar con llave", "variants": ["echar la llave"] },
   "ring": {
    "text": "sonar",
-   "synonyms": [
-    "tocar el timbre"
-   ],
-   "variants": [
-    "llamar al timbre"
-   ],
+   "synonyms": ["tocar el timbre"],
+   "variants": ["llamar al timbre"],
    "notes": {
     "de": "sonar = die Klingel klingelt; wer selbst an der Tür klingelt, sagt tocar el timbre oder llamar al timbre."
    }
   },
-  "take-off-shoes": {
-   "text": "quitarse los zapatos",
-   "variants": [
-    "sacarse los zapatos",
-    "descalzarse"
-   ]
-  },
-  "set-off": {
-   "text": "salir de casa"
-  },
-  "unlock": {
-   "text": "abrir con llave"
-  },
-  "get-dressed": {
-   "text": "vestirse"
-  },
-  "arrive": {
-   "text": "llegar"
-  },
-  "greet": {
-   "text": "saludar"
-  },
-  "say-goodbye": {
-   "text": "despedirse"
-  },
-  "shoe": {
-   "text": "zapato",
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "take-off-shoes": { "text": "quitarse los zapatos", "variants": ["sacarse los zapatos", "descalzarse"] },
+  "set-off": { "text": "salir de casa" },
+  "unlock": { "text": "abrir con llave" },
+  "get-dressed": { "text": "vestirse" },
+  "arrive": { "text": "llegar" },
+  "greet": { "text": "saludar" },
+  "say-goodbye": { "text": "despedirse" },
+  "shoe": { "text": "zapato", "grammar": { "gender": "el" } },
   "apartment": {
    "text": "piso",
-   "synonyms": [
-    "apartamento"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
+   "synonyms": ["apartamento"],
+   "grammar": { "gender": "el" },
    "notes": {
     "de": "In Spanien heißt die Wohnung el piso; el apartamento ist eher die kleine Wohnung oder die Ferienwohnung."
    }
   },
-  "neighbor": {
-   "text": "vecino",
-   "variants": [
-    "vecina"
-   ],
-   "grammar": {
-    "gender": "el"
-   }
-  },
+  "neighbor": { "text": "vecino", "variants": ["vecina"], "grammar": { "gender": "el" } },
   "guest": {
    "text": "invitado",
-   "variants": [
-    "invitada"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "el invitado ist der eingeladene Gast; im Hotel sagt man el huésped."
-   }
+   "variants": ["invitada"],
+   "grammar": { "gender": "el" },
+   "notes": { "de": "el invitado ist der eingeladene Gast; im Hotel sagt man el huésped." }
   },
   "wallet": {
    "text": "cartera",
-   "synonyms": [
-    "monedero"
-   ],
-   "grammar": {
-    "gender": "la"
-   },
+   "synonyms": ["monedero"],
+   "grammar": { "gender": "la" },
    "notes": {
     "de": "la cartera ist die Brieftasche für Scheine und Karten, el monedero die kleine Münzbörse."
    }
   },
-  "glove": {
-   "text": "guante",
-   "grammar": {
-    "gender": "el"
-   }
-  },
-  "letter": {
-   "text": "carta",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "knock-on-door": {
-   "text": "llamar a la puerta",
-   "variants": [
-    "tocar a la puerta"
-   ]
-  },
+  "glove": { "text": "guante", "grammar": { "gender": "el" } },
+  "letter": { "text": "carta", "grammar": { "gender": "la" } },
+  "knock-on-door": { "text": "llamar a la puerta", "variants": ["tocar a la puerta"] },
   "enter": {
    "text": "entrar",
-   "notes": {
-    "de": "Wer jemanden hereinbittet, sagt ¡Pasa! (du) beziehungsweise ¡Pase! (Sie)."
-   }
+   "notes": { "de": "Wer jemanden hereinbittet, sagt ¡Pasa! (du) beziehungsweise ¡Pase! (Sie)." }
   },
-  "inside": {
-   "text": "dentro",
-   "variants": [
-    "adentro"
-   ]
-  },
-  "house": {
-   "text": "casa",
-   "grammar": {
-    "gender": "la"
-   }
-  },
-  "live": {
-   "text": "vivir",
-   "notes": {
-    "de": "vivir = wohnen und leben."
-   }
-  },
-  "do-you-have-the-keys": {
-   "text": "¿Tienes las llaves?",
-   "variants": [
-    "¿Llevas las llaves?"
-   ]
-  },
-  "ill-be-right-back": {
-   "text": "¡Ahora vuelvo!",
-   "variants": [
-    "¡Vuelvo enseguida!",
-    "¡Enseguida vuelvo!"
-   ]
-  },
-  "take-off-your-shoes": {
-   "text": "Quítate los zapatos.",
-   "variants": [
-    "Sácate los zapatos."
-   ]
-  },
+  "inside": { "text": "dentro", "variants": ["adentro"] },
+  "house": { "text": "casa", "grammar": { "gender": "la" } },
+  "live": { "text": "vivir", "notes": { "de": "vivir = wohnen und leben." } },
+  "do-you-have-the-keys": { "text": "¿Tienes las llaves?", "variants": ["¿Llevas las llaves?"] },
+  "ill-be-right-back": { "text": "¡Ahora vuelvo!", "variants": ["¡Vuelvo enseguida!", "¡Enseguida vuelvo!"] },
+  "take-off-your-shoes": { "text": "Quítate los zapatos.", "variants": ["Sácate los zapatos."] },
   "hurry-were-late": {
    "text": "¡Date prisa, llegamos tarde!",
-   "variants": [
-    "¡Date prisa, que llegamos tarde!",
-    "¡Apúrate, llegamos tarde!"
-   ]
+   "variants": ["¡Date prisa, que llegamos tarde!", "¡Apúrate, llegamos tarde!"]
   },
-  "see-you-later": {
-   "text": "¡Nos vemos luego!",
-   "variants": [
-    "¡Hasta luego!",
-    "¡Hasta después!",
-    "¡Nos vemos!"
-   ]
-  },
-  "welcome-home": {
-   "text": "¡Bienvenido a casa!",
-   "variants": [
-    "¡Bienvenida a casa!"
-   ]
-  },
+  "see-you-later": { "text": "¡Nos vemos luego!", "variants": ["¡Hasta luego!", "¡Hasta después!", "¡Nos vemos!"] },
+  "welcome-home": { "text": "¡Bienvenido a casa!", "variants": ["¡Bienvenida a casa!"] },
   "the-doorbell-suddenly-rang": {
    "text": "El timbre sonó de repente.",
-   "variants": [
-    "El timbre ha sonado de repente.",
-    "De repente sonó el timbre."
-   ]
+   "variants": ["El timbre ha sonado de repente.", "De repente sonó el timbre."]
   },
-  "dont-forget-your-jacket": {
-   "text": "¡No olvides tu chaqueta!",
-   "variants": [
-    "¡No te olvides de la chaqueta!"
-   ]
-  },
-  "put-on-the-jacket": {
-   "text": "ponerse la chaqueta"
-  },
-  "i-live-here": {
-   "text": "Vivo aquí."
-  },
-  "the-house-is-big": {
-   "text": "La casa es grande."
-  }
+  "dont-forget-your-jacket": { "text": "¡No olvides tu chaqueta!", "variants": ["¡No te olvides de la chaqueta!"] },
+  "put-on-the-jacket": { "text": "ponerse la chaqueta" },
+  "i-live-here": { "text": "Vivo aquí." },
+  "the-house-is-big": { "text": "La casa es grande." }
  }
 }

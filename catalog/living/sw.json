@@ -2,173 +2,41 @@
  "title": "Sebuleni",
  "subtitle": "Mahali pa kupumzika.",
  "words": {
-  "sofa": {
-   "text": "kochi",
-   "grammar": {
-    "plural": "makochi"
-   }
-  },
-  "dining-table": {
-   "text": "meza ya kulia",
-   "grammar": {
-    "plural": "meza za kulia"
-   }
-  },
-  "chair": {
-   "text": "kiti",
-   "grammar": {
-    "plural": "viti"
-   }
-  },
-  "tv": {
-   "text": "televisheni",
-   "synonyms": [
-    "runinga"
-   ],
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "remote": {
-   "text": "rimoti",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "shelf": {
-   "text": "rafu",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "plant": {
-   "text": "mmea",
-   "grammar": {
-    "plural": "mimea"
-   }
-  },
-  "window": {
-   "text": "dirisha",
-   "grammar": {
-    "plural": "madirisha"
-   }
-  },
-  "curtain": {
-   "text": "pazia",
-   "grammar": {
-    "plural": "mapazia"
-   }
-  },
-  "carpet": {
-   "text": "zulia",
-   "grammar": {
-    "plural": "mazulia"
-   }
-  },
-  "lamp": {
-   "text": "taa",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "picture": {
-   "text": "picha",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "watch-tv": {
-   "text": "kutazama televisheni"
-  },
-  "read": {
-   "text": "kusoma"
-  },
-  "tidy-up": {
-   "text": "kupanga vitu"
-  },
-  "listen-to-music": {
-   "text": "kusikiliza muziki"
-  },
-  "water-plants": {
-   "text": "kumwagilia mimea"
-  },
-  "play": {
-   "text": "kucheza"
-  },
-  "talk": {
-   "text": "kuongea"
-  },
-  "room": {
-   "text": "chumba",
-   "grammar": {
-    "plural": "vyumba"
-   }
-  },
-  "newspaper": {
-   "text": "gazeti",
-   "grammar": {
-    "plural": "magazeti"
-   }
-  },
-  "light": {
-   "text": "mwanga",
-   "grammar": {
-    "plural": "mianga"
-   }
-  },
-  "music": {
-   "text": "muziki"
-  },
-  "wall": {
-   "text": "ukuta",
-   "grammar": {
-    "plural": "kuta"
-   }
-  },
-  "movie": {
-   "text": "filamu",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "sit": {
-   "text": "kukaa"
-  },
-  "laugh": {
-   "text": "kucheka"
-  },
-  "quiet": {
-   "text": "kimya"
-  },
-  "furniture": {
-   "text": "samani",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "game": {
-   "text": "mchezo",
-   "grammar": {
-    "plural": "michezo"
-   }
-  },
-  "turn-on-the-tv": {
-   "text": "Washa televisheni."
-  },
-  "come-sit-with-me": {
-   "text": "Njoo, kaa karibu nami!"
-  },
-  "shall-we-watch-a-movie": {
-   "text": "Tutazame filamu?"
-  },
-  "lets-hang-the-picture": {
-   "text": "Tutundike picha!"
-  },
-  "the-curtains-hang-over-the-window": {
-   "text": "Mapazia yananing'inia mbele ya dirisha."
-  },
-  "open-the-window-fresh-air": {
-   "text": "Fungua dirisha."
-  }
+  "sofa": { "text": "kochi", "grammar": { "plural": "makochi" } },
+  "dining-table": { "text": "meza ya kulia", "grammar": { "plural": "meza za kulia" } },
+  "chair": { "text": "kiti", "grammar": { "plural": "viti" } },
+  "tv": { "text": "televisheni", "synonyms": ["runinga"], "grammar": { "plural": "=" } },
+  "remote": { "text": "rimoti", "grammar": { "plural": "=" } },
+  "shelf": { "text": "rafu", "grammar": { "plural": "=" } },
+  "plant": { "text": "mmea", "grammar": { "plural": "mimea" } },
+  "window": { "text": "dirisha", "grammar": { "plural": "madirisha" } },
+  "curtain": { "text": "pazia", "grammar": { "plural": "mapazia" } },
+  "carpet": { "text": "zulia", "grammar": { "plural": "mazulia" } },
+  "lamp": { "text": "taa", "grammar": { "plural": "=" } },
+  "picture": { "text": "picha", "grammar": { "plural": "=" } },
+  "watch-tv": { "text": "kutazama televisheni" },
+  "read": { "text": "kusoma" },
+  "tidy-up": { "text": "kupanga vitu" },
+  "listen-to-music": { "text": "kusikiliza muziki" },
+  "water-plants": { "text": "kumwagilia mimea" },
+  "play": { "text": "kucheza" },
+  "talk": { "text": "kuongea" },
+  "room": { "text": "chumba", "grammar": { "plural": "vyumba" } },
+  "newspaper": { "text": "gazeti", "grammar": { "plural": "magazeti" } },
+  "light": { "text": "mwanga", "grammar": { "plural": "mianga" } },
+  "music": { "text": "muziki" },
+  "wall": { "text": "ukuta", "grammar": { "plural": "kuta" } },
+  "movie": { "text": "filamu", "grammar": { "plural": "=" } },
+  "sit": { "text": "kukaa" },
+  "laugh": { "text": "kucheka" },
+  "quiet": { "text": "kimya" },
+  "furniture": { "text": "samani", "grammar": { "plural": "=" } },
+  "game": { "text": "mchezo", "grammar": { "plural": "michezo" } },
+  "turn-on-the-tv": { "text": "Washa televisheni." },
+  "come-sit-with-me": { "text": "Njoo, kaa karibu nami!" },
+  "shall-we-watch-a-movie": { "text": "Tutazame filamu?" },
+  "lets-hang-the-picture": { "text": "Tutundike picha!" },
+  "the-curtains-hang-over-the-window": { "text": "Mapazia yananing'inia mbele ya dirisha." },
+  "open-the-window-fresh-air": { "text": "Fungua dirisha." }
  }
 }
