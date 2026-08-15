@@ -207,7 +207,10 @@
    "text": "J'ai deux enfants."
   },
   "my-family-is-big": {
-   "text": "Ma famille est grande."
+   "text": "Ma famille est grande.",
+   "variants": [
+    "Ma famille est nombreuse."
+   ]
   },
   "i-have-a-brother": {
    "text": "J'ai un frère."

@@ -14,8 +14,8 @@
     "gender": "l'"
    },
    "notes": {
-    "de": "l'entrée ist der Eingangsbereich hinter der Wohnungstür; der Gang dahinter heißt le couloir",
-    "en": "l'entrée is the entryway just inside the front door; the corridor itself is le couloir"
+    "de": "l'entrée ist der Eingangsbereich hinter der Wohnungstür; der Gang dahinter heißt le couloir.",
+    "en": "l'entrée is the entryway just inside the front door; the corridor itself is le couloir."
    }
   },
   "door": {
@@ -53,7 +53,8 @@
     "étagère à chaussures"
    ],
    "grammar": {
-    "gender": "le"
+    "gender": "le",
+    "plural": "meubles à chaussures"
    }
   },
   "umbrella": {
@@ -71,14 +72,15 @@
     "gender": "le"
    },
    "notes": {
-    "de": "le bonnet ist die Mütze ohne Schirm; die Schirmmütze heißt la casquette, ein Hut mit Krempe le chapeau",
-    "en": "le bonnet is the knit cap with no brim; a peaked cap is la casquette and a brimmed hat le chapeau"
+    "de": "le bonnet ist die Mütze ohne Schirm; die Schirmmütze heißt la casquette, ein Hut mit Krempe le chapeau.",
+    "en": "le bonnet is the knit cap with no brim; a peaked cap is la casquette and a brimmed hat le chapeau."
    }
   },
   "mailbox": {
    "text": "boîte aux lettres",
    "grammar": {
-    "gender": "la"
+    "gender": "la",
+    "plural": "boîtes aux lettres"
    }
   },
   "doorbell": {
@@ -115,7 +117,7 @@
     "sonner à la porte"
    ],
    "notes": {
-    "de": "sonner deckt beides ab: die Klingel klingelt (ça sonne) und jemand klingelt an der Tür (il sonne à la porte)"
+    "de": "sonner deckt beides ab: die Klingel klingelt (ça sonne) und jemand klingelt an der Tür (il sonne à la porte)."
    }
   },
   "take-off-shoes": {
@@ -134,7 +136,7 @@
   "unlock": {
    "text": "déverrouiller",
    "variants": [
-    "ouvrir à clé"
+    "ouvrir avec la clé"
    ]
   },
   "get-dressed": {
@@ -196,7 +198,7 @@
     "gender": "le"
    },
    "notes": {
-    "de": "le portefeuille ist die Brieftasche für Scheine und Karten, le porte-monnaie die Münzbörse"
+    "de": "le portefeuille ist die Brieftasche für Scheine und Karten, le porte-monnaie die Münzbörse."
    }
   },
   "glove": {
@@ -220,7 +222,7 @@
   "enter": {
    "text": "entrer",
    "notes": {
-    "de": "Wer jemanden hereinbittet, sagt Entre ! (du) beziehungsweise Entrez ! (Sie)"
+    "de": "Wer jemanden hereinbittet, sagt Entre ! (du) beziehungsweise Entrez ! (Sie)."
    }
   },
   "inside": {
@@ -229,7 +231,7 @@
     "à l'intérieur"
    ],
    "notes": {
-    "de": "dedans steht für sich (Il est dedans); vor einem Nomen sagt man dans oder à l'intérieur de"
+    "de": "dedans steht für sich (Il est dedans); vor einem Nomen sagt man dans oder à l'intérieur de."
    }
   },
   "house": {
@@ -241,7 +243,7 @@
   "live": {
    "text": "habiter",
    "notes": {
-    "de": "habiter heißt wohnen; leben im Sinne von am Leben sein ist vivre"
+    "de": "habiter heißt wohnen; leben im Sinne von am Leben sein ist vivre."
    }
   },
   "do-you-have-the-keys": {

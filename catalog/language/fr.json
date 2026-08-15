@@ -64,12 +64,18 @@
    "text": "traduire"
   },
   "read-aloud": {
-   "text": "lire à voix haute"
+   "text": "lire à voix haute",
+   "variants": [
+    "lire à haute voix"
+   ]
   },
   "learn-by-heart": {
    "text": "apprendre par cœur",
    "synonyms": [
     "mémoriser"
+   ],
+   "variants": [
+    "apprendre par coeur"
    ]
   },
   "dictionary": {
@@ -161,9 +167,9 @@
    "text": "J'ai une question."
   },
   "you-can-do-it": {
-   "text": "Tu vas y arriver !",
+   "text": "Tu vas sûrement y arriver !",
    "variants": [
-    "Tu vas sûrement y arriver !",
+    "Tu vas y arriver !",
     "Tu y arriveras !",
     "Tu peux le faire !"
    ]

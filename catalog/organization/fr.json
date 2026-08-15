@@ -102,11 +102,15 @@
   "punctual": {
    "text": "ponctuel",
    "variants": [
+    "ponctuelle",
     "à l'heure"
    ]
   },
   "urgent": {
-   "text": "urgent"
+   "text": "urgent",
+   "variants": [
+    "urgente"
+   ]
   },
   "list": {
    "text": "liste",

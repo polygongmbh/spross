@@ -121,7 +121,9 @@
   "fry": {
    "text": "frire",
    "variants": [
-    "faire frire"
+    "faire frire",
+    "poêler",
+    "faire revenir"
    ],
    "notes": {
     "de": "frire steht meist als faire frire; in der Pfanne braten heißt poêler."
@@ -180,7 +182,8 @@
     "conserve"
    ],
    "grammar": {
-    "gender": "la"
+    "gender": "la",
+    "plural": "boîtes de conserve"
    }
   },
   "the-knife-is-sharp": {

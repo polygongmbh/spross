@@ -36,7 +36,7 @@
     "gender": "le"
    },
    "notes": {
-    "de": "In der Grundschule heißt die Lehrkraft l'instituteur, ab dem collège le professeur (ugs. le prof)."
+    "de": "In der Grundschule sagt man le maître / la maîtresse (offiziell professeur des écoles); ab dem collège le professeur (ugs. le prof)."
    }
   },
   "teacher-f": {
@@ -140,9 +140,9 @@
    }
   },
   "lesson": {
-   "text": "leçon",
+   "text": "classe",
    "variants": [
-    "classe"
+    "leçon"
    ],
    "grammar": {
     "gender": "la"

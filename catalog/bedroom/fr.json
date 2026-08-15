@@ -58,7 +58,8 @@
     "table de chevet"
    ],
    "grammar": {
-    "gender": "la"
+    "gender": "la",
+    "plural": "tables de nuit"
    }
   },
   "pajamas": {
@@ -125,7 +126,7 @@
     "gender": "les"
    },
    "notes": {
-    "de": "Kleidung steht im Französischen im Plural: les vêtements; ein einzelnes Kleidungsstück ist un vêtement"
+    "de": "Kleidung steht im Französischen im Plural: les vêtements; ein einzelnes Kleidungsstück ist un vêtement."
    }
   },
   "shirt": {
@@ -171,7 +172,7 @@
     "douce"
    ],
    "notes": {
-    "de": "doux ist weich und sanft beim Anfassen; eine weiche Matratze ist moelleuse"
+    "de": "doux ist weich und sanft beim Anfassen; eine weiche Matratze ist un matelas moelleux."
    }
   },
   "good-night-sleep-well": {
@@ -184,7 +185,7 @@
     "Bonjour, chéri !"
    ],
    "notes": {
-    "de": "Französisch grüßt auch morgens mit bonjour; bon matin ist québécois und in Frankreich unüblich"
+    "de": "Französisch grüßt auch morgens mit bonjour; bon matin ist québécois und in Frankreich unüblich."
    }
   },
   "im-tired": {

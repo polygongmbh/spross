@@ -112,8 +112,8 @@
    "section": "nasals",
    "ipa": "ɑ̃",
    "context": {
-    "de": "vor einem Konsonanten oder am Wortende (am genauso)",
-    "en": "before a consonant or at the end of a word (am too)"
+    "de": "vor einem Konsonanten (am genauso) oder am Wortende",
+    "en": "before a consonant (am too) or at the end of a word"
    },
    "example": "big",
    "hints": {
@@ -130,8 +130,8 @@
    "section": "nasals",
    "ipa": "ɑ̃",
    "context": {
-    "de": "vor einem Konsonanten oder am Wortende (em genauso)",
-    "en": "before a consonant or at the end of a word (em too)"
+    "de": "vor einem Konsonanten (em genauso)",
+    "en": "before a consonant (em too)"
    },
    "example": "wind",
    "hints": {
@@ -185,8 +185,8 @@
    "section": "nasals",
    "ipa": "œ̃",
    "context": {
-    "de": "vor einem Konsonanten oder am Wortende (um genauso)",
-    "en": "before a consonant or at the end of a word (um too)"
+    "de": "vor einem Konsonanten (um genauso) oder am Wortende",
+    "en": "before a consonant (um too) or at the end of a word"
    },
    "exampleText": "lundi",
    "hints": {
@@ -228,6 +228,10 @@
    "kind": "digraph",
    "section": "vowel-teams",
    "ipa": "wa",
+   "context": {
+    "de": "außer vor n",
+    "en": "except before n"
+   },
    "example": "black",
    "hints": {
     "de": "gesprochen „ua“: noir = „nuar“, moi, voiture, trois. Vor n wird daraus ein Nasal: moins, loin. Ein Sonderling: oignon klingt wie „onjon“.",
@@ -255,6 +259,7 @@
    "section": "vowel-teams",
    "ipa": "o",
    "example": "yellow",
+   "mine": false,
    "hints": {
     "de": "ein einfaches o wie in Boot: jaune, restaurant, chaussure — nie wie das au in Haus",
     "en": "a plain o as in “boat”: jaune, restaurant, chaussure — never the ow of “now”"
@@ -457,6 +462,10 @@
    "kind": "digraph",
    "section": "consonants",
    "ipa": "sjɔ̃",
+   "context": {
+    "de": "außer nach s",
+    "en": "except after s"
+   },
    "example": "careful",
    "hints": {
     "de": "gesprochen „ßjon“ mit Nasal am Ende: attention, administration, inscription — das t klingt wie ein s. Nach einem s bleibt es ein t: question.",

@@ -17,7 +17,8 @@
     "table de salle à manger"
    ],
    "grammar": {
-    "gender": "la"
+    "gender": "la",
+    "plural": "tables à manger"
    }
   },
   "chair": {

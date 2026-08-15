@@ -251,13 +251,19 @@
    }
   },
   "important": {
-   "text": "important"
+   "text": "important",
+   "variants": [
+    "importante"
+   ]
   },
   "ready": {
    "text": "prêt",
    "variants": [
+    "prête",
     "fini",
-    "terminé"
+    "finie",
+    "terminé",
+    "terminée"
    ],
    "notes": {
     "de": "prêt heißt „bereit“: je suis prêt. Fertig im Sinne von beendet ist fini oder terminé."

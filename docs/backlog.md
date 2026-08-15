@@ -88,6 +88,10 @@ One line per item, with a file or context pointer, filed under the section it be
   `s`×2, the final-devoicing trio, `er`; es `c`, `g`, `gu`, `r`, `d`) still rides its one
   authored example, because `context` is prose keyed by the reader rather than a rule the
   engine can test. A machine-readable environment field would open both.
+- The gap sweep counts glyph occurrences with no longest-glyph-wins, so a glyph nested in a
+  longer row's glyph sweeps in that row's words (fr `au` would gap the a-u inside 13 `eau`
+  words — bateau, beaucoup …); fr `au` opts out via `mine: false` meanwhile, an engine-side
+  exclusion would win its honest pool back (`Catalog.alphabetExamples`).
 - No field carries Ukrainian stress, which is unmarked in writing and load-bearing:
   учень, миша and одяг teach their vowel only if the sheet can show which syllable
   carries it. A `stress` field on realizations (`catalog/README.md`) is the shape the
