@@ -111,6 +111,18 @@ One line per item, with a file or context pointer, filed under the section it be
 - Sentence-frame notes are authored for German readers only (`notes` in `catalog/drills/*.json`),
   so every other explanation language drills the frames with no gloss at all —
   the counted-noun agreement rules uk needs explained most of all.
+  The vocab side is the same gap: `notes` on a word is keyed by the reader's language
+  with no fallback (`../kern/README.md` § join), and only `de` is ever authored,
+  so an English reader learning Swahili meets no note on any card.
+- Swahili noun-class concord is taught by note rather than by exposure: 19 stem
+  entries (`text` opening with `-`) across `catalog/colors`, `qualities`, `health`
+  and `questions` carry the same rule in three different wordings (`qualities` `good`,
+  `colors` `white`, `questions` `how-many`) while ten of them carry nothing at all.
+  The examples buried in those notes are doing a phrase's job — a learner who produces
+  `Shati jeupe.` meets the concord the way the box teaches everything else, and `colors`
+  already has exactly one such card (`a-white-car`). Turning them into phrases is a
+  content project: each wants a `concepts.json` entry with emoji and `components`
+  plus a realization in all eight language files.
 - Swahili number frames can only ever count N-class nouns: the agreement lands on the
   NUMERAL, not on the noun, and `count` inflects the noun — so `i-have-n-notebooks`
   and `we-have-n-chairs` are dropped from `catalog/drills/sw.json` rather than coined wrong.
@@ -288,6 +300,10 @@ One line per item, with a file or context pointer, filed under the section it be
 - Drill prompt cards size their word in fixed points (`CountryPromptCard`,
   `HearPromptCard`, `TrainerPromptCard`), where review cards use the scaling `DL.Fonts`
   styles — Dynamic Type does not reach a drill prompt.
+- At accessibility XXXL a card with a long note grows past the bottom of the screen and
+  takes the rating row with it, and nothing scrolls — that card cannot be graded at all.
+  The card's own growth is unbounded by design (`Theme.swift` reserves a minimum, never
+  a maximum); it is the row below that has nowhere left to stand.
 - The atlas run books a record but never sounds the cheer that goes with the confetti
   (`CountryDrillView.finish()`; `TrainerSessionView.closeRun()` does).
 - Neither prompt nor reveal on `CountryPromptCard` and `HearPromptCard` is tagged with the
