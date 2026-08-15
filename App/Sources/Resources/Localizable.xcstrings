@@ -3500,13 +3500,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Knapp"
+            "value" : "Wackelig"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Barely"
+            "value" : "Shaky"
           }
         }
       }

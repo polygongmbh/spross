@@ -5,7 +5,7 @@ import SwiftUI
 // Self-grade row, under the question it answers:
 //
 //         How well did you know it?
-//     Knew it    Barely    Not at all
+//     Knew it    Shaky    Not at all
 //
 // Three buttons, not four: the learner says whether the word came, and the
 // clock behind them decides whether one that came, came instantly (the rule

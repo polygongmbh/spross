@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **A different word is no longer forgiven as a spelling slip.** Answering with a
+  word the catalog teaches elsewhere now names that word and its meaning instead of
+  passing for a near miss of the one that was asked — so two words you need told
+  apart can never grade each other correct. The leniency behind it was meant for a
+  mistyped article, and it now only applies where the language has articles to
+  mistype. Where a slip really is a slip, the spelling offered back is the form
+  you were closest to.
+
 - **Choosing your two languages now leads straight into your first round**, past a
   page that says what a round asks of you: look at the word and give it a moment,
   reveal, say how well you knew it, and write once the ones you didn't.
@@ -10,7 +18,7 @@
 
 - **The grading row asks a question and takes a plain answer.** After a reveal it
   says "How well did you know it?", and the three buttons answer in words —
-  *Knew it · Barely · Not at all* — instead of the scheduler's own vocabulary.
+  *Knew it · Shaky · Not at all* — instead of the scheduler's own vocabulary.
 
 - **Android says where a newer version comes from.** The foot of the box, under the
   build it is running, opens Obtainium on this app's releases so every future one is
