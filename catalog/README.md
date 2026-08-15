@@ -113,7 +113,10 @@ is a runtime/user-preference concern; the content only supplies the default.
   stripping a listed prefix only ever yields the same stem.
 
 **`<area>/concepts.json`** — ordered, language-neutral. Order across all kinds IS
-seed/introduction order (phrases follow their area's words):
+seed/introduction order. A phrase with `components` follows its area's words, so the
+building blocks land first; a component-free phrase is a building block itself
+(a greeting, `ja`, `bitte`) and may stand anywhere, including ahead of every word —
+which is how `basics` opens on `Hallo!` rather than on a noun:
 ```json
 [ { "slug": "fridge",  "kind": "noun", "emoji": "🧊" },
   { "slug": "cook",    "kind": "verb", "emoji": "🧑‍🍳" },

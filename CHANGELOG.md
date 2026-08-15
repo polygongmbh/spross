@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **The first words open with the words you actually say first** — hello, good day,
+  thank you, please, yes, no — instead of nouns about language itself.
+  *Sprache* and *Wort* moved to the learning area, where asking and understanding live,
+  and *thank you* no longer waits on the verb *to thank*.
+
 - **One address answers for Spross everywhere: spross@polygon.gmbh.**
   The app, the website, the Impressum and the privacy policy all name it,
   and the Android box now prints it under the version it is running,

@@ -96,12 +96,14 @@ class CatalogLintTest {
     }
 
     @Test
-    fun wordsPrecedePhrasesWithinEachArea() {
+    fun wordsPrecedeTheirPhrasesWithinEachArea() {
         for (area in catalog.areas) {
-            val firstPhrase = area.concepts.indexOfFirst { it.kind == CardKind.Phrase }
-            if (firstPhrase < 0) continue
-            val straggler = area.concepts.drop(firstPhrase).firstOrNull { it.kind != CardKind.Phrase }
-            assertTrue(straggler == null, "${area.name}: word after phrase (${straggler?.slug})")
+            val firstBuilt = area.concepts.indexOfFirst {
+                it.kind == CardKind.Phrase && it.components.isNotEmpty()
+            }
+            if (firstBuilt < 0) continue
+            val straggler = area.concepts.drop(firstBuilt).firstOrNull { it.kind != CardKind.Phrase }
+            assertTrue(straggler == null, "${area.name}: word after built phrase (${straggler?.slug})")
         }
     }
 

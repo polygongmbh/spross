@@ -13,7 +13,7 @@ appended in the destination.
 What is preserved: the realization is carried VERBATIM (grammar, synonyms, variants,
 notes — the parsed value is re-emitted, never rebuilt), the source keeps the order of
 what stays, and the destination gets words before phrases
-(`CatalogLintTest.wordsPrecedePhrasesWithinEachArea`).
+(`CatalogLintTest.wordsPrecedeTheirPhrasesWithinEachArea`).
 
 What is REFUSED, rather than written (each a non-zero exit naming the concepts):
 a phrase parted from a `components` word, a `feminineOf` pair split, an unknown slug, a

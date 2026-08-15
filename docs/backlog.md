@@ -404,3 +404,7 @@ One line per item, with a file or context pointer, filed under the section it be
   (`kern/.../session/AnswerNormalizer.kt`). Italian promotes many cross-article synonyms
   (la vaccinazione on il vaccino, il farmaco on la medicina, il salario on lo stipendio),
   so the reveal teaches forms the grader then punishes; es only ever hid such forms in variants.
+- `scripts/catalog-move.py` refuses every run: its serializer expands the one-line entries
+  `catalog/idioms/*.json` are authored with, so the untouched-file fidelity gate trips before
+  any move is planned. Either teach `dumps` the compact form or reformat the idioms area
+  (`scripts/catalog-move.py` [report], `catalog/README.md` § Layout).

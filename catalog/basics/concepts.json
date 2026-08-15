@@ -1,5 +1,76 @@
 [
  {
+  "slug": "hello",
+  "kind": "phrase",
+  "emoji": "👋",
+  "components": []
+ },
+ {
+  "slug": "good-day",
+  "kind": "phrase",
+  "emoji": "☀️",
+  "components": []
+ },
+ {
+  "slug": "thank-you",
+  "kind": "phrase",
+  "emoji": "🙏",
+  "components": []
+ },
+ {
+  "slug": "please",
+  "kind": "phrase",
+  "components": []
+ },
+ {
+  "slug": "yes",
+  "kind": "phrase",
+  "emoji": "✅",
+  "components": []
+ },
+ {
+  "slug": "no",
+  "kind": "phrase",
+  "emoji": "❌",
+  "components": []
+ },
+ {
+  "slug": "excuse-me",
+  "kind": "phrase",
+  "emoji": "🙇",
+  "components": []
+ },
+ {
+  "slug": "pardon",
+  "kind": "phrase",
+  "emoji": "👂",
+  "components": []
+ },
+ {
+  "slug": "how-are-you",
+  "kind": "phrase",
+  "emoji": "😊",
+  "components": []
+ },
+ {
+  "slug": "all-good",
+  "kind": "phrase",
+  "emoji": "👌",
+  "components": []
+ },
+ {
+  "slug": "goodbye",
+  "kind": "phrase",
+  "emoji": "👋",
+  "components": []
+ },
+ {
+  "slug": "bye",
+  "kind": "phrase",
+  "emoji": "👋",
+  "components": []
+ },
+ {
   "slug": "name",
   "kind": "noun",
   "emoji": "🏷️"
@@ -39,49 +110,6 @@
   "emoji": "👫"
  },
  {
-  "slug": "hello",
-  "kind": "phrase",
-  "emoji": "👋",
-  "components": []
- },
- {
-  "slug": "good-day",
-  "kind": "phrase",
-  "emoji": "☀️",
-  "components": []
- },
- {
-  "slug": "thank-you",
-  "kind": "phrase",
-  "emoji": "🙏",
-  "components": [
-   "thank"
-  ]
- },
- {
-  "slug": "please",
-  "kind": "phrase",
-  "components": []
- },
- {
-  "slug": "excuse-me",
-  "kind": "phrase",
-  "emoji": "🙇",
-  "components": []
- },
- {
-  "slug": "yes",
-  "kind": "phrase",
-  "emoji": "✅",
-  "components": []
- },
- {
-  "slug": "no",
-  "kind": "phrase",
-  "emoji": "❌",
-  "components": []
- },
- {
   "slug": "whats-your-name",
   "kind": "phrase",
   "components": [
@@ -104,12 +132,6 @@
   ]
  },
  {
-  "slug": "pardon",
-  "kind": "phrase",
-  "emoji": "👂",
-  "components": []
- },
- {
   "slug": "i-need-help",
   "kind": "phrase",
   "emoji": "🆘",
@@ -119,33 +141,9 @@
   ]
  },
  {
-  "slug": "all-good",
-  "kind": "phrase",
-  "emoji": "👌",
-  "components": []
- },
- {
-  "slug": "goodbye",
-  "kind": "phrase",
-  "emoji": "👋",
-  "components": []
- },
- {
   "slug": "what-is-this-called",
   "kind": "phrase",
   "emoji": "❓",
-  "components": []
- },
- {
-  "slug": "how-are-you",
-  "kind": "phrase",
-  "emoji": "😊",
-  "components": []
- },
- {
-  "slug": "bye",
-  "kind": "phrase",
-  "emoji": "👋",
   "components": []
  },
  {
