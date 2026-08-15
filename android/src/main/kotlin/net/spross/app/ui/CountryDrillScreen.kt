@@ -36,6 +36,7 @@ import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.Chrome
 import net.spross.app.CountryDrillFlow
 import net.spross.app.Screen
+import net.spross.app.almostLine
 import net.spross.app.TrainerStore
 import net.spross.app.countryAsk
 import net.spross.app.newCountryDrill
@@ -239,7 +240,7 @@ private fun Controls(
 private fun AlmostLine(model: AppModel, flow: CountryDrillFlow, form: String, chrome: Chrome) {
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
         Text(
-            chrome.typoCorrection.format(form),
+            almostLine(chrome.almostTypo, form),
             style = MaterialTheme.typography.titleMedium,
             color = Dl.colors.amber,
             modifier = Modifier

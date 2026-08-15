@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
+import net.spross.app.almostLine
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.LetterDrillTask
@@ -155,8 +156,8 @@ private fun AnswerLine(flow: LetterDrillFlow, chrome: Chrome) {
     if (feedback == TurnFeedback.Neutral) return
     val note = (feedback as? TurnFeedback.Almost)?.let {
         when (it.reason) {
-            AlmostReason.Typo -> chrome.typoCorrection.format(it.correctForm)
-            AlmostReason.Heard -> chrome.heardInstead.format(it.correctForm)
+            AlmostReason.Typo -> almostLine(chrome.almostTypo, it.correctForm)
+            AlmostReason.Heard -> almostLine(chrome.almostHeard, it.correctForm)
         }
     }
     val waits = feedback != TurnFeedback.Correct || flow.awaitsConfirm

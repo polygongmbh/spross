@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Both phones say the same sentence.** The Android wording had drifted from the
+  iPhone's on a long tail of surfaces — a different name on the licenses page, a
+  different line under the read-aloud switch, a German answer field that asked in
+  the wrong preposition — and now every screen reads alike on either device.
+
 - **The box names the pair it is teaching, and is the one place to change it.**
   Its two language fields say which language is set instead of showing a bare flag,
   and the pair is switched right there — the opening chooser is asked once, on a fresh

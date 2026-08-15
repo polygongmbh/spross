@@ -61,6 +61,12 @@ Strict dependency direction: App → SprossKern, never the reverse.
 - Chrome strings are SYMBOLIC keys (`settings.source.title`), never source text in either
   language: copy edits then never detach a translation, and a new chrome language is
   additive. How a key is written and kept honest: `scripts/strings.py`.
+- The String Catalog is the ONE home for that copy, on both phones: Android's tables are
+  generated from it (`scripts/chrome.py`, keyed by its `MAPPING`), and a pre-commit check
+  refuses a catalog edit that leaves them behind. Strings only Android says live there too,
+  named in `strings.py`'s `ANDROID_ONLY` so the iOS drift check knows no Swift will ask.
+  Where the layout differs the READER composes — the catalog holds the caption
+  ("Fast! Korrekte Schreibweise"), and each phone sets the form beside or below it.
 - Area titles and area emoji both come from the catalog; the app carries no map of its own.
   A title is a plain name, so it can serve as the produce prompt's area cue unedited;
   the catalog's optional area subtitle is the flavor line, shown under the title

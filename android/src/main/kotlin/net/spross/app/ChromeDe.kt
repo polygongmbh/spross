@@ -1,52 +1,57 @@
 package net.spross.app
 
 /**
- * The German chrome table. Wording follows the iOS String Catalog
- * (`App/Sources/Resources/Localizable.xcstrings`) key for key, so a learner meeting the
- * same surface on either platform reads the same sentence.
+ * The German chrome table.
+ *
+ * GENERATED from App/Sources/Resources/Localizable.xcstrings by scripts/chrome.py —
+ * do not edit. Change the wording in the String Catalog, run `scripts/chrome.py --fix`,
+ * and both phones say the same sentence by construction.
  */
 internal val ChromeDe = Chrome(
     heuteTitle = "Heute",
     practice = "Üben",
-    extraRound = "Extra-Runde",
-    doneToday = "Für heute geschafft!",
-    emptyState = "Die Box wächst, während dein Material sitzt.",
+    extraRound = "Noch eine Runde?",
+    doneToday = "Für heute geschafft",
     dueLabel = "fällig",
     newLabel = "neu",
     consolidatedLabel = "gefestigt",
     freshLabel = "frisch",
-    chooseTitle = "Was möchtest du lernen?",
+    chooseTitle = "Willkommen bei Spross",
     iSpeak = "Ich spreche",
     iLearn = "Ich lerne",
-    letsGo = "Los geht's",
+    letsGo = "Los geht's!",
     check = "Prüfen",
     reveal = "Aufdecken",
     next = "Weiter",
-    alsoPrefix = "auch:",
+    also = "auch: %s",
     typoNote = "Kleiner Tippfehler – zählt!",
     otherWordNote = "Übrigens: %1\$s heißt „%2\$s“",
-    answerPlaceholder = "In %s …",
-    again = "Nochmal",
+    answerPlaceholder = "Auf %s …",
     hard = "Schwer",
     good = "Gut",
-    easy = "Leicht",
     unknown = "Unbekannt",
     sessionDone = "Geschafft!",
-    summaryLine = "%d neu · %d gefestigt · %d wiederholt",
     keepPracticing = "Weiter üben",
     finish = "Fertig",
     pluralEquals = "= Pl.",
     pluralOnly = "nur Pl.",
-    pluralPrefix = "Pl. ",
+    pluralForm = "Pl. %s",
     readAloud = "Aussprache vorlesen",
     stateOn = "an",
     stateOff = "aus",
     pronounce = "Aussprechen",
     aboutButton = "Info",
+    updateButton = "Updates",
+    updateOfferTitle = "Neuere Versionen",
+    updateOfferBody = "Obtainium verfolgt die Veröffentlichungen dieser App und bietet jede " +
+        "neue Version an, sobald es sie gibt. Ohne Obtainium ist jedes Update ein Download " +
+        "von Hand.",
+    updateViaObtainium = "Obtainium holen",
+    updateDownload = "Direkt herunterladen",
     audioToggle = "Wörter vorlesen",
-    audioToggleHint = "Wörter beim Üben automatisch vorlesen. Tippen auf ein Wort " +
-        "spricht es erneut — auch bei ausgeschaltetem Vorlesen.",
-    creditsTitle = "Sprecher & Lizenzen",
+    audioToggleHint = "Wörter beim Üben automatisch vorlesen — eingeschaltet auch bei " +
+        "stummem Handy. Tippen auf ein Wort spricht es erneut, immer.",
+    creditsTitle = "Impressum & Lizenzen",
     creditsRecordings = "%d Aufnahmen",
     creditsUnmodified = "Aufnahmen unverändert übernommen",
     creditsCommons = "Aufnahmen von Wikimedia Commons",
@@ -59,18 +64,17 @@ internal val ChromeDe = Chrome(
     letterChoice = "Buchstabe %s",
     replayPrompt = "Noch einmal anhören",
     promptInLanguage = "auf %s",
-    level = "Sprosse %d",
-    streak = "🔥 %d in Folge",
-    typoCorrection = "Fast! Richtig geschrieben: %s",
-    heardInstead = "Gehört war: %s",
+    level = "Sprosse %s",
+    streak = "🔥 %s in Folge",
+    almostTypo = "Fast! Korrekte Schreibweise",
+    almostHeard = "Gehört war",
     audioOff = "Ton ist aus",
     enableSound = "Ton einschalten",
-    tasksDoneOne = "1 Aufgabe 🎯",
+    tasksDoneOne = "%d Aufgabe 🎯",
     tasksDone = "%d Aufgaben 🎯",
-    bestStreak = "Beste Serie: 🔥 %d in Folge",
+    bestStreak = "Beste Serie: 🔥 %s in Folge",
     answerCorrect = "Richtig",
     answerWrong = "Falsch",
-
     close = "Schließen",
     numbersTitle = "Zahlen",
     numbersPage = "Zahlen · %s",
@@ -97,45 +101,42 @@ internal val ChromeDe = Chrome(
     modifierFast = "Schnell",
     modifierFastHint = "Eine saubere Antwort pro Sprosse statt zwei.",
     modifierMix = "Bunt gemischt",
-    modifierMixHint = "Die Richtung wechselt bei jeder Aufgabe, " +
-        "und Formen werden so groß wie die Zahlen.",
+    modifierMixHint = "Die Richtung wechselt bei jeder Aufgabe, und Formen werden so groß " +
+        "wie die Zahlen.",
     combineLocked = "Mehreres in einem Lauf, sobald alles freigeschaltet ist.",
     unlockPrefix = "Freischalten:",
-
-    digitsOne = "🔢 1 Stelle",
+    digitsOne = "🔢 %d Stelle",
     digitsMany = "🔢 %d Stellen",
-    record = "Rekord %d",
-    streakSpoken = "Serie: %d in Folge",
-    recordSpoken = ", Rekord %d",
+    record = "Rekord %s",
+    streakSpoken = "Serie: %s in Folge",
+    recordSpoken = ", Rekord %s",
     answerDigits = "In Ziffern …",
     newPlace = "Neue Stelle: %s",
     lookUp = "Zahlen nachschlagen",
     newRecord = "Neuer Rekord!",
-
     stageChoiceEasy = "Vier Kacheln",
     stageChoiceEasyHint = "Den gehörten Buchstaben unter vieren finden",
     stageChoiceConfusable = "Ähnliche Kacheln",
-    stageChoiceConfusableHint = "Dieselbe Wahl, aber mit Buchstaben, " +
-        "die leicht zu verwechseln sind",
+    stageChoiceConfusableHint = "Dieselbe Wahl, aber mit Buchstaben, die leicht zu " +
+        "verwechseln sind",
     stageTyped = "Tippen",
     stageTypedHint = "Den Buchstaben selbst schreiben, ohne Auswahl",
     stageDictation = "Diktat",
     stageDictationHint = "Ganze Wörter aus dem eigenen Kasten nach Gehör schreiben",
     stageDictationLocked = "Braucht mehr gefestigte Wörter, die dieses Gerät vorlesen kann",
     stageEntry = "hier geht es los",
-    lettersUnavailable = "Dieses Gerät kann noch keinen Buchstaben vorsprechen — " +
-        "dafür braucht es eine Stimme für die Sprache.",
+    lettersUnavailable = "Dieses Gerät kann noch keinen Buchstaben vorsprechen — dafür " +
+        "braucht es eine Stimme für die Sprache.",
     alphabetTitle = "Alphabet",
     alphabetSpeakName = "Name anhören",
     alphabetSpeakExample = "Beispiel anhören",
-
     countriesTitle = "Länder",
     countriesPage = "Länder · %s",
     countriesReference = "Der Atlas",
     countriesPace = "Jeder Durchgang beginnt bei Sprosse 1 und klettert von selbst weiter.",
-    countriesBest = "Am weitesten gekommen: Sprosse %d",
+    countriesBest = "Am weitesten gekommen: Sprosse %s",
     countriesFastHint = "Eine saubere Antwort pro Sprosse statt drei.",
-    countriesReverseHint = "Gefragt wird auf %1\$s, geantwortet auf %2\$s.",
+    countriesReverseHint = "Gefragt wird auf %s, geantwortet auf %s.",
     countryRungs = listOf(
         "Die Länder eurer Sprachen",
         "Die Namen der Sprachen",
@@ -170,20 +171,19 @@ internal val ChromeDe = Chrome(
     countryAskNationality = "Wie heißen diese Leute?",
     countryAskSpokenIn = "Welche Sprache spricht man dort?",
     countryAskSpokenWhere = "Wo spricht man diese Sprache?",
-
     boxTitle = "Die Box",
     boxNav = "Box",
-    boxSubtitle = "%1\$d von %2\$d Karten in Arbeit",
+    boxSubtitle = "%s von %s Karten in Arbeit",
     ownWordsTitle = "Eigene Wörter",
-    ownWordsExplainer = "Eigene Wörter stehen in ihrem eigenen Bereich. " +
-        "Ein wachsender Katalog rührt sie nicht an.",
-    packArea = "Pack in die Box (%d)",
+    ownWordsExplainer = "Eigene Wörter stehen in ihrem eigenen Bereich. Ein wachsender " +
+        "Katalog rührt sie nicht an.",
+    packArea = "Pack in die Box (%s)",
     packDone = "Alles eingepackt",
     packWord = "Dieses Wort einpacken",
     packedWord = "Eingepackt",
     suspended = "Pausiert",
     wake = "Wecken",
-    progressFresh = "%d frisch",
+    progressFresh = "%s frisch",
     phrasesLocked = "%d Sätze",
     phrasesLockedSpoken = "%d Sätze gesperrt",
     stateExpanded = "ausgeklappt",
@@ -191,7 +191,6 @@ internal val ChromeDe = Chrome(
     phaseLearning = "Lernt",
     phaseReview = "Sitzt",
     phaseRelearning = "Wackelt",
-
     search = "Suchen",
     searchPlaceholder = "Wort oder Bereich",
     searchHint = "Wörter beider Sprachen und die Namen der Bereiche.",
@@ -200,38 +199,34 @@ internal val ChromeDe = Chrome(
     searchNothing = "Nichts zu „%s“ in der Box.",
     searchWriteOwn = "„%s“ selbst eintragen",
     searchClear = "Suche löschen",
-
     ownWordTitle = "Eigenes Wort",
     ownWordInLanguage = "Auf %s",
     ownWordPicture = "Bild (optional)",
     ownWordAdd = "Anlegen",
     ownWordRemove = "Wort löschen",
-
     settingsTitle = "Einstellungen",
-    profileHint = "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten; " +
-        "jede gelernte Sprache hat ihre eigene Box.",
+    profileHint = "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten; jede " +
+        "gelernte Sprache hat ihre eigene Box.",
     resetButton = "Box zurücksetzen …",
     resetHint = "Löscht Fortschritt und Verlauf dieser Box — die Inhalte bleiben.",
-    resetConfirm = "Alle Lernfortschritte für %s löschen und neu mit den ersten Wörtern beginnen?",
+    resetConfirm = "Alle Lernfortschritte für %s löschen und neu mit den ersten Wörtern " +
+        "beginnen?",
     cancel = "Abbrechen",
     reset = "Zurücksetzen",
-
     copyPrompt = "Einmal auf %s abschreiben …",
     copyMismatch = "Noch nicht ganz — das Wort steht oben.",
     skipStep = "Überspringen",
-
     caughtUpTitle = "Gerade ist nichts dran",
     dayReviews = "%d Wiederholungen",
-    dayReviewsOne = "1 Wiederholung",
+    dayReviewsOne = "%d Wiederholung",
     dayNewCards = "%d Frischlinge",
-    dayNewCardsOne = "1 Frischling",
-    dayConsolidated = "%d gefestigt",
+    dayNewCardsOne = "%d Frischling",
+    dayConsolidated = "%s gefestigt",
     dayAhead = "%d Auffrischer",
-    dayAheadOne = "1 Auffrischer",
+    dayAheadOne = "%d Auffrischer",
     tomorrowPacked = "Deine gepackten Wörter sind in der nächsten Runde dabei.",
     tomorrowFresh = "Morgen gibt es frische Karten. Bis dann! 👋",
     tomorrowDue = "Morgen kannst du %d Karten wiederholen.",
-
     headlineReviews = listOf(
         "Deine Runde ist startklar",
         "Ein Stapel liegt bereit",
@@ -250,25 +245,23 @@ internal val ChromeDe = Chrome(
     sessionSomeCards = "Ein paar Karten für dich.",
     sessionHeldBack = "%d weitere Karten warten noch auf dich.",
     sessionStart = "Los geht's!",
-
     emptyBoxTitle = "Deine Box ist noch leer",
-    emptyBoxMessage = "Pack einen Bereich direkt hinein — die Box wächst, während dein Material sitzt.",
+    emptyBoxMessage = "Pack einen Bereich direkt hinein oder stell ein, wie viele Karten du " +
+        "gleichzeitig lernst.",
     emptyBoxAction = "Zur Box",
-
     errorTitle = "Ups",
-    errorCatalogMissing = "Die Inhalte konnten nicht geladen werden. (catalog fehlt in der App)",
+    errorCatalogMissing = "Die Inhalte konnten nicht geladen werden. (catalog fehlt im " +
+        "App-Bundle)",
     errorContentUnavailable = "Die Inhalte konnten nicht geladen werden. (%s)",
-    errorUnknownProfile = "Unbekanntes Sprachprofil (%1\$s → %2\$s).",
+    errorUnknownProfile = "Unbekanntes Sprachprofil (%s → %s).",
     errorResetFailed = "Zurücksetzen fehlgeschlagen. (%s)",
-
-    roundNew = "%d neu",
-    roundConsolidated = "%d gefestigt",
-    roundReviewed = "%d wiederholt",
+    roundNew = "%s neu",
+    roundConsolidated = "%s gefestigt",
+    roundReviewed = "%s wiederholt",
     roundAllDone = "Alles erledigt",
-    restHint = "Heute sitzt wenig — ein Kopf, der müde ist, behält nichts mehr. " +
-        "Morgen geht's leichter.",
+    restHint = "Heute sitzt wenig — ein Kopf, der müde ist, behält nichts mehr. Morgen " +
+        "geht's leichter.",
     streakRecord = "Dein längster Lauf!",
-
     growthGrew = "Auch heute bleibt was hängen",
     growthOpened = "Deine ersten Wörter in guter Erde",
     growthBlooming = listOf(
@@ -286,12 +279,11 @@ internal val ChromeDe = Chrome(
         "Du hast tiefe Wurzeln geschlagen",
         "Mittlerweile sitzt's bei dir",
     ),
-
     progressTitle = "Fortschritt",
     last14Days = "Letzte 14 Tage",
     activityDays = "Aktivität der letzten 14 Tage: an %d Tagen gelernt",
     streakDays = "Serie: %d Tage",
-    streakDaysOne = "Serie: 1 Tag",
+    streakDaysOne = "Serie: %d Tag",
     dayOne = "Tag",
     dayMany = "Tage",
 )

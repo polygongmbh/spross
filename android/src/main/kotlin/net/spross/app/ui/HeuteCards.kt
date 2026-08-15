@@ -20,6 +20,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.countLine
 
 /**
  * The one card the day stands on, whichever it is: hero, headline, what it holds, the way
@@ -58,7 +59,7 @@ private fun DayMark(emoji: String, streak: Int, chrome: Chrome) {
             .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(percent = 50))
             .padding(horizontal = DlSpace.l, vertical = DlSpace.m)
             .semantics(mergeDescendants = true) {
-                contentDescription = chrome.streakDays.format(streak)
+                contentDescription = countLine(chrome.streakDaysOne, chrome.streakDays, streak)
             },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(DlSpace.s),

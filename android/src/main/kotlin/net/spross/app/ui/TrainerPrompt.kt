@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.TrainerFlow
+import net.spross.app.almostLine
 import net.spross.app.speakFormOnTap
 import net.spross.kern.session.TurnFeedback
 
@@ -152,7 +153,7 @@ fun TrainerControls(
 private fun AlmostLine(model: AppModel, flow: TrainerFlow, form: String, chrome: Chrome) {
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
         Text(
-            chrome.typoCorrection.format(form),
+            almostLine(chrome.almostTypo, form),
             style = MaterialTheme.typography.titleMedium,
             color = Dl.colors.amber,
             modifier = Modifier.pronounceOnTap(

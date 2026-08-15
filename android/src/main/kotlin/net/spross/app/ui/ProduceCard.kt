@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.SessionUi
+import net.spross.app.almostLine
 import net.spross.app.TurnFlow
 import net.spross.app.audio.Pronouncer
 import net.spross.app.pronounceAction
@@ -167,8 +168,8 @@ private fun ReplayPrompt(model: AppModel, ui: SessionUi) {
 private fun AlmostHold(model: AppModel, flow: TurnFlow, hold: TurnFeedback.Almost) {
     val chrome = model.chrome
     val note = when (hold.reason) {
-        AlmostReason.Typo -> chrome.typoCorrection.format(hold.correctForm)
-        AlmostReason.Heard -> chrome.heardInstead.format(hold.correctForm)
+        AlmostReason.Typo -> almostLine(chrome.almostTypo, hold.correctForm)
+        AlmostReason.Heard -> almostLine(chrome.almostHeard, hold.correctForm)
     }
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(

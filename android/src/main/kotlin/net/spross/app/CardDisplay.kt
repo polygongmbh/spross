@@ -27,14 +27,14 @@ object CardDisplay {
             null -> null
             PluralForm.SameAsSingular -> chrome.pluralEquals
             PluralForm.PluralOnly -> chrome.pluralOnly
-            is PluralForm.Form -> chrome.pluralPrefix + plural.text
+            is PluralForm.Form -> chrome.pluralForm.format(plural.text)
         }
 
     /** "auch: …" — the word's family beyond every form already standing on screen. */
     fun alsoLine(realization: Realization, chrome: Chrome, shown: Collection<String>): String? =
         alternates(realization, shown.toList())
             .takeIf { it.isNotEmpty() }
-            ?.joinToString(" / ", prefix = "${chrome.alsoPrefix} ")
+            ?.let { chrome.also.format(it.joinToString(" / ")) }
 
     fun alsoLine(realization: Realization, chrome: Chrome, shown: String): String? =
         alsoLine(realization, chrome, listOf(shown))

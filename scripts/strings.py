@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Keep Localizable.xcstrings honest against the compiler.
 
+The catalog is the product's ONE home for chrome copy: the Android tables
+(ChromeDe.kt/ChromeEn.kt) are generated from it by scripts/chrome.py, so a wording
+change is made here and nowhere else.
+
 How a chrome key must be written, so the catalog stays honest in the first place:
 resolution runs through LocalizedStringKey against the environment locale, so a key
 keeps its arguments ("heute.session.reviews %@") and is never resolved with
@@ -62,6 +66,18 @@ UNEXTRACTABLE = {
     'lang.de', 'lang.en', 'lang.es', 'lang.sw', 'lang.uk',
     # The Box's own-words area title, resolved through DLChrome like the above.
     'box.ownWords',
+}
+# Surfaces only the Android app has. The catalog holds every chrome string the product
+# says — scripts/chrome.py generates the Kotlin tables from it — so these live here with
+# the rest and no Swift will ever ask for them.
+ANDROID_ONLY = {
+    'a11y.collapsed', 'a11y.expanded', 'a11y.wrong',
+    'audio.enable', 'audio.off',
+    'box.consolidated', 'box.due', 'box.fresh', 'box.new',
+    'session.typoNote', 'settings.about', 'trainer.promptInLanguage %@',
+    # The footer's update door — iOS ships through TestFlight and needs no pointer.
+    'settings.update.button', 'settings.update.download', 'settings.update.obtainium',
+    'settings.update.offer', 'settings.update.title',
 }
 # Whole families built at runtime — a stem plus the variant kern picked this round
 # (`AppModel+Queries.headlineKey`, `SessionCompletionView.growthKey`). The words are
@@ -170,7 +186,7 @@ def main():
             # A plain `xcodebuild build` deletes them again — the flag is required.
             problems.append('no .stringsdata found — build with SWIFT_EMIT_LOC_STRINGS=YES')
         else:
-            emitted |= UNEXTRACTABLE
+            emitted |= UNEXTRACTABLE | ANDROID_ONLY
             for key in sorted(emitted - set(strings)):
                 problems.append('%s: in the code, missing from the catalog' % key)
             for key in sorted(set(strings) - emitted):

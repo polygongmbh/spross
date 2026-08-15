@@ -41,6 +41,22 @@
         }
       }
     },
+    "a11y.collapsed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "eingeklappt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "collapsed"
+          }
+        }
+      }
+    },
     "a11y.correct" : {
       "localizations" : {
         "de" : {
@@ -69,6 +85,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "End session"
+          }
+        }
+      }
+    },
+    "a11y.expanded" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ausgeklappt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "expanded"
           }
         }
       }
@@ -305,6 +337,22 @@
         }
       }
     },
+    "a11y.wrong" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falsch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wrong"
+          }
+        }
+      }
+    },
     "alphabet.speakExample" : {
       "localizations" : {
         "de" : {
@@ -337,6 +385,38 @@
         }
       }
     },
+    "audio.enable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ton einschalten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn sound on"
+          }
+        }
+      }
+    },
+    "audio.off" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ton ist aus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sound is off"
+          }
+        }
+      }
+    },
     "box.cardsInProgress %@ %@" : {
       "localizations" : {
         "de" : {
@@ -349,6 +429,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ of %2$@ cards in progress"
+          }
+        }
+      }
+    },
+    "box.consolidated" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "gefestigt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "consolidated"
+          }
+        }
+      }
+    },
+    "box.due" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fällig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "due"
           }
         }
       }
@@ -381,6 +493,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "All packed"
+          }
+        }
+      }
+    },
+    "box.fresh" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "frisch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fresh"
+          }
+        }
+      }
+    },
+    "box.new" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "neu"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "new"
           }
         }
       }
@@ -3799,6 +3943,38 @@
         }
       }
     },
+    "session.typoNote" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kleiner Tippfehler – zählt!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Small typo – still counts!"
+          }
+        }
+      }
+    },
+    "settings.about" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Info"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About"
+          }
+        }
+      }
+    },
     "settings.audio.hint" : {
       "localizations" : {
         "de" : {
@@ -3987,6 +4163,86 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Settings"
+          }
+        }
+      }
+    },
+    "settings.update.button" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updates"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updates"
+          }
+        }
+      }
+    },
+    "settings.update.download" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direkt herunterladen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download directly"
+          }
+        }
+      }
+    },
+    "settings.update.obtainium" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obtainium holen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Obtainium"
+          }
+        }
+      }
+    },
+    "settings.update.offer" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obtainium verfolgt die Veröffentlichungen dieser App und bietet jede neue Version an, sobald es sie gibt. Ohne Obtainium ist jedes Update ein Download von Hand."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obtainium watches this app's releases and offers each new version as it appears. Without it, every update is a download by hand."
+          }
+        }
+      }
+    },
+    "settings.update.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuere Versionen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Newer versions"
           }
         }
       }
@@ -4347,6 +4603,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sentences"
+          }
+        }
+      }
+    },
+    "trainer.promptInLanguage %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "auf %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "in %@"
           }
         }
       }

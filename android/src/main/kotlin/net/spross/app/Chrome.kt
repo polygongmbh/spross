@@ -6,8 +6,11 @@ import net.spross.kern.catalog.LanguageChoices
  * UI chrome strings, rendered in the KNOWN language when chrome exists
  * (de/en today), otherwise en — design.md "Profile & onboarding".
  *
- * The two tables live beside this file ([ChromeDe], [ChromeEn]); the data class is the
- * contract, and adding a field here is what forces both of them to answer for it.
+ * The two tables live beside this file ([ChromeDe], [ChromeEn]) and are GENERATED from
+ * the iOS String Catalog by `scripts/chrome.py` — the words themselves are never written
+ * here. A new field is declared below, given its key in that script's MAPPING, and worded
+ * in `App/Sources/Resources/Localizable.xcstrings`; a pre-commit check keeps the three
+ * in step, so the same surface cannot read differently on the two phones.
  * Placeholders are java-format, rendered with `.format(...)`.
  */
 data class Chrome(
@@ -15,7 +18,6 @@ data class Chrome(
     val practice: String,
     val extraRound: String,
     val doneToday: String,
-    val emptyState: String,
     val dueLabel: String,
     val newLabel: String,
     val consolidatedLabel: String,
@@ -27,27 +29,30 @@ data class Chrome(
     val check: String,
     val reveal: String,
     val next: String,
-    val alsoPrefix: String,
+    val also: String,              // %s = the forms a card also answers to
     val typoNote: String,
     val otherWordNote: String,     // %1$s = the word typed, %2$s = what it means
     val answerPlaceholder: String, // %s = target language name
-    val again: String,
     val hard: String,
     val good: String,
-    val easy: String,
-    val unknown: String,           // the third verdict — a judgment, where [again] is an instruction
+    val unknown: String,           // the third verdict — a judgment, not an instruction
     val sessionDone: String,
-    val summaryLine: String,       // %d neu · %d gefestigt · %d wiederholt
     val keepPracticing: String,
     val finish: String,
     val pluralEquals: String,
     val pluralOnly: String,
-    val pluralPrefix: String,
+    val pluralForm: String,        // %s = the plural, where a card carries one
     val readAloud: String,         // the switch's stable a11y label — never flips
     val stateOn: String,
     val stateOff: String,
     val pronounce: String,         // "say it again" action on a word
     val aboutButton: String,
+    /** The footer's door to newer builds — a noun, not an errand. */
+    val updateButton: String,
+    val updateOfferTitle: String,
+    val updateOfferBody: String,   // what Obtainium does, and what going without costs
+    val updateViaObtainium: String,
+    val updateDownload: String,
     val audioToggle: String,
     val audioToggleHint: String,
     val creditsTitle: String,
@@ -66,11 +71,13 @@ data class Chrome(
     val promptInLanguage: String,  // %s = target language name
     val level: String,             // %d — the rung a run stands on
     val streak: String,            // %d — answers in a row, never days
-    val typoCorrection: String,    // %s = the spelling the learner missed
-    val heardInstead: String,      // %s = the form that actually played
+    // The two captions an amber hold wears; the form itself follows, composed by
+    // the reader, so the words stay one string and the layout stays each phone's.
+    val almostTypo: String,
+    val almostHeard: String,
     val audioOff: String,
     val enableSound: String,
-    val tasksDoneOne: String,      // the count-of-one line, verbatim
+    val tasksDoneOne: String,      // the count-of-one form, which carries the number too
     val tasksDone: String,         // %d
     val bestStreak: String,        // %d
     val answerCorrect: String,     // an answered tile's state, never color alone
@@ -315,6 +322,17 @@ data class Chrome(
     }
 }
 
-/** The declining count line: [one] verbatim at exactly 1, else [many] with the count. */
+/**
+ * The declining count line: [one] at exactly 1, else [many] — and the count goes into
+ * whichever was picked. Both forms carry the number, because both are one plural category
+ * of the same counted key in the catalog ("%d Wiederholung" / "%d Wiederholungen").
+ */
 fun countLine(one: String, many: String, count: Int): String =
-    if (count == 1) one else many.format(count)
+    (if (count == 1) one else many).format(count)
+
+/**
+ * An amber hold's line: the caption, then the form it owes. The caption alone is what the
+ * catalog holds — iOS stacks the two, Android sets them on one line — so the words stay
+ * shared and the layout stays each phone's own.
+ */
+fun almostLine(caption: String, form: String): String = "$caption: $form"
