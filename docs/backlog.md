@@ -10,14 +10,14 @@ One line per item, with a file or context pointer, filed under the section it be
 - Phrase→component auto-linking gaps: ~half of phrases carry no `components`
   (naive matcher — `catalog/README.md` § concepts.json).
 - Each idiom pairing in `catalog/idioms/` (9 concepts) was chosen for genuine
-  meaning-equivalence in de, en and es, not just checked by a translator —
+  meaning-equivalence across the languages that carry it, not just checked by a translator —
   the candidates it beat are gone from the finished JSON,
   so that judgment call is the one thing a reader cannot recover
   and the one a native speaker should confirm or correct
   (method: `../../docs/sprachposter-learnings.md`).
   sw and uk idiom coverage is open future work:
   it needs a native speaker to find real equivalents from scratch,
-  not a translation pass over the existing de/en/es set.
+  not a translation pass over the existing set.
 - Pronunciation coverage is uneven across LANGUAGES and absent for phrases — the packs
   only ever matched single-word realizations, so no phrase carries a recording and every
   one falls to TTS (silent on sw-iOS, which has no voice). What Commons never had is
@@ -97,7 +97,7 @@ One line per item, with a file or context pointer, filed under the section it be
   carries it. A `stress` field on realizations (`catalog/README.md`) is the shape the
   pronunciation plan proposed; the alphabet table cannot teach it in the plan's place.
 - Hints and contexts are keyed by the READER's language, so they follow the SOURCE
-  languages the app offers — all three alphabet files carry de + en only. The day sw or uk
+  languages the app offers — every alphabet file carries de + en only. The day sw or uk
   becomes a base language, each needs its own hint pass, not a translation of the
   English: the German pivot prose for de is already parked in the drafts' notes, while
   sw needs authoring from scratch (sw `j` is /ɟ/, so the en "y in yes" anchor is wrong).
@@ -330,6 +330,9 @@ One line per item, with a file or context pointer, filed under the section it be
 ## Platform reach
 
 - Android surfaces still unported: `design.md` § Not yet owns the list.
+- The web numbers drill never gained it/fr/eo: `web/site.js` mirrors
+  `catalog/languages.json` by hand (its `LANGS` rows) and still offers the five older
+  languages only (`docs/website.md` § Drill scope).
 - Android back doors land on Heute even when opened from the box: `closeAbout()`,
   `cancelOnboarding()` and `activate()` all end at `Screen.Heute` (`android/.../AppModel.kt`).
 - Android Heute's failure card and the `error*`/`growth*` chrome are wired but unreachable:
@@ -341,10 +344,10 @@ One line per item, with a file or context pointer, filed under the section it be
   (`android/src/main/res/values/colors.xml`) — the adaptive-icon plate, not the window.
 - Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
   deferred per user 2026-08-08.
-- Audio ships un-thinned: `catalog/audio/` is 26 MB (de 4.9, es 7.2, sw 5.2, uk 9.0) and
+- Audio ships un-thinned: `catalog/audio/` is 76 MB (8–14 MB per language) and
   BOTH installs carry all of it — the iOS folder reference and the Android catalog sync
-  copy the tree whole — so a Swahili learner downloads 21 MB of German, Spanish and
-  Ukrainian they can never hear. Per-language delivery (on-demand resources / Play asset packs) would cut
+  copy the tree whole — so a Swahili learner downloads ~68 MB of languages
+  they can never hear. Per-language delivery (on-demand resources / Play asset packs) would cut
   the install to the target actually being learned; measure the real per-platform delta
   before choosing a mechanism.
 - `compileSdk` sits at 36 and that is now what holds androidx back: lifecycle 2.11 refuses

@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- **Italian, French and Esperanto join the catalog — each whole, and already spoken.**
+  Every new language arrives with the full set of areas,
+  its own alphabet page, the country atlas in its own words,
+  and the number, clock and sentence drills on the same ladder the other languages climb.
+  Bundled recordings pronounce the words from the first card,
+  so nothing waits on a network or a synthetic voice.
+
+- **Esperanto wears a green heart where the other languages wear flags** —
+  the language of no country carries a badge of its own instead of a borrowed banner.
+
 ## 4.2.0 — 2026-08-14
 
 - **English is taught in American spelling and vocabulary, and the British word is named

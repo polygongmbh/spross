@@ -306,7 +306,7 @@ engine gates and the behavioral test inventory: kern README.
 
 ## Not yet
 
-Couple mode, accounts/sync, sw/uk UI chrome (those sources fall back to en).
+Couple mode, accounts/sync, UI chrome past de/en (every other source falls back to en).
 Android has the core loop on the full kern turn (write-out, retry, the earned Easy),
 Box browse with search, own words and the settings block, the 14-day activity strip,
 and the whole of Sprossen — all three drills on kern's rules, each behind its overview page
