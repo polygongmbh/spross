@@ -140,9 +140,9 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
 }
 
 /**
- * The box's foot: which build is installed, the address that answers for it, and the door
- * to voices and licenses. The address is printed rather than hidden behind a verb, so it
- * is readable on a device that carries no mail app at all.
+ * The box's foot: which build is installed, where a newer one comes from, the address that
+ * answers for it, and the door to voices and licenses. The address is printed rather than
+ * hidden behind a verb, so it is readable on a device that carries no mail app at all.
  */
 @Composable
 private fun AboutFooter(model: AppModel) {
@@ -165,6 +165,7 @@ private fun AboutFooter(model: AppModel) {
         TextButton(onClick = { context.openFeedbackMail(version) }) {
             Text(Legal.CONTACT_ADDRESS)
         }
+        UpdateRow(model.chrome)
         TextButton(onClick = { model.openAbout() }) { Text(model.chrome.aboutButton) }
     }
 }
