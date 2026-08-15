@@ -109,7 +109,7 @@ private func sampleTrees(age: Double) -> [AreaTree] {
         return AreaTree(
             id: id, emoji: emoji, title: title,
             leaves: settled - blossoms, blossoms: blossoms - fruit, fruit: fruit,
-            growing: started - settled,
+            buds: started - settled, growing: 0,
             fallen: reached > 0.3 && index % 3 == 0 ? 2 : 0,
             mass: Double(settled) * 0.35 + Double(blossoms) * 0.6 + Double(fruit),
             tendedToday: index % 5 == 2 && reached > 0

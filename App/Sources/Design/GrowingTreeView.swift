@@ -130,10 +130,10 @@ struct TreeArrival {
 
 #Preview("A round's growth") {
     let before = AreaTree(id: "kitchen", emoji: "🍳", title: "Die Küche",
-                          leaves: 18, blossoms: 2, fruit: 1, growing: 9, fallen: 1,
+                          leaves: 18, blossoms: 2, fruit: 1, buds: 9, growing: 0, fallen: 1,
                           mass: 14, tendedToday: false)
     let after = AreaTree(id: "kitchen", emoji: "🍳", title: "Die Küche",
-                         leaves: 22, blossoms: 4, fruit: 2, growing: 6, fallen: 1,
+                         leaves: 22, blossoms: 4, fruit: 2, buds: 6, growing: 0, fallen: 1,
                          mass: 18, tendedToday: true)
     let move = TreeTransition(before: before, after: after)
     return HStack(spacing: DL.Space.l) {
@@ -148,7 +148,7 @@ struct TreeArrival {
 
 #Preview("A round that moved no count") {
     let same = AreaTree(id: "kitchen", emoji: "🍳", title: "Die Küche",
-                        leaves: 26, blossoms: 5, fruit: 2, growing: 4, fallen: 0,
+                        leaves: 26, blossoms: 5, fruit: 2, buds: 4, growing: 0, fallen: 0,
                         mass: 19, tendedToday: true)
     let move = TreeTransition(before: same, after: same)
     return HStack(spacing: DL.Space.l) {
@@ -161,10 +161,12 @@ struct TreeArrival {
     .background(Color.dlBackground)
 }
 
+// Seven words met and nothing settled — the shape of a first round, and the one
+// the tree used to answer with a bare stem the height of the whole screen.
 #Preview("A first round in a new area") {
     let after = AreaTree(id: "bath", emoji: "🛁", title: "Das Bad",
-                         leaves: 3, blossoms: 0, fruit: 0, growing: 5, fallen: 0,
-                         mass: 1.6, tendedToday: true)
+                         leaves: 0, blossoms: 0, fruit: 0, buds: 7, growing: 0, fallen: 0,
+                         mass: 1.3, tendedToday: true)
     return GrowingTreeView(
         transition: TreeTransition(
             before: AreaTree(id: "bath", emoji: "🛁", title: "Das Bad",
@@ -173,7 +175,19 @@ struct TreeArrival {
             after: after),
         progress: 1
     )
-    .frame(height: 200)
+    .frame(height: ForestLayout.heroHeight(after))
     .padding(DL.Space.xl)
     .background(Color.dlBackground)
+}
+
+/// An area packed and not yet opened: still a seedling, and nothing hangs.
+#Preview("An area only packed") {
+    let packed = AreaTree(id: "bath", emoji: "🛁", title: "Das Bad",
+                          leaves: 0, blossoms: 0, fruit: 0, growing: 12, fallen: 0,
+                          mass: 0, tendedToday: true)
+    return GrowingTreeView(transition: TreeTransition(before: packed, after: packed),
+                           progress: 1)
+        .frame(height: ForestLayout.heroHeight(packed))
+        .padding(DL.Space.xl)
+        .background(Color.dlBackground)
 }

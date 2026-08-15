@@ -39,6 +39,7 @@ struct AreaGrowth {
     var leaves = 0
     var blossoms = 0
     var fruit = 0
+    var buds = 0
     var growing = 0
     var fallen = 0
     var mass = 0.0
@@ -61,7 +62,15 @@ struct AreaGrowth {
         mass += reach
         switch entry.stage {
         case .unscheduled: break
-        case .queued, .learning, .fresh: growing += 1
+        // Packed and not yet opened: the tree is why it is growing, and nothing
+        // hangs on it — a word the learner has not met cannot be on the tree.
+        case .queued: growing += 1
+        // Met, still on its way in. A bud, because the round that introduces a
+        // word has to be able to point at what it put there: with these drawn as
+        // nothing, a first round in an area moved the picture not at all.
+        case .learning, .fresh:
+            buds += 1
+            reaches.append(reach)
         // The canopy is green because most of a worked area IS green: words that
         // have landed are the bulk of any box that is being used.
         case .consolidated:
@@ -79,11 +88,12 @@ struct AreaGrowth {
 
     func tree(id: String, emoji: String, title: String) -> AreaTree {
         AreaTree(id: id, emoji: emoji, title: title,
-                 leaves: leaves, blossoms: blossoms, fruit: fruit,
+                 leaves: leaves, blossoms: blossoms, fruit: fruit, buds: buds,
                  growing: growing, fallen: fallen, mass: mass, tendedToday: tendedToday,
                  // why: most-grown first, which is the order the canopy draws
-                 // its marks in — fruit at the rim, then blossom, then leaves —
-                 // so entry n belongs to mark n.
+                 // its marks in — fruit at the rim, then blossom, leaves, buds
+                 // — so entry n belongs to mark n. The tiers ARE stability
+                 // bands, so sorting by reach reproduces them.
                  reaches: reaches.sorted(by: >))
     }
 }

@@ -134,7 +134,7 @@ struct SessionCompletionView: View {
             VStack(spacing: DL.Space.s) {
                 GrowingTreeView(transition: grownArea,
                                 progress: burst || reduceMotion ? 1 : 0)
-                    .frame(height: 190)
+                    .frame(height: ForestLayout.heroHeight(grownArea.after))
                     .animation(reduceMotion ? nil
                                 : .spring(response: 1.5, dampingFraction: 0.85).delay(0.25),
                                value: burst)
@@ -187,8 +187,8 @@ struct SessionCompletionView: View {
         let hadLanded = move.before.blossoms + move.before.fruit
         if landed > hadLanded {
             kind = "blooming"
-        } else if move.after.growing > move.before.growing,
-                  move.after.canopyCount <= move.before.canopyCount {
+        } else if move.after.buds > move.before.buds,
+                  move.after.leaves <= move.before.leaves {
             kind = "sown"
         } else {
             kind = "grown"

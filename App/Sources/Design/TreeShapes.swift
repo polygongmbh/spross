@@ -18,8 +18,10 @@ import SwiftUI
 //   fruit    — a word a month or more out from its next sight
 //   blossom  — a word that has landed
 //   leaf     — a word that has settled
-// Each word is exactly one mark. What is still on its way in has no mark at
-// all: it is why the tree is as tall as it is.
+//   bud      — a word the learner has met, on its way in
+// Each word the learner has MET is exactly one mark, from its first answer on,
+// so every round has something on the tree to point at. A word merely packed
+// has none: it is why the tree is as tall as it is, and nothing more.
 
 enum TreeShapes {
 
@@ -166,9 +168,11 @@ enum TreeShapes {
                 fruit(&context, at: slot.point, size: size)
             } else if rank < shown.fruit + shown.blossoms {
                 blossom(&context, at: slot.point, size: size, angle: angle)
-            } else {
+            } else if rank < shown.canopyCount - shown.buds {
                 tones[Int(grain * 3) % 3].addPath(
                     leafPath(at: slot.point, size: size * CanopyMark.leafStretch, angle: angle))
+            } else {
+                bud(&context, at: slot.point, size: size)
             }
         }
         // Three tones of the one green rather than two: at a canopy's worth of
@@ -210,6 +214,22 @@ enum TreeShapes {
     private static func leaf(_ context: inout GraphicsContext, at point: CGPoint,
                              size: CGFloat, angle: Double, color: Color) {
         context.fill(leafPath(at: point, size: size, angle: angle), with: .color(color))
+    }
+
+    /// A word the learner has met and not yet settled.
+    ///
+    /// The smallest mark on the tree, and round where a leaf is long — the two
+    /// ways it can be told apart before its color is read. It takes the ranks
+    /// nearest the trunk, so what a round sows tucks in among the limbs while
+    /// the rim keeps carrying what has grown; a canopy that put its buds at the
+    /// edges would be a tree shrinking every time the learner met a word.
+    private static func bud(_ context: inout GraphicsContext, at point: CGPoint, size: CGFloat) {
+        // Ochre, not green: a bud is a scale of wood, and the whole point of
+        // this mark is that the word has not leafed out yet. Told from fruit —
+        // the other warm mark — by being a third its size and flat where fruit
+        // carries a stalk and a highlight.
+        context.fill(circle(point, size * CanopyMark.budRadius),
+                     with: .color(.dlAmber.opacity(0.8)))
     }
 
     /// A word the learner will not see again for months — the furthest thing on
@@ -292,6 +312,10 @@ enum CanopyMark {
     static let leafStretch: CGFloat = 1.24
     static let leafWaist: CGFloat = 0.29
 
+    /// A bud, against the base the crown is cut to — well under half a leaf, so
+    /// a word settling into one always reads as a gain.
+    static let budRadius: CGFloat = 0.30
+
     /// The most a mark is ever drawn over its settled size: an arriving mark
     /// overshoots before it settles, and room has to be left for the overshoot
     /// too, or the celebration is the part that gets clipped.
@@ -306,10 +330,10 @@ enum CanopyMark {
             let reach = rank < tree.reaches.count ? tree.reaches[rank] : 0.4
             let size = size(base: base, reach: reach)
             let ink: CGRect
-            if rank < tree.fruit + tree.blossoms {
-                // Fruit and blossom sit ON their slot; the stalk is the furthest
-                // either gets from it.
-                let radius = size * 0.62
+            if rank < tree.fruit + tree.blossoms || rank >= tree.canopyCount - tree.buds {
+                // Fruit, blossom and bud all sit ON their slot; the stalk is the
+                // furthest any of them gets from it.
+                let radius = size * (rank < tree.fruit + tree.blossoms ? 0.62 : budRadius)
                 ink = CGRect(x: slot.point.x - radius, y: slot.point.y - radius,
                              width: radius * 2, height: radius * 2)
             } else {

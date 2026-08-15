@@ -27,7 +27,12 @@ struct AreaTree: Identifiable {
     let leaves: Int
     let blossoms: Int
     let fruit: Int
-    /// Words started but not yet in the canopy — why the tree is growing at all.
+    /// Words the learner has met that have not settled yet — the smallest mark
+    /// the canopy carries. A word gets one from its first answer, so a round in
+    /// a new area has something to hang.
+    var buds: Int = 0
+    /// Words packed and not yet met — why the tree is growing at all, and
+    /// nothing that hangs on it.
     let growing: Int
     /// Words that lapsed: a couple of leaves on the ground, never a smaller tree.
     let fallen: Int
@@ -45,10 +50,10 @@ struct AreaTree: Identifiable {
     /// Whether anything at all has happened here. A bare area draws as bare
     /// ground, NOT as empty slots: a catalog the learner never chose must not
     /// read as a list of things they have failed to do.
-    var isBare: Bool { leaves + blossoms + fruit + growing == 0 }
+    var isBare: Bool { canopyCount + growing == 0 }
 
     /// Everything standing in the canopy.
-    var canopyCount: Int { leaves + blossoms + fruit }
+    var canopyCount: Int { leaves + blossoms + fruit + buds }
 }
 
 /// One area's tree before and after something happened to it — a finished
@@ -73,6 +78,7 @@ struct TreeTransition {
                  leaves: min(before.leaves, after.leaves),
                  blossoms: min(before.blossoms, after.blossoms),
                  fruit: min(before.fruit, after.fruit),
+                 buds: min(before.buds, after.buds),
                  growing: min(before.growing, after.growing),
                  fallen: min(before.fallen, after.fallen),
                  mass: min(before.mass, after.mass),
@@ -93,11 +99,12 @@ struct TreeTransition {
         return (0..<after.canopyCount).filter { tier($0, was) != tier($0, after) }
     }
 
-    /// What a rank draws as: nothing, or one of the three marks.
+    /// What a rank draws as: nothing, or one of the four marks.
     private func tier(_ rank: Int, _ tree: AreaTree) -> Int {
         if rank < tree.fruit { return 1 }
         if rank < tree.fruit + tree.blossoms { return 2 }
-        if rank < tree.canopyCount { return 3 }
+        if rank < tree.fruit + tree.blossoms + tree.leaves { return 3 }
+        if rank < tree.canopyCount { return 4 }
         return 0
     }
 }
@@ -238,13 +245,32 @@ enum ForestLayout {
     /// worked area saturates and the row stops being a skyline at all.
     static let fullMass = 24.0
 
-    /// How tall the area stands. Square-rooted, because `mass` is a sum over
-    /// words: without it the first area worked would dwarf every other for
-    /// months, and the skyline would say more about where the learner started
-    /// than about where the box now is.
+    /// How far along the area stands, 0…1 — the one curve every height in the
+    /// app is cut from. Square-rooted, because `mass` is a sum over words:
+    /// without it the first area worked would dwarf every other for months, and
+    /// the skyline would say more about where the learner started than about
+    /// where the box now is.
+    static func standing(_ tree: AreaTree) -> CGFloat {
+        guard !tree.isBare else { return 0 }
+        return CGFloat(min(1, sqrt(tree.mass / fullMass)))
+    }
+
+    /// How tall the area stands in the forest.
     static func treeHeight(_ tree: AreaTree) -> CGFloat {
         guard !tree.isBare else { return 0 }
-        return minHeight + (maxHeight - minHeight) * CGFloat(min(1, sqrt(tree.mass / fullMass)))
+        return minHeight + (maxHeight - minHeight) * standing(tree)
+    }
+
+    /// The box a session summary gives its one tree, which is the only thing
+    /// carrying the area's standing there — `solitary` fills whatever box it is
+    /// handed, so a fixed box drew a first-day sprout the full height of a
+    /// thoroughly learned area, a bare stem running the length of the screen.
+    /// The floor is what a seedling needs to be a seedling and not a smudge.
+    static let heroMinHeight: CGFloat = 78
+    static let heroMaxHeight: CGFloat = 190
+
+    static func heroHeight(_ tree: AreaTree) -> CGFloat {
+        heroMinHeight + (heroMaxHeight - heroMinHeight) * standing(tree)
     }
 
     /// One tree alone, filling a box of its own — what a session summary draws.

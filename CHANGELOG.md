@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **The tree a round finishes on now shows the words you just met.** Each one hangs
+  as a bud from its first answer, ripening into a leaf once it settles, so a first
+  round in a fresh area has something on the tree to point at instead of a bare
+  stem. That tree is also drawn at the size the area has actually grown to — a
+  sprout is a sprout, where before every area was drawn the full height of the
+  screen however little was in it.
+
 - **A different word is no longer forgiven as a spelling slip.** Answering with a
   word the catalog teaches elsewhere now names that word and its meaning instead of
   passing for a near miss of the one that was asked — so two words you need told

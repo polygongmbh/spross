@@ -200,6 +200,10 @@ a clone inherits its sibling's gaps, never the rules.
   box rather than about having finished. Which area is kern's answer (`SessionRunState`
   records what the run touched); ties walk catalog order, so a round split evenly names the
   same area every time it is shown.
+  It is drawn far larger than in the forest but off the same growth curve, and the BOX it is
+  given is what carries that — the tree fills whatever box it gets, so a fixed one drew a
+  first-day sprout at the height of a thoroughly learned area: a bare stem the length of the
+  screen, claiming a standing the area has not got.
 - **The tree rises whatever the round did to the counts**, and what the round CHANGED lands
   on it afterwards — new marks out of nothing, a matured word swelling where it already hung,
   one after another rather than all at once. Two motions, because they answer two questions:
@@ -256,7 +260,12 @@ a clone inherits its sibling's gaps, never the rules.
   and fruit appear ON that canopy. So the picture never starts over, and has no top rung
   at which it stops. A word is a leaf — a thing believed many of without being counted;
   which rung of `GrowthStage` (`../kern/README.md` §6) becomes which mark is decided in
-  `ForestSection` and nowhere else.
+  `AreaTrees` and nowhere else.
+  **A word the learner has MET hangs on the tree from its first answer on**, as a bud until
+  it settles into a leaf — ochre and a third a leaf's size, so a word leafing out always
+  reads as a gain. Drawn as nothing until it consolidated, a first round in an area moved
+  the picture not at all, which is the one round with the most to show. A word merely packed
+  still hangs nothing: it has not been met, and it is only why the tree is growing.
   **Size comes from what has grown, never from what the catalog holds.** Sized by catalog
   count, every area would draw the same on install day and a year in — and the one thing a
   growing box's picture owes the learner is a shape that changes. A row is therefore a
