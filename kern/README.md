@@ -571,8 +571,15 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   on both sides → iff `kind == verb`: any listed `optionalVerbPrefixes` entry (normalized
   the same way, space-preserving — en `"to "`) optional on both sides → Damerau-Levenshtein
   typo budget → article-mismatch-demotes-to-typo only when the expected
-  answer's grammar carries `gender`; a stray short leading word that, once dropped,
-  makes the rest match is a typo — **vocab reviews only**: it recurses, peeling one
+  answer's grammar carries `gender`; a leading word that reads as a **mistyped article**
+  and, once dropped, makes the rest match is a typo.
+  Article-like is the whole gate — no longer than any listed article
+  and within one slip of one of them —
+  because the article list holds exact forms only ("de Zug" for "der Zug")
+  and peeling anything else is leniency the language cannot pay for:
+  a language listing no article at all never peels
+  (sw "muda nini" came back as a spelling slip of "lini", itself a word of the catalog).
+  **Vocab reviews only** on top of that: it recurses, peeling one
   word per level, and a drill grades against a whole reading where every word names
   which time it is ("fünf vor halb sieben" is not a misspelling of "halb sieben").
   **Typo budget**: one slip per six letters (spaces excluded), floor 1,

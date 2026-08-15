@@ -92,6 +92,10 @@ class AnswerNormalizer(
         this(answerLanguage, articleLeniency, maxTyposPerWord = null)
 
     private val articles: Set<String> = answerLanguage.articles.map { it.lowercase() }.toSet()
+
+    /** The same articles in comparison shape, so a typed token can be measured against them. */
+    private val articleForms: Set<String> =
+        articles.map { cleaned(it).trim() }.filter { it.isNotEmpty() }.toSet()
     private val verbPrefixes: List<String> = answerLanguage.optionalVerbPrefixes
         .map(::normalizedPrefix)
         .filter { it.isNotEmpty() }
@@ -145,8 +149,8 @@ class AnswerNormalizer(
      * Grade [input] against every accepted target form. Verb-prefix leniency applies
      * iff `kind == verb`; the article-mismatch demotion applies iff the target's
      * grammar carries `gender` (a PRESENT leading article that disagrees is a typo,
-     * a missing one stays exact). A stray unrecognized short leading word that,
-     * once dropped, makes the rest match is a typo, not a failure — in vocab
+     * a missing one stays exact). A leading word that reads as a mistyped article
+     * and, once dropped, makes the rest match is a typo, not a failure — in vocab
      * reviews only, see [strayLeadingWordRecovery].
      */
     fun evaluate(input: String, card: Card): Match {
@@ -205,37 +209,60 @@ class AnswerNormalizer(
                 best = Match.Typo(corrected = bestForm ?: normalizedInput)
             }
         }
-        // why: the recovery reads a stray leading word as a mistyped article, which is
-        // a vocab-review rule. In a drill every word carries the answer — "fünf vor
-        // halb sieben" minus its first word is 18:30, not a misspelling of it — and the
-        // recovery RECURSES, peeling one word per level ("son las doce y uno" → "uno"),
-        // so a reading decayed onto four other times' answers.
-        if (best == Match.Wrong && maxTyposPerWord == null) {
-            best = strayLeadingWordRecovery(input, accepted, prefixes)
-        }
+        if (best == Match.Wrong) best = strayLeadingWordRecovery(input, accepted, prefixes)
         return best
     }
 
     /**
-     * Drop a short all-letter leading word and regrade; a match after the drop is a
-     * typo. Vocab reviews only ([maxTyposPerWord] unset) — a drill grades every word.
+     * Regrade what is left once a mistyped article is dropped; a match after the drop
+     * is a typo rather than a failure — the article list holds exact forms only, so
+     * "de Zug" would otherwise fail where "der Zug" passes.
      */
     private fun strayLeadingWordRecovery(
         input: String,
         accepted: List<String>,
         prefixes: List<String>,
     ): Match {
-        val tokens = input.split(whitespaceRun).filter { it.isNotEmpty() }
-        val first = tokens.firstOrNull() ?: return Match.Wrong
-        if (tokens.size < 2 || first.length > MAX_LEADING_SLIP_LENGTH) return Match.Wrong
-        if (!first.all { it.isLetter() }) return Match.Wrong
-        val remainder = tokens.drop(1).joinToString(" ")
+        val remainder = articlePeeledRemainder(input) ?: return Match.Wrong
         return when (val regraded = evaluate(remainder, accepted, prefixes, expectedArticle = null)) {
             Match.Exact -> Match.Typo(corrected = accepted.first())
             is Match.Typo -> regraded
             // One card at a time there is no catalog to name — that is the grader's verdict.
             is Match.OtherWord, Match.Wrong -> Match.Wrong
         }
+    }
+
+    /**
+     * What is left of [input] once a leading mistyped article is dropped, or null when
+     * nothing may be dropped. The peeled word must be letters only, no longer than
+     * [MAX_LEADING_SLIP_LENGTH], leave at least one word behind, and read as one of the
+     * answer language's listed articles — a language that lists none has nothing to
+     * mistype, and peeling there is leniency the catalog cannot pay for (de "wann"
+     * answered sw "muda nini" came back as a spelling slip of "lini").
+     *
+     * Null in a drill too ([maxTyposPerWord] set): there every word carries the answer —
+     * "fünf vor halb sieben" minus its first word is 18:30, not a misspelling of it —
+     * and the recovery RECURSES, peeling one word per level ("son las doce y uno" →
+     * "uno"), so a reading decayed onto four other times' answers.
+     */
+    private fun articlePeeledRemainder(input: String): String? {
+        if (maxTyposPerWord != null) return null
+        val tokens = input.split(whitespaceRun).filter { it.isNotEmpty() }
+        val first = tokens.firstOrNull() ?: return null
+        if (tokens.size < 2 || first.length > MAX_LEADING_SLIP_LENGTH) return null
+        if (!first.all { it.isLetter() }) return null
+        if (!readsAsArticle(first)) return null
+        return tokens.drop(1).joinToString(" ")
+    }
+
+    /**
+     * Within one slip of a listed article. Every article is shorter than the length
+     * [allowedTypos] starts forgiving at, so the budget floors at the single slip this
+     * whole rule exists to read back.
+     */
+    private fun readsAsArticle(token: String): Boolean {
+        val typed = cleaned(token).trim()
+        return articleForms.any { damerauLevenshtein(typed, it) <= maxOf(1, allowedTypos(it.length)) }
     }
 
     /**
@@ -336,8 +363,9 @@ class AnswerNormalizer(
             AnswerNormalizer(answerLanguage, articleLeniency = false, maxTyposPerWord = 1)
 
         /**
-         * A stray leading word this short (letters only) is treated as a mistyped
-         * article/particle rather than part of the answer.
+         * No listed article is longer than this, so a longer leading word is part of
+         * the answer whatever else it resembles — the cheap pre-filter in front of the
+         * article test itself.
          */
         private const val MAX_LEADING_SLIP_LENGTH = 4
 

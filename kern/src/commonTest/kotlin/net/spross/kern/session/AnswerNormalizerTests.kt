@@ -162,11 +162,27 @@ class AnswerNormalizerTests {
     }
 
     @Test
-    fun strayShortLeadingWordIsTypoNotFailure() {
+    fun aMistypedLeadingArticleIsTypoNotFailure() {
+        val zug = card("de", "Zug")
+        assertEquals(Match.Typo("Zug"), de.evaluate("de Zug", zug)) // "de" is one slip from "der"
+        assertEquals(Match.Typo("Zug"), de.evaluate("dad Zug", zug))
+        assertEquals(Match.Wrong, de.evaluate("grosses Zug", zug)) // long stray word: not forgiven
+        assertEquals(Match.Wrong, de.evaluate("rot Zug", zug)) // short, but no article reads like it
+        assertEquals(Match.Wrong, de.evaluate("de", card("de", "Zug"))) // never strips the only word
+    }
+
+    /**
+     * The peel reads a MISTYPED ARTICLE, so a language listing none never peels: sw
+     * "muda nini" for "wann" used to lose its first word and come back as a spelling
+     * slip of "lini" — while "nini" is a catalog word of its own, one row above.
+     */
+    @Test
+    fun aLanguageWithoutArticlesNeverPeelsALeadingWord() {
+        val lini = card("sw", "lini")
+        assertEquals(Match.Wrong, sw.evaluate("muda nini", lini))
         val panya = joined(deToSw, "mouse") // "panya"
-        assertEquals(Match.Typo("panya"), sw.evaluate("el panya", panya))
-        assertEquals(Match.Wrong, sw.evaluate("großes panya", panya)) // long stray word: not forgiven
-        assertEquals(Match.Wrong, sw.evaluate("dee", card("sw", "nyumba"))) // never strips the only word
+        assertEquals(Match.Wrong, sw.evaluate("el panya", panya))
+        assertEquals(Match.Wrong, uk.evaluate("той миша", joined(deToUk, "mouse")))
     }
 
     /**
