@@ -84,7 +84,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     }
     when (val feedback = flow.feedback) {
         TurnFeedback.Neutral -> if (flow.selfGrading) {
-            VerdictButtons(chrome, flow)
+            VerdictButtons(chrome, flow, caption = model.gradeCaption)
         } else {
             // ONE primary action: an empty field reveals, a typed one checks.
             Button(
