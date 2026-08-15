@@ -219,9 +219,9 @@ internal val ChromeDe = Chrome(
     settingsTitle = "Einstellungen",
     profileHint = "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten; jede " +
         "gelernte Sprache hat ihre eigene Box.",
-    resetButton = "Box zurücksetzen …",
-    resetHint = "Löscht nur Fortschritt und Verlauf für %s — deine eigenen Wörter und deine " +
-        "anderen Sprachen bleiben.",
+    resetButton = "%s zurücksetzen …",
+    resetHint = "Löscht Fortschritt und Verlauf — deine eigenen Wörter und deine anderen " +
+        "Sprachen bleiben.",
     resetConfirm = "Alle Lernfortschritte für %s löschen und neu mit den ersten Wörtern " +
         "beginnen?",
     cancel = "Abbrechen",

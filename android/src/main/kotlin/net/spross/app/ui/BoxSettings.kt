@@ -109,7 +109,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                 HorizontalDivider(color = Dl.colors.separator)
                 Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
                     TextButton(onClick = { confirmingReset = true }) {
-                        Text(chrome.resetButton, color = Dl.colors.wrong)
+                        Text(chrome.resetButton.format(targetName), color = Dl.colors.wrong)
                     }
                     SettingHint(chrome.resetHint.format(targetName))
                 }
@@ -121,8 +121,9 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
     if (confirmingReset) {
         AlertDialog(
             onDismissRequest = { confirmingReset = false },
-            title = { Text(chrome.resetButton) },
-            text = { Text(chrome.resetConfirm.format(targetName)) },
+            // The question IS the title, as on iOS: the button behind it already names the
+            // language, and a title repeating it over the same sentence reads twice.
+            title = { Text(chrome.resetConfirm.format(targetName)) },
             confirmButton = {
                 TextButton(onClick = {
                     confirmingReset = false

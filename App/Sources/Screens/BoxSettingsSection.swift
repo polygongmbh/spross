@@ -192,7 +192,7 @@ struct BoxSettingsSection: View {
             Button(role: .destructive) {
                 confirmingReset = true
             } label: {
-                Text("settings.reset.button")
+                Text("settings.reset.button \(targetName)")
                     .font(DL.Fonts.headline)
             }
             .confirmationDialog(
@@ -205,7 +205,7 @@ struct BoxSettingsSection: View {
                 }
                 Button("common.cancel", role: .cancel) {}
             }
-            Text("settings.reset.hint \(targetName)")
+            Text("settings.reset.hint")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }
