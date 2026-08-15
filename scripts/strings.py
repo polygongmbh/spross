@@ -24,8 +24,14 @@ A plural has to NAME its number: the compiler refuses a variation whose text doe
 carry the specifier, so a unit label standing apart from the figure it counts
 ("🔥 5 · Tage", two Texts for two type sizes) takes a key per form instead.
 
-    scripts/strings.py            # report
-    scripts/strings.py --fix      # drop the stale flags and %@ twins, sort, rewrite
+    scripts/strings.py            # report, this file and the Android tables
+    scripts/strings.py --fix      # drop the stale flags and %@ twins, sort, rewrite,
+                                  # then regenerate the Android tables
+
+This is the ONE command a copy edit owes: it ends by running scripts/chrome.py over
+the file it just wrote, so the tables can never be left behind. chrome.py stays a
+script of its own — it is the whole of the Android side's business with this catalog,
+needs no Xcode, and runs where Xcode cannot.
 
 Edit the catalog however you like — Xcode, an editor, a script — then run --fix,
 which restores Xcode's formatting without touching your values. Python's json
@@ -41,6 +47,7 @@ emitted, which is the check that catches REAL drift. Needs a build first:
       build SWIFT_EMIT_LOC_STRINGS=YES
 """
 import glob
+import importlib.util
 import json
 import os
 import subprocess
@@ -142,6 +149,19 @@ def check_format(path):
     return 1
 
 
+def chrome():
+    """scripts/chrome.py, loaded by path — a hyphenated sibling cannot be imported.
+
+    Lazily, so --check-format stays what the pre-commit hook needs it to be: a read of
+    one file it was handed, with nothing else on disk consulted.
+    """
+    spec = importlib.util.spec_from_file_location(
+        'chrome', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'chrome.py'))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def main():
     if '--check-format' in sys.argv:
         args = [a for a in sys.argv[1:] if not a.startswith('--')]
@@ -202,7 +222,12 @@ def main():
     for problem in problems:
         print(problem)
     print('%d keys%s' % (len(strings), '' if problems else ' — clean'))
-    return 1 if problems else 0
+
+    # why: the Android tables are generated from this file, so an edit that stops here
+    # ships the two phones saying different things. Chained AFTER the write, and after
+    # the %@ twins are gone, so chrome.py reads the catalog this run leaves behind.
+    # It reads the same argv, so --fix rewrites the tables and a report reports them.
+    return max(1 if problems else 0, chrome().main())
 
 
 if __name__ == '__main__':

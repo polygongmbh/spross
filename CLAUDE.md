@@ -16,7 +16,7 @@ xcodebuild -project Spross.xcodeproj -scheme Spross \
 scripts/run-sim.sh           # build + install + launch on the simulator (--shot, --clean, -- <launch args>)
 scripts/run-emu.sh           # same for Android: boots the AVD, builds, installs, launches (--shot, --clean)
 scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodegen
-scripts/strings.py --fix     # run after ANY String Catalog edit — restores Xcode's formatting, clears its stale flags
+scripts/strings.py --fix     # run after ANY String Catalog edit — Xcode's formatting, then the Android tables
 scripts/catalog-format.py --fix   # run after ANY catalog/ edit — one line per entry that fits (--check to verify)
 ```
 
