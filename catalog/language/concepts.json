@@ -79,6 +79,16 @@
   "emoji": "📝"
  },
  {
+  "slug": "word",
+  "kind": "noun",
+  "emoji": "💬"
+ },
+ {
+  "slug": "language",
+  "kind": "noun",
+  "emoji": "🗣️"
+ },
+ {
   "slug": "mother-tongue",
   "kind": "noun"
  },

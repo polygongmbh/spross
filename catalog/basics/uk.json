@@ -2,12 +2,6 @@
  "title": "Перші слова",
  "subtitle": "Тут усе починається.",
  "words": {
-  "language": {
-   "text": "мова"
-  },
-  "word": {
-   "text": "слово"
-  },
   "name": {
    "text": "ім'я",
    "grammar": {

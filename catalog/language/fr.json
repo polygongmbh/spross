@@ -90,6 +90,21 @@
     "gender": "la"
    }
   },
+  "word": {
+   "text": "mot",
+   "grammar": {
+    "gender": "le"
+   }
+  },
+  "language": {
+   "text": "langue",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "langue ist auch die Zunge im Mund."
+   }
+  },
   "mother-tongue": {
    "text": "langue maternelle",
    "grammar": {

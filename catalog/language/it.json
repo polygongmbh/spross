@@ -84,6 +84,21 @@
     "gender": "la"
    }
   },
+  "word": {
+   "text": "parola",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "language": {
+   "text": "lingua",
+   "grammar": {
+    "gender": "la"
+   },
+   "notes": {
+    "de": "lingua ist die Sprache und die Zunge im Mund."
+   }
+  },
   "mother-tongue": {
    "text": "lingua madre",
    "grammar": {

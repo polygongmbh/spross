@@ -89,6 +89,24 @@
     "gender": "la"
    }
   },
+  "word": {
+   "text": "palabra",
+   "grammar": {
+    "gender": "la"
+   }
+  },
+  "language": {
+   "text": "idioma",
+   "synonyms": [
+    "lengua"
+   ],
+   "grammar": {
+    "gender": "el"
+   },
+   "notes": {
+    "de": "idioma = die einzelne Sprache (el alemán, el español) · lengua bedeutet dasselbe, heißt aber auch Zunge."
+   }
+  },
   "mother-tongue": {
    "text": "lengua materna",
    "grammar": {

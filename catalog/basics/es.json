@@ -2,24 +2,6 @@
  "title": "Las primeras palabras",
  "subtitle": "Aquí empieza todo.",
  "words": {
-  "language": {
-   "text": "idioma",
-   "synonyms": [
-    "lengua"
-   ],
-   "grammar": {
-    "gender": "el"
-   },
-   "notes": {
-    "de": "idioma = die einzelne Sprache (el alemán, el español) · lengua bedeutet dasselbe, heißt aber auch Zunge."
-   }
-  },
-  "word": {
-   "text": "palabra",
-   "grammar": {
-    "gender": "la"
-   }
-  },
   "name": {
    "text": "nombre",
    "grammar": {

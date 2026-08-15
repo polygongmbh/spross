@@ -53,6 +53,12 @@
   "sentence": {
    "text": "sentence"
   },
+  "word": {
+   "text": "word"
+  },
+  "language": {
+   "text": "language"
+  },
   "mother-tongue": {
    "text": "mother tongue",
    "variants": [

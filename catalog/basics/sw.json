@@ -2,18 +2,6 @@
  "title": "Maneno ya kwanza",
  "subtitle": "Hapa ndipo mwanzo.",
  "words": {
-  "language": {
-   "text": "lugha",
-   "grammar": {
-    "plural": "="
-   }
-  },
-  "word": {
-   "text": "neno",
-   "grammar": {
-    "plural": "maneno"
-   }
-  },
   "name": {
    "text": "jina",
    "grammar": {

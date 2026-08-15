@@ -70,6 +70,20 @@
     "plural": "Sätze"
    }
   },
+  "word": {
+   "text": "Wort",
+   "grammar": {
+    "gender": "das",
+    "plural": "Wörter"
+   }
+  },
+  "language": {
+   "text": "Sprache",
+   "grammar": {
+    "gender": "die",
+    "plural": "-n"
+   }
+  },
   "mother-tongue": {
    "text": "Muttersprache",
    "grammar": {

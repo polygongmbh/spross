@@ -71,6 +71,18 @@
     "plural": "="
    }
   },
+  "word": {
+   "text": "neno",
+   "grammar": {
+    "plural": "maneno"
+   }
+  },
+  "language": {
+   "text": "lugha",
+   "grammar": {
+    "plural": "="
+   }
+  },
   "mother-tongue": {
    "text": "lugha ya mama",
    "grammar": {

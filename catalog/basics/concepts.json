@@ -1,15 +1,5 @@
 [
  {
-  "slug": "language",
-  "kind": "noun",
-  "emoji": "🗣️"
- },
- {
-  "slug": "word",
-  "kind": "noun",
-  "emoji": "💬"
- },
- {
   "slug": "name",
   "kind": "noun",
   "emoji": "🏷️"

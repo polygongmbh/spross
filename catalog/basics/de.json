@@ -2,20 +2,6 @@
  "title": "Die ersten Wörter",
  "subtitle": "Hier fängt alles an.",
  "words": {
-  "language": {
-   "text": "Sprache",
-   "grammar": {
-    "gender": "die",
-    "plural": "-n"
-   }
-  },
-  "word": {
-   "text": "Wort",
-   "grammar": {
-    "gender": "das",
-    "plural": "Wörter"
-   }
-  },
   "name": {
    "text": "Name",
    "grammar": {

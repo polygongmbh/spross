@@ -64,6 +64,12 @@
     "plural": "="
    }
   },
+  "word": {
+   "text": "слово"
+  },
+  "language": {
+   "text": "мова"
+  },
   "mother-tongue": {
    "text": "рідна мова",
    "grammar": {
