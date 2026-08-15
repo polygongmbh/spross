@@ -16,17 +16,30 @@ internal val ChromeDe = Chrome(
     newLabel = "neu",
     consolidatedLabel = "gefestigt",
     freshLabel = "frisch",
-    chooseTitle = "Willkommen bei Spross",
+    chooseTitle = "Willkommen bei Spross!",
+    chooseSubtitle = "Zuerst deine Sprachen.",
     iSpeak = "Ich spreche",
     iLearn = "Ich lerne",
     letsGo = "Los geht's!",
-    howItWorksTitle = "So läuft eine Runde",
-    howItWorksRecall = "Du siehst ein Wort. Nimm dir einen Moment, um dich zu erinnern — " +
-        "erzwing es nicht.",
-    howItWorksGrade = "Dann deckst du auf und sagst, wie gut du es wusstest. Ehrlich schlägt " +
-        "großzügig: es entscheidet, wann das Wort wiederkommt.",
-    howItWorksWrite = "Ein Wort, das du nicht wusstest, schreibst du einmal — und wenn es " +
-        "wiederkommt, tippst du es aus dem Gedächtnis.",
+    back = "Zurück",
+    whyTitle = "Wofür Spross da ist",
+    whyBreadthTitle = "Gesät, nicht gepaukt",
+    whyBreadthBody = "Ein paar neue Wörter am Tag, so verteilt, dass sie bleiben. Lieber " +
+        "viele Wörter ein bisschen kennen als wenige perfekt.",
+    whyCompanionTitle = "Begleiter, kein Ersatz",
+    whyCompanionBody = "Spross ersetzt weder deinen Kurs noch deinen Sprachpartner. Zwischen " +
+        "den Gesprächen wächst dein Wortschatz weiter, damit du beim nächsten Mal mehr zu " +
+        "sagen hast.",
+    whyGrammarTitle = "Grammatik kommt vom Sprechen",
+    whyGrammarBody = "Spross bringt dir keine Grammatik bei, nur das Geschlecht der Wörter. " +
+        "Wo du die Wörter wirklich benutzt, kommt der Rest von selbst.",
+    firstRoundTitle = "Deine erste Runde",
+    firstRoundRecognize = "Wenn Spross dir ein Wort zeigt, nimm dir einen Moment: Kommt es " +
+        "dir bekannt vor?",
+    firstRoundGrade = "Dann deckst du auf und sagst, wie gut du es wusstest. Ehrlich schlägt " +
+        "großzügig: Deine Antwort entscheidet, wann du das Wort wiedersiehst.",
+    firstRoundWrite = "Ein Wort, das du nicht wusstest, schreibst du einmal ab. Taucht es " +
+        "wieder auf, tippst du es aus dem Gedächtnis.",
     check = "Prüfen",
     reveal = "Aufdecken",
     next = "Weiter",
@@ -35,9 +48,9 @@ internal val ChromeDe = Chrome(
     otherWordNote = "Übrigens: %1\$s heißt „%2\$s“",
     answerPlaceholder = "Auf %s …",
     ratingQuestion = "Wie gut wusstest du es?",
-    coachRecall = "Nimm dir einen Moment, um dich zu erinnern — erzwing es nicht.",
+    coachRecognize = "Nimm dir einen Moment: Kommt es dir bekannt vor?",
     coachGrade = "Ehrlich antworten — das entscheidet, wann du es wiedersiehst.",
-    coachWrite = "Einmal schreiben, damit es sitzt.",
+    coachWrite = "Einmal abschreiben, damit es sitzt.",
     hard = "Wackelig",
     good = "Wusste ich",
     unknown = "Gar nicht",

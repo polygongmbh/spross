@@ -947,6 +947,22 @@
         }
       }
     },
+    "common.back" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurück"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
+    },
     "common.cancel" : {
       "localizations" : {
         "de" : {
@@ -3159,66 +3175,82 @@
         }
       }
     },
-    "onboarding.howItWorks.grade" : {
+    "onboarding.firstRound.grade" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dann deckst du auf und sagst, wie gut du es wusstest. Ehrlich schlägt großzügig: es entscheidet, wann das Wort wiederkommt."
+            "value" : "Dann deckst du auf und sagst, wie gut du es wusstest. Ehrlich schlägt großzügig: Deine Antwort entscheidet, wann du das Wort wiedersiehst."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Then you reveal, and say how well you knew it. Honest beats generous — it decides when you see the word again."
+            "value" : "Then you reveal and say how well you knew it. Honest beats generous: your answer decides when you see the word again."
           }
         }
       }
     },
-    "onboarding.howItWorks.recall" : {
+    "onboarding.firstRound.recognize" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Du siehst ein Wort. Nimm dir einen Moment, um dich zu erinnern — erzwing es nicht."
+            "value" : "Wenn Spross dir ein Wort zeigt, nimm dir einen Moment: Kommt es dir bekannt vor?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You see a word. Take a moment to try to remember it — don't force it."
+            "value" : "When Spross shows you a word, take a moment. Does it ring a bell?"
           }
         }
       }
     },
-    "onboarding.howItWorks.title" : {
+    "onboarding.firstRound.title" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "So läuft eine Runde"
+            "value" : "Deine erste Runde"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "How a round works"
+            "value" : "Your first round"
           }
         }
       }
     },
-    "onboarding.howItWorks.write" : {
+    "onboarding.firstRound.write" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein Wort, das du nicht wusstest, schreibst du einmal — und wenn es wiederkommt, tippst du es aus dem Gedächtnis."
+            "value" : "Ein Wort, das du nicht wusstest, schreibst du einmal ab. Taucht es wieder auf, tippst du es aus dem Gedächtnis."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A word you didn't know, you write once — and when it turns up again, you type it from memory."
+            "value" : "A word you didn't know gets written once. When it turns up again, you type it from memory."
+          }
+        }
+      }
+    },
+    "onboarding.languages.subtitle" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zuerst deine Sprachen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First, your languages."
           }
         }
       }
@@ -3255,22 +3287,6 @@
         }
       }
     },
-    "onboarding.subtitle" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deine Box wächst mit dir — jeden Tag ein paar neue Karten."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your box grows with you — a few new cards every day."
-          }
-        }
-      }
-    },
     "onboarding.target.question" : {
       "localizations" : {
         "de" : {
@@ -3292,13 +3308,125 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Willkommen bei Spross"
+            "value" : "Willkommen bei Spross!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Welcome to Spross"
+            "value" : "Welcome to Spross!"
+          }
+        }
+      }
+    },
+    "onboarding.why.breadth.body" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein paar neue Wörter am Tag, so verteilt, dass sie bleiben. Lieber viele Wörter ein bisschen kennen als wenige perfekt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A few new words a day, spaced so they stay. Better to know many words a little than a few perfectly."
+          }
+        }
+      }
+    },
+    "onboarding.why.breadth.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesät, nicht gepaukt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sown, not crammed"
+          }
+        }
+      }
+    },
+    "onboarding.why.companion.body" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spross ersetzt weder deinen Kurs noch deinen Sprachpartner. Zwischen den Gesprächen wächst dein Wortschatz weiter, damit du beim nächsten Mal mehr zu sagen hast."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spross doesn't replace your course or your language partner. Your vocabulary keeps growing between conversations, so you have more to say next time."
+          }
+        }
+      }
+    },
+    "onboarding.why.companion.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begleiter, kein Ersatz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A companion, not a replacement"
+          }
+        }
+      }
+    },
+    "onboarding.why.grammar.body" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spross bringt dir keine Grammatik bei, nur das Geschlecht der Wörter. Wo du die Wörter wirklich benutzt, kommt der Rest von selbst."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spross doesn't teach grammar, just the gender a word carries. Where you actually use the words, the rest takes care of itself."
+          }
+        }
+      }
+    },
+    "onboarding.why.grammar.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grammatik kommt vom Sprechen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grammar comes from speaking"
+          }
+        }
+      }
+    },
+    "onboarding.why.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wofür Spross da ist"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What Spross is for"
           }
         }
       }
@@ -3671,18 +3799,18 @@
         }
       }
     },
-    "session.coach.recall" : {
+    "session.coach.recognize" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nimm dir einen Moment, um dich zu erinnern — erzwing es nicht."
+            "value" : "Nimm dir einen Moment: Kommt es dir bekannt vor?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Take a moment to try to remember it — don't force it."
+            "value" : "Take a moment. Does it ring a bell?"
           }
         }
       }
@@ -3692,7 +3820,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einmal schreiben, damit es sitzt."
+            "value" : "Einmal abschreiben, damit es sitzt."
           }
         },
         "en" : {

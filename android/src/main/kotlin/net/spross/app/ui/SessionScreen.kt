@@ -269,7 +269,7 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     }
 
     if (model.coachActive) {
-        SessionCoach.recallLine(chrome, ui.role, revealed)?.let { PauseLine(it) }
+        SessionCoach.recognizeLine(chrome, ui.role, revealed)?.let { PauseLine(it) }
     }
     if (!revealed) {
         Button(

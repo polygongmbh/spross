@@ -18,16 +18,28 @@ internal val ChromeEn = Chrome(
     newLabel = "new",
     consolidatedLabel = "consolidated",
     freshLabel = "fresh",
-    chooseTitle = "Welcome to Spross",
+    chooseTitle = "Welcome to Spross!",
+    chooseSubtitle = "First, your languages.",
     iSpeak = "I speak",
     iLearn = "I'm learning",
     letsGo = "Let's go!",
-    howItWorksTitle = "How a round works",
-    howItWorksRecall = "You see a word. Take a moment to try to remember it — don't force it.",
-    howItWorksGrade = "Then you reveal, and say how well you knew it. Honest beats generous " +
-        "— it decides when you see the word again.",
-    howItWorksWrite = "A word you didn't know, you write once — and when it turns up again, " +
-        "you type it from memory.",
+    back = "Back",
+    whyTitle = "What Spross is for",
+    whyBreadthTitle = "Sown, not crammed",
+    whyBreadthBody = "A few new words a day, spaced so they stay. Better to know many words " +
+        "a little than a few perfectly.",
+    whyCompanionTitle = "A companion, not a replacement",
+    whyCompanionBody = "Spross doesn't replace your course or your language partner. Your " +
+        "vocabulary keeps growing between conversations, so you have more to say next time.",
+    whyGrammarTitle = "Grammar comes from speaking",
+    whyGrammarBody = "Spross doesn't teach grammar, just the gender a word carries. Where " +
+        "you actually use the words, the rest takes care of itself.",
+    firstRoundTitle = "Your first round",
+    firstRoundRecognize = "When Spross shows you a word, take a moment. Does it ring a bell?",
+    firstRoundGrade = "Then you reveal and say how well you knew it. Honest beats generous: " +
+        "your answer decides when you see the word again.",
+    firstRoundWrite = "A word you didn't know gets written once. When it turns up again, you " +
+        "type it from memory.",
     check = "Check",
     reveal = "Reveal",
     next = "Next",
@@ -36,7 +48,7 @@ internal val ChromeEn = Chrome(
     otherWordNote = "By the way: %1\$s means “%2\$s”",
     answerPlaceholder = "In %s …",
     ratingQuestion = "How well did you know it?",
-    coachRecall = "Take a moment to try to remember it — don't force it.",
+    coachRecognize = "Take a moment. Does it ring a bell?",
     coachGrade = "Answer honestly — it decides when you see it again.",
     coachWrite = "Write it once, so it sinks in.",
     hard = "Shaky",

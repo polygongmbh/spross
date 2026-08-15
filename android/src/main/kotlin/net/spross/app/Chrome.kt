@@ -23,14 +23,25 @@ data class Chrome(
     val consolidatedLabel: String,
     val freshLabel: String,
     val chooseTitle: String,
+    val chooseSubtitle: String,    // what the first page asks for, under the welcome
     val iSpeak: String,
     val iLearn: String,
     val letsGo: String,
-    /** The picker's second page: what a round asks of you, before the first one runs. */
-    val howItWorksTitle: String,
-    val howItWorksRecall: String,
-    val howItWorksGrade: String,
-    val howItWorksWrite: String,
+    /** The way back out of a page, wherever a flow has one behind it. */
+    val back: String,
+    /** What Spross is for, said once before the first round asks anything of you. */
+    val whyTitle: String,
+    val whyBreadthTitle: String,
+    val whyBreadthBody: String,
+    val whyCompanionTitle: String,
+    val whyCompanionBody: String,
+    val whyGrammarTitle: String,
+    val whyGrammarBody: String,
+    /** What a round asks of you, before the first one runs. */
+    val firstRoundTitle: String,
+    val firstRoundRecognize: String,
+    val firstRoundGrade: String,
+    val firstRoundWrite: String,
     val check: String,
     val reveal: String,
     val next: String,
@@ -41,7 +52,7 @@ data class Chrome(
     /** The question the three verdicts answer, standing under them. */
     val ratingQuestion: String,
     /** The three the FIRST round teaches itself with, one per moment ([SessionCoach]). */
-    val coachRecall: String,
+    val coachRecognize: String,
     val coachGrade: String,
     val coachWrite: String,
     val hard: String,

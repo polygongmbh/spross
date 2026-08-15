@@ -15,13 +15,13 @@ import SprossKern
 /// so an app killed mid-round comes back without the lines; spending it is `closeSession`'s.
 enum SessionCoach {
 
-    /// The line the prompt owes — the recall this presentation is asking for.
+    /// The line the prompt owes — the recognition this presentation is asking for.
     /// Recognition only, and only while the answer is still hidden: produce says what it
     /// wants with a field and a keyboard, and a revealed card is past the moment this
     /// describes.
-    static func recallLine(role: PresentationRole, revealed: Bool) -> LocalizedStringKey? {
+    static func recognizeLine(role: PresentationRole, revealed: Bool) -> LocalizedStringKey? {
         guard role == .recognize, !revealed else { return nil }
-        return "session.coach.recall"
+        return "session.coach.recognize"
     }
 
     /// What stands under the self-grade row. It REPLACES the standing question rather

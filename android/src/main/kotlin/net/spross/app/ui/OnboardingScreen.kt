@@ -1,17 +1,18 @@
 package net.spross.app.ui
 
+import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
@@ -32,10 +33,23 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.kern.catalog.LanguageChoices
 
+/** The three pages of the first run, in the order they are walked. */
+private enum class Page { Languages, Why, FirstRound }
+
+/** Long enough to read as a page turn, short enough that the tap still feels answered — iOS's. */
+private const val PAGE_FADE_MS = 200
+
 /**
- * First-launch picker — iOS OnboardingView parity: chrome is ENGLISH (it renders before
- * the user's language is known), rows are "🇩🇪 German", and neither side hides the other's
- * pick — choosing it swaps the two selections ([LanguageChoices]).
+ * First launch, in three pages: the pair, what Spross is for ([PrinciplesPage]),
+ * and what a round asks of you ([FirstRoundPage]).
+ * Only the last one commits — the two before it merely turn the page —
+ * so the box is joined once, behind something worth reading.
+ *
+ * Chrome speaks the language being picked: the device language greets first
+ * (it seeds the source pick), and every later tap re-renders in that pick —
+ * English for a source we have no chrome for yet.
+ * Coverage-driven: sources are languages with at least one learnable target, and neither
+ * side hides the other's pick — choosing it swaps the two selections ([LanguageChoices]).
  *
  * It is reached once, on a device with no profile yet: a learner who wants another pair
  * later changes it in the box's own settings, where the pickers stand beside everything
@@ -46,12 +60,9 @@ import net.spross.kern.catalog.LanguageChoices
  * pick answers its own question — so choosing a source hands the screen to the target.
  * The known side opens folded, the device language being a good guess already.
  */
-private enum class Page { Languages, HowItWorks }
-
 @Composable
 fun OnboardingScreen(model: AppModel) {
     val catalog = model.catalog ?: return
-    val chrome = remember { Chrome.forSource("en") }
     val initialSource = model.defaultSource(catalog)
     var page by rememberSaveable { mutableStateOf(Page.Languages) }
     var source by rememberSaveable { mutableStateOf(initialSource) }
@@ -59,6 +70,11 @@ fun OnboardingScreen(model: AppModel) {
         mutableStateOf(catalog.availableTargets(initialSource).firstOrNull()?.code)
     }
     var pickingSource by rememberSaveable { mutableStateOf(false) }
+    // Plain remember: a restored `true` would outlive the model's coroutine and leave a
+    // spinner nothing ever resolves. Rotation keeps the activity (`configChanges`), so
+    // the only way back here is process death, where the join is gone anyway.
+    var starting by remember { mutableStateOf(false) }
+    val chrome = remember(source) { Chrome.forSource(source) }
     val choices = remember(catalog, source, target) {
         LanguageChoices.targetChoices(catalog, LanguageChoices.Selection(source, target))
     }
@@ -70,88 +86,82 @@ fun OnboardingScreen(model: AppModel) {
 
     val label: (String) -> String = { LanguageChoices.pickerRow(it, catalog.languages[it]) }
 
-    if (page == Page.HowItWorks) {
-        HowItWorksPage(model, source) {
-            target?.let { model.completeOnboarding(source, it, thenPractice = true) }
-        }
-        return
+    // why: without a handler, back on a reading page finishes the activity and throws the
+    // language pick away. Page one keeps the default — leaving a first-run screen with no
+    // profile is what back means there.
+    BackHandler(enabled = page != Page.Languages) {
+        page = if (page == Page.FirstRound) Page.Why else Page.Languages
     }
 
-    // why: one list open at a time keeps the picker on one screen — the scroll is the
-    // reachability floor for a large font scale, never a step of the flow.
-    Column(
-        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
-            .padding(horizontal = 24.dp, vertical = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        Text(chrome.chooseTitle, style = MaterialTheme.typography.headlineSmall)
+    AnimatedContent(
+        targetState = page,
+        // why: `using null` drops the default size transform — the three pages differ in
+        // height, and animating the container drags the button up the screen mid-fade.
+        transitionSpec = {
+            fadeIn(tween(PAGE_FADE_MS)) togetherWith fadeOut(tween(PAGE_FADE_MS)) using null
+        },
+        label = "onboarding",
+    ) { current ->
+        when (current) {
+            Page.Languages -> OnboardingStoryPage {
+                OnboardingHero("👋", chrome.chooseTitle, chrome.chooseSubtitle)
 
-        PickerSection(
-            heading = chrome.iSpeak,
-            open = pickingSource,
-            options = catalog.coveredSources(),
-            selected = source,
-            chrome = chrome,
-            label = label,
-            onOpen = { pickingSource = true },
-        ) { code ->
-            apply(LanguageChoices.pickSource(catalog, LanguageChoices.Selection(source, target), code))
-            pickingSource = false
-        }
+                PickerSection(
+                    heading = chrome.iSpeak,
+                    open = pickingSource,
+                    options = catalog.coveredSources(),
+                    selected = source,
+                    chrome = chrome,
+                    label = label,
+                    onOpen = { pickingSource = true },
+                ) { code ->
+                    apply(
+                        LanguageChoices.pickSource(
+                            catalog,
+                            LanguageChoices.Selection(source, target),
+                            code,
+                        ),
+                    )
+                    pickingSource = false
+                }
 
-        PickerSection(
-            heading = chrome.iLearn,
-            open = !pickingSource,
-            options = choices,
-            selected = target,
-            chrome = chrome,
-            label = label,
-            onOpen = { pickingSource = false },
-        ) { code ->
-            apply(LanguageChoices.pickTarget(LanguageChoices.Selection(source, target), code))
-        }
+                PickerSection(
+                    heading = chrome.iLearn,
+                    open = !pickingSource,
+                    options = choices,
+                    selected = target,
+                    chrome = chrome,
+                    label = label,
+                    onOpen = { pickingSource = false },
+                ) { code ->
+                    val picked = LanguageChoices.Selection(source, target)
+                    apply(LanguageChoices.pickTarget(picked, code))
+                }
 
-        Button(
-            onClick = { if (target != null) page = Page.HowItWorks },
-            enabled = target != null,
-            modifier = Modifier.fillMaxWidth().pressSpring(),
-            shape = MaterialTheme.shapes.small,
-        ) {
-            Text(chrome.next)
-        }
-    }
-}
+                OnboardingPrimary(chrome.next, enabled = target != null) {
+                    if (target != null) page = Page.Why
+                }
+            }
 
-/**
- * The picker's second page: what a round asks of you, before the first one starts.
- *
- * It stands BETWEEN the pick and the box being built, which is the only place it can —
- * activating the profile leaves this screen for Heute — and reading it covers the join,
- * so the wait for a first box is spent on something.
- *
- * Three lines, in the order the learner will meet them: recall, grade, write. Nothing
- * about scheduling — the one job here is that a blank card is not a test you can fail.
- * By this page the known language IS picked, so unlike the picker it speaks it.
- */
-@Composable
-private fun HowItWorksPage(model: AppModel, source: String, onStart: () -> Unit) {
-    val chrome = remember(source) { Chrome.forSource(source) }
-    Column(
-        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
-            .padding(horizontal = 24.dp, vertical = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-    ) {
-        Text("🌱", style = MaterialTheme.typography.displaySmall)
-        Text(chrome.howItWorksTitle, style = MaterialTheme.typography.headlineSmall)
-        Text(chrome.howItWorksRecall, style = MaterialTheme.typography.bodyLarge)
-        Text(chrome.howItWorksGrade, style = MaterialTheme.typography.bodyLarge)
-        Text(chrome.howItWorksWrite, style = MaterialTheme.typography.bodyLarge)
-        Button(
-            onClick = onStart,
-            modifier = Modifier.fillMaxWidth().pressSpring(),
-            shape = MaterialTheme.shapes.small,
-        ) {
-            Text(chrome.letsGo)
+            Page.Why -> PrinciplesPage(
+                chrome = chrome,
+                onNext = { page = Page.FirstRound },
+                onBack = { page = Page.Languages },
+            )
+
+            Page.FirstRound -> FirstRoundPage(
+                chrome = chrome,
+                busy = starting,
+                onStart = {
+                    // why: the join activates the profile and raises the first round, both
+                    // off this screen — the spinner stands in until that screen arrives.
+                    target?.let {
+                        starting = true
+                        model.completeOnboarding(source, it, thenPractice = true)
+                    }
+                },
+                onBack = { page = Page.Why },
+            )
         }
     }
 }
@@ -171,7 +181,7 @@ private fun PickerSection(
     onOpen: () -> Unit,
     onPick: (String) -> Unit,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
         Text(heading, style = MaterialTheme.typography.titleSmall)
         if (open) {
             options.forEach { code ->

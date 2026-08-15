@@ -168,7 +168,7 @@ struct SessionView: View, LanguageNaming {
                     .transition(reduceMotion ? .opacity : .dlCardFlip)
                 }
                 if model.coachActive,
-                   let line = SessionCoach.recallLine(role: role, revealed: revealed) {
+                   let line = SessionCoach.recognizeLine(role: role, revealed: revealed) {
                     Text(line).dlPauseLine()
                 }
                 controls(card, role: role)

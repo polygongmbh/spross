@@ -53,12 +53,13 @@ Strict dependency direction: App → SprossKern, never the reverse.
   and closing the round spends them. The flag arms with the round onboarding opens —
   never ahead of one nothing can open — and lives in memory,
   so an app killed mid-round comes back to a quiet screen.
-- Onboarding is two pages, and ends INSIDE the first round: the pair, then what a round
-  asks of you, and the button on that second page joins the box and opens the session.
-  Only the second page commits, so the join happens once, behind something worth reading;
+- Onboarding is three pages, and ends INSIDE the first round: the pair, what the box is for,
+  then what a round asks of you — and the button on the last page joins the box
+  and opens the session. Only that page commits, so the join happens once,
+  behind something worth reading, and every page before it is free to go back from;
   the first round is never something the learner has to go and find on Heute.
   It is the first-run path alone — a later language change is the box's own settings,
-  which take neither page and open no session over the screen you were on.
+  which take none of the pages and open no session over the screen you were on.
 - One list is open at a time; the other stands folded on its pick and opens at a tap,
   and picking a source hands the screen to the target. Onboarding opens with the known
   side folded — the device language is a good guess already — so the picker is one

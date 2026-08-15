@@ -17,11 +17,14 @@
   mistype. Where a slip really is a slip, the spelling offered back is the form
   you were closest to.
 
-- **Choosing your two languages now leads straight into your first round**, past a
-  page that says what a round asks of you: look at the word and give it a moment,
-  reveal, say how well you knew it, and write once the ones you didn't.
-  That first round then says each of those where it applies, and goes quiet after
-  a few cards.
+- **Choosing your two languages now opens a short journey that ends inside your first
+  round.** Before the box is built you get to read what Spross is for — breadth over
+  mastery, a companion to your course rather than a replacement, no grammar past the
+  gender a word carries — and what a round will ask of you: look at the word and give
+  it a moment, reveal, say how well you knew it, and write once the ones you didn't.
+  Nothing is settled until the last page, and you can step back to change your pick.
+  That first round then coaches each of those where it applies, from its first card
+  to its last.
 
 - **The grading row asks a question and takes a plain answer.** After a reveal it
   says "How well did you know it?", and the three buttons answer in words —

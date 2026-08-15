@@ -20,11 +20,11 @@ import net.spross.kern.model.PresentationRole
 object SessionCoach {
 
     /**
-     * The line the prompt owes — the recall this presentation is asking for.
+     * The line the prompt owes — the recognition this presentation is asking for.
      * Recognition only, and only while the answer is still hidden: produce says what it
      * wants with a field and a keyboard, and a revealed card is past the moment this
      * describes.
      */
-    fun recallLine(chrome: Chrome, role: PresentationRole?, revealed: Boolean): String? =
-        if (role == PresentationRole.Recognize && !revealed) chrome.coachRecall else null
+    fun recognizeLine(chrome: Chrome, role: PresentationRole?, revealed: Boolean): String? =
+        if (role == PresentationRole.Recognize && !revealed) chrome.coachRecognize else null
 }

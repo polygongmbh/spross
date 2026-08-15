@@ -15,22 +15,26 @@ import SprossKern
 /// its own question — so choosing a source hands the screen to the target.
 /// The known side opens folded, the device language being a good guess already.
 ///
-/// Two pages: the pair, then what a round asks of you
-/// (`OnboardingView+HowItWorks.swift`). Only the second one commits — the first
-/// merely turns the page — so the box is joined once, behind something worth reading.
+/// Three pages: the pair, what the box is for, then what a round asks of you
+/// (`OnboardingView+Story.swift`). Only the last one commits — the two before it
+/// merely turn the page — so the box is joined once, behind something worth reading,
+/// and the pair stays reachable through the way back the story pages carry.
 /// This view is the FIRST-RUN path alone (`RootView` binds it to `phase == .onboarding`);
-/// a later language change is the box's own settings, and takes neither page.
+/// a later language change is the box's own settings, and takes none of the pages.
 struct OnboardingView: View {
     let model: AppModel
 
-    enum Page { case languages, howItWorks }
+    enum Page { case languages, why, firstRound }
 
     @State private var source: String
     @State private var target: String?
     @State private var pickingSource = false
-    @State private var starting = false
-    // why: internal, not private — the second page lives in an extension of its own.
+    // why: internal, not private — the story pages live in an extension of their own.
+    @State var starting = false
     @State var page: Page = .languages
+
+    /// The head of the shared scroll, so a page turn opens on the new page's first line.
+    private let topAnchor = "onboarding.top"
 
     init(model: AppModel) {
         self.model = model
@@ -55,37 +59,48 @@ struct OnboardingView: View {
     }
 
     var body: some View {
-        ScrollView {
-            Group {
-                switch page {
-                case .languages:
-                    VStack(alignment: .leading, spacing: DL.Space.l) {
-                        header
-                        sourceSection
-                        targetSection
-                        nextButton
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    Color.clear.frame(height: 0).id(topAnchor)
+                    Group {
+                        switch page {
+                        case .languages: languagesPage
+                        case .why: whyPage
+                        case .firstRound: firstRoundPage
+                        }
                     }
-                case .howItWorks:
-                    howItWorksPage
                 }
+                .padding(DL.Space.l)
             }
-            .padding(DL.Space.l)
+            .scrollBounceBehavior(.basedOnSize)
+            // why: a page turn from a scrolled picker to a shorter page — the offset
+            // it kept would open that page mid-sentence at large Dynamic Type.
+            .onChange(of: page) { _, _ in proxy.scrollTo(topAnchor, anchor: .top) }
         }
-        .scrollBounceBehavior(.basedOnSize)
         .background(Color.dlBackground.ignoresSafeArea())
+        // why: the OUTERMOST view, above the switch — inside a branch, the story pages
+        // would fall back to the persisted profile's locale, empty on a first run.
         .environment(\.locale, AppModel.chromeLocale(source: source))
     }
 
-    private var header: some View {
-        VStack(alignment: .leading, spacing: DL.Space.xs) {
-            Text(verbatim: "👋")
-                .font(.system(size: 44))
-            Text("onboarding.welcome")
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextPrimary)
-            Text("onboarding.subtitle")
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlTextSecondary)
+    // why: internal, not private — the story pages turn to their neighbors themselves.
+    func turn(to next: Page) {
+        withAnimation(.easeInOut(duration: 0.2)) { page = next }
+    }
+
+    // MARK: - The pair
+
+    /// The picker keeps its own rhythm: a leading-aligned form under a centered hero,
+    /// which is why it takes the hero alone and not the story pages' scaffold.
+    private var languagesPage: some View {
+        VStack(alignment: .leading, spacing: DL.Space.l) {
+            OnboardingHero(emoji: "👋",
+                           title: "onboarding.welcome",
+                           subtitle: "onboarding.languages.subtitle")
+            sourceSection
+            targetSection
+            nextButton
         }
     }
 
@@ -162,7 +177,7 @@ struct OnboardingView: View {
     private var nextButton: some View {
         Button {
             guard target != nil else { return }
-            withAnimation(.easeInOut(duration: 0.2)) { page = .howItWorks }
+            turn(to: .why)
         } label: {
             Text("common.next")
                 .frame(maxWidth: .infinity)
@@ -172,29 +187,15 @@ struct OnboardingView: View {
         .padding(.top, DL.Space.l)
     }
 
-    /// The one button that commits: it joins the box AND opens the round it was
+    /// The one action that commits: it joins the box AND opens the round it was
     /// picked for, so the spinner covers the join rather than a blank screen.
     // why: internal, not private — the page it sits on is an extension of its own.
-    @ViewBuilder
-    var startButton: some View {
-        Button {
-            guard !starting, let target else { return }
-            starting = true
-            Task {
-                await model.completeOnboarding(source: source, target: target)
-            }
-        } label: {
-            Group {
-                if starting {
-                    ProgressView().tint(.white)
-                } else {
-                    Text("onboarding.start")
-                }
-            }
-            .frame(maxWidth: .infinity)
+    func start() {
+        guard !starting, let target else { return }
+        starting = true
+        Task {
+            await model.completeOnboarding(source: source, target: target)
         }
-        .buttonStyle(DLPrimaryButtonStyle())
-        .padding(.top, DL.Space.l)
     }
 }
 
