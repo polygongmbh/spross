@@ -272,6 +272,10 @@ Realization fields — only `text` is required:
   Keep a note only if it changes what the learner would say or do; pure etymology
   ("wörtl. …") is cut. Load-bearing teaching (e.g. which word for "rice") is
   destined to become first-class training content, not a permanent note.
+  A note explains its own word and no other: what OTHER words do belongs on none
+  of them, and a rule holding across a language sits on the one realization that
+  teaches it rather than being restated per card. Where the rule is what the
+  learner has to practice, a phrase that exercises it beats every wording of it.
 
 ## Audio (`catalog/audio/`)
 

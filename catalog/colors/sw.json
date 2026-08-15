@@ -5,10 +5,7 @@
   "color": { "text": "rangi", "grammar": { "plural": "=" } },
   "white": {
    "text": "-eupe",
-   "variants": ["nyeupe", "mweupe", "weupe", "cheupe", "vyeupe", "jeupe", "meupe", "myeupe"],
-   "notes": {
-    "de": "Farbstämme mit Bindestrich nehmen die Klassenvorsilbe: shati jeupe, nyanya nyekundu, mtu mweusi · kijani, buluu, njano, kahawia, kijivu und zambarau bleiben unverändert."
-   }
+   "variants": ["nyeupe", "mweupe", "weupe", "cheupe", "vyeupe", "jeupe", "meupe", "myeupe"]
   },
   "black": {
    "text": "-eusi",
