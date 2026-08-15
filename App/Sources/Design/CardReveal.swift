@@ -27,6 +27,10 @@ struct DLCardReveal<Content: View>: View {
                     .italic()
                     .foregroundStyle(Color.dlTextSecondary)
                     .multilineTextAlignment(.center)
+                    // why: the card's emoji slots are fixed points and do not
+                    // grow with the type size, so a note left to report its own
+                    // ideal width can push the row past the card it is drawn on.
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
     }
