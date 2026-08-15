@@ -181,6 +181,7 @@ class AnswerNormalizer(
 
         var best: Match = Match.Wrong
         var bestForm: String? = null
+        var bestDistance = Int.MAX_VALUE
         for (form in accepted) {
             // why: with leniency off a wrong or missing leading article must
             // grade Wrong — the form is out entirely, so the typo budget can
@@ -195,7 +196,15 @@ class AnswerNormalizer(
                 break
             }
             for (candidate in candidates) {
-                if (inputVariants.any { withinBudget(it, candidate) }) {
+                for (variant in inputVariants) {
+                    if (!withinBudget(variant, candidate)) continue
+                    // why: the NEAREST accepted form is the correction, not the last one
+                    // inside budget — sw `white` carries eight stems, and a slip at
+                    // "nyeupe" was corrected to "myeupe" purely by authoring order.
+                    // A tie keeps the earlier form, so a card's own text leads its variants.
+                    val distance = damerauLevenshtein(variant, candidate)
+                    if (distance >= bestDistance) continue
+                    bestDistance = distance
                     // Reveal always shows the catalog spelling of the matched form.
                     best = Match.Typo(corrected = form)
                     bestForm = form

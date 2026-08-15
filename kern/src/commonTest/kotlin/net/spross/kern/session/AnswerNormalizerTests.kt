@@ -117,6 +117,23 @@ class AnswerNormalizerTests {
         assertEquals(Match.Typo("Der Kühlschrank ist leer."), de.evaluate("Der Külschrenk ist ler.", leer))
     }
 
+    /**
+     * With several accepted forms inside the budget the correction is the one the
+     * answer came nearest, never the one authored last: sw `white` carries eight
+     * stems, so a one-slip attempt at "nyeupe" was corrected to "myeupe".
+     */
+    @Test
+    fun theCorrectionNamesTheNearestAcceptedForm() {
+        val fridge = card("de", "Gefrierschrank")
+        val plural = fridge.copy(target = fridge.target.copy(variants = listOf("Gefrierschränke")))
+        // One slip from the card's own text, two from the later form — both accepted.
+        assertEquals(Match.Typo("Gefrierschrank"), de.evaluate("Gefrierschrenk", plural))
+        // Equally near: the form the card leads with, not the one authored last.
+        val white = card("sw", "nyeupe")
+        val stems = white.copy(target = white.target.copy(variants = listOf("cheupe", "myeupe")))
+        assertEquals(Match.Typo("nyeupe"), sw.evaluate("kyeupe", stems))
+    }
+
     @Test
     fun esszettFoldsToDoubleSIndependentOfTypoBudget() {
         assertEquals(Match.Exact, de.evaluate("heissen", card("de", "heißen", kind = CardKind.Verb)))
