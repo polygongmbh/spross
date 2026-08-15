@@ -176,11 +176,31 @@ private object UkrainianPack : TrainerLanguagePack {
     override val decimalMark = ','
 }
 
-/** The registry: de/en/es/sw/uk authored, insertion order is presentation order. */
+private object ItalianPack : TrainerLanguagePack {
+    override fun number(n: Long) = ItalianNumbers.variants(n)
+    override fun year(y: Long): YearReading {
+        // Italian reads a year as the plain cardinal — there is no "dix-neuf cent" here.
+        val cardinal = ItalianNumbers.cardinal(y)
+        return YearReading(cardinal, listOf(cardinal))
+    }
+    override fun clock(hour: Int, minute: Int) = ItalianClock.task(hour, minute)
+    override val placeValues = listOf(
+        "dieci", "cento", "mille", "diecimila", "centomila",
+        "milione", "dieci milioni", "cento milioni", "miliardo",
+    )
+    override val clockDayParts: Set<String> =
+        (0..23).flatMapTo(mutableSetOf(), ItalianClockForms::dayParts)
+    override fun formReading(value: NumberValue) = ItalianForms.reading(value)
+    override val formLimits = ItalianForms.LIMITS
+    override val decimalMark = ','
+}
+
+/** The registry: de/en/es/sw/uk/it authored, insertion order is presentation order. */
 internal val trainerPacks: Map<Language, TrainerLanguagePack> = linkedMapOf(
     "de" to GermanPack,
     "en" to EnglishPack,
     "es" to SpanishPack,
     "sw" to SwahiliPack,
     "uk" to UkrainianPack,
+    "it" to ItalianPack,
 )

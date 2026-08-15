@@ -57,6 +57,15 @@ class TrainerFormsTypoBridgeGuardTests {
     }
 
     @Test
+    fun italianFormsBridgeOnlyTheKnownTwentiethHundredthPairs() {
+        val known = sweep("it")
+        assertEquals(
+            listOf("\"ventesimo\" ↔ \"centesimo\"", "\"ventesima\" ↔ \"centesima\""),
+            known,
+        )
+    }
+
+    @Test
     fun swahiliFormsBridgeOnlyTheKnownFourEightPairs() {
         val known = sweep("sw")
         assertEquals(882, known.size, "expected the nne ↔ nane pairs, got ${known.size}")
@@ -124,6 +133,9 @@ class TrainerFormsTypoBridgeGuardTests {
          *   a fraction plural. It needs BOTH entries and bridges on neither alone.
          * - **es** — "un décimo" (1/10) ↔ "undécimo" (11.), the language's own space-only
          *   minimal pair, and the one entry a word-by-word comparison cannot express.
+         * - **it** — the ventotto/centotto twin of the cardinals wearing the ordinal
+         *   suffix: `venti` and `cento` differ in their first letter, and `-esimo` welds
+         *   onto both the same way, in the masculine and in the feminine alike.
          */
         val FORM_BRIDGES = TypoBridgeSweep.KNOWN_BRIDGES + listOf(
             setOf("девята", "десята"),
@@ -132,6 +144,8 @@ class TrainerFormsTypoBridgeGuardTests {
             setOf("девятих", "десятих"),
             setOf("ninths", "ninth"),
             setOf("un décimo", "undécimo"),
+            setOf("ventesimo", "centesimo"),
+            setOf("ventesima", "centesima"),
         )
 
         /** One or two digits, never all zeros — the ladder repairs that draw. */

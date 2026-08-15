@@ -50,7 +50,7 @@ data class TrainerTask(
 /**
  * Procedural slot trainers (numbers, years, clock times). Pure generators —
  * Kern never self-randomizes; sampling takes an injected [Random].
- * Languages come from the pack registry (de/en/es/sw/uk authored; anything
+ * Languages come from the pack registry (de/en/es/sw/uk/it authored; anything
  * else is absent and the app hides the trainer hub).
  */
 object Trainer {

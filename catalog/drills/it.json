@@ -1,0 +1,94 @@
+{
+ "numberNotes": {
+  "de": [
+   "Alles unter einer Million ist ein einziges Wort: centoventitré, millenovecentosettantotto.",
+   "Vor uno und otto verliert der Zehner seinen Vokal: ventuno, ventotto, quarantotto.",
+   "Endet ein zusammengesetztes Wort auf tre, trägt es den Akzent: ventitré, centotré — tre und tredici dagegen nicht.",
+   "cento bleibt unverändert (duecento), mille wird zu -mila (duemila), und un steht vor keinem von beiden."
+  ],
+  "en": [
+   "Everything below a million is a single word: centoventitré, millenovecentosettantotto.",
+   "Before uno and otto the ten drops its own vowel: ventuno, ventotto, quarantotto.",
+   "A compound ending in tre carries the accent: ventitré, centotré — plain tre and tredici do not.",
+   "cento never changes (duecento), mille turns into -mila (duemila), and neither takes un in front."
+  ]
+ },
+ "frames": {
+  "it-is-now": {
+   "text": "Adesso {slot}.",
+   "notes": {
+    "de": "Die italienische Uhrzeit ist ein ganzes Prädikat („sono le due e mezza“), daher ein Prädikatrahmen ohne „alle“.",
+    "en": "An Italian time is a whole predicate („sono le due e mezza“), so this is a predicate frame and carries no „alle“."
+   }
+  },
+  "alarm-clock-shows": {
+   "text": "La sveglia dice che {slot}.",
+   "notes": {
+    "de": "wörtl.: „Der Wecker sagt, dass …“ — die Uhrzeit bringt ihre eigene Kopula mit",
+    "en": "literally „The alarm clock says that …“ — the time brings its own copula."
+   }
+  },
+  "we-have-n-plates": {
+   "text": "Abbiamo {slot} piatti."
+  },
+  "i-have-n-notebooks": {
+   "text": "Ho {slot} taccuini."
+  },
+  "we-have-n-chairs": {
+   "text": "Abbiamo {slot} sedie."
+  },
+  "i-have-n-keys": {
+   "text": "Ho {slot} chiavi."
+  },
+  "it-costs-n-euros": {
+   "text": "Costa {slot} euro.",
+   "notes": {
+    "de": "euro bleibt im Plural unverändert: venti euro, nicht „euri“",
+    "en": "euro never inflects: venti euro, never „euri“."
+   }
+  },
+  "repeat-please": {
+   "text": "Ripeti, per favore: {slot}.",
+   "variants": [
+    "Ripeta, per favore: {slot}."
+   ]
+  },
+  "write-please": {
+   "text": "Scrivi, per favore: {slot}.",
+   "variants": [
+    "Scriva, per favore: {slot}."
+   ]
+  },
+  "learning-since-year": {
+   "text": "Imparo {language-learn} dal {slot}.",
+   "variants": [
+    "Studio {language-learn} dal {slot}."
+   ],
+   "notes": {
+    "de": "Jahreszahl als Kardinalzahl gelesen: „dal millenovecentosettantotto“",
+    "en": "The year is read as a plain cardinal: „dal millenovecentosettantotto“."
+   }
+  },
+  "repeat-the-year": {
+   "text": "Ripeti, per favore, la data: {slot}.",
+   "variants": [
+    "Ripeta, per favore, la data: {slot}.",
+    "Ripeti, per favore: {slot}."
+   ]
+  },
+  "write-the-year": {
+   "text": "Scrivi, per favore, la data: {slot}.",
+   "variants": [
+    "Scriva, per favore, la data: {slot}.",
+    "Scrivi, per favore: {slot}."
+   ]
+  },
+  "i-need-n-kilo-of-flour": {
+   "text": "Ho bisogno di {slot} di chilo di farina.",
+   "notes": {
+    "de": "„avere bisogno di“ regiert die Menge, statt „mi serve/mi servono“, das sich nach ihr richten müsste.",
+    "en": "„avere bisogno di“ governs the quantity, unlike „mi serve/mi servono“, which would have to agree with it."
+   }
+  }
+ }
+}

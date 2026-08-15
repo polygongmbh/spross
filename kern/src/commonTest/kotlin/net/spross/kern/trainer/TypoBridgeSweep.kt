@@ -41,7 +41,9 @@ internal object TypoBridgeSweep {
      * - uk `дев'ять` (9) ↔ `десять` (10), one substitution once the apostrophe
      *   is deleted by the comparison pipeline;
      * - en `eight` (8) ↔ `eighty` (80), one insertion;
-     * - es `sesenta` (60) ↔ `setenta` (70), one deletion.
+     * - es `sesenta` (60) ↔ `setenta` (70), one deletion;
+     * - it `ventotto` (28) ↔ `centotto` (108), one substitution — two elisions of the
+     *   same `otto` onto tens and hundreds that differ in their first letter alone.
      * Every compound built on one of them bridges too ("kumi na nne" ↔ "kumi na nane",
      * "sesenta y uno" ↔ "setenta y uno"), which is what [isKnownBridge] recognizes.
      */
@@ -50,6 +52,7 @@ internal object TypoBridgeSweep {
         setOf("девять", "десять"),
         setOf("eight", "eighty"),
         setOf("sesenta", "setenta"),
+        setOf("ventotto", "centotto"),
     )
 
     /**

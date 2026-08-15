@@ -505,6 +505,10 @@ and editing one never restamps a learner's box.
 - Ukrainian time-at ("о + Lokativ") does NOT compose with the nominative clock readings
   the trainer generates, so Ukrainian clock frames are predicate frames
   ("Зараз …", "На будильнику …") — fewer, but correct.
+- Italian time-at contracts the preposition with the hour's article
+  ("alle due" but "all'una"), and a frame cannot know which of the two a draw will need,
+  so Italian clock frames are predicate frames too
+  ("Adesso …", "La sveglia dice che …") — the reading brings its own copula.
 - Ukrainian year frames would need ordinal and case forms the trainer does not produce,
   so they use dictation framing, where the bare cardinal reading is natural.
 - Ukrainian counted nouns must be **masculine**,
@@ -513,8 +517,11 @@ and editing one never restamps a learner's box.
 - A `fraction` frame must read naturally with EVERY fraction the language can draw,
   which is what decides its shape per language:
   German puts the noun straight against the measure ("Ich brauche ein Viertel Kilo Mehl."),
-  while English and Spanish need the partitive ("three quarters **of a** kilo of flour",
-  "un tercio **de** kilo de harina") — "one quarter kilo" is not what a recipe says.
+  while English, Spanish and Italian need the partitive ("three quarters **of a** kilo of flour",
+  "un tercio **de** kilo de harina", "un quarto **di** chilo di farina") —
+  "one quarter kilo" is not what a recipe says.
+  The frame's VERB must not agree with the drawn fraction either:
+  Italian's "mi serve/mi servono" would, so its frame is built on "Ho bisogno di …".
 
 Every non-slot content word on the answer side is verified against the card join
 (`PhraseVocabAuditTests`); only documented function words go beyond it.

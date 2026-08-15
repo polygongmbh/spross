@@ -112,15 +112,16 @@ class NumberReferenceTests {
      * The band a language only gets when it needs it: 16–30 is shown where the language
      * does not simply combine what the bands above it already spell out, and nowhere
      * else. es welds the whole run, de clips two teen stems (sechzehn, siebzehn), uk
-     * drops the soft sign (шість → шістнадцять); en and sw compose the band from parts
-     * a learner has already read, and are spared fifteen rows that teach nothing.
+     * drops the soft sign (шість → шістнадцять), it turns the seam around at sixteen
+     * (sedici against diciassette); en and sw compose the band from parts a learner has
+     * already read, and are spared fifteen rows that teach nothing.
      */
     @Test
     fun theIrregularBandIsOfferedOnlyWhereTheLanguageIsIrregular() {
         val shown = Trainer.languages.filter { language ->
             Trainer.reference(language).any { it.key == "irregulars" }
         }
-        assertEquals(listOf("de", "es", "uk"), shown.sorted())
+        assertEquals(listOf("de", "es", "it", "uk"), shown.sorted())
         val es = Trainer.reference("es").first { it.key == "irregulars" }.entries
         assertEquals("dieciséis", es.first().reading)
         assertEquals("veintiséis", es.first { it.value == "26" }.reading)
@@ -172,6 +173,7 @@ class NumberReferenceTests {
             "de" to listOf("minus", "Komma", "Prozent", "mal", "ein halb", "erste"),
             "en" to listOf("minus", "point", "percent", "times", "half", "first"),
             "es" to listOf("menos", "coma", "por ciento", "veces", "un medio", "primero"),
+            "it" to listOf("meno", "virgola", "per cento", "volte", "un mezzo", "primo"),
             "sw" to listOf("hasi", "nukta", "asilimia", "mara", "nusu", null),
             "uk" to listOf("мінус", "цілих десятих", "відсотків", "рази", "одна друга", "перший"),
         )

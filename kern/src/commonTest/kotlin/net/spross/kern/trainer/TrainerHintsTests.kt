@@ -30,12 +30,15 @@ class TrainerHintsTests {
         assertEquals("billion", Trainer.placeValueHint(10, "en"))
         // Spanish counts 10^9 as "mil millones" — no short-scale billion.
         assertEquals("mil millones", Trainer.placeValueHint(10, "es"))
+        // Italian does have one, and calls it miliardo.
+        assertEquals("miliardo", Trainer.placeValueHint(10, "it"))
+        assertEquals("diecimila", Trainer.placeValueHint(5, "it"))
     }
 
     @Test
     fun unauthoredLanguagesHaveNoHintsAndNoTrainer() {
         assertNull(Trainer.placeValueHint(3, "fr"))
         assertTrue(!Trainer.supports("fr"))
-        assertEquals(listOf("de", "en", "es", "sw", "uk"), Trainer.languages)
+        assertEquals(listOf("de", "en", "es", "sw", "uk", "it"), Trainer.languages)
     }
 }

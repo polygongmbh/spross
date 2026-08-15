@@ -40,6 +40,20 @@ class TrainerTypoBridgeGuardTests {
         assertTrue(known.all { "sesenta" in it && "setenta" in it }, "unexpected pair in $known")
     }
 
+    /**
+     * Both Italian spellings per value, the hiatus twin of the cento seam included — it is
+     * graded, so it is swept. The one pair that bridges is the elision itself: `ventotto`
+     * and `centotto` are `otto` welded onto two words that differ in one letter.
+     */
+    @Test
+    fun italianCardinals0To999BridgeOnlyTheKnownTwentyEightHundredEightPair() {
+        val prompts = (0L..999L).map { TypoBridgeSweep.Prompt(ItalianNumbers.variants(it)) }
+        assertEquals(
+            listOf("\"ventotto\" ↔ \"centotto\""),
+            TypoBridgeSweep.run("it", prompts),
+        )
+    }
+
     @Test
     fun swahiliCardinals0To99BridgeOnlyTheKnownFourEightPairs() {
         val known = sweep("sw", (0L..99L).map { SwahiliNumbers.cardinal(it) })

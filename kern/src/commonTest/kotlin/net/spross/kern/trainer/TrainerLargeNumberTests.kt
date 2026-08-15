@@ -47,6 +47,21 @@ class TrainerLargeNumberTests {
         assertEquals("три мільярди", display(3_000_000_000L, "uk"))
     }
 
+    @Test
+    fun italianMillionsAndBillions() {
+        assertEquals("un milione", display(1_000_000, "it"))
+        assertEquals("due milioni", display(2_000_000, "it"))
+        assertEquals("cinque milioni", display(5_000_000, "it"))
+        assertEquals("ventuno milioni", display(21_000_000, "it"))
+        // miliardo IS 10^9: Italian is short-scale up to the drill's ceiling.
+        assertEquals("un miliardo", display(1_000_000_000, "it"))
+        assertEquals("tre miliardi", display(3_000_000_000L, "it"))
+        assertEquals(
+            "un milione duecentotrentaquattromilacinquecentosessantasette",
+            display(1_234_567, "it"),
+        )
+    }
+
     /**
      * Every value 0…9_999_999_999 sampled sparsely stays well-formed
      * (non-empty, no digit fallback for in-range values).

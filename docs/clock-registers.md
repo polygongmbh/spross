@@ -53,6 +53,8 @@ Three rules sit on top of that, and none of them is derivable from the words alo
   the 24-hour reading is the digital one in another register, so it is named at :00 only.
   Ukrainian names its spoken-zero digital reading (`дев'ять нуль нуль`) at :00 for the same reason,
   and below thirteen it is the only line left — the official ordinal is the colloquial one there.
+  Italian goes further and generates no timetable reading below thirteen at all:
+  `sono le undici e trenta` is what both registers say, so there is nothing there for a second line to teach.
 
 Spanish is where a REGISTER earns a line of its own.
 At a minute off the round steps, `son las nueve y diecisiete minutos` spells the noun out,
@@ -81,12 +83,12 @@ takes the morning and the afternoon respectively.
 
 ## Parts of the day
 
-Which words fit which hour is authored once, in the five `dayParts` functions —
+Which words fit which hour is authored once, in one `dayParts` function per language —
 `GermanClock.dayParts`, `EnglishClockRegisters.dayParts`, `SpanishClockForms.dayParts`,
-`SwahiliClock.dayParts`, `UkrainianClockForms.dayParts`.
+`ItalianClockForms.dayParts`, `SwahiliClock.dayParts`, `UkrainianClockForms.dayParts`.
 Those functions ARE the grid; each carries its own non-derivable notes in its KDoc,
 and each pack's `clockDayParts` is the union over that language's own function —
-five per-language sets, never one pooled across them,
+one set per language, never one pooled across them,
 so `dayPartReadingsCloseTheTwelveHourCycle` grades German readings against German markers.
 Boundaries overlap where speakers do, and both readings are accepted across an overlap.
 
@@ -95,7 +97,14 @@ and WHERE a language may attach one is its own rule, which the functions alone d
 German's is in `GermanClock.dayParts`' KDoc;
 Spanish attaches it to the conversational readings and to the shortest `para` form,
 not to the timetable register, which names 0–23 already;
-Ukrainian's official register does the same.
+Ukrainian's official register does the same, and so does Italian's.
+
+Italian is the one language here that leaves an hour with no part of the day at all.
+`mezzogiorno` and `mezzanotte` are the words that separate the two noons,
+and Italian makes no further division of that hour —
+`le dodici e mezza` stands unmarked, and neither `di mattina` nor `di pomeriggio` is said of it.
+So `dayParts(12)` is empty on purpose, and the readings that name twelve
+stay open across the cycle the way every period-less reading does.
 
 ## What two times may share
 
@@ -120,27 +129,29 @@ Two exclusions are load-bearing and are commented at the point they are made:
 - English's 24-hour hour word keeps its hyphen: spaced,
   `twenty two eleven` comes within a slip per word of `twenty to eleven`.
 
-## Why five generators and not one
+## Why a generator per language and not one
 
-The five files rhyme because clocks are one object, not because they run one computation.
-The past/to pivot is `:31` in four of them and `:25` in German,
-which counts against the HALF hour rather than the coming one — 6:25 is "fünf vor halb sieben";
-the half hour names the coming hour in de and uk and the current one in en, es and sw;
+The files rhyme because clocks are one object, not because they run one computation.
+The past/to pivot is `:31` everywhere but German, which counts against the HALF hour
+rather than the coming one — 6:25 is "fünf vor halb sieben";
+the half hour names the coming hour in de and uk and the current one in en, es, it and sw;
 Swahili's hours are offset by six and its display is assembled outside its accepted list;
 German has no cores at all, and English hangs its parts of the day on two readings after every bare one.
 `leadWith` (`ClockReadings.kt`) and the empty-gloss rule (`ClockGloss.line`) carry no language
 rule, and those are shared outright.
 `TrainerLanguagePack.clockDayParts` shares the SLOT and nothing else:
 the words are a language's own vocabulary and each pack derives its set from its own `dayParts`.
-The five derivations do not collapse into a shared helper either, though four of them look alike:
-those four enumerate the hours, while Spanish's words decide on hour, minute and direction,
+The derivations do not collapse into a shared helper either, though most of them look alike:
+those enumerate the hours, while Spanish's words decide on hour, minute and direction,
 so its union runs over all three and a sentinel minute would miss a word a future rule keys on.
 The fraction and half words are not shareable for exactly that reason:
 the word is never the emitted unit, the frame is,
-and the five frames agree on word order, on which hour is named, and on case in no combination.
+and the frames agree on word order, on which hour is named, and on case in no combination —
+Italian's `e mezza` sits where Spanish's `y media` does and takes a different agreement,
+and its countdown says `meno` where the Spanish one may also say `para`.
 The reusable artifact is otherwise this document, not a base class.
 
-A sixth language takes all of:
+A further language takes all of:
 
 - a new `*Clock.kt` with its own `dayParts`;
 - its entry in `trainerPacks` (`TrainerLanguagePack.kt`) — without it the generator is dead code
@@ -201,11 +212,12 @@ Everything else the drill does not accept is answered by the commit that dropped
   which joiners are interchangeable is each language's own knowledge, and `a` is not on Spanish's list.
 - **Swahili `kasa`** — not a Swahili word (owner-confirmed), however plausible it looks beside `kasorobo`;
   the quarter words are `na robo` and `kasorobo`, and both are generated already.
-- **The emphatic full hour, in all five** — de `punkt sechs`, en `six o'clock sharp` / `on the dot` / `exactly six o'clock`,
-  es `en punto`, sw `kamili`, uk `рівно`.
+- **The emphatic full hour, in every one** — de `punkt sechs`, en `six o'clock sharp` / `on the dot` / `exactly six o'clock`,
+  es `en punto`, it `in punto`, sw `kamili`, uk `рівно`.
   They say the hour is EXACT, which is a different claim from what time it is,
   and no learner answering "18:00" volunteers the suffix —
-  so the coverage never paid for the branch each of the five carried at `m == 0`.
+  so the coverage never paid for the branch each pack would carry at `m == 0`.
   They are taught in the catalog instead, by `time/nine-am-sharp`:
-  the knowledge is WHERE the word sits — de and uk prepose it, en, es and sw postpose it,
-  and es and sw put it after the part of the day — which a sentence carries and a word card cannot.
+  the knowledge is WHERE the word sits — de and uk prepose it, en, es, it and sw postpose it,
+  es and sw put it after the part of the day, and Italian's canonical puts it before one
+  (`alle nove in punto del mattino`) — which a sentence carries and a word card cannot.

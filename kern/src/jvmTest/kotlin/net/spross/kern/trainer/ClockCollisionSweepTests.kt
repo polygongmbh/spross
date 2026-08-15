@@ -49,6 +49,9 @@ class ClockCollisionSweepTests {
     fun spanishClockBridgesOnlyTheQuarterFourPair() =
         sweep("es", gated = listOf("[cuarto, cuatro]"))
 
+    @Test
+    fun italianClockNeverAcceptsOneTimeForAnother() = sweep("it", gated = emptyList())
+
     /** `nne` ↔ `nane` reaches the clock through both the saa hour and the minute. */
     @Test
     fun swahiliClockBridgesOnlyTheKnownFourEightPair() =

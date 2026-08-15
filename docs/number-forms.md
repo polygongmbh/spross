@@ -30,6 +30,7 @@ the canonical and refused readings below are pinned by `TrainerFormsTests`.
 | de | all six | 2–12 | 1–100 | `,` |
 | en | all six | 2–12 | 1–100 | `.` |
 | es | all six | 2–12 | **1–12** | `,` |
+| it | all six | 2–12 | 1–100 | `,` |
 | sw | five — **no ordinal** | **2–4** | — | `.` |
 | uk | all six | 2–12 | 1–100 | `,` |
 
@@ -145,6 +146,58 @@ Sources: [RAE, veintiuna personas / veintiuno por ciento](https://www.rae.es/esp
 · [RAE, los números decimales y el separador decimal](https://www.rae.es/ortograf%C3%ADa/los-n%C3%BAmeros-decimales-y-el-separador-decimal)
 · [RAE, la expresión de los porcentajes](https://www.rae.es/ortograf%C3%ADa/la-expresi%C3%B3n-de-los-porcentajes)
 · [Nueva gramática, numerales ordinales](https://www.rae.es/gram%C3%A1tica/sintaxis/numerales-ordinales-i-aspectos-l%C3%A9xicos-y-morfol%C3%B3gicos).
+
+## Italian
+
+| Form | Canonical | Also graded | Refused |
+|---|---|---|---|
+| Negative | `meno sette` | — | — |
+| Decimal | `tre virgola quattro cinque` | the run-together `tre virgola quarantacinque` | `punto` for the mark |
+| Percent | `ventuno per cento` | — | `ventun per cento`, `percento` |
+| Multiplicative | `una volta`, `ventun volte` | `ventuno volte` | `uno volta`, `doppio` |
+| Fraction | `un terzo`, `due terzi`, `un mezzo` | `mezzo`, `la metà`, `metà` | — |
+| Ordinal | `ventunesimo`, `ventitreesimo` | the feminine `-a` | `ventitresimo`, `ventisesimo` |
+
+- **Everything below a million is one word**, so the whole spelling rule lives in the SEAMS,
+  and the generator applies them rather than tabulating the results:
+  a ten drops its final vowel before the two vowel-initial units and only those
+  (`ventuno`, `ventotto`, `quarantotto`);
+  `cento` drops its own only before another `o` (`centotto`, `centottanta`, but `centouno`, `centoundici`);
+  `mille` and `-mila` drop nothing (`milleotto`, `duemilaotto`);
+  and a compound ending in `tre` carries the stress, and therefore the accent (`ventitré`, `centotré`, `milletré`).
+- **`centuno` is the one recorded spelling this pack leaves out.**
+  Dictionaries give both it and `centouno` for 101, but `centuno` sits a single substitution from `ventuno`,
+  so a drill accepting it would take 21 for 101 —
+  and `centouno` says the number with nothing given up.
+  The twin that could NOT be avoided is `ventotto` ↔ `centotto`,
+  where both spellings are the canonical reading of their own number;
+  it is gated in `TypoBridgeSweep.KNOWN_BRIDGES`, and again as `ventesimo` ↔ `centesimo` in the forms space.
+- **`uno` needs the noun that the bare prompt has not got.**
+  It agrees with a feminine one (`una volta`), apocopates before any noun (`ventun volte`, `ventun minuti`)
+  and stays whole in front of a preposition (`uno per cento`) —
+  three readings of one numeral, which is why each form builds its own
+  instead of taking the cardinal as it stands.
+  The cardinal itself is the citation form: `21` reads `ventuno`,
+  and a learner who writes the apocope into a counted sentence is one deletion away, so the answer books amber.
+- **`-esimo` is productive**, so Italian needs no ordinal cap of the Spanish kind:
+  the suffix eats the cardinal's last vowel except where that vowel is stressed (`ventitreesimo`)
+  or part of a diphthong (`ventiseiesimo`), and reaches any value the drill draws.
+  The fraction nouns ARE those ordinals from three up, so the two tables can never diverge.
+- **`virgola` is the only decimal mark.**
+  Italian writes the comma and prints the dot as the thousands separator,
+  so reading `punto` would name a different number — unlike Spanish, where both marks are regional and both grade.
+  The run-together reading of the fractional part is ordinary Italian
+  (`il tre virgola quarantacinque per cento`) and grades beside the digit-by-digit one,
+  suppressed on a leading zero where it would say another number.
+- **`per cento` is two words** and takes no apocope:
+  `per` is a preposition, not the noun `uno` would shorten in front of.
+  One-word `percento` and `ventun per cento` are both one keystroke from a correct answer,
+  so accepting either would teach the mistake.
+
+Sources: [Treccani, *La grammatica italiana*, «numerali»](https://www.treccani.it/enciclopedia/numerali_(La-grammatica-italiana)/)
+· [Treccani, *La grammatica italiana*, «aggettivi numerali»](https://www.treccani.it/enciclopedia/aggettivi-numerali_(La-grammatica-italiana)/)
+· [Treccani, Vocabolario, «volta»](https://www.treccani.it/vocabolario/volta/)
+· [Accademia della Crusca, consulenza linguistica](https://accademiadellacrusca.it/it/consulenza).
 
 ## Swahili
 
@@ -275,6 +328,10 @@ Sources: [Український правопис 2019 §107](https://slovnyk.ua
   A multiplicative floor of 2 for sw would settle it,
   but `FormLimits` carries no per-form numeric range and adding one is a ladder change,
   so the ambiguity is drilled rather than invented around.
+- **Which Italian multiplicative leads.**
+  `ventun volte` is the apocope the grammars prescribe before a noun and `ventuno volte` is current beside it;
+  both grade, and the choice of which one the reveal teaches rests on that prescription
+  rather than on a frequency count, so it wants a native check.
 - **Ukrainian's missing `кома` register** is an argument from absence of evidence.
   The positive claim it rests on — that `цілих/десятих` is the reading — is unanimous;
   the negative one is only as good as the sweep that found nothing,
