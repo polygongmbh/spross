@@ -56,8 +56,14 @@ extension LetterDrillView {
     /// WHETHER the card opens is kern's `showsAnswer`: unlike the slot drill
     /// both amber holds reveal too, because a slip and a heard-instead each
     /// leave a spelling worth seeing whole.
+    ///
+    /// A letter-name question on a choice rung is the one case that skips it:
+    /// the tiles below already mark the answer, so a second glyph — spoken by
+    /// a lookup that never resolves to the letter-name recording the big
+    /// speaker played — would only repeat it, off-key.
     private func cardReveal(_ task: LetterDrillTask) -> HearPromptCard.Reveal? {
         guard run.showsAnswer,
+              !(task.gapText == nil && (task.stage == .choiceEasy || task.stage == .choiceConfusable)),
               let word = task.gapText == nil ? task.display : task.gloss else { return nil }
         return .init(word: word,
                      // why: the meaning is a REVEAL, never a cue — and a gap
