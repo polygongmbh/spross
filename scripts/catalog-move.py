@@ -22,9 +22,12 @@ destination, and a destination area that does not exist without `--create`.
 
 Formatting fidelity is a GATE, not a promise: every area file the run does not touch is
 re-serialized and compared to its bytes on disk, so an empty mapping is a proven no-op
-and a drifted serializer stops the run instead of reformatting the catalog.
+and a drifted serializer stops the run instead of reformatting the catalog. The layout
+itself is `catalog-format.py`'s, so what the gate really asserts is that the catalog is
+formatted — run its `--fix` if this refuses.
 """
 import argparse
+import importlib.util
 import json
 import os
 import sys
@@ -34,14 +37,26 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'catalog')
 
 
+def _load(name, filename):
+    """Sibling scripts are hyphenated, so they are loaded by path rather than imported."""
+    spec = importlib.util.spec_from_file_location(
+        name, os.path.join(os.path.dirname(os.path.abspath(__file__)), filename))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+catalog_format = _load('catalog_format', 'catalog-format.py')
+
+
 def read_text(*parts):
     with open(os.path.join(*parts), encoding='utf-8') as f:
         return f.read()
 
 
 def dumps(data):
-    """The catalog's own formatting: 1-space indent, authored key order, unescaped UTF-8."""
-    return json.dumps(data, ensure_ascii=False, indent=1) + '\n'
+    """The catalog's own layout, from the one place that defines it (`catalog-format.py`)."""
+    return catalog_format.formatted(data)
 
 
 def refuse(*lines):
