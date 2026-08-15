@@ -73,14 +73,20 @@ struct SessionScaffold<Content: View>: View {
                     }
                 } else {
                     let slots = max(total, outcomes.count)
-                    HStack(spacing: slots > 40 ? 0.5 : 1) {
+                    let spacing: CGFloat = slots > 40 ? 0.5 : 1
+                    // The partings come off the row before any slot is measured,
+                    // so the remainder takes its share of what is LEFT for
+                    // segments — from the full width it charged every gap to the
+                    // answered side, drawing the fill short of the counter.
+                    let forSegments = max(geo.size.width - CGFloat(outcomes.count) * spacing, 0)
+                    HStack(spacing: spacing) {
                         ForEach(Array(outcomes.enumerated()), id: \.offset) { _, outcome in
                             Rectangle().fill(outcome.color)
                         }
                         if outcomes.count < slots {
                             Rectangle()
                                 .fill(Color.dlSeparator)
-                                .frame(width: geo.size.width * CGFloat(slots - outcomes.count) / CGFloat(slots))
+                                .frame(width: forSegments * CGFloat(slots - outcomes.count) / CGFloat(slots))
                         }
                     }
                     .clipShape(Capsule())
