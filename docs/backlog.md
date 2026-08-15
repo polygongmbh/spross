@@ -285,6 +285,13 @@ One line per item, with a file or context pointer, filed under the section it be
   no way to hear one: the row tap is already spent on the file's Commons page
   (`App/Sources/Screens/CreditsView.swift` `fileRow`), so playing a pack from the list that
   credits it wants a second control per row.
+- The answer field's accepted mark is Correct-only on Android where iOS rides it on both
+  correct states, so a near miss there is amber and nothing else in the field itself
+  (`ui/SessionTurn.kt` `AnswerField`, `ui/DrillField.kt`). Not a live 1.4.1 failure —
+  the correction box below says the state in words — but the mark is the parity.
+- A revealed field has a spoken state on iOS (`a11y.notAnswered`) and none on Android,
+  the same silence `a11y.almost` was just brought out of: one `scripts/chrome.py`
+  `MAPPING` entry, a `Chrome.kt` field, and the same two `when` arms.
 - A row that speaks is a gesture on content rather than a control (`pronounceOnTap`,
   `App/Sources/Design/DLSpokenWord.swift`; `clickable` on Android), so VoiceOver reaches it
   as a named action while Switch Control and Full Keyboard Access, which scan for focusable
