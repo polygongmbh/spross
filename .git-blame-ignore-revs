@@ -1,0 +1,5 @@
+# Commits that moved bytes without changing content — blame should look straight through.
+# Enable once per clone:  git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# style(catalog): every entry that fits a line gets one
+d159fc5872dfc9cb697751619aee0541088d3929
