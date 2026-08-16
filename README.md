@@ -29,17 +29,21 @@ in `docs/design.md`.
 
 ## Install
 
-Neither store is involved.
+Spross is not yet published to the Stores, so it needs to be sideloaded.
 How a build is cut, signed and published is `docs/distribution.md`.
 
-**Android.**
-Add `https://github.com/polygongmbh/spross` in [Obtainium](https://obtainium.imranr.dev/)
-and every release from here on is offered as it appears —
-the app opens that door itself, on the version printed at the foot of the box.
-Obtainium installs from
-[`app-release.apk`](https://github.com/ImranR98/Obtainium/releases/latest/download/app-release.apk),
-its universal build.
-Without it, `spross-<version>.apk` from the
+**Android** — [**Add Spross to Obtainium**](https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22net.spross.app%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fpolygongmbh%2Fspross%22%2C%22author%22%3A%22polygongmbh%22%2C%22name%22%3A%22Spross%22%7D),
+opened **on the phone**.
+[Obtainium](https://obtainium.imranr.dev/) watches a repo's releases and installs them,
+so with it already there the link hands over this app filled in and nothing else is asked;
+without it, the same page offers Obtainium's own download
+([`app-release.apk`](https://github.com/ImranR98/Obtainium/releases/latest/download/app-release.apk)
+is the universal build).
+Every release from here on is then offered as it appears,
+and the app opens that door itself on the version printed at the foot of the box.
+
+Neither of those is required:
+`spross-<version>.apk` from the
 [latest release](https://github.com/polygongmbh/spross/releases/latest)
 is the same file, installed by hand and updated the same way.
 
