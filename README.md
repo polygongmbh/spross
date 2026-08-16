@@ -27,6 +27,27 @@ The rungs match now too: Numbers, Letters and Countries stand on both
 phones, each run on kern's rules — what still parts the platforms is listed
 in `docs/design.md`.
 
+## Install
+
+Neither store is involved.
+How a build is cut, signed and published is `docs/distribution.md`.
+
+**Android.**
+Add `https://github.com/polygongmbh/spross` in [Obtainium](https://obtainium.imranr.dev/)
+and every release from here on is offered as it appears —
+the app opens that door itself, on the version printed at the foot of the box.
+Obtainium installs from
+[`app-release.apk`](https://github.com/ImranR98/Obtainium/releases/latest/download/app-release.apk),
+its universal build.
+Without it, `spross-<version>.apk` from the
+[latest release](https://github.com/polygongmbh/spross/releases/latest)
+is the same file, installed by hand and updated the same way.
+
+**iPhone.**
+Registered test devices only, and updates arrive as new builds rather than in place.
+Each release carries an `itms-services://` link to open in Safari **on the device**;
+internal TestFlight testers get the same build minutes after the tag, without review.
+
 ## Structure
 
 - `kern/` — **SprossKern**, the Kotlin Multiplatform core (`net.spross.kern`):
