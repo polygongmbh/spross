@@ -32,10 +32,10 @@ in `docs/design.md`.
 Spross is not yet published to the Stores, so it needs to be sideloaded.
 How a build is cut, signed and published is `docs/distribution.md`.
 
-**Android** — [**Add Spross to Obtainium**](https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22net.spross.app%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fpolygongmbh%2Fspross%22%2C%22author%22%3A%22polygongmbh%22%2C%22name%22%3A%22Spross%22%7D),
+**Android** — [**Add Spross to Obtainium**](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https%3A%2F%2Fgithub.com%2Fpolygongmbh%2Fspross),
 opened **on the phone**.
 [Obtainium](https://obtainium.imranr.dev/) watches a repo's releases and installs them,
-so with it already there the link hands over this app filled in and nothing else is asked;
+so with it already there the link opens its Add-App screen on this repo, ready to confirm;
 without it, the same page offers Obtainium's own download
 ([`app-release.apk`](https://github.com/ImranR98/Obtainium/releases/latest/download/app-release.apk)
 is the universal build).
