@@ -150,5 +150,6 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.activity.compose)
     implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.glance.appwidget)
     testImplementation(libs.kotlin.test.junit)
 }

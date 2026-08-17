@@ -10,6 +10,8 @@ compose-bom = "2026.06.01"
 activity-compose = "1.13.0"
 # lifecycle 2.11 requires compileSdk 37; 2.10 is the newest line for our SDK 36 pin.
 lifecycle = "2.10.0"
+# Glance 1.1.1 is the newest STABLE line; 1.2.0 has not left rc.
+glance = "1.1.1"
 
 [libraries]
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
@@ -19,6 +21,7 @@ compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-ui = { module = "androidx.compose.ui:ui" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "glance" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 
 [plugins]
