@@ -2,7 +2,6 @@ package net.spross.app.widget
 
 import android.content.Context
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.glance.GlanceId
@@ -34,17 +33,22 @@ import net.spross.app.SprossActivity
  * today still owes the run.
  *
  * Decode-only — the tile reads the snapshot the app wrote on its last persist and never
- * runs the join (`kern/docs/snapshots.md`). Where the three families differ, and why, is
- * `docs/surfaces.md` § Watch & widgets; [WidgetLayouts] draws them.
+ * runs the join (`kern/docs/snapshots.md`). What a tile of a given shape holds is
+ * `docs/surfaces.md` § Android companion; [GridFace] draws it.
  */
 class WordWidget : GlanceAppWidget() {
 
     /**
-     * The three families, by the size the host actually hands over. Glance picks the
-     * largest bucket that fits and gives the composition that size, so a tile resized on
-     * the home screen changes KIND rather than just reflowing.
+     * The tile's REAL size, not the nearest of a set of buckets: an Android tile resizes
+     * continuously, and the grid is cut from the size itself ([GridFace]).
+     *
+     * The price is a composition per RESIZE, where a bucket set on Android 12 and up is
+     * composed once and left to the platform to choose between; a resize is a finger on
+     * the tile, and what it costs is what [provideGlance] below costs. Older hosts pay it
+     * per orientation as well, since they take a portrait and a landscape layout rather
+     * than a size map — but a bucket set costs them the same pair.
      */
-    override val sizeMode = SizeMode.Responsive(setOf(SMALL, MEDIUM, LARGE))
+    override val sizeMode = SizeMode.Exact
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val chrome = WidgetFaces.chrome(context)
@@ -69,18 +73,13 @@ class WordWidget : GlanceAppWidget() {
                 .appWidgetBackground()
                 .background(WidgetColors.background)
                 .cornerRadius(TILE_RADIUS)
-                .padding(12.dp)
+                .padding(TILE_PADDING)
                 // why: names the tap's destination rather than leaning on a default, so
                 // the tile opens the app from the faces that have nothing to show too.
                 .clickable(actionStartActivity<SprossActivity>()),
             contentAlignment = Alignment.TopStart,
         ) {
-            when {
-                face == null -> AwaitingFace(chrome)
-                size.height >= LARGE.height -> LargeFace(face)
-                size.width >= MEDIUM.width -> MediumFace(face)
-                else -> SmallFace(face)
-            }
+            if (face == null) AwaitingFace(chrome, size) else GridFace(face, size)
         }
     }
 
@@ -109,21 +108,6 @@ class WordWidget : GlanceAppWidget() {
 
         /** The tile corner, from the app's own tile radius (`SprossShapes.medium`). */
         private val TILE_RADIUS = 20.dp
-
-        /**
-         * The smallest a family fits in, which is what Glance matches a host's tile
-         * against — the largest bucket that fits wins.
-         *
-         * Cut from what a launcher CELL is worth rather than from round numbers: a phone
-         * grid gives a column something like 75 dp and a row something like 93, so a
-         * two-cell square stays a single word, three columns is the narrowest a two-sided
-         * row reads at, and the poster waits for a FOURTH row of grid: a launcher will
-         * not place or resize a tile below three, so a poster that opened at three would
-         * be the only face the wide tile could ever show.
-         */
-        private val SMALL = DpSize(120.dp, 120.dp)
-        private val MEDIUM = DpSize(200.dp, 120.dp)
-        private val LARGE = DpSize(200.dp, 290.dp)
     }
 }
 

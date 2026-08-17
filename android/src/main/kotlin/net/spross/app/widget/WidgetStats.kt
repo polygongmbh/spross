@@ -41,19 +41,26 @@ fun StatsLine(face: WidgetFace, withLabel: Boolean) {
     }
 }
 
+/** The line the grid reserves for the stats, whatever shape the tile is. */
+val STATS_HEIGHT = 20.dp
+
 /**
- * The list families' header: the run and the due count on the left, the fortnight on the
- * right — which is the room the bottom of a tile does not have.
+ * Every tile's header: the run and the due count on the left, and — where the width
+ * carries it — the fortnight on the right, which is the room the bottom of a tile does not
+ * have. A tile too narrow for the strip loses the word beside the count with it — the bare
+ * flame and number is what the smallest tile has room for, and one line says both things.
  */
 @Composable
-fun StatsHeader(face: WidgetFace) {
+fun StatsHeader(face: WidgetFace, full: Boolean) {
     Row(
-        modifier = GlanceModifier.fillMaxWidth().height(20.dp),
+        modifier = GlanceModifier.fillMaxWidth().height(STATS_HEIGHT),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        StatsLine(face, withLabel = true)
-        Spacer(GlanceModifier.defaultWeight())
-        ActivityStrip(face.days, face.chrome)
+        StatsLine(face, withLabel = full)
+        if (full) {
+            Spacer(GlanceModifier.defaultWeight())
+            ActivityStrip(face.days, face.chrome)
+        }
     }
 }
 

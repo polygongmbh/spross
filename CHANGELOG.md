@@ -3,9 +3,9 @@
 ## Unreleased
 
 - **Spross puts your words on the Android home screen.**
-  A tile in three sizes — one word with its picture, a short list, or a poster of them —
-  carrying the streak, what is due, and the fortnight of practice behind it. It changes
-  as you answer, and a tap opens the app.
+  A tile that refills itself for whatever shape you drag it to — one word with its picture,
+  or a gridful of them — carrying the streak, what is due, and the fortnight of practice
+  behind it. It changes as you answer, and a tap opens the app.
 
 - **The flame says whether today still owes the streak.**
   It burns at full strength once the day is answered, pales while a missed day would only

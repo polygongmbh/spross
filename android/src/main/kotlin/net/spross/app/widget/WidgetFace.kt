@@ -42,8 +42,13 @@ class WidgetFace(
 /** How a tile gets from the snapshot on disk to the face it draws. */
 object WidgetFaces {
 
-    /** Cells the poster holds — and so the width of the rotating window. */
-    const val WINDOW: Int = 6
+    /**
+     * The width of the rotating window: as many words as the largest grid can show
+     * ([GRID_CELLS]), and never more than the snapshot carries — the phone writes
+     * [WidgetSnapshotBuilder.DEFAULT_EXPOSURE_LIMIT] rows, so a bigger grid would ask for
+     * words that were never sent.
+     */
+    val WINDOW: Int = minOf(GRID_CELLS, WidgetSnapshotBuilder.DEFAULT_EXPOSURE_LIMIT)
 
     /**
      * How long one window stands before the head moves on.
@@ -85,15 +90,14 @@ object WidgetFaces {
 
     /**
      * The window this moment shows: the head advances one card every [ROTATION_MILLIS]
-     * through kern's attention ranking, and the rows are then laid out SHORTEST PAIR
-     * FIRST, so a list opens into a cone around its emoji spine and the poster fills
-     * reading order short-to-long. Which cards travel is kern's; where they land is here.
+     * through kern's attention ranking, and the order stands as kern ranked it — a tile
+     * takes as many cells as its shape fits off the FRONT of this list, so a window
+     * already sorted by length would hand a one-cell tile the shortest of sixteen rather
+     * than the word most worth seeing. Where the cells it took then land is [GridFace]'s.
      */
     fun window(words: List<WidgetWord>, nowEpochMillis: Long): List<WidgetWord> {
         val head = ((nowEpochMillis / ROTATION_MILLIS) % words.size).toInt()
-        return (0 until minOf(WINDOW, words.size))
-            .map { words[(head + it) % words.size] }
-            .sortedWith(compareBy({ it.word.length + it.meaning.length }, { it.word.length }))
+        return (0 until minOf(WINDOW, words.size)).map { words[(head + it) % words.size] }
     }
 
     /**

@@ -62,8 +62,9 @@ object WidgetColors {
 object WidgetType {
     val hero = TextStyle(WidgetColors.textPrimary, 20.sp, FontWeight.Bold)
     val word = TextStyle(WidgetColors.textPrimary, 16.sp, FontWeight.Medium)
-    val meaning = TextStyle(WidgetColors.textSecondary, 14.sp)
+    val wordSmall = TextStyle(WidgetColors.textPrimary, 13.sp, FontWeight.Medium)
     val meaningSmall = TextStyle(WidgetColors.textSecondary, 13.sp)
+    val meaningTiny = TextStyle(WidgetColors.textSecondary, 11.sp)
     val stat = TextStyle(WidgetColors.accent, 13.sp, FontWeight.Medium)
 
     fun article(color: ColorProvider, size: TextUnit) =

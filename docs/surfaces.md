@@ -171,25 +171,34 @@ the box is app-private and written after every answer rather than debounced,
 runs are full screens rather than covers — Back mirrors ✕ everywhere, and inside a run
 the reference panel eats Back first — and a fallen record celebrates in the tile's own
 words, without confetti.
-The home-screen tile ships there too, in Glance, with all three families and the delta
-they carry (§ Watch & widgets); it is app-private like the box, and a tile the launcher
-has just placed shows the platform's own loading face until the first composition lands.
+The home-screen tile ships there too, in Glance, and it is ONE grid sized to the tile
+rather than iOS's three families (§ Watch & widgets):
+an Android tile is dragged to any shape,
+so a bucket boundary would change what the tile IS over a cell of width nobody can see.
+Columns and rows come off the size the host hands over, against a minimum readable cell
+and a bound the platform's ten-children container forces —
+the smallest tile is one word, and every shape up to that bound fills with as many as fit.
+Only the cell's TYPE moves with it, and it moves in steps, off the cell's own box:
+the picture over the pair, beside it where a tile one row tall leaves no third line.
+The tile is app-private like the box, and one the launcher has just placed shows the
+platform's own loading face until the first composition lands.
 What has not landed there is `design.md` § Not yet.
 
 ## Watch & widgets (decode-only)
 
 - The phone precomputes both snapshots on every persist; the surfaces decode and draw,
   and never compute what the phone could pre-resolve.
-- **The widget's families differ in kind, not in row count.** Small is one word with its
+- **iOS's three families differ in kind, not in row count.** WidgetKit offers three fixed
+  sizes and no shape between them, so each is its own answer. Small is one word with its
   picture and a single stats line. Medium is a short list whose rows meet at a fixed emoji
   column — word right of one edge, meaning left of the other, both touching the picture — so
   a pair is read in place instead of scanned across the tile. Large is a poster of stacked
   cells rather than a longer list: equal rows have no hierarchy, so a glance reads none of
-  them, and a cell gives each side the full column width that a shared line denies it. Rows
-  and cells run shortest pair first; which cards travel is kern's attention ranking, where
-  they land is the tile's. Both list families carry the fortnight's review bars in the
-  header, which has the room the bottom of a tile does not.
-  Both phones draw the same three families, from the same precomputed rows.
+  them, and a cell gives each side the full column width that a shared line denies it.
+- **Whatever a tile holds, it holds it shortest pair first, over what today owes.** Which
+  cards travel is kern's attention ranking, where they land is the tile's. Every tile states
+  the run and the due count, and adds the fortnight's review bars where the width carries
+  them — which is the header, since the bottom of a tile has no such room.
 - **A widget with no readable snapshot draws the sprout, never sample words.** A placed
   tile only ever shows the learner's own — so when the store holds no snapshot this build
   can decode (what an app update leaves behind until the app next runs), the tile says
