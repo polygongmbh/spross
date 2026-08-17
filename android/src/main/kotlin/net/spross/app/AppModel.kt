@@ -48,6 +48,7 @@ import net.spross.kern.session.SessionIntent
 import net.spross.kern.session.SessionOffers
 import net.spross.kern.session.SessionRun
 import net.spross.kern.session.SessionRunState
+import net.spross.kern.snapshot.WidgetSnapshotBuilder
 import net.spross.kern.store.StoreCodec
 import net.spross.kern.store.StoreFormatException
 import net.spross.kern.store.withProductCalibration
@@ -647,11 +648,31 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     private fun persist(state: BoxState, immediate: Boolean = false) {
         val json = StoreCodec.encode(state)
         val target = state.joinStamp.target
+        val stamp = now()
         if (immediate) {
             boxFiles.write(target, json)
+            boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
             return
         }
         // why: NonCancellable — a write racing activity teardown must still land.
-        viewModelScope.launch(Dispatchers.IO + NonCancellable) { boxFiles.write(target, json) }
+        viewModelScope.launch(Dispatchers.IO + NonCancellable) {
+            boxFiles.write(target, json)
+            // Built off the main thread: the ranking walk and the encode are the same
+            // order of work as the box document's, and nothing on screen waits for them.
+            boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
+        }
     }
+
+    /**
+     * What the home-screen widget draws, resolved HERE because the widget cannot run
+     * the join (`kern/docs/snapshots.md`) — it decodes this and nothing else.
+     * Carries the other languages' days for the same reason Heute's strip does: the
+     * run is one commitment across every box.
+     */
+    private fun widgetSnapshot(state: BoxState, nowEpochMillis: Long): String =
+        WidgetSnapshotBuilder.build(
+            state,
+            nowEpochMillis,
+            otherLanguagesDailyStats = otherLanguagesDailyStats,
+        )
 }

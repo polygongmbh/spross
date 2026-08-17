@@ -13,11 +13,23 @@ class BoxFiles(private val dir: File) {
     fun read(target: String): String? =
         fileFor(target).takeIf { it.isFile }?.readText()
 
+    fun write(target: String, json: String) = writeAtomically(fileFor(target), json)
+
+    /**
+     * The home-screen widget's pre-resolved read model, one file for the whole app
+     * rather than one per target: the widget draws the box the learner is IN, and the
+     * app rewrites this whenever that box changes ([net.spross.kern.snapshot.WidgetSnapshotBuilder]).
+     */
+    fun readWidgetSnapshot(): String? = widgetSnapshot.takeIf { it.isFile }?.readText()
+
+    fun writeWidgetSnapshot(json: String) = writeAtomically(widgetSnapshot, json)
+
+    private val widgetSnapshot: File get() = File(dir, "widget-snapshot.json")
+
     // why: temp-then-rename keeps a crash mid-write from corrupting the only copy.
-    fun write(target: String, json: String) {
+    private fun writeAtomically(destination: File, json: String) {
         dir.mkdirs()
-        val destination = fileFor(target)
-        val temp = File(dir, "box-$target.json.tmp")
+        val temp = File(dir, "${destination.name}.tmp")
         temp.writeText(json)
         if (!temp.renameTo(destination)) {
             destination.delete()
