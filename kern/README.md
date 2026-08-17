@@ -379,6 +379,10 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   rule the current streak walks back with, over the whole (never pruned) `dailyStats`.
   An unfinished today can extend a run but never end one, so it is always ≥ `streak` —
   equality is what says today's run IS the record.
+- **`BoxStatistics.streakHealth`**: what today still owes the run, off the same walk —
+  `Earned` once today has reviews, `Bridgeable` while an empty today would only spend the
+  run's one bridge, `Ending` when yesterday already spent it, `None` when the streak is 0.
+  Surfaces render the urgency; the engine names only the rule.
 - **The streak is one commitment across every target language, not one per language.**
   `dailyStats` persists per (source, target) box (§7), so `BoxEngine.statistics` and
   `BoxEngine.growth`'s siblings take `otherLanguagesDailyStats` — every OTHER target

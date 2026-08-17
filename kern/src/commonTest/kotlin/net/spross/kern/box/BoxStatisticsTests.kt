@@ -104,6 +104,52 @@ class BoxStatisticsTests {
     }
 
     @Test
+    fun streakHealthIsEarnedOnceTodayHasReviews() {
+        val stats = BoxEngine.statistics(statsState(listOf(1, 2, 3)), Box.millis(2026, 7, 3), Box.TZ)
+        assertEquals(3, stats.streak)
+        assertEquals(StreakHealth.Earned, stats.streakHealth)
+    }
+
+    @Test
+    fun streakHealthIsBridgeableWhileYesterdayWasEarned() {
+        val stats = BoxEngine.statistics(statsState(listOf(1, 2, 3)), Box.millis(2026, 7, 4), Box.TZ)
+        assertEquals(3, stats.streak)
+        assertEquals(StreakHealth.Bridgeable, stats.streakHealth)
+    }
+
+    @Test
+    fun streakHealthIsEndingOnceYesterdayIsTheBridge() {
+        // 1, 2 earned · 3 bridged · today (4) empty — a second empty day would end the run.
+        val stats = BoxEngine.statistics(statsState(listOf(1, 2)), Box.millis(2026, 7, 4), Box.TZ)
+        assertEquals(2, stats.streak)
+        assertEquals(StreakHealth.Ending, stats.streakHealth)
+    }
+
+    @Test
+    fun streakHealthIsNoneWithoutARunToProtect() {
+        assertEquals(StreakHealth.None, BoxEngine.statistics(statsState(emptyList()), now, Box.TZ).streakHealth)
+        // The run already ended two days back; there is nothing today could still save.
+        val broken = BoxEngine.statistics(statsState(listOf(1, 2)), Box.millis(2026, 7, 5), Box.TZ)
+        assertEquals(0, broken.streak)
+        assertEquals(StreakHealth.None, broken.streakHealth)
+    }
+
+    @Test
+    fun streakHealthReadsTheCrossLanguageMerge() {
+        // Today's reviews happened in a sibling target-language box, so this box alone
+        // still owes the day while the combined commitment is already earned.
+        val thisLanguage = statsState(listOf(1, 2))
+        val sibling = mapOf("2026-07-03" to DayStats(reviews = 5))
+        val today = Box.millis(2026, 7, 3)
+
+        assertEquals(StreakHealth.Bridgeable, BoxEngine.statistics(thisLanguage, today, Box.TZ).streakHealth)
+
+        val combined = BoxEngine.statistics(thisLanguage, today, Box.TZ, otherLanguagesDailyStats = listOf(sibling))
+        assertEquals(3, combined.streak)
+        assertEquals(StreakHealth.Earned, combined.streakHealth)
+    }
+
+    @Test
     fun streakCombinesReviewsFromOtherTargetLanguages() {
         // This language's own box only has day 4; the streak-earning activity on
         // 1, 2 and 3 happened in sibling target-language boxes.

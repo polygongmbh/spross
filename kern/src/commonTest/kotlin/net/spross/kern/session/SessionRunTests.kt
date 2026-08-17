@@ -9,6 +9,7 @@ import net.spross.kern.box.Box
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
+import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.dayKey
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.JoinStamp
@@ -331,7 +332,7 @@ class SessionRunTests {
     fun aRecordStreakNeedsMoreThanADay() {
         fun stats(streak: Int, longest: Int) = BoxStatistics(
             activeCount = 0, consolidatedCount = 0, dueCount = 0, suspendedCount = 0,
-            streak = streak, longestStreak = longest, areas = emptyList(),
+            streak = streak, streakHealth = StreakHealth.Earned, longestStreak = longest, areas = emptyList(),
         )
         assertFalse(SessionRun.streakIsRecord(stats(1, 1)))
         assertFalse(SessionRun.streakIsRecord(stats(3, 5)))

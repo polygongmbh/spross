@@ -24,6 +24,8 @@ data class BoxStatistics(
     val suspendedCount: Int,
     /** Days with reviews > 0; a missed day is bridged, two in a row end the run. */
     val streak: Int,
+    /** What today still owes the run — see [streakHealth]. */
+    val streakHealth: StreakHealth,
     /** The longest such run the box has ever held; equals [streak] when today's run is it. */
     val longestStreak: Int,
     val areas: List<AreaStatistics>,
@@ -100,6 +102,41 @@ enum class StreakRole {
     Outside,
 }
 
+/** What today still owes the current run, safest first. */
+enum class StreakHealth {
+    /** Today has reviews: the run is earned and safe until tomorrow. */
+    Earned,
+
+    /** Nothing today yet, but yesterday was earned — a miss today is only the run's one bridge. */
+    Bridgeable,
+
+    /** Nothing today, and yesterday was already the bridge — a miss today ends the run. */
+    Ending,
+
+    /** The streak is 0: there is no run to protect. */
+    None,
+}
+
+/**
+ * How exposed the current run is to a day that ends without reviews, read off the
+ * same walk [streak] counts — so the number, the window and the health are one answer
+ * told three ways.
+ */
+fun streakHealth(
+    dailyStats: Map<String, DayStats>,
+    nowEpochMillis: Long,
+    tzId: String,
+): StreakHealth {
+    val today = localDate(nowEpochMillis, tzId)
+    val run = Statistics.streakRun(dailyStats, today)
+    return when {
+        run.isEmpty() -> StreakHealth.None
+        run[today] == true -> StreakHealth.Earned
+        run[today.minus(1, DateTimeUnit.DAY)] == true -> StreakHealth.Bridgeable
+        else -> StreakHealth.Ending
+    }
+}
+
 /** One day of the activity window: what the box recorded, and how the streak rule reads it. */
 data class ActivityDay(
     /** ISO `yyyy-MM-dd` local day key — the same key [BoxState.dailyStats] is keyed by. */
@@ -166,6 +203,7 @@ internal object Statistics {
             dueCount = active.count { it.due != null && it.due <= now },
             suspendedCount = Inventory.scheduled(state).count { it.suspended },
             streak = streak(combinedDailyStats, nowEpochMillis, tzId),
+            streakHealth = streakHealth(combinedDailyStats, nowEpochMillis, tzId),
             longestStreak = longestStreak(combinedDailyStats, nowEpochMillis, tzId),
             areas = areaStatistics(state),
         )

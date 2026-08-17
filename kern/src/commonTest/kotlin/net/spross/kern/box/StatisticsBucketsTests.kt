@@ -59,7 +59,7 @@ class StatisticsBucketsTests {
     fun learningNeverGoesNegative() {
         val stats = BoxStatistics(
             activeCount = 2, consolidatedCount = 5, dueCount = 0, suspendedCount = 0,
-            streak = 0, longestStreak = 0, areas = emptyList(),
+            streak = 0, streakHealth = StreakHealth.None, longestStreak = 0, areas = emptyList(),
         )
         assertEquals(0, stats.learningCount)
     }
