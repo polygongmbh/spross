@@ -120,6 +120,19 @@ so a green preflight is not the answer.
 
 Audio reaches the host speakers by default, so a letter drill can be heard as well as seen.
 
+## Seeing the widget
+
+Nothing places a widget from the command line — `adb shell cmd appwidget` answers
+"No shell command implementation" — so the tile goes on the home screen by hand:
+long-press the wallpaper, **Widgets**, scroll to **Spross**, then drag its preview onto
+the screen. The three families are one widget resized: two cells square is the small
+face, four by two the list, four by four the poster, and dragging a corner handle moves
+between them in place.
+
+A freshly placed tile draws the loading spinner for a few seconds before its first
+composition arrives, and a phone with no box yet draws the sprout — answer a round first
+if the words are what you came to look at.
+
 ## Launcher icon
 
 The launcher wears the iOS icon's artwork; `scripts/android-icon.py` re-derives the

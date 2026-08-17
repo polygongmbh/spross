@@ -171,6 +171,9 @@ the box is app-private and written after every answer rather than debounced,
 runs are full screens rather than covers — Back mirrors ✕ everywhere, and inside a run
 the reference panel eats Back first — and a fallen record celebrates in the tile's own
 words, without confetti.
+The home-screen tile ships there too, in Glance, with all three families and the delta
+they carry (§ Watch & widgets); it is app-private like the box, and a tile the launcher
+has just placed shows the platform's own loading face until the first composition lands.
 What has not landed there is `design.md` § Not yet.
 
 ## Watch & widgets (decode-only)
@@ -186,12 +189,22 @@ What has not landed there is `design.md` § Not yet.
   and cells run shortest pair first; which cards travel is kern's attention ranking, where
   they land is the tile's. Both list families carry the fortnight's review bars in the
   header, which has the room the bottom of a tile does not.
-- **A widget with no readable snapshot draws the sprout, never sample words.** The gallery
-  advertises with a sample box, but a placed tile only ever shows the learner's own — so
-  when the App Group holds no snapshot this version can decode (what an app update leaves
-  behind until the app next runs), the tile says where the words come from instead of
-  inventing a box, and the launch that follows writes the snapshot and reloads the timeline.
+  Both phones draw the same three families, from the same precomputed rows.
+- **A widget with no readable snapshot draws the sprout, never sample words.** A placed
+  tile only ever shows the learner's own — so when the store holds no snapshot this build
+  can decode (what an app update leaves behind until the app next runs), the tile says
+  where the words come from instead of inventing a box, and the launch that follows writes
+  the snapshot and pushes the tile a redraw. Only the picker advertises with a sample box,
+  and only where a picker can hold one: iOS previews the gallery entry from a made-up box,
+  while the Android widget picker gets the app's own mark rather than a second layout
+  written to say what a real tile says better.
   Every family names its tap destination, so the tile opens the app in that state too.
+- **A tile rotates when it is redrawn, not on a schedule of its own.** iOS hands its host a
+  timeline of quarter-hour entries and gets the rotation for free. A Glance tile has no
+  timeline to hand over: the head of the window is derived from the clock at draw time and
+  moves every half hour, which is the shortest refresh the platform will schedule, and the
+  app pushes a redraw itself on every persist — so the numbers are as fresh as the last
+  answer, and the words turn over on the half hour whether or not anyone opened the app.
 - Watch: one graded **multiple-choice** loop — the watch never types, and the options
   arrive ranked from kern so that nothing but meaning tells the answer from its company:
   word class, then how the sentence closes, then area, then string shape
