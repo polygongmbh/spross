@@ -3,6 +3,7 @@ package net.spross.kern.box
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
@@ -106,6 +107,19 @@ class DayKeyTests {
 
         val horizon = endOfTomorrow(now, Box.TZ).toEpochMilliseconds()
         assertEquals(listOf("w01", "w02"), BoxEngine.dueNow(state, horizon).sorted())
+    }
+
+    @Test
+    fun dayPartAndItsVariantFollowTheLocalClock() {
+        val part = { h: Int -> dayPart(local("Europe/Berlin", 2026, 7, 1, h, 0), "Europe/Berlin") }
+        assertEquals(DayPart.Night, part(3))
+        assertEquals(DayPart.Morning, part(7))
+        assertEquals(DayPart.Day, part(14))
+        assertEquals(DayPart.Evening, part(20))
+        // The phrasing holds inside a part and is picked afresh in the next one.
+        val variant = { h: Int -> partVariant(local("Europe/Berlin", 2026, 7, 1, h, 0), "Europe/Berlin", 2) }
+        assertEquals(variant(11), variant(17))
+        assertTrue((0..23).all { variant(it) in 0..1 })
     }
 
     @Test
