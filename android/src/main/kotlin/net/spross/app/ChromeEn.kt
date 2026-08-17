@@ -10,6 +10,22 @@ package net.spross.app
  * and both phones say the same sentence by construction.
  */
 internal val ChromeEn = Chrome(
+    greetMorning = listOf(
+        "%s is a good start to the day",
+        "A bit of %s this morning",
+    ),
+    greetDay = listOf(
+        "Your %s is growing",
+        "%s, day by day",
+    ),
+    greetEvening = listOf(
+        "%s to wind down with",
+        "A bit of %s before the day is out",
+    ),
+    greetNight = listOf(
+        "A late round of %s",
+        "%s at this late hour",
+    ),
     heuteTitle = "Today",
     practice = "Practice",
     extraRound = "One more round?",

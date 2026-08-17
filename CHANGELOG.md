@@ -12,6 +12,12 @@
   be bridged, and goes cold and gray when missing today would end the run — on the day's
   card, beside the fortnight, and on the widget.
 
+- **The start screen names the language you are learning, not the day of the week.**
+  Where the biggest line on the page used to read "Today" over today's date, it now says
+  what the box is growing — "Your Swahili is growing" in the afternoon, "A late round of
+  Swahili" past bedtime — in words that fit the hour and change between openings.
+  The date stays as the small line above it.
+
 ## 5.0.0 — 2026-08-15
 
 - **The streak counts the day, not the language.** Studying German today and Swahili

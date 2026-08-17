@@ -533,6 +533,12 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   `tomorrowDue` is `dueNow` at `endOfTomorrow`, never a second local-midnight derivation.
   The kinds and their order are the rule;
   the words, plurals and separators for them stay in each platform's string tables.
+- **The clock a greeting turns on is kern's too**: `dayPart(now, tz)` splits the local day
+  into `Morning` / `Day` / `Evening` / `Night` on a phone learner's boundaries, never the
+  sun's, so it holds at every latitude and in every season;
+  `partVariant(now, tz, count)` picks which of a surface's phrasings that stretch wears,
+  FNV-1a over day-plus-part so the pick survives a relaunch and matches on both phones.
+  How many phrasings there are, and what they say, is the platform's.
 - **A composed session never refills** (user ruling 2026-07-29): the plan IS the run.
   Cards falling due while the learner sits there — a learning step maturing, most often —
   used to be drained straight in, so the count they were counting down to moved away from

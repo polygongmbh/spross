@@ -41,7 +41,10 @@ import net.spross.app.countriesOffered
 import net.spross.app.lettersOffered
 import net.spross.app.numbersOffered
 import net.spross.app.werkstattOffered
+import net.spross.kern.box.DayPart
 import net.spross.kern.box.StreakHealth
+import net.spross.kern.box.dayPart
+import net.spross.kern.box.partVariant
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.session.SessionOfferKind
 
@@ -86,7 +89,17 @@ fun HeuteScreen(model: AppModel) {
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                Text(chrome.heuteTitle, style = MaterialTheme.typography.headlineLarge)
+                // A greeting is a phrase, not a headline word: it shrinks a step rather
+                // than pushing the day's card down a third line.
+                Text(
+                    greeting(model),
+                    style = MaterialTheme.typography.headlineLarge,
+                    maxLines = 2,
+                    autoSize = TextAutoSize.StepBased(
+                        minFontSize = 20.sp,
+                        maxFontSize = MaterialTheme.typography.headlineLarge.fontSize,
+                    ),
+                )
             }
             // The way out of Heute: the box holds every word the profile has, packed
             // or not. Named rather than a bare glyph — an unlabelled emoji does not
@@ -224,6 +237,25 @@ private fun RowScope.EntryChip(emoji: String, title: String, onClick: () -> Unit
             ),
         )
     }
+}
+
+/**
+ * "Nächtliche Suaheli-Einheit" — the language the box is growing, in words that fit the
+ * hour. Which stretch of the day it is and which of its phrasings this one takes are kern's
+ * ([dayPart], [partVariant]); the words are ours. The screen's own name stands in only
+ * while no profile names a language.
+ */
+private fun greeting(model: AppModel): String {
+    val target = model.box?.joinStamp?.target ?: return model.chrome.heuteTitle
+    val now = System.currentTimeMillis()
+    val tz = TimeZone.getDefault().id
+    val lines = when (dayPart(now, tz)) {
+        DayPart.Morning -> model.chrome.greetMorning
+        DayPart.Day -> model.chrome.greetDay
+        DayPart.Evening -> model.chrome.greetEvening
+        DayPart.Night -> model.chrome.greetNight
+    }
+    return lines[partVariant(now, tz, lines.size)].format(model.languageName(target))
 }
 
 /** "Freitag, 8. August" in the chrome's language — the caption over the day's name. */

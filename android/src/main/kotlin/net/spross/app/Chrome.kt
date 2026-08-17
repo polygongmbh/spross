@@ -14,6 +14,16 @@ import net.spross.kern.catalog.LanguageChoices
  * Placeholders are java-format, rendered with `.format(...)`.
  */
 data class Chrome(
+    /**
+     * The line over the day's card, naming the language the profile is learning (%s), in
+     * the words that fit the hour: one list per [net.spross.kern.box.DayPart], indexed by
+     * [net.spross.kern.box.partVariant]. [heuteTitle] stands in only where no profile
+     * names a language yet.
+     */
+    val greetMorning: List<String>,
+    val greetDay: List<String>,
+    val greetEvening: List<String>,
+    val greetNight: List<String>,
     val heuteTitle: String,
     val practice: String,
     val extraRound: String,

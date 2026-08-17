@@ -40,6 +40,10 @@ struct HeuteView: View {
 
     // MARK: - Header
 
+    /// The date, and under it what the box is growing. Naming the screen "Heute" spent the
+    /// biggest type on the page on the one thing a learner who just opened the app already
+    /// knows; the language being learned is the one piece of standing the screen never said,
+    /// and it is what the day's work is for.
     private var header: some View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
             Text(Date().formatted(
@@ -49,9 +53,37 @@ struct HeuteView: View {
             .font(DL.Fonts.caption)
             .foregroundStyle(Color.dlTextSecondary)
             .textCase(.uppercase)
-            Text("heute.title")
+            // A greeting is a phrase, not a headline word: it shrinks a step rather than
+            // pushing the day's card down a third line.
+            greeting
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
+                .lineLimit(2)
+                .minimumScaleFactor(0.7)
+        }
+    }
+
+    /// "Nächtliche Suaheli-Einheit" — the language named in words that fit the hour. Which
+    /// stretch of the day it is and which of its phrasings this one takes are kern's
+    /// (`dayPart`, `partVariant`); the words are ours. Falls back to the screen's own name
+    /// while no profile names a language.
+    private var greeting: Text {
+        guard let language = targetLanguageName else { return Text("heute.title") }
+        let now = Date().epochMillis, tz = currentTzId()
+        let second = partVariant(nowEpochMillis: now, tzId: tz, count: 2) == 1
+        switch dayPart(nowEpochMillis: now, tzId: tz) {
+        case .morning:
+            return second ? Text("heute.greeting.morning.1 \(language)")
+                          : Text("heute.greeting.morning.0 \(language)")
+        case .evening:
+            return second ? Text("heute.greeting.evening.1 \(language)")
+                          : Text("heute.greeting.evening.0 \(language)")
+        case .night:
+            return second ? Text("heute.greeting.night.1 \(language)")
+                          : Text("heute.greeting.night.0 \(language)")
+        case .day:
+            return second ? Text("heute.greeting.day.1 \(language)")
+                          : Text("heute.greeting.day.0 \(language)")
         }
     }
 
@@ -73,7 +105,7 @@ struct HeuteView: View {
                     .foregroundStyle(Color.dlAccent)
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: DL.Space.xs) {
-                    Text("heute.voiceUpgrade.title \(voiceUpgradeLanguage)")
+                    Text("heute.voiceUpgrade.title \(targetLanguageName ?? "?")")
                         .font(DL.Fonts.headline)
                         .foregroundStyle(Color.dlTextPrimary)
                     Text("heute.voiceUpgrade.path")
@@ -100,10 +132,12 @@ struct HeuteView: View {
         }
     }
 
-    private var voiceUpgradeLanguage: String {
+    /// The language being learned, as the chrome language calls it; nil before a profile
+    /// picks one.
+    private var targetLanguageName: String? {
         model.targetLanguage.map {
             LanguageNames.display($0, locale: locale, catalog: model.catalog)
-        } ?? "?"
+        }
     }
 
     // MARK: - Session available

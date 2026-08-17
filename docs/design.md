@@ -225,8 +225,14 @@ a clone inherits its sibling's gaps, never the rules.
 ## App structure (single screen)
 
 - **Heute** is the only root screen:
-  session card (streak flame + the round's counts, or done state),
+  the day's line, session card (streak flame + the round's counts, or done state),
   trainer hub, then the 14-day strip and the forest.
+  The line over the card names the LANGUAGE being learned, in words that fit the hour
+  (`../kern/README.md` §6, `dayPart`/`partVariant`) — the screen's own name spent the
+  largest type on the page on what the learner already knew, and the language is the one
+  piece of standing nothing else here says.
+  It holds through a render and has moved on by the next opening: a line that re-rolls
+  while it is being read is a glitch, one that never moves stops being read.
   Those two carry no section title: the strip heads itself and the forest is captioned,
   so one above them says the word a third time.
   The card's flame is graded, not decorative — the 🔥 emoji at full strength, paled,
