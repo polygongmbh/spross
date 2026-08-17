@@ -12,8 +12,15 @@ class ProfileStore(private val prefs: SharedPreferences) {
         prefs.edit().putString(KEY_SOURCE, source).putString(KEY_TARGET, target).apply()
     }
 
-    private companion object {
-        const val KEY_SOURCE = "source"
-        const val KEY_TARGET = "target"
+    companion object {
+        /**
+         * The one preference file this app keeps. Named here because the home-screen
+         * widget opens it too — it runs outside the model and still has to know which
+         * language the chrome is spoken in.
+         */
+        const val PREFS_NAME = "spross"
+
+        private const val KEY_SOURCE = "source"
+        private const val KEY_TARGET = "target"
     }
 }

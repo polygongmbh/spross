@@ -17,6 +17,7 @@ import kotlinx.coroutines.withContext
 import net.spross.app.audio.CueSounds
 import net.spross.app.audio.Pronouncer
 import net.spross.app.ui.AreaNaming
+import net.spross.app.widget.WordWidget
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
@@ -135,7 +136,7 @@ data class SessionUi(
 class AppModel(app: Application) : AndroidViewModel(app) {
 
     private val boxFiles = BoxFiles(File(app.filesDir, "box"))
-    private val prefs = app.getSharedPreferences("spross", Context.MODE_PRIVATE)
+    private val prefs = app.getSharedPreferences(ProfileStore.PREFS_NAME, Context.MODE_PRIVATE)
     private val profile = ProfileStore(prefs)
 
     /** The run kern steps; null between sessions. The screen reads [sessionUi] instead. */
@@ -652,6 +653,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         if (immediate) {
             boxFiles.write(target, json)
             boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
+            nudgeWidget()
             return
         }
         // why: NonCancellable — a write racing activity teardown must still land.
@@ -660,6 +662,20 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             // Built off the main thread: the ranking walk and the encode are the same
             // order of work as the box document's, and nothing on screen waits for them.
             boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
+            WordWidget.refresh(getApplication())
+        }
+    }
+
+    /**
+     * Redraw of the placed tiles, for the path that cannot wait for one.
+     *
+     * `updateAll` suspends and `onStop` returns before it could finish; the snapshot is
+     * already on disk by then, so a nudge that loses the race costs nothing but
+     * promptness — the tile's own update period redraws it either way.
+     */
+    private fun nudgeWidget() {
+        viewModelScope.launch(Dispatchers.IO + NonCancellable) {
+            WordWidget.refresh(getApplication())
         }
     }
 

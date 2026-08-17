@@ -82,6 +82,9 @@ ANDROID_ONLY = {
     'audio.enable', 'audio.off',
     'box.consolidated', 'box.due', 'box.fresh', 'box.new',
     'session.typoNote', 'settings.about', 'trainer.promptInLanguage %@',
+    # The Android tile's no-snapshot face; the iOS widget target's own strings
+    # are not extracted into the app's tables, so no Swift will ever ask for these.
+    'widget.awaiting.body', 'widget.awaiting.title',
     # The footer's update door — iOS ships through TestFlight and needs no pointer.
     'settings.update.button', 'settings.update.download', 'settings.update.obtainium',
     'settings.update.offer', 'settings.update.title',

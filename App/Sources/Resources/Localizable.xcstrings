@@ -4998,6 +4998,38 @@
           }
         }
       }
+    },
+    "widget.awaiting.body" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "für frische Wörter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "for fresh words"
+          }
+        }
+      }
+    },
+    "widget.awaiting.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spross öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Spross"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

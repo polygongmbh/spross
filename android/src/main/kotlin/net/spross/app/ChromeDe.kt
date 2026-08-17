@@ -311,4 +311,6 @@ internal val ChromeDe = Chrome(
     streakDaysOne = "Serie: %d Tag",
     dayOne = "Tag",
     dayMany = "Tage",
+    widgetAwaitingTitle = "Spross öffnen",
+    widgetAwaitingBody = "für frische Wörter",
 )

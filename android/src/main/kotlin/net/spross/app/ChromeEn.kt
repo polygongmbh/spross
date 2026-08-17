@@ -306,4 +306,6 @@ internal val ChromeEn = Chrome(
     streakDaysOne = "Streak: %d day",
     dayOne = "day",
     dayMany = "days",
+    widgetAwaitingTitle = "Open Spross",
+    widgetAwaitingBody = "for fresh words",
 )

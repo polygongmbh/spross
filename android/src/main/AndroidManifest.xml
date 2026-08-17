@@ -31,6 +31,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- The home-screen word tile. Exported because the launcher is another process
+             and has to be able to broadcast the update to it; the label is the brand name,
+             which needs no translating. -->
+        <receiver
+            android:name=".widget.WordWidgetReceiver"
+            android:label="Spross"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/word_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

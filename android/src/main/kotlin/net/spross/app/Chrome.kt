@@ -336,6 +336,11 @@ data class Chrome(
     val streakDaysOne: String,
     val dayOne: String,            // the badge's unit word, by count
     val dayMany: String,
+
+    // ── Home-screen widget ──────────────────────────────────────────────────────
+    /** The two lines a tile with no readable snapshot stands on, beside the sprout. */
+    val widgetAwaitingTitle: String,
+    val widgetAwaitingBody: String,
 ) {
     companion object {
         /** Which language carries the chrome — and the en fallback — is kern's rule; only the table map is ours. */

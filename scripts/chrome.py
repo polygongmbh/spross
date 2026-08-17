@@ -246,6 +246,8 @@ MAPPING = {
     'whyCompanionBody': 'onboarding.why.companion.body',
     'whyCompanionTitle': 'onboarding.why.companion.title',
     'whyGrammarBody': 'onboarding.why.grammar.body',
+    'widgetAwaitingBody': 'widget.awaiting.body',
+    'widgetAwaitingTitle': 'widget.awaiting.title',
     'whyGrammarTitle': 'onboarding.why.grammar.title',
     'whyTitle': 'onboarding.why.title',
 
