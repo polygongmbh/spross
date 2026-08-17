@@ -3,12 +3,16 @@ package net.spross.kern.snapshot
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.plus
 import net.spross.kern.box.Box
+import net.spross.kern.box.Statistics
+import net.spross.kern.box.StreakHealth
+import net.spross.kern.box.streakWindow
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.DayStats
@@ -128,6 +132,44 @@ class WidgetSnapshotBuilderTests {
     @Test
     fun schemaVersionIsPinned() {
         assertEquals(2, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, 5).schemaVersion)
+    }
+
+    @Test
+    fun decodedDerivationsAnswerWhatTheEngineAnswers() {
+        // Yesterday earned, today still empty — the run is bridgeable, not yet earned.
+        val dailyStats = mapOf(
+            "2026-06-29" to DayStats(reviews = 4),
+            "2026-06-30" to DayStats(reviews = 6),
+        )
+        val state = scheduledState().copy(dailyStats = dailyStats)
+        val view = assertNotNull(WidgetSnapshotBuilder.decode(WidgetSnapshotBuilder.build(state, Box.day1)))
+
+        val doc = WidgetSnapshotBuilder.doc(state, Box.day1, WidgetSnapshotBuilder.DEFAULT_EXPOSURE_LIMIT)
+        assertEquals(doc.entries.map { it.cardId }, view.entries.map { it.cardId })
+        assertEquals("Kellner ♀", view.entries.first { it.cardId == "wf" }.sourceText)
+        assertEquals("der", view.entries.first { it.cardId == "wg" }.articleTint)
+        assertEquals(doc.consolidatedCount, view.consolidatedCount)
+
+        // Every card is due tomorrow, so only a later clock counts them.
+        assertEquals(0, view.dueCount(Box.day1))
+        assertEquals(3, view.dueCount(Box.plusDays(Box.day1, 1.0)))
+
+        assertEquals(Statistics.streak(dailyStats, Box.day1, Box.TZ), view.streak(Box.day1, Box.TZ))
+        assertEquals(2, view.streak(Box.day1, Box.TZ))
+        assertEquals(StreakHealth.Bridgeable, view.streakHealth(Box.day1, Box.TZ))
+        assertEquals(
+            streakWindow(dailyStats, days = 4, nowEpochMillis = Box.day1, tzId = Box.TZ),
+            view.activityWindow(days = 4, nowEpochMillis = Box.day1, tzId = Box.TZ),
+        )
+    }
+
+    @Test
+    fun decodeRejectsWhatItCannotDraw() {
+        assertNull(WidgetSnapshotBuilder.decode("not json at all"))
+        assertNull(WidgetSnapshotBuilder.decode("{}")) // schemaVersion missing
+        val current = WidgetSnapshotBuilder.build(scheduledState(), Box.day1)
+        assertNull(WidgetSnapshotBuilder.decode(current.replace("\"schemaVersion\":2", "\"schemaVersion\":3")))
+        assertNotNull(WidgetSnapshotBuilder.decode(current))
     }
 
     @Test

@@ -249,5 +249,5 @@ private fun CardDto.toDomain(key: String): CardScheduling {
     }
 }
 
-private fun DayStatsDto.toDomain(): DayStats =
+internal fun DayStatsDto.toDomain(): DayStats =
     DayStats(reviews = reviews, introduced = introduced, consolidated = consolidated, activeCount = activeCount)

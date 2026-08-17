@@ -19,14 +19,21 @@ Engine contract: `../README.md`.
   no Swift-Date bridging; Instant/TimeZone are constructed inside). TimeZone = device-current
   per call. Day keys are ISO regardless of device calendar
   (DST + non-Gregorian vectors in the test suite).
-- **WidgetSnapshot** (NEW): the phone precomputes on every persist; the iOS widget is
-  decode-only Swift (an extension cannot run the join: no catalog in its bundle, ~30 MB
-  memory cap vs 33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
+- **WidgetSnapshot** (NEW): the phone precomputes on every persist; a widget decodes and
+  draws (it cannot run the join: no catalog in its bundle, ~30 MB extension memory cap vs
+  33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
   entries (target-side text, emoji, article tint), per-card `{due}` for render-time
   `dueCount(now)`, the consolidated-card count (`consolidatedCount`, resolved phone-side —
   it does not move with the clock), dailyStats tail
   (~70 days) for the streak walk, `schemaVersion`. Built by a KMP `SnapshotBuilder`,
   written by the app.
+  **Both sides of the wire are kern's, except the one that cannot be.**
+  `WidgetSnapshotBuilder.decode` returns a public `WidgetSnapshotView` — the rows, plus
+  `dueCount`/`streak`/`streakHealth`/`activityWindow` delegating to `Statistics`, so the
+  Android Glance widget reads the schema rather than guessing at it, and rejects anything
+  but the current `schemaVersion`. The iOS extension links no Kotlin at all, so
+  `Widgets/Sources/WidgetSnapshot.swift` stays a hand-written mirror of that same
+  contract — a DELIBERATE duplicate, and the only one the widget wire is allowed.
 - **WatchSnapshot v5**: direction/pair/`german` are gone — one entry per CARD with BOTH
   sides pre-resolved: `{cardId, sourceText, targetText, emoji?, revealEmoji?, articleTint?,
   femMarker, due, stability, nextRole, promptForm, distractors[], optionForm?}` + `schemaVersion`.
