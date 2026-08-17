@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -71,7 +70,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             ) {
                 // This screen is only reached by finishing a round, so today has reviews
                 // and the run is safe until tomorrow — no other grade can stand here.
-                StreakFlame(StreakHealth.Earned, Modifier.size(20.dp))
+                StreakFlame(StreakHealth.Earned, MaterialTheme.typography.titleMedium)
                 Text("${ui.streakDays} $unit", style = MaterialTheme.typography.titleMedium)
             }
             if (ui.streakIsRecord) {

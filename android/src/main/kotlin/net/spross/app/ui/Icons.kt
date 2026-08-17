@@ -1,8 +1,5 @@
 package net.spross.app.ui
 
-import androidx.compose.material3.Icon
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.StrokeCap
@@ -11,7 +8,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.PathBuilder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import net.spross.kern.box.StreakHealth
 
 /**
  * The app's affordances, drawn.
@@ -30,11 +26,6 @@ import net.spross.kern.box.StreakHealth
  * PICTURES are not affordances and stay emoji: the card's own illustration, the sprout, the
  * Workshop's 🔢 and 🔤. Those carry the app's warmth and the iOS cut keeps them too — it
  * spends SF Symbols on exactly the same set as this file.
- *
- * The flame is the exception that proves it: it is a picture, and it was 🔥 until the run
- * gained a STATE ([net.spross.kern.box.StreakHealth]) — solid, pale, hollow. Multi-color
- * artwork renders none of that, so a mark that has to say WHICH grade it is becomes a
- * glyph here, however picture-like it reads.
  */
 object SprossIcons {
 
@@ -142,50 +133,6 @@ object SprossIcons {
             moveTo(21.5f, 9.5f); lineTo(16f, 14.5f)
         }
     }.build()
-
-    /**
-     * The run's flame, cut once so the two weights below are one shape.
-     *
-     * A tip that leans over a round belly, with the tongue and its notch on the left; the
-     * notch is held wide enough that the outline's own stroke does not close it. The iOS
-     * cut is SF's `flame.fill` / `flame`.
-     */
-    private val flamePath: PathBuilder.() -> Unit = {
-        moveTo(12.4f, 2.2f)
-        curveTo(12.9f, 7.4f, 17.6f, 9.2f, 17.6f, 14f)
-        curveTo(17.6f, 18.1f, 14.9f, 21.6f, 11.7f, 21.6f)
-        curveTo(8.3f, 21.6f, 5.9f, 18.7f, 5.9f, 15.4f)
-        curveTo(5.9f, 13.2f, 6.9f, 11.5f, 8.4f, 10.2f)
-        curveTo(8.5f, 12.2f, 9.8f, 13.6f, 11.9f, 14f)
-        curveTo(10.8f, 10f, 11.1f, 5.8f, 12.4f, 2.2f)
-        close()
-    }
-
-    /** The run's mark with a body to it — a run still burning, at full or half strength. */
-    val Flame = filled("Flame", flamePath)
-
-    /** The same flame emptied out, for a run with nothing behind today. */
-    val FlameOutline = stroked("FlameOutline", flamePath)
-}
-
-/**
- * The flame at the grade today has earned it — the widget's three weights, in the app.
- *
- * Solid where the day is answered; pale where a miss would only spend the run's one bridge;
- * HOLLOW where it would end the run, which is the loud one — an outline in full accent reads
- * as a thing about to go out, where a fainter fill would read as less important.
- * The rule itself is [net.spross.kern.box.StreakHealth]; this only dresses it.
- */
-@Composable
-fun StreakFlame(health: StreakHealth, modifier: Modifier = Modifier) {
-    val palette = Dl.colors
-    val (glyph, tint) = when (health) {
-        StreakHealth.Earned -> SprossIcons.Flame to palette.accent
-        StreakHealth.Bridgeable -> SprossIcons.Flame to palette.accent.copy(alpha = 0.5f)
-        StreakHealth.Ending -> SprossIcons.FlameOutline to palette.accent
-        StreakHealth.None -> SprossIcons.FlameOutline to palette.textSecondary
-    }
-    Icon(glyph, contentDescription = null, tint = tint, modifier = modifier)
 }
 
 private const val SIZE = 24f

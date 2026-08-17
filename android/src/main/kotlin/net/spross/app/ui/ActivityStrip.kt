@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -40,9 +39,6 @@ private val GUTTER = 6.dp
 
 /** How thick the run underline is drawn. */
 private val RUN_THICKNESS = 2.5.dp
-
-/** The header flame, cut down to the caption it stands beside. */
-private val FLAME_GLYPH = 15.dp
 
 /**
  * The fortnight of practice, one column per day: how much was answered, and which days
@@ -102,7 +98,7 @@ fun ActivityStrip(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
                     ) {
-                        StreakFlame(health, Modifier.size(FLAME_GLYPH))
+                        StreakFlame(health, MaterialTheme.typography.bodySmall)
                         Text(
                             "$streakDays $unit",
                             style = MaterialTheme.typography.bodySmall,

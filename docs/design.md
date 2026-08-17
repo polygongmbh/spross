@@ -229,8 +229,9 @@ a clone inherits its sibling's gaps, never the rules.
   trainer hub, then the 14-day strip and the forest.
   Those two carry no section title: the strip heads itself and the forest is captioned,
   so one above them says the word a third time.
-  The card's flame is graded, not decorative — solid, pale, or a hollow outline
-  by what today still owes the run (`../kern/README.md` §6, `BoxStatistics.streakHealth`).
+  The card's flame is graded, not decorative — the 🔥 emoji at full strength, paled,
+  or drained to gray by what today still owes the run
+  (`../kern/README.md` §6, `BoxStatistics.streakHealth`).
   The card is up exactly while that work is still owed, so the mark carries the warning
   without spending a word on it — and the strip's badge and the widget's flame
   read off the same grade, so no two surfaces say different things about one day.

@@ -69,16 +69,21 @@ struct ActivityStripView: View {
     }
 
     private var streakBadge: some View {
-        // The count keeps the accent whatever the flame is doing: the pale or
-        // hollow MARK is the warning, and paling the number only costs contrast.
-        let mark: Text = Text(Image(systemName: flame.symbol)).foregroundStyle(flame.tint)
-        let count: Text = (Text(verbatim: " ") + Text(streakDays.formatted()) + Text(verbatim: " ")
-            + Text(streakDays == 1 ? "common.dayOne" : "common.dayMany"))
-            .foregroundStyle(Color.dlAccent)
-        return (mark + count)
-            .font(DL.Fonts.caption)
-            .lineLimit(1)
-            .accessibilityHidden(true) // why: the combined strip label names the streak
+        // The count keeps the accent whatever the flame is doing: the pale or cold
+        // MARK is the warning, and paling the number only costs contrast.
+        // Two views rather than one concatenated Text: grayscale is a View modifier,
+        // and the emoji is the only half that wears it.
+        HStack(spacing: DL.Space.xs) {
+            Text(verbatim: "🔥")
+                .grayscale(flame.grayscale)
+                .opacity(flame.opacity)
+            (Text(streakDays.formatted()) + Text(verbatim: " ")
+                + Text(streakDays == 1 ? "common.dayOne" : "common.dayMany"))
+                .foregroundStyle(Color.dlAccent)
+        }
+        .font(DL.Fonts.caption)
+        .lineLimit(1)
+        .accessibilityHidden(true) // why: the combined strip label names the streak
     }
 
     private func activityLabel(_ days: [ActivityColumn]) -> Text {

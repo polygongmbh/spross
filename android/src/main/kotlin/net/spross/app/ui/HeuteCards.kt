@@ -69,7 +69,7 @@ private fun DayMark(emoji: String?, streak: Int, health: StreakHealth, chrome: C
         horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
     ) {
         if (emoji == null) {
-            StreakFlame(health)
+            StreakFlame(health, MaterialTheme.typography.titleLarge)
         } else {
             Text(emoji, style = MaterialTheme.typography.titleLarge)
         }

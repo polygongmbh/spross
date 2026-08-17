@@ -10,7 +10,7 @@ import SwiftUI
 /// How the streak's flame burns. The Design-local twin of the box's
 /// `StreakHealth`, so components stay kern-free — WHICH day arithmetic puts a run
 /// in which grade is the engine's ruling (`kern/README.md` §6); here it is only
-/// solid, pale or hollow.
+/// how bright and how colorful the mark burns.
 enum FlameState {
     /// Today has reviews — the run is safe until tomorrow.
     case lit
@@ -21,21 +21,24 @@ enum FlameState {
     /// No run to protect.
     case unlit
 
-    /// Filled while the run is still whole, hollow once a missed today would end it.
-    var symbol: String {
+    /// Full strength where the day is answered, pale where it is merely owed, and
+    /// faint where there is no run behind the mark at all.
+    var opacity: Double {
         switch self {
-        case .lit, .dwindling: return "flame.fill"
-        case .atRisk, .unlit: return "flame"
+        case .lit: return 1
+        case .dwindling: return 0.55
+        case .atRisk: return 0.9
+        case .unlit: return 0.4
         }
     }
 
-    /// Clay at full strength while today is earned, washed out while today is
-    /// still owed, and plain ink where there is no run behind the mark at all.
-    var tint: Color {
+    /// How much color is drained out of the emoji: none while the run is whole,
+    /// all of it once a missed today would end it — a flame gone cold, which is
+    /// louder than any amount of fading.
+    var grayscale: Double {
         switch self {
-        case .lit, .atRisk: return .dlAccent
-        case .dwindling: return .dlAccent.opacity(0.45)
-        case .unlit: return .dlTextSecondary
+        case .lit, .dwindling: return 0
+        case .atRisk, .unlit: return 1
         }
     }
 }
@@ -79,8 +82,9 @@ struct StreakFlameView: View {
         if let emoji {
             Text(verbatim: emoji)
         } else {
-            Image(systemName: flame.symbol)
-                .foregroundStyle(flame.tint)
+            Text(verbatim: "🔥")
+                .grayscale(flame.grayscale)
+                .opacity(flame.opacity)
         }
     }
 }
