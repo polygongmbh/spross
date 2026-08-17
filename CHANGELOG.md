@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- **Spross puts your words on the Android home screen.**
+  A tile in three sizes — one word with its picture, a short list, or a poster of them —
+  carrying the streak, what is due, and the fortnight of practice behind it. It changes
+  as you answer, and a tap opens the app.
+
+- **The flame says whether today still owes the streak.**
+  It burns at full strength once the day is answered, pales while a missed day would only
+  be bridged, and goes cold and gray when missing today would end the run — on the day's
+  card, beside the fortnight, and on the widget.
+
 ## 5.0.0 — 2026-08-15
 
 - **The streak counts the day, not the language.** Studying German today and Swahili
