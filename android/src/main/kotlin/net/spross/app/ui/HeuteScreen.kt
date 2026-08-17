@@ -141,12 +141,10 @@ fun HeuteScreen(model: AppModel) {
 
         WerkstattCard(model)
 
-        Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
-            Text(chrome.progressTitle, style = MaterialTheme.typography.titleLarge)
-            // Fortschritt: the same fortnight the streak was counted from, on the very
-            // refresh that produced it — the strip reads kern's walk, never one of its own.
-            ActivityStrip(model.activityWindow, stats?.streak ?: 0, health, chrome, locale)
-        }
+        // The same fortnight the streak was counted from, on the very refresh that
+        // produced it — the strip reads kern's walk, never one of its own. It names
+        // itself, so nothing announces it a second time above.
+        ActivityStrip(model.activityWindow, stats?.streak ?: 0, health, chrome, locale)
         Spacer(Modifier.height(DlSpace.l))
     }
 }

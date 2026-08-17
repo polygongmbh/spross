@@ -300,7 +300,6 @@ internal val ChromeEn = Chrome(
         "Your words root deeper now",
         "Words are settling in",
     ),
-    progressTitle = "Progress",
     last14Days = "Last 14 days",
     activityDays = "Activity over the last 14 days: practiced on %d days",
     streakDays = "Streak: %d days",

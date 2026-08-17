@@ -330,7 +330,6 @@ data class Chrome(
     val growthGrown: List<String>,
 
     // ── Activity strip ──────────────────────────────────────────────────────────
-    val progressTitle: String,
     val last14Days: String,
     val activityDays: String,      // %d = days worked inside the window
     val streakDays: String,        // %d — days in a row, the strip's own label

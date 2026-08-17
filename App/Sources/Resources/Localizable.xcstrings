@@ -3607,22 +3607,6 @@
         }
       }
     },
-    "progress.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fortschritt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Progress"
-          }
-        }
-      }
-    },
     "rating.good" : {
       "localizations" : {
         "de" : {

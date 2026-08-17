@@ -176,7 +176,6 @@ MAPPING = {
     'practice': 'overview.practice',
     'profileHint': 'settings.profile.hint',
     'progressFresh': 'progress.freshCount %@',
-    'progressTitle': 'progress.title',
     'promptInLanguage': 'trainer.promptInLanguage %@',
     'pronounce': 'a11y.pronounce',
     'ratingQuestion': 'rating.question',

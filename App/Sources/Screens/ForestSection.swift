@@ -19,9 +19,8 @@ struct ForestSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.m) {
             widthProbe
-            Text("progress.title")
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextPrimary)
+            // Both pieces name themselves — the strip in its own header, the forest in
+            // the caption under it — so a section title above says the word a third time.
             ActivityStripView(days: model.activityWindow().map(ActivityColumn.init),
                               streakDays: model.stats?.streakDays ?? 0,
                               flame: model.stats?.flame ?? .unlit)

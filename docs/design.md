@@ -226,7 +226,9 @@ a clone inherits its sibling's gaps, never the rules.
 
 - **Heute** is the only root screen:
   session card (streak flame + the round's counts, or done state),
-  trainer hub, then the Fortschritt section — 14-day strip and the forest.
+  trainer hub, then the 14-day strip and the forest.
+  Those two carry no section title: the strip heads itself and the forest is captioned,
+  so one above them says the word a third time.
   The card's flame is graded, not decorative — solid, pale, or a hollow outline
   by what today still owes the run (`../kern/README.md` §6, `BoxStatistics.streakHealth`).
   The card is up exactly while that work is still owed, so the mark carries the warning

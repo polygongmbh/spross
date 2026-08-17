@@ -305,7 +305,6 @@ internal val ChromeDe = Chrome(
         "Du hast tiefe Wurzeln geschlagen",
         "Mittlerweile sitzt's bei dir",
     ),
-    progressTitle = "Fortschritt",
     last14Days = "Letzte 14 Tage",
     activityDays = "Aktivität der letzten 14 Tage: an %d Tagen gelernt",
     streakDays = "Serie: %d Tage",
