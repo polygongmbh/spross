@@ -2,11 +2,13 @@ package net.spross.app.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -20,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.SessionUi
+import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.TallyPartKind
 import net.spross.kern.box.completionTallyParts
 
@@ -62,8 +65,15 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             // dayOne/dayMany pair the Heute pill wears, so the two can never disagree;
             // no "Serie:" prefix, matching the iOS summary's plain streak pill.
             val unit = if (ui.streakDays == 1) chrome.dayOne else chrome.dayMany
-            Text("🔥 ${ui.streakDays} $unit",
-                style = MaterialTheme.typography.titleMedium)
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+            ) {
+                // This screen is only reached by finishing a round, so today has reviews
+                // and the run is safe until tomorrow — no other grade can stand here.
+                StreakFlame(StreakHealth.Earned, Modifier.size(20.dp))
+                Text("${ui.streakDays} $unit", style = MaterialTheme.typography.titleMedium)
+            }
             if (ui.streakIsRecord) {
                 Text(chrome.streakRecord, style = MaterialTheme.typography.titleMedium,
                     color = Dl.colors.accent)

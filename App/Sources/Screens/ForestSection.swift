@@ -23,7 +23,8 @@ struct ForestSection: View {
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
             ActivityStripView(days: model.activityWindow().map(ActivityColumn.init),
-                              streakDays: model.stats?.streakDays ?? 0)
+                              streakDays: model.stats?.streakDays ?? 0,
+                              flame: model.stats?.flame ?? .unlit)
             ForestCanvas(trees: model.areaTrees, open: open, describe: describe)
                 .environment(\.dlContentWidth, width)
             caption

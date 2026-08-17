@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.countLine
+import net.spross.kern.box.StreakHealth
 
 /**
  * The one card the day stands on, whichever it is: hero, headline, what it holds, the way
@@ -46,11 +47,14 @@ private fun DayCard(content: @Composable ColumnScope.() -> Unit) {
  * The mark and the run are ONE badge: as two elements they sandwiched the prose between
  * them, and a card that both cheers and counts says one thing, not two. Guarded, because
  * unguarded it read "🔥 0 Tage" to anyone who had not started a run.
+ *
+ * [emoji] is the card's OWN mark — a celebration, a sprout. Where it is null the badge
+ * wears the run's flame instead, at the grade [health] gives it.
  */
 @Composable
-private fun DayMark(emoji: String, streak: Int, chrome: Chrome) {
+private fun DayMark(emoji: String?, streak: Int, health: StreakHealth, chrome: Chrome) {
     if (streak <= 0) {
-        Text(emoji, style = MaterialTheme.typography.displaySmall)
+        emoji?.let { Text(it, style = MaterialTheme.typography.displaySmall) }
         return
     }
     val unit = if (streak == 1) chrome.dayOne else chrome.dayMany
@@ -64,7 +68,11 @@ private fun DayMark(emoji: String, streak: Int, chrome: Chrome) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
     ) {
-        Text(emoji, style = MaterialTheme.typography.titleLarge)
+        if (emoji == null) {
+            StreakFlame(health)
+        } else {
+            Text(emoji, style = MaterialTheme.typography.titleLarge)
+        }
         Text("$streak", style = MaterialTheme.typography.headlineSmall)
         Text(
             unit,
@@ -82,11 +90,13 @@ private fun DayMark(emoji: String, streak: Int, chrome: Chrome) {
  * when a capped backlog is worst. The counts say it without the false comfort.
  */
 @Composable
-fun SessionCard(model: AppModel, standing: HeuteStanding, streak: Int) {
+fun SessionCard(model: AppModel, standing: HeuteStanding, streak: Int, health: StreakHealth) {
     val chrome = model.chrome
     val offer = standing.offer
     DayCard {
-        DayMark(if (streak > 0) "🔥" else "✨", streak, chrome)
+        // A run wears its own flame; without one there is nothing to grade, so the day
+        // gets a plain mark instead.
+        DayMark(if (streak > 0) null else "✨", streak, health, chrome)
         Text(
             headlineText(chrome, offer.headline),
             style = MaterialTheme.typography.headlineSmall,
@@ -124,11 +134,11 @@ fun SessionCard(model: AppModel, standing: HeuteStanding, streak: Int) {
  * never made ([net.spross.kern.box.TodayReport.worked] is the difference).
  */
 @Composable
-fun DoneCard(model: AppModel, standing: HeuteStanding, streak: Int) {
+fun DoneCard(model: AppModel, standing: HeuteStanding, streak: Int, health: StreakHealth) {
     val chrome = model.chrome
     val worked = standing.today.worked
     DayCard {
-        DayMark(if (worked) "🎉" else "🌱", streak, chrome)
+        DayMark(if (worked) "🎉" else "🌱", streak, health, chrome)
         Text(
             if (worked) chrome.doneToday else chrome.caughtUpTitle,
             style = MaterialTheme.typography.headlineSmall,

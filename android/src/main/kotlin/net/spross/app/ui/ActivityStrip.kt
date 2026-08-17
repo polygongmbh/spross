@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -32,12 +33,16 @@ import java.util.Locale
 import net.spross.app.Chrome
 import net.spross.app.countLine
 import net.spross.kern.box.ActivityDay
+import net.spross.kern.box.StreakHealth
 
 /** The gutter between two columns; a joined run rules straight across it. */
 private val GUTTER = 6.dp
 
 /** How thick the run underline is drawn. */
 private val RUN_THICKNESS = 2.5.dp
+
+/** The header flame, cut down to the caption it stands beside. */
+private val FLAME_GLYPH = 15.dp
 
 /**
  * The fortnight of practice, one column per day: how much was answered, and which days
@@ -46,8 +51,8 @@ private val RUN_THICKNESS = 2.5.dp
  * [days] is kern's own walk ([net.spross.kern.box.streakWindow], held on
  * `AppModel.activityWindow`), oldest day first and today last, and [streakDays] is
  * `BoxStatistics.streak`: the strip NEVER counts a run of its own, or the flame in the
- * header and the underline below could disagree. The arithmetic is [ActivityBars]; this
- * file only draws it.
+ * header and the underline below could disagree. [health] grades that flame the same way.
+ * The arithmetic is [ActivityBars]; this file only draws it.
  *
  * Bars, underline and weekday letters are three rows sharing one weighting, so a column's
  * three parts line up without any of them being told where it is.
@@ -56,6 +61,7 @@ private val RUN_THICKNESS = 2.5.dp
 fun ActivityStrip(
     days: List<ActivityDay>,
     streakDays: Int,
+    health: StreakHealth,
     chrome: Chrome,
     locale: Locale,
     modifier: Modifier = Modifier,
@@ -92,12 +98,18 @@ fun ActivityStrip(
                 )
                 if (streakDays > 0) {
                     val unit = if (streakDays == 1) chrome.dayOne else chrome.dayMany
-                    Text(
-                        "🔥 $streakDays $unit",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = palette.accent,
-                        maxLines = 1,
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
+                    ) {
+                        StreakFlame(health, Modifier.size(FLAME_GLYPH))
+                        Text(
+                            "$streakDays $unit",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = palette.accent,
+                            maxLines = 1,
+                        )
+                    }
                 }
             }
             // why: one label for the whole strip — fourteen columns each announcing a

@@ -41,6 +41,7 @@ import net.spross.app.countriesOffered
 import net.spross.app.lettersOffered
 import net.spross.app.numbersOffered
 import net.spross.app.werkstattOffered
+import net.spross.kern.box.StreakHealth
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.session.SessionOfferKind
 
@@ -56,6 +57,9 @@ import net.spross.kern.session.SessionOfferKind
 fun HeuteScreen(model: AppModel) {
     val chrome = model.chrome
     val stats = model.stats
+    // The run's grade travels with its count: the card's flame and the strip's read one
+    // answer, so they can never show two different states of the same day.
+    val health = stats?.streakHealth ?: StreakHealth.None
     val box = model.box
     val source = box?.joinStamp?.source ?: "en"
     val locale = remember(source) {
@@ -120,11 +124,11 @@ fun HeuteScreen(model: AppModel) {
             )
 
             HeuteCard.Session -> standing?.let {
-                SessionCard(model, it, stats?.streak ?: 0)
+                SessionCard(model, it, stats?.streak ?: 0, health)
             }
 
             HeuteCard.Done -> standing?.let {
-                DoneCard(model, it, stats?.streak ?: 0)
+                DoneCard(model, it, stats?.streak ?: 0, health)
             }
 
             HeuteCard.EmptyBox -> StateCard(
@@ -141,7 +145,7 @@ fun HeuteScreen(model: AppModel) {
             Text(chrome.progressTitle, style = MaterialTheme.typography.titleLarge)
             // Fortschritt: the same fortnight the streak was counted from, on the very
             // refresh that produced it — the strip reads kern's walk, never one of its own.
-            ActivityStrip(model.activityWindow, stats?.streak ?: 0, chrome, locale)
+            ActivityStrip(model.activityWindow, stats?.streak ?: 0, health, chrome, locale)
         }
         Spacer(Modifier.height(DlSpace.l))
     }

@@ -7,16 +7,52 @@ import SwiftUI
 
 // MARK: StreakFlameView
 
+/// How the streak's flame burns. The Design-local twin of the box's
+/// `StreakHealth`, so components stay kern-free — WHICH day arithmetic puts a run
+/// in which grade is the engine's ruling (`kern/README.md` §6); here it is only
+/// solid, pale or hollow.
+enum FlameState {
+    /// Today has reviews — the run is safe until tomorrow.
+    case lit
+    /// Nothing today yet, but a miss would only spend the run's one bridge.
+    case dwindling
+    /// Nothing today, and the bridge is already spent — a miss ends the run.
+    case atRisk
+    /// No run to protect.
+    case unlit
+
+    /// Filled while the run is still whole, hollow once a missed today would end it.
+    var symbol: String {
+        switch self {
+        case .lit, .dwindling: return "flame.fill"
+        case .atRisk, .unlit: return "flame"
+        }
+    }
+
+    /// Clay at full strength while today is earned, washed out while today is
+    /// still owed, and plain ink where there is no run behind the mark at all.
+    var tint: Color {
+        switch self {
+        case .lit, .atRisk: return .dlAccent
+        case .dwindling: return .dlAccent.opacity(0.45)
+        case .unlit: return .dlTextSecondary
+        }
+    }
+}
+
 struct StreakFlameView: View {
     let days: Int
+    /// What today still owes the run, worn by the flame itself — the mark says
+    /// the run is exposed on exactly the day it is, without a word for it.
+    var flame: FlameState = .lit
     /// The mark the run wears. The flame is the streak's identity everywhere it is
     /// merely reported; a screen that IS the celebration hands its own emoji in and
     /// carries one badge instead of a badge under a hero saying the same thing twice.
-    var emoji: String = "🔥"
+    var emoji: String?
 
     var body: some View {
         HStack(spacing: DL.Space.s) {
-            Text(verbatim: emoji)
+            mark
                 .font(.title2)
                 .accessibilityHidden(true)
             Text(days.formatted())
@@ -34,6 +70,18 @@ struct StreakFlameView: View {
         .background(Color.dlSurfaceTint, in: Capsule())
         .accessibilityElement(children: .combine)
         .accessibilityLabel(Text("a11y.streakDays \(days)"))
+    }
+
+    /// The celebrating screen's own emoji where one is handed in, else the flame
+    /// in the grade the day has earned it.
+    @ViewBuilder
+    private var mark: some View {
+        if let emoji {
+            Text(verbatim: emoji)
+        } else {
+            Image(systemName: flame.symbol)
+                .foregroundStyle(flame.tint)
+        }
     }
 }
 
@@ -227,6 +275,9 @@ private extension View {
     ScrollView {
         VStack(alignment: .leading, spacing: DL.Space.xl) {
             StreakFlameView(days: 12)
+            StreakFlameView(days: 12, flame: .dwindling)
+            StreakFlameView(days: 12, flame: .atRisk)
+            StreakFlameView(days: 12, emoji: "🎉")
             AreaChip(emoji: "🍳", name: "Küche",
                      subtitle: "Hier duftet es nach Abendessen.",
                      progress: .init(consolidated: 18, learning: 6, notIntroduced: 0, progressTotal: 24),
@@ -254,6 +305,7 @@ private extension View {
 #Preview("Progress pieces · dark") {
     VStack(alignment: .leading, spacing: DL.Space.xl) {
         StreakFlameView(days: 3)
+        StreakFlameView(days: 3, flame: .atRisk)
         AreaChip(emoji: "🍳", name: "Küche",
                  progress: .init(consolidated: 18, learning: 6, notIntroduced: 28, progressTotal: 52),
                  lockedPhrases: 2)

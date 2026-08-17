@@ -22,6 +22,9 @@ struct ActivityStripView: View {
     /// Authoritative streak from `BoxStatistics` — the strip never recomputes
     /// the number, only draws which days it covers.
     var streakDays: Int = 0
+    /// What today still owes the run, handed over beside the number — the badge's
+    /// flame wears the same grade as the one on the session card above it.
+    var flame: FlameState = .lit
 
     @Environment(\.locale) private var locale
 
@@ -66,10 +69,14 @@ struct ActivityStripView: View {
     }
 
     private var streakBadge: some View {
-        (Text(verbatim: "🔥 ") + Text(streakDays.formatted()) + Text(verbatim: " ")
+        // The count keeps the accent whatever the flame is doing: the pale or
+        // hollow MARK is the warning, and paling the number only costs contrast.
+        let mark: Text = Text(Image(systemName: flame.symbol)).foregroundStyle(flame.tint)
+        let count: Text = (Text(verbatim: " ") + Text(streakDays.formatted()) + Text(verbatim: " ")
             + Text(streakDays == 1 ? "common.dayOne" : "common.dayMany"))
-            .font(DL.Fonts.caption)
             .foregroundStyle(Color.dlAccent)
+        return (mark + count)
+            .font(DL.Fonts.caption)
             .lineLimit(1)
             .accessibilityHidden(true) // why: the combined strip label names the streak
     }
@@ -180,6 +187,7 @@ struct ActivityStripView: View {
     }
     return VStack(spacing: DL.Space.l) {
         ActivityStripView(days: days, streakDays: 11)
+        ActivityStripView(days: days, streakDays: 11, flame: .atRisk)
         ActivityStripView(days: days.map {
             ActivityColumn(day: $0.day, reviews: 0, inStreak: false)
         })

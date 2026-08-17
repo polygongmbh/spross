@@ -66,6 +66,10 @@ extension BoxStatistics {
     var longestStreakDays: Int { Int(longestStreak) }
     var consolidatedCards: Int { Int(consolidatedCount) }
     var learningCards: Int { Int(learningCount) }
+
+    /// The grade the flame burns in right now. Every screen that draws one reads
+    /// it here, so no two surfaces read the same day differently.
+    var flame: FlameState { FlameState(streakHealth) }
 }
 
 extension AreaStatistics {
@@ -212,6 +216,20 @@ extension DLGender {
         case .masculine: self = .masculine
         case .feminine: self = .feminine
         case .neuter: self = .neuter
+        }
+    }
+}
+
+extension FlameState {
+    /// The mark's twin of the box's `StreakHealth` — kern walks the days and says
+    /// what today still owes the run (`box/Statistics.kt`), the design system only
+    /// says how the flame burns on it.
+    init(_ health: StreakHealth) {
+        switch health {
+        case .earned: self = .lit
+        case .bridgeable: self = .dwindling
+        case .ending: self = .atRisk
+        case .none: self = .unlit
         }
     }
 }

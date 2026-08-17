@@ -79,7 +79,9 @@ struct SessionCompletionView: View {
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)
             VStack(spacing: DL.Space.s) {
-                StreakFlameView(days: streakDays)
+                // why: reaching this screen means a round was just answered, so
+                // today has reviews by construction — the flame is lit or nothing.
+                StreakFlameView(days: streakDays, flame: .lit)
                 if streakIsRecord {
                     Text("session.finished.streakRecord")
                         .font(DL.Fonts.headline)

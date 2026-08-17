@@ -227,6 +227,11 @@ a clone inherits its sibling's gaps, never the rules.
 - **Heute** is the only root screen:
   session card (streak flame + the round's counts, or done state),
   trainer hub, then the Fortschritt section — 14-day strip and the forest.
+  The card's flame is graded, not decorative — solid, pale, or a hollow outline
+  by what today still owes the run (`../kern/README.md` §6, `BoxStatistics.streakHealth`).
+  The card is up exactly while that work is still owed, so the mark carries the warning
+  without spending a word on it — and the strip's badge and the widget's flame
+  read off the same grade, so no two surfaces say different things about one day.
   The card names what the round is led by rather than calling everything "a session":
   due work, or an offer of new words when nothing is due.
   Copy for the second is an OFFER, never a summons —

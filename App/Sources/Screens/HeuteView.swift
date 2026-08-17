@@ -145,7 +145,9 @@ struct HeuteView: View {
         .dlCardShadow()
     }
 
-    /// Flame hero, or a sprout when there is no streak to show.
+    /// Flame hero, or a sprout when there is no streak to show. This card is up
+    /// exactly while today's work is still owed, so the flame it wears is the one
+    /// place the run's exposure is worth seeing.
     ///
     /// No progress ring here: a growing box sets no daily quota, so any arc has to
     /// divide work done by work still queued — and both climb through the day, which
@@ -155,7 +157,7 @@ struct HeuteView: View {
     private var sessionStats: some View {
         let streak = model.stats?.streakDays ?? 0
         if streak > 0 {
-            StreakFlameView(days: streak)
+            StreakFlameView(days: streak, flame: model.stats?.flame ?? .unlit)
         } else {
             Text(verbatim: "✨")
                 .font(.system(size: 56))
@@ -235,8 +237,8 @@ struct HeuteView: View {
 
     /// The day's mark: the celebration wearing the streak, or the bare emoji when there
     /// is no run to name yet — the same fallback `sessionStats` makes with ✨, and the
-    /// reason the badge is guarded at all: unguarded it read "🔥 0 Tage" to anyone who
-    /// had not started one.
+    /// reason the badge is guarded at all: unguarded it put a flame over "0 Tage" for
+    /// anyone who had not started one.
     @ViewBuilder
     private func doneMark(worked: Bool) -> some View {
         let emoji = worked ? "🎉" : "🌱"
