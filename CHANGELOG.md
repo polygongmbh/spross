@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **The box now says which words it cannot say.** A word with neither a
+  recording nor a device voice behind it shows a small crossed-out speaker
+  beside its name, so a silent tap reads as expected rather than as nothing
+  happening. A hint at the top of the box — "Words speak when tapped" —
+  discloses the tap itself, the same disclosure the number and country
+  reference tables already carry.
+
 ## 5.0.0 — 2026-08-15
 
 - **The streak counts the day, not the language.** Studying German today and Swahili

@@ -5,7 +5,10 @@ import SprossKern
 /// the learner already knows, and its standing. The row itself is the audio
 /// control — no speaker icon competing with the wake/pack controls and the
 /// phrase text for width; tapping anywhere plain speaks it (`pronounceOnTap`,
-/// shared with the produce-narration lines in `SessionView+Audio`).
+/// shared with the produce-narration lines in `SessionView+Audio`). The one
+/// exception is a crossed-out speaker beside a word neither a recording nor
+/// the device's voice can say — there the tap does nothing, and the row must
+/// not promise otherwise.
 ///
 /// `pack` is the row's one variation. Where a word can be packed on its own —
 /// a search hit, which the learner went looking for by name — the "new" badge
@@ -40,10 +43,22 @@ struct BoxCardRow: View {
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 // Exposure surfaces render the TARGET side first (contract §6).
-                Text(CardDisplay.citation(of: card.target))
-                    .font(DL.Fonts.body)
-                    .foregroundStyle(Color.dlTextPrimary)
-                    .lineLimit(1)
+                HStack(spacing: DL.Space.xs) {
+                    Text(CardDisplay.citation(of: card.target))
+                        .font(DL.Fonts.body)
+                        .foregroundStyle(Color.dlTextPrimary)
+                        .lineLimit(1)
+                    // why: `pronounce` is nil for exactly the words neither a
+                    // recording nor the device's own voice can say — the one
+                    // state where the row's tap-to-speak does nothing, so it is
+                    // the one that needs to say so.
+                    if pronounce == nil {
+                        Image(systemName: "speaker.slash")
+                            .font(.caption2)
+                            .foregroundStyle(Color.dlTextSecondary)
+                            .accessibilityLabel("box.noAudio")
+                    }
+                }
                 Text(card.source.text)
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)

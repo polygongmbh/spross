@@ -156,6 +156,11 @@ struct BoxView: View {
             subtitle
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
+            // why: same disclosure as the number/country reference tables — said
+            // once for the page rather than as a glyph competing with every row.
+            if anyWordCanBeHeard {
+                ReferenceTapHint(textKey: "box.tapToHear")
+            }
         }
     }
 
@@ -163,6 +168,17 @@ struct BoxView: View {
         let active = model.stats?.activeCards ?? 0
         let total = model.box?.cards.count ?? 0
         return Text("box.cardsInProgress \(active.formatted()) \(total.formatted())")
+    }
+
+    /// Whether the hint is worth showing at all — a box whose language has
+    /// neither a recording nor a device voice for a single word must not
+    /// promise a tap that would do nothing everywhere.
+    private var anyWordCanBeHeard: Bool {
+        guard let target = model.targetLanguage else { return false }
+        return Pronouncer.shared.canSpeak(language: target)
+            || (model.box?.cards.contains { card in
+                model.pronounceAction(for: card.target.text, lang: card.target.lang) != nil
+            } ?? false)
     }
 }
 
