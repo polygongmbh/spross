@@ -533,12 +533,32 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   `tomorrowDue` is `dueNow` at `endOfTomorrow`, never a second local-midnight derivation.
   The kinds and their order are the rule;
   the words, plurals and separators for them stay in each platform's string tables.
-- **The clock a greeting turns on is kern's too**: `dayPart(now, tz)` splits the local day
-  into `Morning` / `Day` / `Evening` / `Night` on a phone learner's boundaries, never the
-  sun's, so it holds at every latitude and in every season;
-  `partVariant(now, tz, count)` picks which of a surface's phrasings that stretch wears,
-  FNV-1a over day-plus-part so the pick survives a relaunch and matches on both phones.
+- **The clock a greeting turns on is kern's too**: `dayPart(now, tz, language)` places the
+  hour in `Morning` / `Day` / `Evening` / `Night` on the seams of the language being
+  greeted in, read off the words its clock drill already teaches
+  (`trainer/ClockDayParts.kt`) rather than a boundary table of its own —
+  Swahili is at *jioni* by four in the afternoon while German is still at *nachmittags*,
+  and a drill that learns better hours moves the greeting with it.
+  It departs from the drill in two places, because reading a time is not greeting a person:
+  the small hours are `Night` in every language ("two in the morning" is a reading, not a
+  greeting), and noon takes the hour before it, since the languages that name midday with a
+  word of its own leave nothing at twelve to stand on.
+  Sunrise is not in it: that needs a location permission the app does not ask for.
+  `partVariant(now, tz, language, count)` picks which of a surface's phrasings that stretch
+  wears, FNV-1a over day-plus-part so the pick survives a relaunch and matches on both phones.
   How many phrasings there are, and what they say, is the platform's.
+- **What the TARGET says at that stretch is the catalog's**: `Catalog.greeting(lang, part, name)`
+  resolves the part to the concept it greets with
+  (`good-morning` / `good-day` / `good-evening` / `good-night`, `Greetings.slug`)
+  and reads that language's realization — a kern rule, so both phones greet with the same words.
+  A morning the language authors none of falls to the all-day greeting, because that IS its
+  morning greeting: Spanish, French and Italian leave `good-morning` unauthored rather than
+  duplicate "¡Buenos días!" / "Bonjour !" / "Buongiorno!".
+  It is null wherever a language authors nothing for the rest,
+  which is the surface's cue to say something of its own rather than to greet in another language.
+  A name is addressed INTO the sentence (`Greetings.addressed`),
+  so the closing mark travels behind it — "Habari za asubuhi!" → "Habari za asubuhi, Tim!" —
+  and whatever space stood before that mark is kept, because French sets one there and German does not.
 - **A composed session never refills** (user ruling 2026-07-29): the plan IS the run.
   Cards falling due while the learner sits there — a learning step maturing, most often —
   used to be drained straight in, so the count they were counting down to moved away from

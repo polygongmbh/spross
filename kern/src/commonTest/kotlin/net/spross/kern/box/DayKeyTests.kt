@@ -110,14 +110,27 @@ class DayKeyTests {
     }
 
     @Test
-    fun dayPartAndItsVariantFollowTheLocalClock() {
-        val part = { h: Int -> dayPart(local("Europe/Berlin", 2026, 7, 1, h, 0), "Europe/Berlin") }
-        assertEquals(DayPart.Night, part(3))
-        assertEquals(DayPart.Morning, part(7))
-        assertEquals(DayPart.Day, part(14))
-        assertEquals(DayPart.Evening, part(20))
+    fun dayPartFollowsTheLanguagesOwnBoundaries() {
+        val at = { h: Int, lang: String? ->
+            dayPart(local("Europe/Berlin", 2026, 7, 1, h, 0), "Europe/Berlin", lang)
+        }
+        assertEquals(DayPart.Night, at(3, "de"))
+        assertEquals(DayPart.Morning, at(7, "de"))
+        // Four in the afternoon: still nachmittags in German, already jioni in Swahili.
+        assertEquals(DayPart.Day, at(16, "de"))
+        assertEquals(DayPart.Evening, at(16, "sw"))
+        // Seven in the evening: abends in German, still de la tarde in Spanish.
+        assertEquals(DayPart.Evening, at(19, "de"))
+        assertEquals(DayPart.Evening, at(19, "es"))
+        // Noon: the languages that name it with a word of its own leave the drill nothing
+        // there, so the hour before it answers.
+        assertEquals(DayPart.Morning, at(12, "fr"))
+        // A language the drills do not cover reads on English's hours.
+        assertEquals(DayPart.Day, at(14, "zz"))
         // The phrasing holds inside a part and is picked afresh in the next one.
-        val variant = { h: Int -> partVariant(local("Europe/Berlin", 2026, 7, 1, h, 0), "Europe/Berlin", 2) }
+        val variant = { h: Int ->
+            partVariant(local("Europe/Berlin", 2026, 7, 1, h, 0), "Europe/Berlin", "de", 2)
+        }
         assertEquals(variant(11), variant(17))
         assertTrue((0..23).all { variant(it) in 0..1 })
     }

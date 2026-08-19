@@ -70,8 +70,12 @@ struct HeuteView: View {
     private var greeting: Text {
         guard let language = targetLanguageName else { return Text("heute.title") }
         let now = Date().epochMillis, tz = currentTzId()
-        let second = partVariant(nowEpochMillis: now, tzId: tz, count: 2) == 1
-        switch dayPart(nowEpochMillis: now, tzId: tz) {
+        // The language's own hours: four in the afternoon is still Tag in German and
+        // already jioni in Swahili (kern's `dayPart`).
+        let target = model.targetLanguage
+        let second = partVariant(nowEpochMillis: now, tzId: tz,
+                                 language: target, count: 2) == 1
+        switch dayPart(nowEpochMillis: now, tzId: tz, language: target) {
         case .morning:
             return second ? Text("heute.greeting.morning.1 \(language)")
                           : Text("heute.greeting.morning.0 \(language)")

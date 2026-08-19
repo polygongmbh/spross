@@ -249,13 +249,15 @@ private fun greeting(model: AppModel): String {
     val target = model.box?.joinStamp?.target ?: return model.chrome.heuteTitle
     val now = System.currentTimeMillis()
     val tz = TimeZone.getDefault().id
-    val lines = when (dayPart(now, tz)) {
+    // The language's own hours: four in the afternoon is still Tag in German and already
+    // jioni in Swahili (kern's [dayPart]).
+    val lines = when (dayPart(now, tz, target)) {
         DayPart.Morning -> model.chrome.greetMorning
         DayPart.Day -> model.chrome.greetDay
         DayPart.Evening -> model.chrome.greetEvening
         DayPart.Night -> model.chrome.greetNight
     }
-    return lines[partVariant(now, tz, lines.size)].format(model.languageName(target))
+    return lines[partVariant(now, tz, target, lines.size)].format(model.languageName(target))
 }
 
 /** "Freitag, 8. August" in the chrome's language — the caption over the day's name. */

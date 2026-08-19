@@ -7,7 +7,9 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.plus
 import kotlinx.datetime.toLocalDateTime
+import net.spross.kern.model.Language
 import net.spross.kern.model.fnv1a64
+import net.spross.kern.trainer.greetingPart
 
 /** Local calendar date of the instant in the caller's zone. */
 internal fun localDate(nowEpochMillis: Long, tzId: String): LocalDate =
@@ -37,20 +39,20 @@ fun endOfTomorrow(nowEpochMillis: Long, tzId: String): Instant =
         .plus(2, DateTimeUnit.DAY)
         .atStartOfDayIn(TimeZone.of(tzId))
 
-/**
- * The stretch of the local day an instant falls in — what a line that greets the learner
- * turns on. Sunrise and sunset are not in it: the boundaries are the ones a phone learner
- * keeps, not the sun's, so they hold at every latitude and in every season.
- */
+/** The stretch of the local day an instant falls in — what a greeting turns on. */
 enum class DayPart { Morning, Day, Evening, Night }
 
-fun dayPart(nowEpochMillis: Long, tzId: String): DayPart =
-    when (Instant.fromEpochMilliseconds(nowEpochMillis).toLocalDateTime(TimeZone.of(tzId)).hour) {
-        in 5..10 -> DayPart.Morning
-        in 11..17 -> DayPart.Day
-        in 18..21 -> DayPart.Evening
-        else -> DayPart.Night
-    }
+/**
+ * Which stretch of the day the LANGUAGE being greeted in is in — its own seams, read off
+ * the words its clock drill teaches (`trainer/ClockDayParts.kt`), never a second table of
+ * boundaries here. Languages disagree, and the drill already carries the disagreement:
+ * Swahili is at *jioni* by four in the afternoon while German is still at *nachmittags*.
+ */
+fun dayPart(nowEpochMillis: Long, tzId: String, language: Language?): DayPart =
+    greetingPart(
+        language,
+        Instant.fromEpochMilliseconds(nowEpochMillis).toLocalDateTime(TimeZone.of(tzId)).hour,
+    )
 
 /**
  * Which of [count] phrasings a line that renames itself takes right now.
@@ -63,8 +65,8 @@ fun dayPart(nowEpochMillis: Long, tzId: String): DayPart =
  * process and Kotlin's `hashCode` is no contract either, so the same hour would read
  * differently after a relaunch, or differently on the two phones.
  */
-fun partVariant(nowEpochMillis: Long, tzId: String, count: Int): Int {
-    var hash = fnv1a64("${dayKey(nowEpochMillis, tzId)}:${dayPart(nowEpochMillis, tzId)}")
+fun partVariant(nowEpochMillis: Long, tzId: String, language: Language?, count: Int): Int {
+    var hash = fnv1a64("${dayKey(nowEpochMillis, tzId)}:${dayPart(nowEpochMillis, tzId, language)}")
     // why: FNV leaves its low bits barely mixed, and the modulo reads exactly those.
     hash = hash xor (hash shr 33)
     return (hash % count.toULong()).toInt()

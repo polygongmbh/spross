@@ -1,5 +1,6 @@
 package net.spross.kern.catalog
 
+import net.spross.kern.box.DayPart
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.IDIOM_EMOJI
@@ -80,6 +81,25 @@ class Catalog internal constructor(
      */
     fun areaEmoji(area: String): String? =
         groups.firstNotNullOfOrNull { it.areaEmojis[area] }
+
+    /**
+     * What [lang] says at this stretch of the day ([Greetings.slug]), addressed to [name]
+     * where one is known. Source-independent like [alphabetExample]: greeting somebody is
+     * not a join, so the reader's language never enters it.
+     *
+     * A morning no language of its own realizes falls to the all-day greeting, because
+     * that IS the morning greeting there — Spanish, French and Italian leave `good-morning`
+     * unauthored rather than duplicate `¡Buenos días!` / `Bonjour !` / `Buongiorno!`.
+     * Null anywhere else the language realizes nothing, which is the surface's cue to say
+     * something of its own, never to fall back to another language's line.
+     */
+    fun greeting(lang: Language, part: DayPart, name: String? = null): String? =
+        (text(Greetings.slug(part), lang)
+            ?: if (part == DayPart.Morning) text(Greetings.slug(DayPart.Day), lang) else null)
+            ?.let { Greetings.addressed(it, name) }
+
+    private fun text(slug: String, lang: Language): String? =
+        slugIndex[slug]?.realizations?.get(lang)?.text
 
     /**
      * Emits one [Card] per joinable concept, in catalog order. A concept joins iff the
