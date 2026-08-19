@@ -36,6 +36,8 @@
    "text": "На добраніч!",
    "variants": ["Добраніч!"],
    "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Добрий вечір!“" }
-  }
+  },
+  "ready-to-learn": { "text": "Готовий вчитися?", "variants": ["Готова вчитися?"] },
+  "one-more-word": { "text": "Ще одне слово?" }
  }
 }

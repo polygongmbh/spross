@@ -53,6 +53,8 @@
    "notes": {
     "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Bonan vesperon!“"
    }
-  }
+  },
+  "ready-to-learn": { "text": "Ĉu preta lerni?" },
+  "one-more-word": { "text": "Ĉu ankoraŭ unu vorton?" }
  }
 }

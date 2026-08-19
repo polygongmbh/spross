@@ -55,6 +55,8 @@
    "text": "Buonanotte!",
    "variants": ["Buona notte!"],
    "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Buonasera!“" }
-  }
+  },
+  "ready-to-learn": { "text": "Pronto a imparare?", "variants": ["Pronta a imparare?"] },
+  "one-more-word": { "text": "Ancora una parola?", "variants": ["Un'altra parola?"] }
  }
 }

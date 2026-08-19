@@ -30,5 +30,7 @@
  { "slug": "greetings-elder", "kind": "phrase", "emoji": "🧓", "components": [] },
  { "slug": "good-morning", "kind": "phrase", "emoji": "🌅", "components": [] },
  { "slug": "good-evening", "kind": "phrase", "emoji": "🌆", "components": [] },
- { "slug": "good-night", "kind": "phrase", "emoji": "🌙", "components": [] }
+ { "slug": "good-night", "kind": "phrase", "emoji": "🌙", "components": [] },
+ { "slug": "ready-to-learn", "kind": "phrase", "emoji": "✨", "components": [] },
+ { "slug": "one-more-word", "kind": "phrase", "emoji": "➕", "components": [] }
 ]

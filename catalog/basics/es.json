@@ -47,6 +47,8 @@
   "good-night": {
    "text": "¡Buenas noches!",
    "notes": { "de": "nach Einbruch der Dunkelheit auch die Begrüßung, nicht nur der Abschied" }
-  }
+  },
+  "ready-to-learn": { "text": "¿Listo para aprender?", "variants": ["¿Lista para aprender?"] },
+  "one-more-word": { "text": "¿Una palabra más?" }
  }
 }

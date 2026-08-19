@@ -36,6 +36,8 @@
   "good-night": {
    "text": "Good night!",
    "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Good evening!“" }
-  }
+  },
+  "ready-to-learn": { "text": "Ready to learn?" },
+  "one-more-word": { "text": "One more word?" }
  }
 }

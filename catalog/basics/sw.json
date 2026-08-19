@@ -58,6 +58,11 @@
    "notes": {
     "de": "Wunsch zum Abschied und vor dem Schlafen — wer spät ankommt, grüßt mit „Habari za usiku!“"
    }
-  }
+  },
+  "ready-to-learn": {
+   "text": "Tayari kujifunza?",
+   "notes": { "de": "kujifunza = lernen · tayari heißt auch „schon“, je nach Satz" }
+  },
+  "one-more-word": { "text": "Neno moja zaidi?" }
  }
 }
