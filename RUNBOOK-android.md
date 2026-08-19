@@ -124,10 +124,9 @@ Audio reaches the host speakers by default, so a letter drill can be heard as we
 
 Nothing places a widget from the command line — `adb shell cmd appwidget` answers
 "No shell command implementation" — so the tile goes on the home screen by hand:
-long-press the wallpaper, **Widgets**, scroll to **Spross**, then drag its preview onto
-the screen. The three families are one widget resized: two cells square is the small
-face, four by two the list, four by four the poster, and dragging a corner handle moves
-between them in place.
+long-press the wallpaper, **Widgets**, scroll to **Spross**, then drag its preview onto the screen. 
+Resizing is a long-press and then a drag of an edge handle, and the tile refills its grid in place —
+so one placed widget is every shape worth looking at.
 
 A freshly placed tile draws the loading spinner for a few seconds before its first
 composition arrives, and a phone with no box yet draws the sprout — answer a round first
