@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.1.0 — 2026-08-19
+
 - **Spross puts your words on the Android home screen.**
   A tile that refills itself for whatever shape you drag it to — one word with its picture,
   or a gridful of them — carrying the streak, what is due, and the fortnight of practice
