@@ -227,10 +227,21 @@ a clone inherits its sibling's gaps, never the rules.
 - **Heute** is the only root screen:
   the day's line, session card (streak flame + the round's counts, or done state),
   trainer hub, then the 14-day strip and the forest.
-  The line over the card names the LANGUAGE being learned, in words that fit the hour
+  The line over the card carries the LANGUAGE being learned, in words that fit the hour
   (`../kern/README.md` §6, `dayPart`/`partVariant`) — the screen's own name spent the
   largest type on the page on what the learner already knew, and the language is the one
   piece of standing nothing else here says.
+  Two registers, and every line is in one of them: the language speaking for itself
+  ("Habari za asubuhi", "Tayari kujifunza?"), or the known language asking about it
+  ("Ein Feierabend mit Suaheli?").
+  The spoken lines lead, because they are the only ones that both greet and teach — and the
+  only ones that can address the learner, since a name inside a sentence is that language's
+  business (`Greetings.addressed`), not a slot the chrome can fake.
+  The address is the learner's name, or the word the hour lends when none is set:
+  morning and night have one, midday and evening do not, so the pool simply carries no
+  addressed line there.
+  Every chrome line ASKS — the words are on the table, and a statement over a card the
+  learner has not opened yet claims their day for them.
   It holds through a render and has moved on by the next opening: a line that re-rolls
   while it is being read is a glitch, one that never moves stops being read.
   Those two carry no section title: the strip heads itself and the forest is captioned,

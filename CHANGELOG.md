@@ -12,11 +12,16 @@
   be bridged, and goes cold and gray when missing today would end the run — on the day's
   card, beside the fortnight, and on the widget.
 
-- **The start screen names the language you are learning, not the day of the week.**
-  Where the biggest line on the page used to read "Today" over today's date, it now says
-  what the box is growing — "Your Swahili is growing" in the afternoon, "A late round of
-  Swahili" past bedtime — in words that fit the hour and change between openings.
-  The date stays as the small line above it.
+- **The start screen greets you in the language you are learning.** Where the biggest line
+  on the page used to read "Today" over today's date, it now says "Habari za asubuhi" in the
+  morning and asks "Tayari kujifunza?" or "A quiet bit of Swahili?" late at night, changing
+  between openings. It keeps the hours that language keeps, so an evening greeting arrives
+  when a speaker would say it, not when a German clock would. Tell the app your name — in
+  onboarding or in the box's settings — and the greeting uses it; without one it still has a
+  word for whoever is up at that hour. The date stays as the small line above.
+
+- **Every language now teaches the greetings for morning, evening and night**, plus two
+  phrases to ask with, packable and drillable like any other words.
 
 ## 5.0.0 — 2026-08-15
 

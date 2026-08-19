@@ -9,21 +9,25 @@ package net.spross.app
  */
 internal val ChromeDe = Chrome(
     greetMorning = listOf(
-        "%s ist ein guter Start in den Tag",
-        "Morgens ein bisschen %s",
+        "Lust auf %s?",
+        "Ein bisschen %s zum Start?",
+        "%s für den Frühaufsteher?",
     ),
     greetDay = listOf(
-        "Dein %s wächst",
-        "%s, Tag für Tag",
+        "Kurz %s?",
+        "Zwischendurch %s?",
     ),
     greetEvening = listOf(
-        "%s zum Feierabend",
-        "Abends noch ein bisschen %s",
+        "Ein Feierabend mit %s?",
+        "Abends noch %s?",
     ),
     greetNight = listOf(
-        "Nächtliche %s-Einheit",
-        "%s zu später Stunde",
+        "Noch leise %s?",
+        "%s zu später Stunde?",
+        "%s für die Nachteule?",
     ),
+    greetMorningAddressee = "Frühaufsteher",
+    greetNightAddressee = "Nachteule",
     heuteTitle = "Heute",
     practice = "Üben",
     extraRound = "Noch eine Runde?",

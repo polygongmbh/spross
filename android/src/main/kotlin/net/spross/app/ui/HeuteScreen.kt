@@ -41,10 +41,7 @@ import net.spross.app.countriesOffered
 import net.spross.app.lettersOffered
 import net.spross.app.numbersOffered
 import net.spross.app.werkstattOffered
-import net.spross.kern.box.DayPart
 import net.spross.kern.box.StreakHealth
-import net.spross.kern.box.dayPart
-import net.spross.kern.box.partVariant
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.session.SessionOfferKind
 
@@ -237,27 +234,6 @@ private fun RowScope.EntryChip(emoji: String, title: String, onClick: () -> Unit
             ),
         )
     }
-}
-
-/**
- * "Nächtliche Suaheli-Einheit" — the language the box is growing, in words that fit the
- * hour. Which stretch of the day it is and which of its phrasings this one takes are kern's
- * ([dayPart], [partVariant]); the words are ours. The screen's own name stands in only
- * while no profile names a language.
- */
-private fun greeting(model: AppModel): String {
-    val target = model.box?.joinStamp?.target ?: return model.chrome.heuteTitle
-    val now = System.currentTimeMillis()
-    val tz = TimeZone.getDefault().id
-    // The language's own hours: four in the afternoon is still Tag in German and already
-    // jioni in Swahili (kern's [dayPart]).
-    val lines = when (dayPart(now, tz, target)) {
-        DayPart.Morning -> model.chrome.greetMorning
-        DayPart.Day -> model.chrome.greetDay
-        DayPart.Evening -> model.chrome.greetEvening
-        DayPart.Night -> model.chrome.greetNight
-    }
-    return lines[partVariant(now, tz, target, lines.size)].format(model.languageName(target))
 }
 
 /** "Freitag, 8. August" in the chrome's language — the caption over the day's name. */

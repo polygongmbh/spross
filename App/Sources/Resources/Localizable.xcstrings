@@ -2092,13 +2092,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein %@ wächst"
+            "value" : "Kurz %@?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your %@ is growing"
+            "value" : "A quick bit of %@?"
           }
         }
       }
@@ -2108,13 +2108,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@, Tag für Tag"
+            "value" : "Zwischendurch %@?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@, day by day"
+            "value" : "Some %@ in between?"
           }
         }
       }
@@ -2124,13 +2124,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ zum Feierabend"
+            "value" : "Ein Feierabend mit %@?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ to wind down with"
+            "value" : "A wind-down with %@?"
           }
         }
       }
@@ -2140,13 +2140,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abends noch ein bisschen %@"
+            "value" : "Abends noch %@?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A bit of %@ before the day is out"
+            "value" : "A bit more %@ tonight?"
           }
         }
       }
@@ -2156,13 +2156,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ ist ein guter Start in den Tag"
+            "value" : "Lust auf %@?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ is a good start to the day"
+            "value" : "Up for some %@?"
           }
         }
       }
@@ -2172,13 +2172,45 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Morgens ein bisschen %@"
+            "value" : "Ein bisschen %@ zum Start?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A bit of %@ this morning"
+            "value" : "A bit of %@ to start the day?"
+          }
+        }
+      }
+    },
+    "heute.greeting.morning.addressee" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frühaufsteher"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "early bird"
+          }
+        }
+      }
+    },
+    "heute.greeting.morning.epithet %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ für den Frühaufsteher?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ for the early bird?"
           }
         }
       }
@@ -2188,13 +2220,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nächtliche %@-Einheit"
+            "value" : "Noch leise %@?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A late round of %@"
+            "value" : "A quiet bit of %@?"
           }
         }
       }
@@ -2204,13 +2236,45 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ zu später Stunde"
+            "value" : "%@ zu später Stunde?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ at this late hour"
+            "value" : "Some %@ at this late hour?"
+          }
+        }
+      }
+    },
+    "heute.greeting.night.addressee" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nachteule"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "night owl"
+          }
+        }
+      }
+    },
+    "heute.greeting.night.epithet %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ für die Nachteule?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ for the night owl?"
           }
         }
       }

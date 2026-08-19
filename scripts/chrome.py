@@ -282,9 +282,13 @@ MAPPING = {
     'countryRungs': ['countries.rung.%d' % i for i in range(1, 10)],
     'countryTiers': ['countries.tier.%d' % i for i in range(1, 5)],
     'greetDay': ['heute.greeting.day.%d %%@' % i for i in range(2)],
+    'greetMorningAddressee': 'heute.greeting.morning.addressee',
+    'greetNightAddressee': 'heute.greeting.night.addressee',
     'greetEvening': ['heute.greeting.evening.%d %%@' % i for i in range(2)],
-    'greetMorning': ['heute.greeting.morning.%d %%@' % i for i in range(2)],
-    'greetNight': ['heute.greeting.night.%d %%@' % i for i in range(2)],
+    'greetMorning': ['heute.greeting.morning.%d %%@' % i for i in range(2)]
+                    + ['heute.greeting.morning.epithet %@'],
+    'greetNight': ['heute.greeting.night.%d %%@' % i for i in range(2)]
+                  + ['heute.greeting.night.epithet %@'],
     'growthBlooming': ['session.finished.growth.blooming.%d' % i for i in range(3)],
     'growthGrown': ['session.finished.growth.grown.%d' % i for i in range(3)],
     'growthSown': ['session.finished.growth.sown.%d' % i for i in range(3)],

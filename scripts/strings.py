@@ -73,6 +73,8 @@ UNEXTRACTABLE = {
     'lang.de', 'lang.en', 'lang.es', 'lang.sw', 'lang.uk',
     # The Box's own-words area title, resolved through DLChrome like the above.
     'box.ownWords',
+    # The two words that fill the address slot of a target-language greeting.
+    'heute.greeting.morning.addressee', 'heute.greeting.night.addressee',
 }
 # Surfaces only the Android app has. The catalog holds every chrome string the product
 # says — scripts/chrome.py generates the Kotlin tables from it — so these live here with

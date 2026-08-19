@@ -17,13 +17,23 @@ data class Chrome(
     /**
      * The line over the day's card, naming the language the profile is learning (%s), in
      * the words that fit the hour: one list per [net.spross.kern.box.DayPart], indexed by
-     * [net.spross.kern.box.partVariant]. [heuteTitle] stands in only where no profile
-     * names a language yet.
+     * [net.spross.kern.box.partVariant]. Every line here NAMES the language and asks rather
+     * than states — the register that SPEAKS it comes from the catalog instead, and the two
+     * hours that lend an epithet carry a third line for it. [heuteTitle] stands in only
+     * where no profile names a language yet.
      */
     val greetMorning: List<String>,
     val greetDay: List<String>,
     val greetEvening: List<String>,
     val greetNight: List<String>,
+    /**
+     * Who a spoken line is addressed to when no name is known: the hour lends the word, and
+     * it goes INSIDE the target-language sentence ("Tayari kujifunza, Nachteule?"), so it is
+     * never rendered on its own. Morning and night only — nobody is a night owl at two in
+     * the afternoon.
+     */
+    val greetMorningAddressee: String,
+    val greetNightAddressee: String,
     val heuteTitle: String,
     val practice: String,
     val extraRound: String,
