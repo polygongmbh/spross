@@ -207,6 +207,15 @@ a clone inherits its sibling's gaps, never the rules.
   given is what carries that — the tree fills whatever box it gets, so a fixed one drew a
   first-day sprout at the height of a thoroughly learned area: a bare stem the length of the
   screen, claiming a standing the area has not got.
+- **A round too long for the evening can be taken short.** Where the day's round runs well
+  past a sitting, the card offers a second way in beside "Los geht's!" — its due work alone,
+  a round's worth of it, no first sights and nothing dragged forward. An abandoned round is
+  worse than a small one: it leaves the day unworked and the streak unpaid, and a learner
+  with five minutes had no move but to start something they could not finish. It is the same
+  round stopped early rather than a different pile of words, and it is a round's worth on
+  purpose, so the short sitting still closes the day (`../kern/README.md` §6).
+  The quiet button below the primary one, and up only while the two are really different —
+  a second button handing over what the first one does is a choice made for nothing.
 - **The tree rises whatever the round did to the counts**, and what the round CHANGED lands
   on it afterwards — new marks out of nothing, a matured word swelling where it already hung,
   one after another rather than all at once. Two motions, because they answer two questions:

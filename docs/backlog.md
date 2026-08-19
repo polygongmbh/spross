@@ -217,6 +217,10 @@ One line per item, with a file or context pointer, filed under the section it be
   word class, area and shape rank them now, but the newest entry can still be the odd
   one out — the same class of problem the phone's due-order reshuffle fixed,
   on another surface.
+- A short round that goes stale mid-run (the profile or catalog moves under it) recomposes
+  as a full one: `SessionIntent.RecomposeIfStale` reaches for `composeSession`, which knows
+  nothing about which round was opened
+  (`kern/src/commonMain/kotlin/net/spross/kern/session/SessionRun.kt` `recompose`).
 - Rating labels carry more weight on a first exposure now that Good sends a word about a week
   out (kern README §5) — the button wording deserves a look
   (`App/Sources/Design/RatingButtonsView.swift`).

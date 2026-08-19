@@ -293,6 +293,7 @@ internal val ChromeEn = Chrome(
     sessionSomeCards = "A few cards for you.",
     sessionHeldBack = "%d more cards are still waiting for you.",
     sessionStart = "Let's go!",
+    sessionShortRound = "Just a short one?",
     emptyBoxTitle = "Your box is still empty",
     emptyBoxMessage = "Add an area directly, or set how many cards you learn at a time.",
     emptyBoxAction = "Go to box",

@@ -298,6 +298,7 @@ internal val ChromeDe = Chrome(
     sessionSomeCards = "Ein paar Karten für dich.",
     sessionHeldBack = "%d weitere Karten warten noch auf dich.",
     sessionStart = "Los geht's!",
+    sessionShortRound = "Lieber nur kurz?",
     emptyBoxTitle = "Deine Box ist noch leer",
     emptyBoxMessage = "Pack einen Bereich direkt hinein oder stell ein, wie viele Karten du " +
         "gleichzeitig lernst.",

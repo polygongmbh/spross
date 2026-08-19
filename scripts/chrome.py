@@ -208,6 +208,7 @@ MAPPING = {
     'searchWriteOwn': 'box.search.writeOwn %@',
     'sessionDone': 'session.finished.title',
     'sessionSomeCards': 'heute.session.someCards',
+    'sessionShortRound': 'heute.session.shortRound',
     'sessionStart': 'heute.session.start',
     'settingsTitle': 'settings.title',
     'skipStep': 'session.skipCopy',

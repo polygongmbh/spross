@@ -22,7 +22,7 @@ extension AppModel {
     /// Today's round as kern classified it. A box that has not loaded offers nothing.
     var heuteOffer: SessionOffer {
         guard let box else {
-            return SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0, ahead: 0, fresh: 0)
+            return SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0, ahead: 0, fresh: 0, shortRound: 0)
         }
         return SessionOffers.shared.offer(state: box,
                                           nowEpochMillis: Date().epochMillis,

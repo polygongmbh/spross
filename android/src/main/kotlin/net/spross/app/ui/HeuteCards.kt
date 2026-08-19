@@ -125,6 +125,15 @@ fun SessionCard(model: AppModel, standing: HeuteStanding, streak: Int, health: S
         ) {
             Text(chrome.sessionStart, style = MaterialTheme.typography.titleMedium)
         }
+        // A long round is more than an evening some days, and an abandoned one leaves the
+        // day unworked; kern says when the two are different enough to offer both.
+        if (offer.shortRound > 0) {
+            OutlinedButton(
+                onClick = { model.startShortSession() },
+                modifier = Modifier.fillMaxWidth().pressSpring(),
+                shape = MaterialTheme.shapes.small,
+            ) { Text(chrome.sessionShortRound) }
+        }
     }
 }
 

@@ -323,6 +323,8 @@ data class Chrome(
     /** The cap is a promise, not a loss: what it holds back is named. */
     val sessionHeldBack: String,   // %d
     val sessionStart: String,
+    /** The quiet way in, up while the round is long enough to be worth halving. */
+    val sessionShortRound: String,
 
     // ── The box is still empty ──────────────────────────────────────────────────
     val emptyBoxTitle: String,

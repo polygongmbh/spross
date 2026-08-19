@@ -56,6 +56,12 @@ extension AppModel {
         begin(SessionIntent.StartExtra.shared)
     }
 
+    /// The day's round taken short from the Heute session card: its due work alone,
+    /// a round's worth of it. Composing empty is a no-op, so nothing gets presented.
+    func startShortSession() {
+        begin(SessionIntent.StartShort.shared)
+    }
+
     private func begin(_ intent: SessionIntent) {
         #if DEBUG
         uitestFinished = false

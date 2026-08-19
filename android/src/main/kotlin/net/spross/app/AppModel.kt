@@ -494,6 +494,12 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     fun startExtraSession() = begin(SessionIntent.StartExtra)
 
+    /**
+     * The session card's short round: the day's own round taken short — its due work
+     * alone, a round's worth of it — and a no-op when that is empty.
+     */
+    fun startShortSession() = begin(SessionIntent.StartShort)
+
     private fun begin(intent: SessionIntent) {
         val started = dispatch(intent) ?: return
         // A round that came back empty never took the learner anywhere, and leaves no run

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **A day with a big backlog can be answered in a short sitting.** When the round waiting for
+  you runs past what an evening holds, the day's card offers a second, quieter way in beside
+  "Los geht's!": the same round stopped early — its overdue words alone, no new ones and
+  nothing pulled forward from later. It is still a full round's worth, so a short sitting
+  keeps the streak just as the long one would.
+
 ## 5.1.0 — 2026-08-19
 
 - **Spross puts your words on the Android home screen.**

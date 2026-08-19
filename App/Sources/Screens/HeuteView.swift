@@ -112,6 +112,14 @@ struct HeuteView: View {
                 DLActionLabel(key: "heute.session.start", targetLocale: model.targetChromeLocale)
             }
             .buttonStyle(DLPrimaryButtonStyle())
+            // A long round is more than an evening some days, and an abandoned one leaves
+            // the day unworked; kern says when the two are different enough to offer both.
+            if offer.shortRound > 0 {
+                Button("heute.session.shortRound") {
+                    model.startShortSession()
+                }
+                .buttonStyle(DLSoftButtonStyle())
+            }
         }
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity)

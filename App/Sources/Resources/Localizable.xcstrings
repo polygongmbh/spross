@@ -2535,6 +2535,22 @@
         }
       }
     },
+    "heute.session.shortRound" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lieber nur kurz?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Just a short one?"
+          }
+        }
+      }
+    },
     "heute.session.someCards" : {
       "localizations" : {
         "de" : {
