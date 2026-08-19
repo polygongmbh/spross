@@ -50,6 +50,23 @@ object SessionComposer {
     const val NEW_CARDS_PER_ROUND: Int = 7
 
     /**
+     * A short round is a round's worth of due work and nothing more.
+     *
+     * Not a free number: [SESSION_FLOOR_CARDS] is also what a day has to hold before it counts
+     * as worked, so a learner who only ever takes the short one still closes the day and keeps
+     * the streak. Anything smaller would be a round that quietly does not pay for itself.
+     */
+    const val SHORT_ROUND_CARDS: Int = SESSION_FLOOR_CARDS
+
+    /**
+     * A round longer than this is worth offering short as well (see [shortRoundSize]).
+     *
+     * Below it the two are the same round under two names, and a second button that hands
+     * over almost what the first one does is a choice the learner has to make for nothing.
+     */
+    private const val SHORT_ROUND_OFFERED_FROM: Int = 15
+
+    /**
      * How far ahead a card still counts as THIS day's work (see [returningSoon]).
      *
      * A rolling span, not a calendar edge: what makes a word today's is that it comes back
@@ -136,6 +153,36 @@ object SessionComposer {
         )
         return fillOut(state, plan, nowEpochMillis)
     }
+
+    /**
+     * Today's round taken short: the due work it leads with, [SHORT_ROUND_CARDS] of it,
+     * and nothing else — no new words, no cards pulled forward.
+     *
+     * Composed by trimming [composeSession] rather than walking the due queue again, so a short
+     * round is a strict PREFIX of the round the day just promised: the same cards in the same
+     * order, fewer of them. It inherits the day-done question with it, and a day with nothing
+     * due yields an empty plan — a short round is due work or it is nothing, since the two
+     * piles it drops are exactly what a learner short on time did not ask for.
+     */
+    fun composeShortRound(state: BoxState, nowEpochMillis: Long, tzId: String): SessionPlan {
+        val plan = composeSession(state, nowEpochMillis, tzId)
+        return plan.copy(
+            reviews = plan.reviews.take(SHORT_ROUND_CARDS),
+            ahead = emptyList(),
+            unlockedPhrases = emptyList(),
+            newCards = emptyList(),
+        )
+    }
+
+    /**
+     * How many cards a short round would hand over, or 0 where the day has nothing to shorten.
+     *
+     * A count, never a flag: it is what [composeShortRound] would really hand over, so a screen
+     * naming it keeps the card's promise. Where the line is drawn stays the box's. Pure over the
+     * plan the offer already composed, so asking costs no second walk over the box.
+     */
+    fun shortRoundSize(plan: SessionPlan): Int =
+        if (plan.cardCount > SHORT_ROUND_OFFERED_FROM) min(SHORT_ROUND_CARDS, plan.reviews.size) else 0
 
     /**
      * How much of a quiet round is held back for cards that come due tomorrow, at most half.

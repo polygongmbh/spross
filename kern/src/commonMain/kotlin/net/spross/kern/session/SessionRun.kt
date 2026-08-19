@@ -26,6 +26,9 @@ sealed class SessionIntent {
 
     /** The on-demand extra round; a no-op when it would come back empty. */
     data object StartExtra : SessionIntent()
+
+    /** Today's round taken short — due work alone; a no-op when nothing is due. */
+    data object StartShort : SessionIntent()
     data class Answer(val rating: Rating) : SessionIntent()
 
     /** "Keep practicing": switch a finished run into endless and pull one refill. */
@@ -132,6 +135,7 @@ object SessionRun {
         SessionIntent.Start ->
             begin(state, SessionComposer.composeSession(state.box, nowEpochMillis, tzId), nowEpochMillis, tzId)
         SessionIntent.StartExtra -> startExtra(state, nowEpochMillis, tzId)
+        SessionIntent.StartShort -> startShort(state, nowEpochMillis, tzId)
         is SessionIntent.Answer -> answer(state, intent.rating, nowEpochMillis, tzId)
         SessionIntent.ContinueEndless -> continueEndless(state, nowEpochMillis, tzId)
         SessionIntent.RecomposeIfStale -> recompose(state, nowEpochMillis, tzId)
@@ -150,6 +154,15 @@ object SessionRun {
      */
     private fun startExtra(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionReduction {
         val plan = SessionComposer.composeRound(state.box, nowEpochMillis, tzId)
+        return if (plan.isEmpty) unchanged(state) else begin(state, plan, nowEpochMillis, tzId)
+    }
+
+    /**
+     * The short round is [SessionComposer.composeShortRound] — the day's own round taken
+     * short, so it opens on exactly the days the full one does and closes the same way.
+     */
+    private fun startShort(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionReduction {
+        val plan = SessionComposer.composeShortRound(state.box, nowEpochMillis, tzId)
         return if (plan.isEmpty) unchanged(state) else begin(state, plan, nowEpochMillis, tzId)
     }
 

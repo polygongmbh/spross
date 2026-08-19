@@ -352,6 +352,72 @@ class SessionComposerTests {
         assertTrue(fresh.ahead.isEmpty())
     }
 
+    /**
+     * A short round is due work alone: the two piles it drops — first sights and cards pulled
+     * forward — are exactly what a learner short on time did not sit down for.
+     */
+    @Test
+    fun aShortRoundIsDueWorkAlone() {
+        val plan = SessionComposer.composeShortRound(backloggedState(), now, Box.TZ)
+        assertEquals(SessionComposer.SHORT_ROUND_CARDS, plan.reviews.size)
+        assertEquals(SessionComposer.SHORT_ROUND_CARDS, plan.cardCount)
+        assertTrue(plan.ahead.isEmpty())
+        assertEquals(0, plan.freshCount)
+    }
+
+    /**
+     * The short round leads with the same cards the full one does, in the same order — it is
+     * the round the card promised, stopped early, never a different pile of words.
+     */
+    @Test
+    fun aShortRoundIsThePromisedRoundStoppedEarly() {
+        val state = backloggedState()
+        val full = SessionComposer.composeSession(state, now, Box.TZ)
+        val short = SessionComposer.composeShortRound(state, now, Box.TZ)
+        assertEquals(full.reviews.take(SessionComposer.SHORT_ROUND_CARDS), short.queue)
+    }
+
+    /**
+     * A short round is still a round's worth, so the day it works is a worked one — a mini
+     * round that quietly failed to pay for the streak would be a trap, not an offer.
+     */
+    @Test
+    fun aShortRoundStillClosesTheDay() {
+        // A box holding exactly a short round and nothing behind it: answering it is the
+        // whole day, so the day has to read as done afterwards.
+        var state = Box.state((1..SessionComposer.SHORT_ROUND_CARDS).map { Box.word(it) })
+        for (n in 1..SessionComposer.SHORT_ROUND_CARDS) {
+            state = Box.inject(
+                state,
+                Box.sched(id(n), dueMillis = now - n * 3_600_000L, lastReviewMillis = Box.plusDays(now, -10.0)),
+            )
+        }
+        val short = SessionComposer.composeShortRound(state, now, Box.TZ)
+        assertEquals(SessionComposer.SHORT_ROUND_CARDS, short.cardCount)
+
+        var answered = state
+        for (cardId in short.queue) {
+            answered = BoxEngine.answer(answered, cardId, Rating.Good, now, Box.TZ).state
+        }
+        answered = BoxEngine.endSession(answered, short.cardCount, now, Box.TZ)
+        assertTrue(SessionComposer.composeSession(answered, now, Box.TZ).isEmpty)
+    }
+
+    /**
+     * Offered only where the two rounds are really different: a round at the floor IS the short
+     * round, and a second button handing over what the first one does is a choice for nothing.
+     */
+    @Test
+    fun onlyALongRoundHasSomethingToShorten() {
+        assertEquals(
+            SessionComposer.SHORT_ROUND_CARDS,
+            SessionComposer.shortRoundSize(SessionComposer.composeSession(backloggedState(), now, Box.TZ)),
+        )
+        val quiet = SessionComposer.composeSession(quietBox(soon = 5, later = 0), now, Box.TZ)
+        assertEquals(0, SessionComposer.shortRoundSize(quiet))
+        assertEquals(0, SessionComposer.shortRoundSize(SessionComposer.composeSession(Box.state(emptyList()), now, Box.TZ)))
+    }
+
     /** The round cap is what keeps a rested box from arriving as one wall of first sights. */
     @Test
     fun growthNeverExceedsARoundsWorthOfNewCards() {

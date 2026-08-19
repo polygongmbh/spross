@@ -232,6 +232,7 @@ One schedule per card ⇒ one review touches one card:
 | `growthReserve` | ≤ 5 |
 | `SessionComposer.SESSION_FLOOR_CARDS` (a round worth sitting down for — §6) | 7 |
 | `SessionComposer.NEW_CARDS_PER_ROUND` (first sights one round may offer — §6) | 7 |
+| `SessionComposer.SHORT_ROUND_CARDS` (the short round — §6) | 7 |
 | `TodayReport.MIN_ANSWERS_FOR_RECALL` / `RECALL_STRAIN_MARGIN` (§6) | 10 / 0.2 |
 
 Every user-facing count (due ring, "x neu", active, widget) and `DayStats` field is in
@@ -436,6 +437,16 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   Soonest-due-first is what makes that cheap: an early review buys least when recall is still
   near-certain, so the cards nearest their due date are the ones whose spacing costs nothing
   to spend (`docs/growth-evidence.md`).
+- **A long round can be taken short** (user ruling 2026-08-20): where a round runs past
+  `SHORT_ROUND_OFFERED_FROM`, `composeShortRound` offers the same round stopped early —
+  `SHORT_ROUND_CARDS` of its due work, no first sights and nothing pulled forward.
+  It trims `composeSession` rather than walking the due queue again, so it is a strict PREFIX
+  of the round the day just promised and inherits the day-done question with it.
+  `SHORT_ROUND_CARDS` is `SESSION_FLOOR_CARDS` and not a free number: the floor is also what
+  a day has to hold before it counts as worked, so a learner who only ever takes the short
+  round still closes the day. `shortRoundSize` names what it would hand over — a count, so
+  the screen prints what it is given and the threshold stays here.
+  Below that threshold nothing is offered: the two rounds would be one round under two names.
 - **A quiet day is built, not found** (user ruling 2026-08-01): with nothing due, at most half
   the floor is held for cards coming due inside tomorrow and new words take the rest.
   Pulling tomorrow's card forward costs almost no spacing; one due in three weeks burns real
@@ -567,7 +578,8 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   `dueNow` therefore feeds counts, rings and fresh pulls only.
 - **One composer for every round** (user ruling 2026-08-03): `composeRound` is what the day
   opens, what the extra round off a finished day opens, and what each endless refill pulls.
-  User agency decides WHETHER a round opens; it never decides what goes in one. The extra
+  User agency decides WHICH round opens, never what goes in one: the caller names a round
+  the box already has rules for, and no size, budget or flag crosses the boundary. The extra
   round and endless each used to have a composer of their own and had drifted to opposite
   extremes — packed cards with a pull-ahead tail sized to `sessionCap`, versus new words with
   pull-aheads withheld entirely — so which one a screen happened to call decided whether the

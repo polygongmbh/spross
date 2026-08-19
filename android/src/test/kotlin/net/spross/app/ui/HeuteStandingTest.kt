@@ -51,28 +51,28 @@ class HeuteStandingTest {
 
     @Test
     fun pullAheadsCountIntoTheRepetitionsRatherThanStandingAsTheirOwnPile() {
-        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 12, dueHeldBack = 0, ahead = 3, fresh = 2)
+        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 12, dueHeldBack = 0, ahead = 3, fresh = 2, shortRound = 0)
 
         assertEquals("15 Wiederholungen · 2 Frischlinge", offerSummary(chrome, offer))
     }
 
     @Test
     fun aCountOfOneDeclinesItsNoun() {
-        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 1, dueHeldBack = 0, ahead = 0, fresh = 1)
+        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 1, dueHeldBack = 0, ahead = 0, fresh = 1, shortRound = 0)
 
         assertEquals("1 Wiederholung · 1 Frischling", offerSummary(chrome, offer))
     }
 
     @Test
     fun aheadIsNamedOnlyWhenItCarriesTheRoundAlone() {
-        val offer = SessionOffer(SessionOfferKind.WarmUp, reviews = 0, dueHeldBack = 0, ahead = 4, fresh = 0)
+        val offer = SessionOffer(SessionOfferKind.WarmUp, reviews = 0, dueHeldBack = 0, ahead = 4, fresh = 0, shortRound = 0)
 
         assertEquals("4 Auffrischer", offerSummary(chrome, offer))
     }
 
     @Test
     fun aRoundThatNamesNothingSaysSoInOnePhrase() {
-        val offer = SessionOffer(SessionOfferKind.Nothing, reviews = 0, dueHeldBack = 0, ahead = 0, fresh = 0)
+        val offer = SessionOffer(SessionOfferKind.Nothing, reviews = 0, dueHeldBack = 0, ahead = 0, fresh = 0, shortRound = 0)
 
         assertEquals(chrome.sessionSomeCards, offerSummary(chrome, offer))
     }
@@ -89,7 +89,7 @@ class HeuteStandingTest {
 
     @Test
     fun theHeadlineFollowsTheRoundsShapeRatherThanTheClock() {
-        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 5, dueHeldBack = 0, ahead = 0, fresh = 2)
+        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 5, dueHeldBack = 0, ahead = 0, fresh = 2, shortRound = 0)
 
         assertEquals(
             chrome.headlineReviews[offer.headline.variant],

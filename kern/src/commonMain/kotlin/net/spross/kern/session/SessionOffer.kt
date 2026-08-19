@@ -37,6 +37,11 @@ data class SessionOffer(
     val ahead: Int,
     /** Entries the learner has never answered. */
     val fresh: Int,
+    /**
+     * Cards a short round would hand over instead, or 0 where this round has nothing to
+     * shorten — [SessionComposer.shortRoundSize] draws the line.
+     */
+    val shortRound: Int,
 ) {
     /**
      * The variant turns on the round's SHAPE, never on the clock: a learner does several rounds
@@ -138,6 +143,7 @@ object SessionOffers {
             dueHeldBack = max(0, BoxEngine.dueNow(state, nowEpochMillis).size - reviews),
             ahead = ahead,
             fresh = fresh,
+            shortRound = SessionComposer.shortRoundSize(plan),
         )
     }
 

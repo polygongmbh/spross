@@ -80,19 +80,33 @@ class SessionOfferTests {
     }
 
     /**
+     * A long round names what a short one would hand over instead; a round the learner can
+     * finish in a sitting names nothing, because there is no second way in to offer.
+     */
+    @Test
+    fun onlyALongRoundOffersAShortOne() {
+        val behind = SessionOffers.offer(state(due = 40, ahead = 0, catalog = 50, sessionCap = 25), now, Box.TZ)
+        assertEquals(SessionComposer.SHORT_ROUND_CARDS, behind.shortRound)
+
+        val rested = SessionOffers.offer(state(due = 0, ahead = 0, catalog = 30, sessionCap = 25), now, Box.TZ)
+        assertEquals(0, rested.shortRound)
+    }
+
+    /**
      * The headline turns on the round's shape and nothing else: same counts, same variant,
      * every run — a runtime-seeded hash would re-roll the line on every launch, and the two
      * platforms would disagree.
      */
     @Test
     fun theHeadlinePickIsStableAndSpreadAcrossVariants() {
-        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 20, dueHeldBack = 20, ahead = 0, fresh = 5)
+        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 20, dueHeldBack = 20, ahead = 0, fresh = 5, shortRound = 7)
         assertEquals(offer.headline, offer.copy(dueHeldBack = 3).headline)
+        assertEquals(offer.headline, offer.copy(shortRound = 0).headline)
         assertEquals(offer.headline, SessionOffers.offer(state(40, 0, 50, 25), now, Box.TZ).headline)
 
         val variants = (0..40).flatMap { reviews ->
             (0..7).map { fresh ->
-                SessionOffer(SessionOfferKind.Reviews, reviews, 0, 0, fresh).headline.variant
+                SessionOffer(SessionOfferKind.Reviews, reviews, 0, 0, fresh, shortRound = 0).headline.variant
             }
         }
         assertTrue(variants.all { it in 0 until SessionOffer.HEADLINE_VARIANTS })
@@ -103,12 +117,12 @@ class SessionOfferTests {
     @Test
     fun theHeadlinePickIsPinned() {
         fun variant(reviews: Int, ahead: Int, fresh: Int) =
-            SessionOffer(SessionOfferKind.Reviews, reviews, 0, ahead, fresh).headline.variant
+            SessionOffer(SessionOfferKind.Reviews, reviews, 0, ahead, fresh, shortRound = 0).headline.variant
         assertEquals(listOf(1, 2, 0), listOf(variant(0, 0, 0), variant(1, 0, 0), variant(20, 0, 5)))
     }
 
     private fun summary(reviews: Int, ahead: Int, fresh: Int) =
-        SessionOffer(SessionOfferKind.Reviews, reviews, dueHeldBack = 0, ahead = ahead, fresh = fresh)
+        SessionOffer(SessionOfferKind.Reviews, reviews, dueHeldBack = 0, ahead = ahead, fresh = fresh, shortRound = 0)
             .summaryParts()
 
     /**
