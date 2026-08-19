@@ -25,21 +25,26 @@ class GreetingTests {
                       "sw": { "name": "Kiswahili", "englishName": "Swahili", "flag": "🇹🇿" } }
                 """.trimIndent(),
                 "alpha/concepts.json" to """
-                    [ { "slug": "good-morning", "kind": "phrase", "components": [] },
+                    [ { "slug": "ready-to-learn", "kind": "phrase", "components": [] },
+                      { "slug": "one-more-word", "kind": "phrase", "components": [] },
+                      { "slug": "good-morning", "kind": "phrase", "components": [] },
                       { "slug": "good-day", "kind": "phrase", "components": [] },
                       { "slug": "good-evening", "kind": "phrase", "components": [] },
                       { "slug": "good-night", "kind": "phrase", "components": [] } ]
                 """.trimIndent(),
                 "alpha/de.json" to """
                     { "title": "Alpha",
-                      "words": { "good-morning": { "text": "Guten Morgen!" },
+                      "words": { "ready-to-learn": { "text": "Bereit zu lernen?" },
+                                 "one-more-word": { "text": "Noch ein Wort?" },
+                                 "good-morning": { "text": "Guten Morgen!" },
                                  "good-day": { "text": "Guten Tag!" },
                                  "good-evening": { "text": "Guten Abend!" },
                                  "good-night": { "text": "Gute Nacht!" } } }
                 """.trimIndent(),
                 "alpha/sw.json" to """
                     { "title": "Alpha",
-                      "words": { "good-morning": { "text": "Habari za asubuhi!" } } }
+                      "words": { "good-morning": { "text": "Habari za asubuhi!" },
+                                 "one-more-word": { "text": "Neno moja zaidi?" } } }
                 """.trimIndent(),
                 // French leaves the morning unauthored: "Bonjour !" already is it.
                 "alpha/fr.json" to """
@@ -78,6 +83,21 @@ class GreetingTests {
         assertEquals("Wie geht es, Tim?", Greetings.addressed("Wie geht es?", "Tim"))
         assertEquals("Bonsoir, Tim !", Greetings.addressed("Bonsoir !", "Tim"))
         assertEquals("Habari, Tim", Greetings.addressed("Habari", "Tim"))
+    }
+
+    @Test
+    fun theHourLeadsAndTheHourFreePhrasesFollow() {
+        assertEquals(
+            listOf("Guten Morgen, Tim!", "Bereit zu lernen, Tim?", "Noch ein Wort, Tim?"),
+            catalog.spokenLines("de", DayPart.Morning, "Tim"),
+        )
+        // A language realizing only some of them offers only those, in the same order.
+        assertEquals(
+            listOf("Habari za asubuhi!", "Neno moja zaidi?"),
+            catalog.spokenLines("sw", DayPart.Morning),
+        )
+        // Nothing to say at all is an empty list, not a line in another language.
+        assertEquals(emptyList(), catalog.spokenLines("sw", DayPart.Evening).drop(1))
     }
 
     @Test

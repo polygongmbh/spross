@@ -14,6 +14,13 @@ object Greetings {
     /** Sentence-final marks an address has to move in front of. */
     private const val SENTENCE_MARKS = "!?."
 
+    /**
+     * What the header may say besides the hour's greeting: phrases that fit any hour, so a
+     * learner who opens the app twice in one stretch of the day is not met by one sentence
+     * both times. Concepts like any other — a language that realizes none simply offers none.
+     */
+    val INVITATIONS: List<String> = listOf("ready-to-learn", "one-more-word")
+
     /** The concept [part] is greeted with. */
     fun slug(part: DayPart): String = when (part) {
         DayPart.Morning -> "good-morning"

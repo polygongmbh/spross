@@ -98,6 +98,17 @@ class Catalog internal constructor(
             ?: if (part == DayPart.Morning) text(Greetings.slug(DayPart.Day), lang) else null)
             ?.let { Greetings.addressed(it, name) }
 
+    /**
+     * Everything [lang] can say to a learner right now, its greeting for [part] first and the
+     * hour-independent invitations after it, each addressed to [name] where one is given.
+     *
+     * Only what the language actually realizes: the list may be short, or empty where a
+     * language authors none of them, which is the surface's cue to say something of its own.
+     */
+    fun spokenLines(lang: Language, part: DayPart, name: String? = null): List<String> =
+        (listOfNotNull(greeting(lang, part)) + Greetings.INVITATIONS.mapNotNull { text(it, lang) })
+            .map { Greetings.addressed(it, name) }
+
     private fun text(slug: String, lang: Language): String? =
         slugIndex[slug]?.realizations?.get(lang)?.text
 
