@@ -42,6 +42,11 @@
   "bye": { "text": "¡Hasta luego!", "variants": ["¡Chao!"] },
   "welcome": { "text": "¡Bienvenido!", "variants": ["¡Bienvenida!", "¡Bienvenidos!", "¡Bienvenidas!"] },
   "may-i-come-in": { "text": "¿Se puede?", "variants": ["¿Se puede pasar?", "¿Puedo pasar?"] },
-  "sorry-to-hear-that": { "text": "¡Cuánto lo siento!", "variants": ["Lo siento mucho.", "¡Qué pena!"] }
+  "sorry-to-hear-that": { "text": "¡Cuánto lo siento!", "variants": ["Lo siento mucho.", "¡Qué pena!"] },
+  "good-evening": { "text": "¡Buenas tardes!" },
+  "good-night": {
+   "text": "¡Buenas noches!",
+   "notes": { "de": "nach Einbruch der Dunkelheit auch die Begrüßung, nicht nur der Abschied" }
+  }
  }
 }

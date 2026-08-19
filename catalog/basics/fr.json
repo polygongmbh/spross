@@ -35,6 +35,11 @@
   "bye": { "text": "À bientôt !", "variants": ["À plus !", "Ciao !"] },
   "welcome": { "text": "Bienvenue !" },
   "may-i-come-in": { "text": "Puis-je entrer ?", "variants": ["Je peux entrer ?"] },
-  "sorry-to-hear-that": { "text": "Je suis désolé !", "variants": ["Je suis désolée !", "Désolé !"] }
+  "sorry-to-hear-that": { "text": "Je suis désolé !", "variants": ["Je suis désolée !", "Désolé !"] },
+  "good-evening": { "text": "Bonsoir !" },
+  "good-night": {
+   "text": "Bonne nuit !",
+   "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Bonsoir !“" }
+  }
  }
 }

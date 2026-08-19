@@ -27,5 +27,8 @@
  { "slug": "welcome", "kind": "phrase", "emoji": "🤗", "components": [] },
  { "slug": "may-i-come-in", "kind": "phrase", "emoji": "🚪", "components": [] },
  { "slug": "sorry-to-hear-that", "kind": "phrase", "emoji": "🫂", "components": [] },
- { "slug": "greetings-elder", "kind": "phrase", "emoji": "🧓", "components": [] }
+ { "slug": "greetings-elder", "kind": "phrase", "emoji": "🧓", "components": [] },
+ { "slug": "good-morning", "kind": "phrase", "emoji": "🌅", "components": [] },
+ { "slug": "good-evening", "kind": "phrase", "emoji": "🌆", "components": [] },
+ { "slug": "good-night", "kind": "phrase", "emoji": "🌙", "components": [] }
 ]

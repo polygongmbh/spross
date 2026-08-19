@@ -45,6 +45,14 @@
   "bye": { "text": "Ĝis!" },
   "welcome": { "text": "Bonvenon!" },
   "may-i-come-in": { "text": "Ĉu mi rajtas eniri?", "variants": ["Ĉu mi povas eniri?"] },
-  "sorry-to-hear-that": { "text": "Mi bedaŭras!", "variants": ["Mi tre bedaŭras!", "Kiel bedaŭrinde!"] }
+  "sorry-to-hear-that": { "text": "Mi bedaŭras!", "variants": ["Mi tre bedaŭras!", "Kiel bedaŭrinde!"] },
+  "good-morning": { "text": "Bonan matenon!" },
+  "good-evening": { "text": "Bonan vesperon!" },
+  "good-night": {
+   "text": "Bonan nokton!",
+   "notes": {
+    "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Bonan vesperon!“"
+   }
+  }
  }
 }

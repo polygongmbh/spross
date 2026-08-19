@@ -29,6 +29,13 @@
   "bye": { "text": "Бувай!" },
   "welcome": { "text": "Ласкаво просимо!" },
   "may-i-come-in": { "text": "Можна увійти?" },
-  "sorry-to-hear-that": { "text": "Співчуваю!" }
+  "sorry-to-hear-that": { "text": "Співчуваю!" },
+  "good-morning": { "text": "Доброго ранку!", "variants": ["Добрий ранок!"] },
+  "good-evening": { "text": "Добрий вечір!", "variants": ["Доброго вечора!"] },
+  "good-night": {
+   "text": "На добраніч!",
+   "variants": ["Добраніч!"],
+   "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Добрий вечір!“" }
+  }
  }
 }

@@ -50,6 +50,14 @@
    "notes": {
     "de": "Respektgruß an Ältere; die Antwort ist immer „Marahaba!“ · unter Gleichaltrigen bleibt es bei „Hujambo!“"
    }
+  },
+  "good-morning": { "text": "Habari za asubuhi!" },
+  "good-evening": { "text": "Habari za jioni!" },
+  "good-night": {
+   "text": "Usiku mwema!",
+   "notes": {
+    "de": "Wunsch zum Abschied und vor dem Schlafen — wer spät ankommt, grüßt mit „Habari za usiku!“"
+   }
   }
  }
 }

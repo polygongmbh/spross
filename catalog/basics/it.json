@@ -49,6 +49,12 @@
    "variants": ["Si può entrare?", "Permesso?"],
    "notes": { "de": "an der Tür genügt „Permesso?“ · die Antwort ist „Avanti!“ oder „Prego!“" }
   },
-  "sorry-to-hear-that": { "text": "Mi dispiace!", "variants": ["Mi dispiace molto!", "Che peccato!"] }
+  "sorry-to-hear-that": { "text": "Mi dispiace!", "variants": ["Mi dispiace molto!", "Che peccato!"] },
+  "good-evening": { "text": "Buonasera!", "variants": ["Buona sera!"] },
+  "good-night": {
+   "text": "Buonanotte!",
+   "variants": ["Buona notte!"],
+   "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Buonasera!“" }
+  }
  }
 }

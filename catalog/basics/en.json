@@ -30,6 +30,12 @@
   "welcome": { "text": "Welcome!" },
   "may-i-come-in": { "text": "May I come in?" },
   "sorry-to-hear-that": { "text": "Sorry to hear that." },
-  "greetings-elder": { "text": "Greetings!" }
+  "greetings-elder": { "text": "Greetings!" },
+  "good-morning": { "text": "Good morning!" },
+  "good-evening": { "text": "Good evening!" },
+  "good-night": {
+   "text": "Good night!",
+   "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Good evening!“" }
+  }
  }
 }
