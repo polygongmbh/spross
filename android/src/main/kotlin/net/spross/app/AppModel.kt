@@ -139,6 +139,13 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     private val prefs = app.getSharedPreferences(ProfileStore.PREFS_NAME, Context.MODE_PRIVATE)
     private val profile = ProfileStore(prefs)
 
+    /**
+     * What to call the learner, or null where no name was given — what the greeting knows
+     * about who it greets, kept per person and not per pair ([ProfileStore.name]).
+     */
+    var learnerName by mutableStateOf(profile.name)
+        private set
+
     /** The run kern steps; null between sessions. The screen reads [sessionUi] instead. */
     private var sessionRun: SessionRunState? = null
 
@@ -285,6 +292,20 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             }
         }
     }
+
+    /** Blank clears it: the store trims, and an empty name is simply no name. */
+    fun renameLearner(raw: String?) {
+        profile.name = raw
+        learnerName = profile.name
+    }
+
+    /**
+     * The name the device suggests for the onboarding field, where it is named after
+     * somebody at all ([DeviceName]). Asked once, on the screen that offers it — nothing
+     * is stored until the learner leaves it standing.
+     */
+    fun suggestedLearnerName(): String? =
+        DeviceName.suggestedLearnerName(getApplication<Application>().contentResolver)
 
     fun openAbout() {
         screen = Screen.About

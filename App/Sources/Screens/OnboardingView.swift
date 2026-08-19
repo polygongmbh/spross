@@ -2,7 +2,7 @@ import SwiftUI
 import SprossKern
 
 /// Tiny first-launch sheet: pick the language you already speak (source)
-/// and the one you want to learn (target).
+/// and the one you want to learn (target), and — if you like — say what to be called.
 /// Coverage-driven: sources are languages with at least one learnable
 /// target; targets come from `Catalog.availableTargets` (≥ 50 concepts).
 /// Chrome speaks the language being picked: the device language greets first
@@ -29,6 +29,8 @@ struct OnboardingView: View {
     @State private var source: String
     @State private var target: String?
     @State private var pickingSource = false
+    /// Worth nothing until the last page commits it, like the pair beside it.
+    @State private var name = ""
     // why: internal, not private — the story pages live in an extension of their own.
     @State var starting = false
     @State var page: Page = .languages
@@ -100,6 +102,7 @@ struct OnboardingView: View {
                            subtitle: "onboarding.languages.subtitle")
             sourceSection
             targetSection
+            nameSection
             nextButton
         }
     }
@@ -140,6 +143,29 @@ struct OnboardingView: View {
                selected: target,
                onOpen: { pickingSource = false }) { candidate in
             apply(LanguageChoices.shared.pickTarget(selection: selection, code: candidate))
+        }
+    }
+
+    // MARK: - What to call you
+
+    /// The one question this page does not need answered: it gates nothing, and the line
+    /// under the field says so — a field standing beside two required questions otherwise
+    /// reads as a third. The greeting has a wording for a learner it cannot name.
+    ///
+    /// It opens empty. `UIDevice.current.name` returns the MODEL ("iPhone") on iOS 16 and
+    /// later for any app without the user-assigned-device-name entitlement, which is a
+    /// granted one and not among this app's — a model name is nobody, so there is nothing
+    /// here to prefill from. Android fills the same field in from its device name
+    /// (`DeviceName.kt`), where that name is someone's.
+    private var nameSection: some View {
+        VStack(alignment: .leading, spacing: DL.Space.s) {
+            Text("onboarding.name.question")
+                .font(DL.Fonts.headline)
+                .foregroundStyle(Color.dlTextPrimary)
+            DLNameField(placeholder: "settings.name.placeholder", text: $name)
+            Text("onboarding.name.hint")
+                .font(DL.Fonts.caption)
+                .foregroundStyle(Color.dlTextSecondary)
         }
     }
 
@@ -193,6 +219,8 @@ struct OnboardingView: View {
     func start() {
         guard !starting, let target else { return }
         starting = true
+        // A blank field is no name at all, which is what it looked like.
+        model.setLearnerName(name)
         Task {
             await model.completeOnboarding(source: source, target: target)
         }

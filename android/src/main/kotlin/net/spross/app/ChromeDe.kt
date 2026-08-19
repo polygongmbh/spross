@@ -36,6 +36,9 @@ internal val ChromeDe = Chrome(
     chooseSubtitle = "Zuerst deine Sprachen.",
     iSpeak = "Ich spreche",
     iLearn = "Ich lerne",
+    learnerNameQuestion = "Wie soll Spross dich nennen?",
+    learnerNameOptional = "Nur für die Begrüßung — lass es leer oder trag den Namen später " +
+        "in deiner Box nach.",
     letsGo = "Los geht's!",
     back = "Zurück",
     whyTitle = "Wofür Spross da ist",
@@ -246,6 +249,10 @@ internal val ChromeDe = Chrome(
     ownWordAdd = "Anlegen",
     ownWordRemove = "Wort löschen",
     settingsTitle = "Einstellungen",
+    learnerNameTitle = "Dein Name",
+    learnerNamePlaceholder = "Vorname",
+    learnerNameHint = "Damit begrüßt dich Spross. Bleibt das Feld leer, kommt die Begrüßung " +
+        "ohne Namen aus.",
     profileHint = "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten; jede " +
         "gelernte Sprache hat ihre eigene Box.",
     resetButton = "%s zurücksetzen …",

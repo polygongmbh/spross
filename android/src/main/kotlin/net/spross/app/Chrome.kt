@@ -36,6 +36,9 @@ data class Chrome(
     val chooseSubtitle: String,    // what the first page asks for, under the welcome
     val iSpeak: String,
     val iLearn: String,
+    /** The third question of the first page, and the line that makes leaving it empty fine. */
+    val learnerNameQuestion: String,
+    val learnerNameOptional: String,
     val letsGo: String,
     /** The way back out of a page, wherever a flow has one behind it. */
     val back: String,
@@ -255,6 +258,10 @@ data class Chrome(
 
     // ── Box settings ────────────────────────────────────────────────────────────
     val settingsTitle: String,
+    /** The name the greeting uses — cleared here as well as given here. */
+    val learnerNameTitle: String,
+    val learnerNamePlaceholder: String,
+    val learnerNameHint: String,
     val profileHint: String,
     val resetButton: String,       // %s = the language being learnt, in its own name
     val resetHint: String,

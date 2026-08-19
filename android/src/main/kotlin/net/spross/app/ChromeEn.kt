@@ -38,6 +38,9 @@ internal val ChromeEn = Chrome(
     chooseSubtitle = "First, your languages.",
     iSpeak = "I speak",
     iLearn = "I'm learning",
+    learnerNameQuestion = "What should Spross call you?",
+    learnerNameOptional = "Just for the greeting — leave it empty, or add a name later in " +
+        "your box.",
     letsGo = "Let's go!",
     back = "Back",
     whyTitle = "What Spross is for",
@@ -244,6 +247,9 @@ internal val ChromeEn = Chrome(
     ownWordAdd = "Add",
     ownWordRemove = "Delete word",
     settingsTitle = "Settings",
+    learnerNameTitle = "Your name",
+    learnerNamePlaceholder = "First name",
+    learnerNameHint = "Spross greets you by it. Left empty, the greeting goes without one.",
     profileHint = "Switching the language you speak keeps all your progress; each language " +
         "you learn has its own box.",
     resetButton = "Reset %s …",

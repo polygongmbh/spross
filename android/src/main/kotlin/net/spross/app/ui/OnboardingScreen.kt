@@ -13,8 +13,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +30,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
@@ -70,6 +74,9 @@ fun OnboardingScreen(model: AppModel) {
         mutableStateOf(catalog.availableTargets(initialSource).firstOrNull()?.code)
     }
     var pickingSource by rememberSaveable { mutableStateOf(false) }
+    // The device's own guess, where it is named after somebody ([DeviceName]) — offered
+    // filled in, and worth nothing until the last page commits it.
+    var name by rememberSaveable { mutableStateOf(model.suggestedLearnerName().orEmpty()) }
     // Plain remember: a restored `true` would outlive the model's coroutine and leave a
     // spinner nothing ever resolves. Rotation keeps the activity (`configChanges`), so
     // the only way back here is process death, where the join is gone anyway.
@@ -138,6 +145,8 @@ fun OnboardingScreen(model: AppModel) {
                     apply(LanguageChoices.pickTarget(picked, code))
                 }
 
+                NameSection(chrome, name) { name = it }
+
                 OnboardingPrimary(chrome.next, enabled = target != null) {
                     if (target != null) page = Page.Why
                 }
@@ -157,12 +166,45 @@ fun OnboardingScreen(model: AppModel) {
                     // off this screen — the spinner stands in until that screen arrives.
                     target?.let {
                         starting = true
+                        // A blank field is no name at all, which is what it looked like.
+                        model.renameLearner(name)
                         model.completeOnboarding(source, it, thenPractice = true)
                     }
                 },
                 onBack = { page = Page.Why },
             )
         }
+    }
+}
+
+/**
+ * The one question the first page does not need answered: what to call the learner.
+ *
+ * It gates nothing — the way on is the pair alone — and the line under it says so, because
+ * a field beside two required questions otherwise reads as a third. The greeting has a
+ * wording for a learner it cannot name, so an empty field costs nothing at all.
+ */
+@Composable
+private fun NameSection(chrome: Chrome, name: String, onName: (String) -> Unit) {
+    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
+        Text(chrome.learnerNameQuestion, style = MaterialTheme.typography.titleSmall)
+        OutlinedTextField(
+            value = name,
+            onValueChange = onName,
+            singleLine = true,
+            placeholder = { Text(chrome.learnerNamePlaceholder) },
+            keyboardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.Words,
+                autoCorrectEnabled = false,
+                imeAction = ImeAction.Done,
+            ),
+            modifier = Modifier.fillMaxWidth(),
+        )
+        Text(
+            chrome.learnerNameOptional,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }
 

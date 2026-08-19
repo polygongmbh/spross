@@ -108,6 +108,16 @@ final class AppModel {
 
     var targetLanguage: String? { box?.joinStamp.target }
 
+    /// What to call the learner, or nil where no name was given — what the greeting knows
+    /// about who it greets, kept per person and not per pair (`LearnerProfile`).
+    private(set) var learnerName: String? = LearnerProfile.name
+
+    /// Blank clears it: the store trims, and an empty name is simply no name.
+    func setLearnerName(_ raw: String?) {
+        LearnerProfile.name = raw
+        learnerName = LearnerProfile.name
+    }
+
     /// What this device reports it reads — the one fact Kern cannot have.
     static var deviceLanguage: String {
         Locale.current.language.languageCode?.identifier ?? Catalog.companion.FALLBACK_SOURCE
