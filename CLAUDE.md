@@ -40,6 +40,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   one you touched, that's someone else's break. Don't rerun the same broad gate or reach for a
   bigger one hoping for a different answer; narrow instead (targeted tests, `compileKotlinJvm` over
   `jvmTest` when kern main is untouched) and fall back to reading your own diff when no gate isolates it.
+  A red in a file nobody edited is the shared Kotlin cache; `../CLAUDE.md` carries that remedy.
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `test:`, `docs:`, `build:`) with scopes
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
 - `CHANGELOG.md` is curated: user-observable deltas only, grouped by version, written in ENGLISH.
