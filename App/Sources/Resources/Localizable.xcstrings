@@ -3279,22 +3279,6 @@
         }
       }
     },
-    "listen.start" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nur zuhören?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Just listen?"
-          }
-        }
-      }
-    },
     "listen.subtitle" : {
       "localizations" : {
         "de" : {

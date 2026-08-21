@@ -340,11 +340,10 @@ interface Chrome {
     /** The quiet way in, up while the round is long enough to be worth halving. */
     val sessionShortRound: String
 
-    // ── Listening (Heute's quiet card, and the run it opens) ────────────────────
+    // ── Listening (Heute's one row, and the run it opens) ───────────────────────
     val listenTitle: String
-    /** What the card offers: the words that still wobble, and that it needs no hands. */
+    /** The row's second line: which words it leans on, and that it needs no hands. */
     val listenSubtitle: String
-    val listenStart: String
     val listenPause: String
     val listenResume: String
     val listenSkip: String

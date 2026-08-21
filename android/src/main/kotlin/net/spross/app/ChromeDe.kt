@@ -306,7 +306,6 @@ internal object ChromeDe : Chrome {
     override val listenTitle = "Wörter hören"
     override val listenSubtitle = "Festigt wacklige Wörter zuerst — auf Wunsch im " +
         "Hintergrund und mit Einschlaf-Timer"
-    override val listenStart = "Nur zuhören?"
     override val listenPause = "Pause"
     override val listenResume = "Weiter"
     override val listenSkip = "Nächstes Wort"
