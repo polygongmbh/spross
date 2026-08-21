@@ -95,8 +95,9 @@ struct VocabCardView: View {
     /// The picture (`DLCardEmoji`) belongs to the CARD rather than the prompt
     /// line, so it stays centered against prompt and reveal together instead of
     /// riding up as the card grows. Its slot is held for the card's whole life
-    /// in either arrangement, so a withheld picture fades into a space that was
-    /// already there.
+    /// in either arrangement — the card's text stays centered and the picture is
+    /// mirrored on the far edge, so a withheld one fades into a space already kept
+    /// for it rather than reflowing the words to make room.
     var body: some View {
         arranged
             .padding(shared ? DL.Space.l : DL.Space.xl)

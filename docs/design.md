@@ -130,8 +130,11 @@ never the shape of the app.
   what the words are short of. Which is which is `VocabCardView`'s own parameter and not a
   caller's choice, because the one time it was a size flag a run picked the wrong one and
   drew a picture wide enough to hyphenate a six-letter word.
-  Either way the slot is held for the card's whole life, so a picture withheld until the
-  reveal fades into a space that was already there.
+  Either way a card's visible text stays CENTERED in it, vertically and horizontally, and
+  the picture is mirrored on the opposite edge so it never shifts the words off that center.
+  Which is also why the slot is held whether or not the picture is in it: one withheld until
+  the reveal fades into a space already kept for it, rather than reflowing the words to
+  make room.
   A picture that would ANSWER the question is **withheld as a hint, never dropped**: it is
   held back while the answer is owed and appears at the reveal, so the learner always ends
   up seeing what they were asked about. The slot itself keeps this (`DLCardEmoji.Cue`) —
