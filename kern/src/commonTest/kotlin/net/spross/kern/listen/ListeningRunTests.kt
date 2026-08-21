@@ -42,12 +42,12 @@ class ListeningRunTests {
     /**
      * RULE: a word just heard stays out of the draw for [RECENCY_WINDOW] turns.
      * WHY: weighting says what is worth hearing, the ring says what is worth hearing AGAIN
-     * YET. Without it a leech-heavy pool says the same four words for an hour, which is the
-     * one way a playlist can be worse than silence.
+     * YET. Without it a leech-heavy pool says the same words for an hour, which is the one
+     * way a playlist can be worse than silence.
      */
     @Test
     fun theRecencyRingNeverRepeatsInsideItsWindow() {
-        val ids = heard(candidates(20), turns = 200, seed = 7)
+        val ids = heard(candidates(40), turns = 200, seed = 7)
 
         for (index in ids.indices) {
             val window = ids.subList(maxOf(0, index - RECENCY_WINDOW), index)

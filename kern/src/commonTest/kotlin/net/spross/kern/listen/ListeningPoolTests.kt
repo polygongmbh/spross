@@ -16,7 +16,7 @@ import net.spross.kern.model.Realization
 
 /**
  * Which of the learner's words a listening run may say — the pool, its audibility filter, and
- * the top-up that keeps a thin box from looping four words.
+ * the whole-sayable-join rule that keeps the mode endless rather than lapping a thin box.
  *
  * Most cases run with both voices installed, which is the ordinary device: then audibility is
  * settled and what is left is the pool rule itself. The Swahili shape — recordings but no
@@ -96,50 +96,36 @@ class ListeningPoolTests {
     }
 
     /**
-     * RULE: unseen words top a thin pool up to [LISTENING_POOL_FLOOR], in seed order.
-     * WHY: the same "fill a short round out" move the session composer makes. A learner three
-     * words in would otherwise hear those three words for the whole walk, and listening is
-     * where breadth of exposure is cheapest.
+     * RULE: the pool is the whole sayable join — every scheduled word AND every unseen one,
+     * thin box or settled box alike.
+     * WHY: this is the endless mode. A learner a few words in hears a stream of new words
+     * rather than lapping the handful they hold, and a learner with a full vocabulary hears
+     * their own words in it — the draw's weights do the steering.
      */
     @Test
-    fun unseenWordsTopUpAThinPool() {
-        val report = spoken(box(total = 30, scheduled = 3))
+    fun thePoolIsTheWholeSayableJoin() {
+        val thin = spoken(box(total = 30, scheduled = 3))
+        assertEquals(30, thin.candidates.size)
+        assertEquals(3, thin.candidates.count { it.scheduled })
+        assertEquals(27, thin.candidates.count { !it.scheduled })
 
-        assertEquals(LISTENING_POOL_FLOOR, report.candidates.size)
-        assertEquals(3, report.candidates.count { it.scheduled })
-        // Seed order, and the top-up picks up straight after the scheduled words.
-        assertEquals((1..LISTENING_POOL_FLOOR).map { "w" + it.toString().padStart(2, '0') }, ids(report))
+        val settled = spoken(box(total = 40, scheduled = 17))
+        assertEquals(40, settled.candidates.size)
+        assertEquals(17, settled.candidates.count { it.scheduled })
+        assertEquals(23, settled.candidates.count { !it.scheduled })
+
+        // Seed order: the scheduled words first, then the unseen ones straight after.
+        assertEquals((1..30).map { "w" + it.toString().padStart(2, '0') }, ids(thin))
     }
 
     /**
-     * RULE: a settled pool still meets a few unseen words.
-     * WHY: without a quota a learner with plenty scheduled would never hear anything new —
-     * listening is exposure, and a new word said target-meaning-target is where that is
-     * cheapest. The fresh presence is small, so the scheduled words still own the hour.
-     */
-    @Test
-    fun aSettledPoolStillMeetsFreshWords() {
-        val report = spoken(box(total = 40, scheduled = LISTENING_POOL_FLOOR + 5))
-        val scheduled = LISTENING_POOL_FLOOR + 5
-
-        assertEquals(scheduled + LISTENING_POOL_FRESH, report.candidates.size)
-        assertEquals(scheduled, report.candidates.count { it.scheduled })
-        assertEquals(LISTENING_POOL_FRESH, report.candidates.count { !it.scheduled })
-        // Seed order: the scheduled words first, then the fresh ones straight after.
-        assertEquals(
-            (1..(scheduled + LISTENING_POOL_FRESH)).map { "w" + it.toString().padStart(2, '0') },
-            ids(report),
-        )
-    }
-
-    /**
-     * RULE: a locked phrase never tops the pool up.
-     * WHY: the top-up reuses `Growth.isIntroducible`, so a phrase waits for its components
+     * RULE: a locked phrase is never in the pool.
+     * WHY: the pool reuses `Growth.isIntroducible`, so a phrase waits for its components
      * here exactly as it waits everywhere else — hearing it before they have landed is the
      * wall of unparsed sound the unlock gate exists to prevent.
      */
     @Test
-    fun aLockedPhraseDoesNotTopThePoolUp() {
+    fun aLockedPhraseIsNotInThePool() {
         val cards = (1..3).map { Box.word(it) } + Box.phrase("p01", components = listOf("w01", "w02"))
         var state = Box.state(cards)
         state = Box.inject(state, Box.sched("w01", dueMillis = Box.day1, lastReviewMillis = Box.day1))
@@ -149,9 +135,9 @@ class ListeningPoolTests {
 
     /**
      * RULE: `available` is the pool being non-empty.
-     * WHY: it gates the entry card, and the top-up has already grown the pool as far as the
-     * content allows — so whatever survives IS everything there is to hear, and a short pool
-     * simply laps, which is what a playlist does anyway.
+     * WHY: it gates the entry card, and the pool is already the whole sayable join — so
+     * whatever survives IS everything there is to hear, and a short pool simply laps, which
+     * is what a playlist does anyway.
      */
     @Test
     fun availabilityIsThePoolHavingAnythingToSay() {

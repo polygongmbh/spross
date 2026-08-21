@@ -11,8 +11,9 @@
 
 - **The listening run keeps a quicker step, and its bedtime is yours to set.** A word you
   already hold gets 1.2 seconds to reach for its meaning before the answer, and everything
-  else between the words is tighter, so the playlist moves the way a walk does. New words
-  now sit in the playlist from the start, drawn before the ones you know. The sleep timer no
+  else between the words is tighter, so the playlist moves the way a walk does. It draws from
+  your whole vocabulary — when you hold few words it streams the new ones — and a word just
+  heard stays away for a while, so a run never laps the same handful. The sleep timer no
   longer offers just 15, 30 or 60 minutes — each tap adds five from off, so any length is
   yours, and a long press on the timer turns it back off.
 

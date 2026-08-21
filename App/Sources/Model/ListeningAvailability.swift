@@ -8,7 +8,7 @@ import SprossKern
 /// its meaning, so a candidate needs audio on BOTH sides, and a profile
 /// routinely has a voice for one language and not the other (a `sw` learner on
 /// iOS has recordings but no synthesizer). Which cards join, which are
-/// suspended, and how a thin pool is topped up are all kern's
+/// suspended, and how the whole sayable join becomes the pool are all kern's
 /// (`ListeningPool`).
 ///
 /// Deliberately NOT cached: a voice may be installed in Settings while the app

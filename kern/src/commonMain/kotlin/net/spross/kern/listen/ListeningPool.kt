@@ -30,15 +30,15 @@ object ListeningPool {
      * per-turn rebuild would re-audit every candidate's audio for a single draw.
      */
     data class Report(
-        /** What may be played, scheduled words in seed order first, then any top-up. */
+        /** What may be played — the whole sayable join: scheduled words in seed order first,
+         *  then the unseen ones, also in seed order. */
         val candidates: List<ListeningCandidate>,
     ) {
         /**
          * Whether listening exists at all — what the entry card is shown on.
          *
-         * Non-empty is the whole bar. The top-up already grows a thin pool as far as the
-         * content allows, so whatever is left IS all there is to hear, and a short pool
-         * simply laps — which is what a playlist does anyway.
+         * Non-empty is the whole bar. Whatever the learner's join holds is the pool; a short
+         * one simply laps, which is what a playlist does anyway.
          */
         val available: Boolean get() = candidates.isNotEmpty()
     }
@@ -47,19 +47,19 @@ object ListeningPool {
      * The full pool. [hasTargetVoice] / [hasSourceVoice] are whether this device can say
      * ANYTHING in each language, answered by the platform's synthesizer at call time.
      *
-     * The pool is every joined card carrying a schedule, **suspended included**. The leech
+     * **The pool is the whole sayable join, not a composed subset** — every joined card that
+     * both halves of a turn can say, scheduled and unseen alike, suspended included. The leech
      * rule auto-suspends at two lapses (README §5), so the words that stick worst are exactly
      * the ones `Inventory.active` drops — and those are the words an hour of listening is for.
      * Suspension pushes a word out of the box's own queue; it was never a statement that the
      * learner should stop meeting the word.
      *
-     * Unseen words always get a seat, in seed order: a settled pool carries
-     * [LISTENING_POOL_FRESH] of them, and a thin one is filled out to [LISTENING_POOL_FLOOR]
-     * — the "fill a short round out" move `SessionComposer.fillOut` makes. So new words are
-     * met by ear from early on, which is the mode's cheapest breadth. `Growth.isIntroducible`
-     * decides which may come: a phrase whose components have not landed is not ready to be
-     * heard either. Hearing one does NOT introduce it — introduction is the first answer,
-     * and listening answers nothing.
+     * Unseen words are in it too, so a learner a few words in hears a STREAM of new words
+     * rather than lapping the handful they hold — the mode's cheapest breadth. They enter
+     * through `Growth.isIntroducible`: a phrase whose components have not landed is not ready
+     * to be heard either. Hearing one does NOT introduce it — introduction is the first
+     * answer, and listening answers nothing. With the whole catalog on the draw, the weights
+     * do the steering: what is not sticking leads, and everything else is mixed in.
      */
     fun report(
         catalog: Catalog,
@@ -69,8 +69,8 @@ object ListeningPool {
         hasTargetVoice: Boolean,
         hasSourceVoice: Boolean,
     ): Report {
-        // why: seed order, not the schedule sort — the top-up appends to it, and a pool the
-        // draw reorders anyway only needs an order that is STABLE, which seedIndex is.
+        // why: seed order, not the schedule sort — a pool the draw reorders anyway only needs
+        // an order that is STABLE, which seedIndex is.
         val joined = Inventory.joinedCards(box)
         val sayable = joined.filter { sayable(it, catalog, source, target, hasTargetVoice, hasSourceVoice) }
         val scheduled = sayable.mapNotNull { card ->
@@ -83,12 +83,10 @@ object ListeningPool {
                 scheduled = true,
             )
         }
-        val freshCount = maxOf(LISTENING_POOL_FRESH, LISTENING_POOL_FLOOR - scheduled.size)
-        val fresh = sayable
+        val unseen = sayable
             .filter { box.scheduling[it.id] == null && Growth.isIntroducible(box, it) }
-            .take(freshCount)
             .map { ListeningCandidate(it, difficulty = 0.0, lapses = 0, suspended = false, scheduled = false) }
-        return Report(candidates = scheduled + fresh)
+        return Report(candidates = scheduled + unseen)
     }
 
     /** Both halves of the turn heard, or the card is not a candidate. */

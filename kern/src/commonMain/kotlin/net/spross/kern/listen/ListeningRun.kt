@@ -4,14 +4,15 @@ import kotlin.random.Random
 import net.spross.kern.model.shownArticle
 
 /**
- * How many of the most recent words are held out of the draw.
+ * How many of the most recent words are held out of the draw — the LONG interval before a
+ * word may be heard again.
  *
  * Weighting decides what is worth hearing; this decides what is worth hearing AGAIN YET.
- * Without it a leech-heavy pool says the same four words for an hour, which is the one way a
- * playlist can be worse than silence. The window is held below [LISTENING_POOL_FLOOR] so a
- * topped-up pool always has something outside it to draw.
+ * Without it a leech-heavy pool says the same words all evening, which is the one way a
+ * playlist can be worse than silence. It caps at `pool − 1`, so a pool smaller than the
+ * window laps instead of running dry, and no word is ever said twice in a row.
  */
-const val RECENCY_WINDOW: Int = 8
+const val RECENCY_WINDOW: Int = 24
 
 /**
  * One turn, whole: every string and every beat the apps need, so neither platform decides any
