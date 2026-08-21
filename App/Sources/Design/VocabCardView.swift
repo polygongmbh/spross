@@ -117,8 +117,11 @@ struct VocabCardView: View {
         case .beside:
             HStack(spacing: DL.Space.m) {
                 if hasEmoji { picture }
+                // why: nothing mirrors the picture on the trailing edge — a spacer
+                // that keeps the words optically centered costs them TWICE the
+                // picture's width, and that width is what breaks a single headword
+                // into a hyphen. Slightly off-center beats hyphenated.
                 words
-                if hasEmoji { DLCardEmoji.balance(emojiSize) }
             }
         case .above:
             VStack(spacing: DL.Space.l) {
