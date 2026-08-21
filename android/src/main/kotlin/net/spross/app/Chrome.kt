@@ -1,5 +1,6 @@
 package net.spross.app
 
+import androidx.compose.runtime.Immutable
 import net.spross.kern.catalog.LanguageChoices
 
 /**
@@ -12,8 +13,16 @@ import net.spross.kern.catalog.LanguageChoices
  * in `App/Sources/Resources/Localizable.xcstrings`; a pre-commit check keeps the three
  * in step, so the same surface cannot read differently on the two phones.
  * Placeholders are java-format, rendered with `.format(...)`.
+ *
+ * NOT a data class, and it cannot become one again: at this many fields the generated
+ * `copy$default` carries a bitmask int per 32 parameters and overflows the JVM's 255-slot
+ * signature limit, which surfaces as a `ClassFormatError` at class load — a red in every
+ * test that touches chrome, naming no field in particular. Nothing ever copied or compared
+ * a chrome table, so the six generated methods only ever cost us that ceiling.
+ * `@Immutable` keeps Compose skipping over it, which the data modifier was never what earned.
  */
-data class Chrome(
+@Immutable
+class Chrome(
     /**
      * The line over the day's card, naming the language the profile is learning (%s), in
      * the words that fit the hour: one list per [net.spross.kern.box.DayPart], indexed by
