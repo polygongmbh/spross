@@ -21,17 +21,7 @@ struct DLCardReveal<Content: View>: View {
                 .frame(width: 44, height: 2)
             content
             if let note {
-                // why: subheadline, not caption — post-reveal lines are meant to
-                // be read, and 12 pt secondary text is where legibility broke.
-                Text(note)
-                    .font(DL.Fonts.subheadline)
-                    .italic()
-                    .foregroundStyle(Color.dlTextSecondary)
-                    .multilineTextAlignment(.center)
-                    // why: the card's emoji slots are fixed points and do not
-                    // grow with the type size, so a note left to report its own
-                    // ideal width can push the row past the card it is drawn on.
-                    .fixedSize(horizontal: false, vertical: true)
+                Text(note).dlNoteLine()
             }
         }
     }
@@ -113,6 +103,22 @@ struct DLCardEmoji: View {
 }
 
 extension View {
+    /// The gloss under a reveal. Subheadline, not caption — post-reveal lines are
+    /// meant to be read, and 12 pt secondary text is where legibility broke. It is
+    /// a modifier because the card may place the note away from the reveal it
+    /// belongs to (beside a picture there is no room for a long line), and one
+    /// definition is what keeps the two placements the same line.
+    func dlNoteLine() -> some View {
+        font(DL.Fonts.subheadline)
+            .italic()
+            .foregroundStyle(Color.dlTextSecondary)
+            .multilineTextAlignment(.center)
+            // why: the card's emoji slots are fixed points and do not grow with
+            // the type size, so a note left to report its own ideal width can
+            // push the row past the card it is drawn on.
+            .fixedSize(horizontal: false, vertical: true)
+    }
+
     /// The line an amber hold pauses on — a typo's proper spelling, the word
     /// that was heard instead, the other word the answer turned out to be.
     /// Read, not glanced at, so it carries the same weight everywhere.

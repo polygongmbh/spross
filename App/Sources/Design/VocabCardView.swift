@@ -115,13 +115,12 @@ struct VocabCardView: View {
     private var arranged: some View {
         switch arrangement {
         case .beside:
-            HStack(spacing: DL.Space.m) {
-                if hasEmoji { picture }
-                // why: nothing mirrors the picture on the trailing edge — a spacer
-                // that keeps the words optically centered costs them TWICE the
-                // picture's width, and that width is what breaks a single headword
-                // into a hyphen. Slightly off-center beats hyphenated.
-                words
+            VStack(spacing: DL.Space.s) {
+                pictureRow
+                if revealed && hasClosingLines {
+                    closingLines
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                }
             }
         case .above:
             VStack(spacing: DL.Space.l) {
@@ -129,6 +128,47 @@ struct VocabCardView: View {
                 words
             }
         }
+    }
+
+    /// The picture's own row: it stands beside the HEADWORDS — prompt, divider,
+    /// answer — so it ends up roughly parallel to the divider instead of floating
+    /// above the whole stack. A mirror of its slot on the trailing edge keeps that
+    /// block optically centered in the CARD; the width that costs is given back to
+    /// the lines that need it, below (`closingLines`), not taken from the center.
+    private var pictureRow: some View {
+        HStack(spacing: DL.Space.m) {
+            if hasEmoji { picture }
+            VStack(spacing: DL.Space.s) {
+                sideBlock(prompt, emphasized: false)
+                if revealed {
+                    // why: the divider belongs beside the picture, so the reveal
+                    // grows the row rather than starting a second stack under it.
+                    DLCardReveal(note: nil) {
+                        headwordBlock(answer, emphasized: true)
+                    }
+                    .transition(.opacity.combined(with: .move(edge: .top)))
+                }
+            }
+            .frame(maxWidth: .infinity)
+            if hasEmoji { DLCardEmoji.balance(emojiSize) }
+        }
+    }
+
+    /// What the reveal says ABOUT the answer rather than as the answer: grammar,
+    /// the other forms, the literal gloss. They are the long lines and they sit
+    /// beside nothing, so they take the card's full width.
+    private var closingLines: some View {
+        VStack(spacing: DL.Space.xs) {
+            secondaryLines(answer)
+            if let note {
+                Text(note).dlNoteLine()
+            }
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    private var hasClosingLines: Bool {
+        note != nil || answer.plural != nil || answer.alternates != nil
     }
 
     private var picture: some View {
@@ -169,6 +209,14 @@ struct VocabCardView: View {
     /// role depending on the card's presentation role.
     private func sideBlock(_ side: Side, emphasized: Bool) -> some View {
         VStack(spacing: DL.Space.xs) {
+            headwordBlock(side, emphasized: emphasized)
+            secondaryLines(side)
+        }
+    }
+
+    /// The word itself, under its label: the part a picture may stand beside.
+    private func headwordBlock(_ side: Side, emphasized: Bool) -> some View {
+        VStack(spacing: DL.Space.xs) {
             // why: ABOVE the headword, so it reads as a label on the prompt and never
             // sits in the plural/alternates region that belongs to the reveal.
             if let context = side.context {
@@ -183,19 +231,25 @@ struct VocabCardView: View {
                 // short one (it wraps rather than shrinking); the factor is only
                 // overflow insurance for the rare word too long to wrap.
                 .minimumScaleFactor(0.85)
-            if let plural = side.plural {
-                Text(plural)
-                    .font(DL.Fonts.subheadline)
-                    .foregroundStyle(Color.dlTextSecondary)
-            }
-            if let alternates = side.alternates {
-                // why: matches the plural line — both belong to the reveal, so
-                // neither shrinks below the size the learner has to read.
-                Text(alternates)
-                    .font(DL.Fonts.subheadline)
-                    .foregroundStyle(Color.dlTextSecondary)
-                    .multilineTextAlignment(.center)
-            }
+        }
+    }
+
+    /// Grammar and the other forms — small lines that belong TO a headword
+    /// without being one.
+    @ViewBuilder
+    private func secondaryLines(_ side: Side) -> some View {
+        if let plural = side.plural {
+            Text(plural)
+                .font(DL.Fonts.subheadline)
+                .foregroundStyle(Color.dlTextSecondary)
+        }
+        if let alternates = side.alternates {
+            // why: matches the plural line — both belong to the reveal, so
+            // neither shrinks below the size the learner has to read.
+            Text(alternates)
+                .font(DL.Fonts.subheadline)
+                .foregroundStyle(Color.dlTextSecondary)
+                .multilineTextAlignment(.center)
         }
     }
 
