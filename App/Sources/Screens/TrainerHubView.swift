@@ -168,7 +168,7 @@ struct TrainerHubView: View, LanguageNaming {
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
         }
-        .frame(maxWidth: .infinity, minHeight: 72)
+        .frame(maxWidth: .infinity, minHeight: DL.Reserve.tile)
         .padding(.vertical, DL.Space.s)
         .padding(.horizontal, DL.Space.xs)
         .background(

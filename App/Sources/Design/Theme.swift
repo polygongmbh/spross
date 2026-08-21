@@ -63,6 +63,10 @@ enum DL {
         /// which is the tallest a prompt side gets — a word asked by ear and
         /// the same word asked by meaning then measure alike.
         static let reviewCard: CGFloat = 120
+        /// A tappable tile's floor — a glyph over its label, at a size a thumb
+        /// finds without aiming. The letter drill's choices and the hub's entry
+        /// chips are one size, so a tile never reads as two kinds of target.
+        static let tile: CGFloat = 72
     }
 
     // MARK: Type scale — SF Rounded throughout

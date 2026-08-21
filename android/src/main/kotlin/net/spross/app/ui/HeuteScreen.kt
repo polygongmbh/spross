@@ -217,7 +217,7 @@ private fun RowScope.EntryChip(emoji: String, title: String, onClick: () -> Unit
             .clip(MaterialTheme.shapes.medium)
             .background(Dl.colors.surfaceTint)
             .clickable(role = Role.Button, onClick = onClick)
-            .heightIn(min = 72.dp)
+            .heightIn(min = DlReserve.tile)
             .padding(horizontal = DlSpace.xs, vertical = DlSpace.s),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(DlSpace.s, Alignment.CenterVertically),

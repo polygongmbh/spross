@@ -88,7 +88,7 @@ private fun ChoiceTile(
         onClick = onClick,
         enabled = !answered,
         shape = MaterialTheme.shapes.medium,
-        modifier = modifier.heightIn(min = 72.dp).semantics {
+        modifier = modifier.heightIn(min = DlReserve.tile).semantics {
             contentDescription = chrome.letterChoice.format(glyph)
             if (answered && isAnswer) stateDescription = chrome.answerCorrect
             if (answered && isChosen && !isAnswer) stateDescription = chrome.answerWrong

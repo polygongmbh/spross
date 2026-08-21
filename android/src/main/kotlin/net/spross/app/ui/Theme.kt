@@ -351,6 +351,12 @@ object DlReserve {
      * an area label, or the replay glyph of a question asked by ear.
      */
     val reviewCard = 120.dp
+
+    /**
+     * A tappable tile's floor — a glyph over its label, at a size a thumb finds without
+     * aiming. The letter drill's choices and the hub's entry chips are one size.
+     */
+    val tile = 72.dp
 }
 
 /** Spacing, the same six steps and the same numbers the canonical table names. */

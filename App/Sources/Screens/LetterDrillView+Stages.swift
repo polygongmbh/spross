@@ -105,7 +105,7 @@ extension LetterDrillView {
                 .foregroundStyle(Color.dlTextPrimary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.4)
-                .frame(maxWidth: .infinity, minHeight: 72)
+                .frame(maxWidth: .infinity, minHeight: DL.Reserve.tile)
                 .padding(DL.Space.m)
                 .background(
                     RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
