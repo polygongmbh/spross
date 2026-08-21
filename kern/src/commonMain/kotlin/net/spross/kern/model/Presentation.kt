@@ -96,6 +96,17 @@ enum class EmojiCue {
 }
 
 /**
+ * The cue for a surface that already knows whether its picture ANSWERS the question.
+ *
+ * The one-line rule, named here so no platform writes it out: a picture that would give the
+ * answer away waits for the reveal, and one that cannot is there from the start. Surfaces
+ * outside the review loop — the atlas card, the listening playlist — carry the fact and would
+ * otherwise each spell the mapping, which is how the two phones came to disagree once already.
+ */
+fun emojiCue(givesAnswerAway: Boolean): EmojiCue =
+    if (givesAnswerAway) EmojiCue.OnReveal else EmojiCue.Upfront
+
+/**
  * Emoji policy. The picture is there from the START iff role == Produce and the word
  * has not landed — the one place it supports recall without giving the answer away,
  * since a produce prompt already names the concept in the source language and asks

@@ -271,8 +271,13 @@ class ListeningDriver(
         handler.postDelayed({ finish() }, WORD_CEILING_MS)
     }
 
-    /** Kern's bedtime ramp at this moment: silent by degrees rather than a cliff. */
-    private fun fadeDb(): Double = remainingMs()?.let { listeningGainDb(it) } ?: 0.0
+    /**
+     * Kern's bedtime ramp at this moment: quieter by degrees over the whole run rather than a
+     * dimming that starts. The length rides along with what is left of it, so the ramp is a
+     * fraction of the bedtime and every length ends in the same place.
+     */
+    private fun fadeDb(): Double =
+        remainingMs()?.let { listeningGainDb(it, timerMinutes * 60_000L) } ?: 0.0
 
     private fun expired(): Boolean = remainingMs()?.let { listeningExpired(it) } == true
 

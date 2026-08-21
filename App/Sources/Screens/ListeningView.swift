@@ -61,12 +61,11 @@ struct ListeningView: View {
     private var cardFace: some View {
         if let turn {
             VocabCardView(emoji: card(turn)?.emoji,
-                          // why: the picture is a cue withheld while an answer is
-                          // OWED, and listening owes none — nothing is being asked,
-                          // so nothing is being given away. Held back here it
-                          // vanished and returned on every word, which reads as a
-                          // flicker rather than as a reveal.
-                          emojiCue: .upfront,
+                          // why: kern names the rule (LISTENING_EMOJI_CUE) — listening
+                          // owes no answer, so nothing is withheld. Picked per phone
+                          // it was picked differently, and the picture vanished and
+                          // returned on every word.
+                          emojiCue: LISTENING_EMOJI_CUE == .upfront ? .upfront : .onReveal,
                           prompt: .init(text: turn.targetForm,
                                         article: article(of: turn),
                                         language: model.targetLanguage),

@@ -39,11 +39,13 @@ final class ListeningBedtime {
         startTicking()
     }
 
-    /// Kern's ramp over the last two minutes — 0 dB, and no arithmetic at all,
-    /// while no bedtime is set.
+    /// Kern's ramp across the WHOLE bedtime — 0 dB, and no arithmetic at all,
+    /// while none is set. The length is handed in with what is left of it: the
+    /// ramp is a fraction of the run, so a 15-minute bedtime dims at four times
+    /// the rate of an hour and both end in the same place.
     var fadeDb: Double {
         guard let remainingMs else { return 0 }
-        return listeningGainDb(msRemaining: remainingMs)
+        return listeningGainDb(msRemaining: remainingMs, totalMs: Int64(minutes) * 60_000)
     }
 
     /// Whether the bedtime has arrived. Kern owns where the line is; what to do

@@ -2,79 +2,84 @@ package net.spross.kern.listen
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-/** The bedtime a run can be given: what it offers, and how it stops. */
+/** The bedtime: where its ramp starts, where it ends, and that it never leaves the level kern chose. */
 class ListeningTimerTests {
 
+    private val hour = 60 * 60_000L
+
     /**
-     * RULE: the choices lead with off, and off is 0.
-     * WHY: a playlist that laps until it is closed is the default — the timer is asked for at
-     * bedtime and nowhere else, and a cycling chip has to start where the run already is.
+     * Off is the default and asks no arithmetic: a run with no bedtime plays at the level its
+     * recordings were measured to, and kern's ramp never touches it.
      */
     @Test
-    fun theTimerChoicesLeadWithOff() {
+    fun aRunWithoutABedtimePlaysAtFull() {
+        assertEquals(0.0, listeningGainDb(hour, totalMs = 0))
+        assertEquals(0.0, listeningGainDb(0, totalMs = 0))
+        assertEquals(0.0, listeningGainDb(hour, totalMs = -1))
+    }
+
+    /**
+     * The ramp is the WHOLE bedtime, not a window at the end of it: a fade that starts is a
+     * second event, and a listener on the edge of sleep hears a change beginning long before
+     * they hear a level continuing. So the first word is already a shade under the last full one.
+     */
+    @Test
+    fun theRampSpansTheWholeBedtimeRatherThanItsEnd() {
+        assertEquals(0.0, listeningGainDb(hour, totalMs = hour))
+        assertEquals(LISTENING_FADE_FLOOR_DB / 2, listeningGainDb(hour / 2, totalMs = hour), 1e-9)
+        assertEquals(LISTENING_FADE_FLOOR_DB / 4, listeningGainDb(hour * 3 / 4, totalMs = hour), 1e-9)
+        assertEquals(LISTENING_FADE_FLOOR_DB, listeningGainDb(0, totalMs = hour))
+    }
+
+    /** Every length ends in the same place: the ramp is a fraction of the run, never a rate. */
+    @Test
+    fun everyBedtimeEndsAtTheSameLevel() {
+        for (minutes in LISTENING_TIMER_CHOICES_MIN.filter { it > 0 }) {
+            val total = minutes * 60_000L
+            assertEquals(0.0, listeningGainDb(total, total))
+            assertEquals(LISTENING_FADE_FLOOR_DB / 2, listeningGainDb(total / 2, total), 1e-9)
+            assertEquals(LISTENING_FADE_FLOOR_DB, listeningGainDb(0, total))
+        }
+    }
+
+    /** It only ever descends — a bedtime that got louder anywhere would be an event of its own. */
+    @Test
+    fun theRampNeverRises() {
+        var previous = 1.0
+        for (step in 0..40) {
+            val gain = listeningGainDb(hour - step * (hour / 40), totalMs = hour)
+            assertTrue(gain <= previous + 1e-9, "step \$step rose to \$gain")
+            previous = gain
+        }
+    }
+
+    /**
+     * Held to the level kern chose, whatever a caller hands in — a clock that overshoots its
+     * deadline must quieten the run, never invert the ramp.
+     */
+    @Test
+    fun theRampStaysInsideItsOwnFloor() {
+        for (ms in listOf(-hour, -1L, 0L, 1L, 999L, hour, Long.MAX_VALUE)) {
+            val gain = listeningGainDb(ms, totalMs = hour)
+            assertTrue(gain in LISTENING_FADE_FLOOR_DB..0.0, "\$ms gave \$gain")
+        }
+        assertEquals(LISTENING_FADE_FLOOR_DB, listeningGainDb(-hour, totalMs = hour))
+    }
+
+    /** Off leads the list: a run laps for as long as it is left alone unless asked otherwise. */
+    @Test
+    fun theChoicesLeadWithOff() {
         assertEquals(0, LISTENING_TIMER_CHOICES_MIN.first())
-        assertEquals(LISTENING_TIMER_CHOICES_MIN.sorted(), LISTENING_TIMER_CHOICES_MIN)
         assertTrue(LISTENING_TIMER_CHOICES_MIN.drop(1).all { it > 0 })
     }
 
-    /**
-     * RULE: the run plays at full level until the fade window opens.
-     * WHY: the fade is the ending, not the run — a timer that quietened the whole hour would
-     * be a volume slider nobody asked for.
-     */
+    /** The bedtime has arrived at zero, and one rule decides it rather than two apps. */
     @Test
-    fun theGainIsFlatOutsideTheFadeWindow() {
-        assertEquals(0.0, listeningGainDb(LISTENING_FADE_MS))
-        assertEquals(0.0, listeningGainDb(LISTENING_FADE_MS + 1))
-        assertEquals(0.0, listeningGainDb(60 * 60_000))
-    }
-
-    /**
-     * RULE: inside the window the level only ever falls, and it reaches the floor at zero.
-     * WHY: a fade that stepped back up would be a change loud enough to notice, which is what
-     * the fade exists to avoid — and it has to actually arrive at silence, or the timer never
-     * ends.
-     */
-    @Test
-    fun theGainFallsMonotonicallyToTheFloor() {
-        var previous = 0.0
-        for (step in 0..20) {
-            val remaining = LISTENING_FADE_MS - step * (LISTENING_FADE_MS / 20)
-            val gain = listeningGainDb(remaining)
-            assertTrue(gain <= previous, "the fade rose at ${remaining}ms: $gain > $previous")
-            previous = gain
-        }
-        assertEquals(LISTENING_FADE_FLOOR_DB, listeningGainDb(0))
-        assertEquals(LISTENING_FADE_FLOOR_DB / 2, listeningGainDb(LISTENING_FADE_MS / 2))
-    }
-
-    /**
-     * RULE: the gain never leaves [LISTENING_FADE_FLOOR_DB]..0.0, whatever it is handed.
-     * WHY: a player is handed this number directly, and an overshoot is either a boost at
-     * bedtime or an amplifier asked for a value it cannot make. A negative remainder is an
-     * ordinary late tick, not an error.
-     */
-    @Test
-    fun theGainStaysInsideItsClamp() {
-        for (ms in listOf(-60_000L, -1L, 0L, 1L, 999L, LISTENING_FADE_MS, Long.MAX_VALUE)) {
-            val gain = listeningGainDb(ms)
-            assertTrue(gain in LISTENING_FADE_FLOOR_DB..0.0, "gain $gain out of range at ${ms}ms")
-        }
-        assertEquals(LISTENING_FADE_FLOOR_DB, listeningGainDb(-60_000))
-    }
-
-    /**
-     * RULE: the bedtime has arrived at zero, not after it.
-     * WHY: one rule in one place — `<= 0` and `< 0` read the same until the two apps pick
-     * differently and one of them plays a word past the fade's own silence.
-     */
-    @Test
-    fun theTimerIsOverAtZero() {
+    fun theBedtimeArrivesAtZero() {
         assertTrue(listeningExpired(0))
         assertTrue(listeningExpired(-1))
-        assertFalse(listeningExpired(1))
+        assertTrue(!listeningExpired(1))
     }
 }

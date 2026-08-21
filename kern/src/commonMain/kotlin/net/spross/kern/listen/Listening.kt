@@ -1,5 +1,8 @@
 package net.spross.kern.listen
 
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.model.emojiCue
+
 import kotlin.random.Random
 import net.spross.kern.model.Card
 
@@ -38,23 +41,35 @@ const val TURN_GAP_MS: Long = 2_500
 val LISTENING_TIMER_CHOICES_MIN: List<Int> = listOf(0, 15, 30, 60)
 
 /**
- * How long before the timer runs out the run starts fading.
+ * The picture cue every listening card wears.
  *
- * It does not stop dead: a hard cut is a change loud enough to wake someone, which is the
- * exact opposite of what a bedtime is for. Two minutes is long enough that the ramp is below
- * the threshold of noticing and short enough that the last words are still worth hearing.
+ * A picture is held back while an answer is OWED — it would give it away — and listening owes
+ * none: nothing is asked, so nothing is withheld. Named here rather than picked on each phone
+ * because that is exactly how the two came to disagree: one held it until the meaning was out
+ * and the other until a reveal, and both made the picture vanish and return on every word.
  */
-const val LISTENING_FADE_MS: Long = 120_000
+val LISTENING_EMOJI_CUE: EmojiCue = emojiCue(givesAnswerAway = false)
 
 /**
- * Where the fade ends. Inaudible in a quiet room, but still a level rather than a cliff — the
- * silence at the bottom of a ramp has to arrive as an absence, not as an event.
+ * Where the fade ends — the level the last word before the bedtime is played at.
+ *
+ * Roughly a third of the loudness it started at: quiet enough to fall asleep under, loud
+ * enough that a learner still awake can follow it. Deeper than this and the run spends its
+ * last minutes saying words nobody can hear, which is not a gentler ending, only a longer one.
  */
-const val LISTENING_FADE_FLOOR_DB: Double = -40.0
+const val LISTENING_FADE_FLOOR_DB: Double = -19.0
 
 /**
- * The decibels a run is played at with [msRemaining] left on its timer: 0.0 until the fade
- * window opens, then linear down to [LISTENING_FADE_FLOOR_DB] as it reaches zero.
+ * The decibels a run is played at, [msRemaining] into a bedtime of [totalMs]: linear from 0.0
+ * at the start to [LISTENING_FADE_FLOOR_DB] as it reaches zero.
+ *
+ * The ramp is the WHOLE bedtime, not a window at the end of it. A fade that only starts near
+ * the finish is a second event — the room is steady and then it is dimming — and a listener
+ * on the edge of sleep notices a change beginning far more than a level continuing. Spread
+ * over the whole run, no single minute is quieter than the one before it by enough to hear.
+ *
+ * Linear in DECIBELS, which is where a listener's sense of loudness lives; linear in amplitude
+ * would spend most of the run near the floor and read as an early drop.
  *
  * Applied ON TOP of a recording's own `Playback.gainDb`, never instead of it — one is a
  * correction of the shipped bytes and this is a deliberate ramp over whatever they play at,
@@ -62,16 +77,15 @@ const val LISTENING_FADE_FLOOR_DB: Double = -40.0
  * same reason they read the beats here: a fade that ran two ramps would be two different
  * bedtimes.
  *
- * Clamped like every other figure a player is handed, but to its OWN floor rather than
- * `Playback.GAIN_LIMIT_DB`: that limit is how far a MEASUREMENT may be trusted, and this is
- * not a measurement — it is a level kern chose, so it is held to the level kern chose.
- * A run with no timer never asks: the app hands in the remaining milliseconds it is tracking,
- * exactly as it hands kern the clock everywhere else.
+ * Clamped to its OWN floor rather than `Playback.GAIN_LIMIT_DB`: that limit is how far a
+ * MEASUREMENT may be trusted, and this is not a measurement — it is a level kern chose.
+ * A run with no bedtime never asks ([totalMs] of 0 or less plays at full).
  */
-fun listeningGainDb(msRemaining: Long): Double {
-    if (msRemaining >= LISTENING_FADE_MS) return 0.0
-    val elapsed = 1.0 - maxOf(0L, msRemaining).toDouble() / LISTENING_FADE_MS
-    return (LISTENING_FADE_FLOOR_DB * elapsed).coerceIn(LISTENING_FADE_FLOOR_DB, 0.0)
+fun listeningGainDb(msRemaining: Long, totalMs: Long): Double {
+    if (totalMs <= 0L) return 0.0
+    val spent = 1.0 - (maxOf(0L, msRemaining).toDouble() / totalMs).coerceIn(0.0, 1.0)
+    // why: `floor * 0.0` is -0.0, which prints and compares as a surprise; + 0.0 normalizes it.
+    return (LISTENING_FADE_FLOOR_DB * spent + 0.0).coerceIn(LISTENING_FADE_FLOOR_DB, 0.0)
 }
 
 /**
