@@ -56,6 +56,18 @@ val corpusSweeps = listOf("*ClockCollisionSweepTests", "*TrainerFormsTypoBridgeG
 
 tasks.named<Test>("jvmTest") {
     maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
+
+    // why: the palette-parity and catalog lints read these trees as text, which Gradle cannot
+    // see from the classpath — without naming them the task reports up-to-date after a Swift or
+    // catalog edit, and the gate silently stops running for exactly the change it guards.
+    inputs.files(
+        rootProject.fileTree("App/Sources/Design"),
+        rootProject.fileTree("Watch/Sources"),
+        rootProject.fileTree("Widgets/Sources"),
+        rootProject.fileTree("WatchWidgets/Sources"),
+        rootProject.fileTree("android/src/main/kotlin/net/spross/app/ui"),
+        rootProject.fileTree("catalog") { exclude("audio/**") },
+    ).withPathSensitivity(PathSensitivity.RELATIVE)
     if (!project.hasProperty("sweeps")) {
         filter { corpusSweeps.forEach { excludeTestsMatching(it) } }
     }
