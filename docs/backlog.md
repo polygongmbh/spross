@@ -221,13 +221,6 @@ One line per item, with a file or context pointer, filed under the section it be
   as a full one: `SessionIntent.RecomposeIfStale` reaches for `composeSession`, which knows
   nothing about which round was opened
   (`kern/src/commonMain/kotlin/net/spross/kern/session/SessionRun.kt` `recompose`).
-- The prompt headword RISES about 22pt when a card grows past `DL.Reserve.reviewCard`
-  (120pt): the shorter pre-reveal card is vertically centered in the reserved height and the
-  taller revealed one is not, so the prompt moves up as the answer arrives
-  (`App/Sources/Design/VocabCardView.swift`). It sits against that file's own claim that
-  growth is strictly BELOW existing content, and against design.md's "a reveal moves nothing".
-  Pre-existing — confirmed identical on the build before the card was restructured — and
-  vertical, where the reserved slot only ever guarded the horizontal.
 - Rating labels carry more weight on a first exposure now that Good sends a word about a week
   out (`kern/docs/fsrs.md`) — the button wording deserves a look
   (`App/Sources/Design/RatingButtonsView.swift`).
