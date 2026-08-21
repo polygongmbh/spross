@@ -18,7 +18,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.TrainerFlow
@@ -50,7 +49,7 @@ fun TrainerPromptCard(model: AppModel, flow: TrainerFlow, chrome: Chrome) {
         Text(
             task.promptDisplay,
             style = MaterialTheme.typography.headlineLarge.copy(
-                fontSize = if (wordy) 26.sp else 46.sp,
+                fontSize = if (wordy) DlPrompt.sentence else DlPrompt.digits,
                 fontWeight = FontWeight.Bold,
                 fontFamily = if (wordy) FontFamily.Default else FontFamily.Monospace,
             ),

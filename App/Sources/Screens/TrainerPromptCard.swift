@@ -33,7 +33,7 @@ struct TrainerPromptCard: View {
             // why: promptDisplay is the learner's form — grouped digits ("12 345")
             // where `prompt` is the machine one the kern parses back with toLong().
             Text(task.promptDisplay)
-                .font(.system(size: sentence ? 28 : 56, weight: .bold, design: .rounded))
+                .font(sentence ? DL.Fonts.Prompt.sentence : DL.Fonts.Prompt.digits)
                 .monospacedDigit()
                 .foregroundStyle(Color.dlTextPrimary)
                 .lineLimit(sentence ? 4 : 1)

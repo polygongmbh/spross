@@ -39,7 +39,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.Chrome
@@ -189,7 +188,7 @@ private fun HearPrompt(
         )
         ReplayButton(chrome, replay, replayFocus)
         task.gapText?.let {
-            Text(localizedTarget(it, task.language), fontSize = 30.sp, fontWeight = FontWeight.Bold)
+            Text(localizedTarget(it, task.language), fontSize = DlPrompt.word, fontWeight = FontWeight.Bold)
         }
         if (model.pronouncer.muted) UnmuteRow(model, task, chrome)
         if (flow.state.showsAnswer) {

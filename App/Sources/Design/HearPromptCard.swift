@@ -61,7 +61,7 @@ struct HearPromptCard: View {
             // replaces the blank where it stood, so nothing below it moves.
             if let word = gapWord {
                 Text(verbatim: word)
-                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                    .font(DL.Fonts.Prompt.word)
                     .foregroundStyle(revealed == nil ? Color.dlTextPrimary : Color.dlAccent)
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)

@@ -80,6 +80,27 @@ enum DL {
         static let caption = Font.system(.caption, design: .rounded, weight: .medium)
         static let badge = Font.system(.footnote, design: .rounded, weight: .bold)
         static let statValue = Font.system(.title, design: .rounded, weight: .bold)
+
+        /// The QUESTION itself, set as large as its card can hold.
+        ///
+        /// Fixed points rather than Dynamic Type: a prompt card reserves a height
+        /// (`Reserve.drillCard`), and a prompt that grew with the reader's setting
+        /// would push the field below it off the screen that reserve exists to hold
+        /// still. WHAT is asked picks the size — there is room for one numeral where
+        /// there is none for a whole sentence — and every face steps down to fit
+        /// rather than taking a size of its own.
+        enum Prompt {
+            /// A numeral the whole card is about ("1 978", "14:35").
+            static let digits = Font.system(size: 56, weight: .bold, design: .rounded)
+            /// A picture standing where the name would: a flag that IS the question.
+            static let glyph = Font.system(size: 64)
+            /// One word with a blank in it ("Ge l＿").
+            static let word = Font.system(size: 40, weight: .bold, design: .rounded)
+            /// A name asked about ("Deutschland") — words run longer than numerals.
+            static let name = Font.system(size: 32, weight: .bold, design: .rounded)
+            /// A prompt made of words, laid out like one: wrapped over lines.
+            static let sentence = Font.system(size: 28, weight: .bold, design: .rounded)
+        }
     }
 
     /// Gender → color. Text always carries the meaning; color only reinforces.

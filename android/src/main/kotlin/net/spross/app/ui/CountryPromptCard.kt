@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.sp
 import net.spross.app.Chrome
 import net.spross.kern.model.Language
 
@@ -72,7 +71,7 @@ fun CountryPromptCard(
             // Nor is it ever a giveaway: a question whose whole content is the flag has
             // nothing left to show if the flag is held back, which is why kern builds this
             // kind forward only.
-            Text(emoji, fontSize = 64.sp, textAlign = TextAlign.Center)
+            Text(emoji, fontSize = DlPrompt.glyph, textAlign = TextAlign.Center)
         }
         reveal?.let {
             CardReveal(note = it.note) {

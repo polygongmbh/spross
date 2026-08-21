@@ -359,6 +359,29 @@ object DlReserve {
     val tile = 72.dp
 }
 
+/**
+ * The QUESTION itself, at the size its card can hold — the roles `DL.Fonts.Prompt` names,
+ * cut for this platform.
+ *
+ * Fixed sp rather than a ramp slot: a prompt card reserves a height ([DlReserve.drillCard]),
+ * and WHAT is asked picks the size — there is room for one numeral where there is none for a
+ * whole sentence. A name needs no entry here: [Headword] already sizes one, and steps it
+ * down to fit.
+ */
+object DlPrompt {
+    /** A numeral the whole card is about ("1 978", "14:35"). */
+    val digits = 46.sp
+
+    /** A picture standing where the name would: a flag that IS the question. */
+    val glyph = 64.sp
+
+    /** One word with a blank in it ("Ge l＿"). */
+    val word = 30.sp
+
+    /** A prompt made of words, laid out like one: wrapped over lines. */
+    val sentence = 26.sp
+}
+
 /** Spacing, the same six steps and the same numbers the canonical table names. */
 object DlSpace {
     val xs = 4.dp

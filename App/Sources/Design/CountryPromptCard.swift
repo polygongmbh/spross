@@ -65,7 +65,7 @@ struct CountryPromptCard: View {
                 caption
                 if let text {
                     Text(verbatim: text)
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
+                        .font(DL.Fonts.Prompt.name)
                         .foregroundStyle(Color.dlTextPrimary)
                         .multilineTextAlignment(.center)
                         .lineLimit(3)
@@ -82,7 +82,7 @@ struct CountryPromptCard: View {
                     // is the flag has nothing left to show if the flag is held
                     // back, which is why kern builds it forward only.
                     Text(verbatim: emoji)
-                        .font(.system(size: 64))
+                        .font(DL.Fonts.Prompt.glyph)
                 }
                 if let revealed {
                     DLCardReveal(note: revealed.note) {
