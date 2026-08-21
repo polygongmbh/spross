@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import net.spross.app.audio.CueSounds
 import net.spross.app.audio.Pronouncer
+import net.spross.app.listen.ListeningDriver
 import net.spross.app.ui.AreaNaming
 import net.spross.app.widget.WordWidget
 import net.spross.kern.box.ActivityDay
@@ -27,6 +28,7 @@ import net.spross.kern.box.streakWindow
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.catalog.Pronunciation
+import net.spross.kern.listen.ListeningCandidate
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.DayStats
@@ -62,6 +64,12 @@ sealed interface Screen {
     data object Heute : Screen
     data object Session : Screen
     data object About : Screen
+
+    /**
+     * A listening run: a full screen like every other Android run, and the one made
+     * entirely of sound. Back mirrors its ✕.
+     */
+    data object Listening : Screen
 
     /** The Zahlen page: the picks and the button first, the reference under them. */
     data object Numbers : Screen
@@ -154,6 +162,22 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     /** The verdict chimes, loaded here so the first answer of a session pays no decode. */
     val cues = CueSounds(app)
+
+    /**
+     * The listening run — a playlist over the learner's own words that asks nothing.
+     *
+     * It lives beside the session run rather than inside it because it is not one: it books
+     * no review, writes no schedule and moves no streak, so it holds no [BoxState] at all.
+     */
+    val listening = ListeningDriver(app, this)
+
+    /**
+     * What a listening run may draw from on THIS device, swept on activation and on every
+     * foreground ([listeningReport]) rather than per composition — it is a catalog walk, and
+     * the Heute card asks for it on every frame it stands on.
+     */
+    var listeningPool by mutableStateOf<List<ListeningCandidate>>(emptyList())
+        private set
 
     /**
      * The Werkstatt's standing: the climbed ladder, what the letter drill can ask here, and
@@ -377,6 +401,41 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Heute
     }
 
+    /**
+     * The listening card's standing — whether there is anything to hear at all. The pool
+     * already grows a thin selection as far as the content allows, so whatever is left IS
+     * all there is, and a short one simply laps.
+     */
+    val listeningOffered: Boolean
+        get() = listeningPool.isNotEmpty()
+
+    /**
+     * Re-sweeps what listening can play, and carries the result into a run already going.
+     * A voice installed in Settings while the app slept turns the card on without a relaunch.
+     */
+    fun refreshListening() {
+        val report = listeningReport() ?: return
+        listeningPool = report.candidates
+        listening.refresh(report.candidates)
+    }
+
+    /**
+     * Opens the playlist. Nothing else may be talking into it — a word left sounding from
+     * the screen behind would land in the middle of the run's first turn.
+     */
+    fun startListening() {
+        if (listeningPool.isEmpty()) return
+        pronouncer.stop()
+        listening.start(listeningPool)
+        screen = Screen.Listening
+    }
+
+    /** The ✕, Back, and the bedtime running out all arrive here. */
+    fun closeListening() {
+        listening.stop()
+        screen = Screen.Heute
+    }
+
     fun startTrainerRun(mode: TrainerMode) {
         screen = Screen.Trainer(mode)
     }
@@ -449,6 +508,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         persist(state)
         otherLanguagesDailyStats = withContext(Dispatchers.IO) { loadOtherLanguagesDailyStats(cat, target) }
         refreshStats()
+        refreshListening()
         screen = Screen.Heute
     }
 
@@ -659,6 +719,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     override fun onCleared() {
         super.onCleared()
+        // why: a run holds the audio focus and a chain of armed beats — neither may
+        // outlive the model, or the phone is left with a playlist nobody owns.
+        listening.stop()
         // why: the synthesizer holds a binding to another process and the players their
         // decoded clips — none of it may outlive the model that opened them.
         pronouncer.release()

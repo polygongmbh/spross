@@ -181,6 +181,43 @@ fun DoneCard(model: AppModel, standing: HeuteStanding, streak: Int, health: Stre
     }
 }
 
+/**
+ * Listening: the quiet card under the day's round.
+ *
+ * The round is what the box ASKS of the learner; this is what the learner can do when
+ * answering is not on the table — a walk, a commute, a sink full of dishes. It is not a
+ * Sprosse and gets no chip on that row: a Sprosse is a skill with a ladder to climb, and
+ * listening asks nothing, grades nothing and has no rung to reach (`docs/surfaces.md`).
+ *
+ * Its offer line is a question rather than an instruction, and the button is quieter than the
+ * day's own: what stands above it is what the box is actually asking for.
+ */
+@Composable
+fun ListenCard(model: AppModel) {
+    val chrome = model.chrome
+    if (!model.listeningOffered) return
+    Column(
+        modifier = Modifier.fillMaxWidth().panel(),
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth().padding(DlSpace.l),
+            verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+        ) {
+            Text("🎧 ${chrome.listenTitle}", style = MaterialTheme.typography.titleMedium)
+            Text(
+                chrome.listenSubtitle,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            OutlinedButton(
+                onClick = { model.startListening() },
+                modifier = Modifier.fillMaxWidth().pressSpring(),
+                shape = MaterialTheme.shapes.small,
+            ) { Text(chrome.listenStart) }
+        }
+    }
+}
+
 /** The two cards that state a condition rather than offer a round: a failure, or an empty box. */
 @Composable
 fun StateCard(

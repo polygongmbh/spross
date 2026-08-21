@@ -1,0 +1,237 @@
+package net.spross.app.listen
+
+import android.app.Application
+import android.os.Handler
+import android.os.Looper
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import kotlin.random.Random
+import net.spross.app.AppModel
+import net.spross.app.audio.Pronouncer
+import net.spross.kern.listen.LISTENING_TIMER_CHOICES_MIN
+import net.spross.kern.listen.ListeningCandidate
+import net.spross.kern.listen.ListeningEffect
+import net.spross.kern.listen.ListeningIntent
+import net.spross.kern.listen.ListeningReduction
+import net.spross.kern.listen.ListeningRun
+import net.spross.kern.listen.ListeningRunState
+import net.spross.kern.listen.ListeningTurn
+import net.spross.kern.listen.listeningExpired
+import net.spross.kern.listen.listeningGainDb
+
+/** Which of a turn's three sayings is in the air. The meaning arrives with its reading. */
+enum class ListeningBeat { Target, Meaning, Echo }
+
+/**
+ * The platform half of a listening run: kern's reducer decides WHAT is said, this arms WHEN.
+ *
+ * A turn is three sayings and three gaps, and every beat after the first is armed off the
+ * previous word ACTUALLY ENDING plus kern's number — never off a timer guessing how long a
+ * word lasts, which is the one thing that would make the mode drift on a slow voice or a long
+ * phrase. Each beat takes a token; anything that arrives in between — a skip, a pause, the
+ * lock screen, a focus loss — bumps the counter and the chain in flight simply stops firing.
+ * A word that never reports (an engine that dropped it, a clip that never decoded) is caught
+ * by the ceiling below, so a run can stall on nothing.
+ *
+ * The audio is driven off the reduction's EFFECTS, never off a state diff: `Repeat` returns
+ * an identical state and its whole observable is the `Play` it asks for.
+ *
+ * It touches no box. Nothing here books a review, writes a schedule or moves the streak —
+ * listening answers nothing, so it costs the box nothing (`docs/surfaces.md`).
+ */
+class ListeningDriver(app: Application, private val model: AppModel) {
+
+    /** The run, or null between runs. The screen and the lock screen both read this. */
+    var state by mutableStateOf<ListeningRunState?>(null)
+        private set
+
+    /** Which saying is in the air, so the screen can let the meaning arrive with its reading. */
+    var beat by mutableStateOf<ListeningBeat?>(null)
+        private set
+
+    /** The bedtime the chip stands at, in minutes; 0 is off, which is where a run starts. */
+    var timerMinutes by mutableStateOf(0)
+        private set
+
+    /** When the bedtime falls, or null while the run laps for as long as it is left alone. */
+    var deadline by mutableStateOf<Long?>(null)
+        private set
+
+    val turn: ListeningTurn? get() = state?.turn
+    val active: Boolean get() = state?.active == true
+    val paused: Boolean get() = state?.paused == true
+
+    private val handler = Handler(Looper.getMainLooper())
+    private val rng = Random.Default
+
+    /** Which beat is the newest — everything armed under an older token is dead. */
+    private var generation = 0
+
+    /** Whether the pause standing was the platform's doing, and so may be lifted again. */
+    private var pausedByFocus = false
+
+    private val focus = ListeningAudioFocus(
+        app,
+        onLoss = {
+            // why: a call or another player asking for its turn pauses the run rather than
+            // talking underneath it — and the pause is remembered as not the learner's.
+            if (active && !paused) {
+                pausedByFocus = true
+                dispatch(ListeningIntent.TogglePause)
+            }
+        },
+        onGain = {
+            if (active && paused && pausedByFocus) {
+                pausedByFocus = false
+                dispatch(ListeningIntent.TogglePause)
+            }
+        },
+    )
+
+    /** Opens the playlist. A pool with nothing in it never opens a run at all. */
+    fun start(candidates: List<ListeningCandidate>) {
+        if (active || candidates.isEmpty()) return
+        timerMinutes = 0
+        deadline = null
+        pausedByFocus = false
+        focus.take()
+        apply(ListeningRun.reduce(ListeningRun.idle(candidates), ListeningIntent.Start, rng))
+    }
+
+    /**
+     * The pool was rebuilt under a running playlist (a voice arrived in Settings, the box
+     * moved) — carried in rather than restarting the run, which would cut the word in the air.
+     */
+    fun refresh(candidates: List<ListeningCandidate>) {
+        val current = state ?: return
+        state = ListeningRun.withCandidates(current, candidates)
+    }
+
+    fun togglePause() {
+        // The learner's own pause outranks the platform's: lifting it is theirs to do.
+        pausedByFocus = false
+        dispatch(ListeningIntent.TogglePause)
+    }
+
+    fun skip() = dispatch(ListeningIntent.Skip)
+
+    fun repeat() = dispatch(ListeningIntent.Repeat)
+
+    /** Ends the run: the audio stops, the focus goes back, and whatever was playing resumes. */
+    fun stop() {
+        if (state != null) dispatch(ListeningIntent.Close)
+        generation++
+        state = null
+        beat = null
+        deadline = null
+        timerMinutes = 0
+        pausedByFocus = false
+        focus.release()
+    }
+
+    /**
+     * Walks kern's bedtimes. One cycling chip rather than a picker: the ask is "let it run
+     * while I fall asleep", which nobody answers to the minute.
+     */
+    fun cycleTimer() {
+        val choices = LISTENING_TIMER_CHOICES_MIN
+        val next = choices[(choices.indexOf(timerMinutes).coerceAtLeast(0) + 1) % choices.size]
+        timerMinutes = next
+        deadline = if (next == 0) null else System.currentTimeMillis() + next * 60_000L
+    }
+
+    /** How long the bedtime has left, or null where none was set. */
+    fun remainingMs(): Long? = deadline?.let { it - System.currentTimeMillis() }
+
+    private fun dispatch(intent: ListeningIntent) {
+        val current = state ?: return
+        apply(ListeningRun.reduce(current, intent, rng))
+    }
+
+    private fun apply(reduction: ListeningReduction) {
+        // why: every intent kills the chain in flight — a gap armed off the word that was
+        // just cut must not walk the playlist on behind the learner.
+        generation++
+        state = reduction.state
+        for (effect in reduction.effects) {
+            when (effect) {
+                is ListeningEffect.Play -> sound(effect.turn, ListeningBeat.Target)
+                ListeningEffect.Stop -> {
+                    model.pronouncer.stop()
+                    beat = null
+                }
+            }
+        }
+    }
+
+    /** One saying, and the gap that follows it once the word has actually ended. */
+    private fun sound(turn: ListeningTurn, at: ListeningBeat) {
+        if (expired()) {
+            model.closeListening()
+            return
+        }
+        beat = at
+        val token = ++generation
+        val gap = when (at) {
+            ListeningBeat.Target -> turn.recallGapMs
+            ListeningBeat.Meaning -> turn.echoGapMs
+            ListeningBeat.Echo -> turn.turnGapMs
+        }
+        say(turn, at, token) {
+            handler.postDelayed({
+                if (token != generation) return@postDelayed
+                when (at) {
+                    ListeningBeat.Target -> sound(turn, ListeningBeat.Meaning)
+                    ListeningBeat.Meaning -> sound(turn, ListeningBeat.Echo)
+                    ListeningBeat.Echo -> dispatch(ListeningIntent.Advance)
+                }
+            }, gap)
+        }
+    }
+
+    /**
+     * Says one side of the turn and reports back when the word has ended.
+     *
+     * The article rides the TARGET sayings alone: the meaning is there to identify the word,
+     * and its grammar is not what is being taught (`docs/read-aloud.md`).
+     */
+    private fun say(turn: ListeningTurn, at: ListeningBeat, token: Int, onDone: () -> Unit) {
+        val stamp = model.box?.joinStamp
+        val meaning = at == ListeningBeat.Meaning
+        val lang = if (meaning) stamp?.source else stamp?.target
+        val form = if (meaning) turn.sourceForm else turn.targetForm
+        var reported = false
+        val finish = {
+            if (!reported && token == generation) {
+                reported = true
+                onDone()
+            }
+        }
+        val pronunciation = lang?.let { model.catalog?.pronunciation(it, form) }
+        if (pronunciation == null) {
+            finish()
+            return
+        }
+        model.pronouncer.pronounce(
+            pronunciation,
+            Pronouncer.Trigger.LISTENING,
+            if (meaning) null else turn.spokenArticle,
+            fadeDb(),
+            finish,
+        )
+        // why: insurance, not timing — a word whose end is never reported would leave the
+        // chain standing still, and a run that has gone quiet is worse than one that hurries.
+        handler.postDelayed({ finish() }, WORD_CEILING_MS)
+    }
+
+    /** Kern's bedtime ramp at this moment: silent by degrees rather than a cliff. */
+    private fun fadeDb(): Double = remainingMs()?.let { listeningGainDb(it) } ?: 0.0
+
+    private fun expired(): Boolean = remainingMs()?.let { listeningExpired(it) } == true
+
+    private companion object {
+        /** Longer than any word or phrase the catalog holds, and shorter than a lost run. */
+        const val WORD_CEILING_MS = 15_000L
+    }
+}

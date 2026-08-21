@@ -149,6 +149,8 @@ fun HeuteScreen(model: AppModel) {
             )
         }
 
+        ListenCard(model)
+
         WerkstattCard(model)
 
         // The same fortnight the streak was counted from, on the very refresh that

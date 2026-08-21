@@ -90,6 +90,33 @@ object SprossIcons {
         moveTo(12f, 7.6f); lineTo(12f, 7.7f)
     }
 
+    /** Let it run on. A transport control, so it is a shape rather than a stroke. */
+    val Play = filled("Play") {
+        moveTo(7.5f, 4.5f); lineTo(19f, 12f); lineTo(7.5f, 19.5f); close()
+    }
+
+    /** Hold it where it is. */
+    val Pause = filled("Pause") {
+        moveTo(7.5f, 5f); lineTo(10.5f, 5f); lineTo(10.5f, 19f); lineTo(7.5f, 19f); close()
+        moveTo(13.5f, 5f); lineTo(16.5f, 5f); lineTo(16.5f, 19f); lineTo(13.5f, 19f); close()
+    }
+
+    /** The next word, asked for. */
+    val SkipNext = filled("SkipNext") {
+        moveTo(5.5f, 5f); lineTo(15f, 12f); lineTo(5.5f, 19f); close()
+        moveTo(16.5f, 5f); lineTo(19f, 5f); lineTo(19f, 19f); lineTo(16.5f, 19f); close()
+    }
+
+    /**
+     * That one again. The ring runs BACKWARDS — counterclockwise, opening at the top — so
+     * the glyph says "over again" rather than "onward", which a clockwise loop would.
+     */
+    val Again = stroked("Again") {
+        moveTo(16.95f, 7.05f)
+        arcTo(7f, 7f, 0f, true, false, 12f, 5f)
+        moveTo(14.4f, 3.6f); lineTo(12f, 5f); lineTo(14.4f, 6.4f)
+    }
+
     /** Hear it. The cone is filled and the waves are stroked, as one glyph. */
     val Speaker = ImageVector.Builder(
         name = "Speaker",

@@ -33,6 +33,7 @@ import net.spross.app.ui.CountryDrillScreen
 import net.spross.app.ui.HeuteScreen
 import net.spross.app.ui.LetterDrillScreen
 import net.spross.app.ui.LettersOverviewScreen
+import net.spross.app.ui.ListeningScreen
 import net.spross.app.ui.NumbersOverviewScreen
 import net.spross.app.ui.OnboardingScreen
 import net.spross.app.ui.SessionScreen
@@ -98,6 +99,9 @@ class SprossActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         model.refreshWerkstatt()
+        // why: the same reason, one language further — a voice for the LEARNER's own side
+        // decides whether a word may be listened to at all, and both are swept fresh.
+        model.refreshListening()
     }
 }
 
@@ -147,6 +151,7 @@ private fun Root(model: AppModel = viewModel()) {
             Screen.Onboarding -> OnboardingScreen(model)
             Screen.Heute -> HeuteScreen(model)
             Screen.Session -> SessionScreen(model)
+            Screen.Listening -> ListeningScreen(model)
             Screen.About -> AboutScreen(model)
             Screen.Numbers -> NumbersOverviewScreen(model)
             Screen.Letters -> LettersOverviewScreen(model)
