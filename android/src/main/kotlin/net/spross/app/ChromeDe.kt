@@ -97,8 +97,12 @@ internal object ChromeDe : Chrome {
     override val updateViaObtainium = "Obtainium holen"
     override val updateDownload = "Direkt herunterladen"
     override val audioToggle = "Wörter vorlesen"
-    override val audioToggleHint = "Wörter beim Üben automatisch vorlesen — eingeschaltet " +
-        "auch bei stummem Handy. Tippen auf ein Wort spricht es erneut, immer."
+    override val audioToggleHint = "Aufnahmen spielen die eingebauten Stimmen, wo es sie " +
+        "gibt; Sprachausgabe nutzt immer die Systemstimme — jedes Wort klingt gleich und " +
+        "sagt seinen Artikel. Tippen auf ein Wort spricht es erneut, immer."
+    override val audioOptionOff = "Kein Ton"
+    override val audioOptionRecordings = "Aufnahmen"
+    override val audioOptionTts = "Sprachausgabe"
     override val creditsTitle = "Impressum & Lizenzen"
     override val creditsRecordings = "%d Aufnahmen"
     override val creditsUnmodified = "Aufnahmen unverändert übernommen"

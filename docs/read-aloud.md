@@ -120,6 +120,17 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   per target language, and not in the box, where the product calibration would reset it.
   The silent switch's position cannot be read back (no API), so it is followed by deferring
   to it, never by mirroring it.
+- **The audio setting in the Box names the voice too, in one three-way row: No audio,
+  Recordings, Speech.** "No audio" is the switch off, and it silences autoplay whatever
+  the phone says. "Recordings" — the default — plays the bundled recording where the form
+  has one and falls to the system voice for the rest. "Speech" prefers the system voice
+  wherever one exists, for one consistent sound and the article always said aloud
+  (`shownArticle`); the recording answers only where the language has no voice at all,
+  Swahili on iOS among them.
+  The session's top-bar button is that same setting reduced to the mute: it turns the
+  picked voice on or off, and never changes which one it is. Choosing a voice by hand also
+  lifts autoplay past a silenced phone, exactly as the switch does — the picker and the
+  button write the same two facts, mute and source, never one without the other.
 - **The feedback chimes are their own matter** — the read-aloud switch does not silence
   them — but they play under whatever category it left standing, so the phone reaches them
   exactly as it reaches autoplay. Nobody ever asked for a chime, so no chime is ever louder

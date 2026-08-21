@@ -4580,13 +4580,61 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wörter beim Üben automatisch vorlesen — eingeschaltet auch bei stummem Handy. Tippen auf ein Wort spricht es erneut, immer."
+            "value" : "Aufnahmen spielen die eingebauten Stimmen, wo es sie gibt; Sprachausgabe nutzt immer die Systemstimme — jedes Wort klingt gleich und sagt seinen Artikel. Tippen auf ein Wort spricht es erneut, immer."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Read words aloud during review — switched on, it plays through a silenced phone too. Tapping a word speaks it again, always."
+            "value" : "Recordings play the bundled voices where they exist; Speech always uses the system voice, so every word sounds the same and says its article. Tapping a word speaks it again, always."
+          }
+        }
+      }
+    },
+    "settings.audio.option.off" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Ton"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No audio"
+          }
+        }
+      }
+    },
+    "settings.audio.option.recordings" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufnahmen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recordings"
+          }
+        }
+      }
+    },
+    "settings.audio.option.tts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprachausgabe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speech"
           }
         }
       }

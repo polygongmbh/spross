@@ -19,7 +19,9 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Switch
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -244,33 +246,37 @@ private fun LearnerNameSetting(model: AppModel) {
 }
 
 /**
- * The same one device-scoped flag the session's top bar switches, and a standing home for
- * the disclosure that a tap on a word speaks it even while this is off.
+ * The same device-scoped setting the session's top bar switches (there reduced to the
+ * mute button), and a standing home for the disclosure that a tap on a word speaks it
+ * even while this is off. The three-way preference names the voice source too, so the
+ * picker alone decides both: there is no state where a source is chosen but the app is
+ * silent.
  */
 @Composable
 private fun ReadAloudSetting(model: AppModel) {
     val chrome: Chrome = model.chrome
-    val muted = model.pronouncer.muted
+    val preference = model.pronouncer.audioPreference
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                chrome.audioToggle,
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.weight(1f),
+        Text(
+            chrome.audioToggle,
+            style = MaterialTheme.typography.titleMedium,
+        )
+        SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
+            val options = listOf(
+                chrome.audioOptionOff to net.spross.app.audio.Pronouncer.AudioPreference.OFF,
+                chrome.audioOptionRecordings to
+                    net.spross.app.audio.Pronouncer.AudioPreference.RECORDINGS,
+                chrome.audioOptionTts to net.spross.app.audio.Pronouncer.AudioPreference.TTS,
             )
-            Switch(
-                checked = !muted,
-                onCheckedChange = { model.pronouncer.muted = !it },
-                // why: one stable label, the state as its VALUE — the row's text is a
-                // sibling node, so without this TalkBack announces a switch with no name.
-                modifier = Modifier.semantics {
-                    contentDescription = chrome.audioToggle
-                    stateDescription = if (muted) chrome.stateOff else chrome.stateOn
-                },
-            )
+            options.forEachIndexed { index, (label, option) ->
+                SegmentedButton(
+                    selected = option == preference,
+                    onClick = { model.pronouncer.setAudioPreference(option) },
+                    shape = SegmentedButtonDefaults.itemShape(index, options.size),
+                ) {
+                    Text(label, style = MaterialTheme.typography.labelMedium)
+                }
+            }
         }
         SettingHint(chrome.audioToggleHint)
     }

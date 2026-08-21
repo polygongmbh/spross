@@ -150,19 +150,23 @@ struct BoxSettingsSection: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    /// The same switch the session's top bar carries, and the place the
-    /// tap-to-replay gesture is disclosed — the card itself grows no
-    /// affordance for it, so the hint line is where it is named. It is also the
-    /// standing home of the voice-download pointer, which the Heute banner only
-    /// borrows once: dismissed there, it is still findable here.
+    /// The same choice the session's top bar carries (there reduced to the
+    /// mute button), and the place the tap-to-replay gesture is disclosed — the
+    /// card itself grows no affordance for it, so the hint line is where it is
+    /// named. It is also the standing home of the voice-download pointer, which
+    /// the Heute banner only borrows once: dismissed there, it is still findable
+    /// here.
     private var audioRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            Toggle(isOn: readAloudBinding) {
-                Text("settings.audio.title")
-                    .font(DL.Fonts.headline)
-                    .foregroundStyle(Color.dlTextPrimary)
+            Text("settings.audio.title")
+                .font(DL.Fonts.headline)
+                .foregroundStyle(Color.dlTextPrimary)
+            Picker("settings.audio.title", selection: audioPreferenceBinding) {
+                ForEach(AudioPreference.allCases) { option in
+                    Text(optionLabel(option)).tag(option)
+                }
             }
-            .tint(.dlAccent)
+            .pickerStyle(.segmented)
             Text("settings.audio.hint")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
@@ -176,15 +180,43 @@ struct BoxSettingsSection: View {
         }
     }
 
-    /// Bound to NOT-muted: the row names the feature, the setting stores the
-    /// exception. It lives in UserDefaults, one setting for the device — not in
-    /// the box, where the product calibration would reset it on every load,
-    /// and not per target language. Switching it on also lifts autoplay past a
-    /// silenced phone (`AudioSession`), which is what the hint line names.
-    private var readAloudBinding: Binding<Bool> {
+    /// The three options the row carries, each a combination of the mute switch
+    /// and the voice source. The picker alone decides both: there is no state
+    /// where a source is chosen but the app is silent.
+    private enum AudioPreference: String, CaseIterable, Identifiable {
+        case off, recordings, tts
+        var id: String { rawValue }
+    }
+
+    private func optionLabel(_ option: AudioPreference) -> LocalizedStringKey {
+        switch option {
+        case .off: return "settings.audio.option.off"
+        case .recordings: return "settings.audio.option.recordings"
+        case .tts: return "settings.audio.option.tts"
+        }
+    }
+
+    /// `.off` is the read-aloud switch off; the two "on" options are the voice
+    /// source with the switch on. Picking one of them turns reading aloud back
+    /// on, so the picker can never leave the app silent behind a chosen source.
+    private var audioPreferenceBinding: Binding<AudioPreference> {
         Binding(
-            get: { !Pronouncer.shared.muted },
-            set: { Pronouncer.shared.setReadAloud(on: $0) }
+            get: {
+                if Pronouncer.shared.muted { return .off }
+                return Pronouncer.shared.voiceSource == .tts ? .tts : .recordings
+            },
+            set: { preference in
+                switch preference {
+                case .off:
+                    Pronouncer.shared.setReadAloud(on: false)
+                case .recordings:
+                    Pronouncer.shared.voiceSource = .recordings
+                    if Pronouncer.shared.muted { Pronouncer.shared.setReadAloud(on: true) }
+                case .tts:
+                    Pronouncer.shared.voiceSource = .tts
+                    if Pronouncer.shared.muted { Pronouncer.shared.setReadAloud(on: true) }
+                }
+            }
         )
     }
 

@@ -32,6 +32,22 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
      */
     enum class Trigger { AUTO, TAP, LISTENING }
 
+    /**
+     * Which voice answers a target word: the bundled recording when one matched, or the
+     * synthesizer. The box settings' audio row carries it as the two "on" options; the
+     * read-aloud switch above only mutes, it never changes this.
+     */
+    enum class VoiceSource(val storedValue: String) {
+        /** Bundled recordings first, the live voice for the rest — the default. */
+        RECORDINGS("recordings"),
+        /** The live voice for everything it can say, so every word sounds the same and the
+         * article is always spoken; recordings answer only where no voice exists. */
+        TTS("tts"),
+    }
+
+    /** The box row's three options, one per [setAudioPreference] call. */
+    enum class AudioPreference { OFF, RECORDINGS, TTS }
+
     private val assets = context.applicationContext.assets
     private val accessibility = context.applicationContext
         .getSystemService(Context.ACCESSIBILITY_SERVICE) as? AccessibilityManager
@@ -42,6 +58,50 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     private var loaded: String? = null
 
     private var mutedState by mutableStateOf(prefs.getBoolean(KEY_MUTED, false))
+
+    private var voiceSourceState by mutableStateOf(
+        VoiceSource.entries.firstOrNull { it.storedValue == prefs.getString(KEY_SOURCE, null) }
+            ?: VoiceSource.RECORDINGS
+    )
+
+    /**
+     * Which voice answers — recordings or the synthesizer. Device-scoped like [muted],
+     * and the absent default keeps bundled recordings first on fresh installs and upgrades
+     * alike. Compose state, because the box picker renders it.
+     */
+    var voiceSource: VoiceSource
+        get() = voiceSourceState
+        set(value) {
+            voiceSourceState = value
+            prefs.edit().putString(KEY_SOURCE, value.storedValue).apply()
+        }
+
+    /**
+     * The box row's three-way preference, derived from [muted] and [voiceSource]: there is
+     * no state where a source is chosen but the app is silent. Setting [OFF] silences the
+     * review loop; picking either source also turns reading aloud back on, so the picker can
+     * never leave the app silent behind a chosen voice.
+     */
+    val audioPreference: AudioPreference
+        get() = when {
+            muted -> AudioPreference.OFF
+            voiceSource == VoiceSource.TTS -> AudioPreference.TTS
+            else -> AudioPreference.RECORDINGS
+        }
+
+    fun setAudioPreference(preference: AudioPreference) {
+        when (preference) {
+            AudioPreference.OFF -> muted = true
+            AudioPreference.RECORDINGS -> {
+                voiceSource = VoiceSource.RECORDINGS
+                muted = false
+            }
+            AudioPreference.TTS -> {
+                voiceSource = VoiceSource.TTS
+                muted = false
+            }
+        }
+    }
 
     /**
      * One device-scoped flag (never per target language, never in the box): silences
@@ -126,6 +186,21 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
             return
         }
         speaker.stop()
+        val lang = pronunciation.lang
+        // "Speech" preference: the voice reads everything, for one consistent sound and
+        // the article always said aloud — the recording only answers where the language
+        // has no voice at all.
+        if (voiceSource == VoiceSource.TTS && canSpeak(lang)) {
+            // why: a recording from a previous fire may still be sounding — the
+            // synthesized branch takes the word over completely.
+            player.stop()
+            loaded = null
+            val spoken = spokenTargetForm(article, pronunciation.form, pronunciation.form)
+            if (!speaker.speak(spoken, lang, fadeVolume(fadeDb), onFinish)) {
+                onFinish?.invoke()
+            }
+            return
+        }
         val path = pronunciation.recordingPath
         // why: the player still holds the last clip prepared, so a second ask for the
         // same word answers without a second decode — the reason it keeps it.
@@ -178,5 +253,6 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
 
     private companion object {
         const val KEY_MUTED = "pronunciationMuted"
+        const val KEY_SOURCE = "pronunciationSource"
     }
 }

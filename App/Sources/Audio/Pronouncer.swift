@@ -54,6 +54,13 @@ final class Pronouncer {
     /// read at all.
     var muted: Bool { readAloud == .off }
 
+    /// Which voice answers a target word — recordings or the synthesizer.
+    /// Device-scoped like `readAloud`, and the read-aloud switch above only
+    /// mutes, it never changes this.
+    var voiceSource: VoiceSource {
+        didSet { voiceSource.store() }
+    }
+
     private let player = PronunciationPlayer()
     private let speaker = Speaker()
 
@@ -65,6 +72,7 @@ final class Pronouncer {
 
     init() {
         readAloud = .stored
+        voiceSource = .stored
     }
 
     /// What both switches call: turning reading aloud ON is itself a request to
@@ -132,6 +140,14 @@ final class Pronouncer {
         // why: one word at a time — a new fire replaces whatever is sounding.
         stop()
         let key = Self.key(for: pronunciation)
+        // "Speech" preference: the voice reads everything, for one consistent
+        // sound and the article always said aloud — the recording only answers
+        // where the language has no voice at all.
+        if voiceSource == .tts, canSpeak(language: pronunciation.lang) {
+            say(key: key, text: spoken(pronunciation, article: article),
+                language: pronunciation.lang, fadeDb: fadeDb, onFinish: onFinish)
+            return
+        }
         if let recordingURL {
             // why: the loudness and the dead air are the catalog's MEASUREMENTS
             // of bytes that stay the untouched transcode — playback is the one
@@ -146,8 +162,15 @@ final class Pronouncer {
         }
         // Silent no-op when no voice exists for the language.
         guard canSpeak(language: pronunciation.lang) else { return }
+        say(key: key, text: spoken(pronunciation, article: article),
+            language: pronunciation.lang, fadeDb: fadeDb, onFinish: onFinish)
+    }
+
+    /// The synthesized branch — the only one the article reaches.
+    private func say(key: String, text: String, language: String, fadeDb: Double,
+                     onFinish: (@MainActor () -> Void)?) {
         playingKey = key
-        speaker.speak(spoken(pronunciation, article: article), language: pronunciation.lang,
+        speaker.speak(text, language: language,
                       volume: Self.volume(fadeDb: fadeDb)) { [weak self] in
             self?.clearPlaying(key)
             onFinish?()

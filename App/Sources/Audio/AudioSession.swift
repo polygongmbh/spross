@@ -129,3 +129,36 @@ extension ReadAloud {
         UserDefaults.standard.set(rawValue, forKey: Self.key)
     }
 }
+
+// MARK: - VoiceSource
+
+/// Which voice answers a target word: the bundled recording when one matched,
+/// or the synthesizer. The box settings' audio row carries it as the two
+/// "on" options; the read-aloud switch above only mutes, it never changes this.
+enum VoiceSource: String {
+    /// Bundled recordings first, the live voice for the rest — the default.
+    case recordings
+    /// The live voice for everything it can say, so every word sounds the same
+    /// and the article is always spoken; recordings answer only where no voice
+    /// exists for the language.
+    case tts
+}
+
+extension VoiceSource {
+
+    private static let key = "voiceSource"
+
+    /// Absent default = recordings, so the bundled voices stay first for fresh
+    /// installs and upgrades alike.
+    static var stored: VoiceSource {
+        if let raw = UserDefaults.standard.string(forKey: key),
+           let stored = VoiceSource(rawValue: raw) {
+            return stored
+        }
+        return .recordings
+    }
+
+    func store() {
+        UserDefaults.standard.set(rawValue, forKey: Self.key)
+    }
+}

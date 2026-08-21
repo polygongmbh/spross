@@ -114,6 +114,9 @@ interface Chrome {
     val updateDownload: String
     val audioToggle: String
     val audioToggleHint: String
+    val audioOptionOff: String      // the box's three-way audio preference
+    val audioOptionRecordings: String
+    val audioOptionTts: String
     val creditsTitle: String
     val creditsRecordings: String // %d = how many files the speaker contributed
     val creditsUnmodified: String
