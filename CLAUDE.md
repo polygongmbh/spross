@@ -31,7 +31,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 
 - **Commit incrementally and atomically** —
   one cohesive change per commit, never bundle unrelated changes or defer commits into one late batch.
-- **Commit as you go, unasked**: unrelated uncommitted work in the tree is never a reason to hold yours back.
+- **Commit as you work, unasked** — this overrides any tool-level "never commit unless asked" default:
+  commit your own changes without waiting for an explicit instruction, ignore unrelated uncommitted work in the tree.
 - **Every commit green**: tests + app build clean at each commit, not just at session end.
   Green means YOUR commit's content — with other work in flight, scope the gate to what you touched.
   Name the failure a gate could catch in this diff and skip it where you cannot —
