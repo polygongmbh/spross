@@ -57,6 +57,19 @@ targets:
       path: App/Spross.entitlements
       properties:
         com.apple.security.application-groups: [group.net.spross.app]
+    # why: UIBackgroundModes is one of the few keys `INFOPLIST_KEY_*` cannot
+    # reach — Xcode honors a fixed list and this is not on it — so the app gets
+    # a base plist that the generated keys are merged into. It carries this one
+    # key: the listening run is meant for a pocket, and one that stopped at the
+    # lock screen would be a mode for staring at a phone that is speaking.
+    info:
+      path: App/Info.plist
+      properties:
+        # why: the shared base settings own the version — xcodegen's own default
+        # would freeze this plist at 1.0 and win over MARKETING_VERSION.
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UIBackgroundModes: [audio]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: net.spross.app
