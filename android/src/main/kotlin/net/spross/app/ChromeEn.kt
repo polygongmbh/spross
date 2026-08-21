@@ -20,12 +20,12 @@ internal object ChromeEn : Chrome {
         "Some %s in between?",
     )
     override val greetEvening = listOf(
-        "A wind-down with %s?",
+        "Winding down with %s?",
         "A bit more %s tonight?",
     )
     override val greetNight = listOf(
         "A quiet bit of %s?",
-        "Some %s at this late hour?",
+        "Late-night %s?",
         "%s for the night owl?",
     )
     override val greetMorningAddressee = "early bird"
@@ -310,10 +310,6 @@ internal object ChromeEn : Chrome {
     override val listenRepeat = "Again"
     override val listenTimer = "Timer"
     override val listenMinutesLeft = "%d min"
-    override val emptyBoxTitle = "Your box is still empty"
-    override val emptyBoxMessage = "Add an area directly, or set how many cards you learn at " +
-        "a time."
-    override val emptyBoxAction = "Go to box"
     override val errorTitle = "Oops"
     override val errorCatalogMissing = "The content could not be loaded. (catalog missing " +
         "from the app bundle)"

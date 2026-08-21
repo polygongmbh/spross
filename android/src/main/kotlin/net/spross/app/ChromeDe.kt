@@ -10,19 +10,19 @@ package net.spross.app
 internal object ChromeDe : Chrome {
     override val greetMorning = listOf(
         "Lust auf %s?",
-        "Ein bisschen %s zum Start?",
+        "Ein bisschen %s zum Morgen?",
         "%s für den Frühaufsteher?",
     )
     override val greetDay = listOf(
-        "Kurz %s?",
+        "Kurze Runde %s?",
         "Zwischendurch %s?",
     )
     override val greetEvening = listOf(
         "Ein Feierabend mit %s?",
-        "Abends noch %s?",
+        "Abendliches %s?",
     )
     override val greetNight = listOf(
-        "Noch leise %s?",
+        "Leise Runde %s?",
         "%s zu später Stunde?",
         "%s für die Nachteule?",
     )
@@ -312,10 +312,6 @@ internal object ChromeDe : Chrome {
     override val listenRepeat = "Noch einmal"
     override val listenTimer = "Timer"
     override val listenMinutesLeft = "%d Min."
-    override val emptyBoxTitle = "Deine Box ist noch leer"
-    override val emptyBoxMessage = "Pack einen Bereich direkt hinein oder stell ein, wie " +
-        "viele Karten du gleichzeitig lernst."
-    override val emptyBoxAction = "Zur Box"
     override val errorTitle = "Ups"
     override val errorCatalogMissing = "Die Inhalte konnten nicht geladen werden. (catalog " +
         "fehlt im App-Bundle)"

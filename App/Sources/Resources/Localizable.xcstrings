@@ -2039,60 +2039,12 @@
         }
       }
     },
-    "heute.empty.action" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zur Box"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Go to box"
-          }
-        }
-      }
-    },
-    "heute.empty.message" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pack einen Bereich direkt hinein oder stell ein, wie viele Karten du gleichzeitig lernst."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add an area directly, or set how many cards you learn at a time."
-          }
-        }
-      }
-    },
-    "heute.empty.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deine Box ist noch leer"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your box is still empty"
-          }
-        }
-      }
-    },
     "heute.greeting.day.0 %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kurz %@?"
+            "value" : "Kurze Runde %@?"
           }
         },
         "en" : {
@@ -2130,7 +2082,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A wind-down with %@?"
+            "value" : "Winding down with %@?"
           }
         }
       }
@@ -2140,7 +2092,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abends noch %@?"
+            "value" : "Abendliches %@?"
           }
         },
         "en" : {
@@ -2172,7 +2124,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein bisschen %@ zum Start?"
+            "value" : "Ein bisschen %@ zum Morgen?"
           }
         },
         "en" : {
@@ -2220,7 +2172,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noch leise %@?"
+            "value" : "Leise Runde %@?"
           }
         },
         "en" : {
@@ -2242,7 +2194,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Some %@ at this late hour?"
+            "value" : "Late-night %@?"
           }
         }
       }

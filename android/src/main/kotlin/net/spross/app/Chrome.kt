@@ -353,11 +353,6 @@ interface Chrome {
     /** The bedtime control while it runs; minutes, never m:ss — a ticking clock is watched. */
     val listenMinutesLeft: String   // %d
 
-    // ── The box is still empty ──────────────────────────────────────────────────
-    val emptyBoxTitle: String
-    val emptyBoxMessage: String
-    val emptyBoxAction: String
-
     // ── Load failures ───────────────────────────────────────────────────────────
     val errorTitle: String
     val errorCatalogMissing: String
