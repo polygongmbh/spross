@@ -8,6 +8,13 @@ struct HeuteView: View {
     var openBox: (String?) -> Void = { _ in }
 
     @Environment(\.locale) var locale
+    @Environment(\.scenePhase) private var scenePhase
+
+    /// What listening can play on THIS device. Rebuilt on every foreground,
+    /// never decided once: a voice installed in Settings while the app slept
+    /// must put the card up without a relaunch (`ListeningAvailability`).
+    @State private var listening: ListeningAvailability?
+    @State private var listeningPresented = false
 
     var body: some View {
         let offer = model.heuteOffer
@@ -29,6 +36,7 @@ struct HeuteView: View {
                               message: Text("heute.empty.message"),
                               action: ("heute.empty.action", { openBox(nil) }))
                 }
+                listeningCard
                 TrainerHubView(model: model)
                 ForestSection(model: model, open: { openBox($0) })
             }
@@ -36,6 +44,49 @@ struct HeuteView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .background(Color.dlBackground.ignoresSafeArea())
+        .onAppear { refreshListening() }
+        // why: ACTIVE, not willEnterForeground — the speaker drops its cached
+        // voice table on that notification, and the pool must read the new one.
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { refreshListening() }
+        }
+        .fullScreenCover(isPresented: $listeningPresented) {
+            ListeningView(model: model)
+                .environment(\.locale, model.knownLocale)
+        }
+    }
+
+    // MARK: - Listening
+
+    /// Under the day's round and above the Sprossen: not what the box asks of
+    /// the learner, and not a skill with a ladder to climb, but the way in that
+    /// needs no hands — up whenever this device can say both sides of enough
+    /// words (`docs/design.md`, `docs/surfaces.md` § Listening).
+    @ViewBuilder
+    private var listeningCard: some View {
+        if listening?.available == true {
+            VStack(alignment: .leading, spacing: DL.Space.l) {
+                Text("listen.title")
+                    .font(DL.Fonts.title)
+                    .foregroundStyle(Color.dlTextPrimary)
+                Text("listen.subtitle")
+                    .font(DL.Fonts.subheadline)
+                    .foregroundStyle(Color.dlTextSecondary)
+                Button("listen.start") { listeningPresented = true }
+                    .buttonStyle(DLSoftButtonStyle())
+            }
+            .padding(DL.Space.xl)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
+                    .fill(Color.dlSurface)
+            )
+            .dlCardShadow()
+        }
+    }
+
+    private func refreshListening() {
+        listening = ListeningAvailability(model: model)
     }
 
     // MARK: - Voice upgrade

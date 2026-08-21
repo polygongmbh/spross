@@ -57,6 +57,15 @@ enum AudioSession {
         try? session.setActive(true)
     }
 
+    /// After a phone call or a Siri turn took the session away: the category is
+    /// still ours, the ACTIVATION is not, and nothing sounds until it is asked
+    /// for again. Not `useListening`, which is a no-op once the run holds the
+    /// session — this is the one thing that has to be redone.
+    static func resumeListening() {
+        guard listening else { return }
+        try? AVAudioSession.sharedInstance().setActive(true)
+    }
+
     /// The run is over: hand the audio back. `notifyOthersOnDeactivation` is
     /// what makes the interrupted podcast resume, and the standing category is
     /// put back so the next tap or chime finds the session it expects.
