@@ -133,7 +133,7 @@ extension AppModel {
     var sessionTotal: Int { Int(run?.total ?? 0) }
 
     /// The answered stretch as the progress bar draws it. Which rating reads as
-    /// which tone is kern's grouping (`AnswerTone`); only the hues are ours.
+    /// which outcome is kern's grouping (`AnswerOutcome`); only the hues are ours.
     var sessionSegments: [SessionOutcome] {
         (run?.segments ?? []).map(SessionOutcome.init)
     }

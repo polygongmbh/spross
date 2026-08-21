@@ -154,11 +154,11 @@ extension DrillRamp.RungStep {
 // rows) and `SessionCompletionView` (the round's tally parts).
 
 extension SessionOutcome {
-    /// The bar segment one answer draws. The bucketing is kern's (`AnswerTone`).
-    init(_ tone: AnswerTone) {
-        switch tone {
+    /// The bar segment one answer draws. The bucketing is kern's (`AnswerOutcome`).
+    init(_ outcome: AnswerOutcome) {
+        switch outcome {
         case .right: self = .right
-        case .tough: self = .tough
+        case .almost: self = .tough
         case .wrong: self = .wrong
         }
     }
