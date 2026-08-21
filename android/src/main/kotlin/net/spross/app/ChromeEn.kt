@@ -252,7 +252,7 @@ internal val ChromeEn = Chrome(
     ownWordRemove = "Delete word",
     settingsTitle = "Settings",
     learnerNameTitle = "Your name",
-    learnerNamePlaceholder = "First name",
+    learnerNamePlaceholder = "Name or nickname",
     learnerNameHint = "Spross greets you by it. Left empty, the greeting goes without one.",
     profileHint = "Switching the language you speak keeps all your progress; each language " +
         "you learn has its own box.",

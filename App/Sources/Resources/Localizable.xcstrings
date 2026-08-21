@@ -4684,13 +4684,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorname"
+            "value" : "Name oder Spitzname"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "First name"
+            "value" : "Name or nickname"
           }
         }
       }

@@ -254,7 +254,7 @@ internal val ChromeDe = Chrome(
     ownWordRemove = "Wort löschen",
     settingsTitle = "Einstellungen",
     learnerNameTitle = "Dein Name",
-    learnerNamePlaceholder = "Vorname",
+    learnerNamePlaceholder = "Name oder Spitzname",
     learnerNameHint = "Damit begrüßt dich Spross. Bleibt das Feld leer, kommt die Begrüßung " +
         "ohne Namen aus.",
     profileHint = "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten; jede " +
