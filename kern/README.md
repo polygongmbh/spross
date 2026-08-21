@@ -213,31 +213,21 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
 - **Introduction is the card's first answer.** `enqueued` holds card ids;
   enqueued cards lead composition, respect the per-round cap, and dequeue at introduction.
   Zero-component phrases follow seed order, never the unlock fast path.
-- **Intake is bounded per round, and by nothing else**: a round offers at most
-  `NEW_CARDS_PER_ROUND` first sights — a round's worth, the size `SESSION_FLOOR_CARDS`
-  measures a round to be — across every composed round (today's, endless, the extra round)
-  including enqueued cards, since a packed queue overloads the same way.
-  Nothing is withdrawn, only deferred: the next round offers the rest again.
-  **Nothing throttles on how shaky the material is** — a difficulty signal does not predict
-  retention (`docs/growth-evidence.md`) — so there is no cap on how much may be in flight.
-  The growth reserve holds slots against a full due queue, and only for candidates that will
-  actually appear: a box with nothing left to introduce hands every slot back to reviews.
-- **Backlog steers nothing either**, and the reserve is why it does not need to. At
-  `desiredRetention` 0.8 a sitting sends far more cards away on longer intervals than the few
-  reserved slots bring in, and the reserve is a small constant rather than something that
-  scales with the queue, so growth cannot compound a backlog the learner never works off.
-  A box far behind still gets its round (`docs/growth-evidence.md`).
+- **Intake is bounded per round, and by nothing else.** A round's worth of first sights,
+  across EVERY composed round and including packed cards, since a packed queue overloads the
+  same way; the rest is not withdrawn, only deferred. **Nothing throttles on how shaky the
+  material is, and nothing on how far behind the box has fallen** — neither predicts
+  retention, and a small constant reserve cannot compound a backlog the learner never works
+  off, so a box far behind still gets its round (`docs/growth-evidence.md`).
 - **Phrase unlock** reads each component's schedule **by card id** — join- and
   source-independent, so a source switch can never re-lock phrases. Components with no
   TARGET realization are excluded from the gate.
   Gate: not suspended, and consolidated (§5) — the predicate, never a restated threshold.
-- **Due order is day-bucketed, then shuffled**: reviews drain oldest overdue DAY first
-  (backlog fairness), but inside a day the order is `fnv1a64("<dueEpochDay>:<fnv1a64(cardId)>")`,
-  card id last as the collision tie-break.
+- **Due order is day-bucketed, then shuffled**: reviews drain the oldest overdue DAY first
+  for backlog fairness, but inside a day the order is a hash, seeded with the card's OWN due
+  day so the function stays pure and the bucket still reshuffles from one day to the next.
   A plain timestamp sort kept cards introduced together — seed neighbors, so often related
-  concepts — adjacent for the life of the box, and the learner answered from sequence.
-  Seeding the hash with the card's OWN due day keeps the function pure (no clock read) while
-  reshuffling the bucket differently from one day to the next.
+  concepts — adjacent for the life of the box, and **the learner answered from sequence.**
   Introduction order is untouched: new cards still arrive in seed order.
 - **A plan names each part for what it is**: `reviews` (due), `ahead` (not due, pulled
   forward), `unlockedPhrases` and `newCards` (never answered).
@@ -254,39 +244,25 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   so a learner who only ever takes the short round still closes the day.
   Below the offer threshold nothing is offered — the two rounds would be one round under
   two names.
-- **A quiet day is built, not found** (user ruling 2026-08-01): with nothing due, at most half
-  the floor is held for cards coming due inside tomorrow and new words take the rest.
-  Pulling tomorrow's card forward costs almost no spacing; one due in three weeks burns real
-  spacing, which is why the reservation counts only that horizon.
-  **The pull-aheads supplement the new words, they never lead**: their job is to keep a quiet
-  round from being all-new, so the share is capped at half rather than balanced toward recall.
-  A round of first sights with a few known words mixed through is the intended shape of a
-  caught-up box, and Heute names it as an offer of new words accordingly.
-  Nothing due tomorrow also means nothing was recently missed — then the round is new words
-  alone. Reaching past tomorrow happens only when there is nothing new left, so an exhausted
-  catalog still opens a round instead of an empty screen.
-  A round is withheld in exactly one case: nothing due, **nothing coming back within
-  `RETURNING_SOON_MILLIS`** (12 h), and the day already worked, where worked means a round's
-  worth of answers rather than a single tap. "Nothing more right now" is a real answer, and
+- **A quiet day is built, not found** (user ruling 2026-08-01): with nothing due, half the
+  floor at most is held for cards coming due inside tomorrow and new words take the rest.
+  **The pull-aheads supplement the new words, they never lead** — a round of first sights
+  with a few known words mixed through is the intended shape of a caught-up box, and an
+  exhausted catalog still opens a round rather than an empty screen.
+- **A day can be over** (user ruling 2026-08-01): nothing due, nothing coming back soon, and
+  a round's worth already answered. "Nothing more right now" is a real answer, and
   manufacturing another round would make every visit a treadmill.
-  **Nothing composes past that, packed cards included** (user ruling 2026-08-03): packing IS an
-  explicit ask, and the round the learner opens is where it is answered. Letting it through the
-  day's own round instead produced a four-card round of first sights — the tomorrow reservation
-  docked the budget by its half, and the pull-aheads it was docked FOR never came, because a
-  done day skips the fill.
-  **A word on a learning step is the day's own unfinished business** (user ruling 2026-08-03):
-  it was missed minutes ago and returns in minutes, so a day closed in between is a claim the
-  scheduler overturns by itself. The span is rolling rather than a calendar edge, because what
-  makes a word today's is that it comes back while the learner is still here — midnight knows
-  nothing about that, and the same step would be today's at nine in the morning and tomorrow's
-  at five to twelve. Twelve hours is a waking day: it holds every learning and relearning step
-  (the only schedules that land inside one, a graduated interval flooring at a day) and reaches
-  for nothing that is genuinely a day out.
-  Only the QUESTION of whether the day is over moves; a round carrying a returning word is an
-  **ordinary round** — `fillOut` tops it up with pull-aheads as on any short day, and growth
-  resumes with it, so there is no second composition path to keep in step.
-  `composeSession` takes `tzId` for all of this: "today" and "tomorrow" are local-calendar
-  questions — the returning span is the one deliberate exception.
+  **Nothing composes past that, packed cards included** (user ruling 2026-08-03): packing IS
+  an explicit ask, and the round the learner opens is where it is answered — letting it
+  through the day's own round instead produced a four-card round of first sights, because a
+  done day skips the fill the tomorrow reservation had already docked the budget for.
+  **A word on a learning step is the day's own unfinished business** (user ruling 2026-08-03),
+  and that span is rolling rather than a calendar edge: what makes a word today's is that it
+  comes back while the learner is still here, which midnight knows nothing about.
+  Only the QUESTION of whether the day is over moves — a round carrying a returning word is
+  an ORDINARY round, so there is no second composition path to keep in step.
+  "Today" and "tomorrow" are local-calendar questions and `composeSession` takes `tzId` for
+  them; the returning span is the one deliberate exception.
 - **No surface derives a card's standing from a raw phase** — the engine reports the rung
   (`GrowthStage`), and every listing carries it beside the phase rather than re-reading it:
   a card reaches Review well below `consolidatedStability`, so a second derivation is a
@@ -298,19 +274,12 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   them mid-sitting. Nothing joins a run under way now; the work is still due, and endless
   practice (explicitly asked for from the summary) is where it lands.
   `dueNow` therefore feeds counts, rings and fresh pulls only.
-- **One composer for every round** (user ruling 2026-08-03): `composeRound` is what the day
-  opens, what the extra round off a finished day opens, and what each endless refill pulls.
-  User agency decides WHICH round opens, never what goes in one: the caller names a round
-  the box already has rules for, and no size, budget or flag crosses the boundary. The extra
-  round and endless each used to have a composer of their own and had drifted to opposite
-  extremes — packed cards with a pull-ahead tail sized to `sessionCap`, versus new words with
-  pull-aheads withheld entirely — so which one a screen happened to call decided whether the
-  learner got a wall of first sights or a wall of cards dragged forward from days out.
-  Under the shared rules a round's SIZE is the box's to set: due work carries it when the
-  learner is behind, cards coming due inside tomorrow when the box is settling, new words when
-  little is coming up. `composeSession` is `composeRound` plus the day-done question, and
-  nothing else. A refill therefore pulls ahead like any round, so an endless run ends when the
-  learner closes it rather than when the catalog does — which is what "endless" is asked for.
+- **One composer for every round** (user ruling 2026-08-03). **User agency decides WHICH
+  round opens, never what goes in one**: the caller names a round the box already has rules
+  for, and no size, budget or flag crosses the boundary. The extra round and endless each
+  used to have a composer of their own and had drifted to opposite extremes, so which one a
+  screen happened to call decided whether the learner got a wall of first sights or a wall of
+  cards dragged forward from days out.
 - **Join filter inventory**: composition, dueNow, dueCount, statistics, exposure operate on
   cards that join the current profile; the unlock check and `answer()` history reads
   operate on raw schedules by id. Non-joining schedules and enqueued entries are kept
