@@ -441,3 +441,11 @@ One line per item, with a file or context pointer, filed under the section it be
   (`kern/.../session/AnswerNormalizer.kt`). Italian promotes many cross-article synonyms
   (la vaccinazione on il vaccino, il farmaco on la medicina, il salario on lo stipendio),
   so the reveal teaches forms the grader then punishes; es only ever hid such forms in variants.
+- Drill runs have no RNG seed hook — `drillRandom` is `KotlinRandom.companion`
+  (`App/Sources/KernBridge.swift`), so a screenshot or verification run cannot pin which task
+  it will be asked, and reaching a given verdict means relaunching until the draw matches.
+  kern already takes an injected `Random` per run, so `-uitest-seed N` is a small hook.
+- With `idb-repl` on the machine (Swift compiled into the live app process), the `-uitest-*`
+  input/submit hooks may no longer earn the ~22 files of `#if DEBUG` they cost
+  (`App/Sources/Model/UITestAnswer.swift` and the per-screen `uitestStart()`); the navigation
+  half still saves a lot of tapping. Decide the split, then update `README.md` § run-sim.
