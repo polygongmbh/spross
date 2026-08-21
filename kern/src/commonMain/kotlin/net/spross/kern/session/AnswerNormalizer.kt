@@ -51,7 +51,7 @@ sealed interface Match {
  * profile's target) from `languages.json` — recognize units are self-graded and
  * never pass through here.
  *
- * Pipeline (contract §6, both sides symmetric): NFC, lowercase, ß→ss, delete the
+ * Pipeline (`kern/docs/grading.md`, both sides symmetric): NFC, lowercase, ß→ss, delete the
  * joiners `-'’`, other punctuation → space (incl. `…—`), collapse whitespace →
  * ONE leading listed article of the answer language is optional → iff the card is
  * a verb, any listed citation prefix (en `"to "`, sw `ku`/`kw`) is optional →

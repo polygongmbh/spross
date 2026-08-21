@@ -23,7 +23,7 @@ class RealCatalogLetterDrillTest {
     private val catalog get() = RealCatalog.catalog
     private val languages = listOf("uk", "de")
 
-    /** §5.1 with every voice installed — the widest set the app could ever hand in. */
+    /** `promptableRefs` with every voice installed — the widest set the app can hand in. */
     private fun promptableRefs(lang: Language, alphabet: Alphabet): List<String> =
         alphabet.entries.filter { entry ->
             if (!entry.drill || entry.kind == AlphabetKind.Rule) {
@@ -35,7 +35,10 @@ class RealCatalogLetterDrillTest {
             }
         }.map { it.ref }
 
-    /** §3.4 with nothing filtered out: the whole pool, plus the escape hatch where it is empty. */
+    /**
+     * The example resolver with nothing filtered out: the whole pool, plus the escape
+     * hatch where it is empty.
+     */
     private fun examples(lang: Language): (AlphabetEntry) -> List<LetterDrill.AlphabetExampleWord> = { entry ->
         catalog.alphabetExamples(entry, lang)
             .map { LetterDrill.AlphabetExampleWord(it.text, it.slug) }

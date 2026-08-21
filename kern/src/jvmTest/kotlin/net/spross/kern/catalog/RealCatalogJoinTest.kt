@@ -12,7 +12,7 @@ import kotlin.test.assertTrue
  * Join RULES spot-checked against the real catalog. Expectations are derived from the
  * catalog or exercised through a representative entry — never pinned field values, which
  * would measure content rather than code. Exact values belong in [CatalogFixtureTest],
- * which owns its fixture; content validity in [CatalogLintTest]. README §10.
+ * which owns its fixture; content validity in [CatalogLintTest]. README §7.
  */
 class RealCatalogJoinTest {
     private val catalog get() = RealCatalog.catalog

@@ -209,7 +209,7 @@ class Catalog internal constructor(
                 targetTemplate = answer.text,
                 slotKind = frame.slot,
                 acceptedFrames = answer.variants,
-                note = answer.notes[source], // why: notes never cross-language fall back — §2
+                note = answer.notes[source], // why: no cross-language note fallback (`kern/docs/catalog.md`)
                 countForms = answer.count,
                 sourceCountForms = prompt.count,
                 masculineNumeral = answer.masculineNumeral,
@@ -452,7 +452,7 @@ class Catalog internal constructor(
             synonyms = raw.synonyms,
             variants = raw.variants,
             grammar = raw.grammar,
-            note = raw.notes[source], // why: notes never cross-language fall back — §2
+            note = raw.notes[source], // why: no cross-language note fallback (`kern/docs/catalog.md`)
         )
 
     companion object {

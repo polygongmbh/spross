@@ -95,7 +95,7 @@ object LetterDrill {
 
     /**
      * One letter-stage question. [promptableRefs] is the app's own list (what the device
-     * can actually speak or play, §5.1) in file order; [avoidRef] is the previous answer
+     * can actually speak or play) in file order; [avoidRef] is the previous answer
      * and [avoidWord] the previous gap word, each resampled once so a repeat needs two
      * unlucky draws rather than one.
      *
@@ -161,7 +161,7 @@ object LetterDrill {
 
     /**
      * One dictation question. [candidates] arrive filtered to consolidated, speakable box
-     * cards (§5.2); kern drops anything with a space of its own — a transcription task is
+     * cards; kern drops anything with a space of its own — a transcription task is
      * one word, whatever the caller believes.
      *
      * Level 8 asks for short words. If fewer than [MIN_SHORT_CANDIDATES] survive that

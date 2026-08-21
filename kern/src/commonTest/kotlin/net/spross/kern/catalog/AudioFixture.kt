@@ -4,7 +4,7 @@ package net.spross.kern.catalog
  * Audio manifests over the [Fixture] catalog — one per declared language except `en`,
  * which stays recording-less so "no manifest at all" keeps its coverage. Synthetic
  * values, pinned by `CatalogAudioFixtureTest`; between them the entries carry every
- * reachability class of README §11 (exact, caseless, NFD/NFC, edge punctuation, stem
+ * reachability class of `kern/docs/audio.md` (exact, caseless, NFD/NFC, edge punctuation, stem
  * dash) plus both collision shapes.
  *
  * The analysis index appears in all three of its states: a boost with a lead skip (the uk

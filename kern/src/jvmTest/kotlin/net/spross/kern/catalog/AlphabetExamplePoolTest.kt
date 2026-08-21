@@ -6,7 +6,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
- * The catalog sweep behind a gap question, over the SHIPPING alphabets (contract §2.2).
+ * The catalog sweep behind a gap question, over the SHIPPING alphabets (`kern/docs/catalog.md`).
  *
  * The whole correctness argument of the sweep is that it only ever runs where the glyph
  * string identifies the row's sound on its own, so these are rules about WHICH rows may

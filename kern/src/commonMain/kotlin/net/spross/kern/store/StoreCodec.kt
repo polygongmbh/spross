@@ -55,10 +55,10 @@ data class DecodedBox(
 }
 
 /**
- * The narrow public store facade (contract §7): one JSON document per TARGET language.
- * Encoding is deterministic — sorted keys, ISO-8601 UTC dates — so identical states
- * produce identical bytes; decoding validates schema version, card-id keys,
- * and the phase/memory/due invariant.
+ * The narrow public store facade (`kern/docs/snapshots.md`): one JSON document per
+ * TARGET language. Encoding is deterministic — sorted keys, ISO-8601 UTC dates — so
+ * identical states produce identical bytes; decoding validates schema version,
+ * card-id keys, and the phase/memory/due invariant.
  */
 object StoreCodec {
     const val SCHEMA_VERSION: Int = 1

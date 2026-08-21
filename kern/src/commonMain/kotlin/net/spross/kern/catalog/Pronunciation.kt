@@ -21,8 +21,8 @@ private const val EDGE_PUNCTUATION = "!?¡¿.,;:…\"'«»„“”‘’‹›"
 private val APOSTROPHES = setOf('\u0027', '\u2019', '\u02bc')
 
 /**
- * The normative speech normalization (README §11): trim whitespace, strip ONE leading
- * `-` (the adjective stem citation Swahili authors as `-zuri`), strip leading and
+ * The normative speech normalization (`kern/docs/audio.md`): trim whitespace, strip ONE
+ * leading `-` (the adjective stem citation Swahili authors as `-zuri`), strip leading and
  * trailing sentence punctuation, NFC, lowercase, and fold the inner apostrophe class
  * to U+02BC.
  *

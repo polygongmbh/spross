@@ -4,7 +4,7 @@ package net.spross.kern.catalog
  * How far a player may trust a recording's ANALYSIS INDEX.
  *
  * The index (`gain`, `lead`) is a MEASUREMENT of the shipped bytes and never an edit to
- * them (`docs/audio.md`), so both numbers can only ever be as good as the measurement:
+ * them (`kern/docs/audio.md`), so both numbers can only ever be as good as the measurement:
  * the bounds below are what a broken one is held to, stated once so the manifest parser,
  * an iOS equalizer and an Android loudness enhancer cannot drift apart about them.
  *

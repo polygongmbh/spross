@@ -211,7 +211,7 @@ class AlphabetFixtureTest {
         assertEquals(emptyList(), de.homophones("h-length").map { it.ref }) // no ipa at all
     }
 
-    // -- example resolution (§2.2) -----------------------------------------------------
+    // -- example resolution -----------------------------------------------------------
 
     @Test
     fun theExampleWordComesFromTheAlphabetsOwnLanguage() {
@@ -270,7 +270,7 @@ class AlphabetFixtureTest {
     }
 
     /**
-     * The occurrence rule §2.2: exactly one, or there is no answerable gap. Lint reports
+     * The occurrence rule: exactly one, or there is no answerable gap. Lint reports
      * either failure over the real catalog; kern returns null so a content bug costs a
      * pool entry instead of shipping an unanswerable question.
      */

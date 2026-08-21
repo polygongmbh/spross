@@ -99,9 +99,10 @@ internal data class RawFrame(
 )
 
 /**
- * One concept as the alphabet's example resolver sees it — the two halves of §2.2 kept
- * apart: [realizations] answers "does THIS language have a word for it" per language,
- * so the target-side example and the reader-side meaning never depend on each other.
+ * One concept as the alphabet's example resolver sees it — the two halves of example
+ * resolution (`kern/docs/catalog.md`) kept apart: [realizations] answers "does THIS
+ * language have a word for it" per language, so the target-side example and the
+ * reader-side meaning never depend on each other.
  */
 internal class CatalogSlug(
     val emoji: String?,

@@ -65,14 +65,17 @@ internal object LetterDrillFixture {
     val alphabet: Alphabet =
         AlphabetParser.parse("alphabet/$LANGUAGE.json", json, LANGUAGE, setOf(LANGUAGE, "en"))
 
-    /** What the app would hand in when the device can speak everything (§5.1). */
+    /** What the app would hand in when the device can speak everything. */
     val allRefs: List<String> = alphabet.entries.map { it.ref }
 
-    /** The one slug `xx` realizes — `light` is deliberately absent (§2.2 degradation). */
+    /**
+     * The one slug `xx` realizes — `light` is deliberately absent (example resolution
+     * degrades per reader, `kern/docs/catalog.md`).
+     */
     private val realized = mapOf("street" to "Straße")
 
     /**
-     * The app's own resolver shape (§3.4): the concept realization wins and carries its
+     * The app's own resolver shape: the concept realization wins and carries its
      * slug, `exampleText` steps in without one. An entry holding BOTH — `ch-ich` — falls
      * back to plain text here, which is what stamps it [LetterPromptKind.PlainText].
      *
@@ -89,7 +92,7 @@ internal object LetterDrillFixture {
 
     fun entry(ref: String): AlphabetEntry = requireNotNull(alphabet.entry(ref)) { "no entry \"$ref\"" }
 
-    /** Consolidated box words, as §5.2 hands them over: single words of mixed length. */
+    /** Consolidated box words, as the app hands them over: single words of mixed length. */
     fun dictationCards(): List<Card> = listOf(
         card("ice", "Eis"),
         card("house", "Haus"),

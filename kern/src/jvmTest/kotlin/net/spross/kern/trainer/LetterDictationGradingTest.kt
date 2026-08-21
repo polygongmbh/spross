@@ -16,7 +16,7 @@ import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.Match
 
 /**
- * What a dictated word is graded against (§4.5), on the real catalog.
+ * What a dictated word is graded against, on the real catalog.
  *
  * Two things have to hold at once, and they pull in opposite directions. A word that is
  * really ANOTHER concept's answer must never be forgiven as a slip — sw `kufunga` sits one
@@ -28,7 +28,10 @@ import net.spross.kern.session.Match
 class LetterDictationGradingTest {
     private val catalog get() = RealCatalog.catalog
 
-    /** The drill's normalizer: articles graded as typed, one slip per word (kern §6). */
+    /**
+     * The drill's normalizer: articles graded as typed, one slip per word
+     * (`kern/docs/grading.md`).
+     */
     private fun normalizer(target: Language) =
         AnswerNormalizer(catalog.languages.getValue(target), articleLeniency = false, maxTyposPerWord = 1)
 
@@ -54,7 +57,7 @@ class LetterDictationGradingTest {
 
     @Test
     fun theUkrainianNumberPairIsNotBridgedEither() {
-        // The pair the typo-bridge guard names for uk (AnswerNormalizer §6): it lives in
+        // The pair the typo-bridge guard names for uk (`kern/docs/grading.md`): it lives in
         // the number pack rather than the catalog, so it can never be DICTATED — but it is
         // the language's known one-edit collision, and the grading path is the same one.
         val nine = Trainer.number(9, "uk").display
@@ -73,7 +76,7 @@ class LetterDictationGradingTest {
         val cards = catalog.join("de", "uk")
         val mouse = cards.byText("миша")
         val variant = "мишка"
-        // The app's amber step reads exactly this set (§4.5 verdict 2).
+        // The app's amber step reads exactly this set.
         assertTrue(
             variant in mouse.target.synonyms + mouse.target.variants,
             "the catalog no longer teaches \"$variant\" as a form of \"${mouse.target.text}\"",

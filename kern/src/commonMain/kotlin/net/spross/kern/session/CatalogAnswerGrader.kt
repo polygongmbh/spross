@@ -4,7 +4,7 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 
 /**
- * Produce grading with the whole join in view (contract §6).
+ * Produce grading with the whole join in view (`kern/docs/grading.md`).
  *
  * [AnswerNormalizer] sees one card, so a word that is really ANOTHER concept's
  * answer can land inside this card's typo budget — sw `kufunga` (schließen) is

@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 
 /**
  * The alphabet rules only the REAL catalog can break — everything here is content lint
- * over the shipped `alphabet/` files (contract §2.2/§2.3). Parse-shape rules (unknown
+ * over the shipped `alphabet/` files (`kern/docs/catalog.md`). Parse-shape rules (unknown
  * keys, ipa-or-hint, reader keys ⊆ declared, ref resolution, id-on-duplicate-glyph) need
  * no test of their own: [RealCatalog.catalog] parses every shipped file, so a violation
  * fails every jvmTest that touches the catalog. `AlphabetFixtureTest` pins those rules on
@@ -39,7 +39,7 @@ class AlphabetLintTest {
     }
 
     /**
-     * §2.2 rules 1+2 in one predicate: the slug must name a concept somewhere in the
+     * Two rules in one predicate: the slug must name a concept somewhere in the
      * catalog AND the alphabet's OWN language must realize it — otherwise the example is
      * dead for every reader. (No source language is required to realize it; the meaning
      * line degrades per reader, and that is the designed behavior.)
@@ -66,7 +66,7 @@ class AlphabetLintTest {
     }
 
     /**
-     * §2.2 rules 3+4 for gap rows: the RESOLVED example (own-language realization, else
+     * The gap-row rules: the RESOLVED example (own-language realization, else
      * `exampleText`) exists and contains the glyph EXACTLY once. Zero leaves nothing to
      * blank; two or more lets first-occurrence blanking gap the wrong, position-bound
      * instance and teach the opposite of the entry. Kern filters the same predicate
@@ -91,10 +91,10 @@ class AlphabetLintTest {
     }
 
     /**
-     * §2.3's collision rule: a `letters{}` key is a lowercase glyph, so it can address an
-     * alphabet row only while exactly ONE row it could ever be played for carries that
-     * glyph. The reachable rows are the NAMED ones — a letter recording is only ever asked
-     * for through a row's `name` (the sheet's speaker, the drill's `Name` prompt), and a
+     * The letters-manifest collision rule: a `letters{}` key is a lowercase glyph, so it
+     * can address an alphabet row only while exactly ONE row it could ever be played for
+     * carries that glyph. The reachable rows are the NAMED ones — a letter recording is
+     * only ever asked for through a row's `name` (the sheet's speaker, the drill's `Name` prompt), and a
      * nameless row is Word-prompted and never reaches the letters manifest at all. So de
      * `ch`×3 (none named) and the nameless `v-loan` beside the named `v-f` are no
      * ambiguity, while two NAMED rows on one glyph would be: the recording could not say
