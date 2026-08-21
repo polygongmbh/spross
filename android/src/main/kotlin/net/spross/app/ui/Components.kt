@@ -42,7 +42,7 @@ import net.spross.kern.box.AreaStatistics
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Language
 import net.spross.kern.model.Realization
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 
 /**
  * Answer-colored progress bar: one segment per answer, a recessed track for the rest.
@@ -56,7 +56,7 @@ import net.spross.kern.session.AnswerTone
  * as one, and no card ever repeats it back at the learner.
  */
 @Composable
-fun SegmentsBar(segments: List<AnswerTone>, remaining: Int, modifier: Modifier = Modifier) {
+fun SegmentsBar(segments: List<AnswerOutcome>, remaining: Int, modifier: Modifier = Modifier) {
     val palette = Dl.colors
     val slots = segments.size + remaining
     Row(
@@ -66,9 +66,9 @@ fun SegmentsBar(segments: List<AnswerTone>, remaining: Int, modifier: Modifier =
     ) {
         segments.forEach { tone ->
             val color = when (tone) {
-                AnswerTone.Right -> palette.success
-                AnswerTone.Tough -> palette.amber
-                AnswerTone.Wrong -> palette.wrong
+                AnswerOutcome.Right -> palette.success
+                AnswerOutcome.Almost -> palette.amber
+                AnswerOutcome.Wrong -> palette.wrong
             }
             Box(Modifier.weight(1f).fillMaxHeight().background(color))
         }

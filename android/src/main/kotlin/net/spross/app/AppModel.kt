@@ -44,7 +44,7 @@ import net.spross.kern.model.producePrompt
 import net.spross.kern.model.pronunciationCue
 import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.SessionEffect
 import net.spross.kern.session.SessionIntent
@@ -123,7 +123,7 @@ data class SessionUi(
      * non-null ⇔ kern's cue puts the target on screen from frame one.
      */
     val promptPronunciation: Pronunciation?,
-    val segments: List<AnswerTone>,
+    val segments: List<AnswerOutcome>,
     val remaining: Int,
     /** What the round bought ([SessionRunState]'s buckets); the summary spells the non-zero parts. */
     val introduced: Int,

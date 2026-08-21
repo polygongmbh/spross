@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.countLine
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.DrillTally
 import net.spross.kern.trainer.StreakTier
@@ -55,7 +55,7 @@ import net.spross.kern.trainer.StreakTier
 @Composable
 fun DrillTopBar(
     model: AppModel,
-    outcomes: List<AnswerTone>,
+    outcomes: List<AnswerOutcome>,
     tally: DrillTally,
     onClose: () -> Unit,
 ) {
