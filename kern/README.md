@@ -26,6 +26,7 @@ The engine's own semantics are below. These domains have their own pages:
 `docs/grading.md` (how a typed answer becomes a rating),
 `docs/turns.md` (the turn machine, the drills and listening),
 `docs/fsrs.md` (parameters, provenance and graduation),
+`docs/presentation.md` (what a prompt shows, and when),
 `docs/snapshots.md` (the box document and the watch/widget wire),
 `docs/catalog.md` (what the engine needs of the catalog),
 `docs/audio.md` (pronunciation rules),
@@ -174,59 +175,23 @@ No config flag, no user-facing direction anywhere.
     attempt below, which is where the picture supports it.
   - The second review (`count == 1`) is ALWAYS production — seen once, now attempt it
     (ruling 2026-07-22: "returns the same session as production", both hash parities).
-  - From `count == 2` role = parity(`count` + FNV-1a-64(cardId)):
-    FNV-1a 64-bit over UTF-8, offset `0xcbf29ce484222325`, prime `0x100000001b3` —
-    the per-card phase offset keeps the box from flipping in sync.
-- **Synonym rotation** on recognition prompts: the prompted form cycles deterministically
-  through `text` + `synonyms` — index = (`count / 2` + id-hash offset) mod formCount
-  (parity-independent: recognition happens every other review); first exposure always
-  prompts canonical text; variants never rotate.
-  Every form gets prompted at zero extra scheduling cost.
-  Reveal always shows the full family; the source-side reveal may show source synonyms
-  informatively ("Amt / Verwaltung").
-- **Sound-prompted production**: `producePrompt(cardId, reviewCount, consolidated, audible)`
-  answers whether a produce turn asks by MEANING or by ear. Not a third role — the role
-  function is fixed and a word asked from its sound is still produced,
-  so only the prompt side moves and one schedule still sees one kind of answer.
-  `Sound` needs the STRICTER consolidated bar (§5), because this WITHDRAWS the meaning
-  rather than adding support, plus the app's word that the form can be heard right now
-  (no recording and no voice, reading aloud off, or a screen reader — each falls back to
-  `Source` rather than putting up an empty card). Alternation divides the count by two like
-  the synonym rotation: roles alternate per review, so `reviewCount % 2` is CONSTANT across
-  one card's produce turns. Grading narrows to the form that played (`session.spokenOnly`,
-  shared with the letter drill's dictation); a synonym of the same card is amber, never
-  wrong, since the reveal itself teaches those forms.
-- **The target is spoken with its article; the source is not.**
-  `spokenTargetForm(article, shownForm, targetText)` (beside `utterance`, which answers the
-  same question — what string does the synthesizer get) prefixes the article `shownArticle`
-  allows, so a rotated synonym that may carry another gender is spoken bare rather than
-  mislabeled. It applies on the SYNTHESIZED branch only: a bundled recording says what was
-  recorded, and re-cutting one is an edit to bytes kern never edits. The two branches then
-  sound different, which is the accepted cost — the recording is the branch falling short.
-  Reverses `docs/read-aloud.md`'s "only the headword is ever spoken" (user ruling 2026-08-21),
-  everywhere a target word is synthesized and not only in listening (§6).
-- **Emoji cue**: `emojiCue(role, consolidated)` answers WHEN the picture appears,
-  never whether it appears at all and never where (that is the renderer's, and it is fixed).
-  **Upfront** iff role == Produce ∧ the word has not landed (§5) — the one prompt it can
-  support recall on without giving the answer away, since a produce prompt already names
-  the concept in the source language and asks for the other one;
-  **OnReveal** everywhere else, in every phase and on every recognition prompt.
-  Having landed, not the FSRS phase, is what "still landing" means here.
-  Hiding it outright once a word was learned took it away from exactly the reviews where a
-  word is still matched on novelty rather than on meaning; once the answer is out there is
-  nothing left to leak, and binding the picture to the meaning is what those reviews need.
-  **The first exposure does not carry it** (ruling 2026-08-07). It used to, as the cue that
-  made a first recall attempt possible — but a first exposure is recognition, and the
-  picture depicts the very concept being asked for, so on a self-graded card it is not a
-  cue but the answer. "The emoji was obvious" and "I knew the word" reach the button
-  identically, and the schedule cannot tell them apart; a first exposure is where that
-  costs most, because that answer decides how long the word goes away for.
-  Nothing is withheld from a learner meeting the word: the target form is on screen, its
-  sound plays (`pronunciationCue` is Upfront on every recognition prompt), and the reveal
-  brings meaning and picture together, which is where a first sight teaches. What moved is
-  WHERE the picture lands — off a prompt no one can grade honestly, onto the typed produce
-  turn that follows it, which by role resolution is the very next review and the first one
-  that asks the learner to actually know the word.
+  - From `count == 2` role = parity(`count` + FNV-1a-64(cardId)) — the per-card phase
+    offset keeps the box from flipping in sync.
+- **Synonym rotation** on recognition prompts, and **sound-prompted production**
+  (`producePrompt`): asking a word by ear WITHDRAWS the meaning rather than adding support,
+  so it needs the stricter consolidated bar (§5) — it is not a third role, only the prompt
+  side moving, so one schedule still sees one kind of answer.
+- **The target is spoken with its article; the source is not** (user ruling 2026-08-21),
+  everywhere a target word is synthesized — which reverses `../docs/read-aloud.md`'s
+  "only the headword is ever spoken".
+- **Emoji cue**: `emojiCue(role, consolidated)` answers WHEN the picture appears, never
+  whether it appears at all and never where. **Upfront** iff role == Produce ∧ the word has
+  not landed (§5) — the one prompt it can support recall on without giving the answer away;
+  **OnReveal** everywhere else. **The first exposure does not carry it** (ruling 2026-08-07):
+  a first exposure is recognition and the picture depicts the very concept being asked for,
+  so on a self-graded card it is not a cue but the answer, and the schedule cannot tell
+  "the emoji was obvious" from "I knew the word".
+  Where each branch falls and why is `docs/presentation.md`.
 - **♀** is a labeled badge, never graded: the production prompt shows source base + badge;
   the recognition reveal decorates the source answer with the badge.
   A base-word answer typed on a feminine produce card grades as typo, not failure
