@@ -68,6 +68,13 @@ class SprossActivity : ComponentActivity() {
             window.isNavigationBarContrastEnforced = false
         }
         super.onCreate(savedInstanceState)
+        // why: `--es readAloud off` (scripts/run-emu.sh --mute) starts a driven run
+        // silent, so an unattended machine never speaks up by itself. Only on a FRESH
+        // create — a rotation replays this intent, and re-muting there would undo a
+        // toggle the learner had just reached for.
+        if (savedInstanceState == null && intent?.getStringExtra(EXTRA_READ_ALOUD) == "off") {
+            model.pronouncer.muteThisLaunch()
+        }
         setContent {
             SprossTheme {
                 Surface(
@@ -102,6 +109,14 @@ class SprossActivity : ComponentActivity() {
         // why: the same reason, one language further — a voice for the LEARNER's own side
         // decides whether a word may be listened to at all, and both are swept fresh.
         model.refreshListening()
+    }
+
+    private companion object {
+        /**
+         * Launch extra worded exactly like the iOS launch argument it mirrors, so one
+         * sentence in `scripts/` and the verify skill covers both phones.
+         */
+        const val EXTRA_READ_ALOUD = "readAloud"
     }
 }
 

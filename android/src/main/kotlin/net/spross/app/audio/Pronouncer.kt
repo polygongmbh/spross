@@ -60,6 +60,19 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         }
 
     /**
+     * Silences autoplay for THIS launch, storing nothing — the mirror of iOS's
+     * `-readAloud off` launch argument, which lands in the argument domain and leaves the
+     * stored preference where it was. A script-driven run (`scripts/run-emu.sh --mute`)
+     * starts quiet so nothing speaks at an unattended machine, and because nothing was
+     * written, [muted]'s setter remains the only thing that changes what the app
+     * remembers: the top-bar toggle turns sound back on with no special case, and a
+     * hand-launched app is unaffected.
+     */
+    fun muteThisLaunch() {
+        mutedState = true
+    }
+
+    /**
      * Whether the device has a voice for [lang] at all — Swahili has none without
      * Google TTS installed, and those words stay silent unless a recording matched.
      *

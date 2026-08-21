@@ -88,9 +88,15 @@ scripts/run-sim.sh                        # build, install, launch on iPhone 17 
 scripts/run-sim.sh --no-build             # reinstall the last build
 scripts/run-sim.sh --clean                # uninstall first, so onboarding runs
 scripts/run-sim.sh --device 'iPhone 16'   # another simulator, by name
-scripts/run-sim.sh --shot /tmp/heute.png  # screenshot once it has drawn
+scripts/run-sim.sh --shot /tmp/heute.png  # screenshot once it has drawn (implies --mute)
+scripts/run-sim.sh --mute                 # start with reading aloud switched off
 scripts/run-sim.sh -- -uitest-source de -uitest-target sw   # skip onboarding
 ```
+
+`--mute` starts the app silent so a run nobody is sitting at never speaks up.
+It overrides the read-aloud setting for that launch instead of rewriting it,
+so the in-app toggle turns sound back on and the next hand-launched run opens
+with whatever was last chosen. `--sound` opts a screenshot run back in.
 
 Arguments after `--` reach the app: `-uitest-source`/`-uitest-target` pick a
 language pair, `-uitest-screen box` opens the Box, `-uitest-autostart 1` starts
