@@ -166,7 +166,15 @@ private fun ListeningCard(model: AppModel, turn: ListeningTurn, beat: ListeningB
     // why: the picture is a cue withheld while an answer is OWED, and listening owes
     // none — held back on the meaning it vanished and returned on every word, which
     // reads as a flicker rather than as a reveal.
-    VocabCard(card?.emoji, cue = LISTENING_EMOJI_CUE, revealed = false) {
+    // why: this card OWNS the screen — nothing to type, nothing to press, no keyboard — so
+    // the picture stands above the words and they take the card's whole width, which is
+    // the width a long target word needs to stay one unbroken line.
+    VocabCard(
+        card?.emoji,
+        cue = LISTENING_EMOJI_CUE,
+        revealed = false,
+        arrangement = CardArrangement.Above,
+    ) {
         Headword(
             localizedTarget(
                 target?.let { Dl.colors.articleColoredText(it) } ?: AnnotatedString(turn.targetForm),

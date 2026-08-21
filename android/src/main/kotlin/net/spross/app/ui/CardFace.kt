@@ -40,6 +40,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.CardDisplay
@@ -64,12 +65,17 @@ import net.spross.kern.model.Realization
  * middle out — a caller that wants a row lays one out inside.
  */
 @Composable
-fun CardFace(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
+fun CardFace(
+    modifier: Modifier = Modifier,
+    /** The inset the content composes flat inside; a card with room to spare takes more. */
+    padding: Dp = DlSpace.l,
+    content: @Composable ColumnScope.() -> Unit,
+) {
     Column(
         modifier = modifier
             .fillMaxWidth()
             .panel(MaterialTheme.shapes.large)
-            .padding(DlSpace.l),
+            .padding(padding),
         // why: a card holds a reserved minimum height, so before the reveal its content is
         // shorter than the card it sits in. Arranged from the top, the question hung off
         // the ceiling with the reserve pooled underneath it; the block is read from the
@@ -100,13 +106,36 @@ fun Modifier.panel(shape: Shape = MaterialTheme.shapes.medium): Modifier = this
     .border(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.6f), shape)
 
 /**
- * A review card: the picture in a slot BESIDE the words, the words in the middle.
+ * WHERE a card puts its picture — stated as the SITUATION the card is in, never as a size.
  *
- * Vertical space is the scarce axis — card, field, button and keyboard share one screen —
- * so the picture never sits above the headword. The slot is held for the card's whole
- * life and only its contents fade in, which is what lets a reveal grow the card downward
- * without moving a line that was already there. It is mirrored on the trailing edge so
- * the words stay centered in the card rather than pushed off by the picture.
+ * It was a size flag on the other phone once, and the one run that had to choose chose
+ * wrong: listening drew the big picture, the words kept a column too narrow for their font,
+ * and a six-letter word hyphenated ("mchele" as "mc-hele"). A caller can always say what
+ * else its screen is holding; it cannot be trusted to turn that into a rendering.
+ */
+enum class CardArrangement {
+    /**
+     * The card SHARES the screen — a review or drill card standing above an input, a
+     * button and a keyboard. Vertical space is the scarce axis, so the picture stays small
+     * and sits BESIDE the words.
+     */
+    Beside,
+
+    /**
+     * The card OWNS the screen — a run whose only content is the card (listening: nothing
+     * to type, nothing to press, no keyboard). Height is abundant and width is what the
+     * words are short of, so the picture stands ABOVE them at full size and the words get
+     * the card's whole width.
+     */
+    Above,
+}
+
+/**
+ * A review card: the picture in a slot the CARD places, the words in the middle.
+ *
+ * Which slot is [CardArrangement]'s, worked out from what the surface is. Either way it is
+ * held for the card's whole life and only its contents fade in, which is what lets a reveal
+ * grow the card downward without moving a line that was already there.
  *
  * A word with no picture drops the slot entirely and centers on itself.
  */
@@ -123,32 +152,64 @@ fun VocabCard(
     /** [EmojiCue.OnReveal]'s other half: whether the card has given its answer. */
     revealed: Boolean,
     modifier: Modifier = Modifier,
+    /** What the surface is; the card works its own layout out from that. */
+    arrangement: CardArrangement = CardArrangement.Beside,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     val emojiShown = emojiShowing(cue, revealed)
     val hasEmoji = !emoji.isNullOrEmpty()
+    val shared = arrangement == CardArrangement.Beside
     // why: sized in sp, so the disc grows with the reader's text size along with the
     // glyph in it — a fixed disc would crop the picture at the larger settings.
-    val slot = with(LocalDensity.current) { EMOJI_SLOT.toDp() }
-    CardFace(modifier.heightIn(min = DlReserve.reviewCard)) {
-        Row(
-            // why: the growth is animated INSIDE the face, so the edge and the shadow
-            // are never clipped mid-reveal — the card simply gets taller under them.
-            modifier = Modifier.fillMaxWidth().animateContentSize(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
-        ) {
-            if (hasEmoji) EmojiSlot(emoji.orEmpty(), emojiShown, slot)
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
+    val slot = with(LocalDensity.current) { (if (shared) EMOJI_SLOT else EMOJI_HERO).toDp() }
+    val glyph = if (shared) EMOJI_GLYPH else EMOJI_HERO_GLYPH
+    CardFace(
+        // why: a shared-screen card holds one height whether the prompt is a word, a word
+        // under an area label, or the replay glyph of a by-ear question; a card that owns
+        // the screen has nothing to keep still for and is free to grow into it.
+        modifier = if (shared) modifier.heightIn(min = DlReserve.reviewCard) else modifier,
+        padding = if (shared) DlSpace.l else DlSpace.xl,
+    ) {
+        // why: the growth is animated INSIDE the face, so the edge and the shadow
+        // are never clipped mid-reveal — the card simply gets taller under them.
+        val grow = Modifier.fillMaxWidth().animateContentSize()
+        when (arrangement) {
+            CardArrangement.Beside -> Row(
+                modifier = grow,
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+            ) {
+                if (hasEmoji) EmojiSlot(emoji.orEmpty(), emojiShown, slot, glyph)
+                CardWords(Modifier.weight(1f), DlSpace.xs, content)
+                // The slot is mirrored on the trailing edge so the words stay centered in
+                // the card rather than pushed off by the picture.
+                if (hasEmoji) Spacer(Modifier.width(slot))
+            }
+
+            CardArrangement.Above -> Column(
+                modifier = grow,
+                verticalArrangement = Arrangement.spacedBy(DlSpace.l),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                content = content,
-            )
-            if (hasEmoji) Spacer(Modifier.width(slot))
+            ) {
+                if (hasEmoji) EmojiSlot(emoji.orEmpty(), emojiShown, slot, glyph)
+                CardWords(Modifier.fillMaxWidth(), DlSpace.l, content)
+            }
         }
     }
 }
+
+/** Everything on a card that is not the picture, as one centered column. */
+@Composable
+private fun CardWords(
+    modifier: Modifier,
+    spacing: Dp,
+    content: @Composable ColumnScope.() -> Unit,
+) = Column(
+    modifier = modifier,
+    verticalArrangement = Arrangement.spacedBy(spacing),
+    horizontalAlignment = Alignment.CenterHorizontally,
+    content = content,
+)
 
 /**
  * Whether the picture is on the card YET.
@@ -162,7 +223,7 @@ fun emojiShowing(cue: EmojiCue?, revealed: Boolean): Boolean =
     cue == EmojiCue.Upfront || (cue != null && revealed)
 
 @Composable
-private fun EmojiSlot(emoji: String, shown: Boolean, size: Dp) {
+private fun EmojiSlot(emoji: String, shown: Boolean, size: Dp, glyph: TextUnit) {
     // why: the picture FADES into a slot that was already there — appearing would push
     // every line of the card down at the moment the answer needs reading.
     //
@@ -185,7 +246,7 @@ private fun EmojiSlot(emoji: String, shown: Boolean, size: Dp) {
     ) {
         Text(
             emoji,
-            fontSize = EMOJI_GLYPH,
+            fontSize = glyph,
             // Decorative: the headword beside it carries the content, and a screen
             // reader announcing "thinking face" before the word helps nobody.
             modifier = Modifier.clearAndSetSemantics { },
@@ -362,9 +423,17 @@ fun CardCue(text: String, modifier: Modifier = Modifier) {
     )
 }
 
-/** The picture's disc and the glyph in it, both in sp so they scale together. */
+/**
+ * The picture's disc and the glyph in it, both in sp so they scale together.
+ *
+ * Two sizes, one per [CardArrangement]: small where the picture rides beside the words and
+ * takes as little of their width as it can, full size where it stands above them with
+ * nothing to make room for.
+ */
 private val EMOJI_SLOT = 52.sp
 private val EMOJI_GLYPH = 28.sp
+private val EMOJI_HERO = 96.sp
+private val EMOJI_HERO_GLYPH = 52.sp
 
 /**
  * Where a shrinking headword stops. iOS bottoms out at 0.85 of a 22 pt headword; this
