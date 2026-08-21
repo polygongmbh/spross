@@ -1,6 +1,6 @@
 #!/bin/sh
 # Build, install and launch Spross on an Android emulator.
-#   scripts/run-emu.sh                       — build + (re)launch on the spross AVD
+#   scripts/run-emu.sh                       — build + (re)launch on the spross-phone AVD
 #   scripts/run-emu.sh --no-build            — reinstall the last APK, skip Gradle
 #   scripts/run-emu.sh --avd spross-tablet   — pick another AVD by name
 #   scripts/run-emu.sh --clean               — uninstall first (⇒ onboarding runs)
@@ -18,7 +18,7 @@
 set -eu
 cd "$(dirname "$0")/.."
 
-AVD=spross
+AVD=spross-phone
 PKG=net.spross.app
 ACTIVITY=.SprossActivity
 APK=android/build/outputs/apk/debug/android-debug.apk

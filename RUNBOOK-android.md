@@ -69,7 +69,7 @@ Min Android 8.0 (API 26).
 it boots the AVD if it is not already up, builds, installs and launches.
 
 ```sh
-scripts/run-emu.sh                       # build + (re)launch on the spross AVD
+scripts/run-emu.sh                       # build + (re)launch on the spross-phone AVD
 scripts/run-emu.sh --no-build            # reinstall the last APK
 scripts/run-emu.sh --clean               # uninstall first ⇒ onboarding runs
 scripts/run-emu.sh --shot /tmp/drill.png # screenshot once the app has drawn
@@ -83,7 +83,7 @@ SDK=$(sed -n 's/^sdk\.dir=//p' local.properties)
 sdkmanager --sdk_root="$SDK" emulator "system-images;android-36;default;arm64-v8a"
 sdkmanager --sdk_root="$SDK" "cmdline-tools;latest"   # avdmanager, see § One SDK
 "$SDK/cmdline-tools/latest/bin/avdmanager" create avd \
-  -n spross -k "system-images;android-36;default;arm64-v8a" -d medium_phone
+  -n spross-phone -k "system-images;android-36;default;arm64-v8a" -d medium_phone
 ```
 
 **`-d` is not optional.** Without a device profile `avdmanager` falls back to a generic
@@ -93,7 +93,7 @@ wrong, so a screen judged there is not a screen anyone will see. `avdmanager lis
 names the rest; `medium_phone` is 1080×2400 at 420 dpi (411 dp wide), which is the modern
 middle. Check an existing AVD with `grep hw.lcd config.ini` before trusting a screenshot.
 
-Then in the new AVD's `config.ini` (`$ANDROID_PREFS_ROOT/.android/avd/spross.avd/`):
+Then in the new AVD's `config.ini` (`$ANDROID_PREFS_ROOT/.android/avd/spross-phone.avd/`):
 `hw.sdCard=no` — nothing in the app reads external storage, and an SD card is
 allocated in full the moment it is created — and `disk.dataPartition.size=4G`,
 down from the 10 G default.
