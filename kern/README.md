@@ -21,12 +21,17 @@ The same test applies to snapshot fields: withholding data because shipping it c
 the answer is policy and belongs here; withholding it because a surface has nowhere to
 draw it is rendering and does not.
 
-The engine's own semantics are below. These domains have their own pages:
-`docs/reports.md` (the read models a surface draws the box from),
-`docs/grading.md` (how a typed answer becomes a rating),
-`docs/turns.md` (the turn machine, the drills and listening),
-`docs/fsrs.md` (parameters, provenance and graduation),
+**The contract states the rule, the declaration states the detail.**
+A number, a field list or a signature belongs on the type that carries it, where a reader
+already is; what stays here is what no single declaration can say — a decision someone made,
+a rule that spans several of them, or a bug a restatement would bring back.
+
+The engine's own semantics are below. Nine domains have a page of their own:
 `docs/presentation.md` (what a prompt shows, and when),
+`docs/fsrs.md` (parameters, provenance and graduation),
+`docs/turns.md` (the turn machine, the drills and listening),
+`docs/grading.md` (how a typed answer becomes a rating),
+`docs/reports.md` (the read models a surface draws the box from),
 `docs/snapshots.md` (the box document and the watch/widget wire),
 `docs/catalog.md` (what the engine needs of the catalog),
 `docs/audio.md` (pronunciation rules),
@@ -88,23 +93,19 @@ both feeding the one schedule ("every answer event is an FSRS review" holds).
 No config flag, no user-facing direction anywhere.
 
 - **PRODUCE**: prompt = source text (+ ♀ badge when marked), typed answer in target.
-  Accepted: target `text ∪ synonyms ∪ variants`, article-optional (target articles),
-  verb-prefix-optional (`kind == verb` only).
-  Synonyms show on reveal as alternates ("auch: відомство"); variants stay silent.
   When `promptAmbiguous`, the prompt carries the card's **area label** as a secondary
   context line ("Im Bad", "Jikoni") — free of leakage because it is in the PROMPT language
   while the answer is in the other, and it is the retrieval cue the learner actually has
   (the box teaches per area). Generalizes the ♀-badge pattern; never graded.
-- **RECOGNIZE**: prompt = one target form, **reveal + self-grade** (`SelfGrading`, §6 —
-  never typed; comprehension check, and self-grading means no schedule is ever graded
-  against a language it wasn't learned with).
-  Phrases alternate too — self-graded sentence recognition is legitimate comprehension
-  practice; only TYPED phrase recognition was absurd.
+- **RECOGNIZE**: prompt = one target form, **reveal + self-grade** (§6) — never typed, and
+  self-grading means no schedule is ever graded against a language it was not learned with.
+  Phrases alternate too: self-graded sentence recognition is legitimate comprehension
+  practice, and only TYPED phrase recognition was absurd.
   **Never carries the `promptAmbiguous` area cue**: here the prompt is the target form, so
   any cue strong enough to identify the concept would reveal the answer — the same reason
-  the emoji leaves the recognition PROMPT past the first exposure. Nothing is lost:
-  recognition is self-graded, so a learner who thinks "sich entspannen", reveals
-  "sich ausruhen" and taps Good is doing exactly what self-grading is for.
+  the emoji leaves the recognition prompt past the first exposure. Nothing is lost:
+  a learner who thinks "sich entspannen", reveals "sich ausruhen" and taps Good is doing
+  exactly what self-grading is for.
 - **Role resolution** is a pure render-time function of `(cardId, log.count)`:
   - First exposure (`count == 0`) is ALWAYS recognition — the learner cannot produce a
     word never seen; the target is PROMPTED first (a learner who already knows it deserves
@@ -147,8 +148,9 @@ field — **is in cards**; `DayStats.reviews` alone counts answer EVENTS.
 
 The numbers themselves are not one table: the tunable ones are `BoxConfig`'s fields, and the
 rest are private constants beside the rule each of them serves (`SessionComposer`,
-`TodayReport`, `net.spross.kern.listen`), where the declaration says what its number buys. `BoxConfig.product()` hands the shipped calibration out as a
-value, because Kotlin default arguments do not cross the ObjC boundary
+`TodayReport`, `net.spross.kern.listen`), where the declaration says what its number buys.
+`BoxConfig.product()` hands the shipped calibration out as a value, because Kotlin default
+arguments do not cross the ObjC boundary
 (`docs/snapshots.md` re-applies it to every loaded box).
 
 ## 5. FSRS-6
