@@ -53,6 +53,12 @@ object SprossIcons {
         moveTo(9.5f, 5f); lineTo(16.5f, 12f); lineTo(9.5f, 19f)
     }
 
+    /** Back out of a screen the run pushed. The bar's own way out, where a ✕ would be a blob. */
+    val ArrowLeft = stroked("ArrowLeft") {
+        moveTo(19f, 12f); lineTo(5f, 12f)
+        moveTo(11f, 6f); lineTo(5f, 12f); lineTo(11f, 18f)
+    }
+
     /** This block folds open. */
     val ChevronDown = stroked("ChevronDown") {
         moveTo(5f, 9.5f); lineTo(12f, 16.5f); lineTo(19f, 9.5f)
@@ -120,6 +126,17 @@ object SprossIcons {
         moveTo(12f, 5f)
         arcTo(7f, 7f, 0f, true, false, 18.58f, 9.61f)
         moveTo(15f, 3.2f); lineTo(12f, 5f); lineTo(15f, 6.8f)
+    }
+
+    /**
+     * The bedtime. A crescent rather than 🌙: an affordance is a tintable vector here, and
+     * the emoji it replaces was multi-color artwork that took no tint at all.
+     */
+    val Moon = stroked("Moon") {
+        moveTo(21f, 12.79f)
+        arcTo(9f, 9f, 0f, true, true, 11.21f, 3f)
+        arcTo(7f, 7f, 0f, false, false, 21f, 12.79f)
+        close()
     }
 
     /** Hear it. The cone is filled and the waves are stroked, as one glyph. */

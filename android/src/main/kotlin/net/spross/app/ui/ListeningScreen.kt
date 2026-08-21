@@ -12,7 +12,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -21,31 +20,34 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
+import net.spross.app.Chrome
 import net.spross.app.listen.ListeningBeat
 import net.spross.kern.listen.LISTENING_EMOJI_CUE
 import net.spross.kern.listen.ListeningTurn
@@ -62,6 +64,9 @@ import net.spross.kern.listen.ListeningTurn
  * reaches this screen and a switch would only offer to break it. There is no end screen and
  * no progress either — a run the learner ends when they like has nothing to celebrate, and
  * nothing here is being graded.
+ *
+ * The set of controls, their order, their copy and their states are the OTHER phone's too;
+ * only the drawing is this one's (`docs/surfaces.md` § Android companion).
  */
 @Composable
 fun ListeningScreen(model: AppModel) {
@@ -70,41 +75,68 @@ fun ListeningScreen(model: AppModel) {
     BackHandler { model.closeListening() }
     AskForTheShade()
 
-    Column(
-        modifier = Modifier.fillMaxSize().padding(DlSpace.xl),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.l),
-    ) {
+    Column(modifier = Modifier.fillMaxSize()) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            // The bar's own inset, not the body's: a navigation icon sits 4 dp in, which
+            // puts its glyph at the 16 dp every other screen's title starts from.
+            modifier = Modifier.fillMaxWidth().padding(start = DlSpace.xs, end = DlSpace.m),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+            horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
         ) {
-            DrillCloseButton(chrome) { model.closeListening() }
+            BackFromRun(chrome) { model.closeListening() }
             Text(
                 chrome.listenTitle,
                 style = MaterialTheme.typography.titleMedium,
+                textAlign = TextAlign.Center,
                 modifier = Modifier.weight(1f),
             )
             SleepTimerChip(model)
         }
 
-        Spacer(Modifier.weight(1f))
-        run.turn?.let { ListeningCard(model, it, run.beat) }
-        Spacer(Modifier.weight(1f))
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(DlSpace.l, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically,
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = DlSpace.xl, vertical = DlSpace.l),
+            verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            TransportButton(SprossIcons.Again, chrome.listenRepeat, big = false) { run.repeat() }
-            TransportButton(
-                if (run.paused) SprossIcons.Play else SprossIcons.Pause,
-                if (run.paused) chrome.listenResume else chrome.listenPause,
-                big = true,
-            ) { run.togglePause() }
-            TransportButton(SprossIcons.SkipNext, chrome.listenSkip, big = false) { run.skip() }
+            Spacer(Modifier.weight(1f))
+            run.turn?.let { ListeningCard(model, it, run.beat) }
+            Spacer(Modifier.weight(1f))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(
+                    DlSpace.xl,
+                    Alignment.CenterHorizontally,
+                ),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                TransportButton(SprossIcons.Again, chrome.listenRepeat, big = false) { run.repeat() }
+                TransportButton(
+                    if (run.paused) SprossIcons.Play else SprossIcons.Pause,
+                    if (run.paused) chrome.listenResume else chrome.listenPause,
+                    big = true,
+                ) { run.togglePause() }
+                TransportButton(SprossIcons.SkipNext, chrome.listenSkip, big = false) { run.skip() }
+            }
         }
+    }
+}
+
+/**
+ * The way out. A back ARROW rather than the ✕ the drills wear: those two sit in a bar beside
+ * the read-aloud switch, and the tinted disc is what makes the pair read as chrome instead of
+ * two loose glyphs — alone on a screen with neither, the disc is a grey blob. Back and ✕ do
+ * the same thing here (`docs/surfaces.md`), which was never a promise to wear the same glyph.
+ */
+@Composable
+private fun BackFromRun(chrome: Chrome, onClose: () -> Unit) {
+    IconButton(
+        onClick = onClose,
+        modifier = Modifier.semantics(mergeDescendants = true) { contentDescription = chrome.close },
+    ) {
+        Icon(SprossIcons.ArrowLeft, contentDescription = null, tint = Dl.colors.textSecondary)
     }
 }
 
@@ -162,6 +194,11 @@ private fun ListeningCard(model: AppModel, turn: ListeningTurn, beat: ListeningB
 /**
  * One transport control. The pause is the big one — it is the button a hand reaches for
  * without looking, which is the whole posture this mode is used in.
+ *
+ * A real icon button rather than a tinted box: the ripple, the role and the 48 dp floor come
+ * with it, where a box clears that floor only as long as nobody changes the number.
+ * The label names what the tap DOES, so it flips with the state — these are buttons, not the
+ * switch one screen over, whose name has to stay put while its value moves.
  */
 @Composable
 private fun TransportButton(
@@ -170,26 +207,25 @@ private fun TransportButton(
     big: Boolean,
     onClick: () -> Unit,
 ) {
-    val size = if (big) 72.dp else 56.dp
-    Box(
+    FilledIconButton(
+        onClick = onClick,
         modifier = Modifier
             .pressSpring()
-            .size(size)
-            .clip(CircleShape)
-            .background(
-                if (big) MaterialTheme.colorScheme.primaryContainer
-                else MaterialTheme.colorScheme.surfaceVariant,
+            .size(if (big) 72.dp else 56.dp)
+            .semantics(mergeDescendants = true) { contentDescription = label },
+        colors = if (big) {
+            IconButtonDefaults.filledIconButtonColors(
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
             )
-            .semantics(mergeDescendants = true) { contentDescription = label }
-            .clickable(role = Role.Button, onClick = onClick),
-        contentAlignment = Alignment.Center,
+        } else {
+            IconButtonDefaults.filledIconButtonColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                contentColor = Dl.colors.textSecondary,
+            )
+        },
     ) {
-        Icon(
-            icon,
-            contentDescription = null,
-            modifier = Modifier.size(if (big) 32.dp else 24.dp),
-            tint = if (big) MaterialTheme.colorScheme.onPrimaryContainer else Dl.colors.textSecondary,
-        )
+        Icon(icon, contentDescription = null, modifier = Modifier.size(if (big) 32.dp else 24.dp))
     }
 }
 
@@ -198,50 +234,77 @@ private fun TransportButton(
  *
  * It shows what is LEFT rather than what was picked: a run started an hour ago and a run
  * started a minute ago are the same pick and completely different answers to "is this going
- * to stop before I do". Off is the moon alone, dimmed — the run then laps for as long as it
- * is left alone.
+ * to stop before I do". Off it says its own name, dimmed — the run then laps for as long as
+ * it is left alone.
+ *
+ * It counts in MINUTES. A clock ticking down to the second is a clock you watch, which is
+ * the opposite of what a sleep timer is for, so the number moves once a minute and nothing
+ * on this screen redraws in between.
  */
 @Composable
 private fun SleepTimerChip(model: AppModel) {
+    val chrome = model.chrome
     val run = model.listening
-    var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
-    // why: the deadline is a moment, not a countdown — the label is derived from the clock
-    // once a second while a bedtime stands, and nothing ticks at all while none does.
+    var minutesLeft by remember { mutableStateOf<Int?>(null) }
+    // why: the deadline is a moment, not a countdown — this wakes when the minute the chip
+    // shows turns, and on the bedtime itself, and not at all while none is set.
     LaunchedEffect(run.deadline) {
-        while (run.deadline != null) {
-            now = System.currentTimeMillis()
-            delay(1_000)
+        val deadline = run.deadline
+        if (deadline == null) {
+            minutesLeft = null
+            return@LaunchedEffect
+        }
+        while (true) {
+            val left = deadline - System.currentTimeMillis()
+            minutesLeft = sleepTimerMinutes(left)
+            if (left <= 0) return@LaunchedEffect
+            delay(msUntilTheMinuteTurns(left))
         }
     }
-    val remaining = run.deadline?.let { it - now }
-    val label = remaining?.let { "🌙 ${sleepTimerClock(it)}" } ?: "🌙"
-    Box(
+    val left = minutesLeft?.let { chrome.listenMinutesLeft.format(it) }
+    val tint = if (left == null) Dl.colors.textSecondary else Dl.colors.accent
+    Row(
         modifier = Modifier
             .pressSpring()
             .clip(RoundedCornerShape(percent = 50))
             .background(MaterialTheme.colorScheme.surfaceVariant)
-            .semantics(mergeDescendants = true) { contentDescription = label }
+            // why: the LENGTH is a state of the timer, so the name stays put and the
+            // reading moves — a label that flips leaves TalkBack announcing the value
+            // where the control's own name belongs.
+            .semantics(mergeDescendants = true) {
+                contentDescription = chrome.listenTimer
+                stateDescription = left ?: chrome.stateOff
+            }
             .clickable(role = Role.Button) { run.cycleTimer() }
             .heightIn(min = 48.dp)
             .padding(horizontal = DlSpace.l),
-        contentAlignment = Alignment.Center,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
     ) {
+        Icon(SprossIcons.Moon, contentDescription = null, modifier = Modifier.size(18.dp), tint = tint)
         Text(
-            label,
+            left ?: chrome.listenTimer,
             style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center,
-            color = if (remaining == null) Dl.colors.textSecondary else Color.Unspecified,
+            color = tint,
         )
     }
 }
 
 /**
- * "12:04" — minutes and seconds, rounded UP: a chip reading 0:00 while the run is still
- * talking says the timer is broken, and the last second is the one anyone falling asleep is
- * most likely to be looking at. Minutes are never capped at an hour, because the longest
- * bedtime kern offers is exactly one.
+ * Whole minutes left, rounded UP: a chip reading zero while the run is still talking says the
+ * timer is broken. Minutes are never capped at an hour, because the longest bedtime kern
+ * offers is exactly one.
  */
-internal fun sleepTimerClock(ms: Long): String {
-    val seconds = ((ms.coerceAtLeast(0) + 999) / 1_000)
-    return "%d:%02d".format(seconds / 60, seconds % 60)
+internal fun sleepTimerMinutes(ms: Long): Int =
+    ((ms.coerceAtLeast(0) + 59_999) / 60_000).toInt()
+
+/**
+ * How long the minute the chip is showing still stands: what is left, less the whole minutes
+ * that will still be left after it turns. On the last minute that is the whole remainder, so
+ * the final wake IS the bedtime.
+ */
+internal fun msUntilTheMinuteTurns(ms: Long): Long {
+    val whole = (sleepTimerMinutes(ms) - 1).coerceAtLeast(0)
+    return (ms - whole * 60_000L).coerceAtLeast(50L)
 }
