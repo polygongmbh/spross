@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+- **Your words, read to you — hands free.** A new listening card on the day's screen plays
+  your vocabulary as a playlist: the word in the language you are learning, its meaning, then
+  the word again. It leans on what is not sticking rather than on what is due, so the ones you
+  keep forgetting come round most — including the ones the box had given up asking about — and
+  it fills out with new words when what you are learning runs thin. It keeps playing with the
+  screen locked, puts the current word on the lock screen, and takes play, pause and skip from
+  there or from a headphone button. Words this phone cannot say on both sides stay out of it.
+  Give it a bedtime — 15, 30 or 60 minutes — and it fades out over the last two rather than
+  stopping dead, so falling asleep to it is the point rather than an accident.
+
+- **The voice says the article with the word.** Where a word is read aloud by the device's
+  voice in the language you are learning, it now says "das Brot" rather than "Brot" — the
+  article is the part learners most often have wrong, and hearing it never taught anyone less.
+
 - **A day with a big backlog can be answered in a short sitting.** When the round waiting for
   you runs past what an evening holds, the day's card offers a second, quieter way in beside
   "Los geht's!": the same round stopped early — its overdue words alone, no new ones and
