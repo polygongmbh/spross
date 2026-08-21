@@ -4575,18 +4575,50 @@
         }
       }
     },
-    "settings.audio.hint" : {
+    "settings.audio.hint.off" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aufnahmen spielen die eingebauten Stimmen, wo es sie gibt; Sprachausgabe nutzt immer die Systemstimme — jedes Wort klingt gleich und sagt seinen Artikel. Tippen auf ein Wort spricht es erneut, immer."
+            "value" : "Keine Wörter werden vorgelesen. Tippen auf ein Wort spricht es trotzdem."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recordings play the bundled voices where they exist; Speech always uses the system voice, so every word sounds the same and says its article. Tapping a word speaks it again, always."
+            "value" : "No words are read aloud. Tapping a word still speaks it."
+          }
+        }
+      }
+    },
+    "settings.audio.hint.recordings" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eingebaute Aufnahmen zuerst, der Rest aus der Systemstimme."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bundled recordings first, the system voice for the rest."
+          }
+        }
+      }
+    },
+    "settings.audio.hint.tts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jedes Wort in der Systemstimme — immer derselbe Klang, Artikel inklusive."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every word in the system voice — always the same sound, article included."
           }
         }
       }

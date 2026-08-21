@@ -97,12 +97,14 @@ internal object ChromeEn : Chrome {
     override val updateViaObtainium = "Get Obtainium"
     override val updateDownload = "Download directly"
     override val audioToggle = "Read words aloud"
-    override val audioToggleHint = "Recordings play the bundled voices where they exist; " +
-        "Speech always uses the system voice, so every word sounds the same and says its " +
-        "article. Tapping a word speaks it again, always."
     override val audioOptionOff = "No audio"
     override val audioOptionRecordings = "Recordings"
     override val audioOptionTts = "Speech"
+    override val audioHintOff = "No words are read aloud. Tapping a word still speaks it."
+    override val audioHintRecordings = "Bundled recordings first, the system voice for the " +
+        "rest."
+    override val audioHintTts = "Every word in the system voice — always the same sound, " +
+        "article included."
     override val creditsTitle = "Legal & licenses"
     override val creditsRecordings = "%d recordings"
     override val creditsUnmodified = "Recordings shipped unmodified"

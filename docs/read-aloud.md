@@ -80,7 +80,9 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   phone's silent switch alike: that one sound plays under `.playback`, which the hardware
   switch cannot reach. Everything the app fires by ITSELF stays `.ambient`, where the phone
   keeps its authority — the whole rule is `AudioSession`, one category chosen per sound.
-  The audio setting's hint line names the gesture once for the app as a whole.
+  The audio setting's hint line names the gesture once for the app as a whole —
+  in the No audio line, the only preference where a learner might think the app
+  has gone silent for good.
 - **What answers the tap, and what discloses it, follows the surface.**
   On a card or in a drill there is nothing else to hit,
   so the speaker beside the word IS the control;

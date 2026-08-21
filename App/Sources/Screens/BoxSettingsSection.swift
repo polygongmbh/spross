@@ -167,7 +167,7 @@ struct BoxSettingsSection: View {
                 }
             }
             .pickerStyle(.segmented)
-            Text("settings.audio.hint")
+            Text(audioHintKey)
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
             if VoiceUpgradeHint.shared.suggests(language: model.targetLanguage) {
@@ -193,6 +193,17 @@ struct BoxSettingsSection: View {
         case .off: return "settings.audio.option.off"
         case .recordings: return "settings.audio.option.recordings"
         case .tts: return "settings.audio.option.tts"
+        }
+    }
+
+    /// The hint names the chosen behavior, not the picker as a whole. The
+    /// tap-to-replay gesture is disclosed in the No audio line alone — the only
+    /// preference where a learner might think the app has gone silent for good.
+    private var audioHintKey: LocalizedStringKey {
+        switch audioPreferenceBinding.wrappedValue {
+        case .off: return "settings.audio.hint.off"
+        case .recordings: return "settings.audio.hint.recordings"
+        case .tts: return "settings.audio.hint.tts"
         }
     }
 

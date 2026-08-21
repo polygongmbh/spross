@@ -278,7 +278,17 @@ private fun ReadAloudSetting(model: AppModel) {
                 }
             }
         }
-        SettingHint(chrome.audioToggleHint)
+        // why: the hint names the CHOSEN behavior, not the picker as a whole. The
+        // tap-to-replay gesture is disclosed in the No audio line alone — the only
+        // preference where a learner might think the app has gone silent for good.
+        SettingHint(
+            when (preference) {
+                net.spross.app.audio.Pronouncer.AudioPreference.OFF -> chrome.audioHintOff
+                net.spross.app.audio.Pronouncer.AudioPreference.RECORDINGS ->
+                    chrome.audioHintRecordings
+                net.spross.app.audio.Pronouncer.AudioPreference.TTS -> chrome.audioHintTts
+            }
+        )
     }
 }
 
