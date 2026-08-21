@@ -157,7 +157,7 @@ struct SessionView: View, LanguageNaming {
                 ZStack {
                     VocabCardView(
                         emoji: card.emoji,
-                        emojiCue: model.emojiCue(for: card) == .upfront ? .upfront : .onReveal,
+                        emojiCue: model.emojiCue(for: card),
                         prompt: promptSide(card, role: role),
                         answer: answerSide(card, role: role),
                         note: card.target.note ?? card.source.note,

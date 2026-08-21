@@ -1,3 +1,4 @@
+import SprossKern
 import SwiftUI
 
 // MARK: - VocabCardView
@@ -298,7 +299,7 @@ struct ArticleBadge: View {
 #Preview("Recognize · revealed") {
     VocabCardView(
         emoji: "🍳",
-        emojiCue: .onReveal,
+        emojiCue: emojiCue(givesAnswerAway: true),
         prompt: .init(text: "kikaango"),
         answer: .init(text: "Pfanne", article: .init("die", gender: .feminine),
                       plural: "Pl. Pfannen"),

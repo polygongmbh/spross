@@ -58,7 +58,7 @@ struct ListeningView: View {
                           // owes no answer, so nothing is withheld. Picked per phone
                           // it was picked differently, and the picture vanished and
                           // returned on every word.
-                          emojiCue: LISTENING_EMOJI_CUE == .upfront ? .upfront : .onReveal,
+                          emojiCue: LISTENING_EMOJI_CUE,
                           prompt: .init(text: turn.targetForm,
                                         article: article(of: turn),
                                         language: model.targetLanguage),

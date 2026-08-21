@@ -1,3 +1,4 @@
+import SprossKern
 import SwiftUI
 
 // MARK: - DLCardReveal
@@ -64,7 +65,13 @@ struct DLCardEmoji: View {
     /// up showing it: withholding one PAST the reveal would leave the learner
     /// never seeing the thing they were asked about, and that is the card's
     /// rule to keep rather than each caller's to remember (`docs/design.md`).
-    enum Cue { case upfront, onReveal }
+    ///
+    /// It is KERN's enum, not a copy of it. A copy meant every call site
+    /// translated one into the other, which is a mapping two platforms can spell
+    /// differently — and did, until listening made the difference visible. The
+    /// design layer may name it because only the app target compiles this file;
+    /// the watch and the widgets read finished snapshots and never ask.
+    typealias Cue = EmojiCue
 
     let emoji: String
     var size: Size = .compact

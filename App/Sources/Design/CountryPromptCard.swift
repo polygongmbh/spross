@@ -1,3 +1,4 @@
+import SprossKern
 import SwiftUI
 
 /// The atlas question, on the same card face as every other session card: a
@@ -58,7 +59,7 @@ struct CountryPromptCard: View {
         HStack(spacing: DL.Space.m) {
             if let emoji, text != nil {
                 DLCardEmoji(emoji,
-                            cue: emojiIsGiveaway ? .onReveal : .upfront,
+                            cue: emojiCue(givesAnswerAway: emojiIsGiveaway),
                             revealed: revealed != nil)
             }
             VStack(spacing: DL.Space.m) {
