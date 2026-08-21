@@ -14,8 +14,8 @@
   it fills out with new words when what you are learning runs thin. It keeps playing with the
   screen locked, puts the current word on the lock screen, and takes play, pause and skip from
   there or from a headphone button. Words this phone cannot say on both sides stay out of it.
-  Give it a bedtime — 15, 30 or 60 minutes — and it fades out over the last two rather than
-  stopping dead, so falling asleep to it is the point rather than an accident.
+  Give it a bedtime — 15, 30 or 60 minutes — and it dims steadily across the whole run rather
+  than dropping away at the end, so falling asleep to it is the point rather than an accident.
 
 - **The voice says the article with the word.** Where a word is read aloud by the device's
   voice in the language you are learning, it now says "das Brot" rather than "Brot" — the
