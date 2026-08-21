@@ -180,10 +180,12 @@ fun VocabCard(
                 horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
             ) {
                 if (hasEmoji) EmojiSlot(emoji.orEmpty(), emojiShown, slot, glyph)
+                // why: nothing mirrors the picture on the trailing edge. A spacer there
+                // keeps the words centered in the CARD rather than in what is left of it,
+                // and it costs them twice the picture's width on the axis a phone has
+                // least of — which is the width that breaks a single headword into a
+                // hyphen. Slightly right of center beats hyphenated.
                 CardWords(Modifier.weight(1f), DlSpace.xs, content)
-                // The slot is mirrored on the trailing edge so the words stay centered in
-                // the card rather than pushed off by the picture.
-                if (hasEmoji) Spacer(Modifier.width(slot))
             }
 
             CardArrangement.Above -> Column(
