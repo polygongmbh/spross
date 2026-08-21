@@ -113,6 +113,16 @@ enum CardDisplay {
         return DLArticle(article, gender: DLGender(articleGender(article: article)))
     }
 
+    /// The article the VOICE says in front of `shown`, or nil where there is
+    /// none to say — the audio twin of `articleLabel`, and the same ruling
+    /// (`shownArticle`): a rotated synonym may carry another gender, so it is
+    /// spoken bare rather than wrong. What the string becomes is kern's
+    /// `spokenTargetForm`, applied on the synthesized branch alone.
+    static func spokenArticle(of realization: Realization, shown: String) -> String? {
+        shownArticle(article: article(of: realization), shownForm: shown,
+                     targetText: realization.text)
+    }
+
     /// "der Kühlschrank" — citation form with its article where present.
     static func citation(of realization: Realization) -> String {
         guard let article = article(of: realization) else { return realization.text }

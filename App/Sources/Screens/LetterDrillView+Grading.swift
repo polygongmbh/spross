@@ -179,6 +179,7 @@ extension LetterDrillView {
         let name = switch trigger {
         case .auto: "auto"
         case .essential: "essential"
+        case .listening: "listening"
         case .tap: "tap"
         }
         // why: the analysis index rides along — the letters are the recordings

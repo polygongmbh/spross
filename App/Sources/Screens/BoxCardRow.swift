@@ -32,7 +32,10 @@ struct BoxCardRow: View {
 
     @ViewBuilder
     private var row: some View {
-        let pronounce = model.pronounceAction(for: card.target.text, lang: card.target.lang)
+        let pronounce = model.pronounceAction(
+            for: card.target.text, lang: card.target.lang,
+            article: CardDisplay.spokenArticle(of: card.target, shown: card.target.text)
+        )
 
         HStack(spacing: DL.Space.m) {
             Text(card.displayEmoji)

@@ -97,13 +97,21 @@ extension AppModel {
     /// gesture (and no icon) that does nothing. The shared entry point for
     /// every audio affordance outside a review card — SessionView keeps its
     /// own target-language shorthand, the catalog list calls this directly.
-    func pronounceAction(for form: String, lang: String) -> (() -> Void)? {
+    ///
+    /// `article` is the TARGET-side article the live voice says in front of the
+    /// word (`CardDisplay.spokenArticle`); nil wherever the form is not a card's
+    /// canonical target — a drill reading, an alphabet example, a country name.
+    func pronounceAction(for form: String, lang: String,
+                         article: String? = nil) -> (() -> Void)? {
         guard let pronunciation = catalog?.pronunciation(lang: lang, visibleForm: form) else { return nil }
         let recordingURL = audioURL(pronunciation.recordingPath)
         guard Pronouncer.shared.canPronounce(pronunciation, recordingURL: recordingURL) else { return nil }
         // why: a tap is a request, not autoplay — it speaks even while reading
         // aloud is switched off.
-        return { Pronouncer.shared.pronounce(pronunciation, recordingURL: recordingURL, trigger: .tap) }
+        return {
+            Pronouncer.shared.pronounce(pronunciation, recordingURL: recordingURL,
+                                        trigger: .tap, article: article)
+        }
     }
 
     /// Whether `form` in `lang` is the word sounding right now — drives an
@@ -122,11 +130,11 @@ extension AppModel {
     /// answer ("dreihundertsiebenundvierzig") exactly as readily as a
     /// catalogued word, and stays silent only where the language has no voice
     /// and no recording either.
-    func pronounceAloud(_ form: String, lang: String) {
+    func pronounceAloud(_ form: String, lang: String, article: String? = nil) {
         guard let pronunciation = catalog?.pronunciation(lang: lang, visibleForm: form) else { return }
         Pronouncer.shared.pronounce(pronunciation,
                                     recordingURL: audioURL(pronunciation.recordingPath),
-                                    trigger: .auto)
+                                    trigger: .auto, article: article)
     }
 
     /// What a letter-drill question SAYS, and out of which recording — the

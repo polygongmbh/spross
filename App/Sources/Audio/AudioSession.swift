@@ -36,11 +36,47 @@ enum AudioSession {
     /// says.
     static func useExplicit() { use(.playback) }
 
+    /// Whether a listening run currently owns the session.
+    private static var listening = false
+
+    /// The listening run, which is the one surface that takes the audio OVER
+    /// instead of mixing into it: `.playback` in `.spokenAudio` mode and
+    /// deliberately WITHOUT `.mixWithOthers`, so whatever podcast was playing
+    /// stops rather than plays under the words. A mode meant to be listened to
+    /// that lands on top of something else is a mode nobody hears — it
+    /// interrupts as a player, not as a notification (`docs/read-aloud.md`).
+    ///
+    /// Activated by hand, unlike every other sound in the app: a run keeps
+    /// playing with the screen locked, and background audio needs a session
+    /// that is actually active rather than one the engine activates per word.
+    static func useListening() {
+        guard !listening else { return }
+        listening = true
+        let session = AVAudioSession.sharedInstance()
+        try? session.setCategory(.playback, mode: .spokenAudio, options: [])
+        try? session.setActive(true)
+    }
+
+    /// The run is over: hand the audio back. `notifyOthersOnDeactivation` is
+    /// what makes the interrupted podcast resume, and the standing category is
+    /// put back so the next tap or chime finds the session it expects.
+    static func endListening() {
+        guard listening else { return }
+        listening = false
+        let session = AVAudioSession.sharedInstance()
+        try? session.setActive(false, options: .notifyOthersOnDeactivation)
+        try? session.setCategory(standing,
+                                 options: standing == .playback ? [.mixWithOthers] : [])
+    }
+
     /// why: `.mixWithOthers` under `.playback` — that category interrupts other
     /// audio by default, and an app that stops someone's music to say one word
     /// is not what `.ambient` promised. The option is rejected on `.ambient`,
     /// which mixes inherently, so it is passed only where it is legal.
     private static func use(_ category: AVAudioSession.Category) {
+        // why: a run owns the session for its whole length — a stray fire from
+        // under the cover must not hand the audio back mid-turn.
+        guard !listening else { return }
         let session = AVAudioSession.sharedInstance()
         // why: a redundant set still posts a route change; a run of autoplays
         // must not pay one per word.

@@ -59,6 +59,9 @@ final class PronunciationPlayer {
         let url: URL
         let gainDb: Double
         let leadMs: Int64
+        /// The listening run's bedtime ramp, applied OVER the analysis index —
+        /// see `play(url:gainDb:leadMs:fadeDb:onFinish:)`.
+        let fadeDb: Double
         let onFinish: (@MainActor () -> Void)?
     }
 
@@ -83,10 +86,15 @@ final class PronunciationPlayer {
     /// Plays `url` under its analysis index, replacing whatever was sounding.
     /// A file that will not open simply stays silent — the word is never worth
     /// an error surface.
-    func play(url: URL, gainDb: Double = 0, leadMs: Int64 = 0,
+    ///
+    /// `fadeDb` is the one level that is NOT a measurement: kern's bedtime ramp
+    /// (`listeningGainDb`), added after the index has been clamped, because the
+    /// clamp bounds how far a MEASUREMENT may be trusted and not a level kern
+    /// chose. 0 everywhere outside a listening run.
+    func play(url: URL, gainDb: Double = 0, leadMs: Int64 = 0, fadeDb: Double = 0,
               onFinish: (@MainActor () -> Void)? = nil) {
         rearms = 0
-        play(Request(url: url, gainDb: gainDb, leadMs: leadMs, onFinish: onFinish))
+        play(Request(url: url, gainDb: gainDb, leadMs: leadMs, fadeDb: fadeDb, onFinish: onFinish))
     }
 
     private func play(_ request: Request) {
@@ -101,7 +109,7 @@ final class PronunciationPlayer {
         let headMs = Playback.shared.headMs(leadMs: request.leadMs,
                                             durationMs: Int64(Double(file.length) / rate * 1000))
         let head = AVAudioFramePosition(Double(headMs) / 1000 * rate)
-        equalizer.globalGain = Float(Playback.shared.gainDb(measured: request.gainDb))
+        equalizer.globalGain = Float(Playback.shared.gainDb(measured: request.gainDb) + request.fadeDb)
         self.onFinish = onFinish
         let current = playback
         node.scheduleSegment(file, startingFrame: head,

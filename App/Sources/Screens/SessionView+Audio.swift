@@ -95,7 +95,7 @@ extension SessionView {
         guard let pronunciation = pronunciation(of: form) else { return }
         Pronouncer.shared.pronounce(pronunciation,
                                     recordingURL: model.audioURL(pronunciation.recordingPath),
-                                    trigger: trigger)
+                                    trigger: trigger, article: spokenArticle(of: form))
     }
 
     /// Tap-to-replay for a form — nil where the device can neither play nor
@@ -103,7 +103,7 @@ extension SessionView {
     /// nothing. The hit area on the card stands either way.
     func pronounceAction(for form: String) -> (() -> Void)? {
         guard let target = model.targetLanguage else { return nil }
-        return model.pronounceAction(for: form, lang: target)
+        return model.pronounceAction(for: form, lang: target, article: spokenArticle(of: form))
     }
 
     /// Whether `form` is the word sounding right now — drives the small
@@ -111,6 +111,15 @@ extension SessionView {
     func isPronouncing(_ form: String) -> Bool {
         guard let target = model.targetLanguage else { return false }
         return model.isPronouncing(form, lang: target)
+    }
+
+    /// The article the voice says in front of `form` — the current card's, and
+    /// only where `form` IS its canonical target: a rotated synonym, a typo
+    /// correction and the source side all come back nil, which is exactly the
+    /// ruling `CardDisplay.spokenArticle` makes.
+    private func spokenArticle(of form: String) -> String? {
+        guard let card = model.currentCard else { return nil }
+        return CardDisplay.spokenArticle(of: card.target, shown: form)
     }
 
     private func pronunciation(of form: String) -> Pronunciation? {

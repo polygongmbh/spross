@@ -50,11 +50,17 @@ final class Speaker: NSObject {
 
     /// Speaks `text` in `language`; a language with no installed voice is a
     /// silent no-op rather than a wrong-voice reading.
-    func speak(_ text: String, language: String, onFinish: (@MainActor () -> Void)? = nil) {
+    ///
+    /// `volume` is the synthesized twin of a recording's gain — 1 is the
+    /// system's own level, and only the listening run's bedtime fade ever asks
+    /// for less (`listeningGainDb`, turned into a linear factor by its caller).
+    func speak(_ text: String, language: String, volume: Float = 1,
+               onFinish: (@MainActor () -> Void)? = nil) {
         guard let voice = voice(for: language) else { return }
         stop()
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = voice
+        utterance.volume = volume
         self.onFinish = onFinish
         synthesizer.speak(utterance)
     }

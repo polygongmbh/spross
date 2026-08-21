@@ -23,6 +23,14 @@ final class Pronouncer {
         /// opening a screen whose only content is a sound IS the request, so
         /// neither mute reaches it. Only VoiceOver still holds it back.
         case essential
+        /// A listening run, whose whole content is sound. Same request as
+        /// `.essential` and one step further: it does not touch the session
+        /// either, because the run took the audio OVER for its whole length
+        /// (`AudioSession.useListening`) and a per-word category would hand it
+        /// back mid-turn. VoiceOver does not hold it back — there is no screen
+        /// here to be talked over, and a playlist that fell silent under a
+        /// screen reader would be a mode its users could not have at all.
+        case listening
     }
 
     /// One device-scoped setting (never per target language, never in the box —
@@ -90,11 +98,24 @@ final class Pronouncer {
     }
 
     /// Says the form: the recording when one matched, else the live voice.
-    func pronounce(_ pronunciation: Pronunciation, recordingURL: URL?, trigger: Trigger) {
+    ///
+    /// `article` is the TARGET-side article the synthesizer says in front of the
+    /// word, already vetted by `shownArticle` — a rotated synonym arrives here
+    /// as nil. It reaches the live voice ONLY (`spokenTargetForm`): a bundled
+    /// recording says what was recorded, and re-cutting one is an edit to bytes
+    /// the app never edits (`docs/read-aloud.md`).
+    ///
+    /// `fadeDb` is the listening run's bedtime ramp and 0 everywhere else;
+    /// `onFinish` is what lets a run arm its next beat off this one.
+    func pronounce(_ pronunciation: Pronunciation, recordingURL: URL?, trigger: Trigger,
+                   article: String? = nil, fadeDb: Double = 0,
+                   onFinish: (@MainActor () -> Void)? = nil) {
         switch trigger {
         case .auto:
             if muted || UIAccessibility.isVoiceOverRunning { return }
             AudioSession.useStanding()
+        case .listening:
+            break
         case .essential:
             // why: the sound IS the question — either mute would leave a card
             // with nothing on it, and the replay tap breaks through the phone's
@@ -116,17 +137,41 @@ final class Pronouncer {
             // of bytes that stay the untouched transcode — playback is the one
             // place they are ever applied, and never the file.
             playingKey = key
-            player.play(url: recordingURL, gainDb: pronunciation.gain, leadMs: pronunciation.leadMs) {
-                [weak self] in self?.clearPlaying(key)
+            player.play(url: recordingURL, gainDb: pronunciation.gain,
+                        leadMs: pronunciation.leadMs, fadeDb: fadeDb) { [weak self] in
+                self?.clearPlaying(key)
+                onFinish?()
             }
             return
         }
         // Silent no-op when no voice exists for the language.
         guard canSpeak(language: pronunciation.lang) else { return }
         playingKey = key
-        speaker.speak(pronunciation.utterance, language: pronunciation.lang) {
-            [weak self] in self?.clearPlaying(key)
+        speaker.speak(spoken(pronunciation, article: article), language: pronunciation.lang,
+                      volume: Self.volume(fadeDb: fadeDb)) { [weak self] in
+            self?.clearPlaying(key)
+            onFinish?()
         }
+    }
+
+    /// What the live voice is handed: the form with its article where the card
+    /// has one to say, kern's string in both cases (`spokenTargetForm` folds in
+    /// `utterance`'s stem trim, so a prefixed form can never skip it).
+    private func spoken(_ pronunciation: Pronunciation, article: String?) -> String {
+        guard let article else { return pronunciation.utterance }
+        // why: form for both — the caller already ran `shownArticle` against the
+        // canonical target text, and passing the form as its own canonical says
+        // "this one is spoken with the article" without re-deciding it here.
+        return spokenTargetForm(article: article,
+                                shownForm: pronunciation.form,
+                                targetText: pronunciation.form)
+    }
+
+    /// Decibels as the linear factor `AVSpeechUtterance.volume` wants — the
+    /// synthesized twin of the equalizer's gain, so one fade reaches both
+    /// branches at the same level.
+    private static func volume(fadeDb: Double) -> Float {
+        fadeDb >= 0 ? 1 : Float(pow(10, fadeDb / 20))
     }
 
     func stop() {
