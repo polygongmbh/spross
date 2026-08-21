@@ -19,7 +19,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
@@ -99,8 +98,10 @@ private fun ChoiceTile(
             disabledContentColor = MaterialTheme.colorScheme.onSurface,
         ),
     ) {
-        Text(glyph, fontSize = 32.sp, fontWeight = FontWeight.Bold)
-        mark?.let { Text("  $it", fontSize = 20.sp) }
+        // The ramp's glyph slot rather than a ramp entry: a letterform is the thing being
+        // READ here, so it is set at picture size the way an emoji face is.
+        Text(glyph, style = MaterialTheme.typography.displaySmall, fontWeight = FontWeight.Bold)
+        mark?.let { Text("  $it", style = MaterialTheme.typography.titleLarge) }
     }
 }
 
