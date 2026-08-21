@@ -337,6 +337,16 @@ One line per item, with a file or context pointer, filed under the section it be
   (`BoxCardRow.swift:43` vs `android/.../ui/BoxRows.kt`) — same palette, one design
   call on where the tint belongs; unify once decided.
 
+- The card headword HYPHENATES a single word rather than shrinking it, on iOS at full
+  width: listening drew "mchele" as "mc-hele" and "msaada" as "msaa-da" on an iPhone 17 Pro,
+  which is the picture slot leaving the text a narrow column and `sideBlock`'s
+  `.minimumScaleFactor(0.85)` floor being too high to fit one line
+  (`App/Sources/Design/VocabCardView.swift` `sideBlock`). Wrapping is right for a phrase and
+  wrong for a word — a word can only break by hyphenating, and a broken word is not the word.
+  The fix is a one-line/lower-floor branch for a headword with no space in it, but it is a
+  change to the shared card face that every surface wears, so it wants its own change and a
+  run of the card-layout parity gate. Same class as, and probably the same cause as, the
+  narrow-width note below.
 - The session headword breaks mid-word at narrow widths ("die Sprach/e" at 320dp):
   the mirrored 52dp emoji slot plus the speaker glyph leave ~98dp for a 28sp headline
   (`android/.../ui/CardFace.kt`, `ProduceCard.kt`). Every fix is a design call —
