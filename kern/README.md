@@ -247,6 +247,7 @@ One schedule per card ⇒ one review touches one card:
 | `RECENCY_WINDOW` (words a listening run holds out of its next draw — §6) | 8 |
 | `RECALL_GAP_HELD_MS` / `RECALL_GAP_FRESH_MS` (target → meaning, held / unseen — §6) | 2500 / 900 ms |
 | `ECHO_GAP_MS` / `TURN_GAP_MS` (meaning → echo, echo → next turn — §6) | 1200 / 2500 ms |
+| `LISTENING_FADE_MS` / `LISTENING_FADE_FLOOR_DB` (the sleep timer's fade — §6) | 120000 ms / −40 dB |
 
 Every user-facing count (due ring, "x neu", active, widget) and `DayStats` field is in
 cards; `DayStats.reviews` = answer events.
@@ -655,6 +656,15 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   (`RECALL_GAP_HELD_MS`/`RECALL_GAP_FRESH_MS`, `ECHO_GAP_MS`, `TURN_GAP_MS`), so neither
   platform decides any of it — the recall gap is the one beat that varies, long for a word the
   learner has answered before and short for one with nothing yet to recall.
+  A run can be given a **bedtime**: `LISTENING_TIMER_CHOICES_MIN` (0 = off, the default) is
+  the list one cycling chip on each phone walks, and `listeningGainDb(msRemaining)` fades the
+  last `LISTENING_FADE_MS` down to `LISTENING_FADE_FLOOR_DB` rather than cutting — a hard stop
+  is a change loud enough to wake the listener, which is the opposite of what a bedtime is for.
+  The gain is applied ON TOP of a recording's `Playback.gainDb`, and clamped to its own floor
+  rather than `GAIN_LIMIT_DB`, which bounds how far a MEASUREMENT may be trusted and not a
+  level kern chose. `listeningExpired(msRemaining)` is where the run is over.
+  The remaining milliseconds are the APP's to track and hand in, like every other clock read
+  (§7) — the run state holds no deadline, so kern still reads no clock.
 - **Exposure**: one entry per card by construction; display surfaces always
   render the TARGET realization.
 - **AnswerNormalizer contract** (produce only — recognition is button self-grade;

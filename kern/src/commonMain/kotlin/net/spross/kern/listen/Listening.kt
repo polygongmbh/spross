@@ -28,6 +28,59 @@ const val ECHO_GAP_MS: Long = 1_200
 const val TURN_GAP_MS: Long = 2_500
 
 /**
+ * The sleep-timer lengths a run may be given, in minutes; 0 is OFF and stays the default,
+ * where the playlist laps for as long as it is left alone.
+ *
+ * One cycling chip on each phone walks this list. Kern owns it so the two phones offer the
+ * same bedtimes, and so the shape stays a short list of round numbers rather than a picker:
+ * the ask is "let it run while I fall asleep", which nobody answers to the minute.
+ */
+val LISTENING_TIMER_CHOICES_MIN: List<Int> = listOf(0, 15, 30, 60)
+
+/**
+ * How long before the timer runs out the run starts fading.
+ *
+ * It does not stop dead: a hard cut is a change loud enough to wake someone, which is the
+ * exact opposite of what a bedtime is for. Two minutes is long enough that the ramp is below
+ * the threshold of noticing and short enough that the last words are still worth hearing.
+ */
+const val LISTENING_FADE_MS: Long = 120_000
+
+/**
+ * Where the fade ends. Inaudible in a quiet room, but still a level rather than a cliff — the
+ * silence at the bottom of a ramp has to arrive as an absence, not as an event.
+ */
+const val LISTENING_FADE_FLOOR_DB: Double = -40.0
+
+/**
+ * The decibels a run is played at with [msRemaining] left on its timer: 0.0 until the fade
+ * window opens, then linear down to [LISTENING_FADE_FLOOR_DB] as it reaches zero.
+ *
+ * Applied ON TOP of a recording's own `Playback.gainDb`, never instead of it — one is a
+ * correction of the shipped bytes and this is a deliberate ramp over whatever they play at,
+ * and the same number attenuates a synthesized utterance. Both platforms read it here for the
+ * same reason they read the beats here: a fade that ran two ramps would be two different
+ * bedtimes.
+ *
+ * Clamped like every other figure a player is handed, but to its OWN floor rather than
+ * `Playback.GAIN_LIMIT_DB`: that limit is how far a MEASUREMENT may be trusted, and this is
+ * not a measurement — it is a level kern chose, so it is held to the level kern chose.
+ * A run with no timer never asks: the app hands in the remaining milliseconds it is tracking,
+ * exactly as it hands kern the clock everywhere else.
+ */
+fun listeningGainDb(msRemaining: Long): Double {
+    if (msRemaining >= LISTENING_FADE_MS) return 0.0
+    val elapsed = 1.0 - maxOf(0L, msRemaining).toDouble() / LISTENING_FADE_MS
+    return (LISTENING_FADE_FLOOR_DB * elapsed).coerceIn(LISTENING_FADE_FLOOR_DB, 0.0)
+}
+
+/**
+ * Whether the bedtime has arrived. Trivial, and here rather than in two apps because
+ * `<= 0` and `< 0` are the same rule until one platform picks the other one.
+ */
+fun listeningExpired(msRemaining: Long): Boolean = msRemaining <= 0
+
+/**
  * Below this many scheduled words the pool is topped up with unseen ones (`ListeningPool`).
  *
  * It sits above [RECENCY_WINDOW] on purpose: a pool the size of the window has nothing left
