@@ -70,6 +70,9 @@ Strict dependency direction: App → SprossKern, never the reverse.
 - Picker rows carry the flag, the language's own name, and the English exonym
   ("🇺🇦 Українська · Ukrainian"): a flag beside an unreadable script is easy to
   mistake for a neighboring language.
+  The swap row counts the SWAPPED pair — that is the pair the tap would join, and it
+  differs from the count on screen wherever one side realizes a feminine the other knows
+  only through its base.
 - UI chrome renders in the KNOWN language when chrome exists (de/en today), otherwise en.
   Onboarding follows the source being PICKED — device language first, re-rendering on
   each tap — so the greeting is already in the user's language.
