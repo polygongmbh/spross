@@ -135,6 +135,7 @@ struct TrainerHubView: View, LanguageNaming {
             guard let language = drillLanguage else { return }
             destination = .numbers(language: language)
         } label: {
+            // layer-ok: the chip IS the numbers one — reading its own emoji, not picking a kind
             chipLabel(emoji: TrainerKind.numbers.trainerEmoji, title: Text("trainer.numbers"))
         }
         .buttonStyle(TrainerChipButtonStyle())

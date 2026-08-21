@@ -69,7 +69,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                 horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
             ) {
                 // This screen is only reached by finishing a round, so today has reviews
-                // and the run is safe until tomorrow — no other grade can stand here.
+                // layer-ok: the run is safe until tomorrow — no other grade can stand here
                 StreakFlame(StreakHealth.Earned, MaterialTheme.typography.titleMedium)
                 Text("${ui.streakDays} $unit", style = MaterialTheme.typography.titleMedium)
             }

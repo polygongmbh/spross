@@ -110,6 +110,7 @@ data class SessionUi(
     val role: PresentationRole?,
     val promptForm: String?,       // rotated recognition prompt
     /** Whether a produce turn asks by meaning or by ear; [ProducePrompt.Source] elsewhere. */
+    // layer-ok: the drained branch has no produce turn — every real one carries kern's cue
     val producePrompt: ProducePrompt = ProducePrompt.Source,
     /** `reviewCount == 0` — the word is being taught, so a miss is still written out. */
     val firstExposure: Boolean = false,

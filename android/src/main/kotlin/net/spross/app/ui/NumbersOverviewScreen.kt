@@ -61,6 +61,7 @@ fun NumbersOverviewScreen(model: AppModel) {
 
     // Names rather than the enums, so a rotation keeps the picks: only primitives survive
     // a saved instance state.
+    // layer-ok: the picker's opening preference, which `normalized` below still collapses
     var pickedNames by rememberSaveable { mutableStateOf(listOf(DrillVariant.Numbers.name)) }
     var modifierNames by rememberSaveable { mutableStateOf(emptyList<String>()) }
     val picked = DrillSelection.normalized(
