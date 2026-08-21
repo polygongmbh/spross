@@ -602,7 +602,12 @@ one, with `{language}`, `{language-in}`, `{language-speak}` or `{language-learn}
 ```
 Both sides of a pair resolve against **their own** table's entry for the **target** language,
 so a de→sw learner reads "Ich lerne Suaheli." and answers "Ninajifunza Kiswahili."
-The marker's presence IS the declaration — no concept field says a text is language-dependent.
+The marker's presence IS the declaration — no concept field says a text is language-dependent:
+a mechanism serving a small corner of a vast catalog stays that low-profile.
+Prefer content shape — a marker, a file's presence, a key that exists — over a schema field,
+an enum or a registry, and propose the field only where two behaviors genuinely diverge.
+(A `names: source|target` field with its enum was planned here and cut for that reason,
+which simplified the semantics to target-only in the same stroke.)
 
 Pick the marker whose form keeps the sentence grammatical for **every** named language.
 Where a language needs a preposition no form carries (Spanish "un poco **de** alemán"),
