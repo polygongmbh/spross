@@ -52,7 +52,7 @@ enum class AnswerStatus {
 }
 
 /** Result of [BoxEngine.answer]: the (possibly unchanged) state plus what happened. */
-data class AnswerOutcome(
+data class AnswerResult(
     val state: BoxState,
     val status: AnswerStatus,
 )

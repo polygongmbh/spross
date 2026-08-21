@@ -40,15 +40,15 @@ internal object Answering {
         rating: Rating,
         nowEpochMillis: Long,
         tzId: String,
-    ): AnswerOutcome {
-        val card = state.cards[cardId] ?: return AnswerOutcome(state, AnswerStatus.StaleCard)
+    ): AnswerResult {
+        val card = state.cards[cardId] ?: return AnswerResult(state, AnswerStatus.StaleCard)
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         val scheduler = FsrsScheduler(state.config.fsrsParameters())
         val existing = state.scheduling[cardId]
         return if (existing?.memory != null) {
             val wasConsolidated = Statistics.isConsolidated(state, existing)
             val next = reviewed(existing, rating, scheduler, now)
-            AnswerOutcome(
+            AnswerResult(
                 state.copy(
                     scheduling = state.scheduling + (cardId to next),
                     consolidatedCrossed = state.consolidatedCrossed.bookIf(
@@ -76,9 +76,9 @@ internal object Answering {
         now: Instant,
         nowEpochMillis: Long,
         tzId: String,
-    ): AnswerOutcome {
+    ): AnswerResult {
         if (!Growth.isIntroducible(state, card)) {
-            return AnswerOutcome(state, AnswerStatus.DroppedIneligible)
+            return AnswerResult(state, AnswerStatus.DroppedIneligible)
         }
         val outcome = scheduler.review(SchedulerState(), 0.0, rating)
         val base = existing ?: CardScheduling(cardId = card.id, addedAt = now)
@@ -92,7 +92,7 @@ internal object Answering {
             consolidatedCrossed = state.consolidatedCrossed.bookIf(Statistics.isConsolidated(state, sched), day),
             enqueued = state.enqueued.filter { it != card.id },
         )
-        return AnswerOutcome(next, AnswerStatus.Applied)
+        return AnswerResult(next, AnswerStatus.Applied)
     }
 
     /** One more on [day] when [happened], else the map untouched. */

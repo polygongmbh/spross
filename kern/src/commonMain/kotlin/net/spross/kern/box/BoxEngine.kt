@@ -130,7 +130,7 @@ object BoxEngine {
         rating: Rating,
         nowEpochMillis: Long,
         tzId: String,
-    ): AnswerOutcome = Answering.answer(state, cardId, rating, nowEpochMillis, tzId)
+    ): AnswerResult = Answering.answer(state, cardId, rating, nowEpochMillis, tzId)
 
     /**
      * Fold the session into `dailyStats` and prune `newIntroduced` to the trailing
