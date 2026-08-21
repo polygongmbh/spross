@@ -124,10 +124,13 @@ never the shape of the app.
   The recall clock runs from the prompt appearing to "Aufdecken" — the time spent choosing
   a button afterwards is thumb travel, not memory.
   The reveal carries the source meaning plus the full synonym family.
-- A picture on a card — a word's emoji, a country's flag — sits in a fixed slot
-  **beside the words**, never above them, and that holds for every card face the app has:
-  vertical space is the scarce axis — card, input, button and keyboard share one screen —
-  and the slot is held for the card's whole life, so a reveal moves nothing.
+- A picture on a card — a word's emoji, a country's flag — sits in a slot the CARD places,
+  from what the surface is: beside the words where the screen is shared with an input, a
+  button and a keyboard, above them where the card owns the screen and horizontal room is
+  what the words are short of. Which is which is `VocabCardView`'s own parameter and not a
+  caller's choice, because the one time it was a size flag a run picked the wrong one and
+  drew a picture wide enough to hyphenate a six-letter word.
+  Either way the slot is held for the card's whole life, so a reveal moves nothing.
   A picture that would ANSWER the question is **withheld as a hint, never dropped**: it is
   held back while the answer is owed and appears at the reveal, so the learner always ends
   up seeing what they were asked about. The slot itself keeps this (`DLCardEmoji.Cue`) —

@@ -337,16 +337,6 @@ One line per item, with a file or context pointer, filed under the section it be
   (`BoxCardRow.swift:43` vs `android/.../ui/BoxRows.kt`) — same palette, one design
   call on where the tint belongs; unify once decided.
 
-- The card headword HYPHENATES a single word rather than shrinking it, on iOS at full
-  width: listening drew "mchele" as "mc-hele" and "msaada" as "msaa-da" on an iPhone 17 Pro,
-  which is the picture slot leaving the text a narrow column and `sideBlock`'s
-  `.minimumScaleFactor(0.85)` floor being too high to fit one line
-  (`App/Sources/Design/VocabCardView.swift` `sideBlock`). Wrapping is right for a phrase and
-  wrong for a word — a word can only break by hyphenating, and a broken word is not the word.
-  The fix is a one-line/lower-floor branch for a headword with no space in it, but it is a
-  change to the shared card face that every surface wears, so it wants its own change and a
-  run of the card-layout parity gate. Same class as, and probably the same cause as, the
-  narrow-width note below.
 - The session headword breaks mid-word at narrow widths ("die Sprach/e" at 320dp):
   the mirrored 52dp emoji slot plus the speaker glyph leave ~98dp for a 28sp headline
   (`android/.../ui/CardFace.kt`, `ProduceCard.kt`). Every fix is a design call —
@@ -445,7 +435,16 @@ One line per item, with a file or context pointer, filed under the section it be
   (`App/Sources/KernBridge.swift`), so a screenshot or verification run cannot pin which task
   it will be asked, and reaching a given verdict means relaunching until the draw matches.
   kern already takes an injected `Random` per run, so `-uitest-seed N` is a small hook.
-- With `idb-repl` on the machine (Swift compiled into the live app process), the `-uitest-*`
-  input/submit hooks may no longer earn the ~22 files of `#if DEBUG` they cost
-  (`App/Sources/Model/UITestAnswer.swift` and the per-screen `uitestStart()`); the navigation
-  half still saves a lot of tapping. Decide the split, then update `README.md` § run-sim.
+  Narrower than it was: `idb ui text` types AFTER the prompt has been read back out of
+  `idb ui describe-all`, so AIMING an answer needs no seed. What is still unreachable is
+  pinning WHICH task gets drawn — a screenshot of one particular verdict or rung.
+- `-uitest-input`/`-uitest-submit` are now the only `-uitest-*` pair idb replaces outright
+  (`App/Sources/Model/UITestAnswer.swift`, read by three screens): `ui text` types the answer
+  the prompt actually asked for, which the prefill cannot. Everything else either SEEDS state
+  no tapping reaches (a language pair, a preset streak or rung, a trainer variant, the watch
+  fixture) or saves enough taps to keep paying for itself. Decide that one pair, then update
+  `README.md` § run-sim.
+- Read-aloud is stored differently on the two phones: iOS keeps the three-state `readAloud`
+  (`App/Sources/Audio/AudioSession.swift`), Android is still on the boolean iOS calls its
+  LEGACY key, `pronunciationMuted` (`android/.../audio/Pronouncer.kt`). So Android has no
+  `followsPhone` middle state, and the two cannot be reasoned about as one setting.
