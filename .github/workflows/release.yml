@@ -39,7 +39,7 @@ jobs:
           SPROSS_KEYSTORE: ${{ runner.temp }}/release.jks
           SPROSS_KEYSTORE_PASSWORD: ${{ secrets.SPROSS_KEYSTORE_PASSWORD }}
           SPROSS_KEY_ALIAS: ${{ secrets.SPROSS_KEY_ALIAS }}
-        run: ./gradlew --console=plain -q :kern:jvmTest :android:testDebugUnitTest :android:assembleRelease
+        run: ./gradlew --console=plain -q :kern:jvmTest -Psweeps :android:testDebugUnitTest :android:assembleRelease
 
       - name: Name it after the release
         run: |
