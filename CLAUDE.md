@@ -43,6 +43,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
 - `CHANGELOG.md` is curated: user-observable deltas only, grouped by version, written in ENGLISH.
   New entries always land under the top `## Unreleased` heading. At bump time, rename `## Unreleased` to `## <version> — <date>` and open a fresh empty `## Unreleased` above it.
+  Its head carries every heading you need — read that, never the whole file.
 - Other parties may change files or commit while you work, do not mind unless their edits conflict with yours.
   Stage only your changes for commits ideally using pathspecs and check before touching history.
   A file you share with in-flight work gets only your hunks staged, never theirs carried along.
@@ -62,8 +63,11 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 
 - Offload open-ended research and large implementations to subagents rather than crowding one session;
   hand each the full spec + the relevant `docs/` pointer.
-- For "where does X live" questions, use a code-graph tool or the module docs — never grow this file.
+- Search with `rg`. Bare `grep` is ugrep here, and given a subdirectory it drops the repo's
+  `.gitignore` and walks `kern/build/` — 11 MB where `rg` answers in 448 bytes.
+- For "where does X live" questions, read the module docs — never grow this file.
 - Large mechanical refactors go through a codemod, not hand edits — write it, run it, review the diff.
+  `ast-grep -l kotlin|swift -p '<pattern>'` matches the tree rather than the line.
 
 ## Invariants
 
