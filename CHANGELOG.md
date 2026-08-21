@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **A typo no longer costs you a point in a drill.** The counter beside the progress bar now
+  counts only the answers a drill judged either way: a slip, a revealed hint or a synonym drops
+  out of both halves of it, the way it has always left the rung where it was. The bar still
+  shows the answer in amber, so nothing is hidden — it simply stops being scored against you.
+
 - **Your words, read to you — hands free.** A new listening card on the day's screen plays
   your vocabulary as a playlist: the word in the language you are learning, its meaning, then
   the word again. It leans on what is not sticking rather than on what is due, so the ones you
