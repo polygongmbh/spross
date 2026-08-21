@@ -324,6 +324,7 @@ class Catalog internal constructor(
             lang = lang,
             recordingPath = recording?.let { manifest.path(it) },
             gain = recording?.gain ?: 0.0,
+            gainPhone = recording?.gainPhone,
             leadMs = recording?.leadMs ?: 0,
         )
     }
@@ -335,7 +336,7 @@ class Catalog internal constructor(
     fun letterRecording(lang: Language, glyph: String): LetterRecording? {
         val manifest = audio[lang] ?: return null
         val recording = manifest.letterRecording(glyph) ?: return null
-        return LetterRecording(manifest.path(recording), recording.gain, recording.leadMs)
+        return LetterRecording(manifest.path(recording), recording.gain, recording.gainPhone, recording.leadMs)
     }
 
     /** Just the path, for the callers that only ask whether a letter CAN be played. */

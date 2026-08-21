@@ -12,8 +12,8 @@ never `catalog/audio/`.
 
 Three stages. Four GATES decide which pack rows may ship and who is credited, each
 decision printed (`audio_gates.py`). Survivors are COPIED byte-for-byte, and the copy
-that landed is then ANALYZED (`audio_measure.py`) into the optional `gain`/`lead`
-playback fields — see [ANALYSIS], which also decides the players' scheme.
+that landed is then ANALYZED (`audio_measure.py`) into the optional `gain`/`gainPhone`/
+`lead` playback fields — see [ANALYSIS], which also decides the players' scheme.
 
 Deterministic: sorted keys, 2-space indent, unchanged packs give byte-identical output.
 """
@@ -43,46 +43,40 @@ FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 # applied by the player. Measurement data carries no license of its own, the credits'
 # "unmodified" claim stays true, and `sha256` keeps meaning exactly what it says.
 #
-# The TARGET is the shipped word packs' own median loudness, so it moves when the
-# population does: -16.7 LUFS over the first 1126 files, re-derived to -18.0 on
-# 2026-08-15 when it/fr/eo landed — 1466 further words, mostly Lingua Libre booth
-# recordings a few dB quieter (medians de -17.3, es -21.3, sw -11.7, uk -16.5,
-# it -21.3, fr -16.8, eo -22.6; uk letters -31.4, a 13.4 dB deficit).
+# TWO PLANES, because a phone's built-in speaker and a pair of headphones do not agree on
+# what a word weighs. R128 counts energy at 150 Hz nearly like energy at 2 kHz; a phone
+# speaker reproduces almost none of the first, so two packs that measure level flat are
+# heard many dB apart on the device — sw, all sharp open vowels, sat ~9 dB above de
+# through `audio_measure.SPEAKER_LENS`. A word lifted for a speaker that needed it is a
+# boomy word on headphones, so no single number suits both; every word therefore carries
+# TWO gains and a player picks by output route:
+#
+#   gain      full-range plane (headphones, Bluetooth, car, USB) — flat LUFS against
+#             `target_lufs`, the word packs' own median (-18.0, re-derived 2026-08-15).
+#   gainPhone the phone-speaker plane — the same loudness through SPEAKER_LENS against
+#             `speaker_lufs`, the packs' own lensed median (-22.6, re-derived 2026-08-21
+#             when the lens stopped being sw-only).
+#
 # The rule was ≤ 6 dB → attenuate everything down to the quietest class; past that the
-# whole app would whisper, so the scheme is BOOST against the word-pack median: letters
-# take up to +20 dB, the loud sw pack takes about -6, and the players need a boost path.
-# (Letters also open with a median 1077 ms of dead air, against 173 ms for words.)
+# whole app would whisper, so the scheme is BOOST against the pack median: letters take
+# up to +20 dB and the players need a boost path. (Letters also open with a median 1077 ms
+# of dead air, against 173 ms for words.) The lens is deliberately milder than a real
+# iPhone's rolloff — 400 Hz at 12 dB/oct is the middle of two wrong answers, see
+# audio_measure.SPEAKER_LENS; the route split is what lets each plane keep its own number
+# instead of one compromise between them.
 #
 # A boost is also a CLIPPING risk, so the loudness number never decides a gain alone: the
 # player adds it to samples that already peak where they peak, and past full scale iOS's EQ
 # hard-clips while Android's `LoudnessEnhancer` compresses — one number, two sounds, neither
 # the recording. Every gain is therefore CAPPED at the headroom its own file has, measured on
 # the same decode: `gain = min(loudness gain, PEAK_CEILING_DBFS - peak)`, floored to the
-# decimal it ships at so rounding can never spend the margin. The cap only ever lowers, and it
-# binds on 70 of the 1126 files — on 31 of them the loudness number alone would have driven
-# the samples past full scale, worst es `here` (peak -3.2, +9.6 dB wanted, +2.1 granted). They
-# land under the loudness target instead of distorting: user ruling 2026-08-01, quiet is the
-# lesser loss.
-#
-# WHAT the loudness is measured through changed on 2026-08-06 (user ruling, after a
-# Swahili session where the words plainly varied). Flat R128 said that pack was the
-# tightest we ship — 467 files inside 3 dB — while the ear said otherwise, and both were
-# right: the meter counts energy the phone's speaker cannot radiate. `karibu` and
-# `nakupenda` measure 0.1 dB apart flat and 16 apart through `audio_measure.SPEAKER_LENS`,
-# which is the number that matches what is heard. Gains come off the LENSED loudness now;
-# the flat figure survives as what the packs are described by, nowhere else.
-#
-# `speaker_lufs` is where the sw pack already sat under the lens, so re-indexing it moved
-# the balance without moving the pack — the only way to hear one change at a time. It is
-# PROVISIONAL for exactly that reason: the packs do not share a lensed level (uk sits
-# ~2.4 dB under sw while both measure -16.7 flat), so whichever number the other three are
-# eventually re-indexed to has to be chosen with all four in view.
+# decimal it ships at so rounding can never spend the margin. The cap only ever lowers; the
+# files it binds land under the loudness target instead of distorting: user ruling
+# 2026-08-01, quiet is the lesser loss.
 ANALYSIS = {
     'scheme': 'boost',
     'target_lufs': -18.0,
-    'speaker_lufs': -17.5,
-    'lensed': ['sw'],
-    'deficit_db': 13.4,
+    'speaker_lufs': -22.6,
     # 9.0.1 reproduces 8.1.2's decimals exactly: a --reindex under it re-gained nothing.
     'ffmpeg': 'ffmpeg version 9.0.1',
 }
@@ -176,28 +170,36 @@ def copy_verified(source, target):
     return digest
 
 
-def playback_index(loudness, speaker, leading, peak, floor, lensed=False):
-    """The optional `gain`/`lead` plus `snr` for one entry — absent when there is nothing to say.
+def playback_index(loudness, speaker, leading, peak, floor, phone):
+    """The optional `gain`/`gainPhone`/`lead` plus `snr` for one entry — absent when there is nothing to say.
 
-    `lensed` takes the gain off what a phone speaker can radiate (see [ANALYSIS]) instead of
-    off the flat loudness. The lens only ever decides the TARGET a file is moved toward;
-    the ceiling below still answers to the flat peak, because that is what clips.
+    Two gains, one per playback plane (see [ANALYSIS]): `gain` moves a file toward the
+    full-range target off the flat loudness, `gainPhone` toward the phone-speaker target
+    off what a phone can radiate (`speaker`). The lens only ever decides the TARGET the
+    phone-plane gain is measured against; the ceiling below still answers to the flat
+    peak, because that is what clips on either plane.
 
     `snr` is peak minus noise floor: how far the word stands above the hiss under it. Unlike
-    the other two it changes no playback — it is carried so the lint can see the SHAPE of a
+    the other fields it changes no playback — it is carried so the lint can see the SHAPE of a
     pack and refuse a rebuild that quietly reintroduces the noise a previous one removed.
     Measured, never applied: filtering the file would be an adaptation under BY-SA and would
     break the sha256 that pins it.
     """
-    wanted = (ANALYSIS['speaker_lufs'] - speaker) if lensed else (ANALYSIS['target_lufs'] - loudness)
-    boost = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, wanted)), 1)
+    full = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, ANALYSIS['target_lufs'] - loudness)), 1)
     # why: floor, never round — a gain rounded up to the shipped decimal spends the safety
     # margin it was granted, and the file it was granted for is the one already near clipping.
-    gain = min(boost, math.floor((PEAK_CEILING_DBFS - peak) * 10) / 10)
-    lead = max(0, round(leading * 1000) - LEAD_KEEP_MS)
+    headroom = math.floor((PEAK_CEILING_DBFS - peak) * 10) / 10
+    gain = min(full, headroom)
     index = {}
     if gain:
         index['gain'] = gain
+    if phone:
+        wanted = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, ANALYSIS['speaker_lufs'] - speaker)), 1)
+        # why: always written for words, 0.0 included — the player needs to tell "the phone
+        # plane is zero" apart from "no phone plane was measured" (letters/texts), where the
+        # full-range gain stands.
+        index['gainPhone'] = min(wanted, headroom)
+    lead = max(0, round(leading * 1000) - LEAD_KEEP_MS)
     if lead:
         index['lead'] = lead
     if floor is not None:
@@ -205,8 +207,12 @@ def playback_index(loudness, speaker, leading, peak, floor, lensed=False):
     return index
 
 
-def copy_and_analyze(copies, lensed=False):
+def copy_and_analyze(copies, phone=False):
     """`[(id, source, target)]` → `{id: (sha256, playback index)}`: ship the bytes, then measure.
+
+    `phone` adds the phone-speaker gain beside the full-range one (see [ANALYSIS]); letters
+    and texts stay flat-only — the alphabet's balance was never the question, only the word
+    packs that dominate a session.
 
     why: the analysis runs over the file that LANDED, so an index can never describe other
     bytes than the ones its own `sha256` pins — and one batched ffmpeg pass keeps a
@@ -219,9 +225,9 @@ def copy_and_analyze(copies, lensed=False):
         loudness, speaker, leading, peak, floor = measured[target]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % target)
-        if lensed and speaker is None:
+        if phone and speaker is None:
             sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % target)
-        analyzed[id] = (digests[id], playback_index(loudness, speaker, leading, peak, floor, lensed))
+        analyzed[id] = (digests[id], playback_index(loudness, speaker, leading, peak, floor, phone))
     return analyzed
 
 
@@ -234,7 +240,7 @@ def convert_words(lang, pack, out_dir, slugs, forms):
     kept = attribute(keep_unambiguous(reachable, mp3_dir, drops), drops)
     analyzed = copy_and_analyze([(row['slug'], os.path.join(mp3_dir, row['slug'] + '.mp3'),
                                   os.path.join(out_dir, row['slug'] + '.mp3')) for row in kept],
-                                lensed=lang in ANALYSIS['lensed'])
+                                phone=True)
     words = {}
     for row in kept:
         digest, index = analyzed[row['slug']]
@@ -299,8 +305,8 @@ def convert_texts(pack, out_dir):
 
 
 def reindex(lang):
-    """Re-derive `gain`/`lead`/`snr` for a language already under `catalog/audio/`, out of
-    the bytes it ships — nothing is copied, converted or renamed.
+    """Re-derive `gain`/`gainPhone`/`lead`/`snr` for a language already under `catalog/audio/`,
+    out of the bytes it ships — nothing is copied, converted or renamed.
 
     why a second entry point at all: the packs are unversioned research input and may be
     long gone from the machine that needs to re-measure, while the mp3 the index describes
@@ -323,15 +329,17 @@ def reindex(lang):
         loudness, speaker, leading, peak, floor = measured[path]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % path)
-        index = playback_index(loudness, speaker, leading, peak, floor,
-                               lensed=lang in ANALYSIS['lensed'])
+        phone = section == 'words'
+        if phone and speaker is None:
+            sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % path)
+        index = playback_index(loudness, speaker, leading, peak, floor, phone)
         was = item.get('gain', 0)
-        for field in ('gain', 'lead', 'snr'):
+        for field in ('gain', 'gainPhone', 'lead', 'snr'):
             item.pop(field, None)
         item.update(index)
         if index.get('gain', 0) != was:
             moved.append(index.get('gain', 0) - was)
-        if speaker is not None and index.get('gain', 0) < round(
+        if phone and speaker is not None and index.get('gainPhone', 0) < round(
                 ANALYSIS['speaker_lufs'] - speaker, 1) - 0.05:
             limited += 1
     write_manifest(lang, out_dir, manifest.get('words', {}),

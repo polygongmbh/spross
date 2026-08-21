@@ -77,12 +77,21 @@ fun spokenTargetForm(article: String?, shownForm: String, targetText: String): S
  * different equipment and share no loudness, and the uk letters open with a second of dead
  * air before they speak; re-encoding them is an adaptation under BY-SA, so the shipped
  * bytes stay the untouched Commons transcode and the correction travels as MEASUREMENT
- * DATA applied at playback. Whether a player realizes [gain] by boosting or by attenuating
+ * DATA applied at playback. Whether a player realizes a gain by boosting or by attenuating
  * is its own business: the number means the same either way, and 0/0 is "play as it is".
  */
 interface AudioIndex {
-    /** Decibels from the catalog's analysis target: positive is quiet, negative is loud. */
+    /** Decibels from the full-range analysis target: positive is quiet, negative is loud. */
     val gain: Double
+
+    /**
+     * Decibels from the phone-speaker target — the same loudness through the speaker lens,
+     * what a built-in phone speaker can radiate. Null means no phone plane was measured
+     * (letters and texts), so the full-range [gain] stands on either route. A platform picks
+     * `gainPhone ?: gain` on the phone speaker and `gain` elsewhere, never minting a number
+     * of its own.
+     */
+    val gainPhone: Double?
 
     /** Dead air at the head of the file, in ms — start here and the recording speaks at once. */
     val leadMs: Long
@@ -101,6 +110,7 @@ data class Pronunciation( // data class: Swift sees value equality
     /** Catalog-relative path of the recording ("audio/uk/office.mp3"), null → synthesize. */
     val recordingPath: String?,
     override val gain: Double = 0.0,
+    override val gainPhone: Double? = null,
     override val leadMs: Long = 0,
 ) : AudioIndex
 
@@ -113,6 +123,7 @@ data class LetterRecording(
     /** Catalog-relative path ("audio/uk/letters/u0440.mp3"). */
     val path: String,
     override val gain: Double,
+    override val gainPhone: Double? = null,
     override val leadMs: Long,
 ) : AudioIndex
 

@@ -18,12 +18,15 @@ internal data class AudioRecording(
     /** Hex digest of the shipped bytes — lint re-hashes the file against it. */
     val sha256: String,
     /**
-     * The ANALYSIS INDEX: dB from the catalog's analysis target, and dead air at the head
+     * The ANALYSIS INDEX: dB from the catalog's analysis targets, and dead air at the head
      * in ms. Both are MEASUREMENTS of the shipped bytes, never edits to them — the packs
      * were recorded by different people and differ by up to 20 dB, and re-encoding is an
-     * adaptation under BY-SA. Absent in the manifest means 0, i.e. nothing to correct.
+     * adaptation under BY-SA. `gain` is the full-range plane; `gainPhone` the built-in phone
+     * speaker's, null where no phone plane was measured (letters and texts) — see
+     * [AudioIndex] for who picks which. Absent `gain` means 0, i.e. nothing to correct.
      */
     val gain: Double,
+    val gainPhone: Double?,
     val leadMs: Long,
     /**
      * Peak minus noise floor in dB — how far the word stands above the hiss under it.
@@ -103,7 +106,7 @@ internal class AudioManifest(
 internal object AudioManifestParser {
     private val WORD_KEYS =
         setOf("file", "matches", "license", "licenseUrl", "author", "source", "sha256",
-              "gain", "lead", "snr")
+              "gain", "gainPhone", "lead", "snr")
     private val LETTER_KEYS = WORD_KEYS - "matches"
 
     /** Five seconds of dead air is not a lead-in, it is the wrong recording. */
@@ -144,7 +147,8 @@ internal object AudioManifestParser {
                 author = entry.requireNonBlank(path, context, "author"),
                 source = entry.requireNonBlank(path, context, "source"),
                 sha256 = entry.requireNonBlank(path, context, "sha256"),
-                gain = entry.gain(path, context),
+                gain = entry.gain(path, context, "gain"),
+                gainPhone = entry.optionalGain(path, context, "gainPhone"),
                 leadMs = entry.leadMs(path, context),
                 snr = entry.optionalDouble(path, context, "snr") ?: 0.0,
             )
@@ -161,11 +165,15 @@ internal object AudioManifestParser {
      * The bound is playback's own ([Playback.GAIN_LIMIT_DB]): rejecting here and clamping
      * there are one rule about what a measurement may claim.
      */
-    private fun JsonObject.gain(path: String, context: String): Double {
-        val gain = optionalDouble(path, context, "gain") ?: return 0.0
+    private fun JsonObject.gain(path: String, context: String, key: String): Double =
+        optionalGain(path, context, key) ?: 0.0
+
+    /** [gain]'s optional twin — `gainPhone` is absent exactly where no phone plane was measured. */
+    private fun JsonObject.optionalGain(path: String, context: String, key: String): Double? {
+        val gain = optionalDouble(path, context, key) ?: return null
         val limit = Playback.GAIN_LIMIT_DB
         if (gain !in -limit..limit) {
-            parseError(path, "$context: gain $gain dB is outside ±$limit")
+            parseError(path, "$context: $key $gain dB is outside ±$limit")
         }
         return gain
     }

@@ -305,8 +305,9 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   does not declare is never read — adding one is dropping a directory in, nothing else.
 - `words` is keyed by concept slug, `letters` (optional, uk only today) by lowercase
   glyph. Every field is required except `licenseUrl`, which is absent exactly for
-  public-domain files, having no deed to link, and `gain`/`lead`, absent where they
-  would be zero.
+  public-domain files, having no deed to link, `gain`/`lead`, absent where they
+  would be zero, and `gainPhone` — present on every word entry (0.0 when no
+  correction) but absent on letters and texts.
 - `matches` — the surface form the recording actually SPEAKS, and the lookup key:
   playback is keyed by what stands on the card, never by the slug the file was fetched
   for, so a rotated synonym nobody recorded falls through to the app's own voice
@@ -328,9 +329,10 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   adaptation under BY-SA. `sha256` is the digest the generator verified after the copy
   and lint re-hashes what was committed, which makes it a gate rather than a promise.
 - `gain` (dB) and `lead` (ms) are the generator's own MEASUREMENT of those untouched
-  bytes — how far the recording sits from the catalog's analysis target, capped by the
-  headroom that file still has, and how much dead air to start past — so the files stay
-  unmodified and only the player corrects them. What was measured, against which target,
+  bytes. `gain` is the full-range plane and `gainPhone` the phone-speaker plane
+  (absent on letters and texts, where no phone plane was measured); `lead` is how much
+  dead air to start past. The files stay unmodified and only the player corrects them,
+  picking the plane by its output route. What was measured, against which target,
   is `../scripts/audio-catalog.py`'s `ANALYSIS`.
 - `snr` (dB) is a third measurement of the same bytes — peak minus noise floor, how far
   the word stands above the hiss under it — but nothing plays it. It is carried so lint

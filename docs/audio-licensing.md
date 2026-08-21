@@ -93,9 +93,11 @@ the word packs sit at a median −18.0 LUFS, the uk letters at −31.4,
 and those letters open with about a second of dead air before they speak.
 
 The correction is **not applied to the files**.
-Each entry carries two optional numbers our own generator measured off the shipped bytes —
-`gain` (dB from the catalog's analysis target) and `lead` (dead air at the head, ms) —
-and only a player ever applies them (iOS through an EQ node, Android through `LoudnessEnhancer` and a seek).
+Each entry carries the numbers our own generator measured off the shipped bytes —
+`gain` (dB from the full-range analysis target) and `gainPhone` (the phone-speaker plane, absent on letters and texts),
+plus `lead` (dead air at the head, ms) —
+and only a player ever applies them, picking the plane by its output route
+(iOS through an EQ node, Android through `LoudnessEnhancer` and a seek).
 Consequences, and this was the deciding argument:
 
 - The shipped mp3 bytes remain **byte-identical Commons transcodes**, so **no adaptation is distributed**

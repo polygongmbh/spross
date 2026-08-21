@@ -3,6 +3,7 @@ package net.spross.app.audio
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.AssetFileDescriptor
+import android.media.AudioManager
 import android.view.accessibility.AccessibilityManager
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,6 +52,8 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     private val assets = context.applicationContext.assets
     private val accessibility = context.applicationContext
         .getSystemService(Context.ACCESSIBILITY_SERVICE) as? AccessibilityManager
+    private val audioManager = context.applicationContext
+        .getSystemService(Context.AUDIO_SERVICE) as? AudioManager
     private val player = PronunciationPlayer()
     private val speaker = Speaker(context)
 
@@ -205,7 +208,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         // why: the player still holds the last clip prepared, so a second ask for the
         // same word answers without a second decode — the reason it keeps it.
         if (path != null && path == loaded &&
-            player.replay(playbackVolume(pronunciation.gain, fadeDb), onFinish)
+            player.replay(playbackVolume(gain(pronunciation), fadeDb), onFinish)
         ) {
             return
         }
@@ -217,7 +220,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
             // why: the loudness and the dead air are the catalog's MEASUREMENTS of bytes
             // that stay the untouched transcode — playback is the one place they are ever
             // applied, and never the file.
-            player.play(recording, pronunciation.gain, pronunciation.leadMs, fadeDb, onFinish)
+            player.play(recording, gain(pronunciation), pronunciation.leadMs, fadeDb, onFinish)
             loaded = path
             return
         }
@@ -239,6 +242,20 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     fun release() {
         player.release()
         speaker.shutdown()
+    }
+
+    /**
+     * The recording's gain for the current output route — `gainPhone` on the built-in
+     * speaker, the full-range `gain` elsewhere, and `gain` wherever no phone plane was
+     * measured (letters, texts). Reads the route once per fire, so a headphone change
+     * between words is picked up by the next one.
+     */
+    private fun gain(pronunciation: Pronunciation): Double {
+        val devices = audioManager?.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+            ?.map { it.type }?.toSet() ?: emptySet()
+        val phone = pronunciation.gainPhone
+        return if (playbackPlane(devices) == PlaybackPlane.PHONE && phone != null) phone
+        else pronunciation.gain
     }
 
     // why: the "catalog/" prefix mirrors AssetCatalogSource — kern hands out

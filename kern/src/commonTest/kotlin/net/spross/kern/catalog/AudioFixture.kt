@@ -41,7 +41,7 @@ internal object AudioFixture {
               "words": {
                 "door":   { "file": "door.mp3", "matches": "mlango", "license": "CC BY-SA 4.0",
                             "licenseUrl": "$BY_SA", "author": "Juma", "source": "Sw-mlango.ogg", "sha256": "s1",
-                            "gain": -5.4, "lead": 41, "snr": 62.3 },
+                            "gain": -5.4, "gainPhone": -9.8, "lead": 41, "snr": 62.3 },
                 "mouse":  { "file": "mouse.mp3", "matches": "panya", "license": "CC BY-SA 4.0",
                             "licenseUrl": "$BY_SA", "author": "Juma", "source": "Sw-panya.ogg", "sha256": "s2" },
                 "waiter": { "file": "waiter.mp3", "matches": "Panya", "license": "CC BY-SA 4.0",

@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **A word is now levelled for the speaker it comes out of, so Swahili no longer sounds
+  louder than the rest.** Its voice is higher and brighter, and a phone speaker radiates
+  that while swallowing the low end the other languages lean on — so back to back, it came
+  out louder than it measured. Every recording now carries a level for each: one for the
+  phone's own speaker, one for headphones, Bluetooth and everything else, and the app picks
+  the matching one, switching as soon as the sound changes route.
+
 - **The listening run keeps a quicker step, and its bedtime is yours to set.** A word you
   already hold gets 1.2 seconds to reach for its meaning before the answer, and everything
   else between the words is tighter, so the playlist moves the way a walk does. New words

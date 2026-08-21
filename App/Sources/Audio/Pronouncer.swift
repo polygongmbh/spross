@@ -153,7 +153,7 @@ final class Pronouncer {
             // of bytes that stay the untouched transcode — playback is the one
             // place they are ever applied, and never the file.
             playingKey = key
-            player.play(url: recordingURL, gainDb: pronunciation.gain,
+            player.play(url: recordingURL, gainDb: gain(for: pronunciation),
                         leadMs: pronunciation.leadMs, fadeDb: fadeDb) { [weak self] in
                 self?.clearPlaying(key)
                 onFinish?()
@@ -188,6 +188,16 @@ final class Pronouncer {
         return spokenTargetForm(article: article,
                                 shownForm: pronunciation.form,
                                 targetText: pronunciation.form)
+    }
+
+    /// The recording's gain for the current output route — `gainPhone` on the
+    /// built-in speaker, the full-range `gain` elsewhere, and `gain` wherever no
+    /// phone plane was measured (letters, texts).
+    private func gain(for pronunciation: Pronunciation) -> Double {
+        if AudioSession.plane() == .phone, let phone = pronunciation.gainPhone {
+            return phone.doubleValue
+        }
+        return pronunciation.gain
     }
 
     /// Decibels as the linear factor `AVSpeechUtterance.volume` wants — the
@@ -232,7 +242,7 @@ final class Pronouncer {
         if let recordingURL {
             let path = pronunciation.recordingPath ?? recordingURL.lastPathComponent
             player.play(url: recordingURL,
-                        gainDb: pronunciation.gain, leadMs: pronunciation.leadMs) {
+                        gainDb: gain(for: pronunciation), leadMs: pronunciation.leadMs) {
                 print("Pronounce probe: recording \(path) played to completion")
             }
             return
