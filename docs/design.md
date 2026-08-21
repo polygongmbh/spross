@@ -241,7 +241,7 @@ a clone inherits its sibling's gaps, never the rules.
   that needs no hands — up whenever this device can actually say both sides of enough words
   (`surfaces.md` § Listening).
   The line over the card carries the LANGUAGE being learned, in words that fit the hour
-  (`../kern/README.md` §6, `dayPart`/`partVariant`) — the screen's own name spent the
+  (`../kern/docs/reports.md`, `dayPart`/`partVariant`) — the screen's own name spent the
   largest type on the page on what the learner already knew, and the language is the one
   piece of standing nothing else here says.
   Two registers, and every line is in one of them: the language speaking for itself
@@ -261,7 +261,7 @@ a clone inherits its sibling's gaps, never the rules.
   so one above them says the word a third time.
   The card's flame is graded, not decorative — the 🔥 emoji at full strength, paled,
   or drained to gray by what today still owes the run
-  (`../kern/README.md` §6, `BoxStatistics.streakHealth`).
+  (`../kern/docs/reports.md`, `BoxStatistics.streakHealth`).
   The card is up exactly while that work is still owed, so the mark carries the warning
   without spending a word on it — and the strip's badge and the widget's flame
   read off the same grade, so no two surfaces say different things about one day.
@@ -300,7 +300,7 @@ a clone inherits its sibling's gaps, never the rules.
   trunk is what the area has grown, the canopy IS its words that have landed, and blossom
   and fruit appear ON that canopy. So the picture never starts over, and has no top rung
   at which it stops. A word is a leaf — a thing believed many of without being counted;
-  which rung of `GrowthStage` (`../kern/README.md` §6) becomes which mark is decided in
+  which rung of `GrowthStage` (`../kern/docs/reports.md`) becomes which mark is decided in
   `AreaTrees` and nowhere else.
   **A word the learner has MET hangs on the tree from its first answer on**, as a bud until
   it settles into a leaf — ochre and a third a leaf's size, so a word leafing out always
