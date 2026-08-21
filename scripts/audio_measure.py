@@ -27,13 +27,13 @@ WORKERS = 10
 # on nasals and back vowels: 0.1 dB apart flat, and 16 apart through this. Which is the
 # whole of what "the words are not balanced" turned out to be.
 #
-# 400 Hz at 12 dB/oct is the MIDDLE of two wrong answers. A real iPhone gives up closer to
-# 500 and far more steeply, but a boost aimed at that is still heard on headphones, where
-# the low end it corrects for is present after all — a word lifted 13 dB for a speaker that
-# needed it is a boomy word on anything better. This model corrects the worst of the pack by
-# about 4 dB and most of it by under one, which is the trade taken: the phone gets most of
-# the balance, nothing gets a correction it would have to be forgiven for elsewhere.
-SPEAKER_LENS = 'highpass=f=400:poles=2'
+# 500 Hz at 24 dB/oct is a phone speaker, not a compromise: a real iPhone gives up around
+# 500 Hz and rolls off steeply, so the lens rolls off steeply too. That only became possible
+# once the phone plane split from the full-range one (audio-catalog.py's TWO PLANES) — the
+# route split means this filter is never heard on headphones, so nothing here has to be
+# forgiven elsewhere. A bassy word still plays the level a phone radiates of it, and a
+# bright one the level a phone radiates of it; the player corrects each to the same number.
+SPEAKER_LENS = 'highpass=f=500:poles=2,highpass=f=500:poles=2'
 
 INTEGRATED = re.compile(r'^\s+I:\s+(-?[\d.]+|-inf) LUFS', re.M)
 SILENCE_START = re.compile(r'silence_start:\s*(-?[\d.]+)')
