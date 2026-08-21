@@ -35,11 +35,16 @@ fb-idb drives CoreSimulator HID directly:
 ```sh
 brew install facebook/fb/idb-companion
 idb_companion --udid <UDID> --only simulator &        # prints grpc_port (e.g. 10882)
-python3.13 -m venv /tmp/idbenv13 && /tmp/idbenv13/bin/pip install fb-idb
+export IDB=~/.local/share/idbenv13/bin/idb           # built once; /tmp is wiped between sessions
+[ -x $IDB ] || { python3.13 -m venv ~/.local/share/idbenv13 && ~/.local/share/idbenv13/bin/pip install fb-idb; }
 export IDB_COMPANION=localhost:<port>
-/tmp/idbenv13/bin/idb ui tap <x> <y>                  # logical points
-/tmp/idbenv13/bin/idb ui swipe 200 750 200 150 --duration 0.05   # flick-scroll
+$IDB ui tap <x> <y>                                   # logical points
+$IDB ui text 'hallo'                                  # types into the focused field
+$IDB ui swipe 200 750 200 150 --duration 0.05         # flick-scroll
 ```
+
+`ui text` is how a typed answer gets in — the sim takes no host keystrokes without an
+Accessibility grant, and the app's `-uitest-input` hook fires only once per launch.
 
 Gotcha: fb-idb breaks on python 3.14 (`asyncio.get_event_loop`) — use python@3.13.
 
