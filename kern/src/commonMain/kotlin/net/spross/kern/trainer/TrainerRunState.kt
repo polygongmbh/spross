@@ -132,7 +132,6 @@ data class TrainerRunState(
      */
     val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
 
-    /** What the run's counter reads — [DrillTally] says which answers each half counts. */
     val tally: DrillTally get() = DrillTally.of(outcomes)
 
     /**

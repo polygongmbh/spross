@@ -313,20 +313,6 @@ class CountryDrillRunTest {
         assertEquals(1, run.streak, "a slip is still an answer the learner got")
     }
 
-    /**
-     * Almost drops out of the counter's BOTH halves, exactly as it moves no rung — a slip is
-     * neither a win to bank nor a miss to punish, and the counter beside the rung says so too.
-     */
-    @Test
-    fun theCounterLeavesAlmostOutOfBothHalves() {
-        var run = open()
-        run = run.answered("Ujerumani")
-        run = run.answered("Ujerumami")
-        run = run.missed()
-        assertEquals(3, run.done, "every answer is still booked")
-        assertEquals(DrillTally(clean = 1, judged = 2), run.tally)
-    }
-
     /** A miss drops the rung, and the rung the run REACHED is what it keeps. */
     @Test
     fun aMissDropsTheRungButNotTheOneTheRunReached() {

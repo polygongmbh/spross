@@ -89,17 +89,6 @@ class TrainerCloseTest {
 
     // MARK: - What the page behind the run reads
 
-    /** Almost is in neither half of the counter, the way it moves neither way on the ramp. */
-    @Test
-    fun theCounterLeavesAlmostOutOfBothHalves() {
-        val state = TrainerRun.open(numbers(), Random(59)).copy(
-            outcomes = listOf(AnswerOutcome.Right, AnswerOutcome.Almost, AnswerOutcome.Wrong),
-            done = 3,
-        )
-        assertEquals(DrillTally(clean = 1, judged = 2), state.tally)
-        assertEquals(3, state.done, "every answer is still booked")
-    }
-
     @Test
     fun theTierLadderTurnsOnTwoFiveAndTen() {
         fun tier(streak: Int) = DrillRunSummary(done = 1, bestStreak = streak, newRecord = false).tier

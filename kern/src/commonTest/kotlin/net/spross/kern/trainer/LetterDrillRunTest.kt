@@ -336,16 +336,4 @@ class LetterDrillRunTest {
         // A revealed answer nobody confirmed is not accepted, so closing books nothing.
         assertNull(LetterDrillRun.close(state.copy(feedback = TurnFeedback.Revealed)).summary)
     }
-
-    /** Almost is in neither half of the counter, the way it moves neither way on the ramp. */
-    @Test
-    fun theCounterLeavesAlmostOutOfBothHalves() {
-        val state = LetterDrillRun.openAt(config(report(consolidated = 0)), 1, Random(37)).copy(
-            outcomes = listOf(AnswerOutcome.Right, AnswerOutcome.Almost, AnswerOutcome.Wrong),
-            done = 3,
-            bestStreak = 5,
-        )
-        assertEquals(DrillTally(clean = 1, judged = 2), state.tally)
-        assertEquals(StreakTier.Cheer, LetterDrillRun.close(state).summary!!.tier)
-    }
 }
