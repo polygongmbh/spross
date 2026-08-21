@@ -112,7 +112,7 @@ class DrillProgressionTests {
     }
 
     @Test
-    fun anAmberAnswerMovesNeitherWay() {
+    fun anAlmostAnswerMovesNeitherWay() {
         for (width in 1..2) {
             assertEquals(
                 DrillRamp.RungStep(3, 1),

@@ -31,16 +31,16 @@ class TrainerCloseTest {
     fun closingBooksAPendingAnswerAndNeverUpgradesIt() {
         val rng = Random(43)
         val state = TrainerRun.open(numbers(), rng)
-        val amber = TrainerRun.close(
+        val almost = TrainerRun.close(
             state.copy(feedback = TurnFeedback.Almost("sieben", AlmostReason.Typo)),
             0,
             emptyMap(),
         )
-        assertEquals(listOf(AnswerOutcome.Almost), amber.state.outcomes)
-        assertEquals(1, amber.summary?.done)
-        assertEquals(1, amber.state.currentLevel, "amber moves the rung neither way")
+        assertEquals(listOf(AnswerOutcome.Almost), almost.state.outcomes)
+        assertEquals(1, almost.summary?.done)
+        assertEquals(1, almost.state.currentLevel, "almost moves the rung neither way")
 
-        // A hint-assisted clean answer is amber too, exactly as the explicit tap would book it.
+        // A hint-assisted clean answer is almost too, exactly as the explicit tap would book it.
         val hinted = TrainerRun.close(
             state.copy(feedback = TurnFeedback.Correct, hintUsed = true),
             0,
@@ -89,9 +89,9 @@ class TrainerCloseTest {
 
     // MARK: - What the page behind the run reads
 
-    /** Amber is in neither half of the counter, the way it moves neither way on the ramp. */
+    /** Almost is in neither half of the counter, the way it moves neither way on the ramp. */
     @Test
-    fun theCounterLeavesAmberOutOfBothHalves() {
+    fun theCounterLeavesAlmostOutOfBothHalves() {
         val state = TrainerRun.open(numbers(), Random(59)).copy(
             outcomes = listOf(AnswerOutcome.Right, AnswerOutcome.Almost, AnswerOutcome.Wrong),
             done = 3,

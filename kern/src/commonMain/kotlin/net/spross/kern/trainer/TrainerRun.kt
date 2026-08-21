@@ -138,7 +138,7 @@ object TrainerRun {
                 listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ArmAdvance(AdvanceTier.Explicit)),
             )
             // why: no beat on a slip — the pause shows the proper spelling, and the tap that ends
-            // it books the answer amber.
+            // it books the answer almost.
             is Match.Typo -> TrainerReduction(
                 state.copy(feedback = TurnFeedback.Almost(match.corrected, AlmostReason.Typo)),
                 listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ReleaseFocus),
@@ -152,7 +152,7 @@ object TrainerRun {
 
     /**
      * "Finishing the word IS the answer" — the live approve. Drills have no reveal-then-retype
-     * step, so the guard only has to keep clear of an amber hold and of an answer still growing.
+     * step, so the guard only has to keep clear of an almost hold and of an answer still growing.
      */
     private fun typed(
         state: TrainerRunState,
@@ -199,7 +199,7 @@ object TrainerRun {
     }
 
     /**
-     * why: a look-up while the answer is still owed costs the rung — the task books amber. Once
+     * why: a look-up while the answer is still owed costs the rung — the task books almost. Once
      * the answer is in, nothing is owed and reading is free.
      */
     private fun lookUp(state: TrainerRunState): TrainerReduction =
@@ -237,7 +237,7 @@ object TrainerRun {
                 current = state.mode.draw(next.levels, state.currentTask.prompt, rng),
                 index = state.index + 1,
                 // why: cleared in the SAME transaction as the question — the next prompt must
-                // never render one frame carrying the last one's answer or its amber debt.
+                // never render one frame carrying the last one's answer or its almost debt.
                 feedback = TurnFeedback.Neutral,
                 hintUsed = false,
             ),

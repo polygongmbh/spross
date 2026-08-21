@@ -215,7 +215,7 @@ class LetterDrillRunTest {
     }
 
     /**
-     * The dictation ladder, IN ORDER: exact, then a form the card itself teaches (amber, naming
+     * The dictation ladder, IN ORDER: exact, then a form the card itself teaches (almost, naming
      * what actually played), then a slip, then the miss — which is where the catalog-wide
      * grader withdraws typo credit for a word that is somebody else's.
      */
@@ -256,9 +256,9 @@ class LetterDrillRunTest {
         assertEquals(LetterVerdict.Clean, LetterDrillRun.verdict("миша", task, null, null))
     }
 
-    /** Both amber holds wait for a tap, give the field back, and move the rung neither way. */
+    /** Both almost holds wait for a tap, give the field back, and move the rung neither way. */
     @Test
-    fun anAmberAnswerHoldsTheRungAndExtendsTheStreak() {
+    fun anAlmostAnswerHoldsTheRungAndExtendsTheStreak() {
         val rng = Random(17)
         val state = LetterDrillRun.openAt(config(report(consolidated = 72)), 6, rng)
         for (reason in listOf(AlmostReason.Typo, AlmostReason.Heard)) {
@@ -327,19 +327,19 @@ class LetterDrillRunTest {
         assertNull(untouched.summary)
         assertTrue(DrillEffect.Silence in untouched.effects)
 
-        val amber = LetterDrillRun.close(state.copy(feedback = TurnFeedback.Almost("м", AlmostReason.Heard)))
-        assertEquals(listOf(AnswerOutcome.Almost), amber.state.outcomes)
-        assertEquals(1, amber.summary?.done)
-        assertEquals(false, amber.summary?.newRecord, "the letter drill keeps no record store")
-        assertEquals(6, amber.state.level, "closing may not upgrade an amber answer")
+        val almost = LetterDrillRun.close(state.copy(feedback = TurnFeedback.Almost("м", AlmostReason.Heard)))
+        assertEquals(listOf(AnswerOutcome.Almost), almost.state.outcomes)
+        assertEquals(1, almost.summary?.done)
+        assertEquals(false, almost.summary?.newRecord, "the letter drill keeps no record store")
+        assertEquals(6, almost.state.level, "closing may not upgrade an almost answer")
 
         // A revealed answer nobody confirmed is not accepted, so closing books nothing.
         assertNull(LetterDrillRun.close(state.copy(feedback = TurnFeedback.Revealed)).summary)
     }
 
-    /** Amber is in neither half of the counter, the way it moves neither way on the ramp. */
+    /** Almost is in neither half of the counter, the way it moves neither way on the ramp. */
     @Test
-    fun theCounterLeavesAmberOutOfBothHalves() {
+    fun theCounterLeavesAlmostOutOfBothHalves() {
         val state = LetterDrillRun.openAt(config(report(consolidated = 0)), 1, Random(37)).copy(
             outcomes = listOf(AnswerOutcome.Right, AnswerOutcome.Almost, AnswerOutcome.Wrong),
             done = 3,

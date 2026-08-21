@@ -6,7 +6,7 @@ import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.TurnFeedback
 
 /**
- * What a typed letter-drill answer earns. The two amber verdicts move the ramp neither way —
+ * What a typed letter-drill answer earns. The two almost verdicts move the ramp neither way —
  * neither a win to bank nor a miss to punish.
  */
 sealed class LetterVerdict {
@@ -99,7 +99,7 @@ data class LetterDrillRunState(
         get() = feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost
 
     /**
-     * The card opens. Unlike the slot drill BOTH amber holds reveal too: a slip and a
+     * The card opens. Unlike the slot drill BOTH almost holds reveal too: a slip and a
      * heard-instead each leave a spelling worth seeing whole, and the box under the field says
      * which of the two it was.
      */

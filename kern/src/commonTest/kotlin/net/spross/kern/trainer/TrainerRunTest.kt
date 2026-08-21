@@ -18,7 +18,7 @@ import net.spross.kern.session.TurnFeedback
 
 /**
  * What an answer does to a slot run: how it is graded, what it moves on the ramp, what the
- * amber rules cost it, when the run offers its way out, and what a close leaves behind.
+ * almost rules cost it, when the run offers its way out, and what a close leaves behind.
  *
  * The ladder itself (`DrillUnlocks`, `DrillRamp`) is pinned by `DrillProgressionTests` and the
  * selection by `TrainerModeTest`; what is asserted here is the RUN that steps through them.
@@ -162,7 +162,7 @@ class TrainerRunTest {
     }
 
     /**
-     * A look-up while the answer is still owed books the task amber: the streak carries on, the
+     * A look-up while the answer is still owed books the task almost: the streak carries on, the
      * rung banks nothing. After the answer is in, nothing is owed and reading is free.
      */
     @Test
@@ -179,16 +179,16 @@ class TrainerRunTest {
         assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
         assertEquals(1, booked.currentLevel)
         assertEquals(0, booked.winsAtLevel[DrillVariant.Numbers])
-        assertEquals(1, booked.streak, "amber extends the streak")
+        assertEquals(1, booked.streak, "almost extends the streak")
         assertFalse(booked.hintUsed, "the debt is cleared with the question")
 
         val revealed = reduce(TrainerRun.open(numbers(), rng), TrainerIntent.Reveal, rng).state
         assertFalse(reduce(revealed, TrainerIntent.LookUp, rng).state.hintUsed)
     }
 
-    /** The same amber, taken through the live approve rather than the explicit check. */
+    /** The same almost, taken through the live approve rather than the explicit check. */
     @Test
-    fun aHintAssistedLiveApproveBooksAmberToo() {
+    fun aHintAssistedLiveApproveBooksAlmostToo() {
         val rng = Random(17)
         var state = TrainerRun.open(numbers(), rng)
         state = reduce(state, TrainerIntent.LookUp, rng).state
@@ -197,9 +197,9 @@ class TrainerRunTest {
         assertEquals(listOf(AnswerOutcome.Almost), state.outcomes)
     }
 
-    /** A slip pauses instead of moving on, and the tap that ends the pause books it amber. */
+    /** A slip pauses instead of moving on, and the tap that ends the pause books it almost. */
     @Test
-    fun aSlipHoldsTheAnswerAndBooksAmber() {
+    fun aSlipHoldsTheAnswerAndBooksAlmost() {
         val rng = Random(19)
         val state = TrainerRun.open(numbers(), rng)
         val held = state.copy(feedback = TurnFeedback.Almost("sieben", AlmostReason.Typo))

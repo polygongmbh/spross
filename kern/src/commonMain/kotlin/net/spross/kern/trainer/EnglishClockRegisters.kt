@@ -21,7 +21,7 @@ internal object EnglishClockRegisters {
      * `-'’`, so "four forty-five p.m." is four words against "four forty-five pm"'s
      * three; differing word counts fall back to the whole-form budget, where the two sit
      * one space apart. A list carrying just one of them would therefore book the other,
-     * a correct answer, amber as a typo.
+     * a correct answer, as almost — a typo.
      *
      * `am` and `pm` themselves ARE one substitution apart under the drill's flat
      * one-slip-per-word budget, so each grades correct for the other and the twelve-hour

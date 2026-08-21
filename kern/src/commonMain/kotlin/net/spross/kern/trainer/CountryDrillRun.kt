@@ -157,7 +157,7 @@ object CountryDrillRun {
                 ),
             )
             // why: no beat on a slip — the pause shows the proper spelling and waits for the
-            // tap that books it amber, so the keyboard has to give the button back.
+            // tap that books it almost, so the keyboard has to give the button back.
             is Match.Typo -> CountryDrillReduction(
                 state.copy(feedback = TurnFeedback.Almost(match.corrected, AlmostReason.Typo)),
                 listOf(
@@ -187,7 +187,7 @@ object CountryDrillRun {
         when (state.feedback) {
             TurnFeedback.Neutral -> unchanged(state)
             TurnFeedback.Correct -> booked(state, correct = true, clean = true, rng = rng)
-            // The amber hold: accepted, but the pause showed a spelling, so the rung stays.
+            // The almost hold: accepted, but the pause showed a spelling, so the rung stays.
             is TurnFeedback.Almost -> booked(state, correct = true, clean = false, rng = rng)
             // why: no "I knew it" in a drill — the questions are generated, so self-reporting
             // after seeing the answer proves nothing; revealed simply counts as a miss.

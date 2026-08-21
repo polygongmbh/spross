@@ -22,7 +22,7 @@ Engine contract: `../README.md` §3.
   `Source` rather than putting up an empty card). Alternation divides the count by two like
   the synonym rotation: roles alternate per review, so `reviewCount % 2` is CONSTANT across
   one card's produce turns. Grading narrows to the form that played (`session.spokenOnly`,
-  shared with the letter drill's dictation); a synonym of the same card is amber, never
+  shared with the letter drill's dictation); a synonym of the same card is almost, never
   wrong, since the reveal itself teaches those forms.
 - **The target is spoken with its article; the source is not.**
   `spokenTargetForm(article, shownForm, targetText)` (beside `utterance`, which answers the

@@ -85,7 +85,7 @@ object DrillRamp {
     /**
      * [winsRequired] clean wins up, one miss down, floor 1.
      *
-     * An amber answer ([clean] false: a typo, a revealed hint, a synonym) moves NOTHING.
+     * An almost answer ([clean] false: a typo, a revealed hint, a synonym) moves NOTHING.
      * It is neither a win to bank nor a miss to punish, and letting it count either way
      * would make the ramp disagree with what the learner just saw on screen.
      */

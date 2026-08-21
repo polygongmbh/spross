@@ -190,7 +190,7 @@ class TurnTest {
     }
 
     @Test
-    fun aSynonymOfWhatPlayedIsAmberNeverWrong() {
+    fun aSynonymOfWhatPlayedIsAlmostNeverWrong() {
         val heard = TurnFixture.step(byEar(), TurnIntent.Submit("motokaa"))
         assertEquals(TurnFeedback.Almost("gari", AlmostReason.Heard), heard.state.feedback)
         assertEquals(Rating.Hard, heard.state.pendingRating)

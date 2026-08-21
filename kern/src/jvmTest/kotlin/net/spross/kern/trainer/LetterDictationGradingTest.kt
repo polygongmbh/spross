@@ -76,7 +76,7 @@ class LetterDictationGradingTest {
         val cards = catalog.join("de", "uk")
         val mouse = cards.byText("миша")
         val variant = "мишка"
-        // The app's amber step reads exactly this set.
+        // The app's almost step reads exactly this set.
         assertTrue(
             variant in mouse.target.synonyms + mouse.target.variants,
             "the catalog no longer teaches \"$variant\" as a form of \"${mouse.target.text}\"",

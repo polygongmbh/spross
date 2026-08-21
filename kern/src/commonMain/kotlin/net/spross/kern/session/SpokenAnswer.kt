@@ -31,7 +31,7 @@ fun spokenOnly(card: Card, spokenForm: String): Card = card.copy(
  * just not the one that played.
  *
  * The other half of the ear rule [spokenOnly] states: grading narrows to what was spoken,
- * and this names what the narrowing then has to forgive. Amber, never wrong — the reveal
+ * and this names what the narrowing then has to forgive. Almost, never wrong — the reveal
  * itself teaches these forms ("auch: …"), so failing one would contradict the card that is
  * about to show it.
  *

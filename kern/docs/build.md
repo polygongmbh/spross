@@ -69,7 +69,7 @@ Engine contract: `../README.md`.
   collapsed, because progress is kept per variant. `DrillUnlocks` holds the whole ladder
   as two tables of variant → level reached (empty = always available), reading a
   progress map the APP persists; kern stores nothing. `DrillRamp.step` is the rung ramp
-  every drill shares (clean wins up, a miss down, floor 1, amber moves nothing), with how
+  every drill shares (clean wins up, a miss down, floor 1, almost moves nothing), with how
   long a rung is left to the caller — `Trainer.winsToAdvance(fast)` reads the Fast
   modifier, `LetterDrill.winsToAdvance` counts a held vocabulary.
   `Trainer.reversed(task)` inverts the direction (words shown, the value typed) for any

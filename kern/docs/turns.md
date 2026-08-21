@@ -28,7 +28,7 @@ Engine contract: `../README.md`.
     a self-grade is `SelfGrading` over the recall span and the prompt length.
   - **The beats belong to the engine** (`ADVANCE_LIVE_MS` 450, `ADVANCE_EXPLICIT_MS` 1200,
     carried by `AdvanceTier`): finishing the word IS the answer, so a live-typed exact gets
-    the short beat and an explicit Check the longer one, while an amber hold gets none at all.
+    the short beat and an explicit Check the longer one, while an almost hold gets none at all.
     WHETHER a timer may run is the platform's fact — a screen reader makes a timed change
     hostile — but that an explicit button REPLACES it, and books exactly what the beat would
     have booked, is the rule (`TurnIntent.ConfirmPending`).
@@ -52,7 +52,7 @@ Engine contract: `../README.md`.
     a typed answer never closes it, because it never reaches self-grading.
   - **Asked by ear**, the answer grades against `spokenOnly`,
     but a form the card itself lists (`alsoAccepts`, compared by `speechKey`)
-    is amber rather than wrong — the reveal teaches those forms, it simply was not what played.
+    is almost rather than wrong — the reveal teaches those forms, it simply was not what played.
     Being exactly what played wins over that:
     a card that also lists its own spoken form was still answered exactly.
 
@@ -109,12 +109,12 @@ Engine contract: `../README.md`.
 - **One injected `Random` per run** feeds every draw — task, variant, phrase frame, direction flip —
   so a seeded run is reproducible end to end and identical on both platforms.
 - Feedback and cues reuse the turn machine's vocabulary
-  (`TurnFeedback`, `AlmostReason`, `AnswerTone`, `AdvanceTier`, `ToneKind`);
+  (`TurnFeedback`, `AlmostReason`, `AnswerOutcome`, `AdvanceTier`, `ToneKind`);
   nothing new is minted where kern already names a rule.
   `StreakTier` names the summary ladder (≥10 / ≥5 / ≥2 / else);
   which glyph a tier wears is chrome.
   `DrillTally` names the counter for all three drills at once — clean wins over the answers
-  judged either way, with amber in neither half for `DrillRamp.step`'s reason;
+  judged either way, with almost in neither half for `DrillRamp.step`'s reason;
   the "2/3" string is rendering.
 - **Storage contract**: the streak record under `trainer.record.<key>`,
   per-variant rung progress under `trainer.level.<key>`
@@ -124,8 +124,8 @@ Engine contract: `../README.md`.
   Pinned quirk: a non-null `phraseSource` suffixes the record language with the
   `<source>-<target>` pair even when the run asks no sentence,
   because the overview passes the source whenever the pair realizes frames.
-- **Closing books exactly as Weiter would** — a pending answer keeps its earned tone,
-  never upgraded (a hint-assisted clean answer closes amber) and never lost;
+- **Closing books exactly as Weiter would** — a pending answer keeps its earned outcome,
+  never upgraded (a hint-assisted clean answer closes almost) and never lost;
   a revealed-but-unconfirmed answer books nothing.
 - `LetterDrillAvailability.report(catalog, box, language, hasVoice)` is the one gate for
   whether the letter drill exists, what it may prompt, and where a learner enters the ladder.

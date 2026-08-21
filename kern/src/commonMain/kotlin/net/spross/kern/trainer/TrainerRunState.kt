@@ -86,7 +86,7 @@ data class TrainerRunState(
     val outcomes: List<AnswerOutcome>,
     /** Digit counts already introduced with a place-value hint; each length is hinted once. */
     val seenDigitCounts: Set<Int>,
-    /** The learner looked the numbers up while owing this answer: it books amber. */
+    /** The learner looked the numbers up while owing this answer: it books almost. */
     val hintUsed: Boolean,
     val feedback: TurnFeedback,
     val finished: Boolean,
@@ -112,7 +112,7 @@ data class TrainerRunState(
     /** The answer is still owed — what makes a look-up cost the rung. */
     val owesAnswer: Boolean get() = feedback == TurnFeedback.Neutral
 
-    /** Correct or amber: something is pending that closing must book rather than lose. */
+    /** Correct or almost: something is pending that closing must book rather than lose. */
     val answerAccepted: Boolean
         get() = feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost
 
@@ -154,7 +154,7 @@ data class TrainerRunState(
             return Trainer.placeValueHint(digits, mode.language)
         }
 
-    /** What a correct answer earns: amber where the reference was read while the answer was owed. */
+    /** What a correct answer earns: almost where the reference was read while the answer was owed. */
     internal val cleanOutcome: AnswerOutcome
         get() = if (hintUsed) AnswerOutcome.Almost else AnswerOutcome.Right
 }

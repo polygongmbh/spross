@@ -7,7 +7,7 @@ package net.spross.kern.trainer
  * a hundred, spaces around `cent` and `mille`, and `et` where 21…71 take it. Beside it grade
  * the 1990-rectified all-hyphen spelling and the fully spaced twin of both: the comparison
  * pipeline DELETES hyphens rather than spacing them, so `vingt-et-un` is one word and
- * `vingt et un` three, and only emitting both keeps either from booking a right answer amber.
+ * `vingt et un` three, and only emitting both keeps either from booking a right answer as almost.
  *
  * The regional decades (`septante`, `nonante`, and Swiss `huitante`) grade beside the
  * vigesimal standard forms; which varieties they belong to, and why `octante` is left out,

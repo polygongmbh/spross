@@ -146,10 +146,10 @@ object LetterDrillRun {
                     DrillEffect.ArmAdvance(AdvanceTier.Explicit),
                 ),
             )
-            // why: both amber holds wait for a tap, and a held keyboard covers the button they
+            // why: both almost holds wait for a tap, and a held keyboard covers the button they
             // wait for — so neither arms a beat and both give the field back.
-            is LetterVerdict.Typo -> amber(state, verdict.corrected, AlmostReason.Typo)
-            is LetterVerdict.Heard -> amber(state, verdict.played, AlmostReason.Heard)
+            is LetterVerdict.Typo -> almost(state, verdict.corrected, AlmostReason.Typo)
+            is LetterVerdict.Heard -> almost(state, verdict.played, AlmostReason.Heard)
             LetterVerdict.Wrong -> LetterDrillReduction(
                 state.copy(feedback = TurnFeedback.Revealed),
                 listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),
@@ -157,7 +157,7 @@ object LetterDrillRun {
         }
     }
 
-    private fun amber(
+    private fun almost(
         state: LetterDrillRunState,
         form: String,
         reason: AlmostReason,

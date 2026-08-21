@@ -118,11 +118,11 @@ data class CountryDrillRunState(
     /** Nothing decided yet — the answer is still the learner's to produce. */
     val owesAnswer: Boolean get() = feedback == TurnFeedback.Neutral
 
-    /** Correct or amber: something is pending that closing must book rather than lose. */
+    /** Correct or almost: something is pending that closing must book rather than lose. */
     val answerAccepted: Boolean
         get() = feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost
 
-    /** The card may open: the amber hold and the miss each put a name worth seeing on it. */
+    /** The card may open: the almost hold and the miss each put a name worth seeing on it. */
     val showsAnswer: Boolean
         get() = feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed
 

@@ -202,11 +202,11 @@ class CountryDrillRunTest {
     }
 
     /**
-     * A slip on an explicit check is the amber hold: it waits for a tap rather than a beat,
+     * A slip on an explicit check is the almost hold: it waits for a tap rather than a beat,
      * and gives the keyboard back so the button it waits for is not covered.
      */
     @Test
-    fun aSlipOnACheckHoldsAmberAndGivesTheKeyboardBack() {
+    fun aSlipOnACheckHoldsAlmostAndGivesTheKeyboardBack() {
         val reduction = open().reduce(CountryDrillIntent.Submit("Ujerumami"))
         val hold = assertIs<TurnFeedback.Almost>(reduction.state.feedback)
         assertEquals("Ujerumani", hold.correctForm)
@@ -303,9 +303,9 @@ class CountryDrillRunTest {
         assertEquals(2, open(fast = true).answered("Ujerumani").level)
     }
 
-    /** The amber hold is accepted, and moves the rung neither way. */
+    /** The almost hold is accepted, and moves the rung neither way. */
     @Test
-    fun theAmberHoldBanksNoWin() {
+    fun theAlmostHoldBanksNoWin() {
         val run = open().answered("Ujerumami")
         assertEquals(1, run.level)
         assertEquals(0, run.winsAtLevel)
@@ -314,11 +314,11 @@ class CountryDrillRunTest {
     }
 
     /**
-     * Amber drops out of the counter's BOTH halves, exactly as it moves no rung — a slip is
+     * Almost drops out of the counter's BOTH halves, exactly as it moves no rung — a slip is
      * neither a win to bank nor a miss to punish, and the counter beside the rung says so too.
      */
     @Test
-    fun theCounterLeavesAmberOutOfBothHalves() {
+    fun theCounterLeavesAlmostOutOfBothHalves() {
         var run = open()
         run = run.answered("Ujerumani")
         run = run.answered("Ujerumami")

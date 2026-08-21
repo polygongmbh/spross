@@ -76,7 +76,7 @@ class TurnMachine(
         // The blank reveal handed the turn to the self-grade buttons; there is no field left.
         state.revealed -> unchanged(state)
         state.feedback == TurnFeedback.Revealed -> approveRetry(state, text)
-        // An amber hold waits for its tap: the correction is the point of the pause.
+        // An almost hold waits for its tap: the correction is the point of the pause.
         state.feedback is TurnFeedback.Almost -> unchanged(state)
         else -> approveTyped(state, text)
     }
@@ -231,7 +231,7 @@ class TurnMachine(
 
     /**
      * The explicit tap that stands in for a beat books exactly what the beat would have —
-     * an amber hold's parked rating, and otherwise whatever [advanceElapsed] was waiting to fire.
+     * an almost hold's parked rating, and otherwise whatever [advanceElapsed] was waiting to fire.
      * One rule, so the button a screen reader gets cannot grade differently from the timer.
      */
     private fun confirmPending(state: TurnState): TurnReduction {
