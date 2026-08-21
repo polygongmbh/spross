@@ -60,6 +60,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   content (a British spelling is a `variant`, a British word a `synonym`; `catalog/README.md`).
 - ALWAYS use **Semantic linebreaks** for text - in docs, markdown files, documentation comments: one sentence/clause per line.
 - Tests: behavior over implementation detail; extract pure logic so it's testable without the framework.
+- A rule that can be checked gets the check too (`scripts/hooks/pre-commit`), never the sentence alone.
 - Engine APIs name the rule, never the rendering: no screen positions in kern types.
 
 ## Working with subagents & tools
@@ -93,6 +94,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 ## Extended docs
 
 - Decisions, rationale, and major turning points live in `docs/`, not inline; this file points.
+- Which of the three homes a rule belongs in — this file, a doc, or a gate — is `docs/rules.md`.
 - **One fact, one home**: each topic owned by exactly one doc; narrative docs (history, status, plans) link into it, never restate it.
 - Docs carry foundations; what the running app or the code answers faster stays out, and a needed cross-link means it is filed wrong.
 - Negations and hardlines only where the opposite is what would otherwise happen.
