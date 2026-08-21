@@ -22,6 +22,17 @@ no user-facing direction concept; progress tracked per target language.
 Every screen answers "What do I do right now?" with zero ambiguity.
 The app composes the work; the user never browses for what to study.
 
+The voice follows from that: copy states what is on the table,
+never that something waits for the learner
+("Lust auf neue Wörter?", not "Neue Wörter warten auf dich";
+"Morgen sind %@ Karten dran", not "warten auf dich").
+This is a box the learner tends, not a streak app that nags,
+and material personified into waiting turns an offer into an obligation —
+the learner who comes back late then meets a reproach instead of their words.
+Every prompt, empty state, call to action and forecast line gets the same read:
+where the sentence puts the learner under an expectation,
+rephrase it as an availability statement or a question.
+
 ## Boundaries & persistence
 
 Strict dependency direction: App → SprossKern, never the reverse.
@@ -270,8 +281,6 @@ a clone inherits its sibling's gaps, never the rules.
   read off the same grade, so no two surfaces say different things about one day.
   The card names what the round is led by rather than calling everything "a session":
   due work, or an offer of new words when nothing is due.
-  Copy for the second is an OFFER, never a summons —
-  the words are on the table, they are not waiting on the learner.
   What the card promises is what the round will really hand over — the cap it will take,
   never the pile behind it.
   A day the learner has not worked is never called done —
