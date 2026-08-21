@@ -12,6 +12,17 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "r=$(git rev-parse --show-toplevel 2>/dev/null) && cd \"$r\" && python3 scripts/arch-status.py --check 2>&1 || true",
+            "statusMessage": "Checking which turn machines have a kern home..."
+          }
+        ]
+      }
     ]
   }
 }
