@@ -25,6 +25,7 @@ import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
+import net.spross.app.CardDisplay
 import net.spross.app.Chrome
 import net.spross.app.audio.Pronouncer
 import net.spross.kern.box.AreaStatistics
@@ -34,7 +35,8 @@ import net.spross.kern.box.CardRowState
 import net.spross.kern.box.OwnWords
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.model.Card
-import net.spross.kern.model.Language
+import net.spross.kern.model.Realization
+import net.spross.kern.model.shownArticle
 
 /**
  * One word as the box lists it: its picture, the TARGET citation over the word the learner
@@ -55,7 +57,7 @@ fun BoxCardRow(model: AppModel, card: Card, pack: (() -> Unit)? = null) {
     val chrome = model.chrome
     val state = model.box ?: return
     val standing = BoxBrowser.cardRowState(state, card.id, packOffered = pack != null)
-    val pronounce = model.boxPronounceAction(card.target.text, card.target.lang)
+    val pronounce = model.boxPronounceAction(card.target)
     // why: only a word the learner wrote is theirs to delete — a catalog word can be put
     // to sleep, never removed, so it grows no such gesture at all.
     val remove: (() -> Unit)? = when {
@@ -243,8 +245,12 @@ private val EMPTY_AREA = AreaStatistics(
  * rather than the run's. Null where the device can neither play nor speak it — a word that
  * cannot be heard grows no gesture that does nothing.
  */
-fun AppModel.boxPronounceAction(form: String, lang: Language): (() -> Unit)? {
-    val pronunciation: Pronunciation = catalog?.pronunciation(lang, form) ?: return null
+fun AppModel.boxPronounceAction(target: Realization): (() -> Unit)? {
+    val pronunciation: Pronunciation =
+        catalog?.pronunciation(target.lang, target.text) ?: return null
     if (!pronouncer.canPronounce(pronunciation)) return null
-    return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP) }
+    // The citation form is the canonical one here — no rotation reaches a browser row — so
+    // the voice says it with its article, exactly as the row draws it (`docs/read-aloud.md`).
+    val article = shownArticle(CardDisplay.article(target), target.text, target.text)
+    return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP, article) }
 }

@@ -6,6 +6,7 @@ import android.media.MediaPlayer
 import android.media.audiofx.LoudnessEnhancer
 import android.os.Handler
 import android.os.HandlerThread
+import android.os.Looper
 import java.io.IOException
 import java.util.concurrent.atomic.AtomicInteger
 import net.spross.kern.catalog.Playback
@@ -49,6 +50,17 @@ class PronunciationPlayer {
      */
     @Volatile private var held = false
 
+    /**
+     * What the clip in the air owes back when it ends, and which request owes it.
+     *
+     * A listening run arms its next beat off this, so it has to be the END of the word and
+     * never a stop or an overtaking play — those are words cut off, not words finished.
+     */
+    @Volatile private var pending: Pair<Int, () -> Unit>? = null
+
+    /** why: the worker owns the player, so the callback hops before the app hears about it. */
+    private val main = Handler(Looper.getMainLooper())
+
     // Everything below is owned by [thread]: the worker builds the player there, so
     // MediaPlayer's callbacks land there too and the guards need no lock.
 
@@ -69,12 +81,19 @@ class PronunciationPlayer {
      * descriptor is consumed on the worker. A file that will not open simply stays
      * silent — a word is never worth an error surface.
      */
-    fun play(afd: AssetFileDescriptor, gainDb: Double, leadMs: Long) {
+    fun play(
+        afd: AssetFileDescriptor,
+        gainDb: Double,
+        leadMs: Long,
+        fadeDb: Double = 0.0,
+        onFinish: (() -> Unit)? = null,
+    ) {
         val current = request.incrementAndGet()
         held = true
+        pending = onFinish?.let { current to it }
         handler.post {
             clear()
-            load(current, afd, gainDb, leadMs)
+            load(current, afd, gainDb, leadMs, fadeDb)
         }
     }
 
@@ -82,9 +101,13 @@ class PronunciationPlayer {
      * Plays the clip already held — the instant answer to a second tap on the same word.
      * False when nothing is loaded and the caller has to hand over a descriptor.
      */
-    fun replay(): Boolean {
+    fun replay(volume: Float = 1f, onFinish: (() -> Unit)? = null): Boolean {
         if (!held) return false
+        pending = onFinish?.let { request.get() to it }
         handler.post {
+            // why: the fade may have moved since this clip was prepared — the boost on its
+            // session is the catalog's correction and stands, the volume is the ramp.
+            player?.setVolume(volume, volume)
             // why: a prepare still on its way ends in this very clip sounding, so a
             // second ask while it lands is answered by letting it land, not twice.
             player?.takeIf { preparing == 0 }?.let(::sound)
@@ -96,6 +119,7 @@ class PronunciationPlayer {
     fun stop() {
         request.incrementAndGet()
         held = false
+        pending = null
         handler.post { clear() }
     }
 
@@ -108,7 +132,13 @@ class PronunciationPlayer {
     }
 
     /** Builds and prepares the player for [current] — worker side of [play]. */
-    private fun load(current: Int, afd: AssetFileDescriptor, gainDb: Double, leadMs: Long) {
+    private fun load(
+        current: Int,
+        afd: AssetFileDescriptor,
+        gainDb: Double,
+        leadMs: Long,
+        fadeDb: Double,
+    ) {
         val player = MediaPlayer()
         this.player = player
         preparing = current
@@ -123,6 +153,11 @@ class PronunciationPlayer {
             head = Playback.headMs(leadMs, prepared.duration.toLong())
             sound(prepared)
         }
+        player.setOnCompletionListener {
+            // why: only the newest request may report — a clip the next word overtook
+            // ended because it was replaced, which is not the end of anything owed.
+            if (current == request.get()) finish(current)
+        }
         player.setOnErrorListener { _, _, _ ->
             fail(current)
             true // handled: a file that will not decode is a silent word, never a crash
@@ -134,7 +169,7 @@ class PronunciationPlayer {
             afd.use { player.setDataSource(it) }
             // The attenuating half of the index rides the player and the boosting half
             // its session; the scheme leaves only one of the two ever doing anything.
-            playbackVolume(gainDb).let { player.setVolume(it, it) }
+            playbackVolume(gainDb, fadeDb).let { player.setVolume(it, it) }
             boost(player, playbackBoostMillibels(gainDb))
             player.prepareAsync()
         } catch (_: IOException) {
@@ -150,6 +185,17 @@ class PronunciationPlayer {
         if (!request.compareAndSet(current, current + 1)) return
         held = false
         clear()
+        // why: a file that will not decode still ends the word — a run armed off the
+        // completion would otherwise stand still on one broken clip.
+        finish(current)
+    }
+
+    /** Hands the completion on where it belongs to the request that asked for it. */
+    private fun finish(current: Int) {
+        val owed = pending ?: return
+        if (owed.first != current) return
+        pending = null
+        main.post(owed.second)
     }
 
     /** Releases whatever is in hand — the worker-side body of [stop]. */

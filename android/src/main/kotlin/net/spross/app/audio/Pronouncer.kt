@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import java.io.IOException
 import net.spross.kern.catalog.Pronunciation
+import net.spross.kern.catalog.spokenTargetForm
 import net.spross.kern.model.Language
 
 /**
@@ -22,8 +23,14 @@ import net.spross.kern.model.Language
  */
 class Pronouncer(context: Context, private val prefs: SharedPreferences) {
 
-    /** Where a fire came from. Autoplay may be silenced; a tap is a request. */
-    enum class Trigger { AUTO, TAP }
+    /**
+     * Where a fire came from. Autoplay may be silenced; the other two are requests.
+     *
+     * [LISTENING] is a run whose only content is sound, which is itself the request to hear
+     * one — so it passes both mutes exactly as a [TAP] does. It is named apart all the same:
+     * a tap is one word answered on the spot, and this is an hour of them playing unattended.
+     */
+    enum class Trigger { AUTO, TAP, LISTENING }
 
     private val assets = context.applicationContext.assets
     private val accessibility = context.applicationContext
@@ -76,16 +83,44 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     fun canPronounce(pronunciation: Pronunciation): Boolean =
         pronunciation.recordingPath != null || canSpeak(pronunciation.lang)
 
-    /** Says the form: the recording when one matched, else the live voice. */
-    fun pronounce(pronunciation: Pronunciation, trigger: Trigger) {
+    /**
+     * Says the form: the recording when one matched, else the live voice.
+     *
+     * [article] is the target-side article to say in front of a SYNTHESIZED form, already
+     * decided by kern's `shownArticle` rule so a rotated synonym carrying another gender
+     * gets none. It never reaches a recording: a recording says what was recorded, and the
+     * two branches sounding different is the accepted cost of teaching the article at all
+     * (`docs/read-aloud.md`).
+     *
+     * [fadeDb] is kern's listening ramp (`listeningGainDb`), 0 everywhere else. It rides the
+     * volume on top of a recording's own index, never instead of it.
+     *
+     * [onFinish] fires ONCE on the main thread when the word has been said — including the
+     * cases where nothing sounds at all, so a run armed off it can never wedge on a silent
+     * word. It does not fire for a word this call itself cut off.
+     */
+    fun pronounce(
+        pronunciation: Pronunciation,
+        trigger: Trigger,
+        article: String? = null,
+        fadeDb: Double = 0.0,
+        onFinish: (() -> Unit)? = null,
+    ) {
         // why: TalkBack reads the card itself, target word included — autoplay on top
         // of it is two voices over one word. A tap is never gated: it is a request.
-        if (trigger == Trigger.AUTO && (muted || readsScreenAloud)) return
+        if (trigger == Trigger.AUTO && (muted || readsScreenAloud)) {
+            onFinish?.invoke()
+            return
+        }
         speaker.stop()
         val path = pronunciation.recordingPath
         // why: the player still holds the last clip prepared, so a second ask for the
         // same word answers without a second decode — the reason it keeps it.
-        if (path != null && path == loaded && player.replay()) return
+        if (path != null && path == loaded &&
+            player.replay(playbackVolume(pronunciation.gain, fadeDb), onFinish)
+        ) {
+            return
+        }
         // why: one word at a time — a new fire replaces whatever is sounding.
         player.stop()
         loaded = null
@@ -94,12 +129,16 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
             // why: the loudness and the dead air are the catalog's MEASUREMENTS of bytes
             // that stay the untouched transcode — playback is the one place they are ever
             // applied, and never the file.
-            player.play(recording, pronunciation.gain, pronunciation.leadMs)
+            player.play(recording, pronunciation.gain, pronunciation.leadMs, fadeDb, onFinish)
             loaded = path
             return
         }
-        // Silent no-op when no voice exists for the language.
-        speaker.speak(pronunciation.utterance, pronunciation.lang)
+        // The synthesized branch, and the only one the article reaches.
+        val spoken = spokenTargetForm(article, pronunciation.form, pronunciation.form)
+        if (!speaker.speak(spoken, pronunciation.lang, fadeVolume(fadeDb), onFinish)) {
+            // No voice for the language: the word is silent, and it is over at once.
+            onFinish?.invoke()
+        }
     }
 
     fun stop() {

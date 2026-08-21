@@ -4,6 +4,7 @@ import net.spross.app.audio.Pronouncer
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.model.PronunciationCue
 import net.spross.kern.model.pronunciationCue
+import net.spross.kern.model.shownArticle
 
 /**
  * The review loop's audio glue, kept beside the model rather than in it: what a card
@@ -29,7 +30,7 @@ const val CHIME_CLEARANCE_MS = 300L
  */
 fun AppModel.autoplayPrompt() {
     val pronunciation = sessionUi?.promptPronunciation ?: return
-    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.AUTO)
+    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.AUTO, spokenArticle(pronunciation.form))
 }
 
 /**
@@ -40,7 +41,7 @@ fun AppModel.autoplayPrompt() {
 fun AppModel.pronounceTarget(form: String, trigger: Pronouncer.Trigger) {
     if (trigger == Pronouncer.Trigger.AUTO && !awaitsReveal()) return
     val pronunciation = pronunciationOf(form) ?: return
-    pronouncer.pronounce(pronunciation, trigger)
+    pronouncer.pronounce(pronunciation, trigger, spokenArticle(form))
 }
 
 /**
@@ -53,7 +54,21 @@ fun AppModel.pronounceAction(form: String): (() -> Unit)? {
     if (!pronouncer.canPronounce(pronunciation)) return null
     // why: a tap speaks even while reading aloud is switched off — mute has to stay
     // usable as the accessibility affordance, and the About row's hint says so.
-    return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP) }
+    return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP, spokenArticle(form)) }
+}
+
+/**
+ * The article the VOICE says in front of [form] — "das Brot", never a bare stem, because an
+ * article is half of what knowing a noun means and a word only ever heard bare is a word
+ * never heard right (`docs/read-aloud.md`).
+ *
+ * Kern decides whether there is one to say: a rotated synonym may carry another gender, so
+ * [shownArticle] keeps it off anything but the canonical form. Only the synthesized branch
+ * ever uses it — a bundled recording says the bare word it was recorded as.
+ */
+private fun AppModel.spokenArticle(form: String): String? {
+    val target = sessionUi?.card?.target ?: return null
+    return shownArticle(CardDisplay.article(target), form, target.text)
 }
 
 private fun AppModel.pronunciationOf(form: String): Pronunciation? {

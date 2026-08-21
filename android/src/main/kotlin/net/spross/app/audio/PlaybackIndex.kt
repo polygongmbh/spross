@@ -24,11 +24,22 @@ import net.spross.kern.catalog.Playback
 private const val MILLIBELS_PER_DB = 100
 
 /**
- * The volume a recording measured at [gainDb] plays at: the decibel definition where it
- * is to be turned down, and 1.0 where the enhancer will lift it instead.
+ * The volume a recording measured at [gainDb] plays at, [fadeDb] decibels under whatever
+ * that comes to: the decibel definition where the index is to be turned down, and 1.0 where
+ * the enhancer will lift it instead.
+ *
+ * The two are separate numbers on purpose. The index is a MEASUREMENT of the shipped bytes
+ * and is held to kern's own bound; the fade is a level kern chose (`listeningGainDb`), rides
+ * the volume because it only ever attenuates, and is held to its own floor there. Clamping
+ * the pair together would hold a 40 dB bedtime ramp to the 20 dB a measurement may claim.
  */
-fun playbackVolume(gainDb: Double): Float =
-    if (gainDb >= 0) 1f else 10.0.pow(Playback.gainDb(gainDb) / 20).toFloat()
+fun playbackVolume(gainDb: Double, fadeDb: Double = 0.0): Float {
+    val correction = if (gainDb >= 0) 0.0 else Playback.gainDb(gainDb)
+    return 10.0.pow((correction + fadeDb) / 20).toFloat()
+}
+
+/** The same ramp with no recording under it — what a synthesized utterance is attenuated by. */
+fun fadeVolume(fadeDb: Double): Float = 10.0.pow(fadeDb / 20).toFloat()
 
 /**
  * What `LoudnessEnhancer.setTargetGain` is handed for a recording measured at [gainDb] —
