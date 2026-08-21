@@ -6,6 +6,23 @@
          permission — granted at install, never prompted, nothing to ask the learner. -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
+    <!-- Listening mode plays with the screen off, which on this platform means a foreground
+         service of the mediaPlayback type: that is what keeps the process out of the reaper's
+         way while nothing is on screen, and since API 34 the typed permission is what allows
+         one to be started at all. Both are normal permissions — nothing is prompted. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+
+    <!-- The gaps between the beats: a turn is silent for two and a half seconds at a time,
+         and a phone that dozed in one of them would wake to a playlist stopped mid-word.
+         Held only while a run is going, and with a ceiling on it. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- The run's controls ARE its notification. Since API 33 a denied prompt hides it — the
+         run still plays, but without the shade and lock-screen buttons, so it is asked for
+         where the learner opens the mode rather than at launch. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <!-- Speech engines live in their own packages, which package visibility hides
          since Android 11: without this the pinned engine cannot even be bound, and
          every word without a recording would fall silent. -->
@@ -31,6 +48,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- What keeps a listening run playing with the screen off and puts its word on the
+             lock screen. Not exported: nothing outside the app has any business starting a
+             playlist over somebody's vocabulary. -->
+        <service
+            android:name=".listen.ListeningService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
 
         <!-- The home-screen word tile. Exported because the launcher is another process
              and has to be able to broadcast the update to it; the label is the brand name,

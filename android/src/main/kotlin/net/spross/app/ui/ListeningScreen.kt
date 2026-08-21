@@ -1,6 +1,11 @@
 package net.spross.app.ui
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -31,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -61,6 +67,7 @@ fun ListeningScreen(model: AppModel) {
     val chrome = model.chrome
     val run = model.listening
     BackHandler { model.closeListening() }
+    AskForTheShade()
 
     Column(
         modifier = Modifier.fillMaxSize().padding(DlSpace.xl),
@@ -97,6 +104,27 @@ fun ListeningScreen(model: AppModel) {
             ) { run.togglePause() }
             TransportButton(SprossIcons.SkipNext, chrome.listenSkip, big = false) { run.skip() }
         }
+    }
+}
+
+/**
+ * The run's controls on the lock screen and in the shade are a NOTIFICATION, and since API 33
+ * that is a permission. It is asked for here rather than at launch because here is where it
+ * first buys the learner something — a run they can steer with the phone in a pocket — and a
+ * prompt at launch would be a prompt for a mode most people have not opened yet.
+ *
+ * A denial costs the buttons and nothing else: the run still plays, and the platform stops
+ * asking of its own accord after the second dismissal.
+ */
+@Composable
+private fun AskForTheShade() {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+    val context = LocalContext.current
+    val ask = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { }
+    LaunchedEffect(Unit) {
+        val granted = context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) ==
+            PackageManager.PERMISSION_GRANTED
+        if (!granted) ask.launch(Manifest.permission.POST_NOTIFICATIONS)
     }
 }
 

@@ -40,7 +40,10 @@ enum class ListeningBeat { Target, Meaning, Echo }
  * It touches no box. Nothing here books a review, writes a schedule or moves the streak —
  * listening answers nothing, so it costs the box nothing (`docs/surfaces.md`).
  */
-class ListeningDriver(app: Application, private val model: AppModel) {
+class ListeningDriver(
+    private val app: Application,
+    private val model: AppModel,
+) : ListeningControls {
 
     /** The run, or null between runs. The screen and the lock screen both read this. */
     var state by mutableStateOf<ListeningRunState?>(null)
@@ -96,7 +99,11 @@ class ListeningDriver(app: Application, private val model: AppModel) {
         deadline = null
         pausedByFocus = false
         focus.take()
+        ListeningBridge.controls = this
         apply(ListeningRun.reduce(ListeningRun.idle(candidates), ListeningIntent.Start, rng))
+        // why: the state is published by the reduction above, so the service's very first
+        // notification already carries the word rather than an empty shell of one.
+        ListeningService.start(app)
     }
 
     /**
@@ -108,15 +115,22 @@ class ListeningDriver(app: Application, private val model: AppModel) {
         state = ListeningRun.withCandidates(current, candidates)
     }
 
-    fun togglePause() {
+    override fun togglePause() {
         // The learner's own pause outranks the platform's: lifting it is theirs to do.
         pausedByFocus = false
         dispatch(ListeningIntent.TogglePause)
     }
 
-    fun skip() = dispatch(ListeningIntent.Skip)
+    override fun skip() = dispatch(ListeningIntent.Skip)
 
-    fun repeat() = dispatch(ListeningIntent.Repeat)
+    override fun repeat() = dispatch(ListeningIntent.Repeat)
+
+    /**
+     * The ✕ as the lock screen and a headphone stop button reach it. It goes through the
+     * MODEL rather than straight to [stop], because closing a run also leaves its screen —
+     * a phone unlocked after this must not come back to a run that is no longer playing.
+     */
+    override fun close() = model.closeListening()
 
     /** Ends the run: the audio stops, the focus goes back, and whatever was playing resumes. */
     fun stop() {
@@ -128,6 +142,9 @@ class ListeningDriver(app: Application, private val model: AppModel) {
         timerMinutes = 0
         pausedByFocus = false
         focus.release()
+        ListeningBridge.controls = null
+        ListeningBridge.nowPlaying = null
+        ListeningService.stop(app)
     }
 
     /**
@@ -162,6 +179,35 @@ class ListeningDriver(app: Application, private val model: AppModel) {
                     beat = null
                 }
             }
+        }
+        publish()
+    }
+
+    /**
+     * What the lock screen shows. The chrome travels with it because chrome is keyed to the
+     * language the learner already knows, and only the model holds that — a service reading
+     * its own resources would label the notification in the phone's language instead.
+     */
+    private fun publish() {
+        val run = state?.takeIf { it.active }
+        val turn = run?.turn
+        val chrome = model.chrome
+        ListeningBridge.nowPlaying = if (turn == null) {
+            null
+        } else {
+            ListeningNowPlaying(
+                title = chrome.listenTitle,
+                // The article is part of the word here as it is in the voice: the lock
+                // screen shows what is being said, not a citation form beside it.
+                target = turn.spokenArticle?.let { "$it ${turn.targetForm}" } ?: turn.targetForm,
+                meaning = turn.sourceForm,
+                paused = run.paused,
+                pauseLabel = chrome.listenPause,
+                resumeLabel = chrome.listenResume,
+                skipLabel = chrome.listenSkip,
+                repeatLabel = chrome.listenRepeat,
+                closeLabel = chrome.close,
+            )
         }
     }
 
