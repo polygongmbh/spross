@@ -345,6 +345,16 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   field by field — is a change-detector for a copy function, not coverage.
 - `PaletteParityTest` (jvmTest) holds the four hand-copied palettes to the app's design
   tokens; `../docs/portability.md` owns that rule and its `--rerun-tasks` caveat.
+- **A deliberate content change is allowed to move the tests that pin it.**
+  Pinned expectations say what the drill teaches,
+  so changing what it teaches SHOULD move them —
+  contorting the content to keep them byte-identical
+  inverts which of the two is the source of truth.
+  Move the expectation and say so in the commit;
+  the zero-test-edit bar belongs to REFACTORS, where an unchanged test is the proof.
+  Exhaustive coverage is not the goal either:
+  judge a variant by whether a learner would plausibly type it, not by whether it exists somewhere,
+  since a rare regional form costs the review attention the common ones deserve more.
 
 ## Rejected designs
 
