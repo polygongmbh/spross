@@ -9,7 +9,7 @@ import SwiftUI
 
 /// How the streak's flame burns. The Design-local twin of the box's
 /// `StreakHealth`, so components stay kern-free — WHICH day arithmetic puts a run
-/// in which grade is the engine's ruling (`kern/README.md` §6); here it is only
+/// in which grade is the engine's ruling (`kern/docs/reports.md`); here it is only
 /// how bright and how colorful the mark burns.
 enum FlameState {
     /// Today has reviews — the run is safe until tomorrow.

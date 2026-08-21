@@ -369,7 +369,7 @@ final class AppModel {
                 await store.save(json: json, target: target)
             }
             // why: the decode-only widget renders from this precomputed file
-            // (contract §7) — refresh it on every persist, never debounced.
+            // (`kern/docs/snapshots.md`) — refresh it on every persist, never debounced.
             await store.saveWidgetSnapshot(json: widgetJSON)
         }
     }

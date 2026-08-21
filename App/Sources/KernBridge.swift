@@ -3,7 +3,7 @@ import SprossKern
 import SwiftUI
 
 // Swift-side conveniences over the SprossKern (Kotlin) API. The engine
-// boundary speaks epochMillis + tzId (kern/README.md §7); everything Date-
+// boundary speaks epochMillis + tzId (kern/docs/build.md); everything Date-
 // or Int-shaped is bridged HERE, never at call sites.
 
 extension Date {

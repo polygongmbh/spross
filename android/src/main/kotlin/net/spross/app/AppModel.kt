@@ -260,7 +260,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     /**
      * Produce grading with the whole join in view: a form the catalog owns
-     * elsewhere is that word, never a typo of this card's answer (kern §6).
+     * elsewhere is that word, never a typo of this card's answer (`kern/docs/grading.md`).
      * Built per grading pass — one pass over the join, only on a check tap.
      */
     val produceGrader: CatalogAnswerGrader?

@@ -47,7 +47,7 @@ JUNK_AUTHORS = {'own work', 'myself', ''}
 # placeholder however much it looks like a credit, and takes the same path.
 ASSUMED_AUTHOR = re.compile(r'assumed \(based on copyright claims\)', re.IGNORECASE)
 
-# Kept in step with kern's speechKey (kern/README.md §11) — the index this script
+# Kept in step with kern's speechKey (kern/docs/audio.md) — the index this script
 # writes and the lookup that reads it have to fold the same things away.
 EDGE_PUNCTUATION = '!?¡¿.,;:…"\'«»„“”‘’‹›'
 

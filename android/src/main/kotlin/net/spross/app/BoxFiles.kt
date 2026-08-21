@@ -3,7 +3,7 @@ package net.spross.app
 import java.io.File
 
 /**
- * One JSON document per target language, `box-<target>.json` (kern README §7).
+ * One JSON document per target language, `box-<target>.json` (kern/docs/snapshots.md).
  * Android has no App Group; the app-private files dir is the single owner.
  */
 class BoxFiles(private val dir: File) {

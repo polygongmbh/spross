@@ -4,7 +4,7 @@ import WidgetKit
 
 // Read-side derivations: Heute values, box browsing, presentation
 // resolution, and Fortschritt aggregates. Every count is in cards
-// (contract §4 — one schedule per card).
+// (kern/README.md §3 — one schedule per card).
 
 extension AppModel {
 
@@ -101,7 +101,7 @@ extension AppModel {
     }
 
     /// The same grading with the whole join in view: a form the catalog owns
-    /// elsewhere is that word, never a typo of this card's answer (kern §6).
+    /// elsewhere is that word, never a typo of this card's answer (`kern/docs/grading.md`).
     /// Built per grading pass — one pass over the join's accepted forms, and
     /// only ever on a submit tap.
     var produceGrader: CatalogAnswerGrader? {
@@ -127,7 +127,7 @@ extension AppModel {
 
     /// Destructive fresh start: every schedule and tally goes, the join, the
     /// user's config (budget) and their own words stay — which of those a reset
-    /// keeps is the engine's ruling, not this layer's (kern §6).
+    /// keeps is the engine's ruling, not this layer's (`kern/docs/grading.md`).
     func resetBox() async {
         guard let old = box else { return }
         let fresh = BoxEngine.shared.reset(state: old)

@@ -97,7 +97,7 @@ fun BoxCardRow(model: AppModel, card: Card, pack: (() -> Unit)? = null) {
             modifier = Modifier.clearAndSetSemantics {},
         )
         Column(Modifier.weight(1f)) {
-            // Exposure surfaces render the TARGET side first (kern contract §6).
+            // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
             Text(
                 localizedTarget(Dl.colors.articleColoredText(card.target), card.target.lang),
                 style = MaterialTheme.typography.bodyLarge,

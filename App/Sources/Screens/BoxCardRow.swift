@@ -42,7 +42,7 @@ struct BoxCardRow: View {
                 .font(.title3)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
-                // Exposure surfaces render the TARGET side first (contract §6).
+                // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
                 Text(CardDisplay.citation(of: card.target))
                     .font(DL.Fonts.body)
                     .foregroundStyle(Color.dlTextPrimary)
