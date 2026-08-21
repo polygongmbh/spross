@@ -4,6 +4,7 @@ import kotlin.random.Random
 import net.spross.kern.catalog.AtlasCountryEntry
 import net.spross.kern.catalog.AtlasLanguageEntry
 import net.spross.kern.catalog.CountryDrillContent
+import net.spross.kern.model.Language
 
 /**
  * The atlas drill: name the country, the people, the language — and say which is spoken
@@ -146,6 +147,18 @@ object CountryDrill {
         if (picked.id == avoidId) picked = pool[rng.nextInt(pool.size)]
         return picked
     }
+
+    /**
+     * The language an answer is owed in — the learned one, or the learner's own where the
+     * run is turned round. Named here because the page that opens a run has to build the
+     * grader for it before there is a run to ask.
+     */
+    fun answerLanguage(content: CountryDrillContent, reverse: Boolean): Language =
+        if (reverse) content.source else content.target
+
+    /** The other side of the same pair: the language the prompt is written in. */
+    fun promptLanguage(content: CountryDrillContent, reverse: Boolean): Language =
+        if (reverse) content.target else content.source
 
     /**
      * The overview table, from the same joined rows the drill grades against — a reference

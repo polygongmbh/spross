@@ -67,10 +67,10 @@ class CountryDrillRunConfig(
     val normalizer: AnswerNormalizer?,
 ) {
     /** The language an answer is owed in — the learned one, or the learner's own reversed. */
-    val answerLanguage: Language get() = if (reverse) content.source else content.target
+    val answerLanguage: Language get() = CountryDrill.answerLanguage(content, reverse)
 
     /** The language the prompt is written in — the other side of the same pair. */
-    val promptLanguage: Language get() = if (reverse) content.target else content.source
+    val promptLanguage: Language get() = CountryDrill.promptLanguage(content, reverse)
 }
 
 /**
