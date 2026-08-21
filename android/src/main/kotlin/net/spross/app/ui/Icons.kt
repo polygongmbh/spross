@@ -110,11 +110,16 @@ object SprossIcons {
     /**
      * That one again. The ring runs BACKWARDS — counterclockwise, opening at the top — so
      * the glyph says "over again" rather than "onward", which a clockwise loop would.
+     *
+     * Both endpoints sit on the circle around (12,12), and the SWEEP is what picks which of
+     * the two circles through them is drawn: taken the other way it centers at (16.95, 0.05),
+     * almost entirely outside the box, and what survives the viewport is a crescent.
+     * `res/drawable/ic_listen_again.xml` carries the same path for the lock screen.
      */
     val Again = stroked("Again") {
-        moveTo(16.95f, 7.05f)
-        arcTo(7f, 7f, 0f, true, false, 12f, 5f)
-        moveTo(14.4f, 3.6f); lineTo(12f, 5f); lineTo(14.4f, 6.4f)
+        moveTo(12f, 5f)
+        arcTo(7f, 7f, 0f, true, false, 18.58f, 9.61f)
+        moveTo(15f, 3.2f); lineTo(12f, 5f); lineTo(15f, 6.8f)
     }
 
     /** Hear it. The cone is filled and the waves are stroked, as one glyph. */
