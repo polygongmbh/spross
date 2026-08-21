@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.2.0 — 2026-08-21
+
 - **A typo no longer costs you a point in a drill.** The counter beside the progress bar now
   counts only the answers a drill judged either way: a slip, a revealed hint or a synonym drops
   out of both halves of it, the way it has always left the rung where it was. The bar still
