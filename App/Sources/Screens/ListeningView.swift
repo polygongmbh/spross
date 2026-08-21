@@ -31,6 +31,7 @@ struct ListeningView: View {
         SessionScaffold(position: played + 1,
                         total: played + 1,
                         counter: played.formatted(),
+                        showsProgress: false,
                         showsMuteButton: false,
                         onClose: { dismiss() }) {
             VStack(spacing: DL.Space.xl) {
