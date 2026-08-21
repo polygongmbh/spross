@@ -9,26 +9,24 @@ extension CountryDrillView {
     var drillContent: some View {
         ScrollView {
             VStack(spacing: DL.Space.m) {
-                DrillStreakLine(level: Text("trainer.level \(level.formatted())"),
-                                streak: streak, bestStreak: bestStreak,
+                DrillStreakLine(level: Text("trainer.level \(Int(run.level).formatted())"),
+                                streak: Int(run.streak), bestStreak: Int(run.bestStreak),
                                 announcesRecord: true)
-                if let task = current {
-                    // ZStack so the outgoing and incoming question overlap
-                    // during the flip; .id gives each position its identity.
-                    ZStack {
-                        CountryPromptCard(ask: Self.ask(task.kind),
-                                          emoji: task.promptEmoji,
-                                          emojiIsGiveaway: task.emojiIsGiveaway,
-                                          text: task.promptText,
-                                          // A flag is written in no language,
-                                          // so it is tagged with none.
-                                          language: task.promptText == nil ? nil : promptLanguage,
-                                          revealed: cardReveal(task))
-                            .id(index)
-                            .transition(reduceMotion ? .opacity : .dlCardFlip)
-                    }
-                    typedControls(task)
+                // ZStack so the outgoing and incoming question overlap during
+                // the flip; .id gives each position its identity.
+                ZStack {
+                    CountryPromptCard(ask: Self.ask(current.kind),
+                                      emoji: current.promptEmoji,
+                                      emojiIsGiveaway: current.emojiIsGiveaway,
+                                      text: current.promptText,
+                                      // A flag is written in no language,
+                                      // so it is tagged with none.
+                                      language: current.promptText == nil ? nil : promptLanguage,
+                                      revealed: cardReveal(current))
+                        .id(Int(run.index))
+                        .transition(reduceMotion ? .opacity : .dlCardFlip)
                 }
+                typedControls
             }
             .padding(.bottom, DL.Space.l)
         }
@@ -74,7 +72,7 @@ extension CountryDrillView {
     // MARK: - The typed answer
 
     @ViewBuilder
-    private func typedControls(_ task: CountryDrillTask) -> some View {
+    private var typedControls: some View {
         VStack(spacing: DL.Space.m) {
             AnswerInputView(text: $input,
                             feedback: feedback,
@@ -85,17 +83,15 @@ extension CountryDrillView {
                             correctionVoice: .init(
                                 pronounce: { model.pronounceAction(for: $0, lang: answerLanguage) },
                                 isPlaying: { model.isPronouncing($0, lang: answerLanguage) })) {
-                submit(task)
+                submit()
             }
             // why: writing the name out is the answer — the review session's
             // rule, so a country you know never asks for a confirming tap.
-            .onChange(of: input) { _, _ in approveWhenTyped(task) }
+            .onChange(of: input) { _, _ in typed() }
             switch feedback {
             case .neutral:
                 // ONE primary action: an empty field reveals, a typed one checks.
-                Button {
-                    if input.isBlankAnswer { reveal() } else { submit(task) }
-                } label: {
+                Button(action: checkOrReveal) {
                     Text(input.isBlankAnswer ? "session.reveal" : "common.check")
                         .frame(maxWidth: .infinity)
                         .contentTransition(.opacity)
@@ -106,18 +102,17 @@ extension CountryDrillView {
             case .almost:
                 // The amber hold: the box above spells the slip out, and this
                 // waits for the tap that books it amber.
-                nextButton { advance(correct: true, clean: false) }
-                    .transition(.opacity)
+                nextButton(confirm).transition(.opacity)
             case .correct:
                 // why: the timer never arms under a screen reader, so a clean
                 // hit would otherwise have nothing to move on with.
                 if screenReaderOn {
-                    nextButton { advance(correct: true, clean: true) }
+                    nextButton(confirm)
                 }
             case .revealed:
                 VStack(spacing: DL.Space.s) {
-                    nextButton { advance(correct: false, clean: true) }
-                    if missRun >= 1 { DrillStopOffer { closeRun() } }
+                    nextButton(confirm)
+                    if run.offersFinish { DrillStopOffer { closeRun() } }
                 }
             }
         }
