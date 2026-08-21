@@ -12,7 +12,7 @@ import net.spross.kern.session.SessionOffer
 import net.spross.kern.session.SessionOfferKind
 
 /**
- * The WORDS Heute wraps around the box's answers, and the precedence between its four
+ * The WORDS Heute wraps around the box's answers, and the precedence between its three
  * cards. Which parts an offer or a day names, and in which order, is kern's
  * (`SessionOffer.summaryParts` / `TodayReport.tallyParts`) and tested there.
  */
@@ -30,22 +30,18 @@ class HeuteStandingTest {
     )
 
     @Test
-    fun anOfferOutranksADoneStateAndAnEmptyBoxIsNeverCaughtUp() {
+    fun anOfferOutranksADoneState() {
         assertEquals(
             HeuteCard.Session,
-            heuteCard(failed = false, offerKind = SessionOfferKind.WarmUp, activeCards = 0),
+            heuteCard(failed = false, offerKind = SessionOfferKind.WarmUp),
         )
         assertEquals(
             HeuteCard.Done,
-            heuteCard(failed = false, offerKind = SessionOfferKind.Nothing, activeCards = 7),
-        )
-        assertEquals(
-            HeuteCard.EmptyBox,
-            heuteCard(failed = false, offerKind = SessionOfferKind.Nothing, activeCards = 0),
+            heuteCard(failed = false, offerKind = SessionOfferKind.Nothing),
         )
         assertEquals(
             HeuteCard.Failure,
-            heuteCard(failed = true, offerKind = SessionOfferKind.Reviews, activeCards = 7),
+            heuteCard(failed = true, offerKind = SessionOfferKind.Reviews),
         )
     }
 

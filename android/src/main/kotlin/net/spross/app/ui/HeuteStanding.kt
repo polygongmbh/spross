@@ -15,7 +15,7 @@ import net.spross.kern.session.SessionOffer
 import net.spross.kern.session.SessionOfferKind
 import net.spross.kern.session.SessionOffers
 
-/** Which of Heute's four cards the day is standing on. */
+/** Which of Heute's three cards the day is standing on. */
 enum class HeuteCard {
     /** The box could not be read at all; nothing else on the screen means anything. */
     Failure,
@@ -25,23 +25,18 @@ enum class HeuteCard {
 
     /** Nothing due — worked or merely clear, which the card itself distinguishes. */
     Done,
-
-    /** Nothing is packed yet: the way on is the box, not a round. */
-    EmptyBox,
 }
 
 /**
  * Which card the day shows, in strict precedence.
  *
- * A failure outranks everything (the counts behind it are meaningless), an offer outranks
- * a done state, and "done" only ever reaches a box with something in it — an empty box is
- * not caught up, it has never been packed.
+ * A failure outranks everything (the counts behind it are meaningless), and an offer outranks
+ * a done state.
  */
-fun heuteCard(failed: Boolean, offerKind: SessionOfferKind, activeCards: Int): HeuteCard = when {
+fun heuteCard(failed: Boolean, offerKind: SessionOfferKind): HeuteCard = when {
     failed -> HeuteCard.Failure
     offerKind != SessionOfferKind.Nothing -> HeuteCard.Session
-    activeCards > 0 -> HeuteCard.Done
-    else -> HeuteCard.EmptyBox
+    else -> HeuteCard.Done
 }
 
 /**

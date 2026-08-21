@@ -238,13 +238,12 @@ fun ListenCard(model: AppModel) {
     }
 }
 
-/** The two cards that state a condition rather than offer a round: a failure, or an empty box. */
+/** The card that states a condition rather than offering a round: a failure. */
 @Composable
 fun StateCard(
     emoji: String,
     title: String,
     message: String,
-    action: Pair<String, () -> Unit>? = null,
 ) {
     DayCard {
         Text(emoji, style = MaterialTheme.typography.displaySmall)
@@ -255,12 +254,5 @@ fun StateCard(
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
         )
-        action?.let { (label, run) ->
-            OutlinedButton(
-                onClick = run,
-                modifier = Modifier.fillMaxWidth().pressSpring(),
-                shape = MaterialTheme.shapes.small,
-            ) { Text(label) }
-        }
     }
 }

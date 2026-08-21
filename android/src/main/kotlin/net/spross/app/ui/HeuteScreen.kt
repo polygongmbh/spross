@@ -50,8 +50,7 @@ import net.spross.kern.session.SessionOfferKind
  *
  * Top to bottom: the date and the day's name, ONE state card, the trainers, and the
  * fortnight behind it. Which state card is a strict precedence over the box's own answers
- * ([heuteCard]) — an offer outranks a done state, and a box nothing has been packed into
- * is not "caught up", it has never been opened.
+ * ([heuteCard]) — an offer outranks a done state.
  */
 @Composable
 fun HeuteScreen(model: AppModel) {
@@ -124,7 +123,6 @@ fun HeuteScreen(model: AppModel) {
         val card = heuteCard(
             failed = false,
             offerKind = standing?.offer?.kind ?: SessionOfferKind.Nothing,
-            activeCards = stats?.activeCount ?: 0,
         )
         when (card) {
             HeuteCard.Failure -> StateCard(
@@ -140,13 +138,6 @@ fun HeuteScreen(model: AppModel) {
             HeuteCard.Done -> standing?.let {
                 DoneCard(model, it, stats?.streak ?: 0, health)
             }
-
-            HeuteCard.EmptyBox -> StateCard(
-                emoji = "📦",
-                title = chrome.emptyBoxTitle,
-                message = chrome.emptyBoxMessage,
-                action = Pair(chrome.emptyBoxAction, { model.openBox() }),
-            )
         }
 
         ListenCard(model)

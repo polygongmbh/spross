@@ -28,13 +28,8 @@ struct HeuteView: View {
                               message: failure.text)
                 } else if offer.kind != .nothing {
                     sessionCard(offer)
-                } else if (model.stats?.activeCards ?? 0) > 0 {
-                    doneCard
                 } else {
-                    stateCard(emoji: "📦",
-                              title: "heute.empty.title",
-                              message: Text("heute.empty.message"),
-                              action: ("heute.empty.action", { openBox(nil) }))
+                    doneCard
                 }
                 listeningCard
                 TrainerHubView(model: model)
@@ -333,10 +328,9 @@ struct HeuteView: View {
         }
     }
 
-    // MARK: - Generic state card (error / empty box)
+    // MARK: - Error state card
 
-    private func stateCard(emoji: String, title: LocalizedStringKey, message: Text,
-                           action: (label: LocalizedStringKey, run: () -> Void)? = nil) -> some View {
+    private func stateCard(emoji: String, title: LocalizedStringKey, message: Text) -> some View {
         VStack(spacing: DL.Space.l) {
             Text(emoji)
                 .font(.system(size: 56))
@@ -349,10 +343,6 @@ struct HeuteView: View {
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextSecondary)
                 .multilineTextAlignment(.center)
-            if let action {
-                Button(action.label, action: action.run)
-                    .buttonStyle(DLSoftButtonStyle())
-            }
         }
         .padding(DL.Space.xl)
         .frame(maxWidth: .infinity)
