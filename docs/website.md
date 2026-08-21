@@ -11,6 +11,14 @@ built to sit beside native-speaker conversation or a structured course, never to
 - Type: SF Rounded in-app → `ui-rounded` system stack on the web.
 - Wordplay: **Spross** (sprout) / **Sprosse** (ladder rung) — organic growth first, the rung as the progression wink
   (phrases unlock from component words; drill levels climb a digit at a time).
+  The pun is performed, never written out: the drill's level IS a Sprosse with a small ladder beside it,
+  where a card spelling the joke out had stopped being one.
+- Copy names what the visitor gains, never how the engine works.
+  "Following a conversation takes many words, not a few perfect ones" is a reason to want the app;
+  "no account, no ads, FSRS-6, and here are the scheduling rules" is an implementation fact,
+  and a landing page earns its attention with the first.
+  Before shipping a copy block, ask what changes for the reader — if the answer is
+  "the engine works this way", cut it or reframe it as the outcome it buys.
 - "Sprössling" is the site's name for a subscriber/learner (coined here, not used in-app).
 
 ## Architecture
