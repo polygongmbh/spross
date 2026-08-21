@@ -1,6 +1,7 @@
 package net.spross.app.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -9,12 +10,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -189,32 +194,47 @@ fun DoneCard(model: AppModel, standing: HeuteStanding, streak: Int, health: Stre
  * Sprosse and gets no chip on that row: a Sprosse is a skill with a ladder to climb, and
  * listening asks nothing, grades nothing and has no rung to reach (`docs/surfaces.md`).
  *
- * Its offer line is a question rather than an instruction, and the button is quieter than the
- * day's own: what stands above it is what the box is actually asking for.
+ * ONE ROW, and the row is the tap. A title over a button that says the same thing is the
+ * mode's name twice — a heading needs something under it to head, and a set of one is not
+ * that. What the offer is worth is the subtitle's to say; the chevron says it opens.
  */
 @Composable
 fun ListenCard(model: AppModel) {
     val chrome = model.chrome
     if (!model.listeningOffered) return
-    Column(
-        modifier = Modifier.fillMaxWidth().panel(),
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .pressSpring()
+            .panel()
+            .clip(MaterialTheme.shapes.medium)
+            .semantics(mergeDescendants = true) { }
+            .clickable(role = Role.Button) { model.startListening() }
+            .padding(DlSpace.l),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
     ) {
+        Text(
+            "🎧",
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.clearAndSetSemantics { },
+        )
         Column(
-            modifier = Modifier.fillMaxWidth().padding(DlSpace.l),
-            verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
         ) {
-            Text("🎧 ${chrome.listenTitle}", style = MaterialTheme.typography.titleMedium)
+            Text(chrome.listenTitle, style = MaterialTheme.typography.titleMedium)
             Text(
                 chrome.listenSubtitle,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            OutlinedButton(
-                onClick = { model.startListening() },
-                modifier = Modifier.fillMaxWidth().pressSpring(),
-                shape = MaterialTheme.shapes.small,
-            ) { Text(chrome.listenStart) }
         }
+        Icon(
+            SprossIcons.ChevronRight,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }
 
