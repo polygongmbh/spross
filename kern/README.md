@@ -25,6 +25,7 @@ The engine's own semantics are below. These domains have their own pages:
 `docs/reports.md` (the read models a surface draws the box from),
 `docs/grading.md` (how a typed answer becomes a rating),
 `docs/turns.md` (the turn machine, the drills and listening),
+`docs/fsrs.md` (parameters, provenance and graduation),
 `docs/snapshots.md` (the box document and the watch/widget wire),
 `docs/catalog.md` (what the engine needs of the catalog),
 `docs/audio.md` (pronunciation rules),
@@ -262,66 +263,32 @@ this to every loaded box).
 
 ## 5. FSRS-6
 
-- 21 weights; defaults = ts-fsrs v5.4.1 / py-fsrs v6.3.1 (identical), **w20 decay 0.1542**
-  (brief's 0.2 was a pre-release value). Formula set + cross-check resolutions per the
-  pinned reference report: same-day `sinc ≥ 1` mask for G ≥ Hard, S_MIN 0.001, fuzz OFF,
-  engine maximum_interval 36500.
-- `elapsedDays` = fractional `max(0, (now − lastLog)/86400)`; short-term path < 1.0.
-  Golden vectors all review exactly at due; real-timestamp vectors stay out of the suite.
-- Steps are config; the ENGINE defaults stay the reference pair (`learning [1m, 10m]`,
-  `relearning [10m]`) so the golden vectors run verbatim.
-  **The product runs ONE learning step, `[2m]`** (`relearning [10m]` unchanged).
-  Two minute-scale steps put a missed word back in front of the learner half a dozen cards
-  later, where it passes on being recognized as "that new one" rather than on the
-  source↔target pair having bound. What keeps the retry out of THIS sitting is the run
-  boundary, not the clock — a composed session never refills (§6) — so the step only has to
-  be short enough that the word is there for the next one: a follow-up sitting or "Weiter
-  üben", either of which is minutes away. By role resolution (§3) that retry is the typed
-  production attempt, the first real recall. Past that FSRS decides. (User ruling
-  2026-07-29; `3m` was tried first and outlasted the day's practice altogether.)
-  **No in-session lapse retry** (breadth ruling 2026-07-22): a lapsed review card returns
-  after 10 m, typically next session; the run it lapsed in does not wait for it.
-  Graduation follows the reference machine, tested against the pinned minute tables.
-- **Graduated intervals are continuous in the product.** `Fsrs.intervalRawDays` is the
-  fractional interval the model asks for; `FsrsScheduler.graduate` quantizes it to
-  `intervalGranularitySeconds` and floors it at `minimumIntervalSeconds`.
-  Both default to 86_400 s — whole-day rounding is the reference bucket convention, not part
-  of FSRS, and the default keeps the golden vectors on their exact day multiples.
-  The product sets granularity to 1 s, so a 7.6-day interval is scheduled at 7.6 days.
-  The one-day FLOOR is deliberate and stays: bringing a card back inside the same day is
+Parameters, provenance and the golden vectors are `docs/fsrs.md`; the numbers behind each
+bar are on `BoxConfig` itself. What the product decided:
+
+- **The product runs ONE learning step, `[2m]`** (user ruling 2026-07-29). What keeps a
+  missed word out of THIS sitting is the run boundary, not the clock — a composed session
+  never refills (§6) — so the step only has to be short enough that the word is there for
+  the next one, a follow-up sitting or an endless run minutes away.
+  By role resolution (§3) that retry is the typed production attempt, the first real recall.
+  **No in-session lapse retry** (breadth ruling 2026-07-22): the run a card lapsed in does
+  not wait for it.
+- **A graduated interval floors at one day.** Bringing a card back inside the same day is
   what a learning step is for, not what an already-graduated schedule should ask.
-- Desired retention: engine default 0.9 (vector anchor); product `BoxConfig` 0.8, no slider.
-  Product maximum interval 365.
 - **Leech: breadth over retention** (user ruling 2026-08-07). A lapse is any `Again` past
   introduction — learning- and relearning-step retries count too, not just review-phase
   ones — and 2 lapses auto-suspend the card. A word that has not stuck in two tries is
   pushed outward rather than repeating on the learner indefinitely; suspension is the same
   reversible state `setSuspended` uses everywhere else — the learner can always revive it
   from the Box.
-- **ONE "has this word landed" threshold**: `consolidatedStability` = 6.0 days
-  (`Statistics.isConsolidated`, facade `BoxEngine.isConsolidated(state, cardId)`),
-  Review phase AND stability ≥ the bar, so a lapse un-lands a card — the point: it needs
-  the support again. It gates phrase unlock and the drill pools (§6), splits consolidated
-  from fresh in the progress UI, and picks the support a word gets while it is still on
-  its way in (§3) — the emoji that props recall up, and the sound prompt that withdraws
-  the meaning, read the same bar from opposite sides.
-  A second, `MATURED_STABILITY` = 30 days (`GrowthStage.Matured`), gates NOTHING and is a
-  constant rather than a `BoxConfig` field: it exists so the ladder has a top rung
-  to report, and there is no product decision to tune behind it.
-  Calibrated for FSRS-6: at retention 0.8 the interval is 3.316 × stability, and the bar
-  sits in the gap between the two first answers that pass — S0(Good) = 2.3065 stays under
-  it while S0(Easy) = 8.2956 clears it. That gap is the whole point. A first Good is as
-  easily an emoji recognized as a word recalled, so the word keeps its support until a
-  second answer says otherwise; Easy is earned by a fast learner-reported Knew
-  (`SelfGrading`, §6) and never picked, so a word genuinely known on sight still lands at
-  once — the learner met where they are, without the guess riding along.
-  A separate `settledStability` = 2.0 used to gate presentation support on its own.
-  It sat BELOW S0(Good), so a single Good — the emoji-lucky case included — withdrew the
-  support one review early, and that next review is the first TYPED one, the first that
-  can actually catch the guess. The two bars were never separable in practice either:
-  the forest drew `Settled` and `Consolidated` with the same mark.
-- Golden vectors copied verbatim from the pinned releases with PROVENANCE (repo/tag/SHA).
-  Weight optimization stays out.
+- **ONE "has this word landed" threshold**: `consolidatedStability`
+  (`Statistics.isConsolidated`, facade `BoxEngine.isConsolidated(state, cardId)`) —
+  Review phase AND stability ≥ the bar, so a lapse un-lands a card, which is the point:
+  it needs the support again. That one bar gates phrase unlock and the drill pools (§6),
+  splits consolidated from fresh in the progress UI, and picks the support a word gets
+  while it is still on its way in (§3) — the emoji that props recall up and the sound
+  prompt that withdraws the meaning read the same bar from opposite sides.
+- **Weight optimization stays out of scope.**
 
 ## 6. Box / Session semantics
 

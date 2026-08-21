@@ -222,7 +222,7 @@ One line per item, with a file or context pointer, filed under the section it be
   nothing about which round was opened
   (`kern/src/commonMain/kotlin/net/spross/kern/session/SessionRun.kt` `recompose`).
 - Rating labels carry more weight on a first exposure now that Good sends a word about a week
-  out (kern README §5) — the button wording deserves a look
+  out (`kern/docs/fsrs.md`) — the button wording deserves a look
   (`App/Sources/Design/RatingButtonsView.swift`).
 - Automatic growth walks seed order, so a round's first sights are seed neighbors
   (`Growth.newCandidates` step 2b) — and seed order inside an area is written in co-hyponym
