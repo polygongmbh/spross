@@ -6,9 +6,7 @@ import android.os.Build
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
+import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,10 +23,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
@@ -163,6 +164,16 @@ private fun ListeningCard(model: AppModel, turn: ListeningTurn, beat: ListeningB
     // that second saying of the target is where the two meet, and a meaning gone by then
     // would leave it meeting nothing.
     val meaningOut = beat == ListeningBeat.Meaning || beat == ListeningBeat.Echo
+    // why: the meaning's LINE is held for the whole turn and only its ink fades in, the
+    // same bargain the picture's slot makes — a card that grows and shrinks every few
+    // seconds pumps in height with nothing being revealed.
+    //
+    // Keyed on the turn, exactly as the picture is keyed on the picture: a new word
+    // re-seeds the fade at nothing. Animating across the swap instead showed the INCOMING
+    // word's meaning at full ink and then faded it away — the answer handed over before
+    // the word had been said once.
+    val meaning = remember(turn.cardId) { Animatable(0f) }
+    LaunchedEffect(turn.cardId, meaningOut) { meaning.animateTo(if (meaningOut) 1f else 0f) }
     // why: the picture is a cue withheld while an answer is OWED, and listening owes
     // none — held back on the meaning it vanished and returned on every word, which
     // reads as a flicker rather than as a reveal.
@@ -181,9 +192,15 @@ private fun ListeningCard(model: AppModel, turn: ListeningTurn, beat: ListeningB
                 lang,
             ),
         )
-        AnimatedVisibility(meaningOut, enter = fadeIn(), exit = fadeOut()) {
-            Headword(turn.sourceForm, color = Dl.colors.accent)
-        }
+        Headword(
+            turn.sourceForm,
+            color = Dl.colors.accent,
+            // why: alpha does not measure, so the line is there all along — but it is
+            // not YET part of the card, and a screen reader that read it out would be
+            // saying the meaning ahead of the voice that owes it.
+            modifier = Modifier.alpha(meaning.value)
+                .then(if (meaningOut) Modifier else Modifier.clearAndSetSemantics { }),
+        )
     }
 }
 
