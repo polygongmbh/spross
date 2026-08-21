@@ -326,6 +326,16 @@ data class Chrome(
     /** The quiet way in, up while the round is long enough to be worth halving. */
     val sessionShortRound: String,
 
+    // ── Listening (Heute's quiet card, and the run it opens) ────────────────────
+    val listenTitle: String,
+    /** What the card offers: the words that still wobble, and that it needs no hands. */
+    val listenSubtitle: String,
+    val listenStart: String,
+    val listenPause: String,
+    val listenResume: String,
+    val listenSkip: String,
+    val listenRepeat: String,
+
     // ── The box is still empty ──────────────────────────────────────────────────
     val emptyBoxTitle: String,
     val emptyBoxMessage: String,

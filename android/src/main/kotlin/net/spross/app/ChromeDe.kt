@@ -299,6 +299,13 @@ internal val ChromeDe = Chrome(
     sessionHeldBack = "%d weitere Karten warten noch auf dich.",
     sessionStart = "Los geht's!",
     sessionShortRound = "Lieber nur kurz?",
+    listenTitle = "Hören",
+    listenSubtitle = "Die Wörter, die noch wackeln — freihändig",
+    listenStart = "Nur zuhören?",
+    listenPause = "Pause",
+    listenResume = "Weiter",
+    listenSkip = "Nächstes Wort",
+    listenRepeat = "Noch einmal",
     emptyBoxTitle = "Deine Box ist noch leer",
     emptyBoxMessage = "Pack einen Bereich direkt hinein oder stell ein, wie viele Karten du " +
         "gleichzeitig lernst.",
