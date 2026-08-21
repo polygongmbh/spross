@@ -9,129 +9,131 @@ package net.spross.app
  * do not edit. Change the wording in the String Catalog, run `scripts/chrome.py --fix`,
  * and both phones say the same sentence by construction.
  */
-internal val ChromeEn = Chrome(
-    greetMorning = listOf(
+internal object ChromeEn : Chrome {
+    override val greetMorning = listOf(
         "Up for some %s?",
         "A bit of %s to start the day?",
         "%s for the early bird?",
-    ),
-    greetDay = listOf(
+    )
+    override val greetDay = listOf(
         "A quick bit of %s?",
         "Some %s in between?",
-    ),
-    greetEvening = listOf(
+    )
+    override val greetEvening = listOf(
         "A wind-down with %s?",
         "A bit more %s tonight?",
-    ),
-    greetNight = listOf(
+    )
+    override val greetNight = listOf(
         "A quiet bit of %s?",
         "Some %s at this late hour?",
         "%s for the night owl?",
-    ),
-    greetMorningAddressee = "early bird",
-    greetNightAddressee = "night owl",
-    heuteTitle = "Today",
-    practice = "Practice",
-    extraRound = "One more round?",
-    doneToday = "Done for today",
-    dueLabel = "due",
-    newLabel = "new",
-    consolidatedLabel = "consolidated",
-    freshLabel = "fresh",
-    chooseTitle = "Welcome to Spross!",
-    chooseSubtitle = "First, your languages.",
-    iSpeak = "I speak",
-    iLearn = "I'm learning",
-    learnerNameQuestion = "What should Spross call you?",
-    learnerNameOptional = "Just for the greeting — leave it empty, or add a name later in " +
-        "your box.",
-    letsGo = "Let's go!",
-    back = "Back",
-    whyTitle = "What Spross is for",
-    whyBreadthTitle = "Sown, not crammed",
-    whyBreadthBody = "A few new words a day, spaced so they stay. Better to know many words " +
-        "a little than a few perfectly.",
-    whyCompanionTitle = "A companion, not a replacement",
-    whyCompanionBody = "Spross doesn't replace your course or your language partner. Your " +
-        "vocabulary keeps growing between conversations, so you have more to say next time.",
-    whyGrammarTitle = "Grammar comes from speaking",
-    whyGrammarBody = "Spross doesn't teach grammar, just the gender a word carries. Where " +
-        "you actually use the words, the rest takes care of itself.",
-    firstRoundTitle = "Your first round",
-    firstRoundRecognize = "When Spross shows you a word, take a moment. Does it ring a bell?",
-    firstRoundGrade = "Then you reveal and say how well you knew it. Honest beats generous: " +
-        "your answer decides when you see the word again.",
-    firstRoundWrite = "A word you didn't know gets written once. When it turns up again, you " +
-        "type it from memory.",
-    check = "Check",
-    reveal = "Reveal",
-    next = "Next",
-    also = "also: %s",
-    typoNote = "Small typo – still counts!",
-    otherWordNote = "By the way: %1\$s means “%2\$s”",
-    answerPlaceholder = "In %s …",
-    ratingQuestion = "How well did you know it?",
-    coachRecognize = "Take a moment. Does it ring a bell?",
-    coachGrade = "Answer honestly — it decides when you see it again.",
-    coachWrite = "Write it once, so it sinks in.",
-    hard = "Shaky",
-    good = "Knew it",
-    unknown = "Not at all",
-    sessionDone = "All done!",
-    keepPracticing = "Keep practicing",
-    finish = "Done",
-    pluralEquals = "= pl.",
-    pluralOnly = "pl. only",
-    pluralForm = "pl. %s",
-    readAloud = "Read words aloud",
-    stateOn = "on",
-    stateOff = "off",
-    pronounce = "Pronounce",
-    aboutButton = "About",
-    updateButton = "Updates",
-    updateOfferTitle = "Newer versions",
-    updateOfferBody = "Obtainium watches this app's releases and offers each new version as " +
-        "it appears. Without it, every update is a download by hand.",
-    updateViaObtainium = "Get Obtainium",
-    updateDownload = "Download directly",
-    audioToggle = "Read words aloud",
-    audioToggleHint = "Read words aloud during review — switched on, it plays through a " +
-        "silenced phone too. Tapping a word speaks it again, always.",
-    creditsTitle = "Legal & licenses",
-    creditsRecordings = "%d recordings",
-    creditsUnmodified = "Recordings shipped unmodified",
-    creditsCommons = "Recordings from Wikimedia Commons",
-    trainingTitle = "Sprossen",
-    trainingSubtitle = "Free practice — no schedule, no limit",
-    lettersTitle = "Letters",
-    lettersHear = "Which letter is this?",
-    lettersSpell = "What's missing in the word?",
-    lettersDictation = "Write what you hear",
-    letterChoice = "Letter %s",
-    replayPrompt = "Play it again",
-    promptInLanguage = "in %s",
-    level = "Sprosse %s",
-    streak = "🔥 %s in a row",
-    almostTypo = "Almost! Correct spelling",
-    almostHeard = "You heard",
-    audioOff = "Sound is off",
-    enableSound = "Turn sound on",
-    tasksDoneOne = "%d task 🎯",
-    tasksDone = "%d tasks 🎯",
-    bestStreak = "Best streak: 🔥 %s in a row",
-    answerCorrect = "Correct",
-    answerAlmost = "Almost correct",
-    answerWrong = "Wrong",
-    close = "Close",
-    numbersTitle = "Numbers",
-    numbersPage = "Numbers · %s",
-    lettersPage = "Letters · %s",
-    overviewPractice = "Practice",
-    overviewStart = "Start",
-    tapToHear = "Every row speaks when tapped",
-    numbersReference = "How this language counts",
-    numbersNotes = "What to watch out for",
-    numberSections = mapOf(
+    )
+    override val greetMorningAddressee = "early bird"
+    override val greetNightAddressee = "night owl"
+    override val heuteTitle = "Today"
+    override val practice = "Practice"
+    override val extraRound = "One more round?"
+    override val doneToday = "Done for today"
+    override val dueLabel = "due"
+    override val newLabel = "new"
+    override val consolidatedLabel = "consolidated"
+    override val freshLabel = "fresh"
+    override val chooseTitle = "Welcome to Spross!"
+    override val chooseSubtitle = "First, your languages."
+    override val iSpeak = "I speak"
+    override val iLearn = "I'm learning"
+    override val learnerNameQuestion = "What should Spross call you?"
+    override val learnerNameOptional = "Just for the greeting — leave it empty, or add a " +
+        "name later in your box."
+    override val letsGo = "Let's go!"
+    override val back = "Back"
+    override val whyTitle = "What Spross is for"
+    override val whyBreadthTitle = "Sown, not crammed"
+    override val whyBreadthBody = "A few new words a day, spaced so they stay. Better to " +
+        "know many words a little than a few perfectly."
+    override val whyCompanionTitle = "A companion, not a replacement"
+    override val whyCompanionBody = "Spross doesn't replace your course or your language " +
+        "partner. Your vocabulary keeps growing between conversations, so you have more to " +
+        "say next time."
+    override val whyGrammarTitle = "Grammar comes from speaking"
+    override val whyGrammarBody = "Spross doesn't teach grammar, just the gender a word " +
+        "carries. Where you actually use the words, the rest takes care of itself."
+    override val firstRoundTitle = "Your first round"
+    override val firstRoundRecognize = "When Spross shows you a word, take a moment. Does it " +
+        "ring a bell?"
+    override val firstRoundGrade = "Then you reveal and say how well you knew it. Honest " +
+        "beats generous: your answer decides when you see the word again."
+    override val firstRoundWrite = "A word you didn't know gets written once. When it turns " +
+        "up again, you type it from memory."
+    override val check = "Check"
+    override val reveal = "Reveal"
+    override val next = "Next"
+    override val also = "also: %s"
+    override val typoNote = "Small typo – still counts!"
+    override val otherWordNote = "By the way: %1\$s means “%2\$s”"
+    override val answerPlaceholder = "In %s …"
+    override val ratingQuestion = "How well did you know it?"
+    override val coachRecognize = "Take a moment. Does it ring a bell?"
+    override val coachGrade = "Answer honestly — it decides when you see it again."
+    override val coachWrite = "Write it once, so it sinks in."
+    override val hard = "Shaky"
+    override val good = "Knew it"
+    override val unknown = "Not at all"
+    override val sessionDone = "All done!"
+    override val keepPracticing = "Keep practicing"
+    override val finish = "Done"
+    override val pluralEquals = "= pl."
+    override val pluralOnly = "pl. only"
+    override val pluralForm = "pl. %s"
+    override val readAloud = "Read words aloud"
+    override val stateOn = "on"
+    override val stateOff = "off"
+    override val pronounce = "Pronounce"
+    override val aboutButton = "About"
+    override val updateButton = "Updates"
+    override val updateOfferTitle = "Newer versions"
+    override val updateOfferBody = "Obtainium watches this app's releases and offers each " +
+        "new version as it appears. Without it, every update is a download by hand."
+    override val updateViaObtainium = "Get Obtainium"
+    override val updateDownload = "Download directly"
+    override val audioToggle = "Read words aloud"
+    override val audioToggleHint = "Read words aloud during review — switched on, it plays " +
+        "through a silenced phone too. Tapping a word speaks it again, always."
+    override val creditsTitle = "Legal & licenses"
+    override val creditsRecordings = "%d recordings"
+    override val creditsUnmodified = "Recordings shipped unmodified"
+    override val creditsCommons = "Recordings from Wikimedia Commons"
+    override val trainingTitle = "Sprossen"
+    override val trainingSubtitle = "Free practice — no schedule, no limit"
+    override val lettersTitle = "Letters"
+    override val lettersHear = "Which letter is this?"
+    override val lettersSpell = "What's missing in the word?"
+    override val lettersDictation = "Write what you hear"
+    override val letterChoice = "Letter %s"
+    override val replayPrompt = "Play it again"
+    override val promptInLanguage = "in %s"
+    override val level = "Sprosse %s"
+    override val streak = "🔥 %s in a row"
+    override val almostTypo = "Almost! Correct spelling"
+    override val almostHeard = "You heard"
+    override val audioOff = "Sound is off"
+    override val enableSound = "Turn sound on"
+    override val tasksDoneOne = "%d task 🎯"
+    override val tasksDone = "%d tasks 🎯"
+    override val bestStreak = "Best streak: 🔥 %s in a row"
+    override val answerCorrect = "Correct"
+    override val answerAlmost = "Almost correct"
+    override val answerWrong = "Wrong"
+    override val close = "Close"
+    override val numbersTitle = "Numbers"
+    override val numbersPage = "Numbers · %s"
+    override val lettersPage = "Letters · %s"
+    override val overviewPractice = "Practice"
+    override val overviewStart = "Start"
+    override val tapToHear = "Every row speaks when tapped"
+    override val numbersReference = "How this language counts"
+    override val numbersNotes = "What to watch out for"
+    override val numberSections = mapOf(
         "base" to "Zero to fifteen",
         "tens" to "The tens",
         "irregulars" to "Sixteen to thirty",
@@ -139,51 +141,53 @@ internal val ChromeEn = Chrome(
         "hundreds" to "The hundreds",
         "places" to "Thousand, million, billion",
         "forms" to "Beyond counting",
-    ),
-    variantClock = "Time",
-    variantPhrases = "Sentences",
-    variantForms = "Forms",
-    modifierReverse = "Reversed",
-    modifierReverseHint = "The reading is shown, the digits are owed.",
-    modifierFast = "Fast",
-    modifierFastHint = "One clean answer per Sprosse instead of two.",
-    modifierMix = "Mixed up",
-    modifierMixHint = "The direction flips every task, and forms grow to the size the " +
-        "numbers reached.",
-    combineLocked = "Several in one run, once everything is unlocked.",
-    unlockPrefix = "Unlocks at:",
-    digitsOne = "🔢 %d digit",
-    digitsMany = "🔢 %d digits",
-    record = "Record %s",
-    streakSpoken = "Streak: %s in a row",
-    recordSpoken = ", record %s",
-    answerDigits = "In digits …",
-    newPlace = "New place: %s",
-    lookUp = "Look up numbers",
-    newRecord = "New record!",
-    stageChoiceEasy = "Four tiles",
-    stageChoiceEasyHint = "Find the letter you heard among four",
-    stageChoiceConfusable = "Lookalike tiles",
-    stageChoiceConfusableHint = "The same choice, between letters that are easy to mix up",
-    stageTyped = "Typing",
-    stageTypedHint = "Write the letter yourself, with nothing to pick from",
-    stageDictation = "Dictation",
-    stageDictationHint = "Write whole words from your own box by ear",
-    stageDictationLocked = "Needs more consolidated words this device can read out",
-    stageEntry = "your run starts here",
-    lettersUnavailable = "This device cannot say a letter yet — that needs a voice for the " +
-        "language.",
-    alphabetTitle = "Alphabet",
-    alphabetSpeakName = "Hear the name",
-    alphabetSpeakExample = "Hear the example",
-    countriesTitle = "Countries",
-    countriesPage = "Countries · %s",
-    countriesReference = "The atlas",
-    countriesPace = "Every run opens at Sprosse 1 and climbs on by itself.",
-    countriesBest = "Furthest so far: Sprosse %s",
-    countriesFastHint = "One clean answer per Sprosse instead of three.",
-    countriesReverseHint = "The question comes in %s, the answer is owed in %s.",
-    countryRungs = listOf(
+    )
+    override val variantClock = "Time"
+    override val variantPhrases = "Sentences"
+    override val variantForms = "Forms"
+    override val modifierReverse = "Reversed"
+    override val modifierReverseHint = "The reading is shown, the digits are owed."
+    override val modifierFast = "Fast"
+    override val modifierFastHint = "One clean answer per Sprosse instead of two."
+    override val modifierMix = "Mixed up"
+    override val modifierMixHint = "The direction flips every task, and forms grow to the " +
+        "size the numbers reached."
+    override val combineLocked = "Several in one run, once everything is unlocked."
+    override val unlockPrefix = "Unlocks at:"
+    override val digitsOne = "🔢 %d digit"
+    override val digitsMany = "🔢 %d digits"
+    override val record = "Record %s"
+    override val streakSpoken = "Streak: %s in a row"
+    override val recordSpoken = ", record %s"
+    override val answerDigits = "In digits …"
+    override val newPlace = "New place: %s"
+    override val lookUp = "Look up numbers"
+    override val newRecord = "New record!"
+    override val stageChoiceEasy = "Four tiles"
+    override val stageChoiceEasyHint = "Find the letter you heard among four"
+    override val stageChoiceConfusable = "Lookalike tiles"
+    override val stageChoiceConfusableHint = "The same choice, between letters that are easy " +
+        "to mix up"
+    override val stageTyped = "Typing"
+    override val stageTypedHint = "Write the letter yourself, with nothing to pick from"
+    override val stageDictation = "Dictation"
+    override val stageDictationHint = "Write whole words from your own box by ear"
+    override val stageDictationLocked = "Needs more consolidated words this device can read " +
+        "out"
+    override val stageEntry = "your run starts here"
+    override val lettersUnavailable = "This device cannot say a letter yet — that needs a " +
+        "voice for the language."
+    override val alphabetTitle = "Alphabet"
+    override val alphabetSpeakName = "Hear the name"
+    override val alphabetSpeakExample = "Hear the example"
+    override val countriesTitle = "Countries"
+    override val countriesPage = "Countries · %s"
+    override val countriesReference = "The atlas"
+    override val countriesPace = "Every run opens at Sprosse 1 and climbs on by itself."
+    override val countriesBest = "Furthest so far: Sprosse %s"
+    override val countriesFastHint = "One clean answer per Sprosse instead of three."
+    override val countriesReverseHint = "The question comes in %s, the answer is owed in %s."
+    override val countryRungs = listOf(
         "The countries of your languages",
         "The names of the languages",
         "The people",
@@ -193,8 +197,8 @@ internal val ChromeEn = Chrome(
         "The flag alone",
         "Less common countries and languages",
         "From language to country",
-    ),
-    countryRungHints = listOf(
+    )
+    override val countryRungHints = listOf(
         "What is a country one of your languages is at home in called?",
         "Plus: what is the language itself called?",
         "Plus: what are the people from there called?",
@@ -204,145 +208,149 @@ internal val ChromeEn = Chrome(
         "Plus: which country is this, from its flag alone? Not in a reversed run.",
         "The rest of what the atlas knows.",
         "Plus: where is this language spoken?",
-    ),
-    countryTiers = listOf(
+    )
+    override val countryTiers = listOf(
         "Your languages",
         "The app's languages",
         "Common languages",
         "Less common languages",
-    ),
-    countryAskCountry = "What is this country called?",
-    countryAskFlag = "Which country is this?",
-    countryAskLanguage = "What is this language called?",
-    countryAskNationality = "What are these people called?",
-    countryAskSpokenIn = "Which language is spoken there?",
-    countryAskSpokenWhere = "Where is this language spoken?",
-    boxTitle = "The box",
-    boxNav = "Box",
-    boxSubtitle = "%1\$s of %2\$s cards in progress",
-    ownWordsTitle = "Your own words",
-    ownWordsExplainer = "Your own words stand in an area of their own. A growing catalog " +
-        "never touches them.",
-    packArea = "Add to box (%s)",
-    packDone = "All packed",
-    packWord = "Pack this word",
-    packedWord = "Packed",
-    suspended = "Paused",
-    wake = "Wake",
-    progressFresh = "%s fresh",
-    phrasesLocked = "%d sentences",
-    phrasesLockedSpoken = "%d sentences locked",
-    stateExpanded = "expanded",
-    stateCollapsed = "collapsed",
-    phaseLearning = "Learning",
-    phaseReview = "Solid",
-    phaseRelearning = "Shaky",
-    search = "Search",
-    searchPlaceholder = "Word or area",
-    searchHint = "Words in either language, and the names of the areas.",
-    searchAreas = "Areas",
-    searchWords = "Words",
-    searchNothing = "Nothing for “%s” in the box.",
-    searchWriteOwn = "Write “%s” yourself",
-    searchClear = "Clear search",
-    ownWordTitle = "Your own word",
-    ownWordInLanguage = "In %s",
-    ownWordPicture = "Picture (optional)",
-    ownWordAdd = "Add",
-    ownWordRemove = "Delete word",
-    settingsTitle = "Settings",
-    learnerNameTitle = "Your name",
-    learnerNamePlaceholder = "Name or nickname",
-    learnerNameHint = "Spross greets you by it. Left empty, the greeting goes without one.",
-    profileHint = "Switching the language you speak keeps all your progress; each language " +
-        "you learn has its own box.",
-    resetButton = "Reset %s …",
-    resetHint = "Deletes progress and history — your own words and your other languages stay.",
-    resetConfirm = "Delete all learning progress for %s and start over with the first words?",
-    cancel = "Cancel",
-    reset = "Reset",
-    copyPrompt = "Write it once in %s …",
-    copyMismatch = "Not quite — the word is right above.",
-    skipStep = "Skip",
-    caughtUpTitle = "Nothing's due right now",
-    dayReviews = "%d reviews",
-    dayReviewsOne = "%d review",
-    dayNewCards = "%d newbies",
-    dayNewCardsOne = "%d newbie",
-    dayConsolidated = "%s solidified",
-    dayAhead = "%d refreshers",
-    dayAheadOne = "%d refresher",
-    tomorrowPacked = "Your packed words are in the next round.",
-    tomorrowFresh = "Fresh cards tomorrow. See you then! 👋",
-    tomorrowDue = "Tomorrow you can review %d cards.",
-    headlineReviews = listOf(
+    )
+    override val countryAskCountry = "What is this country called?"
+    override val countryAskFlag = "Which country is this?"
+    override val countryAskLanguage = "What is this language called?"
+    override val countryAskNationality = "What are these people called?"
+    override val countryAskSpokenIn = "Which language is spoken there?"
+    override val countryAskSpokenWhere = "Where is this language spoken?"
+    override val boxTitle = "The box"
+    override val boxNav = "Box"
+    override val boxSubtitle = "%1\$s of %2\$s cards in progress"
+    override val ownWordsTitle = "Your own words"
+    override val ownWordsExplainer = "Your own words stand in an area of their own. A " +
+        "growing catalog never touches them."
+    override val packArea = "Add to box (%s)"
+    override val packDone = "All packed"
+    override val packWord = "Pack this word"
+    override val packedWord = "Packed"
+    override val suspended = "Paused"
+    override val wake = "Wake"
+    override val progressFresh = "%s fresh"
+    override val phrasesLocked = "%d sentences"
+    override val phrasesLockedSpoken = "%d sentences locked"
+    override val stateExpanded = "expanded"
+    override val stateCollapsed = "collapsed"
+    override val phaseLearning = "Learning"
+    override val phaseReview = "Solid"
+    override val phaseRelearning = "Shaky"
+    override val search = "Search"
+    override val searchPlaceholder = "Word or area"
+    override val searchHint = "Words in either language, and the names of the areas."
+    override val searchAreas = "Areas"
+    override val searchWords = "Words"
+    override val searchNothing = "Nothing for “%s” in the box."
+    override val searchWriteOwn = "Write “%s” yourself"
+    override val searchClear = "Clear search"
+    override val ownWordTitle = "Your own word"
+    override val ownWordInLanguage = "In %s"
+    override val ownWordPicture = "Picture (optional)"
+    override val ownWordAdd = "Add"
+    override val ownWordRemove = "Delete word"
+    override val settingsTitle = "Settings"
+    override val learnerNameTitle = "Your name"
+    override val learnerNamePlaceholder = "Name or nickname"
+    override val learnerNameHint = "Spross greets you by it. Left empty, the greeting goes " +
+        "without one."
+    override val profileHint = "Switching the language you speak keeps all your progress; " +
+        "each language you learn has its own box."
+    override val resetButton = "Reset %s …"
+    override val resetHint = "Deletes progress and history — your own words and your other " +
+        "languages stay."
+    override val resetConfirm = "Delete all learning progress for %s and start over with the " +
+        "first words?"
+    override val cancel = "Cancel"
+    override val reset = "Reset"
+    override val copyPrompt = "Write it once in %s …"
+    override val copyMismatch = "Not quite — the word is right above."
+    override val skipStep = "Skip"
+    override val caughtUpTitle = "Nothing's due right now"
+    override val dayReviews = "%d reviews"
+    override val dayReviewsOne = "%d review"
+    override val dayNewCards = "%d newbies"
+    override val dayNewCardsOne = "%d newbie"
+    override val dayConsolidated = "%s solidified"
+    override val dayAhead = "%d refreshers"
+    override val dayAheadOne = "%d refresher"
+    override val tomorrowPacked = "Your packed words are in the next round."
+    override val tomorrowFresh = "Fresh cards tomorrow. See you then! 👋"
+    override val tomorrowDue = "Tomorrow you can review %d cards."
+    override val headlineReviews = listOf(
         "Your round is ready",
         "A stack is ready",
         "The box has something for you",
-    ),
-    headlineWarmUp = listOf(
+    )
+    override val headlineWarmUp = listOf(
         "Time for a refresher",
         "A reunion with familiar words",
         "A quick pass through the familiar",
-    ),
-    headlineFreshSet = listOf(
+    )
+    override val headlineFreshSet = listOf(
         "Up for some new words?",
         "Newbies on the table",
         "A few newbies to get to know",
-    ),
-    sessionSomeCards = "A few cards for you.",
-    sessionHeldBack = "%d more cards are still waiting for you.",
-    sessionStart = "Let's go!",
-    sessionShortRound = "Just a short one?",
-    listenTitle = "Hear your words",
-    listenSubtitle = "Reinforces shaky words first — optionally in the background and with a " +
-        "sleep timer",
-    listenStart = "Just listen?",
-    listenPause = "Pause",
-    listenResume = "Resume",
-    listenSkip = "Next word",
-    listenRepeat = "Again",
-    listenTimer = "Timer",
-    listenMinutesLeft = "%d min",
-    emptyBoxTitle = "Your box is still empty",
-    emptyBoxMessage = "Add an area directly, or set how many cards you learn at a time.",
-    emptyBoxAction = "Go to box",
-    errorTitle = "Oops",
-    errorCatalogMissing = "The content could not be loaded. (catalog missing from the app " +
-        "bundle)",
-    errorContentUnavailable = "The content could not be loaded. (%s)",
-    errorUnknownProfile = "Unknown language profile (%1\$s → %2\$s).",
-    errorResetFailed = "Reset failed. (%s)",
-    roundNew = "%s new",
-    roundConsolidated = "%s consolidated",
-    roundReviewed = "%s reviewed",
-    roundAllDone = "All done",
-    restHint = "Not much is sticking today — a tired head keeps nothing. Tomorrow will go " +
-        "easier.",
-    streakRecord = "Your longest run yet!",
-    growthGrew = "Some of it sticks today too",
-    growthOpened = "Your first words in good soil",
-    growthBlooming = listOf(
+    )
+    override val sessionSomeCards = "A few cards for you."
+    override val sessionHeldBack = "%d more cards are still waiting for you."
+    override val sessionStart = "Let's go!"
+    override val sessionShortRound = "Just a short one?"
+    override val listenTitle = "Hear your words"
+    override val listenSubtitle = "Reinforces shaky words first — optionally in the " +
+        "background and with a sleep timer"
+    override val listenStart = "Just listen?"
+    override val listenPause = "Pause"
+    override val listenResume = "Resume"
+    override val listenSkip = "Next word"
+    override val listenRepeat = "Again"
+    override val listenTimer = "Timer"
+    override val listenMinutesLeft = "%d min"
+    override val emptyBoxTitle = "Your box is still empty"
+    override val emptyBoxMessage = "Add an area directly, or set how many cards you learn at " +
+        "a time."
+    override val emptyBoxAction = "Go to box"
+    override val errorTitle = "Oops"
+    override val errorCatalogMissing = "The content could not be loaded. (catalog missing " +
+        "from the app bundle)"
+    override val errorContentUnavailable = "The content could not be loaded. (%s)"
+    override val errorUnknownProfile = "Unknown language profile (%1\$s → %2\$s)."
+    override val errorResetFailed = "Reset failed. (%s)"
+    override val roundNew = "%s new"
+    override val roundConsolidated = "%s consolidated"
+    override val roundReviewed = "%s reviewed"
+    override val roundAllDone = "All done"
+    override val restHint = "Not much is sticking today — a tired head keeps nothing. " +
+        "Tomorrow will go easier."
+    override val streakRecord = "Your longest run yet!"
+    override val growthGrew = "Some of it sticks today too"
+    override val growthOpened = "Your first words in good soil"
+    override val growthBlooming = listOf(
         "Saying what you sowed",
         "You've brought this into bloom",
         "Your tending shows",
-    ),
-    growthSown = listOf(
+    )
+    override val growthSown = listOf(
         "You've sown here",
         "You've got this sprouting",
         "You're planting, word by word",
-    ),
-    growthGrown = listOf(
+    )
+    override val growthGrown = listOf(
         "You've grown what you can say",
         "Your words root deeper now",
         "Words are settling in",
-    ),
-    last14Days = "Last 14 days",
-    activityDays = "Activity over the last 14 days: practiced on %d days",
-    streakDays = "Streak: %d days",
-    streakDaysOne = "Streak: %d day",
-    dayOne = "day",
-    dayMany = "days",
-    widgetAwaitingTitle = "Open Spross",
-    widgetAwaitingBody = "for fresh words",
-)
+    )
+    override val last14Days = "Last 14 days"
+    override val activityDays = "Activity over the last 14 days: practiced on %d days"
+    override val streakDays = "Streak: %d days"
+    override val streakDaysOne = "Streak: %d day"
+    override val dayOne = "day"
+    override val dayMany = "days"
+    override val widgetAwaitingTitle = "Open Spross"
+    override val widgetAwaitingBody = "for fresh words"
+}

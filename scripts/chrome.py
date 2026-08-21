@@ -44,7 +44,7 @@ HEADER = '''package net.spross.app
  * do not edit. Change the wording in the String Catalog, run `scripts/chrome.py --fix`,
  * and both phones say the same sentence by construction.
  */
-internal val Chrome%(code)s = Chrome(
+internal object Chrome%(code)s : Chrome {
 '''
 FALLBACK = ('\n *\n * Also the one every source without chrome of its own falls back to'
             ' ([Chrome.forSource]).')
@@ -375,21 +375,21 @@ def render(lang, code, name, strings):
         spec = MAPPING.get(field)
         if spec is None:
             raise SystemExit('Chrome.%s: no key in scripts/chrome.py MAPPING' % field)
-        opening = len('    %s = ' % field)
+        opening = len('    override val %s = ' % field)
         if isinstance(spec, tuple):
-            body.append('    %s = %s,\n'
+            body.append('    override val %s = %s\n'
                         % (field, literal(value(strings, spec[0], lang, spec[1]), opening)))
         elif isinstance(spec, list):
             entries = ''.join('        %s,\n' % literal(value(strings, k, lang), 8) for k in spec)
-            body.append('    %s = listOf(\n%s    ),\n' % (field, entries))
+            body.append('    override val %s = listOf(\n%s    )\n' % (field, entries))
         elif isinstance(spec, dict):
             entries = ''.join('        "%s" to %s,\n'
                               % (i, literal(value(strings, k, lang), 12 + len(i)))
                               for i, k in spec.items())
-            body.append('    %s = mapOf(\n%s    ),\n' % (field, entries))
+            body.append('    override val %s = mapOf(\n%s    )\n' % (field, entries))
         else:
-            body.append('    %s = %s,\n' % (field, literal(value(strings, spec, lang), opening)))
-    return ''.join(body) + ')\n'
+            body.append('    override val %s = %s\n' % (field, literal(value(strings, spec, lang), opening)))
+    return ''.join(body) + '}\n'
 
 
 def main():
