@@ -340,6 +340,20 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
 - No `README.md` inside `audio/` — the Android sync only excludes one at the catalog
   root, so a nested one would ship in the APK. Audio schema docs live here.
 
+**Replacing bytes a learner hears** — a speaker consolidation, a re-fetch, a fresh pack —
+earns an independent measurement pass before it ships,
+run by a separate agent from the raw files with its own script,
+never trusting the numbers the generating tool printed,
+plus a folder staged under `../../data/` whose filename order alternates current -> proposed
+(speaker and license in the name, an INDEX naming the word) so the pairs simply play through.
+A tool's own guard only measures what it was built to measure:
+the consolidation guarded on noise floor, which is blind to bandwidth,
+and passed a Spanish swap 23 dB duller above 6 kHz —
+scored *clean* precisely because a lopped-off recording has no hiss up there.
+The audit caught it and the tool then grew `snr` above.
+Flagged items go back to the user rather than being closed by the auditor:
+measurement can bracket plausibility, but it cannot confirm which word was spoken.
+
 Lint (`CatalogAudioLintTest`) holds the rest: every entry names a slug its language
 realizes and a form some card can show, no two entries claim one spoken form with
 different bytes, every file ships and is referenced exactly once, and no author is a
