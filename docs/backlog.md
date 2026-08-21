@@ -112,7 +112,7 @@ One line per item, with a file or context pointer, filed under the section it be
   so every other explanation language drills the frames with no gloss at all —
   the counted-noun agreement rules uk needs explained most of all.
   The vocab side is the same gap: `notes` on a word is keyed by the reader's language
-  with no fallback (`../kern/README.md` § join), and only `de` is ever authored,
+  with no fallback (`../kern/docs/catalog.md`), and only `de` is ever authored,
   so an English reader learning Swahili meets no note on any card.
 - Swahili noun-class concord is taught by note rather than by exposure: 19 stem
   entries (`text` opening with `-`) across `catalog/colors`, `qualities`, `health`

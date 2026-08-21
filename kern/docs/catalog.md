@@ -18,6 +18,9 @@ Engine contract: `../README.md`.
   NAME: it is also the produce prompt's disambiguating cue, which no consumer trims.
   Lint (`subtitlesAreCompletePerAreaAndDistinctFromTheTitle`): an area authoring one
   authors it in every declared language, and it neither contains the title nor a `·`.
+- Realization: `notes` is selected by the profile's SOURCE language at join time with **no
+  cross-language fallback** — a `de` note never surfaces for an `en`-source learner, and a
+  source nobody has authored notes for is note-less rather than served another language's.
 - Realization: `variants: [String]` next to `synonyms` — a **display/accept distinction
   only**, never a scheduling one (`../README.md` §3): synonyms rotate as recognition prompt forms and
   show on reveal; variants are accepted silently and never prompted.

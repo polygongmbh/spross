@@ -34,66 +34,22 @@ The engine's own semantics are below. These domains have their own pages:
 
 ## 1. Languages & profile
 
-- `Language` = string code from `catalog/languages.json` — open set, no enum.
-- `LanguageInfo(code, name, englishName, flag, optionalVerbPrefixes, articles)` —
-  per-language metadata from `catalog/languages.json` (field semantics: `catalog/README.md`).
-- Profile = (source, target), source ≠ target.
-  `Catalog.availableTargets(source)` requires ≥ 50 joinable concepts, and answers only for a
-  language the catalog declares — an undeclared one is a caller that skipped the launch query.
-  That query is `coveredSources()`: every language with at least one learnable target, sorted;
-  `defaultSource(device)` picks the device language when it is covered, else `en`
-  (else, for a catalog that cannot teach from English, its first covered source).
-  So no device locale can throw at launch.
-- `LanguageChoices` (`catalog/LanguageChoices.kt`) owns the pair a learner picks and how the two pickers name it.
-  `Selection(source, target?)` is the pair under edit; `target` is null until one is chosen.
-  - `pickerRow(code, info)` → "🇺🇦 Українська · Ukrainian": flag, the language's own name, the English exonym.
-    Both names, because a flag beside a script the reader cannot read is easy to mistake for a neighboring language,
-    while the endonym is how a speaker of it finds their own row.
-    Collapsed where the two agree ("🇬🇧 English"), uppercased code where the catalog knows no such language.
-  - `pickerLabel(code, info)` → "🇺🇦 Ukrainian": the collapsed form a dropdown wears as its own label, having half a row to live in.
-    Localized exonyms and sentence chrome stay app-side — they read the platform's string tables, not the catalog.
-  - `targetChoices(catalog, selection)` — every target learnable from the source, plus the source itself so that picking it can swap the pair, sorted by code.
-    The swap row carries the SWAPPED pair's count (target → source): that is the pair the tap would join,
-    and it differs from the count on screen wherever one side realizes a feminine the other knows only through its base.
-    It is offered only where that pair is actually joinable — a target that teaches nothing back is no swap to offer —
-    and never while no target is chosen.
-  - `pickSource(catalog, selection, code)` / `pickTarget(selection, code)` — neither side hides the other's pick:
-    choosing the language the other side holds SWAPS the selections instead of refusing the tap,
-    so a pair set backwards is fixed in one move.
-    A source change keeps the target where it stays learnable under the new source,
-    else falls back to that source's first available target (catalog order), so a tap never leaves the pair half-chosen.
-    Swapping while no target is chosen is a no-op — there is nothing to exchange yet.
-  - `chromeLanguage(source)` / `hasChrome(lang)` over `CHROME_LANGUAGES = {"de", "en"}`, the languages the apps carry string tables for.
-    Chrome reads the profile's KNOWN language where it is covered, else English.
-    The immersion subtitle — an action button captioned in the language being LEARNED — asks `hasChrome` instead,
-    because it has no fallback by design: absent means no subtitle, never an English one.
-    Mapping the returned code to a `Locale` or a chrome table is the platform's.
+- Profile = (source, target), source ≠ target. `Catalog.availableTargets(source)` answers
+  only for a language the catalog declares — an undeclared one is a caller that skipped the
+  launch query, `coveredSources()`. `defaultSource(device)` falls back through the device
+  language, `en`, and the first covered source, **so no device locale can throw at launch.**
+- `LanguageChoices` owns the pair a learner picks: neither picker hides the other's pick,
+  so choosing the language the other side holds SWAPS the pair rather than refusing the tap,
+  and a source change never leaves the pair half-chosen.
+- **Chrome reads the profile's KNOWN language**, falling back to English; the immersion
+  subtitle — an action button captioned in the language being LEARNED — asks `hasChrome`
+  instead, because it has no fallback by design: absent means no subtitle, never an English
+  one. Mapping a returned code to a `Locale` or a string table is the platform's.
 
 ## 2. Card — derived, language-symmetric
 
-```kotlin
-data class Card(              // data class: Swift sees value equality (SwiftUI diffing)
-  val id: String,             // the concept's catalog slug — never contains '|' or '/'
-  val kind: CardKind,         // noun | verb | adjective | phrase | idiom
-  val area: String,
-  val emoji: String?,
-  val seedIndex: Int,
-  val components: List<String>,
-  val feminineOf: String?,
-  val baseAccepted: List<String>, // base concept's TARGET texts (feminine cards only, else empty)
-  val source: Realization,    // known-language side
-  val target: Realization,    // learning-language side
-  val promptFeminineMarker: Boolean,
-  val promptAmbiguous: Boolean, // another card shows the IDENTICAL produce prompt
-)
-data class Realization(
-  val lang: String, val text: String,
-  val synonyms: List<String>,   // alternates: rotate as recognition prompt forms, shown on reveal
-  val variants: List<String>,   // accepted surface forms → grading only, never prompted
-  val grammar: Map<String, String>,
-  val note: String?,            // already selected: notes[source] ?: null — UI cannot leak
-)
-```
+`Card` and `Realization` document their own fields (`model/Card.kt`); the rules the
+declarations cannot state are here.
 
 - Cards derive at load from the catalog join; **never persisted**.
   The learner's own words are the one other source of them (§6) and follow every rule here.
@@ -116,29 +72,12 @@ data class Realization(
   disambiguated by its badge. The residue is real: Swahili merges pairs German splits
   (`kuvaa` = anziehen + sich anziehen, `kupumzika` = 3 concepts), so an sw-source learner
   gets prompts no cue in the answer language could resolve. Produce-side only — see §3.
-- **Notes**: selected by SOURCE language at join time, no cross-language fallback
-  (a de note never surfaces for an en-source user; non-de sources are note-less until authored).
-- **`Idiom` emoji is fixed, not per-concept**: the join sets `emoji = IDIOM_EMOJI` for
-  every idiom card regardless of what the catalog concept carries (nothing — the parser
-  rejects an authored `emoji` on `kind: "idiom"`). Every other kind's emoji is a
-  per-concept meaning cue; an idiom's is a kind marker, so a learner recognizes "this is
-  figurative" from the glyph alone before reading either language's text. Idioms also
-  carry no `components`/`feminineOf` (structurally forbidden) and so no unlock gate —
-  see `catalog/README.md` "Idioms are the exception".
-- **Grammar display is target-side only**: the plural line and article coloring render only for the target realization.
-  `pluralForm(realization)` (`model/DisplayText.kt`) resolves what the catalog authored:
-  absent AND empty both answer null — an authored-but-empty value is not a form,
-  and a surface that took it for one would print a bare label with nothing behind it;
-  `"="` → `SameAsSingular`, `"only"` → `PluralOnly`;
-  a leading `-` is a dictionary suffix resolved against the word ("-nen" on "die Lehrerin" → `Form("die Lehrerinnen")`);
-  anything else is the full form as authored.
-  The words a surface prints for each sentinel ("= Pl.", "nur Pl.") are chrome.
-- **The reveal's family line**: `alternates(realization, shown)` — the canonical `text` plus `synonyms`, minus every form already standing on screen.
-  The exclusion is the whole point: a recognition prompt rotates a synonym in,
-  so without it the reveal offers the learner the very word they are looking at as though it were another one,
-  while dropping the citation form they have not seen.
-  Empty means the surface draws no line.
-  Variants never appear — they grade an answer, they do not teach a form.
+- **Grammar display is target-side only**: the plural line and the article coloring render
+  for the target realization alone (`model/DisplayText.kt` resolves what the catalog
+  authored; the words a surface prints for each sentinel are chrome).
+- **The reveal's family line** excludes every form already standing on screen
+  (`alternates`) — a recognition prompt rotates a synonym in, so without the exclusion the
+  reveal offers the learner the very word they are looking at as though it were another one.
 
 ## 3. One schedule per card, alternating presentation   (user ruling 2026-07-22)
 
@@ -202,29 +141,15 @@ No config flag, no user-facing direction anywhere.
 
 ## 4. Denomination — everything in cards
 
-One schedule per card ⇒ one review touches one card:
+One schedule per card ⇒ one review touches one card.
+**Every user-facing count** — the due ring, "x neu", active, the widget, every `DayStats`
+field — **is in cards**; `DayStats.reviews` alone counts answer EVENTS.
 
-| Quantity | Default |
-|---|---|
-| `sessionCap` | 25 |
-| `growthReserve` | ≤ 5 |
-| `SessionComposer.SESSION_FLOOR_CARDS` (a round worth sitting down for — §6) | 7 |
-| `SessionComposer.NEW_CARDS_PER_ROUND` (first sights one round may offer — §6) | 7 |
-| `SessionComposer.SHORT_ROUND_CARDS` (the short round — §6) | 7 |
-| `TodayReport.MIN_ANSWERS_FOR_RECALL` / `RECALL_STRAIN_MARGIN` (§6) | 10 / 0.2 |
-| `LISTENING_POOL_FLOOR` (scheduled words before listening stops topping up — §6) | 12 |
-| `RECENCY_WINDOW` (words a listening run holds out of its next draw — §6) | 8 |
-| `RECALL_GAP_HELD_MS` / `RECALL_GAP_FRESH_MS` (target → meaning, held / unseen — §6) | 2500 / 900 ms |
-| `ECHO_GAP_MS` / `TURN_GAP_MS` (meaning → echo, echo → next turn — §6) | 1200 / 2500 ms |
-| `LISTENING_FADE_MS` / `LISTENING_FADE_FLOOR_DB` (the sleep timer's fade — §6) | 120000 ms / −40 dB |
-
-Every user-facing count (due ring, "x neu", active, widget) and `DayStats` field is in
-cards; `DayStats.reviews` = answer events.
-
-`BoxConfig.product()` hands that calibration out as a value — the table is the `BoxConfig`
-defaults and the factory returns them, because Kotlin default arguments do not cross the
-ObjC boundary and a platform that cannot see them would restate the numbers (`docs/snapshots.md` re-applies
-this to every loaded box).
+The numbers themselves are not one table: the tunable ones are `BoxConfig`'s fields, and the
+rest are private constants beside the rule each of them serves (`SessionComposer`,
+`TodayReport`, `net.spross.kern.listen`), where the declaration says what its number buys. `BoxConfig.product()` hands the shipped calibration out as a
+value, because Kotlin default arguments do not cross the ObjC boundary
+(`docs/snapshots.md` re-applies it to every loaded box).
 
 ## 5. FSRS-6
 
@@ -257,21 +182,14 @@ bar are on `BoxConfig` itself. What the product decided:
 
 ## 6. Box / Session semantics
 
-- **Self-grading takes a verdict and a clock** (`SelfGrading`):
-  the learner reports Unknown / Tough / Knew,
-  and only a Knew that arrived inside the instant budget
-  (`base + perChar × prompt length`, so a phrase gets the reading time it needs)
-  becomes Easy rather than Good.
-  The verdict is never overruled — a fast answer the learner knows was shaky stays Hard,
-  a slow one they knew stays a pass —
-  because only the learner can tell a solid recall from a lucky one,
-  or a pause for thought from an interruption.
-  Easy is thus earned rather than chosen,
-  which takes away the standing incentive to grade a session shorter than it was;
-  and since the clock can only ever upgrade,
-  a learner who walks away mid-card needs no cut-off to protect them.
-  The elapsed span is the recall attempt (prompt shown → answer asked for),
-  not the time spent choosing afterwards.
+- **Self-grading takes a verdict and a clock** (`SelfGrading`), and **the verdict is never
+  overruled** — a fast answer the learner knows was shaky stays Hard, a slow one they knew
+  stays a pass, because only the learner can tell a solid recall from a lucky one, or a
+  pause for thought from an interruption. The clock can only ever UPGRADE a Knew to Easy,
+  so Easy is earned rather than chosen — which takes away the standing incentive to grade a
+  session shorter than it was, and means a learner who walks away mid-card needs no cut-off
+  to protect them. The span measured is the recall attempt (prompt shown → answer asked
+  for), not the time spent choosing afterwards.
 
 - **A turn is a machine, not a screen** (`session.TurnMachine`): one produce/recognize turn
   is immutable state plus `reduce(state, intent, nowEpochMillis)`, and **the learner's TEXT
@@ -300,20 +218,15 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   measures a round to be — across every composed round (today's, endless, the extra round)
   including enqueued cards, since a packed queue overloads the same way.
   Nothing is withdrawn, only deferred: the next round offers the rest again.
-  There is no cap on how much may be *in flight*. `maxUnsettled` used to impose one, read off
-  how many active cards sat below the landed bar of the day (`settledStability`, 2.0, since
-  merged away); that bar was cleared by a single Good, so it counted the words answered WRONG
-  and throttled breadth on a difficulty signal that does not predict retention
-  (`docs/growth-evidence.md`).
-  `growthReserve` (≤ 5) reserves slots against a full due queue, and only for candidates that
-  will actually appear — a box with nothing left to introduce hands every slot back to reviews.
+  **Nothing throttles on how shaky the material is** — a difficulty signal does not predict
+  retention (`docs/growth-evidence.md`) — so there is no cap on how much may be in flight.
+  The growth reserve holds slots against a full due queue, and only for candidates that will
+  actually appear: a box with nothing left to introduce hands every slot back to reviews.
 - **Backlog steers nothing either**, and the reserve is why it does not need to. At
   `desiredRetention` 0.8 a sitting sends far more cards away on longer intervals than the few
   reserved slots bring in, and the reserve is a small constant rather than something that
   scales with the queue, so growth cannot compound a backlog the learner never works off.
-  A `dueSoftCap` gate used to shut growth entirely once the projected post-session backlog
-  passed a cap; it only ever fought the reserve, whose whole job is letting a busy box keep
-  growing. A box far behind still gets its round (`docs/growth-evidence.md`).
+  A box far behind still gets its round (`docs/growth-evidence.md`).
 - **Phrase unlock** reads each component's schedule **by card id** — join- and
   source-independent, so a source switch can never re-lock phrases. Components with no
   TARGET realization are excluded from the gate.
@@ -332,21 +245,15 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   and callers build their queue from it rather than concatenating the lists themselves.
 - **A round shorter than `SESSION_FLOOR_CARDS` is filled out** (user ruling 2026-07-30):
   two or three cards offered as the day's work reads as the app having nothing to give, so
-  `composeSession` tops such a round up with reviews pulled forward, soonest due first —
-  honest FSRS reviews, never extra new words, which are capped per round on purpose.
-  Soonest-due-first is what makes that cheap: an early review buys least when recall is still
-  near-certain, so the cards nearest their due date are the ones whose spacing costs nothing
-  to spend (`docs/growth-evidence.md`).
-- **A long round can be taken short** (user ruling 2026-08-20): where a round runs past
-  `SHORT_ROUND_OFFERED_FROM`, `composeShortRound` offers the same round stopped early —
-  `SHORT_ROUND_CARDS` of its due work, no first sights and nothing pulled forward.
-  It trims `composeSession` rather than walking the due queue again, so it is a strict PREFIX
-  of the round the day just promised and inherits the day-done question with it.
-  `SHORT_ROUND_CARDS` is `SESSION_FLOOR_CARDS` and not a free number: the floor is also what
-  a day has to hold before it counts as worked, so a learner who only ever takes the short
-  round still closes the day. `shortRoundSize` names what it would hand over — a count, so
-  the screen prints what it is given and the threshold stays here.
-  Below that threshold nothing is offered: the two rounds would be one round under two names.
+  the round is topped up with reviews pulled forward — honest FSRS reviews, never extra new
+  words, which are capped per round on purpose (`docs/growth-evidence.md`).
+- **A long round can be taken short** (user ruling 2026-08-20): a long enough round is also
+  offered stopped early — a strict PREFIX of the round the day just promised, so it inherits
+  the day-done question with it. `SHORT_ROUND_CARDS` **is** `SESSION_FLOOR_CARDS` rather
+  than a free number: the floor is also what a day has to hold before it counts as worked,
+  so a learner who only ever takes the short round still closes the day.
+  Below the offer threshold nothing is offered — the two rounds would be one round under
+  two names.
 - **A quiet day is built, not found** (user ruling 2026-08-01): with nothing due, at most half
   the floor is held for cards coming due inside tomorrow and new words take the rest.
   Pulling tomorrow's card forward costs almost no spacing; one due in three weeks burns real
@@ -411,21 +318,10 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
 - `answer(cardId, rating, nowMillis, tzId)` on a non-joining or unknown id is a defined
   no-op (`AnswerStatus.StaleCard`) the UI skips past. `SessionPlan` carries a
   `joinStamp` (source, target, catalog fingerprint); the app recomposes when stale.
-- `setSuspended(cardId)` — per card.
-- **`BoxEngine.consolidatedCardIds(state)`** — the words a drill may practice, in seed order.
-  It reads through the join-filtered active inventory (scheduled, joining, not suspended) and
-  keeps what `Statistics.isConsolidated` accepts, so a lapse takes a card off the list on its
-  own: consolidation wants the Review phase, and a lapsed card sits in Relearning until it
-  earns the stability back.
-  The rule lives here rather than in each app because "which words does the learner already
-  hold" is an engine question — restated over `box.cards` on two platforms it would drift,
-  and it would drift silently, since a drill that practices a word too early only feels
+- **"Which words does the learner already hold" is an engine question**, answered once by
+  `BoxEngine.consolidatedCardIds` — restated over `box.cards` on two platforms it would
+  drift, and drift silently, since a drill that practices a word too early only feels
   slightly harder.
-  Seed order, not the due shuffle: a drill samples with its own `Random` and needs a list
-  that is stable under it, not a second ordering rule; the seedIndex tie-break on card id
-  keeps that order total.
-  The query never writes — drills are stateless and book no reviews (transcription is not
-  recall), so nothing here touches FSRS.
 - **A drill run is a pure machine too** (`net.spross.kern.trainer`), and **one injected
   `Random` per run** feeds every draw, so a seeded run is reproducible end to end and
   identical on both platforms. Drills book no reviews — transcription is not recall — and
@@ -455,25 +351,16 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   learner writes when the catalog has no word for what they need. They are the second and
   last source of cards, and the only CONTENT the box document holds: every other card in it
   is re-derived on load, so losing this entry would lose a word rather than a computation.
-  - `texts` is keyed by language exactly as a concept's realizations are, which buys the
-    catalog's coverage rule unchanged — a word joins the profiles that pair two languages
-    it is written in, goes inert in the others, and revives on the way back.
-  - Ids carry the `own:` prefix and areas are fixed to `own`, so a catalog that grows can
-    neither collide with the learner's words nor quietly reclaim them. `seedIndex` starts
-    at `OwnWords.SEED_BASE`, behind every catalog concept — automatic growth walks seed
-    order, and a word asked for by name is packed on the spot anyway (`addOwnWord`
-    enqueues, because waiting for growth to reach a word the learner just wrote is absurd).
-  - `removeOwnWord` takes the word, its schedule and its queue place out together. It is
-    the one deletion the engine offers, and it reaches own words only: a catalog word is
-    not the learner's to delete, only to suspend.
-  - `BoxEngine.reset(state)` is the destructive fresh start — schedules, queue and tallies
-    go; the join, the configuration and the own words stay. Clearing what the box KNOWS
-    must never delete what it HOLDS.
+  Their ids carry an `own:` prefix and their area is fixed, so a catalog that grows can
+  neither collide with the learner's words nor quietly reclaim them.
+  `removeOwnWord` is **the one deletion the engine offers**, and it reaches own words only:
+  a catalog word is not the learner's to delete, only to suspend.
+  `BoxEngine.reset` is the destructive fresh start — schedules, queue and tallies go; the
+  join, the configuration and the own words stay. **Clearing what the box KNOWS must never
+  delete what it HOLDS.**
 
 ## 7. Testing & gates
 
-- Fast gate: `./gradlew :kern:jvmTest`. iOS gate: `xcodebuild -scheme Spross build` +
-  simulator run-through. Release archive smoke.
 - **Catalog tests split three ways, by who owns the expectation.**
   `CatalogFixtureTest` (commonTest, synthetic `Fixture.kt`) pins exact values —
   the test owns its input, so parser/join plumbing is asserted there.
