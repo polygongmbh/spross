@@ -18,24 +18,33 @@ final class ListeningBedtime {
     /// The picked length in minutes; 0 is OFF and the default, where the
     /// playlist laps for as long as it is left alone.
     private(set) var minutes = 0
-    /// What is left, nil while no bedtime is set — what the chip reads and what
-    /// kern is handed.
-    private(set) var remainingMs: Int64?
+    /// Whole minutes left, rounded UP so a bedtime never reads zero while words
+    /// are still playing; nil while none is set. The ONLY thing the capsule
+    /// watches — it moves once a minute, so nothing on screen redraws in
+    /// between (a ticking clock is a clock you watch, which is the opposite of
+    /// what a sleep timer is for).
+    private(set) var minutesLeft: Int?
     /// Run on the main actor the moment the bedtime arrives.
     var onExpire: (() -> Void)?
 
     private var deadline: Date?
     private var ticker: Task<Void, Never>?
 
-    /// The next length on kern's list, wrapping back to off — one cycling chip
-    /// rather than a picker, because "let it run while I fall asleep" is not an
-    /// ask anybody answers to the minute.
-    func cycle() {
+    /// What is left, nil while no bedtime is set — what kern is handed, read
+    /// off the deadline at the moment it is asked rather than stored, so the
+    /// fade stays exact without a stored millisecond anything can observe.
+    var remainingMs: Int64? { deadline.map { Self.millis(until: $0) } }
+
+    /// [delta] steps along kern's list, wrapping at both ends — one cycling
+    /// capsule rather than a picker, because "let it run while I fall asleep"
+    /// is not an ask anybody answers to the minute. Backwards is VoiceOver's
+    /// swipe down, the same list walked the other way.
+    func step(_ delta: Int) {
         let choices = LISTENING_TIMER_CHOICES_MIN.map { Int(truncating: $0) }
         guard !choices.isEmpty else { return }
-        minutes = choices[((choices.firstIndex(of: minutes) ?? 0) + 1) % choices.count]
+        let here = choices.firstIndex(of: minutes) ?? 0
+        minutes = choices[((here + delta) % choices.count + choices.count) % choices.count]
         deadline = minutes > 0 ? Date().addingTimeInterval(TimeInterval(minutes * 60)) : nil
-        remainingMs = deadline.map { Self.millis(until: $0) }
         startTicking()
     }
 
@@ -60,29 +69,44 @@ final class ListeningBedtime {
         ticker = nil
     }
 
-    /// One second is as fine as the chip reads, and the fade is a ramp over two
-    /// minutes — nothing here needs a display link. No bedtime, no ticker.
+    /// Wakes when the MINUTE the capsule shows changes, and on the deadline
+    /// itself — nothing here needs a per-second clock: the number moves a
+    /// minute at a time and the fade reads the deadline whenever it is asked.
+    /// No bedtime, no ticker.
     private func startTicking() {
         ticker?.cancel()
         guard let deadline else {
             ticker = nil
-            remainingMs = nil
+            minutesLeft = nil
             return
         }
         ticker = Task { @MainActor [weak self] in
             while !Task.isCancelled, let self {
-                remainingMs = Self.millis(until: deadline)
+                minutesLeft = Self.minutes(until: deadline)
                 if expired {
                     stop()
                     onExpire?()
                     return
                 }
-                try? await Task.sleep(for: .seconds(1))
+                try? await Task.sleep(for: .milliseconds(Self.msUntilTheMinuteTurns(deadline)))
             }
         }
     }
 
     private static func millis(until deadline: Date) -> Int64 {
         Int64(max(0, deadline.timeIntervalSinceNow * 1000))
+    }
+
+    private static func minutes(until deadline: Date) -> Int {
+        Int((Double(millis(until: deadline)) / 60_000).rounded(.up))
+    }
+
+    /// How long the shown minute still stands: what is left, less the whole
+    /// minutes that will still be left after it turns. On the last minute that
+    /// is the whole remainder, so the final wake IS the deadline.
+    private static func msUntilTheMinuteTurns(_ deadline: Date) -> Int64 {
+        let left = millis(until: deadline)
+        let whole = Int64(max(minutes(until: deadline) - 1, 0))
+        return max(left - whole * 60_000, 50)
     }
 }

@@ -28,11 +28,6 @@ struct SessionScaffold<Content: View>: View {
     var outcomes: [SessionOutcome] = []
     /// Overrides the "position/total" counter (endless drills show "right/done").
     var counter: String?
-    /// Opt-out for a run with no end: a bar can only fill toward a total, and a
-    /// run that has none can only fake one — `position/(position+1)` creeps to
-    /// full and reads as nearly-done on its sixth word of an endless playlist.
-    /// The counter alone is the honest report there.
-    var showsProgress: Bool = true
     /// Opt-in: only runs that read words aloud show the switch for it.
     var showsMuteButton: Bool = false
     var onClose: () -> Void = {}
@@ -69,9 +64,7 @@ struct SessionScaffold<Content: View>: View {
             SessionCloseButton(action: onClose)
 
             GeometryReader { geo in
-                if !showsProgress {
-                    Color.clear
-                } else if outcomes.isEmpty {
+                if outcomes.isEmpty {
                     ZStack(alignment: .leading) {
                         Capsule().fill(Color.dlSeparator)
                         Capsule()

@@ -117,8 +117,6 @@ final class ListeningDriver {
     func skip() { dispatch(ListeningIntent.Skip.shared) }
     func again() { dispatch(ListeningIntent.Repeat.shared) }
 
-    func cycleBedtime() { bedtime.cycle() }
-
     /// The bedtime arrived: the run is over and the screen leaves with it.
     private func expire() {
         close()
