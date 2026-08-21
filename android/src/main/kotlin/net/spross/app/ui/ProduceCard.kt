@@ -168,7 +168,7 @@ private fun AlmostHold(model: AppModel, flow: TurnFlow, hold: TurnFeedback.Almos
         AlmostReason.Typo -> chrome.almostTypo
         AlmostReason.Heard -> chrome.almostHeard
     }
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
         AlmostCorrection(caption, hold.correctForm, chrome, model.pronounceAction(hold.correctForm))
         ConfirmButton(chrome) { flow.confirm() }
     }
@@ -184,7 +184,7 @@ private fun AlmostHold(model: AppModel, flow: TurnFlow, hold: TurnFeedback.Almos
 private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     val card = ui.card ?: return
     val chrome = model.chrome
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
         flow.otherWord?.let { other ->
             // why: the line says what the learner DID write; the word it speaks is the
             // one they owed, the same one the card above has opened onto.
